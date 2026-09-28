@@ -1,0 +1,40 @@
+{
+  "asset_id": "M24",
+  "display_name": "冷凝泵犬",
+  "biome_id": "B03",
+  "version": 1,
+  "asset_type": "enemy_battle_ready_illustration",
+  "use_case": "stylized-concept",
+  "generation_mode": "built_in_image_gen",
+  "tool": "image_gen.imagegen",
+  "transparent_background_requested": true,
+  "prompt": "Use case: stylized-concept. ONE original battle-ready enemy sprite illustration for industrial fantasy action RPG, M24 Condenser Pump Hound from a powerless underground hangar. Low long FOUR-FOOTED utility creature with a conspicuously long projecting pump-nozzle head and exactly TWO large rounded condenser tanks strapped side-by-side across its back. Four thin articulated metal feet in a prowling quadruped stance, elongated mechanical neck and a small body. The long muzzle is a functional frost diffuser with radial ceramic fins and a small nozzle opening, NOT a dog face, snout, fangs or gun. Twin spherical tanks have fine pale frost gathering on upper seams, linked by copper tubes to the nozzle. No mist cloud in this illustration; the frost and paired tanks communicate its cold-mist attack without obscuring contour. Short cable tail, very restrained pale cyan valve indicators, coal-black steel, ivory ceramics, aged copper, selectively worn ochre straps and panels, tiny mineral fibers in flexible joints. Distinct hound-like low silhouette from functional pump equipment, original and beautiful rather than ordinary robot dog. Premium richly hand-painted stylized industrial-fantasy, broad readable material planes, limited weathering, elegant painterly volume. Elevated three-quarter camera looking down 40 degrees, whole muzzle, both tanks, all four feet and tail visible; generous transparent margin. Clear at 70px through twin round tanks and long pump head. Nearly fully opaque creature on genuine transparent alpha. No floor, shadow, pedestal, scenery, smoke or fog, text, logos, UI, watermark, border or existing game design.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-a3c229fd-9c50-49e1-8a98-e9a80910983d.png",
+  "saved_path": "assets/generated/enemies/M24_v1.png",
+  "width": 1374,
+  "height": 1145,
+  "sha256": "54CBC96707DE732EEBA468766E8750DEDD378392F1F6A50039BEADAD7272BEBD",
+  "design_sources": [
+    "docs/IMAGEGEN_ART_DIRECTION.md",
+    "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+    "data/enemies.json"
+  ],
+  "alpha_validation": {
+    "format": "Format32bppArgb",
+    "sample_stride": 8,
+    "transparent_samples": 15505,
+    "edge_or_low_alpha_samples": 756,
+    "near_opaque_samples": 8507,
+    "near_opaque_threshold": 240,
+    "max_alpha": 255,
+    "max_border_alpha": 3,
+    "near_opaque_border_pixels": 0,
+    "notes": "Original generated alpha preserved; broad subject is nearly opaque. Boundary has only trace low-alpha generation noise, not opaque clipping."
+  },
+  "visual_inspection": [
+    "Two rounded frosted tanks, long pump nozzle and four slender feet are visible.",
+    "No dog face or generic animal-head substitution; nozzle remains mechanical.",
+    "Complete silhouette inspected; only alpha up to 3 occurs at image boundary, not opaque body clipping."
+  ],
+  "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+}

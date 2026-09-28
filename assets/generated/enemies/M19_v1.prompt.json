@@ -1,0 +1,38 @@
+{
+  "asset_id": "M19",
+  "display_name": "铜翅侦察蜂",
+  "biome_id": "B03",
+  "version": 1,
+  "asset_type": "enemy_battle_ready_illustration",
+  "use_case": "stylized-concept",
+  "generation_mode": "built_in_image_gen",
+  "tool": "image_gen.imagegen",
+  "transparent_background_requested": true,
+  "prompt": "Use case: stylized-concept. ONE original enemy sprite concept for an industrial fantasy action RPG, M19 Copper-Wing Scout from a powerless underground hangar. A tiny hovering inspection bee made of mining salvage and mineral-organic filaments: exactly TWO asymmetrical broad copper wings, one longer angular wing and one shorter segmented wing, arranged into a compact DIAMOND silhouette around a round single lens eye. The round scanning eye and aperture shutters are the focal point; small amber lens lights hint at a fan-shaped scanning ability. No weapons, no humanoid body, no extra wings, no helicopter rotors. Compact shell, carefully designed copper ribs, short stabilizer feelers, restrained wires and small mineral core inside. Premium richly hand-painted industrial-fantasy, sophisticated broad readable material shapes and limited fine detailing, oxidized copper, coal-black steel, worn ochre enamel, tiny amber highlights. Belongs to abandoned mining machinery with subterranean living mineral ecology. Elevated three-quarter camera looking down about 40 degrees, battle-ready hovering pose, entire subject isolated, 12 percent generous transparent margin on all sides. Readable immediately at 70 pixels from its diamond wings and round eye. Solid subject nearly fully opaque, genuinely transparent alpha outside its contour. No floor, environment, ground shadow, aura, smoke, labels, lettering, logos, UI, watermark, frame or existing franchise likeness. Beautiful deliberate sculptural shapes and painterly volumetric lighting, never photographic, no clutter or noisy all-over corrosion.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-4fa9a168-fbf0-4375-a8db-451a987459ff.png",
+  "saved_path": "assets/generated/enemies/M19_v1.png",
+  "width": 1353,
+  "height": 1162,
+  "sha256": "064F554FD45007EED52D4F27D29C2CE0CED6FC809AC17E6061FD3DD2C42BDDC7",
+  "design_sources": [
+    "docs/IMAGEGEN_ART_DIRECTION.md",
+    "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+    "data/enemies.json"
+  ],
+  "alpha_validation": {
+    "format": "Format32bppArgb",
+    "sample_stride": 8,
+    "transparent_samples": 17501,
+    "edge_or_low_alpha_samples": 331,
+    "near_opaque_samples": 6988,
+    "near_opaque_threshold": 240,
+    "max_alpha": 255,
+    "notes": "Original generated alpha preserved; broad subject is nearly opaque. Transparent pixels may retain RGB visible in alpha-ignoring viewers."
+  },
+  "visual_inspection": [
+    "Two asymmetrical copper wings and round scanning lens match its scan-mark identity.",
+    "Compact body and wing silhouette distinguish it from a weapon drone.",
+    "Complete wings and feelers visible; no baked attack sector or UI."
+  ],
+  "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+}

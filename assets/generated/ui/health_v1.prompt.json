@@ -1,0 +1,40 @@
+{
+  "asset_id": "health_v1",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "transparent_background": true,
+  "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0e81e-6cb5-73a2-b935-20a0827c6f80\\exec-5fec2777-dd6e-4b77-be05-03b46c763de0.png",
+  "destination": "assets/generated/ui/health_v1.png",
+  "prompt": "Use case: stylized-concept\nAsset type: original hand-painted HUD icon for a 2D industrial mining fantasy action game, one single icon on genuine transparent alpha.\nStyle: refined original hand-painted game art, softly painted bevels, charcoal-gray steel and aged dark copper with mineral focal color, sophisticated restrained highlights. Readable at 24 to 32 pixels. Exactly two to three large bold shape groups; no delicate microdetail. Use fully SOLID OPAQUE RGB-painted surfaces for the entire subject, including dark steel, copper, and crystals. Alpha transparency ONLY outside the silhouette and in genuine holes; never fade dark painted parts to transparent. Avoid black material, use visible medium charcoal-gray and warm mid-tone copper.\nComposition: single centered icon, square canvas, full object and wide transparent margins (18 percent on all sides), no surrounding panel, circle, badge or frame.\nConstraints: no text, no numbers, no lettering, no logo, no watermark, no scene, no floor, no drop shadow, no background glow, no glossy candy mobilegame rendering, no existing-franchise motifs.\nSubject: HEALTH / LIFE. One warm crimson red mineral crystal with the immediately familiar heart silhouette: two broad softly rounded upper lobes, deep clean center notch, and a short pointed lower tip. Opaque red crystal with just three large red painted facets, small quiet coral highlight; two short dark-copper clamp pieces embracing the lower sides, small charcoal steel rivets. The red heart dominates the visual mass. Beautiful restrained hand-painted industrial mining fantasy design. NOT an anatomical organ, NOT a flame, NOT a pressure crack, NOT pink candy, no surrounding frame or badge.",
+  "qa": {
+    "visual": "Pass: distinct icon silhouette, hand-painted mining material, no text, no badge.",
+    "alpha_scan": {
+      "width": 1254,
+      "height": 1254,
+      "fully_transparent_pixels": 1060088,
+      "near_opaque_pixels_alpha_245_255": 501423,
+      "antialias_or_partial_pixels_alpha_1_244": 11005,
+      "border_nonzero_alpha_pixels": 0,
+      "visible_bounds_alpha_over_16": [
+        188,
+        213,
+        1065,
+        1029
+      ],
+      "transparent_background_verified": true,
+      "subject_near_opaque_verified": true,
+      "border_max_alpha": 0,
+      "corner_alphas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "Strict transparent_background_verified requires every border pixel exactly zero; a false result may indicate faint generator residuals. Preserve original generated pixels and inspect border_max_alpha; no code cleanup performed."
+    },
+    "view_image_inspected": true,
+    "pixel_edits": "none; copied built-in output verbatim; alpha inspection read-only",
+    "source_copy_identical": true
+  },
+  "sha256": "4BE4DD46766917F6EDF4942E16EB46389BFF6BF5E6CDB8727347745CD63E67B3"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "buff_pressure",
+  "name": "压力强化泵",
+  "version": 1,
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: ONE original interactive buff device sprite for a top-down 2D industrial-fantasy action RPG set in abandoned mines. Subject: a LOW SQUAT PRESSURE BOOST PUMP, a salvager-built machine about knee height. A broad RED-ORANGE compressed-air cylinder lies horizontally inside a compact coal-black steel saddle frame; a large central COPPER PUSH-DOWN VALVE cap sits prominently on top, clearly shaped for pressing by hand but no hand is present. One short exposed piston, a chunky curved dark hose tucked tightly against the cylinder, and a small recessed amber slit core giving only a very faint internal glow. A bone-white ceramic coupling provides clear secondary contrast. The pressure cap is the largest simple focal shape, cylindrical main body and angular two-foot frame give a compact wide silhouette distinctly unlike a shield or turbine. No wheels, no screen. Original practical mining machinery with restrained wear, painted thick material bevels and simple high quality mechanical construction. Premium richly hand-painted stylized industrial fantasy matching dark steel, warm copper and mineral ceramic hero equipment. Aim for strong coherent form readable at 80px rather than tiny detail. Camera: elevated TOP-DOWN THREE-QUARTER view, showing top valve and front cylinder, suitable for placing directly on a 2D game floor. Entire isolated object centered, full silhouette including feet and all attachments inside canvas, 12% empty margin. Genuinely transparent alpha background; ALL metal, cylinder, hose and ceramic must be fully opaque, ONLY outside empty background transparent. No baked floor, floor decal, shadow cloud, large cast shadow, pedestal, surrounding scene, people, hands, UI prompt, letter E, text, letters, numbers, symbols, frame, border, logo, watermark or existing franchise design.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e806-e28c-7c81-95b4-02acc6060bab/exec-b13a7a91-84b3-4fbe-9171-7a985a5ed42a.png",
+  "output_file": "assets/generated/props/buff_pressure_v1.png",
+  "design_role": "Interactive low pressure buff prop; top-down three-quarter; 80px target readability",
+  "qa": "Viewed source copy. Broad red-orange cylinder, oversized pressable copper valve, compact feet and pipe, restrained amber core. Real alpha sampled; body opaque; no UI text, baked floor or cast shadow."
+}

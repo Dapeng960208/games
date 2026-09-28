@@ -1,0 +1,41 @@
+{
+  "asset_id": "state_burn_v1",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "transparent_background": true,
+  "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0e81e-6cb5-73a2-b935-20a0827c6f80\\exec-b5d46a6d-7297-4807-aac0-81b74de9e2f8.png",
+  "destination": "assets/generated/ui/state_burn_v1.png",
+  "prompt": "Use case: stylized-concept\nAsset type: original hand-painted HUD status icon for a 2D industrial mining fantasy action game, one single icon on genuine transparent alpha.\nSubject: BURN status: a bold upward orange flame tongue embracing one faceted lump of coal-black anthracite, dark copper seam at its base. Exactly two to three bold shape groups; an instantly readable rising flame silhouette.\nStyle: elegant original hand-painted game icon, softly painted bevels, restrained painterly charcoal steel and aged dark copper with ember-orange mineral focal color; tactile mining material; sophisticated understated light. Designed to remain unmistakable at 24 to 32 pixels. Large smooth shapes, a little material texture, no fussy microdetail.\nComposition: centered single isolated icon, square canvas, full object visible with generous clear transparent margins (about 16 percent on every side), no cast shadow outside the icon.\nConstraints: actual transparent background, no frame, no surrounding badge, no scene, no floor, no background glow, no lettering, no numbers, no logo, no watermark, no glossy candy-like mobile game rendering, no recognizable existing franchise design.",
+  "qa": {
+    "visual": "Original upward flame with coal and copper, distinct compact rising silhouette, no text or badge.",
+    "alpha": "Pixel alpha verified separately in tool output.",
+    "alpha_scan": {
+      "width": 1254,
+      "height": 1254,
+      "fully_transparent_pixels": 1130062,
+      "near_opaque_pixels_alpha_245_255": 424954,
+      "antialias_or_partial_pixels_alpha_1_244": 17500,
+      "border_nonzero_alpha_pixels": 0,
+      "visible_bounds_alpha_over_16": [
+        278,
+        65,
+        1012,
+        1156
+      ],
+      "transparent_background_verified": true,
+      "subject_near_opaque_verified": true,
+      "border_max_alpha": 0,
+      "corner_alphas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "Strict transparent_background_verified requires every border pixel exactly zero; a false result may indicate faint generator residuals. Preserve original generated pixels and inspect border_max_alpha; no code cleanup performed."
+    },
+    "view_image_inspected": true,
+    "pixel_edits": "none; copied built-in output verbatim; alpha inspection read-only",
+    "source_copy_identical": true
+  },
+  "sha256": "3D589F1F8CE50AB4531101B3109A476FB60D8DB383257734780BC5EE9C2D667D"
+}

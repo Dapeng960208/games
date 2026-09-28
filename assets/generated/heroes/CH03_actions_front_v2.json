@@ -1,0 +1,540 @@
+{
+  "schema_version": 2,
+  "hero_id": "CH03",
+  "bank": "front",
+  "texture": "res://assets/generated/heroes/CH03_actions_front_v2.png",
+  "asset_id": "CH03_actions_front_v2",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "width": 1254,
+  "height": 1254,
+  "columns": 2,
+  "rows": 2,
+  "frame_order": [
+    "idle",
+    "windup",
+    "release",
+    "recovery"
+  ],
+  "direction": "southeast",
+  "mirror_for_opposite_horizontal": true,
+  "body_height": 279,
+  "body_height_definition": "Common reference crown-to-ground-foot-midpoint source pixels, calibrated from idle. Use this single bank-wide value for every frame; do not fit by region height or each frame's bent posture.",
+  "recommended_runtime_body_height": 88,
+  "pivot": "foot",
+  "coordinate_system": "Absolute unmodified PNG pixels; origin top-left, +x right, +y down. cell and region are [x,y,width,height]; region bounds use alpha>16. Normalized anchors are relative to their complete cell.",
+  "frames": [
+    {
+      "name": "idle",
+      "cell": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "region": [
+        214,
+        163,
+        274,
+        349
+      ],
+      "foot": [
+        317,
+        499
+      ],
+      "head": [
+        330,
+        220
+      ],
+      "grip": [
+        378,
+        380
+      ],
+      "muzzle": [
+        456,
+        427
+      ],
+      "left_hand": [
+        361,
+        317
+      ],
+      "right_hand": [
+        378,
+        380
+      ],
+      "core": [
+        357,
+        310
+      ],
+      "foot_left": [
+        235,
+        507
+      ],
+      "foot_right": [
+        399,
+        491
+      ],
+      "pose": "Emitter low forward; free hand holds chest tuner; neutral knees.",
+      "body_height": 279,
+      "anchors_normalized_to_cell": {
+        "foot": [
+          0.505582,
+          0.795853
+        ],
+        "head": [
+          0.526316,
+          0.350877
+        ],
+        "grip": [
+          0.602871,
+          0.606061
+        ],
+        "muzzle": [
+          0.727273,
+          0.681021
+        ],
+        "left_hand": [
+          0.575758,
+          0.505582
+        ],
+        "right_hand": [
+          0.602871,
+          0.606061
+        ],
+        "core": [
+          0.569378,
+          0.494418
+        ],
+        "foot_left": [
+          0.374801,
+          0.808612
+        ],
+        "foot_right": [
+          0.636364,
+          0.783094
+        ]
+      },
+      "anchor_precision": "Visual landmark estimates in original source pixels; foot is midpoint of the two sole contact anchors.",
+      "muzzle_definition": "Center of visible cyan crystal in held fork emitter; sampled colored physical source pixel, not an inferred off-image beam tip.",
+      "muzzle_rgba": [
+        38,
+        242,
+        249,
+        253
+      ]
+    },
+    {
+      "name": "windup",
+      "cell": [
+        627,
+        0,
+        627,
+        627
+      ],
+      "region": [
+        839,
+        189,
+        217,
+        320
+      ],
+      "foot": [
+        939,
+        494
+      ],
+      "head": [
+        954,
+        244
+      ],
+      "grip": [
+        965,
+        350
+      ],
+      "muzzle": [
+        1027,
+        287
+      ],
+      "left_hand": [
+        986,
+        336
+      ],
+      "right_hand": [
+        965,
+        350
+      ],
+      "core": [
+        980,
+        326
+      ],
+      "foot_left": [
+        859,
+        504
+      ],
+      "foot_right": [
+        1019,
+        484
+      ],
+      "pose": "Knees flex, torso curls; both elbows and hands drawn inward around tuning core.",
+      "body_height": 279,
+      "anchors_normalized_to_cell": {
+        "foot": [
+          0.497608,
+          0.787879
+        ],
+        "head": [
+          0.521531,
+          0.389155
+        ],
+        "grip": [
+          0.539075,
+          0.558214
+        ],
+        "muzzle": [
+          0.637959,
+          0.457735
+        ],
+        "left_hand": [
+          0.572568,
+          0.535885
+        ],
+        "right_hand": [
+          0.539075,
+          0.558214
+        ],
+        "core": [
+          0.562998,
+          0.519936
+        ],
+        "foot_left": [
+          0.370016,
+          0.803828
+        ],
+        "foot_right": [
+          0.625199,
+          0.77193
+        ]
+      },
+      "anchor_precision": "Visual landmark estimates in original source pixels; foot is midpoint of the two sole contact anchors.",
+      "muzzle_definition": "Center of visible cyan crystal in held fork emitter; sampled colored physical source pixel, not an inferred off-image beam tip.",
+      "muzzle_rgba": [
+        4,
+        194,
+        211,
+        253
+      ]
+    },
+    {
+      "name": "release",
+      "cell": [
+        0,
+        627,
+        627,
+        627
+      ],
+      "region": [
+        181,
+        764,
+        332,
+        315
+      ],
+      "foot": [
+        296,
+        1070
+      ],
+      "head": [
+        329,
+        812
+      ],
+      "grip": [
+        396,
+        956
+      ],
+      "muzzle": [
+        481,
+        1002
+      ],
+      "left_hand": [
+        463,
+        898
+      ],
+      "right_hand": [
+        396,
+        956
+      ],
+      "core": [
+        342,
+        890
+      ],
+      "foot_left": [
+        202,
+        1071
+      ],
+      "foot_right": [
+        390,
+        1069
+      ],
+      "pose": "Both arms extend; free hand visibly open, emitter arm thrust forward; torso leans.",
+      "body_height": 279,
+      "anchors_normalized_to_cell": {
+        "foot": [
+          0.472089,
+          0.706539
+        ],
+        "head": [
+          0.524721,
+          0.295056
+        ],
+        "grip": [
+          0.631579,
+          0.524721
+        ],
+        "muzzle": [
+          0.767145,
+          0.598086
+        ],
+        "left_hand": [
+          0.738437,
+          0.432217
+        ],
+        "right_hand": [
+          0.631579,
+          0.524721
+        ],
+        "core": [
+          0.545455,
+          0.419458
+        ],
+        "foot_left": [
+          0.322169,
+          0.708134
+        ],
+        "foot_right": [
+          0.62201,
+          0.704944
+        ]
+      },
+      "anchor_precision": "Visual landmark estimates in original source pixels; foot is midpoint of the two sole contact anchors.",
+      "muzzle_definition": "Center of visible cyan crystal in held fork emitter; sampled colored physical source pixel, not an inferred off-image beam tip.",
+      "muzzle_rgba": [
+        9,
+        203,
+        243,
+        253
+      ]
+    },
+    {
+      "name": "recovery",
+      "cell": [
+        627,
+        627,
+        627,
+        627
+      ],
+      "region": [
+        849,
+        758,
+        206,
+        332
+      ],
+      "foot": [
+        955,
+        1080
+      ],
+      "head": [
+        952,
+        814
+      ],
+      "grip": [
+        931,
+        988
+      ],
+      "muzzle": [
+        960,
+        1044
+      ],
+      "left_hand": [
+        1028,
+        970
+      ],
+      "right_hand": [
+        931,
+        988
+      ],
+      "core": [
+        970,
+        875
+      ],
+      "foot_left": [
+        870,
+        1084
+      ],
+      "foot_right": [
+        1040,
+        1076
+      ],
+      "pose": "Torso recenters upright; open free hand and emitter hand lower toward hips.",
+      "body_height": 279,
+      "anchors_normalized_to_cell": {
+        "foot": [
+          0.523126,
+          0.722488
+        ],
+        "head": [
+          0.518341,
+          0.298246
+        ],
+        "grip": [
+          0.484848,
+          0.575758
+        ],
+        "muzzle": [
+          0.5311,
+          0.665072
+        ],
+        "left_hand": [
+          0.639553,
+          0.547049
+        ],
+        "right_hand": [
+          0.484848,
+          0.575758
+        ],
+        "core": [
+          0.547049,
+          0.395534
+        ],
+        "foot_left": [
+          0.38756,
+          0.728868
+        ],
+        "foot_right": [
+          0.658692,
+          0.716108
+        ]
+      },
+      "anchor_precision": "Visual landmark estimates in original source pixels; foot is midpoint of the two sole contact anchors.",
+      "muzzle_definition": "Center of visible cyan crystal in held fork emitter; sampled colored physical source pixel, not an inferred off-image beam tip.",
+      "muzzle_rgba": [
+        35,
+        224,
+        245,
+        253
+      ]
+    }
+  ],
+  "generated_source": "C:/Users/13326/.codex/generated_images/01a0e890-f379-72d0-bd86-9dab4502fdc2/exec-886a0d7f-71d8-48e2-b958-4b4577141891.png",
+  "prompt_set": [
+    {
+      "role": "initial four-column generation",
+      "prompt": "Use case: identity-preserve. Asset type: a production transparent character ACTION SPRITE ATLAS, four equal columns in ONE horizontal row, preferred wide 3072 by 1024 canvas (3:1), NOT a scene or poster. Input image 1 is the exact existing CH03 Gu Pin game combat sprite: identity, outfit, backpack hardware, brushwork, camera reference. Input image 2 is portrait supporting exact identity and equipment. Preserve this adult male engineer's grey-streaked dark wavy hair, moustache and chin beard, SHORT ivory work jacket with peacock teal panels, dark work trousers and boots, asymmetric copper/ivory circular receiver high over one shoulder, three/four staggered ceramic capacitors on opposite backpack side, hip crystal nodes, short copper fork-shaped emitter with mineral tip. He is a practical resonance engineer, not a wizard, no mask or cloak. Make FOUR visibly different authentic body poses of the SAME character at exactly consistent anatomy scale, costume, overhead camera and facing. A high 50-degree overhead three-quarter view facing southeast / SCREEN LOWER RIGHT in all four frames. Frame 1 at canvas x=12.5%: IDLE, planted separate feet, relaxed bent knees, right hand holds fork emitter low forward, left hand near brass chest control. Frame 2 at x=37.5%: WINDUP / GATHER, knees bend and torso curls inward, shoulders hunch slightly, BOTH elbows visibly flexed and both hands pulled together inward in front of chest-level capacitor core; right hand still grips emitter folded close across chest. Frame 3 at x=62.5%: RELEASE / CAST, strong forward torso extension from waist, right arm thrusts fork emitter forward toward lower right, LEFT ARM also extends forward with OPEN PALM, shoulders extend, fingers/palm gesture visibly different from windup, heel weight shifts naturally, maximum open angular silhouette. Frame 4 at x=87.5%: RECOVERY, torso rises back upright, elbows lowered, emitter hand drops toward hip and free open hand descends toward belt, stance recenters but visibly different from frame 1. The movement must be actual joint and body pose change, NOT rotation, translation or scale variants. It must read as gather then release then recover when each character is rendered only 80 pixels high. Use clean strong large painted color blocks, excellent silhouettes, selective detail matching original sprite style, opaque body and equipment. Layout invariants: exactly 4 columns by 1 row, each cell occupies 25 percent width, each character centered within its OWN cell with own visible feet at identical approximately 87 percent canvas height baseline, consistent head/body scale (roughly 70 percent cell height). All hands, boots, receiver, capacitors, emitter tips entirely inside their individual cells; at least 10 percent empty transparent gutter to every cell edge, especially release arm must NOT cross into next cell. No frame touching any other. NO visible cell dividers, no grid, no labels. GENUINELY TRANSPARENT alpha background, clear transparent space between characters. No ground, shadows, backdrop, contact shadow, base, title, numbers, text, watermark. No energy effects, no magic circles, no beams, no sparks, no glow clouds, no floating disconnected hardware; all visual effects are added by game runtime. Only these four physical full-body poses in order, one row.",
+      "references": [
+        "assets/generated/heroes/CH03_combat_v1.png",
+        "assets/generated/heroes/CH03_portrait_v1.png"
+      ],
+      "source": "C:/Users/13326/.codex/generated_images/01a0e890-f379-72d0-bd86-9dab4502fdc2/exec-1cf91151-5677-4ab6-967a-4c782cb609a9.png"
+    },
+    {
+      "role": "two-by-two layout refinement",
+      "prompt": "EDIT THE ATTACHED CHARACTER ACTION SHEET. Keep its exact four poses, character identity, proportions, costume, color, equipment, facial features, 50-degree overhead southeast-facing camera and high-quality painted rendering. Change ONLY the atlas layout and framing. Convert the existing ONE ROW of four poses into a SQUARE 2 columns by 2 rows transparent sprite atlas. FOUR EQUAL SQUARE CELLS: upper-left=original first idle pose; upper-right=original second crouched hands-inward windup pose; lower-left=original third open arms thrust release pose; lower-right=original fourth hands-lowered recovery pose. Keep each pose's authentic body/arm gesture exactly, do not make poses duplicates. All four bodies same anatomy scale; their feet rest on a common y baseline at 85% of THEIR OWN square cell height. Place each full-body sprite at the center of its OWN cell, using ONLY the inner 72% of cell width and height; leave at least 12% EMPTY TRANSPARENT SPACE on EVERY side of each cell around ALL boots, receiver dishes, heads, capacitors, hands, emitter tips. Especially shrink and center the wide release pose within lower-left cell so it never crosses the vertical/horizontal middle of full image. Natural full-body figure around 68-72% cell height, no cropping and no overhang into adjacent cells. True transparent alpha everywhere outside physical character. NO visible grid, boundaries, lines, checkerboard, labels, text, backdrop, ground, shadow, spells, particles, rings, energy effects or new objects. Preserve physical body and equipment fully opaque. Deliver only square 2x2 sprite atlas with generous empty transparent gutters.",
+      "source": "C:/Users/13326/.codex/generated_images/01a0e890-f379-72d0-bd86-9dab4502fdc2/exec-ab1db563-67fd-4d07-8afc-c9f1ac63005d.png"
+    },
+    {
+      "role": "transparent padding refinement; final selected image",
+      "prompt": "The attached transparent 2x2 action sprite atlas has good four poses but each character is MUCH TOO LARGE for its cell. FIX ONLY FRAMING. Keep the same square canvas and 2 by 2 arrangement, same exact character appearance and four poses in the same order. SHRINK EVERY CHARACTER TO TWO THIRDS (66%) OF ITS CURRENT SIZE within its own quadrant, keeping all four characters exactly the same anatomy scale. After shrinking, CENTER each character within its own quadrant. The sprite should now appear conspicuously SMALLER surrounded by LARGE EMPTY TRANSPARENT GUTTERS. Full physical sprite including receiver, emitter and boots must occupy only the central 55-60% of each square quadrant, never near any edge. This is a game texture atlas that NEEDS padding, do NOT fill canvas with big figures. Upper-left idle, upper-right inward windup, lower-left extended release, lower-right lowered recovery. Baseline of boots at 78% of EACH quadrant height. Ensure lower-left release emitter ends WELL BEFORE middle vertical edge, and all upper sprites end WELL ABOVE horizontal middle. Preserve original exact painted costume and separate arm gestures. All bodies opaque; background truly transparent. No ground, shadow, visible grid, lines, labels, text, numbers, effects, or added props. Only rescale/recenter the existing four figures smaller within the four cells."
+    }
+  ],
+  "identity_invariants": [
+    "Adult male engineer with dark grey-streaked hair, moustache and chin beard",
+    "Short ivory jacket with peacock-teal panels; brown work trousers and boots",
+    "Copper/ceramic round receiver and carried ceramic capacitors",
+    "Short fork-shaped mineral emitter and hip crystal nodes"
+  ],
+  "postprocessing": "None. Selected final PNG copied byte-for-byte from built-in imagegen output. Alpha retained. Python used only to read pixels and write JSON; no image editing, resampling, cropping or compositing.",
+  "limitations": [
+    "Four authored key poses only; no skeletal rig, in-between frames, locomotion cycle, hurt or death animation.",
+    "Source poses are independently rendered; small clothing/equipment and perspective inconsistencies remain. Back view hides some capacitors and interprets receiver rear housing.",
+    "Common per-bank scale and explicit foot anchors compensate layout placement; verify final 80px game display and timing in runtime.",
+    "Original built-in imagegen preview visually reviewed. The separate local view_image preview intermittently displayed opaque interiors as black; original pixel sampling verified near-opaque colored interiors. No pixel data was altered to work around preview behavior."
+  ],
+  "qa": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "sha256": "d6894d5205b75455541066d29039168544ec5b54491e0db30bc749146f4a87d1",
+    "byte_identical_to_generated_source": true,
+    "alpha_zero_pixels": 1365143,
+    "alpha_near_opaque_pixels_240_plus": 170124,
+    "visible_pixels_alpha_gt_16": 180893,
+    "near_opaque_fraction_of_visible": 0.940468,
+    "maximum_outer_edge_alpha": 0,
+    "all_four_frames_within_cells": true,
+    "all_four_frames_safe_margin_at_least_10_percent": true,
+    "frame_checks": [
+      {
+        "name": "idle",
+        "visible_bounds_alpha_gt_16": [
+          214,
+          163,
+          274,
+          349
+        ],
+        "safe_margin_ratios": {
+          "left": 0.341308,
+          "top": 0.259968,
+          "right": 0.221691,
+          "bottom": 0.183413
+        },
+        "safe_margin_10_percent_pass": true
+      },
+      {
+        "name": "windup",
+        "visible_bounds_alpha_gt_16": [
+          839,
+          189,
+          217,
+          320
+        ],
+        "safe_margin_ratios": {
+          "left": 0.338118,
+          "top": 0.301435,
+          "right": 0.315789,
+          "bottom": 0.188198
+        },
+        "safe_margin_10_percent_pass": true
+      },
+      {
+        "name": "release",
+        "visible_bounds_alpha_gt_16": [
+          181,
+          764,
+          332,
+          315
+        ],
+        "safe_margin_ratios": {
+          "left": 0.288676,
+          "top": 0.218501,
+          "right": 0.181818,
+          "bottom": 0.279107
+        },
+        "safe_margin_10_percent_pass": true
+      },
+      {
+        "name": "recovery",
+        "visible_bounds_alpha_gt_16": [
+          849,
+          758,
+          206,
+          332
+        ],
+        "safe_margin_ratios": {
+          "left": 0.354067,
+          "top": 0.208931,
+          "right": 0.317384,
+          "bottom": 0.261563
+        },
+        "safe_margin_10_percent_pass": true
+      }
+    ],
+    "visual_review": "Four complete physical character poses, distinct inward gather / outward extended release / lowered recovery. No baked VFX, ground, text, dividers or shadows. Front southeast and back northeast are visibly different views.",
+    "muzzle_anchors_verified_on_cyan_emitter_pixels": true
+  }
+}

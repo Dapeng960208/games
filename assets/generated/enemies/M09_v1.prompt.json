@@ -1,0 +1,35 @@
+{
+  "asset_id": "M09",
+  "display_name": "警铃拾骨者",
+  "biome_id": "B01",
+  "version": 1,
+  "asset_type": "enemy_bestiary_illustration",
+  "use_case": "stylized-concept",
+  "generation_mode": "built_in_image_gen",
+  "tool": "image_gen.imagegen",
+  "transparent_background_requested": true,
+  "prompt": "Use case: stylized-concept. Asset type: ONE original enemy bestiary illustration and production creature concept for an industrial fantasy action RPG. Subject M09 Alarm-Bell Bone Collector: a delicate tall-legged salvage collector whose compact body carries an oversized OPEN BELL CAGE on its upper back. Inside the cage a battered industrial warning bell and clearly visible swinging bell CLAPPER hang on a pivot; show the clapper offset to one side so its imminent ringing is readable. The bell cage forms a rounded arched upper silhouette, attached to a small scavenger mechanism below. Exactly FOUR slender insect-like mechanical stilt legs support the collector, with ample visible negative space, tiny magnetic pads as feet. A small three-finger magnetic pickup claw hangs beneath the body on a short chain, ready to collect wreckage; keep claw clearly distinct from its four locomotion legs. No humanoid head or face, just a tiny recessed amber sensor near the claw. Subtle mineral-organic filaments link the old mining bell, cage and salvage machinery, like a living underground recycling creature. Empty pickup claw, no corpse, bones, skeleton, loot pile or scenery. Beautiful original utility-creature anatomy; delicate collector silhouette is neither a crane nor a combat robot. Premium richly hand-painted stylized industrial-fantasy rendering, refined intricate engineering, charcoal oxidized iron, rust edges, faded ochre panels, dull copper bell, small restrained warm amber core and tender mineral fibers, dramatic readable painterly lighting. Three-quarter view entire creature with every leg, cage and pickup claw fully in frame, generous clear margins. Genuine transparent alpha background with clean contours, no floor, ground shadow, platform, pedestal, smoke, backdrop, text, logos, labels, UI or watermark. Does not resemble existing franchise characters.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-0a49592f-3389-4c1d-b153-d86793b075fd.png",
+  "saved_path": "assets/generated/enemies/M09_v1.png",
+  "width": 1145,
+  "height": 1374,
+  "sha256": "0942B174F169709E5CEC102F2ECFAAA58F961AEF1B5BDEA1A818A69A2F89EB9B",
+  "visual_language": "Original industrial fantasy: abandoned mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+  "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+  "alpha_validation": {
+    "format": "Format32bppArgb",
+    "sample_stride": 8,
+    "corner_alpha": 0,
+    "transparent_samples": 16421,
+    "partial_samples": 8335,
+    "opaque_samples": 12,
+    "notes": "Source PNG alpha preserved without external editing. Alpha-zero RGB may appear colored in previews which ignore alpha; use alpha-aware rendering."
+  },
+  "visual_inspection": [
+    "Large open arched bell cage and displaced visible clapper communicate its ring warning.",
+    "Four fine collector legs and magnetic feet distinguish locomotion from the pickup claw.",
+    "A separate magnetic claw hangs beneath its body.",
+    "Empty collector carries no corpse or decorative environment."
+  ],
+  "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Gameplay directional animation sheets and attack/recovery poses remain separate deliverables."
+}

@@ -1,0 +1,45 @@
+{
+  "asset_id": "B04_broken_receiver",
+  "version": 1,
+  "date": "2026-09-28",
+  "tool": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: ONE original environmental obstacle sprite for a top-down 2D industrial fantasy abandoned mine action game. Three-quarter top-down orthographic low perspective, camera looking down about 55 degrees, clearly visible broad top surfaces. Premium hand-painted game asset: purple-grey minerals and dark rock, ivory ceramic, aged oxidized copper, coal-black metal, restrained tiny peacock-teal light accents. Carefully detailed but use only several large readable forms; crisp clear silhouette at 100 to 220 screen pixels. Cohesive compact collision-friendly footprint. Entire object visible, centered with safe 12% margin. Physical subject solid and nearly fully opaque, genuine transparent background alpha zero outside its exact outline. No ground plane, tile, platform around it, exterior shadow, bloom halo, fog, smoke, gradient, text, symbols, labels, logos, border, watermark. Not a crate or machinery cabinet. Entirely original, no existing franchise influence. Subject: a wrecked circular industrial resonance receiver dish folded and cracked in half, lying tilted on its broken short mechanism, with THREE chunky ivory ceramic ribbed capacitor cylinders tightly piled into its lower-right side. Main dish has a jagged missing wedge, weathered purple-grey concave face and copper reinforcement ribs, one short broken antenna stump at its center. Small subdued peacock-teal core lens at the stump. Capacitors have tarnished copper end caps and cracked ivory surfaces. Low broad crescent-and-cylinder silhouette, asymmetric compact collision footprint. Not a radio cabinet, no large extended tripod, no scattered loose debris or cables beyond the silhouette.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e81e-dd8b-7513-89db-bbfce972c051/exec-778d5c4c-f39b-4640-a888-c5f4484325b7.png",
+  "saved_path": "assets/generated/props/B04_broken_receiver_v1.png",
+  "sha256": "4D8CC7F7585ECE86B0C9B10B003C9DC4744BD1F8E9E5F1CF4E33EA82AB638D55",
+  "references_inspected": [
+    "assets/generated/heroes/CH03_combat_v1.png",
+    "assets/generated/ui/workshop_v1.png"
+  ],
+  "dimensions": [
+    1402,
+    1122
+  ],
+  "qa": {
+    "view_image_inspected": true,
+    "original_design": true,
+    "complete_subject": true,
+    "distinct_silhouette": true,
+    "no_floor_or_external_shadow": true,
+    "sample_step_pixels": 8,
+    "transparent_samples": 14881,
+    "partial_alpha_samples": 9927,
+    "opaque_samples": 8,
+    "alpha_240_or_higher_samples": 9648,
+    "foreground_mean_alpha": 246.33,
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_preserved": true,
+    "notes": "Original generated PNG copied unchanged. Purple-grey mineral / ivory ceramic / oxidized copper / restrained peacock-teal accent matches B04 biome. No code-based image edits.",
+    "live_scene_review": "pending consumer integration",
+    "target_screen_size_pixels": [
+      100,
+      220
+    ]
+  }
+}

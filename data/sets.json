@@ -1,0 +1,250 @@
+{
+  "S01": {
+    "id": "S01",
+    "name": "余烬司炉",
+    "status_id": "burn",
+    "status_name": "灼烧",
+    "color": "#D89543",
+    "visual": "铁灰炉膛、琥珀裂缝、扇形排烟片",
+    "thresholds": {
+      "2": {
+        "name": "余烬司炉 · 2 件",
+        "text": "主攻击命中灼烧目标，本次直接伤害 +8%",
+        "name_en": "Ember Stoker · 2 pieces",
+        "text_en": "Primary attacks against burning targets deal +8% direct damage."
+      },
+      "4": {
+        "name": "余烬司炉 · 4 件",
+        "text": "主攻击成功施加灼烧后，直接伤害 +10%，持续 3 秒；ICD 8 秒",
+        "name_en": "Ember Stoker · 4 pieces",
+        "text_en": "Successfully applying Burn with a primary attack grants +10% direct damage for 3 s. Internal cooldown: 8 s."
+      },
+      "6": {
+        "name": "余烬司炉 · 6 件",
+        "text": "击败灼烧目标时发出余烬，对附近最多 3 名其他敌人各造成 X×35% 附加伤害；ICD 6 秒",
+        "name_en": "Ember Stoker · 6 pieces",
+        "text_en": "Defeating a burning target releases embers that deal extra damage equal to 35% of X to up to 3 other nearby enemies. Internal cooldown: 6 s."
+      }
+    },
+    "unlock_boss": "",
+    "name_en": "Ember Stoker",
+    "status_name_en": "Burn"
+  },
+  "S02": {
+    "id": "S02",
+    "name": "鸣轨导体",
+    "status_id": "shock",
+    "status_name": "感电",
+    "color": "#688EC9",
+    "visual": "靛蓝轨道、分叉铜导线、断续电符",
+    "thresholds": {
+      "2": {
+        "name": "鸣轨导体 · 2 件",
+        "text": "主攻击命中感电目标，冲刺剩余冷却减少 0.15 秒；ICD 2 秒",
+        "name_en": "Singing-Rail Conductor · 2 pieces",
+        "text_en": "Primary attacks against shocked targets reduce remaining dash cooldown by 0.15 s. Internal cooldown: 2 s."
+      },
+      "4": {
+        "name": "鸣轨导体 · 4 件",
+        "text": "主攻击命中感电目标，向最多 2 名其他敌人各释放 X×25% 电弧；ICD 4 秒",
+        "name_en": "Singing-Rail Conductor · 4 pieces",
+        "text_en": "Primary attacks against shocked targets release arcs that deal 25% of X to up to 2 other enemies. Internal cooldown: 4 s."
+      },
+      "6": {
+        "name": "鸣轨导体 · 6 件",
+        "text": "6 秒内主攻击命中 3 个不同感电目标，攻击速度 +10%，持续 5 秒；ICD 10 秒",
+        "name_en": "Singing-Rail Conductor · 6 pieces",
+        "text_en": "Hitting 3 different shocked targets with primary attacks within 6 s grants +10% attack speed for 5 s. Internal cooldown: 10 s."
+      }
+    },
+    "unlock_boss": "BO01",
+    "name_en": "Singing-Rail Conductor",
+    "status_name_en": "Shock"
+  },
+  "S03": {
+    "id": "S03",
+    "name": "霜潮潜衣",
+    "status_id": "chill",
+    "status_name": "寒冷",
+    "color": "#98C8D8",
+    "visual": "乳白贝壳、冰蓝层片、圆缺冰晶",
+    "thresholds": {
+      "2": {
+        "name": "霜潮潜衣 · 2 件",
+        "text": "主攻击施加的寒冷持续时间 +20%",
+        "name_en": "Frost-Tide Diving Gear · 2 pieces",
+        "text_en": "Chill applied by primary attacks lasts 20% longer."
+      },
+      "4": {
+        "name": "霜潮潜衣 · 4 件",
+        "text": "主攻击命中寒冷目标，获得最大生命 4% 护盾；ICD 5 秒",
+        "name_en": "Frost-Tide Diving Gear · 4 pieces",
+        "text_en": "Primary attacks against chilled targets grant a shield equal to 4% of maximum health. Internal cooldown: 5 s."
+      },
+      "6": {
+        "name": "霜潮潜衣 · 6 件",
+        "text": "主攻击命中寒冷目标产生霜环，最多对 3 名其他敌人造成 X×30% 附加伤害并施加寒冷；ICD 6 秒",
+        "name_en": "Frost-Tide Diving Gear · 6 pieces",
+        "text_en": "Primary attacks against chilled targets create a frost ring that deals extra damage equal to 30% of X and applies Chill to up to 3 other enemies. Internal cooldown: 6 s."
+      }
+    },
+    "unlock_boss": "BO02",
+    "name_en": "Frost-Tide Diving Gear",
+    "status_name_en": "Chill"
+  },
+  "S04": {
+    "id": "S04",
+    "name": "铜蚀药师",
+    "status_id": "corrosion",
+    "status_name": "腐蚀",
+    "color": "#65AD87",
+    "visual": "青铜药罐、青绿腐蚀孔、细管与滴形窗",
+    "thresholds": {
+      "2": {
+        "name": "铜蚀药师 · 2 件",
+        "text": "主攻击命中腐蚀目标，本次直接伤害 +8%",
+        "name_en": "Verdigris Apothecary · 2 pieces",
+        "text_en": "Primary attacks against corroded targets deal +8% direct damage."
+      },
+      "4": {
+        "name": "铜蚀药师 · 4 件",
+        "text": "主攻击成功施加腐蚀时恢复最大生命 1%；ICD 3 秒",
+        "name_en": "Verdigris Apothecary · 4 pieces",
+        "text_en": "Successfully applying Corrosion with a primary attack restores 1% of maximum health. Internal cooldown: 3 s."
+      },
+      "6": {
+        "name": "铜蚀药师 · 6 件",
+        "text": "主攻击命中腐蚀目标产生酸性爆裂，最多对 3 名其他敌人造成 X×35% 附加伤害；ICD 6 秒",
+        "name_en": "Verdigris Apothecary · 6 pieces",
+        "text_en": "Primary attacks against corroded targets create an acid burst that deals extra damage equal to 35% of X to up to 3 other enemies. Internal cooldown: 6 s."
+      }
+    },
+    "unlock_boss": "BO03",
+    "name_en": "Verdigris Apothecary",
+    "status_name_en": "Corrosion"
+  },
+  "S05": {
+    "id": "S05",
+    "name": "堡垒誓卫",
+    "status_id": "guard",
+    "status_name": "护盾",
+    "color": "#D8D8C2",
+    "visual": "方形玄铁、暖白盾纹、堡垒垛口",
+    "thresholds": {
+      "2": {
+        "name": "堡垒誓卫 · 2 件",
+        "text": "自身有护盾时，直接伤害 +6%",
+        "name_en": "Bastion Oathguard · 2 pieces",
+        "text_en": "Gain +6% direct damage while shielded."
+      },
+      "4": {
+        "name": "堡垒誓卫 · 4 件",
+        "text": "护盾实际吸收伤害后，攻击速度 +10%，持续 3 秒；ICD 6 秒",
+        "name_en": "Bastion Oathguard · 4 pieces",
+        "text_en": "When a shield actually absorbs damage, gain +10% attack speed for 3 s. Internal cooldown: 6 s."
+      },
+      "6": {
+        "name": "堡垒誓卫 · 6 件",
+        "text": "护盾被敌人伤害打破后，1 秒后获得最大生命 10% 护盾；ICD 10 秒",
+        "name_en": "Bastion Oathguard · 6 pieces",
+        "text_en": "When an enemy breaks your shield, gain a shield equal to 10% of maximum health after 1 s. Internal cooldown: 10 s."
+      }
+    },
+    "unlock_boss": "BO01",
+    "name_en": "Bastion Oathguard",
+    "status_name_en": "Shield"
+  },
+  "S06": {
+    "id": "S06",
+    "name": "沉锤断层",
+    "status_id": "impact",
+    "status_name": "冲击",
+    "color": "#CAA74E",
+    "visual": "黑岩块面、赭黄断层线、悬锤配重",
+    "thresholds": {
+      "2": {
+        "name": "沉锤断层 · 2 件",
+        "text": "自身有护盾时，主攻击击退强度 +20%；免击退目标不转伤害",
+        "name_en": "Sledge Faultline · 2 pieces",
+        "text_en": "Primary attacks have +20% knockback while shielded. Knockback immunity does not convert this bonus to damage."
+      },
+      "4": {
+        "name": "沉锤断层 · 4 件",
+        "text": "有护盾时冲刺后首个主攻击，直接伤害 +12%；窗口 2 秒，ICD 3 秒",
+        "name_en": "Sledge Faultline · 4 pieces",
+        "text_en": "While shielded, the first primary attack within 2 s after a dash deals +12% direct damage. Internal cooldown: 3 s."
+      },
+      "6": {
+        "name": "沉锤断层 · 6 件",
+        "text": "护盾被敌人打破后，5 秒内下一次主攻击附带冲击波，对最多 3 名目标造成 X×40% 附加伤害；ICD 8 秒",
+        "name_en": "Sledge Faultline · 6 pieces",
+        "text_en": "After an enemy breaks your shield, the next primary attack within 5 s creates a shockwave dealing extra damage equal to 40% of X to up to 3 targets. Internal cooldown: 8 s."
+      }
+    },
+    "unlock_boss": "",
+    "name_en": "Sledge Faultline",
+    "status_name_en": "Impact"
+  },
+  "S07": {
+    "id": "S07",
+    "name": "棱镜测绘",
+    "status_id": "precision",
+    "status_name": "精密",
+    "color": "#B5A1D7",
+    "visual": "乌紫玻璃、白色刻度、偏轴三角镜",
+    "thresholds": {
+      "2": {
+        "name": "棱镜测绘 · 2 件",
+        "text": "主攻击命中寒冷或腐蚀目标，本次暴击率 +6%",
+        "name_en": "Prism Surveyor · 2 pieces",
+        "text_en": "Primary attacks against chilled or corroded targets gain +6% critical chance."
+      },
+      "4": {
+        "name": "棱镜测绘 · 4 件",
+        "text": "对带寒冷或腐蚀的敌人主攻击暴击，主动技能剩余冷却减少 0.25 秒；ICD 2 秒",
+        "name_en": "Prism Surveyor · 4 pieces",
+        "text_en": "Primary-attack critical hits against chilled or corroded enemies reduce the remaining cooldown of the unlocked skill with the longest remaining cooldown by 0.25 s. Internal cooldown: 2 s."
+      },
+      "6": {
+        "name": "棱镜测绘 · 6 件",
+        "text": "对寒冷或腐蚀目标累计 3 次主攻击暴击，第三次附加 X×40% 单体校准伤害；ICD 5 秒，计数器触发后清空",
+        "name_en": "Prism Surveyor · 6 pieces",
+        "text_en": "Every third primary-attack critical hit against chilled or corroded targets adds single-target calibration damage equal to 40% of X, then resets the counter. Internal cooldown: 5 s."
+      }
+    },
+    "unlock_boss": "BO02",
+    "name_en": "Prism Surveyor",
+    "status_name_en": "Precision"
+  },
+  "S08": {
+    "id": "S08",
+    "name": "逐风信使",
+    "status_id": "mobility",
+    "status_name": "机动",
+    "color": "#91C7C5",
+    "visual": "沙白织带、天青鳍片、双尾风标",
+    "thresholds": {
+      "2": {
+        "name": "逐风信使 · 2 件",
+        "text": "冲刺后 2 秒内首个主攻击命中感电目标，冲刺剩余冷却减少 0.2 秒；ICD 3 秒",
+        "name_en": "Windcourier · 2 pieces",
+        "text_en": "The first primary attack within 2 s after a dash reduces remaining dash cooldown by 0.2 s if it hits a shocked target. Internal cooldown: 3 s."
+      },
+      "4": {
+        "name": "逐风信使 · 4 件",
+        "text": "冲刺后 2 秒内主攻击施加任一敌方状态，移动速度 +12%，持续 3 秒；ICD 6 秒",
+        "name_en": "Windcourier · 4 pieces",
+        "text_en": "Applying any enemy status with a primary attack within 2 s after a dash grants +12% movement speed for 3 s. Internal cooldown: 6 s."
+      },
+      "6": {
+        "name": "逐风信使 · 6 件",
+        "text": "有护盾时冲刺，在起点留下风痕，对最多 3 名敌人各造成 X×35% 附加伤害并施加寒冷；ICD 8 秒；X 取本次冲刺时职业基础攻击快照",
+        "name_en": "Windcourier · 6 pieces",
+        "text_en": "Dashing while shielded leaves a wind trace at the starting point, dealing extra damage equal to 35% of X and applying Chill to up to 3 enemies. Internal cooldown: 8 s. X uses the class basic-attack snapshot at the time of the dash."
+      }
+    },
+    "unlock_boss": "BO03",
+    "name_en": "Windcourier",
+    "status_name_en": "Mobility"
+  }
+}

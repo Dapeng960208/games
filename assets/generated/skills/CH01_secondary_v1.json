@@ -1,0 +1,13 @@
+{
+  "hero_id": "CH01",
+  "skill": "secondary",
+  "name": "破桩横扫",
+  "version": 1,
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: one original action skill icon for a compact 48-pixel game HUD, generated at high resolution for clean downsampling. Skill: Pilebreaker Sweep, a miner hero's wide horizontal hydraulic-hammer sweep that breaks a support pile. Draw ONLY a bold rectangular demolition-hammer head moving horizontally from left toward right along ONE thick broad orange crescent SWEEP ARC that curves around the lower half of the icon. The hammer has a coal-black block casing, bone-white broad striking face and three large rivet shapes, an oxidized-orange hydraulic collar with two simple visible pistons and very short shaft. At the right edge, a single short dark riveted steel support beam is cleanly broken into two chunky halves, visibly knocked aside by the hammer. No character. The composition must read instantly as a wide SIDEWAYS SWING. Use the arc as a large clean brush-shaped motion accent, not fire, not a magic circle, no small sparks. Same original mine-support industrial-fantasy equipment language: coal-black steel, orange hydraulics, bone-white accents. Premium hand-painted stylized industrial-fantasy ACTION ICON with strong economical silhouette and broad painted bevels. Strict palette of three large color families only: coal black #252B2D, oxidized orange #C87535, bone white #E4D7BB. Minimal inner details and scratches, high value contrast, restrained warm edge light. Square composition with 12% empty transparent padding on every side, all arc tips and broken pieces inside the canvas. Genuine transparent alpha. No text, letters, numbers, UI frame, border, badge, tile, background plate, scene, floor, character/body parts, logo, watermark, emoji or existing-game symbols.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e806-e28c-7c81-95b4-02acc6060bab/exec-5c0bcf3b-4b07-45fb-888a-bf322a21f60b.png",
+  "output_file": "assets/generated/skills/CH01_secondary_v1.png",
+  "reference_design": "assets/generated/heroes/CH01_portrait_v1.png viewed for theme, no input image supplied",
+  "qa": "Horizontal hydraulic hammer sweep, single orange crescent and split riveted column; three color families and no letters or UI frame."
+}

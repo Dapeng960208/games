@@ -1,0 +1,43 @@
+{
+  "asset_id": "workshop",
+  "version": 1,
+  "date": "2026-09-28",
+  "tool": "built-in image_gen.imagegen",
+  "mode": "generate",
+  "transparent_background": true,
+  "original_design": true,
+  "art_direction": "docs/IMAGEGEN_ART_DIRECTION.md",
+  "prompt": "Use case: stylized-concept. Asset type: one original 2D action game UI navigation icon, a standalone square PNG with genuine transparent background. Theme: abandoned mine, hand-built precision industrial salvage instruments. Premium restrained hand-painted game art, only a few large forms with a clear recognisable silhouette at 32-48 pixels, broad warm highlights and restrained simplified wear. Coal-black steel, aged brass and ivory ceramic, tiny amber glow. Complete centered object, 12% transparent safety margin. Entirely original design. No text, no letters, no numbers, no keycap labels, no separate border, panel, badge, background, logo, watermark or floor shadow. Isolated object only. Subject: one stout small mine repair hammer and one broad-jawed industrial wrench crossed into a clearly readable X. Hammer head coal-black steel, handle aged brass with ivory ceramic grip; wrench dark steel with warm brass edge. A small partial thick bronze gear ring sits behind the intersection of the tools, subordinate to the tools. Exactly one hammer and one wrench, both heads fully visible and clearly different. No sparks or other tools. Near front view, simple bold silhouettes.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e81e-dd8b-7513-89db-bbfce972c051/exec-042af2a3-731b-4cd0-9520-bc8c502279fb.png",
+  "saved_path": "assets/generated/ui/workshop_v1.png",
+  "sha256": "0025FC51EB58209DDE7D8CFFFA597BB78C3B3279FB5BAC37F825BCEFDF47F67D",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "qa": {
+    "view_image_inspected": true,
+    "complete_subject": true,
+    "no_letters_or_numbers": true,
+    "no_external_background": true,
+    "alpha_sample_step_pixels": 8,
+    "transparent_samples": 14997,
+    "partial_alpha_samples": 9623,
+    "opaque_samples": 29,
+    "foreground_mean_alpha": 241.02,
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "pixel_format": "Format32bppArgb",
+    "alpha_preserved_without_editing": true,
+    "live_ui_small_size_review": "pending consumer integration",
+    "recommended_ui_pixels": [
+      32,
+      48
+    ],
+    "notes": "Original generated PNG copied unchanged; no image editing or alpha flattening."
+  }
+}

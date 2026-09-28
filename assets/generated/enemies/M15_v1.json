@@ -1,0 +1,22 @@
+{
+  "asset_id": "M15_v1",
+  "enemy_id": "M15",
+  "name": "管蕈潜刺",
+  "biome_id": "B02",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "project_path": "assets/generated/enemies/M15_v1.png",
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0e806-7289-7cf1-b764-98f68b0be95f\\exec-b41d6f57-2c4b-4958-a210-257da6bb242c.png",
+  "prompt": "Use case: stylized-concept. Asset type: isolated original enemy concept / bestiary portrait for a premium industrial fantasy action RPG. Art direction: richly hand-painted sculptural 2D game illustration with sophisticated detailed materials, controlled volumetric lighting, clear readable silhouette, gritty but beautiful craftsmanship. This species comes from an abandoned mine's damp fungal nursery: mineral-fed biology, moist fungal membranes, parasite-like tubular tissue, subtle fluorescent organs. Completely original anatomy, no existing IP or artist reference. Match a cohesive mature painterly industrial-fantasy bestiary, NOT cartoon mushroom mascots.\nComposition: ONE complete creature ONLY, full-body three-quarter view, comfortably centered inside a square canvas, all extremities clearly inside the frame with at least 8 percent safety margin on all sides. Distinguish organs that telegraph attack and vulnerable softer tissue with texture, shape and restrained glow, not floating symbols or labels. Transparent alpha cutout; no ground, base, pedestal, environment, backdrop, floor shadow, vignette or halo. No text, letters, numbers, UI, logo, watermark, detached items, diagrams, inset views, other creatures. Detailed but not photorealistic, no anime, no chibi. No gore.\nSubject M15 \"Chimneycap Burrowlance\" (管蕈潜刺): a vertical burrowing organism with ONE prominent upright CHIMNEY-shaped fungal crown. It looks like a thick ribbed dark vermilion hollow fungal vent rising from a segmented root-worm trunk, not a generic umbrella mushroom. The rim of the chimney is asymmetrically serrated with cream gills visible inside, a soft muted amber inner throat hinting at a charging ambush. Beneath the crown a narrow telescoping neck leads to a thick tapered corkscrew-shaped lower body. Around its midsection is a collar of SIX overlapping hard clay-brown petal shields shaped like splitting earth fissures, currently partly unfolded to signal that it has just emerged and is vulnerable during recovery. No actual ground, dirt mound, dust cloud or detached rubble: show its whole underground anatomy as a single fully visible creature cutout. A few backward-raking fibrous digging claws and root tendrils emerge from the lower two body segments; their worn chalky tips contrast with dark moist bark. Two tiny teal sensing pores sit low under the collar. Distinct design focus is tall hollow chimney, expandable fissure-petal collar and a muscular boring root, not legs or arms. The pale flexible throat immediately beneath the crown is the vulnerable organ. Palette iron-red outer chimney, burnt umber armored fissure petals, black peat lower coils, ivory gills and restrained amber core. Sophisticated wet fungal surfaces, mineral crust lines and root fiber detail. Three-quarter view in a tall S-curved posture, complete pointed lower end inside frame, full silhouette occupies 76 percent of canvas with safe transparent border.",
+  "status": "generated_bestiary_portrait_not_animation",
+  "originality": "Created from this project's enemy visual_descriptor and behavior specification without external IP references.",
+  "qa": {
+    "review": "One original creature, full-body three-quarter silhouette, attack organ and softer vulnerable tissue distinguishable, no text or watermark.",
+    "alpha_verification": "System.Drawing sampled every 4 pixels at alpha > 16: transparent background and visible creature confirmed. Every actual outer edge pixel checked; zero visible outer-edge pixels for all nine assets.",
+    "visible_outer_edge_pixels": 0,
+    "sha256": "C60919884B5CA3A411B511A8C226D2D5C674576EE1A5987BD324306485277811",
+    "limitations": "Static bestiary concept portrait; directional gameplay sprites, hitboxes, rigs and attack animation frames are separate work."
+  },
+  "width": 1254,
+  "height": 1254
+}

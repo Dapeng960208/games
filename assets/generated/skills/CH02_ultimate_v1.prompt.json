@@ -1,0 +1,26 @@
+{
+  "asset_id": "CH02_ultimate",
+  "name": "穿轨急奏",
+  "output_file": "assets/generated/skills/CH02_ultimate_v1.png",
+  "mode": "built-in image_gen",
+  "tool": "image_gen.imagegen",
+  "intent": "generate",
+  "transparent_background": true,
+  "source_generated_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-48fe7c00-4154-49a7-8df0-e6094ae178e4.png",
+  "reference_images": [
+    {
+      "path": "assets/generated/heroes/CH02_portrait_v1.png",
+      "role": "style and weapon identity reference only; not an edit target"
+    }
+  ],
+  "prompt": "Use case: stylized-concept. Asset type: transparent square skill icon for an original 2D industrial fantasy action game, readable at 48 x 48 pixels.\nPrimary request: create an entirely original skill icon for CH02 Cen Xian, skill \"Rail-Sprint Cadence\". One compact folding-ruler railgun receiver at lower left opens its guide rails and emits FOUR clean parallel diagonal projectile trails toward the upper right. Depict a staccato rapid volley through the clearly separated rhythmic rails of light, not an explosion. Four staggered ivory pointed bullet tips with thin teal trailing cores are clear large shapes. The four trails are parallel, not a fan, with enough dark transparent gaps to remain distinct at 48 px. The compact ink-green mechanical emitter has an angular ivory ruler bracket, three large brass rivets and a triangular hint of gunstock; no whole character.\nInput image 1 is STYLE AND SUBJECT IDENTITY REFERENCE ONLY, NOT an edit target. Derive original surveyor rifle styling and material palette from the reference, but create a standalone skill symbol. Do not reproduce character, face, body or background.\nStyle: premium hand-painted industrial fantasy game icon, strong simplified silhouette and controlled painterly metal surfaces. Aged ivory #DDD3B9, ink green #294947, olive #72785E; small brass joints, teal energy cores. Bright trails give an emphatic ultimate-ability silhouette. Simple broad planes, very few details, high local contrast.\nComposition: square canvas, one unified diagonal symbol, four rhythmic projectiles occupy upper-right half, receiver occupies lower-left third. All trails end inside the canvas. Main silhouette occupies about 76 percent of canvas with at least 12 percent clear empty margin on every side.\nConstraints: genuinely transparent RGBA background. No background, ground plane, cast shadow beyond symbol, card, border or frame. No text, letters, numbers, logos, watermark or existing IP symbols. No explosion cloud, circular swirl, busy sparks, target figures, extra weapons, panels or contact sheet. Entirely original high-quality production game icon.",
+  "qa": {
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "transparent_ratio": 0.7466,
+    "nearly_opaque_pixels": 284142,
+    "visible_edge_pixels": 0,
+    "visual_review": "Source viewed; coherent hand-painted original skill symbol, no text/frame, full silhouette visible. Q framing corrected via imagegen."
+  }
+}

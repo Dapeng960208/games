@@ -1,0 +1,40 @@
+{
+  "asset_id": "resource_mana_v1",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "transparent_background": true,
+  "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0e81e-6cb5-73a2-b935-20a0827c6f80\\exec-747ad269-9a69-416f-b5bc-71411cc4884b.png",
+  "destination": "assets/generated/ui/resource_mana_v1.png",
+  "prompt": "Use case: stylized-concept\nAsset type: original hand-painted HUD icon for a 2D industrial mining fantasy action game, one single icon on genuine transparent alpha.\nStyle: refined original hand-painted game art, softly painted bevels, charcoal-gray steel and aged dark copper with mineral focal color, sophisticated restrained highlights. Readable at 24 to 32 pixels. Exactly two to three large bold shape groups; no delicate microdetail. Use fully SOLID OPAQUE RGB-painted surfaces for the entire subject, including dark steel, copper, and crystals. Alpha transparency ONLY outside the silhouette and in genuine holes; never fade dark painted parts to transparent. Avoid black material, use visible medium charcoal-gray and warm mid-tone copper.\nComposition: single centered icon, square canvas, full object and wide transparent margins (18 percent on all sides), no surrounding panel, circle, badge or frame.\nConstraints: no text, no numbers, no lettering, no logo, no watermark, no scene, no floor, no drop shadow, no background glow, no glossy candy mobilegame rendering, no existing-franchise motifs.\nSubject: MANA RESOURCE. A single large rounded deep-blue droplet-shaped mineral crystal cradled by a low copper industrial clamp: familiar rounded teardrop silhouette with a short top point and broad round lower body, exactly three blue opaque faceted planes and one short copper foot. Rich cobalt and azure, small restrained pale-blue highlight, softly painted opaque gemstone, not transparent glass. Compact, beautiful and immediately readable. No bottle, no liquid splashes, no long shard, no swirling smoke.",
+  "qa": {
+    "visual": "Pass: distinct icon silhouette, hand-painted mining material, no text, no badge.",
+    "alpha_scan": {
+      "width": 1254,
+      "height": 1254,
+      "fully_transparent_pixels": 1081308,
+      "near_opaque_pixels_alpha_245_255": 480566,
+      "antialias_or_partial_pixels_alpha_1_244": 10642,
+      "border_nonzero_alpha_pixels": 3,
+      "visible_bounds_alpha_over_16": [
+        219,
+        126,
+        1034,
+        1147
+      ],
+      "transparent_background_verified": false,
+      "subject_near_opaque_verified": true,
+      "border_max_alpha": 1,
+      "corner_alphas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "Strict transparent_background_verified requires every border pixel exactly zero; a false result may indicate faint generator residuals. Preserve original generated pixels and inspect border_max_alpha; no code cleanup performed."
+    },
+    "view_image_inspected": true,
+    "pixel_edits": "none; copied built-in output verbatim; alpha inspection read-only",
+    "source_copy_identical": true
+  },
+  "sha256": "E3BC091055EEEA4A6EAB6B6FE8A1DAD94178E6EB8BE285F8BE2C232048512A2B"
+}

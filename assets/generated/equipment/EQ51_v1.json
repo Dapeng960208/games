@@ -1,0 +1,12 @@
+{
+  "id": "EQ51",
+  "name": "营地旧罗盘",
+  "version": 1,
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: one premium inventory icon for an original industrial fantasy action RPG called Abyss Salvagers. Subject: Old Camp Compass (EQ51), a cherished octagonal yellow-brass pocket compass charm with ONE unmistakably broken/chipped corner on its lower-right brass housing. A thick short red cord loops through its sturdy top attachment ring, tied with one small worn knot; show the entire red cord loop. The readable central face is simple ivory enamel with dark engraved radial tick marks, a single dark steel compass needle with an ivory tip, no letters, NO N E S W, no numbers. Recessed glass with only subtle bluish reflection, a few tiny brass screws, a small repair staple near the missing corner. Distinct from a square weapon locator: this is a flatter hand-sized octagonal wearable keepsake hanging from red cord. Original sophisticated handmade salvage/mining artifact from the same starter series as copper goggles and earth-grey patched clothing. Premium richly hand-painted stylized industrial fantasy, expressive painterly edges, deliberate silhouette and material hierarchy, realistic wear used sparingly, painted volumetric warm copper rim and cool steel shadows, precious practical craftsmanship. Large single isolated charm centered in a slightly angled three-quarter view, face readable, all attachments inside canvas with generous transparent margin. High detail but clear shapes legible at 96px. Genuinely transparent alpha background including the hole within the red cord loop, no shadow cloud. No hands/body, scene, floor, pedestal, UI, text, letters, numbers, logos, watermark or existing franchise designs.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e806-e28c-7c81-95b4-02acc6060bab/exec-48a034c1-2f60-4b9a-a5a6-dc1143ad455e.png",
+  "output_file": "assets/generated/equipment/EQ51_v1.png",
+  "design_role": "Chipped octagonal brass compass with short red cord loop",
+  "qa": "Visible missing corner with repair staple; plain radial ticks without letters; complete red cord loop; clearly distinct from EQ01 locator module."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "EQ31",
+  "name": "铜扣工手套",
+  "version": 1,
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: one premium inventory icon for an original industrial fantasy action RPG called Abyss Salvagers. Subject: Copper-Buckle Work Gloves (EQ31). A matched pair of EMPTY old mining work gloves, made from coarse charcoal-grey canvas and grey oiled leather, broad reinforced fingers with deliberate articulated panel construction, strong palm grip surfaces, each wide wrist cuff cinched by one bold SQUARE COPPER BUCKLE. Show one glove in front with back of hand and buckle visible, the second resting diagonally behind with part of its palm visible, as a single compact inventory item composition. Clearly five natural glove fingers per glove, no extra digits. No hands inside; hollow cuffs visible. The square copper buckle is the principal visual signature. Ivory heavy stitching, sparing surface wear and tiny copper rivets, practical durable handmade salvager equipment. Belongs to the same original miner set as earth-grey patched work jacket and brass survey instruments. Premium richly hand-painted stylized industrial fantasy, expressive painterly edges, deliberate material hierarchy, painted volumetric warm copper rims and cool steel-grey shadows. Large single isolated equipment pair centered, three-quarter view, all fingertips and cuffs fully visible inside canvas with generous transparent margin. High detail yet clean broad shapes legible at 96px. Genuinely transparent alpha background, no shadow cloud. No wearer, human hands, body, scene, floor, pedestal, UI, text, letters, numbers, logo, watermark or franchise designs.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e806-e28c-7c81-95b4-02acc6060bab/exec-762228e4-0abc-491d-a91e-3a1f0b44cd13.png",
+  "output_file": "assets/generated/equipment/EQ31_v1.png",
+  "design_role": "Coarse grey work-glove pair with square copper wrist buckles",
+  "qa": "Both empty cuffs visible; five glove fingers on each glove; square copper buckles readable; complete equipment pair with no human hands or text."
+}

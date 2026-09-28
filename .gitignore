@@ -1,6 +1,24 @@
+# Godot cache and local runtime/build output
 .godot/
 tools/godot/
 tools/downloads/
 build/
 *.tmp
-artifacts/*_profile*
+*.log
+# Local screenshots, recordings and acceptance evidence
+artifacts/
+tests/
+# Development planning stays local; retain asset licensing
+docs/*
+!docs/ASSET_LICENSES.md
+tools/test.ps1
+tools/font_probe.gd
+tools/font_probe.gd.uid
+tools/license_dump.gd
+tools/license_dump.gd.uid
+# Original-generation working copies; shipped textures remain in assets
+assets/**/sources/
+# Machine credentials
+.env
+.env.*
+!.env.example

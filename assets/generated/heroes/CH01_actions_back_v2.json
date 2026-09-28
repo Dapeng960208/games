@@ -1,0 +1,414 @@
+{
+  "schema_version": 2,
+  "hero_id": "CH01",
+  "asset_id": "CH01_actions_back_v2",
+  "bank": "back",
+  "texture": "res://assets/generated/heroes/CH01_actions_back_v2.png",
+  "asset_type": "four_action_pose_atlas",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "width": 1254,
+  "height": 1254,
+  "body_height": 500,
+  "body_height_definition": "One fixed source-pixel scale per bank, estimated from idle crown-to-ground-center vertical span; apply 88 / body_height for every frame in this bank. Do not fit each frame by its silhouette or weapon bounds.",
+  "facing": "northeast",
+  "intended_world_body_height": 88,
+  "intended_screen_body_height": 74.8,
+  "atlas_layout": {
+    "arrangement": "two rows with two independently packed frames per row",
+    "uniform_grid": false,
+    "source_rect_format": "[x,y,width,height] in unmodified source pixels",
+    "frame_order": [
+      "idle",
+      "windup",
+      "release",
+      "recovery"
+    ],
+    "instruction": "Use each frame cell or region rectangle. Equal 627x627 splitting is invalid for these generated atlases. All frame cells are pairwise disjoint."
+  },
+  "anchor_convention": {
+    "coordinates": "Absolute source-image pixels, x right and y down",
+    "foot": "Ground contact center used as the frame pivot, estimated from both boot contacts.",
+    "head": "Top crown marker used for body-scale estimation; not a face center.",
+    "grip": "Approximate midpoint of the two hands gripping the tool.",
+    "muzzle": "Center of the two visible hydraulic hammer tips, for impact/motion VFX anchoring.",
+    "normalized_atlas": "Absolute anchors divided by full atlas width/height.",
+    "normalized_cell": "Anchors relative to that frame cell and divided by cell dimensions.",
+    "measurement": "Visual landmark estimates on the original full-resolution source, normally within 8-16 source pixels; not segmentation of individual body parts."
+  },
+  "frames": [
+    {
+      "name": "idle",
+      "cell": [
+        114,
+        105,
+        567,
+        577
+      ],
+      "region": [
+        134,
+        125,
+        534,
+        537
+      ],
+      "foot": [
+        319,
+        630
+      ],
+      "head": [
+        353,
+        130
+      ],
+      "grip": [
+        481,
+        365
+      ],
+      "muzzle": [
+        654,
+        454
+      ],
+      "foot_contacts": [
+        [
+          177,
+          598
+        ],
+        [
+          461,
+          662
+        ]
+      ],
+      "pose": "Back three-quarter ready stance, shoulder grille and hydraulic brace retain anatomical sides.",
+      "alpha_threshold": 16,
+      "alpha_pixels": 129817,
+      "normalized_atlas": {
+        "foot": [
+          0.254386,
+          0.502392
+        ],
+        "head": [
+          0.281499,
+          0.103668
+        ],
+        "grip": [
+          0.383573,
+          0.291069
+        ],
+        "muzzle": [
+          0.521531,
+          0.362041
+        ]
+      },
+      "normalized_cell": {
+        "foot": [
+          0.361552,
+          0.909879
+        ],
+        "head": [
+          0.421517,
+          0.043328
+        ],
+        "grip": [
+          0.647266,
+          0.450607
+        ],
+        "muzzle": [
+          0.952381,
+          0.604853
+        ]
+      },
+      "cell_visible_margins": [
+        20,
+        20,
+        13,
+        20
+      ]
+    },
+    {
+      "name": "windup",
+      "cell": [
+        683,
+        4,
+        491,
+        683
+      ],
+      "region": [
+        695,
+        16,
+        459,
+        651
+      ],
+      "foot": [
+        950,
+        649
+      ],
+      "head": [
+        900,
+        151
+      ],
+      "grip": [
+        888,
+        97
+      ],
+      "muzzle": [
+        1066,
+        55
+      ],
+      "foot_contacts": [
+        [
+          793,
+          616
+        ],
+        [
+          1107,
+          667
+        ]
+      ],
+      "pose": "Hammer overhead, bent elbows and counterturned back.",
+      "alpha_threshold": 16,
+      "alpha_pixels": 143696,
+      "normalized_atlas": {
+        "foot": [
+          0.757576,
+          0.517544
+        ],
+        "head": [
+          0.717703,
+          0.120415
+        ],
+        "grip": [
+          0.708134,
+          0.077352
+        ],
+        "muzzle": [
+          0.85008,
+          0.04386
+        ]
+      },
+      "normalized_cell": {
+        "foot": [
+          0.543788,
+          0.944363
+        ],
+        "head": [
+          0.441955,
+          0.215227
+        ],
+        "grip": [
+          0.417515,
+          0.136164
+        ],
+        "muzzle": [
+          0.780041,
+          0.074671
+        ]
+      },
+      "cell_visible_margins": [
+        12,
+        12,
+        20,
+        20
+      ]
+    },
+    {
+      "name": "release",
+      "cell": [
+        48,
+        688,
+        643,
+        523
+      ],
+      "region": [
+        68,
+        708,
+        615,
+        483
+      ],
+      "foot": [
+        269,
+        1146
+      ],
+      "head": [
+        397,
+        713
+      ],
+      "grip": [
+        558,
+        831
+      ],
+      "muzzle": [
+        674,
+        816
+      ],
+      "foot_contacts": [
+        [
+          106,
+          1191
+        ],
+        [
+          432,
+          1101
+        ]
+      ],
+      "pose": "Deep forward lean with long rear leg and fully extended tool.",
+      "alpha_threshold": 16,
+      "alpha_pixels": 113750,
+      "normalized_atlas": {
+        "foot": [
+          0.214514,
+          0.913876
+        ],
+        "head": [
+          0.316587,
+          0.568581
+        ],
+        "grip": [
+          0.444976,
+          0.662679
+        ],
+        "muzzle": [
+          0.53748,
+          0.650718
+        ]
+      },
+      "normalized_cell": {
+        "foot": [
+          0.343701,
+          0.875717
+        ],
+        "head": [
+          0.542768,
+          0.047801
+        ],
+        "grip": [
+          0.793157,
+          0.273423
+        ],
+        "muzzle": [
+          0.973561,
+          0.244742
+        ]
+      },
+      "cell_visible_margins": [
+        20,
+        20,
+        8,
+        20
+      ]
+    },
+    {
+      "name": "recovery",
+      "cell": [
+        691,
+        704,
+        554,
+        516
+      ],
+      "region": [
+        699,
+        724,
+        526,
+        476
+      ],
+      "foot": [
+        916,
+        1154
+      ],
+      "head": [
+        949,
+        730
+      ],
+      "grip": [
+        1085,
+        919
+      ],
+      "muzzle": [
+        1215,
+        950
+      ],
+      "foot_contacts": [
+        [
+          746,
+          1125
+        ],
+        [
+          1086,
+          1183
+        ]
+      ],
+      "pose": "Low squat, elbows draw tool back inward after extension.",
+      "alpha_threshold": 16,
+      "alpha_pixels": 119314,
+      "normalized_atlas": {
+        "foot": [
+          0.730463,
+          0.920255
+        ],
+        "head": [
+          0.756778,
+          0.582137
+        ],
+        "grip": [
+          0.865231,
+          0.732855
+        ],
+        "muzzle": [
+          0.9689,
+          0.757576
+        ]
+      },
+      "normalized_cell": {
+        "foot": [
+          0.406137,
+          0.872093
+        ],
+        "head": [
+          0.465704,
+          0.050388
+        ],
+        "grip": [
+          0.711191,
+          0.416667
+        ],
+        "muzzle": [
+          0.945848,
+          0.476744
+        ]
+      },
+      "cell_visible_margins": [
+        8,
+        20,
+        20,
+        20
+      ]
+    }
+  ],
+  "project_path": "assets/generated/heroes/CH01_actions_back_v2.png",
+  "generated_source": "C:/Users/13326/.codex/generated_images/01a0e890-4e45-7b30-b8fd-31cda4d223e7/exec-193e5be8-9ddf-4182-adbe-03939fa388bb.png",
+  "references": [
+    "assets/generated/heroes/CH01_combat_v1.png",
+    "assets/generated/heroes/CH01_actions_front_v2.png"
+  ],
+  "prompt": "Use case: identity-preserve. Asset type: transparent 2D game action animation atlas. Image 1 is the exact character identity; image 2 demonstrates approved four full-body action poses, painted rendering and equipment. Generate a BACK-facing companion atlas of those same four actions. SAME adult muscular male CH01, short black hair/stubble, orange and coal-black industrial miner clothing, cream scarf, brown straps, amber belt lantern, heavy boots, rectangular grille shoulder shield on his LEFT shoulder, exposed hydraulic brace on HIS RIGHT arm, same orange/steel two-prong hydraulic mining hammer. Keep consistent costume and weapon. Fixed elevated isometric-like three-quarter top-down camera. All four characters face NORTHEAST (screen upper-right), so we mainly see the BACK OF HIS HEAD, BACK AND REAR armor. Only a tiny far-side cheek if anatomically natural. Do not draw front-facing chest or full face. We need four different poses from behind, not a mirror of the front-facing sheet. A square transparent canvas with EXACTLY FOUR separated full-body sprites arranged in a clear 2x2 layout, reading order IDLE / WINDUP / RELEASE / RECOVERY. Full boots, head, arms and entire weapon present in each cell. Each of the four equal invisible square cells must have at least 15% empty transparent space around every silhouette; no limb, hammer, boot or armor can reach another cell. All bodies have identical anatomical scale, body occupies approximately 48% of cell height. Ground-contact center at local 50% width, 80% height. Reserve cell top half for raised weapon and gutters. TOP LEFT idle with bent knees, two-handed hammer held low in front toward upper-right. TOP RIGHT windup: knees load, torso and rear shoulder counter-twist, both elbows lift heavy hammer behind and above shoulder, complete hammer head visible. BOTTOM LEFT release: hips shift forward, back visibly leans forward, front knee bends, both arms extend the hammer forward/down in upper-right facing direction, forceful body follow-through. BOTTOM RIGHT recovery: visibly lowered sunk stance and elbows flex inward pulling hammer back across knees, straightening from forward lean, readable different silhouette from idle. Be anatomically credible: the arms and waist change relative pose; no whole-image rotations. Keep character scale consistent and silhouette broad/readable for 80px display. Transparent alpha cutouts with opaque character interiors only. NO background, ground, cast shadows, glow, fog, particles, VFX, blur, words, labels, grid lines, numbers, borders, watermark or checkerboard.",
+  "qa": {
+    "visual_review": "Viewed the source and final workspace PNG at original resolution. Four full-body hero poses and complete weapons are visible. Front and back views retain distinctive short black hair, coal/orange workwear, rectangular left shoulder grille, right hydraulic brace and two-prong tool.",
+    "source_copy_only": true,
+    "pixel_postprocessing": "None. Exact generated PNG bytes were copied, not cropped, keyed, resampled or edited.",
+    "sha256": "F8E4E7CD864412A50E4B62F4E709E41D8AE7B4A66C094E530A00D8F9FFCF9DAB",
+    "alpha_measurement": "All pixels scanned using System.Drawing LockBits; visible means alpha > 16; 8-connected components isolate four complete hero silhouettes.",
+    "visible_alpha_pixels": 506577,
+    "fully_transparent_pixels": 1020781,
+    "near_opaque_pixels_alpha_gte_240": 486534,
+    "near_opaque_fraction_of_visible": 0.960434,
+    "major_silhouette_components": 4,
+    "visible_outer_image_edge_pixels": 0,
+    "visible_cell_edge_pixels": 0,
+    "min_cell_padding_pixels": 8,
+    "limitations": [
+      "Four hand-painted action key poses, not a full interpolated or skeletal animation set.",
+      "The generator did not honor equal grid spacing or requested 12-15% padding; explicit nonuniform frame rectangles are required, with minimum transparent cell margin of 8 pixels.",
+      "Anatomical scale and foot landmarks are visually measured; crouching naturally reduces crown-to-foot height within a bank. Fixed bank body_height prevents weapon-bound scale pumping.",
+      "Source-pose anchors are approximate; live 80px readability, transition timing and VFX attachment still require runtime visual QA.",
+      "Back-bank weapon direction is strongly foreshortened and reads more laterally in release/recovery; back of head and torso remain consistent with a northeast-facing bank."
+    ]
+  }
+}

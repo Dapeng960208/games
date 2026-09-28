@@ -1,0 +1,36 @@
+{
+  "asset_id": "M30_v1",
+  "enemy_id": "M30",
+  "name": "钟脊巡礼者",
+  "biome_id": "B04",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "project_path": "assets/generated/enemies/M30_v1.png",
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0e806-7289-7cf1-b764-98f68b0be95f\\exec-bbaf99e1-dfde-46fa-b0ba-ba4fb3c540f0.png",
+  "prompt": "Use case: stylized-concept. Asset: ONE original enemy combat-body sprite for a 2D industrial-fantasy action RPG set in abandoned resonance mining shafts. Cohesive premium hand-painted game art: sculptural light, elegant original anatomy, coal-dark stone, ivory mineral, oxidized copper accents, restrained cyan/amber crystal bioluminescence. Detailed material craftsmanship with broad readable forms, NOT photorealistic noise. This is the Resonant Deepwell biome, a strange mineral ecology responding to vibration. Entirely original, no existing IP or artist reference.\nCamera and usability: elevated top-down three-quarter view looking down about 40 degrees, complete creature in a poised combat stance facing lower-right, solid weight and clear contact points where applicable. Body needs to read at 70 pixels high: strong distinct silhouette, large contrast blocks and one or two iconic skill organs, not many decorative tiny spikes. ONE subject only. Square canvas, complete extremities visible inside central 76 percent with generous transparent border. True transparent alpha cutout; solid interiors virtually opaque, alpha near255, narrow edge antialiasing only. No ground, pedestal, floor shadow, background, smoke, halo, text, letters, numbers, labels, UI, border, logo, watermark, inset diagrams or other creatures. Do not bake gameplay markers or attack paths into the sprite. No gore, no anime, no chibi.\nM30 \"Bellspine Pilgrim\" / 钟脊巡礼者: an ORIGINAL solemn mineral support organism with THREE small BELL ORGANS of progressively increasing size rising in a stepped row along its back, plus a long CLOAK-LIKE CRYSTAL SHELL draping from narrow shoulders toward the feet. It is a strange nonhuman mineral creature, not a person in medieval robes. The shell comprises three broad overlapping dark smoky-quartz lamellae with pale cream bevels and limited oxidized copper connective bands, shaped like a long folded mantle. Underneath emerge two short jointed mineral feet and two thin inward-folded stone forelimbs. A tiny faceless oval sensor core sits deep inside the front shell opening. All THREE back bells must be clearly separated and countable from the elevated three-quarter camera: smallest near neck, medium behind, largest furthest back, each a carved ivory-stone flared bell with a copper rim and visible cyan clapper. Their luminous rims suggest sequential activation, with the largest final bell brightest and most exposed so players can read the interrupt target. Keep the bell interiors solid enough for small scale. No floating aura, no magical shield bubbles, no connecting beams to other entities; gameplay code handles the network. Distinct tall tapering mantle silhouette with the stepped three-bell skyline. Polished crystal faces with restrained internal teal highlights, soft amber seams, simple broad folds; entire bell set, shell hem and feet visible.",
+  "status": "static_combat_body_not_animation",
+  "originality": "Original project visual and behavior specification, no external IP references.",
+  "qa": {
+    "review": "One full-body creature in elevated three-quarter combat pose, clear unique skill organ, no text, backdrop or baked gameplay markers.",
+    "limitations": "Static body only. Movement, facing variants, attack frames and runtime 70px readability require integration work.",
+    "alpha_checks": {
+      "Id": "M30",
+      "Width": 1254,
+      "Height": 1254,
+      "Bounds": [
+        216,
+        36,
+        1028,
+        1220
+      ],
+      "Transparent": 70700,
+      "Visible": 27896,
+      "NearOpaque": 27369,
+      "VisibleOuterEdgePixels": 0,
+      "SHA256": "29FE9F34E9D016B5E4C6AF3CB1925F95A12300B1CD95F6F589BDAAAF1BF4EC5B"
+    },
+    "alpha_method": "System.Drawing GetPixel stride4, visible alpha>16, near-opaque alpha>=240; actual outer edges checked at every pixel."
+  },
+  "width": 1254,
+  "height": 1254
+}

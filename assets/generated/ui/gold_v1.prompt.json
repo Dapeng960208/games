@@ -1,0 +1,40 @@
+{
+  "asset_id": "gold_v1",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "transparent_background": true,
+  "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0e81e-6cb5-73a2-b935-20a0827c6f80\\exec-66724dc7-03ca-479b-b97a-c104867b6225.png",
+  "destination": "assets/generated/ui/gold_v1.png",
+  "prompt": "Use case: stylized-concept\nAsset type: original hand-painted HUD icon for a 2D industrial mining fantasy action game, one single icon on genuine transparent alpha.\nStyle: refined original hand-painted game art, softly painted bevels, charcoal-gray steel and aged dark copper with mineral focal color, sophisticated restrained highlights. Readable at 24 to 32 pixels. Exactly two to three large bold shape groups; no delicate microdetail. Use fully SOLID OPAQUE RGB-painted surfaces for the entire subject, including dark steel, copper, and crystals. Alpha transparency ONLY outside the silhouette and in genuine holes; never fade dark painted parts to transparent. Avoid black material, use visible medium charcoal-gray and warm mid-tone copper.\nComposition: single centered icon, square canvas, full object and wide transparent margins (18 percent on all sides), no surrounding panel, circle, badge or frame.\nConstraints: no text, no numbers, no lettering, no logo, no watermark, no scene, no floor, no drop shadow, no background glow, no glossy candy mobilegame rendering, no existing-franchise motifs.\nSubject: GOLD CURRENCY. A single chunky hexagonal brass rivet-coin, shown almost front-on with a slight visible lower-right thickness. Exactly six clear outer sides with rounded bevels, one large clean circular drilled hole in its center, a restrained inner chamfer around that hole, no other decorations. Warm muted yellow brass face with a few large softly painted worn patches and a dark-copper thickness edge. Silhouette is a broad simple hexagonal coin with one circular hole. Absolutely no embossed text, no numbers, no currency symbols, no portrait, no pile of coins, no gems, no frame.",
+  "qa": {
+    "visual": "Pass: distinct icon silhouette, hand-painted mining material, no text, no badge.",
+    "alpha_scan": {
+      "width": 1254,
+      "height": 1254,
+      "fully_transparent_pixels": 998314,
+      "near_opaque_pixels_alpha_245_255": 555141,
+      "antialias_or_partial_pixels_alpha_1_244": 19061,
+      "border_nonzero_alpha_pixels": 15,
+      "visible_bounds_alpha_over_16": [
+        158,
+        193,
+        1098,
+        1037
+      ],
+      "transparent_background_verified": false,
+      "subject_near_opaque_verified": true,
+      "border_max_alpha": 1,
+      "corner_alphas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "Strict transparent_background_verified requires every border pixel exactly zero; a false result may indicate faint generator residuals. Preserve original generated pixels and inspect border_max_alpha; no code cleanup performed."
+    },
+    "view_image_inspected": true,
+    "pixel_edits": "none; copied built-in output verbatim; alpha inspection read-only",
+    "source_copy_identical": true
+  },
+  "sha256": "E8670ADB892530E1ADB0E60B37C45E6F6EF06DF7E2E59CC5EDF05F8065391C7D"
+}

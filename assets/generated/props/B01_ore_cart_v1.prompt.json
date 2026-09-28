@@ -1,0 +1,38 @@
+{
+  "asset_id": "B01_ore_cart",
+  "name": "锈铁矿脉·满载矿车",
+  "output_file": "assets/generated/props/B01_ore_cart_v1.png",
+  "version": 1,
+  "mode": "built-in image_gen",
+  "tool": "image_gen.imagegen",
+  "intent": "generate",
+  "transparent_background": true,
+  "source_generated_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-36178dd7-42e5-4b27-86b2-e9cf0532e47f.png",
+  "reference_images": [
+    {
+      "path": "assets/generated/world/B01_floor_v1.png",
+      "role": "mine materials and mood reference only; not an edit target"
+    },
+    {
+      "path": "assets/generated/heroes/CH02_combat_v1.png",
+      "role": "hand-painted industrial fantasy style reference only; not an edit target"
+    }
+  ],
+  "prompt": "Use case: stylized-concept. Asset type: ONE original low-wide ore cart environment obstacle sprite for a top-down 2D industrial fantasy mining action game.\nCreate a battered mine ORE CART, a LOW OPEN-TOP TRAPEZOIDAL STEEL TUB with thick riveted rim, piled with six to eight large irregular dark stone ore chunks. Several stones have restrained rusty red mineral veins and one subdued olive quartz facet; NOT bright magic gems. Clearly visible two front flanged metal wheels and hint of the far pair underneath, plus short square coupling hitch. The open rocky top and wheel shapes must clearly identify a mine cart, not a flat-lidded storage crate or machine cabinet. Broad low silhouette, approximately 1.45–1.65 times as wide as high. Coal-black steel shell with muted rust orange patches, large rivets and worn reinforced corners. No tracks beneath it, no train rail segment, no shovel or unrelated props.\nCamera: top-down three-quarter looking down about 55 degrees, almost orthographic shallow perspective. We clearly see the OPEN TOP and rocks, front tub wall and low wheels. Long cart axis roughly left-right, modest diagonal depth. Bottom footprint is simple rectangular and readable for a game obstacle.\nImage 1 (mine floor) is MATERIAL/MOOD REFERENCE ONLY, not an edit target and do NOT reproduce the floor. Image 2 (original hero) is HAND-PAINTED STYLE/MATERIAL REFERENCE ONLY, not an edit target; no person in output. Same world: abandoned mining facilities, hand-painted industrial fantasy. Detailed but broad readable metal/stone planes, natural oxidation, minimal tiny scratches, no photographic microtexture and no excessive bright glints. Neutral medium-dark steel and warm rust that separate from dark mine floors. Optimized for proportional rendering at 100–220px width.\nSingle isolated entire cart centered on square canvas, all rocks, rim, wheels and coupling fully visible. Leave a broad clean transparent margin of at least 15 percent every side. Solid opaque surfaces; only contour antialias semitransparent.\nGenuine transparent RGBA background. No ground, floor, rocks scattered outside cart, track, cast shadow, shadow ellipse, pedestal, haze, border, frame, UI, words, lettering, numbers, labels, logo, watermark, people, multiple variants or contact sheet. Entirely original finished production environment prop sprite.",
+  "intended_use": "Static room obstacle, proportional fit to 100–220px gameplay width; rendering/collision integration owned by room_props.",
+  "qa": {
+    "width": 1254,
+    "height": 1254,
+    "format": "RGBA",
+    "bounds_alpha_over_16": [
+      129,
+      281,
+      1227,
+      999
+    ],
+    "transparent_ratio": 0.6498,
+    "nearly_opaque_among_visible": 0.9697,
+    "edge_visible_pixels": 9,
+    "review": "Viewed final: open-topped riveted low-wide ore cart with clearly exposed ore and wheels, muted rust and mineral facets; complete prop, no floor, text or border."
+  }
+}

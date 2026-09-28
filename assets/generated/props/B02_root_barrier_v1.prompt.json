@@ -1,0 +1,48 @@
+{
+  "asset_id": "B02_root_barrier_v1",
+  "biome_id": "B02",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "operation": "generate",
+  "transparent_background": true,
+  "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0e81e-6cb5-73a2-b935-20a0827c6f80\\exec-b9046635-e3e4-4d8a-a6d1-4e44e6b1aea7.png",
+  "destination": "assets/generated/props/B02_root_barrier_v1.png",
+  "prompt": "Use case: stylized-concept\nAsset type: ONE original 2D battle-map obstacle prop sprite for an industrial mining fantasy game, transparent PNG cutout.\nBiome: an abandoned deep mine overtaken by fungal corrosion. Art language: realistic hand-painted fantasy game asset with clearly organized broad shapes, tactile weathered gray-brown mineral, muted olive and mushroom-ivory organic surfaces, sparse pale cyan bioluminescent seams; restrained old dark copper where specified. This matches fungal mine creatures made of dark twisted root fibers, ivory mycelium, layered earth-toned shelf growth, a little pale cyan spore light. ORIGINAL design, no franchise motifs.\nCamera and gameplay: elevated three-quarter overhead view, camera elevation about 60 degrees, low perspective distortion, see the top and a shallow front side; squat obstacle, compact clear footprint, no tall object hiding a player, one prop centered with its entire silhouette visible and 15 percent transparent empty margin on EVERY edge. Appropriate as a 100 to 220 pixel wide obstacle in a 2D top-down combat room. Prioritize 3 to 5 broad readable shape masses, not tiny twigs or hundreds of wisps.\nRendering and alpha: all painted subject surfaces must be opaque, including dark root and metal, no translucent holes in solid forms. True transparent exterior, alpha only outside the silhouette and genuine holes. Soft directional overhead light, restrained shadows entirely within the object, no glow halo.\nAvoid: no background, no ground tile, no floor plane, no environment scenery, no large cast shadow, no floating particles, no text, no writing, no numbers, no UI frame, no icons or interface, no logo, no watermark, no cute cartoon candy rendering, no monster face or eyes, no animation sequence or sheet, no multiple separate props.\nSubject: A horizontal barrier of THREE thick tightly interwoven charcoal-brown mine roots gripping TWO large angular gray ore chunks and a short rusted copper mine brace; the roots coil into a compact shallow S across the horizontal axis. Broad bark bands and ivory mycelium seams, sparse pale cyan points within rock crevices. Overall footprint is an elongated, slightly crooked low rectangular barricade, about twice as wide as deep, like a firm cover obstacle; complete ends tucked inward, no thin long tendrils escaping. No spore sacs, no mushroom umbrellas, no face, no foliage.",
+  "style_reviewed_files": [
+    "assets/generated/enemies/M10_v1.png",
+    "assets/generated/enemies/M14_v1.png",
+    "assets/generated/enemies/M18_v1.png"
+  ],
+  "referenced_image_paths": [],
+  "qa": {
+    "visual": "Selected final: isolated original fungal mining obstacle, complete material silhouette, no external halo, no floor, no text/frame, distinct prop footprint. Final source inspected with view_image.",
+    "pixel_edits": "none; copied built-in output verbatim",
+    "alpha_scan": {
+      "width": 1774,
+      "height": 887,
+      "fully_transparent_pixels": 872540,
+      "near_opaque_pixels_alpha_245_255": 672999,
+      "antialias_or_partial_pixels_alpha_1_244": 27999,
+      "border_nonzero_alpha_pixels": 94,
+      "border_max_alpha": 1,
+      "corner_alphas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible_bounds_alpha_over_16": [
+        88,
+        143,
+        1694,
+        743
+      ],
+      "subject_does_not_touch_border": true,
+      "transparent_exterior_present": true,
+      "subject_near_opaque_verified": true
+    },
+    "view_image_inspected": true,
+    "source_copy_identical": true
+  },
+  "sha256": "61368C835C5E238B52223BF450A0EF473AD1ED674A3A0AF961ADA709B0CF17D9"
+}

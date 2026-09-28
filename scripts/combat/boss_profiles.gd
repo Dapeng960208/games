@@ -1,0 +1,96 @@
+class_name BossProfiles
+extends RefCounted
+## Runtime combat values layered over the authored BO01-BO04 catalog entries.
+## Bosses deliberately do not enter EnemyProfiles: they have their own scene,
+## brain, completion contract and finite arena reinforcement plan.
+
+const Catalog = preload("res://scripts/world/world_catalog.gd")
+
+const NAMES_EN := {
+	"BO01": "Furnace-Ridge Overseer",
+	"BO02": "Broodbed Weaver",
+	"BO03": "Blackbox Pathfinder",
+	"BO04": "Echo Below",
+}
+
+const STATS := {
+	"BO01": {"max_hp": 1450.0, "damage": 20.0, "armor": 18.0, "move_speed": 70.0, "attack_range": 680.0, "navigation_radius": 54.0},
+	"BO02": {"max_hp": 1620.0, "damage": 18.0, "armor": 12.0, "move_speed": 64.0, "attack_range": 760.0, "navigation_radius": 60.0},
+	"BO03": {"max_hp": 1480.0, "damage": 19.0, "armor": 10.0, "move_speed": 92.0, "attack_range": 900.0, "navigation_radius": 52.0},
+	"BO04": {"max_hp": 1880.0, "damage": 21.0, "armor": 22.0, "move_speed": 58.0, "attack_range": 820.0, "navigation_radius": 62.0},
+}
+
+const LEVELS := {"BO01": 5, "BO02": 10, "BO03": 15, "BO04": 20}
+
+static func ids() -> Array[String]:
+	return ["BO01", "BO02", "BO03", "BO04"]
+
+static func resolve(boss_id: String, difficulty: int = 0) -> Dictionary:
+	if boss_id not in STATS:
+		return {}
+	var authored: Dictionary = Catalog.bosses().get(boss_id, {}).duplicate(true)
+	if authored.is_empty():
+		return {}
+	var tier: int = clampi(difficulty, 0, 4)
+	var result: Dictionary = STATS[boss_id].duplicate(true)
+	result.merge(authored, true)
+	result.merge({
+		"enemy_id": boss_id,
+		"boss_id": boss_id,
+		"name_en": NAMES_EN[boss_id],
+		"rank": "boss",
+		"actor_kind": "boss",
+		"enemy_level": LEVELS[boss_id],
+		"difficulty": tier,
+		"behavior_id": "boss_" + boss_id.to_lower(),
+		"effective_threat_cost": 0.0,
+		"encounter_budget": float(authored.get("reinforcement_budget", 0)),
+		"reserved_summon_count": 0,
+		"reserved_summon_threat": 0.0,
+		"visual_asset": "res://assets/bosses/" + boss_id + ".png",
+		"gameplay_implemented": true,
+	}, true)
+	result.max_hp = float(STATS[boss_id].max_hp) * (1.0 + 0.16 * tier)
+	result.damage = float(STATS[boss_id].damage) * (1.0 + 0.08 * tier)
+	result.armor = float(STATS[boss_id].armor) + 3.0 * tier
+	result["reinforcement_waves"] = _reinforcement_waves(authored)
+	return result
+
+static func _reinforcement_waves(authored: Dictionary) -> Array[Dictionary]:
+	var waves: Array[Dictionary] = [
+		{"phase": 2, "members": [], "count": 0, "threat": 0},
+		{"phase": 3, "members": [], "count": 0, "threat": 0},
+	]
+	for member: Dictionary in authored.get("arena", {}).get("reinforcements", []):
+		var total: int = maxi(0, int(member.get("count", 0)))
+		var first: int = int(ceil(float(total) * 0.5))
+		var amounts: Array[int] = [first, total - first]
+		var enemy_id: String = str(member.get("enemy_id", ""))
+		var cost: int = int(Catalog.enemy(enemy_id).get("threat_cost", 0))
+		for index: int in 2:
+			if amounts[index] <= 0:
+				continue
+			waves[index].members.append({"enemy_id": enemy_id, "count": amounts[index]})
+			waves[index].count = int(waves[index].count) + amounts[index]
+			waves[index].threat = int(waves[index].threat) + amounts[index] * cost
+	return waves
+
+static func validate(profile: Dictionary) -> Array[String]:
+	var errors: Array[String] = []
+	var boss_id: String = str(profile.get("boss_id", ""))
+	if boss_id not in STATS or profile.get("enemy_id", "") != boss_id:
+		errors.append("Unknown boss identity")
+	if profile.get("phase_thresholds", []) != [0.7, 0.35]:
+		errors.append("Boss phase thresholds must be 70% and 35%")
+	if str(profile.get("rank", "")) != "boss" or not bool(profile.get("immune_forced_movement", false)):
+		errors.append("Boss rank/control contract is missing")
+	var count: int = 0
+	var threat: int = 0
+	for wave: Dictionary in profile.get("reinforcement_waves", []):
+		count += int(wave.get("count", 0))
+		threat += int(wave.get("threat", 0))
+	if count > int(profile.get("reinforcement_cap", 0)):
+		errors.append("Reinforcement count exceeds boss cap")
+	if threat > int(profile.get("reinforcement_budget", 0)):
+		errors.append("Reinforcement threat exceeds boss budget")
+	return errors

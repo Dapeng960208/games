@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH02",
+  "bank": "back",
+  "texture": "res://assets/generated/heroes/CH02_actions_back_v2.png",
+  "atlas_size": [
+    1254,
+    1254
+  ],
+  "grid": [
+    2,
+    2
+  ],
+  "body_height": 390,
+  "body_height_definition": "Shared nominal upright crown-to-foot reference in source pixels for BOTH banks. Render all frames with one scale: desired_body_height / 390. Never fit each alpha bounding box independently.",
+  "source_coordinate_system": "Top-left origin, +x right, +y down. cell and region are [x,y,width,height]. foot/head/grip/muzzle are absolute SOURCE pixel points.",
+  "normalized_coordinate_system": "Cell-local normalized coordinates: (absolute_point - cell_origin) / cell_size.",
+  "anchor_definitions": {
+    "foot": "Manually annotated midpoint of the two boot ground contacts, used as the world-position pivot.",
+    "head": "Manually annotated head crown, excluding backpack instrument.",
+    "grip": "Manually annotated rifle firing-hand/receiver grip pivot. Approximate anatomical anchor, not a skeletal joint.",
+    "muzzle": "Manually annotated center of rifle barrel exit; use as a starting point and visually calibrate gameplay effects after integration."
+  },
+  "facing": "northeast, three-quarter rear; runtime may mirror for northwest",
+  "alpha_bounds_threshold": 16,
+  "frames": [
+    {
+      "name": "idle",
+      "cell": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "region": [
+        204,
+        124,
+        311,
+        441
+      ],
+      "foot": [
+        323,
+        552
+      ],
+      "head": [
+        307,
+        162
+      ],
+      "grip": [
+        351,
+        333
+      ],
+      "muzzle": [
+        506,
+        471
+      ],
+      "normalized": {
+        "foot": [
+          0.515152,
+          0.880383
+        ],
+        "head": [
+          0.489633,
+          0.258373
+        ],
+        "grip": [
+          0.559809,
+          0.5311
+        ],
+        "muzzle": [
+          0.807018,
+          0.751196
+        ]
+      }
+    },
+    {
+      "name": "windup",
+      "cell": [
+        627,
+        0,
+        627,
+        627
+      ],
+      "region": [
+        770,
+        148,
+        375,
+        397
+      ],
+      "foot": [
+        912,
+        537
+      ],
+      "head": [
+        912,
+        188
+      ],
+      "grip": [
+        964,
+        266
+      ],
+      "muzzle": [
+        1137,
+        218
+      ],
+      "normalized": {
+        "foot": [
+          0.454545,
+          0.856459
+        ],
+        "head": [
+          0.454545,
+          0.299841
+        ],
+        "grip": [
+          0.53748,
+          0.424242
+        ],
+        "muzzle": [
+          0.813397,
+          0.347687
+        ]
+      }
+    },
+    {
+      "name": "release",
+      "cell": [
+        0,
+        627,
+        627,
+        627
+      ],
+      "region": [
+        212,
+        768,
+        327,
+        367
+      ],
+      "foot": [
+        349,
+        1128
+      ],
+      "head": [
+        282,
+        790
+      ],
+      "grip": [
+        386,
+        856
+      ],
+      "muzzle": [
+        532,
+        780
+      ],
+      "normalized": {
+        "foot": [
+          0.556619,
+          0.799043
+        ],
+        "head": [
+          0.449761,
+          0.259968
+        ],
+        "grip": [
+          0.61563,
+          0.365231
+        ],
+        "muzzle": [
+          0.848485,
+          0.244019
+        ]
+      }
+    },
+    {
+      "name": "recovery",
+      "cell": [
+        627,
+        627,
+        627,
+        627
+      ],
+      "region": [
+        786,
+        746,
+        316,
+        399
+      ],
+      "foot": [
+        912,
+        1138
+      ],
+      "head": [
+        906,
+        786
+      ],
+      "grip": [
+        958,
+        920
+      ],
+      "muzzle": [
+        1093,
+        1045
+      ],
+      "normalized": {
+        "foot": [
+          0.454545,
+          0.814992
+        ],
+        "head": [
+          0.444976,
+          0.253589
+        ],
+        "grip": [
+          0.527911,
+          0.467305
+        ],
+        "muzzle": [
+          0.743222,
+          0.666667
+        ]
+      }
+    }
+  ],
+  "animation_notes": [
+    "Four distinct authored key poses; this is not a complete locomotion, eight-direction, or bone animation set.",
+    "Idle, braced aiming, recoil release and bolt/brace recovery change shoulder, torso, elbows and legs rather than rotating the entire image.",
+    "Gameplay owns windup/release/recovery timing; no muzzle flashes, gunfire, shadows or smoke are baked into the sprite.",
+    "The generated key poses have small equipment/detail and body-proportion variation. Use one shared source scale and the per-frame foot anchor to avoid bounding-box-driven zoom and atlas-position jumps.",
+    "At 80px body height, stance and rifle silhouette are readable; finger/bolt motion is subtle.",
+    "Original alpha is preserved without pixel editing. Very faint alpha values <=16 exist outside semantic sprite regions; region uses the same >16 cutoff as the current project."
+  ],
+  "generation": {
+    "tool": "built-in image_gen",
+    "transparent_background": true,
+    "pixel_postprocessing": "none; byte-for-byte copy of final selected ImageGen PNG",
+    "source_output": "C:/Users/13326/.codex/generated_images/01a0e890-9e2d-7182-835a-6d79e8f299d4/exec-50c4112d-2698-46a3-b611-1da43888fdc0.png",
+    "references": [
+      "res://assets/generated/heroes/CH02_combat_v1.png",
+      "res://assets/generated/heroes/CH02_portrait_v1.png"
+    ],
+    "prompts": [
+      "Use case: stylized-concept.\nAsset type: production transparent 2D action RPG character sprite atlas, exactly FOUR FRAMES in TWO ROWS and TWO COLUMNS.\nInput images: Image 1 existing female surveyor ranger combat sprite and Image 2 portrait define exact identity, costume, weapon and style; Image 3 is the completed FRONT four-frame action atlas, to match character and animation scale. Create the matching REAR VIEW atlas with no front-facing duplicates.\nPrimary request: show the SAME olive-and-ivory surveyor woman FROM BEHIND, facing northeast (screen-right and AWAY from viewer), slightly top-down camera, 3/4 BACK view. Back of head/bun, back of olive jacket and backpack, rear faces of arms and legs dominate in ALL FOUR FRAMES. At most a tiny cheek contour, never a front-facing chest or full face. Rifle is clearly held aiming screen-right and somewhat upward during action. Keep short dark hair in bun, olive field jacket, ivory collar/cuffs and hanging shoulder cloth, brass straps, dark slate trousers, brass knee guard, boots, green measuring reel, tall brass/teal survey instrument on backpack. SAME long folding-ruler rifle with ivory straight barrel, brass pivots, green receiver and open triangular brass stock.\nGRID: exactly 2x2 invisible equal square cells on a SQUARE canvas. TOP LEFT idle, TOP RIGHT windup, BOTTOM LEFT release/recoil, BOTTOM RIGHT recovery. All four whole characters and full weapons COMPLETELY INSIDE their own cell. Deliberately use SMALLER figures with EXTRA PADDING: visible body head-to-foot height around 60% of each cell, full silhouette including backpack and rifle contained in middle 75% width/height. Minimum 10% empty transparent margin to each cell border. Do NOT enlarge them to fill cells. Identical character scale and ground baseline in each cell. No clipping or overlaps. Boots baseline at 86% of cell height.\nAction timing: IDLE low-ready barrel diagonal right/down, upright back and relaxed shoulders. WINDUP crouches and leans toward upper-right, rifle firmly at right shoulder, head sighting along barrel, wider planted stance. RELEASE has visible backwards-left shoulder/upper-back recoil and elbow flex, rear leg takes force, barrel lifts slightly but stays aimed northeast; not a simple rotation or duplicate. RECOVERY leans forward again, firing hand draws bolt while support hand cradles rifle, rifle lowers partway. Pose and arm differences should be strong and believable.\nStyle: match reference polished painterly 3D game sprite. Strong clean silhouette and material regions readable at 80px body height. Soft consistent overhead lighting. Real transparent background with alpha.\nAbsolutely NO muzzle flash, gunfire, smoke, sparks, motion lines/trails, shadows, contact shadows, ground, circles, background, grid, labels, letters, numbers, text, frame borders. No front view.",
+      "Use case: precise-object-edit. Asset type: transparent four-frame 2x2 character animation atlas.\nEdit target: provided BACK-view female ranger four-frame atlas. FIX ONLY the atlas framing / sprite size and separation.\nKeep the exact same four characters, identity, poses, action sequence, proportions, weapon design, outfit, rendering, REAR northeast view, and alpha. Each character AND her entire rifle is one complete isolated sprite. The four equal square cells in reading order contain idle, windup, recoil, recovery.\nMANDATORY geometric correction: scale EACH of the four separate complete character-and-rifle sprites DOWN to about 75 percent of its current size, independently in its own cell. This is deliberate large transparent padding, not a close-up. Do NOT scale the entire sheet as one picture. Place each now-smaller entire sprite centered INSIDE its own cell. Full sprite should occupy only 60 to 65 percent of the cell's width and 65 to 70 percent of its height. Every cell MUST have at least 15 percent completely empty transparent padding along all four borders. No visible alpha pixels may approach any boundary. Set feet to a common relative baseline at 80 percent of cell height; preserve all boot pixels. Four cells must remain same dimensions, two columns and two rows. Keep weapon and body scale identical from frame to frame.\nActual transparent background. No floor, no shadows, no grid lines or cell borders, no labels or text, no smoke or muzzle flash. Do not add any new objects or marks. The only change is to make each sprite smaller with clearly generous empty space around it, preserving the current action poses. REAR view means see her backpack and back of head rather than face and chest; keep that unchanged."
+    ]
+  }
+}

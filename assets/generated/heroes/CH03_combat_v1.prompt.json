@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "asset_id": "CH03_combat_v1",
+  "hero_id": "CH03",
+  "asset_type": "static_top_down_three_quarter_combat_body",
+  "status": "generated_static_combat_sprite_not_animation",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "project_path": "assets/generated/heroes/CH03_combat_v1.png",
+  "referenced_image_paths": [
+    "C:/webdev/games/assets/generated/heroes/CH03_portrait_v1.png"
+  ],
+  "source_reference_role": "Identity and costume reference; supplied directly to built-in image generator.",
+  "prompt": "Use case: identity-preserve. Asset type: ONE transparent full-body gameplay character sprite for a 2D top-down action RPG; this is an in-world combat body, NOT a character selection portrait. Input image: the attached original Gu Pin portrait is the exact character identity and costume reference. Preserve his face, ethnicity, age, short grey-streaked dark wavy hair, neat moustache and small chin beard, practical aged-ivory short jacket with peacock-teal panels, dark brown work trousers and boots, offset circular copper-and-ceramic signal receiver, four staggered ceramic backpack capacitors, belt-mounted compact crystal nodes, and short copper fork-shaped needle emitter. He is a male human signal technician, not a wizard. Change the CAMERA AND POSE into a clear overhead three-quarter gameplay view: camera about 50 degrees above ground looking down, top of head and shoulders visible, compact perspective foreshortening of torso and legs, entire body facing southeast toward lower-right of the screen at about 45 degrees. His gaze and short needle emitter point in that same lower-right direction. He holds the emitter out in front ready to activate it, free hand poised on a small tuning control near chest. Relaxed but grounded combat-ready stance, two separated planted feet and slightly bent knees. No floating. Strong asymmetric technical silhouette: round receiver above one shoulder, staggered capacitors on the other, short practical jacket ending near hips. Keep receiver/capacitors compact enough that this is a nimble technician rather than a tank or armored soldier. Render premium hand-painted stylized industrial fantasy, solid large readable color planes and clean contours, selectively simplified construction suited to a final game sprite approximately 70-85 pixels tall. Preserve costume shapes and identity but remove tiny cloth scratches, little buckles and clutter that would become noise when shrunk. Palette aged ivory #D2D1BB, peacock teal #3E8D8D, dark umber #4B443D, warm copper, small teal mineral emitter tip. The full physical character including hands, boots, receiver and weapon must be solid nearly opaque alpha, with only the contour antialiasing translucent; avoid a ghostly transparent body, background tint or broad bloom. Single centered character in a square image, completely visible, all extremities and equipment contained inside generous 12 percent clear safe margins on every edge, about 76 percent canvas height. GENUINELY TRANSPARENT background alpha: no environment, floor, ground, contact shadow, drop shadow, colored backdrop, framing device or pedestal. No spell rings, particles, secondary view, inset, text, numbers, letters, logo or watermark. No long coat, robes, wizard hat, magic staff, armor plating, giant weapon, anime chibi anatomy, photorealistic cosplay or existing IP. Deliver only this one combat-ready character.",
+  "initial_generated_source": "C:/Users/13326/.codex/generated_images/01a0e81b-c969-7ff1-b37d-c062ff22d9c0/exec-1aec3aa8-4454-42fa-9510-69ad79114d56.png",
+  "refinement_prompt": "Refine this exact transparent Gu Pin combat sprite. Keep his identity, male face, hair, clothing colors, compact short jacket, fork emitter, receiver and capacitor equipment design. Change ONLY these framing/orientation defects: (1) move the overhead camera much higher, to about 55 degrees above the ground so we clearly see the crown of his head and shoulder tops, with foreshortened legs suitable for a 2D top-down game. (2) Turn his head and gaze toward the lower-right, following the emitter, not looking back toward upper-left. His torso and combat-ready stance face the same lower-right southeast direction. Preserve a natural planted two-foot stance. (3) Zoom the whole character OUT so the top of the receiver and bottom of boots leave large EMPTY TRANSPARENT margins: at least 12% of canvas height above and below, at least 12% canvas width on each side including weapon tip. The single character occupies ONLY the central 76% of the square canvas height. Do not enlarge him to fill the canvas. Keep the whole physical body fully opaque, with transparent alpha only outside and antialiased boundary. Preserve premium simplified hand-painted material planes suited to 70-85 pixel game display, no background, ground, shadow, pedestal, frame, text, new props, effects or extra views.",
+  "refinement_referenced_image_paths": [
+    "C:/Users/13326/.codex/generated_images/01a0e81b-c969-7ff1-b37d-c062ff22d9c0/exec-1aec3aa8-4454-42fa-9510-69ad79114d56.png"
+  ],
+  "refinement_reason": "Initial sprite faced away from the weapon and had insufficient top/bottom safe margins. Targeted imagegen edit raised the camera, turned gaze toward the emitter and enlarged transparent margins.",
+  "generated_source": "C:/Users/13326/.codex/generated_images/01a0e81b-c969-7ff1-b37d-c062ff22d9c0/exec-814ac9c9-2d23-44d3-8e35-b8fe1962454b.png",
+  "generation_output_hint": "Generated images are saved to C:\\Users\\13326\\.codex\\generated_images\\01a0e81b-c969-7ff1-b37d-c062ff22d9c0 as C:\\Users\\13326\\.codex\\generated_images\\01a0e81b-c969-7ff1-b37d-c062ff22d9c0\\exec-814ac9c9-2d23-44d3-8e35-b8fe1962454b.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "intended_display_height_px": [
+    70,
+    85
+  ],
+  "direction": "southeast / screen lower-right",
+  "identity_invariants": [
+    "Adult male human signal technician Gu Pin",
+    "Short dark wavy hair with grey streak, moustache and chin beard",
+    "Short aged-ivory and peacock-teal work jacket, dark work trousers and boots",
+    "Offset copper/ceramic receiver and staggered backpack capacitors",
+    "Short forked mineral needle emitter and hip crystal nodes"
+  ],
+  "postprocessing": "None. Final PNG copied byte-for-byte from built-in imagegen output; original generated alpha retained. No CLI generation, external editing, compositing or manual background removal.",
+  "qa": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "sha256": "59758d0da7a6fbc814dedb32b4c74d62c0dd8ff6850e7271c5a92e47c5d9c3ce",
+    "alpha_zero_pixels": 1261910,
+    "alpha_near_opaque_pixels_240_plus": 286768,
+    "visible_pixels_alpha_16_plus": 294945,
+    "near_opaque_fraction_of_visible": 0.972276,
+    "visible_bounds_alpha_gt_16": [
+      348,
+      155,
+      1060,
+      1071
+    ],
+    "max_outer_edge_alpha": 1,
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_gt_16_bounds_xywh": [
+      348,
+      155,
+      712,
+      916
+    ],
+    "safe_margin_ratios": {
+      "left": 0.27751196172248804,
+      "top": 0.12360446570972887,
+      "right": 0.1547049441786284,
+      "bottom": 0.145933014354067
+    },
+    "safe_margin_12_percent_pass": true,
+    "touches_canvas_visible_threshold_16": false,
+    "visual_review": "Saved workspace PNG viewed with view_image: one complete male technician, three-quarter overhead battle-ready body; gaze and held fork emitter point lower-right; separate planted feet, compact short jacket, recognizable receiver/capacitor silhouette; no backdrop, ground, text, frame or duplicate character. Subject within >=12% clear visible margins.",
+    "transparency_review": "97.2276% of visible alpha>16 pixels have alpha>=240. Outer canvas is transparent; an alpha=1 residual exists on an edge, visually negligible, preserved from generator.",
+    "integration_note": "Transparent canvas contains large safe margins. Visible subject bounds at alpha>16 are x=348,y=155,w=712,h=916 in a 1254x1254 image; use these when assessing actual 70-85 px body height and foot anchor, rather than measuring full canvas height.",
+    "limitations": "One static southeast combat body only. No directional sprite sheet, rig, walk cycle, attack frames, hit reaction or death animation supplied. Final in-world 70-85 px rendering and anchor require gameplay integration verification."
+  }
+}

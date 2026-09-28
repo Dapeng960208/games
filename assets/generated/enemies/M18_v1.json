@@ -1,0 +1,22 @@
+{
+  "asset_id": "M18_v1",
+  "enemy_id": "M18",
+  "name": "嚼墙钳兽",
+  "biome_id": "B02",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "project_path": "assets/generated/enemies/M18_v1.png",
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0e806-7289-7cf1-b764-98f68b0be95f\\exec-fa068634-9152-44a9-9304-28ea0b22cdb6.png",
+  "prompt": "Use case: stylized-concept. Asset type: isolated original enemy concept / bestiary portrait for a premium industrial fantasy action RPG. Art direction: richly hand-painted sculptural 2D game illustration with sophisticated detailed materials, controlled volumetric lighting, clear readable silhouette, gritty but beautiful craftsmanship. This species comes from an abandoned mine's damp fungal nursery: mineral-fed biology, moist fungal membranes, parasite-like tubular tissue, subtle fluorescent organs. Completely original anatomy, no existing IP or artist reference. Match a cohesive mature painterly industrial-fantasy bestiary, NOT cartoon mushroom mascots.\nComposition: ONE complete creature ONLY, full-body three-quarter view, comfortably centered inside a square canvas, all extremities clearly inside the frame with at least 8 percent safety margin on all sides. Distinguish organs that telegraph attack and vulnerable softer tissue with texture, shape and restrained glow, not floating symbols or labels. Transparent alpha cutout; no ground, base, pedestal, environment, backdrop, floor shadow, vignette or halo. No text, letters, numbers, UI, logo, watermark, detached items, diagrams, inset views, other creatures. Detailed but not photorealistic, no anime, no chibi. No gore.\nSubject M18 \"Wall-Chewing Pincerbeast\" (嚼墙钳兽): a heavy LOW WIDE TRAPEZOIDAL fungal burrow-beast, built to slowly crush thin abandoned mine walls. The front is dominated by TWO enormous FLAT BROAD MANDIBLES, held open in a wide horizontal clamp with blunt squared crushing teeth. These are integrated jaws of layered ivory dentin and dark fibrous chitin, not crab arms or steel tools. Its small recessed face sits behind the jaws with two tiny amber sensing pores. The low back is covered by overlapping thick fungal TILE SHELLS like uneven roof shingles, slate-olive and mineral umber with chalky pale edges, arranged in visibly layered rows. SIX short load-bearing root legs spread beneath the armored body, bent like stout biological brackets. At the front underside, between legs and behind the jaw hinge, expose a pale pleated SOFT BELLY in clear contrast to the protective shell; this is the vulnerability during the pause after biting. The mandible hinge shows a thick wet amber tension membrane to make slow closing attack readable. No humanoid parts, no classic mushroom cap, no multiple extra pincer arms, no decorative spikes that obscure the low trapezoid. A few tiny fungus fans and thin parasitic tubes grow along the rear shell seams, not dominant. Three-quarter view slightly from the front and above, full jaws, all body and visible short legs intact. Beautiful painterly armor lamination, scuffed mineral surfaces, damp soft tissue, carefully restrained blue-green luminescence only within shell seams. Square transparent canvas with creature filling about 76 percent of width, generous safety margin around both huge jaws. No wall or rubble in the image.",
+  "status": "generated_bestiary_portrait_not_animation",
+  "originality": "Created from this project's enemy visual_descriptor and behavior specification without external IP references.",
+  "qa": {
+    "review": "One original creature, full-body three-quarter silhouette, attack organ and softer vulnerable tissue distinguishable, no text or watermark.",
+    "alpha_verification": "System.Drawing sampled every 4 pixels at alpha > 16: transparent background and visible creature confirmed. Every actual outer edge pixel checked; zero visible outer-edge pixels for all nine assets.",
+    "visible_outer_edge_pixels": 0,
+    "sha256": "3B1D9F9392854EAC8405EAA3EAEB7C6A255FCC8AB24A168EFDB4DCA49D1910DF",
+    "limitations": "Static bestiary concept portrait; directional gameplay sprites, hitboxes, rigs and attack animation frames are separate work."
+  },
+  "width": 1254,
+  "height": 1254
+}

@@ -1,0 +1,22 @@
+{
+  "asset_id": "M11_v1",
+  "enemy_id": "M11",
+  "name": "囊喉喷客",
+  "biome_id": "B02",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "project_path": "assets/generated/enemies/M11_v1.png",
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0e806-7289-7cf1-b764-98f68b0be95f\\exec-1dea057b-2d8e-4bfe-bd37-cbb9369e834c.png",
+  "prompt": "Use case: stylized-concept. Asset type: isolated original enemy concept / bestiary portrait for a premium industrial fantasy action RPG. Art direction: richly hand-painted sculptural 2D game illustration with sophisticated detailed materials, controlled volumetric lighting, clear readable silhouette, gritty but beautiful craftsmanship. This species comes from an abandoned mine's damp fungal nursery: mineral-fed biology, moist fungal membranes, parasite-like tubular tissue, subtle fluorescent organs. Completely original anatomy, no existing IP or artist reference. Match a cohesive mature painterly industrial-fantasy bestiary, NOT cartoon mushroom mascots.\nComposition: ONE complete creature ONLY, full-body three-quarter view, comfortably centered inside a square canvas, all extremities clearly inside the frame with at least 8 percent safety margin on all sides. Distinguish organs that telegraph attack and vulnerable softer tissue with texture, shape and restrained glow, not floating symbols or labels. Transparent alpha cutout; no ground, base, pedestal, environment, backdrop, floor shadow, vignette or halo. No text, letters, numbers, UI, logo, watermark, detached items, diagrams, inset views, other creatures. Detailed but not photorealistic, no anime, no chibi. No gore.\nSubject M11 \"Sac-Throat Spitter\" (囊喉喷客): a bizarre low quadruped artillery creature, NOT a frog and NOT a mushroom-headed humanoid. Four widely splayed fleshy climbing feet support a long low charcoal-olive body clad in moist layered fungal skin. From its front rises a backward-curving swan-like neck, segmented into THREE conspicuous translucent acid-inflation sacs, the largest at the lower throat; each has pale tension ribs and sour amber liquid visible behind green membrane. Its small tubular mouth points upward like a bent drain outlet, with three fleshy petal-like valves ready to lob acid, no dripping projectile in flight. Capture pre-attack inflation so the stepwise swelling is readable, throat is the focal point and obvious vulnerable soft organ. The hunched back carries overlapping flattened mineral gills, not a classic cap. A few embedded corroded pipe-clamp-like calcified rings and rootlike tendons suggest adaptation to old drainage tunnels. Two narrow pearl sensing slits sit far apart above the throat. Flat heavy abdomen contrasts with high arched narrow neck, big soft throat sac, four low feet and little curled rear tail. Palette damp forest teal, cream membranous gills, acidic amber inside sacs, dark peat-brown feet. Intelligent believable bio-mechanics, beautifully rendered wet-satin skin against dry chalky calcification.",
+  "status": "generated_bestiary_portrait_not_animation",
+  "originality": "Created from this project's enemy visual_descriptor and behavior specification without external IP references.",
+  "qa": {
+    "review": "One original creature, full-body three-quarter silhouette, attack organ and softer vulnerable tissue distinguishable, no text or watermark.",
+    "alpha_verification": "System.Drawing sampled every 4 pixels at alpha > 16: transparent background and visible creature confirmed. Every actual outer edge pixel checked; zero visible outer-edge pixels for all nine assets.",
+    "visible_outer_edge_pixels": 0,
+    "sha256": "7C00E6CE8A81F56C9060A386AFBA0A64036D6FA05C15E737A678A3AA4D248E95",
+    "limitations": "Static bestiary concept portrait; directional gameplay sprites, hitboxes, rigs and attack animation frames are separate work."
+  },
+  "width": 1254,
+  "height": 1254
+}

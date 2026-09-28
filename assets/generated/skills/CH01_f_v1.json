@@ -1,0 +1,13 @@
+{
+  "hero_id": "CH01",
+  "skill": "f",
+  "name": "撑梁反推",
+  "version": 1,
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: one original action skill icon for a compact 48-pixel game HUD, generated at high resolution for clean downsampling. Skill: Brace Reversal, a mine-support fighter unfolds hydraulic rockfall plates to PUSH threats OUTWARD and gain a protective shield. Draw ONLY a compact original mechanical mine brace opening symmetrically: one thick central oxidized-orange hydraulic hinge with TWO broad coal-black rectangular steel guard plates fanning left and right, each with a strong bone-white outer protective edge and only two large rivets. Two short bone-white pistons visibly push these plates outward. A single broad broken orange semicircular outward shock accent behind the plates makes the expansion direction clear. The overall silhouette is a wide sturdy protective BRACE, not a knight shield and NOT a hammer. No person, hand or weapon. Same practical handmade mine-support machinery language as a coal-black/orange hydraulic demolition worker. Premium hand-painted stylized industrial-fantasy ACTION ICON with economical silhouette and bold sculpted brush-painted bevels. Strict three color families only: coal black #252B2D, oxidized orange #C87535, bone white #E4D7BB. Minimal details, strong value contrast, restrained warm edges, no tiny bolts, no sparks or blue magic. Compact square composition centered, all tips inside canvas with at least 12% clear transparent margin all around. Genuine transparent alpha background, solid opaque equipment. No text, letters, numbers, arrow symbols, border, UI frame, badge, tile, background plate, scene, floor, character/body parts, logo, watermark, emoji or existing-game symbols.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e806-e28c-7c81-95b4-02acc6060bab/exec-550783bd-6e37-46c6-bb8f-4e0474671090.png",
+  "output_file": "assets/generated/skills/CH01_f_v1.png",
+  "reference_design": "assets/generated/heroes/CH01_portrait_v1.png viewed for theme, no input image supplied",
+  "qa": "Outward-opening mechanical brace and orange shock arc; recognizable symmetrical protective silhouette, no text/frame or medieval shield."
+}

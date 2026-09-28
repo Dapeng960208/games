@@ -56,6 +56,7 @@ static func make_theme() -> Theme:
 
 static func label(parent: Node, key: String, at: Vector2, extent: Vector2, size_px: int = 18, color: Color = INK, values: Dictionary = {}) -> Label:
 	var node := Label.new()
+	node.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	node.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	node.text = Words.text(key, values)
 	node.add_theme_font_size_override("font_size", size_px)
@@ -68,6 +69,7 @@ static func label(parent: Node, key: String, at: Vector2, extent: Vector2, size_
 
 static func button(parent: Node, key: String, at: Vector2, extent: Vector2, callback: Callable) -> Button:
 	var node := Button.new()
+	node.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	node.set_script(load("res://scripts/ui/mine_button.gd"))
 	node.text = Words.text(key)
 	node.position = at
@@ -88,3 +90,55 @@ static func panel(parent: Node, at: Vector2, extent: Vector2) -> Panel:
 	node.size = extent
 	parent.add_child(node)
 	return node
+
+## Content names live beside game data; UI chrome lives in Words.
+static func content_text(data: Dictionary, field: String, fallback: String = "") -> String:
+	var value: Variant = data.get(field, fallback)
+	if value is Dictionary:
+		return str(value.get(Words.locale, value.get("en", fallback)))
+	if Words.locale == "en":
+		return str(data.get(field+"_en",value))
+	return str(value)
+
+static func literal(parent: Node, text_value: String, at: Vector2, extent: Vector2, size_px: int = 18, color: Color = INK) -> Label:
+	var node := label(parent,"",at,extent,size_px,color)
+	node.text = text_value
+	return node
+
+static func resource_color(kind: String) -> Color:
+	return {"rage":AMBER,"energy":CYAN,"mana":Color("779eee")}.get(kind,CYAN)
+
+static func hero_portrait(parent: Node, id: String, at: Vector2, extent: Vector2) -> Control:
+	var portrait := Control.new()
+	portrait.set_script(load("res://scripts/ui/hero_portrait.gd"))
+	portrait.position = at
+	portrait.size = extent
+	parent.add_child(portrait)
+	portrait.set_hero(id,ContentRegistry.hero(id))
+	return portrait
+
+static func equipment_icon(parent: Node, data: Dictionary, at: Vector2, extent: Vector2) -> Control:
+	var icon := Control.new()
+	icon.set_script(load("res://scripts/ui/equipment_icon.gd"))
+	icon.position = at
+	icon.size = extent
+	parent.add_child(icon)
+	icon.set_equipment(data)
+	return icon
+
+static func meter(parent: Node, at: Vector2, extent: Vector2, accent: Color) -> ProgressBar:
+	var bar := ProgressBar.new()
+	bar.position = at
+	bar.size = extent
+	bar.show_percentage = false
+	bar.add_theme_font_size_override("font_size",1)
+	bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var background := StyleBoxFlat.new()
+	background.bg_color = BG
+	var fill := StyleBoxFlat.new()
+	fill.bg_color = accent
+	bar.add_theme_stylebox_override("background",background)
+	bar.add_theme_stylebox_override("fill",fill)
+	parent.add_child(bar)
+	bar.size = extent
+	return bar

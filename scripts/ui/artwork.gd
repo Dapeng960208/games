@@ -1,15 +1,14 @@
 class_name MineArt
 extends RefCounted
 
-static var textures: Dictionary = {}
+const TextureSampler = preload("res://scripts/ui/texture_sampler.gd")
 
 static func texture(path: String) -> Texture2D:
-	if not textures.has(path) and ResourceLoader.exists(path):
-		textures[path] = load(path)
-	return textures.get(path)
+	return TextureSampler.sampled(path)
 
 static func relic(parent: Node, id: String, at: Vector2, extent: Vector2, found: bool = true) -> TextureRect:
 	var art := TextureRect.new()
+	art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	art.texture = texture("res://assets/ui/relic_"+id+".png")
 	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED

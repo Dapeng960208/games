@@ -1,0 +1,11 @@
+{
+  "asset": "B03_floor_v1.png",
+  "tool": "image_gen.imagegen",
+  "prompt": "Create an original square seamless-looking ground material for an overhead 2D industrial fantasy derelict electrical machine hangar. Environment ground only, full bleed opaque. NOT a room scene. Flat embedded broad irregular cold desaturated blue-gray steel plates mixed with worn dark concrete, a few flush cable channels and pale old painted maintenance scuffs, occasional dull oxidized copper scratches. Make plates irregular and broad, never a checkerboard or regular lattice, no giant perfect UI-looking panels. LOW contrast and very restrained detail, mostly dark quiet broad surfaces so actors, colorful warnings, loot stand out. No machinery sticking up, obstacles, furniture, walls, objects, characters, lettering, numbers, logos, grid, floor border, interface or watermarks. Painted game material matching a detailed original industrial-fantasy world, soft even overhead illumination, no directional cast shadow. Sparse flush seams, no deep holes, no fake walk-blocking ledges. Edge values consistent so mirror-repeat can cover a 2800x1800 room without obvious bands. Square 1:1.",
+  "source": "C:/Users/13326/.codex/generated_images/01a0e7c7-910c-7942-9cb2-dc2377862928/exec-0ce43991-5361-49a6-b6be-011e0531f6fe.png",
+  "transparent_background": false,
+  "qa": {
+    "visual": "Inspected output: opaque broad irregular desaturated cold steel plates, flush cables, no objects, text, grids, or raised collision-like details. Still requires actual room repetition and contrast review.",
+    "postprocessing": "none; source copied byte-for-byte"
+  }
+}

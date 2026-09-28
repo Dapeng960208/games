@@ -1,0 +1,13 @@
+{
+  "hero_id": "CH01",
+  "skill": "ultimate",
+  "name": "重锤落井",
+  "version": 1,
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: one original ultimate skill icon for a compact 48-pixel game HUD, generated at high resolution for clean downsampling. Skill: Shaftfall Hammer, a mine-support fighter's huge hydraulic hammer crashing vertically downward to create a circular kinetic shockwave. Draw ONLY one giant compact rectangular demolition hammer descending STRAIGHT DOWN in the center. Upright coal-black short hydraulic body, twin thick bone-white piston highlights, oxidized-orange casing and a very broad square bone-white lower striking face with three bold rivet marks. Its flat face crashes into THREE large dark angular stone shards under it. ONE simple thick flattened orange elliptical impact shock ring spreads around the hammer base, with a bright bone-white impact notch at center and two short downward orange motion wedges above. Make the vertical hammer plus horizontal shock ring the dominant unmistakable silhouette, not a side swing or forward dash. No person. Original practical mine-support machinery, same coal-black/orange/ivory hydraulic hammer language as the miner hero Luo Zhen. Premium hand-painted stylized industrial-fantasy ACTION ICON, strong economical silhouette, broad sculpted painted planes, restrained edge glow. Strict three color families only: coal black #252B2D, oxidized orange #C87535, bone white #E4D7BB. No tiny particles, no microtexture, minimal scratches, bold value contrast, larger shapes than equipment concept art. Compact square composition centered with at least 12% transparent padding on all sides, complete shock ring and all fragments visible. Genuine transparent alpha, solid opaque equipment and rock fragments. No literal floor patch, environment, scene, text, letters, numbers, arrow glyph, border, UI frame, badge, tile, background plate, character/body parts, logo, watermark, emoji or existing-game symbols.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e806-e28c-7c81-95b4-02acc6060bab/exec-9c43c8f2-a164-436e-8341-99e5af2b8ecb.png",
+  "output_file": "assets/generated/skills/CH01_ultimate_v1.png",
+  "reference_design": "assets/generated/heroes/CH01_portrait_v1.png viewed for theme, no input image supplied",
+  "qa": "Vertical hydraulic hammer with three rivets, a single broad flattened orange impact ring and three opaque stone chunks; no lettering, frame or background."
+}

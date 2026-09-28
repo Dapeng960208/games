@@ -1,0 +1,43 @@
+{
+  "asset_id": "exit",
+  "version": 1,
+  "date": "2026-09-28",
+  "tool": "built-in image_gen.imagegen",
+  "mode": "generate",
+  "transparent_background": true,
+  "original_design": true,
+  "art_direction": "docs/IMAGEGEN_ART_DIRECTION.md",
+  "prompt": "Use case: stylized-concept. Asset type: one original 2D action game UI navigation icon, a standalone square PNG with genuine transparent background. Theme: abandoned mine, hand-built precision industrial salvage instruments. Premium restrained hand-painted game art, only a few large forms with a clear recognisable silhouette at 32-48 pixels, broad warm highlights and restrained simplified wear. Coal-black steel, aged brass and ivory ceramic, tiny amber glow. Complete centered object, 12% transparent safety margin. Entirely original design. No text, no letters, no numbers, no keycap labels, no separate border, panel, badge, background, logo, watermark or floor shadow. Isolated object only. Subject: a squat rectangular mine-lift exit doorway, clearly framed with two sturdy aged-brass uprights and a dark empty open door gap. One LARGE high-contrast ivory upward arrow stands in front of the dark door opening, with its point extending above the door lintel, clearly signalling lift evacuation upward. One small amber lamp on lintel. Almost front-facing, simplified and instantly readable. No platform or surroundings. Arrow must be the most readable feature.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e81e-dd8b-7513-89db-bbfce972c051/exec-463ffadc-1c95-41a6-a275-e0454ca4e0ac.png",
+  "saved_path": "assets/generated/ui/exit_v1.png",
+  "sha256": "B8402FF29B6524103DE8159DAF0B633B74206660435886B650ACE07660BFFB44",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "qa": {
+    "view_image_inspected": true,
+    "complete_subject": true,
+    "no_letters_or_numbers": true,
+    "no_external_background": true,
+    "alpha_sample_step_pixels": 8,
+    "transparent_samples": 9996,
+    "partial_alpha_samples": 14649,
+    "opaque_samples": 4,
+    "foreground_mean_alpha": 246.18,
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "pixel_format": "Format32bppArgb",
+    "alpha_preserved_without_editing": true,
+    "live_ui_small_size_review": "pending consumer integration",
+    "recommended_ui_pixels": [
+      32,
+      48
+    ],
+    "notes": "Original generated PNG copied unchanged; no image editing or alpha flattening."
+  }
+}

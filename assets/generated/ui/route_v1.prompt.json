@@ -1,0 +1,43 @@
+{
+  "asset_id": "route",
+  "version": 1,
+  "date": "2026-09-28",
+  "tool": "built-in image_gen.imagegen",
+  "mode": "generate",
+  "transparent_background": true,
+  "original_design": true,
+  "art_direction": "docs/IMAGEGEN_ART_DIRECTION.md",
+  "prompt": "Use case: stylized-concept. Asset type: one original 2D action game UI navigation icon, a standalone square PNG with genuine transparent background. Theme: abandoned mine, hand-built precision industrial salvage instruments. Premium restrained hand-painted game art, only a few large forms with a clear recognisable silhouette at 32-48 pixels, broad warm highlights and restrained simplified wear. Coal-black steel, aged brass and ivory ceramic, tiny amber glow. Complete centered object, 12% transparent safety margin. Entirely original design. No text, no letters, no numbers, no keycap labels, no separate border, panel, badge, background, logo, watermark or floor shadow. Isolated object only. Subject: a small folded stiff mine survey map with THREE broad ivory paper panels edged subtly in dark coal steel. Across the map one thick aged-brass zigzag route connects EXACTLY THREE large circular copper rivet waypoint nodes; endpoint has tiny amber glow. No other map markings, no roads, no symbols, no writing, no compass. Front slight three-quarter view. The folded paper zigzag edges and three linked rivets form the whole readable navigation silhouette. Only 3-5 large forms, minimum details.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e81e-dd8b-7513-89db-bbfce972c051/exec-e2fea8ef-80ca-4d48-b004-0793728b9655.png",
+  "saved_path": "assets/generated/ui/route_v1.png",
+  "sha256": "DD2DE8E155E4FD0DEE2123CC0D88CF9C509885001142DB87FF00324AAFE3A52E",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "qa": {
+    "view_image_inspected": true,
+    "complete_subject": true,
+    "no_letters_or_numbers": true,
+    "no_external_background": true,
+    "alpha_sample_step_pixels": 8,
+    "transparent_samples": 14783,
+    "partial_alpha_samples": 9859,
+    "opaque_samples": 7,
+    "foreground_mean_alpha": 248.81,
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "pixel_format": "Format32bppArgb",
+    "alpha_preserved_without_editing": true,
+    "live_ui_small_size_review": "pending consumer integration",
+    "recommended_ui_pixels": [
+      32,
+      48
+    ],
+    "notes": "Original generated PNG copied unchanged; no image editing or alpha flattening."
+  }
+}

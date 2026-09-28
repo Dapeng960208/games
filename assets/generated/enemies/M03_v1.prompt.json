@@ -1,0 +1,34 @@
+{
+  "asset_id": "M03",
+  "display_name": "窄灯点射手",
+  "biome_id": "B01",
+  "version": 1,
+  "asset_type": "enemy_bestiary_illustration",
+  "use_case": "stylized-concept",
+  "generation_mode": "built_in_image_gen",
+  "tool": "image_gen.imagegen",
+  "transparent_background_requested": true,
+  "prompt": "Use case: stylized-concept. Asset type: premium original enemy illustration for an industrial fantasy action RPG, bestiary portrait and production creature design. ONE creature M03 Slit-Lamp Sharpshooter, full body three-quarter view on genuine transparent alpha background, all contour edges clean; no haze, aura, ground shadow, floor, scene, platform, pedestal or background. An eerie abandoned survey instrument animated by small mineral-organic tendons, designed for precision sniping then hopping to a new perch. The whole creature balances on ONE tall mechanical spring-loaded leg which ends in a triangular three-point stabilizing foot, clearly a single leg with a three-toed survey-tripod foot, not three full legs. A slim angular upper body is a compact narrow rectangular hood with a tiny horizontal slit lamp in place of a face, emitting restrained warm amber light. A very long slender needle rifle extends forward from its body on an exposed traverse bracket, visibly slender linear barrel, fine sight rails and compact spring magazine rather than a bulky cannon. The main read is a long diagonal needle balanced above the thin monopod, unmistakably different from humanoid soldiers or bulky robots. Lean poised aiming pose, thin deliberate negative spaces, engineered shock spring suggests rapid hopping movement; a small warm mineral-organic core integrated into the rear mechanism. Elegant precision instrument detail, scratched ochre mining enamel, dark charcoal iron, rust-orange wear, small copper coils, restrained amber point lights. Premium richly hand-painted stylized industrial-fantasy creature concept with sophisticated coherent forms, convincing layered materials, soft dramatic painterly lighting, readable light and shadow masses. Entire gun, top and all three contact toes fit within the canvas with clear margins. Belongs to an original abandoned mining and bioluminescent underground ecosystem. No text, labels, numbers, logos, watermark, UI, frame, extra weapons, characters or existing franchise design.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-ce11f4ab-cabb-468c-8ea0-f8f05edff1d4.png",
+  "saved_path": "assets/generated/enemies/M03_v1.png",
+  "width": 1189,
+  "height": 1323,
+  "sha256": "D62FFB8530F0A3B16FDC8D375FFC64DF007DBF02E7497B897807DE27FF6DF954",
+  "visual_language": "Original industrial fantasy: salvaged mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+  "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+  "alpha_validation": {
+    "format": "Format32bppArgb",
+    "sample_stride": 8,
+    "transparent_samples": 20699,
+    "partial_samples": 4019,
+    "opaque_samples": 16,
+    "notes": "Source PNG alpha preserved without external editing. Near-opaque subject pixels are expected from generated output; this is an illustration, not an animation sheet."
+  },
+  "visual_inspection": [
+    "One spring-loaded leg terminates in a three-toed triangular support.",
+    "Long slender needle rifle and horizontal slit lamp are present.",
+    "Very lean silhouette and recoil spring express precision aiming and hopping.",
+    "Complete figure and barrel fit; genuine transparent alpha confirmed."
+  ],
+  "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Directional gameplay animation sheets and attack/recovery poses remain separate deliverables."
+}

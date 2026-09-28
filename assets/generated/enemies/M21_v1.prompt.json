@@ -1,0 +1,38 @@
+{
+  "asset_id": "M21",
+  "display_name": "缺相跃蛛",
+  "biome_id": "B03",
+  "version": 1,
+  "asset_type": "enemy_battle_ready_illustration",
+  "use_case": "stylized-concept",
+  "generation_mode": "built_in_image_gen",
+  "tool": "image_gen.imagegen",
+  "transparent_background_requested": true,
+  "prompt": "Use case: stylized-concept. ONE original battle-ready enemy sprite illustration for an industrial fantasy action RPG: M21 Missing-Phase Jumper from a powerless underground hangar. A compact FOUR-LEGGED jumping machine-mineral creature: exactly four widely spread jointed feet with large visible compressed coil springs, arranged like an opening and closing four-point STAR around a small angular capacitor core. One flexible severed electrical cable forms a single dragging tail with a capped metal connector; the tail is visibly different from the four load-bearing spring legs. No spider abdomen, no extra legs, no humanoid elements. Coiled springs crouch ready to leap, copper contacts around the small central chassis hint at a brief electric ring upon landing. A few restrained pale cyan electrical highlights on ceramic capacitor blocks, no electric halo and no particle burst obscuring the body. Coal-black steel, faded ochre casing, oxidized copper joints, ivory ceramic insulators, slight mineral-organic fibers tucked into seams. Premium richly hand-painted stylized industrial-fantasy, beautiful functional engineering, broad clear light/shadow masses and tactile limited surface wear. Elevated three-quarter camera looking down 40 degrees, all four spring feet clearly distinguishable. Entire subject and cable tail framed with generous transparent margin; recognizably four-point star at 70 pixels. Nearly opaque solid subject on genuine transparent alpha; no ground, floor, cast shadow, pedestal, environment, lettering, labels, logo, UI, watermark, decorative border or any existing game creature.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-f56445e6-37f6-4839-bd39-fb74f2503532.png",
+  "saved_path": "assets/generated/enemies/M21_v1.png",
+  "width": 1362,
+  "height": 1155,
+  "sha256": "5C8A3B5FCE8496DC9ADEED552D6E44EE822034B1727E4CD12913DE91C1097983",
+  "design_sources": [
+    "docs/IMAGEGEN_ART_DIRECTION.md",
+    "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+    "data/enemies.json"
+  ],
+  "alpha_validation": {
+    "format": "Format32bppArgb",
+    "sample_stride": 8,
+    "transparent_samples": 16881,
+    "edge_or_low_alpha_samples": 688,
+    "near_opaque_samples": 7226,
+    "near_opaque_threshold": 240,
+    "max_alpha": 255,
+    "notes": "Original generated alpha preserved; broad subject is nearly opaque. Transparent pixels may retain RGB visible in alpha-ignoring viewers."
+  },
+  "visual_inspection": [
+    "Exactly four spring legs and one distinct trailing cable are visible.",
+    "Four-point opening silhouette and compressed springs communicate the jump.",
+    "Ceramic capacitor core and restrained cyan accents support electric landing identity."
+  ],
+  "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+}

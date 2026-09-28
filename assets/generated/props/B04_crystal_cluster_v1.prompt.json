@@ -1,0 +1,45 @@
+{
+  "asset_id": "B04_crystal_cluster",
+  "version": 1,
+  "date": "2026-09-28",
+  "tool": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: ONE original environmental obstacle sprite for a top-down 2D industrial fantasy abandoned mine action game. Three-quarter top-down orthographic low perspective, camera looking down about 55 degrees, clearly visible broad top surfaces. Premium hand-painted game asset: purple-grey minerals and dark rock, ivory ceramic, aged oxidized copper, coal-black metal, restrained tiny peacock-teal light accents. Carefully detailed but use only several large readable forms; crisp clear silhouette at 100 to 220 screen pixels. Cohesive compact collision-friendly footprint. Entire object visible, centered with safe 12% margin. Physical subject solid and nearly fully opaque, genuine transparent background alpha zero outside its exact outline. No ground plane, tile, platform around it, exterior shadow, bloom halo, fog, smoke, gradient, text, symbols, labels, logos, border, watermark. Not a crate or machinery cabinet. Entirely original, no existing franchise influence. Subject: a compact asymmetrical clump of FIVE broad mineral crystals embedded directly in one charcoal-purple rough rock root. Two tallest crystals lean together diagonally upper right; three short angular shard pillars nest closely at their feet. Crystal bodies opaque deep purple-grey with milky ivory plane edges and thin peacock-teal mineral veins, dull glassy highlights but not see-through and no exterior glow. One tarnished copper mining staple partly fused into rock. Jagged tilted crystal silhouette, cohesive narrow base, no detached shards, no hovering pieces. The rock is part of the mineral object, not a ground patch.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e81e-dd8b-7513-89db-bbfce972c051/exec-5cc44bef-41a6-4f35-9ceb-347b1f26047e.png",
+  "saved_path": "assets/generated/props/B04_crystal_cluster_v1.png",
+  "sha256": "7C7C280CB0A1C5616C6AC351929A84FA030214CA6B0CFB171B28AFF09154A254",
+  "references_inspected": [
+    "assets/generated/heroes/CH03_combat_v1.png",
+    "assets/generated/ui/workshop_v1.png"
+  ],
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "qa": {
+    "view_image_inspected": true,
+    "original_design": true,
+    "complete_subject": true,
+    "distinct_silhouette": true,
+    "no_floor_or_external_shadow": true,
+    "sample_step_pixels": 8,
+    "transparent_samples": 15834,
+    "partial_alpha_samples": 8799,
+    "opaque_samples": 16,
+    "alpha_240_or_higher_samples": 8620,
+    "foreground_mean_alpha": 248.04,
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_preserved": true,
+    "notes": "Original generated PNG copied unchanged. Purple-grey mineral / ivory ceramic / oxidized copper / restrained peacock-teal accent matches B04 biome. No code-based image edits.",
+    "live_scene_review": "pending consumer integration",
+    "target_screen_size_pixels": [
+      100,
+      220
+    ]
+  }
+}

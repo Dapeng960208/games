@@ -1,0 +1,11 @@
+{
+  "asset": "B04_floor_v1.png",
+  "tool": "image_gen.imagegen",
+  "prompt": "Original square ground material tile, full bleed opaque, for a top-down 2D industrial-fantasy Resonance Deepwell. Not a scenic room illustration. Flat dark purple-gray basalt slabs and wide smooth worn stone areas, restrained hairline turquoise mineral seams fused flush in the rock and sparse embedded fragments of old ivory ceramic. Larger calm mineral facets, very low contrast, minimal gritty speckles, shallow irregular scratches, a few narrow desaturated copper inlays with no regular grid. Everything lies flat, no large crystals protrude, no pillars, blocking objects, walls, ledges, holes, characters, symbols, text, UI, borders or checkerboard. Elegant eerie abandoned signal chamber material, hand-painted game style matching aged ceramic and copper technician equipment. Muted violet charcoal base, teal hairlines are dull NOT luminous bright effects, broad quiet negative space for battle readability. Even overhead diffuse illumination with no directional shadows. Consistent edges and seamless-looking layout for mirror repeat across 2800x1800 world, image pixels may tile at 1:1. Square 1:1.",
+  "source": "C:/Users/13326/.codex/generated_images/01a0e7c7-910c-7942-9cb2-dc2377862928/exec-20dc3a11-3291-4794-9a31-636e08ea8c6d.png",
+  "transparent_background": false,
+  "qa": {
+    "visual": "Output inspected: opaque broad purple-gray basalt, muted flush turquoise veins and embedded ceramic. No raised props/text/grid. Actual repeating room screenshot contrast remains to verify.",
+    "postprocessing": "none; source copied byte-for-byte"
+  }
+}

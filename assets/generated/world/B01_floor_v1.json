@@ -1,0 +1,8 @@
+{
+  "asset_id": "B01_floor",
+  "version": 1,
+  "tool": "built-in image_gen",
+  "prompt": "Use case: stylized-concept. Create one original seamless square top-down ground texture tile for a premium hand-painted 2D industrial-fantasy mining action RPG. Direct orthographic overhead view, no horizon or perspective. Abandoned underground mine floor: broad irregular dark charcoal slate plates partially embedded in compact coal dust, small worn oxidized iron reinforcement strips flush with the ground, sparse tiny gravel, subtle hairline cracks and muted traces of copper mineral deposits. Deep blue-charcoal and low-saturation dark steel palette, restrained brown-rust details, no bright highlights, no emissive objects. Rich painterly texture with carefully controlled low contrast to keep moving heroes and red enemy telegraphs readable. Four sides must wrap seamlessly, consistent material density at every edge. Do not form a regular grid or obvious symmetric repeating motif. No raised walls, cliffs, pits, rails, machinery, characters, items, vegetation, lights, shadows of objects, doors, UI, lettering or logos. This texture is only the flat walkable ground; collision architecture is rendered separately. Keep all stone and metal forms flush, softly lit by even underground ambient light. Beautiful deliberate brushwork, credible material detail, entirely original design. Square opaque image.",
+  "source": "C:/Users/13326/.codex/generated_images/01a0e7c7-910c-7942-9cb2-dc2377862928/exec-f1cdf101-5fd1-4427-aeac-8540eb451242.png",
+  "qa": "Visually inspected original dark mine-floor material; seamless repetition must still be checked in actual renderer. No collision obstacles encoded in texture."
+}

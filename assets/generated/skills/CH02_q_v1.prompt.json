@@ -1,0 +1,31 @@
+{
+  "asset_id": "CH02_q",
+  "name": "翻索掠射",
+  "output_file": "assets/generated/skills/CH02_q_v1.png",
+  "mode": "built-in image_gen",
+  "tool": "image_gen.imagegen",
+  "intent": "generate then framing edit",
+  "transparent_background": true,
+  "source_generated_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-a5b37bab-e2e5-40c8-8db4-72a039710ecf.png",
+  "reference_images": [
+    {
+      "path": "assets/generated/heroes/CH02_portrait_v1.png",
+      "role": "style and weapon identity reference only; not an edit target"
+    }
+  ],
+  "prompt": "Use case: stylized-concept. Asset type: transparent square skill icon for an original 2D industrial fantasy action game, readable at 48 x 48 pixels.\nPrimary request: create an entirely new original skill icon for CH02 Cen Xian the surveyor, skill \"Cable-Slide Volley\". A single compact lightweight folding-ruler rail rifle angled toward the upper right, with an elegant thick curved sliding streak sweeping from lower left behind it. The rifle is the dominant form: distinctive triangular stock, short ivory fold-out guide rail, dark green body, a minimal cable loop. The sweeping trail makes rapid grounded forward sliding and shooting legible without showing a person. One short decisive muzzle flash. Keep these shapes unified, not a collection of small objects.\nInput image 1 is STYLE AND SUBJECT IDENTITY REFERENCE ONLY, NOT an edit target. Derive original weapon visual language from the supplied character's folding-ruler rifle, olive cloth and aged ivory metal. Do not reproduce the character, face, body, portrait framing or portrait background.\nStyle: premium hand-painted industrial fantasy game art, clean chunky silhouette, carefully controlled brushed metal with a few bevel highlights, visible painterly texture, simple shape hierarchy. Palette olive #72785E, aged ivory #DDD3B9, ink green #294947; a tiny restrained teal energy accent. Strong ivory/dark green local contrast.\nComposition: one isolated symbol centered on a square canvas; subject and sliding streak fit within 80 percent of canvas with at least 10 percent clear margin on every edge, all parts fully visible. No tiny etched details. Transparency outside the shape.\nConstraints: genuinely transparent RGBA background. No backdrop, no ground plane, no cast shadow outside symbol, no card, no border, no frame, no vignette, no text, letters, numbers, logos or watermark. No existing IP symbols. No visual noise, particle cloud, busy lightning, multiple panels or contact sheet. High-quality original production game icon.",
+  "revision": {
+    "reason": "Initial output touched the canvas edge at upper-right muzzle flash; corrected using imagegen only.",
+    "prompt": "Use case: precise-object-edit. Edit target: input image 1 is the existing original CH02 Cable-Slide Volley skill icon.\nChange ONLY framing: uniformly shrink the entire existing gun, curved sliding streak and muzzle flash together so every last visible pixel sits comfortably within the central 76 percent of the same square transparent canvas. Leave a clean transparent margin of at least 12 percent on every edge. In particular, the upper-right muzzle flash tip must be fully visible and comfortably separated from the canvas edges.\nKeep the exact same original rifle silhouette, curved ivory/ink-green sliding streak, olive and brass materials, painterly style, colors, view, quality and all relative internal proportions. Preserve genuine alpha transparency. Do not add or remove any internal part. Do not add a background, frame, border, shadow field, text, logo or watermark. This is a targeted canvas-framing correction only.",
+    "input_generated_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-03508d24-0a44-4676-8677-bcb5aa929e6f.png"
+  },
+  "qa": {
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "transparent_ratio": 0.7657,
+    "nearly_opaque_pixels": 304312,
+    "visible_edge_pixels": 0,
+    "visual_review": "Source viewed; coherent hand-painted original skill symbol, no text/frame, full silhouette visible. Q framing corrected via imagegen."
+  }
+}

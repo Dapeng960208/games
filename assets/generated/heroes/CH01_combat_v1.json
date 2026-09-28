@@ -1,0 +1,36 @@
+{
+  "asset_id": "CH01_combat_v1",
+  "hero_id": "CH01",
+  "asset_type": "gameplay_static_combat_sprite",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "width": 1254,
+  "height": 1254,
+  "project_path": "assets/generated/heroes/CH01_combat_v1.png",
+  "reference_path": "assets/generated/heroes/CH01_portrait_v1.png",
+  "generated_source": "C:/Users/13326/.codex/generated_images/01a0e806-7289-7cf1-b764-98f68b0be95f/exec-82bf31c5-ff9a-40ce-a812-d662486b6c22.png",
+  "prompt": "Use case: identity-preserve / stylized-concept.\nAsset type: ONE usable in-game combat character sprite, an original hero for a 2D top-down industrial fantasy action RPG.\nInput image role: identity and equipment reference. It is the exact established original character Luo Zhen, a rugged East Asian adult mine-support worker. Preserve his recognisable short dark hair, strong weathered face, dark stubble, broad shoulders, coal-black and oxidized orange work gear, ivory inner cloth, large square rockfall shoulder shield, exposed hydraulic arm brace, compact low air tanks, and original heavy hydraulic rivet hammer. Do NOT copy the portrait camera or display pose.\nChange camera and pose: draw this SAME character as a practical TOP-DOWN THREE-QUARTER game combat sprite, viewed from an elevated camera looking down approximately 45 degrees. Clearly show the top planes of head, both shoulders, hammer and boots; full body is visible, with credible mild perspective foreshortening, stocky and broad but not chibi. He faces towards the LOWER RIGHT of the screen (southeast at 45 degrees) in a strong compact ready-to-fight stance, knees slightly bent, feet planted apart with both soles' contact points legible. Human face remains visible under the brow, looking toward lower right. Hold his heavy hydraulic hammer diagonally in front and to his right with both hands, prepared for a close-range swing, full hammer head and shaft visible. Retain the original industrial beam-removal/rivet-hammer construction and characteristic big rectangular shoulder guard. The lantern from the portrait may be clipped compactly on his belt, not held in a hand; both hands control hammer.\nProduction design: this image will be displayed only 70–85 pixels high in live gameplay. Prioritize a clean chunky recognisable silhouette, broad orange/coal/ivory value blocks, slightly exaggerated hammer readability, strong separation between head, shoulder guard, arms, torso, boots and weapon. Simplify tiny scratches, bolts, fine straps and distressed texture substantially compared with the portrait; preserve only iconic mechanisms. Sophisticated hand-painted painterly volume and material highlights, matte steel, copper hydraulics, worn canvas. No photorealistic noise, no realistic full-length portrait posture, no chibi proportions, no line-only geometry. Clear attractive readable original game art.\nCanvas: square, one character only, complete character and weapon fit within the CENTRAL 76 percent of the canvas, approximately 12 percent TRANSPARENT SAFE PADDING on all four sides. Do not zoom the body to canvas edge.\nAlpha: TRUE transparent background, the entire character body and equipment should be solid and virtually opaque (alpha 255 in solid interiors); only narrow edge antialiasing may be translucent. NO ground, floor, pedestal, large baked shadow, halo, fog or backdrop. No text, numbers, logos, border, labels, UI, watermark, multiple directions, inset portraits or extra characters.",
+  "intended_camera": "Elevated top-down three-quarter, facing lower-right/southeast",
+  "intended_display_height_pixels": [
+    70,
+    85
+  ],
+  "identity": "Luo Zhen's established short-haired rugged face, orange/coal mining work gear, square shoulder guard, exposed hydraulic brace and rivet hammer retained.",
+  "qa": {
+    "visual_review": "Viewed generated source and final workspace file with view_image. Full body, both boots, readable face and entire hydraulic tool visible, no backdrop, labels or watermark. Camera and ready stance differ from the portrait.",
+    "sample_method": "System.Drawing GetPixel, stride 4, visible alpha > 16; all four actual outer image edges checked at every pixel.",
+    "sampled_bounds": [
+      188,
+      56,
+      1148,
+      1156
+    ],
+    "transparent_samples": 65647,
+    "visible_samples": 32949,
+    "near_opaque_samples_alpha_gte_240": 32231,
+    "near_opaque_fraction_of_visible": 0.978208,
+    "visible_outer_edge_pixels": 0,
+    "sha256": "A05EB504C6DAA8644F878AF7CC161B960AADE570FB4B3AF34CFD48C1B073BDE0",
+    "limitations": "One static combat facing only, not a full animation set. Target 12 percent padding was requested; actual alpha silhouette is clear of every edge but has smaller top/bottom margin. Runtime scaled readability requires live integration QA."
+  }
+}

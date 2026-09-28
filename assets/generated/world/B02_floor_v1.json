@@ -1,0 +1,11 @@
+{
+  "asset": "B02_floor_v1.png",
+  "tool": "image_gen.imagegen",
+  "prompt": "Original hand-painted game environment material tile for an overhead 2D industrial-fantasy abandoned mine called Fungal Nursery. Square tileable ground only, seamless-looking and low contrast at edges so mirror repeat works. Near-black desaturated charcoal bedrock, subtle damp slate cracks and shallow embedded rusty mining fragments, thin muted moss-olive fungal veins and flattened sparse mycelium patches fused INTO the stone. No raised mushrooms, no rocks sticking up, no blocking props, no characters or creatures, no walls, no text or grid or UI. Strongly prioritize clear combat readability: subdued midtones and dark values, broad calm irregular surface patches, very restrained detail, no glows brighter than a tiny dull pale-green pore. Consistent stylized painted industrial material, moderate organic texture, soft even overhead lighting without directional shadows. No checkerboard, no repeating panel lattice, no perspective horizon. Full bleed opaque surface, suitable for world ground at 1:1 pixel size and repeating across a large room. 1:1 square.",
+  "transparent_background": false,
+  "source": "C:/Users/13326/.codex/generated_images/01a0e7c7-910c-7942-9cb2-dc2377862928/exec-86412bc7-c6aa-41af-81b1-9053866d5874.png",
+  "qa": {
+    "visual": "Generated image inspected: opaque low-contrast slate, muted fungal veins, no obstructing props, grid or text. Full room seam and readability acceptance still required.",
+    "postprocessing": "none; byte-for-byte copy"
+  }
+}

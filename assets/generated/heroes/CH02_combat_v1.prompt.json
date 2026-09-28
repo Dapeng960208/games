@@ -1,0 +1,50 @@
+{
+  "asset_id": "CH02_combat",
+  "name": "岑线·静态实战形象首版",
+  "output_file": "assets/generated/heroes/CH02_combat_v1.png",
+  "version": 1,
+  "mode": "built-in image_gen",
+  "tool": "image_gen.imagegen",
+  "intent": "identity-preserve combat-camera adaptation",
+  "transparent_background": true,
+  "source_generated_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-330d2f66-f4fd-4b9c-94a5-214fc877c26f.png",
+  "reference_images": [
+    {
+      "path": "assets/generated/heroes/CH02_portrait_v1.png",
+      "role": "exact original identity, costume, weapon and material reference"
+    }
+  ],
+  "prompt": "Use case: identity-preserve. Asset type: ORIGINAL playable character combat sprite for a top-down 2D industrial-fantasy action game.\nInput image 1 is the exact original character identity and costume reference. Create ONE new battle-ready full-body sprite of this same woman, CH02 Cen Xian, \"The Guiding Needle\", the agile underground surveyor. This is a combat-camera adaptation of her design, not a standing portrait.\nCAMERA IS ESSENTIAL: elevated top-down three-quarter view, camera looking down roughly 55 degrees toward the floor. We clearly see the top of her dark short hair, shoulders, upper surfaces of rifle and boots. Her entire body faces screen DOWN-RIGHT at approximately 45 degrees. She is NOT looking into the viewer's eyes and NOT facing the camera. Slight ready crouch with knees flexed and feet separated in a stable agile stance; both hands hold her folding-ruler rail rifle in front of her body, aimed down-right, muzzle pointing toward lower-right image quadrant. Natural readable anatomy, clear separated arms and legs, one coherent slender quick-moving silhouette.\nIDENTITY: same adult woman, short tousled dark hair with a small brass clip, recognizably same face as reference (seen obliquely from above), olive canvas cropped field jacket, raised ivory collar, asymmetric short ivory shoulder cloth, charcoal field trousers, light greaves, sturdy worn boots, small survey cable spool on belt, one slender brass ranging needle on her back. Rifle keeps the original triangular stock, ivory folding measurement rail, dark green receiver and restrained brass joints. Keep the same original outfit design, not a modern military rifle, not medieval armor.\nSTYLE: refined hand-painted industrial fantasy game sprite. Painterly volume and tactile canvas/coal-black steel/aged ivory/oxidized brass, but intentionally REDUCE texture detail to large confident readable planes for a character displayed only 70 to 85 pixels high in gameplay. Crisp coherent silhouette and restrained highlight rim. Slightly larger readable head and hands, natural proportions, not chibi. Do not carry over portrait's photographic microdetail or backdrop. Palette olive #72785E, ivory #DDD3B9, ink green #294947 with subtle aged brass accents; only a tiny teal lens.\nCANVAS: square transparent sprite asset. Single full-body character including ALL gun barrel, antenna and both feet. Entire subject fits centered within the inner 76 percent of canvas with at least 12 percent completely clear margin on every side. Render material surfaces solid, near-opaque alpha (body, face, clothes, gun should be fully opaque), only antialiased contour pixels semi-transparent.\nBACKGROUND: genuine transparent RGBA. Absolutely NO ground, floor, cast shadow, ground ellipse, vignette, backdrop, atmosphere, glow haze, UI, frame, border, typography, letters, numbers, signature, logo or watermark. Only the isolated one character. No sprite sheet, no multiple poses, no detached props. This is static combat sprite v1, not an animation sheet.",
+  "revisions": [
+    {
+      "prompt": "Edit target: image 1, the original CH02 combat sprite. Make ONLY a framing and opacity correction; keep the exact same woman's identity, face, pose, proportions, olive/ivory clothes, rifle, three-quarter elevated combat view and all internal colors.\nUniformly scale the entire existing character INCLUDING the thin antenna and gun muzzle down to 72 percent of its current size and center it in the same square canvas. The whole visible subject must have at least 12 percent transparent margin on EVERY edge, especially above the antenna. Do not crop any part. Do not enlarge any body part separately. The upper antenna should end around 15 percent down from the top border, and the lowest boot around 85 percent down from the top border.\nPreserve solid opaque surfaces of the woman's face/body/clothes/weapon and genuine RGBA transparency outside them. No floor, ground shadow, backdrop, haze, frame, border, text, logo or watermark. This is only a safer framing version of exactly the same single game character.",
+      "input_source_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-3b3273f0-927a-4cd7-9cc2-ee0d68d686f0.png",
+      "output_source_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-5ed42e2f-5d58-47b8-88e5-29f590e96097.png"
+    },
+    {
+      "prompt": "Precisely edit the input image, keeping exactly the same original female surveyor character, face, rifle, clothing, pose, camera and paint style.\nThe entire opaque character including antenna and boots must now be centered in the MIDDLE 60 PERCENT of the square canvas. Give a very large clean fully transparent border: 20 percent width on the left and right; 20 percent height above the highest antenna pixel and below the lowest boot pixel. NO pixel belonging to the character or any residual colored speck may appear in that outer 20 percent border. Remove faint ghost pixels left from earlier positions.\nKeep the face, hair, jacket, gun, trousers and boots fully opaque. Background outside the clean antialiased silhouette must be completely alpha-zero, no glow or ghosting. Do not redraw or redesign the character. Do not add any ground, shadow, floor, backdrop, frame, words, logo, watermark or anything else. Only adjust canvas framing and clean transparent margins.",
+      "input_source_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-5ed42e2f-5d58-47b8-88e5-29f590e96097.png",
+      "output_source_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-330d2f66-f4fd-4b9c-94a5-214fc877c26f.png"
+    }
+  ],
+  "limitations": [
+    "Static combat sprite v1 only. Does not deliver directional walk, attack, hit or death animation.",
+    "Intended 70–85px gameplay body size requires actual in-game screenshot verification by renderer owner."
+  ],
+  "qa": {
+    "width": 1254,
+    "height": 1254,
+    "format": "RGBA",
+    "bounds_alpha_over_16": [
+      369,
+      138,
+      1048,
+      1110
+    ],
+    "transparent_ratio": 0.8438,
+    "nearly_opaque_among_visible": 0.874,
+    "edge_visible_pixels": 0,
+    "review": "Viewed final asset: same original surveyor identity, elevated three-quarter battle stance, down-right rifle, full antenna and feet visible, no backdrop or text.",
+    "margin_note": "ImageGen increased clear margins through two edits, but exact 12 percent geometry is not guaranteed; renderer should fit using opaque silhouette bounds."
+  }
+}

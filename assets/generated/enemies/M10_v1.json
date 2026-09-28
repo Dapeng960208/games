@@ -1,0 +1,22 @@
+{
+  "asset_id": "M10_v1",
+  "enemy_id": "M10",
+  "name": "芽足刺客",
+  "biome_id": "B02",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "project_path": "assets/generated/enemies/M10_v1.png",
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0e806-7289-7cf1-b764-98f68b0be95f\\exec-20dff7db-e0e3-4f96-8f83-63bed1ca812b.png",
+  "prompt": "Use case: stylized-concept. Asset type: isolated original enemy concept / bestiary portrait for a premium industrial fantasy action RPG. Art direction: richly hand-painted sculptural 2D game illustration with sophisticated detailed materials, controlled volumetric lighting, clear readable silhouette, gritty but beautiful craftsmanship. This species comes from an abandoned mine's damp fungal nursery: mineral-fed biology, moist fungal membranes, parasite-like tubular tissue, subtle fluorescent organs. Completely original anatomy, no existing IP or artist reference. Match a cohesive mature painterly industrial-fantasy bestiary, NOT cartoon mushroom mascots.\nComposition: ONE complete creature ONLY, full-body three-quarter view, comfortably centered inside a square canvas, all extremities clearly inside the frame with at least 8 percent safety margin on all sides. Distinguish organs that telegraph attack and vulnerable softer tissue with texture, shape and restrained glow, not floating symbols or labels. Transparent alpha cutout; no ground, base, pedestal, environment, backdrop, floor shadow, vignette or halo. No text, letters, numbers, UI, logo, watermark, detached items, diagrams, inset views, other creatures. Detailed but not photorealistic, no anime, no chibi. No gore.\nSubject M10 \"Budfoot Stalker\" (芽足刺客): an agile asymmetrical botanical assassin, about the size of a lanky dog standing upright, whose whole head/body is a single INVERTED unopened seed bud suspended over TWO long bowed ROOT LEGS. The closed bud is upside-down like a narrow teardrop, layered dusky purple seed bracts above a ridged ivory root neck. It has only ONE prominent arm, a long tapering spear-like sharpened woody branch emerging from one flank, currently curled back at its flexible tip in a readable pre-thrust pose; the other flank has only a tiny vestigial feeler. Head has two small inset mineral-amber sensing pores, not human face. Legs have articulated fibrous root joints and splayed root toes, entire pose slightly sidestepping rather than rushing. The long single lance arm, upside-down bud and two springy bowed legs define its unmistakable silhouette. A pale soft membrane at the spear elbow is a visible vulnerability. Wet peat-brown roots, violet-black bract shell, thin copper-orange veins and tiny muted cyan fungal filaments. A few old pipe-like mineral growth rings are biological, not armor or literal weapons. Show fine cuticle ridges and damp highlights only on selected surfaces.",
+  "status": "generated_bestiary_portrait_not_animation",
+  "originality": "Created from this project's enemy visual_descriptor and behavior specification without external IP references.",
+  "qa": {
+    "review": "One original creature, full-body three-quarter silhouette, attack organ and softer vulnerable tissue distinguishable, no text or watermark.",
+    "alpha_verification": "System.Drawing sampled every 4 pixels at alpha > 16: transparent background and visible creature confirmed. Every actual outer edge pixel checked; zero visible outer-edge pixels for all nine assets.",
+    "visible_outer_edge_pixels": 0,
+    "sha256": "FEEFA856C434D03F5C678C3F193417A751EA35977AA3E0B51BD7781B0469E4D9",
+    "limitations": "Static bestiary concept portrait; directional gameplay sprites, hitboxes, rigs and attack animation frames are separate work."
+  },
+  "width": 1254,
+  "height": 1254
+}

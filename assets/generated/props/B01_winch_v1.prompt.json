@@ -1,0 +1,38 @@
+{
+  "asset_id": "B01_winch",
+  "name": "锈铁矿脉·钢索绞盘",
+  "output_file": "assets/generated/props/B01_winch_v1.png",
+  "version": 1,
+  "mode": "built-in image_gen",
+  "tool": "image_gen.imagegen",
+  "intent": "generate",
+  "transparent_background": true,
+  "source_generated_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-d0082415-8887-41bd-a915-4ac1bc5ab35b.png",
+  "reference_images": [
+    {
+      "path": "assets/generated/world/B01_floor_v1.png",
+      "role": "mine materials and mood reference only; not an edit target"
+    },
+    {
+      "path": "assets/generated/heroes/CH02_combat_v1.png",
+      "role": "hand-painted industrial fantasy style reference only; not an edit target"
+    }
+  ],
+  "prompt": "Use case: stylized-concept. Asset type: ONE original environment obstacle sprite, B01 winch, for a top-down 2D industrial fantasy mining action game.\nCreate a HEAVY HORIZONTAL STEEL CABLE WINCH: a huge cylindrical winding drum across the left-right axis, densely wrapped with thick dark steel cable in clearly readable grouped coils. Two chunky round flanges and axle supports; rusty orange steel skid feet form a broad LOW RECTANGULAR footprint. Compact exposed toothed gear and small dull-brass handwheel on one side. One short coiled cable end stays attached near the base. Cylindrical winding drum must dominate the silhouette. NOT a generic flat-lidded crate or cuboid computer cabinet. About 1.7 times as wide as high, low stable silhouette, visibly functional salvaged mine machinery.\nCamera: top-down THREE-QUARTER environment view looking down about 55 degrees, orthographic-like low perspective, show the TOP of the cylinder and front face/base supports. View aligns with a top-down walkable room, not a side profile or dramatic perspective.\nImage 1 (mine floor) is MATERIAL/MOOD REFERENCE ONLY, not an edit target and do NOT reproduce the floor. Image 2 (original hero) is PAINTERLY MATERIAL/STYLE REFERENCE ONLY, not an edit target; no person in output. Same world: abandoned mining facilities, adapted industrial devices. Hand-painted industrial fantasy, detailed readable form, restrained textured steel/rust/canvas, no photo or product photograph look. Colors coal black steel, cool gray cable, oxidized brown, muted burnt orange base, tiny aged brass accents. No emissive effects; mid-value object separation on dark mine floors; broad highlights rather than noisy tiny glints. Optimized to remain readable at 100–220px wide.\nSingle isolated full prop centered in a square canvas, complete winch drum, gears, handle, feet and cable end visible, generous 12 percent empty margins on every edge. Object surfaces solid fully opaque, only contour antialias semitransparent.\nGenuine transparent RGBA background. NO floor, ground, rubble carpet, presentation pedestal, large cast shadow, haze, vignette, frame, border, words, numbers, lettering, logos, watermarks or UI. No people, multiple variants, contact sheets or existing-IP symbols. Original polished production environment sprite.",
+  "intended_use": "Static room obstacle, proportional fit to 100–220px gameplay width; rendering/collision integration owned by room_props.",
+  "qa": {
+    "width": 1254,
+    "height": 1254,
+    "format": "RGBA",
+    "bounds_alpha_over_16": [
+      45,
+      225,
+      1213,
+      1023
+    ],
+    "transparent_ratio": 0.619,
+    "nearly_opaque_among_visible": 0.9567,
+    "edge_visible_pixels": 8,
+    "review": "Viewed final: recognizable horizontal cable-wrapped cylinder, exposed gear and handwheel, burnt-orange rectangular skid; complete prop, no floor, text or border."
+  }
+}

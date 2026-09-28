@@ -1,0 +1,43 @@
+{
+  "asset_id": "interaction",
+  "version": 1,
+  "date": "2026-09-28",
+  "tool": "built-in image_gen.imagegen",
+  "mode": "generate",
+  "transparent_background": true,
+  "original_design": true,
+  "art_direction": "docs/IMAGEGEN_ART_DIRECTION.md",
+  "prompt": "Use case: stylized-concept. Asset type: original 2D action game UI interaction icon, one standalone square PNG asset with genuine transparent background. Subject: a single chunky short dark coal-black steel control lever with an ivory ceramic handle, physically seated in a clearly slotted rectangular aged-brass industrial socket. Lever is tilted diagonally upwards, slot is plainly visible, small amber indicator at the connection. Do not resemble a coin, money, a key, a chest, or a joystick console. Theme: abandoned mine, hand-built precision industrial salvage instruments. Premium restrained hand-painted game art with readable bold silhouette, only 3-5 large forms, broad warm highlights, minimum rivets, subtle worn edges, aged brass and charcoal steel with ivory ceramic and a tiny amber glow. Three-quarter view, centered complete object occupying 78% of square with safe transparent margin. Readable at 32-48 pixels: strong dark/light separation and very simplified surface texture. Entirely original design; no game franchise reference, no text, no letters, no numbers, no keycap labels, no badge, no border, no panel, no background, no cast shadow outside the object, no watermark. Transparent cutout, isolated object only.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e81e-dd8b-7513-89db-bbfce972c051/exec-b2ef4549-b25d-4844-a08c-9add73602a1a.png",
+  "saved_path": "assets/generated/ui/interaction_v1.png",
+  "sha256": "DDCF4AD549864442B8299F18AE6F6C4C39A2DD439F38ABAD96238D42654EADF8",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "qa": {
+    "view_image_inspected": true,
+    "complete_subject": true,
+    "no_letters_or_numbers": true,
+    "no_external_background": true,
+    "alpha_sample_step_pixels": 8,
+    "transparent_samples": 15880,
+    "partial_alpha_samples": 8762,
+    "opaque_samples": 7,
+    "foreground_mean_alpha": 246.36,
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "pixel_format": "Format32bppArgb",
+    "alpha_preserved_without_editing": true,
+    "live_ui_small_size_review": "pending consumer integration",
+    "recommended_ui_pixels": [
+      32,
+      48
+    ],
+    "notes": "Original generated PNG copied unchanged; no image editing or alpha flattening."
+  }
+}

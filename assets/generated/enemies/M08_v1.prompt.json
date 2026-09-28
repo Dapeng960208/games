@@ -1,0 +1,35 @@
+{
+  "asset_id": "M08",
+  "display_name": "铆盾搬夫",
+  "biome_id": "B01",
+  "version": 1,
+  "asset_type": "enemy_bestiary_illustration",
+  "use_case": "stylized-concept",
+  "generation_mode": "built_in_image_gen",
+  "tool": "image_gen.imagegen",
+  "transparent_background_requested": true,
+  "prompt": "Use case: stylized-concept. Asset type: ONE original enemy bestiary illustration and production creature concept for an industrial fantasy action RPG. Subject M08 Rivet-Shield Porter: a small squat living mining salvage machine almost entirely concealed behind ONE oversized rectangular industrial shield taller and wider than its own compact body. The shield has a conspicuously missing upper corner and THREE visibly prominent locking rivet clasps across its face, designed as targetable weak points. A small compact angular gear housing peers from one side, with a narrow warm amber lamp and two tiny grips holding a rotating central shield bracket; exactly TWO very SHORT sturdy mechanical legs protrude beneath the shield. Overall silhouette is a broad clipped rectangular slab on short legs, not a humanoid knight or bulky armored robot. Three-quarter front-side view reveals enough of the small porter and central pivot behind the shield to explain that it rotates its shield in intervals and becomes vulnerable while turning; shield face remains dominant, free back/side space visible. Deliberately original functional construction: layered scratched ochre mining plate, dark rust steel rim, rivets and worn hinges, a small mineral-organic bundle tucked behind its mechanism. No weapon besides the shield, no spikes or heraldic crest. Premium richly hand-painted stylized industrial-fantasy rendering, beautiful sculptural forms, believable materials, restrained warm highlights and readable painterly light/shadow. Full subject entirely framed with a generous clear margin including both short feet and the clipped shield corner. Genuine transparent alpha isolated cutout; no floor, environment, cast shadow, pedestal, haze, text, logo, UI, watermark, decorative border or known franchise resemblance.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-d8492fb3-800e-463f-a642-2dbee1fd2869.png",
+  "saved_path": "assets/generated/enemies/M08_v1.png",
+  "width": 1222,
+  "height": 1287,
+  "sha256": "E223D4E47B102F4EFC54E7D9AF53FA80AAB71281EF1F40342280C00E43872411",
+  "visual_language": "Original industrial fantasy: abandoned mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+  "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+  "alpha_validation": {
+    "format": "Format32bppArgb",
+    "sample_stride": 8,
+    "corner_alpha": 0,
+    "transparent_samples": 9280,
+    "partial_samples": 15345,
+    "opaque_samples": 8,
+    "notes": "Source PNG alpha preserved without external editing. Alpha-zero RGB may appear colored in previews which ignore alpha; use alpha-aware rendering."
+  },
+  "visual_inspection": [
+    "Oversized shield dominates the silhouette above two short legs.",
+    "One upper corner is visibly broken away.",
+    "Three prominent locking rivet clasps identify targetable mechanical points.",
+    "Three-quarter view reveals side pivot and compact porter behind the shield."
+  ],
+  "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Gameplay directional animation sheets and attack/recovery poses remain separate deliverables."
+}

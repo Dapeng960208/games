@@ -1,0 +1,26 @@
+{
+  "asset_id": "CH02_secondary",
+  "name": "定轨贯射",
+  "output_file": "assets/generated/skills/CH02_secondary_v1.png",
+  "mode": "built-in image_gen",
+  "tool": "image_gen.imagegen",
+  "intent": "generate",
+  "transparent_background": true,
+  "source_generated_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-5c63c655-694a-4b57-8cdb-4a1c61963821.png",
+  "reference_images": [
+    {
+      "path": "assets/generated/heroes/CH02_portrait_v1.png",
+      "role": "style and weapon identity reference only; not an edit target"
+    }
+  ],
+  "prompt": "Use case: stylized-concept. Asset type: transparent square skill icon for an original 2D industrial fantasy action game, readable at 48 x 48 pixels.\nPrimary request: create an entirely original single skill icon for CH02 Cen Xian, skill \"Set-Rail Piercer\". A cropped-but-complete standalone barrel mechanism from a fantasy folding-ruler rifle, NOT a full long firearm: its distinctive ivory folding ruler forms a strong angular Z shape around two ink-green stabilization rails. A SINGLE thin, fiercely clear ivory/teal penetrating projectile streak runs from the mechanism toward the upper right, through exactly two small separated diamond-shaped target chips; no extra beams. The compact geometric gun barrel assembly is the dominant silhouette, the precision straight piercing trajectory secondary. Restrained dramatic foreshortening; no scope.\nInput image 1 is STYLE AND SUBJECT IDENTITY REFERENCE ONLY, NOT an edit target. Derive the rail/ruler mechanical language, deep green body and aged ivory metal from this original character's rifle. Do not reproduce the person, face, body or portrait background.\nStyle: premium hand-painted industrial fantasy game icon, simplified chunky geometry and strong intentional brushwork, beveled metal planes with only a few large fasteners. Clear simple hierarchy, not photoreal clutter. Palette olive #72785E, aged ivory #DDD3B9, ink green #294947 with a small mint teal flash. High local contrast.\nComposition: one unified isolated symbol centered in a square canvas, diagonal bottom-left to top-right, main mechanism occupies about 60 percent of width, entire silhouette including trajectory occupies only 76 percent of canvas. At least 12 percent empty margin on every edge. No edge contact or cropped beam.\nConstraints: genuinely transparent RGBA background. No backdrop, no ground plane, no card, border or frame, no vignette, no text, numbers, letters, logo or watermark. No existing IP symbols. No large muzzle explosion, swirling trail or multiple projectiles. No particles or extra objects, no contact sheet. High-quality original production skill icon.",
+  "qa": {
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "transparent_ratio": 0.806,
+    "nearly_opaque_pixels": 270916,
+    "visible_edge_pixels": 0,
+    "visual_review": "Source viewed; coherent hand-painted original skill symbol, no text/frame, full silhouette visible. Q framing corrected via imagegen."
+  }
+}

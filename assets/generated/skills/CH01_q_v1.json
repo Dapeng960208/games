@@ -1,0 +1,13 @@
+{
+  "hero_id": "CH01",
+  "skill": "q",
+  "name": "裂轨突进",
+  "version": 1,
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: one original action skill icon for a compact 48-pixel game HUD, generated at high resolution for clean downsampling. Skill: Railbreak Rush, a miner hero charging forward with a hydraulic demolition hammer, kinetic physical attack. Draw ONLY one bold squat rectangular hydraulic hammer assembly thrusting diagonally from lower-left toward upper-right; thick twin exposed pistons, simplified folded steel framework and a broad bone-white striking face with three large rivet shapes, oxidized orange casing. Two short thick orange directional speed wedges trail behind the hammer. Under the leading edge, exactly two large broken angular rail fragments fly apart. No character. The entire composition must read as a powerful FORWARD THRUST, not a circular swing or downward slam. Same handcrafted industrial-fantasy language as coal-black mine-support equipment, orange hydraulic tools, bone-white workcloth. Premium hand-painted stylized industrial-fantasy ACTION ICON, strong economical silhouette and broad brush-painted bevels. Strict palette of three large color families only: coal black #252B2D, oxidized orange #C87535, bone white #E4D7BB. Minimal inner details, strong light-dark separation, restrained warm edge light, no tiny bolts or realistic microtexture. Single focal action, no ornate decoration. Compact square composition centered with at least 12% empty transparent padding on all sides. Genuinely transparent alpha background. No text, letters, numbers, arrow glyph, border, UI frame, tile, background plate, circle badge, scene, floor, character, body part, logo, watermark, emoji or existing-game symbols.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e806-e28c-7c81-95b4-02acc6060bab/exec-9bd86098-e358-4ec4-8f2d-76077d416885.png",
+  "output_file": "assets/generated/skills/CH01_q_v1.png",
+  "reference_design": "assets/generated/heroes/CH01_portrait_v1.png viewed for theme, no input image supplied",
+  "qa": "Diagonal thrust silhouette, three-color hydraulic hammer and two broken rail pieces; no lettering/frame/background."
+}

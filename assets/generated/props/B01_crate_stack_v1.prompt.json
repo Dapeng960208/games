@@ -1,0 +1,66 @@
+{
+  "asset_id": "B01_crate_stack_v1",
+  "category": "environment_prop",
+  "biome": "B01",
+  "status": "imagegen_static_sprite_ready_for_integration",
+  "created_at": "2026-09-28",
+  "tool": "built-in image_gen.imagegen",
+  "skill": "C:/Users/13326/.codex/skills/.system/imagegen/SKILL.md",
+  "output_path": "C:/webdev/games/assets/generated/props/B01_crate_stack_v1.png",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e83f-f2dd-7843-a0a2-5acf2b3fcc4b/exec-7613aa6a-a2e8-4fc1-a3a5-a90b3a121ca0.png",
+  "transparent_background": true,
+  "references": [
+    {
+      "path": "C:/webdev/games/assets/generated/world/B01_floor_v1.png",
+      "role": "material and palette reference only; ground excluded from generated prop",
+      "viewed_before_generation": true
+    },
+    {
+      "path": "C:/webdev/games/assets/generated/heroes/CH02_combat_v1.png",
+      "role": "hand-painted rendering and olive/ivory material style reference only; hero excluded",
+      "viewed_before_generation": true
+    }
+  ],
+  "generation_history": [
+    {
+      "stage": "initial_generation",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE original transparent 2D environment prop sprite for a hand-painted abandoned mining industrial fantasy action game. Asset ID B01_crate_stack_v1.\nPrimary request: an attractive coherent staggered supply-crate stack, readable at 100–220 pixels in gameplay. The stack has three connected rectangular supply crates with unequal heights and a clear stepped silhouette: a broad steel-edged dark worn timber crate on the lower left, a lower olive canvas-covered crate toward front-right, and one smaller aged ivory canvas / timber crate set securely above the left rear. Practical mining hardware, restrained rivets, corner iron brackets, canvas binding straps, a few muted copper fittings. Everything feels built for an abandoned industrial mine.\nInput images: Image 1 B01_floor_v1.png is ONLY a mood and material palette reference for the underground mining theme. Do NOT reproduce its floor or stones. Image 2 CH02_combat_v1.png is ONLY a hand-painted rendering / worn olive-and-ivory materials reference. Do NOT include a character or weapon.\nScene/backdrop: genuinely transparent background. Solid fully opaque crate bodies with smooth clean alpha edges.\nComposition/framing: single coherent centered stack; camera looking down approximately 55 degrees, low perspective top-down three-quarter gameplay view, orthographic-like, clearly visible crate tops and short front faces. Rectangular ground footprint; complete stack overall width-to-height around 1.4. All parts fully visible with generous transparent margins at least 12% on every edge. No disconnected extra props.\nStyle/medium: polished detailed hand-painted industrial fantasy, subtly painterly broad material surfaces, clear generous bevels, deliberate structural details readable when small, not photorealistic.\nLighting/mood: soft neutral overhead light from upper-left, quiet restrained ambient occlusion between crates. Moderate value separation from dark mining floor, no bloom.\nColor palette: aged ivory, faded olive canvas, coal-black steel, gray-brown wood, muted rust. Restrained dark hardware and soft warm wood details; no saturated colors.\nText: none.\nConstraints: entirely original object design. ONE requested sprite only, no sprite sheet, no comparison panel. No labels, letters, numbers, logos, markings, decals, emblems, UI, frame, checkerboard, floor, baseplate, pedestal, large cast shadow, debris field, luminous crystals, photographic treatment, excessive bright scratch noise. This must be clean standalone environment art for direct placement on the separately rendered game floor.",
+      "source_path": "C:/Users/13326/.codex/generated_images/01a0e83f-f2dd-7843-a0a2-5acf2b3fcc4b/exec-2d2ee7c6-a7a8-4708-989b-f805c1a8e5f4.png",
+      "review": "Original coherent three-crate material language approved, but stack too tall, inadequate framing and one nonzero alpha edge pixel; refined using ImageGen."
+    },
+    {
+      "stage": "proportion_and_framing_refinement",
+      "prompt": "Use case: precise-object-edit\nAsset type: B01_crate_stack_v1, one transparent original industrial-mine environment sprite.\nEdit target: the provided supply crate stack image.\nChange only overall crate proportions and framing: make this a broad, low stepped stack. The opaque object's width should be approximately 1.4 times its opaque height. Reduce each crate's vertical side-wall height so the lower timber box and olive canvas crate are squat and broad; reduce the upper ivory crate height substantially while retaining clear unequal levels. Keep a top-down three-quarter camera approximately 55 degrees downward.\nKeep unchanged: the three-crate composition, coal-black riveted iron brackets, gray-brown timber, ivory and faded olive canvas, straps and restrained copper buckles, detailed but calm hand-painted treatment and soft upper-left illumination. Maintain clean practical original mining design.\nReframe the entire object noticeably smaller within a square canvas: center the complete stack within the central 70% of the image and leave at least 15% genuinely transparent padding at EVERY edge. Erase all disconnected flecks or isolated alpha pixels in the empty margin. The entire crates are solid opaque objects, including dark surfaces.\nNo floor, baseplate, pedestal, drop shadow or ground shadow. No text, symbols, logos, watermark, border or UI. No extra crates, loose debris or character. Output exactly one isolated asset with TRUE alpha transparency, never a black backdrop or checkerboard.",
+      "edit_target": "C:/Users/13326/.codex/generated_images/01a0e83f-f2dd-7843-a0a2-5acf2b3fcc4b/exec-2d2ee7c6-a7a8-4708-989b-f805c1a8e5f4.png",
+      "source_path": "C:/Users/13326/.codex/generated_images/01a0e83f-f2dd-7843-a0a2-5acf2b3fcc4b/exec-7613aa6a-a2e8-4fc1-a3a5-a90b3a121ca0.png"
+    }
+  ],
+  "qa": {
+    "width": 1254,
+    "height": 1254,
+    "pixelFormat": "Format32bppArgb",
+    "transparentPixels": 1243212,
+    "opaquePixels": 321,
+    "transparentRatio": 0.7905878223178652,
+    "edgeVisiblePixels": 0,
+    "alphaBounds": [
+      208,
+      53,
+      1191,
+      1227
+    ],
+    "strongAlphaBounds": [
+      217,
+      363,
+      1068,
+      981
+    ],
+    "strongSubjectRatio": 1.3764135702746365,
+    "alphaNearOpaquePixels250To255": 316536,
+    "commonInteriorAlpha": 253,
+    "visualInspection": "Viewed final workspace PNG using view_image. Three crate materials and unequal heights read clearly. Entire subject visible; no character, text, labels, floor, baseplate, detached debris or large cast shadow. Low broad stack preserves top-down 3/4 perspective. Wood grain and rivets detailed without excessive noise.",
+    "marginNotes": "At alpha >= 128 the subject bounds are x217..1068 y363..981: left17.3%, right14.8%, top28.9%, bottom21.7%. Weak alpha flecks extend beyond the main body; full alpha bounds are preserved honestly. Outer pixel row/column have zero nonzero alpha pixels. Common body alpha is 253/255 (99.2% opacity), not mathematically all-255.",
+    "scalingRecommendation": "For 100–220px gameplay width, fit using main visual/strong-alpha bounds 217,363,852,619; ground-contact anchor near bottom center of stack. In-game visual readability and interaction outline QA remains with room_props owner.",
+    "postprocessing": "None. ImageGen output copied byte-for-byte; no raster editing or alpha manipulation."
+  }
+}

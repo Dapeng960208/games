@@ -1,0 +1,12 @@
+{
+  "id": "EQ21",
+  "name": "补片勘探衣",
+  "version": 1,
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: one premium inventory icon for an original industrial fantasy action RPG called Abyss Salvagers. Subject: Patched Survey Coat (EQ21), a short hip-length old miner's work jacket in earth-grey heavy canvas, high protective folded collar, strong cropped flared silhouette, practical short sleeves and reinforced seams. EXACTLY THREE distinct repaired copper plate patches of different shapes fastened on the visible front: one broad angular upper-chest plate, one narrow rectangular lower-left plate, and one small rounded lower-right plate. Each patch is deliberately integrated into the garment, not loose decoration. Small charcoal steel clasps and plain ivory stitching, subtle frayed edges sparingly used. No insignia. Show the EMPTY coat as an equipment item with hollow neckline, no wearer or mannequin, arms naturally separated enough to read the silhouette. Original sophisticated handmade salvage/mining gear from the same old-miner series as warm copper monocular goggles and a brass locator module. Premium richly hand-painted stylized industrial fantasy, expressive painterly edges, careful material hierarchy, restrained wear, painted volumetric warm copper rim and cool grey shadows. Large single isolated coat centered, front three-quarter view, entirely visible with generous transparent margin. High detail but clean shapes legible at 96px. Genuinely transparent alpha background, including all empty space between sleeves. No floor, scene, pedestal, human body, hands, mannequin, UI, text, letters, numbers, logo, watermark, or existing franchise designs.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e806-e28c-7c81-95b4-02acc6060bab/exec-da15c6a1-5504-4bb6-a279-25da9d728b6a.png",
+  "output_file": "assets/generated/equipment/EQ21_v1.png",
+  "design_role": "Earth-grey survey coat with exactly three distinct copper repair plates",
+  "qa": "Three patches have separate angular, rectangular and rounded silhouettes; empty wearable coat, complete outline, no text or body."
+}

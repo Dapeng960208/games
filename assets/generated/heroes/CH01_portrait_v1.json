@@ -1,0 +1,13 @@
+{
+  "asset_id": "CH01",
+  "version": 1,
+  "kind": "full_body_portrait",
+  "tool": "built-in image_gen",
+  "transparent_background_requested": true,
+  "path": "assets/generated/heroes/CH01_portrait_v1.png",
+  "prompt": "Use case: stylized-concept. Asset type: premium original action-RPG full-body hero portrait, a single character isolated on a genuinely transparent background. Create LUO ZHEN, the route-opening mine support worker and hydraulic hammer breaker from an original abandoned underground mining world. Strong adult male human with a weathered warm face, short practical hair, calm determined expression, stocky grounded build. Distinctive asymmetrical low-center-of-gravity silhouette: large square falling-rock guard over his LEFT shoulder, exposed working hydraulic brace on his RIGHT arm, squat pressure tank low on his back, reinforced cropped mine-work jacket, tough canvas trousers, believable heavy industrial boots, caged amber work lantern. His unique massive foldable beam-breaking hydraulic rivet hammer is fully visible beside him, chunky mechanical hammer-face carrying oversized support rivets, pressure hoses, hinge and locking hardware; show a practical hand grip and credible construction. It is a repaired mining implement, not a medieval knight weapon. Coal black #252B2D, oxidized orange #C87535, warm bone #E4D7BB, selective brass, a very restrained warm lamp glow. Materials have beautifully painted steel edges, functional fasteners, layered canvas seams, ceramic insulators, purposeful modest wear. Illustration style: sophisticated richly hand-painted industrial fantasy, premium game character concept art with sculptural painterly volumes, clear shape hierarchy, elegant detailed surface work, compelling human personality. Crisp readable outer silhouette with softer internal shading, warm copper rim light and cool underground ambient fill. Three-quarter standing ready pose; weight on one leg, both hands anatomically credible, the entire head, feet, lantern, tank and full hammer stay inside frame with generous margin. Tall portrait composition, one character only, no extra views, no inset portraits. No environment, floor, pedestal, cast shadow plane, framing border, typography, letters, logos or watermark. Do not reference or imitate any existing game character. Original face, costume and weapon engineering. No anime, chibi, generic knight armour, superhero suit, photoreal photography, exaggerated glowing outlines, or visual clutter.",
+  "qa": {
+    "visual": "Full body and hydraulic weapon visible, original asymmetrical support worker silhouette and restrained coal/orange/bone palette. Portrait only; combat animation pending.",
+    "status": "generated; alpha and engine integration checked separately"
+  }
+}

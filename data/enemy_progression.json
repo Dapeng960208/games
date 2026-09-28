@@ -1,0 +1,3743 @@
+{
+  "content_version": 1,
+  "schema": "EnemyProfiles/v2",
+  "implementation_scope": {
+    "progression_data_implemented": true,
+    "catalog_gameplay_flag_unchanged": true,
+    "note": "本表提供36种原型的可解析分级参数，行为执行、场景物件交互与美术各自验收；数据存在不代表36种完整玩法已交付。",
+    "scene_dependencies_require_separate_implementation": true
+  },
+  "level_rules": {
+    "minimum": 1,
+    "maximum": 20,
+    "tier_thresholds": [
+      1,
+      5,
+      10,
+      15
+    ],
+    "hp_per_level": 0.055,
+    "damage_per_level": 0.025,
+    "speed_per_level": 0.006,
+    "max_move_speed": 132,
+    "max_armor": 24,
+    "elite_hp_multiplier": 1.2,
+    "elite_damage_multiplier": 1.12,
+    "tier_threat_increment": 0.25,
+    "elite_base_threat_multiplier": 1.5
+  },
+  "encounter_rules": {
+    "zone_count": 3,
+    "zone_cap": 6,
+    "room_cap": 18,
+    "elite_room_cap": 2,
+    "max_difficulty": 4,
+    "level_formula": "clamp(1 + (biome_index - 1)*4 + zone_index*2 + difficulty*2, 1, 20)",
+    "budget_formula": "min(26, 10 + (biome_index - 1)*4 + zone_index*2 + difficulty*2)",
+    "total_count_formula": "[6,6,7][zone_index] + biome_index - 1 + difficulty; natural actors across every batch, excluding summons",
+    "initial_slots": "5 at B01/B02 difficulty 0-1; 6 at B03/B04 or difficulty 2-4; shared with summon reservations and limited by threat",
+    "reinforcement_batch_cap": 3,
+    "reinforce_alive_threshold": 2,
+    "reinforce_threat_fraction": 0.3,
+    "reinforce_delay_seconds": 3.0,
+    "source": "one distinct reference_wave specialist per batch, plus biome-specific light reinforcement pools; all waves are explicit and finite",
+    "reinforcement_pools": {"B01": ["M04", "M01", "M04"], "B02": ["M14", "M10", "M14"], "B03": ["M27", "M27", "M19"], "B04": ["M28"]},
+    "protective_per_zone_cap": 1,
+    "protective_ids": ["M06", "M08", "M17", "M25", "M26", "M30", "M34"],
+    "functional_support_per_zone_cap": 1,
+    "functional_support_ids": ["M09", "M19"],
+    "summoner_per_zone_cap": 1,
+    "room_cap_semantics": "18 concurrently occupied seats including summon reservations, not total kills over sequential waves",
+    "completion_requires_all_waves": true,
+    "hero_level_scaling": false,
+    "summon_capacity_reserved": true
+  },
+  "parameter_contract": {
+    "units": "seconds / world units / degrees; all arrays are locked at tell start",
+    "tier_merge": "base parameters then tier2..4 replacement patches; no repeated unbounded tier stacking",
+    "tell_seconds": ">= catalog minimum_tell_seconds; ground area attacks also require area_tell_seconds>=0.8",
+    "locked_line_delay_seconds": ">=0.4, no tracking after lock",
+    "combo_gap_seconds": ">=0.55; each numbered segment must show its own full tell",
+    "exposure_seconds": ">=0.45; recovery_seconds is at least exposure_seconds",
+    "max_active_hazards": "owner cap; M11<=2, M33<=2, old effects retire before new activation",
+    "support_charges": "finite lifetime charge budget; no support-to-support heal/guard loops",
+    "path_mode": "authored finite movement pattern; must use room collision/navigation",
+    "elite": "explicit rank, no automatic promotion from enemy level; ceil(base*1.5) before tier cost; M36 replaces aftershock with one 95-unit ring, a safe gap of at least 50 degrees, and a fuse of at least 1.6 seconds"
+  },
+  "profiles": {
+    "M01": {
+      "enemy_id": "M01",
+      "behavior_id": "pick_sweep",
+      "base_stats": {
+        "max_hp": 60,
+        "damage": 14,
+        "move_speed": 96,
+        "armor": 0,
+        "attack_range": 68,
+        "recovery_seconds": 0.9
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "pick_sweep"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.9,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.9,
+            "path_mode": "approach_then_lock",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 68
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "double_pick"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              -24,
+              24
+            ]
+          },
+          "description": "双镐按编号挥落；离开扇面后再反击。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "outer_pick_hook"
+          ],
+          "parameters": {
+            "combo_angles": [
+              -42,
+              42
+            ],
+            "lunge_distance": 30,
+            "path_mode": "short_step_before_sweep"
+          },
+          "description": "多一次前踏再左右扫，前踏及两扇同时预示。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "third_pick_finisher"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              -42,
+              42,
+              0
+            ],
+            "exposure_seconds": 1.1,
+            "recovery_seconds": 1.1
+          },
+          "description": "第三镐沿原中央线落下，拔镐时暴露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M02": {
+      "enemy_id": "M02",
+      "behavior_id": "locked_charge",
+      "base_stats": {
+        "max_hp": 78,
+        "damage": 16,
+        "move_speed": 88,
+        "armor": 3,
+        "attack_range": 100,
+        "recovery_seconds": 1.1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "locked_charge"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 215,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1.1,
+            "path_mode": "locked_straight",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 270,
+            "wall_stun_seconds": 1.2
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "charge_end_fan"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              55
+            ],
+            "exposure_seconds": 1.3
+          },
+          "description": "冲锋后朝锁定侧面摆锤，侧闪或诱撞墙。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "offset_charge_lane"
+          ],
+          "parameters": {
+            "path_mode": "offset_then_locked_straight",
+            "sidestep_distance": 55
+          },
+          "description": "先换到可见侧道再锁直线，不在冲锋中追踪。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "double_lane_charge"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              55,
+              -55
+            ],
+            "wall_stun_seconds": 1.6,
+            "exposure_seconds": 1.6
+          },
+          "description": "终点两侧锤击同时编号预示，撞墙取消后续并延长暴露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M03": {
+      "enemy_id": "M03",
+      "behavior_id": "locked_snipe_relocate",
+      "base_stats": {
+        "max_hp": 48,
+        "damage": 13,
+        "move_speed": 82,
+        "armor": 0,
+        "attack_range": 390,
+        "recovery_seconds": 0.95
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "locked_snipe_relocate"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.95,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.95,
+            "path_mode": "reachable_firing_point",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 430,
+            "relocate_after_attacks": 2
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "paired_snipe"
+          ],
+          "parameters": {
+            "projectile_count": 2,
+            "projectile_angles": [
+              -6,
+              6
+            ],
+            "spread_degrees": 12
+          },
+          "description": "两条窄线先锁定，走出线间或掩体遮挡。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "snipe_side_relocate"
+          ],
+          "parameters": {
+            "relocate_after_attacks": 1,
+            "sidestep_distance": 65,
+            "path_mode": "visible_side_relocation"
+          },
+          "description": "每轮后横跳到可达射位，落地保持可反击。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "triple_snipe_fan"
+          ],
+          "parameters": {
+            "projectile_count": 3,
+            "projectile_angles": [
+              -12,
+              0,
+              12
+            ],
+            "spread_degrees": 24,
+            "exposure_seconds": 1
+          },
+          "description": "三条扇线全部提前显示，射后停留一秒。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M04": {
+      "enemy_id": "M04",
+      "behavior_id": "shell_sting_leap",
+      "base_stats": {
+        "max_hp": 28,
+        "damage": 8,
+        "move_speed": 108,
+        "armor": 0,
+        "attack_range": 54,
+        "recovery_seconds": 0.7
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "shell_sting_leap"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.7,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 75,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.7,
+            "path_mode": "straight_short_leap",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 54,
+            "spawn_grace_seconds": 0.8
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "sting_landing_jab"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              0
+            ]
+          },
+          "description": "短扑落地后追加直刺，横向移动避开两段。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "sting_side_takeoff"
+          ],
+          "parameters": {
+            "sidestep_distance": 32,
+            "path_mode": "side_step_then_leap"
+          },
+          "description": "先向显示的侧向起跳点移动，再沿固定方向扑出。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "sting_fork_finisher"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              -22,
+              22
+            ],
+            "exposure_seconds": 0.85
+          },
+          "description": "落地左右腹钉连续刺击，之后腹壳暴露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M05": {
+      "enemy_id": "M05",
+      "behavior_id": "arc_roll_expose",
+      "base_stats": {
+        "max_hp": 78,
+        "damage": 16,
+        "move_speed": 88,
+        "armor": 3,
+        "attack_range": 100,
+        "recovery_seconds": 1.1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "arc_roll_expose"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 200,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1.1,
+            "path_mode": "left_arc",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 260,
+            "arc_degrees": 70
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "alternating_roll_arc"
+          ],
+          "parameters": {
+            "path_mode": "alternating_left_right_arc",
+            "arc_degrees": 85
+          },
+          "description": "交替左右弧滚，完整轨迹提前显示。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "roll_end_spokes"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              65
+            ]
+          },
+          "description": "侧翻前轮缘向外补扫，朝弧线内侧躲避。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "roll_split_spokes"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              65,
+              -65
+            ],
+            "exposure_seconds": 1.5
+          },
+          "description": "终点两翼轮齿按固定序号落下，侧翻后长暴露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M06": {
+      "enemy_id": "M06",
+      "behavior_id": "deploy_weld_cover",
+      "base_stats": {
+        "max_hp": 80,
+        "damage": 10,
+        "move_speed": 68,
+        "armor": 6,
+        "attack_range": 145,
+        "recovery_seconds": 1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "deploy_weld_cover"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 1,
+            "support_charges": 0,
+            "exposure_seconds": 1,
+            "path_mode": "approach_then_lock",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 150,
+            "cover_hp": 28,
+            "cover_count": 1,
+            "cover_rebuild_seconds": 8,
+            "guard_arc_degrees": 100
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "cover_side_weld"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              -30,
+              30
+            ],
+            "spread_degrees": 60
+          },
+          "description": "遮板两侧依次焊击，背后始终可打。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "cover_escort"
+          ],
+          "parameters": {
+            "support_targets": 2,
+            "support_radius": 180,
+            "path_mode": "escort_nearest_ranged"
+          },
+          "description": "护送两名近邻；遮板仍只有一块、可破坏。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "cover_vent_cycle"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              -30,
+              30,
+              0
+            ],
+            "cover_rebuild_seconds": 10,
+            "exposure_seconds": 1.2
+          },
+          "description": "焊击后板面开口排热，打破或等待排热反击。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M07": {
+      "enemy_id": "M07",
+      "behavior_id": "hook_tether",
+      "base_stats": {
+        "max_hp": 64,
+        "damage": 11,
+        "move_speed": 84,
+        "armor": 2,
+        "attack_range": 260,
+        "recovery_seconds": 1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "hook_tether"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1,
+            "path_mode": "approach_then_lock",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 310,
+            "pull_distance": 70,
+            "tether_break_on_wall": true
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "hook_return_sweep"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              35
+            ]
+          },
+          "description": "收钩后追加原方向侧扫，躲过钩线后绕侧。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "hook_side_cast"
+          ],
+          "parameters": {
+            "path_mode": "side_step_then_locked_hook",
+            "sidestep_distance": 50
+          },
+          "description": "侧移再锁钩线；墙体仍能断索。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "hook_split_reel"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              35,
+              -35
+            ],
+            "exposure_seconds": 1.15,
+            "pull_distance": 85
+          },
+          "description": "收卷两次扇击已预示，卷盘随后外露；拉距有硬上限。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M08": {
+      "enemy_id": "M08",
+      "behavior_id": "rotate_rivet_shield",
+      "base_stats": {
+        "max_hp": 86,
+        "damage": 13,
+        "move_speed": 66,
+        "armor": 8,
+        "attack_range": 74,
+        "recovery_seconds": 1.1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "rotate_rivet_shield"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1.1,
+            "path_mode": "approach_then_lock",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 74,
+            "guard_arc_degrees": 100,
+            "guard_ratio": 0.45,
+            "guard_duration": 2.5,
+            "shield_turn_seconds": 1.2
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "shield_counter_bash"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              40
+            ]
+          },
+          "description": "盾击后固定方向回摆；背面仍无护盾。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "shield_quarter_turn"
+          ],
+          "parameters": {
+            "path_mode": "telegraphed_quarter_turn",
+            "shield_turn_degrees": 90,
+            "exposure_seconds": 0.9
+          },
+          "description": "转盾明确停顿，转向时护盾减弱。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "shield_open_finisher"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              40,
+              -40
+            ],
+            "exposure_seconds": 1.25,
+            "shield_turn_seconds": 1.6
+          },
+          "description": "三段盾击后展开铆扣，提供长转盾破绽。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M09": {
+      "enemy_id": "M09",
+      "behavior_id": "consume_corpse_haste",
+      "base_stats": {
+        "max_hp": 52,
+        "damage": 7,
+        "move_speed": 78,
+        "armor": 0,
+        "attack_range": 230,
+        "recovery_seconds": 1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "consume_corpse_haste"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 220,
+            "support_targets": 1,
+            "support_charges": 1,
+            "exposure_seconds": 1,
+            "path_mode": "approach_then_lock",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 220,
+            "haste_ratio": 0.15,
+            "buff_duration": 2.5,
+            "consume_corpse": true
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "corpse_pair_pulse"
+          ],
+          "parameters": {
+            "support_targets": 2,
+            "support_radius": 245
+          },
+          "description": "同一残骸一次脉冲影响两名友军，不复活、不重复消费。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "bell_then_sweep"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              -30,
+              30
+            ]
+          },
+          "description": "铃声后沿锁定两侧摇铃扫击，先绕开再攻击。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "corpse_triangle_pulse"
+          ],
+          "parameters": {
+            "support_targets": 3,
+            "path_mode": "approach_unconsumed_corpse",
+            "exposure_seconds": 1.3
+          },
+          "description": "脉冲最多三名友军，收铃时停留暴露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M10": {
+      "enemy_id": "M10",
+      "behavior_id": "sidestep_thrust",
+      "base_stats": {
+        "max_hp": 60,
+        "damage": 14,
+        "move_speed": 96,
+        "armor": 0,
+        "attack_range": 68,
+        "recovery_seconds": 0.9
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "sidestep_thrust"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.9,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 24,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.9,
+            "path_mode": "sidestep_then_thrust",
+            "sidestep_distance": 45,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 68
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "paired_bud_thrust"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              18
+            ]
+          },
+          "description": "侧移后连续两次窄刺，第二段提前锁定。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "alternating_bud_step"
+          ],
+          "parameters": {
+            "path_mode": "alternate_sidestep_then_thrust",
+            "sidestep_distance": 70,
+            "combo_angles": [
+              -18,
+              18
+            ]
+          },
+          "description": "轮换左、右横移起手，保持侧向空间。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "bud_cross_finisher"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              -18,
+              18,
+              0
+            ],
+            "exposure_seconds": 1.1
+          },
+          "description": "两侧刺后中央终结刺，全部方向提前编号。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M11": {
+      "enemy_id": "M11",
+      "behavior_id": "triple_acid_lob",
+      "base_stats": {
+        "max_hp": 60,
+        "damage": 12,
+        "move_speed": 62,
+        "armor": 2,
+        "attack_range": 330,
+        "recovery_seconds": 1.2
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "triple_acid_lob"
+          ],
+          "parameters": {
+            "tell_seconds": 0.85,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.2,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 3,
+            "projectile_angles": [
+              -14,
+              0,
+              14
+            ],
+            "spread_degrees": 28,
+            "radius": 42,
+            "lunge_distance": 0,
+            "hazard_duration": 2.4,
+            "max_active_hazards": 2,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1.2,
+            "path_mode": "three_marked_landing_points",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 360
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "acid_triangle_landings"
+          ],
+          "parameters": {
+            "hazard_offsets": [
+              [
+                -65,
+                0
+              ],
+              [
+                35,
+                -65
+              ],
+              [
+                35,
+                65
+              ]
+            ],
+            "path_mode": "triangle_landings"
+          },
+          "description": "三枚落点改为三角，始终只保留最近两片液区。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "acid_staggered_lane"
+          ],
+          "parameters": {
+            "hazard_offsets": [
+              [
+                -80,
+                -35
+              ],
+              [
+                0,
+                35
+              ],
+              [
+                80,
+                -35
+              ]
+            ],
+            "hazard_stagger_seconds": 0.8,
+            "path_mode": "staggered_zigzag"
+          },
+          "description": "交错落点依次激活，每个落点都足够预警。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "acid_reverse_braid"
+          ],
+          "parameters": {
+            "hazard_offsets": [
+              [
+                -80,
+                45
+              ],
+              [
+                0,
+                -45
+              ],
+              [
+                80,
+                45
+              ]
+            ],
+            "alternate_pattern": true,
+            "exposure_seconds": 1.3
+          },
+          "description": "每轮交替Z形，喷完喉囊外露，不扩大液区数量。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M12": {
+      "enemy_id": "M12",
+      "behavior_id": "budgeted_pod_summon",
+      "base_stats": {
+        "max_hp": 65,
+        "damage": 8,
+        "move_speed": 70,
+        "armor": 2,
+        "attack_range": 250,
+        "recovery_seconds": 1.2
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "budgeted_pod_summon"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.2,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 2,
+            "exposure_seconds": 1.2,
+            "path_mode": "single_visible_pod",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 250,
+            "summon_cap": 2,
+            "summon_count": 1,
+            "pod_hp": 18,
+            "pod_hatch_seconds": 1.4,
+            "summon_enemy_id": "M14"
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "paired_breakable_pods"
+          ],
+          "parameters": {
+            "summon_count": 2,
+            "hazard_offsets": [
+              [
+                -45,
+                0
+              ],
+              [
+                45,
+                0
+              ]
+            ],
+            "pod_hatch_seconds": 1.6
+          },
+          "description": "两囊同时可见可破；仍最多两只活召唤物并预留预算。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "flanking_pod_arc"
+          ],
+          "parameters": {
+            "path_mode": "side_arc_pod_landing",
+            "hazard_offsets": [
+              [
+                -80,
+                -25
+              ],
+              [
+                80,
+                -25
+              ]
+            ]
+          },
+          "description": "囊投向两侧可达落点，打破育囊削弱母体。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "hatching_core_expose"
+          ],
+          "parameters": {
+            "exposure_seconds": 1.6,
+            "pod_break_armor_loss": 10,
+            "path_mode": "hatch_then_core_expose"
+          },
+          "description": "孵化完成后母体核心长暴露，破囊可提前触发。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M13": {
+      "enemy_id": "M13",
+      "behavior_id": "cross_scissor",
+      "base_stats": {
+        "max_hp": 54,
+        "damage": 12,
+        "move_speed": 103,
+        "armor": 0,
+        "attack_range": 80,
+        "recovery_seconds": 0.9
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "cross_scissor"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.9,
+            "combo_count": 2,
+            "combo_angles": [
+              -35,
+              35
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.9,
+            "path_mode": "visible_flank",
+            "sidestep_distance": 50,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 80
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "scissor_third_cut"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              -35,
+              35,
+              0
+            ]
+          },
+          "description": "X剪后追加中央刺，三段方向全部预锁。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "scissor_wide_flank"
+          ],
+          "parameters": {
+            "path_mode": "alternating_flank",
+            "sidestep_distance": 80,
+            "combo_angles": [
+              -50,
+              50,
+              0
+            ]
+          },
+          "description": "侧绕方向逐轮交替，不能瞬移到背后。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "scissor_open_cross"
+          ],
+          "parameters": {
+            "combo_angles": [
+              -55,
+              55,
+              180
+            ],
+            "exposure_seconds": 1.4
+          },
+          "description": "最后一剪朝原背面，夹角与编号先显示，刀肢张开长暴露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M14": {
+      "enemy_id": "M14",
+      "behavior_id": "sticky_hop",
+      "base_stats": {
+        "max_hp": 28,
+        "damage": 8,
+        "move_speed": 108,
+        "armor": 0,
+        "attack_range": 54,
+        "recovery_seconds": 0.7
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "sticky_hop"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.7,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 27,
+            "lunge_distance": 65,
+            "hazard_duration": 1.8,
+            "max_active_hazards": 1,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.7,
+            "path_mode": "single_sticky_landing",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 54,
+            "slow_ratio": 0.15
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "sticky_tail_jab"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              25
+            ]
+          },
+          "description": "落地补刺，黏点仍不叠层。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "sticky_side_hop"
+          ],
+          "parameters": {
+            "path_mode": "side_step_then_sticky_hop",
+            "sidestep_distance": 30
+          },
+          "description": "先侧滚再扑，落点保持可见。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "sticky_split_steps"
+          ],
+          "parameters": {
+            "max_active_hazards": 2,
+            "hazard_offsets": [
+              [
+                -28,
+                0
+              ],
+              [
+                28,
+                0
+              ]
+            ],
+            "exposure_seconds": 0.85
+          },
+          "description": "落地分为两个小黏点，减速上限不变、之后暴露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M15": {
+      "enemy_id": "M15",
+      "behavior_id": "visible_burrow_strike",
+      "base_stats": {
+        "max_hp": 60,
+        "damage": 14,
+        "move_speed": 88,
+        "armor": 1,
+        "attack_range": 225,
+        "recovery_seconds": 1.1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "visible_burrow_strike"
+          ],
+          "parameters": {
+            "tell_seconds": 0.85,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 46,
+            "lunge_distance": 170,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1.1,
+            "path_mode": "visible_burrow_once",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 240
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "burrow_exit_sweep"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              70
+            ]
+          },
+          "description": "单次出土后侧扫，裂纹和侧扫同时预示。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "burrow_bent_trail"
+          ],
+          "parameters": {
+            "path_mode": "visible_bent_burrow_once",
+            "arc_degrees": 45
+          },
+          "description": "可见潜行路线拐弯一次，终点仍预先锁定。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "burrow_petals"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              70,
+              -70
+            ],
+            "exposure_seconds": 1.5
+          },
+          "description": "出土后两侧花瓣依次拍击，始终只一次破土。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M16": {
+      "enemy_id": "M16",
+      "behavior_id": "steal_quest_object",
+      "base_stats": {
+        "max_hp": 58,
+        "damage": 10,
+        "move_speed": 98,
+        "armor": 0,
+        "attack_range": 110,
+        "recovery_seconds": 0.9
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "steal_quest_object"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.9,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.9,
+            "path_mode": "marked_reachable_return",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 150,
+            "carried_object_cap": 1,
+            "drop_object_intact": true
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "carrier_rear_swipe"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              180
+            ]
+          },
+          "description": "拿取后朝原后方甩尾，追击者可转侧拦截。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "carrier_side_route"
+          ],
+          "parameters": {
+            "path_mode": "alternate_marked_return_route",
+            "sidestep_distance": 60
+          },
+          "description": "改走第二条可达返巢路，携物标记始终可见。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "carrier_drop_opening"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              180,
+              90
+            ],
+            "exposure_seconds": 1.4,
+            "drop_on_stagger": true
+          },
+          "description": "固定三段护物动作后吸管暴露，击破则完整掉物。"
+        }
+      ],
+      "scene_dependency_ids": [
+        "reachable_quest_objects"
+      ]
+    },
+    "M17": {
+      "enemy_id": "M17",
+      "behavior_id": "limited_heal_pulse",
+      "base_stats": {
+        "max_hp": 58,
+        "damage": 6,
+        "move_speed": 64,
+        "armor": 0,
+        "attack_range": 250,
+        "recovery_seconds": 1.2
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "limited_heal_pulse"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.2,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 240,
+            "support_targets": 1,
+            "support_charges": 2,
+            "exposure_seconds": 1.2,
+            "path_mode": "approach_then_lock",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 260,
+            "heal_ratio": 0.08,
+            "heal_limit_per_target": 2,
+            "exclude_support_recipients": true
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "heal_two_rings"
+          ],
+          "parameters": {
+            "support_targets": 2,
+            "hazard_offsets": [
+              [
+                -35,
+                0
+              ],
+              [
+                35,
+                0
+              ]
+            ]
+          },
+          "description": "两名普通友军可受有限治疗，支援单位不互疗。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "heal_followed_bat"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              -45,
+              45
+            ]
+          },
+          "description": "开冠治疗后两侧拍击，离开圈后绕背。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "heal_three_target_opening"
+          ],
+          "parameters": {
+            "support_targets": 3,
+            "support_radius": 275,
+            "exposure_seconds": 1.6
+          },
+          "description": "三名目标共享有限次数，合冠阶段长时间无法行动。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M18": {
+      "enemy_id": "M18",
+      "behavior_id": "bite_breakable_wall",
+      "base_stats": {
+        "max_hp": 78,
+        "damage": 14,
+        "move_speed": 70,
+        "armor": 4,
+        "attack_range": 100,
+        "recovery_seconds": 1.05
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "bite_breakable_wall"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.05,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 95,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1,
+            "path_mode": "marked_thin_wall_only",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 95,
+            "breakable_wall_cap": 1
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "jaw_reopen_bite"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              25
+            ]
+          },
+          "description": "咬合后松开再夹，两段编号清楚。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "jaw_wall_flank"
+          ],
+          "parameters": {
+            "path_mode": "side_step_to_marked_wall",
+            "sidestep_distance": 50
+          },
+          "description": "侧向接近标记薄墙，不破坏承重墙或主路。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "jaw_soft_belly"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              25,
+              -25
+            ],
+            "exposure_seconds": 1.65
+          },
+          "description": "固定三夹后腹部朝外停顿，破墙仍限一处。"
+        }
+      ],
+      "scene_dependency_ids": [
+        "marked_breakable_walls"
+      ]
+    },
+    "M19": {
+      "enemy_id": "M19",
+      "behavior_id": "visible_scan_mark",
+      "base_stats": {
+        "max_hp": 52,
+        "damage": 7,
+        "move_speed": 78,
+        "armor": 0,
+        "attack_range": 230,
+        "recovery_seconds": 1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "visible_scan_mark"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 50,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 1,
+            "support_charges": 2,
+            "exposure_seconds": 1,
+            "path_mode": "approach_then_lock",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 280,
+            "mark_duration": 2.5,
+            "lock_reduction_seconds": 0.08,
+            "mark_stacks": false
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "scan_second_sector"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              -30,
+              30
+            ]
+          },
+          "description": "连续扫描两扇区，仍只标记一次且需视线。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "scan_side_orbit"
+          ],
+          "parameters": {
+            "path_mode": "visible_short_orbit",
+            "sidestep_distance": 70
+          },
+          "description": "沿可达短弧换位后扫描，所有预警仍清楚。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "scan_three_sector"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              -55,
+              0,
+              55
+            ],
+            "exposure_seconds": 1.1
+          },
+          "description": "依编号扫描三扇面，只加速一个射手且不降低锁线下限。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M20": {
+      "enemy_id": "M20",
+      "behavior_id": "rail_slide_pierce",
+      "base_stats": {
+        "max_hp": 48,
+        "damage": 13,
+        "move_speed": 82,
+        "armor": 0,
+        "attack_range": 390,
+        "recovery_seconds": 0.95
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "rail_slide_pierce"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.95,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.95,
+            "path_mode": "bounded_rail_slide",
+            "sidestep_distance": 65,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 420,
+            "projectile_pierces": 1
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "rail_pair_lanes"
+          ],
+          "parameters": {
+            "projectile_count": 2,
+            "projectile_angles": [
+              -7,
+              7
+            ],
+            "spread_degrees": 14
+          },
+          "description": "两条炮线同时预示并锁定。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "rail_alternate_endpoint"
+          ],
+          "parameters": {
+            "path_mode": "alternate_bounded_rail_endpoint",
+            "sidestep_distance": 95
+          },
+          "description": "逐轮选择相反轨端，滑行不能穿墙。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "rail_three_lanes"
+          ],
+          "parameters": {
+            "projectile_count": 3,
+            "projectile_angles": [
+              -14,
+              0,
+              14
+            ],
+            "spread_degrees": 28,
+            "exposure_seconds": 1.2
+          },
+          "description": "三条窄炮线留间隙，射后轨座停机。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M21": {
+      "enemy_id": "M21",
+      "behavior_id": "spring_jump_ring",
+      "base_stats": {
+        "max_hp": 60,
+        "damage": 14,
+        "move_speed": 88,
+        "armor": 1,
+        "attack_range": 225,
+        "recovery_seconds": 1.1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "spring_jump_ring"
+          ],
+          "parameters": {
+            "tell_seconds": 0.85,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 58,
+            "lunge_distance": 165,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1.1,
+            "path_mode": "shadowed_marked_jump",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 240
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "jump_ring_followup"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              80
+            ],
+            "exposure_seconds": 1.1
+          },
+          "description": "落地电环后固定朝向腿扫，落点与扫面一起预示。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "jump_offset_landing"
+          ],
+          "parameters": {
+            "path_mode": "offset_shadowed_jump",
+            "sidestep_distance": 55,
+            "hazard_offsets": [
+              [
+                50,
+                0
+              ]
+            ]
+          },
+          "description": "落点移至标记侧点，影子全程显示且不越不可达边界。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "jump_fork_discharge"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              80,
+              -80
+            ],
+            "exposure_seconds": 1.5
+          },
+          "description": "落地后两侧放电按编号完成，回充窗口加长。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M22": {
+      "enemy_id": "M22",
+      "behavior_id": "limited_molten_stream",
+      "base_stats": {
+        "max_hp": 60,
+        "damage": 12,
+        "move_speed": 62,
+        "armor": 2,
+        "attack_range": 330,
+        "recovery_seconds": 1.2
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "limited_molten_stream"
+          ],
+          "parameters": {
+            "tell_seconds": 0.85,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.2,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 45,
+            "radius": 55,
+            "lunge_distance": 0,
+            "hazard_duration": 2.8,
+            "max_active_hazards": 1,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1.2,
+            "path_mode": "single_molten_lane",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 300
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "molten_bent_lane"
+          ],
+          "parameters": {
+            "path_mode": "bent_molten_lane",
+            "hazard_offsets": [
+              [
+                0,
+                0
+              ],
+              [
+                65,
+                40
+              ]
+            ],
+            "arc_degrees": 30
+          },
+          "description": "单条熔流改为可见折弯，外环仍有绕路。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "molten_alternate_side"
+          ],
+          "parameters": {
+            "path_mode": "alternate_molten_side",
+            "hazard_offsets": [
+              [
+                0,
+                0
+              ],
+              [
+                65,
+                -40
+              ]
+            ],
+            "alternate_pattern": true
+          },
+          "description": "逐轮更换流向，新流激活前回收旧流。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "molten_handle_opening"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              50
+            ],
+            "exposure_seconds": 1.6
+          },
+          "description": "倾倒后追加预示的柄侧摆击，随后内壁外露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M23": {
+      "enemy_id": "M23",
+      "behavior_id": "polarity_displacement",
+      "base_stats": {
+        "max_hp": 64,
+        "damage": 11,
+        "move_speed": 84,
+        "armor": 2,
+        "attack_range": 260,
+        "recovery_seconds": 1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "polarity_displacement"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 80,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1,
+            "path_mode": "visible_alternating_polarity",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 180,
+            "pull_distance": 35,
+            "displacement_cooldown": 2.5
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "polarity_side_fork"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              -35,
+              35
+            ],
+            "displacement_cooldown": 3
+          },
+          "description": "两侧依次磁脉冲，玩家只能每冷却受一次低幅位移。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "polarity_reposition"
+          ],
+          "parameters": {
+            "path_mode": "side_step_before_polarity",
+            "sidestep_distance": 60
+          },
+          "description": "换侧后明确箭头再吸斥，冲刺与墙体仍阻止强拉。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "polarity_core_expose"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              -35,
+              35,
+              0
+            ],
+            "exposure_seconds": 1.5
+          },
+          "description": "第三段中央磁叉闭合后核心暴露，不连控角色。"
+        }
+      ],
+      "scene_dependency_ids": [
+        "movable_scene_obstacles"
+      ]
+    },
+    "M24": {
+      "enemy_id": "M24",
+      "behavior_id": "cold_mist_patrol",
+      "base_stats": {
+        "max_hp": 48,
+        "damage": 13,
+        "move_speed": 82,
+        "armor": 0,
+        "attack_range": 390,
+        "recovery_seconds": 0.95
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "cold_mist_patrol"
+          ],
+          "parameters": {
+            "tell_seconds": 0.85,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.95,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 60,
+            "lunge_distance": 0,
+            "hazard_duration": 2.5,
+            "max_active_hazards": 1,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.95,
+            "path_mode": "mist_edge_patrol",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 250,
+            "slow_ratio": 0.2
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "mist_split_pockets"
+          ],
+          "parameters": {
+            "max_active_hazards": 2,
+            "radius": 38,
+            "hazard_offsets": [
+              [
+                -52,
+                0
+              ],
+              [
+                52,
+                0
+              ]
+            ]
+          },
+          "description": "冰雾分成两片小袋，中间保留通道，减速不叠层。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "mist_alternate_edge"
+          ],
+          "parameters": {
+            "path_mode": "alternate_mist_edge",
+            "hazard_offsets": [
+              [
+                -45,
+                -35
+              ],
+              [
+                45,
+                35
+              ]
+            ]
+          },
+          "description": "交替斜向小雾袋并沿边缘巡行，身体可命中。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "mist_vent_bite"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              35
+            ],
+            "exposure_seconds": 1.3
+          },
+          "description": "喷雾后附固定窄咬，双罐放气时露身反击。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M25": {
+      "enemy_id": "M25",
+      "behavior_id": "socket_shield_recharge",
+      "base_stats": {
+        "max_hp": 86,
+        "damage": 13,
+        "move_speed": 66,
+        "armor": 8,
+        "attack_range": 74,
+        "recovery_seconds": 1.1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "socket_shield_recharge"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 1,
+            "exposure_seconds": 1.1,
+            "path_mode": "marked_socket_recharge",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 74,
+            "guard_ratio": 0.3,
+            "guard_arc_degrees": 100,
+            "recharge_seconds": 1.6
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "socket_double_bash"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              -25,
+              25
+            ]
+          },
+          "description": "双段盾击；耗尽后仍需前往明确插座回充。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "socket_flank_return"
+          ],
+          "parameters": {
+            "path_mode": "visible_side_socket_route",
+            "sidestep_distance": 50,
+            "recharge_seconds": 1.9
+          },
+          "description": "显示可拦截侧向回充路，回充核心持续暴露。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "socket_vent_finisher"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              -25,
+              25,
+              0
+            ],
+            "exposure_seconds": 1.5,
+            "recharge_seconds": 2.2
+          },
+          "description": "三击后打开匣门排热，可趁长窗口破核。"
+        }
+      ],
+      "scene_dependency_ids": [
+        "marked_recharge_sockets"
+      ]
+    },
+    "M26": {
+      "enemy_id": "M26",
+      "behavior_id": "finite_projectile_screen",
+      "base_stats": {
+        "max_hp": 86,
+        "damage": 13,
+        "move_speed": 66,
+        "armor": 8,
+        "attack_range": 74,
+        "recovery_seconds": 1.1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "finite_projectile_screen"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1.1,
+            "path_mode": "frontal_screen",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 74,
+            "screen_projectile_cap": 2,
+            "screen_seconds": 1,
+            "guard_arc_degrees": 90
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "screen_return_cut"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              -35,
+              35
+            ]
+          },
+          "description": "截弹结束后剪翼双斩，停火绕侧可反制。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "screen_quarter_turn"
+          ],
+          "parameters": {
+            "path_mode": "telegraphed_screen_quarter_turn",
+            "shield_turn_degrees": 90,
+            "exposure_seconds": 1
+          },
+          "description": "截弹面换侧时展开，不是全向防御。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "screen_open_scissors"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              -35,
+              35,
+              0
+            ],
+            "screen_projectile_cap": 3,
+            "exposure_seconds": 1.4
+          },
+          "description": "最多截三弹后自动展开，再按编号三剪并长暴露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M27": {
+      "enemy_id": "M27",
+      "behavior_id": "numbered_two_beat_sweep",
+      "base_stats": {
+        "max_hp": 60,
+        "damage": 14,
+        "move_speed": 96,
+        "armor": 0,
+        "attack_range": 68,
+        "recovery_seconds": 0.9
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "numbered_two_beat_sweep"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.9,
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              80
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 55,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.9,
+            "path_mode": "approach_then_lock",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 68
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "third_numbered_beat"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              80,
+              -80
+            ]
+          },
+          "description": "增加第三个编号侧扫，全部编号在首击前可见。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "alternating_beat_order"
+          ],
+          "parameters": {
+            "combo_angles": [
+              0,
+              -80,
+              80
+            ],
+            "alternate_pattern": true,
+            "path_mode": "alternate_fixed_beat_order"
+          },
+          "description": "逐轮交替左右拍序，提前显示序号而非追踪。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "fork_arm_finisher"
+          ],
+          "parameters": {
+            "combo_angles": [
+              -35,
+              35,
+              180
+            ],
+            "exposure_seconds": 1.45
+          },
+          "description": "末拍移到原背面，底盘最后完全停机。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M28": {
+      "enemy_id": "M28",
+      "behavior_id": "last_sound_charge",
+      "base_stats": {
+        "max_hp": 28,
+        "damage": 8,
+        "move_speed": 108,
+        "armor": 0,
+        "attack_range": 54,
+        "recovery_seconds": 0.7
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "last_sound_charge"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.7,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 120,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.7,
+            "path_mode": "locked_last_sound_position",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 170,
+            "sound_memory_seconds": 1.2
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "sound_end_jab"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              25
+            ]
+          },
+          "description": "冲旧声源后补刺，不重新追踪当前玩家。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "sound_offset_route"
+          ],
+          "parameters": {
+            "path_mode": "offset_to_last_sound_position",
+            "sidestep_distance": 35
+          },
+          "description": "先偏向可见侧线再冲旧声源。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "sound_double_finish"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              25,
+              -25
+            ],
+            "exposure_seconds": 1
+          },
+          "description": "在旧位置左右补刺，持续移动射击可诱空。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M29": {
+      "enemy_id": "M29",
+      "behavior_id": "solid_ring_decoy",
+      "base_stats": {
+        "max_hp": 54,
+        "damage": 12,
+        "move_speed": 103,
+        "armor": 0,
+        "attack_range": 80,
+        "recovery_seconds": 0.9
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "solid_ring_decoy"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.9,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.9,
+            "path_mode": "visible_decoy_flank",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 80,
+            "decoy_count": 1,
+            "decoy_damage": 0,
+            "real_body_solid_ring": true
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "decoy_tongue_pair"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              -25,
+              25
+            ]
+          },
+          "description": "真身双舌刺，假身始终无伤、一击散。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "decoy_mirror_side"
+          ],
+          "parameters": {
+            "path_mode": "alternating_decoy_side",
+            "sidestep_distance": 65
+          },
+          "description": "假身与真身换左右站位，真身实心环不消失。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "decoy_three_prong"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              -25,
+              25,
+              0
+            ],
+            "exposure_seconds": 1.3
+          },
+          "description": "真身三段固定刺后停顿；假身不能隐藏真实预警。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M30": {
+      "enemy_id": "M30",
+      "behavior_id": "finite_shield_network",
+      "base_stats": {
+        "max_hp": 52,
+        "damage": 7,
+        "move_speed": 78,
+        "armor": 0,
+        "attack_range": 230,
+        "recovery_seconds": 1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "finite_shield_network"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 240,
+            "support_targets": 1,
+            "support_charges": 2,
+            "exposure_seconds": 1,
+            "path_mode": "approach_then_lock",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 260,
+            "guard_ratio": 0.18,
+            "buff_duration": 2.5,
+            "exclude_support_recipients": true,
+            "break_network_on_exit": true
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "two_bell_links"
+          ],
+          "parameters": {
+            "support_targets": 2
+          },
+          "description": "连接两名普通友军，离网立即失效且不连支援单位。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "bell_guard_sweep"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              -50,
+              50
+            ]
+          },
+          "description": "连网后钟背摆击，移出支援圈后绕侧。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "three_bell_opening"
+          ],
+          "parameters": {
+            "support_targets": 3,
+            "exposure_seconds": 1.6,
+            "support_radius": 270
+          },
+          "description": "三个有限护盾连接，最末钟打开时本体长暴露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M31": {
+      "enemy_id": "M31",
+      "behavior_id": "single_refraction_beam",
+      "base_stats": {
+        "max_hp": 48,
+        "damage": 13,
+        "move_speed": 82,
+        "armor": 0,
+        "attack_range": 390,
+        "recovery_seconds": 0.95
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "single_refraction_beam"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.95,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.95,
+            "path_mode": "one_refraction",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 430,
+            "refraction_count": 1,
+            "refraction_degrees": 45
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "paired_refraction"
+          ],
+          "parameters": {
+            "projectile_count": 2,
+            "projectile_angles": [
+              -8,
+              8
+            ],
+            "spread_degrees": 16
+          },
+          "description": "两束各只折射一次，完整折线提前锁定。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "alternate_refraction_side"
+          ],
+          "parameters": {
+            "path_mode": "alternate_single_refraction",
+            "refraction_degrees": -45
+          },
+          "description": "逐轮更换折射侧，锁定后不追踪也不二次反射。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "refraction_core_opening"
+          ],
+          "parameters": {
+            "projectile_count": 3,
+            "projectile_angles": [
+              -16,
+              0,
+              16
+            ],
+            "spread_degrees": 32,
+            "exposure_seconds": 1.5
+          },
+          "description": "三束完整线路留隙，三棱镜排开后白脉长暴露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M32": {
+      "enemy_id": "M32",
+      "behavior_id": "shadow_arc_leap",
+      "base_stats": {
+        "max_hp": 60,
+        "damage": 14,
+        "move_speed": 88,
+        "armor": 1,
+        "attack_range": 225,
+        "recovery_seconds": 1.1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "shadow_arc_leap"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 180,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1.1,
+            "path_mode": "marked_terrain_shadow_arc",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 250,
+            "arc_degrees": 65
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "shadow_landing_tail"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              65
+            ]
+          },
+          "description": "弧跃落地后甩尾，朝弧内侧避开预示扇区。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "alternate_shadow_arc"
+          ],
+          "parameters": {
+            "path_mode": "alternate_marked_shadow_arc",
+            "arc_degrees": -65
+          },
+          "description": "轮换弧侧，潜行仍只在标记地形且不穿墙。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "shadow_split_tail"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              65,
+              -65
+            ],
+            "exposure_seconds": 1.6
+          },
+          "description": "落地双尾扫按序结束，腹心长暴露。"
+        }
+      ],
+      "scene_dependency_ids": [
+        "marked_burrow_terrain"
+      ]
+    },
+    "M33": {
+      "enemy_id": "M33",
+      "behavior_id": "two_breakable_slow_lines",
+      "base_stats": {
+        "max_hp": 78,
+        "damage": 14,
+        "move_speed": 70,
+        "armor": 4,
+        "attack_range": 100,
+        "recovery_seconds": 1.05
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "two_breakable_slow_lines"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.05,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 3,
+            "max_active_hazards": 2,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1.05,
+            "path_mode": "breakable_anchor_line",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 250,
+            "line_count": 1,
+            "line_node_hp": 16,
+            "slow_ratio": 0.18
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "paired_web_anchors"
+          ],
+          "parameters": {
+            "line_count": 2,
+            "hazard_offsets": [
+              [
+                -60,
+                -30
+              ],
+              [
+                60,
+                30
+              ]
+            ]
+          },
+          "description": "最多两条线，锚点可打，唯一出口不得横封。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "staggered_web_lanes"
+          ],
+          "parameters": {
+            "path_mode": "staggered_parallel_lines",
+            "hazard_offsets": [
+              [
+                -70,
+                0
+              ],
+              [
+                70,
+                0
+              ]
+            ],
+            "hazard_stagger_seconds": 0.8
+          },
+          "description": "平行两线交错激活，均有独立预警。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "web_knot_expose"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              -30,
+              30
+            ],
+            "exposure_seconds": 1.5,
+            "line_node_hp": 12
+          },
+          "description": "织线后针足双刺，线结与本体同步暴露。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M34": {
+      "enemy_id": "M34",
+      "behavior_id": "bounded_counter_stance",
+      "base_stats": {
+        "max_hp": 86,
+        "damage": 13,
+        "move_speed": 66,
+        "armor": 8,
+        "attack_range": 74,
+        "recovery_seconds": 1.1
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "bounded_counter_stance"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 1.1,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 1.1,
+            "path_mode": "fixed_direction_counter",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 74,
+            "counter_limit": 2,
+            "counter_stance_seconds": 1.2,
+            "guard_arc_degrees": 100
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "counter_side_wave"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              45
+            ]
+          },
+          "description": "反击沿原方向后追加侧波，停火或绕背反制。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "counter_visible_turn"
+          ],
+          "parameters": {
+            "path_mode": "telegraphed_half_turn_then_counter",
+            "shield_turn_degrees": 180,
+            "exposure_seconds": 1.1
+          },
+          "description": "先显示换面方向再进入姿态，换面时防御减弱。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "counter_three_wave_opening"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              45,
+              -45
+            ],
+            "exposure_seconds": 1.6,
+            "counter_stance_seconds": 1
+          },
+          "description": "固定三波后像面全开；反击触发次数仍最多二。"
+        }
+      ],
+      "scene_dependency_ids": []
+    },
+    "M35": {
+      "enemy_id": "M35",
+      "behavior_id": "steal_scene_lamp",
+      "base_stats": {
+        "max_hp": 58,
+        "damage": 10,
+        "move_speed": 98,
+        "armor": 0,
+        "attack_range": 110,
+        "recovery_seconds": 0.9
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "steal_scene_lamp"
+          ],
+          "parameters": {
+            "tell_seconds": 0.65,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.9,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 36,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.9,
+            "path_mode": "carry_recoverable_scene_lamp",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 180,
+            "lamp_cap": 1,
+            "dark_field_radius": 110,
+            "telegraphs_visible": true
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "lamp_rear_swipe"
+          ],
+          "parameters": {
+            "combo_count": 2,
+            "combo_angles": [
+              0,
+              180
+            ]
+          },
+          "description": "吞灯后后扫，腹部光亮与地面预警仍清楚。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "lamp_side_retreat"
+          ],
+          "parameters": {
+            "path_mode": "visible_lamp_side_retreat",
+            "sidestep_distance": 70
+          },
+          "description": "携灯走可达侧道，可引离目标点后攻击发光腹部。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "lamp_spit_opening"
+          ],
+          "parameters": {
+            "combo_count": 3,
+            "combo_angles": [
+              0,
+              180,
+              70
+            ],
+            "exposure_seconds": 1.6,
+            "drop_on_stagger": true
+          },
+          "description": "三段固定摆头后张腹，失衡会吐回完整灯具。"
+        }
+      ],
+      "scene_dependency_ids": [
+        "recoverable_scene_lamps"
+      ]
+    },
+    "M36": {
+      "enemy_id": "M36",
+      "behavior_id": "safe_disarm_ring",
+      "base_stats": {
+        "max_hp": 38,
+        "damage": 16,
+        "move_speed": 100,
+        "armor": 0,
+        "attack_range": 120,
+        "recovery_seconds": 0.9
+      },
+      "tiers": [
+        {
+          "tier": 1,
+          "minimum_level": 1,
+          "add_mechanics": [
+            "safe_disarm_ring"
+          ],
+          "parameters": {
+            "tell_seconds": 0.85,
+            "locked_line_delay_seconds": 0.4,
+            "recovery_seconds": 0.9,
+            "combo_count": 1,
+            "combo_angles": [
+              0
+            ],
+            "projectile_count": 1,
+            "projectile_angles": [
+              0
+            ],
+            "spread_degrees": 70,
+            "radius": 85,
+            "lunge_distance": 0,
+            "hazard_duration": 0,
+            "max_active_hazards": 0,
+            "support_radius": 200,
+            "support_targets": 0,
+            "support_charges": 0,
+            "exposure_seconds": 0.9,
+            "path_mode": "visible_fuse_approach",
+            "sidestep_distance": 0,
+            "combo_gap_seconds": 0.55,
+            "projectile_speed": 330,
+            "damage_multiplier": 1,
+            "area_tell_seconds": 0.8,
+            "range": 120,
+            "fuse_seconds": 1.3,
+            "detonate_count": 1,
+            "death_explosion": false
+          },
+          "description": "基础技能、形状预警与目录反制。"
+        },
+        {
+          "tier": 2,
+          "minimum_level": 5,
+          "add_mechanics": [
+            "fuse_side_approach"
+          ],
+          "parameters": {
+            "path_mode": "visible_fuse_side_approach",
+            "sidestep_distance": 35
+          },
+          "description": "倒计前从显示侧线逼近，死亡仍完全无伤拆除。"
+        },
+        {
+          "tier": 3,
+          "minimum_level": 10,
+          "add_mechanics": [
+            "ring_gap_alignment"
+          ],
+          "parameters": {
+            "ring_gap_degrees": 65,
+            "path_mode": "locked_ring_with_safe_gap"
+          },
+          "description": "一次扩散环出现明确安全缺口，锁定后不追着玩家转。"
+        },
+        {
+          "tier": 4,
+          "minimum_level": 15,
+          "add_mechanics": [
+            "ring_gap_then_expose"
+          ],
+          "parameters": {
+            "ring_gap_degrees": 50,
+            "fuse_seconds": 1.6,
+            "exposure_seconds": 1.2,
+            "spent_recovery_seconds": 1.2
+          },
+          "description": "安全缺口较窄但倒计更长；只放一次环，放电后停机。"
+        }
+      ],
+      "scene_dependency_ids": []
+    }
+  }
+}

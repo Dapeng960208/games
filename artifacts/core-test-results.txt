@@ -1,3 +1,0 @@
-Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
-
-CORE TESTS: 68/68 passed; fixtures: C:/Users/guojianpeng/AppData/Roaming/AbyssSalvagerM1/test_core_132231

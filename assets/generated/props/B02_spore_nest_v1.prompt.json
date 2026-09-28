@@ -1,0 +1,65 @@
+{
+  "asset_id": "B02_spore_nest_v1",
+  "biome_id": "B02",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "operation": "generate",
+  "transparent_background": true,
+  "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0e81e-6cb5-73a2-b935-20a0827c6f80\\exec-f0251437-3ab6-4475-a989-f960c5ba6645.png",
+  "destination": "assets/generated/props/B02_spore_nest_v1.png",
+  "prompt": "Use case: stylized-concept\nCreate exactly ONE isolated solid hand-painted game prop with a truly transparent background. Square canvas. This is a cutout sprite, not concept art on a presentation background. Every pixel beyond the prop's physical outline must be alpha=0. NO halo, NO atmosphere, NO vignette, NO cast shadow, NO background color, NO background lighting, NO surrounding glow. There is no ground. Subject has a clean hard contour with normal edge antialias only. The whole subject fits within the central 70 percent of the canvas with ample transparent margin on all four sides. Paint solid object material fully opaque.\nOriginal industrial fantasy mine overtaken by fungal growth. Match weathered gray-brown roots, muted olive fungal tissue, creamy ivory fungal rims, gray iron-rich rock and small aged copper fragments. Refined painterly game illustration with attractive material shapes, NOT a realistic photographed object and NOT glossy candy. Broad readable shapes with carefully painted bevels and restrained surface texture. Uniform soft diffuse light on the object; NO rimlight and NO emitted light.\nCamera: orthographic elevated 3/4 view from above, see most of the top and one shallow front side. A squat low obstacle seen in a top-down 2D game, designed to remain recognizable at 100 to 220 pixels. Entire object visible. No face, no eyes, no creature limbs, no text, no symbols, no UI frame, no logo, no watermark.\nSubject: A low wide oval woven root nest holding exactly THREE squat ribbed fungal sacs: one central large pale-olive sac and two smaller side sacs. Each thick closed sac has one pale ivory vertical slit; solid organic leathery material, no transparency. Four broad coiled dark-gray-brown roots form the shallow nest. Two chunky broken aged copper mine straps are caught in this root rim. Clearly three closed fungal sacs in a compact squat nest, NOT mushroom umbrellas, NOT a tall stump. Silhouette has three broad bumps on top, one low unified oval base. Sparse simplified painterly detailing.",
+  "style_reviewed_files": [
+    "assets/generated/enemies/M10_v1.png",
+    "assets/generated/enemies/M14_v1.png",
+    "assets/generated/enemies/M18_v1.png"
+  ],
+  "referenced_image_paths": [],
+  "qa": {
+    "visual": "Selected final: isolated original fungal mining obstacle, complete material silhouette, no external halo, no floor, no text/frame, distinct prop footprint. Final source inspected with view_image.",
+    "pixel_edits": "none; copied built-in output verbatim",
+    "alpha_scan": {
+      "width": 1254,
+      "height": 1254,
+      "fully_transparent_pixels": 1056876,
+      "near_opaque_pixels_alpha_245_255": 502659,
+      "antialias_or_partial_pixels_alpha_1_244": 12981,
+      "border_nonzero_alpha_pixels": 0,
+      "border_max_alpha": 0,
+      "corner_alphas": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible_bounds_alpha_over_16": [
+        107,
+        318,
+        1163,
+        985
+      ],
+      "subject_does_not_touch_border": true,
+      "transparent_exterior_present": true,
+      "subject_near_opaque_verified": true
+    },
+    "view_image_inspected": true,
+    "source_copy_identical": true
+  },
+  "rejected_attempts": [
+    {
+      "operation": "generate",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE original 2D battle-map obstacle prop sprite for an industrial mining fantasy game, transparent PNG cutout.\nBiome: an abandoned deep mine overtaken by fungal corrosion. Art language: realistic hand-painted fantasy game asset with clearly organized broad shapes, tactile weathered gray-brown mineral, muted olive and mushroom-ivory organic surfaces, sparse pale cyan bioluminescent seams; restrained old dark copper where specified. This matches fungal mine creatures made of dark twisted root fibers, ivory mycelium, layered earth-toned shelf growth, a little pale cyan spore light. ORIGINAL design, no franchise motifs.\nCamera and gameplay: elevated three-quarter overhead view, camera elevation about 60 degrees, low perspective distortion, see the top and a shallow front side; squat obstacle, compact clear footprint, no tall object hiding a player, one prop centered with its entire silhouette visible and 15 percent transparent empty margin on EVERY edge. Appropriate as a 100 to 220 pixel wide obstacle in a 2D top-down combat room. Prioritize 3 to 5 broad readable shape masses, not tiny twigs or hundreds of wisps.\nRendering and alpha: all painted subject surfaces must be opaque, including dark root and metal, no translucent holes in solid forms. True transparent exterior, alpha only outside the silhouette and genuine holes. Soft directional overhead light, restrained shadows entirely within the object, no glow halo.\nAvoid: no background, no ground tile, no floor plane, no environment scenery, no large cast shadow, no floating particles, no text, no writing, no numbers, no UI frame, no icons or interface, no logo, no watermark, no cute cartoon candy rendering, no monster face or eyes, no animation sequence or sheet, no multiple separate props.\nSubject: A low and broad fungal spore nest: THREE distinct squat leathery spore sacs emerging from one tightly woven shallow oval root-fiber nest, one larger central sac and two smaller side sacs, each rounded but subtly ribbed with a closed slit seam. Muted mushroom ivory and olive-bronze sacs against charcoal-brown root base. Restrained thin pale cyan seam light suggests dormant spores; not bright liquid, not transparent. A few short broken old copper ventilation ribs are embedded in the low root rim. Overall silhouette is a flattened three-lobed mound, wider than tall, no stems, no umbrella mushroom caps. Clearly a nest occupying ground, no living face or limbs.",
+      "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0e81e-6cb5-73a2-b935-20a0827c6f80\\exec-adedb804-d31b-4c69-8177-580218f72f2b.png",
+      "rejection": "Diffuse halo outside physical object."
+    },
+    {
+      "operation": "edit",
+      "prompt": "Use case: background-extraction\nEdit target: the supplied original fungal mine obstacle prop.\nChange ONLY the exterior of the physical object: remove the entire brown/gray diffuse halo, haze, vignette and shadow surrounding it. Make everything outside the actual hard material silhouette fully transparent alpha=0. Keep all of the solid object itself fully opaque and preserve its design, pose, colors, composition, proportions, material texture, camera angle, and lighting on the object. Retain small genuine holes between physical root fibers if present, but DO NOT make dark painted material transparent. No glow or translucent mist outside edges, no ground, no cast shadow. The final output must be a clean isolated game sprite with crisp material edges and genuine transparent empty margins all around, suitable for placing on any battle-map background. Do not add anything or crop the existing full object.",
+      "referenced_image_paths": [
+        "C:\\Users\\13326\\.codex\\generated_images\\01a0e81e-6cb5-73a2-b935-20a0827c6f80\\exec-adedb804-d31b-4c69-8177-580218f72f2b.png"
+      ],
+      "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0e81e-6cb5-73a2-b935-20a0827c6f80\\exec-6e6ee4fc-50a9-40db-9a42-fd8a805afc88.png",
+      "rejection": "Targeted background removal retained unwanted diffuse halo; new independent generation selected instead."
+    }
+  ],
+  "sha256": "3E6DE7A2B6DDB75098DF44B8661165A031D8DDC511FD172170BE2E34A76AB15D"
+}

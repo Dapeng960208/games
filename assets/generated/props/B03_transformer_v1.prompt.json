@@ -1,0 +1,46 @@
+{
+  "asset_id": "B03_transformer",
+  "version": 1,
+  "date": "2026-09-28",
+  "tool": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: ONE standalone original environmental obstacle sprite for a top-down 2D industrial fantasy mine action game. Three-quarter top-down low-perspective orthographic view, camera looking down about 55 degrees, strong visible top surfaces, no strong perspective convergence. Painterly polished game asset with rich but restrained material detail, old white enamel, cold blue-grey coal-black steel, tarnished oxidized copper, few tiny cool cyan indicator accents. Clear chunky silhouette readable at 100 to 220 screen pixels. Compact collision-friendly footprint, fully complete object with 12% transparent safe margin on every side. Genuine transparent background, object interior nearly fully opaque (alpha near 255), clean antialiased silhouette edge. No ground, floor tile, floating platform, external shadow, large cast shadow, haze, border, panel, typography, numerals, letters, brand, logo, watermark. Entirely original construction, no franchise design reference. Subject: a squat salvaged transformer machine defined by TWO stout vertical ceramic insulated coil towers next to each other, each built from 4 broad ivory ceramic insulator ribs and dark copper winding core, connected to a short rounded electric motor base between and beneath them. Cold faded blue steel foundation is just narrow supporting hardware integrated into the machine, not a surrounding platform. One tower slightly taller, heavy bent copper connector joining them; one thick short black cable tucked closely within overall footprint. Clearly readable twin-coil silhouette with convex cylinder tops. No rectangular storage chest, no cabinet doors. Broad simplified shapes, not dense wire clutter.",
+  "edit_prompt": null,
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e81e-dd8b-7513-89db-bbfce972c051/exec-3073c967-5901-432a-b836-38c48eb517ed.png",
+  "saved_path": "assets/generated/props/B03_transformer_v1.png",
+  "sha256": "86E97D07F097E9A373289073DEEB3B5CF63EF8B7F7FC83261169DF9FE195CB54",
+  "references_inspected": [
+    "assets/generated/heroes/CH03_combat_v1.png",
+    "assets/generated/ui/workshop_v1.png"
+  ],
+  "dimensions": [
+    1305,
+    1205
+  ],
+  "qa": {
+    "view_image_inspected": true,
+    "original_design": true,
+    "complete_subject": true,
+    "distinct_silhouette": true,
+    "no_floor_or_external_shadow": true,
+    "sample_step_pixels": 8,
+    "transparent_samples": 13954,
+    "partial_alpha_samples": 10805,
+    "opaque_samples": 5,
+    "alpha_240_or_higher_samples": 10478,
+    "foreground_mean_alpha": 246.36,
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_preserved": true,
+    "notes": "Some source RGB pixels outside the object contain a halo when an alpha-ignoring viewer displays RGB. Actual sampled outside pixels at (768,50),(300,200),(100,180),(700,900) are alpha 0 for pipe/drone; PNG alpha is preserved. No code-based image edits.",
+    "live_scene_review": "pending consumer integration",
+    "target_screen_size_pixels": [
+      100,
+      220
+    ]
+  }
+}

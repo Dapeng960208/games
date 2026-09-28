@@ -1,0 +1,109 @@
+{
+  "biome_id": "B02",
+  "method": "System.Drawing GetPixel alpha; area samples stride 4 at threshold >16; outer image-edge inspected at every pixel.",
+  "width": 1254,
+  "height": 1254,
+  "all_outer_edges_clear": true,
+  "visual_review": "All nine generated PNGs opened through view_image; unique full-body silhouettes, no backdrop/text/watermark. These are static illustrations, not completed animations.",
+  "assets": [
+    {
+      "id": "M10",
+      "bounds": [
+        64,
+        12,
+        1200,
+        1240
+      ],
+      "transparent": 78100,
+      "visible": 20496
+    },
+    {
+      "id": "M11",
+      "bounds": [
+        20,
+        16,
+        1232,
+        1228
+      ],
+      "transparent": 60276,
+      "visible": 38320
+    },
+    {
+      "id": "M12",
+      "bounds": [
+        24,
+        80,
+        1224,
+        1204
+      ],
+      "transparent": 71825,
+      "visible": 26771
+    },
+    {
+      "id": "M13",
+      "bounds": [
+        116,
+        68,
+        1220,
+        1204
+      ],
+      "transparent": 72535,
+      "visible": 26061
+    },
+    {
+      "id": "M14",
+      "bounds": [
+        120,
+        140,
+        1188,
+        1104
+      ],
+      "transparent": 53003,
+      "visible": 45593
+    },
+    {
+      "id": "M15",
+      "bounds": [
+        276,
+        12,
+        980,
+        1244
+      ],
+      "transparent": 72509,
+      "visible": 26087
+    },
+    {
+      "id": "M16",
+      "bounds": [
+        48,
+        248,
+        1220,
+        1048
+      ],
+      "transparent": 65808,
+      "visible": 32788
+    },
+    {
+      "id": "M17",
+      "bounds": [
+        56,
+        60,
+        1192,
+        1188
+      ],
+      "transparent": 53427,
+      "visible": 45169
+    },
+    {
+      "id": "M18",
+      "bounds": [
+        28,
+        188,
+        1228,
+        1060
+      ],
+      "transparent": 58637,
+      "visible": 39959
+    }
+  ]
+}

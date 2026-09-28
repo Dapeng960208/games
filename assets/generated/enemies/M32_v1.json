@@ -1,0 +1,36 @@
+{
+  "asset_id": "M32_v1",
+  "enemy_id": "M32",
+  "name": "倒影潜游者",
+  "biome_id": "B04",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "project_path": "assets/generated/enemies/M32_v1.png",
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0e806-7289-7cf1-b764-98f68b0be95f\\exec-0cea8067-4950-4568-8c33-801b30753722.png",
+  "prompt": "Use case: stylized-concept. Asset: ONE original enemy combat-body sprite for a 2D industrial-fantasy action RPG set in abandoned resonance mining shafts. Cohesive premium hand-painted game art: sculptural light, elegant original anatomy, coal-dark stone, ivory mineral, oxidized copper accents, restrained cyan/amber crystal bioluminescence. Detailed material craftsmanship with broad readable forms, NOT photorealistic noise. This is the Resonant Deepwell biome, a strange mineral ecology responding to vibration. Entirely original, no existing IP or artist reference.\nCamera and usability: elevated top-down three-quarter view looking down about 40 degrees, complete creature in a poised combat stance facing lower-right, solid weight and clear contact points where applicable. Body needs to read at 70 pixels high: strong distinct silhouette, large contrast blocks and one or two iconic skill organs, not many decorative tiny spikes. ONE subject only. Square canvas, complete extremities visible inside central 76 percent with generous transparent border. True transparent alpha cutout; solid interiors virtually opaque, alpha near255, narrow edge antialiasing only. No ground, pedestal, floor shadow, background, smoke, halo, text, letters, numbers, labels, UI, border, logo, watermark, inset diagrams or other creatures. Do not bake gameplay markers or attack paths into the sprite. No gore, no anime, no chibi.\nM32 \"Reflection Burrow-Swimmer\" / 倒影潜游者: an ORIGINAL ambush creature with a very FLAT ELONGATED RAY-SHAPED STONE SHELL, two broad flattened side wings and a tapered split tail. A mineral organism evolved to swim under shallow crystal sand, not a realistic sea animal, not a flying dragon. Show it in a low banking combat glide with the head toward lower right; the elevated three-quarter camera sees the flat upper shell planes while one near wing lifts slightly to reveal part of a pale ivory underside and one large soft amber BELLY HEART set deep into the lower central membrane. The belly heart is the obvious recovery-phase weakness; it must be visible but not protruding as a detached orb. Shell is smooth dark mirrored slate, with broad subtly stepped mineral layers, narrow cyan seams, and chipped pale wing rims. A short broad head at the front has two tiny amber sensing slits and a closed vent-like mouth, no shark teeth. Wings are muscular mineral plates, sleek horizontal silhouette not multiple feathery fins; tail is compact and keeps inside the fullbody composition. NO actual ground shadow, reflection on a floor, sand pool or splash: code provides the moving shadow and leap marker. Only this complete raylike body. Its pose should read like a shallow curved leap about to expose its underside, with controlled highlights and broad readable surfaces at 70px.",
+  "status": "static_combat_body_not_animation",
+  "originality": "Original project visual and behavior specification, no external IP references.",
+  "qa": {
+    "review": "One full-body creature in elevated three-quarter combat pose, clear unique skill organ, no text, backdrop or baked gameplay markers.",
+    "limitations": "Static body only. Movement, facing variants, attack frames and runtime 70px readability require integration work.",
+    "alpha_checks": {
+      "Id": "M32",
+      "Width": 1254,
+      "Height": 1254,
+      "Bounds": [
+        20,
+        104,
+        1232,
+        964
+      ],
+      "Transparent": 71448,
+      "Visible": 27148,
+      "NearOpaque": 26657,
+      "VisibleOuterEdgePixels": 0,
+      "SHA256": "358343B8181D6720DA5766C485F2E75FDAC4D79019A5651046AB923B4C6E7BA7"
+    },
+    "alpha_method": "System.Drawing GetPixel stride4, visible alpha>16, near-opaque alpha>=240; actual outer edges checked at every pixel."
+  },
+  "width": 1254,
+  "height": 1254
+}

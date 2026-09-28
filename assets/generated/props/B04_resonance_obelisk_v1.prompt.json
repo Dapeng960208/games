@@ -1,0 +1,45 @@
+{
+  "asset_id": "B04_resonance_obelisk",
+  "version": 1,
+  "date": "2026-09-28",
+  "tool": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: ONE original environmental obstacle sprite for a top-down 2D industrial fantasy abandoned mine action game. Three-quarter top-down orthographic low perspective, camera looking down about 55 degrees, clearly visible broad top surfaces. Premium hand-painted game asset: purple-grey minerals and dark rock, ivory ceramic, aged oxidized copper, coal-black metal, restrained tiny peacock-teal light accents. Carefully detailed but use only several large readable forms; crisp clear silhouette at 100 to 220 screen pixels. Cohesive compact collision-friendly footprint. Entire object visible, centered with safe 12% margin. Physical subject solid and nearly fully opaque, genuine transparent background alpha zero outside its exact outline. No ground plane, tile, platform around it, exterior shadow, bloom halo, fog, smoke, gradient, text, symbols, labels, logos, border, watermark. Not a crate or machinery cabinet. Entirely original, no existing franchise influence. Subject: a squat compact GROUP OF THREE BROKEN RESONANCE PILLARS, thick polygonal industrial ceramic and stone pylons at three unequal low heights clustered close together. Each pylon made of 2 or 3 broad stacked ivory ceramic/grey-purple mineral rings and thick oxidized-copper collar bands, fractured faceted top faces showing dark interior with thin muted teal seam. One short broken layered section lies tilted leaning directly against the center pylon, not scattered. Broad stepped skyline, maximum height only slightly more than group width, thick squat columns not tall monoliths. No writing, runes or glyphs. Each pylon visibly different broken silhouette, cohesive compact footprint.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e81e-dd8b-7513-89db-bbfce972c051/exec-5f756af6-c5d3-402f-8fc9-023abfc5311a.png",
+  "saved_path": "assets/generated/props/B04_resonance_obelisk_v1.png",
+  "sha256": "A2EED559A211F76C31E89831742B76DFC4C51BF85A38F7ADC59B1E59433FE3C0",
+  "references_inspected": [
+    "assets/generated/heroes/CH03_combat_v1.png",
+    "assets/generated/ui/workshop_v1.png"
+  ],
+  "dimensions": [
+    1374,
+    1145
+  ],
+  "qa": {
+    "view_image_inspected": true,
+    "original_design": true,
+    "complete_subject": true,
+    "distinct_silhouette": true,
+    "no_floor_or_external_shadow": true,
+    "sample_step_pixels": 8,
+    "transparent_samples": 14646,
+    "partial_alpha_samples": 10120,
+    "opaque_samples": 2,
+    "alpha_240_or_higher_samples": 9791,
+    "foreground_mean_alpha": 245.26,
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_preserved": true,
+    "notes": "Original generated PNG copied unchanged. Purple-grey mineral / ivory ceramic / oxidized copper / restrained peacock-teal accent matches B04 biome. No code-based image edits.",
+    "live_scene_review": "pending consumer integration",
+    "target_screen_size_pixels": [
+      100,
+      220
+    ]
+  }
+}

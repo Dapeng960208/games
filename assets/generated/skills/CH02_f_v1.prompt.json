@@ -1,0 +1,26 @@
+{
+  "asset_id": "CH02_f",
+  "name": "冷线伏板",
+  "output_file": "assets/generated/skills/CH02_f_v1.png",
+  "mode": "built-in image_gen",
+  "tool": "image_gen.imagegen",
+  "intent": "generate",
+  "transparent_background": true,
+  "source_generated_path": "C:/Users/13326/.codex/generated_images/01a0e81b-71f7-7982-9bbb-931d0c5522b7/exec-99736022-7a6d-4e99-ad8c-68cebb9cbb4b.png",
+  "reference_images": [
+    {
+      "path": "assets/generated/heroes/CH02_portrait_v1.png",
+      "role": "style and weapon identity reference only; not an edit target"
+    }
+  ],
+  "prompt": "Use case: stylized-concept. Asset type: transparent square skill icon for an original 2D industrial fantasy action game, readable at 48 x 48 pixels.\nPrimary request: create an entirely original skill icon for CH02 Cen Xian, skill \"Cold-Line Plate\". The main form is a single squat triangular mechanical trip-plate trap viewed at a readable three-quarter overhead angle. Thick aged-ivory bevel on three sides, deep ink-green flat triangular core, three chunky olive fold-out hinges. A small icy cyan diamond sensor sits in its center. One sharply bent luminous frost trip-line crosses from one corner to the opposing edge with two or three crisp angular ice crystals; the line stays close to the plate. The plate is clearly a portable trap with low profile, not a shield, chest, rune or magic spell. Strong triangle silhouette, generous internal planes and only three or four big construction details.\nInput image 1 is STYLE AND SUBJECT IDENTITY REFERENCE ONLY, NOT an edit target. Derive original surveyor machinery language and material palette from the reference character's rifle. Do not reproduce the person, portrait or firearm.\nStyle: premium hand-painted industrial fantasy game icon, clean simple silhouette, readable large dark and light shapes, careful brushwork and metal bevel highlights. Palette olive #72785E, ivory #DDD3B9 and ink green #294947; a restrained frosty cyan accent only on core and bent trip-line. Minimal tiny texture, no intricate gears.\nComposition: one isolated unified trap symbol centered on a square transparent canvas. Occupies 74 percent of canvas, at least 13 percent wholly empty margin on every edge. All triangle corners and small cold-line effect fully visible.\nConstraints: genuine transparent RGBA background. No ground, no cast shadow outside the object, no floor ring, no backdrop, no card, no border or frame, no vignette. No text, letters, numbers, logos, watermark or existing IP symbols. No excessive ice spikes, particle haze or background light rays. No multiple panels or contact sheet. Original polished production game skill icon.",
+  "qa": {
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "transparent_ratio": 0.7293,
+    "nearly_opaque_pixels": 411319,
+    "visible_edge_pixels": 0,
+    "visual_review": "Source viewed; coherent hand-painted original skill symbol, no text/frame, full silhouette visible. Q framing corrected via imagegen."
+  }
+}

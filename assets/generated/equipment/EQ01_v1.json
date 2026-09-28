@@ -1,0 +1,12 @@
+{
+  "id": "EQ01",
+  "name": "旧井定位芯",
+  "version": 1,
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: one premium inventory icon for an original industrial fantasy action RPG called Abyss Salvagers. Subject: Old-Shaft Locator Core (EQ01), a compact universally mountable weapon tuning module, NOT a gun or a sword. A sturdy square warm yellow-brass housing with chamfered corners, a single clearly visible ivory-white locating needle in a recessed open face, an offset blackened steel attachment rail, small ceramic bushings and two carefully arranged brass fasteners. The needle is the principal high-contrast focal point. Designed as an old mining survey instrument repurposed to stabilize any hero's weapon. Original sophisticated handmade salvage machinery, practical readable construction. Premium richly hand-painted stylized industrial fantasy, expressive painterly edges, carefully chosen material hierarchy, very restrained wear, warm copper rim lighting and cool steel shadows. Dark grey secondary metal, ochre brass, ivory needle; small muted teal glass reflection only. Large single isolated object centered, three-quarter view, complete silhouette and all attachments entirely inside canvas with generous transparent margin. High detail but clean shapes legible at 96px. Genuinely transparent alpha background. No scene, floor, pedestal, human hands or body, no UI, no typography, no letters, numbers, logos, watermark, or existing franchise designs.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e806-e28c-7c81-95b4-02acc6060bab/exec-bbdba220-4ac6-409e-a3b7-02b601522152.png",
+  "output_file": "assets/generated/equipment/EQ01_v1.png",
+  "design_role": "Universal weapon tuning module",
+  "qa": "Original square brass locator core with a single ivory locating needle, steel mount; clear isolated silhouette and no text."
+}

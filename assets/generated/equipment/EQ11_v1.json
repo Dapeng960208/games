@@ -1,0 +1,13 @@
+{
+  "id": "EQ11",
+  "name": "浅井护目罩",
+  "version": 1,
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: one premium inventory icon for an original industrial fantasy action RPG called Abyss Salvagers. Subject: Shallow-Shaft Eye Guard (EQ11), a SINGLE-OCULAR mining eye protector, one large round smoky blue-green glass lens in an old copper housing, asymmetrical compact crescent side guard protecting one eye, thick folded ivory cloth head strap looping naturally behind it. Do not make two goggles. The one lens and pale fabric loop must read clearly. Practical tiny hinge and dark steel fitting, soft woven cloth texture, a few stitches, controlled polished copper edges. Original sophisticated handmade old-miner salvage gear, consistent with a warm brass locator core series. Premium richly hand-painted stylized industrial fantasy, expressive painterly edges, careful material hierarchy, very restrained wear, warm copper rim lighting and cool steel shadows, charcoal copper and grey-blue glass balanced against ivory fabric. Large single isolated wearable equipment object centered, three-quarter view, fully visible complete strap and silhouette inside canvas with generous transparent margin. High detail but clean shapes legible at 96px. Genuinely transparent alpha background. No person, human hands or head, mannequin, scene, floor, pedestal, UI, typography, letters, numbers, logos, watermark, or existing franchise designs.",
+  "refinement_prompt": "Use case: background-extraction. Edit the supplied mining monocular equipment icon. Keep the exact original copper single-lens eye protector, ivory woven cloth strap loop, construction, colors, highlights and three-quarter composition unchanged. Remove EVERY trace of the blurred brown/grey background and its glow so that ALL empty space has genuinely zero alpha, both outside the equipment silhouette and THROUGH THE OPEN HOLE enclosed by its cloth strap. Retain only the solid eye-guard hardware and physical cloth strap. No shadow cloud or background halo anywhere. Transparent PNG cutout suitable for compositing on arbitrary colored game UI. Do not add objects or text.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e806-e28c-7c81-95b4-02acc6060bab/exec-2da90431-d054-482b-8a9b-10c5eedbf10d.png",
+  "output_file": "assets/generated/equipment/EQ11_v1.png",
+  "design_role": "Single-ocular copper eye guard with ivory cloth strap",
+  "qa": "Single lens, complete ivory strap loop, original hardware. Verified actual alpha=0 outside silhouette and through the strap hole at (1000,450) and (1100,480)."
+}

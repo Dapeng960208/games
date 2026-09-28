@@ -1,0 +1,46 @@
+{
+  "asset_id": "B03_wrecked_drone",
+  "version": 1,
+  "date": "2026-09-28",
+  "tool": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: ONE standalone original environmental obstacle sprite for a top-down 2D industrial fantasy mine action game. Three-quarter top-down low-perspective orthographic view, camera looking down about 55 degrees, strong visible top surfaces, no strong perspective convergence. Painterly polished game asset with rich but restrained material detail, old white enamel, cold blue-grey coal-black steel, tarnished oxidized copper, few tiny cool cyan indicator accents. Clear chunky silhouette readable at 100 to 220 screen pixels. Compact collision-friendly footprint, fully complete object with 12% transparent safe margin on every side. Genuine transparent background, object interior nearly fully opaque (alpha near 255), clean antialiased silhouette edge. No ground, floor tile, floating platform, external shadow, large cast shadow, haze, border, panel, typography, numerals, letters, brand, logo, watermark. Entirely original construction, no franchise design reference. Subject: a crashed original industrial surveying drone, a compact wide body with two short folded bent mechanical wings collapsed inward, one wing twisted up and one buckled downward, dented asymmetrical ivory and cold blue sheet-metal shell partly peeled back to expose a thick copper motor winding. Chunky enclosed propulsion pod at each shoulder with damaged dark fan inside, short broken tail tucked close, one cracked circular cyan sensor lens at front. Entire silhouette fits a compact wide oval collision footprint. The drone is plainly a wreck, grounded at rest but isolated with no ground. No military aircraft, no guns, no long extended wings, no loose scattered debris, no storage box silhouette.",
+  "edit_prompt": "Use case: background-extraction. Edit ONLY the background/alpha of the supplied image. Preserve the identical original industrial obstacle, original colors, original exact silhouette and perspective, all the same parts, no redesign. Remove ALL the smoky grey/brown halo, glow, vignette, floor and shadows outside the actual object's solid outline. Set every pixel outside the hard physical object silhouette to fully transparent alpha zero, including open holes in the valve wheel / spaces between components. Keep the physical object solid opaque and preserve clean antialiasing only at the immediate contour. No aura or feathered mask halo, no replacement background, no checkerboard painted into the image. Return isolated original prop PNG on genuine transparent background. Keep object complete and safe margin.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e81e-dd8b-7513-89db-bbfce972c051/exec-24601762-d212-4772-8c11-9cb29e3f943c.png",
+  "saved_path": "assets/generated/props/B03_wrecked_drone_v1.png",
+  "sha256": "3EF0C87FAEA860071CE10CDEEDBC8443019BDFE2A6E40A1ED3BFEE03FE8344F8",
+  "references_inspected": [
+    "assets/generated/heroes/CH03_combat_v1.png",
+    "assets/generated/ui/workshop_v1.png"
+  ],
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "qa": {
+    "view_image_inspected": true,
+    "original_design": true,
+    "complete_subject": true,
+    "distinct_silhouette": true,
+    "no_floor_or_external_shadow": true,
+    "sample_step_pixels": 8,
+    "transparent_samples": 14304,
+    "partial_alpha_samples": 10272,
+    "opaque_samples": 0,
+    "alpha_240_or_higher_samples": 9945,
+    "foreground_mean_alpha": 246.47,
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_preserved": true,
+    "notes": "Some source RGB pixels outside the object contain a halo when an alpha-ignoring viewer displays RGB. Actual sampled outside pixels at (768,50),(300,200),(100,180),(700,900) are alpha 0 for pipe/drone; PNG alpha is preserved. No code-based image edits.",
+    "live_scene_review": "pending consumer integration",
+    "target_screen_size_pixels": [
+      100,
+      220
+    ]
+  }
+}

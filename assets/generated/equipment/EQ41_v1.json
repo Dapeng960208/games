@@ -1,0 +1,12 @@
+{
+  "id": "EQ41",
+  "name": "折边矿靴",
+  "version": 1,
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: one premium inventory icon for an original industrial fantasy action RPG called Abyss Salvagers. Subject: Folded-Rim Mining Boots (EQ41), a matched pair of empty rugged ankle-high mining boots, broad squared GREY reinforced toe boxes, a distinctive externally folded COPPER RIM wrapping around the toe edge and sides like a strong protective flange. Heavy charcoal leather uppers, stone-grey rubber tread with deep practical ridges, ivory stitching, a plain stout ankle strap with dark steel closure; carefully shaped asymmetrical handmade copper seam tabs. Front boot angled outward three-quarter view showing the wide toe and folded copper rim, second boot slightly behind and upright so both hollow cuffs and the pair read clearly. Belongs to the same original old-miner starter series as coarse grey copper-buckle gloves, patched earth-grey survey jacket and warm brass survey instruments. Premium richly hand-painted stylized industrial fantasy, expressive painterly edges, deliberate silhouette and material hierarchy, realistic wear used sparingly, warm copper rim lighting and cool steel-grey shadow, beautiful sculpted volumes. Large isolated equipment pair centered, all soles/cuffs/attachments fully within canvas with generous transparent margin. High detail yet legible at 96px. Genuinely transparent alpha background, including all space between the boots. No legs, feet, person, mannequin, scene, ground, floor shadow, pedestal, UI, text, letters, numbers, logo, watermark or existing franchise designs.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e806-e28c-7c81-95b4-02acc6060bab/exec-2bed083c-7884-4252-b8f7-5599223b227f.png",
+  "output_file": "assets/generated/equipment/EQ41_v1.png",
+  "design_role": "Broad grey toe mining boots with externally folded copper guard rims",
+  "qa": "Distinct broad grey toes, copper flanges and strong rubber tread; complete empty boot pair with no person or text."
+}

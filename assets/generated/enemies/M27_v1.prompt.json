@@ -1,0 +1,40 @@
+{
+  "asset_id": "M27",
+  "display_name": "节拍装卸臂",
+  "biome_id": "B03",
+  "version": 1,
+  "asset_type": "enemy_battle_ready_illustration",
+  "use_case": "stylized-concept",
+  "generation_mode": "built_in_image_gen",
+  "tool": "image_gen.imagegen",
+  "transparent_background_requested": true,
+  "prompt": "Use case: stylized-concept. ONE original battle-ready enemy sprite illustration for industrial fantasy action RPG, M27 Rhythmic Loading Arm from a powerless underground hangar. An unmistakable eccentric silhouette: ONE LONG articulated loading CLAMP ARM mounted off-center on a low ROUND rotary disc supported by exactly THREE short splayed utility feet. No torso, head, second arm or humanoid anatomy. Raised bent arm pauses mid-beat ready to sweep forward then sideways; oversized two-jaw industrial clamp at its tip with thick gripping pads, hinge axes and hydraulic cylinders clearly explain its two-stage mechanical sweep. Exposed rotary indexing wheel at base has broad physical notches, no painted numbers. Low circular chassis with three feet all visibly separate, off-center angled boom creates open negative space. Original salvage machine animated by sparse mineral-organic fibers near hydraulics; coal-black steel, worn ochre frame panels, oxidized copper lines, ivory bearing collars and a tiny amber core. Premium richly hand-painted stylized industrial-fantasy, beautiful believable engineering, broad clean painterly light/shadow and tactile material layers, detail concentrated at functional joints. Elevated three-quarter camera looking down about 40 degrees so the round three-foot base reads clearly. Entire long clamp, raised boom and all feet fully framed with generous transparent margin, clean silhouette identifiable at 70 pixels. Solid near-opaque subject on genuine transparent alpha. No numbered attack sectors, effects, floor, cast shadow, platform, scene, lettering, labels, logo, UI, watermark or resemblance to existing game characters.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-c9467f2d-cf45-4a5c-a1cb-3661162620a9.png",
+  "saved_path": "assets/generated/enemies/M27_v1.png",
+  "width": 1312,
+  "height": 1199,
+  "sha256": "59AD0DB8EB2514A557B7E088CDF5D09B576630260CB6575407A3FFBF4E15CF5D",
+  "design_sources": [
+    "docs/IMAGEGEN_ART_DIRECTION.md",
+    "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+    "data/enemies.json"
+  ],
+  "alpha_validation": {
+    "format": "Format32bppArgb",
+    "sample_stride": 8,
+    "transparent_samples": 16192,
+    "edge_or_low_alpha_samples": 624,
+    "near_opaque_samples": 7784,
+    "near_opaque_threshold": 240,
+    "max_alpha": 255,
+    "max_border_alpha": 1,
+    "near_opaque_border_pixels": 0,
+    "notes": "Original generated alpha preserved; broad subject is nearly opaque. Boundary has only trace low-alpha generation noise, not opaque clipping."
+  },
+  "visual_inspection": [
+    "One long clamp arm is mounted on a low rotary disc with three distinct feet.",
+    "Raised eccentric arm and functional pivots communicate two-stage sweep.",
+    "Whole clamp and chassis visible, no numbering or telegraph sectors baked into art."
+  ],
+  "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+}
