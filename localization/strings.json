@@ -1,0 +1,354 @@
+{
+  "TITLE": {
+    "zh_CN": "深渊拾荒者",
+    "en": "ABYSS SALVAGER"
+  },
+  "SUBTITLE": {
+    "zh_CN": "ABYSS SALVAGER  /  裂灯矿井",
+    "en": "THE FRACTURED LANTERN MINE"
+  },
+  "TAGLINE": {
+    "zh_CN": "提灯尚亮，就还有归途。",
+    "en": "While the lantern burns, there is a way home."
+  },
+  "PROTOTYPE": {
+    "zh_CN": "M1 · 单人原型  /  键盘与鼠标",
+    "en": "M1 · SINGLE-PLAYER PROTOTYPE / KEYBOARD + MOUSE"
+  },
+  "CONTINUE": {
+    "zh_CN": "继续 · 返回营地",
+    "en": "CONTINUE TO CAMP"
+  },
+  "NEW_GAME": {
+    "zh_CN": "建立拾荒者档案",
+    "en": "NEW SALVAGER"
+  },
+  "SETTINGS": {
+    "zh_CN": "设置与操作",
+    "en": "SETTINGS & CONTROLS"
+  },
+  "QUIT": {
+    "zh_CN": "退出游戏",
+    "en": "QUIT GAME"
+  },
+  "NO_PROFILE": {
+    "zh_CN": "尚无永久档案，请先建立拾荒者档案。",
+    "en": "No profile yet. Create a salvager to begin."
+  },
+  "CAMP": {
+    "zh_CN": "地表营地",
+    "en": "SURFACE CAMP"
+  },
+  "CAMP_SUB": {
+    "zh_CN": "升降机已就位  /  裂灯矿井入口",
+    "en": "LIFT READY / FRACTURED LANTERN ENTRANCE"
+  },
+  "WAREHOUSE": {
+    "zh_CN": "仓库废金",
+    "en": "BANKED SCRAP"
+  },
+  "BANK_VALUE": {
+    "zh_CN": "{gold}",
+    "en": "{gold}"
+  },
+  "PROFILE_STATS": {
+    "zh_CN": "已完成远征 {runs} 次",
+    "en": "{runs} expeditions settled"
+  },
+  "LOADOUT": {
+    "zh_CN": "拾荒者 · 火花发射器",
+    "en": "SALVAGER · SPARK CASTER"
+  },
+  "LOADOUT_NOTE": {
+    "zh_CN": "生命 100  /  角色与起始武器永久保留",
+    "en": "100 health / Your salvager and starter weapon are permanent"
+  },
+  "DISCOVERIES": {
+    "zh_CN": "永久发现记录",
+    "en": "PERMANENT DISCOVERIES"
+  },
+  "UNDISCOVERED": {
+    "zh_CN": "未发现",
+    "en": "Undiscovered"
+  },
+  "DISCOVERED": {
+    "zh_CN": "已归档",
+    "en": "Archived"
+  },
+  "START": {
+    "zh_CN": "乘升降机 · 开始远征",
+    "en": "TAKE THE LIFT · DEPART"
+  },
+  "MAIN_MENU": {
+    "zh_CN": "返回主菜单",
+    "en": "MAIN MENU"
+  },
+  "RULES": {
+    "zh_CN": "撤离带回 100% 废金；死亡保留 20%（向下取整）。\n本局遗物在结束后清空。",
+    "en": "Extract with 100% of your scrap; death keeps 20%, rounded down.\nRun relics are cleared when the expedition ends."
+  },
+  "FIELD_NOTE": {
+    "zh_CN": "矿井记录  /  01\n\n三座遗物装置仍有余光。靠近后按 E 拾取，改变火花弹的攻击。\n\n击倒守卫，回收废金，再回到西侧升降机撤离。",
+    "en": "FIELD NOTE / 01\n\nThree relic stations still glow. Approach and press E to alter your spark caster.\n\nDefeat the wardens, collect their scrap, and return to the western lift."
+  },
+  "REGION": {
+    "zh_CN": "裂灯矿井 / 测试井室 01",
+    "en": "FRACTURED LANTERN / CHAMBER 01"
+  },
+  "HEALTH": {
+    "zh_CN": "生命  {hp} / {max}",
+    "en": "HEALTH  {hp} / {max}"
+  },
+  "CARRIED": {
+    "zh_CN": "携带废金  {gold}",
+    "en": "CARRIED SCRAP  {gold}"
+  },
+  "RETAINED": {
+    "zh_CN": "死亡保留  {gold}",
+    "en": "KEPT ON DEATH  {gold}"
+  },
+  "ACTIONS": {
+    "zh_CN": "WASD 移动  ·  鼠标瞄准 / 左键连射  ·  空格冲刺  ·  E 交互",
+    "en": "WASD MOVE · MOUSE AIM / LMB FIRE · SPACE DASH · E INTERACT"
+  },
+  "HUD_HINT": {
+    "zh_CN": "Tab 遗物详情  /  Esc 暂停",
+    "en": "TAB RELICS / ESC PAUSE"
+  },
+  "DASH_READY": {
+    "zh_CN": "冲刺就绪",
+    "en": "DASH READY"
+  },
+  "DASH_COOLDOWN": {
+    "zh_CN": "冲刺 {time}s",
+    "en": "DASH {time}s"
+  },
+  "NO_RELICS": {
+    "zh_CN": "尚未携带遗物 · 靠近发光装置按 E 拾取",
+    "en": "NO RELICS · APPROACH A GLOWING STATION AND PRESS E"
+  },
+  "RELIC_SPLIT_NAME": {
+    "zh_CN": "分裂镜片",
+    "en": "SPLIT LENS"
+  },
+  "RELIC_EMBER_NAME": {
+    "zh_CN": "余烬灯芯",
+    "en": "EMBER WICK"
+  },
+  "RELIC_ARC_NAME": {
+    "zh_CN": "弧电线圈",
+    "en": "ARC COIL"
+  },
+  "RELIC_SPLIT_DESC": {
+    "zh_CN": "主弹首次命中产生 2 枚侧向子弹，各造成基础伤害的 40%。子弹不能继续分裂。",
+    "en": "The first main-shot hit creates 2 side projectiles, each dealing 40% base damage. Child projectiles cannot split again."
+  },
+  "RELIC_EMBER_DESC": {
+    "zh_CN": "武器弹命中附加燃烧，每秒 3 点伤害，持续 3 秒。再次命中只刷新时长，不叠层。",
+    "en": "Weapon hits apply a 3-second burn for 3 damage per second. Further hits refresh its duration without stacking."
+  },
+  "RELIC_ARC_DESC": {
+    "zh_CN": "每第 3 次普攻主弹首次命中触发电弧，连接最多 2 个其他目标，各造成基础伤害的 35%。",
+    "en": "Every third main shot arcs on its first hit to up to 2 other nearby targets, each for 35% base damage."
+  },
+  "INTERACT_EXTRACT": {
+    "zh_CN": "[E] 升降机 · 撤离",
+    "en": "[E] LIFT · EXTRACT"
+  },
+  "INTERACT_RELIC": {
+    "zh_CN": "[E] 拾取 {name}",
+    "en": "[E] TAKE {name}"
+  },
+  "PAUSED": {
+    "zh_CN": "提灯暂歇",
+    "en": "LANTERN AT REST"
+  },
+  "PAUSED_NOTE": {
+    "zh_CN": "战斗已暂停。返回后松开操作键，再继续行动。",
+    "en": "Combat is paused. Release action keys after resuming to continue."
+  },
+  "RESUME": {
+    "zh_CN": "继续远征",
+    "en": "RESUME"
+  },
+  "RELICS": {
+    "zh_CN": "本局遗物",
+    "en": "RUN RELICS"
+  },
+  "BACK": {
+    "zh_CN": "返回",
+    "en": "BACK"
+  },
+  "ABANDON": {
+    "zh_CN": "放弃远征",
+    "en": "ABANDON EXPEDITION"
+  },
+  "ABANDON_TITLE": {
+    "zh_CN": "放弃并结算？",
+    "en": "ABANDON AND SETTLE?"
+  },
+  "ABANDON_NOTE": {
+    "zh_CN": "本次不支持中途恢复。将按死亡规则结算：携带 {gold}，保留 {kept}，损失 {lost}。本局遗物清空。",
+    "en": "There is no mid-run resume. Death rules apply: {gold} carried, {kept} kept, {lost} lost. Run relics will be cleared."
+  },
+  "CONFIRM_ABANDON": {
+    "zh_CN": "确认放弃 · 按死亡规则结算",
+    "en": "CONFIRM · SETTLE AS DEATH"
+  },
+  "CANCEL": {
+    "zh_CN": "取消并返回",
+    "en": "CANCEL"
+  },
+  "EXTRACT_TITLE": {
+    "zh_CN": "带着发现回家",
+    "en": "BRING IT HOME"
+  },
+  "EXTRACT_NOTE": {
+    "zh_CN": "现在撤离可带回 {gold} 废金。\n若倒在井下，只能保留 {kept}。本局遗物结束后清空，发现记录永久保留。",
+    "en": "Extract now to bank {gold} scrap.\nIf you fall, only {kept} survives. Run relics are cleared; their discovery records are permanent."
+  },
+  "CONFIRM_EXTRACT": {
+    "zh_CN": "启动升降机 · 撤离",
+    "en": "ACTIVATE LIFT · EXTRACT"
+  },
+  "EXTRACTED": {
+    "zh_CN": "平安归来",
+    "en": "SAFELY EXTRACTED"
+  },
+  "DEATH": {
+    "zh_CN": "提灯熄灭",
+    "en": "LANTERN EXTINGUISHED"
+  },
+  "ABANDONED": {
+    "zh_CN": "远征已放弃",
+    "en": "EXPEDITION ABANDONED"
+  },
+  "SETTLED": {
+    "zh_CN": "结算已保存 · 奖励已入账",
+    "en": "SETTLEMENT SAVED · REWARDS BANKED"
+  },
+  "COLLECTED": {
+    "zh_CN": "本局收集",
+    "en": "SCRAP COLLECTED"
+  },
+  "KEPT": {
+    "zh_CN": "实际入库",
+    "en": "SCRAP BANKED"
+  },
+  "LOST": {
+    "zh_CN": "井下遗失",
+    "en": "SCRAP LOST"
+  },
+  "RESULT_STATS": {
+    "zh_CN": "击败守卫 {kills}  /  新发现 {discoveries}\n起始角色与武器保留，本局遗物已清空。",
+    "en": "Wardens defeated: {kills} / New discoveries: {discoveries}\nStarter gear retained. Run relics have been cleared."
+  },
+  "RETURN_CAMP": {
+    "zh_CN": "返回营地",
+    "en": "RETURN TO CAMP"
+  },
+  "NEW_CONFIRM_TITLE": {
+    "zh_CN": "重新建立档案？",
+    "en": "REPLACE THIS PROFILE?"
+  },
+  "NEW_CONFIRM_NOTE": {
+    "zh_CN": "将覆盖当前永久废金、发现记录与远征统计。此操作不能从游戏内撤销。",
+    "en": "This replaces your banked scrap, discoveries, and expedition history. It cannot be undone from the game."
+  },
+  "CONFIRM_NEW": {
+    "zh_CN": "确认覆盖并建立档案",
+    "en": "REPLACE PROFILE"
+  },
+  "LANGUAGE": {
+    "zh_CN": "语言 · 简体中文 → English",
+    "en": "LANGUAGE · English → 简体中文"
+  },
+  "FULLSCREEN_ON": {
+    "zh_CN": "显示 · 全屏（点击切换）",
+    "en": "DISPLAY · FULLSCREEN (TOGGLE)"
+  },
+  "FULLSCREEN_OFF": {
+    "zh_CN": "显示 · 窗口（点击切换）",
+    "en": "DISPLAY · WINDOWED (TOGGLE)"
+  },
+  "FX_ON": {
+    "zh_CN": "效果 · 低闪烁（已开启）",
+    "en": "EFFECTS · REDUCED FLASH (ON)"
+  },
+  "FX_OFF": {
+    "zh_CN": "效果 · 低闪烁（已关闭）",
+    "en": "EFFECTS · REDUCED FLASH (OFF)"
+  },
+  "CONTROLS": {
+    "zh_CN": "WASD 移动 · 鼠标瞄准 · 左键按住连续普攻\n空格冲刺 · E 交互 · Tab 遗物详情 · Esc 暂停 / 返回\n菜单：Tab / 方向键选中，Enter 确认。",
+    "en": "WASD move · Mouse aim · Hold LMB to fire\nSpace dash · E interact · Tab relics · Esc pause / back\nMenus: Tab / arrow keys to focus, Enter to confirm."
+  },
+  "ERROR_TITLE": {
+    "zh_CN": "存档尚未完成",
+    "en": "SAVE NOT COMPLETED"
+  },
+  "RETRY": {
+    "zh_CN": "重试保存结算",
+    "en": "RETRY SETTLEMENT"
+  },
+  "SAVE_ERROR": {
+    "zh_CN": "无法写入存档。请检查磁盘空间与目录权限，再重试。\n{error}",
+    "en": "Could not write the save. Check disk space and folder permissions, then retry.\n{error}"
+  },
+  "LAST_RUN": {
+    "zh_CN": "最近一次远征：入库 {gold} 废金",
+    "en": "LAST EXPEDITION: {gold} SCRAP BANKED"
+  },
+  "SAVED_WARNING": {
+    "zh_CN": "存档提示：{message}",
+    "en": "SAVE NOTICE: {message}"
+  },
+  "BANK_TOTAL": {
+    "zh_CN": "营地余额  {gold}",
+    "en": "CAMP BALANCE  {gold}"
+  },
+  "STORAGE_ABANDONED_RECOVERED": {
+    "zh_CN": "上次远征异常结束，已按死亡规则结算一次。",
+    "en": "The interrupted expedition was settled once using death rules."
+  },
+  "STORAGE_READ_FAILED": {
+    "zh_CN": "无法读取存档文件。",
+    "en": "Cannot read the save file."
+  },
+  "STORAGE_PRESERVE_FAILED": {
+    "zh_CN": "无法保留损坏的存档文件，已停止写入。",
+    "en": "Could not preserve the damaged save. Writes are stopped."
+  },
+  "STORAGE_CORRUPT_PRESERVED": {
+    "zh_CN": "损坏文件已保留供检查。",
+    "en": "The damaged file has been preserved for inspection."
+  },
+  "STORAGE_NO_VALID_PROFILE": {
+    "zh_CN": "没有可恢复的有效档案。损坏文件已保留，请检查存档目录。",
+    "en": "No valid profile could be recovered. Damaged files are preserved; inspect the save directory."
+  },
+  "STORAGE_RECOVERED": {
+    "zh_CN": "已从完整的备份事务恢复档案。",
+    "en": "The profile was recovered from a complete backup transaction."
+  },
+  "STORAGE_INVALID_DATA": {
+    "zh_CN": "存档数据未通过校验，未修改已保存档案。",
+    "en": "Save validation failed. The saved profile was not changed."
+  },
+  "STORAGE_WRITE_FAILED": {
+    "zh_CN": "写入失败，请检查磁盘空间与目录权限。",
+    "en": "Write failed. Check disk space and folder permissions."
+  },
+  "STORAGE_REPLACE_FAILED": {
+    "zh_CN": "存档替换未完成，可以重试。",
+    "en": "Save replacement did not finish. Please retry."
+  },
+  "STORAGE_DUPLICATE_RUN": {
+    "zh_CN": "此远征已经结算，不能再次发放奖励。",
+    "en": "This expedition was already settled. Rewards cannot be issued again."
+  },
+  "RELIC_ACQUIRED": {
+    "zh_CN": "已获得 · {name}  /  Tab 查看机制",
+    "en": "ACQUIRED · {name} / TAB TO INSPECT"
+  }
+}

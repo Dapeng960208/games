@@ -1,0 +1,6 @@
+.godot/
+tools/godot/
+tools/downloads/
+build/
+*.tmp
+artifacts/*_profile*

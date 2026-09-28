@@ -1,0 +1,22 @@
+Executed on Windows, 2026-09-28.
+Godot Engine v4.7.2.stable.official.ed1daf0bf
+Command arguments:
+--headless --path D:\dev\test-game --script res://tests/test_ui_edges.gd -- --test-profile=user://test_ui_edges_profile.json
+
+Actual final output: UI_EDGE_TEST_RESULT checks=62 failures=0
+Process exit code: 0
+
+Coverage exercised through the real main scene and InputEventKey:
+- 12 Tab and 12 Shift+Tab events keep focus in the top modal and reach all 4 settings buttons.
+- Esc restores the original camp focus.
+- Language, reduced effects, and fullscreen settings persist through profile reload.
+- Failed setting writes show a dismissible error, retain prior values, and succeed after repair.
+- Automatic death settlement write failure pauses combat behind a required retry modal.
+- Back and Esc cannot dismiss pending settlement; Enter retries after repair.
+- 19 carried scrap yields 3 retained scrap, once.
+- A settlement failure before UI subscription is detected when main is instantiated.
+- Startup abandonment retry retains 5 of 29 scrap, once.
+- Repaired permanent total is 8 across 2 runs; reload confirms no pending run.
+
+This was a headless engine test. It verifies input, focus, persistence, and state transitions;
+it does not verify visual fullscreen switching or human play comfort.

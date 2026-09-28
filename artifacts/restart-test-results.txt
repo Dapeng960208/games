@@ -1,0 +1,18 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+RESTART TEST write: 10/10 passed; profile=user://test_restart_1790586759777.json
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+RESTART TEST read: 8/8 passed; profile=user://test_restart_1790586759777.json
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+RESTART TEST read: 8/8 passed; profile=user://test_restart_1790586759777.json
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+RESTART TEST abrupt_write: 5/5 passed; profile=user://test_abrupt_1790586759777.json
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+RESTART TEST abrupt_read: 7/7 passed; profile=user://test_abrupt_1790586759777.json
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+RESTART TEST abrupt_read: 7/7 passed; profile=user://test_abrupt_1790586759777.json

@@ -1,0 +1,179 @@
+extends SceneTree
+## Real UI edge checks. Run only with a separate --test-profile containing test_.
+## Headless checks verify control/input/state behavior, not screen appearance.
+
+var checks := 0
+var failures := 0
+var app: Node
+var game: Node
+var healthy_path: String
+var blocked_path: String
+
+func _initialize() -> void:
+	call_deferred("run_checks")
+
+func check(condition: bool, description: String) -> void:
+	checks += 1
+	if condition:
+		print("PASS ", description)
+	else:
+		failures += 1
+		push_error("FAIL " + description)
+
+func frames(count: int = 2) -> void:
+	for _i in range(count):
+		await physics_frame
+		await process_frame
+
+func key(code: Key, shift: bool = false) -> void:
+	var pressed := InputEventKey.new()
+	pressed.keycode = code
+	pressed.physical_keycode = code
+	pressed.shift_pressed = shift
+	pressed.pressed = true
+	Input.parse_input_event(pressed)
+	await process_frame
+	var released := pressed.duplicate() as InputEventKey
+	released.pressed = false
+	Input.parse_input_event(released)
+	await frames(1)
+
+func top_contains_focus() -> bool:
+	if app.modals.is_empty():
+		return false
+	var focus := root.gui_get_focus_owner()
+	return is_instance_valid(focus) and app.modals[-1].node.is_ancestor_of(focus)
+
+func run_checks() -> void:
+	game = root.get_node("Game")
+	if not game.profile_path.contains("test_"):
+		push_error("Refusing UI edge tests without an isolated --test-profile containing test_")
+		quit(2)
+		return
+	healthy_path = game.profile_path
+	if game.run != null:
+		game.finish_run("abandoned")
+	check(game.new_profile(), "create isolated edge-test profile")
+	var fixture_dir := "user://test_ui_edges_" + str(Time.get_ticks_usec())
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(fixture_dir))
+	var blocker := FileAccess.open(fixture_dir + "/regular_file", FileAccess.WRITE)
+	check(blocker != null, "create deterministic storage-failure fixture")
+	if blocker == null:
+		quit(1)
+		return
+	blocker.store_string("A regular file cannot be a save directory.")
+	blocker.close()
+	blocked_path = fixture_dir + "/regular_file/profile.json"
+	app = load("res://scenes/main.tscn").instantiate()
+	root.add_child(app)
+	await frames()
+	await check_focus_and_settings()
+	await check_death_failure()
+	await check_startup_failure()
+	game.reload_profile()
+	check(game.profile.permanent_gold == 8 and game.profile.total_runs == 2,
+		"both repaired settlements persist exactly once")
+	check(game.run == null, "no pending expedition remains after repairs")
+	print("UI_EDGE_TEST_RESULT checks=", checks, " failures=", failures)
+	quit(1 if failures else 0)
+
+func check_focus_and_settings() -> void:
+	app.show_camp()
+	await frames()
+	var original_focus := root.gui_get_focus_owner()
+	app.show_settings()
+	await frames()
+	var focus_ids: Dictionary = {}
+	for reverse in [false, true]:
+		for _i in range(12):
+			await key(KEY_TAB, reverse)
+			check(top_contains_focus(), "Shift+Tab stays in top modal" if reverse else "Tab stays in top modal")
+			if root.gui_get_focus_owner() != null:
+				focus_ids[root.gui_get_focus_owner().get_instance_id()] = true
+	check(focus_ids.size() == 4, "keyboard traversal reaches all four settings buttons")
+	check(app.route == "camp" and app.modals.size() == 1, "keyboard traversal cannot activate a background route")
+	await key(KEY_ESCAPE)
+	check(app.modals.is_empty() and root.gui_get_focus_owner() == original_focus,
+		"Esc restores the original camp focus")
+	app.show_settings()
+	app._toggle_language()
+	await frames()
+	check(Words.locale == "en" and game.profile.settings.language == "en", "language setting changes live UI and profile")
+	app._toggle_fx()
+	await frames()
+	app._toggle_fullscreen()
+	await frames()
+	game.reload_profile()
+	check(game.profile.settings.reduced_fx and game.profile.settings.fullscreen and game.profile.settings.language == "en",
+		"all three settings survive reload")
+	for action in ["_toggle_language", "_toggle_fx", "_toggle_fullscreen"]:
+		var old_settings: Dictionary = game.profile.settings.duplicate(true)
+		var old_language: String = Words.locale
+		game._store.path = blocked_path
+		app.call(action)
+		await frames()
+		check(not game.last_error.is_empty() and app.modals.size() == 2,
+			"failed setting opens an error above settings: " + action)
+		check(not app.modals[-1].get("required", false) and top_contains_focus(),
+			"setting error is dismissible and owns keyboard focus: " + action)
+		check(game.profile.settings == old_settings and Words.locale == old_language,
+			"failed setting does not pretend to apply: " + action)
+		await key(KEY_ESCAPE)
+		check(app.modals.size() == 1 and top_contains_focus(), "setting error returns to its settings panel")
+		game._store.path = healthy_path
+	app._toggle_fx()
+	await frames()
+	check(game.last_error.is_empty() and not game.profile.settings.reduced_fx, "setting retry succeeds after storage repair")
+	app._pop_modal()
+	await frames()
+
+func check_death_failure() -> void:
+	app._start_run()
+	await frames()
+	check(game.run != null and app.pending_outcome.is_empty(), "new run clears old UI settlement intent")
+	check(game.add_gold(19), "collect known death-test scrap")
+	game._store.path = blocked_path
+	game.damage_player(1000)
+	await frames(3)
+	check(game.run != null and game.run.hp == 0 and game.profile.permanent_gold == 0,
+		"failed death keeps pending run without granting a reward")
+	check(app.pending_outcome == "death" and app.modals[-1].get("required", false) and paused,
+		"automatic death failure opens required retry and pauses combat")
+	var modal_count: int = app.modals.size()
+	app._pop_modal()
+	await key(KEY_ESCAPE)
+	check(app.modals.size() == modal_count and paused, "Back and Esc cannot dismiss failed settlement")
+	check(top_contains_focus(), "required retry owns keyboard focus")
+	game._store.path = healthy_path
+	await key(KEY_ENTER)
+	await frames(3)
+	check(app.route == "result" and game.run == null and not paused,
+		"keyboard retry completes death and opens result")
+	check(game.last_result.outcome == "death" and game.last_result.retained == 3 and game.profile.permanent_gold == 3,
+		"death retry retains floor(19*0.2), never full extraction")
+	game.finish_run("extracted")
+	check(game.profile.permanent_gold == 3 and game.profile.total_runs == 1, "repeated request after repaired death cannot repay")
+
+func check_startup_failure() -> void:
+	# Remove UI subscribers before failing settlement, as with an autoload before main._ready.
+	app.free()
+	await frames()
+	check(game.start_run() and game.add_gold(29), "prepare activity marker for startup failure")
+	game.run.hp = 0
+	game._store.path = blocked_path
+	check(game.finish_run("abandoned").is_empty(), "startup settlement can fail before a UI subscriber exists")
+	app = load("res://scenes/main.tscn").instantiate()
+	root.add_child(app)
+	await frames(3)
+	check(app.modals.size() == 1 and app.modals[-1].get("required", false) and paused,
+		"main startup detects the already-failed autoload settlement")
+	check(app.pending_outcome == "abandoned", "startup recovery keeps abandonment intent")
+	await key(KEY_ESCAPE)
+	check(app.modals.size() == 1 and paused, "startup retry cannot be bypassed into the menu")
+	game._store.path = healthy_path
+	await key(KEY_ENTER)
+	await frames(3)
+	check(app.route == "result" and game.run == null and game.last_result.outcome == "abandoned",
+		"startup retry opens a committed abandonment result")
+	check(game.last_result.retained == 5 and game.profile.permanent_gold == 8,
+		"startup retry banks floor(29*0.2) exactly once")

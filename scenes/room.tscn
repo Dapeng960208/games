@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/room.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/combat/mine_backdrop.gd" id="2"]
+
+[node name="MineRoom" type="Node2D"]
+process_mode = 1
+script = ExtResource("1")
+
+[node name="MineBackdrop" type="Node2D" parent="."]
+z_index = -20
+script = ExtResource("2")
+
+[node name="Enemies" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Projectiles" type="Node2D" parent="."]
+z_index = 3
