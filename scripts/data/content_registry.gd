@@ -5,7 +5,7 @@ extends RefCounted
 const SLOTS: Array[String] = ["weapon", "head", "chest", "hands", "feet", "charm"]
 const XP_THRESHOLDS: Array[int] = [0, 30, 70, 120, 170, 230, 290, 360, 630, 900, 1170, 1440, 1710, 1980, 2250, 2520, 2790, 3060, 3330, 3600]
 const UPGRADE_COSTS: Array[int] = [60, 100, 160, 240, 340]
-const STAT_KEYS: Array[String] = ["attack", "max_hp", "armor", "attack_speed", "move_speed", "crit_chance", "cooldown_reduction", "damage_bonus", "damage_reduction", "burn_damage", "corrosion_damage_bonus", "status_duration"]
+const STAT_KEYS: Array[String] = ["attack", "ability_power", "max_hp", "max_mana", "armor", "magic_resist", "armor_penetration", "magic_penetration", "crit_multiplier", "true_damage_bonus", "attack_speed", "move_speed", "crit_chance", "cooldown_reduction", "damage_bonus", "damage_reduction", "burn_damage", "corrosion_damage_bonus", "status_duration"]
 
 static var _heroes: Dictionary = _read_json("res://data/heroes.json")
 static var _equipment: Dictionary = _read_json("res://data/equipment.json")
@@ -84,7 +84,7 @@ static func validate() -> Array[String]:
 		for slot in ["q", "secondary", "f", "ultimate"]:
 			var skill: Dictionary = skills.get(slot, {}) if skills.get(slot, {}) is Dictionary else {}
 			_check_required(skill, ["name", "unlock", "cost", "cooldown", "description"], id + "/" + slot, errors)
-			if int(skill.get("unlock", 0)) != [2, 4, 6, 8][index]:
+			if int(skill.get("unlock", 0)) != [1, 2, 3, 4][index]:
 				errors.append(id + "/" + slot + ": invalid unlock level.")
 			if not _finite_number(skill.get("cost")) or float(skill.get("cost", -1)) < 0:
 				errors.append(id + "/" + slot + ": invalid resource cost.")
@@ -124,8 +124,8 @@ static func validate() -> Array[String]:
 		if definition.get("unlock_boss") != boss:
 			errors.append(id + ": incorrect catalog milestone.")
 		var stats: Dictionary = definition.get("base_stats", {}) if definition.get("base_stats") is Dictionary else {}
-		if stats.size() != 1:
-			errors.append(id + ": expected one upgradeable base attribute.")
+		if stats.is_empty() or stats.size() > 4:
+			errors.append(id + ": expected one to four upgradeable base attributes.")
 		for key in stats:
 			if key not in STAT_KEYS or not _finite_number(stats[key]) or float(stats[key]) <= 0:
 				errors.append(id + ": invalid base attribute " + str(key))

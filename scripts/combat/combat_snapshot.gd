@@ -11,9 +11,13 @@ extends RefCounted
 
 const VERSION := 1
 const LIMIT := 1000000000.0
+const Status = preload("res://scripts/combat/combat_status.gd")
+const Rules = preload("res://scripts/combat/equipment_effects.gd")
 const PLAYER_TIMERS := ["dash_cooldown", "shot_cooldown", "invulnerable", "resource_delay", "combat_time", "rage_hurt_cooldown", "passive_cooldown"]
 const SKILLS := ["q", "secondary", "f", "ultimate"]
-const STATES := ["burn", "shock", "chill", "corrosion"]
+# Keep the JSON validator aligned with the runtime reducer. Adding a supported
+# status does not alter the version-one shape or invalidate older snapshots.
+const STATES := Status.VALID_STATES
 const EFFECT_MAPS := ["cooldowns", "buffs", "windows", "rooms", "counts"]
 const EFFECT_HISTORIES := ["heal_history", "resource_history", "refund_history"]
 const EFFECT_NUMBERS := ["clock", "undamaged_time", "eq12_spent_at", "movement_time", "dash_time", "delayed_shield_at"]
@@ -34,6 +38,7 @@ static func capture(room: Node) -> Dictionary:
 	# Account for shield damage applied directly to RunState without mutating the
 	# source status. All source pools consume the same effective damage.
 	var external_damage: float = maxf(0.0, float(status.call("shield")) - game.run.shield)
+	Status.activate_prepared_guards(guards, external_damage)
 	for source: String in guards.keys():
 		guards[source].amount = maxf(0.0, float(guards[source].amount) - external_damage)
 		if source.begins_with("room_prop:") or float(guards[source].remaining) <= 0.0 or float(guards[source].amount) <= 0.0:
@@ -55,8 +60,95 @@ static func capture(room: Node) -> Dictionary:
 	equipment["room_low_shield_used"] = bool(effects.get("room_low_shield_used"))
 	equipment["room_first_kill_used"] = bool(effects.get("room_first_kill_used"))
 	equipment["adapter"] = {"clock":float(loadout.get("_clock")), "movement_time":float(loadout.get("_movement_time")), "event_serial":int(loadout.get("_event_serial")), "modifiers":loadout.get("_modifiers").duplicate(true)}
+	var source_writes: Dictionary = loadout.call("self_status_sources", status_data.states)
+	var source_known: bool = bool(loadout.get("_self_status_sources_known"))
+	if not source_known:
+		source_known = true
+		for id: String in ["damage_reduction", "invulnerable"]:
+			if status_data.states.has(id) and not source_writes.has(id):
+				source_known = false
+	if source_known:
+		equipment.adapter["self_status_sources"] = source_writes
 	var result: Dictionary = {"snapshot_version":VERSION, "mode":"safe_boundary", "hero_id":game.run.hero_id, "hp":game.run.hp, "resource":game.run.resource, "player":player, "status":status_data, "equipment":equipment}
+	# Runtime dictionary dot writes can create StringName keys. Normalize that
+	# engine-only key representation in the detached copy, not in live reducers;
+	# all value types and the strict JSON/schema validator remain unchanged.
+	result = _json_keys(result)
 	return result if validate(result, game.run.hero_id, game.run.stats) else {}
+
+## Pure safe-boundary replacement. Preserve absolute survival values and spent
+## rewards; only the new caps and the ownership of active benefits may change.
+static func for_loadout(snapshot: Dictionary, old_loadout: Dictionary, new_loadout: Dictionary, new_stats: Dictionary, hero_id: String, old_stats: Dictionary = {}) -> Dictionary:
+	var prior_stats: Dictionary = old_stats if not old_stats.is_empty() else {"max_hp":LIMIT, "resource_max":LIMIT}
+	if not validate(snapshot, hero_id, prior_stats) or not _number(new_stats.get("max_hp")) or float(new_stats.max_hp) <= 0.0 or not _number(new_stats.get("resource_max")):
+		return {}
+	if not loadout_source_error(snapshot, old_loadout, new_loadout).is_empty():
+		return {}
+	var result: Dictionary = snapshot.duplicate(true)
+	result.hp = minf(float(result.hp), float(new_stats.max_hp))
+	result.resource = minf(float(result.resource), float(new_stats.resource_max))
+	result.equipment = Rules.for_loadout(result.equipment, old_loadout, new_loadout)
+	var previous: Dictionary = Rules.loadout_binding(old_loadout)
+	var next: Dictionary = Rules.loadout_binding(new_loadout)
+	var guards: Dictionary = result.status.guards
+	for source: String in guards.keys():
+		var equipment_source: bool = source.begins_with("equipment:") or source.begins_with("set_")
+		if equipment_source and (not Rules.source_active(source, previous) or not Rules.source_active(source, next)):
+			guards.erase(source)
+			continue
+		var ratio: float = 0.35 if equipment_source else 0.15 if Status.is_prepared_supply_guard(source) else 0.5
+		guards[source].amount = minf(float(guards[source].amount), float(new_stats.max_hp) * ratio)
+	var writes: Dictionary = result.equipment.adapter.get("self_status_sources", {})
+	for id: String in writes.keys():
+		var origin: Dictionary = writes[id]
+		var state: Dictionary = result.status.states.get(id, {})
+		var owns_state: bool = not state.is_empty() and float(state.applied_at) == float(origin.applied_at) and float(state.power) == float(origin.power) and float(state.H) == float(origin.H)
+		if not Rules.source_active(str(origin.source), previous) or not Rules.source_active(str(origin.source), next):
+			if owns_state:
+				result.status.states.erase(id)
+				result.status.origins.erase(id)
+			writes.erase(id)
+		elif not owns_state:
+			writes.erase(id)
+	# Evaluate passive modifiers on detached rules. No advance(), event(), heal,
+	# shield, mana restore or room entry can occur while constructing this copy.
+	var reducer: RefCounted = Rules.new()
+	reducer.call("rebind", new_loadout, new_stats, str(new_stats.get("resource_type", "")))
+	for key: String in ["clock", "buffs", "windows"]:
+		reducer.set(key, result.equipment[key])
+	var shield: float = 0.0
+	for guard: Dictionary in guards.values():
+		if float(guard.remaining) > 0.0:
+			shield = maxf(shield, float(guard.amount))
+	var hero: Dictionary = Rules.Registry.hero(hero_id)
+	var context: Dictionary = {"hp":result.hp, "max_hp":new_stats.max_hp, "resource":result.resource, "resource_max":new_stats.resource_max, "resource_type":new_stats.get("resource_type", ""), "shield":shield, "current_speed":0.0, "base_speed":float(hero.get("move_speed", 220.0)), "nearby_burning":false, "self_chilled":result.status.states.has("chill") and float(result.status.states.get("chill", {}).get("remaining", 0.0)) > 0.0}
+	var modifiers: Dictionary = reducer.call("passive_modifiers", context)
+	for key: String in MODIFIERS:
+		result.equipment.adapter.modifiers[key] = float(modifiers[key])
+	return result if validate(result, hero_id, new_stats) else {}
+
+## Legacy v1 saves did not record who granted these two positive statuses.
+## Reject only an ambiguous removal instead of inventing an owner or retaining
+## an unequipped benefit. Once it expires a new capture becomes unambiguous.
+static func loadout_source_error(snapshot: Dictionary, old_loadout: Dictionary, new_loadout: Dictionary) -> String:
+	var equipment: Variant = snapshot.get("equipment", {})
+	var status_data: Variant = snapshot.get("status", {})
+	if not equipment is Dictionary or not status_data is Dictionary:
+		return ""
+	var adapter: Variant = equipment.get("adapter", {})
+	var states: Variant = status_data.get("states", {})
+	if not adapter is Dictionary or not states is Dictionary:
+		return ""
+	if adapter.has("self_status_sources"):
+		return ""
+	var previous: Dictionary = Rules.loadout_binding(old_loadout)
+	var next: Dictionary = Rules.loadout_binding(new_loadout)
+	for id: String in ["damage_reduction", "invulnerable"]:
+		var source: String = "EQ20" if id == "damage_reduction" else "EQ21"
+		var state: Variant = states.get(id, {})
+		if state is Dictionary and Rules.source_active(source, previous) and not Rules.source_active(source, next) and float(state.get("remaining", 0.0)) > 0.0:
+			return "旧存档无法确定当前临时增益的来源。本次请保持当前装备；新装备会保留为战利品，成功撤离后可在营地穿戴。"
+	return ""
 
 static func restore(room: Node, snapshot: Dictionary) -> bool:
 	var game: Node = _game()
@@ -74,6 +166,10 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	var status: RefCounted = actor.get("status")
 	var loadout: RefCounted = actor.get("loadout")
 	var effects: RefCounted = loadout.get("effects")
+	var binding: Dictionary = Rules.loadout_binding(game.run.loadout_snapshot)
+	var rebound: bool = effects.get("equipped") != binding.equipped or effects.get("set_counts") != binding.set_counts or effects.get("stats") != game.run.stats
+	if rebound:
+		loadout.call("rebind", game.run.loadout_snapshot, game.run.stats)
 	actor.call("cancel_actions")
 	actor.set("dash_remaining", 0.0)
 	actor.set("dash_elapsed", 0.0)
@@ -122,12 +218,16 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	loadout.set("_movement_time", float(equipment.adapter.movement_time))
 	loadout.set("_event_serial", int(equipment.adapter.event_serial))
 	loadout.set("_modifiers", equipment.adapter.modifiers.duplicate(true))
+	loadout.set("_self_status_sources", equipment.adapter.get("self_status_sources", {}).duplicate(true))
+	loadout.set("_self_status_sources_known", equipment.adapter.has("self_status_sources"))
 	loadout.set("_last_position", actor.get("position"))
 	loadout.set("_current_speed", 0.0)
 	loadout.set("_applying_depth", 0)
-	game.run.hp = float(snapshot.hp)
-	game.run.resource = float(snapshot.resource)
+	game.run.hp = minf(float(snapshot.hp), game.run.max_hp)
+	game.run.resource = minf(float(snapshot.resource), float(game.run.stats.resource_max))
 	game.run.shield = float(status.call("shield"))
+	if rebound:
+		loadout.call("refresh_modifiers")
 	actor.queue_redraw()
 	return true
 
@@ -165,7 +265,9 @@ static func validate(value: Variant, hero_id: String, stats: Dictionary, fresh_a
 		return false
 	if value.get("snapshot_version") != VERSION or value.get("hero_id") != hero_id or hero_id not in ["CH01", "CH02", "CH03"]:
 		return false
-	if not _number(value.get("hp"), float(stats.get("max_hp", 0.0))) or float(value.hp) <= 0.0 or not _number(value.get("resource"), float(stats.get("resource_max", 0.0))):
+	# JSON's decimal roundtrip can place an exactly-full fractional bar a few
+	# ulps above its recomputed cap. Accept that precision error, never extra HP.
+	if not _number(value.get("hp"), float(stats.get("max_hp", 0.0)) + 0.00001) or float(value.hp) <= 0.0 or not _number(value.get("resource"), float(stats.get("resource_max", 0.0)) + 0.00001):
 		return false
 	if value.get("mode") == "fresh_entry":
 		return fresh_allowed and _keys(value, ["snapshot_version", "mode", "hero_id", "hp", "resource"]) and is_equal_approx(float(value.hp), float(stats.get("max_hp", 0.0))) and is_equal_approx(float(value.resource), float(stats.get("starting_resource", 0.0)))
@@ -197,6 +299,8 @@ static func _status_valid(value: Variant, maximum_hp: float) -> bool:
 		if source.is_empty() or source.begins_with("room_prop:") or not guard is Dictionary or not _keys(guard, ["amount", "remaining"]): return false
 		var cap: float = maximum_hp * (0.35 if source.begins_with("set_") or source.begins_with("equipment:") else 0.5)
 		if not _number(guard.amount, cap + 0.00001) or not _number(guard.remaining, 300.0): return false
+		if source.begins_with(Status.SUPPLY_READY_PREFIX):
+			if not Status.is_prepared_supply_guard(source) or not is_equal_approx(float(guard.remaining), Status.SUPPLY_GUARD_SECONDS) or float(guard.amount) > maximum_hp * 0.15 + 0.00001: return false
 	for id: String in value.origins:
 		if not value.states.has(id) or not _vector_valid(value.origins[id], 1000000.0): return false
 	return true
@@ -228,7 +332,16 @@ static func _equipment_valid(value: Variant) -> bool:
 			if not entry is Dictionary or not _keys(entry, ["time", "amount"]) or not _number(entry.time, float(value.clock) + 0.00001) or not _number(entry.amount, 1000000.0) or float(entry.time) < previous: return false
 			previous = float(entry.time)
 	var adapter: Variant = value.adapter
-	if not adapter is Dictionary or not _keys(adapter, ["clock", "movement_time", "event_serial", "modifiers"]): return false
+	if not adapter is Dictionary: return false
+	var adapter_keys: Array = ["clock", "movement_time", "event_serial", "modifiers"]
+	if adapter.has("self_status_sources"):
+		adapter_keys.append("self_status_sources")
+		if not adapter.self_status_sources is Dictionary or adapter.self_status_sources.size() > 2: return false
+		for id: String in adapter.self_status_sources:
+			var origin: Variant = adapter.self_status_sources[id]
+			if id not in ["damage_reduction", "invulnerable"] or not origin is Dictionary or not _keys(origin, ["source", "applied_at", "power", "H"]): return false
+			if origin.source != ("EQ20" if id == "damage_reduction" else "EQ21") or not _number(origin.applied_at) or not _number(origin.power, 1.0) or not _number(origin.H, 1000000.0): return false
+	if not _keys(adapter, adapter_keys): return false
 	if not _number(adapter.clock) or not _number(adapter.movement_time) or not _number(adapter.event_serial, LIMIT, true) or not adapter.modifiers is Dictionary or not _keys(adapter.modifiers, MODIFIERS): return false
 	for key: String in MODIFIERS:
 		if not _number(adapter.modifiers[key], 1.0): return false
@@ -280,3 +393,16 @@ static func _json(value: Variant, depth: int = 0) -> bool:
 			if not key is String or key.length() > 160 or not _json(value[key], depth + 1): return false
 		return true
 	return false
+
+static func _json_keys(value: Variant) -> Variant:
+	if value is Dictionary:
+		var result: Dictionary = {}
+		for key: Variant in value:
+			result[str(key) if key is StringName else key] = _json_keys(value[key])
+		return result
+	if value is Array:
+		var result: Array = []
+		for entry: Variant in value:
+			result.append(_json_keys(entry))
+		return result
+	return value

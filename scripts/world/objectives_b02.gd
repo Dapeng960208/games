@@ -25,6 +25,17 @@ func configure(next_host) -> void:
 		"L11": _configure_research()
 		"L12": _configure_acid()
 
+func configure_cleared(next_host, claimed_optional: Array = []) -> void:
+	host = next_host
+	clock = 0.0
+	finished = true
+	state = {"broken_walls": {}, "gutter_tick": 0.0, "optional": claimed_optional.has("research_2")}
+	targets.clear()
+	if str(host.room_id) == "L11":
+		host.required_count = 2
+		if not claimed_optional.has("research_2"):
+			_add_research_package(2, false)
+
 func tick(delta: float) -> void:
 	if finished or delta <= 0.0 or not is_finite(delta) or _paused():
 		return
@@ -99,13 +110,16 @@ func on_target_destroyed(id: String) -> void:
 				item.done = true
 				var package: Dictionary = host.element("research_" + id.trim_prefix("research_nest_"))
 				package.sealed = false
-				package.description = "幼巢已打开，按 E 回收研究包" + ("（可选）" if bool(package.optional) else "")
+				package.description = "幼巢已打开；清理敌群并完成目标后：22 金币 + 1 件进攻装备，装备撤离后保留" if bool(package.optional) else "幼巢已打开，按 E 回收研究包"
 
 func blocks_dash() -> bool:
 	return str(host.room_id) == "L07" and not str(state.get("carrying", "")).is_empty()
 
 func navigation_target() -> Dictionary:
 	if finished:
+		if str(host.room_id) == "L11" and host.optional_ids().has("research_2"):
+			var package: Dictionary = host.element("research_2")
+			return {"position": package.position, "id": "research_2", "title": "可选研究包 · 22 金币 + 进攻装备"}
 		return {"position":host.layout.exit,"title":"目标完成 · 前往出口"}
 	var ids: Array[String] = []
 	match str(host.room_id):
@@ -149,7 +163,7 @@ func status_text() -> String:
 		"L08": return "灯蕈 %d/3 · 踩住平台待伞盖展开，再按 E 采集" % host.completed_count
 		"L09": return "主囊 %d/2 · 攻击双环脉纹主囊；斑点假囊受击会鼓泡" % host.completed_count
 		"L10": return "净化风机 %d/3 · 顺序自选；旋转风标过载时 E 中断并重试" % host.completed_count
-		"L11": return "研究包 %d/2 · 普攻打开幼巢；第三包可选，薄墙可打破" % host.completed_count
+		"L11": return "研究包 %d/2 · 第三包：22 金币 + 进攻装备，清场后领取" % host.completed_count
 		"L12": return "反应槽 %d/2 · 开堰门引流；中央排空杆可降低收益提前完成" % host.completed_count
 	return ""
 
@@ -546,7 +560,7 @@ func _configure_research() -> void:
 	host.required_count = 2
 	state = {"broken_walls":{},"gutter_tick":2.5,"optional":false}
 	for index: int in 3:
-		host.add_element("research_%d" % index, host.point(index), "研究包 %d%s" % [index + 1, " · 可选" if index == 2 else " · 必需"], "research", ROCK, {"required":index < 2,"sealed":true,"optional":index == 2,"description":"先普攻打开旁边幼巢，研究包不会被摧毁"})
+		_add_research_package(index)
 		var id: String = "research_nest_%d" % index
 		_target(id, host.safe_point(host.point(index) + Vector2(-48.0, 0.0)), 45.0, NEST, "封存幼巢", {"required":false,"interactable":false,"description":"可用基础攻击打开；旁边的研究包保持完整"})
 	var obstacles: Array = host.layout.get("obstructions", []).duplicate()
@@ -559,6 +573,13 @@ func _configure_research() -> void:
 			face = rectangle.get_center() + Vector2(rectangle.size.x * 0.5 + 35.0, 0.0)
 		var id: String = "thin_wall_%d" % index
 		_target(id, host.safe_point(face), 55.0, ROOT, "薄菌墙 · 可破", {"required":false,"wall_rect":rectangle,"interactable":false,"description":"普攻或引导啮墙兽咬穿；破墙后沟槽会出现渗流预警"})
+
+func _add_research_package(index: int, sealed: bool = true) -> void:
+	var optional: bool = index == 2
+	var description: String = "先普攻打开旁边幼巢，研究包不会被摧毁"
+	if optional:
+		description = ("先普攻拆开幼巢；" if sealed else "幼巢已打开；") + "清理敌群并完成目标后：22 金币 + 1 件进攻装备，装备撤离后保留"
+	host.add_element("research_%d" % index, host.point(index), "研究包 %d%s" % [index + 1, " · 可选" if optional else " · 必需"], "research", ROCK, {"required": not optional, "sealed": sealed, "optional": optional, "optional_reward": optional, "description": description, "claim_message": "研究包已回收：22 金币 + 1 件进攻装备；装备需成功撤离保留", "claim_event": "optional_research_recovered", "reward_tendency": "offense_gold"})
 
 func _is_thin_wall(index: int, rectangle: Rect2) -> bool:
 	var kinds: Array = host.layout.get("obstruction_kinds", [])
@@ -577,9 +598,9 @@ func _interact_research(id: String) -> bool:
 		host.message = "研究包仍被幼巢包裹，先用普攻打开旁边的幼巢"
 		return false
 	if bool(item.optional):
-		item.done = true
+		if not host.claim_optional(id):
+			return false
 		state.optional = true
-		host.event("optional_research_recovered", {"id":id})
 	else:
 		host.set_done(id)
 	if int(host.completed_count) >= 2:

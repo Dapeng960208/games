@@ -8,9 +8,18 @@ extends RefCounted
 const EPSILON := 0.00001
 const SEQUENCES := {
 	"BO01": {1:["hammer_fan", "ladle_drag"], 2:["hammer_fan", "slag_lane", "ladle_drag"], 3:["hammer_fan", "ladle_drag", "back_heat"]},
-	"BO02": {1:["root_fork", "spore_pod"], 2:["root_fork", "root_link", "spore_pod"], 3:["root_fork", "spore_pod", "crown_open"]},
-	"BO03": {1:["glide", "capacitor_burst"], 2:["runway_pair", "capacitor_burst", "glide"], 3:["runway_pair", "sweep_land", "capacitor_burst"]},
-	"BO04": {1:["resonance_ring", "sound_blade"], 2:["replay_path", "resonance_ring", "sound_blade"], 3:["alternating_ring", "replay_path", "heart_crack"]},
+	"BO02": {1:["root_fork", "spore_pod", "brood_eggs", "root_link"], 2:["root_fork", "root_link", "spore_pod", "brood_eggs"], 3:["root_link", "spore_pod", "brood_eggs", "crown_open"]},
+	"BO03": {1:["glide", "capacitor_burst", "grave_recall"], 2:["runway_pair", "capacitor_burst", "glide", "grave_recall"], 3:["runway_pair", "sweep_land", "capacitor_burst", "grave_recall"]},
+	"BO04": {1:["resonance_ring", "sound_blade", "war_drum_rage"], 2:["replay_path", "resonance_ring", "sound_blade", "war_drum_rage"], 3:["alternating_ring", "replay_path", "heart_crack", "sound_blade", "war_drum_rage"]},
+}
+
+# Internal action keys remain stable for saved telemetry and arena fixtures;
+# this identity is the displayed/executable new theme, not a second boss set.
+const THEMED_ACTIONS := {
+	"BO01":{"hammer_fan":"gear_arm_sweep", "ladle_drag":"lightning_trace", "slag_lane":"solar_lightning_lane", "back_heat":"exposed_solar_core"},
+	"BO02":{"root_fork":"acid_fork", "spore_pod":"acid_pool", "root_link":"wing_cone", "crown_open":"amber_carapace_open", "brood_eggs":"brood_eggs"},
+	"BO03":{"glide":"stitch_pull", "capacitor_burst":"barrel_throw", "runway_pair":"stitch_lanes", "sweep_land":"mayor_body_slam", "grave_recall":"grave_recall"},
+	"BO04":{"resonance_ring":"ground_slam", "sound_blade":"warchief_charge", "replay_path":"rock_fissures", "alternating_ring":"outer_ground_slam", "heart_crack":"exhausted_ground_slam", "war_drum_rage":"war_drum_rage"},
 }
 
 var definition: Dictionary = {}
@@ -39,6 +48,12 @@ var _broken_bells: Array[int] = []
 var _trail_history: Array[Vector2] = []
 var _sample_time: float = 0.0
 var _ring_toggle: bool = false
+var rage_time: float = 0.0
+var brood_batches: int = 0
+var grave_recalls: int = 0
+var grave_sealed: bool = false
+var drums_broken: bool = false
+var _last_actor: WeakRef
 
 func configure(next_definition: Dictionary, seed_value: int = 0) -> void:
 	definition = next_definition.duplicate(true)
@@ -66,12 +81,20 @@ func configure(next_definition: Dictionary, seed_value: int = 0) -> void:
 	_trail_history.clear()
 	_sample_time = 0.0
 	_ring_toggle = false
+	rage_time = 0.0
+	brood_batches = 0
+	grave_recalls = 0
+	grave_sealed = false
+	drums_broken = false
+	_last_actor = null
 	_rng.seed = (seed_value if seed_value != 0 else boss_id.hash() ^ 0xB055)
 
 func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 	if stopped or delta <= 0.0 or not is_instance_valid(actor) or not _alive(victim):
 		return
 	elapsed += delta
+	_last_actor = weakref(actor)
+	rage_time = maxf(0.0, rage_time - delta)
 	_sample_victim(victim, delta)
 	_update_weakpoint(actor, delta)
 	var next_phase: int = _phase_for_ratio(_health_ratio(actor))
@@ -135,6 +158,9 @@ func weakpoint_open() -> bool:
 func incoming_damage_multiplier() -> float:
 	return 1.35 if weakpoint_open() else 1.0
 
+func outgoing_damage_multiplier() -> float:
+	return 1.25 if rage_time > 0.0 and not drums_broken else 1.0
+
 func on_damaged(actor: Node2D, context: Dictionary) -> void:
 	# Bosses never use a generic stagger meter. An explicit interrupt only works
 	# during an authored weakpoint window and converts its remainder to recovery.
@@ -151,6 +177,13 @@ func apply_arena_counter(counter_id: String, payload: Dictionary = {}) -> bool:
 	var parsed: Dictionary = _parse_counter(counter_id, payload)
 	var kind: String = str(parsed.kind)
 	var lane: int = int(parsed.lane)
+	# New arena hosts attach semantic names; legacy layout IDs keep their lane
+	# semantics and one-use accounting intact.
+	var theme: String = str(payload.get("thematic_counter", kind))
+	var aliases: Dictionary = {"solar_conduit":"cooling_valve", "shieldbreak":"cooling_valve", "brood_egg":"root_knot", "eggs":"root_knot", "grave_seal":"fuse_box", "graves":"fuse_box", "war_drum":"edge_bell", "barricade":"edge_bell"}
+	kind = str(aliases.get(kind, kind))
+	if lane < 0 and aliases.has(theme):
+		lane = 0
 	match boss_id:
 		"BO01":
 			if kind != "cooling_valve" or lane < 0 or lane > 2:
@@ -164,6 +197,7 @@ func apply_arena_counter(counter_id: String, payload: Dictionary = {}) -> bool:
 				state = &"recovery"
 				state_time = 0.8
 				state_duration = state_time
+			_counter_weakpoint("solar_core", 2.8)
 			return true
 		"BO02":
 			if kind != "root_knot" or lane < 0 or lane > 3 or lane in _broken_roots:
@@ -171,6 +205,7 @@ func apply_arena_counter(counter_id: String, payload: Dictionary = {}) -> bool:
 			_broken_roots.append(lane)
 			if current_action == "root_fork" and state in [&"telegraph",&"locked"]:
 				_remove_last_live_path()
+			_counter_weakpoint("broken_brood", 2.6)
 			return true
 		"BO03":
 			if kind != "fuse_box" or lane < 0 or lane > 3 or lane in _used_fuses:
@@ -187,6 +222,13 @@ func apply_arena_counter(counter_id: String, payload: Dictionary = {}) -> bool:
 					command.count = command.paths.size()
 					_disabled_lane = -1
 					_disabled_lane_uses = 0
+			grave_sealed = true
+			if current_action == "grave_recall" and state in [&"telegraph", &"locked"]:
+				command.clear()
+				state = &"recovery"
+				state_time = 1.0
+				state_duration = state_time
+			_counter_weakpoint("unstitched_mayor", 2.5)
 			return true
 		"BO04":
 			if kind != "edge_bell" or lane < 0 or lane > 3 or lane in _broken_bells:
@@ -194,6 +236,10 @@ func apply_arena_counter(counter_id: String, payload: Dictionary = {}) -> bool:
 			_broken_bells.append(lane)
 			if current_action == "replay_path" and state in [&"telegraph",&"locked"]:
 				_remove_last_live_path()
+			drums_broken = true
+			rage_time = 0.0
+			_cancel_drum_windup()
+			_counter_weakpoint("broken_war_drum", 2.5)
 			return true
 	return false
 
@@ -204,6 +250,8 @@ func counter_snapshot() -> Dictionary:
 		"broken_roots": _broken_roots.duplicate(),
 		"used_fuses": _used_fuses.duplicate(),
 		"broken_bells": _broken_bells.duplicate(),
+		"brood_batches":brood_batches, "grave_recalls":grave_recalls,
+		"grave_sealed":grave_sealed, "drums_broken":drums_broken,
 	}
 
 func combat_snapshot() -> Dictionary:
@@ -216,11 +264,14 @@ func combat_snapshot() -> Dictionary:
 		"weakpoint_remaining": weakpoint_time,
 		"telegraph": current_telegraph(),
 		"counters": counter_snapshot(),
+		"thematic_action":str(THEMED_ACTIONS.get(boss_id, {}).get(current_action, current_action)),
+		"rage_remaining":rage_time,
 	}
 
 func stop(actor: Node2D = null) -> void:
 	stopped = true
 	command.clear()
+	rage_time = 0.0
 	if is_instance_valid(actor):
 		_close_weakpoint(actor)
 
@@ -249,7 +300,8 @@ func _begin_action(actor: Node2D, victim: Node2D) -> void:
 		state_time = 0.35
 		state_duration = state_time
 		return
-	_retarget(actor, victim)
+	if bool(command.get("tracks_target", true)):
+		_retarget(actor, victim)
 	state = &"telegraph"
 	state_time = maxf(0.55, float(command.get("tell", 0.8)))
 	state_duration = state_time
@@ -257,6 +309,13 @@ func _begin_action(actor: Node2D, victim: Node2D) -> void:
 
 func _execute(actor: Node2D) -> void:
 	var released: Dictionary = command.duplicate(true)
+	if current_action == "brood_eggs":
+		brood_batches += 1
+	if current_action == "grave_recall":
+		grave_recalls += 1
+	if current_action == "war_drum_rage" and not drums_broken:
+		rage_time = 5.0
+	released["damage_multiplier"] = float(released.get("damage_multiplier", 1.0)) * outgoing_damage_multiplier()
 	if actor.has_method("cast_enemy_skill"):
 		actor.call("cast_enemy_skill", released)
 	var opening: float = maxf(0.0, float(released.get("weakpoint_duration", 0.0)))
@@ -280,16 +339,16 @@ func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 	var direction: Vector2 = origin.direction_to(target)
 	if direction.length_squared() <= EPSILON:
 		direction = Vector2.RIGHT
-	var base := {"action_id":action, "behavior_id":"boss_"+boss_id.to_lower(), "origin":origin, "target":target, "direction":direction, "tracks_target":true}
+	var base := {"action_id":action, "thematic_action":str(THEMED_ACTIONS.get(boss_id, {}).get(action, action)), "behavior_id":"boss_"+boss_id.to_lower(), "origin":origin, "target":target, "direction":direction, "tracks_target":true}
 	match action:
 		"hammer_fan":
 			base.merge({"kind":"melee", "shape":"cone", "range":255.0, "angle":1.85, "damage_multiplier":1.15, "tell":0.78, "lock":0.34, "recovery":1.0})
 		"ladle_drag":
-			base.merge({"kind":"ground_area", "shape":"line", "range":680.0, "width":58.0, "duration":3.2, "tick_interval":0.65, "max_active_hazards":2, "damage_multiplier":0.38, "status":{"id":"burn", "duration":2.4}, "tell":0.85, "lock":0.36, "recovery":1.05})
+			base.merge({"kind":"ground_area", "shape":"line", "range":680.0, "width":58.0, "duration":1.0, "tick_interval":0.65, "max_active_hazards":2, "damage_multiplier":0.75, "damage_type":"magic", "status":{"id":"shock", "duration":2.4}, "tell":0.95, "lock":0.4, "recovery":1.15})
 		"slag_lane":
 			var lane: int = _next_lane(3)
 			var lane_direction: Vector2 = Vector2.RIGHT.rotated(lane * TAU / 3.0)
-			base.merge({"kind":"ground_area", "shape":"line", "range":740.0, "width":82.0, "duration":3.8, "tick_interval":0.7, "max_active_hazards":2, "damage_multiplier":0.34, "status":{"id":"burn", "duration":2.6}, "direction":lane_direction, "target":origin+lane_direction*740.0, "lane_index":lane, "tracks_target":false, "tell":0.92, "lock":0.4, "recovery":1.0})
+			base.merge({"kind":"ground_area", "shape":"line", "range":740.0, "width":82.0, "duration":1.1, "tick_interval":0.7, "max_active_hazards":2, "damage_multiplier":0.7, "damage_type":"magic", "status":{"id":"shock", "duration":2.6}, "direction":lane_direction, "target":origin+lane_direction*740.0, "lane_index":lane, "tracks_target":false, "tell":1.0, "lock":0.4, "recovery":1.1})
 		"back_heat":
 			var safe: Vector2 = -direction
 			base.merge({"kind":"ground_area", "shape":"ring", "target":origin, "radius":285.0, "inner_radius":105.0, "ring_gap_degrees":92.0, "direction":safe, "duration":0.0, "damage_multiplier":1.0, "weakpoint_id":"furnace_back", "weakpoint_duration":2.1, "tracks_target":true, "tell":1.0, "lock":0.42, "recovery":2.1})
@@ -300,25 +359,38 @@ func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 		"spore_pod":
 			base.merge({"kind":"ground_area", "shape":"circle", "targets":[target], "radius":105.0, "duration":3.3, "tick_interval":0.65, "max_active_hazards":2, "lob":true, "damage_multiplier":0.42, "status":{"id":"corrosion", "duration":3.0}, "tell":0.88, "lock":0.4, "recovery":1.15})
 		"root_link":
-			var root_lane: int = _next_available(4, _broken_roots)
-			var root_direction: Vector2 = Vector2.RIGHT.rotated(root_lane * PI * 0.5 + PI * 0.25)
-			base.merge({"kind":"ground_area", "shape":"line", "range":720.0, "width":68.0, "duration":2.8, "tick_interval":0.7, "damage_multiplier":0.36, "status":{"id":"corrosion", "duration":2.6}, "direction":root_direction, "target":origin+root_direction*720.0, "lane_index":root_lane, "tracks_target":false, "tell":0.9, "lock":0.38, "recovery":1.0})
+			base.merge({"kind":"melee", "shape":"cone", "range":350.0, "angle":1.6, "damage_multiplier":0.9, "status":{"id":"slow", "duration":0.9, "magnitude":0.78}, "tell":1.0, "lock":0.4, "recovery":1.25})
+		"brood_eggs":
+			if brood_batches >= int(definition.get("brood_batch_limit", 3)):
+				return {}
+			base.merge({"kind":"summon", "shape":"circle", "target":origin+direction*180.0, "targets":[origin+direction*170.0+direction.orthogonal()*72.0, origin+direction*170.0-direction.orthogonal()*72.0], "radius":46.0, "count":2, "max_alive":2, "summon_enemy_id":"M14", "hatch_delay":2.2, "pod_health":40.0, "pod_break_armor_loss":2.0, "damage_multiplier":0.0, "tracks_target":false, "tell":1.0, "lock":0.35, "recovery":2.6})
 		"crown_open":
 			base.merge({"kind":"ground_area", "shape":"ring", "target":origin, "radius":260.0, "inner_radius":110.0, "ring_gap_degrees":78.0, "damage_multiplier":0.9, "duration":0.0, "weakpoint_id":"open_crown", "weakpoint_duration":2.35, "tell":0.95, "lock":0.42, "recovery":2.35})
 		"glide":
-			base.merge({"kind":"charge", "shape":"line", "range":570.0, "travel_distance":570.0, "width":72.0, "radius":36.0, "speed":510.0, "damage_multiplier":1.0, "tell":0.82, "lock":0.4, "recovery":1.15})
+			base.merge({"kind":"pull", "shape":"line", "range":500.0, "width":62.0, "pull_distance":85.0, "damage_multiplier":0.6, "tell":1.0, "lock":0.42, "recovery":1.2})
 		"capacitor_burst":
-			base.merge({"kind":"projectile", "shape":"line", "range":880.0, "count":4, "projectile_angles":[-27.0,-9.0,9.0,27.0], "width":18.0, "speed":560.0, "projectile_radius":8.0, "damage_multiplier":0.58, "status":{"id":"shock", "duration":2.6}, "tell":0.9, "lock":0.38, "recovery":1.05})
+			base.merge({"kind":"projectile", "shape":"line", "range":800.0, "count":1, "width":38.0, "speed":420.0, "projectile_radius":19.0, "damage_multiplier":0.95, "tell":1.0, "lock":0.4, "recovery":1.2})
+		"grave_recall":
+			if grave_sealed or grave_recalls >= int(definition.get("grave_recall_limit", 2)):
+				return {}
+			if actor.has_method("can_recall_grave") and not bool(actor.can_recall_grave()):
+				return {}
+			var grave_at: Vector2 = actor.grave_recall_target() if actor.has_method("grave_recall_target") else origin+direction.orthogonal()*180.0
+			base.merge({"kind":"summon", "shape":"circle", "target":grave_at, "radius":65.0, "count":1, "summon_enemy_id":"M27", "damage_multiplier":0.0, "tracks_target":false, "tell":1.25, "lock":0.4, "recovery":1.35})
 		"runway_pair":
 			var runway_lanes: Array[int] = _select_runway_lanes(2)
 			var runway_paths: Array = _runway_paths(origin, direction, runway_lanes)
-			base.merge({"kind":"projectile", "shape":"line", "paths":runway_paths, "lane_indices":runway_lanes, "count":runway_paths.size(), "width":30.0, "speed":720.0, "projectile_radius":12.0, "damage_multiplier":0.66, "status":{"id":"shock", "duration":2.4}, "tracks_target":true, "tell":0.95, "lock":0.42, "recovery":1.15})
+			base.merge({"kind":"projectile", "shape":"line", "paths":runway_paths, "lane_indices":runway_lanes, "count":runway_paths.size(), "width":30.0, "speed":420.0, "projectile_radius":12.0, "damage_multiplier":0.66, "status":{"id":"slow", "duration":1.0, "magnitude":0.82}, "tracks_target":true, "tell":1.05, "lock":0.42, "recovery":1.25})
 		"sweep_land":
 			base.merge({"kind":"charge", "shape":"line", "path_mode":"leap", "arc_height":0.0, "range":620.0, "travel_distance":620.0, "width":144.0, "radius":72.0, "speed":600.0, "damage_along_path":true, "landing_shape":"circle", "landing_only":false, "damage_multiplier":0.92, "tell":1.0, "lock":0.45, "recovery":3.3, "weakpoint_id":"landed_core", "weakpoint_delay":1.05, "weakpoint_duration":2.2})
 		"resonance_ring":
 			base.merge(_ring_command(origin, direction, false))
 		"sound_blade":
-			base.merge({"kind":"projectile", "shape":"line", "range":840.0, "count":1, "width":32.0, "speed":690.0, "projectile_radius":12.0, "damage_multiplier":0.84, "status":{"id":"shock", "duration":2.0}, "tell":0.82, "lock":0.36, "recovery":0.95})
+			base.merge({"kind":"charge", "shape":"line", "range":600.0, "travel_distance":600.0, "charge_past_target":true, "width":124.0, "radius":62.0, "speed":430.0, "damage_multiplier":1.05, "tell":1.1, "lock":0.45, "recovery":1.6})
+		"war_drum_rage":
+			if drums_broken:
+				return {}
+			base.merge({"kind":"haste", "shape":"circle", "target":origin, "radius":280.0, "max_targets":3, "duration":5.0, "multiplier":1.18, "damage_multiplier":0.0, "tracks_target":false, "tell":1.2, "lock":0.4, "recovery":1.2})
 		"replay_path":
 			var replay_paths: Array = _replay_paths(victim.position, 2 if phase == 2 else 4)
 			base.merge({"kind":"projectile", "shape":"line", "paths":replay_paths, "count":replay_paths.size(), "width":28.0, "speed":470.0, "projectile_radius":11.0, "damage_multiplier":0.62, "tracks_target":false, "tell":1.05, "lock":0.45, "recovery":1.25})
@@ -357,7 +429,7 @@ func _retarget(actor: Node2D, victim: Node2D) -> void:
 			command.targets = [victim.position]
 	if shape == "line" and command.get("paths", []).is_empty():
 		var reach: float = float(command.get("range", actor.position.distance_to(victim.position)))
-		if str(command.get("kind", "")) == "charge":
+		if str(command.get("kind", "")) == "charge" and not bool(command.get("charge_past_target", false)):
 			reach = minf(reach, actor.position.distance_to(victim.position))
 		command.target = actor.position + Vector2(command.direction) * reach
 		command.points = [actor.position, command.target]
@@ -372,7 +444,9 @@ func _freeze_geometry(actor: Node2D, source: Dictionary) -> Dictionary:
 	var kind: String = str(result.get("kind", ""))
 	var shape: String = str(result.get("shape", ""))
 	if kind == "charge":
-		var distance: float = minf(float(result.get("travel_distance", result.get("range", 0.0))), result.origin.distance_to(Vector2(result.target)))
+		var distance: float = float(result.get("travel_distance", result.get("range", 0.0)))
+		if not bool(result.get("charge_past_target", false)):
+			distance = minf(distance, result.origin.distance_to(Vector2(result.target)))
 		result.travel_distance = distance
 		result.target = result.origin + result.direction * distance
 	if shape == "line" and result.get("paths", []).is_empty():
@@ -484,11 +558,24 @@ func _sample_victim(victim: Node2D, delta: float) -> void:
 		_trail_history.pop_front()
 
 func _update_weakpoint(actor: Node2D, delta: float) -> void:
+	if actor.has_meta("enemy_pod_broken"):
+		actor.remove_meta("enemy_pod_broken")
+		if boss_id == "BO02":
+			_open_weakpoint(actor, "broken_brood", 2.6)
 	if actor.has_meta("enemy_charge_wall_stop"):
 		actor.remove_meta("enemy_charge_wall_stop")
 		_pending_weakpoint = ""
 		_pending_weakpoint_time = 0.0
 		_pending_weakpoint_duration = 0.0
+		if boss_id == "BO04":
+			# Collision has already stopped the committed runtime motion. A real
+			# wall impact buys a full stunned recovery, never another attack.
+			command.clear()
+			state = &"recovery"
+			state_time = 1.8
+			state_duration = state_time
+			_open_weakpoint(actor, "wall_stunned_warchief", 1.8)
+			_set_actor_state(actor, &"recovery")
 	if not _pending_weakpoint.is_empty():
 		_pending_weakpoint_time = maxf(0.0, _pending_weakpoint_time - delta)
 		if _pending_weakpoint_time <= 0.0:
@@ -509,7 +596,7 @@ func _open_weakpoint(actor: Node2D, id: String, duration: float) -> void:
 	_pending_weakpoint_duration = 0.0
 	weakpoint = id
 	weakpoint_time = duration
-	if actor.has_method("boss_weakpoint_changed"):
+	if is_instance_valid(actor) and actor.has_method("boss_weakpoint_changed"):
 		actor.call("boss_weakpoint_changed", true, id, duration)
 
 func _close_weakpoint(actor: Node2D) -> void:
@@ -521,8 +608,39 @@ func _close_weakpoint(actor: Node2D) -> void:
 	var previous: String = weakpoint
 	weakpoint = ""
 	weakpoint_time = 0.0
-	if actor.has_method("boss_weakpoint_changed"):
+	if is_instance_valid(actor) and actor.has_method("boss_weakpoint_changed"):
 		actor.call("boss_weakpoint_changed", false, previous, 0.0)
+
+func _counter_weakpoint(id: String, duration: float) -> void:
+	var actor: Node2D = _last_actor.get_ref() as Node2D if _last_actor != null else null
+	_open_weakpoint(actor, id, duration)
+
+func apply_biome_counter(kind: String, duration: float = 2.6) -> bool:
+	if stopped or kind not in ["solar_conduit", "brood_egg", "grave_seal", "war_drum"]:
+		return false
+	var expected: String = {"BO01":"solar_conduit", "BO02":"brood_egg", "BO03":"grave_seal", "BO04":"war_drum"}.get(boss_id, "")
+	if kind != expected:
+		return false
+	if kind == "grave_seal":
+		grave_sealed = true
+		if current_action == "grave_recall" and state in [&"telegraph", &"locked"]:
+			command.clear()
+			state = &"recovery"
+			state_time = 1.0
+			state_duration = state_time
+	if kind == "war_drum":
+		drums_broken = true
+		rage_time = 0.0
+		_cancel_drum_windup()
+	_counter_weakpoint(kind, clampf(duration, 0.5, 6.0))
+	return true
+
+func _cancel_drum_windup() -> void:
+	if current_action != "war_drum_rage" or state not in [&"telegraph", &"locked"]: return
+	command.clear()
+	state = &"recovery"
+	state_time = 1.0
+	state_duration = state_time
 
 func _health_ratio(actor: Node2D) -> float:
 	var health_value: Variant = actor.get("health")

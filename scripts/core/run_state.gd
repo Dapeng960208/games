@@ -4,6 +4,8 @@ extends RefCounted
 ## it is deliberately not a room checkpoint or a promise of resume support.
 
 var id: String = ""
+# Demo state deliberately never enters a persisted receipt.
+var demo: bool = false
 var gold: int = 0
 var hp: float = Balance.PLAYER_HP
 var max_hp: float = Balance.PLAYER_HP

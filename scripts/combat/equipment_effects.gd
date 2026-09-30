@@ -33,7 +33,7 @@ extends RefCounted
 ## skill_cost is a pure preview; skill_cast consumes EQ56 only after paid success.
 
 const Registry = preload("res://scripts/data/content_registry.gd")
-const ENEMY_STATES: Array[String] = ["burn", "shock", "chill", "corrosion"]
+const ENEMY_STATES: Array[String] = ["burn", "shock", "chill", "corrosion", "bleed", "grievous"]
 const ACTIVE_SLOTS: Array[String] = ["Q", "right", "F", "R"]
 var clock: float = 0.0
 var equipped: Dictionary = {}
@@ -74,17 +74,9 @@ static func implemented_set_ids() -> Array[String]:
 func configure(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> void:
 	stats = resolved_stats.duplicate(true)
 	resource_type = type if type in ["rage", "energy", "mana"] else ""
-	equipped.clear()
-	set_counts.clear()
-	for slot in Registry.SLOTS:
-		var id: String = str(loadout.get(slot, ""))
-		var item: Dictionary = Registry.equipment(id)
-		if item.is_empty() or str(item.get("slot", "")) != slot or equipped.has(id):
-			continue
-		equipped[id] = true
-		var set_id: String = str(item.get("set_id", ""))
-		if not set_id.is_empty():
-			set_counts[set_id] = int(set_counts.get(set_id, 0)) + 1
+	var binding: Dictionary = loadout_binding(loadout)
+	equipped = binding.equipped
+	set_counts = binding.set_counts
 	clock = 0.0
 	for state in [cooldowns, buffs, windows, roots, rooms, deaths, counts, same_target, first_full_targets, shock_targets]:
 		state.clear()
@@ -100,6 +92,80 @@ func configure(loadout: Dictionary, resolved_stats: Dictionary, type: String) ->
 	room_first_kill_used = false
 	delayed_shield_at = -1.0
 
+## Bind rule identities without replaying entry, clearing ICDs or advancing time.
+## The caller restores a migrated snapshot after this when changing a live run.
+func rebind(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> void:
+	var previous: Dictionary = {"equipped":equipped.duplicate(), "set_counts":set_counts.duplicate()}
+	var next: Dictionary = loadout_binding(loadout)
+	for values: Dictionary in [buffs, windows, counts, same_target]:
+		_prune_loadout_sources(values, previous, next)
+	if not source_active("S05_6", previous) or not source_active("S05_6", next):
+		delayed_shield_at = -1.0
+	if not source_active("S02_6", previous) or not source_active("S02_6", next):
+		shock_targets.clear()
+	# Queued slot continuations belong to the old loadout. Consumed budgets and
+	# histories remain intact; safe-boundary restore clears these scene roots.
+	for root: Dictionary in roots.values():
+		root.erase("pending_context")
+		root.erase("pending_stage")
+	equipped = next.equipped
+	set_counts = next.set_counts
+	stats = resolved_stats.duplicate(true)
+	resource_type = type if type in ["rage", "energy", "mana"] else ""
+
+static func loadout_binding(loadout: Dictionary) -> Dictionary:
+	var items: Dictionary = {}
+	var sets: Dictionary = {}
+	for slot in Registry.SLOTS:
+		var id: String = str(loadout.get(slot, ""))
+		var item: Dictionary = Registry.equipment(id)
+		if item.is_empty() or str(item.get("slot", "")) != slot or items.has(id):
+			continue
+		items[id] = true
+		var set_id: String = str(item.get("set_id", ""))
+		if not set_id.is_empty():
+			sets[set_id] = int(sets.get(set_id, 0)) + 1
+	return {"equipped":items, "set_counts":sets}
+
+## IDs may carry a room/target suffix. Set sources require their exact tier,
+## so retaining two pieces never keeps a former four/six-piece benefit.
+static func source_active(source: String, binding: Dictionary) -> bool:
+	var id: String = source.trim_prefix("equipment:").trim_prefix("set_").get_slice(":", 0)
+	if id.begins_with("EQ"):
+		return bool(binding.get("equipped", {}).get(id, false))
+	var pieces: PackedStringArray = id.split("_")
+	return pieces.size() == 2 and pieces[0] in implemented_set_ids() and pieces[1] in ["2", "4", "6"] and int(binding.get("set_counts", {}).get(pieces[0], 0)) >= int(pieces[1])
+
+static func _prune_loadout_sources(values: Dictionary, previous: Dictionary, next: Dictionary) -> void:
+	for id: String in values.keys():
+		if not source_active(id, previous) or not source_active(id, next):
+			values.erase(id)
+
+## Pure save-state migration. Never clear cooldowns, consumed room flags or
+## rate-limit histories: taking an item off and on cannot replenish rewards.
+static func for_loadout(state: Dictionary, old_loadout: Dictionary, new_loadout: Dictionary) -> Dictionary:
+	var result: Dictionary = state.duplicate(true)
+	var previous: Dictionary = loadout_binding(old_loadout)
+	var next: Dictionary = loadout_binding(new_loadout)
+	# Older checkpoints used the shared dash timer for these two effects. Only
+	# a source worn on both sides may retain that unconsumed, remaining window.
+	for id: String in ["EQ60", "S08_4"]:
+		var until: float = float(result.dash_time) + (3.0 if id == "EQ60" else 2.0)
+		if not result.windows.has(id) and source_active(id, previous) and source_active(id, next) and until > float(result.clock):
+			result.windows[id] = until
+	for key: String in ["buffs", "windows", "counts"]:
+		_prune_loadout_sources(result[key], previous, next)
+	if not source_active("S05_6", previous) or not source_active("S05_6", next):
+		result.delayed_shield_at = -1.0
+	return result
+
+## Cache refresh only. Unlike advance(0), this cannot release a due shield or
+## refund command while the player is looking at the replacement card.
+func passive_modifiers(ctx: Dictionary) -> Dictionary:
+	var result: Dictionary = _empty()
+	_modifiers(ctx, result)
+	return _cap_modifiers(result)
+
 func _empty() -> Dictionary:
 	return {"damage_bonus":0.0, "crit_bonus":0.0, "attack_speed_bonus":0.0,
 		"move_speed_bonus":0.0, "damage_reduction_bonus":0.0,
@@ -107,7 +173,7 @@ func _empty() -> Dictionary:
 		"chill_duration_bonus":0.0, "cost_reduction":0.0, "resource_restore":0.0,
 		"resource_type":resource_type, "heal_ratio":0.0, "shield_ratio":0.0,
 		"shield_duration":4.0, "shields":[], "resume_after_statuses":false, "cooldown_refunds":[], "statuses":[],
-		"status_extensions":[], "bonus_hits":[], "triggered":[]}
+		"status_extensions":[], "self_statuses":[], "bonus_hits":[], "triggered":[]}
 
 func _has(id: String) -> bool:
 	return equipped.has(id)
@@ -166,7 +232,7 @@ func _modifiers(ctx: Dictionary, out: Dictionary) -> void:
 
 func _cap_modifiers(out: Dictionary) -> Dictionary:
 	out.damage_bonus = clampf(out.damage_bonus, 0.0, maxf(0.0, 0.60 - float(stats.get("damage_bonus", 0.0))))
-	out.crit_bonus = clampf(out.crit_bonus, 0.0, maxf(0.0, 0.45 - float(stats.get("crit_chance", 0.0))))
+	out.crit_bonus = clampf(out.crit_bonus, 0.0, maxf(0.0, 0.75 - float(stats.get("crit_chance", 0.0))))
 	out.attack_speed_bonus = clampf(out.attack_speed_bonus, 0.0, maxf(0.0, 0.60 - float(stats.get("attack_speed_bonus", 0.0))))
 	out.move_speed_bonus = clampf(out.move_speed_bonus, 0.0, maxf(0.0, 0.45 - float(stats.get("move_speed_bonus", 0.0))))
 	out.damage_reduction_bonus = clampf(out.damage_reduction_bonus, 0.0, maxf(0.0, 0.35 - float(stats.get("equipment_damage_reduction", 0.0))))
@@ -320,6 +386,7 @@ func _before(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 			windows.erase(id)
 		if _has("EQ01") and _consecutive("EQ01", target, 3):
 			out.damage_bonus += 0.08
+			root.flags["EQ01_bleed"] = true
 		if _has("EQ02") and bool(root.flags.EQ02) and _activate("EQ02", 4.0, root, out, false):
 			root.attack_modifiers.damage_bonus += 0.10
 		if _has("EQ08") and bool(root.flags.EQ08) and _activate("EQ08", 4.0, root, out, false):
@@ -358,10 +425,13 @@ func _after(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 		return
 	root.post_counted = true
 	var target: String = str(ctx.get("target_id", ""))
+	if _has("EQ01") and bool(root.flags.get("EQ01_bleed", false)) and _activate("EQ01_bleed", 0.0, root, out): _status(out, ctx, "bleed")
 	if _has("EQ03") and not _state(ctx, "burn") and _activate("EQ03:" + target, 4.0, root, out): _status(out, ctx, "burn")
 	if _has("EQ04") and _nth("EQ04", 3) and _activate("EQ04", 0.0, root, out): _status(out, ctx, "shock")
 	if _has("EQ05") and _nth("EQ05", 3) and _activate("EQ05", 0.0, root, out): _status(out, ctx, "chill")
-	if _has("EQ06") and _consecutive("EQ06", target, 3) and _activate("EQ06", 0.0, root, out): _status(out, ctx, "corrosion")
+	if _has("EQ06") and _consecutive("EQ06", target, 3) and _activate("EQ06", 0.0, root, out):
+		_status(out, ctx, "corrosion")
+		_status(out, ctx, "grievous")
 	if _has("EQ07") and _nth("EQ07", 4) and _activate("EQ07", 3.0, root, out): _shield(out, ctx, 0.03)
 	if _has("EQ10") and bool(root.flags.get("EQ10", false)) and _activate("EQ10", 6.0, root, out): _status(out, ctx, "shock")
 	if not out.statuses.is_empty():
@@ -416,7 +486,7 @@ func _after_charm(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 		if int(counts.get("EQ59", 0)) >= 3 and not _window("EQ59"): counts.EQ59 = 0
 		counts.EQ59 = 0 if critical else mini(3, int(counts.get("EQ59", 0)) + 1)
 		if int(counts.EQ59) >= 3: windows.EQ59 = clock + 3.0
-	if _has("EQ60") and clock - dash_time < 3.0 and _any_enemy_state(ctx.get("target_states", [])) and _activate("EQ60", 5.0, root, out, false): _buff("EQ60", "attack_speed_bonus", 0.05, 2.0)
+	if _has("EQ60") and _window("EQ60") and _any_enemy_state(ctx.get("target_states", [])) and _activate("EQ60", 5.0, root, out, false): _buff("EQ60", "attack_speed_bonus", 0.05, 2.0)
 	if applied.has("burn") and _has_set("S01", 4) and _activate("S01_4", 8.0, root, out, false): _buff("S01_4", "damage_bonus", 0.10, 3.0)
 	if _has_set("S02", 2) and _state(ctx, "shock"): _refund(out, ctx, root, "S02_2", 2.0, "dash", 0.15)
 	if _has_set("S02", 4) and _state(ctx, "shock"): _bonus(out, ctx, root, "S02_4", 4.0, 0.25, 2, true)
@@ -435,7 +505,7 @@ func _after_charm(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if _has_set("S07", 4) and critical and (_state(ctx, "chill") or _state(ctx, "corrosion")): _refund(out, ctx, root, "S07_4", 2.0, "active", 0.25)
 	if _has_set("S07", 6) and critical and (_state(ctx, "chill") or _state(ctx, "corrosion")) and _nth("S07_6", 3): _bonus(out, ctx, root, "S07_6", 5.0, 0.40, 1, false)
 	if _has_set("S08", 2) and bool(root.flags.get("S08_2", false)) and _state(ctx, "shock"): _refund(out, ctx, root, "S08_2", 3.0, "dash", 0.20)
-	if not applied.is_empty() and _has_set("S08", 4) and clock - dash_time < 2.0 and _activate("S08_4", 6.0, root, out, false): _buff("S08_4", "move_speed_bonus", 0.12, 3.0)
+	if not applied.is_empty() and _has_set("S08", 4) and _window("S08_4") and _activate("S08_4", 6.0, root, out, false): _buff("S08_4", "move_speed_bonus", 0.12, 3.0)
 
 func _status_applied(ctx: Dictionary, root: Dictionary, _out: Dictionary) -> void:
 	# Confirmation only. Slot-ordered continuation consumes these after weapon
@@ -462,10 +532,13 @@ func _dash(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	dash_time = clock
 	for id in ["EQ02", "EQ08", "EQ10", "EQ38", "EQ40", "EQ50"]:
 		windows[id] = clock + 3.0
+	windows.EQ60 = clock + 3.0
+	windows.S08_4 = clock + 2.0
 	windows.S08_2 = clock + 2.0
 	if float(ctx.get("shield", 0.0)) > 0.0:
 		windows.S06_4 = clock + 2.0
-	if _has("EQ20") and _activate("EQ20", 4.0, root, out, false): _buff("EQ20", "damage_reduction_bonus", 0.05, 2.0)
+	if _has("EQ20") and _activate("EQ20", 4.0, root, out, false):
+		out.self_statuses.append({"status":"damage_reduction","power":0.12,"duration":2.0,"source":"EQ20"})
 	if _has_set("S08", 6) and float(ctx.get("shield", 0.0)) > 0.0:
 		var dash_context: Dictionary = ctx.duplicate()
 		dash_context.X = float(ctx.get("H", stats.get("attack", 0.0)))
@@ -478,6 +551,7 @@ func _damaged(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if _has("EQ21") and not room_low_shield_used and _health_ratio(ctx) < 0.30 and _health_ratio(ctx) > 0.0 and _activate("EQ21:" + room_id, 0.0, root, out):
 		room_low_shield_used = true
 		_shield(out, ctx, 0.05)
+		out.self_statuses.append({"status":"invulnerable","power":1.0,"duration":0.6,"source":"EQ21"})
 	if _has_set("S05", 4) and float(ctx.get("shield_absorbed", 0.0)) > 0.0 and _activate("S05_4", 6.0, root, out, false): _buff("S05_4", "attack_speed_bonus", 0.10, 3.0)
 	if bool(ctx.get("shield_broken", false)) and float(ctx.get("shield_absorbed", 0.0)) > 0.0:
 		if _has("EQ18") and _activate("EQ18", 8.0, root, out, false): windows.EQ18 = clock + 3.0

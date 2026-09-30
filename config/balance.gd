@@ -25,7 +25,7 @@ const EMBER_DURATION := 3.0
 const ARC_RATIO := 0.35
 const ARC_TARGETS := 2
 const ARC_RANGE := 220.0
-const DEATH_KEEP_RATIO := 0.2
+const DEATH_KEEP_RATIO := 0.5
 const MAX_PROJECTILES := 100
 const TRIGGER_BUDGET := 4
 const GOLD_PER_ENEMY := 17
@@ -51,4 +51,4 @@ const WAVE_MAX_COUNT := 4
 const WAVE_GROWTH_EVERY := 3
 
 static func death_keep(gold: int) -> int:
-	return floori(gold * DEATH_KEEP_RATIO)
+	return ProfileStore.retained_gold(gold, "death")

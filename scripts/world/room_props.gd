@@ -6,13 +6,19 @@ extends Node2D
 const Layouts = preload("res://scripts/world/room_layouts.gd")
 const Catalog = preload("res://scripts/world/world_catalog.gd")
 const Appearance = preload("res://scripts/world/room_appearance.gd")
-const TextureSampler = preload("res://scripts/ui/texture_sampler.gd")
-const INTERACTION_RADIUS := 68.0
+const Art = preload("res://scripts/world/world_art.gd")
+const PropArt = preload("res://scripts/world/world_prop_art.gd")
+const BeaconBody = preload("res://scripts/world/room_beacon_body.gd")
+const BEACON_RADIUS := 72.0
+const BEACON_RECHARGE := 45.0
+const BEACON_EFFECTS := ["heal", "resource", "damage", "guard", "haste"]
 const GUARD_SOURCE := "room_prop:guard"
 const BUFFS := {
-	"damage": {"name":"超载线圈", "name_en":"Overcharge coil", "description":"攻击加成 +20% · 15秒", "description_en":"Attack bonus +20% · 15s", "duration":15.0, "color":Color("eda55e")},
-	"guard": {"name":"应急护盾", "name_en":"Emergency shield", "description":"获得生命上限25%的护盾 · 15秒", "description_en":"Shield for 25% maximum HP · 15s", "duration":15.0, "color":Color("70cfdf")},
-	"haste": {"name":"急行蓄能器", "name_en":"Sprint capacitor", "description":"移动速度 +15% · 12秒", "description_en":"Movement speed +15% · 12s", "duration":12.0, "color":Color("b9d881")}
+	"heal": {"name":"复苏信标", "name_en":"Restoration beacon", "description":"恢复生命上限25%的生命", "description_en":"Restore 25% maximum HP", "duration":0.0, "color":Color("ee8eab")},
+	"resource": {"name":"源能信标", "name_en":"Resource beacon", "description":"恢复职业资源上限30%的资源", "description_en":"Restore 30% class resource", "duration":0.0, "color":Color("65b9e0")},
+	"damage": {"name":"战意信标", "name_en":"Valor beacon", "description":"攻击加成 +20% · 15秒", "description_en":"Attack bonus +20% · 15s", "duration":15.0, "color":Color("ec976e")},
+	"guard": {"name":"守护信标", "name_en":"Guardian beacon", "description":"获得生命上限25%的护盾 · 15秒", "description_en":"Shield for 25% maximum HP · 15s", "duration":15.0, "color":Color("70cfb6")},
+	"haste": {"name":"迅行信标", "name_en":"Swiftness beacon", "description":"移动速度 +15% · 12秒", "description_en":"Movement speed +15% · 12s", "duration":12.0, "color":Color("ecc36d")}
 }
 
 var room: Node2D
@@ -27,14 +33,19 @@ var stolen: Dictionary = {}
 var elapsed: float = 0.0
 var _buff_player: WeakRef
 var _font: Font
-var _supply_textures: Dictionary = {}
-var _supply_regions: Dictionary = {}
 var _loot_serial: int = 0
 var _displacement_until: Dictionary = {}
 var _wall_break_counts: Dictionary = {}
 var _wall_break_limits: Dictionary = {}
 var _placement_rng := RandomNumberGenerator.new()
+var _beacon_rng := RandomNumberGenerator.new()
 var configuration_errors: Array[String] = []
+var _beacon_layer: Node2D
+var _beacon_bodies: Array[Node2D] = []
+var _entity_bodies: Dictionary = {}
+
+func _ready() -> void:
+	_ensure_beacon_layer()
 
 func configure(owner_room: Node2D, room_layout: Dictionary) -> bool:
 	clear()
@@ -43,35 +54,40 @@ func configure(owner_room: Node2D, room_layout: Dictionary) -> bool:
 	room_id = str(layout.get("room_id", ""))
 	biome_id = str(Catalog.room(room_id).get("biome_id", "B01"))
 	_placement_rng.seed = int(layout.get("seed", hash(room_id))) ^ 0x524F4F4D
+	_beacon_rng.seed = int(layout.get("seed", hash(room_id))) ^ 0x42454143
 	obstacle_recipes = Appearance.recipe(layout, biome_id)
 	_font = ThemeDB.fallback_font
 	if ResourceLoader.exists("res://assets/fonts/NotoSansSC.ttf"):
 		_font = load("res://assets/fonts/NotoSansSC.ttf")
 	z_index = 1
+	material = Art.material_for(biome_id)
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	set_process(false)
 	set_physics_process(false)
 	if layout.is_empty():
 		configuration_errors.append("Missing room layout")
 		return false
-	# Supplies are seeded once per room and spread over distinct encounter
-	# regions. They are never a row of three choices at the entrance.
+	# Three flush, non-colliding beacons keep their positions for this room.
+	# A separate random stream changes only their function, never geometry.
 	var occupied: Array[Vector2] = []
-	for effect: String in ["damage", "guard", "haste"]:
+	for ordinal: int in 3:
 		var anchor: Dictionary = _find_position(occupied, props.size(), true)
 		if anchor.is_empty():
-			configuration_errors.append("No reachable separated supply position for "+effect+" in "+room_id+" seed "+str(layout.get("seed",0)))
+			configuration_errors.append("No reachable separated beacon position "+str(ordinal)+" in "+room_id+" seed "+str(layout.get("seed",0)))
 			push_error(configuration_errors.back())
 			return false
+		var effect: String = _roll_beacon_effect()
 		var item: Dictionary = BUFFS[effect].duplicate(true)
-		item.merge({"id":room_id + ":supply:" + effect, "kind":"buff", "effect":effect, "position":anchor.position, "anchor":anchor.anchor, "used":false, "remaining":0.0, "available":true})
+		item.merge({"id":room_id + ":beacon:" + str(ordinal), "kind":"beacon", "effect":effect, "position":anchor.position, "anchor":anchor.anchor, "used":false, "remaining":0.0, "available":true, "cooldown":0.0, "generation":0, "activations":0, "armed":true})
 		props.append(item)
 		occupied.append(anchor.position)
 	_build_world_entities(occupied)
+	if is_inside_tree(): _ensure_beacon_layer()
 	queue_redraw()
 	return true
 
 func clear() -> void:
+	_remove_beacon_layer()
 	if _buff_player != null:
 		var actor: Node2D = _buff_player.get_ref()
 		if is_instance_valid(actor):
@@ -92,13 +108,56 @@ func clear() -> void:
 	elapsed = 0.0
 
 func _exit_tree() -> void:
+	# Sibling layer removal is deferred during tree exit to avoid editing the
+	# room's child list while it is already tearing down that list.
+	if is_instance_valid(_beacon_layer):
+		_beacon_layer.visible = false
+		_beacon_layer.queue_free()
+	_beacon_layer = null
+	_beacon_bodies.clear()
+	_entity_bodies.clear()
 	clear()
+
+func _remove_beacon_layer() -> void:
+	if is_instance_valid(_beacon_layer):
+		var parent: Node = _beacon_layer.get_parent()
+		if parent != null: parent.remove_child(_beacon_layer)
+		_beacon_layer.free()
+	_beacon_layer = null
+	_beacon_bodies.clear()
+	_entity_bodies.clear()
+
+func _ensure_beacon_layer() -> void:
+	if is_instance_valid(_beacon_layer) or not is_instance_valid(room) or props.is_empty(): return
+	_beacon_layer = Node2D.new()
+	_beacon_layer.name = "BeaconBodies"
+	_beacon_layer.z_index = 2
+	_beacon_layer.y_sort_enabled = true
+	_beacon_layer.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	room.add_child(_beacon_layer)
+	for item: Dictionary in props:
+		var body := BeaconBody.new()
+		body.source = self
+		body.item = item
+		body.position = item.position
+		_beacon_layer.add_child(body)
+		_beacon_bodies.append(body)
+	for entity: Dictionary in entities:
+		if entity.has("recipe_index") or entity_art_key(entity).is_empty(): continue
+		var body := BeaconBody.new()
+		body.source = self
+		body.item = entity
+		body.draw_method = &"draw_entity_body"
+		body.position = entity.position
+		_beacon_layer.add_child(body)
+		_beacon_bodies.append(body)
+		_entity_bodies[str(entity.id)] = body
 
 func _paused() -> bool:
 	return is_inside_tree() and get_tree().paused
 
 func update(delta: float) -> void:
-	if delta <= 0.0 or _paused():
+	if not is_finite(delta) or delta <= 0.0 or _paused():
 		return
 	elapsed += delta
 	for effect: String in buffs.keys():
@@ -124,7 +183,57 @@ func update(delta: float) -> void:
 			_wall_break_limits.erase(instance_id)
 	for item: Dictionary in props:
 		item.remaining = float(buffs.get(item.effect, {}).get("remaining", 0.0)) if item.used else 0.0
+		_update_beacon(item, delta)
+	for body: Node2D in _beacon_bodies:
+		if is_instance_valid(body):
+			body.position = body.item.position
+			body.visible = bool(body.item.get("enabled",true))
+			body.update_depth(delta)
+			body.queue_redraw()
 	queue_redraw()
+
+func _roll_beacon_effect() -> String:
+	return str(BEACON_EFFECTS[_beacon_rng.randi_range(0, BEACON_EFFECTS.size() - 1)])
+
+func _refresh_beacon(item: Dictionary) -> void:
+	var effect: String = _roll_beacon_effect()
+	item.merge(BUFFS[effect].duplicate(true), true)
+	item.merge({"effect":effect, "used":false, "available":true, "remaining":0.0, "cooldown":0.0, "generation":int(item.generation) + 1}, true)
+
+func _update_beacon(item: Dictionary, delta: float) -> void:
+	var actor: Node2D = room.get("player") if is_instance_valid(room) else null
+	var near: bool = is_instance_valid(actor) and actor.position.distance_to(item.position) <= BEACON_RADIUS and _line_clear(actor.position, item.position)
+	if not near:
+		item.armed = true
+	if float(item.cooldown) > 0.0:
+		item.cooldown = maxf(0.0, float(item.cooldown) - delta)
+		if float(item.cooldown) <= 0.0:
+			_refresh_beacon(item)
+			# Standing on a dormant beacon never repeatedly harvests it. A
+			# refreshed beacon accepts the next approach after leaving its ring.
+			item.armed = not near
+		return
+	if not near or bool(item.used) or not bool(item.armed) or not _living_player(actor):
+		return
+	if not grant_buff(str(item.effect), actor):
+		# Full HP/resource keeps a ready beacon intact. If the actor needs it
+		# later while nearby, the first real restoration consumes it once.
+		return
+	item.used = true
+	item.available = false
+	item.armed = false
+	item.cooldown = BEACON_RECHARGE
+	item.remaining = float(BUFFS[item.effect].duration)
+	item.activations = int(item.activations) + 1
+	if is_instance_valid(room) and room.has_method("add_ring"):
+		room.add_ring(item.position, item.color, BEACON_RADIUS, 0.32)
+
+func _living_player(player: Node2D) -> bool:
+	if not is_instance_valid(player): return false
+	var game: Node = get_node_or_null("/root/Game") if is_inside_tree() else null
+	if game != null and game.run != null:
+		return float(game.run.hp) > 0.0
+	return player.is_alive() if player.has_method("is_alive") else false
 
 func active_buffs() -> Array:
 	var result: Array = []
@@ -147,44 +256,26 @@ func move_multiplier() -> float:
 func resource_regen_multiplier() -> float:
 	return 1.0
 
-func nearest_interaction(player_pos: Vector2) -> Dictionary:
-	var closest: Dictionary = {}
-	var nearest: float = INTERACTION_RADIUS + 0.001
-	for item: Dictionary in props:
-		var distance: float = player_pos.distance_to(item.position)
-		var prefer_unused: bool = not bool(item.used) and bool(closest.get("used", false))
-		var preserve_unused: bool = bool(item.used) and not closest.is_empty() and not bool(closest.get("used", false))
-		if distance <= INTERACTION_RADIUS and not preserve_unused and (distance <= nearest or prefer_unused) and _line_clear(player_pos, item.position):
-			closest = item.duplicate(true)
-			closest["available"] = not bool(item.used) and not _paused()
-			nearest = distance
-	return closest
+func nearest_interaction(_player_pos: Vector2) -> Dictionary:
+	# Beacons use proximity, so they never compete with tasks/supplies for E.
+	return {}
 
-func interact(id: String, player: Node2D) -> Dictionary:
-	if _paused() or not is_instance_valid(player):
-		return {"success":false, "reason":"paused_or_missing_player"}
-	for item: Dictionary in props:
-		if item.id != id:
-			continue
-		if bool(item.used):
-			return {"success":false, "reason":"already_used"}
-		if player.position.distance_to(item.position) > INTERACTION_RADIUS or not _line_clear(player.position, item.position):
-			return {"success":false, "reason":"out_of_reach"}
-		if not grant_buff(str(item.effect), player):
-			return {"success":false, "reason":"effect_unavailable"}
-		item.used = true
-		item.available = false
-		item.remaining = float(BUFFS[item.effect].duration)
-		queue_redraw()
-		return {"success":true, "id":id, "effect":item.effect, "remaining":item.remaining, "used":true}
-	return {"success":false, "reason":"unknown_prop"}
+func interact(_id: String, _player: Node2D) -> Dictionary:
+	return {"success":false, "reason":"automatic_proximity"}
 
 func grant_buff(effect: String, player: Node2D) -> bool:
 	if not BUFFS.has(effect) or not is_instance_valid(player) or _paused():
 		return false
+	if not _living_player(player): return false
+	var game: Node = get_node_or_null("/root/Game") if is_inside_tree() else null
+	if effect == "heal":
+		if game == null or game.run == null or not player.has_method("heal"): return false
+		return float(player.heal(float(game.run.max_hp) * 0.25)) > 0.0
+	if effect == "resource":
+		if game == null or game.run == null: return false
+		return float(game.restore_resource(float(game.run.stats.get("resource_max", 0.0)) * 0.30)) > 0.0
 	if effect == "guard":
 		var maximum: float = player.stat("max_hp", 100.0) if player.has_method("stat") else 100.0
-		var game: Node = get_node_or_null("/root/Game") if is_inside_tree() else null
 		if game != null and game.run != null:
 			maximum = float(game.run.max_hp)
 		if not player.has_method("grant_guard"):
@@ -210,10 +301,10 @@ func draw_floor(canvas: CanvasItem) -> void:
 	# It must never be moved to the prop/interaction foreground canvas.
 	for entity: Dictionary in entities:
 		if str(entity.kind) == "scene_lamp" and float(entity.get("dark_remaining", 0.0)) > 0.0:
-			canvas.draw_circle(entity.position, float(entity.get("dark_radius",110.0)), Color(0.015,0.023,0.035,0.27))
+			canvas.draw_circle(entity.position, float(entity.get("dark_radius",110.0)), Color(0.17,0.26,0.31,0.15))
 
 func draw_obstacles(canvas: CanvasItem) -> void:
-	Appearance.draw_obstacles(canvas, obstacle_recipes, elapsed)
+	Appearance.draw_ground_obstacles(canvas, obstacle_recipes, elapsed)
 
 func collision_rects() -> Array[Rect2]:
 	var result: Array[Rect2] = []
@@ -316,6 +407,8 @@ func _build_world_entities(occupied: Array[Vector2]) -> void:
 		if bool(recipe.get("destroyed",false)):
 			continue
 		var tags: Array = recipe.get("tags",[])
+		if "non_solid" in tags:
+			continue
 		var rect: Rect2 = recipe.get("collision_rect",recipe.get("rect",Rect2()))
 		if str(recipe.kind) == "breakable_wall" or "thin_wall" in tags:
 			entities.append({"id":str(recipe.get("id",room_id+":thin_wall:"+str(index))), "kind":"thin_wall", "tags":["thin_wall"], "position":rect.get_center(), "rect":rect, "recipe_index":index, "enabled":true})
@@ -650,23 +743,26 @@ func _draw() -> void:
 	for entity: Dictionary in entities:
 		if not bool(entity.get("enabled", true)) or str(entity.kind) == "thin_wall" or entity.has("recipe_index"):
 			continue
-		_draw_entity(entity)
+		if _entity_bodies.has(str(entity.id)):
+			_draw_entity_ground(entity)
+		else:
+			_draw_entity(entity)
 	for item: Dictionary in props:
 		_draw_supply(item)
 
 func _draw_supply(item: Dictionary) -> void:
 	var at: Vector2 = item.position
 	var used: bool = bool(item.used)
-	var tint: Color = Color("63756e") if used else item.color
+	var tint: Color = Color("98aba0") if used else item.color
 	draw_set_transform(at)
-	draw_arc(Vector2(0,8), 34.0, 0.0, TAU, 40, Color(tint,0.17), 7.0, true)
-	var artwork_drawn: bool = _draw_supply_art(str(item.effect), used)
-	if not artwork_drawn:
-		_draw_supply_fallback(item, tint)
+	# A quiet ground halo identifies the automatic proximity beacon.
+	draw_set_transform(at, 0.0, Vector2(1.0,0.64))
+	draw_arc(Vector2.ZERO, BEACON_RADIUS, 0.0, TAU, 48, Color(tint,0.16 if used else 0.35), 1.4, true)
+	draw_set_transform(at)
+	if not is_instance_valid(_beacon_layer):
+		draw_beacon_body(self,item)
 	if not used:
 		draw_circle(Vector2(0,25),3.0,tint)
-	else:
-		draw_line(Vector2(-12,-15),Vector2(12,8),Color("788780"),3,true)
 	draw_set_transform(Vector2.ZERO)
 	if _font == null:
 		return
@@ -677,86 +773,115 @@ func _draw_supply(item: Dictionary) -> void:
 	var english: bool = game != null and str(game.profile.get("settings",{}).get("language","zh_CN")) == "en"
 	var label: String = str(item.name_en if english else item.name)
 	if used:
-		label = ("Used" if english else "已使用") + (" · %ds" % ceili(float(item.remaining)) if float(item.remaining) > 0.0 else "")
-	var descriptions: Dictionary = {"damage":["攻击 +20% · 15秒", "+20% attack · 15s"], "guard":["25%生命护盾 · 15秒", "25% HP shield · 15s"], "haste":["移速 +15% · 12秒", "+15% speed · 12s"]}
-	var detail: String = descriptions[str(item.effect)][1 if english else 0]
+		label = ("Recharging · %ds" if english else "信标休眠 · %d秒") % ceili(float(item.cooldown))
+	var detail: String = str(item.description_en if english else item.description)
 	if used:
-		detail = "One use per room" if english else "本房间已耗尽"
+		detail = "New function at this spot" if english else "原位刷新 · 功能随机"
+	elif not bool(item.armed):
+		detail = "Leave the ring, then approach" if english else "离开光环后再次靠近"
+	else:
+		detail += " · Approach" if english else " · 靠近生效"
 	var width: float = _font.get_string_size(label,HORIZONTAL_ALIGNMENT_LEFT,-1,15).x
 	var detail_width: float = _font.get_string_size(detail,HORIZONTAL_ALIGNMENT_LEFT,-1,13).x
 	var panel_width: float = maxf(width,detail_width)+12.0
-	draw_rect(Rect2(at+Vector2(-panel_width*.5,32),Vector2(panel_width,40)),Color(.035,.055,.06,.86))
-	draw_line(at+Vector2(-panel_width*.5,32),at+Vector2(panel_width*.5,32),Color(tint,.50),1.0,true)
-	draw_string(_font,at+Vector2(-width*.5,49),label,HORIZONTAL_ALIGNMENT_LEFT,-1,15,Color("bdc9c0") if used else tint.lightened(.35))
-	draw_string(_font,at+Vector2(-detail_width*.5,67),detail,HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color("a6b8ad") if used else Color("e0ece0"))
+	var panel := Rect2(at+Vector2(-panel_width*.5,32),Vector2(panel_width,40))
+	draw_rect(Rect2(panel.position+Vector2(0,2),panel.size),Color(Color("827961"),0.16))
+	draw_rect(panel,Color(Color("fff0d5"),0.96))
+	draw_rect(panel,Color("d3b176"),false,1.0)
+	draw_string(_font,at+Vector2(-width*.5,49),label,HORIZONTAL_ALIGNMENT_LEFT,-1,15,Color("69776a") if used else Color("493950"))
+	draw_string(_font,at+Vector2(-detail_width*.5,67),detail,HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color("879285") if used else Color("657368"))
 
-func _draw_supply_art(effect: String, used: bool) -> bool:
-	if not _supply_textures.has(effect):
-		var asset: String = "pressure" if effect == "damage" else effect
-		var texture: Texture2D = TextureSampler.sampled("res://assets/generated/props/buff_" + asset + "_v1.png")
-		if texture == null:
-			return false
-		_supply_textures[effect] = texture
-		var image: Image = texture.get_image()
-		var low: Vector2i = Vector2i(image.get_width(),image.get_height())
-		var high: Vector2i = Vector2i(-1,-1)
-		for y: int in image.get_height():
-			for x: int in image.get_width():
-				if image.get_pixel(x,y).a >= .20:
-					low = low.min(Vector2i(x,y))
-					high = high.max(Vector2i(x,y))
-		_supply_regions[effect] = Rect2(Vector2(low),Vector2(high-low+Vector2i.ONE)) if high.x>=low.x else Rect2(Vector2.ZERO,texture.get_size())
-	var source: Rect2 = _supply_regions[effect]
-	var extent: Vector2 = source.size * minf(78.0/source.size.x,76.0/source.size.y)
-	var destination := Rect2(Vector2(-extent.x*.5,27.0-extent.y),extent)
-	draw_texture_rect_region(_supply_textures[effect],destination,source,Color(.46,.51,.49,.85) if used else Color.WHITE)
-	return true
+func _draw_supply_art(canvas: CanvasItem, effect: String, used: bool) -> bool:
+	var asset: String = "beacon_dormant" if used else "beacon_" + effect
+	return PropArt.draw_asset(canvas,asset,Vector2.ZERO,Vector2(78,90))
 
-func _draw_supply_fallback(item: Dictionary, tint: Color) -> void:
-	draw_colored_polygon(PackedVector2Array([Vector2(-28,17),Vector2(-21,-19),Vector2(0,-29),Vector2(22,-19),Vector2(29,17),Vector2(0,27)]), Color("1b2d30"))
-	draw_line(Vector2(-23,15),Vector2(23,15),tint.darkened(.4),4,true)
+func draw_beacon_body(canvas: CanvasItem, item: Dictionary) -> void:
+	var used: bool = bool(item.used)
+	if _draw_supply_art(canvas,str(item.effect),used): return
+	_draw_supply_fallback(canvas,item,Color("98aba0") if used else item.color)
+
+func _draw_supply_fallback(canvas: CanvasItem, item: Dictionary, tint: Color) -> void:
+	# Cream stone and brass trim share the courtyard's raised architecture.
+	canvas.draw_colored_polygon(PackedVector2Array([Vector2(-25,8),Vector2(0,19),Vector2(25,8),Vector2(25,18),Vector2(0,29),Vector2(-25,18)]),Color("cbb28e"))
+	canvas.draw_colored_polygon(PackedVector2Array([Vector2(-25,8),Vector2(0,-3),Vector2(25,8),Vector2(0,19)]),Color("f5e8c9"))
+	canvas.draw_polyline(PackedVector2Array([Vector2(-25,8),Vector2(0,19),Vector2(25,8)]),Color("d4a862"),2,true)
+	canvas.draw_line(Vector2(-13,3),Vector2(-13,-15),Color("d3b675"),4,true)
+	canvas.draw_line(Vector2(13,3),Vector2(13,-15),Color("d3b675"),4,true)
+	canvas.draw_colored_polygon(PackedVector2Array([Vector2(0,-40),Vector2(14,-23),Vector2(0,-7),Vector2(-14,-23)]),tint)
+	canvas.draw_colored_polygon(PackedVector2Array([Vector2(0,-40),Vector2(0,-7),Vector2(-14,-23)]),tint.darkened(0.24))
+	canvas.draw_line(Vector2(0,-37),Vector2(10,-23),tint.lightened(.65),2,true)
 	match str(item.effect):
-		"damage":
-			for x: float in [-12.0,12.0]:
-				draw_line(Vector2(x,-21),Vector2(x,8),tint.darkened(.15),6,true)
-				for y: int in range(-18,9,6):
-					draw_line(Vector2(x-5,y),Vector2(x+5,y+2),tint,2,true)
-			draw_polyline(PackedVector2Array([Vector2(-5,-19),Vector2(5,-10),Vector2(-3,-3),Vector2(7,5)]),tint,3,true)
+		"heal":
+			canvas.draw_line(Vector2(-6,-23),Vector2(6,-23),Color("fff5e3"),3,true)
+			canvas.draw_line(Vector2(0,-29),Vector2(0,-17),Color("fff5e3"),3,true)
+		"resource", "damage":
+			canvas.draw_polyline(PackedVector2Array([Vector2(3,-32),Vector2(-4,-22),Vector2(3,-22),Vector2(-3,-13)]),Color("fff5e3"),2.4,true)
 		"guard":
-			draw_colored_polygon(PackedVector2Array([Vector2(-16,-19),Vector2(0,-24),Vector2(16,-19),Vector2(12,0),Vector2(0,12),Vector2(-12,0)]),tint.darkened(.3))
-			draw_polyline(PackedVector2Array([Vector2(-14,-17),Vector2(0,-21),Vector2(14,-17),Vector2(10,-1),Vector2(0,8),Vector2(-10,-1),Vector2(-14,-17)]),tint,2,true)
+			canvas.draw_polyline(PackedVector2Array([Vector2(-6,-28),Vector2(0,-30),Vector2(6,-28),Vector2(4,-21),Vector2(0,-17),Vector2(-4,-21),Vector2(-6,-28)]),Color("fff5e3"),2,true)
 		"haste":
-			for x: float in [-7.0,7.0]:
-				draw_polyline(PackedVector2Array([Vector2(x-7,4),Vector2(x,-8),Vector2(x-7,-20)]),tint,4,true)
+			for x: float in [-4.0,4.0]:
+				canvas.draw_polyline(PackedVector2Array([Vector2(x-3,-28),Vector2(x+3,-23),Vector2(x-3,-18)]),Color("fff5e3"),2,true)
 
 func _draw_entity(entity: Dictionary) -> void:
 	var at: Vector2 = entity.position
+	_draw_entity_ground(entity)
+	var asset: String = entity_art_key(entity)
+	if not asset.is_empty():
+		draw_set_transform(at)
+		draw_entity_body(self,entity)
+		draw_set_transform(Vector2.ZERO)
+		return
 	match str(entity.kind):
 		"loot_nest":
 			for index: int in range(7):
 				var offset: Vector2 = Vector2.RIGHT.rotated(index*TAU/7.0)*19.0
-				draw_circle(at+offset,12.0,Color("3d4e43"))
-			draw_circle(at,12,Color("172c2b"))
+				draw_circle(at+offset,12.0,Color("7fbd85"))
+			draw_circle(at,12,Color("5b9d85"))
 		"movable":
-			draw_rect(Rect2(at-Vector2(21,17),Vector2(42,34)),Color("384954"))
-			draw_rect(Rect2(at-Vector2(18,14),Vector2(36,28)),Color("93a89d"),false,2)
-			draw_line(at-Vector2(13,0),at+Vector2(13,0),Color("d1bb76"),3)
+			draw_rect(Rect2(at-Vector2(21,17),Vector2(42,34)),Color("eddfc2"))
+			draw_rect(Rect2(at-Vector2(18,14),Vector2(36,28)),Color("d3a261"),false,2)
+			draw_line(at-Vector2(13,0),at+Vector2(13,0),Color("a1cabe"),3)
 			for side: float in [-1.0,1.0]:
-				draw_circle(at+Vector2(side*15,19),4,Color("11242c"))
+				draw_circle(at+Vector2(side*15,19),4,Color("687c79"))
 		"shield_socket":
-			draw_circle(at,29,Color("182f38"))
-			draw_arc(at,24,0,TAU,32,Color("76cad7") if float(entity.cooldown)<=0 else Color("4c656c"),3,true)
+			draw_circle(at,29,Color("f0e3c9"))
+			draw_arc(at,24,0,TAU,32,Color("54b7c2") if float(entity.cooldown)<=0 else Color("9ab2ab"),3,true)
 			for side: float in [-1.0,1.0]:
 				draw_line(at+Vector2(side*8,-13),at+Vector2(side*8,3),Color("a0c4c4"),5)
 			draw_arc(at+Vector2(0,3),8,0,PI,12,Color("a0c4c4"),4,true)
 		"shallow_pool":
-			draw_circle(at,float(entity.radius),Color("263e4d"))
+			draw_circle(at,float(entity.radius),Color("68b9be"))
 			for radius: float in [12.0,23.0,31.0]:
-				draw_arc(at,radius,0.2,TAU-.3,32,Color("627c84"),1,true)
+				draw_arc(at,radius,0.2,TAU-.3,32,Color("b8dfd8"),1,true)
 		"scene_lamp":
 			var dark: bool = float(entity.dark_remaining)>0.0
-			if not dark:
-				draw_circle(at,100,Color(.65,.76,.86,.045))
-			draw_line(at+Vector2(0,20),at-Vector2(0,26),Color("7d8290"),5,true)
-			draw_arc(at-Vector2(0,20),13,PI,TAU,16,Color("818897"),3,true)
-			draw_circle(at-Vector2(0,20),8,Color("303946") if dark else Color("d6e2bb"))
+			draw_line(at+Vector2(0,20),at-Vector2(0,26),Color("c6aa7a"),5,true)
+			draw_arc(at-Vector2(0,20),13,PI,TAU,16,Color("e0c394"),3,true)
+			draw_circle(at-Vector2(0,20),8,Color("78959b") if dark else Color("f1efb9"))
+
+func entity_art_key(entity: Dictionary) -> String:
+	return str({"loot_nest":"B02_spore_nest", "shield_socket":"B03_transformer", "scene_lamp":"B04_broken_receiver", "movable":"B03_wrecked_drone"}.get(str(entity.get("kind","")),""))
+
+func body_art_key(item: Dictionary) -> String:
+	if str(item.get("kind",""))=="beacon":
+		return "beacon_dormant" if bool(item.used) else "beacon_"+str(item.effect)
+	return entity_art_key(item)
+
+func body_art_size(item: Dictionary) -> Vector2:
+	return Vector2(78,90) if str(item.get("kind",""))=="beacon" else Vector2(90,96)
+
+func draw_entity_body(canvas: CanvasItem, entity: Dictionary) -> void:
+	var asset: String = entity_art_key(entity)
+	var tint := Color.WHITE
+	if str(entity.kind)=="scene_lamp" and float(entity.get("dark_remaining",0.0))>0.0:
+		tint = Color(.65,.72,.74,.84)
+	elif str(entity.kind)=="shield_socket" and float(entity.get("cooldown",0.0))>0.0:
+		tint = Color(.78,.83,.80,.90)
+	PropArt.draw_asset(canvas,asset,Vector2.ZERO,body_art_size(entity),tint)
+
+func _draw_entity_ground(entity: Dictionary) -> void:
+	var at: Vector2 = entity.position
+	if str(entity.kind)=="scene_lamp" and float(entity.get("dark_remaining",0.0))<=0.0:
+		draw_circle(at,100,Color(.65,.76,.86,.045))
+	elif str(entity.kind)=="shield_socket":
+		draw_arc(at,27,0,TAU,32,Color(Color("54b7c2"),.32) if float(entity.cooldown)<=0 else Color(Color("9ab2ab"),.20),1.5,true)

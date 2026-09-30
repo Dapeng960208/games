@@ -2,19 +2,25 @@ extends Button
 ## Compact instrument key: the whole cell remains a keyboard and pointer target.
 ## Combat input is not emitted here; the HUD opens its paused detail view on press.
 
-const CELL_SIZE := Vector2(52,64)
-const ICON_RECT := Rect2(4,2,44,44)
-const INK := Color("f1eadc")
-const COPPER := Color("826345")
-const MUTED := Color("84929a")
-const WARNING := Color("e46b69")
+const CELL_SIZE := Vector2(88,110)
+const ICON_RECT := Rect2(21,13,46,46)
+const INK := Color("392843")
+const COPPER := Color("b18b4c")
+const MUTED := Color("766474")
+const WARNING := Color("ae463f")
 
 const TextureSampler = preload("res://scripts/ui/texture_sampler.gd")
 var hero_id := "CH01"
 var slot := "q"
 var key := "Q"
 var generated_texture: Texture2D
+var bezel_texture: Texture2D
+var lock_texture: Texture2D
+var painted_icons := false
 var state: Dictionary = {}
+var unlock_flash := 0.0
+var input_flash := 0.0
+var input_reason := ""
 
 func _init() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
@@ -43,55 +49,108 @@ func configure(next_hero_id: String, next_slot: String, next_key: String) -> voi
 	name = "Skill_"+slot
 	var path := "res://assets/generated/skills/"+hero_id+"_"+slot+"_v1.png"
 	generated_texture = TextureSampler.sampled(path)
+	if FileAccess.file_exists("res://scripts/ui/storybook_art.gd"):
+		var art: Script = load("res://scripts/ui/storybook_art.gd") as Script
+		bezel_texture = art.texture("gold_bezel")
+		lock_texture = art.texture("lock")
+		var ability: Texture2D = art.texture("dodge" if slot == "dash" else "ability_"+hero_id+"_"+slot)
+		if ability != null:
+			generated_texture = ability
+			painted_icons = true
 	queue_redraw()
 
 func update_state(next_state: Dictionary) -> void:
+	if bool(state.get("locked",false)) and not bool(next_state.get("locked",false)):
+		unlock_flash = 3.5
 	state = next_state.duplicate()
 	tooltip_text = str(state.get("details",""))
 	queue_redraw()
 
+func _process(delta: float) -> void:
+	if get_tree().paused: return
+	if unlock_flash <= 0.0 and input_flash <= 0.0: return
+	unlock_flash = maxf(0.0,unlock_flash-delta)
+	input_flash = maxf(0.0,input_flash-delta)
+	queue_redraw()
+
+func notify_input(reason: String) -> void:
+	input_reason = reason
+	input_flash = 0.20 if reason == "accepted" else 0.30 if reason == "queued" else 0.45
+	queue_redraw()
+
 func _draw() -> void:
-	var accent: Color = state.get("accent",Color("e6aa4a"))
+	var accent: Color = state.get("accent",Color("ac6d2f"))
 	var locked := bool(state.get("locked",false))
 	var insufficient := bool(state.get("insufficient",false))
 	var remaining := maxf(0.0,float(state.get("cooldown",0.0)))
 	var duration := maxf(0.001,float(state.get("duration",1.0)))
 	var active := is_hovered() or has_focus()
-	var border := MUTED if locked else (WARNING if insufficient else COPPER)
-	if active:
-		border = accent
-	var cell := Rect2(Vector2(0.5,0.5),size-Vector2.ONE)
-	draw_rect(cell,Color(0.055,0.085,0.11,0.78 if active else 0.57))
-	draw_rect(cell,border,false,2.0 if active else 1.0)
-	draw_line(Vector2(7,1),Vector2(size.x-7,1),accent,2.0,true)
+	var center := Vector2(size.x*.5,36)
+	var border := Color("8b826f") if locked else COPPER
+	draw_circle(center+Vector2(0,3),34,Color(.20,.12,.12,.22))
+	draw_circle(center,34,Color("4c343c"))
+	draw_circle(center,32,Color("caa368") if not locked else Color("8c8c84"))
+	draw_circle(center,29,Color("492927") if not locked and slot != "dash" else Color("543d25") if slot == "dash" else Color("3f4957"))
+	draw_arc(center,31,-PI*.95,-PI*.08,40,Color("fff0ba"),2,true)
+	draw_arc(center,34,0,TAU,48,accent if active else border,2.5 if active else 1,true)
+	if input_flash > 0.0:
+		var tint: Color = accent if input_reason in ["accepted", "queued"] else WARNING
+		draw_arc(center,35,0,TAU,48,Color(tint,minf(1,input_flash*5)),3,true)
+	if unlock_flash > 0.0:
+		draw_arc(center,35,0,TAU,48,Color("d3a349"),3,true)
 	if generated_texture != null:
 		var source_size := generated_texture.get_size()
 		var image_scale := minf(ICON_RECT.size.x/source_size.x,ICON_RECT.size.y/source_size.y)
 		var extent := source_size*image_scale
-		draw_texture_rect(generated_texture,Rect2(ICON_RECT.position+(ICON_RECT.size-extent)*0.5,extent),false,Color(1,1,1,0.4 if locked else 1.0))
+		draw_texture_rect(generated_texture,Rect2(ICON_RECT.position+(ICON_RECT.size-extent)*.5,extent),false,Color(1,1,1,.18 if locked else 1))
 	else:
-		_draw_glyph(accent if not locked else MUTED)
-	if remaining > 0.0 and not locked:
-		var ratio := clampf(remaining/duration,0.0,1.0)
-		draw_rect(Rect2(2,2,size.x-4,40*ratio),Color(0.02,0.035,0.05,0.78))
-		draw_rect(Rect2(size.x-4,42-40*ratio,2,40*ratio),accent)
-		_center_text(str(ceili(remaining)) if remaining >= 1.0 else "%.1f" % remaining,31,18,INK)
+		draw_set_transform(Vector2(18,13))
+		_draw_glyph(Color("f6d19b") if not locked else Color("b0a4ac"))
+		draw_set_transform(Vector2.ZERO)
+	if bezel_texture != null:
+		draw_texture_rect(bezel_texture,Rect2(center-Vector2(36,36),Vector2(72,72)),false,Color(.60,.66,.71,1) if locked else Color.WHITE)
+	var overlay := Color(.16,.12,.19,.77)
+	if bool(state.get("casting",false)):
+		draw_circle(center,28,overlay)
+		_center_text("CAST" if Words.locale == "en" else "施放中",42,16,Color("fff1cf"))
+		draw_arc(center,29,-PI*.5,-PI*.5+TAU*float(state.get("cast_progress",0)),40,accent,3,true)
+	elif bool(state.get("queued",false)):
+		draw_circle(center,28,overlay)
+		_center_text(("NEXT %d" if Words.locale == "en" else "接招%d") % maxi(1,int(state.get("queue_position",1))),42,16,Color("b8eadb"))
+	elif remaining > 0.0 and not locked:
+		draw_circle(center,28,overlay)
+		var ratio := clampf(remaining/duration,0,1)
+		draw_arc(center,29,-PI*.5,-PI*.5+TAU*(1-ratio),40,accent,3,true)
+		_center_text(str(ceili(remaining)) if remaining >= 1 else "%.1f" % remaining,44,24,Color("fff1cf"))
 	elif locked:
-		draw_rect(Rect2(2,2,size.x-4,40),Color(0.02,0.035,0.05,0.62))
-		_draw_lock(Vector2(size.x*0.5,12),MUTED)
-		_center_text("L"+str(int(state.get("unlock",1))),39,16,INK)
+		if lock_texture != null: draw_texture_rect(lock_texture,Rect2(center-Vector2(12,17),Vector2(24,28)),false,Color(.70,.77,.80,1))
+		else: _draw_lock(Vector2(size.x*.5,22),Color("a6b0b8"))
+		_center_text("Lv."+str(int(state.get("unlock",1))),54,16,Color("e6dac8"))
 	elif insufficient:
-		# A crossed resource tick is visible without relying on red alone.
-		draw_line(Vector2(36,32),Vector2(44,40),WARNING,2.0,true)
-		draw_line(Vector2(44,32),Vector2(36,40),WARNING,2.0,true)
-	draw_line(Vector2(6,46),Vector2(size.x-6,46),Color(border,0.55),1.0)
-	_center_text(key,size.y-3,16,INK if not locked else MUTED)
+		draw_circle(center,28,Color(.34,.12,.19,.32))
+		_center_text("LOW" if Words.locale == "en" else "不足",62,16,Color("ffdbc0"))
+	var title := str(state.get("name",""))
+	if slot == "dash": title = "Dodge" if Words.locale == "en" else "闪避"
+	var font := get_theme_font("font","Button")
+	if font.get_string_size(title,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x > size.x-4:
+		# Full localized names are always in the focus/hover detail. Keep the
+		# standing label readable at16px instead of shrinking it into a caption.
+		while title.length() > 1 and font.get_string_size(title+"…",HORIZONTAL_ALIGNMENT_LEFT,-1,16).x > size.x-4:
+			title = title.left(title.length()-1)
+		title += "…"
+	_center_text(title,84,16,MUTED if locked else INK)
+	var key_text := key
+	if slot == "secondary" and Words.locale == "en": key_text = "RMB"
+	var key_width := maxf(26,font.get_string_size(key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x+12)
+	var key_rect := Rect2((size.x-key_width)*.5,89,key_width,21)
+	draw_style_box(MineStyle.box(Color("51334d"),Color("b68d54"),1),key_rect)
+	_center_text(key_text,106,16,Color("fff1cf"))
 
 func _center_text(value: String, baseline: float, font_size: int, color: Color) -> void:
 	var font := get_theme_font("font","Button")
 	var width := font.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
 	var at := Vector2((size.x-width)*0.5,baseline)
-	draw_string_outline(font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,3,Color("0d131a"))
+	draw_string_outline(font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,1,Color(1,.94,.80,.22))
 	draw_string(font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,color)
 
 func _stroke(points: Array, color: Color, width: float = 2.0) -> void:
@@ -108,7 +167,7 @@ func _draw_lock(at: Vector2, color: Color) -> void:
 func _draw_glyph(color: Color) -> void:
 	# Distinct silhouettes drafted for the game's instrument language. These are
 	# used only while a skill's generated transparent miniature is unavailable.
-	var center := Vector2(size.x*0.5,23)
+	var center := Vector2(26,23)
 	if slot == "dash":
 		for index in range(2):
 			var x := center.x-12+index*13

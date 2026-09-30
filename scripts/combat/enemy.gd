@@ -3,9 +3,13 @@ extends CharacterBody2D
 
 const HealthScript = preload("res://scripts/combat/health.gd")
 const StatusScript = preload("res://scripts/combat/combat_status.gd")
+const Damage = preload("res://scripts/combat/damage_resolver.gd")
 const TextureSampler = preload("res://scripts/ui/texture_sampler.gd")
 const BrainScript = preload("res://scripts/combat/enemy_brain.gd")
+const BodyVisualScript = preload("res://scripts/combat/enemy_visual.gd")
+const EnemyPalette = preload("res://scripts/combat/enemy_palette.gd")
 const ImageBounds = preload("res://scripts/combat/hero_visual.gd")
+const MAX_PUSH_PULSES: int = 16
 static var _body_regions: Dictionary = {}
 var room: Node2D
 var health: CombatHealth
@@ -13,6 +17,10 @@ var state: StringName = &"emerging"
 var state_time: float = Balance.ENEMY_SPAWN_GRACE
 var aim_direction := Vector2.LEFT
 var knockback := Vector2.ZERO
+## Distance-authored skill pushes are integrated independently of the legacy
+## basic-hit velocity. Each pulse spends its distance once over a short ease-out;
+## later hits never restart an earlier pulse's lifetime.
+var _pushes: Array[Dictionary] = []
 var hurt_flash: float = 0.0
 var burn_remaining: float = 0.0
 var burn_tick: float = 0.0
@@ -25,11 +33,13 @@ var status_textures: Dictionary = {}
 var status: CombatStatus = StatusScript.new()
 var rank: String = "normal"
 var armor: float = 0.0
+var magic_resist: float = 0.0
 var reaction_cooldown: float = 0.0
 var reaction_remaining: float = 0.0
 var navigation_timer: float = 0.0
 var navigation_vector := Vector2.ZERO
 var last_damage_context: Dictionary = {}
+var last_damage_direction := Vector2.ZERO
 var profile: Dictionary = {}
 var brain: RefCounted
 var enemy_id: String = ""
@@ -45,8 +55,13 @@ var zone_index: int = -1
 var threat_cost: float = 1.0
 var owner_enemy: WeakRef
 var training_ai_disabled: bool = false
+var body_visual: Node2D
+## Temporary arena openings affect resolved defense, never the armor base. This
+## lets natural armor changes (such as a destroyed support pod) survive expiry.
+var _biome_counters: Dictionary = {}
 
 func configure(next_profile: Dictionary, options: Dictionary = {}) -> void:
+	_biome_counters.clear()
 	profile = next_profile.duplicate(true)
 	enemy_id = str(profile.get("enemy_id", ""))
 	enemy_level = int(profile.get("enemy_level", 1))
@@ -54,7 +69,9 @@ func configure(next_profile: Dictionary, options: Dictionary = {}) -> void:
 	move_speed = float(profile.get("move_speed", Balance.ENEMY_SPEED))
 	attack_range = float(profile.get("attack_range", Balance.ENEMY_RANGE))
 	contact_damage = float(profile.get("damage", Balance.ENEMY_DAMAGE))
-	armor = float(profile.get("armor", 0.0))
+	# Profiles already resolve level, role and elite growth; do not add it twice.
+	armor = maxf(0.0, float(profile.get("armor", 0.0)))
+	magic_resist = maxf(0.0, float(profile.get("magic_resist", 0.0)))
 	rank = str(profile.get("rank", "normal"))
 	zone_index = int(options.get("zone_index", profile.get("zone_index", -1)))
 	threat_cost = float(profile.get("effective_threat_cost", 1.0))
@@ -100,13 +117,32 @@ func _ready() -> void:
 	if not profile.is_empty() and not static_actor:
 		brain = BrainScript.new()
 		brain.configure(profile)
+	if not static_actor:
+		body_visual = BodyVisualScript.new()
+		body_visual.show_behind_parent = true
+		add_child(body_visual)
+		body_visual.configure(self)
+
+func impact_material() -> String:
+	if enemy_id in ["M04", "M10", "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18", "M28", "M29", "M32", "M33", "M35"]:
+		return "organic"
+	if enemy_id in ["M30", "M31", "M34", "M36"] or enemy_id.is_empty():
+		return "stone"
+	return "metal"
+
+func receive_confirmed_impact(direction: Vector2, strength: float, heavy: bool, reaction_style: String = "CH01") -> void:
+	if is_instance_valid(body_visual):
+		body_visual.receive_impact(direction, strength, heavy, reaction_style)
+
+func impact_anchor(direction: Vector2) -> Dictionary:
+	return body_visual.contact_anchor(direction) if is_instance_valid(body_visual) else {}
 
 func is_alive() -> bool:
 	return health != null and not health.dead
 
 func visible_status_ids() -> Array[String]:
 	var active: Array[String] = []
-	for id: String in ["burn", "shock", "chill", "corrosion"]:
+	for id: String in StatusScript.VALID_STATES:
 		if status.has(id):
 			active.append(id)
 	return active
@@ -186,6 +222,9 @@ func _finish_motion(delta: float) -> void:
 		velocity = knockback
 	knockback = knockback.move_toward(Vector2.ZERO, Balance.ENEMY_KNOCKBACK_DECAY * delta)
 	position = room.move_actor(position, velocity * delta, navigation_radius)
+	_advance_pushes(delta)
+	if is_instance_valid(body_visual):
+		body_visual.advance(delta)
 	queue_redraw()
 
 func _separation() -> Vector2:
@@ -203,24 +242,66 @@ func _separation() -> Vector2:
 func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO, context: Dictionary = {}) -> bool:
 	if not is_alive() or Game.run == null:
 		return false
-	if room.enemy_skills != null:
+	var damage_type := Damage.normalized_type(str(context.get("damage_type", str(kind))))
+	if status.has("invulnerable"):
+		return false
+	# Enemy barrier/stance multipliers are reduction, so true damage bypasses
+	# them. Immunity is checked above; shields are still consumed below.
+	if room.enemy_skills != null and damage_type != "true":
 		amount = room.enemy_skills.filter_incoming_damage(self, amount, kind, from_direction)
 	if amount <= 0.0:
 		return false
 	last_damage_context = context.duplicate()
 	if last_damage_context.is_empty():
 		last_damage_context = {"damage_source":str(kind),"equipment_eligible":false,"original_basic":false,"proc_depth":1}
-	if kind == &"primary" or kind == &"child":
+	if (kind == &"primary" or kind == &"child") and not static_actor and rank != "boss" and from_direction.is_finite():
 		knockback += from_direction * Balance.ENEMY_KNOCKBACK
-	hurt_flash = 0.1
-	var final_amount: float = amount * 100.0 / (100.0 + maxf(0.0, armor))
+	var defense: Dictionary = status.damage_modifiers()
+	defense.merge({"armor":effective_armor() * (0.85 if status.has("corrosion") else 1.0),"magic_resist":magic_resist}, true)
+	var resolved: Dictionary = Damage.resolve(amount, damage_type, context.get("attacker_stats", {}), defense, context)
+	var final_amount: float = float(resolved.damage) * (1.35 if biome_weakpoint_open() else 1.0)
+	var shield_before: float = status.shield()
 	final_amount = status.absorb(final_amount)
+	if final_amount > 0.0 or status.shield() < shield_before:
+		hurt_flash = 0.1
 	if brain != null:
 		var hit_context: Dictionary = context.duplicate()
 		hit_context.merge({"damage":final_amount,"kind":str(kind),"direction":from_direction},true)
 		brain.on_damaged(self, hit_context)
 	room.add_damage_text(position - Vector2(0, 65 if body_texture != null else 26), final_amount, kind)
+	if final_amount > 0.0:
+		last_damage_direction = from_direction.normalized() if from_direction.is_finite() else Vector2.ZERO
 	return health.damage(final_amount)
+
+func apply_biome_counter(kind: String, duration: float = 6.0) -> bool:
+	if actor_kind != "enemy" or static_actor or rank == "boss" or not is_alive() or is_queued_for_deletion() or (is_inside_tree() and get_tree().paused):
+		return false
+	if kind not in ["solar_conduit", "brood_egg", "war_drum"] or not is_finite(duration) or duration <= 0.0:
+		return false
+	if kind == "solar_conduit":
+		status.guards.clear()
+		if is_instance_valid(room) and is_instance_valid(room.enemy_skills) and room.enemy_skills.has_method("clear_target_guards"):
+			room.enemy_skills.clear_target_guards(self)
+	_biome_counters[kind] = clampf(duration, 0.01, 30.0)
+	queue_redraw()
+	return true
+
+func biome_weakpoint_open() -> bool:
+	return not _biome_counters.is_empty() and is_alive()
+
+func effective_armor() -> float:
+	return 0.0 if float(_biome_counters.get("war_drum", 0.0)) > 0.0 else armor
+
+func biome_counter_status() -> Dictionary:
+	return {"weakpoint":biome_weakpoint_open(), "damage_multiplier":1.35 if biome_weakpoint_open() else 1.0, "effective_armor":effective_armor(), "remaining":_biome_counters.duplicate()}
+
+func heal(amount: float) -> float:
+	if not is_alive():
+		return 0.0
+	var restored := minf(health.maximum - health.current, Damage.healing(amount, status.has("grievous")))
+	health.current += restored
+	queue_redraw()
+	return restored
 
 func apply_burn() -> void:
 	apply_status("burn", room.player.attack_power())
@@ -231,10 +312,12 @@ func tick_burn(delta: float) -> void:
 func apply_status(id: String, power: float, duration: float = -1.0) -> bool:
 	if not is_alive():
 		return false
-	if id not in ["burn", "shock", "chill", "corrosion", "guard"]:
+	if id not in StatusScript.VALID_STATES and id != "guard":
 		return false
 	if id == "guard":
 		status.grant_guard(power, 4.0 if duration <= 0.0 else duration, "enemy", health.maximum)
+	elif id in ["damage_reduction", "invulnerable"]:
+		status.apply(id, power, duration)
 	else:
 		var duration_bonus: float = room.player.stat("status_duration", 0.0)
 		if id == "chill":
@@ -247,29 +330,104 @@ func apply_status(id: String, power: float, duration: float = -1.0) -> bool:
 	return true
 
 func tick_statuses(delta: float) -> void:
+	if is_finite(delta) and delta > 0.0 and (not is_inside_tree() or not get_tree().paused):
+		for kind: String in _biome_counters.keys():
+			_biome_counters[kind] = maxf(0.0, float(_biome_counters[kind]) - delta)
+			if float(_biome_counters[kind]) <= 0.0:
+				_biome_counters.erase(kind)
 	for tick: Dictionary in status.tick(delta):
 		if not is_alive():
 			break
 		if tick.kind == "burn":
 			room.telemetry["burn_ticks"] += 1
 		var event_id: String = "dot:" + str(get_instance_id()) + ":" + str(status.clock)
-		take_damage(float(tick.damage), StringName(tick.kind), Vector2.ZERO, {"attack_id":event_id,"root_event_id":event_id,"damage_source":tick.kind,"proc_depth":1,"equipment_eligible":false,"original_basic":false,"target_states":[tick.kind],"H":float(tick.H),"X":float(tick.damage)})
+		take_damage(float(tick.damage), StringName(tick.kind), Vector2.ZERO, {"attack_id":event_id,"root_event_id":event_id,"damage_source":tick.kind,"damage_type":tick.damage_type,"attacker_stats":Game.run.stats,"proc_depth":1,"equipment_eligible":false,"original_basic":false,"target_states":[tick.kind],"H":float(tick.H),"X":float(tick.damage)})
 	burn_remaining = float(status.states.get("burn", {}).get("remaining", 0.0))
 	burn_tick = float(status.states.get("burn", {}).get("tick", 0.0))
 
 func apply_knockback(direction: Vector2, distance: float) -> void:
-	if static_actor:
+	if static_actor or not is_alive() or not direction.is_finite() or not is_finite(distance) or distance <= 0.0 or direction.is_zero_approx():
 		return
 	if rank == "boss":
 		room.add_ring(position, Color("beb09a"), 24.0, 0.2)
 		return
 	var length: float = distance * (0.5 if rank == "elite" else 1.0)
-	position = room.move_actor(position, direction * length, navigation_radius)
+	var travel: Vector2 = direction.normalized() * length
+	var reachable: Vector2 = room.move_actor(position, travel, navigation_radius) - position
+	# A wall-blocked request must not interrupt a perfectly stationary enemy.
+	if reachable.length_squared() <= 0.0001:
+		return
+	var projected: Vector2 = room.move_actor(position, pending_displacement() + travel, navigation_radius)
+	_compact_pushes()
+	_pushes.append({"travel":travel,"elapsed":0.0,"duration":clampf(0.10 + length * 0.0005, 0.10, 0.16)})
+	# Commit the interrupt now, before the next brain tick can release damage
+	# from the old locked standing point. This does not move the body early.
+	if brain != null:
+		brain.on_displacement_committed(self, projected)
+	if room.enemy_skills != null:
+		room.enemy_skills.cancel_displaced_motion(self)
 	if rank == "normal" and reaction_cooldown <= 0.0:
 		reaction_cooldown = 1.0
 		reaction_remaining = 0.12
 
+func has_pending_displacement() -> bool:
+	return not _pushes.is_empty()
+
+func pending_displacement() -> Vector2:
+	var remaining := Vector2.ZERO
+	for push: Dictionary in _pushes:
+		var left: float = 1.0 - clampf(float(push.elapsed) / float(push.duration), 0.0, 1.0)
+		remaining += Vector2(push.travel) * left * left
+	return remaining
+
+func _compact_pushes() -> void:
+	if _pushes.size() < MAX_PUSH_PULSES:
+		return
+	# Rare bursts share a bounded 16-pulse queue. Prefer equal deadlines so
+	# same-frame impacts merge without extending an older batch's lifetime.
+	# If all differ, the closest pair retains its latest existing deadline;
+	# no pulse acquires the newly arriving hit's duration.
+	var first_index: int = 0
+	var second_index: int = 1
+	var closest_deadline: float = INF
+	for left: int in range(_pushes.size() - 1):
+		var left_time: float = float(_pushes[left].duration) - float(_pushes[left].elapsed)
+		for right: int in range(left + 1, _pushes.size()):
+			var right_time: float = float(_pushes[right].duration) - float(_pushes[right].elapsed)
+			var difference: float = absf(left_time - right_time)
+			if difference < closest_deadline:
+				closest_deadline = difference
+				first_index = left
+				second_index = right
+	var first: Dictionary = _pushes[first_index]
+	var second: Dictionary = _pushes[second_index]
+	_pushes.remove_at(second_index)
+	_pushes.remove_at(first_index)
+	var remainder := Vector2.ZERO
+	var deadline: float = 0.0
+	for push: Dictionary in [first, second]:
+		var left: float = maxf(0.0, float(push.duration) - float(push.elapsed))
+		remainder += Vector2(push.travel) * pow(left / float(push.duration), 2.0)
+		deadline = maxf(deadline, left)
+	if deadline > 0.0 and not remainder.is_zero_approx():
+		_pushes.push_front({"travel":remainder,"elapsed":0.0,"duration":deadline})
+
+func _advance_pushes(delta: float) -> void:
+	if delta <= 0.0 or _pushes.is_empty():
+		return
+	var displacement := Vector2.ZERO
+	for push: Dictionary in _pushes.duplicate():
+		var before: float = clampf(float(push.elapsed) / float(push.duration), 0.0, 1.0)
+		push.elapsed = minf(float(push.duration), float(push.elapsed) + delta)
+		var after: float = float(push.elapsed) / float(push.duration)
+		# Integral of linearly decaying velocity; independent of frame rate.
+		displacement += Vector2(push.travel) * ((1.0 - before) * (1.0 - before) - (1.0 - after) * (1.0 - after))
+		if after >= 1.0:
+			_pushes.erase(push)
+	position = room.move_actor(position, displacement, navigation_radius)
+
 func _die() -> void:
+	_biome_counters.clear()
 	room.enemy_died(self)
 	queue_free()
 
@@ -279,8 +437,6 @@ func _draw() -> void:
 	if static_actor:
 		_draw_skill_anchor()
 		return
-	if brain != null:
-		room.draw_enemy_telegraph(self, brain.current_telegraph())
 	var reduced: bool = Game.profile.get("settings", {}).get("reduced_fx", false)
 	if state == &"emerging":
 		draw_arc(Vector2.ZERO, 28.0, 0, TAU, 24, Color(0.9, 0.42, 0.41, 0.65), 2.0, true)
@@ -294,10 +450,11 @@ func _draw() -> void:
 		draw_polyline(fan, Color(0.95, 0.44, 0.40, 0.85), 1.5, true)
 		draw_arc(Vector2.ZERO, 42 if body_texture != null else 25, -PI / 2, -PI / 2 + TAU * progress, 24, Color("f1b466"), 3, true)
 	draw_set_transform(Vector2(0,10), 0.0, Vector2(1,0.5))
-	draw_circle(Vector2.ZERO, 22.0, Color(0.02, 0.03, 0.04, 0.6))
+	draw_circle(Vector2.ZERO, 22.0, Color(0.20, 0.17, 0.25, 0.25))
 	draw_set_transform(Vector2.ZERO)
 	if body_texture != null:
-		draw_arc(Vector2.ZERO,navigation_radius,0,TAU,24,Color(0.89,0.42,0.41,0.25),1.0,true)
+		if state in [&"windup", &"telegraph", &"locked"]:
+			draw_arc(Vector2.ZERO,navigation_radius,0,TAU,24,Color(0.89,0.28,0.27,0.52),1.0,true)
 		var tint := Color(1,1,1,.35 if bool(get_meta("enemy_shadow_stealth",false)) else 1.0)
 		if hurt_flash > 0.0 and not reduced:
 			var lift: float = .12*clampf(hurt_flash/.1,0.0,1.0)
@@ -307,11 +464,13 @@ func _draw() -> void:
 		var image_texture: Texture2D = body_texture
 		if enemy_id == "M35" and empty_body_texture != null and (not is_instance_valid(room.enemy_props) or not room.enemy_props.carried_by(self)):
 			image_texture = empty_body_texture
-		if body_region.has_area():
+		if is_instance_valid(body_visual):
+			pass # Body child renders behind this actor's bars, states and tells.
+		elif body_region.has_area():
 			draw_texture_rect_region(image_texture,body_bounds,body_region,tint)
 		else:
 			draw_texture_rect(image_texture,body_bounds,false,tint)
-	else:
+	elif not is_instance_valid(body_visual):
 		_draw_fallback_body()
 	if bool(get_meta("solid_owner_ring",false)) or str(profile.get("behavior_id","")) == "solid_ring_decoy":
 		draw_circle(Vector2(0,18),12.0,Color(.6,.77,.85,.65))
@@ -328,8 +487,9 @@ func _draw() -> void:
 	var status_x: float = -float(visible_statuses.size()) * 10.0
 	for id: String in visible_statuses:
 		var icon: Texture2D = status_textures.get(id)
-		var color: Color = {"burn":Color("e6aa4a"),"shock":Color("eed897"),"chill":Color("98d8e2"),"corrosion":Color("a7c783")}[id]
-		draw_rect(Rect2(status_x,-76,18,18),Color(.04,.065,.07,.88))
+		var color: Color = {"burn":Color("e6aa4a"),"shock":Color("eed897"),"chill":Color("98d8e2"),"corrosion":Color("a7c783"),"bleed":Color("e36f79"),"grievous":Color("c670b2"),"damage_reduction":Color("91bbd0"),"invulnerable":Color("fff4bd")}[id]
+		draw_rect(Rect2(status_x,-76,18,18),Color("fff0cf"))
+		draw_rect(Rect2(status_x,-76,18,18),Color("80617e"),false,1.0)
 		if icon != null:
 			var icon_size: Vector2 = icon.get_size()
 			var extent: Vector2 = icon_size * minf(18.0/icon_size.x,18.0/icon_size.y)
@@ -341,8 +501,9 @@ func _draw() -> void:
 		draw_arc(Vector2.ZERO, 28.0, 0, TAU, 24, Color("addbca"), 2.0, true)
 	if health.current < health.maximum or (not enemy_id.is_empty() and position.distance_to(room.player.position)<520):
 		var bar_y: float = body_bounds.position.y-8.0 if body_texture != null else -40.0
-		draw_rect(Rect2(-18,bar_y,36,4),Color("0d131a"))
-		draw_rect(Rect2(-18,bar_y,36 * health.current / health.maximum,4),Color("e46b69"))
+		draw_rect(Rect2(-19,bar_y-1,38,6),Color("4d3854"))
+		draw_rect(Rect2(-18,bar_y,36,4),Color("f1d9b4"))
+		draw_rect(Rect2(-18,bar_y,36 * health.current / health.maximum,4),Color("d65b65"))
 	if not enemy_id.is_empty():
 		var nearby: bool = position.distance_to(room.player.position)<300
 		var english: bool = Words.locale == "en"
@@ -351,34 +512,41 @@ func _draw() -> void:
 			caption += " Elite" if english else " 精英"
 		if nearby or hurt_flash > 0:
 			caption += " " + str(profile.get("name_en" if english else "name",enemy_id))
+		if get_local_mouse_position().length() < 48.0 and actor_kind == "enemy":
+			var role: String = str(profile.get("archetype","skirmisher"))
+			caption += " · " + (role.capitalize() if english else str({"tank":"坦克","caster":"法系","assassin":"刺客","support":"支援","skirmisher":"散兵"}.get(role,"野怪")))
+			caption += " / M" if english and profile.get("damage_type","physical")=="magic" else " / P" if english else " / 魔法" if profile.get("damage_type","physical")=="magic" else " / 物理"
 		var text_width: float = room.fx_font.get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,11).x
-		draw_rect(Rect2(-text_width*.5-3,25,text_width+6,16),Color(.035,.05,.06,.82))
-		draw_string(room.fx_font,Vector2(-text_width*.5,37),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,11,Color("e8d3ab"))
+		draw_rect(Rect2(-text_width*.5-4,25,text_width+8,16),Color(1.0,.945,.82,.93))
+		draw_rect(Rect2(-text_width*.5-4,25,text_width+8,16),Color(.46,.34,.45,.72),false,1.0)
+		draw_string(room.fx_font,Vector2(-text_width*.5,37),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,11,Color("49364f"))
 
 func _draw_skill_anchor() -> void:
 	var plate: bool = str(get_meta("enemy_skill_anchor_kind", "")) == "weld_cover" or actor_kind == "cover"
 	var facing: Vector2 = get_meta("enemy_skill_anchor_direction",Vector2.RIGHT)
 	draw_set_transform(Vector2.ZERO,facing.angle())
 	if plate:
-		draw_rect(Rect2(-8,-24,16,48),Color("35464d"))
-		draw_rect(Rect2(-8,-24,16,48),Color("d89652"),false,2)
+		draw_rect(Rect2(-8,-24,16,48),Color("657e89"))
+		draw_rect(Rect2(-8,-24,16,48),Color("dcac65"),false,2)
 		for y in [-15,0,15]:
-			draw_line(Vector2(-5,y),Vector2(5,y),Color("9eaa9d"),2)
+			draw_line(Vector2(-5,y),Vector2(5,y),Color("e8e1c7"),2)
 	else:
 		draw_colored_polygon(PackedVector2Array([Vector2(-10,0),Vector2(0,-13),Vector2(10,0),Vector2(0,13)]),Color("497784"))
 		draw_circle(Vector2.ZERO,5,Color("a5e1dd"))
 	draw_set_transform(Vector2.ZERO)
-	draw_rect(Rect2(-13,-32,26,3),Color("17252b"))
-	draw_rect(Rect2(-13,-32,26*health.current/maxf(1,health.maximum),3),Color("dfad65"))
+	draw_rect(Rect2(-14,-33,28,5),Color("4d3854"))
+	draw_rect(Rect2(-13,-32,26,3),Color("f1d9b4"))
+	draw_rect(Rect2(-13,-32,26*health.current/maxf(1,health.maximum),3),Color("61bca9"))
 
 func _draw_fallback_body() -> void:
+	var colors: Dictionary = EnemyPalette.colors_for(enemy_id, profile)
 	var walk := sin(lifetime * 9.0) * (3.0 if state == &"chase" else 0.0)
 	for side in [-1.0, 1.0]:
-		draw_polyline(PackedVector2Array([Vector2(side*8,0),Vector2(side*23,-8+walk),Vector2(side*29,6+walk)]), Color("75614e"), 4.0, true)
-		draw_polyline(PackedVector2Array([Vector2(side*9,5),Vector2(side*21,13-walk),Vector2(side*23,21-walk)]), Color("4c5c63"), 4.0, true)
-	draw_colored_polygon(PackedVector2Array([Vector2(-16,-11),Vector2(-9,-21),Vector2(10,-19),Vector2(18,-6),Vector2(13,12),Vector2(-12,12)]), Color("43505a"))
-	draw_polyline(PackedVector2Array([Vector2(-16,-11),Vector2(-9,-21),Vector2(10,-19),Vector2(18,-6)]), Color("917458"), 2.0, true)
-	draw_line(Vector2(-13,-4),Vector2(14,-4),Color("19252c"),6.0)
-	draw_line(Vector2(-9,-4),Vector2(10,-4),Color("e99663"),3.0)
-	draw_circle(Vector2(0,5),5.0,Color("a07447"))
-	draw_circle(Vector2(0,5),2.0,Color("f4cf80"))
+		draw_polyline(PackedVector2Array([Vector2(side*8,0),Vector2(side*23,-8+walk),Vector2(side*29,6+walk)]), colors.trim, 4.0, true)
+		draw_polyline(PackedVector2Array([Vector2(side*9,5),Vector2(side*21,13-walk),Vector2(side*23,21-walk)]), colors.shade, 4.0, true)
+	draw_colored_polygon(PackedVector2Array([Vector2(-16,-11),Vector2(-9,-21),Vector2(10,-19),Vector2(18,-6),Vector2(13,12),Vector2(-12,12)]), colors.primary)
+	draw_polyline(PackedVector2Array([Vector2(-16,-11),Vector2(-9,-21),Vector2(10,-19),Vector2(18,-6)]), colors.highlight, 2.0, true)
+	draw_line(Vector2(-13,-4),Vector2(14,-4),colors.outline,6.0)
+	draw_line(Vector2(-9,-4),Vector2(10,-4),colors.energy,3.0)
+	draw_circle(Vector2(0,5),5.0,colors.trim)
+	draw_circle(Vector2(0,5),2.0,colors.energy)

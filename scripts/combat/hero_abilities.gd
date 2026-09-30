@@ -9,6 +9,7 @@ var owner_player: Node2D
 var feedback: Node2D
 var active: Dictionary = {}
 var last_failure: String = ""
+var last_failure_details: Dictionary = {}
 var cast_serial: int = 0
 
 func configure(player: Node2D) -> void:
@@ -22,6 +23,29 @@ func configure(player: Node2D) -> void:
 
 func busy() -> bool:
 	return not active.is_empty()
+
+func recovery_chain_wait() -> float:
+	if active.is_empty():
+		return 0.0
+	# A follow-up may trim only recovery. All shots, waves and authored travel
+	# belong to the committed action and must finish before its next action.
+	var data: Dictionary = active.spec
+	var release_end: float = float(data.windup)
+	var events: Array[Dictionary] = active.events
+	if not events.is_empty():
+		release_end = maxf(release_end, float(events.back().time))
+	if float(data.get("travel", 0.0)) > 0.0:
+		release_end = maxf(release_end, float(data.windup) + float(data.get("travel_time", 0.0)))
+	var contact_recovery: float = 0.07 if str(data.slot) in ["secondary", "ultimate"] else 0.06
+	if str(data.slot) == "f" or (str(data.hero) == "CH03" and str(data.slot) == "secondary"):
+		contact_recovery = 0.045
+	var chain_at: float = minf(float(data.duration), release_end + contact_recovery)
+	return maxf(0.0, chain_at - float(active.elapsed))
+
+func recovery_chain_ready() -> bool:
+	if active.is_empty():
+		return true
+	return int(active.next_event) >= active.events.size() and recovery_chain_wait() <= 0.00001
 
 func cancel() -> void:
 	active.clear()
@@ -56,7 +80,7 @@ func spec(slot: String, preview_hero: String = "", preview_level: int = -1, prev
 			"q": data = {"name":"裂轨突进", "cost":15.0 if level >= 10 else 20.0, "cooldown":6.0, "windup":0.10, "duration":0.42, "travel":160.0, "travel_time":0.18, "coefficient":1.5, "radius":75.0, "knockback":45.0, "movement":0.65}
 			"secondary": data = {"name":"破桩横扫", "cost":30.0, "cooldown":4.0, "windup":0.18, "duration":0.46 if level >= 12 else 0.54, "coefficient":2.2, "radius":115.0, "arc":120.0, "knockback":65.0, "movement":0.65}
 			"f": data = {"name":"撑梁反推", "cost":25.0, "cooldown":11.0, "windup":0.12, "duration":0.38, "coefficient":0.6, "radius":100.0, "knockback":70.0, "guard":0.18 if level >= 14 else 0.12, "movement":0.8}
-			"ultimate": data = {"name":"重锤落井", "cost":70.0, "cooldown":42.0, "windup":0.45, "duration":1.02, "coefficient":4.6 if level >= 16 else 4.0, "radius":180.0, "range":130.0, "knockback":90.0, "movement":0.35}
+			"ultimate": data = {"name":"战斧坠击", "cost":70.0, "cooldown":42.0, "windup":0.45, "duration":1.02, "coefficient":4.6 if level >= 16 else 4.0, "radius":180.0, "range":130.0, "knockback":90.0, "movement":0.35}
 	elif hero == "CH02":
 		match slot:
 			"q": data = {"name":"翻索掠射", "cost":20.0 if level >= 10 else 25.0, "cooldown":7.0, "windup":0.06, "duration":0.42, "travel":150.0, "travel_time":0.16, "coefficient":0.35, "range":450.0, "speed":950.0, "movement":0.8}
@@ -66,18 +90,26 @@ func spec(slot: String, preview_hero: String = "", preview_level: int = -1, prev
 	else:
 		match slot:
 			"q": data = {"name":"裂晶脉冲", "cost":18.0, "cooldown":5.0, "windup":0.18, "duration":0.36, "coefficient":1.25, "range":550.0, "speed":850.0 if level >= 10 else 650.0, "explosion_radius":65.0, "movement":0.85}
-			"secondary": data = {"name":"共鸣节点", "cost":30.0, "cooldown":8.0, "windup":0.20, "duration":0.44, "coefficient":0.3, "range":220.0, "radius":160.0, "health":50.0 if level >= 12 else 35.0, "movement":0.85}
-			"f": data = {"name":"霜环反转", "cost":25.0, "cooldown":9.0 if level >= 14 else 11.0, "windup":0.14, "duration":0.40, "coefficient":0.8, "radius":140.0, "movement":0.85}
+			"secondary": data = {"name":"共鸣节点", "cost":30.0, "cooldown":3.5, "windup":0.20, "duration":0.44, "coefficient":0.15, "range":220.0, "radius":160.0, "health":50.0 if level >= 12 else 35.0, "movement":0.85}
+			"f": data = {"name":"共振引爆", "cost":25.0, "cooldown":9.0 if level >= 14 else 11.0, "windup":0.14, "duration":0.40, "coefficient":0.8, "radius":140.0, "movement":0.85}
 			"ultimate": data = {"name":"穹顶共振", "cost":60.0, "cooldown":48.0, "windup":0.40, "duration":0.80, "coefficient":0.6, "tick_coefficient":0.8, "range":280.0, "radius":210.0 if level >= 16 else 180.0, "lifetime":5.0, "movement":0.65}
 	if data.is_empty():
 		return data
-	data["unlock"] = {"q":2, "secondary":4, "f":6, "ultimate":8}.get(slot, 99)
+	var skill_definition: Dictionary = ContentRegistry.hero(hero).get("skills", {}).get(slot, {})
+	data["unlock"] = int(skill_definition.get("unlock", 99))
 	data["slot"] = slot
 	data["hero"] = hero
+	data["damage_type"] = "magic" if hero == "CH03" else "physical"
 	data["branch"] = _branch(slot, level, effective_stats)
 	_apply_branch(data)
 	data["base_cooldown"] = float(data.cooldown)
 	data.cooldown = float(data.cooldown) * (1.0 - clampf(float(effective_stats.get("cooldown_reduction", 0.0)), 0.0, 0.30))
+	# Live cost is sampled before commitment consumes Momentum. The same spec
+	# feeds casting and the HUD; catalog previews retain the ordinary Rage cost.
+	if not preview and hero == "CH01" and slot == "secondary" and is_instance_valid(owner_player):
+		data["momentum_free"] = int(owner_player.break_stacks) >= 3
+		if bool(data.momentum_free):
+			data.cost = 0.0
 	return data
 
 func _branch(slot: String, level: int, stats: Dictionary) -> String:
@@ -124,11 +156,16 @@ func _apply_branch(data: Dictionary) -> void:
 	else:
 		data.merge({"lifetime":4.0, "tick_coefficient":0.65, "radius":140.0, "follow_player":true}, true)
 
-func try_cast(slot: String, target: Vector2) -> bool:
+func can_cast(slot: String, target: Vector2, ignore_busy: bool = false) -> bool:
+	# Same checks as commitment, but no resource/cooldown/stack/audio mutation.
+	return try_cast(slot, target, true, false, ignore_busy)
+
+func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_recovery_chain: bool = false, ignore_busy: bool = false) -> bool:
 	last_failure = ""
+	last_failure_details = {}
 	if not is_instance_valid(owner_player) or Game.run == null or Game.run.hp <= 0.0:
 		return _fail("unavailable")
-	if busy():
+	if busy() and not (validate_only and ignore_busy) and not (allow_recovery_chain and recovery_chain_ready()):
 		return _fail("busy")
 	var data: Dictionary = spec(slot)
 	if data.is_empty() or owner_player.hero_level() < int(data.unlock):
@@ -137,7 +174,7 @@ func try_cast(slot: String, target: Vector2) -> bool:
 		return _fail("cooldown")
 	var origin: Vector2 = owner_player.position
 	var direction: Vector2 = owner_player.aim_direction.normalized()
-	if direction.is_zero_approx():
+	if not direction.is_finite() or direction.is_zero_approx():
 		return _fail("invalid_direction")
 	var hero: String = data.hero
 	var travel_direction: Vector2 = direction
@@ -147,38 +184,63 @@ func try_cast(slot: String, target: Vector2) -> bool:
 	if hero == "CH01" and slot == "q" and float(data.travel) > 0.0:
 		var step: Vector2 = owner_player.room.move_actor(origin, travel_direction * 4.0, Balance.PLAYER_RADIUS)
 		if step.distance_squared_to(origin) < 0.1:
-			return _fail("invalid_ground")
+			return _fail("invalid_ground", {"cause":"blocked_ground"})
 	var ground_cast: bool = (hero == "CH02" and slot == "f") or (hero == "CH03" and slot in ["secondary", "ultimate"])
 	if hero == "CH03" and slot == "ultimate" and bool(data.get("follow_player", false)):
 		# The mobile branch is self-centered, so an unused cursor over a wall
 		# must not block it or consume a different targeting rule than its effect.
 		target = origin
 	if ground_cast:
-		if origin.distance_to(target) > float(data.range) + 0.01 or not owner_player.room.valid_ground(target, 14.0) or not owner_player.room.has_line_of_sight(origin, target):
-			return _fail("invalid_ground")
+		if not target.is_finite():
+			return _fail("invalid_ground", {"cause":"blocked_ground"})
+		if origin.distance_to(target) > float(data.range) + 0.01:
+			return _fail("invalid_ground", {"cause":"out_of_range", "range":float(data.range), "distance":origin.distance_to(target)})
+		if not owner_player.room.valid_ground(target, 14.0) or not owner_player.room.has_line_of_sight(origin, target):
+			return _fail("invalid_ground", {"cause":"blocked_ground"})
 	if hero == "CH01" and slot == "ultimate":
+		if not target.is_finite():
+			return _fail("invalid_ground", {"cause":"blocked_ground"})
 		var offset: Vector2 = target - origin
 		if offset.length() > float(data.range):
 			offset = offset.normalized() * float(data.range)
 		target = owner_player.room.move_actor(origin, offset, 4.0)
 		if not owner_player.room.valid_ground(target, 4.0):
-			return _fail("invalid_ground")
+			return _fail("invalid_ground", {"cause":"blocked_ground"})
 	var cost: float = float(data.cost)
 	if owner_player.has_method("resource_cost"):
 		cost = owner_player.resource_cost(cost)
+	if not is_finite(cost) or cost < 0.0 or Game.run.resource < cost:
+		return _fail("resource", {"cost":cost, "resource":float(Game.run.resource)})
+	if validate_only:
+		return true
 	if not Game.try_spend_resource(cost):
 		return _fail("resource")
+	# Validation and payment succeeded. Retire only the old completed recovery;
+	# released projectiles, deployments and feedback still own their lifetimes.
+	if busy():
+		cancel()
+	if hero == "CH01" and slot in ["secondary", "ultimate"]:
+		# Momentum commits with the cast. A defensive dash cannot refund it.
+		var stacks: int = owner_player.consume_break_stacks()
+		data["break_stacks"] = stacks
+		data.coefficient = float(data.coefficient) + stacks * (0.45 if slot == "secondary" else 0.60)
+		if stacks == 3:
+			data.radius = float(data.radius) + (25.0 if slot == "secondary" else 30.0)
+			data.knockback = float(data.knockback) + 25.0
+			if slot == "secondary":
+				data.arc = 160.0
 	owner_player.cooldowns[slot] = float(data.cooldown)
 	owner_player.resource_delay = 0.5 if hero == "CH02" else 0.8
 	cast_serial += 1
-	active = {"spec":data, "elapsed":0.0, "origin":origin, "target":target, "direction":direction, "initial_direction":direction, "travel_direction":travel_direction, "power":owner_player.attack_power(), "events":_timeline(data), "next_event":0, "serial":cast_serial}
+	active = {"spec":data, "elapsed":0.0, "origin":origin, "target":target, "direction":direction, "initial_direction":direction, "travel_direction":travel_direction, "power":owner_player.skill_power(), "attacker_stats":Game.run.stats.duplicate(), "events":_timeline(data), "next_event":0, "serial":cast_serial}
 	owner_player.visual_event("cast_" + slot, float(data.duration))
 	if is_instance_valid(feedback):
 		feedback.cast_started(data, active.direction, active.target, cast_serial)
 	return true
 
-func _fail(reason: String) -> bool:
+func _fail(reason: String, details: Dictionary = {}) -> bool:
 	last_failure = reason
+	last_failure_details = details.duplicate(true)
 	return false
 
 func _timeline(data: Dictionary) -> Array[Dictionary]:
@@ -261,18 +323,25 @@ func _resolve(index: int) -> void:
 	var room: Node = owner_player.room
 	var at: Vector2 = owner_player.position
 	var direction: Vector2 = active.direction
-	var hit_context: Dictionary = {"root_event_id":"skill:" + str(active.serial), "attack_id":"skill:" + str(active.serial) + ":" + str(index), "power":power, "original_basic":false, "equipment_eligible":true}
+	var hit_context: Dictionary = {"root_event_id":"skill:" + str(active.serial), "attack_id":"skill:" + str(active.serial) + ":" + str(index), "power":power, "original_basic":false, "equipment_eligible":true, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats}
 	if hero == "CH01":
 		if slot == "ultimate":
 			at = active.target
 		var knockback: float = float(data.get("knockback", 0.0)) if index == 0 else 0.0
-		room.strike_area(at, float(data.radius), amount, slot, "", knockback, direction, float(data.get("arc", 360.0)), true, hit_context)
+		var hits: Array = room.strike_area(at, float(data.radius), amount, slot, "", knockback, direction, float(data.get("arc", 360.0)), true, hit_context)
+		if slot == "q" and not hits.is_empty():
+			owner_player.gain_break_stacks(1)
+		elif slot == "f":
+			owner_player.gain_break_stacks(1)
 		if float(data.get("guard", 0.0)) > 0.0:
 			owner_player.grant_guard(Game.run.max_hp * float(data.guard), 4.0, "hero_" + slot)
-		room.add_ring(at, Color("da995b"), float(data.radius), 0.25)
+		# The horizontal sweep already has a directional weapon trail. A full
+		# circle would falsely suggest it hits behind the committed attack sector.
+		if slot != "secondary":
+			room.add_ring(at, Color("da995b"), float(data.radius), 0.25)
 	elif hero == "CH02":
 		if slot == "f":
-			room.add_deployment("trap", active.target, {"damage":amount, "power":power, "radius":data.radius, "lifetime":12.0, "owner_player":owner_player})
+			room.add_deployment("trap", active.target, {"damage":amount, "power":power, "radius":data.radius, "lifetime":12.0, "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats})
 		else:
 			if slot == "q" and index == 0:
 				active.direction = owner_player.aim_direction.normalized()
@@ -285,10 +354,12 @@ func _resolve(index: int) -> void:
 		options.merge(hit_context, true)
 		room.spawn_ability_projectile(_projectile_origin(direction), direction, amount, options)
 	elif slot == "secondary":
-		room.add_deployment("node", active.target, {"damage":amount, "power":power, "radius":data.radius, "health":data.health, "lifetime":10.0, "owner_player":owner_player})
+		room.add_deployment("node", active.target, {"damage":amount, "power":power, "radius":data.radius, "health":data.health, "lifetime":14.0, "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats})
 	elif slot == "f":
 		room.strike_area(at, float(data.radius), amount, "f", "chill", 0.0, Vector2.ZERO, 360.0, true, hit_context)
-		room.node_echo(at, 260.0, power * 0.35, "")
+		for node: Node2D in owner_player.resonance_nodes():
+			if node.position.distance_to(at) <= 260.0 and room.has_line_of_sight(at, node.position):
+				node.detonate()
 		room.add_ring(at, Color("a4d8da"), float(data.radius), 0.3)
 	elif slot == "ultimate":
 		if bool(data.get("follow_player", false)):
@@ -296,8 +367,13 @@ func _resolve(index: int) -> void:
 		else:
 			at = active.target
 		room.strike_area(at, float(data.radius), amount, "ultimate", "shock", 0.0, Vector2.ZERO, 360.0, true, hit_context)
-		room.add_deployment("field", at, {"damage":power * float(data.tick_coefficient), "power":power, "radius":data.radius, "lifetime":data.lifetime, "follow_player":data.get("follow_player", false), "owner_player":owner_player})
+		owner_player.charge_resonance(at, float(data.radius), 3)
+		room.add_deployment("field", at, {"damage":power * float(data.tick_coefficient), "power":power, "radius":data.radius, "lifetime":data.lifetime, "follow_player":data.get("follow_player", false), "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats})
 	owner_player.visual_event("release_" + slot, 0.12)
+	# One sound per executed event, including branches and partial cancellation.
+	# It belongs to the same release as this projectile/deployment/strike, never
+	# to a prerecorded burst that can outlive cancelled future events.
+	owner_player._play_combat_audio(&"cast", [hero, slot])
 	if is_instance_valid(feedback):
 		var effect_center: Vector2 = active.target if (hero == "CH02" and slot == "f") or (hero == "CH03" and slot == "secondary") else at
 		feedback.skill_released(data, direction, effect_center, index, active.events.size(), cast_serial)

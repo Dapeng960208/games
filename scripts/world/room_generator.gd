@@ -20,10 +20,15 @@ const ASSET_BOUNDS := {
 	"B03_transformer": Vector2(154, 179), "B03_pipe_manifold": Vector2(183, 157), "B03_wrecked_drone": Vector2(182, 135),
 	"B04_crystal_cluster": Vector2(168, 170), "B04_resonance_obelisk": Vector2(135, 198), "B04_broken_receiver": Vector2(179, 151)
 }
-const PATH_CLEARANCE := 36.0
-const PROP_GAP := 76.0
-const MAX_ATTEMPTS := 2200
-const MIN_PROPS := 14
+const PATH_CLEARANCE := 72.0
+const PROP_GAP := 112.0
+const MAX_ATTEMPTS := 900
+const MIN_PROPS := 4
+const MAX_PROPS := 8
+const CENTRAL_CLEARING := Rect2(1180.0, 740.0, 440.0, 320.0)
+const CROSS_CLEARANCES := [Rect2(0.0, 820.0, 2800.0, 160.0), Rect2(1320.0, 0.0, 160.0, 1800.0)]
+const COLUMN_SIZE := Vector2(80.0, 185.0)
+const COLUMN_FOOTPRINT := Vector2(80.0, 34.0)
 static var _skeletons: Dictionary = {}
 
 static func generate(room_id: String, seed_value: int) -> Dictionary:
@@ -31,7 +36,8 @@ static func generate(room_id: String, seed_value: int) -> Dictionary:
 
 static func _generate_with_budget(room_id: String, seed_value: int, random_budget: int) -> Dictionary:
 	# Private budget parameter lets acceptance tests force the exhaustion path.
-	# The production API always uses MAX_ATTEMPTS and guarantees MIN_PROPS.
+	# Four useful obstacles are enough; visual richness comes from harmless
+	# edge decoration rather than forcing colliders into the walking space.
 	var started: int = Time.get_ticks_usec()
 	var skeleton: Dictionary = _skeleton(room_id)
 	if skeleton.is_empty():
@@ -39,8 +45,9 @@ static func _generate_with_budget(room_id: String, seed_value: int, random_budge
 	var layout: Dictionary = skeleton.layout.duplicate(true)
 	layout["seed"] = seed_value
 	layout["generated"] = true
-	layout["generation_version"] = 1
+	layout["generation_version"] = 4
 	layout["prop_instances"] = []
+	layout["decoration_instances"] = []
 	layout["reserved_paths"] = skeleton.paths.duplicate(true)
 	layout["buff_anchors"] = []
 	for zone: Dictionary in layout.get("encounter_zones", []):
@@ -48,7 +55,7 @@ static func _generate_with_budget(room_id: String, seed_value: int, random_budge
 	var rng := RandomNumberGenerator.new()
 	# Room identity salts a saved run seed; both values remain reproducible.
 	rng.seed = seed_value ^ (int(room_id.trim_prefix("L")) * 104729)
-	var target: int = rng.randi_range(14, 22)
+	var target: int = rng.randi_range(MIN_PROPS, MAX_PROPS - 1)
 	var biome: String = str(layout.biome_id)
 	var assets: Array = ASSETS[biome]
 	var placed: Array[Dictionary] = []
@@ -59,7 +66,7 @@ static func _generate_with_budget(room_id: String, seed_value: int, random_budge
 		attempts += 1
 		var asset_index: int = placed.size() if placed.size() < 3 else rng.randi_range(0, assets.size() - 1)
 		var asset: String = str(assets[asset_index])
-		var scale_value: float = rng.randf_range(0.86, 1.12)
+		var scale_value: float = rng.randf_range(0.76, 0.98)
 		if asset == "B03_wrecked_drone":
 			# Light detached drones can be displaced by magnetic attacks. A large
 			# transformer or pipe bank must never slide like a small supply box.
@@ -73,12 +80,87 @@ static func _generate_with_budget(room_id: String, seed_value: int, random_budge
 	if placed.size() < MIN_PROPS:
 		push_error("Room generation could not place the required " + str(MIN_PROPS) + " reachable props: " + room_id + " seed=" + str(seed_value) + " actual=" + str(placed.size()))
 		return {}
+	_replace_landmarks(skeleton, placed, layout, rng)
 	layout.prop_instances = placed
+	layout.decoration_instances = _edge_decorations(skeleton, placed, layout, rng)
 	layout["generation_attempts"] = attempts
 	layout["generation_fallback_used"] = used_fallback
 	layout["generation_usec"] = Time.get_ticks_usec() - started
 	layout["reserved_clearance_radius"] = Layouts.MAX_ACTOR_RADIUS
 	return layout
+
+static func _replace_landmarks(skeleton: Dictionary, placed: Array[Dictionary], layout: Dictionary, rng: RandomNumberGenerator) -> void:
+	# Replace scenery within the existing budget. Utility-bearing thin walls and
+	# movable fragments stay intact; no extra solid is added to the room.
+	var candidates: Array[Vector2] = [Vector2(930,630),Vector2(1880,1180),Vector2(1880,630),Vector2(930,1180)]
+	for y: float in [510.0, 620.0, 730.0, 1100.0, 1210.0, 1320.0]:
+		for x: float in [760.0, 900.0, 1040.0, 1760.0, 1900.0, 2040.0]:
+			candidates.append(Vector2(x,y)+Vector2(rng.randf_range(-22,22),rng.randf_range(-18,18)))
+	var target: int = rng.randi_range(2, 3)
+	var replaced: int = 0
+	for index: int in placed.size():
+		if replaced >= target: break
+		var original: Dictionary = placed[index]
+		if "thin_wall" in original.tags or "movable" in original.tags: continue
+		var others: Array[Dictionary] = placed.duplicate()
+		others.remove_at(index)
+		for position: Vector2 in candidates:
+			var collision := Rect2(position-COLUMN_FOOTPRINT*0.5,COLUMN_FOOTPRINT)
+			var visual := Rect2(Vector2(position.x-COLUMN_SIZE.x*0.5,collision.end.y-COLUMN_SIZE.y),COLUMN_SIZE)
+			if not _can_place(collision,visual,skeleton,others): continue
+			var physical_index: int = layout.obstructions.find(original.collision_rect)
+			if physical_index < 0: break
+			var column: Dictionary = original.duplicate(true)
+			column.merge({"architecture_key":"column", "position":position, "collision_rect":collision,
+				"visual_size":COLUMN_SIZE, "visual_rect":visual, "rotation":0.0},true)
+			column.tags.append("storybook_architecture")
+			placed[index] = column
+			layout.obstructions[physical_index] = collision
+			replaced += 1
+			break
+	layout["landmark_count"] = replaced
+
+static func _edge_decorations(skeleton: Dictionary, placed: Array[Dictionary], layout: Dictionary, rng: RandomNumberGenerator) -> Array[Dictionary]:
+	# These props are silhouettes only: no solid/movable/breakable tags and a
+	# zero-area physical rectangle. Keep them at the perimeter and away from
+	# required interactions and all reserved walking corridors.
+	var result: Array[Dictionary] = []
+	var assets: Array = ASSETS[str(layout.biome_id)]
+	var domain: Rect2 = layout.arena.grow(-116.0)
+	var target: int = rng.randi_range(8, 12)
+	for attempt: int in 600:
+		if result.size() >= target: break
+		var side: int = rng.randi_range(0, 3)
+		var position := Vector2(rng.randf_range(domain.position.x, domain.end.x), rng.randf_range(domain.position.y + 96.0, domain.end.y))
+		var depth: float = rng.randf_range(0.0, 105.0)
+		if side == 0: position.x = domain.position.x + depth
+		elif side == 1: position.x = domain.end.x - depth
+		elif side == 2: position.y = domain.position.y + 96.0 + depth
+		else: position.y = domain.end.y - depth
+		var asset: String = str(assets[rng.randi_range(0, assets.size() - 1)])
+		var size: Vector2 = ASSET_BOUNDS[asset] * rng.randf_range(0.50, 0.72)
+		var visual := Rect2(position - Vector2(size.x * 0.5, size.y), size)
+		if not domain.encloses(visual): continue
+		var clear: bool = true
+		for obstacle: Rect2 in skeleton.layout.static_obstructions:
+			if visual.grow(20.0).intersects(obstacle, true): clear = false; break
+		if not clear: continue
+		for corridor: Rect2 in skeleton.corridors:
+			if visual.grow(12.0).intersects(corridor, true): clear = false; break
+		if not clear: continue
+		for reservation: Rect2 in skeleton.reservations:
+			if visual.grow(16.0).intersects(reservation, true): clear = false; break
+		if not clear: continue
+		for anchor: Vector2 in skeleton.anchors:
+			if visual.grow(90.0).has_point(anchor): clear = false; break
+		if not clear: continue
+		for other: Dictionary in placed + result:
+			if visual.grow(24.0).intersects(other.visual_rect, true): clear = false; break
+		if not clear: continue
+		result.append({"id":str(layout.room_id)+":decoration:"+str(result.size()), "asset":asset, "position":position,
+			"visual_size":size, "visual_rect":visual, "collision_rect":Rect2(position,Vector2.ZERO),
+			"kind":"edge_decoration", "tags":["decoration","non_solid",str(layout.biome_id)], "rotation":rng.randf_range(-0.05,0.05)})
+	return result
 
 static func _try_place(asset: String, position: Vector2, size: Vector2, skeleton: Dictionary, placed: Array[Dictionary], layout: Dictionary, rng: RandomNumberGenerator) -> bool:
 	var footprint := Vector2(size.x * 0.73, size.y * 0.30)
@@ -199,6 +281,12 @@ static func _compress(source: Array) -> Array[Vector2]:
 	return result
 
 static func _can_place(collision: Rect2, visual: Rect2, skeleton: Dictionary, placed: Array[Dictionary]) -> bool:
+	# The concept's broad courtyard is an actual walking space. Supplies and
+	# mission objects keep their authored anchors; generated cover stays around
+	# the perimeter rather than reclaiming that central combat area.
+	if visual.grow(24.0).intersects(CENTRAL_CLEARING, true): return false
+	for clearance: Rect2 in CROSS_CLEARANCES:
+		if collision.grow(Layouts.MAX_ACTOR_RADIUS).intersects(clearance,true): return false
 	for obstacle: Rect2 in skeleton.layout.static_obstructions:
 		if collision.grow(PROP_GAP).intersects(obstacle, true) or visual.grow(8.0).intersects(obstacle, true):
 			return false

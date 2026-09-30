@@ -23,24 +23,24 @@ func configure(next_host) -> void:
 		"L01":
 			for i in 3:
 				host.add_element("brake_" + str(i), host.point(i), "制动器 " + str(i + 1), "brake", "B01_winch", {"description": "释放后矿车通过亮灯轨道，敌我都需避让", "always_label": true})
-			_optional("side_crate", host.safe_point(host.layout.exit + Vector2(-260, 230)), "装卸侧箱", "B01_crate_stack", "目标完成后可额外回收侧箱")
+			_add_side_crate()
 		"L02":
 			var start: Vector2 = host.safe_point(host.layout.entry + Vector2(180, 0))
-			host.add_element("cargo_cart", start, "载货滑车", "escort", "B01_ore_cart", {"description": "靠近 165 步推动；E 卸下重货，提升速度但降低奖励", "cargo_health": 100.0, "repeatable": true, "always_label": true})
+			host.add_element("cargo_cart", start, "载货滑车", "escort", "B01_ore_cart", {"description": "靠近自动推车，离开暂停；保全重货：18 金币 + 1 件防具；E 卸货提速：34 金币，不含装备", "interaction_label": "卸货提速 · 完成获 34 金币，无装备", "cargo_health": 100.0, "repeatable": true, "always_label": true})
 			cart_route = [host.safe_point(Vector2(950, 430)), host.safe_point(Vector2(1780, 1370)), host.point(0)]
 			for index in cart_route.size():
 				_optional("route_" + str(index), cart_route[index], "滑车路线 " + str(index + 1), "", "", false)
 			timer = 6.0
 		"L03":
 			for i in 2:
-				host.add_element("key_" + str(i), host.point(i), "齿轮钥芯 " + str(i + 1), "key", "B01_crate_stack", {"description": "取走钥芯；留意齿口的夹击刻线", "visual_height": 70.0})
-			_optional("gear_stop", host.safe_point(Vector2(1400, 300)), "齿轮总停机", "B01_winch", "关闭地面旋转与咬合，保留额外金币奖励")
+				host.add_element("key_" + str(i), host.point(i), "齿轮钥芯 " + str(i + 1), "key", "B01_crate_stack", {"description": "取走钥芯，留意夹击刻线；不停机完成：12 金币 + 1 件机动装备", "visual_height": 70.0})
+			_optional("gear_stop", host.safe_point(Vector2(1400, 300)), "齿轮总停机", "B01_winch", "关闭地面旋转与咬合；停机完成：30 金币，不含装备")
 			timer = 4.0
 		"L04":
 			var shapes: Array[String] = ["▲", "●", "◆"]
 			for i in 3:
 				var at: Vector2 = host.point(i)
-				host.add_element("scale_" + str(i), at, shapes[i] + " 秤台", "scale", "B01_winch", {"description": "搬入相同形状矿匣；错误配对不会丢失矿匣", "shape": i, "always_label": true})
+				host.add_element("scale_" + str(i), at, shapes[i] + " 秤台", "scale", "B01_winch", {"description": "搬入相同形状矿匣；错误配对不丢失矿匣；完成：14 金币 + 1 件进攻装备", "shape": i, "always_label": true})
 				_optional("crate_" + str(i), host.safe_point(at + Vector2(-1500, 0)), shapes[i] + " 矿匣", "B01_crate_stack", "E 拾起；搬运时仍可攻击，再次 E 可放下")
 				host.element("crate_" + str(i))["shape"] = i
 			_optional("drop_crate", host.layout.entry, "放下矿匣", "", "安全放在脚边")
@@ -48,15 +48,24 @@ func configure(next_host) -> void:
 			timer = 7.0
 		"L05":
 			for i in 2:
-				host.add_element("beacon_" + str(i), host.point(i), "救援供电 " + str(i + 1), "hold", "B01_winch", {"description": "进入环内供电 8 秒；离开保留进度，敌群载重增加边缘压力", "interactive": false, "always_label": true, "radius": 105.0})
+				host.add_element("beacon_" + str(i), host.point(i), "救援供电 " + str(i + 1), "hold", "B01_winch", {"description": "环内供电 8 秒，离开保留进度；敌群载重增加边缘压力；完成：18 金币 + 1 件生存装备", "interactive": false, "always_label": true, "radius": 105.0})
 		"L06":
 			var labels: Array[String] = ["卸压", "降温", "排渣"]
 			for i in 3:
 				host.add_element("valve_" + str(i), host.point(i), labels[i], "valve", "B01_winch", {"description": "E 将此表向 50 校准；会缓慢扰动另两表，三表保持 38–62 共 4 秒", "repeatable": true, "always_label": true})
-			_optional("furnace_core", host.safe_point(Vector2(1400, 880)), "取出炉芯", "B01_crate_stack", "三表稳定后取出炉芯")
+			_optional("furnace_core", host.safe_point(Vector2(1400, 880)), "取出炉芯", "B01_crate_stack", "三表稳定后取芯：24 金币 + 2 件进攻装备")
 			host.element("furnace_core").active = false
-			_optional("furnace_cut", host.safe_point(host.layout.exit + Vector2(-200, 160)), "紧急切断炉管", "B01_crate_stack", "放弃精密取芯，以较少金币完成基础目标")
+			_optional("furnace_cut", host.safe_point(host.layout.exit + Vector2(-200, 160)), "紧急切断炉管", "B01_crate_stack", "立即结束调压；切管完成：8 金币，不含装备")
 			timer = 5.0
+
+func configure_cleared(next_host, claimed_optional: Array = []) -> void:
+	host = next_host
+	if host.room_id == "L01" and not claimed_optional.has("side_crate"):
+		_add_side_crate()
+
+func _add_side_crate() -> void:
+	_optional("side_crate", host.safe_point(host.layout.exit + Vector2(-260, 230)), "装卸侧箱", "B01_crate_stack", "清理敌群并完成目标后：18 金币 + 1 件职业防具；装备撤离后保留")
+	host.element("side_crate").merge({"optional_reward": true, "claim_message": "侧箱已回收：18 金币 + 1 件职业防具；装备需成功撤离保留", "claim_event": "optional_salvage", "reward_tendency": "defense_gold"}, true)
 
 func _optional(id: String, at: Vector2, label: String, asset: String, description: String, interactive: bool = true) -> void:
 	host.add_element(id, at, label, "utility", asset, {"description": description, "required": false, "interactive": interactive})
@@ -75,6 +84,8 @@ func tick(delta: float) -> void:
 		"L06": _tick_furnace(delta)
 
 func interact(id: String, actor: Node2D) -> bool:
+	if host.finished and id != "side_crate":
+		return false
 	match host.room_id:
 		"L01":
 			if id.begins_with("brake_"):
@@ -88,26 +99,27 @@ func interact(id: String, actor: Node2D) -> bool:
 					host.finish()
 				return true
 			if id == "side_crate" and host.finished:
-				host.set_done(id)
-				host.event("optional_salvage", {"reward_tendency": "defense_gold"})
-				return true
+				return host.claim_optional(id)
 		"L02":
 			if id == "cargo_cart" and not unloaded:
 				unloaded = true
 				host.quality = "reduced"
 				host.element(id).label = "轻载滑车"
-				host.message = "已卸下重货：滑车更快，完成后获得金币"
+				host.element(id).interactive = false
+				host.element(id).description = "轻载滑车：靠近 165 步推动；完成获得 34 金币，不含装备"
+				host.message = "已卸下重货：滑车提速；完成获得 34 金币，不含装备"
 				return true
 		"L03":
 			if id == "gear_stop":
 				stopped = true
 				host.set_done(id)
-				host.message = "齿轮停机：已取得额外回收机会"
+				host.message = "齿轮已停机：完成获得 30 金币，不含装备"
 				return true
 			if id.begins_with("key_"):
 				host.set_done(id)
 				if host.completed_count >= 2:
 					host.finish("full" if stopped else "mobile")
+					host.element("gear_stop").interactive = false
 				return true
 		"L04":
 			if id == "drop_crate":
@@ -148,7 +160,7 @@ func interact(id: String, actor: Node2D) -> bool:
 			if id == "furnace_cut":
 				host.set_done(id)
 				host.finish("reduced")
-				host.message = "紧急切管完成，维护通路已安全开放"
+				host.message = "紧急切管完成：8 金币，不含装备；清理剩余敌人后开放通路"
 				return true
 	return false
 
@@ -194,6 +206,7 @@ func _tick_escort(delta: float) -> void:
 			route_index += 1
 			if route_index >= cart_route.size():
 				host.remove_blocker("collapsed_bridge")
+				cart.interactive = false
 				host.set_done("cargo_cart")
 				host.finish("reduced" if unloaded or float(cart.cargo_health) < 50 else "full")
 				return
@@ -202,11 +215,17 @@ func _tick_escort(delta: float) -> void:
 		cart.phase = "等待靠近"
 	var enemies: Array = host.enemies_near(cart.position, 105)
 	if not enemies.is_empty() and not unloaded:
+		var previous_health: float = float(cart.cargo_health)
 		cart.cargo_health = maxf(0, float(cart.cargo_health) - delta * 2.0)
+		if previous_health >= 50.0 and float(cart.cargo_health) < 50.0:
+			cart.description = "重货损失过半：完成获得 34 金币，不含装备；E 卸货可提速"
+			host.message = "重货损失过半：完成改为 34 金币，不含装备；可卸货提速"
 		if float(cart.cargo_health) <= 0:
 			unloaded = true
 			cart.label = "轻载滑车"
-			host.message = "重货受损，滑车仍可护送；完成基础金币目标"
+			cart.interactive = false
+			cart.description = "轻载滑车：靠近 165 步推动；完成获得 34 金币，不含装备"
+			host.message = "重货受损，滑车仍可护送；完成获得 34 金币，不含装备"
 	cart.progress = float(route_index) / float(cart_route.size())
 	timer -= delta
 	if timer <= 0:
@@ -332,16 +351,31 @@ func _tick_furnace(delta: float) -> void:
 
 func status_text() -> String:
 	match host.room_id:
-		"L01": return "释放制动器 %d/3 · %s" % [host.completed_count, "自由选择顺序" if host.role == "elite_objective" else "按 1 → 2 → 3"]
-		"L02": return "靠近滑车护送 %d/3 段 · E 可卸货减压" % route_index
-		"L03": return "取回钥芯 %d/2 · 可先关闭齿轮" % host.completed_count
-		"L04": return "按 ▲ ● ◆ 搬匣分拣 %d/3%s" % [host.completed_count, " · 搬运中" if not carried.is_empty() else ""]
-		"L05": return "占据信标 %d/2 · 离开保留充能" % host.completed_count
-		"L06": return "三表调至 38–62：%d / %d / %d · 稳定 %.1f/4 秒" % [roundi(valves[0]), roundi(valves[1]), roundi(valves[2]), furnace_stable]
+		"L01":
+			if host.finished:
+				return "侧箱：18 金币 + 职业防具 · 清理敌群后可回收" if host.optional_ids().has("side_crate") else "制动完成 · 侧箱已回收"
+			return "释放制动器 %d/3 · %s" % [host.completed_count, "自由选择顺序" if host.role == "elite_objective" else "按 1 → 2 → 3"]
+		"L02":
+			var reduced: bool = unloaded or float(host.element("cargo_cart").get("cargo_health", 100.0)) < 50.0
+			return "靠近自动推车 %d/3 · %s" % [route_index, "34 金币 · 无装备" if reduced else "18 金币 + 防具"]
+		"L03": return "取回钥芯 %d/2 · %s" % [host.completed_count, "停机：30 金币 · 无装备" if stopped else "不停机：12 金币 + 机动装备"]
+		"L04": return "搬匣分拣 %d/3%s · 14 金币 + 进攻装备" % [host.completed_count, " · 搬运中" if not carried.is_empty() else ""]
+		"L05": return "占据信标 %d/2 · 18 金币 + 生存装备" % host.completed_count
+		"L06":
+			if host.finished:
+				return "切管完成 · 8 金币 · 无装备" if host.quality == "reduced" else "精密取芯完成 · 24 金币 + 2 件进攻装备"
+			return "调表 38–62：%d / %d / %d · 稳定 %.1f/4 秒 · 取芯 24 金币 + 2 件进攻装备" % [roundi(valves[0]), roundi(valves[1]), roundi(valves[2]), furnace_stable]
 	return ""
 
 func blocks_dash() -> bool:
 	return false
+
+func encounter_directive(index: int) -> Dictionary:
+	if host.room_id != "L02" or index != 2:
+		return {}
+	# The final finite encounter guards the last escort leg. Reaching the old
+	# far-side sector ahead of the cart must not spend this encounter early.
+	return {"ready": route_index >= 2, "position": host.element("cargo_cart").position, "destination": cart_route.back()}
 
 func navigation_target() -> Dictionary:
 	var choices: Array[String] = []

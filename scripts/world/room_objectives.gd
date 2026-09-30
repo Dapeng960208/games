@@ -7,6 +7,10 @@ const Layouts = preload("res://scripts/world/room_layouts.gd")
 const Target = preload("res://scripts/world/objective_target.gd")
 const Sampler = preload("res://scripts/ui/texture_sampler.gd")
 const Bounds = preload("res://scripts/combat/hero_visual.gd")
+const WorldArt = preload("res://scripts/world/world_art.gd")
+const BodyLayer = preload("res://scripts/world/objective_depth_layer.gd")
+const PropArt = preload("res://scripts/world/world_prop_art.gd")
+const FirstFour = preload("res://scripts/world/first_four_objectives.gd")
 var room: Node2D
 var layout: Dictionary = {}
 var room_id: String = ""
@@ -30,8 +34,42 @@ var objective_font: Font
 var ambient_darkness: float = 0.0
 var light_positions: Array[Vector2] = []
 var _event_serial: int = 0
+var body_layer: Node2D
+var body_nodes: Dictionary = {}
 
 func configure(next_room: Node2D, next_layout: Dictionary, node_role: String = "branch") -> void:
+	_configure_context(next_room, next_layout, node_role)
+	var biome: String = str(definition.get("biome_id", ""))
+	if current_combat_rules():
+		module = FirstFour.new()
+		module.configure(self)
+		queue_redraw()
+		return
+	var script_path: String = "res://scripts/world/objectives_" + biome.to_lower() + ".gd"
+	if not biome.is_empty() and ResourceLoader.exists(script_path):
+		module = load(script_path).new()
+		module.configure(self)
+	else:
+		message = "目标模块未能加载"
+	queue_redraw()
+
+func configure_cleared(next_room: Node2D, next_layout: Dictionary, node_role: String = "branch", claimed_optional: Array = []) -> void:
+	# A cleared-room restore must never replay machinery, hazards or completion
+	# rewards. Only unclaimed optional caches remain available for interaction.
+	_configure_context(next_room, next_layout, node_role)
+	finished = true
+	completed_count = required_count
+	quality = "full"
+	if room_id == "L01":
+		module = preload("res://scripts/world/objectives_b01.gd").new()
+		module.configure_cleared(self, claimed_optional)
+	elif room_id == "L11":
+		module = preload("res://scripts/world/objectives_b02.gd").new()
+		module.configure_cleared(self, claimed_optional)
+	completed_count = required_count
+	queue_redraw()
+
+func _configure_context(next_room: Node2D, next_layout: Dictionary, node_role: String) -> void:
 	reset()
 	room = next_room
 	layout = next_layout.duplicate(true)
@@ -42,16 +80,39 @@ func configure(next_room: Node2D, next_layout: Dictionary, node_role: String = "
 	objective_font = load("res://assets/fonts/NotoSansSC.ttf") if ResourceLoader.exists("res://assets/fonts/NotoSansSC.ttf") else ThemeDB.fallback_font
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	z_index = 1
-	var biome: String = str(definition.get("biome_id", ""))
-	var script_path: String = "res://scripts/world/objectives_" + biome.to_lower() + ".gd"
-	if not biome.is_empty() and ResourceLoader.exists(script_path):
-		module = load(script_path).new()
-		module.configure(self)
-	else:
-		message = "目标模块未能加载"
+	material = WorldArt.material_for(str(definition.get("biome_id", "B01")))
+
+func optional_ids() -> Array[String]:
+	var ids: Array[String] = []
+	for id: String in elements:
+		var item: Dictionary = elements[id]
+		if bool(item.get("optional_reward", false)) and bool(item.get("active", true)) and not bool(item.get("done", false)):
+			ids.append(id)
+	return ids
+
+func claim_optional(id: String) -> bool:
+	if not finished or not optional_ids().has(id) or not is_instance_valid(room) or not room.has_method("claim_optional_objective_reward"):
+		return false
+	var item: Dictionary = elements[id]
+	if bool(item.get("sealed", false)):
+		return false
+	var actor: Node2D = player()
+	var at: Vector2 = item.get("interaction_position", item.position)
+	if not is_instance_valid(actor) or actor.position.distance_to(at) > 100.0:
+		return false
+	if room.has_method("has_line_of_sight") and not room.has_line_of_sight(actor.position, at):
+		return false
+	if not bool(room.claim_optional_objective_reward(id)):
+		message = str(item.label) + "尚未回收，可再次尝试"
+		return false
+	set_done(id)
+	message = str(item.get("claim_message", "可选战利品已回收；装备需成功撤离保留"))
+	event(str(item.get("claim_event", "optional_salvage")), {"id": id, "reward_tendency": str(item.get("reward_tendency", ""))})
 	queue_redraw()
+	return true
 
 func reset() -> void:
+	_remove_body_layer()
 	for target in targets.values():
 		if is_instance_valid(target):
 			target.queue_free()
@@ -72,6 +133,113 @@ func reset() -> void:
 	light_positions.clear()
 	_event_serial = 0
 
+func _exit_tree() -> void:
+	# The layer is our room sibling. Replacing just this host must also retire it.
+	if is_instance_valid(body_layer):
+		body_layer.visible = false
+		body_layer.queue_free()
+	body_layer = null
+	body_nodes.clear()
+
+func _remove_body_layer() -> void:
+	if is_instance_valid(body_layer):
+		var parent: Node = body_layer.get_parent()
+		if parent != null:
+			parent.remove_child(body_layer)
+		body_layer.free()
+	body_layer = null
+	body_nodes.clear()
+
+func _ensure_body_layer() -> bool:
+	if is_instance_valid(body_layer):
+		return true
+	if not is_instance_valid(room):
+		return false
+	body_layer = BodyLayer.new()
+	body_layer.name = "ObjectiveBodies"
+	body_layer.objective_host = self
+	body_layer.material = material
+	room.add_child(body_layer)
+	return true
+
+func _sync_body(id: String, item: Dictionary) -> void:
+	var asset: String = str(item.get("asset", ""))
+	var carried: bool = bool(item.get("carried", false))
+	var needs_body: bool = textures.has(asset) and (not bool(item.get("attackable", false)) or carried)
+	if not needs_body:
+		if body_nodes.has(id) and is_instance_valid(body_nodes[id]):
+			body_nodes[id].visible = false
+		return
+	if not _ensure_body_layer():
+		return
+	var body: Node2D = body_nodes.get(id)
+	if not is_instance_valid(body):
+		body = Node2D.new()
+		body.name = "Body_" + id
+		body.use_parent_material = true
+		body.draw.connect(func() -> void: draw_element_body(body, id))
+		body_layer.add_child(body)
+		body_nodes[id] = body
+	body.visible = bool(item.get("active", true)) and not bool(item.get("destroyed", false))
+	body.rotation = 0.0 if carried else float(item.get("rotation", 0.0))
+	if carried:
+		var actor: Node2D = player()
+		body.visible = body.visible and is_instance_valid(actor)
+		if is_instance_valid(actor):
+			# Sort with the carrier, after their body, while preserving the held pose.
+			body.position = actor.position + Vector2(0, .1)
+	else:
+		body.position = Vector2(item.position) if PropArt.has_authored_asset(asset) else Vector2(item.position)+Vector2(0,15).rotated(body.rotation)
+	body.modulate = Color.WHITE
+	if not carried and body.visible and is_instance_valid(player()):
+		var height: float = float(item.get("visual_height", 96.0))
+		var bounds: Rect2 = regions[asset]
+		var width: float = minf(150.0, height * bounds.size.x / maxf(1.0, bounds.size.y))
+		var relative_player: Vector2 = body.to_local(player().global_position)
+		var covered: bool = PropArt.bounds_at(asset,Vector2.ZERO,Vector2(150,height)).grow(12).has_point(relative_player+Vector2(0,-28)) if PropArt.has_authored_asset(asset) else relative_player.y > -height-12 and absf(relative_player.x)<width*.5+16
+		if player().position.y < body.position.y and covered:
+			body.modulate.a = .48
+	# Movement, rotation and occlusion alpha update canvas transforms directly.
+	# Retain the body's painted draw list until its actual artwork/state changes.
+	var visual_state: Array = [asset, carried, bool(item.get("done", false)), float(item.get("visual_height", 96.0))]
+	if body.get_meta("objective_visual_state", []) != visual_state:
+		body.set_meta("objective_visual_state", visual_state)
+		body.queue_redraw()
+
+func sync_body_layer() -> void:
+	for id: String in body_nodes.keys():
+		if not elements.has(id):
+			if is_instance_valid(body_nodes[id]):
+				body_nodes[id].free()
+			body_nodes.erase(id)
+	for id: String in elements.keys():
+		var item: Dictionary = elements[id]
+		_sync_body(id, item)
+		if targets.has(id) and is_instance_valid(targets[id]):
+			targets[id].visible = bool(item.get("active", true)) and not bool(item.get("destroyed", false)) and not bool(item.get("carried", false))
+
+func draw_element_body(canvas: Node2D, id: String) -> void:
+	var item: Dictionary = elements.get(id, {})
+	if item.is_empty() or not bool(item.get("active", true)) or bool(item.get("destroyed", false)):
+		return
+	var asset: String = str(item.get("asset", ""))
+	if not textures.has(asset):
+		return
+	if bool(item.get("carried", false)):
+		if is_instance_valid(player()):
+			canvas.draw_texture_rect_region(textures[asset], Rect2(17, -85.1, 38, 38), regions[asset],PropArt.authored_tint() if PropArt.has_authored_asset(asset) else Color.WHITE)
+		return
+	if bool(item.get("attackable", false)):
+		return
+	var bounds: Rect2 = regions[asset]
+	var height: float = float(item.get("visual_height", 96.0))
+	var width: float = minf(150.0, height * bounds.size.x / maxf(1.0, bounds.size.y))
+	var tint := Color(.72, .83, .74, .6) if bool(item.get("done", false)) else Color.WHITE
+	if PropArt.has_authored_asset(asset):
+		PropArt.draw_asset(canvas,asset,Vector2.ZERO,Vector2(150,height),tint)
+		return
+	canvas.draw_texture_rect_region(textures[asset], Rect2(-width * .5, -height, width, height), bounds, tint)
+
 func point(index: int) -> Vector2:
 	var points: Array = layout.get("objective_points", [])
 	if points.is_empty():
@@ -85,10 +253,11 @@ func add_element(id: String, at: Vector2, label: String, kind: String, asset: St
 		item["interactive"] = bool(extra.interactable)
 	elements[id] = item
 	if not asset.is_empty() and not textures.has(asset):
-		var texture: Texture2D = Sampler.sampled("res://assets/generated/props/" + asset + "_v1.png")
+		var texture: Texture2D = PropArt.texture_for_asset(asset)
 		if texture != null:
 			textures[asset] = texture
-			regions[asset] = Bounds._visible_region(texture.get_image())
+			regions[asset] = PropArt.local_region(asset) if PropArt.has_authored_asset(asset) else Bounds._visible_region(texture.get_image())
+	_sync_body(id, item)
 	return item
 
 func element(id: String) -> Dictionary:
@@ -123,10 +292,65 @@ func status() -> Dictionary:
 	var detail: String = str(definition.get("preview", {}).get("objective", ""))
 	if module != null and module.has_method("status_text"):
 		detail = module.status_text()
-	return {"title": str(definition.get("name", room_id)), "text": detail, "completed": completed_count, "required": required_count, "complete": finished, "quality": quality, "optional": message}
+	var english: String = module.status_text_en() if module!=null and module.has_method("status_text_en") else ""
+	if Words.locale=="en" and not english.is_empty(): detail=english
+	return {"title": str(definition.get("name", room_id)), "text": detail, "text_en":english, "rules":"first_four_combat_v1" if current_combat_rules() else "legacy_non_expedition", "completed": completed_count, "required": required_count, "complete": finished, "quality": quality, "optional": message}
+
+func current_combat_rules() -> bool:
+	if not is_instance_valid(room): return false
+	var context: Variant = room.get("expedition_context")
+	return context is Dictionary and not context.is_empty() and str(definition.get("biome_id","")) in ["B01","B02","B03","B04"] and str(context.get("role",role)) not in ["entrance","supply","boss"]
+
+func combat_actors() -> Array:
+	var result: Array = []
+	var actors: Node = room.get("enemies") if is_instance_valid(room) else null
+	if not is_instance_valid(actors): return result
+	for actor: Node2D in actors.get_children():
+		if actor.has_method("is_alive") and actor.is_alive() and str(actor.get("actor_kind"))=="enemy" and not bool(actor.get("static_actor")):
+			result.append(actor)
+	return result
+
+func combat_counter_effect(actor: Node2D, kind: String, duration: float = 6.0) -> bool:
+	if not is_instance_valid(actor) or not actor.has_method("apply_biome_counter"): return false
+	var applied: bool = bool(actor.apply_biome_counter(kind,duration))
+	if applied: event("biome_counter_applied",{"kind":kind,"enemy_id":str(actor.get("enemy_id")),"position":actor.position,"duration":duration})
+	return applied
+
+func combat_objective_point(index: int, count: int) -> Vector2:
+	var candidates: Array = layout.get("objective_points",[]).duplicate()
+	for zone: Dictionary in layout.get("encounter_zones",[]): candidates.append(zone.center)
+	candidates.append_array(layout.get("topology_probes",[]))
+	var arena: Rect2 = layout.get("arena",Rect2(0,0,2800,1800))
+	for ordinal: int in 6:
+		candidates.append(arena.position+arena.size*Vector2(.25+.25*(ordinal%3),.32+.36*(ordinal/3)))
+	# Wide legacy hazard bands can reject the sparse authored/grid candidates.
+	# Search the open strips across the whole arena before reusing any point.
+	for row: int in 6:
+		for column: int in 8:
+			candidates.append(arena.position+arena.size*Vector2(.10+.114*column,.12+.152*row))
+	var selected: Array[Vector2] = []
+	for candidate: Vector2 in candidates:
+		var at: Vector2 = safe_point(candidate,35.0)
+		var allowed: bool = at.distance_to(layout.get("entry",Vector2.ZERO))>140
+		for previous: Vector2 in selected:
+			if previous.distance_to(at)<180: allowed=false
+		for hazard: Dictionary in layout.get("hazard_zones",[]):
+			if hazard.get("rect",Rect2()).grow(64).has_point(at): allowed=false
+		if allowed: selected.append(at)
+		if selected.size()>=count: break
+	return selected[clampi(index,0,selected.size()-1)] if not selected.is_empty() else safe_point(layout.get("exit",Vector2(2100,900)),35)
+
+func notify_enemy_death(enemy: Node2D) -> void:
+	if module!=null and module.has_method("notify_enemy_death"): module.notify_enemy_death(enemy)
+
+func notify_charge_impact(caster: Node2D, from: Vector2, to: Vector2) -> Dictionary:
+	return module.notify_charge_impact(caster,from,to) if module!=null and module.has_method("notify_charge_impact") else {"success":false}
 
 func blocks_dash() -> bool:
 	return module != null and module.has_method("blocks_dash") and bool(module.blocks_dash())
+
+func encounter_directive(index: int) -> Dictionary:
+	return module.encounter_directive(index) if module != null and module.has_method("encounter_directive") else {}
 
 func navigation_target() -> Dictionary:
 	var destination: Dictionary = {}
@@ -168,6 +392,7 @@ func nearby_interaction(at: Vector2) -> Dictionary:
 		best = distance
 		best_priority = priority
 		closest = item.duplicate()
+		closest["label"] = str(item.get("interaction_label", item.label))
 		closest["world_position"] = item.position
 		closest["position"] = interaction_position
 		closest["kind"] = "objective"
@@ -187,6 +412,7 @@ func interact(id: String, actor: Node2D) -> bool:
 	var accepted: bool = bool(module.interact(id, actor))
 	if accepted:
 		event("interacted", {"id": id})
+	sync_body_layer()
 	queue_redraw()
 	return accepted
 
@@ -200,6 +426,7 @@ func tick(delta: float) -> void:
 	for id: String in targets.keys():
 		if is_instance_valid(targets[id]) and elements.has(id):
 			targets[id].position = elements[id].position
+	sync_body_layer()
 	queue_redraw()
 
 func safe_point(at: Vector2, radius: float = 26.0) -> Vector2:
@@ -445,44 +672,32 @@ func draw_world(canvas: Node2D) -> void:
 			continue
 		# These are actual temporary gaps/closed mechanisms, never a background
 		# plate pasted beneath an unrelated prop sprite.
-		canvas.draw_rect(rect, Color(.025, .035, .04, .9))
-		canvas.draw_rect(rect.grow(-3), Color(.6, .47, .28, .8), false, 2.0)
+		canvas.draw_rect(rect, Color("52657b"))
+		canvas.draw_rect(rect.grow(-3), Color("c4ac7c"), false, 2.0)
 	for item: Dictionary in elements.values():
 		if not bool(item.get("active", true)) or bool(item.get("carried", false)) or bool(item.get("destroyed", false)):
-			if bool(item.get("active", true)) and bool(item.get("carried", false)) and is_instance_valid(player()):
-				var carried_asset: String = str(item.get("asset", ""))
-				if textures.has(carried_asset):
-					canvas.draw_texture_rect_region(textures[carried_asset], Rect2(player().position + Vector2(17, -85), Vector2(38, 38)), regions[carried_asset])
 			continue
 		var at: Vector2 = item.position
 		var done: bool = bool(item.get("done", false))
-		var tint := Color(.72, .83, .74, .6) if done else Color.WHITE
 		if not bool(item.get("attackable", false)):
 			var asset: String = str(item.get("asset", ""))
-			if textures.has(asset):
-				var bounds: Rect2 = regions[asset]
-				var height: float = float(item.get("visual_height", 96.0))
-				var width: float = minf(150.0, height * bounds.size.x / maxf(1.0, bounds.size.y))
-				canvas.draw_set_transform(at, float(item.get("rotation", 0.0)))
-				canvas.draw_texture_rect_region(textures[asset], Rect2(-width * .5, 15 - height, width, height), bounds, tint)
-				canvas.draw_set_transform(Vector2.ZERO)
-			else:
-				canvas.draw_arc(at, 28, 0, TAU, 32, Color("b2d5cc") if done else Color("d9bc75"), 2, true)
+			if not textures.has(asset):
+				canvas.draw_arc(at, 28, 0, TAU, 32, Color("4b8554") if done else Color("257f83"), 2, true)
 		if item.get("beam_to") is Vector2:
 			canvas.draw_line(item.get("beam_from", at), item.beam_to, item.get("beam_color", Color(.52, .86, .85, .65)), 3.0, true)
 		if not done:
-			canvas.draw_arc(at + Vector2(0, 5), 29, 0, TAU, 32, Color(.85, .72, .45, .48), 1.5, true)
+			canvas.draw_arc(at + Vector2(0, 5), 29, 0, TAU, 32, Color(.15, .50, .51, .72), 2, true)
 		var progress: float = clampf(float(item.get("progress", 0)), 0, 1)
 		if progress > 0 and not done:
-			canvas.draw_arc(at + Vector2(0, 5), 34, -PI * .5, -PI * .5 + TAU * progress, 32, Color("cce6ab"), 3, true)
+			canvas.draw_arc(at + Vector2(0, 5), 34, -PI * .5, -PI * .5 + TAU * progress, 32, Color("4b8554"), 3, true)
 		var show_label: bool = near(at, 260) or bool(item.get("always_label", false))
 		if show_label and objective_font != null:
 			var text: String = str(item.label) + (" ✓" if done else "")
 			if not str(item.get("phase", "")).is_empty():
 				text += " · " + str(item.phase)
 			var size: Vector2 = objective_font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, 17)
-			canvas.draw_string_outline(objective_font, at + Vector2(-size.x * .5, 44), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 17, 4, Color(.03, .04, .05, .9))
-			canvas.draw_string(objective_font, at + Vector2(-size.x * .5, 44), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 17, Color("e7e0c9"))
+			canvas.draw_string_outline(objective_font, at + Vector2(-size.x * .5, 44), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 17, 4, Color("fff3d7"))
+			canvas.draw_string(objective_font, at + Vector2(-size.x * .5, 44), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 17, Color("392843"))
 	for hazard: Dictionary in hazards:
 		var color: Color = hazard.get("color", Color("eaae62"))
 		color.a = .85 if float(hazard.delay) > 0 else 1.0

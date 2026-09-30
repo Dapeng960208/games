@@ -53,6 +53,25 @@ static func biomes() -> Dictionary:
 	_ensure_loaded()
 	return _rooms.get("biomes", {}).duplicate(true)
 
+## The twelve-region roadmap is display-only. Unimplemented plans never enter
+## biomes(), whose membership drives runtime route generation and validation.
+static func region_plan() -> Array[Dictionary]:
+	_ensure_loaded()
+	var result: Array[Dictionary] = []
+	var playable: Dictionary = biomes()
+	var planned: Dictionary = _rooms.get("planned_regions", {})
+	for index in range(12):
+		var biome_id := "B%02d" % (index+1)
+		var entry: Dictionary = playable.get(biome_id,planned.get(biome_id,{})).duplicate(true)
+		entry["biome_id"] = biome_id
+		entry["implemented"] = playable.has(biome_id)
+		entry["status"] = "implemented" if entry.implemented else "todo"
+		if not entry.implemented:
+			entry["name"] = entry.get("name","第 %d 关" % (index+1))
+			entry["name_en"] = entry.get("name_en","Region %d" % (index+1))
+		result.append(entry)
+	return result
+
 static func bosses() -> Dictionary:
 	_ensure_loaded()
 	return _enemies.get("bosses", {}).duplicate(true)

@@ -20,12 +20,20 @@ var pulse: float = 0.0
 var damaged_flash: float = 0.0
 var collision_radius: float = 14.0
 var fire_direction := Vector2.RIGHT
+var resonance_charge: int = 0
+var charge_flash: float = 0.0
+var _charged_casts: Dictionary = {}
+const NODE_FONT = preload("res://assets/fonts/NotoSansSC.ttf")
 
 func configure(host: Node2D, deployment_kind: String, configuration: Dictionary) -> void:
 	room = host
 	kind = deployment_kind
 	options = configuration.duplicate()
 	owner_player = options.get("owner_player", null)
+	if not options.has("damage_type"):
+		options["damage_type"] = "physical" if kind == "trap" else "magic"
+	if not options.has("attacker_stats"):
+		options["attacker_stats"] = Game.run.stats.duplicate() if Game.run != null else {}
 	radius = float(options.get("radius", 160.0))
 	damage = float(options.get("damage", 0.0))
 	lifetime = float(options.get("lifetime", 10.0))
@@ -76,26 +84,35 @@ func advance(delta: float) -> void:
 		return
 	elapsed += maxf(0.0, delta)
 	pulse = maxf(0.0, pulse - delta)
+	charge_flash = maxf(0.0, charge_flash - delta)
 	damaged_flash = maxf(0.0, damaged_flash - delta)
 	if kind == "field" and bool(options.get("follow_player", false)) and is_instance_valid(owner_player):
 		position = owner_player.position
 	if kind == "field":
 		# Tick at t=5 (or 4/7) before expiry. No immediate free tick on creation.
+		var emitted_pulse: bool = false
 		while next_attack <= minf(elapsed, lifetime) + 0.00001:
-			room.strike_area(position, radius, damage, "field", "", 0.0, Vector2.ZERO, 360.0, false)
+			room.strike_area(position, radius, damage, "field", "", 0.0, Vector2.ZERO, 360.0, false, _damage_context())
 			next_attack += 1.0
 			pulse = 0.22
 			_emit_feedback_pulse()
+			emitted_pulse = true
+		# Gameplay catches up every authored tick; old pulses are never replayed
+		# as a burst of sound on the same frame.
+		if emitted_pulse:
+			_play_deployment_audio("field_pulse")
 	elif kind == "trap" and elapsed >= setup_time and elapsed <= lifetime:
 		var targets: Array = room.targets_in_radius(position, radius)
 		for target: Node2D in targets:
 			if is_instance_valid(target) and target.is_alive() and room.has_line_of_sight(position, target.position):
-				room.strike_area(position, radius, damage, "f", "chill", 0.0, Vector2.ZERO, 360.0, true)
+				_play_deployment_audio("trap_trigger")
+				room.strike_area(position, radius, damage, "f", "chill", 0.0, Vector2.ZERO, 360.0, true, _damage_context(true))
 				room.add_ring(position, Color("c1dcce"), radius, 0.35)
 				_emit_feedback_pulse()
 				retire()
 				return
 	elif kind == "node":
+		_observe_resonance_bolts()
 		while next_attack <= minf(elapsed, lifetime) + 0.00001:
 			_fire_node()
 			next_attack += 1.2
@@ -103,6 +120,65 @@ func advance(delta: float) -> void:
 		retire()
 	else:
 		queue_redraw()
+
+func charge_node(amount: int = 1) -> bool:
+	if kind != "node" or not is_active() or amount <= 0:
+		return false
+	var previous: int = resonance_charge
+	resonance_charge = mini(3, resonance_charge + amount)
+	if previous == resonance_charge:
+		return false
+	# Charging is an intake, not a cannon shot. Keep its pose and sound separate
+	# from the firing pulse, and acknowledge only a real increase in stored energy.
+	charge_flash = 0.34
+	if is_instance_valid(room) and is_instance_valid(room.get("combat_audio")):
+		room.combat_audio.resonance_charge(resonance_charge)
+	queue_redraw()
+	return true
+
+func resonance_readout() -> Dictionary:
+	var connected: bool = is_active() and is_instance_valid(owner_player) and owner_player.position.distance_to(position) <= 260.0 and room.has_line_of_sight(owner_player.position, position)
+	var available: bool = false
+	if connected and Game.run != null and owner_player.hero_level() >= 3:
+		var definition: Dictionary = owner_player.skill_definition("f")
+		available = float(owner_player.cooldowns.get("f", 0.0)) <= 0.0 and Game.run.resource >= float(definition.cost) and not owner_player.abilities.busy() and owner_player.dash_remaining <= 0.0
+	return {"charge":resonance_charge, "full":resonance_charge == 3, "connected":connected, "available":available, "radius":100.0 + resonance_charge * 20.0}
+
+func _observe_resonance_bolts() -> void:
+	if not is_active() or not is_instance_valid(room) or not is_instance_valid(room.projectiles):
+		return
+	for projectile: Node2D in room.projectiles.get_children():
+		if projectile.source != &"q" or str(projectile.options.get("status", "")) != "shock":
+			continue
+		var cast_key: String = str(projectile.options.get("root_event_id", projectile.get_instance_id()))
+		if _charged_casts.has(cast_key) or position.distance_to(projectile.position) > 90.0 or not room.has_line_of_sight(position, projectile.position):
+			continue
+		_charged_casts[cast_key] = true
+		charge_node(1)
+
+func detonate() -> bool:
+	if kind != "node" or not is_active():
+		return false
+	# Commit retirement before damage so this node cannot chain or trigger twice.
+	alive = false
+	var blast_radius: float = 100.0 + resonance_charge * 20.0
+	var power: float = float(options.get("power", damage))
+	room.strike_area(position, blast_radius, power * (1.0 + resonance_charge * 0.65), "node_detonation", "", 0.0, Vector2.ZERO, 360.0, false, _damage_context())
+	room.add_ring(position, Color("78d9d1"), blast_radius, 0.38)
+	if is_instance_valid(owner_player):
+		var feedback: Node = owner_player.get_node_or_null("HeroFeedback")
+		if is_instance_valid(feedback):
+			feedback.class_event("node_burst", position, Vector2.RIGHT, blast_radius, resonance_charge)
+	queue_free()
+	return true
+
+func _damage_context(original: bool = false) -> Dictionary:
+	var context: Dictionary = {"power":float(options.get("power", damage)), "damage_type":str(options.get("damage_type", "magic")), "attacker_stats":options.get("attacker_stats", {}), "equipment_eligible":original, "original_basic":false}
+	if original:
+		# A trap's simultaneous victims still share one equipment trigger root.
+		context["root_event_id"] = "deployment:" + str(get_instance_id())
+		context["attack_id"] = context.root_event_id
+	return context
 
 func _fire_node() -> void:
 	var targets: Array = room.targets_in_radius(position, radius)
@@ -116,12 +192,24 @@ func _fire_node() -> void:
 		var direction: Vector2 = (target.position - position).normalized()
 		if direction.is_zero_approx():
 			direction = Vector2.RIGHT
-		var projectile: Node2D = room.spawn_ability_projectile(position, direction, damage, {"source":"node", "original":false, "speed":700.0, "range":radius + 24.0, "color":Color("67bab5"), "power":options.get("power", damage)})
+		var projectile_options: Dictionary = _damage_context()
+		projectile_options.merge({"source":"node", "original":false, "speed":700.0, "range":radius + 24.0, "color":Color("67bab5")})
+		var projectile: Node2D = room.spawn_ability_projectile(position, direction, damage, projectile_options)
 		if is_instance_valid(projectile):
 			fire_direction = direction
 			pulse = 0.18
 			_emit_feedback_pulse()
+			_play_deployment_audio("node_fire")
 		return
+
+func _play_deployment_audio(cue: String) -> void:
+	if not is_instance_valid(room):
+		return
+	var audio: Variant = room.get("combat_audio")
+	if is_instance_valid(audio) and audio.has_method("deployment"):
+		# Rejection is final for this event: no queued retry after a full pool,
+		# mute or the room-wide per-cue clustering window.
+		audio.deployment(cue)
 
 func _emit_feedback_pulse() -> void:
 	if not is_instance_valid(owner_player):
@@ -154,7 +242,7 @@ func _draw() -> void:
 	draw_rect(Rect2(-8,-16 * expansion,16,21 * expansion), paper, false, 1.5)
 	for index in range(3):
 		var y: float = -11.0 + index * 5.0
-		draw_line(Vector2(-4,y), Vector2(4,y), Color("9bdcd1") if pulse > 0.0 else ink, 2.0)
+		draw_line(Vector2(-4,y), Vector2(4,y), Color("e8ffee") if index < resonance_charge else Color("9bdcd1") if pulse > 0.0 else ink, 3.5 if index < resonance_charge else 2.0)
 	draw_line(Vector2(0,-16 * expansion), Vector2(0,-25 * expansion), paper, 2.0)
 	draw_circle(Vector2(0,-26 * expansion), 3.0 + pulse * 12.0, ink)
 	if pulse > 0.0:
@@ -167,6 +255,33 @@ func _draw() -> void:
 	if health < max_health or damaged_flash > 0.0:
 		draw_rect(Rect2(-17,20,34,3), Color("24312f"))
 		draw_rect(Rect2(-17,20,34 * health / maxf(1.0,max_health),3), paper)
+	if is_active():
+		_draw_resonance_charge(opacity)
+
+func _draw_resonance_charge(opacity: float) -> void:
+	var readout: Dictionary = resonance_readout()
+	var reduced: bool = bool(Game.profile.get("settings", {}).get("reduced_fx", false))
+	var flash: float = 0.0 if reduced else clampf(charge_flash / 0.34, 0.0, 1.0)
+	var tint := Color("c7b3ff") if bool(readout.full) else Color("80e8d7")
+	# Three legible crystal sockets above the silhouette show energy per node,
+	# even when its cannon is firing. Their shape remains readable without color.
+	for index in 3:
+		var center := Vector2(-13.0 + index * 13.0, -39.0)
+		var shape := PackedVector2Array([center+Vector2(0,-5),center+Vector2(5,0),center+Vector2(0,5),center+Vector2(-5,0),center+Vector2(0,-5)])
+		draw_colored_polygon(shape, Color(0.025,0.045,0.055,opacity * .94))
+		draw_polyline(shape, Color("081718"), 3.5, true)
+		draw_polyline(shape, Color(tint, opacity * (1.0 if index < resonance_charge else .28)), 1.4, true)
+		if index < resonance_charge:
+			draw_line(center-Vector2(0,2.5),center+Vector2(0,2.5),Color(tint,opacity),2.7,true)
+			if flash > 0.0 and index == resonance_charge-1:
+				draw_arc(center,7+(1-flash)*9,0,TAU,20,Color(tint,opacity*flash*.65),1.6,true)
+	if bool(readout.full):
+		draw_line(Vector2(-18,-47),Vector2(18,-47),Color(tint,opacity*.85),1.5,true)
+	if bool(readout.connected) and owner_player.hero_level() >= 3:
+		var alpha: float = opacity * (1.0 if bool(readout.available) else .35)
+		var at := Vector2(26,-34)
+		draw_string_outline(NODE_FONT,at,"F",HORIZONTAL_ALIGNMENT_LEFT,-1,13,4,Color(0.02,0.04,0.05,alpha))
+		draw_string(NODE_FONT,at,"F",HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color(tint,alpha))
 
 func _draw_trap(expansion: float, opacity: float, ink: Color, paper: Color) -> void:
 	var unfold: float = 1.0 - pow(1.0-expansion, 3.0)

@@ -61,6 +61,7 @@ func observe_basic(kind: String, duration: float) -> void:
 	_emit("swing" if hero == "CH01" else "muzzle",actor.position,actor.aim_direction,.23 if hero == "CH01" else .14,{"hero":hero,"radius":105.0,"arc":100.0,"heavy":false})
 
 func cast_started(data: Dictionary, direction: Vector2, target: Vector2, serial: int) -> void:
+	_frozen_pose.clear()
 	_cast = data.duplicate(true)
 	_cast["serial"] = serial
 	_cast["target"] = target
@@ -72,6 +73,8 @@ func cast_started(data: Dictionary, direction: Vector2, target: Vector2, serial:
 
 func cancel_cast() -> void:
 	_cast.clear()
+	_basic = ""
+	_basic_age = 0.0
 	_frozen_pose.clear()
 	# Already released feedback is allowed to finish, just like a fired bolt.
 
@@ -91,6 +94,8 @@ func skill_released(data: Dictionary, direction: Vector2, at: Vector2, index: in
 	var details: Dictionary = {"hero":hero,"slot":slot,"radius":float(data.get("radius",65.0)),"arc":float(data.get("arc",360.0)),"heavy":slot == "secondary" or slot == "ultimate","last":index == count-1,"index":index,"count":count}
 	if hero == "CH01":
 		_emit("swing" if slot == "secondary" else "ground_break" if slot == "ultimate" else "brace" if slot == "f" else "rush",at,direction,.44 if slot == "ultimate" else .30,details)
+		if int(data.get("break_stacks", 0)) == 3 and slot in ["secondary", "ultimate"]:
+			_emit("ground_break",at,direction,.52,details)
 	elif hero == "CH02":
 		_emit("deploy" if slot == "f" else "muzzle",at,direction,.24 if slot == "ultimate" and index == count-1 else .16,details)
 	else:
@@ -101,11 +106,17 @@ func impact(at: Vector2, direction: Vector2, source: String, critical: bool = fa
 	if not is_instance_valid(actor):
 		return
 	impact_events += 1
-	_emit("impact",at,direction,.18,{"hero":actor.hero_id(),"heavy":critical or source in ["secondary","ultimate"],"slot":source})
+	# Confirmed contacts have a world-space layer above bodies. Preserve the
+	# callback/counter for animation telemetry without duplicating a feet flash.
+	if not is_instance_valid(actor.room.get("impact_feedback")):
+		_emit("impact",at,direction,.18,{"hero":actor.hero_id(),"heavy":critical or source in ["secondary","ultimate"],"slot":source})
 
 func deployment_pulse(kind: String, at: Vector2, radius: float) -> void:
 	deployment_events += 1
 	_emit("resonance" if kind == "field" else "frost" if kind == "trap" else "deploy",at,Vector2.RIGHT,.42 if kind == "field" else .25,{"hero":"CH03" if kind != "trap" else "CH02","radius":radius,"heavy":kind == "field","deployment":true})
+
+func class_event(kind: String, at: Vector2, direction: Vector2, radius: float = 42.0, energy: int = 0) -> void:
+	_emit(kind, at, direction, 0.48 if kind == "node_burst" else 0.32, {"hero":actor.hero_id(), "radius":radius, "energy":clampi(energy,0,3)})
 
 func pose_state() -> Dictionary:
 	if is_instance_valid(actor) and float(actor.visual_hitstop) > 0.0 and not _frozen_pose.is_empty():
@@ -133,6 +144,14 @@ func pose_state() -> Dictionary:
 		else:
 			result.phase = "recovery"
 			result.progress = clampf(_shot_age/.23,0.0,1.0)
+		# These single-release clips need the entire recovery interval, while the
+		# established progress remains unchanged for procedural FX and other skills.
+		var authored_skill: bool = (str(_cast.hero) in ["CH01", "CH02"] and str(_cast.slot) == "secondary") or (str(_cast.hero) == "CH03" and str(_cast.slot) == "f")
+		if authored_skill:
+			result["authored_phase_progress"] = result.progress
+			if str(result.phase) == "recovery":
+				var recovery_duration: float = maxf(.01, float(_cast.duration) - float(_cast.windup) - .09)
+				result["authored_phase_progress"] = clampf((_shot_age - .09)/recovery_duration, 0.0, 1.0)
 	elif _basic == "attack_windup" and _basic_age < _basic_duration:
 		result.phase = "windup"
 		result.progress = _basic_age/maxf(.01,_basic_duration)
@@ -157,6 +176,7 @@ func _draw() -> void:
 		return
 	var reduced: bool = bool(Game.profile.get("settings",{}).get("reduced_fx",false))
 	var quality: float = .52 if reduced else 1.0
+	_draw_class_identity(quality)
 	var pose: Dictionary = pose_state()
 	if str(pose.phase) == "windup":
 		_draw_charge(pose,quality)
@@ -171,7 +191,9 @@ func _draw() -> void:
 			"muzzle": _draw_muzzle(effect,t,fade,tint)
 			"swing":
 				var arc: float = deg_to_rad(float(effect.get("arc",100.0)))
-				var sweep: float = dir.angle()-arc*.5+arc*minf(1.0,t*1.8)
+				# This event is the actual strike, after windup. Its leading edge
+				# starts on the hit direction; only the follow-through lies ahead.
+				var sweep: float = dir.angle()+arc*.5*minf(1.0,t*1.8)
 				for ribbon in range(3):
 					draw_arc(at,radius-ribbon*5.0,maxf(dir.angle()-arc*.5,sweep-.52),sweep,18,Color(tint,fade*(.8-ribbon*.23)),4.8-ribbon*1.1,true)
 				_sparks(at+Vector2.from_angle(sweep)*radius,dir,5,14.0,fade,tint)
@@ -181,6 +203,10 @@ func _draw() -> void:
 					var ray := Vector2.from_angle(index*TAU/8.0+.22)
 					draw_polyline(PackedVector2Array([at+ray*18,at+ray*radius*.34+ray.orthogonal()*6,at+ray*radius*.64]),Color(tint,fade*.45),2,true)
 				_sparks(at,dir,8,36.0,fade,tint)
+				for fragment in range(6):
+					var ray: Vector2 = dir.rotated((fragment - 2.5) * 0.5)
+					var chip: Vector2 = at + ray * radius * (0.25 + t * 0.48)
+					draw_colored_polygon(PackedVector2Array([chip, chip + ray * 9.0, chip + ray.orthogonal() * 5.0]), Color(AMBER, fade * .8))
 			"rush":
 				for side in [-1.0,1.0]:
 					var edge: Vector2 = dir.orthogonal()*side*22.0
@@ -195,7 +221,73 @@ func _draw() -> void:
 					draw_line(at+ray*radius*maxf(.05,t-.2),at+ray*radius*t,Color(CYAN,fade*.38),1.4,true)
 			"deploy":
 				_segmented_ring(at,18+t*24,3,.35,Color(tint,fade*.8),2.2)
+			"mark", "mark_burst":
+				var reach: float = (18.0 + 30.0 * t) if effect.kind == "mark_burst" else 30.0 - 12.0 * t
+				for side in [-1.0, 1.0]:
+					var normal: Vector2 = dir.orthogonal() * side
+					draw_line(at + normal * reach - dir * 10.0, at + normal * reach + dir * 10.0, Color(IVORY, fade), 2.5, true)
+				if effect.kind == "mark_burst":
+					draw_line(at - dir * 45.0, at + dir * 62.0, Color(IVORY, fade), 4.0, true)
+			"node_burst":
+				_draw_node_burst(at,radius,int(effect.get("energy",0)),t,fade,reduced)
 			"impact": _draw_impact(at,dir,str(effect.get("hero","")),bool(effect.get("heavy",false)),t,fade)
+
+func _draw_node_burst(at: Vector2, radius: float, energy: int, t: float, fade: float, reduced: bool) -> void:
+	if t >= 1.0 or fade <= 0.0:
+		return
+	var charged := Color("c7b3ff") if energy == 3 else CYAN
+	# Damage is immediate: the bright fractured core belongs to the first frame,
+	# followed by an expanding thin wave. No delayed visual pretends to hit again.
+	var release: float = 1.0 - pow(1.0-t,3.0)
+	var core: float = 1.0-smoothstep(0.0,0.2,t)
+	_segmented_ring(at,radius*(.18+.82*release),6,.28,Color(charged,fade*.85),2.5 if reduced else 3.3)
+	if reduced:
+		return
+	var center := PackedVector2Array()
+	# Filled polygons use unique vertices. sin(TAU) differs slightly from zero,
+	# so a nearly repeated last vertex produces an invalid microscopic edge.
+	for index in 6:
+		center.append(at+Vector2.from_angle(index*TAU/6.0)*(8.0+energy*2.0+release*8.0))
+	draw_colored_polygon(center,Color(IVORY,core*.66))
+	for index in 6:
+		var ray := Vector2.from_angle(index*TAU/6.0+.12)
+		var side := ray.orthogonal()
+		var tip: Vector2 = at+ray*radius*(.18+release*.68)
+		var length: float = (9.0+energy*3.0)*(1.0-t)
+		if length < 0.5:
+			continue
+		var shard := PackedVector2Array([tip+ray*length,tip+side*3.5,tip-ray*length*.65,tip-side*3.5])
+		draw_line(at+ray*radius*.13,tip-ray*length,Color(charged,fade*.32),1.5,true)
+		draw_colored_polygon(shard,Color(charged,fade*.55))
+		shard.append(shard[0])
+		draw_polyline(shard,Color(IVORY,fade*.9),1.4,true)
+
+func _draw_class_identity(quality: float) -> void:
+	if actor.hero_id() == "CH01":
+		for index in range(3):
+			var at := Vector2(-13.0 + index * 13.0, 17.0)
+			draw_rect(Rect2(at - Vector2(4, 2), Vector2(8, 4)), Color(AMBER, quality * (.95 if index < actor.break_stacks else .18)))
+	elif actor.hero_id() == "CH02":
+		for entry: Dictionary in actor.class_marks.values():
+			var target: Variant = entry.target.get_ref()
+			if not is_instance_valid(target) or not target.is_alive():
+				continue
+			var at: Vector2 = target.position - actor.position
+			var alpha: float = minf(1.0, float(entry.remaining)) * quality
+			for side in [-1.0, 1.0]:
+				var x: float = side * 19.0
+				draw_polyline(PackedVector2Array([at + Vector2(x - side * 6, -17), at + Vector2(x, -17), at + Vector2(x, 12), at + Vector2(x - side * 6, 12)]), Color(IVORY, alpha * .85), 1.8, true)
+			draw_line(at + Vector2(-5, -23), at + Vector2(5, -23), Color(AMBER, alpha), 2.0, true)
+	else:
+		var nodes: Array[Node2D] = actor.resonance_nodes()
+		for node: Node2D in nodes:
+			if actor.position.distance_to(node.position) > 260.0 or not actor.room.has_line_of_sight(actor.position, node.position):
+				continue
+			var at: Vector2 = node.position - actor.position
+			var intensity: float = .12 + float(node.resonance_charge) * .07
+			draw_line(Vector2(0, 7), at + Vector2(0, 7), Color(CYAN, quality * intensity), 1.3, true)
+		if nodes.size() == 2 and actor.room.has_line_of_sight(nodes[0].position, nodes[1].position):
+			draw_line(nodes[0].position - actor.position, nodes[1].position - actor.position, Color(CYAN, quality * .34), 1.7, true)
 
 func _draw_charge(pose: Dictionary, quality: float) -> void:
 	var value: float = float(pose.get("charge",pose.progress))
@@ -208,6 +300,10 @@ func _draw_charge(pose: Dictionary, quality: float) -> void:
 			draw_line(at+ray*(23-value*10),at+ray*(18-value*10),Color(IVORY,.6*quality),1.6,true)
 	elif hero == "CH02":
 		var direction: Vector2 = pose.direction
+		if str(pose.slot) == "secondary":
+			var reach: Vector2 = direction * 780.0
+			reach *= actor.room.blocked_fraction(actor.position + at, actor.position + at + reach, 1.0)
+			draw_line(at, at + reach, Color(IVORY, (.10 + value * .20) * quality), 1.3, true)
 		for side in [-1.0,1.0]:
 			var offset: Vector2 = direction.orthogonal()*side*(9-value*5)
 			draw_line(at+offset-direction*5,at+offset+direction*6,Color(IVORY,(.25+value*.55)*quality),1.4,true)

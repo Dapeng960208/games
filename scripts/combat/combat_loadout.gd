@@ -16,6 +16,8 @@ var _current_speed: float = 0.0
 var _modifiers: Dictionary = {}
 var _applying_depth: int = 0
 var _event_serial: int = 0
+var _self_status_sources: Dictionary = {}
+var _self_status_sources_known: bool = true
 
 
 func configure(player: Node2D) -> void:
@@ -26,11 +28,38 @@ func configure(player: Node2D) -> void:
 	_event_serial = 0
 	_movement_time = 0.0
 	_modifiers.clear()
+	_self_status_sources.clear()
+	_self_status_sources_known = true
 	if Game.run == null:
 		return
 	var loadout: Dictionary = Game.run.stats.get("loadout", Game.run.loadout_snapshot)
 	effects.call("configure", loadout, Game.run.stats, str(Game.run.stats.get("resource_type", "")))
 	_update_modifiers(effects.call("advance", 0.0, _context()))
+
+
+## Safe replacement changes rule identities only. Snapshot.restore supplies
+## migrated timers and source pools; this emits neither entry nor one-shots.
+func rebind(loadout: Dictionary, resolved_stats: Dictionary) -> void:
+	if effects == null:
+		effects = Rules.new()
+	effects.call("rebind", loadout, resolved_stats, str(resolved_stats.get("resource_type", "")))
+
+
+func refresh_modifiers() -> void:
+	if effects != null:
+		_update_modifiers(effects.call("passive_modifiers", _context()))
+
+
+## Status clocks advance independently of the equipment clock. Keep a write
+## fingerprint rather than guessing ownership from remaining duration/power.
+func self_status_sources(states: Dictionary) -> Dictionary:
+	var result: Dictionary = {}
+	for id: String in _self_status_sources:
+		var origin: Dictionary = _self_status_sources[id]
+		var state: Dictionary = states.get(id, {})
+		if not state.is_empty() and float(state.get("remaining", 0.0)) > 0.0 and float(state.get("applied_at", -1.0)) == float(origin.applied_at) and float(state.get("power", -1.0)) == float(origin.power) and float(state.get("H", -1.0)) == float(origin.H):
+			result[id] = origin.duplicate(true)
+	return result
 
 
 func tick(delta: float) -> void:
@@ -93,6 +122,13 @@ func _apply_commands(result: Dictionary, context: Dictionary) -> void:
 	if Game.run == null or _applying_depth >= 4:
 		return
 	_applying_depth += 1
+	for command: Dictionary in result.get("self_statuses", []):
+		var id: String = str(command.get("status", ""))
+		owner_player.status.apply(id, float(command.get("power", 0.0)), float(command.get("duration", 0.0)))
+		var state: Dictionary = owner_player.status.states.get(id, {})
+		# A stronger same-clock write can win the status reducer; do not claim it.
+		if not state.is_empty() and is_equal_approx(float(state.power), float(command.get("power", 0.0))):
+			_self_status_sources[id] = {"source":str(command.get("source", "")), "applied_at":float(state.applied_at), "power":float(state.power), "H":float(state.H)}
 	var shields: Array = result.get("shields", [])
 	if not shields.is_empty():
 		for command: Dictionary in shields:
@@ -102,10 +138,7 @@ func _apply_commands(result: Dictionary, context: Dictionary) -> void:
 	if Game.run != null:
 		var healing: float = maxf(0.0, float(result.get("heal_ratio", 0.0))) * Game.run.max_hp
 		if healing > 0.0 and Game.run.hp > 0.0:
-			var old_hp: float = Game.run.hp
-			Game.run.hp = minf(Game.run.max_hp, Game.run.hp + healing)
-			if Game.run.hp > old_hp:
-				Game.changed.emit()
+			owner_player.heal(healing)
 		Game.restore_resource(maxf(0.0, float(result.get("resource_restore", 0.0))))
 	_apply_refunds(result.get("cooldown_refunds", []))
 	_apply_extensions(result.get("status_extensions", []), context)
@@ -166,7 +199,7 @@ func _apply_refunds(commands: Array) -> void:
 
 
 func _apply_status(target: Node2D, status_id: String, power: float, duration: float) -> bool:
-	if not _alive(target) or status_id not in ["burn", "shock", "chill", "corrosion"] or not target.has_method("apply_status"):
+	if not _alive(target) or status_id not in Rules.ENEMY_STATES or not target.has_method("apply_status"):
 		return false
 	return bool(target.call("apply_status", status_id, maxf(0.0, power), duration))
 
@@ -206,7 +239,8 @@ func _apply_bonus_hit(command: Dictionary, context: Dictionary) -> void:
 			continue
 		seen[target.get_instance_id()] = true
 		# Deliberately bypass room.resolve_direct_hit and all primary-hit callbacks.
-		var accepted_hit: bool = bool(target.call("take_damage", amount, &"equipment"))
+		var packet: Dictionary = {"damage_source":"equipment","damage_type":"magic" if Game.run.hero_id == "CH03" else "physical","attacker_stats":Game.run.stats,"proc_depth":1,"equipment_eligible":false,"original_basic":false}
+		var accepted_hit: bool = bool(target.call("take_damage", amount, &"equipment", Vector2.ZERO, packet))
 		if accepted_hit and _alive(target):
 			for status_data: Variant in command.get("states", []):
 				var status_id: String = str(status_data.get("status", "")) if status_data is Dictionary else str(status_data)

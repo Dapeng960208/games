@@ -1,16 +1,13 @@
 extends Panel
-## Small original metal joinery, kept outside the readable content area.
+## A parchment journal card with restrained copper registration details.
 
 func _ready() -> void:
 	resized.connect(queue_redraw)
 
 func _draw() -> void:
-	var edge := Color("9b7950")
-	var rivet := Color("b88b55")
-	for corner in [Vector2(0,0),Vector2(size.x,0),Vector2(0,size.y),size]:
-		var toward := Vector2(1 if corner.x == 0 else -1,1 if corner.y == 0 else -1)
-		draw_line(corner+Vector2(toward.x*3,toward.y*13),corner+Vector2(toward.x*3,toward.y*3),edge,1)
-		draw_line(corner+Vector2(toward.x*3,toward.y*3),corner+Vector2(toward.x*13,toward.y*3),edge,1)
-		draw_circle(corner+toward*7,1.5,rivet)
-	draw_line(Vector2(24,1),Vector2(minf(88,size.x-24),1),Color("d2a667"),1)
-
+	if size.x < 44 or size.y < 24:
+		return
+	draw_line(Vector2(20,3),Vector2(minf(66,size.x-20),3),MineStyle.COPPER,2,true)
+	draw_line(Vector2(20,size.y-4),Vector2(minf(44,size.x-20),size.y-4),Color(MineStyle.COPPER,0.55),1,true)
+	var mark := Vector2(size.x-17,16)
+	draw_polyline(PackedVector2Array([mark+Vector2(-4,0),mark+Vector2(0,-4),mark+Vector2(4,0),mark+Vector2(0,4),mark+Vector2(-4,0)]),Color(MineStyle.COPPER,0.75),1,true)

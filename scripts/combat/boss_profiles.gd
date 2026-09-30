@@ -5,12 +5,13 @@ extends RefCounted
 ## brain, completion contract and finite arena reinforcement plan.
 
 const Catalog = preload("res://scripts/world/world_catalog.gd")
+const Palette = preload("res://scripts/combat/enemy_palette.gd")
 
 const NAMES_EN := {
-	"BO01": "Furnace-Ridge Overseer",
-	"BO02": "Broodbed Weaver",
-	"BO03": "Blackbox Pathfinder",
-	"BO04": "Echo Below",
+	"BO01": "Daybreak Clockwork Colossus",
+	"BO02": "Amber Brood Queen",
+	"BO03": "Stitched Mayor",
+	"BO04": "Cragbreaker Chieftain",
 }
 
 const STATS := {
@@ -48,11 +49,21 @@ static func resolve(boss_id: String, difficulty: int = 0) -> Dictionary:
 		"reserved_summon_count": 0,
 		"reserved_summon_threat": 0.0,
 		"visual_asset": "res://assets/bosses/" + boss_id + ".png",
+		"visual_palette": Palette.family_for(boss_id),
 		"gameplay_implemented": true,
 	}, true)
 	result.max_hp = float(STATS[boss_id].max_hp) * (1.0 + 0.16 * tier)
 	result.damage = float(STATS[boss_id].damage) * (1.0 + 0.08 * tier)
 	result.armor = float(STATS[boss_id].armor) + 3.0 * tier
+	result["clan"] = {"BO01":"construct", "BO02":"insect", "BO03":"zombie", "BO04":"orc"}[boss_id]
+	result["damage_type"] = "magic" if boss_id in ["BO01", "BO02"] else "physical"
+	# Pods reserve two real encounter slots, rather than bypassing the room's
+	# ordinary allocation rules. These are finite attempts over the whole fight.
+	result["brood_batch_limit"] = 3 if boss_id == "BO02" else 0
+	result["grave_recall_limit"] = 2 if boss_id == "BO03" else 0
+	if boss_id == "BO02":
+		result["reserved_summon_count"] = 2
+		result["reserved_summon_threat"] = 2.0
 	result["reinforcement_waves"] = _reinforcement_waves(authored)
 	return result
 
@@ -87,6 +98,9 @@ static func validate(profile: Dictionary) -> Array[String]:
 	var count: int = 0
 	var threat: int = 0
 	for wave: Dictionary in profile.get("reinforcement_waves", []):
+		for member: Dictionary in wave.get("members", []):
+			if str(Catalog.enemy(str(member.get("enemy_id", ""))).get("biome_id", "")) != str(profile.get("biome_id", "")):
+				errors.append("Boss reinforcements must belong to its clan")
 		count += int(wave.get("count", 0))
 		threat += int(wave.get("threat", 0))
 	if count > int(profile.get("reinforcement_cap", 0)):

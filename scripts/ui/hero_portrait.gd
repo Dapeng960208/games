@@ -5,16 +5,18 @@ extends Control
 var hero_id: String = "CH01"
 var hero_data: Dictionary = {}
 var generated_texture: Texture2D
+var generated_region := Rect2()
 const TextureSampler = preload("res://scripts/ui/texture_sampler.gd")
+const HeroFrames = preload("res://scripts/combat/hero_visual.gd")
 
-const INK := Color("111b24")
-const DARK := Color("263a45")
-const STEEL := Color("53717c")
-const LIGHT := Color("a2bbc0")
-const PAPER := Color("d5ddcf")
-const GOLD := Color("e4b66e")
-const TEAL := Color("64cfbf")
-const ICE := Color("96bbed")
+const INK := Color("392843")
+const DARK := Color("69546f")
+const STEEL := Color("6b9994")
+const LIGHT := Color("eadfc2")
+const PAPER := Color("fff3d7")
+const GOLD := Color("a66a2e")
+const TEAL := Color("257f83")
+const ICE := Color("7789b0")
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -26,17 +28,27 @@ func set_hero(id: String, data: Dictionary = {}) -> void:
 	hero_id = id
 	hero_data = data
 	var path := "res://assets/generated/heroes/"+hero_id+"_portrait_v1.png"
+	var storybook_path := "res://assets/generated/heroes/"+hero_id+"_storybook_portrait_v1.png"
+	if FileAccess.file_exists(storybook_path) or ResourceLoader.exists(storybook_path):
+		path = storybook_path
 	generated_texture = TextureSampler.sampled(path)
+	generated_region = Rect2(Vector2.ZERO, generated_texture.get_size()) if generated_texture != null else Rect2()
+	# Menu cards use the full portrait; a world sprite is only a missing-art fallback.
+	if generated_texture == null and hero_id == "CH01":
+		var frame: Dictionary = HeroFrames.action_frame_info(hero_id, "front", "idle")
+		if not frame.is_empty():
+			generated_texture = frame.texture
+			generated_region = frame.region
 	queue_redraw()
 
 func _draw() -> void:
 	if size.x <= 0 or size.y <= 0:
 		return
 	if generated_texture != null:
-		var source_size := generated_texture.get_size()
+		var source_size := generated_region.size
 		var image_scale := minf(size.x/source_size.x,size.y/source_size.y)
 		var extent := source_size*image_scale
-		draw_texture_rect(generated_texture,Rect2((size-extent)*0.5,extent),false)
+		draw_texture_rect_region(generated_texture,Rect2((size-extent)*0.5,extent),generated_region)
 		return
 	var scale_factor := minf(size.x / 240.0, size.y / 300.0)
 	var origin := (size - Vector2(240, 300) * scale_factor) * 0.5
@@ -73,14 +85,15 @@ func _path(coords: Array, color: Color, width: float = 1.0) -> void:
 	draw_polyline(points, color, width, true)
 
 func _backplate(accent: Color, identity: int) -> void:
-	_poly([24,13, 198,13, 222,37, 222,273, 201,290, 18,290, 18,33], Color("15232c"))
-	_poly([25,14, 87,14, 67,290, 19,290, 19,34], Color("1a2b33"))
-	_poly([199,14, 221,37, 221,273, 200,289, 161,289], Color("0f1c26"))
-	draw_circle(Vector2(119,119), 81, Color(accent,0.035))
-	draw_arc(Vector2(119,119), 81, -2.65, 1.3, 56, Color(accent,0.23), 1.0, true)
-	draw_arc(Vector2(119,119), 74, 0.12, 1.7, 28, Color(accent,0.12), 1.0, true)
-	_path([34,25, 189,25, 210,46, 210,263], Color(accent,0.3))
-	_path([31,104, 31,266, 48,279, 181,279], Color(accent,0.16))
+	_poly([24,13, 198,13, 222,37, 222,273, 201,290, 18,290, 18,33], PAPER)
+	_poly([25,14, 87,14, 67,290, 19,290, 19,34], Color("fff9ea"))
+	_poly([199,14, 221,37, 221,273, 200,289, 161,289], Color("e4d8b8"))
+	_path([24,13, 198,13, 222,37, 222,273, 201,290, 18,290, 18,33, 24,13], Color(INK,0.7), 1.5)
+	draw_circle(Vector2(119,119), 81, Color(accent,0.07))
+	draw_arc(Vector2(119,119), 81, -2.65, 1.3, 56, Color(accent,0.35), 1.0, true)
+	draw_arc(Vector2(119,119), 74, 0.12, 1.7, 28, Color(accent,0.2), 1.0, true)
+	_path([34,25, 189,25, 210,46, 210,263], Color(accent,0.5))
+	_path([31,104, 31,266, 48,279, 181,279], Color(accent,0.28))
 	for n in range(7):
 		var y := 38 + n * 9
 		draw_line(Vector2(24,y), Vector2(29 if n % 3 else 34,y), Color(accent,0.32))
@@ -99,7 +112,7 @@ func _backplate(accent: Color, identity: int) -> void:
 
 func _breaker() -> void:
 	# Compact square silhouette, offset hydraulic hammer, broad steel shoulders.
-	_poly([73,134, 161,125, 180,232, 155,260, 57,259], Color("0b141b"))
+	_poly([73,134, 161,125, 180,232, 155,260, 57,259], INK)
 	_poly([91,193, 115,195, 109,258, 72,263, 72,251], DARK)
 	_poly([123,194, 152,190, 165,249, 158,261, 124,261], DARK)
 	_poly([91,207, 108,210, 102,246, 81,249], STEEL)
@@ -154,7 +167,7 @@ func _breaker() -> void:
 
 func _hunter() -> void:
 	# Long diagonal rifle and narrow coat contrast with the breaker's square mass.
-	_poly([109,98, 148,102, 172,244, 143,230, 133,197, 83,242, 86,157], Color("0c151d"))
+	_poly([109,98, 148,102, 172,244, 143,230, 133,197, 83,242, 86,157], INK)
 	_poly([99,163, 118,179, 104,225, 87,258, 69,257, 85,214], DARK)
 	_poly([122,173, 143,170, 149,219, 171,245, 155,257, 131,230], DARK)
 	_poly([88,225, 100,226, 86,257, 70,261, 61,258, 68,250], STEEL)

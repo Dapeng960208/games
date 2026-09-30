@@ -6,6 +6,7 @@ extends RefCounted
 const Routes = preload("res://scripts/world/route_generator.gd")
 const Catalog = preload("res://scripts/world/world_catalog.gd")
 const Enemies = preload("res://scripts/combat/enemy_profiles.gd")
+const Rewards = preload("res://scripts/world/room_rewards.gd")
 var game: Node
 var last_error := ""
 
@@ -62,7 +63,7 @@ func candidate(room_id: String) -> Dictionary:
 		return {}
 	var next_route: Dictionary = state.get("route", {}).duplicate(true)
 	var index := int(next.node_index)
-	if index in Routes.COMBAT_NODES:
+	if Routes.is_template_node(next):
 		next_route = Routes.choose(next_route, index, room_id)
 		if not bool(next_route.get("valid", false)):
 			return {}
@@ -80,7 +81,9 @@ static func context_for(route_data: Dictionary, index: int, difficulty: int) -> 
 	if index < 0 or index >= nodes.size():
 		return {}
 	var result: Dictionary = nodes[index].duplicate(true)
-	result["biome_id"] = str(route_data.get("biome_id", "B01"))
+	result["biome_id"] = str(result.get("biome_id", route_data.get("biome_id", "B01")))
+	result["node_count"] = nodes.size()
+	result["departure_level"] = int(route_data.get("departure_level", 0))
 	result["difficulty"] = difficulty
 	# Keep this deterministic integer within exact JSON and RNG seed ranges.
 	result["seed"] = (int(route_data.get("seed", 0)) + index * 104729) & 0x7fffffff
@@ -89,11 +92,12 @@ static func context_for(route_data: Dictionary, index: int, difficulty: int) -> 
 
 func preview(room_id: String) -> Dictionary:
 	var definition := Catalog.room(room_id)
+	var hero_id := str(game.run.hero_id) if game != null and game.run != null else "CH01"
 	if not definition.is_empty():
 		var result: Dictionary = definition.get("preview", {}).duplicate(true)
-		# The catalog contains the full design's future reward-choice wording.
-		# Show what the current completion transaction actually grants.
-		result["reward"] = "Coins, hero XP, mastery and carried equipment" if Words.locale == "en" else "金币、角色经验、历练与待带回装备"
+		# The same policy generates completion rewards and these branch conditions.
+		# Authored catalog reward text may describe mechanics not yet implemented.
+		result["reward"] = Rewards.preview(room_id, hero_id, Words.locale == "en",int(snapshot().get("difficulty",0)))
 		result["name"] = str(definition.get("name", room_id))
 		result["room_id"] = room_id
 		var tags: Array[String] = []
@@ -118,7 +122,7 @@ func preview(room_id: String) -> Dictionary:
 			result["scanned_roster"] = roster
 		return result
 	var node := next_node()
-	return {"name":str(node.get("name", room_id)), "room_id":room_id, "objective":"", "risk":"", "reward":"", "enemy_tags":[]}
+	return {"name":str(node.get("name", room_id)), "room_id":room_id, "objective":"", "risk":"", "reward":Rewards.preview(room_id, hero_id, Words.locale == "en",int(snapshot().get("difficulty",0))), "enemy_tags":[]}
 
 static func unlocked_biomes(profile: Dictionary) -> Array[String]:
 	var result: Array[String] = []

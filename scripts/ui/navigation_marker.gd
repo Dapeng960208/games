@@ -13,7 +13,7 @@ func _ready() -> void:
 	route_icon.position = Vector2(40,3)
 	route_icon.size = Vector2(30,30)
 	add_child(route_icon)
-	text_label = MineStyle.label(self,"",Vector2(75,5),Vector2(105,25),16,MineStyle.AMBER)
+	text_label = MineStyle.label(self,"",Vector2(75,5),Vector2(105,25),16,MineStyle.INK)
 	text_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 
 func update_target(toward: Vector2, title: String, distance: int, kind: String = "route") -> void:
@@ -26,9 +26,9 @@ func update_target(toward: Vector2, title: String, distance: int, kind: String =
 	queue_redraw()
 
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO,size),Color(0.035,0.055,0.068,0.93))
+	draw_style_box(MineStyle.box(Color("fff3d7"),MineStyle.COPPER,1),Rect2(Vector2.ZERO,size))
 	draw_line(Vector2(36,5),Vector2(36,31),MineStyle.COPPER,1)
 	var center := Vector2(18,18)
 	var side := direction.orthogonal()
-	draw_line(center-direction*13,center+direction*13,MineStyle.AMBER,2,true)
-	draw_polyline(PackedVector2Array([center+direction*4+side*8,center+direction*14,center+direction*4-side*8]),MineStyle.AMBER,2,true)
+	draw_line(center-direction*13,center+direction*13,MineStyle.INK,2,true)
+	draw_polyline(PackedVector2Array([center+direction*4+side*8,center+direction*14,center+direction*4-side*8]),MineStyle.INK,2,true)

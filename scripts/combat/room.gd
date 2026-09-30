@@ -13,10 +13,18 @@ const CameraScript = preload("res://scripts/combat/world_camera.gd")
 const Layouts = preload("res://scripts/world/room_layouts.gd")
 const EnemyProfilesScript = preload("res://scripts/combat/enemy_profiles.gd")
 const EnemySkillsScript = preload("res://scripts/combat/enemy_skill_runtime.gd")
+const EnemyTelegraphsScript = preload("res://scripts/combat/enemy_telegraphs.gd")
 const PropsScript = preload("res://scripts/world/room_props.gd")
 const AudioScript = preload("res://scripts/combat/combat_audio.gd")
+const ImpactScript = preload("res://scripts/combat/impact_feedback.gd")
+const DefeatScript = preload("res://scripts/combat/enemy_defeat_feedback.gd")
+const SkillInputScript = preload("res://scripts/combat/skill_input_feedback.gd")
 const Generator = preload("res://scripts/world/room_generator.gd")
+const CircuitScript = preload("res://scripts/combat/resonance_circuit.gd")
+const ClassRelics = preload("res://scripts/combat/class_relics.gd")
+const RoomRewards = preload("res://scripts/world/room_rewards.gd")
 const InteractionSampler = preload("res://scripts/ui/texture_sampler.gd")
+const WorldArt = preload("res://scripts/world/world_art.gd")
 const ARENA := Rect2(0, 0, 2800, 1800)
 const EXIT_POSITION := Vector2(2696, 900)
 const RELIC_POSITIONS := {"split": Vector2(425,959), "ember": Vector2(1466,354), "arc": Vector2(1962,885)}
@@ -57,16 +65,25 @@ var pointer_input_blocked: bool = false
 var pointer_release_gate: bool = false
 var interaction_overlay: Node2D
 var enemy_skills: Node2D
+var enemy_telegraphs: Node2D
 var enemy_props: Node2D
 var difficulty: int = 0
 var use_generated_layout: bool = true
 var run_seed: int = -1
 var layout_seed: int = -1
 var encounter_progress: Dictionary = {}
+var _encounter_spawn_retry: Dictionary = {}
 var configuration_ready: bool = false
 var configuration_error: String = ""
 var enemy_corpses: Array[Dictionary] = []
 var combat_audio: Node
+var impact_feedback: Node2D
+var defeat_feedback: Node2D
+var skill_input_feedback: Node2D
+var _contact_pulse_until: float = -1.0
+var _contact_pulse_heavy: bool = false
+var circuit: Node2D
+var circuit_training: Node2D
 var last_player_sound_position := Vector2.ZERO
 var last_player_sound_time: float = -100.0
 var interaction_textures: Dictionary = {}
@@ -80,8 +97,19 @@ var _completion_emitted: bool = false
 var _node_loot_spawned: int = 0
 var _boss_actor: Node2D
 var _boss_defeated: bool = false
+var _terrain_canvas: Node2D
+var _floor_canvas: Node2D
+var _terrain_geometry: Array[Rect2] = []
+var _terrain_owner_id: int = -1
+var terrain_redraw_count: int = 0
+var _depth_canvas: Node2D
 
 func _ready() -> void:
+	# Every raised object and actor shares one depth plane; feet provide the
+	# ordering while floor drawings, projectiles and UI keep their fixed layers.
+	y_sort_enabled = true
+	enemies.z_index = 2
+	enemies.y_sort_enabled = true
 	if not _prepared_initial.is_empty():
 		_install_expedition_layout(_prepared_initial)
 		_prepared_initial = {}
@@ -93,6 +121,7 @@ func _ready() -> void:
 			return
 	else:
 		configuration_ready = true
+	_create_ground_canvases()
 	player = PlayerScene.instantiate()
 	player.room = self
 	player.position = layout.get("entry", Vector2(250,360))
@@ -101,11 +130,28 @@ func _ready() -> void:
 	combat_audio = AudioScript.new()
 	combat_audio.name = "CombatAudio"
 	add_child(combat_audio)
+	impact_feedback = ImpactScript.new()
+	impact_feedback.name = "ImpactFeedback"
+	add_child(impact_feedback)
+	defeat_feedback = DefeatScript.new()
+	defeat_feedback.name = "DefeatFeedback"
+	add_child(defeat_feedback)
+	skill_input_feedback = SkillInputScript.new()
+	skill_input_feedback.name = "SkillInputFeedback"
+	add_child(skill_input_feedback)
+	skill_input_feedback.configure(self)
+	circuit = CircuitScript.new()
+	circuit.name = "ResonanceCircuit"
+	add_child(circuit)
+	circuit.configure(self)
 	enemy_skills = EnemySkillsScript.new()
 	enemy_skills.name = "EnemySkills"
 	add_child(enemy_skills)
 	enemy_skills.configure(self)
 	enemy_skills.z_index = 4
+	enemy_telegraphs = EnemyTelegraphsScript.new()
+	add_child(enemy_telegraphs)
+	enemy_telegraphs.configure(self)
 	interaction_overlay = Node2D.new()
 	interaction_overlay.z_index = 8
 	interaction_overlay.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
@@ -145,6 +191,9 @@ func controls_enabled() -> bool:
 func set_input_blocked(blocked: bool) -> void:
 	input_blocked = blocked
 	release_gate = true
+	if blocked:
+		if is_instance_valid(player): player.clear_buffered_skill()
+		if is_instance_valid(skill_input_feedback): skill_input_feedback.clear_feedback()
 
 func set_pointer_input_blocked(blocked: bool) -> void:
 	pointer_input_blocked = blocked
@@ -182,6 +231,7 @@ func _physics_process(delta: float) -> void:
 		interact()
 		if get_tree().paused or input_blocked:
 			return
+	if is_instance_valid(circuit): circuit.advance(delta)
 	if not expedition_context.is_empty():
 		_tick_expedition(delta)
 	elif spawn_enabled and not objective_complete:
@@ -218,6 +268,40 @@ func _physics_process(delta: float) -> void:
 		current_hint = next_hint
 		hint_changed.emit(current_hint, {})
 	queue_redraw()
+	_refresh_terrain_canvas()
+	if is_instance_valid(_floor_canvas): _floor_canvas.queue_redraw()
+
+func _create_ground_canvases() -> void:
+	# Godot retains each canvas's draw list. Keep stationary obstacle art out of
+	# the 60-Hz effects/cursor redraw, while lamp darkness remains below it.
+	_floor_canvas = Node2D.new()
+	_floor_canvas.name = "DynamicFloor"
+	_floor_canvas.z_index = -3
+	add_child(_floor_canvas)
+	_floor_canvas.draw.connect(func() -> void:
+		if is_instance_valid(enemy_props): enemy_props.draw_floor(_floor_canvas))
+	_terrain_canvas = Node2D.new()
+	_terrain_canvas.name = "StaticTerrain"
+	_terrain_canvas.z_index = -2
+	add_child(_terrain_canvas)
+	_terrain_canvas.draw.connect(func() -> void:
+		if is_instance_valid(enemy_props): enemy_props.draw_obstacles(_terrain_canvas))
+	_depth_canvas = preload("res://scripts/world/room_depth_layer.gd").new()
+	_depth_canvas.name = "RaisedScenery"
+	add_child(_depth_canvas)
+	_refresh_terrain_canvas()
+
+func _refresh_terrain_canvas() -> void:
+	if not is_instance_valid(_terrain_canvas): return
+	var owner_id: int = enemy_props.get_instance_id() if is_instance_valid(enemy_props) else 0
+	if owner_id == _terrain_owner_id and _terrain_geometry == obstructions: return
+	_terrain_owner_id = owner_id
+	_terrain_geometry.assign(obstructions)
+	_terrain_canvas.material = WorldArt.material_for(_biome_id())
+	_terrain_canvas.queue_redraw()
+	if is_instance_valid(_depth_canvas):
+		_depth_canvas.configure(self,layout,_biome_id(),enemy_props.obstacle_recipes if is_instance_valid(enemy_props) else [])
+	terrain_redraw_count += 1
 
 func clamp_actor(at: Vector2, radius: float) -> Vector2:
 	return Vector2(clampf(at.x, ARENA.position.x + radius, ARENA.end.x - radius), clampf(at.y, ARENA.position.y + radius, ARENA.end.y - radius))
@@ -255,7 +339,7 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 		enemy.free()
 		return null
 	enemies.add_child(enemy)
-	enemy.z_index = 2
+	enemy.z_index = 0
 	return enemy
 
 func _zone_actor_count(zone: int) -> int:
@@ -321,6 +405,10 @@ func enemy_skill_targets() -> Array:
 			result.append(deployment)
 	return result
 
+func notify_enemy_charge(caster: Node2D, from: Vector2, to: Vector2) -> void:
+	if is_instance_valid(objectives) and objectives.has_method("notify_charge_impact"):
+		objectives.notify_charge_impact(caster, from, to)
+
 func apply_enemy_utility(caster: Node2D, skill: Dictionary) -> Dictionary:
 	if not is_instance_valid(enemy_props):
 		return {"success":false,"reason":"unavailable"}
@@ -334,32 +422,41 @@ func consume_enemy_corpse(caster: Node2D, radius: float) -> bool:
 			return true
 	return false
 
+func telegraph_canvas_transform(canvas: Node2D) -> Transform2D:
+	# Brains publish room-local geometry. One matrix transforms points, vectors,
+	# ring angles and radii together, including a rotated/scaled room or layer.
+	return canvas.global_transform.affine_inverse() * global_transform
+
 func draw_enemy_telegraph(canvas: Node2D, data: Dictionary) -> void:
 	if data.is_empty():
 		return
-	var origin: Vector2 = canvas.to_local(data.get("origin",canvas.position))
-	var target: Vector2 = canvas.to_local(data.get("target",canvas.position))
+	canvas.draw_set_transform_matrix(telegraph_canvas_transform(canvas))
+	var origin: Vector2 = data.get("origin", Vector2.ZERO)
+	var target: Vector2 = data.get("target", origin)
 	var direction: Vector2 = data.get("direction",Vector2.RIGHT)
 	var radius: float = float(data.get("radius",48.0))
 	var reach: float = float(data.get("range",96.0))
-	var tint := Color("ffbf69") if bool(data.get("locked",false)) else Color("ef7b67")
-	var fill := Color(tint,.12)
+	var locked: bool = bool(data.get("locked",false))
+	var style: Dictionary = EnemyTelegraphsScript.palette(locked, bool(Game.profile.get("settings",{}).get("reduced_fx",false)))
+	var tint: Color = style.edge
+	var fill := Color(tint,float(style.fill_alpha))
+	var width: float = float(style.width)
 	var shape: String = str(data.get("shape","cone"))
 	var targets: Array = data.get("targets",[])
 	if not targets.is_empty():
 		for point: Vector2 in targets:
 			if shape == "ring":
-				_draw_warning_ring(canvas,canvas.to_local(point),radius,data,direction,tint)
+				_draw_warning_ring(canvas,point,radius,data,direction,style)
 			else:
-				canvas.draw_circle(canvas.to_local(point),radius,fill)
-				canvas.draw_arc(canvas.to_local(point),radius,0,TAU,40,tint,1.7,true)
+				canvas.draw_circle(point,radius,fill)
+				_warning_arc(canvas,point,radius,0,TAU,40,tint,width)
 	if shape in ["circle","ring"] and targets.is_empty():
 		var center: Vector2 = target if str(data.get("kind","")) in ["ground_area","charge"] or str(data.get("action","")) == "steal_scene_lamp" else origin
 		if shape == "circle":
 			canvas.draw_circle(center,radius,fill)
-			canvas.draw_arc(center,radius,0,TAU,48,tint,2.0,true)
+			_warning_arc(canvas,center,radius,0,TAU,48,tint,width)
 		else:
-			_draw_warning_ring(canvas,center,radius,data,direction,tint)
+			_draw_warning_ring(canvas,center,radius,data,direction,style)
 	elif shape in ["cone","arc","sector"]:
 		var angle: float = float(data.get("angle",1.5))
 		var fan := PackedVector2Array([origin])
@@ -367,39 +464,36 @@ func draw_enemy_telegraph(canvas: Node2D, data: Dictionary) -> void:
 			fan.append(origin+direction.rotated(-angle*.5+angle*step/24.0)*reach)
 		fan.append(origin)
 		canvas.draw_colored_polygon(fan,fill)
-		canvas.draw_polyline(fan,tint,1.5,true)
+		_warning_polyline(canvas,fan,tint,width)
 	var points: Array = data.get("points",[])
 	var angles: Array = data.get("projectile_angles",[])
 	var explicit_paths: Array = data.get("paths",[])
 	if not explicit_paths.is_empty():
 		for points_in_path: Array in explicit_paths:
-			var path := PackedVector2Array()
-			for point: Vector2 in points_in_path:
-				path.append(canvas.to_local(point))
+			var path := PackedVector2Array(points_in_path)
 			if path.size() >= 2:
-				canvas.draw_polyline(path,Color(tint,.18),maxf(3.0,float(data.get("width",12.0))),true)
-				canvas.draw_polyline(path,tint,1.5,true)
+				canvas.draw_polyline(path,Color(tint,float(style.path_alpha)),maxf(3.0,float(data.get("width",12.0))),true)
+				_warning_polyline(canvas,path,tint,width)
 	elif points.size() >= 2:
 		var rotations: Array = angles if not angles.is_empty() else [0.0]
-		var world_origin: Vector2 = data.get("origin",canvas.position)
 		for angle_degrees in rotations:
 			var path := PackedVector2Array()
 			for point: Vector2 in points:
-				path.append(canvas.to_local(world_origin+(point-world_origin).rotated(deg_to_rad(float(angle_degrees)))))
-			canvas.draw_polyline(path,Color(tint,.18),maxf(3.0,float(data.get("width",12.0))),true)
-			canvas.draw_polyline(path,tint,1.5,true)
+				path.append(origin+(point-origin).rotated(deg_to_rad(float(angle_degrees))))
+			canvas.draw_polyline(path,Color(tint,float(style.path_alpha)),maxf(3.0,float(data.get("width",12.0))),true)
+			_warning_polyline(canvas,path,tint,width)
 	elif shape == "line":
-		canvas.draw_line(origin,target,Color(tint,.18),maxf(3,float(data.get("width",12.0))),true)
-		canvas.draw_line(origin,target,tint,1.5,true)
+		canvas.draw_line(origin,target,Color(tint,float(style.path_alpha)),maxf(3,float(data.get("width",12.0))),true)
+		_warning_line(canvas,origin,target,tint,width)
 	if explicit_paths.is_empty() and points.size() < 2:
 		for angle_degrees in angles:
 			var dir: Vector2 = direction.rotated(deg_to_rad(float(angle_degrees)))
-			canvas.draw_line(origin,origin+dir*reach,tint,1.2,true)
+			_warning_line(canvas,origin,origin+dir*reach,tint,width)
 	if str(data.get("landing_shape","")) in ["circle","ring"]:
 		if str(data.landing_shape) == "ring":
-			_draw_warning_ring(canvas,target,radius,data,direction,tint)
+			_draw_warning_ring(canvas,target,radius,data,direction,style)
 		else:
-			canvas.draw_arc(target,radius,0,TAU,40,tint,2.0,true)
+			_warning_arc(canvas,target,radius,0,TAU,40,tint,width)
 	elif str(data.get("landing_shape","")) == "cone":
 		var landing_angle: float = float(data.get("angle",1.8))
 		var fan := PackedVector2Array([target])
@@ -407,38 +501,63 @@ func draw_enemy_telegraph(canvas: Node2D, data: Dictionary) -> void:
 			fan.append(target+direction.rotated(-landing_angle*.5+landing_angle*index/24.0)*reach)
 		fan.append(target)
 		canvas.draw_colored_polygon(fan,fill)
-		canvas.draw_polyline(fan,tint,1.5,true)
+		_warning_polyline(canvas,fan,tint,width)
 	var combo: Array = data.get("combo_directions",[])
 	if combo.size() > 1:
 		for index in combo.size():
 			var dir: Vector2 = combo[index]
 			var end: Vector2 = origin+dir*reach
-			canvas.draw_line(origin,end,Color(tint,.35),1.0,true)
+			_warning_line(canvas,origin,end,Color(tint,.45),1.0)
 			canvas.draw_circle(end,9.0,Color("1b2529"))
 			if fx_font != null:
 				canvas.draw_string(fx_font,end+Vector2(-4,4),str(index+1),HORIZONTAL_ALIGNMENT_LEFT,-1,12,tint)
-	canvas.draw_arc(origin,12.0,-PI*.5,-PI*.5+TAU*float(data.get("progress",0)),24,tint,2.0,true)
+	var timing: Dictionary = data if data.has("release_progress") else EnemyTelegraphsScript.presentation_data(data)
+	# A single clockwise arc reaches full only at release. The last segment and
+	# its radial tick mark where tracking stops; no flashing or reset on lock.
+	canvas.draw_arc(origin,12.0,0,TAU,32,EnemyTelegraphsScript.INK,5.0,true)
+	var lock_angle: float = -PI*.5 + TAU*float(timing.lock_fraction)
+	canvas.draw_arc(origin,12.0,lock_angle,PI*1.5,16,Color(EnemyTelegraphsScript.LOCKED,.4),2.0,true)
+	var progress: float = float(timing.release_progress)
+	if progress > .0001:
+		_warning_arc(canvas,origin,12.0,-PI*.5,-PI*.5+TAU*progress,32,tint,2.0)
+	var tick := Vector2.from_angle(lock_angle)
+	_warning_line(canvas,origin+tick*9.0,origin+tick*15.0,EnemyTelegraphsScript.LOCKED,1.5)
+	canvas.draw_set_transform_matrix(Transform2D.IDENTITY)
 
-func _draw_warning_ring(canvas: Node2D, center: Vector2, radius: float, data: Dictionary, direction: Vector2, tint: Color) -> void:
+func _warning_line(canvas: Node2D, start: Vector2, finish: Vector2, tint: Color, width: float) -> void:
+	canvas.draw_line(start,finish,EnemyTelegraphsScript.INK,width+2.2,true)
+	canvas.draw_line(start,finish,tint,width,true)
+
+func _warning_polyline(canvas: Node2D, points: PackedVector2Array, tint: Color, width: float) -> void:
+	canvas.draw_polyline(points,EnemyTelegraphsScript.INK,width+2.2,true)
+	canvas.draw_polyline(points,tint,width,true)
+
+func _warning_arc(canvas: Node2D, center: Vector2, radius: float, start: float, finish: float, segments: int, tint: Color, width: float) -> void:
+	canvas.draw_arc(center,radius,start,finish,segments,EnemyTelegraphsScript.INK,width+2.2,true)
+	canvas.draw_arc(center,radius,start,finish,segments,tint,width,true)
+
+func _draw_warning_ring(canvas: Node2D, center: Vector2, radius: float, data: Dictionary, direction: Vector2, style: Dictionary) -> void:
 	var inner: float = maxf(0,float(data.get("inner_radius",radius*.48)))
 	var gap: float = deg_to_rad(clampf(float(data.get("ring_gap_degrees",0)),0,180))
 	var start: float = float(data.get("ring_start",direction.angle()+gap*.5 if gap > 0 else 0.0))
 	var finish: float = float(data.get("ring_end",start+TAU-gap))
-	canvas.draw_arc(center,radius,start,finish,48,tint,2,true)
-	if inner > 0:
-		canvas.draw_arc(center,inner,start,finish,40,tint,1.4,true)
+	var tint: Color = style.edge
+	var width: float = float(style.width)
 	for index in range(40):
 		var a := Vector2.from_angle(lerpf(start,finish,index/40.0))
 		var b := Vector2.from_angle(lerpf(start,finish,(index+1)/40.0))
 		var polygon := PackedVector2Array([center+a*inner,center+a*radius,center+b*radius,center+b*inner])
 		if inner <= .001:
 			polygon = PackedVector2Array([center,center+a*radius,center+b*radius])
-		canvas.draw_colored_polygon(polygon,Color(tint,.11))
+		canvas.draw_colored_polygon(polygon,Color(tint,float(style.fill_alpha)))
+	_warning_arc(canvas,center,radius,start,finish,48,tint,width)
+	if inner > 0:
+		_warning_arc(canvas,center,inner,start,finish,40,tint,width)
 	if gap > 0:
 		for angle in [start,finish]:
 			var ray := Vector2.from_angle(angle)
-			canvas.draw_line(center+ray*inner,center+ray*radius,tint,2,true)
-		canvas.draw_line(center+direction*(inner+8),center+direction*(radius-8),Color("9be1c6"),1.3,true)
+			_warning_line(canvas,center+ray*inner,center+ray*radius,tint,width)
+		_warning_line(canvas,center+direction*(inner+8),center+direction*(radius-8),Color("9be1c6"),1.3)
 
 func _spawn_wave() -> void:
 	wave += 1
@@ -482,7 +601,9 @@ func fire_from_player(direction: Vector2, critical: bool = false) -> bool:
 	projectile.attack_id = attack_serial
 	projectile.critical = critical
 	projectile.options["power"] = player.attack_power()
+	projectile.options["visual_hero"] = player.hero_id()
 	projectile.arc_ready = Game.run.relics.has("arc") and Game.run.shots % 3 == 0
+	projectile.configure_player_visual(player.position+HeroVisual.release_muzzle_local(player.hero_id(),"basic",direction))
 	return true
 
 func spawn_projectile(at: Vector2, direction: Vector2, damage: float, source: StringName, ignore_id: int = 0) -> SparkProjectile:
@@ -513,13 +634,12 @@ func resolve_weapon_hit(projectile: SparkProjectile, target: MineEnemy) -> void:
 	if is_primary:
 		var context: Dictionary = {"attack_id":"basic:" + str(projectile.attack_id),"root_event_id":"basic:" + str(projectile.attack_id),"original_basic":true,"equipment_eligible":true}
 		var reserved: Dictionary = _prepare_relics(context, projectile.trigger_budget, projectile.arc_ready)
-		context["native_statuses"] = ["burn"] if bool(reserved.get("burn", false)) else []
-		resolve_direct_hit(target, projectile.damage, projectile.source, "", 0.0, projectile.direction, context)
-		player.on_primary_hit(target)
-		player.hit_feedback(0.03)
+		context["native_statuses"] = [ClassRelics.native_status(player.hero_id())] if bool(reserved.get("burn", false)) else []
+		if resolve_direct_hit(target, projectile.damage, projectile.source, "", 0.0, projectile.direction, context):
+			player.on_primary_hit(target)
 		_emit_reserved_relics(reserved, context, hit_position, target, projectile.direction)
 	else:
-		target.take_damage(projectile.damage, projectile.source, projectile.direction)
+		resolve_derived_hit(target, projectile.damage, projectile.source, projectile.direction, projectile.options)
 	add_ring(projectile.position, Color("f0c77f"), 16.0, 0.15)
 
 func _trigger_arc(origin: Vector2, excluded: MineEnemy, coefficient: float = Balance.ARC_RATIO) -> void:
@@ -535,6 +655,16 @@ func _trigger_arc(origin: Vector2, excluded: MineEnemy, coefficient: float = Bal
 		telemetry["arc_hits"] += 1
 
 func enemy_died(enemy: MineEnemy) -> void:
+	if is_instance_valid(objectives) and objectives.has_method("notify_enemy_death"):
+		objectives.notify_enemy_death(enemy)
+	if enemy.owner_enemy != null:
+		var summoner: Object = enemy.owner_enemy.get_ref()
+		if is_instance_valid(summoner) and summoner.has_method("notify_reinforcement_death"):
+			summoner.notify_reinforcement_death(enemy)
+	# Capture before loot return/cancellation can change the last visible body.
+	# The detached snapshot has no collision; death and rewards stay immediate.
+	if Game.run != null and is_instance_valid(defeat_feedback) and defeat_feedback.capture(enemy, global_transform.basis_xform(enemy.last_damage_direction)):
+		if is_instance_valid(combat_audio): combat_audio.defeat(enemy.impact_material())
 	if is_instance_valid(enemy_props):
 		enemy_props.return_stolen(enemy)
 	if is_instance_valid(enemy_skills):
@@ -562,7 +692,7 @@ func enemy_died(enemy: MineEnemy) -> void:
 		amount = mini(2,maxi(0,36-_node_loot_spawned))
 		_node_loot_spawned += amount
 	if amount > 0: gold_drops.append({"at":enemy.position,"amount":amount,"age":0.0})
-	add_ring(enemy.position, Color("e6aa4a"), 35.0, 0.35)
+	if enemy.rank == "boss": add_ring(enemy.position, Color("e6aa4a"), 35.0, 0.35)
 
 func _update_gold(delta: float) -> void:
 	for i in range(gold_drops.size() - 1, -1, -1):
@@ -659,13 +789,16 @@ func add_slash(at: Vector2, direction: Vector2) -> void:
 
 func add_damage_text(at: Vector2, amount: float, kind: StringName) -> void:
 	if Game.profile.get("settings", {}).get("damage_numbers", true):
-		_add_effect({"kind":&"text","at":at,"amount":amount,"source":kind,"remaining":0.6,"duration":0.6})
+		if is_instance_valid(impact_feedback):
+			impact_feedback.add_floating_damage(at, amount, kind)
+		elif amount > 0.0:
+			_add_effect({"kind":&"text","at":at,"amount":amount,"source":kind,"remaining":0.6,"duration":0.6})
 
 func _draw() -> void:
-	if is_instance_valid(enemy_props):
-		enemy_props.draw_floor(self)
-		enemy_props.draw_obstacles(self)
-	else:
+	# A disabled test fixture or a synchronous interaction can mutate geometry
+	# between ticks; refresh its retained obstacle draw list on this path too.
+	_refresh_terrain_canvas()
+	if not is_instance_valid(enemy_props):
 		_draw_cover()
 	for corpse: Dictionary in enemy_corpses:
 		draw_line(corpse.at-Vector2(7,3),corpse.at+Vector2(6,4),Color("6d6150"),3.0)
@@ -720,16 +853,12 @@ func _draw() -> void:
 func _draw_exit() -> void:
 	var at := exit_position
 	var nearby := player != null and player.position.distance_to(at) <= Balance.INTERACTION_RADIUS and has_line_of_sight(player.position, at)
-	draw_rect(Rect2(at-Vector2(41,58),Vector2(82,116)),Color("102026"))
-	draw_rect(Rect2(at-Vector2(41,58),Vector2(82,116)),Color("8a7759"),false,2.0)
-	for x in [-32,-16,0,16,32]:
-		draw_line(at+Vector2(x,-52),at+Vector2(x,48),Color("2a4248"),2.0)
-	draw_rect(Rect2(at-Vector2(46,63),Vector2(92,12)),Color("766344"))
-	draw_rect(Rect2(at+Vector2(-46,51),Vector2(92,12)),Color("766344"))
-	draw_circle(at+Vector2(0,-43),5.0,Color("80b69a"))
-	draw_arc(at,56.0,0,TAU,40,Color(0.50,0.71,0.60,0.6 if nearby else 0.2),2.0,true)
-	draw_polyline(PackedVector2Array([at+Vector2(-10,-3),at+Vector2(0,-13),at+Vector2(10,-3)]),Color("a6d5b7"),3.0,true)
-	draw_line(at+Vector2(0,-12),at+Vector2(0,14),Color("a6d5b7"),3.0)
+	# RaisedScenery owns the painted portal body. Only its flush interaction
+	# guide belongs on the ground canvas, beneath actors and warnings.
+	draw_arc(at,56.0,0,TAU,40,Color(0.15,0.50,0.51,0.60 if nearby else 0.22),2.0,true)
+	draw_arc(at,53.0,0,TAU,40,Color("fff3d7"),1.1,true)
+	draw_polyline(PackedVector2Array([at+Vector2(-10,-3),at+Vector2(0,-13),at+Vector2(10,-3)]),Color("257f83"),3.0,true)
+	draw_line(at+Vector2(0,-12),at+Vector2(0,14),Color("257f83"),3.0)
 
 func _draw_relic(id: String, at: Vector2) -> void:
 	var collected: bool = Game.run == null or Game.run.relics.has(id)
@@ -768,7 +897,7 @@ func _draw_relic_fallback(id: String) -> void:
 			draw_polyline(PackedVector2Array([Vector2(4,-13),Vector2(-6,1),Vector2(4,1),Vector2(-4,15)]),Color("d6fbff"),3.0,true)
 
 func _all_inputs_released() -> bool:
-	for action: String in ["attack","dash","interact","skill_q","skill_secondary","skill_f","skill_ultimate"]:
+	for action: String in ["attack","dash","interact","skill_q","skill_secondary","skill_f","skill_ultimate","circuit_place","circuit_release"]:
 		if InputMap.has_action(action) and Input.is_action_pressed(action):
 			return false
 	return true
@@ -798,6 +927,10 @@ func move_actor(from: Vector2, displacement: Vector2, radius: float) -> Vector2:
 		if valid_ground(next, radius):
 			result = next
 		else:
+			# Approach the actual rounded contact first. Rejecting an entire 4px
+			# step made equal diagonal inputs stop at different distances on each
+			# axis, which the tracking camera exposed as a sudden corner snap.
+			result = _movement_contact(result, next, radius)
 			var horizontal := Vector2(next.x, result.y)
 			var vertical := Vector2(result.x, next.y)
 			if valid_ground(horizontal, radius):
@@ -805,6 +938,16 @@ func move_actor(from: Vector2, displacement: Vector2, radius: float) -> Vector2:
 			if valid_ground(Vector2(result.x, vertical.y), radius):
 				result.y = vertical.y
 	return result
+
+func _movement_contact(from: Vector2, to: Vector2, radius: float) -> Vector2:
+	var clear: float = 0.0
+	var blocked: float = 1.0
+	for iteration: int in 12:
+		var fraction: float = (clear + blocked) * 0.5
+		if valid_ground(from.lerp(to, fraction), radius): clear = fraction
+		else: blocked = fraction
+	# Avoid subpixel creep while holding into an already-contacting surface.
+	return from if from.distance_squared_to(from.lerp(to, clear)) < 0.000001 else from.lerp(to, clear)
 
 func blocked_fraction(from: Vector2, to: Vector2, radius: float = 0.0) -> float:
 	var result: float = 1.0
@@ -853,16 +996,22 @@ func targets_in_radius(at: Vector2, radius: float) -> Array:
 		return a.get_instance_id() < b.get_instance_id() if is_equal_approx(a_distance, b_distance) else a_distance < b_distance)
 	return targets
 
-func strike_area(at: Vector2, radius: float, amount: float, source: StringName, applied_status: String = "", push: float = 0.0, direction: Vector2 = Vector2.ZERO, arc_degrees: float = 360.0, original: bool = true, context: Dictionary = {}) -> Array:
+func intercept_enemy_projectile(from: Vector2, to: Vector2, first_victim_fraction: float = 1.0) -> bool:
+	return is_instance_valid(circuit) and circuit.intercept(from, to, first_victim_fraction)
+
+func strike_area(at: Vector2, radius: float, amount: float, source: StringName, applied_status: String = "", push: float = 0.0, direction: Vector2 = Vector2.ZERO, arc_degrees: float = 360.0, original: bool = true, context: Dictionary = {}, confirmed_only: bool = false) -> Array:
 	var hit: Array = []
+	var confirmed: Array = []
 	if context.is_empty():
 		context = {"attack_id":("basic:" if source == &"primary" else "area:") + str(attack_serial),"root_event_id":("basic:" if source == &"primary" else "area:") + str(attack_serial)}
 		if source != &"primary":
 			attack_serial += 1
+	if not context.has("damage_type"): context["damage_type"] = "magic" if player.hero_id() == "CH03" else "physical"
+	if not context.has("attacker_stats"): context["attacker_stats"] = Game.run.stats.duplicate(true)
 	var reserved: Dictionary = {}
 	if source == &"primary":
 		reserved = _prepare_relics(context, Balance.TRIGGER_BUDGET, Game.run.shots % 3 == 0)
-		context["native_statuses"] = ["burn"] if bool(reserved.get("burn", false)) else []
+		context["native_statuses"] = [ClassRelics.native_status(player.hero_id())] if bool(reserved.get("burn", false)) else []
 	var candidates: Array = targets_in_radius(at, radius)
 	if source == &"primary":
 		candidates.sort_custom(func(a: Node2D, b: Node2D) -> bool:
@@ -881,38 +1030,42 @@ func strike_area(at: Vector2, radius: float, amount: float, source: StringName, 
 				target_context["native_statuses"] = []
 			target_context["original_basic"] = source == &"primary"
 			target_context["equipment_eligible"] = true
-			resolve_direct_hit(enemy, amount, source, applied_status, push, offset.normalized(), target_context)
+			if resolve_direct_hit(enemy, amount, source, applied_status, push, offset.normalized(), target_context):
+				confirmed.append(enemy)
 		else:
-			enemy.take_damage(amount, source)
+			resolve_derived_hit(enemy, amount, source, offset.normalized(), context)
 			if not applied_status.is_empty():
 				enemy.apply_status(applied_status, player.attack_power())
 		hit.append(enemy)
 		if (source == &"field" or (source == &"ultimate" and player.hero_id() == "CH03")) and hit.size() >= 12:
 			break
 	if not hit.is_empty():
-		player.hit_feedback(0.065 if source == &"ultimate" else 0.055 if source == &"secondary" else 0.03)
 		if source == &"primary":
 			_emit_reserved_relics(reserved, context, hit[0].position, hit[0], direction)
-	return hit
+	# Basic melee selects one actual recipient for its class passive. Other
+	# callers retain the geometric hit list used by existing skill/relic rules.
+	return confirmed if confirmed_only else hit
 
-func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, applied_status: String = "", push: float = 0.0, direction: Vector2 = Vector2.ZERO, attack_context: Dictionary = {}) -> void:
+func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, applied_status: String = "", push: float = 0.0, direction: Vector2 = Vector2.ZERO, attack_context: Dictionary = {}) -> bool:
 	if Game.run == null or not target.is_alive():
-		return
+		return false
 	var context: Dictionary = attack_context.duplicate()
-	context.merge({"target":target,"target_states":target.status.states.keys(),"X":amount,"H":float(context.get("power", player.attack_power())),"damage_source":"primary" if source == &"primary" else "skill","skill_slot":str(source),"proc_depth":0}, true)
+	context.merge({"target":target,"target_states":target.status.states.keys(),"X":amount,"H":float(context.get("power", player.attack_power())),"damage_source":context.get("damage_source","primary" if source == &"primary" else "skill"),"skill_slot":str(source),"proc_depth":int(context.get("proc_depth",0))}, true)
 	if not context.has("attack_id"):
 		attack_serial += 1
 		context["attack_id"] = "direct:" + str(attack_serial)
 		context["root_event_id"] = context.attack_id
 	context["original_basic"] = bool(context.get("original_basic", source == &"primary"))
 	context["equipment_eligible"] = bool(context.get("equipment_eligible", true))
+	if not context.has("damage_type"): context["damage_type"] = "magic" if player.hero_id() == "CH03" else "physical"
+	if not context.has("attacker_stats"): context["attacker_stats"] = Game.run.stats.duplicate(true)
 	var native_statuses: Array = context.get("native_statuses", []).duplicate()
 	if not applied_status.is_empty() and player.loadout.effects.reserve_native(str(context.root_event_id), "native:" + applied_status):
 		native_statuses.append(applied_status)
 	var modifiers: Dictionary = player.loadout.event("before_hit", context)
 	var root_id: String = str(context.root_event_id)
 	if source == &"primary" and not crit_rolls.has(root_id):
-		crit_rolls[root_id] = randf() < clampf(player.stat("crit_chance", 0.05) + float(modifiers.get("crit_bonus", 0.0)), 0.0, 0.45)
+		crit_rolls[root_id] = randf() < clampf(player.stat("crit_chance", 0.05) + float(modifiers.get("crit_bonus", 0.0)), 0.0, 0.75)
 		if crit_rolls.size() > 256:
 			crit_rolls.erase(crit_rolls.keys()[0])
 	context["critical"] = source == &"primary" and bool(crit_rolls.get(root_id, false))
@@ -921,31 +1074,113 @@ func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, ap
 	bonus += float(modifiers.get("damage_bonus", 0.0))
 	if target.status.has("corrosion"):
 		bonus += 0.08 + player.stat("corrosion_damage_bonus", 0.0)
+	if player.has_method("class_modify_hit_amount"):
+		amount = player.class_modify_hit_amount(target, amount, source, context)
 	var final_amount: float = amount * (1.0 + minf(0.6, bonus)) * (player.stat("crit_multiplier", 1.5) if bool(context.critical) else 1.0)
 	var health_before: float = target.health.current
 	var shield_before: float = target.status.shield()
 	target.take_damage(final_amount, source, direction, context)
-	if target.health.current < health_before or target.status.shield() < shield_before:
-		var feedback: Node = player.get_node_or_null("HeroFeedback")
-		if is_instance_valid(feedback):
-			feedback.impact(target.position, direction, str(source), bool(context.critical))
-	if is_instance_valid(combat_audio) and (target.health.current < health_before or target.status.shield() < shield_before):
-		combat_audio.impact(player.hero_id(),bool(context.critical) or str(source).contains("ultimate") or str(source).contains("secondary"))
+	# Snapshot the original packet before any shock/true-damage follow-up. A
+	# shield hit and a killing blow count; an immune or zero-damage body does not.
+	var confirmed: bool = target.health.current < health_before or target.status.shield() < shield_before
+	if confirmed:
+		# Contact belongs to this packet, before true damage, class procs or shock.
+		# A follow-up must not turn a shield tap into a fictitious original break.
+		context["hp_damage"] = maxf(0.0, health_before - target.health.current)
+		context["shield_damage"] = maxf(0.0, shield_before - target.status.shield())
+		context["shield_broken"] = shield_before > 0.0 and target.status.shield() <= 0.0
+		var true_bonus: float = maxf(0.0, player.stat("true_damage_bonus", 0.0))
+		if true_bonus > 0.0 and bool(context.equipment_eligible) and target.is_alive():
+			var true_context: Dictionary = context.duplicate(true)
+			true_context.merge({"damage_type":"true","critical":false,"equipment_eligible":false,"original_basic":false,"proc_depth":1},true)
+			target.take_damage(true_bonus, &"equipment_true", direction, true_context)
+		if player.has_method("class_record_hit"): player.class_record_hit(target, source, context)
+		ClassRelics.on_original_hit(self, context)
+		_confirm_contact(target, direction, source, bool(context.critical), float(context.hp_damage) + float(context.shield_damage), false, context)
 	if target.is_alive() and shock > 0.0:
-		target.take_damage(shock, &"shock")
+		target.take_damage(shock, &"shock", direction, {"damage_type":"magic","attacker_stats":Game.run.stats,"equipment_eligible":false})
 		add_ring(target.position, Color("81d8e0"), 25.0, 0.2)
 	for status_id: String in native_statuses:
 		var status_power: float = float(context.H)
-		if status_id == "burn" and source == &"primary" and Game.run.relics.has("ember"):
-			status_power *= _relic_rank_multiplier("RL02")
-		if target.is_alive() and target.apply_status(status_id, status_power):
+		var status_duration: float = -1.0
+		if status_id == ClassRelics.native_status(player.hero_id()) and source == &"primary" and Game.run.relics.has("ember"):
+			var rank: int = int(Game.run.stats.get("relic_levels",{}).get("RL02",1))
+			status_power = ClassRelics.native_status_power(player.hero_id(),player.stat("ability_power",28.0) if player.hero_id()=="CH03" else status_power,rank)
+			status_duration = ClassRelics.native_status_duration(player.hero_id(),rank,self)
+		if target.is_alive() and target.apply_status(status_id, status_power, status_duration):
 			var status_context: Dictionary = context.duplicate()
 			status_context["applied_states"] = [status_id]
 			player.loadout.event("status_applied", status_context)
-	if target.is_alive() and push > 0.0:
+	# A blocked hit cannot create a physical impact. Shield absorption is a
+	# confirmed contact too, even when the target loses no health.
+	if confirmed and target.is_alive() and push > 0.0:
 		target.apply_knockback(direction, push * float(modifiers.get("knockback_scale", 1.0)))
 	player.loadout.event("after_hit", context)
 	player.combat_time = 5.0
+	return confirmed
+
+func resolve_derived_hit(target: MineEnemy, amount: float, source: StringName, direction: Vector2, attack_context: Dictionary = {}) -> void:
+	if Game.run == null or not target.is_alive():
+		return
+	# Turrets/fields and child bolts keep their existing damage path. A visual
+	# confirmation must never promote a derived packet into an equipment proc.
+	var context: Dictionary = attack_context.duplicate()
+	context.merge({"damage_source":str(source),"skill_slot":str(source),"equipment_eligible":false,"original_basic":false,"proc_depth":maxi(1,int(context.get("proc_depth",1)))},true)
+	var health_before: float = target.health.current
+	var shield_before: float = target.status.shield()
+	target.take_damage(amount, source, direction, context)
+	context["hp_damage"] = maxf(0.0, health_before - target.health.current)
+	context["shield_damage"] = maxf(0.0, shield_before - target.status.shield())
+	context["shield_broken"] = shield_before > 0.0 and target.status.shield() <= 0.0
+	var consumed: float = float(context.hp_damage) + float(context.shield_damage)
+	if consumed > 0.0:
+		_confirm_contact(target, direction, source, false, consumed, source != &"node_detonation", context)
+
+func _confirm_contact(target: MineEnemy, direction: Vector2, source: StringName, critical: bool, damage: float, passive: bool = false, context: Dictionary = {}) -> void:
+	# This is reached only after HP or shield was actually consumed. Whiffs,
+	# invulnerability and periodic status packets do not manufacture an impact.
+	var hero: String = player.hero_id()
+	var default_heavy: bool = str(source).contains("ultimate") or str(source).contains("secondary") or source in [&"circuit", &"node_detonation"] or (hero == "CH03" and source == &"f")
+	# Explicit projectile tiers preserve the gunner's light-light-light-finisher rhythm.
+	# This is presentation metadata only; damage and proc attribution are already settled.
+	var heavy: bool = not passive and (critical or bool(context.get("heavy", default_heavy)))
+	var material: String = target.impact_material()
+	var forward: Vector2 = direction.normalized() if not direction.is_zero_approx() else (target.position-player.position).normalized()
+	target.receive_confirmed_impact(forward, .28 if passive else 1.3 if heavy else .95 if hero == "CH01" else .65, heavy, hero)
+	var at: Vector2 = target.position + Vector2(0, target.body_bounds.end.y-target.body_bounds.size.y*.53)
+	var event: Dictionary = {"hero_id":hero,"source":str(source),"heavy":heavy,"passive":passive,"critical":critical,"killed":not target.is_alive(),"material":material,"damage":damage,"anchor":weakref(target),"anchor_offset":at-target.position}
+	event["hp_damage"] = float(context.get("hp_damage", damage))
+	event["shield_damage"] = float(context.get("shield_damage", 0.0))
+	event["shield_broken"] = bool(context.get("shield_broken", false))
+	var surface: Dictionary = target.impact_anchor(forward)
+	if not surface.is_empty():
+		var visual: Node2D = surface.anchor.get_ref()
+		if is_instance_valid(visual):
+			event["visual_anchor"] = surface.anchor
+			event["visual_offset"] = surface.local_offset
+			at = to_local(visual.to_global(surface.local_offset))
+	if is_instance_valid(impact_feedback):
+		impact_feedback.confirm_hit(at, forward, event)
+	var feedback: Node = player.get_node_or_null("HeroFeedback")
+	if is_instance_valid(feedback):
+		feedback.impact(at, forward, str(source), critical)
+	if is_instance_valid(combat_audio):
+		if float(event.shield_damage) > 0.0:
+			# One clear membrane/crack sound, including a shield-breaking overflow.
+			combat_audio.shield_contact(hero, bool(event.shield_broken), passive)
+		else:
+			combat_audio.impact(hero, heavy, material, passive)
+	# One contact pulse per cluster, with separate per-target visual reactions.
+	# Only presentation pauses; movement, dodge and damage timing stay responsive.
+	if not passive and (elapsed >= _contact_pulse_until or (heavy and not _contact_pulse_heavy)):
+		if elapsed >= _contact_pulse_until:
+			_contact_pulse_until = elapsed + .055
+		_contact_pulse_heavy = heavy
+		var pause: float = (.074 if heavy else .042) if hero == "CH01" else (.030 if heavy else .015) if hero == "CH02" else (.038 if heavy else .024)
+		player.hit_feedback(minf(.085, pause + (.006 if critical else 0.0)))
+		if is_instance_valid(camera):
+			var kick: float = (3.1 if heavy else 1.75) if hero == "CH01" else (1.65 if heavy else .65) if hero == "CH02" else (2.1 if heavy else .95)
+			camera.impact(kick, forward, heavy)
 
 func resolve_melee_relics(target: MineEnemy, direction: Vector2) -> void:
 	# Native relics were reserved and dispatched inside the shared attack root.
@@ -975,15 +1210,7 @@ func _relic_rank_multiplier(id: String) -> float:
 	return 1.0 + 0.5 * float(rank-1)
 
 func _emit_reserved_relics(reserved: Dictionary, context: Dictionary, at: Vector2, target: MineEnemy, direction: Vector2) -> void:
-	if reserved.has("split"):
-		for side: float in [-1.0, 1.0]:
-			var child := spawn_projectile(at, direction.rotated(side * Balance.SPLIT_ANGLE), player.attack_power() * float(reserved.split), &"child", target.get_instance_id())
-			if child != null:
-				child.trigger_budget = 0
-				child.options["root_event_id"] = context.root_event_id
-				telemetry.split_spawned += 1
-	if reserved.has("arc"):
-		_trigger_arc(at, target, float(reserved.arc))
+	ClassRelics.apply_reserved(self, reserved, context, at, target, direction)
 
 func spawn_ability_projectile(at: Vector2, direction: Vector2, amount: float, options: Dictionary) -> SparkProjectile:
 	if Game.run == null:
@@ -994,6 +1221,8 @@ func spawn_ability_projectile(at: Vector2, direction: Vector2, amount: float, op
 	if projectile == null:
 		return null
 	projectile.options = options.duplicate()
+	if bool(options.get("original",false)) and str(options.get("source","")) in ["q","secondary","f","ultimate"]:
+		projectile.options["visual_hero"] = player.hero_id()
 	if not projectile.options.has("root_event_id"):
 		attack_serial += 1
 		projectile.options["root_event_id"] = "ability:" + str(attack_serial)
@@ -1002,6 +1231,8 @@ func spawn_ability_projectile(at: Vector2, direction: Vector2, amount: float, op
 	projectile.distance_left = float(options.get("range", 650.0))
 	projectile.remaining = projectile.distance_left / projectile.speed + 0.1
 	projectile.pierce_remaining = int(options.get("pierce", 0))
+	if projectile.options.has("visual_hero"):
+		projectile.configure_player_visual(player.position+HeroVisual.release_muzzle_local(player.hero_id(),str(options.get("source","basic")),direction))
 	return projectile
 
 func add_deployment(kind: String, at: Vector2, options: Dictionary) -> Node2D:
@@ -1018,7 +1249,10 @@ func add_deployment(kind: String, at: Vector2, options: Dictionary) -> Node2D:
 	add_child(deployment)
 	return deployment
 
-func node_echo(origin: Vector2, reach: float, amount: float, _applied_status: String = "", hit_ids: Array = []) -> Array:
+func node_echo(origin: Vector2, reach: float, amount: float, _applied_status: String = "", hit_ids: Array = [], attack_context: Dictionary = {}) -> Array:
+	var context: Dictionary = attack_context.duplicate(true)
+	context.merge({"damage_type":"magic","equipment_eligible":false,"original_basic":false,"proc_depth":1},true)
+	if not context.has("attacker_stats"): context["attacker_stats"] = Game.run.stats.duplicate(true)
 	for deployment in get_tree().get_nodes_in_group("hero_deployments"):
 		if deployment.room != self or deployment.kind != "node" or not deployment.is_active() or deployment.position.distance_to(origin) > reach or not has_line_of_sight(origin, deployment.position):
 			continue
@@ -1027,7 +1261,7 @@ func node_echo(origin: Vector2, reach: float, amount: float, _applied_status: St
 			if target.get_instance_id() in hit_ids:
 				continue
 			hit_ids.append(target.get_instance_id())
-			target.take_damage(amount, &"node_echo")
+			resolve_derived_hit(target, amount, &"node_echo", (target.position-deployment.position).normalized(), context)
 	return hit_ids
 
 func add_arc_visual(at: Vector2, direction: Vector2, radius: float, degrees: float, color: Color, duration: float) -> void:
@@ -1181,6 +1415,10 @@ func load_room_layout(id: String, room_difficulty: int = -1, seed_override: int 
 		prepared_props.free()
 		return false
 	layout_seed = requested_seed
+	if is_instance_valid(circuit): circuit.reset_room()
+	if is_instance_valid(defeat_feedback): defeat_feedback.clear_feedback()
+	if is_instance_valid(skill_input_feedback): skill_input_feedback.clear_feedback()
+	if is_instance_valid(enemy_telegraphs): enemy_telegraphs.clear()
 	if room_difficulty >= 0:
 		difficulty = clampi(room_difficulty,0,4)
 	if is_instance_valid(enemy_skills):
@@ -1200,6 +1438,7 @@ func load_room_layout(id: String, room_difficulty: int = -1, seed_override: int 
 	encounter_zones = next.get("encounter_zones", []).duplicate(true)
 	activated_encounters.clear()
 	encounter_progress.clear()
+	_encounter_spawn_retry.clear()
 	objective_wave_count = encounter_zones.size()
 	objective_complete = false
 	objective_rewarded = false
@@ -1226,6 +1465,7 @@ func load_room_layout(id: String, room_difficulty: int = -1, seed_override: int 
 	configuration_ready = true
 	configuration_error = ""
 	queue_redraw()
+	_refresh_terrain_canvas()
 	return true
 
 func _encounters_exhausted() -> bool:
@@ -1239,6 +1479,19 @@ func _encounters_exhausted() -> bool:
 
 func _encounter_plan(index: int) -> Dictionary:
 	return EnemyProfilesScript.encounter_plan(layout_id,index,difficulty)
+
+func _objective_encounters_pending() -> bool:
+	if not is_instance_valid(objectives):
+		return false
+	for index in encounter_zones.size():
+		if objectives.encounter_directive(index).is_empty():
+			continue
+		if not activated_encounters.has(index):
+			return true
+		var progress: Dictionary = encounter_progress.get(index,{})
+		if progress.is_empty() or int(progress.next_wave) < progress.plan.waves.size():
+			return true
+	return false
 
 func _zone_commitments(index: int) -> Dictionary:
 	var slots: int = _zone_actor_count(index)
@@ -1283,8 +1536,14 @@ func _room_committed_slots() -> int:
 	return slots
 
 func _spawn_encounter_wave(index: int, definitions: Array) -> bool:
+	if _encounter_spawn_retry.has(index):
+		return false
 	var zone: Dictionary = encounter_zones[index]
 	var spawns: Array = zone.get("spawn_points",[])
+	var directive: Dictionary = objectives.encounter_directive(index) if is_instance_valid(objectives) else {}
+	var escorted_spawns: Array[Vector2] = []
+	if not directive.is_empty():
+		escorted_spawns = _escort_spawn_candidates(directive, definitions)
 	var planned: Array[Vector2] = []
 	var planned_radii: Array[float] = []
 	var accepted: Array[MineEnemy] = []
@@ -1294,6 +1553,21 @@ func _spawn_encounter_wave(index: int, definitions: Array) -> bool:
 		var radius: float = float(definition.navigation_radius)
 		var safe_distance: float = float(zone.get("minimum_player_spawn_distance",360.0))
 		var valid: bool = _encounter_spawn_clear(at,radius,safe_distance,planned,planned_radii)
+		if not directive.is_empty():
+			# Prefer connected ground along the remaining escort leg, while keeping
+			# the same minimum distance and collision/spacing checks as every wave.
+			for candidate: Vector2 in escorted_spawns:
+				var spread: bool = true
+				for previous: Vector2 in planned:
+					if previous.distance_to(candidate) < float(zone.get("radius",300.0))*.5:
+						spread = false
+						break
+				if not spread:
+					continue
+				if _encounter_spawn_clear(candidate,radius,safe_distance,planned,planned_radii):
+					at = candidate
+					valid = true
+					break
 		if not valid:
 			valid = false
 			for ring in range(4):
@@ -1306,6 +1580,7 @@ func _spawn_encounter_wave(index: int, definitions: Array) -> bool:
 				if valid:
 					break
 		if not valid:
+			_encounter_spawn_retry[index] = {"remaining":0.25,"geometry":hash(obstructions)}
 			return false
 		planned.append(at)
 		planned_radii.append(radius)
@@ -1317,10 +1592,35 @@ func _spawn_encounter_wave(index: int, definitions: Array) -> bool:
 			# definition still fails, keep the pending wave intact for retry.
 			for actor in accepted:
 				actor.queue_free()
+			_encounter_spawn_retry[index] = {"remaining":0.25,"geometry":hash(obstructions)}
 			return false
 		accepted.append(spawned)
-	add_ring(zone.center,Color("d8b580"),95.0,.6)
+	add_ring(planned[0] if not directive.is_empty() and not planned.is_empty() else zone.center,Color("d8b580"),95.0,.6)
 	return true
+
+func _escort_spawn_candidates(directive: Dictionary, definitions: Array) -> Array[Vector2]:
+	var result: Array[Vector2] = []
+	if not directive.has("position") or not directive.has("destination"):
+		return result
+	var radius: float = 24.0
+	for definition: Dictionary in definitions:
+		radius = maxf(radius, float(definition.navigation_radius))
+	var cursor: Vector2 = directive.position
+	var destination: Vector2 = directive.destination
+	# Sample one bounded stretch of the actual navigable path. Offsets are
+	# swept from that path, so a nearby point across a pit is never preferred.
+	for step in 24:
+		if cursor.distance_to(destination) <= 12.0:
+			break
+		var direction: Vector2 = navigation_direction(cursor,destination,radius)
+		var next: Vector2 = move_actor(cursor,direction*minf(48.0,cursor.distance_to(destination)),radius)
+		if next.distance_to(cursor) < 1.0:
+			break
+		cursor = next
+		result.append(cursor)
+		for side: float in [-1.0,1.0]:
+			result.append(move_actor(cursor,direction.orthogonal()*side*(radius*2.0+12.0),radius))
+	return result
 
 func _encounter_spawn_clear(at: Vector2, radius: float, safe_distance: float, planned: Array[Vector2], radii: Array[float]) -> bool:
 	if not valid_ground(at,radius) or at.distance_to(player.position)+.001 < safe_distance:
@@ -1336,6 +1636,15 @@ func _encounter_spawn_clear(at: Vector2, radius: float, safe_distance: float, pl
 func _update_encounters(delta: float = 0.0) -> void:
 	if get_tree().paused:
 		return
+	if not _encounter_spawn_retry.is_empty():
+		var geometry: int = hash(obstructions)
+		for index in _encounter_spawn_retry.keys():
+			var retry: Dictionary = _encounter_spawn_retry[index]
+			retry.remaining = float(retry.remaining)-maxf(0.0,delta) if is_finite(delta) else float(retry.remaining)
+			# A changed bridge/obstacle can make placement valid immediately. Only
+			# unchanged failures are throttled; the normal reinforcement timer stays.
+			if int(retry.geometry) != geometry or float(retry.remaining) <= .00001:
+				_encounter_spawn_retry.erase(index)
 	for index in encounter_progress:
 		var progress: Dictionary = encounter_progress[index]
 		var plan: Dictionary = progress.plan
@@ -1359,7 +1668,11 @@ func _update_encounters(delta: float = 0.0) -> void:
 		if activated_encounters.has(index):
 			continue
 		var zone: Dictionary = encounter_zones[index]
-		if player.position.distance_to(zone.center) > float(zone.get("activation_distance",520)):
+		var directive: Dictionary = objectives.encounter_directive(index) if is_instance_valid(objectives) else {}
+		if not directive.is_empty():
+			if not bool(directive.get("ready",false)) or activated_encounters.size() < index:
+				continue
+		elif player.position.distance_to(zone.center) > float(zone.get("activation_distance",520)):
 			continue
 		var plan: Dictionary = _encounter_plan(index)
 		if plan.is_empty() or plan.waves.is_empty() or not _can_spawn_encounter_wave(index,plan.waves[0],float(plan.get("concurrent_threat_budget",18))) or not _spawn_encounter_wave(index,plan.waves[0]):
@@ -1390,7 +1703,8 @@ func navigation_target() -> Dictionary:
 		for index in encounter_progress:
 			var progress: Dictionary = encounter_progress[index]
 			if int(progress.next_wave) < progress.plan.waves.size():
-				return {"position":encounter_zones[index].center,"title":"准备迎接增援","name_en":"Prepare for reinforcements","kind":"encounter"}
+				var directive: Dictionary = objectives.encounter_directive(index) if is_instance_valid(objectives) else {}
+				return {"position":directive.get("position",encounter_zones[index].center),"title":"准备迎接增援","name_en":"Prepare for reinforcements","kind":"encounter"}
 		for index in encounter_zones.size():
 			if not activated_encounters.has(index):
 				return {"position":encounter_zones[index].center,"title":"探索下一矿区","name_en":"Explore the next sector","kind":"objective"}
@@ -1447,6 +1761,10 @@ func apply_prepared_expedition_node(prepared: Dictionary) -> void:
 	set_input_blocked(false)
 
 func _install_expedition_layout(prepared: Dictionary) -> void:
+	if is_instance_valid(circuit): circuit.reset_room()
+	ClassRelics.reset_room(self)
+	if is_instance_valid(circuit_training): circuit_training.free()
+	circuit_training = null
 	if is_instance_valid(objectives):
 		objectives.reset()
 		objectives.free()
@@ -1474,9 +1792,16 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	encounter_zones = layout.get("encounter_zones",[]).duplicate(true)
 	activated_encounters.clear()
 	encounter_progress.clear()
+	_encounter_spawn_retry.clear()
 	enemy_corpses.clear()
 	gold_drops.clear()
 	effects.clear()
+	if is_instance_valid(impact_feedback): impact_feedback.clear_feedback()
+	if is_instance_valid(defeat_feedback): defeat_feedback.clear_feedback()
+	if is_instance_valid(skill_input_feedback): skill_input_feedback.clear_feedback()
+	if is_instance_valid(enemy_telegraphs): enemy_telegraphs.clear()
+	_contact_pulse_until = -1.0
+	_contact_pulse_heavy = false
 	crit_rolls.clear()
 	relic_positions.clear()
 	wave = 0
@@ -1504,6 +1829,7 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	configuration_ready = true
 	configuration_error = ""
 	queue_redraw()
+	_refresh_terrain_canvas()
 
 func _activate_expedition_content() -> void:
 	if not is_instance_valid(player): return
@@ -1516,9 +1842,22 @@ func _activate_expedition_content() -> void:
 		objective_rewarded = true
 		_completion_emitted = true
 		spawn_enabled = false
+		if layout_id in ["L01", "L11"]:
+			var claimed: Array[String] = []
+			for receipt: Dictionary in state.get("optional_claims", {}).values():
+				if int(receipt.node_index) == int(state.node_index): claimed.append(str(receipt.objective_id))
+			objectives = load("res://scripts/world/room_objectives.gd").new()
+			objectives.name = "RoomObjectives"
+			add_child(objectives)
+			objectives.configure_cleared(self, layout, role, claimed)
+			objectives.set_process(false)
 	elif role in ["entrance","supply"]:
 		objective_complete = true
 		objective_rewarded = true
+		if role == "entrance" and Game.run.demo:
+			circuit_training = load("res://scripts/combat/circuit_training.gd").new()
+			add_child(circuit_training)
+			circuit_training.configure(self)
 	elif role == "boss":
 		var boss_script: String = "res://scripts/combat/boss.gd"
 		if ResourceLoader.exists(boss_script):
@@ -1550,8 +1889,8 @@ func _tick_expedition(delta: float) -> void:
 			objective_complete = _boss_defeated and _living_enemy_count() == 0
 		else:
 			var task_done: bool = is_instance_valid(objectives) and objectives.is_complete()
-			if not task_done: _update_encounters(delta)
-			objective_complete = task_done and _living_enemy_count() == 0
+			if not task_done or _objective_encounters_pending(): _update_encounters(delta)
+			objective_complete = task_done and _living_enemy_count() == 0 and not _objective_encounters_pending()
 	if not objective_complete or objective_rewarded or progress_retry_timer > 0.0: return
 	# Safe checkpoints contain no continuing enemy damage. Preserve absolute HP,
 	# resource, beneficial guards and all cooldowns; only end the finished fight.
@@ -1567,14 +1906,13 @@ func _tick_expedition(delta: float) -> void:
 			gold_drops.remove_at(index)
 	var event_id: String = Game.run.id+":node:"+str(expedition_context.node_index)+":complete"
 	var quality: String = str(objectives.status().get("quality","full")) if is_instance_valid(objectives) else "full"
-	var rewards: Dictionary = {"xp":80 if role == "boss" else 30,"mastery":0 if role == "boss" else 180,"gold":80 if role == "boss" else (6 if quality in ["reduced","repaired"] else 12)}
-	var equipment_ids: Array = ContentRegistry.equipment_ids()
-	if not equipment_ids.is_empty():
-		var rng := RandomNumberGenerator.new()
-		rng.seed = layout_seed ^ 0x45515549
-		var eq_id: String = str(equipment_ids[rng.randi_range(0,equipment_ids.size()-1)])
-		rewards["equipment"] = [{"drop_id":event_id+":equipment","equipment_id":eq_id}]
-	if role == "boss": rewards["boss_id"] = layout_id
+	var bosses: Array = Game.profile.bosses.duplicate()
+	for boss_id: String in Game.run.boss_defeats:
+		if not bosses.has(boss_id): bosses.append(boss_id)
+	var rewards: Dictionary = RoomRewards.build(layout_id, quality, player.hero_id(), layout_seed, event_id, Game.run.equipment_snapshot.keys(), Game.run.expedition.pending_equipment.keys(), bosses, difficulty)
+	if rewards.is_empty():
+		configuration_error = "Invalid reward outcome: " + layout_id + "/" + quality
+		return
 	objective_rewarded = Game.commit_expedition_completion(event_id,expedition_runtime_snapshot(),rewards)
 	progress_retry_timer = 1.0
 	if objective_rewarded and not _completion_emitted:
@@ -1618,6 +1956,20 @@ func _update_boss_encounter() -> void:
 
 func on_objective_event(_kind: String, _data: Dictionary) -> void:
 	queue_redraw()
+
+func claim_optional_objective_reward(id: String) -> bool:
+	if not objective_rewarded or Game.run == null or expedition_context.is_empty() or not is_instance_valid(objectives): return false
+	if RoomRewards.optional_definition(layout_id, id).is_empty(): return false
+	var item: Dictionary = objectives.element(id)
+	if item.is_empty() or not bool(item.get("optional_reward", false)) or bool(item.get("sealed", false)): return false
+	var at: Vector2 = item.get("interaction_position", item.position)
+	if player.position.distance_to(at) > 100.0 or not has_line_of_sight(player.position, at): return false
+	var state: Dictionary = Game.expedition_snapshot()
+	var success: bool = Game.claim_expedition_optional_reward(int(expedition_context.node_index), id, expedition_runtime_snapshot(), str(state.get("checkpoint_id", "")))
+	if success:
+		add_ring(at, Color("b9de91"), 35.0, .32)
+		if is_instance_valid(combat_audio): combat_audio.pickup()
+	return success
 
 func _service_layout(context: Dictionary) -> Dictionary:
 	return {"room_id":str(context.room_id),"seed":int(context.get("seed",0)),"arena":ARENA,"entry":Vector2(960,900),"exit":Vector2(1760,900),"service_position":Vector2(1260,900),"obstructions":[],"static_obstructions":[],"static_obstruction_kinds":[],"prop_instances":[],"spawn_points":[],"objective_points":[],"encounter_zones":[],"interactables":[],"hazard_zones":[],"visual_markers":[],"topology_probes":[]}

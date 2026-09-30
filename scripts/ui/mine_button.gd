@@ -11,10 +11,10 @@ func _draw() -> void:
 	if disabled:
 		return
 	var active := is_hovered() or has_focus()
-	var color := Color("e6aa4a") if active else Color("685842")
-	var y := size.y/2
-	draw_polyline(PackedVector2Array([Vector2(8,y-4),Vector2(12,y),Vector2(8,y+4)]),color,1.5,true)
+	var color := MineStyle.CYAN if active else MineStyle.COPPER
+	# Fine paper highlights and a single accent avoid heavy metal frames.
+	draw_line(Vector2(12,3),Vector2(size.x-12,3),Color(MineStyle.PAPER_LIGHT,0.8),1,true)
+	draw_circle(Vector2(9,size.y*0.5),1.3,Color(color,0.7))
+	draw_circle(Vector2(size.x-9,size.y*0.5),1.3,Color(color,0.7))
 	if active:
-		draw_line(Vector2(size.x-5,10),Vector2(size.x-5,size.y-10),color,2)
-		draw_line(Vector2(2,11),Vector2(2,size.y-11),color,2)
-
+		draw_line(Vector2(4,12),Vector2(4,size.y-12),color,2,true)

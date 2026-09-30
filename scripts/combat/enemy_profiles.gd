@@ -4,6 +4,7 @@ extends RefCounted
 ## This resolves combat parameters; catalog gameplay completion remains separate.
 
 const Catalog = preload("res://scripts/world/world_catalog.gd")
+const Palette = preload("res://scripts/combat/enemy_palette.gd")
 const DATA_PATH := "res://data/enemy_progression.json"
 const MIN_LEVEL := 1
 const MAX_LEVEL := 20
@@ -16,6 +17,16 @@ const TIER_THRESHOLDS := [1, 5, 10, 15]
 const BASE_ZONE_TOTALS := [6, 6, 7]
 const PROTECTIVE_IDS := ["M06", "M08", "M17", "M25", "M26", "M30", "M34"]
 const FUNCTIONAL_SUPPORT_IDS := ["M09", "M19"]
+# Multipliers sharpen the authored roles without replacing any prototype's
+# attacks. Ordinary L20 still fits the existing 180 HP / 25 damage contract.
+const MAX_BASE_DAMAGE := 16.9
+const ARCHETYPE_STATS := {
+	"tank":{"hp":1.02,"damage":0.90,"minimum_damage":0.0,"speed":0.92,"armor":1.0,"armor_bonus":8.0,"armor_per_tier":2.0,"resist_per_tier":1.0,"recovery":1.18},
+	"caster":{"hp":0.86,"damage":1.16,"minimum_damage":0.0,"speed":0.98,"armor":0.5,"armor_bonus":0.0,"armor_per_tier":1.0,"resist_per_tier":2.0,"recovery":1.12},
+	"assassin":{"hp":0.72,"damage":1.20,"minimum_damage":15.0,"speed":1.10,"armor":0.25,"armor_bonus":0.0,"armor_per_tier":0.5,"resist_per_tier":0.5,"recovery":1.0},
+	"skirmisher":{"hp":1.0,"damage":1.0,"minimum_damage":0.0,"speed":1.0,"armor":1.0,"armor_bonus":0.0,"armor_per_tier":2.0,"resist_per_tier":1.0,"recovery":1.0},
+	"support":{"hp":0.96,"damage":0.90,"minimum_damage":0.0,"speed":0.95,"armor":1.0,"armor_bonus":0.0,"armor_per_tier":1.0,"resist_per_tier":1.5,"recovery":1.12}
+}
 const REINFORCEMENT_POOLS := {
 	"B01": ["M04", "M01", "M04"],
 	"B02": ["M14", "M10", "M14"],
@@ -58,6 +69,9 @@ static func resolve(enemy_id: String, enemy_level: int = 1, rank: String = "norm
 		descriptions.append(str(step.get("description", "")))
 	var stats: Dictionary = authored.get("base_stats", {})
 	var rules: Dictionary = _data.get("level_rules", {})
+	var archetype: String = str(result.get("archetype","skirmisher"))
+	if not ARCHETYPE_STATS.has(archetype): archetype = "skirmisher"
+	var identity: Dictionary = ARCHETYPE_STATS[archetype]
 	var hp_scale: float = 1.0 + float(level - 1) * float(rules.get("hp_per_level", 0.055))
 	var damage_scale: float = 1.0 + float(level - 1) * float(rules.get("damage_per_level", 0.025))
 	if resolved_rank == "elite":
@@ -78,22 +92,39 @@ static func resolve(enemy_id: String, enemy_level: int = 1, rank: String = "norm
 			parameters["elite_aftershock_duration"] = 0.35
 			parameters["elite_aftershock_damage_multiplier"] = 0.35
 	_enforce_safety(enemy_id, result, parameters)
-	var recovery: float = maxf(float(stats.get("recovery_seconds", 0.9)), float(parameters["recovery_seconds"]))
+	# High levels recover slightly faster only from the role's added delay.
+	# Authored exposure, telegraph and followup windows are never compressed.
+	var cadence_scale: float = maxf(1.0,float(identity.recovery)-float(level-1)*0.005)
+	var recovery: float = maxf(float(stats.get("recovery_seconds", 0.9)), float(parameters["recovery_seconds"]))*cadence_scale
 	parameters["recovery_seconds"] = recovery
 	parameters["recovery"] = recovery
 	parameters["attack_range"] = float(parameters.get("range", stats.get("attack_range", 68.0)))
 	parameters["preferred_range"] = float(parameters["attack_range"]) * (0.78 if str(result.get("role", "")) in ["ranged", "artillery", "support", "summoner", "healer"] else 1.0)
 	parameters["hazard_cap"] = int(parameters.get("max_active_hazards", 0))
 	parameters["summon_cap"] = int(parameters.get("summon_cap", 0))
+	if enemy_id == "M08":
+		# Its existing shield bash slows briefly; no extra generic tank ability.
+		parameters["bash_slow_multiplier"] = 0.82-float(tier-1)*0.02
+		parameters["bash_slow_seconds"] = 0.65+float(tier-1)*0.10
+	if enemy_id == "M11":
+		# Teach one visible acid landing before introducing the authored triangle
+		# and zigzag combinations. The two-active-pool budget remains unchanged.
+		parameters["lob_count"] = mini(3,tier)
+	result["archetype"] = archetype
+	result["clan"] = {"B01":"construct", "B02":"insect", "B03":"zombie", "B04":"orc"}.get(str(result.get("biome_id", "")), "")
+	result["visual_palette"] = Palette.family_for(enemy_id, result)
+	result["damage_type"] = str(result.get("damage_type","physical"))
 	result["enemy_level"] = level
 	result["mechanic_tier"] = tier
 	result["rank"] = resolved_rank
-	result["max_hp"] = float(stats.get("max_hp", 60.0)) * hp_scale
-	result["damage"] = float(stats.get("damage", 14.0)) * damage_scale
-	result["move_speed"] = minf(MAX_MOVE_SPEED, float(stats.get("move_speed", 96.0)) * (1.0 + float(level - 1) * float(rules.get("speed_per_level", 0.006))))
-	result["armor"] = minf(24.0, float(stats.get("armor", 0.0)) + float(tier - 1) * 2.0)
+	result["max_hp"] = float(stats.get("max_hp", 60.0)) * float(identity.hp) * hp_scale
+	result["damage"] = minf(MAX_BASE_DAMAGE,maxf(float(identity.minimum_damage),float(stats.get("damage", 14.0))*float(identity.damage))) * damage_scale
+	result["move_speed"] = minf(MAX_MOVE_SPEED, float(stats.get("move_speed", 96.0)) * float(identity.speed) * (1.0 + float(level - 1) * float(rules.get("speed_per_level", 0.006))))
+	result["armor"] = minf(24.0, float(stats.get("armor", 0.0))*float(identity.armor)+float(identity.armor_bonus)+float(tier-1)*float(identity.armor_per_tier))
+	result["magic_resist"] = minf(32.0,float(result.get("magic_resist",0.0))+float(tier-1)*float(identity.resist_per_tier)+(4.0 if resolved_rank=="elite" else 0.0))
 	result["attack_range"] = float(parameters["attack_range"])
 	result["recovery_seconds"] = recovery
+	result["attack_cooldown_seconds"] = recovery # The actual brain recovery between attacks.
 	result["attack_parameters"] = parameters
 	result["mechanics"] = mechanics
 	result["tier_descriptions"] = descriptions

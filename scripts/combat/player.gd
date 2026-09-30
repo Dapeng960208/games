@@ -1,6 +1,12 @@
 class_name SalvagerPlayer
 extends CharacterBody2D
 
+signal skill_input_feedback(slot: String, reason: String, details: Dictionary)
+
+const SKILL_BUFFER_SECONDS: float = 0.24
+const COMBO_MAX_AGE: float = 0.90
+const COMBO_QUEUE_LIMIT: int = 3
+
 const Abilities = preload("res://scripts/combat/hero_abilities.gd")
 const Visual = preload("res://scripts/combat/hero_visual.gd")
 const Status = preload("res://scripts/combat/combat_status.gd")
@@ -35,12 +41,21 @@ var visual_duration: float = 0.0
 var visual_hitstop: float = 0.0
 var last_cast_error: String = ""
 var attack_buffer: float = 0.0
+## Compatibility view of the first pending skill for the HUD. The bounded FIFO
+## owns only value snapshots; no actor, resource or UI reference can survive it.
+var buffered_skill: Dictionary = {}
+var combo_queue: Array[Dictionary] = []
+var _basic_chain_remaining: float = 0.0
+var _attack_release_required: bool = false
 var _attack_direction := Vector2.RIGHT
 var _attack_critical: bool = false
 var _pending_skill_slot: String = ""
 var _enemy_status_origins: Dictionary = {}
 var _enemy_slow_remaining: float = 0.0
 var _enemy_slow_multiplier: float = 1.0
+## Room-local identity state; target references never enter a save or equipment state.
+var break_stacks: int = 0
+var class_marks: Dictionary = {}
 
 func _ready() -> void:
 	abilities = Abilities.new()
@@ -92,9 +107,17 @@ func _room_prop_modifier(method: StringName, fallback: float) -> float:
 func attack_power() -> float:
 	return stat("attack", 27.0 if hero_id() == "CH01" else 24.0 if hero_id() == "CH02" else 18.0)
 
+func skill_power() -> float:
+	return attack_power() + (maxf(0.0, stat("ability_power", 0.0)) * 0.7 if hero_id() == "CH03" else 0.0)
+
+func heal(amount: float) -> float:
+	return Game.heal_player(amount, status.healing_multiplier())
+
 func _physics_process(delta: float) -> void:
 	if Game.run == null or Game.run.hp <= 0.0 or get_tree().paused:
+		clear_buffered_skill()
 		return
+	_tick_class_state(delta)
 	dash_cooldown = maxf(0.0, dash_cooldown - delta)
 	shot_cooldown = maxf(0.0, shot_cooldown - delta)
 	invulnerable = maxf(0.0, invulnerable - delta)
@@ -103,6 +126,7 @@ func _physics_process(delta: float) -> void:
 	passive_cooldown = maxf(0.0, passive_cooldown - delta)
 	rage_hurt_cooldown = maxf(0.0, rage_hurt_cooldown - delta)
 	attack_buffer = maxf(0.0, attack_buffer - delta)
+	_basic_chain_remaining = maxf(0.0, _basic_chain_remaining - delta)
 	_enemy_slow_remaining = maxf(0.0, _enemy_slow_remaining - delta)
 	if _enemy_slow_remaining <= 0.0:
 		_enemy_slow_multiplier = 1.0
@@ -115,7 +139,7 @@ func _physics_process(delta: float) -> void:
 	Game.run.shield = status.shield()
 	for tick: Dictionary in status_damage:
 		var source_origin: Vector2 = _enemy_status_origins.get(str(tick.kind), position)
-		receive_damage(float(tick.damage), source_origin, {"dot":true,"status":str(tick.kind)})
+		receive_damage(float(tick.damage), source_origin, {"dot":true,"status":str(tick.kind),"damage_type":str(tick.get("damage_type", "magic" if str(tick.kind) == "burn" else "physical"))})
 		if Game.run == null or Game.run.hp <= 0.0:
 			return
 	for identifier: String in _enemy_status_origins.keys():
@@ -134,8 +158,14 @@ func _physics_process(delta: float) -> void:
 		Game.restore_resource(stat("resource_regen", 18.0 if hero_id() == "CH02" else 5.0) * regen_step)
 	var motion := Vector2.ZERO
 	var pointer_enabled: bool = room.pointer_controls_enabled()
+	if not Input.is_action_pressed("attack"):
+		_attack_release_required = false
 	if not pointer_enabled:
 		attack_buffer = 0.0
+		_attack_release_required = Input.is_action_pressed("attack")
+		_drop_pointer_combo_inputs()
+	if not room.controls_enabled():
+		clear_buffered_skill()
 	if room.controls_enabled():
 		motion = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		var aim := get_global_mouse_position() - global_position
@@ -147,14 +177,20 @@ func _physics_process(delta: float) -> void:
 			if slot == "secondary" and not pointer_enabled:
 				continue
 			if InputMap.has_action("skill_" + slot) and Input.is_action_just_pressed("skill_" + slot):
-				cast_skill(slot, get_global_mouse_position())
-		if pointer_enabled and Input.is_action_pressed("attack"):
+				request_skill(slot, get_global_mouse_position())
+		if pointer_enabled and not _attack_release_required and Input.is_action_just_pressed("attack"):
+			request_attack(aim_direction)
+		elif combo_queue.is_empty() and pointer_enabled and not _attack_release_required and Input.is_action_pressed("attack"):
 			if not fire(aim_direction):
 				attack_buffer = 0.10
 	elif room.input_blocked or room.release_gate:
 		attack_buffer = 0.0
 	abilities.tick(delta)
 	_tick_attack(delta)
+	_consume_buffered_skill()
+	# Let a release on this exact physics boundary consume its follow-up
+	# before evaluating expiry; the full advertised input window stays usable.
+	_tick_skill_buffer(delta)
 	if Game.run == null:
 		return
 	var from := position
@@ -170,7 +206,7 @@ func _physics_process(delta: float) -> void:
 		passive_count = int(walk_distance / 60.0)
 	stride += position.distance_to(from) * 0.12
 	loadout.tick(delta)
-	if attack_buffer > 0.0 and pointer_enabled and room.controls_enabled():
+	if combo_queue.is_empty() and attack_buffer > 0.0 and pointer_enabled and not _attack_release_required and room.controls_enabled():
 		if fire(aim_direction):
 			attack_buffer = 0.0
 	if visual_hitstop > 0.0:
@@ -182,8 +218,12 @@ func _physics_process(delta: float) -> void:
 	queue_redraw()
 
 func fire(direction: Vector2) -> bool:
-	if Game.run == null or shot_cooldown > 0.0 or dash_remaining > 0.0 or direction.is_zero_approx() or abilities.busy():
+	if Game.run == null or Game.run.hp <= 0.0 or shot_cooldown > 0.0 or dash_remaining > 0.0 or not direction.is_finite() or direction.is_zero_approx() or abilities == null:
 		return false
+	if abilities.busy():
+		if not abilities.recovery_chain_ready():
+			return false
+		abilities.cancel()
 	_attack_direction = direction.normalized()
 	_attack_critical = false # Resolved once against the primary target's pre-hit snapshot.
 	shot_cooldown = stat("attack_interval", 0.5)
@@ -209,28 +249,206 @@ func _tick_attack(delta: float) -> void:
 	var hit_threshold: float = maxf(0.0, stat("attack_interval", 0.5) - 0.12)
 	if not attack_resolved and old >= hit_threshold and attack_remaining <= hit_threshold:
 		attack_resolved = true
+		_basic_chain_remaining = 0.045
 		_attack_direction = aim_direction
-		var victims: Array = room.strike_area(position, 105.0, attack_power() * (1.5 if _attack_critical else 1.0), &"primary", "", 12.0, _attack_direction, 100.0, true)
+		var victims: Array = room.strike_area(position, 105.0, attack_power() * (1.5 if _attack_critical else 1.0), &"primary", "", 12.0, _attack_direction, 100.0, true, {}, true)
 		room.add_arc_visual(position, _attack_direction, 105.0, 100.0, Color("e9b16e"), 0.16)
 		visual_event("attack_strike", 0.08)
 		if not victims.is_empty():
 			on_primary_hit(victims[0])
 			room.resolve_melee_relics(victims[0], _attack_direction)
-			hit_feedback(0.035)
 
 func cast_skill(slot: String, target: Vector2) -> bool:
-	if abilities == null or attack_remaining > 0.0 or dash_remaining > 0.0:
-		return false
+	# Public API remains immediate: a false return never hides a later cast.
+	if abilities == null or Game.run == null or Game.run.hp <= 0.0:
+		return _reject_skill(slot, target, "unavailable")
+	if dash_remaining > 0.0:
+		return _reject_skill(slot, target, "dashing")
+	if attack_remaining > 0.0 and not attack_resolved:
+		return _reject_skill(slot, target, "busy", {"cause":"attack_windup"})
 	_pending_skill_slot = slot
-	var success: bool = abilities.try_cast(slot, target)
+	var success: bool = abilities.try_cast(slot, target, false, true)
 	last_cast_error = abilities.last_failure
 	if success:
-		loadout.event("skill_cast", {"slot":slot,"base_cost":float(abilities.spec(slot).cost),"cast_success":true})
+		# The basic strike already happened. Only its recovery can be cancelled;
+		# shot_cooldown still governs the next held-button attack.
+		attack_remaining = 0.0
+		_basic_chain_remaining = 0.0
+		# Read the committed spec: consuming full Momentum changes the next live
+		# preview back to 30 Rage and must not spend a paid-skill discount here.
+		loadout.event("skill_cast", {"slot":slot,"base_cost":float(abilities.active.spec.cost),"cast_success":true})
 		if room.has_method("record_player_sound"):
 			room.record_player_sound()
-		_play_combat_audio(&"cast", [hero_id(), slot])
+		_play_combat_audio(&"prepare", [hero_id(), slot])
 	_pending_skill_slot = ""
+	_emit_skill_feedback(slot, target, "accepted" if success else last_cast_error, abilities.last_failure_details)
 	return success
+
+func request_skill(slot: String, target: Vector2) -> bool:
+	if not is_instance_valid(room) or not room.controls_enabled() or (slot == "secondary" and not room.pointer_controls_enabled()):
+		return _reject_skill(slot, target, "unavailable", {"cause":"input_blocked"})
+	if abilities == null or Game.run == null or Game.run.hp <= 0.0:
+		return _reject_skill(slot, target, "unavailable")
+	if dash_remaining > 0.0:
+		return _reject_skill(slot, target, "dashing")
+	_pending_skill_slot = slot
+	var valid: bool = abilities.can_cast(slot, target, true)
+	_pending_skill_slot = ""
+	if not valid:
+		last_cast_error = abilities.last_failure
+		_emit_skill_feedback(slot, target, last_cast_error, abilities.last_failure_details)
+		return false
+	for pending: Dictionary in combo_queue:
+		if str(pending.slot) == slot:
+			return _reject_skill(slot, target, "busy", {"cause":"already_queued"})
+	var wait: float = _combo_wait_seconds(slot)
+	if combo_queue.is_empty() and wait <= 0.00001:
+		return cast_skill(slot, target)
+	return _append_combo_input({"slot":slot, "target":target}, wait)
+
+func request_attack(direction: Vector2) -> bool:
+	if not is_instance_valid(room) or not room.controls_enabled() or not room.pointer_controls_enabled() or _attack_release_required:
+		return _reject_skill("attack", position, "unavailable", {"cause":"input_blocked"})
+	if Game.run == null or Game.run.hp <= 0.0 or abilities == null:
+		return _reject_skill("attack", position, "unavailable")
+	if not direction.is_finite() or direction.is_zero_approx():
+		return _reject_skill("attack", position, "invalid_direction")
+	if dash_remaining > 0.0:
+		# A fresh press rejected during a dodge cannot turn into a held-button
+		# attack after that dodge. Only a real release can open this input again.
+		_attack_release_required = true
+		return _reject_skill("attack", position, "dashing")
+	var wait: float = _combo_wait_seconds("attack")
+	if combo_queue.is_empty() and wait <= 0.00001:
+		if not fire(direction):
+			return _reject_skill("attack", position, "busy")
+		_emit_skill_feedback("attack", position, "accepted")
+		return true
+	return _append_combo_input({"slot":"attack", "direction":direction.normalized(), "target":position}, wait)
+
+func _combo_wait_seconds(slot: String) -> float:
+	var wait: float = _basic_chain_remaining
+	if attack_remaining > 0.0 and not attack_resolved:
+		var hit_threshold: float = maxf(0.0, stat("attack_interval", 0.5) - 0.12)
+		wait = maxf(wait, maxf(0.0, attack_remaining - hit_threshold) + 0.045)
+	if abilities != null and abilities.busy():
+		wait = maxf(wait, abilities.recovery_chain_wait())
+	if slot == "attack":
+		wait = maxf(wait, shot_cooldown)
+	return wait
+
+func _append_combo_input(request: Dictionary, wait: float) -> bool:
+	var slot: String = str(request.slot)
+	var target: Vector2 = request.target
+	if combo_queue.size() >= COMBO_QUEUE_LIMIT:
+		return _reject_skill(slot, target, "busy", {"cause":"queue_full"})
+	if combo_queue.is_empty() and wait > SKILL_BUFFER_SECONDS + 0.00001:
+		return _reject_skill(slot, target, "busy", {"cause":"early_chain", "chain_in":wait})
+	request["age"] = 0.0
+	request["remaining"] = SKILL_BUFFER_SECONDS if combo_queue.is_empty() else -1.0
+	combo_queue.append(request)
+	attack_buffer = 0.0
+	_sync_buffered_skill()
+	last_cast_error = ""
+	_emit_skill_feedback(slot, target, "queued", {"remaining":SKILL_BUFFER_SECONDS, "queue_position":combo_queue.size()})
+	return true
+
+func clear_buffered_skill() -> void:
+	combo_queue.clear()
+	buffered_skill.clear()
+	attack_buffer = 0.0
+	if InputMap.has_action("attack") and Input.is_action_pressed("attack"):
+		_attack_release_required = true
+
+func _sync_buffered_skill() -> void:
+	buffered_skill.clear()
+	for request: Dictionary in combo_queue:
+		if str(request.slot) != "attack":
+			buffered_skill = request.duplicate(true)
+			return
+
+func queued_action_position(slot: String) -> int:
+	for index in combo_queue.size():
+		if str(combo_queue[index].slot) == slot:
+			return index + 1
+	return 0
+
+func _prime_combo_head() -> void:
+	if not combo_queue.is_empty() and float(combo_queue[0].remaining) < 0.0:
+		# A second or third press waits for its preceding queued action, rather
+		# than expiring while that action still owns its legitimate windup.
+		combo_queue[0].remaining = SKILL_BUFFER_SECONDS + _combo_wait_seconds(str(combo_queue[0].slot))
+	_sync_buffered_skill()
+
+func _drop_pointer_combo_inputs() -> void:
+	for index in range(combo_queue.size() - 1, -1, -1):
+		if str(combo_queue[index].slot) in ["attack", "secondary"]:
+			combo_queue.remove_at(index)
+	_prime_combo_head()
+
+func _tick_skill_buffer(delta: float) -> void:
+	if combo_queue.is_empty():
+		return
+	var step: float = maxf(0.0, delta)
+	for index in range(combo_queue.size() - 1, -1, -1):
+		combo_queue[index].age = float(combo_queue[index].age) + step
+		if index == 0:
+			combo_queue[index].remaining = maxf(0.0, float(combo_queue[index].remaining) - step)
+		if float(combo_queue[index].age) >= COMBO_MAX_AGE or (index == 0 and float(combo_queue[index].remaining) <= 0.0):
+			var expired: Dictionary = combo_queue[index].duplicate(true)
+			combo_queue.remove_at(index)
+			_reject_skill(str(expired.slot), expired.target, "busy", {"cause":"buffer_expired", "remaining":0.0})
+	_prime_combo_head()
+
+func _consume_buffered_skill() -> void:
+	if combo_queue.is_empty():
+		return
+	var slot: String = str(combo_queue[0].slot)
+	if _combo_wait_seconds(slot) > 0.00001 or (abilities.busy() and not abilities.recovery_chain_ready()):
+		return
+	var request: Dictionary = combo_queue.pop_front()
+	_sync_buffered_skill()
+	# Take the request out before signals or loadout hooks run; one press can
+	# never cast twice even if an observer responds synchronously.
+	if not room.controls_enabled() or (slot in ["attack", "secondary"] and not room.pointer_controls_enabled()):
+		_prime_combo_head()
+		return
+	if slot == "attack":
+		if fire(request.direction):
+			_emit_skill_feedback(slot, request.target, "accepted")
+		else:
+			_reject_skill(slot, request.target, "busy")
+	else:
+		cast_skill(slot, request.target)
+	_prime_combo_head()
+
+func _reject_skill(slot: String, target: Vector2, reason: String, extra: Dictionary = {}) -> bool:
+	last_cast_error = reason
+	if abilities != null:
+		abilities.last_failure = reason
+		abilities.last_failure_details = extra.duplicate(true)
+	_emit_skill_feedback(slot, target, reason, extra)
+	return false
+
+func _emit_skill_feedback(slot: String, target: Vector2, reason: String, extra: Dictionary = {}) -> void:
+	var definition: Dictionary = skill_definition(slot) if abilities != null else {}
+	var details: Dictionary = {"slot":slot, "target":target, "cost":float(definition.get("cost", 0.0)),
+		"resource":float(Game.run.resource) if Game.run != null else 0.0,
+		"remaining":float(cooldowns.get(slot, 0.0)), "unlock":int(definition.get("unlock", 99)),
+		"level":hero_level(), "range":float(definition.get("range", 0.0))}
+	details.merge(extra.duplicate(true), true)
+	skill_input_feedback.emit(slot, reason, details)
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PAUSED:
+		clear_buffered_skill()
+		attack_buffer = 0.0
+		# Also cover an attack first pressed while physics is paused, after this
+		# notification has already run. Resume must observe a released button.
+		_attack_release_required = true
+
+func _exit_tree() -> void:
+	clear_buffered_skill()
 
 func _play_combat_audio(event: StringName, arguments: Array = []) -> void:
 	if not is_instance_valid(room):
@@ -250,8 +468,10 @@ func skill_definition(slot: String) -> Dictionary:
 
 func cancel_actions() -> void:
 	abilities.cancel()
+	clear_buffered_skill()
 	attack_remaining = 0.0
 	attack_resolved = true
+	_basic_chain_remaining = 0.0
 	attack_buffer = 0.0
 
 func start_dash(direction: Vector2) -> bool:
@@ -299,7 +519,7 @@ func receive_enemy_status(effect: Dictionary) -> bool:
 	if Game.run == null or Game.run.hp <= 0.0:
 		return false
 	var identifier: String = str(effect.get("id", effect.get("status", "")))
-	if identifier not in ["burn", "shock", "chill", "corrosion", "slow"]:
+	if identifier not in ["burn", "shock", "chill", "corrosion", "slow", "bleed", "grievous", "damage_reduction", "invulnerable"]:
 		return false
 	var duration: float = float(effect.get("duration", 4.0 if identifier == "corrosion" else 3.0))
 	if not is_finite(duration) or duration <= 0.0:
@@ -334,29 +554,42 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	var is_dot: bool = bool(context.get("dot", false))
 	if Game.run == null or Game.run.hp <= 0.0 or not is_finite(amount) or amount <= 0.0:
 		return false
+	var damage_context: Dictionary = context.duplicate()
+	var status_modifiers: Dictionary = status.damage_modifiers()
+	damage_context["damage_reduction"] = maxf(float(damage_context.get("damage_reduction", 0.0)), float(status_modifiers.get("damage_reduction", 0.0)))
+	damage_context["invulnerable"] = bool(damage_context.get("invulnerable", false)) or bool(status_modifiers.get("invulnerable", false))
+	if bool(damage_context.invulnerable):
+		return false
 	if not is_dot and (invulnerable > 0.0 or dash_protected()):
 		return false
 	var incoming: float = amount
+	if status.has("corrosion"): damage_context["armor_multiplier"] = 0.85
+	var shock_damage: float = 0.0
 	if not is_dot:
 		invulnerable = Balance.HURT_INVULNERABILITY
 		knockback = (position - origin).normalized() * Balance.PLAYER_KNOCKBACK
 		if status.has("corrosion"):
 			incoming *= 1.08
-		incoming += status.consume_shock()
+		shock_damage = status.consume_shock()
 	hurt_flash = 0.08 if is_dot else 0.16
 	room.telemetry["player_hits"] += 1
 	room.add_ring(position, Color("e46b69"), 24.0 if is_dot else 38.0, 0.20 if is_dot else 0.28)
 	var previous_shield: float = Game.run.shield
 	var previous_hp: float = Game.run.hp
 	var modifiers: Dictionary = loadout.modifiers()
-	var original_dr: float = float(Game.run.stats.get("equipment_damage_reduction", 0.0))
 	var damaged_run: RunState = Game.run
-	Game.run.stats["equipment_damage_reduction"] = minf(0.35, original_dr + float(modifiers.get("damage_reduction_bonus", 0.0)))
-	Game.damage_player(incoming)
-	damaged_run.stats["equipment_damage_reduction"] = original_dr
+	damage_context["damage_reduction"] = minf(0.65, float(damage_context.damage_reduction) + maxf(0.0, float(modifiers.get("damage_reduction_bonus", 0.0))))
+	Game.damage_player(incoming, damage_context)
+	# Shock is a magic packet within this same received-hit event. A lethal
+	# first packet may close the run (or restore a demo's backup), so identity
+	# must still match before the second packet can reach Core.
+	if shock_damage > 0.0 and Game.run == damaged_run and damaged_run.hp > 0.0:
+		var shock_context: Dictionary = damage_context.duplicate()
+		shock_context["damage_type"] = "magic"
+		Game.damage_player(shock_damage, shock_context)
 	if not is_dot and (damaged_run.hp < previous_hp or damaged_run.shield < previous_shield):
 		_play_combat_audio(&"hurt")
-	if Game.run == null or Game.run.hp <= 0.0:
+	if Game.run != damaged_run or damaged_run.hp <= 0.0:
 		cancel_actions()
 		return true
 	status.absorb(previous_shield - Game.run.shield)
@@ -386,6 +619,7 @@ func on_primary_hit(target: Node2D) -> void:
 		return
 	combat_time = 5.0
 	if hero_id() == "CH01":
+		gain_break_stacks(1)
 		Game.restore_resource(8.0)
 		if passive_cooldown <= 0.0:
 			passive_count += 1
@@ -395,6 +629,7 @@ func on_primary_hit(target: Node2D) -> void:
 				grant_guard(Game.run.max_hp * 0.08, 3.0, "three_rivets")
 	elif hero_id() == "CH02":
 		if walk_distance >= 240.0 and passive_cooldown <= 0.0:
+			class_mark_target(target)
 			Game.restore_resource(10.0)
 			cooldowns.q = maxf(0.0, float(cooldowns.q) - 0.5)
 			walk_distance = 0.0
@@ -406,11 +641,112 @@ func on_primary_hit(target: Node2D) -> void:
 			passive_count = 0
 			passive_cooldown = 2.0
 			Game.restore_resource(6.0)
+			charge_nearest_resonance(target.position, 160.0)
 			for other in room.targets_in_radius(target.position, 140.0):
 				if other != target:
-					other.take_damage(attack_power() * 0.3, &"passive")
+					other.take_damage(attack_power() * 0.3, &"passive", Vector2.ZERO, {"damage_type":"magic", "attacker_stats":Game.run.stats.duplicate(), "original_basic":false, "equipment_eligible":false})
 					room.add_arc_between(target.position, other.position)
 					break
+
+func gain_break_stacks(amount: int = 1) -> void:
+	if hero_id() != "CH01":
+		return
+	break_stacks = clampi(break_stacks + maxi(amount, 0), 0, 3)
+	queue_redraw()
+
+func consume_break_stacks() -> int:
+	var result: int = break_stacks
+	break_stacks = 0
+	return result
+
+func _tick_class_state(delta: float) -> void:
+	for key: int in class_marks.keys():
+		var entry: Dictionary = class_marks[key]
+		var target: Variant = entry.target.get_ref()
+		entry.remaining = float(entry.remaining) - maxf(delta, 0.0)
+		if not is_instance_valid(target) or not target.is_alive() or float(entry.remaining) <= 0.0:
+			class_marks.erase(key)
+
+func class_mark_target(target: Node2D) -> void:
+	if hero_id() != "CH02" or not is_instance_valid(target) or not target.is_alive():
+		return
+	class_marks[target.get_instance_id()] = {"target":weakref(target), "remaining":4.0}
+	if class_marks.size() > 32:
+		class_marks.erase(class_marks.keys()[0])
+	var feedback: Node = get_node_or_null("HeroFeedback")
+	if is_instance_valid(feedback):
+		feedback.class_event("mark", target.position, aim_direction)
+
+## Called once by the shared original-hit pipeline, before equipment multipliers.
+## Bonus remains part of that hit and cannot start a second proc chain.
+func class_modify_hit_amount(target: Node2D, amount: float, source: StringName, context: Dictionary) -> float:
+	if hero_id() != "CH02" or source not in [&"secondary", &"ultimate"] or not bool(context.get("equipment_eligible", true)):
+		return amount
+	if not is_instance_valid(target) or not class_marks.has(target.get_instance_id()):
+		return amount
+	var key: int = target.get_instance_id()
+	var ready: bool = float(class_marks[key].remaining) > 0.0
+	class_marks.erase(key)
+	if not ready:
+		return amount
+	var feedback: Node = get_node_or_null("HeroFeedback")
+	if is_instance_valid(feedback):
+		feedback.class_event("mark_burst", target.position, aim_direction)
+	return amount + float(context.get("H", attack_power())) * 1.25
+
+## Called only after a direct hit actually removes health or shield.
+func class_record_hit(target: Node2D, source: StringName, context: Dictionary) -> void:
+	if hero_id() == "CH02" and source == &"f" and bool(context.get("equipment_eligible", true)):
+		class_mark_target(target)
+
+func resonance_nodes() -> Array[Node2D]:
+	var result: Array[Node2D] = []
+	if not is_instance_valid(room):
+		return result
+	for child: Node in room.get_children():
+		if child.has_method("charge_node") and child.kind == "node" and child.is_active():
+			result.append(child)
+	return result
+
+## Also used by the room's environmental circuit; no resource or equipment proc.
+func charge_resonance(origin: Vector2, reach: float, amount: int = 1) -> int:
+	if hero_id() != "CH03":
+		return 0
+	var charged: int = 0
+	for node: Node2D in resonance_nodes():
+		if node.position.distance_to(origin) <= reach and room.has_line_of_sight(origin, node.position):
+			if node.charge_node(amount):
+				charged += 1
+	return charged
+
+## Four-beat basic hits feed one nearby capacitor. Prefer an unfilled node;
+## excess energy is never banked or allowed through walls/into a second proc.
+func charge_nearest_resonance(origin: Vector2, reach: float) -> bool:
+	if hero_id() != "CH03" or not origin.is_finite() or not is_finite(reach) or reach < 0.0:
+		return false
+	var nearest: Node2D = null
+	var nearest_distance: float = INF
+	for node: Node2D in resonance_nodes():
+		var distance: float = node.position.distance_squared_to(origin)
+		if node.owner_player != self or int(node.resonance_charge) >= 3 or distance > reach * reach or not room.has_line_of_sight(origin, node.position):
+			continue
+		if nearest == null or distance < nearest_distance or (is_equal_approx(distance, nearest_distance) and node.get_instance_id() < nearest.get_instance_id()):
+			nearest = node
+			nearest_distance = distance
+	return nearest.charge_node(1) if is_instance_valid(nearest) else false
+
+func class_status() -> Dictionary:
+	match hero_id():
+		"CH01":
+			return {"name":"破势", "current":break_stacks, "max":3, "hint":"普攻 / Q积势 · 右键 / R消耗强化", "color":Color("eabb78")}
+		"CH02":
+			return {"name":"游猎蓄势", "current":walk_distance, "max":240, "hint":"走满后普攻标记 · 已标记%d · 右键 / R引爆" % class_marks.size(), "color":Color("f5ebc9")}
+		_:
+			var nodes: Array[Node2D] = resonance_nodes()
+			var charge: int = 0
+			for node: Node2D in nodes:
+				charge += int(node.resonance_charge)
+			return {"name":"节点共振", "current":charge, "max":maxi(3, nodes.size() * 3), "hint":"节点%d/2 · 普攻四拍 / Q蓄能 · F引爆 · R充满" % nodes.size(), "color":Color("78d9d1")}
 
 func original_hit(target: Node2D, amount: float, kind: StringName, applied_status: String = "", push: float = 0.0) -> void:
 	room.resolve_direct_hit(target, amount, kind, applied_status, push, (target.position - position).normalized())

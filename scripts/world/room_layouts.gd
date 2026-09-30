@@ -8,6 +8,10 @@ const Catalog = preload("res://scripts/world/world_catalog.gd")
 const ARENA := Rect2(0, 0, 2800, 1800)
 const MAX_ACTOR_RADIUS := 24.0
 const EPSILON := 0.01
+const VOID_KINDS := ["mine_pit", "gear_gap", "suspended_void", "water_channel", "floating_platform_gap", "ventilation_shaft", "acid_reservoir", "gantry_void", "mirror_pool", "deep_rift", "echo_disc_gap"]
+const LIQUID_KINDS := ["water_channel", "acid_reservoir", "mirror_pool"]
+const BRIDGE_GAP_ROOMS := ["L02", "L13", "L23"]
+const COMPACT_TERRAIN_MAX_SIZE := Vector2(240.0, 180.0)
 static var _cache: Dictionary = {}
 
 static func _point(value: Array) -> Vector2:
@@ -33,6 +37,7 @@ static func build(room_id: String) -> Dictionary:
 		for value: Array in geometry[key]:
 			rectangles.append(_rect(value))
 		layout[key] = rectangles
+	_open_terrain_lanes(layout)
 	for key: String in ["spawn_points", "objective_points", "topology_probes"]:
 		var points: Array[Vector2] = []
 		for value: Array in geometry.get(key, []):
@@ -55,6 +60,41 @@ static func build(room_id: String) -> Dictionary:
 	layout["dynamic_states_verified"] = false
 	_cache[room_id] = layout
 	return layout.duplicate(true)
+
+static func _open_terrain_lanes(layout: Dictionary) -> void:
+	# Retain each authored pit and its bridge arrangement, but give approaches
+	# more shoulder room. Only remove terrain from the original rectangles:
+	# this cannot obstruct an objective, spawn, or an existing traversable route.
+	layout["authored_obstructions"] = layout.obstructions.duplicate()
+	var kinds: Array = layout.get("obstruction_kinds", [])
+	var arena: Rect2 = layout.arena
+	var room_id: String = str(layout.room_id)
+	var biome_id: String = str(Catalog.room(room_id).get("biome_id", ""))
+	for index: int in layout.obstructions.size():
+		if index >= kinds.size() or str(kinds[index]) not in VOID_KINDS: continue
+		var original: Rect2 = layout.obstructions[index]
+		if biome_id in ["B01", "B03", "B04"] and str(kinds[index]) not in LIQUID_KINDS and room_id not in BRIDGE_GAP_ROOMS:
+			# Most dry scenery now forms a short island near its outer bank. The
+			# center of the courtyard stays open, instead of stretching one tall
+			# rectangle across the player's entire view. Every island remains
+			# contained in its original obstacle, with its kind/index preserved.
+			var size: Vector2 = (original.size * 0.5).min(COMPACT_TERRAIN_MAX_SIZE)
+			var center: Vector2 = original.get_center()
+			var position := Vector2(original.position.x if center.x <= arena.get_center().x else original.end.x - size.x,
+				original.position.y if center.y <= arena.get_center().y else original.end.y - size.y)
+			layout.obstructions[index] = Rect2(position, size)
+			continue
+		var margin: float = 96.0 if original.size.x > 550.0 and original.size.y > 650.0 else 28.0
+		margin = minf(margin, minf(original.size.x, original.size.y) * 0.22)
+		var start: Vector2 = original.position + Vector2(margin, margin)
+		var finish: Vector2 = original.end - Vector2(margin, margin)
+		# Terrain touching the arena boundary keeps that connection; widening a
+		# bridge must not create an accidental bypass outside its bank.
+		if is_equal_approx(original.position.x, arena.position.x): start.x = original.position.x
+		if is_equal_approx(original.position.y, arena.position.y): start.y = original.position.y
+		if is_equal_approx(original.end.x, arena.end.x): finish.x = original.end.x
+		if is_equal_approx(original.end.y, arena.end.y): finish.y = original.end.y
+		layout.obstructions[index] = Rect2(start, finish - start)
 
 static func clear_for_actor(layout: Dictionary, position: Vector2, radius: float = MAX_ACTOR_RADIUS) -> bool:
 	var arena: Rect2 = layout.get("arena", Rect2())

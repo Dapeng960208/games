@@ -36,6 +36,7 @@ var _utility_target: Vector2 = Vector2.ZERO
 var _carried_damage: float = 0.0
 var _steal_cooldown: float = 0.0
 var _cover_ready_age: float = 0.0
+var _locked_actor_position := Vector2.ZERO
 
 func configure(definition: Dictionary) -> void:
 	profile = definition.duplicate(true)
@@ -55,6 +56,7 @@ func configure(definition: Dictionary) -> void:
 	_carried_damage = 0.0
 	_steal_cooldown = 0.0
 	_cover_ready_age = 0.0
+	_locked_actor_position = Vector2.ZERO
 	_set_phase(&"emerging", SPAWN_GRACE)
 
 func current_telegraph() -> Dictionary:
@@ -126,6 +128,7 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 			_refresh_geometry(actor, victim)
 			actor.set("aim_direction", _telegraph.get("direction", Vector2.RIGHT))
 			if _remaining <= 0.0:
+				_locked_actor_position = actor.position
 				_set_phase(&"locked", _lock_seconds())
 		&"locked":
 			actor.set("aim_direction", _telegraph.get("direction", Vector2.RIGHT))
@@ -135,7 +138,14 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 				var pending_knockback: Variant = _room_property(actor, "knockback")
 				if pending_knockback is Vector2 and pending_knockback.length_squared() > 0.01:
 					displaced_charge = true
-			if displaced_charge:
+			# A body-driven swing cannot strike from an abandoned standing point.
+			# Permit small nudges; a displacement of about 1.5 body radii breaks
+			# the committed stance. The 28..40 bound lets a real hammer push do
+			# this without turning tiny separation corrections into interrupts.
+			# Independent projectiles/ground spells keep their frozen geometry.
+			var melee_tolerance: float = clampf(float(profile.get("navigation_radius", 18.0)) * 1.5, 28.0, 40.0)
+			var displaced_melee: bool = _telegraph.get("kind", "") == "melee" and actor.position.distance_to(_locked_actor_position) > melee_tolerance
+			if displaced_charge or displaced_melee:
 				_sequence.clear()
 				_telegraph.clear()
 				_set_phase(&"recovery", _recovery_seconds())
@@ -195,6 +205,20 @@ func on_damaged(actor: Node2D, context: Dictionary = {}) -> void:
 		_telegraph.clear()
 		_set_phase(&"recovery", maxf(0.9, _recovery_seconds()))
 		_publish(actor)
+
+func on_displacement_committed(actor: Node2D, projected_position: Vector2) -> void:
+	if not _alive(actor) or _telegraph.is_empty():
+		return
+	var kind: String = str(_telegraph.get("kind", ""))
+	var moving_attack: bool = kind == "charge" and phase in [&"locked", &"execute"]
+	var melee_tolerance: float = clampf(float(profile.get("navigation_radius", 18.0)) * 1.5, 28.0, 40.0)
+	var broken_stance: bool = kind == "melee" and phase == &"locked" and projected_position.distance_to(_locked_actor_position) > melee_tolerance
+	if not moving_attack and not broken_stance:
+		return
+	_sequence.clear()
+	_telegraph.clear()
+	_set_phase(&"recovery", _recovery_seconds())
+	_publish(actor)
 
 func _alive(node: Node2D) -> bool:
 	return is_instance_valid(node) and not node.is_queued_for_deletion() and (not node.has_method("is_alive") or bool(node.call("is_alive")))
@@ -560,6 +584,7 @@ func _skill(kind: String, options: Dictionary = {}) -> Dictionary:
 		"shape": "cone" if kind == "melee" else "circle", "range": _range(), "radius": _radius(),
 		"angle": deg_to_rad(90.0), "damage_multiplier": float(parameters.get("damage_multiplier", 1.0)),
 		"duration": 0.0, "track": true, "damage_kind": profile.get("damage_kind", "kinetic"),
+		"damage_type": profile.get("damage_type", "magic" if str(profile.get("damage_kind","kinetic")) in ["fire","corrosion","electric","cold"] else "physical"),
 		"exposure_seconds": float(parameters.get("exposure_seconds", 0.0)),
 	}
 	for key: Variant in options:
@@ -649,7 +674,7 @@ func _build_sequence() -> Array[Dictionary]:
 			_append_swings(result, combos - 1, {"range": 75.0, "angle": deg_to_rad(75.0), "fixed_cycle_direction": true}, 1)
 		"rotate_rivet_shield":
 			result.append(_skill("guard", {"mode": "directional", "duration": float(parameters.get("guard_duration", 2.5)), "shield_ratio": minf(0.35, float(parameters.get("guard_ratio", 0.45))), "angle": deg_to_rad(float(parameters.get("guard_arc_degrees", 100.0))), "charges": 3, "aim_offset": float(parameters.get("shield_turn_degrees", 0.0))}))
-			_append_swings(result, combos, {"angle": deg_to_rad(95.0), "fixed_cycle_direction": true})
+			_append_swings(result, combos, {"angle": deg_to_rad(95.0), "fixed_cycle_direction": true,"status":{"id":"slow","magnitude":float(parameters.get("bash_slow_multiplier",0.82)),"duration":float(parameters.get("bash_slow_seconds",0.65))}})
 		"consume_corpse_haste":
 			result.append(_support("haste", {"require_corpse": true, "consume_corpse": true, "multiplier": 1.0 + float(parameters.get("haste_ratio", 0.15))}))
 			if combos > 1:
@@ -659,7 +684,7 @@ func _build_sequence() -> Array[Dictionary]:
 		"triple_acid_lob":
 			if offsets.is_empty():
 				offsets = [[0.0, -46.0], [18.0, 0.0], [0.0, 46.0]]
-			for offset: Variant in offsets.slice(0, 3):
+			for offset: Variant in offsets.slice(0, clampi(int(parameters.get("lob_count",3)),1,3)):
 				var landing: Array = offset.duplicate()
 				if bool(parameters.get("alternate_pattern", false)) and cycle % 2 == 1:
 					landing[1] = -float(landing[1])

@@ -4,6 +4,7 @@ extends RefCounted
 ## A flushed newer temporary document is a recoverable commit intent.
 
 const SCHEMA_VERSION := 3
+const SETTLEMENT_RULES_VERSION := 2
 const Expedition = preload("res://scripts/core/expedition_state.gd")
 const MAX_NUMBER := 1_000_000_000_000
 const RELIC_IDS := ["split", "ember", "arc"]
@@ -13,6 +14,7 @@ const BOSS_IDS := ["BO01", "BO02", "BO03", "BO04"]
 const SLOTS := ["weapon", "head", "chest", "hands", "feet", "charm"]
 const STARTER_IDS := ["EQ01", "EQ11", "EQ21", "EQ31", "EQ41", "EQ51"]
 const MAX_TRANSACTIONS := 512 # At most 60 purchases + 300 upgrades; never evict IDs.
+const VOLUME_DEFAULTS := {"master_volume":1.0,"music_volume":0.55,"sfx_volume":0.85}
 
 var path: String
 var last_error: String = ""
@@ -31,7 +33,8 @@ static func fresh_profile() -> Dictionary:
 	return {
 		"permanent_gold": 0, "discoveries": [], "total_runs": 0,
 		"last_result": {},
-		"settings": {"language": "zh_CN", "reduced_fx": false, "fullscreen": false},
+		"settings": {"language": "zh_CN", "reduced_fx": false, "camera_shake": false, "fullscreen": false,
+			"master_volume":1.0,"music_volume":0.55,"sfx_volume":0.85},
 		"selected_hero": "CH01", "hero_xp": {"CH01": 0, "CH02": 0, "CH03": 0},
 		"branches": {"CH01": {"q": "", "ultimate": ""}, "CH02": {"q": "", "ultimate": ""},
 			"CH03": {"q": "", "ultimate": ""}},
@@ -112,7 +115,13 @@ func load_document() -> Dictionary:
 			_blocked = true
 			has_profile = false
 			return {}
-	return _current.duplicate(true)
+	var loaded := _current.duplicate(true)
+	# Normalize optional presentation settings in memory only; opening a demo
+	# must not rewrite a save just to add the comfort default or volume keys.
+	if not loaded.profile.settings.has("camera_shake"): loaded.profile.settings.camera_shake = false
+	for key: String in VOLUME_DEFAULTS:
+		if not loaded.profile.settings.has(key): loaded.profile.settings[key] = VOLUME_DEFAULTS[key]
+	return loaded
 
 func save_document(profile: Dictionary, active_run: Variant = null, profile_initialized: bool = true) -> bool:
 	last_error = ""
@@ -179,11 +188,13 @@ static func _relics(value: Variant) -> bool:
 		seen.append(id)
 	return true
 
-static func retained_gold(gold: int, outcome: String, rules_version: int = 1) -> int:
+static func retained_gold(gold: int, outcome: String, rules_version: int = SETTLEMENT_RULES_VERSION) -> int:
 	# Historical receipts never depend on today's tunable Balance constants.
-	if rules_version != 1:
+	if rules_version not in [1, 2] or gold < 0 or outcome not in OUTCOMES:
 		return -1
-	return gold if outcome == "extracted" else int(gold / 5)
+	if outcome == "extracted": return gold
+	if rules_version == 2 and outcome == "death": return int(gold / 2)
+	return int(gold / 5)
 
 static func _migrate_v1(document: Dictionary) -> Dictionary:
 	var migrated := fresh_profile()
@@ -196,7 +207,7 @@ static func _migrate_v1(document: Dictionary) -> Dictionary:
 		migrated.last_result.wallet_after = int(migrated.last_result.permanent_gold)
 	if document.active_run is Dictionary:
 		var receipt: Dictionary = document.active_run
-		var retained := retained_gold(int(receipt.gold), "abandoned")
+		var retained := retained_gold(int(receipt.gold), "abandoned", 1)
 		var discoveries: Array = []
 		for id: String in receipt.discoveries:
 			if not id in migrated.discoveries:
@@ -238,11 +249,20 @@ static func _valid_result(value: Variant, version: int = 1) -> bool:
 	for key: String in ["collected", "retained", "lost", "permanent_gold", "shots", "kills"]:
 		if not _number(value.get(key)):
 			return false
-	var expected_retained := retained_gold(int(value.collected), str(value.outcome))
+	# Missing rules belong to the original format. Never reinterpret an old
+	# receipt with the default used for newly settled runs.
+	var rules: Variant = value.get("rules_version", 1)
+	if not _number(rules, SETTLEMENT_RULES_VERSION) or int(rules) < 1: return false
+	if version == 1 and int(rules) != 1: return false
+	var expected_retained := retained_gold(int(value.collected), str(value.outcome), int(rules))
 	var valid := int(value.retained) == expected_retained and int(value.retained) + int(value.lost) == int(value.collected) \
 		and _relics(value.get("discoveries")) and _number(value.get("elapsed"), MAX_NUMBER, false)
 	if not valid or version == 1:
 		return valid
+	if value.has("field_xp_gained"):
+		if not _number(value.field_xp_gained, 18): return false
+		if int(value.field_xp_gained) > 0 and (int(rules) != 2 or value.outcome != "death"): return false
+		if not _number(value.get("hero_xp_gained"), 3600) or int(value.field_xp_gained) > int(value.hero_xp_gained): return false
 	if version >= 3:
 		for key: String in ["equipment_retained", "equipment_lost"]:
 			if value.has(key):
@@ -251,7 +271,7 @@ static func _valid_result(value: Variant, version: int = 1) -> bool:
 					if ContentRegistry.equipment(id).is_empty(): return false
 		if value.outcome != "extracted" and not value.get("equipment_retained", []).is_empty(): return false
 		if value.outcome == "extracted" and not value.get("equipment_lost", []).is_empty(): return false
-	return value.get("rules_version") == 1 and _number(value.get("wallet_before")) \
+	return _number(value.get("wallet_before")) \
 		and _number(value.get("wallet_after")) and int(value.wallet_after) == int(value.permanent_gold) \
 		and int(value.wallet_before) + int(value.retained) == int(value.wallet_after)
 
@@ -273,6 +293,9 @@ static func _valid_document(value: Variant) -> bool:
 	if not settings is Dictionary or not settings.get("language") in ["zh_CN", "en"] \
 		or not settings.get("reduced_fx") is bool or not settings.get("fullscreen") is bool:
 		return false
+	if settings.has("camera_shake") and not settings.camera_shake is bool: return false
+	for key: String in VOLUME_DEFAULTS:
+		if settings.has(key) and not _number(settings[key], 1.0, false): return false
 	if not value.has("active_run"):
 		return false
 	if not profile.last_result.is_empty():
@@ -334,7 +357,7 @@ static func _valid_progression(profile: Dictionary) -> bool:
 		if not id is String or ContentRegistry.equipment(id).is_empty():
 			return false
 		var owned: Variant = profile.equipment[id]
-		if not owned is Dictionary or not _number(owned.get("level"), 5):
+		if not owned is Dictionary or not _number(owned.get("level"), Expedition.MAX_EQUIPMENT_LEVEL):
 			return false
 	for slot: String in SLOTS:
 		var id: Variant = profile.loadout.get(slot)
@@ -355,7 +378,7 @@ static func _valid_progression(profile: Dictionary) -> bool:
 			if entry.get("kind") != "starter":
 				return false
 		elif not entry.get("kind") in ["purchase", "upgrade"] or not profile.equipment.has(entry.get("item")) \
-			or not _number(entry.get("price")) or not _number(entry.get("level"), 5):
+			or not _number(entry.get("price")) or not _number(entry.get("level"), Expedition.MAX_EQUIPMENT_LEVEL):
 			return false
 	return true
 

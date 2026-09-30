@@ -3,6 +3,10 @@ extends Node
 const DifficultyProfiles = preload("res://scripts/combat/enemy_profiles.gd")
 const ExpeditionScript = preload("res://scripts/world/expedition_controller.gd")
 const ExpeditionPanel = preload("res://scripts/ui/expedition_panel.gd")
+const FieldEquipmentPanel = preload("res://scripts/ui/field_equipment_panel.gd")
+const RoutePlanner = preload("res://scripts/world/route_generator.gd")
+const CampNavTile = preload("res://scripts/ui/illustrated_nav_tile.gd")
+const CampArtwork = preload("res://scripts/ui/storybook_art.gd")
 const DIFFICULTY_KEYS := ["DIFFICULTY_NORMAL","DIFFICULTY_CHALLENGING","DIFFICULTY_HARD","DIFFICULTY_SEVERE","DIFFICULTY_EXTREME"]
 
 var backdrop: Node2D
@@ -21,6 +25,16 @@ var selected_biome := "B01"
 var expedition: RefCounted
 var expedition_status: Label
 var expedition_action_pending := false
+var music: Node
+var music_tick := 0.0
+var audio_sliders: Dictionary = {}
+var demo_hero := "CH01"
+
+const HERO_LOOPS := {
+	"CH01":["破岩斧卫","贴身积累破势，重击打穿敌阵。","普攻 / Q 蓄势 → 鼠标右键破阵","BREAKER","Build pressure up close, then break the line."],
+	"CH02":["游走枪手","移动获得标记，精确射击收割。","走位标记 → 鼠标右键贯穿","GUNNER","Keep moving. Mark your prey. Pierce the pack."],
+	"CH03":["共鸣术士","布置节点，蓄能后连锁引爆。","鼠标右键布点 → Q 充能 → F 引爆","RESONATOR","Place nodes, charge them, trigger a chain reaction."]
+}
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -44,19 +58,27 @@ func _ready() -> void:
 	Game.run_started.connect(_on_run_started)
 	Game.run_finished.connect(_on_run_finished)
 	Game.settlement_failed.connect(_on_settlement_failed)
+	if ResourceLoader.exists("res://scripts/audio/music_director.gd"):
+		music = load("res://scripts/audio/music_director.gd").new()
+		add_child(music)
+		music.configure(Game)
 	show_menu()
 	if Game.run != null and not Game.last_error.is_empty():
 		_on_settlement_failed("abandoned")
 	# Dedicated automation scripts load this scene and call the same public routes.
 
 func _install_inputs() -> void:
-	var keys := {"move_left":KEY_A,"move_right":KEY_D,"move_up":KEY_W,"move_down":KEY_S,"dash":KEY_SPACE,"skill_q":KEY_Q,"skill_f":KEY_F,"skill_ultimate":KEY_R,"interact":KEY_E,"relic_details":KEY_TAB,"expedition_map":KEY_M,"pause":KEY_ESCAPE}
+	var keys := {"move_left":KEY_A,"move_right":KEY_D,"move_up":KEY_W,"move_down":KEY_S,"dash":KEY_SPACE,"skill_q":KEY_Q,"skill_f":KEY_F,"skill_ultimate":KEY_R,"interact":KEY_E,"relic_details":KEY_TAB,"expedition_map":KEY_M,"pause":KEY_ESCAPE,"circuit_place":KEY_C,"circuit_release":KEY_V}
 	for action in keys:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
 			var event := InputEventKey.new()
 			event.physical_keycode = keys[action]
 			InputMap.action_add_event(action,event)
+	for action: String in ["move_left","move_right","move_up","move_down"]:
+		var arrow := InputEventKey.new()
+		arrow.physical_keycode = {"move_left":KEY_LEFT,"move_right":KEY_RIGHT,"move_up":KEY_UP,"move_down":KEY_DOWN}[action]
+		if not InputMap.action_has_event(action,arrow): InputMap.action_add_event(action,arrow)
 	if not InputMap.has_action("attack"):
 		InputMap.add_action("attack")
 		var mouse := InputEventMouseButton.new()
@@ -84,22 +106,82 @@ func _new_screen(next_route: String) -> void:
 	screen.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui.add_child(screen)
+	if next_route in ["result","room_error"]: _screen_shade(0.68)
 
 func show_menu() -> void:
 	_new_screen("menu")
-	MineStyle.label(screen,"SUBTITLE",Vector2(88,94),Vector2(625,40),18,MineStyle.AMBER)
-	MineStyle.label(screen,"TITLE",Vector2(84,149),Vector2(720,84),54,MineStyle.INK)
-	MineStyle.label(screen,"TAGLINE",Vector2(88,246),Vector2(570,48),21,MineStyle.MUTED)
-	var cont := MineStyle.button(screen,"CONTINUE",Vector2(88,337),Vector2(362,52),_continue_game)
+	_screen_shade(0.06)
+	var title_page := MineStyle.panel(screen,Vector2(66,83),Vector2(606,269))
+	title_page.name = "MenuTitlePage"
+	_camp_ui_icon(title_page,"workshop",Vector2(24,17),Vector2(39,39))
+	MineStyle.literal(title_page,"ABYSS SALVAGER  /  CIRCUIT TRIAL",Vector2(78,26),Vector2(506,24),12,MineStyle.CYAN)
+	MineStyle.label(title_page,"TITLE",Vector2(25,70),Vector2(557,80),52,MineStyle.INK)
+	MineStyle.literal(title_page,_ex_text("借敌之力，重写战场。","TURN FIRE INTO YOUR WEAPON."),Vector2(29,160),Vector2(544,40),26,MineStyle.AMBER)
+	MineStyle.literal(title_page,_ex_text("三个职业，三种连招。\n踏上阳光中的遗迹，开启你的远征。","Three heroes. Three combat styles.\nJourney through the sunlit ruins."),Vector2(29,208),Vector2(540,46),17,MineStyle.MUTED)
+	var hero_id: String = Game.profile.get("selected_hero","CH01")
+	MineStyle.hero_portrait(screen,hero_id,Vector2(733,116),Vector2(430,476)).name = "MenuHeroIllustration"
+	var caption := MineStyle.panel(screen,Vector2(786,584),Vector2(338,65))
+	MineStyle.literal(caption,MineStyle.content_text(ContentRegistry.hero(hero_id),"name"),Vector2(19,9),Vector2(304,31),25,MineStyle.INK)
+	MineStyle.literal(caption,_ex_text("准备好，向着新的区域出发。","READY FOR THE NEXT JOURNEY."),Vector2(20,41),Vector2(302,18),11,MineStyle.CYAN)
+	var demo := _camp_navigation(screen,Vector2(74,375),Vector2(420,72),_ex_text("完整技能试玩","FULL-SKILL TRIAL"),_ex_text("Lv.8 完整技能 · 独立试玩","Level 8 · All skills · Separate trial"),5,MineStyle.CYAN,show_demo_select,true)
+	demo.name = "FullSkillDemo"
+	demo.disabled = Game.run != null
+	var cont := _camp_navigation(screen,Vector2(74,460),Vector2(420,66),Words.text("CONTINUE"),_ex_text("回到营地，继续你的旅程","Return to camp and continue"),4,Color("997244"),_continue_game)
 	cont.disabled = not Game.has_profile
-	var new_button := MineStyle.button(screen,"NEW_GAME",Vector2(88,405),Vector2(362,52),_request_new_profile)
-	MineStyle.button(screen,"SETTINGS",Vector2(88,473),Vector2(362,52),show_settings)
-	MineStyle.button(screen,"QUIT",Vector2(88,541),Vector2(362,52),_quit)
-	if not Game.has_profile:
-		MineStyle.label(screen,"NO_PROFILE",Vector2(474,344),Vector2(294,73),16,MineStyle.MUTED)
-	MineStyle.label(screen,"PROTOTYPE",Vector2(88,620),Vector2(980,32),16,MineStyle.MUTED)
-	_show_warning(screen, Vector2(500,548), Vector2(680,62))
-	(new_button if cont.disabled else cont).grab_focus()
+	_camp_navigation(screen,Vector2(74,542),Vector2(420,44),Words.text("NEW_GAME"),"",0,Color("997244"),_request_new_profile)
+	MineStyle.button(screen,"SETTINGS",Vector2(74,606),Vector2(267,44),show_settings)
+	MineStyle.button(screen,"QUIT",Vector2(355,606),Vector2(139,44),_quit)
+	_show_warning(screen,Vector2(516,670),Vector2(684,25))
+	(cont if demo.disabled else demo).grab_focus()
+func _screen_shade(opacity: float) -> void:
+	var shade := ColorRect.new()
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	shade.color = Color(0.965,0.922,0.828,clampf(opacity,0.0,0.86))
+	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	screen.add_child(shade)
+	if route == "menu":
+		var gradient := Gradient.new()
+		gradient.colors = PackedColorArray([Color(1.0,0.96,0.85,0.98),Color(1.0,0.96,0.85,0.84),Color(1.0,0.96,0.85,0)])
+		gradient.offsets = PackedFloat32Array([0.0,0.52,1.0])
+		var texture := GradientTexture2D.new()
+		texture.gradient = gradient
+		texture.fill_from = Vector2.ZERO
+		texture.fill_to = Vector2(1,0)
+		var veil := TextureRect.new()
+		veil.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		veil.texture = texture
+		veil.size = Vector2(1020,720)
+		veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		screen.add_child(veil)
+
+func show_demo_select() -> void:
+	_new_screen("demo_select")
+	_screen_shade(0.68)
+	MineStyle.literal(screen,_ex_text("引雷试炼","CIRCUIT TRIAL"),Vector2(56,48),Vector2(750,62),40)
+	MineStyle.literal(screen,_ex_text("选择你的战斗方式 · Lv.8 完整技能 · 独立试玩","CHOOSE YOUR COMBAT LOOP · LEVEL 8 · SEPARATE TRIAL"),Vector2(58,111),Vector2(1120,35),18,MineStyle.MUTED)
+	for index in range(3):
+		var id: String = ["CH01","CH02","CH03"][index]
+		var hero: Dictionary = ContentRegistry.hero(id)
+		var words: Array = HERO_LOOPS[id]
+		var accent: Color = MineStyle.resource_color(str(hero.get("resource_type","rage")))
+		var card := MineStyle.panel(screen,Vector2(56+index*396,166),Vector2(376,430))
+		card.add_theme_stylebox_override("panel",MineStyle.box(MineStyle.PANEL,accent.lightened(0.28)))
+		MineStyle.literal(card,"0"+str(index+1)+" / "+str(words[3]),Vector2(22,16),Vector2(332,28),15,accent)
+		MineStyle.hero_portrait(card,id,Vector2(81,49),Vector2(215,218))
+		MineStyle.literal(card,MineStyle.content_text(hero,"name")+" · "+_ex_text(str(words[0]),str(words[3])),Vector2(22,266),Vector2(332,38),24)
+		MineStyle.literal(card,_ex_text(str(words[1]),str(words[4])),Vector2(22,314),Vector2(332,58),17,MineStyle.MUTED)
+		var choose := MineStyle.button(card,"",Vector2(22,375),Vector2(332,44),func(): _start_demo(id))
+		choose.name = "Demo_"+id
+		choose.text = _ex_text("以此职业进入","ENTER TRIAL")
+		MineStyle.primary(choose,accent)
+		choose.disabled = Game.run != null
+		if id == demo_hero: choose.grab_focus()
+	MineStyle.literal(screen,_ex_text("C 放两座引雷桩 → 诱导敌人穿过连线 → V 释放储能","C PLACE TWO ANCHORS → LURE ENEMIES ACROSS → V DISCHARGE"),Vector2(56,616),Vector2(930,36),18,MineStyle.CYAN)
+	MineStyle.button(screen,"BACK",Vector2(1028,626),Vector2(196,48),show_menu)
+
+func _start_demo(hero_id: String) -> void:
+	demo_hero = hero_id
+	if not Game.start_demo(hero_id,selected_difficulty): _show_save_error()
 
 func _continue_game() -> void:
 	if Game.run != null and not Game.expedition_snapshot().is_empty():
@@ -108,69 +190,144 @@ func _continue_game() -> void:
 		show_camp()
 
 func show_camp() -> void:
-	if room_start_failed and Game.run != null:
-		return
+	if room_start_failed and Game.run != null: return
 	_new_screen("camp")
+	_screen_shade(0.07)
 	var hero_id: String = Game.profile.get("selected_hero","CH01")
 	var hero: Dictionary = ContentRegistry.hero(hero_id)
 	var stats: Dictionary = Game.selected_stats()
 	var level: int = Game.hero_level(hero_id)
-	MineStyle.label(screen,"WORKSHOP_KICKER",Vector2(40,28),Vector2(950,28),16,MineStyle.AMBER)
-	MineStyle.label(screen,"CAMP",Vector2(40,62),Vector2(800,55),36)
-	MineStyle.label(screen,"BANK_TOTAL",Vector2(902,49),Vector2(338,42),23,MineStyle.AMBER,{"gold":Game.profile.get("permanent_gold",0)})
-	var dossier := MineStyle.panel(screen,Vector2(40,132),Vector2(362,472))
-	MineStyle.label(dossier,"ACTIVE_DOSSIER",Vector2(20,15),Vector2(320,28),16,MineStyle.MUTED)
-	MineStyle.hero_portrait(dossier,hero_id,Vector2(41,46),Vector2(280,265))
-	MineStyle.literal(dossier,MineStyle.content_text(hero,"name"),Vector2(20,313),Vector2(320,40),28)
-	MineStyle.literal(dossier,MineStyle.content_text(hero,"class_name")+" / Lv."+str(level),Vector2(20,354),Vector2(320,28),18,MineStyle.AMBER)
-	MineStyle.label(dossier,"DOSSIER_STATS",Vector2(20,389),Vector2(322,63),17,MineStyle.MUTED,{"hp":int(stats.get("max_hp",100)),"damage":"%.1f" % float(stats.get("attack",20)),"armor":int(stats.get("armor",0))})
-	MineStyle.label(screen,"CAMP_SUB",Vector2(438,133),Vector2(788,35),18,MineStyle.CYAN)
-	MineStyle.literal(screen,_ex_text("每次远征 8 站 · 分支目标、补给与区域首领", "8 stops per expedition · branching objectives, supplies and an area boss"),Vector2(438,178),Vector2(780,35),19)
+	var identity: Array = HERO_LOOPS.get(hero_id,HERO_LOOPS.CH01)
+	var accent := MineStyle.resource_color(str(hero.get("resource_type","rage")))
+	# The courtyard remains a vivid part of the screen. Paper is reserved for
+	# information and interactions, with the illustrated hero in the landscape.
+	var brand := MineStyle.panel(screen,Vector2(42,22),Vector2(344,79))
+	brand.name = "CampBrand"
+	_camp_ui_icon(brand,"workshop",Vector2(10,7),Vector2(62,62))
+	MineStyle.literal(brand,"THE LANTERN WORKSHOP",Vector2(82,10),Vector2(244,21),11,MineStyle.CYAN)
+	var brand_title := MineStyle.label(brand,"CAMP",Vector2(80,30),Vector2(246,39),20 if Words.locale == "en" else 29,MineStyle.INK)
+	brand_title.name = "CampHeading"
+	brand_title.autowrap_mode = TextServer.AUTOWRAP_OFF
+	brand_title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	var bank := MineStyle.panel(screen,Vector2(998,24),Vector2(238,57))
+	bank.name = "CampBank"
+	_camp_ui_icon(bank,"gold",Vector2(10,6),Vector2(43,43))
+	MineStyle.label(bank,"BANK_TOTAL",Vector2(62,11),Vector2(162,33),18,MineStyle.AMBER,{"gold":Game.profile.get("permanent_gold",0)})
+	var portrait := MineStyle.hero_portrait(screen,hero_id,Vector2(28,116),Vector2(380,428))
+	portrait.name = "CampHeroIllustration"
+	var identity_plate := MineStyle.panel(screen,Vector2(42,505),Vector2(344,128))
+	identity_plate.name = "CampHeroIdentity"
+	MineStyle.literal(identity_plate,MineStyle.content_text(hero,"name"),Vector2(20,7),Vector2(210,40),30,MineStyle.INK)
+	MineStyle.literal(identity_plate,"Lv."+str(level),Vector2(246,11),Vector2(78,35),22,accent).horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	MineStyle.literal(identity_plate,_ex_text(str(identity[0]),str(identity[3])),Vector2(21,48),Vector2(300,26),17,accent)
+	MineStyle.literal(identity_plate,_ex_text("生命 %d   攻击 %.1f   护甲 %d","HP %d   ATK %.1f   ARM %d") % [int(stats.get("max_hp",100)),float(stats.get("attack",20)),int(stats.get("armor",0))],Vector2(21,78),Vector2(302,24),14,MineStyle.MUTED)
+	MineStyle.literal(identity_plate,_ex_text(str(identity[2]),str(identity[4])),Vector2(21,105),Vector2(302,20),12,MineStyle.MUTED)
+	var departure := MineStyle.panel(screen,Vector2(430,112),Vector2(806,196))
+	departure.name = "CampDeparturePlan"
+	_camp_ui_icon(departure,"route",Vector2(17,10),Vector2(48,48))
+	MineStyle.literal(departure,_ex_text("下一站，向着阳光出发。","YOUR NEXT EXPEDITION."),Vector2(76,14),Vector2(706,39),27,MineStyle.INK)
+	MineStyle.literal(departure,_ex_text("出发 Lv.%d · 预计 %d 站 / 目标、遗物、补给与首领","DEPARTURE LV.%d · %d STOPS / OBJECTIVES, RELICS & A BOSS") % [level,RoutePlanner.node_count_for_level(level)],Vector2(24,63),Vector2(758,28),15,MineStyle.MUTED)
 	_build_biome_selector()
-	var choices := [["HERO_DOSSIERS","heroes"],["SKILL_LEDGER","skills"],["EQUIPMENT_BENCH","inventory"],["SUPPLY_CATALOG","shop"]]
-	for i in range(choices.size()):
-		var item: Array = choices[i]
-		var button := MineStyle.button(screen,item[0],Vector2(438+(i%2)*402,272+(i/2)*88),Vector2(386,64),func(): show_workshop(item[1]))
-		button.name = "Open_"+item[1]
-		if item[1] in ["inventory","shop"]:
-			var symbol := Control.new()
-			symbol.set_script(load("res://scripts/ui/generated_ui_icon.gd"))
-			symbol.position = Vector2(14,12)
-			symbol.size = Vector2(40,40)
-			button.add_child(symbol)
-			symbol.configure("workshop" if item[1] == "inventory" else "loot")
-	var brief := MineStyle.panel(screen,Vector2(438,460),Vector2(788,144))
-	MineStyle.label(brief,"NEXT_SKILL",Vector2(22,12),Vector2(450,36),20,MineStyle.AMBER,{"level":_next_skill_level(level)})
-	MineStyle.label(brief,"RESOURCE_"+str(hero.get("resource_type","rage")).to_upper()+"_RULE",Vector2(22,55),Vector2(450,69),17,MineStyle.MUTED)
-	MineStyle.label(brief,"DEPARTURE_DIFFICULTY",Vector2(510,10),Vector2(252,27),17,MineStyle.AMBER)
+	var difficulty_hint := MineStyle.literal(screen,"",Vector2(454,264),Vector2(758,22),12,MineStyle.INK)
+	difficulty_hint.name = "DepartureDifficultyHint"
 	var difficulty_choice := OptionButton.new()
 	difficulty_choice.name = "DepartureDifficulty"
 	difficulty_choice.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-	difficulty_choice.position = Vector2(510,42)
-	difficulty_choice.size = Vector2(252,44)
-	difficulty_choice.custom_minimum_size = Vector2(252,44)
-	difficulty_choice.add_theme_font_size_override("font_size",18)
-	for index in DIFFICULTY_KEYS.size():
-		difficulty_choice.add_item(Words.text(DIFFICULTY_KEYS[index]),index)
+	difficulty_choice.position = Vector2(967,214)
+	difficulty_choice.size = Vector2(245,44)
+	difficulty_choice.add_theme_font_size_override("font_size",17)
+	for index in DIFFICULTY_KEYS.size(): difficulty_choice.add_item(Words.text(DIFFICULTY_KEYS[index]),index)
 	selected_difficulty = clampi(selected_difficulty,0,DifficultyProfiles.MAX_DIFFICULTY)
 	difficulty_choice.select(selected_difficulty)
-	brief.add_child(difficulty_choice)
-	var count_note := MineStyle.literal(brief,_ex_text("8 站 · 5 场目标战 + 首领", "8 stops · 5 objectives + boss"),Vector2(510,94),Vector2(252,40),16,MineStyle.MUTED)
-	count_note.name = "DepartureEnemyCount"
+	screen.add_child(difficulty_choice)
 	difficulty_choice.item_selected.connect(func(index: int):
-		selected_difficulty = clampi(index,0,DifficultyProfiles.MAX_DIFFICULTY))
-	MineStyle.button(screen,"MAIN_MENU",Vector2(40,634),Vector2(194,48),show_menu)
-	MineStyle.button(screen,"SETTINGS",Vector2(250,634),Vector2(242,48),show_settings)
-	var depart := MineStyle.button(screen,"START",Vector2(824,634),Vector2(402,48),_start_run)
+		selected_difficulty = clampi(index,0,DifficultyProfiles.MAX_DIFFICULTY)
+		_update_departure_difficulty_hint())
+	_update_departure_difficulty_hint()
+	var choices := [
+		["heroes",_ex_text("英雄档案","HERO DOSSIERS"),_ex_text("选择伙伴 · 找到你的战斗风格","Choose a hero and a fighting style"),0,MineStyle.CYAN],
+		["skills",_ex_text("技能修习","SKILL LEDGER"),_ex_text("查看连招 · 解锁新的能力","Learn combos and unlock abilities"),1,Color("9b574c")],
+		["inventory",_ex_text("装备工坊","EQUIPMENT"),_ex_text("搭配装备 · 整备下一场冒险","Build a loadout for the next journey"),2,Color("997244")],
+		["shop",_ex_text("补给商店","SUPPLY SHOP"),_ex_text("挑选补给 · 带上可靠的工具","Stock up on supplies and tools"),3,Color("657e4c")]
+	]
+	for index in choices.size():
+		var entry: Array = choices[index]
+		var mode: String = entry[0]
+		var button := _camp_navigation(screen,Vector2(430+(index%2)*414,326+(index/2)*116),Vector2(392,100),entry[1],entry[2],entry[3],entry[4],func(): show_workshop(mode))
+		button.name = "Open_"+mode
+	var circuit := MineStyle.panel(screen,Vector2(430,574),Vector2(444,67))
+	circuit.name = "CampCircuitHint"
+	_camp_ui_icon(circuit,"state_shock",Vector2(10,6),Vector2(52,52))
+	MineStyle.literal(circuit,_ex_text("引雷回路","CIRCUIT COUNTERATTACK"),Vector2(74,9),Vector2(348,24),17,MineStyle.CYAN)
+	MineStyle.literal(circuit,_ex_text("C 放置两桩   ·   诱敌穿线   ·   V 释放","C place anchors · Lure attacks · V discharge"),Vector2(74,37),Vector2(348,21),12,MineStyle.MUTED)
+	circuit.tooltip_text = _ex_text("引雷回路最多储存 3 格能量。储能满后及时释放；重新布桩会清空储能。","The circuit stores 3 charges. Discharge when full; rebuilding clears stored energy.")
+	circuit.mouse_filter = Control.MOUSE_FILTER_PASS
+	var depart := _camp_navigation(screen,Vector2(900,571),Vector2(336,82),_ex_text("开始远征","BEGIN EXPEDITION"),_ex_text("登上升降台 · 探索新的区域","Board the lift and explore"),4,MineStyle.CYAN,_start_run,true)
 	depart.name = "Depart"
-	_show_warning(screen,Vector2(510,638),Vector2(292,43))
+	var demo := _camp_navigation(screen,Vector2(430,658),Vector2(302,44),_ex_text("完整技能试玩","FULL-SKILL TRIAL"),"",5,Color("826647"),show_demo_select)
+	demo.name = "FullSkillDemo"
+	MineStyle.button(screen,"MAIN_MENU",Vector2(42,650),Vector2(164,44),show_menu)
+	var camp_settings := MineStyle.button(screen,"SETTINGS",Vector2(218,650),Vector2(168,44),show_settings)
+	camp_settings.name = "CampSettings"
+	camp_settings.text = _ex_text("设置与操作","SETTINGS")
+	camp_settings.size = Vector2(168,44)
+	_show_warning(screen,Vector2(752,671),Vector2(478,25))
 	depart.grab_focus()
 
+func _camp_navigation(parent: Node, at: Vector2, extent: Vector2, title: String, subtitle: String, icon_index: int, accent: Color, action: Callable, prominent: bool = false) -> Button:
+	var tile := CampNavTile.new()
+	tile.position = at
+	tile.size = extent
+	tile.custom_minimum_size = Vector2(44,44)
+	parent.add_child(tile)
+	tile.configure(title,subtitle,icon_index,accent,prominent)
+	tile.pressed.connect(action)
+	return tile
+
+func _camp_ui_icon(parent: Node, key: String, at: Vector2, extent: Vector2) -> Control:
+	var art_id: String = {"workshop":"lantern","gold":"coin","route":"compass","state_shock":"circuit_orb"}.get(key,key)
+	var painted: Texture2D = CampArtwork.texture(art_id)
+	if painted != null:
+		var illustration := TextureRect.new()
+		illustration.texture = painted
+		illustration.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		illustration.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		illustration.position = at
+		illustration.size = extent
+		illustration.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		parent.add_child(illustration)
+		return illustration
+	var icon := Control.new()
+	icon.set_script(load("res://scripts/ui/generated_ui_icon.gd"))
+	icon.position = at
+	icon.size = extent
+	parent.add_child(icon)
+	icon.configure(key)
+	return icon
 func _departure_enemy_count(difficulty: int) -> int:
 	var total := 0
+	var definition: Dictionary = WorldCatalog.biomes().get(selected_biome,{})
+	var rooms: Array = definition.get("room_ids",[])
+	var sample_room := str(rooms[0]) if not rooms.is_empty() else "L01"
 	for zone in DifficultyProfiles.ZONE_COUNT:
-		total += int(DifficultyProfiles.encounter_plan("L01",zone,difficulty).get("total_count",0))
+		total += int(DifficultyProfiles.encounter_plan(sample_room,zone,difficulty).get("total_count",0))
 	return total
+
+func _update_departure_difficulty_hint() -> void:
+	var hint: Label = screen.find_child("DepartureDifficultyHint",true,false)
+	if hint == null: return
+	var difficulty := clampi(selected_difficulty,0,DifficultyProfiles.MAX_DIFFICULTY)
+	var definition: Dictionary = WorldCatalog.biomes().get(selected_biome,{})
+	var rooms: Array = definition.get("room_ids",[])
+	var sample_room := str(rooms[0]) if not rooms.is_empty() else "L01"
+	var level := DifficultyProfiles.encounter_level(sample_room,0,difficulty)
+	var enhancement: String = ["+0","+0–1","+1","+2","+3"][difficulty]
+	var normal_drops := 2 if difficulty >= 2 else 1
+	var boss_drops := 2+int(difficulty/2)
+	var boss_boost := _ex_text("强化+1，上限+3","+1 boost, cap +3") if difficulty > 0 else _ex_text("强化+0","+0")
+	hint.text = _ex_text("基础敌群 %d · 敌人Lv.%d · 本族掉落%d件 %s · 首领%d件 %s","BASE: %d foes · Enemy Lv.%d · Faction gear %d / %s · Boss %d / %s") % [_departure_enemy_count(difficulty),level,normal_drops,enhancement,boss_drops,boss_boost]
+	hint.tooltip_text = _ex_text("基础敌数不含任务限量增援。敌人属性随等级成长。强化档次为现有掉落等级；重复装备按规则折算金币。","Base enemy count excludes limited objective reinforcements. Enemy stats grow with level. Enhancement is the current drop level; duplicate gear converts to gold.")
+	hint.mouse_filter = Control.MOUSE_FILTER_PASS
 
 func _ex_text(zh: String, en: String) -> String:
 	return en if Words.locale == "en" else zh
@@ -182,36 +339,61 @@ func _build_biome_selector() -> void:
 	var picker := OptionButton.new()
 	picker.name = "DepartureBiome"
 	picker.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-	picker.position = Vector2(438,219)
-	picker.size = Vector2(386,44)
+	picker.position = Vector2(454,214)
+	picker.size = Vector2(495,44)
 	picker.add_theme_font_size_override("font_size",17)
-	for index in range(4):
-		var biome_id: String = "B%02d" % (index+1)
-		var definition: Dictionary = WorldCatalog.biomes().get(biome_id,{})
+	var plans: Array[Dictionary] = WorldCatalog.region_plan()
+	for index in plans.size():
+		var definition: Dictionary = plans[index]
+		var biome_id: String = definition.biome_id
+		var implemented: bool = definition.implemented
 		var locked := not available.has(biome_id)
-		picker.add_item(str(definition.get("name",biome_id))+(_ex_text(" · 首领未解锁", " · Locked") if locked else ""),index)
-		picker.set_item_disabled(index,locked)
+		var status := _ex_text(" · 待开发"," · TODO") if not implemented else (_ex_text(" · 首领未解锁", " · Locked") if locked else "")
+		picker.add_item(MineStyle.content_text(definition,"name",biome_id)+status,index)
+		picker.set_item_disabled(index,not implemented or locked)
+		picker.set_item_metadata(index,biome_id if implemented else "")
+		var race_name := MineStyle.content_text(definition,"race","")
+		var availability := _ex_text("已实现 · 可出发探索","Implemented · ready to explore")
+		if not implemented:
+			availability = _ex_text("待开发 · 仅展示计划，尚不能进入","TODO · roadmap only; this region cannot be entered")
+		elif locked:
+			availability = _ex_text("未解锁 · 击败前一区域首领并撤离后解锁","Locked · defeat the previous boss and extract to unlock")
+		picker.get_popup().set_item_tooltip(index,race_name+"\n"+availability)
 	picker.select(int(selected_biome.trim_prefix("B"))-1)
-	picker.item_selected.connect(func(index: int): selected_biome = "B%02d" % (index+1))
+	picker.item_selected.connect(func(index: int):
+		if index < 0 or index >= picker.item_count or picker.is_item_disabled(index): return
+		var biome_id: String = str(picker.get_item_metadata(index))
+		if WorldCatalog.biomes().has(biome_id):
+			selected_biome = biome_id
+			_update_departure_difficulty_hint())
 	screen.add_child(picker)
-	MineStyle.literal(screen,_ex_text("击败首领并撤离后开放下一区域", "Defeat the boss and extract to unlock the next area"),Vector2(838,224),Vector2(385,35),15,MineStyle.MUTED)
+	MineStyle.literal(screen,_ex_text("击败首领并撤离后开放下一区域", "Defeat the boss and extract to unlock the next area"),Vector2(454,286),Vector2(490,18),10,MineStyle.MUTED)
+	var roadmap := MineStyle.literal(screen,_ex_text("12 个地区规划 · 4 个已实现 / 8 个待开发", "12 REGIONS PLANNED · 4 PLAYABLE / 8 TODO"),Vector2(953,286),Vector2(259,18),10,MineStyle.CYAN)
+	roadmap.name = "CampRegionPlanSummary"
+	roadmap.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	roadmap.tooltip_text = _ex_text("前四个地区保留逐关解锁。其余八个地区仅作开发计划展示，尚不能进入。","The first four regions unlock in order. The other eight are roadmap entries and cannot be entered.")
 
 func _build_expedition_status() -> void:
 	if is_instance_valid(expedition_status):
 		expedition_status.get_parent().queue_free()
 	if expedition == null or not expedition.active() or not is_instance_valid(screen):
 		return
-	var map_button := MineStyle.button(screen,"",Vector2(1030,77),Vector2(234,44),func():
+	var map_button := MineStyle.button(screen,"",Vector2(988,16),Vector2(134,44),func():
 		if modals.is_empty():
 			show_expedition(false))
 	map_button.name = "ExpeditionMapButton"
-	expedition_status = MineStyle.literal(map_button,"",Vector2(10,7),Vector2(214,30),17,MineStyle.AMBER)
+	expedition_status = MineStyle.literal(map_button,"",Vector2(10,7),Vector2(114,30),17,MineStyle.INK)
+	expedition_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_update_expedition_status()
 
 func _update_expedition_status() -> void:
 	if not is_instance_valid(expedition_status) or expedition == null or not expedition.active():
 		return
-	expedition_status.text = _ex_text("远征 ", "ROUTE ") + str(expedition.current_index()+1)+" / 8    [M]"
+	expedition_status.text = _ex_text("路线  [M]", "Route  [M]")
+
+func _expedition_node_count() -> int:
+	if expedition == null: return 0
+	return expedition.snapshot().get("route",{}).get("nodes",[]).size()
 
 func _on_expedition_room_completed() -> void:
 	_update_expedition_status()
@@ -223,13 +405,15 @@ func show_expedition(at_exit: bool = false) -> void:
 		return
 	var panel := _push_modal("",Vector2(1072,580))
 	panel.name = "ExpeditionRouteModal"
-	MineStyle.literal(panel,_ex_text("矿井路线 · 每次远征 8 站", "MINE ROUTE · 8 STOPS"),Vector2(28,20),Vector2(1016,45),28,MineStyle.AMBER)
+	MineStyle.literal(panel,_ex_text("矿井路线 · 本次 %d 站", "MINE ROUTE · %d STOPS") % _expedition_node_count(),Vector2(28,20),Vector2(1016,45),28,MineStyle.AMBER)
 	var chart := ExpeditionPanel.new()
 	chart.name = "ExpeditionRouteChart"
 	chart.position = Vector2(28,78)
 	chart.size = Vector2(1016,480)
 	panel.add_child(chart)
-	chart.configure(expedition, at_exit)
+	# M and the route button must honor their "choose the next room" prompt.
+	# Completion is still the gate; an uncleared room remains preview-only.
+	chart.configure(expedition, at_exit or expedition.current_complete())
 	chart.close_requested.connect(_pop_modal)
 	chart.choice_requested.connect(_advance_expedition)
 	chart.early_extract_requested.connect(func():
@@ -273,7 +457,7 @@ func _advance_expedition(room_id: String) -> void:
 	room.set_input_blocked(false)
 	call_deferred("_show_pending_expedition_offer")
 
-func _show_expedition_error(message: String, retry: Callable) -> void:
+func _show_expedition_error(message: String, retry: Callable, preserve_action: bool = false) -> void:
 	var panel := _push_modal("ERROR_TITLE",Vector2(700,318))
 	if message.is_empty():
 		message = _ex_text("当前操作未能完成，进度与金币已保留。请重试。", "This action could not complete. Your progress and gold are unchanged. Please retry.")
@@ -282,6 +466,9 @@ func _show_expedition_error(message: String, retry: Callable) -> void:
 		_pop_modal()
 		retry.call()).grab_focus()
 	MineStyle.button(panel,"BACK",Vector2(357,226),Vector2(315,52),func():
+		if preserve_action:
+			_pop_modal()
+			return
 		_clear_modals()
 		_show_pending_expedition_offer()
 		if modals.is_empty():
@@ -294,6 +481,49 @@ func _show_pending_expedition_offer() -> void:
 		if str(offer.get("decision", "")).is_empty():
 			_show_expedition_relic(offer)
 			return
+	for offer: Dictionary in Game.pending_field_equipment():
+		_show_field_equipment(offer)
+		return
+
+func _show_field_equipment(offer: Dictionary) -> void:
+	var drop_id := str(offer.get("drop_id", ""))
+	var preview: Dictionary = Game.preview_field_equipment(drop_id)
+	if preview.is_empty():
+		return
+	# Bind the displayed comparison to this checkpoint, including every retry.
+	var checkpoint_id := str(expedition.snapshot().get("checkpoint_id", ""))
+	var panel := _push_modal("", Vector2(980,550))
+	panel.name = "FieldEquipmentModal"
+	modals[-1]["required"] = true
+	var comparison := FieldEquipmentPanel.new()
+	comparison.name = "FieldEquipmentComparison"
+	comparison.size = panel.size
+	panel.add_child(comparison)
+	comparison.configure(preview)
+	comparison.choice_requested.connect(func(decision: String): _choose_field_equipment(drop_id, decision, checkpoint_id))
+
+func _choose_field_equipment(drop_id: String, decision: String, checkpoint_id: String) -> void:
+	if expedition_action_pending or expedition == null or not expedition.active() or not is_instance_valid(room):
+		return
+	var comparison: Control = null
+	for modal: Dictionary in modals:
+		var candidate: Control = modal.node.find_child("FieldEquipmentComparison", true, false)
+		if is_instance_valid(candidate): comparison = candidate
+	if is_instance_valid(comparison):
+		comparison.set_busy(true)
+	expedition_action_pending = true
+	var success: bool = Game.choose_field_equipment(drop_id, decision, room.expedition_runtime_snapshot(), checkpoint_id)
+	expedition_action_pending = false
+	if not success:
+		if is_instance_valid(comparison): comparison.set_busy(false)
+		_show_expedition_error(Words.text(Game.last_error), func(): _choose_field_equipment(drop_id, decision, checkpoint_id), true)
+		return
+	if not room.restore_expedition_runtime(expedition.snapshot().get("runtime", {})):
+		if is_instance_valid(comparison): comparison.set_busy(false)
+		_show_expedition_error(_ex_text("试装选择已保存，但角色状态恢复失败。重试会恢复同一选择，不会重复发放装备。", "Your fitting decision is saved, but character state could not be restored. Retry restores that choice without granting gear again."), func(): _choose_field_equipment(drop_id, decision, checkpoint_id), true)
+		return
+	_clear_modals()
+	_show_pending_expedition_offer()
 
 func show_expedition_service() -> void:
 	if expedition == null or not expedition.active() or Game.run == null:
@@ -305,30 +535,65 @@ func show_expedition_service() -> void:
 		if modals.is_empty():
 			show_expedition(false)
 
-func _relic_display(id: String) -> Dictionary:
+func _relic_display(id: String, rank: int = 1) -> Dictionary:
 	var legacy: String = {"RL01":"split", "RL02":"ember", "RL03":"arc"}.get(id, "")
+	if ResourceLoader.exists("res://scripts/combat/class_relics.gd"):
+		var biome: String = load("res://scripts/combat/race_relics.gd").biome_id(room)
+		return load("res://scripts/combat/class_relics.gd").display(Game.run.hero_id if Game.run != null else str(Game.profile.get("selected_hero","CH01")),id,rank,biome)
 	if not legacy.is_empty():
 		return {"name":Words.text("RELIC_"+legacy.to_upper()+"_NAME"),"description":Words.text("RELIC_"+legacy.to_upper()+"_DESC"),"art":legacy}
 	return {"name":id,"description":"","art":""}
 
+func _relic_artwork(parent: Node, info: Dictionary, at: Vector2, extent: Vector2, fallback: String = "") -> void:
+	var painted: Texture2D
+	if info.get("texture") is Texture2D:
+		painted = info.texture
+	elif str(info.get("art","")).begins_with("res://"):
+		painted = load(str(info.art)) as Texture2D
+	if painted != null:
+		var icon := TextureRect.new()
+		icon.name = "RelicArtwork"
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.texture = painted
+		icon.position = at
+		icon.size = extent
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		parent.add_child(icon)
+	else:
+		var art_key := str(info.get("art",fallback))
+		if not art_key.is_empty(): MineArt.relic(parent,art_key,at,extent)
+
 func _show_expedition_relic(offer: Dictionary) -> void:
-	var panel := _push_modal("",Vector2(1048,498))
+	var panel := _push_modal("",Vector2(1048,660))
 	panel.name = "ExpeditionRelicModal"
 	modals[-1]["required"] = true
 	MineStyle.literal(panel,_ex_text("选一件遗物 · 塑造本局打法", "CHOOSE A RELIC · SHAPE THIS RUN"),Vector2(28,20),Vector2(992,47),28,MineStyle.AMBER)
 	MineStyle.literal(panel,_ex_text("选择立即生效，只保留到本局结束。也可跳过并恢复 6% 最大生命。", "Choose an immediate effect for this run, or skip to recover 6% max health."),Vector2(28,80),Vector2(992,44),17,MineStyle.MUTED)
 	var candidates: Array = offer.get("candidates",[])
+	var cards: Array[Button] = []
+	var card_height := 234.0
 	for index in candidates.size():
 		var id := str(candidates[index])
-		var info := _relic_display(id)
 		var current_rank: int = int(expedition.snapshot().get("relic_levels",{}).get(id,0))
+		var info := _relic_display(id,mini(2,current_rank+1))
 		var card := MineStyle.button(panel,"",Vector2(28+index*336,140),Vector2(320,234),func(): _choose_expedition_relic(str(offer.offer_id),id))
 		card.name = "RelicChoice_"+id
-		if not str(info.art).is_empty():
-			MineArt.relic(card,str(info.art),Vector2(116,12),Vector2(88,88))
-		MineStyle.literal(card,str(info.name)+(" · II" if current_rank==1 else " · I"),Vector2(16,104),Vector2(288,37),22,MineStyle.CYAN)
-		MineStyle.literal(card,str(info.description),Vector2(16,146),Vector2(288,74),16,MineStyle.INK)
-	var skip := MineStyle.button(panel,"",Vector2(678,410),Vector2(342,52),func(): _choose_expedition_relic(str(offer.offer_id),"skip"))
+		cards.append(card)
+		_relic_artwork(card,info,Vector2(116,12),Vector2(88,88),id)
+		var title := MineStyle.literal(card,str(info.name)+(_ex_text(" · 升级"," · UPGRADE") if current_rank==1 else ""),Vector2(16,104),Vector2(288,0),22,MineStyle.CYAN)
+		title.name = "RelicTitle"
+		title.size.y = ceilf(title.get_minimum_size().y)
+		var description := MineStyle.literal(card,str(info.description),Vector2(16,title.position.y+title.size.y+6),Vector2(288,0),16,MineStyle.INK)
+		description.name = "RelicDescription"
+		description.max_lines_visible = -1
+		description.clip_text = false
+		description.size.y = ceilf(description.get_minimum_size().y)
+		card_height = maxf(card_height,description.position.y+description.size.y+16)
+	for card: Button in cards: card.size.y = card_height
+	panel.size.y = maxf(498,card_height+248)
+	panel.position.y = (720-panel.size.y)/2
+	var skip := MineStyle.button(panel,"",Vector2(678,140+card_height+28),Vector2(342,52),func(): _choose_expedition_relic(str(offer.offer_id),"skip"))
 	skip.name = "SkipExpeditionRelic"
 	skip.text = _ex_text("跳过 · 回复 6% 生命", "Skip · recover 6% health")
 	skip.grab_focus()
@@ -353,7 +618,7 @@ func _show_expedition_supply() -> void:
 	panel.name = "ExpeditionSupplyModal"
 	MineStyle.literal(panel,_ex_text("矿下补给站", "UNDERGROUND SUPPLY"),Vector2(28,20),Vector2(864,45),30,MineStyle.AMBER)
 	MineStyle.literal(panel,_ex_text("本局金币 ", "CARRIED GOLD ")+str(Game.run.gold)+_ex_text(" · 每项仅可购买一次", " · Each item can be bought once"),Vector2(28,81),Vector2(864,42),20,MineStyle.CYAN)
-	var products := {"heal_small":["应急药剂 · 回复 15% 生命","Field dressing · heal 15%"], "heal_large":["维修包 · 回复 35% 生命","Repair kit · heal 35%"], "shield":["下房护盾 · 15% 生命 / 4 秒","Next battle · 15% shield for 4s"], "amplify":["超频剂 · 后两战斗房攻击 +8%","Overclock · +8% for 2 rooms"], "scan":["勘测信标 · 显示具体敌群","Survey beacon · reveal enemies"], "mana":["共鸣液 · 回复法力","Resonance flask · restore mana"], "energy":["能量匣 · 回复能量","Energy cell · restore energy"]}
+	var products := {"heal_small":["应急药剂 · 回复 15% 生命","Field dressing · heal 15%"], "heal_large":["维修包 · 回复 35% 生命","Repair kit · heal 35%"], "shield":["预备护盾 · 15%生命 · 承伤后4秒","Reserve shield · 15% HP · 4s after hit"], "amplify":["超频剂 · 后两战斗房攻击 +8%","Overclock · +8% for 2 rooms"], "scan":["勘测信标 · 显示具体敌群","Survey beacon · reveal enemies"], "mana":["共鸣液 · 回复法力","Resonance flask · restore mana"], "energy":["能量匣 · 回复能量","Energy cell · restore energy"]}
 	var entries: Array = expedition.snapshot().get("supply_offers",[])
 	var healing_purchased := false
 	for entry: Dictionary in entries:
@@ -368,6 +633,8 @@ func _show_expedition_supply() -> void:
 		button.add_theme_font_size_override("font_size",16)
 		var purchased := str(offer.get("decision","")).length()>0
 		button.text = str(texts[1] if Words.locale == "en" else texts[0])+"\n"+(_ex_text("已购买", "Purchased") if purchased else str(offer.get("price",0))+_ex_text(" 金币", " gold"))
+		if product == "shield":
+			button.tooltip_text = _ex_text("下一战斗房预备15%最大生命护盾。首次吸收伤害才开始4秒倒计时；耗尽或离开该房间后失效。", "Reserve a shield worth 15% max HP for the next combat room. Its 4-second timer starts on the first absorbed hit. Ends when depleted or leaving that room.")
 		button.disabled = purchased or Game.run.gold < int(offer.get("price",0))
 		if product in ["heal_small","heal_large"]:
 			button.disabled = button.disabled or healing_purchased or Game.run.hp >= Game.run.max_hp
@@ -398,6 +665,7 @@ func _next_skill_level(level: int) -> String:
 
 func show_workshop(page: String = "heroes") -> void:
 	_new_screen("workshop_"+page)
+	_screen_shade(0.68)
 	var workshop := Control.new()
 	workshop.name = "Workshop"
 	workshop.set_script(load("res://scripts/ui/workshop_panel.gd"))
@@ -458,10 +726,40 @@ func _on_run_started() -> void:
 		return
 	room.interaction_requested.connect(_on_interaction)
 	room.room_completed.connect(_on_expedition_room_completed)
+	if is_instance_valid(room.combat_audio):
+		room.combat_audio.cue_played.connect(_on_combat_cue_played)
 	room.set_input_blocked(false)
 	_build_hud()
-	if expedition.active():
+	if bool(Game.run.get("demo")) and expedition.current_index() == 0:
+		call_deferred("_show_trial_brief")
+	elif expedition.active():
 		call_deferred("_show_pending_expedition_offer")
+
+func _on_combat_cue_played(cue: String) -> void:
+	if route == "run" and cue in ["impact", "heavy", "shield_hit", "shield_break"] and is_instance_valid(music):
+		music.notify_impact(cue in ["heavy", "shield_break"])
+
+func _show_trial_brief() -> void:
+	if Game.run == null or not modals.is_empty(): return
+	var panel := _push_modal("",Vector2(842,470))
+	panel.name = "TrialBrief"
+	var words: Array = HERO_LOOPS.get(Game.run.hero_id,HERO_LOOPS.CH01)
+	MineStyle.literal(panel,_ex_text("先布线，再反击。","SET THE LINE. STRIKE BACK."),Vector2(30,23),Vector2(782,47),31,MineStyle.CYAN)
+	MineStyle.literal(panel,_ex_text(str(words[0])+" · "+str(words[2]),str(words[3])+" · "+str(words[4])),Vector2(30,88),Vector2(782,61),21,MineStyle.AMBER)
+	var steps: Array = [
+		_ex_text("01  C 布桩","01  C / PLACE"),_ex_text("在鼠标位置放两桩，连线就是你的陷阱。","Place two anchors at the cursor to create your trap."),
+		_ex_text("02  引敌充能","02  LURE / CHARGE"),_ex_text("诱导敌人与来袭弹道穿线。最多储存 3 格电能。","Lure enemies and projectiles through it. Store up to 3 charges."),
+		_ex_text("03  V 释放","03  V / DISCHARGE"),_ex_text("等敌人进入连线附近再引爆；满格时不再拦截。","Discharge when foes gather near the line. A full circuit stops catching shots.")]
+	for index in range(3):
+		MineStyle.literal(panel,str(steps[index*2]),Vector2(30,170+index*57),Vector2(176,35),18,MineStyle.CYAN)
+		MineStyle.literal(panel,str(steps[index*2+1]),Vector2(211,170+index*57),Vector2(601,48),17,MineStyle.INK)
+	MineStyle.literal(panel,_ex_text("WASD / 方向键移动 · 左键普攻 · Q / 鼠标右键 / F / R 技能 · 空格闪避\n练习可跳过；按 M 选择第一关，清关后也可按 M 继续。","WASD / arrows move · Left click attack · Q / Right click / F / R skills · Space dodge\nPractice is optional. Press M to choose a room, then again after clearing it."),Vector2(30,350),Vector2(782,47),16,MineStyle.MUTED)
+	var begin := MineStyle.button(panel,"",Vector2(534,405),Vector2(278,44),func():
+		_pop_modal()
+		_show_pending_expedition_offer())
+	begin.text = _ex_text("开始试炼  →","BEGIN TRIAL  →")
+	MineStyle.primary(begin)
+	begin.grab_focus()
 
 func _create_room() -> Node2D:
 	return load("res://scenes/room.tscn").instantiate()
@@ -588,19 +886,28 @@ func _save_expedition_and_quit() -> void:
 func show_relics() -> void:
 	if Game.run == null:
 		return
-	var panel := _push_modal("RELICS",Vector2(826,472))
+	var panel := _push_modal("RELICS",Vector2(826,660))
+	var cursor_y := 81.0
 	if Game.run.relics.is_empty():
 		MineStyle.label(panel,"NO_RELICS",Vector2(28,130),Vector2(770,92),22,MineStyle.MUTED)
 	else:
 		for i in range(Game.run.relics.size()):
-			var key: String = "RELIC_"+Game.run.relics[i].to_upper()
-			MineArt.relic(panel,Game.run.relics[i],Vector2(26,81+i*99),Vector2(80,80))
-			MineStyle.label(panel,key+"_NAME",Vector2(120,81+i*99),Vector2(655,32),21,MineStyle.CYAN)
-			MineStyle.label(panel,key+"_DESC",Vector2(120,114+i*99),Vector2(655,65),17)
-	MineStyle.button(panel,"BACK",Vector2(558,389),Vector2(240,52),_pop_modal).grab_focus()
+			var info := _relic_display(str(Game.run.relics[i]),int(Game.expedition_snapshot().get("relic_levels",{}).get({"split":"RL01","ember":"RL02","arc":"RL03"}.get(Game.run.relics[i],Game.run.relics[i]),1)))
+			_relic_artwork(panel,info,Vector2(26,cursor_y),Vector2(80,80),str(Game.run.relics[i]))
+			var title := MineStyle.literal(panel,str(info.get("name","")),Vector2(120,cursor_y),Vector2(655,0),21,MineStyle.CYAN)
+			title.size.y = ceilf(title.get_minimum_size().y)
+			var description := MineStyle.literal(panel,str(info.get("description","")),Vector2(120,cursor_y+title.size.y+4),Vector2(655,0),17)
+			description.size.y = ceilf(description.get_minimum_size().y)
+			cursor_y += maxf(80,title.size.y+4+description.size.y)+18
+	panel.size.y = maxf(472,cursor_y+76)
+	panel.position.y = (720-panel.size.y)/2
+	MineStyle.button(panel,"BACK",Vector2(558,panel.size.y-80),Vector2(240,52),_pop_modal).grab_focus()
 
 func show_combat_details(slot: String = "q") -> void:
 	if Game.run == null or not is_instance_valid(hud):
+		return
+	if slot == "progression":
+		show_attributes()
 		return
 	if slot.begins_with("relic:"):
 		show_relics()
@@ -627,19 +934,32 @@ func show_combat_details(slot: String = "q") -> void:
 		body.scroll_to_line(0)
 	for i in range(5):
 		var which: String = ["q","secondary","f","ultimate","dash"][i]
-		var button := MineStyle.button(panel,["Q","RMB","F","R","SPACE"][i],Vector2(28+i*169,77),Vector2(156,44),func(): select_detail.call(which))
+		var button := MineStyle.button(panel,["Q",_ex_text("鼠标右键","Right click"),"F","R",_ex_text("空格","Space")][i],Vector2(28+i*169,77),Vector2(156,44),func(): select_detail.call(which))
 		button.name = "Detail_"+which
 		button.tooltip_text = str(hud.skill_info(which).name)
 	select_detail.call(chosen)
 	MineStyle.label(panel,"HUD_WALLET_TOTAL",Vector2(28,445),Vector2(832,38),17,MineStyle.AMBER,{"gold":Game.run.gold,"kept":Balance.death_keep(Game.run.gold)})
 	MineStyle.button(panel,"RELICS",Vector2(28,497),Vector2(250,50),show_relics)
+	var attributes := MineStyle.button(panel,"",Vector2(294,497),Vector2(298,50),show_attributes)
+	attributes.name = "CombatAttributes"
+	attributes.text = _ex_text("角色属性","CHARACTER STATS")
 	MineStyle.button(panel,"BACK",Vector2(610,497),Vector2(250,50),_pop_modal).grab_focus()
+
+func show_attributes() -> void:
+	if Game.run == null: return
+	var panel := _push_modal("",Vector2(1020,620))
+	panel.name = "CharacterAttributes"
+	panel.set_script(null)
+	panel.add_theme_stylebox_override("panel",StyleBoxEmpty.new())
+	var dossier: Control = load("res://scripts/ui/character_panel.gd").new()
+	panel.add_child(dossier)
+	dossier.configure(room,_pop_modal)
 
 func show_abandon(exit_game: bool = false) -> void:
 	if Game.run == null:
 		return
 	var panel := _push_modal("ABANDON_TITLE",Vector2(720,360))
-	var retained := Balance.death_keep(Game.run.gold)
+	var retained := ProfileStore.retained_gold(Game.run.gold, "abandoned")
 	MineStyle.label(panel,"ABANDON_NOTE",Vector2(28,87),Vector2(664,143),20,MineStyle.INK,{"gold":Game.run.gold,"kept":retained,"lost":Game.run.gold-retained})
 	MineStyle.button(panel,"CONFIRM_ABANDON",Vector2(28,267),Vector2(432,52),func():
 		quit_after_result = exit_game
@@ -655,6 +975,9 @@ func _on_settlement_failed(outcome: String) -> void:
 	call_deferred("_show_save_error")
 
 func _on_run_finished(result: Dictionary) -> void:
+	if bool(result.get("demo",false)):
+		Words.set_locale(str(Game.profile.get("settings",{}).get("language","zh_CN")))
+		_apply_display()
 	if room_start_failed:
 		call_deferred("_show_room_load_error")
 	else:
@@ -670,7 +993,10 @@ func show_result(result: Dictionary) -> void:
 	var title: String = {"extracted":"EXTRACTED","death":"DEATH","abandoned":"ABANDONED"}.get(outcome,"DEATH")
 	var accent := MineStyle.GREEN if outcome == "extracted" else MineStyle.RED
 	MineStyle.label(screen,title,Vector2(86,105),Vector2(980,78),44,accent)
-	MineStyle.label(screen,"SETTLED",Vector2(88,190),Vector2(800,38),18,MineStyle.MUTED)
+	if bool(result.get("demo",false)):
+		MineStyle.literal(screen,_ex_text("试炼已结束 · 成长存档保持原样","TRIAL COMPLETE · YOUR PROGRESSION SAVE IS UNCHANGED"),Vector2(88,190),Vector2(1000,38),18,MineStyle.CYAN)
+	else:
+		MineStyle.label(screen,"SETTLED",Vector2(88,190),Vector2(800,38),18,MineStyle.MUTED)
 	var data := [result.get("collected",result.get("gold",0)),result.get("retained",0),result.get("lost",0)]
 	for i in range(3):
 		var p := MineStyle.panel(screen,Vector2(88+i*246,265),Vector2(224,167))
@@ -678,25 +1004,96 @@ func show_result(result: Dictionary) -> void:
 		var amount := MineStyle.label(p,"BANK_VALUE",Vector2(21,69),Vector2(184,74),46,MineStyle.AMBER if i == 1 else MineStyle.INK,{"gold":data[i]})
 		amount.name = ["Collected","Retained","Lost"][i]
 	var discoveries: Array = result.get("discoveries",result.get("new_discoveries",[]))
-	MineStyle.label(screen,"RESULT_STATS",Vector2(88,469),Vector2(710,91),20,MineStyle.INK,{"kills":result.get("kills",0),"discoveries":discoveries.size()})
+	MineStyle.label(screen,"RESULT_STATS",Vector2(88,447),Vector2(710,62),20,MineStyle.INK,{"kills":result.get("kills",0),"discoveries":discoveries.size()})
+	var equipment_names: Array[String] = []
+	for id: String in result.get("equipment_retained",[]):
+		equipment_names.append(MineStyle.content_text(ContentRegistry.equipment(id),"name"))
+	var equipment_receipt := _ex_text("本次没有带回新装备", "No new equipment extracted") if equipment_names.is_empty() else _ex_text("新装备已入库：", "Added to inventory: ")+" · ".join(equipment_names)
+	var lost_items: int = result.get("equipment_lost",[]).size()
+	if lost_items > 0: equipment_receipt = _ex_text("遗失 %d 件待带回装备 · 成功撤离后才能入库", "%d pending items lost · extract safely to keep equipment") % lost_items
+	if bool(result.get("demo",false)): equipment_receipt = _ex_text("试玩奖励不写入正式库存", "Trial rewards do not enter your progression inventory")
+	var loot_note := MineStyle.literal(screen,equipment_receipt,Vector2(88,512),Vector2(710,28),16,MineStyle.CYAN)
+	loot_note.name = "ExtractedEquipmentReceipt"
+	loot_note.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	loot_note.tooltip_text = equipment_receipt
 	MineStyle.label(screen,"BANK_TOTAL",Vector2(88,544),Vector2(710,36),20,MineStyle.AMBER,{"gold":result.get("permanent_gold",0)})
 	var hero_id: String = str(result.get("hero_id",Game.profile.get("selected_hero","CH01")))
-	var dossier := MineStyle.panel(screen,Vector2(866,242),Vector2(326,338))
+	var field_xp: int = int(result.get("field_xp_gained",0))
+	var dossier := MineStyle.panel(screen,Vector2(866,242),Vector2(326,368 if field_xp > 0 else 338))
 	MineStyle.hero_portrait(dossier,hero_id,Vector2(52,12),Vector2(220,200))
 	MineStyle.literal(dossier,MineStyle.content_text(ContentRegistry.hero(hero_id),"name"),Vector2(20,219),Vector2(286,36),24)
 	MineStyle.label(dossier,"RESULT_HERO_XP",Vector2(20,267),Vector2(286,57),17,MineStyle.CYAN,{"xp":result.get("hero_xp_gained",0),"level":Game.hero_level(hero_id)})
-	MineStyle.button(screen,"RETURN_CAMP",Vector2(88,586),Vector2(345,56),show_camp).grab_focus()
+	if field_xp > 0:
+		var field_note := MineStyle.literal(dossier,_ex_text("含战斗积累 +%d 经验","Includes +%d field practice XP") % field_xp,Vector2(20,324),Vector2(286,28),16,MineStyle.AMBER)
+		field_note.name = "FieldExperienceReceipt"
+	MineStyle.button(screen,"RETURN_CAMP" if Game.has_profile else "MAIN_MENU",Vector2(88,586),Vector2(345,56),show_camp if Game.has_profile else show_menu).grab_focus()
+	if bool(result.get("demo",false)):
+		var again := MineStyle.button(screen,"",Vector2(451,586),Vector2(345,56),show_demo_select)
+		again.text = _ex_text("换个职业再试","TRY ANOTHER HERO")
+	else:
+		var readout: Script = preload("res://scripts/ui/progression_readout.gd")
+		var next_goal: String = readout.next_goal(hero_id,int(Game.profile.get("hero_xp",{}).get(hero_id,0)))
+		var goal_label := MineStyle.literal(screen,_ex_text("下一目标：","NEXT GOAL: ")+next_goal,Vector2(88,658),Vector2(1104,30),17,MineStyle.CYAN)
+		goal_label.name = "NextGrowthGoal"
 	if quit_after_result:
 		quit_after_result = false
 		get_tree().quit()
 
 func show_settings() -> void:
-	var panel := _push_modal("SETTINGS",Vector2(810,523))
-	MineStyle.label(panel,"CONTROLS",Vector2(28,78),Vector2(754,125),18,MineStyle.MUTED)
-	MineStyle.button(panel,"LANGUAGE",Vector2(28,222),Vector2(754,52),_toggle_language).grab_focus()
-	MineStyle.button(panel,"FULLSCREEN_ON" if Game.profile.get("settings",{}).get("fullscreen",false) else "FULLSCREEN_OFF",Vector2(28,290),Vector2(754,52),_toggle_fullscreen)
-	MineStyle.button(panel,"FX_ON" if Game.profile.get("settings",{}).get("reduced_fx",false) else "FX_OFF",Vector2(28,358),Vector2(754,52),_toggle_fx)
-	MineStyle.button(panel,"BACK",Vector2(542,445),Vector2(240,52),_pop_modal)
+	var panel := _push_modal("SETTINGS",Vector2(880,600))
+	MineStyle.literal(panel,_ex_text("WASD / 方向键   移动       左键   普攻       空格   闪避\nQ / 鼠标右键 / F / R   技能       E   交互       Tab   技能详情       M   路线\nC   放置引雷桩       V   释放回路       Esc   暂停","WASD / arrows   Move       Left click   Attack       Space   Dodge\nQ / Right click / F / R   Skills       E   Interact       Tab   Details       M   Map\nC   Place anchors       V   Discharge       Esc   Pause"),Vector2(28,86),Vector2(824,115),17,MineStyle.MUTED)
+	audio_sliders.clear()
+	var settings: Dictionary = Game.profile.get("settings",{})
+	for index in range(3):
+		var key: String = ["master_volume","music_volume","sfx_volume"][index]
+		var title: String = [_ex_text("总音量","Master"),_ex_text("音乐","Music"),_ex_text("战斗音效","Combat SFX")][index]
+		MineStyle.literal(panel,title,Vector2(28,222+index*58),Vector2(169,34),18)
+		var slider := HSlider.new()
+		slider.name = key
+		slider.position = Vector2(208,224+index*58)
+		slider.size = Vector2(544,32)
+		slider.min_value = 0.0
+		slider.max_value = 1.0
+		slider.step = 0.01
+		slider.value = float(settings.get(key,[1.0,0.55,0.85][index]))
+		panel.add_child(slider)
+		audio_sliders[key] = slider
+		var number := MineStyle.literal(panel,str(roundi(slider.value*100))+"%",Vector2(772,222+index*58),Vector2(80,34),18,MineStyle.CYAN)
+		var debounce := Timer.new()
+		debounce.wait_time = 0.18
+		debounce.one_shot = true
+		panel.add_child(debounce)
+		debounce.timeout.connect(func(): Game.set_setting(key,slider.value))
+		slider.value_changed.connect(func(value: float):
+			number.text = str(roundi(value*100))+"%"
+			if is_instance_valid(music): music.set_mix(audio_sliders.master_volume.value,audio_sliders.music_volume.value,audio_sliders.sfx_volume.value)
+			debounce.start())
+	MineStyle.button(panel,"LANGUAGE",Vector2(28,422),Vector2(264,48),_toggle_language).grab_focus()
+	MineStyle.button(panel,"FULLSCREEN_ON" if settings.get("fullscreen",false) else "FULLSCREEN_OFF",Vector2(308,422),Vector2(264,48),_toggle_fullscreen)
+	MineStyle.button(panel,"FX_ON" if settings.get("reduced_fx",false) else "FX_OFF",Vector2(588,422),Vector2(264,48),_toggle_fx)
+	var shake := MineStyle.button(panel,"",Vector2(28,486),Vector2(264,48),_toggle_camera_shake)
+	shake.name = "CameraShakeSetting"
+	shake.text = _ex_text("镜头震动：开启","Camera shake: On") if bool(settings.get("camera_shake",false)) else _ex_text("镜头震动：关闭","Camera shake: Off")
+	MineStyle.literal(panel,_ex_text("关闭可保持战斗镜头稳定","Off keeps the combat camera steady"),Vector2(28,540),Vector2(500,24),15,MineStyle.MUTED)
+	MineStyle.button(panel,"BACK",Vector2(612,520),Vector2(240,52),_pop_modal)
+
+func _commit_audio_sliders() -> void:
+	for key: String in audio_sliders:
+		var slider: Variant = audio_sliders[key]
+		if is_instance_valid(slider) and slider.is_visible_in_tree() and not is_equal_approx(float(Game.profile.get("settings",{}).get(key,-1)),float(slider.value)):
+			Game.set_setting(key,float(slider.value))
+	audio_sliders.clear()
+
+func _process(delta: float) -> void:
+	music_tick -= delta
+	if music_tick > 0.0 or not is_instance_valid(music): return
+	music_tick = 0.3
+	var context := "camp"
+	if route == "run" and is_instance_valid(room):
+		context = "explore"
+		if room.has_method("_living_enemy_count") and room._living_enemy_count() > 0: context = "combat"
+		if not room.objective_complete and str(room.expedition_context.get("role","")) == "boss": context = "boss"
+	music.set_context(context)
 
 func _toggle_language() -> void:
 	Game.set_setting("language","en" if Words.locale == "zh_CN" else "zh_CN")
@@ -743,6 +1140,14 @@ func _toggle_fx() -> void:
 	_pop_modal()
 	show_settings()
 
+func _toggle_camera_shake() -> void:
+	Game.set_setting("camera_shake",not Game.profile.get("settings",{}).get("camera_shake",false))
+	if not Game.last_error.is_empty():
+		_show_save_error()
+		return
+	_pop_modal()
+	show_settings()
+
 func _show_save_error() -> void:
 	var panel := _push_modal("ERROR_TITLE",Vector2(770,355))
 	MineStyle.label(panel,"SAVE_ERROR",Vector2(28,77),Vector2(714,161),18,MineStyle.RED,{"error":Words.text(Game.last_error)})
@@ -764,7 +1169,7 @@ func _push_modal(title: String, dimensions: Vector2) -> Panel:
 	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 	ui.add_child(overlay)
 	var shade := ColorRect.new()
-	shade.color = Color(0.015,0.025,0.035,0.83)
+	shade.color = Color(0.23,0.17,0.27,0.43)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	overlay.add_child(shade)
 	var panel := MineStyle.panel(overlay,(Vector2(1280,720)-dimensions)/2,dimensions)
@@ -778,6 +1183,7 @@ func _pop_modal() -> void:
 		return
 	if modals[-1].get("required",false):
 		return
+	_commit_audio_sliders()
 	var removed: Dictionary = modals.pop_back()
 	removed.node.queue_free()
 	if not modals.is_empty():
@@ -789,6 +1195,7 @@ func _pop_modal() -> void:
 	_sync_pause()
 
 func _clear_modals() -> void:
+	_commit_audio_sliders()
 	for entry in modals:
 		entry.node.queue_free()
 	modals.clear()
@@ -827,7 +1234,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			show_pause()
 		elif route.begins_with("workshop_"):
 			show_camp()
-		elif route == "camp" or route == "result":
+		elif route in ["camp","result","demo_select"]:
 			show_menu()
 
 func _notification(what: int) -> void:

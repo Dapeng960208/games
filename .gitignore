@@ -7,10 +7,15 @@ build/
 *.log
 # Local screenshots, recordings and acceptance evidence
 artifacts/
+assets/audio/previews/
 tests/
 # Development planning stays local; retain asset licensing
 docs/*
 !docs/ASSET_LICENSES.md
+!docs/USER_LEVEL_BRIEF.md
+!docs/LEVEL_DESIGN_V1.md
+!docs/LEVEL_ROADMAP.md
+!docs/levels/
 tools/test.ps1
 tools/font_probe.gd
 tools/font_probe.gd.uid

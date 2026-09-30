@@ -1,8 +1,13 @@
 extends Node2D
-## Original ImageGen floor repeated at native world-pixel size, with restrained
-## flush decals. Room-owned obstacles are the only solid props.
+## Calm daylight courtyard. The ground is a single softly textured surface;
+## lush details and ruin columns live along the arena's real outer boundary.
 
-const FLOOR_TEXTURE_PATH := "res://assets/generated/world/B01_floor_v1.png"
+const TextureSampler = preload("res://scripts/ui/texture_sampler.gd")
+const Art = preload("res://scripts/world/world_art.gd")
+const FLOOR_TEXTURE_PATH := Art.FLOOR_PATH
+const FLOOR_WORLD_SCALE := 0.34
+const FLOOR_DEPTH_SCALE := 0.80
+const FLOOR_TILE_WORLD_SIZE := Vector2(426.0,340.8)
 
 var arena := Rect2(48, 106, 2704, 1588)
 var biome: String = "B01"
@@ -11,26 +16,14 @@ var palette: Dictionary = {}
 var floor_texture: Texture2D
 
 func _ready() -> void:
-	# Mirror repeat joins identical source-edge pixels; the authored native-scale
-	# mineral surface stays continuous without visible vertical tile cuts.
 	texture_repeat = CanvasItem.TEXTURE_REPEAT_MIRROR
+	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	_load_floor_texture()
 	_update_palette()
 	queue_redraw()
 
 func _load_floor_texture() -> void:
-	var path: String = "res://assets/generated/world/"+biome+"_floor_v1.png"
-	if not FileAccess.file_exists(path) and not ResourceLoader.exists(path):
-		path = FLOOR_TEXTURE_PATH
-	if ResourceLoader.exists(path):
-		floor_texture = load(path)
-	elif FileAccess.file_exists(path):
-		# New authored source images can be previewed before the editor's next
-		# import pass. This reads the same original PNG at its native dimensions.
-		var source_image: Image = Image.load_from_file(path)
-		if not source_image.is_empty():
-			source_image.generate_mipmaps()
-			floor_texture = ImageTexture.create_from_image(source_image)
+	floor_texture = Art.floor_texture_for(biome)
 
 func configure(world_arena: Rect2, biome_id: String = "B01", seed_value: int = 41827) -> void:
 	arena = world_arena
@@ -41,144 +34,135 @@ func configure(world_arena: Rect2, biome_id: String = "B01", seed_value: int = 4
 	queue_redraw()
 
 func _update_palette() -> void:
-	match biome:
-		"B02":
-			palette = {"base":Color("14211f"), "tile":Color("192925"), "seam":Color("0f1919"), "metal":Color("344740"), "accent":Color("a9ba69"), "light":Color("85d6ba")}
-		"B03":
-			palette = {"base":Color("171e29"), "tile":Color("202b39"), "seam":Color("111a24"), "metal":Color("3e5265"), "accent":Color("91adcb"), "light":Color("a3dbed")}
-		"B04":
-			palette = {"base":Color("241b21"), "tile":Color("30252c"), "seam":Color("1c141d"), "metal":Color("514147"), "accent":Color("c18778"), "light":Color("cfabcf")}
-		_:
-			palette = {"base":Color("141e27"), "tile":Color("1a2730"), "seam":Color("101920"), "metal":Color("3a474e"), "accent":Color("bb8855"), "light":Color("77c7d0")}
+	palette = Art.palette(biome)
 
 func _draw() -> void:
 	if palette.is_empty():
 		_update_palette()
 	var rng := RandomNumberGenerator.new()
 	rng.seed = world_seed
-	var base: Color = palette.base
-	var accent: Color = palette.accent
-	draw_rect(arena.grow(160.0), base.darkened(0.55))
-	draw_rect(arena, base)
-	_draw_floor(rng)
-	_draw_inlaid_tracks()
-	_draw_surface_marks(rng)
-	# Boundary exactly matches the arena used by actor collision.
-	draw_rect(arena.grow(-3.0), palette.metal, false, 6.0)
-	draw_rect(arena.grow(-9.0), Color(accent, 0.36), false, 1.0)
-	for x in range(int(arena.position.x + 40), int(arena.end.x - 30), 80):
-		_rivet(Vector2(x, arena.position.y + 4))
-		_rivet(Vector2(x, arena.end.y - 4))
-	for y in range(int(arena.position.y + 40), int(arena.end.y - 30), 80):
-		_rivet(Vector2(arena.position.x + 4, y))
-		_rivet(Vector2(arena.end.x - 4, y))
-	_draw_edge_lamps()
-	# Exterior rock stays outside the collision boundary.
+	# Soft teal water and greenery extend beyond the walkable courtyard, so
+	# camera edges never reveal the old black cave vignette.
+	draw_rect(arena.grow(720.0), palette.water.lightened(0.19))
+	_draw_platform()
+	draw_rect(arena, palette.ground)
+	_draw_floor()
+	_draw_inlaid_compass(arena.get_center(), 66.0)
+	_draw_boundary(rng)
 	_draw_exterior(rng)
 
-func _draw_floor(rng: RandomNumberGenerator) -> void:
-	if floor_texture != null:
-		# tile=true repeats the 1254x1254 image at 1 image pixel : 1 world unit;
-		# increasing a room's extent reveals more repeats instead of larger stones.
-		var tint := Color(0.82, 0.82, 0.80, 1.0)
-		match biome:
-			"B02": tint = Color(0.72, 0.82, 0.73, 1.0)
-			"B03": tint = Color(0.77, 0.82, 0.9, 1.0)
-			"B04": tint = Color(0.86, 0.73, 0.78, 1.0)
-		# Preserve the original rust hue while reducing high-frequency stone
-		# contrast beneath characters, enemies, pickups, and attack warnings.
-		tint = tint.darkened(0.24)
-		draw_texture_rect(floor_texture, arena, true, tint)
-		# A thin ambient veil keeps bright loot and red warnings above floor detail.
-		draw_rect(arena, Color(palette.base, 0.13))
-	else:
-		# A quiet irregular fallback if an image import is unavailable; no grid.
-		for i in range(int(arena.get_area() / 23000.0)):
-			var center := Vector2(rng.randf_range(arena.position.x + 60, arena.end.x - 60), rng.randf_range(arena.position.y + 60, arena.end.y - 60))
-			var polygon := PackedVector2Array()
-			for side in range(7):
-				var point: Vector2 = center + Vector2.RIGHT.rotated(side * TAU / 7.0) * rng.randf_range(18, 53)
-				polygon.append(point)
-			draw_colored_polygon(polygon, Color(palette.tile, rng.randf_range(0.3, 0.65)))
+func _draw_platform() -> void:
+	# The walkable coordinates remain the upper platform. Its forward/right
+	# stone faces are visible outside that boundary, making height explicit
+	# without projecting or moving any actor or collision rectangle.
+	var depth := Vector2(0,68.0)
+	var forward := PackedVector2Array([Vector2(arena.position.x,arena.end.y),arena.end,arena.end+depth,Vector2(arena.position.x,arena.end.y)+depth])
+	draw_colored_polygon(forward,palette.stone_side)
+	var right := PackedVector2Array([Vector2(arena.end.x,arena.position.y),arena.end,arena.end+Vector2(23,68),Vector2(arena.end.x+23,arena.position.y+68)])
+	draw_colored_polygon(right,palette.stone_side.darkened(0.12))
+	draw_line(Vector2(arena.position.x,arena.end.y+68),arena.end+Vector2(23,68),Color(palette.shadow,0.35),4.0,true)
+	for row: int in range(2):
+		var y: float = arena.end.y+10+row*30
+		draw_line(Vector2(arena.position.x,y),Vector2(arena.end.x,y),Color(palette.seam,0.58),1.8,true)
+		for x: int in range(int(arena.position.x+36+row*48),int(arena.end.x),98):
+			draw_line(Vector2(x,y),Vector2(x,y+28),Color(palette.seam,0.50),1.5,true)
 
-func _draw_inlaid_tracks() -> void:
-	var metal: Color = palette.metal
-	var accent: Color = palette.accent
-	# Rails sit flush in the floor; actors and projectiles pass over them.
-	for y in [arena.position.y + 46.0, arena.end.y - 46.0]:
-		for x in range(int(arena.position.x + 30), int(arena.end.x - 25), 28):
-			draw_line(Vector2(x, y - 10), Vector2(x, y + 10), Color(metal, 0.33), 5)
-		for offset in [-6.0, 6.0]:
-			draw_line(Vector2(arena.position.x + 22, y + offset), Vector2(arena.end.x - 22, y + offset), metal.darkened(0.1), 2)
-			draw_line(Vector2(arena.position.x + 22, y + offset - 1), Vector2(arena.end.x - 22, y + offset - 1), Color(accent, 0.22), 1)
-	# A few buried track fragments, with no continuous lanes or square floor grid.
-	for fraction in [Vector2(0.19, 0.27), Vector2(0.56, 0.68), Vector2(0.82, 0.38)]:
-		var start: Vector2 = arena.position + arena.size * fraction
-		var direction := Vector2(1.0, 0.26).normalized()
-		var across := Vector2(-direction.y, direction.x)
-		for side in [-1.0, 1.0]:
-			var rail: Vector2 = start + across * side * 9
-			draw_line(rail, rail + direction * 156, Color(metal, 0.42), 3)
-			draw_line(rail, rail + direction * 156, Color(accent, 0.15), 1)
-		for tie in range(5):
-			var p: Vector2 = start + direction * (tie * 30 + 16)
-			draw_line(p - across * 14, p + across * 14, Color(metal, 0.27), 3)
+func _draw_floor() -> void:
+	if floor_texture == null:
+		return
+	var definition: Dictionary = Art.floor_definition(biome)
+	var parent: Texture2D = TextureSampler.sampled(str(definition.path))
+	var native: Rect2 = definition.source
+	# Individual panel UVs prevent adjacent faction surfaces leaking into the
+	# floor. Explicit mirrored tiles also preserve the outer platform boundary.
+	for y: int in range(ceili(arena.size.y/FLOOR_TILE_WORLD_SIZE.y)):
+		for x: int in range(ceili(arena.size.x/FLOOR_TILE_WORLD_SIZE.x)):
+			var tile := Rect2(arena.position+Vector2(x,y)*FLOOR_TILE_WORLD_SIZE,FLOOR_TILE_WORLD_SIZE)
+			var clipped: Rect2 = tile.intersection(arena)
+			var fraction: Vector2 = clipped.size/FLOOR_TILE_WORLD_SIZE
+			var source := Rect2(native.position,native.size*fraction)
+			var origin: Vector2 = clipped.position
+			var reflection := Vector2.ONE
+			if x%2==1:
+				source.position.x = native.end.x-source.size.x
+				origin.x += clipped.size.x
+				reflection.x = -1
+			if y%2==1:
+				source.position.y = native.end.y-source.size.y
+				origin.y += clipped.size.y
+				reflection.y = -1
+			# Texture regions require positive rectangles. A canvas reflection
+			# mirrors both complete and final partial tiles without skipped rows.
+			draw_set_transform(origin,0,reflection)
+			draw_texture_rect_region(parent,Rect2(Vector2.ZERO,clipped.size),source,Color.WHITE,false,true)
+	draw_set_transform(Vector2.ZERO)
 
-func _draw_surface_marks(rng: RandomNumberGenerator) -> void:
-	var count: int = int(arena.get_area() / 47000.0)
-	for i in range(count):
-		var p := Vector2(rng.randf_range(arena.position.x + 80, arena.end.x - 80), rng.randf_range(arena.position.y + 80, arena.end.y - 80))
-		var angle: float = rng.randf_range(0, TAU)
-		var direction := Vector2.RIGHT.rotated(angle)
-		var length: float = rng.randf_range(9, 30)
-		draw_line(p, p + direction * length, Color(palette.seam, 0.4), 2)
-		if i % 5 == 0:
-			draw_arc(p, 22, angle, angle + PI * 0.8, 15, Color(palette.metal, 0.17), 1)
-		if i % 9 == 0:
-			# Mineral flecks follow an irregular ground fissure, never an item glow.
-			var ore_points := PackedVector2Array([p - direction * 15, p, p + direction * 11 + direction.orthogonal() * 4, p + direction * 28])
-			draw_polyline(ore_points, Color(palette.accent, 0.2), 1)
-		if biome == "B02" and i % 3 == 0:
-			for j in range(3):
-				draw_circle(p + direction.rotated(j * 1.7) * 7, 5, Color(palette.accent, 0.055))
-		elif biome == "B03" and i % 3 == 0:
-			draw_line(p, p + direction * 26, Color(palette.light, 0.08), 1)
-			draw_line(p + direction * 13, p + direction * 13 + direction.rotated(0.8) * 12, Color(palette.light, 0.07), 1)
-		elif biome == "B04" and i % 4 == 0:
-			draw_arc(p, 12, 0, TAU, 16, Color(palette.accent, 0.09), 2)
+func _draw_inlaid_compass(at: Vector2, radius: float) -> void:
+	# A faded, flush compass is scenery, with no glow or pickup silhouette.
+	draw_set_transform(at,0,Vector2(1.0,0.76))
+	at = Vector2.ZERO
+	draw_arc(at, radius, 0, TAU, 56, Color(palette.seam, 0.25), 2.0, true)
+	draw_arc(at, radius - 9, 0, TAU, 56, Color(palette.seam, 0.18), 1.3, true)
+	for axis: int in range(4):
+		var direction := Vector2.from_angle(axis * PI * 0.5 - PI * 0.5)
+		var side := direction.orthogonal()
+		var tip: Vector2 = at + direction * (radius - 14)
+		var center: Vector2 = at + direction * 9
+		draw_colored_polygon(PackedVector2Array([at, center + side * 10, tip]), Color(palette.seam, 0.20))
+		draw_colored_polygon(PackedVector2Array([at, tip, center - side * 10]), Color(palette.stone_side, 0.12))
+	draw_set_transform(Vector2.ZERO)
 
-func _rivet(p: Vector2) -> void:
-	draw_circle(p, 2.3, palette.seam)
-	draw_circle(p + Vector2(0, -0.7), 1.2, Color(palette.accent, 0.62))
+func _draw_boundary(rng: RandomNumberGenerator) -> void:
+	# This eight-unit stone coping follows the actual actor boundary exactly.
+	# Foliage has no collision and stays out of central combat and routes.
+	draw_rect(arena.grow(5.0), palette.stone_side, false, 10.0)
+	draw_rect(arena, palette.stone, false, 6.0)
+	draw_rect(arena.grow(-4.0), Color(palette.seam, 0.44), false, 1.5)
+	for x: int in range(int(arena.position.x + 70), int(arena.end.x - 50), 160):
+		_draw_edge_garden(Vector2(x, arena.position.y + 3), Vector2.DOWN, rng)
+		_draw_edge_garden(Vector2(x + 54, arena.end.y - 3), Vector2.UP, rng)
+	for y: int in range(int(arena.position.y + 90), int(arena.end.y - 60), 180):
+		_draw_edge_garden(Vector2(arena.position.x + 3, y), Vector2.RIGHT, rng)
+		_draw_edge_garden(Vector2(arena.end.x - 3, y + 43), Vector2.LEFT, rng)
 
-func _draw_edge_lamps() -> void:
-	for x in range(int(arena.position.x + 140), int(arena.end.x - 80), 360):
-		_lamp(Vector2(x, arena.position.y + 12), false)
-		_lamp(Vector2(x, arena.end.y - 12), false)
-	for y in range(int(arena.position.y + 170), int(arena.end.y - 80), 360):
-		_lamp(Vector2(arena.position.x + 12, y), true)
-		_lamp(Vector2(arena.end.x - 12, y), true)
-
-func _lamp(p: Vector2, vertical: bool) -> void:
-	for radius in [36.0, 24.0, 14.0]:
-		draw_circle(p, radius, Color(palette.light, 0.018))
-	var size := Vector2(9, 22) if vertical else Vector2(22, 9)
-	draw_rect(Rect2(p - size * 0.5, size), palette.seam)
-	draw_rect(Rect2(p - size * 0.5 + Vector2(2, 2), size - Vector2(4, 4)), palette.accent)
-	draw_rect(Rect2(p - size * 0.5 + Vector2(3, 3), size - Vector2(6, 6)), palette.light)
+func _draw_edge_garden(at: Vector2, inward: Vector2, rng: RandomNumberGenerator) -> void:
+	var across: Vector2 = inward.orthogonal()
+	for index: int in range(rng.randi_range(3, 6)):
+		var center: Vector2 = at + across * rng.randf_range(-28, 28) - inward * rng.randf_range(0, 13)
+		var radius: float = rng.randf_range(4, 10)
+		draw_circle(center, radius, palette.foliage)
+		draw_circle(center + Vector2(-2, -2), radius * 0.66, palette.leaf)
+		if index % 3 == 0:
+			var blossom: Vector2 = center - Vector2(0, radius * 0.34)
+			for petal: int in range(5):
+				draw_circle(blossom + Vector2.from_angle(petal * TAU / 5.0) * 2.8, 2.3, palette.stone.lightened(0.08))
+			draw_circle(blossom, 1.6, palette.gold)
 
 func _draw_exterior(rng: RandomNumberGenerator) -> void:
-	for x in range(int(arena.position.x - 80), int(arena.end.x + 80), 88):
-		_rock(Vector2(x, arena.position.y - 58), rng)
-		_rock(Vector2(x + 24, arena.end.y + 58), rng)
-	for y in range(int(arena.position.y + 32), int(arena.end.y), 88):
-		_rock(Vector2(arena.position.x - 58, y), rng)
-		_rock(Vector2(arena.end.x + 58, y + 20), rng)
-
-func _rock(p: Vector2, rng: RandomNumberGenerator) -> void:
-	var polygon := PackedVector2Array()
-	for i in range(6):
-		var radius: float = rng.randf_range(25, 44)
-		polygon.append(p + Vector2.RIGHT.rotated(i * TAU / 6.0) * radius)
-	draw_colored_polygon(polygon, palette.base.darkened(0.22))
-	draw_polyline(PackedVector2Array([polygon[3], polygon[4], polygon[5], polygon[0]]), Color(palette.metal, 0.35), 2)
+	# Tall masonry is rendered by RaisedScenery, sorting at each true base.
+	# Its shadows stay on this ground plane and do not cover warning telegraphs.
+	for side: int in range(4):
+		var length: float = arena.size.x if side<2 else arena.size.y
+		var count: int = maxi(3,floori(length/420.0))
+		for index: int in range(count):
+			var progress: float = (float(index)+0.5)/float(count)
+			var at: Vector2
+			match side:
+				0: at = Vector2(lerpf(arena.position.x,arena.end.x,progress),arena.position.y-36)
+				1: at = Vector2(lerpf(arena.position.x,arena.end.x,progress),arena.end.y+86)
+				2: at = Vector2(arena.position.x-82,lerpf(arena.position.y,arena.end.y,progress))
+				_: at = Vector2(arena.end.x+82,lerpf(arena.position.y,arena.end.y,progress))
+			var height: float = 160.0 if index%2==0 else 80.0
+			var footprint := Rect2(at-Vector2(34,16),Vector2(68,32))
+			preload("res://scripts/world/room_appearance.gd")._draw_cast_shadow(self,footprint,height,biome)
+	for index: int in range(38):
+		var edge: int = index % 4
+		var progress: float = rng.randf()
+		var at: Vector2
+		match edge:
+			0: at = Vector2(lerpf(arena.position.x, arena.end.x, progress), arena.position.y - rng.randf_range(54, 180))
+			1: at = Vector2(lerpf(arena.position.x, arena.end.x, progress), arena.end.y + rng.randf_range(68, 180))
+			2: at = Vector2(arena.position.x - rng.randf_range(70, 180), lerpf(arena.position.y, arena.end.y, progress))
+			_: at = Vector2(arena.end.x + rng.randf_range(70, 180), lerpf(arena.position.y, arena.end.y, progress))
+		draw_circle(at, rng.randf_range(18, 40), Color(palette.foliage, 0.38))
+		draw_arc(at + Vector2(12, 11), rng.randf_range(20, 30), 0.05, PI * 0.95, 16, Color(palette.leaf, 0.20), 2.0, true)

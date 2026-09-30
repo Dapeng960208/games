@@ -138,6 +138,20 @@ func cancel_owner(caster: Node2D) -> void:
 	summon_owners.erase(owner_id)
 	queue_redraw()
 
+func cancel_displaced_motion(caster: Node2D) -> void:
+	if not is_instance_valid(caster):
+		return
+	var owner_id: int = caster.get_instance_id()
+	# Only body-driven motion is invalidated. Already committed projectiles,
+	# ground spells and their delayed jobs keep their independent frozen origin.
+	for command: Dictionary in jobs.duplicate():
+		if int(command.get("owner_id", 0)) == owner_id and str(command.get("kind", "")) == "charge":
+			jobs.erase(command)
+	for motion: Dictionary in motions.duplicate():
+		if int(motion.get("owner_id", 0)) == owner_id:
+			_finish_motion(motion, false)
+	queue_redraw()
+
 func reset_room() -> void:
 	for effect: Dictionary in hazards + supports + jobs:
 		var anchor: Node2D = _anchor(effect)
@@ -233,6 +247,24 @@ func filter_incoming_damage(target: Node2D, amount: float, kind: StringName, fro
 				if float(support.amount) <= EPSILON:
 					_remove_support(support)
 	return result
+
+func clear_target_guards(target: Node2D) -> int:
+	# Arena shield counters remove real barrier support, including a shared
+	# cover anchor's records, without cancelling attacks or unrelated buffs.
+	var removed: int = 0
+	var broken_anchors: Array[Node2D] = []
+	for support: Dictionary in supports.duplicate():
+		if str(support.get("kind", "")) == "guard" and _support_target(support) == target:
+			var anchor: Node2D = _anchor(support)
+			if is_instance_valid(anchor) and not broken_anchors.has(anchor):
+				broken_anchors.append(anchor)
+			_remove_support(support)
+			removed += 1
+	for support: Dictionary in supports.duplicate():
+		if str(support.get("kind", "")) == "guard" and _anchor(support) in broken_anchors:
+			_remove_support(support)
+			removed += 1
+	return removed
 
 func _execute(command: Dictionary) -> void:
 	if not _owner_alive(command):
@@ -330,7 +362,12 @@ func _tick_projectile(shot: Dictionary, delta: float) -> void:
 		var wall_fraction: float = _blocked(start, end, float(shot.radius))
 		end = start.lerp(end, wall_fraction)
 		var hits: Array[Dictionary] = _segment_targets(start, end, float(shot.radius), shot.hit_ids)
+		var cursor: Vector2 = start
 		for hit: Dictionary in hits:
+			var hit_point: Vector2 = start.lerp(end, float(hit.t))
+			if room.has_method("intercept_enemy_projectile") and room.intercept_enemy_projectile(cursor, hit_point, 1.0):
+				projectiles.erase(shot)
+				return
 			var victim: Node2D = hit.target
 			shot.hit_ids.append(victim.get_instance_id())
 			_deal(victim, shot, start)
@@ -339,6 +376,10 @@ func _tick_projectile(shot: Dictionary, delta: float) -> void:
 				projectiles.erase(shot)
 				return
 			shot.pierce_left = int(shot.pierce_left) - 1
+			cursor = hit_point
+		if room.has_method("intercept_enemy_projectile") and room.intercept_enemy_projectile(cursor, end, 1.0001):
+			projectiles.erase(shot)
+			return
 		shot.position = end
 		shot.distance_left = float(shot.distance_left) - start.distance_to(end)
 		travel -= distance
@@ -356,7 +397,7 @@ func _tick_projectile(shot: Dictionary, delta: float) -> void:
 func _start_motion(command: Dictionary) -> void:
 	var caster: Node2D = _owner(command)
 	var pending_knockback: Variant = _property(caster, "knockback", Vector2.ZERO)
-	if caster.position.distance_squared_to(Vector2(command.origin)) > 0.25 or (pending_knockback is Vector2 and pending_knockback.length_squared() > 0.01):
+	if caster.position.distance_squared_to(Vector2(command.origin)) > 0.25 or (pending_knockback is Vector2 and pending_knockback.length_squared() > 0.01) or (caster.has_method("has_pending_displacement") and caster.has_pending_displacement()):
 		return
 	for old: Dictionary in motions.duplicate():
 		if int(old.owner_id) == caster.get_instance_id():
@@ -383,7 +424,7 @@ func _tick_motion(motion: Dictionary, delta: float) -> void:
 		_finish_motion(motion, false)
 		return
 	var pending_knockback: Variant = _property(caster, "knockback", Vector2.ZERO)
-	if caster.position.distance_squared_to(Vector2(motion.last_position)) > 0.25 or (pending_knockback is Vector2 and pending_knockback.length_squared() > 0.01):
+	if caster.position.distance_squared_to(Vector2(motion.last_position)) > 0.25 or (pending_knockback is Vector2 and pending_knockback.length_squared() > 0.01) or (caster.has_method("has_pending_displacement") and caster.has_pending_displacement()):
 		# External displacement invalidates the already locked path. Cancelling
 		# avoids snapping back or connecting an unannounced route to its endpoint.
 		_finish_motion(motion, false)
@@ -417,6 +458,12 @@ func _tick_motion(motion: Dictionary, delta: float) -> void:
 			break
 	if stopped or float(motion.elapsed) >= float(motion.duration) - EPSILON:
 		# A blocked leap never moves its warned landing blast to an unmarked wall.
+		# Only completed travel reaches this bridge. Interrupted/cancelled motion
+		# cannot claim a counter along the untravelled part of its locked path.
+		# Curved motion cannot use its endpoint chord as travelled geometry.
+		# The current barricade counter supports the actual straight charge only.
+		if mode == "line" and room.has_method("notify_enemy_charge"):
+			room.call("notify_enemy_charge", caster, Vector2(motion.start), caster.position)
 		_finish_motion(motion, not stopped)
 
 func _finish_motion(motion: Dictionary, impact: bool) -> void:
@@ -527,7 +574,13 @@ func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 		return false
 	var accepted: bool = false
 	if float(command.get("damage", 0.0)) > 0.0:
-		accepted = bool(victim.receive_damage(float(command.damage), origin))
+		if victim.has_method("class_status"):
+			var owner_profile: Dictionary = _property(_owner(command),"profile",{})
+			var kind: String = str(command.get("damage_type",owner_profile.get("damage_type",owner_profile.get("damage_kind","physical"))))
+			if kind in ["electric","thermal","arcane","toxic","cold"]: kind = "magic"
+			accepted = bool(victim.receive_damage(float(command.damage),origin,{"damage_type":kind}))
+		else:
+			accepted = bool(victim.receive_damage(float(command.damage), origin))
 	else:
 		accepted = not (victim.has_method("dash_protected") and victim.dash_protected()) and float(_property(victim, "invulnerable", 0.0)) <= 0.0
 	if accepted and victim.has_method("receive_enemy_status"):
@@ -614,7 +667,9 @@ func _support(command: Dictionary) -> void:
 			if health == null or int(heal_receipts.get(key, 0)) >= clampi(int(command.get("max_receives", command.get("per_target_limit", 2))), 1, 2):
 				continue
 			var before: float = float(health.current)
-			health.current = minf(maximum, before + minf(maximum * 0.15, float(command.get("amount", maximum * float(command.get("heal_ratio", 0.1))))))
+			var heal_amount: float = minf(maximum * 0.15, float(command.get("amount", maximum * float(command.get("heal_ratio", 0.1)))))
+			if target.has_method("heal"): target.heal(heal_amount)
+			else: health.current = minf(maximum, before + heal_amount)
 			if float(health.current) > before:
 				heal_receipts[key] = int(heal_receipts.get(key, 0)) + 1
 		else:

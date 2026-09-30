@@ -10,11 +10,17 @@ const IVORY := Color("e4d7bb")
 const TEAL := Color("69cecb")
 const GENERATED_HEIGHT := 88.0
 const FOOT_OFFSET := 8.0
+const WalkAtlas = preload("res://scripts/combat/hero_walk_atlas.gd")
+const BasicAtlas = preload("res://scripts/combat/hero_basic_atlas.gd")
+const SkillAtlas = preload("res://scripts/combat/hero_skill_atlas.gd")
+const ArtFamily = preload("res://scripts/combat/hero_art_family.gd")
+const STRIDE_PER_WORLD_UNIT := .12
 static var _generated_assets: Dictionary = {}
 static var _action_banks: Dictionary = {}
 
 static func _action_bank(hero: String, bank: String) -> Dictionary:
-	var metadata_path: String = "res://assets/generated/heroes/%s_actions_%s_v2.json" % [hero,bank]
+	var replacement: String = ArtFamily.metadata_path(hero,"actions",bank)
+	var metadata_path: String = replacement if not replacement.is_empty() else "res://assets/generated/heroes/%s_actions_%s_v2.json" % [hero,bank]
 	if _action_banks.has(metadata_path):
 		return _action_banks[metadata_path]
 	if not FileAccess.file_exists(metadata_path):
@@ -35,7 +41,8 @@ static func _action_bank(hero: String, bank: String) -> Dictionary:
 		texture = ImageTexture.create_from_image(source)
 	var standard_height: float = maxf(1.0,float(data.get("body_height",source.get_height()*.36)))
 	var frames: Dictionary = {}
-	for item: Dictionary in data.frames:
+	for frame_index in data.frames.size():
+		var item: Dictionary = data.frames[frame_index]
 		var raw: Array = item.get("region",item.get("cell",[]))
 		var foot: Array = item.get("foot",[])
 		if raw.size() != 4 or foot.size() != 2:
@@ -51,7 +58,7 @@ static func _action_bank(hero: String, bank: String) -> Dictionary:
 			var point: Array = item.get(label,[])
 			if point.size() == 2:
 				anchors[label] = (Vector2(float(point[0]),float(point[1]))-anchor)*scale_value+Vector2(0,FOOT_OFFSET)
-		frames[str(item.get("name","idle"))] = {"texture":texture,"path":path,"region":region,"bounds":bounds,"anchors":anchors,"bank":bank,"phase":str(item.get("name","idle")),"body_height":GENERATED_HEIGHT}
+		frames[str(item.get("name","idle"))] = {"texture":texture,"path":path,"region":region,"bounds":bounds,"anchors":anchors,"bank":bank,"phase":str(item.get("name","idle")),"frame_index":frame_index,"body_height":GENERATED_HEIGHT,"source_body_height":standard_height,"facing_x":-1 if int(data.get("facing_x",1)) < 0 else 1,"art_family":"storybook" if not replacement.is_empty() else "original"}
 	if not frames.has("idle") or not frames.has("windup") or not frames.has("release") or not frames.has("recovery"):
 		return {}
 	_action_banks[metadata_path] = frames
@@ -60,6 +67,144 @@ static func _action_bank(hero: String, bank: String) -> Dictionary:
 static func action_frame_info(hero: String, bank: String = "front", phase: String = "idle") -> Dictionary:
 	var frames: Dictionary = _action_bank(hero,bank)
 	return frames.get(phase,frames.get("idle",{})).duplicate()
+
+static func walk_frame_info(hero: String, bank: String = "front", distance: float = 0.0) -> Dictionary:
+	return WalkAtlas.frame_info(hero,bank,distance)
+
+static func basic_frame_info(hero: String, bank: String, phase: String, progress: float) -> Dictionary:
+	return BasicAtlas.frame_info(hero,bank,phase,progress)
+
+## The available gunner sheets have two facing banks, not an articulated weapon
+## or eight aim directions. Reuse their shouldered poses without rotating the
+## whole body: the original fire/ready cells throw the head back/lower the rifle.
+static func gunner_shooting_frame(bank: String, pose: Dictionary) -> Dictionary:
+	var slot: String = str(pose.get("slot", ""))
+	var phase: String = str(pose.get("phase", "idle"))
+	if slot not in ["basic", "q", "secondary", "ultimate"] or phase not in ["windup", "release", "recovery"] or bank not in ["front", "back"]:
+		return {}
+	var progress: float = float(pose.get("authored_phase_progress",pose.get("progress",0.0)))
+	if not is_finite(progress):
+		return {}
+	var clip: Dictionary = SkillAtlas.load_clip("res://assets/generated/heroes/CH02_secondary_%s_v1.json" % bank)
+	if str(clip.get("hero_id","")) != "CH02" or str(clip.get("slot","")) != "secondary" or str(clip.get("bank","")) != bank:
+		return {}
+	var name: String = "lock"
+	if phase == "windup" and slot in ["basic", "secondary"] and progress < 0.5:
+		name = "brace"
+	elif phase == "recovery":
+		name = "absorb"
+	var frame: Dictionary = clip.frames.get(name,{}).duplicate(true)
+	if frame.is_empty():
+		return {}
+	# Keep the six-source-frame atlas contract intact. This presentation mapping
+	# deliberately plays only stable shoulder poses, not a six-frame firing clip.
+	frame["phase"] = phase
+	frame["phase_progress"] = clampf(progress,0.0,1.0)
+	frame["source_slot"] = "secondary"
+	frame["slot"] = slot
+	frame["skill_sequence"] = true
+	frame["gun_shooting_pose"] = true
+	frame["gun_recoil"] = 1.6 if slot == "secondary" else 0.7
+	return frame
+
+## Basic feedback ends at 290 ms; the real weapon cooldown can last longer.
+## Keep the rifle shouldered through that existing cooldown, including the gap
+## before the next held shot. This owns no timer and cannot fire or extend a cast.
+static func gunner_presentation_pose(p: Node2D, pose: Dictionary) -> Dictionary:
+	if p.hero_id() != "CH02":
+		return pose
+	var feedback: Node = p.get_node_or_null("HeroFeedback")
+	# A finished skill leaves a short feedback tail. A subsequent real basic
+	# release must use its own contact frame/anchor even while that tail exists.
+	# Read the recorded visual age; never infer a shot from stale shot/shots fields.
+	if is_instance_valid(feedback) and p.abilities != null and not p.abilities.busy() and str(feedback.get("_basic")) == "attack_strike":
+		var age: float = float(feedback.get("_basic_age"))
+		if age < 0.29:
+			var basic: Dictionary = pose.duplicate()
+			basic.merge({"slot":"basic", "phase":"release" if age < 0.09 else "recovery",
+				"progress":clampf(age/0.09 if age < 0.09 else (age-0.09)/0.20,0.0,1.0),
+				"direction":feedback.get("_shot_direction")},true)
+			basic.erase("authored_phase_progress")
+			return basic
+	if str(pose.get("phase", "idle")) != "idle" or float(p.shot_cooldown) <= 0.0:
+		return pose
+	var held: Dictionary = pose.duplicate()
+	held.merge({"phase":"recovery", "slot":"basic", "progress":1.0, "authored_phase_progress":1.0,
+		"direction":p.aim_direction, "gun_hold":true},true)
+	return held
+
+static func presentation_frame_info(hero: String, bank: String, pose: Dictionary, stride: float, walking: bool, dash: bool = false) -> Dictionary:
+	var phase: String = str(pose.get("phase", "idle"))
+	if hero == "CH02" and not dash:
+		var gun: Dictionary = gunner_shooting_frame(bank,pose)
+		if not gun.is_empty():
+			return gun
+	if phase != "idle" and not dash:
+		var skill: Dictionary = SkillAtlas.frame_info(hero,str(pose.get("slot", "")),bank,phase,float(pose.get("authored_phase_progress",pose.get("progress",0.0))))
+		if not skill.is_empty():
+			return skill
+	if hero == "CH01" and str(pose.get("slot", "")) == "basic" and phase != "idle" and not dash:
+		var basic: Dictionary = basic_frame_info(hero,bank,phase,float(pose.get("progress",0.0)))
+		if not basic.is_empty():
+			return basic
+	return motion_frame_info(hero,bank,phase,stride,walking,dash)
+
+## Frozen launch-point sampling, independent of the previous rendered idle pose.
+## Projectiles use this display anchor without moving their physical origin.
+static func release_muzzle_local(hero: String, slot: String, direction: Vector2) -> Vector2:
+	var aim: Vector2 = direction.normalized() if direction.is_finite() and direction.length_squared() > 0.001 else Vector2.RIGHT
+	var bank: String = "back" if aim.y < -0.20 else "front"
+	var pose: Dictionary = {"phase":"release","slot":slot,"progress":0.0,"authored_phase_progress":0.0}
+	var asset: Dictionary = presentation_frame_info(hero,bank,pose,0.0,false)
+	if asset.is_empty():
+		return aim * 36.0 + Vector2(0,-20)
+	var flip: float = source_horizontal_flip(aim,asset)
+	var muzzle: Vector2 = asset.anchors.get("muzzle",asset.anchors.get("right_hand",Vector2(26,-28)))
+	# Match the old basic-strike lean; authored sequences carry their own recoil.
+	var lean: Vector2 = aim * (5.0 if hero == "CH01" else 1.5) if slot == "basic" else Vector2.ZERO
+	return _action_offset(asset,hero,aim,lean,pose) + muzzle * Vector2(flip,1.0)
+
+## A generated rear view can face left even when the front view faces right.
+## Compose its authored orientation with the requested aim; anchors follow the
+## exact same transform as the pixels instead of assuming every source is SE.
+static func source_horizontal_flip(aim: Vector2, asset: Dictionary) -> float:
+	return (-1.0 if aim.x < -.05 else 1.0) * (-1.0 if int(asset.get("facing_x",1)) < 0 else 1.0)
+
+static func _action_offset(asset: Dictionary, hero: String, aim: Vector2, lean: Vector2, pose: Dictionary) -> Vector2:
+	if bool(asset.get("gun_shooting_pose",false)):
+		# The stock and shoulder remain one authored pose. A sub-two-pixel recoil
+		# translates them together; body draw and projectile launch share this path.
+		return -aim * float(asset.gun_recoil) * (1.0-clampf(float(pose.get("progress",0.0)),0.0,1.0)) if str(pose.phase) == "release" else Vector2.ZERO
+	var authored_motion: bool = str(asset.phase) == "walk" or bool(asset.get("basic_sequence",false)) or bool(asset.get("skill_sequence",false)) or str(asset.get("path","")).contains("CH01_storybook_")
+	var offset: Vector2 = Vector2.ZERO if authored_motion else lean
+	if str(pose.phase) == "release" and not authored_motion:
+		offset += aim * (2.5 if hero == "CH01" else -3.8 if hero == "CH02" else 1.6) * (1.0 - clampf(float(pose.progress),0.0,1.0))
+	return offset
+
+static func motion_frame_info(hero: String, bank: String, pose_phase: String, stride: float, walking: bool, dash: bool = false) -> Dictionary:
+	# Player.stride is accumulated collision-resolved travel multiplied by .12.
+	# A stride angle/TAU cycle would run almost three times too fast here.
+	if pose_phase == "idle" and walking and not dash:
+		var walk: Dictionary = walk_frame_info(hero,bank,stride/STRIDE_PER_WORLD_UNIT)
+		if not walk.is_empty():
+			return walk
+	return action_frame_info(hero,bank,pose_phase)
+
+static func _walk_is_moving(p: Node2D, stride: float, velocity: Vector2) -> bool:
+	# Requested velocity remains nonzero against walls. Observe resolved travel
+	# once per physics frame so blocked input returns to idle without foot skating.
+	var frame: int = Engine.get_physics_frames()
+	var previous: Dictionary = p.get_meta("_hero_visual_motion",{})
+	var walking: bool = velocity.length_squared() > 4.0
+	if not previous.is_empty():
+		if frame != int(previous.frame) or not is_equal_approx(stride,float(previous.stride)):
+			walking = walking and stride > float(previous.stride)+.00001
+		else:
+			walking = walking and bool(previous.walking)
+	else:
+		walking = walking and stride > .00001
+	p.set_meta("_hero_visual_motion",{"frame":frame,"stride":stride,"walking":walking})
+	return walking
 
 
 static func _generated_asset(hero: String) -> Dictionary:
@@ -154,12 +299,12 @@ static func draw_hero(p: Node2D) -> void:
 	var duration := maxf(0.001, float(p.get("visual_duration")))
 	var progress := clampf(1.0 - remaining / duration, 0.0, 1.0)
 	var stride := float(p.get("stride"))
-	var walking := velocity.length_squared() > 4.0
+	var walking := _walk_is_moving(p,stride,velocity)
 	var step := sin(stride) * (1.0 if walking else 0.0)
 	var hurt := clampf(float(p.get("hurt_flash")) * 7.0, 0.0, 0.72)
 	var dash := float(p.get("dash_remaining")) > 0.0 or state == "dash"
 	var bob := absf(step) * (1.5 if hero == "CH01" else 2.4)
-	var lean := Vector2(velocity.x * 0.007, -bob)
+	var lean := Vector2(velocity.x * 0.007 if walking else 0.0, -bob)
 	if state == "attack_windup":
 		lean -= aim * progress * (4.0 if hero == "CH01" else 1.5)
 	elif state == "attack_strike":
@@ -168,15 +313,17 @@ static func draw_hero(p: Node2D) -> void:
 		_draw_dash(p, hero, velocity, aim)
 	var feedback: Node = p.get_node_or_null("HeroFeedback")
 	var pose: Dictionary = feedback.pose_state() if is_instance_valid(feedback) else {"phase":"idle","progress":0.0,"direction":aim,"slot":"basic"}
+	pose = gunner_presentation_pose(p,pose)
 	var pose_aim: Vector2 = pose.get("direction",aim)
 	if pose_aim.length_squared() > .01:
 		aim = pose_aim.normalized()
 	var bank: String = "back" if aim.y < -.20 else "front"
-	var motion_frame: Dictionary = action_frame_info(hero,bank,str(pose.phase))
+	var motion_frame: Dictionary = presentation_frame_info(hero,bank,pose,stride,walking,dash)
 	if not motion_frame.is_empty():
 		p.set_meta("hero_visual_source",motion_frame.path)
-		p.set_meta("hero_visual_pose",str(pose.phase))
+		p.set_meta("hero_visual_pose",str(motion_frame.phase))
 		p.set_meta("hero_visual_bank",bank)
+		p.set_meta("hero_visual_frame",int(motion_frame.get("frame_index",-1)))
 		p.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		_draw_action_frame(p,motion_frame,hero,aim,lean,pose,hurt)
 		_draw_protection(p)
@@ -211,14 +358,14 @@ static func draw_hero(p: Node2D) -> void:
 static func _draw_action_frame(p: Node2D, asset: Dictionary, hero: String, aim: Vector2, lean: Vector2, pose: Dictionary, hurt: float) -> void:
 	var shadow_width: float = 23.0 if hero == "CH01" else 18.0
 	p.draw_set_transform(Vector2(0,FOOT_OFFSET),0.0,Vector2(shadow_width/12.0,.48))
-	p.draw_circle(Vector2.ZERO,12.0,Color(.012,.02,.023,.64))
+	var shadow_color := Color(.24,.25,.34,.28) if str(asset.get("path","")).contains("CH01_storybook_") else Color(.012,.02,.023,.64)
+	p.draw_circle(Vector2.ZERO,12.0,shadow_color)
 	p.draw_set_transform(Vector2.ZERO)
-	var flip: float = -1.0 if aim.x < -.05 else 1.0
+	var flip: float = source_horizontal_flip(aim,asset)
 	p.set_meta("hero_visual_flip",flip)
-	var offset: Vector2 = lean
-	var progress: float = clampf(float(pose.progress),0.0,1.0)
-	if str(pose.phase) == "release":
-		offset += aim*(2.5 if hero == "CH01" else -3.8 if hero == "CH02" else 1.6)*(1.0-progress)
+	# Authored walking and basic swings carry their own body weight. Registered
+	# feet must not receive the old whole-image bob/lean or release translation.
+	var offset: Vector2 = _action_offset(asset,hero,aim,lean,pose)
 	# The atlas contains real torso/limb/weapon poses. Only tiny translation
 	# adds recoil; no whole-image aiming rotation or second weapon is layered on.
 	p.draw_set_transform(offset,0.0,Vector2(flip,1.0))
