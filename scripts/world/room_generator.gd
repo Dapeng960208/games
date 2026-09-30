@@ -1,13 +1,12 @@
 class_name RoomGenerator
 extends RefCounted
-## Seeded, independent floor props. Only authored voids keep large collision
-## geometry; every solid object has its own small, visible ground footprint.
+## Seeded, independent floor props on a continuous walkable floor.
+## Every solid object has its own small, visible ground footprint.
 ## A cached connected path network is reserved before rejection sampling, so
 ## generation never needs to rebuild a navigation graph for each placed prop.
 
 const Layouts = preload("res://scripts/world/room_layouts.gd")
 const Catalog = preload("res://scripts/world/world_catalog.gd")
-const VOID_KINDS := ["mine_pit", "gear_gap", "suspended_void", "water_channel", "floating_platform_gap", "ventilation_shaft", "acid_reservoir", "gantry_void", "mirror_pool", "deep_rift", "echo_disc_gap"]
 const ASSETS := {
 	"B01": ["B01_winch", "B01_ore_cart", "B01_crate_stack"],
 	"B02": ["B02_spore_nest", "B02_root_barrier", "B02_fungal_rock"],
@@ -45,7 +44,7 @@ static func _generate_with_budget(room_id: String, seed_value: int, random_budge
 	var layout: Dictionary = skeleton.layout.duplicate(true)
 	layout["seed"] = seed_value
 	layout["generated"] = true
-	layout["generation_version"] = 4
+	layout["generation_version"] = 5
 	layout["prop_instances"] = []
 	layout["decoration_instances"] = []
 	layout["reserved_paths"] = skeleton.paths.duplicate(true)
@@ -219,18 +218,15 @@ static func _skeleton(room_id: String) -> Dictionary:
 	var layout: Dictionary = Layouts.build(room_id)
 	if layout.is_empty():
 		return {}
-	var kept: Array[Rect2] = []
-	var kinds: Array[String] = []
-	var original_kinds: Array = layout.get("obstruction_kinds", [])
-	for index: int in range(layout.obstructions.size()):
-		var kind: String = str(original_kinds[index]) if index < original_kinds.size() else ""
-		if kind in VOID_KINDS:
-			kept.append(layout.obstructions[index])
-			kinds.append(kind)
-	layout["obstructions"] = kept
-	layout["obstruction_kinds"] = kinds
-	layout["static_obstructions"] = kept.duplicate()
-	layout["static_obstruction_kinds"] = kinds.duplicate()
+	# Historical templates contain large rectangular pits, pools and walls.
+	# Remove both their visual recipes and collision before reserving paths;
+	# current faction props supply the scenery on a continuous ground plane.
+	var ground_obstacles: Array[Rect2] = []
+	var ground_kinds: Array[String] = []
+	layout["obstructions"] = ground_obstacles
+	layout["obstruction_kinds"] = ground_kinds
+	layout["static_obstructions"] = ground_obstacles.duplicate()
+	layout["static_obstruction_kinds"] = ground_kinds.duplicate()
 	layout["biome_id"] = str(Catalog.room(room_id).get("biome_id", "B01"))
 	var report: Dictionary = Layouts.validate_layout(layout, Layouts.MAX_ACTOR_RADIUS)
 	if not bool(report.valid):

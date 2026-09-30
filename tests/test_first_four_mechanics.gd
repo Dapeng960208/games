@@ -5,6 +5,7 @@ const Catalog = preload("res://scripts/world/world_catalog.gd")
 const FirstFour = preload("res://scripts/world/first_four_objectives.gd")
 const GraveOrc = preload("res://scripts/world/first_four_grave_orc.gd")
 const Layouts = preload("res://scripts/world/room_layouts.gd")
+const BossLayouts = preload("res://scripts/world/boss_layouts.gd")
 const Quests = preload("res://scripts/ui/quest_localization.gd")
 var checks := 0
 var failures := 0
@@ -55,6 +56,8 @@ func run_checks() -> void:
 	for index: int in range(1,25):
 		var id: String = "L%02d" % index
 		fixture(id)
+		check(room.layout.static_obstructions.is_empty() and room.layout.static_obstruction_kinds.is_empty(),id+" removes old rectangular terrain from art and collision")
+		check(room.obstructions==room.layout.obstructions and room.obstructions.size()==room.layout.prop_instances.size(),id+" only visible small props block movement")
 		var host: Node2D = room.objectives
 		var count: int = int(Catalog.room(id).expedition_objective_count)
 		check(host.module.get_script()==FirstFour and host.required_count==count and host.elements.size()==count and host.status().rules=="first_four_combat_v1" and not host.finished,id+" uses new objectives and actual count")
@@ -66,6 +69,10 @@ func run_checks() -> void:
 			points.append(item.position)
 			for danger: Dictionary in room.layout.get("hazard_zones",[]): safe = safe and not danger.get("rect",Rect2()).grow(64.0).has_point(item.position)
 		check(safe,id+" objectives have distinct clear feet outside danger routes")
+	for id: String in ["BO01","BO02","BO03","BO04"]:
+		var arena: Dictionary = BossLayouts.build(id,146556)
+		check(arena.obstructions.is_empty() and arena.static_obstructions.is_empty() and arena.static_obstruction_kinds.is_empty(),id+" removes rectangular boss pools and pits")
+	await _test_open_ground()
 	_test_conduits()
 	_test_nests()
 	_test_graves()
@@ -82,6 +89,23 @@ func run_checks() -> void:
 	await get_tree().process_frame
 	print("FIRST FOUR MECHANICS: %d checks, %d failures" % [checks,failures])
 	get_tree().quit(1 if failures else 0)
+
+func _test_open_ground() -> void:
+	fixture("L02")
+	# This crosses the exact former 709 x 775 pit in the supplied screenshot.
+	var from := Vector2(600,900)
+	var to := Vector2(1300,900)
+	check(room.valid_ground(Vector2(946,941),Balance.PLAYER_RADIUS),"former large pit center is actual walkable ground")
+	check(room.move_actor(from,to-from,Balance.PLAYER_RADIUS).is_equal_approx(to),"actor crosses the removed pit without an invisible collider")
+	if DisplayServer.get_name()=="headless": return
+	get_window().size = Vector2i(1280,720)
+	room.player.position = Vector2(946,941)
+	room.camera.follow_target()
+	room.camera.force_update_scroll()
+	for _frame in 3: await get_tree().process_frame
+	await RenderingServer.frame_post_draw
+	DirAccess.make_dir_recursive_absolute("res://artifacts")
+	check(get_viewport().get_texture().get_image().save_png("res://artifacts/open_courtyard_L02.png")==OK,"capture actual continuous courtyard floor")
 
 func _test_conduits() -> void:
 	fixture("L01")

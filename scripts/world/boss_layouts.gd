@@ -71,8 +71,6 @@ static func _base(entry: Vector2, exit: Vector2, boss_spawn: Vector2) -> Diction
 
 static func _forge() -> Dictionary:
 	var layout := _base(Vector2(230, 900), Vector2(2570, 900), Vector2(1400, 900))
-	layout.obstructions = [Rect2(0, 0, 390, 300), Rect2(2410, 0, 390, 300), Rect2(0, 1500, 390, 300), Rect2(2410, 1500, 390, 300)]
-	layout.obstruction_kinds = ["mine_pit", "mine_pit", "mine_pit", "mine_pit"]
 	layout.spawn_points = [Vector2(520, 430), Vector2(2280, 430), Vector2(2280, 1370), Vector2(520, 1370)]
 	layout.topology_probes = [Vector2(650, 900), Vector2(1400, 300), Vector2(2150, 900), Vector2(1400, 1500)]
 	for index: int in 3:
@@ -89,8 +87,6 @@ static func _forge() -> Dictionary:
 
 static func _broodbed() -> Dictionary:
 	var layout := _base(Vector2(250, 1450), Vector2(2550, 350), Vector2(1400, 900))
-	layout.obstructions = [Rect2(760, 0, 300, 510), Rect2(1740, 0, 300, 420), Rect2(410, 720, 390, 320), Rect2(2030, 760, 420, 330), Rect2(810, 1410, 330, 390), Rect2(1690, 1370, 340, 430)]
-	layout.obstruction_kinds = ["acid_reservoir", "acid_reservoir", "acid_reservoir", "acid_reservoir", "acid_reservoir", "acid_reservoir"]
 	layout.spawn_points = [Vector2(520, 390), Vector2(2250, 430), Vector2(2260, 1390), Vector2(540, 1320)]
 	layout.topology_probes = [Vector2(900, 760), Vector2(1760, 670), Vector2(1830, 1170), Vector2(980, 1210), Vector2(1400, 900)]
 	var knots: Array[Vector2] = [Vector2(1060,650), Vector2(1750,690), Vector2(1740,1160), Vector2(1050,1160)]
@@ -107,8 +103,6 @@ static func _broodbed() -> Dictionary:
 
 static func _hangar() -> Dictionary:
 	var layout := _base(Vector2(240, 900), Vector2(2560, 900), Vector2(1400, 900))
-	layout.obstructions = [Rect2(0,0,520,420), Rect2(2280,0,520,420), Rect2(0,1380,520,420), Rect2(2280,1380,520,420)]
-	layout.obstruction_kinds = ["gantry_void", "gantry_void", "gantry_void", "gantry_void"]
 	layout.spawn_points = [Vector2(610, 410), Vector2(2190, 410), Vector2(2190, 1390), Vector2(610, 1390)]
 	layout.topology_probes = [Vector2(720,900), Vector2(1400,340), Vector2(2080,900), Vector2(1400,1460)]
 	var towers: Array[Vector2] = [Vector2(700,380),Vector2(2100,380),Vector2(2100,1420),Vector2(700,1420)]
@@ -127,8 +121,6 @@ static func _hangar() -> Dictionary:
 
 static func _bell_court() -> Dictionary:
 	var layout := _base(Vector2(230, 900), Vector2(2570, 900), Vector2(1400, 900))
-	layout.obstructions = [Rect2(1280,210,240,260), Rect2(1280,1330,240,260), Rect2(530,780,300,240), Rect2(1970,780,300,240)]
-	layout.obstruction_kinds = ["deep_rift", "deep_rift", "deep_rift", "deep_rift"]
 	layout.spawn_points = [Vector2(500, 480), Vector2(2300, 480), Vector2(2300, 1320), Vector2(500, 1320)]
 	layout.topology_probes = [Vector2(780,520), Vector2(2020,520), Vector2(2020,1280), Vector2(780,1280), Vector2(1400,900)]
 	var bells: Array[Vector2] = [Vector2(920,430),Vector2(1880,430),Vector2(1880,1370),Vector2(920,1370)]
