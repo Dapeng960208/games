@@ -1,0 +1,484 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH01",
+  "bank": "back",
+  "enabled": true,
+  "status": "storybook_basic_asset_review_complete_runtime_review_pending",
+  "texture": "res://assets/generated/heroes/CH01_storybook_basic_back_v1.png",
+  "body_height": 213,
+  "frames": [
+    {
+      "name": "lift",
+      "source_cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "region": [
+        202,
+        177,
+        192,
+        287
+      ],
+      "foot": [
+        315,
+        442
+      ],
+      "head": [
+        293,
+        261
+      ],
+      "grip": [
+        320,
+        242
+      ],
+      "muzzle": [
+        234,
+        234
+      ],
+      "pose": "Two-handed axe lifted diagonally overhead; stable wide boots.",
+      "alpha_bounds": [
+        210,
+        185,
+        176,
+        271
+      ],
+      "visible_alpha_pixels": 19702,
+      "near_opaque_fraction": 0.8968,
+      "cell_margin_pixels_at_alpha16": 56,
+      "cell_edge_visible_alpha_pixels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boot_sole_contact_centers": [
+        [
+          266,
+          430
+        ],
+        [
+          364,
+          454
+        ]
+      ]
+    },
+    {
+      "name": "loaded",
+      "source_cell": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "region": [
+        703,
+        148,
+        174,
+        312
+      ],
+      "foot": [
+        788.5,
+        442
+      ],
+      "head": [
+        773,
+        259
+      ],
+      "grip": [
+        769,
+        231
+      ],
+      "muzzle": [
+        850,
+        198
+      ],
+      "pose": "Two-handed loaded overhead hold; elbows bent and knees slightly bent.",
+      "alpha_bounds": [
+        711,
+        156,
+        158,
+        296
+      ],
+      "visible_alpha_pixels": 21609,
+      "near_opaque_fraction": 0.9022,
+      "cell_margin_pixels_at_alpha16": 60,
+      "cell_edge_visible_alpha_pixels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boot_sole_contact_centers": [
+        [
+          731,
+          435
+        ],
+        [
+          846,
+          449
+        ]
+      ]
+    },
+    {
+      "name": "downswing",
+      "source_cell": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "region": [
+        1113,
+        223,
+        249,
+        243
+      ],
+      "foot": [
+        1279.5,
+        448
+      ],
+      "head": [
+        1240,
+        268
+      ],
+      "grip": [
+        1202,
+        324
+      ],
+      "muzzle": [
+        1142,
+        282
+      ],
+      "pose": "Both arms committed down and forward halfway through the swing.",
+      "alpha_bounds": [
+        1121,
+        231,
+        233,
+        227
+      ],
+      "visible_alpha_pixels": 18337,
+      "near_opaque_fraction": 0.8939,
+      "cell_margin_pixels_at_alpha16": 54,
+      "cell_edge_visible_alpha_pixels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boot_sole_contact_centers": [
+        [
+          1220,
+          440
+        ],
+        [
+          1339,
+          456
+        ]
+      ]
+    },
+    {
+      "name": "contact",
+      "source_cell": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "region": [
+        161,
+        647,
+        294,
+        231
+      ],
+      "foot": [
+        353,
+        859.5
+      ],
+      "head": [
+        314,
+        676
+      ],
+      "grip": [
+        270,
+        734
+      ],
+      "muzzle": [
+        190,
+        705
+      ],
+      "pose": "Low blade extension toward facing target; wide braced stance with bent knees.",
+      "alpha_bounds": [
+        169,
+        655,
+        278,
+        215
+      ],
+      "visible_alpha_pixels": 20551,
+      "near_opaque_fraction": 0.9028,
+      "cell_margin_pixels_at_alpha16": 65,
+      "cell_edge_visible_alpha_pixels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boot_sole_contact_centers": [
+        [
+          280,
+          851
+        ],
+        [
+          426,
+          868
+        ]
+      ]
+    },
+    {
+      "name": "recoil",
+      "source_cell": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "region": [
+        623,
+        667,
+        269,
+        214
+      ],
+      "foot": [
+        796,
+        864.5
+      ],
+      "head": [
+        762,
+        676
+      ],
+      "grip": [
+        737,
+        751
+      ],
+      "muzzle": [
+        652,
+        728
+      ],
+      "pose": "Axe low; both hands retract the handle toward the body.",
+      "alpha_bounds": [
+        631,
+        675,
+        253,
+        198
+      ],
+      "visible_alpha_pixels": 20096,
+      "near_opaque_fraction": 0.8963,
+      "cell_margin_pixels_at_alpha16": 119,
+      "cell_edge_visible_alpha_pixels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boot_sole_contact_centers": [
+        [
+          730,
+          857
+        ],
+        [
+          862,
+          872
+        ]
+      ]
+    },
+    {
+      "name": "ready",
+      "source_cell": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "region": [
+        1099,
+        639,
+        271,
+        235
+      ],
+      "foot": [
+        1272,
+        860
+      ],
+      "head": [
+        1267,
+        647
+      ],
+      "grip": [
+        1214,
+        760
+      ],
+      "muzzle": [
+        1128,
+        722
+      ],
+      "pose": "Standing two-handed low-ready stance.",
+      "alpha_bounds": [
+        1107,
+        647,
+        255,
+        219
+      ],
+      "visible_alpha_pixels": 21572,
+      "near_opaque_fraction": 0.8986,
+      "cell_margin_pixels_at_alpha16": 83,
+      "cell_edge_visible_alpha_pixels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boot_sole_contact_centers": [
+        [
+          1221,
+          864
+        ],
+        [
+          1323,
+          856
+        ]
+      ]
+    }
+  ],
+  "phase_frames": {
+    "windup": [
+      "lift",
+      "loaded",
+      "downswing"
+    ],
+    "release": [
+      "contact"
+    ],
+    "recovery": [
+      "recoil",
+      "ready"
+    ]
+  },
+  "phase_weights": {
+    "windup": [
+      0.25,
+      0.45,
+      0.3
+    ],
+    "release": [
+      1
+    ],
+    "recovery": [
+      0.55,
+      0.45
+    ]
+  },
+  "registration": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "requested_size": [
+      1536,
+      1024
+    ],
+    "source_pixel_edits": "none",
+    "alpha_threshold": 16,
+    "region_padding": 8,
+    "uniform_grid": true,
+    "layout": "Uniform 3 by 2 atlas with six 512 by 512 source cells.",
+    "method": "Read-only Pillow RGBA scan. Each visible-alpha (>16) bounding box receives 8 source pixels of padding within its source_cell. Foot, crown, two-hand grip and silver cutting-edge anchors are manual anatomical observations in absolute source coordinates. One standing body_height per bank, never per-frame fitting.",
+    "coordinate_system": "Absolute source pixels. Foot is the projected midpoint of both boot sole contact centers, not source-cell center. Muzzle is legacy field naming for the middle of the outer silver axe cutting edge, not a gun muzzle.",
+    "body_height_measurement": {
+      "standing_frame": "ready",
+      "head_crown": [
+        1267,
+        647
+      ],
+      "projected_boot_midpoint": [
+        1272,
+        860
+      ],
+      "head_to_foot_source_pixels": 213,
+      "excludes": [
+        "axe",
+        "raised arms",
+        "raised hands"
+      ]
+    },
+    "limitations": [
+      "Six key poses per view; interpolation and animation timing require native runtime review.",
+      "Manual crown, boot contact, grip and cutting-edge anchors are estimated within approximately 5 source pixels; native runtime contact placement is unverified.",
+      "Crouch, wide stance and perspective lower the projected crown in attack poses. The bank uses the single standing-ready height and does not fit or scale individual frames.",
+      "Generator retained low-alpha fringe noise (alpha 1 through 16) outside meaningful silhouettes. Raw alpha and RGB pixels are preserved unchanged."
+    ],
+    "source_facing": "Northwest: left and up, back of head and rear armor visible."
+  },
+  "alpha_qa": {
+    "tool": "Pillow read/measure only",
+    "mode": "RGBA",
+    "raw_size": [
+      1536,
+      1024
+    ],
+    "sha256": "0e85e8e127c8b2d75cf1bf1539ab36a3f67a089c86b701702dd68536292724fd",
+    "four_corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_zero_fraction": 0.902714,
+    "fringe_alpha_1_to_16_pixels": 31150,
+    "visible_alpha_bounds_xyxy": [
+      169,
+      156,
+      1362,
+      873
+    ],
+    "min_cell_margin_pixels_at_alpha16": 54,
+    "cell_edge_visible_alpha_pixels_total": 0,
+    "six_complete_silhouettes_visual_review": true,
+    "genuine_transparent_alpha": true,
+    "no_source_pixel_changes": true
+  },
+  "validation": {
+    "date": "2026-09-30",
+    "source_art": "Visual review shows six separate complete full-body cel-painted poses, dark spiky hair, orange-red scarf, charcoal/gold armor and one silver-edged orange-black battle axe held with both hands. No gun, helmet, background, labels, ground, motion ghosts or slash effects.",
+    "scope": "Asset registration and alpha QA only. No source code, imports or native gameplay execution was performed by this asset worker."
+  },
+  "provenance": {
+    "date": "2026-09-30",
+    "tool": "Built-in image_gen.imagegen",
+    "mode": "built-in",
+    "source_path": "C:/Users/13326/.codex/generated_images/01a0f2a8-ae8f-7db2-a4f5-cd82ee1ec063/exec-b6650e88-8b72-47fc-a04f-298c67c3ca01.png",
+    "references": [
+      "C:/webdev/games/assets/generated/heroes/CH01_storybook_portrait_v1.png",
+      "C:/webdev/games/artifacts/design-reference-option3.png"
+    ],
+    "prompt": "Use case: stylized-concept.\nAsset type: production game sprite atlas, CH01 Luo Zhen BASIC ATTACK BACK bank. Make NEW sprite art using reference 1 (CH01_storybook_portrait_v1.png) only for exact character identity and art; reference 2 (design-reference-option3.png) for elevated game camera and warm illustration style only.\nCANVAS / PACKING IS CRITICAL: 1536 x 1024 requested. Precisely 3 columns x 2 rows, SIX separated small full-body poses. The invisible cells are 512 x 512. Every full character plus full axe must fit comfortably entirely in its own cell, leaving a CLEAR TRUE TRANSPARENT MARGIN of at least 45 px on ALL FOUR cell edges. Do NOT fill each cell. Body crown-to-boot-midpoint height must be 260 pixels in the standing pose; maintain that same anatomy scale for every pose. The standing head crown is around y=160 within its cell, the boot sole contact midpoint around y=420 within its cell. Raised axe/hands can extend up to y=65, and wide axe extends to x=65, but NOTHING ever goes past x=45 or x=467 or y=45 or y=467 of ANY cell. Transparent separation through the entire middle row gutter. Top row feet must end BEFORE y=467, never cross y=512. Bottom row feet must end BEFORE y=979. Sparse atlas with generous blank space.\nSUBJECT SAME IN ALL SIX: adult male handsome clean-shaven hero, dark brown windswept spiky layered hair, vivid orange-red scarf, charcoal-black plate armor with copper/gold trim and orange accents, dark armor trousers and boots. Exact same anatomy, limb proportions, back armor details and axe in ALL cells. NO helmet. One single ORANGE-BLACK battle axe per character, one broad curved SILVER cutting blade with an orange black inner blade and gold/copper connector, a flat small opposite poll, long dark leather wrapped handle. BOTH HANDS hold that SAME axe handle in every pose. No gun, no hammer, no double weapon, no ghost blade.\nSTYLE: refined bright warm cel-painted fantasy adventure, crisp detailed colored outlines and simplified readable painted shading, consistent with the two references. Not photographic, not realistic rendering.\nCAMERA: elevated top-down 3/4 isometric game-sprite camera looking DOWN about 35 degrees, see tops of head and shoulders. BACK view facing consistently NORTHWEST, toward screen LEFT and UP. Show the back of head, upper back armor, scarf tail flowing rearwards; face mostly entirely hidden. Every attack goes toward upper LEFT. Never turn to face viewer.\nRow-major SIX action key poses, no printed labels:\nTOP LEFT lift: two hands raise axe diagonally overhead preparing the attack, boots stable.\nTOP MIDDLE loaded: hold axe fully loaded overhead, elbows bent, knees slightly bent, coiled backswing.\nTOP RIGHT downswing: both arms commit down and forward toward upper-left, axe at middle of swing, torso leans slightly toward target.\nBOTTOM LEFT contact: axe blade extends low toward the upper-left target, both arms out, wide braced boots and bent knees, complete contact pose without effects.\nBOTTOM MIDDLE recoil: axe stays low toward upper-left while both hands retract handle toward torso.\nBOTTOM RIGHT ready: upright standing two-handed low-ready axe toward upper-left.\nALL six have complete visible uncut boots, hair, scarf, hands and axe. Keep pose bodies small at the specified 260 px height and consistent frame-to-frame; do not enlarge to fill space.\nBACKGROUND: literal genuine transparent alpha. Empty pixels and every gutter alpha zero. No floor, no cast shadow, no oval, no ground, no ambient halos, no smoke, no fog, no gradient, no effects, no slash strokes, no particles, no motion blur. No text, numbers, labels, watermark, border, visible grid or cell lines. Exactly six heroes.",
+    "repair": {
+      "source_path": "C:/Users/13326/.codex/generated_images/01a0f2a8-ae8f-7db2-a4f5-cd82ee1ec063/exec-b6650e88-8b72-47fc-a04f-298c67c3ca01.png",
+      "edit_target": "C:/Users/13326/.codex/generated_images/01a0f2a8-ae8f-7db2-a4f5-cd82ee1ec063/exec-8ee822bf-28ae-4512-898a-e37767b7483d.png",
+      "references": [
+        "C:/Users/13326/.codex/generated_images/01a0f2a8-ae8f-7db2-a4f5-cd82ee1ec063/exec-8ee822bf-28ae-4512-898a-e37767b7483d.png",
+        "C:/webdev/games/assets/generated/heroes/CH01_storybook_portrait_v1.png"
+      ],
+      "prompt": "Use case: precise-object-edit.\nAsset type: transparent game sprite sheet.\nImage 1 is TARGET: six CH01 BACK-view axe attack poses. Image 2 is the character portrait identity reference.\nONLY change image 1's packing and consistent scale. Preserve SAME hero identity, costume, dark brown spiky hair, orange-red scarf, dark armor with gold/copper trim, single silver-edged orange-black battle axe, both hands on handle, refined cel-painted colored outlines and elevated rear isometric camera. ALL poses remain facing NORTHWEST screen left/up with face hidden. SAME six poses in SAME row-major order.\nThe problem is target poses are much too large. Make all sprites TINY, about HALF current silhouette size. Think six small miniature game tokens in an enormous empty transparent contact sheet. Fill only the CENTRAL HALF of each invisible cell. Wide empty corridors must be obvious. Do not use the space to enlarge the sprites.\nRequested canvas 1536x1024, EXACT 3 equal columns and 2 equal rows, six invisible 512x512 cells. Each COMPLETE character AND axe must fit in a CENTRAL 300x300 square within its cell: local x=106..406 and local y=106..406. All four margins are OVER 100 px of true empty transparency. No touching or crossing any cell boundary. Keep each body SAME SIZE: upright standing body head-crown to boot midpoint roughly 180 pixels, excluding weapon and raised arms. Two-handed overhead frames also have body about 180 pixels. Crouching may lower head, but boots/armor/head size remains constant. Projected boot midpoint should be close to local y=390. Axe may be long but must fit central 300px square.\nSix poses row-major: lift overhead / loaded overhead knees slightly bent / downswing half committed down-forward toward upper-left / contact axe blade low toward upper-left target with wide stance / recoil low axe hands retract / standing low ready.\nNo other changes or additions. Entire FULL weapon, boots, scarf, hair, armor, arms must be fully visible and uncut in each separate silhouette. Transparent alpha zero throughout all vast gutters/outside. No ground, cast shadow, glow, ambient haze, gradient, effects, slash strokes, ghost weapons, extra axes, grid, text, labels, numbers, border or watermark."
+    },
+    "discarded_attempts": [
+      {
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0f2a8-ae8f-7db2-a4f5-cd82ee1ec063/exec-8ee822bf-28ae-4512-898a-e37767b7483d.png",
+        "reason": "Initial 512-cell packing crowded poses and crossed nominal source-cell edges; preserved at original generated path."
+      }
+    ],
+    "raw_image_copied_unchanged": true,
+    "original_generated_files_retained": true
+  },
+  "facing_x": -1
+}

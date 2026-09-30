@@ -1,0 +1,414 @@
+{
+  "asset": "storybook_chest_v2.png",
+  "date": "2026-09-30",
+  "source": "OpenAI built-in image_gen__imagegen",
+  "use_case": "stylized-concept",
+  "transparent_background": true,
+  "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dd-4733-7ce0-8c3d-88218d682625\\exec-fe1b7077-a8f1-4423-b7d0-d22d089016f2.png",
+  "dimensions": [
+    1983,
+    793
+  ],
+  "target_dimensions": [
+    2560,
+    1024
+  ],
+  "requested_layout": {
+    "columns": 5,
+    "rows": 2,
+    "target_cell": [
+      512,
+      512
+    ],
+    "order": "row-major EQ21-EQ30"
+  },
+  "reference": {
+    "path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f250-dc5c-7040-ab32-96177571dcae\\exec-43b24e14-8aac-4983-aba5-37855eb767a4.png",
+    "role": "Style reference inspected before generation; rendering language described in initial prompt"
+  },
+  "prompt": "Use case: precise-object-edit. Final atlas gutter adjustment on supplied image.\nKeep ALL TEN equipment designs exactly as shown: same physical three-quarter painterly artwork, same colors, materials, straps, plates, white marks, pockets, furnace, tubes, asymmetric purple cloak and white glider jacket. All ten designs are successful. Only improve their size and centering in the atlas.\nKeep the canvas landscape 5:2, target 2560 x 1024 pixels. Keep the precise 5 columns x 2 rows grid, equal square cells, no visible grid. Keep order unchanged. REDUCE EVERY OBJECT to 70 PERCENT of its CURRENT size. Do not crop anything. The equipment silhouettes must now occupy ONLY ABOUT HALF of each square cell's width and height, at most 55 percent. There must be EXTREMELY GENEROUS empty transparent space around EVERY sprite, at least 22 percent cell width empty gutter on each side. Make sprites about half-cell size, not large.\nCenter each object EXACTLY at the center of its square cell. Top row centers vertically at one-quarter canvas height; bottom row centers vertically at three-quarters canvas height. Column centers horizontally at one-tenth, three-tenths, five-tenths, seven-tenths, nine-tenths canvas width. Top row must have equally generous space above and below, do not anchor the objects lower in the cells. Bottom row also centered, complete silhouettes including cloak point and glider tails.\nLayout remains left-to-right top row: earth-gray copper patched coat; buff balanced cross-harness vest with equal pouches; coal-gray orange furnace robe; indigo insulated coat with open copper wire ends; white scallop shell plate with ice-blue edges. Bottom row: bronze apron with one-side green tube; dark iron two-rectangle city-gate plate; dark rock suspended inside yellow rivet frame; left-long right-short purple-black mantle with white edge measurement ticks; white short gliding jacket with teal underarm fins and two short tails.\nTRUE alpha-zero transparent background. No people, bodies or mannequins, no frames, text, labels, numbers, UI, background texture, shadows behind objects, floor, contact shadows, halos. Shade only within object silhouettes. Keep all tiny details legible, sharp dark-plum outline and hand-painted storybook texture. Exactly ten isolated equipment objects, no redesign; only scale them down to 70% and center them in spacious equal cells.",
+  "initial_prompt": "Use case: stylized-concept.\nAsset type: production game equipment sprite atlas.\nCreate ONE polished hand-painted transparent PNG atlas, exact target canvas 2560 x 1024 pixels, landscape 5 columns x 2 rows, ten equal 512 x 512 cells, STRICT row-major ordered objects. Only ten actual physical torso equipment objects, one whole distinct object per cell, no people. This atlas is for a warm, richly painted 2.5D storybook fantasy exploration game.\nOverall art direction: tactile painterly gouache/oil brushwork with crisp deep-plum contour lines, warm cream/pale stone highlights, aged brass edges and teal details when appropriate, confident highlights and deep inner creases. Every torso coat/armor/vest/apron is a complete manufactured physical object in three-quarter perspective, with a visible side face, thick hems or plate edges, hollow inner collar, front and shoulder construction. Rich believable volume, not flat glyphs, not vector icons, not existing-icons recolored. Match a high-quality storybook fantasy game with old brass machinery, turquoise/teal water, pale cream stone and deep plum UI outlines; use that rendering language while preserving all specified item identity colors.\nLayout: center objects at cell centers approximately (256,256), (768,256), (1280,256), (1792,256), (2304,256), then (256,768), (768,768), (1280,768), (1792,768), (2304,768). Each entire object fits within its OWN cell with at least 15 percent blank transparent gutter around every side. All items similar visual scale about 350 x 350 pixels with ample transparent gaps. No object overlaps adjacent cell. Keep complete silhouette, including straps, fins, shoulder edges, tails, and tubes, fully visible and unclipped. The grid is invisible: do not draw cell lines, frames or labels.\nTOP ROW, left to right:\n1 EQ21 Patched Survey Coat / 补片勘探衣: earth-gray short sleeved survey coat, three visibly different copper patch plates sewn/riveted onto the torso, one angular copper patch, one rounded copper patch, one irregular copper patch. Rugged soft earth-gray woven cloth, thick hem, hollow collar, copper patches recognizable.\n2 EQ22 Balanced-Load Vest / 平衡负载背心: practical buff/stone gray heavy vest, strong CROSS-shaped leather harness straps clearly crossing the chest, two equal-sized weight pouches balanced at left and right waist. The symmetric equal pouches are important. Solid stitched pockets and buckles, complete torso vest.\n3 EQ23 Stoker Flameproof Mantle / 司炉耐焰袍: short THICK coal-gray fireproof robe, layered refractory fabric and raised hollow collar, bright orange/amber FURNACE GRILLE built into the lower hem, dark metal grille bars over contained orange furnace light. Amber and coal-gray identity, no floating fire or background glow.\n4 EQ24 Singing-Rail Insulator Coat / 鸣轨绝缘衣: insulated coat with large INDIGO BLUE insulating shoulder plates, deep blue fabric torso, a visibly OPEN/UNFINISHED COPPER WIRE circuit crossing across the chest whose two ends do not connect. Clearly indigo armor and copper wire, hollow collar and layered thick panels.\n5 EQ25 Frost-Tide Layered Shell / 霜潮层壳甲: WHITE SHELL breastplate made of overlapping curved scallop shell panels, shell ridges and pearly cream highlights, ICE BLUE semi-transparent edges around plates and shoulders. White shell and ice blue identity. Deep side face thickness and empty neck opening, no wearer.\nBOTTOM ROW, left to right:\n6 EQ26 Verdigris Diversion Apron / 铜蚀分流围衣: BRONZE protective apron with shoulder straps, green oxidized brass accents, a single distinct GREEN LIQUID DIVERSION TUBE running down ONE side of the apron, attached reservoir and copper connectors. Complete short torso apron, chunky bronze sheet material, visible thickness, green tube only on one side.\n7 EQ27 Oathguard Bulwark Plate / 誓卫壁垒胸甲: DARK IRON chest armor with TWO overlapping RECTANGULAR plate layers, center WHITE CITY GATE emblem engraved as a gate silhouette; stout boxy shoulders and hollow collar. Two rectangle plate tiers obvious, restrained brass rivets, white city gate mark central, dark iron identity.\n8 EQ28 Faultline Hanging-Hammer Plate / 断层悬锤甲: black/dark-stone armor harness featuring ONE substantial SUSPENDED ROCK block at the front chest, rough dark rock with faceted planes, YELLOW-LINED RIVET FRAME surrounding and supporting the stone, small suspension brackets. The single hanging rock is the focal form, ochre yellow framework contrasts against charcoal.\n9 EQ29 Prism Refraction Mantle / 棱镜折光披衣: PURPLE-BLACK asymmetrical cloak/mantle garment, LEFT side LONG, RIGHT side SHORT, plum/violet folded panels, WHITE GRADUATION TICK MARKS along the edges like a measured border, no numbers, angular refracting purple cloth facets. Full empty physical cloak with collar and asymmetric hanging shape, no body.\n10 EQ30 Windcourier Gliding Jacket / 逐风滑翔短衣: WHITE short jacket with FIN-shaped underarm panels extending outward, TWO SHORT WHITE TAILS at the hem, pale sky-cyan/teal trim on the fins, lightweight structured cloth, open hollow collar. The two tails and underarm glider fins must be clear and wholly visible.\nTransparency constraints: TRUE transparent alpha background (alpha zero) outside the object silhouettes, no opaque background whatsoever, no texture behind, no floor, no environmental scene, no contact shadows, no cast shadows, no shadows behind objects, no glow halos. Shading stays entirely inside object silhouettes. No people, no heads, no skin, no arms, no legs, no mannequins, no torso body inside, no hanger, no display stand. No lettering, no numbers, no ID labels, no UI, no borders, no rarity-color squares, no cards, no watermarks. Exactly ten isolated distinct equipment sprites in the specified 5x2 order.",
+  "repair_prompts": [
+    "Use case: precise-object-edit. Edit the supplied equipment atlas ONLY to correct atlas layout and generous transparent gutters. Keep the polished painted equipment art, all ten identities, their item-specific colors/materials and exact row-major order. Recreate the sheet on an exact 2560 x 1024 pixel transparent canvas as 5 columns x 2 rows, every cell exactly 512 x 512 pixels. Make every equipment silhouette MUCH SMALLER relative to each cell: maximum object width 330 pixels and maximum object height 330 pixels, including all sleeves, tails, fins, straps and tubes. Center each at (256,256), (768,256), (1280,256), (1792,256), (2304,256), then (256,768), (768,768), (1280,768), (1792,768), (2304,768). These locations are important. Top-row objects must stay entirely between y=91 and y=421. Bottom-row objects must stay entirely between y=603 and y=933. There should be a large obvious blank transparent horizontal band between the two rows, no row touching. There must be at least 90 pixels blank space from every object's full silhouette to all four edges of its 512px cell. Objects must be isolated, not cropped, no overlap. Actual alpha-zero transparent background. The grid stays invisible and no labels are drawn.\nPreserve these ten whole physical torso equipment objects, one per cell:\nTOP ROW left to right: (1) earth-gray short survey coat with exactly three differently shaped copper patch plates; (2) buff gray vest with cross-shaped leather harness and two equal-sized waist weight pouches; (3) thick coal-gray short fireproof robe with orange/amber furnace grille at lower hem; (4) indigo blue insulated coat with shoulder plates and unfinished open copper wire circuit, wire ends not touching; (5) overlapping white pearly scallop shell breastplate with ice-blue semitransparent edges.\nBOTTOM ROW left to right: (6) bronze apron with a green liquid diversion tube on one side; (7) dark iron chest armor with two overlapping rectangular plate tiers and a central white city-gate engraving; (8) dark armor with ONE suspended rough rock front-center held in yellow-lined rivet frame; (9) purple-black asymmetric mantle left side long and right side short, with white measurement ticks without numbers; (10) white gliding short jacket with teal underarm fins and two short white hem tails.\nArt invariants: Hand-painted storybook 2.5D three-quarter physical equipment with deep plum crisp outlines, warm cream highlights, aged brass, detailed painterly shading inside object silhouette. Thick hems, plate side faces, hollow collar and inner openings, no wearer/mannequin. Exactly ten different actual objects. No UI, labels, letters, numbers, frames, grid lines, floor, scene, contact shadows, cast shadows, glow halo, opaque backdrop. Preserve true alpha zero outside object shapes. The primary required change is MUCH MORE EMPTY TRANSPARENT SPACE around every object in its own regular square cell.",
+    "Use case: precise-object-edit. Final atlas gutter adjustment on supplied image.\nKeep ALL TEN equipment designs exactly as shown: same physical three-quarter painterly artwork, same colors, materials, straps, plates, white marks, pockets, furnace, tubes, asymmetric purple cloak and white glider jacket. All ten designs are successful. Only improve their size and centering in the atlas.\nKeep the canvas landscape 5:2, target 2560 x 1024 pixels. Keep the precise 5 columns x 2 rows grid, equal square cells, no visible grid. Keep order unchanged. REDUCE EVERY OBJECT to 70 PERCENT of its CURRENT size. Do not crop anything. The equipment silhouettes must now occupy ONLY ABOUT HALF of each square cell's width and height, at most 55 percent. There must be EXTREMELY GENEROUS empty transparent space around EVERY sprite, at least 22 percent cell width empty gutter on each side. Make sprites about half-cell size, not large.\nCenter each object EXACTLY at the center of its square cell. Top row centers vertically at one-quarter canvas height; bottom row centers vertically at three-quarters canvas height. Column centers horizontally at one-tenth, three-tenths, five-tenths, seven-tenths, nine-tenths canvas width. Top row must have equally generous space above and below, do not anchor the objects lower in the cells. Bottom row also centered, complete silhouettes including cloak point and glider tails.\nLayout remains left-to-right top row: earth-gray copper patched coat; buff balanced cross-harness vest with equal pouches; coal-gray orange furnace robe; indigo insulated coat with open copper wire ends; white scallop shell plate with ice-blue edges. Bottom row: bronze apron with one-side green tube; dark iron two-rectangle city-gate plate; dark rock suspended inside yellow rivet frame; left-long right-short purple-black mantle with white edge measurement ticks; white short gliding jacket with teal underarm fins and two short tails.\nTRUE alpha-zero transparent background. No people, bodies or mannequins, no frames, text, labels, numbers, UI, background texture, shadows behind objects, floor, contact shadows, halos. Shade only within object silhouettes. Keep all tiny details legible, sharp dark-plum outline and hand-painted storybook texture. Exactly ten isolated equipment objects, no redesign; only scale them down to 70% and center them in spacious equal cells."
+  ],
+  "attempts": [
+    {
+      "stage": "initial generation",
+      "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dd-4733-7ce0-8c3d-88218d682625\\exec-5d000ed4-81c7-4869-b9df-06e5b76eec58.png"
+    },
+    {
+      "stage": "layout repair 1",
+      "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dd-4733-7ce0-8c3d-88218d682625\\exec-9a0ef3dd-f7d4-4342-a56c-e103ecd051a9.png"
+    },
+    {
+      "stage": "layout repair 2 selected final",
+      "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dd-4733-7ce0-8c3d-88218d682625\\exec-fe1b7077-a8f1-4423-b7d0-d22d089016f2.png"
+    }
+  ],
+  "item_descriptions": [
+    {
+      "id": "EQ21",
+      "slot": "chest",
+      "name": "补片勘探衣",
+      "visual": "土灰短衣、三块不同铜补片",
+      "cell": [
+        0,
+        0,
+        397,
+        396
+      ]
+    },
+    {
+      "id": "EQ22",
+      "slot": "chest",
+      "name": "平衡负载背心",
+      "visual": "十字背带与左右等大配重袋",
+      "cell": [
+        397,
+        0,
+        396,
+        396
+      ]
+    },
+    {
+      "id": "EQ23",
+      "slot": "chest",
+      "name": "司炉耐焰袍",
+      "visual": "短厚煤灰袍、下摆橙色炉格",
+      "cell": [
+        793,
+        0,
+        397,
+        396
+      ]
+    },
+    {
+      "id": "EQ24",
+      "slot": "chest",
+      "name": "鸣轨绝缘衣",
+      "visual": "靛蓝绝缘肩板与不闭合铜线",
+      "cell": [
+        1190,
+        0,
+        396,
+        396
+      ]
+    },
+    {
+      "id": "EQ25",
+      "slot": "chest",
+      "name": "霜潮层壳甲",
+      "visual": "白贝胸甲、蓝色半透明边缘",
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ]
+    },
+    {
+      "id": "EQ26",
+      "slot": "chest",
+      "name": "铜蚀分流围衣",
+      "visual": "青铜围衣、单侧绿液分流管",
+      "cell": [
+        0,
+        396,
+        397,
+        397
+      ]
+    },
+    {
+      "id": "EQ27",
+      "slot": "chest",
+      "name": "誓卫壁垒胸甲",
+      "visual": "两重矩形甲、中央白色城门纹",
+      "cell": [
+        397,
+        396,
+        396,
+        397
+      ]
+    },
+    {
+      "id": "EQ28",
+      "slot": "chest",
+      "name": "断层悬锤甲",
+      "visual": "胸前单块悬岩、黄线铆钉框",
+      "cell": [
+        793,
+        396,
+        397,
+        397
+      ]
+    },
+    {
+      "id": "EQ29",
+      "slot": "chest",
+      "name": "棱镜折光披衣",
+      "visual": "左长右短紫黑披衣、白刻度边",
+      "cell": [
+        1190,
+        396,
+        396,
+        397
+      ]
+    },
+    {
+      "id": "EQ30",
+      "slot": "chest",
+      "name": "逐风滑翔短衣",
+      "visual": "鳍状腋片与双短尾白衣",
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ]
+    }
+  ],
+  "verification": {
+    "ten_items": true,
+    "all_visible_alpha_inside_regions": true,
+    "maximum_alpha_outside_padded_regions": 3,
+    "nonzero_alpha_pixels_outside_padded_regions": 792,
+    "all_gutters_at_least_15_percent": true,
+    "all_regions_disjoint": true,
+    "outer_image_edge_all_zero": true,
+    "all_regions_in_bounds": true,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_fraction": 0.7831835418204803,
+    "measurement": "Pillow/NumPy read-only alpha measurements; no image editing, resizing, filtering, cropping or alpha cleanup",
+    "visual_inspection": "Ten distinct complete torso objects in expected order; matching gray/copper patches, equal weight pouches, amber furnace, indigo insulation, white/ice-blue shell, bronze/green tube apron, iron/white gate plate, yellow framed hanging rock, purple asymmetry with ticks, white/teal fin jacket"
+  },
+  "measured_cells": [
+    {
+      "id": "EQ21",
+      "alpha_bbox": [
+        105,
+        131,
+        225,
+        195
+      ],
+      "region": [
+        103,
+        129,
+        229,
+        199
+      ],
+      "margins": [
+        105,
+        131,
+        67,
+        70
+      ],
+      "minimum_gutter_fraction": 0.1691919191919192
+    },
+    {
+      "id": "EQ22",
+      "alpha_bbox": [
+        497,
+        127,
+        208,
+        198
+      ],
+      "region": [
+        495,
+        125,
+        212,
+        202
+      ],
+      "margins": [
+        100,
+        127,
+        88,
+        71
+      ],
+      "minimum_gutter_fraction": 0.17929292929292928
+    },
+    {
+      "id": "EQ23",
+      "alpha_bbox": [
+        880,
+        124,
+        215,
+        204
+      ],
+      "region": [
+        878,
+        122,
+        219,
+        208
+      ],
+      "margins": [
+        87,
+        124,
+        95,
+        68
+      ],
+      "minimum_gutter_fraction": 0.1717171717171717
+    },
+    {
+      "id": "EQ24",
+      "alpha_bbox": [
+        1273,
+        124,
+        228,
+        207
+      ],
+      "region": [
+        1271,
+        122,
+        232,
+        211
+      ],
+      "margins": [
+        83,
+        124,
+        85,
+        65
+      ],
+      "minimum_gutter_fraction": 0.16414141414141414
+    },
+    {
+      "id": "EQ25",
+      "alpha_bbox": [
+        1649,
+        129,
+        225,
+        202
+      ],
+      "region": [
+        1647,
+        127,
+        229,
+        206
+      ],
+      "margins": [
+        63,
+        129,
+        109,
+        65
+      ],
+      "minimum_gutter_fraction": 0.1590909090909091
+    },
+    {
+      "id": "EQ26",
+      "alpha_bbox": [
+        119,
+        477,
+        201,
+        205
+      ],
+      "region": [
+        117,
+        475,
+        205,
+        209
+      ],
+      "margins": [
+        119,
+        81,
+        77,
+        111
+      ],
+      "minimum_gutter_fraction": 0.19395465994962216
+    },
+    {
+      "id": "EQ27",
+      "alpha_bbox": [
+        484,
+        476,
+        235,
+        205
+      ],
+      "region": [
+        482,
+        474,
+        239,
+        209
+      ],
+      "margins": [
+        87,
+        80,
+        74,
+        112
+      ],
+      "minimum_gutter_fraction": 0.18686868686868688
+    },
+    {
+      "id": "EQ28",
+      "alpha_bbox": [
+        886,
+        474,
+        218,
+        207
+      ],
+      "region": [
+        884,
+        472,
+        222,
+        211
+      ],
+      "margins": [
+        93,
+        78,
+        86,
+        112
+      ],
+      "minimum_gutter_fraction": 0.1964735516372796
+    },
+    {
+      "id": "EQ29",
+      "alpha_bbox": [
+        1275,
+        468,
+        225,
+        229
+      ],
+      "region": [
+        1273,
+        466,
+        229,
+        233
+      ],
+      "margins": [
+        85,
+        72,
+        86,
+        96
+      ],
+      "minimum_gutter_fraction": 0.18181818181818182
+    },
+    {
+      "id": "EQ30",
+      "alpha_bbox": [
+        1646,
+        473,
+        242,
+        224
+      ],
+      "region": [
+        1644,
+        471,
+        246,
+        228
+      ],
+      "margins": [
+        60,
+        77,
+        95,
+        96
+      ],
+      "minimum_gutter_fraction": 0.15113350125944586
+    }
+  ],
+  "limitations": [
+    "Built-in tool returned a raw 1983x793 PNG instead of the requested 2560x1024. Metadata uses actual dimensions and measured regions; the image was not resized.",
+    "792 pixels outside padded alpha>16 regions have faint residual alpha values of 1-3. All alpha>16 is contained in the measured regions; the image outer border is alpha zero. Raw alpha is preserved."
+  ]
+}

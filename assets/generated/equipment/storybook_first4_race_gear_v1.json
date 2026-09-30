@@ -1,0 +1,425 @@
+{
+  "texture": "res://assets/generated/equipment/storybook_first4_race_gear_v1.png",
+  "status": "live_template_art_candidates",
+  "canonical_plan": "12_levels_first4",
+  "alpha_threshold": 16,
+  "padding": 2,
+  "generated_date": "2026-10-01",
+  "source": "OpenAI built-in image_gen.imagegen",
+  "mode": "One initial generation, one spacing/shield-aperture repair, one final spacing repair",
+  "successful_generation_calls": 3,
+  "repair_attempts": {
+    "successful": 2,
+    "failed_request_retries": 1,
+    "failed_request_reason": "The first final-spacing request returned connection failed before image generation; the same built-in request was retried once."
+  },
+  "style_reference": "C:\\Users\\13326\\AppData\\Local\\Temp\\codex-clipboard-02f51a21-0c7d-42c9-825e-c4f6367709c9.png",
+  "style_reference_usage": "Viewed as style reference; fresh generation used textual guidance and repairs used their immediate generated predecessor.",
+  "locked_style_standard": "明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。",
+  "original_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-09f7-76a3-9c56-a2fcf9498006\\exec-aae814a0-f08a-477f-94df-c89b0bf1a395.png",
+  "first_repair_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-09f7-76a3-9c56-a2fcf9498006\\exec-00cf5fd8-42e8-4a6a-a8e6-b7b7cd558bd6.png",
+  "selected_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-09f7-76a3-9c56-a2fcf9498006\\exec-c6b5a0bd-5088-45a5-af92-18c8d592deb8.png",
+  "target_dimensions": [
+    2048,
+    1024
+  ],
+  "atlas_layout": {
+    "columns": 4,
+    "rows": 2,
+    "order": "row-major ascending EQ03–EQ10"
+  },
+  "mapping_confirmation": "Coordinator confirmed root's mapping: S01/S02→B01 solar magic construct; S03/S04→B02 insect; S05/S06→B03 bright cartoon undead grave-town; S07/S08→B04 orc/ogre.",
+  "source_name_policy": "Names and source_visual captured from equipment.json before coordinator-owned equipment renaming. Coordinator may normalize current names without changing the PNG.",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept\nAsset type: ONE transparent game equipment module atlas, eight distinct race-derived weapon-slot mechanical artifacts.\nLAYOUT FIRST: exact FOUR columns by TWO rows, eight equal square cells in strict row-major order. Target canvas 2048x1024, aspect2:1. Objects are SMALL within their cells: each WHOLE silhouette must stay inside the central60% of its square, at least20% completely empty transparent gutter on every side. Center each object horizontally and vertically. One complete isolated physical object per cell, comparable apparent scale, no overlap or cropping. No grid lines are drawn.\nExact visual style: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。\nBright clean handpainted CARTOON fantasy, classical ruins with magical steam mechanisms, high 3/4 slightly overhead near-isometric camera. Real chunky miniature physical objects with clearly visible top and side faces, thickness, beveled edges, painted cream highlights and crisp DEEP PLUM outlines. Warm sunlight from upper-left, fresh colors, appealing storybook craft. Cream/ivory, sunny GOLD BRASS and fresh TEAL unify the set but each species dominates its own pair. Strong contrasting silhouettes, clear at inventory-icon size. Moderate stylized painted detail rather than realistic microtexture. NO photorealism, dirty industrial darkgray, grunge, flat glyphs or vector diagrams.\nThese are eight weapon upgrade MODULES/artifacts, NOT eight swords or humanoid armor, no people. Preserve the exact functional structures described below.\nTOP ROW, columns1–4:\n1. EQ03 引炉红芯 / Furnace Ember Core — race B01 SOLAR MAGIC CONSTRUCT from 晴辉遗庭, familyS01. A bright faceted AMBER furnace/focus CORE gripped by exactly THREE pale IVORY engraved metal PETAL CLAMPS with GOLD edges. The pale construct petals curve around the core leaving glowing amber exposed. Elegant sun-ray carvings, small exposed golden CLOCKWORK gears on the SIDE face, a compact sun-construct mechanism, strong solid physical volume. The three petals are obvious; internal amber glow stays within the body.\n2. EQ04 三叉鸣轨 / Three-Prong Singing Rail — race B01 SOLAR MAGIC CONSTRUCT, familyS02. A pale IVORY and GOLD construct rail mechanism with exactly THREE parallel BLUE conductor PRONGS, thick functional near-isometric rails; small FLOATING BRASS CONTACTS just above rail ends, attached visually by thin contained SUN-CRYSTAL energy arches. Sun-crystal energy and ivory-gold clockwork base. Clearly different from the amber-core petal mechanism; the three blue prongs remain unmistakable.\n3. EQ05 潮冻环刃 / Frost-Tide Ring Blade — race B02 AMBER INSECT HIVE 琥珀虫巢, familyS03. A notched thick WHITE CHITIN RING BLADE shaped by segmented insect wing/mandible structure, ONE visible break/opening in the ring, ICE-BLUE crystal-veined wing panels inlaid into the ring. Pale insect-wing plates and curved mandible-like hooks give a strong insect exoskeleton silhouette. Beveled thick shell ring and icy blue veins clearly preserve chill/ring-blade function. No cloth, sword or creature.\n4. EQ06 铜蚀滴注器 / Copper-Corrosion Injector — race B02 INSECT HIVE, familyS04. A compact curved CHITIN STINGER injector module, angled GREEN crystal-fluid AMPOULE nestled inside honey-amber/cream organic insect shell, wrapped by a thin gold-BRASS CAPILLARY tube leading to the curved sharp stinger tip. Vivid acid-green liquid visible in the ampoule, insect VENOM CAPSULE hardware, ribbed chitin and small wing-like shell braces. Strong organic insect profile distinct from ringblade, actual complete functioning fluid injector, no insect creature.\nBOTTOM ROW, columns1–4:\n5. EQ07 誓卫方锁 / Oathguard Square Lock — race B03 bright cartoon UNDEAD grave-town 南瓜墓镇, familyS05. One SQUARE COFFIN-WARD LOCK, chunky IVORY BONE frame with deep PLUM stitched inset, small friendly amber PUMPKIN LANTERN glass details built into the square corners, a brilliant WHITE SHIELD-SHAPED KEYHOLE in the CENTER. Tidy whimsical grave-town charm, hinged chunky lock sides, no scary gore; white shield aperture must be clear. Not a skull or creature; this is a square lock mechanism.\n6. EQ08 断层配重芯 / Faultline Counterweight Core — race B03 bright cartoon UNDEAD grave-town, familyS06. One BLACK STONE/GRAVESTONE counterweight core with a vivid YELLOW seam/crack, suspended inside a compact BRONZE frame between exactly TWO symmetric BRONZE BELL-PENDULUM HAMMER weights, one hanging to each side. A tiny elegant friendly PUMPKIN LANTERN SPIRIT accent perched on the bronze top crossbar. Full wide paired-counterweight mechanism, clearly two hanging hammer weights; cheerful stylized cemetery magic, no humanoid, no gore, no floor.\n7. EQ09 偏轴校准镜 / Off-Axis Calibration Lens — race B04 ORC/OGRE war camp 赤岩战寨, familyS07. An ORC TRIBAL calibrating SIGHT artifact: thick off-center VIOLET GLASS lens in a bone-and-brass setting, exactly THREE carved IVORY BONE measuring arms radiating from the offset lens rim, fine unlabeled carved measurement ticks, RED STONE capped studs at the arm ends. Heroic chunky primitive shaman-craft, bold colorful shapes, no violence or human bones realism. Functional offset lens and three arms unmistakable.\n8. EQ10 双尾风标 / Twin-Tail Wind Marker — race B04 ORC/OGRE war camp, familyS08. A compact ORC SHAMAN WIND TOTEM module, ONE thin SKY-BLUE FIN held visibly BETWEEN exactly TWO sand-WHITE FEATHER TAILS, bone-and-gold-brass hub with RED STONE binding studs and a small tribal-carved frame. Two ivory feather tails flank the central thin skyblue fin. Heroic handcrafted finish but clean BRIGHT cartoon color and crisp outlines. Complete compact physical wind marker, no long spear, no character.\nSpecies visibility is essential: first pair elegant gold/ivory SUN CONSTRUCTS; second pair organic INSECT shell/wing/venom; third pair wholesome PUMPKIN grave-town UNDEAD ward/pendulum; fourth pair heroic ORC bone/redstone/brass tribe crafts. Two artifacts per species must have distinct forms. All eight functional module identities intact.\nBackground: genuine transparent RGBA, every background/gutter pixel outside object bodies alpha0. All glowing color confined to materials or the tiny connecting mechanism of its own artifact. No exterior halos, smoke, dust, particles, cast shadows, floors, pedestals or scenery.\nAvoid: text, labels, Chinese characters, Latin letters, numbers, frames, rarity borders, grid lines, UI badges, watermarks, skull gore, people, creatures, swords, axes, mannequin, old flat glyphs, floating disconnected extras outside cell. Eight complete isolated objects only, exact4x2rowmajor order, generous gutters, no clipping.",
+  "first_repair_prompt": "Edit the attached transparent equipment sheet. Preserve all eight illustrated physical modules and their species designs, exact colors, details, bright cartoon handpainted 3/4 near-isometric style, and strict4columns x2rows order.\nMake these two precise corrections:\n1. SPACING: shrink EVERY complete object to65% of its current width and height (a substantial35% object-size reduction). Keep the same wide2:1 canvas,target2048x1024. Do not shrink the canvas. Center each whole silhouette at these normalized coordinates: TOP row(12.5%,25%),(37.5%,25%),(62.5%,25%),(87.5%,25%); BOTTOM row(12.5%,75%),(37.5%,75%),(62.5%,75%),(87.5%,75%). Each entire icon must fit within middle55–60% of its own equal square cell, with at least20% TRANSPARENT blank gutter left,right,top,bottom. Leave generous row separation. Preserve every protruding chitin blade, wing, capillary loop, pumpkin accent, bone arm and feather; fully complete silhouettes, no clipping.\n2. EQ07 only (bottom-left square pumpkin/coffin lock): replace its current conventional round-and-stem keyhole inside a shield plate. Its central aperture must itself be ONE complete SHIELD-shaped opening, with the ENTIRE shield outline filled with bright WHITE magical light, contained in a thin brass-and-ivory-bone rim. No round conventional keyhole or black keyhole silhouette inside it. A clearly SHIELD-shaped WHITE opening is the functional identity. Keep the square coffin-ward body, corner amber pumpkin lantern glass, deep plum inset and ivory bone frame unchanged.\nOrder/design identities unchanged: TOP amber core with three ivory/gold sun-construct petal clamps; three blue ivory/gold solar conductor rails with floating brass contacts; white insect-chitin notched icy wing ring blade; curved chitin stinger green-fluid brass-capillary injector. BOTTOM square ivory-bone/plum pumpkin coffin ward lock with bright-white shield opening; yellow-cracked black gravestone between two bronze bell-pendulum weights with tiny pumpkin top accent; violet offset lens with exactly three carved bone measuring arms and redstone studs; thin skyblue fin BETWEEN two sand-white feather tails on orc bone/brass hub.\nGenuine transparent RGBA, all blank background/gutters alpha0. Keep glow only within object materials and contained mechanism. No exterior halos, detached spark particles, floor, castshadow, UItext, labels, digits, frames, cell lines,watermark. Eight complete objects only.",
+  "final_spacing_prompt": "Make ONE geometric spacing-only edit to the attached transparent atlas. Preserve ALL eight current illustrated modules, every shape/material/detail/color, their species identities, the central WHITE shield opening in the bottom-left lock, and their exact4columns x2rows ordering.\nShrink each WHOLE complete object to70% of its PRESENT WIDTH AND HEIGHT. This is a real30% reduction of each object, not of the canvas. Keep the same2:1 wide transparent canvas, target2048x1024. Recenter each silhouette at normalized canvas positions: top row x12.5%,37.5%,62.5%,87.5% and y25%; bottom row x12.5%,37.5%,62.5%,87.5% and y75%. Give all sides of every equal square cell at least22% truly empty transparent margin. Maximum entire object size is55% of cell width/height; do not enlarge any object to fill the sheet. Especially leave enough margin beneath the top-right insect injector and above/right of the bottom-row paired bell counterweight.\nThe complete silhouettes, all wings/rails/feathers/arms/pendulums/contacts/pumpkin accents must remain fully visible and attached/contained in each cell. No new items, no redesign, no cropped extremities, no loss of parts. The order remains amber solar construct core with exactly3ivory-gold petals; solar construct exactly3blue rails; white chitin notched icy wing ringblade; curved insect green-fluid injector; square pumpkin bone lock with WHITE SHIELD center; gravestone yellow-crack between exactly2bronze bell pendulums and pumpkin accent; violet lens with exactly3bone measuring arms; skyblue thinfin between exactly2white feather tails.\nBright handpainted cartoon fantasy, visible3/4top+sidefaces and thickness, warm cream/goldbrass/teal materials and crisp deepplum outlines unchanged.\nGenuine transparent RGBA, all blank pixels outside bodies alpha0; no background, floor, castshadow, exterior glow halos, detached spark/dust particles, text, numbers, UIframes or grid.",
+  "image_postprocessing": "None. Final raw built-in PNG copied byte-for-byte and every generated original retained.",
+  "activation": "No gameplay activation, source-data modification, current-master modification, import or GPU changes performed by asset worker. Candidate artwork awaits coordinator/root QA.",
+  "limitations": "Built-in output dimensions are measured rather than assumed. Regions are measured using visible alpha>=16 with 2px padding; nearly transparent pixels below threshold do not define a region.",
+  "inspection": "Eight complete physical modules, distinct correct canonical race pairs and preserved functional structures. Bright 3/4 handpainted volume with top/side faces; white shield aperture corrected. No UI labels, floor, overlap or cropped parts.",
+  "items": {
+    "EQ03": {
+      "id": "EQ03",
+      "slot": "weapon",
+      "name": "引炉红芯",
+      "name_en": "Furnace Ember Core",
+      "source_visual": "琥珀炉芯包覆三片黑铁叶",
+      "visual": "Gold/ivory solar-construct focus: amber core with three pale engraved metal petal clamps and visible clockwork side faces",
+      "race_id": "B01",
+      "set_family": "S01",
+      "cell": [
+        0,
+        0,
+        444,
+        444
+      ]
+    },
+    "EQ04": {
+      "id": "EQ04",
+      "slot": "weapon",
+      "name": "三叉鸣轨",
+      "name_en": "Three-Prong Singing Rail",
+      "source_visual": "三叉蓝轨与悬空铜触点",
+      "visual": "Ivory/gold magic-construct rail with three blue conductor prongs, floating brass contacts and contained sun-crystal energy arches",
+      "race_id": "B01",
+      "set_family": "S02",
+      "cell": [
+        444,
+        0,
+        443,
+        444
+      ]
+    },
+    "EQ05": {
+      "id": "EQ05",
+      "slot": "weapon",
+      "name": "潮冻环刃",
+      "name_en": "Frost-Tide Ring Blade",
+      "source_visual": "缺口白环嵌冰蓝波纹片",
+      "visual": "Notched white-chitin insect wing ringblade with ice-blue crystal-veined wing panels and curved mandible structure",
+      "race_id": "B02",
+      "set_family": "S03",
+      "cell": [
+        887,
+        0,
+        443,
+        444
+      ]
+    },
+    "EQ06": {
+      "id": "EQ06",
+      "slot": "weapon",
+      "name": "铜蚀滴注器",
+      "name_en": "Copper-Corrosion Injector",
+      "source_visual": "斜置绿液小瓶与铜色毛细管",
+      "visual": "Curved chitin stinger injector with acid-green crystal-fluid ampoule within brass capillary routing and insect shell braces",
+      "race_id": "B02",
+      "set_family": "S04",
+      "cell": [
+        1330,
+        0,
+        444,
+        444
+      ]
+    },
+    "EQ07": {
+      "id": "EQ07",
+      "slot": "weapon",
+      "name": "誓卫方锁",
+      "name_en": "Oathguard Square Lock",
+      "source_visual": "方锁中心亮白盾孔",
+      "visual": "Square coffin-ward lock with ivory bone frame, pumpkin-lantern glass, white shield-shaped central aperture and deep-plum inset",
+      "race_id": "B03",
+      "set_family": "S05",
+      "cell": [
+        0,
+        444,
+        444,
+        443
+      ]
+    },
+    "EQ08": {
+      "id": "EQ08",
+      "slot": "weapon",
+      "name": "断层配重芯",
+      "name_en": "Faultline Counterweight Core",
+      "source_visual": "黄裂黑石夹在对称悬锤中",
+      "visual": "Yellow-seamed black gravestone counterweight between two bronze bell-pendulum hammer weights, with a tiny cheerful pumpkin-lantern spirit accent",
+      "race_id": "B03",
+      "set_family": "S06",
+      "cell": [
+        444,
+        444,
+        443,
+        443
+      ]
+    },
+    "EQ09": {
+      "id": "EQ09",
+      "slot": "weapon",
+      "name": "偏轴校准镜",
+      "name_en": "Off-Axis Calibration Lens",
+      "source_visual": "偏心紫镜与三枚刻度臂",
+      "visual": "Orc tribal bone/brass artifact: centered violet/indigo core with three carved bone measuring arms and redstone-capped studs",
+      "race_id": "B04",
+      "set_family": "S07",
+      "cell": [
+        887,
+        444,
+        443,
+        443
+      ]
+    },
+    "EQ10": {
+      "id": "EQ10",
+      "slot": "weapon",
+      "name": "双尾风标",
+      "name_en": "Twin-Tail Wind Marker",
+      "source_visual": "两条沙白尾带夹天青薄鳍",
+      "visual": "Orc shaman wind-totem module: thin sky-blue fin between two sand-white feather tails, bone/brass hub and redstone studs",
+      "race_id": "B04",
+      "set_family": "S08",
+      "cell": [
+        1330,
+        444,
+        444,
+        443
+      ]
+    }
+  },
+  "dimensions": [
+    1774,
+    887
+  ],
+  "actual_dimensions": [
+    1774,
+    887
+  ],
+  "regions": {
+    "EQ03": [
+      139,
+      152,
+      186,
+      190
+    ],
+    "EQ04": [
+      567,
+      153,
+      212,
+      194
+    ],
+    "EQ05": [
+      1003,
+      160,
+      204,
+      187
+    ],
+    "EQ06": [
+      1436,
+      140,
+      186,
+      212
+    ],
+    "EQ07": [
+      142,
+      549,
+      189,
+      198
+    ],
+    "EQ08": [
+      563,
+      532,
+      227,
+      220
+    ],
+    "EQ09": [
+      1005,
+      542,
+      220,
+      204
+    ],
+    "EQ10": [
+      1434,
+      541,
+      200,
+      203
+    ]
+  },
+  "measurements": {
+    "EQ03": {
+      "bounds_alpha16": [
+        141,
+        154,
+        182,
+        186
+      ],
+      "region": [
+        139,
+        152,
+        186,
+        190
+      ],
+      "gutters_px": [
+        141,
+        154,
+        121,
+        104
+      ],
+      "min_gutter_percent": 23.42
+    },
+    "EQ04": {
+      "bounds_alpha16": [
+        569,
+        155,
+        208,
+        190
+      ],
+      "region": [
+        567,
+        153,
+        212,
+        194
+      ],
+      "gutters_px": [
+        125,
+        155,
+        110,
+        99
+      ],
+      "min_gutter_percent": 22.3
+    },
+    "EQ05": {
+      "bounds_alpha16": [
+        1005,
+        162,
+        200,
+        183
+      ],
+      "region": [
+        1003,
+        160,
+        204,
+        187
+      ],
+      "gutters_px": [
+        118,
+        162,
+        125,
+        99
+      ],
+      "min_gutter_percent": 22.3
+    },
+    "EQ06": {
+      "bounds_alpha16": [
+        1438,
+        142,
+        182,
+        208
+      ],
+      "region": [
+        1436,
+        140,
+        186,
+        212
+      ],
+      "gutters_px": [
+        108,
+        142,
+        154,
+        94
+      ],
+      "min_gutter_percent": 21.17
+    },
+    "EQ07": {
+      "bounds_alpha16": [
+        144,
+        551,
+        185,
+        194
+      ],
+      "region": [
+        142,
+        549,
+        189,
+        198
+      ],
+      "gutters_px": [
+        144,
+        107,
+        115,
+        142
+      ],
+      "min_gutter_percent": 24.15
+    },
+    "EQ08": {
+      "bounds_alpha16": [
+        565,
+        534,
+        223,
+        216
+      ],
+      "region": [
+        563,
+        532,
+        227,
+        220
+      ],
+      "gutters_px": [
+        121,
+        90,
+        99,
+        137
+      ],
+      "min_gutter_percent": 20.32
+    },
+    "EQ09": {
+      "bounds_alpha16": [
+        1007,
+        544,
+        216,
+        200
+      ],
+      "region": [
+        1005,
+        542,
+        220,
+        204
+      ],
+      "gutters_px": [
+        120,
+        100,
+        107,
+        143
+      ],
+      "min_gutter_percent": 22.57
+    },
+    "EQ10": {
+      "bounds_alpha16": [
+        1436,
+        543,
+        196,
+        199
+      ],
+      "region": [
+        1434,
+        541,
+        200,
+        203
+      ],
+      "gutters_px": [
+        106,
+        99,
+        142,
+        145
+      ],
+      "min_gutter_percent": 22.35
+    }
+  },
+  "validation": {
+    "image_mode": "RGBA",
+    "item_count": 8,
+    "visible_alpha_pixels": 186191,
+    "uncovered_visible_alpha_pixels": 0,
+    "all_regions_disjoint": true,
+    "all_regions_within_image": true,
+    "no_visible_alpha_at_canvas_edge": true,
+    "copied_byte_for_byte": true,
+    "alpha_zero_fraction": 0.865133,
+    "minimum_gutter_percent": 20.32,
+    "selected_source_sha256": "6c75966a5727b6473d46213b51d6cf80040c8d08ac79cda48ad15ac4c21dc877"
+  },
+  "quality_variations": [
+    {
+      "item_id": "EQ09",
+      "actual_visual_variation": "The delivered violet/indigo lens/core is centered in the three-arm bone/brass hub. It is not visibly off-axis.",
+      "original_intent_preserved": "source_visual and all generation prompts retain the original off-axis calibration-sight brief as historical intent.",
+      "final_canonical_identity": {
+        "name": "战鼓猎牙核心",
+        "name_en": "Wardrum Fang Core"
+      },
+      "acceptance_basis": "Root final canonical identity supersedes the former off-axis title and visual requirement. Independent visual review passes all eight under that final brief.",
+      "png_modified": false
+    }
+  ]
+}

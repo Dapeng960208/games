@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "texture": "res://assets/generated/props/storybook_props_factions_v2.png",
+  "regions": {
+    "T03_pumpkin_lantern": [
+      81,
+      75,
+      402,
+      416
+    ],
+    "T03_grave_barrier": [
+      560,
+      154,
+      439,
+      331
+    ],
+    "T03_funeral_cart": [
+      1048,
+      112,
+      437,
+      362
+    ],
+    "T04_terracotta_cache": [
+      76,
+      560,
+      439,
+      371
+    ],
+    "T04_war_totem": [
+      601,
+      534,
+      332,
+      410
+    ],
+    "T04_signal_gong": [
+      1059,
+      548,
+      398,
+      392
+    ]
+  },
+  "anchors": {
+    "T03_pumpkin_lantern": [
+      194,
+      347
+    ],
+    "T03_grave_barrier": [
+      218,
+      251
+    ],
+    "T03_funeral_cart": [
+      248,
+      276
+    ],
+    "T04_terracotta_cache": [
+      224,
+      278
+    ],
+    "T04_war_totem": [
+      166,
+      338
+    ],
+    "T04_signal_gong": [
+      206,
+      330
+    ]
+  },
+  "ground_footprints": {
+    "T03_pumpkin_lantern": [
+      3,
+      287,
+      372,
+      126
+    ],
+    "T03_grave_barrier": [
+      5,
+      169,
+      425,
+      160
+    ],
+    "T03_funeral_cart": [
+      52,
+      207,
+      365,
+      154
+    ],
+    "T04_terracotta_cache": [
+      7,
+      213,
+      426,
+      154
+    ],
+    "T04_war_totem": [
+      6,
+      275,
+      306,
+      132
+    ],
+    "T04_signal_gong": [
+      7,
+      262,
+      385,
+      128
+    ]
+  },
+  "coordinate_system": {
+    "regions": "Absolute raw atlas pixels [x,y,width,height].",
+    "anchors": "CROP-LOCAL projected ground-base center [x,y]; NOT silhouette bottom.",
+    "ground_footprints": "CROP-LOCAL approximate occupied ground rectangle [x,y,width,height], clamped to crop."
+  },
+  "factions": {
+    "T03": "南瓜墓镇：明亮卡通僵尸墓镇，奶油/薄荷石材、微笑南瓜、紫藤与药水补给车。",
+    "T04": "赤岩战寨：兽人/食人魔战寨，红陶岩石、粗木、铁/黄铜、琥珀红矿、乳白牙角与彩布。"
+  },
+  "atlas_layout": {
+    "columns": 3,
+    "rows": 2,
+    "uniform_grid": false,
+    "source_cells": {
+      "T03_pumpkin_lantern": [
+        0,
+        0,
+        521,
+        512
+      ],
+      "T03_grave_barrier": [
+        521,
+        0,
+        502,
+        512
+      ],
+      "T03_funeral_cart": [
+        1023,
+        0,
+        513,
+        512
+      ],
+      "T04_terracotta_cache": [
+        0,
+        512,
+        557,
+        512
+      ],
+      "T04_war_totem": [
+        557,
+        512,
+        439,
+        512
+      ],
+      "T04_signal_gong": [
+        996,
+        512,
+        540,
+        512
+      ]
+    },
+    "instruction": "Use explicit complete-object regions. Adaptive column cuts lie inside clear alpha32 gutters; first raw cache slightly crosses nominal512. Do not crop fixed512 cells."
+  },
+  "registration": {
+    "alpha_threshold": 32,
+    "region_padding": 2,
+    "anchor_method": "Read-only visual projected-ground-plane center from solid feet/base/wheel contacts; no source-pixel edits.",
+    "anchor_accuracy": "Approximately +/-15 to25 source pixels; physical footprints and partly hidden rear contacts are estimates.",
+    "source_pixel_edits": "none"
+  },
+  "qa": {
+    "size": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "sha256": "b76cf17224757862b62ebffb584d8bfeaae290070ca292d3027c1dd7e53dabbc",
+    "source_copy_identical": true,
+    "alpha_threshold": 32,
+    "region_padding": 2,
+    "complete_alpha32_coverage": true,
+    "frames": {
+      "T03_pumpkin_lantern": {
+        "source_cell": [
+          0,
+          0,
+          521,
+          512
+        ],
+        "alpha_bounds": [
+          83,
+          77,
+          398,
+          412
+        ],
+        "region": [
+          81,
+          75,
+          402,
+          416
+        ],
+        "visible_alpha_pixels": 108380,
+        "min_cell_margin": 23,
+        "visible_cell_edge_pixels": 0
+      },
+      "T03_grave_barrier": {
+        "source_cell": [
+          521,
+          0,
+          502,
+          512
+        ],
+        "alpha_bounds": [
+          562,
+          156,
+          435,
+          327
+        ],
+        "region": [
+          560,
+          154,
+          439,
+          331
+        ],
+        "visible_alpha_pixels": 90952,
+        "min_cell_margin": 26,
+        "visible_cell_edge_pixels": 0
+      },
+      "T03_funeral_cart": {
+        "source_cell": [
+          1023,
+          0,
+          513,
+          512
+        ],
+        "alpha_bounds": [
+          1050,
+          114,
+          433,
+          358
+        ],
+        "region": [
+          1048,
+          112,
+          437,
+          362
+        ],
+        "visible_alpha_pixels": 101991,
+        "min_cell_margin": 27,
+        "visible_cell_edge_pixels": 0
+      },
+      "T04_terracotta_cache": {
+        "source_cell": [
+          0,
+          512,
+          557,
+          512
+        ],
+        "alpha_bounds": [
+          78,
+          562,
+          435,
+          367
+        ],
+        "region": [
+          76,
+          560,
+          439,
+          371
+        ],
+        "visible_alpha_pixels": 99940,
+        "min_cell_margin": 44,
+        "visible_cell_edge_pixels": 0
+      },
+      "T04_war_totem": {
+        "source_cell": [
+          557,
+          512,
+          439,
+          512
+        ],
+        "alpha_bounds": [
+          603,
+          536,
+          328,
+          406
+        ],
+        "region": [
+          601,
+          534,
+          332,
+          410
+        ],
+        "visible_alpha_pixels": 86215,
+        "min_cell_margin": 24,
+        "visible_cell_edge_pixels": 0
+      },
+      "T04_signal_gong": {
+        "source_cell": [
+          996,
+          512,
+          540,
+          512
+        ],
+        "alpha_bounds": [
+          1061,
+          550,
+          394,
+          388
+        ],
+        "region": [
+          1059,
+          548,
+          398,
+          392
+        ],
+        "visible_alpha_pixels": 109949,
+        "min_cell_margin": 38,
+        "visible_cell_edge_pixels": 0
+      }
+    },
+    "outer_alpha32": 0,
+    "transparent_fraction": 0.5940030415852865,
+    "corners_alpha": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "provenance": "res://assets/generated/props/storybook_props_factions_v2.provenance.json"
+}

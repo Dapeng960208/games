@@ -84,8 +84,8 @@
     "en": "MAIN MENU"
   },
   "RULES": {
-    "zh_CN": "撤离带回 100% 金币；死亡保留 20%（向下取整）。\n本局遗物在结束后清空。",
-    "en": "Extract with 100% of your gold; death keeps 20%, rounded down.\nRun relics are cleared when the expedition ends."
+    "zh_CN": "撤离带回全部金币和装备；死亡保留50%金币，放弃保留20%（向下取整）。\n战败时本房击杀每只积累2经验，最多18；遗物随本局结束清空。",
+    "en": "Extract with all gold and equipment. Death keeps 50% gold; abandoning keeps 20%, rounded down.\nDefeat saves 2 XP per unfinished-room kill, up to 18. Run relics expire."
   },
   "FIELD_NOTE": {
     "zh_CN": "矿井记录  /  01\n\n三座遗物装置仍有余光。靠近后按 E 拾取，改变火花弹的攻击。\n\n击倒守卫，回收金币，再回到西侧升降机撤离。",
@@ -109,7 +109,7 @@
   },
   "ACTIONS": {
     "zh_CN": "WASD 移动  ·  鼠标瞄准 / 左键连射  ·  空格冲刺  ·  E 交互",
-    "en": "WASD MOVE · MOUSE AIM / LMB FIRE · SPACE DASH · E INTERACT"
+    "en": "WASD MOVE · MOUSE AIM / LEFT CLICK FIRE · Space DASH · E INTERACT"
   },
   "HUD_HINT": {
     "zh_CN": "Tab 作战详情 / Esc 暂停",
@@ -117,7 +117,7 @@
   },
   "DASH_READY": {
     "zh_CN": "空格 · 冲刺就绪",
-    "en": "SPACE · DASH READY"
+    "en": "Space · DASH READY"
   },
   "DASH_COOLDOWN": {
     "zh_CN": "冲刺 {time}s",
@@ -188,12 +188,12 @@
     "en": "ABANDON AND SETTLE?"
   },
   "ABANDON_NOTE": {
-    "zh_CN": "本次不支持中途恢复。将按死亡规则结算：携带 {gold}，保留 {kept}，损失 {lost}。本局遗物清空。",
-    "en": "There is no mid-run resume. Death rules apply: {gold} carried, {kept} kept, {lost} lost. Run relics will be cleared."
+    "zh_CN": "主动放弃保留20%金币（向下取整）：携带 {gold}，保留 {kept}，损失 {lost}。\n本房不结算战斗积累经验；待带回装备丢失，本局遗物清空。",
+    "en": "Abandoning keeps 20% of gold, rounded down: {gold} carried, {kept} kept, {lost} lost.\nNo field practice XP from this room. Unbanked equipment and run relics are lost."
   },
   "CONFIRM_ABANDON": {
-    "zh_CN": "确认放弃 · 按死亡规则结算",
-    "en": "CONFIRM · SETTLE AS DEATH"
+    "zh_CN": "确认放弃 · 保留20%金币",
+    "en": "CONFIRM · KEEP 20% GOLD"
   },
   "CANCEL": {
     "zh_CN": "取消并返回",
@@ -280,8 +280,8 @@
     "en": "EFFECTS · REDUCED FLASH (OFF)"
   },
   "CONTROLS": {
-    "zh_CN": "WASD 移动 · 鼠标瞄准 · 左键连续普攻 · 空格冲刺\nQ / 右键 / F / R 技能（角色等级 2 / 4 / 6 / 8 解锁）\nE 交互 · Tab 作战详情 · Esc 暂停；菜单 Tab / 方向键选择，Enter 确认。",
-    "en": "WASD move · Mouse aim · Hold LMB to attack · Space dash\nQ / RMB / F / R skills (hero levels 2 / 4 / 6 / 8)\nE interact · Tab combat details · Esc pause; menu: Tab / arrows + Enter."
+    "zh_CN": "WASD / 方向键 移动 · 鼠标瞄准 · 鼠标左键连续普攻 · 空格闪避\nQ / 鼠标右键 / F / R 技能（角色等级 1 / 2 / 3 / 4 解锁）\nC 放置引雷桩 · V 释放回路 · E 交互 · Tab 作战详情 · Esc 暂停。",
+    "en": "WASD / arrows move · Mouse aim · Hold left click to attack · Space dodge\nQ / Right click / F / R skills (hero levels 1 / 2 / 3 / 4)\nC place anchors · V discharge · E interact · Tab details · Esc pause."
   },
   "ERROR_TITLE": {
     "zh_CN": "存档尚未完成",
@@ -308,8 +308,8 @@
     "en": "CAMP BALANCE  {gold}"
   },
   "STORAGE_ABANDONED_RECOVERED": {
-    "zh_CN": "上次远征异常结束，已按死亡规则结算一次。",
-    "en": "The interrupted expedition was settled once using death rules."
+    "zh_CN": "上次远征异常结束，已按放弃规则结算一次。",
+    "en": "The interrupted expedition was settled once using abandonment rules."
   },
   "STORAGE_READ_FAILED": {
     "zh_CN": "无法读取存档文件。",
@@ -444,8 +444,8 @@
     "en": "CANDIDATE / PREVIEW ONLY"
   },
   "HERO_CH01_PLAY": {
-    "zh_CN": "罗砧「开路工」\n近战破阵 · 怒气驱动\n宽幅锤击、突进与反推。越靠近敌群越有力量，也需要选择承压时机。",
-    "en": "Melee / Rage\nHammer arcs, a charge and a counter.\nClose in and time your guard."
+    "zh_CN": "罗砧「开路工」\n近战破阵 · 怒气驱动\n战斧横扫、突进与反推。越靠近敌群越有力量，也需要选择承压时机。",
+    "en": "Melee / Rage\nAxe sweeps, a charge and a counter.\nClose in and time your guard."
   },
   "HERO_CH02_PLAY": {
     "zh_CN": "岑线「引路针」\n精准游猎 · 能量驱动\n贯穿长射、滑步换位与陷阱。保持距离，用走位创造下一次开火窗口。",
@@ -476,16 +476,16 @@
     "en": "LEVEL {level} · COST {cost} · CD {cooldown}s"
   },
   "SKILL_PROGRESS_NOTE": {
-    "zh_CN": "角色经验在远征中积累。普攻与冲刺从 1 级即可使用。",
-    "en": "Gain hero XP in expeditions. Basic attack and dash are available at level 1."
+    "zh_CN": "角色经验在远征中积累。1 级可用普攻、冲刺与 Q；2 / 3 / 4 级依次解锁右键 / F / R。",
+    "en": "Gain hero XP in expeditions. Basic attack, dash and Q are available at level 1; right click, F and R unlock at levels 2, 3 and 4."
   },
   "UNLOCK_TRACK": {
     "zh_CN": "角色成长刻度 / 已达到的节点以浅绿标记",
     "en": "HERO GROWTH / REACHED MILESTONES IN GREEN"
   },
   "UNLOCK_LEGEND": {
-    "zh_CN": "2—8 主动技能 / 10—16 技能强化 / 18—20 改型分支",
-    "en": "2–8 active skills / 10–16 skill upgrades / 18–20 branch choices"
+    "zh_CN": "1—4 主动技能 / 10—16 技能强化 / 18—20 改型分支",
+    "en": "1–4 active skills / 10–16 skill upgrades / 18–20 branch choices"
   },
   "FITTED_LOADOUT": {
     "zh_CN": "当前挂载 · 六槽位",
@@ -797,7 +797,7 @@
   },
   "DASH_LABEL": {
     "zh_CN": "空格 · 闪避",
-    "en": "SPACE · DASH"
+    "en": "Space · DASH"
   },
   "DASH_DETAILS": {
     "zh_CN": "最远 {distance} 距离 / 冷却 {cooldown}s / 无资源消耗\n地形会阻挡移动。零资源仍可使用。",
@@ -844,8 +844,8 @@
     "en": "LEVEL {level} UPGRADE ACTIVE"
   },
   "KEY_SECONDARY": {
-    "zh_CN": "右键",
-    "en": "RMB"
+    "zh_CN": "鼠标右键",
+    "en": "Right click"
   },
   "STAT_ATTACK_INTERVAL": {
     "zh_CN": "普攻间隔",
@@ -856,112 +856,112 @@
     "en": "XP {xp} / MAX LEVEL"
   },
   "ROOM_L01": {
-    "zh_CN": "三岔绞盘井",
-    "en": "Three-Way Winch Pit"
+    "zh_CN": "晴辉门庭",
+    "en": "Sunlit Gatecourt"
   },
   "ROOM_L02": {
-    "zh_CN": "折翼矿桥",
-    "en": "Broken-Wing Bridge"
+    "zh_CN": "浮晶拱桥",
+    "en": "Crystal Archbridge"
   },
   "ROOM_L03": {
-    "zh_CN": "齿轮回廊",
-    "en": "Gear Gallery"
+    "zh_CN": "符文回廊",
+    "en": "Rune Gallery"
   },
   "ROOM_L04": {
-    "zh_CN": "尘封分拣场",
-    "en": "Sealed Sorting Yard"
+    "zh_CN": "琉光仪场",
+    "en": "Prism Array"
   },
   "ROOM_L05": {
-    "zh_CN": "断梁吊舱",
-    "en": "Broken-Beam Gondola"
+    "zh_CN": "悬曜升台",
+    "en": "Radiant Lift"
   },
   "ROOM_L06": {
-    "zh_CN": "炉腹闸室",
-    "en": "Furnace Sluice"
+    "zh_CN": "辉核祭庭",
+    "en": "Radiant Core Court"
   },
   "ROOM_L07": {
-    "zh_CN": "根笼渡口",
-    "en": "Root-Cage Crossing"
+    "zh_CN": "蜜晶渡口",
+    "en": "Honeyglass Crossing"
   },
   "ROOM_L08": {
-    "zh_CN": "孢伞浮台",
-    "en": "Sporecap Platforms"
+    "zh_CN": "蜂翼浮台",
+    "en": "Winged Hive Raft"
   },
   "ROOM_L09": {
-    "zh_CN": "育囊迷园",
-    "en": "Brood-Pod Maze"
+    "zh_CN": "育虫迷园",
+    "en": "Brood Maze"
   },
   "ROOM_L10": {
-    "zh_CN": "温室换气井",
-    "en": "Greenhouse Vent"
+    "zh_CN": "树脂风井",
+    "en": "Resin Vent"
   },
   "ROOM_L11": {
-    "zh_CN": "啮壁菌窟",
-    "en": "Wall-Gnawing Grotto"
+    "zh_CN": "啮岩虫窟",
+    "en": "Stonegnaw Nest"
   },
   "ROOM_L12": {
-    "zh_CN": "菌液分洪池",
-    "en": "Mycelium Spillway"
+    "zh_CN": "琥珀分洪池",
+    "en": "Amber Spill Basin"
   },
   "ROOM_L13": {
-    "zh_CN": "折叠登机栈",
-    "en": "Folding Boarding Rack"
+    "zh_CN": "南瓜门街",
+    "en": "Pumpkin Gate Street"
   },
   "ROOM_L14": {
-    "zh_CN": "无灯货仓",
-    "en": "Unlit Warehouse"
+    "zh_CN": "无灯糖仓",
+    "en": "Unlit Candy Store"
   },
   "ROOM_L15": {
-    "zh_CN": "反极检修坪",
-    "en": "Reverse-Polarity Yard"
+    "zh_CN": "墓铃广场",
+    "en": "Gravebell Square"
   },
   "ROOM_L16": {
-    "zh_CN": "冷凝炉廊",
-    "en": "Condenser Gallery"
+    "zh_CN": "烛炉长街",
+    "en": "Candlekiln Street"
   },
   "ROOM_L17": {
-    "zh_CN": "交叉装配线",
-    "en": "Crossed Assembly Line"
+    "zh_CN": "缝补作坊",
+    "en": "Patchwork Workshop"
   },
   "ROOM_L18": {
-    "zh_CN": "浮机回收坞",
-    "en": "Hover Rig Dock"
+    "zh_CN": "幽灯码头",
+    "en": "Ghostlamp Dock"
   },
   "ROOM_L19": {
-    "zh_CN": "垂钟螺台",
-    "en": "Hanging-Bell Spiral"
+    "zh_CN": "战鼓螺台",
+    "en": "War-Drum Spiral"
   },
   "ROOM_L20": {
-    "zh_CN": "回声石街",
-    "en": "Echo Stone Street"
+    "zh_CN": "赤岩石街",
+    "en": "Redrock Stone Street"
   },
   "ROOM_L21": {
-    "zh_CN": "倒悬镜池",
-    "en": "Inverted Mirror Pool"
+    "zh_CN": "獠牙角斗庭",
+    "en": "Fang Arena"
   },
   "ROOM_L22": {
-    "zh_CN": "失声织厅",
-    "en": "Silent Weaving Hall"
+    "zh_CN": "铁砧战厅",
+    "en": "Anvil War Hall"
   },
   "ROOM_L23": {
-    "zh_CN": "移灯裂谷",
-    "en": "Wandering-Lamp Rift"
+    "zh_CN": "烽灯裂谷",
+    "en": "Beacon Rift"
   },
   "ROOM_L24": {
-    "zh_CN": "余响校准庭",
-    "en": "Aftertone Court"
+    "zh_CN": "酋长校武庭",
+    "en": "Chieftain Drill Court"
   },
   "BIOME_B01": {
-    "zh_CN": "锈铁矿脉",
-    "en": "Rustiron Seam"
+    "zh_CN": "晴辉遗庭",
+    "en": "Sunlit Ruin Court"
   },
   "BIOME_B02": {
-    "zh_CN": "菌蚀温床",
-    "en": "Fungal Nursery"
+    "zh_CN": "琥珀虫巢",
+    "en": "Amber Hive"
   },
   "BIOME_B03": {
-    "zh_CN": "断电机库",
-    "en": "Blackout Hangar"
+    "zh_CN": "南瓜墓镇",
+    "en": "Pumpkin Grave Town"
   },
   "ROOM_LOAD_FAILED_TITLE": {"zh_CN":"暂时无法出发","en":"Unable to depart"},
   "ROOM_LOAD_FAILED_NOTE": {"zh_CN":"房间未能加载，请返回营地后重试。","en":"The room could not be loaded. Return to camp and try again."},
@@ -984,10 +984,18 @@
   "HUD_DETAIL_HINT": {"zh_CN":"按键施放 · 点击或 Enter 查看完整详情\nTab 暂停并展开作战仪表","en":"Use the hotkey to cast. Click or Enter for details.\nTab pauses and opens combat instruments."},
   "HUD_BASE_DESCRIPTION": {"zh_CN":"基础技能档案（等级、装备及分支后的实际消耗与冷却见上方）","en":"Base skill dossier. Current cost and cooldown above include level, equipment and branch changes."},
   "HUD_DASH_DESCRIPTION": {"zh_CN":"沿移动方向冲刺；未移动时朝准星方向冲刺。每位角色的距离与冷却不同。","en":"Dash in the movement direction, or toward the reticle when stationary. Distance and cooldown depend on the hero."},
-  "HUD_WALLET_NOTE": {"zh_CN":"撤离保留全部携带金币；死亡或放弃按结算规则保留部分。\n点击或 Tab 查看携行详情。","en":"Extraction keeps all carried gold. Death or abandonment keeps the settlement share.\nClick or Tab to inspect your loadout."},
-  "HUD_WALLET_TOTAL": {"zh_CN":"携带金币 {gold} · 死亡/放弃保留 {kept} · 撤离全额保留","en":"Gold {gold} · Death/abandon keeps {kept} · Extraction keeps all"},
+  "HUD_WALLET_NOTE": {"zh_CN":"撤离保留全部携带金币；死亡保留50%，主动放弃保留20%（向下取整）。\n点击或 Tab 查看携行详情。","en":"Extraction keeps all carried gold. Death keeps 50%; abandoning keeps 20%, rounded down.\nClick or Tab to inspect your loadout."},
+  "HUD_WALLET_TOTAL": {"zh_CN":"金币 {gold} · 死亡保留 {kept}（50%）· 放弃保留20% · 撤离全额","en":"Gold {gold} · Death: {kept} (50%) · Abandon: 20% · Extract: 100%"},
+  "STAT_ABILITY_POWER": {"zh_CN":"法术强度","en":"Ability power"},
+  "STAT_MAGIC_RESIST": {"zh_CN":"魔法抗性","en":"Magic resistance"},
+  "STAT_ARMOR_PENETRATION": {"zh_CN":"物理穿透","en":"Armor penetration"},
+  "STAT_MAGIC_PENETRATION": {"zh_CN":"法术穿透","en":"Magic penetration"},
+  "STAT_MAX_MANA": {"zh_CN":"最大法力","en":"Max mana"},
+  "STAT_CRIT_MULTIPLIER": {"zh_CN":"暴击伤害","en":"Critical damage"},
+  "STAT_TRUE_DAMAGE_BONUS": {"zh_CN":"真伤附加","en":"Bonus true damage"},
+  "STAT_EQUIPMENT_DAMAGE_REDUCTION": {"zh_CN":"伤害减免","en":"Damage reduction"},
   "BIOME_B04": {
-    "zh_CN": "共鸣深井",
-    "en": "Resonance Well"
+    "zh_CN": "赤岩战寨",
+    "en": "Redrock Warcamp"
   }
 }

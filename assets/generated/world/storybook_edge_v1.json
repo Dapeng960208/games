@@ -1,0 +1,18 @@
+{
+  "asset": "storybook_edge_v1.png",
+  "created_date": "2026-09-30",
+  "pixel_width": 1254,
+  "pixel_height": 1254,
+  "generator": "built-in image_gen",
+  "use_case": "stylized-concept",
+  "source": "C:/Users/13326/.codex/generated_images/01a0f260-8e28-78d1-be2b-23f8eef54702/exec-5518768a-e357-4586-9fa0-05813898065d.png",
+  "reference": "C:/Users/13326/.codex/generated_images/01a0f250-dc5c-7040-ab32-96177571dcae/exec-43b24e14-8aac-4983-aba5-37855eb767a4.png",
+  "requested_dimensions": "768x768",
+  "prompt": "Use case: stylized-concept\nAsset type: ONE production game edge scenery sprite, requested 768 x 768 square PNG with actual transparent background, for a top-down Godot arena perimeter decorative object.\nInput images: Image 1 is ONLY a style and color reference for the sunny cream/pale peach salvage garden ruins of the selected bright fantasy adventure concept; do not reproduce its scene, floor, characters, UI, or layout.\nPrimary request: one fully isolated compact ancient salvage garden ruin planter cluster, low and readable silhouette: 2-3 staggered short weathered limestone blocks in warm cream and pale peach, restrained teal ivy and sage moss climbing a few corners, a few tiny ivory and yellow flowers, and one small blue crystal nestled in a corner. Charming polished hand-painted / cel-painted game art with refined colored outlines and soft ambient sunlight.\nComposition/framing: three-quarter top-down view for a bird's-eye action game, matching the reference. Entire single cluster fits safely in image with clear transparent space around all sides, centered subject fills about 80 percent width and 75 percent height. Cluster's ground-contact foot is near y80 percent, with a small soft short transparent ambient contact shadow beneath. Distinct separate stepped blocks remain short: decoration rather than an imposing wall. Readable at small gameplay scale.\nMaterials/textures: gently worn matte limestone, clean simplified leaves, subtly shining small blue crystal, very restrained stone chips.\nColor palette: pale peach and cream ivory limestone, sage/teal plant accents, tiny yellow and ivory flowers, small turquoise-blue crystal.\nConstraints: exactly one isolated standalone scenery cluster sprite on genuinely transparent alpha background. No surrounding ground, no rectangular floor or platform, no backdrop, no labels or text, no UI, people, monsters, props beyond the specified small cluster. No tall wall, no giant chokepoint, no dark overgrown shrub. No vignette or dramatic shadow. Complete silhouette visible with no cropping.",
+  "transparent_background": true,
+  "native_foot_anchor": {
+    "x": 627,
+    "y": 1020
+  },
+  "foot_anchor_basis": "Visual estimate of central ground contact among the low front stones; front silhouette extends slightly below anchor."
+}

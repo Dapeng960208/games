@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH02",
+  "slot": "secondary",
+  "bank": "front",
+  "enabled": true,
+  "runtime_status": "six_pose_skill_initial_integration",
+  "texture": "res://assets/generated/heroes/CH02_secondary_front_v1.png",
+  "width": 1536,
+  "height": 1024,
+  "columns": 3,
+  "rows": 2,
+  "body_height": 432,
+  "body_height_method": "One fixed standing anatomical scale for this entire bank, visually estimated from the upright shoulder and ready crown-to-ground heights; backpack antenna excluded. Do not rescale crouched/recoil frames individually.",
+  "frames": [
+    {
+      "name": "shoulder",
+      "index": 0,
+      "region": [
+        0,
+        0,
+        512,
+        505
+      ],
+      "foot": [
+        236,
+        490
+      ],
+      "head": [
+        228,
+        96
+      ],
+      "grip": [
+        200,
+        206
+      ],
+      "muzzle": [
+        480,
+        388
+      ],
+      "barrel_axis": [
+        [
+          263,
+          232
+        ],
+        [
+          480,
+          388
+        ]
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          35,
+          14,
+          477,
+          485
+        ],
+        "above_8": [
+          98,
+          16,
+          392,
+          480
+        ],
+        "above_128": [
+          98,
+          17,
+          391,
+          478
+        ]
+      }
+    },
+    {
+      "name": "brace",
+      "index": 1,
+      "region": [
+        512,
+        0,
+        512,
+        505
+      ],
+      "foot": [
+        735,
+        489
+      ],
+      "head": [
+        720,
+        112
+      ],
+      "grip": [
+        704,
+        179
+      ],
+      "muzzle": [
+        993,
+        226
+      ],
+      "barrel_axis": [
+        [
+          785,
+          187
+        ],
+        [
+          993,
+          226
+        ]
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          513,
+          19,
+          511,
+          486
+        ],
+        "above_8": [
+          582,
+          27,
+          419,
+          469
+        ],
+        "above_128": [
+          583,
+          28,
+          417,
+          467
+        ]
+      }
+    },
+    {
+      "name": "lock",
+      "index": 2,
+      "region": [
+        1024,
+        0,
+        512,
+        505
+      ],
+      "foot": [
+        1233,
+        489
+      ],
+      "head": [
+        1208,
+        172
+      ],
+      "grip": [
+        1219,
+        224
+      ],
+      "muzzle": [
+        1507,
+        228
+      ],
+      "barrel_axis": [
+        [
+          1283,
+          214
+        ],
+        [
+          1507,
+          228
+        ]
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          1035,
+          7,
+          487,
+          491
+        ],
+        "above_8": [
+          1073,
+          78,
+          439,
+          417
+        ],
+        "above_128": [
+          1074,
+          79,
+          437,
+          416
+        ]
+      }
+    },
+    {
+      "name": "fire",
+      "index": 3,
+      "region": [
+        0,
+        505,
+        512,
+        519
+      ],
+      "foot": [
+        258,
+        970
+      ],
+      "head": [
+        187,
+        599
+      ],
+      "grip": [
+        204,
+        683
+      ],
+      "muzzle": [
+        489,
+        616
+      ],
+      "barrel_axis": [
+        [
+          270,
+          655
+        ],
+        [
+          489,
+          616
+        ]
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          25,
+          505,
+          472,
+          483
+        ],
+        "above_8": [
+          83,
+          536,
+          412,
+          446
+        ],
+        "above_128": [
+          84,
+          537,
+          410,
+          444
+        ]
+      }
+    },
+    {
+      "name": "absorb",
+      "index": 4,
+      "region": [
+        512,
+        505,
+        512,
+        519
+      ],
+      "foot": [
+        746,
+        970
+      ],
+      "head": [
+        718,
+        623
+      ],
+      "grip": [
+        722,
+        690
+      ],
+      "muzzle": [
+        1011,
+        694
+      ],
+      "barrel_axis": [
+        [
+          800,
+          674
+        ],
+        [
+          1011,
+          694
+        ]
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          531,
+          505,
+          493,
+          495
+        ],
+        "above_8": [
+          584,
+          537,
+          433,
+          445
+        ],
+        "above_128": [
+          585,
+          538,
+          431,
+          443
+        ]
+      }
+    },
+    {
+      "name": "ready",
+      "index": 5,
+      "region": [
+        1024,
+        505,
+        512,
+        519
+      ],
+      "foot": [
+        1249,
+        977
+      ],
+      "head": [
+        1240,
+        592
+      ],
+      "grip": [
+        1204,
+        706
+      ],
+      "muzzle": [
+        1453,
+        904
+      ],
+      "barrel_axis": [
+        [
+          1292,
+          751
+        ],
+        [
+          1453,
+          904
+        ]
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          1025,
+          507,
+          497,
+          483
+        ],
+        "above_8": [
+          1104,
+          509,
+          354,
+          475
+        ],
+        "above_128": [
+          1104,
+          510,
+          354,
+          474
+        ]
+      }
+    }
+  ],
+  "phase_frames": {
+    "windup": [
+      "shoulder",
+      "brace",
+      "lock"
+    ],
+    "release": [
+      "fire"
+    ],
+    "recovery": [
+      "absorb",
+      "ready"
+    ]
+  },
+  "phase_weights": {
+    "windup": [
+      0.3,
+      0.3,
+      0.4
+    ],
+    "release": [
+      1
+    ],
+    "recovery": [
+      0.55,
+      0.45
+    ]
+  },
+  "registration": {
+    "coordinates": "All region, foot, head, grip, muzzle, barrel_axis and alpha_bounds coordinates are absolute atlas pixels. Regions and bounds use [x,y,width,height].",
+    "foot": "Ground registration point between the two planted boot soles, visually placed from the rendered pose; approximately +/-5 pixels.",
+    "head": "Visual center of the skull/head, not the backpack antenna; approximately +/-5 pixels.",
+    "grip": "Center of the rear trigger hand, not the forward supporting hand; approximately +/-5 pixels.",
+    "muzzle": "Center of the terminal green/brass muzzle opening; approximately +/-3 pixels.",
+    "barrel_axis": "Two visually selected points on the straight ruler-barrel centerline, for direction QA only; approximately +/-3 pixels.",
+    "crop_note": "Front row split is y=505 rather than y=512 to preserve the ready frame's backpack antenna tip at y=509. Use explicit regions.",
+    "source_pixels_modified": false
+  },
+  "alpha": {
+    "transparent_pixels": 1111883,
+    "total_pixels": 1572864,
+    "transparent_fraction": 0.706916173,
+    "minimum": 0,
+    "maximum": 254,
+    "inspection": "System.Drawing Bitmap.LockBits with ImageLockMode.ReadOnly. Tool preview shows RGB background despite alpha=0; actual PNG has transparent empty background."
+  },
+  "review_status": "awaiting_root_visual_and_playback_acceptance",
+  "review_notes": [
+    "All six action silhouettes are readable and the long slender folding-ruler rifle identity is preserved.",
+    "The barrel axis rises approximately 13.7 degrees from lock to fire; determine whether this recoil is acceptable before enabling.",
+    "The first shoulder frame is still a low-carry/lift-start pose, whereas the back shoulder frame is already raised; front/back phase-start poses are not identical in timing.",
+    "Fine low-alpha noise exists beyond visible silhouette bounds; RGB preview background is not evidence of opaque pixels."
+  ],
+  "provenance": "res://assets/generated/heroes/CH02_secondary_v1_provenance.json"
+}

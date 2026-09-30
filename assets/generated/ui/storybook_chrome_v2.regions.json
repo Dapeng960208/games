@@ -1,0 +1,72 @@
+{
+  "texture": "res://assets/generated/ui/storybook_chrome_v2.png",
+  "regions": {
+    "hero_ribbon": [
+      12,
+      162,
+      496,
+      179
+    ],
+    "skill_ribbon": [
+      519,
+      204,
+      499,
+      109
+    ],
+    "quest_note": [
+      1066,
+      108,
+      450,
+      293
+    ],
+    "gold_bezel": [
+      23,
+      521,
+      465,
+      458
+    ],
+    "circuit_orb": [
+      526,
+      521,
+      484,
+      456
+    ],
+    "route_bead": [
+      1169,
+      650,
+      220,
+      216
+    ]
+  },
+  "margins": {
+    "hero_ribbon": [
+      116,
+      56,
+      76,
+      42
+    ],
+    "skill_ribbon": [
+      72,
+      20,
+      72,
+      20
+    ],
+    "quest_note": [
+      28,
+      28,
+      28,
+      28
+    ]
+  },
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "alpha_measurement": {
+    "threshold": 32,
+    "padding": 2,
+    "reason": "Ignore generator residual alpha noise below 32 in otherwise transparent gutters; visible alpha>=32 bounds are stable at 32 and 64. Every region includes 2px padding."
+  },
+  "margin_order": "left,top,right,bottom",
+  "notes": "Margins refer to the cropped AtlasTexture regions. Hero and skill banners should stretch primarily horizontally; preserve a consistent vertical scale so ornate end shapes remain natural. Orb, bezel and bead should retain square or near-square aspect."
+}

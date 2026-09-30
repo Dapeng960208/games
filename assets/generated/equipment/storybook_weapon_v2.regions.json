@@ -1,0 +1,193 @@
+{
+  "texture": "res://assets/generated/equipment/storybook_weapon_v2.png",
+  "dimensions": [
+    1983,
+    793
+  ],
+  "regions": {
+    "EQ01": [
+      92,
+      106,
+      217,
+      225
+    ],
+    "EQ02": [
+      481,
+      123,
+      239,
+      198
+    ],
+    "EQ03": [
+      898,
+      117,
+      192,
+      215
+    ],
+    "EQ04": [
+      1274,
+      103,
+      231,
+      228
+    ],
+    "EQ05": [
+      1661,
+      122,
+      231,
+      208
+    ],
+    "EQ06": [
+      78,
+      460,
+      230,
+      227
+    ],
+    "EQ07": [
+      490,
+      465,
+      224,
+      222
+    ],
+    "EQ08": [
+      860,
+      471,
+      265,
+      206
+    ],
+    "EQ09": [
+      1270,
+      451,
+      250,
+      236
+    ],
+    "EQ10": [
+      1691,
+      452,
+      208,
+      242
+    ]
+  },
+  "items": {
+    "EQ01": {
+      "slot": "weapon",
+      "name": "旧井定位芯",
+      "name_en": "Old-Shaft Locator Core",
+      "visual": "方黄铜盒与单枚白定位针",
+      "cell": [
+        0,
+        0,
+        397,
+        396
+      ]
+    },
+    "EQ02": {
+      "slot": "weapon",
+      "name": "回环弹簧匣",
+      "name_en": "Loop-Spring Magazine",
+      "visual": "外露双弹簧与赤铜圆轴",
+      "cell": [
+        397,
+        0,
+        396,
+        396
+      ]
+    },
+    "EQ03": {
+      "slot": "weapon",
+      "name": "引炉红芯",
+      "name_en": "Furnace Ember Core",
+      "visual": "琥珀炉芯包覆三片黑铁叶",
+      "cell": [
+        793,
+        0,
+        397,
+        396
+      ]
+    },
+    "EQ04": {
+      "slot": "weapon",
+      "name": "三叉鸣轨",
+      "name_en": "Three-Prong Singing Rail",
+      "visual": "三叉蓝轨与悬空铜触点",
+      "cell": [
+        1190,
+        0,
+        396,
+        396
+      ]
+    },
+    "EQ05": {
+      "slot": "weapon",
+      "name": "潮冻环刃",
+      "name_en": "Frost-Tide Ring Blade",
+      "visual": "缺口白环嵌冰蓝波纹片",
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ]
+    },
+    "EQ06": {
+      "slot": "weapon",
+      "name": "铜蚀滴注器",
+      "name_en": "Copper-Corrosion Injector",
+      "visual": "斜置绿液小瓶与铜色毛细管",
+      "cell": [
+        0,
+        396,
+        397,
+        397
+      ]
+    },
+    "EQ07": {
+      "slot": "weapon",
+      "name": "誓卫方锁",
+      "name_en": "Oathguard Square Lock",
+      "visual": "方锁中心亮白盾孔",
+      "cell": [
+        397,
+        396,
+        396,
+        397
+      ]
+    },
+    "EQ08": {
+      "slot": "weapon",
+      "name": "断层配重芯",
+      "name_en": "Faultline Counterweight Core",
+      "visual": "黄裂黑石夹在对称悬锤中",
+      "cell": [
+        793,
+        396,
+        397,
+        397
+      ]
+    },
+    "EQ09": {
+      "slot": "weapon",
+      "name": "偏轴校准镜",
+      "name_en": "Off-Axis Calibration Lens",
+      "visual": "偏心紫镜与三枚刻度臂",
+      "cell": [
+        1190,
+        396,
+        396,
+        397
+      ]
+    },
+    "EQ10": {
+      "slot": "weapon",
+      "name": "双尾风标",
+      "name_en": "Twin-Tail Wind Marker",
+      "visual": "两条沙白尾带夹天青薄鳍",
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ]
+    }
+  },
+  "alpha_threshold": 16,
+  "padding": 2
+}

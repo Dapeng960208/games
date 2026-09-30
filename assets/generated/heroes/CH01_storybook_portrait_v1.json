@@ -1,0 +1,40 @@
+{
+  "asset": "CH01_storybook_portrait_v1.png",
+  "created_date": "2026-09-30",
+  "generator": "built-in image_gen",
+  "use_case": "stylized-concept",
+  "source": "C:/Users/13326/.codex/generated_images/01a0f260-8e28-78d1-be2b-23f8eef54702/exec-a3c0a547-767b-4127-ba0c-409f55f6d6de.png",
+  "reference": "C:/webdev/games/artifacts/design-reference-option3.png",
+  "requested_dimensions": "768x1024",
+  "measurement": {
+    "width": 1176,
+    "height": 1337,
+    "alpha_bbox": [
+      0,
+      23,
+      1176,
+      1305
+    ],
+    "alpha_bbox_threshold16": [
+      6,
+      60,
+      1171,
+      1297
+    ],
+    "corners_alpha": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "head_region_pixels": {
+    "x": 295,
+    "y": 40,
+    "width": 720,
+    "height": 725
+  },
+  "head_region_basis": "Visually estimated crop region enclosing hair, face and neck, excluding most armor and axe; source PNG remains uncropped.",
+  "prompt": "Use case: stylized-concept\nAsset type: ONE production human hero portrait sprite for a Godot game HUD and camp class-selection interface, tall 768 x 1024 PNG with genuinely transparent alpha outside the silhouette.\nInput images: Image 1 is the selected art-direction reference. Match specifically its top-left dark-haired male axe-warrior portrait and its polished hand-painted fantasy drawing style with crisp refined colored outlines, warm sunny lighting and friendly adventure mood. Do not copy UI, borders, paper, text, background or scene.\nPrimary request: a handsome young adult human male AXE-WARRIOR bust illustration. Dark brown windswept layered hair, warm tan face, lively bright brown eyes, a confident friendly adventurous expression, subtle smile. Short vivid orange/coral scarf and cloth accents. Matte charcoal armor with warm copper and gold trim and sculpted shoulder protection. A clearly recognizable small edge of an AXE head strapped behind one shoulder may appear, without dominating the face. NO gun, NO rifle, NO flamethrower.\nComposition/framing: head and shoulders plus upper chest only, no waist, no arms below chest, no full body. Three-quarter view facing right, both eyes visible, clear face focal point. Entire head, windswept hair, both shoulders and armor edges safely inside the canvas and entirely unclipped. Subject centered and fills approximately 80 percent frame height, with generous transparent margin above hair and at both sides. Chest ends in a clean deliberate curved bust contour suitable for overlaying a HUD or camp card. No framed badge.\nStyle/medium: high quality clean cel-painted fantasy adventure portrait matching the supplied reference, layered illustrative shading, controlled detail, refined charcoal/plum colored outlines, painterly warm highlights.\nColor palette: warm skin and brown hair, coral/orange scarf, matte charcoal armor, restrained copper-gold trim.\nLighting/mood: soft warm ambient daylight, approachable brave adventurer rather than grim military soldier.\nConstraints: exactly ONE transparent portrait asset. Transparent background outside subject. No helmet, hat, gun, rifle, firearm, flamethrower, glowing weapon, full-body pose, circular or rectangular frame, paper, scene, scenery, text, symbols, UI, watermark. Complete silhouette visible with absolutely no cropped hair or shoulders.",
+  "transparent_background": true
+}

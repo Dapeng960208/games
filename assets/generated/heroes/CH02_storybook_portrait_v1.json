@@ -1,0 +1,51 @@
+{
+  "asset": "CH02_storybook_portrait_v1.png",
+  "created_date": "2026-09-30",
+  "generator": "built-in image_gen",
+  "use_case": "stylized-concept",
+  "source": "C:/Users/13326/.codex/generated_images/01a0f260-8e28-78d1-be2b-23f8eef54702/exec-81748699-cb5c-4dc8-825c-a75234323e7f.png",
+  "references": [
+    "C:/webdev/games/artifacts/design-reference-option3.png",
+    "C:/webdev/games/assets/generated/heroes/CH01_storybook_portrait_v1.png",
+    "C:/webdev/games/assets/generated/heroes/CH02_portrait_v1.png"
+  ],
+  "requested_dimensions": "768x1024",
+  "measurement": {
+    "width": 1086,
+    "height": 1448,
+    "alpha_bbox": [
+      0,
+      9,
+      1076,
+      1448
+    ],
+    "alpha_bbox_threshold16": [
+      4,
+      135,
+      1066,
+      1389
+    ],
+    "corners_alpha": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "canonical_identity": {
+    "name": "岑线",
+    "gender": "female",
+    "age_approximate": 30,
+    "class": "surveyor-gunner",
+    "weapon": "folding measurement-rail rifle"
+  },
+  "head_region_pixels": {
+    "x": 325,
+    "y": 120,
+    "width": 690,
+    "height": 715
+  },
+  "head_region_basis": "Visually estimated crop region enclosing hair, face and neck, excluding most jacket and rifle; source PNG remains uncropped.",
+  "prompt": "Use case: stylized-concept\nAsset type: ONE production CH02 hero bust portrait sprite for Godot HUD and class selection, tall 768 x 1024 PNG with genuinely transparent background.\nInput images: Image 1 is the selected option 3 art direction: bright hand-painted fantasy adventure colors and refined colored outlines only, no scene or UI. Image 2 is the NEW male axe-warrior portrait in the same series: match its exact cel-painted line weight, polished shading, warm ambient light, portrait scale and bust composition, but make a different character. Image 3 is ONLY CH02's canonical identity reference: retain its adult woman's facial identity, short dark hair/brass clip, surveyor character and folding measurement-rail rifle. Convert its realistic full-body style into the illustrated bust style of Image 2; do not preserve full-body framing or its dark background.\nPrimary request: CH02 岑线 / Cen Xian, an attractive capable adult female surveyor-gunner about 30 years old, short tousled dark brown hair with longer side-swept fringe, a small brass hair clip and tiny tied-back hair section. Warm light tan skin, lively hazel/green-brown eyes, calm confident friendly smile. Ivory and subdued sage/teal survey jacket with brass trim, dark charcoal utility undershirt, restrained copper-brass harness details. A small upper silhouette of her elegant folding measurement-rail rifle with its triangular brass stock is slung behind one shoulder, a slim brass ranging needle visible near the other shoulder. Equipment supports her identity without obscuring her face.\nComposition/framing: head, complete hair, both shoulders and upper chest only. Three-quarter portrait facing right, both eyes visible. Complete silhouette entirely visible, centered and filling approximately 80 percent frame height; transparent margin above hair and at both sides. Clean deliberate curved lower bust contour for HUD/camp overlays. No arms below chest, waist, lower body or full-body pose.\nStyle/medium: match Image 2's refined cel-painted fantasy illustration, clean plum/charcoal colored outlines, attractive controlled expressive face, warm painterly highlights and polished layered shading. Bright approachable salvage-adventure mood.\nConstraints: exactly one transparent portrait sprite, no background/scene, no surrounding objects, no text/UI/watermark/frame/paper/badge. No hat or helmet; no goggles because canonical hair/brass clip identity should remain readable. No axe, no wizard robe, no giant rifle crossing face, no full body. Hair and both shoulders must be completely inside canvas with clear transparent margin, no cropping.",
+  "transparent_background": true
+}

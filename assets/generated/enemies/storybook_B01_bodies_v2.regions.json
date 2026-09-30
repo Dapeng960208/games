@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "texture": "res://assets/generated/enemies/storybook_B01_bodies_v2.png",
+  "biome_id": "B01",
+  "dimensions": [
+    1983,
+    793
+  ],
+  "alpha_threshold": 16,
+  "padding": 2,
+  "entries": {
+    "M01": {
+      "region": [
+        1277,
+        512,
+        250,
+        180
+      ],
+      "foot": [
+        1356,
+        692
+      ],
+      "source_height": 180,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "M27"
+    },
+    "M02": {
+      "region": [
+        894,
+        137,
+        228,
+        211
+      ],
+      "foot": [
+        1000,
+        348
+      ],
+      "source_height": 211,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "M21"
+    },
+    "M03": {
+      "region": [
+        483,
+        191,
+        261,
+        145
+      ],
+      "foot": [
+        608,
+        336
+      ],
+      "source_height": 145,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "M20"
+    },
+    "M04": {
+      "region": [
+        96,
+        136,
+        206,
+        188
+      ],
+      "foot": [
+        234,
+        324
+      ],
+      "source_height": 188,
+      "native_height": 66,
+      "collision_radius": 12,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "M19"
+    },
+    "M05": {
+      "region": [
+        109,
+        509,
+        236,
+        180
+      ],
+      "foot": [
+        215,
+        689
+      ],
+      "source_height": 180,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "M24"
+    },
+    "M06": {
+      "region": [
+        887,
+        494,
+        210,
+        179
+      ],
+      "foot": [
+        992,
+        673
+      ],
+      "source_height": 179,
+      "native_height": 88,
+      "collision_radius": 24,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "M26"
+    },
+    "M07": {
+      "region": [
+        1685,
+        153,
+        184,
+        175
+      ],
+      "foot": [
+        1777,
+        328
+      ],
+      "source_height": 175,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "M23"
+    },
+    "M08": {
+      "region": [
+        539,
+        485,
+        179,
+        203
+      ],
+      "foot": [
+        617,
+        688
+      ],
+      "source_height": 203,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "M25"
+    },
+    "M09": {
+      "region": [
+        1300,
+        143,
+        198,
+        195
+      ],
+      "foot": [
+        1399,
+        338
+      ],
+      "source_height": 195,
+      "native_height": 88,
+      "collision_radius": 24,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "M22"
+    },
+    "BO01": {
+      "region": [
+        1656,
+        462,
+        241,
+        236
+      ],
+      "foot": [
+        1769,
+        698
+      ],
+      "source_height": 236,
+      "native_height": 186.3,
+      "collision_radius": 54,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "BO03"
+    }
+  },
+  "source_family": "storybook_2_5d_v1",
+  "visual_clan": "晴辉构装",
+  "region_mapping": {
+    "M01": "M27",
+    "M02": "M21",
+    "M03": "M20",
+    "M04": "M19",
+    "M05": "M24",
+    "M06": "M26",
+    "M07": "M23",
+    "M08": "M25",
+    "M09": "M22",
+    "BO01": "BO03"
+  },
+  "source_manifest": "storybook_B03_bodies_v1.regions.json",
+  "pixel_processing": "raw PNG copied byte-for-byte; only identity/biome metadata remapped"
+}

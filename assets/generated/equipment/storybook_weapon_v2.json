@@ -1,0 +1,315 @@
+{
+  "asset": "res://assets/generated/equipment/storybook_weapon_v2.png",
+  "source": "OpenAI built-in image_gen.imagegen",
+  "generated_date": "2026-09-30",
+  "mode": "generation with one built-in spacing repair",
+  "style_reference": "C:\\Users\\13326\\.codex\\generated_images\\01a0f250-dc5c-7040-ab32-96177571dcae\\exec-43b24e14-8aac-4983-aba5-37855eb767a4.png",
+  "style_reference_usage": "Visually inspected as style guidance; original generation used a textual style description.",
+  "original_generation": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-09f7-76a3-9c56-a2fcf9498006\\exec-844aaf03-bcad-40f1-bbae-49f34e3c936b.png",
+  "selected_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-09f7-76a3-9c56-a2fcf9498006\\exec-fa065326-ae0b-48fe-82fa-322effc137ee.png",
+  "target_dimensions": [
+    2560,
+    1024
+  ],
+  "actual_dimensions": [
+    1983,
+    793
+  ],
+  "atlas_layout": {
+    "columns": 5,
+    "rows": 2,
+    "order": "row-major ascending EQ01–EQ10"
+  },
+  "transparent_background": true,
+  "alpha_threshold": 16,
+  "padding": 2,
+  "prompt": "Use case: stylized-concept\nAsset type: production transparent game equipment atlas.\nCreate exactly ONE raster sprite atlas with exactly TEN different weapon-slot mechanical modules. Target canvas 2560 x 1024 pixels, landscape ratio 2.5:1, strict five equal columns by two equal rows (ten equal square 512-pixel cells). The image itself has no grid lines. Put exactly one complete isolated object at the center of each cell, in the row-major order below. Keep at least 15% completely transparent blank margin on every side inside each cell; each object must fit within the middle 70% of its cell. No part crosses cell boundaries. All ten objects must be fully visible with no cropping. Equal apparent scale and generously separated.\nStyle: warm premium fantasy storybook game illustration, handpainted miniature physical mechanical equipment, crisp deep-plum ink outline and highlights, three-quarter 2.5D perspective showing top and side surfaces, clear tangible thickness, softly rounded attractive shapes, readable at small icon scale. Cream and pale stone, aged brass, teal accents unify the set with the storybook game world; retain the distinct functional colors below. Warm upper-left light, painted detail on each object's surface, clear silhouette, polished small mechanism. This is not flat vector art, not a glyph, not a diagram.\nStrict row-major order:\nTOP ROW column 1: Old-Shaft Locator Core (旧井定位芯). A square chunky yellow-brass locator box, with a single white locator needle visibly projecting from its top mechanism. Physical brass housing and an unmistakable solitary pale needle. NO extra needles.\nTOP ROW column 2: Loop-Spring Magazine (回环弹簧匣). A compact functional magazine cassette with TWO exposed curled metal springs and a red-copper round axle; springs and round copper axle are clearly visible as assembled mechanism, rather than a gun.\nTOP ROW column 3: Furnace Ember Core (引炉红芯). A glowing AMBER furnace core wrapped snugly by exactly THREE black-iron leaf-shaped casing plates. Orange amber light stays contained within its body. Black iron surfaces, brass rivets, visible thickness.\nTOP ROW column 4: Three-Prong Singing Rail (三叉鸣轨). A solid three-prong BLUE metal rail/fork module with exactly three blue rail branches; a separate small copper contact visibly suspended just above the branches. The rail is thick functional hardware, not a lightning rune.\nTOP ROW column 5: Frost-Tide Ring Blade (潮冻环刃). A thick WHITE notched ring blade, a circular ring with ONE obvious opening/notch, inset with ice-blue wave-shaped plates. The pale ring has beveled physical sides and blue inlays; a compact ring-blade module, not a sword.\nBOTTOM ROW column 1: Copper-Corrosion Injector (铜蚀滴注器). A diagonally tilted small clear vial visibly filled with GREEN liquid, mounted with a thin curled copper capillary tube and brass fastening hardware, an actual compact liquid injector.\nBOTTOM ROW column 2: Oathguard Square Lock (誓卫方锁). A chunky square dark iron lock mechanism, its center containing one brilliantly WHITE shield-shaped aperture. Brass corner pieces, beveled edges, clear physical square lock and shield-shaped hole.\nBOTTOM ROW column 3: Faultline Counterweight Core (断层配重芯). A black stone core split by a vivid YELLOW crack, held between TWO symmetric suspended hammer-shaped counterweights in a small brass frame. The opposing hanging hammers and yellow-cracked black stone must be unmistakable.\nBOTTOM ROW column 4: Off-Axis Calibration Lens (偏轴校准镜). An eccentric offset PURPLE glass lens in a brass rim with exactly THREE short graduated measuring arms radiating around it. Solid assembly, distinct purple glass and three scale arms; simple unlabeled tickmarks only.\nBOTTOM ROW column 5: Twin-Tail Wind Marker (双尾风标). A lightweight pale brass wind marker module, with TWO sand-white flowing tail ribbons flanking a thin SKY-BLUE fin. Exactly two white tails and one blue fin, made as a complete physical small vane device.\nBackground: genuine transparent RGBA. Every pixel outside object bodies has alpha 0. Do not draw checkerboard pattern, background color, smoke, glow halos, vignette, scenery, shadows on a floor, ground, pedestal or drop shadows outside the objects.\nAvoid: text of any language, labels, letters, numbers, UI frames, cell borders, icons within circles, rarity outlines, decorative floor, watermark, swords, axes, identical recolors. Ten distinct faithful functional physical modules only.",
+  "repair_prompt": "Edit this transparent atlas. SINGLE REQUIRED CHANGE: spacing and scale. Preserve exactly the same ten illustrated objects, their identities, row-major order, surface detail, warm handpainted storybook style, colors, 3/4 view, and the genuine transparent background. The current objects are too large. Shrink EVERY complete object by approximately 25% relative to its present size and recenter it at the exact center of its own cell. Desired output canvas 2560 x 1024, exactly FIVE equally spaced columns and TWO equally spaced rows; ten equal square 512px cells. Centers x=256,768,1280,1792,2304 and y=256,768. Each complete object must stay inside the middle 65% of the cell, with at least 17.5% empty TRANSPARENT gutter on left/right/top/bottom. Render fully complete silhouettes, including EQ04 suspended copper contact and EQ10 two ribbon tails. Do not crop anything. No extra objects. No texts, numbers, frames, separators, backgrounds, ground shadows, outer glows or particles. Alpha must be exactly 0 throughout the blank gutters. Preserve all ten actual objects in their current order: top row brass locator box with one white needle; exposed double-spring cassette with copper axle; amber core with three black iron leaves; three-prong blue rail with suspended copper contact; white notched icy ring blade. Bottom row tilted green-vial copper capillary injector; dark square lock with white shield aperture; yellow-cracked black stone between symmetric hanging hammer counterweights; eccentric purple calibration lens with three tick-mark arms; blue fin wind marker with two sand-white tail ribbons. Keep each object physically solid and readable with thickness and handpainted deep plum outlines.",
+  "image_postprocessing": "None. Selected built-in PNG copied byte-for-byte; original retained.",
+  "regions_policy": "Disjoint per-item alpha>=16 bounding boxes with 2-pixel padding; nominal cells recorded separately.",
+  "inspection": "Exactly ten distinct full physical mechanical modules, complete uncut silhouettes and functional colors. No text, UI frames, floor or exterior cast shadows. Mostly >=15% blank cell gutters; EQ09 and EQ10 upper gutters are 14.4% and 14.6% before region padding.",
+  "item_descriptions": {
+    "EQ01": {
+      "slot": "weapon",
+      "name": "旧井定位芯",
+      "name_en": "Old-Shaft Locator Core",
+      "visual": "方黄铜盒与单枚白定位针"
+    },
+    "EQ02": {
+      "slot": "weapon",
+      "name": "回环弹簧匣",
+      "name_en": "Loop-Spring Magazine",
+      "visual": "外露双弹簧与赤铜圆轴"
+    },
+    "EQ03": {
+      "slot": "weapon",
+      "name": "引炉红芯",
+      "name_en": "Furnace Ember Core",
+      "visual": "琥珀炉芯包覆三片黑铁叶"
+    },
+    "EQ04": {
+      "slot": "weapon",
+      "name": "三叉鸣轨",
+      "name_en": "Three-Prong Singing Rail",
+      "visual": "三叉蓝轨与悬空铜触点"
+    },
+    "EQ05": {
+      "slot": "weapon",
+      "name": "潮冻环刃",
+      "name_en": "Frost-Tide Ring Blade",
+      "visual": "缺口白环嵌冰蓝波纹片"
+    },
+    "EQ06": {
+      "slot": "weapon",
+      "name": "铜蚀滴注器",
+      "name_en": "Copper-Corrosion Injector",
+      "visual": "斜置绿液小瓶与铜色毛细管"
+    },
+    "EQ07": {
+      "slot": "weapon",
+      "name": "誓卫方锁",
+      "name_en": "Oathguard Square Lock",
+      "visual": "方锁中心亮白盾孔"
+    },
+    "EQ08": {
+      "slot": "weapon",
+      "name": "断层配重芯",
+      "name_en": "Faultline Counterweight Core",
+      "visual": "黄裂黑石夹在对称悬锤中"
+    },
+    "EQ09": {
+      "slot": "weapon",
+      "name": "偏轴校准镜",
+      "name_en": "Off-Axis Calibration Lens",
+      "visual": "偏心紫镜与三枚刻度臂"
+    },
+    "EQ10": {
+      "slot": "weapon",
+      "name": "双尾风标",
+      "name_en": "Twin-Tail Wind Marker",
+      "visual": "两条沙白尾带夹天青薄鳍"
+    }
+  },
+  "measurements": {
+    "EQ01": {
+      "bounds_alpha16": [
+        94,
+        108,
+        213,
+        221
+      ],
+      "region": [
+        92,
+        106,
+        217,
+        225
+      ],
+      "gutters_px": [
+        94,
+        108,
+        90,
+        67
+      ],
+      "min_gutter_percent": 16.92
+    },
+    "EQ02": {
+      "bounds_alpha16": [
+        483,
+        125,
+        235,
+        194
+      ],
+      "region": [
+        481,
+        123,
+        239,
+        198
+      ],
+      "gutters_px": [
+        86,
+        125,
+        75,
+        77
+      ],
+      "min_gutter_percent": 18.94
+    },
+    "EQ03": {
+      "bounds_alpha16": [
+        900,
+        119,
+        188,
+        211
+      ],
+      "region": [
+        898,
+        117,
+        192,
+        215
+      ],
+      "gutters_px": [
+        107,
+        119,
+        102,
+        66
+      ],
+      "min_gutter_percent": 16.67
+    },
+    "EQ04": {
+      "bounds_alpha16": [
+        1276,
+        105,
+        227,
+        224
+      ],
+      "region": [
+        1274,
+        103,
+        231,
+        228
+      ],
+      "gutters_px": [
+        86,
+        105,
+        83,
+        67
+      ],
+      "min_gutter_percent": 16.92
+    },
+    "EQ05": {
+      "bounds_alpha16": [
+        1663,
+        124,
+        227,
+        204
+      ],
+      "region": [
+        1661,
+        122,
+        231,
+        208
+      ],
+      "gutters_px": [
+        77,
+        124,
+        93,
+        68
+      ],
+      "min_gutter_percent": 17.17
+    },
+    "EQ06": {
+      "bounds_alpha16": [
+        80,
+        462,
+        226,
+        223
+      ],
+      "region": [
+        78,
+        460,
+        230,
+        227
+      ],
+      "gutters_px": [
+        80,
+        66,
+        91,
+        108
+      ],
+      "min_gutter_percent": 16.62
+    },
+    "EQ07": {
+      "bounds_alpha16": [
+        492,
+        467,
+        220,
+        218
+      ],
+      "region": [
+        490,
+        465,
+        224,
+        222
+      ],
+      "gutters_px": [
+        95,
+        71,
+        81,
+        108
+      ],
+      "min_gutter_percent": 17.88
+    },
+    "EQ08": {
+      "bounds_alpha16": [
+        862,
+        473,
+        261,
+        202
+      ],
+      "region": [
+        860,
+        471,
+        265,
+        206
+      ],
+      "gutters_px": [
+        69,
+        77,
+        67,
+        118
+      ],
+      "min_gutter_percent": 16.88
+    },
+    "EQ09": {
+      "bounds_alpha16": [
+        1272,
+        453,
+        246,
+        232
+      ],
+      "region": [
+        1270,
+        451,
+        250,
+        236
+      ],
+      "gutters_px": [
+        82,
+        57,
+        68,
+        108
+      ],
+      "min_gutter_percent": 14.36
+    },
+    "EQ10": {
+      "bounds_alpha16": [
+        1693,
+        454,
+        204,
+        238
+      ],
+      "region": [
+        1691,
+        452,
+        208,
+        242
+      ],
+      "gutters_px": [
+        107,
+        58,
+        86,
+        101
+      ],
+      "min_gutter_percent": 14.61
+    }
+  },
+  "validation": {
+    "image_mode": "RGBA",
+    "visible_alpha_pixels": 281101,
+    "uncovered_visible_alpha_pixels": 0,
+    "all_regions_disjoint": true,
+    "all_regions_within_image": true,
+    "copied_byte_for_byte": true,
+    "alpha_zero_fraction": 0.800454,
+    "selected_source_sha256": "cd9bcb4b088ffa4a9fb2ec750305c0c3991a542a159d3514e4dab0281d5b6864"
+  }
+}

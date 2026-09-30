@@ -1,0 +1,42 @@
+{
+  "name": "storybook_chrome_v2",
+  "created_date": "2026-09-30",
+  "tool": "built-in image_gen.imagegen",
+  "use_case": "ui-mockup",
+  "style_references": [
+    "C:\\Users\\13326\\.codex\\generated_images\\01a0f250-dc5c-7040-ab32-96177571dcae\\exec-43b24e14-8aac-4983-aba5-37855eb767a4.png",
+    "C:\\Users\\13326\\AppData\\Local\\Temp\\codex-clipboard-936ad58c-48bc-4ea5-89cc-a2589e486a15.png"
+  ],
+  "original_image": "C:\\Users\\13326\\.codex\\generated_images\\01a0f260-fa29-7060-b434-6efd3ea1241e\\exec-1282a86d-0e27-413a-8f5a-e9e5e23b46b3.png",
+  "output_image": "assets/generated/ui/storybook_chrome_v2.png",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "grid": {
+    "columns": 3,
+    "rows": 2,
+    "cell_width": 512,
+    "cell_height": 512
+  },
+  "order": [
+    "hero_ribbon",
+    "skill_ribbon",
+    "quest_note",
+    "gold_bezel",
+    "circuit_orb",
+    "route_bead"
+  ],
+  "transparent_background": true,
+  "validation": {
+    "all_six_distinct": true,
+    "no_ui_text": true,
+    "bezel_center_sample_alpha": 0,
+    "gutter_samples_alpha": 0,
+    "paper_center_sample_alpha": 253,
+    "background_residual_alpha_noise": "Mostly alpha0, with scattered sub-32 alpha particles. Bounding boxes measured using alpha>=32 +2px padding. No pixels changed.",
+    "requested_16_percent_gutter": "Generator produced narrower horizontal gutters for hero and skill ribbons and rings; assets remain inside their equal512x512 cells. Tight-region manifest removes blank surrounding cell area."
+  },
+  "regions_manifest": "assets/generated/ui/storybook_chrome_v2.regions.json",
+  "prompt": "Use case: ui-mockup\nAsset type: ONE transparent PNG sprite atlas of six bespoke hand-painted fantasy game HUD components. Requested canvas exactly 1536 by 1024 pixels. Strict 3 columns by 2 rows. All six equal square cells are 512 by 512 pixels; invisible grid, no grid lines.\nInput images: Image 1 and Image 2 are STYLE REFERENCES ONLY for polished fantasy game UI chrome. Faithfully match their warm ivory parchment, engraved golden brass trim, distinct decorative pointed borders, jewel-glass blue lightning circuit orb, and deep plum colored outlines. Do not reproduce environment, characters, letters, numbers, UI labels, typography or layout from the references.\nPrimary request: Paint exactly SIX isolated complete UI assets in strict left-to-right top-row then left-to-right bottom-row order. Each asset is centered within its own cell. NEVER overlap or cross into neighboring cells. Keep at least 16% of each cell clear as transparent gutter on all four sides. All surrounding canvas and gutters are genuinely transparent alpha0; do not paint a backdrop.\nROW 1 COLUMN 1, cell x0..511 y0..511: hero_ribbon, one wide warm ivory parchment hero-stat banner with a distinctive small notched/pointed right end, fine engraved gold/brass border, very subtle light paper material, hand-cut small edge irregularities. Wide horizontal aspect ratio approximately 2.7:1, centered cell. Center is blank opaque cream with generous writing room. Bespoke illustrated fantasy UI banner, slightly elegant metal edging, not a plain HTML rectangle.\nROW 1 COLUMN 2, cell x512..1023 y0..511: skill_ribbon, one long low cream parchment toolbar banner with symmetrically shaped pointed ends, delicate muted golden edges and subtle engraved tiny corner details. Wide aspect ratio approximately 3.6:1, centered cell. Blank opaque cream center, no buttons/icons added. Center can stretch horizontally.\nROW 1 COLUMN 3, cell x1024..1535 y0..511: quest_note, one blank warm cream field-note piece, aspect ratio approximately1.5:1, soft irregular feathered paper edge blending to transparency, no heavy metallic frame. Gentle paper material, quiet opaque cream writing center; small tasteful light corner shape only, no ornament and no extra objects.\nROW 2 COLUMN 1, cell x0..511 y512..1023: gold_bezel, one ornate circular gold/brass UI rim with small symmetrical engraved details and a crisp dark plum outer outline. Very light enamel depth and tasteful little pointed metal crests. The whole CENTER INSIDE the circular ring must be transparent alpha0 and EMPTY. This is a reusable ring for skill icons, not a filled badge. Diameter approximately300pixels, centered in its cell. No icon, no letter, no symbol within.\nROW 2 COLUMN 2, cell x512..1023 y512..1023: circuit_orb, one beautiful complete round blue and turquoise lightning-glass game HUD icon, matching the blue lightning orb near lower left of the references. Luminous turquoise glass, deep blue rim shading, bright stylized lightning bolt in its glass center, elegant thin engraved gold/brass metal rim with subtle four-direction metal points, colored deep plum outlines. Polished hand-painted fantasy UI asset. Diameter approximately300pixels, centered in its cell. No letters.\nROW 2 COLUMN 3, cell x1024..1535 y512..1023: route_bead, one small complete circular golden-rim and cream-glass route-node dot, warm ivory luminous glass center with a strong clean golden rim, deep plum outside outline, subtle elegant depth. Diameter approximately130pixels, centered in its cell. No letters, no symbol.\nStyle: real polished hand-painted game UI sprites, illustration-quality colored outlines, gold/cream/teal palette, very light embossed depth; visually faithful to the selected custom HUD reference. Entire paper writing areas blank. ALL SIX components must stay distinct. Real transparent empty gutters. No extra ornaments, no background, no floor, no cast shadows, no typography, no labels, no text, no symbols except the lightning inside circuit_orb. Do not depict the six pieces as a UI screen; produce a production sprite atlas."
+}

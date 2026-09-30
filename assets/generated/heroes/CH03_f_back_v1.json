@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH03",
+  "slot": "f",
+  "bank": "back",
+  "enabled": true,
+  "texture": "res://assets/generated/heroes/CH03_f_back_v3.png",
+  "body_height": 437,
+  "frames": [
+    {
+      "name": "gather",
+      "region": [
+        0,
+        0,
+        560,
+        512
+      ],
+      "foot": [
+        304,
+        459
+      ],
+      "head": [
+        324,
+        98
+      ],
+      "grip": [
+        443,
+        333
+      ],
+      "muzzle": [
+        527,
+        400
+      ],
+      "core": [
+        365,
+        169
+      ],
+      "left_hand": [
+        371,
+        162
+      ],
+      "right_hand": [
+        426,
+        321
+      ]
+    },
+    {
+      "name": "tune",
+      "region": [
+        560,
+        0,
+        490,
+        512
+      ],
+      "foot": [
+        782,
+        459
+      ],
+      "head": [
+        802,
+        98
+      ],
+      "grip": [
+        917,
+        343
+      ],
+      "muzzle": [
+        1003,
+        407
+      ],
+      "core": [
+        836,
+        154
+      ],
+      "left_hand": [
+        840,
+        158
+      ],
+      "right_hand": [
+        900,
+        329
+      ]
+    },
+    {
+      "name": "command",
+      "region": [
+        1050,
+        0,
+        486,
+        512
+      ],
+      "foot": [
+        1260,
+        466
+      ],
+      "head": [
+        1281,
+        98
+      ],
+      "grip": [
+        1402,
+        342
+      ],
+      "muzzle": [
+        1483,
+        404
+      ],
+      "core": [
+        1341,
+        173
+      ],
+      "left_hand": [
+        1341,
+        172
+      ],
+      "right_hand": [
+        1387,
+        328
+      ]
+    },
+    {
+      "name": "contract",
+      "region": [
+        0,
+        512,
+        560,
+        512
+      ],
+      "foot": [
+        291,
+        942
+      ],
+      "head": [
+        320,
+        608
+      ],
+      "grip": [
+        443,
+        830
+      ],
+      "muzzle": [
+        529,
+        895
+      ],
+      "core": [
+        365,
+        665
+      ],
+      "left_hand": [
+        366,
+        659
+      ],
+      "right_hand": [
+        426,
+        815
+      ]
+    },
+    {
+      "name": "release_core",
+      "region": [
+        560,
+        512,
+        490,
+        512
+      ],
+      "foot": [
+        776,
+        951
+      ],
+      "head": [
+        801,
+        600
+      ],
+      "grip": [
+        918,
+        833
+      ],
+      "muzzle": [
+        1005,
+        897
+      ],
+      "core": [
+        839,
+        664
+      ],
+      "left_hand": [
+        840,
+        663
+      ],
+      "right_hand": [
+        899,
+        818
+      ]
+    },
+    {
+      "name": "ready",
+      "region": [
+        1050,
+        512,
+        486,
+        512
+      ],
+      "foot": [
+        1283,
+        966
+      ],
+      "head": [
+        1288,
+        594
+      ],
+      "grip": [
+        1409,
+        838
+      ],
+      "muzzle": [
+        1495,
+        890
+      ],
+      "core": [
+        1341,
+        672
+      ],
+      "left_hand": [
+        1161,
+        796
+      ],
+      "right_hand": [
+        1394,
+        824
+      ]
+    }
+  ],
+  "phase_frames": {
+    "windup": [
+      "gather",
+      "tune"
+    ],
+    "release": [
+      "command"
+    ],
+    "recovery": [
+      "contract",
+      "release_core",
+      "ready"
+    ]
+  },
+  "phase_weights": {
+    "windup": [
+      0.4,
+      0.6
+    ],
+    "release": [
+      1
+    ],
+    "recovery": [
+      0.3,
+      0.35,
+      0.35
+    ]
+  },
+  "runtime_status": "six_pose_initial"
+}

@@ -1,0 +1,20 @@
+{
+  "asset": "storybook_camp_v1.png",
+  "created_date": "2026-09-30",
+  "generator": "built-in image_gen",
+  "mode": "reference-guided generation",
+  "use_case": "stylized-concept",
+  "reference": "C:/Users/13326/.codex/generated_images/01a0f250-dc5c-7040-ab32-96177571dcae/exec-43b24e14-8aac-4983-aba5-37855eb767a4.png",
+  "original_output": "C:/Users/13326/.codex/generated_images/01a0f261-6b08-73d2-95d6-198cdfe2c9b9/exec-52c022f4-98b3-48e7-87ec-b2693d48bb16.png",
+  "requested_dimensions": {
+    "width": 1536,
+    "height": 864
+  },
+  "actual_dimensions": {
+    "width": 1672,
+    "height": 941
+  },
+  "transparent_background": false,
+  "prompt": "Use case: stylized-concept\nAsset type: production environment-only main-menu and camp backdrop for a 2D Godot fantasy salvage game, landscape canvas 1536 x 864 pixels (16:9).\nInput image 1: STYLE AND PALETTE REFERENCE ONLY. Match its polished painterly fantasy illustration, refined colored outlines, pale limestone, turquoise water, teal foliage and warm brass industrial salvage machinery. Do not copy its characters, monsters, HUD, letters or interface.\nPrimary request: a beautiful welcoming sunlit abandoned salvage courtyard. Environment only: cream limestone arches and a few low ruins frame a large pale peach limestone walkway; glimpses of turquoise water and teal ivy around the outer edges; warm brass and oxidized teal winch machinery at the upper/right edges; a small number of wooden salvage crates and colorful crystals as restrained accents. Preserve the old industrial salvage identity in a bright, inviting fantasy environment.\nComposition: slightly raised 3/4 view, wide continuous landscape. Broad, quiet, low-detail unobstructed space across the center and lower-left for game menu overlays; no prominent object in that area. Keep props sparse and near the outer edges. The surrounding arches have readable simple silhouettes and elegant painterly texture. Buildings and foliage frame the courtyard while keeping an open spacious feeling.\nStyle/medium: high-quality hand-painted polished cel fantasy illustration with colored outlines and controlled texture, matching the reference's welcoming storybook fantasy aesthetic.\nLighting/mood: warm soft morning sunlight, peaceful, airy, cheerful; gentle soft-edged shadows that do not dominate the paving.\nColor palette: luminous cream and pale peach stone, turquoise water, teal/leaf-green plants, warm brass, oxidized teal machinery, small coral and sapphire crystal accents.\nConstraints: environment only, absolutely no people, no monsters, no animals, no UI, no text, no lettering, no signs, no numbers, no logos, no watermark. No dark vignette, no black borders, no blur or depth-of-field, no high-intensity glow, no visual clutter. Full-bleed image.",
+  "visual_review": "Bright cream/peach paving, turquoise water and foliage, brass/teal machinery; spacious center/lower-left, no text/UI/characters/monsters or dark vignette. Foreground leaves at the two lower edges remain softly painted. Original output preserved unchanged."
+}

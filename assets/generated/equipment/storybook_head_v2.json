@@ -1,0 +1,419 @@
+{
+  "asset": "storybook_head_v2.png",
+  "date": "2026-09-30",
+  "source": "Built-in image_gen.imagegen; raw RGBA PNG copied without pixel editing, resizing, clipping, compositing or alpha alteration.",
+  "use_case": "stylized-concept",
+  "reference": {
+    "path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f250-dc5c-7040-ab32-96177571dcae\\exec-43b24e14-8aac-4983-aba5-37855eb767a4.png",
+    "role": "Style reference, visually inspected before generation. Hand-painted storybook fantasy game rendering, cream pale-stone brass teal palette and crisp dark-plum outline."
+  },
+  "item_source": "C:\\webdev\\games\\data\\equipment.json",
+  "dimensions": [
+    1983,
+    793
+  ],
+  "requested_dimensions": [
+    2560,
+    1024
+  ],
+  "grid": {
+    "columns": 5,
+    "rows": 2,
+    "order": "row-major ascending EQ11 through EQ20"
+  },
+  "native_output_preserved": true,
+  "transparent_background": true,
+  "selected_original": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-a70688ef-7d70-43de-9418-2d1c7b8ecf87.png",
+  "generation_history": [
+    {
+      "attempt": 1,
+      "type": "generation",
+      "source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-139c0d37-2985-4518-9d3c-eb1ee27cd43f.png",
+      "prompt": "Use case: stylized-concept.\nAsset type: production game equipment sprite atlas, one complete PNG with true transparency.\nPrimary request: Paint exactly TEN distinct physical head equipment objects in a rigorously regular 5-column by 2-row atlas. Canvas requested EXACTLY 2560 x 1024 pixels, 5 equal columns and 2 equal rows, each cell 512 x 512 pixels. Row-major left to right order MUST follow the ten-item list below. One object per cell, no extras and no duplicates. All objects complete, centered within their own cell. Every object including straps, chimney, ear fins and cloth tails must fit within the central 70 percent of its cell with at least 15 percent empty gutter along every cell edge. Grid/cell boundaries must remain invisible. Maintain equal visual scale and consistently aligned cell centers.\nReference style: the reference image previously shown is a refined hand-painted storybook fantasy game scene: cream parchment and pale sandstone, aged brass construction, teal accents, crisp deep-plum outlines, rich painted shading with readable three-quarter physical volumes. Use only that rendering language and art direction. Do not reproduce the reference scene, characters, UI or scenery.\nStyle/medium: polished hand-painted 2.5D inventory equipment assets, each shown as a tangible hollow wearable object at a slight three-quarter angle. Strong dimensional body, visible material thickness, top and side planes, inner rims, seams, straps, bevels and softly painted highlights. Rich but controlled painted gradients inside the objects. A crisp dark deep-plum silhouette outline. Match the refinement of game concept art. NOT flat glyphs, NOT vector icons, NOT tiny abstract symbols, NOT recolored versions of one silhouette.\nLighting: consistent soft upper-left light painted only onto object surfaces. No cast shadows and no shadow blobs outside objects. \nPalette: warm cream, pale stone, aged brass and restrained teal unify the atlas, while preserving every item's actual black, grey, green, amber, purple or sky-blue identity below.\nThe ONLY subjects, in EXACT row-major order:\nTOP ROW, columns 1-5:\n1. EQ11 浅井护目罩 / Shallow-Shaft Eye Guard. One old copper MONOCULAR eye guard with a single thick round glass viewing lens and a complete ivory/cream cloth head strap that curls around behind it in perspective. Copper patina, worn rivets, glass reflection, visible hollow inner rim. This is a single-lens copper wearable eye guard, not binocular goggles.\n2. EQ12 远距测绘帽 / Long-Range Survey Cap. A practical grey surveying cap with a short brim and a folded hinged ivory WHITE measuring ruler mounted along the cap. Small engraved tick strokes only, no numerals or text. Real cloth seams and folded ruler hinges. Show cap dome, brim thickness and dark empty underside opening.\n3. EQ13 司炉烟囱盔 / Stoker Chimney Helm. A furnace-tender helmet of dark metal with aged brass fittings, a prominent short CHIMNEY leaning backwards from the helmet top and a small AMBER viewing window on the front. Clearly a wearable helmet with hollow bottom rim and layered metal side faces; its rear-tilted chimney and amber window must be unmistakable. No smoke or fire outside the object.\n4. EQ14 断音导电冠 / Broken-Tone Conductor Crown. An open and visibly BROKEN COPPER RING crown with a gap at the front/top, and two BLUE electrical ear pieces at the sides. Build a volumetric aged copper conduction ring with joints and rivets, thick curved cross-section, small sky-blue insulated side-ear plates. No head inside the ring.\n5. EQ15 霜潮贝壳面 / Frost-Tide Shell Mask. A hollow full-face mask made of layered overlapping PALE IVORY sea-shell plates with two distinct WATER-DROP-SHAPED eye slits. Soft icy-blue edge accents. Visible shell ridges, curved mask side planes, and empty dark slit openings. The mask is an object with no human face or skin inside.\nBOTTOM ROW, columns 1-5:\n6. EQ16 铜蚀滤气罩 / Verdigris Filter Mask. A copper respirator mask with TWO GREEN filter cylinders, one on each side, and a COPPER MESH breathing grille at the center. Tarnished aged brass/copper body, emerald/verdigris cylindrical filters, material thickness, connected cream straps and visible empty inner mask rim. No head or mannequin.\n7. EQ17 誓卫垛口盔 / Oathguard Battlement Helm. A BLACK IRON helmet with a squared battlement-like brow and one WARM-WHITE central WEDGE inlay running vertically down the forehead. A low crenellated square forehead silhouette, strong hollow armored shape with clear inner rim and side planes. Keep black iron and ivory wedge as its defining colors. No plume and no character.\n8. EQ18 断层听岩罩 / Faultline Listening Hood. A cream/ochre cloth wearable hood with LEFT AND RIGHT ROCK EAR GUARDS OF CLEARLY UNEQUAL SIZE, one large layered charcoal-stone plate and one smaller angular stone plate. Render the hood as an empty hollow cloth shell with visible interior folds, ear plates and aged brass attachments. The rock ear guards must be conspicuously asymmetric. No head, face or mannequin.\n9. EQ19 棱镜复眼罩 / Prism Compound Visor. A thick wearable eye visor with THREE PURPLE compound/prismatic lenses of visibly UNEQUAL SIZE, arranged into a cohesive brass framed visor. Three discrete angular purple crystal lens plates with different dimensions, crisp faceted highlights, deep violet glass and sturdy dark-plum/brass frame; complete ivory head strap receding in perspective. This must read as three-lens purple optical equipment, not a crown.\n10. EQ20 逐风折页巾 / Windcourier Folded Scarf. A wearable SKY-BLUE folded head scarf with origami-like folded side cloth tails and one WHITE ARROW-SHAPED forehead knot. Pale ivory upper band, dimensional sky-blue fabric folds, a clear sculpted arrow-shaped white front knot and airy side tails tucked into the same cell. Empty headwear opening with no head.\nBackground/alpha: TRUE TRANSPARENT alpha-zero background everywhere outside painted equipment, including gutters and interior holes. No colored or white canvas, no checkerboard baked into image, no scenery, no ground, no halo, no glow, no fog, no floor, no external dropshadow. Isolated objects only.\nAvoid: NO characters, heads, faces, skin, mannequins, busts or eyes behind masks; NO UI, words, letters, numbers, labels, frames, rarity color panels, icons around objects, particles or decorations between cells. NO object overlaps, no cut-off components, no touching cell edges. NO repeated identities. Exactly ten complete objects.",
+      "selected": false,
+      "reason": "Objects too large and narrow gutters; one respirator strap crossed theoretical column boundary."
+    },
+    {
+      "attempt": 2,
+      "type": "spacing repair",
+      "source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-f6fb45c2-6436-42da-8881-ea9cd35bba29.png",
+      "prompt": "Use case: precise-object-edit. Edit the provided atlas. Preserve the exact TEN physical equipment objects, their colors, rendering, identity, order and polish. Repair ONLY the atlas spacing and two small identity details: shell mask eye apertures must be clearly teardrop shaped, and compound purple visor must have three clearly unequal lens sizes. All other material/design details are invariant.\nThe atlas is EXACTLY five columns by two rows, requested output canvas 2560x1024. Intended equal cells are 512x512. The existing objects are TOO LARGE. Make EACH of the TEN existing objects substantially SMALLER, approximately 60 percent of its cell width AND height at most; preserve proportions. Center each in its own cell at centers (256,256),(768,256),(1280,256),(1792,256),(2304,256) then (256,768),(768,768),(1280,768),(1792,768),(2304,768). These coordinates are instructions only, DO NOT render numbers or grids. For every object, all straps/cloth tails/chimney/ears must stay inside the central 60% of the cell. Each cell must have a minimum 20 percent fully transparent blank gutter at left, right, top and bottom. Scale each complete object uniformly to fit; never clip any part, never expand any part. Preserve COMPLETE isolated objects including the respirator strap. No touching, no overlap, no object crosses any cell boundary.\nOriginal identities in row-major order: single copper monocular cream strap; grey short-brim surveying cap with folded white ruler; dark chimney helmet with backwards angled chimney and amber window; broken copper ring crown with blue ear fittings; ivory layered shell mask with teardrop eye slits; copper respirator with twin green filter drums and copper grille; black-iron squared battlement helmet with central warm-white wedge; hollow cream hood with conspicuously unequal-size rock ear guards; three UNEQUAL purple crystal lens visor with cream strap; sky-blue folded head scarf with white arrow forehead knot.\nMaintain handpainted 2.5D storybook rendering, crisp deepplum outlines, clear top/side faces, inner rims and object surface thickness. No heads, mannequins, skin or characters. TRUE TRANSPARENT alpha-zero everywhere outside the objects and within openings. NO background, text, labels, frames, shadows, halos, glows, floor or scenery. Crucial: TEN objects only, 5x2 visible grouping, MUCH MORE TRANSPARENT BLANK SPACE around EVERY object. Preserve the equipment art while shrinking and centering it.",
+      "selected": false,
+      "reason": "Improved spacing, but several margins below requested 15 percent."
+    },
+    {
+      "attempt": 3,
+      "type": "spacing repair",
+      "source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-a70688ef-7d70-43de-9418-2d1c7b8ecf87.png",
+      "prompt": "Use case: precise-object-edit. This is a STRICT SPACING-ONLY production correction of the provided transparent atlas. Preserve the exact TEN physical equipment designs, materials, colors, order, 3D painted shading and crisp outline. No redesign.\nRequested canvas: 2560x1024, five equal square columns by two square rows. The previous spacing is still insufficient. Take each COMPLETE existing object and make it uniformly TWENTY-FIVE PERCENT SMALLER than it is in the provided image. Then position the actual painted bounding-box center at the EXACT CENTER of its cell. The object silhouettes themselves, not imaginary heads, must be centered. Every complete object must occupy no more than 55 PERCENT of its cell width AND no more than 55 PERCENT of its cell height. There must be at least 20 PERCENT fully blank transparent space on ALL FOUR SIDES of EVERY object. More blank space is mandatory. No shapes in gutters. Especially move the chimney helmet and shell mask upwards within top-row cells and move the rock-ear hood downward within its bottom-row cell. Maintain a clean two-row five-column grouping and equal gaps.\nItem order invariant: TOP row: single copper monocular eye guard with ivory strap; grey shortbrim survey cap and folded white ruler; dark metal backwards chimney helm and amber window; broken copper conductor ring crown with blue side ear pieces; ivory layered shell face mask and teardrop-shaped eye holes. BOTTOM row: copper respirator with TWO green filter canisters and copper mesh; black iron square battlement helm and white central wedge; empty cream hood with unequal rock ear plates; three unequal purple prism lens visor and ivory strap; sky-blue folded headscarf with white arrow forehead knot.\nAll TEN objects must remain COMPLETE, isolated and fully within their cells, including all straps, chimneys, cloth tails and rock ears. Preserve all their components and physical hollow volume. NO clipping, overlaps, duplicate identities, characters, heads, skin, mannequins, visible eyes, text, numbers, labels, UI panels, frames, halos, glow, ground or external shadows. Preserve TRUE alpha-zero transparent background outside objects and inside their openings. The essential change is substantially smaller and exactly centered equipment, with generous blank margins; keep the beautiful storybook art.",
+      "selected": true
+    }
+  ],
+  "items": {
+    "EQ11": {
+      "slot": "head",
+      "name": "浅井护目罩",
+      "name_en": "Shallow-Shaft Eye Guard",
+      "visual": "旧铜单目罩、米白布带",
+      "rendered_description": "Old copper monocular eye guard with one round glass lens and cream cloth strap."
+    },
+    "EQ12": {
+      "slot": "head",
+      "name": "远距测绘帽",
+      "name_en": "Long-Range Survey Cap",
+      "visual": "短檐灰帽与折叠白刻尺",
+      "rendered_description": "Grey short-brim surveying cap with hinged folded ivory measuring ruler and engraved tick strokes."
+    },
+    "EQ13": {
+      "slot": "head",
+      "name": "司炉烟囱盔",
+      "name_en": "Stoker Chimney Helm",
+      "visual": "后倾烟囱、小型琥珀视窗",
+      "rendered_description": "Dark metal hollow helmet with aged brass frame, rear-inclined chimney and amber viewing window."
+    },
+    "EQ14": {
+      "slot": "head",
+      "name": "断音导电冠",
+      "name_en": "Broken-Tone Conductor Crown",
+      "visual": "断开的铜环冠、蓝色侧耳",
+      "rendered_description": "Broken open copper ring conduction crown with blue electrical ear fittings."
+    },
+    "EQ15": {
+      "slot": "head",
+      "name": "霜潮贝壳面",
+      "name_en": "Frost-Tide Shell Mask",
+      "visual": "贝壳叠片遮面与水滴眼缝",
+      "rendered_description": "Layered ivory shell mask with icy-blue accents and pointed teardrop-like eye apertures."
+    },
+    "EQ16": {
+      "slot": "head",
+      "name": "铜蚀滤气罩",
+      "name_en": "Verdigris Filter Mask",
+      "visual": "双绿滤筒与铜网呼吸口",
+      "rendered_description": "Copper mesh respirator with two verdigris-green cylindrical filter canisters and cream strap."
+    },
+    "EQ17": {
+      "slot": "head",
+      "name": "誓卫垛口盔",
+      "name_en": "Oathguard Battlement Helm",
+      "visual": "黑铁方额与暖白中央楔纹",
+      "rendered_description": "Black iron squared battlement helmet with central warm-white wedge inlay."
+    },
+    "EQ18": {
+      "slot": "head",
+      "name": "断层听岩罩",
+      "name_en": "Faultline Listening Hood",
+      "visual": "左右不等大的岩片护耳",
+      "rendered_description": "Hollow cream cloth hood with clearly unequal charcoal rock ear guards and brass attachments."
+    },
+    "EQ19": {
+      "slot": "head",
+      "name": "棱镜复眼罩",
+      "name_en": "Prism Compound Visor",
+      "visual": "三片不等大紫色复眼镜",
+      "rendered_description": "Brass framed optical visor with three unequal purple faceted prism lenses and cream strap."
+    },
+    "EQ20": {
+      "slot": "head",
+      "name": "逐风折页巾",
+      "name_en": "Windcourier Folded Scarf",
+      "visual": "天青折页侧巾与白色箭形额结",
+      "rendered_description": "Sky-blue folded head scarf with sculpted white arrow-shaped forehead knot and folded side tails."
+    }
+  },
+  "measurement": {
+    "method": "Pillow/NumPy read-only measurement. Detect disjoint occupied row and column runs from alpha >=16; measure each actual silhouette bounds and expand by 2 pixels. Rectangles are not assumed grid cells.",
+    "alpha_threshold": 16,
+    "padding": 2,
+    "alpha_zero_fraction": 0.8203983544872908,
+    "occupied_row_bands": [
+      [
+        131,
+        356
+      ],
+      [
+        490,
+        718
+      ]
+    ],
+    "bounding_boxes": [
+      {
+        "id": "EQ11",
+        "cell": [
+          0,
+          0,
+          397,
+          396
+        ],
+        "bbox_xyxy": [
+          127,
+          187,
+          330,
+          331
+        ],
+        "region": [
+          125,
+          185,
+          207,
+          148
+        ],
+        "margins": [
+          127,
+          187,
+          67,
+          65
+        ]
+      },
+      {
+        "id": "EQ12",
+        "cell": [
+          397,
+          0,
+          396,
+          396
+        ],
+        "bbox_xyxy": [
+          500,
+          176,
+          717,
+          333
+        ],
+        "region": [
+          498,
+          174,
+          221,
+          161
+        ],
+        "margins": [
+          103,
+          176,
+          76,
+          63
+        ]
+      },
+      {
+        "id": "EQ13",
+        "cell": [
+          793,
+          0,
+          397,
+          396
+        ],
+        "bbox_xyxy": [
+          894,
+          131,
+          1091,
+          338
+        ],
+        "region": [
+          892,
+          129,
+          201,
+          211
+        ],
+        "margins": [
+          101,
+          131,
+          99,
+          58
+        ]
+      },
+      {
+        "id": "EQ14",
+        "cell": [
+          1190,
+          0,
+          396,
+          396
+        ],
+        "bbox_xyxy": [
+          1276,
+          174,
+          1490,
+          334
+        ],
+        "region": [
+          1274,
+          172,
+          218,
+          164
+        ],
+        "margins": [
+          86,
+          174,
+          96,
+          62
+        ]
+      },
+      {
+        "id": "EQ15",
+        "cell": [
+          1586,
+          0,
+          397,
+          396
+        ],
+        "bbox_xyxy": [
+          1679,
+          147,
+          1864,
+          356
+        ],
+        "region": [
+          1677,
+          145,
+          189,
+          213
+        ],
+        "margins": [
+          93,
+          147,
+          119,
+          40
+        ]
+      },
+      {
+        "id": "EQ16",
+        "cell": [
+          0,
+          396,
+          397,
+          397
+        ],
+        "bbox_xyxy": [
+          97,
+          512,
+          329,
+          685
+        ],
+        "region": [
+          95,
+          510,
+          236,
+          177
+        ],
+        "margins": [
+          97,
+          116,
+          68,
+          108
+        ]
+      },
+      {
+        "id": "EQ17",
+        "cell": [
+          397,
+          396,
+          396,
+          397
+        ],
+        "bbox_xyxy": [
+          503,
+          490,
+          725,
+          693
+        ],
+        "region": [
+          501,
+          488,
+          226,
+          207
+        ],
+        "margins": [
+          106,
+          94,
+          68,
+          100
+        ]
+      },
+      {
+        "id": "EQ18",
+        "cell": [
+          793,
+          396,
+          397,
+          397
+        ],
+        "bbox_xyxy": [
+          889,
+          510,
+          1098,
+          718
+        ],
+        "region": [
+          887,
+          508,
+          213,
+          212
+        ],
+        "margins": [
+          96,
+          114,
+          92,
+          75
+        ]
+      },
+      {
+        "id": "EQ19",
+        "cell": [
+          1190,
+          396,
+          396,
+          397
+        ],
+        "bbox_xyxy": [
+          1274,
+          527,
+          1512,
+          683
+        ],
+        "region": [
+          1272,
+          525,
+          242,
+          160
+        ],
+        "margins": [
+          84,
+          131,
+          74,
+          110
+        ]
+      },
+      {
+        "id": "EQ20",
+        "cell": [
+          1586,
+          396,
+          397,
+          397
+        ],
+        "bbox_xyxy": [
+          1664,
+          493,
+          1893,
+          709
+        ],
+        "region": [
+          1662,
+          491,
+          233,
+          220
+        ],
+        "margins": [
+          78,
+          97,
+          90,
+          84
+        ]
+      }
+    ],
+    "verification": "Ten non-overlapping physical identities; all visible alpha captured within disjoint bounds; no clipping, heads, mannequins or object overlap. Independent visual review passed."
+  },
+  "quality_limits": [
+    "Built-in generator returned native 1983x793 instead of requested 2560x1024; raw output preserved.",
+    "Spacing is generous and objects are fully disjoint. Against nominal equal square cells, EQ13 lower margin is 58px (14.6%) and EQ15 lower margin is 40px (10.1%); remaining cell margins exceed 15%. No further generation after two spacing repairs.",
+    "EQ15 eye apertures read as pointed teardrop-like ovals. Fine ruler ticks, respirator mesh and hood inner lining can lose detail at very small UI sizes.",
+    "Minor subthreshold alpha noise in transparent gutters was preserved, not edited."
+  ]
+}

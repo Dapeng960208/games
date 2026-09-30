@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH01",
+  "weapon_id": "CH01_rockbreaker_axe_v1",
+  "weapon_name": "破岩战斧",
+  "generator": "built-in image_gen.imagegen",
+  "date": "2026-09-30",
+  "transparent_background": true,
+  "source_pixel_edits": "none; all generated PNGs copied byte-for-byte. Python/Pillow/NumPy used for read-only measurement only.",
+  "generation_count": 4,
+  "authorization": "Two original front/back generations, then root-authorized one targeted layout correction per bank.",
+  "generations": [
+    {
+      "bank": "front",
+      "version": 3,
+      "selected": false,
+      "purpose": "Weapon redesign and canonical axe reference; final gameplay atlas uses layout-corrected v4.",
+      "source": "C:/Users/13326/.codex/generated_images/01a0ef89-a814-7fe1-b0e6-3463dac9472e/exec-d389bbf8-edd5-4956-b67d-7cf1bf6f957d.png",
+      "project_path": "assets/generated/heroes/CH01_actions_front_v3.png",
+      "prompt": "Use case: identity-preserve.\nAsset type: original CH01 industrial mine-warrior front action atlas; weapon redesign reference for every subsequent animation.\nInput image: CH01_actions_front_v2.png is the exact four-pose CHARACTER, FACE, COSTUME, ARMOR, MATERIAL RENDERING and FRONT CAMERA reference. Redesign ONLY the held weapon and adjust the two hands naturally to its straight shaft.\nPrimary request: replace the old twin-cylinder tool in ALL FOUR frames with the SAME distinctive original ROCKBREAKER BATTLE AXE. The new weapon must unmistakably read as a massive melee AXE at small gameplay scale.\nWeapon design locked across all four poses: a stout SHORT two-handed haft, roughly hip-to-shoulder length, dark wrapped grip, industrial orange reinforced shaft segments, two brass protective collars at the grip and head socket. ONE broad oversized single axe blade at the end, black iron body with industrial-orange inset, riveted shoulder, a wide exposed bright steel sharpened cutting bevel and a gently sweeping single cutting edge. The blade projects clearly to ONE side of the shaft with a deep lower beard, producing a unmistakable broad axe silhouette. On the OPPOSITE side of the head is one compact FLAT rectangular hammer poll, visibly solid steel, no hollow openings. It is a single-bladed axe plus flat hammer back, not a double axe. The axe head is perpendicular to the shaft, not a long tube in line with it. Keep the head, haft length, collars and material design exactly consistent through the four views of the weapon.\nRemove every part of the old held twin-piston/two-prong hammer completely. Absolutely no round muzzle, dual barrels, gun receiver, rifle stock, trigger loop, firing grip, rifle pose, cannon or long polearm. The existing hydraulic apparatus on the character's RIGHT ARM is costume and must remain; it must not connect to barrels or be mistaken for another weapon. Both hands visibly wrap the same thick axe haft at separated grip positions.\nPreserve the SAME muscular adult male face with short black hair and stubble, original cream scarf, orange/coal workwear, rectangular grated left shoulder shield, right arm orange hydraulic brace, brass hose fittings, amber belt lantern, boots, straps and body proportions. Do not turn him into a different person or redesign armor. Detailed clean hand-painted 2D game-sprite style matching the reference, no photorealism.\nFour FULL BODY poses, reading order in a strict 2x2 transparent contact sheet:\nTOP LEFT IDLE: same grounded ready posture, new axe held diagonally forward-low, broad blade fully readable in front of him.\nTOP RIGHT WINDUP: loaded legs and waist, both arms lift the entire axe OVERHEAD, blade silhouette clearly visible, face directed screen-right/down-right.\nBOTTOM LEFT RELEASE: committed powerful forward/down CLEAVE with the same axe, torso leans forward, front knee bends, both arms extend and blade reaches low toward screen-right/down-right; weight through hips.\nBOTTOM RIGHT RECOVERY: sunk braced stance with bent elbows drawing the axe inward across thighs after cleave, visibly different from idle and release.\nKeep fixed elevated FRONT three-quarter southeast camera, face and chest visible, aims screen-right/lower-right in every frame. Feet remain on ground. One fixed anatomical body scale across four frames; never shrink the character when the axe is raised. Fit COMPLETE feet and entire axe within each frame.\nCanvas: square, exactly 2 columns x 2 rows. Each invisible equal cell reserves at least 8 percent completely EMPTY transparent margin on each side, including overhead axe. All silhouettes must be spatially isolated; generous gutters, no part in neighboring cell.\nBackground: genuine transparent alpha outside the four opaque character silhouettes. NO background painting, brown gradient, glow, shadow, ground, scenery, labels, text, numbers, grid lines, borders, motion streaks, particles, explosions, duplicated limbs, or ghost weapons.",
+      "source_sha256": "d5c35f64e6a6200a56f61872c495fada087a2d9fa29404fe5c2fde8cc8c9597c",
+      "project_sha256": "d5c35f64e6a6200a56f61872c495fada087a2d9fa29404fe5c2fde8cc8c9597c",
+      "source_copy_equal": true,
+      "references": [
+        {
+          "path": "C:/webdev/games/assets/generated/heroes/CH01_actions_front_v2.png",
+          "sha256": "a05467d635b224a75b3f747bd2d23720b2df062169a47df1448fc2c1e9969f51",
+          "role": "character or weapon identity reference"
+        }
+      ],
+      "alpha": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "minimum": 0,
+        "maximum": 255,
+        "transparent_pixels": 955312,
+        "total_pixels": 1572516,
+        "transparent_fraction": 0.607505424,
+        "visible_outer_edge_pixels": 0,
+        "inspection": "Read-only Pillow/NumPy alpha scan. No generated PNG pixels edited, resized, repainted, cropped or alpha-keyed."
+      }
+    },
+    {
+      "bank": "back",
+      "version": 3,
+      "selected": false,
+      "purpose": "Back companion axe redesign; lower-row rectangles overlap, superseded by layout-corrected v4.",
+      "source": "C:/Users/13326/.codex/generated_images/01a0ef89-a814-7fe1-b0e6-3463dac9472e/exec-c7cded3f-0212-40bb-af7d-81829ca6b79e.png",
+      "project_path": "assets/generated/heroes/CH01_actions_back_v3.png",
+      "prompt": "Use case: identity-preserve.\nAsset type: CH01 industrial mine-warrior BACK-facing four-action transparent sprite atlas, companion to the NEW rockbreaker battle axe front sheet.\nInput images: Image 1 CH01_actions_back_v2.png is the exact original CHARACTER CLOTHING, BODY, four BACK VIEW poses and camera reference only. Its old twin-piston weapon MUST BE REMOVED. Image 2 CH01_actions_front_v3.png is the definitive approved NEW SINGLE-BLADED ROCKBREAKER AXE design, face/costume consistency and painted art style reference. Copy that exact weapon design into the back view.\nPrimary request: draw exactly the same original miner in four back-facing poses holding the new broad single-bladed industrial battle axe, replacing the old held weapon fully. Make this a companion to image 2, NOT a mirror of the front view.\nWeapon identity from image 2: thick short two-hand dark wrapped straight haft with brass collars, an oversized bearded axe head with orange inset plate and rivets, black iron border, broad bright steel curved sharpened bevel on ONE wide blade; on opposite side ONE compact solid rectangular flat hammer poll. The head sits crosswise to the shaft; it is plainly an axe with a flat hammer back. Identical head proportions, construction, materials and haft length in all four poses. Both hands grasp the SAME shaft at separated points. Absolutely no cylindrical protrusions, gun muzzle, round holes, twin prongs, paired barrels, long receiver, trigger loop, firearm grip, rifle, spear or long polearm. Preserve character's original RIGHT ARM hydraulic armor, but no old weapon components remain.\nHero: same stocky adult male, short black hair, ivory scarf, orange/coal industrial worker outfit, heavy boots, brown back straps/pouches, belt amber lamp, massive rectangular grated LEFT shoulder shield, orange piston brace with black hoses and brass fittings on RIGHT arm. Keep costume sides and recognizable proportions. Detailed hand-painted 2D game sprite matching image 2.\nCamera: fixed elevated BACK three-quarter northeast camera in ALL FOUR poses. Show back of head, back/spine and rear shoulder harness; do not turn toward the camera. Faces and attacks aim screen-right / upper-right. This is a back bank, not a front view mirrored.\nLayout: square transparent canvas, exact 2 columns x 2 rows, read left-to-right then next row. SHRINK THE COMPLETE FOUR FIGURES UNIFORMLY TO 72 PERCENT OF THE SIZE IN THE REFERENCE so there are generous fully transparent gutters; anatomical scale remains identical between all four poses. Entire character and entire axe head must remain within its own invisible square cell with at least 8 percent EMPTY margin on EVERY side. No object crosses a cell boundary. No cropping of axe blade, overhead head, shoulders or feet.\nTop-left IDLE: grounded softly bent knees, low ready carry, axe held diagonally ahead toward upper-right, broad blade and flat poll clearly visible.\nTop-right WINDUP: loaded knees and waist, two hands raise complete axe OVERHEAD and slightly rearward, elbows bend; blade remains wholly inside the cell.\nBottom-left RELEASE: forceful forward/down cleave toward upper-right, torso and hips lean into it, front knee bends and rear foot braces, both arms extend new axe forward, blade leads the cleave. Distinct from the windup and idle.\nBottom-right RECOVERY: lowered sunk stance, bent elbows drawing axe in across thighs, body absorbing the weight and recovering from cleave; clearly different silhouette from release.\nFeet stay grounded, no leap or floating boots. Same fixed anatomical body scale throughout; do not shrink body only for overhead axe. Keep entire blade profile readable at gameplay size.\nBackground: genuine transparent alpha, opaque character interior. NO painted backdrop, brown background, gradient, glow, floor, shadows, environment, text, labels, grid lines, border, watermark, particles, explosion, motion trails, duplicated limbs or ghost weapons.",
+      "source_sha256": "db258ea7e60939f006d0aefa0cd24fbb75e76bf8eb6dd4c8f3ac6e0b31f9bbbd",
+      "project_sha256": "db258ea7e60939f006d0aefa0cd24fbb75e76bf8eb6dd4c8f3ac6e0b31f9bbbd",
+      "source_copy_equal": true,
+      "references": [
+        {
+          "path": "C:/webdev/games/assets/generated/heroes/CH01_actions_back_v2.png",
+          "sha256": "f8e4e7cd864412a50e4b62f4e709e41d8ae7b4a66c094e530a00d8f9ffcf9dab",
+          "role": "character or weapon identity reference"
+        },
+        {
+          "path": "C:/webdev/games/assets/generated/heroes/CH01_actions_front_v3.png",
+          "sha256": "d5c35f64e6a6200a56f61872c495fada087a2d9fa29404fe5c2fde8cc8c9597c",
+          "role": "character or weapon identity reference"
+        }
+      ],
+      "alpha": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "minimum": 0,
+        "maximum": 255,
+        "transparent_pixels": 974479,
+        "total_pixels": 1572516,
+        "transparent_fraction": 0.619694172,
+        "visible_outer_edge_pixels": 1,
+        "inspection": "Read-only Pillow/NumPy alpha scan. No generated PNG pixels edited, resized, repainted, cropped or alpha-keyed."
+      }
+    },
+    {
+      "bank": "front",
+      "version": 4,
+      "selected": true,
+      "purpose": "Authorized single targeted front layout correction, preserving hero/axe identity and poses.",
+      "source": "C:/Users/13326/.codex/generated_images/01a0ef89-a814-7fe1-b0e6-3463dac9472e/exec-45a37ad9-6c39-4c1a-aa94-c97559e69f33.png",
+      "project_path": "assets/generated/heroes/CH01_actions_front_v4.png",
+      "prompt": "Use case: precise-object-edit.\nEdit target: the attached four-pose CH01 battle-axe front spritesheet.\nONE TARGETED CHANGE ONLY: fix the atlas layout by zooming OUT uniformly. Keep the same exact four hero poses, same face, clothing, industrial armor and SAME orange/black single-bladed axe with silver curved edge and rectangular flat hammer poll. Do not redesign anything.\nThe current image packs figures too large. Produce a square transparent atlas with four smaller complete figures, exactly 2 rows x 2 columns. REDUCE EVERY COMPLETE FIGURE AND AXE TO THE SAME 75 PERCENT SCALE of its current size. Keep equal anatomical scale across all four; never enlarge a crouch or shrink only the overhead pose. The output should look visibly SPACIOUS, with much more empty transparent area than the input.\nMandatory geometry: each figure is isolated entirely INSIDE its own quadrant. The COMPLETE raised axe, front cleave axe, both boots and armor must have at least 40 pixels of fully transparent margin inside every border of its own quadrant. In particular the bottom-left blade must finish well BEFORE the center vertical divider and the bottom-right boot must begin well AFTER it. The top-right axe must have ample blank space above its top tip and to its right. No cropping. If space is insufficient, shrink ALL FOUR figures further by the same amount.\nThe four frames must still be recognizable and in the same order: top-left low axe IDLE; top-right two-handed OVERHEAD WINDUP; bottom-left grounded forward/down CLEAVE RELEASE; bottom-right low bent-elbow RECOVERY. Preserve front three-quarter camera and screen-right/down-right facing.\nPreserve exact axe identity in every cell: one broad orange/black bearded blade, wide silver steel cutting bevel, small solid flat rectangular poll opposite blade, thick short wrapped straight two-hand haft with brass collars. Not a gun, no barrels, no cylinders. Preserve character's arm hydraulic brace as costume only.\nACTUAL TRANSPARENT ALPHA background. No environment, shadow, floor, glow, text, labels, visible grid, borders, motion effects or ghost images. Uniform reduction and more spacing are the only requested changes.",
+      "source_sha256": "7d6b063e82042d383b8f8867a677e32a63744a88d39a16545b09ea7efa079055",
+      "project_sha256": "7d6b063e82042d383b8f8867a677e32a63744a88d39a16545b09ea7efa079055",
+      "source_copy_equal": true,
+      "references": [
+        {
+          "path": "C:/webdev/games/assets/generated/heroes/CH01_actions_front_v3.png",
+          "sha256": "d5c35f64e6a6200a56f61872c495fada087a2d9fa29404fe5c2fde8cc8c9597c",
+          "role": "edit target"
+        }
+      ],
+      "alpha": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "minimum": 0,
+        "maximum": 255,
+        "transparent_pixels": 1273116,
+        "total_pixels": 1572516,
+        "transparent_fraction": 0.809604481,
+        "visible_outer_edge_pixels": 0,
+        "inspection": "Read-only Pillow/NumPy alpha scan. No generated PNG pixels edited, resized, repainted, cropped or alpha-keyed."
+      }
+    },
+    {
+      "bank": "back",
+      "version": 4,
+      "selected": true,
+      "purpose": "Authorized single targeted back layout correction, preserving hero/axe identity and poses.",
+      "source": "C:/Users/13326/.codex/generated_images/01a0ef89-a814-7fe1-b0e6-3463dac9472e/exec-db55093f-87b6-435f-a1bc-f71a9660f1ec.png",
+      "project_path": "assets/generated/heroes/CH01_actions_back_v4.png",
+      "prompt": "Use case: precise-object-edit.\nEdit target: the attached four-pose CH01 battle-axe BACK VIEW spritesheet.\nONE TARGETED CHANGE ONLY: fix the atlas layout by zooming OUT uniformly. Keep the same exact four BACK VIEW hero poses, same identity, clothing, industrial armor and SAME orange/black single-bladed axe with silver curved edge and rectangular flat hammer poll. Do not redesign anything.\nThe current image packs figures too large. Produce a square transparent atlas with four smaller complete figures, exactly 2 rows x 2 columns. REDUCE EVERY COMPLETE FIGURE AND AXE TO THE SAME 75 PERCENT SCALE of its current size. Keep equal anatomical scale across all four; never enlarge a crouch or shrink only the overhead pose. The output must look visibly SPACIOUS, with MUCH MORE empty transparent area than the input.\nMandatory geometry: each figure is isolated entirely INSIDE its own quadrant. The COMPLETE raised axe, front cleave axe, both boots and armor must have at least 40 pixels of fully transparent margin inside every border of its own quadrant. In particular the bottom-left blade must finish well BEFORE the center vertical divider and the bottom-right shoulder shield and boot must begin well AFTER it. The top-right overhead axe must have ample blank space above its top tip and to its right. No cropping. If space is insufficient, shrink ALL FOUR figures further by the same amount.\nThe four frames must still be recognizable and in the same order: top-left low axe IDLE; top-right two-handed OVERHEAD WINDUP; bottom-left grounded forward/down CLEAVE RELEASE; bottom-right low bent-elbow RECOVERY. Preserve elevated BACK three-quarter northeast camera and screen-right/upper-right facing. Show the BACK OF HEAD AND SPINE throughout; do not turn toward camera.\nPreserve exact axe identity in every cell: one broad orange/black bearded blade, wide silver steel cutting bevel, small solid flat rectangular poll opposite blade, thick short wrapped straight two-hand haft with brass collars. Not a gun, no barrels, no cylinders. Preserve character's right-arm hydraulic brace as costume only.\nACTUAL TRANSPARENT ALPHA background. No environment, shadow, floor, glow, text, labels, visible grid, borders, motion effects or ghost images. Uniform reduction and more spacing are the only requested changes.",
+      "source_sha256": "5dc49923887ec0ee0619a371ad473132b21112bfddb4924940c06f997a3aa1d7",
+      "project_sha256": "5dc49923887ec0ee0619a371ad473132b21112bfddb4924940c06f997a3aa1d7",
+      "source_copy_equal": true,
+      "references": [
+        {
+          "path": "C:/webdev/games/assets/generated/heroes/CH01_actions_back_v3.png",
+          "sha256": "db258ea7e60939f006d0aefa0cd24fbb75e76bf8eb6dd4c8f3ac6e0b31f9bbbd",
+          "role": "edit target"
+        }
+      ],
+      "alpha": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "minimum": 0,
+        "maximum": 255,
+        "transparent_pixels": 1276084,
+        "total_pixels": 1572516,
+        "transparent_fraction": 0.811491902,
+        "visible_outer_edge_pixels": 0,
+        "inspection": "Read-only Pillow/NumPy alpha scan. No generated PNG pixels edited, resized, repainted, cropped or alpha-keyed."
+      }
+    }
+  ],
+  "weapon_design": "Short thick two-handed wrapped haft, brass collars, one broad orange/black iron bearded axe blade with silver sharpened bevel, one solid rectangular flat hammer poll on the opposite side. Existing character hydraulic arm brace retained as costume. No twin-prong tool, gun barrel or round muzzle.",
+  "runtime_policy": "Keep all new manifests disabled until basic, secondary and walk assets are consistently replaced and root performs actual runtime validation. No existing connected manifest or renderer edited by this artwork task.",
+  "limits": [
+    "Four discrete generic action poses per view, not full animation or eight-direction art.",
+    "v3 files are retained design references; use the complete, separated v4 sheets for the final generic action candidate.",
+    "Head anchors follow the existing generic atlas contract and identify crown, not face center. Muzzle is an inherited key identifying the new blade contact edge, not a firearm.",
+    "No Godot, import, GPU test or source-pixel postprocessing performed."
+  ],
+  "registration": "Visually measured source-pixel landmarks, independently reviewed. All final v4 poses use complete padded visible-component bounds and fixed per-bank body height. No per-frame scale fitting."
+}

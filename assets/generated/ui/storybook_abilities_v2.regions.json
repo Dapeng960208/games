@@ -1,0 +1,77 @@
+{
+  "texture": "res://assets/generated/ui/storybook_abilities_v2.png",
+  "regions": {
+    "ability_CH01_q": [
+      0,
+      0,
+      362,
+      362
+    ],
+    "ability_CH01_secondary": [
+      362,
+      19,
+      362,
+      343
+    ],
+    "ability_CH01_f": [
+      724,
+      19,
+      362,
+      343
+    ],
+    "ability_CH01_ultimate": [
+      1086,
+      20,
+      346,
+      342
+    ],
+    "ability_CH02_q": [
+      0,
+      362,
+      362,
+      362
+    ],
+    "ability_CH02_secondary": [
+      362,
+      362,
+      362,
+      362
+    ],
+    "ability_CH02_f": [
+      724,
+      362,
+      362,
+      362
+    ],
+    "ability_CH02_ultimate": [
+      1086,
+      362,
+      362,
+      362
+    ],
+    "ability_CH03_q": [
+      0,
+      724,
+      362,
+      362
+    ],
+    "ability_CH03_secondary": [
+      362,
+      724,
+      362,
+      362
+    ],
+    "ability_CH03_f": [
+      724,
+      724,
+      362,
+      362
+    ],
+    "ability_CH03_ultimate": [
+      1086,
+      724,
+      354,
+      362
+    ]
+  }
+}

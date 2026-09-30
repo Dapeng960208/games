@@ -1,0 +1,540 @@
+{
+  "schema_version": 1,
+  "asset": "storybook_B04_bodies_v1.png",
+  "date": "2026-09-30",
+  "source": "Built-in image_gen.imagegen; final raw RGBA PNG copied byte-for-byte without any raster edits. All original generations retained.",
+  "use_case": "stylized-concept",
+  "biome_id": "B04",
+  "canonical_family": "镜潮晶裔",
+  "canonical_boss_name": "镜潮晶皇",
+  "canonical_direction": "Newest user direction relayed by /root/combo_flow overrides literal old stone and mine visual descriptors: all nine crystalline sea/spectral origami/levitating glass beings with teal/ice-blue/lilac/pink crystals and magic-gold trim; BO04 floating crystal tide emperor with grand glass crown and tidal fins.",
+  "locked_visual_standard": "明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。",
+  "generation_mode": "built-in",
+  "target_dimensions": [
+    2560,
+    1024
+  ],
+  "dimensions": [
+    1983,
+    793
+  ],
+  "transparent_background": true,
+  "layout": {
+    "columns": 5,
+    "rows": 2,
+    "order": [
+      "M28",
+      "M29",
+      "M30",
+      "M31",
+      "M32",
+      "M33",
+      "M34",
+      "M35",
+      "M36",
+      "BO04"
+    ],
+    "requested_cell_dimensions": [
+      512,
+      512
+    ],
+    "actual_cell_edges_x": [
+      0,
+      397,
+      793,
+      1190,
+      1586,
+      1983
+    ],
+    "actual_cell_edges_y": [
+      0,
+      396,
+      793
+    ]
+  },
+  "reference": {
+    "role": "Viewed user style reference, described in prompt",
+    "path": "C:\\Users\\13326\\AppData\\Local\\Temp\\codex-clipboard-02f51a21-0c7d-42c9-825e-c4f6367709c9.png"
+  },
+  "raw_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-85f3d921-2ced-4654-a466-38fa86c1b17c.png",
+  "prompt": "Use case: stylized-concept.\nAsset type: production game full-body enemy sprite atlas.\nPrimary request: Create ONE transparent PNG atlas containing exactly TEN different complete enemy bodies in exactly 5 columns × 2 rows, strict row-major order M28, M29, M30, M31, M32 in top row; M33, M34, M35, M36, BO04 in bottom row. Target canvas 2560×1024 pixels with exactly ten equal 512×512 square cells. Keep every creature entirely within the central 60% of its own cell (maximum complete silhouette width AND height 300 pixels), with at least 20% truly blank transparent gutter on all four sides, generous space between the two rows. Center each complete silhouette at its cell center. All limbs, crystal points, tongues, weapons, fins, bells and tails fully visible. No overlap, no clipping, no item crossing any cell boundary.\nLocked visual standard: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。 Bright hand-painted cartoon fantasy, classical ruins combined with magical steam machinery, a high three-quarter downward camera angle with nearly isometric composition, substantial 2.5D physical volume, warm sunlight and fresh vivid colors.\nStyle reference described: polished fantasy storybook game world of cream pale-stone ruins, aged golden brass machines, coral red armor, jade teal magical glass, blue-violet crystals. Three-quarter forms with visible top planes, thickness and side faces, crisp deep-plum painted outlines, soft brushwork, luminous warm cream highlights and fresh bright colored shadows. Match this rich painterly game illustration quality. Do not copy UI or background from the reference.\nSubjects must look like dangerous enemies, threatening magical constructs and predatory stone-crystal creatures, not friendly toys or cute mascots. Each has a genuinely distinct anatomy and mechanical function. Full color and rich visible material distinction: cream stone highlights, coral accents, jade, teal, blue-violet crystal armor and golden brass mechanisms. Avoid brown mine machinery, brown rustic debris, uniformly dark gray enemies, gritty rust, dark realistic rendering, or flat glyphs. No photorealism.\nView and pose for all ten: high-angle three-quarter front view, facing right, readable hostile idle pose. Feet that are part of the specified creature are planted and complete. The prism and ray creatures retain their specified non-humanoid anatomy, shown as complete whole creatures with a clear bottom tip/contact anchor; do not invent human legs for them. No ground surface or shadow.\nEXACT TEN FULL-BODY IDENTITIES:\nTop row, column 1: M28 碎音爬客. Exact visual: 六片小石板叠成弓背，尖细晶腿. A small vicious stone-crystal crawler: exactly six small pale-stone slabs overlapping into a strongly arched back, with sharp slender jade/blue-violet crystal legs spread in a predatory crawling stance. Six distinct back plates, pointed crystal feet, full complete body, front oriented right. Cream carved stone, subtle coral joints, golden-brass magical fasteners.\nTop row, column 2: M29 镜舌拟形兽. Exact visual: 一根长镜舌从侧开的石面罩伸出，双臂大小不同. A dangerous stone-mask mimic beast with one long highly reflective mirror tongue extending from a side-opening stone face mask. Two arms of clearly unequal sizes, one broad heavy stone/brass claw and one smaller slender claw. Complete body and sturdy planted legs; irregular unsettling mask, jade and violet details, cream stone face with mirror tongue, right facing. Tongue fully contained.\nTop row, column 3: M30 钟脊巡礼者. Exact visual: 背部三口递增小钟，长斗篷状晶壳. A menacing tall bell-spined pilgrim construct. Exactly three small golden-brass bells of increasing size mounted on its back, prominently visible from high three-quarter view. A long cloak-shaped blue-violet crystal shell wraps its complete body, cream carved mask and articulated planted feet visible beneath the shell. Narrow threatening silhouette, full bell mouths and cloak thickness visible. No fabric monk or cute face.\nTop row, column 4: M31 白脉晶射体. Exact visual: 三块浮动棱镜围绕细白脉，纵向箭头剪影. A whole hostile refracting crystal shooter construct: exactly three floating substantial blue-violet/jade prisms arranged around a thin vertical white luminous vein, making a distinct tall vertical arrow silhouette with a pointed bottom. Cream white central vein connects the apparent anatomy; golden-brass restrained collars, faceted physical crystal thickness. This is a complete non-humanoid prism creature, no human arms or invented legs, no emitted beams, no particles outside silhouette.\nTop row, column 5: M32 倒影潜游者. Exact visual: 扁长鳐形石壳，潜行时完整影子在地面滑动. A threatening flat elongated ray-shaped stone-shell predator, complete full ray body with broad thin manta-like side fins and a long contained tapering tail. High three-quarter near-isometric view clearly shows carved cream stone shell top and substantial shell edges, jade/blue-violet crystal veins and subtle brass joints. Front right facing, low stealth stance. No external shadow, no floor or water.\nBottom row, column 1: M33 空壳织网者. Exact visual: 空心纺锤身躯和四根细长针足. A dangerous hollow spindle-bodied weaver construct on exactly four long slender needle legs. Hollow elongated spindle shows an open central cavity and faceted jade/blue-violet shell edges with cream inner planes and gold-brass structural ribs. Four complete thin needle legs and their planted sharp contact feet, front oriented right. No surrounding web or scenery; whole enemy only.\nBottom row, column 2: M34 逆拍铸像. Exact visual: 双面石像，一面平掌一面握拳，宽肩沙漏形. A formidable double-faced cream-stone statue enemy, broad heavy shoulders and an hourglass-shaped torso. Two distinct oppositely oriented carved faces discernible in the three-quarter view; one side's hand is a clear open flat palm, the other side's hand a powerful clenched fist. Complete armored body and planted heavy feet; coral/jade/blue-violet inlaid sections, gold-brass joints, heavy threat rather than friendly statue.\nBottom row, column 3: M35 深井吞灯兽. Exact visual: 巨口像半闭灯罩，腹内可见被吞灯光，短粗四足. A hostile lamp-swallowing beast with a huge mouth shaped like a half-closed lampshade, a lamp visibly swallowed and glowing warm yellow inside the abdominal cavity, and exactly four short thick planted legs. Whole creature body and all four legs readable. Cream stone and jade shell with coral and gold-brass lampshade jaws; dangerous toothlike metal rims, luminous swallowed lamp inside the body only, no glow outside silhouette. No cute round eyes.\nBottom row, column 4: M36 共鸣寄轮. Exact visual: 缺口晶环套在三条伸缩足上，醒目圆环轮廓. A dangerous resonant ring construct: one large conspicuous gapped blue-violet/jade crystal ring standing on exactly three mechanical telescoping legs. The ring has an obvious missing wedge/gap, cream crystal highlights and golden-brass segment fittings, three complete telescopic feet planted. Complete ring silhouette and all legs visible, facing right three-quarter front. No countdown numbers or UI marks.\nBottom row, column 5: BO04 井底余响, B04 boss. Exact visual: 中空大钟包住悬浮矿灯，四条石臂各持不同尺寸边钟. An imposing boss construct made of one large hollow golden-brass and jade bell body enclosing a clearly visible suspended warm glowing mining lamp. Exactly four substantial cream-stone arms, each holding one side bell of a different size (four held bells total). Readable central open bell chamber, visible floating lamp inside, complete stone arms and gripping ends with every side bell fully visible, stable complete lower bell base/contact limbs. Cream pale stone, bright brass, blue-violet crystalline accents, coral enamel joints. Four-arm threatening boss anatomy, front right facing, no human character, no separate props. Entire boss fits in its cell with the same generous transparent gutter.\nLighting: warm sunlight painted on top planes; cool colorful inner and side-plane shading; clear physical volume. No cast shadows, no halo, no floor.\nTransparency constraints: true alpha 0 outside the ten isolated complete enemy bodies. No background, environment, floor plane, checkerboard, paper, fog, cast shadow, glow outside bodies, particles, text, numbers, labels, titles, UI, grid lines, frames or cell borders. Exactly ten enemies; no duplicate humanoids, no icons or cropped busts. Every creature complete within its central safe rectangle, at least 20% blank margin from the outermost extremities to every cell edge.",
+  "repair_prompts": [
+    "Use case: precise-object-edit.\nEdit target: the attached ten-enemy atlas. NEW CANONICAL ART DIRECTION overrides the prior stone/mine designs. Redesign ALL TEN bodies as one coherent race named 镜潮晶裔, luminous crystalline ocean beings and spectral origami glass creatures. Reuse the polished hand-painted fantasy 2.5D rendering quality, exactly ten separate slots, correct 5×2 row-major order, and true transparency. Replace opaque stone, mine bells, brown mechanisms and mining lantern anatomy with creative magical ocean crystal anatomy. No brown rock, rusty machinery, sandstone bodies, rustic mine equipment or literal bell boss.\nLocked visual standard: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。 Beautiful bright hand-painted cartoon fantasy, high three-quarter downward camera angle near isometric, real crystal thickness and side faces, warm sunshine highlights, fresh vivid colors, crisp deep-plum contours.\nFamily palette for EVERY creature: transparent/translucent teal, turquoise, ice-blue, lilac, lavender and pink crystals, thin elegant magic-gold trim and ornate enchanted gold connectors. White appears as glossy cream-light reflection on crystal edges, never solid pale-stone armor. Sea and tidal shapes, prism refraction, spectral origami fins, crystalline tentacles, dangerous sharp glass anatomy. Distinct saturated coral-pink accent facets. All ten must clearly belong to the same glass-sea elemental family. Hostile predatory or imposing enemies, not cute mascots.\nLAYOUT MUST ALSO IMPROVE: Re-render each complete creature smaller and centered separately within its own cell. Exactly 5 columns × 2 rows, equal square cells. Target canvas 2560×1024. Each complete silhouette, INCLUDING fins, tongues, needle legs and crystal tips, must fit inside the central 55% of its cell, with at least 20% completely blank transparent gutters on all four sides. Maximum width and height of each object 280 pixels in a 512 cell. If output is 1983×793, maximum silhouette dimensions 217 pixels within each approximately397-square cell. Correct relative cell centers x=10%,30%,50%,70%,90%, top row y=25%, bottom row y=75%. Center the entire silhouette, not merely the core. Absolutely no clipping, no cell-edge contact, no overlap. Strong empty horizontal gutter between rows.\nALL TEN exact IDs and roles in same order, redesigned species:\nTop row column 1 M28, crystalline tidal crawler swarm: six overlapping translucent sea-glass shell plates form an arched back, slender sharp ice-blue crystal legs. Small vicious glass-sea scuttler, turquoise belly, lilac-pink ridged back, elegant gold magical joints. Six discrete glass plates and predatory needle legs. Complete full body.\nTop row column 2 M29, mirror-tongue flanker: a spectral ocean glass mimic with a long mirror-bright tidal tongue extending from a side-opening faceted face shell, one larger hooked fin-claw and one smaller fin-claw. A compact marine predator of teal/lilac/pink spectral origami crystal, asymmetric limbs, planted or hovering crystal contact tips. Tongue fully visible but curls inward to remain in cell. No stone human or mining machine.\nTop row column 3 M30, bell-spined shield support: an elegant hostile translucent glass jellyfish pilgrim with a long cloak-shaped fan of lilac/ice-blue spectral fins and exactly three increasing-size hollow glass chime vesicles on its dorsal spine. Chime vesicles look like magical ocean jellyfish bells made of teal/pink glass with thin gold rims, not bronze mining bells. Complete trailing crystal tendrils contained; spectral tidal creature with a severe faceted visor, no cloth monk.\nTop row column 4 M31, white-vein prism shooter: a living vertical ocean-crystal arrow elemental with exactly three floating thick triangular prisms surrounding one thin white vein/spine, teal/lilac/ice-blue refractive glass, restrained magic-gold rings, pointed tail/contact tip. The three prisms are anatomy of ONE complete sea elemental. No fourth separate crystal, no human legs, no background beam.\nTop row column 5 M32, spectral tide ray ambusher: complete flat elongated manta/ray made of translucent teal and blue-violet glass, lilac/pink origami fins and delicate gold vein trim. Broad angular tidal wing fins, slim full tail curled to fit. Dangerous faceted head and predatory front right orientation. Full creature including both fin tips and tail tip; no stone shell or floor shadow.\nBottom row column 1 M33, hollow-shell web weaver: a hollow spectral sea-glass spindle with four long crystal needle legs, open central cavity clearly visible, teal-lilac shell, pink inner refraction and gold magical ribs. Four complete legs, slender hostile sea-spider silhouette, contained in cell. No woven scenery outside body.\nBottom row column 2 M34, reverse-beat guardian: an imposing two-visaged crystalline tide guardian with broad fin-like shoulders and hourglass glass torso, sea-glass mirror faces oriented oppositely. One hand/fin is a clearly spread flat palm, the other a clenched crystalline fist. Teal/ice-blue full body with lilac-pink interior facets and gold contour armor, complete crystalline lower limbs and feet. No opaque stone statue, no human skin, no friendly face.\nBottom row column 3 M35, light-swallowing sea beast: a hostile squat crystalline angler beast with an enormous half-closed glass lampshade-like maw, sharp jagged transparent glass jaw fins, a swallowed luminous golden magical light-pearl visible inside its translucent belly, exactly four short stout crystalline fin-feet. Turquoise/ice-blue body, lilac/coral-pink facets, gold magical trim. The light is inside the abdomen only. No actual mining lamp, no brown rock, no cute eyes.\nBottom row column 4 M36, resonant tide ring bomber: one large gapped circular ice-blue and lavender crystal ring with a conspicuous missing wedge, carried by exactly three slim telescoping ocean-crystal legs with gold magical joints. Pink-teal refractions and knife-edge glass surfaces, complete three feet. Threatening magical tide construct, no UI countdown or numbers.\nBottom row column 5 BO04, NEW boss 镜潮晶皇 / Crystal Tide Emperor: a majestic dangerous FLOATING ocean-crystal emperor elemental, entirely of translucent teal/ice-blue/lilac/pink glass with elaborate magic-gold trim. A grand faceted glass elemental crown forms its upper silhouette; a commanding severe crystalline face/visor and royal central glass tidal torso flow into sweeping tidal crystal fins, layered spectral origami fins and a complete elegant pointed lower crystal tail. Four sculpted glass arm/fin appendages evoke tidal authority. Full floating body, impressive wide crown but completely contained in cell. This boss MUST visibly belong to the same 镜潮晶裔 family. NO hollow mine bell, no mining lamp core, no stone arms carrying bells, no bulky bronze bell shape, no rustic machinery.\nEvery enemy complete, high-angle right-facing three-quarter hostile idle pose, clear visible thickness and layered side planes. Keep at least 20% blank transparent gutter around every entire body. Soft painted warm highlights and cool colored crystal side faces, no photorealism, no flat pictograms.\nTrue transparent alpha0 background outside all creatures. No UI, text, labels, letters, numbers, cell lines, frames, floor, environment, shadow, halo or glow outside silhouettes, loose particles, companions or extra props. Exactly ten distinct full-body members of the new crystal ocean race.",
+    "Use case: precise-object-edit.\nEdit target: attached transparent 镜潮晶裔 ten-enemy atlas. Preserve EXACTLY the existing ten crystal-ocean creature designs, each identity, gold trim, teal/blue/lilac/pink colors, complete anatomy, painterly detail, hostile expressions and strict 5×2 arrangement. Change only their individual scale and placement.\nREQUIRED FINAL SPACING REPAIR: Each existing creature must be redrawn at exactly HALF (50%) its current width AND HALF (50%) its current height, keeping all extremities. Then move each creature independently so its full silhouette bounding box is centered precisely at its cell center. This is not a global canvas resize; keep the same whole-canvas dimensions while making each of ten creatures much smaller inside its own cell. Make the blank transparent gutters strikingly wider. The complete silhouettes should occupy approximately 40–50% of each square cell, never more than 55%. At least 20% of each cell completely blank transparent at every edge. Exactly ten individual small whole-body figures.\nLayout: exactly 5 columns and 2 rows, equal square grid cells, target2560×1024 or preserve current1983×793. Relative centers top row: (10%,25%), (30%,25%), (50%,25%), (70%,25%), (90%,25%). Bottom row: (10%,75%), (30%,75%), (50%,75%), (70%,75%), (90%,75%). Center ENTIRE creature silhouette including tongues/tails/fins/legs/crowns. Every figure fully inside its own central 55% safe rectangle. No cropping of any leg, fin, tongue, tail, ring, limb, crown or crystal point. No overlap, no touching cell borders.\nPreserve order top: six-plated crystalline crawler M28; long mirror-tongue asymmetric crystal mimic M29; three dorsal glass chimes plus long spectral crystal fin-cloak pilgrim M30; vertical white-vein and three-prism shooter M31; complete long-tail spectral manta ray M32.\nPreserve order bottom: hollow spindle four-needle-leg sea weaver M33; two-visaged hourglass crystal guardian with open palm and clenched fist M34; huge glass lamp-mouth four-foot crystal beast with golden light-pearl inside abdomen M35; gapped glass ring on three telescoping legs M36; BO04 镜潮晶皇 floating Crystal Tide Emperor with grand glass crown, severe crystal visor, gold magic trim and sweeping spectral tidal fins.\nDo not invent new figures or recolor them. Preserve new canonical crystal-ocean species with dangerous sharp anatomy. Entire bodies three-quarter high-angle right-facing idle.\nAll surrounding pixels must be genuinely transparent alpha0. Remove no creature parts. No outside shadows, halos, outlines separate from body, particles, floor, background, checkerboard, UI, text, labels, cell lines or frames. Only ten centered small isolated complete creatures with much wider empty transparent margins."
+  ],
+  "generation_history": [
+    {
+      "attempt": 1,
+      "purpose": "Initial prior stone-crystal identity direction; superseded by newer canonical race",
+      "raw_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-9540e638-d45a-41a1-b828-bf1730e0e617.png"
+    },
+    {
+      "attempt": 2,
+      "purpose": "New canonical 镜潮晶裔 family and 镜潮晶皇 boss redesign",
+      "reference_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-9540e638-d45a-41a1-b828-bf1730e0e617.png",
+      "raw_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-6a40bfce-761d-48fd-8262-c0caa4e859e8.png"
+    },
+    {
+      "attempt": 3,
+      "purpose": "Final spacing-only repair with species designs preserved",
+      "reference_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-6a40bfce-761d-48fd-8262-c0caa4e859e8.png",
+      "raw_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-85f3d921-2ced-4654-a466-38fa86c1b17c.png"
+    }
+  ],
+  "metadata_conventions": {
+    "collision_radius_source": "Coordinator /root/combo_flow authoritative resolution: enemies use catalogue.navigation_radius (enemy.gd:220 movement collision); BO04 uses BossProfiles.STATS.navigation_radius = 62.",
+    "native_height_normal": "clamp(collision_radius * 3.8, 66, 88)",
+    "native_height_boss": 213.9,
+    "source_height": "Padded alpha region height, as required by coordinator.",
+    "foot_y": "Absolute source-space region.end.y.",
+    "foot_x": "Padded region horizontal midpoint except M29, whose long tongue would bias midpoint; M29 uses measured median of visible alpha in bottom 6% foot-support band (583).",
+    "facing": "right"
+  },
+  "items": [
+    {
+      "id": "M28",
+      "source_name": "碎音爬客",
+      "canonical_name": "碎音爬客",
+      "source_visual": "六片小石板叠成弓背，尖细晶腿",
+      "source_role": "swarm",
+      "source_navigation_radius": 12,
+      "description": "Threatening crystalline tidal crawler, six overlapping sea-glass back plates, sharp blue/violet crystalline legs, pink/teal refractions and magic-gold fasteners.",
+      "cell": [
+        0,
+        0,
+        397,
+        396
+      ],
+      "alpha_bbox": [
+        83,
+        147,
+        248,
+        176
+      ],
+      "region": [
+        81,
+        145,
+        252,
+        180
+      ],
+      "foot": [
+        207,
+        325
+      ],
+      "source_height": 180,
+      "native_height": 66,
+      "collision_radius": 12,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        83,
+        147,
+        66,
+        73
+      ]
+    },
+    {
+      "id": "M29",
+      "source_name": "镜舌拟形兽",
+      "canonical_name": "镜舌拟形兽",
+      "source_visual": "一根长镜舌从侧开的石面罩伸出，双臂大小不同",
+      "source_role": "flanker",
+      "source_navigation_radius": 18,
+      "description": "Asymmetric crystalline marine mimic with a long mirror-bright tidal tongue, a large hooked fin-claw and a smaller claw, translucent blue/lilac/pink body.",
+      "cell": [
+        397,
+        0,
+        396,
+        396
+      ],
+      "alpha_bbox": [
+        474,
+        114,
+        284,
+        218
+      ],
+      "region": [
+        472,
+        112,
+        288,
+        222
+      ],
+      "foot": [
+        583,
+        334
+      ],
+      "source_height": 222,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        77,
+        114,
+        35,
+        64
+      ]
+    },
+    {
+      "id": "M30",
+      "source_name": "钟脊巡礼者",
+      "canonical_name": "钟脊巡礼者",
+      "source_visual": "背部三口递增小钟，长斗篷状晶壳",
+      "source_role": "support",
+      "source_navigation_radius": 24,
+      "description": "Spectral glass pilgrim with a long crystalline tidal fin cloak and three increasing-size dorsal glass chime vesicles with gold rims.",
+      "cell": [
+        793,
+        0,
+        397,
+        396
+      ],
+      "alpha_bbox": [
+        906,
+        92,
+        219,
+        256
+      ],
+      "region": [
+        904,
+        90,
+        223,
+        260
+      ],
+      "foot": [
+        1015.5,
+        350
+      ],
+      "source_height": 260,
+      "native_height": 88,
+      "collision_radius": 24,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        113,
+        92,
+        65,
+        48
+      ]
+    },
+    {
+      "id": "M31",
+      "source_name": "白脉晶射体",
+      "canonical_name": "白脉晶射体",
+      "source_visual": "三块浮动棱镜围绕细白脉，纵向箭头剪影",
+      "source_role": "ranged",
+      "source_navigation_radius": 18,
+      "description": "Vertical white-vein crystal shooter elemental, floating blue/lilac prisms with gold fittings and a pointed lower crystal tail.",
+      "cell": [
+        1190,
+        0,
+        396,
+        396
+      ],
+      "alpha_bbox": [
+        1301,
+        96,
+        189,
+        243
+      ],
+      "region": [
+        1299,
+        94,
+        193,
+        247
+      ],
+      "foot": [
+        1395.5,
+        341
+      ],
+      "source_height": 247,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        111,
+        96,
+        96,
+        57
+      ]
+    },
+    {
+      "id": "M32",
+      "source_name": "倒影潜游者",
+      "canonical_name": "倒影潜游者",
+      "source_visual": "扁长鳐形石壳，潜行时完整影子在地面滑动",
+      "source_role": "ambusher",
+      "source_navigation_radius": 18,
+      "description": "Flat elongated spectral glass manta ray with broad teal/lilac/pink tidal fins, complete long tail and gold vein trim.",
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ],
+      "alpha_bbox": [
+        1647,
+        133,
+        261,
+        180
+      ],
+      "region": [
+        1645,
+        131,
+        265,
+        184
+      ],
+      "foot": [
+        1777.5,
+        315
+      ],
+      "source_height": 184,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        61,
+        133,
+        75,
+        83
+      ]
+    },
+    {
+      "id": "M33",
+      "source_name": "空壳织网者",
+      "canonical_name": "空壳织网者",
+      "source_visual": "空心纺锤身躯和四根细长针足",
+      "source_role": "terrain",
+      "source_navigation_radius": 18,
+      "description": "Hollow spectral sea-glass spindle weaver with four long sharp crystal needle legs and an open faceted central cavity.",
+      "cell": [
+        0,
+        396,
+        397,
+        397
+      ],
+      "alpha_bbox": [
+        88,
+        479,
+        253,
+        230
+      ],
+      "region": [
+        86,
+        477,
+        257,
+        234
+      ],
+      "foot": [
+        214.5,
+        711
+      ],
+      "source_height": 234,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        88,
+        83,
+        56,
+        84
+      ]
+    },
+    {
+      "id": "M34",
+      "source_name": "逆拍铸像",
+      "canonical_name": "逆拍铸像",
+      "source_visual": "双面石像，一面平掌一面握拳，宽肩沙漏形",
+      "source_role": "defender",
+      "source_navigation_radius": 24,
+      "description": "Two-visaged glass tide guardian with broad fin shoulders, hourglass crystal torso, one flat open palm and one clenched fist.",
+      "cell": [
+        397,
+        396,
+        396,
+        397
+      ],
+      "alpha_bbox": [
+        472,
+        469,
+        280,
+        257
+      ],
+      "region": [
+        470,
+        467,
+        284,
+        261
+      ],
+      "foot": [
+        612,
+        728
+      ],
+      "source_height": 261,
+      "native_height": 88,
+      "collision_radius": 24,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        75,
+        73,
+        41,
+        67
+      ]
+    },
+    {
+      "id": "M35",
+      "source_name": "深井吞灯兽",
+      "canonical_name": "深井吞灯兽",
+      "source_visual": "巨口像半闭灯罩，腹内可见被吞灯光，短粗四足",
+      "source_role": "interference",
+      "source_navigation_radius": 18,
+      "description": "Squat glass ocean predator with large lamp-mouth jaws, swallowed golden magical light in its translucent belly and four short crystal feet.",
+      "cell": [
+        793,
+        396,
+        397,
+        397
+      ],
+      "alpha_bbox": [
+        857,
+        487,
+        267,
+        245
+      ],
+      "region": [
+        855,
+        485,
+        271,
+        249
+      ],
+      "foot": [
+        990.5,
+        734
+      ],
+      "source_height": 249,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        64,
+        91,
+        66,
+        61
+      ]
+    },
+    {
+      "id": "M36",
+      "source_name": "共鸣寄轮",
+      "canonical_name": "共鸣寄轮",
+      "source_visual": "缺口晶环套在三条伸缩足上，醒目圆环轮廓",
+      "source_role": "bomber",
+      "source_navigation_radius": 18,
+      "description": "Gapped circular sea-glass resonator on three telescoping crystal legs with gold magic joints.",
+      "cell": [
+        1190,
+        396,
+        396,
+        397
+      ],
+      "alpha_bbox": [
+        1274,
+        484,
+        243,
+        249
+      ],
+      "region": [
+        1272,
+        482,
+        247,
+        253
+      ],
+      "foot": [
+        1395.5,
+        735
+      ],
+      "source_height": 253,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        84,
+        88,
+        69,
+        60
+      ]
+    },
+    {
+      "id": "BO04",
+      "source_name": "井底余响",
+      "canonical_name": "镜潮晶皇",
+      "source_visual": "中空大钟包住悬浮矿灯，四条石臂各持不同尺寸边钟；先用同心环与单次声刃，所有节拍地面可见",
+      "source_role": "boss",
+      "source_navigation_radius": null,
+      "description": "镜潮晶皇: imposing floating Crystal Tide Emperor with grand faceted sea-glass crown, severe crystalline visor, four glass arm/fins, gold magic trim, sweeping tidal fin cloak and complete lower crystal tail.",
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ],
+      "alpha_bbox": [
+        1647,
+        453,
+        271,
+        277
+      ],
+      "region": [
+        1645,
+        451,
+        275,
+        281
+      ],
+      "foot": [
+        1782.5,
+        732
+      ],
+      "source_height": 281,
+      "native_height": 213.9,
+      "collision_radius": 62,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        61,
+        57,
+        65,
+        63
+      ]
+    }
+  ],
+  "validation": {
+    "unique_visual_identities": 10,
+    "canonical_family_coherent": true,
+    "canonical_boss_redesigned": true,
+    "all_items_complete": true,
+    "correct_row_major_order": true,
+    "regions_disjoint": true,
+    "visible_alpha_threshold": 16,
+    "region_padding_pixels": 2,
+    "visible_pixels": 284639,
+    "visible_pixels_outside_regions": 0,
+    "canvas_edge_visible_pixels": 0,
+    "alpha_zero_percent": 78.2709143736896,
+    "alpha_nonzero_outside_regions": 1175,
+    "minimum_cell_gutter_percent": 8.83838383838384,
+    "method": "Pillow and NumPy read-only alpha measurement; each region is alpha>=16 bbox plus 2 pixels. No PNG edits, resizing, compositing or alpha cleanup."
+  },
+  "limitations": [
+    "Built-in generator returned 1983×793 rather than requested 2560×1024; metadata and regions use actual dimensions.",
+    "After the canonical family redesign and spacing repair, strict 15% gutters on every side were not achieved: minimum visible gutter is 8.8384% (M29 tongue right margin); M34 right and M30 bottom margins are approximately10–12%. Every full body remains inside its own cell with no overlap or visible canvas-edge clipping.",
+    "1175 alpha<16 generator-noise pixels remain outside regions. All alpha>=16 visible pixels are captured.",
+    "Minor colored and white antialiasing fringe is preserved in the raw generator output.",
+    "M31 retains an additional lower prism-like tail facet in the generated anatomy, while preserving its shooter role and new crystal-ocean family identity.",
+    "Static sprites use an approximate high-angle right-facing idle orientation; some highly symmetrical constructs appear closer to frontal three-quarter."
+  ]
+}

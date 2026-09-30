@@ -1,0 +1,345 @@
+{
+  "asset": "storybook_architecture_v2.png",
+  "created_date": "2026-09-30",
+  "generator": "built-in image_gen",
+  "mode": "reference-guided generation",
+  "use_case": "stylized-concept",
+  "references": [
+    "C:/webdev/games/artifacts/design-reference-option3.png"
+  ],
+  "original_output": "C:/Users/13326/.codex/generated_images/01a0f261-6b08-73d2-95d6-198cdfe2c9b9/exec-6a2c392f-d062-428a-a454-81f2cc7f3e15.png",
+  "requested_dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "actual_dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept\nAsset type: production transparent 2.5D world architecture sprite atlas for an existing 2D Godot game. Exactly SIX separate environment objects, in a strict THREE-column by TWO-row grid, equal square cells. Requested canvas 1536 x 1024 pixels; cells 512 x 512. Object centers at x=256,768,1280, y=256,768. Transparent alpha background with no floor painted beneath objects.\nInput image 1: STYLE, LIGHT, PALETTE AND VIEW-ANGLE REFERENCE ONLY from selected third UI/gameworld direction. Match its sophisticated hand-painted fantasy salvage ruins: sunlit cream limestone, pale peach stone, lively teal ivy, turquoise banner fabric, refined warm brass details and colored thin outlines. Do not copy any HUD, characters, monsters, letters or scene background.\nImportant perspective and visual depth: all six modules use the same slightly raised 3/4 overhead camera, looking down around 40 degrees, with world verticals remaining upright on screen. Every solid object must clearly show a real pale flat top surface AND substantial shaded front and side faces, giving believable volume. Vertical columns rise upward from a compact ground base. The structures feel like raised modules in the reference courtyard, not flat icons, not a top-down floor texture, not a mere skewed plane. Soft sunlight from upper left. Visible front faces have gentle warm peach and lavender shading, not dark rock. Clean coherent object edges suitable for depth sorting and partial player occlusion.\nCRITICAL ATLAS RULE: exactly one separate object in each equal cell; strict row-major order. Keep every part including ivy, banner, chipped stone and small base entirely inside the central 74% of its own cell with transparent gaps. Objects must never touch or overlap other cells. Leave usable empty alpha-zero background. No cast shadow beyond the object's compact solid base.\nROW 1 left to right:\n1. column: a tall elegant freestanding cream limestone column on a small chunky square stone base, simple stepped capital and visible elliptical top. Vivid teal ivy climbs one side and one narrow hanging teal fabric banner with a small plain warm-brass diamond clasp; no writing/symbol/text. Full object visible, tall strong silhouette. Its base/ground contact is at the bottom center; column rises upward.\n2. wall_horizontal: a broken low ivy-covered limestone wall extending HORIZONTALLY left to right, fairly LONG and LOW: width about 2.5 times its total height. Clearly visible pale flat broken top surface, a thick warm-peach front face facing the viewer, small lavender-shaded right side face, a few ivy patches near the ends. Very little rubble; all wall solids touch a continuous compact bottom base. Straight horizontal front base edge.\n3. wall_vertical: a short thick cream limestone wall extending along a screen-space diagonal from upper right to lower left, corresponding to a vertical/depth-direction world wall. Visible narrow pale top and substantial near side face, gently peach shaded. Broken stone tips and a few teal ivy leaves. This must be a true volumetric wall with a side/front plane, not a flat strip.\nROW 2 left to right:\n4. rock_island: one compact raised limestone rock/plinth island, with a broad flat pale sage-green blocked top and cream stone sides. The broad top is NOT traversable gameplay ground; it is an obstacle cap. Top is an orderly rounded rectangular mass, short tiered stone lip, substantial vertical front stone face facing the viewer and visible side thickness. Maximum three simple ivy tufts at edges. Lower solid base is a wide compact rectangle, raising the silhouette upward from its ground footprint. No stairs, no bridge, no surrounding ground.\n5. stairs: one compact short freestanding three-step cream limestone stair module with visible thick peach front risers and pale treads, subtly worn edges. It is perimeter architecture, an isolated compact object; no surrounding floor and no implied long walkable path. Teal ivy confined to one outer edge. Ground contact across the bottom step.\n6. arch: one elegant freestanding cream limestone ruined arch portal, two thick short columns on a single compact base footprint with one intact curved upper arch and a gently broken small crown. Wide open transparent aperture, visible stone top/side thickness, warm peach inner jamb faces, sparse teal ivy and one small brass ornament. Portal has no door, no floor inside, no banner across the aperture; clear open shape. Ground foot points are the two column bases, object rises upward.\nStyle/medium: high quality crisp hand-painted polished cel fantasy environment modules, refined colored outlines, controlled painterly stone shading and clear large forms. Inviting sunlit palette: luminous cream limestone, pale peach front stone faces, gentle lavender side shading, sage/teal ivy, turquoise fabric, tiny warm brass accents. Retain antique industrial salvage-world visual identity through quiet brass fixtures.\nConstraints: only the six architecture modules, fully isolated on true transparent background. No UI, no lettering, no text, no numbers, no labels, no characters, no creatures, no buildings beyond specified modules, no ground backdrop, no scene, no complete courtyard, no checkerboard painted into image, no frames, no badge background, no floor tile plane, no dark vignette, no dark gray rock, no heavy bloom, no blur, no watermark. Shared consistent camera and light direction. Strong real front/side thickness and top faces.",
+  "grid_alpha_measurement": {
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "alpha_samples": {
+      "top_left": 0,
+      "center_gutter": 0,
+      "arch_aperture": 0
+    },
+    "regions": {
+      "column": [
+        0,
+        13,
+        512,
+        499
+      ],
+      "wall_horizontal": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "wall_vertical": [
+        1024,
+        17,
+        500,
+        495
+      ],
+      "rock_island": [
+        45,
+        521,
+        467,
+        503
+      ],
+      "stairs": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "arch": [
+        1024,
+        512,
+        488,
+        512
+      ]
+    },
+    "alpha_bounds": {
+      "column": [
+        0,
+        15,
+        512,
+        497
+      ],
+      "wall_horizontal": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "wall_vertical": [
+        1024,
+        19,
+        498,
+        493
+      ],
+      "rock_island": [
+        47,
+        523,
+        465,
+        501
+      ],
+      "stairs": [
+        512,
+        513,
+        512,
+        511
+      ],
+      "arch": [
+        1024,
+        512,
+        486,
+        512
+      ]
+    },
+    "cells": {
+      "column": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "wall_horizontal": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "wall_vertical": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "rock_island": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "stairs": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "arch": [
+        1024,
+        512,
+        512,
+        512
+      ]
+    }
+  },
+  "object_alpha_measurement": {
+    "threshold": 32,
+    "rois": {
+      "column": [
+        90,
+        0,
+        400,
+        510
+      ],
+      "wall_horizontal": [
+        420,
+        190,
+        1090,
+        480
+      ],
+      "wall_vertical": [
+        1090,
+        0,
+        1536,
+        490
+      ],
+      "rock_island": [
+        0,
+        520,
+        555,
+        1010
+      ],
+      "stairs": [
+        555,
+        540,
+        1045,
+        1000
+      ],
+      "arch": [
+        1045,
+        490,
+        1536,
+        1010
+      ]
+    },
+    "regions": {
+      "column": [
+        128,
+        20,
+        228,
+        481
+      ],
+      "wall_horizontal": [
+        445,
+        219,
+        614,
+        246
+      ],
+      "wall_vertical": [
+        1107,
+        62,
+        341,
+        425
+      ],
+      "rock_island": [
+        51,
+        548,
+        480,
+        447
+      ],
+      "stairs": [
+        569,
+        581,
+        455,
+        379
+      ],
+      "arch": [
+        1087,
+        494,
+        415,
+        497
+      ]
+    },
+    "alpha_bounds": {
+      "column": [
+        130,
+        22,
+        224,
+        477
+      ],
+      "wall_horizontal": [
+        447,
+        221,
+        610,
+        242
+      ],
+      "wall_vertical": [
+        1109,
+        64,
+        337,
+        421
+      ],
+      "rock_island": [
+        53,
+        550,
+        476,
+        443
+      ],
+      "stairs": [
+        571,
+        583,
+        451,
+        375
+      ],
+      "arch": [
+        1089,
+        496,
+        411,
+        493
+      ]
+    }
+  },
+  "region_method": "The generator did not preserve strict equal cell containment: horizontal wall and rock island cross nominal cell boundaries. Six nonoverlapping object search ROIs preserve complete objects. Alpha >= 32 bbox plus 2 pixels defines each region; 32/64/128 measurements are visually stable. Raw PNG pixels and alpha are completely unchanged.",
+  "anchors": {
+    "column": [
+      120,
+      433
+    ],
+    "wall_horizontal": [
+      325,
+      220
+    ],
+    "wall_vertical": [
+      179,
+      327
+    ],
+    "rock_island": [
+      248,
+      345
+    ],
+    "stairs": [
+      222,
+      282
+    ],
+    "arch": [
+      208,
+      427
+    ]
+  },
+  "ground_footprints": {
+    "column": [
+      15,
+      390,
+      211,
+      88
+    ],
+    "wall_horizontal": [
+      35,
+      193,
+      577,
+      51
+    ],
+    "wall_vertical": [
+      23,
+      230,
+      310,
+      193
+    ],
+    "rock_island": [
+      18,
+      246,
+      461,
+      198
+    ],
+    "stairs": [
+      1,
+      187,
+      446,
+      189
+    ],
+    "arch": [
+      13,
+      361,
+      398,
+      135
+    ]
+  },
+  "ground_contacts": {
+    "arch": [
+      [
+        98,
+        399
+      ],
+      [
+        318,
+        454
+      ]
+    ]
+  },
+  "anchor_method": "Independent read-only visual QA estimates each stone-base ground projection center, not lowest alpha pixel or foliage tip. Footprints are approximate visual bounds, not new collision geometry. The arch is open and has two distinct feet; its overall footprint must not become a solid collision rectangle.",
+  "visual_review": "Six coherent bright limestone modules show visible top, warm peach front and lavender side faces, vivid teal ivy and brass accents. Actual transparent empty spaces and arch aperture sample alpha 0. No UI, text, characters, creatures or painted solid floor backdrop. Column remains tall; horizontal wall has approximately 2.5:1 width-to-height ratio. Original output preserved without image edits."
+}

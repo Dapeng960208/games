@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "texture": "res://assets/generated/props/storybook_props_b01_b02_v1.png",
+  "regions": {
+    "B01_winch": [
+      27,
+      62,
+      543,
+      436
+    ],
+    "B01_ore_cart": [
+      573,
+      87,
+      447,
+      398
+    ],
+    "B01_crate_stack": [
+      1071,
+      58,
+      440,
+      428
+    ],
+    "B02_spore_nest": [
+      63,
+      528,
+      389,
+      440
+    ],
+    "B02_root_barrier": [
+      504,
+      565,
+      543,
+      401
+    ],
+    "B02_fungal_rock": [
+      1089,
+      597,
+      413,
+      356
+    ]
+  },
+  "anchors": {
+    "B01_winch": [
+      252,
+      346
+    ],
+    "B01_ore_cart": [
+      234,
+      306
+    ],
+    "B01_crate_stack": [
+      221,
+      362
+    ],
+    "B02_spore_nest": [
+      196,
+      351
+    ],
+    "B02_root_barrier": [
+      271,
+      281
+    ],
+    "B02_fungal_rock": [
+      204,
+      271
+    ]
+  },
+  "ground_footprints": {
+    "B01_winch": [
+      16,
+      264,
+      447,
+      165
+    ],
+    "B01_ore_cart": [
+      18,
+      216,
+      426,
+      177
+    ],
+    "B01_crate_stack": [
+      3,
+      284,
+      436,
+      143
+    ],
+    "B02_spore_nest": [
+      25,
+      307,
+      346,
+      125
+    ],
+    "B02_root_barrier": [
+      11,
+      159,
+      524,
+      237
+    ],
+    "B02_fungal_rock": [
+      4,
+      194,
+      405,
+      161
+    ]
+  },
+  "coordinate_system": {
+    "regions": "Absolute raw atlas pixels [x,y,width,height].",
+    "anchors": "CROP-LOCAL projected ground-base center [x,y]; NOT silhouette bottom.",
+    "ground_footprints": "CROP-LOCAL approximate occupied ground rectangle [x,y,width,height], clamped to crop."
+  },
+  "factions": {
+    "B01": "辉砂虫族：日照石遗迹、虫丝张力器、琥珀育巢晶与蝉翼封印。",
+    "B02": "苔光菌灵：翡翠玻璃菌巢、低矮根系与薄荷/珊瑚/蓝色菌菇。"
+  },
+  "atlas_layout": {
+    "columns": 3,
+    "rows": 2,
+    "uniform_grid": false,
+    "source_cells": {
+      "B01_winch": [
+        0,
+        0,
+        571,
+        512
+      ],
+      "B01_ore_cart": [
+        571,
+        0,
+        474,
+        512
+      ],
+      "B01_crate_stack": [
+        1045,
+        0,
+        491,
+        512
+      ],
+      "B02_spore_nest": [
+        0,
+        512,
+        478,
+        512
+      ],
+      "B02_root_barrier": [
+        478,
+        512,
+        590,
+        512
+      ],
+      "B02_fungal_rock": [
+        1068,
+        512,
+        468,
+        512
+      ]
+    },
+    "instruction": "Use explicit complete-object regions; top row x571/x1045 and bottom row x478/x1068 split at real transparent gutters. Do not crop fixed512 cells."
+  },
+  "registration": {
+    "alpha_threshold": 32,
+    "region_padding": 2,
+    "anchor_method": "Read-only visual projected-ground-plane center estimates; based on visible foot/wheel contacts, not lowest silhouette pixel.",
+    "anchor_accuracy": "Approximately +/-15 to25 original pixels; new insect-clan crate ground center adjusted after final source change.",
+    "source_pixel_edits": "none"
+  },
+  "qa": {
+    "size": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "sha256": "c7cba5c9188998edf9812a48148024d4aab9c93166345fde3eba65189f8b6924",
+    "source_copy_identical": true,
+    "alpha_threshold": 32,
+    "region_padding": 2,
+    "complete_alpha32_coverage": true,
+    "frames": {
+      "B01_winch": {
+        "source_cell": [
+          0,
+          0,
+          571,
+          512
+        ],
+        "alpha_bounds": [
+          29,
+          64,
+          539,
+          432
+        ],
+        "region": [
+          27,
+          62,
+          543,
+          436
+        ],
+        "visible_alpha_pixels": 133553,
+        "min_cell_margin": 3,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_ore_cart": {
+        "source_cell": [
+          571,
+          0,
+          474,
+          512
+        ],
+        "alpha_bounds": [
+          575,
+          89,
+          443,
+          394
+        ],
+        "region": [
+          573,
+          87,
+          447,
+          398
+        ],
+        "visible_alpha_pixels": 115458,
+        "min_cell_margin": 4,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_crate_stack": {
+        "source_cell": [
+          1045,
+          0,
+          491,
+          512
+        ],
+        "alpha_bounds": [
+          1073,
+          60,
+          436,
+          424
+        ],
+        "region": [
+          1071,
+          58,
+          440,
+          428
+        ],
+        "visible_alpha_pixels": 124678,
+        "min_cell_margin": 27,
+        "visible_cell_edge_pixels": 0
+      },
+      "B02_spore_nest": {
+        "source_cell": [
+          0,
+          512,
+          478,
+          512
+        ],
+        "alpha_bounds": [
+          65,
+          530,
+          385,
+          436
+        ],
+        "region": [
+          63,
+          528,
+          389,
+          440
+        ],
+        "visible_alpha_pixels": 114340,
+        "min_cell_margin": 18,
+        "visible_cell_edge_pixels": 0
+      },
+      "B02_root_barrier": {
+        "source_cell": [
+          478,
+          512,
+          590,
+          512
+        ],
+        "alpha_bounds": [
+          506,
+          567,
+          539,
+          397
+        ],
+        "region": [
+          504,
+          565,
+          543,
+          401
+        ],
+        "visible_alpha_pixels": 112410,
+        "min_cell_margin": 23,
+        "visible_cell_edge_pixels": 0
+      },
+      "B02_fungal_rock": {
+        "source_cell": [
+          1068,
+          512,
+          468,
+          512
+        ],
+        "alpha_bounds": [
+          1091,
+          599,
+          409,
+          352
+        ],
+        "region": [
+          1089,
+          597,
+          413,
+          356
+        ],
+        "visible_alpha_pixels": 98225,
+        "min_cell_margin": 23,
+        "visible_cell_edge_pixels": 0
+      }
+    },
+    "outer_alpha32": 0,
+    "transparent_fraction": 0.5331001281738281
+  },
+  "provenance": "res://assets/generated/props/storybook_props_b01_b02_v1.provenance.json"
+}

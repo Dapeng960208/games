@@ -1,0 +1,538 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH01",
+  "slot": "secondary",
+  "bank": "back",
+  "facing_x": -1,
+  "enabled": true,
+  "texture": "res://assets/generated/heroes/CH01_storybook_secondary_back_v1.png",
+  "width": 1536,
+  "height": 1024,
+  "columns": 3,
+  "rows": 2,
+  "body_height": 320.5,
+  "body_height_method": "One fixed manually measured standing crown-to-projected-boot-sole-contact-midpoint scale from plant; excludes axe and scarf. Crouched/twisted frames are not individually normalized.",
+  "standing_scale_evidence": {
+    "frame": "plant",
+    "head_crown": [
+      269,
+      112
+    ],
+    "boot_sole_contact_centers": [
+      [
+        199,
+        455
+      ],
+      [
+        393,
+        410
+      ]
+    ],
+    "projected_sole_midpoint": [
+      296,
+      432.5
+    ],
+    "crown_to_projected_sole_midpoint": 320.5
+  },
+  "atlas_layout": {
+    "arrangement": "3 columns x 2 rows, row-major",
+    "requested_canvas": [
+      1536,
+      1024
+    ],
+    "fixed_uniform_grid": false,
+    "source_cell_policy": "Adaptive disjoint source rectangles partition at empty alpha>16 gutters. Consume explicit region, never derive a 512x512 frame crop.",
+    "row_boundary": 530,
+    "row_x_boundaries": [
+      [
+        0,
+        499,
+        988,
+        1536
+      ],
+      [
+        0,
+        555,
+        1080,
+        1536
+      ]
+    ],
+    "minimum_visible_alpha_gutter": 64
+  },
+  "frames": [
+    {
+      "name": "plant",
+      "source_cell": [
+        0,
+        0,
+        499,
+        530
+      ],
+      "alpha_bounds": {
+        "above_16": [
+          90,
+          112,
+          332,
+          350
+        ]
+      },
+      "region": [
+        82,
+        104,
+        348,
+        366
+      ],
+      "edge_alpha_max": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "gutters": [
+        90,
+        112,
+        77,
+        68
+      ],
+      "visible_pixels": 48807,
+      "index": 0,
+      "foot": [
+        296,
+        432.5
+      ],
+      "boots_contact": [
+        [
+          199,
+          455
+        ],
+        [
+          393,
+          410
+        ]
+      ],
+      "head": [
+        269,
+        112
+      ],
+      "grip": [
+        227.5,
+        298
+      ],
+      "muzzle": [
+        141,
+        399
+      ],
+      "pose": "Wide planted stance; two hands hold the single axe low and rearward.",
+      "alpha_threshold": 16
+    },
+    {
+      "name": "coil",
+      "source_cell": [
+        499,
+        0,
+        489,
+        530
+      ],
+      "alpha_bounds": {
+        "above_16": [
+          576,
+          118,
+          337,
+          343
+        ]
+      },
+      "region": [
+        568,
+        110,
+        353,
+        359
+      ],
+      "edge_alpha_max": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "gutters": [
+        77,
+        118,
+        75,
+        69
+      ],
+      "visible_pixels": 44486,
+      "index": 1,
+      "foot": [
+        789,
+        433.5
+      ],
+      "boots_contact": [
+        [
+          686,
+          455
+        ],
+        [
+          892,
+          412
+        ]
+      ],
+      "head": [
+        754,
+        118
+      ],
+      "grip": [
+        715.5,
+        253.5
+      ],
+      "muzzle": [
+        628,
+        304
+      ],
+      "pose": "Torso and two hands coil the axe behind the hip below shoulder level.",
+      "alpha_threshold": 16
+    },
+    {
+      "name": "drive",
+      "source_cell": [
+        988,
+        0,
+        548,
+        530
+      ],
+      "alpha_bounds": {
+        "above_16": [
+          1064,
+          125,
+          402,
+          337
+        ]
+      },
+      "region": [
+        1056,
+        117,
+        418,
+        353
+      ],
+      "edge_alpha_max": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "gutters": [
+        76,
+        125,
+        70,
+        68
+      ],
+      "visible_pixels": 48845,
+      "index": 2,
+      "foot": [
+        1331.5,
+        432.5
+      ],
+      "boots_contact": [
+        [
+          1222,
+          455
+        ],
+        [
+          1441,
+          410
+        ]
+      ],
+      "head": [
+        1310,
+        125
+      ],
+      "grip": [
+        1229,
+        256
+      ],
+      "muzzle": [
+        1072,
+        280
+      ],
+      "pose": "Two-handed lateral drive accelerates the axe horizontally across the waist.",
+      "alpha_threshold": 16
+    },
+    {
+      "name": "contact",
+      "source_cell": [
+        0,
+        530,
+        555,
+        494
+      ],
+      "alpha_bounds": {
+        "above_16": [
+          64,
+          626,
+          422,
+          318
+        ]
+      },
+      "region": [
+        56,
+        618,
+        438,
+        334
+      ],
+      "edge_alpha_max": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "gutters": [
+        64,
+        96,
+        69,
+        80
+      ],
+      "visible_pixels": 48261,
+      "index": 3,
+      "foot": [
+        342.5,
+        915.5
+      ],
+      "boots_contact": [
+        [
+          225,
+          937
+        ],
+        [
+          460,
+          894
+        ]
+      ],
+      "head": [
+        333,
+        626
+      ],
+      "grip": [
+        230,
+        723.5
+      ],
+      "muzzle": [
+        74,
+        729
+      ],
+      "pose": "Extended horizontal contact sweep at waist level with both feet planted.",
+      "alpha_threshold": 16
+    },
+    {
+      "name": "follow",
+      "source_cell": [
+        555,
+        530,
+        525,
+        494
+      ],
+      "alpha_bounds": {
+        "above_16": [
+          624,
+          608,
+          383,
+          329
+        ]
+      },
+      "region": [
+        616,
+        600,
+        399,
+        345
+      ],
+      "edge_alpha_max": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "gutters": [
+        69,
+        78,
+        73,
+        87
+      ],
+      "visible_pixels": 44987,
+      "index": 4,
+      "foot": [
+        763.5,
+        904
+      ],
+      "boots_contact": [
+        [
+          658,
+          928
+        ],
+        [
+          869,
+          880
+        ]
+      ],
+      "head": [
+        784,
+        608
+      ],
+      "grip": [
+        900.5,
+        744.5
+      ],
+      "muzzle": [
+        979,
+        807
+      ],
+      "pose": "Full lateral follow-through with a slightly twisted torso and axe on opposite side.",
+      "alpha_threshold": 16
+    },
+    {
+      "name": "ready",
+      "source_cell": [
+        1080,
+        530,
+        456,
+        494
+      ],
+      "alpha_bounds": {
+        "above_16": [
+          1153,
+          618,
+          310,
+          334
+        ]
+      },
+      "region": [
+        1145,
+        610,
+        326,
+        350
+      ],
+      "edge_alpha_max": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "gutters": [
+        73,
+        88,
+        73,
+        72
+      ],
+      "visible_pixels": 43356,
+      "index": 5,
+      "foot": [
+        1250.5,
+        919.5
+      ],
+      "boots_contact": [
+        [
+          1172,
+          894
+        ],
+        [
+          1329,
+          945
+        ]
+      ],
+      "head": [
+        1277,
+        618
+      ],
+      "grip": [
+        1368.5,
+        806
+      ],
+      "muzzle": [
+        1419,
+        899
+      ],
+      "pose": "Return to low two-handed axe-ready stance.",
+      "alpha_threshold": 16
+    }
+  ],
+  "phase_frames": {
+    "windup": [
+      "plant",
+      "coil",
+      "drive"
+    ],
+    "release": [
+      "contact"
+    ],
+    "recovery": [
+      "follow",
+      "ready"
+    ]
+  },
+  "phase_weights": {
+    "windup": [
+      0.25,
+      0.45,
+      0.3
+    ],
+    "release": [
+      1
+    ],
+    "recovery": [
+      0.55,
+      0.45
+    ]
+  },
+  "registration": {
+    "coordinates": "All positions and rectangles use absolute original PNG pixels. Rectangle arrays are [x,y,width,height].",
+    "foot": "Arithmetic midpoint of manually identified projected boot sole contact centers, approximately +/-6 source pixels.",
+    "head": "Highest crown/hair point of the anatomical head, approximately +/-5 source pixels; excludes scarf and axe.",
+    "grip": "Midpoint of the two hands gripping the continuous axe haft, approximately +/-10 source pixels; a supporting hand may be partly occluded.",
+    "muzzle": "Legacy key: center of the outer silver axe cutting edge, approximately +/-10 source pixels. This is an axe contact anchor, not a firearm muzzle.",
+    "crop_note": "Region is the complete per-cell alpha>16 bounding rectangle plus 8 pixels padding, constrained to its adaptive source_cell. Raw PNG bytes copied unchanged. Near-zero alpha noise outside silhouettes is retained.",
+    "source_pixels_modified": false,
+    "per_frame_scaling": false,
+    "source_file_sha256": "598d365082e764e6d5962165c5af3f1281f8ffd8b35566141d284b7e2a83337e"
+  },
+  "alpha": {
+    "minimum": 0,
+    "maximum": 254,
+    "transparent_pixels": 1240598,
+    "total_pixels": 1572864,
+    "transparent_fraction": 0.788750966389974,
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "visible_threshold": 16,
+    "all_source_cell_edges_below_visible_threshold": true,
+    "inspection": "Read-only Pillow alpha/bounding-box/hash measurements. RGBA original copied byte-for-byte; no image crop, compositing, resizing, painting or alpha changes."
+  },
+  "review_status": "source_art_and_manual_anchors_reviewed_runtime_pending",
+  "review_notes": [
+    "Exactly six complete isolated full-body poses with one axe per pose, two-handed horizontal attack; no gun, hammer, helmet, labels, slash effects, ground or cast ground shadow.",
+    "Northwest-facing back views show rear hair and armor; faces hidden.",
+    "Raw output is 1536 x 1024 as requested. Generator did not adhere to requested 266px body scale or uniform 512px cell placement; explicit adaptive rectangles retain all complete silhouettes without touching visible alpha at source-cell edges.",
+    "Back atlas uses adaptive source rectangles for larger transparent margins; minimum visible-alpha gutter is 64px.",
+    "Body height uses one standing plant measurement; pose perspective and minor generative anatomy variations remain. Supporting hands can be partly occluded by haft, gloves or torso.",
+    "Feet, crown, grip and cutting-edge anchors are manually estimated from native image visual inspection, not calibrated by in-game animation. Source and metadata only; runtime timing/orientation/weapon contact still require native gameplay review."
+  ],
+  "provenance": {
+    "date": "2026-09-30",
+    "tool": "built-in image_gen.imagegen",
+    "mode": "reference generation",
+    "source": "C:/Users/13326/.codex/generated_images/01a0f2a9-afd7-7001-9f4d-0c4de36ad617/exec-30a25b06-65e9-4487-b86b-5071aed1a921.png",
+    "references": [
+      "C:/webdev/games/assets/generated/heroes/CH01_storybook_portrait_v1.png",
+      "C:/webdev/games/artifacts/design-reference-option3.png"
+    ],
+    "requested_size": [
+      1536,
+      1024
+    ],
+    "raw_size": [
+      1536,
+      1024
+    ],
+    "full_prompt": "Use case: stylized-concept\nAsset type: very spacious TRANSPARENT game sprite atlas for CH01 SECONDARY horizontal axe sweep BACK bank, 1536 × 1024 requested pixels.\nInput images: C:/webdev/games/assets/generated/heroes/CH01_storybook_portrait_v1.png is the exact hero hair, scarf, armor and identity reference. C:/webdev/games/artifacts/design-reference-option3.png is only the elevated camera, bright refined cel-painted storybook game style reference.\nLayout first: exactly SIX SMALL isolated full-body sprites in a uniform 3 columns by 2 rows arrangement, reading order. Each equal 512 × 512 cell has a small centered warrior + weapon silhouette occupying ONLY the central 300 × 280 pixel area. The canvas should be predominantly empty transparent space. Draw the sprites MUCH SMALLER than normal full cell figures. Their anatomical standing body height is about 250 pixels, around half each 512px cell. Head crown about local y=145, projected boot sole midpoint about local y=415. All pixels of body, scarf, BOTH boots, BOTH hands, and the COMPLETE single axe MUST fit between local x=80 and x=432 and local y=130 and y=440 in each cell. At least 80 pixels of empty transparent space before and after every cell along x. NO silhouette may touch any cell edge. DO NOT draw the cell borders or labels.\nExactly the same warrior across all frames: adult male, dark brown windswept spiky hair, bright orange-red scarf, charcoal black articulated armor with copper-gold edging and orange accents, fitted dark trousers and heavy boots. Same regular adult anatomy and proportion in all cells, no chibi, no oversized head, no helmet.\nWeapon identity: one large SINGLE battleaxe held in BOTH hands in every frame. Long charcoal black haft with copper-gold hardware, orange-black angular axe head and a broad SILVER cutting edge. No gun, no hammer, no duplicate axe, no sword, no extra limbs.\nCamera/orientation: elevated TOP-DOWN THREE-QUARTER ISOMETRIC game camera about 35 degrees. These are BACK views: warrior always facing NORTHWEST toward upper-left. Show back of armor, back of neck/scarf, back and crown of hair, backs of boots. FACE HIDDEN IN ALL SIX FRAMES. NO frontal face, no eyes, no smiling side face. Torso can twist for the attack but maintain back northwest orientation.\nExactly six distinct poses, row-major, no names rendered:\n1 top-left plant: broad planted stance, knees slightly bent, two hands hold axe low behind rear hip.\n2 top-middle coil: torso and two-hand axe coil horizontally behind hip, below shoulder level.\n3 top-right drive: rotate torso laterally and accelerate the axe horizontally across waist, both hands on one haft.\n4 bottom-left contact: arms extend outward into a wide HORIZONTAL waist-height sweep, blade far to lateral side but safely inside cell, planted wide boots.\n5 bottom-middle follow: slightly twisted torso finishes lateral follow-through with axe to opposite side, both hands still gripping haft.\n6 bottom-right ready: restore low two-hand axe-ready stance.\nThis is a SECONDARY HORIZONTAL sideways attack: axe BELOW shoulders in every frame, never overhead, never a vertical chop. Broad weapon arc through waist plane. No motion blur or VFX.\nStyle: refined cel-painted storybook fantasy with crisp colored outlines and elegant controlled highlights, warm bright orange and copper-gold details against dark armor, readable high-quality painted sprites. NOT photographic or 3D, NOT pixel art.\nBackground: genuinely transparent alpha ZERO outside sprites, empty transparent gutters. No glow, no ambient brown fill, no ground shadow, no ground, no scenery, no slash streaks, no ghost weapons, no text/labels/grid/border/watermark. Six complete clean isolated small figures only.",
+    "originals_preserved": true
+  }
+}

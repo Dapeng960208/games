@@ -1,0 +1,51 @@
+{
+  "asset": "CH03_storybook_portrait_v1.png",
+  "created_date": "2026-09-30",
+  "generator": "built-in image_gen",
+  "use_case": "stylized-concept",
+  "source": "C:/Users/13326/.codex/generated_images/01a0f260-8e28-78d1-be2b-23f8eef54702/exec-6ead6e0d-bbbb-4343-a967-b12befc5acc4.png",
+  "references": [
+    "C:/webdev/games/artifacts/design-reference-option3.png",
+    "C:/webdev/games/assets/generated/heroes/CH01_storybook_portrait_v1.png",
+    "C:/webdev/games/assets/generated/heroes/CH03_portrait_v1.png"
+  ],
+  "requested_dimensions": "768x1024",
+  "measurement": {
+    "width": 1086,
+    "height": 1448,
+    "alpha_bbox": [
+      0,
+      19,
+      1086,
+      1406
+    ],
+    "alpha_bbox_threshold16": [
+      9,
+      216,
+      1079,
+      1364
+    ],
+    "corners_alpha": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "canonical_identity": {
+    "name": "谷频",
+    "gender": "male",
+    "age_approximate": 40,
+    "class": "signal technician and resonator",
+    "weapon": "short fork-shaped teal-crystal needle emitter"
+  },
+  "head_region_pixels": {
+    "x": 370,
+    "y": 220,
+    "width": 575,
+    "height": 615
+  },
+  "head_region_basis": "Visually estimated crop region enclosing hair, face and neck, excluding most jacket/receiver/capacitors; source PNG remains uncropped.",
+  "prompt": "Use case: stylized-concept\nAsset type: ONE production CH03 hero bust portrait sprite for Godot HUD and class selection, tall 768 x 1024 PNG with genuinely transparent background.\nInput images: Image 1 is the selected option 3 art direction: bright hand-painted fantasy adventure colors and refined colored outlines only, no scene or UI. Image 2 is the NEW male axe-warrior portrait in the same series: match its exact cel-painted line weight, polished shading, warm ambient light, portrait scale and clean bust composition, but make a clearly different older character. Image 3 is ONLY CH03's canonical identity reference: retain its mature male identity, wavy dark hair with grey streaks, neat moustache/chin beard, ivory/teal technician jacket, circular receiver and technical teal-crystal resonator character. Convert its realistic full-body style into the illustrated bust style of Image 2; do not preserve full-body framing or dark background.\nPrimary request: CH03 谷频 / Gu Pin, a friendly clever adult male signal technician and resonator about 40 years old. Short wavy dark brown hair with a few distinctive silver-grey streaks at temples/front, warm tan skin, lively brown eyes, neatly trimmed moustache and small short chin beard. Curious warm confident smile. Short ivory/off-white work jacket with peacock-teal reinforced panels and small copper-brass fasteners, soft teal neck scarf, dark charcoal utility undershirt. A compact circular ivory ceramic/copper receiver is visible tucked behind one shoulder and a few staggered ivory/teal backpack capacitor tops behind the other. A restrained small teal-blue faceted crystal in a copper fork-shaped short needle-emitter sits near a shoulder edge; this is technical salvage equipment, not fantasy sorcery. Equipment supports identity without dominating or obscuring face.\nComposition/framing: head, complete hair, both shoulders and upper chest only. Three-quarter portrait facing right, both eyes visible. Complete silhouette entirely visible, centered and filling approximately 80 percent frame height; generous transparent margin above hair and at both sides. Clean deliberate curved lower bust contour for HUD/camp overlays. No arms below chest, waist, legs or full-body pose.\nStyle/medium: match Image 2's refined cel-painted fantasy illustration, clean plum/charcoal colored outlines, attractive controlled expressive face, warm painterly highlights and polished layered shading. Bright approachable salvage-adventure mood, mature handsome personality clearly distinct from younger CH01.\nConstraints: exactly one transparent portrait sprite. MALE adult around 40 with moustache and chin beard, not a young woman. No wizard robe, spellcasting, magical aura or mage hat. No axe, rifle or gun. No background/scene, text/UI/watermark/frame/paper/badge, no full body. Hair, receiver and both shoulders must be completely inside canvas with clear transparent margin, no cropping.",
+  "transparent_background": true
+}

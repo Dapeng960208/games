@@ -1,0 +1,354 @@
+{
+  "date": "2026-09-30",
+  "source": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen__imagegen",
+    "operation": "transparent asset generation with two layout-only repair edits",
+    "original_generated_output": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2df-59b8-7eb3-a1be-0f8afc443140\\exec-2bc6e033-9f23-4986-bc20-2ae5cbacfbd6.png"
+  },
+  "requested_dimensions": [
+    2560,
+    1024
+  ],
+  "reference": {
+    "role": "visual style reference inspected; not passed to initial image tool",
+    "path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f250-dc5c-7040-ab32-96177571dcae\\exec-43b24e14-8aac-4983-aba5-37855eb767a4.png",
+    "extracted_style": "handpainted storybook 2.5D physical miniatures, deep plum contours, cream stone, brass and teal palette"
+  },
+  "full_prompt": "Use case: stylized-concept.\nAsset type: production transparent fantasy game equipment sprite atlas, ONE single canvas with EXACTLY TEN distinct physical charm objects.\nCanvas and layout: request 2560 x 1024 pixels, landscape aspect ratio 5:2. Five equal 512 x 512 square columns and two equal 512 x 512 rows. Absolutely strict row-major order, left to right. All ten cells are invisible and transparent: no visible grid. Object centers are (256,256),(768,256),(1280,256),(1792,256),(2304,256), then (256,768),(768,768),(1280,768),(1792,768),(2304,768). Every COMPLETE object including cords and tails fits fully inside the central 70% of its own cell, leaving at least 15% blank gutter on every side. Nothing crosses a cell edge. Do not crop any object. Arrange ONE item only in each cell.\n\nStyle: polished hand-painted storybook RPG assets, dimensional 2.5D miniature physical objects viewed from a consistent gentle three-quarter angle. Visible thickness, bevels, upper surfaces, and side faces. Strong clean deep plum colored contours, soft painterly form shading clipped entirely inside object silhouettes, creamy pale stone ceramic, warm aged brass/copper, teal accents. Coherent handcrafted palette and finely painted texture. Form and materials must read instantly even as small game inventory sprites. These are solid objects with weight, not flat glyphs, not outline pictograms, not generic jeweled recolors. No characters.\n\nEXACT item order and appearance:\nTOP ROW col1: Old Camp Compass — aged warm yellow brass circular compass with a clearly missing/notched corner of its thick outer casing; cream dial, dimensional dark metal compass needle; a small red cord attached and curling beside the compass inside its cell. Face has abstract radial ticks only, no numbers, letters, cardinal direction text, or words.\nTOP ROW col2: Reserve Counter Tag — a compact mechanical two-layer flip-page counting tag, a chunky pale cream and aged brass/copper housing with two stacked hinged banks of thick overlapping flip plates, clearly visible mechanical axle and side thickness. The plates have abstract tick marks ONLY, no numbers, letters, words, or numeral-like glyphs.\nTOP ROW col3: Undying Furnace Pendant — a small bean-shaped miniature furnace pendant of dark metal and warm aged brass, rounded asymmetric bean body, a small vent/opening containing ONE concentrated glowing amber point. Real miniature furnace mechanism, thick casing, loop for a pendant. Preserve amber interior and bean shape.\nTOP ROW col4: Closed-Loop Tuning Pendant — a half-closed copper tuning fork pendant, chunky metallic fork tips curled almost together, with ONE suspended saturated blue bead nested between them. The fork is unmistakably a physical resonating tuning fork, with visible copper side faces and a small hanging loop.\nTOP ROW col5: Sealed-Tide Crystal Drop — a hanging upside-down icy blue crystal teardrop enclosing ONE clearly visible tiny white seashell; translucent pale ice-blue facets, solid glass/crystal depth, small restrained brass suspension fitting. Complete crystal droplet, no surrounding magical particles.\n\nBOTTOM ROW col1: Verdigris Hourglass — a real small green-sand hourglass, transparent glass bulbs with vivid green sand inside, in an asymmetrical corroded copper support frame with visible verdigris patina. Complete upper and lower frame feet, dimensional hourglass structure.\nBOTTOM ROW col2: Unbroken Oath Tag — a thick black iron square oath tag/pendant, stout beveled metal plate with ONE clean white vertical inlay passing down its center. Single small suspension loop. Deep charcoal iron and white line must remain the defining silhouette and colors.\nBOTTOM ROW col3: Faultline Echo Stone — a palm-sized irregular dark black stone, thick angular sides and upper face, physically split/opened by ochre-yellow sound-wave grooves across it; the ochre ripple bands are carved glowing seams within the stone, not floating external effects. Unmistakably an actual stone.\nBOTTOM ROW col4: Seventh-Graduation Needle — ONE thick ivory-white measuring ruler with exactly seven simple abstract graduation compartments/ticks and a slender violet-purple needle hovering close and parallel above it. Both belong to ONE combined charm, arranged diagonally for visible thickness, inside the cell; preserve white ruler and purple fine needle; no numbers, letters, or written scale.\nBOTTOM ROW col5: Empty-Post Wind Chime — a small hollow creamy white ceramic wind bell with NO clapper inside, visible dark hollow opening and ceramic rim thickness, with exactly TWO sky-blue/teal trailing ribbons attached under/alongside it. Complete bell and full ribbon tails inside cell. No extra bells or third tail.\n\nBackdrop and transparency: true RGBA transparency. All pixels outside the ten object silhouettes must have alpha exactly 0. No background color, floor, checkerboard baked in, paper rectangle, vignette, halo, cast shadow, drop shadow, ambient shadow, exterior glow, sparkles, UI, label, panel, frame, rarity ring, pedestal, or watermark. Keep internal amber glow within the furnace aperture only. Objects are isolated cutouts. Empty cell gutters remain truly transparent.\nText: no rendered text of any kind, no ID labels, no numbers, no letters.\nFinal acceptance: EXACTLY ten complete unique identities, five columns by two rows, faithful specified materials/colors/function, clean isolated alpha, all objects fully visible with safe gutters.",
+  "repair_prompts": [
+    {
+      "prompt": "Use case: precise-object-edit. This input image is the edit target: an atlas of ten correctly designed fantasy charms. Preserve the exact ten charm identities, shapes, design details, materials, palette, brushwork, and row-major sequence. Change ONLY the layout spacing and object scale. The current objects are too large and almost touch adjacent cells. Produce a spacious safe sprite atlas with much more transparent space.\n\nCanvas: 2560 x 1024 pixels, five equal SQUARE columns and two equal SQUARE rows, invisible 512 x 512 cells. NORMALIZED object centers: top row at (10%,25%),(30%,25%),(50%,25%),(70%,25%),(90%,25%); bottom row at (10%,75%),(30%,75%),(50%,75%),(70%,75%),(90%,75%). Keep each object including all loops, cords, needles and ribbons completely inside a centered 60% x 60% area of its own cell. This means minimum 20% TRANSPARENT EMPTY GUTTERS on ALL FOUR SIDES of EACH cell. The largest item must be only 307 pixels wide/high in a 512 cell. The reference objects are oversized: reduce their entire silhouettes to about 65% of current scale and center them separately in their ten cells. Rows must be far apart, not nearly touching. No object crosses any cell edge.\n\nAll ten complete objects retain details exactly: notched brass compass with red cord; two-bank hinged ivory/brass flip-counter with tick marks; bean-shaped iron/brass furnace with single amber point; curved copper tuning fork and single blue bead; blue icy drop enclosing white seashell; green-sand hourglass with asymmetrical corroded copper stand; square black iron oath tag with one ivory vertical inlay; thick black echo stone with ochre concentric carved seams; ivory seven-graduation ruler paired with hovering fine violet needle; hollow white ceramic wind bell with exactly TWO full sky-blue tails and no clapper. Preserve complete silhouettes. All must stay unique and solid 2.5D.\n\nTrue RGBA alpha: keep all empty gutters and all exterior pixels alpha 0. No shadow, floor, halo, checkerboard painted into image, grid, border, panel, background, text, labels, IDs, letters, numbers, watermark, extra object or character. Request exact 2560×1024 PNG. Use case: stylized-concept.\nAsset type: production transparent fantasy game equipment sprite atlas, ONE single canvas with EXACTLY TEN distinct physical charm objects.\nCanvas and layout: request 2560 x 1024 pixels, landscape aspect ratio 5:2. Five equal 512 x 512 square columns and two equal 512 x 512 rows. Absolutely strict row-major order, left to right. All ten cells are invisible and transparent: no visible grid. Object centers are (256,256),(768,256),(1280,256),(1792,256),(2304,256), then (256,768),(768,768),(1280,768),(1792,768),(2304,768). Every COMPLETE object including cords and tails fits fully inside the central 70% of its own cell, leaving at least 15% blank gutter on every side. Nothing crosses a cell edge. Do not crop any object. Arrange ONE item only in each cell.\n\nStyle: polished hand-painted storybook RPG assets, dimensional 2.5D miniature physical objects viewed from a consistent gentle three-quarter angle. Visible thickness, bevels, upper surfaces, and side faces. Strong clean deep plum colored contours, soft painterly form shading clipped entirely inside object silhouettes, creamy pale stone ceramic, warm aged brass/copper, teal accents. Coherent handcrafted palette and finely painted texture. Form and materials must read instantly even as small game inventory sprites. These are solid objects with weight, not flat glyphs, not outline pictograms, not generic jeweled recolors. No characters.\n\nEXACT item order and appearance:\nTOP ROW col1: Old Camp Compass — aged warm yellow brass circular compass with a clearly missing/notched corner of its thick outer casing; cream dial, dimensional dark metal compass needle; a small red cord attached and curling beside the compass inside its cell. Face has abstract radial ticks only, no numbers, letters, cardinal direction text, or words.\nTOP ROW col2: Reserve Counter Tag — a compact mechanical two-layer flip-page counting tag, a chunky pale cream and aged brass/copper housing with two stacked hinged banks of thick overlapping flip plates, clearly visible mechanical axle and side thickness. The plates have abstract tick marks ONLY, no numbers, letters, words, or numeral-like glyphs.\nTOP ROW col3: Undying Furnace Pendant — a small bean-shaped miniature furnace pendant of dark metal and warm aged brass, rounded asymmetric bean body, a small vent/opening containing ONE concentrated glowing amber point. Real miniature furnace mechanism, thick casing, loop for a pendant. Preserve amber interior and bean shape.\nTOP ROW col4: Closed-Loop Tuning Pendant — a half-closed copper tuning fork pendant, chunky metallic fork tips curled almost together, with ONE suspended saturated blue bead nested between them. The fork is unmistakably a physical resonating tuning fork, with visible copper side faces and a small hanging loop.\nTOP ROW col5: Sealed-Tide Crystal Drop — a hanging upside-down icy blue crystal teardrop enclosing ONE clearly visible tiny white seashell; translucent pale ice-blue facets, solid glass/crystal depth, small restrained brass suspension fitting. Complete crystal droplet, no surrounding magical particles.\n\nBOTTOM ROW col1: Verdigris Hourglass — a real small green-sand hourglass, transparent glass bulbs with vivid green sand inside, in an asymmetrical corroded copper support frame with visible verdigris patina. Complete upper and lower frame feet, dimensional hourglass structure.\nBOTTOM ROW col2: Unbroken Oath Tag — a thick black iron square oath tag/pendant, stout beveled metal plate with ONE clean white vertical inlay passing down its center. Single small suspension loop. Deep charcoal iron and white line must remain the defining silhouette and colors.\nBOTTOM ROW col3: Faultline Echo Stone — a palm-sized irregular dark black stone, thick angular sides and upper face, physically split/opened by ochre-yellow sound-wave grooves across it; the ochre ripple bands are carved glowing seams within the stone, not floating external effects. Unmistakably an actual stone.\nBOTTOM ROW col4: Seventh-Graduation Needle — ONE thick ivory-white measuring ruler with exactly seven simple abstract graduation compartments/ticks and a slender violet-purple needle hovering close and parallel above it. Both belong to ONE combined charm, arranged diagonally for visible thickness, inside the cell; preserve white ruler and purple fine needle; no numbers, letters, or written scale.\nBOTTOM ROW col5: Empty-Post Wind Chime — a small hollow creamy white ceramic wind bell with NO clapper inside, visible dark hollow opening and ceramic rim thickness, with exactly TWO sky-blue/teal trailing ribbons attached under/alongside it. Complete bell and full ribbon tails inside cell. No extra bells or third tail.\n\nBackdrop and transparency: true RGBA transparency. All pixels outside the ten object silhouettes must have alpha exactly 0. No background color, floor, checkerboard baked in, paper rectangle, vignette, halo, cast shadow, drop shadow, ambient shadow, exterior glow, sparkles, UI, label, panel, frame, rarity ring, pedestal, or watermark. Keep internal amber glow within the furnace aperture only. Objects are isolated cutouts. Empty cell gutters remain truly transparent.\nText: no rendered text of any kind, no ID labels, no numbers, no letters.\nFinal acceptance: EXACTLY ten complete unique identities, five columns by two rows, faithful specified materials/colors/function, clean isolated alpha, all objects fully visible with safe gutters.",
+      "edit_target": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2df-59b8-7eb3-a1be-0f8afc443140\\exec-2236072e-8339-48a6-871f-513e884aee6d.png",
+      "output": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2df-59b8-7eb3-a1be-0f8afc443140\\exec-827b142f-d92f-41a9-a6b7-d18c717781cd.png"
+    },
+    {
+      "prompt": "Use case: precise-object-edit. Input image is an EDIT TARGET: a transparent 5-column x 2-row atlas containing ten fantasy charms. Preserve the exact ten designs, dimensional painterly style, identities, colors and materials. Perform ONLY one change: REDUCE EACH ENTIRE OBJECT TO 70% OF ITS CURRENT SIZE and move it to the exact center of its assigned cell. Each full cord, loop, needle and ribbon shrinks together with its object. Do not add details or extra objects.\n\nRequested canvas 2560×1024 PNG, ratio 5:2, true transparent RGBA. The canvas is divided into five equal square cells across and two equal square cells down, no visible lines. EXACT normalized centers: (10%,25%), (30%,25%), (50%,25%), (70%,25%), (90%,25%) in the top row; (10%,75%), (30%,75%), (50%,75%), (70%,75%), (90%,75%) in the bottom row. The top row centers must be exactly one quarter of image height. Bottom row centers exactly three quarters of image height. In the input, top objects are a little low and lower objects are a little high; correct that by moving them to these centers.\n\nVERY SMALL MINIATURE OBJECTS, generous empty transparent space. At least 25% blank margin inside EACH cell on all four sides; no object longer or taller than HALF of one cell. That means maximum complete silhouette 256×256 in each 512×512 cell. The whole atlas should show ten small items and lots of clear empty alpha space. Keep the aspect ratio and colors of every individual object. Do not crop or cut off anything. Every item is fully isolated.\n\nRow-major order must remain:\nTop row: 1 notched brass compass/red cord; 2 brass two-layer hinged mechanical ivory flip-counter with simple tick marks; 3 bean-shape iron/brass furnace with single amber point; 4 thick copper tuning fork with blue orb; 5 icy blue crystal drop with white seashell enclosed.\nBottom row: 6 corroded copper asymmetric frame/green hourglass; 7 thick square black iron oath tag/ivory vertical stripe; 8 black thick echo stone with ochre concentric seams; 9 ivory seven-tick ruler with hovering fine violet needle; 10 hollow white ceramic wind bell WITHOUT clapper, with TWO blue ribbons.\nThe tick faces carry no rendered numbers or letters. No text, IDs, labels, words, panels, borders, grid, background color, floor, halo, shadow, glow outside a silhouette, particles, watermark, characters, new items. Exterior of the ten object silhouettes and all gutters must be exactly alpha 0. Only interior form shading. Keep visible upper faces, bevels and side thickness.",
+      "edit_target": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2df-59b8-7eb3-a1be-0f8afc443140\\exec-827b142f-d92f-41a9-a6b7-d18c717781cd.png",
+      "output": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2df-59b8-7eb3-a1be-0f8afc443140\\exec-2bc6e033-9f23-4986-bc20-2ae5cbacfbd6.png"
+    }
+  ],
+  "preservation": "Final PNG is a byte-for-byte copy of the built-in generated output. Original retained. No raster resize, crop, color adjustment, alpha adjustment, or other PNG editing.",
+  "limitations": [
+    "Built-in tool returned 1983×793 instead of requested 2560×1024. Aspect ratio remains approximately 5:2. Regions and nominal cells use actual source dimensions.",
+    "Alpha threshold 16 is used for source measurements; any scattered lower-alpha generator residue is retained unchanged in the raw PNG."
+  ],
+  "dimensions": [
+    1983,
+    793
+  ],
+  "sha256": "ec4d495cd38185b4e5049027b3c95709d9ae0bec0466dcd9b79af6aaf57d352e",
+  "layout": {
+    "columns": 5,
+    "rows": 2,
+    "order": [
+      "EQ51",
+      "EQ52",
+      "EQ53",
+      "EQ54",
+      "EQ55",
+      "EQ56",
+      "EQ57",
+      "EQ58",
+      "EQ59",
+      "EQ60"
+    ],
+    "nominal_cells": {
+      "EQ51": [
+        0,
+        0,
+        397,
+        396
+      ],
+      "EQ52": [
+        397,
+        0,
+        396,
+        396
+      ],
+      "EQ53": [
+        793,
+        0,
+        397,
+        396
+      ],
+      "EQ54": [
+        1190,
+        0,
+        396,
+        396
+      ],
+      "EQ55": [
+        1586,
+        0,
+        397,
+        396
+      ],
+      "EQ56": [
+        0,
+        396,
+        397,
+        397
+      ],
+      "EQ57": [
+        397,
+        396,
+        396,
+        397
+      ],
+      "EQ58": [
+        793,
+        396,
+        397,
+        397
+      ],
+      "EQ59": [
+        1190,
+        396,
+        396,
+        397
+      ],
+      "EQ60": [
+        1586,
+        396,
+        397,
+        397
+      ]
+    }
+  },
+  "item_descriptions": {
+    "EQ51": {
+      "name": "营地旧罗盘",
+      "name_en": "Old Camp Compass",
+      "visual": "缺一角黄铜罗盘与红线绳",
+      "description": "护符 · 最大生命 +15、护甲 +5。归途：生命低于 30% 时受到伤害减免 +3%"
+    },
+    "EQ52": {
+      "name": "余量计数牌",
+      "name_en": "Reserve Counter Tag",
+      "visual": "双层机械翻页数牌",
+      "description": "护符 · 魔法抗性 +8、最大生命 +12。清点：每战斗房首次击败敌人恢复最大生命 1%"
+    },
+    "EQ53": {
+      "name": "不灭小炉坠",
+      "name_en": "Undying Furnace Pendant",
+      "visual": "豆形小炉、单点琥珀内光",
+      "description": "护符 · 法术强度 +10、法术穿透 +4。火种：主攻击施加灼烧后获得最大生命 2% 护盾；ICD 7 秒"
+    },
+    "EQ54": {
+      "name": "闭环音叉坠",
+      "name_en": "Closed-Loop Tuning Pendant",
+      "visual": "半闭铜音叉悬一颗蓝珠",
+      "description": "护符 · 法术强度 +8、最大法力（法力职业） +20。谐振：主攻击命中感电目标，本次暴击率 +3%"
+    },
+    "EQ55": {
+      "name": "封潮滴晶",
+      "name_en": "Sealed-Tide Crystal Drop",
+      "visual": "倒挂冰滴里封存白色小贝",
+      "description": "护符 · 暴击率 +6%、暴击伤害 +15%。凝滴：主攻击暴击寒冷目标时恢复最大生命 1%；ICD 5 秒"
+    },
+    "EQ56": {
+      "name": "铜绿砂漏",
+      "name_en": "Verdigris Hourglass",
+      "visual": "绿沙漏、铜蚀不对称支架",
+      "description": "护符 · 法术强度 +7、冷却缩减 +4%。缓蚀：原始左键普攻命中腐蚀目标，3 秒内下一次有资源消耗的技能按当前类型减少 8% 怒气／能量／法力消耗；ICD 6 秒，消耗或过期后清除"
+    },
+    "EQ57": {
+      "name": "未折誓牌",
+      "name_en": "Unbroken Oath Tag",
+      "visual": "黑铁方牌贯穿白色竖线",
+      "description": "护符 · 最大生命 +16、通用减伤 +3%。续誓：护盾被敌人打破时，移动速度 +6%，持续 3 秒；ICD 8 秒"
+    },
+    "EQ58": {
+      "name": "断层回声石",
+      "name_en": "Faultline Echo Stone",
+      "visual": "掌心黑石被赭黄音波纹切开",
+      "description": "护符 · 攻击力 +4、真伤附加 +2。回岩：主攻击命中寒冷目标后获得最大生命 2% 护盾；ICD 6 秒"
+    },
+    "EQ59": {
+      "name": "第七刻度针",
+      "name_en": "Seventh-Graduation Needle",
+      "visual": "七格白尺与悬浮紫色细针",
+      "description": "护符 · 物理穿透 +5、暴击伤害 +15%。精校：连续 3 次主攻击未暴击后，下次主攻击对腐蚀目标暴击率 +10%；消耗后清空，ICD 4 秒"
+    },
+    "EQ60": {
+      "name": "空邮风铃",
+      "name_en": "Empty-Post Wind Chime",
+      "visual": "无撞锤白风铃、双天青尾带",
+      "description": "护符 · 魔法抗性 +8、法术强度 +6。顺风：冲刺后主攻击命中带任一敌方状态目标，攻击速度 +5%，持续 2 秒；ICD 5 秒"
+    }
+  },
+  "alpha_measurement": {
+    "threshold": 16,
+    "padding": 2,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "alpha_zero_fraction": 0.8983605285532321,
+    "visible_pixels_outside_regions": 0,
+    "region_overlap_pairs": 0,
+    "minimum_cell_gutter_fraction": 0.20707070707070707,
+    "per_item": {
+      "EQ51": {
+        "alpha_bbox_xywh": [
+          146,
+          156,
+          166,
+          155
+        ],
+        "gutters_left_top_right_bottom": [
+          146,
+          156,
+          85,
+          85
+        ],
+        "visible_alpha_pixels": 17612
+      },
+      "EQ52": {
+        "alpha_bbox_xywh": [
+          536,
+          149,
+          159,
+          161
+        ],
+        "gutters_left_top_right_bottom": [
+          139,
+          149,
+          98,
+          86
+        ],
+        "visible_alpha_pixels": 17892
+      },
+      "EQ53": {
+        "alpha_bbox_xywh": [
+          943,
+          146,
+          118,
+          156
+        ],
+        "gutters_left_top_right_bottom": [
+          150,
+          146,
+          129,
+          94
+        ],
+        "visible_alpha_pixels": 11792
+      },
+      "EQ54": {
+        "alpha_bbox_xywh": [
+          1325,
+          141,
+          112,
+          168
+        ],
+        "gutters_left_top_right_bottom": [
+          135,
+          141,
+          149,
+          87
+        ],
+        "visible_alpha_pixels": 10852
+      },
+      "EQ55": {
+        "alpha_bbox_xywh": [
+          1714,
+          139,
+          101,
+          175
+        ],
+        "gutters_left_top_right_bottom": [
+          128,
+          139,
+          168,
+          82
+        ],
+        "visible_alpha_pixels": 10451
+      },
+      "EQ56": {
+        "alpha_bbox_xywh": [
+          164,
+          499,
+          116,
+          169
+        ],
+        "gutters_left_top_right_bottom": [
+          164,
+          103,
+          117,
+          125
+        ],
+        "visible_alpha_pixels": 14166
+      },
+      "EQ57": {
+        "alpha_bbox_xywh": [
+          531,
+          498,
+          141,
+          163
+        ],
+        "gutters_left_top_right_bottom": [
+          134,
+          102,
+          121,
+          132
+        ],
+        "visible_alpha_pixels": 12841
+      },
+      "EQ58": {
+        "alpha_bbox_xywh": [
+          918,
+          506,
+          154,
+          160
+        ],
+        "gutters_left_top_right_bottom": [
+          125,
+          110,
+          118,
+          127
+        ],
+        "visible_alpha_pixels": 17482
+      },
+      "EQ59": {
+        "alpha_bbox_xywh": [
+          1294,
+          516,
+          187,
+          140
+        ],
+        "gutters_left_top_right_bottom": [
+          104,
+          120,
+          105,
+          137
+        ],
+        "visible_alpha_pixels": 9821
+      },
+      "EQ60": {
+        "alpha_bbox_xywh": [
+          1702,
+          498,
+          179,
+          174
+        ],
+        "gutters_left_top_right_bottom": [
+          116,
+          102,
+          102,
+          121
+        ],
+        "visible_alpha_pixels": 14644
+      }
+    }
+  },
+  "visual_validation": {
+    "independent_review": "passed",
+    "ten_unique_actual_identities": true,
+    "row_major_order": true,
+    "dimensional_handpainted_objects": true,
+    "object_clipping": false,
+    "object_overlap": false,
+    "readable_text": false,
+    "painted_background": false,
+    "safe_cell_gutters": true
+  }
+}

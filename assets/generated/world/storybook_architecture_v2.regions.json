@@ -1,0 +1,118 @@
+{
+  "texture": "res://assets/generated/world/storybook_architecture_v2.png",
+  "regions": {
+    "column": [
+      128,
+      20,
+      228,
+      481
+    ],
+    "wall_horizontal": [
+      445,
+      219,
+      614,
+      246
+    ],
+    "wall_vertical": [
+      1107,
+      62,
+      341,
+      425
+    ],
+    "rock_island": [
+      51,
+      548,
+      480,
+      447
+    ],
+    "stairs": [
+      569,
+      581,
+      455,
+      379
+    ],
+    "arch": [
+      1087,
+      494,
+      415,
+      497
+    ]
+  },
+  "anchors": {
+    "column": [
+      120,
+      433
+    ],
+    "wall_horizontal": [
+      325,
+      220
+    ],
+    "wall_vertical": [
+      179,
+      327
+    ],
+    "rock_island": [
+      248,
+      345
+    ],
+    "stairs": [
+      222,
+      282
+    ],
+    "arch": [
+      208,
+      427
+    ]
+  },
+  "ground_footprints": {
+    "column": [
+      15,
+      390,
+      211,
+      88
+    ],
+    "wall_horizontal": [
+      35,
+      193,
+      577,
+      51
+    ],
+    "wall_vertical": [
+      23,
+      230,
+      310,
+      193
+    ],
+    "rock_island": [
+      18,
+      246,
+      461,
+      198
+    ],
+    "stairs": [
+      1,
+      187,
+      446,
+      189
+    ],
+    "arch": [
+      13,
+      361,
+      398,
+      135
+    ]
+  },
+  "ground_contacts": {
+    "arch": [
+      [
+        98,
+        399
+      ],
+      [
+        318,
+        454
+      ]
+    ]
+  },
+  "coordinate_convention": "regions use atlas pixel x/y/w/h; anchors, ground_footprints and ground_contacts use local pixels relative to their cropped regions; footprints are visual estimates only and do not authorize gameplay collision changes"
+}

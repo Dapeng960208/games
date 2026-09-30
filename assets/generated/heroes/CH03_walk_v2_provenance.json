@@ -1,0 +1,181 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "date": "2026-09-30",
+  "transparent_background": true,
+  "generation_count": 4,
+  "postprocessing": "None. Selected output PNGs copied byte-for-byte. Pillow was used for read-only alpha/bounds analysis only; no image pixels were edited or assembled.",
+  "stage": "Four authored walking keyposes per view. This pair is NOT approved for runtime because the front view failed the alternating-foot and constant-wand requirements.",
+  "runtime_approved": false,
+  "ownership_scope": "Only CH03_walk_front_v2.png, CH03_walk_back_v2.png and this provenance file. No production script, import, atlas registration or CH03_walk_v1.json changes.",
+  "references": {
+    "front": "res://assets/generated/heroes/CH03_actions_front_v2.png",
+    "back": "res://assets/generated/heroes/CH03_actions_back_v2.png"
+  },
+  "identity": "Original black-haired male ether engineer, short moustache/beard, cream short work jacket with teal shoulders/sleeves and scarf, brown kneepad trousers/boots, turquoise belt vial, brass pressure-dial backpack/round rear lid with ivory-copper coils, brass cyan-tipped wand.",
+  "front": {
+    "texture": "res://assets/generated/heroes/CH03_walk_front_v2.png",
+    "status": "rejected",
+    "saved_for": "Review and provenance only. Do not enable this image in the animation atlas.",
+    "source": "C:/Users/13326/.codex/generated_images/01a0eed7-96be-7e42-87f4-e60dc0fc93ac/exec-c03cbb7b-5443-482c-9b6f-6d48760a8c0d.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "transparent_pixel_count": 1185400,
+    "alpha_gt_24_cell_bounds": [
+      [
+        211,
+        85,
+        557,
+        592
+      ],
+      [
+        168,
+        86,
+        510,
+        593
+      ],
+      [
+        214,
+        47,
+        558,
+        548
+      ],
+      [
+        161,
+        47,
+        429,
+        544
+      ]
+    ],
+    "rejection_reasons": [
+      "Frames 1 and 3 both keep the viewer-right boot lowest/forward. The required opposite contact is missing.",
+      "Frame 4 loses the wand entirely, breaking the identity/carry invariant.",
+      "Frames 2 and 4 do not provide the required opposite support-leg configurations.",
+      "The front-view correction budget of one follow-up was exhausted; no further retry performed."
+    ],
+    "attempts": [
+      {
+        "source": "C:/Users/13326/.codex/generated_images/01a0eed7-96be-7e42-87f4-e60dc0fc93ac/exec-fcb17a1f-73c9-4583-866b-5bb960b76a94.png",
+        "prompt": "Use case: stylized-concept. ORIGINAL 2D GAME ANIMATION SPRITE SHEET. Input image is the authoritative IDENTITY reference for this exact original male ether-engineer arcanist, not a source of poses. Preserve his black wavy hair, short moustache and beard, cream short work jacket with teal shoulders and sleeves, teal scarf, fingerless leather gloves, brown trousers with kneepads, rugged brown boots, turquoise belt vial, ornate brass pressure-gauge backpack with three ivory/copper coil cylinders, and short brass wand with cyan crystal tip. Same detailed painterly game art and elevated orthographic FRONT-RIGHT three-quarter camera as the reference. No costume redesign.\n\nCreate exactly FOUR consecutive KEYPOSES of an actual restrained WALK, arranged 2 columns x 2 rows in one square truly transparent RGBA image. All four heads, torsos and low-carried wand point the same direction diagonally toward screen down-right. Keep his wand LOW in his hand at waist height; do not attack, cast or aim. Steady calm upper body, only small natural walking counter-motion. Trousers and BOTH BOOTS fully visible. Natural low walking foot clearance, not exaggerated high knees or floating.\n\nCritical FOOT CHOREOGRAPHY, row-major 1 2 / 3 4. All screen-left / screen-right below mean the viewer's image sides, not character anatomy:\n1 TOP LEFT = CONTACT A: screen-RIGHT boot is extended forward and LOWEST, sole bottom about 85% of cell height. Screen-LEFT boot trails behind higher at 75%, heel gently lifted. Clear open walking stride, not standing wide sideways.\n2 TOP RIGHT = PASS TO B: screen-RIGHT leg nearly vertical and planted supports the body. Screen-LEFT knee bends and LEFT boot lifts a small amount, swinging forward past the planted ankle. Feet closer horizontally, visibly one planted and one lifted.\n3 BOTTOM LEFT = OPPOSITE CONTACT B: screen-LEFT boot extended forward and is LOWEST, sole bottom about 85% of cell height. Screen-RIGHT boot trails behind higher at 75%, heel gently lifted. This is the reversal of frame 1 legs. The chest, face, backpack and wand remain facing the SAME way; do not mirror the whole character.\n4 BOTTOM RIGHT = PASS TO A: screen-LEFT leg nearly vertical and planted supports the body. Screen-RIGHT knee bends and RIGHT boot lifts a small amount, swinging forward past the planted ankle. Opposite support and lifted boot from frame 2.\n\nActual left/right alternating walking is the entire purpose. Four distinct lower-body silhouettes, two opposite contact stances and two opposite passing stances. Never repeat the same foot forward in frames 1 and 3. No leg crossed behind the other hiding foot identity. Both boots always complete and clear. Same uniform character scale, head height within tiny natural bob, stable wand angle, identical left-top lighting and fine painted materials. Each figure occupies no more than 74% width and 74% height of its equal square cell, centered with generous transparent gutters and at least 10% empty margin around all wand tips, backpack coils and boots. Four figures only. No floor, cast shadow, colored matte, text, numbers, grid, frame border, VFX, trails, extra props, opaque background or motion blur.",
+        "verdict": "rejected: same leading boot in contacts, wand hand changes or disappears"
+      },
+      {
+        "source": "C:/Users/13326/.codex/generated_images/01a0eed7-96be-7e42-87f4-e60dc0fc93ac/exec-c03cbb7b-5443-482c-9b6f-6d48760a8c0d.png",
+        "prompt": "Use case: precise-object-edit. Fix ONLY WALK-CYCLE COHERENCE in this original four-sprite transparent sheet. Keep the same original cream-and-teal male ether engineer, exact head, hair, face, costume, brass dial backpack, painterly style, front-right elevated view, scale, four cells and true transparent background. There are two errors: the bottom-left repeats the same leg contact as top-left, and the wand changes hands or disappears. Correct those, producing one complete 2x2 sheet.\n\nUPPER-BODY INVARIANT for ALL FOUR sprites: copy the TOP LEFT sprite's relaxed upper body and hand configuration. Brass cyan-tipped wand always held in the screen-RIGHT hand, extending diagonally DOWN-RIGHT from that hand. Free screen-left hand rests at hip. Wand never switches hand or disappears. Same head and torso facing down-right, same brass dial on screen-left and three backpack coils on screen-right. Do not mirror whole sprites.\n\nLOWER-BODY: the first and third MUST have opposite legs extended; second and fourth MUST have opposite support legs. Treat them as four animator keyposes:\nTOP LEFT: leave this existing leg pose unchanged. Screen-right boot is lowest/forward, screen-left boot behind/higher.\nTOP RIGHT: SCREEN-RIGHT leg is the supporting nearly straight leg and its boot is LOWEST, planted near 88% of this cell's height, near x=60%. SCREEN-LEFT knee bends forward slightly; left boot clearly OFF THE FLOOR at about 77% cell height, near x=43%, its sole visible. Both boots remain visible, no high knee kick.\nBOTTOM LEFT: REVERSE THE EXISTING LEGS ONLY. SCREEN-LEFT thigh and leg must extend down-left from the hip. SCREEN-LEFT BOOT is now the LOWEST boot at about 88% of cell height and x=39%. SCREEN-RIGHT leg goes BACK, boot higher at about 76% cell height and x=62%, heel raised. The big foreground boot must unmistakably be on the LEFT side, underneath the turquoise belt vial. Not a mirrored upper body. This opposite contact is mandatory.\nBOTTOM RIGHT: SCREEN-LEFT leg is supporting and almost straight with its boot planted LOWEST near 88% cell height x=44%. SCREEN-RIGHT leg is bent and boot slightly lifted at about 77% cell height x=61%, clearly visible. Opposite of top-right. Natural calm walking clearance.\n\nMaintain two complete anatomical legs per sprite, full boots, no opaque floor/shadows. Four WHOLE figures plus all complete wand tips, 10% safe empty margins, no overlaps. No text, grid, labels, effects, extra limbs, floating bodies, cropped feet or standing copies. The desired loop is right-foot-contact / left-foot-passing / LEFT-foot-contact / right-foot-passing.",
+        "verdict": "rejected: contact leg remains repeated; fourth frame wand missing"
+      }
+    ]
+  },
+  "back": {
+    "texture": "res://assets/generated/heroes/CH03_walk_back_v2.png",
+    "status": "art_candidate_passes_static_inspection_only",
+    "runtime_approved": false,
+    "source": "C:/Users/13326/.codex/generated_images/01a0eed7-96be-7e42-87f4-e60dc0fc93ac/exec-cbe24b76-3f02-4dd5-a918-25af1dceccc2.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "transparent_pixel_count": 1367487,
+    "alpha_gt_24_cell_bounds": [
+      [
+        223,
+        171,
+        538,
+        540
+      ],
+      [
+        193,
+        171,
+        506,
+        529
+      ],
+      [
+        240,
+        124,
+        539,
+        480
+      ],
+      [
+        209,
+        124,
+        510,
+        469
+      ]
+    ],
+    "alpha_gt_24_cell_margins_left_top_right_bottom": [
+      [
+        223,
+        171,
+        89,
+        87
+      ],
+      [
+        193,
+        171,
+        121,
+        98
+      ],
+      [
+        240,
+        124,
+        88,
+        147
+      ],
+      [
+        209,
+        124,
+        117,
+        158
+      ]
+    ],
+    "observed_pose_order": [
+      "Contact A: viewer-left trailing boot lower; opposite boot higher/forward.",
+      "Pass to B: viewer-right boot planted, viewer-left boot lifted with sole visible.",
+      "Contact B: viewer-right trailing boot lower, viewer-left boot higher/forward.",
+      "Pass to A: viewer-left boot planted, viewer-right boot lifted."
+    ],
+    "strengths": [
+      "Four distinct leg silhouettes preserve opposite contact/support roles.",
+      "Same rear camera, costume identity, backpack and low wand in all four frames.",
+      "Complete feet and wand with at least 87 pixels of alpha>24 boundary margin in every final cell.",
+      "No opaque rectangular background."
+    ],
+    "limitations": [
+      "Only four keyposes; no in-between animation frames.",
+      "Stride and cell/body registration have not been tested in the game.",
+      "Subject centers and heights vary between rows and require atlas registration before any use.",
+      "Back view alone does not make a shippable paired walk cycle; front is rejected."
+    ],
+    "attempts": [
+      {
+        "source": "C:/Users/13326/.codex/generated_images/01a0eed7-96be-7e42-87f4-e60dc0fc93ac/exec-d0be76d1-f783-4490-9823-743fc6a58bd5.png",
+        "prompt": "Use case: stylized-concept. Four-frame WALKING animation production sprite sheet for an original 2D game. Reference image shows the exact BACK VIEW costume and identity of our male ether engineer. Preserve the exact black hair, cream cropped work jacket and teal shoulder sleeves, brown kneepad trousers, rugged boots, turquoise hip vial, large circular brass backpack lid and three ivory/copper coils, cyan-tipped brass wand. Do NOT copy the attack poses. Create relaxed walking, never casting.\n\nOutput exactly FOUR complete figures in a square 2 by 2 grid on genuine transparent background. Fixed elevated three-quarter BACK-RIGHT view: every frame shows back of head and the circular brass backpack. Character travels diagonally AWAY toward upper-right. Uniform scale, steady torso and low-held cyan-tipped wand in his RIGHT hand at screen-right, wand pointed gently to upper-right in ALL FOUR frames. Free hand relaxed. Same finely painted isometric game art, sharp readable materials, light from upper-left. No whole-body mirroring or changes in camera.\n\nThis must show four DISTINCT keyposes of ONE real alternating leg walk. TOP LEFT and BOTTOM LEFT are opposite leg contacts; TOP RIGHT and BOTTOM RIGHT are opposite leg passing positions. Identify legs by their side on the screen:\nTOP LEFT (contact A): screen-LEFT leg extends back toward viewer, LEFT boot at the LOWEST point near x=39%, y=86% of the cell. Screen-RIGHT leg is stepping forward away, RIGHT boot higher near x=61%, y=73%. Gentle raised trailing heel.\nTOP RIGHT (pass to B): screen-RIGHT leg vertical and planted, RIGHT boot lower near x=58%, y=84%. Screen-LEFT boot lifts naturally only ankle-height, clearly visible with a small sole, LEFT knee bends and foot swings forward, LEFT boot around x=42%, y=74%.\nBOTTOM LEFT (contact B): reverse those legs. Screen-RIGHT leg extends back TOWARD VIEWER, RIGHT boot is now the LOWEST point near x=61%, y=86%. Screen-LEFT leg stepping forward away, LEFT boot higher near x=39%, y=73%. This lowest boot MUST be on the RIGHT unlike top-left. Keep SAME unchanged upper body orientation and hand carrying the wand; swap only leg stride.\nBOTTOM RIGHT (pass to A): screen-LEFT leg vertical and planted, LEFT boot lower near x=42%, y=84%. Screen-RIGHT boot lifts naturally at ankle height, clearly visible, right knee bends and boot swings forward, RIGHT boot around x=58%, y=74%. Opposite planted/swinging legs from top-right.\n\nBoth boots visible in every frame, natural small walking steps with relaxed stance and low knee lift, no floating, jumping, running, high stepping, attacking or cloth hiding legs. Tiny jacket hem follow-through, backpack and wand stable. Complete head, coils, arms, wand tip and boots within central 74% width and height of each equal cell with generous fully transparent safety margin. Four figures only, no text, numbers, gridlines, border, floor, shadow, VFX, glow cloud, trails, motion blur or opaque background.",
+        "verdict": "walking alternation visually plausible, but left-column wand alpha reached/crossed the cell boundary"
+      },
+      {
+        "source": "C:/Users/13326/.codex/generated_images/01a0eed7-96be-7e42-87f4-e60dc0fc93ac/exec-cbe24b76-3f02-4dd5-a918-25af1dceccc2.png",
+        "prompt": "Use case: precise-object-edit. This is an ORIGINAL GAME WALK ANIMATION sprite sheet. Correct ONLY the technical SPACING and SCALE of the four existing figures. PRESERVE each existing figure's exact distinct leg pose, its walking phase, back-facing identity, arm and wand position, costume, palette, paint style and transparency. Do not invent different poses, do not copy one figure over another.\n\nThe current top-left and bottom-left wand tips touch or cross their cell right boundary. Make EACH WHOLE CHARACTER including complete wand and boots exactly 20% SMALLER than its current size, uniformly in width and height; then CENTER each reduced complete figure within its own quadrant. Output the same square 2-columns x 2-rows transparent sheet. Every single nontransparent pixel of a sprite must be INSIDE the CENTRAL 76% width and CENTRAL 76% height of its individual square cell, so there is AT LEAST 12% of the cell width/height of empty transparent padding on ALL FOUR SIDES. Large transparent gutters through BOTH the vertical center line and horizontal center line. No stray pixels crossing cells. Complete wand tip and both boots fully contained inside that generous padding.\n\nKeep the four existing leg actions EXACTLY: top-left LEFT boot trailing lower, top-right RIGHT boot planted and LEFT boot lifted, bottom-left RIGHT boot trailing lower and LEFT boot forward/higher, bottom-right LEFT boot planted and RIGHT boot lifted. Preserve this alternating pattern. Same back-right camera, same black hair, cream-teal jacket, copper circular backpack, turquoise hip flask and low cyan-brass wand in the same hand. Do not mirror or change head/torso direction. No opaque background, floor, shadow, labels, grid lines, border, VFX, extra figures or new design details. Only shrink and recenter existing four whole figures with clear transparent margins.",
+        "verdict": "static art candidate: gutter problem fixed while retaining opposite foot roles"
+      }
+    ]
+  },
+  "validation": {
+    "image_generation_only": true,
+    "read_only_alpha_analysis": true,
+    "original_files_preserved": true,
+    "no_pixel_editing": true,
+    "no_godot_import": true,
+    "no_runtime_or_gpu_verification": true,
+    "no_manifest_enablement": true,
+    "entire_pair_verdict": "rejected_for_runtime_until_front_view_is_redesigned"
+  }
+}

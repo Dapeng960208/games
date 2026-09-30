@@ -1,0 +1,489 @@
+{
+  "schema_version": 2,
+  "hero_id": "CH01",
+  "enabled": true,
+  "status": "ready_for_complete_family_runtime_review",
+  "cycle_distance": 150,
+  "banks": {
+    "front": {
+      "facing_x": 1,
+      "texture": "res://assets/generated/heroes/CH01_storybook_walk_front_v1.png",
+      "columns": 2,
+      "rows": 2,
+      "body_height": 489,
+      "sequence": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "cell": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "region": [
+            87,
+            56,
+            516,
+            557
+          ],
+          "foot": [
+            324,
+            546.5
+          ],
+          "head": [
+            322.5,
+            64
+          ],
+          "grip": [
+            355,
+            370
+          ],
+          "muzzle": [
+            590,
+            411
+          ],
+          "pose": "walk_left_leg_forward",
+          "alpha_bounds": [
+            95,
+            64,
+            500,
+            541
+          ],
+          "boot_sole_contacts": [
+            [
+              252,
+              496
+            ],
+            [
+              396,
+              597
+            ]
+          ],
+          "anchor_confidence": {
+            "head": "Measured topmost alpha>16 hair crown.",
+            "foot": "Visual estimate of sole contact centers; approximately +/-10 source pixels.",
+            "grip": "Visible two-hand grip midpoint estimate; approximately +/-10 to15 source pixels.",
+            "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+          }
+        },
+        {
+          "index": 1,
+          "cell": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "region": [
+            670,
+            59,
+            532,
+            551
+          ],
+          "foot": [
+            915,
+            556
+          ],
+          "head": [
+            899.5,
+            67
+          ],
+          "grip": [
+            942,
+            383
+          ],
+          "muzzle": [
+            1190,
+            421
+          ],
+          "pose": "walk_legs_passing",
+          "alpha_bounds": [
+            678,
+            67,
+            516,
+            535
+          ],
+          "boot_sole_contacts": [
+            [
+              910,
+              592
+            ],
+            [
+              920,
+              520
+            ]
+          ],
+          "anchor_confidence": {
+            "head": "Measured topmost alpha>16 hair crown.",
+            "foot": "Visual estimate of sole contact centers; approximately +/-10 source pixels.",
+            "grip": "Visible two-hand grip midpoint estimate; approximately +/-10 to15 source pixels.",
+            "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+          }
+        },
+        {
+          "index": 2,
+          "cell": [
+            0,
+            627,
+            627,
+            627
+          ],
+          "region": [
+            84,
+            662,
+            543,
+            546
+          ],
+          "foot": [
+            328,
+            1141.5
+          ],
+          "head": [
+            326.5,
+            670
+          ],
+          "grip": [
+            367,
+            970
+          ],
+          "muzzle": [
+            620,
+            1010
+          ],
+          "pose": "walk_right_leg_forward",
+          "alpha_bounds": [
+            92,
+            670,
+            530,
+            530
+          ],
+          "boot_sole_contacts": [
+            [
+              218,
+              1094
+            ],
+            [
+              438,
+              1189
+            ]
+          ],
+          "anchor_confidence": {
+            "head": "Measured topmost alpha>16 hair crown.",
+            "foot": "Visual estimate of sole contact centers; approximately +/-10 source pixels.",
+            "grip": "Visible two-hand grip midpoint estimate; approximately +/-10 to15 source pixels.",
+            "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+          }
+        },
+        {
+          "index": 3,
+          "cell": [
+            627,
+            627,
+            627,
+            627
+          ],
+          "region": [
+            692,
+            660,
+            534,
+            550
+          ],
+          "foot": [
+            921,
+            1154.5
+          ],
+          "head": [
+            910,
+            668
+          ],
+          "grip": [
+            963,
+            984
+          ],
+          "muzzle": [
+            1212,
+            1026
+          ],
+          "pose": "walk_opposite_passing",
+          "alpha_bounds": [
+            700,
+            668,
+            518,
+            534
+          ],
+          "boot_sole_contacts": [
+            [
+              898,
+              1117
+            ],
+            [
+              944,
+              1192
+            ]
+          ],
+          "anchor_confidence": {
+            "head": "Measured topmost alpha>16 hair crown.",
+            "foot": "Low confidence; screen-left trailing sole occluded, midpoint inferred. Other visible boot contact center visually estimated.",
+            "grip": "Visible two-hand grip midpoint estimate; approximately +/-10 to15 source pixels.",
+            "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+          }
+        }
+      ]
+    },
+    "back": {
+      "facing_x": -1,
+      "texture": "res://assets/generated/heroes/CH01_storybook_walk_back_v1.png",
+      "columns": 2,
+      "rows": 2,
+      "body_height": 458,
+      "sequence": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "cell": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "region": [
+            77,
+            65,
+            463,
+            536
+          ],
+          "foot": [
+            395,
+            532
+          ],
+          "head": [
+            359,
+            73
+          ],
+          "grip": [
+            350,
+            315
+          ],
+          "muzzle": [
+            106,
+            362
+          ],
+          "pose": "walk_left_leg_forward",
+          "alpha_bounds": [
+            85,
+            73,
+            447,
+            520
+          ],
+          "boot_sole_contacts": [
+            [
+              302,
+              483
+            ],
+            [
+              488,
+              581
+            ]
+          ],
+          "anchor_confidence": {
+            "head": "Measured topmost alpha>16 hair crown.",
+            "foot": "Visual estimate of sole contact centers; approximately +/-10 source pixels.",
+            "grip": "Inferred two-hand midpoint; far hand is hidden by torso. Approximate +/-25 to40 source pixels.",
+            "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+          }
+        },
+        {
+          "index": 1,
+          "cell": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "region": [
+            679,
+            72,
+            448,
+            519
+          ],
+          "foot": [
+            988,
+            537.5
+          ],
+          "head": [
+            934,
+            80
+          ],
+          "grip": [
+            935,
+            325
+          ],
+          "muzzle": [
+            707,
+            369
+          ],
+          "pose": "walk_legs_passing",
+          "alpha_bounds": [
+            687,
+            80,
+            432,
+            503
+          ],
+          "boot_sole_contacts": [
+            [
+              960,
+              574
+            ],
+            [
+              1016,
+              501
+            ]
+          ],
+          "anchor_confidence": {
+            "head": "Measured topmost alpha>16 hair crown.",
+            "foot": "Visual estimate of sole contact centers; approximately +/-10 source pixels.",
+            "grip": "Inferred two-hand midpoint; far hand is hidden by torso. Approximate +/-25 to40 source pixels.",
+            "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+          }
+        },
+        {
+          "index": 2,
+          "cell": [
+            0,
+            627,
+            627,
+            627
+          ],
+          "region": [
+            100,
+            669,
+            454,
+            530
+          ],
+          "foot": [
+            412.5,
+            1131.5
+          ],
+          "head": [
+            342.5,
+            677
+          ],
+          "grip": [
+            355,
+            925
+          ],
+          "muzzle": [
+            125,
+            963
+          ],
+          "pose": "walk_right_leg_forward",
+          "alpha_bounds": [
+            108,
+            677,
+            438,
+            514
+          ],
+          "boot_sole_contacts": [
+            [
+              314,
+              1081
+            ],
+            [
+              511,
+              1182
+            ]
+          ],
+          "anchor_confidence": {
+            "head": "Measured topmost alpha>16 hair crown.",
+            "foot": "Visual estimate of sole contact centers; approximately +/-10 source pixels.",
+            "grip": "Inferred two-hand midpoint; far hand is hidden by torso. Approximate +/-25 to40 source pixels.",
+            "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+          }
+        },
+        {
+          "index": 3,
+          "cell": [
+            627,
+            627,
+            627,
+            627
+          ],
+          "region": [
+            695,
+            673,
+            425,
+            512
+          ],
+          "foot": [
+            1010.5,
+            1141.5
+          ],
+          "head": [
+            933.5,
+            681
+          ],
+          "grip": [
+            940,
+            940
+          ],
+          "muzzle": [
+            717,
+            980
+          ],
+          "pose": "walk_opposite_passing",
+          "alpha_bounds": [
+            703,
+            681,
+            409,
+            496
+          ],
+          "boot_sole_contacts": [
+            [
+              970,
+              1168
+            ],
+            [
+              1051,
+              1115
+            ]
+          ],
+          "anchor_confidence": {
+            "head": "Measured topmost alpha>16 hair crown.",
+            "foot": "Visual estimate of sole contact centers; approximately +/-10 source pixels.",
+            "grip": "Inferred two-hand midpoint; far hand is hidden by torso. Approximate +/-25 to40 source pixels.",
+            "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+          }
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "created_date": "2026-09-30",
+    "generator": "built-in image_gen",
+    "bank_metadata": {
+      "front": "res://assets/generated/heroes/CH01_storybook_walk_front_v1.json",
+      "back": "res://assets/generated/heroes/CH01_storybook_walk_back_v1.json"
+    },
+    "source_pixel_edits": "none"
+  },
+  "qa": {
+    "standing_world_body_height": 88,
+    "coordinates": "All regions and anchors are absolute original source pixels.",
+    "limitations": [
+      "Four authored key poses per bank; motion is subtle and cadence needs runtime playback review.",
+      "No meaningful alpha crosses source cell edges; front index2 has5px edge margin.",
+      "No per-frame size fitting; one measured anatomical height per bank."
+    ]
+  }
+}

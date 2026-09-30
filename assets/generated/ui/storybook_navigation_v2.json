@@ -1,0 +1,251 @@
+{
+  "asset": "storybook_navigation_v2.png",
+  "created_date": "2026-09-30",
+  "generator": "built-in image_gen",
+  "mode": "reference-guided generation",
+  "use_case": "stylized-concept",
+  "reference": "C:/webdev/games/artifacts/design-reference-option3.png",
+  "original_output": "C:/Users/13326/.codex/generated_images/01a0f261-6b08-73d2-95d6-198cdfe2c9b9/exec-73d41bdf-f3ee-4167-9b72-1093cc376a4f.png",
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 1536
+  },
+  "actual_dimensions": {
+    "width": 1448,
+    "height": 1086
+  },
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept\nAsset type: production transparent sprite atlas for polished Godot game UI; exactly 12 isolated hand-painted game icons in a STRICT uniform grid. Canvas exactly 2048 x 1536 pixels, transparent alpha background, 4 columns x 3 rows, each cell 512 x 512 pixels. Four icon centers across at x=256,768,1280,1792; three down at y=256,768,1280. Do not draw grid lines.\nInput image 1: STYLE AND PALETTE REFERENCE ONLY, from the user's selected third UI direction. Use its refined storybook fantasy illustration style, warm brass metal, coral-red/teal enamel, dark plum colored outlines and restrained polished shading. Do not copy any text, HUD panels, UI boxes, backgrounds, creatures or borders.\nLayout: exactly one item isolated and centered in every equal square cell, strict row-major ordering below. Keep all content for each icon inside its own cell with generous 15% fully transparent gutter on all four sides. No icon may overlap or cross another cell. Equal visual weight, no scene, no floor shadows, no badge backplates; the frame/bezel will be drawn separately in code. Use strong clear silhouettes, large readable forms and only restrained crisp interior detail so each icon is legible at 48 px.\nROW 1 left to right: (1) HERO: heroic warm-brass helmet/head profile with beautiful teal enamel and small coral plume, readable profile. (2) SKILLS: a beautiful open spell/skill book with ivory pages, plum leather binding, brass clasps and a single small gold star hovering over it; no writing on pages. (3) EQUIPMENT: a beautiful polished compact anvil with one bright steel axe and small teal-enamel shield arranged as one cohesive equipment emblem. (4) SHOP: coral-red and teal leather coin pouch with brass clasp, slightly open with a few warm gold coins.\nROW 2 left to right: (5) EXPLORATION: warm-brass compass atop a neatly folded teal-and-ivory map, no letters or writing. (6) MONEY: one single beautiful gold coin, beveled warm brass edge, simple geometric embossed center, absolutely no text or numbers. (7) CAMP: one decorative brass camp lantern containing a warm ivory flame, elegant teal metal cap, restrained gentle inner light. (8) LOCKED: one small closed polished brass padlock, clear dark keyhole, teal enamel center.\nROW 3 left to right: (9) CH01: dramatic coral-red axe slash, recognizable beautiful steel axe with sweeping fiery coral-red slash arc, elegant controlled motion shape, no heavy bloom. (10) CH02: polished brass-and-dark-teal fantasy rifle with one visible gold bullet and fine gold bullet trail, readable rifle silhouette. (11) CH03: one vivid blue-violet resonance crystal cluster with refined brass base and a restrained clean turquoise resonance arc. (12) DODGE: bright ivory leather boots with warm brass buckles and a simple flowing ivory/gold speed-motion swoosh.\nStyle: crisp credible premium hand-painted cel fantasy game icons, colored thin plum outlines, refined enamel highlights and metal shading, coherent light direction and stylistic consistency across all twelve. Rich coral, teal, gold, ivory and sapphire accents that feel bright and welcoming.\nConstraints: alpha zero in all empty space. Transparent background; no checkerboard painted in image; no label text, no letters, no numbers, no emoji, no watermark, no logo, no UI background, no badge discs, no border frames, no extra items or extra cells, no dark vignette, no blur, no heavy bloom, no floor, no shadows outside the icons. Preserve exact row-major order and strict equal cell grid.",
+  "alpha_measurement": {
+    "width": 1448,
+    "height": 1086,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "regions": {
+      "hero": [
+        49,
+        8,
+        311,
+        354
+      ],
+      "skills": [
+        367,
+        19,
+        357,
+        326
+      ],
+      "equipment": [
+        724,
+        27,
+        362,
+        324
+      ],
+      "shop": [
+        1086,
+        46,
+        350,
+        311
+      ],
+      "compass": [
+        10,
+        362,
+        352,
+        362
+      ],
+      "coin": [
+        362,
+        364,
+        332,
+        350
+      ],
+      "lantern": [
+        731,
+        362,
+        319,
+        362
+      ],
+      "lock": [
+        1139,
+        362,
+        249,
+        347
+      ],
+      "axe_slash": [
+        0,
+        724,
+        362,
+        362
+      ],
+      "rifle": [
+        362,
+        731,
+        362,
+        355
+      ],
+      "crystal": [
+        724,
+        724,
+        362,
+        342
+      ],
+      "dodge": [
+        1086,
+        745,
+        362,
+        313
+      ]
+    },
+    "alpha_bounds": {
+      "hero": [
+        51,
+        10,
+        307,
+        352
+      ],
+      "skills": [
+        369,
+        21,
+        355,
+        322
+      ],
+      "equipment": [
+        724,
+        29,
+        362,
+        320
+      ],
+      "shop": [
+        1086,
+        48,
+        348,
+        307
+      ],
+      "compass": [
+        12,
+        362,
+        350,
+        362
+      ],
+      "coin": [
+        362,
+        366,
+        330,
+        346
+      ],
+      "lantern": [
+        733,
+        362,
+        315,
+        362
+      ],
+      "lock": [
+        1141,
+        364,
+        245,
+        343
+      ],
+      "axe_slash": [
+        0,
+        724,
+        362,
+        362
+      ],
+      "rifle": [
+        362,
+        733,
+        362,
+        353
+      ],
+      "crystal": [
+        724,
+        724,
+        362,
+        340
+      ],
+      "dodge": [
+        1086,
+        747,
+        362,
+        309
+      ]
+    },
+    "cells": {
+      "hero": [
+        0,
+        0,
+        362,
+        362
+      ],
+      "skills": [
+        362,
+        0,
+        362,
+        362
+      ],
+      "equipment": [
+        724,
+        0,
+        362,
+        362
+      ],
+      "shop": [
+        1086,
+        0,
+        362,
+        362
+      ],
+      "compass": [
+        0,
+        362,
+        362,
+        362
+      ],
+      "coin": [
+        362,
+        362,
+        362,
+        362
+      ],
+      "lantern": [
+        724,
+        362,
+        362,
+        362
+      ],
+      "lock": [
+        1086,
+        362,
+        362,
+        362
+      ],
+      "axe_slash": [
+        0,
+        724,
+        362,
+        362
+      ],
+      "rifle": [
+        362,
+        724,
+        362,
+        362
+      ],
+      "crystal": [
+        724,
+        724,
+        362,
+        362
+      ],
+      "dodge": [
+        1086,
+        724,
+        362,
+        362
+      ]
+    }
+  },
+  "visual_review": "Twelve ordered, crisp coherent hand-painted icons; no text or panels. Empty background is truly transparent. Generated artwork occupies cells more fully than requested 15% gutters and several icons reach cell edges. Region bounds use measured real nonzero-alpha bbox within every equal cell plus 2 px padding clamped to that cell. Original PNG remains unchanged."
+}

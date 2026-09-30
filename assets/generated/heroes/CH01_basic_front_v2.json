@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH01",
+  "bank": "front",
+  "enabled": false,
+  "status": "candidate_axe_basic_v2_pending_runtime_review",
+  "validation": {
+    "date": "2026-09-30",
+    "source_art": "Visual source review confirms one broad single axe blade with flat hammer poll; no twin barrels. Read-only RGBA analysis confirms six disjoint cells, minimum 32px visible-alpha margins, complete silhouettes and real transparency.",
+    "scope": "Candidate only. Native runtime, fixed-scale feet registration, transitions and contact placement have not been tested by this asset worker."
+  },
+  "texture": "res://assets/generated/heroes/CH01_basic_front_v2.png",
+  "body_height": 250,
+  "frames": [
+    {
+      "name": "lift",
+      "region": [
+        122,
+        118,
+        299,
+        334
+      ],
+      "foot": [
+        252,
+        436
+      ],
+      "head": [
+        257,
+        195
+      ],
+      "grip": [
+        325,
+        215
+      ],
+      "muzzle": [
+        402,
+        175
+      ],
+      "alpha_bounds": [
+        130,
+        126,
+        283,
+        318
+      ],
+      "visible_alpha_pixels": 37936,
+      "near_opaque_fraction": 0.9364,
+      "source_cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "cell_margin_pixels_at_alpha16": 68
+    },
+    {
+      "name": "loaded",
+      "region": [
+        632,
+        132,
+        267,
+        318
+      ],
+      "foot": [
+        760,
+        435
+      ],
+      "head": [
+        760,
+        205
+      ],
+      "grip": [
+        813,
+        184
+      ],
+      "muzzle": [
+        881,
+        190
+      ],
+      "alpha_bounds": [
+        640,
+        140,
+        251,
+        302
+      ],
+      "visible_alpha_pixels": 37757,
+      "near_opaque_fraction": 0.9319,
+      "source_cell": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "cell_margin_pixels_at_alpha16": 70
+    },
+    {
+      "name": "downswing",
+      "region": [
+        1136,
+        196,
+        335,
+        265
+      ],
+      "foot": [
+        1265,
+        434
+      ],
+      "head": [
+        1292,
+        208
+      ],
+      "grip": [
+        1342,
+        334
+      ],
+      "muzzle": [
+        1444,
+        417
+      ],
+      "alpha_bounds": [
+        1144,
+        204,
+        319,
+        249
+      ],
+      "visible_alpha_pixels": 36648,
+      "near_opaque_fraction": 0.9457,
+      "source_cell": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "cell_margin_pixels_at_alpha16": 59
+    },
+    {
+      "name": "contact",
+      "region": [
+        102,
+        661,
+        373,
+        248
+      ],
+      "foot": [
+        236,
+        878
+      ],
+      "head": [
+        270,
+        674
+      ],
+      "grip": [
+        332,
+        805
+      ],
+      "muzzle": [
+        449,
+        858
+      ],
+      "alpha_bounds": [
+        110,
+        669,
+        357,
+        232
+      ],
+      "visible_alpha_pixels": 34976,
+      "near_opaque_fraction": 0.9396,
+      "source_cell": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "cell_margin_pixels_at_alpha16": 45
+    },
+    {
+      "name": "recoil",
+      "region": [
+        620,
+        613,
+        346,
+        283
+      ],
+      "foot": [
+        756,
+        880
+      ],
+      "head": [
+        772,
+        627
+      ],
+      "grip": [
+        829,
+        777
+      ],
+      "muzzle": [
+        938,
+        846
+      ],
+      "alpha_bounds": [
+        628,
+        621,
+        330,
+        267
+      ],
+      "visible_alpha_pixels": 42636,
+      "near_opaque_fraction": 0.9456,
+      "source_cell": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "cell_margin_pixels_at_alpha16": 66
+    },
+    {
+      "name": "ready",
+      "region": [
+        1135,
+        618,
+        346,
+        278
+      ],
+      "foot": [
+        1272,
+        880
+      ],
+      "head": [
+        1285,
+        631
+      ],
+      "grip": [
+        1342,
+        777
+      ],
+      "muzzle": [
+        1452,
+        847
+      ],
+      "alpha_bounds": [
+        1143,
+        626,
+        330,
+        262
+      ],
+      "visible_alpha_pixels": 42122,
+      "near_opaque_fraction": 0.9488,
+      "source_cell": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "cell_margin_pixels_at_alpha16": 63
+    }
+  ],
+  "phase_frames": {
+    "windup": [
+      "lift",
+      "loaded",
+      "downswing"
+    ],
+    "release": [
+      "contact"
+    ],
+    "recovery": [
+      "recoil",
+      "ready"
+    ]
+  },
+  "phase_weights": {
+    "windup": [
+      0.25,
+      0.45,
+      0.3
+    ],
+    "release": [
+      1
+    ],
+    "recovery": [
+      0.55,
+      0.45
+    ]
+  },
+  "registration": {
+    "source_size": [
+      1536,
+      1024
+    ],
+    "source_pixel_edits": "none",
+    "alpha_threshold": 16,
+    "region_padding": 8,
+    "method": "Read-only RGBA scan of strict 512x512 source cells. Visible bounds receive 8px padding. Manual anatomical foot, crown, two-handed grip and axe-edge contact anchors. One fixed body_height per view, never per-frame fitting.",
+    "coordinate_system": "Absolute source pixels. Foot is projected midpoint of boot ground contacts; runtime maps it to (0,8). Muzzle is the middle of the outer axe cutting edge, not a gun muzzle.",
+    "limitations": [
+      "Six key poses per view, not a fully interpolated or eight-direction animation.",
+      "Only basic-attack candidate assets are included. Runtime enablement is deferred until consistent axe walk, idle and skill banks are ready.",
+      "Generator retains alpha=1 fringe noise in empty cells. Pixels above alpha16 have at least32px source-cell padding; original alpha is unmodified."
+    ]
+  },
+  "provenance": "res://assets/generated/heroes/CH01_axe_basic_v2_provenance.json"
+}

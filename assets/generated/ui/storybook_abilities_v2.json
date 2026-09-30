@@ -1,0 +1,254 @@
+{
+  "asset": "storybook_abilities_v2.png",
+  "created_date": "2026-09-30",
+  "generator": "built-in image_gen",
+  "mode": "reference-guided generation",
+  "use_case": "stylized-concept",
+  "references": [
+    "C:/webdev/games/artifacts/design-reference-option3.png",
+    "C:/webdev/games/assets/generated/ui/storybook_navigation_v2.png"
+  ],
+  "original_output": "C:/Users/13326/.codex/generated_images/01a0f261-6b08-73d2-95d6-198cdfe2c9b9/exec-f497f30b-89cd-4173-afed-94e82074ca00.png",
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 1536
+  },
+  "actual_dimensions": {
+    "width": 1448,
+    "height": 1086
+  },
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept\nAsset type: production transparent skill sprite atlas for premium Godot fantasy game UI. Exactly 12 isolated square ability icons in a STRICT grid of FOUR columns and THREE rows. Canvas requested exactly 2048 x 1536 pixels, 4:3 ratio, four 512-pixel cells per row and three 512-pixel rows. Icon centers x=256,768,1280,1792 and y=256,768,1280. All empty space must be true alpha-zero transparency.\nInput image 1: overall STYLE AND PALETTE REFERENCE from selected third game UI direction, bright polished storybook fantasy. Input image 2: NAVIGATION ART SERIES REFERENCE. Match that atlas's hand-painted ivory, warm brass, coral red, teal and blue-violet materials, refined thin colored plum outlines and clean strong silhouettes. Do not duplicate its particular subjects; create the twelve distinct abilities specified below.\nCRITICAL GRID RULE: exactly one self-contained ability emblem per cell, center each on its own cell and leave at least 15% of the cell entirely transparent on EVERY side. Artwork including all motion trails, rings, shards, spark tips and effects must fit within the central 70% of its cell. Never place any pixel or effect into a neighboring cell. Do not fill the cells to their edges. No background plates, no frames, no badge circles, no UI panels, no text or grid lines. Equal icon visual weight. Clean isolated item/effect art readable at 48 pixels; a few large shapes, no dense particles.\nSTRICT ROW-MAJOR ORDER:\nROW 1 = CH01 AXE GUARD, coral red and warm brass accent. Column 1 ability_CH01_q: recognizable beautiful steel axe lunging forward with an explosive bold coral-red dash slash behind it. Column 2 ability_CH01_secondary: broad steel axe sweeping through one wide clean coral-red crescent arc. Column 3 ability_CH01_f: broad axe thrusting forward with a few angular coral-gold shock lines that clearly read as a forceful pushing attack. Column 4 ability_CH01_ultimate: massive axe dropping vertically, blade pointing down toward a compact stylized broken-stone impact crest, broad coral-red shockburst; MUST be an axe, never a hammer.\nROW 2 = CH02 RIFLE SCOUT, polished teal, ivory and brass with gold and icy-blue accents. Column 1 ability_CH02_q: evasive cable-slide attack with one polished compact rifle carried along a looping brass cable/slide trail and exactly three gold bullet trails; no person. Column 2 ability_CH02_secondary: one beautifully polished aimed fantasy rifle firing one straight clean penetrating gold beam. Column 3 ability_CH02_f: one icy toothed mechanical trap plate, readable octagonal brass/steel plate with open curved teeth and restrained icy-blue facets. Column 4 ability_CH02_ultimate: four glowing gold cartridges in a clear parallel-shot barrage, four readable elongated cartridge silhouettes with four neat gold trails, no rifle needed.\nROW 3 = CH03 RESONANCE TECHNICIAN, vivid blue-violet, turquoise, warm brass. Column 1 ability_CH03_q: one violet resonance crystal with a crisp turquoise electric impact burst, few large angular lightning shapes. Column 2 ability_CH03_secondary: one teal crystal resonator node in a compact warm-brass technical socket with exactly three small blue charge nodes arranged around it. Column 3 ability_CH03_f: one crystal burst of a few large sapphire-violet shards and one clean cold turquoise ring. Column 4 ability_CH03_ultimate: one bright blue-violet transparent glass dome with brass anchors and a few clear electric arcs; readable dome silhouette with restrained inner light.\nStyle: coherent premium hand-painted cel fantasy game skill artwork, credible refined metal/enamel/crystal shading, crisp silhouettes, thin plum colored outlines, warm brass edge highlights. Match navigation atlas sophistication and color language. Effects are graphic controlled strokes with restrained light, no heavy bloom. Lighting consistent from upper left.\nConstraints: exactly 12 icons, 4 columns by 3 rows in that exact order. Absolutely no letters, no text, no numbers, no labels, no emoji, no UI backplates or borders, no dark background, no checkerboard drawn into image, no floor, no character body, no creatures, no watermark, no blur, no oversized trails, no dense particles, no heavy bloom. At least 15% genuinely transparent gutter on all sides in each equal cell; alpha zero outside individual artworks.",
+  "alpha_measurement": {
+    "width": 1448,
+    "height": 1086,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "regions": {
+      "ability_CH01_q": [
+        0,
+        0,
+        362,
+        362
+      ],
+      "ability_CH01_secondary": [
+        362,
+        19,
+        362,
+        343
+      ],
+      "ability_CH01_f": [
+        724,
+        19,
+        362,
+        343
+      ],
+      "ability_CH01_ultimate": [
+        1086,
+        20,
+        346,
+        342
+      ],
+      "ability_CH02_q": [
+        0,
+        362,
+        362,
+        362
+      ],
+      "ability_CH02_secondary": [
+        362,
+        362,
+        362,
+        362
+      ],
+      "ability_CH02_f": [
+        724,
+        362,
+        362,
+        362
+      ],
+      "ability_CH02_ultimate": [
+        1086,
+        362,
+        362,
+        362
+      ],
+      "ability_CH03_q": [
+        0,
+        724,
+        362,
+        362
+      ],
+      "ability_CH03_secondary": [
+        362,
+        724,
+        362,
+        362
+      ],
+      "ability_CH03_f": [
+        724,
+        724,
+        362,
+        362
+      ],
+      "ability_CH03_ultimate": [
+        1086,
+        724,
+        354,
+        362
+      ]
+    },
+    "alpha_bounds": {
+      "ability_CH01_q": [
+        0,
+        0,
+        362,
+        362
+      ],
+      "ability_CH01_secondary": [
+        362,
+        21,
+        362,
+        341
+      ],
+      "ability_CH01_f": [
+        724,
+        21,
+        362,
+        340
+      ],
+      "ability_CH01_ultimate": [
+        1086,
+        22,
+        344,
+        340
+      ],
+      "ability_CH02_q": [
+        0,
+        362,
+        362,
+        360
+      ],
+      "ability_CH02_secondary": [
+        362,
+        362,
+        362,
+        362
+      ],
+      "ability_CH02_f": [
+        724,
+        364,
+        362,
+        360
+      ],
+      "ability_CH02_ultimate": [
+        1086,
+        362,
+        362,
+        361
+      ],
+      "ability_CH03_q": [
+        0,
+        724,
+        362,
+        362
+      ],
+      "ability_CH03_secondary": [
+        362,
+        724,
+        362,
+        362
+      ],
+      "ability_CH03_f": [
+        724,
+        724,
+        362,
+        362
+      ],
+      "ability_CH03_ultimate": [
+        1086,
+        724,
+        352,
+        362
+      ]
+    },
+    "cells": {
+      "ability_CH01_q": [
+        0,
+        0,
+        362,
+        362
+      ],
+      "ability_CH01_secondary": [
+        362,
+        0,
+        362,
+        362
+      ],
+      "ability_CH01_f": [
+        724,
+        0,
+        362,
+        362
+      ],
+      "ability_CH01_ultimate": [
+        1086,
+        0,
+        362,
+        362
+      ],
+      "ability_CH02_q": [
+        0,
+        362,
+        362,
+        362
+      ],
+      "ability_CH02_secondary": [
+        362,
+        362,
+        362,
+        362
+      ],
+      "ability_CH02_f": [
+        724,
+        362,
+        362,
+        362
+      ],
+      "ability_CH02_ultimate": [
+        1086,
+        362,
+        362,
+        362
+      ],
+      "ability_CH03_q": [
+        0,
+        724,
+        362,
+        362
+      ],
+      "ability_CH03_secondary": [
+        362,
+        724,
+        362,
+        362
+      ],
+      "ability_CH03_f": [
+        724,
+        724,
+        362,
+        362
+      ],
+      "ability_CH03_ultimate": [
+        1086,
+        724,
+        362,
+        362
+      ]
+    }
+  },
+  "visual_review": "Twelve ordered, coherent hand-painted skill icons with distinct axe/rifle/crystal identities, no text or panels. Empty space has real alpha transparency. Generated large motion-effect artworks do not maintain the requested 15% transparent cell gutters; several effects and faint pixels reach equal-cell boundaries. Region bounds preserve measured real nonzero-alpha bbox within every equal cell plus 2 px padding clamped to the cell. PNG preserved completely unchanged."
+}

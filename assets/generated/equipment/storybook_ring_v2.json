@@ -1,0 +1,383 @@
+{
+  "date": "2026-09-30",
+  "status": "proposal_only",
+  "live": false,
+  "source": {
+    "mode": "built-in image_gen",
+    "tool": "image_gen__imagegen",
+    "operation": "transparent asset generation followed by canonical race-design replacement and one layout repair",
+    "original_generated_output": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2df-59b8-7eb3-a1be-0f8afc443140\\exec-cb54ec60-02ac-432b-96d1-2983cd29f725.png"
+  },
+  "requested_dimensions": [
+    2560,
+    1024
+  ],
+  "reference": {
+    "role": "latest visual style reference inspected; initial tool prompt described this style",
+    "path": "C:\\Users\\13326\\AppData\\Local\\Temp\\codex-clipboard-02f51a21-0c7d-42c9-825e-c4f6367709c9.png",
+    "locked_standard": "明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。"
+  },
+  "full_prompt": "Use case: precise-object-edit.\nInput is an EDIT TARGET only for the FIRST TWO universal ring designs and for its bright sunny hand-painted finish. Change the LAST EIGHT rings completely to the canonical race designs below. The last eight MUST be visibly nonhuman fantasy species artifacts, creative distinct forms, not eight human gold gemstone rings. Keep TEN rings only, in the exact new row-major order below. Also reduce scale drastically for proper transparent spacing: every COMPLETE silhouette at most 48% of its own square cell.\n\nLocked visual standard: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。\nBright polished handpainted cartoon storybook fantasy, near-isometric high three-quarter downward view, visible top faces and side thickness, warm sunshine and fresh vivid colors. Crisp deep-plum contours, cream, warm brass, bright teal, jade, sky-blue, amber and violet race-specific materials. NOT dark/dirty/rustic, NOT photoreal, NOT flat symbols. Every ring is a dimensional physical object with visible curved wearable band and open inner hole; surfaces have volume and inside band faces. No hands, fingers, bodies, mannequins, creatures, or people.\n\nCanvas requested 2560×1024 PNG, exact 5:2 ratio. FIVE equal SQUARE cells across, TWO rows. The invisible 512-square cell grid has no drawn lines. Exactly ONE COMPLETE ring per cell. Center all items at normalized positions: top row (10%,25%),(30%,25%),(50%,25%),(70%,25%),(90%,25%); bottom row (10%,75%),(30%,75%),(50%,75%),(70%,75%),(90%,75%). COMPLETE object including folded wings, capsules, pods and spores must fit in the central 48% width/height of its own cell. Minimum 26% completely EMPTY TRANSPARENT margin on EACH cell's four sides. This is a SPACIOUS atlas of small objects with lots of clear alpha around each. Do not crop or let anything cross any cell edge.\n\nEXACT TOP ROW from left:\n1 UNIVERSAL Camp Brass Buckle Ring — preserve first input ring design: thick bright brass utility band with small cream riveted buckles, visible complete hole and inner brass face.\n2 UNIVERSAL Rangefinder Folding-Ruler Ring — preserve second input ring design: brass articulated folding caliper band and clear glass measurement plate, mechanism hinges and simple tick marks only, no written numbers or letters.\n3 INSECT race Amber Wing-Petal Ring — NEW DESIGN: a sculpted AMBER insect-carapace curved ring band with clearly layered shell segments, crown setting shaped like folded insect wing petals, pale cream wing-vein filigree across the wing petals. Amber translucent carapace with warm honey edges, cream pale veined wings, elegant wearable loop. NOT a gold band holding a round gemstone; the band itself is insect shell and the wing-petal crown is the structure.\n4 INSECT race Acid Crystal Antenna Ring — NEW DESIGN: curved CHITIN antenna-loop band forming the wearable circular hole, with two graceful horn/antenna curls, ONE faceted ACID GREEN crystal venom capsule held between the antenna tips. Green translucent venom and creamy dark-plum-edged chitin. Clearly different curved antenna silhouette from the wing-petal ring; no generic brass band.\n5 FLORA race Mosslight Mushroom-Crown Ring — NEW DESIGN: living pale MYCELIUM ROOT band woven into a wearable open loop, moss-green and creamy mushroom cap forming the crown, with a few small luminous spore beads hovering closely above the cap as attached magical artifact components within its silhouette area. Bright moss greens, cream stalk/root and small pale aqua spore points. Dimensional mushroom cap underside and gills visible; NOT a shell, and NO metal band.\n\nEXACT BOTTOM ROW from left:\n6 FLORA race Luminescent Spore Vine Ring — NEW DESIGN: TWO living bright green twined vines form a complete wearable curved loop, roots/veins and little leaves, with small glasslike BIOLUMINESCENT SPORE LANTERN PODS growing along one side of the vine. Pods glow internally pale turquoise, with membrane shells and delicate ribs. No brass band, no cylinder bottle; unmistakably a living vine ring distinct from mushroom crown.\n7 MACHINE race Radiant Brass Gear Ring — NEW DESIGN: warm antique BRASS GEAR band, functional clearly cut gear teeth around the thick wearable circular loop, tiny clear CRYSTAL STEAM CHAMBER mounted into its top, with a little contained pale-blue steam bubble inside. Bright sunlit brass, precise mechanical pivots and crystal chamber thickness; no shield face.\n8 MACHINE race Crystal-Steam Gyro Ring — NEW DESIGN: INTERLOCKING CLOCKWORK GYRO BANDS in warm brass forming a spherical but wearable ring loop, two offset rotating arcs around a visible inner finger hole, and a BLUE CRYSTAL STEAM COIL integrated at the top/side. Blue crystalline coil wraps through the mechanical arcs; visible axles and interlocked thickness. Distinct from simple gear ring, no stone chunk.\n9 CRYSTAL race Mirrored-Tide Prism Ring — NEW DESIGN: mirrored TRANSPARENT PRISM SHARDS make a luminous star-wave embrace band, angular blue-violet glass facets arranged in a complete curved wearable ring with open inner hole, crown consists of an asymmetrical starry geometric wave of several mirrorlike clear shards. Entire structural band is crystal/glass with thick reflective facets, no gold jewelry band, no single purple gemstone.\n10 CRYSTAL race Starwave Floating-Crystal Ring — NEW DESIGN: translucent OCEAN GLASS wearable loop composed of ORIGAMI FIN-FOLD PETALS with a glimmering star-wave crest. Elegant folded pale-cyan/aqua glass fins, glass petals wrapping into a complete open ring, creamy highlights and subtle violet reflective planes; crown is a curling wave/star crest. Strong folded organic ocean-glass silhouette distinct from angular prism-shard ring. No feathers, no human gold band.\n\nBright depth and painterly material finish throughout. Ten unique functional wearable ring silhouettes with visible internal holes, complete curves, top/side surfaces.\nTRUE RGBA TRANSPARENCY: Outside ring silhouettes all pixels alpha exactly 0. Band holes and gutters are transparent. No cast shadow, floor, halo, exterior glow, backdrop, painted checkerboard, particle cloud, paper panel, vignette, frame, decorative rarity ring, UI, ID labels, text, letters, numbers, symbols resembling text, logo or watermark. The handful of mushroom spores are deliberate solid object components confined to its own cell, not a field of particles. Glow stays inside crystal/lantern surfaces. No characters or fingers. Exact 5×2 row-major arrangement.",
+  "generation_history": [
+    {
+      "status": "superseded_by_authorized_canonical_race_update",
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE transparent fantasy RPG proposal sprite atlas showing TEN distinct physical wearable RINGS only.\nLocked visual standard: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。\nIn English: bright polished hand-painted cartoon fantasy, classical ruins mixed with magical steam mechanisms, high camera three-quarter downward view, near-isometric composition, sculpted 2.5D physical volume, warm sunny highlights and fresh vivid colors. Clean deep-plum contours, creamy ivory ceramic and pale stone, honey-gold warm brass, rich teal and azure accents. Friendly storybook materials with clear top and side faces. No rustic gritty treatment, no dirty dark gray mass, no photorealism, no flat vector glyphs. Do not make ten recolors of one ring: the mechanics, silhouettes, gem forms and construction must be uniquely different.\n\nCanvas request: exact 2560×1024 PNG, ratio 5:2. Five equal SQUARE 512×512 columns and two equal SQUARE 512×512 rows; cells are INVISIBLE with no visible grid. The TEN complete rings appear in STRICT ROW-MAJOR ORDER from left to right, top row then bottom row. Center the full silhouette of each item at normalized canvas positions (10%,25%),(30%,25%),(50%,25%),(70%,25%),(90%,25%), then (10%,75%),(30%,75%),(50%,75%),(70%,75%),(90%,75%). There is ONE ring in each cell.\nVery generous clear transparent space: each complete item is at most 55% of its cell width and 55% of its cell height. Leave at least 22% transparent EMPTY margin on every side inside EACH cell. Every gem, clamp, prong, band and tail is entirely within its own cell. Complete rings only, no clipping or overlap.\n\nPhysical ring readability: EVERY item has a COMPLETE clearly visible thick curved finger band and open inner hole, a readable inside metal surface, top surfaces and side thickness viewed from the same high three-quarter angle. Rings are small intricate physical objects, shown loose on their own. No hand, finger, body, mannequin, stand or pedestal. Transparent holes in the bands are real alpha cutouts. Bright painterly form shading is contained inside ring silhouettes.\n\nEXACT TOP ROW:\n1. Camp Brass Buckle Ring: a thick warm brass utility band, with small cream riveted buckles integrated on the band. Rugged but clean bright camp craftsmanship, substantial rounded band, no gemstone, ivory buckles and visible tiny brass rivets.\n2. Rangefinder Folding-Ruler Ring: a warm brass folding caliper mechanism integrated onto a wearable round band, small articulated folding measuring arms and ONE small clear glass measurement plate. Mechanical pivots and caliper geometry must be obvious. Only simple abstract tick marks on glass, no numbers or letters.\n3. Stoker Ember Ring: ONE round amber ember core cradled by exactly THREE warm bronze leaf-shaped claws, seated atop a complete brass curved ring band. The amber is golden orange and glows ONLY inside itself, three sculpted bronze leaves distinct and visible.\n4. Singing-Rail Twin-Tone Ring: open-ended twin warm brass prongs rising from a complete curved band, ONE saturated blue bead bridging the small gap at the top. Polished brass resonance rails and vibrant blue bead, visibly a wearable ring.\n5. Frost-Tide Ice-Shell Ring: a creamy WHITE seashell setting integrated atop a complete white/ivory ring band with discreet brass structure, with a frozen ice-blue crystal ripple embedded into the shell. Clear white shell ridges and translucent cyan-blue frozen ripple.\n\nEXACT BOTTOM ROW:\n6. Copper-Corrosion Green-Drop Ring: an asymmetrical bright patinated brass band, ONE tiny transparent capsule holding vivid green liquid, and a thin copper capillary wire curving along the band. Green liquid and controlled teal verdigris accents, pale warm brass as the main structure.\n7. Oathguard White-Shield Ring: an ivory square-faced shield setting on a warm brass complete ring band, a clearly deep-plum engraved border around the shield face. Clean cream shield face with dimensional bevels, stout golden band, no symbol text.\n8. Faultline Cracked-Rock Ring: a pale light-gray stone chunk with a bright ochre-yellow fault seam, seated atop a complete brass ring band in brass shock-absorbing clamps. Show dimensional pale stone broken planes and mechanical clamp side faces. Main stone is light gray, not black.\n9. Prism Polarization Ring: ONE faceted violet-purple lens in an off-center triple-brass scale-prong setting, on a complete bright brass band. Three asymmetric brass prongs support the tilted violet lens, show prism depth and purple facets. Distinctly not another amber ring.\n10. Windchaser Twin-Tail Ring: a light cream swept-wing ring with a complete cream-and-brass curved band and exactly TWO azure blue fin-feather tails integrated into its wing setting. Airy curved pale wing forms, two small teal-blue fin-feathers, no third tail and no loose feather debris.\n\nNo rendered text, names, ID labels, numbers, letters, logos or watermark anywhere.\nBackdrop: TRUE transparent RGBA cutout. Everything outside the ten ring silhouettes has alpha exactly 0; every inter-item gutter is truly empty transparent alpha. No paper/color background, baked checkerboard, floor, ground plane, cast shadow, drop shadow, halo, exterior glow, vignette, particle, decorative frame, UI panel, item card, rarity circle, box or grid. Sunny light shades the actual objects only. No characters, fingers or hands. Final result: TEN UNIQUE COMPLETE BRIGHT DIMENSIONAL RINGS in strict 5×2 order with roomy clear alpha gutters.",
+      "output": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2df-59b8-7eb3-a1be-0f8afc443140\\exec-0c65a401-5ecc-4f79-a5ca-e7fd37130d4a.png"
+    },
+    {
+      "status": "canonical_race_design_source",
+      "prompt": "Use case: precise-object-edit.\nInput is an EDIT TARGET only for the FIRST TWO universal ring designs and for its bright sunny hand-painted finish. Change the LAST EIGHT rings completely to the canonical race designs below. The last eight MUST be visibly nonhuman fantasy species artifacts, creative distinct forms, not eight human gold gemstone rings. Keep TEN rings only, in the exact new row-major order below. Also reduce scale drastically for proper transparent spacing: every COMPLETE silhouette at most 48% of its own square cell.\n\nLocked visual standard: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。\nBright polished handpainted cartoon storybook fantasy, near-isometric high three-quarter downward view, visible top faces and side thickness, warm sunshine and fresh vivid colors. Crisp deep-plum contours, cream, warm brass, bright teal, jade, sky-blue, amber and violet race-specific materials. NOT dark/dirty/rustic, NOT photoreal, NOT flat symbols. Every ring is a dimensional physical object with visible curved wearable band and open inner hole; surfaces have volume and inside band faces. No hands, fingers, bodies, mannequins, creatures, or people.\n\nCanvas requested 2560×1024 PNG, exact 5:2 ratio. FIVE equal SQUARE cells across, TWO rows. The invisible 512-square cell grid has no drawn lines. Exactly ONE COMPLETE ring per cell. Center all items at normalized positions: top row (10%,25%),(30%,25%),(50%,25%),(70%,25%),(90%,25%); bottom row (10%,75%),(30%,75%),(50%,75%),(70%,75%),(90%,75%). COMPLETE object including folded wings, capsules, pods and spores must fit in the central 48% width/height of its own cell. Minimum 26% completely EMPTY TRANSPARENT margin on EACH cell's four sides. This is a SPACIOUS atlas of small objects with lots of clear alpha around each. Do not crop or let anything cross any cell edge.\n\nEXACT TOP ROW from left:\n1 UNIVERSAL Camp Brass Buckle Ring — preserve first input ring design: thick bright brass utility band with small cream riveted buckles, visible complete hole and inner brass face.\n2 UNIVERSAL Rangefinder Folding-Ruler Ring — preserve second input ring design: brass articulated folding caliper band and clear glass measurement plate, mechanism hinges and simple tick marks only, no written numbers or letters.\n3 INSECT race Amber Wing-Petal Ring — NEW DESIGN: a sculpted AMBER insect-carapace curved ring band with clearly layered shell segments, crown setting shaped like folded insect wing petals, pale cream wing-vein filigree across the wing petals. Amber translucent carapace with warm honey edges, cream pale veined wings, elegant wearable loop. NOT a gold band holding a round gemstone; the band itself is insect shell and the wing-petal crown is the structure.\n4 INSECT race Acid Crystal Antenna Ring — NEW DESIGN: curved CHITIN antenna-loop band forming the wearable circular hole, with two graceful horn/antenna curls, ONE faceted ACID GREEN crystal venom capsule held between the antenna tips. Green translucent venom and creamy dark-plum-edged chitin. Clearly different curved antenna silhouette from the wing-petal ring; no generic brass band.\n5 FLORA race Mosslight Mushroom-Crown Ring — NEW DESIGN: living pale MYCELIUM ROOT band woven into a wearable open loop, moss-green and creamy mushroom cap forming the crown, with a few small luminous spore beads hovering closely above the cap as attached magical artifact components within its silhouette area. Bright moss greens, cream stalk/root and small pale aqua spore points. Dimensional mushroom cap underside and gills visible; NOT a shell, and NO metal band.\n\nEXACT BOTTOM ROW from left:\n6 FLORA race Luminescent Spore Vine Ring — NEW DESIGN: TWO living bright green twined vines form a complete wearable curved loop, roots/veins and little leaves, with small glasslike BIOLUMINESCENT SPORE LANTERN PODS growing along one side of the vine. Pods glow internally pale turquoise, with membrane shells and delicate ribs. No brass band, no cylinder bottle; unmistakably a living vine ring distinct from mushroom crown.\n7 MACHINE race Radiant Brass Gear Ring — NEW DESIGN: warm antique BRASS GEAR band, functional clearly cut gear teeth around the thick wearable circular loop, tiny clear CRYSTAL STEAM CHAMBER mounted into its top, with a little contained pale-blue steam bubble inside. Bright sunlit brass, precise mechanical pivots and crystal chamber thickness; no shield face.\n8 MACHINE race Crystal-Steam Gyro Ring — NEW DESIGN: INTERLOCKING CLOCKWORK GYRO BANDS in warm brass forming a spherical but wearable ring loop, two offset rotating arcs around a visible inner finger hole, and a BLUE CRYSTAL STEAM COIL integrated at the top/side. Blue crystalline coil wraps through the mechanical arcs; visible axles and interlocked thickness. Distinct from simple gear ring, no stone chunk.\n9 CRYSTAL race Mirrored-Tide Prism Ring — NEW DESIGN: mirrored TRANSPARENT PRISM SHARDS make a luminous star-wave embrace band, angular blue-violet glass facets arranged in a complete curved wearable ring with open inner hole, crown consists of an asymmetrical starry geometric wave of several mirrorlike clear shards. Entire structural band is crystal/glass with thick reflective facets, no gold jewelry band, no single purple gemstone.\n10 CRYSTAL race Starwave Floating-Crystal Ring — NEW DESIGN: translucent OCEAN GLASS wearable loop composed of ORIGAMI FIN-FOLD PETALS with a glimmering star-wave crest. Elegant folded pale-cyan/aqua glass fins, glass petals wrapping into a complete open ring, creamy highlights and subtle violet reflective planes; crown is a curling wave/star crest. Strong folded organic ocean-glass silhouette distinct from angular prism-shard ring. No feathers, no human gold band.\n\nBright depth and painterly material finish throughout. Ten unique functional wearable ring silhouettes with visible internal holes, complete curves, top/side surfaces.\nTRUE RGBA TRANSPARENCY: Outside ring silhouettes all pixels alpha exactly 0. Band holes and gutters are transparent. No cast shadow, floor, halo, exterior glow, backdrop, painted checkerboard, particle cloud, paper panel, vignette, frame, decorative rarity ring, UI, ID labels, text, letters, numbers, symbols resembling text, logo or watermark. The handful of mushroom spores are deliberate solid object components confined to its own cell, not a field of particles. Glow stays inside crystal/lantern surfaces. No characters or fingers. Exact 5×2 row-major arrangement.",
+      "edit_target": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2df-59b8-7eb3-a1be-0f8afc443140\\exec-0c65a401-5ecc-4f79-a5ca-e7fd37130d4a.png",
+      "output": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2df-59b8-7eb3-a1be-0f8afc443140\\exec-91d7d846-e218-43c6-a75a-0f5aa0658325.png"
+    },
+    {
+      "status": "selected_final_spacing_repair",
+      "prompt": "Use case: precise-object-edit.\nInput is the EDIT TARGET: a beautifully designed ten-ring race equipment atlas. All ten ring designs and colors are CORRECT. Preserve them exactly: universal cream-buckle brass ring and glass-caliper ring; amber insect wing-petal ring and green acid crystal antenna ring; cream moss mushroom/mycelium ring and living green vine/spore-lantern ring; brass gear/steam-chamber ring and brass gyro/blue steam-coil ring; violet mirror-shard starwave ring and cyan ocean-glass folded-fin starwave ring.\n\nChange ONLY LAYOUT SCALE AND SPACING. Every complete ring in the input is much too big. Shrink EACH ENTIRE OBJECT to exactly 55% of its current visible width AND height, including every tip, leaf, spore, fold, gear, crystal and antenna. Move each resulting small complete ring to its exact cell center. This is a spacious atlas of TEN SMALL ring miniatures with lots of empty alpha around them. Do not keep the current large object size. ALL objects are scaled as complete units, preserving their exact aspect ratio.\n\nCanvas request exact 2560×1024 PNG, ratio 5:2. Five equal square 512×512 cells across, two rows; grid not drawn. Exact centers at normalized positions (10%,25%),(30%,25%),(50%,25%),(70%,25%),(90%,25%), then (10%,75%),(30%,75%),(50%,75%),(70%,75%),(90%,75%). Row-major order unchanged. Each complete silhouette MAXIMUM 45% of a cell width or height. Require minimum 27.5% totally empty TRANSPARENT margin on every side within EACH cell. NEVER crop, NEVER overlap, no part crosses a cell edge. Keep clear visible open band holes inside every ring and dimensional inside, top and side faces.\n\nLocked style unchanged: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。Bright polished handpainted sunny fantasy, clean deep plum contours, vivid amber/green/brass/violet/azure/cream colors, 2.5D physical wearable rings. No new objects or design alterations. No hands, fingers, people, mannequin or stands.\nTRUE RGBA TRANSPARENT: all exterior pixels and gutters exactly alpha 0, ring inner holes transparent. No background, paper, checkerboard painted in, floor, ground, cast shadow, drop shadow, exterior halo, external glow, mist, stray particles, glitter field, frame, panel, rarity circle, UI, labels, IDs, text, numbers, letters, logo or watermark. Existing mushroom spores belong to that one complete object and shrink together with it; no new spores. Form shading is confined inside the object surfaces.",
+      "edit_target": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2df-59b8-7eb3-a1be-0f8afc443140\\exec-91d7d846-e218-43c6-a75a-0f5aa0658325.png",
+      "output": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2df-59b8-7eb3-a1be-0f8afc443140\\exec-cb54ec60-02ac-432b-96d1-2983cd29f725.png"
+    }
+  ],
+  "proposal_scope": "Artwork proposals only. Proposal identifiers RING01–RING10 do not create runtime equipment definitions; no EQ identifiers, data changes or runtime imports.",
+  "item_descriptions": [
+    {
+      "proposal_id": "RING01",
+      "slot": "ring",
+      "name": "营地铜扣戒",
+      "visual": "厚黄铜实用戒圈配小型乳白铆钉扣件",
+      "race_id": "",
+      "set_family": ""
+    },
+    {
+      "proposal_id": "RING02",
+      "slot": "ring",
+      "name": "测距折尺戒",
+      "visual": "黄铜折叠卡尺戒圈与小型透明玻璃测量片",
+      "race_id": "",
+      "set_family": ""
+    },
+    {
+      "proposal_id": "RING03",
+      "slot": "ring",
+      "name": "辉砂翼瓣戒",
+      "visual": "琥珀虫甲分节戒圈与带浅色翼脉的折叠翼瓣托架",
+      "race_id": "B01",
+      "set_family": "S01"
+    },
+    {
+      "proposal_id": "RING04",
+      "slot": "ring",
+      "name": "酸晶触须戒",
+      "visual": "弯曲几丁质触须环形戒圈与酸绿晶体毒液囊",
+      "race_id": "B01",
+      "set_family": "S02"
+    },
+    {
+      "proposal_id": "RING05",
+      "slot": "ring",
+      "name": "苔光菌冠戒",
+      "visual": "苔绿菌冠伞盖、近距悬浮发光孢子与乳白菌丝根系戒圈",
+      "race_id": "B02",
+      "set_family": "S03"
+    },
+    {
+      "proposal_id": "RING06",
+      "slot": "ring",
+      "name": "荧孢藤环",
+      "visual": "活体缠绕藤蔓戒圈与玻璃质生物荧光孢子灯荚",
+      "race_id": "B02",
+      "set_family": "S04"
+    },
+    {
+      "proposal_id": "RING07",
+      "slot": "ring",
+      "name": "曜铜齿轮戒",
+      "visual": "古黄铜齿轮戒圈与微型透明晶汽舱",
+      "race_id": "B03",
+      "set_family": "S05"
+    },
+    {
+      "proposal_id": "RING08",
+      "slot": "ring",
+      "name": "晶汽陀环戒",
+      "visual": "相互咬合的机械陀螺环带与蓝晶蒸汽线圈",
+      "race_id": "B03",
+      "set_family": "S06"
+    },
+    {
+      "proposal_id": "RING09",
+      "slot": "ring",
+      "name": "镜潮折棱戒",
+      "visual": "镜面透明紫蓝棱镜碎片组成星浪环抱戒圈",
+      "race_id": "B04",
+      "set_family": "S07"
+    },
+    {
+      "proposal_id": "RING10",
+      "slot": "ring",
+      "name": "星浪浮晶戒",
+      "visual": "半透明海玻璃折纸鳍瓣组成戒圈与闪亮星浪冠",
+      "race_id": "B04",
+      "set_family": "S08"
+    }
+  ],
+  "preservation": "Final PNG is a byte-for-byte copy of built-in generated output. Original images are retained. No resizing, cropping, recoloring, alpha adjustments, or other PNG editing.",
+  "limits": [
+    "Built-in tool returned actual 1983×793 instead of requested 2560×1024. All region measurements use actual dimensions.",
+    "Alpha source regions are measured at alpha >=16 with 2 px padding; lower-alpha edge/residue pixels are retained unchanged in the raw PNG."
+  ],
+  "visual_validation": {
+    "independent_review": "passed for order, wearable forms, materials and bright storybook style; preview right-edge uncertainty resolved by raw pixel bounds",
+    "ten_unique_canonical_identities": true,
+    "visible_bands_and_inner_holes": true,
+    "dimensional_handpainted_rings": true,
+    "clipping": false,
+    "overlap": false,
+    "readable_text": false,
+    "painted_background": false
+  },
+  "dimensions": [
+    1983,
+    793
+  ],
+  "sha256": "90ae7bbe6f19507b021887fd51c310713c827c35021330fa3cd3918b9de5b5e8",
+  "layout": {
+    "columns": 5,
+    "rows": 2,
+    "order": [
+      "RING01",
+      "RING02",
+      "RING03",
+      "RING04",
+      "RING05",
+      "RING06",
+      "RING07",
+      "RING08",
+      "RING09",
+      "RING10"
+    ],
+    "nominal_cells": {
+      "RING01": [
+        0,
+        0,
+        397,
+        396
+      ],
+      "RING02": [
+        397,
+        0,
+        396,
+        396
+      ],
+      "RING03": [
+        793,
+        0,
+        397,
+        396
+      ],
+      "RING04": [
+        1190,
+        0,
+        396,
+        396
+      ],
+      "RING05": [
+        1586,
+        0,
+        397,
+        396
+      ],
+      "RING06": [
+        0,
+        396,
+        397,
+        397
+      ],
+      "RING07": [
+        397,
+        396,
+        396,
+        397
+      ],
+      "RING08": [
+        793,
+        396,
+        397,
+        397
+      ],
+      "RING09": [
+        1190,
+        396,
+        396,
+        397
+      ],
+      "RING10": [
+        1586,
+        396,
+        397,
+        397
+      ]
+    }
+  },
+  "alpha_measurement": {
+    "threshold": 16,
+    "padding": 2,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "alpha_zero_fraction": 0.7877240274998267,
+    "visible_pixels_outside_regions": 0,
+    "region_overlap_pairs": 0,
+    "minimum_cell_gutter_fraction": 0.17676767676767677,
+    "per_item": {
+      "RING01": {
+        "alpha_bbox_xywh": [
+          106,
+          124,
+          207,
+          188
+        ],
+        "gutters_left_top_right_bottom": [
+          106,
+          124,
+          84,
+          84
+        ],
+        "visible_alpha_pixels": 26660
+      },
+      "RING02": {
+        "alpha_bbox_xywh": [
+          504,
+          108,
+          216,
+          213
+        ],
+        "gutters_left_top_right_bottom": [
+          107,
+          108,
+          73,
+          75
+        ],
+        "visible_alpha_pixels": 26978
+      },
+      "RING03": {
+        "alpha_bbox_xywh": [
+          886,
+          111,
+          203,
+          205
+        ],
+        "gutters_left_top_right_bottom": [
+          93,
+          111,
+          101,
+          80
+        ],
+        "visible_alpha_pixels": 26878
+      },
+      "RING04": {
+        "alpha_bbox_xywh": [
+          1271,
+          110,
+          217,
+          210
+        ],
+        "gutters_left_top_right_bottom": [
+          81,
+          110,
+          98,
+          76
+        ],
+        "visible_alpha_pixels": 25274
+      },
+      "RING05": {
+        "alpha_bbox_xywh": [
+          1674,
+          99,
+          203,
+          227
+        ],
+        "gutters_left_top_right_bottom": [
+          88,
+          99,
+          106,
+          70
+        ],
+        "visible_alpha_pixels": 29446
+      },
+      "RING06": {
+        "alpha_bbox_xywh": [
+          107,
+          471,
+          215,
+          226
+        ],
+        "gutters_left_top_right_bottom": [
+          107,
+          75,
+          75,
+          96
+        ],
+        "visible_alpha_pixels": 29046
+      },
+      "RING07": {
+        "alpha_bbox_xywh": [
+          490,
+          473,
+          222,
+          230
+        ],
+        "gutters_left_top_right_bottom": [
+          93,
+          77,
+          81,
+          90
+        ],
+        "visible_alpha_pixels": 34889
+      },
+      "RING08": {
+        "alpha_bbox_xywh": [
+          877,
+          483,
+          233,
+          212
+        ],
+        "gutters_left_top_right_bottom": [
+          84,
+          87,
+          80,
+          98
+        ],
+        "visible_alpha_pixels": 35772
+      },
+      "RING09": {
+        "alpha_bbox_xywh": [
+          1270,
+          472,
+          215,
+          232
+        ],
+        "gutters_left_top_right_bottom": [
+          80,
+          76,
+          101,
+          89
+        ],
+        "visible_alpha_pixels": 30721
+      },
+      "RING10": {
+        "alpha_bbox_xywh": [
+          1676,
+          473,
+          201,
+          229
+        ],
+        "gutters_left_top_right_bottom": [
+          90,
+          77,
+          106,
+          91
+        ],
+        "visible_alpha_pixels": 31245
+      }
+    }
+  }
+}

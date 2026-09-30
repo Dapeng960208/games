@@ -1,0 +1,397 @@
+{
+  "texture": "res://assets/generated/enemies/M01_motion_v1.png",
+  "columns": 4,
+  "rows": 4,
+  "clips": {
+    "walk": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "windup": [
+      8,
+      9
+    ],
+    "release": [
+      10
+    ],
+    "recovery": [
+      11
+    ],
+    "hurt": [
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "cycle_distance": 100,
+  "body_height": 232,
+  "image_size": [
+    1254,
+    1254
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "region": [
+        31,
+        43,
+        302,
+        272
+      ],
+      "foot": [
+        191,
+        311
+      ],
+      "pose": "walk_contact_near"
+    },
+    {
+      "index": 1,
+      "region": [
+        340,
+        54,
+        304,
+        255
+      ],
+      "foot": [
+        502,
+        305
+      ],
+      "pose": "walk_down_near"
+    },
+    {
+      "index": 2,
+      "region": [
+        651,
+        54,
+        304,
+        263
+      ],
+      "foot": [
+        810,
+        313
+      ],
+      "pose": "walk_pass_far"
+    },
+    {
+      "index": 3,
+      "region": [
+        959,
+        40,
+        288,
+        272
+      ],
+      "foot": [
+        1120,
+        308
+      ],
+      "pose": "walk_up_far"
+    },
+    {
+      "index": 4,
+      "region": [
+        36,
+        344,
+        298,
+        267
+      ],
+      "foot": [
+        190,
+        607
+      ],
+      "pose": "walk_contact_far"
+    },
+    {
+      "index": 5,
+      "region": [
+        343,
+        351,
+        305,
+        258
+      ],
+      "foot": [
+        502,
+        605
+      ],
+      "pose": "walk_down_far"
+    },
+    {
+      "index": 6,
+      "region": [
+        654,
+        345,
+        300,
+        260
+      ],
+      "foot": [
+        810,
+        601
+      ],
+      "pose": "walk_pass_near"
+    },
+    {
+      "index": 7,
+      "region": [
+        959,
+        346,
+        292,
+        260
+      ],
+      "foot": [
+        1120,
+        602
+      ],
+      "pose": "walk_up_near"
+    },
+    {
+      "index": 8,
+      "region": [
+        31,
+        629,
+        299,
+        294
+      ],
+      "foot": [
+        191,
+        919
+      ],
+      "pose": "windup_raise"
+    },
+    {
+      "index": 9,
+      "region": [
+        360,
+        630,
+        283,
+        291
+      ],
+      "foot": [
+        502,
+        917
+      ],
+      "pose": "windup_full"
+    },
+    {
+      "index": 10,
+      "region": [
+        652,
+        701,
+        304,
+        234
+      ],
+      "foot": [
+        757,
+        917
+      ],
+      "pose": "release_chop"
+    },
+    {
+      "index": 11,
+      "region": [
+        965,
+        646,
+        289,
+        276
+      ],
+      "foot": [
+        1113,
+        918
+      ],
+      "pose": "recovery_guard"
+    },
+    {
+      "index": 12,
+      "region": [
+        33,
+        956,
+        305,
+        247
+      ],
+      "foot": [
+        220,
+        1199
+      ],
+      "pose": "hurt_initial"
+    },
+    {
+      "index": 13,
+      "region": [
+        339,
+        980,
+        284,
+        230
+      ],
+      "foot": [
+        514,
+        1200
+      ],
+      "pose": "hurt_deep"
+    },
+    {
+      "index": 14,
+      "region": [
+        651,
+        955,
+        314,
+        254
+      ],
+      "foot": [
+        812,
+        1205
+      ],
+      "pose": "hurt_rebalance"
+    },
+    {
+      "index": 15,
+      "region": [
+        965,
+        949,
+        286,
+        265
+      ],
+      "foot": [
+        1120,
+        1210
+      ],
+      "pose": "hurt_return"
+    }
+  ],
+  "metadata": {
+    "layout": "Explicit measured regions; the generated atlas is arranged 4 by 4 but is not an evenly divided grid.",
+    "coordinate_space": "Regions are [atlas_x, atlas_y, width, height] in source pixels; foot points are absolute atlas [x,y] coordinates.",
+    "body_height_measurement": "232 source pixels, representative neutral torso/head/ore-to-ground height excluding raised pickaxe. Use one common body scale for all frames.",
+    "foot_measurement": "Ground midpoint beneath claw feet, assessed visually and checked against alpha foot bounds. Release frame 10 uses foot y=917, not the lower pickaxe tip at y=931. Hurt frame 13 excludes the low pickaxe blade.",
+    "alpha_validation": {
+      "range": [
+        0,
+        255
+      ],
+      "visible_threshold": 32,
+      "major_connected_components": 16,
+      "visible_outer_border_pixels": 0,
+      "visible_subject_bounds": [
+        [
+          35,
+          47,
+          329,
+          311
+        ],
+        [
+          344,
+          58,
+          640,
+          305
+        ],
+        [
+          655,
+          58,
+          951,
+          313
+        ],
+        [
+          963,
+          44,
+          1243,
+          308
+        ],
+        [
+          40,
+          348,
+          330,
+          607
+        ],
+        [
+          347,
+          355,
+          644,
+          605
+        ],
+        [
+          658,
+          349,
+          950,
+          601
+        ],
+        [
+          963,
+          350,
+          1247,
+          602
+        ],
+        [
+          35,
+          633,
+          326,
+          919
+        ],
+        [
+          364,
+          634,
+          639,
+          917
+        ],
+        [
+          656,
+          705,
+          952,
+          931
+        ],
+        [
+          969,
+          650,
+          1250,
+          918
+        ],
+        [
+          37,
+          960,
+          336,
+          1199
+        ],
+        [
+          341,
+          984,
+          619,
+          1206
+        ],
+        [
+          655,
+          959,
+          961,
+          1205
+        ],
+        [
+          969,
+          953,
+          1247,
+          1210
+        ]
+      ]
+    },
+    "quality_notes": [
+      "Body proportions and materials are consistent; attack and hit-reaction silhouettes are visibly distinct.",
+      "Facing remains near-frontal three-quarter rather than an unambiguous screen-right profile after the single permitted layout repair.",
+      "Walk uses short steps; several overlapping leg poses have modest left/right separation and need playback validation.",
+      "Thin red and yellow-green edge color fringes remain in the generated transparent source.",
+      "Regions preserve every major visible connected component and add small margins; do not derive regions by dividing image_size by four."
+    ]
+  },
+  "provenance": {
+    "tool": "image_gen.imagegen (built-in)",
+    "source": "assets/generated/enemies/M01_v1.png",
+    "final_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0ee7a-40fd-7552-b7db-a102f42fa2b8\\exec-405752cd-6a0a-48c6-a4f2-ac111ade5d28.png",
+    "initial_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0ee7a-40fd-7552-b7db-a102f42fa2b8\\exec-7cbb9da2-f05e-4286-860d-444f53a681c6.png",
+    "transparent_background": true,
+    "prompt": "Use case: stylized-concept\nAsset type: production game enemy animation sprite atlas, 4 columns by 4 rows, exactly sixteen separate full-body animation frames, transparent PNG.\nInput image 1 is the sole character identity reference. Create new animation poses of exactly this original M01 Rustfang mining monster: squat heavy nonhuman rock-and-rusted-metal industrial creature, narrow orange vertical furnace face, hooded iron head sunk into shoulders, broad chipped rusty plates with traces of ochre industrial paint, quartz chunks embedded in upper back, enormous integrated hinged pickaxe forearm and other crushing claw, short digitigrade mechanical claw legs. Maintain the reference's precise identity, proportions, realistic detailed game art, materials, wear and colors across all 16 frames. This is a monster, never a human in armor.\nCOMPOSITION: square 2048 x 2048 canvas. Invisible strict 4 by 4 grid of sixteen 512 x 512 cells. Do not draw grid or labels. One complete creature inside each cell, same camera, same body scale (standing foot to head about 310px), same 3/4 view FACING SCREEN RIGHT in every cell. Entire body, pickaxe tips and claw feet visible, ample transparent margins on all four sides, no pixels crossing the cell boundaries. Standing ground/foot contact point near local x=256 y=442 in every cell. The monster walks IN PLACE; center of mass stays close to this cell position. It does not traverse the atlas. Pickaxe kept away from frame boundaries even when raised. No shadows, floors, backdrops, glows outside body, text, numbers, labels, particles, flashes, action streaks or effects. Actual transparent alpha around each sprite.\nAnimation order row-major left to right and then top to bottom, distinct anatomical poses:\nROW 1 (frames 0,1,2,3), first half of eight frame walk cycle:\n0 near claw foot forward planted and far foot back, heavy contact pose, opposite shoulder rotation;\n1 near knee compresses under weight, torso down slightly, far heel lifts;\n2 far leg swings through beneath pelvis, planted near foot stays behind, pickaxe counterbalances;\n3 far foot reaches forward airborne, supporting ankle extends, torso rises slightly.\nROW 2 (frames 4,5,6,7), opposite half of same smooth eight frame cycle:\n4 far claw foot forward planted and near foot back, opposite contact;\n5 far knee compresses, near heel lifts, torso down;\n6 near leg swings through pelvis, far leg supports behind;\n7 near foot reaches forward airborne, supporting ankle extends, torso rises, leading smoothly back to frame 0.\nThe claw feet must genuinely alternate with visible knee and ankle articulation; coordinated small hip and shoulder shifts carry the massive weight. Pickaxe and claw counter-swing subtly without identity changes. Never eight copies of a static standing pose.\nROW 3 (frames 8,9,10,11), pickaxe attack sequence:\n8 begin windup: grounded wide feet, torso turns back, integrated pickaxe forearm lifts diagonally overhead;\n9 full anticipation: pickaxe high and back, elbow strongly bent, torso recoils ready to strike, center anchored;\n10 release: a visibly different powerful downward-forward chopping pose, upper torso pitches forward, pickaxe head low ahead toward the ground, knees brace, no added impact effect;\n11 recovery: pickaxe rises from low strike, torso partly straightens, weight centered again.\nROW 4 (frames 12,13,14,15), hit reaction recovery:\n12 initial hit: torso and head snap back, knees soften, claw pulls inward;\n13 deepest recoil/compression: shoulders lean back markedly, abdomen folds, one claw foot braces to stop imbalance, pickaxe droops;\n14 regained balance: torso comes forward halfway, knees recover, pickaxe returns toward guard;\n15 stable guard return: torso upright in characteristic hunched silhouette, both feet grounded, ready to walk.\nThere must be exactly 16 sprites, distinct continuous movement, fixed facing and consistent scale. Preserve silhouette integrity: no extra limbs, no detached tool, no new armor shapes, no human facial features. Detailed crisp production game rendering with neutral consistent top-left lighting and transparent background.",
+    "repair_prompt": "Use case: precise-object-edit\nEdit target: image 1 is the sixteen-frame transparent M01 monster animation atlas. Image 2 is the original monster identity reference.\nMake one targeted production-layout correction to image 1: normalize all 16 sprite compositions to a visibly 3/4 SCREEN-RIGHT facing view and give every frame generous clear transparent margins. Current leftmost pickaxes touch or extend past canvas and row/column boundaries. Fix this completely. Keep EXACTLY 4 columns and 4 rows and same sixteen animation poses in the same row-major order; do not replace poses with generic stances, do not lose visible walking leg alternation, windup attack, downward pickaxe strike and backward hit reaction. The orange facial slit should point diagonally toward SCREEN RIGHT consistently; pickaxe-side placement may mirror as necessary to establish facing right. Preserve original character identity/material and the identity details in image 2.\nInvisible equal 4x4 cell layout on square canvas. Each sprite must be comfortably isolated in its cell with at least 8% of cell width clear margin on every side INCLUDING all weapon tips and claws. Entire feet and weapon are inside its own cell. Same body scale across all 16; leave more air above smaller bent poses rather than rescaling them. Body height head-to-foot about 58% of the cell height at neutral stance; weapon can use remaining space. Ground anchor is centered x=.5 y=.84 per cell. No global positional slide, no turned-back figures, no overlapping neighbors. Preserve transparent background and crisp detailed game art. No grid, labels, numbering, text, ground, shadow, motion streaks or visual effects. Exactly sixteen separate complete monsters.",
+    "repair_count": 1,
+    "image_processing": "Final PNG copied unchanged from built-in image generation output. Pillow/NumPy used only for read-only alpha inspection; no programmatic image edits.",
+    "created_date": "2026-09-30"
+  }
+}

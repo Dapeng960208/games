@@ -1,0 +1,497 @@
+{
+  "schema_version": 2,
+  "hero_id": "CH01",
+  "asset_id": "CH01_actions_front_v4",
+  "bank": "front",
+  "enabled": false,
+  "status": "candidate_axe_waiting_complete_family_and_runtime_review",
+  "weapon_id": "CH01_rockbreaker_axe_v1",
+  "texture": "res://assets/generated/heroes/CH01_actions_front_v4.png",
+  "asset_type": "four_action_pose_atlas",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "width": 1254,
+  "height": 1254,
+  "body_height": 328,
+  "body_height_definition": "One fixed source-pixel standing anatomical scale per bank: idle crown y to projected midpoint of both boot sole contacts. Apply the same scale to every pose; weapon and raised hands excluded. No per-frame fitted scale.",
+  "facing": "southeast",
+  "intended_world_body_height": 88,
+  "intended_screen_body_height": 74.8,
+  "atlas_layout": {
+    "arrangement": "two rows with two separated frames in each row",
+    "uniform_grid": true,
+    "source_rect_format": "[x,y,width,height] in unmodified source pixels",
+    "frame_order": [
+      "idle",
+      "windup",
+      "release",
+      "recovery"
+    ],
+    "instruction": "Use explicit frame cell/region rectangles. All four final v4 cells and padded regions are pairwise disjoint; no blade cropping or neighboring pose remnants."
+  },
+  "anchor_convention": {
+    "coordinates": "Absolute original atlas pixels, x right and y down.",
+    "foot": "Projected midpoint of both boot sole contact centers, rounded to nearest pixel; not lowest boot bounding pixel.",
+    "head": "Crown marker for anatomical body-scale estimation, matching generic v2 contract; not face center.",
+    "grip": "Approximate midpoint of the two hands gripping the axe haft.",
+    "muzzle": "Inherited runtime key: visual center of the sharp OUTER SILVER AXE BLADE EDGE at the contact side. This is not a firearm muzzle or the axe head geometric center.",
+    "measurement": "Read-only visual landmarks, independently reviewed. Feet and crown approximately +/-5 pixels, blade contact edge approximately +/-7 pixels; partly hidden hands approximately +/-8 pixels."
+  },
+  "frames": [
+    {
+      "name": "idle",
+      "cell": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "region": [
+        181,
+        192,
+        400,
+        363
+      ],
+      "foot": [
+        314,
+        524
+      ],
+      "head": [
+        327,
+        196
+      ],
+      "grip": [
+        366,
+        392
+      ],
+      "muzzle": [
+        557,
+        500
+      ],
+      "foot_contacts": [
+        [
+          212,
+          523
+        ],
+        [
+          416,
+          525
+        ]
+      ],
+      "pose": "Grounded low two-handed axe ready.",
+      "alpha_threshold": 16,
+      "alpha_pixels": 69689,
+      "alpha_bounds": {
+        "above_0": [
+          181,
+          193,
+          398,
+          361
+        ],
+        "above_8": [
+          184,
+          196,
+          393,
+          355
+        ],
+        "above_16": [
+          185,
+          196,
+          392,
+          355
+        ],
+        "above_128": [
+          185,
+          197,
+          391,
+          353
+        ]
+      },
+      "normalized_atlas": {
+        "foot": [
+          0.250399,
+          0.417863
+        ],
+        "head": [
+          0.260766,
+          0.1563
+        ],
+        "grip": [
+          0.291866,
+          0.3126
+        ],
+        "muzzle": [
+          0.444179,
+          0.398724
+        ]
+      },
+      "normalized_cell": {
+        "foot": [
+          0.500797,
+          0.835726
+        ],
+        "head": [
+          0.521531,
+          0.3126
+        ],
+        "grip": [
+          0.583732,
+          0.625199
+        ],
+        "muzzle": [
+          0.888357,
+          0.797448
+        ]
+      }
+    },
+    {
+      "name": "windup",
+      "cell": [
+        627,
+        0,
+        627,
+        627
+      ],
+      "region": [
+        756,
+        92,
+        344,
+        452
+      ],
+      "foot": [
+        893,
+        525
+      ],
+      "head": [
+        898,
+        212
+      ],
+      "grip": [
+        920,
+        170
+      ],
+      "muzzle": [
+        1093,
+        170
+      ],
+      "foot_contacts": [
+        [
+          789,
+          525
+        ],
+        [
+          996,
+          525
+        ]
+      ],
+      "pose": "Two hands lift the complete axe overhead; knees and waist load.",
+      "alpha_threshold": 16,
+      "alpha_pixels": 70571,
+      "alpha_bounds": {
+        "above_0": [
+          756,
+          94,
+          344,
+          450
+        ],
+        "above_8": [
+          760,
+          96,
+          336,
+          444
+        ],
+        "above_16": [
+          760,
+          96,
+          336,
+          444
+        ],
+        "above_128": [
+          761,
+          97,
+          334,
+          442
+        ]
+      },
+      "normalized_atlas": {
+        "foot": [
+          0.712121,
+          0.41866
+        ],
+        "head": [
+          0.716108,
+          0.169059
+        ],
+        "grip": [
+          0.733652,
+          0.135566
+        ],
+        "muzzle": [
+          0.871611,
+          0.135566
+        ]
+      },
+      "normalized_cell": {
+        "foot": [
+          0.424242,
+          0.837321
+        ],
+        "head": [
+          0.432217,
+          0.338118
+        ],
+        "grip": [
+          0.467305,
+          0.271132
+        ],
+        "muzzle": [
+          0.743222,
+          0.271132
+        ]
+      }
+    },
+    {
+      "name": "release",
+      "cell": [
+        0,
+        627,
+        627,
+        627
+      ],
+      "region": [
+        119,
+        789,
+        490,
+        360
+      ],
+      "foot": [
+        265,
+        1075
+      ],
+      "head": [
+        342,
+        792
+      ],
+      "grip": [
+        395,
+        972
+      ],
+      "muzzle": [
+        577,
+        1110
+      ],
+      "foot_contacts": [
+        [
+          153,
+          1066
+        ],
+        [
+          377,
+          1084
+        ]
+      ],
+      "pose": "Committed forward/down cleave with extended arms, forward torso and wide braced stance.",
+      "alpha_threshold": 16,
+      "alpha_pixels": 67202,
+      "alpha_bounds": {
+        "above_0": [
+          119,
+          789,
+          490,
+          358
+        ],
+        "above_8": [
+          123,
+          792,
+          482,
+          353
+        ],
+        "above_16": [
+          123,
+          793,
+          482,
+          352
+        ],
+        "above_128": [
+          124,
+          794,
+          480,
+          350
+        ]
+      },
+      "normalized_atlas": {
+        "foot": [
+          0.211324,
+          0.857257
+        ],
+        "head": [
+          0.272727,
+          0.631579
+        ],
+        "grip": [
+          0.314992,
+          0.77512
+        ],
+        "muzzle": [
+          0.460128,
+          0.885167
+        ]
+      },
+      "normalized_cell": {
+        "foot": [
+          0.422648,
+          0.714514
+        ],
+        "head": [
+          0.545455,
+          0.263158
+        ],
+        "grip": [
+          0.629984,
+          0.550239
+        ],
+        "muzzle": [
+          0.920255,
+          0.770335
+        ]
+      }
+    },
+    {
+      "name": "recovery",
+      "cell": [
+        627,
+        627,
+        627,
+        627
+      ],
+      "region": [
+        757,
+        792,
+        402,
+        349
+      ],
+      "foot": [
+        900,
+        1082
+      ],
+      "head": [
+        937,
+        796
+      ],
+      "grip": [
+        948,
+        958
+      ],
+      "muzzle": [
+        1144,
+        1086
+      ],
+      "foot_contacts": [
+        [
+          790,
+          1084
+        ],
+        [
+          1009,
+          1079
+        ]
+      ],
+      "pose": "Low sunk stance and bent elbows retracting the axe across thighs.",
+      "alpha_threshold": 16,
+      "alpha_pixels": 65938,
+      "alpha_bounds": {
+        "above_0": [
+          757,
+          792,
+          402,
+          348
+        ],
+        "above_8": [
+          761,
+          796,
+          395,
+          341
+        ],
+        "above_16": [
+          761,
+          796,
+          394,
+          341
+        ],
+        "above_128": [
+          762,
+          797,
+          392,
+          339
+        ]
+      },
+      "normalized_atlas": {
+        "foot": [
+          0.717703,
+          0.862839
+        ],
+        "head": [
+          0.747209,
+          0.634769
+        ],
+        "grip": [
+          0.755981,
+          0.763955
+        ],
+        "muzzle": [
+          0.912281,
+          0.866029
+        ]
+      },
+      "normalized_cell": {
+        "foot": [
+          0.435407,
+          0.725678
+        ],
+        "head": [
+          0.494418,
+          0.269537
+        ],
+        "grip": [
+          0.511962,
+          0.527911
+        ],
+        "muzzle": [
+          0.824561,
+          0.732057
+        ]
+      }
+    }
+  ],
+  "project_path": "assets/generated/heroes/CH01_actions_front_v4.png",
+  "provenance": "res://assets/generated/heroes/CH01_axe_v1_provenance.json",
+  "qa": {
+    "source_copy_only": true,
+    "source_pixel_edits": "none",
+    "sha256": "7d6b063e82042d383b8f8867a677e32a63744a88d39a16545b09ea7efa079055",
+    "alpha": {
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "minimum": 0,
+      "maximum": 255,
+      "transparent_pixels": 1273116,
+      "total_pixels": 1572516,
+      "transparent_fraction": 0.809604481,
+      "visible_outer_edge_pixels": 0,
+      "inspection": "Read-only Pillow/NumPy alpha scan. No generated PNG pixels edited, resized, repainted, cropped or alpha-keyed."
+    },
+    "visible_pose_components": 4,
+    "rectangular_regions_complete_and_disjoint": true,
+    "review_status": "awaiting_root_family_integration_and_actual_runtime_acceptance",
+    "limitations": [
+      "Four discrete key poses, not an interpolated animation or eight-direction art.",
+      "Final runtime change must replace basic, secondary and walk weapons consistently before enabling generic v4.",
+      "No Godot/import/GPU test performed by this artwork task.",
+      "All four visible silhouettes fit separate 627x627 cells; use explicit regions for tight crop.",
+      "Release foot origin follows the actual sole projection midpoint, approximately 49 pixels left of idle relative to its cell; it is not moved to torso center."
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH01",
+  "enabled": true,
+  "assets": {
+    "actions": {
+      "front": "res://assets/generated/heroes/CH01_storybook_actions_front_v1.json",
+      "back": "res://assets/generated/heroes/CH01_storybook_actions_back_v1.json"
+    },
+    "walk": "res://assets/generated/heroes/CH01_storybook_walk_v1.json",
+    "basic": {
+      "front": "res://assets/generated/heroes/CH01_storybook_basic_front_v1.json",
+      "back": "res://assets/generated/heroes/CH01_storybook_basic_back_v1.json"
+    },
+    "secondary": {
+      "front": "res://assets/generated/heroes/CH01_storybook_secondary_front_v2.json",
+      "back": "res://assets/generated/heroes/CH01_storybook_secondary_back_v1.json"
+    }
+  },
+  "art_direction": {
+    "reference": "artifacts/design-reference-option3.png",
+    "identity_reference": "res://assets/generated/heroes/CH01_storybook_portrait_v1.png",
+    "description": "Hand-painted cel-polished male axe-warrior matching storybook portrait: windswept dark hair, clean-shaven handsome face, orange-red scarf, charcoal/black armor with warm copper-gold trim; single silver-bladed axe, no firearms.",
+    "source_pixel_edits": "none"
+  },
+  "registration": {
+    "intended_world_body_height": 88,
+    "runtime_foot": [
+      0,
+      8
+    ],
+    "source_coordinates": "Absolute original PNG pixels; one measured anatomy height per bank; no per-frame fitting.",
+    "source_facing": "front facing_x1 southeast; back facing_x-1 northwest",
+    "integration": "Atomic full family; root sampler rejects whole family if any bank missing or invalid."
+  },
+  "provenance": {
+    "created_date": "2026-09-30",
+    "generator": "built-in image_gen",
+    "details": "All prompts, original/selected paths, actual dimensions, alpha QA and authored frame anchors are saved in the listed bank metadata JSONs."
+  },
+  "limitations": [
+    "4 authored generic/walk keyposes per view;6 authored basic/secondary poses per view.",
+    "Source images are uncropped raw generated RGBA. Adaptive nonuniform source rectangles used where transparent gutters do not match nominal grid.",
+    "Anatomical anchors are manual estimates; native playback, transition cadence and hit-contact alignment are required runtime checks."
+  ]
+}

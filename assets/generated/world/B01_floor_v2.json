@@ -1,0 +1,7 @@
+{
+  "generated_at": "2026-09-30",
+  "tool": "built-in image_gen",
+  "original": true,
+  "prompt": "Original seamless square tileable texture for a top-down 2D dark industrial fantasy mine-floor game. It must look like an actual flat walkable worn mine floor seen straight from overhead, NEVER a vertical rocky wall. Art direction: beautifully hand-painted restrained slate charcoal with very subtle cool petrol-blue undertones, large quiet smooth worn irregular stone flagstones half buried in packed dark mineral dust, sparse narrow charcoal hairline seams, broad soft flat areas occupying 85 percent of the image, a tiny amount of subdued warm bronze grit at isolated seams only. VERY LOW CONTRAST ground material so bright characters and VFX will stand out. No dramatic lighting, no cast shadows, no raised boulders, no piles of gravel, no railway tracks, no gears, no objects, no text, no symbols, no border. Edge-to-edge flat material, consistent evenly diffuse ambient light, finely crafted painterly game environment finish. It should blend seamlessly at every edge, similar values all over, not vignetted. 1024x1024 square.",
+  "purpose": "Low contrast flat walkable B01 ground; original v1 retained for pit walls"
+}

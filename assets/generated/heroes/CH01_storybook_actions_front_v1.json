@@ -1,0 +1,381 @@
+{
+  "schema_version": 2,
+  "hero_id": "CH01",
+  "asset_id": "CH01_storybook_actions_front_v1",
+  "bank": "front",
+  "facing_x": 1,
+  "enabled": true,
+  "status": "ready_for_complete_family_runtime_review",
+  "texture": "res://assets/generated/heroes/CH01_storybook_actions_front_v1.png",
+  "asset_type": "four_action_pose_atlas",
+  "generator": "built-in image_gen",
+  "transparent_background": true,
+  "width": 1254,
+  "height": 1254,
+  "body_height": 509,
+  "body_height_definition": "One fixed source-pixel anatomy scale, idle crown y67 to projected midpoint of both boot contact centers y576; excludes weapon and raised hands. No per-frame fitted scale.",
+  "facing": "southeast",
+  "intended_world_body_height": 88,
+  "atlas_layout": {
+    "arrangement": "four separate poses in two rows; adaptive disjoint source cells",
+    "uniform_grid": false,
+    "frame_order": [
+      "idle",
+      "windup",
+      "release",
+      "recovery"
+    ],
+    "source_rect_format": "[x,y,width,height] absolute unchanged source pixels",
+    "instruction": "Use explicit region rectangles and absolute source anchors. Row boundary y667 and lower-row column boundary x694 lie in entirely clear alpha>16 gutters; preserves complete silhouettes crossing nominal 627px grid."
+  },
+  "frames": [
+    {
+      "index": 0,
+      "cell": [
+        0,
+        0,
+        627,
+        667
+      ],
+      "region": [
+        120,
+        54,
+        487,
+        569
+      ],
+      "alpha_bounds": [
+        128,
+        62,
+        471,
+        553
+      ],
+      "visible_alpha_pixels": 116159,
+      "cell_margin_pixels_at_alpha16": 28,
+      "visible_cell_edge_pixels": 0,
+      "name": "idle",
+      "foot": [
+        301,
+        576
+      ],
+      "head": [
+        330,
+        67
+      ],
+      "grip": [
+        344,
+        366
+      ],
+      "muzzle": [
+        578,
+        442
+      ],
+      "foot_contacts": [
+        [
+          160,
+          600
+        ],
+        [
+          442,
+          552
+        ]
+      ],
+      "pose": "Low grounded two-handed axe ready.",
+      "alpha_threshold": 16
+    },
+    {
+      "index": 1,
+      "cell": [
+        627,
+        0,
+        627,
+        667
+      ],
+      "region": [
+        678,
+        15,
+        471,
+        623
+      ],
+      "alpha_bounds": [
+        686,
+        23,
+        455,
+        607
+      ],
+      "visible_alpha_pixels": 120559,
+      "cell_margin_pixels_at_alpha16": 23,
+      "visible_cell_edge_pixels": 0,
+      "name": "windup",
+      "foot": [
+        936,
+        599
+      ],
+      "head": [
+        931,
+        155
+      ],
+      "grip": [
+        945,
+        120
+      ],
+      "muzzle": [
+        704,
+        117
+      ],
+      "foot_contacts": [
+        [
+          761,
+          616
+        ],
+        [
+          1111,
+          582
+        ]
+      ],
+      "pose": "Complete axe lifted overhead in a loaded braced stance.",
+      "alpha_threshold": 16
+    },
+    {
+      "index": 2,
+      "cell": [
+        0,
+        667,
+        694,
+        587
+      ],
+      "region": [
+        54,
+        697,
+        634,
+        516
+      ],
+      "alpha_bounds": [
+        62,
+        705,
+        618,
+        500
+      ],
+      "visible_alpha_pixels": 121958,
+      "cell_margin_pixels_at_alpha16": 14,
+      "visible_cell_edge_pixels": 0,
+      "name": "release",
+      "foot": [
+        294,
+        1145
+      ],
+      "head": [
+        353,
+        706
+      ],
+      "grip": [
+        429,
+        966
+      ],
+      "muzzle": [
+        663,
+        1102
+      ],
+      "foot_contacts": [
+        [
+          94,
+          1193
+        ],
+        [
+          494,
+          1097
+        ]
+      ],
+      "pose": "Committed forward/down axe cleave with a wide braced stance.",
+      "alpha_threshold": 16
+    },
+    {
+      "index": 3,
+      "cell": [
+        694,
+        667,
+        560,
+        587
+      ],
+      "region": [
+        701,
+        714,
+        497,
+        496
+      ],
+      "alpha_bounds": [
+        709,
+        722,
+        481,
+        480
+      ],
+      "visible_alpha_pixels": 115792,
+      "cell_margin_pixels_at_alpha16": 15,
+      "visible_cell_edge_pixels": 0,
+      "name": "recovery",
+      "foot": [
+        887,
+        1165
+      ],
+      "head": [
+        933,
+        725
+      ],
+      "grip": [
+        878,
+        988
+      ],
+      "muzzle": [
+        1180,
+        1101
+      ],
+      "foot_contacts": [
+        [
+          738,
+          1187
+        ],
+        [
+          1036,
+          1143
+        ]
+      ],
+      "pose": "Lower stance with bent arms drawing axe back across thighs.",
+      "alpha_threshold": 16
+    }
+  ],
+  "anchor_convention": {
+    "coordinates": "Absolute source pixels, x right/y down.",
+    "foot": "Projected midpoint of both boot sole contact centers, not lowest silhouette pixel.",
+    "head": "Crown landmark for anatomy; not face center.",
+    "grip": "Midpoint of two hands on axe haft.",
+    "muzzle": "Inherited runtime label for center of outer SILVER AXE CUTTING EDGE, not a firearm.",
+    "measurement": "Read-only visual anatomical estimates; crown/feet approximately +/-10 px, partly hidden grip/blade approx +/-12 px. Source PNG has not been cropped/edited."
+  },
+  "provenance": {
+    "created_date": "2026-09-30",
+    "generator": "built-in image_gen",
+    "source": "C:/Users/13326/.codex/generated_images/01a0f260-8e28-78d1-be2b-23f8eef54702/exec-48330eb4-fd1f-458a-9b3d-ba9ec0c2ddd6.png",
+    "references": [
+      "res://assets/generated/heroes/CH01_storybook_portrait_v1.png",
+      "artifacts/design-reference-option3.png"
+    ],
+    "prompt": "Use case: stylized-concept\nAsset type: production transparent CH01 storybook front-view 4-pose game sprite atlas, requested 1024 x 1024 PNG, exact uniform 2-column by 2-row grid with four separated animation keyposes.\nInput images: Image 1 is the exact CH01 character identity and art-style reference. Preserve its adult handsome clean-shaven male face, windswept spiky dark brown hair, orange-red short scarf, matte charcoal-black plate armor, warm copper-gold/brass trim and axe-warrior identity. Extend this precise portrait into a complete body. Image 2 is only the selected option3 sunny fantasy adventure atmosphere and camera/style reference; do not reproduce its UI or scene.\nCharacter: SAME man in every cell, same outfit/anatomy/scale. Complete black/charcoal chest and shoulder armor, copper-gold trims, orange cloth accents, dark fitted armored trousers, matching black/copper greaves and sturdy boots. One large BATTLE AXE held with two hands, distinct single broad silver cutting blade, orange-black axehead side plate and flat rear poll, short thick brown wrapped haft. It is unmistakably an AXE, not a gun, not a rifle, not a flamethrower, not a hammer. No helmet.\nCamera/style: full-body 3/4 top-down isometric game sprite camera elevated about35degrees, character facing southeast toward right+down; face visible. Match the refined clean cel-painted illustration and warm colored outlines of Image1, simplified readable game-sprite detail, warm daylight, bright friendly adventure mood. NOT realistic rendered photograph.\nLayout: exactly four whole characters in four equal invisible square cells, separated by ample clear transparent gutters. Row-major order top-left idle, top-right windup, bottom-left release, bottom-right recovery. Every silhouette and axe entirely inside its own cell with at least40pixels safe gutter on all sides; no crossing between cells or cropping. Fixed camera and identical anatomy size, one shared standing crown-to-boot scale. Projected midpoint of boot ground contacts near center x50%, y84% within each cell; normal idle head crown near y24%, keeping safe space above raised axe.\nPoses: idle=grounded relaxed low two-handed axe ready with clear friendly face. windup=two hands lift the complete axe diagonally overhead while knees/waist load, visibly different from idle. release=committed forward/down axe cleave with extended arms, forward torso and wide braced stance, single axe blade pointing to lower right. recovery=lower sunk stance and bent elbows retracting axe low across thighs, visibly different from release.\nConstraints: exactly four keyposes, no extra figures. Genuinely transparent alpha background and all cell gutters. No ground, scenery, background, shadow, swirls, motion streaks, slash effects, outlines around cells, grid lines, frame, labels, text, UI or watermark. Complete hair, feet, hands and axe uncut in every cell. No full-body gun soldier, no old realistic art.",
+    "source_pixel_edits": "none"
+  },
+  "qa": {
+    "width": 1254,
+    "height": 1254,
+    "frames": [
+      {
+        "index": 0,
+        "cell": [
+          0,
+          0,
+          627,
+          667
+        ],
+        "region": [
+          120,
+          54,
+          487,
+          569
+        ],
+        "alpha_bounds": [
+          128,
+          62,
+          471,
+          553
+        ],
+        "visible_alpha_pixels": 116159,
+        "cell_margin_pixels_at_alpha16": 28,
+        "visible_cell_edge_pixels": 0
+      },
+      {
+        "index": 1,
+        "cell": [
+          627,
+          0,
+          627,
+          667
+        ],
+        "region": [
+          678,
+          15,
+          471,
+          623
+        ],
+        "alpha_bounds": [
+          686,
+          23,
+          455,
+          607
+        ],
+        "visible_alpha_pixels": 120559,
+        "cell_margin_pixels_at_alpha16": 23,
+        "visible_cell_edge_pixels": 0
+      },
+      {
+        "index": 2,
+        "cell": [
+          0,
+          667,
+          694,
+          587
+        ],
+        "region": [
+          54,
+          697,
+          634,
+          516
+        ],
+        "alpha_bounds": [
+          62,
+          705,
+          618,
+          500
+        ],
+        "visible_alpha_pixels": 121958,
+        "cell_margin_pixels_at_alpha16": 14,
+        "visible_cell_edge_pixels": 0
+      },
+      {
+        "index": 3,
+        "cell": [
+          694,
+          667,
+          560,
+          587
+        ],
+        "region": [
+          701,
+          714,
+          497,
+          496
+        ],
+        "alpha_bounds": [
+          709,
+          722,
+          481,
+          480
+        ],
+        "visible_alpha_pixels": 115792,
+        "cell_margin_pixels_at_alpha16": 15,
+        "visible_cell_edge_pixels": 0
+      }
+    ],
+    "transparent_fraction": 0.6695880995805448,
+    "visible_outer_edge_pixels": 0,
+    "corners_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source_copy_only": true,
+    "rectangular_regions_complete_and_disjoint": true,
+    "limitations": [
+      "Four authored key poses; no in-between generation.",
+      "40px prompt gutters were not achieved; complete meaningful-alpha silhouettes retain at least14px adaptive source cell margins.",
+      "All runtime playback and contact placement pending integrator review."
+    ]
+  }
+}

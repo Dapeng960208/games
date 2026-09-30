@@ -1,0 +1,393 @@
+{
+  "schema_version": 2,
+  "hero_id": "CH01",
+  "animation": "walk",
+  "bank": "front",
+  "facing_x": 1,
+  "texture": "res://assets/generated/heroes/CH01_storybook_walk_front_v1.png",
+  "enabled": true,
+  "columns": 2,
+  "rows": 2,
+  "raw_size": [
+    1254,
+    1254
+  ],
+  "requested_size": [
+    1024,
+    1024
+  ],
+  "coordinate_system": "Absolute raw source-image pixels; rectangles are [x,y,width,height]; points are [x,y].",
+  "alpha_threshold": 16,
+  "region_padding_pixels": 8,
+  "body_height": 489,
+  "body_height_basis": {
+    "frame_index": 1,
+    "method": "One fixed per-bank height, estimated from the closest-to-upright passing WALK pose at index 1. Vertical source-pixel distance from alpha>16 hair crown to projected midpoint of both boot sole contact centers. Axe, hands, and full-alpha bounding box height are excluded. This is a walk upright pose estimate, not an idle-sheet measurement.",
+    "head": [
+      899.5,
+      67
+    ],
+    "projected_boot_midpoint": [
+      915,
+      556
+    ],
+    "unrounded_vertical_height": 489,
+    "visual_uncertainty_pixels": 10,
+    "runtime_normalization_standing_height": 88
+  },
+  "sequence": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "cell": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "region": [
+        87,
+        56,
+        516,
+        557
+      ],
+      "foot": [
+        324,
+        546.5
+      ],
+      "head": [
+        322.5,
+        64
+      ],
+      "grip": [
+        355,
+        370
+      ],
+      "muzzle": [
+        590,
+        411
+      ],
+      "pose": "walk_left_leg_forward",
+      "alpha_bounds": [
+        95,
+        64,
+        500,
+        541
+      ],
+      "boot_sole_contacts": [
+        [
+          252,
+          496
+        ],
+        [
+          396,
+          597
+        ]
+      ],
+      "anchor_confidence": {
+        "head": "Measured topmost alpha>16 hair crown.",
+        "foot": "Visual estimate of sole contact centers; approximately +/-10 source pixels.",
+        "grip": "Visible two-hand grip midpoint estimate; approximately +/-10 to15 source pixels.",
+        "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+      }
+    },
+    {
+      "index": 1,
+      "cell": [
+        627,
+        0,
+        627,
+        627
+      ],
+      "region": [
+        670,
+        59,
+        532,
+        551
+      ],
+      "foot": [
+        915,
+        556
+      ],
+      "head": [
+        899.5,
+        67
+      ],
+      "grip": [
+        942,
+        383
+      ],
+      "muzzle": [
+        1190,
+        421
+      ],
+      "pose": "walk_legs_passing",
+      "alpha_bounds": [
+        678,
+        67,
+        516,
+        535
+      ],
+      "boot_sole_contacts": [
+        [
+          910,
+          592
+        ],
+        [
+          920,
+          520
+        ]
+      ],
+      "anchor_confidence": {
+        "head": "Measured topmost alpha>16 hair crown.",
+        "foot": "Visual estimate of sole contact centers; approximately +/-10 source pixels.",
+        "grip": "Visible two-hand grip midpoint estimate; approximately +/-10 to15 source pixels.",
+        "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+      }
+    },
+    {
+      "index": 2,
+      "cell": [
+        0,
+        627,
+        627,
+        627
+      ],
+      "region": [
+        84,
+        662,
+        543,
+        546
+      ],
+      "foot": [
+        328,
+        1141.5
+      ],
+      "head": [
+        326.5,
+        670
+      ],
+      "grip": [
+        367,
+        970
+      ],
+      "muzzle": [
+        620,
+        1010
+      ],
+      "pose": "walk_right_leg_forward",
+      "alpha_bounds": [
+        92,
+        670,
+        530,
+        530
+      ],
+      "boot_sole_contacts": [
+        [
+          218,
+          1094
+        ],
+        [
+          438,
+          1189
+        ]
+      ],
+      "anchor_confidence": {
+        "head": "Measured topmost alpha>16 hair crown.",
+        "foot": "Visual estimate of sole contact centers; approximately +/-10 source pixels.",
+        "grip": "Visible two-hand grip midpoint estimate; approximately +/-10 to15 source pixels.",
+        "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+      }
+    },
+    {
+      "index": 3,
+      "cell": [
+        627,
+        627,
+        627,
+        627
+      ],
+      "region": [
+        692,
+        660,
+        534,
+        550
+      ],
+      "foot": [
+        921,
+        1154.5
+      ],
+      "head": [
+        910,
+        668
+      ],
+      "grip": [
+        963,
+        984
+      ],
+      "muzzle": [
+        1212,
+        1026
+      ],
+      "pose": "walk_opposite_passing",
+      "alpha_bounds": [
+        700,
+        668,
+        518,
+        534
+      ],
+      "boot_sole_contacts": [
+        [
+          898,
+          1117
+        ],
+        [
+          944,
+          1192
+        ]
+      ],
+      "anchor_confidence": {
+        "head": "Measured topmost alpha>16 hair crown.",
+        "foot": "Low confidence; screen-left trailing sole occluded, midpoint inferred. Other visible boot contact center visually estimated.",
+        "grip": "Visible two-hand grip midpoint estimate; approximately +/-10 to15 source pixels.",
+        "muzzle": "Legacy name retained: outer silver axe cutting-contour center, visually estimated to approximately +/-10 to15 source pixels."
+      }
+    }
+  ],
+  "alphaQA": {
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "fully_transparent_fraction": 0.6858200488898046,
+    "visible_alpha16_touches_cell_edges": false,
+    "visible_alpha16_edge_pixel_count": 0,
+    "all_cell_edges_fully_transparent": false,
+    "maximum_cell_edge_alpha": 1,
+    "source_edge_noise_note": "Sparse source pixels of alpha=1 remain on some cell edges. They are below the alpha>16 meaningful silhouette threshold. Raw PNG was preserved unchanged.",
+    "requested_minimum_gutter_pixels": 40,
+    "minimum_gutter_alpha16_pixels_by_frame": [
+      22,
+      25,
+      5,
+      36
+    ],
+    "requested_40px_gutters_fully_met": false,
+    "frames": [
+      {
+        "index": 0,
+        "gutters_alpha16_pixels": {
+          "left": 95,
+          "top": 64,
+          "right": 32,
+          "bottom": 22
+        },
+        "nonzero_alpha_edge_pixel_count": 9,
+        "max_cell_edge_alpha": 1,
+        "alpha_any_bounds_local": [
+          33,
+          9,
+          627,
+          627
+        ]
+      },
+      {
+        "index": 1,
+        "gutters_alpha16_pixels": {
+          "left": 51,
+          "top": 67,
+          "right": 60,
+          "bottom": 25
+        },
+        "nonzero_alpha_edge_pixel_count": 0,
+        "max_cell_edge_alpha": 0,
+        "alpha_any_bounds_local": [
+          1,
+          39,
+          605,
+          623
+        ]
+      },
+      {
+        "index": 2,
+        "gutters_alpha16_pixels": {
+          "left": 92,
+          "top": 43,
+          "right": 5,
+          "bottom": 54
+        },
+        "nonzero_alpha_edge_pixel_count": 44,
+        "max_cell_edge_alpha": 1,
+        "alpha_any_bounds_local": [
+          0,
+          0,
+          627,
+          627
+        ]
+      },
+      {
+        "index": 3,
+        "gutters_alpha16_pixels": {
+          "left": 73,
+          "top": 41,
+          "right": 36,
+          "bottom": 52
+        },
+        "nonzero_alpha_edge_pixel_count": 15,
+        "max_cell_edge_alpha": 1,
+        "alpha_any_bounds_local": [
+          9,
+          5,
+          611,
+          627
+        ]
+      }
+    ]
+  },
+  "visualQA": {
+    "direction": "Southeast front three-quarter, elevated game camera",
+    "identity_consistent_with_portrait": true,
+    "exactly_four_full_body_poses": true,
+    "complete_uncut_weapon_and_body": true,
+    "no_background_floor_shadow_text_or_effects": true,
+    "two_hand_axe_carry": "Both hands visible at hip/waist height",
+    "pose_label_note": "pose fields describe requested phase intent. Generated front bank has two visually similar pose families; alternating anatomical footfalls are not proven in every frame.",
+    "walk_cycle_review": "Left-column extended poses and right-column gathered poses are readable. Four-phase cadence and seamless wraparound require in-game playback; frame 3 trailing boot is occluded.",
+    "framing_note": "Generated sprites occupy more cell height than the requested head22%/foot82% guide. Metadata uses actual source landmarks rather than grid-center anchors."
+  },
+  "provenance": {
+    "date": "2026-09-30",
+    "tool": "image_gen.imagegen",
+    "mode": "built-in",
+    "source": "C:/Users/13326/.codex/generated_images/01a0f2a7-db69-7630-94fc-5c20f878ff9b/exec-9cf2aa33-8bdf-4d58-9c04-412ca7bff590.png",
+    "references": [
+      "C:/webdev/games/assets/generated/heroes/CH01_storybook_portrait_v1.png",
+      "C:/webdev/games/artifacts/design-reference-option3.png"
+    ],
+    "full_prompt": "Use case: stylized-concept.\nAsset type: production transparent WALK sprite atlas, CH01 Luo Zhen / 罗砧, FRONT direction.\nInput images: Image 1 at C:/webdev/games/assets/generated/heroes/CH01_storybook_portrait_v1.png is the strict character identity and costume reference. Image 2 at C:/webdev/games/artifacts/design-reference-option3.png is the selected bright storybook adventure style, palette, elevated game camera and character proportions reference. Make a new full-body walking animation atlas from these references.\nPrimary request: A square requested 1024 x 1024 PNG with real transparent alpha, uniform invisible 2 x 2 equal cells, EXACTLY four separate full-body keyframes of the SAME adult male axe warrior. These four sprites are one animation sequence, not four different characters.\nCharacter identity: handsome ADULT clean-shaven male, dark brown windswept spiky hair, no helmet, bright orange-red scarf, charcoal/black plate and leather armor with copper/gold trim and small orange accents. Strong adult proportions, matching anatomy and armor design in every frame. He has ONE large single battle axe, orange-black axe core with a broad silver cutting edge, wooden/dark handle and gold fittings, consistent with the reference. NO gun, NO hammer. Every sprite holds the same axe neutrally in TWO hands at hip height; carry pose is consistent, no attacking or swing.\nCamera and facing: full body, true top-down three-quarter isometric game sprite camera elevated about 35 degrees. FRONT facing southeast, diagonally toward screen RIGHT and DOWN, never straight forward and never toward screen left. Both upper/front torso and handsome face visible. Maintain the exact same viewing angle and body scale in all four cells.\nFrame layout, row-major: top-left frame 0 = left leg forward, right leg behind; top-right frame 1 = legs passing each other, planted feet closer; bottom-left frame 2 = right leg forward, left leg behind; bottom-right frame 3 = opposite passing pose. Clear readable four-keyframe walking motion, restrained shoulder and scarf movement. Keep torso/head height and axe carry stable; alternate walking strides, NOT idle duplicates, NOT an attack, NOT jumping.\nComposition: each sprite comfortably fits inside its own invisible half-width half-height cell. Head crown near 22 percent of each cell height; projected feet midpoint near 82 percent of cell height. Generous at least 40 source pixel empty transparent gutters on every cell edge, including around the axe. Complete uncut boots, fingers, hair, scarf and axe. All four sprite scales equal, each centered over its own boot contact midpoint. Exactly four poses, no extra mini poses or ghost duplicates.\nStyle: refined hand-painted fantasy game illustration with crisp colored outlines, rich cel-painted shading, warm bright storybook mood, readable shapes at small game size. Match the style and adult hero of the references. Bright warm highlights, no photorealism, no plastic 3D render, no pixel art.\nBackground: true transparent outside sprites AND between all four cells, no floor, no shadows, no ground ellipse, no scenic background, no glow, no movement streaks, no visual effects.\nText: none.\nAvoid: text, labels, grid lines, borders, sheet dividers, watermark, five or more poses, extra weapons, inconsistent costume, gun, hammer, helmet, beard, child/chibi proportions, frontal orthographic camera, weapons clipping adjacent cells, any opaque background.",
+    "requested_size": [
+      1024,
+      1024
+    ],
+    "actual_size": [
+      1254,
+      1254
+    ],
+    "raw_png_copied_unchanged": true,
+    "original_retained": true,
+    "sha256": "577fc109459f551e3ae387ece4289cbb55529d8c385a7d7bb6f01e550797a6d0",
+    "image_processing": "Pillow used only to read dimensions/alpha and measure bounding boxes. No pixel edits, resizing, compositing, or alpha cleanup."
+  }
+}

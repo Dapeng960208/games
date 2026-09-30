@@ -1,0 +1,106 @@
+{
+  "texture": "res://assets/generated/props/storybook_beacons_v1.png",
+  "regions": {
+    "beacon_heal": [
+      145,
+      20,
+      348,
+      463
+    ],
+    "beacon_resource": [
+      596,
+      20,
+      347,
+      464
+    ],
+    "beacon_guard": [
+      1046,
+      20,
+      347,
+      464
+    ],
+    "beacon_haste": [
+      145,
+      502,
+      349,
+      465
+    ],
+    "beacon_damage": [
+      596,
+      502,
+      348,
+      465
+    ],
+    "beacon_dormant": [
+      1046,
+      502,
+      347,
+      464
+    ]
+  },
+  "anchors": {
+    "beacon_heal": [
+      175,
+      434
+    ],
+    "beacon_resource": [
+      173,
+      434
+    ],
+    "beacon_guard": [
+      174,
+      434
+    ],
+    "beacon_haste": [
+      175,
+      435
+    ],
+    "beacon_damage": [
+      173,
+      435
+    ],
+    "beacon_dormant": [
+      174,
+      435
+    ]
+  },
+  "ground_footprints": {
+    "beacon_heal": [
+      10,
+      324,
+      330,
+      132
+    ],
+    "beacon_resource": [
+      8,
+      324,
+      330,
+      132
+    ],
+    "beacon_guard": [
+      9,
+      324,
+      330,
+      132
+    ],
+    "beacon_haste": [
+      10,
+      325,
+      330,
+      132
+    ],
+    "beacon_damage": [
+      8,
+      325,
+      330,
+      132
+    ],
+    "beacon_dormant": [
+      9,
+      325,
+      330,
+      132
+    ]
+  },
+  "coordinate_convention": "regions are atlas pixels; anchors and ground_footprints are crop-local projected base coordinates; no new collision is implied"
+}

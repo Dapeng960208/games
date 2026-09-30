@@ -1,0 +1,7 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Create a single ORIGINAL transparent game UI frame asset for a premium 2D fantasy action RPG character equipment screen, landscape aspect approximately 3:2. This is an in-game forged character dossier frame, NOT a web card, NOT an infographic, NOT an entire mockup. Entire large inner opening is transparent, exterior outside frame transparent too. Thin yet beautifully crafted irregular aged warm bronze and dark teal enameled metal outer rim, engraved mineral vein filigree, tasteful hammered metal edge light, several tiny turquoise crystal inlays, a subtle warm amber crystal at the upper center, hand-painted game art quality. Angular octagonal beveled corners, restrained asymmetric mechanical clasps, bottom rim slightly wider, upper side elegant nameplate bar with EMPTY transparent center, no lettering. The usable central opening occupies 85 percent of the asset; border must remain narrow. Warm silver edge highlights, softly luminous cyan details, not black/gloomy, not overdecorated steampunk gears. Front-facing flat orthographic UI ornament, no perspective or 3D scene, no background, no cast shadow into the center, no texts, no numbers, no icons inside, no gradients filling the center, no watermark. Designed to overlay a game character portrait and live editable statistics, crisp readable silhouette at 1000x620 displayed size.",
+  "original": true,
+  "transparent_background": true,
+  "generated_at": "2026-09-30"
+}

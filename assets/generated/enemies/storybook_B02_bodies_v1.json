@@ -1,0 +1,676 @@
+{
+  "asset": "storybook_B02_bodies_v1.png",
+  "date": "2026-09-30",
+  "biome_id": "B02",
+  "race": "苔光菌灵",
+  "source": "Built-in image_gen.imagegen. Selected raw RGBA PNG copied byte-for-byte; no pixel editing, resizing, clipping, compositing or alpha alteration.",
+  "use_case": "stylized-concept",
+  "reference": {
+    "path": "C:\\Users\\13326\\AppData\\Local\\Temp\\codex-clipboard-02f51a21-0c7d-42c9-825e-c4f6367709c9.png",
+    "role": "Latest user reference, visually inspected; sunny bright handpainted fantasygame2.5D material volume and cream/jade/coral/blue-violet palette."
+  },
+  "locked_standard": "明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。",
+  "latest_creative_override": "B02 unifiedrace苔光菌灵: imaginative livingplants,mushrooms,animatedflora. Existing IDs/roles/radii stay; oldsilhouettes inspire rolecues only. BO02 rendered as菌林母株, massiveancientTREE+MUSHROOMqueen withrootarms/fungalcanopy. Industrialdrill/horrormutantbug identity removed.",
+  "item_source": "C:\\webdev\\games\\data\\enemies.json",
+  "dimensions": [
+    1983,
+    793
+  ],
+  "initial_requested_dimensions": [
+    2560,
+    1024
+  ],
+  "grid": {
+    "columns": 5,
+    "rows": 2,
+    "order": [
+      "M10",
+      "M11",
+      "M12",
+      "M13",
+      "M14",
+      "M15",
+      "M16",
+      "M17",
+      "M18",
+      "BO02"
+    ]
+  },
+  "native_output_preserved": true,
+  "transparent_background": true,
+  "selected_original": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-e95d658b-32cb-4b3b-b1dc-903cc9735007.png",
+  "collision_metadata_authority": "/root/combo_flow confirmed catalogue.navigation_radius is used by actual enemy.gd room.move_actor; BO02 BossProfiles.STATS.navigation_radius=60. Metadata does not change gameplay collision.",
+  "generation_history": [
+    {
+      "attempt": 1,
+      "type": "initialcataloguegeneration",
+      "source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-d68b2d9c-f0bb-43f5-bd0d-24d0f3234fed.png",
+      "prompt": "Use case: stylized-concept.\nAsset type: production full-body enemy sprite atlas for a fantasy 2.5D game, one PNG with true transparency.\nPrimary request: create exactly TEN distinct FULL-BODY monsters, 5 columns by 2 rows, requested canvas EXACTLY 2560x1024 pixels (512x512 per cell). The order is fixed and row-major: M10,M11,M12,M13,M14 on the first row; M15,M16,M17,M18,BO02 on the second row. Each entire body is complete and isolated in its own cell, no extra monster and no duplicates. Center each silhouette in its own cell. Each monster including roots, long necks, limbs, weapons, fungal sails, tails and eight boss roots must fit inside the CENTRAL 60 PERCENT of its cell. At least 20 percent fully blank transparent gutter on all four cell edges. Invisible grid, ample empty gaps, no object overlap and no clipping.\nLocked art direction, exact Chinese standard: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。\nReference art direction: the provided game image has warm cream and pale-stone highlights, saturated coral armor, jade and teal magical forms, blue-violet facets, gold/brass machinery, painted surface detail, crisp deep-plum silhouette linework, clear solid top and side planes, strong three-quarter volumes. Use this rendering standard for the monsters only. DO NOT reproduce scenery, UI, floor, hero or other subjects from the reference.\nView/pose: ALL TEN monsters face RIGHT, their front/head/proboscis/drill nose pointing toward the image's right edge. A consistent HIGH CAMERA looking down at a near-isometric THREE-QUARTER FRONT angle. Full idle bodies in a stable ground-contact stance, all legs and feet clearly readable and complete. For the naturally drifting fungal sail mother, its three hanging brood cords define the complete lower body and ground anchor; do not invent humanoid legs. None are side-profile flat silhouettes or front-facing icons. No cropped portraits.\nStyle: bright polished HAND-PAINTED CARTOON fantasy enemies with genuinely physical 2.5D thickness, rounded or faceted anatomy as appropriate, clear overlapping limbs, painted texture, cream sunlight highlights, crisp dark-plum outlines. Threatening predatory creatures with sharp attack appendages and watchful narrow eyes where anatomically appropriate. Dangerous monsters, NOT cute mascots, toys or plush companions. Keep the exact organic fungal/root/insect identities. Steam machinery belongs where specified, especially the boss drill wreckage; do NOT turn all the organic monsters into robots.\nColor: FULL COLOR and strongly differentiated materials. Fresh jade greens, coral pink/red/orange fungal tissues, blue-violet shells/crowns, cream highlights, restrained polished gold/brass on mechanical remnants. Each monster has its own varied palette and clear anatomy. NO overall brown/rusty mining look, no sepia, no monochrome grey, no gloomy shadow creatures, no photorealism, no flat glyphs, no repeated recolored bodies.\nSubjects, exact order and identity:\nTOP ROW:\n1. M10 芽足刺客 / Budfoot Assassin. A sharp organic plant assassin: TWO bent ROOT LEGS support an UPSIDE-DOWN SPROUT HEAD, one single long arm is a sharpened pointed branch thrust-weapon. Jade root legs, coral-red downward-growing bud/head with cream leaf folds, tapered woody ivory branch blade aimed toward RIGHT. The asymmetric thin pointed branch arm and inverted bud head must be unmistakable. Two complete root feet in stable idle stance.\n2. M11 囊喉喷客 / Sac-Throat Spitter. A low quadrupedal fungal/plant artillery beast on FOUR feet, with a LONG NECK leaned back and a BROAD inflated segmented THROAT SAC below its right-facing mouth. Jade/coral translucent organic throat tissue, blue-violet upper scales and cream highlights. The wide hanging throat pouch is the strongest silhouette feature, not a human face. Four complete short root-like feet; no acid droplets or projectile outside body.\n3. M12 菌帆漂母 / Fungal-Sail Driftmother. A sinister organic mushroom mother with a BROAD HORIZONTAL torn mushroom canopy spread like a RIPPED SAIL, and EXACTLY THREE hanging BROOD CORDS ending in organic pod sacs. Coral and violet canopy with cream gills, jade tendril cords. Three complete brood ropes/pods visible and separated; right-oriented stalk and face feature if present. Full sail and all hanging sacs within cell. No detached babies.\n4. M13 切根螳虫 / Root-Cutting Mantis. A dangerous jade/coral fungal mantis with TWO scissor-like FORELIMBS, ONE LONG and ONE SHORT, and a jagged sawtooth line of ROOT WHISKERS on its back. Blue-violet carapace, jade articulated legs, cream sharp cutting edges. Narrow predatory head pointing RIGHT; the unequal scissor arms and serrated root back must be clear. All complete legs planted.\n5. M14 灰绒幼团 / Grey-Fuzz Broodling. A small organic FUZZ-EDGED ROLLING BALL with ONE short root TAIL, no hard metal corners and no armor. Pearl/cream LIGHT GREY fuzz with blue-violet shadows and faint jade organic strands, a small narrow dangerous eye/slit oriented RIGHT rather than a cute big-eyed face. A fuzzy spherical spore creature with short root appendages contacting the imaginary ground, short root tail trailing LEFT. Entire body and tail visible. No cute smile.\nBOTTOM ROW:\n6. M15 管蕈潜刺 / Pipe-Fungus Burrow Stinger. An organic ambusher with a prominent VERTICAL CHIMNEY-SHAPED MUSHROOM CROWN, an upright hollow tubular coral/violet fungal cap and rooted stalk body. Jade rooted lower body, pale cream inner fungal gills. Exposed FULL-BODY idle form above ground, sharp root attack tips pointing RIGHT, complete root feet. Show the chimney-like vertical fungal crown rather than a metal chimney; no soil mounds or ground.\n7. M16 蜜露偷食者 / Honeydew Thief. A low insectoid/plant beast with a FLAT ROUND BACK POUCH, one LONG SUCKING PROBOSCIS pointed RIGHT, and FOUR hurried SHORT LEGS in a planted idle pose. Jade and turquoise body, coral/amber semi-translucent flattened dorsal sac with cream highlights, slender ivory proboscis. All four feet and the full long sipping tube within cell; no stolen crate or separate object.\n8. M17 孢钟鼓手 / Spore-Bell Drummer. A dangerous stout fungal creature whose FOUR-PETAL BELL-SHAPED MUSHROOM CROWN covers a ROUND DRUM BELLY, producing a distinctive ring-like overall silhouette. Blue-violet and coral four bell petals, cream gills, jade stubby root legs and copper-gold-looking organic warm highlights on the round resonant belly. Crown has exactly four petals, clear layered dimensional bell shape and visible drum abdomen, right-oriented predatory feature. Full body and planted lower appendages.\n9. M18 嚼墙钳兽 / Wall-Chewing Pincer Beast. A broad low TRAPEZOIDAL monster with HUGE WIDE FLATTENED FRONT JAWS and a back shell made from overlapping TILE-LIKE FUNGAL PLATES. Right-facing formidable pincers, not a human mouth. Coral and blue-violet shingled fungus carapace, jade squat limbs, ivory jaw blades. Entire broad jaws, all short planted legs and layered fungal roof/back visible. Low heavy shape clearly different from M16.\n10. BO02 温床织母 / Nursery Weaver Mother, the biome B02 BOSS. A large terrifying organic-mechanical fungal queen: a SEMITRANSPARENT mushroom CROWN covers recognizable MINING DRILL WRECKAGE, and EXACTLY EIGHT THICK ROOT LIMBS radiate in a PETAL-LIKE silhouette. Full eight roots with separate visible contact tips; countable, all complete inside cell. The body has a luminous jade/coral semitranslucent fungal dome with cream gills and blue-violet crown lobes. Within and beneath it is polished gold/brass ruined drill apparatus with a clear drill nose facing RIGHT. The eight thick jade/coral roots curve into a stable petal ring around the mechanical core. Looks powerful and dangerous, not a cute mushroom or a copy of one smaller enemy. Keep the complete boss within its one cell; no extra floor petals or surrounding effects.\nLighting/background: consistent warm upper-left sunlight painted onto body surfaces only. TRUE alpha-zero transparency outside each complete body and between every body. NO baked checkerboard, white/colored background, scenery, floor, terrain, ground rings, cast shadows, external glows, dust, fog, particle spray or disconnected effects.\nAvoid: NO text, names, letters, numerals, cell frames, labels, UI or floor. NO one-tone brown/rust/grey bodies. NO flat icons, photorealism, cute chibi mascots. NO missing feet, cropped weapons/tails, overlapping cells, duplicated silhouettes, extra monsters. Exactly ten distinct complete FULL-COLOR bodies. All face RIGHT.",
+      "selected": false,
+      "reason": "Superseded by latest user unified botanicalclan."
+    },
+    {
+      "attempt": 2,
+      "type": "newuserclangeneration",
+      "source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-7574fa13-aa56-4a9c-8c26-f6817db4e498.png",
+      "prompt": "Use case: stylized-concept.\nProduction game asset: ONE truly transparent FULL-BODY enemy atlas, exactly 10 characters, 5 columns by 2 rows. Requested canvas 2560x1024, square cells512x512. Row-major order MUST be M10,M11,M12,M13,M14 / M15,M16,M17,M18,BO02. No labels or visible grid.\nNEW USER CREATIVE DIRECTION OVERRIDES old silhouettes: B02 is a single coherent fantasy race named 苔光菌灵 (Mossglow Fungal Spirits). They are living PLANTS, MUSHROOMS and ANIMATED FLORA. ALL ten must clearly belong to this imaginative botanical clan. They are fierce magical enemies, not cute mascots. Do NOT use mutant insects, reptilian monsters, industrial bots, mechanical drill parts or horror brood. The boss is renamed visually 菌林母株, a massive ANCIENT TREE + MUSHROOM QUEEN.\nLocked standard EXACT: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。\nUse the provided user reference game's sunny handpainted 2.5D rendering style: saturated fresh jade, flower coral, sky blue, blue-violet spores, warm cream sunlight highlights, crisp deep-plum outlines and simple clean painted material planes. This is lively bright cartoon fantasy botanical character design, not gritty detailed horror. Visible thickness, top surfaces, side planes, overlapping leaf layers, dimensional stems and root feet. Near-isometric HIGH CAMERA looking DOWN 45 degrees, full three-quarter FRONT angle, all ten face RIGHT. No photorealistic textures, rusty brown, dark-grey bodies, heavy gritty scales, frightening gross gore or flesh, humanoid skin, cutesy giant eyes or smiles.\nCritical layout: Show every ENTIRE complete body with all branches, leaves, pods, tails, rootarms and feet. Place each silhouette centered in the CENTRAL 55 PERCENT of its own square cell, no part may extend beyond this central area. Keep at least 22 percent completely blank transparent gutter on ALL FOUR SIDES of EVERY cell. Objects must be MUCH SMALLER than a tight contact sheet. No overlaps and no clipping; large empty gaps. Even the boss fits inside its one cell. All grounded beings stand with visible planted root feet in a stable idle pose; the driftmother's three low tendril pods form its complete lower anchor. No floor and no shadows.\nDistinct clan character briefs, fixed order:\nTOP row:\n1. M10 芽足刺客, Mossglow Thorn-Spear Bud Spirit. A lean angular living plant warrior with a coral upside-down FLOWER BUD head, cream petals forming a sharp leaf mask, TWO curved JADE ROOT legs with clearly planted feet, and ONE long thorn-branch SPEAR ARM angled toward RIGHT. No reptile anatomy. Green leafy shoulders, fresh flowercoral bud, crisp ivory thorn. Fierce narrow slit eyes in the leaf mask. The lean inverted bud and thorn arm define the assassin.\n2. M11 囊喉喷客, Mossglow Gourd-Throat Spitter. A low rooted PLANT beast formed from a rounded jade seedbody, FOUR short ROOT feet, a long curling STEM NECK leaned back and a large CORAL/AMBER GOURD throat sac under its right-facing small FLOWER trumpet mouth. Blue-violet leaf frill behind neck. Semi-translucent botanical gourd material and cream highlights, no scales, no frog/reptile face. Silhouette wide lower body and clear oversized throat pouch.\n3. M12 菌帆漂母, Mossglow Sail-Cap Mother. A broad HORIZONTAL coral/blue-violet MUSHROOM CANOPY shaped like a torn sailing leaf, cream gills underneath, jade stalk with leaf-mask face oriented RIGHT. EXACTLY THREE hanging jade VINE CORDS, each ending in one flowering SEED POD. Three low tendril pods are all complete and distinctly separated. A regal botanical hovering guardian, no legs invented, no extra babies or detached effect.\n4. M13 切根螳虫, Mossglow Scissor-Fern Reaper. A lean animated FERN warrior with a jade leafmask head facing RIGHT, BLUE-VIOLET leafy carapace and serrated ROOT/FERN FRONDS along its back. TWO ivory/coral scissor LEAF-BLADE arms are CLEARLY UNEQUAL, one long and one short. Sturdy root legs, not insect segmented legs, no mantis insect face. The crossed unequal cutting leafblades and serrated frondback are the flanker's identity.\n5. M14 灰绒幼团, Mossglow Fuzzy Spore Bud. A small spherical pearl-CREAM/light-grey fuzzy MUSHROOM SPORE creature with blue-violet soft petal fuzz, one small jade ROOT TAIL trailing LEFT, tiny planted root feet, and a small fierce right-facing LEAF SLIT FACE. Purely organic with no armor and no metal. Spherical fluffy silhouette remains simple, tiny narrow eyes, no cute smile or mascot.\nBOTTOM row:\n6. M15 管蕈潜刺, Mossglow Trumpet-Fungus Stinger. A tall animated MUSHROOM STALK creature whose crown is a clearly VERTICAL HOLLOW TRUMPET/CHIMNEY-SHAPED fungal tube in coral and blue-violet, with visible cream inner gills. Jade leafy body, two sharp root spike arms oriented RIGHT and two thick complete planted root feet. Botanical tubular mushroom, no industrial pipe and no soil floor.\n7. M16 蜜露偷食者, Mossglow Dew-Pouch Gatherer. A low FOUR-ROOT-FOOT creature formed from layered jade LEAVES and a flattened rounded coral/amber SEED SACK on its back. A long slender ivory sucking VINE/flower PROBOSCIS reaches RIGHT; blue-violet leaf crest. Expresses a sneaky plant thief, not a beetle or reptile, no hard metallic corners. Complete drinking tube, sack and all four feet.\n8. M17 孢钟鼓手, Mossglow Bell-Cap Drummer. A stout animated fungal keeper with a ROUND botanical resonant drum abdomen and EXACTLY FOUR large blue-violet/coral BELL-SHAPED MUSHROOM PETALS around its cream-gilled crown. Jade root limbs and fierce leafmask oriented RIGHT. Four petal crown surrounds the round amber/coral drum belly, stable planted stance. No mechanical metal drum, no rings floating around it.\n9. M18 嚼墙钳兽, Mossglow Stonebite Pitcher Guardian. A broad low living PLANT creature with a huge RIGHT-FACING pair of wide flat IVORY LEAF JAWS like a fierce carnivorous pitcher flower. Back is overlapping TILE-LIKE blue-violet/coral MUSHROOM PLATES, jade squat ROOT legs. Low trapezoidal silhouette, clear strong jaws and fungal roof, no insect/reptilian armor and no teeth made of human flesh. Complete jaws and short rootfeet.\n10. BO02 菌林母株, the Mossglow ANCIENT TREE AND MUSHROOM QUEEN. A majestic dangerous massive ancient TREE spirit with an upright warm-CREAM/pale-bark trunk face looking RIGHT, living JADE moss, layered CORAL and BLUE-VIOLET MUSHROOM CANOPIES like a royal crown, and several branching ROOT ARMS. EXACTLY EIGHT thick flowing root LIMBS form a petal-like complete base with countable visible tip contacts. Botanical roots, wood and mushrooms ONLY. No drill, machine, screws, metal apparatus, horror brood or fleshy organs. Show ancient tree identity clearly through trunk, branches and fungal canopy. Strong broad royal silhouette and deep rooted stance. Complete crown/branches/all eight roots inside its one cell.\nFull color material richness with clean cream highlights and crisp deep-plum outline. Coherent clan, ten varied silhouettes, all face RIGHT, high top-down three-quarter camera. No background, UI, words, numbers, frames, labels, floor, terrain, shadow, halo, glows, particles or detached effects. True alpha ZERO everywhere outside characters and in gutters. Exactly TEN COMPLETE isolated bodies, ample large transparent margins.",
+      "selected": false,
+      "reason": "New botanicalclan correct, tightgutters requiredrepair."
+    },
+    {
+      "attempt": 3,
+      "type": "spacingrepair1",
+      "source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-7649a05c-531f-4acf-98e2-844b2bbe1b3b.png",
+      "prompt": "Use case: precise-object-edit.\nEdit the provided 10-character Mossglow Fungal Spirit atlas. Preserve EXACTLY the current ten character identities, art style, bright jade foliage, coral flowers, blue-violet mushrooms, cream sunlight highlights, deepplum linework, plant/fungal clan cohesion, all right-facing pose designs, and TREE+MUSHROOM QUEEN boss. Keep all complete original body components. Repair ONLY layout by SHRINKING and CENTERING each entire character.\nThe provided native image is 1983x793. Preserve its 5-column by2-row aspect and fully transparent RGBA background. There must be ten complete isolated characters. Each entire character MUST be approximately ONE HALF of its CURRENT width and height, uniformly scaled with all branches, weapons, roots, necks, tails, pods and mushroom canopy. Yes, 50 PERCENT SMALLER than the provided character, with a LOT MORE blank transparent space. Do not crop or remove parts. Do not keep large characters.\nCenter the painted SILHOUETTE bounding box of each complete character at cell center, not its face. Exact approximate centers on native1983x793 canvas: top row (198,198),(595,198),(991,198),(1388,198),(1785,198); bottom row (198,595),(595,595),(991,595),(1388,595),(1785,595). The maximum COMPLETE silhouette width and height is 220 pixels within each roughly397px cell. All four margins MUST be at least65 pixels fully empty. These numeric layout coordinates are invisible instructions, DO NOT draw numbers or grids.\nObject order invariant M10,M11,M12,M13,M14 / M15,M16,M17,M18,BO02. Top: leanbudthorn-spear spirit; gourdthroatspitter onfourrootfeet; broadmushroomsailmother withthreehangingpodcords; scissorfernwarrior withunequaltwoleafblades; creamfuzzysporebud withshorttail. Bottom: uprighttrumpetfungusrootwarrior; flatdewbackpouchplant withlongproboscis; fourpetalmushroombelldrummerspirit; squatpitcherleafjawguardian underfungaltileback; ancient TREE+MUSHROOM QUEEN withcompletebrancharmsand thickrootfeet, noindustrialdrill.\nDo not add insects, machines, newfaces or newmonsters. Preserve brightcartoon handpainted botanicalmaterialvolume and creamhighlights. Highcamera3/4 slighttop-down facingRIGHT. Everybody complete including allrootfeet. EXACTLY TEN, no extras, no duplication. The queen's rootlimbs must be complete and contained.\nTRUE alpha ZERO transparent outside allcharacters andbetween them; NO floor, castshadows, halos, colorededgefringes, glows, particles, UI, labels, text, frames or scenery. Essential change: ALL TEN characters much SMALLER and CENTERED with GENEROUS TRANSPARENT GUTTERS. Preserve the beautiful clan designs and fullbody anatomy.",
+      "selected": false,
+      "reason": "Improvedspacing but some nominalcellgutters below15percent."
+    },
+    {
+      "attempt": 4,
+      "type": "spacingrepair2",
+      "source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-e95d658b-32cb-4b3b-b1dc-903cc9735007.png",
+      "prompt": "Use case: precise-object-edit. FINAL STRICT SPACING CORRECTION of the provided transparent 5x2 Mossglow Fungal Spirit atlas. Preserve EXACTLY all ten existing character designs, colors, foliage, mushroom crowns, right-facing poses, cartoon handpainted quality and complete fullbody anatomy. Do not redesign or remove anything.\nKeep native widecanvas1983x793 and invisible5columns2rows. Each entire current character must now be an additional FORTY PERCENT SMALLER than in the provided image, uniformly preserving fullbody proportions. Maximum painted width AND height should be180pixels per approximately397pixel cell. Smaller characters and much more blank alpha-zero space are essential. Never crop limbs or shorten weapons to fit; shrink COMPLETE character.\nPut ACTUAL PAINTED BOUNDING-BOX CENTERS at top (198,198),(595,198),(991,198),(1388,198),(1785,198); bottom (198,595),(595,595),(991,595),(1388,595),(1785,595). In particular move the bud assassin LEFT within cell1, move ALL TOP ROW bodies UP, and move the boss queen DOWN AND RIGHT into cell10. Place the whole silhouette, not just face/head, at those cellcenters. At least65px FULLY TRANSPARENT BLANK margin on ALL FOUR SIDES of EVERY cell, including spear/leafblade tips, longproboscis, canopyedges andbossrootfeet. No painted shapes or fringes crossing margins.\nPreserve row-major exact identities M10thornbudassassin, M11gourdthroatspitter, M12mushroomsailmotherwiththreepods, M13scissorfernwithunequaltwoleafblades, M14creamfuzzysporebud; M15uprighttrumpetfungus, M16dewpouchfourrootfeetlongproboscis, M17fourpetalmushroombellguardian, M18pitcherleafjawfungaltilebackbeast, BO02ancientTREE+MUSHROOMQUEENwithrootarmsandrootfeet. Ten complete bodies only. They belong to 苔光菌灵 plant/fungal clan, fully jade/coral/blueviolet/cream brightcartoon fantasy. No industrialboss, no insects. All facingRIGHT, highcamera3/4near-isometric bodyvolume.\nTRUE alpha ZERO outside characters. No background, ground, shadow, glow, halo, particles, coloredoutlinefringes, labels, text, UI, frames or numerals. Preserve all visiblebodyparts andmaterialshading. Only uniformly SHRINK every whole character again and CENTER correctly. Huge clear transparent gaps are wanted; the sprites must NOT fill their cells.",
+      "selected": true
+    }
+  ],
+  "items": {
+    "M10": {
+      "catalogue_name_at_start": "芽足刺客",
+      "catalogue_visual_at_start": "两条弯根足托一颗倒生芽头，单臂像削尖枝条",
+      "rendered_name": "芽足刺客",
+      "role": "melee",
+      "race": "苔光菌灵",
+      "rendered_description": "Living plant assassin: coral inverted flowerbud, jade leafmask and curved rootlegs, one long ivory thorn-spear arm.",
+      "entry": {
+        "region": [
+          133,
+          154,
+          178,
+          162
+        ],
+        "foot": [
+          196,
+          316
+        ],
+        "source_height": 162,
+        "native_height": 80,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M11": {
+      "catalogue_name_at_start": "囊喉喷客",
+      "catalogue_visual_at_start": "宽喉囊与后仰长颈，四脚低伏",
+      "rendered_name": "囊喉喷客",
+      "role": "artillery",
+      "race": "苔光菌灵",
+      "rendered_description": "Four-rootfoot gourd-throat plant spitter: curled jade stemneck, coral/amber inflated gourd sac and trumpet flowermouth.",
+      "entry": {
+        "region": [
+          507,
+          151,
+          171,
+          165
+        ],
+        "foot": [
+          583,
+          316
+        ],
+        "source_height": 165,
+        "native_height": 80,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M12": {
+      "catalogue_name_at_start": "菌帆漂母",
+      "catalogue_visual_at_start": "横展菌伞如破帆，下垂三条育囊绳",
+      "rendered_name": "菌帆漂母",
+      "role": "summoner",
+      "race": "苔光菌灵",
+      "rendered_description": "Mushroom sailcap mother: coral/blue-violet canopy, cream gills and exactly three complete hanging seedpod vinecords.",
+      "entry": {
+        "region": [
+          899,
+          152,
+          188,
+          163
+        ],
+        "foot": [
+          996,
+          315
+        ],
+        "source_height": 163,
+        "native_height": 80,
+        "collision_radius": 24,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M13": {
+      "catalogue_name_at_start": "切根螳虫",
+      "catalogue_visual_at_start": "前肢一长一短如剪刀，背部根须形成锯齿",
+      "rendered_name": "切根螳虫",
+      "role": "flanker",
+      "race": "苔光菌灵",
+      "rendered_description": "Scissorfern living flora warrior: jade leafmask, blue-violet serrated frondback and unequal ivory/coral cutting leafblades.",
+      "entry": {
+        "region": [
+          1286,
+          151,
+          212,
+          166
+        ],
+        "foot": [
+          1371,
+          317
+        ],
+        "source_height": 166,
+        "native_height": 80,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M14": {
+      "catalogue_name_at_start": "灰绒幼团",
+      "catalogue_visual_at_start": "毛边滚珠拖一条短根尾，无金属硬角",
+      "rendered_name": "灰绒幼团",
+      "role": "swarm",
+      "race": "苔光菌灵",
+      "rendered_description": "Pearlcream fuzzy sporebud: blue-violet petalfuzz, fierce small leafmask, short jade roottail and tiny rootfeet.",
+      "entry": {
+        "region": [
+          1697,
+          187,
+          138,
+          119
+        ],
+        "foot": [
+          1785,
+          306
+        ],
+        "source_height": 119,
+        "native_height": 80,
+        "collision_radius": 12,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M15": {
+      "catalogue_name_at_start": "管蕈潜刺",
+      "catalogue_visual_at_start": "竖直烟囱菇冠，潜地时露连续土包",
+      "rendered_name": "管蕈潜刺",
+      "role": "ambusher",
+      "race": "苔光菌灵",
+      "rendered_description": "Rooted trumpet-fungus stinger: vertical hollow coral/blue-violet fungal tube, cream gills and jade plantbody with sharp rootleaf arms.",
+      "entry": {
+        "region": [
+          118,
+          500,
+          176,
+          176
+        ],
+        "foot": [
+          202,
+          676
+        ],
+        "source_height": 176,
+        "native_height": 80,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M16": {
+      "catalogue_name_at_start": "蜜露偷食者",
+      "catalogue_visual_at_start": "扁圆背囊、长吸管、四条急促短腿",
+      "rendered_name": "蜜露偷食者",
+      "role": "interference",
+      "race": "苔光菌灵",
+      "rendered_description": "Dewpouch plant gatherer: flattened coral/amber dorsal seedsack, jade leafbody, four short rootfeet and long sipping vineproboscis.",
+      "entry": {
+        "region": [
+          499,
+          529,
+          210,
+          136
+        ],
+        "foot": [
+          575,
+          665
+        ],
+        "source_height": 136,
+        "native_height": 80,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M17": {
+      "catalogue_name_at_start": "孢钟鼓手",
+      "catalogue_visual_at_start": "四瓣钟状菌冠覆盖鼓腹，环形轮廓",
+      "rendered_name": "孢钟鼓手",
+      "role": "healer",
+      "race": "苔光菌灵",
+      "rendered_description": "Fourpetal mushroom bellcap keeper: blue-violet/coral crown, cream gills, round coral/amber organic resonant belly and rootlimbs.",
+      "entry": {
+        "region": [
+          908,
+          492,
+          163,
+          178
+        ],
+        "foot": [
+          993,
+          670
+        ],
+        "source_height": 178,
+        "native_height": 80,
+        "collision_radius": 24,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M18": {
+      "catalogue_name_at_start": "嚼墙钳兽",
+      "catalogue_visual_at_start": "宽扁大颚在前、背负瓦片菌壳，低矮梯形",
+      "rendered_name": "嚼墙钳兽",
+      "role": "terrain",
+      "race": "苔光菌灵",
+      "rendered_description": "Stonebite pitcher guardian: broad right-facing ivory leafjaws, coral/blue-violet overlapping fungal tileback and squat rootfeet.",
+      "entry": {
+        "region": [
+          1286,
+          541,
+          210,
+          135
+        ],
+        "foot": [
+          1373,
+          676
+        ],
+        "source_height": 135,
+        "native_height": 80,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "BO02": {
+      "catalogue_name_at_start": "温床织母",
+      "catalogue_visual_at_start": "半透明菌冠覆盖矿钻残骸，八条粗根形成花瓣剪影；根刺先显示分叉线，孢囊先显示落点",
+      "rendered_name": "菌林母株",
+      "role": "boss",
+      "race": "苔光菌灵",
+      "rendered_description": "菌林母株: ancient cream/palebark tree and mushroomqueen, jade moss, tiered coral/blue-violet fungalcanopy, branching rootarms/rootfeet; purely botanical, no machinery.",
+      "entry": {
+        "region": [
+          1668,
+          478,
+          214,
+          218
+        ],
+        "foot": [
+          1778,
+          696
+        ],
+        "source_height": 218,
+        "native_height": 200,
+        "collision_radius": 60,
+        "facing": "right",
+        "full_color": true
+      }
+    }
+  },
+  "measurement": {
+    "method": "Pillow/NumPy read-only alpha>=16 measurement; actual occupied row and column runs identify ten disjoint silhouettes. Each measured alpha bbox expanded2px, never assumed cellbounds.",
+    "alpha_threshold": 16,
+    "padding": 2,
+    "alpha_zero_fraction": 0.872561158243557,
+    "occupied_row_bands": [
+      [
+        153,
+        315
+      ],
+      [
+        480,
+        694
+      ]
+    ],
+    "measured_bounds": [
+      {
+        "id": "M10",
+        "cell": [
+          0,
+          0,
+          397,
+          396
+        ],
+        "bbox_xyxy": [
+          135,
+          156,
+          309,
+          314
+        ],
+        "region": [
+          133,
+          154,
+          178,
+          162
+        ],
+        "margins": [
+          135,
+          156,
+          88,
+          82
+        ],
+        "lower20pct_support_x_extent": [
+          144,
+          248
+        ],
+        "suggested_foot_x": 196
+      },
+      {
+        "id": "M11",
+        "cell": [
+          397,
+          0,
+          396,
+          396
+        ],
+        "bbox_xyxy": [
+          509,
+          153,
+          676,
+          314
+        ],
+        "region": [
+          507,
+          151,
+          171,
+          165
+        ],
+        "margins": [
+          112,
+          153,
+          117,
+          82
+        ],
+        "lower20pct_support_x_extent": [
+          512,
+          654
+        ],
+        "suggested_foot_x": 583
+      },
+      {
+        "id": "M12",
+        "cell": [
+          793,
+          0,
+          397,
+          396
+        ],
+        "bbox_xyxy": [
+          901,
+          154,
+          1085,
+          313
+        ],
+        "region": [
+          899,
+          152,
+          188,
+          163
+        ],
+        "margins": [
+          108,
+          154,
+          105,
+          83
+        ],
+        "lower20pct_support_x_extent": [
+          932,
+          1060
+        ],
+        "suggested_foot_x": 996
+      },
+      {
+        "id": "M13",
+        "cell": [
+          1190,
+          0,
+          396,
+          396
+        ],
+        "bbox_xyxy": [
+          1288,
+          153,
+          1496,
+          315
+        ],
+        "region": [
+          1286,
+          151,
+          212,
+          166
+        ],
+        "margins": [
+          98,
+          153,
+          90,
+          81
+        ],
+        "lower20pct_support_x_extent": [
+          1294,
+          1496
+        ],
+        "suggested_foot_x": 1395
+      },
+      {
+        "id": "M14",
+        "cell": [
+          1586,
+          0,
+          397,
+          396
+        ],
+        "bbox_xyxy": [
+          1699,
+          189,
+          1833,
+          304
+        ],
+        "region": [
+          1697,
+          187,
+          138,
+          119
+        ],
+        "margins": [
+          113,
+          189,
+          150,
+          92
+        ],
+        "lower20pct_support_x_extent": [
+          1720,
+          1824
+        ],
+        "suggested_foot_x": 1772
+      },
+      {
+        "id": "M15",
+        "cell": [
+          0,
+          396,
+          397,
+          397
+        ],
+        "bbox_xyxy": [
+          120,
+          502,
+          292,
+          674
+        ],
+        "region": [
+          118,
+          500,
+          176,
+          176
+        ],
+        "margins": [
+          120,
+          106,
+          105,
+          119
+        ],
+        "lower20pct_support_x_extent": [
+          120,
+          258
+        ],
+        "suggested_foot_x": 189
+      },
+      {
+        "id": "M16",
+        "cell": [
+          397,
+          396,
+          396,
+          397
+        ],
+        "bbox_xyxy": [
+          501,
+          531,
+          707,
+          663
+        ],
+        "region": [
+          499,
+          529,
+          210,
+          136
+        ],
+        "margins": [
+          104,
+          135,
+          86,
+          130
+        ],
+        "lower20pct_support_x_extent": [
+          506,
+          707
+        ],
+        "suggested_foot_x": 606.5
+      },
+      {
+        "id": "M17",
+        "cell": [
+          793,
+          396,
+          397,
+          397
+        ],
+        "bbox_xyxy": [
+          910,
+          494,
+          1069,
+          668
+        ],
+        "region": [
+          908,
+          492,
+          163,
+          178
+        ],
+        "margins": [
+          117,
+          98,
+          121,
+          125
+        ],
+        "lower20pct_support_x_extent": [
+          927,
+          1058
+        ],
+        "suggested_foot_x": 992.5
+      },
+      {
+        "id": "M18",
+        "cell": [
+          1190,
+          396,
+          396,
+          397
+        ],
+        "bbox_xyxy": [
+          1288,
+          543,
+          1494,
+          674
+        ],
+        "region": [
+          1286,
+          541,
+          210,
+          135
+        ],
+        "margins": [
+          98,
+          147,
+          92,
+          119
+        ],
+        "lower20pct_support_x_extent": [
+          1290,
+          1456
+        ],
+        "suggested_foot_x": 1373
+      },
+      {
+        "id": "BO02",
+        "cell": [
+          1586,
+          396,
+          397,
+          397
+        ],
+        "bbox_xyxy": [
+          1670,
+          480,
+          1880,
+          694
+        ],
+        "region": [
+          1668,
+          478,
+          214,
+          218
+        ],
+        "margins": [
+          84,
+          84,
+          103,
+          99
+        ],
+        "lower20pct_support_x_extent": [
+          1673,
+          1878
+        ],
+        "suggested_foot_x": 1775.5
+      }
+    ],
+    "foot_convention": "Absoluteatlas foot.y=region.y+region.height. foot.x=anatomical rootfeet/tendril supportmidpoint; excludes M13blade,M15blade,M16proboscis. Driftmother loweranchor is hangingpods.",
+    "source_height_convention": "source_height=paddedalpha region.height for staticbody atlas, coordinator-confirmed.",
+    "native_height_convention": "80mobs/200boss retained as initialrequested informationalvalues; selector uses actualruntime actorheight.",
+    "verification": "Ten distinct fullcolor rightfacing botanical clan bodies. Disjointinbounds regions capture allalpha>=16. Allnominalcellmargins≥81px(>20%)."
+  },
+  "quality_limits": [
+    "Built-in generator returned1983x793 instead of initiallyrequested2560x1024; rawnativePNG preserved.",
+    "Finalregion heights119–218px including2pxpadding. Finegills/leafveins/rootforks can soften at80pxbodyheight.",
+    "Queen rootlimbs overlap in planted threequarter silhouette; exact eight individualroots not visuallycertain.",
+    "Minor subthreshold antialias/gutter noise and thin saturated edgepixels from generator were preserved without pixel editing."
+  ]
+}

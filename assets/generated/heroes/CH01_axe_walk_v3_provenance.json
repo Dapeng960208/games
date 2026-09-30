@@ -1,0 +1,121 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "date": "2026-09-30",
+  "transparent_background": true,
+  "postprocessing": "None. Selected generated PNGs copied byte-for-byte; only JSON registration written. No image editing, trimming, recoloring or alpha conversion outside imagegen.",
+  "stage": "Original CH01 four-pose front/back axe walk candidates; metadata disabled until runtime review.",
+  "references": [
+    {
+      "path": "res://assets/generated/heroes/CH01_walk_front_v2.png",
+      "role": "Front identity, clothing, camera and alternating gait reference",
+      "sha256": "E46971530F61BE16EEA8B33481B044207A86D364F506EC9DC57F9D1E843BBA1A"
+    },
+    {
+      "path": "res://assets/generated/heroes/CH01_walk_back_v2.png",
+      "role": "Back identity, clothing, camera and alternating gait reference",
+      "sha256": "80DA5470B2C2D24215737365A5410DEF5E50CD898CF4F48BA79D54EC8B046893"
+    },
+    {
+      "path": "res://assets/generated/heroes/CH01_actions_front_v3.png",
+      "role": "Authoritative original orange-black single blade rockbreaker axe design",
+      "sha256": "D5C35F64E6A6200A56F61872C495FADA087A2D9FA29404FE5C2FDE8CC8C9597C"
+    }
+  ],
+  "front": {
+    "texture": "res://assets/generated/heroes/CH01_walk_front_v3.png",
+    "source": "C:/Users/13326/.codex/generated_images/01a0efb5-ef68-7633-95f0-d02656195cd0/exec-40e88057-2cb3-4541-b3aa-3e9f01c651bb.png",
+    "sha256": "92191766626B2DD7D8412E723EE7C3B6B1798CD6686C0F8F46ABFB69571349D1",
+    "initial_source": "C:/Users/13326/.codex/generated_images/01a0efb5-ef68-7633-95f0-d02656195cd0/exec-4b69e9bf-1cdb-4fc5-9c7b-0f8867440e43.png",
+    "initial_prompt": "Use case: precise-object-edit. Asset type: original transparent 2D action RPG hero walking sprite atlas, front three-quarter bank. Input image 1 is the edit target and locks this exact CH01 man's face, short dark hair, orange-black mining work clothes, white scarf, tube-reinforced right arm, huge left shoulder/back plate, belt lantern, boots, painterly rendered detail and overhead three-quarter front-right camera. Input image 2 is the ONLY weapon design reference: orange-black iron broad single-bladed rockbreaker axe with silver cutting edge, small flat square hammer poll opposite the single blade, thick short leather two-hand handle. Replace the old gun-shaped twin-piston hammer in ALL FOUR target poses with exactly this axe. Both gloved hands clearly and firmly wrap the shaft at two spaced grip points. Carry it naturally low diagonally across the waist, heavy axe head down-right, not a rifle aiming pose. No barrels, no gun sockets, no cylinders on weapon. Keep SAME character anatomy and clothing in every cell, identical fixed camera and scale. Four distinct walking key poses in a strict 2-column by 2-row atlas, row-major: top-left left foot ground contact/right foot trailing; top-right right foot passing forward under pelvis/left planted; bottom-left right foot ground contact/left trailing; bottom-right left foot passing forward under pelvis/right planted. A weighted practical stride, moderate knee lift, not sprint/jump/high marching; hips alternate, axe motion restrained. Each complete character INCLUDING whole axe and both boots must fit INSIDE its own equal cell, with at least 32 pixels true transparent empty safety margin on every side of each cell, so there is at least 64 pixels of fully empty transparency between silhouettes. Use 1536x1536 square canvas, cells 768x768, center figures at about x384/x1152, ground baseline about y690/y1458. Head-to-planted-boot anatomy about 560px, same in all four. Shrink figures to fit if necessary. STRICT actual transparent alpha background everywhere outside silhouettes, no floor, no shadow, no grid, no lettering, no panel decorations, no border, no effects, no color wash. Preserve polished sharp detail. Original design only.",
+    "correction_prompt": "Use case: precise-object-edit. TARGETED LAYOUT CORRECTION ONLY. This exact four-pose orange mining hero WITH HIS NEW SINGLE-BLADED AXE is already correct. Preserve all four characters and their exact clothing, face, blade shape, gloves gripping haft, leg configurations, proportions, painterly details, lighting, front-right camera and truly transparent background. Change ONLY the size and placement of the four complete figures. Shrink each entire figure uniformly to 76% of its current size and center it INCLUDING THE WHOLE AXE in its own equal square cell in this SAME square 2x2 sheet. Do not simply crop or add padding outside the whole sheet. All four figures must become smaller INSIDE each cell. Their complete visible pixel bounds, including protruding axe blade and boots, must have broad fully transparent margins: at least 50px from every cell edge on a roughly1254px sheet. The top-right and bottom-right axe tips MUST NOT TOUCH the canvas edge. The left-column axes MUST NOT CROSS the vertical middle cell boundary. Leave a wide clear transparent cross between rows and columns. Same fixed anatomical size for all four. Keep exactly four figures and retain row-major leg sequence. No new drawing elements, no text, no grid, no floor, no shadows, no effects. Preserve actual transparency. Mandatory: all full axes and all boots contained, visibly shrunken centered layouts, no image pixels anywhere near outer sheet edge or center seams.",
+    "correction_references": [
+      "C:/Users/13326/.codex/generated_images/01a0efb5-ef68-7633-95f0-d02656195cd0/exec-4b69e9bf-1cdb-4fc5-9c7b-0f8867440e43.png"
+    ],
+    "initial_rejection": "Old target spacing placed the right-column axe tips at the outer edge. Rejected for production; one layout correction shrank and centered the complete figures.",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "zero_alpha_pixels": 1186133,
+    "alpha_ge_16_pixels": 355502,
+    "alpha_bounds": [
+      [
+        168,
+        122,
+        427,
+        407
+      ],
+      [
+        751,
+        123,
+        425,
+        408
+      ],
+      [
+        163,
+        709,
+        437,
+        425
+      ],
+      [
+        753,
+        712,
+        431,
+        420
+      ]
+    ]
+  },
+  "back": {
+    "texture": "res://assets/generated/heroes/CH01_walk_back_v3.png",
+    "source": "C:/Users/13326/.codex/generated_images/01a0efb5-ef68-7633-95f0-d02656195cd0/exec-c8966b25-b1d8-48b8-8d09-fcddea3f45ba.png",
+    "sha256": "37E2DEB76ED5CAA73BF8A053ACD49BEC16BCB5B39EFC21C76B738E35203ED2C7",
+    "initial_source": "C:/Users/13326/.codex/generated_images/01a0efb5-ef68-7633-95f0-d02656195cd0/exec-351db9ac-5572-459b-a139-aa070b76c804.png",
+    "initial_prompt": "Use case: precise-object-edit. Asset type: transparent game hero WALK atlas, BACK-RIGHT three-quarter view. Image 1 is the old rear walk atlas: preserve this exact man, orange-black work clothes, white scarf, short black hair, large gridded back-left shoulder shield, tube-arm, waist lantern, four different left/right walking leg poses and rear elevated isometric viewpoint. Image 2 is the sole authoritative WEAPON design reference; use its orange-black broad single-bladed axe, large silver cutting edge, small flat square hammer poll opposite blade, thick short dark leather two-hand haft. Replace gun-like twin barrel hammer in all four with this axe. Both hands wrap the same shaft with spaced firm grips, carry it naturally LOW at waist diagonally forward-right, blade below hands. All poses remain facing AWAY and RIGHT; show back of head, NEVER face. Keep boots and exact clothing identity. Practical weighted alternating stride: row-major left_contact, right_pass, right_contact, left_pass, two opposite feet distinctly alternate. No attacks, no weapon raising, no aiming like a rifle. Composition is crucial: create a NEW well-spaced STRICT 2x2 layout; do NOT inherit crowded source layout. Whole figures and whole axe must occupy only CENTRAL 70% WIDTH AND 70% HEIGHT OF EACH equal cell. At least 15% cell width totally empty alpha on BOTH left and right sides, at least 10% top and bottom, large transparent cross-shaped gutters. This requires shrinking each complete figure including axe uniformly. Every head, boot, elbow and blade must be well away from cell boundaries. All four figures same anatomy scale and fixed camera, figures centered in cells by complete bounds, not by head. Square 1536x1536 canvas. No clipping, no silhouette crossing cell boundary. Painterly original polished game art matching references. Genuine RGBA transparent background, clean silhouette cutouts. No ground, floor, drop shadow, frame, labels, text, grid lines, effects, motion blur, glow, extraneous objects or extra weapon.",
+    "correction_prompt": "Use case: precise-object-edit. TARGETED LAYOUT CORRECTION ONLY. Keep this exact original four-pose BACK-VIEW orange miner carrying the broad SINGLE BLADE AXE, preserving the four alternating left/right leg configurations, all clothing, face-hidden rear viewpoint, plate on back, tubes, lantern, blade shape, both hand grips, anatomy, textures, colors and true transparent alpha. Change ONLY the overall size and placement of the FOUR COMPLETE figures. Shrink EACH WHOLE figure uniformly to 78% of current size, and CENTER its complete silhouette INCLUDING AXE in its own quarter of this SAME 2x2 square sheet. The old left-column axes nearly touch central cell division and right-column axes almost touch right edge; this is the one problem to fix. Do not crop off anything and do not merely increase outer sheet size. The whole character+axe composite must become smaller WITHIN its existing quadrant. Require at least 60px empty transparent padding from ALL FOUR edges of each equal cell in this roughly1254px sheet, leaving a wide transparent cross at the middle seams. Complete feet, elbows, haft and blade, no part touching boundary. SAME FIXED BODY SCALE across all four. No movement change, no attack poses, no additional objects, no lettering, no borders, no floor, no shadow, no VFX. Genuine transparency. Preserve all visual design and four walking poses exactly; only smaller well-centered cell composition.",
+    "correction_references": [
+      "C:/Users/13326/.codex/generated_images/01a0efb5-ef68-7633-95f0-d02656195cd0/exec-351db9ac-5572-459b-a139-aa070b76c804.png"
+    ],
+    "initial_rejection": "Initial left-column axe tips approached the center seam and right-column tips approached the outer edge. One layout correction reduced all four silhouettes.",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "zero_alpha_pixels": 1248725,
+    "alpha_ge_16_pixels": 290249,
+    "alpha_bounds": [
+      [
+        140,
+        140,
+        433,
+        407
+      ],
+      [
+        766,
+        140,
+        433,
+        398
+      ],
+      [
+        132,
+        747,
+        441,
+        394
+      ],
+      [
+        763,
+        744,
+        444,
+        403
+      ]
+    ]
+  },
+  "asset_review": "All eight complete characters have the new broad single blade axe with opposite square hammer poll and two spaced hand grips. Front/back identity, plates, lantern and orange-black costume retained. Final source rectangles do not overlap. This visual source review does not prove runtime gait smoothness or final scale."
+}

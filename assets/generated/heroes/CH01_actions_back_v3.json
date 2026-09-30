@@ -1,0 +1,73 @@
+{
+  "schema_version": 2,
+  "hero_id": "CH01",
+  "asset_id": "CH01_actions_back_v3",
+  "bank": "back",
+  "enabled": false,
+  "status": "design_reference_superseded_by_layout_corrected_v4",
+  "weapon_id": "CH01_rockbreaker_axe_v1",
+  "texture": "res://assets/generated/heroes/CH01_actions_back_v3.png",
+  "asset_type": "weapon_design_reference_candidate",
+  "width": 1254,
+  "height": 1254,
+  "frames": [
+    {
+      "name": "idle",
+      "visible_component_bounds": [
+        111,
+        159,
+        564,
+        524
+      ]
+    },
+    {
+      "name": "windup",
+      "visible_component_bounds": [
+        698,
+        0,
+        522,
+        697
+      ]
+    },
+    {
+      "name": "release",
+      "visible_component_bounds": [
+        41,
+        723,
+        693,
+        482
+      ]
+    },
+    {
+      "name": "recovery",
+      "visible_component_bounds": [
+        703,
+        742,
+        545,
+        482
+      ]
+    }
+  ],
+  "replacement": "res://assets/generated/heroes/CH01_actions_back_v4.json",
+  "provenance": "res://assets/generated/heroes/CH01_axe_v1_provenance.json",
+  "qa": {
+    "source_copy_only": true,
+    "sha256": "db258ea7e60939f006d0aefa0cd24fbb75e76bf8eb6dd4c8f3ac6e0b31f9bbbd",
+    "alpha": {
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "minimum": 0,
+      "maximum": 255,
+      "transparent_pixels": 974479,
+      "total_pixels": 1572516,
+      "transparent_fraction": 0.619694172,
+      "visible_outer_edge_pixels": 1,
+      "inspection": "Read-only Pillow/NumPy alpha scan. No generated PNG pixels edited, resized, repainted, cropped or alpha-keyed."
+    },
+    "runtime_eligible": false,
+    "reason": "Visible lower-row rectangles overlap horizontally by 31 source columns. Preserve this file as an original axe-design reference; use v4 for complete separated runtime frames. Runtime anchors are deliberately provided only in the selected v4 manifest."
+  }
+}

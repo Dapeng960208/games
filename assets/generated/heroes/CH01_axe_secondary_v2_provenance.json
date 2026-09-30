@@ -1,0 +1,112 @@
+{
+  "generator": "built-in image_gen.imagegen",
+  "taxonomy": "precise-object-edit",
+  "transparent_background": true,
+  "date": "2026-09-30",
+  "source_pixel_edits": "none; selected PNGs copied byte-for-byte into the project; Python/Pillow/NumPy used only for read-only alpha/metadata/hash inspection",
+  "image_generation_budget": {
+    "initial_assets": 2,
+    "targeted_layout_corrections": 2,
+    "total_calls": 4
+  },
+  "intended_use": "CH01 original battleaxe horizontal secondary sweep; replacement artwork only, disabled until parent integrates the complete weapon set and verifies in-game.",
+  "generations": [
+    {
+      "bank": "front",
+      "selected": false,
+      "purpose": "Initial weapon replacement; art matched but packing crossed strict cell limits.",
+      "source": "C:/Users/13326/.codex/generated_images/01a0efb5-54f5-72e1-ba7b-c63cefd22380/exec-956c1a7a-b217-4cb4-bc83-26c6b348b72c.png",
+      "source_sha256": "664072a5e37b62227123632349850c4a172f73fcb00a122dbfbba156e65458b5",
+      "prompt": "Use case: precise-object-edit.\nAsset type: production original 2D action-RPG character six-keypose transparent sprite atlas.\nInput 1 is the EXACT weapon + costume design reference: CH01_actions_front_v3. Input 2 is only the six-pose front-facing horizontal-sweep sequence and identity reference: CH01_secondary_front_v1.\nCreate a NEW front three-quarter view six-pose atlas replacing every old piston hammer with the identical mining battleaxe from Input 1: one broad single curved silver chopping edge, orange riveted crescent steel plate, black structural inset, a small flat squared hammer poll opposite the single blade, stout short leather-wrapped two-hand haft with brass socket. No gun or twin piston barrels. Preserve the stocky black-haired man's face, orange black work clothes, cream scarf, one hydraulic forearm, orange grate shoulder plate, boots, lantern and straps.\nSTRICT canvas/layout: landscape 1536x1024 RGBA, EXACT 3 columns by 2 rows of 512x512 cells. Each cell contains exactly one complete character plus his ONE whole axe. Each silhouette, axe tip, boot, and strap must stay between x=48 and x=464 relative to that cell, y=56 and y=450; leave at least 48 transparent pixels beside each cell boundary. Smaller character if necessary; never touch another cell. All six characters have the SAME anatomical scale, around 330 pixels standing crown-to-planted-boot midpoint; crouching changes pose not size. Camera is elevated 3/4 front, hero targets screen-right, front of face and torso visible. Orthographic polished hand-painted game art with crisp edges and consistent light.\nReading order:\n1 PLANT: wide planted stance, both hands on low axe across waist, blade to the right and below hands.\n2 COIL: knees flex and hips rotate to his left, hands draw axe far toward screen-left at hip level, eyes still target right. Clearly stored torsion.\n3 DRIVE: hips begin uncoiling, both hands drive the haft across belly from left toward right, blade accelerating laterally at waist/chest height.\n4 CONTACT: weight transferred, both arms extend across body toward right, chopping edge presented toward target at waist/chest level; clear diagonal blade silhouette, no overhead motion.\n5 FOLLOW: further shoulder/waist rotation beyond contact, axe follows horizontally past right side, rear heel pivots, axe still fully inside cell.\n6 READY: recoiled low two-hand stance, axe angled down to right, returning balance.\nThis is a SIDEWAYS horizontal cleave, never a overhead slam. Have distinct coil/contact/follow body mechanics. Fingers wrap haft naturally, one hand by butt and second forward; do not fuse gloves or bend wrists backward. True transparent background with clean alpha. Absolutely no brown backdrop, floor, shadows detached from boots, glow, particles, trails, panels, text, cell borders, labels, watermark, or duplicate weapons. Preserve full axe and feet within each cell.",
+      "references": [
+        {
+          "path": "C:/webdev/games/assets/generated/heroes/CH01_actions_front_v3.png",
+          "sha256": "d5c35f64e6a6200a56f61872c495fada087a2d9fa29404fe5c2fde8cc8c9597c",
+          "role": "exact new battleaxe and costume design"
+        },
+        {
+          "path": "C:/webdev/games/assets/generated/heroes/CH01_secondary_front_v1.png",
+          "sha256": "859f350f805bd7b1777806932dc137786581b26d012bc6af4456e88b31ae45e6",
+          "role": "front horizontal sweep identity/action reference"
+        }
+      ]
+    },
+    {
+      "bank": "front",
+      "selected": true,
+      "purpose": "Uniform smaller packing of the six full silhouettes, no pixel editing.",
+      "source": "C:/Users/13326/.codex/generated_images/01a0efb5-54f5-72e1-ba7b-c63cefd22380/exec-f37d9d76-e01d-4948-889e-2428ede849ed.png",
+      "source_sha256": "cb7610c17fd7f8ed7e8c7cef744536c0c69994a1e7122fe4e199bc861148cd8e",
+      "project_path": "assets/generated/heroes/CH01_secondary_front_v2.png",
+      "project_sha256": "cb7610c17fd7f8ed7e8c7cef744536c0c69994a1e7122fe4e199bc861148cd8e",
+      "original_source_equal_project": true,
+      "prompt": "Use case: precise-object-edit.\nEdit target is the attached front-view six-pose axe-sweep sprite sheet. Make ONLY a production packing correction: uniformly reduce ALL SIX complete characters and their held axes to 68% of current dimensions, preserving each drawing's detail, pose and relative proportions. Move each reduced pose as one unit into its own strict 512x512 cell, on an unchanged 1536x1024 transparent 3-column 2-row canvas. Do NOT fill the cells. There must be conspicuously abundant EMPTY TRANSPARENT SPACE around each sprite. The entire silhouette, including axe tips, boots and straps, must fit local x=80..432 y=90..420 in each cell; at least 64 pixels completely transparent at EACH of the 4 cell edges. No sprite part may cross a 512px vertical or horizontal cell boundary.\nPreserve six distinct horizontal-waist sweep poses in reading order: plant, coil, drive / contact, follow, ready; preserve the SAME single-blade orange/black riveted battleaxe with silver curved chopping edge, squared flat hammer poll and leather stout two-hand haft; exact same man's face, outfit, hydraulic forearm, shoulder grate and lantern. Body anatomical scale MUST be uniform across all six. No overhead swings, new weapons, duplicated limbs, text, labels, grid, particles, shadows, floor, glow or backdrop. KEEP TRANSPARENT ALPHA. Only correct scale and placement into the generous empty cells.",
+      "references": [
+        {
+          "path": "C:/Users/13326/.codex/generated_images/01a0efb5-54f5-72e1-ba7b-c63cefd22380/exec-956c1a7a-b217-4cb4-bc83-26c6b348b72c.png",
+          "sha256": "664072a5e37b62227123632349850c4a172f73fcb00a122dbfbba156e65458b5",
+          "role": "edit target, layout correction only"
+        }
+      ],
+      "alpha": {
+        "minimum": 0,
+        "maximum": 254,
+        "transparent_pixels": 1229396,
+        "total_pixels": 1572864,
+        "transparent_fraction": 0.7816289265950521
+      }
+    },
+    {
+      "bank": "back",
+      "selected": false,
+      "purpose": "Initial rear-view weapon replacement; whole poses too large for fixed cells.",
+      "source": "C:/Users/13326/.codex/generated_images/01a0efb5-54f5-72e1-ba7b-c63cefd22380/exec-2f31a112-90fd-415d-91b2-2f7c6a698343.png",
+      "source_sha256": "ab660e15c2e9f16124e153023b20573c8230d22e6b8935a6cb4b500472363a9a",
+      "prompt": "Use case: precise-object-edit.\nAsset type: original production transparent six-pose 2D game animation atlas.\nImage 1 is the EXACT new battleaxe weapon and character design reference (CH01_actions_front_v3). Image 2 is the REAR camera / costume / horizontal sweep pose reference (CH01_secondary_back_v1). Create six original REAR three-quarter views of this same short black-haired muscular mining warrior, holding the SAME orange-black single-blade battleaxe of Image 1 in both hands. Replace ALL old rectangular twin-piston hammer weaponry. Axe has one broad curved silver chopping edge, orange riveted crescent steel plate, black structural inset, small flat squared hammer poll opposite blade, brass socket and stout short two-hand leather haft. Preserve hydraulic right forearm, orange grated shoulder/back plate, scarf, black-orange work clothes, belts, lantern and boots. View rear of head, spine, back of shoulders; no front portrait.\nIMPORTANT PRODUCTION LAYOUT: 1536x1024 RGBA canvas, exactly 3 columns x 2 rows, each cell 512x512. Draw SMALL well separated characters, 260 pixels average anatomical standing height. The WHOLE character INCLUDING axe and boots must fit within a maximum 360x370 rectangle centered in each cell. Leave at least 64 FULLY TRANSPARENT PIXELS before EVERY cell edge, horizontally and vertically. Main boot midpoint about cell-local (225,390). Do NOT enlarge figures to fill the page. Clear abundant transparent negative space is essential. No overlap with adjacent cells, no clipped axes/feet. Same anatomical scale across six poses.\nElevated orthographic rear three-quarter camera, target toward screen right / upper right. Polished hand-painted 2D game sprite, coherent opaque costume materials with clean antialiased alpha edges. All six use same camera, body scale, light and axe proportions.\nReading order across top then bottom:\n1 PLANT: low two-hand ready stance, axe lowered forward-right near hip, wide grounded feet.\n2 COIL: low rearward load, hips/waist rotate left, both hands pull axe to screen-left at hip level. Head stays focused toward right. Clearly different silhouette.\n3 DRIVE: hips uncoil, hands and axe accelerate sideways across waist to screen-right, rear shoulder moving forward.\n4 CONTACT: two hands firmly gripping haft, arms drive to screen-right, blade's actual sharp edge presented toward target at waist/chest level, braced legs.\n5 FOLLOW: shoulders turn further beyond contact, elbows flex to absorb momentum, axe continues across in a clearly distinct horizontal follow-through, rear heel pivots.\n6 READY: recover low two-hand carry, torso rises, axe angled down to right, regain balanced feet.\nHorizontal WAIST-LEVEL cleaving sweep. NO over-the-head slam. Axe must rotate naturally with two hands; no detached haft, one hand holding floating blade, barrel, doubled weapon or impossible reversed wrist. Exact genuine transparent background; no brown gradient, scenery, ground, baked shadows, motion trails, impact flashes, labels, text, watermarks, panels or drawn grid. All sprites fully isolated and generously padded.",
+      "references": [
+        {
+          "path": "C:/webdev/games/assets/generated/heroes/CH01_actions_front_v3.png",
+          "sha256": "d5c35f64e6a6200a56f61872c495fada087a2d9fa29404fe5c2fde8cc8c9597c",
+          "role": "exact new battleaxe and costume design"
+        },
+        {
+          "path": "C:/webdev/games/assets/generated/heroes/CH01_secondary_back_v1.png",
+          "sha256": "dfcf301e4258b772e8d2c34ad613fe9ed5458813d7d7b7e6ea3088334eb2ed60",
+          "role": "rear camera and horizontal sweep identity/action reference"
+        }
+      ]
+    },
+    {
+      "bank": "back",
+      "selected": true,
+      "purpose": "Uniform smaller packing, retaining rear view and horizontal sweep poses.",
+      "source": "C:/Users/13326/.codex/generated_images/01a0efb5-54f5-72e1-ba7b-c63cefd22380/exec-c2450719-ba7c-4e0a-b786-008df094cc59.png",
+      "source_sha256": "55ffc29d0a2a8ca59b73e96751222d5759beeb7e5aad9ac180502bd47610114f",
+      "project_path": "assets/generated/heroes/CH01_secondary_back_v2.png",
+      "project_sha256": "55ffc29d0a2a8ca59b73e96751222d5759beeb7e5aad9ac180502bd47610114f",
+      "original_source_equal_project": true,
+      "prompt": "Use case: precise-object-edit.\nEdit target: the attached REAR VIEW six-pose battleaxe sweep sprite sheet.\nMake ONLY the spatial packing correction: uniformly REDUCE every complete character AND his axe to 65% of its CURRENT size, all six equally. Keep the canvas 1536x1024, THREE columns and TWO rows of 512x512 cells. Reposition each reduced pose as ONE unit centered in its own cell. Every sprite including its entire blade, boots, straps and hair must be inside local x=80..432 and y=80..425. Leave at least 64 pixels of TRUE EMPTY ALPHA around all FOUR edges of EACH cell. These should be SMALL 260-pixel-tall characters surrounded by very generous transparent negative space. No auto-zoom back up. No characters or weapons cross x=512,x=1024,y=512. Keep source art anatomy, proportions, identity, colors and details intact, just uniformly shrink and place.\nPreserve the exact six rear three-quarter horizontal sweep poses, reading order: plant, low rear coil, sideways drive / contact, follow-through, low ready. Same single silver-edged orange-black riveted axe with a flat hammer poll and stout leather two-hand haft, same man, mechanical right arm, shoulder grate, lantern, boots. Never bring axe overhead, never show a front portrait or duplicate an axe. Real transparent background. NO background gradient, floor, shadow, effect, trail, panels, text, grid or watermark. Keep clear visible gaps between neighboring sprites; full feet and weapon silhouettes, no clipped pixels.",
+      "references": [
+        {
+          "path": "C:/Users/13326/.codex/generated_images/01a0efb5-54f5-72e1-ba7b-c63cefd22380/exec-2f31a112-90fd-415d-91b2-2f7c6a698343.png",
+          "sha256": "ab660e15c2e9f16124e153023b20573c8230d22e6b8935a6cb4b500472363a9a",
+          "role": "edit target, layout correction only"
+        }
+      ],
+      "alpha": {
+        "minimum": 0,
+        "maximum": 254,
+        "transparent_pixels": 1209345,
+        "total_pixels": 1572864,
+        "transparent_fraction": 0.7688808441162109
+      }
+    }
+  ],
+  "review": {
+    "source_art": "Both banks visually inspected at original size. Same original man, orange-black costume and single-blade battleaxe design; no remaining twin-piston weapon or cropped visible blade/boot.",
+    "registration": "Manual absolute landmarks; fixed anatomy scale per bank; alpha>8 silhouette bounds plus 3px source padding; no per-frame rescale or texture edits.",
+    "packing": "All final visible silhouettes belong to independent 512x512 cells. Some blade tips have 15px cell-edge margin rather than the requested 32px; actual neighboring silhouette gaps exceed 90px. Crop regions have no visible neighboring fragments.",
+    "runtime": "Not run by this asset task. Manifests stay enabled=false until full weapon integration and native timing/render review.",
+    "scope": "Six key poses per bank; not continuous interpolation or a full eight-direction animation."
+  }
+}

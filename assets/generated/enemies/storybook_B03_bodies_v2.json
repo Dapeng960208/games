@@ -1,0 +1,1057 @@
+{
+  "asset": "storybook_B03_bodies_v2.png",
+  "date": "2026-09-30",
+  "actual_generation_date": "2026-10-01",
+  "date_note": "date retains the requested2026-09-30 provenance label; generation finished after local date rollover.",
+  "source": "Built-in image_gen.imagegen; selected rawRGBA PNG copied byte-for-byte, without pixel editing, resizing, clipping, compositing or alpha alteration.",
+  "use_case": "stylized-concept",
+  "biome_id": "B03",
+  "visual_clan": "南瓜僵尸",
+  "biome_label": "南瓜墓镇",
+  "brief_authority": "canonical12level_first4override",
+  "canonical_12_level_first4_override": "Latest user12level direction makes B03 Pumpkin Grave Town with unifiedbright cartoon non-gory undead/zombie race and BO03缝合镇长. Existing M19–M27/BO03 IDs, AIroles and gameplayradii remain. Old robot/construct catalogue silhouettes are obsolete. Old B03constructv1 files are preserved for coordinator mapping to newB01.",
+  "reference": {
+    "path": "C:\\Users\\13326\\AppData\\Local\\Temp\\codex-clipboard-02f51a21-0c7d-42c9-825e-c4f6367709c9.png",
+    "role": "Latest userstyle reference, visually inspected beforebodygeneration. Brightsunny handpainted cartoon2.5D fantasygame palette/materialvolume; species are replaced with newzombiebrief."
+  },
+  "locked_standard": "明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。",
+  "item_source": "C:\\webdev\\games\\data\\enemies.json",
+  "catalogue_roles_and_radii_at_start": {
+    "M19": {
+      "enemy_id": "M19",
+      "name": "铜翅侦察蜂",
+      "role": "support",
+      "archetype": "support",
+      "navigation_radius": 12,
+      "behavior_id": "visible_scan_mark"
+    },
+    "M20": {
+      "enemy_id": "M20",
+      "name": "轨枪架台",
+      "role": "ranged",
+      "archetype": "skirmisher",
+      "navigation_radius": 18,
+      "behavior_id": "rail_slide_pierce"
+    },
+    "M21": {
+      "enemy_id": "M21",
+      "name": "缺相跃蛛",
+      "role": "ambusher",
+      "archetype": "skirmisher",
+      "navigation_radius": 18,
+      "behavior_id": "spring_jump_ring"
+    },
+    "M22": {
+      "enemy_id": "M22",
+      "name": "熔口浇铸工",
+      "role": "artillery",
+      "archetype": "caster",
+      "navigation_radius": 24,
+      "behavior_id": "limited_molten_stream"
+    },
+    "M23": {
+      "enemy_id": "M23",
+      "name": "极性拖车",
+      "role": "displacement",
+      "archetype": "skirmisher",
+      "navigation_radius": 24,
+      "behavior_id": "polarity_displacement"
+    },
+    "M24": {
+      "enemy_id": "M24",
+      "name": "冷凝泵犬",
+      "role": "ranged",
+      "archetype": "caster",
+      "navigation_radius": 18,
+      "behavior_id": "cold_mist_patrol"
+    },
+    "M25": {
+      "enemy_id": "M25",
+      "name": "回充匣兵",
+      "role": "defender",
+      "archetype": "tank",
+      "navigation_radius": 18,
+      "behavior_id": "socket_shield_recharge"
+    },
+    "M26": {
+      "enemy_id": "M26",
+      "name": "断线剪翼",
+      "role": "defender",
+      "archetype": "tank",
+      "navigation_radius": 18,
+      "behavior_id": "finite_projectile_screen"
+    },
+    "M27": {
+      "enemy_id": "M27",
+      "name": "节拍装卸臂",
+      "role": "melee",
+      "archetype": "skirmisher",
+      "navigation_radius": 18,
+      "behavior_id": "numbered_two_beat_sweep"
+    },
+    "BO03": {
+      "boss_id": "BO03",
+      "name": "黑匣领航机",
+      "biome_id": "B03"
+    }
+  },
+  "collision_metadata_authority": "/root/combo_flow confirmed normalcatalogue.navigation_radius values and currentBO03 BossProfiles.STATS.navigation_radius=52. Source fields are informational; no gameplay collision/radius changes.",
+  "dimensions": [
+    1983,
+    793
+  ],
+  "initial_requested_dimensions": [
+    2560,
+    1024
+  ],
+  "grid": {
+    "columns": 5,
+    "rows": 2,
+    "order": [
+      "M19",
+      "M20",
+      "M21",
+      "M22",
+      "M23",
+      "M24",
+      "M25",
+      "M26",
+      "M27",
+      "BO03"
+    ]
+  },
+  "transparent_background": true,
+  "native_output_preserved": true,
+  "selected_original": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-c3beff19-23b2-4758-9acd-08dcf2178b4d.png",
+  "generation_history": [
+    {
+      "attempt": 1,
+      "type": "canonicalzombiegeneration",
+      "source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-056acb3b-9d06-41ff-a07d-731b81419a5f.png",
+      "prompt": "Use case: stylized-concept.\nAsset type: production FULL-BODY enemy sprite atlas, truly transparent PNG, requested2560x1024pixels, exactly FIVE columns by TWO rows. Exactly TEN characters in ascending row-major ID order M19,M20,M21,M22,M23 / M24,M25,M26,M27,BO03. No text or visible grid.\nLATEST CANONICAL USER DIRECTION: the third biome is 南瓜墓镇 (Pumpkin Grave Town), a unified main race of fantastical UNDEAD and ZOMBIES. Existing IDs/roles persist, but old machine/insect silhouettes are obsolete. Make imaginative varied NON-GORY fantasy zombies, recognizably undead through mint or pale-violet skin, blank eerie small eyes, stiff asymmetrical anatomy, clean sewn patch seams, and cemetery/pumpkin tools. No living human heroes, insects, plant spirits, industrial robots or military machines. Dangerous whimsical cartoon enemies, NOT cute mascots or plush pets.\nLocked art standard exactly: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。\nReference style only: use the provided sunny fantasygame art's handpainted cartoon physical 2.5D volume, visible top and sidefaces, warm cream material highlights, saturated coral/orange pumpkins, jade/mint, vivid teal cloth, blue-violet and gold/brass accents, crisp DEEP PLUM outlines. Simple polished painted forms, readable silhouettes and material thickness. No realistic skin, photoreal textures, grim brown/rustic palette, gloomy darkgrey bodies or flat icons.\nView/pose for ALL TEN: consistent HIGH CAMERA looking downward45degrees in near-isometric THREE-QUARTER FRONT view; all zombie faces/chests/weapon direction face RIGHT toward the right edge. Full stable idle pose with both complete feet PLANTED and readable. Crawler uses bothhands and crouchedfeet as complete supportcontacts. Full bodies including hat, cloak, longweapon, lantern, coilchain, cauldron, pump and coffin. No cropped portraits.\nSTRICT SPACING: Every COMPLETE entire character occupies only the central50percent of its roughly512square cell. At least25percent totally blank transparent gutter on ALL FOUR edges of EVERY cell. Silhouette width andheight no more than256pixels. Center the actual painted silhouette, not just its head, within its cell. Leave HUGE transparent gaps. Boss fits complete inside cell10, as a heavier shape but no larger than central50percent. Ten complete isolated bodies, no overlap, no touching neighboring cells and no clipping.\nTOP ROW characters:\n1. M19, 提灯巡尸 / Lantern Scout Zombie, SUPPORT. A small slender mint-skinned ZOMBIE herald in a vivid teal patchcoat and short plum cap, holding one warm orange JACK-O-LANTERN lantern on a small brasshandle, plus a little cemetery bell on its belt. Clearly dead blank paleeyes, sunken angular cheeks and clean sewn patchmarks, no human smiling. Full two feet, right-facing. Internal lanternlight only, no glow outside body.\n2. M20, 墓弩尸 / Grave Crossbow Zombie, RANGED. A pale-violet zombie archer with teal shouldercloth, asymmetric patched trousers, one eye a dull creambuttonlike mark. Holds a complete short WOODEN CROSSBOW with cream/brass dimensional mechanisms aimed RIGHT across the torso. Coral scarf and small pumpkinbelt ornament. Actual zombie face/arms/feet visible, not a turret or living ranger. Bothfeet planted.\n3. M21, 跳墓爬尸 / Vaulting Grave Crawler, AMBUSHER. A wiry mint/palestone undead with very LONG ARMS, a hunched crouchingbody, mismatched short legs and torn teal/violet patchcloth. Idle crouch on both broadhands and feet, right-facing watchful eerie small eyes. Clean articulated seams, no injuries. A tiny orangepumpkin charm at neck. Complete hand/finger and foot silhouettes, no jumpmotion or floor.\n4. M22, 坩锅尸 / Cauldron Brewer Zombie, ARTILLERY. A broad stocky soft-violet undead brewer in a coral/teal patched apron, carrying a ROUND thick-walled BRASS AND CREAM CAULDRON filled with amber pumpkin magic against its belly, and a short wooden ladle held in onehand. Pumpkin-shaped jar backpack integrated on back. Pale dead face and sturdy legs visible. Internal magical amber liquid, no spilled liquid, fire, particles or outside glow. Full stable right-facing idlebody.\n5. M23, 钩链尸 / Hookchain Zombie, DISPLACEMENT. A tall lanky mint zombie with a ragged VIVID TEAL longcoat, a large curved aged-brass HOOK in onehand and a complete coiled chain held close to body in the other. Hook and chain fullycontained, not dragging outsidecell. Long asymmetric arms, palestone cleanpatches, eerie dull eyes and small coral neckwrap. Right-facing fullbody, both bootfeet grounded.\nBOTTOM ROW characters:\n6. M24, 水泵尸 / Gravepump Zombie, RANGED CASTER. A medium mint/pale-violet undead in a teal workercoat with coral patches, carrying a small cream CERAMIC WATER-TANK BACKPACK and brass handpump fittings. One short spout/nozzle aimed RIGHT inhand. Readable zombie head, exposed mintarms and legs, complete shoes and pack. The pump is carried equipment rather than a robotic body. No spray/fog/particles. Both feet planted.\n7. M25, 棺盾尸 / Coffinshield Zombie, DEFENDER. A heavy palestone/mint undead guard in teal/plum patched guardclothes, carrying one tall WOODEN COFFIN-LID SHIELD with visible thickness, coral-painted inlays and small brasshinges. Coffinshield shorter than entirebody so zombie head and bothfeet remain visible. One chunky clenched fist behindshield. Right-facing fullbody with firm groundedfeet. No corpse inside shield and no letters.\n8. M26, 双剪尸 / Grave-Shear Zombie, DEFENDER. A broad soft-violet undead gardener in a teal patchvest, holding a pair of large crossed WOOD-HANDLED IVORY/BRASS SHEARS across chest as a defensive screen. The two clean shears are distinct and complete, no mechanical wings. Clearly dead mint/violet patchseamedface, coral belt and short stronglegs. Both complete feet grounded, head/chest faceRIGHT, no humanalive appearance.\n9. M27, 搬运夹尸 / Grave Porter Zombie, MELEE. A powerful mint-skinned zombie gravecaretaker with a widebody, mismatched teal/coral patchwork workcoat, one long WOODEN SHOVEL held diagonally close to body, and one small forked carryingclamp glove on the other arm. Pale-violet sewn patches, heavycreamboots, fierce blank eerieeyes, no gore. Entire wooden shovel including blade andhandle complete, bothfeet planted, facesRIGHT. No coffin/crate separate object.\n10. BO03, 缝合镇长 / Stitched Mayor, MASSIVE BOSS. A huge imposing NON-GORY PATCHWORK UNDEAD MAYOR with mint and softviolet skin panels joined by neat dark sewnseams, asymmetrically muscular limbs and a broadcompletebody. Grand mismatched stitched LONG MAYORAL COAT: vivid teal onone side, blue-violet/coral ontheother, warmcream cuffs and gold/brass MAYOR BADGE. Tall elegant deepplum TOP HAT withcreamband and small orangegoldpumpkinaccent. Onehand holds a complete ORNATE BRASS/WOOD STAFF with a small cemeterybell or pumpkinlantern head, otherhand clenched or holding an integrated pumpkinlantern. Clear undead sternface, small dullcream eyes, no moustachehumanhero smile. Whole bossbody includinghattop/coattails/stafftip/largecompletefeet insideonecell, standingidleRIGHT, broadroyal silhouette. No blood, wounds or exposedorgans.\nLighting/materials: warm upperleft sunlight painted ONLY on body surfaces. Skin mint/softviolet/palestone, bright orangegoldpumpkins, tealpatchcloth, plumoutlines, creamhighlights. Clothhasthickness/folds, woodhascleanpaintedgrain, brassroundedbevels. Recognizable ZOMBIE MAINRACE with ten distinct silhouettes/roles.\nTRUE alpha ZERO transparent outsidebodies andwithingutters. NO floor, groundrings, castshadows, background, scenery, externalglows, halo, effects, dust, smoke, UI, words, numerals, labels or frames. ABSOLUTELY NO blood, gore, wounds, exposedorgans, frighteningphotoreal corpsedetail. NO cutepets, livingheroes, monochromegrey, brownrusticminingmonsters or oldindustrialrobots. EXACTLY TEN full-color complete rightfacing 2.5D cartoonundead bodies with HUGE safe transparentgutters.",
+      "selected": false,
+      "reason": "Correctdistinctzombieidentities andmaterials; bodyprops too close to cell edges."
+    },
+    {
+      "attempt": 2,
+      "type": "spacingrepair1",
+      "source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-a91c-7391-b373-3585653b4579\\exec-c3beff19-23b2-4758-9acd-08dcf2178b4d.png",
+      "prompt": "Use case: precise-object-edit. Edit the provided transparent fullbody zombie atlas. Preserve EXACTLY all TEN current fantasyzombie designs, props, colors, materials, rightfacing poses, small eerieeyes, cleanno-gore patchseams, polished handpainted cartoon 2.5D rendering and completebodyanatomy. The mayor remains the massive stitched undead mayor with tallhat and pumpkinlanternstaff. Repair ONLY size and spacing.\nNative provided canvas1983x793, fivecolumns bytworows. All TEN current bodies are TOO LARGE. UNIFORMLY shrink each entire body with all props to ONE HALF of its current WIDTH andHEIGHT (50%smaller); then center its COMPLETE PAINTED BOUNDINGBOX in its owncell. Do not shorten or remove staffs, crossbow, hooks, hands, shears, coffinshield, shovel, lanterns or feet; shrink whole completecharacter. Every completebody silhouette must be atmost200pxwide and200pxtall in its roughly397squarecell. Leave at least70px fullytransparent blank gutter on ALL FOUR sides of EVERY cell. Very large empty gaps are mandatory. The boss fits its singlecell completely.\nPaintedbbox centers at nativecanvas: top (198,198),(595,198),(991,198),(1388,198),(1785,198); bottom (198,595),(595,595),(991,595),(1388,595),(1785,595). These are invisibleinstructions, DO NOT render coordinates or grid. Center entire silhouettes, not their faces. Move top row upward within cells as needed.\nOrder invariant: M19 smalllanternscoutzombie; M20 wooden-crossbowzombie; M21 longarmcrouchingcrawler; M22 roundcauldronbrewerwithpumpkinjarpack; M23 lankyhookchainzombie; M24 ceramicpumpbackpackzombie; M25 coffin-lidshieldguard; M26 largewoodhandled-shearsguard; M27 shovelporterandclampglovezombie; BO03 massive stitchedmayor withmismatchedteal/violet/coralcoat,tallplumhat,goldbadge,pumpkinlanternstaff. Allmint/softviolet undeadskin/brighttealcloth/orangegoldpumpkins/creamhilights/plumoutline; no livinghumans, blood, wounds, gore, robots, insects or plantclan.\nKeep high3/4near-isometric2.5D view and allfacingRIGHT. Completeplantedfeet/hands, noposecropping. Preserve allten distinctroles. TRUE alpha ZERO outsidebodies andbetween them, no castshadows, floor, background, halo, glow, particles, labels, frames, UI or text. Essential: TEN COMPLETE zombies MUCH SMALLER and exactlyCENTERED with70px+ transparentgutters on allfoursides.",
+      "selected": true
+    }
+  ],
+  "items": {
+    "M19": {
+      "catalogue_name_at_start": "铜翅侦察蜂",
+      "rendered_name": "提灯巡尸",
+      "role": "support",
+      "visual_clan": "南瓜僵尸",
+  "biome_label": "南瓜墓镇",
+      "rendered_description": "Small mint-undead lantern scout in teal patchcoat and plumcap, orangegold jack-o-lantern and small cemeterybell.",
+      "entry": {
+        "region": [
+          127,
+          147,
+          173,
+          182
+        ],
+        "foot": [
+          194,
+          329
+        ],
+        "source_height": 182,
+        "native_height": 66,
+        "collision_radius": 12,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M20": {
+      "catalogue_name_at_start": "轨枪架台",
+      "rendered_name": "墓弩尸",
+      "role": "ranged",
+      "visual_clan": "南瓜僵尸",
+  "biome_label": "南瓜墓镇",
+      "rendered_description": "Paleviolet undead ranged crossbow carrier with complete wooden/brass crossbow, teal/coral patchedcloth and planted boots.",
+      "entry": {
+        "region": [
+          525,
+          132,
+          193,
+          200
+        ],
+        "foot": [
+          592,
+          332
+        ],
+        "source_height": 200,
+        "native_height": 68.4,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M21": {
+      "catalogue_name_at_start": "缺相跃蛛",
+      "rendered_name": "跳墓爬尸",
+      "role": "ambusher",
+      "visual_clan": "南瓜僵尸",
+  "biome_label": "南瓜墓镇",
+      "rendered_description": "Mint/palestone longarmed crouching zombie crawler with complete supporting hands/feet and clean stitchedseams.",
+      "entry": {
+        "region": [
+          892,
+          171,
+          190,
+          162
+        ],
+        "foot": [
+          986,
+          333
+        ],
+        "source_height": 162,
+        "native_height": 68.4,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M22": {
+      "catalogue_name_at_start": "熔口浇铸工",
+      "rendered_name": "坩锅尸",
+      "role": "artillery",
+      "visual_clan": "南瓜僵尸",
+  "biome_label": "南瓜墓镇",
+      "rendered_description": "Stocky violet-undead cauldronbrewer with brass/cream pumpkinmagic pot, woodenladle, pumpkinjar backpack and coral/teal apron.",
+      "entry": {
+        "region": [
+          1289,
+          128,
+          218,
+          206
+        ],
+        "foot": [
+          1382,
+          334
+        ],
+        "source_height": 206,
+        "native_height": 88,
+        "collision_radius": 24,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M23": {
+      "catalogue_name_at_start": "极性拖车",
+      "rendered_name": "钩链尸",
+      "role": "displacement",
+      "visual_clan": "南瓜僵尸",
+  "biome_label": "南瓜墓镇",
+      "rendered_description": "Lanky mint-undead hookchain carrier in teal longcoat with complete brasshook and held coilchain.",
+      "entry": {
+        "region": [
+          1684,
+          127,
+          210,
+          207
+        ],
+        "foot": [
+          1759,
+          334
+        ],
+        "source_height": 207,
+        "native_height": 88,
+        "collision_radius": 24,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M24": {
+      "catalogue_name_at_start": "冷凝泵犬",
+      "rendered_name": "水泵尸",
+      "role": "ranged",
+      "visual_clan": "南瓜僵尸",
+  "biome_label": "南瓜墓镇",
+      "rendered_description": "Mint/violet gravepump zombie with creamceramic watertank backpack, brass fittings, handnozzle and visible undead head/limbs.",
+      "entry": {
+        "region": [
+          119,
+          494,
+          200,
+          194
+        ],
+        "foot": [
+          206,
+          688
+        ],
+        "source_height": 194,
+        "native_height": 68.4,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M25": {
+      "catalogue_name_at_start": "回充匣兵",
+      "rendered_name": "棺盾尸",
+      "role": "defender",
+      "visual_clan": "南瓜僵尸",
+  "biome_label": "南瓜墓镇",
+      "rendered_description": "Heavy mint-undead coffinshield guard with thick wooden coffin-lidshield, pumpkininlay, teal/plum guardcloth, head and boots visible.",
+      "entry": {
+        "region": [
+          494,
+          479,
+          203,
+          213
+        ],
+        "foot": [
+          573,
+          692
+        ],
+        "source_height": 213,
+        "native_height": 68.4,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M26": {
+      "catalogue_name_at_start": "断线剪翼",
+      "rendered_name": "双剪尸",
+      "role": "defender",
+      "visual_clan": "南瓜僵尸",
+  "biome_label": "南瓜墓镇",
+      "rendered_description": "Broad violet-undead shear guard holding large ivory/brass shears with woodenhandles, tealvest and coralbelt.",
+      "entry": {
+        "region": [
+          892,
+          493,
+          217,
+          197
+        ],
+        "foot": [
+          981,
+          690
+        ],
+        "source_height": 197,
+        "native_height": 68.4,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "M27": {
+      "catalogue_name_at_start": "节拍装卸臂",
+      "rendered_name": "搬运夹尸",
+      "role": "melee",
+      "visual_clan": "南瓜僵尸",
+  "biome_label": "南瓜墓镇",
+      "rendered_description": "Powerful mint-undead graveporter with complete diagonal wooden shovel, forkedclamp glove, teal/coral patchcoat and gold/creamboots.",
+      "entry": {
+        "region": [
+          1295,
+          498,
+          216,
+          187
+        ],
+        "foot": [
+          1355,
+          685
+        ],
+        "source_height": 187,
+        "native_height": 68.4,
+        "collision_radius": 18,
+        "facing": "right",
+        "full_color": true
+      }
+    },
+    "BO03": {
+      "catalogue_name_at_start": "黑匣领航机",
+      "rendered_name": "缝合镇长",
+      "role": "boss",
+      "visual_clan": "南瓜僵尸",
+  "biome_label": "南瓜墓镇",
+      "rendered_description": "Massive non-gory stitched undeadmayor with mint/violet seamedskin, broad mismatchedteal/coral/violet longcoat, tallplumhat, goldbadge, pumpkinlantern and complete ornate lanternstaff.",
+      "entry": {
+        "region": [
+          1663,
+          459,
+          244,
+          241
+        ],
+        "foot": [
+          1779,
+          700
+        ],
+        "source_height": 241,
+        "native_height": 179.4,
+        "collision_radius": 52,
+        "facing": "right",
+        "full_color": true
+      }
+    }
+  },
+  "measurement": {
+    "method": "Pillow/NumPy MEASUREONLY. Detect real alpha>=16 occupiedrow/column runs, measure ten actual complete silhouettes, expandeach bbox2px. Disjointregions are actualbounds, not nominalgrid assumedrects.",
+    "alpha_threshold": 16,
+    "padding": 2,
+    "alpha_zero_fraction": 0.8380674573725342,
+    "occupied_row_bands": [
+      [
+        129,
+        332
+      ],
+      [
+        461,
+        698
+      ]
+    ],
+    "measured_bounds": [
+      {
+        "id": "M19",
+        "cell": [
+          0,
+          0,
+          397,
+          396
+        ],
+        "bbox_xyxy": [
+          129,
+          149,
+          298,
+          327
+        ],
+        "region": [
+          127,
+          147,
+          173,
+          182
+        ],
+        "margins": [
+          129,
+          149,
+          99,
+          69
+        ],
+        "lower_support_bands": {
+          "0.2": [
+            [
+              143,
+              150
+            ],
+            [
+              153,
+              234
+            ],
+            [
+              262,
+              277
+            ]
+          ],
+          "0.12": [
+            [
+              153,
+              186
+            ]
+          ],
+          "0.08": [
+            [
+              153,
+              186
+            ]
+          ],
+          "0.05": [
+            [
+              157,
+              186
+            ]
+          ]
+        }
+      },
+      {
+        "id": "M20",
+        "cell": [
+          397,
+          0,
+          396,
+          396
+        ],
+        "bbox_xyxy": [
+          527,
+          134,
+          716,
+          330
+        ],
+        "region": [
+          525,
+          132,
+          193,
+          200
+        ],
+        "margins": [
+          130,
+          134,
+          77,
+          66
+        ],
+        "lower_support_bands": {
+          "0.2": [
+            [
+              540,
+              580
+            ],
+            [
+              600,
+              644
+            ]
+          ],
+          "0.12": [
+            [
+              540,
+              571
+            ],
+            [
+              607,
+              643
+            ]
+          ],
+          "0.08": [
+            [
+              540,
+              571
+            ]
+          ],
+          "0.05": [
+            [
+              541,
+              571
+            ]
+          ]
+        }
+      },
+      {
+        "id": "M21",
+        "cell": [
+          793,
+          0,
+          397,
+          396
+        ],
+        "bbox_xyxy": [
+          894,
+          173,
+          1080,
+          331
+        ],
+        "region": [
+          892,
+          171,
+          190,
+          162
+        ],
+        "margins": [
+          101,
+          173,
+          110,
+          65
+        ],
+        "lower_support_bands": {
+          "0.2": [
+            [
+              896,
+              942
+            ],
+            [
+              976,
+              1034
+            ],
+            [
+              1052,
+              1075
+            ]
+          ],
+          "0.12": [
+            [
+              976,
+              1034
+            ]
+          ],
+          "0.08": [
+            [
+              976,
+              1032
+            ]
+          ],
+          "0.05": [
+            [
+              976,
+              1030
+            ]
+          ]
+        }
+      },
+      {
+        "id": "M22",
+        "cell": [
+          1190,
+          0,
+          396,
+          396
+        ],
+        "bbox_xyxy": [
+          1291,
+          130,
+          1505,
+          332
+        ],
+        "region": [
+          1289,
+          128,
+          218,
+          206
+        ],
+        "margins": [
+          101,
+          130,
+          81,
+          64
+        ],
+        "lower_support_bands": {
+          "0.2": [
+            [
+              1310,
+              1454
+            ]
+          ],
+          "0.12": [
+            [
+              1310,
+              1348
+            ],
+            [
+              1404,
+              1454
+            ]
+          ],
+          "0.08": [
+            [
+              1310,
+              1344
+            ]
+          ],
+          "0.05": [
+            [
+              1310,
+              1344
+            ]
+          ]
+        }
+      },
+      {
+        "id": "M23",
+        "cell": [
+          1586,
+          0,
+          397,
+          396
+        ],
+        "bbox_xyxy": [
+          1686,
+          129,
+          1892,
+          332
+        ],
+        "region": [
+          1684,
+          127,
+          210,
+          207
+        ],
+        "margins": [
+          100,
+          129,
+          91,
+          64
+        ],
+        "lower_support_bands": {
+          "0.2": [
+            [
+              1689,
+              1698
+            ],
+            [
+              1706,
+              1754
+            ],
+            [
+              1764,
+              1811
+            ]
+          ],
+          "0.12": [
+            [
+              1706,
+              1741
+            ],
+            [
+              1766,
+              1808
+            ]
+          ],
+          "0.08": [
+            [
+              1706,
+              1741
+            ]
+          ],
+          "0.05": [
+            [
+              1708,
+              1741
+            ]
+          ]
+        }
+      },
+      {
+        "id": "M24",
+        "cell": [
+          0,
+          396,
+          397,
+          397
+        ],
+        "bbox_xyxy": [
+          121,
+          496,
+          317,
+          686
+        ],
+        "region": [
+          119,
+          494,
+          200,
+          194
+        ],
+        "margins": [
+          121,
+          100,
+          80,
+          107
+        ],
+        "lower_support_bands": {
+          "0.2": [
+            [
+              143,
+              208
+            ],
+            [
+              220,
+              268
+            ]
+          ],
+          "0.12": [
+            [
+              143,
+              182
+            ],
+            [
+              220,
+              268
+            ]
+          ],
+          "0.08": [
+            [
+              144,
+              182
+            ],
+            [
+              243,
+              259
+            ]
+          ],
+          "0.05": [
+            [
+              146,
+              182
+            ]
+          ]
+        }
+      },
+      {
+        "id": "M25",
+        "cell": [
+          397,
+          396,
+          396,
+          397
+        ],
+        "bbox_xyxy": [
+          496,
+          481,
+          695,
+          690
+        ],
+        "region": [
+          494,
+          479,
+          203,
+          213
+        ],
+        "margins": [
+          99,
+          85,
+          98,
+          103
+        ],
+        "lower_support_bands": {
+          "0.2": [
+            [
+              509,
+              589
+            ],
+            [
+              598,
+              688
+            ]
+          ],
+          "0.12": [
+            [
+              509,
+              556
+            ],
+            [
+              599,
+              684
+            ]
+          ],
+          "0.08": [
+            [
+              509,
+              556
+            ],
+            [
+              635,
+              666
+            ]
+          ],
+          "0.05": [
+            [
+              516,
+              556
+            ]
+          ]
+        }
+      },
+      {
+        "id": "M26",
+        "cell": [
+          793,
+          396,
+          397,
+          397
+        ],
+        "bbox_xyxy": [
+          894,
+          495,
+          1107,
+          688
+        ],
+        "region": [
+          892,
+          493,
+          217,
+          197
+        ],
+        "margins": [
+          101,
+          99,
+          83,
+          105
+        ],
+        "lower_support_bands": {
+          "0.2": [
+            [
+              907,
+              990
+            ],
+            [
+              999,
+              1055
+            ]
+          ],
+          "0.12": [
+            [
+              907,
+              947
+            ],
+            [
+              999,
+              1055
+            ]
+          ],
+          "0.08": [
+            [
+              908,
+              947
+            ],
+            [
+              1023,
+              1047
+            ]
+          ],
+          "0.05": [
+            [
+              910,
+              947
+            ]
+          ]
+        }
+      },
+      {
+        "id": "M27",
+        "cell": [
+          1190,
+          396,
+          396,
+          397
+        ],
+        "bbox_xyxy": [
+          1297,
+          500,
+          1509,
+          683
+        ],
+        "region": [
+          1295,
+          498,
+          216,
+          187
+        ],
+        "margins": [
+          107,
+          104,
+          77,
+          110
+        ],
+        "lower_support_bands": {
+          "0.2": [
+            [
+              1309,
+              1371
+            ],
+            [
+              1401,
+              1474
+            ]
+          ],
+          "0.12": [
+            [
+              1309,
+              1342
+            ],
+            [
+              1403,
+              1474
+            ]
+          ],
+          "0.08": [
+            [
+              1309,
+              1342
+            ],
+            [
+              1406,
+              1474
+            ]
+          ],
+          "0.05": [
+            [
+              1311,
+              1341
+            ],
+            [
+              1416,
+              1474
+            ]
+          ]
+        }
+      },
+      {
+        "id": "BO03",
+        "cell": [
+          1586,
+          396,
+          397,
+          397
+        ],
+        "bbox_xyxy": [
+          1665,
+          461,
+          1905,
+          698
+        ],
+        "region": [
+          1663,
+          459,
+          244,
+          241
+        ],
+        "margins": [
+          79,
+          65,
+          78,
+          95
+        ],
+        "lower_support_bands": {
+          "0.2": [
+            [
+              1665,
+              1860
+            ]
+          ],
+          "0.12": [
+            [
+              1703,
+              1749
+            ],
+            [
+              1758,
+              1855
+            ]
+          ],
+          "0.08": [
+            [
+              1703,
+              1747
+            ],
+            [
+              1787,
+              1794
+            ],
+            [
+              1800,
+              1854
+            ]
+          ],
+          "0.05": [
+            [
+              1703,
+              1741
+            ]
+          ]
+        }
+      }
+    ],
+    "foot_convention": "Absolute atlas foot.y=region.y+region.height as coordinatorrequests. foot.x is semantic boot/hand contact supportmidpoint, excludes lanterns, shields, shovelblade and staff. M21 croucher loweranchor uses supporting hands/feet.",
+    "source_height_convention": "source_height=paddedalpha region.height for staticfullbodies.",
+    "native_height_convention": "Normals clamp(radius*3.8,66,88), boss clamp(radius*3.45,170,220). BO03radius52 gives179.4; normalradius12=>66,18=>68.4,24=>88. Runtime selector can use current actor height without modifyingcollision.",
+    "verification": "Exactly10distinct fullcolor rightfacing undead fullbodies. Every nominalcellmargin≥64px(16.2%). Allvisiblealpha>=16 captured by inbounds pairwise-disjointrectangles."
+  },
+  "quality_limits": [
+    "Built-in generator returned native1983x793 instead of initiallyrequested2560x1024; rawoutput preserved.",
+    "Fine patchstitches, crossbow fittings and beltcharms may soften at smallruntimebodyheights.",
+    "M27 shovelblade reaches approximately6nativepixels below bootsole; prescribedregion-end foot.y includesfullweapon and may yield about2pxvisualgap at68.4pxruntimeheight. foot.x excludes shovel.",
+    "Minor subthreshold antialiasnoise and thin saturated generator edgepixels were preserved without pixel editing."
+  ]
+}

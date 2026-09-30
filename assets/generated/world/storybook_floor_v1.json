@@ -1,0 +1,13 @@
+{
+  "asset": "storybook_floor_v1.png",
+  "created_date": "2026-09-30",
+  "pixel_width": 1254,
+  "pixel_height": 1254,
+  "requested_dimensions": "1024x1024",
+  "generator": "built-in image_gen",
+  "use_case": "stylized-concept",
+  "source": "C:/Users/13326/.codex/generated_images/01a0f260-8e28-78d1-be2b-23f8eef54702/exec-bc3a9137-b055-428c-8343-68f3a66ccd72.png",
+  "reference": "C:/Users/13326/.codex/generated_images/01a0f250-dc5c-7040-ab32-96177571dcae/exec-43b24e14-8aac-4983-aba5-37855eb767a4.png",
+  "prompt": "Use case: stylized-concept\nAsset type: production seamless game floor texture, 1024 x 1024 square PNG, for top-down orthographic Godot arena open walking surfaces.\nInput images: Image 1 is ONLY a color and illustration style reference; use its sunny warm cream stone plaza colors and clean storybook fantasy polish. Do not reproduce its scene, characters, props, layout, UI or perspective.\nPrimary request: one seamless tileable warm pale peach and cream limestone stone plaza floor. Large quiet gently irregular worn flagstones with delicate narrow shallow joints, sparse tiny subtle green moss confined to a few joints. The tile should feel bright, welcoming and spacious, with broad matte low-contrast surfaces so characters and effects remain easy to see.\nComposition/framing: true top-down orthographic texture map with flat planar stone surfaces extending edge-to-edge; consistent stone scale across whole image; tile boundaries must wrap perfectly on all four sides with matching stone pattern, joints, colors and light. No border. No focal center or radial arrangement. Large stones, not busy small cobblestones.\nStyle/medium: tasteful hand-painted/cel-polished bright fantasy adventure art matching the reference palette; restrained subtle limestone texture and softly simplified edges.\nLighting/mood: completely even soft daylight, no directional illumination or cast shadows, no vignettes, no gradients, no dark patches.\nColor palette: warm pale peach, cream ivory, soft sand beige; only restrained moss sage green accents at a few joints.\nConstraints: exactly one standalone floor tile. No rocks, walls, props, columns, medallions, compass graphics, symbols, people, monsters, water, foliage clusters, UI, text or watermark. No perspective or height illusion. Cracks and chips only very restrained. Every edge should tile seamlessly without visible border. Opaque background.",
+  "transparent_background": false
+}

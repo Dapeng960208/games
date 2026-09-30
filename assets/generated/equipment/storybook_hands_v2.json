@@ -1,0 +1,423 @@
+{
+  "schema_version": 1,
+  "asset": "storybook_hands_v2.png",
+  "date": "2026-09-30",
+  "source": "Built-in image_gen.imagegen; raw generated RGBA PNG copied byte-for-byte without image processing.",
+  "use_case": "stylized-concept",
+  "slot": "hands",
+  "generation_mode": "built-in",
+  "target_dimensions": [
+    2560,
+    1024
+  ],
+  "dimensions": [
+    1983,
+    793
+  ],
+  "layout": {
+    "columns": 5,
+    "rows": 2,
+    "order": [
+      "EQ31",
+      "EQ32",
+      "EQ33",
+      "EQ34",
+      "EQ35",
+      "EQ36",
+      "EQ37",
+      "EQ38",
+      "EQ39",
+      "EQ40"
+    ],
+    "requested_cell_dimensions": [
+      512,
+      512
+    ],
+    "actual_cell_edges_x": [
+      0,
+      397,
+      793,
+      1190,
+      1586,
+      1983
+    ],
+    "actual_cell_edges_y": [
+      0,
+      396,
+      793
+    ]
+  },
+  "reference": {
+    "role": "Viewed storybook style reference; visual palette and medium described in initial prompt.",
+    "path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f250-dc5c-7040-ab32-96177571dcae\\exec-43b24e14-8aac-4983-aba5-37855eb767a4.png"
+  },
+  "raw_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-3cf997cc-7a9d-42f0-9677-5da3a230062b.png",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept.\nAsset type: production game equipment sprite atlas, one single PNG sprite sheet.\nPrimary request: Create exactly TEN different finished physical hand equipment objects, arranged as exactly 5 columns by 2 rows in strict row-major order on a genuinely transparent background. Target canvas 2560 x 1024 pixels, each of ten equal cells 512 x 512 pixels. Each object must be completely inside its own cell, centered at its cell center and contained within the central 70% of that cell, leaving at least 15% empty transparent gutter on all four sides. Every single object is fully visible, no clipping. No item crosses or touches a cell boundary. Exactly ten separate icons.\nScene/backdrop: genuine transparent alpha 0 background outside objects. No environment, floor, shadow, background color, checkerboard, paper, UI, panel, frames, cell borders, labels, letters, numbers or text.\nStyle/medium: gorgeous polished fantasy storybook hand-painted 2.5D game asset art. Physical three-quarter view with clearly visible thickness, side faces, layered parts, inner cuffs and openings. Rich painterly surface variation, subtle wear, careful brush edges, volume from warm lit top-facing planes and cooler painted shaded side planes. Defined deep plum colored contours. Visual world matching warm cream pale stone and aged brass steampunk ruins, teal details and jewel-like glass. Whimsical crafted forms, detailed but readable at game icon size, not realistic photography. Keep the actual material and colors specified below, including gray cloth, orange insulators, green tubes, violet glass. Each item looks like actual wearable equipment, a substantial crafted three-dimensional object, never a flat glyph.\nComposition: One representative empty glove, gauntlet or bracer per cell; use a paired implement only if necessary to show identity, kept as one isolated grouped object. No real human hand, no skin, no wearer, no character, no body, no arm, no mannequin. Empty equipment only. Gloves have recognizable glove fingers, palm/back structure, wrist cuff and inner openings, equipment alone.\nAll five items in top row left to right:\nCell (0,0), EQ31, 铜扣工手套 / Copper-Buckle Work Gloves: exact visual 粗灰手套配方铜扣. An empty rugged coarse gray fabric work glove with five sturdy cloth fingers and a square copper wrist buckle. Gray textured fabric, stitched seams, thick worn folds and an open cuff, warm copper buckle clearly square.\nCell (1,0), EQ32, 节拍拨轮腕 / Rhythm-Dial Bracers: exact visual 手背单枚红铜齿轮与指节刻线. An empty articulated glove-bracer with exactly one red-copper gear dial prominent on its back and crisp engraved tick lines along the finger knuckles. A functional substantial glove, visible cuff, distinct red copper gear and articulated fingers.\nCell (2,0), EQ33, 司炉炭夹手 / Stoker Coal-Tongs: exact visual 黑铁夹指、橙色隔热指缝. A physical empty stoker gauntlet/tongs hand tool: black iron clamp-like segmented fingers with bright orange heat-insulating material between the fingers, chunky black iron body and open wrist cuff. Clearly black iron coal-gripping fingers; clearly orange insulated gaps. No flames or floating coals.\nCell (3,0), EQ34, 鸣轨触点手 / Singing-Rail Contact Gloves: exact visual 双铜触指连接蓝色腕盒. An empty blue glove with two clearly copper contact fingers connected by narrow copper conduit rails to a substantial blue wrist box. Show the copper dual contact fingers and box connection prominently; open cuff, actual wearable electrical contact glove.\nCell (4,0), EQ35, 霜潮采冰手 / Frost-Tide Ice-Harvesting Gloves: exact visual 三角冰片指背与白皮腕缘. An empty pale glove with triangular translucent icy-blue plates mounted on the backs of its fingers and a thick white leather wrist rim. Distinct three-dimensional triangular ice pieces, warm white leather cuff edge, careful painted ice transparency and cool facets.\nAll five items in bottom row left to right:\nCell (0,1), EQ36, 铜蚀滴定手 / Verdigris Titration Gloves: exact visual 铜质细指环连接绿滴腕管. An empty titration glove with thin copper finger rings linked through narrow tubing to a prominent wrist tube filled with green liquid drops. Clearly visible copper rings around empty glove fingers, green liquid-filled glass wrist tube, conduits visibly connecting. Preserve green liquid.\nCell (1,1), EQ37, 誓卫铆钉手 / Oathguard Rivet Gauntlets: exact visual 方形铆钉拳面与暖白腕环. An empty broad armored gauntlet with square rivets over the knuckle/fist face and a thick warm-white wrist ring/cuff. Cream-white armor with aged brass construction, distinct square rivets, layered fingers and inner cuff, stout protective silhouette.\nCell (2,1), EQ38, 断层震钉手 / Faultline Tremor Spikes: exact visual 黑石指锤与外露黄色减震簧. An empty mechanical impact gauntlet with bulky black-stone finger hammers and exposed yellow shock-absorbing coil springs. Black stone finger heads with chiseled side faces, yellow springs at the finger machinery, open mechanical wrist. Heavy physical device, not a floating rock cluster.\nCell (3,1), EQ39, 棱镜刻线手 / Prism Scribed Gloves: exact visual 细白刻线绕紫玻璃指套. An empty delicate glove fitted with violet-purple glass finger sheaths wrapped by fine white engraved/scribed lines. The five violet translucent finger sleeves and wrapping thin white marks must be clearly readable; ivory cuff and subtle brass fittings, elegant dimensional glass with painted reflections.\nCell (4,1), EQ40, 逐风牵索手 / Windcourier Cable Gloves: exact visual 蓝色卷索腕与双尾绳结. An empty courier glove with a substantial blue cable-reel spool at the wrist and a tied rope knot with exactly two short trailing rope ends. Clearly blue wrist spool wound with rope, dimensional finger glove and rope knot. Both short rope tails completely contained inside its cell.\nLighting/mood: warm storybook key light with softly painted volume only inside each object. No cast shadow underneath, no halo, no ambient glow around silhouettes.\nConstraints: Ten unique actual functional items matching these ten exact identities and materials. Strict 5x2 order. Equal cell spacing. Entire items within central 70% of own cell. Real transparency. No additional objects, text, background pixels, flat pictograms, duplicate gear gloves, recolors of one generic icon, severed real hands, decorative UI or rarity color borders. Do not paint any reference UI or characters.",
+  "repair_prompts": [
+    "Use case: precise-object-edit.\nEdit target: the attached transparent ten-glove equipment atlas.\nRepair ONLY composition and blank spacing, preserving every item's identity, materials, colors, intricate design, painted 2.5D volume and exact top-row/bottom-row order.\nThe current ten objects are too large within their ten cells. Re-render each complete equipment object at precisely 70% of its current visual size and center it separately at its own cell center. Keep all ten items. This must produce wide empty gutters around each individual glove, at least 15% of each square cell on all four sides, and an especially clear horizontal empty band between the two rows. Do not merely shrink the entire atlas at once. Individually shrink and recenter the ten glove objects into a regular 5-column, 2-row grid.\nCanvas requested 2560×1024, 5 by 2 exactly equal 512-square cells. Correct cell centers: top row (256,256), (768,256), (1280,256), (1792,256), (2304,256); bottom row same x at y=768. Object longest dimension no more than 358 pixels inside each cell. If output dimensions differ, preserve this exact 5:2 aspect ratio and proportional equal square cells with item dimensions no more than 70% of cell size. At least 15% totally empty transparent margin from each object's extreme edge to each cell edge. Fully visible inner cuffs and fingers, no clipping or inter-cell contact.\nKeep identities strictly top row left to right: rugged gray work glove and square copper buckle; copper single gear-dial glove and engraved knuckle ticks; black iron coal-tongs gauntlet with orange insulated finger gaps; blue wrist box and twin copper contact fingers; triangular icy-blue finger plates and white leather wrist rim.\nBottom row left to right: copper finger rings plus connected green drop-filled wrist tube; broad square-rivet gauntlet and warm-white wrist ring; black stone hammer fingers with exposed yellow spring dampers; violet glass finger sleeves wrapped in thin white engraved lines; blue rope-reel wrist glove with exactly two short rope tails.\nPreserve detailed storybook hand-painted 2.5D objects with deep plum colored contours, cream and brass, exact gray/orange/green/violet/blue materials. Equipment alone, no real hands or skin. Completely transparent alpha 0 outside the ten objects, preserve transparency. No floor, cast shadow, halo, backgrounds, grid lines, text, labels, frames, people, or additional props. NO change of item designs. Make all gloves smaller and centered with generous blank gutters.",
+    "Use case: precise-object-edit.\nEdit the attached transparent 5×2 equipment atlas. Final layout repair only. Preserve all ten same objects, same design, same colors, same detailed painterly dimensional style, same order, same transparent background.\nIndividually make each of the ten existing glove objects 75% of its CURRENT size, and recenter EACH object's complete silhouette into the exact center of its own square grid cell. The gloves must have wider transparent margins on all four sides. Maximum final silhouette dimension is 55% of its cell. All objects, including rope tails, fingertips, cuffs, tiny cables and tubes, must be entirely inside their own cell's central 60% rectangle. Thus each cell has at least 20% totally blank transparent margin around its perimeter. Do not shrink the whole image; reposition the ten individual items independently.\nTarget canvas 2560×1024, exactly five equal square cells across and two equal square cells down. If preserving original dimensions 1983×793, the same relative 5×2 layout is mandatory. Final small complete object centers must be: top row x=10%,30%,50%,70%,90%, all y=25%; bottom row same x at y=75%. Center the extreme outer silhouette bbox, not the cuff or palm alone. The bottom row needs to move down slightly to be centered.\nKeep top row identities: gray fabric square-copper-buckle work glove; one red-copper gear-dial articulated glove; black iron clamp-finger coal tongs with orange insulation; blue wrist electrical box and two copper contact fingers; triangular icy-blue finger plates and white leather cuff.\nKeep bottom row identities: copper rings and green-drop wrist tube connected by narrow tubes; cream gauntlet with square knuckle rivets and warm-white wrist ring; black stone hammer fingers and exposed yellow springs; violet glass finger sheaths wrapped with thin white lines; blue wrist rope spool and exactly two short rope-knot tails.\nEvery item must remain fully detailed and clearly dimensional, with visible side faces, thickness and empty cuffs. Equipment only, absolutely no real hands, skin, wearer, character or mannequin.\nAlpha 0 blank background. No floor, shadows outside objects, glow, halo, background texture, cell lines, labels, letters, UI or frames. Preserve genuine transparent cutout edges."
+  ],
+  "generation_history": [
+    {
+      "attempt": 1,
+      "purpose": "Initial complete atlas",
+      "raw_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-641c5ae5-9832-4212-860c-ff13ade48512.png"
+    },
+    {
+      "attempt": 2,
+      "purpose": "Spacing repair",
+      "reference_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-641c5ae5-9832-4212-860c-ff13ade48512.png",
+      "raw_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-af8fc7ca-347e-407f-94c8-49df021bfb41.png"
+    },
+    {
+      "attempt": 3,
+      "purpose": "Final allowed spacing repair",
+      "reference_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-af8fc7ca-347e-407f-94c8-49df021bfb41.png",
+      "raw_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-3cf997cc-7a9d-42f0-9677-5da3a230062b.png"
+    }
+  ],
+  "items": [
+    {
+      "id": "EQ31",
+      "name": "铜扣工手套",
+      "name_en": "Copper-Buckle Work Gloves",
+      "slot": "hands",
+      "visual": "粗灰手套配方铜扣",
+      "description": "Empty coarse gray cloth work glove with stitched seams, thick cuff and square copper wrist buckle.",
+      "cell": [
+        0,
+        0,
+        397,
+        396
+      ],
+      "alpha_bbox": [
+        104,
+        114,
+        225,
+        220
+      ],
+      "region": [
+        102,
+        112,
+        229,
+        224
+      ],
+      "gutters_pixels": [
+        104,
+        114,
+        68,
+        62
+      ]
+    },
+    {
+      "id": "EQ32",
+      "name": "节拍拨轮腕",
+      "name_en": "Rhythm-Dial Bracers",
+      "slot": "hands",
+      "visual": "手背单枚红铜齿轮与指节刻线",
+      "description": "Empty articulated glove-bracer with a single prominent red-copper back gear and engraved knuckle tick lines.",
+      "cell": [
+        397,
+        0,
+        396,
+        396
+      ],
+      "alpha_bbox": [
+        473,
+        96,
+        233,
+        247
+      ],
+      "region": [
+        471,
+        94,
+        237,
+        251
+      ],
+      "gutters_pixels": [
+        76,
+        96,
+        87,
+        53
+      ]
+    },
+    {
+      "id": "EQ33",
+      "name": "司炉炭夹手",
+      "name_en": "Stoker Coal-Tongs",
+      "slot": "hands",
+      "visual": "黑铁夹指、橙色隔热指缝",
+      "description": "Black iron coal-gripping clamp-finger gauntlet with orange insulated finger gaps.",
+      "cell": [
+        793,
+        0,
+        397,
+        396
+      ],
+      "alpha_bbox": [
+        873,
+        105,
+        228,
+        235
+      ],
+      "region": [
+        871,
+        103,
+        232,
+        239
+      ],
+      "gutters_pixels": [
+        80,
+        105,
+        89,
+        56
+      ]
+    },
+    {
+      "id": "EQ34",
+      "name": "鸣轨触点手",
+      "name_en": "Singing-Rail Contact Gloves",
+      "slot": "hands",
+      "visual": "双铜触指连接蓝色腕盒",
+      "description": "Blue electrical contact glove with twin copper contact fingers visibly connected to a blue wrist box.",
+      "cell": [
+        1190,
+        0,
+        396,
+        396
+      ],
+      "alpha_bbox": [
+        1253,
+        100,
+        223,
+        249
+      ],
+      "region": [
+        1251,
+        98,
+        227,
+        253
+      ],
+      "gutters_pixels": [
+        63,
+        100,
+        110,
+        47
+      ]
+    },
+    {
+      "id": "EQ35",
+      "name": "霜潮采冰手",
+      "name_en": "Frost-Tide Ice-Harvesting Gloves",
+      "slot": "hands",
+      "visual": "三角冰片指背与白皮腕缘",
+      "description": "White leather-cuffed glove with three-dimensional triangular icy-blue finger-back plates.",
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ],
+      "alpha_bbox": [
+        1624,
+        104,
+        241,
+        245
+      ],
+      "region": [
+        1622,
+        102,
+        245,
+        249
+      ],
+      "gutters_pixels": [
+        38,
+        104,
+        118,
+        47
+      ]
+    },
+    {
+      "id": "EQ36",
+      "name": "铜蚀滴定手",
+      "name_en": "Verdigris Titration Gloves",
+      "slot": "hands",
+      "visual": "铜质细指环连接绿滴腕管",
+      "description": "Gray glove with thin copper finger rings, connected green conduits and green-liquid glass wrist tube.",
+      "cell": [
+        0,
+        396,
+        397,
+        397
+      ],
+      "alpha_bbox": [
+        99,
+        457,
+        226,
+        255
+      ],
+      "region": [
+        97,
+        455,
+        230,
+        259
+      ],
+      "gutters_pixels": [
+        99,
+        61,
+        72,
+        81
+      ]
+    },
+    {
+      "id": "EQ37",
+      "name": "誓卫铆钉手",
+      "name_en": "Oathguard Rivet Gauntlets",
+      "slot": "hands",
+      "visual": "方形铆钉拳面与暖白腕环",
+      "description": "Broad cream armored gauntlet with square rivets across its fist face and a warm-white wrist ring.",
+      "cell": [
+        397,
+        396,
+        396,
+        397
+      ],
+      "alpha_bbox": [
+        473,
+        460,
+        229,
+        248
+      ],
+      "region": [
+        471,
+        458,
+        233,
+        252
+      ],
+      "gutters_pixels": [
+        76,
+        64,
+        91,
+        85
+      ]
+    },
+    {
+      "id": "EQ38",
+      "name": "断层震钉手",
+      "name_en": "Faultline Tremor Spikes",
+      "slot": "hands",
+      "visual": "黑石指锤与外露黄色减震簧",
+      "description": "Mechanical gauntlet with black-stone finger hammers and exposed yellow spring dampers.",
+      "cell": [
+        793,
+        396,
+        397,
+        397
+      ],
+      "alpha_bbox": [
+        864,
+        463,
+        229,
+        246
+      ],
+      "region": [
+        862,
+        461,
+        233,
+        250
+      ],
+      "gutters_pixels": [
+        71,
+        67,
+        97,
+        84
+      ]
+    },
+    {
+      "id": "EQ39",
+      "name": "棱镜刻线手",
+      "name_en": "Prism Scribed Gloves",
+      "slot": "hands",
+      "visual": "细白刻线绕紫玻璃指套",
+      "description": "Violet glass finger-sheath glove wrapped with thin white scribed lines and an ivory cuff.",
+      "cell": [
+        1190,
+        396,
+        396,
+        397
+      ],
+      "alpha_bbox": [
+        1245,
+        464,
+        236,
+        248
+      ],
+      "region": [
+        1243,
+        462,
+        240,
+        252
+      ],
+      "gutters_pixels": [
+        55,
+        68,
+        105,
+        81
+      ]
+    },
+    {
+      "id": "EQ40",
+      "name": "逐风牵索手",
+      "name_en": "Windcourier Cable Gloves",
+      "slot": "hands",
+      "visual": "蓝色卷索腕与双尾绳结",
+      "description": "Blue cable-reel wrist glove with tied knot and two contained rope tails.",
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ],
+      "alpha_bbox": [
+        1635,
+        455,
+        260,
+        257
+      ],
+      "region": [
+        1633,
+        453,
+        264,
+        261
+      ],
+      "gutters_pixels": [
+        49,
+        59,
+        88,
+        81
+      ]
+    }
+  ],
+  "validation": {
+    "unique_visual_identities": 10,
+    "all_items_complete": true,
+    "correct_row_major_order": true,
+    "regions_disjoint": true,
+    "visible_alpha_threshold": 16,
+    "region_padding_pixels": 2,
+    "visible_pixels": 341271,
+    "visible_pixels_outside_regions": 0,
+    "canvas_edge_visible_pixels": 0,
+    "alpha_zero_percent": 75.5053516046547,
+    "alpha_nonzero_outside_regions": 3123,
+    "minimum_cell_gutter_percent": 9.571788413098236,
+    "method": "Pillow and NumPy read-only alpha measurement; regions are each disjoint alpha>=16 bbox plus 2 px. No raster edits."
+  },
+  "limitations": [
+    "The built-in generator returned 1983×793 rather than requested 2560×1024; metadata and regions use actual dimensions.",
+    "Two targeted spacing repairs improved gutters, but the strict requested 15% margin on every side was not achieved: minimum visible gutter is 9.5718% (EQ35 left side). All complete items remain well inside their cells with no canvas clipping or region overlap.",
+    "3123 low-alpha pixels outside regions are alpha<16 generator noise. Every pixel at declared visible alpha threshold >=16 is captured in regions.",
+    "Minor colored edge fringe is present in the raw generated antialiasing. Raw alpha and RGB are preserved without manual cleanup."
+  ]
+}

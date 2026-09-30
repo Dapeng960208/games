@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "generator": "built-in image_gen.imagegen",
+  "date": "2026-09-30",
+  "transparent_background": true,
+  "source_pixel_edits": "none",
+  "intent": "Original CH01 six-keypose basic attack weapon redesign from ambiguous twin-piston ram to clear orange-black single-bladed rockbreaker axe with flat hammer poll. Candidate only; assets are disabled pending root's consistent-bank runtime review.",
+  "references": [
+    {
+      "path": "assets/generated/heroes/CH01_actions_front_v3.png",
+      "role": "Authoritative new axe construction, character identity, costume and painted style"
+    },
+    {
+      "path": "assets/generated/heroes/CH01_basic_front_v1.png",
+      "role": "Original front six-pose body action and timing"
+    },
+    {
+      "path": "assets/generated/heroes/CH01_basic_back_v1.png",
+      "role": "Original back six-pose body action, timing, rear costume and camera"
+    }
+  ],
+  "generations": [
+    {
+      "bank": "front",
+      "selection": "rejected_layout",
+      "source": "C:/Users/13326/.codex/generated_images/01a0efb4-e123-7b82-9b06-a842f58eddb7/exec-b8325929-daee-4d05-b452-e1aca20cb9d5.png",
+      "references": [
+        "C:/webdev/games/assets/generated/heroes/CH01_actions_front_v3.png",
+        "C:/webdev/games/assets/generated/heroes/CH01_basic_front_v1.png"
+      ],
+      "prompt": "Use case: precise-object-edit / identity-preserve.\nAsset type: original transparent 2D game six-pose sprite atlas for CH01 basic melee attack, front three-quarter view facing screen-right.\nInput images: Image 1 (CH01_actions_front_v3.png) is the EXACT new weapon design and character identity reference; Image 2 (CH01_basic_front_v1.png) is the SIX-POSE timing and body movement reference. Replace the old twin-cylinder weapon entirely with the new battle axe from Image 1. Keep the same muscular dark short-haired adult man, white neck cloth, orange/black rugged miner armor, left boxy shoulder guard, mechanical arm hoses, leather harness, hip lamp, chunky boots. Original painted game art with clean highlights and readable dark outlines, matching these references.\nWeapon: unmistakable broad SINGLE silver-edged axe blade mounted to orange-and-black iron head, flat rectangular hammer poll opposite the blade, thick short brown leather-wrapped TWO-HANDED shaft. One weapon only, no barrels, cylinders, muzzle, rifle stock, trigger, gun or pistol silhouette. Consistent axe construction and size across all six poses.\nCanvas and framing: landscape 1536x1024; exactly SIX full-body poses in a strict 3 columns x 2 rows layout. Each cell is exactly 512x512. Reserve at least 40 transparent pixels on ALL FOUR sides inside EVERY cell. All weapons, feet, hair and armor must fit completely in their OWN cell. No crossing cell boundaries, no cropped blade or feet. Make the character and weapon smaller within cells if necessary; equal anatomical scale across all poses, do not enlarge any pose to fill space. Both planted boot contact baselines close to y=455 of each cell. True transparent alpha background; no floor, gradient, background color, glow, shadows, panels, text, labels or grid lines.\nPose order left-to-right top row then bottom row:\n1 LIFT: two hands lift axe diagonally upward across chest, head of axe above screen-right shoulder.\n2 LOADED: full overhead load, both arms raised; axe shaft near horizontal above head, blade on screen-right; planted braced legs.\n3 DOWNSWING: axe accelerating diagonally forward and down, shoulder and torso driving motion, bent elbows opening, axe head still at knee-height to screen-right.\n4 CONTACT: deep forward weight transfer, arms extended through a committed descending chop, axe blade at low screen-right beyond forward knee; complete body and blade remain at least 40px inside cell.\n5 RECOIL: recover from low contact, elbows begin bending and torso rises, blade lifted slightly; visibly different from contact and ready.\n6 READY: balanced two-handed low diagonal guard, relaxed knees, axe head at screen-right shin level.\nAll six must read as one heavy overhead melee chop sequence, not a firearm pose. Do not add trails, sparks, enemies, debris or motion blur. Preserve premium detailed original game art.",
+      "reason": "Weapon identity accepted, but oversized silhouettes exceeded strict cells."
+    },
+    {
+      "bank": "front",
+      "selection": "rejected_layout",
+      "source": "C:/Users/13326/.codex/generated_images/01a0efb4-e123-7b82-9b06-a842f58eddb7/exec-1e997835-4cc6-4a52-aa4d-ee68902049e1.png",
+      "references": [
+        "C:/Users/13326/.codex/generated_images/01a0efb4-e123-7b82-9b06-a842f58eddb7/exec-b8325929-daee-4d05-b452-e1aca20cb9d5.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Correct ONLY the layout of this six-pose CH01 axe attack sprite atlas. Keep the exact same original character, face, armor, new broad orange-black SINGLE-bladed battle axe with rectangular hammer poll, and each of the six existing poses unchanged. No redesign of body, equipment, weapon, lighting or motion.\nMake this a clean production atlas: exactly 1536x1024 transparent canvas, exact 3 columns x 2 rows, each cell 512x512. Uniformly SHRINK EACH FULL POSE to 72% of its current size, preserving anatomy scale across all six, then CENTER each entire pose within its own 512x512 cell. For each cell, the complete opaque silhouette including weapon and boots must remain inside local box x=64..448, y=64..448. Therefore there must be at least 64 pixels genuinely transparent padding around each full pose and a minimum 128px empty gutter between adjacent poses. Current image is too big: top axe touches upper edge and bottom-left axe crosses the neighboring cell. Fix these specific issues by shrinking the figures substantially, NOT by cropping or shortening limbs/weapons. Aim for characters about 265px anatomical crown-to-ground height.\nKeep original pose order: lift, overhead loaded, downswing, low contact lunge, recoil, ready. Align foot ground lines at local y=430, with natural crouch head changes. No cell borders or lines, no text, no labels, no floor, no background colors, no fake transparency checkerboard, no baked shadow, no effects. Real transparent alpha everywhere outside the six silhouettes. This is a spacious isolated six-sprite sheet.",
+      "reason": "Improved spacing but contact axe still crossed x=512 cell boundary and top-right axe had less than32px margin."
+    },
+    {
+      "bank": "front",
+      "selection": "selected_candidate",
+      "source": "C:/Users/13326/.codex/generated_images/01a0efb4-e123-7b82-9b06-a842f58eddb7/exec-9ca0ad1d-f845-4840-8886-ad0aacb74b57.png",
+      "references": [
+        "C:/webdev/games/assets/generated/heroes/CH01_basic_front_v2.png"
+      ],
+      "reference_at_generation": "C:/Users/13326/.codex/generated_images/01a0efb4-e123-7b82-9b06-a842f58eddb7/exec-1e997835-4cc6-4a52-aa4d-ee68902049e1.png",
+      "prompt": "Use case: precise-object-edit. The six axe sprites are good, but their layout is still too large. Make ONE narrow change only: REDUCE THE COMPLETE SIX SPRITES IN SIZE to 65% of their current size and evenly separate them. Do not redesign any pose or costume or weapon.\nRecompose the 1536x1024 image as a strict SIX thumbnail sprite atlas: centers at (256,256), (768,256), (1280,256), (256,768), (768,768), (1280,768). Each entire sprite INCLUDING axe blade must fit in a 320x320 invisible box centered at its location. Maximum full sprite width 320px, maximum full sprite height 320px. Exactly same body scale all six; the wide lunge in bottom-left must also fit entirely in its 320px box. Plenty of empty TRANSPARENT space: at least 90px on every side of every512px cell. The gap between two neighboring silhouettes must be at least180px. No dark gradient, no beige rectangle, no floor, no panel, no visible guide box, no labels. Genuine transparent alpha. Six isolated small full-body thumbnails, NOT a full-frame character poster.\nRetain precise existing order and poses: top row lift, overhead load, downswing; bottom row low contact lunge, recoil, ready. Retain original muscular short-haired orange-black miner hero with broad single axe blade+flat hammer poll, short two-handed shaft. This request is only for layout and whitespace, not for new character art. Do NOT leave the six figures at their original large sizes."
+    },
+    {
+      "bank": "back",
+      "selection": "rejected_layout",
+      "source": "C:/Users/13326/.codex/generated_images/01a0efb4-e123-7b82-9b06-a842f58eddb7/exec-e1b45d5f-cd60-47d4-99ea-6453383e50dd.png",
+      "references": [
+        "C:/webdev/games/assets/generated/heroes/CH01_actions_front_v3.png",
+        "C:/webdev/games/assets/generated/heroes/CH01_basic_back_v1.png"
+      ],
+      "prompt": "Use case: precise-object-edit / identity-preserve.\nAsset type: original transparent 2D game six-pose sprite atlas for CH01 basic melee attack, BACK three-quarter view facing upper-right.\nInput images: Image 1 (CH01_actions_front_v3.png) is the EXACT new weapon design and character identity reference. Image 2 (CH01_basic_back_v1.png) is the rear-view armor, body movement and six-pose timing reference. Replace old twin-cylinder weapon entirely with the new battle axe from Image 1. Preserve same muscular dark short-haired adult miner, ivory scarf, orange/black rugged armor, large grated box shoulder plate on his left, right arm mechanical hoses, crossed back harness, hip lamp and boots. Face hidden; back of head and back torso seen in ALL SIX poses. Detailed clean painted original game sprite style matching references.\nWeapon: unmistakable broad SINGLE silver-edged axe blade mounted to orange-and-black iron head, flat rectangular hammer poll opposite blade, thick short brown leather-wrapped TWO-HANDED shaft. Correct rear-view perspective of this same axe. One weapon only, absolutely NO barrels, twin cylinders, gun muzzle, rifle stock, trigger or gun silhouette.\nCRITICAL LAYOUT: landscape 1536x1024, exactly SIX poses in STRICT 3 columns x 2 rows, each cell512x512. Make each pose MUCH SMALLER and more isolated than Image2. Each whole silhouette including complete axe, feet, hair must fit inside local cell x=64..448 and y=64..448. At least64px TRANSPARENT PADDING on EVERY side of EVERY cell, no overlap across cells. Anatomical crown-to-boot height around270px, same scale across all six. Entire overhead axe must stay far below top edge. Full low contact axe remains fully inside bottom-left cell. Ground baseline around localy430; natural crouch changes crown height without resizing body. Genuine alpha transparency, no gradients or backgrounds, no floor, shadow, grid, panels, labels, text or effect trails.\nSix poses in order left-right then nextrow:\n1 LIFT: back view, both hands raise axe diagonally up toward upper-right, load hips.\n2 LOADED: back view, both hands and axe fully overhead, braced feet.\n3 DOWNSWING: back view, torso drives descending diagonal chop, arms moving forward from overhead, axe head down toward upper-right waist/knee level, visibly intermediate between load and contact.\n4 CONTACT: back view, deepest forward lean and weight transfer through descending chop, complete extended axe beyond front leg to screen-right, rear leg braces.\n5 RECOIL: back view, torso rises slightly, elbows begin returning, axe lifts from contact; distinct from contact and ready.\n6 READY: back view, upright balanced two-hand low diagonal guard.\nPreserve believable continuous two-handed grip and planted feet, six distinct action poses. No enemies, sparks, impact flash, dust or motion blur. No repeated identical posture.",
+      "reason": "Weapon identity and rear camera accepted; overly large cells retained reference layout."
+    },
+    {
+      "bank": "back",
+      "selection": "selected_candidate",
+      "source": "C:/Users/13326/.codex/generated_images/01a0efb4-e123-7b82-9b06-a842f58eddb7/exec-354a3905-6be6-4ed9-8250-6e1cbfe24793.png",
+      "references": [
+        "C:/Users/13326/.codex/generated_images/01a0efb4-e123-7b82-9b06-a842f58eddb7/exec-e1b45d5f-cd60-47d4-99ea-6453383e50dd.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Correct ONLY the oversized layout of this six-pose rear-view axe sprite atlas. Keep all six original hero poses and the orange-black wide SINGLE-bladed axe with flat hammer poll and short two-handed shaft exactly recognizable.\nUniformly shrink all six complete sprite silhouettes to 65% of current size and move each into the center of its own 512x512 invisible cell. Canvas1536x1024, exactly3 columns x2 rows. Centers (256,256),(768,256),(1280,256),(256,768),(768,768),(1280,768). Every complete sprite including whole axe and boots MUST fit within a320x320 box around its center. Maximum full silhouette width320px,height320px. This demands LARGE empty transparent margins at least90px on every side of everycell, and at least180px empty transparent gaps between neighbors. Do not crop axe or boots. Keep constant body anatomy scale across poses. Do not merely redraw at the old large sizes. These should be SIX SMALL ISOLATED THUMBNAILS with generous empty space, not full-frame posters.\nBack view in every cell, face hidden, same detailed original short-haired orange-black miner hero with left grated shoulder box, hoses on right arm, crossed leather harness and hip lamp. Poseorder top lift/loaded overhead/downswing, bottom low contact lunge/recoil/ready. Keep each phase distinct and two-handed grip believable.\nTrue transparent alpha outside sprite silhouettes; no background gradient, floor, shadow, trail, grid line, guides, labels or text. The only requested change is significantly smaller uniformly scaled figures with much greater transparent spacing."
+    }
+  ],
+  "outputs": [
+    {
+      "bank": "front",
+      "project_path": "assets/generated/heroes/CH01_basic_front_v2.png",
+      "metadata": "assets/generated/heroes/CH01_basic_front_v2.json",
+      "source": "C:/Users/13326/.codex/generated_images/01a0efb4-e123-7b82-9b06-a842f58eddb7/exec-9ca0ad1d-f845-4840-8886-ad0aacb74b57.png",
+      "sha256": "b170e2ab0cb743709b0141e36dd4dca1ff5b742e6cb97e5319fd0cfad768f8c2",
+      "body_height": 250,
+      "alpha": {
+        "mode": "RGBA",
+        "size": [
+          1536,
+          1024
+        ],
+        "extrema": [
+          0,
+          254
+        ],
+        "zero_alpha_pixels": 1302655,
+        "visible_threshold": 16,
+        "min_cell_margin_pixels": 45,
+        "maximum_alpha_in_outer_32px": 1
+      }
+    },
+    {
+      "bank": "back",
+      "project_path": "assets/generated/heroes/CH01_basic_back_v2.png",
+      "metadata": "assets/generated/heroes/CH01_basic_back_v2.json",
+      "source": "C:/Users/13326/.codex/generated_images/01a0efb4-e123-7b82-9b06-a842f58eddb7/exec-354a3905-6be6-4ed9-8250-6e1cbfe24793.png",
+      "sha256": "7108894f2fb3b2e6ef7a12f41bdd73e91443febf2e4644c78a3f777a0d702d17",
+      "body_height": 255,
+      "alpha": {
+        "mode": "RGBA",
+        "size": [
+          1536,
+          1024
+        ],
+        "extrema": [
+          0,
+          254
+        ],
+        "zero_alpha_pixels": 1280929,
+        "visible_threshold": 16,
+        "min_cell_margin_pixels": 40,
+        "maximum_alpha_in_outer_32px": 1
+      }
+    }
+  ],
+  "validation": {
+    "performed": [
+      "Source art inspected visually after each generation.",
+      "Final PNG copied without pixel edits.",
+      "Read-only Pillow alpha bounds and disjoint source-cell analysis.",
+      "Six frames per bank; manual absolute foot/head/grip/axe-edge anchors inside padded regions.",
+      "Inherited original phase order and weights."
+    ],
+    "not_performed": [
+      "Godot import",
+      "Runtime playback",
+      "GPU capture",
+      "Gameplay contact and foot-placement review"
+    ],
+    "notes": "Candidate manifests remain enabled:false. Brown/black RGB backdrop visible in viewers is behind alpha; no post-generation background removal, resampling or alpha modification performed. Strict fully-zero outer margins are not claimed: generated alpha=1 fringe noise remains."
+  }
+}

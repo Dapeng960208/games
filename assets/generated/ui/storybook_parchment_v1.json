@@ -1,0 +1,34 @@
+{
+  "name": "storybook_parchment_v1",
+  "created_date": "2026-09-30",
+  "tool": "built-in image_gen.imagegen",
+  "use_case": "ui-mockup",
+  "style_reference": "C:\\Users\\13326\\.codex\\generated_images\\01a0f250-dc5c-7040-ab32-96177571dcae\\exec-43b24e14-8aac-4983-aba5-37855eb767a4.png",
+  "source_image": "C:\\Users\\13326\\.codex\\generated_images\\01a0f260-fa29-7060-b434-6efd3ea1241e\\exec-d85185de-f8ae-4774-88e5-ff29d5aa6f88.png",
+  "initial_source_image": "C:\\Users\\13326\\.codex\\generated_images\\01a0f260-fa29-7060-b434-6efd3ea1241e\\exec-e0aea012-1cfb-4bf5-9868-d27396e279ce.png",
+  "output_image": "assets/generated/ui/storybook_parchment_v1.png",
+  "native_dimensions": {
+    "width": 1774,
+    "height": 887
+  },
+  "target_logical_dimensions": {
+    "width": 512,
+    "height": 256
+  },
+  "recommended_nine_slice_source_margin_px": {
+    "left": 56,
+    "top": 56,
+    "right": 56,
+    "bottom": 56
+  },
+  "recommended_nine_slice_destination_margin_px": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "transparent_background": true,
+  "notes": "Output preserved without raster postprocessing. The built-in generator returned native 1774x887 despite 512x256 prompt. It is a 2:1 panel covering canvas edges, with clipped transparent corners and quiet light cream center. Use 56px source slices and 16px destination borders (or approximately 16px source margin if scaled to a 512x256 Texture2D at runtime).",
+  "initial_prompt": "Use case: ui-mockup\nAsset type: reusable nine-patch game UI parchment panel raster texture, landscape exactly 512 by 256 pixels\nPrimary request: Generate ONE isolated clean parchment panel for a bright sophisticated fantasy storybook field-note HUD. It will be stretched using nine-patch / nine-slice for HUD ribbons, cards, menus, and buttons.\nInput images: Image 1 is STYLE REFERENCE ONLY, using the warm cream parchment, delicate plum outlines and muted brass edge accents seen in its UI. Do not copy any UI text, symbols, characters, environment or objects from the reference.\nSubject: a single flat rectangular horizontal parchment panel, almost fully filling the 512x256 canvas, front view with no perspective, with very slightly cut corners and tiny handmade irregularities on its edge.\nColor palette: opaque warm ivory and light cream writing surface, dark plum very thin outline, restrained muted brass edge accents.\nMaterials/textures: barely perceptible fine paper grain, extremely subtle cream variation. At least 90% of the entire panel must be a quiet blank uniform light cream writing surface suitable for dark readable text.\nComposition: left, right, top and bottom edge artwork all fits within the outermost 12 pixels. Corner cuts must fit within 12 pixels. The center from x=16 to x=496 and y=16 to y=240 must be quiet light cream and fully stretchable with no features. Texture occupies almost entire canvas, outer transparent padding no more than 2 pixels. The top and bottom border strokes are continuous horizontal lines and left and right are continuous vertical lines.\nLighting/mood: bright welcoming, light clean refined fantasy storybook, a usable UI texture rather than a decorative prop.\nConstraints: actual transparent background OUTSIDE the panel only; opaque cream INSIDE. Clean alpha edge. No text, no icons, no typography, no letters, no numbers, no compass, no runes, no symbols, no decorative illustrations. No additional object. No shadows. No bevel. No complex curled corners. No ornaments projecting out from the panel. No frame within the central area. Flat rectilinear nine-slice friendly thin border. Output exactly 512x256 landscape PNG with alpha.",
+  "final_edit_prompt": "Use case: precise-object-edit\nAsset type: flat nine-slice game UI panel PNG with alpha.\nEdit target: Image 1, the blank cream parchment panel. Correct only its frame construction and canvas occupancy. Keep the warm ivory cream color and quiet blank surface.\nPrimary change: The parchment panel must occupy the ENTIRE image canvas corner-to-corner, touching all four canvas boundaries with no padding or empty transparent bands. Only tiny triangular transparent corner cuts are allowed. Target layout exactly 512 by 256 pixels, 2:1 landscape.\nFlatten and simplify the outer frame: a single extremely thin dark plum outer stroke and one thin muted brass inner stroke, just 1-2 pixels each at 512x256 scale. Remove ALL beveled gold shading and thick sculpted border. The entire visual border, including corner cuts, MUST fit inside a 12-pixel margin when evaluated at 512x256 scale. The border has quiet straight continuous horizontal and vertical strokes. Corners may have tiny diagonal cuts less than 8 pixels. No shadows, no depth, no bevel, no curled corners.\nAt least 90% empty uniform very light warm cream writing surface with barely visible paper grain. This is a utilitarian game UI base texture used for nine-slice resizing. Center x16..496 y16..240 must be opaque, blank, quiet, and fully stretchable. Actual transparent alpha only in very small clipped outside corners; opaque cream everywhere within the panel. NO text, icons, symbols, ornaments, numbers or letters. NO transparent margins above/below/left/right."
+}

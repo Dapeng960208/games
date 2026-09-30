@@ -1,0 +1,424 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH01",
+  "slot": "secondary",
+  "bank": "front",
+  "enabled": false,
+  "runtime_status": "disabled_pending_runtime_integration_and_native_review",
+  "texture": "res://assets/generated/heroes/CH01_secondary_front_v2.png",
+  "width": 1536,
+  "height": 1024,
+  "columns": 3,
+  "rows": 2,
+  "body_height": 282,
+  "body_height_method": "One fixed anatomical crown-to-planted-sole-midpoint scale for the entire bank, estimated from plant and ready. Crouched and extended poses are not rescaled individually.",
+  "standing_scale_evidence": {
+    "plant_crown_y": 150,
+    "plant_foot_y": 433,
+    "plant_height": 283,
+    "ready_crown_y": 623,
+    "ready_foot_y": 905,
+    "ready_height": 282,
+    "selected_fixed_height": 282
+  },
+  "frames": [
+    {
+      "name": "plant",
+      "index": 0,
+      "region": [
+        100,
+        146,
+        364,
+        301
+      ],
+      "foot": [
+        228.5,
+        433
+      ],
+      "boots_contact": [
+        [
+          130,
+          433
+        ],
+        [
+          327,
+          433
+        ]
+      ],
+      "head": [
+        245,
+        195
+      ],
+      "grip": [
+        229,
+        297
+      ],
+      "muzzle": [
+        435,
+        394
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          63,
+          57,
+          437,
+          419
+        ],
+        "above_8": [
+          103,
+          149,
+          358,
+          295
+        ],
+        "above_128": [
+          104,
+          150,
+          356,
+          293
+        ]
+      },
+      "visible_alpha_pixels": 52660
+    },
+    {
+      "name": "coil",
+      "index": 1,
+      "region": [
+        599,
+        150,
+        340,
+        297
+      ],
+      "foot": [
+        798.5,
+        432.5
+      ],
+      "boots_contact": [
+        [
+          697,
+          433
+        ],
+        [
+          900,
+          432
+        ]
+      ],
+      "head": [
+        828,
+        193
+      ],
+      "grip": [
+        703,
+        258
+      ],
+      "muzzle": [
+        622,
+        290
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          519,
+          19,
+          481,
+          493
+        ],
+        "above_8": [
+          602,
+          153,
+          334,
+          291
+        ],
+        "above_128": [
+          603,
+          154,
+          332,
+          289
+        ]
+      },
+      "visible_alpha_pixels": 46832
+    },
+    {
+      "name": "drive",
+      "index": 2,
+      "region": [
+        1101,
+        148,
+        359,
+        299
+      ],
+      "foot": [
+        1241.5,
+        433
+      ],
+      "boots_contact": [
+        [
+          1133,
+          433
+        ],
+        [
+          1350,
+          433
+        ]
+      ],
+      "head": [
+        1258,
+        194
+      ],
+      "grip": [
+        1273,
+        281
+      ],
+      "muzzle": [
+        1440,
+        336
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          1025,
+          24,
+          477,
+          462
+        ],
+        "above_8": [
+          1104,
+          151,
+          353,
+          293
+        ],
+        "above_128": [
+          1105,
+          152,
+          351,
+          291
+        ]
+      },
+      "visible_alpha_pixels": 51096
+    },
+    {
+      "name": "contact",
+      "index": 3,
+      "region": [
+        87,
+        615,
+        413,
+        298
+      ],
+      "foot": [
+        235.5,
+        898.5
+      ],
+      "boots_contact": [
+        [
+          119,
+          899
+        ],
+        [
+          352,
+          898
+        ]
+      ],
+      "head": [
+        248,
+        659
+      ],
+      "grip": [
+        292,
+        727
+      ],
+      "muzzle": [
+        489,
+        750
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          39,
+          531,
+          473,
+          439
+        ],
+        "above_8": [
+          90,
+          618,
+          407,
+          292
+        ],
+        "above_128": [
+          91,
+          619,
+          405,
+          290
+        ]
+      },
+      "visible_alpha_pixels": 52529
+    },
+    {
+      "name": "follow",
+      "index": 4,
+      "region": [
+        606,
+        612,
+        392,
+        302
+      ],
+      "foot": [
+        751.5,
+        900.5
+      ],
+      "boots_contact": [
+        [
+          637,
+          900
+        ],
+        [
+          866,
+          901
+        ]
+      ],
+      "head": [
+        729,
+        656
+      ],
+      "grip": [
+        849,
+        712
+      ],
+      "muzzle": [
+        989,
+        731
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          513,
+          515,
+          509,
+          485
+        ],
+        "above_8": [
+          609,
+          615,
+          386,
+          296
+        ],
+        "above_128": [
+          610,
+          616,
+          384,
+          294
+        ]
+      },
+      "visible_alpha_pixels": 49083
+    },
+    {
+      "name": "ready",
+      "index": 5,
+      "region": [
+        1095,
+        619,
+        384,
+        323
+      ],
+      "foot": [
+        1232.5,
+        905
+      ],
+      "boots_contact": [
+        [
+          1128,
+          905
+        ],
+        [
+          1337,
+          905
+        ]
+      ],
+      "head": [
+        1267,
+        667
+      ],
+      "grip": [
+        1260,
+        773
+      ],
+      "muzzle": [
+        1455,
+        901
+      ],
+      "alpha_bounds": {
+        "above_0": [
+          1031,
+          545,
+          483,
+          423
+        ],
+        "above_8": [
+          1098,
+          622,
+          378,
+          317
+        ],
+        "above_128": [
+          1098,
+          623,
+          377,
+          315
+        ]
+      },
+      "visible_alpha_pixels": 54476
+    }
+  ],
+  "phase_frames": {
+    "windup": [
+      "plant",
+      "coil",
+      "drive"
+    ],
+    "release": [
+      "contact"
+    ],
+    "recovery": [
+      "follow",
+      "ready"
+    ]
+  },
+  "phase_weights": {
+    "windup": [
+      0.28,
+      0.4,
+      0.32
+    ],
+    "release": [
+      1
+    ],
+    "recovery": [
+      0.55,
+      0.45
+    ]
+  },
+  "registration": {
+    "coordinates": "Region, foot, boots_contact, head, grip, muzzle and alpha_bounds use absolute original atlas pixels; rectangular coordinates are [x,y,width,height].",
+    "foot": "Arithmetic midpoint of the visible projected sole contact centers, approximately +/-5 source pixels.",
+    "head": "Anatomical head center rather than crown or shoulder plate, approximately +/-6 source pixels.",
+    "grip": "Primary mechanical-arm glove holding the haft, approximately +/-8 source pixels where overlapping the supporting hand.",
+    "muzzle": "Midpoint of the silver axe cutting arc used as the weapon contact anchor, not the handle socket.",
+    "crop_note": "Each region contains its complete visible alpha>8 silhouette plus 3 source pixels padding and is contained within its own 512x512 cell. No visible neighboring pose fragments and no clipped blade or boots. Regions exclude scattered near-zero background alpha outside the sprite.",
+    "source_pixels_modified": false,
+    "per_frame_scaling": false,
+    "source_file_sha256": "cb7610c17fd7f8ed7e8c7cef744536c0c69994a1e7122fe4e199bc861148cd8e"
+  },
+  "alpha": {
+    "minimum": 0,
+    "maximum": 254,
+    "transparent_pixels": 1229396,
+    "total_pixels": 1572864,
+    "transparent_fraction": 0.7816289265950521,
+    "inspection": "Read-only Pillow/NumPy alpha inspection; original PNG is copied byte-for-byte. Nonzero RGB behind alpha=0 is not rendered."
+  },
+  "review_status": "source_art_and_manual_anchors_reviewed_runtime_pending",
+  "review_notes": [
+    "Front three-quarter identity and new single-blade axe match CH01_actions_front_v3 reference.",
+    "Distinct low plant, rear coil, sideways drive, contact, follow and low ready preserve a horizontal sweep rather than an overhead basic attack.",
+    "Supporting hand is partly occluded in contact/follow; primary glove and continuous single haft remain readable.",
+    "Generated silhouettes have clear inter-sprite gutters. Contact blade reaches x=496, 15 pixels before its fixed cell right boundary; the next pose starts x=609, leaving 112 transparent silhouette pixels between the neighboring poses. No pixel edits were applied.",
+    "Source and anchors only reviewed here; enable only after integration and actual in-game timing/screenshots are checked."
+  ],
+  "provenance": "res://assets/generated/heroes/CH01_axe_secondary_v2_provenance.json"
+}
