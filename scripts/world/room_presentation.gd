@@ -41,7 +41,7 @@ static func apply_scenery(layout: Dictionary) -> void:
 			var extent := Vector2(136,140) if part!=2 else Vector2(104,110)
 			retained.append({"id":str(layout.blueprint_room_id)+":venue:%d:%d" % [index,part],
 				"asset":str(layout.biome_id)+"_prop_"+str(group.assets[part]),
-				"name":str(group.name), "position":at, "visual_size":extent,
+				"name":str(group.name), "venue_name":str(group.name), "position":at, "visual_size":extent,
 				"visual_rect":Rect2(at-Vector2(extent.x*.5,extent.y),extent),
 				"collision_rect":Rect2(at,Vector2.ZERO), "kind":"fixed_decoration",
 				"tags":["decoration","non_solid","fixed_prop","venue_group",str(layout.biome_id)],

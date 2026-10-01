@@ -304,7 +304,7 @@
           "name": "编叶候船台",
           "assets": [
             "leaf_boat",
-            "leaf_bridge_ribbon",
+            "pollen_flower",
             "wing_banner"
           ]
         },
@@ -315,8 +315,8 @@
           ],
           "name": "码头花粉庭",
           "assets": [
-            "pollen_flower",
             "leaf_arch",
+            "leaf_loom",
             "amber_lantern"
           ]
         }
@@ -343,8 +343,8 @@
           ],
           "name": "风向观测工位",
           "assets": [
-            "flutter_mobiles",
-            "wind_petals",
+            "pollen_well",
+            "pollen_flower",
             "wing_banner"
           ]
         },
@@ -356,7 +356,7 @@
           "name": "织茧观测台",
           "assets": [
             "leaf_arch",
-            "resin_vein",
+            "nectar_calyx",
             "amber_lantern"
           ]
         }
@@ -383,8 +383,8 @@
           ],
           "name": "育幼花圃",
           "assets": [
-            "egg_roost",
-            "wax_trellis",
+            "honey_crate",
+            "leaf_loom",
             "pollen_flower"
           ]
         },
@@ -395,7 +395,7 @@
           ],
           "name": "迁徙礼仪庭",
           "assets": [
-            "scarab_stela",
+            "leaf_arch",
             "wing_banner",
             "amber_lantern"
           ]
@@ -424,7 +424,7 @@
           "name": "叶线导风台",
           "assets": [
             "leaf_loom",
-            "wind_petals",
+            "leaf_arch",
             "wing_banner"
           ]
         },
@@ -435,8 +435,8 @@
           ],
           "name": "琥珀回流庭",
           "assets": [
-            "resin_vein",
-            "egg_roost",
+            "chitin_sculpture",
+            "honey_crate",
             "pollen_flower"
           ]
         }
@@ -463,8 +463,8 @@
           ],
           "name": "迁徙编叶工位",
           "assets": [
-            "leaf_bridge_ribbon",
-            "chrysalis_rack",
+            "leaf_arch",
+            "honeycomb_bench",
             "wing_banner"
           ]
         },
@@ -475,7 +475,7 @@
           ],
           "name": "织线挂饰区",
           "assets": [
-            "flutter_mobiles",
+            "nectar_calyx",
             "nectar_jar",
             "amber_lantern"
           ]
@@ -503,8 +503,8 @@
           ],
           "name": "分蜜取样站",
           "assets": [
-            "resin_vein",
-            "egg_roost",
+            "leaf_loom",
+            "honey_crate",
             "amber_lantern"
           ]
         },
@@ -543,8 +543,8 @@
           ],
           "name": "西育巢侧庭",
           "assets": [
-            "egg_roost",
-            "chrysalis_rack",
+            "leaf_loom",
+            "wing_observatory",
             "pollen_flower"
           ]
         },
@@ -556,7 +556,7 @@
           "name": "东蜂冠侧庭",
           "assets": [
             "leaf_arch",
-            "resin_vein",
+            "pollen_well",
             "wing_banner"
           ]
         }
@@ -583,9 +583,9 @@
           ],
           "name": "邮局迎宾区",
           "assets": [
-            "coffin_postbox",
-            "cat_sign",
-            "notice_board"
+            "lavender_cottage",
+            "dress_form",
+            "chime_mast"
           ]
         },
         {
@@ -596,8 +596,8 @@
           "name": "午后茶摊",
           "assets": [
             "ghost_tea_stall",
-            "patched_awning",
-            "chime_mast"
+            "spool_table",
+            "pumpkin_flowerbed"
           ]
         }
       ]
@@ -624,8 +624,8 @@
           "name": "糖果配料台",
           "assets": [
             "candy_vat",
-            "jar_tower",
-            "sugar_arch"
+            "chime_pavilion",
+            "pumpkin_flowerbed"
           ]
         },
         {
@@ -635,9 +635,9 @@
           ],
           "name": "糖纸晾晒区",
           "assets": [
-            "cooling_rack",
-            "sugar_sack",
-            "patched_awning"
+            "spool_table",
+            "ghost_tea_stall",
+            "chime_mast"
           ]
         }
       ]
@@ -663,9 +663,9 @@
           ],
           "name": "墓铃观礼席",
           "assets": [
+            "dress_form",
             "chime_mast",
-            "hat_headstone",
-            "balloon_chain"
+            "spool_table"
           ]
         },
         {
@@ -676,8 +676,8 @@
           "name": "节庆茶花摊",
           "assets": [
             "ghost_tea_stall",
-            "sun_clock",
-            "patched_awning"
+            "pumpkin_flowerbed",
+            "lavender_cottage"
           ]
         }
       ]
@@ -704,8 +704,8 @@
           "name": "糖烛工坊",
           "assets": [
             "candy_vat",
-            "candle_tree",
-            "wick_spool"
+            "pumpkin_flowerbed",
+            "spool_table"
           ]
         },
         {
@@ -715,9 +715,9 @@
           ],
           "name": "烛花晾晒架",
           "assets": [
-            "cooling_rack",
-            "patched_awning",
-            "sugar_sack"
+            "sweet_crate",
+            "ghost_tea_stall",
+            "chime_mast"
           ]
         }
       ]
@@ -744,8 +744,8 @@
           "name": "彩线试衣工位",
           "assets": [
             "dress_form",
-            "thread_arch",
-            "wick_spool"
+            "chime_pavilion",
+            "pumpkin_flowerbed"
           ]
         },
         {
@@ -756,8 +756,8 @@
           "name": "补丁午休庭",
           "assets": [
             "ghost_tea_stall",
-            "patch_banner",
-            "patched_awning"
+            "sweet_crate",
+            "chime_mast"
           ]
         }
       ]
@@ -785,7 +785,7 @@
           "assets": [
             "lavender_cottage",
             "ghost_tea_stall",
-            "music_conch"
+            "spool_table"
           ]
         },
         {
@@ -796,8 +796,8 @@
           "name": "月帆泊舟点",
           "assets": [
             "ghost_boat",
-            "moon_sail",
-            "shell_buoy"
+            "pumpkin_flowerbed",
+            "chime_mast"
           ]
         }
       ]
@@ -823,9 +823,9 @@
           ],
           "name": "节庆小戏台",
           "assets": [
-            "festival_stage",
-            "balloon_chain",
-            "chime_mast"
+            "chime_pavilion",
+            "chime_mast",
+            "spool_table"
           ]
         },
         {
@@ -836,8 +836,8 @@
           "name": "观礼花庭",
           "assets": [
             "ghost_tea_stall",
-            "thread_arch",
-            "patch_banner"
+            "dress_form",
+            "pumpkin_flowerbed"
           ]
         }
       ]
@@ -863,9 +863,9 @@
           ],
           "name": "初练器具台",
           "assets": [
-            "drum_rack",
             "training_dummy",
-            "charm_stake"
+            "horn_helmet_rack",
+            "bone_anvil"
           ]
         },
         {
@@ -877,7 +877,7 @@
           "assets": [
             "bone_bench",
             "trophy_plinth",
-            "windsock"
+            "signal_fire"
           ]
         }
       ]
@@ -904,8 +904,8 @@
           "name": "烤食瓜车摊",
           "assets": [
             "roast_stall",
-            "melon_cart",
-            "cloth_canopy"
+            "horn_helmet_rack",
+            "lantern_tree"
           ]
         },
         {
@@ -915,8 +915,8 @@
           ],
           "name": "沙兽棋戏区",
           "assets": [
-            "bone_dice",
-            "pet_bowl",
+            "scoreboard",
+            "bone_swing",
             "bone_bench"
           ]
         }
@@ -945,7 +945,7 @@
           "assets": [
             "net_loom",
             "training_dummy",
-            "pet_bowl"
+            "horn_helmet_rack"
           ]
         },
         {
@@ -957,7 +957,7 @@
           "assets": [
             "bone_swing",
             "trophy_plinth",
-            "spectator_banner"
+            "lantern_tree"
           ]
         }
       ]
@@ -985,7 +985,7 @@
           "assets": [
             "horn_helmet_rack",
             "armor_mannequin",
-            "axe_rack"
+            "training_dummy"
           ]
         },
         {
@@ -995,9 +995,9 @@
           ],
           "name": "火蜥锻造工位",
           "assets": [
-            "bellows_lizard",
-            "pot_stack",
-            "charm_stake"
+            "roast_stall",
+            "lantern_tree",
+            "tribal_standard"
           ]
         }
       ]
@@ -1023,9 +1023,9 @@
           ],
           "name": "风讯观测台",
           "assets": [
-            "horn_telescope",
+            "training_dummy",
             "windsock",
-            "charm_stake"
+            "horn_helmet_rack"
           ]
         },
         {
@@ -1035,9 +1035,9 @@
           ],
           "name": "烽灯鸣号台",
           "assets": [
-            "bone_gong",
-            "tribal_standard",
-            "pet_bowl"
+            "bone_anvil",
+            "scoreboard",
+            "bone_bench"
           ]
         }
       ]
@@ -1063,9 +1063,9 @@
           ],
           "name": "练武器具棚",
           "assets": [
-            "axe_rack",
+            "horn_helmet_rack",
             "training_dummy",
-            "pet_pen"
+            "net_loom"
           ]
         },
         {
@@ -1075,9 +1075,9 @@
           ],
           "name": "校武评奖席",
           "assets": [
-            "medal_tree",
+            "trophy_plinth",
             "bone_bench",
-            "water_urn"
+            "lantern_tree"
           ]
         }
       ]
@@ -1105,7 +1105,7 @@
           "assets": [
             "bone_bench",
             "scoreboard",
-            "spectator_banner"
+            "bone_gong"
           ]
         },
         {
@@ -1115,9 +1115,9 @@
           ],
           "name": "东奖牌席",
           "assets": [
-            "medal_tree",
-            "axe_rack",
-            "water_urn"
+            "bone_swing",
+            "armor_mannequin",
+            "lantern_tree"
           ]
         }
       ]
