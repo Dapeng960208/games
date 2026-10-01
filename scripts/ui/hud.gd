@@ -788,9 +788,10 @@ func refresh() -> void:
 	shield_bar.visible = Game.run.shield > 0
 	guard_icon.visible = Game.run.shield > 0
 	resource_label.text = MineStyle.content_text(hero,"resource_name")+"  "+str(floori(Game.run.resource))+" / "+str(int(max_resource))
-	resource_label.size.x = 144 if Words.locale == "en" else 110
-	resource_bar.position.x = 296 if Words.locale == "en" else 270
-	resource_bar.size.x = 63 if Words.locale == "en" else 89
+	var wide_resource: bool = Words.locale == "en" or Game.run.ruleset_version() == 2
+	resource_label.size.x = 144 if wide_resource else 110
+	resource_bar.position.x = 296 if wide_resource else 270
+	resource_bar.size.x = 63 if wide_resource else 89
 	resource_bar.max_value = max_resource
 	resource_bar.value = Game.run.resource
 	if resource_kind != kind:

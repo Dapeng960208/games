@@ -166,6 +166,18 @@ func _live_ui() -> void:
 	await frames()
 	for locale: String in ["zh_CN","en"]:
 		Words.set_locale(locale)
+		var prior_hero: String = Game.run.hero_id
+		var prior_resource: Variant = Game.run.resource
+		for resource_hero: String in ["CH01","CH02","CH03"]:
+			Game.run.hero_id = resource_hero
+			Game.run.resource = 1000
+			hud.refresh()
+			var font: Font = hud.resource_label.get_theme_font("font")
+			var text_width: float = font.get_string_size(hud.resource_label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,hud.resource_label.get_theme_font_size("font_size")).x
+			check(text_width <= hud.resource_label.size.x and hud.resource_label.text.contains("1000 / "),"full four-digit resource fits without ellipsis "+resource_hero+locale)
+		Game.run.hero_id = prior_hero
+		Game.run.resource = prior_resource
+		hud.refresh()
 		var info: Dictionary = hud.skill_info("q")
 		var powers := HeroAbilities.preview_powers("CH03",mage)
 		check(info.summary.contains("180") and info.description.contains("skill H %d" % int(powers.skill_H) if locale == "en" else "技能 H %d" % int(powers.skill_H)),"HUD shared H/cost "+locale)
