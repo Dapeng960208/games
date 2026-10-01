@@ -1371,23 +1371,23 @@ Boss弱点窗口仍使**玩家对Boss伤害**×1.35，不属于Boss对玩家增�
 
 | 来源 | SHA256 |
 | --- | --- |
-| [config/balance.gd](../../config/balance.gd) | c686a018cfe13da5d06d2473e54971073ec508a5a7f980ae7c92aa9a1ef154ec |
-| [data/enemies.json](../../data/enemies.json) | c08babe0ae5a04ff069f3dbf98974d0fbfaaa4f1bce33072e1468f2ac2aa20e6 |
+| [config/balance.gd](../../config/balance.gd) | 6b7a1bdc4f66b18c21699e26cabdaea09aff679b916a5dad011a289f1e24c2da |
+| [data/enemies.json](../../data/enemies.json) | c9a787100b47d0e668d13cc0fa64ce43f83088dfa1ae68208881e5c7ef52197b |
 | [data/enemy_progression.json](../../data/enemy_progression.json) | f8b16d6d8b991b5413b264d00ef6e6524166af13ce4c7ca37389fab967674465 |
-| [data/rooms.json](../../data/rooms.json) | 8197d0f4cf89e69dac872341aa8ab739e4641f74e854570da271fb66f5a147e2 |
-| [scripts/combat/boss.gd](../../scripts/combat/boss.gd) | af8e10d1e38c509f95c24e42cced6e3dc399bd1f8c2e229eaf9f89f577bb7026 |
+| [data/rooms.json](../../data/rooms.json) | 21c593c8156111530adc7d50e6092e02c531fb283305ec1ba70f0becaf53c73e |
+| [scripts/combat/boss.gd](../../scripts/combat/boss.gd) | e76e521b73cf6a3ef71a277d16ef6612abf3a717ce017cbd963448821b810f1c |
 | [scripts/combat/boss_ability_catalog.gd](../../scripts/combat/boss_ability_catalog.gd) | c835b080ef74e07f7d89a0ac3071ce727a2df5f704a7f455343e332774822cc9 |
-| [scripts/combat/boss_brain.gd](../../scripts/combat/boss_brain.gd) | ed306f9cb9f88de9440bbe32ecbec89808b78bc7e85052e2dd1c457139657b79 |
-| [scripts/combat/boss_profiles.gd](../../scripts/combat/boss_profiles.gd) | 5ebfc922f7e97b5e0cfb126898a071c2bc0cde475254afe75a24875394559c33 |
-| [scripts/combat/combat_status.gd](../../scripts/combat/combat_status.gd) | 108b6875bec329c036564eee8baa2319ff9103d8b02af17eda6769bd2d0891ea |
-| [scripts/combat/damage_resolver.gd](../../scripts/combat/damage_resolver.gd) | 4681e4c63862235114b21063b23d87d65d7214ceb142b513eb27bc227af5a6e7 |
-| [scripts/combat/enemy_biome_skills.gd](../../scripts/combat/enemy_biome_skills.gd) | add3259cea5d86c7ef9d49d62f6aba106a2101303af7d3c1ad3bae28311c10c6 |
-| [scripts/combat/enemy_brain.gd](../../scripts/combat/enemy_brain.gd) | a3d7b3de70859a52448d5d38e950663e93f0c88822b4cac9f1b7ec16f1c2719d |
-| [scripts/combat/enemy_difficulty.gd](../../scripts/combat/enemy_difficulty.gd) | c2133f4976d94976278094d9c26912ff6883b0af16a7f1054de3306be3d15b7e |
-| [scripts/combat/enemy_profiles.gd](../../scripts/combat/enemy_profiles.gd) | b222ad47c47237449fe6e805cb32f62f71dfa9670a3ef5bd37721e7f0dd1d149 |
-| [scripts/combat/enemy_skill_runtime.gd](../../scripts/combat/enemy_skill_runtime.gd) | 3dcd827a65a2ce2e221c313e450da292f6c0ebdd2d14bb317a3d2897b33a2d00 |
-| [scripts/combat/player.gd](../../scripts/combat/player.gd) | febddd6c5336123c1d7e8a792c050f1c5b8ffddb5b6379c96662a1e586379efe |
-| [scripts/combat/room.gd](../../scripts/combat/room.gd) | f32d2cf87569a624765c0c90c1e761d2538229ce1b4966cee315be11e71ef6a6 |
+| [scripts/combat/boss_brain.gd](../../scripts/combat/boss_brain.gd) | 0fc756b22762736c7a9e340a2ac427a906352bdb1f83abfb9ae9a182a00e9a30 |
+| [scripts/combat/boss_profiles.gd](../../scripts/combat/boss_profiles.gd) | ae93ec4e934be788d5bd993d6a93f8c50673e819f187e91e72c8a84d7b7c6d70 |
+| [scripts/combat/combat_status.gd](../../scripts/combat/combat_status.gd) | abf0ec44667192d8b566c7523811bc1a97f49a7aec12f1ffadb2f98977e4404e |
+| [scripts/combat/damage_resolver.gd](../../scripts/combat/damage_resolver.gd) | 71b5e58cae2d227f7795df79f2bd731b84d3686acf5f1d7da5febdb883f0ac10 |
+| [scripts/combat/enemy_biome_skills.gd](../../scripts/combat/enemy_biome_skills.gd) | 77672d43b47a1b62534a90c295eec4ea991ca0010c840b625fcb34329753af3a |
+| [scripts/combat/enemy_brain.gd](../../scripts/combat/enemy_brain.gd) | 8faf684605b52a9fcca1910c4844616b94a98ee93a5a721a04092d2fa3f83b40 |
+| [scripts/combat/enemy_difficulty.gd](../../scripts/combat/enemy_difficulty.gd) | 0e6b5bc43f048e71e07f586c6f724af958fe39fd4380d0a1216242816e1ef12c |
+| [scripts/combat/enemy_profiles.gd](../../scripts/combat/enemy_profiles.gd) | 1baf92e353ea9e878124e51565b5af33f4acf1e9a2dde9e2970107d7bc3af80f |
+| [scripts/combat/enemy_skill_runtime.gd](../../scripts/combat/enemy_skill_runtime.gd) | 6df1f27cfccd460f921873e2108e3539cf05f417a55fc61cb4d546236bd55b34 |
+| [scripts/combat/player.gd](../../scripts/combat/player.gd) | 5356b3cffe05d466c5a12e487f445d854fd3a349779e053ba5c603c0f3db7833 |
+| [scripts/combat/room.gd](../../scripts/combat/room.gd) | 69d2109acd31d5c3c36bec812afbda06fc4d585129bbe11a66026d4d789e47db |
 
 
 文档校验只证明公式与表格一致。新倍率、盾治疗叠加、整数舍入与高难度战斗体验仍需获得方案确认后实现，并以普通/精英、各Boss阶段的实际对战样本校准；当前游戏仍执行CURRENT册中的旧值。

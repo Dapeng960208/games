@@ -2458,32 +2458,32 @@
 
 | 源文件 | SHA-256 |
 | --- | --- |
-| data/heroes.json | b9895f8fbdd3c218e5cbdcfc0dc6fdc08c92739e632443aeb093c8319ee6c50d |
-| scripts/combat/hero_abilities.gd | 4c360b44e992eef2e4dfe4e44206a9e5464be41d55da28a1aaf3dea5512d18fb |
-| scripts/combat/hero_passives.gd | 5eeaba550a40399856d991f5e5cca76abfebd44eaa2924bd2dfe4a7407831214 |
-| scripts/combat/player.gd | febddd6c5336123c1d7e8a792c050f1c5b8ffddb5b6379c96662a1e586379efe |
-| scripts/combat/class_relics.gd | 4f139a3d2c10de5a90cbc44ff4adff024673e4da9d15fd2426905e9ceee989c9 |
-| scripts/combat/race_relics.gd | 38a409e00cd61a68dd6e64db4a65a0e910a9273889a9192b7a00c1c48cc82599 |
-| scripts/combat/combat_status.gd | 108b6875bec329c036564eee8baa2319ff9103d8b02af17eda6769bd2d0891ea |
+| data/heroes.json | b587988f7f2bcbe3d82be90d47d6fbfb45d69534538cca828d3c243c8a6aeda1 |
+| scripts/combat/hero_abilities.gd | e31c83484a7f532b9bc1ef269c237863a7ef146d1c9e89a4614502485c1181f4 |
+| scripts/combat/hero_passives.gd | 4cb1607862c86f06ce8bb07ff6f1f3ec192b0936f8bdbe03bc9efe170c42c41a |
+| scripts/combat/player.gd | 5356b3cffe05d466c5a12e487f445d854fd3a349779e053ba5c603c0f3db7833 |
+| scripts/combat/class_relics.gd | 157335e17653882ddff292f150fe2d3faea4ac1d97c763843fa1e081685123ad |
+| scripts/combat/race_relics.gd | 61d528b2d43342373ee267b66549eb08825b6e754f246f7fe362cffd79010d73 |
+| scripts/combat/combat_status.gd | abf0ec44667192d8b566c7523811bc1a97f49a7aec12f1ffadb2f98977e4404e |
 | scripts/combat/hit_chain.gd | 2045f3bbf1b7e24cd83ad18fe809f2df38948de48ba22c7eba41847e84e1918b |
-| scripts/combat/stat_resolver.gd | 8ca64c4d0f14344e84777b6a322c272ace61753df9deb0da900bc5a941222742 |
-| scripts/combat/damage_resolver.gd | 4681e4c63862235114b21063b23d87d65d7214ceb142b513eb27bc227af5a6e7 |
-| scripts/combat/equipment_effects.gd | 733fccab62c976fdf68ff4cf945c8588c93495612f5fd1d7ebd3e44392e1202f |
-| scripts/combat/combat_loadout.gd | 206de9dcaa26969d526077b19f29730ef65907c205699b9eab370eb760cd4010 |
-| scripts/combat/hero_deployment.gd | 099eb2a485255d3001d2e19427232e7da33334c55c795e23f3e8e521d91c6ac9 |
-| scripts/combat/projectile.gd | 3e57df319f831e6e83f7b8d6f5c5d9dcffad6cb30657f8ffebfbd5f2e04c5bbc |
-| scripts/combat/room.gd | f32d2cf87569a624765c0c90c1e761d2538229ce1b4966cee315be11e71ef6a6 |
-| scripts/combat/enemy.gd | dbd9ff3c1183b9b6c0fbd0df014fc6fa913b95059248a78479c76bbf19f58939 |
-| scripts/combat/enemy_biome_skills.gd | add3259cea5d86c7ef9d49d62f6aba106a2101303af7d3c1ad3bae28311c10c6 |
-| scripts/combat/enemy_skill_runtime.gd | 3dcd827a65a2ce2e221c313e450da292f6c0ebdd2d14bb317a3d2897b33a2d00 |
-| scripts/combat/boss.gd | af8e10d1e38c509f95c24e42cced6e3dc399bd1f8c2e229eaf9f89f577bb7026 |
-| scripts/combat/boss_brain.gd | ed306f9cb9f88de9440bbe32ecbec89808b78bc7e85052e2dd1c457139657b79 |
-| scripts/core/expedition_state.gd | 8a5dd003d4f98a0ed0ace2c914f77743351e015e1ebf5c25c07cac5d029e2081 |
-| scripts/core/run_controller.gd | 04533fb6140433b6bad50b46a50140982faf9f02e93038f6d0de4260719b5b30 |
-| scripts/world/room_props.gd | 8083325e83cb364263195d6902e3eb9fbc0e8159163c3ca1880f7008172587b5 |
-| scripts/combat/resonance_circuit.gd | 546bc2ad9340b0ce06bb03982a211b51b7974299ef1c77ab774cf545065fdf63 |
-| scripts/core/control_bindings.gd | 7e8fd30887ffe2d7156f90b0aa172240bad47e6553586125a96d9bbb330a9972 |
-| config/balance.gd | c686a018cfe13da5d06d2473e54971073ec508a5a7f980ae7c92aa9a1ef154ec |
+| scripts/combat/stat_resolver.gd | 2b5c59fc59a33ab46302b3a501eb2adef4e50c6d75e065e76262c5ac4526e1ee |
+| scripts/combat/damage_resolver.gd | 71b5e58cae2d227f7795df79f2bd731b84d3686acf5f1d7da5febdb883f0ac10 |
+| scripts/combat/equipment_effects.gd | 1ce60ba2f6c082d8adc7dd4a07fede4cdeca8775dffcf6fdc0b4780246b339db |
+| scripts/combat/combat_loadout.gd | 62791910388c084eb028b80adeb75068d152bf757109cde7d32799707a5c79dd |
+| scripts/combat/hero_deployment.gd | 728311636a667468c4741a951d3e3a67879b87a49e18dc544acb10fbafd41653 |
+| scripts/combat/projectile.gd | 4d0f05512099b477cd7e7be2fd7a303f23cfae801ca07f1c297725d63cc0fe7c |
+| scripts/combat/room.gd | 69d2109acd31d5c3c36bec812afbda06fc4d585129bbe11a66026d4d789e47db |
+| scripts/combat/enemy.gd | 2cddf995136fea1a49c3c523e20251016913312e1b46efcb1916dca2fbe21dd1 |
+| scripts/combat/enemy_biome_skills.gd | 77672d43b47a1b62534a90c295eec4ea991ca0010c840b625fcb34329753af3a |
+| scripts/combat/enemy_skill_runtime.gd | 6df1f27cfccd460f921873e2108e3539cf05f417a55fc61cb4d546236bd55b34 |
+| scripts/combat/boss.gd | e76e521b73cf6a3ef71a277d16ef6612abf3a717ce017cbd963448821b810f1c |
+| scripts/combat/boss_brain.gd | 0fc756b22762736c7a9e340a2ac427a906352bdb1f83abfb9ae9a182a00e9a30 |
+| scripts/core/expedition_state.gd | 047312fe21220072d3a02913e3184fa692eef78e5d5acba119a8e3b56c6bc2fd |
+| scripts/core/run_controller.gd | a17e6cd9e3e3e115f41748c8fe2d2f3585fad3b58bd15557f7a2fe7157a887b4 |
+| scripts/world/room_props.gd | 8bceda512103736e0c2ff8d15bf0f22101572440f484bbd42b2a5009438a41b4 |
+| scripts/combat/resonance_circuit.gd | e04ce65196524d49bcf0489559ca448fba8486770840c57a9b8c8150e368628e |
+| scripts/core/control_bindings.gd | a72cd79228426d6452e94bb13796a5ff02aee6bfb0b72740cd29190cbb093e97 |
+| config/balance.gd | 6b7a1bdc4f66b18c21699e26cabdaea09aff679b916a5dad011a289f1e24c2da |
 
 
 检查：`python tools/balance/render_buff_skill_catalog.py --check`。重建时先在空Godot项目运行 `tools/balance/export_buff_skill_catalog.gd -- <仓库绝对路径> <JSON绝对路径>`（须以该空项目为--path且无autoload），再运行 `python tools/balance/render_buff_skill_catalog.py --skills-json <JSON路径>`。生成文件UTF-8；缓存JSON/空项目/日志位于artifacts，不入Git。

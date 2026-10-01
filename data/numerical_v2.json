@@ -1,6 +1,6 @@
 {
-  "schema": "NumericalDesign/v2.3-draft",
-  "status": "pending_user_confirmation",
+  "schema": "NumericalRuntime/v2",
+  "status": "implementation_gated",
   "source_commit": "8daa519f2ea1a7dcc3f422b4df96ac81d65986b9",
   "date": "2026-10-01",
   "runtime_enabled": false,
@@ -11,7 +11,10 @@
   "boss_balance_target": {
     "status": "pending_runtime_validation",
     "fixture": "same chapter hero/item level 5*B, 8 gold items +2, main/affix quantile 50, each enhancement gain 10, legal relevant affixes",
-    "gold_boss_ttk_seconds": [35, 50],
+    "gold_boss_ttk_seconds": [
+      35,
+      50
+    ],
     "gold_remaining_hp_ratio_min": 0.6,
     "purple_comparison": "same 8 templates purple+5, same first 3 affixes; TTK >= gold*1.15 OR final HP at least 0.15 lower; clearable",
     "hard_rarity_gate": false,
@@ -67,7 +70,13 @@
   "enhancement_reference_per_rank": 0.1,
   "enhancement_random": {
     "rank_success_rate": 1.0,
-    "gain_percent_weights": {"8": 10, "9": 20, "10": 40, "11": 20, "12": 10},
+    "gain_percent_weights": {
+      "8": 10,
+      "9": 20,
+      "10": 40,
+      "11": 20,
+      "12": 10
+    },
     "gain_scope": "all_flat_main_attributes_of_this_item",
     "gain_formula": "1 + sum(step_gain_percent)/100",
     "reroll_unlock_hero_level": 10,
@@ -651,7 +660,12 @@
       "0": 70,
       "1": 30
     },
-    "max_by_rarity": {"white": 5, "green": 5, "purple": 5, "gold": 1}
+    "max_by_rarity": {
+      "white": 5,
+      "green": 5,
+      "purple": 5,
+      "gold": 1
+    }
   },
   "kill_drop_chance": {
     "normal": 0.01,
@@ -859,5 +873,24 @@
     1,
     1.1,
     1.2
+  ],
+  "versions": {
+    "ruleset": 2,
+    "equipment_instance": 1,
+    "reward_policy": 2,
+    "optional_chest_receipt": 2,
+    "scale": 10
+  },
+  "default_ruleset": 1,
+  "roll_order": [
+    "pool",
+    "rarity",
+    "slot",
+    "template",
+    "item_level",
+    "enhancement_rank",
+    "enhancement_gains",
+    "main_rolls",
+    "affixes"
   ]
 }
