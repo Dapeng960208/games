@@ -629,6 +629,7 @@ func fire_from_player(direction: Vector2, critical: bool = false) -> bool:
 	projectile.critical = critical
 	projectile.options["power"] = player.attack_power()
 	projectile.options["visual_hero"] = player.hero_id()
+	projectile.options["basic_variant"] = player.basic_attack_variant()
 	projectile.arc_ready = Game.run.relics.has("arc") and Game.run.shots % 3 == 0
 	projectile.configure_player_visual(player.position+HeroVisual.release_muzzle_local(player.hero_id(),"basic",direction))
 	return true
@@ -660,6 +661,7 @@ func resolve_weapon_hit(projectile: SparkProjectile, target: MineEnemy) -> void:
 	telemetry["primary_hits" if is_primary else "child_hits"] += 1
 	if is_primary:
 		var context: Dictionary = {"attack_id":"basic:" + str(projectile.attack_id),"root_event_id":"basic:" + str(projectile.attack_id),"original_basic":true,"equipment_eligible":true}
+		context["basic_variant"] = int(projectile.options.get("basic_variant",0))
 		var reserved: Dictionary = _prepare_relics(context, projectile.trigger_budget, projectile.arc_ready)
 		context["native_statuses"] = [ClassRelics.native_status(player.hero_id())] if bool(reserved.get("burn", false)) else []
 		if resolve_direct_hit(target, projectile.damage, projectile.source, "", 0.0, projectile.direction, context):
@@ -1121,6 +1123,7 @@ func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, ap
 	if player.has_method("class_modify_hit_amount"):
 		amount = player.class_modify_hit_amount(target, amount, source, context)
 	var final_amount: float = amount * (1.0 + minf(0.6, bonus)) * (player.stat("crit_multiplier", 1.5) if bool(context.critical) else 1.0)
+	final_amount *= player.hit_chain.multiplier(source, context)
 	var health_before: float = target.health.current
 	var shield_before: float = target.status.shield()
 	target.take_damage(final_amount, source, direction, context)

@@ -193,12 +193,13 @@ func _test_gunner_grenade_and_combo() -> void:
 	check(room.player.class_marks.has(target.get_instance_id()), "confirmed original grenade blast marks its target for follow-up fire")
 	check(not grenade.is_alive(), "grenade retires immediately after its single blast")
 	var before_followup: float = target.health.current
+	var chain_multiplier: float = 1.0 + float(room.player.hit_chain.snapshot().bonus)
 	room.player._tick_dash(1.0)
 	room.player.aim_direction = (target.position - room.player.position).normalized()
 	check(abilities.try_cast("secondary", target.position), "gunner follows the grenade with a rail shot")
 	abilities.tick(0.66)
 	tick_projectiles(0.3)
-	check(is_equal_approx(before_followup - target.health.current, power * 3.25 * 0.5), "rail shot consumes the grenade mark for its real 1.25 attack-power bonus")
+	check(is_equal_approx(before_followup - target.health.current, power * 3.25 * 0.5 * chain_multiplier), "rail shot consumes the grenade mark with its real 1.25 attack-power bonus and current chain multiplier")
 	check(not room.player.class_marks.has(target.get_instance_id()), "rail shot consumes the mark once")
 	var after: float = target.health.current
 	grenade.advance(10.0)

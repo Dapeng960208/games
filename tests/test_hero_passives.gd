@@ -106,8 +106,9 @@ func _test_weakpoint() -> void:
 	check(not hit(a, 3) and bool(room.player.class_status().ready), "immune hit does not spend weak point")
 	a.status.states.erase("invulnerable")
 	var before: float = a.health.current
+	var combo_multiplier: float = 1.0 + float(room.player.hit_chain.snapshot().bonus)
 	hit(a, 4)
-	check(is_equal_approx(before - a.health.current, 23.0), "third basic receives actual 0.65H original damage bonus")
+	check(is_equal_approx(before - a.health.current, 23.0 * combo_multiplier), "third basic receives actual 0.65H original damage bonus and current chain multiplier")
 	check(room.player.class_status().current == 0 and is_equal_approx(room.player.class_status().icd, 2.0), "confirmed bonus consumes weak point and starts cooldown")
 	room.player.passives.tick(2.0)
 	hit(a, 5)
@@ -115,8 +116,9 @@ func _test_weakpoint() -> void:
 	check(room.player.class_status().current == 1 and not bool(room.player.class_status().ready), "changing target restarts consecutive progress")
 	hit(b, 7)
 	before = b.health.current
+	combo_multiplier = 1.0 + float(room.player.hit_chain.snapshot().bonus)
 	hit(b, 8, &"q")
-	check(is_equal_approx(before - b.health.current, 23.0), "direct Q consumes and receives weak-point bonus")
+	check(is_equal_approx(before - b.health.current, 23.0 * combo_multiplier), "direct Q consumes and receives weak-point bonus and current chain multiplier")
 	room.player.passives.tick(2.0)
 	hit(a, 9)
 	hit(a, 10)

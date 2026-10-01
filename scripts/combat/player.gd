@@ -15,12 +15,14 @@ const Status = preload("res://scripts/combat/combat_status.gd")
 const Loadout = preload("res://scripts/combat/combat_loadout.gd")
 const ClickNavigation = preload("res://scripts/combat/click_navigation.gd")
 const Passives = preload("res://scripts/combat/hero_passives.gd")
+const HitChain = preload("res://scripts/combat/hit_chain.gd")
 var room: Node2D
 var abilities: RefCounted
 var status: CombatStatus = Status.new()
 var loadout: RefCounted
 var click_navigation: RefCounted = ClickNavigation.new()
 var passives: RefCounted = Passives.new()
+var hit_chain: RefCounted = HitChain.new()
 var aim_direction := Vector2.RIGHT
 var dash_remaining: float = 0.0
 var dash_cooldown: float = 0.0
@@ -74,6 +76,7 @@ func _ready() -> void:
 	loadout.configure(self)
 	click_navigation.configure(room)
 	passives.configure(self)
+	hit_chain.configure(self)
 	var service: bool = room.get("expedition_context") != null and str(room.expedition_context.get("role","")) in ["entrance","supply"]
 	loadout.event("room_enter", {"room_id":room.layout_id,"combat_room":not service})
 
@@ -118,6 +121,10 @@ func _room_prop_modifier(method: StringName, fallback: float) -> float:
 
 func attack_power() -> float:
 	return stat("attack", 27.0 if hero_id() == "CH01" else 24.0 if hero_id() == "CH02" else 18.0)
+
+func basic_attack_variant() -> int:
+	var feedback: Node = get_node_or_null("HeroFeedback")
+	return int(feedback.basic_events) % 3 if is_instance_valid(feedback) else 0
 
 func skill_power() -> float:
 	return attack_power() + (maxf(0.0, stat("ability_power", 0.0)) * 0.7 if hero_id() == "CH03" else 0.0)
@@ -786,6 +793,7 @@ func consume_break_stacks() -> int:
 
 func _tick_class_state(delta: float) -> void:
 	passives.tick(delta)
+	hit_chain.tick(delta)
 	# Keep the existing visual/snapshot fields as a compatibility view. The
 	# actual passive owns its counters and weak target references in one place.
 	var passive_state: Dictionary = passives.snapshot()
@@ -831,6 +839,10 @@ func class_record_hit(target: Node2D, source: StringName, context: Dictionary) -
 	if hero_id() == "CH02" and source == &"f" and bool(context.get("equipment_eligible", true)):
 		class_mark_target(target)
 	passives.record_hit(target, source, context)
+	if hit_chain.record_hit(source, context):
+		var feedback: Node = get_node_or_null("HeroFeedback")
+		if is_instance_valid(feedback) and feedback.has_method("chain_hit"):
+			feedback.chain_hit(hit_chain.snapshot())
 
 func resonance_nodes() -> Array[Node2D]:
 	var result: Array[Node2D] = []
