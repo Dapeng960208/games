@@ -11,6 +11,7 @@
 | MAP01 P0 | 28 房用途分组已接入；历史草稿单独保留 | data/room_presentations.json、scripts/world/room_presentation.gd、fixed_room_layouts.gd、prop_identity.gd | 56 分组与 168 陈设按用途摆放；保留原蓝图、实体掩体与奖励；用真实 28 房运行图册记录当前状态 |
 | MAP02 P0 | 28 房独立完整背景与房间识别 UI 已接入 | assets/generated/world/rooms/、scripts/world/world_art.gd、environment_chunks.gd、scripts/ui/room_identity_plate.gd | 同族七张独立原画；各房地标、边缘、生活区和地面各异；本房边界/镜头/六区块/小图一致，资源像素摘要与实际加载路径各不相同 |
 | MAP03 P0 | 地板比例和空场感校对 | presentation_metrics.gd、world_camera.gd、环境 metadata、蓝图 | 实际镜头下砖、人物、门和道具尺度符合参考；避免持续放大人物；大窗口不露画外，HUD 完整 |
+| MAP04 P0 | 全屏背景放大采样已改善并定向验证；高分辨率原画细节仍待完善 | environment_chunks.gd、shaders/environment_sampling.gdshader、tests/test_environment_clarity.gd | 放大重建、缩小 mip 抗锯齿、六块接缝连续；L16/BO04 两窗口及 L16 实际全屏 GPU 50 项通过，保持人物/镜头/地形；源图仍为 1536×1024，不以采样改善代替高分辨率美术 |
 | COM01 P0 | 姿态枪口展示路径、方向锁定与墙边裁切已接入并通过针对性检查；新增三拍枪焰/曳光/命中变化 | hero_visual.gd、hero_feedback.gd、projectile_visual.gd、projectile.gd、room.gd、hero_skill_atlas.gd、combat_audio.gd | 保留真实物理弹道；后续检查全部方向、密集地形和自然射击的声音/动作主观手感 |
 | COM02 P1 | 三职业技能专属效果与声音已接入；新增x1–x100连击增伤、五档特效、Buff与普攻轮换，机制/UI/实际GPU练习场已检查 | hero_abilities.gd、hit_chain.gd、hero_feedback.gd、projectile.gd、impact_feedback.gd、scripts/ui/hud.gd、hit_chain_readout.gd | 继续校调自然群战与增伤平衡；降低特效保留实际读数与范围；不把受控练习场通过当作完整动画/平衡完成 |
 | COM03 P1 | 累计野怪量增加约40%，计划与实际运行已检查 | enemy_profiles.gd 的 encounter_plan、room.gd、config/ | 已通过有限后续波次增量与五难度数量检查，保留并发、弹体和召唤上限；后续按自然群战节奏调校 |
