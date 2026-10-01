@@ -190,7 +190,7 @@ static func can_equip(record: Dictionary, hero_id: String, level: int) -> bool:
 		var legacy: Dictionary = record.legacy
 		if hero_id in waiver.hero_ids and hero_id in legacy.referenced_heroes:
 			type_ok = type_ok or bool(waiver.type)
-			level_ok = level_ok or bool(waiver.level)
+			level_ok = level_ok or (bool(waiver.level) and hero_id in waiver.get("level_hero_ids", waiver.hero_ids))
 	return type_ok and level_ok
 
 static func _validate_waiver(record: Dictionary, errors: Array[String]) -> void:
@@ -202,6 +202,19 @@ static func _validate_waiver(record: Dictionary, errors: Array[String]) -> void:
 	if not waiver is Dictionary or not waiver.has_all(["hero_ids", "type", "level"]) or not waiver.hero_ids is Array or not waiver.type is bool or not waiver.level is bool:
 		errors.append("Malformed legacy equip waiver.")
 		return
+	if waiver.hero_ids.size() > 3:
+		errors.append("Legacy equip waiver has too many heroes.")
+		return
+	if waiver.has("level_hero_ids"):
+		if not waiver.level_hero_ids is Array or waiver.level_hero_ids.size() > waiver.hero_ids.size():
+			errors.append("Malformed per-hero level waiver.")
+			return
+		var levels_seen := {}
+		for hero_id: Variant in waiver.level_hero_ids:
+			if not hero_id is String or hero_id not in waiver.hero_ids or levels_seen.has(hero_id):
+				errors.append("Level waiver must be a unique subset of original hero references.")
+			levels_seen[hero_id] = true
+		if waiver.level != not waiver.level_hero_ids.is_empty(): errors.append("Level waiver flag must match its eligible hero subset.")
 	var seen := {}
 	for hero_id: Variant in waiver.hero_ids:
 		if not hero_id is String or Registry.hero(str(hero_id)).is_empty() or hero_id not in legacy.referenced_heroes or seen.has(hero_id): errors.append("Legacy equip waiver cannot extend to another hero.")

@@ -74,7 +74,10 @@ static func migrate_profile(profile: Dictionary, event_id: String = EVENT, activ
 			"legacy":{"template_id":template_id, "referenced_heroes":referenced,
 				"owned":profile.equipment[template_id].duplicate(true), "base_stats":template.base_stats.duplicate(true)}}
 		if not referenced.is_empty():
-			spec["legacy_equip_waiver"] = {"hero_ids":referenced.duplicate(), "type":true, "level":true}
+			var level_heroes: Array[String] = []
+			for hero: String in referenced:
+				if old_level(int(profile.hero_xp[hero])) < item_level: level_heroes.append(hero)
+			spec["legacy_equip_waiver"] = {"hero_ids":referenced.duplicate(), "type":true, "level":not level_heroes.is_empty(), "level_hero_ids":level_heroes}
 		var instance := Instances.create(spec)
 		if instance.is_empty(): return {}
 		identities[template_id] = instance_id

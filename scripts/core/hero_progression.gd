@@ -97,4 +97,38 @@ static func award(profile: Dictionary, hero: String, amount: int, event_id: Stri
 	next["materials"] = materials
 	receipts[event_id] = {"hero":hero,"amount":amount,"race":race}
 	next["progression_receipts"] = receipts
+	if next.get("equipment") is Dictionary: next.equipment = expire_level_waivers(next.equipment, next.hero_xp)
 	return {"profile":next,"added":added,"research_rewards":rewards,"replayed":false}
+
+## Detached, monotonic eligibility cleanup. Original references and approved type
+## compatibility are audit data and survive after every level exception expires.
+## This intentionally knows no instance factory, avoiding a Growth/Instances cycle.
+static func expire_level_waivers(equipment: Dictionary, hero_xp: Dictionary) -> Dictionary:
+	var result := equipment.duplicate(true)
+	for item: Variant in result.values():
+		if not item is Dictionary or item.get("location") == "pending" or not item.get("legacy_equip_waiver") is Dictionary: continue
+		var waiver: Dictionary = item.legacy_equip_waiver
+		var references: Variant = waiver.get("hero_ids")
+		if not references is Array or not waiver.get("level") is bool: continue
+		var eligible: Variant = waiver.get("level_hero_ids", references) if waiver.level else []
+		if not eligible is Array: continue
+		# Cleanup never repairs a forged subset or inconsistent enabled flag.
+		if waiver.has("level_hero_ids"):
+			var explicit: Variant = waiver.level_hero_ids
+			if not explicit is Array or waiver.level != not explicit.is_empty(): continue
+		var seen := {}
+		var malformed: bool = references.size() > 3
+		for hero: Variant in eligible:
+			if hero not in ["CH01", "CH02", "CH03"] or hero not in references or seen.has(hero): malformed = true
+			seen[hero] = true
+		if malformed: continue
+		var remaining: Array = []
+		for hero: Variant in eligible:
+			# Invalid records remain invalid for the authoritative instance validator.
+			if hero not in ["CH01", "CH02", "CH03"] or not hero_xp.has(hero):
+				remaining.append(hero)
+			elif level_for_xp(int(hero_xp[hero])) < int(item.get("item_level", 1)):
+				remaining.append(hero)
+		waiver["level_hero_ids"] = remaining
+		waiver.level = not remaining.is_empty()
+	return result

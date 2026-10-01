@@ -52,6 +52,7 @@ func _ready() -> void:
 	_legacy_migration()
 	_new_expedition()
 	_runtime_migration()
+	_level_waiver_expiry()
 	print("Numerical versioned saves: ", checks, " checks; failures=", failures)
 	get_tree().quit(0 if failures.is_empty() else 1)
 
@@ -209,3 +210,78 @@ func _runtime_migration() -> void:
 	check(migrated.equipment.heal_history[0].amount == 30 and migrated.equipment.resource_history[0].amount == 20 and migrated.equipment.refund_history[0].amount == 0.2, "history scales distinguish ratios amounts and seconds")
 	check(migrated.player == source.player and migrated.equipment.cooldowns == source.equipment.cooldowns and migrated.status.shock_cooldown == source.status.shock_cooldown, "migration preserves CD ICD and timers")
 	check(Migration.migrate_runtime(migrated, old_stats, new_stats) == migrated and source.hp == 61.25, "second runtime migration is unchanged and source untouched")
+
+func _level_waiver_expiry() -> void:
+	var old := ProfileStore.fresh_profile()
+	old.hero_xp.CH01 = Migration.OLD_XP[4]
+	old.loadout_presets = {"CH03":old.loadout.duplicate(true)}
+	var migrated := Migration.migrate_profile(old)
+	var id: String = migrated.loadout.weapon
+	var item: Dictionary = migrated.equipment[id]
+	check(item.item_level == 5 and item.legacy_equip_waiver.level_hero_ids == ["CH03"], "migration excludes already-qualified original hero from level bypass")
+	check(not Fixtures.Instances.can_equip(item, "CH01", 1) and Fixtures.Instances.can_equip(item, "CH03", 1), "level waiver applies only to still-underleveled original mage")
+	var raised: Dictionary = migrated.hero_xp.duplicate(true)
+	raised.CH03 = HeroProgression.thresholds()[4]
+	var expired := HeroProgression.expire_level_waivers(migrated.equipment, raised)
+	check(expired[id].legacy_equip_waiver.level_hero_ids.is_empty() and not expired[id].legacy_equip_waiver.level, "last qualified original hero exhausts level exception")
+	check(expired[id].legacy_equip_waiver.type and expired[id].legacy_equip_waiver.hero_ids == item.legacy_equip_waiver.hero_ids and expired[id].legacy == item.legacy, "expiry retains approved type compatibility and exact migration audit")
+	check(Fixtures.Instances.can_equip(expired[id], "CH03", 5) and not Fixtures.Instances.can_equip(expired[id], "CH03", 4), "mage may retain original physical item at its level but no longer below it")
+	check(item.legacy_equip_waiver.level_hero_ids == ["CH03"] and HeroProgression.expire_level_waivers(expired, raised) == expired, "expiry is detached and idempotent")
+	var pending: Dictionary = migrated.equipment.duplicate(true)
+	pending[id].location = "pending"
+	check(HeroProgression.expire_level_waivers(pending, raised)[id] == pending[id], "pending future items stay unchanged")
+	for subset: Variant in [["CH02"], ["CH03", "CH03"], ["CH01", "CH03", "CH02"], {}, [5]]:
+		var invalid := item.duplicate(true)
+		invalid.legacy_equip_waiver["level_hero_ids"] = subset
+		check(not Fixtures.Instances.validate(invalid).is_empty(), "malformed or expanded waiver subset rejected " + str(subset))
+	var invalid := item.duplicate(true)
+	invalid.legacy_equip_waiver.level = false
+	check(not Fixtures.Instances.validate(invalid).is_empty(), "nonempty level subset cannot be disabled inconsistently")
+	invalid.legacy_equip_waiver.level = true
+	invalid.legacy_equip_waiver.level_hero_ids = []
+	check(not Fixtures.Instances.validate(invalid).is_empty(), "empty level subset cannot claim enabled bypass")
+	# An earlier persisted waiver has no per-hero subset. Camp transactions
+	# normalize that shape atomically, without erasing the original hero audit.
+	for record: Dictionary in migrated.equipment.values():
+		record.legacy_equip_waiver.erase("level_hero_ids")
+		record.legacy_equip_waiver.level = true
+	Game.run = null
+	check(Game.new_profile() and Game._save(migrated, null), "save earlier-shape migrated fixture")
+	Game.reload_profile()
+	var before: Dictionary = Game.profile.duplicate(true)
+	Game._store.max_document_bytes = 1
+	check(not Game._commit_profile(before) and Game.profile == before and not before.equipment[id].legacy_equip_waiver.has("level_hero_ids"), "failed camp expiry preserves input and live profile")
+	Game._store.max_document_bytes = ProfileStore.MAX_DOCUMENT_BYTES
+	check(Game._commit_profile(before) and Game.profile.equipment[id].legacy_equip_waiver.level_hero_ids == ["CH03"], "camp retry expires only high hero eligibility")
+	check(Game.select_hero("CH03"), "original low mage retains migrated physical loadout")
+	check(Game.start_run({"expedition":true,"seed":1759}), "expiry fixture starts real V2 expedition")
+	if Game.run == null: return
+	var boundary := runtime("CH03", 250, 123, 2)
+	var offer: Dictionary = Game.expedition_snapshot().relic_offers[0]
+	check(Game.choose_run_relic(offer.offer_id, "skip", "", boundary), "resolve expiry fixture entrance")
+	var next: Dictionary = Game.expedition_snapshot().next_node
+	check(Game.choose_expedition_node(int(next.node_index), str(next.room_id)) and Game.advance_expedition_node(boundary), "expiry fixture enters combat")
+	var event: String = Game.run.id + ":node:1:complete"
+	var amount := int(HeroProgression.thresholds()[4])
+	var rewards := {"gold":0,"xp":amount,"mastery":0}
+	before = Game.profile.duplicate(true)
+	var receipt: Dictionary = Game.run.receipt()
+	Game._store.max_document_bytes = 1
+	check(not Game.commit_expedition_completion(event, boundary, rewards) and Game.profile == before and Game.run.receipt() == receipt, "failed XP checkpoint changes neither profile nor frozen equipment waiver")
+	Game._store.max_document_bytes = ProfileStore.MAX_DOCUMENT_BYTES
+	check(Game.commit_expedition_completion(event, boundary, rewards), "XP checkpoint retries with atomic waiver metadata sync")
+	check(Game.hero_level("CH03") == 5 and not Game.profile.equipment[id].legacy_equip_waiver.level and Game.run.equipment_snapshot == Game.profile.equipment, "real level-up prunes final bypass and synchronizes frozen instance snapshot")
+	check(Game.run.hp == 250 and Game.run.resource == 123 and Game.run.equipment_snapshot[id].legacy_equip_waiver.type, "expiry does not refill state or remove approved mage type exception")
+	var after: Dictionary = Game.profile.duplicate(true)
+	check(Game.commit_expedition_completion(event, boundary, rewards) and Game.profile == after, "repeated XP completion cannot mutate expiry or reward twice")
+	Game.reload_profile()
+	check(Game.run != null and Game.run.level == 5 and Game.run.equipment_snapshot == Game.profile.equipment and Game.run.equipment_snapshot[id].legacy_equip_waiver.level_hero_ids.is_empty(), "atomic expired metadata survives actual expedition disk reload")
+	check(Fixtures.Instances.can_equip(Game.profile.equipment[id], "CH03", 5) and not Fixtures.Instances.can_equip(Game.profile.equipment[id], "CH02", 1), "reload retains only original type authority without a new hero level exception")
+	Game.run = null
+	check(Game._commit_profile(before) and Game.start_run(), "earlier underlevel fixture starts non-expedition XP path")
+	var old_snapshot: Dictionary = Game.run.equipment_snapshot.duplicate(true)
+	Game._store.max_document_bytes = 1
+	check(not Game.grant_hero_xp(amount, "waiver:non-expedition") and Game.run.equipment_snapshot == old_snapshot and Game.hero_level("CH03") == 1, "failed non-expedition XP leaves level waiver and level untouched")
+	Game._store.max_document_bytes = ProfileStore.MAX_DOCUMENT_BYTES
+	check(Game.grant_hero_xp(amount, "waiver:non-expedition") and Game.run.level == 5 and not Game.run.equipment_snapshot[id].legacy_equip_waiver.level, "non-expedition XP success synchronizes expired runtime metadata")
+	check(Game.run.equipment_snapshot == Game.profile.equipment and Game.run.equipment_snapshot[id].legacy_equip_waiver.type, "normal XP path keeps instance rolls and mage type authority")

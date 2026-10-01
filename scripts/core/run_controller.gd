@@ -787,12 +787,15 @@ func grant_hero_xp(amount: int, event_id: String) -> bool:
 	receipt.completed_reward_ids.append(event_id)
 	receipt.hero_xp_gained = run.hero_xp_gained + added
 	receipt.level = ContentRegistry.level_for_xp(int(next_profile.hero_xp[run.hero_id]), run.ruleset_version())
+	if run.ruleset_version() == Numbers.V2 and receipt.has("equipment_snapshot"):
+		receipt.equipment_snapshot = _sync_level_waivers(receipt.equipment_snapshot, next_profile.equipment)
 	if not _save(next_profile, receipt):
 		return false
 	profile = next_profile
 	run.completed_reward_ids.append(event_id)
 	run.hero_xp_gained += added
 	run.level = int(receipt.level)
+	if run.ruleset_version() == Numbers.V2: run.equipment_snapshot = _sync_level_waivers(run.equipment_snapshot, profile.equipment)
 	run.stats = _resolved_live_stats()
 	run.stats.branches = run.branches_snapshot.duplicate(true)
 	run.max_hp = float(run.stats.max_hp)
@@ -849,6 +852,7 @@ func complete_hero_tutorial() -> bool:
 	if run != null:
 		run.hero_xp_gained += added
 		run.level = int(receipt.level)
+		if run.ruleset_version() == Numbers.V2: run.equipment_snapshot = _sync_level_waivers(run.equipment_snapshot, profile.equipment)
 		run.stats = _resolved_live_stats()
 		run.stats.branches = run.branches_snapshot.duplicate(true)
 		run.max_hp = float(run.stats.max_hp)
@@ -949,6 +953,8 @@ func _commit_expedition(value: Dictionary, runtime: Dictionary, next_profile: Di
 	receipt.expedition = value.duplicate(true)
 	receipt.gold = int(value.gold_earned) - int(value.gold_spent)
 	receipt.level = ContentRegistry.level_for_xp(int(next_profile.hero_xp[run.hero_id]), run.ruleset_version())
+	if run.ruleset_version() == Numbers.V2 and receipt.has("equipment_snapshot"):
+		receipt.equipment_snapshot = _sync_level_waivers(receipt.equipment_snapshot, next_profile.equipment)
 	if not _save(next_profile, receipt): return false
 	var live_values: Dictionary = {"hp":run.hp,"resource":run.resource,"shield":run.shield,"resource_regen_remainder":run.resource_regen_remainder,"resource_decay_remainder":run.resource_decay_remainder}
 	profile = next_profile
@@ -1357,6 +1363,7 @@ func _commit_profile(next_profile: Dictionary) -> bool:
 	# Pending rewards stay pending; a loadout referencing them still fails validation.
 	next_profile = next_profile.duplicate(true)
 	if next_profile.get("ruleset_version", Numbers.LEGACY) == Numbers.V2:
+		next_profile.equipment = Progression.expire_level_waivers(next_profile.equipment, next_profile.hero_xp)
 		var equipped: Array = next_profile.get("loadout", {}).values()
 		for id: Variant in next_profile.get("equipment", {}):
 			var record: Variant = next_profile.equipment[id]
@@ -1428,3 +1435,16 @@ func migrate_numerical_at_camp(event_id: String = "migration:numerical_v2") -> b
 	if next.is_empty(): return false
 	if next == profile: return true
 	return _commit_profile(next)
+
+## Expiry changes eligibility metadata only; pending/future instances and all
+## combat rolls stay frozen. Caller writes this with the XP/profile transaction.
+func _sync_level_waivers(snapshot: Dictionary, equipment: Dictionary) -> Dictionary:
+	var result := snapshot.duplicate(true)
+	for id: Variant in result:
+		var item: Variant = result[id]
+		var owned: Variant = equipment.get(id)
+		if not item is Dictionary or item.get("location") == "pending" or not owned is Dictionary: continue
+		if item.get("instance_id") != owned.get("instance_id") or item.get("template_id") != owned.get("template_id"): continue
+		if owned.get("legacy_equip_waiver") is Dictionary:
+			item["legacy_equip_waiver"] = owned.legacy_equip_waiver.duplicate(true)
+	return result
