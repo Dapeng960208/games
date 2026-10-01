@@ -42,7 +42,7 @@ static func add(value: Dictionary, run_id: String, hero_id: String, event_id: St
 	var cap := 2 if source == "normal" else 1
 	var grant := source not in ["normal", "elite"] or count < cap
 	var earned := materials(source, str(request.race_id), int(value.difficulty))
-	value.loot_events[event_id] = {"node_index":int(value.node_index),"zone_index":zone,"actor_id":actor_id,"ordinal":value.loot_events.size(),"result":result,"grant_items":grant,"materials":earned,"research_materials":{},"gold":0}
+	value.loot_events[event_id] = {"node_index":int(value.node_index),"zone_index":zone,"actor_id":actor_id,"ordinal":value.loot_events.size(),"result":result,"grant_items":grant,"materials":earned,"research_materials":{},"gold":0,"tutorial_xp":0}
 	for key: String in earned: value.pending_materials[key] = int(value.pending_materials.get(key, 0)) + int(earned[key])
 	if grant:
 		for item: Dictionary in result.items:
@@ -112,6 +112,7 @@ static func valid(value: Dictionary, receipt: Dictionary, profile: Dictionary) -
 	var counts := {}
 	var expected_optional := {}
 	var earned_gold := 0
+	var tutorial_events := 0
 	for index in order.size():
 		var event: Dictionary = order[index]
 		if int(event.ordinal) != index or not _number(event.get("node_index"), int(value.node_index)) or not _number(event.get("zone_index"), 2) or not event.get("grant_items") is bool: return false
@@ -125,6 +126,7 @@ static func valid(value: Dictionary, receipt: Dictionary, profile: Dictionary) -
 		var prefix: String = str(receipt.id) + ":node:" + str(int(event.node_index)) + ":"
 		if not id.begins_with(prefix): return false
 		if source in ["normal","elite"]:
+			if event.get("tutorial_xp", 0) != 0: return false
 			if event.get("gold") != 0: return false
 			if not event.get("actor_id") is String or Rewards.Catalog.enemy(event.actor_id).is_empty(): return false
 			if not id.begins_with(prefix + "kill:") or id.length() <= (prefix + "kill:").length(): return false
@@ -135,6 +137,7 @@ static func valid(value: Dictionary, receipt: Dictionary, profile: Dictionary) -
 			if reward.is_empty() or event.get("gold") != reward.gold: return false
 			earned_gold += int(reward.gold)
 		elif source == "chest":
+			if event.get("tutorial_xp", 0) != 0: return false
 			var objective: String = {"L01":"side_crate","L11":"research_2"}.get(room, "")
 			if objective.is_empty() or id != prefix + "optional:" + objective or not value.completion_events.values().any(func(n: Variant) -> bool: return int(n) == int(event.node_index)): return false
 			var optional := Rewards.v2_optional(room, objective, int(value.difficulty))
@@ -162,6 +165,13 @@ static func valid(value: Dictionary, receipt: Dictionary, profile: Dictionary) -
 		if source in ["room","boss"]:
 			var progression: Variant = profile.get("progression_receipts", {}).get(id)
 			if not progression is Dictionary or progression.get("deferred_materials") != true or not same(progression.get("material_reward"), research): return false
+			var tutorial: Variant = event.get("tutorial_xp", 0)
+			if not _number(tutorial, 30) or int(tutorial) not in [0,30]: return false
+			if int(tutorial) == 30:
+				tutorial_events += 1
+				if tutorial_events > 1 or receipt.hero_id not in profile.get("tutorial_completed", []): return false
+			var xp: int = int(Rewards.v2_completion(room, int(value.difficulty), str(event.get("quality", "full"))).xp) + int(tutorial)
+			if progression.get("hero") != receipt.hero_id or progression.get("race") != result.context.race_id or progression.get("amount") != xp: return false
 		for bucket: Dictionary in [earned, research]:
 			for material: String in bucket: expected_materials[material] = int(expected_materials.get(material, 0)) + int(bucket[material])
 	if not same(expected_items, value.pending_equipment) or not same(expected_materials, value.pending_materials) or not same(expected_optional, value.optional_claims): return false

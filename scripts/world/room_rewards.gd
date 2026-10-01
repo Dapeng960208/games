@@ -336,14 +336,14 @@ static func v2_completion(room_id: String, difficulty: int, quality: String = "f
 		for option: Dictionary in _options(room_id):
 			if option.quality == quality: base = int(option.gold)
 	if base < 0: return {}
-	var value := {"gold":int(round(base * 2.0 * (1.0 + .25 * difficulty))),"xp":80 if boss else 30,"mastery":0 if boss else 180,"equipment":[],"quality":quality,"source":"boss" if boss else "room","race_id":biome_for_reward(room_id)}
+	var value := {"gold":ceili(base * 2.0 * (1.0 + .25 * difficulty)),"xp":ceili((80 if boss else 30) * (1.0 + .25 * difficulty)),"mastery":0 if boss else 180,"equipment":[],"quality":quality,"source":"boss" if boss else "room","race_id":biome_for_reward(room_id)}
 	if boss: value.boss_id = room_id
 	return value
 
 static func v2_optional(room_id: String, objective_id: String, difficulty: int) -> Dictionary:
 	var definition := optional_definition(room_id, objective_id)
 	if definition.is_empty() or difficulty < 0 or difficulty > 4: return {}
-	return {"gold":int(round(int(definition.gold) * 2.0 * (1.0 + .25 * difficulty))),"xp":0,"mastery":0,"equipment":[],"source":"chest","race_id":biome_for_reward(room_id)}
+	return {"gold":ceili(int(definition.gold) * 2.0 * (1.0 + .25 * difficulty)),"xp":0,"mastery":0,"equipment":[],"source":"chest","race_id":biome_for_reward(room_id)}
 
 ## Fixed chapter/zone challenge, independent of hero level and difficulty.
 static func challenge_level(room_id: String, zone_index: int = 2) -> int:

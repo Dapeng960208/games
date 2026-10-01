@@ -1279,6 +1279,7 @@ func commit_expedition_completion(completion_id: String, runtime_snapshot: Dicti
 	if run.staged_tutorial and not run.hero_id in next_profile.tutorial_completed:
 		next_profile.tutorial_completed.append(run.hero_id)
 		xp += 30
+		if run.ruleset_version() == Numbers.V2: value.loot_events[completion_id]["tutorial_xp"] = 30
 	var previous_xp: int = int(next_profile.hero_xp[run.hero_id])
 	next_profile.hero_xp[run.hero_id] = mini(3600, previous_xp + xp)
 	var added: int = int(next_profile.hero_xp[run.hero_id]) - previous_xp
