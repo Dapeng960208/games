@@ -124,8 +124,8 @@
     "en": "DASH {time}s"
   },
   "NO_RELICS": {
-    "zh_CN": "尚未携带遗物 · 靠近发光装置按 E 拾取",
-    "en": "NO RELICS · APPROACH A GLOWING STATION AND PRESS E"
+    "zh_CN": "尚未携带遗物 · 靠近发光装置按 {key} 拾取",
+    "en": "No relics · Approach a glowing station and press {key}"
   },
   "RELIC_SPLIT_NAME": {
     "zh_CN": "分裂镜片",

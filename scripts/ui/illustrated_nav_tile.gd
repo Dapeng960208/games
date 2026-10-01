@@ -90,6 +90,9 @@ func _layout_labels() -> void:
 	var text_right := 25.0
 	var available := maxf(0.0, size.x - text_left - text_right)
 	var title_size := 16 if compact else (24 if is_prominent else 22)
+	var font := title_label.get_theme_font("font")
+	while title_size > (14 if compact else 18) and font.get_string_size(heading,HORIZONTAL_ALIGNMENT_LEFT,-1,title_size).x > available:
+		title_size -= 1
 	var subtitle_size := 12 if is_prominent else 13
 	var has_description := not description.is_empty()
 	var title_top := (size.y - 50.0) * 0.5 - 2.0 if is_prominent else (size.y - 57.0) * 0.5
@@ -118,7 +121,7 @@ func _draw() -> void:
 	var surface := Rect2(Vector2(2, 2) + offset, size - Vector2(4, 4))
 	# Camp and menu navigation share the generated enamel/scroll components.
 	# Their independent illustrations and live titles remain readable at each size.
-	var component := "primary" if is_prominent else "secondary"
+	var component := "primary" if is_prominent else "card"
 	ButtonSkin.create(component, state).draw(get_canvas_item(), surface)
 	_draw_artwork(offset)
 	if has_focus() and not disabled:

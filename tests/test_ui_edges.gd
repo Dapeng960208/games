@@ -157,7 +157,7 @@ func check_focus_and_settings() -> void:
 	difficulty_picker.item_selected.emit(4)
 	await frames()
 	var difficulty_hint: Label = app.screen.find_child("DepartureDifficultyHint",true,false)
-	check(difficulty_hint.text.contains("BASE: 31 foes") and difficulty_hint.text.contains("Enemy Lv.9"),"extreme difficulty shows actual first-biome base enemy count and level")
+	check(difficulty_hint.text.contains("BASE: 44 foes") and difficulty_hint.text.contains("Enemy Lv.9"),"extreme difficulty shows actual first-biome base enemy count and level after the 40% population update")
 	check(difficulty_hint.text.contains("Faction gear 2 / +3") and difficulty_hint.text.contains("Boss 4 / +1 boost, cap +3"),"extreme difficulty shows current gear amount and capped boss enhancement")
 	check(difficulty_hint.get_line_count() == 1,"English difficulty details fit in one camp line")
 	difficulty_picker.item_selected.emit(1)

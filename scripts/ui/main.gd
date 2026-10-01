@@ -206,7 +206,8 @@ func show_camp() -> void:
 	var bank := MineStyle.panel(screen,Vector2(998,24),Vector2(238,57))
 	bank.name = "CampBank"
 	_camp_ui_icon(bank,"gold",Vector2(10,6),Vector2(43,43))
-	MineStyle.label(bank,"BANK_TOTAL",Vector2(62,11),Vector2(162,33),18,MineStyle.AMBER,{"gold":Game.profile.get("permanent_gold",0)})
+	MineStyle.literal(bank,_ex_text("营地金币","CAMP GOLD"),Vector2(62,7),Vector2(162,18),11,MineStyle.AMBER)
+	MineStyle.literal(bank,str(Game.profile.get("permanent_gold",0)),Vector2(62,26),Vector2(162,26),20,MineStyle.INK)
 	var portrait := MineStyle.hero_portrait(screen,hero_id,Vector2(28,116),Vector2(380,428))
 	portrait.name = "CampHeroIllustration"
 	var identity_plate := MineStyle.panel(screen,Vector2(42,505),Vector2(344,128))
@@ -485,10 +486,9 @@ func _show_expedition_error(message: String, retry: Callable, preserve_action: b
 	if message.is_empty():
 		message = _ex_text("当前操作未能完成，进度与金币已保留。请重试。", "This action could not complete. Your progress and gold are unchanged. Please retry.")
 	MineStyle.literal(panel,message,Vector2(28,85),Vector2(644,108),19,MineStyle.RED)
-	MineStyle.button(panel,"RETRY",Vector2(28,226),Vector2(309,52),func():
+	var actions := MineStyle.action_pair(panel,"RETRY","BACK",226,func():
 		_pop_modal()
-		retry.call()).grab_focus()
-	MineStyle.button(panel,"BACK",Vector2(357,226),Vector2(315,52),func():
+		retry.call(),func():
 		if preserve_action:
 			_pop_modal()
 			return
@@ -496,6 +496,7 @@ func _show_expedition_error(message: String, retry: Callable, preserve_action: b
 		_show_pending_expedition_offer()
 		if modals.is_empty():
 			show_expedition(true))
+	actions[0].grab_focus()
 
 func _show_pending_expedition_offer() -> void:
 	if Game.run == null or expedition == null or not expedition.active() or not modals.is_empty():
@@ -600,27 +601,35 @@ func _show_expedition_relic(offer: Dictionary) -> void:
 	var candidates: Array = offer.get("candidates",[])
 	var cards: Array[Button] = []
 	var card_height := 234.0
+	var scroll := ScrollContainer.new()
+	scroll.name = "RelicChoicesScroll"
+	scroll.position = Vector2(28,140)
+	scroll.size = Vector2(992,414)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	panel.add_child(scroll)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation",16)
+	scroll.add_child(row)
 	for index in candidates.size():
 		var id := str(candidates[index])
 		var current_rank: int = int(expedition.snapshot().get("relic_levels",{}).get(id,0))
 		var info := _relic_display(id,mini(2,current_rank+1))
-		var card := MineStyle.button(panel,"",Vector2(28+index*336,140),Vector2(320,234),func(): _choose_expedition_relic(str(offer.offer_id),id))
+		var card := MineStyle.button(row,"",Vector2.ZERO,Vector2(314,234),func(): _choose_expedition_relic(str(offer.offer_id),id))
+		card.custom_minimum_size = Vector2(314,234)
 		card.name = "RelicChoice_"+id
 		cards.append(card)
 		_relic_artwork(card,info,Vector2(116,12),Vector2(88,88),id)
-		var title := MineStyle.literal(card,str(info.name)+(_ex_text(" · 升级"," · UPGRADE") if current_rank==1 else ""),Vector2(16,104),Vector2(288,0),22,MineStyle.CYAN)
+		var title := MineStyle.literal(card,str(info.name)+(_ex_text(" · 升级"," · UPGRADE") if current_rank==1 else ""),Vector2(40,104),Vector2(258,0),22,MineStyle.CYAN)
 		title.name = "RelicTitle"
 		title.size.y = ceilf(title.get_minimum_size().y)
-		var description := MineStyle.literal(card,str(info.description),Vector2(16,title.position.y+title.size.y+6),Vector2(288,0),16,MineStyle.INK)
+		var description := MineStyle.literal(card,str(info.description),Vector2(40,title.position.y+title.size.y+6),Vector2(258,0),16,MineStyle.INK)
 		description.name = "RelicDescription"
 		description.max_lines_visible = -1
 		description.clip_text = false
 		description.size.y = ceilf(description.get_minimum_size().y)
 		card_height = maxf(card_height,description.position.y+description.size.y+16)
-	for card: Button in cards: card.size.y = card_height
-	panel.size.y = maxf(498,card_height+248)
-	panel.position.y = (720-panel.size.y)/2
-	var skip := MineStyle.button(panel,"",Vector2(678,140+card_height+28),Vector2(342,52),func(): _choose_expedition_relic(str(offer.offer_id),"skip"))
+	for card: Button in cards: card.custom_minimum_size.y = card_height
+	var skip := MineStyle.button(panel,"",Vector2(678,584),Vector2(342,52),func(): _choose_expedition_relic(str(offer.offer_id),"skip"))
 	skip.name = "SkipExpeditionRelic"
 	skip.text = _ex_text("跳过 · 回复 6% 生命", "Skip · recover 6% health")
 	skip.grab_focus()
@@ -712,8 +721,7 @@ func _request_new_profile() -> void:
 		return
 	var panel := _push_modal("NEW_CONFIRM_TITLE",Vector2(650,338))
 	MineStyle.label(panel,"NEW_CONFIRM_NOTE",Vector2(28,83),Vector2(594,112),19)
-	MineStyle.button(panel,"CONFIRM_NEW",Vector2(28,222),Vector2(360,52),_create_profile)
-	MineStyle.button(panel,"CANCEL",Vector2(409,222),Vector2(213,52),_pop_modal).grab_focus()
+	MineStyle.action_pair(panel,"CONFIRM_NEW","CANCEL",222,_create_profile,_pop_modal)[1].grab_focus()
 
 func _create_profile() -> void:
 	if Game.new_profile():
@@ -882,8 +890,7 @@ func show_extraction() -> void:
 		return
 	var panel := _push_modal("EXTRACT_TITLE",Vector2(676,357))
 	MineStyle.label(panel,"EXTRACT_NOTE",Vector2(28,87),Vector2(620,147),20,MineStyle.INK,{"gold":Game.run.gold,"kept":Balance.death_keep(Game.run.gold)})
-	MineStyle.button(panel,"CONFIRM_EXTRACT",Vector2(28,261),Vector2(366,52),func(): _settle("extracted"))
-	MineStyle.button(panel,"CANCEL",Vector2(416,261),Vector2(232,52),_pop_modal).grab_focus()
+	MineStyle.action_pair(panel,"CONFIRM_EXTRACT","CANCEL",261,func(): _settle("extracted"),_pop_modal)[1].grab_focus()
 
 func show_pause() -> void:
 	if Game.run == null:
@@ -912,11 +919,12 @@ func show_expedition_exit() -> void:
 	if not expedition.current_complete():
 		note = _ex_text("当前房间尚未完成。下次从本房入口重打；本房未提交的金币与战利品不会保留。已完成房间的进度不受影响。", "This room is unfinished. Next time you restart at this room's entrance; uncommitted loot from this room is discarded. Earlier completed rooms are retained.")
 	MineStyle.literal(panel,note,Vector2(36,118),Vector2(648,112),18,MineStyle.INK)
-	var save := MineStyle.button(panel,"",Vector2(32,267),Vector2(408,54),_save_expedition_and_quit)
+	var actions := MineStyle.action_pair(panel,"","CANCEL",267,_save_expedition_and_quit,_pop_modal)
+	var save := actions[0]
 	save.name = "SaveExpeditionAndQuit"
 	save.text = _ex_text("保存旅程 · 退出", "Save journey · Exit")
 	MineStyle.primary(save)
-	MineStyle.button(panel,"CANCEL",Vector2(458,267),Vector2(230,54),_pop_modal).grab_focus()
+	actions[1].grab_focus()
 
 func _save_expedition_and_quit() -> void:
 	if expedition == null or not expedition.active() or not is_instance_valid(room):
@@ -933,21 +941,33 @@ func show_relics() -> void:
 	if Game.run == null:
 		return
 	var panel := _push_modal("RELICS",Vector2(826,660))
-	var cursor_y := 81.0
+	panel.name = "RelicCollectionModal"
+	var scroll := ScrollContainer.new()
+	scroll.name = "RelicCollectionScroll"
+	scroll.position = Vector2(28,81)
+	scroll.size = Vector2(770,485)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.focus_mode = Control.FOCUS_ALL
+	panel.add_child(scroll)
+	var flow := VBoxContainer.new()
+	flow.custom_minimum_size.x = 746
+	flow.add_theme_constant_override("separation",18)
+	scroll.add_child(flow)
 	if Game.run.relics.is_empty():
-		MineStyle.label(panel,"NO_RELICS",Vector2(28,130),Vector2(770,92),22,MineStyle.MUTED)
+		MineStyle.label(flow,"NO_RELICS",Vector2.ZERO,Vector2(746,92),22,MineStyle.MUTED,{"key":_control_label("interact")})
 	else:
 		for i in range(Game.run.relics.size()):
 			var info := _relic_display(str(Game.run.relics[i]),int(Game.expedition_snapshot().get("relic_levels",{}).get({"split":"RL01","ember":"RL02","arc":"RL03"}.get(Game.run.relics[i],Game.run.relics[i]),1)))
-			_relic_artwork(panel,info,Vector2(26,cursor_y),Vector2(80,80),str(Game.run.relics[i]))
-			var title := MineStyle.literal(panel,str(info.get("name","")),Vector2(120,cursor_y),Vector2(655,0),21,MineStyle.CYAN)
+			var row := Control.new()
+			row.name = "RelicEntry_"+str(i)
+			flow.add_child(row)
+			_relic_artwork(row,info,Vector2.ZERO,Vector2(80,80),str(Game.run.relics[i]))
+			var title := MineStyle.literal(row,str(info.get("name","")),Vector2(92,0),Vector2(654,0),21,MineStyle.CYAN)
 			title.size.y = ceilf(title.get_minimum_size().y)
-			var description := MineStyle.literal(panel,str(info.get("description","")),Vector2(120,cursor_y+title.size.y+4),Vector2(655,0),17)
+			var description := MineStyle.literal(row,str(info.get("description","")),Vector2(92,title.size.y+4),Vector2(654,0),17)
 			description.size.y = ceilf(description.get_minimum_size().y)
-			cursor_y += maxf(80,title.size.y+4+description.size.y)+18
-	panel.size.y = maxf(472,cursor_y+76)
-	panel.position.y = (720-panel.size.y)/2
-	MineStyle.button(panel,"BACK",Vector2(558,panel.size.y-80),Vector2(240,52),_pop_modal).grab_focus()
+			row.custom_minimum_size = Vector2(746,maxf(80,title.size.y+4+description.size.y))
+	MineStyle.button(panel,"BACK",Vector2(558,584),Vector2(240,52),_pop_modal).grab_focus()
 
 func show_combat_details(slot: String = "q") -> void:
 	if Game.run == null or not is_instance_valid(hud):
@@ -1007,10 +1027,10 @@ func show_abandon(exit_game: bool = false) -> void:
 	var panel := _push_modal("ABANDON_TITLE",Vector2(720,360))
 	var retained := ProfileStore.retained_gold(Game.run.gold, "abandoned")
 	MineStyle.label(panel,"ABANDON_NOTE",Vector2(28,87),Vector2(664,143),20,MineStyle.INK,{"gold":Game.run.gold,"kept":retained,"lost":Game.run.gold-retained})
-	MineStyle.button(panel,"CONFIRM_ABANDON",Vector2(28,267),Vector2(432,52),func():
+	var actions := MineStyle.action_pair(panel,"CONFIRM_ABANDON","CANCEL",267,func():
 		quit_after_result = exit_game
-		_settle("abandoned"))
-	MineStyle.button(panel,"CANCEL",Vector2(479,267),Vector2(213,52),_pop_modal).grab_focus()
+		_settle("abandoned"),_pop_modal)
+	actions[1].grab_focus()
 
 func _settle(outcome: String) -> void:
 	pending_outcome = outcome

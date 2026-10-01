@@ -671,40 +671,13 @@ func _line(parent: Node, text_value: String, at: Vector2, extent: Vector2, font_
 	return node
 
 func _compact_button(parent: Node, text_value: String, at: Vector2, extent: Vector2, callback: Callable) -> Button:
-	var button := Button.new()
-	button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-	button.add_theme_color_override("font_color",HUD_INK)
-	button.add_theme_color_override("font_hover_color",HUD_CYAN)
-	button.add_theme_color_override("font_focus_color",HUD_CYAN)
+	var button := MineStyle.button(parent,"",at,extent,callback)
 	button.text = text_value
-	button.position = at
-	button.size = extent
-	button.custom_minimum_size = Vector2(44,44)
 	button.add_theme_font_size_override("font_size",16)
-	for state in ["normal","hover","pressed","focus"]:
-		var skin: StyleBox = MineStyle.box(Color("fff3d7"),HUD_AMBER if state != "normal" else MineStyle.COPPER)
-		if state != "focus" and extent.x > 54 and FileAccess.file_exists("res://scripts/ui/storybook_art.gd"):
-			var art: Script = load("res://scripts/ui/storybook_art.gd") as Script
-			var texture: Texture2D = art.texture("skill_ribbon")
-			if texture != null:
-				var scale_factor := extent.y/texture.get_height()
-				var bitmap: Image = texture.get_image()
-				bitmap.resize(maxi(1,roundi(bitmap.get_width()*scale_factor)),maxi(1,roundi(extent.y)),Image.INTERPOLATE_LANCZOS)
-				bitmap.generate_mipmaps()
-				var painted := StyleBoxTexture.new()
-				painted.texture = ImageTexture.create_from_image(bitmap)
-				var margins: Array = [72,20,72,20]
-				for side in [SIDE_LEFT,SIDE_TOP,SIDE_RIGHT,SIDE_BOTTOM]: painted.set_texture_margin(side,float(margins[side])*scale_factor)
-				skin = painted
-		skin.set_content_margin_all(3)
-		if state == "focus" and skin is StyleBoxFlat: skin.bg_color = Color.TRANSPARENT
-		button.add_theme_stylebox_override(state,skin)
+	if extent.x <= 54: MineStyle.button_skin(button,"socket")
 	button.action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
 	button.mouse_filter = Control.MOUSE_FILTER_STOP
-	button.pressed.connect(callback)
-	parent.add_child(button)
 	return button
-
 func _keycap(parent: Node, value: String, at: Vector2, extent: Vector2) -> Label:
 	var panel := Panel.new()
 	panel.position = at
@@ -928,7 +901,9 @@ func _update_quest_and_route() -> void:
 	var count := maxi(1,room.encounter_zones.size())
 	if room.get("expedition_context") != null and not room.expedition_context.is_empty():
 		var context: Dictionary = room.expedition_context
-		var definition: Dictionary = WorldCatalog.bosses().get(room.layout_id,{}) if context.get("role") == "boss" else WorldCatalog.room(room.layout_id)
+		var role := str(context.get("role",""))
+		var definition: Dictionary = WorldCatalog.bosses().get(room.layout_id,{}) if role == "boss" else WorldCatalog.room(room.layout_id)
+		if definition.is_empty(): definition = WorldCatalog.services().get(role,{})
 		region_label.text = MineStyle.content_text(definition,"name",str(context.get("name",room.layout_id)))
 		var route_nodes: Array = Game.run.expedition.get("route",{}).get("nodes",[])
 		count = maxi(1,route_nodes.size() if not route_nodes.is_empty() else int(context.get("node_count",1)))
@@ -1022,7 +997,8 @@ func _update_passive() -> void:
 	var current := int(passive_snapshot.get("current",0))
 	var maximum := maxi(1,int(passive_snapshot.get("max",3)))
 	var cooldown := float(passive_snapshot.get("cooldown",passive_snapshot.get("icd",0.0)))
-	passive_title.text = str(passive_snapshot.get("name",""))
+	var passive_definition: Dictionary = ContentRegistry.hero(Game.run.hero_id).get("passive",{})
+	passive_title.text = MineStyle.content_text(passive_definition,"name",str(passive_snapshot.get("name","")))
 	passive_state.text = ("Stacks %d / %d" if english else "累积  %d / %d") % [current,maximum]
 	if cooldown > 0:
 		passive_state.text = ("%d/%d · %.1fs" if english else "%d/%d · 冷却%.1f秒") % [current,maximum,cooldown]
@@ -1046,7 +1022,7 @@ func _update_passive() -> void:
 	fill.bg_color = accent
 	passive_bar.add_theme_stylebox_override("fill",fill)
 	class_label.text = ("Passive %d/%d · Automatic" if english else "被动 %d/%d · 自动触发") % [current,maximum]
-	class_label.tooltip_text = str(passive_snapshot.get("hint",""))
+	class_label.tooltip_text = passive_hint.text if english else str(passive_snapshot.get("hint",""))
 	class_bar.max_value = maximum
 	class_bar.value = current
 
@@ -1319,7 +1295,8 @@ func _update_tooltip() -> void:
 			body += ("\nPending this room: %d XP" if Words.locale == "en" else "\n本房待结算：%d 经验") % pending
 	elif active_detail_slot == "passive":
 		tooltip_title.text = passive_title.text
-		body = str(passive_snapshot.get("description",""))+"\n\n"+passive_state.text+"\n"+str(passive_snapshot.get("hint",""))
+		var definition: Dictionary = ContentRegistry.hero(Game.run.hero_id).get("passive",{})
+		body = MineStyle.content_text(definition,"description",str(passive_snapshot.get("description","")))+"\n\n"+passive_state.text+"\n"+class_label.tooltip_text
 	elif active_detail_slot == "inventory":
 		tooltip_title.text = "Backpack & character" if Words.locale == "en" else "背包与角色属性"
 		body = "Press B or click to change equipment and inspect your live character stats. The game pauses while the backpack is open." if Words.locale == "en" else "按 B 或点击打开背包，查看与更换装备、比较加成和角色实时属性。背包打开时游戏暂停。"

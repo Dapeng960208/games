@@ -69,6 +69,8 @@ func configure(next_layout: Dictionary, title: String) -> void:
 	map_bounds = Boundary.bounds(ground_polygon) if ground_polygon.size() >= 3 else arena
 	room_title.text = title
 	room_caption.text = Presentation.local_caption(design,Words.locale == "en")
+	if room_caption.text.is_empty() and not str(layout.get("room_id","")).begins_with("L"):
+		room_caption.text = "Prepare before the next encounter" if Words.locale == "en" else "整备后继续探索"
 	room_caption.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART if Words.locale == "en" else TextServer.AUTOWRAP_ARBITRARY
 	_layout_text()
 	queue_redraw()
@@ -126,7 +128,7 @@ func _draw() -> void:
 	var chapter := int(design.get("chapter",0))
 	var code := str(layout.get("blueprint_room_id",layout.get("room_id","")))
 	var font := get_theme_font("font","Button")
-	seal_text = "%02d·%s" % [chapter,code] if chapter > 0 else code
+	seal_text = "%02d·%s" % [chapter,code] if chapter > 0 else ("CAMP" if Words.locale == "en" else "整备")
 	seal_font_size = 9
 	var seal_width := font.get_string_size(seal_text,HORIZONTAL_ALIGNMENT_LEFT,-1,seal_font_size).x
 	if seal_width > 44:

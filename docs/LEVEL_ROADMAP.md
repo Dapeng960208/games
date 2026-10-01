@@ -17,7 +17,7 @@
 | COM06 P0 | 野怪攻击射程与稳定仇恨已补修；真实main暂停恢复检查通过，原整群停止现场待重启复核 | enemy.gd、enemy_brain.gd、tests/test_enemy_attack_flow.gd、tests/test_enemy_live_room.gd | 侧移及辅助转近战按实际招式接近，保留完整预警；节点失效/普攻仇恨正常；真实B03→L15原生首波与M开关均能攻击，现场运行进程早于修复写入，未确认原整群停止根因 |
 | COM07 P1 | 599普通怪身体外观与36施法徽章已接入并检查 | enemy_art.gd、enemy_visual.gd、room.gd、docs/ENEMY_VARIANTS.md | 独立房间累计分配，真实纹理/region去重；120个普通房/难度有限计划重复率0%，L15/L19极限真实生成已检查；技能召唤重复率、完整逐帧动画与主观密集群战可读性待完善 |
 | COM08 P0 | 首领贴身空招、静止岩缝与断层中缝已修复；具名战士极限站撸基准通过 | boss_brain.gd、boss_ability_catalog.gd、tests/test_boss_targeting.gd、tests/test_boss_stationary.gd | 按真实危险环与身体半径选招，不消耗轮换；静止岩缝与瞄准断层实伤、锁后侧移实躲已检查；原生Lv12／Lv20 S06＋RL03 II战士持续普攻及W/E/R均死亡，28项0失败；保留完整预警与反制，其他临时构筑和自然平衡继续游玩校调 |
-| UI01 P1 | 页面和信息细节收尾 | scripts/ui/style.gd、button_skin.gd、main.gd、expedition_panel.gd、backpack_panel.gd、hud.gd | 使用独特 UI 构件；焦点、禁用态和文案清楚；中英文及 1280×720、1920×1080、1280×900 不截断；只检查实际改动页 |
+| UI01 P1 | 装备／属性／页头重构、六类 v5 按钮和确认操作等宽已接入并截图检查 | scripts/ui/style.gd、button_skin.gd、main.gd、equipment_catalog.gd、equipment_details.gd、backpack_panel.gd、hud.gd | 中英文 51 状态共 102 张 1280×720 GPU 截图已审查；装备页另查三窗口；焦点／禁用态、真实数值与成对按钮已检查；新增界面继续按实际改动校对，证据见 UI_SCREENSHOT_AUDIT.md |
 | ANIM01 P2 | 完整角色动作和附件 | hero_art_family.gd、hero_walk_atlas.gd、hero_basic_atlas.gd、hero_skill_atlas.gd | 头像身份、身体高度、脚点一致；补连续动作与必要朝向；枪口锚点一致，拒收候选不启用 |
 
 未带目录的战斗脚本均位于 scripts/combat/，世界脚本位于 scripts/world/。

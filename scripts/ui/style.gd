@@ -135,6 +135,7 @@ static func button(parent: Node, key: String, at: Vector2, extent: Vector2, call
 	node.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	node.set_script(load("res://scripts/ui/mine_button.gd"))
 	node.text = Words.text(key)
+	node.clip_text = true
 	node.position = at
 	node.size = extent
 	node.custom_minimum_size = Vector2(44,44)
@@ -149,6 +150,14 @@ static func button(parent: Node, key: String, at: Vector2, extent: Vector2, call
 	parent.add_child(node)
 	return node
 
+static func action_pair(parent: Control, left_key: String, right_key: String, top: float, left_action: Callable, right_action: Callable) -> Array[Button]:
+	var width := (parent.size.x-72.0)*.5
+	var left := button(parent,left_key,Vector2(28,top),Vector2(width,52),left_action)
+	var right := button(parent,right_key,Vector2(44+width,top),Vector2(width,52),right_action)
+	left.set_meta("paired_action",true)
+	right.set_meta("paired_action",true)
+	return [left,right]
+
 static func primary(node: Button, accent: Color = CYAN) -> void:
 	button_skin(node,"danger" if accent.is_equal_approx(RED) else "primary")
 
@@ -156,7 +165,7 @@ static func selected(node: Button, kind: String = "tab") -> void:
 	button_skin(node,{"card":"selected_card","socket":"selected_socket"}.get(kind,kind))
 
 static func button_skin(node: Button, kind: String = "secondary") -> void:
-	var pale_text := kind in ["primary","danger","tab"]
+	var pale_text := kind in ["primary","tab"]
 	for state in ["normal","hover","pressed","disabled","focus"]:
 		var skin: StyleBox = ButtonSkin.create(kind,state)
 		if node.size.x < 100:

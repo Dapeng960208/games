@@ -4,6 +4,12 @@ extends RefCounted
 
 # Longer clauses precede their shared words so replacements remain contextual.
 const ACTION_REPLACEMENTS: Dictionary = {
+	# Expedition services share the same live objective header as combat rooms.
+	"完成整备后前往第一处矿区": "Finish preparations, then enter the first area",
+	"M 查看路线": "M · View route",
+	"购买补给，或前往下一站": "Buy supplies, or travel to the next stop",
+	"领取成长奖励，继续远征": "Collect your growth reward and continue",
+	"首领已击败 · 前往撤离井": "Boss defeated · Head to extraction",
 	# B01: brakes, cart, key cores, sorting, beacons and furnace gauges.
 	"侧箱：18 金币 + 职业防具 · 清理敌群后可回收": "Side crate: 18 coins + class armor · Recover after clearing enemies",
 	"制动完成 · 侧箱已回收": "Brakes released · Side crate recovered",

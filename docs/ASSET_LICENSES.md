@@ -6,7 +6,9 @@
 
 本轮比例修正启用 `fixed_B0*_environment_v3.*`：由内置 ImageGen 参考各自 v2 原图细化铺地、调整材质色彩，主要外围地标位置与地面轮廓继续由原坐标注册；相邻完整 prompt 与 metadata 记录来源、参考图和 SHA-256。三职业的站立、步态、普攻及技能统一按 `presentation_metrics.gd` 的 112 世界像素身体尺度绘制，普通敌人使用既有注册高度的 1.20 倍；下文历史 88 像素记录保留为原始生成来源，不是当前呈现尺度。
 
-新版按钮构件由内置 ImageGen 生成：[透明原图](../assets/generated/ui/storybook_buttons_v2.png)、[完整提示词](../assets/generated/ui/storybook_buttons_v2.prompt.json)、[取样区域](../assets/generated/ui/storybook_buttons_v2.regions.json)。六类构件分别为青绿珐琅主操作、米白卷轴次操作、箭头返回、珊瑚红危险操作、靛蓝布面页签、黄铜下拉选择器；原 PNG 像素保留，文字、九宫格伸缩、选中标记和状态反馈由 GDScript 绘制。设计册中的 runtime 图片为真实 Godot 画面。
+当前按钮为内置 ImageGen 生成的 v5：[透明原图](../assets/generated/ui/workshop_buttons_v5.png)、[完整提示词](../assets/generated/ui/workshop_buttons_v5.prompt.json)、[取样区域](../assets/generated/ui/workshop_buttons_v5.regions.json)。1536×1024 RGBA 原图保留生成像素，六类构件分别为蓝色符文主操作、米白手册次操作、青绿叶革页签、罗盘返回、珊瑚红危险操作与浅色装备卡片。文字、安全边距、九宫格伸缩、选中标记和状态反馈由 GDScript 绘制；下拉选择器共用次操作取样。
+
+历史 v2 按钮来源继续保留：[透明原图](../assets/generated/ui/storybook_buttons_v2.png)、[完整提示词](../assets/generated/ui/storybook_buttons_v2.prompt.json)、[取样区域](../assets/generated/ui/storybook_buttons_v2.regions.json)。其中卷轴构件已被全局 v5 按钮皮肤替换，旧资源仍可用于历史设计记录和非按钮装饰。设计册中的 runtime 图片为真实 Godot 画面。
 
 2026-10-01 的首四关原型使用统一明亮手绘奇幻基准。构装、虫族、南瓜僵尸、兽人／食人魔的四个最终怪物图集见 `assets/generated/enemies/storybook_B01_bodies_v2.*` 至 `storybook_B04_bodies_v2.*`；40 个普通怪／首领区域、脚点与来源均保存在相邻 JSON。首四族地图道具、自动信标和三联地面见 `assets/generated/props/storybook_*` 与 `assets/generated/world/storybook_floor_factions_v2.*`。60 件装备的当前资源及首四族八件核心覆盖由 `assets/generated/equipment/storybook_equipment_v2.manifest.json` 统一注册，相邻 provenance 记录原始提示词、生成输出路径和 SHA256。以上位图由内置 ImageGen 为本工程生成，原始像素保留；纹理裁取、朝向、缩放和运行时淡化由代码实现。候选、旧种族方案和未通过质量门的 M10 动作图保留为开发来源，未作为当前正式动作启用。
 

@@ -1,0 +1,11 @@
+{
+  "image": "workshop_buttons_v5.png",
+  "regions": {
+    "primary": {"rect": [29,92,730,226], "caps": [174,55], "edges": [22,28]},
+    "secondary": {"rect": [799,86,710,245], "caps": [86,48], "edges": [24,28]},
+    "tab": {"rect": [28,366,720,236], "caps": [166,54], "edges": [70,32]},
+    "back": {"rect": [788,379,718,225], "caps": [223,43], "edges": [43,29]},
+    "danger": {"rect": [27,667,724,226], "caps": [120,70], "edges": [25,28]},
+    "card": {"rect": [792,649,707,244], "caps": [135,44], "edges": [52,32]}
+  }
+}
