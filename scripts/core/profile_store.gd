@@ -13,7 +13,7 @@ const HERO_IDS := ["CH01", "CH02", "CH03"]
 const BOSS_IDS := ["BO01", "BO02", "BO03", "BO04"]
 const SLOTS := ["weapon", "head", "chest", "hands", "feet", "charm"]
 const STARTER_IDS := ["EQ01", "EQ11", "EQ21", "EQ31", "EQ41", "EQ51"]
-const MAX_TRANSACTIONS := 640 # 96 purchases, 480 upgrades and set receipts; never evict IDs.
+const MAX_TRANSACTIONS := 4096 # Bounded purchase/upgrade/recycle receipts; never evict IDs.
 const VOLUME_DEFAULTS := {"master_volume":1.0,"music_volume":0.55,"sfx_volume":0.85}
 const Controls = preload("res://scripts/core/control_bindings.gd")
 const COMBAT_SETTING_DEFAULTS := {"auto_attack": false, "enemy_skill_paths": true}
@@ -392,13 +392,33 @@ static func _valid_progression(profile: Dictionary) -> bool:
 			if pieces.size() != SLOTS.size() or not _number(entry.get("price")) or not _unique_ids(entry.get("items"), SLOTS.size()) or entry.items.is_empty(): return false
 			var paid := 0
 			for eq_id: String in entry.items:
-				if not eq_id in pieces or not profile.equipment.has(eq_id): return false
+				if not eq_id in pieces: return false
 				paid += int(ContentRegistry.equipment(eq_id).price) * 9 / 10
 			if paid != int(entry.price): return false
-		elif not entry.get("kind") in ["purchase", "upgrade"] or not profile.equipment.has(entry.get("item")) \
+		elif entry.get("kind") == "sale":
+			if not entry.get("items") is Dictionary or entry.items.is_empty() or entry.items.size() > ContentRegistry.equipment_ids().size() or not _number(entry.get("price")): return false
+			var proceeds := 0
+			var sold_ids: Array = entry.items.keys()
+			sold_ids.sort()
+			if entry.get("item") != ",".join(sold_ids): return false
+			for eq_id: String in sold_ids:
+				var record: Variant = entry.items[eq_id]
+				if not record is Dictionary or not _number(record.get("level"), Expedition.MAX_EQUIPMENT_LEVEL): return false
+				var worth := equipment_sell_price(eq_id,int(record.level))
+				if worth <= 0 or record.get("price") != worth: return false
+				proceeds += worth
+			if proceeds != int(entry.price): return false
+		elif not entry.get("kind") in ["purchase", "upgrade"] or ContentRegistry.equipment(str(entry.get("item", ""))).is_empty() \
 			or not _number(entry.get("price")) or not _number(entry.get("level"), Expedition.MAX_EQUIPMENT_LEVEL):
 			return false
 	return true
+
+static func equipment_sell_price(eq_id: String, level: int) -> int:
+	var item := ContentRegistry.equipment(eq_id)
+	if item.is_empty() or level < 0 or level > Expedition.MAX_EQUIPMENT_LEVEL: return 0
+	var worth := int(item.price) / 4
+	for index in range(level): worth += ContentRegistry.UPGRADE_COSTS[index] / 5
+	return worth
 
 static func _valid_branches(value: Variant, hero_xp: Dictionary) -> bool:
 	if not value is Dictionary or value.size() != HERO_IDS.size():

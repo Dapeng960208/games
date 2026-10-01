@@ -7,6 +7,7 @@ const SKILLS := ["q","secondary","f","ultimate"]
 const BINDING_ACTIONS := ["skill_q","skill_secondary","skill_f","skill_ultimate"]
 const Advice = preload("res://scripts/ui/equipment_advice.gd")
 const SetShop = preload("res://scripts/ui/equipment_set_shop.gd")
+const Recycle = preload("res://scripts/ui/equipment_recycle_panel.gd")
 var app: Node
 var mode := "heroes"
 var preview_hero := ""
@@ -22,6 +23,9 @@ var action_button: Button
 var shop_sets := false
 var selected_set := "S09"
 var set_scroll := 0
+var inventory_recycle := false
+var sale_selection: Dictionary = {}
+var recycle_scroll := 0
 
 func _ready() -> void:
 	preview_hero = str(Game.profile.get("selected_hero","CH01"))
@@ -39,6 +43,11 @@ func _render() -> void:
 		catalog_toggle.name = "ToggleSetShop"
 		catalog_toggle.text = _t("单件装备目录", "Individual equipment") if shop_sets else _t("套装商城 · 14 套", "Set shop · 14 sets")
 		catalog_toggle.add_theme_font_size_override("font_size",17)
+	elif mode == "inventory":
+		var recycle_toggle := MineStyle.button(self,"",Vector2(674,52),Vector2(234,44),func(): inventory_recycle = not inventory_recycle; _render())
+		recycle_toggle.name = "ToggleRecycle"
+		recycle_toggle.text = _t("返回配装", "Return to loadout") if inventory_recycle else _t("装备回收 · 多选出售", "Recycle · Sell multiple")
+		recycle_toggle.add_theme_font_size_override("font_size",17)
 	var tabs := [["heroes","TAB_HEROES"],["skills","TAB_SKILLS"],["inventory","TAB_GEAR"],["shop","TAB_SHOP"],["upgrade","TAB_UPGRADE"]]
 	for i in range(tabs.size()):
 		var data: Array = tabs[i]
@@ -57,6 +66,8 @@ func _render() -> void:
 		_render_skills()
 	elif mode == "shop" and shop_sets:
 		SetShop.render(self)
+	elif mode == "inventory" and inventory_recycle:
+		Recycle.render(self)
 	else:
 		_render_equipment()
 	var focus := find_child("PrimaryAction",true,false) as Button
@@ -621,9 +632,9 @@ func _commit_item() -> void:
 	var id := selected_item
 	var success := false
 	if mode == "shop" and not Game.profile.get("equipment",{}).has(id):
-		success = Game.buy_equipment(id,"shop:"+id)
+		success = Game.buy_equipment(id)
 	elif mode == "upgrade":
-		success = Game.upgrade_equipment(id,"upgrade:"+id+":"+str(_item_level(id)))
+		success = Game.upgrade_equipment(id)
 	else:
 		success = Game.equip_item(id)
 	if not success:

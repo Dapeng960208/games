@@ -530,6 +530,38 @@ func equip_equipment_set(set_id: String) -> bool:
 	if next_profile.loadout == profile.loadout: return true
 	return _commit_profile(next_profile)
 
+func equipment_sell_value(eq_id: String) -> int:
+	if not profile.equipment.has(eq_id): return 0
+	return ProfileStore.equipment_sell_price(eq_id,equipment_level(eq_id))
+
+func sell_equipment_items(eq_ids: Array, transaction_id: String = "") -> bool:
+	last_error = ""
+	if not _camp_available() or eq_ids.is_empty() or eq_ids.size() > ContentRegistry.equipment_ids().size(): return false
+	var ids: Array[String] = []
+	for value: Variant in eq_ids:
+		if not value is String or ids.has(value) or ContentRegistry.equipment(value).is_empty(): return false
+		ids.append(value)
+	ids.sort()
+	var signature := ",".join(ids)
+	if not transaction_id.is_empty() and profile.applied_transactions.has(transaction_id):
+		return _same_transaction(transaction_id,"sale",signature)
+	var total := 0
+	var records := {}
+	for eq_id: String in ids:
+		if not profile.equipment.has(eq_id) or eq_id in profile.loadout.values(): return false
+		var price := equipment_sell_value(eq_id)
+		if price <= 0: return false
+		total += price
+		records[eq_id] = {"level":equipment_level(eq_id),"price":price}
+	if not ProfileStore._number(int(profile.permanent_gold)+total): return false
+	var id := _transaction_id(transaction_id)
+	if id.is_empty(): return false
+	var next_profile := profile.duplicate(true)
+	for eq_id: String in ids: next_profile.equipment.erase(eq_id)
+	next_profile.permanent_gold = int(next_profile.permanent_gold) + total
+	next_profile.applied_transactions[id] = {"kind":"sale","item":signature,"items":records,"price":total}
+	return _commit_profile(next_profile)
+
 func equip_item(eq_id: String) -> bool:
 	last_error = ""
 	if not _camp_available() or not profile.equipment.has(eq_id):

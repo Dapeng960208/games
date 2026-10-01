@@ -33,7 +33,7 @@ MAP01 不能整房字典覆盖运行数据。本轮通过独立表现配置只�
 | EQ01 P1 | 八槽和独立实例 | scripts/data/content_registry.gd、scripts/core/profile_store.gd、backpack_equipment.gd、stat_resolver.gd、data/equipment.json | legs/ring 全链路生效，同模板多件有实例 ID，旧六槽迁移，配装/比较/入库不串件 |
 | EQ02 P1 | 白绿紫金与随机词条 | 依赖 EQ01；装备目录、equipment_effects.gd、掉落和属性结算 | 品质越高词条越多；设计草案白0/绿2/紫3/金4，数值需平衡；种族/槽位/职业池、互斥和触发上限真实生效；品质与强化分开 |
 | EQ03 P1 | 难度与本族实例掉落 | scripts/world/room_rewards.gd、scripts/core/expedition_state.gd、run_state.gd | 难度影响数量、属性和品质权重；不回退别族；撤离永久入库，死亡不保存临时物品，重试不重复奖励 |
-| EQ04 P1 | 背包出售 | 依赖实例；backpack_panel.gd、workshop_panel.gd、profile_store.gd | 售价预览、已装备物明确处理，删除指定实例与金币原子保存；重复点击一次结算 |
+| EQ04 P1 | 固定模板多选回收已接入；实例出售待 EQ01 | equipment_recycle_panel.gd、workshop_panel.gd、run_controller.gd、profile_store.gd | 当前可多选／全选未穿戴装备、显示逐件与总价、取消／确认、一次保存删物与加金币、重启不重发、售出可重购；未来按独立实例删除而非模板 ID |
 | EQ05 P2 | 洗练和提升 | 依赖 EQ01/EQ02/EQ04；工坊、装备效果、保存 | 显示成本和结果，品质/词条数遵守规则；失败不重复扣款或重抽已确认结果 |
 | EQ06 P2 | 血药和蓝药 | 库存、player.gd、run_controller.gd、HUD 和绑定 | 真库存、真实恢复与冷却，职业资源适配，满值不浪费，暂停/死亡/恢复一致 |
 | EQ07 P2 | 装备改变游戏中装饰 | 依赖八槽与附件；英雄绘制及装备美术 | 各方向/动作显示头胸手腿鞋武器附件，戒指饰品合理表现；不能仅改头像或背包图 |
