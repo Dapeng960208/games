@@ -1,13 +1,13 @@
 # 游戏代码待办与十二关路线图
 
-更新日期：2026-10-01。按最新需求继续完善前四副本的敌群难度、数量、种族技能与首领战术。本文件记录实施和后续事项；实际范围见 [开发进度](DEVELOPMENT_PROGRESS.md)，目标见 [用户需求](USER_LEVEL_BRIEF.md) 与 [设计稿](LEVEL_DESIGN_V1.md)。
+更新日期：2026-10-01。前四副本按“一房一张背景”接入独立原画、地图用途分组与房间 UI，继续完善敌群难度、数量、种族技能与首领战术。本文件记录实施和后续事项；实际范围见 [开发进度](DEVELOPMENT_PROGRESS.md)，目标见 [用户需求](USER_LEVEL_BRIEF.md) 与 [设计稿](LEVEL_DESIGN_V1.md)。
 
 ## 前四关下一轮事项
 
 | 编号 | 工作与状态 | 主要入口 | 完成条件 |
 |---|---|---|---|
-| MAP01 P0 | 房间摆放分组，仅草稿 | data/fixed_rooms.json、scripts/world/fixed_room_layouts.gd、prop_identity.gd、docs/drafts/room-placement-20261001/ | 按用途成组，中心主路通畅；目标与装饰分开；保留全部运行字段，同步 28 张图并检查典型实机房 |
-| MAP02 P0 | 同族七房独立构图，待开发 | scripts/world/world_art.gd、environment_chunks.gd、room_appearance.gd、环境资源 | 地标、边缘、生活区和地面细节各房可辨；风格、尺度、接缝与碰撞一致；不能同母图换色计完成 |
+| MAP01 P0 | 28 房用途分组已接入；历史草稿单独保留 | data/room_presentations.json、scripts/world/room_presentation.gd、fixed_room_layouts.gd、prop_identity.gd | 56 分组与 168 陈设按用途摆放；保留原蓝图、实体掩体与奖励；用真实 28 房运行图册记录当前状态 |
+| MAP02 P0 | 28 房独立完整背景与房间识别 UI 已接入 | assets/generated/world/rooms/、scripts/world/world_art.gd、environment_chunks.gd、scripts/ui/room_identity_plate.gd | 同族七张独立原画；各房地标、边缘、生活区和地面各异；本房边界/镜头/六区块/小图一致，资源像素摘要与实际加载路径各不相同 |
 | MAP03 P0 | 地板比例和空场感校对 | presentation_metrics.gd、world_camera.gd、环境 metadata、蓝图 | 实际镜头下砖、人物、门和道具尺度符合参考；避免持续放大人物；大窗口不露画外，HUD 完整 |
 | COM01 P0 | 枪口出弹和枪手打击感，待修 | hero_visual.gd、hero_feedback.gd、projectile_visual.gd、projectile.gd、room.gd、hero_skill_atlas.gd、combat_audio.gd | 可见弹体从本次姿态枪口发出，方向一致，墙角不穿模；后坐、闪光、命中和声音同节奏，保留物理结算规则 |
 | COM02 P1 | 三职业十二技能专属效果，未开始 | hero_abilities.gd、hero_feedback.gd、skill_input_feedback.gd、scripts/ui/hud.gd、技能素材 | 每招蓄力/释放/命中或落点语言可辨，连招提示清楚；降低特效保留信息，不能仅换颜色 |
@@ -19,7 +19,7 @@
 
 未带目录的战斗脚本均位于 scripts/combat/，世界脚本位于 scripts/world/。
 
-MAP01 不能整房字典覆盖运行数据。文档草稿不含全部运行字段，后续只合并批准陈设、地标和说明，保留 biome_id、首领反制、固定奖励、任务、信标、遭遇及状态，再重绘图纸。
+MAP01 不能整房字典覆盖运行数据。本轮通过独立表现配置只重组无碰撞陈设，保留 biome_id、首领反制、固定奖励、任务、信标、遭遇及状态。历史草稿不含全部运行字段，继续单独留存；新表现索引见 [ROOM_PRESENTATION](ROOM_PRESENTATION.md)，生产截图图册按定向检查生成。
 
 ## 装备循环实施顺序
 
