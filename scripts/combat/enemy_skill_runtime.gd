@@ -223,7 +223,6 @@ func consume_scan_mark(shooter: Node2D) -> float:
 func filter_incoming_damage(target: Node2D, amount: float, kind: StringName, from_direction: Vector2) -> float:
 	var result: float = maxf(0.0, amount)
 	var target_profile: Dictionary = _property(target, "profile", {})
-	if Numerical.is_v2(target_profile): result = Numerical.integer(result)
 	for support: Dictionary in supports.duplicate():
 		if not _support_valid(support) or _support_target(support) != target:
 			continue
@@ -252,10 +251,10 @@ func filter_incoming_damage(target: Node2D, amount: float, kind: StringName, fro
 				if absf((crossing - plate.position).dot(Vector2(support.direction).orthogonal())) > 60.0:
 					continue
 				var plate_health: Variant = _property(plate, "health", null)
-				var blocked: float = minf(result, float(_property(plate_health, "current", 0.0)))
+				var blocked: float = minf(Numerical.integer(result) if Numerical.is_v2(target_profile) else result, float(_property(plate_health, "current", 0.0)))
 				if blocked > 0.0:
 					plate.call("take_damage", blocked, kind, from_direction)
-					result -= blocked
+					result = maxf(0.0, result - blocked)
 				continue
 			if mode == "screen":
 				if kind not in [&"primary", &"child"]:
@@ -265,8 +264,8 @@ func filter_incoming_damage(target: Node2D, amount: float, kind: StringName, fro
 				if int(support.charges) <= 0:
 					_remove_support(support)
 			else:
-				var absorbed: float = minf(result, float(support.get("amount", 0.0)))
-				result -= absorbed
+				var absorbed: float = minf(Numerical.integer(result) if Numerical.is_v2(target_profile) else result, float(support.get("amount", 0.0)))
+				result = maxf(0.0, result - absorbed)
 				support.amount = float(support.get("amount", 0.0)) - absorbed
 				if float(support.amount) <= EPSILON:
 					_remove_support(support)
