@@ -9,8 +9,11 @@ const Advice = preload("res://scripts/ui/equipment_advice.gd")
 const SetShop = preload("res://scripts/ui/equipment_set_shop.gd")
 const Recycle = preload("res://scripts/ui/equipment_recycle_panel.gd")
 const HeroDossier = preload("res://scripts/ui/hero_dossier.gd")
+const SkillInspect = preload("res://scripts/ui/skill_inspection.gd")
 const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
 const StatSheet = preload("res://scripts/ui/stat_sheet.gd")
+const InstanceForging = preload("res://scripts/ui/instance_forging_panel.gd")
+const InstanceCreation = preload("res://scripts/ui/instance_acquisition_panel.gd")
 const Catalog = preload("res://scripts/ui/equipment_catalog.gd")
 var app: Node
 var mode := "heroes"
@@ -34,6 +37,22 @@ var set_scroll := 0
 var inventory_recycle := false
 var sale_selection: Dictionary = {}
 var recycle_scroll := 0
+var creation_rarity := "white"
+var creation_power_type := ""
+var creation_level := 0
+var creation_transaction_id := ""
+var creation_message := ""
+var creation_omitted: Dictionary = {}
+var forge_kind := "enhance"
+var forge_rank := 1
+var forge_affix_index := 0
+var forge_affix_type := ""
+var forge_source_instance_id := ""
+var forge_transaction_id := ""
+var forge_frozen_kind := ""
+var forge_frozen_request: Dictionary = {}
+var forge_message := ""
+var forge_result_details := ""
 
 func _ready() -> void:
 	preview_hero = str(Game.profile.get("selected_hero","CH01"))
@@ -50,32 +69,34 @@ func _render() -> void:
 	heading.name = "WorkshopHeading"
 	if mode == "shop": heading.text = _t("套装商城 · 14 套", "SET SHOP · 14 SETS") if shop_sets else _t("单件装备目录", "EQUIPMENT SHOP")
 	if mode == "inventory": heading.text = _t("装备回收" if inventory_recycle else "装备背包", "EQUIPMENT RECYCLING" if inventory_recycle else "EQUIPMENT INVENTORY")
-	if mode == "upgrade": heading.text = _t("装备强化", "EQUIPMENT REFINEMENT")
+	if mode == "craft": heading.text = _t("定向打造", "CRAFT EQUIPMENT")
+	if mode == "upgrade": heading.text = _t("装备锻造 · 强化与继承", "EQUIPMENT FORGE · IMPROVE & INHERIT") if int(Game.profile.get("ruleset_version",1)) == 2 else _t("装备强化", "EQUIPMENT REFINEMENT")
 	MineStyle.literal(header,_t("金币","GOLD"),Vector2(802,13),Vector2(160,19),12,MineStyle.AMBER)
-	MineStyle.literal(header,str(Game.profile.get("permanent_gold",0)),Vector2(802,34),Vector2(160,32),23,MineStyle.INK)
+	MineStyle.literal(header,str(int(Game.profile.get("permanent_gold",0))),Vector2(802,34),Vector2(160,32),23,MineStyle.INK)
 	MineStyle.button(header,"RETURN_CAMP",Vector2(982,27),Vector2(214,45),app.show_camp).name = "ReturnCamp"
 	var tabs := [["heroes",_t("英雄档案","Heroes")],["skills",_t("技能成长","Skills")],["inventory",_t("装备背包","Inventory")],["shop",_t("装备商城","Shop")],["upgrade",_t("精工强化","Refine")]]
+	if int(Game.profile.get("ruleset_version",1)) == 2: tabs.insert(4,["craft",_t("定向打造","Craft")])
 	for i in range(tabs.size()):
 		var data: Array = tabs[i]
-		var tab := MineStyle.button(header,"",Vector2(18+i*144,96),Vector2(134,40),func(): _switch_page(data[0]))
+		var tab := MineStyle.button(header,"",Vector2(18+i*(122 if tabs.size() == 6 else 144),96),Vector2(114 if tabs.size() == 6 else 134,40),func(): _switch_page(data[0]))
 		tab.name = "Tab_"+data[0]
 		tab.text = data[1]
 		tab.add_theme_font_size_override("font_size",16)
 		if mode == data[0]: MineStyle.selected(tab)
-	if mode in ["inventory","shop","upgrade"]:
+	if mode in ["inventory","shop","craft","upgrade"]:
 		var attributes := MineStyle.button(header,"",Vector2(774,96),Vector2(184,40),_show_character_stats)
 		attributes.name = "OpenCharacterStats"
 		attributes.text = _t("角色属性", "Character stats")
 		attributes.add_theme_font_size_override("font_size",16)
 	if mode == "shop":
-		var catalog_toggle := MineStyle.button(header,"",Vector2(976,96),Vector2(220,40),func(): shop_sets = not shop_sets; _render())
+		var catalog_toggle := MineStyle.button(header,"",Vector2(976,96),Vector2(220,40),func(): shop_sets = not shop_sets; creation_transaction_id = ""; creation_message = ""; _render())
 		catalog_toggle.name = "ToggleSetShop"
 		catalog_toggle.text = _t("查看单件装备", "Individual items") if shop_sets else _t("查看装备套装", "Equipment sets")
 		catalog_toggle.add_theme_font_size_override("font_size",15)
 	elif mode == "inventory":
 		var recycle_toggle := MineStyle.button(header,"",Vector2(976,96),Vector2(220,40),func(): inventory_recycle = not inventory_recycle; _render())
 		recycle_toggle.name = "ToggleRecycle"
-		recycle_toggle.text = _t("返回装备背包", "Back to inventory") if inventory_recycle else _t("多选回收装备", "Recycle equipment")
+		recycle_toggle.text = _t("返回装备背包", "Back to inventory") if inventory_recycle else (_t("出售 / 拆解", "Sell / dismantle") if int(Game.profile.get("ruleset_version",1)) == 2 else _t("多选回收装备", "Recycle equipment"))
 		recycle_toggle.add_theme_font_size_override("font_size",15)
 		MineStyle.button_skin(recycle_toggle,"secondary" if inventory_recycle else "danger")
 	body = Control.new()
@@ -86,6 +107,10 @@ func _render() -> void:
 		_render_heroes()
 	elif mode == "skills":
 		_render_skills()
+	elif int(Game.profile.get("ruleset_version",1)) == 2 and mode in ["shop","craft"]:
+		InstanceCreation.render(self)
+	elif int(Game.profile.get("ruleset_version",1)) == 2 and mode == "upgrade":
+		InstanceForging.render(self)
 	elif mode == "shop" and shop_sets:
 		SetShop.render(self)
 	elif mode == "inventory" and inventory_recycle:
@@ -102,6 +127,8 @@ func _render() -> void:
 
 func _switch_page(next_mode: String) -> void:
 	mode = next_mode
+	creation_transaction_id = ""
+	creation_message = ""
 	app.route = "workshop_"+mode
 	# Keep the inspected item across inventory, shop and refinement whenever
 	# it belongs to that page. _render_equipment handles an unavailable item.
@@ -129,7 +156,7 @@ func _show_character_stats() -> void:
 	popup.add_child(scroll)
 	var sheet := StatSheet.new()
 	scroll.add_child(sheet)
-	sheet.configure(Inspect.breakdown(Game.profile.selected_hero,Game.hero_level(),Game.profile.loadout,Game.profile.equipment),850)
+	sheet.configure(Inspect.breakdown(Game.profile.selected_hero,Game.hero_level(),Game.profile.loadout,Game.profile.equipment,null,int(Game.profile.get("ruleset_version",1)),Game.hero_talents()),850)
 	close.grab_focus()
 
 func _select_hero() -> void:
@@ -154,7 +181,7 @@ func _render_skills() -> void:
 	MineStyle.label(dossier,"HERO_LEVEL",Vector2(20,259),Vector2(250,29),18,MineStyle.AMBER,{"level":level})
 	var xp: int = int(Game.profile.get("hero_xp",{}).get(id,0))
 	MineStyle.label(dossier,"HERO_XP_MAX" if level >= 20 else "HERO_XP",Vector2(20,294),Vector2(250,31),17,MineStyle.MUTED,{"xp":xp,"next":ContentRegistry.next_level_xp(level)})
-	MineStyle.label(dossier,"DOSSIER_STATS",Vector2(20,339),Vector2(252,61),17,MineStyle.INK,{"hp":int(stats.get("max_hp",100)),"damage":"%.1f" % float(stats.get("attack",20)),"armor":int(stats.get("armor",0))})
+	MineStyle.label(dossier,"DOSSIER_STATS",Vector2(20,339),Vector2(252,61),17,MineStyle.INK,{"hp":int(stats.get("max_hp",100)),"damage":Inspect.value("attack",float(stats.get("attack",20)),false,false,int(stats.get("ruleset_version",1))),"armor":int(stats.get("armor",0))})
 	MineStyle.button(dossier,"PASSIVE_DASH",Vector2(18,416),Vector2(254,48),func(): _show_core_actions(hero))
 	MineStyle.label(dossier,"CORE_ACTIONS_UNLOCK",Vector2(20,471),Vector2(252,29),16,MineStyle.MUTED)
 	for i in range(SKILLS.size()):
@@ -171,6 +198,7 @@ func _render_skills() -> void:
 			var branch_level := "18" if SKILLS[i] == "q" else "20"
 			var branch: Dictionary = hero.get("branches",{}).get(branch_level,{}).get(choice,{})
 			description_text = Words.text("BRANCH_ACTIVE",{"choice":choice})+" · "+MineStyle.content_text(branch,"name")+"\n"+MineStyle.content_text(branch,"description")+"\n\n"+Words.text("BASE_SKILL")+"\n"+description_text
+		description_text = SkillInspect.describe(id,level,stats,SKILLS[i],skill,null,description_text)
 		var unlocked := level >= int(skill.get("unlock",[1,2,3,4][i]))
 		var panel := MineStyle.panel(body,Vector2(310,(i/2)*182),Vector2(442,164))
 		panel.position.x += (i%2)*464
@@ -255,7 +283,7 @@ func _show_core_actions(hero: Dictionary) -> void:
 	var flow := VBoxContainer.new()
 	flow.add_theme_constant_override("separation",12)
 	scroll.add_child(flow)
-	for entry: Array in [[MineStyle.content_text(passive,"name"),23,MineStyle.CYAN],[MineStyle.content_text(passive,"description"),18,MineStyle.INK],[Words.text("DASH_LABEL")+" / "+MineStyle.content_text(dash,"name"),22,MineStyle.AMBER],[Words.text("DASH_DETAILS",{"distance":dash.get("distance",0),"cooldown":dash.get("cooldown",0)}),18,MineStyle.MUTED]]:
+	for entry: Array in [[MineStyle.content_text(passive,"name"),23,MineStyle.CYAN],[SkillInspect.passive_text(hero,Game.selected_stats()),18,MineStyle.INK],[Words.text("DASH_LABEL")+" / "+MineStyle.content_text(dash,"name"),22,MineStyle.AMBER],[Words.text("DASH_DETAILS",{"distance":dash.get("distance",0),"cooldown":dash.get("cooldown",0)}),18,MineStyle.MUTED]]:
 		var label := MineStyle.literal(flow,entry[0],Vector2.ZERO,Vector2(661,0),entry[1],entry[2])
 		label.custom_minimum_size.x = 661
 	MineStyle.button(panel,"BACK",Vector2(488,414),Vector2(226,50),app._pop_modal).grab_focus()
@@ -265,9 +293,9 @@ func _render_equipment() -> void:
 
 func _filtered_equipment() -> Array:
 	var output: Array = []
-	for value in ContentRegistry.equipment_ids():
+	for value in (ContentRegistry.equipment_ids(int(Game.profile.get("ruleset_version",1))) if mode == "shop" else Game.profile.get("equipment",{}).keys()):
 		var id := str(value)
-		var data: Dictionary = ContentRegistry.equipment(id)
+		var data: Dictionary = Game.equipment_definition(id)
 		if mode != "shop" and not Game.profile.get("equipment",{}).has(id):
 			continue
 		var equipped := str(Game.profile.get("loadout",{}).get(data.get("slot",""),"")) == id
@@ -282,8 +310,8 @@ func _filtered_equipment() -> Array:
 			if not searchable.to_lower().contains(search_query.strip_edges().to_lower()): continue
 		output.append(id)
 	output.sort_custom(func(a: String, b: String) -> bool:
-		var first: Dictionary = ContentRegistry.equipment(a)
-		var second: Dictionary = ContentRegistry.equipment(b)
+		var first: Dictionary = Game.equipment_definition(a)
+		var second: Dictionary = Game.equipment_definition(b)
 		if sort_order == 1: return MineStyle.content_text(first,"name").naturalnocasecmp_to(MineStyle.content_text(second,"name")) < 0
 		if sort_order == 2 and int(first.price) != int(second.price): return int(first.price) < int(second.price)
 		if sort_order == 3 and _item_level(a) != _item_level(b): return _item_level(a) > _item_level(b)
@@ -319,7 +347,7 @@ func _availability_reason(item: Dictionary) -> String:
 
 func _suggested_equipment() -> String:
 	var hero := str(Game.profile.get("selected_hero","CH01"))
-	var selected_slot := str(ContentRegistry.equipment(selected_item).get("slot",slot_filter))
+	var selected_slot := str(Game.equipment_definition(selected_item).get("slot",slot_filter))
 	if selected_slot == "all": selected_slot = "weapon"
 	var before: Dictionary = Game.selected_stats()
 	# An inspect-only suggestion uses a transparent benefit predicate. It does
@@ -327,7 +355,7 @@ func _suggested_equipment() -> String:
 	var candidates := _filtered_equipment()
 	for owned_first: bool in [true,false]:
 		for id: String in candidates:
-			var item: Dictionary = ContentRegistry.equipment(id)
+			var item: Dictionary = Game.equipment_definition(id)
 			var owned: bool = Game.profile.get("equipment",{}).has(id)
 			if owned != owned_first or item.get("slot","") != selected_slot or not _unlocked(item): continue
 			if str(Game.profile.get("loadout",{}).get(selected_slot,"")) == id or not Advice.is_relevant(item,hero): continue
@@ -339,8 +367,8 @@ func _suggested_equipment() -> String:
 func _has_relevant_gain(hero: String, before: Dictionary, after: Dictionary) -> bool:
 	var keys: Array[String] = ["max_hp","armor","magic_resist","move_speed","crit_chance","crit_multiplier","cooldown_reduction","damage_bonus","damage_reduction","true_damage_bonus"]
 	if hero == "CH03":
-		var current_power := float(before.get("attack",0)) + maxf(0.0,float(before.get("ability_power",0))) * 0.7
-		var next_power := float(after.get("attack",0)) + maxf(0.0,float(after.get("ability_power",0))) * 0.7
+		var current_power: float = HeroAbilities.preview_powers(hero, before).skill_H
+		var next_power: float = HeroAbilities.preview_powers(hero, after).skill_H
 		if next_power > current_power + 0.00001: return true
 		keys.append_array(["resource_max","magic_penetration"])
 	else: keys.append_array(["attack","armor_penetration"])
@@ -363,7 +391,7 @@ func _effect_available(id: String) -> bool:
 	if not ResourceLoader.exists(path):
 		return false
 	var implementation: Script = load(path)
-	return implementation.call("implemented_ids").has(id)
+	return implementation.call("implemented_ids").has(id) or (int(Game.profile.get("ruleset_version",1)) == 2 and not ContentRegistry.equipment(id,2).is_empty() and ContentRegistry.equipment(id,2).get("affix_id","") == "")
 
 func _commit_item() -> void:
 	if busy or selected_item.is_empty() or (action_button != null and action_button.disabled):
@@ -372,7 +400,11 @@ func _commit_item() -> void:
 	action_button.disabled = true
 	var id := selected_item
 	var success := false
-	if mode == "shop" and not Game.profile.get("equipment",{}).has(id):
+	if int(Game.profile.get("ruleset_version",1)) == 2 and Game.profile.get("equipment",{}).get(id,{}).get("location","") == "pending":
+		if creation_transaction_id.is_empty(): creation_transaction_id = "claim:"+Crypto.new().generate_random_bytes(16).hex_encode()
+		success = bool(Game.call("claim_pending_equipment",id,creation_transaction_id))
+		if success: creation_transaction_id = ""
+	elif mode == "shop" and not Game.profile.get("equipment",{}).has(id):
 		success = Game.buy_equipment(id)
 	elif mode == "upgrade":
 		success = Game.upgrade_equipment(id)

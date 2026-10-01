@@ -12,6 +12,7 @@ const NORMAL_MASTERY := 180
 const CURRENT_POLICY_VERSION := 1
 
 static func build(room_id: String, quality: String, hero_id: String, seed: int, completion_id: String, owned: Array = [], pending: Array = [], bosses: Array = [], difficulty: int = -1, policy_version: int = 0) -> Dictionary:
+	if policy_version == 2: return v2_completion(room_id, difficulty, quality) if not completion_id.is_empty() else {}
 	if Registry.hero(hero_id).is_empty() or completion_id.is_empty():
 		return {}
 	if difficulty < -1 or difficulty > 4 or policy_version not in [0, CURRENT_POLICY_VERSION]: return {}
@@ -31,6 +32,7 @@ static func build(room_id: String, quality: String, hero_id: String, seed: int, 
 	return {}
 
 static func optional(room_id: String, objective_id: String, hero_id: String, seed: int, event_id: String, owned: Array = [], pending: Array = [], bosses: Array = [], difficulty: int = -1, policy_version: int = 0) -> Dictionary:
+	if policy_version == 2: return v2_optional(room_id, objective_id, difficulty)
 	var definition: Dictionary = optional_definition(room_id, objective_id)
 	if definition.is_empty() or Registry.hero(hero_id).is_empty() or event_id.is_empty():
 		return {}
@@ -49,6 +51,11 @@ static func optional_definition(room_id: String, objective_id: String) -> Dictio
 	return {}
 
 static func qualities(room_id: String, policy_version: int = 0) -> Array:
+	if policy_version == 2:
+		if Catalog.bosses().has(room_id): return ["full"]
+		var outcomes: Array = []
+		for option: Dictionary in _policy_options(room_id, CURRENT_POLICY_VERSION): outcomes.append(option.quality)
+		return outcomes
 	if policy_version not in [0, CURRENT_POLICY_VERSION]: return []
 	if Catalog.bosses().has(room_id): return ["full"]
 	var result: Array = []
@@ -56,6 +63,11 @@ static func qualities(room_id: String, policy_version: int = 0) -> Array:
 	return result
 
 static func preview(room_id: String, hero_id: String, english: bool = false, difficulty: int = -1, policy_version: int = 0) -> String:
+	if policy_version == 2:
+		var reward := v2_completion(room_id, difficulty)
+		if reward.is_empty(): return ""
+		var count: int = [2,2,3,3,4][difficulty] if reward.source == "boss" else 1
+		return "%d gold · %d independent gear · extract to retain gear and materials" % [reward.gold, count] if english else "%d金币 · %d件独立装备 · 撤离带回装备与材料" % [reward.gold, count]
 	if Registry.hero(hero_id).is_empty() or policy_version not in [0, CURRENT_POLICY_VERSION]: return ""
 	if policy_version == CURRENT_POLICY_VERSION:
 		return _current_preview(room_id, hero_id, english, difficulty)
@@ -313,3 +325,29 @@ static func _options(room_id: String) -> Array:
 		"L23": return [_option("full", 24, "offense", 2, "三灯同时就位", "Dock all three lamps"), _option("reduced", 12, "", 0, "两灯提前完成", "Finish with two lamps")]
 		"L24": return [_option("full", 26, "status", 2, "完成声纹顺序", "Complete the echo sequence")]
 	return []
+
+## V2 gold is scaled exactly once here. Generation and material receipts are
+## owned by the atomic expedition transaction, never the visual reward caller.
+static func v2_completion(room_id: String, difficulty: int, quality: String = "full") -> Dictionary:
+	if difficulty < 0 or difficulty > 4: return {}
+	var boss := Catalog.bosses().has(room_id)
+	var base := 80 if boss and quality == "full" else -1
+	if not boss:
+		for option: Dictionary in _policy_options(room_id, CURRENT_POLICY_VERSION):
+			if option.quality == quality: base = int(option.gold)
+	if base < 0: return {}
+	var value := {"gold":ceili(base * 2.0 * (1.0 + .25 * difficulty)),"xp":ceili((80 if boss else 30) * (1.0 + .25 * difficulty)),"mastery":0 if boss else 180,"equipment":[],"quality":quality,"source":"boss" if boss else "room","race_id":biome_for_reward(room_id)}
+	if boss: value.boss_id = room_id
+	return value
+
+static func v2_optional(room_id: String, objective_id: String, difficulty: int) -> Dictionary:
+	var definition := optional_definition(room_id, objective_id)
+	if definition.is_empty() or difficulty < 0 or difficulty > 4: return {}
+	return {"gold":ceili(int(definition.gold) * 2.0 * (1.0 + .25 * difficulty)),"xp":0,"mastery":0,"equipment":[],"source":"chest","race_id":biome_for_reward(room_id)}
+
+## Fixed chapter/zone challenge, independent of hero level and difficulty.
+static func challenge_level(room_id: String, zone_index: int = 2) -> int:
+	var race := biome_for_reward(room_id)
+	if race.is_empty(): return 0
+	var chapter := int(race.trim_prefix("B"))
+	return chapter * 5 if Catalog.bosses().has(room_id) else (chapter - 1) * 5 + [1,3,5][clampi(zone_index,0,2)]

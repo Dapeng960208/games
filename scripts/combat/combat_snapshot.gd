@@ -10,6 +10,8 @@ extends RefCounted
 ## same-room checkpoints and fresh_entry never repeat that event.
 
 const VERSION := 1
+const Numbers = preload("res://config/numerical_rules.gd")
+const V2_FIELDS := ["ruleset_version", "scale_version", "resource_regen_remainder", "resource_decay_remainder"]
 const LIMIT := 1000000000.0
 const Status = preload("res://scripts/combat/combat_status.gd")
 const Rules = preload("res://scripts/combat/equipment_effects.gd")
@@ -70,6 +72,9 @@ static func capture(room: Node) -> Dictionary:
 	if source_known:
 		equipment.adapter["self_status_sources"] = source_writes
 	var result: Dictionary = {"snapshot_version":VERSION, "mode":"safe_boundary", "hero_id":game.run.hero_id, "hp":game.run.hp, "resource":game.run.resource, "player":player, "status":status_data, "equipment":equipment}
+	if game.run.ruleset_version() == Numbers.V2:
+		result.merge({"ruleset_version":2, "scale_version":10, "resource_regen_remainder":game.run.resource_regen_remainder, "resource_decay_remainder":game.run.resource_decay_remainder})
+		_integer_values(result)
 	# Runtime dictionary dot writes can create StringName keys. Normalize that
 	# engine-only key representation in the detached copy, not in live reducers;
 	# all value types and the strict JSON/schema validator remain unchanged.
@@ -82,14 +87,14 @@ static func for_loadout(snapshot: Dictionary, old_loadout: Dictionary, new_loado
 	var prior_stats: Dictionary = old_stats if not old_stats.is_empty() else {"max_hp":LIMIT, "resource_max":LIMIT}
 	if not validate(snapshot, hero_id, prior_stats) or not _number(new_stats.get("max_hp")) or float(new_stats.max_hp) <= 0.0 or not _number(new_stats.get("resource_max")):
 		return {}
-	if not loadout_source_error(snapshot, old_loadout, new_loadout).is_empty():
+	if not loadout_source_error(snapshot, old_loadout, new_loadout, old_stats, new_stats).is_empty():
 		return {}
 	var result: Dictionary = snapshot.duplicate(true)
 	result.hp = minf(float(result.hp), float(new_stats.max_hp))
 	result.resource = minf(float(result.resource), float(new_stats.resource_max))
-	result.equipment = Rules.for_loadout(result.equipment, old_loadout, new_loadout)
-	var previous: Dictionary = Rules.loadout_binding(old_loadout)
-	var next: Dictionary = Rules.loadout_binding(new_loadout)
+	result.equipment = Rules.for_loadout(result.equipment, old_loadout, new_loadout, old_stats, new_stats)
+	var previous: Dictionary = Rules.loadout_binding(old_loadout, old_stats)
+	var next: Dictionary = Rules.loadout_binding(new_loadout, new_stats)
 	var guards: Dictionary = result.status.guards
 	for source: String in guards.keys():
 		var equipment_source: bool = source.begins_with("equipment:") or source.begins_with("set_")
@@ -125,12 +130,13 @@ static func for_loadout(snapshot: Dictionary, old_loadout: Dictionary, new_loado
 	var modifiers: Dictionary = reducer.call("passive_modifiers", context)
 	for key: String in MODIFIERS:
 		result.equipment.adapter.modifiers[key] = float(modifiers[key])
+	if Numbers.is_v2(new_stats): _integer_values(result)
 	return result if validate(result, hero_id, new_stats) else {}
 
 ## Legacy v1 saves did not record who granted these two positive statuses.
 ## Reject only an ambiguous removal instead of inventing an owner or retaining
 ## an unequipped benefit. Once it expires a new capture becomes unambiguous.
-static func loadout_source_error(snapshot: Dictionary, old_loadout: Dictionary, new_loadout: Dictionary) -> String:
+static func loadout_source_error(snapshot: Dictionary, old_loadout: Dictionary, new_loadout: Dictionary, old_stats: Dictionary = {}, new_stats: Dictionary = {}) -> String:
 	var equipment: Variant = snapshot.get("equipment", {})
 	var status_data: Variant = snapshot.get("status", {})
 	if not equipment is Dictionary or not status_data is Dictionary:
@@ -141,8 +147,8 @@ static func loadout_source_error(snapshot: Dictionary, old_loadout: Dictionary, 
 		return ""
 	if adapter.has("self_status_sources"):
 		return ""
-	var previous: Dictionary = Rules.loadout_binding(old_loadout)
-	var next: Dictionary = Rules.loadout_binding(new_loadout)
+	var previous: Dictionary = Rules.loadout_binding(old_loadout, old_stats)
+	var next: Dictionary = Rules.loadout_binding(new_loadout, new_stats)
 	for id: String in ["damage_reduction", "invulnerable"]:
 		var source: String = "EQ20" if id == "damage_reduction" else "EQ21"
 		var state: Variant = states.get(id, {})
@@ -160,13 +166,16 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 		return true
 	# Nothing above this point mutates state. Everything below uses validated,
 	# detached copies, so rejection cannot leave a partially restored actor.
+	if game.run.ruleset_version() == Numbers.V2:
+		snapshot = snapshot.duplicate(true)
+		_integer_values(snapshot)
 	var player: Dictionary = snapshot.player
 	var status_data: Dictionary = snapshot.status
 	var equipment: Dictionary = snapshot.equipment
 	var status: RefCounted = actor.get("status")
 	var loadout: RefCounted = actor.get("loadout")
 	var effects: RefCounted = loadout.get("effects")
-	var binding: Dictionary = Rules.loadout_binding(game.run.loadout_snapshot)
+	var binding: Dictionary = Rules.loadout_binding(game.run.loadout_snapshot, game.run.stats)
 	var rebound: bool = effects.get("equipped") != binding.equipped or effects.get("set_counts") != binding.set_counts or effects.get("stats") != game.run.stats
 	if rebound:
 		loadout.call("rebind", game.run.loadout_snapshot, game.run.stats)
@@ -226,6 +235,8 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	game.run.hp = minf(float(snapshot.hp), game.run.max_hp)
 	game.run.resource = minf(float(snapshot.resource), float(game.run.stats.resource_max))
 	game.run.shield = float(status.call("shield"))
+	game.run.resource_regen_remainder = float(snapshot.get("resource_regen_remainder", 0.0))
+	game.run.resource_decay_remainder = float(snapshot.get("resource_decay_remainder", 0.0))
 	if rebound:
 		loadout.call("refresh_modifiers")
 	actor.queue_redraw()
@@ -265,15 +276,22 @@ static func validate(value: Variant, hero_id: String, stats: Dictionary, fresh_a
 		return false
 	if value.get("snapshot_version") != VERSION or value.get("hero_id") != hero_id or hero_id not in ["CH01", "CH02", "CH03"]:
 		return false
+	var v2 := Numbers.is_v2(stats)
+	var version_fields: Array = V2_FIELDS if v2 else []
+	if v2:
+		if value.get("ruleset_version") != 2 or value.get("scale_version") != 10: return false
+		for key: String in ["resource_regen_remainder", "resource_decay_remainder"]:
+			if not _number(value.get(key), 1.0) or float(value[key]) >= 1.0: return false
+		if not _number(value.get("hp"), LIMIT, true) or not _number(value.get("resource"), LIMIT, true): return false
 	# JSON's decimal roundtrip can place an exactly-full fractional bar a few
 	# ulps above its recomputed cap. Accept that precision error, never extra HP.
 	if not _number(value.get("hp"), float(stats.get("max_hp", 0.0)) + 0.00001) or float(value.hp) <= 0.0 or not _number(value.get("resource"), float(stats.get("resource_max", 0.0)) + 0.00001):
 		return false
 	if value.get("mode") == "fresh_entry":
-		return fresh_allowed and _keys(value, ["snapshot_version", "mode", "hero_id", "hp", "resource"]) and is_equal_approx(float(value.hp), float(stats.get("max_hp", 0.0))) and is_equal_approx(float(value.resource), float(stats.get("starting_resource", 0.0)))
-	if value.get("mode") != "safe_boundary" or not _keys(value, ["snapshot_version", "mode", "hero_id", "hp", "resource", "player", "status", "equipment"]):
+		return fresh_allowed and _keys(value, ["snapshot_version", "mode", "hero_id", "hp", "resource"] + version_fields) and is_equal_approx(float(value.hp), float(stats.get("max_hp", 0.0))) and is_equal_approx(float(value.resource), float(stats.get("starting_resource", 0.0)))
+	if value.get("mode") != "safe_boundary" or not _keys(value, ["snapshot_version", "mode", "hero_id", "hp", "resource", "player", "status", "equipment"] + version_fields):
 		return false
-	return _player_valid(value.player) and _status_valid(value.status, float(stats.get("max_hp", 0.0))) and _equipment_valid(value.equipment)
+	return _player_valid(value.player) and _status_valid(value.status, float(stats.get("max_hp", 0.0)), v2) and _equipment_valid(value.equipment, v2)
 
 static func _player_valid(value: Variant) -> bool:
 	if not value is Dictionary or not _keys(value, PLAYER_TIMERS + ["cooldowns", "passive_count", "walk_distance", "aim_direction", "cast_serial"]):
@@ -286,7 +304,7 @@ static func _player_valid(value: Variant) -> bool:
 		if not _number(value[key], 300.0): return false
 	return _number(value.passive_count, 1000000.0, true) and _number(value.walk_distance, 1000000.0) and _number(value.cast_serial, LIMIT, true) and _vector_valid(value.aim_direction, 1.0)
 
-static func _status_valid(value: Variant, maximum_hp: float) -> bool:
+static func _status_valid(value: Variant, maximum_hp: float, v2: bool = false) -> bool:
 	if not value is Dictionary or not _keys(value, ["clock", "shock_cooldown", "states", "guards", "origins", "slow_remaining", "slow_multiplier"]): return false
 	if not _number(value.clock) or not _number(value.shock_cooldown, 300.0) or not _number(value.slow_remaining, 300.0) or not _number(value.slow_multiplier, 1.0): return false
 	if not value.states is Dictionary or not value.guards is Dictionary or not value.origins is Dictionary or value.guards.size() > 64: return false
@@ -294,18 +312,21 @@ static func _status_valid(value: Variant, maximum_hp: float) -> bool:
 		var state: Variant = value.states[id]
 		if id not in STATES or not state is Dictionary or not _keys(state, ["remaining", "tick", "power", "H", "applied_at"]): return false
 		if not _number(state.remaining, 300.0) or not _number(state.tick, 1.0) or not _number(state.power, 1000000.0) or not _number(state.H, 1000000.0) or not _number(state.applied_at, float(value.clock) + 0.00001): return false
+		if v2 and (not _number(state.H, 1000000.0, true) or (id not in ["damage_reduction", "brace_guard"] and not _number(state.power, 1000000.0, true))): return false
 	for source: String in value.guards:
 		var guard: Variant = value.guards[source]
 		if source.is_empty() or source.begins_with("room_prop:") or not guard is Dictionary or not _keys(guard, ["amount", "remaining"]): return false
 		var cap: float = maximum_hp * (0.35 if source.begins_with("set_") or source.begins_with("equipment:") else 0.5)
+		if v2: cap = Numbers.integer(cap)
+		if v2 and not _number(guard.amount, LIMIT, true): return false
 		if not _number(guard.amount, cap + 0.00001) or not _number(guard.remaining, 300.0): return false
 		if source.begins_with(Status.SUPPLY_READY_PREFIX):
-			if not Status.is_prepared_supply_guard(source) or not is_equal_approx(float(guard.remaining), Status.SUPPLY_GUARD_SECONDS) or float(guard.amount) > maximum_hp * 0.15 + 0.00001: return false
+			if not Status.is_prepared_supply_guard(source) or not is_equal_approx(float(guard.remaining), Status.SUPPLY_GUARD_SECONDS) or float(guard.amount) > float(Numbers.amount(maximum_hp * 0.15, 2 if v2 else 1)) + 0.00001: return false
 	for id: String in value.origins:
 		if not value.states.has(id) or not _vector_valid(value.origins[id], 1000000.0): return false
 	return true
 
-static func _equipment_valid(value: Variant) -> bool:
+static func _equipment_valid(value: Variant, v2: bool = false) -> bool:
 	if not value is Dictionary or not _keys(value, EFFECT_MAPS + EFFECT_HISTORIES + EFFECT_NUMBERS + ["room_id", "room_low_shield_used", "room_first_kill_used", "adapter"]): return false
 	for key: String in EFFECT_MAPS:
 		if not value[key] is Dictionary: return false
@@ -330,6 +351,7 @@ static func _equipment_valid(value: Variant) -> bool:
 		var previous: float = -1.0
 		for entry: Variant in value[key]:
 			if not entry is Dictionary or not _keys(entry, ["time", "amount"]) or not _number(entry.time, float(value.clock) + 0.00001) or not _number(entry.amount, 1000000.0) or float(entry.time) < previous: return false
+			if v2 and key != "refund_history" and not _number(entry.amount, 1000000.0, true): return false
 			previous = float(entry.time)
 	var adapter: Variant = value.adapter
 	if not adapter is Dictionary: return false
@@ -340,6 +362,7 @@ static func _equipment_valid(value: Variant) -> bool:
 		for id: String in adapter.self_status_sources:
 			var origin: Variant = adapter.self_status_sources[id]
 			if id not in ["damage_reduction", "invulnerable"] or not origin is Dictionary or not _keys(origin, ["source", "applied_at", "power", "H"]): return false
+			if v2 and not _number(origin.H, 1000000.0, true): return false
 			if origin.source != ("EQ20" if id == "damage_reduction" else "EQ21") or not _number(origin.applied_at) or not _number(origin.power, 1.0) or not _number(origin.H, 1000000.0): return false
 	if not _keys(adapter, adapter_keys): return false
 	if not _number(adapter.clock) or not _number(adapter.movement_time) or not _number(adapter.event_serial, LIMIT, true) or not adapter.modifiers is Dictionary or not _keys(adapter.modifiers, MODIFIERS): return false
@@ -406,3 +429,17 @@ static func _json_keys(value: Variant) -> Variant:
 			result.append(_json_keys(entry))
 		return result
 	return value
+
+## Convert integer-valued combat fields to integer storage, never scale or tick.
+static func _integer_values(value: Dictionary) -> void:
+	value.hp = Numbers.integer(float(value.hp))
+	value.resource = Numbers.integer(float(value.resource))
+	for state: Dictionary in value.get("status", {}).get("states", {}).values():
+		state.H = Numbers.integer(float(state.H))
+	for id: String in value.get("status", {}).get("states", {}):
+		if id not in ["damage_reduction", "brace_guard"]:
+			value.status.states[id].power = Numbers.integer(float(value.status.states[id].power))
+	for guard: Dictionary in value.get("status", {}).get("guards", {}).values(): guard.amount = Numbers.integer(float(guard.amount))
+	for key: String in ["heal_history", "resource_history"]:
+		for entry: Dictionary in value.get("equipment", {}).get(key, []): entry.amount = Numbers.integer(float(entry.amount))
+	for origin: Dictionary in value.get("equipment", {}).get("adapter", {}).get("self_status_sources", {}).values(): origin.H = Numbers.integer(float(origin.H))

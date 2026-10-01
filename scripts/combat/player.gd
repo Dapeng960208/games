@@ -9,6 +9,7 @@ const COMBO_QUEUE_LIMIT: int = 3
 const HELD_MOVE_INTERVAL: float = 0.16
 const HELD_MOVE_TARGET_DISTANCE: float = 48.0
 
+const Numbers = preload("res://config/numerical_rules.gd")
 const Abilities = preload("res://scripts/combat/hero_abilities.gd")
 const Visual = preload("res://scripts/combat/hero_visual.gd")
 const Status = preload("res://scripts/combat/combat_status.gd")
@@ -73,6 +74,7 @@ var break_stacks: int = 0
 var class_marks: Dictionary = {}
 
 func _ready() -> void:
+	_sync_status_ruleset()
 	abilities = Abilities.new()
 	abilities.configure(self)
 	loadout = Loadout.new()
@@ -82,6 +84,12 @@ func _ready() -> void:
 	hit_chain.configure(self)
 	var service: bool = room.get("expedition_context") != null and str(room.expedition_context.get("role","")) in ["entrance","supply"]
 	loadout.event("room_enter", {"room_id":room.layout_id,"combat_room":not service})
+
+func _ruleset_version() -> int:
+	return Game.run.ruleset_version() if Game.run != null else Numbers.LEGACY
+
+func _sync_status_ruleset() -> void:
+	status.ruleset_version = _ruleset_version()
 
 func hero_id() -> String:
 	return Game.run.hero_id if Game.run != null else "CH01"
@@ -105,12 +113,16 @@ func stat(key: String, fallback: float) -> float:
 		return value
 	if key == "damage_bonus":
 		var supply_bonus: float = float(Game.run.stats.get("temporary_buffs",{}).get("amplify",{}).get("damage_bonus",0.0))
-		return minf(0.60, value + supply_bonus + _room_prop_modifier(&"damage_bonus", 0.0))
+		var cap: float = float(Numbers.value("caps").damage_bonus) if _ruleset_version() == Numbers.V2 else 0.60
+		return minf(cap, value + supply_bonus + _room_prop_modifier(&"damage_bonus", 0.0))
 	if key == "resource_regen":
 		return value * _room_prop_modifier(&"resource_regen_multiplier", 1.0)
 	if key == "attack_interval":
 		var existing: float = float(Game.run.stats.get("attack_speed_bonus", 0.0))
-		return value * (1.0 + existing) / (1.0 + minf(0.6, existing + float(modifiers.get("attack_speed_bonus", 0.0))))
+		var cap: float = float(Numbers.value("caps").attack_speed) if _ruleset_version() == Numbers.V2 else 0.60
+		return value * (1.0 + existing) / (1.0 + minf(cap, existing + float(modifiers.get("attack_speed_bonus", 0.0))))
+	if _ruleset_version() == Numbers.V2 and key in ["burn_damage", "corrosion_damage_bonus"]:
+		return clampf(value, 0.0, float(Numbers.value("caps")[key]))
 	return value
 
 func _room_prop_modifier(method: StringName, fallback: float) -> float:
@@ -122,18 +134,30 @@ func _room_prop_modifier(method: StringName, fallback: float) -> float:
 	var value: float = float(props.call(method))
 	return value if is_finite(value) and value >= 0.0 else fallback
 
-func attack_power() -> float:
-	return stat("attack", 27.0 if hero_id() == "CH01" else 24.0 if hero_id() == "CH02" else 18.0)
+func attack_power() -> Variant:
+	# This is AD, not basic H: skill/relic sources must not inherit basic AP.
+	var fallback: float = 27.0 if hero_id() == "CH01" else 24.0 if hero_id() == "CH02" else 18.0
+	return Numbers.amount(stat("attack", float(Numbers.scale(fallback, _ruleset_version()))), _ruleset_version())
+
+func _power_snapshot() -> Dictionary:
+	return {"ruleset_version":_ruleset_version(), "attack":attack_power(), "ability_power":stat("ability_power", 0.0)}
+
+func basic_power() -> Variant:
+	return Abilities.preview_powers(hero_id(), _power_snapshot()).basic_H
+
+func relic_power() -> Variant:
+	return Numbers.amount(stat("ability_power", float(Numbers.scale(28.0, _ruleset_version()))), _ruleset_version()) if hero_id() == "CH03" else attack_power()
 
 func basic_attack_variant() -> int:
 	var feedback: Node = get_node_or_null("HeroFeedback")
 	return int(feedback.basic_events) % 3 if is_instance_valid(feedback) else 0
 
-func skill_power() -> float:
-	return attack_power() + (maxf(0.0, stat("ability_power", 0.0)) * 0.7 if hero_id() == "CH03" else 0.0)
+func skill_power() -> Variant:
+	return Abilities.preview_powers(hero_id(), _power_snapshot()).skill_H
 
-func heal(amount: float) -> float:
-	var restored: float = Game.heal_player(amount, status.healing_multiplier())
+func heal(amount: float) -> Variant:
+	_sync_status_ruleset()
+	var restored: Variant = Game.heal_player(amount, status.healing_multiplier())
 	if restored > 0.0 and is_instance_valid(room) and room.has_method("add_damage_text"):
 		room.add_damage_text(position + Vector2(0,-72), restored, &"heal", {"feedback_kind":"heal"})
 	return restored
@@ -143,6 +167,7 @@ func _physics_process(delta: float) -> void:
 		clear_buffered_skill()
 		clear_movement_target()
 		return
+	_sync_status_ruleset()
 	_tick_class_state(delta)
 	dash_cooldown = maxf(0.0, dash_cooldown - delta)
 	shot_cooldown = maxf(0.0, shot_cooldown - delta)
@@ -175,15 +200,7 @@ func _physics_process(delta: float) -> void:
 			_enemy_status_contexts.erase(identifier)
 	if was_chilled != status.has("chill") and loadout != null:
 		loadout.event("state_changed", {"enemy_status":"chill"})
-	var regen_step: float = maxf(0.0, delta - resource_delay)
-	var rage_decay_step: float = maxf(0.0, delta - combat_time)
-	resource_delay = maxf(0.0, resource_delay - delta)
-	combat_time = maxf(0.0, combat_time - delta)
-	if hero_id() == "CH01":
-		if combat_time <= 0.0:
-			Game.run.resource = maxf(0.0, Game.run.resource - 6.0 * rage_decay_step)
-	elif regen_step > 0.0:
-		Game.restore_resource(stat("resource_regen", 18.0 if hero_id() == "CH02" else 5.0) * regen_step)
+	_tick_resources(delta)
 	var motion := Vector2.ZERO
 	var pointer_enabled: bool = room.pointer_controls_enabled()
 	if not attack_input_held():
@@ -378,11 +395,11 @@ func _tick_attack(delta: float) -> void:
 			_attack_direction = position.direction_to(target.position)
 		else:
 			_attack_direction = aim_direction
-		var victims: Array = room.strike_area(position, 105.0, attack_power() * (1.5 if _attack_critical else 1.0), &"primary", "", 12.0, _attack_direction, 100.0, true, {}, true)
+		var victims: Array = room.strike_area(position, 105.0, basic_power() * (1.5 if _attack_critical else 1.0), &"primary", "", 12.0, _attack_direction, 100.0, true, {}, true)
 		room.add_arc_visual(position, _attack_direction, 105.0, 100.0, Color("e9b16e"), 0.16)
 		visual_event("attack_strike", 0.08, _attack_direction)
 		if not victims.is_empty():
-			on_primary_hit(victims[0])
+			if _ruleset_version() != Numbers.V2: on_primary_hit(victims[0])
 			room.resolve_melee_relics(victims[0], _attack_direction)
 
 func cast_skill(slot: String, target: Vector2) -> bool:
@@ -598,13 +615,58 @@ func _play_combat_audio(event: StringName, arguments: Array = []) -> void:
 	if is_instance_valid(audio) and audio.has_method(event):
 		audio.callv(event, arguments)
 
-func resource_cost(amount: float) -> float:
-	return loadout.resource_cost(amount, _pending_skill_slot) if loadout != null else amount
+func _tick_resources(delta: float) -> void:
+	if Game.run == null or not is_finite(delta) or delta <= 0.0:
+		return
+	var regen_step: float = maxf(0.0, delta - resource_delay)
+	var rage_decay_step: float = maxf(0.0, delta - combat_time)
+	resource_delay = maxf(0.0, resource_delay - delta)
+	combat_time = maxf(0.0, combat_time - delta)
+	if hero_id() == "CH01":
+		if combat_time <= 0.0:
+			var decay: float = float(Numbers.scale(6.0, _ruleset_version())) * rage_decay_step
+			if _ruleset_version() == Numbers.V2:
+				var accumulated: Dictionary = Numbers.accumulate(decay, Game.run.resource_decay_remainder)
+				decay = float(accumulated.whole)
+				Game.run.resource_decay_remainder = float(accumulated.remainder)
+			Game.run.resource = maxf(0.0, Game.run.resource - decay)
+			if Game.run.resource <= 0.0:
+				Game.run.resource_decay_remainder = 0.0
+	elif regen_step > 0.0:
+		var fallback: float = float(Numbers.scale(18.0 if hero_id() == "CH02" else 5.0, _ruleset_version()))
+		# Round the complete effective per-second rate, then integrate time.
+		# Per-frame rounding would make the same rate depend on rendering FPS.
+		var rate: float = stat("resource_regen", fallback)
+		if _ruleset_version() == Numbers.V2:
+			rate = float(Numbers.integer(rate * resource_gain_multiplier()))
+		var regenerated: float = rate * regen_step
+		if _ruleset_version() == Numbers.V2:
+			var accumulated: Dictionary = Numbers.accumulate(regenerated, Game.run.resource_regen_remainder)
+			regenerated = float(accumulated.whole)
+			Game.run.resource_regen_remainder = float(accumulated.remainder)
+		Game.restore_resource(regenerated)
+		# Time at a full bar is not banked for the next cast.
+		if Game.run.resource >= float(Game.run.stats.get("resource_max", 0.0)):
+			Game.run.resource_regen_remainder = 0.0
+
+func resource_gain_multiplier() -> float:
+	if _ruleset_version() != Numbers.V2:
+		return 1.0
+	var modifiers: Dictionary = loadout.modifiers() if loadout != null else {}
+	return 1.0 + clampf(stat("resource_gain_bonus", 0.0) + float(modifiers.get("resource_gain_bonus", 0.0)), 0.0, float(Numbers.value("caps").resource_gain_bonus))
+
+## The amount is already in this run's units. Supply/beacon percentage fills
+## intentionally call Game.restore_resource directly and bypass this bonus.
+func restore_class_resource(amount: float) -> Variant:
+	return Game.restore_resource(amount * resource_gain_multiplier())
+
+func resource_cost(amount: float) -> Variant:
+	return Game.resource_cost(loadout.resource_cost(amount, _pending_skill_slot) if loadout != null else amount)
 
 func skill_definition(slot: String) -> Dictionary:
 	var definition: Dictionary = abilities.spec(slot).duplicate(true)
 	if not definition.is_empty():
-		definition["cost"] = loadout.resource_cost(float(definition.cost), slot) if loadout != null else float(definition.cost)
+		definition["cost"] = Game.resource_cost(loadout.resource_cost(float(definition.cost), slot) if loadout != null else float(definition.cost))
 	return definition
 
 func cancel_actions() -> void:
@@ -680,6 +742,7 @@ func receive_enemy_status(effect: Dictionary) -> bool:
 	var power: float = float(effect.get("power", 0.0))
 	if not is_finite(power) or power < 0.0:
 		return false
+	_sync_status_ruleset()
 	var accepted: bool = status.apply(identifier,power,duration)
 	if accepted:
 		var supplied_origin: Variant = effect.get("origin", position)
@@ -712,6 +775,7 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	var is_dot: bool = bool(context.get("dot", false))
 	if Game.run == null or Game.run.hp <= 0.0 or not is_finite(amount) or amount <= 0.0:
 		return false
+	_sync_status_ruleset()
 	var damage_context: Dictionary = context.duplicate()
 	damage_context["key_states"] = _damage_key_states()
 	var status_modifiers: Dictionary = status.damage_modifiers()
@@ -725,21 +789,34 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	if status.has("corrosion"): damage_context["armor_multiplier"] = 0.85
 	var shock_damage: float = 0.0
 	var shock_source: Dictionary = _status_source_context("shock", status.states.get("shock", {}))
+	var numerical: bool = _ruleset_version() == Numbers.V2
 	if not is_dot:
-		invulnerable = Balance.HURT_INVULNERABILITY
-		knockback = (position - origin).normalized() * Balance.PLAYER_KNOCKBACK
+		if not numerical:
+			invulnerable = Balance.HURT_INVULNERABILITY
+			knockback = (position - origin).normalized() * Balance.PLAYER_KNOCKBACK
 		if status.has("corrosion"):
 			incoming *= 1.08
-		shock_damage = status.consume_shock()
-	hurt_flash = 0.08 if is_dot else 0.16
-	room.telemetry["player_hits"] += 1
-	room.add_ring(position, Color("e46b69"), 24.0 if is_dot else 38.0, 0.20 if is_dot else 0.28)
+		if not numerical: shock_damage = status.consume_shock()
+	if not numerical:
+		hurt_flash = 0.08 if is_dot else 0.16
+		room.telemetry["player_hits"] += 1
+		room.add_ring(position, Color("e46b69"), 24.0 if is_dot else 38.0, 0.20 if is_dot else 0.28)
 	var previous_shield: float = Game.run.shield
 	var previous_hp: float = Game.run.hp
 	var modifiers: Dictionary = loadout.modifiers()
 	var damaged_run: RunState = Game.run
 	damage_context["damage_reduction"] = minf(0.65, float(damage_context.damage_reduction) + maxf(0.0, float(modifiers.get("damage_reduction_bonus", 0.0))))
 	Game.damage_player(incoming, damage_context)
+	if numerical:
+		if damaged_run.hp >= previous_hp and damaged_run.shield >= previous_shield:
+			return false
+		if not is_dot:
+			shock_damage = status.consume_shock()
+			invulnerable = Balance.HURT_INVULNERABILITY
+			knockback = (position - origin).normalized() * Balance.PLAYER_KNOCKBACK
+		hurt_flash = 0.08 if is_dot else 0.16
+		room.telemetry["player_hits"] += 1
+		room.add_ring(position, Color("e46b69"), 24.0 if is_dot else 38.0, 0.20 if is_dot else 0.28)
 	_show_received_numbers(damaged_run, previous_hp, previous_shield, damage_context)
 	# Shock is a magic packet within this same received-hit event. A lethal
 	# first packet may close the run (or restore a demo's backup), so identity
@@ -770,7 +847,7 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	loadout.event("damaged", {"hp_damage":previous_hp - Game.run.hp,"shield_absorbed":previous_shield - Game.run.shield,"shield_broken":previous_shield > 0.0 and Game.run.shield <= 0.0,"enemy_damage":true,"dot":is_dot})
 	combat_time = 5.0
 	if hero_id() == "CH01" and Game.run.hp < previous_hp and rage_hurt_cooldown <= 0.0:
-		Game.restore_resource(5.0)
+		restore_class_resource(float(Numbers.scale(5.0, _ruleset_version())))
 		rage_hurt_cooldown = 1.0
 	return true
 
@@ -787,6 +864,7 @@ func _show_received_numbers(damaged_run: RunState, before_hp: float, before_shie
 		room.add_damage_text(position + Vector2(0,-90), shield_loss, &"received", number_context)
 
 func shield_summary() -> Dictionary:
+	_sync_status_ruleset()
 	if Game.run != null:
 		status.absorb(maxf(0.0, status.shield() - Game.run.shield))
 	return status.shield_summary()
@@ -794,11 +872,15 @@ func shield_summary() -> Dictionary:
 func grant_guard(amount: float, duration: float, source: String) -> void:
 	if Game.run == null:
 		return
+	_sync_status_ruleset()
 	status.absorb(maxf(0.0, status.shield() - Game.run.shield))
 	var previous_shield: float = Game.run.shield
-	var increased: bool = status.grant_guard(amount, duration, source, Game.run.max_hp, source.begins_with("set_") or source.begins_with("equipment:"))
+	var equipment: bool = source.begins_with("set_") or source.begins_with("equipment:")
+	var result: Dictionary = status.grant_guard_result(amount, duration, source, Game.run.max_hp, equipment)
 	Game.run.shield = status.shield()
-	if increased:
+	if _ruleset_version() == Numbers.V2 and bool(result.accepted_refresh) and source in ["hero_passive:three_rivets", "hero_f"] and loadout != null:
+		loadout.event("class_shield_gain", {"source":source,"accepted_refresh":true,"increased":bool(result.increased),"equipment":equipment})
+	if bool(result.increased):
 		room.add_ring(position, Color("abd6c3"), 34.0, 0.3)
 		if room.has_method("add_damage_text") and Game.run.shield > previous_shield:
 			room.add_damage_text(position + Vector2(0,-90), Game.run.shield - previous_shield, &"guard", {"feedback_kind":"guard"})
@@ -811,7 +893,7 @@ func on_primary_hit(target: Node2D) -> void:
 	combat_time = 5.0
 	if hero_id() == "CH01":
 		gain_break_stacks(1)
-		Game.restore_resource(8.0)
+		restore_class_resource(float(Numbers.scale(8.0, _ruleset_version())))
 
 func gain_break_stacks(amount: int = 1) -> void:
 	if hero_id() != "CH01":
@@ -859,16 +941,28 @@ func class_modify_hit_amount(target: Node2D, amount: float, source: StringName, 
 		return passives.before_hit(target, amount, source, context)
 	var key: int = target.get_instance_id()
 	var ready: bool = float(class_marks[key].remaining) > 0.0
-	class_marks.erase(key)
+	if _ruleset_version() != Numbers.V2: class_marks.erase(key)
 	if not ready:
 		return passives.before_hit(target, amount, source, context)
-	var feedback: Node = get_node_or_null("HeroFeedback")
-	if is_instance_valid(feedback):
-		feedback.class_event("mark_burst", target.position, aim_direction)
-	return passives.before_hit(target, amount + float(context.get("H", attack_power())) * 1.25, source, context)
+	if _ruleset_version() == Numbers.V2:
+		context["hunter_mark_target"] = key
+	else:
+		var feedback: Node = get_node_or_null("HeroFeedback")
+		if is_instance_valid(feedback):
+			feedback.class_event("mark_burst", target.position, aim_direction)
+	var mark_bonus: Variant = Numbers.amount(float(context.get("H", attack_power())) * 1.25, _ruleset_version())
+	return passives.before_hit(target, amount + float(mark_bonus), source, context)
 
 ## Called only after a direct hit actually removes health or shield.
 func class_record_hit(target: Node2D, source: StringName, context: Dictionary) -> void:
+	if _ruleset_version() == Numbers.V2:
+		if not bool(context.get("confirmed", false)) or float(context.get("hp_damage", 0.0)) + float(context.get("shield_damage", 0.0)) <= 0.0:
+			return
+		var mark_target: int = int(context.get("hunter_mark_target", 0))
+		if mark_target == target.get_instance_id() and class_marks.has(mark_target):
+			class_marks.erase(mark_target)
+			var feedback: Node = get_node_or_null("HeroFeedback")
+			if is_instance_valid(feedback): feedback.class_event("mark_burst", target.position, aim_direction)
 	if hero_id() == "CH02" and source == &"f" and bool(context.get("equipment_eligible", true)):
 		class_mark_target(target)
 	passives.record_hit(target, source, context)

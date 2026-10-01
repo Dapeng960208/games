@@ -12,6 +12,7 @@ const BodyLayer = preload("res://scripts/world/objective_depth_layer.gd")
 const PropArt = preload("res://scripts/world/world_prop_art.gd")
 const FirstFour = preload("res://scripts/world/first_four_objectives.gd")
 const PropIdentity = preload("res://scripts/world/prop_identity.gd")
+const Numerical = preload("res://config/numerical_rules.gd")
 var room: Node2D
 var layout: Dictionary = {}
 var room_id: String = ""
@@ -512,6 +513,10 @@ func enemies_near(at: Vector2, radius: float) -> Array:
 
 func add_target(id: String, at: Vector2, hp: float, asset: String, label: String, extra: Dictionary = {}) -> Dictionary:
 	var details: Dictionary = extra.duplicate()
+	var version := _numerical_version()
+	var maximum: Variant = Numerical.amount(hp if int(details.get("scale_version", 1)) == 10 else Numerical.scale(hp, version), version)
+	details["ruleset_version"] = version
+	details["scale_version"] = 10 if version == Numerical.V2 else 1
 	details["interactive"] = false
 	details["attackable"] = true
 	var item: Dictionary = add_element(id, at, label, "target", asset, details)
@@ -520,7 +525,7 @@ func add_target(id: String, at: Vector2, hp: float, asset: String, label: String
 	target.objective_host = self
 	target.objective_id = id
 	target.position = item.position
-	target.configure({"max_hp": hp, "armor": 0.0, "navigation_radius": 26.0}, {"static_actor": true, "reward_enabled": false, "actor_kind": "objective"})
+	target.configure({"ruleset_version":version, "scale_version":details.scale_version, "max_hp":maximum, "armor":0, "navigation_radius":26.0}, {"static_actor": true, "reward_enabled": false, "actor_kind": "objective"})
 	targets[id] = target
 	item["target_actor"] = target
 	room.enemies.add_child(target)
@@ -638,9 +643,18 @@ func on_player_sound(at: Vector2, context: Dictionary = {}) -> void:
 func add_hazard(at: Vector2, radius: float, damage: float, delay: float = 1.0, duration: float = .25, extra: Dictionary = {}) -> Dictionary:
 	var hazard: Dictionary = {"position": at, "radius": maxf(1, radius), "damage": maxf(0, damage), "delay": maxf(.8, delay), "remaining": maxf(.05, duration), "shape": "circle", "hit_ids": [], "enemies": false, "player": true, "age": 0.0, "width": 35.0, "color": Color("eaae62")}
 	hazard.merge(extra, true)
+	var version := _numerical_version()
+	hazard["damage"] = Numerical.amount(float(hazard.damage) if int(hazard.get("scale_version", 1)) == 10 else Numerical.scale(float(hazard.damage), version), version)
+	hazard["ruleset_version"] = version
+	hazard["scale_version"] = 10 if version == Numerical.V2 else 1
 	hazards.append(hazard)
 	event("hazard_warned", {"position": at, "delay": hazard.delay, "shape": hazard.shape})
 	return hazard
+
+func _numerical_version() -> int:
+	# Facilities follow the adventure frozen on their room, never player level
+	# or the production rollout switch. Authored HP/hazard flats are legacy units.
+	return int(room.call("enemy_ruleset")) if is_instance_valid(room) and room.has_method("enemy_ruleset") else Numerical.LEGACY
 
 func _tick_hazards(delta: float) -> void:
 	for index: int in range(hazards.size() - 1, -1, -1):

@@ -7,6 +7,12 @@ const SCHEMA_VERSION := 3
 const SETTLEMENT_RULES_VERSION := 3
 const Economy = preload("res://scripts/core/economy_history.gd")
 const ECONOMY_RULES_VERSION := Economy.CURRENT_VERSION
+const Progression = preload("res://scripts/core/hero_progression.gd")
+const Loot = preload("res://scripts/core/expedition_rewards.gd")
+const Transactions = preload("res://scripts/core/instance_transactions.gd")
+const Forging = preload("res://scripts/core/instance_forging.gd")
+const EnemyCalibration = preload("res://scripts/combat/enemy_calibration.gd")
+const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Expedition = preload("res://scripts/core/expedition_state.gd")
 const MAX_NUMBER := 1_000_000_000_000
 const RELIC_IDS := ["split", "ember", "arc"]
@@ -269,6 +275,9 @@ static func _valid_receipt(value: Variant, version: int = 1) -> bool:
 		return false
 	if not value.get("id") is String or value.id.is_empty() or value.id.length() > 80:
 		return false
+	var numerical: Variant = value.get("ruleset_version", 1)
+	if not _number(numerical, 2) or int(numerical) < 1 or not Expedition.versions_valid(value, int(numerical), int(numerical) == 2): return false
+	if value.has("enemy_calibration_snapshot") and (numerical != 2 or not EnemyCalibration.valid(value.enemy_calibration_snapshot)): return false
 	var valid := _number(value.get("gold")) and _relics(value.get("discoveries")) \
 		and _number(value.get("shots")) and _number(value.get("kills")) \
 		and _number(value.get("elapsed"), MAX_NUMBER, false)
@@ -279,7 +288,7 @@ static func _valid_receipt(value: Variant, version: int = 1) -> bool:
 		and _unique_ids(value.get("completed_reward_ids"), 512) \
 		and _allowed_ids(value.get("boss_defeats"), BOSS_IDS)
 
-static func _valid_result(value: Variant, version: int = 1) -> bool:
+static func _valid_result(value: Variant, version: int = 1, ruleset: int = 1) -> bool:
 	if not value is Dictionary:
 		return false
 	if value.is_empty():
@@ -308,9 +317,9 @@ static func _valid_result(value: Variant, version: int = 1) -> bool:
 	if version >= 3:
 		for key: String in ["equipment_retained", "equipment_lost"]:
 			if value.has(key):
-				if not _unique_ids(value[key], ContentRegistry.equipment_ids().size()): return false
+				if not _unique_ids(value[key], 512 if ruleset == 2 else ContentRegistry.equipment_ids().size()): return false
 				for id: String in value[key]:
-					if ContentRegistry.equipment(id).is_empty(): return false
+					if ruleset != 2 and ContentRegistry.equipment(id).is_empty(): return false
 		if value.outcome != "extracted" and not value.get("equipment_retained", []).is_empty(): return false
 		if value.outcome == "extracted" and not value.get("equipment_lost", []).is_empty(): return false
 	return _number(value.get("wallet_before")) \
@@ -329,7 +338,7 @@ static func _valid_document(value: Variant) -> bool:
 		return false
 	var profile: Dictionary = value.profile
 	if not _number(profile.get("permanent_gold")) or not _number(profile.get("total_runs")) \
-		or not _relics(profile.get("discoveries")) or not _valid_result(profile.get("last_result"), version):
+		or not _relics(profile.get("discoveries")) or not _valid_result(profile.get("last_result"), version, int(profile.get("ruleset_version", 1))):
 		return false
 	var settings: Variant = profile.get("settings")
 	if not settings is Dictionary or not settings.get("language") in ["zh_CN", "en"] \
@@ -358,8 +367,18 @@ static func _valid_document(value: Variant) -> bool:
 	if value.active_run == null:
 		return true
 	if not _valid_receipt(value.active_run, version) or value.active_run.id == profile.last_result.get("run_id", ""): return false
+	if int(value.active_run.get("ruleset_version", 1)) != int(profile.get("ruleset_version", 1)): return false
 	if value.active_run.has("expedition"):
 		return version == 3 and Expedition.valid(value.active_run, profile)
+	if value.active_run.has("pending_research_materials"):
+		if int(profile.get("ruleset_version", 1)) != 2 or not Loot.material_map_valid(value.active_run.pending_research_materials): return false
+		var pending := {}
+		for event: String in value.active_run.completed_reward_ids:
+			var row: Variant = profile.get("progression_receipts", {}).get(event)
+			if not row is Dictionary: return false
+			if row.get("deferred_materials", false):
+				for key: String in row.material_reward: pending[key] = int(pending.get(key, 0)) + int(row.material_reward[key])
+		if not Loot.same(pending, value.active_run.pending_research_materials): return false
 	return true
 
 static func _unique_ids(value: Variant, maximum: int = 512) -> bool:
@@ -381,10 +400,21 @@ static func _allowed_ids(value: Variant, allowed: Array) -> bool:
 	return true
 
 static func _valid_progression(profile: Dictionary) -> bool:
+	var version: Variant = profile.get("ruleset_version", 1)
+	if not _number(version, 2) or int(version) < 1: return false
+	var ruleset: int = int(version)
+	if not Expedition.versions_valid(profile, ruleset, profile.has("numerical_migration")): return false
+	if profile.has("numerical_migration") and not _valid_numerical_migration(profile): return false
+	if profile.has("gold_pity"):
+		if ruleset != 2 or not profile.gold_pity is Dictionary or profile.gold_pity.size() != 4: return false
+		for biome: String in ["B01", "B02", "B03", "B04"]:
+			if not _number(profile.gold_pity.get(biome), 3): return false
+	if ruleset == 2:
+		if not _valid_v2_growth(profile): return false
 	if profile.has("equipment_discoveries"):
-		if not _unique_ids(profile.equipment_discoveries, ContentRegistry.equipment_ids().size()): return false
+		if not _unique_ids(profile.equipment_discoveries, ContentRegistry.equipment_ids(ruleset).size()): return false
 		for eq: String in profile.equipment_discoveries:
-			if ContentRegistry.equipment(eq).is_empty(): return false
+			if ContentRegistry.equipment(eq, ruleset).is_empty(): return false
 	if not profile.get("selected_hero") in HERO_IDS or not profile.get("hero_xp") is Dictionary:
 		return false
 	if profile.hero_xp.size() != HERO_IDS.size():
@@ -393,22 +423,25 @@ static func _valid_progression(profile: Dictionary) -> bool:
 		if not _number(profile.hero_xp.get(id), 3600):
 			return false
 	# A missing field is a valid early v2 document and is atomically normalized on load.
-	if profile.has("branches") and not _valid_branches(profile.branches, profile.hero_xp):
+	if profile.has("branches") and not _valid_branches(profile.branches, profile.hero_xp, ruleset):
 		return false
-	if not profile.get("equipment") is Dictionary or profile.equipment.size() > ContentRegistry.equipment_ids().size() \
-		or not profile.get("loadout") is Dictionary or profile.loadout.size() != SLOTS.size():
-		return false
-	for id: Variant in profile.equipment:
-		if not id is String or ContentRegistry.equipment(id).is_empty():
+	if ruleset == 2:
+		if not _valid_instance_equipment(profile): return false
+	else:
+		if not profile.get("equipment") is Dictionary or profile.equipment.size() > ContentRegistry.equipment_ids().size() \
+			or not profile.get("loadout") is Dictionary or profile.loadout.size() != SLOTS.size():
 			return false
-		var owned: Variant = profile.equipment[id]
-		if not owned is Dictionary or not _number(owned.get("level"), Expedition.MAX_EQUIPMENT_LEVEL):
-			return false
-	for slot: String in SLOTS:
-		var id: Variant = profile.loadout.get(slot)
-		if not id is String or not profile.equipment.has(id) or ContentRegistry.equipment(id).get("slot") != slot:
-			return false
-	if profile.has("loadout_presets") and not _valid_loadout_presets(profile.loadout_presets): return false
+		for id: Variant in profile.equipment:
+			if not id is String or ContentRegistry.equipment(id).is_empty():
+				return false
+			var owned: Variant = profile.equipment[id]
+			if not owned is Dictionary or not _number(owned.get("level"), Expedition.MAX_EQUIPMENT_LEVEL):
+				return false
+		for slot: String in SLOTS:
+			var id: Variant = profile.loadout.get(slot)
+			if not id is String or not profile.equipment.has(id) or ContentRegistry.equipment(id).get("slot") != slot:
+				return false
+		if profile.has("loadout_presets") and not _valid_loadout_presets(profile.loadout_presets): return false
 	if not _allowed_ids(profile.get("bosses"), BOSS_IDS) \
 		or not _allowed_ids(profile.get("tutorial_completed"), HERO_IDS) \
 		or not profile.get("migration_id") in ["new_v2", "profile_v1_to_v2"]:
@@ -425,6 +458,53 @@ static func _valid_progression(profile: Dictionary) -> bool:
 				return false
 		elif not _valid_economy_receipt(entry):
 			return false
+	return true
+
+## Explicit ruleset2 documents store identities, not one entry per template.
+## Document byte limits bound storage; catalog size must not cap duplicates.
+static func _valid_instance_equipment(profile: Dictionary) -> bool:
+	if not profile.get("equipment") is Dictionary: return false
+	if not Forging.validate_profile(profile).is_empty(): return false
+	if not Transactions.validate_ledger(profile.get("instance_transactions")): return false
+	if not _number(profile.get("inventory_capacity", 0), MAX_NUMBER) or not Loot.pity_valid(profile.get("gold_pity", {})): return false
+	if not profile.get("pending_claim_receipts", {}) is Dictionary: return false
+	for operation: Variant in profile.get("pending_claim_receipts", {}):
+		if not operation is String or operation.is_empty() or operation.length() > 160: return false
+		var id: Variant = profile.pending_claim_receipts[operation]
+		if not id is String: return false
+		if not profile.equipment.has(id):
+			if not Forging.is_retired(profile, id): return false
+		elif profile.equipment[id].get("location") == "pending": return false
+	for id: Variant in profile.equipment:
+		if not id is String or id.is_empty() or id.length() > 160: return false
+		var record: Variant = profile.equipment[id]
+		if not record is Dictionary or record.get("instance_id") != id or not Instances.validate(record).is_empty(): return false
+	if not _valid_instance_loadout(profile.get("loadout"), profile.equipment, str(profile.selected_hero),
+		ContentRegistry.level_for_xp(int(profile.hero_xp[profile.selected_hero]), 2)): return false
+	# Newly constructed values may say inventory before their first commit, but
+	# an explicit equipped marker must point to the current active loadout.
+	for id: String in profile.equipment:
+		if profile.equipment[id].location == "equipped" and id not in profile.loadout.values(): return false
+	var presets: Variant = profile.get("loadout_presets", {})
+	if not presets is Dictionary or presets.size() > HERO_IDS.size(): return false
+	for hero: Variant in presets:
+		if hero not in HERO_IDS or not _valid_instance_loadout(presets[hero], profile.equipment, hero,
+			ContentRegistry.level_for_xp(int(profile.hero_xp[hero]), 2)): return false
+	return true
+
+static func _valid_instance_loadout(value: Variant, equipment: Dictionary, hero: String, level: int) -> bool:
+	var slots: Array = ContentRegistry.slots(2)
+	if not value is Dictionary or value.size() != slots.size(): return false
+	var seen: Dictionary = {}
+	for slot: String in slots:
+		var id: Variant = value.get(slot)
+		if not id is String: return false
+		if id.is_empty(): continue
+		if seen.has(id) or not equipment.has(id): return false
+		var record: Dictionary = equipment[id]
+		if record.get("location") not in ["inventory", "equipped"] or not Instances.can_equip(record, hero, level): return false
+		if ContentRegistry.equipment(str(record.template_id), 2).get("slot") != slot: return false
+		seen[id] = true
 	return true
 
 static func _valid_loadout_presets(value: Variant) -> bool:
@@ -483,14 +563,14 @@ static func equipment_sell_price(eq_id: String, level: int) -> int:
 	for index in range(level): worth += ContentRegistry.UPGRADE_COSTS[index] / 5
 	return worth
 
-static func _valid_branches(value: Variant, hero_xp: Dictionary) -> bool:
+static func _valid_branches(value: Variant, hero_xp: Dictionary, ruleset: int = 1) -> bool:
 	if not value is Dictionary or value.size() != HERO_IDS.size():
 		return false
 	for id: String in HERO_IDS:
 		var choices: Variant = value.get(id)
 		if not choices is Dictionary or choices.size() != 2:
 			return false
-		var level := ContentRegistry.level_for_xp(int(hero_xp[id]))
+		var level := ContentRegistry.level_for_xp(int(hero_xp[id]), ruleset)
 		for slot: String in ["q", "ultimate"]:
 			if not choices.get(slot) in ["", "A", "B"]:
 				return false
@@ -499,6 +579,8 @@ static func _valid_branches(value: Variant, hero_xp: Dictionary) -> bool:
 	return true
 
 static func _settings_only(profile: Dictionary) -> bool:
+	# Instance-profile creation and migration are later explicit transactions.
+	if int(profile.get("ruleset_version", 1)) != 1: return false
 	if not profile.get("equipment_discoveries", []).is_empty(): return false
 	if int(profile.permanent_gold) != 0 or int(profile.total_runs) != 0 or not profile.last_result.is_empty() \
 		or not profile.discoveries.is_empty() or not profile.bosses.is_empty() or not profile.tutorial_completed.is_empty() \
@@ -513,4 +595,50 @@ static func _settings_only(profile: Dictionary) -> bool:
 		if not profile.equipment.has(id) or int(profile.equipment[id].level) != 0:
 			return false
 	# _valid_branches already excludes nonempty choices at level one.
+	return true
+
+static func _valid_v2_growth(profile: Dictionary) -> bool:
+	for field in ["talents", "research_xp", "materials", "progression_receipts"]:
+		if not profile.get(field, {}) is Dictionary: return false
+	if not profile.get("hero_xp") is Dictionary: return false
+	for hero: Variant in profile.get("talents", {}):
+		if hero not in HERO_IDS: return false
+		if not Progression.valid_talents(profile.talents[hero], Progression.level_for_xp(int(profile.hero_xp.get(hero, 0)))): return false
+	for hero: Variant in profile.get("research_xp", {}):
+		if hero not in HERO_IDS or not _number(profile.research_xp[hero], 359): return false
+	for material: Variant in profile.get("materials", {}):
+		if material not in ["forge", "race:B01", "race:B02", "race:B03", "race:B04", "core:B01", "core:B02", "core:B03", "core:B04"] or not _number(profile.materials[material], MAX_NUMBER): return false
+	var receipts: Dictionary = profile.get("progression_receipts", {})
+	if receipts.size() > 100000: return false
+	for event: Variant in receipts:
+		if not event is String or event.is_empty() or event.length() > 160: return false
+		var row: Variant = receipts[event]
+		if not row is Dictionary or row.get("hero") not in HERO_IDS or not _number(row.get("amount"), 3600) or row.get("race") not in ["B01", "B02", "B03", "B04"]: return false
+		if row.has("deferred_materials"):
+			if row.deferred_materials != true or not _number(row.get("research_rewards"), 11) or not Loot.material_map_valid(row.get("material_reward")): return false
+			var expected := {} if int(row.research_rewards) == 0 else {"forge":int(row.research_rewards) * 4,"race:" + str(row.race):int(row.research_rewards)}
+			if not Loot.same(row.material_reward, expected): return false
+	return true
+
+static func _valid_numerical_migration(profile: Dictionary) -> bool:
+	if profile.get("ruleset_version") != 2: return false
+	var migration: Variant = profile.numerical_migration
+	if not migration is Dictionary or not Expedition.json_tree(migration) or migration.size() != 4 or migration.get("version") != 1: return false
+	var event: Variant = migration.get("event_id")
+	if not event is String or not event.begins_with("migration:") or event.length() <= 10 or event.length() > 120: return false
+	var original: Variant = migration.get("original")
+	var identities: Variant = migration.get("template_instance_ids")
+	if not original is Dictionary or not original.has_all(["hero_xp", "equipment", "loadout"]) or original.size() not in [3, 4] or not identities is Dictionary: return false
+	if original.size() == 4 and not original.has("loadout_presets"): return false
+	if not original.hero_xp is Dictionary or original.hero_xp.size() != HERO_IDS.size() or not original.equipment is Dictionary or identities.size() != original.equipment.size(): return false
+	for hero: String in HERO_IDS:
+		if not _number(original.hero_xp.get(hero), 3600): return false
+	for template: Variant in original.equipment:
+		if not template is String or ContentRegistry.equipment(template).is_empty() or not original.equipment[template] is Dictionary or not _number(original.equipment[template].get("level"), 5): return false
+		if identities.get(template) != event + ":" + template: return false
+	if not original.loadout is Dictionary or original.loadout.size() != SLOTS.size(): return false
+	for slot: String in SLOTS:
+		var template: Variant = original.loadout.get(slot)
+		if not template is String or not original.equipment.has(template) or ContentRegistry.equipment(template).get("slot") != slot: return false
+	if original.has("loadout_presets") and not _valid_loadout_presets(original.loadout_presets): return false
 	return true

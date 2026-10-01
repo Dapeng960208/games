@@ -1,8 +1,12 @@
 # 游戏代码待办与十二关路线图
 
-更新日期：2026-10-01。前四副本按“一房一张背景”接入独立原画、地图用途分组与房间 UI，继续完善敌群难度、数量、种族技能与首领战术。本文件记录实施和后续事项；实际范围见 [开发进度](DEVELOPMENT_PROGRESS.md)，目标见 [用户需求](USER_LEVEL_BRIEF.md) 与 [设计稿](LEVEL_DESIGN_V1.md)。
+更新日期：2026-10-02。前四副本按“一房一张背景”接入独立原画、地图用途分组与房间 UI；PR #2交付S00–S10的数值和装备循环，S11自然平衡继续暂缓。本文件记录实施和后续事项；实际范围见 [开发进度](DEVELOPMENT_PROGRESS.md)，目标见 [用户需求](USER_LEVEL_BRIEF.md) 与 [设计稿](LEVEL_DESIGN_V1.md)。
 
-第二轮审查A13–A30已通过PR #1合入，并与本地同期装备UI改进整合；Godot 4.7.2的六组相关定向检查7769项、0失败，证据见[修复与验收](audits/GAMEPLAY_AUDIT_ROUND2_FIXES_2026-10-01.md)。本轮没有把长期设计风险标为全部解决：八槽/实例/随机品质仍按EQ01–EQ03推进，分支时机、战斗背包换装频率、状态/护盾理解和自然多局体验继续待游玩验证。
+第二轮审查A13–A30已通过PR #1合入，并与本地同期装备UI改进整合；历史定向证据见[修复与验收](audits/GAMEPLAY_AUDIT_ROUND2_FIXES_2026-10-01.md)。八槽/实例/随机品质已由PR #2的S03–S06实现并接入保存与界面；分支时机、战斗背包换装频率、状态/护盾理解和自然多局体验继续待游玩验证。
+
+等级、装备与全量Buff实施依据为[数值方案](balance/LEVEL_EQUIPMENT_NUMERICAL_DESIGN.md)、[目标数值全表](balance/TARGET_NUMERICAL_TABLES.md)及[S00–S11执行清单](balance/NUMERICAL_REDESIGN_EXECUTION_STEPS.md)。S00–S10已实现，正常新档默认使用×10整数规则、20级天赋、124模板/八槽实例及最高+10手动强化，旧进行中冒险冻结旧版本。本轮按用户授权验收和修复PR #2，证据见[本地验收记录](balance/PR2_ACCEPTANCE_2026-10-02.md)；自然平衡未完成。
+
+数值方案的最新约束见[随机强化方案](balance/RANDOM_FORGING_DESIGN.md)及[章节/Boss标尺](balance/BOSS_DIFFICULTY_CALIBRATION.md)：各品质掉落上限、三组强化等效和每阶随机收益统一计算；1–12章递增，未来B05–B12仅规划接口。全金约+2的对应章D4碾压表现属于后续12组职业/Boss实战目标，尚未实现或验证。
 
 ## 前四关下一轮事项
 
@@ -29,19 +33,19 @@ MAP01 不能整房字典覆盖运行数据。本轮通过独立表现配置只�
 
 ## 装备循环实施顺序
 
-当前是六槽固定模板和预强化。完整目标是通关高难度副本，获得本族装备，配装提升，出售或洗练后继续挑战。每步保持旧档和撤离事务安全。
+正常新局已使用八槽独立实例、白绿紫金随机词条、本族掉落、购买/打造、随机强化、保底重锻、词条重铸/精炼、继承和出售/拆解。旧进行中冒险继续六槽历史规则至回营地。高难度配装表现和自然获取时长仍属S11待验证目标。
 
-商城扩充已接入：新增 6 套共 36 件商城装备，目录共 96 件／14 套；单件、九折整套、九折补齐和一键穿戴走永久档事务。新图按 18–30 岁青年奇幻方向重绘，原四族掉落池保留。详见 [装备商城与回收](EQUIPMENT_MARKET.md)。六件套不代表八槽或独立实例已经完成。
+商城历史扩充增加6套共36件，旧规则目录96件／14套；PR #2补齐14套裤/戒共28模板，新规则目录124件。单件重复购买、九折补齐和一键穿戴走永久档事务，商城套装的打造族材映射独立登记，不混入自然掉落池。详见 [装备商城与回收](EQUIPMENT_MARKET.md)及[本地验收记录](balance/PR2_ACCEPTANCE_2026-10-02.md)。
 
 入口已补修：营地「装备商城」和工坊「采购装备」默认展示六套新装备，仓库提示已拥有范围及筛选数量，营地「装备工坊」提示多选回收；GPU 装备市场 238 项检查通过。
 
 | 编号 | 工作 | 入口与依赖 | 完成条件 |
 |---|---|---|---|
-| EQ01 P1 | 八槽和独立实例 | scripts/data/content_registry.gd、scripts/core/profile_store.gd、backpack_equipment.gd、stat_resolver.gd、data/equipment.json | legs/ring 全链路生效，同模板多件有实例 ID，旧六槽迁移，配装/比较/入库不串件 |
-| EQ02 P1 | 白绿紫金与随机词条 | 依赖 EQ01；装备目录、equipment_effects.gd、掉落和属性结算 | 品质越高词条越多；设计草案白0/绿2/紫3/金4，数值需平衡；种族/槽位/职业池、互斥和触发上限真实生效；品质与强化分开 |
-| EQ03 P1 | 难度与本族实例掉落 | scripts/world/room_rewards.gd、scripts/core/expedition_state.gd、run_state.gd | 难度影响数量、属性和品质权重；不回退别族；撤离永久入库，死亡不保存临时物品，重试不重复奖励 |
-| EQ04 P1 | 固定模板多选回收已接入；实例出售待 EQ01 | equipment_recycle_panel.gd、workshop_panel.gd、run_controller.gd、profile_store.gd | 当前可多选／全选未穿戴装备、显示逐件与总价、取消／确认、一次保存删物与加金币、重启不重发、售出可重购；未来按独立实例删除而非模板 ID |
-| EQ05 P2 | 洗练和提升 | 依赖 EQ01/EQ02/EQ04；工坊、装备效果、保存 | 显示成本和结果，品质/词条数遵守规则；失败不重复扣款或重抽已确认结果 |
+| EQ01 P1 | 八槽和独立实例已接入并定向验收 | content_registry.gd、equipment_instances.gd、profile_store.gd、backpack_equipment.gd、stat_resolver.gd | 124模板、legs/ring全链路、同模板独立ID、旧档迁移与冻结局、配装/比较/入库保存通过 |
+| EQ02 P1 | 白绿紫金与随机词条已接入并定向验收 | equipment_instances.gd、equipment_acquisition.gd、equipment_effects.gd、stat_resolver.gd | 白0/绿2/紫3/金4、种族/槽位/职业合法池、互斥和触发上限已检查；自然平衡待S11 |
+| EQ03 P1 | 难度与本族实例掉落已接入并定向验收 | room_rewards.gd、expedition_rewards.gd、expedition_state.gd、run_state.gd | 冻结随机结果、召唤零奖励、撤离入库、死亡丢临时资产、唯一结算、D4同族保底已检查 |
+| EQ04 P1 | 实例出售/拆解与唯一退款账本已接入 | instance_forging.gd、instance_forging_panel.gd、run_controller.gd、profile_store.gd | 按实例回收，锁定/穿戴/未结算保护、实付退款和跨族材料归属已检查；旧模板多选回收保留历史路径 |
+| EQ05 P2 | 强化/重锻/重铸/精炼/继承已接入并定向验收 | instance_forging.gd、instance_economy.gd、instance_forging_panel.gd、保存事务 | +10、随机8–12%、四次保底、固定重铸槽、继承逐阶取优与逐笔补差、失败重试不重抽已检查；自然经济待S11 |
 | EQ06 P2 | 血药和蓝药 | 库存、player.gd、run_controller.gd、HUD 和绑定 | 真库存、真实恢复与冷却，职业资源适配，满值不浪费，暂停/死亡/恢复一致 |
 | EQ07 P2 | 装备改变游戏中装饰 | 依赖八槽与附件；英雄绘制及装备美术 | 各方向/动作显示头胸手腿鞋武器附件，戒指饰品合理表现；不能仅改头像或背包图 |
 | REL01 P2 | 独立种族遗物和构筑 | class_relics.gd、race_relics.gd、数据和 UI | 掉落与种族机制相符，派生伤害不递归，组合有取舍，显示触发条件与真实效果 |

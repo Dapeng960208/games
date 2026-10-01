@@ -12,7 +12,7 @@ func configure(width: float, count: int) -> void:
 
 func add_item(item: Dictionary, level: int, hero_id: String, id_prefix: String, selected: bool, footer: String, action: Callable, equipped: bool = false) -> Button:
 	var cell := MineStyle.button(self,"",Vector2.ZERO,cell_size,action)
-	cell.name = id_prefix+str(item.id)
+	cell.name = id_prefix+str(item.get("instance_id", item.id))
 	cell.custom_minimum_size = cell_size
 	MineStyle.button_skin(cell,"socket")
 	if selected: MineStyle.selected(cell,"socket")

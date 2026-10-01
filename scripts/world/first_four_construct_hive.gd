@@ -171,6 +171,8 @@ func _brood_level(nest_index: int) -> int:
 		if str(property.name) == "difficulty":
 			difficulty = clampi(int(host.room.get("difficulty")), 0, 4)
 			break
+	if host.room.has_method("enemy_ruleset") and int(host.room.call("enemy_ruleset")) == 2:
+		return Profiles.encounter_level(str(host.room.layout_id),clampi(nest_index,0,2),difficulty,2)
 	return clampi(5 + mini(2, maxi(0, nest_index)) * 2 + difficulty * 2, 1, 20)
 
 func _spawn_ground_clear(at: Vector2, radius: float) -> bool:

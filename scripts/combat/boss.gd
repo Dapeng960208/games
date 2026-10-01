@@ -35,8 +35,8 @@ var _grave_spawned: int = 0
 var _grave_receipts: Array[Dictionary] = []
 var _grave_registered: Dictionary = {}
 
-func configure_boss(id: String, difficulty: int = 0, seed_value: int = 0) -> bool:
-	var resolved: Dictionary = Profiles.resolve(id, difficulty)
+func configure_boss(id: String, difficulty: int = 0, seed_value: int = 0, ruleset: int = 1, calibration_snapshot: Dictionary = {}) -> bool:
+	var resolved: Dictionary = Profiles.resolve(id, difficulty, ruleset, calibration_snapshot)
 	if resolved.is_empty() or not Profiles.validate(resolved).is_empty():
 		return false
 	boss_seed = seed_value if seed_value != 0 else id.hash() ^ (difficulty * 104729)
@@ -81,8 +81,8 @@ func _initialize_boss_runtime() -> void:
 	for key: String in ["enemy_pod_broken", "enemy_charge_wall_stop"]:
 		if has_meta(key): remove_meta(key)
 	if health != null:
-		health.reset(float(profile.get("max_hp", 1.0)))
-	status = StatusScript.new()
+		health.reset(float(profile.get("max_hp", 1.0)), int(profile.get("ruleset_version", 1)))
+	status = StatusScript.new(int(profile.get("ruleset_version", 1)))
 	if boss_id == "BO01":
 		status.grant_guard(health.maximum * 0.22, 3600.0, "boss_solar", health.maximum)
 	boss_brain = BossBrainScript.new()
@@ -261,7 +261,9 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	if not _complete and boss_id == "BO01" and solar_before > 0.0 and float(status.guards.get("boss_solar", {}).get("amount", 0.0)) <= 0.0:
 		_solar_disabled = true
 		boss_brain.apply_biome_counter("solar_conduit", 2.8)
-	return result
+	# The inherited receipt captures actual loss before lethal/phase callbacks.
+	# A legal support or CombatStatus shield contact confirms even without HP loss.
+	return bool(last_damage_result.get("confirmed", false)) if int(profile.get("ruleset_version", Numerical.LEGACY)) == Numerical.V2 else result
 
 func _queue_reinforcement_wave(next_phase: int) -> void:
 	if next_phase in _requested_phases:

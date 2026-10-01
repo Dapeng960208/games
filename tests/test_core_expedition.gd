@@ -115,7 +115,7 @@ func _eight_nodes() -> void:
 		if not _advance(game): break
 		_check(game.run.expedition.node_index == index, "sequential route advancement")
 		if game.expedition_snapshot().node.role == "supply":
-			_check(game.run.expedition.phase == "safe" and game.expedition_snapshot().supply_offers.size() == 7, "supply node has seven frozen products")
+			_check(game.run.expedition.phase == "safe" and game.expedition_snapshot().supply_offers.size() == 5, "current supply policy has five frozen paid products")
 			continue
 		_check(not game.advance_expedition_node(_runtime(game)), "cannot skip active combat")
 		game.add_gold(10)
@@ -203,8 +203,8 @@ func _supplies() -> void:
 	var hp: float = game.run.hp
 	_check(game.purchase_run_supply(offers.heal_small, _runtime(game)) and game.run.hp == hp and game.run.gold == expected_gold, "duplicate purchase cannot heal or debit again")
 	_check(not game.purchase_run_supply(offers.heal_large, _runtime(game)), "heal services mutually exclusive")
-	_check(not game.purchase_run_supply(offers.energy, _runtime(game)), "resource potion must match hero type")
-	_check(game.purchase_run_supply(offers.mana, _runtime(game)) and game.run.resource == 40.0, "mana supply restores thirty percent maximum")
+	_check(not offers.has("energy") and not offers.has("mana") and not game.purchase_run_supply("unavailable-energy", _runtime(game)), "paid resource potions are absent under free safe preparation policy")
+	_check(game.prepare_safe_resources(_runtime(game)) and game.run.resource == float(game.run.stats.resource_max) and game.run.gold == expected_gold, "safe preparation restores resource without gold charge")
 	_check(game.purchase_run_supply(offers.amplify, _runtime(game)) and game.run.stats.temporary_buffs.amplify.remaining_rooms == 2, "amplifier commits two-room duration")
 	_check(game.purchase_run_supply(offers.scan, _runtime(game)) and game.run.expedition.scan_nodes == Expedition.Routes.scan_indices(game.run.expedition.route), "scan unlocks remaining authored encounters for this route length")
 	_check(game.purchase_run_supply(offers.shield, _runtime(game)), "shield supply is a real committed purchase")
@@ -223,8 +223,8 @@ func _death_and_legacy() -> void:
 	game.collect_expedition_equipment("death-drop", "EQ02")
 	var result: Dictionary = game.finish_run("death")
 	_check(result.get("equipment_lost", []) == ["EQ02"] and not game.profile.equipment.has("EQ02"), "death discards pending equipment")
-	# New settlements use v2; the following legacy recovery fixture remains v1.
-	_check(result.rules_version == 2 and game.profile.permanent_gold == 50 and game.profile.equipment_discoveries == ["EQ02"], "v2 death keeps fifty percent gold and equipment discovery")
+	# Current approved settlements use v3; old document schema recovery remains idempotent.
+	_check(result.rules_version == 3 and game.profile.permanent_gold == 50 and game.profile.equipment_discoveries == ["EQ02"], "current settlement keeps fifty percent gold and equipment discovery")
 	game.reload_profile()
 	_check(game.run == null and game.profile.total_runs == 1 and not game.profile.equipment.has("EQ02"), "death restart cannot recover lost gear")
 	game.free()
@@ -235,9 +235,9 @@ func _death_and_legacy() -> void:
 	_write(directory + "/v2-active.json", legacy)
 	game.free()
 	game = _game("v2-active.json")
-	_check(game.run == null and game.profile.permanent_gold == 23 and game.profile.total_runs == 1, "v2 receipt is one abandonment, never fake resume")
+	_check(game.run == null and game.profile.permanent_gold == 59 and game.profile.total_runs == 1, "old schema receipt is one abandonment under approved settlement rules, never fake resume")
 	game.reload_profile()
-	_check(game.profile.permanent_gold == 23 and game.profile.total_runs == 1, "legacy recovery does not duplicate wallet")
+	_check(game.profile.permanent_gold == 59 and game.profile.total_runs == 1, "legacy recovery does not duplicate wallet")
 	game.free()
 
 func _invalid_documents() -> void:

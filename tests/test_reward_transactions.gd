@@ -73,10 +73,18 @@ func _interact(id: String) -> bool:
 	return room.objectives.interact(id, room.player)
 
 func _kill_living() -> void:
-	for enemy in room.enemies.get_children():
-		if enemy.actor_kind != "objective" and enemy.is_alive():
-			enemy.take_damage(1000000.0, &"test", Vector2.ZERO, {"damage_type":"true"})
-	await frames()
+	# Visit the authored encounter zones and drain their finite reinforcements.
+	# Moving the player and advancing encounter time does not mark waves complete.
+	for _cycle in 40:
+		for zone: Dictionary in room.encounter_zones:
+			room.player.position = zone.center
+			room._update_encounters(3.0)
+		for enemy in room.enemies.get_children():
+			if enemy.actor_kind != "objective" and enemy.is_alive():
+				enemy.take_damage(1000000.0, &"test", Vector2.ZERO, {"damage_type":"true"})
+		await frames()
+		if room._encounters_exhausted() and room._living_enemy_count() == 0: break
+	check(room._encounters_exhausted(), "real encounter spawns exhaust every finite wave")
 	check(room._living_enemy_count() == 0, "real damage clears living combat actors")
 	# Collect actual spawned coins before measuring the completion transaction.
 	for drop: Dictionary in room.gold_drops.duplicate(true):
@@ -84,41 +92,33 @@ func _kill_living() -> void:
 		room._update_gold(.01)
 	check(room.gold_drops.is_empty(), "real coin pickup separates kill income from completion income")
 
-func _objective(quality: String) -> void:
+func _objective() -> void:
 	var host: Node2D = room.objectives
-	match str(room.layout_id):
-		"L01":
-			for index in 3: check(_interact("brake_" + str(index)), "release actual brake " + str(index))
-		"L02":
-			if quality == "reduced": check(_interact("cargo_cart"), "unload actual cargo for cash branch")
-			for _index in 5000:
-				if host.is_complete(): break
-				room.player.position = host.element("cargo_cart").position
-				host.tick(.05)
-		"L03":
-			if quality == "full": check(_interact("gear_stop"), "stop actual gears for cash branch")
-			for index in 2: check(_interact("key_" + str(index)), "collect actual gear core " + str(index))
-		"L06":
-			if quality == "reduced": check(_interact("furnace_cut"), "actual emergency cut chooses reduced reward")
-			else:
-				for index in 3: check(_interact("valve_" + str(index)), "adjust actual pressure valve " + str(index))
-				for _index in 100:
-					host.tick(.05)
-					if bool(host.element("furnace_core").active): break
-				check(_interact("furnace_core"), "stable pressure permits core retrieval")
-		"L11":
-			for index in 2:
-				var target: Node2D = host.targets["research_nest_" + str(index)]
-				target.take_damage(1000000.0, &"test", Vector2.ZERO, {"damage_type":"true"})
-				check(_interact("research_" + str(index)), "open and collect required research package " + str(index))
-	check(host.is_complete() and str(host.quality) == quality, str(room.layout_id) + " authored mechanics choose quality " + quality)
+	check(host.current_combat_rules(), "real expedition uses published FirstFour objectives")
+	var biome: String = Rewards.biome_for_reward(str(room.layout_id))
+	for index in host.required_count:
+		var id: String = ("solar_conduit_" if biome == "B01" else "brood_nest_") + str(index)
+		var item: Dictionary = host.element(id)
+		check(not item.is_empty(), "authored combat objective exists " + id)
+		if item.is_empty(): continue
+		if biome == "B01":
+			check(_interact(id), "start actual solar conduit " + str(index))
+			# Stay at this fixed blueprint point for the full charge duration.
+			for _tick in 17: host.tick(.1)
+		else:
+			check(host.targets.has(id), "authored brood nest has a damageable actor")
+			if not host.targets.has(id): continue
+			var target: Node2D = host.targets[id]
+			target.take_damage(1000000.0, &"test", Vector2.ZERO, {"damage_type":"true"})
+		check(bool(host.element(id).done), "real objective action completes " + id)
+	check(host.is_complete() and str(host.quality) == "full", str(room.layout_id) + " authored mechanics select the sole current full outcome")
 
-func _complete(quality: String, gold: int, count: int, theme: String = "") -> void:
+func _complete(gold: int) -> void:
 	await _kill_living()
 	var gold_before: int = Game.run.gold
 	var drops_before: Dictionary = Game.run.expedition.claimed_drop_ids.duplicate(true)
 	var xp_before: int = Game.profile.hero_xp[Game.run.hero_id]
-	_objective(quality)
+	_objective()
 	room._tick_expedition(.016)
 	check(room.objective_rewarded and str(Game.run.expedition.phase) == "cleared", str(room.layout_id) + " objective reward commits through Room and Game")
 	var new_drops: Array = []
@@ -128,50 +128,50 @@ func _complete(quality: String, gold: int, count: int, theme: String = "") -> vo
 			var record: Dictionary = Game.run.expedition.claimed_drop_ids[id]
 			new_drops.append(record)
 			converted += int(record.gold)
-			if not theme.is_empty(): check(Rewards.equipment_pool(theme, Game.run.hero_id, Game.profile.bosses).has(record.equipment_id), "actual completion item fits " + theme)
-	check(new_drops.size() == count, "actual " + str(room.layout_id) + "/" + quality + " grants " + str(count) + " equipment drops")
-	check(Game.run.gold - gold_before == gold + converted, "actual " + str(room.layout_id) + "/" + quality + " gold matches branch plus duplicate conversion")
+			check(Rewards.race_equipment_pool(Rewards.biome_for_reward(str(room.layout_id)), Game.run.hero_id).has(record.equipment_id), "actual completion item belongs to the room faction and fits the hero")
+			check(int(record.get("level", 0)) == 0, "actual D0 completion item has the published +0 enhancement")
+	check(new_drops.size() == 1, "actual " + str(room.layout_id) + "/full grants exactly one D0 faction equipment drop")
+	check(Game.run.gold - gold_before == gold + converted, "actual " + str(room.layout_id) + "/full gold matches the published policy-1 payout plus duplicate conversion")
 	check(int(Game.profile.hero_xp[Game.run.hero_id]) - xp_before == 30, "room XP awarded exactly once through commit")
 	var receipt: Dictionary = Game.run.live_receipt()
 	room._tick_expedition(2.0)
 	check(Game.run.live_receipt() == receipt, "repeated completion tick does not award again")
 	check(Schema.valid(Game.run.live_receipt(), Game.profile), "live committed reward receipt validates")
 
-func _start_target(id: String, all_defense_owned: bool = false) -> void:
+func _start_target(id: String, all_faction_owned: bool = false, hero_id: String = "CH01") -> void:
 	await _destroy_room()
 	if Game.run != null: Game.finish_run("abandoned")
 	check(Game.new_profile(), "fresh isolated test profile")
-	if id == "L11" or all_defense_owned:
+	check(Game.select_hero(hero_id), "select the fixture hero through Game")
+	if id == "L11" or all_faction_owned:
 		# Legacy fixture APIs create a legitimately unlocked/owned profile. The
 		# expedition being tested still uses normal route and transaction APIs.
 		check(Game.start_run(), "start setup run through Game")
-		if id == "L11": check(Game.record_boss_defeat("BO01"), "setup profile has previous biome boss receipt")
-		if all_defense_owned: check(Game.add_gold(10000), "setup grants spendable bank via run economy")
+		check(Game.record_boss_defeat("BO01"), "setup profile has previous biome boss receipt")
+		if all_faction_owned: check(Game.add_gold(10000), "setup grants spendable bank via run economy")
 		check(not Game.finish_run("extracted").is_empty(), "setup run extracts through settlement")
-		if all_defense_owned:
-			for eq: String in Rewards.equipment_pool("defense", "CH01", []):
-				if not Game.profile.equipment.has(eq): check(Game.buy_equipment(eq, "reward-test-own:" + eq), "purchase defense pool item " + eq)
-	check(Game.start_run({"expedition":true,"biome_id":"B02" if id == "L11" else "B01","seed":41827}), "normal expedition starts with real default loadout")
+		if all_faction_owned:
+			for eq: String in Rewards.race_equipment_pool("B01", hero_id):
+				if not Game.profile.equipment.has(eq): check(Game.buy_equipment(eq, "reward-test-own:" + eq), "purchase faction pool item " + eq)
+	check(Game.start_run({"expedition":true,"biome_id":"B02" if id == "L11" else "B01","difficulty":0,"seed":41827}), "normal expedition starts with real default loadout")
+	check(int(Game.run.expedition.reward_policy_version) == 1 and int(Game.run.expedition.difficulty) == 0, "integration fixture freezes current policy 1 at D0")
 	_construct_room()
 	await _enter("L03" if id == "L01" else id)
 	if id == "L01":
-		await _complete("full", 30, 0)
+		await _complete(30)
 		await _enter(id)
 
 func _optional_id() -> String:
 	return "side_crate" if room.layout_id == "L01" else "research_2"
 
-func _open_optional() -> void:
-	if room.layout_id == "L11" and room.objectives.targets.has("research_nest_2"):
-		room.objectives.targets.research_nest_2.take_damage(1000000.0, &"test", Vector2.ZERO, {"damage_type":"true"})
-
 func _optional_flow(id: String, all_owned: bool = false) -> void:
-	await _start_target(id, all_owned)
+	# CH01 starts with three of its four eligible B01 items, so the approach
+	# room exhausts that pool. CH03 leaves new faction gear for the cache case.
+	await _start_target(id, all_owned, "CH03" if id == "L01" and not all_owned else "CH01")
 	var optional_id: String = _optional_id()
 	if room._living_enemy_count() == 0: room.spawn_enemy(room.layout.entry + Vector2(300, 100), "M01", 1)
 	check(room._living_enemy_count() > 0, "live combat actor exists for cache gate")
-	_objective("full")
-	_open_optional()
+	_objective()
 	room._tick_expedition(.016)
 	var before: Dictionary = Game.run.live_receipt()
 	check(not _interact(optional_id), id + " cannot claim cache while enemies live after authored objective")
@@ -205,7 +205,8 @@ func _optional_flow(id: String, all_owned: bool = false) -> void:
 	var claim: Dictionary = Game.run.expedition.optional_claims[claim_id]
 	var drop: Dictionary = Game.run.expedition.claimed_drop_ids[claim.drop_ids[0]]
 	check(int(claim.gold) == expected_gold and claim.drop_ids.size() == 1, "cache receipt records its currency and one equipment drop")
-	check(Rewards.equipment_pool("defense" if id == "L01" else "offense", Game.run.hero_id, Game.profile.bosses).has(drop.equipment_id), "actual cache gear fits its advertised theme")
+	check(Rewards.race_equipment_pool(Rewards.biome_for_reward(id), Game.run.hero_id).has(drop.equipment_id), "actual cache gear belongs to its advertised faction and fits the hero")
+	check(int(claim.reward_version) == 2 and int(drop.get("level", 0)) == 0, "current cache receipt freezes policy-1 version and D0 enhancement")
 	check(Game.run.gold - int(before.gold) == expected_gold + int(drop.gold), "cache gold includes exactly the base reward and any duplicate conversion")
 	check(Game.profile.hero_xp == profile_before.hero_xp and Game.run.expedition.mastery == before.expedition.mastery, "cache does not repeat room XP or mastery")
 	if all_owned:
@@ -256,11 +257,11 @@ func _schema_negative_cases(receipt: Dictionary, claim_id: String, drop_id: Stri
 
 func _unclaimed_restore(id: String) -> void:
 	await _start_target(id)
-	await _complete("full", 12 if id == "L01" else 18, 1, "offense" if id == "L01" else "survival")
+	await _complete(12 if id == "L01" else 18)
 	var receipt: Dictionary = Game.run.live_receipt()
 	var optional_id: String = _optional_id()
-	# An old cleared receipt legitimately has no optional_claims field.
-	check(not receipt.expedition.has("optional_claims") and Schema.valid(receipt, Game.profile), "legacy cleared checkpoint without optional field remains valid")
+	# A cleared receipt need not have an optional_claims field until a claim.
+	check(not receipt.expedition.has("optional_claims") and Schema.valid(receipt, Game.profile), "cleared checkpoint without optional field remains valid")
 	await _destroy_room()
 	Game.reload_profile()
 	_construct_room()
@@ -283,12 +284,26 @@ func _demo_isolation() -> void:
 	# Level-eight routes have a branch at node two; use the objective slot three.
 	for id: String in ["L03", "L06", "L01"]:
 		await _enter(id)
-		await _complete("reduced" if id == "L06" else "full", 8 if id == "L06" else (30 if id == "L03" else 12), 1 if id == "L01" else 0, "offense" if id == "L01" else "")
+		await _complete(24 if id == "L06" else (30 if id == "L03" else 12))
 	check(_interact("side_crate"), "demo can exercise the real optional reward path")
 	check(FileAccess.get_file_as_bytes(Game.profile_path) == original, "demo room rewards and optional claim never change formal profile bytes")
 	await _destroy_room()
 	Game.reload_profile()
 	check(Game.run == null and FileAccess.get_file_as_bytes(Game.profile_path) == original, "discarding demo restores formal profile without writing")
+
+func _historical_policy_cases() -> void:
+	# Policy zero remains a callable compatibility contract. These obsolete
+	# bargains are not objective choices in a current FirstFour expedition.
+	for row: Array in [["L02","full",18,1],["L02","reduced",34,0],["L03","full",30,0],["L03","mobile",12,1],["L06","full",24,2],["L06","reduced",8,0]]:
+		var historical: Dictionary = Rewards.build(str(row[0]), str(row[1]), "CH01", 41827, "historical", [], [], [], -1, 0)
+		check(int(historical.get("gold", -1)) == int(row[2]) and historical.get("equipment", []).size() == int(row[3]), str(row[0]) + "/" + str(row[1]) + " preserves exact historical policy-0 payout")
+		check(int(historical.get("xp", -1)) == 30 and int(historical.get("mastery", -1)) == 180, "historical quality preserves its XP and mastery")
+		check(historical == Rewards.build(str(row[0]), str(row[1]), "CH01", 41827, "historical", [], [], [], -1, 0), "historical retry keeps identical deterministic drops")
+		if str(row[1]) != "full":
+			check(Rewards.build(str(row[0]), str(row[1]), "CH01", 41827, "current", [], [], [], 0, 1).is_empty(), str(row[0]) + " policy 1 rejects retired " + str(row[1]) + " quality")
+	for id: String in ["L01", "L02", "L03", "L06", "L11"]:
+		check(Rewards.qualities(id, 1) == ["full"], id + " current policy exposes only the authored full outcome")
+		check(Rewards.build(id, "full", "CH01", 41827, "current", [], [], [], -1, 1).is_empty(), id + " current policy requires explicit difficulty")
 
 func _run() -> void:
 	if not Game.profile_path.get_file().begins_with("test_reward_transactions"):
@@ -300,9 +315,10 @@ func _run() -> void:
 		if not finished:
 			push_error("Reward transaction acceptance timed out")
 			get_tree().quit(1))
-	for scenario: Array in [["L02","full",18,1,"defense"],["L02","reduced",34,0,""],["L03","full",30,0,""],["L03","mobile",12,1,"mobility"],["L06","full",24,2,"offense"],["L06","reduced",8,0,""]]:
+	_historical_policy_cases()
+	for scenario: Array in [["L02",18],["L03",30],["L06",24]]:
 		await _start_target(str(scenario[0]))
-		await _complete(str(scenario[1]), int(scenario[2]), int(scenario[3]), str(scenario[4]))
+		await _complete(int(scenario[1]))
 	await _optional_flow("L01")
 	await _optional_flow("L01", true)
 	await _optional_flow("L11")

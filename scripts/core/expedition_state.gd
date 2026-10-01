@@ -9,7 +9,14 @@ const Catalog = preload("res://scripts/world/world_catalog.gd")
 const Resolver = preload("res://scripts/combat/stat_resolver.gd")
 const Snapshot = preload("res://scripts/combat/combat_snapshot.gd")
 const FORMAT := 1
+const V2_FORMAT := 2
+const Numbers = preload("res://config/numerical_rules.gd")
+const Loot = preload("res://scripts/core/expedition_rewards.gd")
+const Instances = preload("res://scripts/core/equipment_instances.gd")
+const VERSION_FIELDS := ["ruleset_version", "scale_version", "equipment_instance_version", "reward_policy_version", "optional_chest_receipt_version"]
+
 const MAX_IDS := 512
+const MAX_CONTAINER_ITEMS := 4096 # Finite full-route natural-kill journals can exceed512.
 const MAX_EQUIPMENT_LEVEL := 5
 const RELICS: Array[String] = ["RL01","RL02","RL03","RL04","RL05","RL06","RL07","RL08","RL09","RL10","RL11","RL12"]
 const ACTIVE_RELICS: Array[String] = ["RL01","RL02","RL03"]
@@ -19,6 +26,23 @@ const SUPPLIES := {
 	"heal_small":{"label":"快速止血","price":20},"shield":{"label":"应急护盾","price":40},
 	"heal_large":{"label":"修整服务","price":60},"amplify":{"label":"便携增幅","price":60},
 	"scan":{"label":"勘探扫描","price":20},"mana":{"label":"法力补剂","price":40},"energy":{"label":"能量补剂","price":20}}
+
+static func versions(ruleset: int = 1) -> Dictionary:
+	return {"ruleset_version":ruleset,"scale_version":10 if ruleset == 2 else 1,"equipment_instance_version":1 if ruleset == 2 else 0,"reward_policy_version":2 if ruleset == 2 else 1,"optional_chest_receipt_version":2}
+
+static func versions_valid(value: Dictionary, ruleset: int, required: bool = false) -> bool:
+	var expected := versions(ruleset)
+	for key: String in VERSION_FIELDS:
+		if not value.has(key):
+			if required: return false
+			continue
+		if not number(value[key], 10): return false
+		if ruleset == 1 and key == "reward_policy_version":
+			if int(value[key]) > 1: return false
+		elif ruleset == 1 and key == "optional_chest_receipt_version":
+			if int(value[key]) not in [1, 2]: return false
+		elif value[key] != expected[key]: return false
+	return true
 
 static func number(value: Variant, maximum: float = 1000000000000.0, integral: bool = true) -> bool:
 	return (value is int or value is float) and is_finite(float(value)) and float(value) >= 0.0 and float(value) <= maximum and (not integral or float(value) == floorf(float(value)))
@@ -37,12 +61,12 @@ static func json_tree(value: Variant, depth: int = 0) -> bool:
 	if value is int or value is float: return is_finite(float(value)) and absf(float(value)) <= 1000000000000.0
 	if value is String: return value.length() <= 256
 	if value is Array:
-		if value.size() > MAX_IDS: return false
+		if value.size() > MAX_CONTAINER_ITEMS: return false
 		for entry: Variant in value:
 			if not json_tree(entry, depth + 1): return false
 		return true
 	if value is Dictionary:
-		if value.size() > MAX_IDS: return false
+		if value.size() > MAX_CONTAINER_ITEMS: return false
 		for key: Variant in value:
 			if not key is String or key.length() > 160 or not json_tree(value[key], depth + 1): return false
 		return true
@@ -63,12 +87,20 @@ static func fresh(run_id: String, options: Dictionary, profile: Dictionary, stat
 	var route: Dictionary = Routes.generate_single_biome(biome, seed_value, [], departure_level)
 	if not bool(route.get("valid", false)): return {}
 	route.erase("candidate_paths")
-	var initial: Dictionary = {"snapshot_version":1,"mode":"fresh_entry","hero_id":str(stats.hero_id),"hp":float(stats.max_hp),"resource":float(stats.starting_resource)}
+	var ruleset: int = int(stats.get("ruleset_version", 1))
+	var initial: Dictionary = {"snapshot_version":1,"mode":"fresh_entry","hero_id":str(stats.hero_id),"hp":Numbers.amount(float(stats.max_hp), ruleset),"resource":Numbers.amount(float(stats.starting_resource), ruleset)}
+	if ruleset == 2: initial.merge({"ruleset_version":2,"scale_version":10,"resource_regen_remainder":0.0,"resource_decay_remainder":0.0})
 	var value: Dictionary = {"format_version":FORMAT,"reward_policy_version":1,"recovery_mode":"checkpoint","content_version":Catalog.content_version(),"seed":seed_value,"difficulty":difficulty,
 		"route":route,"departure_level":departure_level,"node_count":route.nodes.size(),"node_index":0,"phase":"safe","completed_nodes":[],"locked_nodes":{},"completion_events":{},
 		"runtime":initial,"checkpoint_id":run_id + ":entry:0","pending_equipment":{},"claimed_drop_ids":{},"equipment_discoveries":[],
 		"gold_earned":0,"gold_spent":0,"offers":{},"relic_levels":{},"mastery":0,"mastery_rank":1,"purchased_offer_ids":[],
 		"temporary_buffs":{},"scan_nodes":[],"room_entry_gold":0,"room_entry_kills":0,"room_entry_shots":0}
+	value.merge(versions(ruleset), true)
+	value.format_version = V2_FORMAT if ruleset == 2 else FORMAT
+	if ruleset == 2:
+		var wish: Variant = options.get("wish_slot", "")
+		if not wish is String or (wish != "" and wish not in Registry.slots(2)): return {}
+		Loot.initialize(value, profile, run_id, wish)
 	add_relic_offer(value, run_id, 1)
 	return value
 
@@ -116,8 +148,15 @@ static func runtime_valid(value: Variant, hero_id: String, stats: Dictionary, fr
 static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 	var value: Variant = receipt.get("expedition")
 	if not value is Dictionary or not json_tree(value): return false
-	if value.get("format_version") != FORMAT or value.get("recovery_mode") != "checkpoint" or value.get("content_version") != Catalog.content_version(): return false
-	if not number(value.get("reward_policy_version", 0), 1): return false
+	if not number(receipt.get("ruleset_version", 1), 2): return false
+	var ruleset: int = int(receipt.get("ruleset_version", 1))
+	if ruleset not in [1, 2] or not versions_valid(receipt, ruleset, ruleset == 2) or not versions_valid(value, ruleset, ruleset == 2): return false
+	if int(profile.get("ruleset_version", 1)) != ruleset: return false
+	if value.has("enemy_calibration_snapshot") and value.enemy_calibration_snapshot != receipt.get("enemy_calibration_snapshot",{}): return false
+	for key: String in VERSION_FIELDS:
+		if receipt.has(key) and value.has(key) and receipt[key] != value[key]: return false
+	if value.get("format_version") != (V2_FORMAT if ruleset == 2 else FORMAT) or value.get("recovery_mode") != "checkpoint" or value.get("content_version") != Catalog.content_version(): return false
+	if not number(value.get("reward_policy_version", 0), 2 if ruleset == 2 else 1): return false
 	var route: Variant = value.get("route")
 	if not route is Dictionary or route.get("valid") != true or not route.get("nodes") is Array or not Catalog.biomes().has(route.get("biome_id")): return false
 	var count: int = route.nodes.size()
@@ -190,71 +229,74 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 		completed_combat[index] = true
 	for index: int in completed:
 		if route.nodes[index].role not in ["entrance", "supply"] and not completed_combat.has(index): return false
-	if not value.get("pending_equipment") is Dictionary or value.pending_equipment.size() > Registry.equipment_ids().size() or not value.get("claimed_drop_ids") is Dictionary or value.claimed_drop_ids.size() > MAX_IDS: return false
-	if not ids(value.get("equipment_discoveries"), Registry.equipment_ids().size()): return false
-	for eq: String in value.equipment_discoveries:
-		if Registry.equipment(eq).is_empty(): return false
-	for eq: Variant in value.pending_equipment:
-		if not eq is String or Registry.equipment(eq).is_empty() or not value.pending_equipment[eq] is Dictionary: return false
-		var pending_level: Variant = value.pending_equipment[eq].get("level", 0)
-		if not number(pending_level, MAX_EQUIPMENT_LEVEL): return false
-		# Existing collection entries may have an unsecured, stronger field drop.
-		# The permanent level still changes only in extraction settlement.
-		if profile.equipment.has(eq) and int(pending_level) <= int(profile.equipment[eq].level): return false
-		var drop: Variant = value.pending_equipment[eq].get("drop_id")
-		if not drop is String or not value.claimed_drop_ids.has(drop) or not value.claimed_drop_ids[drop] is Dictionary or value.claimed_drop_ids[drop].get("equipment_id") != eq: return false
-		if value.claimed_drop_ids[drop].get("result") != "pending" or not number(value.claimed_drop_ids[drop].get("level", 0), MAX_EQUIPMENT_LEVEL) or int(value.claimed_drop_ids[drop].get("level", 0)) != int(pending_level): return false
-	for drop: Variant in value.claimed_drop_ids:
-		if not drop is String or drop.is_empty() or drop.length() > 160 or not value.claimed_drop_ids[drop] is Dictionary: return false
-		var record: Dictionary = value.claimed_drop_ids[drop]
-		if Registry.equipment(str(record.get("equipment_id", ""))).is_empty() or not record.get("result") in ["pending", "gold", "superseded"] or not number(record.get("gold"), 1000): return false
-		if not number(record.get("level", 0), MAX_EQUIPMENT_LEVEL): return false
-		var eq: String = str(record.equipment_id)
-		if not eq in value.equipment_discoveries: return false
-		if record.result == "pending":
-			if int(record.gold) != 0 or not value.pending_equipment.has(eq) or value.pending_equipment[eq].drop_id != drop: return false
-		elif record.result == "superseded":
-			if int(record.gold) != 0 or not value.pending_equipment.has(eq) or int(value.pending_equipment[eq].get("level", 0)) <= int(record.get("level", 0)): return false
-		elif record.result == "gold":
-			var economic_version: Variant = record.get("economy_version", 1)
-			if not number(economic_version, Economy.CURRENT_VERSION) or not Economy.supported(int(economic_version)): return false
-			if int(record.gold) != int(Economy.item_price(eq, int(economic_version)) / 10) or (not profile.equipment.has(eq) and not value.pending_equipment.has(eq)): return false
-		# Older checkpoints have no field decision. A duplicate converted to gold
-		# cannot masquerade as an equipable drop or create another decision.
-		if record.has("field_decision") and (record.result not in ["pending", "superseded"] or not record.field_decision in ["equip", "keep"]): return false
-	# Optional caches are separate transactions, never second room completions.
-	# The field is optional so existing cleared checkpoints remain resumable.
-	var optional_claims: Variant = value.get("optional_claims", {})
-	if not optional_claims is Dictionary or optional_claims.size() > count: return false
-	var optional_nodes: Dictionary = {}
-	var optional_drops: Dictionary = {}
-	for claim_id: Variant in optional_claims:
-		var claim: Variant = optional_claims[claim_id]
-		if not claim_id is String or not claim is Dictionary or not number(claim.get("reward_version"), 2) or int(claim.reward_version) < 1: return false
-		if not number(claim.get("node_index"), count - 1): return false
-		var index: int = int(claim.node_index)
-		if not completed.has(index) or optional_nodes.has(index): return false
-		optional_nodes[index] = true
-		var room_id: String = str(route.nodes[index].room_id)
-		var objective_id: String = {"L01":"side_crate","L11":"research_2"}.get(room_id, "")
-		if objective_id.is_empty() or claim.get("room_id") != room_id or claim.get("objective_id") != objective_id: return false
-		if claim_id != str(receipt.id) + ":node:" + str(index) + ":optional:" + objective_id: return false
-		# Keep original cache receipts at their published values. New claims use
-		# the frozen expedition difficulty for the scaled gold and extra drop.
-		var expected_gold := 18 if room_id == "L01" else 22
-		var expected_drops := 1
-		if int(claim.reward_version) == 2:
-			expected_gold = int(round(float(expected_gold) * (1.0 + 0.25 * int(value.difficulty))))
-			expected_drops = 2 if int(value.difficulty) >= 2 else 1
-		if claim.get("gold") != expected_gold or not ids(claim.get("drop_ids"), expected_drops) or claim.drop_ids.size() != expected_drops: return false
-		for drop_index in range(expected_drops):
-			var drop_id: String = str(claim.drop_ids[drop_index])
-			if drop_id != claim_id + ":equipment:" + str(drop_index) or not value.claimed_drop_ids.has(drop_id): return false
-			optional_drops[drop_id] = true
-	# A saved cache drop also requires its claim. Otherwise removing the claim
-	# would reopen an already rewarded cache after resume, including its gold.
-	for drop_id: String in value.claimed_drop_ids:
-		if ":optional:" in drop_id and not optional_drops.has(drop_id): return false
+	if ruleset == 2:
+		if not Loot.valid(value, receipt, profile): return false
+	else:
+		if not value.get("pending_equipment") is Dictionary or value.pending_equipment.size() > Registry.equipment_ids().size() or not value.get("claimed_drop_ids") is Dictionary or value.claimed_drop_ids.size() > MAX_IDS: return false
+		if not ids(value.get("equipment_discoveries"), Registry.equipment_ids().size()): return false
+		for eq: String in value.equipment_discoveries:
+			if Registry.equipment(eq).is_empty(): return false
+		for eq: Variant in value.pending_equipment:
+			if not eq is String or Registry.equipment(eq).is_empty() or not value.pending_equipment[eq] is Dictionary: return false
+			var pending_level: Variant = value.pending_equipment[eq].get("level", 0)
+			if not number(pending_level, MAX_EQUIPMENT_LEVEL): return false
+			# Existing collection entries may have an unsecured, stronger field drop.
+			# The permanent level still changes only in extraction settlement.
+			if profile.equipment.has(eq) and int(pending_level) <= int(profile.equipment[eq].level): return false
+			var drop: Variant = value.pending_equipment[eq].get("drop_id")
+			if not drop is String or not value.claimed_drop_ids.has(drop) or not value.claimed_drop_ids[drop] is Dictionary or value.claimed_drop_ids[drop].get("equipment_id") != eq: return false
+			if value.claimed_drop_ids[drop].get("result") != "pending" or not number(value.claimed_drop_ids[drop].get("level", 0), MAX_EQUIPMENT_LEVEL) or int(value.claimed_drop_ids[drop].get("level", 0)) != int(pending_level): return false
+		for drop: Variant in value.claimed_drop_ids:
+			if not drop is String or drop.is_empty() or drop.length() > 160 or not value.claimed_drop_ids[drop] is Dictionary: return false
+			var record: Dictionary = value.claimed_drop_ids[drop]
+			if Registry.equipment(str(record.get("equipment_id", ""))).is_empty() or not record.get("result") in ["pending", "gold", "superseded"] or not number(record.get("gold"), 1000): return false
+			if not number(record.get("level", 0), MAX_EQUIPMENT_LEVEL): return false
+			var eq: String = str(record.equipment_id)
+			if not eq in value.equipment_discoveries: return false
+			if record.result == "pending":
+				if int(record.gold) != 0 or not value.pending_equipment.has(eq) or value.pending_equipment[eq].drop_id != drop: return false
+			elif record.result == "superseded":
+				if int(record.gold) != 0 or not value.pending_equipment.has(eq) or int(value.pending_equipment[eq].get("level", 0)) <= int(record.get("level", 0)): return false
+			elif record.result == "gold":
+				var economic_version: Variant = record.get("economy_version", 1)
+				if not number(economic_version, Economy.CURRENT_VERSION) or not Economy.supported(int(economic_version)): return false
+				if int(record.gold) != int(Economy.item_price(eq, int(economic_version)) / 10) or (not profile.equipment.has(eq) and not value.pending_equipment.has(eq)): return false
+			# Older checkpoints have no field decision. A duplicate converted to gold
+			# cannot masquerade as an equipable drop or create another decision.
+			if record.has("field_decision") and (record.result not in ["pending", "superseded"] or not record.field_decision in ["equip", "keep"]): return false
+		# Optional caches are separate transactions, never second room completions.
+		# The field is optional so existing cleared checkpoints remain resumable.
+		var optional_claims: Variant = value.get("optional_claims", {})
+		if not optional_claims is Dictionary or optional_claims.size() > count: return false
+		var optional_nodes: Dictionary = {}
+		var optional_drops: Dictionary = {}
+		for claim_id: Variant in optional_claims:
+			var claim: Variant = optional_claims[claim_id]
+			if not claim_id is String or not claim is Dictionary or not number(claim.get("reward_version"), 2) or int(claim.reward_version) < 1: return false
+			if not number(claim.get("node_index"), count - 1): return false
+			var index: int = int(claim.node_index)
+			if not completed.has(index) or optional_nodes.has(index): return false
+			optional_nodes[index] = true
+			var room_id: String = str(route.nodes[index].room_id)
+			var objective_id: String = {"L01":"side_crate","L11":"research_2"}.get(room_id, "")
+			if objective_id.is_empty() or claim.get("room_id") != room_id or claim.get("objective_id") != objective_id: return false
+			if claim_id != str(receipt.id) + ":node:" + str(index) + ":optional:" + objective_id: return false
+			# Keep original cache receipts at their published values. New claims use
+			# the frozen expedition difficulty for the scaled gold and extra drop.
+			var expected_gold := 18 if room_id == "L01" else 22
+			var expected_drops := 1
+			if int(claim.reward_version) == 2:
+				expected_gold = int(round(float(expected_gold) * (1.0 + 0.25 * int(value.difficulty))))
+				expected_drops = 2 if int(value.difficulty) >= 2 else 1
+			if claim.get("gold") != expected_gold or not ids(claim.get("drop_ids"), expected_drops) or claim.drop_ids.size() != expected_drops: return false
+			for drop_index in range(expected_drops):
+				var drop_id: String = str(claim.drop_ids[drop_index])
+				if drop_id != claim_id + ":equipment:" + str(drop_index) or not value.claimed_drop_ids.has(drop_id): return false
+				optional_drops[drop_id] = true
+		# A saved cache drop also requires its claim. Otherwise removing the claim
+		# would reopen an already rewarded cache after resume, including its gold.
+		for drop_id: String in value.claimed_drop_ids:
+			if ":optional:" in drop_id and not optional_drops.has(drop_id): return false
 	if not value.get("offers") is Dictionary or value.offers.size() > 32 or not ids(value.get("purchased_offer_ids"), 16): return false
 	for offer_id: Variant in value.offers:
 		var offer: Variant = value.offers[offer_id]
@@ -322,30 +364,58 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 		if not number(index, count - 1) or int(index) not in scan_indices or scanned.has(int(index)) or int(value.node_index) < supply: return false
 		scanned[int(index)] = true
 	if not scanned.is_empty() and (scanned.size() != scan_indices.size() or not (supply_prefix + "scan") in value.purchased_offer_ids): return false
-	if not receipt.get("loadout_snapshot") is Dictionary or not receipt.get("equipment_snapshot") is Dictionary or receipt.equipment_snapshot.size() > Registry.equipment_ids().size() or receipt.loadout_snapshot.size() != Registry.SLOTS.size(): return false
-	for eq: Variant in receipt.equipment_snapshot:
-		if Registry.equipment(str(eq)).is_empty() or not receipt.equipment_snapshot[eq] is Dictionary or not number(receipt.equipment_snapshot[eq].get("level"), MAX_EQUIPMENT_LEVEL): return false
-		var field_equipped := false
-		if value.pending_equipment.has(eq):
-			var origin: String = str(value.pending_equipment[eq].drop_id)
-			field_equipped = value.claimed_drop_ids[origin].get("field_decision", "") == "equip"
-		if field_equipped:
-			if int(receipt.equipment_snapshot[eq].level) != int(value.pending_equipment[eq].get("level", 0)): return false
-		else:
-			var proven: bool = profile.equipment.has(eq) and int(receipt.equipment_snapshot[eq].level) == int(profile.equipment[eq].level)
-			for prior: Dictionary in value.claimed_drop_ids.values():
-				if prior.equipment_id == eq and prior.result == "superseded" and prior.get("field_decision", "") == "equip" and int(prior.get("level", 0)) == int(receipt.equipment_snapshot[eq].level): proven = true
-			if not proven: return false
-	for eq: String in value.pending_equipment:
-		var drop: String = str(value.pending_equipment[eq].drop_id)
-		if value.claimed_drop_ids[drop].get("field_decision", "") == "equip" and not receipt.equipment_snapshot.has(eq): return false
-	for slot in Registry.SLOTS:
-		var eq: String = str(receipt.loadout_snapshot.get(slot, ""))
-		if eq.is_empty(): continue # An intentionally unequipped slot contributes no stats.
-		if not receipt.equipment_snapshot.has(eq) or Registry.equipment(eq).get("slot") != slot: return false
+	if ruleset == 2:
+		if not _instance_snapshot_valid(receipt, profile): return false
+	else:
+		if not receipt.get("loadout_snapshot") is Dictionary or not receipt.get("equipment_snapshot") is Dictionary or receipt.equipment_snapshot.size() > Registry.equipment_ids().size() or receipt.loadout_snapshot.size() != Registry.SLOTS.size(): return false
+		for eq: Variant in receipt.equipment_snapshot:
+			if Registry.equipment(str(eq)).is_empty() or not receipt.equipment_snapshot[eq] is Dictionary or not number(receipt.equipment_snapshot[eq].get("level"), MAX_EQUIPMENT_LEVEL): return false
+			var field_equipped := false
+			if value.pending_equipment.has(eq):
+				var origin: String = str(value.pending_equipment[eq].drop_id)
+				field_equipped = value.claimed_drop_ids[origin].get("field_decision", "") == "equip"
+			if field_equipped:
+				if int(receipt.equipment_snapshot[eq].level) != int(value.pending_equipment[eq].get("level", 0)): return false
+			else:
+				var proven: bool = profile.equipment.has(eq) and int(receipt.equipment_snapshot[eq].level) == int(profile.equipment[eq].level)
+				for prior: Dictionary in value.claimed_drop_ids.values():
+					if prior.equipment_id == eq and prior.result == "superseded" and prior.get("field_decision", "") == "equip" and int(prior.get("level", 0)) == int(receipt.equipment_snapshot[eq].level): proven = true
+				if not proven: return false
+		for eq: String in value.pending_equipment:
+			var drop: String = str(value.pending_equipment[eq].drop_id)
+			if value.claimed_drop_ids[drop].get("field_decision", "") == "equip" and not receipt.equipment_snapshot.has(eq): return false
+		for slot in Registry.SLOTS:
+			var eq: String = str(receipt.loadout_snapshot.get(slot, ""))
+			if eq.is_empty(): continue # An intentionally unequipped slot contributes no stats.
+			if not receipt.equipment_snapshot.has(eq) or Registry.equipment(eq).get("slot") != slot: return false
 	if not receipt.get("branches_snapshot") is Dictionary or receipt.branches_snapshot.size() != 2: return false
 	for key in ["q","ultimate"]:
 		if not receipt.branches_snapshot.get(key) in ["","A","B"]: return false
-	if int(receipt.level) != Registry.level_for_xp(int(profile.hero_xp[receipt.hero_id])): return false
-	var resolved: Dictionary = Resolver.resolve(receipt.hero_id, int(receipt.level), receipt.loadout_snapshot, receipt.equipment_snapshot)
+	if int(receipt.level) != Registry.level_for_xp(int(profile.hero_xp[receipt.hero_id]), ruleset): return false
+	var resolved: Dictionary = Resolver.resolve(receipt.hero_id, int(receipt.level), receipt.loadout_snapshot, receipt.equipment_snapshot, ruleset, profile.get("talents", {}).get(receipt.hero_id, {}))
 	return runtime_valid(value.get("runtime"), receipt.hero_id, resolved, int(value.node_index) == 0 and value.completed_nodes.is_empty())
+
+static func _instance_snapshot_valid(receipt: Dictionary, profile: Dictionary) -> bool:
+	if not receipt.get("loadout_snapshot") is Dictionary or not receipt.get("equipment_snapshot") is Dictionary: return false
+	if receipt.loadout_snapshot.size() != Registry.slots(2).size(): return false
+	if receipt.equipment_snapshot.size() > (32 if receipt.expedition.has("loot_events") else MAX_IDS): return false
+	var pending: Dictionary = receipt.expedition.get("pending_equipment", {})
+	for id: Variant in receipt.equipment_snapshot:
+		if not id is String: return false
+		var item: Variant = receipt.equipment_snapshot[id]
+		if not item is Dictionary or not Instances.validate(item).is_empty(): return false
+		if pending.has(id):
+			if item != pending[id]: return false
+		else:
+			if not profile.equipment.has(id) or profile.equipment[id].location == "pending" or item != profile.equipment[id]: return false
+	var used: Dictionary = {}
+	for slot: String in Registry.slots(2):
+		var id: Variant = receipt.loadout_snapshot.get(slot)
+		if not id is String: return false
+		if id.is_empty(): continue
+		if used.has(id) or not receipt.equipment_snapshot.has(id): return false
+		var item: Dictionary = receipt.equipment_snapshot[id]
+		if not Instances.validate(item).is_empty() or not Instances.can_equip(item, receipt.hero_id, int(receipt.level)): return false
+		if Registry.equipment(str(item.template_id), 2).get("slot") != slot: return false
+		used[id] = true
+	return true

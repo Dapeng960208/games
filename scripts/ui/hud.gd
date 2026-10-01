@@ -10,6 +10,9 @@ const HUD_MUTED := Color("766474")
 const HUD_AMBER := Color("a66a2e")
 const HUD_CYAN := Color("257f83")
 const HUD_RED := Color("e6664f")
+const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
+const SkillInspect = preload("res://scripts/ui/skill_inspection.gd")
+const Numbers = preload("res://config/numerical_rules.gd")
 const GrowthReadout = preload("res://scripts/ui/progression_readout.gd")
 const RewardPolicy = preload("res://scripts/world/room_rewards.gd")
 const QuestLocalization = preload("res://scripts/ui/quest_localization.gd")
@@ -785,9 +788,10 @@ func refresh() -> void:
 	shield_bar.visible = Game.run.shield > 0
 	guard_icon.visible = Game.run.shield > 0
 	resource_label.text = MineStyle.content_text(hero,"resource_name")+"  "+str(floori(Game.run.resource))+" / "+str(int(max_resource))
-	resource_label.size.x = 144 if Words.locale == "en" else 110
-	resource_bar.position.x = 296 if Words.locale == "en" else 270
-	resource_bar.size.x = 63 if Words.locale == "en" else 89
+	var wide_resource: bool = Words.locale == "en" or Game.run.ruleset_version() == 2
+	resource_label.size.x = 144 if wide_resource else 110
+	resource_bar.position.x = 296 if wide_resource else 270
+	resource_bar.size.x = 63 if wide_resource else 89
 	resource_bar.max_value = max_resource
 	resource_bar.value = Game.run.resource
 	if resource_kind != kind:
@@ -1066,7 +1070,7 @@ func _update_buffs() -> void:
 				var power := float(state.get("power",0))
 				var magnitude := ""
 				if effect in ["damage_reduction","brace_guard"]: magnitude = ("\nDamage reduction: %.0f%%" if Words.locale == "en" else "\n当前减伤：%.0f%%") % (power*100)
-				if effect in ["burn","corrosion","bleed"]: magnitude = ("\nDamage per tick before mitigation: %.1f" if Words.locale == "en" else "\n每秒基础伤害（减免前）：%.1f") % (power*float({"burn":.12,"corrosion":.08,"bleed":.10}[effect]))
+				if effect in ["burn","corrosion","bleed"]: magnitude = ("\nDamage per tick before mitigation: %s" if Words.locale == "en" else "\n每跳基础伤害（减免前）：%s") % Inspect.value("attack",Numbers.amount(power*float({"burn":.12,"corrosion":.08,"bleed":.10}[effect]),Game.run.ruleset_version()),false,false,Game.run.ruleset_version())
 				active_buffs[effect] = {"effect":effect,"name":COMBAT_STATUS_LABELS[effect],"name_en":effect.replace("_"," ").capitalize(),"description":COMBAT_STATUS_NOTES[effect]+magnitude,"description_en":_combat_status_note(effect)+magnitude,"remaining":state.remaining,"duration":float(state.remaining)+maxf(0,room.player.status.clock-float(state.get("applied_at",room.player.status.clock))),"source":"combat","color":Color("92dfda") if beneficial else Color("eb9278")}
 			if room.player.loadout != null and room.player.loadout.effects != null:
 				var rules: RefCounted = room.player.loadout.effects
@@ -1190,7 +1194,7 @@ func _relic_info(id: String) -> Dictionary:
 		var ledger_id: String = {"split":"RL01","ember":"RL02","arc":"RL03"}.get(id,id)
 		var rank := int(Game.expedition_snapshot().get("relic_levels",{}).get(ledger_id,1))
 		var biome: String = load("res://scripts/combat/race_relics.gd").biome_id(room)
-		return load("res://scripts/combat/class_relics.gd").display(Game.run.hero_id,id,rank,biome)
+		return load("res://scripts/combat/class_relics.gd").display(Game.run.hero_id,id,rank,biome,Game.run.ruleset_version())
 	var key := "RELIC_"+id.to_upper()
 	return {"name":Words.text(key+"_NAME"),"description":Words.text(key+"_DESC")}
 
@@ -1226,8 +1230,10 @@ func skill_info(slot: String) -> Dictionary:
 			state = ("Combo queued · Step %d" if Words.locale == "en" else "连招待施放 · 第%d步") % queue_position
 		elif busy and not locked and cooldown <= 0 and not insufficient:
 			state = "Action in progress" if Words.locale == "en" else "动作中"
+	var description := MineStyle.content_text(skill,"description",Words.text("HUD_DASH_DESCRIPTION"))
+	if slot != "dash": description = SkillInspect.describe(Game.run.hero_id,Game.run.level,Game.run.stats,slot,skill,room.player if is_instance_valid(room) and is_instance_valid(room.get("player")) else null,description)
 	var summary := Words.text("HUD_FINAL_COST",{"cost":snappedf(cost,0.1),"resource":MineStyle.content_text(hero_definition,"resource_name"),"cooldown":snappedf(float(skill.get("cooldown",0)),0.1)})
-	return {"name":MineStyle.content_text(skill,"name"),"description":MineStyle.content_text(skill,"description",Words.text("HUD_DASH_DESCRIPTION")),"summary":summary,"state":state,"locked":locked,"unlock":int(skill.get("unlock",1)),"cooldown":cooldown,"duration":float(skill.get("cooldown",0)),"insufficient":insufficient,"casting":casting,"queued":queued,"queue_position":queue_position,"busy":busy,"cast_progress":cast_progress,"accent":MineStyle.resource_color(resource_kind),"ready":not locked and cooldown <= 0 and not insufficient and not busy and not queued}
+	return {"name":MineStyle.content_text(skill,"name"),"description":description,"summary":summary,"state":state,"locked":locked,"unlock":int(skill.get("unlock",1)),"cooldown":cooldown,"duration":float(skill.get("cooldown",0)),"insufficient":insufficient,"casting":casting,"queued":queued,"queue_position":queue_position,"busy":busy,"cast_progress":cast_progress,"accent":MineStyle.resource_color(resource_kind),"ready":not locked and cooldown <= 0 and not insufficient and not busy and not queued}
 
 func _bind_skill_input_feedback() -> void:
 	var next_actor: Node = room.player if is_instance_valid(room) and is_instance_valid(room.get("player")) else null
@@ -1296,7 +1302,7 @@ func _update_tooltip() -> void:
 	elif active_detail_slot == "passive":
 		tooltip_title.text = passive_title.text
 		var definition: Dictionary = ContentRegistry.hero(Game.run.hero_id).get("passive",{})
-		body = MineStyle.content_text(definition,"description",str(passive_snapshot.get("description","")))+"\n\n"+passive_state.text+"\n"+class_label.tooltip_text
+		body = SkillInspect.passive_text(ContentRegistry.hero(Game.run.hero_id),Game.run.stats,room.player)+"\n\n"+passive_state.text+"\n"+class_label.tooltip_text
 	elif active_detail_slot == "inventory":
 		tooltip_title.text = "Backpack & character" if Words.locale == "en" else "背包与角色属性"
 		body = "Press B or click to change equipment and inspect your live character stats. The game pauses while the backpack is open." if Words.locale == "en" else "按 B 或点击打开背包，查看与更换装备、比较加成和角色实时属性。背包打开时游戏暂停。"

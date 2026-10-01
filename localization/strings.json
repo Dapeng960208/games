@@ -543,6 +543,8 @@
     "zh_CN": "足部",
     "en": "Feet"
   },
+  "SLOT_LEGS": {"zh_CN":"裤子","en":"Legs"},
+  "SLOT_RING": {"zh_CN":"戒指","en":"Ring"},
   "SLOT_CHARM": {
     "zh_CN": "饰品",
     "en": "Charm"

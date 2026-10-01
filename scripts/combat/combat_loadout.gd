@@ -32,7 +32,9 @@ func configure(player: Node2D) -> void:
 	_self_status_sources_known = true
 	if Game.run == null:
 		return
-	var loadout: Dictionary = Game.run.stats.get("loadout", Game.run.loadout_snapshot)
+	# V2 stats retain instance IDs; the pure reducer reads the separately
+	# resolved template map for fixed traits, without accessing owned records.
+	var loadout: Dictionary = Game.run.stats.get("loadout", Game.run.loadout_snapshot).duplicate(true)
 	effects.call("configure", loadout, Game.run.stats, str(Game.run.stats.get("resource_type", "")))
 	_update_modifiers(effects.call("advance", 0.0, _context()))
 
@@ -124,10 +126,10 @@ func _apply_commands(result: Dictionary, context: Dictionary) -> void:
 	_applying_depth += 1
 	for command: Dictionary in result.get("self_statuses", []):
 		var id: String = str(command.get("status", ""))
-		owner_player.status.apply(id, float(command.get("power", 0.0)), float(command.get("duration", 0.0)))
+		var applied: bool = owner_player.status.apply(id, float(command.get("power", 0.0)), float(command.get("duration", 0.0)))
 		var state: Dictionary = owner_player.status.states.get(id, {})
 		# A stronger same-clock write can win the status reducer; do not claim it.
-		if not state.is_empty() and is_equal_approx(float(state.power), float(command.get("power", 0.0))):
+		if applied and not state.is_empty():
 			_self_status_sources[id] = {"source":str(command.get("source", "")), "applied_at":float(state.applied_at), "power":float(state.power), "H":float(state.H)}
 	var shields: Array = result.get("shields", [])
 	if not shields.is_empty():
@@ -136,22 +138,28 @@ func _apply_commands(result: Dictionary, context: Dictionary) -> void:
 	elif float(result.get("shield_ratio", 0.0)) > 0.0:
 		_grant_shield(float(result.shield_ratio), float(result.get("shield_duration", 4.0)), str(result.get("shield_source", "loadout")))
 	if Game.run != null:
-		var healing: float = maxf(0.0, float(result.get("heal_ratio", 0.0))) * Game.run.max_hp
+		var healing: float = float(result.get("heal_amount", maxf(0.0, float(result.get("heal_ratio", 0.0))) * Game.run.max_hp))
 		if healing > 0.0 and Game.run.hp > 0.0:
 			owner_player.heal(healing)
 		Game.restore_resource(maxf(0.0, float(result.get("resource_restore", 0.0))))
 	_apply_refunds(result.get("cooldown_refunds", []))
 	_apply_extensions(result.get("status_extensions", []), context)
 	var accepted: Dictionary = {}
+	var accepted_effects: Array[String] = []
 	for command: Dictionary in result.get("statuses", []):
 		var target: Node2D = _target(command.get("target_id"), context.get("target"))
 		var status_id: String = str(command.get("status", ""))
 		if _apply_status(target, status_id, float(command.get("power", context.get("H", 0.0))), float(command.get("duration", 3.0))):
+			var effect_id: String = str(command.get("effect_id", ""))
+			if not effect_id.is_empty() and effect_id not in accepted_effects: accepted_effects.append(effect_id)
 			var id: int = target.get_instance_id()
 			if not accepted.has(id):
 				accepted[id] = {"target": target, "states": []}
 			if not accepted[id].states.has(status_id):
 				accepted[id].states.append(status_id)
+	# Rejected provisional status packets become available to later slot stages;
+	# accepted bundles commit exactly one ICD before any status follow-ups.
+	result.triggered.append_array(effects.settle_status_requests(context, result.get("statuses", []), accepted_effects))
 	# Only confirmed status writes may activate "successfully applied" affixes.
 	for id: int in accepted:
 		var followup: Dictionary = context.duplicate()
@@ -239,13 +247,13 @@ func _apply_bonus_hit(command: Dictionary, context: Dictionary) -> void:
 			continue
 		seen[target.get_instance_id()] = true
 		# Deliberately bypass room.resolve_direct_hit and all primary-hit callbacks.
-		var packet: Dictionary = {"damage_source":"equipment","damage_type":"magic" if Game.run.hero_id == "CH03" else "physical","attacker_stats":Game.run.stats,"proc_depth":1,"equipment_eligible":false,"original_basic":false}
-		var accepted_hit: bool = bool(target.call("take_damage", amount, &"equipment", Vector2.ZERO, packet))
+		var packet: Dictionary = {"damage_source":"equipment","damage_type":str(command.get("damage_type", "magic" if Game.run.hero_id == "CH03" else "physical")),"attacker_stats":Game.run.stats,"proc_depth":1,"equipment_eligible":false,"original_basic":false}
+		var accepted_hit: bool = bool(target.call("take_damage", float(command.get("damage_by_target", {}).get(str(identifier), amount)), &"equipment", Vector2.ZERO, packet))
 		if accepted_hit and _alive(target):
 			for status_data: Variant in command.get("states", []):
 				var status_id: String = str(status_data.get("status", "")) if status_data is Dictionary else str(status_data)
 				var duration: float = float(status_data.get("duration", 3.0)) if status_data is Dictionary else 3.0
-				_apply_status(target, status_id, float(context.get("H", 0.0)), duration)
+				_apply_status(target, status_id, float(command.get("power", context.get("H", 0.0))), duration)
 		if seen.size() >= 3:
 			break
 

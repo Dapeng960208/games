@@ -1,5 +1,7 @@
 class_name HeroPassives
 extends RefCounted
+
+const Numbers = preload("res://config/numerical_rules.gd")
 ## Automatic, room-local class passives. Only confirmed original packets and
 ## successful cast commitments enter this state; derived damage never does.
 
@@ -126,7 +128,8 @@ func before_hit(target: Node2D, amount: float, source: StringName, context: Dict
 		return amount
 	_reservations[root] = {"target_id":target.get_instance_id(), "time":_clock}
 	_trim(_reservations)
-	return amount + maxf(0.0, float(context.get("H", owner_player.attack_power()))) * 0.65
+	var bonus: Variant = Numbers.amount(maxf(0.0, float(context.get("H", owner_player.attack_power()))) * 0.65, Game.run.ruleset_version())
+	return amount + float(bonus)
 
 ## The room calls this only after a direct hit removes health or shield. The
 ## explicit loss check also protects callers outside that shared hit pipeline.
@@ -184,7 +187,7 @@ func skill_committed(slot: String, cast_id: int) -> void:
 		_last_kind = "skill"
 		_rhythm_remaining = RHYTHM_LIFETIME
 		_cooldown = 2.0
-		Game.restore_resource(8.0)
+		owner_player.restore_class_resource(float(Numbers.scale(8.0, Game.run.ruleset_version())))
 		owner_player.charge_nearest_resonance(owner_player.position, 260.0)
 		if is_instance_valid(owner_player.room):
 			owner_player.room.add_ring(owner_player.position, Color("78d9d1"), 38.0, 0.28)
@@ -206,7 +209,7 @@ func snapshot() -> Dictionary:
 		hint = "弱点就绪 · 下次普攻 / 技能 +65%攻击" if _count == 2 else "同目标命中 %d/2 · 第三击 / 技能破弱点" % _count
 	else:
 		tint = Color("78d9d1")
-		hint = "共鸣已满 · 下次技能回 8 法力" if _count >= 3 else "普攻 / 技能交替 · 共鸣 %d/3" % _count
+		hint = "共鸣已满 · 下次技能回 %d 法力" % int(Numbers.scale(8.0, Game.run.ruleset_version() if Game.run != null else Numbers.LEGACY)) if _count >= 3 else "普攻 / 技能交替 · 共鸣 %d/3" % _count
 	if _cooldown > 0.0:
 		hint = "被动冷却 %.1f 秒" % _cooldown
 	return {"name":str(definition.get("name", "职业被动")), "description":str(definition.get("description", "")), "current":_count, "max":max_count, "hint":hint, "color":tint, "icd":_cooldown, "cooldown":_cooldown, "ready":_cooldown <= 0.0 and ((_hero == "CH02" and _count == 2) or (_hero == "CH03" and _count >= 3)), "focus_remaining":_focus_remaining, "rhythm_remaining":_rhythm_remaining}

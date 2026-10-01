@@ -1,7 +1,9 @@
 class_name EquipmentEffects
 extends RefCounted
+const Numerical = preload("res://config/numerical_rules.gd")
 ## Deterministic equipment event reducer; never reads/mutates Game or scene nodes.
-## configure accepts six slot -> EQ IDs, resolved stats, and rage/energy/mana.
+## configure accepts legacy slot -> EQ IDs or v2 slot -> instance IDs plus
+## StatResolver equipment_templates. Only template identities select fixed traits.
 ## Time advances ONLY through advance(delta, context), so menus/pause freeze ICDs.
 ## before_hit reads PRE-HIT target_states, returning damage/crit/knockback bonuses.
 ## after_hit follows a confirmed hit. status_applied RECORDS successful application
@@ -10,6 +12,8 @@ extends RefCounted
 ## this resumes remaining slots in order. Continuations can request feet statuses
 ## once more before completing charm/set effects. Native status confirmations
 ## arrive before after_hit. kill follows confirmed death, once per target.
+## V2 adapters settle_status_requests before status_applied/continuation so only
+## accepted standalone equipment-status bundles commit their packet and ICD.
 ## Other events: room_enter, dash, dash_end, damaged, shield_gain, skill_cast.
 ## Every discrete event requires unique attack_id or event_id; attacks share their
 ## root_event_id across targets and stages. Sources: primary (depth 0), burn tick
@@ -37,6 +41,7 @@ const ENEMY_STATES: Array[String] = ["burn", "shock", "chill", "corrosion", "ble
 const ACTIVE_SLOTS: Array[String] = ["Q", "right", "F", "R"]
 var clock: float = 0.0
 var equipped: Dictionary = {}
+var instance_loadout: Dictionary = {}
 var set_counts: Dictionary = {}
 var stats: Dictionary = {}
 var resource_type: String = ""
@@ -74,7 +79,8 @@ static func implemented_set_ids() -> Array[String]:
 func configure(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> void:
 	stats = resolved_stats.duplicate(true)
 	resource_type = type if type in ["rage", "energy", "mana"] else ""
-	var binding: Dictionary = loadout_binding(loadout)
+	var binding: Dictionary = loadout_binding(loadout, resolved_stats)
+	instance_loadout = binding.get("instance_loadout", {}).duplicate(true)
 	equipped = binding.equipped
 	set_counts = binding.set_counts
 	clock = 0.0
@@ -96,7 +102,7 @@ func configure(loadout: Dictionary, resolved_stats: Dictionary, type: String) ->
 ## The caller restores a migrated snapshot after this when changing a live run.
 func rebind(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> void:
 	var previous: Dictionary = {"equipped":equipped.duplicate(), "set_counts":set_counts.duplicate()}
-	var next: Dictionary = loadout_binding(loadout)
+	var next: Dictionary = loadout_binding(loadout, resolved_stats)
 	for values: Dictionary in [buffs, windows, counts, same_target]:
 		_prune_loadout_sources(values, previous, next)
 	if not source_active("S05_6", previous) or not source_active("S05_6", next):
@@ -108,24 +114,47 @@ func rebind(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> vo
 	for root: Dictionary in roots.values():
 		root.erase("pending_context")
 		root.erase("pending_stage")
+	instance_loadout = next.get("instance_loadout", {}).duplicate(true)
 	equipped = next.equipped
 	set_counts = next.set_counts
 	stats = resolved_stats.duplicate(true)
 	resource_type = type if type in ["rage", "energy", "mana"] else ""
 
-static func loadout_binding(loadout: Dictionary) -> Dictionary:
+## V2 bindings consume a validated resolver snapshot, never an unowned template
+## guessed from an instance ID. Identity stays in instance_loadout while fixed
+## trait sources keep their stable template IDs and cooldown identities.
+static func loadout_binding(loadout: Dictionary, resolved_stats: Dictionary = {}) -> Dictionary:
 	var items: Dictionary = {}
 	var sets: Dictionary = {}
-	for slot in Registry.SLOTS:
-		var id: String = str(loadout.get(slot, ""))
-		var item: Dictionary = Registry.equipment(id)
+	var ruleset: int = int(resolved_stats.get("ruleset_version", Numerical.LEGACY))
+	var templates: Dictionary = loadout
+	var instances: Dictionary = {}
+	if ruleset == Numerical.V2:
+		var bound: Variant = resolved_stats.get("loadout")
+		var mapped: Variant = resolved_stats.get("equipment_templates")
+		if not bound is Dictionary or not mapped is Dictionary:
+			return {"equipped":items, "set_counts":sets, "instance_loadout":instances}
+		for slot: Variant in loadout:
+			if not slot is String or slot not in Registry.slots(ruleset) or not loadout[slot] is String:
+				return {"equipped":{}, "set_counts":{}, "instance_loadout":{}}
+			if not str(loadout[slot]).is_empty(): instances[slot] = loadout[slot]
+		if instances != bound or mapped.size() != instances.size():
+			return {"equipped":{}, "set_counts":{}, "instance_loadout":{}}
+		templates = mapped
+	for slot: String in Registry.slots(ruleset):
+		var id: String = str(templates.get(slot, ""))
+		var item: Dictionary = Registry.equipment(id, ruleset)
 		if item.is_empty() or str(item.get("slot", "")) != slot or items.has(id):
+			if ruleset == Numerical.V2 and instances.has(slot):
+				return {"equipped":{}, "set_counts":{}, "instance_loadout":{}}
 			continue
 		items[id] = true
 		var set_id: String = str(item.get("set_id", ""))
 		if not set_id.is_empty():
 			sets[set_id] = int(sets.get(set_id, 0)) + 1
-	return {"equipped":items, "set_counts":sets}
+	var result: Dictionary = {"equipped":items, "set_counts":sets}
+	if ruleset == Numerical.V2: result["instance_loadout"] = instances.duplicate(true)
+	return result
 
 ## IDs may carry a room/target suffix. Set sources require their exact tier,
 ## so retaining two pieces never keeps a former four/six-piece benefit.
@@ -143,10 +172,10 @@ static func _prune_loadout_sources(values: Dictionary, previous: Dictionary, nex
 
 ## Pure save-state migration. Never clear cooldowns, consumed room flags or
 ## rate-limit histories: taking an item off and on cannot replenish rewards.
-static func for_loadout(state: Dictionary, old_loadout: Dictionary, new_loadout: Dictionary) -> Dictionary:
+static func for_loadout(state: Dictionary, old_loadout: Dictionary, new_loadout: Dictionary, old_stats: Dictionary = {}, new_stats: Dictionary = {}) -> Dictionary:
 	var result: Dictionary = state.duplicate(true)
-	var previous: Dictionary = loadout_binding(old_loadout)
-	var next: Dictionary = loadout_binding(new_loadout)
+	var previous: Dictionary = loadout_binding(old_loadout, old_stats)
+	var next: Dictionary = loadout_binding(new_loadout, new_stats)
 	# Older checkpoints used the shared dash timer for these two effects. Only
 	# a source worn on both sides may retain that unconsumed, remaining window.
 	for id: String in ["EQ60", "S08_4"]:
@@ -196,12 +225,12 @@ func _health_ratio(ctx: Dictionary) -> float:
 func _modifiers(ctx: Dictionary, out: Dictionary) -> void:
 	var shielded: bool = float(ctx.get("shield", 0.0)) > 0.0
 	for id: String in equipped:
-		var passive: Dictionary = Registry.equipment(id).get("combat_passive", {})
+		var passive: Dictionary = Registry.equipment(id, int(stats.get("ruleset_version", Numerical.LEGACY))).get("combat_passive", {})
 		if not passive.is_empty() and _shop_condition(str(passive.condition),ctx):
 			out[str(passive.stat)] += float(passive.amount)
 	for set_id: String in set_counts:
 		if int(set_counts[set_id]) < 2: continue
-		var passive: Dictionary = Registry.sets().get(set_id,{}).get("shop_passive", {})
+		var passive: Dictionary = Registry.sets(int(stats.get("ruleset_version", Numerical.LEGACY))).get(set_id,{}).get("shop_passive", {})
 		if not passive.is_empty() and _shop_condition(str(passive.condition),ctx):
 			out[str(passive.stat)] += float(passive.amount)
 	if _has_set("S09",6) and shielded: out.damage_bonus += 0.08
@@ -251,9 +280,10 @@ func _shop_condition(condition: String, ctx: Dictionary) -> bool:
 	return false
 
 func _cap_modifiers(out: Dictionary) -> Dictionary:
-	out.damage_bonus = clampf(out.damage_bonus, 0.0, maxf(0.0, 0.60 - float(stats.get("damage_bonus", 0.0))))
+	var limits: Dictionary = Numerical.value("caps") if Numerical.is_v2(stats) else {}
+	out.damage_bonus = clampf(out.damage_bonus, 0.0, maxf(0.0, float(limits.get("damage_bonus", 0.60)) - float(stats.get("damage_bonus", 0.0))))
 	out.crit_bonus = clampf(out.crit_bonus, 0.0, maxf(0.0, 0.75 - float(stats.get("crit_chance", 0.0))))
-	out.attack_speed_bonus = clampf(out.attack_speed_bonus, 0.0, maxf(0.0, 0.60 - float(stats.get("attack_speed_bonus", 0.0))))
+	out.attack_speed_bonus = clampf(out.attack_speed_bonus, 0.0, maxf(0.0, float(limits.get("attack_speed", 0.60)) - float(stats.get("attack_speed_bonus", 0.0))))
 	out.move_speed_bonus = clampf(out.move_speed_bonus, 0.0, maxf(0.0, 0.45 - float(stats.get("move_speed_bonus", 0.0))))
 	out.damage_reduction_bonus = clampf(out.damage_reduction_bonus, 0.0, maxf(0.0, 0.35 - float(stats.get("equipment_damage_reduction", 0.0))))
 	out.chill_duration_bonus = clampf(out.chill_duration_bonus, 0.0, maxf(0.0, 0.40 - float(stats.get("status_duration", 0.0))))
@@ -286,6 +316,36 @@ func advance(delta: float, ctx: Dictionary) -> Dictionary:
 	return _cap_modifiers(out)
 
 func handle(event: String, ctx: Dictionary) -> Dictionary:
+	if event == "before_hit" and Numerical.is_v2(stats):
+		return preview_hit(ctx)
+	return _handle(event, ctx)
+
+## Blocked / immune / rounded-zero contacts cannot spend a proc window or a
+## hit counter. Preview precisely the same reducer against isolated state; the
+## first confirmed after_hit commits _before through _after below.
+func preview_hit(ctx: Dictionary) -> Dictionary:
+	var previous: Dictionary = {"roots":roots, "cooldowns":cooldowns, "windows":windows,
+		"counts":counts, "same_target":same_target, "first_full_targets":first_full_targets,
+		"eq12_spent_at":eq12_spent_at}
+	roots = roots.duplicate()
+	var root_id: String = str(ctx.get("root_event_id", ctx.get("attack_id", ctx.get("event_id", ""))))
+	if roots.has(root_id): roots[root_id] = roots[root_id].duplicate(true)
+	cooldowns = cooldowns.duplicate(true)
+	windows = windows.duplicate(true)
+	counts = counts.duplicate(true)
+	same_target = same_target.duplicate(true)
+	first_full_targets = first_full_targets.duplicate(true)
+	var out: Dictionary = _handle("before_hit", ctx)
+	roots = previous.roots
+	cooldowns = previous.cooldowns
+	windows = previous.windows
+	counts = previous.counts
+	same_target = previous.same_target
+	first_full_targets = previous.first_full_targets
+	eq12_spent_at = float(previous.eq12_spent_at)
+	return out
+
+func _handle(event: String, ctx: Dictionary) -> Dictionary:
 	var out: Dictionary = _empty()
 	var event_id: String = str(ctx.get("attack_id", ctx.get("event_id", "")))
 	if event_id.is_empty():
@@ -313,6 +373,9 @@ func handle(event: String, ctx: Dictionary) -> Dictionary:
 			if _has("EQ48") and _activate("EQ48", 6.0, root, out):
 				_shield(out, ctx, 0.02)
 		"damaged": _damaged(ctx, root, out)
+		"class_shield_gain":
+			if Numerical.is_v2(stats) and _has_set("S06", 4) and bool(ctx.get("accepted_refresh", false)) and not bool(ctx.get("equipment", false)) and str(ctx.get("source", "")) in ["hero_passive:three_rivets", "hero_f"] and _activate("S06_4", 6.0, root, out, false):
+				_buff("S06_4", "damage_bonus", 0.20, 4.0)
 		"skill_cast":
 			if float(ctx.get("base_cost", 0.0)) > 0.0 and bool(ctx.get("cast_success", true)) and str(ctx.get("resource_type", resource_type)) == resource_type:
 				windows.erase("EQ56")
@@ -338,7 +401,8 @@ func skill_cost(base_cost: float, ctx: Dictionary = {}) -> float:
 	if base_cost <= 0.0:
 		return 0.0
 	var reduction: float = 0.08 if _window("EQ56") and str(ctx.get("resource_type", resource_type)) == resource_type else 0.0
-	return maxf(1.0, base_cost * (1.0 - minf(0.20, reduction)))
+	var ruleset := int(stats.get("ruleset_version", Numerical.LEGACY))
+	return Numerical.amount(maxf(Numerical.scale(1.0, ruleset), base_cost * (1.0 - minf(0.20, reduction))), ruleset)
 
 func _root(id: String) -> Dictionary:
 	if not roots.has(id):
@@ -362,7 +426,7 @@ func reserve_native(root_id: String, packet_id: String, coefficient: float = 0.0
 
 func root_usage(root_id: String) -> Dictionary:
 	var root: Dictionary = _root(root_id)
-	return {"packets":int(root.packets), "coefficient":float(root.coefficient)}
+	return {"packets":int(root.packets), "coefficient":float(root.coefficient), "damage_spent":int(root.get("damage_spent", 0))}
 
 func _ready(id: String) -> bool:
 	return clock + 0.000001 >= float(cooldowns.get(id, 0.0))
@@ -375,6 +439,37 @@ func _activate(id: String, icd: float, root: Dictionary, out: Dictionary, packet
 	cooldowns[id] = clock + icd
 	out.triggered.append(id)
 	return true
+
+## Standalone status commands provisionally occupy one shared packet while the
+## adapter asks the receiver. Rejected writes never start their emitter's ICD.
+func _activate_status(id: String, icd: float, root: Dictionary, out: Dictionary) -> bool:
+	if not Numerical.is_v2(stats): return _activate(id, icd, root, out)
+	if not _ready(id) or int(root.packets) >= 4: return false
+	if not root.has("pending_status_effects"): root["pending_status_effects"] = {}
+	if root.pending_status_effects.has(id): return false
+	root.pending_status_effects[id] = {"icd":icd}
+	root.packets += 1
+	return true
+
+## Multiple statuses emitted by one effect (EQ06) share one reservation. One
+## accepted write commits it; all rejected releases it before later slots run.
+func settle_status_requests(ctx: Dictionary, commands: Array, accepted_effects: Array[String]) -> Array[String]:
+	var committed: Array[String] = []
+	if not Numerical.is_v2(stats): return committed
+	var root_id: String = str(ctx.get("root_event_id", ctx.get("attack_id", ctx.get("event_id", ""))))
+	var root: Dictionary = roots.get(root_id, {})
+	var pending: Dictionary = root.get("pending_status_effects", {})
+	for command: Dictionary in commands:
+		var id: String = str(command.get("effect_id", ""))
+		if not pending.has(id): continue
+		var request: Dictionary = pending[id]
+		pending.erase(id)
+		if id in accepted_effects:
+			cooldowns[id] = clock + float(request.icd)
+			committed.append(id)
+		else:
+			root.packets = maxi(0, int(root.packets) - 1)
+	return committed
 
 func _buff(id: String, stat: String, amount: float, duration: float) -> void:
 	buffs[id] = {"stat":stat, "amount":amount, "until":clock + duration}
@@ -419,7 +514,7 @@ func _before(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 			root.attack_modifiers.knockback_scale *= 1.30
 		if _has("EQ59") and bool(root.flags.EQ59):
 			counts.EQ59 = 0
-		if _has_set("S06", 4) and bool(root.flags.S06_4) and float(ctx.get("shield", 0.0)) > 0.0 and _activate("S06_4", 3.0, root, out, false): root.attack_modifiers.damage_bonus += 0.12
+		if not Numerical.is_v2(stats) and _has_set("S06", 4) and bool(root.flags.S06_4) and float(ctx.get("shield", 0.0)) > 0.0 and _activate("S06_4", 3.0, root, out, false): root.attack_modifiers.damage_bonus += 0.12
 	out.damage_bonus += float(root.attack_modifiers.damage_bonus)
 	out.knockback_scale *= float(root.attack_modifiers.knockback_scale)
 	for ready_id in ["EQ49", "EQ59"]:
@@ -440,21 +535,21 @@ func _before(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 
 func _after(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	# Callers may omit before_hit only when they do not need pre-hit bonuses.
-	if not bool(root.counted):
+	if Numerical.is_v2(stats) or not bool(root.counted):
 		_before(ctx, root, _empty())
 	if bool(root.post_counted):
 		return
 	root.post_counted = true
 	var target: String = str(ctx.get("target_id", ""))
-	if _has("EQ01") and bool(root.flags.get("EQ01_bleed", false)) and _activate("EQ01_bleed", 0.0, root, out): _status(out, ctx, "bleed")
-	if _has("EQ03") and not _state(ctx, "burn") and _activate("EQ03:" + target, 4.0, root, out): _status(out, ctx, "burn")
-	if _has("EQ04") and _nth("EQ04", 3) and _activate("EQ04", 0.0, root, out): _status(out, ctx, "shock")
-	if _has("EQ05") and _nth("EQ05", 3) and _activate("EQ05", 0.0, root, out): _status(out, ctx, "chill")
-	if _has("EQ06") and _consecutive("EQ06", target, 3) and _activate("EQ06", 0.0, root, out):
-		_status(out, ctx, "corrosion")
-		_status(out, ctx, "grievous")
+	if _has("EQ01") and bool(root.flags.get("EQ01_bleed", false)) and _activate_status("EQ01_bleed", 0.0, root, out): _status(out, ctx, "bleed", "EQ01_bleed")
+	if _has("EQ03") and not _state(ctx, "burn") and _activate_status("EQ03:" + target, 4.0, root, out): _status(out, ctx, "burn", "EQ03:" + target)
+	if _has("EQ04") and _nth("EQ04", 3) and _activate_status("EQ04", 0.0, root, out): _status(out, ctx, "shock", "EQ04")
+	if _has("EQ05") and _nth("EQ05", 3) and _activate_status("EQ05", 0.0, root, out): _status(out, ctx, "chill", "EQ05")
+	if _has("EQ06") and _consecutive("EQ06", target, 3) and _activate_status("EQ06", 0.0, root, out):
+		_status(out, ctx, "corrosion", "EQ06")
+		_status(out, ctx, "grievous", "EQ06")
 	if _has("EQ07") and _nth("EQ07", 4) and _activate("EQ07", 3.0, root, out): _shield(out, ctx, 0.03)
-	if _has("EQ10") and bool(root.flags.get("EQ10", false)) and _activate("EQ10", 6.0, root, out): _status(out, ctx, "shock")
+	if _has("EQ10") and bool(root.flags.get("EQ10", false)) and _activate_status("EQ10", 6.0, root, out): _status(out, ctx, "shock", "EQ10")
 	if not out.statuses.is_empty():
 		root.pending_context = ctx.duplicate(true)
 		root.pending_stage = "weapon"
@@ -481,11 +576,12 @@ func _after_rest(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 			if _consecutive("EQ35", target, 3): _bonus(out, ctx, root, "EQ35", 4.0, 0.15, 1, false)
 		else: same_target.erase("EQ35")
 	if _has("EQ36") and _state(ctx, "corrosion") and _activate("EQ36", 2.0, root, out): _extend(out, ctx, "corrosion")
-	if _has("EQ38") and bool(root.flags.get("EQ38", false)) and _state(ctx, "chill"): _bonus(out, ctx, root, "EQ38", 5.0, 0.20, 1, false)
+	var eq38_condition: bool = float(ctx.get("shield", 0.0)) > 0.0 if Numerical.is_v2(stats) else _state(ctx, "chill")
+	if _has("EQ38") and bool(root.flags.get("EQ38", false)) and eq38_condition: _bonus(out, ctx, root, "EQ38", 5.0, 0.20, 1, false)
 	if _has("EQ39") and critical and _state(ctx, "corrosion") and _activate("EQ39", 4.0, root, out, false): _buff("EQ39", "attack_speed_bonus", 0.04, 2.0)
 	if applied.has("shock") and _has("EQ44"): _refund(out, ctx, root, "EQ44", 3.0, "dash", 0.10)
 	if applied.has("corrosion") and _has("EQ46") and _activate("EQ46", 5.0, root, out, false): _buff("EQ46", "move_speed_bonus", 0.05, 3.0)
-	if _has("EQ50") and bool(root.flags.get("EQ50", false)) and _state(ctx, "shock") and _activate("EQ50", 6.0, root, out): _status(out, ctx, "chill")
+	if _has("EQ50") and bool(root.flags.get("EQ50", false)) and _state(ctx, "shock") and _activate_status("EQ50", 6.0, root, out): _status(out, ctx, "chill", "EQ50")
 	if not out.statuses.is_empty():
 		root.pending_context = ctx.duplicate(true)
 		root.pending_stage = "feet"
@@ -506,7 +602,8 @@ func _after_charm(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if applied.has("burn") and _has("EQ53") and _activate("EQ53", 7.0, root, out): _shield(out, ctx, 0.02)
 	if _has("EQ55") and critical and _state(ctx, "chill") and _activate("EQ55", 5.0, root, out): _heal(out, ctx, 0.01)
 	if _has("EQ56") and _basic(ctx) and _state(ctx, "corrosion") and not resource_type.is_empty() and _activate("EQ56", 6.0, root, out, false): windows.EQ56 = clock + 3.0
-	if _has("EQ58") and _state(ctx, "chill") and _activate("EQ58", 6.0, root, out): _shield(out, ctx, 0.02)
+	var eq58_condition: bool = float(ctx.get("shield", 0.0)) > 0.0 if Numerical.is_v2(stats) else _state(ctx, "chill")
+	if _has("EQ58") and eq58_condition and _activate("EQ58", 6.0, root, out): _shield(out, ctx, 0.02)
 	if _has("EQ59"):
 		if int(counts.get("EQ59", 0)) >= 3 and not _window("EQ59"): counts.EQ59 = 0
 		counts.EQ59 = 0 if critical else mini(3, int(counts.get("EQ59", 0)) + 1)
@@ -526,7 +623,12 @@ func _after_charm(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if _has_set("S03", 6) and _state(ctx, "chill"): _bonus(out, ctx, root, "S03_6", 6.0, 0.30, 3, true, "chill")
 	if applied.has("corrosion") and _has_set("S04", 4) and _activate("S04_4", 3.0, root, out): _heal(out, ctx, 0.01)
 	if _has_set("S04", 6) and _state(ctx, "corrosion"): _bonus(out, ctx, root, "S04_6", 6.0, 0.35, 3, true)
-	if _has_set("S06", 6) and bool(root.flags.get("S06_6", false)): _bonus(out, ctx, root, "S06_6", 8.0, 0.40, 3, false)
+	if _has_set("S06", 6):
+		if Numerical.is_v2(stats):
+			if bool(ctx.get("full_break_w", false)) and bool(ctx.get("shielded_cast", false)):
+				_bonus(out, ctx, root, "S06_6", 4.0, 0.60, 3, false, "", float(ctx.get("H_skill", ctx.get("H", 0.0))), "physical")
+		elif bool(root.flags.get("S06_6", false)):
+			_bonus(out, ctx, root, "S06_6", 8.0, 0.40, 3, false)
 	if _has_set("S07", 4) and critical and (_state(ctx, "chill") or _state(ctx, "corrosion")): _refund(out, ctx, root, "S07_4", 2.0, "active", 0.25)
 	if _has_set("S07", 6) and critical and (_state(ctx, "chill") or _state(ctx, "corrosion")) and _nth("S07_6", 3): _bonus(out, ctx, root, "S07_6", 5.0, 0.40, 1, false)
 	if _has_set("S08", 2) and bool(root.flags.get("S08_2", false)) and _state(ctx, "shock"): _refund(out, ctx, root, "S08_2", 3.0, "dash", 0.20)
@@ -562,7 +664,7 @@ func _dash(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	windows.EQ60 = clock + 3.0
 	windows.S08_4 = clock + 2.0
 	windows.S08_2 = clock + 2.0
-	if float(ctx.get("shield", 0.0)) > 0.0:
+	if not Numerical.is_v2(stats) and float(ctx.get("shield", 0.0)) > 0.0:
 		windows.S06_4 = clock + 2.0
 	if _has("EQ20") and _activate("EQ20", 4.0, root, out, false):
 		out.self_statuses.append({"status":"damage_reduction","power":0.12,"duration":2.0,"source":"EQ20"})
@@ -586,7 +688,7 @@ func _damaged(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 		if _has("EQ18") and _activate("EQ18", 8.0, root, out, false): windows.EQ18 = clock + 3.0
 		if _has("EQ57") and _activate("EQ57", 8.0, root, out, false): _buff("EQ57", "move_speed_bonus", 0.06, 3.0)
 		if _has_set("S05", 6) and _activate("S05_6", 10.0, root, out): delayed_shield_at = clock + 1.0
-		if _has_set("S06", 6): windows.S06_6 = clock + 5.0
+		if not Numerical.is_v2(stats) and _has_set("S06", 6): windows.S06_6 = clock + 5.0
 
 func _kill(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	var target: String = str(ctx.get("target_id", ""))
@@ -614,11 +716,12 @@ func _any_enemy_state(states: Array) -> bool:
 		if id in ENEMY_STATES: return true
 	return false
 
-func _status(out: Dictionary, ctx: Dictionary, id: String) -> void:
+func _status(out: Dictionary, ctx: Dictionary, id: String, effect_id: String = "") -> void:
 	var base_duration: float = 4.0 if id == "corrosion" else 3.0
 	var bonus: float = float(stats.get("status_duration", 0.0)) + (0.20 if id == "chill" and _has_set("S03", 2) else 0.0)
 	out.statuses.append({"target_id":str(ctx.get("target_id", "")), "status":id,
 		"duration":base_duration * (1.0 + minf(0.40, bonus)), "power":float(ctx.get("H", stats.get("attack", 0.0))), "source":"equipment"})
+	if Numerical.is_v2(stats): out.statuses.back()["effect_id"] = effect_id
 
 func _extend(out: Dictionary, ctx: Dictionary, id: String) -> void:
 	out.status_extensions.append({"target_id":str(ctx.get("target_id", "")), "status":id, "seconds":0.30, "max_duration":(4.0 if id == "corrosion" else 3.0) * 1.40, "source":"equipment"})
@@ -634,6 +737,16 @@ func _shield(out: Dictionary, _ctx: Dictionary, ratio: float, source: String = "
 
 func _heal(out: Dictionary, ctx: Dictionary, ratio: float) -> void:
 	_prune_history(heal_history, 1.0)
+	if Numerical.is_v2(stats):
+		var maximum := Numerical.integer(float(ctx.get("max_hp", stats.get("max_hp", 0))))
+		var pending := int(out.get("heal_amount", 0))
+		var missing := maxi(0, maximum - Numerical.integer(float(ctx.get("hp", maximum))) - pending)
+		var budget := maxi(0, Numerical.integer(maximum * 0.03) - int(_history_total(heal_history)))
+		var accepted_units := mini(Numerical.integer(maximum * ratio), mini(missing, budget))
+		if accepted_units > 0:
+			out["heal_amount"] = pending + accepted_units
+			heal_history.append({"time":clock, "amount":accepted_units})
+		return
 	var accepted: float = maxf(0.0, minf(ratio, minf(0.03 - _history_total(heal_history), 1.0 - _health_ratio(ctx) - float(out.heal_ratio))))
 	if accepted > 0.0:
 		out.heal_ratio += accepted
@@ -643,10 +756,16 @@ func _restore_resource(out: Dictionary, ctx: Dictionary, root: Dictionary) -> vo
 	if resource_type.is_empty() or str(ctx.get("resource_type", resource_type)) != resource_type: return
 	_prune_history(resource_history, 5.0)
 	var maximum: float = maxf(0.0, float(ctx.get("resource_max", stats.get("resource_max", 0.0))))
-	var desired: float = float({"rage":1.0, "energy":2.0, "mana":3.0}.get(resource_type, 0.0))
-	var amount: float = maxf(0.0, minf(desired, minf(maximum - float(ctx.get("resource", 0.0)), maximum * 0.20 - _history_total(resource_history))))
+	var desired: float = Numerical.scale(float({"rage":1.0, "energy":2.0, "mana":3.0}.get(resource_type, 0.0)), int(stats.get("ruleset_version", Numerical.LEGACY)))
+	var budget: float = maximum * 0.20
+	if Numerical.is_v2(stats):
+		desired = Numerical.integer(desired * (1.0 + clampf(float(stats.get("resource_gain_bonus", 0.0)), 0.0, 0.30)))
+		budget = Numerical.integer(budget)
+	var amount: float = maxf(0.0, minf(desired, minf(maximum - float(ctx.get("resource", 0.0)), budget - _history_total(resource_history))))
+	if Numerical.is_v2(stats): amount = floor(amount)
 	if amount > 0.0 and _activate("EQ32", 3.0, root, out):
 		out.resource_restore += amount
+		if Numerical.is_v2(stats): out.resource_restore = Numerical.integer(float(out.resource_restore))
 		resource_history.append({"time":clock, "amount":amount})
 
 func _refund(out: Dictionary, ctx: Dictionary, root: Dictionary, id: String, icd: float, kind: String, desired: float) -> void:
@@ -667,7 +786,7 @@ func _refund(out: Dictionary, ctx: Dictionary, root: Dictionary, id: String, icd
 	out.cooldown_refunds.append({"slot":slot, "seconds":accepted, "source":"equipment"})
 	refund_history.append({"time":clock, "amount":accepted})
 
-func _bonus(out: Dictionary, ctx: Dictionary, root: Dictionary, id: String, icd: float, coefficient: float, limit: int, exclude_primary: bool, state: String = "") -> void:
+func _bonus(out: Dictionary, ctx: Dictionary, root: Dictionary, id: String, icd: float, coefficient: float, limit: int, exclude_primary: bool, state: String = "", damage_base: float = -1.0, damage_type: String = "") -> void:
 	var targets: Array[String] = []
 	var primary: String = str(ctx.get("target_id", ""))
 	if not exclude_primary and limit == 1 and (primary.is_empty() or not bool(ctx.get("target_alive", true))): return
@@ -678,19 +797,44 @@ func _bonus(out: Dictionary, ctx: Dictionary, root: Dictionary, id: String, icd:
 		if targets.size() >= mini(3, limit): break
 		targets.append(target)
 	if targets.is_empty(): return
-	# The 1.2 X limit covers all targets, not just the coefficient of each packet.
-	var accepted: float = minf(coefficient, maxf(0.0, 1.20 - float(root.coefficient)) / float(targets.size()))
-	if accepted <= 0.0 or not _activate(id, icd, root, out): return
-	root.coefficient += accepted * float(targets.size())
+	var basis: float = maxf(0.0, float(ctx.get("X", ctx.get("H", 0.0)))) if damage_base < 0.0 else maxf(0.0, damage_base)
+	var accepted: float = coefficient
+	var amounts: Dictionary = {}
+	if Numerical.is_v2(stats):
+		if not root.has("raw_packet"):
+			root["raw_packet"] = Numerical.integer(float(ctx.get("X", ctx.get("H", 0.0))))
+			root["damage_spent"] = int(floor(float(root.raw_packet) * float(root.coefficient)))
+		var remaining: int = maxi(0, int(Numerical.derived_budget(float(root.raw_packet), Numerical.V2)) - int(root.damage_spent))
+		var requested: int = Numerical.integer(basis * coefficient)
+		var spent: int = 0
+		# Preserve target order: round each full requested packet, then clip to
+		# the shared remaining integer amount. Never spread a fractional ratio.
+		for target in targets:
+			var packet: int = mini(remaining, requested)
+			if packet <= 0: break
+			amounts[target] = packet
+			remaining -= packet
+			spent += packet
+		if spent <= 0 or not _activate(id, icd, root, out): return
+		root.damage_spent += spent
+		root.coefficient = float(root.damage_spent) / maxf(1.0, float(root.raw_packet))
+		targets.assign(amounts.keys())
+	else:
+		# Legacy budgets divided the available coefficient across every target.
+		accepted = minf(coefficient, maxf(0.0, 1.20 - float(root.coefficient)) / float(targets.size()))
+		if accepted <= 0.0 or not _activate(id, icd, root, out): return
+		root.coefficient += accepted * float(targets.size())
 	var derived_states: Array = []
 	if not state.is_empty():
 		# Global duration applies to derived statuses; S03's primary-only bonus does
 		# not. Send an explicit duration so the adapter need not guess the source.
 		derived_states.append({"status":state, "duration":(4.0 if state == "corrosion" else 3.0) * (1.0 + minf(0.40, float(stats.get("status_duration", 0.0))))})
-	out.bonus_hits.append({"target_ids":targets, "damage":maxf(0.0, float(ctx.get("X", ctx.get("H", 0.0)))) * accepted,
+	var command: Dictionary = {"target_ids":targets, "damage_by_target":amounts, "damage":Numerical.amount(basis * accepted, int(stats.get("ruleset_version", Numerical.LEGACY))),
 		"coefficient":accepted, "source":"equipment", "damage_source":"equipment", "proc_depth":1,
 		"equipment_eligible":false, "critical":false, "states":derived_states,
-		"power":float(ctx.get("H", 0.0)), "effect_id":id})
+		"power":float(ctx.get("H", 0.0)), "effect_id":id}
+	if not damage_type.is_empty(): command["damage_type"] = damage_type
+	out.bonus_hits.append(command)
 
 func _prune_history(history: Array[Dictionary], duration: float) -> void:
 	while not history.is_empty() and float(history[0].time) <= clock - duration:
