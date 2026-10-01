@@ -3,16 +3,18 @@ extends RefCounted
 ## Saved relic IDs stay stable while their combat expression follows the hero.
 ## Call only AFTER the original hit. Reservation/budget ownership stays in Room.
 
+const Numbers = preload("res://config/numerical_rules.gd")
 const ALIASES: Dictionary = {"split":"RL01", "ember":"RL02", "arc":"RL03"}
 const ART: Dictionary = {"RL01":"res://assets/ui/relic_split.png", "RL02":"res://assets/ui/relic_ember.png", "RL03":"res://assets/ui/relic_arc.png"}
 const HISTORY_META: StringName = &"class_relic_root_history"
 const RaceTraits = preload("res://scripts/combat/race_relics.gd")
 const ENGLISH_NAMES := {"CH01:RL01":"Earthsplit Wedge","CH01:RL02":"Armor Fang","CH01:RL03":"Counterweight Anvil","CH02:RL01":"Split Magazine","CH02:RL02":"Barbed Cartridge","CH02:RL03":"Hunt Crosshair","CH03:RL01":"Resonant Prism","CH03:RL02":"Ember Core","CH03:RL03":"Returning Coil"}
 
-static func display(hero: String, relic_id: String, rank: int = 1, biome: String = "") -> Dictionary:
+static func display(hero: String, relic_id: String, rank: int = 1, biome: String = "", ruleset_version: int = Numbers.LEGACY) -> Dictionary:
 	var id: String = str(ALIASES.get(relic_id, relic_id))
 	var level: int = clampi(rank, 1, 2)
 	var enhanced: bool = level == 2
+	var mana_refund: String = str(Numbers.scale(4.5 if enhanced else 3.0, ruleset_version)) if ruleset_version == Numbers.V2 else "4.5" if enhanced else "3"
 	var name: String = "未知遗物"
 	var description: String = ""
 	match hero + ":" + id:
@@ -42,13 +44,14 @@ static func display(hero: String, relic_id: String, rank: int = 1, biome: String
 			description = "普攻使目标灼烧3秒，每秒造成%d%%法强魔法伤害。" % (18 if enhanced else 12)
 		"CH03:RL03":
 			name = "归流线圈"
-			description = "每第3次普攻命中，回%s法力、附近节点充%d层，并追加%s%%法强魔法伤害。" % ["4.5" if enhanced else "3", 2 if enhanced else 1, "52.5" if enhanced else "35"]
+			description = "每第3次普攻命中，回%s法力、附近节点充%d层，并追加%s%%法强魔法伤害。" % [mana_refund, 2 if enhanced else 1, "52.5" if enhanced else "35"]
 	if Words.locale == "en":
 		name = str(ENGLISH_NAMES.get(hero+":"+id,"Unknown relic"))
-		description = _english_description(hero,id,enhanced)
+		description = _english_description(hero,id,enhanced,ruleset_version)
 	return RaceTraits.decorate({"name":name + (" II" if enhanced else ""), "description":description, "art":str(ART.get(id, "")), "id":id, "rank":level},hero,id,biome)
 
-static func _english_description(hero: String, id: String, enhanced: bool) -> String:
+static func _english_description(hero: String, id: String, enhanced: bool, ruleset_version: int = Numbers.LEGACY) -> String:
+	var mana_refund: String = str(Numbers.scale(4.5 if enhanced else 3.0, ruleset_version)) if ruleset_version == Numbers.V2 else "4.5" if enhanced else "3"
 	match hero+":"+id:
 		"CH01:RL01": return "Basic hits cleave up to 3 extra enemies in front for %d%% attack physical damage." % (60 if enhanced else 40)
 		"CH01:RL02": return "Basic hits reduce target armor by 15%% for %ds and deal %d%% attack physical damage each second." % [5 if enhanced else 4,12 if enhanced else 8]
@@ -58,14 +61,14 @@ static func _english_description(hero: String, id: String, enhanced: bool) -> St
 		"CH02:RL03": return "Every third basic hit marks for 4s and adds %s%% attack physical damage; Right Mouse or R consumes the mark." % ("52.5" if enhanced else "35")
 		"CH03:RL01": return "Basic hits echo to up to 2 extra nearby enemies for %d%% ability-power magic damage." % (60 if enhanced else 40)
 		"CH03:RL02": return "Basic hits cause 3s of burn, dealing %d%% ability-power magic damage each second." % (18 if enhanced else 12)
-		"CH03:RL03": return "Every third basic hit restores %s mana, charges nearby nodes by %d, and adds %s%% ability-power magic damage." % ["4.5" if enhanced else "3",2 if enhanced else 1,"52.5" if enhanced else "35"]
+		"CH03:RL03": return "Every third basic hit restores %s mana, charges nearby nodes by %d, and adds %s%% ability-power magic damage." % [mana_refund,2 if enhanced else 1,"52.5" if enhanced else "35"]
 	return ""
 
 static func native_status(hero: String) -> String:
 	return "corrosion" if hero == "CH01" else "bleed" if hero == "CH02" else "burn"
 
-static func native_status_power(_hero: String, power: float, rank: int = 1) -> float:
-	return maxf(0.0, power) * (1.5 if rank >= 2 else 1.0)
+static func native_status_power(_hero: String, power: float, rank: int = 1, ruleset_version: int = Numbers.LEGACY) -> Variant:
+	return Numbers.amount(maxf(0.0, power) * (1.5 if rank >= 2 else 1.0), ruleset_version)
 
 static func native_status_duration(hero: String, rank: int = 1, room: Node = null) -> float:
 	var base := (5.0 if rank >= 2 else 4.0) if hero == "CH01" else 3.0
@@ -116,8 +119,14 @@ static func _claim(room: Node, root_id: String, channel: String) -> bool:
 	room.set_meta(HISTORY_META, history)
 	return true
 
-static func _power(player: Node2D, hero: String) -> float:
+static func _power(player: Node2D, hero: String) -> Variant:
+	if player.has_method("relic_power"):
+		return player.relic_power()
 	return player.stat("ability_power", 28.0) if hero == "CH03" else player.attack_power()
+
+static func _amount(room: Node, amount: float) -> Variant:
+	var game: Node = room.get_node("/root/Game")
+	return Numbers.amount(amount, game.run.ruleset_version() if game.run != null else Numbers.LEGACY)
 
 static func _context(room: Node2D, original: Dictionary, damage_type: String, channel: String) -> Dictionary:
 	var context: Dictionary = original.duplicate(true)
@@ -137,7 +146,7 @@ static func _context(room: Node2D, original: Dictionary, damage_type: String, ch
 static func _emit_split(room: Node2D, hero: String, coefficient: float, original: Dictionary, at: Vector2, target: Node2D, direction: Vector2) -> void:
 	coefficient *= RaceTraits.split_multiplier(room,at)
 	var context: Dictionary = _context(room, original, "magic" if hero == "CH03" else "physical", "split")
-	var amount: float = _power(room.player, hero) * coefficient
+	var amount: Variant = _amount(room, float(_power(room.player, hero)) * coefficient)
 	if hero == "CH02":
 		for side: float in [-1.0, 1.0]:
 			var child: Node2D = room.spawn_projectile(at, direction.rotated(side * Balance.SPLIT_ANGLE), amount, &"child", target.get_instance_id() if is_instance_valid(target) else 0)
@@ -171,6 +180,11 @@ static func _emit_split(room: Node2D, hero: String, coefficient: float, original
 static func _emit_arc(room: Node2D, hero: String, coefficient: float, original: Dictionary, at: Vector2, target: Node2D, direction: Vector2) -> void:
 	var multiplier: float = coefficient / Balance.ARC_RATIO
 	var game: Node = room.get_node("/root/Game")
+	if game.run.ruleset_version() == Numbers.V2 and is_equal_approx(multiplier, 1.5):
+		# The authored II rank is exactly 3/2. Recovering it by .525/.35
+		# can fall just below 1.5 and turn a later .5 refund into a round-down.
+		multiplier = 1.5
+		coefficient = 0.525
 	if hero == "CH01":
 		# Derived shields must not emit a fresh equipment shield_gain event.
 		room.player.status.absorb(maxf(0.0, room.player.status.shield() - game.run.shield))
@@ -180,7 +194,7 @@ static func _emit_arc(room: Node2D, hero: String, coefficient: float, original: 
 		room.add_ring(room.player.position, Color("eabb78"), 52.0, 0.32)
 		return
 	if hero == "CH03":
-		game.restore_resource(3.0 * multiplier)
+		room.player.restore_class_resource(float(Numbers.scale(3.0, game.run.ruleset_version())) * multiplier)
 		room.player.charge_resonance(at, 300.0, 2 if multiplier > 1.1 else 1)
 		room.add_ring(at, Color("79d8d1"), 44.0, 0.30)
 	if not is_instance_valid(target) or not target.is_alive():
@@ -189,5 +203,5 @@ static func _emit_arc(room: Node2D, hero: String, coefficient: float, original: 
 		room.player.class_mark_target(target)
 		room.add_ring(at, Color("f1d298"), 24.0, 0.22)
 	var context: Dictionary = _context(room, original, "magic" if hero == "CH03" else "physical", "arc")
-	target.take_damage(_power(room.player, hero) * coefficient, &"relic_echo" if hero == "CH03" else &"relic_mark", direction, context)
+	target.take_damage(_amount(room, float(_power(room.player, hero)) * coefficient), &"relic_echo" if hero == "CH03" else &"relic_mark", direction, context)
 	room.telemetry.arc_hits += 1

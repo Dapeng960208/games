@@ -627,7 +627,7 @@ func _relic_display(id: String, rank: int = 1) -> Dictionary:
 	var legacy: String = {"RL01":"split", "RL02":"ember", "RL03":"arc"}.get(id, "")
 	if ResourceLoader.exists("res://scripts/combat/class_relics.gd"):
 		var biome: String = load("res://scripts/combat/race_relics.gd").biome_id(room)
-		return load("res://scripts/combat/class_relics.gd").display(Game.run.hero_id if Game.run != null else str(Game.profile.get("selected_hero","CH01")),id,rank,biome)
+		return load("res://scripts/combat/class_relics.gd").display(Game.run.hero_id if Game.run != null else str(Game.profile.get("selected_hero","CH01")),id,rank,biome,Game.run.ruleset_version() if Game.run != null else int(Game.profile.get("ruleset_version",1)))
 	if not legacy.is_empty():
 		return {"name":Words.text("RELIC_"+legacy.to_upper()+"_NAME"),"description":Words.text("RELIC_"+legacy.to_upper()+"_DESC"),"art":legacy}
 	return {"name":id,"description":"","art":""}

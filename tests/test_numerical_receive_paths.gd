@@ -60,8 +60,8 @@ func _run() -> void:
 	target.health.reset(1000,2)
 	room.crit_rolls["raw"] = true
 	room.resolve_direct_hit(target,10.5,&"primary","",0,Vector2.RIGHT,{"attack_id":"raw","root_event_id":"raw"})
-	check(target.packet.X == 11, "real direct path saves rounded coefficient-H before class/buff/crit/chain")
-	check(player.loadout.after.X == 11, "equipment after-hit receives unchanged raw X")
+	check(target.packet.X is int and target.packet.X == 11, "real direct path saves rounded coefficient-H before class/buff/crit/chain")
+	check(player.loadout.after.X is int and player.loadout.after.X == 11, "equipment after-hit receives unchanged raw X")
 	check(target.input_amount == 51, "final direct damage independently includes class/buff/crit/chain")
 	var skills := Skills.new()
 	room.enemy_skills = skills

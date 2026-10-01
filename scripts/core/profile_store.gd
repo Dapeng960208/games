@@ -7,6 +7,7 @@ const SCHEMA_VERSION := 3
 const SETTLEMENT_RULES_VERSION := 3
 const Economy = preload("res://scripts/core/economy_history.gd")
 const ECONOMY_RULES_VERSION := Economy.CURRENT_VERSION
+const Progression = preload("res://scripts/core/hero_progression.gd")
 const Expedition = preload("res://scripts/core/expedition_state.gd")
 const MAX_NUMBER := 1_000_000_000_000
 const RELIC_IDS := ["split", "ember", "arc"]
@@ -381,6 +382,10 @@ static func _allowed_ids(value: Variant, allowed: Array) -> bool:
 	return true
 
 static func _valid_progression(profile: Dictionary) -> bool:
+	var ruleset: int = int(profile.get("ruleset_version", 1))
+	if ruleset not in [1, 2]: return false
+	if ruleset == 2:
+		if not _valid_v2_growth(profile): return false
 	if profile.has("equipment_discoveries"):
 		if not _unique_ids(profile.equipment_discoveries, ContentRegistry.equipment_ids().size()): return false
 		for eq: String in profile.equipment_discoveries:
@@ -393,7 +398,7 @@ static func _valid_progression(profile: Dictionary) -> bool:
 		if not _number(profile.hero_xp.get(id), 3600):
 			return false
 	# A missing field is a valid early v2 document and is atomically normalized on load.
-	if profile.has("branches") and not _valid_branches(profile.branches, profile.hero_xp):
+	if profile.has("branches") and not _valid_branches(profile.branches, profile.hero_xp, ruleset):
 		return false
 	if not profile.get("equipment") is Dictionary or profile.equipment.size() > ContentRegistry.equipment_ids().size() \
 		or not profile.get("loadout") is Dictionary or profile.loadout.size() != SLOTS.size():
@@ -483,14 +488,14 @@ static func equipment_sell_price(eq_id: String, level: int) -> int:
 	for index in range(level): worth += ContentRegistry.UPGRADE_COSTS[index] / 5
 	return worth
 
-static func _valid_branches(value: Variant, hero_xp: Dictionary) -> bool:
+static func _valid_branches(value: Variant, hero_xp: Dictionary, ruleset: int = 1) -> bool:
 	if not value is Dictionary or value.size() != HERO_IDS.size():
 		return false
 	for id: String in HERO_IDS:
 		var choices: Variant = value.get(id)
 		if not choices is Dictionary or choices.size() != 2:
 			return false
-		var level := ContentRegistry.level_for_xp(int(hero_xp[id]))
+		var level := ContentRegistry.level_for_xp(int(hero_xp[id]), ruleset)
 		for slot: String in ["q", "ultimate"]:
 			if not choices.get(slot) in ["", "A", "B"]:
 				return false
@@ -513,4 +518,23 @@ static func _settings_only(profile: Dictionary) -> bool:
 		if not profile.equipment.has(id) or int(profile.equipment[id].level) != 0:
 			return false
 	# _valid_branches already excludes nonempty choices at level one.
+	return true
+
+static func _valid_v2_growth(profile: Dictionary) -> bool:
+	for field in ["talents", "research_xp", "materials", "progression_receipts"]:
+		if not profile.get(field, {}) is Dictionary: return false
+	if not profile.get("hero_xp") is Dictionary: return false
+	for hero: Variant in profile.get("talents", {}):
+		if hero not in HERO_IDS: return false
+		if not Progression.valid_talents(profile.talents[hero], Progression.level_for_xp(int(profile.hero_xp.get(hero, 0)))): return false
+	for hero: Variant in profile.get("research_xp", {}):
+		if hero not in HERO_IDS or not _number(profile.research_xp[hero], 359): return false
+	for material: Variant in profile.get("materials", {}):
+		if material not in ["forge", "race:B01", "race:B02", "race:B03", "race:B04", "core:B01", "core:B02", "core:B03", "core:B04"] or not _number(profile.materials[material], MAX_NUMBER): return false
+	var receipts: Dictionary = profile.get("progression_receipts", {})
+	if receipts.size() > 100000: return false
+	for event: Variant in receipts:
+		if not event is String or event.is_empty() or event.length() > 160: return false
+		var row: Variant = receipts[event]
+		if not row is Dictionary or row.get("hero") not in HERO_IDS or not _number(row.get("amount"), 3600) or row.get("race") not in ["B01", "B02", "B03", "B04"]: return false
 	return true

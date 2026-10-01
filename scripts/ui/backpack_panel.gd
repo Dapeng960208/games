@@ -235,7 +235,7 @@ func _attributes() -> void:
 		for key: String in names:
 			if float(modifiers.get(key,0)) > 0: Details.flow(sheet,str(names[key])+"  %.1f%%" % (float(modifiers[key])*100),726,14,MineStyle.CYAN)
 	for id: String in Game.run.relics:
-		var relic: Dictionary = Relics.display(Game.run.hero_id,id,int(Game.run.stats.get("relic_levels",{}).get(id,1)),str(Game.run.expedition.get("biome_id","")))
+		var relic: Dictionary = Relics.display(Game.run.hero_id,id,int(Game.run.stats.get("relic_levels",{}).get(id,1)),str(Game.run.expedition.get("biome_id","")), Game.run.ruleset_version())
 		Details.flow(sheet,_t("本局遗物 · ","RUN RELIC · ")+MineStyle.content_text(relic,"name"),726,16,MineStyle.AMBER)
 		Details.flow(sheet,MineStyle.content_text(relic,"description"),726,14)
 

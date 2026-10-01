@@ -1190,7 +1190,7 @@ func _relic_info(id: String) -> Dictionary:
 		var ledger_id: String = {"split":"RL01","ember":"RL02","arc":"RL03"}.get(id,id)
 		var rank := int(Game.expedition_snapshot().get("relic_levels",{}).get(ledger_id,1))
 		var biome: String = load("res://scripts/combat/race_relics.gd").biome_id(room)
-		return load("res://scripts/combat/class_relics.gd").display(Game.run.hero_id,id,rank,biome)
+		return load("res://scripts/combat/class_relics.gd").display(Game.run.hero_id,id,rank,biome,Game.run.ruleset_version())
 	var key := "RELIC_"+id.to_upper()
 	return {"name":Words.text(key+"_NAME"),"description":Words.text(key+"_DESC")}
 

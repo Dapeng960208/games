@@ -3,12 +3,13 @@ extends RefCounted
 ## Resolves permanent growth and owned equipment only. Conditional affixes and
 ## set procs are evaluated by combat events, never as unconditional stats here.
 
+const Progression = preload("res://scripts/core/hero_progression.gd")
 const Numerical = preload("res://config/numerical_rules.gd")
 const FLAT_KEYS := ["attack", "ability_power", "max_hp", "armor", "magic_resist", "max_mana", "armor_penetration", "magic_penetration", "true_damage_bonus", "resource_max", "resource_regen", "starting_resource"]
 const Registry = preload("res://scripts/data/content_registry.gd")
 const EQUIPMENT_CAPS: Dictionary = {"attack": 45.0, "ability_power": 90.0, "max_hp": 220.0, "armor": 70.0, "magic_resist": 70.0, "max_mana": 150.0, "armor_penetration": 40.0, "magic_penetration": 40.0, "crit_multiplier": 1.0, "true_damage_bonus": 12.0, "attack_speed": 0.60, "move_speed": 0.45, "cooldown_reduction": 0.30, "damage_bonus": 0.60, "damage_reduction": 0.35, "burn_damage": 0.60, "corrosion_damage_bonus": 0.60, "status_duration": 0.40}
 
-static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dictionary, ruleset: int = Numerical.LEGACY) -> Dictionary:
+static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dictionary, ruleset: int = Numerical.LEGACY, talents: Dictionary = {}) -> Dictionary:
 	var definition: Dictionary = Registry.hero(hero_id)
 	if definition.is_empty():
 		return {}
@@ -95,6 +96,23 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 		"uncapped_equipment_contribution": raw_contribution,
 	}
 	if ruleset == Numerical.V2:
+		var base := Progression.hero_base(Registry.hero(hero_id), level, talents)
+		if base.is_empty(): return {}
+		for key in ["attack", "ability_power", "max_hp", "armor", "magic_resist"]:
+			stats[key] = int(base[key]) + int(contribution.get(key, 0))
+		stats.level = int(base.level)
+		stats["talents"] = talents.duplicate(true)
+		stats["talent_points_available"] = int(base.talent_points_available)
+		stats["hero_base"] = base
+		stats["hp_ratio"] = float(contribution.get("hp_ratio", 0.0))
+		stats["resource_gain_bonus"] = float(contribution.get("resource_gain_bonus", 0.0))
+		var caps: Dictionary = Numerical.value("caps")
+		stats.crit_chance = minf(float(caps.crit_chance), float(stats.crit_chance) + float(base.talent_crit_chance))
+		stats.attack_speed_bonus = minf(float(caps.attack_speed), float(contribution.attack_speed) + float(base.talent_attack_speed))
+		stats.attack_interval = float(definition.attack_interval) / (1.0 + float(stats.attack_speed_bonus))
+		stats.cooldown_reduction = minf(float(caps.cooldown_reduction), float(contribution.cooldown_reduction) + float(base.talent_cooldown_reduction))
+		stats.armor_damage_reduction = float(stats.armor) / (defense_scale + float(stats.armor))
+		stats.magic_damage_reduction = float(stats.magic_resist) / (defense_scale + float(stats.magic_resist))
 		for key in FLAT_KEYS:
 			if stats.has(key): stats[key] = Numerical.integer(float(stats[key]))
 		for key in FLAT_KEYS:
@@ -106,9 +124,17 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 ## still join the direct-damage bucket only when its condition is satisfied.
 static func clamp_equipment_contributions(amounts: Dictionary, ruleset: int = Numerical.LEGACY) -> Dictionary:
 	var result := amounts.duplicate(true)
+	var limits: Dictionary = Numerical.value("caps") if ruleset == Numerical.V2 else {}
 	for key in EQUIPMENT_CAPS:
-		result[key] = Numerical.integer(float(amounts.get(key, 0.0))) if ruleset == Numerical.V2 and key in FLAT_KEYS else clampf(float(amounts.get(key, 0.0)), 0.0, float(EQUIPMENT_CAPS[key]))
+		var cap_key: String = "equipment_damage_reduction" if key == "damage_reduction" else str(key)
+		var limit: float = float(limits.get(cap_key, EQUIPMENT_CAPS[key]))
+		# crit_multiplier is an increment; its final base+gear cap is separate.
+		if key == "crit_multiplier": limit = 1.0
+		result[key] = Numerical.integer(float(amounts.get(key, 0.0))) if ruleset == Numerical.V2 and key in FLAT_KEYS else clampf(float(amounts.get(key, 0.0)), 0.0, limit)
 	result["crit_chance"] = clampf(float(amounts.get("crit_chance", 0.0)), 0.0, 0.75)
+	if ruleset == Numerical.V2:
+		for key in ["hp_ratio", "resource_gain_bonus"]:
+			result[key] = clampf(float(amounts.get(key, 0.0)), 0.0, float(limits[key]))
 	return result
 
 static func combined_damage_reduction(armor: float, equipment_reduction: float, ruleset: int = Numerical.LEGACY) -> float:

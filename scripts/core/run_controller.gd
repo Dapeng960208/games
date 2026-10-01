@@ -30,6 +30,7 @@ var _demo_result: Dictionary = {}
 const UPGRADE_PRICES := [60, 100, 160, 240, 340]
 const Expedition = preload("res://scripts/core/expedition_state.gd")
 const Damage = preload("res://scripts/combat/damage_resolver.gd")
+const Progression = preload("res://scripts/core/hero_progression.gd")
 const Numbers = preload("res://config/numerical_rules.gd")
 const FieldLearning = preload("res://scripts/core/field_learning.gd")
 const RoomRewards = preload("res://scripts/world/room_rewards.gd")
@@ -403,12 +404,52 @@ func finish_run(outcome: String) -> Dictionary:
 
 func hero_level(id: String = "") -> int:
 	var hero_id := str(profile.get("selected_hero", "CH01")) if id.is_empty() else id
-	return ContentRegistry.level_for_xp(int(profile.get("hero_xp", {}).get(hero_id, 0)))
+	return ContentRegistry.level_for_xp(int(profile.get("hero_xp", {}).get(hero_id, 0)), _profile_ruleset())
 
 func selected_stats() -> Dictionary:
-	var resolved := StatResolver.resolve(str(profile.selected_hero), hero_level(), profile.loadout, profile.equipment)
+	var resolved := StatResolver.resolve(str(profile.selected_hero), hero_level(), profile.loadout, profile.equipment, _profile_ruleset(), hero_talents())
 	resolved.branches = hero_branches()
 	return resolved
+
+func _run_race() -> String:
+	return str(run.expedition.get("route", {}).get("biome_id", "B01")) if run != null else "B01"
+
+func _profile_ruleset() -> int:
+	return int(profile.get("ruleset_version", Numbers.LEGACY))
+
+func hero_talents(hero_id: String = "") -> Dictionary:
+	var id := str(profile.get("selected_hero", "CH01")) if hero_id.is_empty() else hero_id
+	return profile.get("talents", {}).get(id, {}).duplicate(true)
+
+func set_hero_talents(allocation: Dictionary, hero_id: String = "") -> bool:
+	var id := str(profile.get("selected_hero", "CH01")) if hero_id.is_empty() else hero_id
+	if _profile_ruleset() != Numbers.V2 or not _camp_available() or id not in ProfileStore.HERO_IDS or not Progression.valid_talents(allocation, hero_level(id)): return false
+	if hero_talents(id) == allocation: return true
+	var next := profile.duplicate(true)
+	if not next.has("talents"): next["talents"] = {}
+	next.talents[id] = allocation.duplicate(true)
+	return _commit_profile(next)
+
+func allocate_hero_talent(node: String) -> bool:
+	if _profile_ruleset() != Numbers.V2 or node not in Progression.TALENTS: return false
+	var id := run.hero_id if run != null else str(profile.selected_hero)
+	var allocation := hero_talents(id)
+	allocation[node] = int(allocation.get(node, 0)) + 1
+	if not Progression.valid_talents(allocation, hero_level(id)): return false
+	if run == null: return set_hero_talents(allocation, id)
+	if run.ruleset_version() != Numbers.V2 or not get_tree().paused or run.hp <= 0 or run.demo or _settling or not _pending_outcome.is_empty(): return false
+	var next := profile.duplicate(true)
+	if not next.has("talents"): next["talents"] = {}
+	next.talents[id] = allocation
+	if not _save(next, run.receipt()): return false
+	profile = next
+	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version(), allocation)
+	run.stats.branches = run.branches_snapshot.duplicate(true)
+	run.max_hp = run.stats.max_hp
+	run.hp = minf(run.hp, run.max_hp)
+	run.resource = minf(run.resource, float(run.stats.resource_max))
+	changed.emit()
+	return true
 
 func hero_branches(hero_id: String = "") -> Dictionary:
 	var id := str(profile.selected_hero) if hero_id.is_empty() else hero_id
@@ -437,7 +478,7 @@ func preview_stats(eq_id: String) -> Dictionary:
 	loadout[definition.slot] = eq_id
 	if not owned.has(eq_id):
 		owned[eq_id] = {"level": 0}
-	var resolved := StatResolver.resolve(str(profile.selected_hero), hero_level(), loadout, owned)
+	var resolved := StatResolver.resolve(str(profile.selected_hero), hero_level(), loadout, owned, _profile_ruleset(), hero_talents())
 	resolved.branches = hero_branches()
 	return resolved
 
@@ -449,7 +490,7 @@ func preview_upgrade_stats(eq_id: String) -> Dictionary:
 	var owned: Dictionary = profile.equipment.duplicate(true)
 	loadout[definition.slot] = eq_id
 	owned[eq_id].level = mini(5, equipment_level(eq_id) + 1)
-	var resolved := StatResolver.resolve(str(profile.selected_hero), hero_level(), loadout, owned)
+	var resolved := StatResolver.resolve(str(profile.selected_hero), hero_level(), loadout, owned, _profile_ruleset(), hero_talents())
 	resolved.branches = hero_branches()
 	return resolved
 
@@ -676,17 +717,22 @@ func grant_hero_xp(amount: int, event_id: String) -> bool:
 	var before := int(next_profile.hero_xp[run.hero_id])
 	next_profile.hero_xp[run.hero_id] = mini(3600, before + amount)
 	var added := int(next_profile.hero_xp[run.hero_id]) - before
+	if run.ruleset_version() == Numbers.V2:
+		var awarded := Progression.award(profile, run.hero_id, amount, event_id, _run_race())
+		if awarded.is_empty(): return false
+		next_profile = awarded.profile
+		added = int(awarded.added)
 	var receipt := run.receipt()
 	receipt.completed_reward_ids.append(event_id)
 	receipt.hero_xp_gained = run.hero_xp_gained + added
-	receipt.level = ContentRegistry.level_for_xp(int(next_profile.hero_xp[run.hero_id]))
+	receipt.level = ContentRegistry.level_for_xp(int(next_profile.hero_xp[run.hero_id]), run.ruleset_version())
 	if not _save(next_profile, receipt):
 		return false
 	profile = next_profile
 	run.completed_reward_ids.append(event_id)
 	run.hero_xp_gained += added
 	run.level = int(receipt.level)
-	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version())
+	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version(), hero_talents(run.hero_id))
 	run.stats.branches = run.branches_snapshot.duplicate(true)
 	run.max_hp = float(run.stats.max_hp)
 	# Preserve absolute HP/resource and all player-owned cooldowns: leveling is not healing.
@@ -726,17 +772,23 @@ func complete_hero_tutorial() -> bool:
 	next_profile.hero_xp[hero_id] = mini(3600, before + 30)
 	next_profile.tutorial_completed.append(hero_id)
 	var added := int(next_profile.hero_xp[hero_id]) - before
+	if _profile_ruleset() == Numbers.V2:
+		var awarded := Progression.award(profile, hero_id, 30, "tutorial:" + hero_id, _run_race())
+		if awarded.is_empty(): return false
+		next_profile = awarded.profile
+		next_profile.tutorial_completed.append(hero_id)
+		added = int(awarded.added)
 	var receipt: Variant = run.receipt() if run != null else null
 	if receipt is Dictionary:
 		receipt.hero_xp_gained += added
-		receipt.level = ContentRegistry.level_for_xp(int(next_profile.hero_xp[hero_id]))
+		receipt.level = ContentRegistry.level_for_xp(int(next_profile.hero_xp[hero_id]), run.ruleset_version())
 	if not _save(next_profile, receipt):
 		return false
 	profile = next_profile
 	if run != null:
 		run.hero_xp_gained += added
 		run.level = int(receipt.level)
-		run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version())
+		run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version(), hero_talents(run.hero_id))
 		run.stats.branches = run.branches_snapshot.duplicate(true)
 		run.max_hp = float(run.stats.max_hp)
 		run.hp = minf(run.hp, run.max_hp)
@@ -800,7 +852,7 @@ func _restore_expedition(receipt: Dictionary) -> void:
 	_apply_runtime_values(run.expedition.runtime)
 
 func _refresh_expedition_stats() -> void:
-	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version())
+	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version(), hero_talents(run.hero_id))
 	if run.demo: run.stats.starting_resource = float(run.stats.get("resource_max", 0.0))
 	run.stats.branches = run.branches_snapshot.duplicate(true)
 	run.stats["relic_levels"] = run.expedition.relic_levels.duplicate(true)
@@ -821,7 +873,7 @@ func _commit_expedition(value: Dictionary, runtime: Dictionary, next_profile: Di
 	value.runtime = runtime.duplicate(true)
 	receipt.expedition = value.duplicate(true)
 	receipt.gold = int(value.gold_earned) - int(value.gold_spent)
-	receipt.level = ContentRegistry.level_for_xp(int(next_profile.hero_xp[run.hero_id]))
+	receipt.level = ContentRegistry.level_for_xp(int(next_profile.hero_xp[run.hero_id]), run.ruleset_version())
 	if not _save(next_profile, receipt): return false
 	var live_values: Dictionary = {"hp":run.hp,"resource":run.resource,"shield":run.shield}
 	profile = next_profile
@@ -974,7 +1026,7 @@ func preview_field_equipment(drop_id: String) -> Dictionary:
 	var next_equipment: Dictionary = run.equipment_snapshot.duplicate(true)
 	next_loadout[drop.slot] = drop.equipment_id
 	next_equipment[drop.equipment_id] = {"level":int(drop.level)}
-	var next_stats: Dictionary = StatResolver.resolve(run.hero_id, run.level, next_loadout, next_equipment, run.ruleset_version())
+	var next_stats: Dictionary = StatResolver.resolve(run.hero_id, run.level, next_loadout, next_equipment, run.ruleset_version(), hero_talents(run.hero_id))
 	if next_stats.is_empty(): return {}
 	next_stats["branches"] = run.branches_snapshot.duplicate(true)
 	next_stats["relic_levels"] = run.expedition.relic_levels.duplicate(true)
@@ -1078,6 +1130,13 @@ func commit_expedition_completion(completion_id: String, runtime_snapshot: Dicti
 	var previous_xp: int = int(next_profile.hero_xp[run.hero_id])
 	next_profile.hero_xp[run.hero_id] = mini(3600, previous_xp + xp)
 	var added: int = int(next_profile.hero_xp[run.hero_id]) - previous_xp
+	if run.ruleset_version() == Numbers.V2:
+		var award_input := next_profile.duplicate(true)
+		award_input.hero_xp[run.hero_id] = previous_xp
+		var awarded := Progression.award(award_input, run.hero_id, xp, completion_id, _run_race())
+		if awarded.is_empty(): return false
+		next_profile = awarded.profile
+		added = int(awarded.added)
 	var bosses: Array = run.boss_defeats.duplicate()
 	var boss: String = str(rewards.get("boss_id", ""))
 	if value.route.nodes[index].role == "boss":

@@ -53,7 +53,10 @@ static func confirmed_original_hit(room: Node, context: Dictionary) -> float:
 	room.set_meta(STATE_META,state)
 	if not proc: return 0.0
 	var before: float = game.run.resource
-	game.restore_resource(1.0)
+	if int(game.run.stats.get("ruleset_version", 1)) == 2:
+		room.player.restore_class_resource(10.0)
+	else:
+		game.restore_resource(1.0)
 	return maxf(0.0,game.run.resource-before)
 
 static func native_duration(room: Node, duration: float) -> float:

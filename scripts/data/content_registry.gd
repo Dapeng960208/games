@@ -1,5 +1,6 @@
 class_name ContentRegistry
 extends RefCounted
+const Progression = preload("res://scripts/core/hero_progression.gd")
 ## Immutable-by-copy static definitions. Combat state and ownership never live here.
 
 const SLOTS: Array[String] = ["weapon", "head", "chest", "hands", "feet", "charm"]
@@ -53,7 +54,8 @@ static func set_item_ids(set_id: String) -> Array[String]:
 				result.append(id)
 	return result
 
-static func level_for_xp(xp: int) -> int:
+static func level_for_xp(xp: int, ruleset: int = 1) -> int:
+	if ruleset == 2: return Progression.level_for_xp(xp)
 	var level := 1
 	for index in range(1, XP_THRESHOLDS.size()):
 		if xp < XP_THRESHOLDS[index]:
@@ -62,7 +64,10 @@ static func level_for_xp(xp: int) -> int:
 	return level
 
 ## Cumulative XP target, not XP remaining. Max-level target stays at the cap.
-static func next_level_xp(level: int) -> int:
+static func next_level_xp(level: int, ruleset: int = 1) -> int:
+	if ruleset == 2:
+		var values := Progression.thresholds()
+		return int(values[clampi(level, 1, values.size() - 1)])
 	return XP_THRESHOLDS[clampi(level, 1, XP_THRESHOLDS.size() - 1)]
 
 static func validate() -> Array[String]:

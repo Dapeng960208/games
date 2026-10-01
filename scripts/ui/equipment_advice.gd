@@ -1,4 +1,5 @@
 extends RefCounted
+const Abilities = preload("res://scripts/combat/hero_abilities.gd")
 ## Pure presentation advice from resolved base stats. It never selects equipment,
 ## performs a transaction, or values conditional affixes as constant damage.
 const Registry = preload("res://scripts/data/content_registry.gd")
@@ -70,7 +71,7 @@ static func summarize(hero_id: String, before: Dictionary, after: Dictionary) ->
 static func _metric(hero_id: String, key: String, stats: Dictionary) -> float:
 	if key == "skill_power":
 		# Mirrors Player.skill_power: AP only scales the Resonator's skill power.
-		return float(stats.get("attack", 0.0)) + (maxf(0.0, float(stats.get("ability_power", 0.0))) * 0.7 if hero_id == "CH03" else 0.0)
+		return float(Abilities.preview_powers(hero_id, stats).skill_H)
 	if key == "resource_max": return float(stats.get("resource_max", stats.get("max_mana", 0.0)))
 	return float(stats.get(key, 0.0))
 

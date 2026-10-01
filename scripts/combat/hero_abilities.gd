@@ -3,6 +3,7 @@ extends RefCounted
 ## Each successful cast owns a finite timeline. Cancellation drops only future
 ## events; cost, cooldown, fired projectiles and deployed objects remain committed.
 
+const Numbers = preload("res://config/numerical_rules.gd")
 const FeedbackScript = preload("res://scripts/combat/hero_feedback.gd")
 
 var owner_player: Node2D
@@ -69,6 +70,23 @@ static func preview_spec(hero_id: String, level: int, stats: Dictionary, slot: S
 	var helper := HeroAbilities.new()
 	return helper.spec(slot, hero_id, level, stats)
 
+## Preview and live actors share the three source-specific H definitions. AD
+## remains a separate aggregated stat; basic AP must never enter skill H twice.
+static func preview_powers(hero: String, stats: Dictionary) -> Dictionary:
+	var version: int = int(stats.get("ruleset_version", Numbers.LEGACY))
+	var fallback: float = 27.0 if hero == "CH01" else 24.0 if hero == "CH02" else 18.0
+	var attack: Variant = Numbers.amount(float(stats.get("attack", Numbers.scale(fallback, version))), version)
+	var ability: Variant = Numbers.amount(float(stats.get("ability_power", 0.0)), version)
+	var ratios: Dictionary = Numbers.value("mage_power_ratios")
+	return {
+		"basic_H":Numbers.amount(float(attack) + (float(ratios.basic_ap) * float(ability) if hero == "CH03" and version == Numbers.V2 else 0.0), version),
+		"skill_H":Numbers.amount(float(attack) + (float(ratios.skill_ap) * float(ability) if hero == "CH03" else 0.0), version),
+		"relic_H":Numbers.amount(float(stats.get("ability_power", Numbers.scale(28.0, version))), version) if hero == "CH03" else attack,
+	}
+
+static func packet_amount(coefficient: float, power: float, stats: Dictionary) -> Variant:
+	return Numbers.amount(coefficient * power, int(stats.get("ruleset_version", Numbers.LEGACY)))
+
 func spec(slot: String, preview_hero: String = "", preview_level: int = -1, preview_stats: Dictionary = {}) -> Dictionary:
 	var preview: bool = not preview_hero.is_empty()
 	var hero: String = preview_hero if preview else hero_key()
@@ -103,14 +121,19 @@ func spec(slot: String, preview_hero: String = "", preview_level: int = -1, prev
 	data["damage_type"] = "magic" if hero == "CH03" else "physical"
 	data["branch"] = _branch(slot, level, effective_stats)
 	_apply_branch(data)
+	if Numbers.is_v2(effective_stats):
+		data.cost = Numbers.scale(float(data.cost), Numbers.V2)
+		if data.has("health"):
+			data.health = Numbers.scale(float(data.health), Numbers.V2)
 	data["base_cooldown"] = float(data.cooldown)
-	data.cooldown = float(data.cooldown) * (1.0 - clampf(float(effective_stats.get("cooldown_reduction", 0.0)), 0.0, 0.30))
+	var cooldown_cap: float = float(Numbers.value("caps").cooldown_reduction) if Numbers.is_v2(effective_stats) else 0.30
+	data.cooldown = float(data.cooldown) * (1.0 - clampf(float(effective_stats.get("cooldown_reduction", 0.0)), 0.0, cooldown_cap))
 	# Live cost is sampled before commitment consumes Momentum. The same spec
 	# feeds casting and the HUD; catalog previews retain the ordinary Rage cost.
 	if not preview and hero == "CH01" and slot == "secondary" and is_instance_valid(owner_player):
 		data["momentum_free"] = int(owner_player.break_stacks) >= 3
 		if bool(data.momentum_free):
-			data.cost = 0.0
+			data.cost = Numbers.amount(0.0, int(effective_stats.get("ruleset_version", Numbers.LEGACY)))
 	return data
 
 func _branch(slot: String, level: int, stats: Dictionary) -> String:
@@ -321,8 +344,8 @@ func _resolve(index: int) -> void:
 	var data: Dictionary = active.spec
 	var hero: String = data.hero
 	var slot: String = data.slot
-	var power: float = float(active.power)
-	var amount: float = float(data.coefficient) * power
+	var power: Variant = active.power
+	var amount: Variant = packet_amount(float(data.coefficient), float(power), active.attacker_stats)
 	var room: Node = owner_player.room
 	var at: Vector2 = owner_player.position
 	var direction: Vector2 = active.direction
@@ -359,11 +382,11 @@ func _resolve(index: int) -> void:
 			options.merge(hit_context, true)
 			room.spawn_ability_projectile(_projectile_origin(direction), direction, amount, options)
 	elif slot == "q":
-		var options: Dictionary = {"source":"q", "original":true, "status":"shock", "power":power, "speed":data.speed, "range":data.range, "pierce":data.get("pierce", 0), "pierce_multiplier":data.get("pierce_multiplier", 1.0), "explosion_radius":data.explosion_radius, "echo_reach":90.0, "echo_damage":power * 0.35, "echo_along_path":data.get("echo_along_path", false), "color":Color("6bc4ca")}
+		var options: Dictionary = {"source":"q", "original":true, "status":"shock", "power":power, "speed":data.speed, "range":data.range, "pierce":data.get("pierce", 0), "pierce_multiplier":data.get("pierce_multiplier", 1.0), "explosion_radius":data.explosion_radius, "echo_reach":90.0, "echo_damage":packet_amount(0.35, float(power), active.attacker_stats), "echo_along_path":data.get("echo_along_path", false), "color":Color("6bc4ca")}
 		options.merge(hit_context, true)
 		room.spawn_ability_projectile(_projectile_origin(direction), direction, amount, options)
 	elif slot == "secondary":
-		room.add_deployment("node", active.target, {"damage":amount, "power":power, "radius":data.radius, "health":data.health, "lifetime":14.0, "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats})
+		room.add_deployment("node", active.target, {"damage":amount, "power":power, "radius":data.radius, "health":data.health, "health_scale_version":10 if Numbers.is_v2(active.attacker_stats) else 1, "lifetime":14.0, "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats})
 	elif slot == "f":
 		room.strike_area(at, float(data.radius), amount, "f", "chill", 0.0, Vector2.ZERO, 360.0, true, hit_context)
 		for node: Node2D in owner_player.resonance_nodes():
@@ -377,7 +400,7 @@ func _resolve(index: int) -> void:
 			at = active.target
 		room.strike_area(at, float(data.radius), amount, "ultimate", "shock", 0.0, Vector2.ZERO, 360.0, true, hit_context)
 		owner_player.charge_resonance(at, float(data.radius), 3)
-		room.add_deployment("field", at, {"damage":power * float(data.tick_coefficient), "power":power, "radius":data.radius, "lifetime":data.lifetime, "follow_player":data.get("follow_player", false), "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats})
+		room.add_deployment("field", at, {"damage":packet_amount(float(data.tick_coefficient), float(power), active.attacker_stats), "power":power, "radius":data.radius, "lifetime":data.lifetime, "follow_player":data.get("follow_player", false), "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats})
 	owner_player.visual_event("release_" + slot, 0.12)
 	# One sound per executed event, including branches and partial cancellation.
 	# It belongs to the same release as this projectile/deployment/strike, never

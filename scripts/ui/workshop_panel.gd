@@ -339,8 +339,8 @@ func _suggested_equipment() -> String:
 func _has_relevant_gain(hero: String, before: Dictionary, after: Dictionary) -> bool:
 	var keys: Array[String] = ["max_hp","armor","magic_resist","move_speed","crit_chance","crit_multiplier","cooldown_reduction","damage_bonus","damage_reduction","true_damage_bonus"]
 	if hero == "CH03":
-		var current_power := float(before.get("attack",0)) + maxf(0.0,float(before.get("ability_power",0))) * 0.7
-		var next_power := float(after.get("attack",0)) + maxf(0.0,float(after.get("ability_power",0))) * 0.7
+		var current_power: float = HeroAbilities.preview_powers(hero, before).skill_H
+		var next_power: float = HeroAbilities.preview_powers(hero, after).skill_H
 		if next_power > current_power + 0.00001: return true
 		keys.append_array(["resource_max","magic_penetration"])
 	else: keys.append_array(["attack","armor_penetration"])

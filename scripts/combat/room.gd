@@ -640,13 +640,13 @@ func fire_from_player(direction: Vector2, critical: bool = false) -> bool:
 	if player.hero_id() == "CH01":
 		return player.fire(direction)
 	record_attack()
-	var projectile := spawn_projectile(player.position, direction, player.attack_power() * (1.5 if critical else 1.0), &"primary")
+	var projectile := spawn_projectile(player.position, direction, player.basic_power() * (1.5 if critical else 1.0), &"primary")
 	projectile.speed = 950.0 if player.hero_id() == "CH02" else 720.0
 	projectile.distance_left = player.stat("range", 650.0 if player.hero_id() == "CH02" else 480.0)
 	projectile.remaining = projectile.distance_left / projectile.speed + 0.1
 	projectile.attack_id = attack_serial
 	projectile.critical = critical
-	projectile.options["power"] = player.attack_power()
+	projectile.options["power"] = player.basic_power()
 	projectile.options["visual_hero"] = player.hero_id()
 	projectile.options["basic_variant"] = player.basic_attack_variant()
 	projectile.arc_ready = Game.run.relics.has("arc") and Game.run.shots % 3 == 0
@@ -699,7 +699,7 @@ func _trigger_arc(origin: Vector2, excluded: MineEnemy, coefficient: float = Bal
 	for i in range(mini(candidates.size(), Balance.ARC_TARGETS)):
 		var target := candidates[i]
 		_add_effect({"kind":&"arc","from":origin,"to":target.position,"remaining":0.24,"duration":0.24})
-		target.take_damage(player.attack_power() * coefficient, &"arc")
+		target.take_damage(player.relic_power() * coefficient, &"arc")
 		telemetry["arc_hits"] += 1
 
 func enemy_died(enemy: MineEnemy) -> void:
@@ -1117,7 +1117,10 @@ func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, ap
 		return false
 	if Numerical.is_v2(Game.run.stats): amount = Numerical.integer(amount)
 	var context: Dictionary = attack_context.duplicate()
-	context.merge({"target":target,"target_states":target.status.states.keys(),"X":amount,"H":float(context.get("power", player.attack_power())),"damage_source":context.get("damage_source","primary" if source == &"primary" else "skill"),"skill_slot":str(source),"proc_depth":int(context.get("proc_depth",0))}, true)
+	context.merge({"target":target,"target_states":target.status.states.keys(),"X":amount,"H":float(context.get("power", player.basic_power() if source == &"primary" else player.skill_power())),"damage_source":context.get("damage_source","primary" if source == &"primary" else "skill"),"skill_slot":str(source),"proc_depth":int(context.get("proc_depth",0))}, true)
+	if Numerical.is_v2(Game.run.stats):
+		context["X"] = Numerical.integer(amount)
+		context["H"] = Numerical.integer(float(context.H))
 	if not context.has("attack_id"):
 		attack_serial += 1
 		context["attack_id"] = "direct:" + str(attack_serial)
@@ -1143,7 +1146,7 @@ func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, ap
 		bonus += 0.08 + player.stat("corrosion_damage_bonus", 0.0)
 	if player.has_method("class_modify_hit_amount"):
 		amount = player.class_modify_hit_amount(target, amount, source, context)
-	var final_amount: float = amount * (1.0 + minf(0.6, bonus)) * (player.stat("crit_multiplier", 1.5) if bool(context.critical) else 1.0)
+	var final_amount: float = amount * (1.0 + minf(float(Numerical.value("caps").damage_bonus) if Numerical.is_v2(Game.run.stats) else 0.6, bonus)) * (player.stat("crit_multiplier", 1.5) if bool(context.critical) else 1.0)
 	final_amount *= player.hit_chain.multiplier(source, context)
 	if Numerical.is_v2(Game.run.stats):
 		final_amount = Numerical.integer(final_amount)
@@ -1176,7 +1179,7 @@ func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, ap
 		var status_duration: float = -1.0
 		if status_id == ClassRelics.native_status(player.hero_id()) and source == &"primary" and Game.run.relics.has("ember"):
 			var rank: int = int(Game.run.stats.get("relic_levels",{}).get("RL02",1))
-			status_power = ClassRelics.native_status_power(player.hero_id(),player.stat("ability_power",28.0) if player.hero_id()=="CH03" else status_power,rank)
+			status_power = ClassRelics.native_status_power(player.hero_id(),player.relic_power() if player.hero_id()=="CH03" else status_power,rank)
 			status_duration = ClassRelics.native_status_duration(player.hero_id(),rank,self)
 		if target.is_alive() and target.apply_status(status_id, status_power, status_duration):
 			var status_context: Dictionary = context.duplicate()
