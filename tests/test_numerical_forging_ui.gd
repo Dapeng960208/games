@@ -182,6 +182,22 @@ func _run() -> void:
 	check(panel.find_child("ForgeResult",true,false).text.contains("不收取") or panel.find_child("ForgeResult",true,false).text.contains("no charge"),"cap rejection explains no fee")
 	check(Game.profile.permanent_gold == gold,"capped quote never charges")
 	check(panel.find_child("ForgeIntegerPreview",true,false).text.contains("30.0%"),"capped resource-gain percentage is not truncated to integer zero")
+	var flat_profile: Dictionary = Game.profile.duplicate(true)
+	var flat := item("flat-preview","EQ03","green",1)
+	var other: String = Instances.legal_affixes("EQ03","physical").filter(func(key: String) -> bool: return key != "attack")[0]
+	flat.affix_type_and_quantile = [{"type":"attack","u":100},{"type":other,"u":0}]
+	flat_profile.equipment["flat-preview"] = flat
+	check(Game._commit_profile(flat_profile),"flat affix preview fixture")
+	choose("flat-preview","enhance")
+	var flat_quote: Dictionary = Game.quote_forging_v2("enhance",{"instance_id":"flat-preview"})
+	var expected_low := flat.duplicate(true)
+	expected_low.enhancement_rank = 1
+	expected_low.enhancement_steps = [{"g":8,"pity":0,"base_price_peak":40}]
+	var expected_high := expected_low.duplicate(true)
+	expected_high.enhancement_steps[0].g = 12
+	check(flat_quote.before_stats.attack > flat_quote.before_main_stats.attack,"fixture contains extra flat attack affix")
+	var range_text := str(int(Instances.main_stats(flat).attack))+" → "+str(int(Instances.main_stats(expected_low).attack))+"–"+str(int(Instances.main_stats(expected_high).attack))
+	check(panel.find_child("ForgeIntegerPreview",true,false).text.contains(range_text),"actual main preview excludes flat affix before and after")
 	for locale: String in ["zh_CN","en"]:
 		Words.locale = locale
 		panel._switch_page("upgrade")

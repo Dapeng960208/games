@@ -25,6 +25,7 @@ const GOLD := [40, 60, 90, 130, 180, 240, 310, 390, 480, 580]
 const COMMON := [2, 3, 4, 6, 8, 10, 13, 16, 20, 25]
 const RACE := [0, 0, 0, 2, 2, 2, 4, 4, 6, 6]
 const CORE := [0, 0, 0, 0, 0, 0, 0, 1, 0, 2]
+const AFFIX_UNLOCKS := {"reforge":5, "refine":10}
 const SALVAGE := {"white":[2, 0], "green":[4, 1], "purple":[7, 2], "gold":[12, 4]}
 
 static func quote(profile: Dictionary, kind: String, request: Dictionary) -> Dictionary:
@@ -136,6 +137,7 @@ static func _quote(profile: Dictionary, kind: String, request: Dictionary) -> Di
 			if not _has_flat_main(item): return _reject("NO_FLAT_MAIN")
 			if _gain_sum(_merged_steps(source, item)) <= _gain_sum(item.enhancement_steps): return _reject("NO_IMPROVEMENT")
 		"reforge", "refine":
+			if level < int(AFFIX_UNLOCKS[kind]): return _reject("REFORGE_LEVEL_LOCKED" if kind == "reforge" else "REFINE_LEVEL_LOCKED")
 			if int(request.affix_index) >= item.affix_type_and_quantile.size(): return _reject("AFFIX_NOT_FOUND")
 			if kind == "reforge":
 				if int(item.reforge_slot) != -1 and int(item.reforge_slot) != int(request.affix_index): return _reject("REFORGE_SLOT_BOUND")
@@ -159,6 +161,7 @@ static func _quote(profile: Dictionary, kind: String, request: Dictionary) -> Di
 			candidate.enhancement_rank += 1
 			candidate.enhancement_steps.append({"g":gain, "pity":0, "base_price_peak":_price(rank + 1, int(item.item_level))})
 			result["after_stats_min" if gain == 8 else "after_stats_max"] = Instances.stats(candidate)
+			result["after_main_stats_min" if gain == 8 else "after_main_stats_max"] = Instances.main_stats(candidate)
 	elif kind == "enhancement_reroll":
 		result["guaranteed"] = int(item.enhancement_steps[int(request.rank) - 1].pity) == 3
 		result["old_gain"] = int(item.enhancement_steps[int(request.rank) - 1].g)
@@ -408,6 +411,7 @@ static func _request(kind: String, request: Dictionary) -> Dictionary:
 	return Creation._canonical_values(request)
 
 static func _current_version_matches() -> bool:
+	if _hash(Rules.value("affix_operation_unlocks")) != _hash(AFFIX_UNLOCKS): return false
 	if not Acquisition.current_version_error().is_empty(): return false
 	if _hash(Rules.value("enhancement_unlocks")) != _hash([[1,0],[5,3],[10,5],[15,8],[20,10]]) or int(Rules.value("enhancement_max")) != 10: return false
 	var salvage := {}

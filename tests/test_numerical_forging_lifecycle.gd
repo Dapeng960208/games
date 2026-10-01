@@ -102,7 +102,29 @@ func _run() -> void:
 	var conflict := Game.forge_equipment_v2("enhance",{"instance_id":"low-source"},"actual:context")
 	check(not conflict.ok and conflict.error == "OPERATION_CONFLICT" and Game.profile.permanent_gold == wallet_before and Game.profile.equipment["low-source"].enhancement_rank == 0,"incidental item change rejects cached candidate instead of rerolling same ID")
 	check(Game.cancel_pending_forging_v2("actual:context"),"unpaid conflicted operation can be canceled")
+	_level_gates()
 	_finish()
+
+func _level_gates() -> void:
+	for kind: String in ["reforge","refine"]:
+		var unlock := 5 if kind == "reforge" else 10
+		for level in [unlock-1,unlock]:
+			check(Game.new_profile(),"gate isolated reset")
+			var fixture: Dictionary = Fixtures.fixture_profile()
+			fixture.hero_xp.CH01 = preload("res://scripts/core/hero_progression.gd").thresholds()[level-1]
+			fixture.permanent_gold = 10000
+			fixture.materials = {"forge":100,"race:B01":100}
+			fixture.equipment["gate-item"] = item("gate-item",1,"gold")
+			fixture.equipment["gate-item"].affix_type_and_quantile[0].u = 40
+			check(Game._commit_profile(fixture),"save gate fixture")
+			var request := {"instance_id":"gate-item","affix_index":0}
+			if kind == "reforge": request["affix_type"] = fixture.equipment["gate-item"].affix_type_and_quantile[0].type
+			var allowed: bool = level == unlock
+			var before: Dictionary = Game.profile.duplicate(true)
+			check(bool(Game.quote_forging_v2(kind,request).ok) == allowed,kind+" authoritative quote level "+str(level))
+			var result := Game.forge_equipment_v2(kind,request,"gate:"+kind+":"+str(level))
+			check(bool(result.ok) == allowed,kind+" actual Game level "+str(level))
+			if not allowed: check(Game.profile == before,kind+" locked operation never charges")
 
 func _finish() -> void:
 	print("Numerical forging lifecycle: ",checks," checks; failures=",failures)

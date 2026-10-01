@@ -250,9 +250,9 @@ static func _stat_lines(before: Dictionary,after: Dictionary) -> String:
 static func _preview_text(record: Dictionary,quote: Dictionary,kind: String) -> String:
 	var before: Dictionary = quote.get("before_main_stats",Instances.main_stats(record))
 	var lines: PackedStringArray = [_t("主属性整数预览","MAIN ATTRIBUTE PREVIEW")]
-	if kind == "enhance" and quote.has("after_stats_min"):
+	if kind == "enhance" and quote.has("after_main_stats_min"):
 		for key: String in before:
-			lines.append(_caption(key)+": "+_format(key,before[key])+" → "+_format(key,quote.after_stats_min.get(key,0))+"–"+_format(key,quote.after_stats_max.get(key,0)))
+			lines.append(_caption(key)+": "+_format(key,before[key])+" → "+_format(key,quote.after_main_stats_min.get(key,0))+"–"+_format(key,quote.after_main_stats_max.get(key,0)))
 	elif kind == "enhancement_reroll" and quote.has("old_gain"):
 		var rank := int(quote.get("request",{}).get("rank",1))
 		var minimum := record.duplicate(true)
@@ -490,6 +490,7 @@ static func error_text(code: String) -> String:
 		"PENDING_FORGE_RETRY":["先重试或取消未付款的保存失败交易。","Retry or cancel the unpaid failed-save attempt first."],"STORAGE_TOO_LARGE":["保存容量不足；资产未改变。","Save capacity exceeded; assets are unchanged."],
 		"INSTANCE_LOCKED":["装备已锁定；先解锁。","Item locked; unlock it first."],"INSTANCE_EQUIPPED":["已装备物品不能出售或拆解。","Equipped items cannot be sold or dismantled."],
 		"INSTANCE_PENDING":["先领取待结算装备。","Collect this pending item first."],"TRANSACTION_PENDING":["先选择已付款的重铸结果。","Resolve the paid reforge first."],
+		"REFORGE_LEVEL_LOCKED":["词条重铸需要角色Lv5。","Affix reforge requires hero Lv5."],"REFINE_LEVEL_LOCKED":["词条精炼需要角色Lv10。","Affix refine requires hero Lv10."],
 		"ENHANCEMENT_LEVEL_LOCKED":["角色等级不足：Lv5/10/15/20开放+3/+5/+8/+10。","Hero level gate: Lv5/10/15/20 unlock +3/+5/+8/+10."],"REROLL_LEVEL_LOCKED":["阶重锻需要角色Lv10。","Step reroll requires hero Lv10."],
 		"MAX_ENHANCEMENT":["强化已达+10上限。","Enhancement is already +10."],"MAX_GAIN":["该阶g已达12%。","This step is already g=12%."],"RANK_NOT_FOUND":["没有可重锻的这一阶。","That enhancement step does not exist."],
 		"MAX_QUANTILE":["词条u已满100。","Affix u is already 100."],"NO_EFFECTIVE_IMPROVEMENT":["当前配装已封顶或实际值不变；不收取费用。","This loadout is capped or unchanged; no charge is allowed."],

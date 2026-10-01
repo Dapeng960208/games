@@ -906,5 +906,9 @@
     "S12": "B02",
     "S13": "B03",
     "S14": "B04"
+  },
+  "affix_operation_unlocks": {
+    "reforge": 5,
+    "refine": 10
   }
 }
