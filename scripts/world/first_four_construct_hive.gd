@@ -137,7 +137,7 @@ func _tick_nests() -> void:
 		var spawn: Dictionary = _brood_spawn_point(item.position, int(item.get("spawned_total", 0)))
 		if spawn.is_empty():
 			continue
-		var actor: Node2D = host.room.spawn_enemy(spawn.position, brood_enemy_id, 1, {"reward_enabled": false, "zone_index": -1})
+		var actor: Node2D = host.room.spawn_enemy(spawn.position, brood_enemy_id, _brood_level(ids.find(id)), {"reward_enabled": false, "zone_index": -1})
 		if not is_instance_valid(actor):
 			continue
 		actor.set_meta(BROOD_META, true)
@@ -162,6 +162,16 @@ func _brood_spawn_point(at: Vector2, spawned: int) -> Dictionary:
 			continue
 		return {"position": candidate}
 	return {}
+
+func _brood_level(nest_index: int) -> int:
+	# Objective adds follow the hive's authored level ladder instead of staying
+	# at level one throughout every difficulty. Stubs/legacy hosts use normal.
+	var difficulty: int = 0
+	for property: Dictionary in host.room.get_property_list():
+		if str(property.name) == "difficulty":
+			difficulty = clampi(int(host.room.get("difficulty")), 0, 4)
+			break
+	return clampi(5 + mini(2, maxi(0, nest_index)) * 2 + difficulty * 2, 1, 20)
 
 func _spawn_ground_clear(at: Vector2, radius: float) -> bool:
 	if host.room.has_method("valid_ground") and not host.room.valid_ground(at, radius):

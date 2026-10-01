@@ -17,6 +17,7 @@ var _cast_age: float = 0.0
 var _basic: String = ""
 var _basic_age: float = 0.0
 var _basic_duration: float = 0.1
+var _basic_direction := Vector2.RIGHT
 var _shot_age: float = 100.0
 var _shot_direction := Vector2.RIGHT
 var _shot_index: int = 0
@@ -46,19 +47,24 @@ func advance(delta: float) -> void:
 				effects.remove_at(index)
 	queue_redraw()
 
-func observe_basic(kind: String, duration: float) -> void:
+func observe_basic(kind: String, duration: float, committed_direction: Vector2 = Vector2.ZERO) -> void:
 	if kind not in ["attack_windup","attack_strike"] or not is_instance_valid(actor):
 		return
 	_basic = kind
 	_basic_age = 0.0
 	_frozen_pose.clear()
 	_basic_duration = duration
-	_shot_direction = actor.aim_direction
+	# A locked/automatic shot can differ from the live mouse aim. Preserve the
+	# actual committed direction through release and recoil; legacy callers may
+	# still omit it and use the actor aim at the moment they record the event.
+	var direction: Vector2 = committed_direction if committed_direction.is_finite() and not committed_direction.is_zero_approx() else actor.aim_direction
+	_basic_direction = direction.normalized() if direction.is_finite() and not direction.is_zero_approx() else Vector2.RIGHT
+	_shot_direction = _basic_direction
 	if kind != "attack_strike":
 		return
 	basic_events += 1
 	var hero: String = actor.hero_id()
-	_emit("swing" if hero == "CH01" else "muzzle",actor.position,actor.aim_direction,.23 if hero == "CH01" else .14,{"hero":hero,"radius":105.0,"arc":100.0,"heavy":false})
+	_emit("swing" if hero == "CH01" else "muzzle",actor.position,_basic_direction,.23 if hero == "CH01" else .14,{"hero":hero,"radius":105.0,"arc":100.0,"heavy":false})
 
 func cast_started(data: Dictionary, direction: Vector2, target: Vector2, serial: int) -> void:
 	_frozen_pose.clear()
@@ -156,10 +162,11 @@ func pose_state() -> Dictionary:
 		result.phase = "windup"
 		result.progress = _basic_age/maxf(.01,_basic_duration)
 		result.charge = result.progress
+		result.direction = _basic_direction
 	elif _basic == "attack_strike" and _basic_age < .29:
 		result.phase = "release" if _basic_age < .09 else "recovery"
 		result.progress = _basic_age/.09 if _basic_age < .09 else (_basic_age-.09)/.2
-		result.direction = _shot_direction
+		result.direction = _basic_direction
 	_frozen_pose = result.duplicate()
 	return result
 

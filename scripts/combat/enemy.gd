@@ -511,6 +511,9 @@ func _draw() -> void:
 		status_x += 20.0
 	if status.shield() > 0.0:
 		draw_arc(Vector2.ZERO, 28.0, 0, TAU, 24, Color("addbca"), 2.0, true)
+	var biome_skill: Dictionary = profile.get("biome_skill", {})
+	if str(biome_skill.get("id", "")) == "blood_rage" and health.current <= health.maximum * float(biome_skill.get("health_threshold", 0.5)):
+		draw_arc(Vector2.ZERO, navigation_radius + 8.0, 0, TAU, 24, Color("e77755"), 2.0, true)
 	if health.current < health.maximum or (not enemy_id.is_empty() and position.distance_to(room.player.position)<520):
 		var bar_y: float = body_bounds.position.y-8.0 if body_texture != null else -40.0
 		draw_rect(Rect2(-19,bar_y-1,38,6),Color("4d3854"))
@@ -528,6 +531,7 @@ func _draw() -> void:
 			var role: String = str(profile.get("archetype","skirmisher"))
 			caption += " · " + (role.capitalize() if english else str({"tank":"坦克","caster":"法系","assassin":"刺客","support":"支援","skirmisher":"散兵"}.get(role,"野怪")))
 			caption += " / M" if english and profile.get("damage_type","physical")=="magic" else " / P" if english else " / 魔法" if profile.get("damage_type","physical")=="magic" else " / 物理"
+			caption += " · " + str(profile.get("biome_skill_name_en" if english else "biome_skill_name", ""))
 		var text_width: float = room.fx_font.get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,11).x
 		draw_rect(Rect2(-text_width*.5-4,25,text_width+8,16),Color(1.0,.945,.82,.93))
 		draw_rect(Rect2(-text_width*.5-4,25,text_width+8,16),Color(.46,.34,.45,.72),false,1.0)

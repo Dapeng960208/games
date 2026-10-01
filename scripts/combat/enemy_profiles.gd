@@ -5,6 +5,7 @@ extends RefCounted
 
 const Catalog = preload("res://scripts/world/world_catalog.gd")
 const Palette = preload("res://scripts/combat/enemy_palette.gd")
+const BiomeSkills = preload("res://scripts/combat/enemy_biome_skills.gd")
 const DATA_PATH := "res://data/enemy_progression.json"
 const MIN_LEVEL := 1
 const MAX_LEVEL := 20
@@ -136,6 +137,7 @@ static func resolve(enemy_id: String, enemy_level: int = 1, rank: String = "norm
 	if resolved_rank == "elite":
 		base_cost = int(ceil(float(base_cost) * 1.5))
 	result["effective_threat_cost"] = int(ceil(float(base_cost) * (1.0 + float(tier - 1) * 0.25)))
+	BiomeSkills.apply(result)
 	return result
 
 static func _enforce_safety(enemy_id: String, base: Dictionary, parameters: Dictionary) -> void:
@@ -196,7 +198,7 @@ static func encounter_waves(room_id: String, zone_index: int, difficulty: int = 
 	return encounter_plan(room_id, zone_index, difficulty).get("waves", []).duplicate(true)
 
 static func _encounter_member(id: String, level: int, rank: String, zone: int, difficulty: int, budget: int, wave_index: int) -> Dictionary:
-	var profile: Dictionary = resolve(id, level, rank)
+	var profile: Dictionary = preload("res://scripts/combat/enemy_difficulty.gd").apply(resolve(id, level, rank), difficulty)
 	if profile.is_empty():
 		return {}
 	var reserve_count: int = int(profile["attack_parameters"].get("summon_cap", 0))

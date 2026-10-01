@@ -4,6 +4,7 @@ extends Node
 
 const RoomScene = preload("res://scenes/room.tscn")
 const Bindings = preload("res://scripts/core/control_bindings.gd")
+const Visual = preload("res://scripts/combat/hero_visual.gd")
 var stage: SubViewport
 var room: MineRoom
 var checks := 0
@@ -61,6 +62,67 @@ func key(code: int, pressed: bool) -> void:
 	event.physical_keycode = code
 	event.pressed = pressed
 	Input.parse_input_event(event)
+
+func check_gunner_direction() -> void:
+	# Actual auto-shoot selection points SE while the live mouse points NW.
+	# Presentation must follow that committed packet through the cooldown gap.
+	room.player.cancel_actions()
+	room.player.dash_remaining = 0.0
+	room.player.shot_cooldown = 0.0
+	room.player.position = Vector2(430,350)
+	for enemy: Node in room.enemies.get_children(): enemy.free()
+	for projectile: Node in room.projectiles.get_children(): projectile.free()
+	Game.run.hero_id = "CH02"
+	Game.run.stats = StatResolver.resolve("CH02", 8, {}, {})
+	Game.run.stats["crit_chance"] = 0.0
+	Game.run.resource = 100.0
+	for slot: String in room.player.cooldowns: room.player.cooldowns[slot] = 0.0
+	var target: MineEnemy = room.spawn_enemy(Vector2(800,600), "M01")
+	target.health.reset(10000.0)
+	target.training_ai_disabled = true
+	target.state = &"chase"
+	var expected: Vector2 = room.player.position.direction_to(target.position)
+	aim(Vector2(220,150))
+	Game.profile.settings["auto_attack"] = true
+	await frames()
+	Game.profile.settings["auto_attack"] = false
+	var feedback: Node = room.player.get_node("HeroFeedback")
+	var pose: Dictionary = Visual.gunner_presentation_pose(room.player, feedback.pose_state())
+	check(room.projectiles.get_child_count() == 1 and room.projectiles.get_child(0).direction.dot(expected) > .999, "gunner really commits SE shot with mouse pointing NW")
+	check(Vector2(pose.direction).dot(expected) > .999 and str(pose.phase) == "release", "gunner release pose uses committed projectile direction")
+	var frame: Dictionary = Visual.presentation_frame_info("CH02", "back" if Vector2(pose.direction).y < -.20 else "front", pose, 0.0, false)
+	check(str(frame.get("bank", "")) == "front" and Visual.source_horizontal_flip(pose.direction, frame) == 1.0, "SE shot renders the front shoulder pose without left mirror")
+	aim(Vector2(130,70))
+	await frames(18)
+	pose = Visual.gunner_presentation_pose(room.player, feedback.pose_state())
+	check(bool(pose.get("gun_hold", false)) and Vector2(pose.direction).dot(expected) > .999 and room.player.shot_cooldown > 0.0, "moving mouse NW cannot turn gunner during remaining SE shot cooldown")
+	var skill_at := Vector2(220,150)
+	var skill_direction: Vector2 = room.player.position.direction_to(skill_at)
+	check(room.player.request_skill("secondary", skill_at) and Vector2(feedback.pose_state().direction).dot(skill_direction) > .999, "next committed W skill turns toward its own NW direction")
+	room.player.cancel_actions()
+	await frames(8)
+	aim(skill_at)
+	key(KEY_A, true)
+	await frames()
+	key(KEY_A, false)
+	pose = Visual.gunner_presentation_pose(room.player, feedback.pose_state())
+	check(Vector2(pose.direction).dot(skill_direction) > .999, "next real A shot replaces previous SE visual direction with NW")
+	await frames(25)
+	expected = room.player.position.direction_to(target.position)
+	check(room.player.request_attack(skill_direction, target), "targeted ordinary shot commits without changing target policy")
+	pose = Visual.gunner_presentation_pose(room.player, feedback.pose_state())
+	check(Vector2(pose.direction).dot(expected) > .999, "targeted shot uses selected enemy direction rather than mouse direction")
+	var shots: int = int(room.telemetry.shots)
+	get_tree().paused = true
+	key(KEY_A, true)
+	await frames(2)
+	get_tree().paused = false
+	await frames(27)
+	check(int(room.telemetry.shots) == shots, "held key first pressed while paused cannot replay a shot on resume")
+	key(KEY_A, false)
+	room.player.cancel_actions()
+	pose = Visual.gunner_presentation_pose(room.player, feedback.pose_state())
+	check(not bool(pose.get("gun_hold", false)) and room.player.combo_queue.is_empty(), "cancelled room actions leave no stale held shoulder pose or attack queue")
 
 func _run() -> void:
 	if not Game.profile_path.contains("test_new_controls"):
@@ -220,6 +282,7 @@ func _run() -> void:
 	check(room.player.position.y < before_move.y - 15.0, "optional mapped directional movement works")
 	room.player.request_move(Vector2(800,350))
 	check(room.player.start_dash(Vector2.RIGHT) and not room.player.click_navigation.is_active(), "dash cancels stale click route")
+	await check_gunner_direction()
 	await room.combat_audio.wait_for_cleanup()
 	room.free()
 	await frames(2)

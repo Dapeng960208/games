@@ -12,6 +12,7 @@ const DeploymentScript = preload("res://scripts/combat/hero_deployment.gd")
 const CameraScript = preload("res://scripts/combat/world_camera.gd")
 const Layouts = preload("res://scripts/world/room_layouts.gd")
 const EnemyProfilesScript = preload("res://scripts/combat/enemy_profiles.gd")
+const EnemyDifficultyScript = preload("res://scripts/combat/enemy_difficulty.gd")
 const EnemySkillsScript = preload("res://scripts/combat/enemy_skill_runtime.gd")
 const EnemyTelegraphsScript = preload("res://scripts/combat/enemy_telegraphs.gd")
 const PropsScript = preload("res://scripts/world/room_props.gd")
@@ -338,6 +339,10 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 			return null
 	elif options.has("profile"):
 		resolved = options.profile.duplicate(true)
+	# All ordinary spawn paths share the room difficulty, including objective
+	# adds and boss reinforcements. Encounter plans have already applied this;
+	# the preserved base prevents compounding their bonuses on spawn.
+	resolved = EnemyDifficultyScript.apply(resolved, difficulty)
 	var zone: int = int(options.get("zone_index", resolved.get("zone_index", -1)))
 	if zone >= 0 and _zone_actor_count(zone) >= 6:
 		return null
@@ -387,7 +392,7 @@ func spawn_enemy_summon(caster: Node2D, id: String, at: Vector2) -> MineEnemy:
 			children += 1
 	if children >= 2:
 		return null
-	var resolved: Dictionary = EnemyProfilesScript.resolve(id, caster.enemy_level)
+	var resolved: Dictionary = EnemyDifficultyScript.apply(EnemyProfilesScript.resolve(id, caster.enemy_level), difficulty)
 	if resolved.is_empty():
 		return null
 	var budget: float = float(caster.profile.get("encounter_budget",18.0))

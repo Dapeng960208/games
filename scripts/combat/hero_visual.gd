@@ -123,14 +123,14 @@ static func gunner_presentation_pose(p: Node2D, pose: Dictionary) -> Dictionary:
 			var basic: Dictionary = pose.duplicate()
 			basic.merge({"slot":"basic", "phase":"release" if age < 0.09 else "recovery",
 				"progress":clampf(age/0.09 if age < 0.09 else (age-0.09)/0.20,0.0,1.0),
-				"direction":feedback.get("_shot_direction")},true)
+				"direction":feedback.get("_basic_direction")},true)
 			basic.erase("authored_phase_progress")
 			return basic
-	if str(pose.get("phase", "idle")) != "idle" or float(p.shot_cooldown) <= 0.0:
+	if str(pose.get("phase", "idle")) != "idle" or float(p.shot_cooldown) <= 0.0 or not is_instance_valid(feedback) or str(feedback.get("_basic")) != "attack_strike":
 		return pose
 	var held: Dictionary = pose.duplicate()
 	held.merge({"phase":"recovery", "slot":"basic", "progress":1.0, "authored_phase_progress":1.0,
-		"direction":p.aim_direction, "gun_hold":true},true)
+		"direction":feedback.get("_basic_direction"), "gun_hold":true},true)
 	return held
 
 static func presentation_frame_info(hero: String, bank: String, pose: Dictionary, stride: float, walking: bool, dash: bool = false) -> Dictionary:

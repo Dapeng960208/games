@@ -586,6 +586,7 @@ func _skill(kind: String, options: Dictionary = {}) -> Dictionary:
 		"duration": 0.0, "track": true, "damage_kind": profile.get("damage_kind", "kinetic"),
 		"damage_type": profile.get("damage_type", "magic" if str(profile.get("damage_kind","kinetic")) in ["fire","corrosion","electric","cold"] else "physical"),
 		"exposure_seconds": float(parameters.get("exposure_seconds", 0.0)),
+		"biome_skill": profile.get("biome_skill", {}).duplicate(true),
 	}
 	for key: Variant in options:
 		result[key] = options[key]

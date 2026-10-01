@@ -338,13 +338,13 @@ func fire(direction: Vector2, automatic_target: Node2D = null) -> bool:
 		attack_remaining = shot_cooldown
 		attack_resolved = false
 		room.record_attack()
-		visual_event("attack_windup", 0.12)
+		visual_event("attack_windup", 0.12, _attack_direction)
 	else:
 		if not room.fire_from_player(_attack_direction, _attack_critical):
 			shot_cooldown = 0.0
 			return false
 		muzzle_flash = 0.07
-		visual_event("attack_strike", 0.12)
+		visual_event("attack_strike", 0.12, _attack_direction)
 	_play_combat_audio(&"attack", [hero_id()])
 	return true
 
@@ -367,7 +367,7 @@ func _tick_attack(delta: float) -> void:
 			_attack_direction = aim_direction
 		var victims: Array = room.strike_area(position, 105.0, attack_power() * (1.5 if _attack_critical else 1.0), &"primary", "", 12.0, _attack_direction, 100.0, true, {}, true)
 		room.add_arc_visual(position, _attack_direction, 105.0, 100.0, Color("e9b16e"), 0.16)
-		visual_event("attack_strike", 0.08)
+		visual_event("attack_strike", 0.08, _attack_direction)
 		if not victims.is_empty():
 			on_primary_hit(victims[0])
 			room.resolve_melee_relics(victims[0], _attack_direction)
@@ -874,13 +874,13 @@ func class_status() -> Dictionary:
 func original_hit(target: Node2D, amount: float, kind: StringName, applied_status: String = "", push: float = 0.0) -> void:
 	room.resolve_direct_hit(target, amount, kind, applied_status, push, (target.position - position).normalized())
 
-func visual_event(kind: String, duration: float) -> void:
+func visual_event(kind: String, duration: float, committed_direction: Vector2 = Vector2.ZERO) -> void:
 	visual_state = kind
 	visual_remaining = duration
 	visual_duration = duration
 	var feedback: Node = get_node_or_null("HeroFeedback")
 	if is_instance_valid(feedback):
-		feedback.observe_basic(kind, duration)
+		feedback.observe_basic(kind, duration, committed_direction)
 	queue_redraw()
 
 func hit_feedback(duration: float) -> void:

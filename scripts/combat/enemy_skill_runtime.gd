@@ -20,6 +20,8 @@ var visuals: Array[Dictionary] = []
 var marks: Array[Dictionary] = []
 var heal_receipts: Dictionary = {}
 var summon_owners: Dictionary = {}
+var biome_skill_cooldowns: Dictionary = {}
+var _biome_clock: float = 0.0
 
 func configure(host: Node2D) -> void:
 	reset_room()
@@ -46,6 +48,12 @@ func emit_skill(caster: Node2D, skill: Dictionary) -> void:
 	command["direction"] = direction.normalized() if direction.length_squared() > EPSILON else Vector2.RIGHT
 	var base_damage: float = float(command.get("damage", _property(caster, "contact_damage", _property(caster, "attack_damage", 12.0))))
 	command["damage"] = maxf(0.0, base_damage) * maxf(0.0, float(command.get("damage_multiplier", 1.0)))
+	var signature: Dictionary = _biome_signature(caster, command)
+	command["biome_skill"] = signature
+	if str(signature.get("id", "")) == "blood_rage" and _blood_rage_active(caster, signature):
+		# Freeze the rage bonus with the rest of this attack. It never multiplies
+		# again when a projectile hits or a lingering area ticks.
+		command["damage"] *= float(signature.get("damage_multiplier", 1.2))
 	command["remaining"] = maxf(0.0, float(command.get("delay", 0.0)))
 	if float(command.remaining) > 0.0:
 		jobs.append(command)
@@ -59,6 +67,10 @@ func _physics_process(delta: float) -> void:
 func advance(delta: float) -> void:
 	if delta <= 0.0 or _paused() or not is_instance_valid(room):
 		return
+	_biome_clock += delta
+	for owner_id: int in biome_skill_cooldowns.keys():
+		if not _alive(instance_from_id(owner_id)):
+			biome_skill_cooldowns.erase(owner_id)
 	var pending_jobs: Array[Dictionary] = jobs.duplicate()
 	for shot: Dictionary in projectiles.duplicate():
 		_tick_projectile(shot, delta)
@@ -136,6 +148,7 @@ func cancel_owner(caster: Node2D) -> void:
 			# A cancelled pod never leaves a rewarding corpse or a delayed attack.
 			summon.queue_free()
 	summon_owners.erase(owner_id)
+	biome_skill_cooldowns.erase(owner_id)
 	queue_redraw()
 
 func cancel_displaced_motion(caster: Node2D) -> void:
@@ -170,6 +183,8 @@ func reset_room() -> void:
 		collection.clear()
 	heal_receipts.clear()
 	summon_owners.clear()
+	biome_skill_cooldowns.clear()
+	_biome_clock = 0.0
 	queue_redraw()
 
 func active_effect_count() -> int:
@@ -180,6 +195,9 @@ func has_motion(caster: Node2D) -> bool:
 
 func movement_multiplier(target: Node2D) -> float:
 	var multiplier: float = 1.0
+	var signature: Dictionary = _biome_signature(target)
+	if str(signature.get("id", "")) == "blood_rage" and _blood_rage_active(target, signature):
+		multiplier = float(signature.get("move_multiplier", 1.18))
 	for support: Dictionary in supports:
 		if str(support.kind) == "haste" and _support_valid(support) and _support_target(support) == target:
 			multiplier = maxf(multiplier, float(support.get("multiplier", 1.18)))
@@ -593,7 +611,55 @@ func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 			state["power"] = state.get("power", float(command.get("damage", 0.0)))
 			state["origin"] = origin
 			victim.call("receive_enemy_status", state)
+	if accepted and float(command.get("damage", 0.0)) > 0.0:
+		_apply_biome_hit(victim, command, origin)
 	return accepted
+
+func _biome_signature(caster: Node2D, command: Dictionary = {}) -> Dictionary:
+	if not _alive(caster) or bool(caster.get_meta("enemy_skill_anchor", false)) or str(_property(caster, "rank", "normal")) == "boss" or str(_property(caster, "actor_kind", "enemy")) != "enemy":
+		return {}
+	var profile: Dictionary = _property(caster, "profile", {})
+	return command.get("biome_skill", profile.get("biome_skill", {})).duplicate(true)
+
+func _blood_rage_active(caster: Node2D, signature: Dictionary) -> bool:
+	var health: Variant = _property(caster, "health", null)
+	var maximum: float = float(_property(health, "maximum", 0.0))
+	return _alive(caster) and maximum > 0.0 and float(_property(health, "current", maximum)) / maximum <= float(signature.get("health_threshold", 0.5))
+
+func _apply_biome_hit(victim: Node2D, command: Dictionary, origin: Vector2) -> void:
+	var caster: Node2D = _owner(command)
+	var signature: Dictionary = _biome_signature(caster, command)
+	var id: String = str(signature.get("id", ""))
+	if id.is_empty() or id == "blood_rage":
+		return
+	if id == "venom_wound":
+		# Existing acid attacks already deliver a full corrosion packet. A bite
+		# can carry its authored slow and venom together, without overwriting it.
+		var primary_status: Variant = command.get("status", {})
+		var primary_id: String = str(primary_status.get("id", "")) if primary_status is Dictionary else str(primary_status)
+		if primary_id != str(signature.get("status_id", "corrosion")) and victim.has_method("receive_enemy_status"):
+			victim.call("receive_enemy_status", {"id":signature.get("status_id", "corrosion"), "duration":float(signature.get("status_seconds", 1.8)), "power":float(command.damage) * float(signature.get("status_power_ratio", 0.55)), "origin":origin})
+		return
+	var owner_id: int = caster.get_instance_id()
+	if _biome_clock < float(biome_skill_cooldowns.get(owner_id, -1.0)):
+		return
+	var health: Variant = _property(caster, "health", null)
+	var maximum: float = float(_property(health, "maximum", 0.0))
+	if maximum <= 0.0:
+		return
+	var triggered: bool = false
+	if id == "capacitor_guard":
+		var status: Variant = _property(caster, "status", null)
+		if status is Object and status.has_method("grant_guard"):
+			triggered = bool(status.call("grant_guard", maximum * float(signature.get("guard_ratio", 0.08)), float(signature.get("guard_seconds", 1.5)), "biome:capacitor", maximum))
+	elif id == "grave_drain" and caster.has_method("heal"):
+		var amount: float = minf(maximum * float(signature.get("heal_hp_cap", 0.06)), float(command.damage) * float(signature.get("heal_damage_ratio", 0.25)))
+		triggered = float(caster.call("heal", amount)) > 0.0
+	if triggered:
+		biome_skill_cooldowns[owner_id] = _biome_clock + float(signature.get("cooldown_seconds", 4.0))
+		var feedback: Dictionary = command.duplicate()
+		feedback.merge({"shape":"ring", "origin":caster.position, "radius":29.0, "inner_radius":24.0}, true)
+		_flash(feedback, Color("96dce7") if id == "capacitor_guard" else Color("b7db94"))
 
 func _pull(command: Dictionary) -> void:
 	var area: Dictionary = command.duplicate()
