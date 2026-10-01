@@ -1,16 +1,21 @@
 extends RefCounted
 ## Pure reward policy. Persistence, duplicate conversion and extraction belong to
 ## the run controller; this file never grants currency or changes a run.
+## In policy 1, callers pass historical discoveries in `owned` to preserve
+## first-discovery priority after selling. Pending finds remain excluded too.
+## Missing policy versions retain the old ownership-based deterministic rolls.
 
 const Registry = preload("res://scripts/data/content_registry.gd")
 const Catalog = preload("res://scripts/world/world_catalog.gd")
 const NORMAL_XP := 30
 const NORMAL_MASTERY := 180
+const CURRENT_POLICY_VERSION := 1
 
-static func build(room_id: String, quality: String, hero_id: String, seed: int, completion_id: String, owned: Array = [], pending: Array = [], bosses: Array = [], difficulty: int = -1) -> Dictionary:
+static func build(room_id: String, quality: String, hero_id: String, seed: int, completion_id: String, owned: Array = [], pending: Array = [], bosses: Array = [], difficulty: int = -1, policy_version: int = 0) -> Dictionary:
 	if Registry.hero(hero_id).is_empty() or completion_id.is_empty():
 		return {}
-	if difficulty < -1 or difficulty > 4: return {}
+	if difficulty < -1 or difficulty > 4 or policy_version not in [0, CURRENT_POLICY_VERSION]: return {}
+	if policy_version == CURRENT_POLICY_VERSION and difficulty < 0: return {}
 	var unlocked: Array = bosses.duplicate()
 	if Catalog.bosses().has(room_id):
 		if quality != "full": return {}
@@ -18,18 +23,19 @@ static func build(room_id: String, quality: String, hero_id: String, seed: int, 
 		var reward: Dictionary = _race_reward(room_id, 80, 2, hero_id, seed, completion_id, owned, pending, difficulty, true) if difficulty >= 0 else _reward(80, "offense", 2, hero_id, seed, room_id + ":" + quality, completion_id, owned, pending, unlocked)
 		reward.merge({"xp": 80, "mastery": 0, "boss_id": room_id}, true)
 		return reward
-	for option: Dictionary in _options(room_id):
+	for option: Dictionary in _policy_options(room_id, policy_version):
 		if str(option.quality) == quality:
-			var reward: Dictionary = _race_reward(room_id, int(option.gold), 1, hero_id, seed, completion_id, owned, pending, difficulty) if difficulty >= 0 else _reward(int(option.gold), str(option.theme), int(option.count), hero_id, seed, room_id + ":" + quality, completion_id, owned, pending, unlocked)
+			var reward: Dictionary = _race_reward(room_id, int(option.gold), int(option.count) if policy_version == CURRENT_POLICY_VERSION else 1, hero_id, seed, completion_id, owned, pending, difficulty) if difficulty >= 0 else _reward(int(option.gold), str(option.theme), int(option.count), hero_id, seed, room_id + ":" + quality, completion_id, owned, pending, unlocked)
 			reward.merge({"xp": NORMAL_XP, "mastery": NORMAL_MASTERY}, true)
 			return reward
 	return {}
 
-static func optional(room_id: String, objective_id: String, hero_id: String, seed: int, event_id: String, owned: Array = [], pending: Array = [], bosses: Array = [], difficulty: int = -1) -> Dictionary:
+static func optional(room_id: String, objective_id: String, hero_id: String, seed: int, event_id: String, owned: Array = [], pending: Array = [], bosses: Array = [], difficulty: int = -1, policy_version: int = 0) -> Dictionary:
 	var definition: Dictionary = optional_definition(room_id, objective_id)
 	if definition.is_empty() or Registry.hero(hero_id).is_empty() or event_id.is_empty():
 		return {}
-	if difficulty < -1 or difficulty > 4: return {}
+	if difficulty < -1 or difficulty > 4 or policy_version not in [0, CURRENT_POLICY_VERSION]: return {}
+	if policy_version == CURRENT_POLICY_VERSION and difficulty < 0: return {}
 	var reward: Dictionary = _race_reward(room_id, int(definition.gold), int(definition.count), hero_id, seed, event_id, owned, pending, difficulty) if difficulty >= 0 else _reward(int(definition.gold), str(definition.theme), int(definition.count), hero_id, seed, room_id + ":" + objective_id, event_id, owned, pending, bosses)
 	# Optional finds do not duplicate the room's XP or mastery award.
 	reward.merge({"xp": 0, "mastery": 0}, true)
@@ -42,14 +48,17 @@ static func optional_definition(room_id: String, objective_id: String) -> Dictio
 		return _option("optional", 22, "offense", 1, "清场后第3包", "After clear: third package")
 	return {}
 
-static func qualities(room_id: String) -> Array:
+static func qualities(room_id: String, policy_version: int = 0) -> Array:
+	if policy_version not in [0, CURRENT_POLICY_VERSION]: return []
 	if Catalog.bosses().has(room_id): return ["full"]
 	var result: Array = []
-	for option: Dictionary in _options(room_id): result.append(str(option.quality))
+	for option: Dictionary in _policy_options(room_id, policy_version): result.append(str(option.quality))
 	return result
 
-static func preview(room_id: String, hero_id: String, english: bool = false, difficulty: int = -1) -> String:
-	if Registry.hero(hero_id).is_empty(): return ""
+static func preview(room_id: String, hero_id: String, english: bool = false, difficulty: int = -1, policy_version: int = 0) -> String:
+	if Registry.hero(hero_id).is_empty() or policy_version not in [0, CURRENT_POLICY_VERSION]: return ""
+	if policy_version == CURRENT_POLICY_VERSION:
+		return _current_preview(room_id, hero_id, english, difficulty)
 	if difficulty >= 0 and difficulty <= 4:
 		var race := biome_for_reward(room_id)
 		if race.is_empty(): return ""
@@ -83,6 +92,61 @@ static func biome_for_reward(room_id: String) -> String:
 	var definition: Dictionary = Catalog.bosses().get(room_id, {}) if Catalog.bosses().has(room_id) else Catalog.room(room_id)
 	return str(definition.get("biome_id", ""))
 
+## Version zero remains the exact historical policy, including its callable
+## non-expedition quality branches. Current FirstFour expeditions have only one
+## outcome: finish every combat objective and clear the encounter. Do not copy
+## obsolete cargo/repair themes or counts into this live policy.
+static func _policy_options(room_id: String, policy_version: int) -> Array:
+	var options := _options(room_id)
+	if policy_version == 0: return options
+	var biome := biome_for_reward(room_id)
+	var labels: Dictionary = {
+		"B01":["全部回路充能并清场", "Charge all conduits and clear enemies"],
+		"B02":["摧毁全部育虫巢并清场", "Destroy all brood nests and clear enemies"],
+		"B03":["封闭全部墓穴并清场", "Seal all graves and clear enemies"],
+		"B04":["拆除全部路障并清场", "Break all barricades and clear enemies"]}
+	if not labels.has(biome): return []
+	for option: Dictionary in options:
+		if option.quality == "full":
+			return [_option("full", int(option.gold), "faction", 1, labels[biome][0], labels[biome][1])]
+	return []
+
+## Gold, number of draws and enhancement bounds are shared by preview and rolls.
+static func _race_terms(gold: int, base_count: int, difficulty: int, boss: bool = false) -> Dictionary:
+	var lower := maxi(0, difficulty - 1)
+	var upper := lower + (1 if difficulty == 1 else 0)
+	if boss and difficulty >= 1:
+		lower += 1
+		upper += 1
+	return {"gold":int(round(float(gold) * (1.0 + 0.25 * difficulty))),
+		"count":base_count + (int(difficulty / 2) if boss else (1 if difficulty >= 2 else 0)),
+		"lower":mini(3, lower), "upper":mini(3, upper)}
+
+static func _current_preview(room_id: String, hero_id: String, english: bool, difficulty: int) -> String:
+	if difficulty < 0 or difficulty > 4: return ""
+	var biome := biome_for_reward(room_id)
+	var pool := race_equipment_pool(biome, hero_id)
+	if pool.is_empty(): return ""
+	var boss := Catalog.bosses().has(room_id)
+	var options: Array = [_option("full", 80, "faction", 2, "击败首领并清场", "Defeat boss and clear enemies")] if boss else _policy_options(room_id, CURRENT_POLICY_VERSION)
+	if options.is_empty(): return ""
+	var lines: PackedStringArray = []
+	for option: Dictionary in options:
+		lines.append(_race_preview_line(option, difficulty, pool.size(), boss, english))
+	var extra := optional_definition(room_id, "side_crate" if room_id == "L01" else "research_2")
+	if not extra.is_empty():
+		extra.label = "清场后园匠晶籽收藏" if room_id == "L01" else "清场后花粉研究宝匣"
+		extra.label_en = "After clear: gardener cache" if room_id == "L01" else "After clear: pollen research chest"
+		lines.append(_race_preview_line(extra, difficulty, pool.size(), false, english))
+	lines.append(("+80 XP" if boss else "+30 XP · +180 mastery") if english else ("+80经验" if boss else "+30经验 · +180历练"))
+	lines.append("Extract to keep gear; repeats may convert to gold" if english else "撤离后保留装备；重复装备可能折算金币")
+	return "\n".join(lines)
+
+static func _race_preview_line(option: Dictionary, difficulty: int, pool_size: int, boss: bool, english: bool) -> String:
+	var terms := _race_terms(int(option.gold), int(option.count), difficulty, boss)
+	var count := mini(int(terms.count), pool_size)
+	return "%s: %d gold + %d faction gear · +%d–%d" % [str(option.label_en), int(terms.gold), count, int(terms.lower), int(terms.upper)] if english else "%s：%d金币 + %d件本族装备 · 强化+%d～%d" % [str(option.label), int(terms.gold), count, int(terms.lower), int(terms.upper)]
+
 ## The prototype preserves the existing equipment IDs and effects. A faction
 ## drop never falls back to another race, including when every item is owned.
 static func race_equipment_pool(biome_id: String, hero_id: String) -> Array:
@@ -105,18 +169,17 @@ static func _race_reward(room_id: String, gold: int, base_count: int, hero_id: S
 		else: fresh.append(id)
 	var rng := RandomNumberGenerator.new()
 	rng.seed = (seed ^ (room_id + ":" + hero_id + ":" + str(difficulty)).hash() ^ 0x52414345) & 0x7fffffff
-	var count := base_count + (int(difficulty / 2) if boss else (1 if difficulty >= 2 else 0))
+	var terms := _race_terms(gold, base_count, difficulty, boss)
+	var count := int(terms.count)
 	var drops: Array = []
 	for index in mini(count, pool.size()):
 		var candidates: Array = fresh if not fresh.is_empty() else repeats
 		var id := str(candidates.pop_at(rng.randi_range(0, candidates.size() - 1)))
-		var level := maxi(0, difficulty - 1)
-		if difficulty == 1: level = rng.randi_range(0, 1)
-		if boss and difficulty >= 1: level += 1
-		level = mini(3, level)
+		var level := int(terms.lower)
+		if difficulty == 1: level = rng.randi_range(int(terms.lower), int(terms.upper))
 		var prefix := event_id if event_id.length() <= 140 else event_id.left(120) + ":" + str(event_id.hash())
 		drops.append({"drop_id":prefix + ":equipment:" + str(index), "equipment_id":id, "drop_level":level})
-	return {"gold":int(round(float(gold) * (1.0 + 0.25 * difficulty))), "equipment":drops, "race_id":biome}
+	return {"gold":int(terms.gold), "equipment":drops, "race_id":biome}
 
 ## Pools come from live equipment stats and sets, not a second item catalogue.
 ## Even an exhausted pool keeps its theme; the transaction converts duplicates.

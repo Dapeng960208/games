@@ -943,10 +943,10 @@ func _reward_caption(quality: String) -> String:
 		return "Prepare for the next stop" if Words.locale == "en" else "整备后继续探索"
 	if context.is_empty():
 		return "Completion XP: 30" if Words.locale == "en" else "完成奖励  +30 经验"
-	var signature := str(room.layout_id)+":"+quality+":"+Game.run.hero_id+":"+Words.locale
+	var signature := str(room.layout_id)+":"+quality+":"+Game.run.hero_id+":"+Words.locale+":"+str(Game.run.expedition.get("difficulty",0))+":"+str(Game.run.expedition.get("reward_policy_version",0))
 	if signature != quest_reward_signature:
 		quest_reward_signature = signature
-		var rewards: Dictionary = RewardPolicy.build(str(room.layout_id),quality,Game.run.hero_id,int(room.get("layout_seed")),"hud-preview")
+		var rewards: Dictionary = RewardPolicy.build(str(room.layout_id),quality,Game.run.hero_id,int(room.get("layout_seed")),"hud-preview",Game.reward_discovery_ids(),Game.run.expedition.pending_equipment.keys(),Game.profile.bosses,int(Game.run.expedition.difficulty),int(Game.run.expedition.get("reward_policy_version",0)))
 		if rewards.is_empty():
 			cached_quest_reward = "Rewards at completion" if Words.locale == "en" else "完成目标后结算奖励"
 		else:

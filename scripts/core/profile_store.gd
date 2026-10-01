@@ -4,7 +4,9 @@ extends RefCounted
 ## A flushed newer temporary document is a recoverable commit intent.
 
 const SCHEMA_VERSION := 3
-const SETTLEMENT_RULES_VERSION := 2
+const SETTLEMENT_RULES_VERSION := 3
+const Economy = preload("res://scripts/core/economy_history.gd")
+const ECONOMY_RULES_VERSION := Economy.CURRENT_VERSION
 const Expedition = preload("res://scripts/core/expedition_state.gd")
 const MAX_NUMBER := 1_000_000_000_000
 const RELIC_IDS := ["split", "ember", "arc"]
@@ -14,11 +16,16 @@ const BOSS_IDS := ["BO01", "BO02", "BO03", "BO04"]
 const SLOTS := ["weapon", "head", "chest", "hands", "feet", "charm"]
 const STARTER_IDS := ["EQ01", "EQ11", "EQ21", "EQ31", "EQ41", "EQ51"]
 const MAX_TRANSACTIONS := 4096 # Bounded purchase/upgrade/recycle receipts; never evict IDs.
+# Compact JSON fits the entire bounded ledger, including 4095 full-catalog sales.
+# Keep every receipt ID: truncation/eviction would permit old requests to replay.
+const MAX_DOCUMENT_BYTES := 32 * 1024 * 1024
 const VOLUME_DEFAULTS := {"master_volume":1.0,"music_volume":0.55,"sfx_volume":0.85}
 const Controls = preload("res://scripts/core/control_bindings.gd")
 const COMBAT_SETTING_DEFAULTS := {"auto_attack": false, "enemy_skill_paths": true}
 
 var path: String
+# A lower instance limit supports constrained storage and exact boundary tests.
+var max_document_bytes: int = MAX_DOCUMENT_BYTES
 var last_error: String = ""
 var warning: String = ""
 var has_profile: bool = false
@@ -68,7 +75,7 @@ func load_document() -> Dictionary:
 			continue
 		var parser := JSON.new()
 		var parsed: Variant = null
-		if file.get_length() <= 1_048_576 and parser.parse(file.get_as_text()) == OK:
+		if file.get_length() <= _byte_limit() and parser.parse(file.get_as_text()) == OK:
 			parsed = parser.data
 		file.close()
 		if not _valid_document(parsed):
@@ -135,15 +142,14 @@ func save_document(profile: Dictionary, active_run: Variant = null, profile_init
 	if _blocked:
 		last_error = "STORAGE_NO_VALID_PROFILE"
 		return false
-	var document := {
-		"schema_version": SCHEMA_VERSION,
-		"profile_initialized": profile_initialized,
-		"revision": int(_current.get("revision", 0)) + 1,
-		"profile": profile.duplicate(true),
-		"active_run": active_run.duplicate(true) if active_run is Dictionary else null,
-	}
+	var document := _next_document(profile, active_run, profile_initialized)
 	if not _valid_document(document):
 		last_error = "STORAGE_INVALID_DATA"
+		return false
+	# Check the exact bytes before touching primary, temporary, or backup files.
+	var serialized := _serialize(document)
+	if serialized.size() > _byte_limit():
+		last_error = "STORAGE_CAPACITY_EXCEEDED"
 		return false
 	var directory := ProjectSettings.globalize_path(path).get_base_dir()
 	if DirAccess.make_dir_recursive_absolute(directory) != OK:
@@ -156,7 +162,7 @@ func save_document(profile: Dictionary, active_run: Variant = null, profile_init
 		if DirAccess.rename_absolute(path + ".bak.tmp", path + ".bak") != OK:
 			last_error = "STORAGE_REPLACE_FAILED"
 			return false
-	if not _write_document(path + ".tmp", document):
+	if not _write_serialized(path + ".tmp", serialized):
 		return false
 	if DirAccess.rename_absolute(path + ".tmp", path) != OK:
 		last_error = "STORAGE_REPLACE_FAILED"
@@ -165,12 +171,41 @@ func save_document(profile: Dictionary, active_run: Variant = null, profile_init
 	has_profile = profile_initialized
 	return true
 
+func _next_document(profile: Dictionary, active_run: Variant, profile_initialized: bool) -> Dictionary:
+	return {
+		"schema_version": SCHEMA_VERSION,
+		"profile_initialized": profile_initialized,
+		"revision": int(_current.get("revision", 0)) + 1,
+		"profile": profile.duplicate(true),
+		"active_run": active_run.duplicate(true) if active_run is Dictionary else null,
+	}
+
+func _byte_limit() -> int:
+	return clampi(max_document_bytes, 1, MAX_DOCUMENT_BYTES)
+
+static func _serialize(document: Dictionary) -> PackedByteArray:
+	# Count and write the same UTF-8 bytes; String.length() is not a byte count.
+	return JSON.stringify(document).to_utf8_buffer()
+
+func storage_capacity(profile: Dictionary, active_run: Variant = null, profile_initialized: bool = true) -> Dictionary:
+	var bytes := _serialize(_next_document(profile, active_run, profile_initialized)).size()
+	var count := (profile.get("applied_transactions", {}) as Dictionary).size()
+	return {"bytes": bytes, "limit_bytes": _byte_limit(),
+		"remaining_bytes": maxi(0, _byte_limit() - bytes), "transactions": count,
+		"remaining_transactions": maxi(0, MAX_TRANSACTIONS - count)}
+
 func _write_document(destination: String, document: Dictionary) -> bool:
+	return _write_serialized(destination, _serialize(document))
+
+func _write_serialized(destination: String, serialized: PackedByteArray) -> bool:
+	if serialized.size() > _byte_limit():
+		last_error = "STORAGE_CAPACITY_EXCEEDED"
+		return false
 	var file := FileAccess.open(destination, FileAccess.WRITE)
 	if file == null:
 		last_error = "STORAGE_WRITE_FAILED"
 		return false
-	file.store_string(JSON.stringify(document, "\t"))
+	file.store_buffer(serialized)
 	file.flush()
 	var error := file.get_error()
 	file.close()
@@ -197,10 +232,10 @@ static func _relics(value: Variant) -> bool:
 
 static func retained_gold(gold: int, outcome: String, rules_version: int = SETTLEMENT_RULES_VERSION) -> int:
 	# Historical receipts never depend on today's tunable Balance constants.
-	if rules_version not in [1, 2] or gold < 0 or outcome not in OUTCOMES:
+	if rules_version not in [1, 2, 3] or gold < 0 or outcome not in OUTCOMES:
 		return -1
 	if outcome == "extracted": return gold
-	if rules_version == 2 and outcome == "death": return int(gold / 2)
+	if rules_version >= 2 and (outcome == "death" or rules_version >= 3): return int(gold / 2)
 	return int(gold / 5)
 
 static func _migrate_v1(document: Dictionary) -> Dictionary:
@@ -268,7 +303,7 @@ static func _valid_result(value: Variant, version: int = 1) -> bool:
 		return valid
 	if value.has("field_xp_gained"):
 		if not _number(value.field_xp_gained, 18): return false
-		if int(value.field_xp_gained) > 0 and (int(rules) != 2 or value.outcome != "death"): return false
+		if int(value.field_xp_gained) > 0 and (int(rules) < 2 or value.outcome != "death"): return false
 		if not _number(value.get("hero_xp_gained"), 3600) or int(value.field_xp_gained) > int(value.hero_xp_gained): return false
 	if version >= 3:
 		for key: String in ["equipment_retained", "equipment_lost"]:
@@ -373,6 +408,7 @@ static func _valid_progression(profile: Dictionary) -> bool:
 		var id: Variant = profile.loadout.get(slot)
 		if not id is String or not profile.equipment.has(id) or ContentRegistry.equipment(id).get("slot") != slot:
 			return false
+	if profile.has("loadout_presets") and not _valid_loadout_presets(profile.loadout_presets): return false
 	if not _allowed_ids(profile.get("bosses"), BOSS_IDS) \
 		or not _allowed_ids(profile.get("tutorial_completed"), HERO_IDS) \
 		or not profile.get("migration_id") in ["new_v2", "profile_v1_to_v2"]:
@@ -387,31 +423,58 @@ static func _valid_progression(profile: Dictionary) -> bool:
 		if id == "starter_grant_v1":
 			if entry.get("kind") != "starter":
 				return false
-		elif entry.get("kind") == "purchase_set":
-			var pieces := ContentRegistry.set_item_ids(str(entry.get("item", "")))
-			if pieces.size() != SLOTS.size() or not _number(entry.get("price")) or not _unique_ids(entry.get("items"), SLOTS.size()) or entry.items.is_empty(): return false
+		elif not _valid_economy_receipt(entry):
+			return false
+	return true
+
+static func _valid_loadout_presets(value: Variant) -> bool:
+	if not value is Dictionary or value.size() > HERO_IDS.size(): return false
+	for hero: Variant in value:
+		if hero not in HERO_IDS or not value[hero] is Dictionary or value[hero].size() != SLOTS.size(): return false
+		for slot: String in SLOTS:
+			var id: Variant = value[hero].get(slot)
+			if not id is String: return false
+			# Presets reference the shared inventory; missing/sold entries may be empty.
+			# Known stale IDs are safe to load and are resolved by the controller.
+			if not id.is_empty() and ContentRegistry.equipment(id).get("slot") != slot: return false
+	return true
+
+static func _valid_economy_receipt(entry: Dictionary) -> bool:
+	# Versionless receipts belong to the frozen original economy, never today's catalog.
+	var version: Variant = entry.get("economy_version", 1)
+	if not _number(version, ECONOMY_RULES_VERSION) or not Economy.supported(int(version)): return false
+	var rules := int(version)
+	if not _number(entry.get("price")) or not entry.get("item") is String: return false
+	match entry.get("kind"):
+		"purchase_set":
+			var pieces := Economy.set_items(entry.item, rules)
+			if pieces.size() != SLOTS.size() or not _unique_ids(entry.get("items"), SLOTS.size()) or entry.items.is_empty(): return false
 			var paid := 0
 			for eq_id: String in entry.items:
 				if not eq_id in pieces: return false
-				paid += int(ContentRegistry.equipment(eq_id).price) * 9 / 10
-			if paid != int(entry.price): return false
-		elif entry.get("kind") == "sale":
-			if not entry.get("items") is Dictionary or entry.items.is_empty() or entry.items.size() > ContentRegistry.equipment_ids().size() or not _number(entry.get("price")): return false
-			var proceeds := 0
+				paid += Economy.item_price(eq_id, rules) * 9 / 10
+			return paid == int(entry.price)
+		"sale":
+			if not entry.get("items") is Dictionary or entry.items.is_empty() or entry.items.size() > Economy.item_count(rules): return false
 			var sold_ids: Array = entry.items.keys()
+			for id: Variant in sold_ids:
+				if not id is String: return false
 			sold_ids.sort()
-			if entry.get("item") != ",".join(sold_ids): return false
+			if entry.item != ",".join(sold_ids): return false
+			var proceeds := 0
 			for eq_id: String in sold_ids:
 				var record: Variant = entry.items[eq_id]
-				if not record is Dictionary or not _number(record.get("level"), Expedition.MAX_EQUIPMENT_LEVEL): return false
-				var worth := equipment_sell_price(eq_id,int(record.level))
+				if not record is Dictionary or not _number(record.get("level"), Economy.maximum_level(rules)): return false
+				var worth := Economy.sell_price(eq_id, int(record.level), rules)
 				if worth <= 0 or record.get("price") != worth: return false
 				proceeds += worth
-			if proceeds != int(entry.price): return false
-		elif not entry.get("kind") in ["purchase", "upgrade"] or ContentRegistry.equipment(str(entry.get("item", ""))).is_empty() \
-			or not _number(entry.get("price")) or not _number(entry.get("level"), Expedition.MAX_EQUIPMENT_LEVEL):
-			return false
-	return true
+			return proceeds == int(entry.price)
+		"purchase":
+			return _number(entry.get("level"), 0) and Economy.item_price(entry.item, rules) == int(entry.price)
+		"upgrade":
+			return Economy.item_price(entry.item, rules) >= 0 and _number(entry.get("level"), Economy.maximum_level(rules)) \
+				and Economy.upgrade_price(int(entry.level), rules) == int(entry.price)
+	return false
 
 static func equipment_sell_price(eq_id: String, level: int) -> int:
 	var item := ContentRegistry.equipment(eq_id)

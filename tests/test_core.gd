@@ -33,9 +33,11 @@ func _run() -> void:
 	test_directory = "user://test_core_" + str(Time.get_ticks_usec())
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(test_directory))
 	for gold: int in [0, 1, 4, 5, 17, 99, 100, 103]:
-		# Newly settled runs use rules v2. Historical v1 receipts retain 20%.
+		# Newly settled failures use rules v3. Historical receipts retain their own rules.
 		_check(Balance.death_keep(gold) == gold / 2, "current death retains floor 50 percent: " + str(gold))
 		_check(ProfileStore.retained_gold(gold, "death", 1) == gold / 5, "historical death retains floor 20 percent: " + str(gold))
+		_check(ProfileStore.retained_gold(gold, "abandoned") == gold / 2, "current abandonment equals death: " + str(gold))
+		_check(ProfileStore.retained_gold(gold, "abandoned", 2) == gold / 5, "historical v2 abandonment retains 20 percent: " + str(gold))
 	var game := _controller("normal.json")
 	_check(not game.has_profile, "empty save has no profile")
 	_check(not game.start_run(), "cannot start without a profile")
@@ -75,7 +77,7 @@ func _run() -> void:
 	game.equip_relic("ember")
 	_deplete_health(game)
 	_check(game.run == null and game.last_result.outcome == "death", "health depletion settles death")
-	_check(game.last_result.rules_version == 2 and game.last_result.retained == 9 and game.last_result.lost == 10, "v2 death payout rounds down")
+	_check(game.last_result.rules_version == ProfileStore.SETTLEMENT_RULES_VERSION and game.last_result.retained == 9 and game.last_result.lost == 10, "current death payout rounds down")
 	_check(game.profile.permanent_gold == 26 and game.profile.total_runs == 2, "death adds only retained gold")
 	_check("ember" in game.profile.discoveries, "death preserves discoveries")
 	game.reload_profile()
@@ -85,10 +87,10 @@ func _run() -> void:
 	game.equip_relic("arc")
 	game.reload_profile()
 	_check(game.run == null and game.last_result.outcome == "abandoned", "forced quit abandons instead of resuming")
-	_check(game.profile.permanent_gold == 32 and game.profile.total_runs == 3, "forced quit still retains 20 percent once")
+	_check(game.profile.permanent_gold == 43 and game.profile.total_runs == 3, "legacy non-expedition recovery uses current 50 percent abandonment once")
 	_check("arc" in game.profile.discoveries, "forced quit preserves pickup discovery")
 	game.reload_profile()
-	_check(game.profile.permanent_gold == 32 and game.profile.total_runs == 3, "repeated restart cannot repay abandonment")
+	_check(game.profile.permanent_gold == 43 and game.profile.total_runs == 3, "repeated restart cannot repay abandonment")
 	game.set_setting("language", "en")
 	game.set_setting("reduced_fx", true)
 	game.set_setting("fullscreen", true)
@@ -194,7 +196,7 @@ func _test_failed_save() -> void:
 	_check(game.run != null and game.run.hp == 0.0, "failed death settlement remains pending")
 	game._store.path = game.profile_path
 	var death_retry: Dictionary = game.finish_run("extracted")
-	_check(death_retry.outcome == "death" and death_retry.rules_version == 2 and death_retry.retained == 9, "failed v2 death cannot become full extraction")
+	_check(death_retry.outcome == "death" and death_retry.rules_version == ProfileStore.SETTLEMENT_RULES_VERSION and death_retry.retained == 9, "failed current death cannot become full extraction")
 	game.free()
 
 func _deplete_health(game: Node) -> void:

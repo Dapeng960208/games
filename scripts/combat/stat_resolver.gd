@@ -27,8 +27,10 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 		var base_stats: Dictionary = item.get("base_stats", {})
 		for key in base_stats:
 			var amount := float(base_stats[key]) * multiplier
-			# Flat equipment stats round once per upgraded item; ratios retain precision.
-			if key in ["attack", "ability_power", "max_hp", "armor", "magic_resist", "max_mana", "armor_penetration", "magic_penetration", "true_damage_bonus"]:
+			# Combat consumes fractional power, so small paid enhancements take
+			# effect immediately. Preserve historical HP/mana capacity rounding:
+			# old full-health/resource checkpoints must still fit the current cap.
+			if key in ["max_hp", "max_mana"]:
 				amount = roundf(amount)
 			contribution[key] = float(contribution.get(key, 0.0)) + amount
 		var set_id := str(item.get("set_id", ""))

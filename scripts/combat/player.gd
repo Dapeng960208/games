@@ -63,6 +63,9 @@ var _held_move_delay: float = 0.0
 var _held_move_target := Vector2(INF, INF)
 var _pending_skill_slot: String = ""
 var _enemy_status_origins: Dictionary = {}
+# Runtime attribution is fingerprinted to the winning status snapshot. Old save
+# formats remain unchanged; resumed effects with unknown sources stay unknown.
+var _enemy_status_contexts: Dictionary = {}
 var _enemy_slow_remaining: float = 0.0
 var _enemy_slow_multiplier: float = 1.0
 ## Room-local identity state; target references never enter a save or equipment state.
@@ -161,12 +164,15 @@ func _physics_process(delta: float) -> void:
 	Game.run.shield = status.shield()
 	for tick: Dictionary in status_damage:
 		var source_origin: Vector2 = _enemy_status_origins.get(str(tick.kind), position)
-		receive_damage(float(tick.damage), source_origin, {"dot":true,"status":str(tick.kind),"damage_type":str(tick.get("damage_type", "magic" if str(tick.kind) == "burn" else "physical"))})
+		var tick_context: Dictionary = _status_source_context(str(tick.kind), tick)
+		tick_context.merge({"dot":true,"status":str(tick.kind),"damage_type":str(tick.get("damage_type", "magic" if str(tick.kind) == "burn" else "physical"))}, true)
+		receive_damage(float(tick.damage), source_origin, tick_context)
 		if Game.run == null or Game.run.hp <= 0.0:
 			return
 	for identifier: String in _enemy_status_origins.keys():
 		if not status.has(identifier):
 			_enemy_status_origins.erase(identifier)
+			_enemy_status_contexts.erase(identifier)
 	if was_chilled != status.has("chill") and loadout != null:
 		loadout.event("state_changed", {"enemy_status":"chill"})
 	var regen_step: float = maxf(0.0, delta - resource_delay)
@@ -674,12 +680,12 @@ func receive_enemy_status(effect: Dictionary) -> bool:
 	var power: float = float(effect.get("power", 0.0))
 	if not is_finite(power) or power < 0.0:
 		return false
-	var prior: Dictionary = status.states.get(identifier, {})
-	var retain_origin: bool = is_equal_approx(float(prior.get("applied_at", -1.0)),status.clock) and float(prior.get("power", 0.0)) > power
-	status.apply(identifier,power,duration)
-	if not retain_origin:
+	var accepted: bool = status.apply(identifier,power,duration)
+	if accepted:
 		var supplied_origin: Variant = effect.get("origin", position)
 		_enemy_status_origins[identifier] = supplied_origin if supplied_origin is Vector2 else position
+		var winner: Dictionary = status.states[identifier]
+		_enemy_status_contexts[identifier] = {"applied_at":float(winner.applied_at),"power":float(winner.power),"H":float(winner.H),"source_id":str(effect.get("source_id", "")).left(96),"source_name":str(effect.get("source_name", "")).left(96),"attack_id":str(effect.get("attack_id", "")).left(96)}
 	# A state refresh recomputes equipment resistances, but is not a player attack,
 	# skill cast or successful offensive status-application event.
 	if loadout != null:
@@ -687,11 +693,27 @@ func receive_enemy_status(effect: Dictionary) -> bool:
 	queue_redraw()
 	return true
 
+func _status_source_context(identifier: String, snapshot: Dictionary) -> Dictionary:
+	var source: Dictionary = _enemy_status_contexts.get(identifier, {})
+	if source.is_empty(): return {}
+	for key: String in ["applied_at", "power", "H"]:
+		if not is_equal_approx(float(source[key]), float(snapshot.get(key, -1.0))): return {}
+	return {"source_id":str(source.source_id),"source_name":str(source.source_name),"attack_id":str(source.attack_id)}
+
+func _damage_key_states() -> Array[String]:
+	var result: Array[String] = []
+	for id: String in status.states:
+		if status.has(id): result.append(id)
+	if _enemy_slow_remaining > 0.0: result.append("slow")
+	if dash_remaining > 0.0: result.append("dash")
+	return result
+
 func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) -> bool:
 	var is_dot: bool = bool(context.get("dot", false))
 	if Game.run == null or Game.run.hp <= 0.0 or not is_finite(amount) or amount <= 0.0:
 		return false
 	var damage_context: Dictionary = context.duplicate()
+	damage_context["key_states"] = _damage_key_states()
 	var status_modifiers: Dictionary = status.damage_modifiers()
 	damage_context["damage_reduction"] = maxf(float(damage_context.get("damage_reduction", 0.0)), float(status_modifiers.get("damage_reduction", 0.0)))
 	damage_context["invulnerable"] = bool(damage_context.get("invulnerable", false)) or bool(status_modifiers.get("invulnerable", false))
@@ -702,6 +724,7 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	var incoming: float = amount
 	if status.has("corrosion"): damage_context["armor_multiplier"] = 0.85
 	var shock_damage: float = 0.0
+	var shock_source: Dictionary = _status_source_context("shock", status.states.get("shock", {}))
 	if not is_dot:
 		invulnerable = Balance.HURT_INVULNERABILITY
 		knockback = (position - origin).normalized() * Balance.PLAYER_KNOCKBACK
@@ -725,17 +748,22 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 		var shock_context: Dictionary = damage_context.duplicate()
 		shock_context["damage_type"] = "magic"
 		shock_context["damage_kind"] = "electric"
+		shock_context["damage_event"] = "shock"
+		shock_context["status"] = "shock"
+		# The triggering hit and the charged status may have different casters.
+		for key: String in ["source_id", "source_name", "attack_id"]:
+			shock_context[key] = str(shock_source.get(key, ""))
 		var before_shock_hp: float = damaged_run.hp
 		var before_shock_shield: float = damaged_run.shield
 		Game.damage_player(shock_damage, shock_context)
 		_show_received_numbers(damaged_run, before_shock_hp, before_shock_shield, shock_context)
 	if not is_dot and (damaged_run.hp < previous_hp or damaged_run.shield < previous_shield):
 		_play_combat_audio(&"hurt")
+	status.absorb(maxf(0.0, status.shield() - damaged_run.shield))
 	if Game.run != damaged_run or damaged_run.hp <= 0.0:
 		cancel_actions()
 		passives.reset()
 		return true
-	status.absorb(previous_shield - Game.run.shield)
 	Game.run.shield = status.shield()
 	if not is_dot:
 		knockback *= float(modifiers.get("received_knockback_scale", 1.0))
@@ -757,6 +785,11 @@ func _show_received_numbers(damaged_run: RunState, before_hp: float, before_shie
 	if shield_loss > 0.0:
 		number_context["feedback_kind"] = "shield"
 		room.add_damage_text(position + Vector2(0,-90), shield_loss, &"received", number_context)
+
+func shield_summary() -> Dictionary:
+	if Game.run != null:
+		status.absorb(maxf(0.0, status.shield() - Game.run.shield))
+	return status.shield_summary()
 
 func grant_guard(amount: float, duration: float, source: String) -> void:
 	if Game.run == null:

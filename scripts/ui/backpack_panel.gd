@@ -79,7 +79,7 @@ func _render() -> void:
 	var gear_tab := _button(self, "BackpackInventoryTab", _t("装备背包", "Equipment"), Vector2(485,16), Vector2(150,40), func(): tab = "inventory"; _render())
 	var stat_tab := _button(self, "BackpackAttributesTab", _t("角色属性", "Attributes"), Vector2(646,16), Vector2(150,40), func(): tab = "stats"; _render())
 	MineStyle.selected(gear_tab if tab == "inventory" else stat_tab)
-	_button(self, "CloseBackpack", _t("关闭 · Esc", "Close · Esc"), Vector2(866,16), Vector2(170,40), close_callback)
+	_button(self, "CloseBackpack", _t("关闭 · ", "Close · ")+ProfileStore.Controls.label_for("pause", Game.profile.settings.get("controls", {}), Words.locale), Vector2(866,16), Vector2(170,40), close_callback)
 	_identity()
 	if tab == "inventory": _inventory(); _detail()
 	else: _attributes()
@@ -87,7 +87,8 @@ func _render() -> void:
 	var scope := _t("战斗中换装立即生效，清场后保存；本局掉落需成功撤离才永久入库。", "Combat swaps apply now and save when cleared; new loot joins your collection only after extraction.") if phase == "combat" else _t("配装立即保存，仅影响本次远征；本局掉落需成功撤离才永久入库。", "Changes save now for this expedition; new loot joins your collection only after extraction.")
 	status_label = _text(self, message if not message.is_empty() else scope, Vector2(24,573), Vector2(1012,34), 14, MineStyle.RED if not message.is_empty() else MineStyle.MUTED)
 	status_label.max_lines_visible = 2
-	status_label.tooltip_text = scope
+	status_label.tooltip_text = scope+"\n"+_t("暂停中可自由换装；不会恢复生命、资源或冷却。", "Swaps are allowed while paused; health, resources and cooldowns are preserved.")+"\n"+(_t("本次会话打开背包 %d 次 · 换装 %d 次", "This session: %d backpack opens · %d swaps") % [Game.run.backpack_opens, Game.run.loadout_changes])
+	_text(self, _t("暂停换装 · 生命与冷却保留", "Paused swaps · HP/cooldowns preserved"), Vector2(24,51), Vector2(790,17), 12, MineStyle.MUTED)
 
 func _identity() -> void:
 	var hero: Dictionary = ContentRegistry.hero(Game.run.hero_id)
@@ -107,8 +108,8 @@ func _identity() -> void:
 		MineStyle.equipment_icon(cell, item if not item.is_empty() else {"slot":slot}, Vector2(3,2), Vector2(52,52))
 		_text(cell, _slot_name(slot), Vector2(53,8), Vector2(44,22), 9 if Words.locale == "en" else 12, MineStyle.MUTED)
 		var level := int(Game.run.equipment_snapshot.get(id, {}).get("level", 0))
-		_text(cell, "+"+str(level) if not id.is_empty() else _t("空槽", "Empty"), Vector2(53,31), Vector2(44,22), 11 if Words.locale == "en" and id.is_empty() else 15, MineStyle.AMBER)
-		cell.tooltip_text = MineStyle.content_text(item,"name",_t("该槽位尚无实装装备", "Equipment for this slot is not yet implemented"))
+		_text(cell, "+"+str(level) if not id.is_empty() else (_t("空槽", "Empty") if slot in Registry.SLOTS else _t("未开放", "Locked")), Vector2(53,31), Vector2(44,22), 11 if Words.locale == "en" and id.is_empty() else 15, MineStyle.AMBER)
+		cell.tooltip_text = MineStyle.content_text(item,"name",_t("当前未穿戴装备", "No equipment worn") if slot in Registry.SLOTS else _t("该槽位尚未开放", "This slot is not implemented yet"))
 		if not slot in Registry.SLOTS: cell.modulate = Color(1,1,1,.6)
 	var hp := _text(card, _t("生命 ", "Health ")+"%d / %d" % [ceili(Game.run.hp), ceili(Game.run.max_hp)], Vector2(14,410), Vector2(200,25), 15)
 	hp.name = "BackpackHealth"

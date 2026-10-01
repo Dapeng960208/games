@@ -97,7 +97,7 @@ func preview(room_id: String) -> Dictionary:
 		var result: Dictionary = definition.get("preview", {}).duplicate(true)
 		# The same policy generates completion rewards and these branch conditions.
 		# Authored catalog reward text may describe mechanics not yet implemented.
-		result["reward"] = Rewards.preview(room_id, hero_id, Words.locale == "en",int(snapshot().get("difficulty",0)))
+		result["reward"] = Rewards.preview(room_id, hero_id, Words.locale == "en",int(snapshot().get("difficulty",0)), int(snapshot().get("reward_policy_version",0)))
 		result["name"] = str(definition.get("name", room_id))
 		result["room_id"] = room_id
 		var tags: Array[String] = []
@@ -122,7 +122,7 @@ func preview(room_id: String) -> Dictionary:
 			result["scanned_roster"] = roster
 		return result
 	var node := next_node()
-	return {"name":str(node.get("name", room_id)), "room_id":room_id, "objective":"", "risk":"", "reward":Rewards.preview(room_id, hero_id, Words.locale == "en",int(snapshot().get("difficulty",0))), "enemy_tags":[]}
+	return {"name":str(node.get("name", room_id)), "room_id":room_id, "objective":"", "risk":"", "reward":Rewards.preview(room_id, hero_id, Words.locale == "en",int(snapshot().get("difficulty",0)), int(snapshot().get("reward_policy_version",0))), "enemy_tags":[]}
 
 static func unlocked_biomes(profile: Dictionary) -> Array[String]:
 	var result: Array[String] = []

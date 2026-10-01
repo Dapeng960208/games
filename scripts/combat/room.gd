@@ -2003,7 +2003,7 @@ func _tick_expedition(delta: float) -> void:
 	var bosses: Array = Game.profile.bosses.duplicate()
 	for boss_id: String in Game.run.boss_defeats:
 		if not bosses.has(boss_id): bosses.append(boss_id)
-	var rewards: Dictionary = RoomRewards.build(layout_id, quality, player.hero_id(), layout_seed, event_id, Game.run.equipment_snapshot.keys(), Game.run.expedition.pending_equipment.keys(), bosses, difficulty)
+	var rewards: Dictionary = RoomRewards.build(layout_id, quality, player.hero_id(), layout_seed, event_id, Game.reward_discovery_ids(), Game.run.expedition.pending_equipment.keys(), bosses, difficulty, int(Game.run.expedition.get("reward_policy_version", 0)))
 	if rewards.is_empty():
 		configuration_error = "Invalid reward outcome: " + layout_id + "/" + quality
 		return
