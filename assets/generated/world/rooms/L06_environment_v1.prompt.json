@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "room_id": "L06",
+  "biome_id": "B01",
+  "tool": "built-in image_gen",
+  "use_case": "stylized-concept",
+  "generation_intent": "independent new original illustration",
+  "reference": "assets/generated/world/fixed_B01_environment_v3.png",
+  "reference_role": "visual inspection for style, palette and ground scale only; never edit target",
+  "source_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f5d6-ddee-7aa0-9a84-b22dc6c8dc6a\\exec-5724f763-a8cd-4096-82a0-4b487ae7d6c9.png",
+  "output": "assets/generated/world/rooms/L06_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "transparent_background": false,
+  "prompt": "Use case: stylized-concept.\nAsset type: COMPLETE DISTINCT production game room background, landscape 1536 x 1024 pixels, opaque RGB, 3:2 aspect ratio. This is a NEW original illustration, not a recolor, edit, symbol overlay, shift, or crop of another courtyard.\nStyle: luminous hand-painted storybook fantasy game environment, high elevated three-quarter near-isometric 2.5D camera, same creamy ivory limestone, warm pale gold and slender brass, clear cyan water, fresh green vines and tiny white blossoms as the inspected B01 reference. Warm daylight, tactile softly beveled stone, carefully drawn tiny irregular paving slabs, about 45–85 source pixels wide at 1536px canvas. Low-contrast floor joints and restrained sparse moss at the outer edge. Keep comparable game ground scale for a hero roughly 112 world pixels high in a 2800x1800 arena.\nGEOMETRY IS A HARD REQUIREMENT. Pixel coordinates below are normalized image x,y. Fill this ENTIRE convex boundary and its interior with continuous FLAT WALKABLE DRY STONE LAND: [(0.32,0.10),(0.56,0.055),(0.70,0.115),(0.825,0.23),(0.90,0.40),(0.905,0.55),(0.87,0.69),(0.805,0.82),(0.68,0.91),(0.49,0.96),(0.32,0.89),(0.21,0.79),(0.16,0.68),(0.135,0.53),(0.14,0.35),(0.16,0.23),(0.25,0.14)]. The gameplay arena placement rect is x=.11,y=.13,width=.78,height=.74. Keep every point inside the polygon flat and dry, including near its edges and the lower-left route. All water, walls, raised architecture, solid trees, terraces, stairs, planters and rooted vegetation must remain OUTSIDE the polygon. No pool, trench, pit, island, grass barrier, elevation change or obstructing column inside it. Surface patterns inside may only be faint flat inlays in dry paving, no tall objects. In addition preserve flat stone paths through left middle near y=.415, right middle near y=.53, and north and south center gates. The stone boundary has organic broad curves, small separately painted side faces and natural landscape transitions. No rectangular arena box, no tall stretched texture wall, no repetitive strip or generic repeated columns.\nCompose a complete scene with meaningful architecture and ecological garden features at the OUTSIDE margin and top corners, varied curved edge gardens and paving layout strongly characteristic of this particular room. The generous open dry interior is needed for runtime combat, but must have an authored architectural floor character. Room-specific geometric paths are quiet flush stone color/material inlays, NEVER painted objects blocking the interior.\nDo NOT draw heroes, NPCs, monsters, bosses, weapons, collectible crystals, loot, chests, functional objectives or interactive furniture. Runtime will draw the landmark, objectives and six props separately. Background-only built architecture beyond the boundary is allowed. No text, labels, writing, runes resembling letters, logos, HUD, UI, watermark, border frame or vignette.\nPrimary request: Three-Petal Energy Calibration Garden, a distinct ceremonial garden of three ecological supply precincts. Global TRI-LOBED outer garden composition: outside northwest a cooling-dew porcelain-arched covered planting gallery; outside northeast an airy warm brass roof pavilion with a tiny gentle cloud above its chimney silhouette; outside lower-right an elegant outward-facing clear-glass sunlight-release conservatory. None may enter the dry polygon. The open dry inner field has a subtle broad Z-shaped paving band weaving from southwest to upper-east, and three very quiet large pale petal-shaped FLUSH paving zones around an empty center, no functional altar or raised platform. Thin copper architectural piping follows only the curved OUTER stone curb linking those external precincts. A northern distant floral crown gateway is visible beyond the top dry polygon. Preserve all lower-left and lower-center stone land; outer south flowers taper into corners. Relate dew, warmth and waste light in one authored architecture composition, no repeated previous greenhouse-border courtyard. Runtime altar, bottles, valves, mirrors and props are absent. Caption inspiration: Three energy petals / Cooling-dew circuit.",
+  "source_pixel_edits": "none",
+  "source_provenance": "OpenAI builtin image_gen output, copied without pixel processing; keep generated original in CODEX_HOME",
+  "qa": {
+    "generation_count": 1,
+    "visual_inspection": "view_image full source inspected",
+    "geometry_status": "verified convex half-plane boundary; actual FixedRoomLayouts anchors and complete main/side routes >=30 world px",
+    "minimum_anchor_clearance_world": 45.481,
+    "minimum_fullroute_clearance_world": 45.481
+  }
+}

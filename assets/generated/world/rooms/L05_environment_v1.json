@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "biome_id": "B01",
+  "room_id": "L05",
+  "texture": "res://assets/generated/world/rooms/L05_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "regions": {
+    "L05_environment": [
+      0,
+      0,
+      1536,
+      1024
+    ]
+  },
+  "walkable_normalized_rect": [
+    0.31,
+    0.25,
+    0.38,
+    0.48
+  ],
+  "requested_walkable_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "nominal_open_floor_extent": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "safe_margin": 0.025,
+  "left_exit_normalized": [
+    0,
+    0.415
+  ],
+  "right_exit_normalized": [
+    1,
+    0.53
+  ],
+  "camera": "高机位三分之四斜俯视、近等距2.5D",
+  "placement_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.13,
+      0.39
+    ],
+    [
+      0.15,
+      0.29
+    ],
+    [
+      0.225,
+      0.22
+    ],
+    [
+      0.285,
+      0.17
+    ],
+    [
+      0.5,
+      0.12
+    ],
+    [
+      0.68,
+      0.17
+    ],
+    [
+      0.81,
+      0.245
+    ],
+    [
+      0.86,
+      0.345
+    ],
+    [
+      0.9,
+      0.475
+    ],
+    [
+      0.89,
+      0.61
+    ],
+    [
+      0.845,
+      0.715
+    ],
+    [
+      0.78,
+      0.8
+    ],
+    [
+      0.54,
+      0.91
+    ],
+    [
+      0.46,
+      0.915
+    ],
+    [
+      0.22,
+      0.79
+    ],
+    [
+      0.155,
+      0.66
+    ],
+    [
+      0.13,
+      0.515
+    ]
+  ],
+  "notes": [
+    "每房独立新原画，逐房改变建筑园区、生态、全局路纹构图；不是旧同族图换色、平移或符号叠加。",
+    "采用 builtin image_gen；原输出直接拷贝，未对源PNG进行像素修改。",
+    "保留旧 placement_normalized_rect 的玩法坐标映射，独立凸干地多边形按新原画石收边拟定。",
+    "功能目标、角色、敌人、拾取物与互动陈设由运行时另绘。",
+    "walkable_normalized_rect记录内部保守中央干地矩形；活动边界以本房间凸polygon为准，placement负责统一坐标映射。",
+    "本房间独立凸干地polygon已按真实功能anchor和完整主/侧路线复核，净空至少30世界像素；这是新原画数学几何结果，GPU最终墙水描边由集成验收确认。"
+  ],
+  "qa": {
+    "mode": "RGB",
+    "aspect_ratio": 1.5,
+    "source_pixel_edits": "none",
+    "generation_tool": "built-in image_gen",
+    "generation_intent": "new original room environment",
+    "visual_check": "已逐房view_image检查完整独立构图、B01统一明亮手绘遗庭风格、无角色HUD文字；L03入口另做builtin局部铺路精修并复核。实际游戏GPU截图由集成验收补充。",
+    "geometry_status": "28-room actual layout anchor and complete route clearance audit passed",
+    "sha256": "df00b08204f5679a505747122a882b77b227885d533c0a26265c29d3af4d3ddb",
+    "minimum_anchor_clearance_world": 55.06,
+    "minimum_fullroute_clearance_world": 55.06,
+    "geometry_validation": "scripts/world/room_boundary.gd actual convex half-plane semantics; source-normalized mapping from real FixedRoomLayouts.build; 30-world circles and entire main/side route segments",
+    "runtime_validation": {
+      "date": "2026-10-01",
+      "engine": "Godot 4.7.2",
+      "suite": "room_presentation",
+      "gpu": true,
+      "checks_total": 1055,
+      "failures": 0,
+      "room_count": 28,
+      "different_loaded_pixel_hashes": 28,
+      "loaded_pixel_sha256": "f375b3f81e7a30dfb40f342b6c77f6398d5ab1e2a297764e7193e072f98c033f",
+      "capture_count_total": 68,
+      "scope": "production room prepare/apply; authored gameplay preservation; navigation; background/chunk/camera/minimap identity; Chinese/English UI window matrix"
+    }
+  },
+  "boundary": {
+    "winding": "clockwise_positive_cross_in_screen_coordinates",
+    "authority": "new room painted dry stone curb",
+    "validation_layout_scale": 0.58,
+    "decoration_positions_may_extend_beyond_walkable_polygon": true,
+    "minimum_gameplay_anchor_clearance_world": 55.06,
+    "minimum_fullroute_clearance_world": 55.06,
+    "convexity_verified": true,
+    "convex": true,
+    "required_anchor_clearance_world": 30,
+    "minimum_complete_route_clearance_world": 55.06,
+    "validation_status": "actual layout geometry and production GPU suite passed"
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "integer shared-image regions",
+    "texture_sampling": "full independent room texture; region_filter_clip_enabled=false",
+    "texture_memory": "one shared texture; no streaming claim"
+  }
+}
