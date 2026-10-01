@@ -26,6 +26,8 @@ var max_hp: Variant = Balance.PLAYER_HP:
 var hero_id: String = "CH01"
 var level: int = 1
 var stats: Dictionary = {}
+# Set before resolving restored stats; never infer an old adventure from global defaults.
+var frozen_versions: Dictionary = {}
 var resource: Variant = 0.0:
 	get:
 		return Rules.integer(float(resource)) if ruleset_version() == Rules.V2 else float(resource)
@@ -36,7 +38,7 @@ var shield: Variant = 0.0:
 		return Rules.integer(float(shield)) if ruleset_version() == Rules.V2 else float(shield)
 	set(value):
 		shield = Rules.integer(float(value)) if ruleset_version() == Rules.V2 else float(value)
-# Unspent time fractions are runtime-only until the S04 snapshot migration.
+# Fractional time accumulation survives checkpoints without becoming spendable resource.
 # Keep these on the run so replacing a room/player cannot reset frame progress.
 var resource_regen_remainder: float = 0.0
 var resource_decay_remainder: float = 0.0
@@ -56,7 +58,7 @@ var staged_xp: Dictionary = {}
 var staged_tutorial: bool = false
 
 func ruleset_version() -> int:
-	return int(stats.get("ruleset_version", Rules.LEGACY))
+	return int(frozen_versions.get("ruleset_version", stats.get("ruleset_version", Rules.LEGACY)))
 
 func receipt() -> Dictionary:
 	# Settings and incidental saves must never persist a partial combat room.
@@ -72,6 +74,7 @@ func live_receipt() -> Dictionary:
 		"completed_reward_ids": completed_reward_ids.duplicate(),
 		"boss_defeats": boss_defeats.duplicate(), "rules_version": 1,
 	}
+	if not frozen_versions.is_empty(): value.merge(frozen_versions, true)
 	if not expedition.is_empty():
 		value["expedition"] = expedition.duplicate(true)
 		value["loadout_snapshot"] = loadout_snapshot.duplicate(true)

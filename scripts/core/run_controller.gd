@@ -85,6 +85,7 @@ func reload_profile() -> void:
 		# M1 never resumes a room. A crash/forced quit is one abandonment settlement.
 		var receipt: Dictionary = document.active_run
 		run = RunState.new()
+		run.frozen_versions = _receipt_versions(receipt)
 		run.id = receipt.id
 		run.gold = int(receipt.gold)
 		run.relics.assign(receipt.discoveries)
@@ -121,12 +122,9 @@ func new_profile() -> bool:
 func start_run(options: Dictionary = {}) -> bool:
 	if run != null or not has_profile:
 		return false
-	# S04 owns the versioned checkpoint receipt and migration boundary.
-	if _profile_ruleset() == Numbers.V2 and bool(options.get("expedition", false)):
-		last_error = "NUMERICAL_CHECKPOINT_UNAVAILABLE"
-		return false
 	var next := RunState.new()
 	next.demo = not _demo_backup.is_empty()
+	next.frozen_versions = Expedition.versions(_profile_ruleset())
 	next.id = Crypto.new().generate_random_bytes(16).hex_encode()
 	next.hero_id = str(profile.selected_hero)
 	next.level = hero_level(next.hero_id)
@@ -143,6 +141,8 @@ func start_run(options: Dictionary = {}) -> bool:
 	if bool(options.get("expedition", false)):
 		next.expedition = Expedition.fresh(next.id, options, profile, next.stats)
 		if next.expedition.is_empty(): return false
+		next.stats["relic_levels"] = next.expedition.relic_levels.duplicate(true)
+		next.stats["temporary_buffs"] = next.expedition.temporary_buffs.duplicate(true)
 	if not _save(profile, next.receipt()):
 		return false
 	if not next.expedition.is_empty(): next.committed_receipt = next.live_receipt()
@@ -886,6 +886,7 @@ func expedition_snapshot() -> Dictionary:
 
 func _restore_expedition(receipt: Dictionary) -> void:
 	run = RunState.new()
+	run.frozen_versions = _receipt_versions(receipt)
 	run.demo = not _demo_backup.is_empty()
 	run.id = str(receipt.id)
 	run.gold = int(receipt.gold)
@@ -902,6 +903,7 @@ func _restore_expedition(receipt: Dictionary) -> void:
 	run.equipment_snapshot = receipt.equipment_snapshot.duplicate(true)
 	run.branches_snapshot = receipt.branches_snapshot.duplicate(true)
 	run.expedition = receipt.expedition.duplicate(true)
+	if run.ruleset_version() == Numbers.V2: FieldSnapshot._integer_values(run.expedition.runtime)
 	var completed: Array[int] = []
 	for index in run.expedition.completed_nodes: completed.append(int(index))
 	run.expedition.completed_nodes = completed
@@ -936,7 +938,9 @@ func _apply_runtime_values(runtime: Dictionary) -> void:
 	run.shield = 0.0
 	for guard: Dictionary in runtime.get("status", {}).get("guards", {}).values():
 		if float(guard.get("remaining", 0.0)) > 0.0: run.shield = maxf(run.shield, float(guard.get("amount", 0.0)))
-	run.shield = minf(run.shield, run.max_hp * 0.5)
+	run.shield = minf(run.shield, float(Numbers.amount(run.max_hp * 0.5, run.ruleset_version())))
+	run.resource_regen_remainder = float(runtime.get("resource_regen_remainder", 0.0))
+	run.resource_decay_remainder = float(runtime.get("resource_decay_remainder", 0.0))
 
 func _commit_expedition(value: Dictionary, runtime: Dictionary, next_profile: Dictionary, changes: Dictionary = {}, keep_live_values: bool = false) -> bool:
 	var receipt: Dictionary = run.live_receipt()
@@ -946,7 +950,7 @@ func _commit_expedition(value: Dictionary, runtime: Dictionary, next_profile: Di
 	receipt.gold = int(value.gold_earned) - int(value.gold_spent)
 	receipt.level = ContentRegistry.level_for_xp(int(next_profile.hero_xp[run.hero_id]), run.ruleset_version())
 	if not _save(next_profile, receipt): return false
-	var live_values: Dictionary = {"hp":run.hp,"resource":run.resource,"shield":run.shield}
+	var live_values: Dictionary = {"hp":run.hp,"resource":run.resource,"shield":run.shield,"resource_regen_remainder":run.resource_regen_remainder,"resource_decay_remainder":run.resource_decay_remainder}
 	profile = next_profile
 	var session_opens: int = run.backpack_opens
 	var session_changes: int = run.loadout_changes
@@ -957,6 +961,8 @@ func _commit_expedition(value: Dictionary, runtime: Dictionary, next_profile: Di
 		run.hp = float(live_values.hp)
 		run.resource = float(live_values.resource)
 		run.shield = float(live_values.shield)
+		run.resource_regen_remainder = float(live_values.resource_regen_remainder)
+		run.resource_decay_remainder = float(live_values.resource_decay_remainder)
 	changed.emit()
 	return true
 
@@ -1024,7 +1030,7 @@ func advance_expedition_node(runtime_snapshot: Dictionary = {}, expected_checkpo
 		if source.begins_with("supply:"): runtime.status.guards.erase(source)
 	if role != "supply" and value.temporary_buffs.has("pending_supply_shield"):
 		# Start the four-second countdown on actual absorption, not room entry.
-		runtime.status.guards["supply:ready:" + str(index)] = {"amount":run.max_hp * 0.15,"remaining":4.0}
+		runtime.status.guards["supply:ready:" + str(index)] = {"amount":Numbers.amount(run.max_hp * 0.15, run.ruleset_version()),"remaining":4.0}
 		value.temporary_buffs.erase("pending_supply_shield")
 	return _commit_expedition(value, runtime, profile.duplicate(true))
 
@@ -1402,3 +1408,23 @@ func _save(next_profile: Dictionary, active_run: Variant, profile_initialized: b
 	if success:
 		has_profile = profile_initialized
 	return success
+
+func _receipt_versions(receipt: Dictionary) -> Dictionary:
+	# Missing stamps identify legacy saves, even when production later enables V2.
+	var versions: Dictionary = Expedition.versions(int(receipt.get("ruleset_version", 1)))
+	for key: String in Expedition.VERSION_FIELDS:
+		if receipt.has(key): versions[key] = receipt[key]
+		elif receipt.get("expedition", {}).has(key): versions[key] = receipt.expedition[key]
+	if not receipt.has("reward_policy_version") and not receipt.get("expedition", {}).has("reward_policy_version"):
+		versions.reward_policy_version = 0
+	return versions
+
+## Explicit integration seam for approved conversion; production remains gated.
+## Saves the detached migration in one whole-document transaction at camp only.
+func migrate_numerical_at_camp(event_id: String = "migration:numerical_v2") -> bool:
+	if not _camp_available() or not has_profile or not _demo_backup.is_empty(): return false
+	var migration: Script = load("res://scripts/core/numerical_migration.gd")
+	var next: Dictionary = migration.migrate_profile(profile, event_id, null)
+	if next.is_empty(): return false
+	if next == profile: return true
+	return _commit_profile(next)

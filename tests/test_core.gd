@@ -97,7 +97,7 @@ func _run() -> void:
 	game.set_setting("language", "invalid")
 	game.reload_profile()
 	_check(game.profile.settings == {"language": "en", "reduced_fx": true, "camera_shake": false, "fullscreen": true,
-		"master_volume":1.0,"music_volume":0.55,"sfx_volume":0.85}, "settings persist and reject invalid language")
+		"master_volume":1.0,"music_volume":0.55,"sfx_volume":0.85,"auto_attack":false,"enemy_skill_paths":true,"controls":{}}, "settings persist and reject invalid language")
 	game.free()
 	_test_camera_preferences()
 	_test_recovery()

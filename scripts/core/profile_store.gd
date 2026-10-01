@@ -271,6 +271,8 @@ static func _valid_receipt(value: Variant, version: int = 1) -> bool:
 		return false
 	if not value.get("id") is String or value.id.is_empty() or value.id.length() > 80:
 		return false
+	var numerical: Variant = value.get("ruleset_version", 1)
+	if not _number(numerical, 2) or int(numerical) < 1 or not Expedition.versions_valid(value, int(numerical), int(numerical) == 2): return false
 	var valid := _number(value.get("gold")) and _relics(value.get("discoveries")) \
 		and _number(value.get("shots")) and _number(value.get("kills")) \
 		and _number(value.get("elapsed"), MAX_NUMBER, false)
@@ -360,6 +362,7 @@ static func _valid_document(value: Variant) -> bool:
 	if value.active_run == null:
 		return true
 	if not _valid_receipt(value.active_run, version) or value.active_run.id == profile.last_result.get("run_id", ""): return false
+	if int(value.active_run.get("ruleset_version", 1)) != int(profile.get("ruleset_version", 1)): return false
 	if value.active_run.has("expedition"):
 		return version == 3 and Expedition.valid(value.active_run, profile)
 	return true
@@ -386,6 +389,12 @@ static func _valid_progression(profile: Dictionary) -> bool:
 	var version: Variant = profile.get("ruleset_version", 1)
 	if not _number(version, 2) or int(version) < 1: return false
 	var ruleset: int = int(version)
+	if not Expedition.versions_valid(profile, ruleset, profile.has("numerical_migration")): return false
+	if profile.has("numerical_migration") and not _valid_numerical_migration(profile): return false
+	if profile.has("gold_pity"):
+		if ruleset != 2 or not profile.gold_pity is Dictionary or profile.gold_pity.size() != 4: return false
+		for biome: String in ["B01", "B02", "B03", "B04"]:
+			if not _number(profile.gold_pity.get(biome), 3): return false
 	if ruleset == 2:
 		if not _valid_v2_growth(profile): return false
 	if profile.has("equipment_discoveries"):
@@ -580,4 +589,27 @@ static func _valid_v2_growth(profile: Dictionary) -> bool:
 		if not event is String or event.is_empty() or event.length() > 160: return false
 		var row: Variant = receipts[event]
 		if not row is Dictionary or row.get("hero") not in HERO_IDS or not _number(row.get("amount"), 3600) or row.get("race") not in ["B01", "B02", "B03", "B04"]: return false
+	return true
+
+static func _valid_numerical_migration(profile: Dictionary) -> bool:
+	if profile.get("ruleset_version") != 2: return false
+	var migration: Variant = profile.numerical_migration
+	if not migration is Dictionary or not Expedition.json_tree(migration) or migration.size() != 4 or migration.get("version") != 1: return false
+	var event: Variant = migration.get("event_id")
+	if not event is String or not event.begins_with("migration:") or event.length() <= 10 or event.length() > 120: return false
+	var original: Variant = migration.get("original")
+	var identities: Variant = migration.get("template_instance_ids")
+	if not original is Dictionary or not original.has_all(["hero_xp", "equipment", "loadout"]) or original.size() not in [3, 4] or not identities is Dictionary: return false
+	if original.size() == 4 and not original.has("loadout_presets"): return false
+	if not original.hero_xp is Dictionary or original.hero_xp.size() != HERO_IDS.size() or not original.equipment is Dictionary or identities.size() != original.equipment.size(): return false
+	for hero: String in HERO_IDS:
+		if not _number(original.hero_xp.get(hero), 3600): return false
+	for template: Variant in original.equipment:
+		if not template is String or ContentRegistry.equipment(template).is_empty() or not original.equipment[template] is Dictionary or not _number(original.equipment[template].get("level"), 5): return false
+		if identities.get(template) != event + ":" + template: return false
+	if not original.loadout is Dictionary or original.loadout.size() != SLOTS.size(): return false
+	for slot: String in SLOTS:
+		var template: Variant = original.loadout.get(slot)
+		if not template is String or not original.equipment.has(template) or ContentRegistry.equipment(template).get("slot") != slot: return false
+	if original.has("loadout_presets") and not _valid_loadout_presets(original.loadout_presets): return false
 	return true

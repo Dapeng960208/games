@@ -1,5 +1,7 @@
 # 数值重构文档入口
 
+实施进度更新：S00–S03门控代码与针对性检查已完成并推送；S04迁移/旧局检查已通过，待复核推送。生产默认仍旧规则，未执行真实玩家档迁移，也未完成自然战斗验收。最新提交和证据以 [实施记录](IMPLEMENTATION_LOG.md) 为准；下方提案/现状册保留原始设计基线。
+
 2026-10-01：新版方案通过`codex/numerical-redesign-plan`提交草稿PR，等待用户确认。当前运行数值未修改。用户已确认战斗平值与职业资源×10并整数化的范围，其余新参数在PR中供确认。
 
 推荐先读 [等级、装备、锻造与全量Buff方案](LEVEL_EQUIPMENT_NUMERICAL_DESIGN.md)，再查看 [目标数值全表](TARGET_NUMERICAL_TABLES.md)、[角色技能与Buff整数目标表](TARGET_HERO_SKILL_BUFF_TABLES.md)、[野怪与Boss技能目标表](TARGET_ENEMY_SKILL_TABLES.md)。

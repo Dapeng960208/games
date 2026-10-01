@@ -182,7 +182,8 @@ func _controller(fixture: Dictionary) -> void:
 	check(Game.upgrade_cost("copy-low") == 0 and Game.equipment_sell_value("copy-low") == 0 and Game.preview_upgrade_stats("copy-low").is_empty(), "legacy price and fake enhancement previews disabled")
 	check(not Game._add_equipment_drop({}, "s03-drop", "EQ03", 0), "v2 drop cannot enter template overwrite or auto-gold path")
 	check(Game.profile == before, "unsupported operations leave every asset and receipt unchanged")
-	check(not Game.start_run({"expedition":true}) and Game.run == null, "v2 checkpoint path explicitly waits for S04")
+	check(Game.start_run({"expedition":true}) and Game.run.ruleset_version() == 2, "S04 enables versioned v2 expedition start")
+	check(not Game.finish_run("abandoned").is_empty() and Game.run == null, "S04 versioned expedition can return to camp")
 	check(Game.start_run(), "synthetic non-expedition v2 growth/combat path remains available")
 	check(Game.equipment_slots(true).size() == 8 and Game.equipment_definition("copy-high", true).instance_id == "copy-high", "frozen run UI resolves instances")
 	Game.run.equipment_snapshot["copy-high"].main_rolls.attack = 25
