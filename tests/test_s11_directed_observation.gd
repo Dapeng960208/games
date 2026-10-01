@@ -46,6 +46,23 @@ func initialize_directed_scenario() -> void:
 		fixture.directed_initial_conditions.merge({"boss_initial_hp":initial_hp,"boss_maximum_hp":boss.health.maximum,"native_phase_threshold":threshold,"phase_update":"first native physics tick"},true)
 	if experiment=="p3_tolerance":
 		fixture.directed_initial_conditions["intended_action"]=DirectedDriver.DANGEROUS[boss.boss_id]
+		var entry_guards: Dictionary = room.player.status.guards.duplicate(true)
+		var entry_shield := float(room.player.status.shield())
+		var absorbed_before := float(room.player.status.total_absorbed)
+		if entry_shield>0:
+			# Supplemental initial condition only. Consume through the native
+			# guard API before clock; never emit a fake received-damage event or
+			# trigger shield-broken equipment effects. Normal battles keep this
+			# same legal EQ27 entry guard unchanged.
+			room.player.status.absorb(entry_shield)
+			room.player.status.tick_guard(0.0)
+			run_ref.shield=room.player.status.shield()
+		var pools_empty := true
+		for pool: Dictionary in room.player.status.guards.values():
+			if float(pool.get("amount",0))!=0.0: pools_empty=false
+		fixture.directed_initial_conditions["preclock_entry_guard_consumption"]={"sources_before":entry_guards,"effective_amount_consumed":entry_shield,"sources_after":room.player.status.guards.duplicate(true),"effective_shield_after":run_ref.shield,"native_absorption_counter_setup_increment":float(room.player.status.total_absorbed)-absorbed_before,"received_damage_evidence":false,"no_damage_event_or_midfight_reset":true}
+		fixture.directed_initial_conditions.player_shield=run_ref.shield
+		check(pools_empty and room.player.status.shield()==0,"all initial guard pools consumed only in declared supplemental fixture")
 		check(run_ref.hp==run_ref.max_hp and run_ref.shield==0,"tolerance starts full HP and no existing shield")
 		# Explicit single-action initial fixture, using native phase entry and
 		# the production windup API's documented arena-fixture argument. This

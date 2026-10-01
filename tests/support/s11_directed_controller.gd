@@ -1,6 +1,6 @@
 extends "res://tests/support/s11_battle_controller.gd"
 ## Separate synthetic observation policy; never used for calibrated battle TTK.
-const DIRECTED_VERSION := "s11-directed-controller-v4"
+const DIRECTED_VERSION := "s11-directed-controller-v5"
 const DANGEROUS := {"BO01":"eclipse_ring","BO02":"wing_storm","BO03":"grave_burst","BO04":"seismic_crown"}
 var experiment := "phase_coverage"
 var phase_started: Dictionary = {}

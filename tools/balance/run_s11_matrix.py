@@ -42,6 +42,7 @@ def measurement_protocol(args, manifest):
             "capture_policy": "gpu_start_end_outside_combat" if args.screenshots else "none",
             "render_loop": "disabled" if args.disable_render_loop else "native",
             "requested_audio_driver": args.audio_driver, "audio_hardware_tested": False,
+            "expected_outcome": args.expected_outcome,
             "max_seconds": args.max_seconds, "timing_mode": "real_time" if args.real_time else "fixed_fps",
             "display_mode": "gpu" if args.gpu else "headless", "probe": args.probe,
             "physics_hz": 60, "time_scale": 1, "controller_version": controller_version,
@@ -92,7 +93,7 @@ def run_job(args, case):
     timing = ["--max-fps", "60"] if args.real_time else ["--fixed-fps", "60"]
     display = [] if args.gpu else ["--headless"]
     rendering = ["--disable-render-loop"] if args.disable_render_loop else []
-    scene = {"battle":"res://tests/test_s11_battle_matrix.tscn", "elite_fixture":"res://tests/test_s11_elite_observation.tscn"}.get(args.experiment, "res://tests/test_s11_directed_observation.tscn")
+    scene = {"battle":"res://tests/test_s11_battle_matrix.tscn", "elite_fixture":"res://tests/test_s11_elite_observation.tscn", "failure_classification":"res://tests/test_s11_failure_classification.tscn"}.get(args.experiment, "res://tests/test_s11_directed_observation.tscn")
     command = [str(args.godot), *display, *timing, *rendering, "--audio-driver", args.audio_driver, "--path", str(ROOT), scene, "--",
                "--test-profile=user://test_s11_battle_matrix/profile.json", "--test-ruleset=2",
                f"--chapters={chapter}", f"--heroes={hero}", f"--samples={sample}",
@@ -101,6 +102,7 @@ def run_job(args, case):
                f"--protocol-file={args.output / 'measurement_protocol.json'}",
                f"--experiment={args.experiment}",
                f"--starting-phase={args.starting_phase}",
+               f"--expected-outcome={args.expected_outcome or ''}",
                "--timing-mode=" + ("real_time" if args.real_time else "fixed_fps")]
     if args.probe:
         command.append("--probe=true")
@@ -345,7 +347,8 @@ def main():
     p.add_argument("--godot", type=Path, default=Path("/tmp/godot-pr2-4.7.2/Godot_v4.7.2-stable_linux.x86_64"))
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--suite", choices=["d4", "ladder", "full", "rooms"], default="full")
-    p.add_argument("--experiment", choices=["battle", "phase_coverage", "p3_tolerance", "elite_fixture"], default="battle")
+    p.add_argument("--experiment", choices=["battle", "phase_coverage", "p3_tolerance", "elite_fixture", "failure_classification"], default="battle")
+    p.add_argument("--expected-outcome", choices=["player_died", "time_limit"], help="Explicit failure-classification regression outcome")
     p.add_argument("--starting-phase", type=int, choices=[0, 1, 2, 3], default=0,
                    help="Separate phase-coverage initial fixture; zero observes native transitions")
     p.add_argument("--chapters", default="1,2,3,4")
@@ -375,6 +378,10 @@ def main():
         p.error("Screenshots require --gpu and the actual rendered viewport")
     if args.disable_render_loop and (args.gpu or args.real_time or args.screenshots):
         p.error("Render-loop disabling is limited to accelerated headless experiments")
+    if args.experiment == "failure_classification" and (args.suite != "d4" or not args.expected_outcome or args.probe):
+        p.error("Failure classification requires D4, explicit expected outcome, and the normal non-probe checks")
+    if args.expected_outcome and args.experiment != "failure_classification":
+        p.error("Expected outcome is only for classification regressions")
     args.output = args.output.resolve()
     if args.output == ROOT or ROOT in args.output.parents:
         p.error("Evidence must be outside the repository")

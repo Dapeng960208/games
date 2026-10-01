@@ -60,6 +60,8 @@ var measurement_protocol: Dictionary = {}
 var screenshots: Array[Dictionary] = []
 var capture_directory := ""
 var rendering_metadata: Dictionary = {}
+var controller_opportunities := 0
+var controller_calls := 0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -228,6 +230,7 @@ func install() -> void:
 	old_phase=0; old_action=""; old_state=""; old_counts={}; old_icds={}; old_counters={}; next_sample=0
 	resource_empty_seconds=0; weakpoint_seconds=0; attackable_seconds=0; pause_seconds=0
 	physics_steps=0; process_frames=0; minimum_physics_delta=INF; maximum_physics_delta=0
+	controller_opportunities=0; controller_calls=0
 	screenshots=[]
 	next_objective_decision=0
 	last_boss_hp=boss.health.current if is_instance_valid(boss) else 0; last_boss_shield=boss.status.shield() if is_instance_valid(boss) else 0; boss_max_hp=last_boss_hp; boss_start_shield=last_boss_shield
@@ -338,7 +341,9 @@ func _physics_process(delta: float) -> void:
 		running=false
 		room.process_mode=Node.PROCESS_MODE_DISABLED
 		return
+	controller_opportunities+=1
 	driver.step(elapsed)
+	controller_calls+=1
 	if drives_room_objectives(): ordinary_objective_step()
 
 func ordinary_objective_step() -> void:
@@ -412,8 +417,11 @@ func finish_record() -> void:
 			skipped.append(phase)
 			skipped_details.append({"phase":phase,"entered":phases.has(str(phase)),"reason":"output_skipped" if completed else "terminated_before_phase_cast"})
 	var outcome := "player_died" if run_ref.hp<=0 else ("boss_defeated" if controlled_room_id.is_empty() else "room_cleared") if completed else "time_limit"
-	check(not requires_attack_evidence() or room.telemetry.shots>0 or probe or not controlled_room_id.is_empty(),"production attack path exercised")
-	check(not requires_attack_evidence() or not casts.is_empty() or probe,"production skill/input path exercised")
+	var won: bool = outcome in ["boss_defeated","room_cleared"]
+	check(physics_steps>0,"actual native physics exercised")
+	check(controller_calls==controller_opportunities,"controller called at every available input step")
+	check(not won or not requires_attack_evidence() or room.telemetry.shots>0 or probe or not controlled_room_id.is_empty(),"victory exercises production attack path")
+	check(not won or not requires_attack_evidence() or not casts.is_empty() or probe,"victory exercises production skill/input path")
 	check(Game.run==null or run_ref.stats==fixture.resolved_stats,"resolved stats untouched in combat")
 	check(not is_instance_valid(boss) or not boss.training_ai_disabled,"production AI stays enabled")
 	var record := {"configuration":config.duplicate(true),"fixture":fixture.duplicate(true),"outcome":outcome,"probe":probe,"final":snapshot(),
@@ -429,6 +437,7 @@ func finish_record() -> void:
 	record["screenshots"]=screenshots.duplicate(true)
 	record["rendering"]=rendering_metadata.duplicate(true)
 	record["audio"]={"requested_driver":measurement_protocol.get("requested_audio_driver","engine_default"),"hardware_tested":false,"test_bus_muted":true}
+	record["input_diagnostics"]={"normal_offense_expected":requires_attack_evidence(),"controller_opportunities":controller_opportunities,"controller_calls":controller_calls,"controller_never_invoked":controller_calls==0,"accepted_actions":casts.duplicate(true),"actual_shots":room.telemetry.shots,"recorded_decisions":driver.decisions.size(),"zero_offense":room.telemetry.shots==0 and casts.is_empty(),"failed_before_offense":not won and room.telemetry.shots==0 and casts.is_empty()}
 	rows.append(record)
 	print("S11_MATRIX_FIGHT ",JSON.stringify({"configuration":config,"outcome":outcome,"simulation_seconds":elapsed,"host_wall_seconds":record.host_wall_seconds,"hp_fraction":record.hp_fraction,"phase_skips":skipped}))
 

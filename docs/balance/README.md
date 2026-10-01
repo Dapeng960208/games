@@ -1,12 +1,12 @@
 # 数值重构文档入口
 
-实施进度更新：S00–S04门控代码与针对性检查、独立复核已完成并推送（S04核验b227e0f）；S05随机获取、购买/打造与奖励已检查复核并推送143a8d8；S06锻造/继承/回收与UI已检查待复核推送。生产默认仍旧规则，未执行真实玩家档迁移，也未完成自然战斗验收。最新提交和证据以 [实施记录](IMPLEMENTATION_LOG.md) 为准；下方提案/现状册保留原始设计基线。
+最新状态（2026-10-01）：S00–S10已实现、检查、独立复核并逐步推送原PR分支；新规则在未合并分支默认启用，旧进行中冒险保持冻结规则。用户现要求暂停S11测试、标注问题并收敛PR。所有S11采样已停止，实验参数没有进入生产配置，自然平衡未验收。见 [S11暂缓与已知问题](S11_DEFERRED_ISSUES_2026-10-01.md)、[实施记录](IMPLEMENTATION_LOG.md)和[运行校准表](RUNTIME_CALIBRATION_TABLES.md)。
 
-2026-10-01：新版方案通过`codex/numerical-redesign-plan`提交草稿PR，等待用户确认。当前运行数值未修改。用户已确认战斗平值与职业资源×10并整数化的范围，其余新参数在PR中供确认。
+下方提案、CURRENT现状册和旧目标册保留原始设计/源码基线，不应把它们的历史“待确认/未实施”措辞当作当前交付状态。
 
 推荐先读 [等级、装备、锻造与全量Buff方案](LEVEL_EQUIPMENT_NUMERICAL_DESIGN.md)，再查看 [目标数值全表](TARGET_NUMERICAL_TABLES.md)、[角色技能与Buff整数目标表](TARGET_HERO_SKILL_BUFF_TABLES.md)、[野怪与Boss技能目标表](TARGET_ENEMY_SKILL_TABLES.md)。
 
-后续agent按 [S00–S11逐步执行清单](NUMERICAL_REDESIGN_EXECUTION_STEPS.md)实施；PR正文也列出全部步骤、依赖、责任模块和必要检查。运行实施尚未开始，文档检查通过不能当作战斗平衡已验收。
+[S00–S11执行清单](NUMERICAL_REDESIGN_EXECUTION_STEPS.md)记录步骤、责任和实际状态。S11保留的检查要求没有降低，但按用户要求暂缓；文档或工具检查通过不能当作战斗平衡已验收。
 
 新增要求集中记录于 [随机强化与品质等效](RANDOM_FORGING_DESIGN.md)和[章节递增/Boss配装标尺](BOSS_DIFFICULTY_CALIBRATION.md)：金掉落最高+1，白绿紫可+5；每阶增幅8%–12%，可保底重锻；白+5≈绿+3、绿+5≈紫+2、紫+5≈金+2；1–12章递增，按对应章级全8槽金约+2配装校准D4首领。后三项中的具体概率、费用和战斗表现是待确认/待验证参数。
 
