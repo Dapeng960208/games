@@ -16,6 +16,7 @@ const ROOM_CAP := 18
 const MAX_MOVE_SPEED := 132.0
 const TIER_THRESHOLDS := [1, 5, 10, 15]
 const BASE_ZONE_TOTALS := [6, 6, 7]
+const ENCOUNTER_DENSITY_MULTIPLIER := 1.4
 const PROTECTIVE_IDS := ["M06", "M08", "M17", "M25", "M26", "M30", "M34"]
 const FUNCTIONAL_SUPPORT_IDS := ["M09", "M19"]
 # Multipliers sharpen the authored roles without replacing any prototype's
@@ -234,7 +235,10 @@ static func encounter_plan(room_id: String, zone_index: int, difficulty: int = 0
 	var cap: int = mini(ZONE_CAP, int(zones[zone_index].get("concurrent_cap", ZONE_CAP)))
 	if cap < 1:
 		return {}
-	var target_total: int = int(BASE_ZONE_TOTALS[zone_index]) + biome - 1 + normalized_difficulty
+	# Add finite reinforcement batches; keep live pressure and summon budgets
+	# unchanged. Each difficulty still increases the cumulative actor total.
+	var authored_total: int = int(BASE_ZONE_TOTALS[zone_index]) + biome - 1 + normalized_difficulty
+	var target_total: int = int(ceil(authored_total * ENCOUNTER_DENSITY_MULTIPLIER))
 	var initial_slots: int = mini(cap, 6 if normalized_difficulty >= 2 or biome >= 3 else 5)
 	var pool: Array = REINFORCEMENT_POOLS[biome_id]
 	var specials: Array[String] = []

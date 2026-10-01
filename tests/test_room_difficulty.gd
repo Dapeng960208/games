@@ -4,8 +4,8 @@ extends SceneTree
 ## The isolated test_ profile is mandatory; combat stays frozen and silent.
 
 const Profiles = preload("res://scripts/combat/enemy_profiles.gd")
-const EXPECTED_TOTALS := [19, 22, 25, 28, 31]
-const EXPECTED_ZONES := [[6, 6, 7], [7, 7, 8], [8, 8, 9], [9, 9, 10], [10, 10, 11]]
+const EXPECTED_TOTALS := [28, 32, 37, 40, 44]
+const EXPECTED_ZONES := [[9, 9, 10], [10, 10, 12], [12, 12, 13], [13, 13, 14], [14, 14, 16]]
 const EXPECTED_LABELS := {
 	"zh_CN":["普通", "进阶", "困难", "险境", "极限"],
 	"en":["Normal", "Challenging", "Hard", "Severe", "Extreme"]
@@ -57,7 +57,7 @@ func choice() -> OptionButton:
 	return app.screen.find_child("DepartureDifficulty", true, false) as OptionButton
 
 func count_label() -> Label:
-	return app.screen.find_child("DepartureEnemyCount", true, false) as Label
+	return app.screen.find_child("DepartureDifficultyHint", true, false) as Label
 
 func assert_camp(locale: String, difficulty: int, context: String) -> void:
 	check(app.route == "camp" and game.run == null, context + ": real camp has no active run")
@@ -75,15 +75,15 @@ func assert_camp(locale: String, difficulty: int, context: String) -> void:
 	for zone in range(3):
 		total += int(Profiles.encounter_plan("L01", zone, difficulty).total_count)
 	check(total == EXPECTED_TOTALS[difficulty], context + ": independently expected legacy L01 total matches all three production plans")
-	var expected_text := "8 stops · 5 objectives + boss" if locale == "en" else "8 站 · 5 场目标战 + 首领"
-	check(note.text == expected_text, context + ": localized camp preview describes the eight-node expedition")
+	var expected_text: String = ("BASE: %d foes" if locale == "en" else "基础敌群 %d") % EXPECTED_TOTALS[difficulty]
+	check(note.text.contains(expected_text), context + ": localized camp preview shows the selected real enemy total")
 	check(note.get_line_count() * note.get_line_height() <= note.size.y, context + ": enemy-count copy fits its label height")
 	var viewport_bounds := Rect2(Vector2.ZERO, Vector2(root.size))
 	check(viewport_bounds.encloses(select.get_global_rect()) and viewport_bounds.encloses(note.get_global_rect()), context + ": selector and count stay within the viewport")
 	check(not select.get_global_rect().intersects(note.get_global_rect()), context + ": selector and count have separate readable bounds")
 	for sibling in select.get_parent().get_children():
-		if sibling is Label and sibling != note and sibling.position.x < select.position.x:
-			check(sibling.get_global_rect().end.x <= select.get_global_rect().position.x, context + ": next-skill and resource copy remain left of the difficulty column")
+		if sibling is Label and sibling != note:
+			check(not sibling.get_global_rect().intersects(select.get_global_rect()), context + ": camp labels do not overlap the difficulty selector")
 
 func select_difficulty(difficulty: int, locale: String) -> void:
 	var before := document()

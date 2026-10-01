@@ -118,10 +118,10 @@ func _encounters() -> void:
 	var found_elite: bool = false
 	# Independent acceptance fixtures: expected natural actors over ALL batches.
 	var expected_zone_counts: Array = [
-		[[6,6,7], [7,7,8], [8,8,9], [9,9,10], [10,10,11]],
-		[[7,7,8], [8,8,9], [9,9,10], [10,10,11], [11,11,12]],
-		[[8,8,9], [9,9,10], [10,10,11], [11,11,12], [12,12,13]],
-		[[9,9,10], [10,10,11], [11,11,12], [12,12,13], [13,13,14]]
+		[[9,9,10], [10,10,12], [12,12,13], [13,13,14], [14,14,16]],
+		[[10,10,12], [12,12,13], [13,13,14], [14,14,16], [16,16,17]],
+		[[12,12,13], [13,13,14], [14,14,16], [16,16,17], [17,17,19]],
+		[[13,13,14], [14,14,16], [16,16,17], [17,17,19], [19,19,20]]
 	]
 	var expected_budgets: Array = [
 		[[10,12,14], [12,14,16], [14,16,18], [16,18,20], [18,20,22]],
@@ -203,11 +203,12 @@ func _encounters() -> void:
 				_check(support_count <= 1 and functional_count <= 1 and summoner_count <= 1, label + " support limits apply across all future batches")
 				room_count += zone_count
 			_check(total_elites <= 2, room_id + " full room has at most two elites across all zones and waves")
-			_check(room_count == [19,22,25,28][biome - 1] + difficulty * 3, room_id + " exact cumulative room count grows by difficulty")
+			var expected_room_counts: Array = [[28,32,37,40,44], [32,37,40,44,49], [37,40,44,49,53], [40,44,49,53,58]]
+			_check(room_count == expected_room_counts[biome - 1][difficulty], room_id + " exact cumulative room count grows by difficulty")
 	_check(found_summoner and found_elite, "budget acceptance actually exercises summons and elite selection")
 	_check(Profiles.encounter_level("L01", 0) == 1 and Profiles.encounter_level("L07", 0) == 5 and Profiles.encounter_level("L13", 0) == 9 and Profiles.encounter_level("L19", 0) == 13, "four area starting levels are visible and fixed")
-	_check(_wave_sizes(Profiles.encounter_plan("L01", 0, 0)) == [5,1] and _wave_sizes(Profiles.encounter_plan("L01", 2, 0)) == [5,2], "L01 ordinary moves from whole-room 3/3/2 to initial five plus queued reinforcement")
-	_check(_wave_sizes(Profiles.encounter_plan("L01", 0, 4)) == [6,3,1] and _wave_sizes(Profiles.encounter_plan("L01", 2, 4)) == [6,3,2], "L01 highest difficulty independently expected batch sizes")
+	_check(_wave_sizes(Profiles.encounter_plan("L01", 0, 0)) == [5,3,1] and _wave_sizes(Profiles.encounter_plan("L01", 2, 0)) == [5,3,2], "L01 ordinary adds finite reinforcement batches")
+	_check(_wave_sizes(Profiles.encounter_plan("L01", 0, 4)) == [6,3,3,2] and _wave_sizes(Profiles.encounter_plan("L01", 2, 4)) == [6,3,3,3,1], "L01 highest difficulty independently expected batch sizes")
 	var first: Dictionary = Profiles.encounter_plan("L01", 0)
 	var snapshot: Dictionary = first.duplicate(true)
 	first["waves"][1][0]["attack_parameters"]["combo_angles"].clear()
