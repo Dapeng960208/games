@@ -1,0 +1,874 @@
+{
+  "schema_version": 1,
+  "texture": "res://assets/generated/props/fixed_B01_props_v1.png",
+  "regions": {
+    "B01_prop_sun_clock": [
+      30,
+      76,
+      227,
+      195
+    ],
+    "B01_prop_ivy_column": [
+      335,
+      32,
+      158,
+      245
+    ],
+    "B01_prop_canal_edge": [
+      585,
+      81,
+      231,
+      205
+    ],
+    "B01_prop_clockwork_flower": [
+      907,
+      40,
+      184,
+      242
+    ],
+    "B01_prop_sun_lantern": [
+      1167,
+      37,
+      178,
+      239
+    ],
+    "B01_prop_crystal_lens": [
+      71,
+      303,
+      142,
+      248
+    ],
+    "B01_prop_bronze_bench": [
+      292,
+      331,
+      258,
+      200
+    ],
+    "B01_prop_prism_arch": [
+      590,
+      307,
+      224,
+      223
+    ],
+    "B01_prop_glass_greenhouse": [
+      884,
+      306,
+      205,
+      237
+    ],
+    "B01_prop_runic_disk": [
+      1139,
+      351,
+      248,
+      169
+    ],
+    "B01_prop_orrery": [
+      29,
+      574,
+      225,
+      250
+    ],
+    "B01_prop_copper_furnace": [
+      326,
+      563,
+      181,
+      253
+    ],
+    "B01_prop_weighing_fan": [
+      557,
+      588,
+      289,
+      213
+    ],
+    "B01_prop_lift_pod": [
+      876,
+      612,
+      223,
+      194
+    ],
+    "B01_prop_crystal_valve": [
+      1173,
+      577,
+      199,
+      226
+    ],
+    "B01_prop_sun_altar": [
+      22,
+      879,
+      241,
+      184
+    ],
+    "B01_prop_bell_tree": [
+      320,
+      837,
+      200,
+      238
+    ],
+    "B01_prop_seed_cradle": [
+      593,
+      834,
+      205,
+      244
+    ],
+    "B01_prop_cloud_sculpture": [
+      888,
+      855,
+      212,
+      219
+    ],
+    "B01_prop_coolant_amphora": [
+      1179,
+      840,
+      174,
+      238
+    ]
+  },
+  "anchors": {
+    "B01_prop_sun_clock": [
+      114,
+      193
+    ],
+    "B01_prop_ivy_column": [
+      79,
+      243
+    ],
+    "B01_prop_canal_edge": [
+      116,
+      203
+    ],
+    "B01_prop_clockwork_flower": [
+      92,
+      240
+    ],
+    "B01_prop_sun_lantern": [
+      89,
+      237
+    ],
+    "B01_prop_crystal_lens": [
+      71,
+      246
+    ],
+    "B01_prop_bronze_bench": [
+      129,
+      198
+    ],
+    "B01_prop_prism_arch": [
+      112,
+      221
+    ],
+    "B01_prop_glass_greenhouse": [
+      102,
+      235
+    ],
+    "B01_prop_runic_disk": [
+      124,
+      167
+    ],
+    "B01_prop_orrery": [
+      112,
+      248
+    ],
+    "B01_prop_copper_furnace": [
+      90,
+      251
+    ],
+    "B01_prop_weighing_fan": [
+      144,
+      211
+    ],
+    "B01_prop_lift_pod": [
+      112,
+      192
+    ],
+    "B01_prop_crystal_valve": [
+      100,
+      224
+    ],
+    "B01_prop_sun_altar": [
+      120,
+      182
+    ],
+    "B01_prop_bell_tree": [
+      100,
+      236
+    ],
+    "B01_prop_seed_cradle": [
+      102,
+      242
+    ],
+    "B01_prop_cloud_sculpture": [
+      106,
+      217
+    ],
+    "B01_prop_coolant_amphora": [
+      87,
+      236
+    ]
+  },
+  "ground_footprints": {
+    "B01_prop_sun_clock": [
+      58,
+      158,
+      110,
+      35
+    ],
+    "B01_prop_ivy_column": [
+      32,
+      199,
+      95,
+      44
+    ],
+    "B01_prop_canal_edge": [
+      60,
+      166,
+      110,
+      37
+    ],
+    "B01_prop_clockwork_flower": [
+      37,
+      196,
+      110,
+      44
+    ],
+    "B01_prop_sun_lantern": [
+      36,
+      194,
+      107,
+      43
+    ],
+    "B01_prop_crystal_lens": [
+      28,
+      201,
+      85,
+      45
+    ],
+    "B01_prop_bronze_bench": [
+      74,
+      162,
+      110,
+      36
+    ],
+    "B01_prop_prism_arch": [
+      57,
+      181,
+      110,
+      40
+    ],
+    "B01_prop_glass_greenhouse": [
+      48,
+      192,
+      110,
+      43
+    ],
+    "B01_prop_runic_disk": [
+      69,
+      137,
+      110,
+      30
+    ],
+    "B01_prop_orrery": [
+      58,
+      203,
+      110,
+      45
+    ],
+    "B01_prop_copper_furnace": [
+      36,
+      205,
+      109,
+      46
+    ],
+    "B01_prop_weighing_fan": [
+      90,
+      173,
+      110,
+      38
+    ],
+    "B01_prop_lift_pod": [
+      56,
+      157,
+      110,
+      35
+    ],
+    "B01_prop_crystal_valve": [
+      44,
+      183,
+      110,
+      41
+    ],
+    "B01_prop_sun_altar": [
+      66,
+      149,
+      110,
+      33
+    ],
+    "B01_prop_bell_tree": [
+      45,
+      193,
+      110,
+      43
+    ],
+    "B01_prop_seed_cradle": [
+      48,
+      198,
+      110,
+      44
+    ],
+    "B01_prop_cloud_sculpture": [
+      51,
+      178,
+      110,
+      39
+    ],
+    "B01_prop_coolant_amphora": [
+      35,
+      193,
+      104,
+      43
+    ]
+  },
+  "names": {
+    "B01_prop_sun_clock": "日轮花钟",
+    "B01_prop_ivy_column": "藤冠短柱",
+    "B01_prop_canal_edge": "外围细水渠",
+    "B01_prop_clockwork_flower": "齿瓣机械花",
+    "B01_prop_sun_lantern": "光籽灯",
+    "B01_prop_crystal_lens": "晶透镜架",
+    "B01_prop_bronze_bench": "园匠曲背椅",
+    "B01_prop_prism_arch": "浮晶光拱",
+    "B01_prop_glass_greenhouse": "晶芽小温室",
+    "B01_prop_runic_disk": "符文齿盘",
+    "B01_prop_orrery": "小日月星仪",
+    "B01_prop_copper_furnace": "吐云铜炉",
+    "B01_prop_weighing_fan": "三叶光秤",
+    "B01_prop_lift_pod": "花蕾升降舱",
+    "B01_prop_crystal_valve": "晶露阀",
+    "B01_prop_sun_altar": "日曜校准座",
+    "B01_prop_bell_tree": "铜铃树",
+    "B01_prop_seed_cradle": "晶籽摇篮",
+    "B01_prop_cloud_sculpture": "云绵石雕",
+    "B01_prop_coolant_amphora": "冷露陶瓶"
+  },
+  "solid_candidates": {
+    "B01_prop_sun_clock": false,
+    "B01_prop_ivy_column": true,
+    "B01_prop_canal_edge": false,
+    "B01_prop_clockwork_flower": false,
+    "B01_prop_sun_lantern": false,
+    "B01_prop_crystal_lens": true,
+    "B01_prop_bronze_bench": false,
+    "B01_prop_prism_arch": false,
+    "B01_prop_glass_greenhouse": false,
+    "B01_prop_runic_disk": false,
+    "B01_prop_orrery": false,
+    "B01_prop_copper_furnace": true,
+    "B01_prop_weighing_fan": false,
+    "B01_prop_lift_pod": false,
+    "B01_prop_crystal_valve": true,
+    "B01_prop_sun_altar": false,
+    "B01_prop_bell_tree": false,
+    "B01_prop_seed_cradle": false,
+    "B01_prop_cloud_sculpture": false,
+    "B01_prop_coolant_amphora": false
+  },
+  "atlas_layout": {
+    "columns": 5,
+    "rows": 4,
+    "uniform_grid": false,
+    "source_cells": {
+      "B01_prop_sun_clock": [
+        0,
+        0,
+        280,
+        294
+      ],
+      "B01_prop_ivy_column": [
+        280,
+        0,
+        270,
+        294
+      ],
+      "B01_prop_canal_edge": [
+        550,
+        0,
+        296,
+        294
+      ],
+      "B01_prop_clockwork_flower": [
+        846,
+        0,
+        264,
+        294
+      ],
+      "B01_prop_sun_lantern": [
+        1110,
+        0,
+        292,
+        294
+      ],
+      "B01_prop_crystal_lens": [
+        0,
+        294,
+        280,
+        263
+      ],
+      "B01_prop_bronze_bench": [
+        280,
+        294,
+        270,
+        263
+      ],
+      "B01_prop_prism_arch": [
+        550,
+        294,
+        296,
+        263
+      ],
+      "B01_prop_glass_greenhouse": [
+        846,
+        294,
+        264,
+        263
+      ],
+      "B01_prop_runic_disk": [
+        1110,
+        294,
+        292,
+        263
+      ],
+      "B01_prop_orrery": [
+        0,
+        557,
+        280,
+        272
+      ],
+      "B01_prop_copper_furnace": [
+        280,
+        557,
+        270,
+        272
+      ],
+      "B01_prop_weighing_fan": [
+        550,
+        557,
+        296,
+        272
+      ],
+      "B01_prop_lift_pod": [
+        846,
+        557,
+        264,
+        272
+      ],
+      "B01_prop_crystal_valve": [
+        1110,
+        557,
+        292,
+        272
+      ],
+      "B01_prop_sun_altar": [
+        0,
+        829,
+        280,
+        293
+      ],
+      "B01_prop_bell_tree": [
+        280,
+        829,
+        270,
+        293
+      ],
+      "B01_prop_seed_cradle": [
+        550,
+        829,
+        296,
+        293
+      ],
+      "B01_prop_cloud_sculpture": [
+        846,
+        829,
+        264,
+        293
+      ],
+      "B01_prop_coolant_amphora": [
+        1110,
+        829,
+        292,
+        293
+      ]
+    },
+    "requested_grid": [
+      5,
+      4
+    ],
+    "instruction": "Generated spacing is slightly nonuniform. Read explicit complete-object regions from measured transparent gutters; do not recalculate equal-size cells."
+  },
+  "coordinate_system": {
+    "regions": "Absolute atlas pixel [x,y,width,height].",
+    "anchors": "CROP-LOCAL alpha32 bounding-box bottom-center [x,y].",
+    "ground_footprints": "CROP-LOCAL small visual contact rectangles only; fixed room solid flags and footprint limits control gameplay collision."
+  },
+  "registration": {
+    "alpha_threshold": 32,
+    "region_padding": 2,
+    "anchor_method": "alpha32 bbox lower-center with 2px crop padding",
+    "source_pixel_edits": "none",
+    "fallback_keys": []
+  },
+  "qa": {
+    "size": [
+      1402,
+      1122
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_fraction": 0.5865360409499035,
+    "sha256": "fbc530f0fd264618f5f346c0d9f2040217889b746acea058d1ec06979ae5b6d6",
+    "frames": {
+      "B01_prop_sun_clock": {
+        "source_cell": [
+          0,
+          0,
+          280,
+          294
+        ],
+        "alpha_bounds": [
+          32,
+          78,
+          223,
+          191
+        ],
+        "visible_alpha_pixels": 24652,
+        "min_cell_margin": 25,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_ivy_column": {
+        "source_cell": [
+          280,
+          0,
+          270,
+          294
+        ],
+        "alpha_bounds": [
+          337,
+          34,
+          154,
+          241
+        ],
+        "visible_alpha_pixels": 27760,
+        "min_cell_margin": 19,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_canal_edge": {
+        "source_cell": [
+          550,
+          0,
+          296,
+          294
+        ],
+        "alpha_bounds": [
+          587,
+          83,
+          227,
+          201
+        ],
+        "visible_alpha_pixels": 23338,
+        "min_cell_margin": 10,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_clockwork_flower": {
+        "source_cell": [
+          846,
+          0,
+          264,
+          294
+        ],
+        "alpha_bounds": [
+          909,
+          42,
+          180,
+          238
+        ],
+        "visible_alpha_pixels": 22152,
+        "min_cell_margin": 14,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_sun_lantern": {
+        "source_cell": [
+          1110,
+          0,
+          292,
+          294
+        ],
+        "alpha_bounds": [
+          1169,
+          39,
+          174,
+          235
+        ],
+        "visible_alpha_pixels": 18722,
+        "min_cell_margin": 20,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_crystal_lens": {
+        "source_cell": [
+          0,
+          294,
+          280,
+          263
+        ],
+        "alpha_bounds": [
+          73,
+          305,
+          138,
+          244
+        ],
+        "visible_alpha_pixels": 17006,
+        "min_cell_margin": 8,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_bronze_bench": {
+        "source_cell": [
+          280,
+          294,
+          270,
+          263
+        ],
+        "alpha_bounds": [
+          294,
+          333,
+          254,
+          196
+        ],
+        "visible_alpha_pixels": 23612,
+        "min_cell_margin": 2,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_prism_arch": {
+        "source_cell": [
+          550,
+          294,
+          296,
+          263
+        ],
+        "alpha_bounds": [
+          592,
+          309,
+          220,
+          219
+        ],
+        "visible_alpha_pixels": 15497,
+        "min_cell_margin": 15,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_glass_greenhouse": {
+        "source_cell": [
+          846,
+          294,
+          264,
+          263
+        ],
+        "alpha_bounds": [
+          886,
+          308,
+          201,
+          233
+        ],
+        "visible_alpha_pixels": 35460,
+        "min_cell_margin": 14,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_runic_disk": {
+        "source_cell": [
+          1110,
+          294,
+          292,
+          263
+        ],
+        "alpha_bounds": [
+          1141,
+          353,
+          244,
+          165
+        ],
+        "visible_alpha_pixels": 30645,
+        "min_cell_margin": 17,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_orrery": {
+        "source_cell": [
+          0,
+          557,
+          280,
+          272
+        ],
+        "alpha_bounds": [
+          31,
+          576,
+          221,
+          246
+        ],
+        "visible_alpha_pixels": 19467,
+        "min_cell_margin": 7,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_copper_furnace": {
+        "source_cell": [
+          280,
+          557,
+          270,
+          272
+        ],
+        "alpha_bounds": [
+          328,
+          565,
+          177,
+          249
+        ],
+        "visible_alpha_pixels": 27275,
+        "min_cell_margin": 8,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_weighing_fan": {
+        "source_cell": [
+          550,
+          557,
+          296,
+          272
+        ],
+        "alpha_bounds": [
+          559,
+          590,
+          286,
+          209
+        ],
+        "visible_alpha_pixels": 25529,
+        "min_cell_margin": 1,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_lift_pod": {
+        "source_cell": [
+          846,
+          557,
+          264,
+          272
+        ],
+        "alpha_bounds": [
+          878,
+          614,
+          219,
+          190
+        ],
+        "visible_alpha_pixels": 28279,
+        "min_cell_margin": 13,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_crystal_valve": {
+        "source_cell": [
+          1110,
+          557,
+          292,
+          272
+        ],
+        "alpha_bounds": [
+          1175,
+          579,
+          195,
+          222
+        ],
+        "visible_alpha_pixels": 22739,
+        "min_cell_margin": 22,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_sun_altar": {
+        "source_cell": [
+          0,
+          829,
+          280,
+          293
+        ],
+        "alpha_bounds": [
+          24,
+          881,
+          237,
+          180
+        ],
+        "visible_alpha_pixels": 27808,
+        "min_cell_margin": 19,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_bell_tree": {
+        "source_cell": [
+          280,
+          829,
+          270,
+          293
+        ],
+        "alpha_bounds": [
+          322,
+          839,
+          196,
+          234
+        ],
+        "visible_alpha_pixels": 21278,
+        "min_cell_margin": 10,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_seed_cradle": {
+        "source_cell": [
+          550,
+          829,
+          296,
+          293
+        ],
+        "alpha_bounds": [
+          595,
+          836,
+          201,
+          240
+        ],
+        "visible_alpha_pixels": 23209,
+        "min_cell_margin": 7,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_cloud_sculpture": {
+        "source_cell": [
+          846,
+          829,
+          264,
+          293
+        ],
+        "alpha_bounds": [
+          890,
+          857,
+          208,
+          215
+        ],
+        "visible_alpha_pixels": 27534,
+        "min_cell_margin": 12,
+        "visible_cell_edge_pixels": 0
+      },
+      "B01_prop_coolant_amphora": {
+        "source_cell": [
+          1110,
+          829,
+          292,
+          293
+        ],
+        "alpha_bounds": [
+          1181,
+          842,
+          170,
+          234
+        ],
+        "visible_alpha_pixels": 22750,
+        "min_cell_margin": 13,
+        "visible_cell_edge_pixels": 0
+      }
+    },
+    "visible_cell_edge_pixels_total": 0
+  }
+}

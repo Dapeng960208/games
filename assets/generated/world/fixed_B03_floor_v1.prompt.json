@@ -1,0 +1,7 @@
+{
+  "prompt": "Create one seamless SQUARE tileable game ground texture for the sunny Pumpkin Grave Town faction. Bright hand-painted cartoon fantasy, 2.5D illustrated stone material viewed from directly overhead so it can be repeated as a ground plane beneath 3/4 overhead game sprites. Cream limestone irregular cobblestones with very gentle dusty lilac mortar, small sparse mint-green moss tufts and a few tiny orange fallen petals. Fresh warm daylight; restrained detail and low visual noise; large irregular paving stones of varied size without repeating rosettes. The ENTIRE image is only walkable ground, no structures, no props, no characters, no text, no UI, no watermark, no border, no gold or yellow vertical lines, no ribbons, no tile dividers, no grid, no arena outline, no conspicuous central emblem. Edge-to-edge ground with matching texture at all four sides for seamless repetition. Do not add large cast shadows, perspective side walls, pools or holes. Earthy pale cream dominant 70 percent, subtle lilac mortar 20 percent, mint/orange detail 10 percent. Output a clean opaque square single texture, not a contact sheet.",
+  "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f250-dc5c-7040-ab32-96177571dcae\\exec-1e85f5b3-d11c-46d7-be48-7b042b16e7cd.png",
+  "tool": "image_gen.imagegen",
+  "transparent_background": false,
+  "purpose": "Replace faction floor containing repeated gold dividers with a clean painted ground tile."
+}

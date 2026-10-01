@@ -1,0 +1,33 @@
+{
+  "mode": "built-in",
+  "intent": "generate",
+  "use_case": "stylized-concept",
+  "transparent_background": true,
+  "output": "res://assets/generated/props/fixed_B04_props_v1.png",
+  "reference": "docs/levels/fixed_layouts/art/B04_gameplay_preview.png",
+  "columns": 5,
+  "rows": 4,
+  "ordered_keys": [
+    "B04_prop_tooth_gate",
+    "B04_prop_windsock",
+    "B04_prop_drum_rack",
+    "B04_prop_bone_bench",
+    "B04_prop_training_dummy",
+    "B04_prop_water_urn",
+    "B04_prop_trophy_plinth",
+    "B04_prop_roast_stall",
+    "B04_prop_melon_cart",
+    "B04_prop_net_loom",
+    "B04_prop_bone_swing",
+    "B04_prop_scoreboard",
+    "B04_prop_bone_anvil",
+    "B04_prop_horn_helmet_rack",
+    "B04_prop_bellows_lizard",
+    "B04_prop_armor_mannequin",
+    "B04_prop_lantern_tree",
+    "B04_prop_signal_fire",
+    "B04_prop_bone_gong",
+    "B04_prop_tribal_standard"
+  ],
+  "prompt": "Use case: stylized-concept. Asset type: production-ready transparent 2.5D fantasy game PROP SPRITE ATLAS, NOT a gameplay mockup.\nCreate one high-resolution 3200x2560 landscape PNG with REAL transparent alpha background. Exactly 20 isolated complete objects arranged in a strict 5 COLUMNS × 4 ROWS grid, equal square-like cells, generous completely transparent gutters. NO visible grid lines, NO labels, NO text, NO backdrop, NO floor tile or ground plane. Each object fully inside its cell, at least 10% clear margin on all sides. Do not crop tips or bases. Camera SAME high-angle three-quarter near-isometric view for all objects, visible thickness and feet, light from upper left. Bright clean hand-painted cartoon fantasy matching reference image 1's ENVIRONMENT ONLY: sunny warm terracotta and sand gold, ivory monster bones, vivid indigo cloth, turquoise details, rounded clean outlines, crisp readable silhouettes. No characters copied from reference, no game HUD copied. Actual transparent cutouts rather than a painted checkerboard.\nObjects ORDERED LEFT TO RIGHT, TOP TO BOTTOM, exactly one self-contained prop/group per cell:\nROW 1:\n1 smiling ivory TUSK TRIBAL GATE: small complete twin terracotta posts and curved tusk arch, smiling carved sun on lintel, indigo knot ties, open see-through doorway. No steps or floor slab.\n2 ONE-EYED SAND-BEAST WINDSOCK: indigo fabric fish/monster windsock with one big expressive round eye on a slender curved ivory-bone pole and tiny stable foot, cloth pointed right.\n3 THREE-BEAT SUN DRUM RACK: central big round hide drum with golden spiral sun and two smaller unequal side drums, sturdy short bone framework, indigo ties; this is magical tribal culture, not machinery.\n4 CURVED RIB-BONE BENCH: pale gently curved rib bones and two short legs holding terracotta-red padded seating, low horizontal silhouette.\n5 TALKING HORN-HELMET TRAINING DUMMY: straw bundle wearing exaggerated ivory horns and indigo band, painted cheeky face, wooden asymmetric arms, small short wooden feet, no living human.\nROW 2:\n6 WHALE-SHAPED TERRACOTTA WATER URN: round smiling sand-whale ceramic container with tiny flippers, turquoise wave glaze, small spout mouth, no water pool, squat base.\n7 GOLDEN TOOTH TROPHY ON LOW ROUND STAND: shiny golden tooth trophy on short terracotta circular plinth, indigo ribbon, readable silhouette.\n8 FIRE-LIZARD ROAST STALL: small green and orange fantasy roast stall, sunny cream-indigo textile canopy, cute tiny red fire-lizard blowing warm orange flame under barbecue grill, roast shapes stylized/no gore. One compact stall, full canopy visible, no scene around it.\n9 SPIKY-MELON DRINK CART: indigo and sand-gold low wood cart with ivory-horn handles and two little round wheels, oversized green spiky melon, pink juice bottles. One complete small cart, no floor.\n10 FRIENDLY SAND-SPIDER BONE NET LOOM: small friendly eight-legged indigo/turquoise weaving sand-spider on a pale bone loom with see-through indigo net, rounded cute eyes, no frightening insect horror.\nROW 3:\n11 GIANT RIB-BONE SWING: two gracefully curved ivory monster ribs form arch, indigo rope holds a blue woven sling seat. Full structure including small feet, swing hollow and airy.\n12 TUSK BEAD SCOREBOARD: curved ivory tooth frame around a small upright reddish wooden scoreboard with colored blue and coral round beads in slots, NO numbers or writing.\n13 GIANT MONSTER MOLAR ANVIL: low squat ivory tooth block with polished metallic-gray top, turquoise glowing cracks and sand-gold rim, tiny terracotta base.\n14 WHIMSICAL HORN-HELMET RACK: slender ivory three-prong stand displays three DIFFERENT indigo/terracotta helmets with sheep/bird/one-eyed beast horn silhouettes, compact complete rack.\n15 SNEEZING FIRE-LIZARD BELLOWS: cute little warm red fire-lizard squeezing a leather bellows, tiny orange flame puff close to its nose, indigo knot and bronze pin details, no huge smoke or machine.\nROW 4:\n16 REDROCK BONE-ARMOR MANNEQUIN: slim wooden display stand wearing terracotta layered armor, ivory tusk shoulders, indigo sash, no real person inside. Small feet.\n17 IVORY LANTERN TREE: slender curved bone branches like a small tree, five amber/turquoise lanterns, indigo string ties, modest little root foot. Full lantern silhouettes.\n18 TERRACOTTA SUNFLOWER SIGNAL FIRE BOWL: a short squat terracotta flower-shaped basin holding a small bright golden-orange magical flame, little ivory petal supports, no smoke.\n19 WIND-SIGNAL BONE GONG: irregular circular ivory gong on indigo curved frame with small wooden mallet hanging beside, subtle turquoise rune accents without letters, low tripod feet.\n20 THREE-CLAN INDIGO STANDARD: indigo cloth flag embroidered with simple white tusk, golden drum and sand-beast horn pictograms, mounted on curved ivory staff, tiny terracotta foot, flag blowing right. NO letter text.\nKeep every object as a separate usable sprite without surrounding world scenery. No repeated copy-paste content, no mechanically numbered labels. All items family-consistent scale with enough small detail to look good at game size. Tall props may fill ~75% cell height, squat props ~50% height, scale NEVER stretched. Shadow if present is subtle local semi-transparent contact shadow below foot, not a huge floor-colored patch.\nAvoid: any game HUD, typography, diagram lines, backgrounds, floor planes, square slabs, wall textures, large rectangular pits/water, industrial mine winches/coils/rusty carts, dark gritty palette, blood, incomplete clipped objects, extra columns/rows, neighboring cell overlap, white/gray opaque background."
+}

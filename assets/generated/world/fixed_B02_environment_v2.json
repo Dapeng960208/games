@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "biome_id": "B02",
+  "name": "琥珀虫巢连续整体地景 v2",
+  "texture": "res://assets/generated/world/fixed_B02_environment_v2.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "walkable_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "entrance_exit_openings_normalized": {
+    "west": [
+      0.0,
+      0.36,
+      0.13,
+      0.28
+    ],
+    "east": [
+      0.87,
+      0.36,
+      0.13,
+      0.28
+    ]
+  },
+  "collision": "none; existing room collision and authored furnishings are drawn separately",
+  "palette": {
+    "primary": "warm cream ivory and pale honey limestone",
+    "accent": "tender green leaves, occasional violet pollen flowers, amber outer roots"
+  },
+  "composition": "One complete horizontal 3:2 near-isometric painted landscape; continuous low-noise dry stone ground and naturally integrated hive-valley outer scenery on all four sides.",
+  "safe_margin": {
+    "ground_mapping_only": true,
+    "foreground_obstacles": "No furniture or hard terrain is painted inside the mapped playable center. Small seam moss and edge flowers are nonblocking landscape detail."
+  },
+  "notes": [
+    "Confirmed against B02_gameplay_preview.png for warm bright hand-painted 2.5D rendering, camera and palette; central stone is lighter and quieter than the older saturated yellow floor.",
+    "No HUD, text, actors, enemies, pickups, beacons, nests, chests or runtime furniture are embedded in this background.",
+    "No border prefab rows, solid horizontal bands, rectangular rim, repeating tile texture or grey blank exterior.",
+    "Wider left/right middle floor passages reach the frame edges; roots, shell outcrops and large leaves remain in outer scenery.",
+    "Selected second image generation after a targeted clearance refinement. Original generated PNG copied intact; no pixel editing or rescaling.",
+    "This is a background source asset, not evidence of a completed in-game scene. Runtime integrates the complete plate and authored props separately.",
+    "placement_normalized_rect maps the authored arena to the nominal painted floor extent; walkable_normalized_polygon supplies the dry-ground boundary independently. Decorative bank props may remain outside the player boundary."
+  ],
+  "provenance": {
+    "mode": "built-in image_gen",
+    "selected_generation": 2,
+    "prompt": "res://assets/generated/world/fixed_B02_environment_v2.prompt.json",
+    "reference": "docs/levels/fixed_layouts/art/B02_gameplay_preview.png",
+    "source_png": "C:/Users/13326/.codex/generated_images/01a0f4c6-d5a9-7921-bfbb-e835d4d22f96/exec-42923564-711b-4e6f-a7ef-0f2b148b262d.png"
+  },
+  "placement_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.25,
+      0.18
+    ],
+    [
+      0.45,
+      0.105
+    ],
+    [
+      0.67,
+      0.12
+    ],
+    [
+      0.82,
+      0.19
+    ],
+    [
+      0.885,
+      0.3
+    ],
+    [
+      0.9,
+      0.6
+    ],
+    [
+      0.86,
+      0.76
+    ],
+    [
+      0.71,
+      0.87
+    ],
+    [
+      0.5,
+      0.93
+    ],
+    [
+      0.3,
+      0.87
+    ],
+    [
+      0.165,
+      0.74
+    ],
+    [
+      0.12,
+      0.56
+    ],
+    [
+      0.14,
+      0.36
+    ],
+    [
+      0.205,
+      0.24
+    ]
+  ],
+  "boundary": {
+    "winding": "clockwise_positive_cross_in_screen_coordinates",
+    "authority": "painted dry stone curb / root bank / rock verge",
+    "minimum_gameplay_anchor_clearance_world": 33.919,
+    "validation_layout_scale": 0.58,
+    "decoration_positions_may_extend_beyond_walkable_polygon": true
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "integer shared-image regions",
+    "texture_sampling": "full mother texture; region_filter_clip_enabled=false",
+    "texture_memory": "one shared texture; no streaming claim"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "mode": "built-in image_gen targeted paving-scale edit",
+  "biome_id": "B03",
+  "edit_target": "C:/webdev/games/assets/generated/world/fixed_B03_environment_v2.png",
+  "style_reference": "C:/webdev/games/docs/levels/fixed_layouts/art/B03_gameplay_preview.png",
+  "output": "fixed_B03_environment_v3.png",
+  "target_size": [
+    1536,
+    1024
+  ],
+  "change": "Smaller ordinary flagstones approximately 45–85 source pixels, perimeter geometry retained",
+  "transparent_background": false,
+  "prompt": "Use case: precise-object-edit.\nImage 1 is the EDIT TARGET: the existing 1536x1024 B03 environment v2 plate. Image 2 is only a supporting reference for the approved warm cream stone material. Do not copy image 2's UI, actors, furniture or composition.\nMake ONLY a paving-scale edit inside the walkable stone area of image 1. Preserve the entire scene framing at exactly the same 3:2 ratio and 1536x1024 composition. Do NOT zoom, resize the world, shrink the whole plaza or change the camera.\n\nKeep every exterior cottage roof, door, eave, tree canopy, fence fragment, garden flower cluster, pumpkin, static border lantern, exterior lane opening and terrain/plant contour in its EXACT EXISTING POSITION AND SCALE. The top-edge cottages, upper-right corner house, bottom-left cropped roof, left/right openings and bottom-right garden rail must remain where they currently are. Preserve sun direction, peripheral shadows and all perimeter silhouettes. Do not invent new buildings or move any border inward/outward. Leave the periphery unchanged as closely as possible.\n\nThe only intended change:\nReplace the current oversized irregular paving slabs across the playable area with noticeably SMALLER irregular flagstones, approximately twice the visible stone density. A typical paving stone is 45–85 image pixels across on this 1536-pixel-wide canvas, with a few around 100px. No stone should be a giant 150–200px slab. Subdivide/repaint the existing paving pattern into smaller well-drawn stones while preserving the SAME extent of the paved arena. This must be a stone-size change, not a camera zoom or scaled-down copy of the whole image.\nThe level remains one completely flat continuous walkable stone surface. Small stones should still have coherent near-isometric perspective and crisp readable edges; not gritty sand, noisy gravel, tiny cobble speckles or a regular grid of identical rectangles.\n\nMaterial and palette:\nCreamy warm ivory limestone is dominant, with some gentle warm pale-gray stones. Match the existing approved environment tone and image 2's stone material. Very thin, quiet, pale-lavender grout accents in selected joints, mint moss along occasional seams, and a few small sparse orange leaf marks; do not turn the whole floor lavender/purple or green. Keep floor contrast controlled and hand-painted, clear at game viewing scale. Preserve warmth without oversaturating the stones orange/gold. Existing sparse flower accents can remain in the same positions as flat floor marks, not new raised flowerbeds.\nKeep the playable normalized rectangle approximately x=0.11..0.89, y=0.13..0.87 as continuous unblocked paving, and keep existing wide left/right middle lane connections.\n\nStrict avoid: no HUD, no text, no player, zombies, monsters or ghost NPCs, no pickups, no new furniture or beacons; no changes to border geometry, buildings or garden positioning; no zoom or shrinking the whole scene; no giant repeated circular medallions, no large repeating slab texture, no gold/yellow vertical divider seams, no high walls, no rectangular water pool or pit, no pure-color ring/stripe, no dark scene or dramatic new lighting. One faithful v3 of the same plate with smaller, more appropriately scaled stone bricks.",
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f4c7-4504-7cf1-ad2c-d9f939205582\\exec-45a21ba8-dab9-4801-8b24-38615aebda83.png",
+  "actual_dimensions": [
+    1536,
+    1024
+  ],
+  "qa": {
+    "visual_checked": true,
+    "source_copy_identical": true,
+    "source_pixel_edits": "none; original generated PNG copied unchanged",
+    "sha256": "5e3b65986ab7a8dd40c0359cd0b9785b947706ec18010ee5c0f3a1fc79cfc85b",
+    "perimeter_patch_rgb_mean_abs_difference": {
+      "top_left_cottage": 19.837,
+      "top_center_cottage": 17.422,
+      "top_right_cottage": 13.888,
+      "left_border_posts": 15.934,
+      "lower_left_roof": 6.789,
+      "bottom_right_rail": 9.869
+    },
+    "perimeter_visual_observation": "No obvious relocation of cottages, rail posts, lane openings, bottom-left roof or garden silhouettes. Small rendering-detail differences remain, not pixel-identical outside the edit.",
+    "paving_visual_observation": "Ordinary paving slabs visibly smaller and denser, no whole-plaza zoom or resizing; warm creamy stones, pale grout, mint moss and a few orange leaf marks.",
+    "runtime_or_v2_metadata_changes": "none"
+  }
+}
