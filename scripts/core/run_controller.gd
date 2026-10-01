@@ -477,6 +477,59 @@ func buy_equipment(eq_id: String, transaction_id: String = "") -> bool:
 	next_profile.applied_transactions[id] = {"kind": "purchase", "item": eq_id, "price": int(price), "level": 0}
 	return _commit_profile(next_profile)
 
+## Quotes only missing pieces. Rounding is per item, so buying a piece first
+## cannot change the discount on any other piece or reset its refinement.
+func equipment_set_quote(set_id: String) -> Dictionary:
+	var ids := ContentRegistry.set_item_ids(set_id)
+	if ids.size() != ContentRegistry.SLOTS.size(): return {}
+	var missing: Array[String] = []
+	var owned_count := 0
+	var full_price := 0
+	var price := 0
+	var locked_boss := ""
+	for eq_id: String in ids:
+		var item := ContentRegistry.equipment(eq_id)
+		if profile.equipment.has(eq_id):
+			owned_count += 1
+			continue
+		missing.append(eq_id)
+		full_price += int(item.price)
+		price += int(item.price) * 9 / 10
+		var boss := str(item.get("unlock_boss", ""))
+		if not boss.is_empty() and not boss in profile.bosses: locked_boss = boss
+	return {"items":ids, "missing":missing, "owned":owned_count, "price":price,
+		"full_price":full_price, "locked_boss":locked_boss}
+
+func buy_equipment_set(set_id: String, transaction_id: String = "") -> bool:
+	last_error = ""
+	if not _camp_available(): return false
+	if not transaction_id.is_empty() and profile.applied_transactions.has(transaction_id):
+		return _same_transaction(transaction_id, "purchase_set", set_id)
+	var quote := equipment_set_quote(set_id)
+	if quote.is_empty() or quote.missing.is_empty() or not str(quote.locked_boss).is_empty() \
+		or int(quote.price) > int(profile.permanent_gold): return false
+	var id := _transaction_id(transaction_id)
+	if id.is_empty(): return false
+	var next_profile := profile.duplicate(true)
+	next_profile.permanent_gold = int(next_profile.permanent_gold) - int(quote.price)
+	for eq_id: String in quote.missing: next_profile.equipment[eq_id] = {"level":0}
+	next_profile.applied_transactions[id] = {"kind":"purchase_set", "item":set_id,
+		"price":int(quote.price), "items":quote.missing.duplicate()}
+	return _commit_profile(next_profile)
+
+func equip_equipment_set(set_id: String) -> bool:
+	last_error = ""
+	if not _camp_available(): return false
+	var ids := ContentRegistry.set_item_ids(set_id)
+	if ids.size() != ContentRegistry.SLOTS.size(): return false
+	for eq_id: String in ids:
+		if not profile.equipment.has(eq_id): return false
+	var next_profile := profile.duplicate(true)
+	for eq_id: String in ids:
+		next_profile.loadout[ContentRegistry.equipment(eq_id).slot] = eq_id
+	if next_profile.loadout == profile.loadout: return true
+	return _commit_profile(next_profile)
+
 func equip_item(eq_id: String) -> bool:
 	last_error = ""
 	if not _camp_available() or not profile.equipment.has(eq_id):

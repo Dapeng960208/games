@@ -77,9 +77,11 @@ func _catalogue() -> bool:
 	check(parsed is Dictionary and bool(parsed.get("enabled", false)) and parsed.get("items") is Dictionary, "complete manifest is enabled with item records")
 	if not parsed is Dictionary or not parsed.get("items") is Dictionary: return false
 	var entries: Dictionary = parsed.items
+	var shop: Variant = JSON.parse_string(FileAccess.get_file_as_string(Art.SHOP_MANIFEST_PATH))
+	if shop is Dictionary and shop.get("items") is Dictionary: entries.merge(shop.items)
 	var expected := Registry.equipment_ids()
-	check(expected.size() == 60, "real catalogue contains sixty equipment definitions")
-	check(entries.size() == expected.size() and Art.ids().size() == expected.size(), "manifest and runtime expose all sixty entries")
+	check(expected.size() == 96, "real catalogue contains ninety-six equipment definitions")
+	check(entries.size() == expected.size() and Art.ids().size() == expected.size(), "manifests and runtime expose all ninety-six entries")
 	var region_keys: Dictionary = {}
 	var regions_by_source: Dictionary = {}
 	var source_slots: Dictionary = {}
@@ -103,7 +105,7 @@ func _catalogue() -> bool:
 		check(not path.is_empty() and FileAccess.file_exists(path), id + ": declared painted source exists")
 		check(path != "res://assets/generated/equipment/" + id + "_v1.png", id + ": regenerated source replaces the previous miniature")
 		if path.is_empty() or not FileAccess.file_exists(path): continue
-		check(not source_slots.has(path) or source_slots[path] == str(definition.slot), id + ": category source is reserved for this actual equipment slot")
+		check(entry.has("set_id") or not source_slots.has(path) or source_slots[path] == str(definition.slot), id + ": category source or explicit six-slot set atlas matches its manifest")
 		source_slots[path] = str(definition.slot)
 		check(atlas.atlas == Sampler.sampled(path), id + ": crop uses the declared shared source texture")
 		var raw := _source(path)

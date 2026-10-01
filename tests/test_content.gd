@@ -38,8 +38,8 @@ func _run() -> void:
 	for hero_id: String in Registry.heroes():
 		var skills: Dictionary = Registry.hero(hero_id).skills
 		_check(skills.q.unlock == 1 and skills.secondary.unlock == 2 and skills.f.unlock == 3 and skills.ultimate.unlock == 4, hero_id + " defines active skills at levels one through four")
-	_check(Registry.equipment_ids().size() == 60, "sixty permanent equipment definitions")
-	_check(Registry.sets().size() == 8, "eight sets")
+	_check(Registry.equipment_ids().size() == 96, "ninety-six permanent equipment definitions")
+	_check(Registry.sets().size() == 14, "fourteen sets")
 	_check(Registry.hero("missing").is_empty(), "unknown hero is rejected")
 	_check(Registry.equipment("missing").is_empty(), "unknown equipment is rejected")
 	_check(Stats.resolve("missing", 1, {}, {}).is_empty(), "unknown hero cannot acquire fallback stats")
@@ -51,7 +51,7 @@ func _run() -> void:
 	_near(float(Registry.equipment("EQ01").base_stats.attack), 4.0, "equipment definitions are returned by deep copy")
 	var sets_copy: Dictionary = Registry.sets()
 	sets_copy.erase("S01")
-	_check(Registry.sets().size() == 8, "set definitions are returned by copy")
+	_check(Registry.sets().size() == 14, "set definitions are returned by copy")
 	_check(Registry.level_for_xp(-1) == 1, "negative XP never creates a level below one")
 	for fixture in [[0, 1], [29, 1], [30, 2], [69, 2], [70, 3], [119, 3], [120, 4], [230, 6], [359, 7], [360, 8], [899, 9], [900, 10], [3060, 18], [3330, 19], [3599, 19], [3600, 20], [999999, 20]]:
 		_check(Registry.level_for_xp(fixture[0]) == fixture[1], "XP boundary %d -> level %d" % fixture)
@@ -65,7 +65,7 @@ func _run() -> void:
 		prices += int(item.price)
 		if not str(item.set_id).is_empty():
 			sets_cost[item.set_id] = int(sets_cost.get(item.set_id, 0)) + int(item.price)
-	_check(prices == 8160 and prices - 6 * 60 == 7800, "catalog and after-starter purchase budgets match plan")
+	_check(prices == 13560 and prices - 6 * 60 == 13200, "expanded catalog and after-starter purchase budgets match plan")
 	for id in sets_cost:
 		_check(sets_cost[id] == 900, str(id) + " six-piece purchase budget is 900")
 	_check(Registry.equipment("EQ03").unlock_boss == "" and Registry.equipment("EQ08").unlock_boss == "", "starter elemental and impact sets are initially available")

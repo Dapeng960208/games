@@ -6,6 +6,7 @@ const SLOTS := ["weapon","head","chest","hands","feet","charm"]
 const SKILLS := ["q","secondary","f","ultimate"]
 const BINDING_ACTIONS := ["skill_q","skill_secondary","skill_f","skill_ultimate"]
 const Advice = preload("res://scripts/ui/equipment_advice.gd")
+const SetShop = preload("res://scripts/ui/equipment_set_shop.gd")
 var app: Node
 var mode := "heroes"
 var preview_hero := ""
@@ -18,6 +19,9 @@ var busy := false
 var body: Control
 var item_list: ScrollContainer
 var action_button: Button
+var shop_sets := false
+var selected_set := "S09"
+var set_scroll := 0
 
 func _ready() -> void:
 	preview_hero = str(Game.profile.get("selected_hero","CH01"))
@@ -30,6 +34,11 @@ func _render() -> void:
 	MineStyle.label(self,"WORKSHOP_KICKER",Vector2(32,21),Vector2(750,25),16,MineStyle.AMBER)
 	MineStyle.label(self,{"heroes":"HERO_DOSSIERS","skills":"SKILL_LEDGER","inventory":"EQUIPMENT_BENCH","shop":"SUPPLY_CATALOG","upgrade":"UPGRADE_BENCH"}.get(mode,"EQUIPMENT_BENCH"),Vector2(32,55),Vector2(820,46),32)
 	MineStyle.label(self,"BANK_TOTAL",Vector2(928,41),Vector2(322,46),22,MineStyle.AMBER,{"gold":Game.profile.get("permanent_gold",0)})
+	if mode == "shop":
+		var catalog_toggle := MineStyle.button(self,"",Vector2(674,52),Vector2(234,44),func(): shop_sets = not shop_sets; _render())
+		catalog_toggle.name = "ToggleSetShop"
+		catalog_toggle.text = _t("单件装备目录", "Individual equipment") if shop_sets else _t("套装商城 · 14 套", "Set shop · 14 sets")
+		catalog_toggle.add_theme_font_size_override("font_size",17)
 	var tabs := [["heroes","TAB_HEROES"],["skills","TAB_SKILLS"],["inventory","TAB_GEAR"],["shop","TAB_SHOP"],["upgrade","TAB_UPGRADE"]]
 	for i in range(tabs.size()):
 		var data: Array = tabs[i]
@@ -46,6 +55,8 @@ func _render() -> void:
 		_render_heroes()
 	elif mode == "skills":
 		_render_skills()
+	elif mode == "shop" and shop_sets:
+		SetShop.render(self)
 	else:
 		_render_equipment()
 	var focus := find_child("PrimaryAction",true,false) as Button

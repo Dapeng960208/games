@@ -13,7 +13,7 @@ const HERO_IDS := ["CH01", "CH02", "CH03"]
 const BOSS_IDS := ["BO01", "BO02", "BO03", "BO04"]
 const SLOTS := ["weapon", "head", "chest", "hands", "feet", "charm"]
 const STARTER_IDS := ["EQ01", "EQ11", "EQ21", "EQ31", "EQ41", "EQ51"]
-const MAX_TRANSACTIONS := 512 # At most 60 purchases + 300 upgrades; never evict IDs.
+const MAX_TRANSACTIONS := 640 # 96 purchases, 480 upgrades and set receipts; never evict IDs.
 const VOLUME_DEFAULTS := {"master_volume":1.0,"music_volume":0.55,"sfx_volume":0.85}
 const Controls = preload("res://scripts/core/control_bindings.gd")
 const COMBAT_SETTING_DEFAULTS := {"auto_attack": false, "enemy_skill_paths": true}
@@ -273,7 +273,7 @@ static func _valid_result(value: Variant, version: int = 1) -> bool:
 	if version >= 3:
 		for key: String in ["equipment_retained", "equipment_lost"]:
 			if value.has(key):
-				if not _unique_ids(value[key], 60): return false
+				if not _unique_ids(value[key], ContentRegistry.equipment_ids().size()): return false
 				for id: String in value[key]:
 					if ContentRegistry.equipment(id).is_empty(): return false
 		if value.outcome != "extracted" and not value.get("equipment_retained", []).is_empty(): return false
@@ -347,7 +347,7 @@ static func _allowed_ids(value: Variant, allowed: Array) -> bool:
 
 static func _valid_progression(profile: Dictionary) -> bool:
 	if profile.has("equipment_discoveries"):
-		if not _unique_ids(profile.equipment_discoveries, 60): return false
+		if not _unique_ids(profile.equipment_discoveries, ContentRegistry.equipment_ids().size()): return false
 		for eq: String in profile.equipment_discoveries:
 			if ContentRegistry.equipment(eq).is_empty(): return false
 	if not profile.get("selected_hero") in HERO_IDS or not profile.get("hero_xp") is Dictionary:
@@ -360,7 +360,7 @@ static func _valid_progression(profile: Dictionary) -> bool:
 	# A missing field is a valid early v2 document and is atomically normalized on load.
 	if profile.has("branches") and not _valid_branches(profile.branches, profile.hero_xp):
 		return false
-	if not profile.get("equipment") is Dictionary or profile.equipment.size() > 60 \
+	if not profile.get("equipment") is Dictionary or profile.equipment.size() > ContentRegistry.equipment_ids().size() \
 		or not profile.get("loadout") is Dictionary or profile.loadout.size() != SLOTS.size():
 		return false
 	for id: Variant in profile.equipment:
@@ -387,6 +387,14 @@ static func _valid_progression(profile: Dictionary) -> bool:
 		if id == "starter_grant_v1":
 			if entry.get("kind") != "starter":
 				return false
+		elif entry.get("kind") == "purchase_set":
+			var pieces := ContentRegistry.set_item_ids(str(entry.get("item", "")))
+			if pieces.size() != SLOTS.size() or not _number(entry.get("price")) or not _unique_ids(entry.get("items"), SLOTS.size()) or entry.items.is_empty(): return false
+			var paid := 0
+			for eq_id: String in entry.items:
+				if not eq_id in pieces or not profile.equipment.has(eq_id): return false
+				paid += int(ContentRegistry.equipment(eq_id).price) * 9 / 10
+			if paid != int(entry.price): return false
 		elif not entry.get("kind") in ["purchase", "upgrade"] or not profile.equipment.has(entry.get("item")) \
 			or not _number(entry.get("price")) or not _number(entry.get("level"), Expedition.MAX_EQUIPMENT_LEVEL):
 			return false

@@ -187,8 +187,8 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 		completed_combat[index] = true
 	for index: int in completed:
 		if route.nodes[index].role not in ["entrance", "supply"] and not completed_combat.has(index): return false
-	if not value.get("pending_equipment") is Dictionary or value.pending_equipment.size() > 60 or not value.get("claimed_drop_ids") is Dictionary or value.claimed_drop_ids.size() > MAX_IDS: return false
-	if not ids(value.get("equipment_discoveries"), 60): return false
+	if not value.get("pending_equipment") is Dictionary or value.pending_equipment.size() > Registry.equipment_ids().size() or not value.get("claimed_drop_ids") is Dictionary or value.claimed_drop_ids.size() > MAX_IDS: return false
+	if not ids(value.get("equipment_discoveries"), Registry.equipment_ids().size()): return false
 	for eq: String in value.equipment_discoveries:
 		if Registry.equipment(eq).is_empty(): return false
 	for eq: Variant in value.pending_equipment:
@@ -312,7 +312,7 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 		if not number(index, count - 1) or int(index) not in scan_indices or scanned.has(int(index)) or int(value.node_index) < supply: return false
 		scanned[int(index)] = true
 	if not scanned.is_empty() and (scanned.size() != scan_indices.size() or not (supply_prefix + "scan") in value.purchased_offer_ids): return false
-	if not receipt.get("loadout_snapshot") is Dictionary or not receipt.get("equipment_snapshot") is Dictionary or receipt.equipment_snapshot.size() > 60 or receipt.loadout_snapshot.size() != 6: return false
+	if not receipt.get("loadout_snapshot") is Dictionary or not receipt.get("equipment_snapshot") is Dictionary or receipt.equipment_snapshot.size() > Registry.equipment_ids().size() or receipt.loadout_snapshot.size() != Registry.SLOTS.size(): return false
 	for eq: Variant in receipt.equipment_snapshot:
 		if Registry.equipment(str(eq)).is_empty() or not receipt.equipment_snapshot[eq] is Dictionary or not number(receipt.equipment_snapshot[eq].get("level"), MAX_EQUIPMENT_LEVEL): return false
 		var field_equipped := false

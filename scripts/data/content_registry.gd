@@ -43,6 +43,16 @@ static func equipment_ids() -> Array:
 static func sets() -> Dictionary:
 	return _sets.duplicate(true)
 
+static func set_item_ids(set_id: String) -> Array[String]:
+	var result: Array[String] = []
+	if not _sets.has(set_id): return result
+	for slot: String in SLOTS:
+		for id: String in equipment_ids():
+			var item: Dictionary = _equipment[id]
+			if str(item.get("set_id", "")) == set_id and str(item.get("slot", "")) == slot:
+				result.append(id)
+	return result
+
 static func level_for_xp(xp: int) -> int:
 	var level := 1
 	for index in range(1, XP_THRESHOLDS.size()):
@@ -91,8 +101,8 @@ static func validate() -> Array[String]:
 			if not _finite_number(skill.get("cooldown")) or float(skill.get("cooldown", 0)) <= 0:
 				errors.append(id + "/" + slot + ": invalid cooldown.")
 			index += 1
-	if _equipment.size() != 60:
-		errors.append("Expected exactly sixty equipment definitions.")
+	if _equipment.size() != 96:
+		errors.append("Expected ninety-six equipment definitions.")
 	var set_slots: Dictionary = {}
 	var price_total := 0
 	for number in range(1, 61):
@@ -135,9 +145,29 @@ static func validate() -> Array[String]:
 			set_slots[set_id].append(definition.get("slot"))
 	if price_total != 8160:
 		errors.append("The complete equipment catalog must cost 8160 gold.")
-	if _sets.size() != 8:
-		errors.append("Expected exactly eight sets.")
-	for number in range(1, 9):
+	for number in range(61, 97):
+		var id := "EQ%02d" % number
+		var item := equipment(id)
+		_check_required(item, ["id", "name", "name_en", "description", "slot", "set_id", "price", "base_stats", "affix_id", "affix_text", "unlock_boss", "combat_passive"], id, errors)
+		var slot: String = SLOTS[(number - 61) % 6]
+		var set_id := "S%02d" % (9 + (number - 61) / 6)
+		if item.get("id") != id or item.get("slot") != slot or item.get("set_id") != set_id:
+			errors.append(id + ": invalid new set identity or slot.")
+		if not _finite_number(item.get("price")) or int(item.get("price", 0)) != [180,140,180,120,120,160][(number - 61) % 6] or item.get("unlock_boss") != "":
+			errors.append(id + ": invalid new shop price or unlock.")
+		var stats: Dictionary = item.get("base_stats", {})
+		if stats.is_empty() or stats.size() > 4: errors.append(id + ": invalid base attributes.")
+		for key: String in stats:
+			if not key in STAT_KEYS or not _finite_number(stats[key]) or float(stats[key]) <= 0:
+				errors.append(id + ": invalid attribute " + key)
+		var passive: Dictionary = item.get("combat_passive", {})
+		if not passive.get("condition") in ["shielded", "moving", "resource_half", "full_hp", "injured", "low_hp"] or not passive.get("stat") in ["damage_bonus", "slow_resistance", "damage_reduction_bonus", "attack_speed_bonus", "move_speed_bonus", "crit_bonus"] or not _finite_number(passive.get("amount")) or float(passive.get("amount", 0)) <= 0 or float(passive.get("amount", 1)) > 0.10:
+			errors.append(id + ": invalid conditional passive.")
+		if not set_slots.has(set_id): set_slots[set_id] = []
+		set_slots[set_id].append(slot)
+	if _sets.size() != 14:
+		errors.append("Expected fourteen sets.")
+	for number in range(1, 15):
 		var id := "S%02d" % number
 		var definition: Dictionary = _sets.get(id, {})
 		_check_required(definition, ["id", "name", "thresholds"], id, errors)

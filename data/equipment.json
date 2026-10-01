@@ -1719,5 +1719,977 @@
     "race_name_en": "Redrock Warband",
     "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
     "drop_origin": "B04"
+  },
+  "EQ61": {
+    "id": "EQ61",
+    "name": "晨曦守誓核心",
+    "name_en": "Dawn Oathkeeper Core",
+    "description": "护盾防守 · 稳健反击。套装织纹：拥有护盾时，伤害 +1%。",
+    "description_en": "Shield defense · Steady counterattacks. Set weave: While shielded, damage +1%.",
+    "slot": "weapon",
+    "set_id": "S09",
+    "price": 180,
+    "base_stats": {
+      "attack": 7,
+      "armor": 3
+    },
+    "affix_id": "FX_EQ61",
+    "affix_text": "套装织纹：拥有护盾时，伤害 +1%。",
+    "affix_text_en": "Set weave: While shielded, damage +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S09",
+    "tier_en": "S09",
+    "visual": "暖白石甲、黄铜日轮与青蓝珐琅",
+    "combat_passive": {
+      "condition": "shielded",
+      "stat": "damage_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ62": {
+    "id": "EQ62",
+    "name": "晨曦守誓头冠",
+    "name_en": "Dawn Oathkeeper Crown",
+    "description": "护盾防守 · 稳健反击。套装织纹：拥有护盾时，减速抗性 +4%。",
+    "description_en": "Shield defense · Steady counterattacks. Set weave: While shielded, slow resistance +4%.",
+    "slot": "head",
+    "set_id": "S09",
+    "price": 140,
+    "base_stats": {
+      "max_hp": 15,
+      "magic_resist": 4
+    },
+    "affix_id": "FX_EQ62",
+    "affix_text": "套装织纹：拥有护盾时，减速抗性 +4%。",
+    "affix_text_en": "Set weave: While shielded, slow resistance +4%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S09",
+    "tier_en": "S09",
+    "visual": "暖白石甲、黄铜日轮与青蓝珐琅",
+    "combat_passive": {
+      "condition": "shielded",
+      "stat": "slow_resistance",
+      "amount": 0.04
+    }
+  },
+  "EQ63": {
+    "id": "EQ63",
+    "name": "晨曦守誓衣甲",
+    "name_en": "Dawn Oathkeeper Armor",
+    "description": "护盾防守 · 稳健反击。套装织纹：拥有护盾时，伤害减免 +1%。",
+    "description_en": "Shield defense · Steady counterattacks. Set weave: While shielded, damage reduction +1%.",
+    "slot": "chest",
+    "set_id": "S09",
+    "price": 180,
+    "base_stats": {
+      "max_hp": 24,
+      "armor": 8
+    },
+    "affix_id": "FX_EQ63",
+    "affix_text": "套装织纹：拥有护盾时，伤害减免 +1%。",
+    "affix_text_en": "Set weave: While shielded, damage reduction +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S09",
+    "tier_en": "S09",
+    "visual": "暖白石甲、黄铜日轮与青蓝珐琅",
+    "combat_passive": {
+      "condition": "shielded",
+      "stat": "damage_reduction_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ64": {
+    "id": "EQ64",
+    "name": "晨曦守誓手套",
+    "name_en": "Dawn Oathkeeper Gloves",
+    "description": "护盾防守 · 稳健反击。套装织纹：拥有护盾时，攻击速度 +1.2%。",
+    "description_en": "Shield defense · Steady counterattacks. Set weave: While shielded, attack speed +1.2%.",
+    "slot": "hands",
+    "set_id": "S09",
+    "price": 120,
+    "base_stats": {
+      "attack": 3,
+      "armor": 3
+    },
+    "affix_id": "FX_EQ64",
+    "affix_text": "套装织纹：拥有护盾时，攻击速度 +1.2%。",
+    "affix_text_en": "Set weave: While shielded, attack speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S09",
+    "tier_en": "S09",
+    "visual": "暖白石甲、黄铜日轮与青蓝珐琅",
+    "combat_passive": {
+      "condition": "shielded",
+      "stat": "attack_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ65": {
+    "id": "EQ65",
+    "name": "晨曦守誓长靴",
+    "name_en": "Dawn Oathkeeper Boots",
+    "description": "护盾防守 · 稳健反击。套装织纹：拥有护盾时，移动速度 +1.2%。",
+    "description_en": "Shield defense · Steady counterattacks. Set weave: While shielded, movement speed +1.2%.",
+    "slot": "feet",
+    "set_id": "S09",
+    "price": 120,
+    "base_stats": {
+      "max_hp": 12,
+      "move_speed": 0.035
+    },
+    "affix_id": "FX_EQ65",
+    "affix_text": "套装织纹：拥有护盾时，移动速度 +1.2%。",
+    "affix_text_en": "Set weave: While shielded, movement speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S09",
+    "tier_en": "S09",
+    "visual": "暖白石甲、黄铜日轮与青蓝珐琅",
+    "combat_passive": {
+      "condition": "shielded",
+      "stat": "move_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ66": {
+    "id": "EQ66",
+    "name": "晨曦守誓护符",
+    "name_en": "Dawn Oathkeeper Charm",
+    "description": "护盾防守 · 稳健反击。套装织纹：拥有护盾时，暴击率 +1%。",
+    "description_en": "Shield defense · Steady counterattacks. Set weave: While shielded, critical chance +1%.",
+    "slot": "charm",
+    "set_id": "S09",
+    "price": 160,
+    "base_stats": {
+      "max_hp": 18,
+      "cooldown_reduction": 0.02
+    },
+    "affix_id": "FX_EQ66",
+    "affix_text": "套装织纹：拥有护盾时，暴击率 +1%。",
+    "affix_text_en": "Set weave: While shielded, critical chance +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S09",
+    "tier_en": "S09",
+    "visual": "暖白石甲、黄铜日轮与青蓝珐琅",
+    "combat_passive": {
+      "condition": "shielded",
+      "stat": "crit_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ67": {
+    "id": "EQ67",
+    "name": "苔叶远行核心",
+    "name_en": "Mossleaf Wayfarer Core",
+    "description": "机动走位 · 闪避护身。套装织纹：移动时，伤害 +1%。",
+    "description_en": "Mobility · Dash protection. Set weave: While moving, damage +1%.",
+    "slot": "weapon",
+    "set_id": "S10",
+    "price": 180,
+    "base_stats": {
+      "attack": 6,
+      "attack_speed": 0.04
+    },
+    "affix_id": "FX_EQ67",
+    "affix_text": "套装织纹：移动时，伤害 +1%。",
+    "affix_text_en": "Set weave: While moving, damage +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S10",
+    "tier_en": "S10",
+    "visual": "嫩绿叶革、透光虫翼与琥珀扣件",
+    "combat_passive": {
+      "condition": "moving",
+      "stat": "damage_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ68": {
+    "id": "EQ68",
+    "name": "苔叶远行头冠",
+    "name_en": "Mossleaf Wayfarer Crown",
+    "description": "机动走位 · 闪避护身。套装织纹：移动时，减速抗性 +4%。",
+    "description_en": "Mobility · Dash protection. Set weave: While moving, slow resistance +4%.",
+    "slot": "head",
+    "set_id": "S10",
+    "price": 140,
+    "base_stats": {
+      "max_hp": 12,
+      "crit_chance": 0.025
+    },
+    "affix_id": "FX_EQ68",
+    "affix_text": "套装织纹：移动时，减速抗性 +4%。",
+    "affix_text_en": "Set weave: While moving, slow resistance +4%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S10",
+    "tier_en": "S10",
+    "visual": "嫩绿叶革、透光虫翼与琥珀扣件",
+    "combat_passive": {
+      "condition": "moving",
+      "stat": "slow_resistance",
+      "amount": 0.04
+    }
+  },
+  "EQ69": {
+    "id": "EQ69",
+    "name": "苔叶远行衣甲",
+    "name_en": "Mossleaf Wayfarer Armor",
+    "description": "机动走位 · 闪避护身。套装织纹：移动时，伤害减免 +1%。",
+    "description_en": "Mobility · Dash protection. Set weave: While moving, damage reduction +1%.",
+    "slot": "chest",
+    "set_id": "S10",
+    "price": 180,
+    "base_stats": {
+      "max_hp": 18,
+      "magic_resist": 5
+    },
+    "affix_id": "FX_EQ69",
+    "affix_text": "套装织纹：移动时，伤害减免 +1%。",
+    "affix_text_en": "Set weave: While moving, damage reduction +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S10",
+    "tier_en": "S10",
+    "visual": "嫩绿叶革、透光虫翼与琥珀扣件",
+    "combat_passive": {
+      "condition": "moving",
+      "stat": "damage_reduction_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ70": {
+    "id": "EQ70",
+    "name": "苔叶远行手套",
+    "name_en": "Mossleaf Wayfarer Gloves",
+    "description": "机动走位 · 闪避护身。套装织纹：移动时，攻击速度 +1.2%。",
+    "description_en": "Mobility · Dash protection. Set weave: While moving, attack speed +1.2%.",
+    "slot": "hands",
+    "set_id": "S10",
+    "price": 120,
+    "base_stats": {
+      "attack_speed": 0.04,
+      "attack": 2
+    },
+    "affix_id": "FX_EQ70",
+    "affix_text": "套装织纹：移动时，攻击速度 +1.2%。",
+    "affix_text_en": "Set weave: While moving, attack speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S10",
+    "tier_en": "S10",
+    "visual": "嫩绿叶革、透光虫翼与琥珀扣件",
+    "combat_passive": {
+      "condition": "moving",
+      "stat": "attack_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ71": {
+    "id": "EQ71",
+    "name": "苔叶远行长靴",
+    "name_en": "Mossleaf Wayfarer Boots",
+    "description": "机动走位 · 闪避护身。套装织纹：移动时，移动速度 +1.2%。",
+    "description_en": "Mobility · Dash protection. Set weave: While moving, movement speed +1.2%.",
+    "slot": "feet",
+    "set_id": "S10",
+    "price": 120,
+    "base_stats": {
+      "move_speed": 0.06,
+      "armor": 3
+    },
+    "affix_id": "FX_EQ71",
+    "affix_text": "套装织纹：移动时，移动速度 +1.2%。",
+    "affix_text_en": "Set weave: While moving, movement speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S10",
+    "tier_en": "S10",
+    "visual": "嫩绿叶革、透光虫翼与琥珀扣件",
+    "combat_passive": {
+      "condition": "moving",
+      "stat": "move_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ72": {
+    "id": "EQ72",
+    "name": "苔叶远行护符",
+    "name_en": "Mossleaf Wayfarer Charm",
+    "description": "机动走位 · 闪避护身。套装织纹：移动时，暴击率 +1%。",
+    "description_en": "Mobility · Dash protection. Set weave: While moving, critical chance +1%.",
+    "slot": "charm",
+    "set_id": "S10",
+    "price": 160,
+    "base_stats": {
+      "cooldown_reduction": 0.035,
+      "max_hp": 12
+    },
+    "affix_id": "FX_EQ72",
+    "affix_text": "套装织纹：移动时，暴击率 +1%。",
+    "affix_text_en": "Set weave: While moving, critical chance +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S10",
+    "tier_en": "S10",
+    "visual": "嫩绿叶革、透光虫翼与琥珀扣件",
+    "combat_passive": {
+      "condition": "moving",
+      "stat": "crit_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ73": {
+    "id": "EQ73",
+    "name": "星铃织法核心",
+    "name_en": "Starbell Weaver Core",
+    "description": "技能周转 · 资源管理。套装织纹：职业资源不少于一半时，伤害 +1%。",
+    "description_en": "Spell cycling · Resource management. Set weave: At 50% or more class resource, damage +1%.",
+    "slot": "weapon",
+    "set_id": "S11",
+    "price": 180,
+    "base_stats": {
+      "ability_power": 12,
+      "magic_penetration": 3
+    },
+    "affix_id": "FX_EQ73",
+    "affix_text": "套装织纹：职业资源不少于一半时，伤害 +1%。",
+    "affix_text_en": "Set weave: At 50% or more class resource, damage +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S11",
+    "tier_en": "S11",
+    "visual": "淡紫星纹布、瓷白镶边与黄铜小铃",
+    "combat_passive": {
+      "condition": "resource_half",
+      "stat": "damage_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ74": {
+    "id": "EQ74",
+    "name": "星铃织法头冠",
+    "name_en": "Starbell Weaver Crown",
+    "description": "技能周转 · 资源管理。套装织纹：职业资源不少于一半时，减速抗性 +4%。",
+    "description_en": "Spell cycling · Resource management. Set weave: At 50% or more class resource, slow resistance +4%.",
+    "slot": "head",
+    "set_id": "S11",
+    "price": 140,
+    "base_stats": {
+      "max_mana": 12,
+      "cooldown_reduction": 0.025
+    },
+    "affix_id": "FX_EQ74",
+    "affix_text": "套装织纹：职业资源不少于一半时，减速抗性 +4%。",
+    "affix_text_en": "Set weave: At 50% or more class resource, slow resistance +4%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S11",
+    "tier_en": "S11",
+    "visual": "淡紫星纹布、瓷白镶边与黄铜小铃",
+    "combat_passive": {
+      "condition": "resource_half",
+      "stat": "slow_resistance",
+      "amount": 0.04
+    }
+  },
+  "EQ75": {
+    "id": "EQ75",
+    "name": "星铃织法衣甲",
+    "name_en": "Starbell Weaver Armor",
+    "description": "技能周转 · 资源管理。套装织纹：职业资源不少于一半时，伤害减免 +1%。",
+    "description_en": "Spell cycling · Resource management. Set weave: At 50% or more class resource, damage reduction +1%.",
+    "slot": "chest",
+    "set_id": "S11",
+    "price": 180,
+    "base_stats": {
+      "max_hp": 16,
+      "magic_resist": 6
+    },
+    "affix_id": "FX_EQ75",
+    "affix_text": "套装织纹：职业资源不少于一半时，伤害减免 +1%。",
+    "affix_text_en": "Set weave: At 50% or more class resource, damage reduction +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S11",
+    "tier_en": "S11",
+    "visual": "淡紫星纹布、瓷白镶边与黄铜小铃",
+    "combat_passive": {
+      "condition": "resource_half",
+      "stat": "damage_reduction_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ76": {
+    "id": "EQ76",
+    "name": "星铃织法手套",
+    "name_en": "Starbell Weaver Gloves",
+    "description": "技能周转 · 资源管理。套装织纹：职业资源不少于一半时，攻击速度 +1.2%。",
+    "description_en": "Spell cycling · Resource management. Set weave: At 50% or more class resource, attack speed +1.2%.",
+    "slot": "hands",
+    "set_id": "S11",
+    "price": 120,
+    "base_stats": {
+      "ability_power": 5,
+      "cooldown_reduction": 0.025
+    },
+    "affix_id": "FX_EQ76",
+    "affix_text": "套装织纹：职业资源不少于一半时，攻击速度 +1.2%。",
+    "affix_text_en": "Set weave: At 50% or more class resource, attack speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S11",
+    "tier_en": "S11",
+    "visual": "淡紫星纹布、瓷白镶边与黄铜小铃",
+    "combat_passive": {
+      "condition": "resource_half",
+      "stat": "attack_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ77": {
+    "id": "EQ77",
+    "name": "星铃织法长靴",
+    "name_en": "Starbell Weaver Boots",
+    "description": "技能周转 · 资源管理。套装织纹：职业资源不少于一半时，移动速度 +1.2%。",
+    "description_en": "Spell cycling · Resource management. Set weave: At 50% or more class resource, movement speed +1.2%.",
+    "slot": "feet",
+    "set_id": "S11",
+    "price": 120,
+    "base_stats": {
+      "move_speed": 0.035,
+      "magic_resist": 3
+    },
+    "affix_id": "FX_EQ77",
+    "affix_text": "套装织纹：职业资源不少于一半时，移动速度 +1.2%。",
+    "affix_text_en": "Set weave: At 50% or more class resource, movement speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S11",
+    "tier_en": "S11",
+    "visual": "淡紫星纹布、瓷白镶边与黄铜小铃",
+    "combat_passive": {
+      "condition": "resource_half",
+      "stat": "move_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ78": {
+    "id": "EQ78",
+    "name": "星铃织法护符",
+    "name_en": "Starbell Weaver Charm",
+    "description": "技能周转 · 资源管理。套装织纹：职业资源不少于一半时，暴击率 +1%。",
+    "description_en": "Spell cycling · Resource management. Set weave: At 50% or more class resource, critical chance +1%.",
+    "slot": "charm",
+    "set_id": "S11",
+    "price": 160,
+    "base_stats": {
+      "ability_power": 6,
+      "max_mana": 15
+    },
+    "affix_id": "FX_EQ78",
+    "affix_text": "套装织纹：职业资源不少于一半时，暴击率 +1%。",
+    "affix_text_en": "Set weave: At 50% or more class resource, critical chance +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S11",
+    "tier_en": "S11",
+    "visual": "淡紫星纹布、瓷白镶边与黄铜小铃",
+    "combat_passive": {
+      "condition": "resource_half",
+      "stat": "crit_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ79": {
+    "id": "EQ79",
+    "name": "蜜翼锐眼核心",
+    "name_en": "Honeywing Sharpsight Core",
+    "description": "暴击连击 · 精准追击。套装织纹：生命全满时，伤害 +1%。",
+    "description_en": "Critical combos · Precision follow-up. Set weave: At full HP, damage +1%.",
+    "slot": "weapon",
+    "set_id": "S12",
+    "price": 180,
+    "base_stats": {
+      "attack": 7,
+      "crit_chance": 0.04
+    },
+    "affix_id": "FX_EQ79",
+    "affix_text": "套装织纹：生命全满时，伤害 +1%。",
+    "affix_text_en": "Set weave: At full HP, damage +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S12",
+    "tier_en": "S12",
+    "visual": "蜜黄甲壳、琥珀镜片与薄荷虫翼",
+    "combat_passive": {
+      "condition": "full_hp",
+      "stat": "damage_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ80": {
+    "id": "EQ80",
+    "name": "蜜翼锐眼头冠",
+    "name_en": "Honeywing Sharpsight Crown",
+    "description": "暴击连击 · 精准追击。套装织纹：生命全满时，减速抗性 +4%。",
+    "description_en": "Critical combos · Precision follow-up. Set weave: At full HP, slow resistance +4%.",
+    "slot": "head",
+    "set_id": "S12",
+    "price": 140,
+    "base_stats": {
+      "crit_chance": 0.03,
+      "armor": 3
+    },
+    "affix_id": "FX_EQ80",
+    "affix_text": "套装织纹：生命全满时，减速抗性 +4%。",
+    "affix_text_en": "Set weave: At full HP, slow resistance +4%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S12",
+    "tier_en": "S12",
+    "visual": "蜜黄甲壳、琥珀镜片与薄荷虫翼",
+    "combat_passive": {
+      "condition": "full_hp",
+      "stat": "slow_resistance",
+      "amount": 0.04
+    }
+  },
+  "EQ81": {
+    "id": "EQ81",
+    "name": "蜜翼锐眼衣甲",
+    "name_en": "Honeywing Sharpsight Armor",
+    "description": "暴击连击 · 精准追击。套装织纹：生命全满时，伤害减免 +1%。",
+    "description_en": "Critical combos · Precision follow-up. Set weave: At full HP, damage reduction +1%.",
+    "slot": "chest",
+    "set_id": "S12",
+    "price": 180,
+    "base_stats": {
+      "max_hp": 20,
+      "armor": 5
+    },
+    "affix_id": "FX_EQ81",
+    "affix_text": "套装织纹：生命全满时，伤害减免 +1%。",
+    "affix_text_en": "Set weave: At full HP, damage reduction +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S12",
+    "tier_en": "S12",
+    "visual": "蜜黄甲壳、琥珀镜片与薄荷虫翼",
+    "combat_passive": {
+      "condition": "full_hp",
+      "stat": "damage_reduction_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ82": {
+    "id": "EQ82",
+    "name": "蜜翼锐眼手套",
+    "name_en": "Honeywing Sharpsight Gloves",
+    "description": "暴击连击 · 精准追击。套装织纹：生命全满时，攻击速度 +1.2%。",
+    "description_en": "Critical combos · Precision follow-up. Set weave: At full HP, attack speed +1.2%.",
+    "slot": "hands",
+    "set_id": "S12",
+    "price": 120,
+    "base_stats": {
+      "attack_speed": 0.045,
+      "crit_multiplier": 0.1
+    },
+    "affix_id": "FX_EQ82",
+    "affix_text": "套装织纹：生命全满时，攻击速度 +1.2%。",
+    "affix_text_en": "Set weave: At full HP, attack speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S12",
+    "tier_en": "S12",
+    "visual": "蜜黄甲壳、琥珀镜片与薄荷虫翼",
+    "combat_passive": {
+      "condition": "full_hp",
+      "stat": "attack_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ83": {
+    "id": "EQ83",
+    "name": "蜜翼锐眼长靴",
+    "name_en": "Honeywing Sharpsight Boots",
+    "description": "暴击连击 · 精准追击。套装织纹：生命全满时，移动速度 +1.2%。",
+    "description_en": "Critical combos · Precision follow-up. Set weave: At full HP, movement speed +1.2%.",
+    "slot": "feet",
+    "set_id": "S12",
+    "price": 120,
+    "base_stats": {
+      "move_speed": 0.04,
+      "max_hp": 10
+    },
+    "affix_id": "FX_EQ83",
+    "affix_text": "套装织纹：生命全满时，移动速度 +1.2%。",
+    "affix_text_en": "Set weave: At full HP, movement speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S12",
+    "tier_en": "S12",
+    "visual": "蜜黄甲壳、琥珀镜片与薄荷虫翼",
+    "combat_passive": {
+      "condition": "full_hp",
+      "stat": "move_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ84": {
+    "id": "EQ84",
+    "name": "蜜翼锐眼护符",
+    "name_en": "Honeywing Sharpsight Charm",
+    "description": "暴击连击 · 精准追击。套装织纹：生命全满时，暴击率 +1%。",
+    "description_en": "Critical combos · Precision follow-up. Set weave: At full HP, critical chance +1%.",
+    "slot": "charm",
+    "set_id": "S12",
+    "price": 160,
+    "base_stats": {
+      "crit_chance": 0.03,
+      "armor_penetration": 3
+    },
+    "affix_id": "FX_EQ84",
+    "affix_text": "套装织纹：生命全满时，暴击率 +1%。",
+    "affix_text_en": "Set weave: At full HP, critical chance +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S12",
+    "tier_en": "S12",
+    "visual": "蜜黄甲壳、琥珀镜片与薄荷虫翼",
+    "combat_passive": {
+      "condition": "full_hp",
+      "stat": "crit_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ85": {
+    "id": "EQ85",
+    "name": "南瓜缝卫核心",
+    "name_en": "Pumpkin Stitchwarden Core",
+    "description": "续航恢复 · 击杀补给。套装织纹：生命未满且存活时，伤害 +1%。",
+    "description_en": "Sustain · Kill recovery. Set weave: While alive and injured, damage +1%.",
+    "slot": "weapon",
+    "set_id": "S13",
+    "price": 180,
+    "base_stats": {
+      "attack": 6,
+      "max_hp": 10
+    },
+    "affix_id": "FX_EQ85",
+    "affix_text": "套装织纹：生命未满且存活时，伤害 +1%。",
+    "affix_text_en": "Set weave: While alive and injured, damage +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S13",
+    "tier_en": "S13",
+    "visual": "赭橘绗缝皮甲、亚麻缝线与南瓜籽刻纹",
+    "combat_passive": {
+      "condition": "injured",
+      "stat": "damage_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ86": {
+    "id": "EQ86",
+    "name": "南瓜缝卫头冠",
+    "name_en": "Pumpkin Stitchwarden Crown",
+    "description": "续航恢复 · 击杀补给。套装织纹：生命未满且存活时，减速抗性 +4%。",
+    "description_en": "Sustain · Kill recovery. Set weave: While alive and injured, slow resistance +4%.",
+    "slot": "head",
+    "set_id": "S13",
+    "price": 140,
+    "base_stats": {
+      "max_hp": 18,
+      "magic_resist": 3
+    },
+    "affix_id": "FX_EQ86",
+    "affix_text": "套装织纹：生命未满且存活时，减速抗性 +4%。",
+    "affix_text_en": "Set weave: While alive and injured, slow resistance +4%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S13",
+    "tier_en": "S13",
+    "visual": "赭橘绗缝皮甲、亚麻缝线与南瓜籽刻纹",
+    "combat_passive": {
+      "condition": "injured",
+      "stat": "slow_resistance",
+      "amount": 0.04
+    }
+  },
+  "EQ87": {
+    "id": "EQ87",
+    "name": "南瓜缝卫衣甲",
+    "name_en": "Pumpkin Stitchwarden Armor",
+    "description": "续航恢复 · 击杀补给。套装织纹：生命未满且存活时，伤害减免 +1%。",
+    "description_en": "Sustain · Kill recovery. Set weave: While alive and injured, damage reduction +1%.",
+    "slot": "chest",
+    "set_id": "S13",
+    "price": 180,
+    "base_stats": {
+      "max_hp": 26,
+      "armor": 5
+    },
+    "affix_id": "FX_EQ87",
+    "affix_text": "套装织纹：生命未满且存活时，伤害减免 +1%。",
+    "affix_text_en": "Set weave: While alive and injured, damage reduction +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S13",
+    "tier_en": "S13",
+    "visual": "赭橘绗缝皮甲、亚麻缝线与南瓜籽刻纹",
+    "combat_passive": {
+      "condition": "injured",
+      "stat": "damage_reduction_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ88": {
+    "id": "EQ88",
+    "name": "南瓜缝卫手套",
+    "name_en": "Pumpkin Stitchwarden Gloves",
+    "description": "续航恢复 · 击杀补给。套装织纹：生命未满且存活时，攻击速度 +1.2%。",
+    "description_en": "Sustain · Kill recovery. Set weave: While alive and injured, attack speed +1.2%.",
+    "slot": "hands",
+    "set_id": "S13",
+    "price": 120,
+    "base_stats": {
+      "attack": 3,
+      "attack_speed": 0.03
+    },
+    "affix_id": "FX_EQ88",
+    "affix_text": "套装织纹：生命未满且存活时，攻击速度 +1.2%。",
+    "affix_text_en": "Set weave: While alive and injured, attack speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S13",
+    "tier_en": "S13",
+    "visual": "赭橘绗缝皮甲、亚麻缝线与南瓜籽刻纹",
+    "combat_passive": {
+      "condition": "injured",
+      "stat": "attack_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ89": {
+    "id": "EQ89",
+    "name": "南瓜缝卫长靴",
+    "name_en": "Pumpkin Stitchwarden Boots",
+    "description": "续航恢复 · 击杀补给。套装织纹：生命未满且存活时，移动速度 +1.2%。",
+    "description_en": "Sustain · Kill recovery. Set weave: While alive and injured, movement speed +1.2%.",
+    "slot": "feet",
+    "set_id": "S13",
+    "price": 120,
+    "base_stats": {
+      "move_speed": 0.035,
+      "max_hp": 12
+    },
+    "affix_id": "FX_EQ89",
+    "affix_text": "套装织纹：生命未满且存活时，移动速度 +1.2%。",
+    "affix_text_en": "Set weave: While alive and injured, movement speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S13",
+    "tier_en": "S13",
+    "visual": "赭橘绗缝皮甲、亚麻缝线与南瓜籽刻纹",
+    "combat_passive": {
+      "condition": "injured",
+      "stat": "move_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ90": {
+    "id": "EQ90",
+    "name": "南瓜缝卫护符",
+    "name_en": "Pumpkin Stitchwarden Charm",
+    "description": "续航恢复 · 击杀补给。套装织纹：生命未满且存活时，暴击率 +1%。",
+    "description_en": "Sustain · Kill recovery. Set weave: While alive and injured, critical chance +1%.",
+    "slot": "charm",
+    "set_id": "S13",
+    "price": 160,
+    "base_stats": {
+      "max_hp": 20,
+      "magic_resist": 4
+    },
+    "affix_id": "FX_EQ90",
+    "affix_text": "套装织纹：生命未满且存活时，暴击率 +1%。",
+    "affix_text_en": "Set weave: While alive and injured, critical chance +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S13",
+    "tier_en": "S13",
+    "visual": "赭橘绗缝皮甲、亚麻缝线与南瓜籽刻纹",
+    "combat_passive": {
+      "condition": "injured",
+      "stat": "crit_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ91": {
+    "id": "EQ91",
+    "name": "赤陶战意核心",
+    "name_en": "Terracotta Battleheart Core",
+    "description": "低血反击 · 战鼓爆发。套装织纹：存活且生命不高于一半时，伤害 +1%。",
+    "description_en": "Low-HP counterattack · Drum burst. Set weave: While alive at 50% HP or less, damage +1%.",
+    "slot": "weapon",
+    "set_id": "S14",
+    "price": 180,
+    "base_stats": {
+      "attack": 8,
+      "armor_penetration": 3
+    },
+    "affix_id": "FX_EQ91",
+    "affix_text": "套装织纹：存活且生命不高于一半时，伤害 +1%。",
+    "affix_text_en": "Set weave: While alive at 50% HP or less, damage +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S14",
+    "tier_en": "S14",
+    "visual": "珊瑚赤陶、靛蓝战鼓皮与圆润兽牙",
+    "combat_passive": {
+      "condition": "low_hp",
+      "stat": "damage_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ92": {
+    "id": "EQ92",
+    "name": "赤陶战意头冠",
+    "name_en": "Terracotta Battleheart Crown",
+    "description": "低血反击 · 战鼓爆发。套装织纹：存活且生命不高于一半时，减速抗性 +4%。",
+    "description_en": "Low-HP counterattack · Drum burst. Set weave: While alive at 50% HP or less, slow resistance +4%.",
+    "slot": "head",
+    "set_id": "S14",
+    "price": 140,
+    "base_stats": {
+      "max_hp": 16,
+      "armor": 4
+    },
+    "affix_id": "FX_EQ92",
+    "affix_text": "套装织纹：存活且生命不高于一半时，减速抗性 +4%。",
+    "affix_text_en": "Set weave: While alive at 50% HP or less, slow resistance +4%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S14",
+    "tier_en": "S14",
+    "visual": "珊瑚赤陶、靛蓝战鼓皮与圆润兽牙",
+    "combat_passive": {
+      "condition": "low_hp",
+      "stat": "slow_resistance",
+      "amount": 0.04
+    }
+  },
+  "EQ93": {
+    "id": "EQ93",
+    "name": "赤陶战意衣甲",
+    "name_en": "Terracotta Battleheart Armor",
+    "description": "低血反击 · 战鼓爆发。套装织纹：存活且生命不高于一半时，伤害减免 +1%。",
+    "description_en": "Low-HP counterattack · Drum burst. Set weave: While alive at 50% HP or less, damage reduction +1%.",
+    "slot": "chest",
+    "set_id": "S14",
+    "price": 180,
+    "base_stats": {
+      "max_hp": 22,
+      "armor": 7
+    },
+    "affix_id": "FX_EQ93",
+    "affix_text": "套装织纹：存活且生命不高于一半时，伤害减免 +1%。",
+    "affix_text_en": "Set weave: While alive at 50% HP or less, damage reduction +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S14",
+    "tier_en": "S14",
+    "visual": "珊瑚赤陶、靛蓝战鼓皮与圆润兽牙",
+    "combat_passive": {
+      "condition": "low_hp",
+      "stat": "damage_reduction_bonus",
+      "amount": 0.01
+    }
+  },
+  "EQ94": {
+    "id": "EQ94",
+    "name": "赤陶战意手套",
+    "name_en": "Terracotta Battleheart Gloves",
+    "description": "低血反击 · 战鼓爆发。套装织纹：存活且生命不高于一半时，攻击速度 +1.2%。",
+    "description_en": "Low-HP counterattack · Drum burst. Set weave: While alive at 50% HP or less, attack speed +1.2%.",
+    "slot": "hands",
+    "set_id": "S14",
+    "price": 120,
+    "base_stats": {
+      "attack": 4,
+      "attack_speed": 0.03
+    },
+    "affix_id": "FX_EQ94",
+    "affix_text": "套装织纹：存活且生命不高于一半时，攻击速度 +1.2%。",
+    "affix_text_en": "Set weave: While alive at 50% HP or less, attack speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S14",
+    "tier_en": "S14",
+    "visual": "珊瑚赤陶、靛蓝战鼓皮与圆润兽牙",
+    "combat_passive": {
+      "condition": "low_hp",
+      "stat": "attack_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ95": {
+    "id": "EQ95",
+    "name": "赤陶战意长靴",
+    "name_en": "Terracotta Battleheart Boots",
+    "description": "低血反击 · 战鼓爆发。套装织纹：存活且生命不高于一半时，移动速度 +1.2%。",
+    "description_en": "Low-HP counterattack · Drum burst. Set weave: While alive at 50% HP or less, movement speed +1.2%.",
+    "slot": "feet",
+    "set_id": "S14",
+    "price": 120,
+    "base_stats": {
+      "move_speed": 0.035,
+      "armor": 3
+    },
+    "affix_id": "FX_EQ95",
+    "affix_text": "套装织纹：存活且生命不高于一半时，移动速度 +1.2%。",
+    "affix_text_en": "Set weave: While alive at 50% HP or less, movement speed +1.2%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S14",
+    "tier_en": "S14",
+    "visual": "珊瑚赤陶、靛蓝战鼓皮与圆润兽牙",
+    "combat_passive": {
+      "condition": "low_hp",
+      "stat": "move_speed_bonus",
+      "amount": 0.012
+    }
+  },
+  "EQ96": {
+    "id": "EQ96",
+    "name": "赤陶战意护符",
+    "name_en": "Terracotta Battleheart Charm",
+    "description": "低血反击 · 战鼓爆发。套装织纹：存活且生命不高于一半时，暴击率 +1%。",
+    "description_en": "Low-HP counterattack · Drum burst. Set weave: While alive at 50% HP or less, critical chance +1%.",
+    "slot": "charm",
+    "set_id": "S14",
+    "price": 160,
+    "base_stats": {
+      "damage_bonus": 0.025,
+      "max_hp": 15
+    },
+    "affix_id": "FX_EQ96",
+    "affix_text": "套装织纹：存活且生命不高于一半时，暴击率 +1%。",
+    "affix_text_en": "Set weave: While alive at 50% HP or less, critical chance +1%.",
+    "unlock_boss": "",
+    "shop_only": true,
+    "tier": "S14",
+    "tier_en": "S14",
+    "visual": "珊瑚赤陶、靛蓝战鼓皮与圆润兽牙",
+    "combat_passive": {
+      "condition": "low_hp",
+      "stat": "crit_bonus",
+      "amount": 0.01
+    }
   }
 }

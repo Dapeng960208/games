@@ -1,0 +1,872 @@
+{
+  "version": 2,
+  "enabled": true,
+  "created_date": "2026-10-01",
+  "art_direction": "18–30 岁青年奇幻；利落成人比例、精致锻造、可信材质，保留暖阳与明亮配色，去除萌化表情和玩具比例",
+  "items": {
+    "EQ61": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S09_v2.png",
+      "region": [
+        61,
+        17,
+        412,
+        478
+      ],
+      "slot": "weapon",
+      "name": "晨曦守誓核心",
+      "name_en": "Dawn Oathkeeper Core",
+      "set_id": "S09",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ62": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S09_v2.png",
+      "region": [
+        595,
+        17,
+        429,
+        476
+      ],
+      "slot": "head",
+      "name": "晨曦守誓头冠",
+      "name_en": "Dawn Oathkeeper Crown",
+      "set_id": "S09",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ63": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S09_v2.png",
+      "region": [
+        1024,
+        28,
+        457,
+        484
+      ],
+      "slot": "chest",
+      "name": "晨曦守誓衣甲",
+      "name_en": "Dawn Oathkeeper Armor",
+      "set_id": "S09",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ64": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S09_v2.png",
+      "region": [
+        67,
+        512,
+        435,
+        465
+      ],
+      "slot": "hands",
+      "name": "晨曦守誓手套",
+      "name_en": "Dawn Oathkeeper Gloves",
+      "set_id": "S09",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ65": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S09_v2.png",
+      "region": [
+        560,
+        519,
+        384,
+        463
+      ],
+      "slot": "feet",
+      "name": "晨曦守誓长靴",
+      "name_en": "Dawn Oathkeeper Boots",
+      "set_id": "S09",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ66": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S09_v2.png",
+      "region": [
+        1087,
+        512,
+        351,
+        472
+      ],
+      "slot": "charm",
+      "name": "晨曦守誓护符",
+      "name_en": "Dawn Oathkeeper Charm",
+      "set_id": "S09",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ67": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S10_v2.png",
+      "region": [
+        65,
+        17,
+        447,
+        491
+      ],
+      "slot": "weapon",
+      "name": "苔叶远行核心",
+      "name_en": "Mossleaf Wayfarer Core",
+      "set_id": "S10",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ68": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S10_v2.png",
+      "region": [
+        512,
+        23,
+        457,
+        489
+      ],
+      "slot": "head",
+      "name": "苔叶远行头冠",
+      "name_en": "Mossleaf Wayfarer Crown",
+      "set_id": "S10",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ69": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S10_v2.png",
+      "region": [
+        1102,
+        22,
+        363,
+        490
+      ],
+      "slot": "chest",
+      "name": "苔叶远行衣甲",
+      "name_en": "Mossleaf Wayfarer Armor",
+      "set_id": "S10",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ70": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S10_v2.png",
+      "region": [
+        37,
+        544,
+        466,
+        418
+      ],
+      "slot": "hands",
+      "name": "苔叶远行手套",
+      "name_en": "Mossleaf Wayfarer Gloves",
+      "set_id": "S10",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ71": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S10_v2.png",
+      "region": [
+        543,
+        512,
+        440,
+        471
+      ],
+      "slot": "feet",
+      "name": "苔叶远行长靴",
+      "name_en": "Mossleaf Wayfarer Boots",
+      "set_id": "S10",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ72": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S10_v2.png",
+      "region": [
+        1142,
+        512,
+        308,
+        489
+      ],
+      "slot": "charm",
+      "name": "苔叶远行护符",
+      "name_en": "Mossleaf Wayfarer Charm",
+      "set_id": "S10",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ73": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S11_v2.png",
+      "region": [
+        38,
+        14,
+        458,
+        496
+      ],
+      "slot": "weapon",
+      "name": "星铃织法核心",
+      "name_en": "Starbell Weaver Core",
+      "set_id": "S11",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ74": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S11_v2.png",
+      "region": [
+        523,
+        32,
+        498,
+        440
+      ],
+      "slot": "head",
+      "name": "星铃织法头冠",
+      "name_en": "Starbell Weaver Crown",
+      "set_id": "S11",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ75": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S11_v2.png",
+      "region": [
+        1051,
+        12,
+        456,
+        500
+      ],
+      "slot": "chest",
+      "name": "星铃织法衣甲",
+      "name_en": "Starbell Weaver Armor",
+      "set_id": "S11",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ76": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S11_v2.png",
+      "region": [
+        30,
+        542,
+        475,
+        440
+      ],
+      "slot": "hands",
+      "name": "星铃织法手套",
+      "name_en": "Starbell Weaver Gloves",
+      "set_id": "S11",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ77": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S11_v2.png",
+      "region": [
+        542,
+        524,
+        463,
+        466
+      ],
+      "slot": "feet",
+      "name": "星铃织法长靴",
+      "name_en": "Starbell Weaver Boots",
+      "set_id": "S11",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ78": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S11_v2.png",
+      "region": [
+        1104,
+        512,
+        369,
+        494
+      ],
+      "slot": "charm",
+      "name": "星铃织法护符",
+      "name_en": "Starbell Weaver Charm",
+      "set_id": "S11",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ79": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S12_v2.png",
+      "region": [
+        52,
+        13,
+        444,
+        445
+      ],
+      "slot": "weapon",
+      "name": "蜜翼锐眼核心",
+      "name_en": "Honeywing Sharpsight Core",
+      "set_id": "S12",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ80": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S12_v2.png",
+      "region": [
+        544,
+        30,
+        438,
+        482
+      ],
+      "slot": "head",
+      "name": "蜜翼锐眼头冠",
+      "name_en": "Honeywing Sharpsight Crown",
+      "set_id": "S12",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ81": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S12_v2.png",
+      "region": [
+        1052,
+        11,
+        464,
+        501
+      ],
+      "slot": "chest",
+      "name": "蜜翼锐眼衣甲",
+      "name_en": "Honeywing Sharpsight Armor",
+      "set_id": "S12",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ82": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S12_v2.png",
+      "region": [
+        47,
+        524,
+        451,
+        445
+      ],
+      "slot": "hands",
+      "name": "蜜翼锐眼手套",
+      "name_en": "Honeywing Sharpsight Gloves",
+      "set_id": "S12",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ83": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S12_v2.png",
+      "region": [
+        531,
+        512,
+        493,
+        455
+      ],
+      "slot": "feet",
+      "name": "蜜翼锐眼长靴",
+      "name_en": "Honeywing Sharpsight Boots",
+      "set_id": "S12",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ84": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S12_v2.png",
+      "region": [
+        1024,
+        520,
+        426,
+        458
+      ],
+      "slot": "charm",
+      "name": "蜜翼锐眼护符",
+      "name_en": "Honeywing Sharpsight Charm",
+      "set_id": "S12",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ85": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S13_v2.png",
+      "region": [
+        21,
+        10,
+        491,
+        479
+      ],
+      "slot": "weapon",
+      "name": "南瓜缝卫核心",
+      "name_en": "Pumpkin Stitchwarden Core",
+      "set_id": "S13",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ86": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S13_v2.png",
+      "region": [
+        512,
+        64,
+        479,
+        448
+      ],
+      "slot": "head",
+      "name": "南瓜缝卫头冠",
+      "name_en": "Pumpkin Stitchwarden Crown",
+      "set_id": "S13",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ87": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S13_v2.png",
+      "region": [
+        1060,
+        8,
+        463,
+        500
+      ],
+      "slot": "chest",
+      "name": "南瓜缝卫衣甲",
+      "name_en": "Pumpkin Stitchwarden Armor",
+      "set_id": "S13",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ88": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S13_v2.png",
+      "region": [
+        17,
+        522,
+        477,
+        465
+      ],
+      "slot": "hands",
+      "name": "南瓜缝卫手套",
+      "name_en": "Pumpkin Stitchwarden Gloves",
+      "set_id": "S13",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ89": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S13_v2.png",
+      "region": [
+        517,
+        512,
+        504,
+        481
+      ],
+      "slot": "feet",
+      "name": "南瓜缝卫长靴",
+      "name_en": "Pumpkin Stitchwarden Boots",
+      "set_id": "S13",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ90": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S13_v2.png",
+      "region": [
+        1139,
+        513,
+        326,
+        485
+      ],
+      "slot": "charm",
+      "name": "南瓜缝卫护符",
+      "name_en": "Pumpkin Stitchwarden Charm",
+      "set_id": "S13",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ91": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S14_v2.png",
+      "region": [
+        74,
+        23,
+        412,
+        457
+      ],
+      "slot": "weapon",
+      "name": "赤陶战意核心",
+      "name_en": "Terracotta Battleheart Core",
+      "set_id": "S14",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ92": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S14_v2.png",
+      "region": [
+        585,
+        17,
+        370,
+        481
+      ],
+      "slot": "head",
+      "name": "赤陶战意头冠",
+      "name_en": "Terracotta Battleheart Crown",
+      "set_id": "S14",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ93": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S14_v2.png",
+      "region": [
+        1032,
+        18,
+        459,
+        494
+      ],
+      "slot": "chest",
+      "name": "赤陶战意衣甲",
+      "name_en": "Terracotta Battleheart Armor",
+      "set_id": "S14",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ94": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S14_v2.png",
+      "region": [
+        30,
+        526,
+        473,
+        445
+      ],
+      "slot": "hands",
+      "name": "赤陶战意手套",
+      "name_en": "Terracotta Battleheart Gloves",
+      "set_id": "S14",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ95": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S14_v2.png",
+      "region": [
+        611,
+        519,
+        413,
+        478
+      ],
+      "slot": "feet",
+      "name": "赤陶战意长靴",
+      "name_en": "Terracotta Battleheart Boots",
+      "set_id": "S14",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    },
+    "EQ96": {
+      "texture": "res://assets/generated/equipment/storybook_shop_S14_v2.png",
+      "region": [
+        1024,
+        512,
+        380,
+        467
+      ],
+      "slot": "charm",
+      "name": "赤陶战意护符",
+      "name_en": "Terracotta Battleheart Charm",
+      "set_id": "S14",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "cell": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "alpha_threshold": 16
+    }
+  }
+}

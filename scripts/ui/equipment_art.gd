@@ -4,6 +4,7 @@ extends RefCounted
 ## A manifest is activated only after all catalogue entries have real artwork.
 
 const MANIFEST_PATH := "res://assets/generated/equipment/storybook_equipment_v2.manifest.json"
+const SHOP_MANIFEST_PATH := "res://assets/generated/equipment/storybook_shop_sets_v2.manifest.json"
 const Sampler = preload("res://scripts/ui/texture_sampler.gd")
 const Chrome = preload("res://scripts/ui/storybook_art.gd")
 static var _manifest: Dictionary = {}
@@ -16,6 +17,10 @@ static func _read_manifest() -> Dictionary:
 	if not parsed is Dictionary or not bool(parsed.get("enabled", false)) or not parsed.get("items") is Dictionary:
 		return {}
 	_manifest = parsed
+	if FileAccess.file_exists(SHOP_MANIFEST_PATH):
+		var shop: Variant = JSON.parse_string(FileAccess.get_file_as_string(SHOP_MANIFEST_PATH))
+		if shop is Dictionary and bool(shop.get("enabled",false)) and shop.get("items") is Dictionary:
+			_manifest.items.merge(shop.items,false)
 	return _manifest
 
 static func available() -> bool:

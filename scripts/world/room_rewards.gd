@@ -90,6 +90,7 @@ static func race_equipment_pool(biome_id: String, hero_id: String) -> Array:
 	var result: Array = []
 	for id: String in Registry.equipment_ids():
 		var item: Dictionary = Registry.equipment(id)
+		if bool(item.get("shop_only", false)): continue
 		if str(item.get("race_id", "")) == biome_id and _suitable(item, hero_id): result.append(id)
 	return result
 
@@ -124,6 +125,7 @@ static func equipment_pool(theme: String, hero_id: String, bosses: Array = []) -
 	var result: Array = []
 	for id: String in Registry.equipment_ids():
 		var item: Dictionary = Registry.equipment(id)
+		if bool(item.get("shop_only", false)): continue
 		var requirement: String = str(item.get("unlock_boss", ""))
 		if not requirement.is_empty() and not bosses.has(requirement): continue
 		if not _suitable(item, hero_id): continue

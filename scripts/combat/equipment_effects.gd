@@ -64,12 +64,12 @@ var delayed_shield_at: float = -1.0
 
 static func implemented_ids() -> Array[String]:
 	var result: Array[String] = []
-	for index in range(1, 61):
+	for index in range(1, 97):
 		result.append("EQ%02d" % index)
 	return result
 
 static func implemented_set_ids() -> Array[String]:
-	return ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"]
+	return ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14"]
 
 func configure(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> void:
 	stats = resolved_stats.duplicate(true)
@@ -195,6 +195,16 @@ func _health_ratio(ctx: Dictionary) -> float:
 
 func _modifiers(ctx: Dictionary, out: Dictionary) -> void:
 	var shielded: bool = float(ctx.get("shield", 0.0)) > 0.0
+	for id: String in equipped:
+		var passive: Dictionary = Registry.equipment(id).get("combat_passive", {})
+		if not passive.is_empty() and _shop_condition(str(passive.condition),ctx):
+			out[str(passive.stat)] += float(passive.amount)
+	for set_id: String in set_counts:
+		if int(set_counts[set_id]) < 2: continue
+		var passive: Dictionary = Registry.sets().get(set_id,{}).get("shop_passive", {})
+		if not passive.is_empty() and _shop_condition(str(passive.condition),ctx):
+			out[str(passive.stat)] += float(passive.amount)
+	if _has_set("S09",6) and shielded: out.damage_bonus += 0.08
 	if _has("EQ11") and _health_ratio(ctx) < 0.30:
 		out.move_speed_bonus += 0.05
 	if _has("EQ17") and shielded:
@@ -229,6 +239,16 @@ func _modifiers(ctx: Dictionary, out: Dictionary) -> void:
 			out[buff.stat] *= float(buff.amount)
 		else:
 			out[buff.stat] += float(buff.amount)
+
+func _shop_condition(condition: String, ctx: Dictionary) -> bool:
+	match condition:
+		"shielded": return float(ctx.get("shield",0.0)) > 0.0
+		"moving": return bool(ctx.get("moving",false))
+		"resource_half": return float(ctx.get("resource_max",stats.get("resource_max",0.0))) > 0.0 and float(ctx.get("resource",0.0)) >= float(ctx.get("resource_max",stats.get("resource_max",0.0))) * 0.5
+		"full_hp": return _health_ratio(ctx) >= 1.0
+		"injured": return _health_ratio(ctx) > 0.0 and _health_ratio(ctx) < 1.0
+		"low_hp": return _health_ratio(ctx) > 0.0 and _health_ratio(ctx) <= 0.5
+	return false
 
 func _cap_modifiers(out: Dictionary) -> Dictionary:
 	out.damage_bonus = clampf(out.damage_bonus, 0.0, maxf(0.0, 0.60 - float(stats.get("damage_bonus", 0.0))))
@@ -296,6 +316,7 @@ func handle(event: String, ctx: Dictionary) -> Dictionary:
 		"skill_cast":
 			if float(ctx.get("base_cost", 0.0)) > 0.0 and bool(ctx.get("cast_success", true)) and str(ctx.get("resource_type", resource_type)) == resource_type:
 				windows.erase("EQ56")
+				if _has_set("S11",4) and _activate("S11_4",6.0,root,out,false): _buff("S11_4","damage_bonus",0.08,3.0)
 		"before_hit":
 			if _eligible(ctx): _before(ctx, root, out)
 		"after_hit":
@@ -478,6 +499,10 @@ func _after_charm(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	var target: String = str(ctx.get("target_id", ""))
 	var critical: bool = bool(ctx.get("critical", false))
 	var applied: Dictionary = root.applied
+	if _has_set("S11",6) and _basic(ctx) and _nth("S11_6",4): _refund(out,ctx,root,"S11_6",5.0,"active",0.35)
+	if _has_set("S12",4) and critical and _activate("S12_4",6.0,root,out,false): _buff("S12_4","attack_speed_bonus",0.08,3.0)
+	if _has_set("S12",6) and critical: _bonus(out,ctx,root,"S12_6",5.0,0.30,1,false)
+	if _has_set("S14",6) and _shop_condition("low_hp",ctx): _bonus(out,ctx,root,"S14_6",6.0,0.25,3,false)
 	if applied.has("burn") and _has("EQ53") and _activate("EQ53", 7.0, root, out): _shield(out, ctx, 0.02)
 	if _has("EQ55") and critical and _state(ctx, "chill") and _activate("EQ55", 5.0, root, out): _heal(out, ctx, 0.01)
 	if _has("EQ56") and _basic(ctx) and _state(ctx, "corrosion") and not resource_type.is_empty() and _activate("EQ56", 6.0, root, out, false): windows.EQ56 = clock + 3.0
@@ -530,6 +555,8 @@ func _enter_room(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 
 func _dash(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	dash_time = clock
+	if _has_set("S10",4) and _activate("S10_4",6.0,root,out,false): _buff("S10_4","move_speed_bonus",0.10,3.0)
+	if _has_set("S10",6) and _activate("S10_6",8.0,root,out): _shield(out,ctx,0.04,"S10_6")
 	for id in ["EQ02", "EQ08", "EQ10", "EQ38", "EQ40", "EQ50"]:
 		windows[id] = clock + 3.0
 	windows.EQ60 = clock + 3.0
@@ -548,6 +575,8 @@ func _damaged(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if not bool(ctx.get("enemy_damage", false)): return
 	if float(ctx.get("hp_damage", 0.0)) <= 0.0 and float(ctx.get("shield_absorbed", 0.0)) <= 0.0: return
 	undamaged_time = 0.0
+	if _has_set("S09",4) and _activate("S09_4",8.0,root,out): _shield(out,ctx,0.05,"S09_4")
+	if _has_set("S14",4) and _shop_condition("low_hp",ctx) and _activate("S14_4",8.0,root,out,false): _buff("S14_4","attack_speed_bonus",0.10,3.0)
 	if _has("EQ21") and not room_low_shield_used and _health_ratio(ctx) < 0.30 and _health_ratio(ctx) > 0.0 and _activate("EQ21:" + room_id, 0.0, root, out):
 		room_low_shield_used = true
 		_shield(out, ctx, 0.05)
@@ -566,6 +595,8 @@ func _kill(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	var eligible: bool = _eligible(ctx)
 	var burn_tick: bool = str(ctx.get("damage_source", "")) == "burn" and int(ctx.get("proc_depth", 0)) <= 1
 	if not eligible and not burn_tick: return
+	if eligible and _has_set("S13",4) and _activate("S13_4",5.0,root,out): _heal(out,ctx,0.02)
+	if eligible and _has_set("S13",6) and _activate("S13_6",8.0,root,out): _shield(out,ctx,0.05,"S13_6")
 	if eligible and _has("EQ13") and _state(ctx, "burn"): _refund(out, ctx, root, "EQ13", 3.0, "active", 0.15)
 	if eligible and _has("EQ16") and _state(ctx, "corrosion") and float(ctx.get("distance", 0.0)) <= 240.0 and _activate("EQ16", 5.0, root, out): _heal(out, ctx, 0.01)
 	if _has("EQ40") and eligible and bool(root.flags.get("EQ40", false)): _refund(out, ctx, root, "EQ40", 5.0, "dash", 0.20)

@@ -262,5 +262,233 @@
     "status_name_en": "Mobility",
     "original_name": "逐风信使",
     "race_id": "B04"
+  },
+  "S09": {
+    "id": "S09",
+    "name": "晨曦守誓",
+    "name_en": "Dawn Oathkeeper",
+    "status_id": "shop_S09",
+    "status_name": "护盾防守",
+    "status_name_en": "Shield defense",
+    "shop_role": "护盾防守 · 稳健反击",
+    "shop_role_en": "Shield defense · Steady counterattacks",
+    "color": "#F4CE74",
+    "visual": "暖白石甲、黄铜日轮与青蓝珐琅",
+    "thresholds": {
+      "2": {
+        "name": "晨曦守誓 · 2 件",
+        "name_en": "Dawn Oathkeeper · 2 pieces",
+        "text": "拥有护盾时伤害减免 +4%。",
+        "text_en": "While shielded, damage reduction +4%."
+      },
+      "4": {
+        "name": "晨曦守誓 · 4 件",
+        "name_en": "Dawn Oathkeeper · 4 pieces",
+        "text": "受到敌人有效伤害时获得最大生命 5% 的护盾，持续 4 秒；冷却 8 秒。",
+        "text_en": "Taking enemy damage grants a shield equal to 5% of max HP for 4 s; cooldown 8 s."
+      },
+      "6": {
+        "name": "晨曦守誓 · 6 件",
+        "name_en": "Dawn Oathkeeper · 6 pieces",
+        "text": "拥有护盾时伤害 +8%。",
+        "text_en": "While shielded, damage +8%."
+      }
+    },
+    "unlock_boss": "",
+    "shop_passive": {
+      "condition": "shielded",
+      "stat": "damage_reduction_bonus",
+      "amount": 0.04
+    }
+  },
+  "S10": {
+    "id": "S10",
+    "name": "苔叶远行",
+    "name_en": "Mossleaf Wayfarer",
+    "status_id": "shop_S10",
+    "status_name": "机动走位",
+    "status_name_en": "Mobility",
+    "shop_role": "机动走位 · 闪避护身",
+    "shop_role_en": "Mobility · Dash protection",
+    "color": "#90CC9D",
+    "visual": "嫩绿叶革、透光虫翼与琥珀扣件",
+    "thresholds": {
+      "2": {
+        "name": "苔叶远行 · 2 件",
+        "name_en": "Mossleaf Wayfarer · 2 pieces",
+        "text": "移动时移动速度 +5%。",
+        "text_en": "While moving, movement speed +5%."
+      },
+      "4": {
+        "name": "苔叶远行 · 4 件",
+        "name_en": "Mossleaf Wayfarer · 4 pieces",
+        "text": "闪避后移动速度 +10%，持续 3 秒；冷却 6 秒。",
+        "text_en": "Dashing grants +10% movement speed for 3 s; cooldown 6 s."
+      },
+      "6": {
+        "name": "苔叶远行 · 6 件",
+        "name_en": "Mossleaf Wayfarer · 6 pieces",
+        "text": "闪避时获得最大生命 4% 的护盾，持续 4 秒；冷却 8 秒。",
+        "text_en": "Dashing grants a shield equal to 4% of max HP for 4 s; cooldown 8 s."
+      }
+    },
+    "unlock_boss": "",
+    "shop_passive": {
+      "condition": "moving",
+      "stat": "move_speed_bonus",
+      "amount": 0.05
+    }
+  },
+  "S11": {
+    "id": "S11",
+    "name": "星铃织法",
+    "name_en": "Starbell Weaver",
+    "status_id": "shop_S11",
+    "status_name": "技能周转",
+    "status_name_en": "Spell cycling",
+    "shop_role": "技能周转 · 资源管理",
+    "shop_role_en": "Spell cycling · Resource management",
+    "color": "#ADB7ED",
+    "visual": "淡紫星纹布、瓷白镶边与黄铜小铃",
+    "thresholds": {
+      "2": {
+        "name": "星铃织法 · 2 件",
+        "name_en": "Starbell Weaver · 2 pieces",
+        "text": "职业资源不少于一半时伤害 +5%。",
+        "text_en": "At 50% or more class resource, damage +5%."
+      },
+      "4": {
+        "name": "星铃织法 · 4 件",
+        "name_en": "Starbell Weaver · 4 pieces",
+        "text": "成功消耗资源释放技能后伤害 +8%，持续 3 秒；冷却 6 秒。",
+        "text_en": "Successfully casting a paid skill grants +8% damage for 3 s; cooldown 6 s."
+      },
+      "6": {
+        "name": "星铃织法 · 6 件",
+        "name_en": "Starbell Weaver · 6 pieces",
+        "text": "每第 4 次有效普攻命中，使剩余冷却最长的主动技能减少 0.35 秒；冷却 5 秒。",
+        "text_en": "Every fourth valid basic hit refunds 0.35 s from the active skill with the longest remaining cooldown; cooldown 5 s."
+      }
+    },
+    "unlock_boss": "",
+    "shop_passive": {
+      "condition": "resource_half",
+      "stat": "damage_bonus",
+      "amount": 0.05
+    }
+  },
+  "S12": {
+    "id": "S12",
+    "name": "蜜翼锐眼",
+    "name_en": "Honeywing Sharpsight",
+    "status_id": "shop_S12",
+    "status_name": "暴击连击",
+    "status_name_en": "Critical combos",
+    "shop_role": "暴击连击 · 精准追击",
+    "shop_role_en": "Critical combos · Precision follow-up",
+    "color": "#F1CA60",
+    "visual": "蜜黄甲壳、琥珀镜片与薄荷虫翼",
+    "thresholds": {
+      "2": {
+        "name": "蜜翼锐眼 · 2 件",
+        "name_en": "Honeywing Sharpsight · 2 pieces",
+        "text": "生命全满时暴击率 +5%。",
+        "text_en": "At full HP, critical chance +5%."
+      },
+      "4": {
+        "name": "蜜翼锐眼 · 4 件",
+        "name_en": "Honeywing Sharpsight · 4 pieces",
+        "text": "有效攻击暴击后攻击速度 +8%，持续 3 秒；冷却 6 秒。",
+        "text_en": "A valid critical hit grants +8% attack speed for 3 s; cooldown 6 s."
+      },
+      "6": {
+        "name": "蜜翼锐眼 · 6 件",
+        "name_en": "Honeywing Sharpsight · 6 pieces",
+        "text": "有效攻击暴击时对首目标追加本次原始伤害 30% 的非暴击伤害；冷却 5 秒。",
+        "text_en": "A valid critical hit adds non-critical damage equal to 30% of its raw strike to the primary target; cooldown 5 s."
+      }
+    },
+    "unlock_boss": "",
+    "shop_passive": {
+      "condition": "full_hp",
+      "stat": "crit_bonus",
+      "amount": 0.05
+    }
+  },
+  "S13": {
+    "id": "S13",
+    "name": "南瓜缝卫",
+    "name_en": "Pumpkin Stitchwarden",
+    "status_id": "shop_S13",
+    "status_name": "续航恢复",
+    "status_name_en": "Sustain",
+    "shop_role": "续航恢复 · 击杀补给",
+    "shop_role_en": "Sustain · Kill recovery",
+    "color": "#F3AF71",
+    "visual": "赭橘绗缝皮甲、亚麻缝线与南瓜籽刻纹",
+    "thresholds": {
+      "2": {
+        "name": "南瓜缝卫 · 2 件",
+        "name_en": "Pumpkin Stitchwarden · 2 pieces",
+        "text": "生命未满且存活时攻击速度 +5%。",
+        "text_en": "While alive and injured, attack speed +5%."
+      },
+      "4": {
+        "name": "南瓜缝卫 · 4 件",
+        "name_en": "Pumpkin Stitchwarden · 4 pieces",
+        "text": "有效攻击击杀敌人后恢复最大生命 2%；冷却 5 秒，遵守每秒 3% 装备治疗上限。",
+        "text_en": "A valid attack kill restores 2% max HP; cooldown 5 s, subject to the 3% per-second equipment healing cap."
+      },
+      "6": {
+        "name": "南瓜缝卫 · 6 件",
+        "name_en": "Pumpkin Stitchwarden · 6 pieces",
+        "text": "有效攻击击杀敌人后获得最大生命 5% 的护盾，持续 4 秒；冷却 8 秒。",
+        "text_en": "A valid attack kill grants a shield equal to 5% max HP for 4 s; cooldown 8 s."
+      }
+    },
+    "unlock_boss": "",
+    "shop_passive": {
+      "condition": "injured",
+      "stat": "attack_speed_bonus",
+      "amount": 0.05
+    }
+  },
+  "S14": {
+    "id": "S14",
+    "name": "赤陶战意",
+    "name_en": "Terracotta Battleheart",
+    "status_id": "shop_S14",
+    "status_name": "低血反击",
+    "status_name_en": "Low-HP counterattack",
+    "shop_role": "低血反击 · 战鼓爆发",
+    "shop_role_en": "Low-HP counterattack · Drum burst",
+    "color": "#ED957A",
+    "visual": "珊瑚赤陶、靛蓝战鼓皮与圆润兽牙",
+    "thresholds": {
+      "2": {
+        "name": "赤陶战意 · 2 件",
+        "name_en": "Terracotta Battleheart · 2 pieces",
+        "text": "存活且生命不高于一半时伤害 +6%。",
+        "text_en": "While alive at 50% HP or less, damage +6%."
+      },
+      "4": {
+        "name": "赤陶战意 · 4 件",
+        "name_en": "Terracotta Battleheart · 4 pieces",
+        "text": "生命不高于一半时受到敌人有效伤害，攻击速度 +10%，持续 3 秒；冷却 8 秒。",
+        "text_en": "Taking enemy damage at 50% HP or less grants +10% attack speed for 3 s; cooldown 8 s."
+      },
+      "6": {
+        "name": "赤陶战意 · 6 件",
+        "name_en": "Terracotta Battleheart · 6 pieces",
+        "text": "存活且生命不高于一半时，有效攻击向最多 3 名敌人各追加本次原始伤害 25% 的非暴击伤害；冷却 6 秒。",
+        "text_en": "While alive at 50% HP or less, a valid hit adds non-critical damage equal to 25% of the raw strike to up to 3 enemies; cooldown 6 s."
+      }
+    },
+    "unlock_boss": "",
+    "shop_passive": {
+      "condition": "low_hp",
+      "stat": "damage_bonus",
+      "amount": 0.06
+    }
   }
 }
