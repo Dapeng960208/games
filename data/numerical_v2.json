@@ -892,5 +892,19 @@
     "enhancement_gains",
     "main_rolls",
     "affixes"
-  ]
+  ],
+  "forge_unlock_levels": {
+    "green": 5,
+    "purple": 10,
+    "gold": 15
+  },
+  "set_completion_discount": 0.9,
+  "shop_set_races": {
+    "S09": "B01",
+    "S10": "B02",
+    "S11": "B01",
+    "S12": "B02",
+    "S13": "B03",
+    "S14": "B04"
+  }
 }

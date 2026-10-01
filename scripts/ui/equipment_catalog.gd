@@ -177,9 +177,15 @@ static func detail(panel: Control) -> void:
 	if item.get("instance_record") is Dictionary and not equipped and not preload("res://scripts/core/equipment_instances.gd").can_equip(item.instance_record,Game.profile.selected_hero,Game.hero_level()):
 		disabled = true
 		note = Inspect.t("职业类型或装备等级不符合。","Class type or item level requirement is not met.")
+	var pending_claim: bool = owned and item.get("instance_record",{}).get("location","") == "pending"
+	if pending_claim and panel.mode == "inventory":
+		action = "CLAIM_INSTANCE"
+		disabled = panel.busy
+		note = Inspect.t("待领取物品仍归你所有；背包有空间时可领取。","This item is retained; collect it when inventory space is available.")
 	MineStyle.literal(right,note,Vector2(20,433),Vector2(448,29),13,MineStyle.MUTED)
 	panel.action_button = MineStyle.button(right,action,Vector2(20,465),Vector2(448,36),panel._commit_item)
 	panel.action_button.name = "PrimaryAction"
 	MineStyle.primary(panel.action_button)
 	panel.action_button.disabled = disabled
+	if action == "CLAIM_INSTANCE": panel.action_button.text = Inspect.t("领取到背包","Collect to inventory")
 	if action in ["BUY_ITEM","UPGRADE_ITEM"]: panel.action_button.text += " · "+str(cost)

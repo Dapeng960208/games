@@ -172,7 +172,7 @@ func _new_expedition() -> void:
 	var next: Dictionary = Game.expedition_snapshot().next_node
 	check(Game.choose_expedition_node(int(next.node_index), str(next.room_id)), "V2 freezes next room")
 	check(Game.advance_expedition_node(changed), "V2 moves to actual combat checkpoint")
-	check(Game.commit_expedition_completion(Game.run.id + ":node:1:complete", changed, {"gold":0,"xp":0,"mastery":0}), "V2 zero-item room completion saves independently of pending S05 grants")
+	check(Game.commit_expedition_completion(Game.run.id + ":node:1:complete", changed), "V2 canonical room completion saves instance and material grants")
 	Game.reload_profile()
 	check(Game.run != null and Game.run.ruleset_version() == 2 and Game.run.expedition.phase == "cleared", "V2 completed checkpoint reload")
 
@@ -253,6 +253,9 @@ func _level_waiver_expiry() -> void:
 	check(not Game._commit_profile(before) and Game.profile == before and not before.equipment[id].legacy_equip_waiver.has("level_hero_ids"), "failed camp expiry preserves input and live profile")
 	Game._store.max_document_bytes = ProfileStore.MAX_DOCUMENT_BYTES
 	check(Game._commit_profile(before) and Game.profile.equipment[id].legacy_equip_waiver.level_hero_ids == ["CH03"], "camp retry expires only high hero eligibility")
+	var near_level: Dictionary = Game.profile.duplicate(true)
+	near_level.hero_xp.CH03 = int(HeroProgression.thresholds()[4]) - 30
+	check(Game._commit_profile(near_level), "place mage one canonical room below level-five gate")
 	check(Game.select_hero("CH03"), "original low mage retains migrated physical loadout")
 	check(Game.start_run({"expedition":true,"seed":1759}), "expiry fixture starts real V2 expedition")
 	if Game.run == null: return
@@ -263,7 +266,7 @@ func _level_waiver_expiry() -> void:
 	check(Game.choose_expedition_node(int(next.node_index), str(next.room_id)) and Game.advance_expedition_node(boundary), "expiry fixture enters combat")
 	var event: String = Game.run.id + ":node:1:complete"
 	var amount := int(HeroProgression.thresholds()[4])
-	var rewards := {"gold":0,"xp":amount,"mastery":0}
+	var rewards := {}
 	before = Game.profile.duplicate(true)
 	var receipt: Dictionary = Game.run.receipt()
 	Game._store.max_document_bytes = 1
@@ -281,7 +284,7 @@ func _level_waiver_expiry() -> void:
 	check(Game._commit_profile(before) and Game.start_run(), "earlier underlevel fixture starts non-expedition XP path")
 	var old_snapshot: Dictionary = Game.run.equipment_snapshot.duplicate(true)
 	Game._store.max_document_bytes = 1
-	check(not Game.grant_hero_xp(amount, "waiver:non-expedition") and Game.run.equipment_snapshot == old_snapshot and Game.hero_level("CH03") == 1, "failed non-expedition XP leaves level waiver and level untouched")
+	check(not Game.grant_hero_xp(30, "waiver:non-expedition") and Game.run.equipment_snapshot == old_snapshot and Game.hero_level("CH03") == 4, "failed non-expedition XP leaves level waiver and level untouched")
 	Game._store.max_document_bytes = ProfileStore.MAX_DOCUMENT_BYTES
-	check(Game.grant_hero_xp(amount, "waiver:non-expedition") and Game.run.level == 5 and not Game.run.equipment_snapshot[id].legacy_equip_waiver.level, "non-expedition XP success synchronizes expired runtime metadata")
+	check(Game.grant_hero_xp(30, "waiver:non-expedition") and Game.run.level == 5 and not Game.run.equipment_snapshot[id].legacy_equip_waiver.level, "non-expedition XP success synchronizes expired runtime metadata")
 	check(Game.run.equipment_snapshot == Game.profile.equipment and Game.run.equipment_snapshot[id].legacy_equip_waiver.type, "normal XP path keeps instance rolls and mage type authority")

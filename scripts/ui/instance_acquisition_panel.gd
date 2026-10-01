@@ -1,0 +1,202 @@
+extends RefCounted
+## Read-only quotes/ranges; actual rolls appear only after a durable transaction.
+const Instances = preload("res://scripts/core/equipment_instances.gd")
+const Transactions = preload("res://scripts/core/instance_transactions.gd")
+const Numbers = preload("res://config/numerical_rules.gd")
+const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
+const RARITY_NAMES := {"white":["白色","White"],"green":["绿色","Green"],"purple":["紫色","Purple"],"gold":["金色","Gold"]}
+
+static func _t(zh: String, en: String) -> String:
+	return en if Words.locale == "en" else zh
+
+static func _label(parent: Control, text: String, at: Vector2, extent: Vector2, size: int = 16) -> Label:
+	return MineStyle.literal(parent,text,at,extent,size,MineStyle.INK)
+
+static func _change(panel: Control, key: String, value: Variant) -> void:
+	if panel.busy: return
+	panel.set(key,value)
+	if key in ["selected_set","creation_power_type"]: panel.creation_omitted.clear()
+	panel.creation_transaction_id = ""
+	panel.creation_message = ""
+	panel._render()
+
+static func render(panel: Control) -> void:
+	var crafting: bool = panel.mode == "craft"
+	var set_mode: bool = not crafting and panel.shop_sets
+	var rarities: Array = ["green","purple","gold"] if crafting else ["white","green"]
+	if not panel.creation_rarity in rarities: panel.creation_rarity = str(rarities[0])
+	if panel.creation_power_type.is_empty(): panel.creation_power_type = "magic" if Game.profile.selected_hero == "CH03" else "physical"
+	panel.creation_level = clampi(Game.hero_level() if panel.creation_level <= 0 else panel.creation_level,1,Game.hero_level())
+	var ids: Array = ContentRegistry.sets(2).keys() if set_mode else ContentRegistry.equipment_ids(2)
+	ids.sort()
+	var selected: String = panel.selected_set if set_mode else panel.selected_item
+	if not selected in ids: selected = str(ids[0])
+	if set_mode: panel.selected_set = selected
+	else: panel.selected_item = selected
+	var left := MineStyle.panel(panel.body,Vector2.ZERO,Vector2(286,510))
+	_label(left,_t("选择套装","CHOOSE SET") if set_mode else _t("选择模板","CHOOSE TEMPLATE"),Vector2(14,12),Vector2(258,30),20)
+	var scroll := ScrollContainer.new()
+	scroll.name = "InstanceCreationCatalog"
+	scroll.position = Vector2(12,54)
+	scroll.size = Vector2(262,444)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	left.add_child(scroll)
+	var rows := VBoxContainer.new()
+	rows.custom_minimum_size.x = 242
+	scroll.add_child(rows)
+	for id: String in ids:
+		var definition: Dictionary = ContentRegistry.sets(2)[id] if set_mode else ContentRegistry.equipment(id,2)
+		var row := MineStyle.button(rows,"",Vector2.ZERO,Vector2(242,44),func(): _change(panel,"selected_set" if set_mode else "selected_item",id))
+		row.name = "CreationChoice_"+id
+		row.custom_minimum_size = Vector2(242,44)
+		row.text = MineStyle.content_text(definition,"name")
+		row.add_theme_font_size_override("font_size",14)
+		row.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		row.tooltip_text = row.text
+		if id == selected: MineStyle.selected(row)
+	var right := MineStyle.panel(panel.body,Vector2(300,0),Vector2(916,510))
+	var definition: Dictionary = ContentRegistry.sets(2)[selected] if set_mode else ContentRegistry.equipment(selected,2)
+	_label(right,MineStyle.content_text(definition,"name"),Vector2(20,12),Vector2(876,40),25).name = "CreationItemName"
+	_label(right,_t("每次获取生成独立实例 · 创建强化 +0","Each acquisition creates a separate instance · starts at +0"),Vector2(20,55),Vector2(876,27),15)
+	_label(right,_t("品质","Quality"),Vector2(20,91),Vector2(100,24),14)
+	var quality := OptionButton.new()
+	quality.name = "CreationRarity"
+	quality.position = Vector2(20,119)
+	quality.size = Vector2(210,38)
+	for rarity: String in rarities: quality.add_item(_t(RARITY_NAMES[rarity][0],RARITY_NAMES[rarity][1]))
+	quality.select(rarities.find(panel.creation_rarity))
+	quality.disabled = panel.busy
+	right.add_child(quality)
+	quality.item_selected.connect(func(index: int): _change(panel,"creation_rarity",rarities[index]))
+	_label(right,_t("属性类型","Power type"),Vector2(250,91),Vector2(200,24),14)
+	var power := OptionButton.new()
+	power.name = "CreationPowerType"
+	power.position = Vector2(250,119)
+	power.size = Vector2(220,38)
+	power.add_item(_t("物理型","Physical")); power.add_item(_t("法术型","Magic"))
+	power.select(1 if panel.creation_power_type == "magic" else 0)
+	power.disabled = panel.busy
+	right.add_child(power)
+	power.item_selected.connect(func(index: int): _change(panel,"creation_power_type","magic" if index == 1 else "physical"))
+	_label(right,_t("装备等级（不高于当前角色）","Item level (up to current hero)"),Vector2(490,91),Vector2(385,24),14)
+	var item_level := SpinBox.new()
+	item_level.name = "CreationItemLevel"
+	item_level.position = Vector2(490,119)
+	item_level.size = Vector2(160,38)
+	item_level.min_value = 1; item_level.max_value = Game.hero_level(); item_level.step = 1
+	item_level.value = panel.creation_level
+	item_level.editable = not panel.busy
+	right.add_child(item_level)
+	item_level.value_changed.connect(func(value: float): _change(panel,"creation_level",int(value)))
+	var request: Dictionary = {"hero_id":str(Game.profile.selected_hero),"rarity":panel.creation_rarity,"power_type":panel.creation_power_type,"item_level":panel.creation_level}
+	var missing: Array = []
+	if set_mode:
+		missing = Transactions.missing_set_templates(Game.profile,selected,panel.creation_power_type)
+		request["set_id"] = selected; request["template_ids"] = []
+		for id: String in missing:
+			if not panel.creation_omitted.has(id): request.template_ids.append(id)
+	else: request["template_id"] = selected
+	var quote: Dictionary = Transactions.quote_set(Game.profile,request) if set_mode else Transactions.quote_craft(Game.profile,request) if crafting else Transactions.quote_purchase(Game.profile,request)
+	var complete: bool = set_mode and missing.is_empty()
+	var lines: PackedStringArray = []
+	if set_mode:
+		lines.append(_t("该类型缺件 %d / 8；明确列出的缺件总价九折。","Missing %d / 8 for this type; 10%% off the listed missing-piece total.") % missing.size())
+		lines.append(_t("已选择 %d 件，以下可取消勾选。","%d selected; uncheck any piece below.") % request.template_ids.size())
+	else:
+		lines.append(_t("主属性范围（不提前抽取结果）","Main-stat ranges (no preview roll)"))
+		var low := _main_range(selected,request,0)
+		var high := _main_range(selected,request,100)
+		for key: String in low:
+			lines.append(Inspect.caption(key)+": "+_format_stat(key,float(low[key]))+" – "+_format_stat(key,float(high[key])))
+		lines.append(_t("普通随机词条 %d 条；分位 u 为 0–100，共101档。","%d random affixes; u=0–100, 101 possible quantiles.") % int(Numbers.value("rarities")[panel.creation_rarity].affix_count))
+	var text_scroll := ScrollContainer.new()
+	text_scroll.position = Vector2(20,175); text_scroll.size = Vector2(490,213)
+	text_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	right.add_child(text_scroll)
+	var description_rows := VBoxContainer.new()
+	description_rows.custom_minimum_size.x = 470
+	text_scroll.add_child(description_rows)
+	var description := _label(description_rows,"\n".join(lines),Vector2.ZERO,Vector2(470,0),16)
+	description.custom_minimum_size.x = 470
+	if set_mode:
+		for id: String in missing:
+			var checkbox := CheckBox.new()
+			checkbox.name = "CreationInclude_"+id
+			checkbox.text = MineStyle.content_text(ContentRegistry.equipment(id,2),"name")
+			checkbox.button_pressed = not panel.creation_omitted.has(id)
+			checkbox.disabled = panel.busy
+			description_rows.add_child(checkbox)
+			var ranges: PackedStringArray = []
+			var low := _main_range(id,request,0)
+			var high := _main_range(id,request,100)
+			for key: String in low: ranges.append(Inspect.caption(key)+" "+_format_stat(key,float(low[key]))+"–"+_format_stat(key,float(high[key])))
+			_label(description_rows," / ".join(ranges),Vector2.ZERO,Vector2(470,0),13)
+			checkbox.toggled.connect(func(enabled: bool):
+				if enabled: panel.creation_omitted.erase(id)
+				else: panel.creation_omitted[id] = true
+				panel.creation_transaction_id = ""
+				panel.creation_message = ""
+				panel._render())
+	var cost_lines: PackedStringArray = [_t("本次成本","COST"),_t("金币 %d / 持有 %d","Gold %d / owned %d") % [int(quote.get("gold",0)),int(Game.profile.permanent_gold)]]
+	for material: String in quote.get("materials", {}):
+		cost_lines.append(_material_name(material)+" %d / %d" % [int(quote.materials[material]),int(Game.profile.get("materials",{}).get(material,0))])
+	if int(quote.get("pending_count",0)) > 0: cost_lines.append(_t("背包满：物品进入待领取，不折金币。","Inventory full: items wait for collection, never auto-sold."))
+	_label(right,"\n".join(cost_lines),Vector2(540,175),Vector2(352,175),17).name = "CreationCost"
+	var message: String = panel.creation_message
+	if message.is_empty() and not bool(quote.get("ok",false)) and not complete: message = error_text(str(quote.get("error","")))
+	var affordable: bool = int(Game.profile.permanent_gold) >= int(quote.get("gold",0))
+	for material: String in quote.get("materials",{}):
+		if int(Game.profile.get("materials",{}).get(material,0)) < int(quote.materials[material]): affordable = false
+	if not affordable and message.is_empty(): message = _t("金币或材料不足。","Not enough gold or materials.")
+	if complete: message = _t("该类型八件已拥有；穿戴仍要求当前职业与等级符合。","All eight templates of this type are owned; equip requires this hero's type and level.")
+	_label(right,message,Vector2(20,397),Vector2(876,49),15).name = "CreationResult"
+	var action := MineStyle.button(right,"",Vector2(20,451),Vector2(876,43),func(): _submit(panel,request,crafting,set_mode,complete))
+	action.name = "PrimaryAction"
+	action.text = _t("穿戴该套装","Equip this set") if complete else _t("打造并保存","Craft and save") if crafting else _t("购买缺件并保存","Buy missing pieces and save") if set_mode else _t("购买并保存","Buy and save")
+	var matching_type: bool = panel.creation_power_type == ("magic" if Game.profile.selected_hero == "CH03" else "physical")
+	action.disabled = panel.busy or (not complete and (not bool(quote.get("ok",false)) or not affordable)) or (complete and not matching_type)
+	MineStyle.primary(action)
+	panel.action_button = action
+	panel.item_list = scroll
+
+static func _main_range(template: String, request: Dictionary, quantile: int) -> Dictionary:
+	var main := {}
+	for key: String in Instances.main_keys(template,request.power_type): main[key] = quantile
+	var affixes: Array = []
+	var legal := Instances.legal_affixes(template,request.power_type)
+	for index in int(Numbers.value("rarities")[request.rarity].affix_count): affixes.append({"type":legal[index],"u":quantile})
+	var record := Instances.create({"instance_id":"preview","template_id":template,"source_event_id":"preview","item_level":request.item_level,"rarity":request.rarity,"power_type":request.power_type,"main_rolls":main,"affix_type_and_quantile":affixes})
+	return Instances.main_stats(record)
+
+static func _format_stat(key: String, amount: float) -> String:
+	return Inspect.value(key,amount,false,true) if key in Inspect.RATIOS or key == "move_speed" else str(int(amount))
+
+static func _material_name(id: String) -> String:
+	if id == "forge": return _t("锻材","Forge material")
+	return id.get_slice(":",1)+(_t("族材"," material") if id.begins_with("race:") else _t("核心"," core"))
+
+static func error_text(code: String) -> String:
+	var messages := {"INSUFFICIENT_GOLD":["金币不足。","Not enough gold."],"INSUFFICIENT_MATERIALS":["材料不足。","Not enough materials."],"CRAFT_LEVEL_LOCKED":["打造解锁等级：绿5、紫10、金15。","Craft unlocks: green5, purple10, gold15."],"ITEM_LEVEL_LOCKED":["装备等级不能超过当前角色。","Item level exceeds the current hero."],"TEMPLATE_LOCKED":["先击败对应首领解锁模板。","Defeat the required boss to unlock this template."],"PROFILE_CAPACITY":["存档容量不足；交易未生效。","Save capacity reached; transaction was not applied."]}
+	return _t(messages[code][0],messages[code][1]) if messages.has(code) else code
+
+static func _submit(panel: Control, request: Dictionary, crafting: bool, set_mode: bool, complete: bool) -> void:
+	if panel.busy or panel.action_button.disabled: return
+	panel.busy = true
+	panel.action_button.disabled = true
+	if panel.creation_transaction_id.is_empty(): panel.creation_transaction_id = "creation:"+Crypto.new().generate_random_bytes(16).hex_encode()
+	var result: Dictionary
+	if complete:
+		result = {"ok":Game.equip_equipment_set(str(request.set_id)),"receipt":{}}
+	else:
+		var method: String = "craft_equipment_v2" if crafting else "purchase_equipment_set_v2" if set_mode else "purchase_equipment_v2"
+		result = Game.call(method,request,panel.creation_transaction_id)
+	if bool(result.get("ok",false)):
+		var items: Array = result.get("receipt",{}).get("items",[])
+		panel.creation_message = _t("已保存 %d 件独立装备；可在背包查看实际结果。","Saved %d independent items; inspect the actual rolls in Inventory.") % items.size() if not complete else _t("套装已穿戴。","Set equipped.")
+		panel.creation_transaction_id = ""
+	else:
+		panel.creation_message = error_text(str(result.get("error",Game.last_error)))+_t(" 重试保留同一交易。"," Retry keeps the same transaction.")
+	await panel.get_tree().create_timer(0.3).timeout
+	if not is_instance_valid(panel) or not panel.is_inside_tree(): return
+	panel.busy = false
+	panel._render()

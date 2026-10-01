@@ -78,5 +78,6 @@ func _run() -> void:
 	app.queue_free()
 	await get_tree().process_frame
 	await get_tree().process_frame
+	await get_tree().create_timer(0.2).timeout
 	print("Numerical instance UI: ",checks," checks; failures=",failures)
 	get_tree().quit(0 if failures.is_empty() else 1)

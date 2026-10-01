@@ -52,6 +52,7 @@ var contact_damage: float = Balance.ENEMY_DAMAGE
 var actor_kind: String = "enemy"
 var static_actor: bool = false
 var reward_enabled: bool = true
+var reward_spawn_id: String = ""
 var zone_index: int = -1
 var threat_cost: float = 1.0
 var owner_enemy: WeakRef
@@ -82,6 +83,7 @@ func configure(next_profile: Dictionary, options: Dictionary = {}) -> void:
 	zone_index = int(options.get("zone_index", profile.get("zone_index", -1)))
 	threat_cost = float(profile.get("effective_threat_cost", 1.0))
 	reward_enabled = bool(options.get("reward_enabled", true))
+	reward_spawn_id = str(options.get("reward_spawn_id", ""))
 	static_actor = bool(options.get("static_actor", false))
 	actor_kind = str(options.get("actor_kind", "enemy"))
 	if is_instance_valid(options.get("owner", null)):

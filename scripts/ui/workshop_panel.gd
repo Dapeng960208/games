@@ -11,6 +11,7 @@ const Recycle = preload("res://scripts/ui/equipment_recycle_panel.gd")
 const HeroDossier = preload("res://scripts/ui/hero_dossier.gd")
 const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
 const StatSheet = preload("res://scripts/ui/stat_sheet.gd")
+const InstanceCreation = preload("res://scripts/ui/instance_acquisition_panel.gd")
 const Catalog = preload("res://scripts/ui/equipment_catalog.gd")
 var app: Node
 var mode := "heroes"
@@ -34,6 +35,12 @@ var set_scroll := 0
 var inventory_recycle := false
 var sale_selection: Dictionary = {}
 var recycle_scroll := 0
+var creation_rarity := "white"
+var creation_power_type := ""
+var creation_level := 0
+var creation_transaction_id := ""
+var creation_message := ""
+var creation_omitted: Dictionary = {}
 
 func _ready() -> void:
 	preview_hero = str(Game.profile.get("selected_hero","CH01"))
@@ -50,25 +57,27 @@ func _render() -> void:
 	heading.name = "WorkshopHeading"
 	if mode == "shop": heading.text = _t("套装商城 · 14 套", "SET SHOP · 14 SETS") if shop_sets else _t("单件装备目录", "EQUIPMENT SHOP")
 	if mode == "inventory": heading.text = _t("装备回收" if inventory_recycle else "装备背包", "EQUIPMENT RECYCLING" if inventory_recycle else "EQUIPMENT INVENTORY")
+	if mode == "craft": heading.text = _t("定向打造", "CRAFT EQUIPMENT")
 	if mode == "upgrade": heading.text = _t("装备强化", "EQUIPMENT REFINEMENT")
 	MineStyle.literal(header,_t("金币","GOLD"),Vector2(802,13),Vector2(160,19),12,MineStyle.AMBER)
-	MineStyle.literal(header,str(Game.profile.get("permanent_gold",0)),Vector2(802,34),Vector2(160,32),23,MineStyle.INK)
+	MineStyle.literal(header,str(int(Game.profile.get("permanent_gold",0))),Vector2(802,34),Vector2(160,32),23,MineStyle.INK)
 	MineStyle.button(header,"RETURN_CAMP",Vector2(982,27),Vector2(214,45),app.show_camp).name = "ReturnCamp"
 	var tabs := [["heroes",_t("英雄档案","Heroes")],["skills",_t("技能成长","Skills")],["inventory",_t("装备背包","Inventory")],["shop",_t("装备商城","Shop")],["upgrade",_t("精工强化","Refine")]]
+	if int(Game.profile.get("ruleset_version",1)) == 2: tabs.insert(4,["craft",_t("定向打造","Craft")])
 	for i in range(tabs.size()):
 		var data: Array = tabs[i]
-		var tab := MineStyle.button(header,"",Vector2(18+i*144,96),Vector2(134,40),func(): _switch_page(data[0]))
+		var tab := MineStyle.button(header,"",Vector2(18+i*(122 if tabs.size() == 6 else 144),96),Vector2(114 if tabs.size() == 6 else 134,40),func(): _switch_page(data[0]))
 		tab.name = "Tab_"+data[0]
 		tab.text = data[1]
 		tab.add_theme_font_size_override("font_size",16)
 		if mode == data[0]: MineStyle.selected(tab)
-	if mode in ["inventory","shop","upgrade"]:
+	if mode in ["inventory","shop","craft","upgrade"]:
 		var attributes := MineStyle.button(header,"",Vector2(774,96),Vector2(184,40),_show_character_stats)
 		attributes.name = "OpenCharacterStats"
 		attributes.text = _t("角色属性", "Character stats")
 		attributes.add_theme_font_size_override("font_size",16)
 	if mode == "shop":
-		var catalog_toggle := MineStyle.button(header,"",Vector2(976,96),Vector2(220,40),func(): shop_sets = not shop_sets; _render())
+		var catalog_toggle := MineStyle.button(header,"",Vector2(976,96),Vector2(220,40),func(): shop_sets = not shop_sets; creation_transaction_id = ""; creation_message = ""; _render())
 		catalog_toggle.name = "ToggleSetShop"
 		catalog_toggle.text = _t("查看单件装备", "Individual items") if shop_sets else _t("查看装备套装", "Equipment sets")
 		catalog_toggle.add_theme_font_size_override("font_size",15)
@@ -86,6 +95,8 @@ func _render() -> void:
 		_render_heroes()
 	elif mode == "skills":
 		_render_skills()
+	elif int(Game.profile.get("ruleset_version",1)) == 2 and mode in ["shop","craft"]:
+		InstanceCreation.render(self)
 	elif mode == "shop" and shop_sets:
 		SetShop.render(self)
 	elif mode == "inventory" and inventory_recycle:
@@ -102,6 +113,8 @@ func _render() -> void:
 
 func _switch_page(next_mode: String) -> void:
 	mode = next_mode
+	creation_transaction_id = ""
+	creation_message = ""
 	app.route = "workshop_"+mode
 	# Keep the inspected item across inventory, shop and refinement whenever
 	# it belongs to that page. _render_equipment handles an unavailable item.
@@ -363,7 +376,7 @@ func _effect_available(id: String) -> bool:
 	if not ResourceLoader.exists(path):
 		return false
 	var implementation: Script = load(path)
-	return implementation.call("implemented_ids").has(id)
+	return implementation.call("implemented_ids").has(id) or (int(Game.profile.get("ruleset_version",1)) == 2 and not ContentRegistry.equipment(id,2).is_empty() and ContentRegistry.equipment(id,2).get("affix_id","") == "")
 
 func _commit_item() -> void:
 	if busy or selected_item.is_empty() or (action_button != null and action_button.disabled):
@@ -372,7 +385,11 @@ func _commit_item() -> void:
 	action_button.disabled = true
 	var id := selected_item
 	var success := false
-	if mode == "shop" and not Game.profile.get("equipment",{}).has(id):
+	if int(Game.profile.get("ruleset_version",1)) == 2 and Game.profile.get("equipment",{}).get(id,{}).get("location","") == "pending":
+		if creation_transaction_id.is_empty(): creation_transaction_id = "claim:"+Crypto.new().generate_random_bytes(16).hex_encode()
+		success = bool(Game.call("claim_pending_equipment",id,creation_transaction_id))
+		if success: creation_transaction_id = ""
+	elif mode == "shop" and not Game.profile.get("equipment",{}).has(id):
 		success = Game.buy_equipment(id)
 	elif mode == "upgrade":
 		success = Game.upgrade_equipment(id)

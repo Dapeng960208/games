@@ -25,6 +25,7 @@ var pending_outcome := ""
 var quit_after_result := false
 var room_start_failed := false
 var selected_difficulty: int = 0
+var selected_wish_slot: String = ""
 var selected_biome := "B01"
 var expedition: RefCounted
 var expedition_status: Label
@@ -267,7 +268,7 @@ func show_camp() -> void:
 	bank.name = "CampBank"
 	_camp_ui_icon(bank,"gold",Vector2(10,6),Vector2(43,43))
 	MineStyle.literal(bank,_ex_text("营地金币","CAMP GOLD"),Vector2(62,7),Vector2(162,18),11,MineStyle.AMBER)
-	MineStyle.literal(bank,str(Game.profile.get("permanent_gold",0)),Vector2(62,26),Vector2(162,26),20,MineStyle.INK)
+	MineStyle.literal(bank,str(int(Game.profile.get("permanent_gold",0))),Vector2(62,26),Vector2(162,26),20,MineStyle.INK)
 	var portrait := MineStyle.hero_portrait(screen,hero_id,Vector2(28,116),Vector2(380,428))
 	portrait.name = "CampHeroIllustration"
 	var identity_plate := MineStyle.panel(screen,Vector2(42,505),Vector2(344,128))
@@ -303,7 +304,7 @@ func show_camp() -> void:
 		["heroes",_ex_text("英雄档案","HERO DOSSIERS"),_ex_text("选择伙伴 · 找到你的战斗风格","Choose a hero and a fighting style"),0,MineStyle.CYAN],
 		["skills",_ex_text("技能修习","SKILL LEDGER"),_ex_text("查看连招 · 解锁新的能力","Learn combos and unlock abilities"),1,Color("9b574c")],
 		["inventory",_ex_text("装备工坊","EQUIPMENT"),_ex_text("仓库配装 · 多选回收换金币","Loadout · Sell spare gear for gold"),2,Color("997244")],
-		["shop",_ex_text("装备商城","EQUIPMENT SHOP"),_ex_text("六套新装备 · 整套购买或补齐","6 new sets · Buy or complete a set"),3,Color("657e4c")]
+		["shop",_ex_text("装备商城","EQUIPMENT SHOP"),(_ex_text("八槽独立装备 · 选购或补齐","Eight-slot instances · Buy or complete") if int(Game.profile.get("ruleset_version",1)) == 2 else _ex_text("六套新装备 · 整套购买或补齐","6 new sets · Buy or complete a set")),3,Color("657e4c")]
 	]
 	for index in choices.size():
 		var entry: Array = choices[index]
@@ -377,6 +378,12 @@ func _update_departure_difficulty_hint() -> void:
 	var sample_room := str(rooms[0]) if not rooms.is_empty() else "L01"
 	var level := DifficultyProfiles.encounter_level(sample_room,0,difficulty)
 	var enhancement: String = ["+0","+0–1","+1","+2","+3"][difficulty]
+	if int(Game.profile.get("ruleset_version",1)) == 2:
+		var chapter := clampi(int(selected_biome.trim_prefix("B")),1,4)
+		var first := (chapter-1)*5+1
+		var counts: Array = preload("res://config/numerical_rules.gd").value("boss_drop_counts")
+		hint.text = _ex_text("固定挑战Lv.%d/%d/%d · 首领Lv.%d · 清房1件 / 首领%d件 · 金≤+1，其余≤+5","Fixed challenge Lv.%d/%d/%d · Boss Lv.%d · Room1 / Boss%d items · Gold≤+1, others≤+5") % [first,first+2,first+4,chapter*5,int(counts[difficulty])]
+		return
 	var normal_drops := 2 if difficulty >= 2 else 1
 	var boss_drops := 2+int(difficulty/2)
 	var boss_boost := _ex_text("强化+1，上限+3","+1 boost, cap +3") if difficulty > 0 else _ex_text("强化+0","+0")
@@ -863,10 +870,13 @@ func _show_warning(parent: Node, at: Vector2, extent: Vector2) -> void:
 	if capacity.is_empty(): return
 	var remaining_bytes := int(capacity.get("remaining_bytes",0))
 	var remaining_receipts := int(capacity.get("remaining_transactions",0))
-	var tight := remaining_receipts <= 64 or remaining_bytes < 262144
+	var v2: bool = int(Game.profile.get("ruleset_version",1)) == 2
+	var tight := (not v2 and remaining_receipts <= 64) or remaining_bytes < 262144
 	var note := MineStyle.literal(parent,(_ex_text("存档空间偏低：", "Low save space: ") if tight else _ex_text("存档余量：", "Save room: "))+_ex_text("%s KiB · %d 条收据", "%s KiB · %d receipts") % [_amount(remaining_bytes/1024.0),remaining_receipts],at,extent,13,MineStyle.RED if tight else MineStyle.MUTED)
+	if v2: note.text = (_ex_text("存档空间偏低：", "Low save space: ") if tight else _ex_text("存档余量：", "Save room: "))+_amount(remaining_bytes/1024.0)+" KiB"
 	note.name = "StorageCapacityHint"
 	note.tooltip_text = _ex_text("当前剩余 %d 字节与 %d 条交易收据。存档写入前检查容量，空间不足时保留旧档并提示。", "%d bytes and %d transaction receipts remain. Capacity is checked before writes; insufficient space preserves the previous save and reports an error.") % [remaining_bytes,remaining_receipts]
+	if v2: note.tooltip_text = _ex_text("剩余 %d 字节。新实例与交易不按模板数量截断；空间不足时整笔拒绝，不删除旧装备或收据。", "%d bytes remain. New instances and transactions are not capped by template count; a full save rejects the whole operation without deleting equipment or receipts.") % remaining_bytes
 
 func _request_new_profile() -> void:
 	if not Game.has_profile:
@@ -884,8 +894,33 @@ func _create_profile() -> void:
 		_show_save_error()
 
 func _start_run() -> void:
-	if not Game.start_run({"expedition":true,"biome_id":selected_biome,"difficulty":selected_difficulty}):
-		_show_save_error()
+	if int(Game.profile.get("ruleset_version",1)) == 2:
+		if not modals.is_empty(): return
+		var panel: Panel = _push_modal("",Vector2(640,350))
+		panel.name = "DepartureWishDialog"
+		MineStyle.literal(panel,_ex_text("本次远征 · 愿望部位","THIS EXPEDITION · WISH SLOT"),Vector2(24,21),Vector2(592,43),24,MineStyle.AMBER)
+		MineStyle.literal(panel,_ex_text("该部位在本族合法池可用时有50%机会选中；不指定则在合法部位均分。结果随本次远征冻结。","When available in this faction's pool, the wish slot gets a 50% selection chance. None distributes evenly over legal slots. This choice is frozen for the trip."),Vector2(24,77),Vector2(592,96),16,MineStyle.INK)
+		var options: Array = [""]+Game.equipment_slots()
+		var choice := OptionButton.new()
+		choice.name = "DepartureWishSlot"
+		choice.position = Vector2(24,184); choice.size = Vector2(592,43)
+		for slot: String in options: choice.add_item(_ex_text("不指定","No preference") if slot.is_empty() else Words.text("SLOT_"+slot.to_upper()))
+		choice.select(maxi(0,options.find(selected_wish_slot)))
+		choice.item_selected.connect(func(index: int): selected_wish_slot = str(options[index]))
+		panel.add_child(choice)
+		var begin := MineStyle.button(panel,"",Vector2(28,273),Vector2(284,48),func():
+			_pop_modal()
+			_start_run_with_wish())
+		begin.name = "ConfirmWishDeparture"; begin.text = _ex_text("确认出发","Begin expedition")
+		MineStyle.primary(begin)
+		MineStyle.button(panel,"BACK",Vector2(328,273),Vector2(284,48),_pop_modal).name = "CancelWishDeparture"
+		return
+	_start_run_with_wish()
+
+func _start_run_with_wish() -> void:
+	var options: Dictionary = {"expedition":true,"biome_id":selected_biome,"difficulty":selected_difficulty}
+	if int(Game.profile.get("ruleset_version",1)) == 2: options["wish_slot"] = selected_wish_slot
+	if not Game.start_run(options): _show_save_error()
 
 func _on_run_started() -> void:
 	loot_flow_active = false

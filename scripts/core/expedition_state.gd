@@ -11,10 +11,12 @@ const Snapshot = preload("res://scripts/combat/combat_snapshot.gd")
 const FORMAT := 1
 const V2_FORMAT := 2
 const Numbers = preload("res://config/numerical_rules.gd")
+const Loot = preload("res://scripts/core/expedition_rewards.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 const VERSION_FIELDS := ["ruleset_version", "scale_version", "equipment_instance_version", "reward_policy_version", "optional_chest_receipt_version"]
 
 const MAX_IDS := 512
+const MAX_CONTAINER_ITEMS := 4096 # Finite full-route natural-kill journals can exceed512.
 const MAX_EQUIPMENT_LEVEL := 5
 const RELICS: Array[String] = ["RL01","RL02","RL03","RL04","RL05","RL06","RL07","RL08","RL09","RL10","RL11","RL12"]
 const ACTIVE_RELICS: Array[String] = ["RL01","RL02","RL03"]
@@ -59,12 +61,12 @@ static func json_tree(value: Variant, depth: int = 0) -> bool:
 	if value is int or value is float: return is_finite(float(value)) and absf(float(value)) <= 1000000000000.0
 	if value is String: return value.length() <= 256
 	if value is Array:
-		if value.size() > MAX_IDS: return false
+		if value.size() > MAX_CONTAINER_ITEMS: return false
 		for entry: Variant in value:
 			if not json_tree(entry, depth + 1): return false
 		return true
 	if value is Dictionary:
-		if value.size() > MAX_IDS: return false
+		if value.size() > MAX_CONTAINER_ITEMS: return false
 		for key: Variant in value:
 			if not key is String or key.length() > 160 or not json_tree(value[key], depth + 1): return false
 		return true
@@ -95,6 +97,10 @@ static func fresh(run_id: String, options: Dictionary, profile: Dictionary, stat
 		"temporary_buffs":{},"scan_nodes":[],"room_entry_gold":0,"room_entry_kills":0,"room_entry_shots":0}
 	value.merge(versions(ruleset), true)
 	value.format_version = V2_FORMAT if ruleset == 2 else FORMAT
+	if ruleset == 2:
+		var wish: Variant = options.get("wish_slot", "")
+		if not wish is String or (wish != "" and wish not in Registry.slots(2)): return {}
+		Loot.initialize(value, profile, run_id, wish)
 	add_relic_offer(value, run_id, 1)
 	return value
 
@@ -223,13 +229,7 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 	for index: int in completed:
 		if route.nodes[index].role not in ["entrance", "supply"] and not completed_combat.has(index): return false
 	if ruleset == 2:
-		# S05 owns instance reward receipts. Never reinterpret old template drops
-		# or old optional-box payloads under the separately frozen V2 versions.
-		for field: String in ["pending_equipment", "claimed_drop_ids", "optional_claims"]:
-			if not value.get(field, {}) is Dictionary or not value.get(field, {}).is_empty(): return false
-		if not ids(value.get("equipment_discoveries"), Registry.equipment_ids(2).size()): return false
-		for template: String in value.equipment_discoveries:
-			if Registry.equipment(template, 2).is_empty(): return false
+		if not Loot.valid(value, receipt, profile): return false
 	else:
 		if not value.get("pending_equipment") is Dictionary or value.pending_equipment.size() > Registry.equipment_ids().size() or not value.get("claimed_drop_ids") is Dictionary or value.claimed_drop_ids.size() > MAX_IDS: return false
 		if not ids(value.get("equipment_discoveries"), Registry.equipment_ids().size()): return false
@@ -397,9 +397,16 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 static func _instance_snapshot_valid(receipt: Dictionary, profile: Dictionary) -> bool:
 	if not receipt.get("loadout_snapshot") is Dictionary or not receipt.get("equipment_snapshot") is Dictionary: return false
 	if receipt.loadout_snapshot.size() != Registry.slots(2).size(): return false
-	# No mutations or temporary instance receipts exist before S05. All copied
-	# identities and rolls must therefore match their proven permanent sources.
-	if receipt.equipment_snapshot != profile.equipment: return false
+	if receipt.equipment_snapshot.size() > (32 if receipt.expedition.has("loot_events") else MAX_IDS): return false
+	var pending: Dictionary = receipt.expedition.get("pending_equipment", {})
+	for id: Variant in receipt.equipment_snapshot:
+		if not id is String: return false
+		var item: Variant = receipt.equipment_snapshot[id]
+		if not item is Dictionary or not Instances.validate(item).is_empty(): return false
+		if pending.has(id):
+			if item != pending[id]: return false
+		else:
+			if not profile.equipment.has(id) or profile.equipment[id].location == "pending" or item != profile.equipment[id]: return false
 	var used: Dictionary = {}
 	for slot: String in Registry.slots(2):
 		var id: Variant = receipt.loadout_snapshot.get(slot)

@@ -8,6 +8,8 @@ const SETTLEMENT_RULES_VERSION := 3
 const Economy = preload("res://scripts/core/economy_history.gd")
 const ECONOMY_RULES_VERSION := Economy.CURRENT_VERSION
 const Progression = preload("res://scripts/core/hero_progression.gd")
+const Loot = preload("res://scripts/core/expedition_rewards.gd")
+const Transactions = preload("res://scripts/core/instance_transactions.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Expedition = preload("res://scripts/core/expedition_state.gd")
 const MAX_NUMBER := 1_000_000_000_000
@@ -283,7 +285,7 @@ static func _valid_receipt(value: Variant, version: int = 1) -> bool:
 		and _unique_ids(value.get("completed_reward_ids"), 512) \
 		and _allowed_ids(value.get("boss_defeats"), BOSS_IDS)
 
-static func _valid_result(value: Variant, version: int = 1) -> bool:
+static func _valid_result(value: Variant, version: int = 1, ruleset: int = 1) -> bool:
 	if not value is Dictionary:
 		return false
 	if value.is_empty():
@@ -312,9 +314,9 @@ static func _valid_result(value: Variant, version: int = 1) -> bool:
 	if version >= 3:
 		for key: String in ["equipment_retained", "equipment_lost"]:
 			if value.has(key):
-				if not _unique_ids(value[key], ContentRegistry.equipment_ids().size()): return false
+				if not _unique_ids(value[key], 512 if ruleset == 2 else ContentRegistry.equipment_ids().size()): return false
 				for id: String in value[key]:
-					if ContentRegistry.equipment(id).is_empty(): return false
+					if ruleset != 2 and ContentRegistry.equipment(id).is_empty(): return false
 		if value.outcome != "extracted" and not value.get("equipment_retained", []).is_empty(): return false
 		if value.outcome == "extracted" and not value.get("equipment_lost", []).is_empty(): return false
 	return _number(value.get("wallet_before")) \
@@ -333,7 +335,7 @@ static func _valid_document(value: Variant) -> bool:
 		return false
 	var profile: Dictionary = value.profile
 	if not _number(profile.get("permanent_gold")) or not _number(profile.get("total_runs")) \
-		or not _relics(profile.get("discoveries")) or not _valid_result(profile.get("last_result"), version):
+		or not _relics(profile.get("discoveries")) or not _valid_result(profile.get("last_result"), version, int(profile.get("ruleset_version", 1))):
 		return false
 	var settings: Variant = profile.get("settings")
 	if not settings is Dictionary or not settings.get("language") in ["zh_CN", "en"] \
@@ -365,6 +367,15 @@ static func _valid_document(value: Variant) -> bool:
 	if int(value.active_run.get("ruleset_version", 1)) != int(profile.get("ruleset_version", 1)): return false
 	if value.active_run.has("expedition"):
 		return version == 3 and Expedition.valid(value.active_run, profile)
+	if value.active_run.has("pending_research_materials"):
+		if int(profile.get("ruleset_version", 1)) != 2 or not Loot.material_map_valid(value.active_run.pending_research_materials): return false
+		var pending := {}
+		for event: String in value.active_run.completed_reward_ids:
+			var row: Variant = profile.get("progression_receipts", {}).get(event)
+			if not row is Dictionary: return false
+			if row.get("deferred_materials", false):
+				for key: String in row.material_reward: pending[key] = int(pending.get(key, 0)) + int(row.material_reward[key])
+		if not Loot.same(pending, value.active_run.pending_research_materials): return false
 	return true
 
 static func _unique_ids(value: Variant, maximum: int = 512) -> bool:
@@ -449,6 +460,14 @@ static func _valid_progression(profile: Dictionary) -> bool:
 ## Explicit ruleset2 documents store identities, not one entry per template.
 ## Document byte limits bound storage; catalog size must not cap duplicates.
 static func _valid_instance_equipment(profile: Dictionary) -> bool:
+	if not profile.get("equipment") is Dictionary: return false
+	if not Transactions.validate_ledger(profile.get("instance_transactions")): return false
+	if not _number(profile.get("inventory_capacity", 0), MAX_NUMBER) or not Loot.pity_valid(profile.get("gold_pity", {})): return false
+	if not profile.get("pending_claim_receipts", {}) is Dictionary: return false
+	for operation: Variant in profile.get("pending_claim_receipts", {}):
+		if not operation is String or operation.is_empty() or operation.length() > 160: return false
+		var id: Variant = profile.pending_claim_receipts[operation]
+		if not id is String or not profile.equipment.has(id) or profile.equipment[id].get("location") == "pending": return false
 	if not profile.get("equipment") is Dictionary: return false
 	for id: Variant in profile.equipment:
 		if not id is String or id.is_empty() or id.length() > 160: return false
@@ -589,6 +608,10 @@ static func _valid_v2_growth(profile: Dictionary) -> bool:
 		if not event is String or event.is_empty() or event.length() > 160: return false
 		var row: Variant = receipts[event]
 		if not row is Dictionary or row.get("hero") not in HERO_IDS or not _number(row.get("amount"), 3600) or row.get("race") not in ["B01", "B02", "B03", "B04"]: return false
+		if row.has("deferred_materials"):
+			if row.deferred_materials != true or not _number(row.get("research_rewards"), 11) or not Loot.material_map_valid(row.get("material_reward")): return false
+			var expected := {} if int(row.research_rewards) == 0 else {"forge":int(row.research_rewards) * 4,"race:" + str(row.race):int(row.research_rewards)}
+			if not Loot.same(row.material_reward, expected): return false
 	return true
 
 static func _valid_numerical_migration(profile: Dictionary) -> bool:

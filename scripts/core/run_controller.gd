@@ -35,6 +35,9 @@ const Numbers = preload("res://config/numerical_rules.gd")
 const FieldLearning = preload("res://scripts/core/field_learning.gd")
 const RoomRewards = preload("res://scripts/world/room_rewards.gd")
 const FieldSnapshot = preload("res://scripts/combat/combat_snapshot.gd")
+const Loot = preload("res://scripts/core/expedition_rewards.gd")
+const Transactions = preload("res://scripts/core/instance_transactions.gd")
+var _pending_instance_transactions: Dictionary = {}
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 
 func _ready() -> void:
@@ -97,6 +100,7 @@ func reload_profile() -> void:
 		run.hero_xp_gained = int(receipt.get("hero_xp_gained", 0))
 		run.completed_reward_ids.assign(receipt.get("completed_reward_ids", []))
 		run.boss_defeats.assign(receipt.get("boss_defeats", []))
+		run.pending_research_materials = receipt.get("pending_research_materials", {}).duplicate(true)
 		run.hp = 0.0
 		if not finish_run("abandoned").is_empty():
 			storage_warning = "STORAGE_ABANDONED_RECOVERED"
@@ -134,7 +138,7 @@ func start_run(options: Dictionary = {}) -> bool:
 	next.branches_snapshot = hero_branches(next.hero_id)
 	next.stats.branches = next.branches_snapshot.duplicate(true)
 	next.loadout_snapshot = profile.loadout.duplicate(true)
-	next.equipment_snapshot = profile.equipment.duplicate(true)
+	next.equipment_snapshot = Loot.carried(next.loadout_snapshot, profile.equipment) if next.ruleset_version() == Numbers.V2 else profile.equipment.duplicate(true)
 	next.max_hp = float(next.stats.get("max_hp", Balance.PLAYER_HP))
 	next.hp = next.max_hp
 	next.resource = float(next.stats.get("starting_resource", 0.0))
@@ -335,7 +339,11 @@ func finish_run(outcome: String) -> Dictionary:
 		if not next_profile.has("equipment_discoveries"): next_profile.equipment_discoveries = []
 		for eq: String in run.expedition.equipment_discoveries:
 			if not eq in next_profile.equipment_discoveries: next_profile.equipment_discoveries.append(eq)
+		if run.ruleset_version() == Numbers.V2:
+			if outcome == "extracted": retained_equipment = Loot.bank(next_profile, run.expedition, run.boss_defeats)
+			else: lost_equipment.assign(run.expedition.pending_equipment.keys())
 		for eq: String in run.expedition.pending_equipment:
+			if run.ruleset_version() == Numbers.V2: continue
 			if outcome == "extracted":
 				var drop_level: int = int(run.expedition.pending_equipment[eq].get("level", 0))
 				var prior_level: int = int(next_profile.equipment.get(eq, {}).get("level", 0))
@@ -344,6 +352,9 @@ func finish_run(outcome: String) -> Dictionary:
 					else: next_profile.equipment[eq] = {"level":drop_level}
 					retained_equipment.append(eq)
 			else: lost_equipment.append(eq)
+	if run.ruleset_version() == Numbers.V2 and run.expedition.is_empty() and outcome == "extracted":
+		if not next_profile.has("materials"): next_profile.materials = {}
+		for key: String in run.pending_research_materials: next_profile.materials[key] = int(next_profile.materials.get(key, 0)) + int(run.pending_research_materials[key])
 	var discoveries: Array = []
 	for id: String in run.relics:
 		if not id in next_profile.discoveries:
@@ -418,6 +429,9 @@ func selected_stats() -> Dictionary:
 	return resolved
 
 func _run_race() -> String:
+	if run != null and not run.expedition.is_empty():
+		var node: Dictionary = run.expedition.route.nodes[int(run.expedition.node_index)]
+		return str(node.get("biome_id", run.expedition.route.biome_id))
 	return str(run.expedition.get("route", {}).get("biome_id", "B01")) if run != null else "B01"
 
 func _profile_ruleset() -> int:
@@ -608,6 +622,8 @@ func upgrade_has_gain(eq_id: String) -> bool:
 
 func buy_equipment(eq_id: String, transaction_id: String = "") -> bool:
 	last_error = ""
+	if _profile_ruleset() == Numbers.V2:
+		return bool(purchase_equipment_v2({"template_id":eq_id,"rarity":"white","power_type":"magic" if profile.selected_hero == "CH03" else "physical","item_level":hero_level()}, transaction_id).get("ok", false))
 	if not _legacy_equipment_transaction(): return false
 	if not _camp_available():
 		return false
@@ -634,7 +650,12 @@ func buy_equipment(eq_id: String, transaction_id: String = "") -> bool:
 ## Quotes only missing pieces. Rounding is per item, so buying a piece first
 ## cannot change the discount on any other piece or reset its refinement.
 func equipment_set_quote(set_id: String) -> Dictionary:
-	if _profile_ruleset() == Numbers.V2: return {}
+	if _profile_ruleset() == Numbers.V2:
+		var request := _default_set_request(set_id)
+		var ids: Array = ContentRegistry.set_item_ids(set_id, 2)
+		if ids.size() != 8: return {}
+		var quote := quote_equipment_set_v2(request) if not request.template_ids.is_empty() else {"ok":true,"gold":0}
+		return {"items":ids,"missing":request.template_ids.duplicate(),"owned":8 - request.template_ids.size(),"price":int(quote.get("gold", 0)),"full_price":int(quote.get("gold", 0)),"locked_boss":"" if quote.get("ok", false) else str(quote.get("error", "")),"request":request}
 	var ids := ContentRegistry.set_item_ids(set_id)
 	if ids.size() != ContentRegistry.SLOTS.size(): return {}
 	var missing: Array[String] = []
@@ -657,6 +678,13 @@ func equipment_set_quote(set_id: String) -> Dictionary:
 
 func buy_equipment_set(set_id: String, transaction_id: String = "") -> bool:
 	last_error = ""
+	if _profile_ruleset() == Numbers.V2:
+		var request := _default_set_request(set_id)
+		var saved: Dictionary = profile.get("instance_transactions", {}).get("operations", {}).get(transaction_id, {})
+		if not saved.is_empty():
+			if saved.get("kind") != "complete_set" or saved.get("request", {}).get("set_id") != set_id: return false
+			request = saved.request.duplicate(true)
+		return bool(purchase_equipment_set_v2(request, transaction_id).get("ok", false))
 	if not _legacy_equipment_transaction(): return false
 	if not _camp_available(): return false
 	if not transaction_id.is_empty() and profile.applied_transactions.has(transaction_id):
@@ -675,6 +703,7 @@ func buy_equipment_set(set_id: String, transaction_id: String = "") -> bool:
 
 func equip_equipment_set(set_id: String) -> bool:
 	last_error = ""
+	if _profile_ruleset() == Numbers.V2: return _equip_instance_set(set_id)
 	if not _legacy_equipment_transaction(): return false
 	if not _camp_available(): return false
 	var ids := ContentRegistry.set_item_ids(set_id)
@@ -775,15 +804,18 @@ func grant_hero_xp(amount: int, event_id: String) -> bool:
 	if run.completed_reward_ids.size() >= 512:
 		return false
 	var next_profile := profile.duplicate(true)
+	var pending_materials := run.pending_research_materials.duplicate(true)
 	var before := int(next_profile.hero_xp[run.hero_id])
 	next_profile.hero_xp[run.hero_id] = mini(3600, before + amount)
 	var added := int(next_profile.hero_xp[run.hero_id]) - before
 	if run.ruleset_version() == Numbers.V2:
-		var awarded := Progression.award(profile, run.hero_id, amount, event_id, _run_race())
+		var awarded := Progression.award(profile, run.hero_id, amount, event_id, _run_race(), true)
 		if awarded.is_empty(): return false
 		next_profile = awarded.profile
 		added = int(awarded.added)
+		for key: String in awarded.get("material_reward", {}): pending_materials[key] = int(pending_materials.get(key, 0)) + int(awarded.material_reward[key])
 	var receipt := run.receipt()
+	if run.ruleset_version() == Numbers.V2: receipt["pending_research_materials"] = pending_materials.duplicate(true)
 	receipt.completed_reward_ids.append(event_id)
 	receipt.hero_xp_gained = run.hero_xp_gained + added
 	receipt.level = ContentRegistry.level_for_xp(int(next_profile.hero_xp[run.hero_id]), run.ruleset_version())
@@ -793,6 +825,7 @@ func grant_hero_xp(amount: int, event_id: String) -> bool:
 		return false
 	profile = next_profile
 	run.completed_reward_ids.append(event_id)
+	run.pending_research_materials = pending_materials
 	run.hero_xp_gained += added
 	run.level = int(receipt.level)
 	if run.ruleset_version() == Numbers.V2: run.equipment_snapshot = _sync_level_waivers(run.equipment_snapshot, profile.equipment)
@@ -904,7 +937,7 @@ func _restore_expedition(receipt: Dictionary) -> void:
 	run.completed_reward_ids.assign(receipt.completed_reward_ids)
 	run.boss_defeats.assign(receipt.boss_defeats)
 	run.loadout_snapshot = receipt.loadout_snapshot.duplicate(true)
-	run.equipment_snapshot = receipt.equipment_snapshot.duplicate(true)
+	run.equipment_snapshot = Loot.carried(receipt.loadout_snapshot, receipt.equipment_snapshot) if run.ruleset_version() == Numbers.V2 else receipt.equipment_snapshot.duplicate(true)
 	run.branches_snapshot = receipt.branches_snapshot.duplicate(true)
 	run.expedition = receipt.expedition.duplicate(true)
 	if run.ruleset_version() == Numbers.V2: FieldSnapshot._integer_values(run.expedition.runtime)
@@ -1084,7 +1117,15 @@ func collect_expedition_equipment(drop_id: String, equipment_id: String, drop_le
 	return true
 
 func _field_equipment_drop(drop_id: String) -> Dictionary:
-	if run != null and run.ruleset_version() == Numbers.V2: return {}
+	if run != null and run.ruleset_version() == Numbers.V2:
+		if not _expedition_active() or run.expedition.phase != "cleared": return {}
+		var claim: Variant = run.expedition.claimed_drop_ids.get(drop_id)
+		var item: Variant = run.expedition.pending_equipment.get(drop_id)
+		if not claim is Dictionary or not item is Dictionary or claim.get("equipment_id") != drop_id: return {}
+		var definition := ContentRegistry.equipment(str(item.template_id), 2)
+		if definition.is_empty(): return {}
+		var current: String = str(run.loadout_snapshot.get(definition.slot, ""))
+		return {"drop_id":drop_id,"equipment_id":drop_id,"level":int(item.enhancement_rank),"item_level":int(item.item_level),"slot":str(definition.slot),"current_id":current,"current_level":int(run.equipment_snapshot.get(current, {}).get("enhancement_rank", 0)),"decision":str(claim.get("field_decision", ""))}
 	if not _expedition_active() or run.expedition.phase != "cleared": return {}
 	var claim: Variant = run.expedition.claimed_drop_ids.get(drop_id)
 	if not claim is Dictionary or claim.get("result") != "pending": return {}
@@ -1101,7 +1142,7 @@ func pending_field_equipment() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	if not _expedition_active() or run.expedition.phase != "cleared": return result
 	for id: String in run.expedition.pending_equipment:
-		var drop: Dictionary = _field_equipment_drop(str(run.expedition.pending_equipment[id].drop_id))
+		var drop: Dictionary = _field_equipment_drop(id if run.ruleset_version() == Numbers.V2 else str(run.expedition.pending_equipment[id].drop_id))
 		if not drop.is_empty() and drop.decision.is_empty(): result.append(drop)
 	return result
 
@@ -1111,7 +1152,10 @@ func preview_field_equipment(drop_id: String) -> Dictionary:
 	var next_loadout: Dictionary = run.loadout_snapshot.duplicate(true)
 	var next_equipment: Dictionary = run.equipment_snapshot.duplicate(true)
 	next_loadout[drop.slot] = drop.equipment_id
-	next_equipment[drop.equipment_id] = {"level":int(drop.level)}
+	next_equipment[drop.equipment_id] = run.expedition.pending_equipment[drop.equipment_id].duplicate(true) if run.ruleset_version() == Numbers.V2 else {"level":int(drop.level)}
+	if run.ruleset_version() == Numbers.V2:
+		if not Instances.can_equip(next_equipment[drop.equipment_id], run.hero_id, run.level): return {}
+		next_equipment = Loot.carried(next_loadout, next_equipment)
 	var next_stats: Dictionary = StatResolver.resolve(run.hero_id, run.level, next_loadout, next_equipment, run.ruleset_version(), hero_talents(run.hero_id))
 	if next_stats.is_empty(): return {}
 	next_stats["branches"] = run.branches_snapshot.duplicate(true)
@@ -1139,7 +1183,8 @@ func choose_field_equipment(drop_id: String, decision: String, runtime_snapshot:
 		var next_loadout: Dictionary = run.loadout_snapshot.duplicate(true)
 		var next_equipment: Dictionary = run.equipment_snapshot.duplicate(true)
 		next_loadout[drop.slot] = drop.equipment_id
-		next_equipment[drop.equipment_id] = {"level":int(drop.level)}
+		next_equipment[drop.equipment_id] = run.expedition.pending_equipment[drop.equipment_id].duplicate(true) if run.ruleset_version() == Numbers.V2 else {"level":int(drop.level)}
+		if run.ruleset_version() == Numbers.V2: next_equipment = Loot.carried(next_loadout, next_equipment)
 		last_error = FieldSnapshot.loadout_source_error(runtime, run.loadout_snapshot, next_loadout)
 		if not last_error.is_empty(): return false
 		runtime = FieldSnapshot.for_loadout(runtime, run.loadout_snapshot, next_loadout, preview.next_stats, run.hero_id, run.stats)
@@ -1166,6 +1211,15 @@ func claim_expedition_optional_reward(node_index: int, objective_id: String, run
 	var rewards: Dictionary = RoomRewards.optional(room_id, objective_id, run.hero_id, seed, claim_id, reward_discovery_ids(), run.expedition.pending_equipment.keys(), bosses, int(run.expedition.difficulty), int(run.expedition.get("reward_policy_version", 0)))
 	if rewards.is_empty(): return false
 	var value: Dictionary = run.expedition.duplicate(true)
+	if run.ruleset_version() == Numbers.V2:
+		_ensure_loot_state(value)
+		if not Loot.add(value, run.id, run.hero_id, claim_id, "chest"): return false
+		value.gold_earned += int(rewards.gold)
+		value.loot_events[claim_id].gold = int(rewards.gold)
+		var instances: Array = []
+		for item: Dictionary in value.loot_events[claim_id].result.items: instances.append(item.instance_id)
+		value.optional_claims[claim_id] = {"reward_version":2,"node_index":node_index,"room_id":room_id,"objective_id":objective_id,"gold":int(rewards.gold),"event_id":claim_id,"instance_ids":instances}
+		return _commit_expedition(value, runtime, profile.duplicate(true), {}, true)
 	var drop_ids: Array[String] = []
 	value.gold_earned += int(rewards.gold)
 	for drop: Dictionary in rewards.equipment:
@@ -1186,6 +1240,11 @@ func commit_expedition_completion(completion_id: String, runtime_snapshot: Dicti
 	if run.expedition.completion_events.has(completion_id): return true
 	if run.expedition.phase != "combat": return false
 	var index: int = int(run.expedition.node_index)
+	if run.ruleset_version() == Numbers.V2:
+		if completion_id != run.id + ":node:" + str(index) + ":complete": return false
+		var expected := RoomRewards.v2_completion(str(run.expedition.route.nodes[index].room_id), int(run.expedition.difficulty), str(rewards.get("quality", "full")))
+		if expected.is_empty() or (not rewards.is_empty() and rewards != expected): return false
+		rewards = expected
 	if index in run.expedition.completed_nodes: return false
 	var runtime: Dictionary = _safe_runtime(runtime_snapshot)
 	if runtime.is_empty() or runtime.get("mode") != "safe_boundary": return false
@@ -1195,6 +1254,13 @@ func commit_expedition_completion(completion_id: String, runtime_snapshot: Dicti
 	if not drops is Array or drops.size() > 8: return false
 	var value: Dictionary = run.expedition.duplicate(true)
 	value.gold_earned += int(rewards.get("gold", 0))
+	if run.ruleset_version() == Numbers.V2:
+		_ensure_loot_state(value)
+		for request: Dictionary in run.staged_loot_requests.values():
+			if not Loot.add(value, run.id, run.hero_id, request.event_id, request.source, int(request.zone_index), str(request.actor_id)): return false
+		if not Loot.add(value, run.id, run.hero_id, completion_id, str(rewards.source)): return false
+		value.loot_events[completion_id]["quality"] = str(rewards.quality)
+		value.loot_events[completion_id].gold = int(rewards.gold)
 	for drop: Variant in drops:
 		if not drop is Dictionary or not _add_equipment_drop(value, str(drop.get("drop_id", "")), str(drop.get("equipment_id", "")), drop.get("drop_level", 0)): return false
 	var next_profile: Dictionary = profile.duplicate(true)
@@ -1219,10 +1285,11 @@ func commit_expedition_completion(completion_id: String, runtime_snapshot: Dicti
 	if run.ruleset_version() == Numbers.V2:
 		var award_input := next_profile.duplicate(true)
 		award_input.hero_xp[run.hero_id] = previous_xp
-		var awarded := Progression.award(award_input, run.hero_id, xp, completion_id, _run_race())
+		var awarded := Progression.award(award_input, run.hero_id, xp, completion_id, _run_race(), true)
 		if awarded.is_empty(): return false
 		next_profile = awarded.profile
 		added = int(awarded.added)
+		Loot.defer_research(value, completion_id, awarded.get("material_reward", {}))
 	var bosses: Array = run.boss_defeats.duplicate()
 	var boss: String = str(rewards.get("boss_id", ""))
 	if value.route.nodes[index].role == "boss":
@@ -1448,3 +1515,122 @@ func _sync_level_waivers(snapshot: Dictionary, equipment: Dictionary) -> Diction
 		if owned.get("legacy_equip_waiver") is Dictionary:
 			item["legacy_equip_waiver"] = owned.legacy_equip_waiver.duplicate(true)
 	return result
+
+func _ensure_loot_state(value: Dictionary) -> void:
+	if not value.has("loot_events"):
+		Loot.initialize(value, {"gold_pity":{}}, run.id)
+
+## Natural actor IDs come from a deterministic zone/wave/spawn position. The
+## commit retains the entry runtime, never a partially fought room snapshot.
+func record_expedition_kill_reward(spawn_id: String, enemy_id: String, elite: bool = false, summoned: bool = false, zone_index: int = 0) -> bool:
+	if not _expedition_active() or run.ruleset_version() != Numbers.V2 or run.expedition.phase != "combat": return false
+	if summoned: return true
+	if spawn_id.is_empty() or spawn_id.length() > 80 or Expedition.Catalog.enemy(enemy_id).is_empty() or zone_index < 0 or zone_index > 2: return false
+	var id := run.id + ":node:" + str(int(run.expedition.node_index)) + ":kill:" + spawn_id
+	var source := "elite" if elite else "normal"
+	var value := run.expedition.duplicate(true)
+	_ensure_loot_state(value)
+	if value.loot_events.has(id): return value.loot_events[id].result.context.source == source and int(value.loot_events[id].zone_index) == zone_index and value.loot_events[id].get("actor_id", "") == enemy_id
+	run.staged_loot_requests[id] = {"event_id":id,"source":source,"zone_index":zone_index,"actor_id":enemy_id}
+	for request: Dictionary in run.staged_loot_requests.values():
+		if not Loot.add(value, run.id, run.hero_id, request.event_id, request.source, int(request.zone_index), str(request.actor_id)): return false
+	var receipt := run.receipt()
+	for key: String in ["loot_seed","wish_slot","pity_snapshot","loot_events","pending_materials","pending_equipment","claimed_drop_ids","equipment_discoveries","optional_claims"]:
+		receipt.expedition[key] = value[key].duplicate(true) if value[key] is Dictionary or value[key] is Array else value[key]
+	# Field decisions can reference a live loadout that is intentionally not in
+	# the entry snapshot. The items remain pending and safe to recover there.
+	if not _save(profile, receipt): return false
+	run.expedition = value
+	run.committed_receipt = receipt.duplicate(true)
+	run.staged_loot_requests.clear()
+	changed.emit()
+	return true
+
+func _instance_request(spec: Dictionary) -> Dictionary:
+	var request := spec.duplicate(true)
+	if not request.has("hero_id"): request.hero_id = str(profile.selected_hero)
+	return request
+
+func quote_equipment_v2(spec: Dictionary) -> Dictionary:
+	return Transactions.quote_purchase(profile, _instance_request(spec)) if _profile_ruleset() == Numbers.V2 else {"ok":false,"error":"ruleset"}
+
+func quote_craft_equipment_v2(spec: Dictionary) -> Dictionary:
+	return Transactions.quote_craft(profile, _instance_request(spec)) if _profile_ruleset() == Numbers.V2 else {"ok":false,"error":"ruleset"}
+
+func quote_equipment_set_v2(spec: Dictionary) -> Dictionary:
+	return Transactions.quote_set(profile, _instance_request(spec)) if _profile_ruleset() == Numbers.V2 else {"ok":false,"error":"ruleset"}
+
+func purchase_equipment_v2(spec: Dictionary, transaction_id: String) -> Dictionary:
+	return _instance_operation("purchase", spec, transaction_id)
+
+func craft_equipment_v2(spec: Dictionary, transaction_id: String) -> Dictionary:
+	return _instance_operation("craft", spec, transaction_id)
+
+func purchase_equipment_set_v2(spec: Dictionary, transaction_id: String) -> Dictionary:
+	return _instance_operation("set", spec, transaction_id)
+
+func _instance_operation(kind: String, spec: Dictionary, transaction_id: String) -> Dictionary:
+	if _profile_ruleset() != Numbers.V2 or not _camp_available(): return {"ok":false,"error":"camp_required"}
+	var id := transaction_id
+	if id.is_empty(): id = Crypto.new().generate_random_bytes(16).hex_encode()
+	if id.length() > 160: return {"ok":false,"error":"invalid_operation_id"}
+	var request := _instance_request(spec)
+	if _pending_instance_transactions.has(id):
+		var pending: Dictionary = _pending_instance_transactions[id]
+		if pending.kind != kind or not Loot.same(pending.request, request): return {"ok":false,"error":"transaction_context_changed"}
+	var result: Dictionary
+	match kind:
+		"purchase": result = Transactions.purchase(profile, id, request)
+		"craft": result = Transactions.craft(profile, id, request)
+		"set": result = Transactions.complete_set(profile, id, request)
+		_: return {"ok":false,"error":"invalid_kind"}
+	if not bool(result.get("ok", false)): return result
+	_pending_instance_transactions[id] = {"kind":kind,"request":request,"receipt":result.receipt.duplicate(true)}
+	if not bool(result.get("replayed", false)) and not _commit_profile(result.profile): return {"ok":false,"error":last_error,"operation_id":id}
+	_pending_instance_transactions.erase(id)
+	return {"ok":true,"error":"","receipt":result.receipt.duplicate(true),"replayed":bool(result.get("replayed", false))}
+
+func claim_pending_equipment(instance_id: String, transaction_id: String = "") -> bool:
+	if _profile_ruleset() != Numbers.V2 or not _camp_available(): return false
+	var id := transaction_id if not transaction_id.is_empty() else "claim:" + instance_id
+	if id.length() > 160 or not profile.equipment.has(instance_id): return false
+	var receipts: Dictionary = profile.get("pending_claim_receipts", {})
+	if receipts.has(id): return receipts[id] == instance_id
+	if profile.equipment[instance_id].location != "pending": return false
+	var capacity := int(profile.get("inventory_capacity", 0))
+	if capacity > 0 and Loot.inventory_count(profile) >= capacity:
+		last_error = "INVENTORY_CAPACITY"
+		return false
+	var next := profile.duplicate(true)
+	next.equipment[instance_id].location = "inventory"
+	if not next.has("pending_claim_receipts"): next.pending_claim_receipts = {}
+	next.pending_claim_receipts[id] = instance_id
+	return _commit_profile(next)
+
+func _default_set_request(set_id: String) -> Dictionary:
+	var power := "magic" if profile.selected_hero == "CH03" else "physical"
+	var missing: Array = []
+	for template: String in ContentRegistry.set_item_ids(set_id, 2):
+		var owned := false
+		for item: Dictionary in profile.equipment.values():
+			if item.template_id == template and item.power_type == power: owned = true
+		if not owned: missing.append(template)
+	return {"hero_id":str(profile.selected_hero),"set_id":set_id,"template_ids":missing,"rarity":"white","power_type":power,"item_level":hero_level()}
+
+func _equip_instance_set(set_id: String) -> bool:
+	if not _camp_available(): return false
+	var templates: Array = ContentRegistry.set_item_ids(set_id, 2)
+	if templates.size() != 8: return false
+	var ids: Array = profile.equipment.keys()
+	ids.sort()
+	var next := profile.duplicate(true)
+	for template: String in templates:
+		var selected := ""
+		for id: String in ids:
+			var item: Dictionary = profile.equipment[id]
+			if item.template_id == template and item.location != "pending" and Instances.can_equip(item, str(profile.selected_hero), hero_level()):
+				selected = id
+				break
+		if selected.is_empty(): return false
+		next.loadout[ContentRegistry.equipment(template, 2).slot] = selected
+	return _commit_profile(next)

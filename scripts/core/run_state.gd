@@ -55,6 +55,8 @@ var elapsed: float = 0.0
 var expedition: Dictionary = {}
 var committed_receipt: Dictionary = {}
 var staged_xp: Dictionary = {}
+var staged_loot_requests: Dictionary = {}
+var pending_research_materials: Dictionary = {}
 var staged_tutorial: bool = false
 
 func ruleset_version() -> int:
@@ -75,6 +77,7 @@ func live_receipt() -> Dictionary:
 		"boss_defeats": boss_defeats.duplicate(), "rules_version": 1,
 	}
 	if not frozen_versions.is_empty(): value.merge(frozen_versions, true)
+	if ruleset_version() == Rules.V2 and expedition.is_empty(): value["pending_research_materials"] = pending_research_materials.duplicate(true)
 	if not expedition.is_empty():
 		value["expedition"] = expedition.duplicate(true)
 		value["loadout_snapshot"] = loadout_snapshot.duplicate(true)

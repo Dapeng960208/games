@@ -69,7 +69,7 @@ static func hero_base(definition: Dictionary, level: int, talents: Dictionary = 
 	result["level"] = level
 	return result
 
-static func award(profile: Dictionary, hero: String, amount: int, event_id: String, race: String) -> Dictionary:
+static func award(profile: Dictionary, hero: String, amount: int, event_id: String, race: String, defer_materials: bool = false) -> Dictionary:
 	if hero not in ["CH01", "CH02", "CH03"] or amount < 0 or amount > 3600 or event_id.is_empty(): return {}
 	var next := profile.duplicate(true)
 	var receipts: Dictionary = next.get("progression_receipts", {})
@@ -90,15 +90,18 @@ static func award(profile: Dictionary, hero: String, amount: int, event_id: Stri
 	research[hero] = progress % interval
 	next["research_xp"] = research
 	var materials: Dictionary = next.get("materials", {})
+	var material_reward: Dictionary = {}
 	if rewards > 0:
 		var reward: Dictionary = Numbers.value("research_reward")
-		materials["forge"] = int(materials.get("forge", 0)) + rewards * int(reward.common_material)
-		materials["race:" + race] = int(materials.get("race:" + race, 0)) + rewards * int(reward.race_material)
+		material_reward = {"forge":rewards * int(reward.common_material),"race:" + race:rewards * int(reward.race_material)}
+		if not defer_materials:
+			for key: String in material_reward: materials[key] = int(materials.get(key, 0)) + int(material_reward[key])
 	next["materials"] = materials
 	receipts[event_id] = {"hero":hero,"amount":amount,"race":race}
+	if defer_materials: receipts[event_id].merge({"deferred_materials":true,"material_reward":material_reward.duplicate(true),"research_rewards":rewards})
 	next["progression_receipts"] = receipts
 	if next.get("equipment") is Dictionary: next.equipment = expire_level_waivers(next.equipment, next.hero_xp)
-	return {"profile":next,"added":added,"research_rewards":rewards,"replayed":false}
+	return {"profile":next,"added":added,"research_rewards":rewards,"material_reward":material_reward,"replayed":false}
 
 ## Detached, monotonic eligibility cleanup. Original references and approved type
 ## compatibility are audit data and survive after every level exception expires.

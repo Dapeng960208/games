@@ -50,9 +50,14 @@ static func equipment_ids(ruleset: int = 1) -> Array:
 	ids.sort()
 	return ids
 
-static func sets(_ruleset: int = 1) -> Dictionary:
+static func sets(ruleset: int = 1) -> Dictionary:
 	# Fourteen eight-piece sets still use the same 2/4/6 thresholds.
-	return _sets.duplicate(true)
+	var result := _sets.duplicate(true)
+	if ruleset == 2:
+		var materials: Dictionary = Rules.value("shop_set_races", {})
+		for set_id: String in materials:
+			if result.has(set_id): result[set_id]["race_id"] = str(materials[set_id])
+	return result
 
 static func set_item_ids(set_id: String, ruleset: int = 1) -> Array[String]:
 	var result: Array[String] = []
@@ -79,6 +84,8 @@ static func _v2_equipment() -> Dictionary:
 		item["description_en"] = str(item.get("affix_text_en", ""))
 		item["main_coefficient"] = float(Rules.value("starter_template_multiplier")) if str(item.get("set_id", "")).is_empty() else 1.0
 		item["ruleset_version"] = 2
+		if not item.has("race_id") and bool(item.get("shop_only", false)):
+			item["race_id"] = str(Rules.value("shop_set_races", {}).get(str(item.get("set_id", "")), ""))
 		_equipment_v2[id] = item
 	for number in range(1, 15):
 		var set_id := "S%02d" % number
@@ -108,6 +115,8 @@ static func _v2_equipment() -> Dictionary:
 			source["affix_text"] = ""
 			source["affix_text_en"] = ""
 			source["ruleset_version"] = 2
+			if not source.has("race_id") and bool(source.get("shop_only", false)):
+				source["race_id"] = str(Rules.value("shop_set_races", {}).get(set_id, ""))
 			source.erase("combat_passive")
 			source.erase("original_name")
 			_equipment_v2[id] = source

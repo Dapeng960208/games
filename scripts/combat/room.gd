@@ -101,6 +101,7 @@ var _expedition_restore: Dictionary = {}
 var _expedition_ready: bool = false
 var _completion_emitted: bool = false
 var _node_loot_spawned: int = 0
+var _natural_spawn_serial: int = 0
 var _boss_actor: Node2D
 var _boss_defeated: bool = false
 var _terrain_canvas: Node2D
@@ -369,6 +370,9 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 	if not valid_ground(enemy.position, radius):
 		enemy.free()
 		return null
+	if enemy.reward_enabled and enemy.reward_spawn_id.is_empty():
+		enemy.reward_spawn_id = "natural:" + str(_natural_spawn_serial)
+		_natural_spawn_serial += 1
 	_assign_enemy_appearance(enemy)
 	enemies.add_child(enemy)
 	enemy.z_index = 0
@@ -727,6 +731,8 @@ func enemy_died(enemy: MineEnemy) -> void:
 	enemy_corpses.append({"at":enemy.position,"remaining":18.0,"zone":enemy.zone_index})
 	if enemy_corpses.size() > 48:
 		enemy_corpses.pop_front()
+	if Game.run.ruleset_version() == 2 and not expedition_context.is_empty():
+		Game.record_expedition_kill_reward(enemy.reward_spawn_id, enemy.enemy_id, enemy.rank == "elite", false, clampi(enemy.zone_index, 0, 2))
 	telemetry["kills"] += 1
 	Game.record_kill()
 	var context: Dictionary = enemy.last_damage_context.duplicate()
@@ -1693,7 +1699,7 @@ func _spawn_encounter_wave(index: int, definitions: Array) -> bool:
 		planned_radii.append(radius)
 	for spawn_index in definitions.size():
 		var definition: Dictionary = definitions[spawn_index]
-		var spawned: MineEnemy = spawn_enemy(planned[spawn_index],str(definition.enemy_id),int(definition.enemy_level),{"profile":definition,"zone_index":index})
+		var spawned: MineEnemy = spawn_enemy(planned[spawn_index],str(definition.enemy_id),int(definition.enemy_level),{"profile":definition,"zone_index":index,"reward_spawn_id":"zone:%d:wave:%d:spawn:%d" % [index, int(definition.get("wave_index", 0)), spawn_index]})
 		if spawned == null:
 			# Placement and budget are checked before the batch. If an invalid
 			# definition still fails, keep the pending wave intact for retry.
@@ -1922,6 +1928,7 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	_boss_actor = null
 	_boss_defeated = false
 	_node_loot_spawned = 0
+	_natural_spawn_serial = 0
 	_expedition_ready = false
 	progress_retry_timer = 0
 	enemy_props = prepared.props

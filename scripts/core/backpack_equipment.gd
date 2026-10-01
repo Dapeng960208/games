@@ -15,6 +15,7 @@ static func available(game: Node) -> Array[Dictionary]:
 	var version: int = game.run.ruleset_version()
 	var records: Dictionary = game.run.equipment_snapshot.duplicate(true)
 	for id: String in game.profile.get("equipment", {}):
+		if version == 2 and game.profile.equipment[id].location == "pending": continue
 		if not records.has(id): records[id] = game.profile.equipment[id].duplicate(true)
 	for id: String in game.run.expedition.get("pending_equipment", {}):
 		var pending: Dictionary = game.run.expedition.pending_equipment[id]
@@ -47,6 +48,7 @@ static func preview(game: Node, id: String, slot: String = "") -> Dictionary:
 	if not id.is_empty():
 		owned[id] = record.record.duplicate(true) if game.run.ruleset_version() == 2 else {"level":int(record.level)}
 		if game.run.ruleset_version() == 2 and not Instances.can_equip(owned[id], game.run.hero_id, game.run.level): return {}
+	if game.run.ruleset_version() == 2: owned = preload("res://scripts/core/expedition_rewards.gd").carried(loadout, owned)
 	var stats: Dictionary = Resolver.resolve(game.run.hero_id, game.run.level, loadout, owned, game.run.ruleset_version(), game.hero_talents(game.run.hero_id))
 	if stats.is_empty(): return {}
 	for key: String in ["branches", "relic_levels", "temporary_buffs"]:
@@ -66,7 +68,7 @@ static func change(game: Node, id: String, slot: String, runtime: Dictionary, ch
 	var value: Dictionary = game.run.expedition.duplicate(true)
 	if bool(comparison.pending):
 		var pending: Dictionary = value.pending_equipment[id]
-		var drop_id: String = str(pending.get("drop_id", pending.get("source_event_id", "")))
+		var drop_id: String = id if game.run.ruleset_version() == 2 else str(pending.get("drop_id", ""))
 		if value.claimed_drop_ids.has(drop_id): value.claimed_drop_ids[drop_id]["field_decision"] = "equip"
 	var receipt: Dictionary = game.run.live_receipt()
 	receipt.loadout_snapshot = comparison.loadout.duplicate(true)
