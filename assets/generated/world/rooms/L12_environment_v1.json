@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "biome_id": "B02",
+  "name": "琥珀分洪池独立房间环境 v1",
+  "texture": "res://assets/generated/world/rooms/L12_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "walkable_normalized_rect": [
+    0.105,
+    0.2,
+    0.8150000000000001,
+    0.73
+  ],
+  "entrance_exit_openings_normalized": {
+    "west": [
+      0,
+      0.36,
+      0.13,
+      0.28
+    ],
+    "east": [
+      0.87,
+      0.36,
+      0.13,
+      0.28
+    ]
+  },
+  "collision": "none; existing room collision and authored furnishings are drawn separately",
+  "palette": {
+    "primary": "warm cream ivory and pale honey limestone",
+    "accent": "tender green leaves, occasional violet pollen flowers, amber outer roots"
+  },
+  "composition": "独立分蜜花闸与凝露岸庭；完整独立绘制背景，统一琥珀巨叶文明和暖白小石砖。",
+  "safe_margin": {
+    "ground_mapping_only": true,
+    "foreground_obstacles": "No furniture or hard terrain is painted inside the mapped playable center. Small seam moss and edge flowers are nonblocking landscape detail."
+  },
+  "notes": [
+    "每房使用一次独立 built-in image_gen 生成的完整原画；旧族环境只作风格、色卡与小石砖尺度参考。",
+    "角色、敌人、HUD、功能目标与奖励宝匣由运行时绘制，不嵌入此背景。",
+    "原始 PNG 完整复制，无像素编辑、拼贴或缩放。",
+    "placement_normalized_rect 沿用当前固定映射；可走多边形按本房实际干地独立拟合，所有布局锚点到边界至少 30 世界像素。"
+  ],
+  "provenance": {
+    "mode": "built-in image_gen",
+    "kind": "independent_room_environment",
+    "prompt": "res://assets/generated/world/rooms/L12_environment_v1.prompt.json",
+    "reference": "res://assets/generated/world/fixed_B02_environment_v3.png",
+    "source_png": "C:/Users/13326/.codex/generated_images/01a0f5d7-12f4-7571-95cc-d6be11501a59/exec-e21331de-0eb9-41a2-853a-c161313c04a5.png"
+  },
+  "placement_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.105,
+      0.39
+    ],
+    [
+      0.19,
+      0.285
+    ],
+    [
+      0.31,
+      0.2
+    ],
+    [
+      0.45,
+      0.205
+    ],
+    [
+      0.61,
+      0.235
+    ],
+    [
+      0.75,
+      0.275
+    ],
+    [
+      0.855,
+      0.355
+    ],
+    [
+      0.92,
+      0.5
+    ],
+    [
+      0.875,
+      0.66
+    ],
+    [
+      0.77,
+      0.81
+    ],
+    [
+      0.62,
+      0.88
+    ],
+    [
+      0.5,
+      0.93
+    ],
+    [
+      0.32,
+      0.855
+    ],
+    [
+      0.17,
+      0.715
+    ],
+    [
+      0.105,
+      0.565
+    ]
+  ],
+  "boundary": {
+    "winding": "clockwise_positive_cross_in_screen_coordinates",
+    "authority": "independent painted dry stone edge / low root bank; reviewed per room",
+    "validation_layout_scale": 0.58,
+    "decoration_positions_may_extend_beyond_walkable_polygon": true,
+    "validation_status": "actual layout geometry and production GPU suite passed",
+    "minimum_gameplay_anchor_clearance_world": 49.178,
+    "required_anchor_clearance_world": 30,
+    "convex": true,
+    "minimum_complete_route_clearance_world": 49.178
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "integer shared-image regions",
+    "texture_sampling": "full independent room texture; region_filter_clip_enabled=false",
+    "texture_memory": "one shared texture; no streaming claim"
+  },
+  "room_id": "L12",
+  "qa": {
+    "sha256": "08353d3c3474dbb1ef8baa11e7619486f7f4a4742c2dfe455f93039d65149695",
+    "geometry_status": "28-room actual layout anchor and complete route clearance audit passed",
+    "runtime_validation": {
+      "date": "2026-10-01",
+      "engine": "Godot 4.7.2",
+      "suite": "room_presentation",
+      "gpu": true,
+      "checks_total": 1055,
+      "failures": 0,
+      "room_count": 28,
+      "different_loaded_pixel_hashes": 28,
+      "loaded_pixel_sha256": "c34a959fa908b21d5c59f3bc873037c9e8805e80c8bdae98f4b188bc491acb6e",
+      "capture_count_total": 68,
+      "scope": "production room prepare/apply; authored gameplay preservation; navigation; background/chunk/camera/minimap identity; Chinese/English UI window matrix"
+    }
+  }
+}
