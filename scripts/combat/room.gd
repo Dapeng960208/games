@@ -14,6 +14,7 @@ const CameraScript = preload("res://scripts/combat/world_camera.gd")
 const Layouts = preload("res://scripts/world/room_layouts.gd")
 const EnemyProfilesScript = preload("res://scripts/combat/enemy_profiles.gd")
 const EnemyArtScript = preload("res://scripts/combat/enemy_art.gd")
+const EnemyNumericalV2Script = preload("res://scripts/combat/enemy_numerical_v2.gd")
 const EnemyDifficultyScript = preload("res://scripts/combat/enemy_difficulty.gd")
 const EnemySkillsScript = preload("res://scripts/combat/enemy_skill_runtime.gd")
 const EnemyTelegraphsScript = preload("res://scripts/combat/enemy_telegraphs.gd")
@@ -336,12 +337,15 @@ func _configure_world_view() -> void:
 	if is_instance_valid(camera):
 		camera.configure(self, player, ARENA, WorldArt.environment_world_rect(painted_arena, _biome_id(), WorldArt.environment_room_id(layout)))
 
+func enemy_ruleset() -> int:
+	return Game.run.ruleset_version() if Game.run != null else Numerical.LEGACY
+
 func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictionary = {}) -> MineEnemy:
 	if _living_enemy_count() >= Balance.MAX_ENEMIES:
 		return null
 	var resolved: Dictionary = {}
 	if not id.is_empty():
-		resolved = options.get("profile", EnemyProfilesScript.resolve(id, level, str(options.get("rank","normal")))).duplicate(true)
+		resolved = options.get("profile", EnemyProfilesScript.resolve(id, level, str(options.get("rank","normal")), enemy_ruleset(), difficulty)).duplicate(true)
 		if resolved.is_empty():
 			return null
 	elif options.has("profile"):
@@ -349,7 +353,12 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 	# All ordinary spawn paths share the room difficulty, including objective
 	# adds and boss reinforcements. Encounter plans have already applied this;
 	# the preserved base prevents compounding their bonuses on spawn.
-	resolved = EnemyDifficultyScript.apply(resolved, difficulty)
+	if enemy_ruleset() == Numerical.V2:
+		if not str(resolved.get("enemy_id", "")).is_empty() and (int(resolved.get("ruleset_version", 1)) == 1 or resolved.has("numerical_legacy_base")):
+			resolved = EnemyNumericalV2Script.ordinary_profile(resolved, difficulty)
+			if resolved.is_empty(): return null
+	else:
+		resolved = EnemyDifficultyScript.apply(resolved, difficulty)
 	var zone: int = int(options.get("zone_index", resolved.get("zone_index", -1)))
 	if zone >= 0 and _zone_actor_count(zone) >= 6:
 		return null
@@ -416,7 +425,8 @@ func spawn_enemy_summon(caster: Node2D, id: String, at: Vector2) -> MineEnemy:
 			children += 1
 	if children >= 2:
 		return null
-	var resolved: Dictionary = EnemyDifficultyScript.apply(EnemyProfilesScript.resolve(id, caster.enemy_level), difficulty)
+	var resolved: Dictionary = EnemyProfilesScript.resolve(id, caster.enemy_level, "normal", enemy_ruleset(), difficulty)
+	if enemy_ruleset() != Numerical.V2: resolved = EnemyDifficultyScript.apply(resolved, difficulty)
 	if resolved.is_empty():
 		return null
 	var budget: float = float(caster.profile.get("encounter_budget",18.0))
@@ -1730,7 +1740,7 @@ func _encounters_exhausted() -> bool:
 	return true
 
 func _encounter_plan(index: int) -> Dictionary:
-	return EnemyProfilesScript.encounter_plan(layout_id,index,difficulty)
+	return EnemyProfilesScript.encounter_plan(layout_id,index,difficulty,enemy_ruleset())
 
 func _objective_encounters_pending() -> bool:
 	if not is_instance_valid(objectives):
@@ -2118,7 +2128,7 @@ func _activate_expedition_content() -> void:
 			var boss: Node2D = load(boss_script).new()
 			boss.room = self
 			boss.position = layout.get("boss_spawn",Vector2(1800,900))
-			boss.configure_boss(layout_id,difficulty)
+			boss.configure_boss(layout_id,difficulty,0,enemy_ruleset())
 			boss.completed.connect(func(_id: String,_payload: Dictionary) -> void: _boss_defeated = true)
 			_boss_actor = boss
 			enemies.add_child(boss)
@@ -2206,7 +2216,7 @@ func _update_boss_encounter() -> void:
 				serial += 1
 				if at.distance_to(player.position) < 360:
 					at = clamp_actor(player.position+player.position.direction_to(at)*360,24)
-				spawn_enemy(at,str(member.get("enemy_id","")),int(member.get("level",1))+difficulty*2,_boss_actor.reinforcement_spawn_options())
+				spawn_enemy(at,str(member.get("enemy_id","")),_boss_actor.enemy_level if enemy_ruleset() == Numerical.V2 else int(member.get("level",1))+difficulty*2,_boss_actor.reinforcement_spawn_options())
 
 func on_objective_event(_kind: String, _data: Dictionary) -> void:
 	queue_redraw()

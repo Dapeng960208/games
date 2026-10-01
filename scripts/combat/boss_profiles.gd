@@ -5,6 +5,7 @@ extends RefCounted
 ## brain, completion contract and finite arena reinforcement plan.
 
 const Catalog = preload("res://scripts/world/world_catalog.gd")
+const NumericalV2 = preload("res://scripts/combat/enemy_numerical_v2.gd")
 const Palette = preload("res://scripts/combat/enemy_palette.gd")
 
 const NAMES_EN := {
@@ -33,7 +34,9 @@ const TACTICS := {
 static func ids() -> Array[String]:
 	return ["BO01", "BO02", "BO03", "BO04"]
 
-static func resolve(boss_id: String, difficulty: int = 0) -> Dictionary:
+static func resolve(boss_id: String, difficulty: int = 0, ruleset: int = 1) -> Dictionary:
+	if ruleset == 2: return NumericalV2.boss_profile(resolve(boss_id, 0), clampi(difficulty, 0, 4))
+	if ruleset != 1: return {}
 	if boss_id not in STATS:
 		return {}
 	var authored: Dictionary = Catalog.bosses().get(boss_id, {}).duplicate(true)
