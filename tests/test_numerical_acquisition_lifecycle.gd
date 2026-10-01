@@ -255,31 +255,27 @@ func _pity() -> void:
 	check(begin(value, 0) and complete_boss() and not Game.finish_run("extracted").is_empty() and Game.profile.gold_pity == value.gold_pity, "other difficulty boss extraction neither advances nor clears pity")
 
 func _reward_qualities() -> void:
-	for room: String in ["L02","L03","L06","L08","L09","L12","L13","L16","L17","L20","L23"]:
-		var qualities: Array = Rewards.qualities(room, 2)
-		check(qualities.size() > 1, "authored V2 alternate quality retained " + room)
-		for quality: String in qualities:
-			var reward := Rewards.build(room, quality, "CH01", 1, "fixture", [], [], [], 2, 2)
-			check(not reward.is_empty() and reward.source == "room" and reward.quality == quality, "authored quality canonical V2 payload " + room + ":" + quality)
-	check(begin(fixture(), 1), "alternate quality real Game fixture")
-	var tested := false
-	while not tested:
-		if not advance(): break
-		if Game.run.expedition.phase == "safe": continue
-		var room: String = str(Game.run.expedition.route.nodes[int(Game.run.expedition.node_index)].room_id)
-		var qualities: Array = Rewards.qualities(room, 2)
-		if qualities.size() > 1:
-			var id: String = Game.run.id + ":node:" + str(int(Game.run.expedition.node_index)) + ":complete"
-			var reward := Rewards.build(room, str(qualities[1]), Game.run.hero_id, int(Game.run.expedition.seed), id, [], [], [], 1, 2)
-			var gold: int = Game.run.gold
-			var count: int = Game.run.expedition.pending_equipment.size()
-			check(Game.commit_expedition_completion(id, boundary(), reward) and Game.run.gold == gold + int(reward.gold) and Game.run.expedition.pending_equipment.size() == count + 1, "real alternate-quality completion keeps authored gold and guaranteed independent gear")
-			Game.reload_profile()
-			check(Game.run != null and Game.run.expedition.phase == "cleared" and Game.run.expedition.loot_events[id].quality == qualities[1], "alternate completion quality persists with atomic reward")
-			tested = true
-		elif not clear_room(): break
-		if Game.run.expedition.route.nodes[int(Game.run.expedition.node_index)].role == "boss": break
-	check(tested, "real route includes alternate objective outcome")
+	for number in range(1,25):
+		var room := "L%02d" % number
+		check(Rewards.qualities(room, 2) == Rewards.qualities(room, 1) and Rewards.qualities(room, 2) == ["full"], "V2 uses published policy1 qualities " + room)
+		var base: Dictionary = Rewards.build(room,"full","CH01",1,"fixture",[],[],[],0,1)
+		var current: Dictionary = Rewards.build(room,"full","CH01",1,"fixture",[],[],[],2,2)
+		check(not current.is_empty() and int(current.gold) == int(base.gold)*3,"V2 uses policy1 G0 exactly once " + room)
+		for quality: String in Rewards.qualities(room,0):
+			if quality == "full": continue
+			check(not Rewards.build(room,quality,"CH01",1,"history",[],[],[],0,0).is_empty(),"historical policy0 remains readable " + room+":"+quality)
+			check(Rewards.build(room,quality,"CH01",1,"fixture",[],[],[],2,2).is_empty(),"V2 rejects retired policy0 quality " + room+":"+quality)
+	check(begin(fixture(),1) and advance(),"published quality actual Game fixture")
+	var room: String = str(Game.run.expedition.route.nodes[int(Game.run.expedition.node_index)].room_id)
+	var id: String = Game.run.id+":node:"+str(int(Game.run.expedition.node_index))+":complete"
+	var before: Dictionary = Game.run.receipt()
+	var profile_before: Dictionary = Game.profile.duplicate(true)
+	var retired := Rewards.v2_completion(room,1)
+	retired.quality = "reduced"
+	check(not Game.commit_expedition_completion(id,boundary(),retired) and Game.run.receipt() == before and Game.profile == profile_before,"actual Game rejects retired branch with no partial rewards")
+	check(clear_room(),"published full completion succeeds")
+	Game.reload_profile()
+	check(Game.run != null and Game.run.expedition.loot_events[id].quality == "full","published quality reward persists atomically")
 
 func _freeze_no_gold_seed() -> bool:
 	var value: Dictionary = Game.run.expedition.duplicate(true)

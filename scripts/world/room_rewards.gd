@@ -54,7 +54,7 @@ static func qualities(room_id: String, policy_version: int = 0) -> Array:
 	if policy_version == 2:
 		if Catalog.bosses().has(room_id): return ["full"]
 		var outcomes: Array = []
-		for option: Dictionary in _options(room_id): outcomes.append(option.quality)
+		for option: Dictionary in _policy_options(room_id, CURRENT_POLICY_VERSION): outcomes.append(option.quality)
 		return outcomes
 	if policy_version not in [0, CURRENT_POLICY_VERSION]: return []
 	if Catalog.bosses().has(room_id): return ["full"]
@@ -333,7 +333,7 @@ static func v2_completion(room_id: String, difficulty: int, quality: String = "f
 	var boss := Catalog.bosses().has(room_id)
 	var base := 80 if boss and quality == "full" else -1
 	if not boss:
-		for option: Dictionary in _options(room_id):
+		for option: Dictionary in _policy_options(room_id, CURRENT_POLICY_VERSION):
 			if option.quality == quality: base = int(option.gold)
 	if base < 0: return {}
 	var value := {"gold":ceili(base * 2.0 * (1.0 + .25 * difficulty)),"xp":ceili((80 if boss else 30) * (1.0 + .25 * difficulty)),"mastery":0 if boss else 180,"equipment":[],"quality":quality,"source":"boss" if boss else "room","race_id":biome_for_reward(room_id)}
