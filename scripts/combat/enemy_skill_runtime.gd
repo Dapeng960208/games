@@ -1026,7 +1026,7 @@ func _ring_interval(command: Dictionary) -> Vector2:
 func _flash(command: Dictionary, tint: Color = Color("ffab69")) -> void:
 	var visual: Dictionary = command.duplicate()
 	visual["remaining"] = 0.22
-	visual["color"] = tint
+	visual["color"] = command.get("fx_color",tint)
 	visuals.append(visual)
 
 func _draw() -> void:
@@ -1040,7 +1040,8 @@ func _draw() -> void:
 		for command: Dictionary in jobs:
 			_draw_shape(command, Color(1.0, 0.44, 0.27, 0.2), Color("ffc481"))
 	for area: Dictionary in hazards:
-		_draw_shape(area, Color(0.92, 0.35, 0.2, 0.23), Color("ef936b"))
+		var color: Color = area.get("fx_color",Color("ef936b"))
+		_draw_shape(area,Color(color,.16) if area.has("boss_id") else Color(.92,.35,.2,.23),color)
 	for visual: Dictionary in visuals:
 		if bool(visual.get("decoy", false)):
 			var at: Vector2 = visual.origin
@@ -1056,11 +1057,15 @@ func _draw() -> void:
 		else:
 			var color: Color = visual.get("color", Color("ffab69"))
 			_draw_shape(visual, Color(color, 0.12), Color(color, 0.7))
+			preload("res://scripts/combat/boss_skill_presentation.gd").draw_impact(self,visual,bool(settings.get("reduced_fx",false)))
 	for shot: Dictionary in projectiles:
 		var at: Vector2 = shot.position
 		var direction: Vector2 = shot.direction
-		draw_line(at - direction * 17.0, at, Color("fc9065"), 5.0, true)
+		var color: Color = shot.get("fx_color",Color("fc9065"))
+		draw_line(at - direction * 17.0, at, color, 5.0, true)
 		draw_circle(at, float(shot.radius), Color("fff0bc"))
+		if shot.has("boss_id") and not bool(settings.get("reduced_fx",false)):
+			preload("res://scripts/combat/boss_skill_presentation.gd").draw_glyph(self,str(shot.boss_id),at,float(shot.radius)+3,color,0)
 	for mark: Dictionary in marks:
 		var marked: Node2D = _support_target(mark)
 		if _alive(marked):

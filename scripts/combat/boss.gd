@@ -152,9 +152,9 @@ func apply_biome_counter(kind: String, duration: float = 2.6) -> bool:
 func cast_enemy_skill(skill: Dictionary) -> void:
 	if _complete or not is_alive():
 		return
-	if str(skill.get("thematic_action", "")) == "solar_cross":
-		# The telegraph exposes both frozen strokes. Runtime ground areas own one
-		# segment each, so release exactly those two warned electric traces.
+	if str(skill.get("kind", "")) == "ground_area" and str(skill.get("shape", "")) == "line" and not skill.get("paths", []).is_empty():
+		# Runtime ground areas own one segment each. Release each frozen stroke
+		# shown by the warning, including parallel faults and the stitch fence.
 		for path: Array in skill.get("paths", []):
 			if path.size() < 2: continue
 			var stroke: Dictionary = skill.duplicate(true)

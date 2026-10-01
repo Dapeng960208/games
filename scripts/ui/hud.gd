@@ -278,6 +278,7 @@ class BuffChip extends Button:
 			draw_line(Vector2(30,20),Vector2(33,20),accent,2.0,true)
 
 var room: Node
+var boss_cast_plate: Control
 var health_label: Label
 var gold_label: Button
 var retained_label: Label
@@ -554,6 +555,9 @@ func _ready() -> void:
 	tooltip_body = MineStyle.label(tooltip_panel,"",Vector2(14,44),Vector2(352,154),16,HUD_INK)
 	tooltip_body.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
 	tooltip_panel.hide()
+	boss_cast_plate = Control.new()
+	boss_cast_plate.set_script(load("res://scripts/ui/boss_cast_plate.gd"))
+	add_child(boss_cast_plate)
 	resized.connect(_apply_layout)
 	get_viewport().size_changed.connect(_apply_layout)
 	_apply_layout()
@@ -838,6 +842,19 @@ func refresh() -> void:
 		_update_quest_and_route()
 
 		_update_navigation()
+	_update_boss_cast()
+
+func _update_boss_cast() -> void:
+	if not is_instance_valid(boss_cast_plate): return
+	var obstacles: Array[Rect2] = []
+	var inverse := get_global_transform().affine_inverse()
+	for bounds: Rect2 in coverage_rects():
+		obstacles.append(inverse*bounds)
+	for bounds: Rect2 in active_buff_coverage_rects():
+		obstacles.append(inverse*bounds)
+	if is_instance_valid(toast) and toast.visible: obstacles.append(inverse*toast.get_global_rect())
+	if is_instance_valid(hit_chain_readout) and hit_chain_readout.visible: obstacles.append(inverse*hit_chain_readout.get_global_rect())
+	boss_cast_plate.update_cast(room,screen_size,obstacles,get_theme_default_font())
 
 func _update_quest_and_route() -> void:
 	var room_key := "ROOM_"+str(room.layout_id)

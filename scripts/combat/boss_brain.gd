@@ -7,6 +7,7 @@ extends RefCounted
 ## finite reinforcement requests and the completion signal.
 
 const EPSILON := 0.00001
+const Abilities = preload("res://scripts/combat/boss_ability_catalog.gd")
 const SEQUENCES := {
 	"BO01": {1:["hammer_fan", "ladle_drag", "solar_cross"], 2:["hammer_fan", "slag_lane", "ladle_drag", "solar_cross"], 3:["hammer_fan", "ladle_drag", "back_heat", "solar_cross"]},
 	"BO02": {1:["root_fork", "spore_pod", "brood_eggs", "root_link", "acid_scatter"], 2:["root_fork", "root_link", "spore_pod", "brood_eggs", "acid_scatter"], 3:["root_link", "spore_pod", "brood_eggs", "crown_open", "acid_scatter"]},
@@ -312,10 +313,16 @@ func _enter_phase(actor: Node2D) -> void:
 func _begin_action(actor: Node2D, victim: Node2D, forced_action: String = "") -> void:
 	# The explicit action argument lets arena fixtures exercise one real ability;
 	# ordinary gameplay selects by distance, availability and recent casts.
-	var sequence: Array = SEQUENCES.get(boss_id, {}).get(phase, [])
+	var sequence: Array = available_actions()
 	if sequence.is_empty():
 		state = &"recovery"
 		state_time = 1.0
+		return
+	if not forced_action.is_empty() and Abilities.tier(boss_id,forced_action) > int(definition.get("difficulty",0)):
+		command.clear()
+		state = &"recovery"
+		state_time = .45
+		_set_actor_state(actor,&"recovery")
 		return
 	current_action = forced_action if not forced_action.is_empty() else _select_action(actor, victim, sequence)
 	if current_action.is_empty():
@@ -371,6 +378,7 @@ func _select_action(actor: Node2D, victim: Node2D, sequence: Array) -> String:
 	return ""
 
 func _action_available(actor: Node2D, action: String) -> bool:
+	if Abilities.tier(boss_id,action) > int(definition.get("difficulty",0)): return false
 	if action == "brood_eggs":
 		return brood_batches < int(definition.get("brood_batch_limit", 3)) and _owned_add_count(actor) < 2
 	if action == "grave_recall":
@@ -380,6 +388,15 @@ func _action_available(actor: Node2D, action: String) -> bool:
 
 func _action_distance(action: String) -> Vector2:
 	match action:
+		"axe_fan": return Vector2(0,285)
+		"wing_storm": return Vector2(0,440)
+		"gear_dash", "royal_dive": return Vector2(180,480)
+		"eclipse_ring": return Vector2(155,410)
+		"seismic_crown": return Vector2(250,550)
+		"prism_fan", "funeral_hook": return Vector2(0,700)
+		"needle_fan": return Vector2(0,650)
+		"fault_lines": return Vector2(0,720)
+		"boulder_volley": return Vector2(0,760)
 		"hammer_fan": return Vector2(0.0, 255.0)
 		"root_link": return Vector2(0.0, 350.0)
 		"back_heat": return Vector2(105.0, 285.0)
@@ -494,12 +511,15 @@ func _execute(actor: Node2D) -> void:
 	_set_actor_state(actor, &"recovery")
 
 func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
+	if Abilities.tier(boss_id,action) > 0:
+		if Abilities.tier(boss_id,action) > int(definition.get("difficulty",0)): return {}
+		return Abilities.build(boss_id,action,actor.position,victim.position)
 	var origin: Vector2 = actor.position
 	var target: Vector2 = victim.position
 	var direction: Vector2 = origin.direction_to(target)
 	if direction.length_squared() <= EPSILON:
 		direction = Vector2.RIGHT
-	var base := {"action_id":action, "thematic_action":str(THEMED_ACTIONS.get(boss_id, {}).get(action, action)), "behavior_id":"boss_"+boss_id.to_lower(), "origin":origin, "target":target, "direction":direction, "tracks_target":true}
+	var base := {"action_id":action, "thematic_action":str(THEMED_ACTIONS.get(boss_id, {}).get(action, action)), "behavior_id":"boss_"+boss_id.to_lower(), "boss_id":boss_id,"fx_color":Abilities.COLORS[boss_id],"origin":origin, "target":target, "direction":direction, "tracks_target":true}
 	match action:
 		"hammer_fan":
 			base.merge({"kind":"melee", "shape":"cone", "range":255.0, "angle":1.85, "damage_multiplier":1.15, "tell":0.78, "lock":0.34, "recovery":1.0})
@@ -579,6 +599,9 @@ func _ring_command(origin: Vector2, direction: Vector2, outer: bool) -> Dictiona
 func _retarget(actor: Node2D, victim: Node2D) -> void:
 	if command.is_empty():
 		return
+	if Abilities.tier(boss_id,current_action) > 0:
+		command = Abilities.build(boss_id,current_action,actor.position,victim.position)
+		return
 	command.origin = actor.position
 	var direction: Vector2 = actor.position.direction_to(victim.position)
 	if direction.length_squared() > EPSILON:
@@ -644,6 +667,18 @@ func _freeze_geometry(actor: Node2D, source: Dictionary) -> Dictionary:
 		result.ring_end = float(result.ring_start) + TAU - gap
 	result.erase("tracks_target")
 	return result
+
+func available_actions(for_phase: int = -1) -> Array:
+	var actions: Array = SEQUENCES.get(boss_id,{}).get(phase if for_phase < 0 else for_phase,[]).duplicate()
+	actions.append_array(Abilities.unlocked(boss_id,int(definition.get("difficulty",0))))
+	return actions
+
+func skill_pool() -> Array:
+	var actions: Array = []
+	for phase_id: int in [1,2,3]:
+		for action: String in available_actions(phase_id):
+			if not actions.has(action): actions.append(action)
+	return actions
 
 func _solar_cross_paths(origin: Vector2, target: Vector2, actor: Node2D = null) -> Array:
 	var direction: Vector2 = origin.direction_to(target)
