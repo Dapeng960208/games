@@ -5,6 +5,7 @@ const RoomScene = preload("res://scenes/room.tscn")
 const Visual = preload("res://scripts/combat/hero_visual.gd")
 const WalkAtlas = preload("res://scripts/combat/hero_walk_atlas.gd")
 const ArtFamily = preload("res://scripts/combat/hero_art_family.gd")
+const Metrics = preload("res://scripts/combat/presentation_metrics.gd")
 const CYCLES: Dictionary = {"CH01":150.0,"CH02":155.0,"CH03":145.0}
 const INPUT_ACTIONS: Array[String] = ["move_left","move_right","move_up","move_down","attack","dash","interact","skill_q","skill_secondary","skill_f","skill_ultimate"]
 var room: MineRoom
@@ -81,7 +82,7 @@ func check_walk_bank_frames(hero: String, metadata: Dictionary) -> void:
 			check(frame.frame_index is int and int(frame.frame_index) == int(sequence[index]) and int(frame.get("frame_count",0)) == count,label+" selects the authored index and reports its actual frame count")
 			check(str(frame.phase) == "walk" and str(frame.bank) == bank,label+" keeps walk and facing identities")
 			check(is_equal_approx(float(frame.cycle_distance),cycle),label+" uses the hero's authored world-distance cadence")
-			check(frame.anchors.get("foot") == Vector2(0,8) and is_equal_approx(float(frame.body_height),88.0),label+" retains body height and ground contact")
+			check(frame.anchors.get("foot") == Vector2(0,8) and is_equal_approx(float(frame.body_height),Metrics.HERO_BODY_HEIGHT),label+" retains body height and ground contact")
 			if region.size.x > 0 and region.size.y > 0:
 				var scale_x: float = bounds.size.x/region.size.x
 				var scale_y: float = bounds.size.y/region.size.y
@@ -91,7 +92,7 @@ func check_walk_bank_frames(hero: String, metadata: Dictionary) -> void:
 					if int(definition.get("index",-1)) == int(frame.frame_index):
 						authored_height = float(definition.get("body_height",authored_height))
 						break
-				check(authored_height > 0 and is_equal_approx(float(frame.get("source_body_height",0)),authored_height) and is_equal_approx(scale_y*authored_height,88.0),label+" scales by explicit body anatomy rather than weapon width")
+				check(authored_height > 0 and is_equal_approx(float(frame.get("source_body_height",0)),authored_height) and is_equal_approx(scale_y*authored_height,Metrics.HERO_BODY_HEIGHT),label+" scales by explicit body anatomy rather than weapon width")
 			check(same_frame(Visual.walk_frame_info(hero,bank,distance+cycle),frame),label+" repeats after exactly one world-distance cycle")
 			check(same_frame(Visual.walk_frame_info(hero,bank,distance+cycle*7.0),frame),label+" keeps cadence after several cycles")
 			check(same_frame(Visual.motion_frame_info(hero,bank,"idle",distance*.12,true),frame),label+" converts player stride back to actual world distance")
@@ -143,7 +144,7 @@ func check_approved_fixtures() -> void:
 		var sample: Dictionary = WalkAtlas.sample_clip(clip,"front",float(CYCLES[hero])*.55)
 		check(int(sample.get("frame_index",-1)) == 4,hero+" approved fixture samples the expected walk frame")
 		if not sample.is_empty():
-			var fixture_scale: float = 88.0/26.0
+			var fixture_scale: float = Metrics.HERO_BODY_HEIGHT/26.0
 			check((sample.bounds.position+Vector2(13,30)*fixture_scale).distance_to(Vector2(0,8)) < .001,hero+" explicit source foot lands at the real ground anchor")
 		check(WalkAtlas.sample_clip(clip,"missing",1.0).is_empty(),hero+" missing bank has no fabricated frame")
 		check(WalkAtlas.sample_clip(clip,"front",INF).is_empty(),hero+" non-finite movement has no fabricated frame")
@@ -204,7 +205,7 @@ func check_separate_bank_fixture(directory: String, atlas_path: String, definiti
 	check(front.frame_index == 0 and back.frame_index == 0 and front.region == Rect2(0,0,26,32) and back.region == Rect2(10,20,90,110),"front and back local index zero cannot overwrite each other")
 	check(same_frame(front,WalkAtlas.sample_clip(clip,"front",150.0)),"back sampling cannot replace the cached front frame")
 	check(is_equal_approx(float(front.source_body_height),24.0) and is_equal_approx(float(back.source_body_height),500.0),"bank anatomy overrides inherit the root value only when absent")
-	var back_scale: float = 88.0/500.0
+	var back_scale: float = Metrics.HERO_BODY_HEIGHT/500.0
 	check((back.bounds.position+Vector2(33,92)*back_scale).distance_to(Vector2(0,8)) < .001,"separate-bank absolute foot registers its nonzero source region")
 	check(back.anchors.muzzle.distance_to(Vector2(47,-72)*back_scale+Vector2(0,8)) < .001,"separate-bank attachment anchors use that bank's foot and scale")
 	var corrected: Dictionary = WalkAtlas.sample_clip(clip,"back",150.0*1.5/8.0)
