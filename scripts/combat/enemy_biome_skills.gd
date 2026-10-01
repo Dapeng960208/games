@@ -18,7 +18,3 @@ static func apply(profile: Dictionary) -> void:
 	profile["biome_skill"] = signature.duplicate(true)
 	profile["biome_skill_name"] = signature.name
 	profile["biome_skill_name_en"] = signature.name_en
-	var mechanics: Array = profile.get("mechanics", [])
-	if not mechanics.has(signature.id):
-		mechanics.append(signature.id)
-	profile["mechanics"] = mechanics

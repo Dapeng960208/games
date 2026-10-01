@@ -12,7 +12,7 @@
 | COM01 P0 | 枪口出弹和枪手打击感，待修 | hero_visual.gd、hero_feedback.gd、projectile_visual.gd、projectile.gd、room.gd、hero_skill_atlas.gd、combat_audio.gd | 可见弹体从本次姿态枪口发出，方向一致，墙角不穿模；后坐、闪光、命中和声音同节奏，保留物理结算规则 |
 | COM02 P1 | 三职业十二技能专属效果，未开始 | hero_abilities.gd、hero_feedback.gd、skill_input_feedback.gd、scripts/ui/hud.gd、技能素材 | 每招蓄力/释放/命中或落点语言可辨，连招提示清楚；降低特效保留信息，不能仅换颜色 |
 | COM03 P1 | 累计野怪量增加约40%，计划与实际运行已检查 | enemy_profiles.gd 的 encounter_plan、room.gd、config/ | 已通过有限后续波次增量与五难度数量检查，保留并发、弹体和召唤上限；后续按自然群战节奏调校 |
-| COM04 P1 | 已写种族特性与难度模块，待验证 | enemy_biome_skills.gd、enemy_difficulty.gd、enemy_skill_runtime.gd、enemy_brain.gd、first_four_construct_hive.gd | 护盾、毒蚀、回血、狂怒、冷却与反制真实生效；难度重复应用不叠乘，恢复/召唤一致；预警公平、虫壳可破 |
+| COM04 P1 | 四族普通怪特性已接入并通过实效检查 | enemy_biome_skills.gd、enemy_difficulty.gd、enemy_skill_runtime.gd、enemy_brain.gd、first_four_construct_hive.gd | 护盾、毒蚀、回血、狂怒及冷却真实生效；普通怪20级高难效果已检查，保留36原型预警；后续调校区域群战平衡 |
 | UI01 P1 | 页面和信息细节收尾 | scripts/ui/style.gd、button_skin.gd、main.gd、expedition_panel.gd、backpack_panel.gd、hud.gd | 使用独特 UI 构件；焦点、禁用态和文案清楚；中英文及 1280×720、1920×1080、1280×900 不截断；只检查实际改动页 |
 | ANIM01 P2 | 完整角色动作和附件 | hero_art_family.gd、hero_walk_atlas.gd、hero_basic_atlas.gd、hero_skill_atlas.gd | 头像身份、身体高度、脚点一致；补连续动作与必要朝向；枪口锚点一致，拒收候选不启用 |
 

@@ -1032,7 +1032,11 @@ func _flash(command: Dictionary, tint: Color = Color("ffab69")) -> void:
 func _draw() -> void:
 	if not is_instance_valid(room):
 		return
-	if bool(Game.profile.get("settings", {}).get("enemy_skill_paths", true)):
+	# The runtime is also used by deterministic SceneTree tests before global
+	# autoload names are registered. Read the optional UI setting at draw time.
+	var controller: Node = get_node_or_null("/root/Game")
+	var settings: Dictionary = _property(controller, "profile", {}).get("settings", {})
+	if bool(settings.get("enemy_skill_paths", true)):
 		for command: Dictionary in jobs:
 			_draw_shape(command, Color(1.0, 0.44, 0.27, 0.2), Color("ffc481"))
 	for area: Dictionary in hazards:
