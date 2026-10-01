@@ -6,6 +6,7 @@ extends Node
 const Visual = preload("res://scripts/combat/hero_visual.gd")
 const Atlas = preload("res://scripts/combat/hero_basic_atlas.gd")
 const ArtFamily = preload("res://scripts/combat/hero_art_family.gd")
+const Metrics = preload("res://scripts/combat/presentation_metrics.gd")
 const RoomScene = preload("res://scenes/room.tscn")
 var room: MineRoom
 var checks := 0
@@ -67,8 +68,8 @@ func metadata_fixtures() -> void:
 		var frame: Dictionary = Atlas.sample_clip(clip, sample[0], sample[1])
 		check(frame.get("frame_name") == sample[2] and int(frame.get("frame_index",-1)) == int(sample[3]), "weighted clamped boundary " + str(sample))
 		check(frame.get("phase") == sample[0] and frame.get("basic_sequence") == true, "sample preserves phase with basic identity")
-		check(frame.anchors.foot == Vector2(0,8) and frame.body_height == 88.0, "every frame has fixed world anatomy and ground foot")
-		check(is_equal_approx(frame.bounds.size.y / frame.region.size.y, 88.0/26.0), "weapon extent never chooses frame scale")
+		check(frame.anchors.foot == Vector2(0,8) and frame.body_height == Metrics.HERO_BODY_HEIGHT, "every frame has fixed world anatomy and ground foot")
+		check(is_equal_approx(frame.bounds.size.y / frame.region.size.y, Metrics.HERO_BODY_HEIGHT/26.0), "weapon extent never chooses frame scale")
 	check(Atlas.sample_clip(clip,"idle",0.0).is_empty() and Atlas.sample_clip(clip,"windup",NAN).is_empty() and Atlas.sample_clip(clip,"windup",INF).is_empty(), "unknown phase and nonfinite progress cannot fabricate frames")
 	check(Atlas.load_clip(directory.path_join("missing.json")).is_empty(), "missing metadata has fallback")
 	for mode: String in ["disabled","unreviewed","string_enabled","zero_height","missing_frame","duplicate_frame","bad_region","bad_foot","bad_head","unknown_phase_frame","bad_weights","zero_weight","missing_texture","wrong_texture_type","wrong_bank","wrong_hero","wrong_schema"]:
@@ -126,8 +127,8 @@ func check_production_assets() -> void:
 			check(frame.path == texture_path and frame.bank == bank, "front/back active assets remain independently registered")
 			check(not definitions.has(frame.region), "each production keypose samples a distinct source region")
 			definitions.append(frame.region)
-			check(frame.anchors.foot == Vector2(0,8) and frame.body_height == 88.0, "production basic preserves world anchor and scale")
-			check(is_equal_approx(frame.bounds.size.y/frame.region.size.y * frame.source_body_height,88.0), "production frame uses one fixed source body height")
+			check(frame.anchors.foot == Vector2(0,8) and frame.body_height == Metrics.HERO_BODY_HEIGHT, "production basic preserves world anchor and scale")
+			check(is_equal_approx(frame.bounds.size.y/frame.region.size.y * frame.source_body_height,Metrics.HERO_BODY_HEIGHT), "production frame uses one fixed source body height")
 		check(definitions.size() == 6, bank + " registers all six authored poses")
 
 func fixture(direction: Vector2) -> void:
@@ -286,7 +287,7 @@ func record_native_sequences() -> void:
 				check(frame.get_size() == Vector2i(1280,720) and frame.save_png(directory.path_join(filename)) == OK, "save raw normal-speed engine capture "+filename)
 				files.append(filename)
 			var record: Dictionary = {"bank":bank,"mode":mode,"captured_frame_count":captures.size(),"missing_frame_indices":missing,"files":files,
-				"samples":samples,"camera_zoom":[room.camera.zoom.x,room.camera.zoom.y],"world_body_height":88.0,"basic_events":feedback.basic_events,"impact_events":feedback.impact_events}
+				"samples":samples,"camera_zoom":[room.camera.zoom.x,room.camera.zoom.y],"world_body_height":Metrics.HERO_BODY_HEIGHT,"basic_events":feedback.basic_events,"impact_events":feedback.impact_events}
 			records.append(record)
 			print("BASIC_NATIVE_CAPTURE bank=",bank," mode=",mode," captured=",captures.size()," missing=",missing)
 			captures.clear()
