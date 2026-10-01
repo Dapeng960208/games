@@ -42,6 +42,13 @@ def build(output: Path) -> Path:
     rooms = manifest["rooms"]
     gallery_title = f'{len(rooms)}房实际运行图册' if rooms else "房间UI定向检查图册"
     scope = "预备定向检查 · " if manifest.get("partial") else ""
+    ui_evidence_path = output / "ui-verification.json"
+    ui_note = ""
+    if ui_evidence_path.is_file():
+        ui_evidence = json.loads(ui_evidence_path.read_text(encoding="utf-8"))
+        ui_note = (f'<small>UI 修复后定向回归：{ui_evidence["checks"]} 项检查 / '
+                   f'{ui_evidence["failures"]} 失败 · 中英文三尺寸的 12 张 UI 图已更新；'
+                   '28 房中心与概览保留完整背景验收的原始截图。</small>')
     cards = []
     for room in rooms:
         name = html.escape(f'{room["id"]} · {room["name"]}')
@@ -59,7 +66,7 @@ def build(output: Path) -> Path:
     page = f'''<!doctype html>
 <html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{gallery_title}</title>
 <style>body{{margin:0;background:#f5eddf;color:#392843;font:16px/1.6 system-ui,sans-serif}}header{{position:sticky;top:0;z-index:2;background:#fff8eaeF;border-bottom:1px solid #baa27f;padding:12px 3vw;backdrop-filter:blur(12px)}}h1{{margin:0;font-size:23px}}nav{{display:flex;gap:8px;flex-wrap:wrap}}button{{background:#fff3d7;color:#392843;border:1px solid #baa27f;border-radius:6px;padding:5px 15px;font:inherit;cursor:pointer}}button[aria-pressed="true"]{{background:#398f96;color:white}}main{{max-width:1800px;margin:24px auto;padding:0 3vw}}article{{margin:0 0 26px;padding:18px;background:#fff9ed;border:1px solid #ceb992;border-radius:12px}}h2{{margin:0;font-size:21px}}p{{margin:4px 0 14px}}span{{font-size:12px;color:#766474;float:right}}.shots{{display:grid;grid-template-columns:1fr 1fr;gap:16px}}figure{{margin:0}}img{{width:100%;height:auto;display:block;border-radius:6px;background:#392843}}figcaption{{color:#766474;font-size:13px;margin:6px 0}}#extra{{display:grid;grid-template-columns:1fr 1fr;gap:20px}}small{{display:block;color:#766474}}@media(max-width:900px){{.shots,#extra{{grid-template-columns:1fr}}}}</style>
-<header><h1>{gallery_title}</h1><small>{scope}GPU 实机：{manifest["gpu"]} · {manifest["checks"]} 项检查 / {manifest["failures"]} 失败 · 中心镜头使用运行 HUD；概览临时拉远相机，青线标真实可走边界，浅金点标入口、出口与目标。</small><nav><button data-filter="all" aria-pressed="true">全部 {len(rooms)} 房</button><button data-filter="B01">晴辉遗庭</button><button data-filter="B02">琥珀虫巢</button><button data-filter="B03">南瓜墓镇</button><button data-filter="B04">赤岩战寨</button><button data-filter="ui">三窗口与中英文</button></nav></header>
+<header><h1>{gallery_title}</h1><small>{scope}GPU 实机：{manifest["gpu"]} · {manifest["checks"]} 项检查 / {manifest["failures"]} 失败 · 中心镜头使用运行 HUD；概览临时拉远相机，青线标真实可走边界，浅金点标入口、出口与目标。</small>{ui_note}<nav><button data-filter="all" aria-pressed="true">全部 {len(rooms)} 房</button><button data-filter="B01">晴辉遗庭</button><button data-filter="B02">琥珀虫巢</button><button data-filter="B03">南瓜墓镇</button><button data-filter="B04">赤岩战寨</button><button data-filter="ui">三窗口与中英文</button></nav></header>
 <main><section id="rooms">{"".join(cards)}</section><section id="extra" hidden>{extra_cards}</section></main>
 <script>document.querySelectorAll('button').forEach(button=>button.onclick=()=>{{const filter=button.dataset.filter;document.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));document.querySelector('#rooms').hidden=filter==='ui';document.querySelector('#extra').hidden=filter!=='ui';document.querySelectorAll('article').forEach(card=>card.hidden=filter!=='all'&&card.dataset.biome!==filter);}});</script></html>'''
     # Explicit rule overrides the gallery's grid display for hidden sections.
