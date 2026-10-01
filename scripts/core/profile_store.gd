@@ -15,6 +15,8 @@ const SLOTS := ["weapon", "head", "chest", "hands", "feet", "charm"]
 const STARTER_IDS := ["EQ01", "EQ11", "EQ21", "EQ31", "EQ41", "EQ51"]
 const MAX_TRANSACTIONS := 512 # At most 60 purchases + 300 upgrades; never evict IDs.
 const VOLUME_DEFAULTS := {"master_volume":1.0,"music_volume":0.55,"sfx_volume":0.85}
+const Controls = preload("res://scripts/core/control_bindings.gd")
+const COMBAT_SETTING_DEFAULTS := {"auto_attack": false, "enemy_skill_paths": true}
 
 var path: String
 var last_error: String = ""
@@ -34,6 +36,7 @@ static func fresh_profile() -> Dictionary:
 		"permanent_gold": 0, "discoveries": [], "total_runs": 0,
 		"last_result": {},
 		"settings": {"language": "zh_CN", "reduced_fx": false, "camera_shake": false, "fullscreen": false,
+			"auto_attack": false, "enemy_skill_paths": true, "controls": {},
 			"master_volume":1.0,"music_volume":0.55,"sfx_volume":0.85},
 		"selected_hero": "CH01", "hero_xp": {"CH01": 0, "CH02": 0, "CH03": 0},
 		"branches": {"CH01": {"q": "", "ultimate": ""}, "CH02": {"q": "", "ultimate": ""},
@@ -121,6 +124,10 @@ func load_document() -> Dictionary:
 	if not loaded.profile.settings.has("camera_shake"): loaded.profile.settings.camera_shake = false
 	for key: String in VOLUME_DEFAULTS:
 		if not loaded.profile.settings.has(key): loaded.profile.settings[key] = VOLUME_DEFAULTS[key]
+	for key: String in COMBAT_SETTING_DEFAULTS:
+		if not loaded.profile.settings.has(key): loaded.profile.settings[key] = COMBAT_SETTING_DEFAULTS[key]
+	# Fill absent keys without changing any bindings already chosen by the player.
+	if not loaded.profile.settings.has("controls"): loaded.profile.settings.controls = {}
 	return loaded
 
 func save_document(profile: Dictionary, active_run: Variant = null, profile_initialized: bool = true) -> bool:
@@ -294,6 +301,9 @@ static func _valid_document(value: Variant) -> bool:
 		or not settings.get("reduced_fx") is bool or not settings.get("fullscreen") is bool:
 		return false
 	if settings.has("camera_shake") and not settings.camera_shake is bool: return false
+	for key: String in COMBAT_SETTING_DEFAULTS:
+		if settings.has(key) and not settings[key] is bool: return false
+	if settings.has("controls") and not Controls.valid_overrides(settings.controls): return false
 	for key: String in VOLUME_DEFAULTS:
 		if settings.has(key) and not _number(settings[key], 1.0, false): return false
 	if not value.has("active_run"):

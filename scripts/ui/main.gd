@@ -7,6 +7,8 @@ const FieldEquipmentPanel = preload("res://scripts/ui/field_equipment_panel.gd")
 const RoutePlanner = preload("res://scripts/world/route_generator.gd")
 const CampNavTile = preload("res://scripts/ui/illustrated_nav_tile.gd")
 const CampArtwork = preload("res://scripts/ui/storybook_art.gd")
+const Controls = preload("res://scripts/core/control_bindings.gd")
+const BackpackPanel = preload("res://scripts/ui/backpack_panel.gd")
 const DIFFICULTY_KEYS := ["DIFFICULTY_NORMAL","DIFFICULTY_CHALLENGING","DIFFICULTY_HARD","DIFFICULTY_SEVERE","DIFFICULTY_EXTREME"]
 
 var backdrop: Node2D
@@ -29,11 +31,14 @@ var music: Node
 var music_tick := 0.0
 var audio_sliders: Dictionary = {}
 var demo_hero := "CH01"
+var settings_tab := "general"
+var pending_binding_action := ""
+var binding_feedback: Label
 
 const HERO_LOOPS := {
-	"CH01":["破岩斧卫","贴身积累破势，重击打穿敌阵。","普攻 / Q 蓄势 → 鼠标右键破阵","BREAKER","Build pressure up close, then break the line."],
-	"CH02":["游走枪手","移动获得标记，精确射击收割。","走位标记 → 鼠标右键贯穿","GUNNER","Keep moving. Mark your prey. Pierce the pack."],
-	"CH03":["共鸣术士","布置节点，蓄能后连锁引爆。","鼠标右键布点 → Q 充能 → F 引爆","RESONATOR","Place nodes, charge them, trigger a chain reaction."]
+	"CH01":["破岩斧卫","贴身积累破势，重击打穿敌阵。","普攻 / Q 蓄势 → W 破阵","BREAKER","Build pressure up close, then break the line."],
+	"CH02":["游走枪手","连续命中标记弱点，精确射击收割。","两次普攻 → 第三击 / 技能破绽","GUNNER","Mark a weak point with two hits. Consume it with a shot or skill."],
+	"CH03":["共鸣术士","布置节点，蓄能后连锁引爆。","W 布点 → Q 充能 → E 引爆","RESONATOR","Place nodes, charge them, trigger a chain reaction."]
 }
 
 func _ready() -> void:
@@ -68,28 +73,10 @@ func _ready() -> void:
 	# Dedicated automation scripts load this scene and call the same public routes.
 
 func _install_inputs() -> void:
-	var keys := {"move_left":KEY_A,"move_right":KEY_D,"move_up":KEY_W,"move_down":KEY_S,"dash":KEY_SPACE,"skill_q":KEY_Q,"skill_f":KEY_F,"skill_ultimate":KEY_R,"interact":KEY_E,"relic_details":KEY_TAB,"expedition_map":KEY_M,"pause":KEY_ESCAPE,"circuit_place":KEY_C,"circuit_release":KEY_V}
-	for action in keys:
-		if not InputMap.has_action(action):
-			InputMap.add_action(action)
-			var event := InputEventKey.new()
-			event.physical_keycode = keys[action]
-			InputMap.action_add_event(action,event)
-	for action: String in ["move_left","move_right","move_up","move_down"]:
-		var arrow := InputEventKey.new()
-		arrow.physical_keycode = {"move_left":KEY_LEFT,"move_right":KEY_RIGHT,"move_up":KEY_UP,"move_down":KEY_DOWN}[action]
-		if not InputMap.action_has_event(action,arrow): InputMap.action_add_event(action,arrow)
-	if not InputMap.has_action("attack"):
-		InputMap.add_action("attack")
-		var mouse := InputEventMouseButton.new()
-		mouse.button_index = MOUSE_BUTTON_LEFT
-		InputMap.action_add_event("attack",mouse)
+	Controls.install(Game.profile.get("settings", {}).get("controls", {}))
 
-	if not InputMap.has_action("skill_secondary"):
-		InputMap.add_action("skill_secondary")
-		var secondary := InputEventMouseButton.new()
-		secondary.button_index = MOUSE_BUTTON_RIGHT
-		InputMap.action_add_event("skill_secondary",secondary)
+func _control_label(action: String) -> String:
+	return Controls.label_for(action, Game.profile.get("settings", {}).get("controls", {}), Words.locale)
 
 func _new_screen(next_route: String) -> void:
 	_clear_modals()
@@ -176,7 +163,7 @@ func show_demo_select() -> void:
 		MineStyle.primary(choose,accent)
 		choose.disabled = Game.run != null
 		if id == demo_hero: choose.grab_focus()
-	MineStyle.literal(screen,_ex_text("C 放两座引雷桩 → 诱导敌人穿过连线 → V 释放储能","C PLACE TWO ANCHORS → LURE ENEMIES ACROSS → V DISCHARGE"),Vector2(56,616),Vector2(930,36),18,MineStyle.CYAN)
+	MineStyle.literal(screen,_ex_text("左键移动与瞄准 · Q W E R 四项技能 · A 普攻 · 职业被动自动触发","CLICK TO MOVE & AIM · Q W E R SKILLS · A ATTACK · AUTOMATIC HERO PASSIVE"),Vector2(56,616),Vector2(930,36),18,MineStyle.CYAN)
 	MineStyle.button(screen,"BACK",Vector2(1028,626),Vector2(196,48),show_menu)
 
 func _start_demo(hero_id: String) -> void:
@@ -258,9 +245,9 @@ func show_camp() -> void:
 	var circuit := MineStyle.panel(screen,Vector2(430,574),Vector2(444,67))
 	circuit.name = "CampCircuitHint"
 	_camp_ui_icon(circuit,"state_shock",Vector2(10,6),Vector2(52,52))
-	MineStyle.literal(circuit,_ex_text("引雷回路","CIRCUIT COUNTERATTACK"),Vector2(74,9),Vector2(348,24),17,MineStyle.CYAN)
-	MineStyle.literal(circuit,_ex_text("C 放置两桩   ·   诱敌穿线   ·   V 释放","C place anchors · Lure attacks · V discharge"),Vector2(74,37),Vector2(348,21),12,MineStyle.MUTED)
-	circuit.tooltip_text = _ex_text("引雷回路最多储存 3 格能量。储能满后及时释放；重新布桩会清空储能。","The circuit stores 3 charges. Discharge when full; rebuilding clears stored energy.")
+	MineStyle.literal(circuit,_ex_text("职业被动 · 自动生效","HERO PASSIVE · AUTOMATIC"),Vector2(74,9),Vector2(348,24),17,MineStyle.CYAN)
+	MineStyle.literal(circuit,_ex_text("四项技能搭配普攻   ·   在设置中开启自动普攻","Chain four skills with attacks · Auto attack in settings"),Vector2(74,37),Vector2(348,21),12,MineStyle.MUTED)
+	circuit.tooltip_text = _ex_text("每位英雄拥有符合职业定位的独特被动；战斗中自动触发，无需额外操作。","Each hero has a unique role-based passive that triggers automatically in combat.")
 	circuit.mouse_filter = Control.MOUSE_FILTER_PASS
 	var depart := _camp_navigation(screen,Vector2(900,571),Vector2(336,82),_ex_text("开始远征","BEGIN EXPEDITION"),_ex_text("登上升降台 · 探索新的区域","Board the lift and explore"),4,MineStyle.CYAN,_start_run,true)
 	depart.name = "Depart"
@@ -384,12 +371,15 @@ func _build_expedition_status() -> void:
 	map_button.name = "ExpeditionMapButton"
 	expedition_status = MineStyle.literal(map_button,"",Vector2(10,7),Vector2(114,30),17,MineStyle.INK)
 	expedition_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	if is_instance_valid(hud): hud.place_route_button(map_button)
 	_update_expedition_status()
 
 func _update_expedition_status() -> void:
 	if not is_instance_valid(expedition_status) or expedition == null or not expedition.active():
 		return
-	expedition_status.text = _ex_text("路线  [M]", "Route  [M]")
+	var key: String = Controls.label_for("expedition_map",Game.profile.get("settings",{}).get("controls",{}),Words.locale)
+	expedition_status.text = _ex_text("路线  [", "Route  [") + key + "]"
+	if is_instance_valid(hud): hud.place_route_button(expedition_status.get_parent())
 
 func _expedition_node_count() -> int:
 	if expedition == null: return 0
@@ -744,16 +734,16 @@ func _show_trial_brief() -> void:
 	var panel := _push_modal("",Vector2(842,470))
 	panel.name = "TrialBrief"
 	var words: Array = HERO_LOOPS.get(Game.run.hero_id,HERO_LOOPS.CH01)
-	MineStyle.literal(panel,_ex_text("先布线，再反击。","SET THE LINE. STRIKE BACK."),Vector2(30,23),Vector2(782,47),31,MineStyle.CYAN)
+	MineStyle.literal(panel,_ex_text("轻松走位，流畅连招。","MOVE FREELY. CHAIN YOUR SKILLS."),Vector2(30,23),Vector2(782,47),31,MineStyle.CYAN)
 	MineStyle.literal(panel,_ex_text(str(words[0])+" · "+str(words[2]),str(words[3])+" · "+str(words[4])),Vector2(30,88),Vector2(782,61),21,MineStyle.AMBER)
 	var steps: Array = [
-		_ex_text("01  C 布桩","01  C / PLACE"),_ex_text("在鼠标位置放两桩，连线就是你的陷阱。","Place two anchors at the cursor to create your trap."),
-		_ex_text("02  引敌充能","02  LURE / CHARGE"),_ex_text("诱导敌人与来袭弹道穿线。最多储存 3 格电能。","Lure enemies and projectiles through it. Store up to 3 charges."),
-		_ex_text("03  V 释放","03  V / DISCHARGE"),_ex_text("等敌人进入连线附近再引爆；满格时不再拦截。","Discharge when foes gather near the line. A full circuit stops catching shots.")]
+		_ex_text("01  点击移动","01  CLICK / MOVE"),_ex_text("点击地面前往目标位置，鼠标指向决定技能方向。","Click the ground to move. Aim your skills with the cursor."),
+		_ex_text("02  四技连招","02  SKILLS / COMBO"),_ex_text("Q W E R 释放四项技能，A 普攻可穿插连招。","Use Q W E R for four skills. Weave A attacks into your combo."),
+		_ex_text("03  自动被动","03  HERO / PASSIVE"),_ex_text("职业被动自动触发；设置中可开启自动普攻。","Your hero's passive triggers automatically. Enable auto attacks in settings.")]
 	for index in range(3):
 		MineStyle.literal(panel,str(steps[index*2]),Vector2(30,170+index*57),Vector2(176,35),18,MineStyle.CYAN)
 		MineStyle.literal(panel,str(steps[index*2+1]),Vector2(211,170+index*57),Vector2(601,48),17,MineStyle.INK)
-	MineStyle.literal(panel,_ex_text("WASD / 方向键移动 · 左键普攻 · Q / 鼠标右键 / F / R 技能 · 空格闪避\n练习可跳过；按 M 选择第一关，清关后也可按 M 继续。","WASD / arrows move · Left click attack · Q / Right click / F / R skills · Space dodge\nPractice is optional. Press M to choose a room, then again after clearing it."),Vector2(30,350),Vector2(782,47),16,MineStyle.MUTED)
+	MineStyle.literal(panel,_ex_text("左键移动 / 瞄准 · Q W E R 技能 · A 普攻 · 空格闪避 · F 交互\n可自定义操作。按 M 选择第一关，清关后也可按 M 继续。","Left click move / aim · Q W E R skills · A attack · Space dodge · F interact\nControls can be customized. Press M to choose a room and continue after clearing it."),Vector2(30,350),Vector2(782,47),16,MineStyle.MUTED)
 	var begin := MineStyle.button(panel,"",Vector2(534,405),Vector2(278,44),func():
 		_pop_modal()
 		_show_pending_expedition_offer())
@@ -817,10 +807,21 @@ func _build_hud() -> void:
 	hud.skill_details_requested.connect(func(slot: String):
 		if modals.is_empty():
 			show_combat_details(slot))
+	hud.inventory_requested.connect(show_backpack)
 	ui.add_child(hud)
 	if not modals.is_empty():
 		ui.move_child(hud,0)
 	_build_expedition_status()
+
+func show_backpack() -> void:
+	if route != "run" or Game.run == null or not is_instance_valid(room) or not modals.is_empty(): return
+	var panel := _push_modal("",Vector2(1060,620))
+	panel.name = "CombatBackpackModal"
+	var backpack := BackpackPanel.new()
+	panel.add_child(backpack)
+	backpack.configure(room, _pop_modal)
+	backpack.equipment_changed.connect(func():
+		if is_instance_valid(hud): hud.refresh())
 
 func _on_interaction(kind: String, _payload: Dictionary) -> void:
 	if not modals.is_empty():
@@ -934,7 +935,7 @@ func show_combat_details(slot: String = "q") -> void:
 		body.scroll_to_line(0)
 	for i in range(5):
 		var which: String = ["q","secondary","f","ultimate","dash"][i]
-		var button := MineStyle.button(panel,["Q",_ex_text("鼠标右键","Right click"),"F","R",_ex_text("空格","Space")][i],Vector2(28+i*169,77),Vector2(156,44),func(): select_detail.call(which))
+		var button := MineStyle.button(panel,_control_label(["skill_q","skill_secondary","skill_f","skill_ultimate","dash"][i]),Vector2(28+i*169,77),Vector2(156,44),func(): select_detail.call(which))
 		button.name = "Detail_"+which
 		button.tooltip_text = str(hud.skill_info(which).name)
 	select_detail.call(chosen)
@@ -1040,17 +1041,26 @@ func show_result(result: Dictionary) -> void:
 		get_tree().quit()
 
 func show_settings() -> void:
-	var panel := _push_modal("SETTINGS",Vector2(880,600))
-	MineStyle.literal(panel,_ex_text("WASD / 方向键   移动       左键   普攻       空格   闪避\nQ / 鼠标右键 / F / R   技能       E   交互       Tab   技能详情       M   路线\nC   放置引雷桩       V   释放回路       Esc   暂停","WASD / arrows   Move       Left click   Attack       Space   Dodge\nQ / Right click / F / R   Skills       E   Interact       Tab   Details       M   Map\nC   Place anchors       V   Discharge       Esc   Pause"),Vector2(28,86),Vector2(824,115),17,MineStyle.MUTED)
+	var panel := _push_modal("SETTINGS",Vector2(880,644))
+	panel.name = "SettingsPanel"
 	audio_sliders.clear()
 	var settings: Dictionary = Game.profile.get("settings",{})
+	var general := MineStyle.button(panel,"",Vector2(28,82),Vector2(402,44),func(): _switch_settings_tab("general"))
+	general.text = _ex_text("战斗与显示","COMBAT & DISPLAY")
+	var controls := MineStyle.button(panel,"",Vector2(450,82),Vector2(402,44),func(): _switch_settings_tab("controls"))
+	controls.name = "ControlBindingsTab"
+	controls.text = _ex_text("操作与按键","CONTROLS & KEYS")
+	MineStyle.primary(general if settings_tab == "general" else controls)
+	if settings_tab == "controls":
+		_build_control_settings(panel)
+		return
 	for index in range(3):
 		var key: String = ["master_volume","music_volume","sfx_volume"][index]
 		var title: String = [_ex_text("总音量","Master"),_ex_text("音乐","Music"),_ex_text("战斗音效","Combat SFX")][index]
-		MineStyle.literal(panel,title,Vector2(28,222+index*58),Vector2(169,34),18)
+		MineStyle.literal(panel,title,Vector2(28,151+index*54),Vector2(169,34),18)
 		var slider := HSlider.new()
 		slider.name = key
-		slider.position = Vector2(208,224+index*58)
+		slider.position = Vector2(208,153+index*54)
 		slider.size = Vector2(544,32)
 		slider.min_value = 0.0
 		slider.max_value = 1.0
@@ -1058,7 +1068,7 @@ func show_settings() -> void:
 		slider.value = float(settings.get(key,[1.0,0.55,0.85][index]))
 		panel.add_child(slider)
 		audio_sliders[key] = slider
-		var number := MineStyle.literal(panel,str(roundi(slider.value*100))+"%",Vector2(772,222+index*58),Vector2(80,34),18,MineStyle.CYAN)
+		var number := MineStyle.literal(panel,str(roundi(slider.value*100))+"%",Vector2(772,151+index*54),Vector2(80,34),18,MineStyle.CYAN)
 		var debounce := Timer.new()
 		debounce.wait_time = 0.18
 		debounce.one_shot = true
@@ -1068,14 +1078,104 @@ func show_settings() -> void:
 			number.text = str(roundi(value*100))+"%"
 			if is_instance_valid(music): music.set_mix(audio_sliders.master_volume.value,audio_sliders.music_volume.value,audio_sliders.sfx_volume.value)
 			debounce.start())
-	MineStyle.button(panel,"LANGUAGE",Vector2(28,422),Vector2(264,48),_toggle_language).grab_focus()
-	MineStyle.button(panel,"FULLSCREEN_ON" if settings.get("fullscreen",false) else "FULLSCREEN_OFF",Vector2(308,422),Vector2(264,48),_toggle_fullscreen)
-	MineStyle.button(panel,"FX_ON" if settings.get("reduced_fx",false) else "FX_OFF",Vector2(588,422),Vector2(264,48),_toggle_fx)
-	var shake := MineStyle.button(panel,"",Vector2(28,486),Vector2(264,48),_toggle_camera_shake)
+	MineStyle.button(panel,"LANGUAGE",Vector2(28,328),Vector2(264,48),_toggle_language).grab_focus()
+	MineStyle.button(panel,"FULLSCREEN_ON" if settings.get("fullscreen",false) else "FULLSCREEN_OFF",Vector2(308,328),Vector2(264,48),_toggle_fullscreen)
+	MineStyle.button(panel,"FX_ON" if settings.get("reduced_fx",false) else "FX_OFF",Vector2(588,328),Vector2(264,48),_toggle_fx)
+	var shake := MineStyle.button(panel,"",Vector2(28,392),Vector2(264,48),_toggle_camera_shake)
 	shake.name = "CameraShakeSetting"
 	shake.text = _ex_text("镜头震动：开启","Camera shake: On") if bool(settings.get("camera_shake",false)) else _ex_text("镜头震动：关闭","Camera shake: Off")
-	MineStyle.literal(panel,_ex_text("关闭可保持战斗镜头稳定","Off keeps the combat camera steady"),Vector2(28,540),Vector2(500,24),15,MineStyle.MUTED)
-	MineStyle.button(panel,"BACK",Vector2(612,520),Vector2(240,52),_pop_modal)
+	var automatic := MineStyle.button(panel,"",Vector2(308,392),Vector2(264,48),func(): _toggle_combat_setting("auto_attack"))
+	automatic.name = "AutoAttackSetting"
+	automatic.text = _ex_text("自动普攻：开启","Auto attack: On") if bool(settings.get("auto_attack",false)) else _ex_text("自动普攻：关闭","Auto attack: Off")
+	automatic.tooltip_text = _ex_text("自动攻击攻击范围内的敌人；移动与技能仍由你控制。","Automatically attack nearby enemies in reach. You control movement and skills.")
+	var paths := MineStyle.button(panel,"",Vector2(588,392),Vector2(264,48),func(): _toggle_combat_setting("enemy_skill_paths"))
+	paths.name = "EnemySkillPathsSetting"
+	paths.text = _ex_text("敌技能路径：显示","Enemy paths: On") if bool(settings.get("enemy_skill_paths",true)) else _ex_text("敌技能路径：隐藏","Enemy paths: Off")
+	paths.tooltip_text = _ex_text("隐藏野怪技能预警线与范围标记；技能伤害与判定不变。","Hide enemy warning lines and area markers. Damage and hit detection remain active.")
+	MineStyle.literal(panel,_ex_text("左键移动与瞄准，Q W E R 四项技能，A 普攻，空格闪避。\n可在「操作与按键」中设置移动键、鼠标按键及各项技能。\n关闭镜头震动可保持画面稳定；自动普攻可减轻连续操作。","Click to move and aim. Q W E R skills, A attack, Space dodge.\nCustomize movement, mouse buttons and skills in Controls & Keys.\nDisable camera shake for a steady view. Auto attacks ease repeated input."),Vector2(28,464),Vector2(824,84),17,MineStyle.MUTED)
+	MineStyle.button(panel,"BACK",Vector2(612,566),Vector2(240,48),_pop_modal)
+
+func _switch_settings_tab(next_tab: String) -> void:
+	settings_tab = next_tab
+	_pop_modal()
+	show_settings()
+
+func _build_control_settings(panel: Panel) -> void:
+	MineStyle.literal(panel,_ex_text("点击按键按钮，再按新的键或鼠标按钮。重绑定即时生效并保存。","Select a binding, then press a new key or mouse button. Changes apply and save immediately."),Vector2(28,142),Vector2(824,45),16,MineStyle.MUTED)
+	var labels := [
+		_ex_text("点地移动","Click to move"), _ex_text("普通攻击","Basic attack"),
+		_ex_text("技能一 · Q","Skill 1 · Q"), _ex_text("技能二 · W","Skill 2 · W"),
+		_ex_text("技能三 · E","Skill 3 · E"), _ex_text("技能四 · R","Skill 4 · R"),
+		_ex_text("闪避","Dodge"), _ex_text("交互","Interact"),
+		_ex_text("向上移动","Move up"), _ex_text("向下移动","Move down"),
+		_ex_text("向左移动","Move left"), _ex_text("向右移动","Move right")]
+	for index in range(Controls.EDITABLE_ACTIONS.size()):
+		var action: String = Controls.EDITABLE_ACTIONS[index]
+		var origin := Vector2(28 + (index % 2) * 422, 192 + floori(float(index) / 2.0) * 50)
+		MineStyle.literal(panel,str(labels[index]),origin + Vector2(0,7),Vector2(156,31),17)
+		var binding := MineStyle.button(panel,"",origin + Vector2(158,0),Vector2(244,42),func(): _begin_control_binding(action))
+		binding.name = "Bind_" + action
+		binding.text = _control_label(action)
+		binding.tooltip_text = _ex_text("点击更换按键；Esc 取消","Click to change binding; Esc cancels")
+	binding_feedback = MineStyle.literal(panel,_ex_text("职业被动自动触发。Tab 技能详情 · M 路线 · B 背包 · Esc 暂停。","Passives trigger automatically. Tab details · M map · B backpack · Esc pause."),Vector2(28,507),Vector2(824,44),15,MineStyle.MUTED)
+	var reset := MineStyle.button(panel,"",Vector2(28,566),Vector2(264,48),_reset_control_bindings)
+	reset.text = _ex_text("恢复默认按键","RESET CONTROLS")
+	MineStyle.button(panel,"BACK",Vector2(612,566),Vector2(240,48),_pop_modal)
+
+func _begin_control_binding(action: String) -> void:
+	pending_binding_action = action
+	var panel := _push_modal("",Vector2(646,244))
+	panel.name = "ControlBindingCapture"
+	MineStyle.literal(panel,_ex_text("按下新的键或鼠标按钮","PRESS A KEY OR MOUSE BUTTON"),Vector2(28,32),Vector2(590,42),25,MineStyle.AMBER)
+	MineStyle.literal(panel,_ex_text("当前按键：","Current binding: ") + _control_label(action),Vector2(28,92),Vector2(590,36),20)
+	MineStyle.literal(panel,_ex_text("单个键或鼠标左 / 右 / 中 / 侧键。Esc 取消。\n重复按键会提示冲突，请先调整已占用的操作。","Use one key, or left / right / middle / side mouse buttons. Esc cancels.\nConflicting bindings are rejected; change the existing action first."),Vector2(28,147),Vector2(590,67),16,MineStyle.MUTED)
+
+func _capture_control_binding(event: InputEvent) -> void:
+	if not (event is InputEventKey or event is InputEventMouseButton) or not event.pressed: return
+	get_viewport().set_input_as_handled()
+	if event is InputEventKey and (event.keycode == KEY_ESCAPE or event.physical_keycode == KEY_ESCAPE):
+		_pop_modal()
+		return
+	var binding := Controls.from_event(event)
+	if binding.is_empty(): return
+	var action := pending_binding_action
+	var occupied := Controls.conflict(action, binding, Game.profile.settings.get("controls", {}))
+	if not occupied.is_empty():
+		_pop_modal()
+		if is_instance_valid(binding_feedback):
+			binding_feedback.text = _ex_text("按键已用于「%s」，请先修改该操作。","This binding is used by %s. Change that action first.") % _control_action_name(occupied)
+			binding_feedback.add_theme_color_override("font_color", MineStyle.RED)
+		return
+	if not Game.set_control_binding(action, binding):
+		_pop_modal()
+		if not Game.last_error.is_empty(): _show_save_error()
+		return
+	_pop_modal()
+	_switch_settings_tab("controls")
+
+func _control_action_name(action: String) -> String:
+	var names := {
+		"click_move": ["点地移动", "Click to move"], "attack": ["普通攻击", "Basic attack"],
+		"skill_q": ["技能一", "Skill 1"], "skill_secondary": ["技能二", "Skill 2"], "skill_f": ["技能三", "Skill 3"], "skill_ultimate": ["技能四", "Skill 4"],
+		"dash": ["闪避", "Dodge"], "interact": ["交互", "Interact"],
+		"move_up": ["向上移动", "Move up"], "move_down": ["向下移动", "Move down"], "move_left": ["向左移动", "Move left"], "move_right": ["向右移动", "Move right"],
+		"relic_details": ["技能详情", "Skill details"], "expedition_map": ["路线", "Map"], "backpack": ["背包", "Backpack"], "pause": ["暂停", "Pause"]}
+	return str(names.get(action, [action, action])[0 if Words.locale == "zh_CN" else 1])
+
+func _reset_control_bindings() -> void:
+	Game.set_setting("controls", {})
+	if not Game.last_error.is_empty():
+		_show_save_error()
+		return
+	_switch_settings_tab("controls")
+
+func _toggle_combat_setting(key: String) -> void:
+	Game.set_setting(key, not bool(Game.profile.get("settings", {}).get(key, key == "enemy_skill_paths")))
+	if not Game.last_error.is_empty():
+		_show_save_error()
+		return
+	_pop_modal()
+	show_settings()
 
 func _commit_audio_sliders() -> void:
 	for key: String in audio_sliders:
@@ -1172,17 +1272,27 @@ func _push_modal(title: String, dimensions: Vector2) -> Panel:
 	shade.color = Color(0.23,0.17,0.27,0.43)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	overlay.add_child(shade)
-	var panel := MineStyle.panel(overlay,(Vector2(1280,720)-dimensions)/2,dimensions)
+	var panel := MineStyle.panel(overlay,Vector2.ZERO,dimensions)
+	_fit_modal(panel,dimensions)
+	overlay.resized.connect(func(): _fit_modal(panel,dimensions))
 	MineStyle.label(panel,title,Vector2(28,20),Vector2(dimensions.x-56,47),30,MineStyle.AMBER)
 	modals.append({"node":overlay,"focus":previous_focus})
 	_sync_pause()
 	return panel
+
+func _fit_modal(panel: Control, dimensions: Vector2) -> void:
+	if not is_instance_valid(panel): return
+	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	var fit: float = minf(1.0,minf((viewport_size.x-32.0)/dimensions.x,(viewport_size.y-32.0)/dimensions.y))
+	panel.scale = Vector2.ONE * maxf(.4,fit)
+	panel.position = (viewport_size-dimensions*panel.scale)*.5
 
 func _pop_modal() -> void:
 	if modals.is_empty():
 		return
 	if modals[-1].get("required",false):
 		return
+	pending_binding_action = ""
 	_commit_audio_sliders()
 	var removed: Dictionary = modals.pop_back()
 	removed.node.queue_free()
@@ -1195,6 +1305,7 @@ func _pop_modal() -> void:
 	_sync_pause()
 
 func _clear_modals() -> void:
+	pending_binding_action = ""
 	_commit_audio_sliders()
 	for entry in modals:
 		entry.node.queue_free()
@@ -1216,9 +1327,16 @@ func _sync_pause() -> void:
 		room.set_input_blocked(paused)
 
 func _input(event: InputEvent) -> void:
+	if not pending_binding_action.is_empty():
+		_capture_control_binding(event)
+		return
 	if event.is_action_pressed("expedition_map") and route == "run" and modals.is_empty() and expedition != null and expedition.active():
 		get_viewport().set_input_as_handled()
 		show_expedition(false)
+		return
+	if event.is_action_pressed("backpack") and route == "run" and modals.is_empty():
+		get_viewport().set_input_as_handled()
+		show_backpack()
 		return
 	# Handle Tab before GUI focus traversal: combat details owns a paused modal.
 	if event.is_action_pressed("relic_details") and route == "run" and modals.is_empty():

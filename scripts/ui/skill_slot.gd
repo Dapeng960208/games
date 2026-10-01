@@ -102,7 +102,7 @@ func _draw() -> void:
 		var source_size := generated_texture.get_size()
 		var image_scale := minf(ICON_RECT.size.x/source_size.x,ICON_RECT.size.y/source_size.y)
 		var extent := source_size*image_scale
-		draw_texture_rect(generated_texture,Rect2(ICON_RECT.position+(ICON_RECT.size-extent)*.5,extent),false,Color(1,1,1,.18 if locked else 1))
+		draw_texture_rect(generated_texture,Rect2(Vector2(center.x-ICON_RECT.size.x*.5,ICON_RECT.position.y)+(ICON_RECT.size-extent)*.5,extent),false,Color(1,1,1,.18 if locked else 1))
 	else:
 		draw_set_transform(Vector2(18,13))
 		_draw_glyph(Color("f6d19b") if not locked else Color("b0a4ac"))
@@ -140,8 +140,13 @@ func _draw() -> void:
 		title += "…"
 	_center_text(title,84,16,MUTED if locked else INK)
 	var key_text := key
-	if slot == "secondary" and Words.locale == "en": key_text = "RMB"
-	var key_width := maxf(26,font.get_string_size(key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x+12)
+	var compact_keys := {"鼠标左键":"左键","鼠标右键":"右键","鼠标中键":"中键","鼠标侧键 1":"侧键1","鼠标侧键 2":"侧键2","Left click":"LMB","Right click":"RMB","Middle click":"MMB","Mouse side 1":"M4","Mouse side 2":"M5"}
+	key_text = str(compact_keys.get(key_text,key_text))
+	if font.get_string_size(key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x > size.x-16:
+		while key_text.length() > 1 and font.get_string_size(key_text+"…",HORIZONTAL_ALIGNMENT_LEFT,-1,16).x > size.x-16:
+			key_text = key_text.left(key_text.length()-1)
+		key_text += "…"
+	var key_width := minf(size.x-4,maxf(26,font.get_string_size(key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x+12))
 	var key_rect := Rect2((size.x-key_width)*.5,89,key_width,21)
 	draw_style_box(MineStyle.box(Color("51334d"),Color("b68d54"),1),key_rect)
 	_center_text(key_text,106,16,Color("fff1cf"))

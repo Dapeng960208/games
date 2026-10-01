@@ -98,6 +98,7 @@ func spec(slot: String, preview_hero: String = "", preview_level: int = -1, prev
 	var skill_definition: Dictionary = ContentRegistry.hero(hero).get("skills", {}).get(slot, {})
 	data["unlock"] = int(skill_definition.get("unlock", 99))
 	data["slot"] = slot
+	data["input"] = {"q":"Q", "secondary":"W", "f":"E", "ultimate":"R"}.get(slot, "")
 	data["hero"] = hero
 	data["damage_type"] = "magic" if hero == "CH03" else "physical"
 	data["branch"] = _branch(slot, level, effective_stats)
@@ -232,6 +233,8 @@ func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_
 	owner_player.cooldowns[slot] = float(data.cooldown)
 	owner_player.resource_delay = 0.5 if hero == "CH02" else 0.8
 	cast_serial += 1
+	if owner_player.get("passives") != null:
+		owner_player.passives.skill_committed(slot, cast_serial)
 	active = {"spec":data, "elapsed":0.0, "origin":origin, "target":target, "direction":direction, "initial_direction":direction, "travel_direction":travel_direction, "power":owner_player.skill_power(), "attacker_stats":Game.run.stats.duplicate(), "events":_timeline(data), "next_event":0, "serial":cast_serial}
 	owner_player.visual_event("cast_" + slot, float(data.duration))
 	if is_instance_valid(feedback):

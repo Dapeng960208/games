@@ -2,6 +2,8 @@ extends Control
 ## Bright expedition ribbons; every value is read from the live room and run.
 signal relic_details_requested()
 signal skill_details_requested(slot: String)
+signal inventory_requested()
+signal layout_changed(screen_size: Vector2)
 
 const HUD_INK := Color("392843")
 const HUD_MUTED := Color("766474")
@@ -11,9 +13,11 @@ const HUD_RED := Color("e6664f")
 const GrowthReadout = preload("res://scripts/ui/progression_readout.gd")
 const RewardPolicy = preload("res://scripts/world/room_rewards.gd")
 const QuestLocalization = preload("res://scripts/ui/quest_localization.gd")
+const Bindings = preload("res://scripts/core/control_bindings.gd")
 
 const SKILLS := ["q","secondary","f","ultimate"]
-const KEYS := ["Q","鼠标右键","F","R"]
+const KEYS := ["Q","W","E","R"]
+const SKILL_ACTIONS := ["skill_q","skill_secondary","skill_f","skill_ultimate","dash"]
 const BUFF_ORDER := ["damage","guard","supply_guard","haste","burn","shock","chill","corrosion","bleed","grievous","damage_reduction","invulnerable"]
 const COMBAT_STATUS_LABELS := {"burn":"灼烧","shock":"感电","chill":"寒冷","corrosion":"腐蚀","bleed":"流血","grievous":"重伤","damage_reduction":"减伤","invulnerable":"无敌"}
 const COMBAT_STATUS_NOTES := {"burn":"持续受到魔法伤害。","shock":"后续命中可引发电击。","chill":"移动速度降低。","corrosion":"护甲降低并持续受到物理伤害。","bleed":"持续受到物理伤害。","grievous":"受到的治疗降低 40%。","damage_reduction":"临时降低受到的伤害。","invulnerable":"持续时间内免疫伤害。"}
@@ -66,7 +70,8 @@ class ParchmentPlate extends Panel:
 			"hero_ribbon":
 				_paper(Rect2(78,0,size.x-78,124))
 			"expedition_plaque":
-				_paper(Rect2(91,-2,188,35))
+				var plaque_width := minf(188,size.x-16)
+				_paper(Rect2((size.x-plaque_width)*.5,-2,plaque_width,35))
 			"circuit_ribbon":
 				_paper(Rect2(40,2,size.x-40,size.y-2))
 			"quest_note":
@@ -147,44 +152,31 @@ class HeroBust extends Control:
 		else:
 			var source := texture.get_size()
 			var region := Rect2(source*Vector2(.25,.012),source*Vector2(.52,.40))
-			draw_texture_rect_region(texture,Rect2(Vector2(12,10),size-Vector2(24,20)),region)
+			var extent := region.size*minf((size.x-24)/region.size.x,(size.y-20)/region.size.y)
+			draw_texture_rect_region(texture,Rect2(Vector2((size.x-extent.x)*.5,size.y-10-extent.y),extent),region)
 
-class CircuitInstrument extends Control:
-	var charge := 0
-	var maximum := 3
-	var orb: Texture2D
-	var bezel: Texture2D
-	func _ready() -> void:
-		mouse_filter = Control.MOUSE_FILTER_IGNORE
-		texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
-		var sampler = preload("res://scripts/ui/texture_sampler.gd")
-		if FileAccess.file_exists("res://scripts/ui/storybook_art.gd"):
-			var art: Script = load("res://scripts/ui/storybook_art.gd") as Script
-			orb = art.texture("circuit_orb")
-			bezel = art.texture("route_bead")
+class PassiveGlyph extends Control:
+	var hero_id := "CH01"
+	var accent := Color("257f83")
 	func _draw() -> void:
-		var center := Vector2(43,43)
-		if orb != null:
-			draw_texture_rect(orb,Rect2(0,0,86,86),false)
+		var center := size*.5
+		draw_circle(center+Vector2(0,2),23,Color(.20,.12,.12,.18))
+		draw_circle(center,23,Color("a66a2e"))
+		draw_circle(center,20,Color("fff1cf"))
+		draw_arc(center,22,-PI*.95,-PI*.08,32,Color("ffe8a2"),2,true)
+		if hero_id == "CH01":
+			draw_polyline(PackedVector2Array([center+Vector2(-10,-12),center+Vector2(10,-12),center+Vector2(9,4),center+Vector2(0,13),center+Vector2(-9,4),center+Vector2(-10,-12)]),accent,2.5,true)
+			draw_line(center+Vector2(0,-7),center+Vector2(0,7),accent,2.5,true)
+		elif hero_id == "CH02":
+			draw_arc(center,11,0,TAU,32,accent,2.5,true)
+			draw_circle(center,4,accent)
+			for axis in [Vector2.UP,Vector2.DOWN,Vector2.LEFT,Vector2.RIGHT]:
+				draw_line(center+axis*13,center+axis*17,accent,2,true)
 		else:
-			draw_circle(center+Vector2(0,3),38,Color(.13,.10,.17,.25))
-			draw_circle(center,38,Color("714327"))
-			draw_circle(center,35,Color("dfb66a"))
-			draw_circle(center,31,Color("124f75"))
-			draw_circle(center-Vector2(3,4),27,Color("1b7895"))
-			draw_circle(center-Vector2(8,12),10,Color(.66,.96,.97,.22))
-			draw_colored_polygon(PackedVector2Array([center+Vector2(5,-23),center+Vector2(-14,3),center+Vector2(-1,3),center+Vector2(-7,24),center+Vector2(15,-4),center+Vector2(3,-4)]),Color("e8fff6"))
-			for index in 4:
-				var at := center+Vector2.from_angle(index*PI*.5)*38
-				draw_colored_polygon(PackedVector2Array([at+Vector2(0,-5),at+Vector2(4,0),at+Vector2(0,5),at+Vector2(-4,0)]),Color("d8ab58"))
-		for index in maximum:
-			var at := Vector2(98+index*62,41)
-			draw_line(at,at+Vector2(62,0),Color("4a3d3b"),9,true)
-			draw_line(at+Vector2(0,-2),at+Vector2(62,-2),Color("d3b571"),2,true)
-			if bezel != null: draw_texture_rect(bezel,Rect2(at-Vector2(12,12),Vector2(24,24)),false)
-			else: draw_circle(at,10,Color("554644"))
-			draw_circle(at,8,Color("1ea5c0") if index < charge else Color("778b91"))
-			draw_arc(at,11,0,TAU,24,Color("b89459"),2,true)
+			for i in 6:
+				var axis := Vector2.from_angle(i*TAU/6)
+				draw_line(center+axis*7,center+axis*15,accent,2.5,true)
+			draw_arc(center,7,0,TAU,24,accent,2,true)
 
 ## A 44 px input target carries only a 40 px painted buff indicator.
 ## State is copied from RoomProps; this control never owns or advances a timer.
@@ -318,10 +310,20 @@ var buff_chips: Dictionary = {}
 var active_buffs: Dictionary = {}
 var class_label: Label
 var class_bar: ProgressBar
-var circuit_panel: Panel
-var circuit_label: Label
-var circuit_hint: Label
-var circuit_bar: ProgressBar
+var passive_panel: Panel
+var passive_title: Label
+var passive_state: Label
+var passive_hint: Label
+var passive_bar: ProgressBar
+var passive_glyph: Control
+var passive_button: Button
+var passive_snapshot: Dictionary = {}
+var inventory_button: Button
+var attack_label: Label
+var equipment_actions: Control
+var screen_size := Vector2.ZERO
+var _route_button: Control
+var _compact_layout := false
 var _skill_feedback_actor: Node
 var quest_panel: Panel
 var quest_progress: Label
@@ -334,9 +336,7 @@ var quest_reward_signature := ""
 var cached_quest_reward := ""
 var quest_button: Button
 var quest_full_action := ""
-var circuit_instrument: Control
 var quest_bullets: Control
-var circuit_release: Label
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -453,22 +453,42 @@ func _ready() -> void:
 		cell.pressed.connect(func(): skill_details_requested.emit(slot))
 		_bind_detail(cell,slot)
 		skill_slots.append(cell)
-	details_button = _compact_button(skill_dock,"Tab",Vector2(450,59),Vector2(44,44),func(): skill_details_requested.emit("q"))
+	equipment_actions = Control.new()
+	equipment_actions.name = "EquipmentActions"
+	equipment_actions.size = Vector2(184,112)
+	equipment_actions.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(equipment_actions)
+	inventory_button = _compact_button(equipment_actions,"背包  [B]",Vector2(0,0),Vector2(184,44),func(): inventory_requested.emit())
+	inventory_button.name = "Backpack"
+	_bind_detail(inventory_button,"inventory")
+	details_button = _compact_button(equipment_actions,"Tab",Vector2(0,58),Vector2(44,44),func(): skill_details_requested.emit("q"))
 	details_button.name = "CombatDetails"
 	_bind_detail(details_button,"q")
-	circuit_panel = _plate(self,Vector2(14,620),Vector2(298,87),"circuit_ribbon")
-	circuit_panel.name = "CircuitInstrument"
-	circuit_instrument = CircuitInstrument.new()
-	circuit_instrument.position = Vector2(0,-2)
-	circuit_instrument.size = Vector2(298,85)
-	circuit_panel.add_child(circuit_instrument)
-	circuit_label = _line(circuit_panel,"",Vector2(86,5),Vector2(203,25),18,HUD_INK)
-	circuit_bar = MineStyle.meter(circuit_panel,Vector2(90,34),Vector2(196,5),HUD_CYAN)
-	circuit_bar.hide()
-	_keycap(circuit_panel,"C",Vector2(89,58),Vector2(23,22))
-	_keycap(circuit_panel,"V",Vector2(203,58),Vector2(23,22))
-	circuit_hint = _line(circuit_panel,"",Vector2(118,55),Vector2(84,25),16,HUD_INK)
-	circuit_release = _line(circuit_panel,"",Vector2(233,55),Vector2(58,25),16,HUD_INK)
+	attack_label = _line(equipment_actions,"",Vector2(52,55),Vector2(132,51),16,HUD_MUTED)
+	attack_label.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
+	passive_panel = _plate(self,Vector2(14,590),Vector2(288,118),"passive_ribbon")
+	passive_panel.name = "HeroPassive"
+	passive_glyph = PassiveGlyph.new()
+	passive_glyph.position = Vector2(7,4)
+	passive_glyph.size = Vector2(48,48)
+	passive_glyph.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	passive_panel.add_child(passive_glyph)
+	passive_title = _line(passive_panel,"",Vector2(62,7),Vector2(210,24),18,HUD_INK)
+	passive_state = _line(passive_panel,"",Vector2(62,34),Vector2(210,23),16,HUD_CYAN)
+	passive_bar = MineStyle.meter(passive_panel,Vector2(14,59),Vector2(260,3),HUD_CYAN)
+	passive_hint = _line(passive_panel,"",Vector2(14,66),Vector2(260,48),16,HUD_MUTED)
+	passive_hint.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
+	passive_hint.max_lines_visible = 2
+	passive_button = Button.new()
+	passive_button.name = "PassiveDetails"
+	passive_button.position = Vector2.ZERO
+	passive_button.size = passive_panel.size
+	passive_button.mouse_filter = Control.MOUSE_FILTER_STOP
+	for skin in ["normal","hover","pressed","focus"]:
+		passive_button.add_theme_stylebox_override(skin,StyleBoxEmpty.new())
+	passive_panel.add_child(passive_button)
+	_bind_detail(passive_button,"passive")
+	passive_button.pressed.connect(func(): passive_button.grab_focus())
 	toast = _line(self,"",Vector2(352,94),Vector2(576,60),17,HUD_CYAN)
 	toast.name = "GrowthAndLootNotice"
 	toast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -495,7 +515,84 @@ func _ready() -> void:
 	tooltip_body = MineStyle.label(tooltip_panel,"",Vector2(14,44),Vector2(352,154),16,HUD_INK)
 	tooltip_body.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
 	tooltip_panel.hide()
+	resized.connect(_apply_layout)
+	get_viewport().size_changed.connect(_apply_layout)
+	_apply_layout()
 	refresh()
+
+## All measurements are native Control coordinates in the HUD's CanvasLayer.
+## Camera movement and the much larger world arena never change this layout.
+func _apply_layout() -> void:
+	if status_panel == null: return
+	screen_size = size if size.x > 0 and size.y > 0 else get_viewport_rect().size
+	var margin := 12.0
+	_compact_layout = screen_size.x < 1020 or screen_size.y < 620
+	var stacked := screen_size.x < 880
+	status_panel.position = Vector2(margin,22)
+	gold_label.position = Vector2(screen_size.x-gold_label.size.x-margin,16)
+	var route_width := clampf(screen_size.x-570,190,358)
+	location_panel.size.x = route_width
+	location_panel.position = Vector2(clampf((screen_size.x-route_width)*.5,402,screen_size.x-route_width-166),22)
+	if screen_size.x < 760:
+		location_panel.position = Vector2(margin,154)
+	expedition_label.position.x = (route_width-172)*.5
+	expedition_beads.size.x = route_width-20
+	expedition_beads.queue_redraw()
+	location_panel.queue_redraw()
+	buff_row.position = Vector2(margin,154 if screen_size.x >= 760 else 220)
+	relic_row.position = Vector2(screen_size.x-relic_row.size.x-margin,118)
+	var cell_width := 80.0 if _compact_layout else 88.0
+	skill_dock.size = Vector2(cell_width*5+16,112)
+	skill_dock.position.y = screen_size.y-skill_dock.size.y-margin
+	skill_ribbon.size.x = skill_dock.size.x
+	for i in skill_slots.size():
+		skill_slots[i].custom_minimum_size.x = cell_width
+		skill_slots[i].size.x = cell_width
+		skill_slots[i].position.x = 8+i*cell_width
+	equipment_actions.size.x = 176 if _compact_layout else 184
+	equipment_actions.position = Vector2(screen_size.x-equipment_actions.size.x-margin,skill_dock.position.y)
+	inventory_button.size.x = equipment_actions.size.x
+	attack_label.size.x = equipment_actions.size.x-52
+	passive_panel.size.x = clampf(screen_size.x-skill_dock.size.x-equipment_actions.size.x-48,220,288)
+	passive_panel.position = Vector2(margin,screen_size.y-passive_panel.size.y-margin)
+	if stacked:
+		passive_panel.size.x = 272
+		passive_panel.position.y = skill_dock.position.y-passive_panel.size.y-12
+		equipment_actions.position.y = passive_panel.position.y
+		skill_dock.position.x = (screen_size.x-skill_dock.size.x)*.5
+	else:
+		skill_dock.position.x = clampf((screen_size.x-skill_dock.size.x)*.5,passive_panel.get_rect().end.x+12,equipment_actions.position.x-skill_dock.size.x-12)
+	passive_title.size.x = passive_panel.size.x-76
+	passive_state.size.x = passive_panel.size.x-76
+	passive_bar.size.x = passive_panel.size.x-28
+	passive_hint.size.x = passive_panel.size.x-28
+	passive_button.size = passive_panel.size
+	quest_panel.size.x = 256 if _compact_layout else 272
+	quest_panel.position.x = screen_size.x-quest_panel.size.x-margin
+	region_label.size.x = quest_panel.size.x-58
+	objective_label.size.x = quest_panel.size.x-48
+	quest_progress.size.x = quest_panel.size.x-48
+	quest_reward.size.x = quest_panel.size.x-48
+	quest_button.size.x = quest_panel.size.x-24
+	toast.position = Vector2(maxf(24,(screen_size.x-576)*.5),94)
+	toast.size.x = minf(576,screen_size.x-48)
+	hint_label.size.x = minf(520,screen_size.x-32)
+	hint_label.position = Vector2((screen_size.x-hint_label.size.x)*.5,skill_dock.position.y-31)
+	tooltip_panel.size.x = minf(380,screen_size.x-32)
+	tooltip_title.size.x = tooltip_panel.size.x-28
+	tooltip_body.size.x = tooltip_panel.size.x-28
+	if is_instance_valid(_route_button): _route_button.position = route_button_rect().position
+	layout_changed.emit(screen_size)
+
+func route_button_rect() -> Rect2:
+	# The route control is owned by Main; the HUD reserves and positions it.
+	var narrow := screen_size.x < 1120
+	return Rect2(screen_size.x-(146 if narrow else 292),68 if narrow else 16,134,44)
+
+func place_route_button(button: Control) -> void:
+	_route_button = button
+	button.position = route_button_rect().position
+	button.size = route_button_rect().size
 
 func _plate(parent: Node, at: Vector2, extent: Vector2, art_key: String = "paper") -> Panel:
 	var panel := ParchmentPlate.new()
@@ -606,7 +703,7 @@ func _input(event: InputEvent) -> void:
 		_update_pointer_guard(event.position)
 	if not interaction_enabled or not is_instance_valid(focused_control): return
 	var playing := false
-	for action in ["move_left","move_right","move_up","move_down","skill_q","skill_f","skill_ultimate","dash","interact"]:
+	for action in ["move_left","move_right","move_up","move_down","click_move","attack","skill_q","skill_secondary","skill_f","skill_ultimate","dash","interact"]:
 		playing = playing or event.is_action_pressed(action)
 	if event is InputEventMouseButton and event.pressed:
 		playing = playing or not _pointer_over_instruments(event.position)
@@ -627,8 +724,10 @@ func _update_pointer_guard(at: Vector2) -> void:
 func _tooltip_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		tooltip_panel.accept_event()
-		if event.button_index == MOUSE_BUTTON_LEFT and not active_detail_slot.begins_with("buff:") and active_detail_slot != "quest":
-			skill_details_requested.emit(active_detail_slot)
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if active_detail_slot == "inventory": inventory_requested.emit()
+			elif not active_detail_slot.begins_with("buff:") and active_detail_slot not in ["quest","passive"]:
+				skill_details_requested.emit(active_detail_slot)
 
 func _process(delta: float) -> void:
 	hover_grace = maxf(0,hover_grace-delta)
@@ -683,7 +782,11 @@ func refresh() -> void:
 	retained_label.text = Words.text("RETAINED",{"gold":Balance.death_keep(Game.run.gold)})
 	_update_skills()
 	_update_relics()
-	_update_identity_and_circuit()
+	_update_passive()
+	var english := Words.locale == "en"
+	inventory_button.text = "Backpack  [B]" if english else "背包  [B]"
+	var attack_key := Bindings.label_for("attack",Game.profile.get("settings",{}).get("controls",{}),Words.locale)
+	attack_label.text = ("%s Attack\nAuto: %s" if english else "%s 普攻\n自动：%s") % [attack_key,("ON" if english else "开启") if Game.profile.get("settings",{}).get("auto_attack",false) else ("OFF" if english else "关闭")]
 	if is_instance_valid(room):
 		hint_label.text = room.interaction_hint()
 		# The world now draws its short E tag on the actual focused object.
@@ -731,14 +834,18 @@ func _update_quest_and_route() -> void:
 	# Measure the same shaped lines that the Label actually paints. Font's
 	# default word-boundary wrapping can omit the last CJK grapheme here.
 	var line_height := font.get_height(17)+objective_label.get_theme_constant("line_spacing")
-	var action_height := maxf(23,ceilf(objective_label.get_line_count()*line_height)+2)
+	var visible_lines := 2 if _compact_layout else 3
+	objective_label.max_lines_visible = visible_lines
+	objective_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	var action_height := maxf(23,ceilf(mini(visible_lines,objective_label.get_line_count())*line_height)+2)
 	objective_label.size.y = action_height
 	var progress_token := "%d/%d" % [completed,required]
 	quest_progress.visible = not objective_label.text.replace(" ","").contains(progress_token)
 	quest_progress.position.y = objective_label.position.y+action_height+2
 	quest_reward.position.y = quest_progress.position.y+(25 if quest_progress.visible else 0)
 	quest_panel.size.y = maxf(110,quest_reward.position.y+26)
-	quest_panel.position.y = minf(387,586-quest_panel.size.y)
+	var header_bottom := maxf(148,relic_row.position.y+relic_row.size.y+12)
+	quest_panel.position.y = maxf(header_bottom,minf(screen_size.y*.51,equipment_actions.position.y-quest_panel.size.y-20))
 	quest_panel.set("reward_bullet_y",quest_reward.position.y+11)
 	quest_button.size.y = quest_panel.size.y-36
 	quest_panel.queue_redraw()
@@ -779,9 +886,7 @@ func _reward_caption(quality: String) -> String:
 	return cached_quest_reward
 
 func _key_for_slot(index: int) -> String:
-	if index == 1: return "Right click" if Words.locale == "en" else "鼠标右键"
-	if index == 4: return "Space" if Words.locale == "en" else "空格"
-	return KEYS[index]
+	return Bindings.label_for(SKILL_ACTIONS[index],Game.profile.get("settings",{}).get("controls",{}),Words.locale)
 
 func _update_growth() -> void:
 	var xp := int(Game.profile.get("hero_xp",{}).get(Game.run.hero_id,0))
@@ -813,133 +918,43 @@ func _queue_notification(message: String, duration: float = 4.0) -> void:
 	if notifications.size() >= 8: notifications.pop_front()
 	notifications.append({"text":message,"duration":duration})
 
-func _update_identity_and_circuit() -> void:
-	if not is_instance_valid(room): return
-	if is_instance_valid(room.get("player")) and room.player.has_method("class_status"):
-		var identity: Dictionary = room.player.class_status()
-		var maximum: float = maxf(1,float(identity.get("max",3)))
-		class_label.text = str(identity.get("name",""))+"   "+str(int(identity.get("current",0)))+" / "+str(int(maximum))
-		class_label.tooltip_text = str(identity.get("hint",""))
-		if Game.run.hero_id == "CH01":
-			var momentum := int(identity.get("current",0))
-			var sweep := skill_info("secondary")
-			var english := Words.locale == "en"
-			class_label.tooltip_text = "Three Momentum makes Right Mouse Sweep free. Casting consumes all stacks; cooldown and cancellation costs still apply." if english else "满3层破势时鼠标右键横扫免怒气。启动即消耗全部破势，仍需等待冷却，取消不返还层数。"
-			if momentum >= 3 and bool(sweep.get("locked",false)):
-				class_label.text = "Full · Sweep unlocks Lv.2" if english else "破势已满 · Lv.2解锁横扫"
-			elif momentum >= 3 and float(sweep.get("cooldown",0.0)) > 0.0:
-				class_label.text = ("Full · Free Sweep in %.1fs" if english else "势满 · %.1f秒后免怒横扫") % float(sweep.cooldown)
-			elif momentum >= 3 and bool(sweep.get("ready",false)):
-				class_label.text = "Sweep ready · No Rage" if english else "横扫就绪 · 免怒气"
-			elif momentum >= 3:
-				class_label.text = "Full · Next Sweep free" if english else "破势蓄满 · 横扫免怒气"
-			else:
-				class_label.text = ("Momentum %d/3 · Build to 3" if english else "破势 %d/3 · 满势横扫免怒") % momentum
-		elif Game.run.hero_id == "CH02":
-			_update_ranger_hint(identity)
-		elif Game.run.hero_id == "CH03":
-			_update_resonator_hint(identity)
-		class_bar.max_value = maximum
-		class_bar.value = float(identity.get("current",0))
-		var accent: Color = identity.get("color",HUD_CYAN)
-		class_label.add_theme_color_override("font_color",HUD_MUTED)
-		var fill := StyleBoxFlat.new()
-		fill.bg_color = accent
-		class_bar.add_theme_stylebox_override("fill",fill)
-	else:
-		class_label.text = ""
-		class_bar.hide()
-	_update_circuit()
-
-func _update_ranger_hint(identity: Dictionary) -> void:
-	var english := Words.locale == "en"
-	var marks: int = room.player.class_marks.size()
-	var shot := skill_info("secondary")
-	class_label.tooltip_text = "Move to build Hunt. At full charge, land a basic hit to mark a target for 4 seconds. Aim Right Mouse or R at that marked target for bonus damage; firing alone does not consume the mark." if english else "实际走位积蓄游猎。满后普攻命中，为目标留下4秒猎印；瞄准猎印目标用鼠标右键或R命中，才会消耗猎印并追加伤害。仅开枪不会消耗猎印。"
-	if marks > 0:
-		var prefix: String = ("Marks %d · " if english else "猎印%d · ") % marks
-		if bool(shot.locked):
-			class_label.text = prefix+("Right Mouse at Lv.2" if english else "Lv.2解锁鼠标右键")
-		elif float(shot.cooldown) > 0.0:
-			class_label.text = prefix+(("Shot in %.1fs" if english else "右键冷却%.1f秒") % float(shot.cooldown))
-		elif bool(shot.insufficient):
-			class_label.text = prefix+("Need energy" if english else "能量不足")
-		elif bool(shot.ready):
-			class_label.text = prefix+("Aim + Right Mouse" if english else "瞄准后鼠标右键")
-		else:
-			class_label.text = prefix+("Action in progress" if english else "动作中")
-	elif float(identity.current) >= float(identity.max) and float(room.player.passive_cooldown) <= 0.0:
-		class_label.text = "Hunt full · Land a basic hit" if english else "游猎已满 · 普攻命中挂印"
-	elif float(room.player.passive_cooldown) > 0.0:
-		class_label.text = ("Hunt recharges in %.1fs" if english else "游猎 %.1f秒后可蓄势") % float(room.player.passive_cooldown)
-	else:
-		var percent: int = floori(100.0*float(identity.current)/maxf(1.0,float(identity.max)))
-		class_label.text = ("Hunt %d%% · Keep moving" if english else "游猎%d%% · 走位蓄势") % percent
-
-func _update_resonator_hint(identity: Dictionary) -> void:
-	var english := Words.locale == "en"
-	var nodes: Array = room.player.resonance_nodes()
-	var linked := 0
-	var linked_charge := 0
-	for node: Node2D in nodes:
-		var state: Dictionary = node.resonance_readout()
-		if bool(state.get("connected",false)):
-			linked += 1
-			linked_charge += int(state.get("charge",0))
-	var detonate := skill_info("f")
-	var deploy := skill_info("secondary")
-	var prefix: String = ("Charge %d/%d · " if english else "共振%d/%d · ") % [int(identity.current),int(identity.max)]
-	class_label.tooltip_text = "Right Mouse places up to two nodes. Four basic hits near a node, or Q passing through it, add charge. Approach within 260 with clear line of sight, then press F to detonate connected nodes. Empty nodes can also detonate; charged nodes hit harder." if english else "鼠标右键放置最多2个节点。在节点附近普攻命中四次，或让Q穿过节点，可为其充能。靠近至260范围且无遮挡后按F，引爆已连接的节点。空节点也可引爆，蓄能后伤害更高。"
-	if nodes.is_empty():
-		if bool(deploy.locked):
-			class_label.text = "Nodes unlock at Lv.2" if english else "Lv.2解锁鼠标右键布点"
-		elif bool(deploy.ready):
-			class_label.text = "No nodes · Right Mouse" if english else "节点0/2 · 鼠标右键布点"
-		elif bool(deploy.insufficient):
-			class_label.text = "No nodes · Need mana" if english else "节点0/2 · 法力不足"
-		elif float(deploy.cooldown) > 0.0:
-			class_label.text = ("Place node in %.1fs" if english else "%.1f秒后可再次布点") % float(deploy.cooldown)
-		else:
-			class_label.text = "Nodes · Action in progress" if english else "节点 · 动作中"
-	elif linked == 0 or (linked_charge == 0 and int(identity.current) > 0):
-		class_label.text = prefix+("Approach nodes" if english else "靠近蓄能节点")
-	elif linked_charge == 0:
-		class_label.text = ("Nodes %d/2 · Q to charge" if english else "节点%d/2 · 普攻或Q充能") % nodes.size()
-	elif bool(detonate.locked):
-		class_label.text = prefix+("F unlocks Lv.3" if english else "Lv.3解锁F")
-	elif float(detonate.cooldown) > 0.0:
-		class_label.text = prefix+(("F in %.1fs" if english else "F冷却%.1f秒") % float(detonate.cooldown))
-	elif bool(detonate.insufficient):
-		class_label.text = prefix+("Need mana" if english else "法力不足")
-	elif bool(detonate.ready):
-		class_label.text = prefix+("F to detonate" if english else "F引爆节点")
-	else:
-		class_label.text = prefix+("Action in progress" if english else "动作中")
-
-func _update_circuit() -> void:
-	var circuit: Node = room.get("circuit")
-	if not is_instance_valid(circuit) or not circuit.has_method("status"):
-		circuit_panel.hide()
+func _update_passive() -> void:
+	if not is_instance_valid(room) or not is_instance_valid(room.get("player")) or not room.player.has_method("class_status"):
+		passive_panel.hide()
 		return
-	circuit_panel.show()
-	var state: Dictionary = circuit.status()
-	var charge := int(state.get("charge",0))
-	var anchors: Variant = state.get("anchors",0)
-	var placed: int = anchors.size() if anchors is Array else int(anchors)
-	circuit_label.text = ("CIRCUIT   " if Words.locale == "en" else "引雷回路   ")+str(charge)+" / "+str(state.get("max_charge",3))
-	circuit_bar.max_value = int(state.get("max_charge",3))
-	circuit_bar.value = charge
-	circuit_instrument.charge = charge
-	circuit_instrument.maximum = int(state.get("max_charge",3))
-	circuit_instrument.queue_redraw()
-	circuit_hint.text = ("放桩 %d/2" % placed) if Words.locale != "en" else ("%d/2" % placed)
-	circuit_release.text = "释放" if Words.locale != "en" else "Fire"
-	circuit_hint.tooltip_text = str(state.get("hint",""))
-	if charge >= int(state.get("max_charge",3)):
-		circuit_hint.text = "回路已满" if Words.locale != "en" else "Full"
-		circuit_hint.add_theme_color_override("font_color",HUD_AMBER)
-	else:
-		circuit_hint.add_theme_color_override("font_color",HUD_MUTED)
+	passive_snapshot = room.player.class_status()
+	passive_panel.show()
+	var english := Words.locale == "en"
+	var current := int(passive_snapshot.get("current",0))
+	var maximum := maxi(1,int(passive_snapshot.get("max",3)))
+	var cooldown := float(passive_snapshot.get("cooldown",passive_snapshot.get("icd",0.0)))
+	passive_title.text = str(passive_snapshot.get("name",""))
+	passive_state.text = ("Stacks %d / %d" if english else "累积  %d / %d") % [current,maximum]
+	if cooldown > 0:
+		passive_state.text = ("%d/%d · %.1fs" if english else "%d/%d · 冷却%.1f秒") % [current,maximum,cooldown]
+	elif bool(passive_snapshot.get("ready",false)):
+		passive_state.text += " · Ready" if english else " · 已就绪"
+	var triggers: Dictionary = {
+		"CH01": ["普攻命中满3次，自动获得护盾。","Land 3 basic hits to gain a shield."],
+		"CH02": ["同目标普攻2次，下一击触发弱点。","Hit one target twice; the next hit exploits its weakness."],
+		"CH03": ["普攻与技能交替满3层，下次技能回蓝。","Alternate attacks and skills 3 times; the next skill restores mana."]
+	}
+	passive_hint.text = str(triggers.get(Game.run.hero_id,["被动自动生效。","This passive triggers automatically."])[1 if english else 0])
+	passive_bar.max_value = maximum
+	passive_bar.value = current
+	var accent: Color = passive_snapshot.get("color",HUD_CYAN)
+	# Resource accents can be pale gold or lime; use dark teal for paper text.
+	passive_state.add_theme_color_override("font_color",HUD_CYAN if cooldown <= 0 else HUD_MUTED)
+	passive_glyph.hero_id = Game.run.hero_id
+	passive_glyph.accent = accent
+	passive_glyph.queue_redraw()
+	var fill := StyleBoxFlat.new()
+	fill.bg_color = accent
+	passive_bar.add_theme_stylebox_override("fill",fill)
+	class_label.text = ("Passive %d/%d · Automatic" if english else "被动 %d/%d · 自动触发") % [current,maximum]
+	class_label.tooltip_text = str(passive_snapshot.get("hint",""))
+	class_bar.max_value = maximum
+	class_bar.value = current
 
 func _update_buffs() -> void:
 	if buff_row == null: return
@@ -987,10 +1002,10 @@ func _update_buffs() -> void:
 			_bind_detail(new_chip,"buff:"+effect)
 			buff_chips[effect] = new_chip
 		var chip: BuffChip = buff_chips[effect]
-		chip.position = Vector2(ordinal*48,0)
+		chip.position = Vector2((ordinal%6)*48,floori(ordinal/6.0)*48)
 		chip.update_state(active_buffs[effect])
 		ordinal += 1
-	buff_row.size.x = maxi(0,ordinal*48-4)
+	buff_row.size = Vector2(maxi(0,mini(6,ordinal)*48-4),maxi(0,ceili(ordinal/6.0)*48-4))
 	buff_row.visible = ordinal > 0
 	if active_detail_slot.begins_with("buff:") and not active_buffs.has(active_detail_slot.trim_prefix("buff:")) and tooltip_panel != null:
 		tooltip_panel.hide()
@@ -1028,7 +1043,7 @@ func _update_relics() -> void:
 	for child in relic_row.get_children(): child.queue_free()
 	for i in range(Game.run.relics.size()):
 		var id: String = Game.run.relics[i]
-		var chip := _compact_button(relic_row,"",Vector2(i*52,0),Vector2(44,44),func(): relic_details_requested.emit())
+		var chip := _compact_button(relic_row,"",Vector2((i%4)*52,floori(i/4.0)*52),Vector2(44,44),func(): relic_details_requested.emit())
 		chip.name = "Relic_"+id
 		_bind_detail(chip,"relic:"+id)
 		var art := MineArt.relic(chip,id,Vector2(4,4),Vector2(36,36))
@@ -1038,6 +1053,8 @@ func _update_relics() -> void:
 		_queue_notification(Words.text("RELIC_ACQUIRED",{"name":str(_relic_info(str(Game.run.relics[-1])).get("name",""))}))
 	previous_relics = signature
 	has_drawn_state = true
+	relic_row.size = Vector2(maxi(0,mini(4,Game.run.relics.size())*52-8),maxi(0,ceili(Game.run.relics.size()/4.0)*52-8))
+	relic_row.position.x = screen_size.x-relic_row.size.x-12
 
 func _relic_info(id: String) -> Dictionary:
 	if ResourceLoader.exists("res://scripts/combat/class_relics.gd"):
@@ -1132,11 +1149,17 @@ func _update_tooltip() -> void:
 		tooltip_title.text = ("Hero growth · Lv.%d" if Words.locale == "en" else "角色成长 · Lv.%d") % Game.run.level
 		body = experience_label.text+"\n"+GrowthReadout.next_goal(Game.run.hero_id,int(growth_info.get("xp",0)))
 		body += "\n"+class_label.text
-		body += "\n\n"+("Room XP is saved on completion. Defeat retains 2 XP per unfinished-room kill, up to 18. Abandoning awards none. Click to inspect your character." if Words.locale == "en" else "完成房间保存经验。战败时本房击杀每只保留2经验，最多18；主动放弃不计。点击查看角色属性。")
+		body += "\n\n"+("Room XP is saved on completion. Defeat removes unsettled room XP and preserves your earned levels. Click to inspect your character." if Words.locale == "en" else "完成房间后结算经验。死亡损失本房未结算经验，保留已有等级。点击查看角色属性。")
 		var pending := 30 if Game.run.staged_tutorial else 0
 		for value: int in Game.run.staged_xp.values(): pending += value
 		if pending > 0:
 			body += ("\nPending this room: %d XP" if Words.locale == "en" else "\n本房待结算：%d 经验") % pending
+	elif active_detail_slot == "passive":
+		tooltip_title.text = passive_title.text
+		body = str(passive_snapshot.get("description",""))+"\n\n"+passive_state.text+"\n"+str(passive_snapshot.get("hint",""))
+	elif active_detail_slot == "inventory":
+		tooltip_title.text = "Backpack & character" if Words.locale == "en" else "背包与角色属性"
+		body = "Press B or click to change equipment and inspect your live character stats. The game pauses while the backpack is open." if Words.locale == "en" else "按 B 或点击打开背包，查看与更换装备、比较加成和角色实时属性。背包打开时游戏暂停。"
 	elif active_detail_slot.begins_with("relic:"):
 		var info := _relic_info(active_detail_slot.trim_prefix("relic:"))
 		tooltip_title.text = str(info.get("name",""))
@@ -1151,31 +1174,35 @@ func _update_tooltip() -> void:
 	else:
 		var info := skill_info(active_detail_slot)
 		tooltip_title.text = str(info.name)
-		body = str(info.summary)+"\n"+str(info.state)+"\n\n"+Words.text("HUD_DETAIL_HINT")
+		body = str(info.description)+"\n\n"+str(info.summary)+"\n"+str(info.state)+"\n\n"+Words.text("HUD_DETAIL_HINT")
 	tooltip_body.text = body
 	tooltip_body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART if Words.locale == "en" else TextServer.AUTOWRAP_ARBITRARY
 	var detail_line_height := tooltip_body.get_theme_font("font").get_height(16)+tooltip_body.get_theme_constant("line_spacing")
 	tooltip_panel.size.y = maxf(164,ceilf(tooltip_body.get_line_count()*detail_line_height)+64)
-	tooltip_panel.size.y = minf(420 if active_detail_slot == "quest" else 280,tooltip_panel.size.y)
+	tooltip_panel.size.y = minf(minf(420,screen_size.y-32),tooltip_panel.size.y)
 	tooltip_body.size.y = tooltip_panel.size.y-54
+	tooltip_body.clip_text = true
+	tooltip_body.max_lines_visible = maxi(1,floori(tooltip_body.size.y/detail_line_height))
+	tooltip_body.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	if target != tooltip_panel:
 		var bounds := target.get_global_rect()
 		if active_detail_slot == "quest":
 			# A long action can move its note upwards. Its detail stays beside
 			# the note so hovering never covers the source's click target.
-			tooltip_panel.position = Vector2(bounds.position.x-tooltip_panel.size.x,clampf(bounds.position.y,16,720-tooltip_panel.size.y-16))
+			tooltip_panel.position = Vector2(clampf(bounds.position.x-tooltip_panel.size.x,16,screen_size.x-tooltip_panel.size.x-16),clampf(bounds.position.y,16,screen_size.y-tooltip_panel.size.y-16))
 		else:
 			var tooltip_y := bounds.position.y-tooltip_panel.size.y
 			# Touch the source's edge; slow pointers and trackpads need no timed jump.
 			if tooltip_y < 140: tooltip_y = bounds.end.y
-			tooltip_panel.position = Vector2(clampf(bounds.get_center().x-190,16,1280-tooltip_panel.size.x-16),clampf(tooltip_y,16,720-tooltip_panel.size.y-16))
+			tooltip_panel.position = Vector2(clampf(bounds.get_center().x-tooltip_panel.size.x*.5,16,screen_size.x-tooltip_panel.size.x-16),clampf(tooltip_y,16,screen_size.y-tooltip_panel.size.y-16))
 	tooltip_panel.show()
 
 ## Actual screen-space boxes, used by QA instead of the full-screen root rect.
 func coverage_rects() -> Array[Rect2]:
-	var result: Array[Rect2] = [status_panel.get_global_rect(),location_panel.get_global_rect(),quest_panel.get_global_rect(),gold_label.get_global_rect(),skill_dock.get_global_rect()]
-	if is_instance_valid(circuit_panel) and circuit_panel.visible: result.append(circuit_panel.get_global_rect())
-	if not Game.run.relics.is_empty(): result.append(relic_row.get_global_rect())
+	var result: Array[Rect2] = [status_panel.get_global_rect().merge(hero_bust.get_global_rect()),location_panel.get_global_rect(),quest_panel.get_global_rect(),gold_label.get_global_rect(),skill_dock.get_global_rect(),equipment_actions.get_global_rect()]
+	if is_instance_valid(passive_panel) and passive_panel.visible: result.append(passive_panel.get_global_rect())
+	if Game.run != null and not Game.run.relics.is_empty(): result.append(relic_row.get_global_rect())
+	if is_instance_valid(_route_button): result.append(_route_button.get_global_rect())
 	return result
 
 func _update_navigation() -> void:
@@ -1187,17 +1214,26 @@ func _update_navigation() -> void:
 	var world_position: Vector2 = target.get("position",Vector2.ZERO)
 	var distance: float = room.player.global_position.distance_to(world_position)
 	var target_ui: Vector2 = get_global_transform_with_canvas().affine_inverse()*(room.get_canvas_transform()*world_position)
-	navigation.visible = not Rect2(32,150,1216,430).has_point(target_ui) and distance > 90.0
+	var battle_rect := Rect2(32,160,screen_size.x-64,maxf(80,skill_dock.position.y-178))
+	navigation.visible = not battle_rect.has_point(target_ui) and distance > 90.0
 	if not navigation.visible: return
-	var direction := target_ui-Vector2(640,360)
+	var center := screen_size*.5
+	var direction := target_ui-center
 	if direction.length_squared() < 0.01: return
 	var unit := direction.normalized()
-	var factor := minf(554.0/maxf(absf(unit.x),0.001),190.0/maxf(absf(unit.y),0.001))
-	var edge := Vector2(640,360)+unit*factor
-	navigation.position = Vector2(clampf(edge.x-navigation.size.x*0.5,20,1260-navigation.size.x),clampf(edge.y-navigation.size.y*0.5,204,536))
-	# Keep a world pointer outside the permanent quest ribbon.
-	if navigation.get_rect().intersects(quest_panel.get_rect()):
-		navigation.position.y = quest_panel.get_rect().end.y+8
+	var factor := minf(maxf(80,screen_size.x*.5-navigation.size.x*.5-24)/maxf(absf(unit.x),0.001),maxf(40,battle_rect.size.y*.5-24)/maxf(absf(unit.y),0.001))
+	var edge := center+unit*factor
+	var bottom := minf(skill_dock.position.y,minf(passive_panel.position.y,equipment_actions.position.y))-navigation.size.y-12
+	navigation.position = Vector2(clampf(edge.x-navigation.size.x*.5,20,screen_size.x-navigation.size.x-20),clampf(edge.y-navigation.size.y*.5,166,maxf(166,bottom)))
+	# Move the pointer beside a standing note rather than over its text.
+	if navigation.get_rect().intersects(quest_panel.get_rect().grow(6)):
+		var above := quest_panel.position.y-navigation.size.y-8
+		var below := quest_panel.get_rect().end.y+8
+		if below <= bottom: navigation.position.y = below
+		elif above >= 166: navigation.position.y = above
+		else: navigation.position.x = maxf(20,quest_panel.position.x-navigation.size.x-12)
+	if navigation.get_rect().intersects(buff_row.get_rect()) and buff_row.visible:
+		navigation.position.x = buff_row.get_rect().end.x+8
 	var title_key := str(target.get("title","NAV_EXIT"))
 	var title := Words.text(title_key) if Words.catalog.has(title_key) else MineStyle.content_text(target,"name",title_key)
 	navigation.update_target(unit,title,roundi(distance),"exit" if target.get("kind","") == "extract" else "route")

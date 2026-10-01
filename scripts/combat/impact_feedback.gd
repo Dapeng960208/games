@@ -11,6 +11,7 @@ const VIOLET := Color("c5a9ed")
 const CONTACT_INK := Color("17232b")
 const SHIELD_BLUE := Color("9bddec")
 const SHIELD_EDGE := Color("e5faff")
+const NumberPresentation = preload("res://scripts/combat/damage_numbers.gd")
 var events: Array[Dictionary] = []
 var accepted_events: int = 0
 var culled_events: int = 0
@@ -25,6 +26,8 @@ func _init() -> void:
 
 func _ready() -> void:
 	_font = ThemeDB.fallback_font
+	if ResourceLoader.exists("res://assets/fonts/NotoSansSC.ttf"):
+		_font = load("res://assets/fonts/NotoSansSC.ttf")
 
 func _process(delta: float) -> void:
 	advance(delta)
@@ -121,16 +124,17 @@ func contact_position(event: Dictionary) -> Vector2:
 		return point
 	return at
 
-func add_floating_damage(at: Vector2, amount: float, kind: StringName) -> void:
+func add_floating_damage(at: Vector2, amount: float, kind: StringName, context: Dictionary = {}) -> void:
 	if amount <= 0.0 or not is_finite(amount) or not at.is_finite():
 		return
 	var lane: int = 0
 	for old in events:
 		if old.kind == "number" and float(old.age) < 0.28 and Vector2(old.origin).distance_squared_to(at) < 42.0 * 42.0:
 			lane += 1
-	var offset := Vector2(float((lane % 3) - 1) * 15.0 if lane > 0 else 0.0, -float(lane % 3) * 9.0)
+	var offset := Vector2(float((lane % 3) - 1) * 29.0 if lane > 0 else 0.0, -float(lane % 3) * 17.0)
 	_append({"kind":"number", "at":at + offset, "origin":at, "amount":amount,
-		"source":str(kind), "age":0.0, "duration":0.6, "reduced":_reduced()})
+		"source":str(kind), "age":0.0, "duration":0.72, "reduced":_reduced(),
+		"presentation":NumberPresentation.presentation(amount, str(kind), context)})
 
 func clear_feedback() -> void:
 	events.clear()
@@ -325,21 +329,7 @@ func _draw_fragments(at: Vector2, dir: Vector2, radius: float, t: float, fade: f
 			_contact_chip(chip, tint, fade * 0.85)
 
 func _draw_number(event: Dictionary) -> void:
-	if _font == null:
-		return
-	var t: float = clampf(float(event.age) / float(event.duration), 0.0, 1.0)
-	var fade: float = minf(1.0, (1.0 - t) * 3.0)
-	var source: String = event.source
-	var tint: Color = Color("ecc177") if source in ["burn", "bleed"] else JADE if source in ["arc", "magic", "spell"] else IVORY
-	var amount: float = event.amount
-	var label: String = str(maxi(1, roundi(amount)))
-	var at: Vector2 = event.at
-	if not bool(event.reduced):
-		at.y -= 21.0 * (1.0 - pow(1.0 - t, 2.0))
-	var size: int = 16
-	at.x -= _font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, size).x * 0.5
-	draw_string_outline(_font, at, label, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 3, Color(0.04, 0.06, 0.08, fade * 0.95))
-	draw_string(_font, at, label, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(tint, fade))
+	NumberPresentation.draw_number(self, _font, event)
 
 func _noise(serial: int, index: int) -> float:
 	# Cosmetic deterministic variation never advances the room's seeded RNG.

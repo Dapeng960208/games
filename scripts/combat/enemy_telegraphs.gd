@@ -9,6 +9,7 @@ var room: Node2D
 var redraw_revision: int = 0
 var _entries: Array[Dictionary] = []
 var _reduced: bool = false
+var _enabled: bool = true
 var _canvas_transform := Transform2D.IDENTITY
 
 func configure(host: Node2D) -> void:
@@ -26,12 +27,15 @@ func refresh() -> bool:
 	if not is_instance_valid(room) or (is_inside_tree() and get_tree().paused):
 		return false
 	var next: Array[Dictionary] = []
+	var enabled: bool = bool(Game.profile.get("settings", {}).get("enemy_skill_paths", true))
 	# The room enforces MAX_ENEMIES on every ordinary/summon/anchor spawn;
 	# bosses also share this container. Current layouts add at most 23 inert
 	# objectives (L11); collection is bounded by that room population plus
 	# transient queued corpses. Do not truncate it: a queued corpse or
 	# objective before a living caster must never hide a real danger warning.
 	for actor: Node in room.enemies.get_children():
+		if not enabled:
+			break
 		if not _visible_caster(actor):
 			continue
 		# MineBoss installs boss_brain into the same inherited brain property.
@@ -43,10 +47,11 @@ func refresh() -> bool:
 			next.append({"actor_id": actor.get_instance_id(), "data": presentation_data(data)})
 	var reduced: bool = bool(Game.profile.get("settings", {}).get("reduced_fx", false))
 	var transform_to_room: Transform2D = room.telegraph_canvas_transform(self)
-	if next == _entries and reduced == _reduced and transform_to_room.is_equal_approx(_canvas_transform):
+	if next == _entries and reduced == _reduced and enabled == _enabled and transform_to_room.is_equal_approx(_canvas_transform):
 		return false
 	_entries = next
 	_reduced = reduced
+	_enabled = enabled
 	_canvas_transform = transform_to_room
 	redraw_revision += 1
 	queue_redraw()
@@ -81,7 +86,7 @@ func _visible_caster(actor: Object) -> bool:
 	return is_instance_valid(actor) and not actor.is_queued_for_deletion() and actor.is_inside_tree() and actor.is_alive() and actor.state in [&"telegraph", &"locked"]
 
 func _draw() -> void:
-	if not is_instance_valid(room):
+	if not is_instance_valid(room) or not bool(Game.profile.get("settings", {}).get("enemy_skill_paths", true)):
 		return
 	for entry: Dictionary in _entries:
 		var actor: Object = instance_from_id(int(entry.actor_id))

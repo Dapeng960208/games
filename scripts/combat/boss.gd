@@ -371,5 +371,5 @@ func draw_body_fallback(canvas: Node2D, tint: Color) -> void:
 				canvas.draw_line(direction*38,direction*80,(colors.shade as Color)*tint,13,true)
 				canvas.draw_circle(direction*87,14,(colors.trim as Color)*tint)
 			canvas.draw_circle(Vector2(0,-25),16,(colors.energy as Color)*tint)
-	if state in [&"windup", &"telegraph", &"locked"]:
+	if bool(Game.profile.get("settings", {}).get("enemy_skill_paths", true)) and state in [&"windup", &"telegraph", &"locked"]:
 		canvas.draw_arc(Vector2.ZERO,navigation_radius,0,TAU,40,Color(0.89,0.28,0.27,0.52)*tint,2.0,true)

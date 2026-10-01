@@ -329,6 +329,7 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 		if value.claimed_drop_ids[drop].get("field_decision", "") == "equip" and not receipt.equipment_snapshot.has(eq): return false
 	for slot in Registry.SLOTS:
 		var eq: String = str(receipt.loadout_snapshot.get(slot, ""))
+		if eq.is_empty(): continue # An intentionally unequipped slot contributes no stats.
 		if not receipt.equipment_snapshot.has(eq) or Registry.equipment(eq).get("slot") != slot: return false
 	if not receipt.get("branches_snapshot") is Dictionary or receipt.branches_snapshot.size() != 2: return false
 	for key in ["q","ultimate"]:

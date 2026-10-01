@@ -260,6 +260,7 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	defense.merge({"armor":effective_armor() * (0.85 if status.has("corrosion") else 1.0),"magic_resist":magic_resist}, true)
 	var resolved: Dictionary = Damage.resolve(amount, damage_type, context.get("attacker_stats", {}), defense, context)
 	var final_amount: float = float(resolved.damage) * (1.35 if biome_weakpoint_open() else 1.0)
+	var health_before: float = health.current
 	var shield_before: float = status.shield()
 	final_amount = status.absorb(final_amount)
 	if final_amount > 0.0 or status.shield() < shield_before:
@@ -268,9 +269,19 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 		var hit_context: Dictionary = context.duplicate()
 		hit_context.merge({"damage":final_amount,"kind":str(kind),"direction":from_direction},true)
 		brain.on_damaged(self, hit_context)
-	room.add_damage_text(position - Vector2(0, 65 if body_texture != null else 26), final_amount, kind)
 	if final_amount > 0.0:
 		last_damage_direction = from_direction.normalized() if from_direction.is_finite() else Vector2.ZERO
+	# Capture the packet before health.damage can emit a death/phase signal. A
+	# subsequent resurrection or spawned actor must not inflate this number.
+	var consumed_hp: float = minf(maxf(0.0, final_amount), maxf(0.0, health_before))
+	var consumed_shield: float = maxf(0.0, shield_before - status.shield())
+	var number_at: Vector2 = position - Vector2(0, 65 if body_texture != null else 26)
+	if consumed_hp > 0.0:
+		room.add_damage_text(number_at, consumed_hp, kind, context)
+	if consumed_shield > 0.0:
+		var shield_context: Dictionary = context.duplicate()
+		shield_context["feedback_kind"] = "shield"
+		room.add_damage_text(number_at, consumed_shield, kind, shield_context)
 	return health.damage(final_amount)
 
 func apply_biome_counter(kind: String, duration: float = 6.0) -> bool:
@@ -438,10 +449,11 @@ func _draw() -> void:
 		_draw_skill_anchor()
 		return
 	var reduced: bool = Game.profile.get("settings", {}).get("reduced_fx", false)
+	var show_skill_paths: bool = bool(Game.profile.get("settings", {}).get("enemy_skill_paths", true))
 	if state == &"emerging":
 		draw_arc(Vector2.ZERO, 28.0, 0, TAU, 24, Color(0.9, 0.42, 0.41, 0.65), 2.0, true)
 		draw_line(Vector2(-5,-30), Vector2(5,-30), Color("e46b69"), 2.0)
-	if state == &"windup":
+	if state == &"windup" and show_skill_paths:
 		var progress := 1.0 - state_time / Balance.ENEMY_WINDUP
 		var fan := PackedVector2Array([Vector2.ZERO])
 		for i in range(13):
@@ -453,7 +465,7 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, 22.0, Color(0.20, 0.17, 0.25, 0.25))
 	draw_set_transform(Vector2.ZERO)
 	if body_texture != null:
-		if state in [&"windup", &"telegraph", &"locked"]:
+		if show_skill_paths and state in [&"windup", &"telegraph", &"locked"]:
 			draw_arc(Vector2.ZERO,navigation_radius,0,TAU,24,Color(0.89,0.28,0.27,0.52),1.0,true)
 		var tint := Color(1,1,1,.35 if bool(get_meta("enemy_shadow_stealth",false)) else 1.0)
 		if hurt_flash > 0.0 and not reduced:

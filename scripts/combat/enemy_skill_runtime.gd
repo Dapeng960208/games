@@ -578,7 +578,8 @@ func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 			var owner_profile: Dictionary = _property(_owner(command),"profile",{})
 			var kind: String = str(command.get("damage_type",owner_profile.get("damage_type",owner_profile.get("damage_kind","physical"))))
 			if kind in ["electric","thermal","arcane","toxic","cold"]: kind = "magic"
-			accepted = bool(victim.receive_damage(float(command.damage),origin,{"damage_type":kind}))
+			var visual_kind: String = str(command.get("damage_kind", owner_profile.get("damage_kind", kind)))
+			accepted = bool(victim.receive_damage(float(command.damage),origin,{"damage_type":kind, "damage_kind":visual_kind}))
 		else:
 			accepted = bool(victim.receive_damage(float(command.damage), origin))
 	else:
@@ -965,8 +966,9 @@ func _flash(command: Dictionary, tint: Color = Color("ffab69")) -> void:
 func _draw() -> void:
 	if not is_instance_valid(room):
 		return
-	for command: Dictionary in jobs:
-		_draw_shape(command, Color(1.0, 0.44, 0.27, 0.2), Color("ffc481"))
+	if bool(Game.profile.get("settings", {}).get("enemy_skill_paths", true)):
+		for command: Dictionary in jobs:
+			_draw_shape(command, Color(1.0, 0.44, 0.27, 0.2), Color("ffc481"))
 	for area: Dictionary in hazards:
 		_draw_shape(area, Color(0.92, 0.35, 0.2, 0.23), Color("ef936b"))
 	for visual: Dictionary in visuals:

@@ -45,16 +45,16 @@
       "cost": 0,
       "name_en": "Steel Step"
     },
-    "role": "近战战斧 · 三层破势 · 免费强化横扫",
+    "role": "近战战斧 · 三击支护 · 破势强化横扫",
     "passive": {
       "name": "三铆支护",
-      "description": "每次原始普攻挥击命中获得1层破势，最多3层；一次挥击命中多敌仍只积1层。Q命中与F施放各补1层。右键或R成功启动时消耗全部破势，每层分别增加0.45H或0.60H伤害；满3层时范围与击退强化，且鼠标右键横扫免怒气；仍需等待冷却，取消不返层数。原有每3次普攻命中获得8%最大生命护盾3秒的支护仍保留，护盾内置冷却6秒。破势只在当前房间保存。",
+      "description": "每3次有效原始普攻获得最大生命8%的护盾，持续3秒，内置冷却6秒。一次挥击命中多敌只记1次，冷却期间不积攒。原始普攻与Q命中、E释放积累破势，最多3层；W或R成功启动时消耗破势强化伤害，满3层的W免怒气。被动自动触发，无需C/V操作。派生伤害、持续场和装备附伤不会触发；计数随房间或死亡清空。",
       "hit_count": 3,
       "shield_hp_ratio": 0.08,
       "duration": 3,
       "icd": 6,
       "name_en": "Three-Rivet Support",
-      "description_en": "Each original basic swing that hits builds one Momentum, up to three; Q hits and F also add one. Secondary or R consumes all Momentum on cast, adding 0.45H or 0.60H per stack and increasing coverage and knockback at three. At full Momentum, Right Mouse Sweep costs no Rage; its cooldown still applies. Cancellation does not refund Momentum. The original three-hit shield remains. Momentum is local to the room."
+      "description_en": "Every 3 confirmed original basic attacks grant an 8% maximum-health shield for 3 seconds. Internal cooldown: 6 seconds; no accumulation during cooldown. A multi-target swing counts once. Basics, Q contact and E release build Momentum, up to 3; W or R spends it to empower the cast, and W costs no Rage at full Momentum. Automatic; no C/V input. Derived hits never trigger it. Progress resets on room change or death."
     },
     "original_visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
     "visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
@@ -73,7 +73,7 @@
         "unlock": 1,
         "cost": 20,
         "cooldown": 6.0,
-        "description": "动作：预备 0.10 秒 → 冲进与命中窗 0.18 秒 → 收势 0.14 秒。沿准星向前移动最多 160，终点半径 75 冲击，造成 1.5H 动能伤害；每敌每次施放只命中一次。小型敌人向外击退 45，不附带额外状态。\n代价：20 怒气，冷却 6 秒。Q 本身没有无敌；可越过普通敌人碰撞但不能越过地形。撞墙时停在最后合法地面，在该处结算范围，不能在墙另一侧伤害敌人。\n联动与反馈：先左键积怒，Q 接近远程威胁，再右键扫开身边小怪。怒气不足显示缺少数值与短促空压声；完全没有合法移动路线时不施放、不扣费；合法空放正常扣费。命中用地面裂纹短线和重击音，不长时间遮住预警。\n职业循环：命中任意数量敌人仅获得1层破势。",
+        "description": "动作：预备 0.10 秒 → 冲进与命中窗 0.18 秒 → 收势 0.14 秒。沿准星向前移动最多 160，终点半径 75 冲击，造成 1.5H 动能伤害；每敌每次施放只命中一次。小型敌人向外击退 45，不附带额外状态。\n代价：20 怒气，冷却 6 秒。Q 本身没有无敌；可越过普通敌人碰撞但不能越过地形。撞墙时停在最后合法地面，在该处结算范围，不能在墙另一侧伤害敌人。\n联动与反馈：先A 键积怒，Q 接近远程威胁，再W扫开身边小怪。怒气不足显示缺少数值与短促空压声；完全没有合法移动路线时不施放、不扣费；合法空放正常扣费。命中用地面裂纹短线和重击音，不长时间遮住预警。\n职业循环：命中任意数量敌人仅获得1层破势。",
         "mechanics": {
           "windup": 0.1,
           "active": 0.18,
@@ -89,11 +89,11 @@
       },
       "secondary": {
         "name": "破桩横扫",
-        "input": "右键",
+        "input": "W",
         "unlock": 2,
         "cost": 30,
         "cooldown": 4.0,
-        "description": "动作：侧身蓄斧 0.18 秒 → 挥击有效窗 0.10 秒 → 收斧 0.26 秒。前方 120°、距离 115，造成 2.2H 动能伤害，击退小型敌人 65；同敌只受击一次，墙壁阻挡挥击，不隔墙命中。\n代价：通常30怒气，满3层破势时免怒气，冷却仍为4秒。有效窗开始后不能转向，预备阶段最多修正瞄准 30°；可用空格取消收势，取消不会再次产生伤害或返还资源。\n联动与反馈：Q 找到近身位置后挥扫，或等冲锋怪落点确定再出手。过早挥空会付出怒气与收势，准星明确显示有效扇形。重命中触发 55 毫秒视觉停顿与低频金属砸击，打空只有较轻的挥风声。\n职业循环：施放时消耗全部破势，每层额外0.45H；满3层时免怒气，距离140、扇形160°、击退90。先普攻积满三层，再用鼠标右键打出强化横扫；启动立即耗尽破势，取消不返层数。",
+        "description": "动作：侧身蓄斧 0.18 秒 → 挥击有效窗 0.10 秒 → 收斧 0.26 秒。前方 120°、距离 115，造成 2.2H 动能伤害，击退小型敌人 65；同敌只受击一次，墙壁阻挡挥击，不隔墙命中。\n代价：通常30怒气，满3层破势时免怒气，冷却仍为4秒。有效窗开始后不能转向，预备阶段最多修正瞄准 30°；可用空格取消收势，取消不会再次产生伤害或返还资源。\n联动与反馈：Q 找到近身位置后挥扫，或等冲锋怪落点确定再出手。过早挥空会付出怒气与收势，准星明确显示有效扇形。重命中触发 55 毫秒视觉停顿与低频金属砸击，打空只有较轻的挥风声。\n职业循环：施放时消耗全部破势，每层额外0.45H；满3层时免怒气，距离140、扇形160°、击退90。先普攻积满三层，再用W 键打出强化横扫；启动立即耗尽破势，取消不返层数。",
         "mechanics": {
           "windup": 0.18,
           "active": 0.1,
@@ -107,11 +107,11 @@
           "hit_stop_ms": 55
         },
         "name_en": "Pilebreaker Sweep",
-        "description_en": "Prepare for 0.18 s, strike for 0.10 s, then recover for 0.26 s. Sweep a 120-degree arc at 115 range for 2.2H kinetic damage and 65 knockback against small enemies. Walls block hits. Aim may adjust up to 30 degrees during preparation, then locks; a dash may cancel recovery without a refund. Consumes all Momentum on cast: +0.45H per stack. At three stacks: no Rage cost, 140 range, 160-degree arc, 90 knockback. Otherwise costs 30 Rage; the 4 s cooldown always applies. Build three stacks with basic attacks, then use Right Mouse for the empowered sweep. Cancellation does not refund Momentum."
+        "description_en": "Prepare for 0.18 s, strike for 0.10 s, then recover for 0.26 s. Sweep a 120-degree arc at 115 range for 2.2H kinetic damage and 65 knockback against small enemies. Walls block hits. Aim may adjust up to 30 degrees during preparation, then locks; a dash may cancel recovery without a refund. Consumes all Momentum on cast: +0.45H per stack. At three stacks: no Rage cost, 140 range, 160-degree arc, 90 knockback. Otherwise costs 30 Rage; the 4 s cooldown always applies. Build three stacks with basic attacks, then use W for the empowered sweep. Cancellation does not refund Momentum."
       },
       "f": {
         "name": "撑梁反推",
-        "input": "F",
+        "input": "E",
         "unlock": 3,
         "cost": 25,
         "cooldown": 11.0,
@@ -136,7 +136,7 @@
         "unlock": 4,
         "cost": 70,
         "cooldown": 42.0,
-        "description": "动作：举斧预备 0.45 秒 → 砸击窗 0.12 秒 → 收势 0.45 秒。落点为准星方向前方最多 130 的合法地面，影响半径 180，造成 4.0H 动能伤害；小型敌人击退 90，墙壁遮挡伤害传播。\n代价：70 怒气，冷却 42 秒。预备中移动速度为 35%，没有无敌；允许空格中断保命，但已经启动后不返还资源和冷却。不能先看到命中再决定取消成本。\n联动与反馈：用 F 腾出举斧窗口，或先通过角落聚怪再 Q 进入落点。落斧前用短暂高频拉紧声蓄势，命中叠低频冲击、碎石与扁平环形波；只在命中时给 65 毫秒视觉停顿，打空不会播放“重命中”反馈。\n职业循环：施放时消耗全部破势，每层每波额外0.60H；满3层时半径额外+30、击退额外+25。取消不返破势。",
+        "description": "动作：举斧预备 0.45 秒 → 砸击窗 0.12 秒 → 收势 0.45 秒。落点为准星方向前方最多 130 的合法地面，影响半径 180，造成 4.0H 动能伤害；小型敌人击退 90，墙壁遮挡伤害传播。\n代价：70 怒气，冷却 42 秒。预备中移动速度为 35%，没有无敌；允许空格中断保命，但已经启动后不返还资源和冷却。不能先看到命中再决定取消成本。\n联动与反馈：用 E 腾出举斧窗口，或先通过角落聚怪再 Q 进入落点。落斧前用短暂高频拉紧声蓄势，命中叠低频冲击、碎石与扁平环形波；只在命中时给 65 毫秒视觉停顿，打空不会播放“重命中”反馈。\n职业循环：施放时消耗全部破势，每层每波额外0.60H；满3层时半径额外+30、击退额外+25。取消不返破势。",
         "mechanics": {
           "windup": 0.45,
           "active": 0.12,
@@ -163,14 +163,14 @@
       {
         "level": 12,
         "skill": "secondary",
-        "description": "右键收势 0.26 → 0.18 秒；命中窗口不变",
+        "description": "W收势 0.26 → 0.18 秒；命中窗口不变",
         "description_en": "Secondary recovery decreases from 0.26 s to 0.18 s; its hit window is unchanged."
       },
       {
         "level": 14,
         "skill": "f",
-        "description": "F 护盾授予 12% → 18% 最大生命；仍受共享上限",
-        "description_en": "F shield increases from 12% to 18% of maximum health, subject to shared shield caps."
+        "description": "E 护盾授予 12% → 18% 最大生命；仍受共享上限",
+        "description_en": "E shield increases from 12% to 18% of maximum health, subject to shared shield caps."
       },
       {
         "level": 16,
@@ -213,9 +213,9 @@
     "title_en": "The Trailbreaker",
     "class_name_en": "Breaker",
     "resource_name_en": "Rage",
-    "role_en": "Melee axe · Three-step momentum · Free empowered sweep",
-    "description": "普攻与Q命中积攒破势，F撑架补势；以右键或R消耗最多三层，砸出更宽、更重的一击。",
-    "description_en": "Build up to three Momentum with basic hits, Q and F. Spend it on an empowered axe sweep or ultimate slam.",
+    "role_en": "Melee axe · Three-hit support · Momentum sweep",
+    "description": "近战普攻自动触发三击护盾；Q接近敌人、E推开包围，破势积满后用W横扫或R坠击完成爆发。",
+    "description_en": "Confirmed basic swings build a three-hit shield. Close distance with Q, make space with E, then spend full Momentum with W or R.",
     "visual_en": "An asymmetric, low-centred mine-support worker: square rockfall guard on the left shoulder, exposed hydraulic brace on the right arm and a short low-mounted air tank. A broad silver-edged mining axe has an orange-black head, flat poll and sturdy two-handed haft. Coal black, oxidised orange and bone white.",
     "magic_resist": 12,
     "ability_power": 0
@@ -254,16 +254,16 @@
       "cost": 0,
       "name_en": "Cable Slide"
     },
-    "role": "游走蓄势 · 猎印标记 · 贯射爆发",
+    "role": "远程枪手 · 连击弱点 · 穿透爆发",
     "passive": {
-      "name": "行路回线",
-      "description": "沿有效地面走动累计 240 距离后，下次普攻命中回复 10 能量并使 Q 剩余冷却减少 0.5 秒，内置冷却 2 秒。空格、Q 位移、传送、碰撞抖动和被击退距离不计；准备状态最多保留一份，不累积多次。1 级尚无 Q 时仍能返还能量，未解锁技能不展示假冷却收益。\n蓄势普攻同时对存活目标施加4秒猎印；右键或R首次命中该目标时消耗猎印，额外造成1.25H原始技能伤害。猎印不叠层，不作为共享元素状态，也不额外触发一条装备链。",
-      "walk_distance": 240,
-      "resource_gain": 10,
-      "q_cooldown_reduction": 0.5,
+      "name": "寻隙猎手",
+      "description": "对同一目标连续2次有效原始普攻揭示弱点，5秒内第三次普攻或任一直接技能命中消耗弱点，额外造成0.65倍攻击力的原始伤害。换目标重新计数；一次穿透、多发技能和多目标攻击最多计1次。消耗后内置冷却2秒，冷却期间不积攒。无效或免疫命中不消耗弱点；派生附伤、陷阱持续伤害和装备连锁不会触发。无需额外按键。",
+      "hit_count": 2,
+      "bonus_attack_ratio": 0.65,
+      "mark_duration": 5,
       "icd": 2,
-      "name_en": "Trail Circuit",
-      "description_en": "After walking 240 units on valid ground, the next basic-attack hit restores 10 Energy and reduces the remaining Q cooldown by 0.5 s. Internal cooldown: 2 s. Dashes, Q movement, teleports, collision jitter and knockback do not count. Only one charge can be stored. The charged hit also marks a surviving target for 4 s. Secondary fire or R consumes the mark to add 1.25H to that original hit. Marks do not stack, are not elemental states and do not create another equipment proc chain."
+      "name_en": "Weak-Point Hunter",
+      "description_en": "Two consecutive confirmed original basic attacks against the same target expose a weak point for 5 seconds. The next basic attack or direct skill hit consumes it for 0.65 attack-power bonus damage as part of that original hit. Changing targets restarts progress. One attack or skill root counts once. Internal cooldown after consumption: 2 seconds; no accumulation during cooldown. Immune hits do not consume it, and derived damage cannot trigger it."
     },
     "original_visual": "岑线是会替后来者留下地图刻痕的测绘员，判断快但不赌没有退路的射击。单侧短披布、高测距针、轻便护胫和三角枪托构成细长轮廓；枪管侧面有能展开的折尺与导轨，而非现代狙击枪写实复刻。橄榄 #72785E、象牙 #DDD3B9、墨绿 #294947。",
     "visual": "岑线是会替后来者留下地图刻痕的测绘员，判断快但不赌没有退路的射击。单侧短披布、高测距针、轻便护胫和三角枪托构成细长轮廓；枪管侧面有能展开的折尺与导轨，而非现代狙击枪写实复刻。橄榄 #72785E、象牙 #DDD3B9、墨绿 #294947。",
@@ -282,7 +282,7 @@
         "unlock": 1,
         "cost": 25,
         "cooldown": 7.0,
-        "description": "动作：拉索预备 0.06 秒 → 地面位移 0.16 秒 → 三连射窗 0.12 秒 → 收势 0.08 秒；朝移动方向滑行最多 150，无方向输入时后撤。滑行结束沿当时准星方向快速发射 3 枚各 0.35H 的动能弹，射程 450，在射击窗的0/0.06/0.12秒发射；每枚对同敌最多一次。第三弹发出后才进入收势；空格取消会停止尚未发出的弹。\n代价：25 能量，冷却 7 秒。没有额外无敌；碰到墙壁缩短位移但仍完成射击，不能跨裂隙。射击只瞄准准星，位移不会自动锁定最近敌人。\n联动与反馈：用 Q 绕过敌人正面，再右键找贯穿线；被动鼓励技能之间持续走动。能量不足发短促线轮卡扣声与“缺少 X 能量”；有合法地面时空放正常扣费。短拖影表现速度，但脚底位置仍清楚。",
+        "description": "动作：拉索预备 0.06 秒 → 地面位移 0.16 秒 → 三连射窗 0.12 秒 → 收势 0.08 秒；朝移动方向滑行最多 150，无方向输入时后撤。滑行结束沿当时准星方向快速发射 3 枚各 0.35H 的动能弹，射程 450，在射击窗的0/0.06/0.12秒发射；每枚对同敌最多一次。第三弹发出后才进入收势；空格取消会停止尚未发出的弹。\n代价：25 能量，冷却 7 秒。没有额外无敌；碰到墙壁缩短位移但仍完成射击，不能跨裂隙。射击只瞄准准星，位移不会自动锁定最近敌人。\n联动与反馈：用 Q 绕过敌人正面，再W找贯穿线；被动鼓励两次同目标普攻后接技能。能量不足发短促线轮卡扣声与“缺少 X 能量”；有合法地面时空放正常扣费。短拖影表现速度，但脚底位置仍清楚。",
         "mechanics": {
           "windup": 0.06,
           "move_duration": 0.16,
@@ -304,11 +304,11 @@
       },
       "secondary": {
         "name": "定轨贯射",
-        "input": "右键",
+        "input": "W",
         "unlock": 2,
         "cost": 30,
         "cooldown": 3.5,
-        "description": "动作：自动稳枪预备 0.45 秒 → 发射窗 0.05 秒 → 收势 0.16 秒。第一目标承受 2.0H 动能伤害；继续穿透最多 1 个其他敌人，第二目标承受第一目标技能系数的 65%；射程 780，墙壁阻断。\n代价：30 能量，冷却 3.5 秒。稳枪时移动速度为 65%，左键暂时停止；完成预备后自动射击，不要求精准松键。按空格可中断，但已启动的能量和冷却不返还。\n联动与反馈：F 寒冷创造贯穿窗口，Q 调整射线。稳枪刻度与短上扬音调表示即将发射；穿透的第二段颜色略暗且保留同一轨迹。若瞄空，仍正常消耗，界面不显示虚假的命中确认。\n猎印联动：首次命中带猎印目标时消耗标记，额外造成1.25H伤害；同一个标记只消费一次。",
+        "description": "动作：自动稳枪预备 0.45 秒 → 发射窗 0.05 秒 → 收势 0.16 秒。第一目标承受 2.0H 动能伤害；继续穿透最多 1 个其他敌人，第二目标承受第一目标技能系数的 65%；射程 780，墙壁阻断。\n代价：30 能量，冷却 3.5 秒。稳枪时移动速度为 65%，A 键暂时停止；完成预备后自动射击，不要求精准松键。按空格可中断，但已启动的能量和冷却不返还。\n联动与反馈：E 寒冷创造贯穿窗口，Q 调整射线。稳枪刻度与短上扬音调表示即将发射；穿透的第二段颜色略暗且保留同一轨迹。若瞄空，仍正常消耗，界面不显示虚假的命中确认。\n猎印联动：首次命中带猎印目标时消耗标记，额外造成1.25H伤害；同一个标记只消费一次。",
         "mechanics": {
           "windup": 0.45,
           "active": 0.05,
@@ -325,11 +325,11 @@
       },
       "f": {
         "name": "冷线伏板",
-        "input": "F",
+        "input": "E",
         "unlock": 3,
         "cost": 30,
         "cooldown": 12.0,
-        "description": "动作：投掷预备 0.15 秒 → 出手窗 0.05 秒 → 收势 0.15 秒。向最远 260 的合法地面投一枚伏板；落地展开 0.35 秒后可触发，存在 12 秒，最多 2 枚。敌人进入半径 80 时造成 0.6H 冷伤害并施加共享寒冷。\n代价：30 能量，冷却 12 秒。展开时已有敌人在圈内，则展开结束立即触发；展开前不能触发。超上限时预览提示替换最早一枚，不免费引爆旧陷阱。超距或不可达落点不扣费。\n联动与反馈：通过走位让追兵进入伏板，再贯射或 R；部署物不是隐形贴脸爆弹。伏板采用细齿环与折线，不使用敌人红色危险填充；只显示玩家需要知道的触发范围。\n猎印联动：伏板伤害命中的存活敌人获得4秒猎印，供右键或R引爆。",
+        "description": "动作：投掷预备 0.15 秒 → 出手窗 0.05 秒 → 收势 0.15 秒。向最远 260 的合法地面投一枚伏板；落地展开 0.35 秒后可触发，存在 12 秒，最多 2 枚。敌人进入半径 80 时造成 0.6H 冷伤害并施加共享寒冷。\n代价：30 能量，冷却 12 秒。展开时已有敌人在圈内，则展开结束立即触发；展开前不能触发。超上限时预览提示替换最早一枚，不免费引爆旧陷阱。超距或不可达落点不扣费。\n联动与反馈：通过走位让追兵进入伏板，再贯射或 R；部署物不是隐形贴脸爆弹。伏板采用细齿环与折线，不使用敌人红色危险填充；只显示玩家需要知道的触发范围。\n猎印联动：伏板伤害命中的存活敌人获得4秒猎印，供W或R引爆。",
         "mechanics": {
           "windup": 0.15,
           "active": 0.05,
@@ -352,7 +352,7 @@
         "unlock": 4,
         "cost": 60,
         "cooldown": 40.0,
-        "description": "动作：展开导轨 0.25 秒 → 0.72 秒内连续发射 4 发 → 收势 0.20 秒。每发 1.2H 动能伤害、射程 760，不自动穿透；施放中可转向，角速度最多 90°/秒，移动速度为 45%。每发分别命中，理论单体总量 4.8H。\n代价：60 能量，冷却 40 秒。没有无敌，不能同时左键攻击；空格可中断余下射击，已消耗成本不退，未发射的子弹不会在取消后出现。\n联动与反馈：F 限制敌人走位后开启，或用 Q 先找安全射线。四发有升调但不逐发增大屏幕震动，首次和末次命中提供轻/重分层反馈。目标离开射线就会损失输出，不能自动转弯追踪。\n猎印联动：首次命中带猎印目标时消耗标记，额外造成1.25H伤害；同一个标记只消费一次。",
+        "description": "动作：展开导轨 0.25 秒 → 0.72 秒内连续发射 4 发 → 收势 0.20 秒。每发 1.2H 动能伤害、射程 760，不自动穿透；施放中可转向，角速度最多 90°/秒，移动速度为 45%。每发分别命中，理论单体总量 4.8H。\n代价：60 能量，冷却 40 秒。没有无敌，不能同时A 键攻击；空格可中断余下射击，已消耗成本不退，未发射的子弹不会在取消后出现。\n联动与反馈：E 限制敌人走位后开启，或用 Q 先找安全射线。四发有升调但不逐发增大屏幕震动，首次和末次命中提供轻/重分层反馈。目标离开射线就会损失输出，不能自动转弯追踪。\n猎印联动：首次命中带猎印目标时消耗标记，额外造成1.25H伤害；同一个标记只消费一次。",
         "mechanics": {
           "windup": 0.25,
           "active": 0.72,
@@ -378,14 +378,14 @@
       {
         "level": 12,
         "skill": "secondary",
-        "description": "右键穿透第二目标的伤害比例 65% → 100%；仍最多两个目标",
+        "description": "W穿透第二目标的伤害比例 65% → 100%；仍最多两个目标",
         "description_en": "Secondary damage against the second target increases from 65% to 100%; still at most two targets."
       },
       {
         "level": 14,
         "skill": "f",
-        "description": "F 触发半径 80 → 100",
-        "description_en": "F trigger radius increases from 80 to 100."
+        "description": "E 触发半径 80 → 100",
+        "description_en": "E trigger radius increases from 80 to 100."
       },
       {
         "level": 16,
@@ -428,9 +428,9 @@
     "title_en": "The Guiding Needle",
     "class_name_en": "Ranger",
     "resource_name_en": "Energy",
-    "role_en": "Moving charge · Target marks · Piercing burst",
-    "description": "走位蓄势后的普攻与伏板标记猎物，再调整射线，以右键或R消耗猎印追加爆发。",
-    "description_en": "Charge by walking, mark prey with a charged basic attack or trap, then line up secondary fire or R to consume marks for burst damage.",
+    "role_en": "Ranged gunner · Consecutive weak points · Piercing burst",
+    "description": "用两次同目标普攻寻找弱点，再接第三击或Q/W/R打出额外伤害；Q调整射线，E伏板限制追兵，W贯穿敌群。",
+    "description_en": "Expose a weak point with two confirmed basics, then consume it with the next basic or Q/W/R. Reposition with Q, limit pursuit with E and pierce a line of enemies with W.",
     "visual_en": "A tall, narrow surveyor silhouette with a single-sided short shoulder cloth, a high ranging needle, light greaves and a triangular stock. The rifle carries a folding ruler and side guide rail. Olive, ivory and deep green.",
     "magic_resist": 10,
     "ability_power": 0
@@ -469,20 +469,18 @@
       "cost": 0,
       "name_en": "Refraction Step"
     },
-    "role": "双节点布阵 · 脉冲蓄能 · 主动引爆",
+    "role": "共鸣术师 · 普攻施法交替 · 双节点布阵",
     "passive": {
-      "name": "四拍回路",
-      "description": "每 4 次原始普攻实际扣血或破盾，回复 6 法力，并给命中目标 160 范围内最近的一个未满能己方节点充 1 层；节点须已展开且与命中点之间无遮挡。另对目标 140 范围内至多 1 个其他敌人造成 0.3H 电附伤；没有节点或第二目标时仍回法力。触发内置冷却 2 秒，冷却期间不积攒；附伤不施加感电、不暴击、不参与其他触发链。节点上的三枚晶格与逐级充能音提示蓄能；零层也能用 F 引爆，满能引爆更强。F 徽标亮起表示当前可施放，灰色表示尚不满足施放条件。",
-      "hit_count": 4,
-      "resource_gain": 6,
-      "arc_range": 140,
-      "arc_targets": 1,
-      "arc_damage_multiplier": 0.3,
-      "node_charge_range": 160,
+      "name": "交响回路",
+      "description": "有效原始普攻与成功技能施放交替时积累共鸣，首次行动记1层，同类连续行动不加层，最多3层；8秒未继续交替则散去。满3层后，下次成功释放Q/W/E/R自动回复8法力，并为自身260范围内最近的一个已展开、未满能且视线可达的己方节点充1层。触发冷却2秒，冷却期间不积攒。空放技能只要合法提交可参与，失败施放不计层不回蓝；多发技能、节点、持续场和附伤不重复触发。无需C/V操作。",
+      "max_stacks": 3,
+      "resource_gain": 8,
+      "node_charge_range": 260,
       "node_charge_amount": 1,
+      "progress_duration": 8,
       "icd": 2,
-      "name_en": "Four-Beat Circuit",
-      "description_en": "Every 4 original basic hits that remove health or shield restore 6 Mana and add 1 charge to the nearest unfilled allied node within 160 units of the victim. The node must be armed and visible from the hit position. Also deals 0.3H electric damage to at most 1 other enemy within 140 units. Mana is restored even without a node or second target. Internal cooldown: 2 s; hits do not accumulate during cooldown. The arc cannot apply Shock, critically hit or trigger other effects. Three crystal sockets and rising cues show charge; F can detonate even at zero charge, with a stronger burst at full charge. An F badge lights up when casting is available and stays grey otherwise."
+      "name_en": "Alternating Resonance",
+      "description_en": "Alternate confirmed original basic attacks and successfully committed skills to build up to 3 Resonance stacks. The first action grants one; repeating the same action type grants none. Progress expires after 8 seconds. At three stacks, the next committed Q/W/E/R restores 8 Mana and charges one nearby armed, unfilled, visible allied node within 260 units. Internal cooldown: 2 seconds, with no accumulation during cooldown. Failed casts and derived hits do not count. No C/V input."
     },
     "original_visual": "谷频是用哼唱校准旧机器的信号技师，好奇、温和，擅长从噪声中判断矿层变化。单侧圆形接收器、高低错开的电容、短柄叉形针射器形成偏置轮廓；背负器通过线缆连接部署节点，避免常见长袍法师形象。旧白 #D2D1BB、孔雀青 #3E8D8D、深褐 #4B443D。",
     "visual": "谷频是用哼唱校准旧机器的信号技师，好奇、温和，擅长从噪声中判断矿层变化。单侧圆形接收器、高低错开的电容、短柄叉形针射器形成偏置轮廓；背负器通过线缆连接部署节点，避免常见长袍法师形象。旧白 #D2D1BB、孔雀青 #3E8D8D、深褐 #4B443D。",
@@ -501,7 +499,7 @@
         "unlock": 1,
         "cost": 18,
         "cooldown": 5.0,
-        "description": "动作：线圈预备 0.18 秒 → 出手窗 0.06 秒 → 收势 0.12 秒。向准星发射速度 650、射程 550 的脉冲弹，首次命中或到达终点时在半径 65 爆开，造成 1.25H 电伤害并施加感电；同敌仅一次，墙壁挡住弹体和爆炸视线。\n代价：18 法力，冷却 5 秒。节点位于爆心 90 范围内时各发出一次半径 70、0.35H 电回声；同敌同次施放最多吃一次回声，按节点创建顺序去重。回声不施加感电、不触发被动或回声自身。\n联动与反馈：先 Q 感电，再用原始普攻或 F 消耗；高等级可借节点拓展有效区域。蓝量不足显示缺少数值与短促低频断路音。脉冲打在墙上正常扣费且爆心在墙前，不透墙寻找更合适落点。\n蓄能：Q弹体从已展开节点90范围内经过时使节点获得1层能量，上限3层；同一枚Q对同一节点最多充能一次。",
+        "description": "动作：线圈预备 0.18 秒 → 出手窗 0.06 秒 → 收势 0.12 秒。向准星发射速度 650、射程 550 的脉冲弹，首次命中或到达终点时在半径 65 爆开，造成 1.25H 电伤害并施加感电；同敌仅一次，墙壁挡住弹体和爆炸视线。\n代价：18 法力，冷却 5 秒。节点位于爆心 90 范围内时各发出一次半径 70、0.35H 电回声；同敌同次施放最多吃一次回声，按节点创建顺序去重。回声不施加感电、不触发被动或回声自身。\n联动与反馈：先 Q 感电，再用原始普攻或 E 消耗；高等级可借节点拓展有效区域。蓝量不足显示缺少数值与短促低频断路音。脉冲打在墙上正常扣费且爆心在墙前，不透墙寻找更合适落点。\n蓄能：Q弹体从已展开节点90范围内经过时使节点获得1层能量，上限3层；同一枚Q对同一节点最多充能一次。",
         "mechanics": {
           "windup": 0.18,
           "active": 0.06,
@@ -522,11 +520,11 @@
       },
       "secondary": {
         "name": "共鸣节点",
-        "input": "右键",
+        "input": "W",
         "unlock": 2,
         "cost": 30,
         "cooldown": 3.5,
-        "description": "动作：取出节点0.20秒→部署窗0.08秒→收势0.16秒。最远220合法地面布置节点，0.35秒展开，存活14秒，35生命，最多2个；每1.2秒向160内一敌发射0.15H电弹，首弹在1.55秒。\n代价：30法力，冷却3.5秒。超过上限替换最早节点，不返蓝、不爆炸；节点仍可被敌人摧毁。\n布阵循环：每4次原始普攻实际扣血或盾，回复6法力，并给目标160内最近的一个未满能己方节点充1层；节点须已展开、与命中点无遮挡，内置冷却2秒且冷却期间不积攒。Q经过节点90内也充1层，R充满场内节点。每节点最多3层，三枚晶格与逐级提示音显示蓄能。F消耗260内、已展开且视线可达的节点，造成(1.0+0.65×层数)H派生伤害，范围100+20×层数；零层也可引爆。节点炮击与爆炸不参与普攻、感电消费或装备命中链。",
+        "description": "W：在鼠标方向最远220的合法地面部署共鸣节点，预备0.20秒，0.35秒展开，存活14秒，35生命，最多2个；每1.2秒向160范围内一敌发射0.15H魔法弹。消耗30法力，冷却3.5秒；超过上限替换最早节点，不返蓝、不爆炸。\n节点最多3层电荷：Q经过节点90范围内充1层，R充满场内已展开节点；交响回路满3层后下一次技能回8法力并给自身260内最近的一个未满能节点充1层。三枚晶格显示蓄能，E可引爆260内、已展开且视线可达的节点，造成(1.0+0.65×层数)H伤害，半径100+20×层数；零层也能引爆。节点炮击与爆炸不参与原始普攻、感电消费或装备命中链。",
         "mechanics": {
           "windup": 0.2,
           "active": 0.08,
@@ -544,15 +542,15 @@
           "max_charges": 3
         },
         "name_en": "Resonance Node",
-        "description_en": "Prepare for 0.20 s and deploy a node on legal ground within 220 units. It unfolds in 0.35 s, lasts 14 s, has 35 health, and fires 0.15H at one enemy within 160 every 1.2 s; the first shot is at 1.55 s. Maximum two nodes; replacement gives no refund or explosion. Costs 30 Mana; cooldown 3.5 s. Every 4 original basic hits that remove health or shield restore 6 Mana and add 1 charge to the nearest unfilled allied node within 160 of the victim; it must be armed and visible from the hit position. Internal cooldown: 2 s, with no hit accumulation during cooldown. Q passing within 90 adds one charge; R fills nodes in its field. Three crystal sockets and rising cues show each node's charges, up to three. F consumes armed nodes within 260 and line of sight for a (1.0 + 0.65 per charge)H derived blast with radius 100 + 20 per charge, even at zero charge. Node damage cannot trigger equipment or basic-hit chains."
+        "description_en": "W deploys a node on legal ground within 220 units. It arms in 0.35 seconds, lasts 14 seconds and fires 0.15H magic damage at one enemy every 1.2 seconds within 160 units. Maximum two nodes; replacing the oldest gives no refund or explosion. Costs 30 Mana; cooldown 3.5 seconds. Q passing within 90 charges one stack, R fills nodes in its field, and Alternating Resonance can charge one nearby node. Three sockets display charge. E detonates armed, visible nodes within 260 for (1.0 + 0.65 per charge)H in radius 100 + 20 per charge, even at zero charge. Derived node damage cannot trigger hit chains."
       },
       "f": {
         "name": "共振引爆",
-        "input": "F",
+        "input": "E",
         "unlock": 3,
         "cost": 25,
         "cooldown": 11.0,
-        "description": "动作：反转极性0.14秒→脉冲窗0.08秒→收势0.18秒。自身半径140造成0.8H冷伤并施加寒冷；同时引爆玩家260范围内且视线可达的已展开节点。每个节点被消耗，造成(1.0+0.65×能量层数)H派生伤害，半径100+20×层数；满3层为2.95H、半径160。两个节点各结算一次，可重叠，零层也可引爆。\n代价：25法力，冷却11秒。没有节点时仍释放自身寒冷环并正常扣费；展开中的节点不会被引爆。引爆不施加状态、不消费感电、不触发装备链，不能重复引爆。\n联动：鼠标右键布阵，四拍有效普攻或Q为节点蓄能，R可充满场内节点；等敌群进入后F消费阵地。三枚晶格显示每节点电荷，引爆晶片随层数变化。3级解锁后，连接范围内节点的F徽标在冷却、法力和动作状态允许施放时亮起，否则为灰色。",
+        "description": "动作：反转极性0.14秒→脉冲窗0.08秒→收势0.18秒。自身半径140造成0.8H冷伤并施加寒冷；同时引爆玩家260范围内且视线可达的已展开节点。每个节点被消耗，造成(1.0+0.65×能量层数)H派生伤害，半径100+20×层数；满3层为2.95H、半径160。两个节点各结算一次，可重叠，零层也可引爆。\n代价：25法力，冷却11秒。没有节点时仍释放自身寒冷环并正常扣费；展开中的节点不会被引爆。引爆不施加状态、不消费感电、不触发装备链，不能重复引爆。\n联动：W 键布阵，交响回路或Q为节点蓄能，R可充满场内节点；等敌群进入后E消费阵地。三枚晶格显示每节点电荷，引爆晶片随层数变化。3级解锁后，连接范围内节点的E徽标在冷却、法力和动作状态允许施放时亮起，否则为灰色。",
         "mechanics": {
           "windup": 0.14,
           "active": 0.08,
@@ -567,7 +565,7 @@
           "detonation_per_charge": 0.65
         },
         "name_en": "Resonance Detonation",
-        "description_en": "Prepare for 0.14 s, then deal 0.8H Cold damage and Chill within 140 units of yourself. Consume every armed node within 260 and line of sight: each explodes once for (1.0 + 0.65 per charge)H derived damage in radius 100 + 20 per charge. Three charges give 2.95H and radius 160. Two blasts may overlap; zero-charge nodes can also detonate. Costs 25 Mana; cooldown 11 s. Unfolding nodes cannot detonate. Blasts cannot apply or consume status or trigger equipment. With no nodes, the personal frost ring still casts normally. Use four-beat basic hits or Q to charge nodes, or R to fill them. Crystal sockets show charges and the burst shards reflect their level. After unlocking F at level 3, badges on nodes in connection range light up when cooldown, Mana and action state permit a cast; otherwise they remain grey."
+        "description_en": "Prepare for 0.14 s, then deal 0.8H Cold damage and Chill within 140 units of yourself. Consume every armed node within 260 and line of sight: each explodes once for (1.0 + 0.65 per charge)H derived damage in radius 100 + 20 per charge. Three charges give 2.95H and radius 160. Two blasts may overlap; zero-charge nodes can also detonate. Costs 25 Mana; cooldown 11 s. Unfolding nodes cannot detonate. Blasts cannot apply or consume status or trigger equipment. With no nodes, the personal frost ring still casts normally. Use Alternating Resonance or Q to charge nodes, or R to fill them. Crystal sockets show charges and the burst shards reflect their level. After unlocking E at level 3, badges on nodes in connection range light up when cooldown, Mana and action state permit a cast; otherwise they remain grey."
       },
       "ultimate": {
         "name": "穹顶共振",
@@ -575,7 +573,7 @@
         "unlock": 4,
         "cost": 60,
         "cooldown": 48.0,
-        "description": "动作：展开核心 0.40 秒 → 建场窗 0.10 秒 → 收势 0.30 秒。选择最远 280 的合法地面，建立半径 180、持续 5 秒的穹顶；建场直击为 0.6H 电伤害并施加感电，之后每完整 1 秒一次 0.8H 电伤害，最多 5 次；同敌理论总量 4.6H。\n代价：60 法力，冷却 48 秒。持续跳伤标记为技能持续场，不消耗感电、不触发普攻或装备命中链；只有建场直击是原始技能命中。场内最多同时结算 12 个敌人，按距离中心、再实体 ID 稳定选取。\n联动与反馈：节点与 Q/F 帮助控制进入穹顶的路线，玩家自身可移动并继续普攻；敌人离开区域就损失后续输出。穹顶不提供无敌或隐形减伤。非法落点不扣费；已经建场后离开范围不会召回法力。\n布阵联动：建场时将场内且视线可达的已展开节点充至3层，随后可用F引爆；R不自动消耗节点。",
+        "description": "动作：展开核心 0.40 秒 → 建场窗 0.10 秒 → 收势 0.30 秒。选择最远 280 的合法地面，建立半径 180、持续 5 秒的穹顶；建场直击为 0.6H 电伤害并施加感电，之后每完整 1 秒一次 0.8H 电伤害，最多 5 次；同敌理论总量 4.6H。\n代价：60 法力，冷却 48 秒。持续跳伤标记为技能持续场，不消耗感电、不触发普攻或装备命中链；只有建场直击是原始技能命中。场内最多同时结算 12 个敌人，按距离中心、再实体 ID 稳定选取。\n联动与反馈：节点与 Q/E 帮助控制进入穹顶的路线，玩家自身可移动并继续普攻；敌人离开区域就损失后续输出。穹顶不提供无敌或隐形减伤。非法落点不扣费；已经建场后离开范围不会召回法力。\n布阵联动：建场时将场内且视线可达的已展开节点充至3层，随后可用E引爆；R不自动消耗节点。",
         "mechanics": {
           "windup": 0.4,
           "active": 0.1,
@@ -593,7 +591,7 @@
           "tick_source": "skill_field"
         },
         "name_en": "Resonant Dome",
-        "description_en": "Prepare for 0.40 s, establish the field over 0.10 s, then recover for 0.30 s. Target legal ground within 280 units to create a 180-radius dome for 5 s. The initial hit deals 0.6H electric damage and applies Shock; each full second then deals 0.8H electric damage, up to 5 ticks. Ticks cannot consume Shock or trigger hit chains. At most 12 targets are resolved per tick, ordered by distance then entity ID. The player can move and attack after the cast. On creation, fully charges active nodes inside the field and line of sight. F can then detonate them; R does not consume nodes."
+        "description_en": "Prepare for 0.40 s, establish the field over 0.10 s, then recover for 0.30 s. Target legal ground within 280 units to create a 180-radius dome for 5 s. The initial hit deals 0.6H electric damage and applies Shock; each full second then deals 0.8H electric damage, up to 5 ticks. Ticks cannot consume Shock or trigger hit chains. At most 12 targets are resolved per tick, ordered by distance then entity ID. The player can move and attack after the cast. On creation, fully charges active nodes inside the field and line of sight. E can then detonate them; R does not consume nodes."
       }
     },
     "upgrades": [
@@ -606,14 +604,14 @@
       {
         "level": 12,
         "skill": "secondary",
-        "description": "右键节点生命 35 → 50；数量不变",
+        "description": "W节点生命 35 → 50；数量不变",
         "description_en": "Secondary node health increases from 35 to 50; node limit is unchanged."
       },
       {
         "level": 14,
         "skill": "f",
-        "description": "F 冷却 11 → 9 秒",
-        "description_en": "F cooldown decreases from 11 s to 9 s."
+        "description": "E 冷却 11 → 9 秒",
+        "description_en": "E cooldown decreases from 11 s to 9 s."
       },
       {
         "level": 16,
@@ -656,9 +654,9 @@
     "title_en": "The Frequency Gatherer",
     "class_name_en": "Resonator",
     "resource_name_en": "Mana",
-    "role_en": "Two-node formations · Pulse charging · Manual detonation",
-    "description": "鼠标右键布阵，四拍有效普攻回蓝并给目标附近节点蓄能；Q补充电荷、R充满场内节点，观察三晶格后用F引爆。零层也能引爆，满能爆发更强。",
-    "description_en": "Deploy nodes with the right mouse button. Every four confirmed basic hits restore Mana and charge a node near the victim; Q adds charge and R fills nodes in its field. Read the three crystal sockets and detonate with F. Zero-charge nodes can detonate; full charge gives a stronger burst.",
+    "role_en": "Resonance caster · Alternating basics and skills · Two-node formation",
+    "description": "W布置节点，普攻与技能交替积满共鸣，下次技能回蓝并补一层节点电荷；Q经过节点蓄能、R充满场内节点，E引爆阵地。",
+    "description_en": "Deploy nodes with W. Alternate basics and skills to fill Resonance, then restore Mana and charge a nearby node with the next cast. Q charges nodes along its path, R fills nodes in its field and E detonates the formation.",
     "visual_en": "An offset signal-technician silhouette with a circular receiver on one side, staggered capacitors and a short forked needle emitter. Cables connect the backpack to deployable nodes. Aged white, peacock teal and dark brown.",
     "magic_resist": 18,
     "ability_power": 28

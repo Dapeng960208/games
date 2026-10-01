@@ -62,9 +62,11 @@ func reload_profile() -> void:
 	_pending_outcome = ""
 	if document.is_empty():
 		profile = ProfileStore.fresh_profile()
+		ProfileStore.Controls.install(profile.settings.controls)
 		changed.emit()
 		return
 	profile = document.profile.duplicate(true)
+	ProfileStore.Controls.install(profile.settings.get("controls", {}))
 	if document.active_run is Dictionary:
 		if document.active_run.has("expedition"):
 			_restore_expedition(document.active_run)
@@ -158,6 +160,7 @@ func start_demo(hero_id: String, difficulty: int = 0) -> bool:
 func _restore_demo_profile() -> void:
 	if _demo_backup.is_empty(): return
 	profile = _demo_backup.profile.duplicate(true)
+	ProfileStore.Controls.install(profile.settings.get("controls", {}))
 	has_profile = bool(_demo_backup.has_profile)
 	last_error = str(_demo_backup.last_error)
 	storage_warning = str(_demo_backup.storage_warning)
@@ -1026,17 +1029,28 @@ func _commit_profile(next_profile: Dictionary) -> bool:
 func set_setting(key: String, value: Variant) -> void:
 	if key == "language" and not value in ["zh_CN", "en"]:
 		return
-	if key in ["reduced_fx", "fullscreen", "camera_shake"] and not value is bool:
+	if key in ["reduced_fx", "fullscreen", "camera_shake", "auto_attack", "enemy_skill_paths"] and not value is bool:
 		return
 	if key in ProfileStore.VOLUME_DEFAULTS and not ProfileStore._number(value, 1.0, false):
 		return
-	if not key in ["language", "reduced_fx", "fullscreen", "camera_shake"] and not key in ProfileStore.VOLUME_DEFAULTS:
+	if key == "controls" and not ProfileStore.Controls.valid_overrides(value):
+		return
+	if not key in ["language", "reduced_fx", "fullscreen", "camera_shake", "auto_attack", "enemy_skill_paths", "controls"] and not key in ProfileStore.VOLUME_DEFAULTS:
 		return
 	var next_profile := profile.duplicate(true)
 	next_profile.settings[key] = value
 	if _save(next_profile, run.receipt() if run != null else null, has_profile):
 		profile = next_profile
+		if key == "controls": ProfileStore.Controls.install(profile.settings.controls)
 		changed.emit()
+
+func set_control_binding(action: String, binding: Dictionary) -> bool:
+	if action not in ProfileStore.Controls.EDITABLE_ACTIONS or not ProfileStore.Controls.valid_binding(binding): return false
+	var controls: Dictionary = profile.get("settings", {}).get("controls", {}).duplicate(true)
+	if not ProfileStore.Controls.conflict(action, binding, controls).is_empty(): return false
+	controls[action] = binding.duplicate(true)
+	set_setting("controls", controls)
+	return last_error.is_empty() and profile.settings.get("controls", {}).get(action, {}) == binding
 
 func _save(next_profile: Dictionary, active_run: Variant, profile_initialized: bool = true) -> bool:
 	if not _demo_backup.is_empty():

@@ -192,7 +192,10 @@ func set_input_blocked(blocked: bool) -> void:
 	input_blocked = blocked
 	release_gate = true
 	if blocked:
-		if is_instance_valid(player): player.clear_buffered_skill()
+		if is_instance_valid(player):
+			player.clear_buffered_skill()
+			player.clear_movement_target()
+			player.attack_buffer = 0.0
 		if is_instance_valid(skill_input_feedback): skill_input_feedback.clear_feedback()
 
 func set_pointer_input_blocked(blocked: bool) -> void:
@@ -207,7 +210,8 @@ func pointer_controls_enabled() -> bool:
 		return false
 	if pointer_release_gate:
 		var secondary_held: bool = InputMap.has_action("skill_secondary") and Input.is_action_pressed("skill_secondary")
-		if not Input.is_action_pressed("attack") and not secondary_held:
+		var movement_held: bool = InputMap.has_action("click_move") and Input.is_action_pressed("click_move")
+		if not Input.is_action_pressed("attack") and not secondary_held and not movement_held:
 			pointer_release_gate = false
 	return not pointer_release_gate
 
@@ -743,14 +747,18 @@ func interaction_hint() -> String:
 	var nearby := nearby_interaction()
 	if nearby.is_empty():
 		return ""
+	var key: String = _interaction_key()
 	if nearby.kind in ["objective","next","early_extract","relic_choice","supply"]:
-		return "[E] " + str(nearby.get("label","继续远征"))
+		return "[" + key + "] " + str(nearby.get("label","继续远征"))
 	if nearby["kind"] == "extract":
-		return tr("INTERACT_EXTRACT")
+		return tr("INTERACT_EXTRACT").replace("[E]", "["+key+"]")
 	if nearby.kind == "buff":
-		return "[E] " + str(nearby.get("name_en" if Words.locale == "en" else "name",""))
+		return "[" + key + "] " + str(nearby.get("name_en" if Words.locale == "en" else "name",""))
 	var id: String = nearby["id"]
-	return tr("INTERACT_RELIC").format({"name":tr("RELIC_" + id.to_upper() + "_NAME")})
+	return tr("INTERACT_RELIC").format({"name":tr("RELIC_" + id.to_upper() + "_NAME")}).replace("[E]", "["+key+"]")
+
+func _interaction_key() -> String:
+	return preload("res://scripts/core/control_bindings.gd").label_for("interact", Game.profile.get("settings", {}).get("controls", {}), Words.locale)
 
 func interact() -> void:
 	if not controls_enabled():
@@ -787,10 +795,10 @@ func add_ring(at: Vector2, color: Color, radius: float, duration: float) -> void
 func add_slash(at: Vector2, direction: Vector2) -> void:
 	_add_effect({"kind":&"slash","at":at,"direction":direction,"remaining":0.2,"duration":0.2})
 
-func add_damage_text(at: Vector2, amount: float, kind: StringName) -> void:
+func add_damage_text(at: Vector2, amount: float, kind: StringName, context: Dictionary = {}) -> void:
 	if Game.profile.get("settings", {}).get("damage_numbers", true):
 		if is_instance_valid(impact_feedback):
-			impact_feedback.add_floating_damage(at, amount, kind)
+			impact_feedback.add_floating_damage(at, amount, kind, context)
 		elif amount > 0.0:
 			_add_effect({"kind":&"text","at":at,"amount":amount,"source":kind,"remaining":0.6,"duration":0.6})
 
@@ -897,7 +905,7 @@ func _draw_relic_fallback(id: String) -> void:
 			draw_polyline(PackedVector2Array([Vector2(4,-13),Vector2(-6,1),Vector2(4,1),Vector2(-4,15)]),Color("d6fbff"),3.0,true)
 
 func _all_inputs_released() -> bool:
-	for action: String in ["attack","dash","interact","skill_q","skill_secondary","skill_f","skill_ultimate","circuit_place","circuit_release"]:
+	for action: String in ["click_move","attack","dash","interact","skill_q","skill_secondary","skill_f","skill_ultimate"]:
 		if InputMap.has_action(action) and Input.is_action_pressed(action):
 			return false
 	return true
@@ -1379,10 +1387,14 @@ func _draw_world_label(canvas: Node2D, at: Vector2, label: String, actionable: b
 	var width: float = fx_font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
 	var icon: Texture2D = interaction_textures.get(icon_key)
 	var icon_space: float = 32.0 if icon != null else 0.0
-	var lead: float = icon_space + (28.0 if actionable else 0.0)
+	var key: String = _interaction_key() if actionable else ""
+	var key_width: float = maxf(20, fx_font.get_string_size(key,HORIZONTAL_ALIGNMENT_LEFT,-1,13).x+10)
+	var lead: float = icon_space + (key_width+8.0 if actionable else 0.0)
 	var start: Vector2 = at - Vector2((width + lead) * .5,0)
-	var label_tint := Color("fff1d1") if actionable else Color("bdccc0")
-	canvas.draw_rect(Rect2(start+Vector2(-6,-23),Vector2(width+lead+12.0,32)),Color(0.035,0.055,0.06,0.94))
+	var label_tint := Color("392447") if actionable else Color("706579")
+	var panel_rect := Rect2(start+Vector2(-6,-23),Vector2(width+lead+12.0,32))
+	canvas.draw_rect(panel_rect,Color("fff0d2"))
+	canvas.draw_rect(panel_rect,Color("ae8748"),false,1.2)
 	if icon != null:
 		var source_size: Vector2 = icon.get_size()
 		var image_scale: float = minf(26.0/source_size.x,26.0/source_size.y)
@@ -1391,10 +1403,10 @@ func _draw_world_label(canvas: Node2D, at: Vector2, label: String, actionable: b
 		canvas.draw_texture_rect(icon,Rect2(icon_at,extent),false)
 		start.x += icon_space
 	if actionable:
-		canvas.draw_rect(Rect2(start+Vector2(0,-15),Vector2(20,20)),Color("202e30"))
-		canvas.draw_rect(Rect2(start+Vector2(0,-15),Vector2(20,20)),tint,false,1.2)
-		canvas.draw_string(fx_font,start+Vector2(6,0),"E",HORIZONTAL_ALIGNMENT_LEFT,-1,13,label_tint)
-		start.x += 28.0
+		canvas.draw_rect(Rect2(start+Vector2(0,-15),Vector2(key_width,20)),Color("392447"))
+		canvas.draw_rect(Rect2(start+Vector2(0,-15),Vector2(key_width,20)),tint,false,1.2)
+		canvas.draw_string(fx_font,start+Vector2(5,0),key,HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color("fff0d2"))
+		start.x += key_width+8.0
 	# A one-pixel same-color stroke keeps Chinese glyphs legible under camera
 	# zoom without enlarging the compact label or introducing a standing panel.
 	canvas.draw_string_outline(fx_font,start,label,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,1,label_tint)
@@ -1456,6 +1468,7 @@ func load_room_layout(id: String, room_difficulty: int = -1, seed_override: int 
 			if deployment.room == self:
 				deployment.retire()
 		player.cancel_actions()
+		player.passives.reset()
 		player.position = next.entry
 		player.loadout.event("room_enter", {"room_id":layout_id,"unvisited":true})
 		gold_drops.clear()
@@ -1731,7 +1744,7 @@ func prepare_expedition_node(context: Dictionary) -> Dictionary:
 	if next.is_empty() or not next.has("entry") or not next.has("exit"):
 		return {"valid":false,"error":"房间布局未能加载："+id}
 	var props: Node2D = PropsScript.new()
-	if role not in ["entrance","supply","boss"]:
+	if role not in ["entrance","supply"]:
 		if not props.configure(self,next):
 			var error: String = "; ".join(props.configuration_errors)
 			props.free()
@@ -1820,6 +1833,7 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	spawn_enabled = str(expedition_context.get("role","")) not in ["entrance","supply","boss"]
 	if is_instance_valid(player):
 		player.cancel_actions()
+		player.passives.reset()
 		player.position = layout.entry
 		_previous_player_position = player.position
 		$MineBackdrop.configure(ARENA,_biome_id(),layout_seed)
@@ -1854,10 +1868,6 @@ func _activate_expedition_content() -> void:
 	elif role in ["entrance","supply"]:
 		objective_complete = true
 		objective_rewarded = true
-		if role == "entrance" and Game.run.demo:
-			circuit_training = load("res://scripts/combat/circuit_training.gd").new()
-			add_child(circuit_training)
-			circuit_training.configure(self)
 	elif role == "boss":
 		var boss_script: String = "res://scripts/combat/boss.gd"
 		if ResourceLoader.exists(boss_script):
