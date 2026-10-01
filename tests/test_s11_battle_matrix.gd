@@ -57,6 +57,9 @@ var maximum_physics_delta := 0.0
 var controlled_room_id := ""
 var next_objective_decision := 0.0
 var measurement_protocol: Dictionary = {}
+var screenshots: Array[Dictionary] = []
+var capture_directory := ""
+var rendering_metadata: Dictionary = {}
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -79,12 +82,18 @@ func _run() -> void:
 		get_tree().quit(2)
 		return
 	check(Engine.physics_ticks_per_second == 60 and is_equal_approx(Engine.time_scale,1.0),"native 60 Hz physics at time_scale 1")
+	rendering_metadata={"display_server":DisplayServer.get_name(),"graphical_evidence":DisplayServer.get_name()!="headless","hardware_acceleration_assumed":false}
+	if DisplayServer.get_name()!="headless":
+		for method: String in ["get_current_rendering_method","get_current_rendering_driver_name","get_video_adapter_name","get_video_adapter_vendor","get_video_adapter_type","get_video_adapter_api_version"]:
+			if RenderingServer.has_method(method): rendering_metadata[method]=RenderingServer.call(method)
 	output_path = arg("output",Game.profile_path.get_base_dir().path_join("s11_matrix.json"))
 	max_seconds = float(arg("max-seconds","180"))
 	limit_cases = int(arg("limit","0"))
 	probe = arg("probe","false") == "true"
 	timing_mode = arg("timing-mode","fixed_fps")
 	controlled_room_id = arg("room-id","")
+	capture_directory=arg("capture-directory","")
+	check(capture_directory.is_empty() or DisplayServer.get_name()!="headless","screenshots require actual GPU rendering")
 	check(timing_mode in ["fixed_fps","real_time"],"explicit simulation/real-time measurement mode")
 	var protocol_file := arg("protocol-file","")
 	if not protocol_file.is_empty():
@@ -95,6 +104,7 @@ func _run() -> void:
 		check(measurement_protocol.get("schema")=="s11-controlled-matrix-v2" and measurement_protocol.get("controller_version")==Driver.VERSION,"protocol schema and controller match")
 		check(measurement_protocol.get("timing_mode")==timing_mode and bool(measurement_protocol.get("probe",false))==probe and float(measurement_protocol.get("max_seconds",0))==max_seconds,"timing/probe/limit match pinned protocol")
 		check((measurement_protocol.get("display_mode")=="headless")== (DisplayServer.get_name()=="headless"),"actual display matches pinned protocol")
+		check(measurement_protocol.get("capture_policy","none")==("gpu_start_end_outside_combat" if not capture_directory.is_empty() else "none"),"capture policy matches pinned protocol")
 	if not failures.is_empty():
 		get_tree().quit(1)
 		return
@@ -137,6 +147,9 @@ func _run() -> void:
 						if not failures.is_empty(): break
 						while running: await get_tree().process_frame
 						finish_record()
+						if not capture_directory.is_empty():
+							await capture_frame("finish")
+							rows.back()["screenshots"]=screenshots.duplicate(true)
 						_save()
 						await cleanup()
 					if not failures.is_empty(): break
@@ -189,7 +202,7 @@ func install() -> void:
 	# Manual/GPU sessions retain it; all gameplay nodes remain production nodes.
 	if DisplayServer.get_name() == "headless": room.get_node("MineBackdrop").set_script(preload("res://tests/support/s11_headless_backdrop.gd"))
 	var room_id := controlled_room_id if not controlled_room_id.is_empty() else "BO%02d"%int(config.chapter)
-	var prepared := room.prepare_expedition_node({"room_id":room_id,"role":"normal" if not controlled_room_id.is_empty() else "boss","biome_id":"B%02d"%int(config.chapter),"node_index":1 if not controlled_room_id.is_empty() else 6,"node_count":7,"difficulty":int(config.difficulty),"seed":int(config.seed),"phase":"combat","expedition":true})
+	var prepared := room.prepare_expedition_node({"room_id":room_id,"role":scenario_room_role(),"biome_id":"B%02d"%int(config.chapter),"node_index":1 if not controlled_room_id.is_empty() else 6,"node_count":7,"difficulty":int(config.difficulty),"seed":int(config.seed),"phase":"combat","expedition":true})
 	check(bool(prepared.get("valid",false)),"actual production room prepares")
 	if not bool(prepared.get("valid",false)): return
 	room.apply_prepared_expedition_node(prepared)
@@ -206,7 +219,7 @@ func install() -> void:
 		boss.completed.connect(_boss_completed)
 		boss.phase_changed.connect(_phase_changed)
 		boss.weakpoint_changed.connect(_weakpoint_changed)
-	else:
+	elif requires_room_objectives():
 		check(room.layout_id==controlled_room_id and is_instance_valid(room.objectives),"authored ordinary room and objectives installed")
 	room.player.skill_input_feedback.connect(_skill_feedback)
 	driver = Driver.new()
@@ -215,6 +228,7 @@ func install() -> void:
 	old_phase=0; old_action=""; old_state=""; old_counts={}; old_icds={}; old_counters={}; next_sample=0
 	resource_empty_seconds=0; weakpoint_seconds=0; attackable_seconds=0; pause_seconds=0
 	physics_steps=0; process_frames=0; minimum_physics_delta=INF; maximum_physics_delta=0
+	screenshots=[]
 	next_objective_decision=0
 	last_boss_hp=boss.health.current if is_instance_valid(boss) else 0; last_boss_shield=boss.status.shield() if is_instance_valid(boss) else 0; boss_max_hp=last_boss_hp; boss_start_shield=last_boss_shield
 	fixture["resolved_stats"] = run_ref.stats.duplicate(true)
@@ -225,13 +239,56 @@ func install() -> void:
 	fixture["skills"] = {}
 	for slot: String in ["q","secondary","f","ultimate"]: fixture.skills[slot] = room.player.skill_definition(slot)
 	fixture["entry_position"] = [room.player.position.x,room.player.position.y]
+	initialize_directed_scenario()
 	fixture["setup_wall_seconds"] = float(Time.get_ticks_usec()-setup_wall)/1000000.0
 	seed(int(config.seed))
+	if not capture_directory.is_empty(): await capture_frame("start")
+	if DisplayServer.get_name()!="headless" and timing_mode=="real_time":
+		# Rendering readback/PNG encoding blocks the host while the fixture is
+		# paused. Drain the next complete physics batch while it is STILL paused,
+		# then begin at the following process boundary. Otherwise the screenshot
+		# cost can become several immediate catch-up steps inside combat time.
+		var flush_started := Time.get_ticks_usec()
+		var flush_frame := Engine.get_physics_frames()
+		await get_tree().physics_frame
+		await get_tree().process_frame
+		fixture["preclock_paused_physics_flush"]={"host_seconds":float(Time.get_ticks_usec()-flush_started)/1000000.0,"native_physics_frames":Engine.get_physics_frames()-flush_frame,"remained_paused":get_tree().paused}
+		check(get_tree().paused and not running,"graphical startup physics backlog drained before combat clock")
 	room.recording = true
 	started_wall = Time.get_ticks_usec()
 	running = true
 	get_tree().paused = false
 	print("S11_MATRIX_BEGIN ",JSON.stringify(config))
+
+func initialize_directed_scenario() -> void:
+	pass
+
+func requires_attack_evidence() -> bool:
+	return true
+
+func scenario_room_role() -> String:
+	return "normal" if not controlled_room_id.is_empty() else "boss"
+
+func requires_room_objectives() -> bool:
+	return true
+
+func scenario_complete() -> bool:
+	return not controlled_room_id.is_empty() and room.objective_complete
+
+func drives_room_objectives() -> bool:
+	return not controlled_room_id.is_empty()
+
+func capture_frame(label: String) -> void:
+	# Start: prepared scene paused, clock not started. Finish: result/host time
+	# already recorded and room physics stopped. Never pause an active fight.
+	var capture_started := Time.get_ticks_usec()
+	await RenderingServer.frame_post_draw
+	var pixels := stage.get_texture().get_image()
+	var path := capture_directory.path_join("B%02d_%s_%s_D%d_seed%d_%s.png"%[int(config.chapter),str(config.hero_id),str(config.sample),int(config.difficulty),int(config.seed),label])
+	DirAccess.make_dir_recursive_absolute(capture_directory)
+	var result: int = pixels.save_png(path)
+	check(result==OK,"actual GPU viewport screenshot saved: "+label)
+	screenshots.append({"kind":label,"path":path,"width":pixels.get_width(),"height":pixels.get_height(),"simulation_seconds":elapsed,"physics_steps":physics_steps,"host_capture_seconds":float(Time.get_ticks_usec()-capture_started)/1000000.0,"outside_combat_interval":true,"normal_production_background":true,"timestamp_utc":Time.get_datetime_string_from_system(true)})
 
 func _physics_process(delta: float) -> void:
 	if not running: return
@@ -243,7 +300,7 @@ func _physics_process(delta: float) -> void:
 	maximum_physics_delta = maxf(maximum_physics_delta,delta)
 	elapsed += delta
 	room.scan_actors()
-	if not controlled_room_id.is_empty() and room.objective_complete: completed=true
+	if scenario_complete(): completed=true
 	if is_instance_valid(boss):
 		last_boss_hp = boss.health.current
 		last_boss_shield = boss.status.shield()
@@ -282,7 +339,7 @@ func _physics_process(delta: float) -> void:
 		room.process_mode=Node.PROCESS_MODE_DISABLED
 		return
 	driver.step(elapsed)
-	if not controlled_room_id.is_empty(): ordinary_objective_step()
+	if drives_room_objectives(): ordinary_objective_step()
 
 func ordinary_objective_step() -> void:
 	if elapsed < next_objective_decision or not room.controls_enabled(): return
@@ -355,8 +412,8 @@ func finish_record() -> void:
 			skipped.append(phase)
 			skipped_details.append({"phase":phase,"entered":phases.has(str(phase)),"reason":"output_skipped" if completed else "terminated_before_phase_cast"})
 	var outcome := "player_died" if run_ref.hp<=0 else ("boss_defeated" if controlled_room_id.is_empty() else "room_cleared") if completed else "time_limit"
-	check(room.telemetry.shots>0 or probe or not controlled_room_id.is_empty(),"production attack path exercised")
-	check(not casts.is_empty() or probe,"production skill/input path exercised")
+	check(not requires_attack_evidence() or room.telemetry.shots>0 or probe or not controlled_room_id.is_empty(),"production attack path exercised")
+	check(not requires_attack_evidence() or not casts.is_empty() or probe,"production skill/input path exercised")
 	check(Game.run==null or run_ref.stats==fixture.resolved_stats,"resolved stats untouched in combat")
 	check(not is_instance_valid(boss) or not boss.training_ai_disabled,"production AI stays enabled")
 	var record := {"configuration":config.duplicate(true),"fixture":fixture.duplicate(true),"outcome":outcome,"probe":probe,"final":snapshot(),
@@ -369,6 +426,9 @@ func finish_record() -> void:
 		"resource_empty_seconds":resource_empty_seconds,"resource_rejections":driver.rejected.duplicate(true),"casts":casts.duplicate(true),"cast_failures":cast_failures.duplicate(true),
 		"phases":phases.duplicate(true),"phase_casts_skipped_by_output_or_termination":skipped,"phase_skip_details":skipped_details,"states":states.duplicate(true),
 		"samples":snapshots.duplicate(true),"events":events.duplicate(true),"decisions":driver.decisions.duplicate(true),"projectile_releases":room.releases.duplicate(true),"incoming_packets":trail.all_events.duplicate(true),"outgoing_packets":room.packets.duplicate(true),"enemy_roster":room.actor_roster.duplicate(true),"rewards_observed":false}
+	record["screenshots"]=screenshots.duplicate(true)
+	record["rendering"]=rendering_metadata.duplicate(true)
+	record["audio"]={"requested_driver":measurement_protocol.get("requested_audio_driver","engine_default"),"hardware_tested":false,"test_bus_muted":true}
 	rows.append(record)
 	print("S11_MATRIX_FIGHT ",JSON.stringify({"configuration":config,"outcome":outcome,"simulation_seconds":elapsed,"host_wall_seconds":record.host_wall_seconds,"hp_fraction":record.hp_fraction,"phase_skips":skipped}))
 

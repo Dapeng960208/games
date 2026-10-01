@@ -34,7 +34,14 @@ def measurement_protocol(args, manifest):
     control = (ROOT / "tests/support/s11_battle_controller.gd").read_text()
     controller_version = re.search(r'const VERSION := "([^"]+)"', control).group(1)
     data = json.loads((ROOT / "data/numerical_v2.json").read_text())
+    directed = (ROOT / "tests/support/s11_directed_controller.gd").read_text() if args.experiment in ("phase_coverage", "p3_tolerance") else ""
+    directed_version = re.search(r'const DIRECTED_VERSION := "([^"]+)"', directed).group(1) if directed else None
     return {"schema": SCHEMA, "protocol_pinned": True, "seeds": args.seeds,
+            "experiment": args.experiment, "directed_controller_version": directed_version,
+            "starting_phase": args.starting_phase,
+            "capture_policy": "gpu_start_end_outside_combat" if args.screenshots else "none",
+            "render_loop": "disabled" if args.disable_render_loop else "native",
+            "requested_audio_driver": args.audio_driver, "audio_hardware_tested": False,
             "max_seconds": args.max_seconds, "timing_mode": "real_time" if args.real_time else "fixed_fps",
             "display_mode": "gpu" if args.gpu else "headless", "probe": args.probe,
             "physics_hz": 60, "time_scale": 1, "controller_version": controller_version,
@@ -50,7 +57,8 @@ def source_manifest():
     selected += list((ROOT / "scenes").rglob("*.tscn"))
     selected += list((ROOT / "data").glob("*.json"))
     selected += list((ROOT / "tests/support").glob("s11_*.gd"))
-    selected += [ROOT / "tests/test_s11_battle_matrix.gd"]
+    selected += list((ROOT / "tests").glob("test_s11_*.gd"))
+    selected += list((ROOT / "tests").glob("test_s11_*.tscn"))
     result = {
         "git_head": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
         "git_status": subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT, text=True).splitlines(),
@@ -72,7 +80,8 @@ def run_job(args, case):
         execution = json.loads((job / "execution.json").read_text()) if (job / "execution.json").exists() else {}
         configurations_match = all(r["configuration"]["chapter"] == chapter and r["configuration"]["hero_id"] == hero
                                    and r["configuration"]["sample"] == sample and r["configuration"]["difficulty"] == difficulty
-                                   and r["configuration"].get("room_id", "") == room_id for r in prior.get("cases", []))
+                                   and r["configuration"].get("room_id", "") == room_id
+                                   and r["configuration"].get("experiment", "battle") == args.experiment for r in prior.get("cases", []))
         if (prior.get("measurement_protocol") == args.protocol and not prior.get("failures")
                 and [r["configuration"]["seed"] for r in prior.get("cases", [])] == args.seeds
                 and execution.get("status") == "ok" and configurations_match):
@@ -82,30 +91,55 @@ def run_job(args, case):
         env[name] = str(job / suffix)
     timing = ["--max-fps", "60"] if args.real_time else ["--fixed-fps", "60"]
     display = [] if args.gpu else ["--headless"]
-    command = [str(args.godot), *display, *timing, "--path", str(ROOT),
-               "res://tests/test_s11_battle_matrix.tscn", "--",
+    rendering = ["--disable-render-loop"] if args.disable_render_loop else []
+    scene = {"battle":"res://tests/test_s11_battle_matrix.tscn", "elite_fixture":"res://tests/test_s11_elite_observation.tscn"}.get(args.experiment, "res://tests/test_s11_directed_observation.tscn")
+    command = [str(args.godot), *display, *timing, *rendering, "--audio-driver", args.audio_driver, "--path", str(ROOT), scene, "--",
                "--test-profile=user://test_s11_battle_matrix/profile.json", "--test-ruleset=2",
                f"--chapters={chapter}", f"--heroes={hero}", f"--samples={sample}",
                f"--difficulties={difficulty}", "--seeds=" + ",".join(map(str, args.seeds)),
                f"--max-seconds={args.max_seconds}", f"--output={report}",
                f"--protocol-file={args.output / 'measurement_protocol.json'}",
+               f"--experiment={args.experiment}",
+               f"--starting-phase={args.starting_phase}",
                "--timing-mode=" + ("real_time" if args.real_time else "fixed_fps")]
     if args.probe:
         command.append("--probe=true")
     if room_id:
         command.append(f"--room-id={room_id}")
+    if args.screenshots:
+        command.append(f"--capture-directory={job / 'screenshots'}")
     start = time.monotonic()
+    watchdog_seconds = max(180, args.max_seconds * len(args.seeds) * 4)
+    termination_reason = None
     with (job / "engine.log").open("w") as log:
-        try:
-            result = subprocess.run(command, cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT,
-                                    timeout=max(180, args.max_seconds * len(args.seeds) * 4))
-        except subprocess.TimeoutExpired:
-            log.write("\nERROR: Harness host wall watchdog expired\n")
-            result = subprocess.CompletedProcess(command, 124)
+        process = subprocess.Popen(command, cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
+        while process.poll() is None:
+            try:
+                process.wait(timeout=.5)
+            except subprocess.TimeoutExpired:
+                observed_log = (job / "engine.log").read_text()
+                if "SCRIPT ERROR" in observed_log or "ERROR:" in observed_log:
+                    termination_reason = "engine_error_detected"
+                elif time.monotonic() - start >= watchdog_seconds:
+                    termination_reason = "host_wall_watchdog_expired"
+                if termination_reason is not None:
+                    process.terminate()
+                    try:
+                        process.wait(timeout=10)
+                    except subprocess.TimeoutExpired:
+                        process.kill()
+                        process.wait()
+                    log.write(f"\nERROR: Runner terminated this failed experiment: {termination_reason}\n")
+        result = subprocess.CompletedProcess(command, process.returncode)
     log_text = (job / "engine.log").read_text()
+    renderer_lines = [line for line in log_text.splitlines() if re.search(r"OpenGL|Vulkan|Rendering Device|Using Device|llvmpipe|SwiftShader", line, re.I)]
     status = "ok" if result.returncode == 0 and "SCRIPT ERROR" not in log_text and "ERROR:" not in log_text else "error"
     (job / "execution.json").write_text(json.dumps({"command": command, "returncode": result.returncode,
-                                                   "wall_seconds": time.monotonic() - start, "status": status}, indent=2))
+                                                   "wall_seconds": time.monotonic() - start, "status": status,
+                                                   "host_wall_watchdog_seconds": watchdog_seconds,
+                                                   "termination_reason": termination_reason,
+                                                   "renderer_log_lines": renderer_lines,
+                                                   "hardware_acceleration_assumed": False}, indent=2))
     print(f"{label}: {status} ({time.monotonic()-start:.2f}s host wall)", flush=True)
     return label, status
 
@@ -117,6 +151,7 @@ def median(values):
 def summarize(output: Path):
     rows, errors, groups, duplicates = [], [], {}, []
     room_rows, room_groups, room_seen = [], {}, set()
+    directed_rows = []
     seen = set()
     common_protocol = None
     for execution_path in sorted(output.glob("*/execution.json")):
@@ -146,6 +181,11 @@ def summarize(output: Path):
         errors.extend({"report": str(path), "error": error} for error in doc.get("failures", []))
         for row in doc.get("cases", []):
             c = row["configuration"]
+            if c.get("experiment", "battle") != "battle":
+                if c["experiment"] != protocol.get("experiment") or row.get("baseline_ttk_evidence") is not False:
+                    raise ValueError(f"Directed evidence classification mismatch: {path}")
+                directed_rows.append(row)
+                continue
             if c.get("encounter") == "room":
                 room_key = (c["room_id"], c["hero_id"], c["sample"], c["difficulty"], c["seed"])
                 if room_key in room_seen:
@@ -268,7 +308,7 @@ def summarize(output: Path):
                                "median_received_hp_loss": median([x["hp_loss"] for x in fights]),
                                "median_shield_absorbed": median([x["shield_absorbed"] for x in fights]),
                                "ranks": ranks, "outcomes": [x["outcome"] for x in fights], "reward_evidence": False})
-    all_rows = rows + room_rows
+    all_rows = rows + room_rows + directed_rows
     result = {"method": "controlled production-scene input experiments; not natural human/economic validation",
               "measurement_protocol": common_protocol,
               "fights": len(all_rows), "boss_fights": len(rows), "ordinary_room_scenes": len(room_rows),
@@ -276,6 +316,7 @@ def summarize(output: Path):
               "summed_combat_host_wall_seconds": sum(x["host_wall_seconds"] for x in all_rows),
               "integrity_errors": errors, "duplicates": duplicates, "missing_primary_evidence": missing,
               "groups": summaries, "room_groups": room_summaries, "g2_ladders": ladders, "shared_chapter_hp_intervals": hp_intervals,
+              "directed_observations": [{"configuration": row["configuration"], "outcome": row["outcome"], "simulation_seconds": row["simulation_seconds"], "hp_fraction": row["hp_fraction"], "hp_loss": row["hp_loss"], "shield_absorbed": row["shield_absorbed"], "resource_empty_seconds": row["resource_empty_seconds"], "phase_releases": row["directed_phase_releases"], "phase_coverage": row.get("directed_phase_coverage",{}), "tolerance": row["tolerance"], "actual_enemy_commands": len(row.get("executed_enemy_commands",[])), "elite_profile": row["fixture"].get("directed_initial_conditions",{}).get("elite_profile",{})} for row in directed_rows],
               "outstanding_separate_evidence": ["phase-directed complete moves after output skips", "P3 full-HP/no-existing-shield single-package tolerance",
                                                  "normal/elite finite-wave five-difficulty threat and resource observations", "natural economic progression", "manual gameplay"]}
     (output / "summary.json").write_text(json.dumps(result, indent=2, ensure_ascii=False))
@@ -304,6 +345,9 @@ def main():
     p.add_argument("--godot", type=Path, default=Path("/tmp/godot-pr2-4.7.2/Godot_v4.7.2-stable_linux.x86_64"))
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--suite", choices=["d4", "ladder", "full", "rooms"], default="full")
+    p.add_argument("--experiment", choices=["battle", "phase_coverage", "p3_tolerance", "elite_fixture"], default="battle")
+    p.add_argument("--starting-phase", type=int, choices=[0, 1, 2, 3], default=0,
+                   help="Separate phase-coverage initial fixture; zero observes native transitions")
     p.add_argument("--chapters", default="1,2,3,4")
     p.add_argument("--heroes", default="CH01,CH02,CH03")
     p.add_argument("--samples")
@@ -316,8 +360,21 @@ def main():
     p.add_argument("--probe", action="store_true")
     p.add_argument("--real-time", action="store_true", help="Omit --fixed-fps and cap real-time rendering at 60 FPS")
     p.add_argument("--gpu", action="store_true", help="Render the actual room in a visible window; requires a usable DISPLAY")
+    p.add_argument("--screenshots", action="store_true", help="GPU-only start/finish viewport captures outside the combat clock")
+    p.add_argument("--disable-render-loop", action="store_true", help="Experimental fixed-FPS headless-only render-loop disable; requires separate parity evidence")
+    p.add_argument("--audio-driver", default="Dummy", help="Explicit engine audio driver; Dummy preserves mixer lifecycle without claiming audio hardware evidence")
     p.add_argument("--summarize-only", action="store_true")
     args = p.parse_args()
+    if args.experiment in ("phase_coverage", "p3_tolerance") and args.suite != "d4":
+        p.error("Directed experiments require the separate D4 suite")
+    if args.experiment == "elite_fixture" and args.suite != "ladder":
+        p.error("Representative elite fixtures require the five-difficulty ladder")
+    if args.starting_phase and args.experiment != "phase_coverage":
+        p.error("Explicit starting phase applies only to separate phase coverage")
+    if args.screenshots and not args.gpu:
+        p.error("Screenshots require --gpu and the actual rendered viewport")
+    if args.disable_render_loop and (args.gpu or args.real_time or args.screenshots):
+        p.error("Render-loop disabling is limited to accelerated headless experiments")
     args.output = args.output.resolve()
     if args.output == ROOT or ROOT in args.output.parents:
         p.error("Evidence must be outside the repository")
@@ -364,6 +421,8 @@ def main():
         selected_difficulties = list(map(int, args.difficulties.split(",")))
         if any(d not in range(5) for d in selected_difficulties): p.error("Difficulties must be 0..4")
         jobs = [job for job in jobs if job[3] in selected_difficulties]
+    if args.experiment == "elite_fixture":
+        jobs = [(chapter, hero, sample, d, f"L{(chapter-1)*6+1:02d}") for chapter, hero, sample, d, _ in jobs]
     if not jobs: p.error("No matrix cases matched the request")
     request_path = args.output / "run_request.json"
     request = {"protocol": args.protocol, "jobs": [list(job) for job in jobs]}

@@ -2,6 +2,36 @@
 """Run isolated, immutable-source natural-route simulations; never player saves."""
 import argparse, concurrent.futures, hashlib, json, math, os, pathlib, subprocess, time
 
+def run_engine(command, env, log_path, timeout):
+    """Stop only this isolated child when its runtime fails; retain all output."""
+    started=time.monotonic(); reason=''
+    with log_path.open('w') as log:
+        process=subprocess.Popen(command,stdout=log,stderr=subprocess.STDOUT,env=env)
+        while process.poll() is None:
+            time.sleep(.25)
+            text=log_path.read_text(errors='replace')
+            if 'SCRIPT ERROR' in text or '\nERROR:' in text: reason='engine_error'
+            elif time.monotonic()-started >= timeout: reason='execution_timeout'
+            if reason:
+                process.terminate()
+                try: process.wait(timeout=5)
+                except subprocess.TimeoutExpired: process.kill(); process.wait()
+                break
+        code=process.wait()
+    return (124 if reason=='execution_timeout' else code),reason
+
+def read_events(path):
+    events=[]; errors=[]
+    if not path.exists(): return events,['missing event journal']
+    for number,line in enumerate(path.read_text(errors='replace').splitlines(),1):
+        try:
+            event=json.loads(line)
+            if not isinstance(event,dict): raise ValueError('event is not an object')
+            events.append(event)
+        except (ValueError,TypeError) as error:
+            errors.append(f'line {number}: {error}')
+    return events,errors
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument('--project',type=pathlib.Path,required=True)
@@ -37,20 +67,15 @@ def main():
             'tests/test_s11_natural_progression.tscn','--',f'--test-profile={out}/test_s11_natural_progression/profile.json',
             f'--hero={hero}',f'--sim-seconds={a.seconds}',f'--output={out}/events.jsonl']
         started=time.monotonic()
-        timed_out=False
-        with (out/'engine.log').open('w') as log:
-            try:
-                exit_code=subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,env=env,timeout=max(600,a.seconds*3)).returncode
-            except subprocess.TimeoutExpired:
-                timed_out=True; exit_code=124
+        exit_code,execution_failure=run_engine(command,env,out/'engine.log',max(600,a.seconds*3))
         log=(out/'engine.log').read_text(errors='replace')
-        events=[json.loads(line) for line in (out/'events.jsonl').read_text().splitlines()] if (out/'events.jsonl').exists() else []
+        events,evidence_errors=read_events(out/'events.jsonl')
         final=events[-1] if events else {}
-        value={'hero':hero,'exit_code':exit_code,'execution_timeout':timed_out,'host_wall_seconds':time.monotonic()-started,
-            'engine_error':('SCRIPT ERROR' in log or '\nERROR:' in log),'final':final,'events':len(events)}
+        value={'hero':hero,'exit_code':exit_code,'execution_timeout':execution_failure=='execution_timeout','execution_failure':execution_failure,'host_wall_seconds':time.monotonic()-started,
+            'engine_error':('SCRIPT ERROR' in log or '\nERROR:' in log),'evidence_errors':evidence_errors,'final':final,'events':len(events)}
         (out/'result.json').write_text(json.dumps(value,indent=2));print(json.dumps(value),flush=True)
         return value
     with concurrent.futures.ThreadPoolExecutor(max_workers=a.workers) as pool: results=list(pool.map(run,heroes))
     (a.output/'summary.json').write_text(json.dumps(results,indent=2))
-    if any(r['exit_code'] or r['engine_error'] or r['final'].get('reason')!='observation_limit' for r in results): raise SystemExit(1)
+    if any(r['exit_code'] or r['engine_error'] or r['evidence_errors'] or r['final'].get('reason')!='observation_limit' for r in results): raise SystemExit(1)
 if __name__=='__main__': main()

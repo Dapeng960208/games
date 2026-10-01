@@ -33,6 +33,20 @@ def digest(path: Path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def imported_source_hashes(root: Path):
+    result = {}
+    for directory in ("assets", "localization", "shaders", "data"):
+        if not (root / directory).exists():
+            continue
+        for metadata in (root / directory).rglob("*.import"):
+            original = metadata.with_suffix("")
+            for path in (metadata, original):
+                if not path.is_file():
+                    raise ValueError(f"Missing imported asset source: {path}")
+                result[str(path.relative_to(root))] = digest(path)
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, default=ROOT)
@@ -40,16 +54,28 @@ def main():
     parser.add_argument("--version", type=int)
     parser.add_argument("--factor", action="append", default=[])
     parser.add_argument("--cache", choices=("copy", "link-imports", "none"), default="copy")
+    parser.add_argument("--cache-source", type=Path, help="Use imports from this already immutable S11 snapshot")
     args = parser.parse_args()
     source, destination = args.source.resolve(), args.destination.resolve()
+    cache_source = args.cache_source.resolve() if args.cache_source else source
     if destination.exists() or destination == source or source in destination.parents:
         parser.error("Destination must be a new directory outside the source checkout")
     if args.factor and (args.version is None or not 901 <= args.version <= 1000):
         parser.error("Candidate factors require a unique test-only version in 901..1000")
     if args.version is not None and not 901 <= args.version <= 1000:
         parser.error("This utility must never edit a release archive version")
-    if args.cache == "link-imports" and not (source / "s11_snapshot_overlay.json").exists():
+    if args.cache_source and not (cache_source / "s11_snapshot_overlay.json").exists():
+        parser.error("A separate cache source must be an already frozen S11 snapshot")
+    if args.cache == "link-imports" and not (cache_source / "s11_snapshot_overlay.json").exists():
         parser.error("Import hardlinks are only allowed from an already frozen S11 snapshot")
+    cache_source_proof = None
+    if args.cache == "link-imports":
+        original_assets = imported_source_hashes(source)
+        cached_assets = imported_source_hashes(cache_source)
+        if not original_assets or original_assets != cached_assets:
+            differences = sorted(k for k in original_assets.keys() | cached_assets.keys() if original_assets.get(k) != cached_assets.get(k))
+            parser.error("Source/import-cache assets differ; refuse shared import inodes: " + ", ".join(differences[:8]))
+        cache_source_proof = {"files": len(original_assets), "sha256": hashlib.sha256(json.dumps(original_assets, sort_keys=True).encode()).hexdigest()}
     changes = []
     for supplied in args.factor:
         try:
@@ -91,12 +117,12 @@ def main():
         elif copied.is_file():
             copied.unlink()
             overlay[name] = "deleted"
-    if args.cache != "none" and (source / ".godot").exists():
+    if args.cache != "none" and (cache_source / ".godot").exists():
         if args.cache == "copy":
-            shutil.copytree(source / ".godot", destination / ".godot")
+            shutil.copytree(cache_source / ".godot", destination / ".godot")
         else:
-            shutil.copytree(source / ".godot", destination / ".godot", ignore=shutil.ignore_patterns("imported"))
-            shutil.copytree(source / ".godot/imported", destination / ".godot/imported", copy_function=os.link)
+            shutil.copytree(cache_source / ".godot", destination / ".godot", ignore=shutil.ignore_patterns("imported"))
+            shutil.copytree(cache_source / ".godot/imported", destination / ".godot/imported", copy_function=os.link)
 
     candidate = None
     if args.version is not None:
@@ -128,7 +154,7 @@ def main():
               "overlay_sha256": overlay, "candidate": candidate,
               "source_calibration_sha256": source_proof,
               "snapshot_calibration_sha256": {p: digest(destination / p) for p in source_proof},
-              "cache_mode": args.cache}
+              "cache_mode": args.cache, "cache_source": str(cache_source), "imported_source_equality": cache_source_proof}
     (destination / "s11_snapshot_overlay.json").write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
     print(json.dumps({"snapshot": str(destination), "base": base, "candidate_version": args.version,
                       "source_unchanged": True, "factors": changes}, indent=2))
