@@ -587,6 +587,12 @@ func shape_contains(command: Dictionary, point: Vector2, actor_radius: float = 0
 		return offset.length() <= radius + actor_radius and offset.length() >= maxf(0.0, inner - actor_radius)
 	return offset.length() <= radius + actor_radius
 
+func _damage_source_context(command: Dictionary) -> Dictionary:
+	var owner_profile: Dictionary = _property(_owner(command), "profile", {})
+	var source_id: String = str(owner_profile.get("enemy_id", owner_profile.get("boss_id", command.get("boss_id", ""))))
+	var english: bool = TranslationServer.get_locale().begins_with("en")
+	return {"source_id":source_id, "source_name":str(owner_profile.get("name_en" if english else "name", source_id)), "attack_id":str(command.get("action_id", command.get("behavior_id", owner_profile.get("behavior_id", ""))))}
+
 func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 	if not _alive(victim) or not _owner_alive(command) or not victim.has_method("receive_damage"):
 		return false
@@ -597,7 +603,9 @@ func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 			var kind: String = str(command.get("damage_type",owner_profile.get("damage_type",owner_profile.get("damage_kind","physical"))))
 			if kind in ["electric","thermal","arcane","toxic","cold"]: kind = "magic"
 			var visual_kind: String = str(command.get("damage_kind", owner_profile.get("damage_kind", kind)))
-			accepted = bool(victim.receive_damage(float(command.damage),origin,{"damage_type":kind, "damage_kind":visual_kind}))
+			var context: Dictionary = _damage_source_context(command)
+			context.merge({"damage_type":kind, "damage_kind":visual_kind}, true)
+			accepted = bool(victim.receive_damage(float(command.damage),origin,context))
 		else:
 			accepted = bool(victim.receive_damage(float(command.damage), origin))
 	else:
@@ -610,6 +618,7 @@ func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 		if not str(state.get("id", "")).is_empty():
 			state["power"] = state.get("power", float(command.get("damage", 0.0)))
 			state["origin"] = origin
+			state.merge(_damage_source_context(command), true)
 			victim.call("receive_enemy_status", state)
 	if accepted and float(command.get("damage", 0.0)) > 0.0:
 		_apply_biome_hit(victim, command, origin)
@@ -638,7 +647,9 @@ func _apply_biome_hit(victim: Node2D, command: Dictionary, origin: Vector2) -> v
 		var primary_status: Variant = command.get("status", {})
 		var primary_id: String = str(primary_status.get("id", "")) if primary_status is Dictionary else str(primary_status)
 		if primary_id != str(signature.get("status_id", "corrosion")) and victim.has_method("receive_enemy_status"):
-			victim.call("receive_enemy_status", {"id":signature.get("status_id", "corrosion"), "duration":float(signature.get("status_seconds", 1.8)), "power":float(command.damage) * float(signature.get("status_power_ratio", 0.55)), "origin":origin})
+			var status_context: Dictionary = _damage_source_context(command)
+			status_context.merge({"id":signature.get("status_id", "corrosion"), "duration":float(signature.get("status_seconds", 1.8)), "power":float(command.damage) * float(signature.get("status_power_ratio", 0.55)), "origin":origin}, true)
+			victim.call("receive_enemy_status", status_context)
 		return
 	var owner_id: int = caster.get_instance_id()
 	if _biome_clock < float(biome_skill_cooldowns.get(owner_id, -1.0)):

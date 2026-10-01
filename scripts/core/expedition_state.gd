@@ -3,6 +3,7 @@ extends RefCounted
 ## Bounded JSON-only checkpoint format. Runtime snapshots are exported by actors;
 ## this layer never invents an in-progress actor state from a settlement receipt.
 const Registry = preload("res://scripts/data/content_registry.gd")
+const Economy = preload("res://scripts/core/economy_history.gd")
 const Routes = preload("res://scripts/world/route_generator.gd")
 const Catalog = preload("res://scripts/world/world_catalog.gd")
 const Resolver = preload("res://scripts/combat/stat_resolver.gd")
@@ -63,7 +64,7 @@ static func fresh(run_id: String, options: Dictionary, profile: Dictionary, stat
 	if not bool(route.get("valid", false)): return {}
 	route.erase("candidate_paths")
 	var initial: Dictionary = {"snapshot_version":1,"mode":"fresh_entry","hero_id":str(stats.hero_id),"hp":float(stats.max_hp),"resource":float(stats.starting_resource)}
-	var value: Dictionary = {"format_version":FORMAT,"recovery_mode":"checkpoint","content_version":Catalog.content_version(),"seed":seed_value,"difficulty":difficulty,
+	var value: Dictionary = {"format_version":FORMAT,"reward_policy_version":1,"recovery_mode":"checkpoint","content_version":Catalog.content_version(),"seed":seed_value,"difficulty":difficulty,
 		"route":route,"departure_level":departure_level,"node_count":route.nodes.size(),"node_index":0,"phase":"safe","completed_nodes":[],"locked_nodes":{},"completion_events":{},
 		"runtime":initial,"checkpoint_id":run_id + ":entry:0","pending_equipment":{},"claimed_drop_ids":{},"equipment_discoveries":[],
 		"gold_earned":0,"gold_spent":0,"offers":{},"relic_levels":{},"mastery":0,"mastery_rank":1,"purchased_offer_ids":[],
@@ -90,6 +91,7 @@ static func add_supply_offers(value: Dictionary, run_id: String) -> void:
 	var index: int = Routes.supply_index(value.route)
 	if index < 0: return
 	for product: String in SUPPLIES:
+		if int(value.get("reward_policy_version", 0)) >= 1 and product in ["mana", "energy"]: continue
 		var id: String = "supply:" + run_id + ":" + str(index) + ":" + product
 		if value.offers.has(id): continue
 		value.offers[id] = {"offer_id":id,"kind":"supply","product_id":product,"label":SUPPLIES[product].label,"price":SUPPLIES[product].price,"decision":"","required":false,"node_index":index}
@@ -115,6 +117,7 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 	var value: Variant = receipt.get("expedition")
 	if not value is Dictionary or not json_tree(value): return false
 	if value.get("format_version") != FORMAT or value.get("recovery_mode") != "checkpoint" or value.get("content_version") != Catalog.content_version(): return false
+	if not number(value.get("reward_policy_version", 0), 1): return false
 	var route: Variant = value.get("route")
 	if not route is Dictionary or route.get("valid") != true or not route.get("nodes") is Array or not Catalog.biomes().has(route.get("biome_id")): return false
 	var count: int = route.nodes.size()
@@ -204,16 +207,21 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 	for drop: Variant in value.claimed_drop_ids:
 		if not drop is String or drop.is_empty() or drop.length() > 160 or not value.claimed_drop_ids[drop] is Dictionary: return false
 		var record: Dictionary = value.claimed_drop_ids[drop]
-		if Registry.equipment(str(record.get("equipment_id", ""))).is_empty() or not record.get("result") in ["pending", "gold"] or not number(record.get("gold"), 1000): return false
+		if Registry.equipment(str(record.get("equipment_id", ""))).is_empty() or not record.get("result") in ["pending", "gold", "superseded"] or not number(record.get("gold"), 1000): return false
 		if not number(record.get("level", 0), MAX_EQUIPMENT_LEVEL): return false
 		var eq: String = str(record.equipment_id)
 		if not eq in value.equipment_discoveries: return false
 		if record.result == "pending":
 			if int(record.gold) != 0 or not value.pending_equipment.has(eq) or value.pending_equipment[eq].drop_id != drop: return false
-		elif int(record.gold) != int(int(Registry.equipment(eq).price) / 10) or (not profile.equipment.has(eq) and not value.pending_equipment.has(eq)): return false
+		elif record.result == "superseded":
+			if int(record.gold) != 0 or not value.pending_equipment.has(eq) or int(value.pending_equipment[eq].get("level", 0)) <= int(record.get("level", 0)): return false
+		elif record.result == "gold":
+			var economic_version: Variant = record.get("economy_version", 1)
+			if not number(economic_version, Economy.CURRENT_VERSION) or not Economy.supported(int(economic_version)): return false
+			if int(record.gold) != int(Economy.item_price(eq, int(economic_version)) / 10) or (not profile.equipment.has(eq) and not value.pending_equipment.has(eq)): return false
 		# Older checkpoints have no field decision. A duplicate converted to gold
 		# cannot masquerade as an equipable drop or create another decision.
-		if record.has("field_decision") and (record.result != "pending" or not record.field_decision in ["equip", "keep"]): return false
+		if record.has("field_decision") and (record.result not in ["pending", "superseded"] or not record.field_decision in ["equip", "keep"]): return false
 	# Optional caches are separate transactions, never second room completions.
 	# The field is optional so existing cleared checkpoints remain resumable.
 	var optional_claims: Variant = value.get("optional_claims", {})
@@ -258,6 +266,7 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 				if not id in RELICS: return false
 			if not offer.decision in ["", "skip"] and not offer.decision in offer.candidates: return false
 		elif offer.get("kind") == "supply":
+			if int(value.get("reward_policy_version", 0)) >= 1 and offer.get("product_id") in ["mana", "energy"]: return false
 			if not SUPPLIES.has(offer.get("product_id")) or offer.get("price") != SUPPLIES[offer.product_id].price or not offer.decision in ["", "purchased"]: return false
 			if offer_id != supply_prefix + str(offer.product_id) or int(value.node_index) < supply or offer.get("node_index") != supply or offer.get("required") != false: return false
 			if (offer.decision == "purchased") != (offer_id in value.purchased_offer_ids): return false
@@ -288,7 +297,8 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 	if value.relic_levels.size() != expected_relics.size(): return false
 	for id: String in expected_relics:
 		if int(value.relic_levels.get(id, 0)) != int(expected_relics[id]): return false
-	var expected_offers: int = expected_rank + (SUPPLIES.size() if int(value.node_index) >= supply else 0)
+	var supply_count: int = SUPPLIES.size() - (2 if int(value.get("reward_policy_version", 0)) >= 1 else 0)
+	var expected_offers: int = expected_rank + (supply_count if int(value.node_index) >= supply else 0)
 	if value.offers.size() != expected_offers: return false
 	for key in ["gold_earned","gold_spent","room_entry_gold","room_entry_kills","room_entry_shots"]:
 		if not number(value.get(key)): return false
@@ -321,9 +331,11 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 			field_equipped = value.claimed_drop_ids[origin].get("field_decision", "") == "equip"
 		if field_equipped:
 			if int(receipt.equipment_snapshot[eq].level) != int(value.pending_equipment[eq].get("level", 0)): return false
-		elif profile.equipment.has(eq):
-			if int(receipt.equipment_snapshot[eq].level) != int(profile.equipment[eq].level): return false
-		else: return false
+		else:
+			var proven: bool = profile.equipment.has(eq) and int(receipt.equipment_snapshot[eq].level) == int(profile.equipment[eq].level)
+			for prior: Dictionary in value.claimed_drop_ids.values():
+				if prior.equipment_id == eq and prior.result == "superseded" and prior.get("field_decision", "") == "equip" and int(prior.get("level", 0)) == int(receipt.equipment_snapshot[eq].level): proven = true
+			if not proven: return false
 	for eq: String in value.pending_equipment:
 		var drop: String = str(value.pending_equipment[eq].drop_id)
 		if value.claimed_drop_ids[drop].get("field_decision", "") == "equip" and not receipt.equipment_snapshot.has(eq): return false

@@ -5,14 +5,21 @@ var states: Dictionary = {}
 var shock_cooldown: float = 0.0
 var clock: float = 0.0
 var guards: Dictionary = {}
+# Runtime feedback only; these counters do not enter the combat/save snapshot.
+var total_absorbed: float = 0.0
+var last_absorbed: float = 0.0
 const SUPPLY_READY_PREFIX := "supply:ready:"
 const SUPPLY_ACTIVE_PREFIX := "supply:active:"
 const SUPPLY_GUARD_SECONDS := 4.0
 const VALID_STATES: Array[String] = ["burn", "shock", "chill", "corrosion", "bleed", "grievous", "damage_reduction", "brace_guard", "invulnerable"]
 
-func apply(id: String, power: float, duration: float = -1.0, raw_power: float = -1.0) -> void:
-	if id not in VALID_STATES or not is_finite(power) or not is_finite(duration):
-		return
+## One active snapshot per family, never additive. Weaker refreshes are ignored
+## across frames (including their duration); equal power refreshes without
+## shortening remaining time, and stronger power replaces its own timed snapshot.
+## Return true only for an accepted write so attribution cannot claim a loser.
+func apply(id: String, power: float, duration: float = -1.0, raw_power: float = -1.0) -> bool:
+	if id not in VALID_STATES or not is_finite(power) or not is_finite(duration) or not is_finite(raw_power):
+		return false
 	var life: float = duration if duration > 0.0 else (4.0 if id == "corrosion" else 3.0)
 	var old: Dictionary = states.get(id, {})
 	var snapshot: float = maxf(0.0, power)
@@ -21,11 +28,13 @@ func apply(id: String, power: float, duration: float = -1.0, raw_power: float = 
 	elif id in ["invulnerable", "grievous"]:
 		snapshot = 1.0
 	var raw_snapshot: float = power if raw_power < 0.0 else raw_power
-	if is_equal_approx(float(old.get("applied_at", -1.0)), clock):
-		if float(old.get("power", 0.0)) > snapshot:
-			raw_snapshot = float(old.get("H", raw_snapshot))
-		snapshot = maxf(snapshot, float(old.get("power", 0.0)))
-	states[id] = {"remaining":life,"tick":float(old.get("tick", 0.0)),"power":snapshot,"H":raw_snapshot,"applied_at":clock}
+	if has(id):
+		if float(old.power) > snapshot:
+			return false
+		if is_equal_approx(float(old.power), snapshot):
+			life = maxf(life, float(old.remaining))
+	states[id] = {"remaining":life,"tick":float(old.get("tick", 0.0)),"power":snapshot,"H":maxf(0.0, raw_snapshot),"applied_at":clock}
+	return true
 
 func has(id: String) -> bool:
 	return states.has(id) and float(states[id].remaining) > 0.0
@@ -68,7 +77,7 @@ func tick(delta: float) -> Array[Dictionary]:
 			while float(state.tick) + 0.00001 >= 1.0:
 				state.tick = maxf(0.0, float(state.tick) - 1.0)
 				var coefficient: float = {"burn":0.12,"corrosion":0.08,"bleed":0.10}[id]
-				result.append({"kind":id,"damage":float(state.power) * coefficient,"damage_type":"magic" if id == "burn" else "physical","H":float(state.H)})
+				result.append({"kind":id,"damage":float(state.power) * coefficient,"damage_type":"magic" if id == "burn" else "physical","H":float(state.H),"power":float(state.power),"applied_at":float(state.applied_at)})
 		if float(state.remaining) <= 0.0:
 			states.erase(id)
 	tick_guard(delta)
@@ -95,8 +104,32 @@ func shield() -> float:
 		value = maxf(value, float(guards[source].amount))
 	return value
 
+## Effective pool is max(source capacity), never their sum. A consumed point
+## depletes every overlapping source but is counted only once in feedback.
+func shield_summary() -> Dictionary:
+	var coverage: float = 0.0
+	var active_coverage: float = 0.0
+	var prepared_coverage: float = 0.0
+	var source_count: int = 0
+	var prepared: bool = false
+	for source: String in guards:
+		if float(guards[source].amount) <= 0.0 or float(guards[source].remaining) <= 0.0:
+			continue
+		source_count += 1
+		coverage = maxf(coverage, float(guards[source].remaining))
+		if is_prepared_supply_guard(source):
+			prepared = true
+			prepared_coverage = maxf(prepared_coverage, float(guards[source].remaining))
+		else:
+			active_coverage = maxf(active_coverage, float(guards[source].remaining))
+	return {"rule":"shared_max", "effective_capacity":shield(), "coverage_seconds":coverage, "active_coverage_seconds":active_coverage, "prepared_coverage_seconds":prepared_coverage, "source_count":source_count, "prepared":prepared, "total_absorbed":total_absorbed, "last_absorbed":last_absorbed}
+
 func absorb(amount: float) -> float:
-	var consumed: float = minf(shield(), maxf(0.0, amount))
+	if not is_finite(amount) or amount <= 0.0:
+		return 0.0
+	var consumed: float = minf(shield(), amount)
+	last_absorbed = consumed
+	total_absorbed += consumed
 	activate_prepared_guards(guards, consumed)
 	for source: String in guards:
 		guards[source].amount = maxf(0.0, float(guards[source].amount) - consumed)

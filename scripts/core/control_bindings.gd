@@ -2,7 +2,7 @@ class_name ControlBindings
 extends RefCounted
 ## Persist physical keys and mouse buttons instead of relying on a runtime InputMap.
 
-const EDITABLE_ACTIONS := ["click_move", "attack", "skill_q", "skill_secondary", "skill_f", "skill_ultimate", "dash", "interact", "move_up", "move_down", "move_left", "move_right"]
+const EDITABLE_ACTIONS := ["click_move", "attack", "skill_q", "skill_secondary", "skill_f", "skill_ultimate", "dash", "interact", "move_up", "move_down", "move_left", "move_right", "backpack", "expedition_map", "relic_details", "pause"]
 const KEY_DEFAULTS := {
 	"skill_q": KEY_Q, "skill_secondary": KEY_W,
 	"skill_f": KEY_E, "skill_ultimate": KEY_R, "dash": KEY_SPACE,
@@ -60,6 +60,9 @@ static func valid_binding(value: Variant) -> bool:
 	return int(code) > 0 and int(code) <= 0x7fffffff and int(code) not in [KEY_SHIFT, KEY_CTRL, KEY_ALT, KEY_META]
 
 static func conflict(action: String, binding: Dictionary, overrides: Dictionary = {}) -> String:
+	# Escape remains a guaranteed cancel route even after Pause is remapped.
+	if action != "pause" and binding.get("type") == "key" and int(binding.get("code", 0)) == KEY_ESCAPE:
+		return "ui_cancel"
 	return _occupied(action, binding, resolve(overrides))
 
 static func attack_backup_enabled(overrides: Dictionary = {}) -> bool:

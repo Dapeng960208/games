@@ -4,7 +4,7 @@ const Sheet = preload("res://scripts/ui/stat_sheet.gd")
 
 static func render(panel: Control) -> void:
 	var left := MineStyle.panel(panel.body,Vector2.ZERO,Vector2(270,510))
-	MineStyle.literal(left,Inspect.t("选择英雄 · 预览当前配装","HEROES · CURRENT LOADOUT"),Vector2(16,13),Vector2(238,28),15,MineStyle.AMBER)
+	MineStyle.literal(left,Inspect.t("选择英雄 · 预览职业配装","HEROES · SAVED LOADOUT"),Vector2(16,13),Vector2(238,28),15,MineStyle.AMBER)
 	var index := 0
 	for id: String in ContentRegistry.heroes():
 		var hero: Dictionary = ContentRegistry.hero(id)
@@ -16,7 +16,12 @@ static func render(panel: Control) -> void:
 		MineStyle.literal(button,MineStyle.content_text(hero,"name"),Vector2(82,12),Vector2(151,30),20)
 		MineStyle.literal(button,MineStyle.content_text(hero,"class_name")+" · Lv."+str(Game.hero_level(id)),Vector2(82,48),Vector2(151,33),14,MineStyle.CYAN)
 		index += 1
-	MineStyle.literal(left,Inspect.t("预览使用该英雄等级与共享装备。选择后才切换出战英雄。","Preview uses this hero's level and shared gear. Confirm to change your active hero."),Vector2(16,378),Vector2(238,58),14,MineStyle.MUTED)
+	var preset_note := Inspect.t("各职业记住上次配装，仍共用同一库存。确认后切换出战英雄。", "Each hero remembers its loadout; all heroes share one collection. Confirm to switch.")
+	if panel.preview_hero == str(Game.profile.selected_hero) and not Game.last_loadout_missing.is_empty():
+		var slots: PackedStringArray = []
+		for slot: String in Game.last_loadout_missing: slots.append(Words.text("SLOT_"+slot.to_upper()))
+		preset_note = Inspect.t("缺失预设已使用当前装备：%s", "Missing preset slots use current gear: %s") % ", ".join(slots)
+	MineStyle.literal(left,preset_note,Vector2(16,378),Vector2(238,58),14,MineStyle.MUTED)
 	panel.action_button = MineStyle.button(left,"HERO_SELECTED" if panel.preview_hero == Game.profile.selected_hero else "SELECT_HERO",Vector2(14,447),Vector2(242,48),panel._select_hero)
 	panel.action_button.name = "PrimaryAction"
 	panel.action_button.disabled = panel.preview_hero == Game.profile.selected_hero
@@ -42,4 +47,4 @@ static func render(panel: Control) -> void:
 	right.add_child(scroll)
 	var sheet := Sheet.new()
 	scroll.add_child(sheet)
-	sheet.configure(Inspect.breakdown(panel.preview_hero,Game.hero_level(panel.preview_hero),Game.profile.loadout,Game.profile.equipment),678)
+	sheet.configure(Inspect.breakdown(panel.preview_hero,Game.hero_level(panel.preview_hero),Game.hero_loadout(panel.preview_hero),Game.profile.equipment),678)

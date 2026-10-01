@@ -84,8 +84,8 @@
     "en": "MAIN MENU"
   },
   "RULES": {
-    "zh_CN": "撤离带回全部金币和装备；死亡保留50%金币，放弃保留20%（向下取整）。\n战败时本房击杀每只积累2经验，最多18；遗物随本局结束清空。",
-    "en": "Extract with all gold and equipment. Death keeps 50% gold; abandoning keeps 20%, rounded down.\nDefeat saves 2 XP per unfinished-room kill, up to 18. Run relics expire."
+    "zh_CN": "撤离带回全部金币和装备；死亡保留50%金币，放弃保留50%（向下取整）。\n战败时本房击杀每只积累2经验，最多18；遗物随本局结束清空。",
+    "en": "Extract with all gold and equipment. Death keeps 50% gold; abandoning keeps 50%, rounded down.\nDefeat saves 2 XP per unfinished-room kill, up to 18. Run relics expire."
   },
   "FIELD_NOTE": {
     "zh_CN": "矿井记录  /  01\n\n三座遗物装置仍有余光。靠近后按 E 拾取，改变火花弹的攻击。\n\n击倒守卫，回收金币，再回到西侧升降机撤离。",
@@ -188,12 +188,12 @@
     "en": "ABANDON AND SETTLE?"
   },
   "ABANDON_NOTE": {
-    "zh_CN": "主动放弃保留20%金币（向下取整）：携带 {gold}，保留 {kept}，损失 {lost}。\n本房不结算战斗积累经验；待带回装备丢失，本局遗物清空。",
-    "en": "Abandoning keeps 20% of gold, rounded down: {gold} carried, {kept} kept, {lost} lost.\nNo field practice XP from this room. Unbanked equipment and run relics are lost."
+    "zh_CN": "主动放弃保留50%金币（向下取整）：携带 {gold}，保留 {kept}，损失 {lost}。\n本房不结算战斗积累经验；待带回装备丢失，本局遗物清空。",
+    "en": "Abandoning keeps 50% of gold, rounded down: {gold} carried, {kept} kept, {lost} lost.\nNo field practice XP from this room. Unbanked equipment and run relics are lost."
   },
   "CONFIRM_ABANDON": {
     "zh_CN": "确认放弃 · 保留20%金币",
-    "en": "CONFIRM · KEEP 20% GOLD"
+    "en": "CONFIRM · KEEP 50% GOLD"
   },
   "CANCEL": {
     "zh_CN": "取消并返回",
@@ -334,6 +334,14 @@
   "STORAGE_INVALID_DATA": {
     "zh_CN": "存档数据未通过校验，未修改已保存档案。",
     "en": "Save validation failed. The saved profile was not changed."
+  },
+  "STORAGE_CAPACITY_EXCEEDED": {
+    "zh_CN": "存档超过安全容量，本次操作未保存；原存档与备份保持不变。请保留现有档案并更新游戏。",
+    "en": "Save capacity exceeded. This change was not saved; your prior save and backup are intact. Keep the existing files and update the game."
+  },
+  "STORAGE_TRANSACTION_CAPACITY": {
+    "zh_CN": "交易收据已达到4096条上限，本次交易未执行；请保留存档并更新游戏，不能删除收据绕过保护。",
+    "en": "The 4,096-receipt limit is reached. This transaction was not applied. Keep your save and update the game; do not delete receipts."
   },
   "STORAGE_WRITE_FAILED": {
     "zh_CN": "写入失败，请检查磁盘空间与目录权限。",
@@ -984,8 +992,8 @@
   "HUD_DETAIL_HINT": {"zh_CN":"按键施放 · 点击或 Enter 查看完整详情\nTab 暂停并展开作战仪表","en":"Use the hotkey to cast. Click or Enter for details.\nTab pauses and opens combat instruments."},
   "HUD_BASE_DESCRIPTION": {"zh_CN":"基础技能档案（等级、装备及分支后的实际消耗与冷却见上方）","en":"Base skill dossier. Current cost and cooldown above include level, equipment and branch changes."},
   "HUD_DASH_DESCRIPTION": {"zh_CN":"沿移动方向冲刺；未移动时朝准星方向冲刺。每位角色的距离与冷却不同。","en":"Dash in the movement direction, or toward the reticle when stationary. Distance and cooldown depend on the hero."},
-  "HUD_WALLET_NOTE": {"zh_CN":"撤离保留全部携带金币；死亡保留50%，主动放弃保留20%（向下取整）。\n点击或 Tab 查看携行详情。","en":"Extraction keeps all carried gold. Death keeps 50%; abandoning keeps 20%, rounded down.\nClick or Tab to inspect your loadout."},
-  "HUD_WALLET_TOTAL": {"zh_CN":"金币 {gold} · 死亡保留 {kept}（50%）· 放弃保留20% · 撤离全额","en":"Gold {gold} · Death: {kept} (50%) · Abandon: 20% · Extract: 100%"},
+  "HUD_WALLET_NOTE": {"zh_CN":"撤离保留全部携带金币；死亡保留50%，主动放弃保留50%（向下取整）。\n点击或 Tab 查看携行详情。","en":"Extraction keeps all carried gold. Death keeps 50%; abandoning keeps 50%, rounded down.\nClick or Tab to inspect your loadout."},
+  "HUD_WALLET_TOTAL": {"zh_CN":"金币 {gold} · 死亡保留 {kept}（50%）· 放弃保留50% · 撤离全额","en":"Gold {gold} · Death: {kept} (50%) · Abandon: 50% · Extract: 100%"},
   "STAT_ABILITY_POWER": {"zh_CN":"法术强度","en":"Ability power"},
   "STAT_MAGIC_RESIST": {"zh_CN":"魔法抗性","en":"Magic resistance"},
   "STAT_ARMOR_PENETRATION": {"zh_CN":"物理穿透","en":"Armor penetration"},

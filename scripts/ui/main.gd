@@ -33,6 +33,7 @@ var music: Node
 var music_tick := 0.0
 var audio_sliders: Dictionary = {}
 var demo_hero := "CH01"
+var demo_branches := {"q":"", "ultimate":""}
 var settings_tab := "general"
 var pending_binding_action := ""
 var binding_feedback: Label
@@ -158,24 +159,83 @@ func show_demo_select() -> void:
 		var hero: Dictionary = ContentRegistry.hero(id)
 		var words: Array = HERO_LOOPS[id]
 		var accent: Color = MineStyle.resource_color(str(hero.get("resource_type","rage")))
-		var card := MineStyle.panel(screen,Vector2(56+index*396,166),Vector2(376,430))
+		var card := MineStyle.panel(screen,Vector2(56+index*396,166),Vector2(376,462))
 		card.add_theme_stylebox_override("panel",MineStyle.box(MineStyle.PANEL,accent.lightened(0.28)))
 		MineStyle.literal(card,"0"+str(index+1)+" / "+str(words[3]),Vector2(22,16),Vector2(332,28),15,accent)
 		MineStyle.hero_portrait(card,id,Vector2(81,49),Vector2(215,218))
 		MineStyle.literal(card,MineStyle.content_text(hero,"name")+" · "+_ex_text(str(words[0]),str(words[3])),Vector2(22,266),Vector2(332,38),24)
 		MineStyle.literal(card,_ex_text(str(words[1]),str(words[4])),Vector2(22,314),Vector2(332,58),17,MineStyle.MUTED)
-		var choose := MineStyle.button(card,"",Vector2(22,375),Vector2(332,44),func(): _start_demo(id))
+		var choose := MineStyle.button(card,"",Vector2(22,369),Vector2(332,44),func(): _start_demo(id))
 		choose.name = "Demo_"+id
-		choose.text = _ex_text("以此职业进入","ENTER TRIAL")
+		choose.text = _ex_text("Lv.8 · 完整技能试玩","LV.8 · FULL-SKILL TRIAL")
 		MineStyle.primary(choose,accent)
 		choose.disabled = Game.run != null
 		if id == demo_hero: choose.grab_focus()
-	MineStyle.literal(screen,_ex_text("右键移动 · 左键 / A 普攻 · Q W E R 技能 · 职业被动自动触发","RIGHT CLICK MOVE · LEFT CLICK / A ATTACK · Q W E R SKILLS · AUTOMATIC PASSIVE"),Vector2(56,616),Vector2(930,36),18,MineStyle.CYAN)
-	MineStyle.button(screen,"BACK",Vector2(1028,626),Vector2(196,48),show_menu)
+		var branches := MineStyle.button(card,"",Vector2(22,416),Vector2(332,44),func(): _show_demo_branches(id))
+		branches.name = "DemoBranches_"+id
+		branches.text = _ex_text("Lv.20 · 分支预览与试玩", "LV.20 · PREVIEW BRANCHES")
+		branches.add_theme_font_size_override("font_size",15)
+		branches.disabled = Game.run != null
+	MineStyle.literal(screen,_current_control_summary(),Vector2(56,622),Vector2(945, 70),15,MineStyle.CYAN)
+	MineStyle.button(screen,"BACK",Vector2(1028,650),Vector2(196,48),show_menu)
 
-func _start_demo(hero_id: String) -> void:
+func _start_demo(hero_id: String, preview_branches: bool = false) -> void:
 	demo_hero = hero_id
-	if not Game.start_demo(hero_id,selected_difficulty): _show_save_error()
+	if not Game.start_demo(hero_id,selected_difficulty,demo_branches if preview_branches else {},preview_branches): _show_save_error()
+
+func _show_demo_branches(hero_id: String, reset: bool = true) -> void:
+	if reset: demo_branches = {"q":"", "ultimate":""}
+	demo_hero = hero_id
+	var panel := _push_modal("",Vector2(1048,650))
+	panel.name = "DemoBranchPreview"
+	MineStyle.literal(panel,_ex_text("分支预览 · 独立 Lv.20 试玩", "BRANCH PREVIEW · SEPARATE LEVEL-20 TRIAL"),Vector2(28,23),Vector2(992,45),27,MineStyle.AMBER)
+	MineStyle.literal(panel,_ex_text("现在即可尝试另一种打法。不会解锁正式存档；正式分支仍在 18 / 20 级开放。", "Try another play style now. Your save stays unchanged; permanent branches still unlock at levels 18 / 20."),Vector2(28,80),Vector2(992,49),17,MineStyle.MUTED)
+	var hero: Dictionary = ContentRegistry.hero(hero_id)
+	for row: int in 2:
+		var slot := "q" if row == 0 else "ultimate"
+		var action := "skill_q" if row == 0 else "skill_ultimate"
+		var gate := "18" if row == 0 else "20"
+		MineStyle.literal(panel,_control_action_name(action)+" · "+_control_label(action),Vector2(28,137+row*204),Vector2(684,31),21,MineStyle.CYAN)
+		var standard := MineStyle.button(panel,"",Vector2(770,135+row*204),Vector2(250,32),func(): _select_demo_branch(hero_id,slot,""))
+		standard.text = _ex_text("标准技能", "STANDARD SKILL")
+		standard.name = "DemoBranch_"+slot+"_standard"
+		if str(demo_branches[slot]).is_empty(): MineStyle.selected(standard)
+		for index: int in 2:
+			var choice := "A" if index == 0 else "B"
+			var info: Dictionary = hero.branches[gate][choice]
+			var card := MineStyle.button(panel,"",Vector2(28+index*504,176+row*204),Vector2(488,155),func(): _select_demo_branch(hero_id,slot,choice))
+			card.name = "DemoBranch_"+slot+"_"+choice
+			if demo_branches[slot] == choice: MineStyle.selected(card)
+			MineStyle.literal(card,choice+" · "+MineStyle.content_text(info,"name"),Vector2(17,9),Vector2(454,30),20,MineStyle.AMBER)
+			var detail := MineStyle.literal(card,_current_skill_text(MineStyle.content_text(info,"description")),Vector2(17,43),Vector2(454,105),15)
+			detail.tooltip_text = detail.text
+	var begin := MineStyle.button(panel,"",Vector2(628,580),Vector2(392,46),func(): _start_demo(hero_id,true))
+	begin.name = "StartBranchTrial"
+	begin.text = _ex_text("以所选分支进入试玩", "TRY SELECTED BRANCHES")
+	MineStyle.primary(begin)
+	MineStyle.button(panel,"BACK",Vector2(28,580),Vector2(228,46),_pop_modal).grab_focus()
+
+func _select_demo_branch(hero_id: String, slot: String, choice: String) -> void:
+	demo_branches[slot] = choice
+	_pop_modal()
+	_show_demo_branches(hero_id,false)
+
+func _current_skill_text(value: String) -> String:
+	var matcher := RegEx.new()
+	matcher.compile("(?<![A-Za-z])[QWER](?![A-Za-z])|空格")
+	var actions := {"Q":"skill_q", "W":"skill_secondary", "E":"skill_f", "R":"skill_ultimate", "空格":"dash"}
+	var matches := matcher.search_all(value)
+	for index: int in range(matches.size()-1,-1,-1):
+		var match_item: RegExMatch = matches[index]
+		value = value.substr(0,match_item.get_start())+_control_label(actions[match_item.get_string()])+value.substr(match_item.get_end())
+	return value
+
+func _current_control_summary() -> String:
+	var skills: Array[String] = []
+	for action: String in ["skill_q","skill_secondary","skill_f","skill_ultimate"]: skills.append(_control_label(action))
+	var attack := Controls.secondary_label("attack",Game.profile.settings.get("controls",{}),Words.locale)
+	return _ex_text("移动 %s · 普攻 %s · 技能 %s\n闪避 %s · 交互 %s · 路线 %s · 背包 %s · 详情 %s · 暂停 %s", "Move %s · Attack %s · Skills %s\nDodge %s · Interact %s · Map %s · Backpack %s · Details %s · Pause %s") % [_control_label("click_move"),attack," / ".join(skills),_control_label("dash"),_control_label("interact"),_control_label("expedition_map"),_control_label("backpack"),_control_label("relic_details"),_control_label("pause")]
+
 
 func _continue_game() -> void:
 	if Game.run != null and not Game.expedition_snapshot().is_empty():
@@ -596,7 +656,7 @@ func _show_expedition_relic(offer: Dictionary) -> void:
 	panel.name = "ExpeditionRelicModal"
 	modals[-1]["required"] = true
 	MineStyle.literal(panel,_ex_text("选一件遗物 · 塑造本局打法", "CHOOSE A RELIC · SHAPE THIS RUN"),Vector2(28,20),Vector2(992,47),28,MineStyle.AMBER)
-	MineStyle.literal(panel,_ex_text("选择立即生效，只保留到本局结束。也可跳过并恢复 6% 最大生命。", "Choose an immediate effect for this run, or skip to recover 6% max health."),Vector2(28,80),Vector2(992,44),17,MineStyle.MUTED)
+	MineStyle.literal(panel,_ex_text("选择立即生效，只保留到本局结束。跳过会放弃这次遗物机会，最多恢复 6% 最大生命。", "Choose an effect for this run. Skipping gives up this relic opportunity and heals up to 6% max health."),Vector2(28,80),Vector2(992,44),17,MineStyle.MUTED)
 	var candidates: Array = offer.get("candidates",[])
 	var cards: Array[Button] = []
 	var card_height := 234.0
@@ -619,11 +679,37 @@ func _show_expedition_relic(offer: Dictionary) -> void:
 		card_height = maxf(card_height,description.position.y+description.size.y+16)
 	for card: Button in cards: card.size.y = card_height
 	panel.size.y = maxf(498,card_height+248)
-	panel.position.y = (720-panel.size.y)/2
-	var skip := MineStyle.button(panel,"",Vector2(678,140+card_height+28),Vector2(342,52),func(): _choose_expedition_relic(str(offer.offer_id),"skip"))
+	_fit_modal(panel,panel.size)
+	var skip := MineStyle.button(panel,"",Vector2(678,140+card_height+28),Vector2(342,52),func(): _request_relic_skip(str(offer.offer_id)))
 	skip.name = "SkipExpeditionRelic"
-	skip.text = _ex_text("跳过 · 回复 6% 生命", "Skip · recover 6% health")
-	skip.grab_focus()
+	var gain := minf(maxf(0.0,Game.run.max_hp-Game.run.hp),Game.run.max_hp*0.06)
+	skip.text = _ex_text("跳过 · 本次不恢复生命", "Skip · no health recovered") if gain <= 0.0 else _ex_text("跳过 · 回复 %s 生命", "Skip · recover %s HP") % _amount(gain)
+	skip.tooltip_text = _ex_text("放弃本次遗物机会；此选择不可撤销。", "Give up this relic opportunity; this choice cannot be undone.")
+	if not cards.is_empty(): cards[0].grab_focus()
+	else:
+		# No candidates: keep deliberate skip reachable, but require its own confirmation.
+		var review := MineStyle.button(panel,"",Vector2(28,140+card_height+28),Vector2(600,52),func(): _request_relic_skip(str(offer.offer_id),true))
+		review.name = "ReviewEmptyRelicOffer"
+		review.text = _ex_text("没有可选遗物 · 查看跳过说明", "No relics available · review skip")
+		review.grab_focus()
+
+func _amount(value: float) -> String:
+	return str(snappedf(value,0.1))
+
+func _request_relic_skip(offer_id: String, force_review: bool = false) -> void:
+	if Game.run == null: return
+	var gain := minf(maxf(0.0,Game.run.max_hp-Game.run.hp),Game.run.max_hp*0.06)
+	if gain > 0.0 and not force_review:
+		_choose_expedition_relic(offer_id,"skip")
+		return
+	var panel := _push_modal("",Vector2(690,320))
+	panel.name = "ConfirmRelicSkip"
+	MineStyle.literal(panel,_ex_text("确认放弃这次遗物？", "GIVE UP THIS RELIC OPPORTUNITY?"),Vector2(28,24),Vector2(634,45),25,MineStyle.AMBER)
+	MineStyle.literal(panel,_ex_text("生命已满，本次跳过不会恢复生命。你仍可刻意跳过，但这次遗物机会会永久消耗。", "Health is full, so skipping restores no health. You may deliberately skip, but this relic opportunity will be consumed permanently.") if gain <= 0.0 else _ex_text("当前没有可选遗物。跳过将恢复 %s 生命并消耗本次机会。", "No relics are available. Skipping restores %s HP and consumes this opportunity.") % _amount(gain),Vector2(28,93),Vector2(634,111),19)
+	var confirm := MineStyle.button(panel,"",Vector2(28,234),Vector2(344,50),func(): _choose_expedition_relic(offer_id,"skip"))
+	confirm.name = "ConfirmZeroBenefitSkip"
+	confirm.text = _ex_text("仍然跳过", "SKIP ANYWAY")
+	MineStyle.button(panel,"BACK",Vector2(390,234),Vector2(272,50),_pop_modal).grab_focus()
 
 func _choose_expedition_relic(offer_id: String, choice_id: String) -> void:
 	if expedition_action_pending or not is_instance_valid(room):
@@ -642,33 +728,89 @@ func _choose_expedition_relic(offer_id: String, choice_id: String) -> void:
 	else: _show_pending_expedition_offer()
 
 func _show_expedition_supply() -> void:
-	var panel := _push_modal("",Vector2(920,570))
+	var panel := _push_modal("",Vector2(920,640))
 	panel.name = "ExpeditionSupplyModal"
 	MineStyle.literal(panel,_ex_text("矿下补给站", "UNDERGROUND SUPPLY"),Vector2(28,20),Vector2(864,45),30,MineStyle.AMBER)
-	MineStyle.literal(panel,_ex_text("本局金币 ", "CARRIED GOLD ")+str(Game.run.gold)+_ex_text(" · 每项仅可购买一次", " · Each item can be bought once"),Vector2(28,81),Vector2(864,42),20,MineStyle.CYAN)
-	var products := {"heal_small":["应急药剂 · 回复 15% 生命","Field dressing · heal 15%"], "heal_large":["维修包 · 回复 35% 生命","Repair kit · heal 35%"], "shield":["预备护盾 · 15%生命 · 承伤后4秒","Reserve shield · 15% HP · 4s after hit"], "amplify":["超频剂 · 后两战斗房攻击 +8%","Overclock · +8% for 2 rooms"], "scan":["勘测信标 · 显示具体敌群","Survey beacon · reveal enemies"], "mana":["共鸣液 · 回复法力","Resonance flask · restore mana"], "energy":["能量匣 · 回复能量","Energy cell · restore energy"]}
+	MineStyle.literal(panel,_ex_text("本局金币 ", "CARRIED GOLD ")+str(Game.run.gold),Vector2(28,75),Vector2(864,32),20,MineStyle.CYAN)
+	var deficit := maxf(0.0,Game.run.max_hp-Game.run.hp)
+	var healing_rule := MineStyle.literal(panel,_ex_text("本次休整治疗二选一 · 购买一项后另一项关闭\n当前缺血 %s；以下显示实际恢复量（不会超出最大生命）。", "ONE HEAL PER REST · Buying either closes the other\nMissing %s HP; previews show actual healing, capped by max health.") % _amount(deficit),Vector2(28,117),Vector2(864,54),17,MineStyle.AMBER)
+	healing_rule.name = "HealingChoiceRule"
+	var products := {"heal_small":["应急药剂 · 15%", "Field dressing · 15%"], "heal_large":["维修包 · 35%", "Repair kit · 35%"], "shield":["预备护盾 · 15%生命", "Reserve shield · 15% HP"], "amplify":["超频剂 · 后两战斗房攻击 +8%", "Overclock · +8% for 2 rooms"], "scan":["勘测信标 · 显示具体敌群", "Survey beacon · reveal enemies"]}
 	var entries: Array = expedition.snapshot().get("supply_offers",[])
 	var healing_purchased := false
 	for entry: Dictionary in entries:
-		if str(entry.get("product_id","")) in ["heal_small","heal_large"] and str(entry.get("decision","")) == "purchased":
-			healing_purchased = true
-	for index in entries.size():
-		var offer: Dictionary = entries[index]
+		if str(entry.get("product_id","")) in ["heal_small","heal_large"] and str(entry.get("decision","")) == "purchased": healing_purchased = true
+	var other_index := 0
+	for offer: Dictionary in entries:
 		var product := str(offer.get("product_id",""))
-		var texts: Array = products.get(product,[product,product])
-		var button := MineStyle.button(panel,"",Vector2(28+(index%2)*442,138+(index/2)*77),Vector2(422,64),func(): _buy_expedition_supply(str(offer.offer_id)))
+		# Resource recovery is an explicit free preparation step, including old offers.
+		if product in ["mana","energy"]: continue
+		var healing := product in ["heal_small","heal_large"]
+		var index := (0 if product == "heal_small" else 1) if healing else other_index
+		var at := Vector2(28+(index%2)*442,180 if healing else 282+floori(index/2.0)*83)
+		var button := MineStyle.button(panel,"",at,Vector2(422,82 if healing else 72),func(): _buy_expedition_supply(str(offer.offer_id)))
 		button.name = "Supply_"+product
-		button.add_theme_font_size_override("font_size",16)
-		var purchased := str(offer.get("decision","")).length()>0
-		button.text = str(texts[1] if Words.locale == "en" else texts[0])+"\n"+(_ex_text("已购买", "Purchased") if purchased else str(offer.get("price",0))+_ex_text(" 金币", " gold"))
+		button.add_theme_font_size_override("font_size",15)
+		var texts: Array = products.get(product,[product,product])
+		var reason := _supply_disabled_reason(offer,healing_purchased)
+		var price := str(offer.get("price",0))+_ex_text(" 金币", " gold")
+		button.text = str(texts[1] if Words.locale == "en" else texts[0])
+		if healing:
+			var gain := minf(deficit,Game.run.max_hp*(0.15 if product == "heal_small" else 0.35))
+			button.text += _ex_text(" · 实际 +%s 生命", " · +%s HP now") % _amount(gain)
+		button.text += "\n"+(price if reason.is_empty() else reason)
+		button.disabled = not reason.is_empty()
+		button.tooltip_text = reason if not reason.is_empty() else (_ex_text("购买会关闭另一治疗选项。", "Buying this closes the other healing option.") if healing else _ex_text("每项限购一次。", "Each item can be bought once."))
 		if product == "shield":
-			button.tooltip_text = _ex_text("下一战斗房预备15%最大生命护盾。首次吸收伤害才开始4秒倒计时；耗尽或离开该房间后失效。", "Reserve a shield worth 15% max HP for the next combat room. Its 4-second timer starts on the first absorbed hit. Ends when depleted or leaving that room.")
-		button.disabled = purchased or Game.run.gold < int(offer.get("price",0))
-		if product in ["heal_small","heal_large"]:
-			button.disabled = button.disabled or healing_purchased or Game.run.hp >= Game.run.max_hp
-		if product in ["mana","energy"]:
-			button.disabled = button.disabled or str(Game.run.stats.get("resource_type","")) != product or Game.run.resource >= float(Game.run.stats.get("resource_max",0))
-	MineStyle.button(panel,"BACK",Vector2(650,492),Vector2(242,48),_pop_modal).grab_focus()
+			button.tooltip_text += _ex_text("\n下一战斗房生效，首次吸收后持续4秒。多个护盾共享最大容量，吸收会同时消耗所有来源。", "\nNext combat room; lasts 4 seconds after its first absorption. Overlapping shields share the largest capacity; absorbed damage reduces every source.")
+		if not healing: other_index += 1
+	var resource_type := str(Game.run.stats.get("resource_type",""))
+	var resource_missing := maxf(0.0,float(Game.run.stats.get("resource_max",0.0))-Game.run.resource)
+	var preparation := MineStyle.button(panel,"",Vector2(28,459),Vector2(864,70),_prepare_safe_resources)
+	preparation.name = "PrepareSafeResources"
+	preparation.add_theme_font_size_override("font_size",17)
+	preparation.text = _ex_text("免费快速整备 · 补满法力 / 能量", "FREE PREPARATION · REFILL MANA / ENERGY")+"\n"
+	if resource_type not in ["mana","energy"]:
+		preparation.text += _ex_text("怒气通过战斗积累，无需购买回能补给", "Rage builds through combat; no resource purchase needed")
+	elif resource_missing <= 0.0:
+		preparation.text += _ex_text("资源已满", "Resource already full")
+	else:
+		preparation.text += _ex_text("恢复 %s 资源 · 不花金币 · 不改变技能冷却", "Restore %s resource · no gold cost · cooldowns unchanged") % _amount(resource_missing)
+	preparation.disabled = resource_type not in ["mana","energy"] or resource_missing <= 0.0
+	MineStyle.literal(panel,_ex_text("无需付费替代安全等待；整备不会治疗生命或重置冷却。", "No need to pay instead of waiting safely. Preparation does not heal HP or reset cooldowns."),Vector2(28,538),Vector2(864,40),15,MineStyle.MUTED)
+	MineStyle.button(panel,"BACK",Vector2(650,579),Vector2(242, 40),_pop_modal).grab_focus()
+
+func _supply_disabled_reason(offer: Dictionary, healing_purchased: bool) -> String:
+	var product := str(offer.get("product_id",""))
+	if not str(offer.get("decision","")).is_empty(): return _ex_text("已购买", "Purchased")
+	if product in ["heal_small","heal_large"]:
+		if healing_purchased: return _ex_text("已选择另一治疗 · 本次不能再买", "Other heal chosen · unavailable this rest")
+		if Game.run.hp >= Game.run.max_hp: return _ex_text("生命已满 · 无恢复收益", "Full health · no healing benefit")
+	if Game.run.gold < int(offer.get("price",0)): return _ex_text("金币不足 · 需要 %d", "Not enough gold · needs %d") % int(offer.get("price",0))
+	var buffs: Dictionary = Game.run.expedition.get("temporary_buffs",{})
+	if product == "shield" and buffs.has("pending_supply_shield"): return _ex_text("已备有下一房护盾", "Next-room shield already prepared")
+	if product == "amplify" and buffs.has("amplify"): return _ex_text("攻击增幅仍在生效", "Attack boost is already active")
+	if product == "scan":
+		var missing := false
+		for index: int in RoutePlanner.scan_indices(Game.run.expedition.route):
+			if index not in Game.run.expedition.scan_nodes: missing = true
+		if not missing: return _ex_text("可勘测节点已全部揭示", "All surveyable rooms already revealed")
+	return ""
+
+func _prepare_safe_resources() -> void:
+	if expedition_action_pending or not is_instance_valid(room): return
+	var checkpoint := str(expedition.snapshot().get("checkpoint_id",""))
+	expedition_action_pending = true
+	var success: bool = Game.prepare_safe_resources(room.expedition_runtime_snapshot(),checkpoint)
+	expedition_action_pending = false
+	if not success:
+		_show_expedition_error(Words.text(Game.last_error),_prepare_safe_resources)
+		return
+	if not room.restore_expedition_runtime(expedition.snapshot().get("runtime",{})):
+		_show_expedition_error(_ex_text("整备已保存，但角色状态恢复失败。重试不会花费金币。", "Preparation is saved, but character state could not be restored. Retry will not spend gold."),_prepare_safe_resources)
+		return
+	_clear_modals()
+	_show_expedition_supply()
 
 func _buy_expedition_supply(offer_id: String) -> void:
 	if expedition_action_pending or not is_instance_valid(room):
@@ -701,10 +843,20 @@ func show_workshop(page: String = "heroes") -> void:
 	workshop.mode = page
 	workshop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	screen.add_child(workshop)
+	_show_warning(screen,Vector2(752,671),Vector2(478,25))
 
 func _show_warning(parent: Node, at: Vector2, extent: Vector2) -> void:
 	if not Game.storage_warning.is_empty():
 		MineStyle.label(parent,"SAVED_WARNING",at,extent,16,MineStyle.RED,{"message":Words.text(Game.storage_warning)})
+		return
+	var capacity: Dictionary = Game.storage_capacity()
+	if capacity.is_empty(): return
+	var remaining_bytes := int(capacity.get("remaining_bytes",0))
+	var remaining_receipts := int(capacity.get("remaining_transactions",0))
+	var tight := remaining_receipts <= 64 or remaining_bytes < 262144
+	var note := MineStyle.literal(parent,(_ex_text("存档空间偏低：", "Low save space: ") if tight else _ex_text("存档余量：", "Save room: "))+_ex_text("%s KiB · %d 条收据", "%s KiB · %d receipts") % [_amount(remaining_bytes/1024.0),remaining_receipts],at,extent,13,MineStyle.RED if tight else MineStyle.MUTED)
+	note.name = "StorageCapacityHint"
+	note.tooltip_text = _ex_text("当前剩余 %d 字节与 %d 条交易收据。存档写入前检查容量，空间不足时保留旧档并提示。", "%d bytes and %d transaction receipts remain. Capacity is checked before writes; insufficient space preserves the previous save and reports an error.") % [remaining_bytes,remaining_receipts]
 
 func _request_new_profile() -> void:
 	if not Game.has_profile:
@@ -774,15 +926,15 @@ func _show_trial_brief() -> void:
 	panel.name = "TrialBrief"
 	var words: Array = HERO_LOOPS.get(Game.run.hero_id,HERO_LOOPS.CH01)
 	MineStyle.literal(panel,_ex_text("轻松走位，流畅连招。","MOVE FREELY. CHAIN YOUR SKILLS."),Vector2(30,23),Vector2(782,47),31,MineStyle.CYAN)
-	MineStyle.literal(panel,_ex_text(str(words[0])+" · "+str(words[2]),str(words[3])+" · "+str(words[4])),Vector2(30,88),Vector2(782,61),21,MineStyle.AMBER)
+	MineStyle.literal(panel,_ex_text(str(words[0])+" · "+_current_skill_text(str(words[2])),str(words[3])+" · "+str(words[4])),Vector2(30,88),Vector2(782,61),21,MineStyle.AMBER)
 	var steps: Array = [
-		_ex_text("01  右键移动","01  RIGHT-CLICK"),_ex_text("右键点击地面移动；按住可持续走位，鼠标指向决定技能方向。","Right-click the ground to move; hold to keep moving. Aim skills with the cursor."),
-		_ex_text("02  四技连招","02  SKILLS / COMBO"),_ex_text("Q W E R 释放四项技能，左键或 A 普攻可穿插连招。","Use Q W E R for four skills. Weave left-click or A attacks into your combo."),
+		_ex_text("01  移动 / 瞄准","01  MOVE / AIM"),_ex_text("用 %s 点击地面或按住走位；鼠标指向决定技能方向。","Use %s on the ground or hold to move. Aim skills with the cursor.") % _control_label("click_move"),
+		_ex_text("02  四技连招","02  SKILLS / COMBO"),_ex_text("用 %s 释放四项技能，用 %s 普攻穿插连招。","Use %s for four skills. Weave %s basic attacks into your combo.") % [_current_skill_text("Q / W / E / R"),Controls.secondary_label("attack",Game.profile.settings.get("controls",{}),Words.locale)],
 		_ex_text("03  自动被动","03  HERO / PASSIVE"),_ex_text("职业被动自动触发；设置中可开启自动普攻。","Your hero's passive triggers automatically. Enable auto attacks in settings.")]
 	for index in range(3):
 		MineStyle.literal(panel,str(steps[index*2]),Vector2(30,170+index*57),Vector2(176,35),18,MineStyle.CYAN)
 		MineStyle.literal(panel,str(steps[index*2+1]),Vector2(211,170+index*57),Vector2(601,48),17,MineStyle.INK)
-	MineStyle.literal(panel,_ex_text("默认：右键移动 · 左键 / A 普攻 · Q W E R 技能 · 空格闪避 · F 交互\n操作可自定义。按 M 选择关卡，B 打开背包。","Right-click move · Left-click / A attack · QWER skills · Space dodge · F interact\nCustomize in settings. M opens the map; B opens your backpack."),Vector2(30,350),Vector2(782,47),16,MineStyle.MUTED)
+	MineStyle.literal(panel,_current_control_summary(),Vector2(30,350),Vector2(782, 50),14,MineStyle.MUTED)
 	var begin := MineStyle.button(panel,"",Vector2(534,405),Vector2(278,44),func():
 		_pop_modal()
 		_show_pending_expedition_offer())
@@ -854,6 +1006,7 @@ func _build_hud() -> void:
 
 func show_backpack() -> void:
 	if route != "run" or Game.run == null or not is_instance_valid(room) or not modals.is_empty(): return
+	Game.run.backpack_opens += 1
 	var panel := _push_modal("",Vector2(1060,620))
 	panel.name = "CombatBackpackModal"
 	var backpack := BackpackPanel.new()
@@ -976,7 +1129,7 @@ func show_combat_details(slot: String = "q") -> void:
 		var info: Dictionary = hud.skill_info(which)
 		skill_title.text = str(info.name)+" / "+str(info.state)
 		skill_values.text = str(info.summary)
-		body.text = Words.text("HUD_BASE_DESCRIPTION")+"\n\n"+str(info.description)
+		body.text = Words.text("HUD_BASE_DESCRIPTION")+"\n\n"+str(info.description)+"\n\n"+_shield_rule_summary()+"\n\n"+_ex_text("同名状态保留较强效果。弱刷新不会降低强度或延长时间；等强刷新只会延长，不会缩短。较强效果替换后，旧弱效果不会恢复。", "For the same status, the stronger effect wins. A weaker refresh changes neither power nor duration; equal power may extend but never shorten it. A replaced weaker effect does not return.")
 		body.scroll_to_line(0)
 	for i in range(5):
 		var which: String = ["q","secondary","f","ultimate","dash"][i]
@@ -990,6 +1143,12 @@ func show_combat_details(slot: String = "q") -> void:
 	attributes.name = "CombatAttributes"
 	attributes.text = _ex_text("角色属性","CHARACTER STATS")
 	MineStyle.button(panel,"BACK",Vector2(610,497),Vector2(250,50),_pop_modal).grab_focus()
+
+func _shield_rule_summary() -> String:
+	var rule := _ex_text("护盾规则：多个来源共享最大容量；吸收伤害会同时减少所有来源。", "Shield rule: overlapping sources share the largest capacity; absorbed damage reduces every source.")
+	if not is_instance_valid(room) or not is_instance_valid(room.player) or not room.player.has_method("shield_summary"): return rule
+	var summary: Dictionary = room.player.shield_summary()
+	return rule+_ex_text("\n当前有效容量 %s · 已记录实际吸收 %s\n计时来源最长剩余 %s 秒；预备来源首次吸收后最长 %s 秒。容量随各来源到期变化。", "\nCurrent effective capacity %s · Recorded actual absorption %s\nTimed sources: up to %s seconds left; reserves: up to %s seconds after first absorption. Capacity changes as sources expire.") % [_amount(float(summary.get("effective_capacity",0.0))),_amount(float(summary.get("total_absorbed",0.0))),_amount(float(summary.get("active_coverage_seconds",0.0))),_amount(float(summary.get("prepared_coverage_seconds",0.0)))]
 
 func show_attributes() -> void:
 	if Game.run == null: return
@@ -1040,9 +1199,15 @@ func show_result(result: Dictionary) -> void:
 	var accent := MineStyle.GREEN if outcome == "extracted" else MineStyle.RED
 	MineStyle.label(screen,title,Vector2(86,105),Vector2(980,78),44,accent)
 	if bool(result.get("demo",false)):
-		MineStyle.literal(screen,_ex_text("试炼已结束 · 成长存档保持原样","TRIAL COMPLETE · YOUR PROGRESSION SAVE IS UNCHANGED"),Vector2(88,190),Vector2(1000,38),18,MineStyle.CYAN)
+		MineStyle.literal(screen,_ex_text("试炼已结束 · 成长存档保持原样","TRIAL COMPLETE · YOUR PROGRESSION SAVE IS UNCHANGED"),Vector2(88,190),Vector2(756,56),17,MineStyle.CYAN)
 	else:
 		MineStyle.label(screen,"SETTLED",Vector2(88,190),Vector2(800,38),18,MineStyle.MUTED)
+	if outcome == "death":
+		var death_review: Dictionary = result.get("death_review",{})
+		var learn := MineStyle.button(screen,"",Vector2(866,189),Vector2(326,44),func(): _show_death_review(death_review))
+		learn.name = "ReviewDeath"
+		learn.text = _ex_text("查看致死原因与最近伤害", "REVIEW RECENT DAMAGE")
+		learn.add_theme_font_size_override("font_size",15)
 	var data := [result.get("collected",result.get("gold",0)),result.get("retained",0),result.get("lost",0)]
 	for i in range(3):
 		var p := MineStyle.panel(screen,Vector2(88+i*246,265),Vector2(224,167))
@@ -1084,6 +1249,74 @@ func show_result(result: Dictionary) -> void:
 	if quit_after_result:
 		quit_after_result = false
 		get_tree().quit()
+
+func _show_death_review(review: Dictionary) -> void:
+	var panel := _push_modal("",Vector2(1000,650))
+	panel.name = "DeathReviewModal"
+	MineStyle.literal(panel,_ex_text("死亡复盘 · 最近 15 秒 / 最多 12 次伤害", "DEATH REVIEW · LAST 15 SECONDS / UP TO 12 EVENTS"),Vector2(28,22),Vector2(944,43),26,MineStyle.AMBER)
+	var lethal: Dictionary = review.get("lethal_event",{})
+	var summary := _ex_text("没有可用的致死记录；不会推测攻击来源。", "No lethal event was recorded; the attack source is unknown.") if lethal.is_empty() else _ex_text("致死一击：", "LETHAL EVENT: ")+_death_event_text(lethal,float(lethal.get("elapsed",0.0)))
+	var cause := MineStyle.literal(panel,summary,Vector2(28,78),Vector2(944,72),18,MineStyle.RED)
+	cause.name = "DeathCause"
+	var lesson := MineStyle.literal(panel,_death_mechanic_note(lethal),Vector2(28,157),Vector2(944,72),17,MineStyle.INK)
+	lesson.name = "DeathMechanicNote"
+	var scroll := ScrollContainer.new()
+	scroll.name = "RecentDamageEvents"
+	scroll.position = Vector2(28,241)
+	scroll.size = Vector2(944,257)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus = true
+	panel.add_child(scroll)
+	var list := VBoxContainer.new()
+	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	list.add_theme_constant_override("separation",11)
+	scroll.add_child(list)
+	var events: Array = review.get("recent_events",[])
+	var reference := float(lethal.get("elapsed",0.0))
+	for index: int in range(events.size()-1,-1,-1):
+		var event: Dictionary = events[index]
+		var line := MineStyle.literal(list,_death_event_text(event,reference),Vector2.ZERO,Vector2(912,0),16,MineStyle.INK)
+		line.custom_minimum_size.x = 900
+		line.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		line.name = "DamageEvent_"+str(index)
+	var shield_note := _ex_text("本局护盾实际吸收 %s。重叠护盾只取最大容量；吸收伤害会同时减少每个来源。", "Shields actually absorbed %s in this run. Overlapping shields share the largest capacity; absorption reduces every source.") % _amount(float(review.get("total_absorbed",0.0)))
+	MineStyle.literal(panel,shield_note,Vector2(28,512),Vector2(944,55),16,MineStyle.MUTED)
+	MineStyle.button(panel,"BACK",Vector2(722,584),Vector2(250,44),_pop_modal).grab_focus()
+
+func _death_event_text(event: Dictionary, reference: float) -> String:
+	var kind := str(event.get("kind","direct"))
+	var category := _ex_text("直接伤害", "Direct damage")
+	if kind == "dot": category = _ex_text("持续伤害", "Damage over time")
+	elif kind == "shock": category = _ex_text("感电追击", "Shock follow-up")
+	var source := str(event.get("source_name",""))
+	if source.is_empty(): source = str(event.get("source_id",""))
+	if source.is_empty(): source = _ex_text("未知来源", "Unknown source")
+	var damage_type := str(event.get("damage_type",""))
+	var type_names := {"physical":["物理", "physical"], "magic":["魔法", "magic"], "true":["真实", "true"]}
+	if type_names.has(damage_type): damage_type = _ex_text(type_names[damage_type][0],type_names[damage_type][1])
+	var age := maxf(0.0,reference-float(event.get("elapsed",reference)))
+	var text := _ex_text("前 %s 秒 · %s / %s · %s", "%ss before death · %s / %s · %s") % [_amount(age),category,damage_type,source]
+	var attack := str(event.get("attack_id",""))
+	if not attack.is_empty(): text += " · "+attack
+	text += _ex_text("\n生命 -%s（%s → %s） · 护盾吸收 %s", "\nHP -%s (%s → %s) · Shield absorbed %s") % [_amount(float(event.get("hp_loss",0.0))),_amount(float(event.get("hp_before",0.0))),_amount(float(event.get("hp_after",0.0))),_amount(float(event.get("shield_absorbed",0.0)))]
+	var states: Array[String] = []
+	for state: String in event.get("key_states",[]): states.append(_death_state_name(state))
+	if not states.is_empty(): text += _ex_text(" · 状态：", " · States: ")+", ".join(states)
+	return text
+
+func _death_state_name(state: String) -> String:
+	var names := {"burn":["燃烧", "Burn"], "bleed":["流血", "Bleed"], "corrosion":["腐蚀", "Corrosion"], "shock":["感电", "Shock"], "chill":["寒冷", "Chill"], "grievous":["重伤", "Grievous"], "slow":["减速", "Slow"], "damage_reduction":["减伤", "Damage reduction"], "brace_guard":["战吼减伤", "Guard reduction"], "invulnerable":["无敌", "Invulnerable"], "dash":["闪避", "Dodge"]}
+	return _ex_text(names[state][0],names[state][1]) if names.has(state) else state
+
+func _death_mechanic_note(event: Dictionary) -> String:
+	if event.is_empty(): return _ex_text("下一局可结合敌人预警与状态倒计时观察；此处只显示实际记录，不推测反制操作。", "Watch enemy warnings and status timers on your next run. This review shows recorded evidence only.")
+	var status := str(event.get("status",""))
+	if status == "burn": return _ex_text("燃烧会持续造成魔法伤害。躲开最初攻击后仍需留意燃烧倒计时与剩余生命。", "Burn continues dealing magic damage. After avoiding further attacks, check its timer and your remaining health before re-engaging.")
+	if status == "bleed": return _ex_text("流血会持续造成物理伤害。避开后续攻击并不结束流血；重新接敌前查看剩余时间与生命。", "Bleed continues dealing physical damage. Avoiding the next hit does not end it; check the timer and health before re-engaging.")
+	if status == "corrosion": return _ex_text("腐蚀会降低护甲并持续造成物理伤害。状态持续时要同时留意后续直接攻击与持续掉血。", "Corrosion lowers armor and deals physical damage over time. While it remains active, account for both follow-up attacks and its damage ticks.")
+	if status == "shock" or event.get("kind") == "shock": return _ex_text("感电会在后续命中时触发额外雷击。被施加感电后，留意下一次攻击预警与闪避时机。", "Shock triggers extra lightning on a subsequent hit. After Shock is applied, watch the next attack warning and your dodge timing.")
+	if event.get("kind") == "dot": return _ex_text("记录为持续伤害，但没有明确效果名称；请结合当时状态与剩余生命查看，不推测未记录的机制。", "Damage over time was recorded, but its effect is unknown. Check the recorded states and remaining health; an unrecorded mechanism cannot be inferred.")
+	return _ex_text("本次记录为直接攻击。对照下方攻击来源、当时状态与护盾吸收，观察同类敌人的出手预警。", "This was a direct attack. Compare the recorded source, active states and shield absorption with that enemy's attack warning.")
 
 func show_settings() -> void:
 	var panel := _push_modal("SETTINGS",Vector2(880,644))
@@ -1142,7 +1375,7 @@ func show_settings() -> void:
 	paths.name = "EnemySkillPathsSetting"
 	paths.text = _ex_text("敌技能路径：显示","Enemy paths: On") if bool(settings.get("enemy_skill_paths",true)) else _ex_text("敌技能路径：隐藏","Enemy paths: Off")
 	paths.tooltip_text = _ex_text("隐藏野怪技能预警线与范围标记；技能伤害与判定不变。","Hide enemy warning lines and area markers. Damage and hit detection remain active.")
-	MineStyle.literal(panel,_ex_text("默认：右键移动 / 按住走位，左键或 A 普攻，Q W E R 技能。\n「操作与按键」可自定义；A 分配给其他操作后不再触发普攻。\n关闭镜头震动可保持画面稳定；自动普攻可减轻连续操作。","Default: right-click / hold to move, left-click or A attack, Q W E R skills.\nCustomize in Controls & Keys. Assigning A elsewhere disables its attack alias.\nDisable camera shake for a steady view. Auto attacks ease repeated input."),Vector2(28,464),Vector2(824,84),17,MineStyle.MUTED)
+	MineStyle.literal(panel,_current_control_summary()+"\n"+_ex_text("「操作与按键」可自定义；Esc 始终返回。关闭震动、自动普攻可减轻连续操作。", "Customize in Controls & Keys; Esc always returns. Disable shake or enable auto attacks for comfort."),Vector2(28,464),Vector2(824,84),16,MineStyle.MUTED)
 	MineStyle.button(panel,"BACK",Vector2(612,566),Vector2(240,48),_pop_modal)
 
 func _switch_settings_tab(next_tab: String) -> void:
@@ -1152,36 +1385,36 @@ func _switch_settings_tab(next_tab: String) -> void:
 
 func _build_control_settings(panel: Panel) -> void:
 	MineStyle.literal(panel,_ex_text("点击按键按钮，再按新的键或鼠标按钮。重绑定即时生效并保存。","Select a binding, then press a new key or mouse button. Changes apply and save immediately."),Vector2(28,142),Vector2(824,45),16,MineStyle.MUTED)
-	var labels := [
-		_ex_text("点地移动","Click to move"), _ex_text("普通攻击","Basic attack"),
-		_ex_text("技能一 · Q","Skill 1 · Q"), _ex_text("技能二 · W","Skill 2 · W"),
-		_ex_text("技能三 · E","Skill 3 · E"), _ex_text("技能四 · R","Skill 4 · R"),
-		_ex_text("闪避","Dodge"), _ex_text("交互","Interact"),
-		_ex_text("向上移动","Move up"), _ex_text("向下移动","Move down"),
-		_ex_text("向左移动","Move left"), _ex_text("向右移动","Move right")]
 	for index in range(Controls.EDITABLE_ACTIONS.size()):
 		var action: String = Controls.EDITABLE_ACTIONS[index]
-		var origin := Vector2(28 + (index % 2) * 422, 192 + floori(float(index) / 2.0) * 50)
-		MineStyle.literal(panel,str(labels[index]),origin + Vector2(0,7),Vector2(156,31),17)
-		var binding := MineStyle.button(panel,"",origin + Vector2(158,0),Vector2(244,42),func(): _begin_control_binding(action))
+		var origin := Vector2(28 + (index % 2) * 422, 183 + floori(float(index) / 2.0) * 46)
+		MineStyle.literal(panel,_control_action_name(action),origin + Vector2(0,5),Vector2(156,29),15)
+		var binding := MineStyle.button(panel,"",origin + Vector2(158,0),Vector2(244,44),func(): _begin_control_binding(action))
 		binding.name = "Bind_" + action
+		binding.add_theme_font_size_override("font_size",15)
 		binding.text = Controls.secondary_label(action, Game.profile.settings.get("controls", {}), Words.locale)
 		binding.tooltip_text = _ex_text("点击更换主按键；Esc 取消。普攻备用 A 会在分配给其他操作时自动停用。","Click to change the primary binding; Esc cancels. The A attack alias is disabled when assigned to another action.")
-	binding_feedback = MineStyle.literal(panel,_ex_text("职业被动自动触发。Tab 技能详情 · M 路线 · B 背包 · Esc 暂停。","Passives trigger automatically. Tab details · M map · B backpack · Esc pause."),Vector2(28,507),Vector2(824,44),15,MineStyle.MUTED)
-	var reset := MineStyle.button(panel,"",Vector2(28,566),Vector2(264,48),_reset_control_bindings)
+	binding_feedback = MineStyle.literal(panel,_ex_text("所有按键均可自定义；Esc 始终可以取消或返回。普攻备用 A 被占用后自动停用。","All actions can be remapped. Esc always cancels or returns. Assigning A elsewhere disables its attack alias."),Vector2(28,550),Vector2(824,36),13,MineStyle.MUTED)
+	var reset := MineStyle.button(panel,"",Vector2(28,588),Vector2(264,44),_reset_control_bindings)
 	reset.text = _ex_text("恢复默认按键","RESET CONTROLS")
-	MineStyle.button(panel,"BACK",Vector2(612,566),Vector2(240,48),_pop_modal)
+	MineStyle.button(panel,"BACK",Vector2(612,588),Vector2(240,44),_pop_modal)
 
 func _begin_control_binding(action: String) -> void:
 	pending_binding_action = action
-	var panel := _push_modal("",Vector2(646,244))
+	var panel := _push_modal("",Vector2(646,314))
 	panel.name = "ControlBindingCapture"
 	MineStyle.literal(panel,_ex_text("按下新的键或鼠标按钮","PRESS A KEY OR MOUSE BUTTON"),Vector2(28,32),Vector2(590,42),25,MineStyle.AMBER)
 	MineStyle.literal(panel,_ex_text("当前按键：","Current binding: ") + _control_label(action),Vector2(28,92),Vector2(590,36),20)
 	MineStyle.literal(panel,_ex_text("单个键或鼠标左 / 右 / 中 / 侧键。Esc 取消。\n重复按键会提示冲突，请先调整已占用的操作。","Use one key, or left / right / middle / side mouse buttons. Esc cancels.\nConflicting bindings are rejected; change the existing action first."),Vector2(28,147),Vector2(590,67),16,MineStyle.MUTED)
+	MineStyle.button(panel,"CANCEL",Vector2(418,244),Vector2(200,44),_pop_modal)
 
 func _capture_control_binding(event: InputEvent) -> void:
 	if not (event is InputEventKey or event is InputEventMouseButton) or not event.pressed: return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not modals.is_empty():
+		var capture_panel: Control = modals[-1].node.find_child("ControlBindingCapture",true,false)
+		if capture_panel != null:
+			for button: Node in capture_panel.find_children("*","Button",true,false):
+				if button.get_global_rect().has_point(event.position): return
 	get_viewport().set_input_as_handled()
 	if event is InputEventKey and (event.keycode == KEY_ESCAPE or event.physical_keycode == KEY_ESCAPE):
 		_pop_modal()
@@ -1209,7 +1442,7 @@ func _control_action_name(action: String) -> String:
 		"skill_q": ["技能一", "Skill 1"], "skill_secondary": ["技能二", "Skill 2"], "skill_f": ["技能三", "Skill 3"], "skill_ultimate": ["技能四", "Skill 4"],
 		"dash": ["闪避", "Dodge"], "interact": ["交互", "Interact"],
 		"move_up": ["向上移动", "Move up"], "move_down": ["向下移动", "Move down"], "move_left": ["向左移动", "Move left"], "move_right": ["向右移动", "Move right"],
-		"relic_details": ["技能详情", "Skill details"], "expedition_map": ["路线", "Map"], "backpack": ["背包", "Backpack"], "pause": ["暂停", "Pause"]}
+		"ui_cancel": ["安全取消（Esc）", "safe cancel (Esc)"], "relic_details": ["技能详情", "Skill details"], "expedition_map": ["路线", "Map"], "backpack": ["背包", "Backpack"], "pause": ["暂停", "Pause"]}
 	return str(names.get(action, [action, action])[0 if Words.locale == "zh_CN" else 1])
 
 func _reset_control_bindings() -> void:
@@ -1380,6 +1613,9 @@ func _input(event: InputEvent) -> void:
 	if not pending_binding_action.is_empty():
 		_capture_control_binding(event)
 		return
+	if _is_menu_cancel(event):
+		_unhandled_input(event)
+		return
 	if event.is_action_pressed("expedition_map") and route == "run" and modals.is_empty() and expedition != null and expedition.active():
 		get_viewport().set_input_as_handled()
 		show_expedition(false)
@@ -1393,8 +1629,15 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		show_combat_details()
 
+func _is_menu_cancel(event: InputEvent) -> bool:
+	if event is InputEventKey and event.pressed and not event.echo and (event.keycode == KEY_ESCAPE or event.physical_keycode == KEY_ESCAPE): return true
+	if not event.is_action_pressed("pause"): return false
+	# A mouse-bound pause must not eat every ordinary menu click. Escape stays
+	# available inside menus regardless of the gameplay Pause binding.
+	return not event is InputEventMouseButton or (route == "run" and modals.is_empty())
+
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
+	if _is_menu_cancel(event):
 		get_viewport().set_input_as_handled()
 		if not modals.is_empty():
 			_pop_modal()
