@@ -33,16 +33,17 @@ func configure(data: Dictionary, width: float, prefix: String = "HeroAttribute_"
 			_line(Inspect.caption(key)+"  "+Inspect.value(key,float(data.total.get(key,0)))+" → "+Inspect.value(key,float(data.live[key])),width,15,MineStyle.CYAN)
 	_heading(Inspect.t("装备词条与套装 · 条件效果","AFFIXES & SETS · CONDITIONAL EFFECTS"),width)
 	_line(Inspect.t("下列效果满足条件后触发，未触发的伤害、护盾或恢复不会计入上方常驻数值。", "These effects require their stated conditions. Untriggered damage, shields and recovery are not counted in permanent values."),width,14,MineStyle.MUTED)
-	for slot: String in ContentRegistry.SLOTS:
+	for slot: String in ContentRegistry.slots(int(data.total.get("ruleset_version",1))):
 		var id := str(data.total.get("loadout",{}).get(slot,""))
-		var item: Dictionary = ContentRegistry.equipment(id)
+		var record: Dictionary = data.owned.get(id,{})
+		var item: Dictionary = ContentRegistry.equipment(str(record.get("template_id",id)),int(data.total.get("ruleset_version",1)))
 		if item.is_empty(): continue
-		_line(MineStyle.content_text(item,"name")+" +"+str(data.owned.get(id,{}).get("level",0)),width,15,MineStyle.CYAN)
+		_line(MineStyle.content_text(item,"name")+" +"+str(record.get("enhancement_rank",record.get("level",0))),width,15,MineStyle.CYAN)
 		_line(MineStyle.content_text(item,"affix_text"),width,14)
 	for id: String in data.total.get("sets",{}):
 		var set_data: Dictionary = ContentRegistry.sets().get(id,{})
 		var count := int(data.total.sets[id])
-		_line(MineStyle.content_text(set_data,"name")+" · %d/6" % count,width,17,MineStyle.AMBER)
+		_line(MineStyle.content_text(set_data,"name")+" · %d/%d" % [count,8 if int(data.total.get("ruleset_version",1)) == 2 else 6],width,17,MineStyle.AMBER)
 		for tier: int in [2,4,6]:
 			_line((Inspect.t("已激活 ","Active ") if count >= tier else Inspect.t("未激活 ","Inactive "))+str(tier)+Inspect.t(" 件："," pieces: ")+MineStyle.content_text(set_data.get("thresholds",{}).get(str(tier),{}),"text"),width,14,MineStyle.GREEN if count >= tier else MineStyle.MUTED)
 	var hero: Dictionary = ContentRegistry.hero(str(data.hero_id))

@@ -18,15 +18,15 @@ func configure(source_room: Node, close: Callable) -> void:
 	var left := MineStyle.panel(self,Vector2(20,69),Vector2(286,531))
 	MineStyle.literal(left,MineStyle.content_text(hero,"name")+" · Lv."+str(Game.run.level),Vector2(16,13),Vector2(254,37),24,MineStyle.AMBER)
 	MineStyle.hero_portrait(left,Game.run.hero_id,Vector2(64,66),Vector2(158,187))
-	for index: int in ContentRegistry.SLOTS.size():
-		var slot: String = ContentRegistry.SLOTS[index]
+	for index: int in Game.equipment_slots(true).size():
+		var slot: String = Game.equipment_slots(true)[index]
 		var id := str(Game.run.loadout_snapshot.get(slot,""))
-		var item: Dictionary = ContentRegistry.equipment(id)
-		var button := MineStyle.button(left,"",Vector2(12 if index < 3 else 222,81+(index%3)*63),Vector2(52,52),func(): _show_item(item))
+		var item: Dictionary = Game.equipment_definition(id,true)
+		var button := MineStyle.button(left,"",Vector2(12 if index < (4 if Game.equipment_slots(true).size() == 8 else 3) else 222,81+(index%(4 if Game.equipment_slots(true).size() == 8 else 3))*(46 if Game.equipment_slots(true).size() == 8 else 63)),Vector2(46,44) if Game.equipment_slots(true).size() == 8 else Vector2(52,52),func(): _show_item(item))
 		button.name = "Equipment_"+slot
 		MineStyle.button_skin(button,"socket")
-		MineStyle.equipment_icon(button,item if not item.is_empty() else {"slot":slot},Vector2(3,3),Vector2(46,46))
-		button.tooltip_text = Inspect.tooltip(item,int(Game.run.equipment_snapshot.get(id,{}).get("level",0)),Game.run.hero_id)
+		MineStyle.equipment_icon(button,item if not item.is_empty() else {"slot":slot},Vector2(3,3),Vector2(40,38) if Game.equipment_slots(true).size() == 8 else Vector2(46,46))
+		button.tooltip_text = Inspect.tooltip(item,int(Game.run.equipment_snapshot.get(id,{}).get("enhancement_rank",Game.run.equipment_snapshot.get(id,{}).get("level",0))),Game.run.hero_id)
 	MineStyle.literal(left,MineStyle.content_text(hero,"class_name"),Vector2(16,274),Vector2(254,30),18,MineStyle.CYAN)
 	MineStyle.literal(left,Inspect.t("生命 %d / %d\n资源 %d / %d","HP %d / %d\nResource %d / %d") % [ceili(Game.run.hp),ceili(Game.run.max_hp),ceili(Game.run.resource),ceili(float(Game.run.stats.resource_max))],Vector2(16,313),Vector2(254,70),17)
 	MineStyle.literal(left,Inspect.t("点装备查看强化值与完整词条；条件效果在属性表下方。","Select gear for refined stats and full affixes. Conditional effects follow the attribute table."),Vector2(16,384),Vector2(254,59),14,MineStyle.MUTED)
@@ -73,14 +73,14 @@ func _show_sheet() -> void:
 	var actor: Variant = room.get("player") if is_instance_valid(room) else null
 	var sheet := Sheet.new()
 	detail_scroll.add_child(sheet)
-	sheet.configure(Inspect.breakdown(Game.run.hero_id,Game.run.level,Game.run.loadout_snapshot,Game.run.equipment_snapshot,actor),620,"Attribute_")
+	sheet.configure(Inspect.breakdown(Game.run.hero_id,Game.run.level,Game.run.loadout_snapshot,Game.run.equipment_snapshot,actor,Game.run.ruleset_version(),Game.hero_talents(Game.run.hero_id)),620,"Attribute_")
 
 func _show_item(item: Dictionary) -> void:
 	_clear_detail()
 	detail_title.text = MineStyle.content_text(item,"name",Words.text("EMPTY_SLOT"))
 	var content := Details.new()
 	detail_scroll.add_child(content)
-	content.configure(item,int(Game.run.equipment_snapshot.get(str(item.get("id","")),{}).get("level",0)),620,Game.run.hero_id,Game.run.stats,Game.run.stats)
+	content.configure(item,int(Game.run.equipment_snapshot.get(str(item.get("instance_id",item.get("id",""))),{}).get("enhancement_rank",Game.run.equipment_snapshot.get(str(item.get("id","")),{}).get("level",0))),620,Game.run.hero_id,Game.run.stats,Game.run.stats)
 	Details.set_changes(content,Game.run.stats,Game.run.stats,620,str(item.get("set_id","")))
 
 func _explain(title: String, explanation: String) -> void:

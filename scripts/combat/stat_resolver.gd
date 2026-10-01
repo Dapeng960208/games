@@ -1,12 +1,13 @@
 class_name StatResolver
 extends RefCounted
-## Resolves permanent growth and owned equipment only. Conditional affixes and
-## set procs are evaluated by combat events, never as unconditional stats here.
+## Resolves permanent growth and owned equipment only. Conditional template
+## traits and set procs are evaluated by combat events, never as flat stats here.
 
 const Progression = preload("res://scripts/core/hero_progression.gd")
 const Numerical = preload("res://config/numerical_rules.gd")
 const FLAT_KEYS := ["attack", "ability_power", "max_hp", "armor", "magic_resist", "max_mana", "armor_penetration", "magic_penetration", "true_damage_bonus", "resource_max", "resource_regen", "starting_resource"]
 const Registry = preload("res://scripts/data/content_registry.gd")
+const Instances = preload("res://scripts/core/equipment_instances.gd")
 const EQUIPMENT_CAPS: Dictionary = {"attack": 45.0, "ability_power": 90.0, "max_hp": 220.0, "armor": 70.0, "magic_resist": 70.0, "max_mana": 150.0, "armor_penetration": 40.0, "magic_penetration": 40.0, "crit_multiplier": 1.0, "true_damage_bonus": 12.0, "attack_speed": 0.60, "move_speed": 0.45, "cooldown_reduction": 0.30, "damage_bonus": 0.60, "damage_reduction": 0.35, "burn_damage": 0.60, "corrosion_damage_bonus": 0.60, "status_duration": 0.40}
 
 static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dictionary, ruleset: int = Numerical.LEGACY, talents: Dictionary = {}) -> Dictionary:
@@ -17,31 +18,38 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 	var contribution: Dictionary = {}
 	var set_counts: Dictionary = {}
 	var equipped: Dictionary = {}
-	for slot in Registry.SLOTS:
-		var id := str(loadout.get(slot, ""))
-		var item: Dictionary = Registry.equipment(id)
-		if item.is_empty() or item.get("slot") != slot or not owned.has(id):
-			continue
-		var record: Variant = owned[id]
-		if not record is Dictionary:
-			continue
-		var upgrade := clampi(int(record.get("level", record.get("upgrade_level", 0))), 0, 5)
-		var multiplier := 1.0 + 0.1 * upgrade
-		var base_stats: Dictionary = item.get("base_stats", {})
-		for key in base_stats:
-			var amount := float(base_stats[key]) * multiplier
-			# Combat consumes fractional power, so small paid enhancements take
-			# effect immediately. Preserve historical HP/mana capacity rounding:
-			# old full-health/resource checkpoints must still fit the current cap.
-			if ruleset == Numerical.V2 and key in FLAT_KEYS:
-				amount = Numerical.scale(amount, ruleset)
-			elif key in ["max_hp", "max_mana"]:
-				amount = roundf(amount)
-			contribution[key] = float(contribution.get(key, 0.0)) + amount
-		var set_id := str(item.get("set_id", ""))
-		if not set_id.is_empty():
-			set_counts[set_id] = int(set_counts.get(set_id, 0)) + 1
-		equipped[slot] = id
+	var templates: Dictionary = {}
+	if ruleset == Numerical.V2:
+		var resolved := _instance_equipment(hero_id, level, loadout, owned)
+		if resolved.is_empty(): return {}
+		contribution = resolved.contribution
+		set_counts = resolved.set_counts
+		equipped = resolved.loadout
+		templates = resolved.templates
+	else:
+		for slot in Registry.SLOTS:
+			var id := str(loadout.get(slot, ""))
+			var item: Dictionary = Registry.equipment(id)
+			if item.is_empty() or item.get("slot") != slot or not owned.has(id):
+				continue
+			var record: Variant = owned[id]
+			if not record is Dictionary:
+				continue
+			var upgrade := clampi(int(record.get("level", record.get("upgrade_level", 0))), 0, 5)
+			var multiplier := 1.0 + 0.1 * upgrade
+			var base_stats: Dictionary = item.get("base_stats", {})
+			for key in base_stats:
+				var amount := float(base_stats[key]) * multiplier
+				# Combat consumes fractional power, so small paid enhancements take
+				# effect immediately. Preserve historical HP/mana capacity rounding:
+				# old full-health/resource checkpoints must still fit the current cap.
+				if key in ["max_hp", "max_mana"]:
+					amount = roundf(amount)
+				contribution[key] = float(contribution.get(key, 0.0)) + amount
+			var set_id := str(item.get("set_id", ""))
+			if not set_id.is_empty():
+				set_counts[set_id] = int(set_counts.get(set_id, 0)) + 1
+			equipped[slot] = id
 	var raw_contribution := contribution.duplicate(true)
 	contribution = clamp_equipment_contributions(contribution, ruleset)
 	if ruleset == Numerical.V2:
@@ -104,7 +112,9 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 		stats["talents"] = talents.duplicate(true)
 		stats["talent_points_available"] = int(base.talent_points_available)
 		stats["hero_base"] = base
+		stats["equipment_templates"] = templates.duplicate(true)
 		stats["hp_ratio"] = float(contribution.get("hp_ratio", 0.0))
+		stats.max_hp = Numerical.integer(float(stats.max_hp) * (1.0 + float(stats.hp_ratio)))
 		stats["resource_gain_bonus"] = float(contribution.get("resource_gain_bonus", 0.0))
 		var caps: Dictionary = Numerical.value("caps")
 		stats.crit_chance = minf(float(caps.crit_chance), float(stats.crit_chance) + float(base.talent_crit_chance))
@@ -118,6 +128,45 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 		for key in FLAT_KEYS:
 			if contribution.has(key): contribution[key] = Numerical.integer(float(contribution[key]))
 	return stats
+
+## V2 ownership and slot identity are validated before aggregating anything.
+## Saved instance rolls already use the complete formula and authored v2 units;
+## never add template base_stats or rescale these values a second time.
+static func _instance_equipment(hero_id: String, level: int, loadout: Dictionary, owned: Dictionary) -> Dictionary:
+	var contribution: Dictionary = {}
+	var set_counts: Dictionary = {}
+	var equipped: Dictionary = {}
+	var templates: Dictionary = {}
+	var seen: Dictionary = {}
+	var slots: Array = Registry.slots(Numerical.V2)
+	for slot: Variant in loadout:
+		if not slot is String or slot not in slots or not loadout[slot] is String:
+			return {}
+	for slot: String in slots:
+		var instance_id: String = loadout.get(slot, "")
+		if instance_id.is_empty(): continue
+		if seen.has(instance_id) or not owned.has(instance_id) or not owned[instance_id] is Dictionary:
+			return {}
+		var record: Dictionary = owned[instance_id]
+		if str(record.get("instance_id", "")) != instance_id or not Instances.validate(record).is_empty():
+			return {}
+		if not Instances.can_equip(record, hero_id, level): return {}
+		var template_id: String = record.template_id
+		var item: Dictionary = Registry.equipment(template_id, Numerical.V2)
+		if item.is_empty() or str(item.get("slot", "")) != slot: return {}
+		var values: Dictionary = Instances.stats(record)
+		if values.is_empty(): return {}
+		for key: String in values:
+			if key in FLAT_KEYS:
+				contribution[key] = int(contribution.get(key, 0)) + int(values[key])
+			else:
+				contribution[key] = float(contribution.get(key, 0.0)) + float(values[key])
+		var set_id: String = str(item.get("set_id", ""))
+		if not set_id.is_empty(): set_counts[set_id] = int(set_counts.get(set_id, 0)) + 1
+		seen[instance_id] = true
+		equipped[slot] = instance_id
+		templates[slot] = template_id
+	return {"contribution":contribution, "set_counts":set_counts, "loadout":equipped, "templates":templates}
 
 ## Shared caps are independent of current catalog values, so future temporary
 ## equipment modifiers cannot silently bypass them. Conditional damage must

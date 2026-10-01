@@ -48,4 +48,4 @@ static func render(panel: Control) -> void:
 	right.add_child(scroll)
 	var sheet := Sheet.new()
 	scroll.add_child(sheet)
-	sheet.configure(Inspect.breakdown(panel.preview_hero,Game.hero_level(panel.preview_hero),Game.hero_loadout(panel.preview_hero),Game.profile.equipment),678)
+	sheet.configure(Inspect.breakdown(panel.preview_hero,Game.hero_level(panel.preview_hero),Game.hero_loadout(panel.preview_hero),Game.profile.equipment,null,int(Game.profile.get("ruleset_version",1)),Game.hero_talents(panel.preview_hero)),678)

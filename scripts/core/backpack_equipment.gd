@@ -1,6 +1,7 @@
 extends RefCounted
 ## Owned equipment only. Combat changes remain live until the normal clear
 ## checkpoint; safe-room changes use the existing atomic expedition receipt.
+const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Registry = preload("res://scripts/data/content_registry.gd")
 const Resolver = preload("res://scripts/combat/stat_resolver.gd")
 const Snapshot = preload("res://scripts/combat/combat_snapshot.gd")
@@ -11,19 +12,23 @@ const Status = preload("res://scripts/combat/combat_status.gd")
 static func available(game: Node) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	if game.run == null: return result
+	var version: int = game.run.ruleset_version()
 	var records: Dictionary = game.run.equipment_snapshot.duplicate(true)
 	for id: String in game.profile.get("equipment", {}):
 		if not records.has(id): records[id] = game.profile.equipment[id].duplicate(true)
 	for id: String in game.run.expedition.get("pending_equipment", {}):
 		var pending: Dictionary = game.run.expedition.pending_equipment[id]
+		if version == 2:
+			if not records.has(id): records[id] = pending.duplicate(true)
+			continue
 		if int(pending.get("level", 0)) >= int(records.get(id, {}).get("level", 0)):
 			records[id] = {"level":int(pending.get("level", 0)),"pending":true}
 	var ids: Array = records.keys()
 	ids.sort()
 	for id: String in ids:
-		var item: Dictionary = Registry.equipment(id)
+		var item: Dictionary = Registry.equipment(str(records[id].get("template_id", id)) if records[id] is Dictionary else id, version)
 		if item.is_empty() or not records[id] is Dictionary: continue
-		result.append({"id":id,"slot":str(item.slot),"level":int(records[id].get("level", 0)),"pending":bool(records[id].get("pending", false)),"equipped":str(game.run.loadout_snapshot.get(item.slot, "")) == id})
+		result.append({"id":id,"slot":str(item.slot),"record":records[id].duplicate(true),"level":int(records[id].get("enhancement_rank", records[id].get("level", 0))),"pending":bool(records[id].get("pending", false)) or str(records[id].get("location", "")) == "pending","equipped":str(game.run.loadout_snapshot.get(item.slot, "")) == id})
 	return result
 
 static func preview(game: Node, id: String, slot: String = "") -> Dictionary:
@@ -35,12 +40,14 @@ static func preview(game: Node, id: String, slot: String = "") -> Dictionary:
 		if record.is_empty(): return {}
 		if not slot.is_empty() and slot != str(record.slot): return {}
 		slot = str(record.slot)
-	if not slot in Registry.SLOTS: return {}
+	if not slot in Registry.slots(game.run.ruleset_version()): return {}
 	var loadout: Dictionary = game.run.loadout_snapshot.duplicate(true)
 	var owned: Dictionary = game.run.equipment_snapshot.duplicate(true)
 	loadout[slot] = id
-	if not id.is_empty(): owned[id] = {"level":int(record.level)}
-	var stats: Dictionary = Resolver.resolve(game.run.hero_id, game.run.level, loadout, owned)
+	if not id.is_empty():
+		owned[id] = record.record.duplicate(true) if game.run.ruleset_version() == 2 else {"level":int(record.level)}
+		if game.run.ruleset_version() == 2 and not Instances.can_equip(owned[id], game.run.hero_id, game.run.level): return {}
+	var stats: Dictionary = Resolver.resolve(game.run.hero_id, game.run.level, loadout, owned, game.run.ruleset_version(), game.hero_talents(game.run.hero_id))
 	if stats.is_empty(): return {}
 	for key: String in ["branches", "relic_levels", "temporary_buffs"]:
 		stats[key] = game.run.stats.get(key, {}).duplicate(true)
@@ -52,14 +59,15 @@ static func change(game: Node, id: String, slot: String, runtime: Dictionary, ch
 	var comparison := preview(game, id, slot)
 	if comparison.is_empty(): return {"success":false,"error":"只能穿戴背包中已拥有的装备。"}
 	var changed_loadout: bool = comparison.loadout != game.run.loadout_snapshot or comparison.owned != game.run.equipment_snapshot
-	var source_error: String = Snapshot.loadout_source_error(runtime, game.run.loadout_snapshot, comparison.loadout)
+	var source_error: String = Snapshot.loadout_source_error(runtime, game.run.loadout_snapshot, comparison.loadout, game.run.stats, comparison.next_stats)
 	if not source_error.is_empty(): return {"success":false,"error":source_error}
 	var adjusted: Dictionary = Snapshot.for_loadout(runtime, game.run.loadout_snapshot, comparison.loadout, comparison.next_stats, game.run.hero_id, game.run.stats)
 	if adjusted.is_empty(): return {"success":false,"error":"角色状态无法用于换装，请关闭背包后重试。"}
 	var value: Dictionary = game.run.expedition.duplicate(true)
 	if bool(comparison.pending):
 		var pending: Dictionary = value.pending_equipment[id]
-		value.claimed_drop_ids[str(pending.drop_id)]["field_decision"] = "equip"
+		var drop_id: String = str(pending.get("drop_id", pending.get("source_event_id", "")))
+		if value.claimed_drop_ids.has(drop_id): value.claimed_drop_ids[drop_id]["field_decision"] = "equip"
 	var receipt: Dictionary = game.run.live_receipt()
 	receipt.loadout_snapshot = comparison.loadout.duplicate(true)
 	receipt.equipment_snapshot = comparison.owned.duplicate(true)
@@ -94,6 +102,7 @@ static func apply(room: Node, id: String, slot: String, checkpoint: String) -> D
 	var passive_state: Dictionary = passives.call("capture_same_room") if passives != null and passives.has_method("capture_same_room") else {}
 	var runtime: Dictionary = room.call("expedition_runtime_snapshot")
 	var old_loadout: Dictionary = Game.run.loadout_snapshot.duplicate(true)
+	var old_stats: Dictionary = Game.run.stats.duplicate(true)
 	var effects: RefCounted = actor.get("loadout").get("effects")
 	var transient: Dictionary = {}
 	for key: String in ["roots", "deaths", "same_target", "first_full_targets", "shock_targets", "cooldowns"]:
@@ -113,8 +122,8 @@ static func apply(room: Node, id: String, slot: String, checkpoint: String) -> D
 	actor.position = position_before
 	actor.set("aim_direction", aim_before)
 	if not passive_state.is_empty(): result["passive_restored"] = bool(passives.call("restore_same_room",passive_state))
-	var previous: Dictionary = Rules.loadout_binding(old_loadout)
-	var next: Dictionary = Rules.loadout_binding(Game.run.loadout_snapshot)
+	var previous: Dictionary = Rules.loadout_binding(old_loadout, old_stats)
+	var next: Dictionary = Rules.loadout_binding(Game.run.loadout_snapshot, Game.run.stats)
 	for key: String in ["roots", "deaths", "first_full_targets", "cooldowns"]:
 		# Histories and every target ICD remain consumed when gear is removed/readded.
 		effects.set(key, transient[key])

@@ -1,5 +1,6 @@
 extends RefCounted
 ## Read-only view data. Every permanent value comes from the production resolver.
+const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Registry = preload("res://scripts/data/content_registry.gd")
 const Resolver = preload("res://scripts/combat/stat_resolver.gd")
 const NAMES := {
@@ -39,13 +40,22 @@ static func value(key: String, amount: float, signed: bool = false, item_value: 
 
 static func item_values(item: Dictionary, level: int, hero_id: String) -> Dictionary:
 	if item.is_empty(): return {}
+	if item.get("instance_record") is Dictionary:
+		var record: Dictionary = item.instance_record.duplicate(true)
+		if level != int(record.enhancement_rank):
+			record.enhancement_steps = record.enhancement_steps.slice(0,clampi(level,0,record.enhancement_steps.size()))
+			record.enhancement_rank = record.enhancement_steps.size()
+			record.enhancement_reroll_history = []
+			record.enhancement_gold_ledger = []
+			record.material_ledger = []
+		return Instances.stats(record)
 	var id := str(item.id)
 	return Resolver.resolve(hero_id,1,{str(item.slot):id},{id:{"level":clampi(level,0,5)}}).get("uncapped_equipment_contribution",{}).duplicate(true)
 
-static func breakdown(hero_id: String, level: int, loadout: Dictionary, owned: Dictionary, actor: Variant = null) -> Dictionary:
-	var intrinsic := Resolver.resolve(hero_id,1,{}, {})
-	var leveled := Resolver.resolve(hero_id,level,{}, {})
-	var total := Resolver.resolve(hero_id,level,loadout,owned)
+static func breakdown(hero_id: String, level: int, loadout: Dictionary, owned: Dictionary, actor: Variant = null, version: int = 1, talents: Dictionary = {}) -> Dictionary:
+	var intrinsic := Resolver.resolve(hero_id,1,{}, {},version)
+	var leveled := Resolver.resolve(hero_id,level,{}, {},version)
+	var total := Resolver.resolve(hero_id,level,loadout,owned,version,talents)
 	var live := total.duplicate(true)
 	if is_instance_valid(actor) and actor.has_method("stat"):
 		for group: Array in GROUPS:
@@ -62,6 +72,9 @@ static func set_preview(set_id: String, hero_id: String, level: int, loadout: Di
 
 static func tooltip(item: Dictionary, level: int, hero_id: String) -> String:
 	var lines: PackedStringArray = [MineStyle.content_text(item,"name")+" +"+str(level)]
+	if item.get("instance_record") is Dictionary:
+		var record: Dictionary = item.instance_record
+		lines.append("iLv %d · %s · %s" % [int(record.item_level),str(record.rarity),str(record.instance_id)])
 	var stats := item_values(item,level,hero_id)
 	for key: String in stats: lines.append(caption(key)+"  "+value(key,float(stats[key]),true,true))
 	lines.append(MineStyle.content_text(item,"affix_text"))

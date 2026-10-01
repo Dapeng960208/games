@@ -8,7 +8,7 @@ func configure(item: Dictionary, level: int, width: float, hero_id: String, befo
 	custom_minimum_size.x = width
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	add_theme_constant_override("separation",6)
-	set_meta("item_id",str(item.get("id","")))
+	set_meta("item_id",str(item.get("instance_id",item.get("id",""))))
 	set_meta("level",level)
 	if page == "compare":
 		_compare(hero_id,before,after,width)
@@ -72,7 +72,7 @@ static func set_changes(owner: Node, before: Dictionary, after: Dictionary, widt
 		var data: Dictionary = ContentRegistry.sets().get(id,{})
 		var old := int(before.get("sets",{}).get(id,0))
 		var next := int(after.get("sets",{}).get(id,0))
-		flow(owner,MineStyle.content_text(data,"name")+" · %d → %d / 6" % [old,next],width,17,MineStyle.AMBER)
+		flow(owner,MineStyle.content_text(data,"name")+" · %d → %d / %d" % [old,next,8 if int(after.get("ruleset_version",1)) == 2 else 6],width,17,MineStyle.AMBER)
 		for tier: int in [2,4,6]:
 			var gained := old < tier and next >= tier
 			var lost := old >= tier and next < tier

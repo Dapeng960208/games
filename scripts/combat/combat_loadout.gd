@@ -32,7 +32,9 @@ func configure(player: Node2D) -> void:
 	_self_status_sources_known = true
 	if Game.run == null:
 		return
-	var loadout: Dictionary = Game.run.stats.get("loadout", Game.run.loadout_snapshot)
+	# V2 stats retain instance IDs; the pure reducer reads the separately
+	# resolved template map for fixed traits, without accessing owned records.
+	var loadout: Dictionary = Game.run.stats.get("loadout", Game.run.loadout_snapshot).duplicate(true)
 	effects.call("configure", loadout, Game.run.stats, str(Game.run.stats.get("resource_type", "")))
 	_update_modifiers(effects.call("advance", 0.0, _context()))
 

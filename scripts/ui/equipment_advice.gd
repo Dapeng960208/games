@@ -1,4 +1,5 @@
 extends RefCounted
+const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Abilities = preload("res://scripts/combat/hero_abilities.gd")
 ## Pure presentation advice from resolved base stats. It never selects equipment,
 ## performs a transaction, or values conditional affixes as constant damage.
@@ -97,10 +98,11 @@ static func _positive(stats: Dictionary, keys: Array) -> bool:
 
 static func is_relevant(item: Dictionary, hero_id: String) -> bool:
 	if item.is_empty() or not hero_id in HEROES: return false
+	if item.get("instance_record") is Dictionary: return Instances.can_equip(item.instance_record,hero_id,60)
 	var allowed: Array = item.get("allowed_heroes", [])
 	if not allowed.is_empty() and not allowed.has(hero_id): return false
 	if not str(item.get("hero_id", "")).is_empty() and str(item.hero_id) != hero_id: return false
-	var stats: Dictionary = item.get("base_stats", {})
+	var stats: Dictionary = item.get("instance_stats", item.get("base_stats", {}))
 	if _positive(stats, COMMON): return true
 	if hero_id == "CH03" and _positive(stats, ["ability_power", "magic_penetration", "max_mana"]): return true
 	if hero_id != "CH03" and _positive(stats, ["armor_penetration"]): return true
@@ -110,7 +112,7 @@ static func is_relevant(item: Dictionary, hero_id: String) -> bool:
 
 static func purpose(item: Dictionary, hero_id: String) -> String:
 	if not is_relevant(item, hero_id): return _t("其他职业取向，词缀可展开查看", "Other role focus; inspect its affix.")
-	var stats: Dictionary = item.get("base_stats", {})
+	var stats: Dictionary = item.get("instance_stats", item.get("base_stats", {}))
 	var tags: Array[String] = []
 	if hero_id == "CH03" and _positive(stats, ["ability_power", "magic_penetration"]): tags.append(_t("法术输出", "Spell offense"))
 	elif hero_id == "CH03" and _positive(stats, ["attack"]): tags.append(_t("技能威力", "Skill power"))

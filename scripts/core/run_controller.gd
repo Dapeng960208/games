@@ -35,6 +35,7 @@ const Numbers = preload("res://config/numerical_rules.gd")
 const FieldLearning = preload("res://scripts/core/field_learning.gd")
 const RoomRewards = preload("res://scripts/world/room_rewards.gd")
 const FieldSnapshot = preload("res://scripts/combat/combat_snapshot.gd")
+const Instances = preload("res://scripts/core/equipment_instances.gd")
 
 func _ready() -> void:
 	if OS.has_feature("debug") and profile_path == "user://profile.json":
@@ -120,12 +121,17 @@ func new_profile() -> bool:
 func start_run(options: Dictionary = {}) -> bool:
 	if run != null or not has_profile:
 		return false
+	# S04 owns the versioned checkpoint receipt and migration boundary.
+	if _profile_ruleset() == Numbers.V2 and bool(options.get("expedition", false)):
+		last_error = "NUMERICAL_CHECKPOINT_UNAVAILABLE"
+		return false
 	var next := RunState.new()
 	next.demo = not _demo_backup.is_empty()
 	next.id = Crypto.new().generate_random_bytes(16).hex_encode()
 	next.hero_id = str(profile.selected_hero)
 	next.level = hero_level(next.hero_id)
 	next.stats = selected_stats()
+	if next.stats.is_empty(): return false
 	if next.demo: next.stats.starting_resource = float(next.stats.get("resource_max", 0.0))
 	next.branches_snapshot = hero_branches(next.hero_id)
 	next.stats.branches = next.branches_snapshot.duplicate(true)
@@ -469,23 +475,56 @@ func set_hero_branch(slot: String, choice: String, hero_id: String = "") -> bool
 	next_profile.branches[id][slot] = choice
 	return _commit_profile(next_profile)
 
+## UI identity bridge: catalog IDs remain template IDs for icon/trait lookup.
+## Every returned record is detached from both the saved profile and the catalog.
+func equipment_definition(identifier: String, run_context: bool = false) -> Dictionary:
+	var in_run: bool = run_context and run != null
+	var ruleset: int = run.ruleset_version() if in_run else _profile_ruleset()
+	var owned: Dictionary = run.equipment_snapshot.duplicate(true) if in_run else profile.get("equipment", {})
+	if in_run and ruleset == Numbers.V2:
+		for id: String in profile.get("equipment", {}):
+			if not owned.has(id): owned[id] = profile.equipment[id].duplicate(true)
+		for id: String in run.expedition.get("pending_equipment", {}):
+			if not owned.has(id): owned[id] = run.expedition.pending_equipment[id].duplicate(true)
+	if ruleset != Numbers.V2 or not owned.has(identifier):
+		return ContentRegistry.equipment(identifier, ruleset)
+	var record: Variant = owned[identifier]
+	if not record is Dictionary or record.get("instance_id") != identifier or not Instances.validate(record).is_empty(): return {}
+	var definition: Dictionary = ContentRegistry.equipment(str(record.template_id), ruleset)
+	if definition.is_empty(): return {}
+	definition["instance_id"] = identifier
+	definition["instance_record"] = record.duplicate(true)
+	definition["instance_stats"] = Instances.stats(record)
+	return definition
+
+func equipment_slots(run_context: bool = false) -> Array[String]:
+	return ContentRegistry.slots(run.ruleset_version() if run_context and run != null else _profile_ruleset())
+
+func _camp_instance_fits(identifier: String, hero: String) -> bool:
+	var record: Variant = profile.get("equipment", {}).get(identifier)
+	if not record is Dictionary or record.get("instance_id") != identifier: return false
+	# Pending rewards are owned but are not in the usable camp inventory yet.
+	if record.get("location") not in ["inventory", "equipped"]: return false
+	return Instances.can_equip(record, hero, hero_level(hero))
+
 func preview_stats(eq_id: String) -> Dictionary:
-	var definition := ContentRegistry.equipment(eq_id)
-	if definition.is_empty():
-		return {}
+	var definition := equipment_definition(eq_id)
+	if definition.is_empty(): return {}
+	if _profile_ruleset() == Numbers.V2 and not _camp_instance_fits(eq_id, str(profile.selected_hero)): return {}
 	var loadout: Dictionary = profile.loadout.duplicate(true)
 	var owned: Dictionary = profile.equipment.duplicate(true)
 	loadout[definition.slot] = eq_id
-	if not owned.has(eq_id):
-		owned[eq_id] = {"level": 0}
+	if not owned.has(eq_id): owned[eq_id] = {"level": 0}
 	var resolved := StatResolver.resolve(str(profile.selected_hero), hero_level(), loadout, owned, _profile_ruleset(), hero_talents())
+	if resolved.is_empty(): return {}
 	resolved.branches = hero_branches()
 	return resolved
 
 func preview_upgrade_stats(eq_id: String) -> Dictionary:
-	var definition := ContentRegistry.equipment(eq_id)
-	if definition.is_empty() or not profile.equipment.has(eq_id):
-		return {}
+	# S06 must preview a committed roll vector, never fabricate a legacy +1.
+	if _profile_ruleset() == Numbers.V2: return {}
+	var definition := equipment_definition(eq_id)
+	if definition.is_empty() or not profile.equipment.has(eq_id): return {}
 	var loadout: Dictionary = profile.loadout.duplicate(true)
 	var owned: Dictionary = profile.equipment.duplicate(true)
 	loadout[definition.slot] = eq_id
@@ -496,26 +535,32 @@ func preview_upgrade_stats(eq_id: String) -> Dictionary:
 
 func hero_loadout(id: String) -> Dictionary:
 	var desired: Dictionary = profile.get("loadout_presets", {}).get(id, profile.loadout).duplicate(true)
-	for slot: String in ProfileStore.SLOTS:
+	for slot: String in equipment_slots():
 		var item: String = str(desired.get(slot, ""))
-		if item.is_empty() or not profile.equipment.has(item): desired[slot] = str(profile.loadout[slot])
+		if _profile_ruleset() == Numbers.V2:
+			if not item.is_empty() and not _camp_instance_fits(item, id): desired[slot] = ""
+		elif item.is_empty() or not profile.equipment.has(item): desired[slot] = str(profile.loadout[slot])
 	return desired
 
 func select_hero(id: String) -> bool:
 	last_error = ""
 	last_loadout_missing.clear()
-	if not _camp_available() or not id in ProfileStore.HERO_IDS:
-		return false
-	if profile.selected_hero == id:
-		return true
+	if not _camp_available() or not id in ProfileStore.HERO_IDS: return false
+	if profile.selected_hero == id: return true
 	var next_profile := profile.duplicate(true)
 	if not next_profile.has("loadout_presets"): next_profile.loadout_presets = {}
 	next_profile.loadout_presets[str(profile.selected_hero)] = profile.loadout.duplicate(true)
 	var desired: Dictionary = next_profile.loadout_presets.get(id, profile.loadout).duplicate(true)
 	var missing: Array[String] = []
-	for slot: String in ProfileStore.SLOTS:
+	for slot: String in equipment_slots():
 		var item: String = str(desired.get(slot, ""))
-		if item.is_empty() or not next_profile.equipment.has(item):
+		if _profile_ruleset() == Numbers.V2:
+			# Empty is a real choice; a different class never receives a rerolled
+			# copy or silently wears an incompatible instance from the last hero.
+			if not item.is_empty() and not _camp_instance_fits(item, id):
+				missing.append(slot)
+				desired[slot] = ""
+		elif item.is_empty() or not next_profile.equipment.has(item):
 			missing.append(slot)
 			desired[slot] = str(profile.loadout[slot])
 	next_profile.selected_hero = id
@@ -525,14 +570,22 @@ func select_hero(id: String) -> bool:
 	return true
 
 func equipment_level(eq_id: String) -> int:
-	return int(profile.get("equipment", {}).get(eq_id, {}).get("level", 0))
+	var field: String = "enhancement_rank" if _profile_ruleset() == Numbers.V2 else "level"
+	return int(profile.get("equipment", {}).get(eq_id, {}).get(field, 0))
+
+func _legacy_equipment_transaction() -> bool:
+	if _profile_ruleset() != Numbers.V2: return true
+	last_error = "NUMERICAL_TRANSACTION_UNAVAILABLE"
+	return false
 
 func upgrade_cost(eq_id: String) -> int:
+	if _profile_ruleset() == Numbers.V2: return 0
 	if not profile.equipment.has(eq_id) or equipment_level(eq_id) >= 5:
 		return 0
 	return UPGRADE_PRICES[equipment_level(eq_id)]
 
 func upgrade_has_gain(eq_id: String) -> bool:
+	if _profile_ruleset() == Numbers.V2: return false
 	if not profile.equipment.has(eq_id) or equipment_level(eq_id) >= 5:
 		return false
 	var item := ContentRegistry.equipment(eq_id)
@@ -555,6 +608,7 @@ func upgrade_has_gain(eq_id: String) -> bool:
 
 func buy_equipment(eq_id: String, transaction_id: String = "") -> bool:
 	last_error = ""
+	if not _legacy_equipment_transaction(): return false
 	if not _camp_available():
 		return false
 	if not transaction_id.is_empty() and profile.applied_transactions.has(transaction_id):
@@ -580,6 +634,7 @@ func buy_equipment(eq_id: String, transaction_id: String = "") -> bool:
 ## Quotes only missing pieces. Rounding is per item, so buying a piece first
 ## cannot change the discount on any other piece or reset its refinement.
 func equipment_set_quote(set_id: String) -> Dictionary:
+	if _profile_ruleset() == Numbers.V2: return {}
 	var ids := ContentRegistry.set_item_ids(set_id)
 	if ids.size() != ContentRegistry.SLOTS.size(): return {}
 	var missing: Array[String] = []
@@ -602,6 +657,7 @@ func equipment_set_quote(set_id: String) -> Dictionary:
 
 func buy_equipment_set(set_id: String, transaction_id: String = "") -> bool:
 	last_error = ""
+	if not _legacy_equipment_transaction(): return false
 	if not _camp_available(): return false
 	if not transaction_id.is_empty() and profile.applied_transactions.has(transaction_id):
 		return _same_transaction(transaction_id, "purchase_set", set_id)
@@ -619,6 +675,7 @@ func buy_equipment_set(set_id: String, transaction_id: String = "") -> bool:
 
 func equip_equipment_set(set_id: String) -> bool:
 	last_error = ""
+	if not _legacy_equipment_transaction(): return false
 	if not _camp_available(): return false
 	var ids := ContentRegistry.set_item_ids(set_id)
 	if ids.size() != ContentRegistry.SLOTS.size(): return false
@@ -631,11 +688,13 @@ func equip_equipment_set(set_id: String) -> bool:
 	return _commit_profile(next_profile)
 
 func equipment_sell_value(eq_id: String) -> int:
+	if _profile_ruleset() == Numbers.V2: return 0
 	if not profile.equipment.has(eq_id): return 0
 	return ProfileStore.equipment_sell_price(eq_id,equipment_level(eq_id))
 
 func sell_equipment_items(eq_ids: Array, transaction_id: String = "") -> bool:
 	last_error = ""
+	if not _legacy_equipment_transaction(): return false
 	if not _camp_available() or eq_ids.is_empty() or eq_ids.size() > ContentRegistry.equipment_ids().size(): return false
 	var ids: Array[String] = []
 	for value: Variant in eq_ids:
@@ -670,7 +729,8 @@ func equip_item(eq_id: String) -> bool:
 	last_error = ""
 	if not _camp_available() or not profile.equipment.has(eq_id):
 		return false
-	var definition := ContentRegistry.equipment(eq_id)
+	if _profile_ruleset() == Numbers.V2 and not _camp_instance_fits(eq_id, str(profile.selected_hero)): return false
+	var definition := equipment_definition(eq_id)
 	if definition.is_empty():
 		return false
 	if profile.loadout[definition.slot] == eq_id:
@@ -681,6 +741,7 @@ func equip_item(eq_id: String) -> bool:
 
 func upgrade_equipment(eq_id: String, transaction_id: String = "") -> bool:
 	last_error = ""
+	if not _legacy_equipment_transaction(): return false
 	if not _camp_available():
 		return false
 	if not transaction_id.is_empty() and profile.applied_transactions.has(transaction_id):
@@ -968,6 +1029,8 @@ func advance_expedition_node(runtime_snapshot: Dictionary = {}, expected_checkpo
 	return _commit_expedition(value, runtime, profile.duplicate(true))
 
 func _add_equipment_drop(value: Dictionary, drop_id: String, eq_id: String, drop_level: Variant = 0) -> bool:
+	# Instance grants and overflow claims require S05 atomic reward records.
+	if (run != null and run.ruleset_version() == Numbers.V2) or _profile_ruleset() == Numbers.V2: return false
 	if drop_id.is_empty() or drop_id.length() > 160 or ContentRegistry.equipment(eq_id).is_empty(): return false
 	if not Expedition.number(drop_level, Expedition.MAX_EQUIPMENT_LEVEL): return false
 	var level: int = int(drop_level)
@@ -1009,6 +1072,7 @@ func collect_expedition_equipment(drop_id: String, equipment_id: String, drop_le
 	return true
 
 func _field_equipment_drop(drop_id: String) -> Dictionary:
+	if run != null and run.ruleset_version() == Numbers.V2: return {}
 	if not _expedition_active() or run.expedition.phase != "cleared": return {}
 	var claim: Variant = run.expedition.claimed_drop_ids.get(drop_id)
 	if not claim is Dictionary or claim.get("result") != "pending": return {}
@@ -1283,11 +1347,20 @@ func storage_capacity() -> Dictionary:
 	return _store.storage_capacity(profile, run.receipt() if run != null else null, has_profile)
 
 func _commit_profile(next_profile: Dictionary) -> bool:
+	# Normalize location in the same detached transaction as the active loadout.
+	# Pending rewards stay pending; a loadout referencing them still fails validation.
+	next_profile = next_profile.duplicate(true)
+	if next_profile.get("ruleset_version", Numbers.LEGACY) == Numbers.V2:
+		var equipped: Array = next_profile.get("loadout", {}).values()
+		for id: Variant in next_profile.get("equipment", {}):
+			var record: Variant = next_profile.equipment[id]
+			if record is Dictionary and record.get("location") in ["inventory", "equipped"]:
+				record.location = "equipped" if id in equipped else "inventory"
 	if not next_profile.has("loadout_presets"): next_profile.loadout_presets = {}
 	next_profile.loadout_presets[str(next_profile.selected_hero)] = next_profile.loadout.duplicate(true)
 	if not _save(next_profile, null):
 		return false
-	profile = next_profile
+	profile = next_profile.duplicate(true)
 	changed.emit()
 	return true
 

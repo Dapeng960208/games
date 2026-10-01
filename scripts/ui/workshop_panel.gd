@@ -129,7 +129,7 @@ func _show_character_stats() -> void:
 	popup.add_child(scroll)
 	var sheet := StatSheet.new()
 	scroll.add_child(sheet)
-	sheet.configure(Inspect.breakdown(Game.profile.selected_hero,Game.hero_level(),Game.profile.loadout,Game.profile.equipment),850)
+	sheet.configure(Inspect.breakdown(Game.profile.selected_hero,Game.hero_level(),Game.profile.loadout,Game.profile.equipment,null,int(Game.profile.get("ruleset_version",1)),Game.hero_talents()),850)
 	close.grab_focus()
 
 func _select_hero() -> void:
@@ -265,9 +265,9 @@ func _render_equipment() -> void:
 
 func _filtered_equipment() -> Array:
 	var output: Array = []
-	for value in ContentRegistry.equipment_ids():
+	for value in (ContentRegistry.equipment_ids(int(Game.profile.get("ruleset_version",1))) if mode == "shop" else Game.profile.get("equipment",{}).keys()):
 		var id := str(value)
-		var data: Dictionary = ContentRegistry.equipment(id)
+		var data: Dictionary = Game.equipment_definition(id)
 		if mode != "shop" and not Game.profile.get("equipment",{}).has(id):
 			continue
 		var equipped := str(Game.profile.get("loadout",{}).get(data.get("slot",""),"")) == id
@@ -282,8 +282,8 @@ func _filtered_equipment() -> Array:
 			if not searchable.to_lower().contains(search_query.strip_edges().to_lower()): continue
 		output.append(id)
 	output.sort_custom(func(a: String, b: String) -> bool:
-		var first: Dictionary = ContentRegistry.equipment(a)
-		var second: Dictionary = ContentRegistry.equipment(b)
+		var first: Dictionary = Game.equipment_definition(a)
+		var second: Dictionary = Game.equipment_definition(b)
 		if sort_order == 1: return MineStyle.content_text(first,"name").naturalnocasecmp_to(MineStyle.content_text(second,"name")) < 0
 		if sort_order == 2 and int(first.price) != int(second.price): return int(first.price) < int(second.price)
 		if sort_order == 3 and _item_level(a) != _item_level(b): return _item_level(a) > _item_level(b)
@@ -319,7 +319,7 @@ func _availability_reason(item: Dictionary) -> String:
 
 func _suggested_equipment() -> String:
 	var hero := str(Game.profile.get("selected_hero","CH01"))
-	var selected_slot := str(ContentRegistry.equipment(selected_item).get("slot",slot_filter))
+	var selected_slot := str(Game.equipment_definition(selected_item).get("slot",slot_filter))
 	if selected_slot == "all": selected_slot = "weapon"
 	var before: Dictionary = Game.selected_stats()
 	# An inspect-only suggestion uses a transparent benefit predicate. It does
@@ -327,7 +327,7 @@ func _suggested_equipment() -> String:
 	var candidates := _filtered_equipment()
 	for owned_first: bool in [true,false]:
 		for id: String in candidates:
-			var item: Dictionary = ContentRegistry.equipment(id)
+			var item: Dictionary = Game.equipment_definition(id)
 			var owned: bool = Game.profile.get("equipment",{}).has(id)
 			if owned != owned_first or item.get("slot","") != selected_slot or not _unlocked(item): continue
 			if str(Game.profile.get("loadout",{}).get(selected_slot,"")) == id or not Advice.is_relevant(item,hero): continue

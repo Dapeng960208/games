@@ -8,6 +8,7 @@ const SETTLEMENT_RULES_VERSION := 3
 const Economy = preload("res://scripts/core/economy_history.gd")
 const ECONOMY_RULES_VERSION := Economy.CURRENT_VERSION
 const Progression = preload("res://scripts/core/hero_progression.gd")
+const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Expedition = preload("res://scripts/core/expedition_state.gd")
 const MAX_NUMBER := 1_000_000_000_000
 const RELIC_IDS := ["split", "ember", "arc"]
@@ -382,14 +383,15 @@ static func _allowed_ids(value: Variant, allowed: Array) -> bool:
 	return true
 
 static func _valid_progression(profile: Dictionary) -> bool:
-	var ruleset: int = int(profile.get("ruleset_version", 1))
-	if ruleset not in [1, 2]: return false
+	var version: Variant = profile.get("ruleset_version", 1)
+	if not _number(version, 2) or int(version) < 1: return false
+	var ruleset: int = int(version)
 	if ruleset == 2:
 		if not _valid_v2_growth(profile): return false
 	if profile.has("equipment_discoveries"):
-		if not _unique_ids(profile.equipment_discoveries, ContentRegistry.equipment_ids().size()): return false
+		if not _unique_ids(profile.equipment_discoveries, ContentRegistry.equipment_ids(ruleset).size()): return false
 		for eq: String in profile.equipment_discoveries:
-			if ContentRegistry.equipment(eq).is_empty(): return false
+			if ContentRegistry.equipment(eq, ruleset).is_empty(): return false
 	if not profile.get("selected_hero") in HERO_IDS or not profile.get("hero_xp") is Dictionary:
 		return false
 	if profile.hero_xp.size() != HERO_IDS.size():
@@ -400,20 +402,23 @@ static func _valid_progression(profile: Dictionary) -> bool:
 	# A missing field is a valid early v2 document and is atomically normalized on load.
 	if profile.has("branches") and not _valid_branches(profile.branches, profile.hero_xp, ruleset):
 		return false
-	if not profile.get("equipment") is Dictionary or profile.equipment.size() > ContentRegistry.equipment_ids().size() \
-		or not profile.get("loadout") is Dictionary or profile.loadout.size() != SLOTS.size():
-		return false
-	for id: Variant in profile.equipment:
-		if not id is String or ContentRegistry.equipment(id).is_empty():
+	if ruleset == 2:
+		if not _valid_instance_equipment(profile): return false
+	else:
+		if not profile.get("equipment") is Dictionary or profile.equipment.size() > ContentRegistry.equipment_ids().size() \
+			or not profile.get("loadout") is Dictionary or profile.loadout.size() != SLOTS.size():
 			return false
-		var owned: Variant = profile.equipment[id]
-		if not owned is Dictionary or not _number(owned.get("level"), Expedition.MAX_EQUIPMENT_LEVEL):
-			return false
-	for slot: String in SLOTS:
-		var id: Variant = profile.loadout.get(slot)
-		if not id is String or not profile.equipment.has(id) or ContentRegistry.equipment(id).get("slot") != slot:
-			return false
-	if profile.has("loadout_presets") and not _valid_loadout_presets(profile.loadout_presets): return false
+		for id: Variant in profile.equipment:
+			if not id is String or ContentRegistry.equipment(id).is_empty():
+				return false
+			var owned: Variant = profile.equipment[id]
+			if not owned is Dictionary or not _number(owned.get("level"), Expedition.MAX_EQUIPMENT_LEVEL):
+				return false
+		for slot: String in SLOTS:
+			var id: Variant = profile.loadout.get(slot)
+			if not id is String or not profile.equipment.has(id) or ContentRegistry.equipment(id).get("slot") != slot:
+				return false
+		if profile.has("loadout_presets") and not _valid_loadout_presets(profile.loadout_presets): return false
 	if not _allowed_ids(profile.get("bosses"), BOSS_IDS) \
 		or not _allowed_ids(profile.get("tutorial_completed"), HERO_IDS) \
 		or not profile.get("migration_id") in ["new_v2", "profile_v1_to_v2"]:
@@ -430,6 +435,42 @@ static func _valid_progression(profile: Dictionary) -> bool:
 				return false
 		elif not _valid_economy_receipt(entry):
 			return false
+	return true
+
+## Explicit ruleset2 documents store identities, not one entry per template.
+## Document byte limits bound storage; catalog size must not cap duplicates.
+static func _valid_instance_equipment(profile: Dictionary) -> bool:
+	if not profile.get("equipment") is Dictionary: return false
+	for id: Variant in profile.equipment:
+		if not id is String or id.is_empty() or id.length() > 160: return false
+		var record: Variant = profile.equipment[id]
+		if not record is Dictionary or record.get("instance_id") != id or not Instances.validate(record).is_empty(): return false
+	if not _valid_instance_loadout(profile.get("loadout"), profile.equipment, str(profile.selected_hero),
+		ContentRegistry.level_for_xp(int(profile.hero_xp[profile.selected_hero]), 2)): return false
+	# Newly constructed values may say inventory before their first commit, but
+	# an explicit equipped marker must point to the current active loadout.
+	for id: String in profile.equipment:
+		if profile.equipment[id].location == "equipped" and id not in profile.loadout.values(): return false
+	var presets: Variant = profile.get("loadout_presets", {})
+	if not presets is Dictionary or presets.size() > HERO_IDS.size(): return false
+	for hero: Variant in presets:
+		if hero not in HERO_IDS or not _valid_instance_loadout(presets[hero], profile.equipment, hero,
+			ContentRegistry.level_for_xp(int(profile.hero_xp[hero]), 2)): return false
+	return true
+
+static func _valid_instance_loadout(value: Variant, equipment: Dictionary, hero: String, level: int) -> bool:
+	var slots: Array = ContentRegistry.slots(2)
+	if not value is Dictionary or value.size() != slots.size(): return false
+	var seen: Dictionary = {}
+	for slot: String in slots:
+		var id: Variant = value.get(slot)
+		if not id is String: return false
+		if id.is_empty(): continue
+		if seen.has(id) or not equipment.has(id): return false
+		var record: Dictionary = equipment[id]
+		if record.get("location") not in ["inventory", "equipped"] or not Instances.can_equip(record, hero, level): return false
+		if ContentRegistry.equipment(str(record.template_id), 2).get("slot") != slot: return false
+		seen[id] = true
 	return true
 
 static func _valid_loadout_presets(value: Variant) -> bool:
@@ -504,6 +545,8 @@ static func _valid_branches(value: Variant, hero_xp: Dictionary, ruleset: int = 
 	return true
 
 static func _settings_only(profile: Dictionary) -> bool:
+	# Instance-profile creation and migration are later explicit transactions.
+	if int(profile.get("ruleset_version", 1)) != 1: return false
 	if not profile.get("equipment_discoveries", []).is_empty(): return false
 	if int(profile.permanent_gold) != 0 or int(profile.total_runs) != 0 or not profile.last_result.is_empty() \
 		or not profile.discoveries.is_empty() or not profile.bosses.is_empty() or not profile.tutorial_completed.is_empty() \

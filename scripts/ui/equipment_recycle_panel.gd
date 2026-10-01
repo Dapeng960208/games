@@ -42,7 +42,7 @@ static func render(panel: Control) -> void:
 	var ids: Array = Game.profile.equipment.keys()
 	ids.sort()
 	for id: String in ids:
-		var item: Dictionary = ContentRegistry.equipment(id)
+		var item: Dictionary = Game.equipment_definition(id)
 		var equipped: bool = id in Game.profile.loadout.values()
 		var selected: bool = panel.sale_selection.has(id)
 		var row := MineStyle.button(stack,"",Vector2.ZERO,Vector2(666,76),func():
@@ -70,7 +70,7 @@ static func render(panel: Control) -> void:
 	var total := 0
 	var summary := ""
 	for id: String in selected_ids:
-		var item: Dictionary = ContentRegistry.equipment(id)
+		var item: Dictionary = Game.equipment_definition(id)
 		var price: int = Game.equipment_sell_value(id)
 		total += price
 		summary += MineStyle.content_text(item,"name")+" +"+str(Game.equipment_level(id))+"  ·  "+str(price)+_t(" 金币", " gold")+"\n\n"

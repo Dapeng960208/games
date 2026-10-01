@@ -82,14 +82,14 @@ static func for_loadout(snapshot: Dictionary, old_loadout: Dictionary, new_loado
 	var prior_stats: Dictionary = old_stats if not old_stats.is_empty() else {"max_hp":LIMIT, "resource_max":LIMIT}
 	if not validate(snapshot, hero_id, prior_stats) or not _number(new_stats.get("max_hp")) or float(new_stats.max_hp) <= 0.0 or not _number(new_stats.get("resource_max")):
 		return {}
-	if not loadout_source_error(snapshot, old_loadout, new_loadout).is_empty():
+	if not loadout_source_error(snapshot, old_loadout, new_loadout, old_stats, new_stats).is_empty():
 		return {}
 	var result: Dictionary = snapshot.duplicate(true)
 	result.hp = minf(float(result.hp), float(new_stats.max_hp))
 	result.resource = minf(float(result.resource), float(new_stats.resource_max))
-	result.equipment = Rules.for_loadout(result.equipment, old_loadout, new_loadout)
-	var previous: Dictionary = Rules.loadout_binding(old_loadout)
-	var next: Dictionary = Rules.loadout_binding(new_loadout)
+	result.equipment = Rules.for_loadout(result.equipment, old_loadout, new_loadout, old_stats, new_stats)
+	var previous: Dictionary = Rules.loadout_binding(old_loadout, old_stats)
+	var next: Dictionary = Rules.loadout_binding(new_loadout, new_stats)
 	var guards: Dictionary = result.status.guards
 	for source: String in guards.keys():
 		var equipment_source: bool = source.begins_with("equipment:") or source.begins_with("set_")
@@ -130,7 +130,7 @@ static func for_loadout(snapshot: Dictionary, old_loadout: Dictionary, new_loado
 ## Legacy v1 saves did not record who granted these two positive statuses.
 ## Reject only an ambiguous removal instead of inventing an owner or retaining
 ## an unequipped benefit. Once it expires a new capture becomes unambiguous.
-static func loadout_source_error(snapshot: Dictionary, old_loadout: Dictionary, new_loadout: Dictionary) -> String:
+static func loadout_source_error(snapshot: Dictionary, old_loadout: Dictionary, new_loadout: Dictionary, old_stats: Dictionary = {}, new_stats: Dictionary = {}) -> String:
 	var equipment: Variant = snapshot.get("equipment", {})
 	var status_data: Variant = snapshot.get("status", {})
 	if not equipment is Dictionary or not status_data is Dictionary:
@@ -141,8 +141,8 @@ static func loadout_source_error(snapshot: Dictionary, old_loadout: Dictionary, 
 		return ""
 	if adapter.has("self_status_sources"):
 		return ""
-	var previous: Dictionary = Rules.loadout_binding(old_loadout)
-	var next: Dictionary = Rules.loadout_binding(new_loadout)
+	var previous: Dictionary = Rules.loadout_binding(old_loadout, old_stats)
+	var next: Dictionary = Rules.loadout_binding(new_loadout, new_stats)
 	for id: String in ["damage_reduction", "invulnerable"]:
 		var source: String = "EQ20" if id == "damage_reduction" else "EQ21"
 		var state: Variant = states.get(id, {})
@@ -166,7 +166,7 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	var status: RefCounted = actor.get("status")
 	var loadout: RefCounted = actor.get("loadout")
 	var effects: RefCounted = loadout.get("effects")
-	var binding: Dictionary = Rules.loadout_binding(game.run.loadout_snapshot)
+	var binding: Dictionary = Rules.loadout_binding(game.run.loadout_snapshot, game.run.stats)
 	var rebound: bool = effects.get("equipped") != binding.equipped or effects.get("set_counts") != binding.set_counts or effects.get("stats") != game.run.stats
 	if rebound:
 		loadout.call("rebind", game.run.loadout_snapshot, game.run.stats)

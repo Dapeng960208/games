@@ -30,8 +30,8 @@ func _build() -> void:
 	rule_label.name = "FieldEquipmentScope"
 	MineStyle.literal(self, _t("基础值对比 · 触发收益见词条 · Tab 切换 / ↑↓ 滚动", "Base values · Triggered benefits: affixes · Tab / ↑↓"), Vector2(330,26), Vector2(626,22), 13, MineStyle.MUTED)
 	var slot := str(preview.get("slot", ""))
-	var current: Dictionary = ContentRegistry.equipment(str(preview.get("current_id", "")))
-	var candidate: Dictionary = ContentRegistry.equipment(str(preview.get("equipment_id", "")))
+	var current: Dictionary = Game.equipment_definition(str(preview.get("current_id", "")),true)
+	var candidate: Dictionary = Game.equipment_definition(str(preview.get("equipment_id", "")),true)
 	_equipment_card("FieldCurrentEquipment", current, slot, Vector2(24,105), false, int(preview.get("current_level", 0)))
 	_equipment_card("FieldNextEquipment", candidate, slot, Vector2(498,105), true, int(preview.get("level", 0)))
 	_build_stats()

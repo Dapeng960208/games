@@ -2,7 +2,8 @@ class_name EquipmentEffects
 extends RefCounted
 const Numerical = preload("res://config/numerical_rules.gd")
 ## Deterministic equipment event reducer; never reads/mutates Game or scene nodes.
-## configure accepts six slot -> EQ IDs, resolved stats, and rage/energy/mana.
+## configure accepts legacy slot -> EQ IDs or v2 slot -> instance IDs plus
+## StatResolver equipment_templates. Only template identities select fixed traits.
 ## Time advances ONLY through advance(delta, context), so menus/pause freeze ICDs.
 ## before_hit reads PRE-HIT target_states, returning damage/crit/knockback bonuses.
 ## after_hit follows a confirmed hit. status_applied RECORDS successful application
@@ -38,6 +39,7 @@ const ENEMY_STATES: Array[String] = ["burn", "shock", "chill", "corrosion", "ble
 const ACTIVE_SLOTS: Array[String] = ["Q", "right", "F", "R"]
 var clock: float = 0.0
 var equipped: Dictionary = {}
+var instance_loadout: Dictionary = {}
 var set_counts: Dictionary = {}
 var stats: Dictionary = {}
 var resource_type: String = ""
@@ -75,7 +77,8 @@ static func implemented_set_ids() -> Array[String]:
 func configure(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> void:
 	stats = resolved_stats.duplicate(true)
 	resource_type = type if type in ["rage", "energy", "mana"] else ""
-	var binding: Dictionary = loadout_binding(loadout)
+	var binding: Dictionary = loadout_binding(loadout, resolved_stats)
+	instance_loadout = binding.get("instance_loadout", {}).duplicate(true)
 	equipped = binding.equipped
 	set_counts = binding.set_counts
 	clock = 0.0
@@ -97,7 +100,7 @@ func configure(loadout: Dictionary, resolved_stats: Dictionary, type: String) ->
 ## The caller restores a migrated snapshot after this when changing a live run.
 func rebind(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> void:
 	var previous: Dictionary = {"equipped":equipped.duplicate(), "set_counts":set_counts.duplicate()}
-	var next: Dictionary = loadout_binding(loadout)
+	var next: Dictionary = loadout_binding(loadout, resolved_stats)
 	for values: Dictionary in [buffs, windows, counts, same_target]:
 		_prune_loadout_sources(values, previous, next)
 	if not source_active("S05_6", previous) or not source_active("S05_6", next):
@@ -109,24 +112,47 @@ func rebind(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> vo
 	for root: Dictionary in roots.values():
 		root.erase("pending_context")
 		root.erase("pending_stage")
+	instance_loadout = next.get("instance_loadout", {}).duplicate(true)
 	equipped = next.equipped
 	set_counts = next.set_counts
 	stats = resolved_stats.duplicate(true)
 	resource_type = type if type in ["rage", "energy", "mana"] else ""
 
-static func loadout_binding(loadout: Dictionary) -> Dictionary:
+## V2 bindings consume a validated resolver snapshot, never an unowned template
+## guessed from an instance ID. Identity stays in instance_loadout while fixed
+## trait sources keep their stable template IDs and cooldown identities.
+static func loadout_binding(loadout: Dictionary, resolved_stats: Dictionary = {}) -> Dictionary:
 	var items: Dictionary = {}
 	var sets: Dictionary = {}
-	for slot in Registry.SLOTS:
-		var id: String = str(loadout.get(slot, ""))
-		var item: Dictionary = Registry.equipment(id)
+	var ruleset: int = int(resolved_stats.get("ruleset_version", Numerical.LEGACY))
+	var templates: Dictionary = loadout
+	var instances: Dictionary = {}
+	if ruleset == Numerical.V2:
+		var bound: Variant = resolved_stats.get("loadout")
+		var mapped: Variant = resolved_stats.get("equipment_templates")
+		if not bound is Dictionary or not mapped is Dictionary:
+			return {"equipped":items, "set_counts":sets, "instance_loadout":instances}
+		for slot: Variant in loadout:
+			if not slot is String or slot not in Registry.slots(ruleset) or not loadout[slot] is String:
+				return {"equipped":{}, "set_counts":{}, "instance_loadout":{}}
+			if not str(loadout[slot]).is_empty(): instances[slot] = loadout[slot]
+		if instances != bound or mapped.size() != instances.size():
+			return {"equipped":{}, "set_counts":{}, "instance_loadout":{}}
+		templates = mapped
+	for slot: String in Registry.slots(ruleset):
+		var id: String = str(templates.get(slot, ""))
+		var item: Dictionary = Registry.equipment(id, ruleset)
 		if item.is_empty() or str(item.get("slot", "")) != slot or items.has(id):
+			if ruleset == Numerical.V2 and instances.has(slot):
+				return {"equipped":{}, "set_counts":{}, "instance_loadout":{}}
 			continue
 		items[id] = true
 		var set_id: String = str(item.get("set_id", ""))
 		if not set_id.is_empty():
 			sets[set_id] = int(sets.get(set_id, 0)) + 1
-	return {"equipped":items, "set_counts":sets}
+	var result: Dictionary = {"equipped":items, "set_counts":sets}
+	if ruleset == Numerical.V2: result["instance_loadout"] = instances.duplicate(true)
+	return result
 
 ## IDs may carry a room/target suffix. Set sources require their exact tier,
 ## so retaining two pieces never keeps a former four/six-piece benefit.
@@ -144,10 +170,10 @@ static func _prune_loadout_sources(values: Dictionary, previous: Dictionary, nex
 
 ## Pure save-state migration. Never clear cooldowns, consumed room flags or
 ## rate-limit histories: taking an item off and on cannot replenish rewards.
-static func for_loadout(state: Dictionary, old_loadout: Dictionary, new_loadout: Dictionary) -> Dictionary:
+static func for_loadout(state: Dictionary, old_loadout: Dictionary, new_loadout: Dictionary, old_stats: Dictionary = {}, new_stats: Dictionary = {}) -> Dictionary:
 	var result: Dictionary = state.duplicate(true)
-	var previous: Dictionary = loadout_binding(old_loadout)
-	var next: Dictionary = loadout_binding(new_loadout)
+	var previous: Dictionary = loadout_binding(old_loadout, old_stats)
+	var next: Dictionary = loadout_binding(new_loadout, new_stats)
 	# Older checkpoints used the shared dash timer for these two effects. Only
 	# a source worn on both sides may retain that unconsumed, remaining window.
 	for id: String in ["EQ60", "S08_4"]:
@@ -197,12 +223,12 @@ func _health_ratio(ctx: Dictionary) -> float:
 func _modifiers(ctx: Dictionary, out: Dictionary) -> void:
 	var shielded: bool = float(ctx.get("shield", 0.0)) > 0.0
 	for id: String in equipped:
-		var passive: Dictionary = Registry.equipment(id).get("combat_passive", {})
+		var passive: Dictionary = Registry.equipment(id, int(stats.get("ruleset_version", Numerical.LEGACY))).get("combat_passive", {})
 		if not passive.is_empty() and _shop_condition(str(passive.condition),ctx):
 			out[str(passive.stat)] += float(passive.amount)
 	for set_id: String in set_counts:
 		if int(set_counts[set_id]) < 2: continue
-		var passive: Dictionary = Registry.sets().get(set_id,{}).get("shop_passive", {})
+		var passive: Dictionary = Registry.sets(int(stats.get("ruleset_version", Numerical.LEGACY))).get(set_id,{}).get("shop_passive", {})
 		if not passive.is_empty() and _shop_condition(str(passive.condition),ctx):
 			out[str(passive.stat)] += float(passive.amount)
 	if _has_set("S09",6) and shielded: out.damage_bonus += 0.08

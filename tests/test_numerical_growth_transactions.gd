@@ -1,4 +1,5 @@
 extends Node
+const InstanceFixtures = preload("res://tests/test_numerical_instance_storage.gd")
 var failures: Array[String] = []
 var checks := 0
 
@@ -13,8 +14,7 @@ func _ready() -> void:
 	# A generated test-only profile, never a copy of player data.
 	Game.run = null
 	check(Game.new_profile(), "fresh synthetic profile")
-	var profile := Game.profile.duplicate(true)
-	profile.ruleset_version = 2
+	var profile := InstanceFixtures.fixture_profile()
 	profile.hero_xp.CH01 = 3600
 	check(Game._commit_profile(profile), "save V2 synthetic growth state")
 	check(Game.set_hero_talents({"mastery":5,"precision":5,"agility":5,"dexterity":4}), "save nineteen talents")
