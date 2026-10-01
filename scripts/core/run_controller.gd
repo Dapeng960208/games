@@ -443,7 +443,7 @@ func allocate_hero_talent(node: String) -> bool:
 	next.talents[id] = allocation
 	if not _save(next, run.receipt()): return false
 	profile = next
-	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version(), allocation)
+	run.stats = _resolved_live_stats(allocation)
 	run.stats.branches = run.branches_snapshot.duplicate(true)
 	run.max_hp = run.stats.max_hp
 	run.hp = minf(run.hp, run.max_hp)
@@ -732,7 +732,7 @@ func grant_hero_xp(amount: int, event_id: String) -> bool:
 	run.completed_reward_ids.append(event_id)
 	run.hero_xp_gained += added
 	run.level = int(receipt.level)
-	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version(), hero_talents(run.hero_id))
+	run.stats = _resolved_live_stats()
 	run.stats.branches = run.branches_snapshot.duplicate(true)
 	run.max_hp = float(run.stats.max_hp)
 	# Preserve absolute HP/resource and all player-owned cooldowns: leveling is not healing.
@@ -788,7 +788,7 @@ func complete_hero_tutorial() -> bool:
 	if run != null:
 		run.hero_xp_gained += added
 		run.level = int(receipt.level)
-		run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version(), hero_talents(run.hero_id))
+		run.stats = _resolved_live_stats()
 		run.stats.branches = run.branches_snapshot.duplicate(true)
 		run.max_hp = float(run.stats.max_hp)
 		run.hp = minf(run.hp, run.max_hp)
@@ -851,8 +851,18 @@ func _restore_expedition(receipt: Dictionary) -> void:
 	_refresh_expedition_stats()
 	_apply_runtime_values(run.expedition.runtime)
 
+func _resolved_live_stats(allocation: Dictionary = {}) -> Dictionary:
+	var selected := hero_talents(run.hero_id) if allocation.is_empty() else allocation
+	var resolved := StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version(), selected)
+	# These timed/earned overlays are not equipment. Recalculating growth must
+	# never silently unequip an acquired relic rank or clear an active supply.
+	for key in ["relic_levels", "temporary_buffs"]:
+		if run.stats.has(key): resolved[key] = run.stats[key].duplicate(true)
+	resolved.branches = run.branches_snapshot.duplicate(true)
+	return resolved
+
 func _refresh_expedition_stats() -> void:
-	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version(), hero_talents(run.hero_id))
+	run.stats = _resolved_live_stats()
 	if run.demo: run.stats.starting_resource = float(run.stats.get("resource_max", 0.0))
 	run.stats.branches = run.branches_snapshot.duplicate(true)
 	run.stats["relic_levels"] = run.expedition.relic_levels.duplicate(true)
