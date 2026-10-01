@@ -4,6 +4,7 @@ extends Node2D
 ## Region sampling remains on the full mother texture at every joined edge.
 
 const GRID := Vector2i(3,2)
+const SAMPLING_SHADER = preload("res://shaders/environment_sampling.gdshader")
 var chunks: Array[Sprite2D] = []
 var source_regions: Array[Rect2i] = []
 var world_rect := Rect2()
@@ -23,6 +24,10 @@ func configure(texture: Texture2D, destination: Rect2, room_id: String = "") -> 
 	if texture==null or not destination.has_area(): return
 	texture_repeat = CanvasItem.TEXTURE_REPEAT_DISABLED
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	if material == null:
+		var sampling := ShaderMaterial.new()
+		sampling.shader = SAMPLING_SHADER
+		material = sampling
 	var native := Vector2i(texture.get_width(),texture.get_height())
 	if native.x<=0 or native.y<=0: return
 	var shared_scale: Vector2 = destination.size/Vector2(native)
@@ -44,6 +49,7 @@ func configure(texture: Texture2D, destination: Rect2, room_id: String = "") -> 
 			sprite.region_filter_clip_enabled = false
 			sprite.texture_repeat = CanvasItem.TEXTURE_REPEAT_DISABLED
 			sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+			sprite.use_parent_material = true
 			sprite.position = destination.position+Vector2(source.position)*shared_scale
 			sprite.scale = shared_scale
 			add_child(sprite)
