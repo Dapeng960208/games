@@ -123,7 +123,11 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 		&"reposition":
 			actor.set("velocity", _reposition_direction * _speed() * 1.3)
 			if _remaining <= 0.0:
-				_begin_cycle(actor, victim)
+				# Sideways movement can leave a short weapon outside its reach.
+				# Recheck navigation/range before committing the next warning.
+				_set_phase(&"chase", 0.0)
+		&"approach":
+			_approach_stage(actor, victim)
 		&"telegraph":
 			_refresh_geometry(actor, victim)
 			actor.set("aim_direction", _telegraph.get("direction", Vector2.RIGHT))
@@ -229,7 +233,7 @@ func _set_phase(next: StringName, duration: float) -> void:
 	_phase_duration = _remaining
 
 func _publish(actor: Node2D) -> void:
-	actor.set("state", phase)
+	actor.set("state", &"chase" if phase == &"approach" else phase)
 	actor.set("state_time", _remaining)
 	if behavior_id == "shadow_arc_leap":
 		var props: Variant = _props(actor)
@@ -340,6 +344,9 @@ func _chase(actor: Node2D, victim: Node2D) -> void:
 	var distance: float = offset.length()
 	actor.set("aim_direction", direction)
 	var trigger: float = _range() + 14.0
+	if behavior_id == "safe_disarm_ring":
+		# Its one-shot blast is centered on the bomber, not at weapon range.
+		trigger = _radius() + _victim_radius(actor, victim) - 2.0
 	if not _world_target_id.is_empty() and behavior_id in ["steal_quest_object", "bite_breakable_wall", "steal_scene_lamp", "socket_shield_recharge", "polarity_displacement"]:
 		trigger = maxf(24.0, _range() - 4.0)
 	if SUPPORT_BEHAVIORS.has(behavior_id):
@@ -400,6 +407,10 @@ func _begin_stage(actor: Node2D, victim: Node2D) -> void:
 		_set_phase(&"recovery", _recovery_seconds())
 		return
 	_telegraph = _sequence[_stage].duplicate(true)
+	if str(_telegraph.get("kind", "")) == "melee" and not _stage_reachable(actor, victim, _telegraph):
+		_telegraph.clear()
+		_set_phase(&"approach", 0.0)
+		return
 	_telegraph["stage"] = _stage
 	_telegraph["stage_count"] = _sequence.size()
 	var area: bool = AREA_BEHAVIORS.has(behavior_id) or _telegraph.get("kind", "") == "ground_area" or _telegraph.get("landing_shape", "") in ["circle", "ring"]
@@ -419,6 +430,40 @@ func _begin_stage(actor: Node2D, victim: Node2D) -> void:
 	if behavior_id == "shadow_arc_leap":
 		actor.set_meta("enemy_shadow_stealth", false)
 	_refresh_geometry(actor, victim)
+
+func _victim_radius(actor: Node2D, victim: Node2D) -> float:
+	var radius: Variant = _room_property(victim, "collision_radius")
+	if radius == null:
+		radius = _room_property(victim, "navigation_radius")
+	var room: Node = _room(actor)
+	return maxf(0.0, float(radius)) if radius != null else Balance.PLAYER_RADIUS if _room_property(room, "player") == victim else 12.0
+
+func _stage_reachable(actor: Node2D, victim: Node2D, skill: Dictionary) -> bool:
+	var body_radius: float = _victim_radius(actor, victim)
+	var reach: float = float(skill.get("range", _range())) + body_radius - 2.0
+	# Numbered/flanking swings keep their authored angle. Move into their
+	# actual width before starting the tell instead of sweeping past the same
+	# stationary victim forever. Later dodges still avoid the frozen attack.
+	var angle: float = absf(deg_to_rad(float(skill.get("aim_offset", 0.0))))
+	if str(skill.get("shape", "cone")) == "line" and angle > 0.01:
+		var width: float = float(skill.get("width", skill.get("radius", 0.0))) * .5
+		reach = minf(reach, body_radius - 2.0 if angle >= PI*.5 else (width + body_radius - 2.0) / sin(angle))
+	elif str(skill.get("shape", "cone")) == "cone":
+		var outside: float = angle - float(skill.get("angle", PI*.5)) * .5
+		if outside > 0.01:
+			reach = minf(reach, (body_radius - 2.0) / sin(minf(PI*.5, outside)))
+	return actor.position.distance_to(victim.position) <= reach and _can_see(actor, victim.position)
+
+func _approach_stage(actor: Node2D, victim: Node2D) -> void:
+	if _stage >= _sequence.size():
+		_set_phase(&"chase", 0.0)
+		return
+	if _stage_reachable(actor, victim, _sequence[_stage]):
+		# A fresh full tell/lock follows this move. Never drag a locked attack.
+		_begin_stage(actor, victim)
+	else:
+		actor.set("aim_direction", actor.position.direction_to(victim.position))
+		actor.set("velocity", _navigation(actor, victim.position) * _speed())
 
 func _refresh_geometry(actor: Node2D, victim: Node2D) -> void:
 	if _telegraph.is_empty():
@@ -454,6 +499,10 @@ func _refresh_geometry(actor: Node2D, victim: Node2D) -> void:
 	else:
 		target = origin + direction * minf(origin.distance_to(target), length)
 	_telegraph["origin"] = origin
+	if behavior_id == "safe_disarm_ring" and float(_telegraph.get("ring_gap_degrees", 0.0)) > 0.0:
+		# Expose a lateral escape route; aiming the safe sector at the victim
+		# made this one-shot enemy harmless even when the player never moved.
+		direction = direction.orthogonal()
 	_telegraph["direction"] = direction
 	_telegraph["target"] = target
 	_telegraph["target_position"] = target

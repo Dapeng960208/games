@@ -14,6 +14,7 @@
 | COM03 P1 | 累计野怪量增加约40%，计划与实际运行已检查 | enemy_profiles.gd 的 encounter_plan、room.gd、config/ | 已通过有限后续波次增量与五难度数量检查，保留并发、弹体和召唤上限；后续按自然群战节奏调校 |
 | COM04 P1 | 四族普通怪特性已接入并通过实效检查 | enemy_biome_skills.gd、enemy_difficulty.gd、enemy_skill_runtime.gd、enemy_brain.gd、first_four_construct_hive.gd | 护盾、毒蚀、回血、狂怒及冷却真实生效；普通怪20级高难效果已检查，保留36原型预警；后续调校区域群战平衡 |
 | COM05 P1 | 四首领独立战术与专属主动技能已接入并通过实效检查 | boss_brain.gd、boss_profiles.gd、boss.gd | 按距离和冷却选招、追击/绕行/拉开距离，新增交叉雷网/三点酸雨/缝线牢笼/裂岩跃击；保留主题反制、锁定预警与弱点停顿，后续完善独立动画和自然战斗平衡 |
+| COM06 P0 | 野怪攻击射程与稳定仇恨已补修；用户整群停止现场继续跟进 | enemy.gd、enemy_brain.gd、tests/test_enemy_attack_flow.gd | 侧移及辅助转近战按实际招式接近，保留完整预警；节点失效/普攻仇恨/暂停恢复正常；L15真实五怪围攻已造成伤害，继续定位用户现场的整群停止原因 |
 | UI01 P1 | 页面和信息细节收尾 | scripts/ui/style.gd、button_skin.gd、main.gd、expedition_panel.gd、backpack_panel.gd、hud.gd | 使用独特 UI 构件；焦点、禁用态和文案清楚；中英文及 1280×720、1920×1080、1280×900 不截断；只检查实际改动页 |
 | ANIM01 P2 | 完整角色动作和附件 | hero_art_family.gd、hero_walk_atlas.gd、hero_basic_atlas.gd、hero_skill_atlas.gd | 头像身份、身体高度、脚点一致；补连续动作与必要朝向；枪口锚点一致，拒收候选不启用 |
 

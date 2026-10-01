@@ -55,6 +55,8 @@ var zone_index: int = -1
 var threat_cost: float = 1.0
 var owner_enemy: WeakRef
 var training_ai_disabled: bool = false
+var aggro_target: WeakRef
+var aggro_hold: float = 0.0
 var body_visual: Node2D
 ## Temporary arena openings affect resolved defense, never the armor base. This
 ## lets natural armor changes (such as a destroyed support pod) survive expiry.
@@ -62,6 +64,8 @@ var _biome_counters: Dictionary = {}
 
 func configure(next_profile: Dictionary, options: Dictionary = {}) -> void:
 	_biome_counters.clear()
+	aggro_target = null
+	aggro_hold = 0.0
 	profile = next_profile.duplicate(true)
 	enemy_id = str(profile.get("enemy_id", ""))
 	enemy_level = int(profile.get("enemy_level", 1))
@@ -148,7 +152,7 @@ func visible_status_ids() -> Array[String]:
 	return active
 
 func _physics_process(delta: float) -> void:
-	if not is_alive() or Game.run == null:
+	if not is_alive() or Game.run == null or Game.run.hp <= 0.0 or get_tree().paused:
 		return
 	if owner_enemy != null:
 		var owner_actor: Node2D = owner_enemy.get_ref()
@@ -163,10 +167,11 @@ func _physics_process(delta: float) -> void:
 	if static_actor:
 		queue_redraw()
 		return
-	var victim: Node2D = room.player
-	for deployment in get_tree().get_nodes_in_group("hero_deployments"):
-		if deployment.room == room and deployment.kind == "node" and deployment.is_alive() and position.distance_to(deployment.position) < position.distance_to(victim.position) and room.has_line_of_sight(position, deployment.position):
-			victim = deployment
+	aggro_hold = maxf(0.0, aggro_hold - delta)
+	var victim: Node2D = _select_aggro_target()
+	if not is_instance_valid(victim):
+		velocity = Vector2.ZERO
+		return
 	var offset: Vector2 = victim.position - position
 	var distance := offset.length()
 	reaction_cooldown = maxf(0.0, reaction_cooldown - delta)
@@ -213,6 +218,30 @@ func _physics_process(delta: float) -> void:
 			if state_time <= 0.0:
 				state = &"chase"
 	_finish_motion(delta)
+
+func _valid_aggro_target(target: Node2D) -> bool:
+	if not is_instance_valid(target) or target.is_queued_for_deletion():
+		return false
+	if target == room.player:
+		return Game.run != null and Game.run.hp > 0.0
+	return target is HeroDeployment and target.room == room and target.kind == "node" and target.is_alive()
+
+func _select_aggro_target() -> Node2D:
+	var current: Node2D = aggro_target.get_ref() as Node2D if aggro_target != null else null
+	if not _valid_aggro_target(current):
+		current = room.player if _valid_aggro_target(room.player) else null
+	# Keep a live target through the committed attack. Geometry stops tracking
+	# at lock; a destroyed node immediately falls back to the living player.
+	if _valid_aggro_target(current) and (aggro_hold > 0.0 or state not in [&"chase", &"emerging", &"idle"]):
+		aggro_target = weakref(current)
+		return current
+	for candidate: Variant in room.enemy_skill_targets():
+		if not candidate is Node2D or not _valid_aggro_target(candidate) or not room.has_line_of_sight(position, candidate.position):
+			continue
+		if current == null or not room.has_line_of_sight(position, current.position) or position.distance_to(candidate.position) + 24.0 < position.distance_to(current.position):
+			current = candidate
+	aggro_target = weakref(current) if current != null else null
+	return current
 
 func _finish_motion(delta: float) -> void:
 	if room.enemy_skills != null:
@@ -275,6 +304,10 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	# subsequent resurrection or spawned actor must not inflate this number.
 	var consumed_hp: float = minf(maxf(0.0, final_amount), maxf(0.0, health_before))
 	var consumed_shield: float = maxf(0.0, shield_before - status.shield())
+	if (consumed_hp > 0.0 or consumed_shield > 0.0) and kind == &"primary" and not static_actor and _valid_aggro_target(room.player):
+		# Direct hero attacks draw attention; status ticks do not reset this hold.
+		aggro_target = weakref(room.player)
+		aggro_hold = 2.0
 	var number_at: Vector2 = position - Vector2(0, 65 if body_texture != null else 26)
 	if consumed_hp > 0.0:
 		room.add_damage_text(number_at, consumed_hp, kind, context)
