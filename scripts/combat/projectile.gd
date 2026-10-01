@@ -117,13 +117,15 @@ func _finish() -> void:
 	queue_free()
 
 func _draw() -> void:
+	var visual_hero: String = str(options.get("visual_hero", ""))
+	if source != &"child" and (visual_hero in ["CH02","CH03"] or source == &"node"):
+		_draw_ground_shadow(visual_hero)
 	var display_offset: Vector2 = visual_position()-position
 	var display_angle: float = direction.angle_to(visual_direction())
 	var display_scale: float = visual_draw_scale()
 	draw_set_transform(display_offset,display_angle,Vector2.ONE*display_scale)
 	# Class identity belongs to the projectile that was actually spawned. It is
 	# intentionally absent from derived/child shots and cannot affect collision.
-	var visual_hero: String = str(options.get("visual_hero", ""))
 	if source != &"child" and visual_hero == "CH02":
 		_draw_gunner_needle(visual_trail_fraction())
 		draw_set_transform(Vector2.ZERO)
@@ -141,68 +143,123 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, width, Color("f1eadc"))
 	draw_set_transform(Vector2.ZERO)
 
+func _draw_ground_shadow(hero: String) -> void:
+	if bool(Game.profile.get("settings",{}).get("reduced_fx",false)):
+		return
+	# The small contact shadow stays at the true ground position. The elevated
+	# muzzle/body path above it remains frozen and keeps its existing release ray.
+	var clearance: float = VisualPath.draw_scale(room,position)
+	if clearance <= 0.0:
+		return
+	var magic: bool = hero == "CH03" or source == &"node"
+	var size: float = 7.5 if magic else 6.0
+	var shadow := PackedVector2Array()
+	for index in 12:
+		var angle: float = index*TAU/12.0
+		shadow.append(Vector2(cos(angle)*size,sin(angle)*size*.34)*clearance)
+	draw_colored_polygon(shadow,Color("655464",.14) if magic else Color("796045",.13))
+
 func _draw_gunner_needle(trail: float = 1.0) -> void:
-	var tint := Color("e7b568")
-	if arc_ready: tint = Color("b2f4ff")
+	var tint := Color("ffc65c")
+	if arc_ready: tint = Color("7feaff")
 	var normal := direction.orthogonal()
 	var heavy: bool = bool(options.get("heavy", false))
 	var rail: bool = source == &"secondary"
 	var reduced: bool = bool(Game.profile.get("settings",{}).get("reduced_fx",false))
-	var width: float = 2.0 if rail else 1.8 if heavy else 1.15
+	var width: float = 3.5 if rail else 3.2 if heavy else 2.4
 	# Keep the whole needle inside VisualPath.DRAW_RADIUS. A rail release has a
-	# pair of white conductors; mobile bursts retain a narrow brass tracer.
+	# pair of white conductors; mobile bursts retain a solid brass tracer. The
+	# longest tail is 28px with at most a 6.5px stroke, leaving AA room in 32px.
 	if not reduced:
-		draw_line(-direction * 28.0 * trail, -direction * 5.0 * trail, Color(tint,.13*trail), 5.0 if heavy else 3.2, true)
-	draw_line(-direction * 24.0 * trail, -direction * 8.0 * trail, Color(tint,.72*trail), 1.0, true)
-	draw_colored_polygon(PackedVector2Array([direction * 6.0, -direction * 8.0 * trail - normal * width,
-		-direction * 16.0 * trail, -direction * 8.0 * trail + normal * width]), Color("fff5da"))
-	draw_line(-direction * 9.0 * trail, direction * 3.0, Color("ffffff"), 1.0, true)
+		draw_line(-direction * 28.0 * trail, -direction * 5.0 * trail, Color(tint,.32*trail), 6.5 if heavy or rail else 5.5, true)
+	draw_line(-direction * 25.0 * trail, -direction * 7.0 * trail, Color("67452e",.82*trail), 3.8, true)
+	draw_line(-direction * 25.0 * trail, -direction * 7.0 * trail, Color(tint,.98*trail), 2.0, true)
+	var tip: Vector2 = direction*8.0
+	var waist: Vector2 = -direction*8.0*trail
+	var heel: Vector2 = -direction*18.0*trail
+	var lit_side: Vector2 = normal if normal.dot(_display_light()) >= 0.0 else -normal
+	var needle := PackedVector2Array([tip,waist-normal*width,heel,waist+normal*width])
+	draw_colored_polygon(needle,Color("eda840"))
+	# A pale upper plane and warm lower plane give the pin a small solid bevel.
+	draw_colored_polygon(PackedVector2Array([tip,waist+lit_side*width,heel]),Color("fff9e5"))
+	needle.append(needle[0])
+	draw_polyline(needle,Color("69472e",.98),1.7,true)
+	draw_line(-direction * 11.0 * trail, direction * 5.0, Color("ffffff"), 1.8, true)
 	if rail:
 		for side in [-1.0,1.0]:
-			draw_line(-direction*24.0*trail+normal*side*2.7,-direction*4.0*trail+normal*side*1.8,Color("fff4da",.85*trail),1.2,true)
+			draw_line(-direction*25.0*trail+normal*side*4.3,-direction*3.0*trail+normal*side*3.6,Color("67452e",.94*trail),4.0,true)
+			draw_line(-direction*25.0*trail+normal*side*4.3,-direction*3.0*trail+normal*side*3.6,Color("fff8dc",.98*trail),2.1,true)
 		if not reduced:
-			draw_line(-direction*18.0*trail-normal*4.3,-direction*18.0*trail+normal*4.3,Color(tint,.6*trail),1.0,true)
+			for along in [12.0,20.0]:
+				draw_line(-direction*along*trail-normal*4.1,-direction*along*trail+normal*4.1,Color(tint,.88*trail),1.4,true)
 	if arc_ready and not reduced:
 		draw_polyline(PackedVector2Array([-direction * 14.0 * trail - normal * 3.0, -direction * 7.0 * trail + normal * 2.0,
-			direction * 2.0 - normal * 2.0]), Color(tint,.85), 1.15, true)
+			direction * 2.0 - normal * 2.0]), Color(tint,.98), 1.8, true)
 
 func _draw_arcanist_crystal(trail: float = 1.0) -> void:
-	var tint := Color("a5f2ed")
-	if arc_ready: tint = Color("b8f6ff")
-	var violet := Color("b7a1ec")
+	var tint := Color("43eaf2")
+	if arc_ready: tint = Color("88f6ff")
+	var violet := Color("b26aff")
 	var normal := direction.orthogonal()
 	var pulse_spell: bool = source == &"q"
 	var reduced: bool = bool(Game.profile.get("settings",{}).get("reduced_fx",false))
-	var radius: float = 8.5 if pulse_spell else 5.8
+	var radius: float = 11.5 if pulse_spell else 8.2
 	# Q carries a runic orbit around its larger core; basic magic remains a
 	# faceted bolt. Both have a violet/cyan constellation instead of a rifle wake.
 	var pulse: float = sin(remaining * 18.0)
 	if not reduced:
-		draw_circle(Vector2.ZERO, radius * 1.8, Color(violet,.08))
+		draw_circle(Vector2.ZERO, radius * 1.65, Color(violet,.18))
+		draw_circle(Vector2.ZERO, radius * 1.2, Color(tint,.13))
 	for index in (1 if reduced else 3):
 		var side: float = -1.0 if index % 2 == 0 else 1.0
 		var center: Vector2 = -direction * (11.0 + index * 6.0) * trail + normal * side * (4.0 + pulse * 1.2)
-		var length: float = 3.8 - index * .6
+		var length: float = 4.5 - index * .6
 		var shard_tint: Color = violet if index % 2 == 0 else tint
-		draw_colored_polygon(PackedVector2Array([center + direction * length, center + normal * 1.8,
-			center - direction * length, center - normal * 1.8]), Color(shard_tint,(.72 - index * .16)*trail))
+		var shard := PackedVector2Array([center+direction*length,center+normal*2.4,center-direction*length,center-normal*2.4])
+		draw_colored_polygon(shard,Color(shard_tint,(.98-index*.13)*trail))
+		shard.append(shard[0])
+		draw_polyline(shard,Color("573379",(.88-index*.13)*trail),1.4,true)
+		if not reduced:
+			draw_line(center-direction*length*.45,center+direction*length*.6,Color("f1fffc",(.9-index*.12)*trail),1.3,true)
 	var tip: Vector2 = direction * radius
 	var heel: Vector2 = -direction * radius * .8
-	var upper: Vector2 = normal * radius * .72
+	var upper: Vector2 = normal * radius * .78
 	var lower: Vector2 = -upper
-	draw_colored_polygon(PackedVector2Array([tip,upper,heel,lower]), Color(violet,.88))
-	draw_colored_polygon(PackedVector2Array([tip,upper,Vector2.ZERO]), Color("d7fff6"))
-	draw_colored_polygon(PackedVector2Array([heel,lower,Vector2.ZERO]), Color(violet,.8))
-	draw_polyline(PackedVector2Array([tip,upper,heel,lower,tip]), Color("bdfaf3"), 1.0, true)
-	draw_circle(Vector2.ZERO,1.5,Color("f0fff9"))
+	var lit_side: Vector2 = normal if normal.dot(_display_light()) >= 0.0 else -normal
+	var lit_point: Vector2 = lit_side*radius*.78
+	var shaded_point: Vector2 = -lit_point
+	draw_colored_polygon(PackedVector2Array([tip,upper,heel,lower]),Color("a662ec"))
+	draw_colored_polygon(PackedVector2Array([tip,lit_point,Vector2.ZERO]),Color("ecfffd"))
+	draw_colored_polygon(PackedVector2Array([heel,lit_point,Vector2.ZERO]),Color("61e5e9"))
+	draw_colored_polygon(PackedVector2Array([tip,shaded_point,Vector2.ZERO]),Color("ab83f9"))
+	draw_colored_polygon(PackedVector2Array([heel,shaded_point,Vector2.ZERO]),Color("7942bd"))
+	draw_polyline(PackedVector2Array([tip,upper,heel,lower,tip]),Color("513073",.98),2.1,true)
+	draw_line(lit_point,tip,Color("f1fffc"),1.8,true)
+	draw_line(heel,Vector2.ZERO,Color(tint,.95),1.3,true)
+	draw_circle(Vector2.ZERO,2.0,Color("f0fff9"))
 	if pulse_spell:
 		var orbit: float = remaining*5.0
-		draw_arc(Vector2.ZERO,radius+4.5,orbit,orbit+PI*.75,12,Color(tint,.82),1.4,true)
-		draw_arc(Vector2.ZERO,radius+4.5,orbit+PI,orbit+PI*1.75,12,Color(violet,.86),1.4,true)
+		_draw_projected_orbit(radius+5.5,orbit,PI*.75,Color(tint,.98),2.2)
+		_draw_projected_orbit(radius+5.5,orbit+PI,PI*.75,Color(violet,.98),2.2)
 		if not reduced:
 			for index in 3:
-				var ray: Vector2 = Vector2.from_angle(orbit+index*TAU/3)
-				var point: Vector2 = ray*(radius+5.5)
-				draw_line(point-ray*2,point+ray*2,Color("f0fff9",.8),1.8,true)
+				var angle: float = orbit+index*TAU/3
+				var ray: Vector2 = Vector2.from_angle(angle)
+				var point: Vector2 = Vector2(cos(angle),sin(angle)*.56).rotated(-direction.angle_to(visual_direction()))*(radius+6.5)
+				draw_line(point-ray*2.5,point+ray*2.5,Color("f0fff9",.98),2.2,true)
 	if arc_ready and not reduced:
-		draw_arc(Vector2.ZERO,radius+3.0,direction.angle()-.7,direction.angle()+1.6,10,Color(tint,.85),1.2,true)
+		draw_arc(Vector2.ZERO,radius+3.0,direction.angle()-.7,direction.angle()+1.6,10,Color(tint,.98),1.8,true)
+
+func _display_light() -> Vector2:
+	# Undo only the existing display-path rotation to keep upper-left lighting
+	# consistent in screen space for all eight committed attack directions.
+	return Vector2(-.65,-.75).rotated(-direction.angle_to(visual_direction()))
+
+func _draw_projected_orbit(radius: float, start: float, span: float, tint: Color, width: float) -> void:
+	var points := PackedVector2Array()
+	var display_rotation: float = direction.angle_to(visual_direction())
+	for index in 13:
+		var angle: float = start+span*index/12.0
+		points.append(Vector2(cos(angle)*radius,sin(angle)*radius*.56).rotated(-display_rotation))
+	draw_polyline(points,Color("513073",tint.a*.8),width+1.5,true)
+	draw_polyline(points,tint,width,true)

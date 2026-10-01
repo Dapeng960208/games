@@ -7,9 +7,12 @@ var current_reduced := false
 var selected_sample_keys: PackedStringArray = []
 const ROLE_SAMPLES := [
 	{"hero":"CH01", "slot":"secondary", "reduced":false},
+	{"hero":"CH01", "slot":"ultimate", "reduced":false},
 	{"hero":"CH02", "slot":"secondary", "reduced":false},
 	{"hero":"CH02", "slot":"f", "reduced":false},
+	{"hero":"CH03", "slot":"q", "reduced":false},
 	{"hero":"CH03", "slot":"secondary", "reduced":false},
+	{"hero":"CH03", "slot":"f", "reduced":false},
 	{"hero":"CH03", "slot":"ultimate", "reduced":false},
 	{"hero":"CH03", "slot":"ultimate", "reduced":true},
 ]
@@ -73,7 +76,7 @@ func run_checks() -> void:
 		await _prepare_action(str(sample.slot))
 		await _capture_action(str(sample.slot))
 		records[-1]["reduced_fx"] = current_reduced
-		if str(sample.slot) == "ultimate":
+		if str(sample.slot) == "ultimate" and current_hero == "CH03":
 			check(bool(records[-1].telegraph_overlap_captured),"mage domain coexists with an actual enemy warning; reduced_fx="+str(current_reduced))
 		aim_tracking = false
 		Game.finish_run("abandoned")
@@ -97,10 +100,10 @@ func run_checks() -> void:
 
 func _capture_frame(phase: String) -> void:
 	_save_frame(phase)
-	if phase == "start" and current_hero == "CH02" and str(active_record.slot) == "secondary":
+	if phase == "start" and ((current_hero == "CH02" and str(active_record.slot) == "secondary") or (current_hero == "CH03" and str(active_record.slot) == "q")):
 		await wait_seconds(float(active_record.spec.windup)+0.04)
 		_save_frame("released_projectile")
-	if phase == "impact" and ((current_hero == "CH01" and str(active_record.slot) == "secondary") or (current_hero == "CH02" and str(active_record.slot) == "f")):
+	if phase == "impact" and ((current_hero == "CH01" and str(active_record.slot) in ["secondary","ultimate"]) or (current_hero in ["CH02","CH03"] and str(active_record.slot) == "f")):
 		# Observe the real expansion following contact. Waiting advances the
 		# ordinary scene clock; no effect age, damage or pose is fabricated.
 		await wait_seconds(0.085)
@@ -136,6 +139,7 @@ func _capture_action(slot: String) -> void:
 func _ultimate_visual_active() -> bool:
 	# This probe requires an actual deployed domain. The earlier cast windup is
 	# not sufficient evidence that the domain leaves enemy warnings readable.
+	if current_hero != "CH03": return super._ultimate_visual_active()
 	for node in get_tree().get_nodes_in_group("hero_deployments"):
 		if node.room == room and node.kind == "field" and node.is_alive(): return true
 	return false

@@ -233,8 +233,8 @@ func _emit_feedback_pulse() -> void:
 func _draw() -> void:
 	var expansion: float = 1.0 if setup_time <= 0.0 else clampf(elapsed / setup_time, 0.0, 1.0)
 	var opacity: float = clampf(lifetime - elapsed, 0.0, 1.0)
-	var ink := Color("a98bed")
-	var paper := Color("a5f2ed")
+	var ink := Color("9847ee")
+	var paper := Color("43e6e0")
 	if kind == "field":
 		_draw_dome(ink, paper)
 		return
@@ -246,36 +246,42 @@ func _draw() -> void:
 		return
 	var reduced: bool = bool(Game.profile.get("settings", {}).get("reduced_fx", false))
 	var bob: float = 0.0 if reduced else sin(elapsed * 2.4) * 2.0
-	var crystal := Vector2(0.0, -26.0 * expansion + bob)
+	var crystal := Vector2(0.0, -33.0 * expansion + bob)
 	# A low rune base and a suspended faceted crystal distinguish a spell focus
 	# from the gunner's hardware. The floor remains visible beneath the glyphs.
 	draw_colored_polygon(_deployment_ellipse(Vector2(0, 4), Vector2(18, 6), 24), Color(0.07, 0.045, 0.11, opacity * 0.28))
-	draw_polyline(_deployment_ellipse(Vector2(0, 2), Vector2(24, 12) * maxf(expansion, 0.1), 32), Color(ink, opacity * 0.72), 1.7, true)
+	var base: PackedVector2Array = _deployment_ellipse(Vector2(0, 2), Vector2(30, 14) * maxf(expansion, 0.1), 32)
+	draw_polyline(base, Color("35204f", opacity * 0.86), 5.0, true)
+	draw_polyline(base, Color(ink, opacity), 2.7, true)
 	if not reduced:
-		draw_polyline(_deployment_ellipse(Vector2(0, 2), Vector2(17, 8) * maxf(expansion, 0.1), 24), Color(paper, opacity * 0.36), 1.0, true)
+		draw_polyline(_deployment_ellipse(Vector2(0, 2), Vector2(21, 9) * maxf(expansion, 0.1), 24), Color(paper, opacity * 0.86), 2.0, true)
 		for index in range(3):
 			var axis: Vector2 = Vector2.RIGHT.rotated(index * TAU / 3.0 - PI * 0.5)
-			var at := Vector2(axis.x * 20.0, 2.0 + axis.y * 10.0)
-			_draw_arcane_rune(at, 3.8, Color(paper, opacity * 0.65))
+			var at := Vector2(axis.x * 25.0, 2.0 + axis.y * 12.0)
+			_draw_arcane_rune(at, 5.5, Color(paper, opacity), 1.8, true)
 		if charge_flash > 0.0:
 			var intake: float = clampf(charge_flash / 0.34, 0.0, 1.0)
-			draw_arc(crystal, 13.0 + (1.0 - intake) * 11.0, 0.0, TAU, 24, Color(paper, opacity * intake * 0.45), 1.5, true)
-	var shape := PackedVector2Array([crystal + Vector2(0, -15), crystal + Vector2(10, -3), crystal + Vector2(6, 9), crystal + Vector2(0, 15), crystal + Vector2(-8, 5), crystal + Vector2(-10, -3)])
-	draw_colored_polygon(shape, Color("7750ac", opacity * 0.94))
-	draw_colored_polygon(PackedVector2Array([crystal + Vector2(0, -15), crystal + Vector2(10, -3), crystal + Vector2(0, 15), crystal + Vector2(1, -2)]), Color("b7a1ec", opacity * 0.9))
-	draw_colored_polygon(PackedVector2Array([crystal + Vector2(-10, -3), crystal + Vector2(1, -2), crystal + Vector2(0, 15), crystal + Vector2(-8, 5)]), Color("526ea9", opacity * 0.92))
+			draw_arc(crystal, 19.0 + (1.0 - intake) * 13.0, 0.0, TAU, 28, Color(paper, opacity * intake * 0.86), 2.8, true)
+	var shape := PackedVector2Array([crystal + Vector2(0, -23), crystal + Vector2(14, -5), crystal + Vector2(9, 14), crystal + Vector2(0, 23), crystal + Vector2(-11, 8), crystal + Vector2(-14, -5)])
+	draw_colored_polygon(shape, Color("9544df", opacity))
+	draw_colored_polygon(PackedVector2Array([crystal + Vector2(0, -23), crystal + Vector2(14, -5), crystal + Vector2(0, 23), crystal + Vector2(2, -3)]), Color("d59cff", opacity))
+	draw_colored_polygon(PackedVector2Array([crystal + Vector2(-14, -5), crystal + Vector2(2, -3), crystal + Vector2(0, 23), crystal + Vector2(-11, 8)]), Color("378cac", opacity))
 	shape.append(shape[0])
-	draw_polyline(shape, Color("30254c", opacity), 2.7, true)
-	draw_line(crystal + Vector2(0, -13), crystal + Vector2(1, -2), Color(paper, opacity * 0.88), 1.7, true)
-	draw_line(crystal + Vector2(1, -2), crystal + Vector2(8, -3), Color(paper, opacity * 0.8), 1.2, true)
-	_draw_arcane_rune(crystal + Vector2(0, 1), 3.5, Color("eafaf3", opacity * 0.94))
+	draw_polyline(shape, Color("30204d", opacity), 4.0, true)
+	draw_line(crystal + Vector2(0, -21), crystal + Vector2(2, -3), Color(paper, opacity), 2.8, true)
+	draw_line(crystal + Vector2(2, -3), crystal + Vector2(12, -5), Color("d6fff7", opacity), 2.2, true)
+	draw_line(crystal + Vector2(2, -3), crystal + Vector2(0, 20), Color(paper, opacity * 0.9), 1.9, true)
+	_draw_arcane_rune(crystal + Vector2(0, 2), 5.2, Color("f3fff4", opacity), 1.8, true)
 	if pulse > 0.0:
 		var strength: float = clampf(pulse / 0.18, 0.0, 1.0)
-		var tip: Vector2 = crystal + fire_direction * (12.0 + strength * 18.0)
-		var side: Vector2 = fire_direction.orthogonal() * (2.0 + strength * 3.0)
-		draw_polyline(PackedVector2Array([crystal + side, tip, crystal - side]), Color(paper, opacity * strength), 2.0, true)
+		var emitter := Vector2(0.0, -26.0)
+		var tip: Vector2 = emitter + fire_direction * (16.0 + strength * 24.0)
+		var side: Vector2 = fire_direction.orthogonal() * (3.0 + strength * 4.0)
+		var release := PackedVector2Array([emitter + side, tip, emitter - side])
+		draw_polyline(release, Color("35204f", opacity * strength), 5.4, true)
+		draw_polyline(release, Color(paper, opacity * strength), 3.1, true)
 		if not reduced:
-			draw_arc(crystal, 13.0 + (1.0 - strength) * 12.0, -PI * 0.85, PI * 0.5, 24, Color(ink, opacity * strength * 0.55), 1.3, true)
+			draw_arc(crystal, 19.0 + (1.0 - strength) * 14.0, -PI * 0.85, PI * 0.5, 24, Color(ink, opacity * strength * 0.9), 2.6, true)
 	if health < max_health or damaged_flash > 0.0:
 		draw_rect(Rect2(-17, 20, 34, 3), Color("30254c", opacity))
 		draw_rect(Rect2(-17, 20, 34 * health / maxf(1.0, max_health), 3), Color(paper, opacity))
@@ -286,28 +292,28 @@ func _draw_resonance_charge(opacity: float) -> void:
 	var readout: Dictionary = resonance_readout()
 	var reduced: bool = bool(Game.profile.get("settings", {}).get("reduced_fx", false))
 	var flash: float = 0.0 if reduced else clampf(charge_flash / 0.34, 0.0, 1.0)
-	var tint := Color("c7b3ff") if bool(readout.full) else Color("80e8d7")
+	var tint := Color("d794ff") if bool(readout.full) else Color("43e6e0")
 	# Three crystal sockets carry the actual stored charge, separate from the
 	# firing flash. Empty and filled shapes remain distinct without hue alone.
 	for index in 3:
-		var center := Vector2(-13.0 + index * 13.0, -53.0)
-		var shape := PackedVector2Array([center+Vector2(0,-5),center+Vector2(5,0),center+Vector2(0,5),center+Vector2(-5,0),center+Vector2(0,-5)])
+		var center := Vector2(-17.0 + index * 17.0, -66.0)
+		var shape := PackedVector2Array([center+Vector2(0,-7),center+Vector2(7,0),center+Vector2(0,7),center+Vector2(-7,0),center+Vector2(0,-7)])
 		draw_colored_polygon(shape, Color("30254c", opacity * .92))
-		draw_polyline(shape, Color("30254c", opacity), 3.5, true)
-		draw_polyline(shape, Color(tint, opacity * (1.0 if index < resonance_charge else .28)), 1.4, true)
+		draw_polyline(shape, Color("30254c", opacity), 4.5, true)
+		draw_polyline(shape, Color(tint, opacity * (1.0 if index < resonance_charge else .65)), 2.2, true)
 		if index < resonance_charge:
-			draw_line(center-Vector2(0,2.5),center+Vector2(0,2.5),Color(tint,opacity),2.7,true)
+			draw_line(center-Vector2(0,4),center+Vector2(0,4),Color(tint,opacity),3.8,true)
 			if flash > 0.0 and index == resonance_charge-1:
-				draw_arc(center,7+(1-flash)*9,0,TAU,20,Color(tint,opacity*flash*.65),1.6,true)
+				draw_arc(center,9+(1-flash)*10,0,TAU,24,Color(tint,opacity*flash*.9),2.5,true)
 	if bool(readout.full):
-		draw_line(Vector2(-18,-61),Vector2(18,-61),Color(tint,opacity*.85),1.5,true)
+		draw_line(Vector2(-23,-77),Vector2(23,-77),Color(tint,opacity),2.7,true)
 	if bool(readout.connected) and owner_player.hero_level() >= 3:
 		var alpha: float = opacity * (1.0 if bool(readout.available) else .35)
-		var at := Vector2(25,-47)
+		var at := Vector2(31,-58)
 		var settings: Dictionary = Game.profile.get("settings", {})
 		var label: String = ControlBindings.label_for("skill_f", settings.get("controls", {}), Words.locale)
-		draw_string_outline(NODE_FONT,at,label,HORIZONTAL_ALIGNMENT_LEFT,-1,13,4,Color(0.02,0.04,0.05,alpha))
-		draw_string(NODE_FONT,at,label,HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color(tint,alpha))
+		draw_string_outline(NODE_FONT,at,label,HORIZONTAL_ALIGNMENT_LEFT,-1,16,5,Color(0.02,0.04,0.05,alpha))
+		draw_string(NODE_FONT,at,label,HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color(tint,alpha))
 
 func _draw_grenade(opacity: float) -> void:
 	var reduced: bool = bool(Game.profile.get("settings", {}).get("reduced_fx", false))
@@ -315,35 +321,40 @@ func _draw_grenade(opacity: float) -> void:
 	var remaining: float = clampf(1.0 - elapsed / fuse, 0.0, 1.0)
 	var landing: float = clampf(elapsed / 0.18, 0.0, 1.0)
 	var lift: float = 22.0 * pow(1.0 - landing, 2.0) + sin(landing * PI) * 5.0
-	var body := Vector2(0, -9.0 - lift)
+	var body := Vector2(0, -13.0 - lift)
 	var angle: float = (1.0 - landing) * -0.28
-	var brass := Color("e7b568", opacity)
-	var amber := Color("ffd28b", opacity)
+	var brass := Color("f8c256", opacity)
+	var amber := Color("fff0b0", opacity)
 	# The placement and blast circle share the true legal landing point. Only
 	# this local canister hop is airborne; drawing never supplies a damage point.
-	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 64, Color(brass, opacity * 0.3), 1.6, true)
+	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 64, Color("795126", opacity * 0.68), 6.0, true)
+	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 64, Color(brass, opacity * 0.94), 3.0, true)
 	for index in range(8):
 		var axis: Vector2 = Vector2.RIGHT.rotated(index * TAU / 8.0)
-		draw_line(axis * (radius - 4.0), axis * (radius + 3.0), Color(amber, opacity * 0.56), 1.5, true)
-	draw_colored_polygon(_deployment_ellipse(Vector2(0, 3), Vector2(10, 4), 20), Color(0.14, 0.075, 0.03, opacity * 0.3))
-	var hull: PackedVector2Array = _deployment_local_shape(PackedVector2Array([Vector2(-5,-10),Vector2(4,-10),Vector2(7,-6),Vector2(7,7),Vector2(4,10),Vector2(-5,10),Vector2(-7,7),Vector2(-7,-6)]), body, angle)
-	draw_colored_polygon(hull, Color("97653a", opacity))
+		draw_line(axis * (radius - 10.0), axis * radius, Color("795126", opacity * 0.8), 5.0, true)
+		draw_line(axis * (radius - 10.0), axis * radius, Color(amber, opacity), 2.6, true)
+	draw_colored_polygon(_deployment_ellipse(Vector2(0, 3), Vector2(13, 5), 20), Color(0.14, 0.075, 0.03, opacity * 0.34))
+	var hull: PackedVector2Array = _deployment_local_shape(PackedVector2Array([Vector2(-7,-15),Vector2(6,-15),Vector2(11,-9),Vector2(11,10),Vector2(6,15),Vector2(-7,15),Vector2(-11,10),Vector2(-11,-9)]), body, angle)
+	draw_colored_polygon(hull, Color("b9772c", opacity))
+	draw_colored_polygon(_deployment_local_shape(PackedVector2Array([Vector2(-7,-13),Vector2(0,-13),Vector2(0,13),Vector2(-7,13),Vector2(-9,9),Vector2(-9,-9)]), body, angle), Color("e6a537", opacity))
 	hull.append(hull[0])
-	draw_polyline(hull, Color("4c342d", opacity), 2.7, true)
-	draw_line(body + Vector2(-5,-6).rotated(angle), body + Vector2(5,-6).rotated(angle), brass, 2.5, true)
-	draw_line(body + Vector2(-5,6).rotated(angle), body + Vector2(5,6).rotated(angle), brass, 2.5, true)
-	draw_line(body + Vector2(-3,-2).rotated(angle), body + Vector2(-3,3).rotated(angle), Color("fff0c0", opacity), 1.8, true)
-	var cap: Vector2 = body + Vector2(0,-12).rotated(angle)
-	draw_line(cap + Vector2(-3,0).rotated(angle), cap + Vector2(3,0).rotated(angle), Color("65514a", opacity), 3.0, true)
-	var spark: Vector2 = cap + Vector2(2,-5).rotated(angle)
-	draw_line(cap, spark, brass, 1.7, true)
-	draw_circle(spark, 2.1, Color("fff3c2", opacity))
+	draw_polyline(hull, Color("553627", opacity), 4.2, true)
+	draw_line(body + Vector2(-8,-9).rotated(angle), body + Vector2(8,-9).rotated(angle), amber, 3.4, true)
+	draw_line(body + Vector2(-8,9).rotated(angle), body + Vector2(8,9).rotated(angle), brass, 3.4, true)
+	draw_line(body + Vector2(-5,-4).rotated(angle), body + Vector2(-5,5).rotated(angle), Color("fffbd0", opacity), 2.8, true)
+	var cap: Vector2 = body + Vector2(0,-17).rotated(angle)
+	draw_line(cap + Vector2(-5,0).rotated(angle), cap + Vector2(5,0).rotated(angle), Color("553627", opacity), 4.3, true)
+	var spark: Vector2 = cap + Vector2(3,-7).rotated(angle)
+	draw_line(cap, spark, brass, 2.5, true)
+	draw_circle(spark, 4.6, Color("ba681d", opacity * 0.85))
+	draw_circle(spark, 3.3, Color("fffbd0", opacity))
 	if remaining > 0.0:
-		draw_arc(body, 17.0, -PI * 0.5, -PI * 0.5 + TAU * remaining, 36, amber, 2.2, true)
+		draw_arc(body, 24.0, -PI * 0.5, -PI * 0.5 + TAU * remaining, 40, Color("795126", opacity * 0.9), 6.0, true)
+		draw_arc(body, 24.0, -PI * 0.5, -PI * 0.5 + TAU * remaining, 40, amber, 3.3, true)
 	if not reduced:
 		var flicker: float = 0.65 + 0.35 * sin(elapsed * 43.0)
-		draw_line(spark - Vector2(3,0), spark + Vector2(3,0), Color(amber, opacity * flicker), 1.1, true)
-		draw_line(spark - Vector2(0,3), spark + Vector2(0,3), Color(amber, opacity * flicker), 1.1, true)
+		draw_line(spark - Vector2(6,0), spark + Vector2(6,0), Color(amber, opacity * flicker), 1.8, true)
+		draw_line(spark - Vector2(0,6), spark + Vector2(0,6), Color(amber, opacity * flicker), 1.8, true)
 		if landing < 1.0:
 			draw_line(body + Vector2(3,-20), body + Vector2(1,-12), Color(brass, opacity * (1.0 - landing) * 0.5), 1.2, true)
 			draw_line(body + Vector2(-3,-16), body + Vector2(-2,-11), Color(amber, opacity * (1.0 - landing) * 0.34), 1.0, true)
@@ -379,12 +390,13 @@ func _draw_dome(ink: Color, paper: Color) -> void:
 	var strength: float = clampf(pulse / 0.22, 0.0, 1.0)
 	# The true damage boundary remains exact in both modes. There is no filled
 	# dome or elevated frame to obscure enemies, their feet or warning markings.
-	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 72, Color(ink, fading * (0.58 + strength * 0.28)), 2.0 + strength * 0.65, true)
+	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 72, Color("39205d", fading * 0.8), 7.5 + strength, true)
+	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 72, Color(ink, fading), 3.8 + strength * 0.8, true)
 	for index in range(6):
 		var axis: Vector2 = Vector2.RIGHT.rotated(index * TAU / 6.0 - PI * 0.5)
 		var at: Vector2 = axis * radius
-		_draw_arcane_rune(at, 7.0, Color(paper, fading * (0.8 + strength * 0.15)))
-	_draw_arcane_rune(Vector2.ZERO, 10.0, Color(paper, fading * (0.48 + strength * 0.4)))
+		_draw_arcane_rune(at, 13.0, Color(paper, fading), 2.6, true)
+	_draw_arcane_rune(Vector2.ZERO, 18.0, Color(paper, fading * (0.85 + strength * 0.15)), 2.4, true)
 	if reduced:
 		return
 	# A few stationary stars linked into asymmetric constellations give this
@@ -395,23 +407,33 @@ func _draw_dome(ink: Color, paper: Color) -> void:
 		var reach: float = radius * (0.57 if index % 2 == 0 else 0.73)
 		stars.append(Vector2.RIGHT.rotated(angle) * reach)
 	for link: Vector2i in [Vector2i(0,2),Vector2i(2,5),Vector2i(5,0),Vector2i(1,4),Vector2i(4,7)]:
-		draw_line(stars[link.x], stars[link.y], Color(ink, fading * (0.28 + strength * 0.16)), 1.2, true)
+		draw_line(stars[link.x], stars[link.y], Color("39205d", fading * 0.48), 4.8, true)
+		draw_line(stars[link.x], stars[link.y], Color(ink, fading * (0.62 + strength * 0.2)), 2.3, true)
 	for index in stars.size():
 		var star: Vector2 = stars[index]
-		var half: float = 3.4 if index % 2 == 0 else 2.2
-		draw_line(star - Vector2(half,0), star + Vector2(half,0), Color(paper, fading * 0.86), 1.3, true)
-		draw_line(star - Vector2(0,half), star + Vector2(0,half), Color(paper, fading * 0.86), 1.3, true)
+		var half: float = 6.0 if index % 2 == 0 else 4.5
+		draw_line(star - Vector2(half,0), star + Vector2(half,0), Color("39205d", fading * 0.78), 5.0, true)
+		draw_line(star - Vector2(0,half), star + Vector2(0,half), Color("39205d", fading * 0.78), 5.0, true)
+		draw_line(star - Vector2(half,0), star + Vector2(half,0), Color(paper, fading), 2.5, true)
+		draw_line(star - Vector2(0,half), star + Vector2(0,half), Color(paper, fading), 2.5, true)
 	for index in range(12):
 		var angle: float = index * TAU / 12.0
-		draw_arc(Vector2.ZERO, radius * 0.94, angle + 0.055, angle + TAU / 24.0, 7, Color(paper, fading * 0.28), 1.1, true)
+		draw_arc(Vector2.ZERO, radius * 0.94, angle + 0.055, angle + TAU / 24.0, 7, Color("39205d", fading * 0.46), 4.6, true)
+		draw_arc(Vector2.ZERO, radius * 0.94, angle + 0.055, angle + TAU / 24.0, 7, Color(paper, fading * 0.85), 2.3, true)
 	if pulse > 0.0:
 		# pulse is authored by the real one-second damage tick and lasts 0.22 s.
-		draw_arc(Vector2.ZERO, radius * (0.2 + (1.0 - strength) * 0.8), 0.0, TAU, 64, Color(paper, strength * 0.56 * fading), 2.0, true)
+		var wave_radius: float = radius * (0.2 + (1.0 - strength) * 0.8)
+		draw_arc(Vector2.ZERO, wave_radius, 0.0, TAU, 64, Color("39205d", strength * 0.62 * fading), 7.0, true)
+		draw_arc(Vector2.ZERO, wave_radius, 0.0, TAU, 64, Color(paper, strength * 0.95 * fading), 3.8, true)
 
-func _draw_arcane_rune(at: Vector2, size: float, tint: Color) -> void:
+func _draw_arcane_rune(at: Vector2, size: float, tint: Color, stroke: float = 1.3, outlined: bool = false) -> void:
 	var glyph := PackedVector2Array([at + Vector2(0,-size),at + Vector2(size * 0.68,0),at + Vector2(0,size),at + Vector2(-size * 0.68,0),at + Vector2(0,-size)])
-	draw_polyline(glyph, tint, 1.3, true)
-	draw_line(at + Vector2(-size * 0.85,0), at + Vector2(size * 0.85,0), tint, 1.1, true)
+	if outlined:
+		var outline := Color("35204f", tint.a * 0.86)
+		draw_polyline(glyph, outline, stroke + 2.8, true)
+		draw_line(at + Vector2(-size * 0.85,0), at + Vector2(size * 0.85,0), outline, stroke + 2.4, true)
+	draw_polyline(glyph, tint, stroke, true)
+	draw_line(at + Vector2(-size * 0.85,0), at + Vector2(size * 0.85,0), tint, maxf(1.1, stroke - 0.2), true)
 
 func _deployment_ellipse(center: Vector2, axes: Vector2, segments: int) -> PackedVector2Array:
 	var points := PackedVector2Array()
