@@ -71,6 +71,11 @@ static func set_item_ids(set_id: String, ruleset: int = 1) -> Array[String]:
 
 ## Deterministic overlay, never edits the legacy JSON or duplicates fixed effects.
 ## Original flat stats are audit/tendency data only, not another main-stat layer.
+static func _v2_race(item: Dictionary) -> Variant:
+	if not item.has("race_id") and bool(item.get("shop_only", false)):
+		return Rules.value("shop_set_races", {}).get(str(item.get("set_id", "")), "")
+	return item.get("race_id")
+
 static func _v2_equipment() -> Dictionary:
 	if not _equipment_v2.is_empty(): return _equipment_v2
 	for id: String in _equipment:
@@ -85,7 +90,7 @@ static func _v2_equipment() -> Dictionary:
 		item["main_coefficient"] = float(Rules.value("starter_template_multiplier")) if str(item.get("set_id", "")).is_empty() else 1.0
 		item["ruleset_version"] = 2
 		if not item.has("race_id") and bool(item.get("shop_only", false)):
-			item["race_id"] = str(Rules.value("shop_set_races", {}).get(str(item.get("set_id", "")), ""))
+			item["race_id"] = _v2_race(item)
 		_equipment_v2[id] = item
 	for number in range(1, 15):
 		var set_id := "S%02d" % number
@@ -116,7 +121,7 @@ static func _v2_equipment() -> Dictionary:
 			source["affix_text_en"] = ""
 			source["ruleset_version"] = 2
 			if not source.has("race_id") and bool(source.get("shop_only", false)):
-				source["race_id"] = str(Rules.value("shop_set_races", {}).get(set_id, ""))
+				source["race_id"] = _v2_race(source)
 			source.erase("combat_passive")
 			source.erase("original_name")
 			_equipment_v2[id] = source
@@ -280,6 +285,7 @@ static func _validate_v2() -> Array[String]:
 		_check_required(item, ["id", "name", "slot", "set_id", "price", "base_stats", "affix_tendencies", "main_coefficient", "unlock_boss"], id, errors)
 		if item.is_empty(): continue
 		if item.get("id") != id or item.get("slot") not in slots(2): errors.append(id + ": invalid version-two identity/slot.")
+		if (item.has("race_id") or bool(item.get("shop_only", false))) and item.get("race_id") not in ["B01", "B02", "B03", "B04"]: errors.append(id + ": invalid version-two race.")
 		if not item.get("base_stats") is Dictionary or not item.base_stats.is_empty(): errors.append(id + ": legacy attributes must not contribute twice.")
 		var is_general := str(item.get("set_id", "")).is_empty()
 		if is_general: general_count += 1
@@ -288,7 +294,8 @@ static func _validate_v2() -> Array[String]:
 		if number <= 96:
 			var old := equipment(id)
 			for field in ["name", "race_id", "drop_origin", "shop_only", "price", "unlock_boss", "affix_id", "affix_text", "combat_passive"]:
-				if item.get(field) != old.get(field): errors.append(id + ": changed legacy identity/effect " + field)
+				var expected: Variant = _v2_race(old) if field == "race_id" else old.get(field)
+				if item.get(field) != expected: errors.append(id + ": changed legacy identity/effect " + field)
 			if item.get("legacy_base_stats") != old.base_stats or item.get("affix_tendencies") != old.base_stats.keys(): errors.append(id + ": lost legacy stat tendencies.")
 		else:
 			var set_id := "S%02d" % (1 + int((number - 97) / 2))
@@ -299,7 +306,8 @@ static func _validate_v2() -> Array[String]:
 				var old := equipment(old_id)
 				if old.slot != ("chest" if slot == "legs" else "charm"): continue
 				for field in ["race_id", "drop_origin", "shop_only", "price", "unlock_boss"]:
-					if item.get(field) != old.get(field): errors.append(id + ": new piece does not inherit " + field)
+					var expected: Variant = _v2_race(old) if field == "race_id" else old.get(field)
+					if item.get(field) != expected: errors.append(id + ": new piece does not inherit " + field)
 	if general_count != 12: errors.append("Expected twelve reduced-coefficient general templates.")
 	for set_id: String in sets(2):
 		var pieces := set_item_ids(set_id, 2)

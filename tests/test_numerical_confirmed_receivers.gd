@@ -6,6 +6,7 @@ extends Node
 const Rules = preload("res://config/numerical_rules.gd")
 const State = preload("res://scripts/core/run_state.gd")
 const Profiles = preload("res://scripts/combat/boss_profiles.gd")
+const EnemyProfiles = preload("res://scripts/combat/enemy_profiles.gd")
 var game: Node
 var room: ReceiverRoom
 var checks := 0
@@ -120,11 +121,13 @@ func receiver(boss: bool = false, offset: Vector2 = Vector2(80, 0)) -> MineEnemy
 	target.room = room
 	target.position = room.player.position + offset
 	if boss:
-		var profile: Dictionary = Profiles.resolve("BO02", 0)
+		var profile: Dictionary = Profiles.resolve("BO02", 0, Rules.V2)
 		profile.merge({"ruleset_version":Rules.V2, "max_hp":10000, "armor":0, "magic_resist":0}, true)
 		target.configure(profile)
 	else:
-		target.profile = {"ruleset_version":Rules.V2}
+		# S09 validates the frozen actor tier/difficulty/damage when emitting
+		# supports. Keep the receiving HP fixture while using a real V2 actor.
+		target.profile = EnemyProfiles.resolve("M01", 1, "normal", Rules.V2, 0)
 	target.reward_enabled = false
 	target.training_ai_disabled = true
 	room.enemies.add_child(target)
@@ -206,7 +209,7 @@ func test_shield_only_confirmations() -> void:
 			target.status.states.erase("burn")
 			room.player.loadout.effects.cooldowns.clear()
 			if auxiliary:
-				room.enemy_skills.emit_skill(target, {"kind":"guard", "mode":"socket", "amount":3000, "duration":5.0})
+				room.enemy_skills.emit_skill(target, {"kind":"guard", "mode":"socket", "amount":300, "duration":5.0})
 				check(room.enemy_skills.supports.size() == 1 and room.enemy_skills.supports[0].amount == 3000, "native auxiliary guard command creates real integer pool")
 			else:
 				target.status.grant_guard(3000, 5, "receiver-test", target.health.maximum)
@@ -258,7 +261,7 @@ func test_boss_receive_order() -> void:
 	target.boss_brain.weakpoint_time = 2.0
 	# A real support command leaves one unit before defense: 5*1.35 - 5 = 1.75.
 	# One receiving round gives I(1.75/2)=1; rounding the weakpoint early gives 2.
-	room.enemy_skills.emit_skill(target, {"kind":"guard", "mode":"socket", "amount":5, "duration":5.0})
+	room.enemy_skills.emit_skill(target, {"kind":"guard", "mode":"socket", "amount":0.5, "duration":5.0})
 	check(hit(target, 5, "boss-order", &"q"), "boss actual weakpoint/support/defense pipeline confirms")
 	var receipt: Dictionary = packets(target, "q")[0].result
 	integer_receipt(receipt, "boss ordered receiver")

@@ -22,6 +22,9 @@ func _run() -> void:
 	profile.hero_xp.CH01 = 3600
 	profile.equipment = {}
 	profile.loadout = {}
+	# The S10 native profile has starter presets; this replacement fixture
+	# must not retain references to the starter instances it just removed.
+	profile.loadout_presets = {}
 	var weapon_template := ""
 	for template: String in ContentRegistry.set_item_ids("S01",2):
 		var rolls := {}
@@ -36,7 +39,12 @@ func _run() -> void:
 	stronger.instance_id = "ui-duplicate-weapon"
 	for key: String in stronger.main_rolls: stronger.main_rolls[key] = 100
 	profile.equipment[stronger.instance_id] = stronger
-	check(Game._commit_profile(profile),"save eight slots and duplicate")
+	var saved := Game._commit_profile(profile)
+	check(saved,"save eight slots and duplicate")
+	if not saved:
+		print("Numerical instance UI fixture rejected: ", Game.last_error)
+		get_tree().quit(1)
+		return
 	var app: Node = load("res://scenes/main.tscn").instantiate()
 	add_child(app)
 	await get_tree().process_frame

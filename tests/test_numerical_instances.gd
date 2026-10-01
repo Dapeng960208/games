@@ -29,6 +29,16 @@ func reference_main(base: int, coefficient: int, level: int, quality: int, k: in
 func _initialize() -> void:
 	check(Registry.validate().is_empty(), "legacy catalog remains valid")
 	check(Registry.validate(2).is_empty(), "version-two catalog validates: " + str(Registry.validate(2)))
+	var shop_races := {"S09":"B01", "S10":"B02", "S11":"B01", "S12":"B02", "S13":"B03", "S14":"B04"}
+	for set_id: String in shop_races:
+		for id: String in Registry.set_item_ids(set_id, 2):
+			check(Registry.equipment(id, 2).race_id == shop_races[set_id], "registered shop crafting race " + id)
+	for id: String in ["EQ61", "EQ113", "EQ13", "EQ97"]:
+		var original: Variant = Registry._equipment_v2[id].race_id
+		Registry._equipment_v2[id].race_id = "B04" if original != "B04" else "B01"
+		check(not Registry.validate(2).is_empty(), "reject altered shop or natural race " + id)
+		Registry._equipment_v2[id].race_id = original
+	check(Registry.validate(2).is_empty(), "catalog validation restores without changing legacy definitions")
 	check(Registry.equipment_ids().size() == 96 and Registry.slots().size() == 6, "legacy remains 96 templates and six slots")
 	check(Registry.equipment_ids(2).size() == 124 and Registry.slots(2).size() == 8, "explicit version two has 124 templates and eight slots")
 	check(Registry.equipment("EQ97").is_empty() and Registry.equipment("EQ124").is_empty(), "new IDs never leak into legacy")

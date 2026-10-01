@@ -33,7 +33,7 @@ func all_text(node: Node) -> String:
 func capture(label: String) -> void:
 	if DisplayServer.get_name() == "headless": return
 	await RenderingServer.frame_post_draw
-	var folder := "/workspace/shared/pr2-visual/s10-ui-captures"
+	var folder := ProjectSettings.globalize_path(Game.profile_path).get_base_dir().path_join("s10-ui-captures")
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--capture-dir="): folder = argument.trim_prefix("--capture-dir=")
 	DirAccess.make_dir_recursive_absolute(folder)
@@ -75,6 +75,11 @@ func _run() -> void:
 			app.show_workshop("inventory")
 			await frames()
 			var panel: Control = app.screen.find_child("Workshop",true,false)
+			var capacity: Control = app.screen.find_child("StorageCapacityHint",true,false)
+			var header: Control = panel.find_child("WorkshopHeader",true,false)
+			check(capacity != null and header.get_global_rect().encloses(capacity.get_global_rect()),"capacity hint stays inside header "+locale+str(extent))
+			var navigation: Control = panel.find_child("OpenCharacterStats",true,false)
+			check(capacity != null and capacity.get_global_rect().end.y <= navigation.get_global_rect().position.y,"capacity hint avoids the navigation row "+locale+str(extent))
 			panel.selected_item = duplicate.instance_id
 			panel._render()
 			await frames()

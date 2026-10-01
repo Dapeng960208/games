@@ -80,8 +80,9 @@ func _run() -> void:
 	if mode not in ["normal","drained","abandon"]:
 		_fail("mode must be normal, drained or abandon")
 		return
-	if Game.profile_path != "user://test_main_audio_shutdown/profile.json":
-		_fail("requires exact isolated test_main_audio_shutdown profile")
+	var runner_profile := Game._isolated_test_path(Game.profile_path) and Game.profile_path.replace("\\", "/").get_file() == "test_main_audio_shutdown.json"
+	if Game.profile_path != "user://test_main_audio_shutdown/profile.json" and not runner_profile:
+		_fail("requires isolated test_main_audio_shutdown profile")
 		return
 	if Game.has_profile or FileAccess.file_exists(Game.profile_path) or Game.run != null:
 		_fail("requires a fresh synthetic profile; refuses existing save")

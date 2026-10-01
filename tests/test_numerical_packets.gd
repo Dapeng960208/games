@@ -135,7 +135,7 @@ func _test_guards() -> void:
 		check(not result.accepted_refresh and state.guards == before, "invalid guard amount has no mutation")
 
 func _test_legacy() -> void:
-	check(Rules.default_ruleset() == Rules.LEGACY, "runtime stays gated off")
+	check(Rules.default_ruleset() == Rules.V2, "S10 enables new runs without changing explicit legacy packet rules")
 	var state := Status.new()
 	check(state.ruleset_version == Rules.LEGACY, "status defaults to legacy")
 	state.apply("burn", 10.5, 3.0)
