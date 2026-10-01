@@ -1,4 +1,5 @@
 extends Control
+const Traits = preload("res://scripts/ui/equipment_traits.gd")
 ## Paused parchment inventory. The owner supplies modal pause/input handling;
 ## this panel never rebuilds a world scene or permanently grants trial loot.
 signal equipment_changed()
@@ -164,12 +165,9 @@ func _detail() -> void:
 	if not data.is_empty():
 		var origin := _t("本局掉落 · 撤离后入库", "Run loot · extract to secure") if bool(comparison.pending) else _t("永久仓库 · 本局可用", "Permanent collection · available this run")
 		_flow_text(list, origin, 399, 14, MineStyle.CYAN)
-		_flow_text(list, _t("装备基础值（含强化）", "Equipment base values (with refinement)"), 399, 17, MineStyle.AMBER)
-		var item_stats: Dictionary = StatResolver.resolve(Game.run.hero_id, Game.run.level, {selected_slot:selected_id}, {selected_id:{"level":int(comparison.level)}}).get("uncapped_equipment_contribution", {})
-		for key: String in item_stats:
-			_flow_text(list, _stat_name(key)+"  +"+_value(key,float(item_stats[key])), 399, 15)
-		_flow_text(list, _t("专属词条", "Special affix"), 399, 17, MineStyle.AMBER)
-		_flow_text(list, MineStyle.content_text(data,"affix_text",_t("无专属词条", "No special affix")), 399, 15)
+		var traits := Traits.new()
+		list.add_child(traits)
+		traits.configure(data, int(comparison.level), 399, Game.run.hero_id)
 	_flow_text(list, _t("角色属性 · 当前 → 更换后", "Character values · current → equipped"), 399, 17, MineStyle.CYAN)
 	var changed := false
 	for definition: Array in ATTRIBUTES:

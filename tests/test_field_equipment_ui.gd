@@ -149,7 +149,7 @@ func _inspect_layout(locale: String, expected_current: String, expected_next: St
 	var panel := _top("FieldEquipmentModal")
 	check(panel != null, locale + ": field comparison is the visible modal")
 	if panel == null: return
-	check(panel.size.is_equal_approx(Vector2(980, 550)), locale + ": fixed 980 by 550 modal")
+	check(panel.size.is_equal_approx(Vector2(980, 620)), locale + ": expanded 980 by 620 trait comparison")
 	check(_fits(Rect2(Vector2.ZERO, Vector2(1280, 720)), panel.get_global_rect()), locale + ": modal fits the game viewport")
 	check(bool(app.modals[-1].get("required", false)) and paused, locale + ": pending decision pauses play and cannot be silently dismissed")
 	var comparison := panel.find_child("FieldEquipmentComparison", true, false) as Control

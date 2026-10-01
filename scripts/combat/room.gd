@@ -319,15 +319,15 @@ func _configure_ground_boundary() -> void:
 	ARENA = layout.get("arena", DEFAULT_ARENA)
 	ground_polygon = PackedVector2Array()
 	if bool(layout.get("fixed_layout", false)) or bool(layout.get("painted_service", false)):
-		ground_polygon = WorldArt.environment_ground_polygon(ARENA, _biome_id())
+		ground_polygon = WorldArt.environment_ground_polygon(ARENA, _biome_id(), WorldArt.environment_room_id(layout))
 		if not ground_polygon.is_empty(): ARENA = GroundBoundary.bounds(ground_polygon)
 
 func _configure_world_view() -> void:
 	var painted_arena: Rect2 = layout.get("arena", ARENA)
-	$MineBackdrop.configure(painted_arena, _biome_id(), layout_seed)
+	$MineBackdrop.configure(painted_arena, _biome_id(), layout_seed, WorldArt.environment_room_id(layout))
 	$MineBackdrop.configure_layout(layout)
 	if is_instance_valid(camera):
-		camera.configure(self, player, ARENA, WorldArt.environment_world_rect(painted_arena, _biome_id()))
+		camera.configure(self, player, ARENA, WorldArt.environment_world_rect(painted_arena, _biome_id(), WorldArt.environment_room_id(layout)))
 
 func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictionary = {}) -> MineEnemy:
 	if _living_enemy_count() >= Balance.MAX_ENEMIES:
@@ -739,6 +739,10 @@ func _update_gold(delta: float) -> void:
 func nearby_interaction() -> Dictionary:
 	if Game.run == null or player == null:
 		return {}
+	if not expedition_context.is_empty() and not Game.pending_field_equipment().is_empty():
+		var loot_at := loot_position()
+		if player.position.distance_to(loot_at) <= Balance.INTERACTION_RADIUS and has_line_of_sight(player.position,loot_at):
+			return {"kind":"loot","position":loot_at,"label":"整理战利品" if Words.locale != "en" else "Collect loot"}
 	if is_instance_valid(objectives):
 		var task: Dictionary = objectives.nearby_interaction(player.position)
 		if not task.is_empty():
@@ -771,7 +775,7 @@ func interaction_hint() -> String:
 	if nearby.is_empty():
 		return ""
 	var key: String = _interaction_key()
-	if nearby.kind in ["objective","next","early_extract","relic_choice","supply"]:
+	if nearby.kind in ["objective","next","early_extract","relic_choice","supply","loot"]:
 		return "[" + key + "] " + str(nearby.get("label","继续远征"))
 	if nearby["kind"] == "extract":
 		return tr("INTERACT_EXTRACT").replace("[E]", "["+key+"]")
@@ -791,7 +795,7 @@ func interact() -> void:
 		return
 	if nearby.kind == "objective":
 		objectives.interact(str(nearby.id),player)
-	elif nearby.kind in ["next","early_extract","relic_choice","supply"]:
+	elif nearby.kind in ["next","early_extract","relic_choice","supply","loot"]:
 		set_input_blocked(true)
 		interaction_requested.emit(str(nearby.kind),expedition_context.duplicate(true))
 	elif nearby["kind"] == "extract":
@@ -1388,6 +1392,7 @@ func _draw_interaction_focus(canvas: Node2D) -> void:
 		return
 	var selected: Dictionary = nearby_interaction()
 	var english: bool = str(Game.profile.get("settings", {}).get("language", "zh_CN")) == "en"
+	_draw_equipment_loot(canvas)
 	for id: String in relic_positions:
 		var at: Vector2 = relic_positions[id]
 		if Game.run.relics.has(id) and player.position.distance_to(at) < 125.0 and has_line_of_sight(player.position, at):
@@ -1396,7 +1401,7 @@ func _draw_interaction_focus(canvas: Node2D) -> void:
 		return
 	if not expedition_context.is_empty() and selected.kind != "buff":
 		var focus_at: Vector2 = selected.get("position",exit_position)
-		_draw_world_label(canvas,focus_at-Vector2(0,72),str(selected.get("label","继续远征")),true,Color("e2bd7e"),"exit" if selected.kind in ["next","early_extract","extract"] else "interaction")
+		_draw_world_label(canvas,focus_at-Vector2(0,72),str(selected.get("label","继续远征")),true,Color("e2bd7e"),"loot" if selected.kind == "loot" else "exit" if selected.kind in ["next","early_extract","extract"] else "interaction")
 		return
 	var extract: bool = selected.kind == "extract"
 	var buff: bool = selected.kind == "buff"
@@ -1413,6 +1418,28 @@ func _draw_interaction_focus(canvas: Node2D) -> void:
 	elif not extract:
 		label = tr("RELIC_" + str(selected.id).to_upper() + "_NAME")
 	_draw_world_label(canvas, at-Vector2(0,size.y+19), label, true, tint, "interaction" if buff else ("exit" if extract else "loot"))
+
+func loot_position() -> Vector2:
+	return clamp_actor(exit_position+Vector2(-180,55),28)
+
+func _draw_equipment_loot(canvas: Node2D) -> void:
+	if expedition_context.is_empty(): return
+	var offers: Array = Game.pending_field_equipment()
+	if offers.is_empty(): return
+	var at := loot_position()
+	var pulse := .85+.15*sin(float(Time.get_ticks_msec())*.003)
+	canvas.draw_set_transform(at,0,Vector2(1,.46))
+	canvas.draw_circle(Vector2.ZERO,49,Color(1,.78,.35,.15*pulse))
+	canvas.draw_arc(Vector2.ZERO,42,0,TAU,48,Color("cc9e57"),2,true)
+	canvas.draw_set_transform(Vector2.ZERO)
+	for index: int in mini(offers.size(),3):
+		var art: Texture2D = preload("res://scripts/ui/equipment_art.gd").texture(str(offers[index].equipment_id))
+		if art == null: continue
+		var extent := art.get_size()*minf(62.0/art.get_width(),62.0/art.get_height())
+		var center := at+Vector2((index-mini(offers.size(),3)*.5+.5)*32,-25-index*6)
+		canvas.draw_texture_rect(art,Rect2(center-extent*.5,extent),false)
+	if player.position.distance_to(at) > Balance.INTERACTION_RADIUS:
+		_draw_world_label(canvas,at+Vector2(0,32),("Loot ×%d" if Words.locale == "en" else "战利品 ×%d") % offers.size(),false,Color("e2bd7e"),"loot")
 
 func _draw_world_label(canvas: Node2D, at: Vector2, label: String, actionable: bool, tint: Color, icon_key: String = "interaction") -> void:
 	var font_size: int = 16

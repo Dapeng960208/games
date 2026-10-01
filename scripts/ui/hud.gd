@@ -14,11 +14,14 @@ const GrowthReadout = preload("res://scripts/ui/progression_readout.gd")
 const RewardPolicy = preload("res://scripts/world/room_rewards.gd")
 const QuestLocalization = preload("res://scripts/ui/quest_localization.gd")
 const Bindings = preload("res://scripts/core/control_bindings.gd")
+const Presentation = preload("res://scripts/world/room_presentation.gd")
+const IdentityPlate = preload("res://scripts/ui/room_identity_plate.gd")
 
 const SKILLS := ["q","secondary","f","ultimate"]
 const KEYS := ["Q","W","E","R"]
 const SKILL_ACTIONS := ["skill_q","skill_secondary","skill_f","skill_ultimate","dash"]
-const BUFF_ORDER := ["damage","guard","supply_guard","brace_guard","haste","burn","shock","chill","corrosion","bleed","grievous","damage_reduction","invulnerable"]
+const BUFF_ORDER := ["damage","guard","supply_guard","combat_guard","brace_guard","haste","burn","shock","chill","corrosion","bleed","grievous","damage_reduction","invulnerable"]
+const Traits = preload("res://scripts/ui/equipment_traits.gd")
 const COMBAT_STATUS_LABELS := {"burn":"灼烧","shock":"感电","chill":"寒冷","corrosion":"腐蚀","bleed":"流血","grievous":"重伤","damage_reduction":"减伤","brace_guard":"铁壁战吼","invulnerable":"无敌"}
 const COMBAT_STATUS_NOTES := {"burn":"持续受到魔法伤害。","shock":"后续命中可引发电击。","chill":"移动速度降低。","corrosion":"护甲降低并持续受到物理伤害。","bleed":"持续受到物理伤害。","grievous":"受到的治疗降低 40%。","damage_reduction":"临时降低受到的伤害。","brace_guard":"受到的伤害降低 25%；与其他减伤取较强值，各自独立到期。","invulnerable":"持续时间内免疫伤害。"}
 
@@ -32,6 +35,9 @@ class ParchmentPlate extends Panel:
 	var compass: Texture2D
 	var reward_bullet_y := 147.0
 	var skin_scale := 1.0
+	var room_emblem := ""
+	var room_accent := Color("398f96")
+	var room_chapter := 0
 	func _ready() -> void:
 		texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		resized.connect(queue_redraw)
@@ -80,14 +86,20 @@ class ParchmentPlate extends Panel:
 					draw_texture_rect(skin,Rect2(Vector2.ZERO,size),false,Color(1,1,1,.80))
 				else:
 					draw_style_box(MineStyle.box(Color(.99,.93,.80,.62),Color.TRANSPARENT,0),Rect2(10,4,size.x-10,size.y-6))
-				draw_line(Vector2(35,34),Vector2(size.x-8,34),Color("af8f59"),1.5,true)
-				if compass != null:
+				draw_line(Vector2(35,34),Vector2(size.x-8,34),room_accent if not room_emblem.is_empty() else Color("af8f59"),1.5,true)
+				if not room_emblem.is_empty():
+					IdentityPlate.draw_emblem(self,room_emblem,Vector2(20,20),16,room_accent)
+				elif compass != null:
 					draw_texture_rect(compass,Rect2(3,3,34,34),false)
 				else:
 					var center := Vector2(20,20)
 					draw_arc(center,12,0,TAU,28,Color("b68d54"),2,true)
 					draw_polyline(PackedVector2Array([center+Vector2(0,-18),center+Vector2(7,0),center+Vector2(0,18),center+Vector2(-7,0),center+Vector2(0,-18)]),Color("392843"),2,true)
 					draw_polyline(PackedVector2Array([center+Vector2(-18,0),center+Vector2(0,-7),center+Vector2(18,0),center+Vector2(0,7),center+Vector2(-18,0)]),Color("392843"),2,true)
+				if room_chapter > 0:
+					var tab := PackedVector2Array([Vector2(size.x-23,3),Vector2(size.x-7,3),Vector2(size.x-7,25),Vector2(size.x-15,21),Vector2(size.x-23,25)])
+					draw_colored_polygon(tab,Color(room_accent,.85))
+					draw_string(get_theme_font("font"),Vector2(size.x-23,16),str(room_chapter),HORIZONTAL_ALIGNMENT_CENTER,16,11,Color("fff3d7"))
 				for y in [52.0,reward_bullet_y]:
 					draw_circle(Vector2(20,y),7,Color("543b40"))
 					draw_circle(Vector2(20,y),5,Color("f3cf87") if y < 60 else Color("d2c4a6"))
@@ -208,8 +220,8 @@ class BuffChip extends Button:
 	func configure(next_effect: String) -> void:
 		effect = next_effect
 		name = "Buff_"+effect
-		var artwork := "pressure" if effect == "damage" else "guard" if effect == "supply_guard" else effect
-		if effect in ["damage","guard","supply_guard","haste"]:
+		var artwork := "pressure" if effect == "damage" or effect.begins_with("gear:") else "guard" if effect in ["supply_guard","combat_guard"] else effect
+		if effect in ["damage","guard","supply_guard","combat_guard","haste"] or effect.begins_with("gear:"):
 			generated_texture = Sampler.sampled("res://assets/generated/props/buff_"+artwork+"_v1.png")
 		elif effect in ["burn","shock","chill","corrosion"]:
 			generated_texture = Sampler.sampled("res://assets/generated/ui/state_"+effect+"_v1.png")
@@ -233,6 +245,10 @@ class BuffChip extends Button:
 			draw_texture_rect(generated_texture,Rect2(Vector2(22,14)-extent*0.5,extent),false)
 		else:
 			_draw_glyph(accent)
+		var duration := maxf(.01,float(state.get("duration",1)))
+		var ratio := clampf(float(state.get("remaining",0))/duration,0,1)
+		if not bool(state.get("prepared",false)):
+			draw_arc(Vector2(22,15),13,-PI*.5,-PI*.5+TAU*ratio,32,accent,2,true)
 		var font := get_theme_font("font","Button")
 		var value := ("RDY" if Words.locale == "en" else "待机") if bool(state.get("prepared",false)) else str(remaining_seconds())
 		var width := font.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x
@@ -308,6 +324,7 @@ var guard_icon: Control
 var buff_row: Control
 var buff_chips: Dictionary = {}
 var active_buffs: Dictionary = {}
+var buff_durations: Dictionary = {}
 var class_label: Label
 var class_bar: ProgressBar
 var passive_panel: Panel
@@ -331,6 +348,8 @@ var quest_progress: Label
 var quest_reward: Label
 var expedition_label: Label
 var expedition_beads: Control
+var room_identity_plate: Button
+var room_purpose := ""
 var hero_bust: Control
 var skill_ribbon: Panel
 var quest_reward_signature := ""
@@ -373,6 +392,13 @@ func _ready() -> void:
 	health_label = _line(status_panel,"",Vector2(137,35),Vector2(210,24),17,Color("fff7e1"))
 	guard_icon = _icon(status_panel,"state_guard",Vector2(7,105),Vector2(20,20))
 	shield_label = _line(status_panel,"",Vector2(29,104),Vector2(49,22),16,HUD_CYAN)
+	var shield_target := Button.new()
+	shield_target.name = "ShieldDetails"
+	shield_target.position = Vector2(7,101)
+	shield_target.size = Vector2(79,30)
+	for key: String in ["normal","hover","pressed","focus"]: shield_target.add_theme_stylebox_override(key,StyleBoxEmpty.new())
+	status_panel.add_child(shield_target)
+	_bind_detail(shield_target,"shield")
 	shield_bar = MineStyle.meter(status_panel,Vector2(125,57),Vector2(234,3),Color("4b9aa6"))
 	health_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	resource_icon = _icon(status_panel,"resource_rage",Vector2(125,69),Vector2(20,20))
@@ -389,7 +415,7 @@ func _ready() -> void:
 	buff_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(buff_row)
 	buff_row.hide()
-	location_panel = _plate(self,Vector2(461,22),Vector2(358,62),"expedition_plaque")
+	location_panel = _plate(self,Vector2(461,22),Vector2(358,123),"expedition_plaque")
 	location_panel.name = "ExpeditionRibbon"
 	expedition_label = _line(location_panel,"",Vector2(97,-1),Vector2(172,28),19,HUD_INK)
 	expedition_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -398,6 +424,12 @@ func _ready() -> void:
 	expedition_beads.size = Vector2(338,36)
 	expedition_beads.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	location_panel.add_child(expedition_beads)
+	room_identity_plate = IdentityPlate.new()
+	room_identity_plate.position = Vector2(0,65)
+	room_identity_plate.size = Vector2(358,58)
+	location_panel.add_child(room_identity_plate)
+	_bind_detail(room_identity_plate,"quest")
+	room_identity_plate.pressed.connect(func(): room_identity_plate.grab_focus())
 	quest_panel = _plate(self,Vector2(1000,387),Vector2(264,166),"quest_note")
 	quest_panel.name = "QuestRibbon"
 	region_label = _line(quest_panel,"",Vector2(43,6),Vector2(203,29),20,HUD_INK)
@@ -541,6 +573,7 @@ func _apply_layout() -> void:
 	expedition_label.position.x = (route_width-172)*.5
 	expedition_beads.size.x = route_width-20
 	expedition_beads.queue_redraw()
+	room_identity_plate.size.x = route_width
 	location_panel.queue_redraw()
 	buff_row.position = Vector2(margin,154 if screen_size.x >= 760 else 220)
 	relic_row.position = Vector2(screen_size.x-relic_row.size.x-margin,118)
@@ -573,12 +606,12 @@ func _apply_layout() -> void:
 	passive_button.size = passive_panel.size
 	quest_panel.size.x = 256 if _compact_layout else 272
 	quest_panel.position.x = screen_size.x-quest_panel.size.x-margin
-	region_label.size.x = quest_panel.size.x-58
+	region_label.size.x = quest_panel.size.x-70
 	objective_label.size.x = quest_panel.size.x-48
 	quest_progress.size.x = quest_panel.size.x-48
 	quest_reward.size.x = quest_panel.size.x-48
 	quest_button.size.x = quest_panel.size.x-24
-	toast.position = Vector2(maxf(24,(screen_size.x-576)*.5),94)
+	toast.position = Vector2(maxf(24,(screen_size.x-576)*.5),150)
 	toast.size.x = minf(576,screen_size.x-48)
 	hint_label.size.x = minf(520,screen_size.x-32)
 	hint_label.position = Vector2((screen_size.x-hint_label.size.x)*.5,skill_dock.position.y-31)
@@ -802,7 +835,12 @@ func refresh() -> void:
 		_update_navigation()
 
 func _update_quest_and_route() -> void:
-	region_label.text = Words.text("ROOM_"+str(room.layout_id))
+	var room_key := "ROOM_"+str(room.layout_id)
+	if Words.catalog.has(room_key):
+		region_label.text = Words.text(room_key)
+	else:
+		var definition: Dictionary = WorldCatalog.bosses().get(room.layout_id,{}) if str(room.layout_id).begins_with("BO") else WorldCatalog.room(room.layout_id)
+		region_label.text = MineStyle.content_text(definition,"name",str(room.layout.get("name",room.layout_id)))
 	var target: Dictionary = room.navigation_target()
 	var title_key := str(target.get("title","NAV_EXIT"))
 	var text_value := Words.text(title_key) if Words.catalog.has(title_key) else MineStyle.content_text(target,"name",title_key)
@@ -870,14 +908,33 @@ func _update_quest_and_route() -> void:
 		var context: Dictionary = room.expedition_context
 		var definition: Dictionary = WorldCatalog.bosses().get(room.layout_id,{}) if context.get("role") == "boss" else WorldCatalog.room(room.layout_id)
 		region_label.text = MineStyle.content_text(definition,"name",str(context.get("name",room.layout_id)))
-		count = maxi(1,Game.run.expedition.get("route",{}).get("nodes",[]).size())
-		current = int(context.get("node_index",0))+1
+		var route_nodes: Array = Game.run.expedition.get("route",{}).get("nodes",[])
+		count = maxi(1,route_nodes.size() if not route_nodes.is_empty() else int(context.get("node_count",1)))
+		current = clampi(int(context.get("node_index",0))+1,1,count)
 	else:
 		current = clampi(room.activated_encounters.size(),1,count)
 	expedition_label.text = ("Expedition  %d / %d" if Words.locale == "en" else "远征  %d / %d") % [current,count]
 	expedition_beads.current = current
 	expedition_beads.count = count
 	expedition_beads.queue_redraw()
+	_update_room_identity()
+
+func _update_room_identity() -> void:
+	var live_layout: Dictionary = room.layout
+	room_identity_plate.configure(live_layout,region_label.text)
+	room_identity_plate.update_player(room.player.global_position if is_instance_valid(room.player) else Vector2.ZERO,is_instance_valid(room.player))
+	var design: Dictionary = room_identity_plate.design
+	room_purpose = Presentation.local_caption(design,Words.locale == "en")
+	quest_panel.set("room_emblem",str(design.get("emblem","")))
+	quest_panel.set("room_accent",room_identity_plate.accent)
+	quest_panel.set("room_chapter",int(design.get("chapter",0)))
+	# Fit the complete room name before the chapter bookmark in both locales.
+	var font := region_label.get_theme_font("font")
+	var font_size := 20 if Words.locale != "en" else 18
+	while font_size > 14 and font.get_string_size(region_label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x > region_label.size.x:
+		font_size -= 1
+	region_label.add_theme_font_size_override("font_size",font_size)
+	quest_panel.queue_redraw()
 
 func _localized_quest_action(value: String) -> String:
 	return QuestLocalization.translate_action(value,Words.locale == "en")
@@ -982,17 +1039,46 @@ func _update_buffs() -> void:
 				if effect in BUFF_ORDER and float(state.get("remaining",0.0)) > 0.0:
 					active_buffs[effect] = state
 		if is_instance_valid(room.get("player")) and room.player.status != null:
+			var other_guards: Array[String] = []
+			var guard_remaining := 0.0
+			var guard_amount := 0.0
 			for guard_source: String in room.player.status.guards:
-				if not guard_source.begins_with("supply:"): continue
 				var guard: Dictionary = room.player.status.guards[guard_source]
 				if float(guard.get("amount",0)) <= 0 or float(guard.get("remaining",0)) <= 0: continue
+				if not guard_source.begins_with("supply:"):
+					if guard_source == "room_prop:guard": continue
+					other_guards.append(_guard_source_name(guard_source)+" · %d · %.1fs" % [ceili(float(guard.amount)),float(guard.remaining)])
+					guard_remaining = maxf(guard_remaining,float(guard.remaining))
+					guard_amount = maxf(guard_amount,float(guard.amount))
+					continue
 				var prepared: bool = CombatStatus.is_prepared_supply_guard(guard_source)
 				active_buffs["supply_guard"] = {"effect":"supply_guard","name":"预备护盾","name_en":"Reserve shield","description":"首次吸收伤害才开始计时；耗尽或离开本房间后失效。","description_en":"The timer starts on the first absorbed hit. Ends when depleted or leaving this room.","remaining":guard.remaining,"duration":4.0,"amount":guard.amount,"prepared":prepared,"source":"supply","color":HUD_CYAN}
+			if not other_guards.is_empty():
+				active_buffs["combat_guard"] = {"effect":"combat_guard","name":"技能与装备护盾","name_en":"Skill & equipment shields","description":"\n".join(other_guards),"description_en":"\n".join(other_guards),"remaining":guard_remaining,"amount":guard_amount,"source":"combat","color":HUD_CYAN}
 			for effect: String in room.player.status.states:
 				var state: Dictionary = room.player.status.states[effect]
 				if not COMBAT_STATUS_LABELS.has(effect) or float(state.get("remaining",0.0)) <= 0.0: continue
 				var beneficial := effect in ["damage_reduction","brace_guard","invulnerable"]
-				active_buffs[effect] = {"effect":effect,"name":COMBAT_STATUS_LABELS[effect],"name_en":effect.replace("_"," ").capitalize(),"description":COMBAT_STATUS_NOTES[effect],"remaining":state.remaining,"duration":state.remaining,"source":"combat","color":Color("92dfda") if beneficial else Color("eb9278")}
+				var power := float(state.get("power",0))
+				var magnitude := ""
+				if effect in ["damage_reduction","brace_guard"]: magnitude = ("\nDamage reduction: %.0f%%" if Words.locale == "en" else "\n当前减伤：%.0f%%") % (power*100)
+				if effect in ["burn","corrosion","bleed"]: magnitude = ("\nDamage per tick before mitigation: %.1f" if Words.locale == "en" else "\n每秒基础伤害（减免前）：%.1f") % (power*float({"burn":.12,"corrosion":.08,"bleed":.10}[effect]))
+				active_buffs[effect] = {"effect":effect,"name":COMBAT_STATUS_LABELS[effect],"name_en":effect.replace("_"," ").capitalize(),"description":COMBAT_STATUS_NOTES[effect]+magnitude,"description_en":_combat_status_note(effect)+magnitude,"remaining":state.remaining,"duration":float(state.remaining)+maxf(0,room.player.status.clock-float(state.get("applied_at",room.player.status.clock))),"source":"combat","color":Color("92dfda") if beneficial else Color("eb9278")}
+			if room.player.loadout != null and room.player.loadout.effects != null:
+				var rules: RefCounted = room.player.loadout.effects
+				for id: String in rules.buffs:
+					var value: Dictionary = rules.buffs[id]
+					var left: float = float(value.until)-float(rules.clock)
+					if left <= 0: continue
+					var caption := _modifier_name(str(value.stat))+" %+.0f%%" % (float(value.amount)*100)
+					var source_name := _guard_source_name("equipment:"+id)
+					active_buffs["gear:"+id] = {"effect":"gear:"+id,"name":caption,"name_en":caption,"description":source_name,"description_en":source_name,"remaining":left,"source":"combat","color":HUD_AMBER}
+	for effect: String in buff_durations.keys():
+		if not active_buffs.has(effect): buff_durations.erase(effect)
+	for effect: String in active_buffs:
+		var value: Dictionary = active_buffs[effect]
+		buff_durations[effect] = maxf(float(buff_durations.get(effect,0)),float(value.get("duration",value.remaining)))
+		if not value.has("duration"): value["duration"] = buff_durations[effect]
 	for effect: String in buff_chips.keys():
 		if active_buffs.has(effect): continue
 		var expired: Control = buff_chips[effect]
@@ -1007,7 +1093,11 @@ func _update_buffs() -> void:
 		expired.queue_free()
 		buff_chips.erase(effect)
 	var ordinal := 0
-	for effect: String in BUFF_ORDER:
+	var order: Array = BUFF_ORDER.duplicate()
+	var gear_effects: Array = active_buffs.keys().filter(func(effect: String): return effect.begins_with("gear:"))
+	gear_effects.sort()
+	order.append_array(gear_effects)
+	for effect: String in order:
 		if not active_buffs.has(effect): continue
 		if not buff_chips.has(effect):
 			var new_chip := BuffChip.new()
@@ -1034,14 +1124,32 @@ func buff_info(effect: String) -> Dictionary:
 	var summary := "Duration %.0fs · Remaining %.1fs" % [duration,remaining] if english else "持续 %.0f 秒 · 剩余 %.1f 秒" % [duration,remaining]
 	if bool(state.get("prepared",false)):
 		summary = "Ready · 4s after first absorbed hit" if english else "待机 · 首次承伤后持续 4 秒"
-	if effect in ["guard","supply_guard"] and state.has("amount"):
+	if effect in ["guard","supply_guard","combat_guard"] and state.has("amount"):
 		summary += ("\nShield remaining: %d" if english else "\n当前护盾：%d") % ceili(float(state.amount))
 	var note := "Same type refreshes its duration; does not stack. Ends when leaving the room." if english else "同类再次获得只刷新持续时间，不叠加。离开房间时失效。"
 	if str(state.get("source","")) == "combat":
 		note = "Live combat status. The timer follows the actual effect." if english else "实战状态计时，与角色实际效果同步。"
+		if effect == "combat_guard": note += "\n"+("Shield pools use the maximum, with independent expiry timers." if english else "多来源护盾取最大值，不相加；各来源独立到期。")
 	elif str(state.get("source","")) == "supply":
 		note = "Purchased protection for this room. Waiting does not consume it; it cannot be carried into the next room." if english else "本房购买防护：待机不消耗时间，不能带入下一房间。"
 	return {"name":MineStyle.content_text(state,"name"),"description":MineStyle.content_text(state,"description"),"summary":summary,"remaining":remaining,"duration":duration,"state":state.duplicate(true),"note":note}
+
+func _guard_source_name(source: String) -> String:
+	var id := source.trim_prefix("equipment:").trim_prefix("set_").get_slice(":",0)
+	if id.begins_with("EQ"): return MineStyle.content_text(ContentRegistry.equipment(id),"name",id)
+	if id.begins_with("S") and "_" in id:
+		return MineStyle.content_text(ContentRegistry.sets().get(id.get_slice("_",0),{}),"name",id)+" · "+id.get_slice("_",1)
+	if source.begins_with("hero_"):
+		var slot := source.trim_prefix("hero_")
+		return MineStyle.content_text(ContentRegistry.hero(Game.run.hero_id).get("skills",{}).get(slot,{}),"name",slot)
+	return "Hero passive" if Words.locale == "en" else "角色被动"
+
+func _modifier_name(key: String) -> String:
+	var names := {"damage_bonus":["伤害提升","Damage bonus"],"crit_bonus":["暴击提升","Critical chance"],"attack_speed_bonus":["攻速提升","Attack speed"],"move_speed_bonus":["移速提升","Move speed"],"damage_reduction_bonus":["减伤提升","Damage reduction"],"slow_resistance":["减速抗性","Slow resistance"],"chill_duration_bonus":["寒冷持续提升","Chill duration"],"cost_reduction":["技能消耗降低","Skill cost reduction"]}
+	return str(names.get(key,[key,key])[1 if Words.locale == "en" else 0])
+
+func _combat_status_note(effect: String) -> String:
+	return str({"burn":"Magic damage over time.","shock":"A subsequent hit triggers lightning.","chill":"Movement speed reduced.","corrosion":"Armor reduced with physical damage over time.","bleed":"Physical damage over time.","grievous":"Healing received reduced by 40%.","damage_reduction":"Temporary damage reduction.","brace_guard":"Uses the stronger reduction; effects expire independently.","invulnerable":"Immune to damage while active."}.get(effect,""))
 
 ## Temporary buff paint is measured independently of the standing HUD footprint.
 func active_buff_coverage_rects() -> Array[Rect2]:
@@ -1152,12 +1260,22 @@ func _update_tooltip() -> void:
 		return
 	if target != tooltip_panel: active_detail_slot = str(target.get_meta("detail_slot","q"))
 	var body: String
-	if active_detail_slot == "wallet":
+	if active_detail_slot == "shield":
+		tooltip_title.text = ("Shield · %d" if Words.locale == "en" else "护盾 · %d") % ceili(Game.run.shield)
+		var sources: Array[String] = []
+		for source: String in room.player.status.guards:
+			var guard: Dictionary = room.player.status.guards[source]
+			if float(guard.amount) <= 0 or float(guard.remaining) <= 0: continue
+			var title := ("Reserve shield" if Words.locale == "en" else "预备护盾") if source.begins_with("supply:") else ("Protection beacon" if Words.locale == "en" else "守护信标") if source.begins_with("room_prop:") else _guard_source_name(source)
+			sources.append(title+" · %d · " % ceili(float(guard.amount))+("待机" if Words.locale != "en" else "Ready") if CombatStatus.is_prepared_supply_guard(source) else title+" · %d · %.1fs" % [ceili(float(guard.amount)),float(guard.remaining)])
+		body = "\n".join(sources)+"\n\n"+("Shields absorb damage first. Multiple sources use the maximum and expire independently." if Words.locale == "en" else "护盾优先吸收伤害。多来源护盾取最大值，不叠加；各自独立到期。")
+	elif active_detail_slot == "wallet":
 		tooltip_title.text = Words.text("CARRIED",{"gold":Game.run.gold})
 		body = retained_label.text+"\n\n"+Words.text("HUD_WALLET_NOTE")
 	elif active_detail_slot == "quest":
 		tooltip_title.text = region_label.text
-		body = quest_full_action+"\n\n"+quest_progress.text+"\n"+quest_reward.text
+		body = (room_purpose+"\n\n" if not room_purpose.is_empty() else "")+quest_full_action+"\n\n"+quest_progress.text+"\n"+quest_reward.text
+		body += "\n\n"+("Room sketch: brass main route, colored side route, diamonds are objective positions; the dark dot follows you." if Words.locale == "en" else "房间小图：黄铜线为主路，主题色线为支路，菱形为任务位置，深色圆点为当前角色。")
 		if not room.expedition_context.is_empty():
 			body += "\n"+("Extract successfully to retain equipment." if Words.locale == "en" else "装备需成功撤离带回。")
 	elif active_detail_slot == "progression":
@@ -1201,7 +1319,14 @@ func _update_tooltip() -> void:
 	tooltip_body.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	if target != tooltip_panel:
 		var bounds := target.get_global_rect()
-		if active_detail_slot == "quest":
+		if target == room_identity_plate:
+			# The room seal opens its note just below the top instruments, beside
+			# the map. Hovering keeps the room title and hero meters in view.
+			var note_x := bounds.end.x+8
+			if note_x+tooltip_panel.size.x > screen_size.x-16: note_x = bounds.position.x
+			var last_note_y := maxf(16,screen_size.y-tooltip_panel.size.y-16)
+			tooltip_panel.position = Vector2(clampf(note_x,16,screen_size.x-tooltip_panel.size.x-16),clampf(bounds.end.y+8,minf(150,last_note_y),last_note_y))
+		elif active_detail_slot == "quest":
 			# A long action can move its note upwards. Its detail stays beside
 			# the note so hovering never covers the source's click target.
 			tooltip_panel.position = Vector2(clampf(bounds.position.x-tooltip_panel.size.x,16,screen_size.x-tooltip_panel.size.x-16),clampf(bounds.position.y,16,screen_size.y-tooltip_panel.size.y-16))

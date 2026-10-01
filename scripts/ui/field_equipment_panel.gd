@@ -4,6 +4,7 @@ extends Control
 signal choice_requested(decision: String)
 
 const Advice = preload("res://scripts/ui/equipment_advice.gd")
+const Traits = preload("res://scripts/ui/equipment_traits.gd")
 const MAJOR_STATS := ["attack", "ability_power", "max_hp", "armor", "magic_resist"]
 const OTHER_STATS := ["attack_interval", "move_speed", "resource_max", "armor_penetration", "magic_penetration", "true_damage_bonus", "crit_chance", "crit_multiplier", "cooldown_reduction", "damage_bonus", "damage_reduction", "burn_damage", "corrosion_damage_bonus", "status_duration"]
 const RATIO_STATS := ["crit_chance", "crit_multiplier", "cooldown_reduction", "damage_bonus", "damage_reduction", "burn_damage", "corrosion_damage_bonus", "status_duration"]
@@ -36,20 +37,20 @@ func _build() -> void:
 	_build_stats()
 	_build_sets(current, candidate)
 	_build_advice()
-	equip_button = MineStyle.button(self, "", Vector2(24,496), Vector2(458,44), func(): _submit("equip"))
+	equip_button = MineStyle.button(self, "", Vector2(24,558), Vector2(458,44), func(): _submit("equip"))
 	equip_button.name = "FieldEquipNow"
-	equip_button.text = _t("立即装备 · 本局生效", "Equip now · this run")
+	equip_button.text = _t("拾取并装备 · 本局生效", "Collect & equip · this run")
 	equip_button.add_theme_font_size_override("font_size", 19)
-	keep_button = MineStyle.button(self, "", Vector2(498,496), Vector2(458,44), func(): _submit("keep"))
+	keep_button = MineStyle.button(self, "", Vector2(498,558), Vector2(458,44), func(): _submit("keep"))
 	keep_button.name = "FieldKeepCurrent"
-	keep_button.text = _t("保持当前", "Keep current")
+	keep_button.text = _t("拾取至行囊 · 保持当前装备", "Pack loot · keep current")
 	keep_button.add_theme_font_size_override("font_size", 19)
 	MineStyle.primary(keep_button, MineStyle.CYAN)
 	_link_focus()
 	keep_button.grab_focus()
 
 func _equipment_card(node_name: String, item: Dictionary, slot: String, at: Vector2, incoming: bool, equipment_level: int = 0) -> void:
-	var card := MineStyle.panel(self, at, Vector2(458,194))
+	var card := MineStyle.panel(self, at, Vector2(458,250))
 	card.name = node_name
 	card.clip_contents = true
 	var accent := MineStyle.AMBER if incoming else MineStyle.CYAN
@@ -75,13 +76,17 @@ func _equipment_card(node_name: String, item: Dictionary, slot: String, at: Vect
 	detail.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	detail.tooltip_text = metadata
 	detail.mouse_filter = Control.MOUSE_FILTER_PASS
-	var affix := MineStyle.content_text(item, "affix_text", _t("无装备词条", "No equipment affix"))
-	var scroll := _scroll(card, "FieldNextAffix" if incoming else "FieldCurrentAffix", Vector2(14,132), Vector2(430,50))
-	_scroll_label(scroll, affix, 404, 15, MineStyle.INK)
+	var scroll := _scroll(card, "FieldNextAffix" if incoming else "FieldCurrentAffix", Vector2(14,132), Vector2(430,106))
+	if item.is_empty():
+		_scroll_label(scroll, _t("无装备词条", "No equipment affix"), 404, 15, MineStyle.MUTED)
+	else:
+		var traits := Traits.new()
+		scroll.add_child(traits)
+		traits.configure(item, equipment_level, 404, Game.run.hero_id, true)
 
 func _build_stats() -> void:
-	MineStyle.literal(self, _t("本局基础属性 · 当前 → 更换后", "BASE STATS · CURRENT → EQUIPPED"), Vector2(24,307), Vector2(458,26), 17, MineStyle.CYAN)
-	var scroll := _scroll(self, "FieldStatChanges", Vector2(24,337), Vector2(458,91))
+	MineStyle.literal(self, _t("本局基础属性 · 当前 → 更换后", "BASE STATS · CURRENT → EQUIPPED"), Vector2(24,363), Vector2(458,26), 17, MineStyle.CYAN)
+	var scroll := _scroll(self, "FieldStatChanges", Vector2(24,393), Vector2(458,88))
 	var list := VBoxContainer.new()
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	list.add_theme_constant_override("separation", 5)
@@ -129,8 +134,8 @@ func _value(key: String, value: float) -> String:
 	return "%.1f" % value
 
 func _build_sets(current: Dictionary, candidate: Dictionary) -> void:
-	MineStyle.literal(self, _t("套装档位 · 更换后变化", "SET TIERS · AFTER EQUIPPING"), Vector2(498,307), Vector2(458,26), 17, MineStyle.AMBER)
-	var scroll := _scroll(self, "FieldSetChanges", Vector2(498,337), Vector2(458,91))
+	MineStyle.literal(self, _t("套装档位 · 更换后变化", "SET TIERS · AFTER EQUIPPING"), Vector2(498,363), Vector2(458,26), 17, MineStyle.AMBER)
+	var scroll := _scroll(self, "FieldSetChanges", Vector2(498,393), Vector2(458,88))
 	var list := VBoxContainer.new()
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	list.add_theme_constant_override("separation", 5)
@@ -167,7 +172,7 @@ func _build_sets(current: Dictionary, candidate: Dictionary) -> void:
 func _build_advice() -> void:
 	var summary := Control.new()
 	summary.name = "FieldEquipmentAdvice"
-	summary.position = Vector2(24,429)
+	summary.position = Vector2(24,482)
 	summary.size = Vector2(932,66)
 	summary.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(summary)

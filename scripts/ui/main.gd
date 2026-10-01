@@ -4,6 +4,8 @@ const DifficultyProfiles = preload("res://scripts/combat/enemy_profiles.gd")
 const ExpeditionScript = preload("res://scripts/world/expedition_controller.gd")
 const ExpeditionPanel = preload("res://scripts/ui/expedition_panel.gd")
 const FieldEquipmentPanel = preload("res://scripts/ui/field_equipment_panel.gd")
+const LootPickupPanel = preload("res://scripts/ui/loot_pickup_panel.gd")
+var loot_flow_active := false
 const RoutePlanner = preload("res://scripts/world/route_generator.gd")
 const CampNavTile = preload("res://scripts/ui/illustrated_nav_tile.gd")
 const CampArtwork = preload("res://scripts/ui/storybook_art.gd")
@@ -393,7 +395,33 @@ func _expedition_node_count() -> int:
 func _on_expedition_room_completed() -> void:
 	_update_expedition_status()
 	if expedition != null and expedition.active():
-		call_deferred("_show_pending_expedition_offer")
+		call_deferred("_show_loot_pickup")
+
+func _show_loot_pickup() -> void:
+	if Game.run == null or expedition == null or not expedition.active() or not modals.is_empty(): return
+	loot_flow_active = true
+	for offer: Dictionary in expedition.snapshot().get("relic_offers", []):
+		if str(offer.get("decision", "")).is_empty():
+			_show_pending_expedition_offer()
+			return
+	var offers: Array = Game.pending_field_equipment()
+	if offers.is_empty():
+		loot_flow_active = false
+		_show_pending_expedition_offer()
+		return
+	loot_flow_active = true
+	var panel := _push_modal("", Vector2(840,574))
+	panel.name = "LootPickupModal"
+	var pickup := LootPickupPanel.new()
+	pickup.size = panel.size
+	panel.add_child(pickup)
+	pickup.configure(offers)
+	pickup.close_requested.connect(_pop_modal)
+	pickup.inspect_requested.connect(func(drop_id: String):
+		_pop_modal()
+		_show_field_equipment({"drop_id":drop_id}))
+	pickup.pack_requested.connect(func(drop_id: String):
+		_choose_field_equipment(drop_id, "keep", str(expedition.snapshot().get("checkpoint_id", ""))))
 
 func show_expedition(at_exit: bool = false) -> void:
 	if expedition == null or not expedition.active() or Game.run == null:
@@ -487,7 +515,7 @@ func _show_field_equipment(offer: Dictionary) -> void:
 		return
 	# Bind the displayed comparison to this checkpoint, including every retry.
 	var checkpoint_id := str(expedition.snapshot().get("checkpoint_id", ""))
-	var panel := _push_modal("", Vector2(980,550))
+	var panel := _push_modal("", Vector2(980,620))
 	panel.name = "FieldEquipmentModal"
 	modals[-1]["required"] = true
 	var comparison := FieldEquipmentPanel.new()
@@ -518,7 +546,11 @@ func _choose_field_equipment(drop_id: String, decision: String, checkpoint_id: S
 		_show_expedition_error(_ex_text("试装选择已保存，但角色状态恢复失败。重试会恢复同一选择，不会重复发放装备。", "Your fitting decision is saved, but character state could not be restored. Retry restores that choice without granting gear again."), func(): _choose_field_equipment(drop_id, decision, checkpoint_id), true)
 		return
 	_clear_modals()
-	_show_pending_expedition_offer()
+	if is_instance_valid(hud):
+		var item: Dictionary = ContentRegistry.equipment(str(Game.run.expedition.claimed_drop_ids.get(drop_id,{}).get("equipment_id","")))
+		hud._queue_notification(_ex_text("已装备：", "Equipped: ")+MineStyle.content_text(item,"name") if decision == "equip" else _ex_text("已收进行囊：", "Packed: ")+MineStyle.content_text(item,"name"),3.5)
+	if loot_flow_active: _show_loot_pickup()
+	else: _show_pending_expedition_offer()
 
 func show_expedition_service() -> void:
 	if expedition == null or not expedition.active() or Game.run == null:
@@ -606,7 +638,8 @@ func _choose_expedition_relic(offer_id: String, choice_id: String) -> void:
 		_show_expedition_error(_ex_text("遗物已保存，但角色状态恢复失败。重试不会重复发放。", "The relic decision is saved, but character state could not be restored. Retrying does not grant it again."),func(): _choose_expedition_relic(offer_id,choice_id))
 		return
 	_clear_modals()
-	_show_pending_expedition_offer()
+	if loot_flow_active: _show_loot_pickup()
+	else: _show_pending_expedition_offer()
 
 func _show_expedition_supply() -> void:
 	var panel := _push_modal("",Vector2(920,570))
@@ -694,6 +727,7 @@ func _start_run() -> void:
 		_show_save_error()
 
 func _on_run_started() -> void:
+	loot_flow_active = false
 	pending_outcome = ""
 	quit_after_result = false
 	room_start_failed = false
@@ -831,7 +865,9 @@ func show_backpack() -> void:
 func _on_interaction(kind: String, _payload: Dictionary) -> void:
 	if not modals.is_empty():
 		return
-	if kind in ["next", "early_extract"] and expedition != null and expedition.active():
+	if kind == "loot":
+		_show_loot_pickup()
+	elif kind in ["next", "early_extract"] and expedition != null and expedition.active():
 		show_expedition(true)
 	elif kind in ["relic_choice", "supply"] and expedition != null and expedition.active():
 		show_expedition_service()
