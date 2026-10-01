@@ -7,16 +7,18 @@ const GRID := Vector2i(3,2)
 var chunks: Array[Sprite2D] = []
 var source_regions: Array[Rect2i] = []
 var world_rect := Rect2()
+var environment_id := ""
 var _texture: Texture2D
 
-func configure(texture: Texture2D, destination: Rect2) -> void:
-	if _texture==texture and world_rect==destination and (chunks.size()==GRID.x*GRID.y or (texture==null and chunks.is_empty())): return
+func configure(texture: Texture2D, destination: Rect2, room_id: String = "") -> void:
+	if _texture==texture and world_rect==destination and environment_id==room_id and (chunks.size()==GRID.x*GRID.y or (texture==null and chunks.is_empty())): return
 	for child: Node in get_children():
 		remove_child(child)
 		child.free()
 	chunks.clear()
 	source_regions.clear()
 	world_rect = destination
+	environment_id = room_id
 	_texture = texture
 	if texture==null or not destination.has_area(): return
 	texture_repeat = CanvasItem.TEXTURE_REPEAT_DISABLED

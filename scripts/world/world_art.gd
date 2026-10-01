@@ -16,49 +16,61 @@ static var _architecture: Dictionary = {}
 static var _floors: Dictionary = {}
 static var _environments: Dictionary = {}
 
-static func environment_definition(biome_id: String) -> Dictionary:
-	if _environments.has(biome_id): return _environments[biome_id]
-	var manifest_path: String = "res://assets/generated/world/fixed_"+biome_id+"_environment_v3.json"
-	if not FileAccess.file_exists(manifest_path):
-		manifest_path = "res://assets/generated/world/fixed_"+biome_id+"_environment_v2.json"
-	if not FileAccess.file_exists(manifest_path): return {}
-	var value: Variant = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
-	if not value is Dictionary: return {}
-	var path: String = str(value.get("texture",""))
-	var values: Array = value.get("walkable_normalized_rect",[])
-	if values.size()!=4 or not FileAccess.file_exists(path): return {}
-	var central := Rect2(float(values[0]),float(values[1]),float(values[2]),float(values[3]))
-	if not central.has_area() or not Rect2(Vector2.ZERO,Vector2.ONE).encloses(central): return {}
-	var placement: Rect2 = central
-	var placement_values: Array = value.get("placement_normalized_rect",[])
-	if placement_values.size()==4:
-		var proposed := Rect2(float(placement_values[0]),float(placement_values[1]),float(placement_values[2]),float(placement_values[3]))
-		if proposed.has_area() and Rect2(Vector2.ZERO,Vector2.ONE).encloses(proposed): placement=proposed
-	var texture: Texture2D = preload("res://scripts/ui/texture_sampler.gd").sampled(path)
-	if texture==null: return {}
-	var result := {"path":path,"texture":texture,"source":Rect2(Vector2.ZERO,texture.get_size()),"walkable_normalized_rect":central,"placement_normalized_rect":placement,"metadata":value}
-	_environments[biome_id] = result
-	return result
+static func environment_room_id(layout: Dictionary) -> String:
+	# Boss encounters may override room_id for the expedition node. The fixed
+	# blueprint remains the authority for the painting and its dry-ground edge.
+	return str(layout.get("blueprint_room_id",layout.get("room_id","")))
 
-static func environment_texture_for(biome_id: String) -> Texture2D:
-	return environment_definition(biome_id).get("texture",null)
+static func environment_definition(biome_id: String, room_id: String = "") -> Dictionary:
+	var key: String = biome_id+":"+room_id
+	if _environments.has(key): return _environments[key]
+	var candidates: Array[String] = []
+	if not room_id.is_empty():
+		candidates.append("res://assets/generated/world/rooms/"+room_id+"_environment_v1.json")
+	# Older rooms and service layouts still have their approved faction art.
+	# An absent or incomplete room resource can use that compatibility fallback.
+	candidates.append("res://assets/generated/world/fixed_"+biome_id+"_environment_v3.json")
+	candidates.append("res://assets/generated/world/fixed_"+biome_id+"_environment_v2.json")
+	for manifest_path: String in candidates:
+		if not FileAccess.file_exists(manifest_path): continue
+		var value: Variant = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
+		if not value is Dictionary: continue
+		var path: String = str(value.get("texture",""))
+		var values: Array = value.get("walkable_normalized_rect",[])
+		if values.size()!=4 or not FileAccess.file_exists(path): continue
+		var central := Rect2(float(values[0]),float(values[1]),float(values[2]),float(values[3]))
+		if not central.has_area() or not Rect2(Vector2.ZERO,Vector2.ONE).encloses(central): continue
+		var placement: Rect2 = central
+		var placement_values: Array = value.get("placement_normalized_rect",[])
+		if placement_values.size()==4:
+			var proposed := Rect2(float(placement_values[0]),float(placement_values[1]),float(placement_values[2]),float(placement_values[3]))
+			if proposed.has_area() and Rect2(Vector2.ZERO,Vector2.ONE).encloses(proposed): placement=proposed
+		var texture: Texture2D = preload("res://scripts/ui/texture_sampler.gd").sampled(path)
+		if texture==null: continue
+		var result := {"path":path,"texture":texture,"source":Rect2(Vector2.ZERO,texture.get_size()),"walkable_normalized_rect":central,"placement_normalized_rect":placement,"metadata":value,"manifest_path":manifest_path,"room_id":room_id,"room_specific":manifest_path==candidates[0] and not room_id.is_empty()}
+		_environments[key] = result
+		return result
+	return {}
 
-static func environment_world_rect(arena: Rect2, biome_id: String) -> Rect2:
-	var definition: Dictionary = environment_definition(biome_id)
+static func environment_texture_for(biome_id: String, room_id: String = "") -> Texture2D:
+	return environment_definition(biome_id,room_id).get("texture",null)
+
+static func environment_world_rect(arena: Rect2, biome_id: String, room_id: String = "") -> Rect2:
+	var definition: Dictionary = environment_definition(biome_id,room_id)
 	if definition.is_empty(): return Rect2()
 	var central: Rect2 = definition.placement_normalized_rect
 	var size: Vector2 = arena.size/central.size
 	return Rect2(arena.position-central.position*size,size)
 
-static func environment_point(arena: Rect2, biome_id: String, normalized: Vector2) -> Vector2:
-	var bounds: Rect2 = environment_world_rect(arena,biome_id)
+static func environment_point(arena: Rect2, biome_id: String, normalized: Vector2, room_id: String = "") -> Vector2:
+	var bounds: Rect2 = environment_world_rect(arena,biome_id,room_id)
 	return bounds.position+normalized*bounds.size
 
-static func environment_ground_polygon(arena: Rect2, biome_id: String) -> PackedVector2Array:
-	var definition: Dictionary = environment_definition(biome_id)
+static func environment_ground_polygon(arena: Rect2, biome_id: String, room_id: String = "") -> PackedVector2Array:
+	var definition: Dictionary = environment_definition(biome_id,room_id)
 	var result := PackedVector2Array()
 	for point: Array in definition.get("metadata",{}).get("walkable_normalized_polygon",[]):
-		if point.size()==2: result.append(environment_point(arena,biome_id,Vector2(float(point[0]),float(point[1]))))
+		if point.size()==2: result.append(environment_point(arena,biome_id,Vector2(float(point[0]),float(point[1])),room_id))
 	return result
 
 static func floor_definition(biome_id: String) -> Dictionary:
