@@ -152,9 +152,9 @@ func _inspect_workshop(locale: String, page: String) -> void:
 		check(control.generated_texture == Art.texture(id), locale + " / " + page + ": real workshop consumer shows " + id + " artwork")
 		check(control.size.x > 0 and control.size.y > 0, locale + " / " + page + ": equipment illustration has a visible drawing area")
 	check(icon_count >= 7, locale + " / " + page + ": equipped slots and item cards render painted gear")
-	for name: String in ["CurrentEquipmentArt", "CandidateEquipmentArt"]:
+	for name: String in ["CandidateEquipmentArt"]:
 		var painted: Control = workshop.find_child(name, true, false)
-		check(painted != null and painted.size.x >= 96 and painted.size.y >= 96, locale + " / " + page + ": comparison presents a large " + name + " illustration")
+		check(painted != null and painted.size.x >= 72 and painted.size.y >= 72, locale + " / " + page + ": details present a readable " + name + " illustration")
 	check(workshop.action_button != null and workshop.action_button.size.y >= 44, locale + " / " + page + ": action remains accessible alongside art")
 
 func _capture(name: String) -> void:

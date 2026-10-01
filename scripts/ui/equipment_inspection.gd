@@ -33,7 +33,7 @@ static func caption(key: String) -> String:
 
 static func value(key: String, amount: float, signed: bool = false, item_value: bool = false) -> String:
 	if key in RATIOS or (item_value and key == "move_speed"):
-		return ("%+.1f" if signed else "%.1f") % (amount*100.0) + (t(" 点%"," pp") if signed else "%")
+		return ("%+.1f" if signed else "%.1f") % (amount*100.0) + (t("百分点"," pp") if signed else "%")
 	if key == "attack_interval": return ("%+.3f s" if signed else "%.3f s") % amount
 	return ("%+.1f" if signed else "%.1f") % amount
 

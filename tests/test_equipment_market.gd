@@ -226,6 +226,9 @@ func _ui() -> void:
 			check(not panel().action_button.disabled,"recycle action usable "+locale+str(extent))
 			await capture("equipment_recycle_"+locale+"_%dx%d" % [extent.x,extent.y])
 	if app.music != null: await app.music.wait_for_cleanup()
+	app.free()
+	app = null
+	await frames()
 
 func _run() -> void:
 	game = root.get_node("Game")

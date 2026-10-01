@@ -16,15 +16,16 @@ static func render(panel: Control) -> void:
 		MineStyle.literal(button,MineStyle.content_text(hero,"name"),Vector2(82,12),Vector2(151,30),20)
 		MineStyle.literal(button,MineStyle.content_text(hero,"class_name")+" · Lv."+str(Game.hero_level(id)),Vector2(82,48),Vector2(151,33),14,MineStyle.CYAN)
 		index += 1
-	MineStyle.literal(left,Inspect.t("预览使用该英雄等级与共享装备。选择后才切换出战英雄。","Preview uses this hero's level and shared gear. Confirm to change your active hero."),Vector2(16,378),Vector2(238,58),14,MineStyle.MUTED)
+	MineStyle.literal(left,Inspect.t("预览使用该英雄等级与共享装备。选择后才切换出战英雄。","Preview shared gear. Confirm to change your active hero."),Vector2(16,378),Vector2(238,58),14,MineStyle.MUTED)
 	panel.action_button = MineStyle.button(left,"HERO_SELECTED" if panel.preview_hero == Game.profile.selected_hero else "SELECT_HERO",Vector2(14,447),Vector2(242,48),panel._select_hero)
 	panel.action_button.name = "PrimaryAction"
 	panel.action_button.disabled = panel.preview_hero == Game.profile.selected_hero
 	var hero: Dictionary = ContentRegistry.hero(panel.preview_hero)
 	var right := MineStyle.panel(panel.body,Vector2(286,0),Vector2(930,510))
 	MineStyle.hero_portrait(right,panel.preview_hero,Vector2(18,15),Vector2(163,187))
-	MineStyle.literal(right,MineStyle.content_text(hero,"name")+" · Lv."+str(Game.hero_level(panel.preview_hero)),Vector2(20,210),Vector2(168,62),24)
-	MineStyle.literal(right,MineStyle.content_text(hero,"class_name"),Vector2(20,278),Vector2(170,40),17,MineStyle.CYAN)
+	MineStyle.literal(right,MineStyle.content_text(hero,"name"),Vector2(20,210),Vector2(170,35),22)
+	MineStyle.literal(right,"Lv."+str(Game.hero_level(panel.preview_hero)),Vector2(20,252),Vector2(170,25),17,MineStyle.AMBER)
+	MineStyle.literal(right,MineStyle.content_text(hero,"class_name"),Vector2(20,285),Vector2(170,32),17,MineStyle.CYAN)
 	var explanation := ScrollContainer.new()
 	explanation.position = Vector2(20,324)
 	explanation.size = Vector2(174,167)

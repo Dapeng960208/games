@@ -1,4 +1,5 @@
 extends RefCounted
+const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
 ## Multi-select inventory recycling, with a concrete confirmation and one save.
 
 static func _t(zh: String, en: String) -> String:
@@ -53,6 +54,8 @@ static func render(panel: Control) -> void:
 		row.custom_minimum_size = Vector2(666,76)
 		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.disabled = equipped
+		row.tooltip_text = Inspect.tooltip(item,Game.equipment_level(id),Game.profile.selected_hero)
+		MineStyle.button_skin(row,"card")
 		if selected: MineStyle.selected(row,"card")
 		MineStyle.equipment_icon(row,item,Vector2(8,5),Vector2(64,64))
 		var caption := _label(row,MineStyle.content_text(item,"name")+" +"+str(Game.equipment_level(id)),Vector2(84,8),Vector2(432,28),19)
@@ -86,6 +89,7 @@ static func render(panel: Control) -> void:
 	_label(detail,_t("回收价：基础售价 25% + 强化成本 20%\n逐项向下取整；售出会移除装备及其强化。", "Value: 25% base price + 20% refinement cost.\nRounded down per part; sold gear and refinement are removed."),Vector2(18,398),Vector2(450,44),13,MineStyle.MUTED)
 	panel.action_button = MineStyle.button(detail,"",Vector2(18,449),Vector2(452,46),func(): _confirm(panel,selected_ids,total))
 	panel.action_button.name = "PrimaryAction"
+	MineStyle.button_skin(panel.action_button,"danger")
 	panel.action_button.text = _t("出售选中装备 · %d 金币", "Sell selected · %d gold") % total
 	panel.action_button.disabled = selected_ids.is_empty() or panel.busy
 
@@ -102,11 +106,13 @@ static func _confirm(panel: Control, ids: Array, total: int) -> void:
 			panel._render())
 	_label(modal,_t("出售选中的 %d 件装备，获得 %d 金币。", "Sell the %d selected pieces for %d gold.") % [ids.size(),total],Vector2(28,88),Vector2(664,56),23,MineStyle.AMBER)
 	_label(modal,_t("这些装备及其强化将从背包移除。\n以后重新购买会获得未强化的装备。", "These pieces and their refinement will be removed.\nBuying them again grants unrefined equipment."),Vector2(28,155),Vector2(664,68),18,MineStyle.MUTED)
-	var cancel := MineStyle.button(modal,"BACK",Vector2(28,260),Vector2(246,50),func(): panel.app._pop_modal(); panel.busy = false; panel._render())
-	cancel.name = "CancelEquipmentSale"
 	var transaction_id: String = "sale:"+Crypto.new().generate_random_bytes(16).hex_encode()
-	var confirm := MineStyle.button(modal,"",Vector2(290,260),Vector2(402,50),func(): _commit(panel,ids,transaction_id))
+	var actions := MineStyle.action_pair(modal,"BACK","",260,func(): panel.app._pop_modal(); panel.busy = false; panel._render(),func(): _commit(panel,ids,transaction_id))
+	var cancel := actions[0]
+	cancel.name = "CancelEquipmentSale"
+	var confirm := actions[1]
 	confirm.name = "ConfirmEquipmentSale"
+	MineStyle.button_skin(confirm,"danger")
 	confirm.text = _t("确认出售 · %d 金币", "Confirm sale · %d gold") % total
 	cancel.grab_focus()
 

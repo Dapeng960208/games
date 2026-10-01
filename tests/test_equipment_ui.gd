@@ -39,9 +39,10 @@ func _models() -> void:
 	check(Inspect.value("move_speed",.035,false,true) == "3.5%" and Inspect.value("move_speed",240) == "240.0","item speed ratios and character speed units differ")
 	check(not Inspect.item_values(ContentRegistry.equipment("EQ61"),0,"CH01").has("damage_reduction_bonus"),"shield-dependent reduction is not a permanent item stat")
 	owned["EQ61"] = {"level":3}
+	var ownership_before := owned.duplicate(true)
 	var preview := Inspect.set_preview("S09","CH01",9,game.profile.loadout,owned)
 	check(preview.sets.S09 == 6 and preview.loadout.weapon == "EQ61","set preview resolves the real complete six-slot loadout")
-	check(owned.EQ61.level == 3 and not owned.has("EQ62"),"set preview never mutates ownership or refinement")
+	check(owned == ownership_before,"set preview never mutates ownership or refinement")
 
 func capture(id: String) -> void:
 	if DisplayServer.get_name() == "headless": return
@@ -76,12 +77,87 @@ func _screens() -> void:
 	check(modal.find_children("HeroAttribute_*","Label",true,false).size() == 25,"inventory opens the same complete stat sheet")
 	app._pop_modal()
 	await frames()
+	await _catalogue()
+	for locale: String in ["zh_CN","en"]:
+		Words.set_locale(locale)
+		for extent: Vector2i in [Vector2i(1280,720),Vector2i(1920,1080),Vector2i(1280,900)]:
+			if DisplayServer.get_name() != "headless": DisplayServer.window_set_size(extent)
+			app.show_workshop("inventory")
+			await frames()
+			panel().selected_item = "EQ61"; panel()._render()
+			await frames()
+			check(panel().find_child("EquipmentDetails",true,false).get_global_rect().size.y >= 270,"full numbers have a readable detail area "+locale+str(extent))
+			check(root.get_visible_rect().encloses(panel().action_button.get_global_rect()),"inventory action fits "+locale+str(extent))
+			await capture("inventory_"+locale+"_%dx%d" % [extent.x,extent.y])
+			panel().selected_item = "EQ08"; panel()._render(); await frames()
+			await click("EquipmentDetailTab_compare")
+			await capture("compare_"+locale+"_%dx%d" % [extent.x,extent.y])
+			app.show_workshop("shop")
+			await frames()
+			panel().selected_set = "S11"; panel()._render(); await frames()
+			await click("SetDetailTab_compare")
+			await capture("set_"+locale+"_%dx%d" % [extent.x,extent.y])
 	if is_instance_valid(app.music): await app.music.wait_for_cleanup()
+	app.free()
+	app = null
+	await frames()
+
+func _catalogue() -> void:
+	Words.set_locale("zh_CN")
+	app.show_workshop("shop")
+	await frames()
+	await click("Set_S09")
+	await click("PrimaryAction")
+	await create_timer(.35).timeout
+	check(game.profile.loadout.weapon == "EQ61" and game.equipment_level("EQ61") == 3,"real set equip preserves the refined weapon")
+	var wallet: int = game.profile.permanent_gold
+	await click("Set_S10")
+	await click("PrimaryAction")
+	await create_timer(.35).timeout
+	check(game.profile.equipment.has("EQ67") and game.profile.permanent_gold == wallet-810 and game.profile.loadout.weapon == "EQ61","bundle purchase adds missing gear without silently equipping it")
+	await click("SetPiece_EQ67")
+	check(panel().selected_item == "EQ67" and panel().find_child("ItemStat_attack_speed",true,false) != null,"set piece opens complete real item numbers")
+	app.show_workshop("inventory")
+	await frames()
+	check(panel().slot_filter == "all" and not panel().available_only and panel().find_children("Item_*","Button",true,false).size() == game.profile.equipment.size(),"inventory initially shows all owned gear without hidden class narrowing")
+	var search := panel().find_child("EquipmentSearch",true,false) as LineEdit
+	search.text = "晨曦"
+	search.text_changed.emit("晨曦")
+	await frames()
+	check(panel().find_children("Item_*","Button",true,false).size() == 6 and root.gui_get_focus_owner() == panel().find_child("EquipmentSearch",true,false),"search filters six matching items and retains typing focus")
+	var filter := panel().find_child("EquipmentSlotFilter",true,false) as OptionButton
+	filter.item_selected.emit(1)
+	await frames()
+	check(panel().slot_filter == "weapon" and panel().find_children("Item_*","Button",true,false).size() == 1,"dropdown filters a searched set to its actual weapon")
+	await click("Item_EQ61")
+	var stat := panel().find_child("ItemStat_attack",true,false)
+	check(stat != null and stat.get_meta("values").actual == Inspect.item_values(ContentRegistry.equipment("EQ61"),3,"CH01").attack,"detail uses actual +3 item contribution")
+	await click("ViewAllEquipment")
+	check(panel().search_query.is_empty() and panel().slot_filter == "all" and panel().find_children("Item_*","Button",true,false).size() == game.profile.equipment.size(),"clear filters restores exactly owned inventory")
+	var sort := panel().find_child("EquipmentSort",true,false) as OptionButton
+	sort.item_selected.emit(3)
+	await frames()
+	check(panel()._filtered_equipment()[0] == "EQ61","refinement sorting puts the +3 item first")
+	await click("Item_EQ08")
+	await click("EquipmentDetailTab_compare")
+	check(panel().find_child("SetEffect_S09_6",true,false).get_meta("state") == "将失去","comparison clearly warns about losing an active six-piece effect")
+	var comparison := panel().find_child("CompareStat_attack",true,false)
+	check(comparison != null and comparison.get_meta("values").preview == game.preview_stats("EQ08").attack,"comparison numbers match the real replacement preview")
+	app.show_workshop("upgrade")
+	await frames()
+	panel().selected_item = "EQ08"; panel().detail_tab = "compare"; panel()._render()
+	await frames()
+	var advice := panel().find_child("EquipmentAdvice",true,false)
+	check(advice.get_meta("before") == game.preview_stats("EQ08") and advice.get_meta("after") == game.preview_upgrade_stats("EQ08"),"unfitted refinement comparison measures only its adjacent levels")
 
 func _run() -> void:
 	game = root.get_node("Game")
 	if not game.profile_path.contains("test_equipment_ui"): quit(2); return
 	check(game.new_profile(),"isolated profile")
+	check(game.start_run() and game.add_gold(8000),"earn UI fixture currency through real settlement")
+	game.finish_run("extracted")
+	check(game.buy_equipment_set("S09") and game.buy_equipment("EQ08"),"owned items use real purchase receipts")
+	for step: int in 3: check(game.upgrade_equipment("EQ61"),"refine fixture through actual price and rounding")
 	_models()
 	await _screens()
 	print("EQUIPMENT UI: %d checks, %d failures; renderer=%s" % [checks,failures,DisplayServer.get_name()])

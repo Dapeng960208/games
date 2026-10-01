@@ -136,6 +136,9 @@ func _catalog_and_recommendation() -> void:
 	await frames()
 	var panel := workshop()
 	panel.shop_sets = false
+	panel.available_only = true
+	panel.slot_filter = "weapon"
+	panel.detail_tab = "compare"
 	panel._render()
 	await frames()
 	check(panel.slot_filter == "weapon" and panel.available_only, "shop initially focuses on available weapons")
@@ -145,10 +148,10 @@ func _catalog_and_recommendation() -> void:
 	for id: String in ids:
 		var item: Dictionary = Registry.equipment(id)
 		check(str(item.slot) == "weapon" and str(item.get("unlock_boss", "")).is_empty(), "default candidate is an unlocked weapon: " + id)
-		check(not _copy(panel.find_child("ItemPurpose_" + id, true, false)).is_empty(), "list explains item purpose: " + id)
-	var fitted_copy := _copy(panel.find_child("ItemState_EQ01", true, false))
-	check(fitted_copy.contains("挂载") or fitted_copy.contains("Equipped"), "owned fitted item is distinguished directly in its row")
-	var price_copy := _copy(panel.find_child("ItemState_EQ02", true, false))
+		check(not panel.find_child("Item_" + id,true,false).tooltip_text.is_empty(), "grid retains full numeric and affix information: " + id)
+	var fitted_copy: String = panel.find_child("Item_EQ01",true,false).tooltip_text
+	check(fitted_copy.contains("已挂载") or fitted_copy.contains("Equipped"), "owned fitted item is distinguished directly in its row")
+	var price_copy: String = panel.find_child("Item_EQ02",true,false).tooltip_text
 	check(price_copy.contains("100") and (price_copy.contains("不足") or price_copy.to_lower().contains("short") or price_copy.to_lower().contains("need")), "unaffordable row retains its price and explains the balance shortfall")
 	var before: Dictionary = game.profile.duplicate(true)
 	var saved := FileAccess.get_file_as_bytes(game.profile_path)
@@ -159,11 +162,11 @@ func _catalog_and_recommendation() -> void:
 	await _click(panel, "Item_EQ04")
 	panel = workshop()
 	check(panel.selected_item == "EQ04" and panel.action_button.disabled, "locked catalog item can be inspected but cannot be bought")
-	var locked_copy := _copy(panel.find_child("ItemState_EQ04", true, false))
+	var locked_copy: String = panel.find_child("Item_EQ04",true,false).tooltip_text
 	check(locked_copy.contains("BO01") or locked_copy.contains("首领") or locked_copy.to_lower().contains("boss"), "locked row explains the boss requirement")
-	await _click(panel, "ViewAllEquipment")
+	await _click(panel, "OnlyUsableEquipment")
 	panel = workshop()
-	check(panel.available_only and not panel._filtered_equipment().has("EQ04"), "second toggle returns to the available list")
+	check(panel.available_only and not panel._filtered_equipment().has("EQ04"), "class-fit checkbox returns to the available list")
 	await _click(panel, "Slot_weapon")
 	_unchanged(before, saved, "catalog filtering and inspection")
 	var empty_suggestion := workshop().find_child("RecommendEquipment", true, false) as Button
@@ -179,6 +182,7 @@ func _catalog_and_recommendation() -> void:
 	app.show_workshop("shop")
 	await frames()
 	workshop().shop_sets = false
+	workshop().detail_tab = "compare"
 	workshop()._render()
 	await frames()
 	before = game.profile.duplicate(true)
@@ -200,6 +204,7 @@ func _context_upgrade_and_locales() -> void:
 	check(game.buy_equipment("EQ08"), "buy an unequipped candidate through the production transaction")
 	app.show_workshop("inventory")
 	await frames()
+	workshop().detail_tab = "compare"
 	await _click(workshop(), "Item_EQ08")
 	var before: Dictionary = game.profile.duplicate(true)
 	var saved := FileAccess.get_file_as_bytes(game.profile_path)
@@ -228,6 +233,7 @@ func _context_upgrade_and_locales() -> void:
 		app.show_workshop("shop")
 		await frames()
 		workshop().shop_sets = false
+		workshop().detail_tab = "compare"
 		workshop()._render()
 		await frames()
 		await _click(workshop(), "Item_EQ08")
@@ -277,7 +283,7 @@ func _demo_field() -> void:
 		var comparison := _top("FieldEquipmentComparison")
 		var keep := _top("FieldKeepCurrent") as Button
 		_advice(comparison, "FieldEquipmentAdvice", keep, locale + " field")
-		check(modal.size.is_equal_approx(Vector2(980, 550)), locale + ": guidance preserves fixed field modal size")
+		check(modal.size.is_equal_approx(Vector2(980, 620)), locale + ": guidance fits the current field comparison layout")
 		check(comparison.get("preview") == game.preview_field_equipment(drop_id), locale + ": guidance receives real current-run stats")
 		check(root.gui_get_focus_owner() == keep, locale + ": keep remains the default field decision")
 		var copy := _copy(comparison.find_child("FieldEquipmentScope", true, false)).to_lower()
