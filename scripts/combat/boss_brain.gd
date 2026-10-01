@@ -540,6 +540,9 @@ func _execute(actor: Node2D) -> void:
 	if current_action == "war_drum_rage" and not drums_broken:
 		rage_time = 5.0
 	released["damage_multiplier"] = float(released.get("damage_multiplier", 1.0)) * outgoing_damage_multiplier()
+	# Freeze the releasing phase, not the phase when a delayed packet lands.
+	# EnemySkillRuntime applies phase strength once without changing actor A.
+	released["enemy_skill_phase"] = phase
 	if actor.has_method("cast_enemy_skill"):
 		actor.call("cast_enemy_skill", released)
 	var opening: float = maxf(0.0, float(released.get("weakpoint_duration", 0.0)))

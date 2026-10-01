@@ -1,6 +1,7 @@
 class_name EnemySkillRuntime
 extends Node2D
 const Numerical = preload("res://config/numerical_rules.gd")
+const EnemyNumbers = preload("res://scripts/combat/enemy_numerical_v2.gd")
 ## Enemy-only execution. The brain owns the readable tell and locked aim; this
 ## node owns collision, finite effects and cancellation after the tell completes.
 ## Commands use frozen room-local Vector2 coordinates. Cone/arc angles are radians;
@@ -49,15 +50,23 @@ func emit_skill(caster: Node2D, skill: Dictionary) -> void:
 	command["target"] = target if target is Vector2 else command.origin
 	var direction: Vector2 = command.get("direction", (command.target - command.origin).normalized())
 	command["direction"] = direction.normalized() if direction.length_squared() > EPSILON else Vector2.RIGHT
-	var base_damage: float = float(command.get("damage", _property(caster, "contact_damage", _property(caster, "attack_damage", 12.0))))
-	command["damage"] = maxf(0.0, base_damage) * maxf(0.0, float(command.get("damage_multiplier", 1.0)))
 	var signature: Dictionary = _biome_signature(caster, command)
 	command["biome_skill"] = signature
-	if str(signature.get("id", "")) == "blood_rage" and _blood_rage_active(caster, signature):
-		# Freeze the rage bonus with the rest of this attack. It never multiplies
-		# again when a projectile hits or a lingering area ticks.
-		command["damage"] *= float(signature.get("damage_multiplier", 1.2))
-	if Numerical.is_v2(command): command["damage"] = Numerical.integer(float(command.damage))
+	var rage: float = float(signature.get("damage_multiplier", 1.2)) if str(signature.get("id", "")) == "blood_rage" and _blood_rage_active(caster, signature) else 1.0
+	if Numerical.is_v2(actor_profile):
+		# Brain commands carry an authored coefficient; this is the only seam
+		# that freezes A × coefficient × tier/D/phase × racial rage. Delayed jobs,
+		# projectiles, strokes and ticks copy the marked integer unchanged.
+		var damage_profile: Dictionary = actor_profile.duplicate(true)
+		# Practice projectiles explicitly provide zero damage. Preserve explicit
+		# packet bases, while normal attacks always take the integer actor A.
+		if command.has("damage") and int(command.get("enemy_command_version", 0)) != 2:
+			damage_profile["damage"] = maxf(0.0, float(command.damage))
+		command = EnemyNumbers.command(command, damage_profile, int(command.get("enemy_skill_phase", 1)), rage)
+		if command.is_empty(): return
+	else:
+		var base_damage: float = float(command.get("damage", _property(caster, "contact_damage", _property(caster, "attack_damage", 12.0))))
+		command["damage"] = maxf(0.0, base_damage) * maxf(0.0, float(command.get("damage_multiplier", 1.0))) * rage
 	command["remaining"] = maxf(0.0, float(command.get("delay", 0.0)))
 	if float(command.remaining) > 0.0:
 		jobs.append(command)
@@ -272,6 +281,7 @@ func filter_incoming_damage(target: Node2D, amount: float, kind: StringName, fro
 				var absorbed: float = minf(Numerical.integer(result) if Numerical.is_v2(target_profile) else result, float(support.get("amount", 0.0)))
 				result = maxf(0.0, result - absorbed)
 				support.amount = float(support.get("amount", 0.0)) - absorbed
+				if Numerical.is_v2(target_profile): support.amount = Numerical.integer(float(support.amount))
 				if float(support.amount) <= EPSILON:
 					_remove_support(support)
 	return result
@@ -626,7 +636,8 @@ func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 		if state.is_empty() and float(command.get("slow", 0.0)) > 0.0:
 			state = {"id":"slow", "magnitude":float(command.slow), "duration":0.8}
 		if not str(state.get("id", "")).is_empty():
-			state["power"] = state.get("power", float(command.get("damage", 0.0)))
+			state["power"] = state.get("power", command.get("damage", 0))
+			if Numerical.is_v2(command) and EnemyNumbers.STATUS_RATIOS.has(str(state.get("id", ""))): state["power"] = Numerical.integer(float(state.power))
 			state["origin"] = origin
 			state.merge(_damage_source_context(command), true)
 			victim.call("receive_enemy_status", state)
@@ -659,6 +670,7 @@ func _apply_biome_hit(victim: Node2D, command: Dictionary, origin: Vector2) -> v
 		if primary_id != str(signature.get("status_id", "corrosion")) and victim.has_method("receive_enemy_status"):
 			var status_context: Dictionary = _damage_source_context(command)
 			status_context.merge({"id":signature.get("status_id", "corrosion"), "duration":float(signature.get("status_seconds", 1.8)), "power":float(command.damage) * float(signature.get("status_power_ratio", 0.55)), "origin":origin}, true)
+			if Numerical.is_v2(command): status_context["power"] = EnemyNumbers._round_product([command.damage, signature.get("status_power_ratio", 0.55)])
 			victim.call("receive_enemy_status", status_context)
 		return
 	var owner_id: int = caster.get_instance_id()
@@ -672,9 +684,11 @@ func _apply_biome_hit(victim: Node2D, command: Dictionary, origin: Vector2) -> v
 	if id == "capacitor_guard":
 		var status: Variant = _property(caster, "status", null)
 		if status is Object and status.has_method("grant_guard"):
-			triggered = bool(status.call("grant_guard", maximum * float(signature.get("guard_ratio", 0.08)), float(signature.get("guard_seconds", 1.5)), "biome:capacitor", maximum))
+			var amount: float = EnemyNumbers._round_product([maximum, signature.get("guard_ratio", 0.08)]) if Numerical.is_v2(command) else maximum * float(signature.get("guard_ratio", 0.08))
+			triggered = bool(status.call("grant_guard", amount, float(signature.get("guard_seconds", 1.5)), "biome:capacitor", maximum))
 	elif id == "grave_drain" and caster.has_method("heal"):
 		var amount: float = minf(maximum * float(signature.get("heal_hp_cap", 0.06)), float(command.damage) * float(signature.get("heal_damage_ratio", 0.25)))
+		if Numerical.is_v2(command): amount = mini(EnemyNumbers._round_product([maximum, signature.get("heal_hp_cap", 0.06)]), EnemyNumbers._round_product([command.damage, signature.get("heal_damage_ratio", 0.25)]))
 		triggered = float(caster.call("heal", amount)) > 0.0
 	if triggered:
 		biome_skill_cooldowns[owner_id] = _biome_clock + float(signature.get("cooldown_seconds", 4.0))
@@ -756,6 +770,7 @@ func _support(command: Dictionary) -> void:
 				continue
 			var before: float = float(health.current)
 			var heal_amount: float = minf(maximum * 0.15, float(command.get("amount", maximum * float(command.get("heal_ratio", 0.1)))))
+			if Numerical.is_v2(command): heal_amount = EnemyNumbers.support_amount(command, int(maximum), int(before))
 			if target.has_method("heal"): target.heal(heal_amount)
 			else: health.current = minf(maximum, before + heal_amount)
 			if float(health.current) > before:
@@ -769,7 +784,7 @@ func _support(command: Dictionary) -> void:
 			support["remaining"] = clampf(float(command.get("duration", 3.0)), 0.2, 6.0)
 			support["amount"] = clampf(float(command.get("amount", maximum * float(command.get("shield_ratio", 0.2)))), 0.0, maximum * 0.35)
 			if Numerical.is_v2(command):
-				support["amount"] = mini(Numerical.integer(float(support.amount)), int(floor(maximum * 0.35)))
+				support["amount"] = EnemyNumbers.support_amount(command, int(maximum)) if kind == "guard" else 0
 			support["charges"] = clampi(int(command.get("charges", 3)), 1, 4)
 			support["hit_cap"] = clampi(int(command.get("hit_cap", 3)), 1, 4)
 			support["hits"] = 0
