@@ -5,18 +5,20 @@ extends RefCounted
 
 var _walls: Array[Rect2] = []
 var _arena := Rect2()
+const GroundBoundary = preload("res://scripts/world/room_boundary.gd")
+var _ground_polygon := PackedVector2Array()
 var _graphs: Dictionary = {}
 var graph_builds: int = 0
 var route_searches: int = 0
 var route_cache_hits: int = 0
 
-func prepare(walls: Array[Rect2], arena: Rect2, radii: Array = [12.0, 14.0, 18.0, 24.0]) -> void:
-	_sync_geometry(walls, arena)
+func prepare(walls: Array[Rect2], arena: Rect2, radii: Array = [12.0, 14.0, 18.0, 24.0], ground: PackedVector2Array = PackedVector2Array()) -> void:
+	_sync_geometry(walls, arena, ground)
 	for radius: float in radii:
 		_graph(radius)
 
-func direction(from: Vector2, to: Vector2, radius: float, walls: Array[Rect2], arena: Rect2) -> Vector2:
-	_sync_geometry(walls, arena)
+func direction(from: Vector2, to: Vector2, radius: float, walls: Array[Rect2], arena: Rect2, ground: PackedVector2Array = PackedVector2Array()) -> Vector2:
+	_sync_geometry(walls, arena, ground)
 	var data: Dictionary = _graph(radius)
 	var boxes: Array[Rect2] = data.boxes
 	# A player can stand closer to cover than a larger enemy. Route to a legal
@@ -78,11 +80,12 @@ func direction(from: Vector2, to: Vector2, radius: float, walls: Array[Rect2], a
 		routes[key] = {"waypoint":path[1],"target":to,"origin":from}
 	return from.direction_to(path[1]) if path.size() > 1 else Vector2.ZERO
 
-func _sync_geometry(walls: Array[Rect2], arena: Rect2) -> void:
-	if _arena == arena and _walls == walls:
+func _sync_geometry(walls: Array[Rect2], arena: Rect2, ground: PackedVector2Array) -> void:
+	if _arena == arena and _walls == walls and _ground_polygon == ground:
 		return
 	_walls.assign(walls)
 	_arena = arena
+	_ground_polygon = ground
 	_graphs.clear()
 
 func _graph(radius: float) -> Dictionary:
@@ -118,6 +121,7 @@ func _graph(radius: float) -> Dictionary:
 	return data
 
 func _point_clear(point: Vector2, boxes: Array[Rect2], allowed: Rect2) -> bool:
+	if not _ground_polygon.is_empty() and not GroundBoundary.contains(_ground_polygon, point, (_arena.size.x-allowed.size.x)*.5): return false
 	if point.x<allowed.position.x or point.x>allowed.end.x or point.y<allowed.position.y or point.y>allowed.end.y:
 		return false
 	for box: Rect2 in boxes:
@@ -127,6 +131,7 @@ func _point_clear(point: Vector2, boxes: Array[Rect2], allowed: Rect2) -> bool:
 
 func _nearby_clear_point(point: Vector2, preference: Vector2, boxes: Array[Rect2], allowed: Rect2, radius: float) -> Vector2:
 	var candidates: Array[Vector2]=[Vector2(clampf(point.x,allowed.position.x,allowed.end.x),clampf(point.y,allowed.position.y,allowed.end.y))]
+	if not _ground_polygon.is_empty(): candidates[0] = GroundBoundary.clamp_point(_ground_polygon, candidates[0], radius+.1)
 	for box: Rect2 in boxes:
 		if box.grow(0.01).has_point(point):
 			candidates.append_array([Vector2(box.position.x-1.0,point.y),Vector2(box.end.x+1.0,point.y),Vector2(point.x,box.position.y-1.0),Vector2(point.x,box.end.y+1.0)])

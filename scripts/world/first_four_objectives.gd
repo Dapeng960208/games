@@ -12,7 +12,7 @@ func configure(next_host: Node2D) -> void:
 	host = next_host
 	biome_id = str(host.definition.get("biome_id","B01"))
 	variant = (int(str(host.room_id).trim_prefix("L"))-1)%6
-	var count: int = int(host.definition.get("expedition_objective_count",2+variant%2))
+	var count: int = int(host.layout.get("fixed_objective_count", host.definition.get("expedition_objective_count",2+variant%2)))
 	host.required_count = clampi(count,2,3)
 	leaf = ConstructHive.new() if biome_id in ["B01","B02"] else GraveOrc.new()
 	leaf.configure(host,biome_id,variant,host.required_count)

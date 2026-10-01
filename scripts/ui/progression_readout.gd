@@ -21,7 +21,8 @@ static func describe(hero_id: String, total_xp: int) -> Dictionary:
 		"remaining":maxi(0,target-xp),"capped":cap,"next_skill":next_skill}
 
 static func key_for(slot: String) -> String:
-	return {"q":"Q", "secondary":"Right click" if Words.locale == "en" else "鼠标右键", "f":"F", "ultimate":"R"}.get(slot,slot)
+	var action: String = {"q":"skill_q","secondary":"skill_secondary","f":"skill_f","ultimate":"skill_ultimate"}.get(slot,"")
+	return ControlBindings.label_for(action,Game.profile.get("settings",{}).get("controls",{}),Words.locale) if not action.is_empty() else slot
 
 static func next_goal(hero_id: String, xp: int) -> String:
 	var info := describe(hero_id,xp)
@@ -38,14 +39,16 @@ static func next_goal(hero_id: String, xp: int) -> String:
 
 static func unlock_hint(hero_id: String, slot: String) -> String:
 	var hints := {
-		"CH01:secondary":["积攒破势，再用鼠标右键消耗重击。","Build Momentum, then spend it with right click."],
-		"CH01:f":["F 获得护盾、击退敌人并补一层破势。","F grants a shield, pushes enemies and adds Momentum."],
-		"CH01:ultimate":["积满破势后，R 发动重锤落井。","Build full Momentum before dropping the hammer with R."],
-		"CH02:secondary":["游走标记目标，再用鼠标右键消耗猎印。","Mark a target while moving; right click consumes the mark."],
-		"CH02:f":["F 放下伏板，诱敌触发猎印。","Place a trap with F and lure enemies into its mark."],
-		"CH02:ultimate":["标记关键目标后，R 连续贯穿。","Mark a priority target, then fire the R barrage."],
-		"CH03:secondary":["鼠标右键布置节点，Q 穿过节点蓄能。","Place a node with right click; fire Q through it to charge."],
-		"CH03:f":["先布节点、用 Q 充能，再按 F 引爆。","Place nodes, charge with Q, then detonate with F."],
-		"CH03:ultimate":["R 给范围内节点充满，接 F 引爆。","R fully charges nearby nodes; follow with F to detonate."]}
+		"CH01:secondary":["积攒破势，再用 {secondary} 消耗重击。","Build Momentum, then spend it with {secondary}."],
+		"CH01:f":["{f} 获得护盾、击退敌人并补一层破势。","{f} grants a shield, pushes enemies and adds Momentum."],
+		"CH01:ultimate":["积满破势后，{ultimate} 发动战斧坠击。","Build full Momentum before the axe finisher with {ultimate}."],
+		"CH02:secondary":["游走标记目标，再用 {secondary} 消耗猎印。","Mark a target while moving; {secondary} consumes the mark."],
+		"CH02:f":["{f} 放下伏板，诱敌触发猎印。","Place a trap with {f} and lure enemies into its mark."],
+		"CH02:ultimate":["标记关键目标后，{ultimate} 连续贯穿。","Mark a priority target, then fire the {ultimate} barrage."],
+		"CH03:secondary":["{secondary} 布置节点，{q} 穿过节点蓄能。","Place a node with {secondary}; fire {q} through it to charge."],
+		"CH03:f":["先布节点、用 {q} 充能，再按 {f} 引爆。","Place nodes, charge with {q}, then detonate with {f}."],
+		"CH03:ultimate":["{ultimate} 给范围内节点充满，接 {f} 引爆。","{ultimate} fully charges nearby nodes; follow with {f} to detonate."]}
 	var pair: Array = hints.get(hero_id+":"+slot,["",""])
-	return str(pair[1 if Words.locale == "en" else 0])
+	var hint: String = str(pair[1 if Words.locale == "en" else 0])
+	for key: String in SKILLS: hint = hint.replace("{"+key+"}",key_for(key))
+	return hint

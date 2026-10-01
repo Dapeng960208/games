@@ -4,7 +4,7 @@ extends Control
 
 const SLOTS := ["weapon","head","chest","hands","feet","charm"]
 const SKILLS := ["q","secondary","f","ultimate"]
-const KEYS := ["Q","鼠标右键","F","R"]
+const BINDING_ACTIONS := ["skill_q","skill_secondary","skill_f","skill_ultimate"]
 const Advice = preload("res://scripts/ui/equipment_advice.gd")
 var app: Node
 var mode := "heroes"
@@ -36,7 +36,7 @@ func _render() -> void:
 		var tab := MineStyle.button(self,data[1],Vector2(32+i*198,112),Vector2(182,44),func(): _switch_page(data[0]))
 		tab.name = "Tab_"+data[0]
 		if mode == data[0]:
-			tab.add_theme_stylebox_override("normal",MineStyle.box(MineStyle.PANEL.lerp(MineStyle.CYAN,0.14),MineStyle.CYAN,2))
+			MineStyle.selected(tab)
 	MineStyle.button(self,"RETURN_CAMP",Vector2(1030,112),Vector2(218,44),app.show_camp).name = "ReturnCamp"
 	body = Control.new()
 	body.position = Vector2(32,178)
@@ -135,7 +135,8 @@ func _render_skills() -> void:
 		var unlocked := level >= int(skill.get("unlock",[1,2,3,4][i]))
 		var panel := MineStyle.panel(body,Vector2(310,(i/2)*182),Vector2(442,164))
 		panel.position.x += (i%2)*464
-		MineStyle.literal(panel,Words.text("KEY_SECONDARY") if i == 1 else KEYS[i],Vector2(18,13),Vector2(68,31),13 if i == 1 else 22,MineStyle.AMBER if unlocked else MineStyle.MUTED)
+		var binding_key: String = ControlBindings.label_for(BINDING_ACTIONS[i],Game.profile.get("settings",{}).get("controls",{}),Words.locale)
+		MineStyle.literal(panel,binding_key,Vector2(18,13),Vector2(68,31),13 if binding_key.length()>3 else 22,MineStyle.AMBER if unlocked else MineStyle.MUTED)
 		MineStyle.literal(panel,MineStyle.content_text(skill,"name"),Vector2(91,13),Vector2(333,35),21)
 		MineStyle.label(panel,"SKILL_READY" if unlocked else "SKILL_LOCKED",Vector2(18,52),Vector2(406,27),16,MineStyle.GREEN if unlocked else MineStyle.MUTED,{"level":skill.get("unlock",[1,2,3,4][i]),"cost":skill.get("cost",0),"cooldown":"%.1f" % float(skill.get("cooldown",0))})
 		var explanation := ScrollContainer.new()
@@ -281,7 +282,7 @@ func _render_equipment() -> void:
 		row.name = "Item_"+id
 		row.custom_minimum_size = Vector2(392,108)
 		if id == selected_item:
-			row.add_theme_stylebox_override("normal",MineStyle.box(MineStyle.RAISED,MineStyle.AMBER))
+			MineStyle.selected(row,"card")
 		MineStyle.equipment_icon(row,data,Vector2(8,9),Vector2(86,86)).name = "CatalogEquipmentArt_"+id
 		_row_text(row,MineStyle.content_text(data,"name"),Vector2(108,12),17,MineStyle.INK)
 		var purpose := _row_text(row,Advice.purpose(data,str(Game.profile.get("selected_hero","CH01"))),Vector2(108,43),14,MineStyle.CYAN)

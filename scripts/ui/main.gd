@@ -49,7 +49,11 @@ func _ready() -> void:
 	_apply_display()
 	backdrop = Node2D.new()
 	backdrop.set_script(load("res://scripts/ui/menu_backdrop.gd"))
-	add_child(backdrop)
+	var backdrop_layer := CanvasLayer.new()
+	backdrop_layer.name = "MenuBackground"
+	backdrop_layer.layer = -1
+	add_child(backdrop_layer)
+	backdrop_layer.add_child(backdrop)
 	world = Node2D.new()
 	world.process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_child(world)
@@ -87,6 +91,7 @@ func _new_screen(next_route: String) -> void:
 		hud = null
 	expedition_status = null
 	route = next_route
+	world.visible = next_route == "run"
 	backdrop.visible = next_route != "run"
 	backdrop.camp = next_route != "menu"
 	screen = Control.new()
@@ -163,7 +168,7 @@ func show_demo_select() -> void:
 		MineStyle.primary(choose,accent)
 		choose.disabled = Game.run != null
 		if id == demo_hero: choose.grab_focus()
-	MineStyle.literal(screen,_ex_text("左键移动与瞄准 · Q W E R 四项技能 · A 普攻 · 职业被动自动触发","CLICK TO MOVE & AIM · Q W E R SKILLS · A ATTACK · AUTOMATIC HERO PASSIVE"),Vector2(56,616),Vector2(930,36),18,MineStyle.CYAN)
+	MineStyle.literal(screen,_ex_text("右键移动 · 左键 / A 普攻 · Q W E R 技能 · 职业被动自动触发","RIGHT CLICK MOVE · LEFT CLICK / A ATTACK · Q W E R SKILLS · AUTOMATIC PASSIVE"),Vector2(56,616),Vector2(930,36),18,MineStyle.CYAN)
 	MineStyle.button(screen,"BACK",Vector2(1028,626),Vector2(196,48),show_menu)
 
 func _start_demo(hero_id: String) -> void:
@@ -395,7 +400,7 @@ func show_expedition(at_exit: bool = false) -> void:
 		return
 	var panel := _push_modal("",Vector2(1072,580))
 	panel.name = "ExpeditionRouteModal"
-	MineStyle.literal(panel,_ex_text("矿井路线 · 本次 %d 站", "MINE ROUTE · %d STOPS") % _expedition_node_count(),Vector2(28,20),Vector2(1016,45),28,MineStyle.AMBER)
+	MineStyle.literal(panel,_ex_text("远征行图 · 本次 %d 站", "EXPEDITION ATLAS · %d STOPS") % _expedition_node_count(),Vector2(28,20),Vector2(1016,45),28,MineStyle.AMBER)
 	var chart := ExpeditionPanel.new()
 	chart.name = "ExpeditionRouteChart"
 	chart.position = Vector2(28,78)
@@ -737,13 +742,13 @@ func _show_trial_brief() -> void:
 	MineStyle.literal(panel,_ex_text("轻松走位，流畅连招。","MOVE FREELY. CHAIN YOUR SKILLS."),Vector2(30,23),Vector2(782,47),31,MineStyle.CYAN)
 	MineStyle.literal(panel,_ex_text(str(words[0])+" · "+str(words[2]),str(words[3])+" · "+str(words[4])),Vector2(30,88),Vector2(782,61),21,MineStyle.AMBER)
 	var steps: Array = [
-		_ex_text("01  点击移动","01  CLICK / MOVE"),_ex_text("点击地面前往目标位置，鼠标指向决定技能方向。","Click the ground to move. Aim your skills with the cursor."),
-		_ex_text("02  四技连招","02  SKILLS / COMBO"),_ex_text("Q W E R 释放四项技能，A 普攻可穿插连招。","Use Q W E R for four skills. Weave A attacks into your combo."),
+		_ex_text("01  右键移动","01  RIGHT-CLICK"),_ex_text("右键点击地面移动；按住可持续走位，鼠标指向决定技能方向。","Right-click the ground to move; hold to keep moving. Aim skills with the cursor."),
+		_ex_text("02  四技连招","02  SKILLS / COMBO"),_ex_text("Q W E R 释放四项技能，左键或 A 普攻可穿插连招。","Use Q W E R for four skills. Weave left-click or A attacks into your combo."),
 		_ex_text("03  自动被动","03  HERO / PASSIVE"),_ex_text("职业被动自动触发；设置中可开启自动普攻。","Your hero's passive triggers automatically. Enable auto attacks in settings.")]
 	for index in range(3):
 		MineStyle.literal(panel,str(steps[index*2]),Vector2(30,170+index*57),Vector2(176,35),18,MineStyle.CYAN)
 		MineStyle.literal(panel,str(steps[index*2+1]),Vector2(211,170+index*57),Vector2(601,48),17,MineStyle.INK)
-	MineStyle.literal(panel,_ex_text("左键移动 / 瞄准 · Q W E R 技能 · A 普攻 · 空格闪避 · F 交互\n可自定义操作。按 M 选择第一关，清关后也可按 M 继续。","Left click move / aim · Q W E R skills · A attack · Space dodge · F interact\nControls can be customized. Press M to choose a room and continue after clearing it."),Vector2(30,350),Vector2(782,47),16,MineStyle.MUTED)
+	MineStyle.literal(panel,_ex_text("默认：右键移动 · 左键 / A 普攻 · Q W E R 技能 · 空格闪避 · F 交互\n操作可自定义。按 M 选择关卡，B 打开背包。","Right-click move · Left-click / A attack · QWER skills · Space dodge · F interact\nCustomize in settings. M opens the map; B opens your backpack."),Vector2(30,350),Vector2(782,47),16,MineStyle.MUTED)
 	var begin := MineStyle.button(panel,"",Vector2(534,405),Vector2(278,44),func():
 		_pop_modal()
 		_show_pending_expedition_offer())
@@ -863,15 +868,19 @@ func show_expedition_exit() -> void:
 	if expedition == null or not expedition.active():
 		return
 	var panel := _push_modal("",Vector2(720,360))
-	MineStyle.literal(panel,_ex_text("保存远征并退出", "SAVE EXPEDITION AND EXIT"),Vector2(28,20),Vector2(664,48),28,MineStyle.AMBER)
+	panel.name = "SaveExpeditionModal"
+	_camp_ui_icon(panel,"route",Vector2(28,21),Vector2(72,72))
+	MineStyle.literal(panel,_ex_text("封存这段旅程", "SEAL YOUR JOURNEY"),Vector2(122,28),Vector2(568,38),28,MineStyle.INK)
+	MineStyle.literal(panel,_ex_text("保存远征并退出", "SAVE EXPEDITION AND EXIT"),Vector2(124,72),Vector2(550,26),14,MineStyle.CYAN)
 	var note := _ex_text("当前位置是安全阶段。保存当前生命、资源与冷却，下次从这一站继续。", "This is a safe phase. Save health, resource and cooldowns and continue from this stop next time.")
 	if not expedition.current_complete():
 		note = _ex_text("当前房间尚未完成。下次从本房入口重打；本房未提交的金币与战利品不会保留。已完成房间的进度不受影响。", "This room is unfinished. Next time you restart at this room's entrance; uncommitted loot from this room is discarded. Earlier completed rooms are retained.")
-	MineStyle.literal(panel,note,Vector2(28,88),Vector2(664,137),21,MineStyle.INK)
-	var save := MineStyle.button(panel,"",Vector2(28,267),Vector2(414,52),_save_expedition_and_quit)
+	MineStyle.literal(panel,note,Vector2(36,118),Vector2(648,112),18,MineStyle.INK)
+	var save := MineStyle.button(panel,"",Vector2(32,267),Vector2(408,54),_save_expedition_and_quit)
 	save.name = "SaveExpeditionAndQuit"
-	save.text = _ex_text("确认保存并退出", "Save and exit")
-	MineStyle.button(panel,"CANCEL",Vector2(462,267),Vector2(230,52),_pop_modal).grab_focus()
+	save.text = _ex_text("保存旅程 · 退出", "Save journey · Exit")
+	MineStyle.primary(save)
+	MineStyle.button(panel,"CANCEL",Vector2(458,267),Vector2(230,54),_pop_modal).grab_focus()
 
 func _save_expedition_and_quit() -> void:
 	if expedition == null or not expedition.active() or not is_instance_valid(room):
@@ -1050,7 +1059,7 @@ func show_settings() -> void:
 	var controls := MineStyle.button(panel,"",Vector2(450,82),Vector2(402,44),func(): _switch_settings_tab("controls"))
 	controls.name = "ControlBindingsTab"
 	controls.text = _ex_text("操作与按键","CONTROLS & KEYS")
-	MineStyle.primary(general if settings_tab == "general" else controls)
+	MineStyle.selected(general if settings_tab == "general" else controls)
 	if settings_tab == "controls":
 		_build_control_settings(panel)
 		return
@@ -1078,9 +1087,14 @@ func show_settings() -> void:
 			number.text = str(roundi(value*100))+"%"
 			if is_instance_valid(music): music.set_mix(audio_sliders.master_volume.value,audio_sliders.music_volume.value,audio_sliders.sfx_volume.value)
 			debounce.start())
-	MineStyle.button(panel,"LANGUAGE",Vector2(28,328),Vector2(264,48),_toggle_language).grab_focus()
-	MineStyle.button(panel,"FULLSCREEN_ON" if settings.get("fullscreen",false) else "FULLSCREEN_OFF",Vector2(308,328),Vector2(264,48),_toggle_fullscreen)
-	MineStyle.button(panel,"FX_ON" if settings.get("reduced_fx",false) else "FX_OFF",Vector2(588,328),Vector2(264,48),_toggle_fx)
+	var language := MineStyle.button(panel,"",Vector2(28,328),Vector2(264,48),_toggle_language)
+	language.text = _ex_text("语言：简体中文","Language: English")
+	language.tooltip_text = _ex_text("点击切换为 English","Switch to 简体中文")
+	language.grab_focus()
+	var display := MineStyle.button(panel,"",Vector2(308,328),Vector2(264,48),_toggle_fullscreen)
+	display.text = _ex_text("显示：全屏","Display: Fullscreen") if settings.get("fullscreen",false) else _ex_text("显示：窗口","Display: Windowed")
+	var effects := MineStyle.button(panel,"",Vector2(588,328),Vector2(264,48),_toggle_fx)
+	effects.text = _ex_text("特效：简化","Effects: Reduced") if settings.get("reduced_fx",false) else _ex_text("特效：完整","Effects: Full")
 	var shake := MineStyle.button(panel,"",Vector2(28,392),Vector2(264,48),_toggle_camera_shake)
 	shake.name = "CameraShakeSetting"
 	shake.text = _ex_text("镜头震动：开启","Camera shake: On") if bool(settings.get("camera_shake",false)) else _ex_text("镜头震动：关闭","Camera shake: Off")
@@ -1092,7 +1106,7 @@ func show_settings() -> void:
 	paths.name = "EnemySkillPathsSetting"
 	paths.text = _ex_text("敌技能路径：显示","Enemy paths: On") if bool(settings.get("enemy_skill_paths",true)) else _ex_text("敌技能路径：隐藏","Enemy paths: Off")
 	paths.tooltip_text = _ex_text("隐藏野怪技能预警线与范围标记；技能伤害与判定不变。","Hide enemy warning lines and area markers. Damage and hit detection remain active.")
-	MineStyle.literal(panel,_ex_text("左键移动与瞄准，Q W E R 四项技能，A 普攻，空格闪避。\n可在「操作与按键」中设置移动键、鼠标按键及各项技能。\n关闭镜头震动可保持画面稳定；自动普攻可减轻连续操作。","Click to move and aim. Q W E R skills, A attack, Space dodge.\nCustomize movement, mouse buttons and skills in Controls & Keys.\nDisable camera shake for a steady view. Auto attacks ease repeated input."),Vector2(28,464),Vector2(824,84),17,MineStyle.MUTED)
+	MineStyle.literal(panel,_ex_text("默认：右键移动 / 按住走位，左键或 A 普攻，Q W E R 技能。\n「操作与按键」可自定义；A 分配给其他操作后不再触发普攻。\n关闭镜头震动可保持画面稳定；自动普攻可减轻连续操作。","Default: right-click / hold to move, left-click or A attack, Q W E R skills.\nCustomize in Controls & Keys. Assigning A elsewhere disables its attack alias.\nDisable camera shake for a steady view. Auto attacks ease repeated input."),Vector2(28,464),Vector2(824,84),17,MineStyle.MUTED)
 	MineStyle.button(panel,"BACK",Vector2(612,566),Vector2(240,48),_pop_modal)
 
 func _switch_settings_tab(next_tab: String) -> void:
@@ -1115,8 +1129,8 @@ func _build_control_settings(panel: Panel) -> void:
 		MineStyle.literal(panel,str(labels[index]),origin + Vector2(0,7),Vector2(156,31),17)
 		var binding := MineStyle.button(panel,"",origin + Vector2(158,0),Vector2(244,42),func(): _begin_control_binding(action))
 		binding.name = "Bind_" + action
-		binding.text = _control_label(action)
-		binding.tooltip_text = _ex_text("点击更换按键；Esc 取消","Click to change binding; Esc cancels")
+		binding.text = Controls.secondary_label(action, Game.profile.settings.get("controls", {}), Words.locale)
+		binding.tooltip_text = _ex_text("点击更换主按键；Esc 取消。普攻备用 A 会在分配给其他操作时自动停用。","Click to change the primary binding; Esc cancels. The A attack alias is disabled when assigned to another action.")
 	binding_feedback = MineStyle.literal(panel,_ex_text("职业被动自动触发。Tab 技能详情 · M 路线 · B 背包 · Esc 暂停。","Passives trigger automatically. Tab details · M map · B backpack · Esc pause."),Vector2(28,507),Vector2(824,44),15,MineStyle.MUTED)
 	var reset := MineStyle.button(panel,"",Vector2(28,566),Vector2(264,48),_reset_control_bindings)
 	reset.text = _ex_text("恢复默认按键","RESET CONTROLS")

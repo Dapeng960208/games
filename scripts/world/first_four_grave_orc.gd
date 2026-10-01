@@ -26,9 +26,9 @@ func configure(next_host: Node2D, next_biome: String, next_variant: int, next_co
 	for index: int in count:
 		var at: Vector2 = host.combat_objective_point(index,count)
 		if biome_id=="B03":
-			host.add_element("grave_seal_"+str(index),at,"封墓石 " + str(index+1),"grave_seal","B03_transformer",{"description":"E 开始封墓；站近1.6秒，离开保留进度。未封墓可有限复生敌人","description_en":"E begins sealing; stay near for 1.6s. Leaving preserves progress. Unsealed graves permit limited resurrection.","repeatable":true,"always_label":true,"visual_height":90.0})
+			host.add_element("grave_seal_"+str(index),at,host.combat_objective_label(index,"封墓石 " + str(index+1)),"grave_seal",host.combat_objective_asset(index,"B03_transformer"),{"description":host.interaction_key()+" 开始封墓；站近1.6秒，离开保留进度。未封墓可有限复生敌人","description_en":host.interaction_key()+" begins sealing; stay near for 1.6s. Leaving preserves progress. Unsealed graves permit limited resurrection.","repeatable":true,"always_label":true,"visual_height":90.0})
 		else:
-			host.add_target("war_barricade_"+str(index),at,120.0+variant*15.0,"B04_resonance_obelisk","战寨路障 " + str(index+1),{"description":"引重装冲锋撞碎，或用普攻拆除；拆障后附近兽人防御短暂削弱","description_en":"Lure a heavy charge into this barricade or break it with basic attacks. Nearby orc defenses weaken after the breach.","always_label":true,"visual_height":96.0})
+			host.add_target("war_barricade_"+str(index),at,120.0+variant*15.0,host.combat_objective_asset(index,"B04_resonance_obelisk"),host.combat_objective_label(index,"战寨路障 " + str(index+1)),{"description":"引重装冲锋撞碎，或用普攻拆除；拆障后附近兽人防御短暂削弱","description_en":"Lure a heavy charge into this barricade or break it with basic attacks. Nearby orc defenses weaken after the breach.","always_label":true,"visual_height":96.0})
 	host.message = status_text()
 
 func _paused() -> bool:
@@ -161,5 +161,5 @@ func status_text() -> String:
 	return "路障 %d/%d · 引重装冲锋撞碎，或普攻拆障；破障削弱防御" % [host.completed_count,count]
 
 func status_text_en() -> String:
-	if biome_id=="B03": return "Graves %d/%d · E seals in 1.6s nearby; seal all, then clear · Revivals %d/%d" % [host.completed_count,count,revivals,MAX_REVIVALS]
+	if biome_id=="B03": return "Graves %d/%d · %s seals in 1.6s nearby; seal all, then clear · Revivals %d/%d" % [host.completed_count,count,host.interaction_key(),revivals,MAX_REVIVALS]
 	return "Barricades %d/%d · Lure heavy charges or use basic attacks; breaches weaken defenses" % [host.completed_count,count]

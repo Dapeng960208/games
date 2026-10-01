@@ -52,7 +52,7 @@ func configure(owner_room: Node2D, room_layout: Dictionary) -> bool:
 	room = owner_room
 	layout = room_layout.duplicate(true)
 	room_id = str(layout.get("room_id", ""))
-	biome_id = str(Catalog.room(room_id).get("biome_id", "B01"))
+	biome_id = str(layout.get("biome_id", Catalog.room(room_id).get("biome_id", "B01")))
 	_placement_rng.seed = int(layout.get("seed", hash(room_id))) ^ 0x524F4F4D
 	_beacon_rng.seed = int(layout.get("seed", hash(room_id))) ^ 0x42454143
 	obstacle_recipes = Appearance.recipe(layout, biome_id)
@@ -71,7 +71,13 @@ func configure(owner_room: Node2D, room_layout: Dictionary) -> bool:
 	# A separate random stream changes only their function, never geometry.
 	var occupied: Array[Vector2] = []
 	for ordinal: int in 3:
-		var anchor: Dictionary = _find_position(occupied, props.size(), true)
+		var anchor: Dictionary = {}
+		if bool(layout.get("fixed_layout", false)):
+			var authored: Array = layout.get("buff_anchors", [])
+			if ordinal < authored.size() and _clear_point(authored[ordinal], 35.0):
+				anchor = {"position":authored[ordinal], "anchor":authored[ordinal]}
+		else:
+			anchor = _find_position(occupied, props.size(), true)
 		if anchor.is_empty():
 			configuration_errors.append("No reachable separated beacon position "+str(ordinal)+" in "+room_id+" seed "+str(layout.get("seed",0)))
 			push_error(configuration_errors.back())
@@ -257,7 +263,7 @@ func resource_regen_multiplier() -> float:
 	return 1.0
 
 func nearest_interaction(_player_pos: Vector2) -> Dictionary:
-	# Beacons use proximity, so they never compete with tasks/supplies for E.
+	# Beacons use proximity, so they never compete with tasks/supplies for interact.
 	return {}
 
 func interact(_id: String, _player: Node2D) -> Dictionary:
@@ -415,6 +421,12 @@ func _build_world_entities(occupied: Array[Vector2]) -> void:
 		elif "movable" in tags:
 			has_movable = true
 			entities.append({"id":str(recipe.id), "kind":"movable", "tags":["movable"], "position":rect.get_center(), "rect":rect, "recipe_index":index, "radius":maxf(rect.size.x,rect.size.y)*.5, "enabled":true})
+	if bool(layout.get("fixed_layout", false)):
+		# Furniture and utility targets belong to the approved drawing. Never
+		# append a randomly placed legacy socket, coil, lamp or pool.
+		for original: Dictionary in layout.get("fixed_world_entities", []):
+			entities.append(original.duplicate(true))
+		return
 	var kinds: Array = []
 	if biome_id == "B02":
 		kinds = ["loot_nest"]

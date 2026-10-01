@@ -2,15 +2,12 @@ extends Button
 ## Illustrated camp navigation. Text stays in Labels so translated titles fit
 ## without being baked into the artwork or drawn twice by the native Button.
 
-const TextureSampler = preload("res://scripts/ui/texture_sampler.gd")
 const ArtLibrary = preload("res://scripts/ui/storybook_art.gd")
+const ButtonSkin = preload("res://scripts/ui/button_skin.gd")
 const ICON_IDS := ["hero", "skills", "equipment", "shop", "compass", "axe_slash"]
 const INK := Color("392843")
 const MUTED := Color("806f79")
-const BRASS := Color("ba9258")
-const PAPER := Color("fff2cf")
 const PAPER_LIGHT := Color("fff9e8")
-const DEEP_TEAL := Color("245d61")
 
 var heading := ""
 var description := ""
@@ -18,7 +15,6 @@ var artwork_index := 0
 var accent_color := Color("257f83")
 var is_prominent := false
 var artwork: Texture2D
-var paper_artwork: Texture2D
 var title_label: Label
 var subtitle_label: Label
 
@@ -78,7 +74,6 @@ func _ensure_labels() -> void:
 	subtitle_label.text = description
 
 func _load_artwork() -> void:
-	paper_artwork = TextureSampler.sampled("res://assets/generated/ui/storybook_parchment_v1.png")
 	artwork = ArtLibrary.texture(ICON_IDS[artwork_index])
 
 func _is_compact() -> bool:
@@ -113,83 +108,21 @@ func _layout_labels() -> void:
 	var subtitle_ink := Color("d6e4d8") if is_prominent else MUTED
 	subtitle_label.add_theme_color_override("font_color", Color(subtitle_ink, 0.6) if disabled else subtitle_ink)
 
-func _card_polygon(at: Vector2, extent: Vector2, bevel: float) -> PackedVector2Array:
-	return PackedVector2Array([
-		at + Vector2(bevel, 0),
-		at + Vector2(extent.x - bevel * 0.55, 0),
-		at + Vector2(extent.x, bevel * 0.55),
-		at + Vector2(extent.x, extent.y - bevel),
-		at + Vector2(extent.x - bevel, extent.y),
-		at + Vector2(bevel * 0.45, extent.y),
-		at + Vector2(0, extent.y - bevel * 0.45),
-		at + Vector2(0, bevel),
-	])
-
-func _outline(points: PackedVector2Array, color: Color, width: float = 1.0) -> void:
-	var closed := points.duplicate()
-	closed.append(points[0])
-	draw_polyline(closed, color, width, true)
-
 func _draw() -> void:
 	if size.x < 32.0 or size.y < 24.0:
 		return
 	var active := (is_hovered() or has_focus()) and not disabled
 	var depressed := is_pressed() and not disabled
+	var state := "disabled" if disabled else ("pressed" if depressed else ("hover" if active else "normal"))
 	var offset := Vector2(0, 1) if depressed else Vector2.ZERO
-	var origin := Vector2(4, 3) + offset
-	var extent := size - Vector2(8, 10)
-	var bevel := 7.0 if _is_compact() else (9.0 if is_prominent else 12.0)
-	var silhouette := _card_polygon(origin, extent, bevel)
-	# Two quiet shadows let the cut paper sit over the painted camp scene.
-	draw_colored_polygon(_card_polygon(origin + Vector2(0, 5), extent, bevel), Color(INK, 0.035))
-	draw_colored_polygon(_card_polygon(origin + Vector2(0, 3), extent, bevel), Color(INK, 0.11 if active else 0.075))
-	var paper_tint := DEEP_TEAL.lerp(accent_color, 0.1) if is_prominent else PAPER.lerp(accent_color, 0.018)
-	if active:
-		paper_tint = paper_tint.lightened(0.07) if is_prominent else paper_tint.lerp(PAPER_LIGHT, 0.65)
-	if depressed and is_prominent:
-		paper_tint = paper_tint.darkened(0.06)
-	if disabled:
-		paper_tint = paper_tint.lerp(Color("e9ddc6"), 0.55)
-	draw_colored_polygon(silhouette, paper_tint)
-	if paper_artwork != null:
-		# Sample the unframed interior of the painted parchment and clip it to
-		# this card's silhouette, retaining paper grain at every card proportion.
-		var paper_uvs := PackedVector2Array()
-		for point in silhouette:
-			var relative := (point - origin) / extent
-			paper_uvs.append(Vector2(0.04, 0.08) + relative * Vector2(0.92, 0.84))
-		var paper_wash := Color(0.47, 0.7, 0.63, 0.12) if is_prominent else Color(1, 1, 1, 0.5)
-		draw_polygon(silhouette, PackedColorArray([paper_wash]), paper_uvs, paper_artwork)
-	# The broad light wash and small turned corner give paper a layered finish.
-	var light_points := PackedVector2Array([
-		origin + Vector2(bevel, 1), origin + Vector2(extent.x - bevel * 0.55, 1),
-		origin + Vector2(extent.x - 1, bevel * 0.55), origin + Vector2(extent.x - 1, extent.y * 0.28),
-		origin + Vector2(1, extent.y * 0.54), origin + Vector2(1, bevel),
-	])
-	draw_colored_polygon(light_points, Color("94c4ae", 0.12) if is_prominent else Color(PAPER_LIGHT, 0.6))
-	var corner := PackedVector2Array([
-		origin + Vector2(extent.x - bevel, extent.y),
-		origin + Vector2(extent.x - bevel, extent.y - bevel),
-		origin + Vector2(extent.x, extent.y - bevel),
-	])
-	draw_colored_polygon(corner, Color("c8a469") if is_prominent else Color("dbbf8c"))
-	_outline(silhouette, Color(BRASS, 1.0 if is_prominent else (0.86 if active else 0.63)), 1.8 if is_prominent else 1.2)
-	var inset := _card_polygon(origin + Vector2(3, 3), extent - Vector2(6, 6), maxf(5.0, bevel - 2.0))
-	_outline(inset, Color("c2ddc1", 0.28) if is_prominent else Color(PAPER_LIGHT, 0.78), 1.0)
-	# A small enamel ribbon belongs to the card rather than framing every edge.
-	var ribbon_width := 36.0 if is_prominent else 45.0
-	var ribbon_at := origin + Vector2(extent.x - ribbon_width - 19.0, 0)
-	draw_colored_polygon(PackedVector2Array([
-		ribbon_at, ribbon_at + Vector2(ribbon_width, 0),
-		ribbon_at + Vector2(ribbon_width - 5, 7), ribbon_at + Vector2(4, 7),
-	]), Color("e0c385", 0.9) if is_prominent else Color(accent_color, 0.8 if active else 0.6))
-	draw_line(origin + Vector2(15, extent.y - 7), origin + Vector2(extent.x - 28, extent.y - 7), Color(BRASS, 0.38 if is_prominent else 0.16), 1.0, true)
+	var surface := Rect2(Vector2(2, 2) + offset, size - Vector2(4, 4))
+	# Camp and menu navigation share the generated enamel/scroll components.
+	# Their independent illustrations and live titles remain readable at each size.
+	var component := "primary" if is_prominent else "secondary"
+	ButtonSkin.create(component, state).draw(get_canvas_item(), surface)
 	_draw_artwork(offset)
-	if active:
-		# Clear keyboard focus uses corner brackets, keeping the illustration open.
-		var focus_ink := Color("f2d696") if is_prominent else Color(accent_color, 0.95)
-		draw_polyline(PackedVector2Array([origin + Vector2(2, 23), origin + Vector2(2, bevel), origin + Vector2(bevel, 2), origin + Vector2(25, 2)]), focus_ink, 2.0, true)
-		draw_polyline(PackedVector2Array([origin + Vector2(extent.x - 25, extent.y - 2), origin + Vector2(extent.x - bevel, extent.y - 2), origin + Vector2(extent.x - 2, extent.y - bevel), origin + Vector2(extent.x - 2, extent.y - 23)]), focus_ink, 2.0, true)
+	if has_focus() and not disabled:
+		ButtonSkin.create(component, "focus").draw(get_canvas_item(), surface)
 
 func _draw_artwork(offset: Vector2) -> void:
 	if artwork == null:

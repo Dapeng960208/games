@@ -3,7 +3,7 @@ extends RefCounted
 ## Authored basic-attack poses follow committed HeroFeedback phases. This
 ## sampler owns no clocks and cannot change damage, attack speed or cooldowns.
 
-const BODY_HEIGHT := 88.0
+const BODY_HEIGHT := preload("res://scripts/combat/presentation_metrics.gd").HERO_BODY_HEIGHT
 const FOOT := Vector2(0, 8)
 const ArtFamily = preload("res://scripts/combat/hero_art_family.gd")
 const FRAME_NAMES: Array[String] = ["lift", "loaded", "downswing", "contact", "recoil", "ready"]

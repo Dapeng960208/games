@@ -3,7 +3,7 @@ extends RefCounted
 ## Authored skill clips consume committed HeroFeedback phase progress.
 ## Sampling owns no clock and cannot release projectiles, detonate nodes or deal damage.
 
-const BODY_HEIGHT := 88.0
+const BODY_HEIGHT := preload("res://scripts/combat/presentation_metrics.gd").HERO_BODY_HEIGHT
 const FOOT := Vector2(0, 8)
 const ArtFamily = preload("res://scripts/combat/hero_art_family.gd")
 const PHASES: Array[String] = ["windup", "release", "recovery"]

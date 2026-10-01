@@ -23,7 +23,7 @@ static func install(actor: Node2D) -> Dictionary:
 	if entry.is_empty() or bool(actor.get("static_actor")):
 		return {}
 	var old_bounds: Rect2 = actor.get("body_bounds")
-	var height: float = maxf(1.0, old_bounds.size.y)
+	var height: float = maxf(1.0, old_bounds.size.y) * preload("res://scripts/combat/presentation_metrics.gd").ENEMY_BODY_FACTOR
 	var foot_y: float = old_bounds.end.y
 	var region: Rect2 = entry.region
 	var source_foot: Vector2 = entry.foot

@@ -16,6 +16,7 @@ const GREEN := Color("4b8554")
 const COPPER := Color("c49b60")
 const TRACK := Color("cbb89e")
 static var parchment_texture: Texture2D
+const ButtonSkin := preload("res://scripts/ui/button_skin.gd")
 
 static func box(color: Color, border: Color = COPPER, width: int = 1) -> StyleBoxFlat:
 	var b := StyleBoxFlat.new()
@@ -50,23 +51,17 @@ static func make_theme() -> Theme:
 	result.set_color("font_color", "Label", INK)
 	result.set_color("default_color", "RichTextLabel", INK)
 	result.set_color("font_color", "Button", INK)
-	result.set_color("font_hover_color", "Button", AMBER)
+	result.set_color("font_hover_color", "Button", INK)
 	result.set_color("font_pressed_color", "Button", INK)
-	result.set_color("font_focus_color", "Button", AMBER)
+	result.set_color("font_focus_color", "Button", INK)
 	result.set_color("font_disabled_color", "Button", Color("9c8b91"))
-	result.set_stylebox("normal", "Button", paper_box())
-	result.set_stylebox("hover", "Button", box(RAISED, AMBER))
-	result.set_stylebox("pressed", "Button", box(Color("eedbb6"), CYAN))
-	result.set_stylebox("disabled", "Button", box(Color("e8ddc7"), Color("c3b79e")))
-	result.set_stylebox("focus", "Button", box(Color(0,0,0,0), CYAN, 2))
+	for state in ["normal","hover","pressed","disabled","focus"]:
+		result.set_stylebox(state,"Button",ButtonSkin.create("secondary",state))
 	result.set_stylebox("panel", "Panel", paper_box())
 	result.set_stylebox("panel", "PanelContainer", paper_box())
 	result.set_stylebox("panel", "TooltipPanel", paper_box())
-	result.set_stylebox("normal", "OptionButton", paper_box())
-	result.set_stylebox("hover", "OptionButton", box(RAISED, CYAN))
-	result.set_stylebox("pressed", "OptionButton", box(Color("eedbb6"), CYAN))
-	result.set_stylebox("disabled", "OptionButton", box(Color("e8ddc7"), Color("c3b79e")))
-	result.set_stylebox("focus", "OptionButton", box(Color(0,0,0,0), CYAN, 2))
+	for state in ["normal","hover","pressed","disabled","focus"]:
+		result.set_stylebox(state,"OptionButton",ButtonSkin.create("selector",state))
 	result.set_color("font_color", "OptionButton", INK)
 	result.set_color("font_hover_color", "OptionButton", CYAN)
 	result.set_color("font_pressed_color", "OptionButton", INK)
@@ -143,21 +138,43 @@ static func button(parent: Node, key: String, at: Vector2, extent: Vector2, call
 	node.position = at
 	node.size = extent
 	node.custom_minimum_size = Vector2(44,44)
-	if key in ["START","CONFIRM_EXTRACT","RETURN_CAMP","CONTINUE","CONFIRM_NEW","RESUME"]:
+	button_skin(node,"card" if extent.y > 88 else "secondary")
+	if key in ["START","CONFIRM_EXTRACT","CONTINUE","CONFIRM_NEW","RESUME"]:
 		primary(node)
+	elif key in ["BACK","CANCEL","MAIN_MENU","RETURN_CAMP"]:
+		button_skin(node,"back")
+	elif key in ["QUIT","ABANDON","CONFIRM_ABANDON"]:
+		button_skin(node,"danger")
 	node.pressed.connect(callback)
 	parent.add_child(node)
 	return node
 
 static func primary(node: Button, accent: Color = CYAN) -> void:
-	# Main actions carry enamel colour; brass and cream match the painted kit.
-	node.add_theme_stylebox_override("normal",box(accent.darkened(0.12),COPPER,2))
-	node.add_theme_stylebox_override("hover",box(accent.darkened(0.02),COPPER.lightened(0.2),2))
-	node.add_theme_stylebox_override("pressed",box(accent.darkened(0.25),COPPER,2))
-	node.add_theme_color_override("font_color",PAPER_LIGHT)
-	node.add_theme_color_override("font_hover_color",PAPER_LIGHT)
-	node.add_theme_color_override("font_pressed_color",PAPER_LIGHT)
-	node.add_theme_color_override("font_focus_color",PAPER_LIGHT)
+	button_skin(node,"danger" if accent.is_equal_approx(RED) else "primary")
+
+static func selected(node: Button, kind: String = "tab") -> void:
+	button_skin(node,{"card":"selected_card","socket":"selected_socket"}.get(kind,kind))
+
+static func button_skin(node: Button, kind: String = "secondary") -> void:
+	var pale_text := kind in ["primary","danger","tab"]
+	for state in ["normal","hover","pressed","disabled","focus"]:
+		var skin: StyleBox = ButtonSkin.create(kind,state)
+		if node.size.x < 100:
+			skin.content_margin_left = 6
+			skin.content_margin_right = 6
+		if kind in ["card","selected_card"]:
+			# Rich cards position child labels/icons themselves. The illustrated trim
+			# must not silently add 64 px to their minimum height.
+			skin.content_margin_left = 12
+			skin.content_margin_right = 12
+			skin.content_margin_top = 8
+			skin.content_margin_bottom = 8
+		elif kind in ["socket","selected_socket"]:
+			skin.set_content_margin_all(4)
+		node.add_theme_stylebox_override(state,skin)
+	for property in ["font_color","font_hover_color","font_pressed_color","font_focus_color"]:
+		node.add_theme_color_override(property,PAPER_LIGHT if pale_text else INK)
+	node.add_theme_color_override("font_disabled_color",Color("d3c6af") if pale_text else Color("827782"))
 
 static func panel(parent: Node, at: Vector2, extent: Vector2) -> Panel:
 	var node := Panel.new()

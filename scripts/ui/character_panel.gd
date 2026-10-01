@@ -87,7 +87,7 @@ func _build(close: Callable) -> void:
 		var item: Dictionary = ContentRegistry.equipment(id)
 		var at := Vector2(46 if index < 3 else 286,152+(index%3)*70)
 		var cell := _hitbox("Equipment_"+slot,at,Vector2(52,52))
-		cell.add_theme_stylebox_override("normal",MineStyle.box(MineStyle.PANEL,MineStyle.COPPER,1))
+		MineStyle.button_skin(cell,"socket")
 		MineStyle.equipment_icon(cell,item if not item.is_empty() else {"slot":slot},Vector2(4,4),Vector2(44,44))
 		var item_name := MineStyle.content_text(item,"name",Words.text("EMPTY_SLOT"))
 		var summary := _equipment_summary(item)
@@ -113,7 +113,9 @@ func _build(close: Callable) -> void:
 		var description := MineStyle.content_text(skill,"description")
 		cell.mouse_entered.connect(func(): _explain(title,description))
 		cell.focus_entered.connect(func(): _explain(title,description))
-		_text(["Q",_t("鼠标右键","Right click"),"F","R"][index],Vector2(66+index*58,514),Vector2(57,21),11,MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		var action: String = ["skill_q","skill_secondary","skill_f","skill_ultimate"][index]
+		var key: String = ControlBindings.label_for(action,Game.profile.get("settings",{}).get("controls",{}),Words.locale)
+		_text(key,Vector2(66+index*58,514),Vector2(57,21),11,MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_text(_t("攻击","OFFENSE"),Vector2(387,109),Vector2(570,27),18,GOLD)
 	_text(_t("生存","DEFENSE"),Vector2(387,227),Vector2(570,27),18,GOLD)
 	_text(_t("精通 / 资源","MASTERY / RESOURCE"),Vector2(387,345),Vector2(570,27),18,GOLD)
@@ -140,6 +142,7 @@ func _build(close: Callable) -> void:
 	detail_body.clip_text = true
 	var back := _hitbox("CloseCharacterDossier",Vector2(923,88),Vector2(42,35))
 	back.text = "×"
+	MineStyle.button_skin(back,"socket")
 	back.add_theme_font_size_override("font_size",28)
 	back.add_theme_color_override("font_color",GOLD)
 	back.pressed.connect(close)

@@ -13,6 +13,9 @@ func configure(room: Node2D, layout: Dictionary, biome_id: String, obstacle_reci
 		child.free()
 	y_sort_enabled = true
 	z_index = 2
+	var backdrop: Node = room.get_node_or_null("MineBackdrop")
+	if backdrop!=null and backdrop.has_method("configure_layout"):
+		backdrop.configure_layout(layout)
 	recipes = Appearance.depth_recipe(layout, biome_id, obstacle_recipes)
 	for item: Dictionary in recipes:
 		var sprite := DepthSprite.new()

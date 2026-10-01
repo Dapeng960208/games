@@ -3,7 +3,7 @@ extends RefCounted
 ## Read-only raster clip sampling. Distance is world travel, never elapsed time.
 ## The two authored view banks retain HeroVisual's existing mirror contract.
 
-const BODY_HEIGHT := 88.0
+const BODY_HEIGHT := preload("res://scripts/combat/presentation_metrics.gd").HERO_BODY_HEIGHT
 const FOOT := Vector2(0,8)
 const ArtFamily = preload("res://scripts/combat/hero_art_family.gd")
 static var _clips: Dictionary = {}

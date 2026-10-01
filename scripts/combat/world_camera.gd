@@ -3,7 +3,7 @@ extends Camera2D
 ## World-only tracking camera. HUD and modal menus belong on a CanvasLayer.
 
 const WORLD_ZOOM := Vector2(0.85, 0.85)
-const RENDER_MARGIN := 64.0
+const RENDER_MARGIN := 200.0
 const IMPACT_MERGE_SECONDS := 0.055
 const LIGHT_IMPACT_SECONDS := 0.11
 const HEAVY_IMPACT_SECONDS := 0.145
@@ -22,6 +22,7 @@ var _peak_offset: float = 0.0
 
 func _ready() -> void:
 	Game.changed.connect(_read_settings)
+	get_viewport().size_changed.connect(_fit_render_frame)
 	_read_settings()
 
 
@@ -92,11 +93,10 @@ func _update_impact_offset() -> void:
 	_peak_offset = maxf(_peak_offset, offset.length())
 
 
-func configure(room: Node2D, player: Node2D, world_arena: Rect2) -> void:
+func configure(room: Node2D, player: Node2D, world_arena: Rect2, painted_bounds: Rect2 = Rect2()) -> void:
 	target = player
 	arena = world_arena
-	render_bounds = arena.grow(RENDER_MARGIN)
-	zoom = WORLD_ZOOM
+	render_bounds = painted_bounds if painted_bounds.has_area() else arena.grow(RENDER_MARGIN)
 	position_smoothing_enabled = false
 	rotation_smoothing_enabled = false
 	limit_smoothed = false
@@ -104,18 +104,25 @@ func configure(room: Node2D, player: Node2D, world_arena: Rect2) -> void:
 	drag_vertical_enabled = false
 	process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
 	process_priority = 100
-	# Collision stays at the authored arena; a render-only border keeps articulated
-	# shoulders, weapons and feet visible when the collider reaches that edge.
+	# The painted landscape is the view limit; its ground outline alone limits
+	# feet. Keep foreground, water and architecture visible beyond that outline.
 	var top_left: Vector2 = room.to_global(render_bounds.position)
 	var bottom_right: Vector2 = room.to_global(render_bounds.end)
 	limit_left = int(top_left.x)
 	limit_top = int(top_left.y)
 	limit_right = int(bottom_right.x)
 	limit_bottom = int(bottom_right.y)
+	_fit_render_frame()
 	follow_target()
 	if is_inside_tree():
 		make_current()
 		force_update_scroll()
+
+func _fit_render_frame() -> void:
+	if not render_bounds.has_area() or not is_inside_tree(): return
+	var extent: Vector2 = get_viewport().get_visible_rect().size
+	var fitted: float = maxf(WORLD_ZOOM.x, maxf(extent.x/render_bounds.size.x, extent.y/render_bounds.size.y))
+	zoom = Vector2.ONE*fitted
 
 
 func _physics_process(delta: float) -> void:

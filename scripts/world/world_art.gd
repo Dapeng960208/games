@@ -7,14 +7,64 @@ const PROP_SHADER = preload("res://shaders/sunlit_props.gdshader")
 const FLOOR_PATH := "res://assets/generated/world/storybook_floor_v1.png"
 const EDGE_PATH := "res://assets/generated/world/storybook_edge_v1.png"
 const FACTION_FLOOR_PATH := "res://assets/generated/world/storybook_floor_factions_v2.png"
+const PUMPKIN_FLOOR_PATH := "res://assets/generated/world/fixed_B03_floor_v1.png"
 const FACTION_FLOOR_REGIONS := {"B02":Rect2(0,0,724,724),"B03":Rect2(724,0,724,724),"B04":Rect2(1448,0,724,724)}
 const ARCHITECTURE_PATH := "res://assets/generated/world/storybook_architecture_v2.png"
 const ARCHITECTURE_MANIFEST := "res://assets/generated/world/storybook_architecture_v2.regions.json"
 static var _materials: Dictionary = {}
 static var _architecture: Dictionary = {}
 static var _floors: Dictionary = {}
+static var _environments: Dictionary = {}
+
+static func environment_definition(biome_id: String) -> Dictionary:
+	if _environments.has(biome_id): return _environments[biome_id]
+	var manifest_path: String = "res://assets/generated/world/fixed_"+biome_id+"_environment_v3.json"
+	if not FileAccess.file_exists(manifest_path):
+		manifest_path = "res://assets/generated/world/fixed_"+biome_id+"_environment_v2.json"
+	if not FileAccess.file_exists(manifest_path): return {}
+	var value: Variant = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
+	if not value is Dictionary: return {}
+	var path: String = str(value.get("texture",""))
+	var values: Array = value.get("walkable_normalized_rect",[])
+	if values.size()!=4 or not FileAccess.file_exists(path): return {}
+	var central := Rect2(float(values[0]),float(values[1]),float(values[2]),float(values[3]))
+	if not central.has_area() or not Rect2(Vector2.ZERO,Vector2.ONE).encloses(central): return {}
+	var placement: Rect2 = central
+	var placement_values: Array = value.get("placement_normalized_rect",[])
+	if placement_values.size()==4:
+		var proposed := Rect2(float(placement_values[0]),float(placement_values[1]),float(placement_values[2]),float(placement_values[3]))
+		if proposed.has_area() and Rect2(Vector2.ZERO,Vector2.ONE).encloses(proposed): placement=proposed
+	var texture: Texture2D = preload("res://scripts/ui/texture_sampler.gd").sampled(path)
+	if texture==null: return {}
+	var result := {"path":path,"texture":texture,"source":Rect2(Vector2.ZERO,texture.get_size()),"walkable_normalized_rect":central,"placement_normalized_rect":placement,"metadata":value}
+	_environments[biome_id] = result
+	return result
+
+static func environment_texture_for(biome_id: String) -> Texture2D:
+	return environment_definition(biome_id).get("texture",null)
+
+static func environment_world_rect(arena: Rect2, biome_id: String) -> Rect2:
+	var definition: Dictionary = environment_definition(biome_id)
+	if definition.is_empty(): return Rect2()
+	var central: Rect2 = definition.placement_normalized_rect
+	var size: Vector2 = arena.size/central.size
+	return Rect2(arena.position-central.position*size,size)
+
+static func environment_point(arena: Rect2, biome_id: String, normalized: Vector2) -> Vector2:
+	var bounds: Rect2 = environment_world_rect(arena,biome_id)
+	return bounds.position+normalized*bounds.size
+
+static func environment_ground_polygon(arena: Rect2, biome_id: String) -> PackedVector2Array:
+	var definition: Dictionary = environment_definition(biome_id)
+	var result := PackedVector2Array()
+	for point: Array in definition.get("metadata",{}).get("walkable_normalized_polygon",[]):
+		if point.size()==2: result.append(environment_point(arena,biome_id,Vector2(float(point[0]),float(point[1]))))
+	return result
 
 static func floor_definition(biome_id: String) -> Dictionary:
+	if biome_id=="B03" and FileAccess.file_exists(PUMPKIN_FLOOR_PATH):
+		var painted: Texture2D = preload("res://scripts/ui/texture_sampler.gd").sampled(PUMPKIN_FLOOR_PATH)
+		if painted!=null: return {"path":PUMPKIN_FLOOR_PATH,"source":Rect2(Vector2.ZERO,painted.get_size())}
 	if FACTION_FLOOR_REGIONS.has(biome_id) and FileAccess.file_exists(FACTION_FLOOR_PATH):
 		return {"path":FACTION_FLOOR_PATH,"source":FACTION_FLOOR_REGIONS[biome_id]}
 	var texture: Texture2D = preload("res://scripts/ui/texture_sampler.gd").sampled(FLOOR_PATH)

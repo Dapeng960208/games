@@ -11,6 +11,7 @@ const WorldArt = preload("res://scripts/world/world_art.gd")
 const BodyLayer = preload("res://scripts/world/objective_depth_layer.gd")
 const PropArt = preload("res://scripts/world/world_prop_art.gd")
 const FirstFour = preload("res://scripts/world/first_four_objectives.gd")
+const PropIdentity = preload("res://scripts/world/prop_identity.gd")
 var room: Node2D
 var layout: Dictionary = {}
 var room_id: String = ""
@@ -43,6 +44,7 @@ func configure(next_room: Node2D, next_layout: Dictionary, node_role: String = "
 	if current_combat_rules():
 		module = FirstFour.new()
 		module.configure(self)
+		_add_fixed_optional_rewards()
 		queue_redraw()
 		return
 	var script_path: String = "res://scripts/world/objectives_" + biome.to_lower() + ".gd"
@@ -60,7 +62,9 @@ func configure_cleared(next_room: Node2D, next_layout: Dictionary, node_role: St
 	finished = true
 	completed_count = required_count
 	quality = "full"
-	if room_id == "L01":
+	if bool(layout.get("fixed_layout", false)):
+		_add_fixed_optional_rewards(claimed_optional)
+	elif room_id == "L01":
 		module = preload("res://scripts/world/objectives_b01.gd").new()
 		module.configure_cleared(self, claimed_optional)
 	elif room_id == "L11":
@@ -76,11 +80,22 @@ func _configure_context(next_room: Node2D, next_layout: Dictionary, node_role: S
 	room_id = str(layout.get("room_id", ""))
 	role = node_role
 	definition = Catalog.room(room_id)
-	required_count = int(definition.get("objective_count", 0))
+	required_count = int(layout.get("fixed_objective_count", definition.get("objective_count", 0)))
 	objective_font = load("res://assets/fonts/NotoSansSC.ttf") if ResourceLoader.exists("res://assets/fonts/NotoSansSC.ttf") else ThemeDB.fallback_font
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	z_index = 1
 	material = WorldArt.material_for(str(definition.get("biome_id", "B01")))
+
+func _add_fixed_optional_rewards(claimed: Array = []) -> void:
+	for reward: Dictionary in layout.get("fixed_optional_rewards", []):
+		var id: String = str(reward.id)
+		if claimed.has(id): continue
+		# The scenery layer already paints this authored chest. The task host
+		# owns only its interaction ring and receipt, avoiding stacked sprites.
+		add_element(id, reward.position, str(reward.get("name", "支线宝箱")), "utility", "", {
+			"optional_reward":true, "required":false, "interactive":true,
+			"description":"清场后领取 · 装备需成功撤离保留",
+			"claim_event":"optional_salvage", "claim_message":"支线奖励已领取；新装备需成功撤离保留"})
 
 func optional_ids() -> Array[String]:
 	var ids: Array[String] = []
@@ -317,6 +332,9 @@ func combat_counter_effect(actor: Node2D, kind: String, duration: float = 6.0) -
 	return applied
 
 func combat_objective_point(index: int, count: int) -> Vector2:
+	if bool(layout.get("fixed_layout", false)):
+		var authored: Array = layout.get("objective_points", [])
+		if index >= 0 and index < authored.size(): return authored[index]
 	var candidates: Array = layout.get("objective_points",[]).duplicate()
 	for zone: Dictionary in layout.get("encounter_zones",[]): candidates.append(zone.center)
 	candidates.append_array(layout.get("topology_probes",[]))
@@ -339,6 +357,18 @@ func combat_objective_point(index: int, count: int) -> Vector2:
 		if allowed: selected.append(at)
 		if selected.size()>=count: break
 	return selected[clampi(index,0,selected.size()-1)] if not selected.is_empty() else safe_point(layout.get("exit",Vector2(2100,900)),35)
+
+func combat_objective_label(index: int, fallback: String) -> String:
+	var authored: Array = layout.get("fixed_room",{}).get("objectives",[])
+	return str(authored[index].get("name",fallback)) if Words.locale!="en" and index<authored.size() else fallback
+
+func combat_objective_asset(index: int, fallback: String) -> String:
+	if not bool(layout.get("fixed_layout",false)): return fallback
+	var keys: Array[String] = PropIdentity.objective_keys(str(definition.get("biome_id","B01")))
+	return keys[index%keys.size()] if not keys.is_empty() else fallback
+
+func interaction_key() -> String:
+	return preload("res://scripts/core/control_bindings.gd").label_for("interact",Game.profile.get("settings",{}).get("controls",{}),Words.locale)
 
 func notify_enemy_death(enemy: Node2D) -> void:
 	if module!=null and module.has_method("notify_enemy_death"): module.notify_enemy_death(enemy)
@@ -380,6 +410,7 @@ func nearby_interaction(at: Vector2) -> Dictionary:
 	var best: float = 90.0
 	var best_priority: int = -100
 	for item: Dictionary in elements.values():
+		if bool(item.get("optional_reward", false)) and not finished: continue
 		if not bool(item.get("active", true)) or not bool(item.get("interactive", true)) or (bool(item.get("done", false)) and not bool(item.get("repeatable", false))):
 			continue
 		var interaction_position: Vector2 = item.get("interaction_position", item.position)
@@ -399,9 +430,11 @@ func nearby_interaction(at: Vector2) -> Dictionary:
 	return closest
 
 func interact(id: String, actor: Node2D) -> bool:
-	if module == null or not module.has_method("interact") or not is_instance_valid(actor) or not elements.has(id):
+	if not is_instance_valid(actor) or not elements.has(id):
 		return false
 	var item: Dictionary = elements[id]
+	if bool(item.get("optional_reward", false)): return claim_optional(id)
+	if module == null or not module.has_method("interact"): return false
 	var interaction_position: Vector2 = item.get("interaction_position", item.position)
 	if not bool(item.get("active", true)) or not bool(item.get("interactive", true)) or actor.position.distance_to(interaction_position) > 100.0:
 		return false

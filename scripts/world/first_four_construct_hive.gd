@@ -41,9 +41,9 @@ func _configure_conduits() -> void:
 	for index: int in objective_count:
 		var id: String = "solar_conduit_%d" % index
 		ids.append(id)
-		host.add_element(id, host.combat_objective_point(index, objective_count), "古代能量回路 %d" % (index + 1), "circuit", "B01_winch", {
-			"description": "按 E 启动；留在回路旁 1.6 秒充能，离开保留进度；充能后清除附近构装护盾并暴露弱点",
-			"description_en": "Press E, then stay nearby for 1.6 s. Leaving keeps progress. Charged conduits break nearby construct shields and expose weakpoints.",
+		host.add_element(id, host.combat_objective_point(index, objective_count), host.combat_objective_label(index,"古代能量回路 %d" % (index + 1)), "circuit", host.combat_objective_asset(index,"B01_winch"), {
+			"description": "按 "+host.interaction_key()+" 启动；留在回路旁 1.6 秒充能，离开保留进度；充能后清除附近构装护盾并暴露弱点",
+			"description_en": "Press "+host.interaction_key()+", then stay nearby for 1.6 s. Leaving keeps progress. Charged conduits break nearby construct shields and expose weakpoints.",
 			"art_selector": "combat_objective", "charging": false, "charge_seconds": 0.0,
 			"charge_radius": CHARGE_RADIUS, "next_pulse": 0.0, "pulse_remaining": 0.0, "phase": "待启动"
 		})
@@ -55,7 +55,7 @@ func _configure_nests() -> void:
 	for index: int in objective_count:
 		var id: String = "brood_nest_%d" % index
 		ids.append(id)
-		host.add_target(id, host.combat_objective_point(index, objective_count), 80.0 + 10.0 * variant, "B02_spore_nest", "育虫巢 %d" % (index + 1), {
+		host.add_target(id, host.combat_objective_point(index, objective_count), 80.0 + 10.0 * variant, host.combat_objective_asset(index,"B02_spore_nest"), host.combat_objective_label(index,"育虫巢 %d" % (index + 1)), {
 			"description": "攻击摧毁育虫巢，停止孵化并暴露附近虫群弱点；每巢最多孵化两只幼虫",
 			"description_en": "Attack to destroy the nest, stop hatching, and expose nearby hive weakpoints. Each nest can hatch at most two small insects.",
 			"art_selector": "combat_objective", "interactive": false,
@@ -223,12 +223,12 @@ func notify_charge_impact(_caster, _from: Vector2, _to: Vector2) -> Dictionary:
 
 func status_text() -> String:
 	if biome_id == "B01":
-		return "能量回路 %d/%d · %s" % [host.completed_count, objective_count, "已充能，清理敌群后离开" if bool(host.finished) else "E 启动，近旁充能 1.6 秒；离开保留进度"]
+		return "能量回路 %d/%d · %s" % [host.completed_count, objective_count, "已充能，清理敌群后离开" if bool(host.finished) else host.interaction_key()+" 启动，近旁充能 1.6 秒；离开保留进度"]
 	return "育虫巢 %d/%d · %s" % [host.completed_count, objective_count, "已摧毁，清理敌群后离开" if bool(host.finished) else "攻击摧毁；停止孵化并暴露虫群弱点"]
 
 func status_text_en() -> String:
 	if biome_id == "B01":
-		return "Conduits %d/%d · %s" % [host.completed_count, objective_count, "Charged. Clear the remaining enemies to leave." if bool(host.finished) else "E to start; stay nearby for 1.6 s. Leaving keeps progress."]
+		return "Conduits %d/%d · %s" % [host.completed_count, objective_count, "Charged. Clear the remaining enemies to leave." if bool(host.finished) else host.interaction_key()+" to start; stay nearby for 1.6 s. Leaving keeps progress."]
 	return "Brood nests %d/%d · %s" % [host.completed_count, objective_count, "Destroyed. Clear the remaining enemies to leave." if bool(host.finished) else "Attack nests to stop hatching and expose hive weakpoints."]
 
 func navigation_target() -> Dictionary:

@@ -7,14 +7,20 @@ var keyart: Texture2D
 func _ready() -> void:
 	if ResourceLoader.exists("res://assets/generated/world/storybook_camp_v1.png"):
 		keyart = load("res://assets/generated/world/storybook_camp_v1.png")
+	get_viewport().size_changed.connect(queue_redraw)
 	queue_redraw()
 
 func _draw() -> void:
-	draw_rect(Rect2(0,0,1280,720),Color("c4e3d7"))
+	var extent := get_viewport_rect().size
+	var frame := Rect2(Vector2.ZERO,extent)
+	draw_rect(frame,Color("c4e3d7"))
 	if keyart != null:
-		draw_texture_rect(keyart,Rect2(0,0,1280,720),false)
-		draw_rect(Rect2(0,0,1280,720),Color(1.0,0.96,0.82,0.12))
+		var fit := maxf(extent.x/keyart.get_width(),extent.y/keyart.get_height())
+		var fitted := keyart.get_size()*fit
+		draw_texture_rect(keyart,Rect2((extent-fitted)*0.5,fitted),false)
+		draw_rect(frame,Color(1.0,0.96,0.82,0.12))
 		return
+	draw_set_transform(Vector2.ZERO,0,extent/Vector2(1280,720))
 	_draw_courtyard()
 
 func _draw_courtyard() -> void:

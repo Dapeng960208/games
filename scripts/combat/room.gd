@@ -25,7 +25,10 @@ const ClassRelics = preload("res://scripts/combat/class_relics.gd")
 const RoomRewards = preload("res://scripts/world/room_rewards.gd")
 const InteractionSampler = preload("res://scripts/ui/texture_sampler.gd")
 const WorldArt = preload("res://scripts/world/world_art.gd")
-const ARENA := Rect2(0, 0, 2800, 1800)
+const DEFAULT_ARENA := Rect2(0, 0, 2800, 1800)
+const GroundBoundary = preload("res://scripts/world/room_boundary.gd")
+var ARENA: Rect2 = DEFAULT_ARENA
+var ground_polygon := PackedVector2Array()
 const EXIT_POSITION := Vector2(2696, 900)
 const RELIC_POSITIONS := {"split": Vector2(425,959), "ember": Vector2(1466,354), "arc": Vector2(1962,885)}
 
@@ -163,8 +166,7 @@ func _ready() -> void:
 			interaction_textures[icon_key] = icon
 	camera = CameraScript.new()
 	add_child(camera)
-	camera.configure(self, player, ARENA)
-	$MineBackdrop.configure(ARENA, _biome_id(), hash(layout_id))
+	_configure_world_view()
 	_previous_player_position = player.position
 	fx_font = ThemeDB.fallback_font
 	if ResourceLoader.exists("res://assets/fonts/NotoSansSC.ttf"):
@@ -211,7 +213,8 @@ func pointer_controls_enabled() -> bool:
 	if pointer_release_gate:
 		var secondary_held: bool = InputMap.has_action("skill_secondary") and Input.is_action_pressed("skill_secondary")
 		var movement_held: bool = InputMap.has_action("click_move") and Input.is_action_pressed("click_move")
-		if not Input.is_action_pressed("attack") and not secondary_held and not movement_held:
+		var attack_held: bool = player.attack_input_held() if is_instance_valid(player) else Input.is_action_pressed("attack")
+		if not attack_held and not secondary_held and not movement_held:
 			pointer_release_gate = false
 	return not pointer_release_gate
 
@@ -308,7 +311,22 @@ func _refresh_terrain_canvas() -> void:
 	terrain_redraw_count += 1
 
 func clamp_actor(at: Vector2, radius: float) -> Vector2:
+	if not ground_polygon.is_empty(): return GroundBoundary.clamp_point(ground_polygon, at, radius)
 	return Vector2(clampf(at.x, ARENA.position.x + radius, ARENA.end.x - radius), clampf(at.y, ARENA.position.y + radius, ARENA.end.y - radius))
+
+func _configure_ground_boundary() -> void:
+	ARENA = layout.get("arena", DEFAULT_ARENA)
+	ground_polygon = PackedVector2Array()
+	if bool(layout.get("fixed_layout", false)) or bool(layout.get("painted_service", false)):
+		ground_polygon = WorldArt.environment_ground_polygon(ARENA, _biome_id())
+		if not ground_polygon.is_empty(): ARENA = GroundBoundary.bounds(ground_polygon)
+
+func _configure_world_view() -> void:
+	var painted_arena: Rect2 = layout.get("arena", ARENA)
+	$MineBackdrop.configure(painted_arena, _biome_id(), layout_seed)
+	$MineBackdrop.configure_layout(layout)
+	if is_instance_valid(camera):
+		camera.configure(self, player, ARENA, WorldArt.environment_world_rect(painted_arena, _biome_id()))
 
 func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictionary = {}) -> MineEnemy:
 	if _living_enemy_count() >= Balance.MAX_ENEMIES:
@@ -905,6 +923,8 @@ func _draw_relic_fallback(id: String) -> void:
 			draw_polyline(PackedVector2Array([Vector2(4,-13),Vector2(-6,1),Vector2(4,1),Vector2(-4,15)]),Color("d6fbff"),3.0,true)
 
 func _all_inputs_released() -> bool:
+	if is_instance_valid(player) and player.attack_input_held():
+		return false
 	for action: String in ["click_move","attack","dash","interact","skill_q","skill_secondary","skill_f","skill_ultimate"]:
 		if InputMap.has_action(action) and Input.is_action_pressed(action):
 			return false
@@ -918,7 +938,9 @@ func _living_enemy_count() -> int:
 	return count
 
 func valid_ground(at: Vector2, radius: float = 0.0) -> bool:
-	if at != clamp_actor(at, radius):
+	if not ground_polygon.is_empty() and not GroundBoundary.contains(ground_polygon, at, radius):
+		return false
+	if ground_polygon.is_empty() and at != clamp_actor(at, radius):
 		return false
 	for wall: Rect2 in obstructions:
 		var nearest := Vector2(clampf(at.x, wall.position.x, wall.end.x), clampf(at.y, wall.position.y, wall.end.y))
@@ -958,7 +980,7 @@ func _movement_contact(from: Vector2, to: Vector2, radius: float) -> Vector2:
 	return from if from.distance_squared_to(from.lerp(to, clear)) < 0.000001 else from.lerp(to, clear)
 
 func blocked_fraction(from: Vector2, to: Vector2, radius: float = 0.0) -> float:
-	var result: float = 1.0
+	var result: float = GroundBoundary.clear_fraction(ground_polygon, from, to, radius) if not ground_polygon.is_empty() else 1.0
 	var offset: Vector2 = to - from
 	var allowed: Rect2 = ARENA.grow(-radius)
 	if offset.x > 0.0: result = minf(result, (allowed.end.x - from.x) / offset.x)
@@ -991,7 +1013,7 @@ func has_line_of_sight(from: Vector2, to: Vector2) -> bool:
 	return blocked_fraction(from, to) >= 1.0
 
 func navigation_direction(from: Vector2, to: Vector2, radius: float) -> Vector2:
-	return _navigation_cache.direction(from, to, radius, obstructions, ARENA)
+	return _navigation_cache.direction(from, to, radius, obstructions, ARENA, ground_polygon)
 
 func targets_in_radius(at: Vector2, radius: float) -> Array:
 	var targets: Array = []
@@ -1444,8 +1466,9 @@ func load_room_layout(id: String, room_difficulty: int = -1, seed_override: int 
 	enemy_corpses.clear()
 	layout_id = id
 	layout = next
+	_configure_ground_boundary()
 	obstructions.assign(next.obstructions)
-	_navigation_cache.prepare(obstructions, ARENA)
+	_navigation_cache.prepare(obstructions, ARENA, [12.0,14.0,18.0,24.0], ground_polygon)
 	exit_position = next.exit
 	encounter_zones = next.get("encounter_zones", []).duplicate(true)
 	activated_encounters.clear()
@@ -1472,9 +1495,7 @@ func load_room_layout(id: String, room_difficulty: int = -1, seed_override: int 
 		player.position = next.entry
 		player.loadout.event("room_enter", {"room_id":layout_id,"unvisited":true})
 		gold_drops.clear()
-		$MineBackdrop.configure(ARENA,str(WorldCatalog.room(layout_id).get("biome_id","B01")),hash(layout_id))
-		if camera != null:
-			camera.follow_target()
+		_configure_world_view()
 	configuration_ready = true
 	configuration_error = ""
 	queue_redraw()
@@ -1796,11 +1817,12 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	expedition_context = prepared.context.duplicate(true)
 	layout = prepared.layout.duplicate(true)
 	layout_id = str(expedition_context.room_id)
+	_configure_ground_boundary()
 	difficulty = clampi(int(expedition_context.get("difficulty",0)),0,4)
 	layout_seed = int(expedition_context.get("seed",41827))
 	run_seed = layout_seed
 	obstructions.assign(layout.get("obstructions",[]))
-	_navigation_cache.prepare(obstructions,ARENA)
+	_navigation_cache.prepare(obstructions, ARENA, [12.0,14.0,18.0,24.0], ground_polygon)
 	exit_position = layout.exit
 	encounter_zones = layout.get("encounter_zones",[]).duplicate(true)
 	activated_encounters.clear()
@@ -1836,8 +1858,7 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 		player.passives.reset()
 		player.position = layout.entry
 		_previous_player_position = player.position
-		$MineBackdrop.configure(ARENA,_biome_id(),layout_seed)
-		if camera != null: camera.follow_target()
+		_configure_world_view()
 	else:
 		_expedition_restore = Game.expedition_snapshot().get("runtime",{}).duplicate(true)
 	configuration_ready = true
@@ -1982,4 +2003,6 @@ func claim_optional_objective_reward(id: String) -> bool:
 	return success
 
 func _service_layout(context: Dictionary) -> Dictionary:
-	return {"room_id":str(context.room_id),"seed":int(context.get("seed",0)),"arena":ARENA,"entry":Vector2(960,900),"exit":Vector2(1760,900),"service_position":Vector2(1260,900),"obstructions":[],"static_obstructions":[],"static_obstruction_kinds":[],"prop_instances":[],"spawn_points":[],"objective_points":[],"encounter_zones":[],"interactables":[],"hazard_zones":[],"visual_markers":[],"topology_probes":[]}
+	var scale: float = preload("res://scripts/world/fixed_room_layouts.gd").PLAYFIELD_SCALE
+	var service_arena := Rect2(DEFAULT_ARENA.position*scale, DEFAULT_ARENA.size*scale)
+	return {"room_id":str(context.room_id),"seed":int(context.get("seed",0)),"arena":service_arena,"painted_service":true,"entry":Vector2(960,900)*scale,"exit":Vector2(1760,900)*scale,"service_position":Vector2(1260,900)*scale,"obstructions":[],"static_obstructions":[],"static_obstruction_kinds":[],"prop_instances":[],"spawn_points":[],"objective_points":[],"encounter_zones":[],"interactables":[],"hazard_zones":[],"visual_markers":[],"topology_probes":[]}

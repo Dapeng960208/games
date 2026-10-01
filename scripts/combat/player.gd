@@ -6,6 +6,8 @@ signal skill_input_feedback(slot: String, reason: String, details: Dictionary)
 const SKILL_BUFFER_SECONDS: float = 0.24
 const COMBO_MAX_AGE: float = 0.90
 const COMBO_QUEUE_LIMIT: int = 3
+const HELD_MOVE_INTERVAL: float = 0.16
+const HELD_MOVE_TARGET_DISTANCE: float = 48.0
 
 const Abilities = preload("res://scripts/combat/hero_abilities.gd")
 const Visual = preload("res://scripts/combat/hero_visual.gd")
@@ -54,6 +56,9 @@ var _attack_release_required: bool = false
 var _attack_direction := Vector2.RIGHT
 var _attack_critical: bool = false
 var _automatic_attack_target: WeakRef
+var _move_release_required: bool = false
+var _held_move_delay: float = 0.0
+var _held_move_target := Vector2(INF, INF)
 var _pending_skill_slot: String = ""
 var _enemy_status_origins: Dictionary = {}
 var _enemy_slow_remaining: float = 0.0
@@ -168,23 +173,22 @@ func _physics_process(delta: float) -> void:
 		Game.restore_resource(stat("resource_regen", 18.0 if hero_id() == "CH02" else 5.0) * regen_step)
 	var motion := Vector2.ZERO
 	var pointer_enabled: bool = room.pointer_controls_enabled()
-	if not Input.is_action_pressed("attack"):
+	if not attack_input_held():
 		_attack_release_required = false
 	if not pointer_enabled:
 		attack_buffer = 0.0
-		_attack_release_required = Input.is_action_pressed("attack")
+		_attack_release_required = attack_input_held()
 		_drop_pointer_combo_inputs()
 		clear_movement_target()
 	if not room.controls_enabled():
 		clear_buffered_skill()
 		clear_movement_target()
+	_update_held_movement(delta, pointer_enabled)
 	if room.controls_enabled():
 		motion = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		if motion.length_squared() > 0.0:
 			clear_movement_target()
 		elif pointer_enabled:
-			if InputMap.has_action("click_move") and Input.is_action_just_pressed("click_move"):
-				request_move(get_global_mouse_position())
 			motion = click_navigation.motion(position, stat("move_speed", 220.0) * abilities.movement_scale() * delta, Balance.PLAYER_RADIUS, delta)
 		var aim := get_global_mouse_position() - global_position
 		if aim.length_squared() > 16.0:
@@ -197,9 +201,11 @@ func _physics_process(delta: float) -> void:
 			if InputMap.has_action("skill_" + slot) and Input.is_action_just_pressed("skill_" + slot):
 				request_skill(slot, get_global_mouse_position())
 		if pointer_enabled and not _attack_release_required and Input.is_action_just_pressed("attack"):
-			request_attack(aim_direction)
-		elif combo_queue.is_empty() and pointer_enabled and not _attack_release_required and Input.is_action_pressed("attack"):
-			if not fire(aim_direction):
+			request_attack(aim_direction, _pointed_attack_target(get_global_mouse_position()))
+		elif combo_queue.is_empty() and pointer_enabled and not _attack_release_required and attack_input_held():
+			var target: Node2D = _pointed_attack_target(get_global_mouse_position())
+			var direction: Vector2 = position.direction_to(target.position) if is_instance_valid(target) else aim_direction
+			if not fire(direction, target):
 				attack_buffer = 0.10
 		elif pointer_enabled:
 			_tick_auto_attack()
@@ -233,17 +239,68 @@ func _physics_process(delta: float) -> void:
 			visual_state = "idle"
 	queue_redraw()
 
-func request_move(target: Vector2) -> bool:
+func attack_input_held() -> bool:
+	if not InputMap.has_action("attack"): return false
+	# Releasing one alias must not reopen the gate while another stays held.
+	for event: InputEvent in InputMap.action_get_events("attack"):
+		if event is InputEventMouseButton and Input.is_mouse_button_pressed(event.button_index): return true
+		if event is InputEventKey:
+			if event.physical_keycode != 0 and Input.is_physical_key_pressed(event.physical_keycode): return true
+			if event.keycode != 0 and Input.is_key_pressed(event.keycode): return true
+	return Input.is_action_pressed("attack")
+
+func _update_held_movement(delta: float, pointer_enabled: bool) -> void:
+	_held_move_delay = maxf(0.0, _held_move_delay - delta)
+	var held: bool = InputMap.has_action("click_move") and Input.is_action_pressed("click_move")
+	if not held:
+		_move_release_required = false
+		_held_move_target = Vector2(INF, INF)
+		return
+	if not pointer_enabled or not room.controls_enabled():
+		_move_release_required = true
+		clear_movement_target()
+		return
+	if _move_release_required or dash_remaining > 0.0 or (abilities.busy() and float(abilities.active.spec.get("travel", 0.0)) > 0.0):
+		return
+	if not Input.get_vector("move_left", "move_right", "move_up", "move_down").is_zero_approx():
+		return
+	var target: Vector2 = get_global_mouse_position()
+	var fresh: bool = Input.is_action_just_pressed("click_move")
+	var target_changed: bool = not _held_move_target.is_finite() or _held_move_target.distance_squared_to(target) >= HELD_MOVE_TARGET_DISTANCE * HELD_MOVE_TARGET_DISTANCE
+	if fresh or (_held_move_delay <= 0.0 and target_changed):
+		request_move(target, fresh)
+		# Even invalid held destinations are remembered until the pointer moves,
+		# so a stationary cursor outside the map cannot retry every physics tick.
+		_held_move_target = target
+		_held_move_delay = HELD_MOVE_INTERVAL
+
+func _pointed_attack_target(at: Vector2) -> Node2D:
+	var best: Node2D = null
+	var nearest: float = INF
+	for target: Node2D in room.targets_in_radius(position, auto_attack_range()):
+		if target.is_queued_for_deletion() or str(target.get("actor_kind")) == "objective": continue
+		var height: float = clampf(float(target.get("navigation_radius")) * 3.8, 66.0, 88.0)
+		var body := Rect2(target.position + Vector2(-30,-height), Vector2(60,height + 18))
+		if not body.has_point(at): continue
+		var distance: float = at.distance_squared_to(target.position + Vector2(0,-height * 0.4))
+		if distance < nearest:
+			nearest = distance
+			best = target
+	return best
+
+func request_move(target: Vector2, show_feedback: bool = true) -> bool:
 	if not is_instance_valid(room) or not room.controls_enabled() or not room.pointer_controls_enabled() or Game.run == null or Game.run.hp <= 0.0 or dash_remaining > 0.0:
 		clear_movement_target()
 		return false
 	var accepted: bool = click_navigation.request(position, target, Balance.PLAYER_RADIUS)
-	if accepted:
+	if accepted and show_feedback:
 		room.add_ring(target, Color("65bcae"), 18.0, 0.32)
 	return accepted
 
 func clear_movement_target() -> void:
 	click_navigation.cancel()
+	_held_move_target = Vector2(INF, INF)
+	_held_move_delay = 0.0
 	velocity = Vector2.ZERO
 
 func auto_attack_range() -> float:
@@ -368,7 +425,7 @@ func request_skill(slot: String, target: Vector2) -> bool:
 		return cast_skill(slot, target)
 	return _append_combo_input({"slot":slot, "target":target}, wait)
 
-func request_attack(direction: Vector2) -> bool:
+func request_attack(direction: Vector2, selected_target: Node2D = null) -> bool:
 	if not is_instance_valid(room) or not room.controls_enabled() or not room.pointer_controls_enabled() or _attack_release_required:
 		return _reject_skill("attack", position, "unavailable", {"cause":"input_blocked"})
 	if Game.run == null or Game.run.hp <= 0.0 or abilities == null:
@@ -380,13 +437,16 @@ func request_attack(direction: Vector2) -> bool:
 		# attack after that dodge. Only a real release can open this input again.
 		_attack_release_required = true
 		return _reject_skill("attack", position, "dashing")
+	if is_instance_valid(selected_target):
+		direction = position.direction_to(selected_target.position)
 	var wait: float = _combo_wait_seconds("attack")
 	if combo_queue.is_empty() and wait <= 0.00001:
-		if not fire(direction):
+		if not fire(direction, selected_target):
 			return _reject_skill("attack", position, "busy")
 		_emit_skill_feedback("attack", position, "accepted")
 		return true
-	return _append_combo_input({"slot":"attack", "direction":direction.normalized(), "target":position}, wait)
+	return _append_combo_input({"slot":"attack", "direction":direction.normalized(), "target":position,
+		"target_id":selected_target.get_instance_id() if is_instance_valid(selected_target) else 0}, wait)
 
 func _combo_wait_seconds(slot: String) -> float:
 	var wait: float = _basic_chain_remaining
@@ -419,7 +479,7 @@ func clear_buffered_skill() -> void:
 	combo_queue.clear()
 	buffered_skill.clear()
 	attack_buffer = 0.0
-	if InputMap.has_action("attack") and Input.is_action_pressed("attack"):
+	if attack_input_held():
 		_attack_release_required = true
 
 func _sync_buffered_skill() -> void:
@@ -473,7 +533,12 @@ func _consume_buffered_skill() -> void:
 		_prime_combo_head()
 		return
 	if slot == "attack":
-		if fire(request.direction):
+		var target_id: int = int(request.get("target_id", 0))
+		var target: Variant = instance_from_id(target_id) if target_id > 0 else null
+		if not is_instance_valid(target) or not target is Node2D or not target.is_alive() or target.is_queued_for_deletion() or position.distance_to(target.position) > auto_attack_range() or not room.has_line_of_sight(position, target.position):
+			target = null
+		var direction: Vector2 = position.direction_to(target.position) if is_instance_valid(target) else request.direction
+		if fire(direction, target):
 			_emit_skill_feedback(slot, request.target, "accepted")
 		else:
 			_reject_skill(slot, request.target, "busy")
@@ -506,6 +571,7 @@ func _notification(what: int) -> void:
 		# Also cover an attack first pressed while physics is paused, after this
 		# notification has already run. Resume must observe a released button.
 		_attack_release_required = true
+		_move_release_required = true
 
 func _exit_tree() -> void:
 	clear_buffered_skill()

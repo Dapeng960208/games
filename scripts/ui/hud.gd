@@ -320,6 +320,7 @@ var passive_button: Button
 var passive_snapshot: Dictionary = {}
 var inventory_button: Button
 var attack_label: Label
+var attack_plate: Panel
 var equipment_actions: Control
 var screen_size := Vector2.ZERO
 var _route_button: Control
@@ -375,8 +376,8 @@ func _ready() -> void:
 	shield_bar = MineStyle.meter(status_panel,Vector2(125,57),Vector2(234,3),Color("4b9aa6"))
 	health_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	resource_icon = _icon(status_panel,"resource_rage",Vector2(125,69),Vector2(20,20))
-	resource_label = _line(status_panel,"",Vector2(150,66),Vector2(101,23),16,HUD_MUTED)
-	resource_bar = MineStyle.meter(status_panel,Vector2(250,73),Vector2(109,8),Color("8c9fa2"))
+	resource_label = _line(status_panel,"",Vector2(150,66),Vector2(110,23),15,HUD_MUTED)
+	resource_bar = MineStyle.meter(status_panel,Vector2(270,73),Vector2(89,8),Color("8c9fa2"))
 	class_label = _line(status_panel,"",Vector2(120,98),Vector2(240,21),16,HUD_MUTED)
 	class_label.mouse_filter = Control.MOUSE_FILTER_STOP
 	class_bar = MineStyle.meter(status_panel,Vector2(125,109),Vector2(234,2),HUD_CYAN)
@@ -461,11 +462,13 @@ func _ready() -> void:
 	inventory_button = _compact_button(equipment_actions,"背包  [B]",Vector2(0,0),Vector2(184,44),func(): inventory_requested.emit())
 	inventory_button.name = "Backpack"
 	_bind_detail(inventory_button,"inventory")
+	attack_plate = _plate(equipment_actions,Vector2(0,53),Vector2(184,55),"paper")
 	details_button = _compact_button(equipment_actions,"Tab",Vector2(0,58),Vector2(44,44),func(): skill_details_requested.emit("q"))
 	details_button.name = "CombatDetails"
 	_bind_detail(details_button,"q")
 	attack_label = _line(equipment_actions,"",Vector2(52,55),Vector2(132,51),16,HUD_MUTED)
-	attack_label.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
+	attack_label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	attack_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	passive_panel = _plate(self,Vector2(14,590),Vector2(288,118),"passive_ribbon")
 	passive_panel.name = "HeroPassive"
 	passive_glyph = PassiveGlyph.new()
@@ -553,6 +556,7 @@ func _apply_layout() -> void:
 	equipment_actions.position = Vector2(screen_size.x-equipment_actions.size.x-margin,skill_dock.position.y)
 	inventory_button.size.x = equipment_actions.size.x
 	attack_label.size.x = equipment_actions.size.x-52
+	attack_plate.size.x = equipment_actions.size.x
 	passive_panel.size.x = clampf(screen_size.x-skill_dock.size.x-equipment_actions.size.x-48,220,288)
 	passive_panel.position = Vector2(margin,screen_size.y-passive_panel.size.y-margin)
 	if stacked:
@@ -766,9 +770,9 @@ func refresh() -> void:
 	shield_bar.visible = Game.run.shield > 0
 	guard_icon.visible = Game.run.shield > 0
 	resource_label.text = MineStyle.content_text(hero,"resource_name")+"  "+str(floori(Game.run.resource))+" / "+str(int(max_resource))
-	resource_label.size.x = 144 if Words.locale == "en" else 101
-	resource_bar.position.x = 296 if Words.locale == "en" else 250
-	resource_bar.size.x = 63 if Words.locale == "en" else 109
+	resource_label.size.x = 144 if Words.locale == "en" else 110
+	resource_bar.position.x = 296 if Words.locale == "en" else 270
+	resource_bar.size.x = 63 if Words.locale == "en" else 89
 	resource_bar.max_value = max_resource
 	resource_bar.value = Game.run.resource
 	if resource_kind != kind:
@@ -785,7 +789,9 @@ func refresh() -> void:
 	_update_passive()
 	var english := Words.locale == "en"
 	inventory_button.text = "Backpack  [B]" if english else "背包  [B]"
-	var attack_key := Bindings.label_for("attack",Game.profile.get("settings",{}).get("controls",{}),Words.locale)
+	var attack_key := Bindings.secondary_label("attack",Game.profile.get("settings",{}).get("controls",{}),Words.locale)
+	attack_label.tooltip_text = attack_key
+	if english: attack_key = attack_key.replace("Left click","LMB").replace("Right click","RMB")
 	attack_label.text = ("%s Attack\nAuto: %s" if english else "%s 普攻\n自动：%s") % [attack_key,("ON" if english else "开启") if Game.profile.get("settings",{}).get("auto_attack",false) else ("OFF" if english else "关闭")]
 	if is_instance_valid(room):
 		hint_label.text = room.interaction_hint()
@@ -846,6 +852,15 @@ func _update_quest_and_route() -> void:
 	quest_panel.size.y = maxf(110,quest_reward.position.y+26)
 	var header_bottom := maxf(148,relic_row.position.y+relic_row.size.y+12)
 	quest_panel.position.y = maxf(header_bottom,minf(screen_size.y*.51,equipment_actions.position.y-quest_panel.size.y-20))
+	# At camera limits the player moves away from screen centre. Keep the paper
+	# objective readable without hiding that character behind its default right dock.
+	quest_panel.position.x = screen_size.x-quest_panel.size.x-12
+	if is_instance_valid(room.player) and is_instance_valid(room.camera):
+		var foot: Vector2 = room.player.get_global_transform_with_canvas().origin
+		var zoom_value: Vector2 = room.camera.zoom
+		var hero_extent := Vector2(106,preload("res://scripts/combat/presentation_metrics.gd").HERO_BODY_HEIGHT+20)*zoom_value
+		var hero_rect := Rect2(foot-Vector2(hero_extent.x*.5,hero_extent.y-12),hero_extent).grow(14)
+		if quest_panel.get_rect().intersects(hero_rect): quest_panel.position.x = 32
 	quest_panel.set("reward_bullet_y",quest_reward.position.y+11)
 	quest_button.size.y = quest_panel.size.y-36
 	quest_panel.queue_redraw()

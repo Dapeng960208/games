@@ -69,7 +69,7 @@ func _render() -> void:
 	_text(self, _t("远征行囊", "EXPEDITION BACKPACK"), Vector2(24,14), Vector2(350,40), 26, MineStyle.AMBER)
 	var gear_tab := _button(self, "BackpackInventoryTab", _t("装备背包", "Equipment"), Vector2(485,16), Vector2(150,40), func(): tab = "inventory"; _render())
 	var stat_tab := _button(self, "BackpackAttributesTab", _t("角色属性", "Attributes"), Vector2(646,16), Vector2(150,40), func(): tab = "stats"; _render())
-	MineStyle.primary(gear_tab if tab == "inventory" else stat_tab)
+	MineStyle.selected(gear_tab if tab == "inventory" else stat_tab)
 	_button(self, "CloseBackpack", _t("关闭 · Esc", "Close · Esc"), Vector2(866,16), Vector2(170,40), close_callback)
 	_identity()
 	if tab == "inventory": _inventory(); _detail()
@@ -93,7 +93,8 @@ func _identity() -> void:
 		var item: Dictionary = ContentRegistry.equipment(id)
 		var at := Vector2(10+(index%2)*107,102+(index/2)*74)
 		var cell := _button(card, "BackpackSlot_"+slot, "", at, Vector2(100,66), func(): filter = slot; selected_slot = slot; selected_id = id; message = ""; _render())
-		cell.add_theme_stylebox_override("normal", MineStyle.box(MineStyle.PAPER_LIGHT, MineStyle.CYAN if filter == slot else MineStyle.COPPER, 2 if filter == slot else 1))
+		MineStyle.button_skin(cell,"socket")
+		if filter == slot: MineStyle.selected(cell,"socket")
 		MineStyle.equipment_icon(cell, item if not item.is_empty() else {"slot":slot}, Vector2(3,2), Vector2(52,52))
 		_text(cell, _slot_name(slot), Vector2(54,8), Vector2(44,22), 12, MineStyle.MUTED)
 		var level := int(Game.run.equipment_snapshot.get(id, {}).get("level", 0))
@@ -128,7 +129,8 @@ func _inventory() -> void:
 		var row := _button(list, "BackpackItem_"+id, "", Vector2.ZERO, Vector2(278,82), func(): selected_id = id; selected_slot = str(data.slot); message = ""; _render())
 		row.custom_minimum_size = Vector2(278,82)
 		row.clip_contents = true
-		row.add_theme_stylebox_override("normal", MineStyle.box(MineStyle.PAPER_LIGHT, MineStyle.CYAN if selected_id == id else MineStyle.COPPER, 2 if selected_id == id else 1))
+		MineStyle.button_skin(row,"card")
+		if selected_id == id: MineStyle.selected(row,"card")
 		MineStyle.equipment_icon(row, data, Vector2(4,6), Vector2(67,67))
 		var title := _text(row, MineStyle.content_text(data,"name"), Vector2(77,8), Vector2(188,40), 16)
 		title.max_lines_visible = 2

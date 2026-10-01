@@ -6,6 +6,8 @@ extends RefCounted
 const TextureSampler = preload("res://scripts/ui/texture_sampler.gd")
 const Art = preload("res://scripts/world/world_art.gd")
 const PropArt = preload("res://scripts/world/world_prop_art.gd")
+const Identity = preload("res://scripts/world/prop_identity.gd")
+const Perimeter = preload("res://scripts/world/perimeter_art.gd")
 const VOID_KINDS := ["mine_pit", "gear_gap", "suspended_void", "water_channel", "floating_platform_gap", "ventilation_shaft", "acid_reservoir", "gantry_void", "mirror_pool", "deep_rift", "echo_disc_gap"]
 const BRIDGE_GAP_ROOMS := ["L02","L13","L23"]
 const TERRAIN_TEXTURE_WORLD_SIZE := 420.0
@@ -38,8 +40,23 @@ static func recipe(layout: Dictionary, biome_id: String) -> Array:
 		item["room_id"] = room_id
 		item["destroyed"] = bool(item.get("destroyed", false))
 		item["static"] = false
-		result.append(item)
-	return result
+		var composition: Array = PropArt.composition_for_asset(str(item.get("asset",""))) if "fixed_landmark" in item.get("tags",[]) else []
+		if composition.is_empty():
+			result.append(item)
+		else:
+			# A named landmark is a purposeful cluster, assembled from its own
+			# faction's art. Every child still sorts at its separate contact foot.
+			for part: int in range(composition.size()):
+				var child: Dictionary = item.duplicate(true)
+				child["id"] = str(item.get("id","landmark"))+":part:"+str(part)
+				child["asset"] = str(composition[part])
+				var offset := Vector2.ZERO if part==0 else Vector2(-92 if part%2==1 else 92,24)
+				child["position"] = Vector2(item.get("position",Vector2.ZERO))+offset
+				child["rect"] = Rect2(child.position,Vector2.ZERO)
+				child["collision_rect"] = child.rect
+				child["visual_size"] = Vector2(220,195) if part==0 else Vector2(126,135)
+				result.append(child)
+	return Identity.unique_scenery(result,layout,biome_id)
 
 static func draw_floor(_canvas: CanvasItem, _layout: Dictionary, _biome_id: String, _time: float = 0.0) -> void:
 	# MineBackdrop owns the continuous limestone courtyard surface.
@@ -69,6 +86,13 @@ static func draw_ground_obstacles(canvas: CanvasItem, recipes: Array, time: floa
 			elif rect.has_area():
 				_draw_cast_shadow(canvas,rect,120.0 if int(item.get("index",0))%3==0 else 65.0,str(item.get("biome_id","B01")))
 		else:
+			if PropArt.is_ground_inlay(str(item.get("asset",""))):
+				_draw_ground_inlay(canvas,item)
+				continue
+			# Painted sprites already contain their local sunlight/shadow. The old
+			# rectangular cast-shadow extrusion would stamp dark blocks on the
+			# continuous environment, unrelated to these new object silhouettes.
+			if PropArt.has_authored_asset(str(item.get("asset",""))): continue
 			var height: float = minf(95.0,Vector2(item.get("visual_size",Vector2(60,80))).y*0.55)
 			if rect.has_area(): _draw_cast_shadow(canvas,rect,height,str(item.get("biome_id","B01")))
 
@@ -76,6 +100,7 @@ static func depth_recipe(layout: Dictionary, biome_id: String, obstacle_recipes:
 	var result: Array[Dictionary] = []
 	for original: Dictionary in obstacle_recipes:
 		if bool(original.get("destroyed",false)): continue
+		if PropArt.is_ground_inlay(str(original.get("asset",""))): continue
 		var item: Dictionary = original.duplicate(true)
 		var rect: Rect2 = item.get("collision_rect",Rect2())
 		if not str(item.get("architecture_key","")).is_empty():
@@ -96,8 +121,8 @@ static func depth_recipe(layout: Dictionary, biome_id: String, obstacle_recipes:
 			item["occludes"] = true
 		else:
 			item["depth_kind"] = "prop"
-			var source_path: String = Art.EDGE_PATH if "non_solid" in item.get("tags",[]) else _asset_path(str(item.get("asset","")))
-			var fresh: bool = not "non_solid" in item.get("tags",[]) and PropArt.has_authored_asset(str(item.get("asset","")))
+			var fresh: bool = PropArt.has_authored_asset(str(item.get("asset","")))
+			var source_path: String = _asset_path(str(item.get("asset",""))) if fresh or not "non_solid" in item.get("tags",[]) else Art.EDGE_PATH
 			var source_texture: Texture2D = PropArt.texture_for_asset(str(item.get("asset",""))) if fresh else _texture(source_path)
 			if source_texture==null: continue
 			var source_size: Vector2 = source_texture.get_size() if fresh else _source_region(source_path,source_texture).size
@@ -105,42 +130,11 @@ static func depth_recipe(layout: Dictionary, biome_id: String, obstacle_recipes:
 			if quad.size()!=4: continue
 			var visual := Rect2(quad[0],Vector2.ZERO)
 			for point: Vector2 in quad: visual = visual.expand(point)
-			item["foot"] = rect.get_center() if fresh else Vector2(visual.get_center().x,visual.end.y)
+			item["foot"] = (rect.get_center() if rect.has_area() else Vector2(item.get("position",Vector2.ZERO))) if fresh else Vector2(visual.get_center().x,visual.end.y)
 			item["visual_bounds"] = visual
-			item["occludes"] = rect.has_area() and visual.size.y>100.0
+			item["occludes"] = visual.size.y>105.0
 		result.append(item)
-	var arena: Rect2 = layout.get("arena",Rect2(0,0,2800,1800))
-	# Painted columns and low ruin walls frame the real arena, with no new
-	# obstruction. Front structures can naturally cover actors approaching the
-	# boundary; the short fade above prevents losing the controlled character.
-	for side: int in range(4):
-		var horizontal: bool = side<2
-		var length: float = arena.size.x if horizontal else arena.size.y
-		var count: int = maxi(3,floori(length/420.0))
-		for index: int in range(count):
-			var progress: float = (float(index)+0.5)/float(count)
-			var foot: Vector2
-			match side:
-				0: foot = Vector2(lerpf(arena.position.x,arena.end.x,progress),arena.position.y-36)
-				1: foot = Vector2(lerpf(arena.position.x,arena.end.x,progress),arena.end.y+86)
-				2: foot = Vector2(arena.position.x-82,lerpf(arena.position.y,arena.end.y,progress))
-				_: foot = Vector2(arena.end.x+82,lerpf(arena.position.y,arena.end.y,progress))
-			var art_key: String = "column" if index%2==0 else ("wall_horizontal" if horizontal else "wall_vertical")
-			var size := Vector2(155,305) if art_key=="column" else Vector2(295 if horizontal else 145,155 if horizontal else 250)
-			# Wide illustrated foundations remain entirely outside the actor arena.
-			# Changing their artwork never turns a decorative base into a blocker.
-			var ground: Rect2 = architecture_ground(art_key,foot,size,biome_id)
-			match side:
-				0: foot.y -= maxf(0,ground.end.y-arena.position.y+8)
-				1: foot.y += maxf(0,arena.end.y-ground.position.y+8)
-				2: foot.x -= maxf(0,ground.end.x-arena.position.x+8)
-				_: foot.x += maxf(0,arena.end.x-ground.position.x+8)
-			result.append({"id":str(layout.get("room_id","room"))+":rim:"+str(side)+":"+str(index),"depth_kind":"architecture","foot":foot,"architecture":art_key,"art_size":size,"visual_bounds":architecture_bounds(art_key,foot,size,biome_id),"biome_id":biome_id,"non_solid":true,"occludes":side!=0})
-	# The existing exit is an open passage, with the same interaction point.
-	# Its two painted posts sort by that foot; the center remains visibly open.
-	var exit_foot: Vector2 = layout.get("exit",Vector2.ZERO)
-	var exit_size := Vector2(178,214)
-	result.append({"id":str(layout.get("room_id","room"))+":exit_arch","depth_kind":"architecture","foot":exit_foot,"architecture":"arch","art_size":exit_size,"visual_bounds":architecture_bounds("arch",exit_foot,exit_size),"biome_id":biome_id,"non_solid":true,"open_passage":true,"occludes":true})
+	result.append_array(Perimeter.recipes(layout,biome_id,Identity.used_identities(obstacle_recipes)))
 	return result
 
 static func is_recessed_terrain(item: Dictionary) -> bool:
@@ -185,6 +179,7 @@ static func draw_depth_item(canvas: Node2D, item: Dictionary) -> void:
 			_draw_raised_plinth(canvas,rect,str(item.get("biome_id","B01")))
 			_draw_architecture(canvas,str(item.get("architecture","rock_island")),Vector2(item.foot)-Vector2(0,26),item.get("art_size",Vector2(150,180)),str(item.get("biome_id","B01")))
 		"architecture": _draw_architecture(canvas,str(item.get("architecture","column")),item.get("foot",Vector2.ZERO),item.get("art_size",Vector2(160,290)),str(item.get("biome_id","B01")))
+		"perimeter": Perimeter.draw_item(canvas,item)
 	canvas.draw_set_transform(Vector2.ZERO)
 
 static func _draw_cast_shadow(canvas: CanvasItem, rect: Rect2, height: float, biome: String) -> void:
@@ -193,6 +188,27 @@ static func _draw_cast_shadow(canvas: CanvasItem, rect: Rect2, height: float, bi
 	var contour := PackedVector2Array([rect.position,Vector2(rect.end.x,rect.position.y),rect.end+drift,Vector2(rect.position.x,rect.end.y)+drift])
 	canvas.draw_colored_polygon(contour,Color(colors.shadow,0.14))
 	_ellipse(canvas,rect.get_center()+Vector2(0,rect.size.y*0.12),rect.size*Vector2(0.54,0.40),Color(colors.shadow,0.13))
+
+static func _draw_ground_inlay(canvas: CanvasItem, item: Dictionary) -> void:
+	var foot: Vector2 = item.get("position",Vector2.ZERO)
+	var size: Vector2 = item.get("visual_size",Vector2(170,110))
+	var colors: Dictionary = Art.palette(str(item.get("biome_id","B04")))
+	canvas.draw_set_transform(foot,0,Vector2(1,.70))
+	if "woven_mat" in str(item.get("asset","")):
+		var rect := Rect2(-size*.36,size*.72)
+		canvas.draw_rect(rect,Color("cd8e69"))
+		canvas.draw_rect(rect,Color("68568b"),false,3)
+		for index: int in range(5):
+			var x: float = rect.position.x+rect.size.x*(float(index)+.5)/5
+			canvas.draw_line(Vector2(x,rect.position.y),Vector2(x,rect.end.y),Color(colors.stone,.40),2,true)
+	else:
+		var radius: float = minf(size.x*.42,size.y*.60)
+		canvas.draw_arc(Vector2.ZERO,radius,0,TAU,48,Color("786088"),3,true)
+		canvas.draw_arc(Vector2.ZERO,radius*.70,0,TAU,40,Color(colors.gold,.82),2,true)
+		for index: int in range(8):
+			var direction := Vector2.from_angle(index*TAU/8)
+			canvas.draw_line(direction*radius*.72,direction*radius*.98,Color("aa704c"),4,true)
+	canvas.draw_set_transform(Vector2.ZERO)
 
 static func _draw_raised_plinth(canvas: CanvasItem, rect: Rect2, biome: String) -> void:
 	if not rect.has_area(): return
@@ -252,8 +268,8 @@ static func _draw_instance(canvas: CanvasItem, item: Dictionary) -> void:
 	var asset: String = str(item.get("asset", ""))
 	if asset.is_empty(): return
 	var decorative: bool = "non_solid" in item.get("tags", [])
-	var path: String = Art.EDGE_PATH if decorative else _asset_path(asset)
-	var fresh: bool = not decorative and PropArt.has_authored_asset(asset)
+	var fresh: bool = PropArt.has_authored_asset(asset)
+	var path: String = _asset_path(asset) if fresh or not decorative else Art.EDGE_PATH
 	var texture: Texture2D = PropArt.texture_for_asset(asset) if fresh else _texture(path)
 	if texture == null: return
 	var source: Rect2 = Rect2(Vector2.ZERO,texture.get_size()) if fresh else _source_region(path,texture)
@@ -265,8 +281,11 @@ static func _draw_instance(canvas: CanvasItem, item: Dictionary) -> void:
 	# the gap to another prop; every such real gap remains visibly open ground.
 	if collision.has_area():
 		var at: Vector2 = collision.get_center()+Vector2(0,collision.size.y*0.08)
-		_ellipse(canvas,at,collision.size*Vector2(0.56,0.43),Color(0.30,0.37,0.34,0.10))
-		_ellipse(canvas,at,collision.size*Vector2(0.43,0.31),Color(0.25,0.30,0.28,0.12))
+		if fresh:
+			_ellipse(canvas,at,collision.size*Vector2(0.44,0.25),Color(0.30,0.32,0.28,0.065))
+		else:
+			_ellipse(canvas,at,collision.size*Vector2(0.56,0.43),Color(0.30,0.37,0.34,0.10))
+			_ellipse(canvas,at,collision.size*Vector2(0.43,0.31),Color(0.25,0.30,0.28,0.12))
 	# Polygon commands need the parent texture's absolute atlas UVs; passing
 	# an AtlasTexture RID with 0..1 UVs would incorrectly draw all six props.
 	if fresh:
@@ -283,7 +302,7 @@ static func _draw_instance(canvas: CanvasItem, item: Dictionary) -> void:
 	canvas.draw_polygon(quad,PackedColorArray([tint]),uvs,texture)
 
 static func _sprite_quad(item: Dictionary, source_size: Vector2) -> PackedVector2Array:
-	if not "non_solid" in item.get("tags",[]) and PropArt.has_authored_asset(str(item.get("asset",""))):
+	if PropArt.has_authored_asset(str(item.get("asset",""))):
 		return PropArt.sprite_quad(item)
 	var bounds: Vector2 = item.get("visual_size", Vector2.ZERO)
 	if bounds.x<=0 or bounds.y<=0 or source_size.x<=0 or source_size.y<=0: return PackedVector2Array()
