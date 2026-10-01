@@ -383,7 +383,7 @@ func _draw_dome(ink: Color, paper: Color) -> void:
 	for index in range(6):
 		var axis: Vector2 = Vector2.RIGHT.rotated(index * TAU / 6.0 - PI * 0.5)
 		var at: Vector2 = axis * radius
-		_draw_arcane_rune(at, 5.0, Color(paper, fading * (0.68 + strength * 0.2)))
+		_draw_arcane_rune(at, 7.0, Color(paper, fading * (0.8 + strength * 0.15)))
 	_draw_arcane_rune(Vector2.ZERO, 10.0, Color(paper, fading * (0.48 + strength * 0.4)))
 	if reduced:
 		return
@@ -395,12 +395,12 @@ func _draw_dome(ink: Color, paper: Color) -> void:
 		var reach: float = radius * (0.57 if index % 2 == 0 else 0.73)
 		stars.append(Vector2.RIGHT.rotated(angle) * reach)
 	for link: Vector2i in [Vector2i(0,2),Vector2i(2,5),Vector2i(5,0),Vector2i(1,4),Vector2i(4,7)]:
-		draw_line(stars[link.x], stars[link.y], Color(ink, fading * (0.14 + strength * 0.12)), 1.0, true)
+		draw_line(stars[link.x], stars[link.y], Color(ink, fading * (0.28 + strength * 0.16)), 1.2, true)
 	for index in stars.size():
 		var star: Vector2 = stars[index]
-		var half: float = 2.6 if index % 2 == 0 else 1.8
-		draw_line(star - Vector2(half,0), star + Vector2(half,0), Color(paper, fading * 0.7), 1.2, true)
-		draw_line(star - Vector2(0,half), star + Vector2(0,half), Color(paper, fading * 0.7), 1.2, true)
+		var half: float = 3.4 if index % 2 == 0 else 2.2
+		draw_line(star - Vector2(half,0), star + Vector2(half,0), Color(paper, fading * 0.86), 1.3, true)
+		draw_line(star - Vector2(0,half), star + Vector2(0,half), Color(paper, fading * 0.86), 1.3, true)
 	for index in range(12):
 		var angle: float = index * TAU / 12.0
 		draw_arc(Vector2.ZERO, radius * 0.94, angle + 0.055, angle + TAU / 24.0, 7, Color(paper, fading * 0.28), 1.1, true)

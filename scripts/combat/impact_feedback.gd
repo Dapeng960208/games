@@ -182,8 +182,12 @@ func _draw() -> void:
 			draw_line(at - normal * 5.0, at + normal * 5.0, Color(tint, 0.65 * fade), 1.5, true)
 			continue
 		match hero:
-			"CH01": _draw_hammer(at, dir, radius, t, fade, event)
-			"CH02": _draw_pierce(at, dir, radius, t, fade, event)
+			"CH01": _draw_cleave(at, dir, radius, t, fade, event)
+			"CH02":
+				if str(event.source) == "f":
+					_draw_blast_contact(at, dir, radius, t, fade, event)
+				else:
+					_draw_pierce(at, dir, radius, t, fade, event)
 			"CH03": _draw_crystal(at, dir, radius, t, fade, event)
 
 func _draw_shield_contact(at: Vector2, dir: Vector2, radius: float, t: float, fade: float, event: Dictionary) -> void:
@@ -221,21 +225,22 @@ func _draw_shield_contact(at: Vector2, dir: Vector2, radius: float, t: float, fa
 		var contact: float = _core_strength(event, 0.055, 0.075)
 		_contact_line(PackedVector2Array([at - n * 5.0, at + dir * 2.0, at + n * 5.0]), SHIELD_EDGE, contact, 2.2)
 
-func _draw_hammer(at: Vector2, dir: Vector2, radius: float, t: float, fade: float, event: Dictionary) -> void:
+func _draw_cleave(at: Vector2, dir: Vector2, radius: float, t: float, fade: float, event: Dictionary) -> void:
 	var n := dir.orthogonal()
 	var snap: float = _core_strength(event, 0.075, 0.09)
 	var center := at + dir * (1.0 + t * 2.0)
 	var extent: float = radius * 0.45
-	# Broad, flat hammer face: a single compression, then fragments. The dark
-	# rim keeps contact legible over bright armour without whitening the body.
-	var core := PackedVector2Array([center - dir * extent * 0.48,
-		center - dir * extent * 0.32 - n * extent * 0.76,
-		center + dir * extent * 0.30 - n * extent * 0.45,
-		center + dir * extent * 0.78,
-		center + dir * extent * 0.25 + n * extent * 0.64,
-		center - dir * extent * 0.35 + n * extent * 0.52])
+	# A broad diagonal axe bite, with a bright cutting edge and copper wake.
+	# Its narrow waist keeps the actual enemy silhouette readable on contact.
+	var cut := (n + dir * 0.32).normalized()
+	var core := PackedVector2Array([center - cut * extent * 1.12,
+		center - cut * extent * 0.75 - dir * extent * 0.26,
+		center + cut * extent * 0.78 - dir * extent * 0.12,
+		center + cut * extent * 1.15,
+		center + cut * extent * 0.72 + dir * extent * 0.22,
+		center - cut * extent * 0.68 + dir * extent * 0.12])
 	_contact_chip(core, AMBER, snap)
-	draw_line(center - n * extent * 0.55, center + n * extent * 0.48, Color(IVORY, snap), 3.1, true)
+	draw_line(center - cut * extent * 0.9, center + cut * extent * 0.94, Color(IVORY, snap), 3.1, true)
 	# One broken, flattened pressure front; it reads as compression, not a spell ring.
 	if bool(event.heavy):
 		var pressure := PackedVector2Array()
@@ -244,6 +249,17 @@ func _draw_hammer(at: Vector2, dir: Vector2, radius: float, t: float, fade: floa
 			pressure.append(center + dir * cos(angle) * radius * (0.28 + t * 0.35) + n * sin(angle) * radius * (0.4 + t * 0.45))
 		_contact_line(pressure, AMBER, fade * 0.55, 2.2)
 	_draw_fragments(at, dir, radius, t, fade, event, 7 if bool(event.heavy) else 5)
+
+func _draw_blast_contact(at: Vector2, dir: Vector2, radius: float, t: float, fade: float, event: Dictionary) -> void:
+	var snap: float = _core_strength(event, 0.055, 0.075)
+	var shard := PackedVector2Array([at - dir * 7.0, at - dir.orthogonal() * 8.0,
+		at + dir * 10.0, at + dir.orthogonal() * 8.0])
+	_contact_chip(shard, AMBER, snap)
+	for index in 6:
+		var ray := dir.rotated(TAU * index / 6.0 + 0.18)
+		var reach: float = radius * (0.34 + t * 0.65)
+		_contact_line(PackedVector2Array([at + ray * reach * 0.55, at + ray * reach]), AMBER if index % 2 == 0 else IVORY, fade * 0.8, 2.2)
+	_draw_fragments(at, dir, radius * 0.7, t, fade, event, 4)
 
 func _draw_pierce(at: Vector2, dir: Vector2, radius: float, t: float, fade: float, event: Dictionary) -> void:
 	var n := dir.orthogonal()
@@ -273,6 +289,10 @@ func _draw_crystal(at: Vector2, dir: Vector2, radius: float, t: float, fade: flo
 		at + dir * extent, at + n * extent * 0.66])
 	_contact_chip(core, JADE, snap)
 	draw_line(at - dir * extent * 0.6, at + dir * extent * 0.6, Color(IVORY, snap), 2.3, true)
+	if bool(event.heavy):
+		for facet in 3:
+			var angle: float = dir.angle() + facet * TAU / 3.0
+			draw_arc(at, radius * (0.35 + t * 0.18), angle, angle + 0.75, 8, Color(VIOLET, fade * 0.68), 1.6, true)
 	# Split into separate facets after the central fracture; unlike a gun spark,
 	# the pieces open sideways. This is a local contact, never an extra AoE tell.
 	var opening: float = smoothstep(0.04, 0.55, t)
