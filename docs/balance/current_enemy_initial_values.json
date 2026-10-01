@@ -1,0 +1,943 @@
+{
+  "schema": "EnemyInitialValues/v1-documentation-only",
+  "source_snapshot": "8daa519f2ea1a7dcc3f422b4df96ac81d65986b9",
+  "source_sha256": {
+    "config/balance.gd": "c686a018cfe13da5d06d2473e54971073ec508a5a7f980ae7c92aa9a1ef154ec",
+    "data/enemies.json": "c08babe0ae5a04ff069f3dbf98974d0fbfaaa4f1bce33072e1468f2ac2aa20e6",
+    "data/enemy_progression.json": "f8b16d6d8b991b5413b264d00ef6e6524166af13ce4c7ca37389fab967674465",
+    "data/rooms.json": "8197d0f4cf89e69dac872341aa8ab739e4641f74e854570da271fb66f5a147e2",
+    "scripts/combat/boss.gd": "af8e10d1e38c509f95c24e42cced6e3dc399bd1f8c2e229eaf9f89f577bb7026",
+    "scripts/combat/boss_ability_catalog.gd": "c835b080ef74e07f7d89a0ac3071ce727a2df5f704a7f455343e332774822cc9",
+    "scripts/combat/boss_brain.gd": "ed306f9cb9f88de9440bbe32ecbec89808b78bc7e85052e2dd1c457139657b79",
+    "scripts/combat/boss_profiles.gd": "5ebfc922f7e97b5e0cfb126898a071c2bc0cde475254afe75a24875394559c33",
+    "scripts/combat/combat_status.gd": "108b6875bec329c036564eee8baa2319ff9103d8b02af17eda6769bd2d0891ea",
+    "scripts/combat/damage_resolver.gd": "4681e4c63862235114b21063b23d87d65d7214ceb142b513eb27bc227af5a6e7",
+    "scripts/combat/enemy_biome_skills.gd": "add3259cea5d86c7ef9d49d62f6aba106a2101303af7d3c1ad3bae28311c10c6",
+    "scripts/combat/enemy_brain.gd": "a3d7b3de70859a52448d5d38e950663e93f0c88822b4cac9f1b7ec16f1c2719d",
+    "scripts/combat/enemy_difficulty.gd": "c2133f4976d94976278094d9c26912ff6883b0af16a7f1054de3306be3d15b7e",
+    "scripts/combat/enemy_profiles.gd": "b222ad47c47237449fe6e805cb32f62f71dfa9670a3ef5bd37721e7f0dd1d149",
+    "scripts/combat/enemy_skill_runtime.gd": "3dcd827a65a2ce2e221c313e450da292f6c0ebdd2d14bb317a3d2897b33a2d00",
+    "scripts/combat/player.gd": "febddd6c5336123c1d7e8a792c050f1c5b8ffddb5b6379c96662a1e586379efe",
+    "scripts/combat/room.gd": "f32d2cf87569a624765c0c90c1e761d2538229ce1b4966cee315be11e71ef6a6"
+  },
+  "ordinary": [
+    {
+      "id": "M01",
+      "name": "晴辉构装巡庭夹卫",
+      "profiles": {
+        "normal": {
+          "max_hp": 60.0,
+          "damage": 14.0,
+          "armor": 0.0,
+          "magic_resist": 3.0,
+          "move_speed": 96.0,
+          "attack_range": 68.0,
+          "recovery_seconds": 0.9
+        },
+        "elite": {
+          "max_hp": 72.0,
+          "damage": 15.68,
+          "armor": 0.0,
+          "magic_resist": 7.0,
+          "move_speed": 96.0,
+          "attack_range": 68.0,
+          "recovery_seconds": 0.9
+        }
+      }
+    },
+    {
+      "id": "M02",
+      "name": "晴辉构装冲锋蛛卫",
+      "profiles": {
+        "normal": {
+          "max_hp": 78.0,
+          "damage": 16.0,
+          "armor": 3.0,
+          "magic_resist": 3.0,
+          "move_speed": 88.0,
+          "attack_range": 270.0,
+          "recovery_seconds": 1.1
+        },
+        "elite": {
+          "max_hp": 93.6,
+          "damage": 17.92,
+          "armor": 3.0,
+          "magic_resist": 7.0,
+          "move_speed": 88.0,
+          "attack_range": 270.0,
+          "recovery_seconds": 1.1
+        }
+      }
+    },
+    {
+      "id": "M03",
+      "name": "晴辉构装远程炮手",
+      "profiles": {
+        "normal": {
+          "max_hp": 48.0,
+          "damage": 13.0,
+          "armor": 0.0,
+          "magic_resist": 3.0,
+          "move_speed": 82.0,
+          "attack_range": 430.0,
+          "recovery_seconds": 0.95
+        },
+        "elite": {
+          "max_hp": 57.6,
+          "damage": 14.56,
+          "armor": 0.0,
+          "magic_resist": 7.0,
+          "move_speed": 82.0,
+          "attack_range": 430.0,
+          "recovery_seconds": 0.95
+        }
+      }
+    },
+    {
+      "id": "M04",
+      "name": "晴辉构装蜂群微卫",
+      "profiles": {
+        "normal": {
+          "max_hp": 28.0,
+          "damage": 8.0,
+          "armor": 0.0,
+          "magic_resist": 3.0,
+          "move_speed": 108.0,
+          "attack_range": 54.0,
+          "recovery_seconds": 0.7
+        },
+        "elite": {
+          "max_hp": 33.6,
+          "damage": 8.96,
+          "armor": 0.0,
+          "magic_resist": 7.0,
+          "move_speed": 108.0,
+          "attack_range": 54.0,
+          "recovery_seconds": 0.7
+        }
+      }
+    },
+    {
+      "id": "M05",
+      "name": "晴辉构装滚轮猎犬",
+      "profiles": {
+        "normal": {
+          "max_hp": 78.0,
+          "damage": 16.0,
+          "armor": 3.0,
+          "magic_resist": 3.0,
+          "move_speed": 88.0,
+          "attack_range": 260.0,
+          "recovery_seconds": 1.1
+        },
+        "elite": {
+          "max_hp": 93.6,
+          "damage": 17.92,
+          "armor": 3.0,
+          "magic_resist": 7.0,
+          "move_speed": 88.0,
+          "attack_range": 260.0,
+          "recovery_seconds": 1.1
+        }
+      }
+    },
+    {
+      "id": "M06",
+      "name": "晴辉构装护翼师",
+      "profiles": {
+        "normal": {
+          "max_hp": 76.8,
+          "damage": 9.0,
+          "armor": 6.0,
+          "magic_resist": 10.0,
+          "move_speed": 64.6,
+          "attack_range": 150.0,
+          "recovery_seconds": 1.12
+        },
+        "elite": {
+          "max_hp": 92.16,
+          "damage": 10.08,
+          "armor": 6.0,
+          "magic_resist": 14.0,
+          "move_speed": 64.6,
+          "attack_range": 150.0,
+          "recovery_seconds": 1.12
+        }
+      }
+    },
+    {
+      "id": "M07",
+      "name": "晴辉构装磁叉牵引师",
+      "profiles": {
+        "normal": {
+          "max_hp": 64.0,
+          "damage": 11.0,
+          "armor": 2.0,
+          "magic_resist": 3.0,
+          "move_speed": 84.0,
+          "attack_range": 310.0,
+          "recovery_seconds": 1.0
+        },
+        "elite": {
+          "max_hp": 76.8,
+          "damage": 12.32,
+          "armor": 2.0,
+          "magic_resist": 7.0,
+          "move_speed": 84.0,
+          "attack_range": 310.0,
+          "recovery_seconds": 1.0
+        }
+      }
+    },
+    {
+      "id": "M08",
+      "name": "晴辉构装塔盾卫",
+      "profiles": {
+        "normal": {
+          "max_hp": 87.72,
+          "damage": 11.7,
+          "armor": 16.0,
+          "magic_resist": 8.0,
+          "move_speed": 60.72,
+          "attack_range": 74.0,
+          "recovery_seconds": 1.298
+        },
+        "elite": {
+          "max_hp": 105.264,
+          "damage": 13.104,
+          "armor": 16.0,
+          "magic_resist": 12.0,
+          "move_speed": 60.72,
+          "attack_range": 74.0,
+          "recovery_seconds": 1.298
+        }
+      }
+    },
+    {
+      "id": "M09",
+      "name": "晴辉构装鸣炉支援者",
+      "profiles": {
+        "normal": {
+          "max_hp": 49.92,
+          "damage": 6.3,
+          "armor": 0.0,
+          "magic_resist": 10.0,
+          "move_speed": 74.1,
+          "attack_range": 220.0,
+          "recovery_seconds": 1.12
+        },
+        "elite": {
+          "max_hp": 59.904,
+          "damage": 7.056,
+          "armor": 0.0,
+          "magic_resist": 14.0,
+          "move_speed": 74.1,
+          "attack_range": 220.0,
+          "recovery_seconds": 1.12
+        }
+      }
+    },
+    {
+      "id": "M10",
+      "name": "琥珀虫族镰足刺虫",
+      "profiles": {
+        "normal": {
+          "max_hp": 43.2,
+          "damage": 16.8,
+          "armor": 0.0,
+          "magic_resist": 0.0,
+          "move_speed": 105.6,
+          "attack_range": 68.0,
+          "recovery_seconds": 0.9
+        },
+        "elite": {
+          "max_hp": 51.84,
+          "damage": 18.816,
+          "armor": 0.0,
+          "magic_resist": 4.0,
+          "move_speed": 105.6,
+          "attack_range": 68.0,
+          "recovery_seconds": 0.9
+        }
+      }
+    },
+    {
+      "id": "M11",
+      "name": "琥珀虫族针吻酸炮",
+      "profiles": {
+        "normal": {
+          "max_hp": 51.6,
+          "damage": 13.92,
+          "armor": 1.0,
+          "magic_resist": 14.0,
+          "move_speed": 60.76,
+          "attack_range": 360.0,
+          "recovery_seconds": 1.344
+        },
+        "elite": {
+          "max_hp": 61.92,
+          "damage": 15.5904,
+          "armor": 1.0,
+          "magic_resist": 18.0,
+          "move_speed": 60.76,
+          "attack_range": 360.0,
+          "recovery_seconds": 1.344
+        }
+      }
+    },
+    {
+      "id": "M12",
+      "name": "琥珀虫族育卵萤母",
+      "profiles": {
+        "normal": {
+          "max_hp": 62.4,
+          "damage": 7.2,
+          "armor": 2.0,
+          "magic_resist": 10.0,
+          "move_speed": 66.5,
+          "attack_range": 250.0,
+          "recovery_seconds": 1.344
+        },
+        "elite": {
+          "max_hp": 74.88,
+          "damage": 8.064,
+          "armor": 2.0,
+          "magic_resist": 14.0,
+          "move_speed": 66.5,
+          "attack_range": 250.0,
+          "recovery_seconds": 1.344
+        }
+      }
+    },
+    {
+      "id": "M13",
+      "name": "琥珀虫族剪钳幼蜓",
+      "profiles": {
+        "normal": {
+          "max_hp": 38.88,
+          "damage": 15.0,
+          "armor": 0.0,
+          "magic_resist": 0.0,
+          "move_speed": 113.3,
+          "attack_range": 80.0,
+          "recovery_seconds": 0.9
+        },
+        "elite": {
+          "max_hp": 46.656,
+          "damage": 16.8,
+          "armor": 0.0,
+          "magic_resist": 4.0,
+          "move_speed": 113.3,
+          "attack_range": 80.0,
+          "recovery_seconds": 0.9
+        }
+      }
+    },
+    {
+      "id": "M14",
+      "name": "琥珀虫族黏足幼虫",
+      "profiles": {
+        "normal": {
+          "max_hp": 28.0,
+          "damage": 8.0,
+          "armor": 0.0,
+          "magic_resist": 3.0,
+          "move_speed": 108.0,
+          "attack_range": 54.0,
+          "recovery_seconds": 0.7
+        },
+        "elite": {
+          "max_hp": 33.6,
+          "damage": 8.96,
+          "armor": 0.0,
+          "magic_resist": 7.0,
+          "move_speed": 108.0,
+          "attack_range": 54.0,
+          "recovery_seconds": 0.7
+        }
+      }
+    },
+    {
+      "id": "M15",
+      "name": "琥珀虫族掘地锹甲",
+      "profiles": {
+        "normal": {
+          "max_hp": 43.2,
+          "damage": 16.8,
+          "armor": 0.25,
+          "magic_resist": 0.0,
+          "move_speed": 96.8,
+          "attack_range": 240.0,
+          "recovery_seconds": 1.1
+        },
+        "elite": {
+          "max_hp": 51.84,
+          "damage": 18.816,
+          "armor": 0.25,
+          "magic_resist": 4.0,
+          "move_speed": 96.8,
+          "attack_range": 240.0,
+          "recovery_seconds": 1.1
+        }
+      }
+    },
+    {
+      "id": "M16",
+      "name": "琥珀虫族搬运丸甲",
+      "profiles": {
+        "normal": {
+          "max_hp": 55.68,
+          "damage": 9.0,
+          "armor": 0.0,
+          "magic_resist": 10.0,
+          "move_speed": 93.1,
+          "attack_range": 150.0,
+          "recovery_seconds": 1.008
+        },
+        "elite": {
+          "max_hp": 66.816,
+          "damage": 10.08,
+          "armor": 0.0,
+          "magic_resist": 14.0,
+          "move_speed": 93.1,
+          "attack_range": 150.0,
+          "recovery_seconds": 1.008
+        }
+      }
+    },
+    {
+      "id": "M17",
+      "name": "琥珀虫族回春萤卫",
+      "profiles": {
+        "normal": {
+          "max_hp": 55.68,
+          "damage": 5.4,
+          "armor": 0.0,
+          "magic_resist": 10.0,
+          "move_speed": 60.8,
+          "attack_range": 260.0,
+          "recovery_seconds": 1.344
+        },
+        "elite": {
+          "max_hp": 66.816,
+          "damage": 6.048,
+          "armor": 0.0,
+          "magic_resist": 14.0,
+          "move_speed": 60.8,
+          "attack_range": 260.0,
+          "recovery_seconds": 1.344
+        }
+      }
+    },
+    {
+      "id": "M18",
+      "name": "琥珀虫族破墙犀甲",
+      "profiles": {
+        "normal": {
+          "max_hp": 79.56,
+          "damage": 12.6,
+          "armor": 12.0,
+          "magic_resist": 8.0,
+          "move_speed": 64.4,
+          "attack_range": 95.0,
+          "recovery_seconds": 1.239
+        },
+        "elite": {
+          "max_hp": 95.472,
+          "damage": 14.112,
+          "armor": 12.0,
+          "magic_resist": 12.0,
+          "move_speed": 64.4,
+          "attack_range": 95.0,
+          "recovery_seconds": 1.239
+        }
+      }
+    },
+    {
+      "id": "M19",
+      "name": "南瓜僵尸提灯哨兵",
+      "profiles": {
+        "normal": {
+          "max_hp": 49.92,
+          "damage": 6.3,
+          "armor": 0.0,
+          "magic_resist": 10.0,
+          "move_speed": 74.1,
+          "attack_range": 280.0,
+          "recovery_seconds": 1.12
+        },
+        "elite": {
+          "max_hp": 59.904,
+          "damage": 7.056,
+          "armor": 0.0,
+          "magic_resist": 14.0,
+          "move_speed": 74.1,
+          "attack_range": 280.0,
+          "recovery_seconds": 1.12
+        }
+      }
+    },
+    {
+      "id": "M20",
+      "name": "南瓜僵尸远程弩手",
+      "profiles": {
+        "normal": {
+          "max_hp": 48.0,
+          "damage": 13.0,
+          "armor": 0.0,
+          "magic_resist": 3.0,
+          "move_speed": 82.0,
+          "attack_range": 420.0,
+          "recovery_seconds": 0.95
+        },
+        "elite": {
+          "max_hp": 57.6,
+          "damage": 14.56,
+          "armor": 0.0,
+          "magic_resist": 7.0,
+          "move_speed": 82.0,
+          "attack_range": 420.0,
+          "recovery_seconds": 0.95
+        }
+      }
+    },
+    {
+      "id": "M21",
+      "name": "南瓜僵尸蹦跳兵",
+      "profiles": {
+        "normal": {
+          "max_hp": 60.0,
+          "damage": 14.0,
+          "armor": 1.0,
+          "magic_resist": 3.0,
+          "move_speed": 88.0,
+          "attack_range": 240.0,
+          "recovery_seconds": 1.1
+        },
+        "elite": {
+          "max_hp": 72.0,
+          "damage": 15.68,
+          "armor": 1.0,
+          "magic_resist": 7.0,
+          "move_speed": 88.0,
+          "attack_range": 240.0,
+          "recovery_seconds": 1.1
+        }
+      }
+    },
+    {
+      "id": "M22",
+      "name": "南瓜僵尸熔糖炮手",
+      "profiles": {
+        "normal": {
+          "max_hp": 51.6,
+          "damage": 13.92,
+          "armor": 1.0,
+          "magic_resist": 14.0,
+          "move_speed": 60.76,
+          "attack_range": 300.0,
+          "recovery_seconds": 1.344
+        },
+        "elite": {
+          "max_hp": 61.92,
+          "damage": 15.5904,
+          "armor": 1.0,
+          "magic_resist": 18.0,
+          "move_speed": 60.76,
+          "attack_range": 300.0,
+          "recovery_seconds": 1.344
+        }
+      }
+    },
+    {
+      "id": "M23",
+      "name": "南瓜僵尸牵引术士",
+      "profiles": {
+        "normal": {
+          "max_hp": 64.0,
+          "damage": 11.0,
+          "armor": 2.0,
+          "magic_resist": 3.0,
+          "move_speed": 84.0,
+          "attack_range": 180.0,
+          "recovery_seconds": 1.0
+        },
+        "elite": {
+          "max_hp": 76.8,
+          "damage": 12.32,
+          "armor": 2.0,
+          "magic_resist": 7.0,
+          "move_speed": 84.0,
+          "attack_range": 180.0,
+          "recovery_seconds": 1.0
+        }
+      }
+    },
+    {
+      "id": "M24",
+      "name": "南瓜僵尸冰雾泵手",
+      "profiles": {
+        "normal": {
+          "max_hp": 41.28,
+          "damage": 15.08,
+          "armor": 0.0,
+          "magic_resist": 14.0,
+          "move_speed": 80.36,
+          "attack_range": 250.0,
+          "recovery_seconds": 1.064
+        },
+        "elite": {
+          "max_hp": 49.536,
+          "damage": 16.8896,
+          "armor": 0.0,
+          "magic_resist": 18.0,
+          "move_speed": 80.36,
+          "attack_range": 250.0,
+          "recovery_seconds": 1.064
+        }
+      }
+    },
+    {
+      "id": "M25",
+      "name": "南瓜僵尸护盾卫士",
+      "profiles": {
+        "normal": {
+          "max_hp": 87.72,
+          "damage": 11.7,
+          "armor": 16.0,
+          "magic_resist": 8.0,
+          "move_speed": 60.72,
+          "attack_range": 74.0,
+          "recovery_seconds": 1.298
+        },
+        "elite": {
+          "max_hp": 105.264,
+          "damage": 13.104,
+          "armor": 16.0,
+          "magic_resist": 12.0,
+          "move_speed": 60.72,
+          "attack_range": 74.0,
+          "recovery_seconds": 1.298
+        }
+      }
+    },
+    {
+      "id": "M26",
+      "name": "南瓜僵尸裁缝护卫",
+      "profiles": {
+        "normal": {
+          "max_hp": 87.72,
+          "damage": 11.7,
+          "armor": 16.0,
+          "magic_resist": 8.0,
+          "move_speed": 60.72,
+          "attack_range": 74.0,
+          "recovery_seconds": 1.298
+        },
+        "elite": {
+          "max_hp": 105.264,
+          "damage": 13.104,
+          "armor": 16.0,
+          "magic_resist": 12.0,
+          "move_speed": 60.72,
+          "attack_range": 74.0,
+          "recovery_seconds": 1.298
+        }
+      }
+    },
+    {
+      "id": "M27",
+      "name": "南瓜僵尸节拍铲兵",
+      "profiles": {
+        "normal": {
+          "max_hp": 60.0,
+          "damage": 14.0,
+          "armor": 0.0,
+          "magic_resist": 3.0,
+          "move_speed": 96.0,
+          "attack_range": 68.0,
+          "recovery_seconds": 0.9
+        },
+        "elite": {
+          "max_hp": 72.0,
+          "damage": 15.68,
+          "armor": 0.0,
+          "magic_resist": 7.0,
+          "move_speed": 96.0,
+          "attack_range": 68.0,
+          "recovery_seconds": 0.9
+        }
+      }
+    },
+    {
+      "id": "M28",
+      "name": "赤岩兽人疾行斥候",
+      "profiles": {
+        "normal": {
+          "max_hp": 20.16,
+          "damage": 15.0,
+          "armor": 0.0,
+          "magic_resist": 0.0,
+          "move_speed": 118.8,
+          "attack_range": 170.0,
+          "recovery_seconds": 0.7
+        },
+        "elite": {
+          "max_hp": 24.192,
+          "damage": 16.8,
+          "armor": 0.0,
+          "magic_resist": 4.0,
+          "move_speed": 118.8,
+          "attack_range": 170.0,
+          "recovery_seconds": 0.7
+        }
+      }
+    },
+    {
+      "id": "M29",
+      "name": "赤岩兽人幻影刀手",
+      "profiles": {
+        "normal": {
+          "max_hp": 38.88,
+          "damage": 15.0,
+          "armor": 0.0,
+          "magic_resist": 0.0,
+          "move_speed": 113.3,
+          "attack_range": 80.0,
+          "recovery_seconds": 0.9
+        },
+        "elite": {
+          "max_hp": 46.656,
+          "damage": 16.8,
+          "armor": 0.0,
+          "magic_resist": 4.0,
+          "move_speed": 113.3,
+          "attack_range": 80.0,
+          "recovery_seconds": 0.9
+        }
+      }
+    },
+    {
+      "id": "M30",
+      "name": "赤岩兽人战鼓祭司",
+      "profiles": {
+        "normal": {
+          "max_hp": 49.92,
+          "damage": 6.3,
+          "armor": 0.0,
+          "magic_resist": 10.0,
+          "move_speed": 74.1,
+          "attack_range": 260.0,
+          "recovery_seconds": 1.12
+        },
+        "elite": {
+          "max_hp": 59.904,
+          "damage": 7.056,
+          "armor": 0.0,
+          "magic_resist": 14.0,
+          "move_speed": 74.1,
+          "attack_range": 260.0,
+          "recovery_seconds": 1.12
+        }
+      }
+    },
+    {
+      "id": "M31",
+      "name": "赤岩兽人冷晶弩手",
+      "profiles": {
+        "normal": {
+          "max_hp": 41.28,
+          "damage": 15.08,
+          "armor": 0.0,
+          "magic_resist": 14.0,
+          "move_speed": 80.36,
+          "attack_range": 430.0,
+          "recovery_seconds": 1.064
+        },
+        "elite": {
+          "max_hp": 49.536,
+          "damage": 16.8896,
+          "armor": 0.0,
+          "magic_resist": 18.0,
+          "move_speed": 80.36,
+          "attack_range": 430.0,
+          "recovery_seconds": 1.064
+        }
+      }
+    },
+    {
+      "id": "M32",
+      "name": "赤岩兽人跃袭猎手",
+      "profiles": {
+        "normal": {
+          "max_hp": 43.2,
+          "damage": 16.8,
+          "armor": 0.25,
+          "magic_resist": 0.0,
+          "move_speed": 96.8,
+          "attack_range": 250.0,
+          "recovery_seconds": 1.1
+        },
+        "elite": {
+          "max_hp": 51.84,
+          "damage": 18.816,
+          "armor": 0.25,
+          "magic_resist": 4.0,
+          "move_speed": 96.8,
+          "attack_range": 250.0,
+          "recovery_seconds": 1.1
+        }
+      }
+    },
+    {
+      "id": "M33",
+      "name": "赤岩兽人绳网猎手",
+      "profiles": {
+        "normal": {
+          "max_hp": 74.88,
+          "damage": 12.6,
+          "armor": 4.0,
+          "magic_resist": 10.0,
+          "move_speed": 66.5,
+          "attack_range": 250.0,
+          "recovery_seconds": 1.176
+        },
+        "elite": {
+          "max_hp": 89.856,
+          "damage": 14.112,
+          "armor": 4.0,
+          "magic_resist": 14.0,
+          "move_speed": 66.5,
+          "attack_range": 250.0,
+          "recovery_seconds": 1.176
+        }
+      }
+    },
+    {
+      "id": "M34",
+      "name": "赤岩食人魔反击卫",
+      "profiles": {
+        "normal": {
+          "max_hp": 87.72,
+          "damage": 11.7,
+          "armor": 16.0,
+          "magic_resist": 8.0,
+          "move_speed": 60.72,
+          "attack_range": 74.0,
+          "recovery_seconds": 1.298
+        },
+        "elite": {
+          "max_hp": 105.264,
+          "damage": 13.104,
+          "armor": 16.0,
+          "magic_resist": 12.0,
+          "move_speed": 60.72,
+          "attack_range": 74.0,
+          "recovery_seconds": 1.298
+        }
+      }
+    },
+    {
+      "id": "M35",
+      "name": "赤岩食人魔窃灯手",
+      "profiles": {
+        "normal": {
+          "max_hp": 55.68,
+          "damage": 9.0,
+          "armor": 0.0,
+          "magic_resist": 10.0,
+          "move_speed": 93.1,
+          "attack_range": 180.0,
+          "recovery_seconds": 1.008
+        },
+        "elite": {
+          "max_hp": 66.816,
+          "damage": 10.08,
+          "armor": 0.0,
+          "magic_resist": 14.0,
+          "move_speed": 93.1,
+          "attack_range": 180.0,
+          "recovery_seconds": 1.008
+        }
+      }
+    },
+    {
+      "id": "M36",
+      "name": "赤岩兽人雷符爆破兵",
+      "profiles": {
+        "normal": {
+          "max_hp": 32.68,
+          "damage": 16.9,
+          "armor": 0.0,
+          "magic_resist": 14.0,
+          "move_speed": 98.0,
+          "attack_range": 120.0,
+          "recovery_seconds": 1.008
+        },
+        "elite": {
+          "max_hp": 39.216,
+          "damage": 18.928,
+          "armor": 0.0,
+          "magic_resist": 18.0,
+          "move_speed": 98.0,
+          "attack_range": 120.0,
+          "recovery_seconds": 1.008
+        }
+      }
+    }
+  ],
+  "bosses": [
+    {
+      "id": "BO01",
+      "name": "日曜机关巨像",
+      "base_level": 5,
+      "stats": {
+        "max_hp": 1450.0,
+        "damage": 20.0,
+        "armor": 18.0,
+        "magic_resist": 18.0,
+        "move_speed": 70.0,
+        "attack_range": 680.0
+      }
+    },
+    {
+      "id": "BO02",
+      "name": "琥珀虫后",
+      "base_level": 10,
+      "stats": {
+        "max_hp": 1620.0,
+        "damage": 18.0,
+        "armor": 12.0,
+        "magic_resist": 15.0,
+        "move_speed": 64.0,
+        "attack_range": 760.0
+      }
+    },
+    {
+      "id": "BO03",
+      "name": "缝合镇长",
+      "base_level": 15,
+      "stats": {
+        "max_hp": 1480.0,
+        "damage": 19.0,
+        "armor": 10.0,
+        "magic_resist": 12.0,
+        "move_speed": 92.0,
+        "attack_range": 900.0
+      }
+    },
+    {
+      "id": "BO04",
+      "name": "裂岩大酋长",
+      "base_level": 20,
+      "stats": {
+        "max_hp": 1880.0,
+        "damage": 21.0,
+        "armor": 22.0,
+        "magic_resist": 18.0,
+        "move_speed": 58.0,
+        "attack_range": 820.0
+      }
+    }
+  ]
+}
