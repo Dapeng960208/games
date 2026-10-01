@@ -58,7 +58,12 @@ func _ready() -> void:
 func _isolated_test_path(value: String) -> bool:
 	if value == "user://profile.json" or value.is_empty(): return false
 	var normalized := value.replace("\\", "/")
-	for component: String in normalized.split("/"):
+	var components := normalized.split("/")
+	# Reject traversal before accepting any test component; a later .. must
+	# never turn a debug fixture into the ordinary player profile.
+	for component: String in components:
+		if component in [".", ".."]: return false
+	for component: String in components:
 		if component.begins_with("test_") and component.length() > 5: return true
 	return false
 

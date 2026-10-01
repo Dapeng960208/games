@@ -122,6 +122,7 @@ func _run() -> void:
 	view.queue_free()
 	await frames()
 	await _live_ui()
+	await _shield_amounts()
 	app.queue_free()
 	Game.run = null
 	await frames()
@@ -190,6 +191,74 @@ func _live_ui() -> void:
 	capped.cooldown_reduction = 0.30
 	var notes := "\n".join(Inspect.cap_notes(capped))
 	check(notes.contains("12.0%") and notes.contains("14.0%") and notes.contains("7.0%") and not notes.contains("hp_ratio"),"raw effective and cap losses shown")
+	hud.queue_free()
+	room.queue_free()
+	await frames()
+
+func _shield_amounts() -> void:
+	Game.run = RunState.new()
+	Game.run.hero_id = "CH01"
+	Game.run.stats = Resolver.resolve("CH01",20,{}, {},2,{})
+	Game.run.level = 20
+	Game.run.max_hp = Game.run.stats.max_hp
+	Game.run.hp = Game.run.max_hp
+	Game.run.resource = 1000
+	var room: Node2D = load("res://scenes/room.tscn").instantiate()
+	room.geometry_enabled = false
+	room.spawn_enabled = false
+	room.relic_positions = {}
+	add_child(room)
+	room.set_physics_process(false)
+	room.player.set_physics_process(false)
+	var hud: Control = load("res://scripts/ui/hud.gd").new()
+	hud.room = room
+	add_child(hud)
+	await frames()
+	for sample: Array in [[13,"f",""],[14,"f",""],[20,"f",""],[18,"q","B"],[20,"q","B"]]:
+		var level: int = sample[0]
+		var slot: String = sample[1]
+		Game.run.level = level
+		Game.run.stats = Resolver.resolve("CH01",level,{}, {},2,{})
+		Game.run.stats.branches = {"q":sample[2]}
+		Game.run.max_hp = Game.run.stats.max_hp
+		Game.run.hp = Game.run.max_hp-17
+		Game.run.shield = 0
+		Game.run.resource = 1000
+		room.player.status.states.clear()
+		room.player.status.guards.clear()
+		room.player.cooldowns.clear()
+		room.player.abilities.cancel()
+		room.player.passives.reset()
+		var spec: Dictionary = room.player.skill_definition(slot)
+		check(room.player.abilities.try_cast(slot,room.player.position+Vector2.RIGHT*20),"actual shield skill commits "+str(sample))
+		room.player.abilities.tick(float(spec.duration)+0.01)
+		var guard: Dictionary = room.player.status.guards.get("hero_"+slot,{})
+		check(not guard.is_empty() and typeof(guard.amount) == TYPE_INT and guard.remaining == 4.0,"actual integer shield with four-second duration "+str(sample))
+		if guard.is_empty(): continue
+		for locale: String in ["zh_CN","en"]:
+			Words.set_locale(locale)
+			var live: Dictionary = hud.skill_info(slot)
+			var camp := Skills.describe("CH01",level,Game.run.stats,slot,spec)
+			var phrase := ("grants %d shield for 4.0 s" if locale == "en" else "授予护盾 %d，持续 4.0 秒") % int(guard.amount)
+			check(live.description.contains(phrase) and camp.contains(phrase),"live/camp shield integer equals actual grant "+str(sample)+locale)
+			if slot == "f":
+				var reduction: Dictionary = room.player.status.states.get("brace_guard",{})
+				var reduction_phrase := "25% damage reduction for 1.5 s" if locale == "en" else "25% 减伤，持续 1.5 秒"
+				check(not reduction.is_empty() and reduction.power == 0.25 and reduction.remaining == 1.5 and live.description.contains(reduction_phrase),"E shield and damage-reduction clocks distinct "+str(sample)+locale)
+	Game.run.shield = 0
+	room.player.status.guards.clear()
+	room.player.passives.reset()
+	var target := Node2D.new()
+	room.add_child(target)
+	for index in 3:
+		room.player.passives.record_hit(target,&"primary",{"original_basic":true,"equipment_eligible":true,"root_event_id":"ui-passive:"+str(index),"hp_damage":1,"proc_depth":0})
+	var passive_guard: Dictionary = room.player.status.guards.get("hero_passive:three_rivets",{})
+	check(not passive_guard.is_empty() and typeof(passive_guard.amount) == TYPE_INT and passive_guard.remaining == 3.0,"three actual confirmed-hit records grant passive integer shield")
+	for locale: String in ["zh_CN","en"]:
+		Words.set_locale(locale)
+		var description := Skills.passive_text(ContentRegistry.hero("CH01"),Game.run.stats,room.player)
+		var phrase := ("grants %d shield for 3.0 s" if locale == "en" else "护盾 %d，持续 3.0 秒") % int(passive_guard.get("amount",0))
+		check(description.contains(phrase) and description.contains("6.0"),"passive UI integer and lifetime equal actual grant "+locale)
 	hud.queue_free()
 	room.queue_free()
 	await frames()

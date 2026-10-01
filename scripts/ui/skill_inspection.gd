@@ -27,6 +27,11 @@ static func authored_text(text: String, version: int) -> String:
 static func passive_text(hero: Dictionary, stats: Dictionary, actor: Variant = null) -> String:
 	var version := int(stats.get("ruleset_version",1))
 	var text := authored_text(MineStyle.content_text(hero.get("passive",{}),"description"),version)
+	if version == 2 and str(hero.get("id","")) == "CH01":
+		var passive: Dictionary = hero.get("passive",{})
+		var maximum := _maximum_hp(stats,actor)
+		var shield := Numbers.integer(maximum*float(passive.get("shield_hp_ratio",0)))
+		text += "\n"+Inspect.t("当前触发护盾 %d，持续 %.1f 秒；内置冷却 %.1f 秒。多来源取最大容量，不叠加。","Current trigger grants %d shield for %.1f s; internal cooldown %.1f s. Overlapping sources use the largest capacity, without adding together.") % [shield,float(passive.get("duration",0)),float(passive.get("icd",0))]
 	if version == 2 and str(hero.get("id","")) == "CH03":
 		var gain := float(hero.get("passive",{}).get("resource_gain",8))
 		var multiplier: float = actor.resource_gain_multiplier() if is_instance_valid(actor) and actor.has_method("resource_gain_multiplier") else 1.0+float(stats.get("resource_gain_bonus",0))
@@ -50,6 +55,13 @@ static func describe(hero: String, level: int, stats: Dictionary, slot: String, 
 	var lines: PackedStringArray = [Inspect.t("当前结算：普攻 H %d · 技能 H %d · 职业遗物 H %d","Current values: basic H %d · skill H %d · class relic H %d") % [int(powers.basic_H),power,int(powers.relic_H)],Inspect.t("本技能 %.2fH → 每包基础 %d；未计职业追加、增伤、暴击、连击或目标减免。","This skill %.2fH → base %d per packet, before class additions, bonuses, crit, combos or target mitigation.") % [coefficient,int(packet)]]
 	if spec.has("tick_coefficient"):
 		lines.append(Inspect.t("每跳 %.2fH → %d；持续 %.1f 秒。","Each tick %.2fH → %d; duration %.1f s.") % [float(spec.tick_coefficient),int(Abilities.packet_amount(float(spec.tick_coefficient),power,stats)),float(spec.lifetime)])
+	if float(spec.get("guard",0)) > 0:
+		var shield := Numbers.integer(_maximum_hp(stats,actor)*float(spec.guard))
+		# HeroAbilities grants Q-B/E shields for 4 s. The spec's guard_duration
+		# is E's separate damage-reduction timer, not the shield lifetime.
+		lines.append(Inspect.t("本次释放授予护盾 %d，持续 4.0 秒；多来源取最大容量，不叠加。","This release grants %d shield for 4.0 s; overlapping sources use the largest capacity, without adding together.") % shield)
+		if spec.has("damage_reduction"):
+			lines.append(Inspect.t("另获 %.0f%% 减伤，持续 %.1f 秒（与护盾独立计时）。","Separately grants %.0f%% damage reduction for %.1f s, timed independently of the shield.") % [float(spec.damage_reduction)*100.0,float(spec.get("guard_duration",0))])
 	if spec.has("health"): lines.append(Inspect.t("法晶生命 %d","Crystal health %d") % int(spec.health))
 	if int(spec.get("shots",spec.get("waves",1))) > 1:
 		lines.append(Inspect.t("共 %d 包；各包需实际命中，不视为必然总伤害。","%d packets; each must hit, so this is not guaranteed total damage.") % int(spec.get("shots",spec.get("waves",1))))
@@ -58,3 +70,6 @@ static func describe(hero: String, level: int, stats: Dictionary, slot: String, 
 		var refund := Numbers.integer(float(Numbers.scale(float(ContentRegistry.hero(hero).passive.resource_gain),version))*multiplier)
 		lines.append(Inspect.t("满共鸣被动触发时回复 %d 法力，受剩余容量限制；不是每次施放返还。","Full-Resonance passive trigger restores %d Mana, limited by remaining capacity; this is conditional, not every cast.") % refund)
 	return "\n".join(lines)+"\n\n"+Inspect.t("基础动作说明（当前强化与分支以实时值为准）","Base action reference (current upgrades/branches use the values above)")+"\n"+authored_text(authored,version)
+
+static func _maximum_hp(stats: Dictionary, actor: Variant) -> float:
+	return float(actor.stat("max_hp",float(stats.get("max_hp",0)))) if is_instance_valid(actor) and actor.has_method("stat") else float(stats.get("max_hp",0))

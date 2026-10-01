@@ -32,6 +32,9 @@ func _run() -> void:
 	Game._test_ruleset_override = 0
 	Game.run = null
 	check(not Game._isolated_test_path("user://profile.json") and not Game._isolated_test_path("/tmp/mytest_profile.json"),"override refuses normal profile paths")
+	for invalid: String in ["user://test_fixture/../profile.json","user://test_fixture/../../profile.json","user://test_fixture\\..\\profile.json","/tmp/test_fixture/./profile.json"]:
+		check(not Game._isolated_test_path(invalid),"test override rejects traversal: "+invalid)
+	check(Game._isolated_test_path("user://test_fixture/profile.json") and Game._isolated_test_path("/tmp/test_fixture.json"),"explicit isolated file/directory accepted")
 	check(Game.new_profile() and Game.profile.ruleset_version == 2,"native new Game profile follows current default")
 	var initial: Dictionary = Game.profile.duplicate(true)
 	Game._store.max_document_bytes = 1
