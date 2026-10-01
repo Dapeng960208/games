@@ -107,6 +107,7 @@ static func validate(record: Dictionary) -> Array[String]:
 				continue
 			if not _integer_in(step.g, 0, int(enhancement.gain_percent_max)) or not enhancement.gain_percent_weights.has(str(int(step.g))): errors.append("Illegal enhancement gain.")
 			if not _integer_in(step.pity, 0, int(enhancement.reroll_no_improvement_pity) - 1): errors.append("Illegal enhancement pity counter.")
+			if _integer_in(step.g, int(enhancement.gain_percent_max), int(enhancement.gain_percent_max)) and not _integer_in(step.pity, 0, 0): errors.append("Maximum enhancement gain requires a cleared pity counter.")
 			if not _nonnegative_integer(step.base_price_peak): errors.append("Illegal canonical enhancement price peak.")
 	if not record.enhancement_reroll_history is Array:
 		errors.append("Enhancement reroll history must be an array.")

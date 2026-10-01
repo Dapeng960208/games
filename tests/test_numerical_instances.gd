@@ -94,6 +94,14 @@ func _initialize() -> void:
 		var broken := first.duplicate(true)
 		broken.merge(mutation, true)
 		check(not Instances.validate(broken).is_empty(), "malformed data returns errors without crashing " + str(mutation))
+	var perfect_step := fixture("EQ03", "white", "physical", 50, 1, 12)
+	check(Instances.validate(perfect_step).is_empty(), "maximum gain with cleared pity remains valid")
+	for pity in [1, 2, 3]:
+		perfect_step.enhancement_steps[0].pity = pity
+		var persisted: Dictionary = JSON.parse_string(JSON.stringify(perfect_step))
+		check(not Instances.validate(persisted).is_empty() and Instances.create(persisted).is_empty() and Instances.stats(persisted).is_empty(), "persisted maximum-gain step rejects nonzero pity " + str(pity))
+	perfect_step.enhancement_steps[0].g = 11
+	check(Instances.validate(perfect_step).is_empty(), "below-maximum gain keeps legal pity-three state")
 	for sample in [["EQ31","white",50,0,9,32], ["EQ31","purple",50,10,9,95], ["EQ33","white",25,10,1,56], ["EQ33","purple",100,10,1,104], ["EQ33","green",100,10,6,104], ["EQ33","gold",100,0,13,104]]:
 		var halfpoint := fixture(sample[0],sample[1],"physical",sample[2],sample[3])
 		halfpoint.item_level = sample[4]
