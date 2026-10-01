@@ -61,6 +61,11 @@ func _run() -> void:
 	await frames()
 	for locale: String in ["zh_CN","en"]:
 		Words.set_locale(locale)
+		app.show_camp()
+		await frames()
+		var camp_stats: Label = app.screen.find_child("CampCombatStats",true,false)
+		check(camp_stats != null and not camp_stats.text.contains(".0") and camp_stats.text.contains(str(int(Game.selected_stats().attack))),"camp hero card uses same integer attack "+locale)
+		check(app._amount(2.5) == "2.5" and app._amount(486.0) == "486","times/legacy fractions retained without fake decimal "+locale)
 		check(Words.text("SLOT_LEGS") != "SLOT_LEGS" and Words.text("SLOT_RING") != "SLOT_RING","translated new slots "+locale)
 		check(Inspect.value("attack",463,false,false,2) == "463" and Inspect.value("attack",0,true,true,2) == "+0","settled flat integers "+locale)
 		check(Inspect.value("attack",0.4,true) == "+0.4" and Inspect.value("attack_interval",0.125) == "0.125 s","legacy fractions/time retained "+locale)

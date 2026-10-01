@@ -26,6 +26,7 @@ func configure(item: Dictionary, level: int, width: float, hero_id: String, befo
 	else:
 		_heading(Inspect.t("装备属性 · 强化 +%d 实际值","ITEM ATTRIBUTES · ACTUAL +%d VALUES") % level,width)
 		_row([Inspect.t("属性","Attribute"),Inspect.t("基础","Base"),Inspect.t("强化","Refine"),Inspect.t("实际","Actual")],width,true)
+		if version == 2: _line(Inspect.t("基础列含未强化主属性＋普通词条；下方k范围只表示主属性。", "Base includes unenhanced main stats + random affixes. The k range below is for main stats only."),width,13,MineStyle.MUTED).name = "BaseIncludesAffixes"
 		var base := Inspect.item_values(item,0,hero_id)
 		var actual := Inspect.item_values(item,level,hero_id)
 		for key: String in actual:

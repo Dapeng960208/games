@@ -276,7 +276,7 @@ func show_camp() -> void:
 	MineStyle.literal(identity_plate,MineStyle.content_text(hero,"name"),Vector2(20,7),Vector2(210,40),30,MineStyle.INK)
 	MineStyle.literal(identity_plate,"Lv."+str(level),Vector2(246,11),Vector2(78,35),22,accent).horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	MineStyle.literal(identity_plate,_ex_text(str(identity[0]),str(identity[3])),Vector2(21,48),Vector2(300,26),17,accent)
-	MineStyle.literal(identity_plate,_ex_text("生命 %d   攻击 %.1f   护甲 %d","HP %d   ATK %.1f   ARM %d") % [int(stats.get("max_hp",100)),float(stats.get("attack",20)),int(stats.get("armor",0))],Vector2(21,78),Vector2(302,24),14,MineStyle.MUTED)
+	MineStyle.literal(identity_plate,_ex_text("生命 %d   攻击 %s   护甲 %d","HP %d   ATK %s   ARM %d") % [int(stats.get("max_hp",100)),_amount(float(stats.get("attack",20))),int(stats.get("armor",0))],Vector2(21,78),Vector2(302,24),14,MineStyle.MUTED).name = "CampCombatStats"
 	MineStyle.literal(identity_plate,_ex_text(str(identity[2]),str(identity[4])),Vector2(21,105),Vector2(302,20),12,MineStyle.MUTED)
 	var departure := MineStyle.panel(screen,Vector2(430,112),Vector2(806,196))
 	departure.name = "CampDeparturePlan"
@@ -710,7 +710,7 @@ func _show_expedition_relic(offer: Dictionary) -> void:
 		review.grab_focus()
 
 func _amount(value: float) -> String:
-	return str(snappedf(value,0.1))
+	return str(int(round(value))) if is_equal_approx(value,round(value)) else str(snappedf(value,0.1))
 
 func _request_relic_skip(offer_id: String, force_review: bool = false) -> void:
 	if Game.run == null: return
