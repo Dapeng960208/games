@@ -1,5 +1,6 @@
 class_name EnemySkillRuntime
 extends Node2D
+const Numerical = preload("res://config/numerical_rules.gd")
 ## Enemy-only execution. The brain owns the readable tell and locked aim; this
 ## node owns collision, finite effects and cancellation after the tell completes.
 ## Commands use frozen room-local Vector2 coordinates. Cone/arc angles are radians;
@@ -39,6 +40,8 @@ func emit_skill(caster: Node2D, skill: Dictionary) -> void:
 	var command: Dictionary = skill.duplicate(true)
 	command["owner"] = weakref(caster)
 	command["owner_id"] = caster.get_instance_id()
+	var actor_profile: Dictionary = _property(caster, "profile", {})
+	command["ruleset_version"] = int(actor_profile.get("ruleset_version", Numerical.LEGACY))
 	command["origin"] = command.get("origin", caster.position)
 	var target: Variant = command.get("target", command.origin)
 	if target is Node2D:
@@ -54,6 +57,7 @@ func emit_skill(caster: Node2D, skill: Dictionary) -> void:
 		# Freeze the rage bonus with the rest of this attack. It never multiplies
 		# again when a projectile hits or a lingering area ticks.
 		command["damage"] *= float(signature.get("damage_multiplier", 1.2))
+	if Numerical.is_v2(command): command["damage"] = Numerical.integer(float(command.damage))
 	command["remaining"] = maxf(0.0, float(command.get("delay", 0.0)))
 	if float(command.remaining) > 0.0:
 		jobs.append(command)
@@ -218,6 +222,8 @@ func consume_scan_mark(shooter: Node2D) -> float:
 
 func filter_incoming_damage(target: Node2D, amount: float, kind: StringName, from_direction: Vector2) -> float:
 	var result: float = maxf(0.0, amount)
+	var target_profile: Dictionary = _property(target, "profile", {})
+	if Numerical.is_v2(target_profile): result = Numerical.integer(result)
 	for support: Dictionary in supports.duplicate():
 		if not _support_valid(support) or _support_target(support) != target:
 			continue
@@ -528,7 +534,7 @@ func _spawn_hazards(command: Dictionary) -> void:
 			area.origin = line[0]
 			var endpoint: Vector2 = line[1]
 			endpoint = Vector2(area.origin).lerp(endpoint, _blocked(area.origin, endpoint, 12.0))
-			var anchor: Node2D = _spawn_anchor(area, endpoint, clampf(float(command.get("anchor_health", 24.0)), 1.0, 80.0), "hazard_endpoint")
+			var anchor: Node2D = _spawn_anchor(area, endpoint, _anchor_health(command, float(command.get("anchor_health", 24.0))), "hazard_endpoint")
 			if not is_instance_valid(anchor):
 				continue
 			area["anchor_ref"] = weakref(anchor)
@@ -705,7 +711,7 @@ func _support(command: Dictionary) -> void:
 		var plate_at: Vector2 = caster.position + Vector2(command.direction) * 42.0
 		if _blocked(caster.position, plate_at, 12.0) < 1.0:
 			return
-		plate = _spawn_anchor(command, plate_at, clampf(float(command.get("anchor_health", command.get("cover_hp", command.get("amount", 35.0)))), 1.0, 80.0), "weld_cover")
+		plate = _spawn_anchor(command, plate_at, _anchor_health(command, float(command.get("anchor_health", command.get("cover_hp", command.get("amount", 35.0))))), "weld_cover")
 		if not is_instance_valid(plate):
 			return
 		var plate_health: Variant = _property(plate, "health", null)
@@ -758,6 +764,8 @@ func _support(command: Dictionary) -> void:
 			support["target_ref"] = weakref(target)
 			support["remaining"] = clampf(float(command.get("duration", 3.0)), 0.2, 6.0)
 			support["amount"] = clampf(float(command.get("amount", maximum * float(command.get("shield_ratio", 0.2)))), 0.0, maximum * 0.35)
+			if Numerical.is_v2(command):
+				support["amount"] = mini(Numerical.integer(float(support.amount)), int(floor(maximum * 0.35)))
 			support["charges"] = clampi(int(command.get("charges", 3)), 1, 4)
 			support["hit_cap"] = clampi(int(command.get("hit_cap", 3)), 1, 4)
 			support["hits"] = 0
@@ -1149,3 +1157,9 @@ func _draw_shape(command: Dictionary, fill: Color, edge: Color) -> void:
 	elif shape == "cone":
 		draw_line(origin, boundary[0], edge, 1.5, true)
 		draw_line(origin, boundary[-1], edge, 1.5, true)
+
+## Authored durability is legacy units until the S09 command producer stamps scale10.
+func _anchor_health(command: Dictionary, authored: float) -> float:
+	var version := int(command.get("ruleset_version", Numerical.LEGACY))
+	var scaled: float = authored if int(command.get("scale_version", 1)) == 10 else Numerical.scale(authored, version)
+	return clampf(scaled, Numerical.scale(1.0, version), Numerical.scale(80.0, version))

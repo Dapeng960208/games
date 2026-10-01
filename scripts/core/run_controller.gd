@@ -30,6 +30,7 @@ var _demo_result: Dictionary = {}
 const UPGRADE_PRICES := [60, 100, 160, 240, 340]
 const Expedition = preload("res://scripts/core/expedition_state.gd")
 const Damage = preload("res://scripts/combat/damage_resolver.gd")
+const Numbers = preload("res://config/numerical_rules.gd")
 const FieldLearning = preload("res://scripts/core/field_learning.gd")
 const RoomRewards = preload("res://scripts/world/room_rewards.gd")
 const FieldSnapshot = preload("res://scripts/combat/combat_snapshot.gd")
@@ -215,9 +216,19 @@ func record_kill() -> void:
 		run.kills += 1
 		changed.emit()
 
-func damage_player(amount: float, context: Dictionary = {}) -> float:
+func _combat_amount(amount: float) -> Variant:
+	return Numbers.amount(amount, run.ruleset_version() if run != null else Numbers.LEGACY)
+
+func resource_cost(amount: float) -> Variant:
+	if not is_finite(amount) or amount < 0.0:
+		return INF
+	if run != null and run.ruleset_version() == Numbers.V2 and amount > 0.0:
+		return maxi(int(Numbers.scale(1.0, Numbers.V2)), Numbers.integer(amount))
+	return _combat_amount(amount)
+
+func damage_player(amount: float, context: Dictionary = {}) -> Variant:
 	if run == null or run.hp <= 0.0 or _settling or not _pending_outcome.is_empty() or not is_finite(amount) or amount <= 0.0:
-		return 0.0
+		return _combat_amount(0.0)
 	var defender := run.stats.duplicate(true)
 	# The two stat names describe the same equipment bucket. Status reduction
 	# joins it once; armor and magic resistance belong exclusively to Damage.
@@ -225,14 +236,16 @@ func damage_player(amount: float, context: Dictionary = {}) -> float:
 		_damage_reduction(run.stats.get("equipment_damage_reduction", run.stats.get("damage_reduction", 0.0)))
 		+ _damage_reduction(context.get("damage_reduction", 0.0)))
 	var attacker: Dictionary = context.get("attacker_stats", {}) if context.get("attacker_stats", {}) is Dictionary else {}
-	var resolved: Dictionary = Damage.resolve(amount, str(context.get("damage_type", "physical")), attacker, defender, context)
-	var damage: float = float(resolved.damage)
-	if not is_finite(damage) or damage <= 0.0: return 0.0
+	var resolution_context: Dictionary = context.duplicate()
+	resolution_context["ruleset_version"] = run.ruleset_version()
+	var resolved: Dictionary = Damage.resolve(amount, str(context.get("damage_type", "physical")), attacker, defender, resolution_context)
+	var damage: float = float(_combat_amount(float(resolved.damage)))
+	if not is_finite(damage) or damage <= 0.0: return _combat_amount(0.0)
 	var hp_before: float = run.hp
 	var shield_before: float = run.shield
 	var absorbed := minf(run.shield, damage)
 	run.shield -= absorbed
-	var hp_loss := minf(run.hp, damage - absorbed)
+	var hp_loss: Variant = _combat_amount(minf(run.hp, damage - absorbed))
 	run.hp = maxf(0.0, run.hp - hp_loss)
 	var damage_context: Dictionary = context.duplicate(true)
 	damage_context["damage_type"] = str(resolved.damage_type)
@@ -246,40 +259,43 @@ func _damage_reduction(value: Variant) -> float:
 	if not ProfileStore._number(value, ProfileStore.MAX_NUMBER, false): return 0.0
 	return clampf(float(value), 0.0, Damage.MAX_REDUCTION)
 
-func heal_player(amount: float, multiplier: float = 1.0) -> float:
-	if run == null or _settling or not _pending_outcome.is_empty(): return 0.0
-	var added := _healing_gain(run.hp, run.max_hp, amount, multiplier)
+func heal_player(amount: float, multiplier: float = 1.0) -> Variant:
+	if run == null or _settling or not _pending_outcome.is_empty(): return _combat_amount(0.0)
+	var added: Variant = _healing_gain(run.hp, run.max_hp, amount, multiplier)
 	if added > 0.0:
 		run.hp += added
 		changed.emit()
 	return added
 
-func _healing_gain(hp: float, maximum: float, amount: float, multiplier: float = 1.0) -> float:
+func _healing_gain(hp: float, maximum: float, amount: float, multiplier: float = 1.0) -> Variant:
 	if not is_finite(hp) or not is_finite(maximum) or hp <= 0.0 or maximum <= 0.0 \
 		or not is_finite(amount) or amount <= 0.0 or not is_finite(multiplier) or multiplier < 0.0 or multiplier > 1.0:
-		return 0.0
-	return minf(maxf(0.0, maximum - hp), amount * multiplier)
+		return _combat_amount(0.0)
+	return _combat_amount(minf(float(_combat_amount(maxf(0.0, maximum - hp))), float(_combat_amount(amount * multiplier))))
 
 func try_spend_resource(amount: float) -> bool:
-	if run == null or run.hp <= 0.0 or not _pending_outcome.is_empty() or not is_finite(amount) or amount < 0.0 or run.resource < amount:
+	if run == null or run.hp <= 0.0 or not _pending_outcome.is_empty() or not is_finite(amount) or amount < 0.0:
 		return false
-	run.resource -= amount
+	var cost: Variant = resource_cost(amount)
+	if run.resource < cost:
+		return false
+	run.resource -= cost
 	changed.emit()
 	return true
 
-func restore_resource(amount: float) -> float:
+func restore_resource(amount: float) -> Variant:
 	if run == null or run.hp <= 0.0 or not _pending_outcome.is_empty() or not is_finite(amount) or amount <= 0.0:
-		return 0.0
-	var added := minf(amount, maxf(0.0, float(run.stats.get("resource_max", 0.0)) - run.resource))
+		return _combat_amount(0.0)
+	var added: Variant = _combat_amount(minf(float(_combat_amount(amount)), maxf(0.0, float(_combat_amount(float(run.stats.get("resource_max", 0.0)))) - run.resource)))
 	run.resource += added
 	if added > 0.0:
 		changed.emit()
 	return added
 
-func add_shield(amount: float) -> float:
+func add_shield(amount: float) -> Variant:
 	if run == null or run.hp <= 0.0 or not _pending_outcome.is_empty() or not is_finite(amount) or amount <= 0.0:
-		return 0.0
-	var added := minf(amount, maxf(0.0, run.max_hp * 0.5 - run.shield))
+		return _combat_amount(0.0)
+	var added: Variant = _combat_amount(minf(float(_combat_amount(amount)), maxf(0.0, float(_combat_amount(run.max_hp * 0.5)) - run.shield)))
 	run.shield += added
 	changed.emit()
 	return added
@@ -670,7 +686,7 @@ func grant_hero_xp(amount: int, event_id: String) -> bool:
 	run.completed_reward_ids.append(event_id)
 	run.hero_xp_gained += added
 	run.level = int(receipt.level)
-	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot)
+	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version())
 	run.stats.branches = run.branches_snapshot.duplicate(true)
 	run.max_hp = float(run.stats.max_hp)
 	# Preserve absolute HP/resource and all player-owned cooldowns: leveling is not healing.
@@ -720,7 +736,7 @@ func complete_hero_tutorial() -> bool:
 	if run != null:
 		run.hero_xp_gained += added
 		run.level = int(receipt.level)
-		run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot)
+		run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version())
 		run.stats.branches = run.branches_snapshot.duplicate(true)
 		run.max_hp = float(run.stats.max_hp)
 		run.hp = minf(run.hp, run.max_hp)
@@ -784,7 +800,7 @@ func _restore_expedition(receipt: Dictionary) -> void:
 	_apply_runtime_values(run.expedition.runtime)
 
 func _refresh_expedition_stats() -> void:
-	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot)
+	run.stats = StatResolver.resolve(run.hero_id, run.level, run.loadout_snapshot, run.equipment_snapshot, run.ruleset_version())
 	if run.demo: run.stats.starting_resource = float(run.stats.get("resource_max", 0.0))
 	run.stats.branches = run.branches_snapshot.duplicate(true)
 	run.stats["relic_levels"] = run.expedition.relic_levels.duplicate(true)
@@ -958,7 +974,7 @@ func preview_field_equipment(drop_id: String) -> Dictionary:
 	var next_equipment: Dictionary = run.equipment_snapshot.duplicate(true)
 	next_loadout[drop.slot] = drop.equipment_id
 	next_equipment[drop.equipment_id] = {"level":int(drop.level)}
-	var next_stats: Dictionary = StatResolver.resolve(run.hero_id, run.level, next_loadout, next_equipment)
+	var next_stats: Dictionary = StatResolver.resolve(run.hero_id, run.level, next_loadout, next_equipment, run.ruleset_version())
 	if next_stats.is_empty(): return {}
 	next_stats["branches"] = run.branches_snapshot.duplicate(true)
 	next_stats["relic_levels"] = run.expedition.relic_levels.duplicate(true)
@@ -1098,7 +1114,7 @@ func choose_run_relic(offer_id: String, choice_id: String, replacement_id: Strin
 	var value: Dictionary = run.expedition.duplicate(true)
 	# These safe-boundary heals use the same bounded calculation as combat heals,
 	# but must stay in the proposed snapshot until its transaction commits.
-	if choice_id == "skip": runtime.hp += _healing_gain(float(runtime.hp), run.max_hp, run.max_hp * 0.06)
+	if choice_id == "skip": runtime.hp = _combat_amount(float(runtime.hp) + float(_healing_gain(float(runtime.hp), run.max_hp, run.max_hp * 0.06)))
 	else:
 		if int(value.relic_levels.get(choice_id, 0)) >= 2: return false
 		if not value.relic_levels.has(choice_id) and value.relic_levels.size() >= 4:
@@ -1130,13 +1146,13 @@ func purchase_run_supply(offer_id: String, runtime_snapshot: Dictionary = {}) ->
 			if float(runtime.hp) >= run.max_hp: return false
 			for other: Dictionary in value.offers.values():
 				if other.get("product_id", "") in ["heal_small", "heal_large"] and other.decision == "purchased": return false
-			runtime.hp += _healing_gain(float(runtime.hp), run.max_hp, run.max_hp * (0.15 if product == "heal_small" else 0.35))
+			runtime.hp = _combat_amount(float(runtime.hp) + float(_healing_gain(float(runtime.hp), run.max_hp, run.max_hp * (0.15 if product == "heal_small" else 0.35))))
 		"shield":
 			if value.temporary_buffs.has("pending_supply_shield"): return false
 			value.temporary_buffs["pending_supply_shield"] = {"hp_ratio":0.15,"duration":4.0}
 		"mana", "energy":
 			if str(run.stats.resource_type) != product or float(runtime.resource) >= float(run.stats.resource_max): return false
-			runtime.resource = minf(float(run.stats.resource_max), float(runtime.resource) + float(run.stats.resource_max) * (0.30 if product == "mana" else 0.20))
+			runtime.resource = _combat_amount(minf(float(run.stats.resource_max), float(runtime.resource) + float(_combat_amount(float(run.stats.resource_max) * (0.30 if product == "mana" else 0.20)))))
 		"amplify":
 			if value.temporary_buffs.has("amplify"): return false
 			value.temporary_buffs["amplify"] = {"damage_bonus":0.08,"remaining_rooms":2}
@@ -1162,7 +1178,7 @@ func prepare_safe_resources(runtime_snapshot: Dictionary = {}, expected_checkpoi
 	var runtime: Dictionary = _safe_runtime(runtime_snapshot)
 	if runtime.is_empty() or runtime.get("mode") != "safe_boundary": return false
 	if float(runtime.resource) >= float(run.stats.resource_max): return true
-	runtime.resource = float(run.stats.resource_max)
+	runtime.resource = _combat_amount(float(run.stats.resource_max))
 	return _commit_expedition(run.expedition.duplicate(true), runtime, profile.duplicate(true))
 
 func reward_discovery_ids() -> Array:

@@ -3,12 +3,22 @@ extends Node2D
 ## Persistent arcane crystals/constellation fields and timed brass grenades.
 ## Player effects stay below danger warnings and never block actor movement.
 
+const Numbers = preload("res://config/numerical_rules.gd")
+var ruleset_version: int = Numbers.LEGACY
 var room: Node2D
 var owner_player: Node2D
 var kind: String = "node"
 var options: Dictionary = {}
-var health: float = 35.0
-var max_health: float = 35.0
+var health: Variant = 35.0:
+	get:
+		return Numbers.integer(float(health)) if ruleset_version == Numbers.V2 else float(health)
+	set(value):
+		health = Numbers.integer(float(value)) if ruleset_version == Numbers.V2 else float(value)
+var max_health: Variant = 35.0:
+	get:
+		return Numbers.integer(float(max_health)) if ruleset_version == Numbers.V2 else float(max_health)
+	set(value):
+		max_health = Numbers.integer(float(value)) if ruleset_version == Numbers.V2 else float(value)
 var radius: float = 160.0
 var damage: float = 0.0
 var lifetime: float = 10.0
@@ -30,6 +40,7 @@ func configure(host: Node2D, deployment_kind: String, configuration: Dictionary)
 	kind = deployment_kind
 	options = configuration.duplicate()
 	owner_player = options.get("owner_player", null)
+	ruleset_version = Game.run.ruleset_version() if Game.run != null else int(options.get("ruleset_version", Numbers.LEGACY))
 	if not options.has("damage_type"):
 		options["damage_type"] = "physical" if kind in ["trap", "grenade"] else "magic"
 	if not options.has("attacker_stats"):
@@ -37,7 +48,10 @@ func configure(host: Node2D, deployment_kind: String, configuration: Dictionary)
 	radius = float(options.get("radius", 160.0))
 	damage = float(options.get("damage", 0.0))
 	lifetime = float(options.get("lifetime", 10.0))
-	health = float(options.get("health", 35.0))
+	# Skill configuration still authors crystal durability in legacy units in S01.
+	# S02 may supply health_scale_version=10 when that source becomes V2-native.
+	var configured_health: float = float(options.get("health", 35.0))
+	health = Numbers.amount(configured_health, ruleset_version) if int(options.get("health_scale_version", 1)) == 10 else Numbers.scale(configured_health, ruleset_version)
 	max_health = health
 	setup_time = 0.0 if kind == "field" else float(options.get("fuse", 0.65)) if kind == "grenade" else 0.35
 	next_attack = 1.0 if kind == "field" else setup_time + 1.2
@@ -55,9 +69,12 @@ func ready_to_attack() -> bool:
 	return is_active()
 
 func receive_damage(amount: float, _origin: Vector2 = Vector2.ZERO) -> bool:
-	if kind != "node" or not is_alive() or amount <= 0.0:
+	if kind != "node" or not is_alive() or not is_finite(amount) or amount <= 0.0:
 		return false
-	health = maxf(0.0, health - amount)
+	var packet: Variant = Numbers.amount(amount, ruleset_version)
+	if packet <= 0.0:
+		return false
+	health = maxf(0.0, health - packet)
 	damaged_flash = 0.18
 	if health <= 0.0:
 		retire(true)

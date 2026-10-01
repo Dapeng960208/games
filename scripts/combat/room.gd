@@ -1,5 +1,6 @@
 class_name MineRoom
 extends Node2D
+const Numerical = preload("res://config/numerical_rules.gd")
 
 signal interaction_requested(kind: String, payload: Dictionary)
 signal hint_changed(key: String, data: Dictionary)
@@ -422,7 +423,8 @@ func spawn_enemy_skill_anchor(caster: Node2D, at: Vector2, health_amount: float,
 		return null
 	if not _can_allocate_enemy_child(caster,1.0,float(caster.profile.get("encounter_budget",18.0)),anchor_kind == "summon_pod"):
 		return null
-	var anchor_profile: Dictionary = {"max_hp":maxf(1.0,health_amount),"navigation_radius":10.0,"effective_threat_cost":1.0}
+	var anchor_version: int = int(caster.profile.get("ruleset_version", Numerical.LEGACY))
+	var anchor_profile: Dictionary = {"ruleset_version":anchor_version, "max_hp":Numerical.amount(maxf(Numerical.scale(1.0, anchor_version),health_amount), anchor_version),"navigation_radius":10.0,"effective_threat_cost":1.0}
 	var anchor: MineEnemy = spawn_enemy(at,"",1,{"profile":anchor_profile,"owner":caster,"reward_enabled":false,"zone_index":caster.zone_index,"actor_kind":"hazard_endpoint","static_actor":true})
 	if is_instance_valid(anchor):
 		anchor.set_meta("enemy_skill_anchor_kind",anchor_kind)
@@ -1142,6 +1144,10 @@ func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, ap
 		amount = player.class_modify_hit_amount(target, amount, source, context)
 	var final_amount: float = amount * (1.0 + minf(0.6, bonus)) * (player.stat("crit_multiplier", 1.5) if bool(context.critical) else 1.0)
 	final_amount *= player.hit_chain.multiplier(source, context)
+	if Numerical.is_v2(Game.run.stats):
+		final_amount = Numerical.integer(final_amount)
+		context["X"] = int(final_amount)
+		context["ruleset_version"] = Numerical.V2
 	var health_before: float = target.health.current
 	var shield_before: float = target.status.shield()
 	target.take_damage(final_amount, source, direction, context)
@@ -1193,6 +1199,9 @@ func resolve_derived_hit(target: MineEnemy, amount: float, source: StringName, d
 	context.merge({"damage_source":str(source),"skill_slot":str(source),"equipment_eligible":false,"original_basic":false,"proc_depth":maxi(1,int(context.get("proc_depth",1)))},true)
 	var health_before: float = target.health.current
 	var shield_before: float = target.status.shield()
+	if Numerical.is_v2(Game.run.stats):
+		amount = Numerical.integer(amount)
+		context["ruleset_version"] = Numerical.V2
 	target.take_damage(amount, source, direction, context)
 	context["hp_damage"] = maxf(0.0, health_before - target.health.current)
 	context["shield_damage"] = maxf(0.0, shield_before - target.status.shield())

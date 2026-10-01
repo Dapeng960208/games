@@ -1,5 +1,6 @@
 class_name EquipmentEffects
 extends RefCounted
+const Numerical = preload("res://config/numerical_rules.gd")
 ## Deterministic equipment event reducer; never reads/mutates Game or scene nodes.
 ## configure accepts six slot -> EQ IDs, resolved stats, and rage/energy/mana.
 ## Time advances ONLY through advance(delta, context), so menus/pause freeze ICDs.
@@ -338,7 +339,8 @@ func skill_cost(base_cost: float, ctx: Dictionary = {}) -> float:
 	if base_cost <= 0.0:
 		return 0.0
 	var reduction: float = 0.08 if _window("EQ56") and str(ctx.get("resource_type", resource_type)) == resource_type else 0.0
-	return maxf(1.0, base_cost * (1.0 - minf(0.20, reduction)))
+	var ruleset := int(stats.get("ruleset_version", Numerical.LEGACY))
+	return Numerical.amount(maxf(Numerical.scale(1.0, ruleset), base_cost * (1.0 - minf(0.20, reduction))), ruleset)
 
 func _root(id: String) -> Dictionary:
 	if not roots.has(id):
@@ -362,7 +364,7 @@ func reserve_native(root_id: String, packet_id: String, coefficient: float = 0.0
 
 func root_usage(root_id: String) -> Dictionary:
 	var root: Dictionary = _root(root_id)
-	return {"packets":int(root.packets), "coefficient":float(root.coefficient)}
+	return {"packets":int(root.packets), "coefficient":float(root.coefficient), "damage_spent":int(root.get("damage_spent", 0))}
 
 func _ready(id: String) -> bool:
 	return clock + 0.000001 >= float(cooldowns.get(id, 0.0))
@@ -634,6 +636,16 @@ func _shield(out: Dictionary, _ctx: Dictionary, ratio: float, source: String = "
 
 func _heal(out: Dictionary, ctx: Dictionary, ratio: float) -> void:
 	_prune_history(heal_history, 1.0)
+	if Numerical.is_v2(stats):
+		var maximum := Numerical.integer(float(ctx.get("max_hp", stats.get("max_hp", 0))))
+		var pending := int(out.get("heal_amount", 0))
+		var missing := maxi(0, maximum - Numerical.integer(float(ctx.get("hp", maximum))) - pending)
+		var budget := maxi(0, int(floor(maximum * 0.03)) - int(_history_total(heal_history)))
+		var accepted_units := mini(Numerical.integer(maximum * ratio), mini(missing, budget))
+		if accepted_units > 0:
+			out["heal_amount"] = pending + accepted_units
+			heal_history.append({"time":clock, "amount":accepted_units})
+		return
 	var accepted: float = maxf(0.0, minf(ratio, minf(0.03 - _history_total(heal_history), 1.0 - _health_ratio(ctx) - float(out.heal_ratio))))
 	if accepted > 0.0:
 		out.heal_ratio += accepted
@@ -643,10 +655,12 @@ func _restore_resource(out: Dictionary, ctx: Dictionary, root: Dictionary) -> vo
 	if resource_type.is_empty() or str(ctx.get("resource_type", resource_type)) != resource_type: return
 	_prune_history(resource_history, 5.0)
 	var maximum: float = maxf(0.0, float(ctx.get("resource_max", stats.get("resource_max", 0.0))))
-	var desired: float = float({"rage":1.0, "energy":2.0, "mana":3.0}.get(resource_type, 0.0))
+	var desired: float = Numerical.scale(float({"rage":1.0, "energy":2.0, "mana":3.0}.get(resource_type, 0.0)), int(stats.get("ruleset_version", Numerical.LEGACY)))
 	var amount: float = maxf(0.0, minf(desired, minf(maximum - float(ctx.get("resource", 0.0)), maximum * 0.20 - _history_total(resource_history))))
+	if Numerical.is_v2(stats): amount = floor(amount)
 	if amount > 0.0 and _activate("EQ32", 3.0, root, out):
 		out.resource_restore += amount
+		if Numerical.is_v2(stats): out.resource_restore = Numerical.integer(float(out.resource_restore))
 		resource_history.append({"time":clock, "amount":amount})
 
 func _refund(out: Dictionary, ctx: Dictionary, root: Dictionary, id: String, icd: float, kind: String, desired: float) -> void:
@@ -681,13 +695,24 @@ func _bonus(out: Dictionary, ctx: Dictionary, root: Dictionary, id: String, icd:
 	# The 1.2 X limit covers all targets, not just the coefficient of each packet.
 	var accepted: float = minf(coefficient, maxf(0.0, 1.20 - float(root.coefficient)) / float(targets.size()))
 	if accepted <= 0.0 or not _activate(id, icd, root, out): return
+	var amounts: Dictionary = {}
+	if Numerical.is_v2(stats):
+		if not root.has("raw_packet"):
+			root["raw_packet"] = Numerical.integer(float(ctx.get("X", ctx.get("H", 0.0))))
+			root["damage_spent"] = int(floor(float(root.raw_packet) * float(root.coefficient)))
+		var remaining: int = maxi(0, int(Numerical.derived_budget(float(root.raw_packet), Numerical.V2)) - int(root.damage_spent))
+		for target in targets:
+			var packet: int = mini(remaining, Numerical.integer(float(root.raw_packet) * accepted))
+			amounts[target] = packet
+			remaining -= packet
+			root.damage_spent += packet
 	root.coefficient += accepted * float(targets.size())
 	var derived_states: Array = []
 	if not state.is_empty():
 		# Global duration applies to derived statuses; S03's primary-only bonus does
 		# not. Send an explicit duration so the adapter need not guess the source.
 		derived_states.append({"status":state, "duration":(4.0 if state == "corrosion" else 3.0) * (1.0 + minf(0.40, float(stats.get("status_duration", 0.0))))})
-	out.bonus_hits.append({"target_ids":targets, "damage":maxf(0.0, float(ctx.get("X", ctx.get("H", 0.0)))) * accepted,
+	out.bonus_hits.append({"target_ids":targets, "damage_by_target":amounts, "damage":maxf(0.0, float(ctx.get("X", ctx.get("H", 0.0)))) * accepted,
 		"coefficient":accepted, "source":"equipment", "damage_source":"equipment", "proc_depth":1,
 		"equipment_eligible":false, "critical":false, "states":derived_states,
 		"power":float(ctx.get("H", 0.0)), "effect_id":id})

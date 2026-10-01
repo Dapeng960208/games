@@ -1,5 +1,6 @@
 class_name MineEnemy
 extends CharacterBody2D
+const Numerical = preload("res://config/numerical_rules.gd")
 
 const HealthScript = preload("res://scripts/combat/health.gd")
 const StatusScript = preload("res://scripts/combat/combat_status.gd")
@@ -67,6 +68,7 @@ func configure(next_profile: Dictionary, options: Dictionary = {}) -> void:
 	aggro_target = null
 	aggro_hold = 0.0
 	profile = next_profile.duplicate(true)
+	status.ruleset_version = int(profile.get("ruleset_version", Numerical.LEGACY))
 	enemy_id = str(profile.get("enemy_id", ""))
 	enemy_level = int(profile.get("enemy_level", 1))
 	navigation_radius = float(profile.get("navigation_radius", Balance.ENEMY_RADIUS))
@@ -116,7 +118,7 @@ func _ready() -> void:
 		status_textures[id] = TextureSampler.sampled("res://assets/generated/ui/state_" + id + "_v1.png")
 	health = HealthScript.new()
 	add_child(health)
-	health.reset(float(profile.get("max_hp", Balance.ENEMY_HP)))
+	health.reset(float(profile.get("max_hp", Balance.ENEMY_HP)), int(profile.get("ruleset_version", Numerical.LEGACY)))
 	health.depleted.connect(_die)
 	if not profile.is_empty() and not static_actor:
 		brain = BrainScript.new()
@@ -271,6 +273,7 @@ func _separation() -> Vector2:
 func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO, context: Dictionary = {}) -> bool:
 	if not is_alive() or Game.run == null:
 		return false
+	status.ruleset_version = int(profile.get("ruleset_version", Numerical.LEGACY))
 	var damage_type := Damage.normalized_type(str(context.get("damage_type", str(kind))))
 	if status.has("invulnerable"):
 		return false
@@ -287,8 +290,12 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 		knockback += from_direction * Balance.ENEMY_KNOCKBACK
 	var defense: Dictionary = status.damage_modifiers()
 	defense.merge({"armor":effective_armor() * (0.85 if status.has("corrosion") else 1.0),"magic_resist":magic_resist}, true)
-	var resolved: Dictionary = Damage.resolve(amount, damage_type, context.get("attacker_stats", {}), defense, context)
-	var final_amount: float = float(resolved.damage) * (1.35 if biome_weakpoint_open() else 1.0)
+	var settlement := context.duplicate()
+	settlement["ruleset_version"] = status.ruleset_version
+	var weakpoint := 1.35 if biome_weakpoint_open() else 1.0
+	if status.ruleset_version == Numerical.V2: settlement["post_defense_multiplier"] = weakpoint
+	var resolved: Dictionary = Damage.resolve(amount, damage_type, context.get("attacker_stats", {}), defense, settlement)
+	var final_amount: float = float(resolved.damage) * (1.0 if status.ruleset_version == Numerical.V2 else weakpoint)
 	var health_before: float = health.current
 	var shield_before: float = status.shield()
 	final_amount = status.absorb(final_amount)
@@ -342,7 +349,7 @@ func biome_counter_status() -> Dictionary:
 func heal(amount: float) -> float:
 	if not is_alive():
 		return 0.0
-	var restored := minf(health.maximum - health.current, Damage.healing(amount, status.has("grievous")))
+	var restored := minf(health.maximum - health.current, Damage.healing(amount, status.has("grievous"), int(profile.get("ruleset_version", Numerical.LEGACY))))
 	health.current += restored
 	queue_redraw()
 	return restored

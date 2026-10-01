@@ -88,8 +88,8 @@ func _passive(fx: RefCounted, extra: Dictionary = {}) -> Dictionary:
 	return fx.advance(0.0, _ctx(extra))
 
 func _run() -> void:
-	_check(Effects.implemented_ids().size() == 60, "manifest contains 60 implemented affixes")
-	_check(Effects.implemented_set_ids().size() == 8, "manifest contains 8 implemented sets")
+	_check(Effects.implemented_ids().size() == 96, "manifest contains 96 implemented affixes")
+	_check(Effects.implemented_set_ids().size() == 14, "manifest contains 14 implemented sets")
 	_all_affixes()
 	_all_sets()
 	_identity_and_timing()

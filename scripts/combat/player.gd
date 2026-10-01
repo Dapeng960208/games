@@ -9,6 +9,7 @@ const COMBO_QUEUE_LIMIT: int = 3
 const HELD_MOVE_INTERVAL: float = 0.16
 const HELD_MOVE_TARGET_DISTANCE: float = 48.0
 
+const Numbers = preload("res://config/numerical_rules.gd")
 const Abilities = preload("res://scripts/combat/hero_abilities.gd")
 const Visual = preload("res://scripts/combat/hero_visual.gd")
 const Status = preload("res://scripts/combat/combat_status.gd")
@@ -73,6 +74,7 @@ var break_stacks: int = 0
 var class_marks: Dictionary = {}
 
 func _ready() -> void:
+	_sync_status_ruleset()
 	abilities = Abilities.new()
 	abilities.configure(self)
 	loadout = Loadout.new()
@@ -82,6 +84,12 @@ func _ready() -> void:
 	hit_chain.configure(self)
 	var service: bool = room.get("expedition_context") != null and str(room.expedition_context.get("role","")) in ["entrance","supply"]
 	loadout.event("room_enter", {"room_id":room.layout_id,"combat_room":not service})
+
+func _ruleset_version() -> int:
+	return Game.run.ruleset_version() if Game.run != null else Numbers.LEGACY
+
+func _sync_status_ruleset() -> void:
+	status.ruleset_version = _ruleset_version()
 
 func hero_id() -> String:
 	return Game.run.hero_id if Game.run != null else "CH01"
@@ -132,8 +140,9 @@ func basic_attack_variant() -> int:
 func skill_power() -> float:
 	return attack_power() + (maxf(0.0, stat("ability_power", 0.0)) * 0.7 if hero_id() == "CH03" else 0.0)
 
-func heal(amount: float) -> float:
-	var restored: float = Game.heal_player(amount, status.healing_multiplier())
+func heal(amount: float) -> Variant:
+	_sync_status_ruleset()
+	var restored: Variant = Game.heal_player(amount, status.healing_multiplier())
 	if restored > 0.0 and is_instance_valid(room) and room.has_method("add_damage_text"):
 		room.add_damage_text(position + Vector2(0,-72), restored, &"heal", {"feedback_kind":"heal"})
 	return restored
@@ -143,6 +152,7 @@ func _physics_process(delta: float) -> void:
 		clear_buffered_skill()
 		clear_movement_target()
 		return
+	_sync_status_ruleset()
 	_tick_class_state(delta)
 	dash_cooldown = maxf(0.0, dash_cooldown - delta)
 	shot_cooldown = maxf(0.0, shot_cooldown - delta)
@@ -175,15 +185,7 @@ func _physics_process(delta: float) -> void:
 			_enemy_status_contexts.erase(identifier)
 	if was_chilled != status.has("chill") and loadout != null:
 		loadout.event("state_changed", {"enemy_status":"chill"})
-	var regen_step: float = maxf(0.0, delta - resource_delay)
-	var rage_decay_step: float = maxf(0.0, delta - combat_time)
-	resource_delay = maxf(0.0, resource_delay - delta)
-	combat_time = maxf(0.0, combat_time - delta)
-	if hero_id() == "CH01":
-		if combat_time <= 0.0:
-			Game.run.resource = maxf(0.0, Game.run.resource - 6.0 * rage_decay_step)
-	elif regen_step > 0.0:
-		Game.restore_resource(stat("resource_regen", 18.0 if hero_id() == "CH02" else 5.0) * regen_step)
+	_tick_resources(delta)
 	var motion := Vector2.ZERO
 	var pointer_enabled: bool = room.pointer_controls_enabled()
 	if not attack_input_held():
@@ -598,13 +600,42 @@ func _play_combat_audio(event: StringName, arguments: Array = []) -> void:
 	if is_instance_valid(audio) and audio.has_method(event):
 		audio.callv(event, arguments)
 
-func resource_cost(amount: float) -> float:
-	return loadout.resource_cost(amount, _pending_skill_slot) if loadout != null else amount
+func _tick_resources(delta: float) -> void:
+	if Game.run == null or not is_finite(delta) or delta <= 0.0:
+		return
+	var regen_step: float = maxf(0.0, delta - resource_delay)
+	var rage_decay_step: float = maxf(0.0, delta - combat_time)
+	resource_delay = maxf(0.0, resource_delay - delta)
+	combat_time = maxf(0.0, combat_time - delta)
+	if hero_id() == "CH01":
+		if combat_time <= 0.0:
+			var decay: float = float(Numbers.scale(6.0, _ruleset_version())) * rage_decay_step
+			if _ruleset_version() == Numbers.V2:
+				var accumulated: Dictionary = Numbers.accumulate(decay, Game.run.resource_decay_remainder)
+				decay = float(accumulated.whole)
+				Game.run.resource_decay_remainder = float(accumulated.remainder)
+			Game.run.resource = maxf(0.0, Game.run.resource - decay)
+			if Game.run.resource <= 0.0:
+				Game.run.resource_decay_remainder = 0.0
+	elif regen_step > 0.0:
+		var fallback: float = float(Numbers.scale(18.0 if hero_id() == "CH02" else 5.0, _ruleset_version()))
+		var regenerated: float = stat("resource_regen", fallback) * regen_step
+		if _ruleset_version() == Numbers.V2:
+			var accumulated: Dictionary = Numbers.accumulate(regenerated, Game.run.resource_regen_remainder)
+			regenerated = float(accumulated.whole)
+			Game.run.resource_regen_remainder = float(accumulated.remainder)
+		Game.restore_resource(regenerated)
+		# Time at a full bar is not banked for the next cast.
+		if Game.run.resource >= float(Game.run.stats.get("resource_max", 0.0)):
+			Game.run.resource_regen_remainder = 0.0
+
+func resource_cost(amount: float) -> Variant:
+	return Game.resource_cost(loadout.resource_cost(amount, _pending_skill_slot) if loadout != null else amount)
 
 func skill_definition(slot: String) -> Dictionary:
 	var definition: Dictionary = abilities.spec(slot).duplicate(true)
 	if not definition.is_empty():
-		definition["cost"] = loadout.resource_cost(float(definition.cost), slot) if loadout != null else float(definition.cost)
+		definition["cost"] = Game.resource_cost(loadout.resource_cost(float(definition.cost), slot) if loadout != null else float(definition.cost))
 	return definition
 
 func cancel_actions() -> void:
@@ -680,6 +711,7 @@ func receive_enemy_status(effect: Dictionary) -> bool:
 	var power: float = float(effect.get("power", 0.0))
 	if not is_finite(power) or power < 0.0:
 		return false
+	_sync_status_ruleset()
 	var accepted: bool = status.apply(identifier,power,duration)
 	if accepted:
 		var supplied_origin: Variant = effect.get("origin", position)
@@ -712,6 +744,7 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	var is_dot: bool = bool(context.get("dot", false))
 	if Game.run == null or Game.run.hp <= 0.0 or not is_finite(amount) or amount <= 0.0:
 		return false
+	_sync_status_ruleset()
 	var damage_context: Dictionary = context.duplicate()
 	damage_context["key_states"] = _damage_key_states()
 	var status_modifiers: Dictionary = status.damage_modifiers()
@@ -770,7 +803,7 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	loadout.event("damaged", {"hp_damage":previous_hp - Game.run.hp,"shield_absorbed":previous_shield - Game.run.shield,"shield_broken":previous_shield > 0.0 and Game.run.shield <= 0.0,"enemy_damage":true,"dot":is_dot})
 	combat_time = 5.0
 	if hero_id() == "CH01" and Game.run.hp < previous_hp and rage_hurt_cooldown <= 0.0:
-		Game.restore_resource(5.0)
+		Game.restore_resource(float(Numbers.scale(5.0, _ruleset_version())))
 		rage_hurt_cooldown = 1.0
 	return true
 
@@ -787,6 +820,7 @@ func _show_received_numbers(damaged_run: RunState, before_hp: float, before_shie
 		room.add_damage_text(position + Vector2(0,-90), shield_loss, &"received", number_context)
 
 func shield_summary() -> Dictionary:
+	_sync_status_ruleset()
 	if Game.run != null:
 		status.absorb(maxf(0.0, status.shield() - Game.run.shield))
 	return status.shield_summary()
@@ -794,6 +828,7 @@ func shield_summary() -> Dictionary:
 func grant_guard(amount: float, duration: float, source: String) -> void:
 	if Game.run == null:
 		return
+	_sync_status_ruleset()
 	status.absorb(maxf(0.0, status.shield() - Game.run.shield))
 	var previous_shield: float = Game.run.shield
 	var increased: bool = status.grant_guard(amount, duration, source, Game.run.max_hp, source.begins_with("set_") or source.begins_with("equipment:"))
@@ -811,7 +846,7 @@ func on_primary_hit(target: Node2D) -> void:
 	combat_time = 5.0
 	if hero_id() == "CH01":
 		gain_break_stacks(1)
-		Game.restore_resource(8.0)
+		Game.restore_resource(float(Numbers.scale(8.0, _ruleset_version())))
 
 func gain_break_stacks(amount: int = 1) -> void:
 	if hero_id() != "CH01":

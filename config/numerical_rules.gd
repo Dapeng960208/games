@@ -15,7 +15,9 @@ static func parameters() -> Dictionary:
 	return _parameters.duplicate(true)
 
 static func value(key: String, fallback: Variant = null) -> Variant:
-	return parameters().get(key, fallback)
+	if _parameters.is_empty(): parameters()
+	var result: Variant = _parameters.get(key, fallback)
+	return result.duplicate(true) if result is Dictionary or result is Array else result
 
 static func versions() -> Dictionary:
 	return parameters()["versions"].duplicate(true)
@@ -33,3 +35,23 @@ static func frozen_versions(ruleset: int = LEGACY) -> Dictionary:
 		result["scale_version"] = int(result.scale)
 		return result
 	return {"ruleset_version":LEGACY, "equipment_instance":0, "reward_policy":1, "optional_chest_receipt":1, "scale_version":1}
+
+## Round only at a defined combat boundary, never intermediate products.
+static func integer(number: float) -> int:
+	return maxi(0, int(floor(number + 0.5))) if is_finite(number) else 0
+
+static func amount(number: float, ruleset: int = LEGACY) -> Variant:
+	return integer(number) if ruleset == V2 else maxf(0.0, number)
+
+## Only call for authored legacy combat units, not already-scaled values.
+static func scale(number: float, ruleset: int = LEGACY) -> Variant:
+	return integer(number * float(value("combat_scale"))) if ruleset == V2 else number
+
+static func derived_budget(raw_packet: float, ruleset: int = LEGACY) -> Variant:
+	return int(integer(raw_packet) * 6 / 5) if ruleset == V2 else raw_packet * 1.2
+
+## Fractions belong to time accumulation, never to spendable resource.
+static func accumulate(number: float, remainder: float) -> Dictionary:
+	var total := maxf(0.0, number) + maxf(0.0, remainder)
+	var whole := int(floor(total + 0.000000001))
+	return {"whole":whole, "remainder":maxf(0.0, total - whole)}

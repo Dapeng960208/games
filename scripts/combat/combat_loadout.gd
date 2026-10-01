@@ -136,7 +136,7 @@ func _apply_commands(result: Dictionary, context: Dictionary) -> void:
 	elif float(result.get("shield_ratio", 0.0)) > 0.0:
 		_grant_shield(float(result.shield_ratio), float(result.get("shield_duration", 4.0)), str(result.get("shield_source", "loadout")))
 	if Game.run != null:
-		var healing: float = maxf(0.0, float(result.get("heal_ratio", 0.0))) * Game.run.max_hp
+		var healing: float = float(result.get("heal_amount", maxf(0.0, float(result.get("heal_ratio", 0.0))) * Game.run.max_hp))
 		if healing > 0.0 and Game.run.hp > 0.0:
 			owner_player.heal(healing)
 		Game.restore_resource(maxf(0.0, float(result.get("resource_restore", 0.0))))
@@ -240,7 +240,7 @@ func _apply_bonus_hit(command: Dictionary, context: Dictionary) -> void:
 		seen[target.get_instance_id()] = true
 		# Deliberately bypass room.resolve_direct_hit and all primary-hit callbacks.
 		var packet: Dictionary = {"damage_source":"equipment","damage_type":"magic" if Game.run.hero_id == "CH03" else "physical","attacker_stats":Game.run.stats,"proc_depth":1,"equipment_eligible":false,"original_basic":false}
-		var accepted_hit: bool = bool(target.call("take_damage", amount, &"equipment", Vector2.ZERO, packet))
+		var accepted_hit: bool = bool(target.call("take_damage", float(command.get("damage_by_target", {}).get(str(identifier), amount)), &"equipment", Vector2.ZERO, packet))
 		if accepted_hit and _alive(target):
 			for status_data: Variant in command.get("states", []):
 				var status_id: String = str(status_data.get("status", "")) if status_data is Dictionary else str(status_data)

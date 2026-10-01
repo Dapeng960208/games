@@ -3,6 +3,8 @@ extends RefCounted
 ## Transient expedition data. The persisted receipt settles an interrupted run;
 ## it is deliberately not a room checkpoint or a promise of resume support.
 
+const Rules = preload("res://config/numerical_rules.gd")
+
 var id: String = ""
 # Demo state deliberately never enters a persisted receipt.
 var demo: bool = false
@@ -10,13 +12,34 @@ var demo: bool = false
 var backpack_opens: int = 0
 var loadout_changes: int = 0
 var gold: int = 0
-var hp: float = Balance.PLAYER_HP
-var max_hp: float = Balance.PLAYER_HP
+# Keep legacy floats while explicit V2 snapshots expose integer combat state.
+var hp: Variant = Balance.PLAYER_HP:
+	get:
+		return Rules.integer(float(hp)) if ruleset_version() == Rules.V2 else float(hp)
+	set(value):
+		hp = Rules.integer(float(value)) if ruleset_version() == Rules.V2 else float(value)
+var max_hp: Variant = Balance.PLAYER_HP:
+	get:
+		return Rules.integer(float(max_hp)) if ruleset_version() == Rules.V2 else float(max_hp)
+	set(value):
+		max_hp = Rules.integer(float(value)) if ruleset_version() == Rules.V2 else float(value)
 var hero_id: String = "CH01"
 var level: int = 1
 var stats: Dictionary = {}
-var resource: float = 0.0
-var shield: float = 0.0
+var resource: Variant = 0.0:
+	get:
+		return Rules.integer(float(resource)) if ruleset_version() == Rules.V2 else float(resource)
+	set(value):
+		resource = Rules.integer(float(value)) if ruleset_version() == Rules.V2 else float(value)
+var shield: Variant = 0.0:
+	get:
+		return Rules.integer(float(shield)) if ruleset_version() == Rules.V2 else float(shield)
+	set(value):
+		shield = Rules.integer(float(value)) if ruleset_version() == Rules.V2 else float(value)
+# Unspent time fractions are runtime-only until the S04 snapshot migration.
+# Keep these on the run so replacing a room/player cannot reset frame progress.
+var resource_regen_remainder: float = 0.0
+var resource_decay_remainder: float = 0.0
 var hero_xp_gained: int = 0
 var completed_reward_ids: Array[String] = []
 var boss_defeats: Array[String] = []
@@ -31,6 +54,9 @@ var expedition: Dictionary = {}
 var committed_receipt: Dictionary = {}
 var staged_xp: Dictionary = {}
 var staged_tutorial: bool = false
+
+func ruleset_version() -> int:
+	return int(stats.get("ruleset_version", Rules.LEGACY))
 
 func receipt() -> Dictionary:
 	# Settings and incidental saves must never persist a partial combat room.

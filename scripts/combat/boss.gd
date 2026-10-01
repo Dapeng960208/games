@@ -81,7 +81,7 @@ func _initialize_boss_runtime() -> void:
 	for key: String in ["enemy_pod_broken", "enemy_charge_wall_stop"]:
 		if has_meta(key): remove_meta(key)
 	if health != null:
-		health.reset(float(profile.get("max_hp", 1.0)))
+		health.reset(float(profile.get("max_hp", 1.0)), int(profile.get("ruleset_version", 1)))
 	status = StatusScript.new()
 	if boss_id == "BO01":
 		status.grant_guard(health.maximum * 0.22, 3600.0, "boss_solar", health.maximum)
