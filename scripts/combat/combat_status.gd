@@ -8,7 +8,7 @@ var guards: Dictionary = {}
 const SUPPLY_READY_PREFIX := "supply:ready:"
 const SUPPLY_ACTIVE_PREFIX := "supply:active:"
 const SUPPLY_GUARD_SECONDS := 4.0
-const VALID_STATES: Array[String] = ["burn", "shock", "chill", "corrosion", "bleed", "grievous", "damage_reduction", "invulnerable"]
+const VALID_STATES: Array[String] = ["burn", "shock", "chill", "corrosion", "bleed", "grievous", "damage_reduction", "brace_guard", "invulnerable"]
 
 func apply(id: String, power: float, duration: float = -1.0, raw_power: float = -1.0) -> void:
 	if id not in VALID_STATES or not is_finite(power) or not is_finite(duration):
@@ -16,7 +16,7 @@ func apply(id: String, power: float, duration: float = -1.0, raw_power: float = 
 	var life: float = duration if duration > 0.0 else (4.0 if id == "corrosion" else 3.0)
 	var old: Dictionary = states.get(id, {})
 	var snapshot: float = maxf(0.0, power)
-	if id == "damage_reduction":
+	if id in ["damage_reduction", "brace_guard"]:
 		snapshot = clampf(snapshot, 0.0, 0.65)
 	elif id in ["invulnerable", "grievous"]:
 		snapshot = 1.0
@@ -31,7 +31,11 @@ func has(id: String) -> bool:
 	return states.has(id) and float(states[id].remaining) > 0.0
 
 func damage_modifiers() -> Dictionary:
-	return {"damage_reduction":float(states.get("damage_reduction", {}).get("power", 0.0)) if has("damage_reduction") else 0.0,"invulnerable":has("invulnerable")}
+	# The warrior's short guard has its own expiry. Compare strengths without
+	# extending a stronger buff or promoting a weaker buff for its longer timer.
+	var reduction: float = float(states.get("damage_reduction", {}).get("power", 0.0)) if has("damage_reduction") else 0.0
+	var brace: float = float(states.get("brace_guard", {}).get("power", 0.0)) if has("brace_guard") else 0.0
+	return {"damage_reduction":maxf(reduction, brace),"invulnerable":has("invulnerable")}
 
 func healing_multiplier() -> float:
 	return 0.6 if has("grievous") else 1.0

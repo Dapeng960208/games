@@ -18,9 +18,9 @@ const Bindings = preload("res://scripts/core/control_bindings.gd")
 const SKILLS := ["q","secondary","f","ultimate"]
 const KEYS := ["Q","W","E","R"]
 const SKILL_ACTIONS := ["skill_q","skill_secondary","skill_f","skill_ultimate","dash"]
-const BUFF_ORDER := ["damage","guard","supply_guard","haste","burn","shock","chill","corrosion","bleed","grievous","damage_reduction","invulnerable"]
-const COMBAT_STATUS_LABELS := {"burn":"灼烧","shock":"感电","chill":"寒冷","corrosion":"腐蚀","bleed":"流血","grievous":"重伤","damage_reduction":"减伤","invulnerable":"无敌"}
-const COMBAT_STATUS_NOTES := {"burn":"持续受到魔法伤害。","shock":"后续命中可引发电击。","chill":"移动速度降低。","corrosion":"护甲降低并持续受到物理伤害。","bleed":"持续受到物理伤害。","grievous":"受到的治疗降低 40%。","damage_reduction":"临时降低受到的伤害。","invulnerable":"持续时间内免疫伤害。"}
+const BUFF_ORDER := ["damage","guard","supply_guard","brace_guard","haste","burn","shock","chill","corrosion","bleed","grievous","damage_reduction","invulnerable"]
+const COMBAT_STATUS_LABELS := {"burn":"灼烧","shock":"感电","chill":"寒冷","corrosion":"腐蚀","bleed":"流血","grievous":"重伤","damage_reduction":"减伤","brace_guard":"铁壁战吼","invulnerable":"无敌"}
+const COMBAT_STATUS_NOTES := {"burn":"持续受到魔法伤害。","shock":"后续命中可引发电击。","chill":"移动速度降低。","corrosion":"护甲降低并持续受到物理伤害。","bleed":"持续受到物理伤害。","grievous":"受到的治疗降低 40%。","damage_reduction":"临时降低受到的伤害。","brace_guard":"受到的伤害降低 25%；与其他减伤取较强值，各自独立到期。","invulnerable":"持续时间内免疫伤害。"}
 
 
 ## A reusable silhouette, rather than a permanent opaque rectangular card.
@@ -242,7 +242,7 @@ class BuffChip extends Button:
 
 	func _draw_glyph(accent: Color) -> void:
 		# Original, distinct silhouettes remain usable before generated PNG import.
-		if effect in ["guard","supply_guard","damage_reduction","invulnerable"]:
+		if effect in ["guard","supply_guard","damage_reduction","brace_guard","invulnerable"]:
 			draw_polyline(PackedVector2Array([Vector2(14,6),Vector2(30,6),Vector2(29,17),Vector2(22,24),Vector2(15,17),Vector2(14,6)]),accent,2.0,true)
 			draw_line(Vector2(22,10),Vector2(22,18),accent,2.0,true)
 			if effect == "invulnerable": draw_arc(Vector2(22,14),13,0,TAU,28,accent,1.5,true)
@@ -991,7 +991,7 @@ func _update_buffs() -> void:
 			for effect: String in room.player.status.states:
 				var state: Dictionary = room.player.status.states[effect]
 				if not COMBAT_STATUS_LABELS.has(effect) or float(state.get("remaining",0.0)) <= 0.0: continue
-				var beneficial := effect in ["damage_reduction","invulnerable"]
+				var beneficial := effect in ["damage_reduction","brace_guard","invulnerable"]
 				active_buffs[effect] = {"effect":effect,"name":COMBAT_STATUS_LABELS[effect],"name_en":effect.replace("_"," ").capitalize(),"description":COMBAT_STATUS_NOTES[effect],"remaining":state.remaining,"duration":state.remaining,"source":"combat","color":Color("92dfda") if beneficial else Color("eb9278")}
 	for effect: String in buff_chips.keys():
 		if active_buffs.has(effect): continue

@@ -39,15 +39,15 @@ static func next_goal(hero_id: String, xp: int) -> String:
 
 static func unlock_hint(hero_id: String, slot: String) -> String:
 	var hints := {
-		"CH01:secondary":["积攒破势，再用 {secondary} 消耗重击。","Build Momentum, then spend it with {secondary}."],
-		"CH01:f":["{f} 获得护盾、击退敌人并补一层破势。","{f} grants a shield, pushes enemies and adds Momentum."],
-		"CH01:ultimate":["积满破势后，{ultimate} 发动战斧坠击。","Build full Momentum before the axe finisher with {ultimate}."],
-		"CH02:secondary":["游走标记目标，再用 {secondary} 消耗猎印。","Mark a target while moving; {secondary} consumes the mark."],
-		"CH02:f":["{f} 放下伏板，诱敌触发猎印。","Place a trap with {f} and lure enemies into its mark."],
-		"CH02:ultimate":["标记关键目标后，{ultimate} 连续贯穿。","Mark a priority target, then fire the {ultimate} barrage."],
-		"CH03:secondary":["{secondary} 布置节点，{q} 穿过节点蓄能。","Place a node with {secondary}; fire {q} through it to charge."],
-		"CH03:f":["先布节点、用 {q} 充能，再按 {f} 引爆。","Place nodes, charge with {q}, then detonate with {f}."],
-		"CH03:ultimate":["{ultimate} 给范围内节点充满，接 {f} 引爆。","{ultimate} fully charges nearby nodes; follow with {f} to detonate."]}
+		"CH01:secondary":["积攒破势，再用 {secondary} 裂地重斩消耗爆发。","Build Momentum, then spend it with the {secondary} cleave."],
+		"CH01:f":["{f} 战吼获得护盾、短时减伤，推开敌人并补破势。","{f} grants a shield, brief damage reduction, space and Momentum."],
+		"CH01:ultimate":["积满破势后，{ultimate} 天崩斧落完成爆发。","Build full Momentum for the {ultimate} Skyfall Axe finisher."],
+		"CH02:secondary":["先用 {f} 榴弹标记，再用 {secondary} 贯穿消费猎印。","Mark with the {f} grenade, then consume marks with the {secondary} piercer."],
+		"CH02:f":["{f} 投掷榴弹，出手0.65秒后爆炸并施加猎印。","{f} throws a grenade that explodes and marks after a 0.65 s fuse."],
+		"CH02:ultimate":["标记关键目标后，{ultimate} 连射倾泻火力。","Mark a priority target, then fire the {ultimate} barrage."],
+		"CH03:secondary":["{secondary} 布置法晶，{q} 穿过法晶为节点蓄能。","Place crystals with {secondary}; pass {q} through them to charge."],
+		"CH03:f":["先布晶、用 {q} 充能，再按 {f} 新星引爆。","Place crystals, charge with {q}, then detonate with the {f} nova."],
+		"CH03:ultimate":["{ultimate} 领域持续寒冷控制并充满法晶，接 {f} 引爆。","{ultimate} chills through field ticks and fills crystals; follow with {f}."]}
 	var pair: Array = hints.get(hero_id+":"+slot,["",""])
 	var hint: String = str(pair[1 if Words.locale == "en" else 0])
 	for key: String in SKILLS: hint = hint.replace("{"+key+"}",key_for(key))

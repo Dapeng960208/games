@@ -77,22 +77,22 @@ func spec(slot: String, preview_hero: String = "", preview_level: int = -1, prev
 	var data: Dictionary = {}
 	if hero == "CH01":
 		match slot:
-			"q": data = {"name":"裂轨突进", "cost":15.0 if level >= 10 else 20.0, "cooldown":6.0, "windup":0.10, "duration":0.42, "travel":160.0, "travel_time":0.18, "coefficient":1.5, "radius":75.0, "knockback":45.0, "movement":0.65}
-			"secondary": data = {"name":"破桩横扫", "cost":30.0, "cooldown":4.0, "windup":0.18, "duration":0.46 if level >= 12 else 0.54, "coefficient":2.2, "radius":115.0, "arc":120.0, "knockback":65.0, "movement":0.65}
-			"f": data = {"name":"撑梁反推", "cost":25.0, "cooldown":11.0, "windup":0.12, "duration":0.38, "coefficient":0.6, "radius":100.0, "knockback":70.0, "guard":0.18 if level >= 14 else 0.12, "movement":0.8}
-			"ultimate": data = {"name":"战斧坠击", "cost":70.0, "cooldown":42.0, "windup":0.45, "duration":1.02, "coefficient":4.6 if level >= 16 else 4.0, "radius":180.0, "range":130.0, "knockback":90.0, "movement":0.35}
+			"q": data = {"name":"破阵冲锋", "cost":15.0 if level >= 10 else 20.0, "cooldown":6.0, "windup":0.10, "duration":0.42, "travel":160.0, "travel_time":0.18, "coefficient":1.5, "radius":75.0, "knockback":45.0, "movement":0.65}
+			"secondary": data = {"name":"裂地重斩", "cost":30.0, "cooldown":4.0, "windup":0.18, "duration":0.46 if level >= 12 else 0.54, "coefficient":2.2, "radius":115.0, "arc":120.0, "knockback":65.0, "movement":0.65}
+			"f": data = {"name":"铁壁战吼", "cost":25.0, "cooldown":11.0, "windup":0.12, "duration":0.38, "coefficient":0.6, "radius":100.0, "knockback":70.0, "guard":0.18 if level >= 14 else 0.12, "damage_reduction":0.25, "guard_duration":1.5, "movement":0.8}
+			"ultimate": data = {"name":"天崩斧落", "cost":70.0, "cooldown":42.0, "windup":0.45, "duration":1.02, "coefficient":4.6 if level >= 16 else 4.0, "radius":180.0, "range":130.0, "knockback":90.0, "movement":0.35}
 	elif hero == "CH02":
 		match slot:
-			"q": data = {"name":"翻索掠射", "cost":20.0 if level >= 10 else 25.0, "cooldown":7.0, "windup":0.06, "duration":0.42, "travel":150.0, "travel_time":0.16, "coefficient":0.35, "range":450.0, "speed":950.0, "movement":0.8}
-			"secondary": data = {"name":"定轨贯射", "cost":30.0, "cooldown":3.5, "windup":0.45, "duration":0.66, "coefficient":2.0, "range":780.0, "speed":1300.0, "pierce":1, "pierce_multiplier":1.0 if level >= 12 else 0.65, "movement":0.65}
-			"f": data = {"name":"冷线伏板", "cost":30.0, "cooldown":12.0, "windup":0.15, "duration":0.35, "coefficient":0.6, "range":260.0, "radius":100.0 if level >= 14 else 80.0, "movement":1.0}
-			"ultimate": data = {"name":"穿轨急奏", "cost":60.0, "cooldown":40.0, "windup":0.25, "duration":1.17, "coefficient":1.2, "range":760.0, "speed":1150.0, "shots":4, "movement":0.7 if level >= 16 else 0.45}
+			"q": data = {"name":"游击撤射", "cost":20.0 if level >= 10 else 25.0, "cooldown":7.0, "windup":0.06, "duration":0.42, "travel":150.0, "travel_time":0.16, "coefficient":0.35, "range":450.0, "speed":950.0, "movement":0.8}
+			"secondary": data = {"name":"磁轨贯穿", "cost":30.0, "cooldown":3.5, "windup":0.45, "duration":0.66, "coefficient":2.0, "range":780.0, "speed":1300.0, "pierce":1, "pierce_multiplier":1.0 if level >= 12 else 0.65, "movement":0.65}
+			"f": data = {"name":"震爆榴弹", "cost":30.0, "cooldown":12.0, "windup":0.15, "duration":0.35, "coefficient":1.1, "range":260.0, "radius":130.0 if level >= 14 else 110.0, "fuse":0.65, "knockback":30.0, "movement":1.0}
+			"ultimate": data = {"name":"火力倾泻", "cost":60.0, "cooldown":40.0, "windup":0.25, "duration":1.17, "coefficient":1.2, "range":760.0, "speed":1150.0, "shots":4, "movement":0.7 if level >= 16 else 0.45}
 	else:
 		match slot:
-			"q": data = {"name":"裂晶脉冲", "cost":18.0, "cooldown":5.0, "windup":0.18, "duration":0.36, "coefficient":1.25, "range":550.0, "speed":850.0 if level >= 10 else 650.0, "explosion_radius":65.0, "movement":0.85}
-			"secondary": data = {"name":"共鸣节点", "cost":30.0, "cooldown":3.5, "windup":0.20, "duration":0.44, "coefficient":0.15, "range":220.0, "radius":160.0, "health":50.0 if level >= 12 else 35.0, "movement":0.85}
-			"f": data = {"name":"共振引爆", "cost":25.0, "cooldown":9.0 if level >= 14 else 11.0, "windup":0.14, "duration":0.40, "coefficient":0.8, "radius":140.0, "movement":0.85}
-			"ultimate": data = {"name":"穹顶共振", "cost":60.0, "cooldown":48.0, "windup":0.40, "duration":0.80, "coefficient":0.6, "tick_coefficient":0.8, "range":280.0, "radius":210.0 if level >= 16 else 180.0, "lifetime":5.0, "movement":0.65}
+			"q": data = {"name":"奥术晶爆", "cost":18.0, "cooldown":5.0, "windup":0.18, "duration":0.36, "coefficient":1.25, "range":550.0, "speed":850.0 if level >= 10 else 650.0, "explosion_radius":65.0, "movement":0.85}
+			"secondary": data = {"name":"星界法晶", "cost":30.0, "cooldown":3.5, "windup":0.20, "duration":0.44, "coefficient":0.15, "range":220.0, "radius":160.0, "health":50.0 if level >= 12 else 35.0, "movement":0.85}
+			"f": data = {"name":"冰霜新星", "cost":25.0, "cooldown":9.0 if level >= 14 else 11.0, "windup":0.14, "duration":0.40, "coefficient":0.8, "radius":140.0, "movement":0.85}
+			"ultimate": data = {"name":"星陨领域", "cost":60.0, "cooldown":48.0, "windup":0.40, "duration":0.80, "coefficient":0.6, "tick_coefficient":0.8, "range":280.0, "radius":210.0 if level >= 16 else 180.0, "lifetime":5.0, "movement":0.65}
 	if data.is_empty():
 		return data
 	var skill_definition: Dictionary = ContentRegistry.hero(hero).get("skills", {}).get(slot, {})
@@ -338,13 +338,19 @@ func _resolve(index: int) -> void:
 			owner_player.gain_break_stacks(1)
 		if float(data.get("guard", 0.0)) > 0.0:
 			owner_player.grant_guard(Game.run.max_hp * float(data.guard), 4.0, "hero_" + slot)
+		if slot == "f":
+			# The guard is earned on release. Cancelling the windup cannot provide
+			# free protection. Independent expiry preserves other defense sources.
+			owner_player.status.apply("brace_guard", float(data.damage_reduction), float(data.guard_duration))
 		# The horizontal sweep already has a directional weapon trail. A full
 		# circle would falsely suggest it hits behind the committed attack sector.
 		if slot != "secondary":
 			room.add_ring(at, Color("da995b"), float(data.radius), 0.25)
 	elif hero == "CH02":
 		if slot == "f":
-			room.add_deployment("trap", active.target, {"damage":amount, "power":power, "radius":data.radius, "lifetime":12.0, "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats})
+			# A thrown grenade owns its fuse after release, just as a fired round
+			# owns its flight. It explodes once even when the landing zone is empty.
+			room.add_deployment("grenade", active.target, {"damage":amount, "power":power, "radius":data.radius, "fuse":data.fuse, "knockback":data.knockback, "lifetime":float(data.fuse) + 0.1, "origin":at, "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats, "root_event_id":hit_context.root_event_id, "attack_id":hit_context.attack_id, "heavy":true})
 		else:
 			if slot == "q" and index == 0:
 				active.direction = owner_player.aim_direction.normalized()
@@ -377,6 +383,8 @@ func _resolve(index: int) -> void:
 	# It belongs to the same release as this projectile/deployment/strike, never
 	# to a prerecorded burst that can outlive cancelled future events.
 	owner_player._play_combat_audio(&"cast", [hero, slot])
+	if index == 0:
+		owner_player._play_combat_audio(&"skill_music", [hero, slot])
 	if is_instance_valid(feedback):
 		var effect_center: Vector2 = active.target if (hero == "CH02" and slot == "f") or (hero == "CH03" and slot == "secondary") else at
 		feedback.skill_released(data, direction, effect_center, index, active.events.size(), cast_serial)

@@ -1057,6 +1057,7 @@ func strike_area(at: Vector2, radius: float, amount: float, source: StringName, 
 			return a_offset.length_squared() < b_offset.length_squared() if is_equal_approx(a_aim, b_aim) else a_aim < b_aim)
 	for enemy in candidates:
 		var offset: Vector2 = enemy.position - at
+		var contact_direction: Vector2 = offset.normalized() if not offset.is_zero_approx() else direction.normalized() if not direction.is_zero_approx() else Vector2.RIGHT
 		if arc_degrees < 360.0 and not offset.is_zero_approx() and direction.dot(offset.normalized()) < cos(deg_to_rad(arc_degrees) * 0.5):
 			continue
 		if original:
@@ -1065,12 +1066,16 @@ func strike_area(at: Vector2, radius: float, amount: float, source: StringName, 
 				target_context["native_statuses"] = []
 			target_context["original_basic"] = source == &"primary"
 			target_context["equipment_eligible"] = true
-			if resolve_direct_hit(enemy, amount, source, applied_status, push, offset.normalized(), target_context):
+			if resolve_direct_hit(enemy, amount, source, applied_status, push, contact_direction, target_context):
 				confirmed.append(enemy)
 		else:
-			resolve_derived_hit(enemy, amount, source, offset.normalized(), context)
-			if not applied_status.is_empty():
-				enemy.apply_status(applied_status, player.attack_power())
+			var before_hp: float = enemy.health.current
+			var before_shield: float = enemy.status.shield()
+			resolve_derived_hit(enemy, amount, source, contact_direction, context)
+			if not applied_status.is_empty() and enemy.is_alive() and (enemy.health.current < before_hp or enemy.status.shield() < before_shield):
+				# Field control follows a confirmed derived contact and its captured
+				# power. It never enters equipment/passive or Shock-consumption hooks.
+				enemy.apply_status(applied_status, float(context.get("power", player.skill_power())))
 		hit.append(enemy)
 		if (source == &"field" or (source == &"ultimate" and player.hero_id() == "CH03")) and hit.size() >= 12:
 			break

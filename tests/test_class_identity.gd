@@ -128,11 +128,10 @@ func _test_breaker() -> void:
 func _test_ranger() -> void:
 	fixture("CH02")
 	var target: Node2D = dummy(Vector2(500, 350))
-	room.player.walk_distance = 240.0
-	room.player.on_primary_hit(target)
-	check(room.player.class_marks.has(target.get_instance_id()) and room.player.walk_distance == 0.0, "walking charge marks the next original basic target")
 	var power: float = room.player.attack_power()
 	var context: Dictionary = {"H":power, "power":power, "equipment_eligible":true, "original_basic":false, "root_event_id":"identity:test", "attack_id":"identity:test"}
+	room.resolve_direct_hit(target, 1.0, &"f", "", 0.0, Vector2.RIGHT, context)
+	check(room.player.class_marks.has(target.get_instance_id()), "confirmed original F contact marks its target for a precision follow-up")
 	var marked: float = room.player.class_modify_hit_amount(target, power * 2.0, &"secondary", context)
 	check(is_equal_approx(marked, power * 3.25), "marked secondary adds exactly 1.25H")
 	check(is_equal_approx(room.player.class_modify_hit_amount(target, power * 2.0, &"secondary", context), power * 2.0), "one mark cannot be consumed twice")
@@ -168,7 +167,8 @@ func _test_resonator() -> void:
 	finish_cast()
 	check(first.resonance_charge == 3 and second.resonance_charge == 3, "R fully charges both nodes in its field")
 	check(room.player.charge_resonance(first.position, 200.0, 1) == 0, "environmental charge cannot overfill nodes")
-	check(room.player.class_status().current == 6, "node HUD reports total charge")
+	check(first.resonance_readout().charge + second.resonance_readout().charge == 6, "individual crystal readouts report six total stored charges")
+	check(room.player.class_status().max == 3, "mage class HUD reports the separate three-beat passive rhythm")
 	var target: Node2D = dummy(Vector2(540, 350))
 	var before: float = target.health.current
 	check(cast("f", room.player.position), "manual detonation starts")

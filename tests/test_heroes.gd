@@ -101,7 +101,7 @@ func _test_basics_passives_and_dashes() -> void:
 	check(target.health.current == 10000.0, "basic hammer has its real twelve-hundredths windup")
 	room.player._tick_attack(0.001)
 	check(target.health.current < 10000.0 and second.health.current < 10000.0, "hammer is a real multi-target frontal swing")
-	check(Game.run.resource == 8.0 and room.player.passive_count == 1, "one multi-target swing grants rage and counts passive once")
+	check(Game.run.resource == 8.0 and room.player.class_status().current == 1, "one multi-target swing grants rage and counts passive once")
 	for index in range(2):
 		room.player.shot_cooldown = 0.0
 		room.player.fire(Vector2.RIGHT)
@@ -112,12 +112,21 @@ func _test_basics_passives_and_dashes() -> void:
 	Input.action_press("move_right")
 	room.player._physics_process(1.0)
 	Input.action_release("move_right")
-	check(room.player.walk_distance >= 240.0, "ranger passive arms by walking valid ground")
+	check(room.player.class_status().current == 0, "walking alone cannot arm the ranger's confirmed-hit passive")
 	Game.run.resource = 0.0
 	target = dummy(room.player.position + Vector2(75,0))
 	check(room.player.fire(Vector2.RIGHT), "ranger can shoot at zero energy")
 	tick_projectiles(0.2)
-	check(Game.run.resource == 10.0 and room.player.walk_distance == 0.0, "next real bullet returns energy and consumes walking charge")
+	check(Game.run.resource == 0.0 and room.player.class_status().current == 1, "first real bullet builds same-target focus without a legacy walking-charge refund")
+	room.player.shot_cooldown = 0.0
+	check(room.player.fire(Vector2.RIGHT), "second ranger basic fires at zero energy")
+	tick_projectiles(0.2)
+	check(room.player.class_status().ready, "two real bullets on the same target expose its weak point")
+	var before_weakpoint: float = target.health.current
+	room.player.shot_cooldown = 0.0
+	check(room.player.fire(Vector2.RIGHT), "ranger weak-point follow-up fires")
+	tick_projectiles(0.2)
+	check(is_equal_approx(before_weakpoint-target.health.current,room.player.attack_power()*1.65) and room.player.class_status().current == 0, "third real bullet gains and consumes the 65-percent weak-point bonus")
 	fixture("CH03",1)
 	Game.run.resource = 0.0
 	target = dummy(Vector2(500,350))
@@ -126,8 +135,24 @@ func _test_basics_passives_and_dashes() -> void:
 		room.player.shot_cooldown = 0.0
 		check(room.player.fire(Vector2.RIGHT), "resonator basic shot is available with no mana")
 		tick_projectiles(0.2)
-	check(Game.run.resource == 6.0, "four actual electrode hits return six mana")
-	check(is_equal_approx(10000.0 - second.health.current,5.4), "fourth-hit passive hits exactly one nearby enemy at 0.3H")
+	check(Game.run.resource == 0.0 and room.player.class_status().current == 1, "four repeated mage basics build one alternation stack without refunding mana")
+	check(second.health.current == 10000.0, "repeated mage basics cannot fabricate the retired fourth-hit chain damage")
+	fixture("CH03",8)
+	target = dummy(Vector2(500,350))
+	check(room.player.fire(Vector2.RIGHT), "mage alternating cycle starts with a real basic")
+	tick_projectiles(0.2)
+	check(abilities.try_cast("q", target.position), "mage follows its basic with a real skill commitment")
+	abilities.tick(1.0)
+	tick_projectiles(0.2)
+	room.player.shot_cooldown = 0.0
+	check(room.player.fire(Vector2.RIGHT), "mage alternating cycle returns to a basic")
+	tick_projectiles(0.2)
+	check(room.player.class_status().ready, "basic-skill-basic fills real mage resonance")
+	Game.run.resource = 60.0
+	check(abilities.try_cast("secondary", Vector2(510,390)), "ready mage resonance follows a successful crystal cast")
+	check(Game.run.resource == 38.0 and room.player.class_status().current == 0, "successful crystal commitment pays 30 mana and refunds eight exactly once")
+	abilities.tick(1.0)
+	check(Game.run.resource == 38.0, "crystal release cannot repeat the resonance refund")
 	for hero: String in ["CH01", "CH02", "CH03"]:
 		fixture(hero,1)
 		Game.run.resource = 0.0
@@ -182,10 +207,10 @@ func _test_twelve_skills() -> void:
 			if hero == "CH01" and slot == "f":
 				check(Game.run.shield > 0.0 and Game.run.shield <= Game.run.max_hp * 0.5, "breaker F grants bounded guard")
 			if hero == "CH02" and slot == "f":
-				var traps: Array[HeroDeployment] = deployments("trap")
-				check(traps.size() == 1, "ranger F deploys a physical trap")
-				if not traps.is_empty():
-					traps[0].advance(0.35)
+				var grenades: Array[HeroDeployment] = deployments("grenade")
+				check(grenades.size() == 1, "ranger F deploys a timed physical grenade")
+				if not grenades.is_empty():
+					grenades[0].advance(0.65)
 			if hero == "CH03" and slot == "secondary":
 				var nodes: Array[HeroDeployment] = deployments("node")
 				check(nodes.size() == 1, "resonator secondary creates one attackable node")
@@ -290,19 +315,19 @@ func _test_deployment_boundaries() -> void:
 	check(nodes[0].receive_damage(node_hp + 1.0) and not nodes[0].is_alive(), "enemy damage can destroy a node")
 	fixture("CH02")
 	target = dummy(Vector2(485,350))
-	check(abilities.try_cast("f", Vector2(480,350)), "trap timing fixture starts")
+	check(abilities.try_cast("f", Vector2(480,350)), "grenade timing fixture starts")
 	abilities.tick(1.0)
-	var traps: Array[HeroDeployment] = deployments("trap")
-	if traps.size() != 1:
-		check(false, "trap timing fixture exists")
+	var grenades: Array[HeroDeployment] = deployments("grenade")
+	if grenades.size() != 1:
+		check(false, "grenade timing fixture exists")
 		return
-	traps[0].advance(0.349)
-	check(target.health.current == 10000.0, "trap is harmless before its unfold completes")
-	traps[0].advance(0.001)
-	check(target.health.current < 10000.0 and not traps[0].is_alive(), "occupied trap triggers once upon arming")
+	grenades[0].advance(0.649)
+	check(target.health.current == 10000.0, "grenade is harmless before its fuse completes")
+	grenades[0].advance(0.001)
+	check(target.health.current < 10000.0 and not grenades[0].is_alive(), "grenade explodes once at the fuse boundary")
 	var hit_health: float = target.health.current
-	traps[0].advance(5.0)
-	check(target.health.current == hit_health, "spent trap cannot trigger a second time")
+	grenades[0].advance(5.0)
+	check(target.health.current == hit_health, "spent grenade cannot explode a second time")
 	fixture("CH03")
 	target = dummy(Vector2(485,350))
 	check(abilities.try_cast("ultimate", Vector2(480,350)), "field timing fixture starts")
@@ -358,7 +383,7 @@ func _test_strengths_and_branches() -> void:
 	check(abilities.spec("q").travel == 0.0 and abilities.spec("ultimate").waves == 2, "breaker B branches become anchored shock and two waves")
 	fixture("CH02",20)
 	check(abilities.spec("q").cost == 20.0 and abilities.spec("secondary").pierce_multiplier == 1.0, "ranger levels 10/12 improve energy and second hit")
-	check(abilities.spec("f").radius == 100.0 and abilities.spec("ultimate").movement == 0.7, "ranger levels 14/16 improve trap and moving ultimate")
+	check(abilities.spec("f").radius == 130.0 and abilities.spec("ultimate").movement == 0.7, "ranger levels 14/16 improve grenade and moving ultimate")
 	Game.run.stats["branches"] = {"q":"B", "ultimate":"B"}
 	check(abilities.spec("q").coefficient == 0.55 and abilities.spec("ultimate").shots == 3, "ranger B branches are stationary Q and mobile three-shot R")
 	fixture("CH03",20)
