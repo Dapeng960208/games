@@ -12,6 +12,7 @@ var checks := 0
 var failures := 0
 var lethal_receivers := 0
 var cover_receivers := 0
+var acceptance_receivers := 0
 
 class ReceiverRoom extends MineRoom:
 	var death_receipts: Array[Dictionary] = []
@@ -32,6 +33,7 @@ class ObservedLoadout extends CombatLoadout:
 
 class EnemyReceiver extends MineEnemy:
 	var receipts: Array[Dictionary] = []
+	var status_receipts: Array[Dictionary] = []
 	func _ready() -> void:
 		health = HealthScript.new()
 		add_child(health)
@@ -40,6 +42,10 @@ class EnemyReceiver extends MineEnemy:
 		status.ruleset_version = Rules.V2
 		state = &"idle"
 	func _draw() -> void: pass
+	func apply_status(id: String, power: float, duration: float = -1.0) -> bool:
+		var accepted: bool = super.apply_status(id, power, duration)
+		status_receipts.append({"id":id, "power":power, "accepted":accepted})
+		return accepted
 	func take_damage(amount: float, kind: StringName, direction := Vector2.ZERO, context: Dictionary = {}) -> bool:
 		var accepted: bool = super.take_damage(amount, kind, direction, context)
 		receipts.append({"source":str(kind), "amount":amount, "context":context.duplicate(true), "result":last_damage_result.duplicate(true), "accepted":accepted})
@@ -47,6 +53,7 @@ class EnemyReceiver extends MineEnemy:
 
 class BossReceiver extends MineBoss:
 	var receipts: Array[Dictionary] = []
+	var status_receipts: Array[Dictionary] = []
 	func _ready() -> void:
 		health = HealthScript.new()
 		add_child(health)
@@ -54,6 +61,10 @@ class BossReceiver extends MineBoss:
 		health.depleted.connect(_die)
 		state = &"idle"
 	func _draw() -> void: pass
+	func apply_status(id: String, power: float, duration: float = -1.0) -> bool:
+		var accepted: bool = super.apply_status(id, power, duration)
+		status_receipts.append({"id":id, "power":power, "accepted":accepted})
+		return accepted
 	func take_damage(amount: float, kind: StringName, direction := Vector2.ZERO, context: Dictionary = {}) -> bool:
 		var accepted: bool = super.take_damage(amount, kind, direction, context)
 		receipts.append({"source":str(kind), "amount":amount, "context":context.duplicate(true), "result":last_damage_result.duplicate(true), "accepted":accepted})
@@ -337,6 +348,125 @@ func test_real_cover_receipts() -> void:
 			check(events_named("after_hit").size() == (0 if rejected else 1) and room.player.loadout.effects.root_usage("real-cover").packets == (0 if rejected else 2), label + " rejected plate cannot fabricate equipment callback or native packet use")
 			cover_receivers += 1
 
+func bind_items(templates: Dictionary) -> void:
+	var instances: Dictionary = {}
+	for slot: String in templates: instances[slot] = "status-fixture-" + slot
+	game.run.stats.loadout = instances if game.run.ruleset_version() == Rules.V2 else templates.duplicate()
+	game.run.stats.equipment_templates = templates.duplicate()
+	room.player.loadout.configure(room.player)
+	for id: String in templates.values(): check(room.player.loadout.effects.equipped.has(id), "status acceptance fixture binds " + id)
+
+func status_attempts(target: MineEnemy, id: String) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for attempt: Dictionary in target.status_receipts:
+		if attempt.id == id: result.append(attempt)
+	return result
+
+func check_status_receipt_retry(target: MineEnemy, saved_event: Dictionary, accepted: bool) -> void:
+	var context: Dictionary = saved_event.context
+	var commands: Array = saved_event.result.statuses
+	var root: String = str(context.root_event_id)
+	check(commands.size() == 1 and commands[0].effect_id == "EQ50", "retry uses exact emitted EQ50 status command receipt")
+	if accepted:
+		# Advance the real reducer clock so an erroneous duplicate commit would
+		# visibly extend the existing six-second deadline to 6.5 seconds.
+		room.player.loadout.tick(0.5)
+	else:
+		# Leave an actual native packet in this root after rejection. A second
+		# erroneous release must not hide behind a clamp of an already-zero count.
+		check(hit(target, 10, root, &"primary", "corrosion", 99), "later same-root segment reserves a real native packet")
+	var usage: Dictionary = room.player.loadout.effects.root_usage(root)
+	var cooldowns: Dictionary = room.player.loadout.effects.cooldowns.duplicate(true)
+	check(usage.packets == 1, "receipt retry fixture retains exactly one committed packet")
+	var accepted_ids: Array[String] = ["EQ50"]
+	var rejected_ids: Array[String] = []
+	check(room.player.loadout.effects.settle_status_requests(context, commands, accepted_ids).is_empty(), "duplicate positive status settlement cannot commit again")
+	check(room.player.loadout.effects.settle_status_requests(context, commands, rejected_ids).is_empty(), "duplicate negative status settlement cannot refund again")
+	check(room.player.loadout.effects.root_usage(root) == usage and room.player.loadout.effects.cooldowns == cooldowns, "duplicate accepted/rejected acknowledgements preserve packet count and ICD deadline")
+	var attempts_before: int = target.status_receipts.size()
+	var repeated: Dictionary = room.player.loadout.event("after_hit", context)
+	check(repeated.statuses.is_empty() and target.status_receipts.size() == attempts_before, "replayed exact after-hit callback cannot emit or apply pending statuses again")
+	check(room.player.loadout.effects.root_usage(root) == usage and room.player.loadout.effects.cooldowns == cooldowns, "replayed after-hit preserves settled packet count and ICD")
+
+func test_equipment_status_acceptance() -> void:
+	for boss: bool in [false, true]:
+		for id: String in ["EQ50", "EQ10"]:
+			fresh("CH01")
+			bind_items({"feet":"EQ50"} if id == "EQ50" else {"weapon":"EQ10"})
+			var target: MineEnemy = receiver(boss)
+			var state_id: String = "chill" if id == "EQ50" else "shock"
+			target.apply_status(state_id, 500, 5.0)
+			if id == "EQ50": target.apply_status("shock", 500, 5.0)
+			else: target.status.shock_cooldown = 1.0
+			room.player.loadout.event("dash", {"event_id":"reject-status-dash"})
+			target.status_receipts.clear()
+			room.player.loadout.events.clear()
+			var label: String = ("boss/" if boss else "enemy/") + id
+			check(hit(target, 100, "reject-equipment-status", &"primary"), label + " confirmed contact attempts equipment status")
+			var attempts: Array[Dictionary] = status_attempts(target, state_id)
+			check(attempts.size() == 1 and attempts[0].power == 240 and not attempts[0].accepted, label + " real receiver rejects weaker equipment snapshot")
+			check(target.status.states[state_id].power == 500 and target.status.states[state_id].remaining == 5.0, label + " rejected snapshot cannot extend stronger old state")
+			check(not room.player.loadout.effects.cooldowns.has(id) and room.player.loadout.effects.root_usage("reject-equipment-status").packets == 0, label + " rejected standalone status spends neither ICD nor packet")
+			check(events_named("status_applied").is_empty() and events_named("after_hit").size() == 1, label + " confirmed hit remains separate from rejected status acceptance")
+			if id == "EQ10":
+				check(target.status.has("shock") and target.status.states.shock.power == 500 and packets(target, "shock").is_empty(), label + " shock cooldown protects strong old snapshot during direct contact")
+			else:
+				check(not target.status.has("shock") and packets(target, "shock").size() == 1, label + " old shock consumption cannot falsely accept rejected chill")
+				check_status_receipt_retry(target, events_named("after_hit")[0], false)
+			# A new dash/confirmed root at the same clock must work immediately.
+			# Equal-power refresh is accepted even without increasing status power.
+			target.status.states.erase(state_id)
+			target.apply_status(state_id, 240, 1.0)
+			if id == "EQ50": target.apply_status("shock", 240, 3.0)
+			room.player.loadout.event("dash", {"event_id":"retry-status-dash"})
+			target.status_receipts.clear()
+			check(hit(target, 100, "retry-equipment-status", &"primary"), label + " freshly primed same-clock retry confirms")
+			attempts = status_attempts(target, state_id)
+			check(attempts.size() == 1 and attempts[0].accepted and target.status.states[state_id].power == 240 and target.status.states[state_id].remaining == 3.0, label + " equal-power refresh really accepted")
+			check(room.player.loadout.effects.cooldowns.get(id, -1.0) == 6.0 and room.player.loadout.effects.root_usage("retry-equipment-status").packets == 1, label + " accepted retry commits one packet and six-second ICD")
+			if id == "EQ50": check_status_receipt_retry(target, events_named("after_hit").back(), true)
+			acceptance_receivers += 1
+		fresh("CH03")
+		game.run.stats.merge({"attack":180, "ability_power":280, "relic_levels":{"RL02":2}}, true)
+		game.run.relics.append("ember")
+		bind_items({"weapon":"EQ03", "charm":"EQ58"})
+		room.player.grant_guard(10, 5, "status-acceptance-guard")
+		var target: MineEnemy = receiver(boss)
+		var label: String = ("boss/" if boss else "enemy/") + "EQ03/native-burn"
+		check(hit(target, 100, "native-before-equipment", &"primary", "", 0, {"native_statuses":["burn", "shock", "chill"], "relic_reservations":["relic:ember"]}), label + " real primary confirms native and equipment stage order")
+		var burns: Array[Dictionary] = status_attempts(target, "burn")
+		check(burns.size() == 2 and burns[0].power == 420 and burns[0].accepted and burns[1].power == 278 and not burns[1].accepted, label + " stronger actual relic burn precedes rejected equipment burn")
+		check(target.status.states.burn.power == 420 and target.status.states.burn.H == 420, label + " accepted relic snapshot remains authoritative")
+		check(not room.player.loadout.effects.cooldowns.has("EQ03:" + str(target.get_instance_id())), label + " rejected equipment burn does not spend per-target ICD")
+		check(game.run.shield == 30 and room.player.status.guards.has("equipment:EQ58") and room.player.loadout.effects.root_usage("native-before-equipment").packets == 4, label + " rejected provisional packet releases before later charm uses fourth slot")
+		acceptance_receivers += 1
+		fresh("CH01", "EQ06")
+		target = receiver(boss)
+		target.apply_status("corrosion", 500, 5.0)
+		check(hit(target, 100, "bundle-prepare1", &"primary") and hit(target, 100, "bundle-prepare2", &"primary"), "EQ06 two actual contacts arm grouped status")
+		target.status_receipts.clear()
+		check(hit(target, 100, "mixed-status-bundle", &"primary"), "EQ06 third actual contact confirms")
+		var corrosion: Array[Dictionary] = status_attempts(target, "corrosion")
+		var grievous: Array[Dictionary] = status_attempts(target, "grievous")
+		check(corrosion.size() == 1 and not corrosion[0].accepted and grievous.size() == 1 and grievous[0].accepted, "EQ06 actual grouped status has one rejected and one accepted component")
+		check(target.status.states.corrosion.power == 500 and target.status.states.grievous.power == 1, "EQ06 mixed acceptance preserves strong corrosion and accepts grievous")
+		check(room.player.loadout.effects.root_usage("mixed-status-bundle").packets == 1 and room.player.loadout.effects.cooldowns.has("EQ06"), "EQ06 any accepted component commits one shared packet")
+		acceptance_receivers += 1
+	# Legacy retains its original attempted-application consumption contract.
+	fresh("CH01")
+	game.run.stats.ruleset_version = Rules.LEGACY
+	bind_items({"feet":"EQ50"})
+	var legacy: MineEnemy = receiver()
+	legacy.profile.ruleset_version = Rules.LEGACY
+	legacy.health.reset(10000, Rules.LEGACY)
+	legacy.status.ruleset_version = Rules.LEGACY
+	legacy.apply_status("chill", 500, 5.0)
+	legacy.apply_status("shock", 500, 5.0)
+	room.player.loadout.event("dash", {"event_id":"legacy-status-dash"})
+	check(hit(legacy, 100, "legacy-status", &"primary") and legacy.status.states.chill.power == 500, "legacy confirmed path keeps stronger chill")
+	check(room.player.loadout.effects.cooldowns.get("EQ50", -1.0) == 6.0 and room.player.loadout.effects.root_usage("legacy-status").packets == 1, "legacy attempted status still commits original ICD/packet behavior")
+	acceptance_receivers += 1
+
 func test_corrosion_and_burn() -> void:
 	fresh("CH03")
 	game.run.stats.merge({"attack":180, "ability_power":280, "damage_bonus":0.2, "corrosion_damage_bonus":0.3, "burn_damage":0.2}, true)
@@ -411,6 +541,8 @@ func _run() -> void:
 	check(lethal_receivers == 4, "all four lethal receiver cases completed")
 	test_real_cover_receipts()
 	check(cover_receivers == 12, "all twelve actual cover receiver cases completed")
+	test_equipment_status_acceptance()
+	check(acceptance_receivers == 9, "all nine equipment-status acceptance cases completed")
 	test_corrosion_and_burn()
 	test_warrior_confirmed_primaries()
 	test_player_shock_confirmation()

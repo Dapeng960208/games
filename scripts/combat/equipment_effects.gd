@@ -12,6 +12,8 @@ const Numerical = preload("res://config/numerical_rules.gd")
 ## this resumes remaining slots in order. Continuations can request feet statuses
 ## once more before completing charm/set effects. Native status confirmations
 ## arrive before after_hit. kill follows confirmed death, once per target.
+## V2 adapters settle_status_requests before status_applied/continuation so only
+## accepted standalone equipment-status bundles commit their packet and ICD.
 ## Other events: room_enter, dash, dash_end, damaged, shield_gain, skill_cast.
 ## Every discrete event requires unique attack_id or event_id; attacks share their
 ## root_event_id across targets and stages. Sources: primary (depth 0), burn tick
@@ -438,6 +440,37 @@ func _activate(id: String, icd: float, root: Dictionary, out: Dictionary, packet
 	out.triggered.append(id)
 	return true
 
+## Standalone status commands provisionally occupy one shared packet while the
+## adapter asks the receiver. Rejected writes never start their emitter's ICD.
+func _activate_status(id: String, icd: float, root: Dictionary, out: Dictionary) -> bool:
+	if not Numerical.is_v2(stats): return _activate(id, icd, root, out)
+	if not _ready(id) or int(root.packets) >= 4: return false
+	if not root.has("pending_status_effects"): root["pending_status_effects"] = {}
+	if root.pending_status_effects.has(id): return false
+	root.pending_status_effects[id] = {"icd":icd}
+	root.packets += 1
+	return true
+
+## Multiple statuses emitted by one effect (EQ06) share one reservation. One
+## accepted write commits it; all rejected releases it before later slots run.
+func settle_status_requests(ctx: Dictionary, commands: Array, accepted_effects: Array[String]) -> Array[String]:
+	var committed: Array[String] = []
+	if not Numerical.is_v2(stats): return committed
+	var root_id: String = str(ctx.get("root_event_id", ctx.get("attack_id", ctx.get("event_id", ""))))
+	var root: Dictionary = roots.get(root_id, {})
+	var pending: Dictionary = root.get("pending_status_effects", {})
+	for command: Dictionary in commands:
+		var id: String = str(command.get("effect_id", ""))
+		if not pending.has(id): continue
+		var request: Dictionary = pending[id]
+		pending.erase(id)
+		if id in accepted_effects:
+			cooldowns[id] = clock + float(request.icd)
+			committed.append(id)
+		else:
+			root.packets = maxi(0, int(root.packets) - 1)
+	return committed
+
 func _buff(id: String, stat: String, amount: float, duration: float) -> void:
 	buffs[id] = {"stat":stat, "amount":amount, "until":clock + duration}
 
@@ -508,15 +541,15 @@ func _after(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 		return
 	root.post_counted = true
 	var target: String = str(ctx.get("target_id", ""))
-	if _has("EQ01") and bool(root.flags.get("EQ01_bleed", false)) and _activate("EQ01_bleed", 0.0, root, out): _status(out, ctx, "bleed")
-	if _has("EQ03") and not _state(ctx, "burn") and _activate("EQ03:" + target, 4.0, root, out): _status(out, ctx, "burn")
-	if _has("EQ04") and _nth("EQ04", 3) and _activate("EQ04", 0.0, root, out): _status(out, ctx, "shock")
-	if _has("EQ05") and _nth("EQ05", 3) and _activate("EQ05", 0.0, root, out): _status(out, ctx, "chill")
-	if _has("EQ06") and _consecutive("EQ06", target, 3) and _activate("EQ06", 0.0, root, out):
-		_status(out, ctx, "corrosion")
-		_status(out, ctx, "grievous")
+	if _has("EQ01") and bool(root.flags.get("EQ01_bleed", false)) and _activate_status("EQ01_bleed", 0.0, root, out): _status(out, ctx, "bleed", "EQ01_bleed")
+	if _has("EQ03") and not _state(ctx, "burn") and _activate_status("EQ03:" + target, 4.0, root, out): _status(out, ctx, "burn", "EQ03:" + target)
+	if _has("EQ04") and _nth("EQ04", 3) and _activate_status("EQ04", 0.0, root, out): _status(out, ctx, "shock", "EQ04")
+	if _has("EQ05") and _nth("EQ05", 3) and _activate_status("EQ05", 0.0, root, out): _status(out, ctx, "chill", "EQ05")
+	if _has("EQ06") and _consecutive("EQ06", target, 3) and _activate_status("EQ06", 0.0, root, out):
+		_status(out, ctx, "corrosion", "EQ06")
+		_status(out, ctx, "grievous", "EQ06")
 	if _has("EQ07") and _nth("EQ07", 4) and _activate("EQ07", 3.0, root, out): _shield(out, ctx, 0.03)
-	if _has("EQ10") and bool(root.flags.get("EQ10", false)) and _activate("EQ10", 6.0, root, out): _status(out, ctx, "shock")
+	if _has("EQ10") and bool(root.flags.get("EQ10", false)) and _activate_status("EQ10", 6.0, root, out): _status(out, ctx, "shock", "EQ10")
 	if not out.statuses.is_empty():
 		root.pending_context = ctx.duplicate(true)
 		root.pending_stage = "weapon"
@@ -548,7 +581,7 @@ func _after_rest(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if _has("EQ39") and critical and _state(ctx, "corrosion") and _activate("EQ39", 4.0, root, out, false): _buff("EQ39", "attack_speed_bonus", 0.04, 2.0)
 	if applied.has("shock") and _has("EQ44"): _refund(out, ctx, root, "EQ44", 3.0, "dash", 0.10)
 	if applied.has("corrosion") and _has("EQ46") and _activate("EQ46", 5.0, root, out, false): _buff("EQ46", "move_speed_bonus", 0.05, 3.0)
-	if _has("EQ50") and bool(root.flags.get("EQ50", false)) and _state(ctx, "shock") and _activate("EQ50", 6.0, root, out): _status(out, ctx, "chill")
+	if _has("EQ50") and bool(root.flags.get("EQ50", false)) and _state(ctx, "shock") and _activate_status("EQ50", 6.0, root, out): _status(out, ctx, "chill", "EQ50")
 	if not out.statuses.is_empty():
 		root.pending_context = ctx.duplicate(true)
 		root.pending_stage = "feet"
@@ -683,11 +716,12 @@ func _any_enemy_state(states: Array) -> bool:
 		if id in ENEMY_STATES: return true
 	return false
 
-func _status(out: Dictionary, ctx: Dictionary, id: String) -> void:
+func _status(out: Dictionary, ctx: Dictionary, id: String, effect_id: String = "") -> void:
 	var base_duration: float = 4.0 if id == "corrosion" else 3.0
 	var bonus: float = float(stats.get("status_duration", 0.0)) + (0.20 if id == "chill" and _has_set("S03", 2) else 0.0)
 	out.statuses.append({"target_id":str(ctx.get("target_id", "")), "status":id,
 		"duration":base_duration * (1.0 + minf(0.40, bonus)), "power":float(ctx.get("H", stats.get("attack", 0.0))), "source":"equipment"})
+	if Numerical.is_v2(stats): out.statuses.back()["effect_id"] = effect_id
 
 func _extend(out: Dictionary, ctx: Dictionary, id: String) -> void:
 	out.status_extensions.append({"target_id":str(ctx.get("target_id", "")), "status":id, "seconds":0.30, "max_duration":(4.0 if id == "corrosion" else 3.0) * 1.40, "source":"equipment"})

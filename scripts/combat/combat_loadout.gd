@@ -145,15 +145,21 @@ func _apply_commands(result: Dictionary, context: Dictionary) -> void:
 	_apply_refunds(result.get("cooldown_refunds", []))
 	_apply_extensions(result.get("status_extensions", []), context)
 	var accepted: Dictionary = {}
+	var accepted_effects: Array[String] = []
 	for command: Dictionary in result.get("statuses", []):
 		var target: Node2D = _target(command.get("target_id"), context.get("target"))
 		var status_id: String = str(command.get("status", ""))
 		if _apply_status(target, status_id, float(command.get("power", context.get("H", 0.0))), float(command.get("duration", 3.0))):
+			var effect_id: String = str(command.get("effect_id", ""))
+			if not effect_id.is_empty() and effect_id not in accepted_effects: accepted_effects.append(effect_id)
 			var id: int = target.get_instance_id()
 			if not accepted.has(id):
 				accepted[id] = {"target": target, "states": []}
 			if not accepted[id].states.has(status_id):
 				accepted[id].states.append(status_id)
+	# Rejected provisional status packets become available to later slot stages;
+	# accepted bundles commit exactly one ICD before any status follow-ups.
+	result.triggered.append_array(effects.settle_status_requests(context, result.get("statuses", []), accepted_effects))
 	# Only confirmed status writes may activate "successfully applied" affixes.
 	for id: int in accepted:
 		var followup: Dictionary = context.duplicate()
