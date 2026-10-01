@@ -23,6 +23,7 @@ var route := "menu"
 var modals: Array[Dictionary] = []
 var pending_outcome := ""
 var quit_after_result := false
+var _shutdown_started := false
 var room_start_failed := false
 var selected_difficulty: int = 0
 var selected_wish_slot: String = ""
@@ -1014,7 +1015,7 @@ func _show_room_load_error() -> void:
 	message.name = "RoomLoadFailureMessage"
 	if expedition != null and expedition.active():
 		MineStyle.button(screen,"RETRY",Vector2(88,392),Vector2(390,56),_on_run_started).grab_focus()
-		var leave := MineStyle.button(screen,"",Vector2(496,392),Vector2(480,56),func(): get_tree().quit())
+		var leave := MineStyle.button(screen,"",Vector2(496,392),Vector2(480,56),_shutdown_after_audio_cleanup)
 		leave.name = "ExitWithCheckpoint"
 		leave.text = _ex_text("退出 · 保留已保存远征", "Exit · keep saved expedition")
 		return
@@ -1124,7 +1125,7 @@ func _save_expedition_and_quit() -> void:
 			return
 	# Combat keeps its already committed entrance receipt; it is never converted
 	# into an abandonment settlement by a normal save-and-exit action.
-	get_tree().quit()
+	_shutdown_after_audio_cleanup()
 
 func show_relics() -> void:
 	if Game.run == null:
@@ -1245,6 +1246,12 @@ func _on_run_finished(result: Dictionary) -> void:
 		call_deferred("show_result",result)
 
 func show_result(result: Dictionary) -> void:
+	if quit_after_result:
+		quit_after_result = false
+		# Settlement is already durable. Keep the room/audio owner alive until
+		# the mixer releases its playback instead of queuing it for deletion.
+		_shutdown_after_audio_cleanup()
+		return
 	if is_instance_valid(room):
 		room.queue_free()
 		room = null
@@ -1302,9 +1309,6 @@ func show_result(result: Dictionary) -> void:
 		var next_goal: String = readout.next_goal(hero_id,int(Game.profile.get("hero_xp",{}).get(hero_id,0)))
 		var goal_label := MineStyle.literal(screen,_ex_text("下一目标：","NEXT GOAL: ")+next_goal,Vector2(88,658),Vector2(1104,30),17,MineStyle.CYAN)
 		goal_label.name = "NextGrowthGoal"
-	if quit_after_result:
-		quit_after_result = false
-		get_tree().quit()
 
 func _show_death_review(review: Dictionary) -> void:
 	var panel := _push_modal("",Vector2(1000,650))
@@ -1524,6 +1528,7 @@ func _commit_audio_sliders() -> void:
 	audio_sliders.clear()
 
 func _process(delta: float) -> void:
+	if _shutdown_started: return
 	music_tick -= delta
 	if music_tick > 0.0 or not is_instance_valid(music): return
 	music_tick = 0.3
@@ -1709,9 +1714,10 @@ func _notification(what: int) -> void:
 		_quit()
 
 func _quit() -> void:
+	if _shutdown_started: return
 	if room_start_failed and Game.run != null:
 		if expedition != null and expedition.active():
-			get_tree().quit()
+			_shutdown_after_audio_cleanup()
 		return
 	if not modals.is_empty() and modals[-1].get("required",false):
 		return
@@ -1721,4 +1727,25 @@ func _quit() -> void:
 		else:
 			show_abandon(true)
 	else:
-		get_tree().quit()
+		_shutdown_after_audio_cleanup()
+
+func _shutdown_after_audio_cleanup() -> void:
+	if _shutdown_started: return
+	_shutdown_started = true
+	# This is reached only after the existing save/settlement/confirmation
+	# gates. Freeze the scene so input or Main's music updater cannot restart
+	# playback while the existing bounded mixer-cleanup methods yield.
+	set_process(false)
+	set_process_input(false)
+	set_process_unhandled_input(false)
+	if is_instance_valid(ui): ui.process_mode = Node.PROCESS_MODE_DISABLED
+	get_tree().paused = true
+	if is_instance_valid(room): room.set_input_blocked(true)
+	var audio: Node = room.get("combat_audio") if is_instance_valid(room) else null
+	if is_instance_valid(music): music.stop_all()
+	if is_instance_valid(audio): audio.stop_all()
+	if is_instance_valid(music) and not await music.wait_for_cleanup():
+		push_warning("Music playback did not finish cleanup before the shutdown timeout.")
+	if is_instance_valid(audio) and not await audio.wait_for_cleanup():
+		push_warning("Combat playback did not finish cleanup before the shutdown timeout.")
+	get_tree().quit()
