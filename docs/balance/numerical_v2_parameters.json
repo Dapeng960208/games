@@ -1,18 +1,30 @@
 {
-  "schema": "NumericalDesign/v2-draft",
+  "schema": "NumericalDesign/v2.3-draft",
   "status": "pending_user_confirmation",
   "source_commit": "8daa519f2ea1a7dcc3f422b4df96ac81d65986b9",
   "date": "2026-10-01",
   "runtime_enabled": false,
   "chapter_level_step": 5,
+  "chapter_hp_per_step": 0.12,
+  "chapter_damage_per_step": 0.08,
+  "chapter_challenge_level_rule": "all D: ordinary zones 5*(B-1)+1/3/5, boss 5*B; only released chapters accessible; no player tracking",
+  "boss_balance_target": {
+    "status": "pending_runtime_validation",
+    "fixture": "same chapter hero/item level 5*B, 8 gold items +2, main/affix quantile 50, each enhancement gain 10, legal relevant affixes",
+    "gold_boss_ttk_seconds": [35, 50],
+    "gold_remaining_hp_ratio_min": 0.6,
+    "purple_comparison": "same 8 templates purple+5, same first 3 affixes; TTK >= gold*1.15 OR final HP at least 0.15 lower; clearable",
+    "hard_rarity_gate": false,
+    "medians_require_fixed_seeds": 10
+  },
   "implemented_chapters": 4,
   "planned_chapters": 12,
   "growth": {
     "attack": 0.04,
     "ability_power": 0.05,
     "max_hp": 0.05,
-    "armor": 1.0,
-    "magic_resist": 0.8
+    "armor": 10,
+    "magic_resist": 8
   },
   "xp_thresholds_1_20": [
     0,
@@ -52,7 +64,26 @@
     "steps": 100
   },
   "starter_template_multiplier": 0.75,
-  "enhancement_per_rank": 0.1,
+  "enhancement_reference_per_rank": 0.1,
+  "enhancement_random": {
+    "rank_success_rate": 1.0,
+    "gain_percent_weights": {"8": 10, "9": 20, "10": 40, "11": 20, "12": 10},
+    "gain_scope": "all_flat_main_attributes_of_this_item",
+    "gain_formula": "1 + sum(step_gain_percent)/100",
+    "reroll_unlock_hero_level": 10,
+    "reroll_keep_rule": "max(old_gain_percent, new_gain_percent)",
+    "reroll_no_improvement_pity": 4,
+    "pity_gain_percent_increment": 1,
+    "gain_percent_max": 12,
+    "reroll_gold_fraction": 0.5,
+    "reroll_material_fraction": 0.5,
+    "reroll_core": 0,
+    "reroll_refundable": false,
+    "inherit_overlap_rule": "max_per_step; ties_keep_target_counter",
+    "inherit_require": "source_rank >= target_rank and merged_total_gain > target_total_gain",
+    "legacy_gain_percent_per_step": 10,
+    "low_level_reroll_makeup": "per operation ceil(base_rank_gold*0.5*S(target_ilvl)) minus ceil(base_rank_gold*0.5*S(settled_price_ilvl_peak)), positive only; includes no-improvement operations; update each peak by max"
+  },
   "enhancement_max": 10,
   "enhancement_unlocks": [
     [
@@ -128,91 +159,95 @@
   "rarities": {
     "white": {
       "name": "白",
-      "main_multiplier": 1.0,
-      "affix_count": 0
+      "main_multiplier": 1,
+      "affix_count": 0,
+      "percentage_multiplier": 1
     },
     "green": {
       "name": "绿",
-      "main_multiplier": 1.1,
-      "affix_count": 2
+      "main_multiplier": 1.2,
+      "affix_count": 2,
+      "percentage_multiplier": 1.1
     },
     "purple": {
       "name": "紫",
-      "main_multiplier": 1.25,
-      "affix_count": 3
+      "main_multiplier": 1.5,
+      "affix_count": 3,
+      "percentage_multiplier": 1.25
     },
     "gold": {
       "name": "金",
-      "main_multiplier": 1.4,
-      "affix_count": 4
+      "main_multiplier": 1.875,
+      "affix_count": 4,
+      "percentage_multiplier": 1.4
     }
   },
   "slots": {
     "weapon": {
       "name": "武器",
       "physical": {
-        "attack": 9
+        "attack": 90
       },
       "magic": {
-        "ability_power": 14
+        "ability_power": 140
       }
     },
     "head": {
       "name": "头部",
       "shared": {
-        "max_hp": 16,
-        "armor": 4,
-        "magic_resist": 4
+        "max_hp": 160,
+        "armor": 40,
+        "magic_resist": 40
       }
     },
     "chest": {
       "name": "胸部",
       "shared": {
-        "max_hp": 32,
-        "armor": 8,
-        "magic_resist": 8
+        "max_hp": 320,
+        "armor": 80,
+        "magic_resist": 80
       }
     },
     "hands": {
       "name": "手部",
       "physical": {
-        "attack": 3
+        "attack": 30
       },
       "magic": {
-        "ability_power": 4
+        "ability_power": 40
       }
     },
     "legs": {
       "name": "裤子",
       "shared": {
-        "max_hp": 24,
-        "armor": 6,
-        "magic_resist": 6
+        "max_hp": 240,
+        "armor": 60,
+        "magic_resist": 60
       }
     },
     "feet": {
       "name": "鞋子",
       "shared": {
-        "max_hp": 12,
+        "max_hp": 120,
         "move_speed": 0.03
       }
     },
     "ring": {
       "name": "戒指",
       "physical": {
-        "attack": 3
+        "attack": 30
       },
       "magic": {
-        "ability_power": 4
+        "ability_power": 40
       }
     },
     "charm": {
       "name": "饰品",
       "physical": {
-        "attack": 4
+        "attack": 40
       },
       "magic": {
-        "ability_power": 6
+        "ability_power": 60
       }
     }
   },
@@ -222,8 +257,8 @@
   "affixes": {
     "attack": {
       "name": "攻击",
-      "min": 2,
-      "max": 4,
+      "min": 20,
+      "max": 40,
       "scaling": "flat",
       "slots": [
         "weapon",
@@ -235,8 +270,8 @@
     },
     "ability_power": {
       "name": "法强",
-      "min": 3,
-      "max": 6,
+      "min": 30,
+      "max": 60,
       "scaling": "flat",
       "slots": [
         "weapon",
@@ -248,8 +283,8 @@
     },
     "max_hp": {
       "name": "生命",
-      "min": 10,
-      "max": 20,
+      "min": 100,
+      "max": 200,
       "scaling": "flat",
       "slots": [
         "head",
@@ -276,8 +311,8 @@
     },
     "armor": {
       "name": "护甲",
-      "min": 2,
-      "max": 6,
+      "min": 20,
+      "max": 60,
       "scaling": "flat",
       "slots": [
         "head",
@@ -291,8 +326,8 @@
     },
     "magic_resist": {
       "name": "魔抗",
-      "min": 2,
-      "max": 6,
+      "min": 20,
+      "max": 60,
       "scaling": "flat",
       "slots": [
         "head",
@@ -306,8 +341,8 @@
     },
     "max_mana": {
       "name": "法力容量",
-      "min": 8,
-      "max": 16,
+      "min": 80,
+      "max": 160,
       "scaling": "flat",
       "slots": [
         "head",
@@ -318,8 +353,8 @@
     },
     "armor_penetration": {
       "name": "物穿",
-      "min": 2,
-      "max": 5,
+      "min": 20,
+      "max": 50,
       "scaling": "flat",
       "slots": [
         "weapon",
@@ -331,8 +366,8 @@
     },
     "magic_penetration": {
       "name": "法穿",
-      "min": 2,
-      "max": 5,
+      "min": 20,
+      "max": 50,
       "scaling": "flat",
       "slots": [
         "weapon",
@@ -480,8 +515,8 @@
     },
     "true_damage_bonus": {
       "name": "原始命中真实附伤",
-      "min": 1,
-      "max": 2,
+      "min": 10,
+      "max": 20,
       "scaling": "flat",
       "slots": [
         "weapon",
@@ -605,14 +640,18 @@
   ],
   "drop_enhancement": {
     "non_gold": {
-      "0": 100
+      "0": 60,
+      "1": 20,
+      "2": 10,
+      "3": 5,
+      "4": 3,
+      "5": 2
     },
     "gold": {
-      "0": 60,
-      "1": 30,
-      "2": 10
+      "0": 70,
+      "1": 30
     },
-    "max": 2
+    "max_by_rarity": {"white": 5, "green": 5, "purple": 5, "gold": 1}
   },
   "kill_drop_chance": {
     "normal": 0.01,
@@ -735,24 +774,24 @@
   },
   "difficulty_hp_multipliers": [
     1,
-    1.3,
-    1.75,
-    2.35,
-    3.2
+    1.4,
+    2,
+    2.8,
+    4
   ],
   "difficulty_damage_multipliers": [
     1,
-    1.15,
-    1.35,
-    1.6,
-    1.9
+    1.2,
+    1.5,
+    1.85,
+    2.3
   ],
-  "inheritance_gold_makeup": "max(0, sum(ceil(enhancement_gold[k]*(1+0.03*(target_ilvl-1)))) - sum(ceil(enhancement_gold[k]*(1+0.03*(source_ilvl-1))))) for k in 0..source_rank-1",
+  "inheritance_gold_makeup": "sum(max(0, ceil(enhancement_gold[j]*S(target_ilvl))-ceil(enhancement_gold[j]*S(source_step_price_ilvl_peak[j])))) + sum(max(0, ceil(0.5*enhancement_gold[operation.rank]*S(target_ilvl))-operation.settled_price_peak)) for all source and target reroll operations; fixed fee 100 separate",
   "talent_per_rank": {
     "main_attribute_ratio": 0.02,
     "crit_chance": 0.01,
     "hero_hp_ratio": 0.03,
-    "armor_and_magic_resist_flat": 2,
+    "armor_and_magic_resist_flat": 20,
     "attack_speed": 0.02,
     "cooldown_reduction": 0.01
   },
@@ -792,5 +831,33 @@
     "L23": 24,
     "L24": 26
   },
-  "reward_source_sha256": "3f2285244aab98652f3be44f2027116aa97f06e81217462091b8dc734fd33c33"
+  "reward_source_sha256": "3f2285244aab98652f3be44f2027116aa97f06e81217462091b8dc734fd33c33",
+  "combat_scale": 10,
+  "integer_rule": "Nonnegative half-up I(x)=floor(x+0.5); attributes aggregate before rounding, instance flat stats and each damage/shield/heal/resource packet round once; percentages/timing/distance/speed/currency/counts retain original units.",
+  "resistance_denominator": 1000,
+  "ordinary_skill_tier_multipliers": [
+    1,
+    1.08,
+    1.16,
+    1.25
+  ],
+  "ordinary_skill_difficulty_multipliers": [
+    1,
+    1.05,
+    1.1,
+    1.15,
+    1.2
+  ],
+  "boss_skill_difficulty_multipliers": [
+    1,
+    1.06,
+    1.12,
+    1.2,
+    1.3
+  ],
+  "boss_skill_phase_multipliers": [
+    1,
+    1.1,
+    1.2
+  ]
 }

@@ -4,7 +4,9 @@
 
 第二轮审查A13–A30已通过PR #1合入，并与本地同期装备UI改进整合；Godot 4.7.2的六组相关定向检查7769项、0失败，证据见[修复与验收](audits/GAMEPLAY_AUDIT_ROUND2_FIXES_2026-10-01.md)。本轮没有把长期设计风险标为全部解决：八槽/实例/随机品质仍按EQ01–EQ03推进，分支时机、战斗背包换装频率、状态/护盾理解和自然多局体验继续待游玩验证。
 
-EQ01–EQ03后续实施参考[等级、装备、锻造与全量Buff数值确认稿](balance/LEVEL_EQUIPMENT_NUMERICAL_DESIGN.md)及[目标数值全表](balance/TARGET_NUMERICAL_TABLES.md)。该稿目前待用户确认，当前只有文档归档，不能将随机实例、八槽、天赋或+10强化标为已经实现。按最新指令直接提交main，原数值方案分支已删除。
+EQ01–EQ03后续实施参考[等级、装备、锻造与全量Buff数值确认稿](balance/LEVEL_EQUIPMENT_NUMERICAL_DESIGN.md)、[目标数值全表](balance/TARGET_NUMERICAL_TABLES.md)及[S00–S11执行清单](balance/NUMERICAL_REDESIGN_EXECUTION_STEPS.md)。该稿目前待用户确认，当前只有文档归档，不能将随机实例、八槽、天赋或+10强化标为已经实现。用户已确认×10/整数化范围；按最新指令新版方案提交草稿PR，PR正文完整拆分步骤，原`codex/level-equipment-numerical-spec`分支已删除。
+
+数值方案的最新约束见[随机强化方案](balance/RANDOM_FORGING_DESIGN.md)及[章节/Boss标尺](balance/BOSS_DIFFICULTY_CALIBRATION.md)：各品质掉落上限、三组强化等效和每阶随机收益统一计算；1–12章递增，未来B05–B12仅规划接口。全金约+2的对应章D4碾压表现属于后续12组职业/Boss实战目标，尚未实现或验证。
 
 ## 前四关下一轮事项
 
