@@ -12,8 +12,15 @@ func _ready() -> void:
 	hide()
 
 func update_cast(room: Node, screen: Vector2, obstacles: Array[Rect2], font: Font) -> void:
-	var boss: Node = room.get("_boss_actor") if is_instance_valid(room) else null
-	if not is_instance_valid(boss) or not boss.is_alive() or boss.get("boss_brain") == null:
+	# A defeated actor may already be freed while the room retains its handle.
+	# Validate the raw value before assigning it to a typed Node variable.
+	var boss_ref: Variant = room.get("_boss_actor") if is_instance_valid(room) else null
+	if not is_instance_valid(boss_ref):
+		info.clear()
+		hide()
+		return
+	var boss: Node = boss_ref
+	if boss.is_queued_for_deletion() or not boss.is_alive() or boss.get("boss_brain") == null:
 		info.clear()
 		hide()
 		return
