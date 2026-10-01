@@ -53,7 +53,7 @@ class ThemeRoom extends SkillFixtures.RoomFixture:
 	func enemy_died(_enemy: Node2D) -> void:
 		deaths += 1
 
-	func add_damage_text(_at: Vector2, _amount: float, _kind: StringName) -> void:
+	func add_damage_text(_at: Vector2, _amount: float, _kind: StringName, _context: Dictionary = {}) -> void:
 		pass
 
 var checks: int = 0
@@ -106,7 +106,7 @@ func trigger(sim: Dictionary, action: String, phase_value: int = 1) -> Dictionar
 	brain.state_time = 0.0
 	brain.action_index = (Brain.SEQUENCES[boss.boss_id][phase_value] as Array).find(action)
 	check(brain.action_index >= 0, boss.boss_id + " has actual sequence action " + action)
-	brain.tick(boss, 0.001, sim.player)
+	brain._begin_action(boss, sim.player, action)
 	var tell: Dictionary = brain.current_telegraph()
 	check(not tell.is_empty() and str(tell.get("action_id", "")) == action, action + " enters real telegraph")
 	if tell.is_empty(): return {}

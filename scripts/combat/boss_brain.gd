@@ -1,25 +1,26 @@
 class_name BossBrain
 extends RefCounted
-## Deterministic three-phase boss state machine. It produces the same frozen
-## command dictionaries consumed by EnemySkillRuntime and drawn by MineRoom.
+## Seeded three-phase boss tactics. Distance, cooldowns and finite summon
+## availability select among each boss's abilities; recovery navigates its
+## preferred range. Frozen command dictionaries are both warnings and hits.
 ## Arena objects call apply_arena_counter(); the host actor owns phase cleanup,
 ## finite reinforcement requests and the completion signal.
 
 const EPSILON := 0.00001
 const SEQUENCES := {
-	"BO01": {1:["hammer_fan", "ladle_drag"], 2:["hammer_fan", "slag_lane", "ladle_drag"], 3:["hammer_fan", "ladle_drag", "back_heat"]},
-	"BO02": {1:["root_fork", "spore_pod", "brood_eggs", "root_link"], 2:["root_fork", "root_link", "spore_pod", "brood_eggs"], 3:["root_link", "spore_pod", "brood_eggs", "crown_open"]},
-	"BO03": {1:["glide", "capacitor_burst", "grave_recall"], 2:["runway_pair", "capacitor_burst", "glide", "grave_recall"], 3:["runway_pair", "sweep_land", "capacitor_burst", "grave_recall"]},
-	"BO04": {1:["resonance_ring", "sound_blade", "war_drum_rage"], 2:["replay_path", "resonance_ring", "sound_blade", "war_drum_rage"], 3:["alternating_ring", "replay_path", "heart_crack", "sound_blade", "war_drum_rage"]},
+	"BO01": {1:["hammer_fan", "ladle_drag", "solar_cross"], 2:["hammer_fan", "slag_lane", "ladle_drag", "solar_cross"], 3:["hammer_fan", "ladle_drag", "back_heat", "solar_cross"]},
+	"BO02": {1:["root_fork", "spore_pod", "brood_eggs", "root_link", "acid_scatter"], 2:["root_fork", "root_link", "spore_pod", "brood_eggs", "acid_scatter"], 3:["root_link", "spore_pod", "brood_eggs", "crown_open", "acid_scatter"]},
+	"BO03": {1:["glide", "capacitor_burst", "grave_recall", "stitch_cage"], 2:["runway_pair", "capacitor_burst", "glide", "grave_recall", "stitch_cage"], 3:["runway_pair", "sweep_land", "capacitor_burst", "grave_recall", "stitch_cage"]},
+	"BO04": {1:["resonance_ring", "sound_blade", "war_drum_rage", "crag_leap"], 2:["replay_path", "resonance_ring", "sound_blade", "war_drum_rage", "crag_leap"], 3:["alternating_ring", "replay_path", "heart_crack", "sound_blade", "war_drum_rage", "crag_leap"]},
 }
 
 # Internal action keys remain stable for saved telemetry and arena fixtures;
 # this identity is the displayed/executable new theme, not a second boss set.
 const THEMED_ACTIONS := {
-	"BO01":{"hammer_fan":"gear_arm_sweep", "ladle_drag":"lightning_trace", "slag_lane":"solar_lightning_lane", "back_heat":"exposed_solar_core"},
-	"BO02":{"root_fork":"acid_fork", "spore_pod":"acid_pool", "root_link":"wing_cone", "crown_open":"amber_carapace_open", "brood_eggs":"brood_eggs"},
-	"BO03":{"glide":"stitch_pull", "capacitor_burst":"barrel_throw", "runway_pair":"stitch_lanes", "sweep_land":"mayor_body_slam", "grave_recall":"grave_recall"},
-	"BO04":{"resonance_ring":"ground_slam", "sound_blade":"warchief_charge", "replay_path":"rock_fissures", "alternating_ring":"outer_ground_slam", "heart_crack":"exhausted_ground_slam", "war_drum_rage":"war_drum_rage"},
+	"BO01":{"hammer_fan":"gear_arm_sweep", "ladle_drag":"lightning_trace", "slag_lane":"solar_lightning_lane", "back_heat":"exposed_solar_core", "solar_cross":"solar_cross"},
+	"BO02":{"root_fork":"acid_fork", "spore_pod":"acid_pool", "root_link":"wing_cone", "crown_open":"amber_carapace_open", "brood_eggs":"brood_eggs", "acid_scatter":"acid_scatter"},
+	"BO03":{"glide":"stitch_pull", "capacitor_burst":"barrel_throw", "runway_pair":"stitch_lanes", "sweep_land":"mayor_body_slam", "grave_recall":"grave_recall", "stitch_cage":"stitch_cage"},
+	"BO04":{"resonance_ring":"ground_slam", "sound_blade":"warchief_charge", "replay_path":"rock_fissures", "alternating_ring":"outer_ground_slam", "heart_crack":"exhausted_ground_slam", "war_drum_rage":"war_drum_rage", "crag_leap":"crag_leap"},
 }
 
 var definition: Dictionary = {}
@@ -54,6 +55,13 @@ var grave_recalls: int = 0
 var grave_sealed: bool = false
 var drums_broken: bool = false
 var _last_actor: WeakRef
+var movement_intent: StringName = &"idle"
+var movement_target: Vector2 = Vector2.ZERO
+var _orbit_sign: float = 1.0
+var _actions_used: Dictionary = {}
+var _action_ready_at: Dictionary = {}
+var _last_action: String = ""
+var _recovery_elapsed: float = 0.0
 
 func configure(next_definition: Dictionary, seed_value: int = 0) -> void:
 	definition = next_definition.duplicate(true)
@@ -88,6 +96,13 @@ func configure(next_definition: Dictionary, seed_value: int = 0) -> void:
 	drums_broken = false
 	_last_actor = null
 	_rng.seed = (seed_value if seed_value != 0 else boss_id.hash() ^ 0xB055)
+	movement_intent = &"idle"
+	movement_target = Vector2.ZERO
+	_orbit_sign = -1.0 if _rng.randf() < 0.5 else 1.0
+	_actions_used.clear()
+	_action_ready_at.clear()
+	_last_action = ""
+	_recovery_elapsed = 0.0
 
 func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 	if stopped or delta <= 0.0 or not is_instance_valid(actor) or not _alive(victim):
@@ -132,7 +147,10 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 		return
 	if state == &"recovery":
 		state_time -= delta
+		_recovery_elapsed += delta
 		_set_actor_state(actor, &"recovery")
+		if state_time > 0.0 and _recovery_elapsed >= 0.28:
+			_move_tactically(actor, victim)
 		if state_time <= 0.0:
 			_begin_action(actor, victim)
 
@@ -266,7 +284,11 @@ func combat_snapshot() -> Dictionary:
 		"counters": counter_snapshot(),
 		"thematic_action":str(THEMED_ACTIONS.get(boss_id, {}).get(current_action, current_action)),
 		"rage_remaining":rage_time,
+		"tactics":tactical_snapshot(),
 	}
+
+func tactical_snapshot() -> Dictionary:
+	return {"intent":str(movement_intent), "target":movement_target, "last_action":_last_action, "actions_used":_actions_used.duplicate(true)}
 
 func stop(actor: Node2D = null) -> void:
 	stopped = true
@@ -279,6 +301,7 @@ func _enter_phase(actor: Node2D) -> void:
 	command.clear()
 	action_index = 0
 	current_action = ""
+	_recovery_elapsed = 0.0
 	_close_weakpoint(actor)
 	state = &"phase_shift"
 	state_time = 0.9
@@ -286,19 +309,31 @@ func _enter_phase(actor: Node2D) -> void:
 	if actor.has_method("boss_phase_started"):
 		actor.call("boss_phase_started", phase, _health_ratio(actor))
 
-func _begin_action(actor: Node2D, victim: Node2D) -> void:
+func _begin_action(actor: Node2D, victim: Node2D, forced_action: String = "") -> void:
+	# The explicit action argument lets arena fixtures exercise one real ability;
+	# ordinary gameplay selects by distance, availability and recent casts.
 	var sequence: Array = SEQUENCES.get(boss_id, {}).get(phase, [])
 	if sequence.is_empty():
 		state = &"recovery"
 		state_time = 1.0
 		return
-	current_action = str(sequence[action_index % sequence.size()])
+	current_action = forced_action if not forced_action.is_empty() else _select_action(actor, victim, sequence)
+	if current_action.is_empty():
+		command.clear()
+		state = &"recovery"
+		state_time = 0.45
+		state_duration = state_time
+		_recovery_elapsed = 0.28
+		_set_actor_state(actor, &"recovery")
+		_move_tactically(actor, victim)
+		return
 	action_index += 1
 	command = _build_action(actor, victim, current_action)
 	if command.is_empty():
 		state = &"recovery"
 		state_time = 0.35
 		state_duration = state_time
+		_recovery_elapsed = 0.0
 		return
 	if bool(command.get("tracks_target", true)):
 		_retarget(actor, victim)
@@ -307,8 +342,132 @@ func _begin_action(actor: Node2D, victim: Node2D) -> void:
 	state_duration = state_time
 	_set_actor_state(actor, &"telegraph")
 
+func _select_action(actor: Node2D, victim: Node2D, sequence: Array) -> String:
+	if not _can_navigate(actor):
+		# Lightweight catalog/geometry hosts intentionally have no room movement.
+		return str(sequence[action_index % sequence.size()])
+	var distance: float = actor.position.distance_to(victim.position)
+	var best_action: String = ""
+	var best_score: float = -INF
+	for action_value: String in sequence:
+		if not _action_available(actor, action_value) or float(_action_ready_at.get(action_value, 0.0)) > elapsed:
+			continue
+		var interval: Vector2 = _action_distance(action_value)
+		if action_value not in ["brood_eggs", "grave_recall", "war_drum_rage"] and distance > interval.y + 32.0:
+			continue
+		var range_gap: float = maxf(0.0, maxf(interval.x - distance, distance - interval.y))
+		var usage: int = int(_actions_used.get(action_value, 0))
+		var score: float = 2.3 / (1.0 + float(usage)) - range_gap / 95.0
+		if action_value == _last_action: score -= 3.5
+		if action_value == "grave_recall": score += 0.7
+		if action_value == "war_drum_rage" and rage_time > 0.0: score -= 4.0
+		score += _rng.randf_range(-0.12, 0.12)
+		if score > best_score:
+			best_score = score
+			best_action = action_value
+	if not best_action.is_empty(): return best_action
+	# When every usable ability is cooling down, keep repositioning until an
+	# actual cooldown finishes instead of silently releasing an early attack.
+	return ""
+
+func _action_available(actor: Node2D, action: String) -> bool:
+	if action == "brood_eggs":
+		return brood_batches < int(definition.get("brood_batch_limit", 3)) and _owned_add_count(actor) < 2
+	if action == "grave_recall":
+		return not grave_sealed and grave_recalls < int(definition.get("grave_recall_limit", 2)) and _owned_add_count(actor) < 2 and (not actor.has_method("can_recall_grave") or bool(actor.can_recall_grave()))
+	if action == "war_drum_rage": return not drums_broken
+	return true
+
+func _action_distance(action: String) -> Vector2:
+	match action:
+		"hammer_fan": return Vector2(0.0, 255.0)
+		"root_link": return Vector2(0.0, 350.0)
+		"back_heat": return Vector2(105.0, 285.0)
+		"crown_open": return Vector2(110.0, 260.0)
+		"resonance_ring": return Vector2(135.0, 310.0)
+		"alternating_ring": return Vector2(135.0, 520.0)
+		"heart_crack": return Vector2(145.0, 315.0)
+		"crag_leap": return Vector2(200.0, 500.0)
+		"sound_blade", "sweep_land": return Vector2(180.0, 600.0)
+		"glide": return Vector2(100.0, 500.0)
+		"capacitor_burst": return Vector2(100.0, 800.0)
+		"runway_pair": return Vector2(100.0, 420.0)
+	return Vector2(150.0, float(definition.get("attack_range", 760.0)))
+
+func _move_tactically(actor: Node2D, victim: Node2D) -> void:
+	# Active motion belongs to EnemySkillRuntime. Ordinary navigation must not
+	# displace its frozen start or steal a player's earned weakpoint opening.
+	if not _can_navigate(actor) or weakpoint_open() or not _pending_weakpoint.is_empty() or bool(actor.get_meta("enemy_skill_motion", false)):
+		return
+	var host: Node2D = _property(actor, "room", null) as Node2D
+	var tactics: Dictionary = definition.get("tactics", {})
+	var minimum: float = float(tactics.get("min_range", 220.0))
+	var maximum: float = float(tactics.get("max_range", 350.0))
+	var retreat: float = float(tactics.get("retreat_range", 140.0))
+	var distance: float = actor.position.distance_to(victim.position)
+	var direction: Vector2 = actor.position.direction_to(victim.position)
+	if direction.length_squared() <= EPSILON: direction = Vector2.RIGHT
+	var lateral: Vector2 = direction.orthogonal() * _orbit_sign
+	var orbit: float = float(tactics.get("orbit_weight", 0.5))
+	var desired: Vector2
+	var speed_multiplier: float = 1.0
+	if distance > maximum or not bool(host.call("has_line_of_sight", actor.position, victim.position)):
+		movement_intent = &"chase"
+		desired = direction + lateral * orbit * 0.28
+		speed_multiplier = float(tactics.get("chase_multiplier", 1.1))
+	elif distance < retreat:
+		movement_intent = &"retreat"
+		desired = -direction + lateral * orbit * 0.45
+	elif distance < minimum:
+		movement_intent = &"space"
+		desired = -direction * 0.5 + lateral * orbit
+	else:
+		movement_intent = &"orbit"
+		desired = lateral + direction * clampf((distance - (minimum + maximum) * 0.5) / 180.0, -0.3, 0.3)
+	desired = desired.normalized()
+	var radius: float = float(_property(actor, "navigation_radius", 54.0))
+	movement_target = host.call("move_actor", actor.position, desired * 160.0, radius)
+	if actor.position.distance_to(movement_target) < 18.0:
+		_orbit_sign = -_orbit_sign
+		desired = direction.orthogonal() * _orbit_sign
+		movement_target = host.call("move_actor", actor.position, desired * 160.0, radius)
+	var navigation: Vector2 = host.call("navigation_direction", actor.position, movement_target, radius)
+	actor.set("velocity", navigation.limit_length(1.0) * float(_property(actor, "move_speed", 70.0)) * speed_multiplier)
+	if navigation.length_squared() > EPSILON:
+		# The brain keeps its recovery clock, while the shared body visual uses
+		# the existing locomotion phase instead of sliding a stationary pose.
+		actor.set("state", &"reposition")
+	if _has_property(actor, "aim_direction"): actor.set("aim_direction", direction)
+
+func _can_navigate(actor: Node2D) -> bool:
+	var host: Node = _property(actor, "room", null) as Node
+	return is_instance_valid(host) and host.has_method("navigation_direction") and host.has_method("move_actor") and host.has_method("has_line_of_sight") and _has_property(actor, "move_speed")
+
+func _owned_add_count(actor: Node2D) -> int:
+	var host: Node = _property(actor, "room", null) as Node
+	var container: Node = _property(host, "enemies", null) as Node
+	if not is_instance_valid(container): return 0
+	var count: int = 0
+	for child: Node in container.get_children():
+		if child == actor or not child is Node2D or not _alive(child): continue
+		var owner: Variant = _property(child, "owner_enemy", null)
+		if owner is WeakRef and owner.get_ref() == actor: count += 1
+	return count
+
+func _has_property(object: Object, property_name: String) -> bool:
+	if not is_instance_valid(object): return false
+	for descriptor: Dictionary in object.get_property_list():
+		if str(descriptor.name) == property_name: return true
+	return false
+
+func _property(object: Object, property_name: String, fallback: Variant) -> Variant:
+	return object.get(property_name) if _has_property(object, property_name) else fallback
+
 func _execute(actor: Node2D) -> void:
 	var released: Dictionary = command.duplicate(true)
+	_last_action = current_action
+	_actions_used[current_action] = int(_actions_used.get(current_action, 0)) + 1
+	_action_ready_at[current_action] = elapsed + float(released.get("cooldown", 5.0))
 	if current_action == "brood_eggs":
 		brood_batches += 1
 	if current_action == "grave_recall":
@@ -330,6 +489,7 @@ func _execute(actor: Node2D) -> void:
 	state = &"recovery"
 	state_time = maxf(0.45, maxf(float(released.get("recovery", 1.0)), float(released.get("weakpoint_delay", 0.0)) + opening))
 	state_duration = state_time
+	_recovery_elapsed = 0.0
 	command.clear()
 	_set_actor_state(actor, &"recovery")
 
@@ -345,6 +505,8 @@ func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 			base.merge({"kind":"melee", "shape":"cone", "range":255.0, "angle":1.85, "damage_multiplier":1.15, "tell":0.78, "lock":0.34, "recovery":1.0})
 		"ladle_drag":
 			base.merge({"kind":"ground_area", "shape":"line", "range":680.0, "width":58.0, "duration":1.0, "tick_interval":0.65, "max_active_hazards":2, "damage_multiplier":0.75, "damage_type":"magic", "status":{"id":"shock", "duration":2.4}, "tell":0.95, "lock":0.4, "recovery":1.15})
+		"solar_cross":
+			base.merge({"kind":"ground_area", "shape":"line", "paths":_solar_cross_paths(origin, target, actor), "count":2, "width":54.0, "duration":1.45, "tick_interval":0.65, "max_active_hazards":2, "damage_multiplier":0.5, "damage_type":"magic", "status":{"id":"shock", "duration":2.0}, "tell":1.1, "lock":0.5, "recovery":1.7, "cooldown":7.0})
 		"slag_lane":
 			var lane: int = _next_lane(3)
 			var lane_direction: Vector2 = Vector2.RIGHT.rotated(lane * TAU / 3.0)
@@ -358,6 +520,8 @@ func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 			base.merge({"kind":"projectile", "shape":"line", "paths":paths, "count":paths.size(), "width":24.0, "speed":390.0, "projectile_radius":10.0, "damage_multiplier":0.62, "status":{"id":"corrosion", "duration":2.8}, "tracks_target":true, "tell":0.9, "lock":0.38, "recovery":1.0})
 		"spore_pod":
 			base.merge({"kind":"ground_area", "shape":"circle", "targets":[target], "radius":105.0, "duration":3.3, "tick_interval":0.65, "max_active_hazards":2, "lob":true, "damage_multiplier":0.42, "status":{"id":"corrosion", "duration":3.0}, "tell":0.88, "lock":0.4, "recovery":1.15})
+		"acid_scatter":
+			base.merge({"kind":"ground_area", "shape":"circle", "targets":_acid_targets(origin, target), "radius":82.0, "duration":2.5, "tick_interval":0.7, "max_active_hazards":2, "lob":true, "damage_multiplier":0.58, "status":{"id":"corrosion", "duration":2.6}, "tell":1.1, "lock":0.5, "recovery":1.6, "cooldown":6.0})
 		"root_link":
 			base.merge({"kind":"melee", "shape":"cone", "range":350.0, "angle":1.6, "damage_multiplier":0.9, "status":{"id":"slow", "duration":0.9, "magnitude":0.78}, "tell":1.0, "lock":0.4, "recovery":1.25})
 		"brood_eggs":
@@ -370,6 +534,8 @@ func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 			base.merge({"kind":"pull", "shape":"line", "range":500.0, "width":62.0, "pull_distance":85.0, "damage_multiplier":0.6, "tell":1.0, "lock":0.42, "recovery":1.2})
 		"capacitor_burst":
 			base.merge({"kind":"projectile", "shape":"line", "range":800.0, "count":1, "width":38.0, "speed":420.0, "projectile_radius":19.0, "damage_multiplier":0.95, "tell":1.0, "lock":0.4, "recovery":1.2})
+		"stitch_cage":
+			base.merge({"kind":"projectile", "shape":"line", "paths":_stitch_cage_paths(origin, target), "count":3, "width":20.0, "speed":350.0, "projectile_radius":8.0, "damage_multiplier":0.45, "status":{"id":"slow", "duration":1.0, "magnitude":0.78}, "tell":1.15, "lock":0.5, "recovery":1.5, "cooldown":6.5})
 		"grave_recall":
 			if grave_sealed or grave_recalls >= int(definition.get("grave_recall_limit", 2)):
 				return {}
@@ -387,6 +553,8 @@ func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 			base.merge(_ring_command(origin, direction, false))
 		"sound_blade":
 			base.merge({"kind":"charge", "shape":"line", "range":600.0, "travel_distance":600.0, "charge_past_target":true, "width":124.0, "radius":62.0, "speed":430.0, "damage_multiplier":1.05, "tell":1.1, "lock":0.45, "recovery":1.6})
+		"crag_leap":
+			base.merge({"kind":"charge", "shape":"line", "path_mode":"leap", "arc_height":0.0, "range":500.0, "travel_distance":500.0, "width":34.0, "radius":110.0, "speed":520.0, "landing_only":true, "landing_shape":"circle", "damage_along_path":false, "damage_multiplier":1.22, "weakpoint_id":"landed_warchief", "weakpoint_delay":0.97, "weakpoint_duration":1.45, "tell":1.15, "lock":0.55, "recovery":2.6, "cooldown":7.0})
 		"war_drum_rage":
 			if drums_broken:
 				return {}
@@ -399,6 +567,8 @@ func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 			base.merge(_ring_command(origin, direction, _ring_toggle))
 		"heart_crack":
 			base.merge({"kind":"ground_area", "shape":"ring", "target":origin, "radius":315.0, "inner_radius":145.0, "ring_gap_degrees":105.0, "damage_multiplier":0.88, "duration":0.0, "weakpoint_id":"cracked_heart", "weakpoint_duration":2.8, "tell":1.05, "lock":0.45, "recovery":2.8})
+		_:
+			return {}
 	return base
 
 func _ring_command(origin: Vector2, direction: Vector2, outer: bool) -> Dictionary:
@@ -412,7 +582,14 @@ func _retarget(actor: Node2D, victim: Node2D) -> void:
 	command.origin = actor.position
 	var direction: Vector2 = actor.position.direction_to(victim.position)
 	if direction.length_squared() > EPSILON:
-		command.direction = -direction if current_action == "back_heat" else direction
+		if current_action == "back_heat":
+			command.direction = -direction
+		elif str(command.get("shape", "")) == "ring":
+			# Aim the dangerous arc at the target. A side gap stays visibly safe,
+			# while standing still in front no longer avoids every ring attack.
+			command.direction = direction.rotated(PI * 0.5 * _orbit_sign)
+		else:
+			command.direction = direction
 	var shape: String = str(command.get("shape", ""))
 	if shape == "ring":
 		command.target = actor.position
@@ -427,6 +604,12 @@ func _retarget(actor: Node2D, victim: Node2D) -> void:
 			command.paths = _runway_paths(actor.position, Vector2(command.direction), lanes)
 		"spore_pod":
 			command.targets = [victim.position]
+		"solar_cross":
+			command.paths = _solar_cross_paths(actor.position, victim.position, actor)
+		"acid_scatter":
+			command.targets = _acid_targets(actor.position, victim.position)
+		"stitch_cage":
+			command.paths = _stitch_cage_paths(actor.position, victim.position)
 	if shape == "line" and command.get("paths", []).is_empty():
 		var reach: float = float(command.get("range", actor.position.distance_to(victim.position)))
 		if str(command.get("kind", "")) == "charge" and not bool(command.get("charge_past_target", false)):
@@ -449,6 +632,8 @@ func _freeze_geometry(actor: Node2D, source: Dictionary) -> Dictionary:
 			distance = minf(distance, result.origin.distance_to(Vector2(result.target)))
 		result.travel_distance = distance
 		result.target = result.origin + result.direction * distance
+		if str(result.get("action_id", "")) == "crag_leap":
+			result.weakpoint_delay = maxf(0.1, distance / float(result.get("speed", 520.0)))
 	if shape == "line" and result.get("paths", []).is_empty():
 		var reach: float = float(result.get("travel_distance", 0.0)) if kind == "charge" else float(result.get("range", result.origin.distance_to(Vector2(result.target))))
 		result.target = result.origin + result.direction * reach
@@ -459,6 +644,38 @@ func _freeze_geometry(actor: Node2D, source: Dictionary) -> Dictionary:
 		result.ring_end = float(result.ring_start) + TAU - gap
 	result.erase("tracks_target")
 	return result
+
+func _solar_cross_paths(origin: Vector2, target: Vector2, actor: Node2D = null) -> Array:
+	var direction: Vector2 = origin.direction_to(target)
+	if direction.length_squared() <= EPSILON: direction = Vector2.RIGHT
+	return [[_bounded_endpoint(actor, target, -direction, 360.0), _bounded_endpoint(actor, target, direction, 360.0)], [_bounded_endpoint(actor, target, -direction.orthogonal(), 245.0), _bounded_endpoint(actor, target, direction.orthogonal(), 245.0)]]
+
+func _bounded_endpoint(actor: Node2D, center: Vector2, direction: Vector2, reach: float) -> Vector2:
+	var host: Node = _property(actor, "room", null) as Node
+	var layout: Dictionary = _property(host, "layout", {})
+	var arena_value: Variant = layout.get("arena", null)
+	if arena_value is Rect2:
+		var arena: Rect2 = arena_value.grow(-2.0)
+		for axis: int in 2:
+			if direction[axis] > EPSILON: reach = minf(reach, (arena.end[axis] - center[axis]) / direction[axis])
+			elif direction[axis] < -EPSILON: reach = minf(reach, (arena.position[axis] - center[axis]) / direction[axis])
+	return center + direction * maxf(0.0, reach)
+
+func _acid_targets(origin: Vector2, target: Vector2) -> Array:
+	var direction: Vector2 = origin.direction_to(target)
+	if direction.length_squared() <= EPSILON: direction = Vector2.RIGHT
+	return [target, target + direction.orthogonal() * 150.0, target - direction.orthogonal() * 150.0]
+
+func _stitch_cage_paths(origin: Vector2, target: Vector2) -> Array:
+	var direction: Vector2 = origin.direction_to(target)
+	if direction.length_squared() <= EPSILON: direction = Vector2.RIGHT
+	var midpoint: Vector2 = origin.lerp(target, 0.5)
+	var paths: Array = []
+	for bend: float in [-155.0, 0.0, 155.0]:
+		# Runtime executes one bend per projectile. End each warned thread at
+		# that convergence point instead of drawing an unexecuted fourth leg.
+		paths.append([origin, midpoint + direction.orthogonal() * bend, target])
+	return paths
 
 func _fork_paths(origin: Vector2, target: Vector2, count: int) -> Array:
 	var direction: Vector2 = origin.direction_to(target)
@@ -671,6 +888,8 @@ func _set_actor_state(actor: Node2D, next_state: StringName) -> void:
 	actor.set("state", next_state)
 	actor.set("state_time", maxf(0.0, state_time))
 	actor.set("velocity", Vector2.ZERO)
+	movement_intent = &"idle"
+	movement_target = actor.position
 
 func _alive(actor: Node2D) -> bool:
 	return is_instance_valid(actor) and (not actor.has_method("is_alive") or bool(actor.call("is_alive")))

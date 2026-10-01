@@ -22,6 +22,13 @@ const STATS := {
 }
 
 const LEVELS := {"BO01": 5, "BO02": 10, "BO03": 15, "BO04": 20}
+const MAGIC_RESIST := {"BO01": 18.0, "BO02": 15.0, "BO03": 12.0, "BO04": 18.0}
+const TACTICS := {
+	"BO01": {"min_range":180.0, "max_range":260.0, "retreat_range":110.0, "orbit_weight":0.32, "chase_multiplier":1.2},
+	"BO02": {"min_range":340.0, "max_range":480.0, "retreat_range":250.0, "orbit_weight":0.85, "chase_multiplier":1.05},
+	"BO03": {"min_range":300.0, "max_range":420.0, "retreat_range":220.0, "orbit_weight":0.68, "chase_multiplier":1.1},
+	"BO04": {"min_range":170.0, "max_range":280.0, "retreat_range":100.0, "orbit_weight":0.24, "chase_multiplier":1.45},
+}
 
 static func ids() -> Array[String]:
 	return ["BO01", "BO02", "BO03", "BO04"]
@@ -41,7 +48,7 @@ static func resolve(boss_id: String, difficulty: int = 0) -> Dictionary:
 		"name_en": NAMES_EN[boss_id],
 		"rank": "boss",
 		"actor_kind": "boss",
-		"enemy_level": LEVELS[boss_id],
+		"enemy_level": mini(20, int(LEVELS[boss_id]) + tier * 2),
 		"difficulty": tier,
 		"behavior_id": "boss_" + boss_id.to_lower(),
 		"effective_threat_cost": 0.0,
@@ -55,6 +62,9 @@ static func resolve(boss_id: String, difficulty: int = 0) -> Dictionary:
 	result.max_hp = float(STATS[boss_id].max_hp) * (1.0 + 0.16 * tier)
 	result.damage = float(STATS[boss_id].damage) * (1.0 + 0.08 * tier)
 	result.armor = float(STATS[boss_id].armor) + 3.0 * tier
+	result["magic_resist"] = float(MAGIC_RESIST[boss_id]) + 3.0 * tier
+	result.move_speed = float(STATS[boss_id].move_speed) * (1.0 + 0.045 * tier)
+	result["tactics"] = TACTICS[boss_id].duplicate(true)
 	result["clan"] = {"BO01":"construct", "BO02":"insect", "BO03":"zombie", "BO04":"orc"}[boss_id]
 	result["damage_type"] = "magic" if boss_id in ["BO01", "BO02"] else "physical"
 	# Pods reserve two real encounter slots, rather than bypassing the room's

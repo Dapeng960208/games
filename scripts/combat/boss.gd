@@ -152,6 +152,20 @@ func apply_biome_counter(kind: String, duration: float = 2.6) -> bool:
 func cast_enemy_skill(skill: Dictionary) -> void:
 	if _complete or not is_alive():
 		return
+	if str(skill.get("thematic_action", "")) == "solar_cross":
+		# The telegraph exposes both frozen strokes. Runtime ground areas own one
+		# segment each, so release exactly those two warned electric traces.
+		for path: Array in skill.get("paths", []):
+			if path.size() < 2: continue
+			var stroke: Dictionary = skill.duplicate(true)
+			stroke.erase("paths")
+			stroke["origin"] = Vector2(path[0])
+			stroke["target"] = Vector2(path[1])
+			stroke["points"] = [path[0], path[1]]
+			stroke["range"] = Vector2(path[0]).distance_to(Vector2(path[1]))
+			stroke["direction"] = Vector2(path[0]).direction_to(Vector2(path[1]))
+			super.cast_enemy_skill(stroke)
+		return
 	if str(skill.get("thematic_action", "")) == "grave_recall":
 		# Non-rewarding boss adds deliberately never enter the loot corpse pool.
 		# These separate death receipts preserve actual revival in boss arenas.
@@ -259,6 +273,12 @@ func _queue_reinforcement_wave(next_phase: int) -> void:
 			break
 	if selected.is_empty():
 		return
+	# The room adds its difficulty level growth when consuming this request.
+	# Retain each boss region's base level so later-area adds do not fall back
+	# to level one simply because the catalog wave has no explicit level.
+	for member: Dictionary in selected.get("members", []):
+		if not member.has("level"):
+			member["level"] = int(Profiles.LEVELS.get(boss_id, 1))
 	var count: int = int(selected.get("count", 0))
 	var threat: int = int(selected.get("threat", 0))
 	if _requested_reinforcement_count + count > int(profile.get("reinforcement_cap", 0)) or _requested_reinforcement_threat + threat > int(profile.get("reinforcement_budget", 0)):

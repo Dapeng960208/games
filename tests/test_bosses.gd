@@ -7,6 +7,7 @@ const Brain = preload("res://scripts/combat/boss_brain.gd")
 const Layouts = preload("res://scripts/world/boss_layouts.gd")
 const Props = preload("res://scripts/world/room_props.gd")
 const Catalog = preload("res://scripts/world/world_catalog.gd")
+const FixedLayouts = preload("res://scripts/world/fixed_room_layouts.gd")
 const IDS: Array[String] = ["BO01","BO02","BO03","BO04"]
 const ACTIONABLE := ["melee","projectile","charge","ground_area","pull","guard","haste","heal","counter","summon","decoy","utility"]
 
@@ -75,7 +76,7 @@ class RoomStub:
 	func enemy_died(_enemy: Node2D) -> void:
 		deaths += 1
 
-	func add_damage_text(_at: Vector2, _amount: float, _kind: StringName) -> void:
+	func add_damage_text(_at: Vector2, _amount: float, _kind: StringName, _context: Dictionary = {}) -> void:
 		pass
 
 	func add_ring(_at: Vector2, _color: Color, _radius: float, _duration: float) -> void:
@@ -142,9 +143,9 @@ func _layout_contract() -> void:
 		var replay: Dictionary = Layouts.build(id, 74191)
 		_check(not layout.is_empty() and Layouts.validate(layout).is_empty(), id + " independent arena validates")
 		_check(var_to_str(layout) == var_to_str(replay), id + " arena is deterministic for a saved seed")
-		_check(layout.arena == Rect2(0,0,2800,1800) and layout.room_id == id+"_arena" and layout.boss_id == id, id + " follows the normal room identity/arena shape")
+		_check(layout.arena == Rect2(Vector2.ZERO, FixedLayouts.ARENA.size * FixedLayouts.PLAYFIELD_SCALE) and layout.room_id == id+"_arena" and layout.boss_id == id, id + " follows the normal compact room identity/arena shape")
 		_check(layout.has_all(["static_obstructions","static_obstruction_kinds","prop_instances","encounter_zones","hazard_zones","dynamic_reservations","buff_anchors"]), id + " exposes RoomProps/room layout keys")
-		_check(layout.static_obstructions == layout.obstructions and layout.static_obstruction_kinds == layout.obstruction_kinds, id + " visible static recipes match physical terrain")
+		_check(_static_recipes_match(layout), id + " visible static recipes match physical terrain alongside room boundaries")
 		_check(layout.interactables.size() >= 3 and layout.interactables.size() == layout.boss_counterplay.size(), id + " has physical arena counter descriptors")
 		_check(layout.reinforcement_spawns.size() >= 4 and layout.reinforcement_plan == Catalog.bosses()[id].arena.reinforcements, id + " exposes finite add spawn/config data")
 		geometry_signatures[var_to_str([layout.obstructions,layout.visual_markers,layout.interactables])] = true
@@ -157,6 +158,13 @@ func _layout_contract() -> void:
 		props.free()
 		host.free()
 	_check(geometry_signatures.size() == 4, "the four boss arenas are not reskinned copies")
+
+func _static_recipes_match(layout: Dictionary) -> bool:
+	if layout.static_obstructions.size() != layout.static_obstruction_kinds.size(): return false
+	for index: int in layout.static_obstructions.size():
+		var collision_index: int = layout.obstructions.find(layout.static_obstructions[index])
+		if collision_index < 0 or layout.obstruction_kinds[collision_index] != layout.static_obstruction_kinds[index]: return false
+	return true
 
 func _brain_actions_and_locked_geometry() -> void:
 	var expected: Dictionary = {
