@@ -1,5 +1,11 @@
 # 素材、字体与运行依赖
 
+2026-10-01 固定房间更新新增四族 80 个独立道具区、32 个边缘模块区和四张完整连续环境母图。资源为 `assets/generated/props/fixed_B0*_props_v1.*`、`assets/generated/world/fixed_B0*_edges_v1.*` 与 `fixed_B0*_environment_v2.*`，相邻 prompt/regions/metadata JSON 记录内置 ImageGen 来源、坐标、脚点和生成提示词。南瓜墓镇另有浅色地面备用图 `fixed_B03_floor_v1.*`。所有 PNG 保留生成像素；运行时仅取样、缩放和按固定布局拼接。环境六区块共享同一母图，不是六张独立生成或重绘的图片。
+
+本轮比例修正启用 `fixed_B0*_environment_v3.*`：由内置 ImageGen 参考各自 v2 原图细化铺地、调整材质色彩，主要外围地标位置与地面轮廓继续由原坐标注册；相邻完整 prompt 与 metadata 记录来源、参考图和 SHA-256。三职业的站立、步态、普攻及技能统一按 `presentation_metrics.gd` 的 112 世界像素身体尺度绘制，普通敌人使用既有注册高度的 1.20 倍；下文历史 88 像素记录保留为原始生成来源，不是当前呈现尺度。
+
+新版按钮构件由内置 ImageGen 生成：[透明原图](../assets/generated/ui/storybook_buttons_v2.png)、[完整提示词](../assets/generated/ui/storybook_buttons_v2.prompt.json)、[取样区域](../assets/generated/ui/storybook_buttons_v2.regions.json)。六类构件分别为青绿珐琅主操作、米白卷轴次操作、箭头返回、珊瑚红危险操作、靛蓝布面页签、黄铜下拉选择器；原 PNG 像素保留，文字、九宫格伸缩、选中标记和状态反馈由 GDScript 绘制。设计册中的 runtime 图片为真实 Godot 画面。
+
 2026-10-01 的首四关原型使用统一明亮手绘奇幻基准。构装、虫族、南瓜僵尸、兽人／食人魔的四个最终怪物图集见 `assets/generated/enemies/storybook_B01_bodies_v2.*` 至 `storybook_B04_bodies_v2.*`；40 个普通怪／首领区域、脚点与来源均保存在相邻 JSON。首四族地图道具、自动信标和三联地面见 `assets/generated/props/storybook_*` 与 `assets/generated/world/storybook_floor_factions_v2.*`。60 件装备的当前资源及首四族八件核心覆盖由 `assets/generated/equipment/storybook_equipment_v2.manifest.json` 统一注册，相邻 provenance 记录原始提示词、生成输出路径和 SHA256。以上位图由内置 ImageGen 为本工程生成，原始像素保留；纹理裁取、朝向、缩放和运行时淡化由代码实现。候选、旧种族方案和未通过质量门的 M10 动作图保留为开发来源，未作为当前正式动作启用。
 
 - 游戏角色、普通敌人、首领、装备图、房间道具、地板、图标和主视觉按本项目废矿工业奇幻主题原创设计；位图由内置 ImageGen 生成并接入游戏，未使用竞品形象。资源旁的 JSON 记录提示词、来源或动画帧信息。
