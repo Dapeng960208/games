@@ -1,0 +1,1126 @@
+{
+  "version": 1,
+  "notes": "固定表现层：仅重组无碰撞装饰；保留全部原蓝图玩法字段、实体掩体和奖励原位。每房独立地纹、支路铺地、主题工位与徽记。",
+  "rooms": {
+    "L01": {
+      "biome_id": "B01",
+      "emblem": "sunburst",
+      "caption": "迎宾花钟 · 园匠休憩",
+      "caption_en": "Arrival clock · Garden rest",
+      "chapter": 1,
+      "floor_center": [
+        0.48,
+        0.56
+      ],
+      "floor_radius": 0.26,
+      "road_width": 46,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.25,
+            0.27
+          ],
+          "name": "园匠歇脚区",
+          "assets": [
+            "bronze_bench",
+            "coolant_amphora",
+            "bell_tree"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.77
+          ],
+          "name": "光籽花圃",
+          "assets": [
+            "clockwork_flower",
+            "glass_greenhouse",
+            "sun_lantern"
+          ]
+        }
+      ]
+    },
+    "L02": {
+      "biome_id": "B01",
+      "emblem": "lens_bridge",
+      "caption": "双轨光桥 · 晶芽培育",
+      "caption_en": "Twin lightways · Crystal nursery",
+      "chapter": 2,
+      "floor_center": [
+        0.51,
+        0.51
+      ],
+      "floor_radius": 0.31,
+      "road_width": 62,
+      "angle": -0.18,
+      "groups": [
+        {
+          "at": [
+            0.26,
+            0.77
+          ],
+          "name": "晶芽培育台",
+          "assets": [
+            "glass_greenhouse",
+            "seed_cradle",
+            "clockwork_flower"
+          ]
+        },
+        {
+          "at": [
+            0.78,
+            0.27
+          ],
+          "name": "导光休息庭",
+          "assets": [
+            "bronze_bench",
+            "cloud_sculpture",
+            "sun_lantern"
+          ]
+        }
+      ]
+    },
+    "L03": {
+      "biome_id": "B01",
+      "emblem": "season_rings",
+      "caption": "三季符环 · 报时花廊",
+      "caption_en": "Season rings · Bell walk",
+      "chapter": 3,
+      "floor_center": [
+        0.52,
+        0.55
+      ],
+      "floor_radius": 0.29,
+      "road_width": 44,
+      "angle": 0.12,
+      "groups": [
+        {
+          "at": [
+            0.28,
+            0.78
+          ],
+          "name": "暮季观测台",
+          "assets": [
+            "orrery",
+            "bronze_bench",
+            "coolant_amphora"
+          ]
+        },
+        {
+          "at": [
+            0.76,
+            0.24
+          ],
+          "name": "晨季铃树廊",
+          "assets": [
+            "bell_tree",
+            "seed_cradle",
+            "clockwork_flower"
+          ]
+        }
+      ]
+    },
+    "L04": {
+      "biome_id": "B01",
+      "emblem": "orbit",
+      "caption": "日月星轨 · 光秤工位",
+      "caption_en": "Solar orbits · Lens workshop",
+      "chapter": 4,
+      "floor_center": [
+        0.51,
+        0.55
+      ],
+      "floor_radius": 0.32,
+      "road_width": 58,
+      "angle": -0.1,
+      "groups": [
+        {
+          "at": [
+            0.29,
+            0.78
+          ],
+          "name": "冷露记录工位",
+          "assets": [
+            "weighing_fan",
+            "coolant_amphora",
+            "bronze_bench"
+          ]
+        },
+        {
+          "at": [
+            0.76,
+            0.22
+          ],
+          "name": "晶镜校准台",
+          "assets": [
+            "crystal_lens",
+            "sun_lantern",
+            "cloud_sculpture"
+          ]
+        }
+      ]
+    },
+    "L05": {
+      "biome_id": "B01",
+      "emblem": "lift_tracks",
+      "caption": "花舱轨道 · 候日平台",
+      "caption_en": "Petal rails · Sun waiting deck",
+      "chapter": 5,
+      "floor_center": [
+        0.51,
+        0.48
+      ],
+      "floor_radius": 0.28,
+      "road_width": 48,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.27,
+            0.24
+          ],
+          "name": "升舱候日区",
+          "assets": [
+            "lift_pod",
+            "bronze_bench",
+            "sun_lantern"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.78
+          ],
+          "name": "铃树种子站",
+          "assets": [
+            "bell_tree",
+            "seed_cradle",
+            "glass_greenhouse"
+          ]
+        }
+      ]
+    },
+    "L06": {
+      "biome_id": "B01",
+      "emblem": "triskelion",
+      "caption": "三瓣供能 · 冷露回路",
+      "caption_en": "Three energy petals · Dew circuit",
+      "chapter": 6,
+      "floor_center": [
+        0.52,
+        0.54
+      ],
+      "floor_radius": 0.31,
+      "road_width": 54,
+      "angle": 0.2,
+      "groups": [
+        {
+          "at": [
+            0.27,
+            0.78
+          ],
+          "name": "冷露供能站",
+          "assets": [
+            "coolant_amphora",
+            "weighing_fan",
+            "bronze_bench"
+          ]
+        },
+        {
+          "at": [
+            0.75,
+            0.25
+          ],
+          "name": "晶光记录站",
+          "assets": [
+            "crystal_lens",
+            "bell_tree",
+            "cloud_sculpture"
+          ]
+        }
+      ]
+    },
+    "BO01": {
+      "biome_id": "B01",
+      "emblem": "crown_sun",
+      "caption": "日曜花冠 · 破盾仪庭",
+      "caption_en": "Solar crown · Shield ritual",
+      "chapter": 7,
+      "floor_center": [
+        0.5,
+        0.5
+      ],
+      "floor_radius": 0.37,
+      "road_width": 42,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.25,
+            0.22
+          ],
+          "name": "西仪式花庭",
+          "assets": [
+            "glass_greenhouse",
+            "bell_tree",
+            "clockwork_flower"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.79
+          ],
+          "name": "东观礼花庭",
+          "assets": [
+            "sun_clock",
+            "bronze_bench",
+            "cloud_sculpture"
+          ]
+        }
+      ]
+    },
+    "L07": {
+      "biome_id": "B02",
+      "emblem": "honeycomb",
+      "caption": "蜂蜡集市 · 候船码头",
+      "caption_en": "Wax market · Honey pier",
+      "chapter": 1,
+      "floor_center": [
+        0.49,
+        0.53
+      ],
+      "floor_radius": 0.29,
+      "road_width": 46,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.76,
+            0.79
+          ],
+          "name": "编叶候船台",
+          "assets": [
+            "leaf_boat",
+            "leaf_bridge_ribbon",
+            "wing_banner"
+          ]
+        },
+        {
+          "at": [
+            0.27,
+            0.79
+          ],
+          "name": "码头花粉庭",
+          "assets": [
+            "pollen_flower",
+            "leaf_arch",
+            "amber_lantern"
+          ]
+        }
+      ]
+    },
+    "L08": {
+      "biome_id": "B02",
+      "emblem": "wing",
+      "caption": "蜂翼观测 · 花粉航线",
+      "caption_en": "Wing observatory · Pollen flight",
+      "chapter": 2,
+      "floor_center": [
+        0.51,
+        0.6
+      ],
+      "floor_radius": 0.3,
+      "road_width": 62,
+      "angle": -0.18,
+      "groups": [
+        {
+          "at": [
+            0.27,
+            0.78
+          ],
+          "name": "风向观测工位",
+          "assets": [
+            "flutter_mobiles",
+            "wind_petals",
+            "wing_banner"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.23
+          ],
+          "name": "织茧观测台",
+          "assets": [
+            "leaf_arch",
+            "resin_vein",
+            "amber_lantern"
+          ]
+        }
+      ]
+    },
+    "L09": {
+      "biome_id": "B02",
+      "emblem": "nursery",
+      "caption": "蜕壳礼庭 · 育幼花圃",
+      "caption_en": "Molting court · Egg nursery",
+      "chapter": 3,
+      "floor_center": [
+        0.5,
+        0.53
+      ],
+      "floor_radius": 0.28,
+      "road_width": 44,
+      "angle": 0.12,
+      "groups": [
+        {
+          "at": [
+            0.25,
+            0.76
+          ],
+          "name": "育幼花圃",
+          "assets": [
+            "egg_roost",
+            "wax_trellis",
+            "pollen_flower"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.77
+          ],
+          "name": "迁徙礼仪庭",
+          "assets": [
+            "scarab_stela",
+            "wing_banner",
+            "amber_lantern"
+          ]
+        }
+      ]
+    },
+    "L10": {
+      "biome_id": "B02",
+      "emblem": "wind_rose",
+      "caption": "花蕊风井 · 导风叶瓣",
+      "caption_en": "Pollen well · Wind petals",
+      "chapter": 4,
+      "floor_center": [
+        0.51,
+        0.5
+      ],
+      "floor_radius": 0.31,
+      "road_width": 58,
+      "angle": -0.1,
+      "groups": [
+        {
+          "at": [
+            0.26,
+            0.77
+          ],
+          "name": "叶线导风台",
+          "assets": [
+            "leaf_loom",
+            "wind_petals",
+            "wing_banner"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.24
+          ],
+          "name": "琥珀回流庭",
+          "assets": [
+            "resin_vein",
+            "egg_roost",
+            "pollen_flower"
+          ]
+        }
+      ]
+    },
+    "L11": {
+      "biome_id": "B02",
+      "emblem": "weave",
+      "caption": "虫窟织台 · 叶丝工坊",
+      "caption_en": "Leaf loom · Silk workshop",
+      "chapter": 5,
+      "floor_center": [
+        0.5,
+        0.49
+      ],
+      "floor_radius": 0.3,
+      "road_width": 48,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.28,
+            0.24
+          ],
+          "name": "迁徙编叶工位",
+          "assets": [
+            "leaf_bridge_ribbon",
+            "chrysalis_rack",
+            "wing_banner"
+          ]
+        },
+        {
+          "at": [
+            0.78,
+            0.79
+          ],
+          "name": "织线挂饰区",
+          "assets": [
+            "flutter_mobiles",
+            "nectar_jar",
+            "amber_lantern"
+          ]
+        }
+      ]
+    },
+    "L12": {
+      "biome_id": "B02",
+      "emblem": "nectar_channels",
+      "caption": "分蜜花闸 · 凝露岸庭",
+      "caption_en": "Nectar sluice · Dew terrace",
+      "chapter": 6,
+      "floor_center": [
+        0.51,
+        0.58
+      ],
+      "floor_radius": 0.32,
+      "road_width": 54,
+      "angle": 0.2,
+      "groups": [
+        {
+          "at": [
+            0.27,
+            0.25
+          ],
+          "name": "分蜜取样站",
+          "assets": [
+            "resin_vein",
+            "egg_roost",
+            "amber_lantern"
+          ]
+        },
+        {
+          "at": [
+            0.79,
+            0.77
+          ],
+          "name": "编叶渡闸区",
+          "assets": [
+            "leaf_boat",
+            "leaf_arch",
+            "pollen_flower"
+          ]
+        }
+      ]
+    },
+    "BO02": {
+      "biome_id": "B02",
+      "emblem": "queen_petals",
+      "caption": "蜂冠育巢 · 四瓣护庭",
+      "caption_en": "Queen nursery · Four petal court",
+      "chapter": 7,
+      "floor_center": [
+        0.5,
+        0.5
+      ],
+      "floor_radius": 0.36,
+      "road_width": 42,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.24,
+            0.79
+          ],
+          "name": "西育巢侧庭",
+          "assets": [
+            "egg_roost",
+            "chrysalis_rack",
+            "pollen_flower"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.78
+          ],
+          "name": "东蜂冠侧庭",
+          "assets": [
+            "leaf_arch",
+            "resin_vein",
+            "wing_banner"
+          ]
+        }
+      ]
+    },
+    "L13": {
+      "biome_id": "B03",
+      "emblem": "postal_tiles",
+      "caption": "迎宾邮街 · 南瓜茶摊",
+      "caption_en": "Postal street · Pumpkin tea",
+      "chapter": 1,
+      "floor_center": [
+        0.5,
+        0.53
+      ],
+      "floor_radius": 0.3,
+      "road_width": 46,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.27,
+            0.27
+          ],
+          "name": "邮局迎宾区",
+          "assets": [
+            "coffin_postbox",
+            "cat_sign",
+            "notice_board"
+          ]
+        },
+        {
+          "at": [
+            0.78,
+            0.8
+          ],
+          "name": "午后茶摊",
+          "assets": [
+            "ghost_tea_stall",
+            "patched_awning",
+            "chime_mast"
+          ]
+        }
+      ]
+    },
+    "L14": {
+      "biome_id": "B03",
+      "emblem": "candy_wrappers",
+      "caption": "糖纸捷径 · 晾糖工位",
+      "caption_en": "Candy shortcuts · Cooling yard",
+      "chapter": 2,
+      "floor_center": [
+        0.51,
+        0.53
+      ],
+      "floor_radius": 0.31,
+      "road_width": 62,
+      "angle": -0.18,
+      "groups": [
+        {
+          "at": [
+            0.28,
+            0.26
+          ],
+          "name": "糖果配料台",
+          "assets": [
+            "candy_vat",
+            "jar_tower",
+            "sugar_arch"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.77
+          ],
+          "name": "糖纸晾晒区",
+          "assets": [
+            "cooling_rack",
+            "sugar_sack",
+            "patched_awning"
+          ]
+        }
+      ]
+    },
+    "L15": {
+      "biome_id": "B03",
+      "emblem": "chime_rosette",
+      "caption": "墓铃环街 · 节庆茶庭",
+      "caption_en": "Chime rosette · Festival tea",
+      "chapter": 3,
+      "floor_center": [
+        0.5,
+        0.51
+      ],
+      "floor_radius": 0.34,
+      "road_width": 44,
+      "angle": 0.12,
+      "groups": [
+        {
+          "at": [
+            0.25,
+            0.27
+          ],
+          "name": "墓铃观礼席",
+          "assets": [
+            "chime_mast",
+            "hat_headstone",
+            "balloon_chain"
+          ]
+        },
+        {
+          "at": [
+            0.78,
+            0.78
+          ],
+          "name": "节庆茶花摊",
+          "assets": [
+            "ghost_tea_stall",
+            "sun_clock",
+            "patched_awning"
+          ]
+        }
+      ]
+    },
+    "L16": {
+      "biome_id": "B03",
+      "emblem": "candle_lane",
+      "caption": "双炉烛铺 · 蜡香晾街",
+      "caption_en": "Twin ovens · Candle walk",
+      "chapter": 4,
+      "floor_center": [
+        0.52,
+        0.54
+      ],
+      "floor_radius": 0.31,
+      "road_width": 58,
+      "angle": -0.1,
+      "groups": [
+        {
+          "at": [
+            0.25,
+            0.25
+          ],
+          "name": "糖烛工坊",
+          "assets": [
+            "candy_vat",
+            "candle_tree",
+            "wick_spool"
+          ]
+        },
+        {
+          "at": [
+            0.78,
+            0.78
+          ],
+          "name": "烛花晾晒架",
+          "assets": [
+            "cooling_rack",
+            "patched_awning",
+            "sugar_sack"
+          ]
+        }
+      ]
+    },
+    "L17": {
+      "biome_id": "B03",
+      "emblem": "stitch_cross",
+      "caption": "彩线工作街 · 礼帽裁缝",
+      "caption_en": "Stitch lanes · Hat tailor",
+      "chapter": 5,
+      "floor_center": [
+        0.51,
+        0.53
+      ],
+      "floor_radius": 0.31,
+      "road_width": 48,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.29,
+            0.78
+          ],
+          "name": "彩线试衣工位",
+          "assets": [
+            "dress_form",
+            "thread_arch",
+            "wick_spool"
+          ]
+        },
+        {
+          "at": [
+            0.76,
+            0.26
+          ],
+          "name": "补丁午休庭",
+          "assets": [
+            "ghost_tea_stall",
+            "patch_banner",
+            "patched_awning"
+          ]
+        }
+      ]
+    },
+    "L18": {
+      "biome_id": "B03",
+      "emblem": "moon_dock",
+      "caption": "月帆岸街 · 船夫茶庭",
+      "caption_en": "Moon pier · Ferryman tea",
+      "chapter": 6,
+      "floor_center": [
+        0.52,
+        0.55
+      ],
+      "floor_radius": 0.31,
+      "road_width": 54,
+      "angle": 0.2,
+      "groups": [
+        {
+          "at": [
+            0.29,
+            0.26
+          ],
+          "name": "船夫居住区",
+          "assets": [
+            "lavender_cottage",
+            "ghost_tea_stall",
+            "music_conch"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.8
+          ],
+          "name": "月帆泊舟点",
+          "assets": [
+            "ghost_boat",
+            "moon_sail",
+            "shell_buoy"
+          ]
+        }
+      ]
+    },
+    "BO03": {
+      "biome_id": "B03",
+      "emblem": "patch_stage",
+      "caption": "彩线谢幕 · 镇长礼堂",
+      "caption_en": "Patch finale · Mayor hall",
+      "chapter": 7,
+      "floor_center": [
+        0.5,
+        0.52
+      ],
+      "floor_radius": 0.37,
+      "road_width": 42,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.26,
+            0.24
+          ],
+          "name": "节庆小戏台",
+          "assets": [
+            "festival_stage",
+            "balloon_chain",
+            "chime_mast"
+          ]
+        },
+        {
+          "at": [
+            0.76,
+            0.78
+          ],
+          "name": "观礼花庭",
+          "assets": [
+            "ghost_tea_stall",
+            "thread_arch",
+            "patch_banner"
+          ]
+        }
+      ]
+    },
+    "L19": {
+      "biome_id": "B04",
+      "emblem": "spiral_drum",
+      "caption": "回音螺纹 · 初练鼓庭",
+      "caption_en": "Echo spiral · Drum training",
+      "chapter": 1,
+      "floor_center": [
+        0.54,
+        0.5
+      ],
+      "floor_radius": 0.3,
+      "road_width": 46,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.26,
+            0.79
+          ],
+          "name": "初练器具台",
+          "assets": [
+            "drum_rack",
+            "training_dummy",
+            "charm_stake"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.27
+          ],
+          "name": "鼓庭休息棚",
+          "assets": [
+            "bone_bench",
+            "trophy_plinth",
+            "windsock"
+          ]
+        }
+      ]
+    },
+    "L20": {
+      "biome_id": "B04",
+      "emblem": "market_rugs",
+      "caption": "沙兽街市 · 彩陶凉棚",
+      "caption_en": "Sun market · Pottery canopy",
+      "chapter": 2,
+      "floor_center": [
+        0.52,
+        0.5
+      ],
+      "floor_radius": 0.3,
+      "road_width": 62,
+      "angle": -0.18,
+      "groups": [
+        {
+          "at": [
+            0.27,
+            0.25
+          ],
+          "name": "烤食瓜车摊",
+          "assets": [
+            "roast_stall",
+            "melon_cart",
+            "cloth_canopy"
+          ]
+        },
+        {
+          "at": [
+            0.78,
+            0.79
+          ],
+          "name": "沙兽棋戏区",
+          "assets": [
+            "bone_dice",
+            "pet_bowl",
+            "bone_bench"
+          ]
+        }
+      ]
+    },
+    "L21": {
+      "biome_id": "B04",
+      "emblem": "arena_net",
+      "caption": "织网角斗 · 应援看台",
+      "caption_en": "Net arena · Cheer stands",
+      "chapter": 3,
+      "floor_center": [
+        0.52,
+        0.5
+      ],
+      "floor_radius": 0.35,
+      "road_width": 44,
+      "angle": 0.12,
+      "groups": [
+        {
+          "at": [
+            0.24,
+            0.78
+          ],
+          "name": "织网器具区",
+          "assets": [
+            "net_loom",
+            "training_dummy",
+            "pet_bowl"
+          ]
+        },
+        {
+          "at": [
+            0.78,
+            0.24
+          ],
+          "name": "骨秋千应援席",
+          "assets": [
+            "bone_swing",
+            "trophy_plinth",
+            "spectator_banner"
+          ]
+        }
+      ]
+    },
+    "L22": {
+      "biome_id": "B04",
+      "emblem": "forge_chevron",
+      "caption": "巨齿锻炉 · 淬火工位",
+      "caption_en": "Tooth forge · Quenching yard",
+      "chapter": 4,
+      "floor_center": [
+        0.52,
+        0.53
+      ],
+      "floor_radius": 0.31,
+      "road_width": 58,
+      "angle": -0.1,
+      "groups": [
+        {
+          "at": [
+            0.28,
+            0.79
+          ],
+          "name": "角盔装配台",
+          "assets": [
+            "horn_helmet_rack",
+            "armor_mannequin",
+            "axe_rack"
+          ]
+        },
+        {
+          "at": [
+            0.78,
+            0.25
+          ],
+          "name": "火蜥锻造工位",
+          "assets": [
+            "bellows_lizard",
+            "pot_stack",
+            "charm_stake"
+          ]
+        }
+      ]
+    },
+    "L23": {
+      "biome_id": "B04",
+      "emblem": "beacon_rays",
+      "caption": "风讯脊线 · 烽灯观测",
+      "caption_en": "Signal ridge · Beacon watch",
+      "chapter": 5,
+      "floor_center": [
+        0.53,
+        0.49
+      ],
+      "floor_radius": 0.32,
+      "road_width": 48,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.28,
+            0.77
+          ],
+          "name": "风讯观测台",
+          "assets": [
+            "horn_telescope",
+            "windsock",
+            "charm_stake"
+          ]
+        },
+        {
+          "at": [
+            0.76,
+            0.25
+          ],
+          "name": "烽灯鸣号台",
+          "assets": [
+            "bone_gong",
+            "tribal_standard",
+            "pet_bowl"
+          ]
+        }
+      ]
+    },
+    "L24": {
+      "biome_id": "B04",
+      "emblem": "trial_triangles",
+      "caption": "三族练武 · 奖牌校武",
+      "caption_en": "Three clan trials · Medal court",
+      "chapter": 6,
+      "floor_center": [
+        0.52,
+        0.53
+      ],
+      "floor_radius": 0.35,
+      "road_width": 54,
+      "angle": 0.2,
+      "groups": [
+        {
+          "at": [
+            0.27,
+            0.25
+          ],
+          "name": "练武器具棚",
+          "assets": [
+            "axe_rack",
+            "training_dummy",
+            "pet_pen"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.79
+          ],
+          "name": "校武评奖席",
+          "assets": [
+            "medal_tree",
+            "bone_bench",
+            "water_urn"
+          ]
+        }
+      ]
+    },
+    "BO04": {
+      "biome_id": "B04",
+      "emblem": "tusk_crown",
+      "caption": "太阳骨冠 · 冠军擂台",
+      "caption_en": "Tusk crown · Champion arena",
+      "chapter": 7,
+      "floor_center": [
+        0.5,
+        0.5
+      ],
+      "floor_radius": 0.38,
+      "road_width": 42,
+      "angle": 0,
+      "groups": [
+        {
+          "at": [
+            0.24,
+            0.24
+          ],
+          "name": "西应援席",
+          "assets": [
+            "bone_bench",
+            "scoreboard",
+            "spectator_banner"
+          ]
+        },
+        {
+          "at": [
+            0.77,
+            0.78
+          ],
+          "name": "东奖牌席",
+          "assets": [
+            "medal_tree",
+            "axe_rack",
+            "water_urn"
+          ]
+        }
+      ]
+    }
+  }
+}

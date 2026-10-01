@@ -108,7 +108,9 @@ static func _from_blueprint(source: Dictionary) -> Dictionary:
 			layout.interactables.append(counter)
 			layout.boss_counterplay.append(counter.duplicate(true))
 		layout["fixed_counterplay_count"] = layout.boss_counterplay.size()
-	return _compact_playfield(layout)
+	var compact: Dictionary = _compact_playfield(layout)
+	preload("res://scripts/world/room_presentation.gd").apply_scenery(compact)
+	return compact
 
 static func _compact_playfield(blueprint_layout: Dictionary) -> Dictionary:
 	# Transform the complete runtime tree once, creating fresh containers. Paths
