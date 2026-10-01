@@ -366,7 +366,7 @@ def render(c, heroes, rows):
     out.append(table(["角色", "等级", "槽", "分支", "新cost", "新H_skill", "完整新spec", "整数target金额", "原timeline"], [[r["hero"], r["level"], r["slot"], r["branch"] or "默认", r["spec"]["cost"], r["target"]["skill_H"], r["spec"], r["target"], r["timeline"]] for r in targets]))
     out.append("<!-- TARGET_SKILL_ROWS_END -->\n\n## 10. 生成与来源指纹\n\n命令：`python tools/balance/render_target_hero_skill_buffs.py`；一致性检查：`python tools/balance/render_target_hero_skill_buffs.py --check`。检查覆盖字段维度、264唯一组合、120关键等级、12分支选择、整数非负金额、初始属性、关键四舍五入例与全册表格列数；不宣称战斗/经济已验收。\n")
     out.append(table(["输入来源", "SHA-256"], [[str(p.relative_to(ROOT)).replace("\\", "/"), hashlib.sha256(p.read_bytes()).hexdigest()] for p in INPUTS]))
-    result = "\n".join(out)
+    result = "\n".join(out).rstrip() + "\n"
     validate(targets, result, c, heroes)
     return result
 
