@@ -1,6 +1,6 @@
 # 数值重构PR逐步执行清单
 
-日期：2026-10-01。状态：PR分支S00–S10已实施并逐步推送；**S11按用户要求暂缓，未验收**。本表供后续agent依序执行，PR描述必须保留同样的步骤，不能只给文档链接。
+日期：2026-10-02。状态：S00–S10已实施、逐步推送并通过[本地合并前验收](PR2_ACCEPTANCE_2026-10-02.md)，按用户最新授权合并和清理PR #2；**S11保持暂缓，未验收**。本表供后续agent依序执行，PR描述必须保留同样的步骤，不能只给文档链接。
 
 设计权威为[主方案](LEVEL_EQUIPMENT_NUMERICAL_DESIGN.md)、[目标全表](TARGET_NUMERICAL_TABLES.md)、[角色技能/Buff目标表](TARGET_HERO_SKILL_BUFF_TABLES.md)、[野怪/Boss技能目标表](TARGET_ENEMY_SKILL_TABLES.md)、[随机强化方案](RANDOM_FORGING_DESIGN.md)与[关卡/Boss配装标尺](BOSS_DIFFICULTY_CALIBRATION.md)。四份CURRENT附录为旧运行基准。用户已确认×10范围，并指定金掉落≤+1、白绿紫可+5、三组品质强化约等效，以及全金约+2配装碾压对应D4首领的目标；概率、成本和具体首轮参数仍在方案PR中供确认。本PR不自动合并，也不在归档文档时迁移玩家档。
 
