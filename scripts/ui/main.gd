@@ -241,8 +241,8 @@ func show_camp() -> void:
 	var choices := [
 		["heroes",_ex_text("英雄档案","HERO DOSSIERS"),_ex_text("选择伙伴 · 找到你的战斗风格","Choose a hero and a fighting style"),0,MineStyle.CYAN],
 		["skills",_ex_text("技能修习","SKILL LEDGER"),_ex_text("查看连招 · 解锁新的能力","Learn combos and unlock abilities"),1,Color("9b574c")],
-		["inventory",_ex_text("装备工坊","EQUIPMENT"),_ex_text("搭配装备 · 整备下一场冒险","Build a loadout for the next journey"),2,Color("997244")],
-		["shop",_ex_text("补给商店","SUPPLY SHOP"),_ex_text("挑选补给 · 带上可靠的工具","Stock up on supplies and tools"),3,Color("657e4c")]
+		["inventory",_ex_text("装备工坊","EQUIPMENT"),_ex_text("仓库配装 · 多选回收换金币","Loadout · Sell spare gear for gold"),2,Color("997244")],
+		["shop",_ex_text("装备商城","EQUIPMENT SHOP"),_ex_text("六套新装备 · 整套购买或补齐","6 new sets · Buy or complete a set"),3,Color("657e4c")]
 	]
 	for index in choices.size():
 		var entry: Array = choices[index]
