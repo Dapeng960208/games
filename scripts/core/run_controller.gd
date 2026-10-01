@@ -37,6 +37,7 @@ const RoomRewards = preload("res://scripts/world/room_rewards.gd")
 const FieldSnapshot = preload("res://scripts/combat/combat_snapshot.gd")
 const Loot = preload("res://scripts/core/expedition_rewards.gd")
 const Transactions = preload("res://scripts/core/instance_transactions.gd")
+var _test_ruleset_override: int = 0
 var _pending_instance_transactions: Dictionary = {}
 var _pending_forging_transactions: Dictionary = {}
 const Instances = preload("res://scripts/core/equipment_instances.gd")
@@ -46,7 +47,31 @@ func _ready() -> void:
 		for argument: String in OS.get_cmdline_user_args():
 			if argument.begins_with("--test-profile="):
 				profile_path = argument.trim_prefix("--test-profile=")
+		# Explicit isolated historical tests can pin their original default. A
+		# normal user profile never accepts this debug-only numerical override.
+		if _isolated_test_path(profile_path):
+			for argument: String in OS.get_cmdline_user_args():
+				if argument in ["--test-ruleset=1", "--test-ruleset=2"]:
+					_test_ruleset_override = int(argument.get_slice("=",1))
 	reload_profile()
+
+func _isolated_test_path(value: String) -> bool:
+	if value == "user://profile.json" or value.is_empty(): return false
+	var normalized := value.replace("\\", "/")
+	for component: String in normalized.split("/"):
+		if component.begins_with("test_") and component.length() > 5: return true
+	return false
+
+func _runtime_ruleset() -> int:
+	return _test_ruleset_override if _test_ruleset_override in [1,2] else Numbers.default_ruleset()
+
+func _fresh_runtime_profile() -> Dictionary:
+	var fresh := ProfileStore.fresh_profile()
+	return preload("res://scripts/core/numerical_profile.gd").fresh(fresh) if _runtime_ruleset() == Numbers.V2 else fresh
+
+func _migrate_camp_if_enabled() -> bool:
+	if _runtime_ruleset() != Numbers.V2 or _profile_ruleset() == Numbers.V2 or not has_profile or run != null: return true
+	return migrate_numerical_at_camp()
 
 func _process(delta: float) -> void:
 	if run != null and run.hp > 0.0 and _pending_outcome.is_empty():
@@ -106,12 +131,14 @@ func reload_profile() -> void:
 		run.hp = 0.0
 		if not finish_run("abandoned").is_empty():
 			storage_warning = "STORAGE_ABANDONED_RECOVERED"
+	_migrate_camp_if_enabled()
 	changed.emit()
 
 func new_profile() -> bool:
 	if run != null or (_store != null and _store.unresolved_error):
 		return false
-	var fresh := ProfileStore.fresh_profile()
+	var fresh := _fresh_runtime_profile()
+	if fresh.is_empty(): return false
 	fresh.settings = profile.get("settings", fresh.settings).duplicate(true)
 	if not _save(fresh, null):
 		return false
@@ -130,6 +157,7 @@ func new_profile() -> bool:
 func start_run(options: Dictionary = {}) -> bool:
 	if run != null or not has_profile:
 		return false
+	if not _migrate_camp_if_enabled(): return false
 	var next := RunState.new()
 	next.demo = not _demo_backup.is_empty()
 	next.frozen_versions = Expedition.versions(_profile_ruleset())
@@ -173,10 +201,13 @@ func start_demo(hero_id: String, difficulty: int = 0, branches: Dictionary = {},
 		if key not in ["q", "ultimate"] or branches[key] not in ["", "A", "B"]: return false
 	_demo_backup = {"profile":profile.duplicate(true),"has_profile":has_profile,
 		"last_error":last_error,"storage_warning":storage_warning}
-	var trial := ProfileStore.fresh_profile()
+	var trial := _fresh_runtime_profile()
 	trial.settings.merge(profile.get("settings", {}), true)
 	trial.selected_hero = hero_id
-	trial.hero_xp[hero_id] = ContentRegistry.XP_THRESHOLDS[19 if preview_branches else 7]
+	trial.hero_xp[hero_id] = int(Progression.thresholds()[19 if preview_branches else 7]) if int(trial.get("ruleset_version",1)) == Numbers.V2 else ContentRegistry.XP_THRESHOLDS[19 if preview_branches else 7]
+	if int(trial.get("ruleset_version",1)) == Numbers.V2:
+		trial.loadout = trial.loadout_presets[hero_id].duplicate(true)
+		for id: String in trial.equipment: trial.equipment[id].location = "equipped" if id in trial.loadout.values() else "inventory"
 	if preview_branches:
 		for key: String in ["q", "ultimate"]: trial.branches[hero_id][key] = str(branches.get(key, ""))
 	profile = trial
@@ -419,6 +450,7 @@ func finish_run(outcome: String) -> Dictionary:
 	run = null
 	_pending_outcome = ""
 	_settling = false
+	_migrate_camp_if_enabled()
 	changed.emit()
 	run_finished.emit(result.duplicate(true))
 	return result
@@ -1506,7 +1538,7 @@ func _receipt_versions(receipt: Dictionary) -> Dictionary:
 		versions.reward_policy_version = 0
 	return versions
 
-## Explicit integration seam for approved conversion; production remains gated.
+## Atomic camp conversion used by the current production default.
 ## Saves the detached migration in one whole-document transaction at camp only.
 func migrate_numerical_at_camp(event_id: String = "migration:numerical_v2") -> bool:
 	if not _camp_available() or not has_profile or not _demo_backup.is_empty(): return false

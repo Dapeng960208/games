@@ -116,7 +116,8 @@ static func _loadout(panel: Control) -> void:
 	recommend.add_theme_font_size_override("font_size",14)
 	recommend.disabled = suggestion.is_empty()
 	var stats: Dictionary = Game.selected_stats()
-	MineStyle.literal(left,Inspect.t("生命 %.1f · 护甲 %.1f\n攻击 %.1f · 法强 %.1f","HP %.1f · Armor %.1f\nATK %.1f · Power %.1f") % [stats.max_hp,stats.armor,stats.attack,stats.ability_power],Vector2(16,444),Vector2(218,56),14,MineStyle.MUTED)
+	var version := int(stats.get("ruleset_version",1))
+	MineStyle.literal(left,Inspect.t("生命 %s · 护甲 %s\n攻击 %s · 法强 %s","HP %s · Armor %s\nATK %s · Power %s") % [Inspect.value("max_hp",stats.max_hp,false,false,version),Inspect.value("armor",stats.armor,false,false,version),Inspect.value("attack",stats.attack,false,false,version),Inspect.value("ability_power",stats.ability_power,false,false,version)],Vector2(16,444),Vector2(218,56),14,MineStyle.MUTED).name = "LoadoutStatSummary"
 
 static func detail(panel: Control) -> void:
 	var right := MineStyle.panel(panel.body,Vector2(728,0),Vector2(488,510))

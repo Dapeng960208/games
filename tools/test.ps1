@@ -5,7 +5,8 @@ param(
     [switch]$SkipRestart = $true,
     [switch]$ImportOnly,
     [switch]$SkipImport,
-    [switch]$Graphical
+    [switch]$Graphical,
+    [ValidateSet(0,1,2)][int]$Ruleset = 0
 )
 
 $ErrorActionPreference = 'Stop'
@@ -95,6 +96,11 @@ foreach ($testName in $Suite) {
     # The legacy playthrough suite shares the combat fixture's safety prefix.
     $profileName = if ($testName -eq 'playthrough') { 'combat_playthrough' } else { $testName }
     $arguments += @('--', "--test-profile=$(Get-TestProfile $profileName)")
+    # These named historical suites assert the original mechanics/economy.
+    # New numerical/default-activation suites deliberately receive no override.
+    $legacyDefaultSuites = @('single_biome_routes','loot_upgrade','first_four_bosses','first_four_mechanics','race_relics','death_penalty','equipment_integration','reward_transactions','numerical_versioned_saves')
+    $testRuleset = if ($Ruleset -ne 0) { $Ruleset } elseif ($testName -in $legacyDefaultSuites) { 1 } else { 0 }
+    if ($testRuleset -ne 0) { $arguments += "--test-ruleset=$testRuleset" }
     Invoke-GodotStage -Stage "$testName acceptance" -StageArguments $arguments -AllowGraphics
 }
 if (-not $SkipRestart) {

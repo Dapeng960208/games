@@ -350,6 +350,10 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 			return null
 	elif options.has("profile"):
 		resolved = options.profile.duplicate(true)
+	elif enemy_ruleset() == Numerical.V2:
+		# The original M1/trial waves have no authored identity. Use the first
+		# published prototype so an enabled V2 player never faces legacy units.
+		resolved = EnemyProfilesScript.resolve("M01",maxi(1,EnemyProfilesScript.encounter_level(layout_id,0,difficulty,2)),"normal",2,difficulty)
 	# All ordinary spawn paths share the room difficulty, including objective
 	# adds and boss reinforcements. Encounter plans have already applied this;
 	# the preserved base prevents compounding their bonuses on spawn.

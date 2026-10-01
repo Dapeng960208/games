@@ -195,7 +195,7 @@ func _detail() -> void:
 	var content := Details.new()
 	scroll.add_child(content)
 	content.configure(data,int(comparison.level),399,Game.run.hero_id,comparison.current_stats,comparison.next_stats,detail_tab)
-	var wearing: bool = selected_id == str(comparison.current_id) and int(comparison.level) == int(Game.run.equipment_snapshot.get(selected_id, {}).get("level",0))
+	var wearing: bool = selected_id == str(comparison.current_id) and int(comparison.level) == int(Game.run.equipment_snapshot.get(selected_id, {}).get("enhancement_rank",Game.run.equipment_snapshot.get(selected_id, {}).get("level",0)))
 	var equip_text := _t("选择一件装备", "Select equipment") if selected_id.is_empty() else (_t("已穿戴", "Equipped") if wearing else _t("穿戴 · 立即生效", "Equip · apply now"))
 	var equip := _button(detail_root, "BackpackEquip", equip_text, Vector2(16,437), Vector2(283,44), func(): _apply(selected_id,selected_slot))
 	MineStyle.primary(equip)
@@ -228,7 +228,7 @@ func _attributes() -> void:
 	var sheet := Sheet.new()
 	scroll.add_child(sheet)
 	var actor: Variant = room.get("player") if is_instance_valid(room) else null
-	sheet.configure(Inspect.breakdown(Game.run.hero_id,Game.run.level,Game.run.loadout_snapshot,Game.run.equipment_snapshot,actor),726,"BackpackAttribute_")
+	sheet.configure(Inspect.breakdown(Game.run.hero_id,Game.run.level,Game.run.loadout_snapshot,Game.run.equipment_snapshot,actor,Game.run.ruleset_version(),Game.hero_talents(Game.run.hero_id)),726,"BackpackAttribute_")
 	if is_instance_valid(actor) and actor.get("loadout") != null:
 		var modifiers: Dictionary = actor.get("loadout").call("modifiers")
 		var names := {"damage_bonus":_t("触发伤害加成","Triggered damage bonus"),"crit_bonus":_t("触发暴击率","Triggered critical chance"),"attack_speed_bonus":_t("触发攻速加成","Triggered attack speed"),"move_speed_bonus":_t("触发移速加成","Triggered move speed"),"damage_reduction_bonus":_t("触发减伤加成","Triggered reduction"),"cost_reduction":_t("技能消耗减免","Skill cost reduction")}

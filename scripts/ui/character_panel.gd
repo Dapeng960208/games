@@ -1,5 +1,6 @@
 extends Control
 ## Camp and combat share the same complete attribute and equipment inspectors.
+const SkillInspect = preload("res://scripts/ui/skill_inspection.gd")
 const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
 const Sheet = preload("res://scripts/ui/stat_sheet.gd")
 const Details = preload("res://scripts/ui/equipment_details.gd")
@@ -33,7 +34,7 @@ func configure(source_room: Node, close: Callable) -> void:
 	for index: int in 4:
 		var key: String = ["q","secondary","f","ultimate"][index]
 		var skill: Dictionary = hero.get("skills",{}).get(key,{})
-		var action := MineStyle.button(left,"",Vector2(17+index*64,461),Vector2(58,48),func(): _explain(MineStyle.content_text(skill,"name"),MineStyle.content_text(skill,"description")))
+		var action := MineStyle.button(left,"",Vector2(17+index*64,461),Vector2(58,48),func(): _show_skill(key,skill))
 		action.name = "DossierSkill_"+key
 		MineStyle.button_skin(action,"socket")
 		var icon := TextureRect.new()
@@ -88,3 +89,9 @@ func _explain(title: String, explanation: String) -> void:
 	detail_title.text = title
 	detail_body = MineStyle.literal(detail_scroll,explanation,Vector2.ZERO,Vector2(620,0),17)
 	detail_body.custom_minimum_size.x = 620
+
+func _show_skill(slot: String, skill: Dictionary) -> void:
+	var actor: Variant = room.get("player") if is_instance_valid(room) else null
+	var spec: Dictionary = actor.skill_definition(slot) if is_instance_valid(actor) else HeroAbilities.preview_spec(Game.run.hero_id,Game.run.level,Game.run.stats,slot)
+	var summary := Words.text("HUD_FINAL_COST",{"cost":spec.get("cost",0),"resource":MineStyle.content_text(ContentRegistry.hero(Game.run.hero_id),"resource_name"),"cooldown":snappedf(float(spec.get("cooldown",0)),0.1)})
+	_explain(MineStyle.content_text(skill,"name"),summary+"\n\n"+SkillInspect.describe(Game.run.hero_id,Game.run.level,Game.run.stats,slot,spec,actor))

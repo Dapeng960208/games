@@ -48,11 +48,14 @@ func _ready() -> void:
 	if not Game.profile_path.contains("test_numerical_versioned_saves"):
 		get_tree().quit(2)
 		return
-	check(Numbers.default_ruleset() == 1, "production activation remains disabled")
+	var current_default: bool = bool(Numbers.value("runtime_enabled"))
+	Numbers._parameters["runtime_enabled"] = false
+	check(Numbers.default_ruleset() == 1, "explicit historical fixture begins with old default")
 	_legacy_migration()
 	_new_expedition()
 	_runtime_migration()
 	_level_waiver_expiry()
+	Numbers._parameters["runtime_enabled"] = current_default
 	print("Numerical versioned saves: ", checks, " checks; failures=", failures)
 	get_tree().quit(0 if failures.is_empty() else 1)
 

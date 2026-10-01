@@ -1,9 +1,9 @@
 {
   "schema": "NumericalRuntime/v2",
-  "status": "implementation_gated",
+  "status": "runtime_enabled_balance_validation_pending",
   "source_commit": "8daa519f2ea1a7dcc3f422b4df96ac81d65986b9",
   "date": "2026-10-01",
-  "runtime_enabled": false,
+  "runtime_enabled": true,
   "chapter_level_step": 5,
   "chapter_hp_per_step": 0.12,
   "chapter_damage_per_step": 0.08,

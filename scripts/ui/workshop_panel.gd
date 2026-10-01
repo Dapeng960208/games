@@ -9,6 +9,7 @@ const Advice = preload("res://scripts/ui/equipment_advice.gd")
 const SetShop = preload("res://scripts/ui/equipment_set_shop.gd")
 const Recycle = preload("res://scripts/ui/equipment_recycle_panel.gd")
 const HeroDossier = preload("res://scripts/ui/hero_dossier.gd")
+const SkillInspect = preload("res://scripts/ui/skill_inspection.gd")
 const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
 const StatSheet = preload("res://scripts/ui/stat_sheet.gd")
 const InstanceForging = preload("res://scripts/ui/instance_forging_panel.gd")
@@ -180,7 +181,7 @@ func _render_skills() -> void:
 	MineStyle.label(dossier,"HERO_LEVEL",Vector2(20,259),Vector2(250,29),18,MineStyle.AMBER,{"level":level})
 	var xp: int = int(Game.profile.get("hero_xp",{}).get(id,0))
 	MineStyle.label(dossier,"HERO_XP_MAX" if level >= 20 else "HERO_XP",Vector2(20,294),Vector2(250,31),17,MineStyle.MUTED,{"xp":xp,"next":ContentRegistry.next_level_xp(level)})
-	MineStyle.label(dossier,"DOSSIER_STATS",Vector2(20,339),Vector2(252,61),17,MineStyle.INK,{"hp":int(stats.get("max_hp",100)),"damage":"%.1f" % float(stats.get("attack",20)),"armor":int(stats.get("armor",0))})
+	MineStyle.label(dossier,"DOSSIER_STATS",Vector2(20,339),Vector2(252,61),17,MineStyle.INK,{"hp":int(stats.get("max_hp",100)),"damage":Inspect.value("attack",float(stats.get("attack",20)),false,false,int(stats.get("ruleset_version",1))),"armor":int(stats.get("armor",0))})
 	MineStyle.button(dossier,"PASSIVE_DASH",Vector2(18,416),Vector2(254,48),func(): _show_core_actions(hero))
 	MineStyle.label(dossier,"CORE_ACTIONS_UNLOCK",Vector2(20,471),Vector2(252,29),16,MineStyle.MUTED)
 	for i in range(SKILLS.size()):
@@ -197,6 +198,7 @@ func _render_skills() -> void:
 			var branch_level := "18" if SKILLS[i] == "q" else "20"
 			var branch: Dictionary = hero.get("branches",{}).get(branch_level,{}).get(choice,{})
 			description_text = Words.text("BRANCH_ACTIVE",{"choice":choice})+" · "+MineStyle.content_text(branch,"name")+"\n"+MineStyle.content_text(branch,"description")+"\n\n"+Words.text("BASE_SKILL")+"\n"+description_text
+		description_text = SkillInspect.describe(id,level,stats,SKILLS[i],skill,null,description_text)
 		var unlocked := level >= int(skill.get("unlock",[1,2,3,4][i]))
 		var panel := MineStyle.panel(body,Vector2(310,(i/2)*182),Vector2(442,164))
 		panel.position.x += (i%2)*464
@@ -281,7 +283,7 @@ func _show_core_actions(hero: Dictionary) -> void:
 	var flow := VBoxContainer.new()
 	flow.add_theme_constant_override("separation",12)
 	scroll.add_child(flow)
-	for entry: Array in [[MineStyle.content_text(passive,"name"),23,MineStyle.CYAN],[MineStyle.content_text(passive,"description"),18,MineStyle.INK],[Words.text("DASH_LABEL")+" / "+MineStyle.content_text(dash,"name"),22,MineStyle.AMBER],[Words.text("DASH_DETAILS",{"distance":dash.get("distance",0),"cooldown":dash.get("cooldown",0)}),18,MineStyle.MUTED]]:
+	for entry: Array in [[MineStyle.content_text(passive,"name"),23,MineStyle.CYAN],[SkillInspect.passive_text(hero,Game.selected_stats()),18,MineStyle.INK],[Words.text("DASH_LABEL")+" / "+MineStyle.content_text(dash,"name"),22,MineStyle.AMBER],[Words.text("DASH_DETAILS",{"distance":dash.get("distance",0),"cooldown":dash.get("cooldown",0)}),18,MineStyle.MUTED]]:
 		var label := MineStyle.literal(flow,entry[0],Vector2.ZERO,Vector2(661,0),entry[1],entry[2])
 		label.custom_minimum_size.x = 661
 	MineStyle.button(panel,"BACK",Vector2(488,414),Vector2(226,50),app._pop_modal).grab_focus()
