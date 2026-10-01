@@ -83,6 +83,7 @@ func _run() -> void:
 		check(absf(before - target.health.current - 20.0) < .02, "first new hit has no previous buff")
 	_test_original_boundaries()
 	_test_native_attacks()
+	_test_native_skills()
 	if is_instance_valid(room):
 		await room.combat_audio.wait_for_cleanup()
 		room.free()
@@ -139,3 +140,31 @@ func _test_native_attacks() -> void:
 			bolt._physics_process(.2)
 		check(a.health.current < a.health.maximum and b.health.current < b.health.maximum, hero + " real area/pierce reaches both targets")
 		check(room.player.hit_chain.count == 1, hero + " native basic counts once")
+
+func _test_native_skills() -> void:
+	for slot: String in ["q","ultimate"]:
+		fixture("CH02")
+		var a := dummy()
+		check(room.player.cast_skill(slot,a.position), "public gunner " + slot + " commits")
+		room.player.abilities.tick(1.3)
+		var expected: int = 3 if slot == "q" else 4
+		check(room.projectiles.get_child_count() == expected, "native gunner emits independent rounds")
+		for bolt: Node in room.projectiles.get_children(): bolt._physics_process(.5)
+		check(room.player.hit_chain.count == expected, "native gunner " + slot + " counts each confirmed independent round")
+	fixture("CH03")
+	var a := dummy()
+	var b := dummy(Vector2(95,0))
+	check(room.player.cast_skill("q",a.position), "public mage Q commits")
+	room.player.abilities.tick(1.0)
+	for bolt: Node in room.projectiles.get_children(): bolt._physics_process(.3)
+	check(a.health.current < a.health.maximum and b.health.current < b.health.maximum and room.player.hit_chain.count == 1, "native mage Q explosion damages both targets but counts once")
+	check(room.player.cast_skill("ultimate",a.position), "public mage R commits")
+	room.player.abilities.tick(1.0)
+	check(room.player.hit_chain.count == 2, "native domain original placement adds one")
+	var field: Node2D
+	for child: Node in room.get_children():
+		if child.has_method("advance") and child.get("kind") == "field": field = child
+	check(is_instance_valid(field), "actual native domain deployment exists")
+	var before: float = a.health.current
+	if is_instance_valid(field): field.advance(3.0)
+	check(a.health.current < before and room.player.hit_chain.count == 2, "native domain deals periodic damage without farming combo")

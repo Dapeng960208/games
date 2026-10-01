@@ -9,8 +9,8 @@
 | MAP01 P0 | 28 房用途分组已接入；历史草稿单独保留 | data/room_presentations.json、scripts/world/room_presentation.gd、fixed_room_layouts.gd、prop_identity.gd | 56 分组与 168 陈设按用途摆放；保留原蓝图、实体掩体与奖励；用真实 28 房运行图册记录当前状态 |
 | MAP02 P0 | 28 房独立完整背景与房间识别 UI 已接入 | assets/generated/world/rooms/、scripts/world/world_art.gd、environment_chunks.gd、scripts/ui/room_identity_plate.gd | 同族七张独立原画；各房地标、边缘、生活区和地面各异；本房边界/镜头/六区块/小图一致，资源像素摘要与实际加载路径各不相同 |
 | MAP03 P0 | 地板比例和空场感校对 | presentation_metrics.gd、world_camera.gd、环境 metadata、蓝图 | 实际镜头下砖、人物、门和道具尺度符合参考；避免持续放大人物；大窗口不露画外，HUD 完整 |
-| COM01 P0 | 枪口出弹和枪手打击感，待修 | hero_visual.gd、hero_feedback.gd、projectile_visual.gd、projectile.gd、room.gd、hero_skill_atlas.gd、combat_audio.gd | 可见弹体从本次姿态枪口发出，方向一致，墙角不穿模；后坐、闪光、命中和声音同节奏，保留物理结算规则 |
-| COM02 P1 | 三职业十二技能专属效果，未开始 | hero_abilities.gd、hero_feedback.gd、skill_input_feedback.gd、scripts/ui/hud.gd、技能素材 | 每招蓄力/释放/命中或落点语言可辨，连招提示清楚；降低特效保留信息，不能仅换颜色 |
+| COM01 P0 | 姿态枪口展示路径、方向锁定与墙边裁切已接入并通过针对性检查；新增三拍枪焰/曳光/命中变化 | hero_visual.gd、hero_feedback.gd、projectile_visual.gd、projectile.gd、room.gd、hero_skill_atlas.gd、combat_audio.gd | 保留真实物理弹道；后续检查全部方向、密集地形和自然射击的声音/动作主观手感 |
+| COM02 P1 | 三职业技能专属效果与声音已接入；新增x1–x100连击增伤、五档特效、Buff与普攻轮换，机制/UI/实际GPU练习场已检查 | hero_abilities.gd、hit_chain.gd、hero_feedback.gd、projectile.gd、impact_feedback.gd、scripts/ui/hud.gd、hit_chain_readout.gd | 继续校调自然群战与增伤平衡；降低特效保留实际读数与范围；不把受控练习场通过当作完整动画/平衡完成 |
 | COM03 P1 | 累计野怪量增加约40%，计划与实际运行已检查 | enemy_profiles.gd 的 encounter_plan、room.gd、config/ | 已通过有限后续波次增量与五难度数量检查，保留并发、弹体和召唤上限；后续按自然群战节奏调校 |
 | COM04 P1 | 四族普通怪特性已接入并通过实效检查 | enemy_biome_skills.gd、enemy_difficulty.gd、enemy_skill_runtime.gd、enemy_brain.gd、first_four_construct_hive.gd | 护盾、毒蚀、回血、狂怒及冷却真实生效；普通怪20级高难效果已检查，保留36原型预警；后续调校区域群战平衡 |
 | COM05 P1 | 四首领独立战术与专属主动技能已接入并通过实效检查 | boss_brain.gd、boss_profiles.gd、boss.gd | 按距离和冷却选招、追击/绕行/拉开距离，新增交叉雷网/三点酸雨/缝线牢笼/裂岩跃击；保留主题反制、锁定预警与弱点停顿，后续完善独立动画和自然战斗平衡 |
