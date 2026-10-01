@@ -184,6 +184,13 @@ func hud_checks(id: String, locale: String, extent: Vector2i) -> void:
 	check(plate.room_caption.text==Presentation.local_caption(Presentation.definition(id),locale=="en") and not plate.room_title.text.is_empty(), id+" "+locale+" room title and purpose use current localized content")
 	var text_inside: bool = plate.get_global_rect().encloses(plate.room_title.get_global_rect()) and plate.get_global_rect().encloses(plate.room_caption.get_global_rect())
 	check(text_inside and plate.room_caption.get_line_count()<=2, id+" "+locale+" room title and complete purpose fit the room plate: size="+str(plate.size)+" caption="+str(plate.room_caption.get_rect())+" lines="+str(plate.room_caption.get_line_count()))
+	# Measure the actual font and painted seal, including the longest boss ID.
+	# The full string must fit the emblem column without clipping the last digit.
+	var expected_seal := "%02d·%s" % [int(Presentation.definition(id).chapter),id]
+	var seal_font: Font = plate.get_theme_font("font","Button")
+	var painted_seal: Rect2 = plate.seal_text_rect
+	var seal_width: float = seal_font.get_string_size(plate.seal_text,HORIZONTAL_ALIGNMENT_LEFT,-1,plate.seal_font_size).x
+	check(plate.seal_text==expected_seal and is_equal_approx(painted_seal.size.x,seal_width) and painted_seal.position.x>=4 and painted_seal.end.x<=48 and painted_seal.end.y<=plate.size.y and is_equal_approx(painted_seal.get_center().x,26), id+" "+locale+" complete chapter seal fits its visible emblem column: text="+plate.seal_text+" bounds="+str(painted_seal))
 	check(plate.map_bounds==room.ARENA and plate.ground_polygon==room.ground_polygon, id+" miniature uses the real walkable ground outline")
 
 func player_marker_checks(id: String) -> void:
@@ -317,18 +324,22 @@ func _run() -> void:
 	# One ordinary room and one boss exercise the compact and expanded text
 	# arrangements. All 28 room identities were already exercised above.
 	for id: String in (["L14","BO04"] if preview_ids.is_empty() else []):
-		if not await install(id): continue
 		for extent: Vector2i in WINDOWS:
 			await resize_window(extent)
 			for locale: String in ["zh_CN","en"]:
 				print("ROOM_PRESENTATION_UI ",id," ",locale," ",extent)
 				Words.set_locale(locale)
+				# World actor labels are localized when those actors are built.
+				# Reinstall under this locale before testing the complete frame.
+				if not await install(id): continue
 				hud.refresh()
 				await frames()
 				hud_checks(id,locale,extent)
 				await screenshot(id+"_ui_"+locale+"_"+str(extent.x)+"x"+str(extent.y)+".png")
 	Words.set_locale("zh_CN")
-	var manifest := FileAccess.open(OUTPUT+"manifest.json",FileAccess.WRITE)
+	# A targeted UI rerun updates its twelve images and separate evidence while
+	# retaining the successful full-room manifest and background fingerprints.
+	var manifest := FileAccess.open(OUTPUT+("ui-verification.json" if ui_only else "manifest.json"),FileAccess.WRITE)
 	if manifest!=null:
 		manifest.store_string(JSON.stringify({"checks":checks,"failures":failures,"gpu":DisplayServer.get_name()!="headless","rooms":evidence,"partial":ui_only or not preview_ids.is_empty()},"\t"))
 		manifest.close()

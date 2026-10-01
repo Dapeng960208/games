@@ -21,6 +21,9 @@ var room_caption: Label
 var identity_signature := ""
 var ground_polygon := PackedVector2Array()
 var map_bounds := Rect2(0,0,1624,1044)
+var seal_text := ""
+var seal_font_size := 9
+var seal_text_rect := Rect2()
 
 func _ready() -> void:
 	name = "RoomIdentityPlate"
@@ -123,8 +126,14 @@ func _draw() -> void:
 	var chapter := int(design.get("chapter",0))
 	var code := str(layout.get("blueprint_room_id",layout.get("room_id","")))
 	var font := get_theme_font("font","Button")
-	var seal_code := "%02d·%s" % [chapter,code] if chapter > 0 else code
-	draw_string(font,Vector2(6,53),seal_code,HORIZONTAL_ALIGNMENT_CENTER,40,9,INK)
+	seal_text = "%02d·%s" % [chapter,code] if chapter > 0 else code
+	seal_font_size = 9
+	var seal_width := font.get_string_size(seal_text,HORIZONTAL_ALIGNMENT_LEFT,-1,seal_font_size).x
+	if seal_width > 44:
+		seal_font_size = 8
+		seal_width = font.get_string_size(seal_text,HORIZONTAL_ALIGNMENT_LEFT,-1,seal_font_size).x
+	seal_text_rect = Rect2(26-seal_width*.5,53-font.get_ascent(seal_font_size),seal_width,font.get_height(seal_font_size))
+	draw_string(font,Vector2(seal_text_rect.position.x,53),seal_text,HORIZONTAL_ALIGNMENT_LEFT,-1,seal_font_size,INK)
 	_draw_map()
 	if has_focus() or is_hovered():
 		draw_style_box(MineStyle.box(Color.TRANSPARENT,Color(accent,.70),1),Rect2(1,2,size.x-2,size.y-4))
