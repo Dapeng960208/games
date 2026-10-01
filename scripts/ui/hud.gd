@@ -16,11 +16,12 @@ const QuestLocalization = preload("res://scripts/ui/quest_localization.gd")
 const Bindings = preload("res://scripts/core/control_bindings.gd")
 const Presentation = preload("res://scripts/world/room_presentation.gd")
 const IdentityPlate = preload("res://scripts/ui/room_identity_plate.gd")
+const HitChainReadout = preload("res://scripts/ui/hit_chain_readout.gd")
 
 const SKILLS := ["q","secondary","f","ultimate"]
 const KEYS := ["Q","W","E","R"]
 const SKILL_ACTIONS := ["skill_q","skill_secondary","skill_f","skill_ultimate","dash"]
-const BUFF_ORDER := ["damage","guard","supply_guard","combat_guard","brace_guard","haste","burn","shock","chill","corrosion","bleed","grievous","damage_reduction","invulnerable"]
+const BUFF_ORDER := ["hit_chain","damage","guard","supply_guard","combat_guard","brace_guard","haste","burn","shock","chill","corrosion","bleed","grievous","damage_reduction","invulnerable"]
 const Traits = preload("res://scripts/ui/equipment_traits.gd")
 const COMBAT_STATUS_LABELS := {"burn":"灼烧","shock":"感电","chill":"寒冷","corrosion":"腐蚀","bleed":"流血","grievous":"重伤","damage_reduction":"减伤","brace_guard":"铁壁战吼","invulnerable":"无敌"}
 const COMBAT_STATUS_NOTES := {"burn":"持续受到魔法伤害。","shock":"后续命中可引发电击。","chill":"移动速度降低。","corrosion":"护甲降低并持续受到物理伤害。","bleed":"持续受到物理伤害。","grievous":"受到的治疗降低 40%。","damage_reduction":"临时降低受到的伤害。","brace_guard":"受到的伤害降低 25%；与其他减伤取较强值，各自独立到期。","invulnerable":"持续时间内免疫伤害。"}
@@ -322,6 +323,7 @@ var active_detail_slot := "q"
 var resource_icon: Control
 var guard_icon: Control
 var buff_row: Control
+var hit_chain_readout: Control
 var buff_chips: Dictionary = {}
 var active_buffs: Dictionary = {}
 var buff_durations: Dictionary = {}
@@ -415,6 +417,8 @@ func _ready() -> void:
 	buff_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(buff_row)
 	buff_row.hide()
+	hit_chain_readout = HitChainReadout.new()
+	add_child(hit_chain_readout)
 	location_panel = _plate(self,Vector2(461,22),Vector2(358,123),"expedition_plaque")
 	location_panel.name = "ExpeditionRibbon"
 	expedition_label = _line(location_panel,"",Vector2(97,-1),Vector2(172,28),19,HUD_INK)
@@ -576,6 +580,7 @@ func _apply_layout() -> void:
 	room_identity_plate.size.x = route_width
 	location_panel.queue_redraw()
 	buff_row.position = Vector2(margin,154 if screen_size.x >= 760 else 220)
+	hit_chain_readout.position = Vector2(screen_size.x-hit_chain_readout.size.x-margin,166)
 	relic_row.position = Vector2(screen_size.x-relic_row.size.x-margin,118)
 	var cell_width := 80.0 if _compact_layout else 88.0
 	skill_dock.size = Vector2(cell_width*5+16,112)
@@ -1031,6 +1036,12 @@ func _update_passive() -> void:
 func _update_buffs() -> void:
 	if buff_row == null: return
 	active_buffs.clear()
+	var chain_state: Dictionary = {}
+	if Game.run != null and is_instance_valid(room) and is_instance_valid(room.get("player")):
+		chain_state = room.player.hit_chain.snapshot()
+		if int(chain_state.count) > 0:
+			active_buffs["hit_chain"] = {"effect":"hit_chain","name":"连击增伤 +%.1f%%" % (float(chain_state.bonus)*100),"name_en":"Combo damage +%.1f%%" % (float(chain_state.bonus)*100),"description":"每次新的直接攻击有效命中增加 1 层，每层提升 0.5% 直接攻击伤害，最多 100 层（+50%）。4 秒未继续命中则清空。范围与贯穿攻击每次只计 1 层，独立多段分别计数，持续与派生伤害不计数。","description_en":"Each new confirmed direct attack adds one stack and +0.5% direct damage, up to 100 (+50%). Ends after 4s without a new hit. Area/piercing attacks count once; separate rounds count separately. Damage over time and derived hits do not count.","remaining":chain_state.remaining,"duration":chain_state.duration,"source":"combat","color":Color("a266d5") if Game.run.hero_id == "CH03" else HUD_AMBER}
+	if hit_chain_readout != null: hit_chain_readout.update_state(chain_state)
 	if Game.run != null and is_instance_valid(room):
 		var source: Node = room.get("enemy_props")
 		if is_instance_valid(source) and source.has_method("active_buffs"):
@@ -1154,6 +1165,8 @@ func _combat_status_note(effect: String) -> String:
 ## Temporary buff paint is measured independently of the standing HUD footprint.
 func active_buff_coverage_rects() -> Array[Rect2]:
 	var result: Array[Rect2] = []
+	if is_instance_valid(hit_chain_readout) and hit_chain_readout.is_visible_in_tree():
+		result.append(Rect2(hit_chain_readout.global_position,HitChainReadout.PAINTED_RECT.size))
 	for chip: BuffChip in buff_chips.values():
 		if chip.is_visible_in_tree(): result.append(Rect2(chip.global_position+BuffChip.PAINTED_RECT.position,BuffChip.PAINTED_RECT.size))
 	return result

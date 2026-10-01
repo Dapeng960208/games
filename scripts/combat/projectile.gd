@@ -161,6 +161,9 @@ func _draw_ground_shadow(hero: String) -> void:
 
 func _draw_gunner_needle(trail: float = 1.0) -> void:
 	var tint := Color("ffc65c")
+	var variant: int = int(options.get("basic_variant",0)) if source == &"primary" else 0
+	if variant == 1: tint = Color("ffe697")
+	elif variant == 2: tint = Color("ff9b43")
 	if arc_ready: tint = Color("7feaff")
 	var normal := direction.orthogonal()
 	var heavy: bool = bool(options.get("heavy", false))
@@ -185,6 +188,11 @@ func _draw_gunner_needle(trail: float = 1.0) -> void:
 	needle.append(needle[0])
 	draw_polyline(needle,Color("69472e",.98),1.7,true)
 	draw_line(-direction * 11.0 * trail, direction * 5.0, Color("ffffff"), 1.8, true)
+	if variant == 1:
+		draw_line(-direction*17*trail-normal*3,-direction*8*trail-normal*3,Color(tint,.95*trail),1.6,true)
+	elif variant == 2:
+		for along in [10.0,18.0]:
+			draw_line(-direction*along*trail-normal*4,-direction*along*trail+normal*4,Color("ffc13b",.95*trail),2.3,true)
 	if rail:
 		for side in [-1.0,1.0]:
 			draw_line(-direction*25.0*trail+normal*side*4.3,-direction*3.0*trail+normal*side*3.6,Color("67452e",.94*trail),4.0,true)
@@ -198,12 +206,14 @@ func _draw_gunner_needle(trail: float = 1.0) -> void:
 
 func _draw_arcanist_crystal(trail: float = 1.0) -> void:
 	var tint := Color("43eaf2")
+	var variant: int = int(options.get("basic_variant",0)) if source == &"primary" else 0
 	if arc_ready: tint = Color("88f6ff")
 	var violet := Color("b26aff")
 	var normal := direction.orthogonal()
 	var pulse_spell: bool = source == &"q"
 	var reduced: bool = bool(Game.profile.get("settings",{}).get("reduced_fx",false))
 	var radius: float = 11.5 if pulse_spell else 8.2
+	if variant == 1: radius = 9.2
 	# Q carries a runic orbit around its larger core; basic magic remains a
 	# faceted bolt. Both have a violet/cyan constellation instead of a rifle wake.
 	var pulse: float = sin(remaining * 18.0)
@@ -228,15 +238,17 @@ func _draw_arcanist_crystal(trail: float = 1.0) -> void:
 	var lit_side: Vector2 = normal if normal.dot(_display_light()) >= 0.0 else -normal
 	var lit_point: Vector2 = lit_side*radius*.78
 	var shaded_point: Vector2 = -lit_point
-	draw_colored_polygon(PackedVector2Array([tip,upper,heel,lower]),Color("a662ec"))
+	draw_colored_polygon(PackedVector2Array([tip,upper,heel,lower]),Color("39cbd7" if variant == 1 else "df78ee" if variant == 2 else "a662ec"))
 	draw_colored_polygon(PackedVector2Array([tip,lit_point,Vector2.ZERO]),Color("ecfffd"))
 	draw_colored_polygon(PackedVector2Array([heel,lit_point,Vector2.ZERO]),Color("61e5e9"))
-	draw_colored_polygon(PackedVector2Array([tip,shaded_point,Vector2.ZERO]),Color("ab83f9"))
+	draw_colored_polygon(PackedVector2Array([tip,shaded_point,Vector2.ZERO]),Color("51d7df" if variant == 1 else "e7a1ff" if variant == 2 else "ab83f9"))
 	draw_colored_polygon(PackedVector2Array([heel,shaded_point,Vector2.ZERO]),Color("7942bd"))
 	draw_polyline(PackedVector2Array([tip,upper,heel,lower,tip]),Color("513073",.98),2.1,true)
 	draw_line(lit_point,tip,Color("f1fffc"),1.8,true)
 	draw_line(heel,Vector2.ZERO,Color(tint,.95),1.3,true)
 	draw_circle(Vector2.ZERO,2.0,Color("f0fff9"))
+	if variant == 2:
+		_draw_projected_orbit(radius+5.0,remaining*5.0,PI*1.8,Color("d681ff",.95),2.0)
 	if pulse_spell:
 		var orbit: float = remaining*5.0
 		_draw_projected_orbit(radius+5.5,orbit,PI*.75,Color(tint,.98),2.2)

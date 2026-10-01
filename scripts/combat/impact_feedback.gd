@@ -76,6 +76,7 @@ func confirm_hit(at: Vector2, direction: Vector2, event: Dictionary) -> void:
 	# Keep the original packet's absorption separate from flesh/armour contact.
 	# Older callers without a split remain ordinary body hits.
 	hit["hp_damage"] = maxf(0.0, float(event.get("hp_damage", damage)))
+	hit["basic_variant"] = clampi(int(event.get("basic_variant",0)),0,2)
 	hit["shield_damage"] = maxf(0.0, float(event.get("shield_damage", 0.0)))
 	hit["shield_broken"] = float(hit.shield_damage) > 0.0 and bool(event.get("shield_broken", false))
 	if bool(hit.shield_broken) and not reduced and not passive:
@@ -189,6 +190,27 @@ func _draw() -> void:
 				else:
 					_draw_pierce(at, dir, radius, t, fade, event)
 			"CH03": _draw_crystal(at, dir, radius, t, fade, event)
+		if str(event.source) == "primary" and not bool(event.passive):
+			_draw_basic_accent(at,dir,t,fade,event)
+
+func _draw_basic_accent(at: Vector2, dir: Vector2, t: float, fade: float, event: Dictionary) -> void:
+	var variant: int = int(event.get("basic_variant",0))
+	if variant == 0: return
+	var normal: Vector2 = dir.orthogonal()
+	var hero: String = str(event.hero_id)
+	var tint: Color = Color("ff9c35") if hero == "CH01" else Color("ffd152") if hero == "CH02" else Color("cf84ff")
+	if variant == 1:
+		_contact_line(PackedVector2Array([at-normal*11-dir*6,at,at+normal*11+dir*6]),tint,fade,2.8)
+	elif hero == "CH01":
+		for side: float in [-1.0,1.0]:
+			_contact_line(PackedVector2Array([at+normal*side*15-dir*8,at+dir*(18+t*9)]),tint,fade,3.5)
+	elif hero == "CH02":
+		for side: float in [-1.0,1.0]:
+			_contact_line(PackedVector2Array([at+normal*side*7-dir*11,at+normal*side*3+dir*(20+t*10)]),tint,fade,2.6)
+	else:
+		for index in 3:
+			var angle: float = index*TAU/3+t*.6
+			draw_arc(at,15+t*9,angle,angle+.7,8,Color(tint,fade),2.8,true)
 
 func _draw_shield_contact(at: Vector2, dir: Vector2, radius: float, t: float, fade: float, event: Dictionary) -> void:
 	var n := dir.orthogonal()

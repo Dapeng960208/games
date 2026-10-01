@@ -1052,6 +1052,7 @@ func strike_area(at: Vector2, radius: float, amount: float, source: StringName, 
 	var reserved: Dictionary = {}
 	if source == &"primary":
 		reserved = _prepare_relics(context, Balance.TRIGGER_BUDGET, Game.run.shots % 3 == 0)
+		context["basic_variant"] = player.basic_attack_variant()
 		context["native_statuses"] = [ClassRelics.native_status(player.hero_id())] if bool(reserved.get("burn", false)) else []
 	var candidates: Array = targets_in_radius(at, radius)
 	if source == &"primary":
@@ -1196,6 +1197,7 @@ func _confirm_contact(target: MineEnemy, direction: Vector2, source: StringName,
 	target.receive_confirmed_impact(forward, .28 if passive else 1.3 if heavy else .95 if hero == "CH01" else .65, heavy, hero)
 	var at: Vector2 = target.position + Vector2(0, target.body_bounds.end.y-target.body_bounds.size.y*.53)
 	var event: Dictionary = {"hero_id":hero,"source":str(source),"heavy":heavy,"passive":passive,"critical":critical,"killed":not target.is_alive(),"material":material,"damage":damage,"anchor":weakref(target),"anchor_offset":at-target.position}
+	event["basic_variant"] = int(context.get("basic_variant",0)) if source == &"primary" else 0
 	event["hp_damage"] = float(context.get("hp_damage", damage))
 	event["shield_damage"] = float(context.get("shield_damage", 0.0))
 	event["shield_broken"] = bool(context.get("shield_broken", false))

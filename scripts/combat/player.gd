@@ -839,10 +839,13 @@ func class_record_hit(target: Node2D, source: StringName, context: Dictionary) -
 	if hero_id() == "CH02" and source == &"f" and bool(context.get("equipment_eligible", true)):
 		class_mark_target(target)
 	passives.record_hit(target, source, context)
+	var chain_before: int = hit_chain.count
 	if hit_chain.record_hit(source, context):
 		var feedback: Node = get_node_or_null("HeroFeedback")
 		if is_instance_valid(feedback) and feedback.has_method("chain_hit"):
-			feedback.chain_hit(hit_chain.snapshot())
+			var chain_state: Dictionary = hit_chain.snapshot()
+			chain_state["advanced"] = int(chain_state.count) > chain_before
+			feedback.chain_hit(chain_state)
 
 func resonance_nodes() -> Array[Node2D]:
 	var result: Array[Node2D] = []

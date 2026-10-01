@@ -123,10 +123,11 @@ func _test_basics_passives_and_dashes() -> void:
 	tick_projectiles(0.2)
 	check(room.player.class_status().ready, "two real bullets on the same target expose its weak point")
 	var before_weakpoint: float = target.health.current
+	var weakpoint_chain: float = 1.0 + float(room.player.hit_chain.snapshot().bonus)
 	room.player.shot_cooldown = 0.0
 	check(room.player.fire(Vector2.RIGHT), "ranger weak-point follow-up fires")
 	tick_projectiles(0.2)
-	check(is_equal_approx(before_weakpoint-target.health.current,room.player.attack_power()*1.65) and room.player.class_status().current == 0, "third real bullet gains and consumes the 65-percent weak-point bonus")
+	check(is_equal_approx(before_weakpoint-target.health.current,room.player.attack_power()*1.65*weakpoint_chain) and room.player.class_status().current == 0, "third real bullet gains and consumes the 65-percent weak-point bonus with current chain damage")
 	fixture("CH03",1)
 	Game.run.resource = 0.0
 	target = dummy(Vector2(500,350))
@@ -418,11 +419,12 @@ func _test_original_and_derived_sources() -> void:
 	var power: float = room.player.skill_power()
 	check(is_equal_approx(10000.0-target.health.current,power * 1.6), "overlapping nodes contribute only one 0.35H echo to the 1.25H pulse")
 	var prior: float = target.health.current
+	var frost_chain: float = 1.0 + float(room.player.hit_chain.snapshot().bonus)
 	check(first.resonance_charge == 0 and second.resonance_charge == 0, "nodes do not gain charge without advancing across a live Q bolt")
 	check(abilities.try_cast("f", target.position), "original frost ring follows shock")
 	abilities.tick(1.0)
 	check(not target.status.has("shock") and target.status.has("chill"), "next original skill consumes old shock before applying chill")
-	check(is_equal_approx(prior-target.health.current,power * 1.05 + node_power * 2.0), "frost ring combines body and shock damage with two uncharged node blasts")
+	check(is_equal_approx(prior-target.health.current,power * .8 * frost_chain + power * .25 + node_power * 2.0), "frost ring buffs direct body damage while shock and two uncharged node blasts retain their own damage")
 	check(not first.is_alive() and not second.is_alive(), "F consumes each node once after its derived blast")
 	fixture("CH03")
 	target = dummy(Vector2(480,350))

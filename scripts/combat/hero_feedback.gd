@@ -8,6 +8,7 @@ const IVORY := Color("f5ebc9")
 const CYAN := Color("78d9d1")
 const COPPER := Color("df945a")
 const VIOLET := Color("b7a1ec")
+const Chain = preload("res://scripts/combat/hit_chain.gd")
 var actor: Node2D
 var effects: Array[Dictionary] = []
 var release_events: Array[Dictionary] = []
@@ -34,6 +35,7 @@ var _motion_direction := Vector2.RIGHT
 var _step_distance: float = 0.0
 var _step_side: float = 1.0
 var _was_dashing: bool = false
+var _chain_font: Font
 
 func configure(player: Node2D) -> void:
 	actor = player
@@ -44,6 +46,7 @@ func configure(player: Node2D) -> void:
 	_motion_position = player.position
 	_motion_stride = float(player.stride)
 	_motion_ready = true
+	_chain_font = MineStyle.make_theme().default_font
 
 func advance(delta: float) -> void:
 	if not is_instance_valid(actor) or delta <= 0.0 or get_tree().paused:
@@ -79,7 +82,12 @@ func observe_basic(kind: String, duration: float, committed_direction: Vector2 =
 		return
 	basic_events += 1
 	var hero: String = actor.hero_id()
-	_emit("swing" if hero == "CH01" else "muzzle" if hero == "CH02" else "arcane_release",actor.position,_basic_direction,.26 if hero == "CH01" else .14 if hero == "CH02" else .24,{"hero":hero,"slot":"basic","radius":105.0,"arc":100.0,"heavy":false})
+	_emit("swing" if hero == "CH01" else "muzzle" if hero == "CH02" else "arcane_release",actor.position,_basic_direction,.26 if hero == "CH01" else .18 if hero == "CH02" else .24,{"hero":hero,"slot":"basic","radius":105.0,"arc":100.0,"heavy":false,"variant":(basic_events-1)%3})
+
+func chain_hit(state: Dictionary) -> void:
+	var count: int = int(state.count)
+	var milestone: bool = bool(state.get("advanced",false)) and count in Chain.MILESTONES
+	_emit("chain_burst" if milestone else "chain_tick",actor.position,actor.aim_direction,.65 if milestone else .20,{"hero":actor.hero_id(),"tier":int(state.tier),"count":count})
 
 func cast_started(data: Dictionary, direction: Vector2, target: Vector2, serial: int) -> void:
 	_frozen_pose.clear()
@@ -249,6 +257,7 @@ func _draw() -> void:
 	var reduced: bool = bool(Game.profile.get("settings",{}).get("reduced_fx",false))
 	var quality: float = .52 if reduced else 1.0
 	_draw_class_identity(quality)
+	_draw_chain_aura(reduced)
 	var pose: Dictionary = pose_state()
 	_draw_facing(pose,reduced)
 	var motion: Dictionary = motion_state()
@@ -267,7 +276,8 @@ func _draw() -> void:
 			"footfall": _draw_footfall(at,dir,str(effect.hero),t,fade,reduced)
 			"dash_depart","dash_land": _draw_dodge_stamp(at,dir,str(effect.hero),t,fade,reduced,str(effect.kind) == "dash_land")
 			"muzzle": _draw_muzzle(effect,t,fade,tint)
-			"swing": _draw_cleave(at,dir,radius,float(effect.get("arc",100.0)),bool(effect.get("heavy",false)),t,fade,reduced)
+			"swing": _draw_cleave(at,dir,radius,float(effect.get("arc",100.0)),bool(effect.get("heavy",false)),t,fade,reduced,int(effect.get("variant",0)))
+			"chain_tick","chain_burst": _draw_chain_pulse(effect,at,t,fade,reduced)
 			"ground_break": _draw_fissure(at,dir,radius,t,fade,reduced,float(effect.get("arc",160.0)) if str(effect.get("slot","")) == "secondary" else 360.0)
 			"rush": _draw_rush(at,dir,t,fade,reduced)
 			"brace": _draw_brace(at,dir,t,fade,reduced)
@@ -288,6 +298,56 @@ func _draw() -> void:
 			"node_burst":
 				_draw_node_burst(at,radius,int(effect.get("energy",0)),t,fade,reduced)
 			"impact": _draw_impact(at,dir,str(effect.get("hero","")),bool(effect.get("heavy",false)),t,fade)
+
+func _draw_chain_aura(reduced: bool) -> void:
+	var state: Dictionary = actor.hit_chain.snapshot()
+	var tier: int = int(state.tier)
+	if tier <= 0: return
+	var phase: float = float(actor.stride)*.08 + float(actor.combat_time)*.3
+	if reduced: phase = 0.0
+	var opacity: float = .65 * minf(1.0,float(state.remaining)/.5)
+	_draw_chain_crest(actor.hero_id(),Vector2.ZERO,27.0+tier*2,phase,opacity,reduced,tier)
+
+func _draw_chain_pulse(effect: Dictionary, at: Vector2, t: float, fade: float, reduced: bool) -> void:
+	var burst: bool = str(effect.kind) == "chain_burst"
+	if burst:
+		_draw_chain_crest(str(effect.hero),at+Vector2(0,-14),22.0+t*24.0,0.0 if reduced else t*.8,minf(1.0,fade*1.6),reduced,int(effect.tier))
+		if _chain_font != null:
+			var caption: String = "x%d" % int(effect.count)
+			var size: int = 25+int(effect.tier)*2
+			var width: float = _chain_font.get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x
+			var caption_at: Vector2 = at+Vector2(-width*.5,-128-(0.0 if reduced else t*9))
+			var tint: Color = Color("d78aff") if str(effect.hero) == "CH03" else Color("ffd150")
+			draw_string_outline(_chain_font,caption_at,caption,HORIZONTAL_ALIGNMENT_LEFT,-1,size,5,Color(Color("4a2d48"),fade))
+			draw_string(_chain_font,caption_at,caption,HORIZONTAL_ALIGNMENT_LEFT,-1,size,Color(tint,minf(1.0,fade*1.6)))
+	else:
+		var hero: String = str(effect.hero)
+		var tint: Color = Color("ffbe37") if hero != "CH03" else Color("ce89ff")
+		var side: float = -1.0 if int(effect.count)%2 == 0 else 1.0
+		var spark: Vector2 = at+Vector2(side*(21+t*9),-24-t*17)
+		_diamond(spark,Vector2.UP,5.0*(1-t*.5),Color(tint,fade))
+
+func _draw_chain_crest(hero: String, at: Vector2, radius: float, phase: float, alpha: float, reduced: bool, tier: int) -> void:
+	var tint: Color = Color("ff962d") if hero == "CH01" else Color("ffcb48") if hero == "CH02" else Color("bc77ff")
+	var marks: int = 3 if reduced else 3+mini(tier,5)
+	for index in marks:
+		var angle: float = index*TAU/marks+phase
+		var ray: Vector2 = Vector2(cos(angle),sin(angle)*.48)
+		var center: Vector2 = at+ray*radius
+		if hero == "CH01":
+			# A convex upright flame remains valid at every projected orbit angle.
+			var flame := PackedVector2Array([center+Vector2(0,-12-tier),center+Vector2(5,1),center+Vector2(0,5),center+Vector2(-5,1)])
+			draw_colored_polygon(flame,Color(tint,alpha))
+			draw_line(center-ray*3,center+ray*3+Vector2(0,-5),Color("fff2a8",alpha),2.3,true)
+		elif hero == "CH02":
+			draw_line(center-ray*4,center+ray*4,Color("68402e",alpha),5.0,true)
+			draw_line(center-ray*3,center+ray*3,Color(tint,alpha),3.0,true)
+		else:
+			_diamond(center,Vector2.UP,5.0+mini(tier,3),Color("503073",alpha))
+			_diamond(center,Vector2.UP,3.0+mini(tier,3),Color(tint,alpha))
+			if not reduced:
+				var next: Vector2 = at+Vector2(cos(angle+TAU/marks),sin(angle+TAU/marks)*.48)*radius
+				draw_line(center,next,Color("2ed4da",alpha*.55),1.7,true)
 
 func _draw_facing(pose: Dictionary, reduced: bool) -> void:
 	var state: Dictionary = motion_state()
@@ -359,25 +419,29 @@ func _draw_dodge_stamp(at: Vector2, dir: Vector2, hero: String, t: float, fade: 
 		draw_line(from,end,Color("493645",fade*.4),4.0,true)
 		draw_line(from,end,Color(tint,fade*.8),2.0,true)
 
-func _draw_cleave(at: Vector2, dir: Vector2, radius: float, degrees: float, heavy: bool, t: float, fade: float, reduced: bool) -> void:
+func _draw_cleave(at: Vector2, dir: Vector2, radius: float, degrees: float, heavy: bool, t: float, fade: float, reduced: bool, variant: int = 0) -> void:
 	# The broad axe face is present on contact, then thins into its copper wake.
 	var visible: float = minf(1.0,fade*1.45)
 	var arc: float = deg_to_rad(minf(degrees,220.0))
-	var start: float = dir.angle()-arc*.5+arc*.16*t
-	var finish: float = dir.angle()+arc*.5
-	var thickness: float = (34.0 if heavy else 23.0)*(1.0-t*.45)
+	var start: float = dir.angle()-arc*.5+arc*.16*t*(0.0 if variant == 1 else 1.0)
+	var finish: float = dir.angle()+arc*.5-arc*.16*t*(1.0 if variant == 1 else 0.0)
+	var thickness: float = (34.0 if heavy else 29.0 if variant == 2 else 23.0)*(1.0-t*.45)
 	var blade := PackedVector2Array()
 	var points: int = 12 if reduced else 22
 	for index in range(points+1):
 		blade.append(at+Vector2.from_angle(lerpf(start,finish,float(index)/points))*radius)
 	for index in range(points,-1,-1):
 		blade.append(at+Vector2.from_angle(lerpf(start,finish,float(index)/points))*(radius-thickness))
-	draw_colored_polygon(blade,Color("ff8c32",visible*.9))
+	draw_colored_polygon(blade,Color("ffd24d" if variant == 2 else "ff6835" if variant == 1 else "ff8c32",visible*.9))
 	# Copper ink separates the same cutting edge from the bright courtyard floor.
 	draw_arc(at,radius-4,start,finish,points+1,Color("662b23",visible*.95),8.0,true)
 	draw_arc(at,radius-3,start,finish,points+1,Color("ffb53f",visible),5.0,true)
 	draw_arc(at,radius-thickness*.35,start+arc*.05,finish,points,Color("fff3c0",visible),4.2 if heavy else 3.2,true)
 	draw_arc(at,radius-thickness+2,start,finish,points+1,Color("c5491b",visible*.85),4.0,true)
+	if variant == 2 and not heavy:
+		# Accent a third contact without implying another hit or a larger sector.
+		draw_line(at+dir*(radius-thickness-20),at+dir*(radius-6),Color("fff6ca",visible),6.0,true)
+		draw_line(at+dir*(radius-thickness-20)-dir.orthogonal()*10,at+dir*(radius-6),Color("ffbd35",visible),4.0,true)
 	if reduced: return
 	draw_arc(at,radius-thickness-8.0,start,finish-arc*.16,points,Color("ffb747",visible*.68),4.0,true)
 	_sparks(at+dir*radius*.72,dir,5 if heavy else 3,minf(21.0,radius*.16),visible,Color("fff0b0"))
@@ -505,11 +569,15 @@ func _draw_arcane_release(effect: Dictionary, t: float, fade: float, reduced: bo
 		at = actor.room.move_actor(actor.position,at,2.0)-actor.position
 	var power: float = 1.45 if str(effect.get("slot","")) == "q" else 1.0
 	var reach: float = (12.0+t*15.0)*power
-	_rune_polygon(at,reach,3,dir.angle()+PI*.5,Color("4e276b",visible*.95),7.0)
-	_rune_polygon(at,reach,3,dir.angle()+PI*.5,Color("a868ff",visible),3.8)
+	var variant: int = int(effect.get("variant",0))
+	var sides: int = 4 if variant == 1 else 6 if variant == 2 else 3
+	_rune_polygon(at,reach,sides,dir.angle()+PI*.5+t*(1.0 if variant == 1 else -1.0),Color("4e276b",visible*.95),7.0)
+	_rune_polygon(at,reach,sides,dir.angle()+PI*.5+t*(1.0 if variant == 1 else -1.0),Color("27e1dc" if variant == 1 else "da8cff" if variant == 2 else "a868ff",visible),3.8)
 	_segmented_ring(at,reach*.8,3,.55,Color("1bdde6",visible),4.0)
 	_diamond(at,dir,(10.0+power*3)*(1.0-t*.3),Color("9055ec",visible*.95))
 	_diamond(at,dir,(6.0+power*2)*(1.0-t*.3),Color("baffee",visible))
+	if variant == 2:
+		_segmented_ring(at,reach+5.0,6,.50,Color("dd8fff",visible),3.0)
 	draw_line(at,at+dir*(19.0+power*8)*(1.0-t*.5),Color("f1fff7",visible),4.0,true)
 	if reduced: return
 	for index in 3:
@@ -689,6 +757,8 @@ func _draw_muzzle(effect: Dictionary, t: float, fade: float, tint: Color) -> voi
 	var rail: bool = str(effect.get("slot","")) == "secondary"
 	var reduced: bool = bool(Game.profile.get("settings",{}).get("reduced_fx",false))
 	var scale: float = 1.8 if rail else 1.7 if final_shot else 1.35 if bool(effect.get("heavy",false)) else 1.0
+	var variant: int = int(effect.get("variant",0))
+	if str(effect.get("slot","")) == "basic": scale *= 1.24 if variant == 2 else .90 if variant == 1 else 1.0
 	var length: float = (18.0+10.0*(1.0-t))*scale
 	var end: Vector2 = at+dir*length
 	end = at+(end-at)*room.blocked_fraction(actor.position+at,actor.position+end,1.0)
@@ -698,6 +768,11 @@ func _draw_muzzle(effect: Dictionary, t: float, fade: float, tint: Color) -> voi
 	dart.append(dart[0])
 	draw_polyline(dart,Color("87522a",visible*.9),2.8,true)
 	draw_line(at,end,Color("fff4c8",visible),5.0 if rail else 3.8,true)
+	if str(effect.get("slot","")) == "basic" and variant == 1:
+		draw_line(at+normal*10,at+dir*12,Color("ffd97c",visible),3.2,true)
+		draw_line(at-normal*10,at+dir*12,Color("ffd97c",visible),3.2,true)
+	elif str(effect.get("slot","")) == "basic" and variant == 2:
+		_segmented_ring(at,8+t*13,4,.8,Color("ffd45b",visible),3.6)
 	if rail:
 		for side in [-1.0,1.0]:
 			draw_line(at+normal*side*8, end+normal*side*3,Color("fff3c3",visible),3.0,true)
