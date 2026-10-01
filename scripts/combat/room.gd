@@ -59,6 +59,8 @@ var tutorial_distance: float = 0.0
 var _previous_player_position := Vector2.ZERO
 var attack_serial: int = 0
 var crit_rolls: Dictionary = {}
+var true_bonus_roots: Dictionary = {}
+var primary_hit_roots: Dictionary = {}
 var layout_id: String = "L01"
 var layout: Dictionary = {}
 var exit_position := EXIT_POSITION
@@ -687,9 +689,11 @@ func resolve_weapon_hit(projectile: SparkProjectile, target: MineEnemy) -> void:
 		context["basic_variant"] = int(projectile.options.get("basic_variant",0))
 		var reserved: Dictionary = _prepare_relics(context, projectile.trigger_budget, projectile.arc_ready)
 		context["native_statuses"] = [ClassRelics.native_status(player.hero_id())] if bool(reserved.get("burn", false)) else []
-		if resolve_direct_hit(target, projectile.damage, projectile.source, "", 0.0, projectile.direction, context):
+		var confirmed: bool = resolve_direct_hit(target, projectile.damage, projectile.source, "", 0.0, projectile.direction, context)
+		if confirmed and not Numerical.is_v2(Game.run.stats):
 			player.on_primary_hit(target)
-		_emit_reserved_relics(reserved, context, hit_position, target, projectile.direction)
+		if confirmed or not Numerical.is_v2(Game.run.stats):
+			_emit_reserved_relics(reserved, context, hit_position, target, projectile.direction)
 	else:
 		resolve_derived_hit(target, projectile.damage, projectile.source, projectile.direction, projectile.options)
 	add_ring(projectile.position, Color("f0c77f"), 16.0, 0.15)
@@ -740,6 +744,10 @@ func enemy_died(enemy: MineEnemy) -> void:
 	if not context.has("attack_id"):
 		context["attack_id"] = "death:" + str(enemy.get_instance_id())
 		context["root_event_id"] = context.attack_id
+	if Numerical.is_v2(Game.run.stats) and bool(enemy.last_damage_result.get("confirmed", false)):
+		# Death callbacks run inside the receiver. Preserve native/relic priority
+		# before kill equipment uses this confirmed root's shared packet budget.
+		_commit_numerical_native(context)
 	player.loadout.event("kill", context)
 	var amount: int = Balance.GOLD_PER_ENEMY
 	if not expedition_context.is_empty():
@@ -1094,7 +1102,7 @@ func strike_area(at: Vector2, radius: float, amount: float, source: StringName, 
 			continue
 		if original:
 			var target_context: Dictionary = context.duplicate()
-			if source == &"primary" and hit.size() >= 3:
+			if source == &"primary" and (confirmed.size() if Numerical.is_v2(Game.run.stats) else hit.size()) >= 3:
 				target_context["native_statuses"] = []
 			target_context["original_basic"] = source == &"primary"
 			target_context["equipment_eligible"] = true
@@ -1104,16 +1112,18 @@ func strike_area(at: Vector2, radius: float, amount: float, source: StringName, 
 			var before_hp: float = enemy.health.current
 			var before_shield: float = enemy.status.shield()
 			resolve_derived_hit(enemy, amount, source, contact_direction, context)
-			if not applied_status.is_empty() and enemy.is_alive() and (enemy.health.current < before_hp or enemy.status.shield() < before_shield):
+			var received: bool = bool(enemy.last_damage_result.get("confirmed", false)) if Numerical.is_v2(Game.run.stats) else (enemy.health.current < before_hp or enemy.status.shield() < before_shield)
+			if not applied_status.is_empty() and enemy.is_alive() and received:
 				# Field control follows a confirmed derived contact and its captured
 				# power. It never enters equipment/passive or Shock-consumption hooks.
 				enemy.apply_status(applied_status, float(context.get("power", player.skill_power())))
 		hit.append(enemy)
 		if (source == &"field" or (source == &"ultimate" and player.hero_id() == "CH03")) and hit.size() >= 12:
 			break
-	if not hit.is_empty():
+	var relic_targets: Array = confirmed if Numerical.is_v2(Game.run.stats) else hit
+	if not relic_targets.is_empty():
 		if source == &"primary":
-			_emit_reserved_relics(reserved, context, hit[0].position, hit[0], direction)
+			_emit_reserved_relics(reserved, context, relic_targets[0].position, relic_targets[0], direction)
 	# Basic melee selects one actual recipient for its class passive. Other
 	# callers retain the geometric hit list used by existing skill/relic rules.
 	return confirmed if confirmed_only else hit
@@ -1121,7 +1131,8 @@ func strike_area(at: Vector2, radius: float, amount: float, source: StringName, 
 func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, applied_status: String = "", push: float = 0.0, direction: Vector2 = Vector2.ZERO, attack_context: Dictionary = {}) -> bool:
 	if Game.run == null or not target.is_alive():
 		return false
-	if Numerical.is_v2(Game.run.stats): amount = Numerical.integer(amount)
+	if Numerical.is_v2(Game.run.stats):
+		return _resolve_numerical_direct_hit(target, amount, source, applied_status, push, direction, attack_context)
 	var context: Dictionary = attack_context.duplicate()
 	context.merge({"target":target,"target_states":target.status.states.keys(),"X":amount,"H":float(context.get("power", player.basic_power() if source == &"primary" else player.skill_power())),"damage_source":context.get("damage_source","primary" if source == &"primary" else "skill"),"skill_slot":str(source),"proc_depth":int(context.get("proc_depth",0))}, true)
 	if Numerical.is_v2(Game.run.stats):
@@ -1199,6 +1210,109 @@ func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, ap
 	player.combat_time = 5.0
 	return confirmed
 
+## V2 owns one transaction: preview X/P/B/C/K, receive a loss receipt, then
+## consume class/status resources and dispatch native/equipment effects.
+func _resolve_numerical_direct_hit(target: MineEnemy, amount: float, source: StringName, applied_status: String, push: float, direction: Vector2, attack_context: Dictionary) -> bool:
+	if not is_finite(amount) or Numerical.integer(amount) <= 0:
+		return false
+	var context: Dictionary = attack_context.duplicate()
+	var original: bool = source in [&"primary", &"q", &"secondary", &"f", &"ultimate"] and int(context.get("proc_depth", 0)) == 0 and bool(context.get("equipment_eligible", true)) and bool(context.get("original", true))
+	if not original:
+		resolve_derived_hit(target, amount, source, direction, context)
+		return bool(target.last_damage_result.get("confirmed", false))
+	context["ruleset_version"] = Numerical.V2
+	context["X"] = Numerical.integer(amount)
+	context["H"] = Numerical.integer(float(context.get("power", player.basic_power() if source == &"primary" else player.skill_power())))
+	context.merge({"target":target,"target_states":target.status.states.keys(),"damage_source":"primary" if source == &"primary" else "skill","skill_slot":str(source),"proc_depth":0,"original_basic":source == &"primary","equipment_eligible":true}, true)
+	if not context.has("attack_id"):
+		attack_serial += 1
+		context["attack_id"] = "direct:" + str(attack_serial)
+	if str(context.get("root_event_id", "")).is_empty():
+		context["root_event_id"] = context.attack_id
+	if not context.has("damage_type"): context["damage_type"] = "magic" if player.hero_id() == "CH03" else "physical"
+	if not context.has("attacker_stats"): context["attacker_stats"] = Game.run.stats.duplicate(true)
+	var root_id: String = str(context.root_event_id)
+	var native_statuses: Array = context.get("native_statuses", []).duplicate()
+	if not applied_status.is_empty() and applied_status not in native_statuses:
+		native_statuses.append(applied_status)
+	context["native_statuses"] = native_statuses
+	# Keep the pre-hit values even when this contact kills or grants a class shield.
+	context["target_full_hp"] = target.health.current == target.health.maximum
+	context["shield"] = Game.run.shield
+	var modifiers: Dictionary = player.loadout.event("before_hit", context)
+	if not crit_rolls.has(root_id):
+		crit_rolls[root_id] = randf() < clampf(player.stat("crit_chance", 0.05) + float(modifiers.get("crit_bonus", 0.0)), 0.0, 0.75)
+		_trim_root_history(crit_rolls)
+	context["critical"] = bool(crit_rolls[root_id])
+	var bonus: float = player.stat("damage_bonus", 0.0) + float(modifiers.get("damage_bonus", 0.0))
+	if "corrosion" in context.target_states:
+		bonus += 0.08 + player.stat("corrosion_damage_bonus", 0.0)
+	var base: float = player.class_modify_hit_amount(target, float(context.X), source, context)
+	var final_amount: int = Numerical.integer(base * (1.0 + clampf(bonus, 0.0, float(Numerical.value("caps").damage_bonus))) * (player.stat("crit_multiplier", 1.5) if context.critical else 1.0) * player.hit_chain.multiplier(source, context))
+	target.take_damage(final_amount, source, direction, context)
+	var receipt: Dictionary = target.last_damage_result.duplicate()
+	if not bool(receipt.get("confirmed", false)):
+		return false
+	context.merge(receipt, true)
+	native_statuses = _commit_numerical_native(context)
+	# Consume the old charge before native/equipment applications can replace it.
+	var shock: Variant = target.status.consume_shock()
+	player.class_record_hit(target, source, context)
+	if source == &"primary" and not primary_hit_roots.has(root_id):
+		primary_hit_roots[root_id] = true
+		_trim_root_history(primary_hit_roots)
+		player.on_primary_hit(target)
+	ClassRelics.on_original_hit(self, context)
+	_confirm_contact(target, direction, source, bool(context.critical), float(context.hp_damage) + float(context.shield_damage), false, context)
+	var target_id: int = target.get_instance_id()
+	var injected: Dictionary = true_bonus_roots.get(root_id, {})
+	var true_bonus: int = Numerical.integer(player.stat("true_damage_bonus", 0.0))
+	if true_bonus > 0 and not injected.has(target_id):
+		injected[target_id] = true
+		true_bonus_roots[root_id] = injected
+		_trim_root_history(true_bonus_roots)
+		if target.is_alive():
+			var true_context: Dictionary = context.duplicate()
+			true_context.merge({"damage_source":"equipment","damage_type":"true","critical":false,"equipment_eligible":false,"original_basic":false,"proc_depth":1}, true)
+			target.take_damage(true_bonus, &"equipment_true", direction, true_context)
+	if target.is_alive() and shock > 0:
+		target.take_damage(shock, &"shock", direction, {"ruleset_version":Numerical.V2,"damage_type":"magic","attacker_stats":context.attacker_stats,"equipment_eligible":false,"original_basic":false,"proc_depth":1,"critical":false})
+		add_ring(target.position, Color("81d8e0"), 25.0, 0.2)
+	for status_id: String in native_statuses:
+		var status_power: Variant = context.H
+		var status_duration: float = -1.0
+		if status_id == ClassRelics.native_status(player.hero_id()) and source == &"primary" and Game.run.relics.has("ember"):
+			var rank: int = int(Game.run.stats.get("relic_levels", {}).get("RL02", 1))
+			status_power = ClassRelics.native_status_power(player.hero_id(), player.relic_power() if player.hero_id() == "CH03" else status_power, rank, Numerical.V2)
+			status_duration = ClassRelics.native_status_duration(player.hero_id(), rank, self)
+		if target.is_alive() and target.apply_status(status_id, status_power, status_duration):
+			var status_context: Dictionary = context.duplicate()
+			status_context["applied_states"] = [status_id]
+			player.loadout.event("status_applied", status_context)
+	if target.is_alive() and push > 0.0:
+		target.apply_knockback(direction, push * float(modifiers.get("knockback_scale", 1.0)))
+	player.loadout.event("after_hit", context)
+	player.combat_time = 5.0
+	return true
+
+func _trim_root_history(history: Dictionary) -> void:
+	while history.size() > 256:
+		history.erase(history.keys()[0])
+
+## Rejected contacts leave all four native/relic/equipment packet slots intact.
+func _commit_numerical_native(context: Dictionary) -> Array:
+	var accepted: Array = []
+	var root_id: String = str(context.get("root_event_id", ""))
+	if root_id.is_empty() or int(context.get("proc_depth", 0)) > 0 or not bool(context.get("equipment_eligible", false)):
+		return accepted
+	for packet_id: String in context.get("relic_reservations", []):
+		player.loadout.effects.reserve_native(root_id, packet_id)
+	for status_id: String in context.get("native_statuses", []):
+		var packet_id: String = "relic:ember" if "relic:ember" in context.get("relic_reservations", []) and status_id == ClassRelics.native_status(player.hero_id()) else "native:" + status_id
+		if player.loadout.effects.reserve_native(root_id, packet_id):
+			accepted.append(status_id)
+	return accepted
+
 func resolve_derived_hit(target: MineEnemy, amount: float, source: StringName, direction: Vector2, attack_context: Dictionary = {}) -> void:
 	if Game.run == null or not target.is_alive():
 		return
@@ -1206,6 +1320,7 @@ func resolve_derived_hit(target: MineEnemy, amount: float, source: StringName, d
 	# confirmation must never promote a derived packet into an equipment proc.
 	var context: Dictionary = attack_context.duplicate()
 	context.merge({"damage_source":str(source),"skill_slot":str(source),"equipment_eligible":false,"original_basic":false,"proc_depth":maxi(1,int(context.get("proc_depth",1)))},true)
+	if Numerical.is_v2(Game.run.stats): context["critical"] = false
 	var health_before: float = target.health.current
 	var shield_before: float = target.status.shield()
 	if Numerical.is_v2(Game.run.stats):
@@ -1215,6 +1330,7 @@ func resolve_derived_hit(target: MineEnemy, amount: float, source: StringName, d
 	context["hp_damage"] = maxf(0.0, health_before - target.health.current)
 	context["shield_damage"] = maxf(0.0, shield_before - target.status.shield())
 	context["shield_broken"] = shield_before > 0.0 and target.status.shield() <= 0.0
+	if Numerical.is_v2(Game.run.stats): context.merge(target.last_damage_result, true)
 	var consumed: float = float(context.hp_damage) + float(context.shield_damage)
 	if consumed > 0.0:
 		_confirm_contact(target, direction, source, false, consumed, source != &"node_detonation", context)
@@ -1271,6 +1387,23 @@ func resolve_melee_relics(target: MineEnemy, direction: Vector2) -> void:
 	telemetry.primary_hits += 1
 
 func _prepare_relics(context: Dictionary, budget: int, arc_ready: bool) -> Dictionary:
+	if Game.run == null or not Numerical.is_v2(Game.run.stats):
+		return _reserve_relics(context, budget, arc_ready)
+	# Preview packet availability without spending it on an immune contact.
+	var effects: RefCounted = player.loadout.effects
+	var prior_roots: Dictionary = effects.roots
+	effects.roots = prior_roots.duplicate()
+	var root_id: String = str(context.get("root_event_id", ""))
+	if effects.roots.has(root_id): effects.roots[root_id] = effects.roots[root_id].duplicate(true)
+	var reserved: Dictionary = _reserve_relics(context, budget, arc_ready)
+	effects.roots = prior_roots
+	var packets: Array[String] = []
+	for channel: String in ["burn", "split", "arc"]:
+		if reserved.has(channel): packets.append("relic:" + ("ember" if channel == "burn" else channel))
+	context["relic_reservations"] = packets
+	return reserved
+
+func _reserve_relics(context: Dictionary, budget: int, arc_ready: bool) -> Dictionary:
 	var reserved: Dictionary = {}
 	if Game.run == null or budget <= 0:
 		return reserved
@@ -1294,6 +1427,12 @@ func _relic_rank_multiplier(id: String) -> float:
 	return 1.0 + 0.5 * float(rank-1)
 
 func _emit_reserved_relics(reserved: Dictionary, context: Dictionary, at: Vector2, target: MineEnemy, direction: Vector2) -> void:
+	if Game.run != null and Numerical.is_v2(Game.run.stats):
+		reserved = reserved.duplicate()
+		var committed: Dictionary = player.loadout.effects.roots.get(str(context.get("root_event_id", "")), {}).get("reserved", {})
+		for channel: String in reserved.keys():
+			if not bool(committed.get("relic:" + ("ember" if channel == "burn" else channel), false)):
+				reserved.erase(channel)
 	ClassRelics.apply_reserved(self, reserved, context, at, target, direction)
 
 func spawn_ability_projectile(at: Vector2, direction: Vector2, amount: float, options: Dictionary) -> SparkProjectile:
@@ -1919,6 +2058,8 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	_contact_pulse_until = -1.0
 	_contact_pulse_heavy = false
 	crit_rolls.clear()
+	true_bonus_roots.clear()
+	primary_hit_roots.clear()
 	relic_positions.clear()
 	wave = 0
 	objective_wave_count = encounter_zones.size()

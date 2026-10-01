@@ -261,7 +261,9 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	if not _complete and boss_id == "BO01" and solar_before > 0.0 and float(status.guards.get("boss_solar", {}).get("amount", 0.0)) <= 0.0:
 		_solar_disabled = true
 		boss_brain.apply_biome_counter("solar_conduit", 2.8)
-	return result
+	# The inherited receipt captures actual loss before lethal/phase callbacks.
+	# A legal support or CombatStatus shield contact confirms even without HP loss.
+	return bool(last_damage_result.get("confirmed", false)) if int(profile.get("ruleset_version", Numerical.LEGACY)) == Numerical.V2 else result
 
 func _queue_reinforcement_wave(next_phase: int) -> void:
 	if next_phase in _requested_phases:

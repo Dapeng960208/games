@@ -247,6 +247,9 @@ func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_
 		# Momentum commits with the cast. A defensive dash cannot refund it.
 		var stacks: int = owner_player.consume_break_stacks()
 		data["break_stacks"] = stacks
+		if Numbers.is_v2(Game.run.stats):
+			data["full_break_w"] = slot == "secondary" and stacks == 3
+			data["shielded_cast"] = Game.run.shield > 0.0
 		data.coefficient = float(data.coefficient) + stacks * (0.45 if slot == "secondary" else 0.60)
 		if stacks == 3:
 			data.radius = float(data.radius) + (25.0 if slot == "secondary" else 30.0)
@@ -350,11 +353,15 @@ func _resolve(index: int) -> void:
 	var at: Vector2 = owner_player.position
 	var direction: Vector2 = active.direction
 	var hit_context: Dictionary = {"root_event_id":"skill:" + str(active.serial), "attack_id":"skill:" + str(active.serial) + ":" + str(index), "power":power, "original_basic":false, "equipment_eligible":true, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats}
+	if Numbers.is_v2(active.attacker_stats):
+		hit_context["full_break_w"] = bool(data.get("full_break_w", false))
+		hit_context["shielded_cast"] = bool(data.get("shielded_cast", false))
+		hit_context["H_skill"] = power
 	if hero == "CH01":
 		if slot == "ultimate":
 			at = active.target
 		var knockback: float = float(data.get("knockback", 0.0)) if index == 0 else 0.0
-		var hits: Array = room.strike_area(at, float(data.radius), amount, slot, "", knockback, direction, float(data.get("arc", 360.0)), true, hit_context)
+		var hits: Array = room.strike_area(at, float(data.radius), amount, slot, "", knockback, direction, float(data.get("arc", 360.0)), true, hit_context, Numbers.is_v2(active.attacker_stats))
 		if slot == "q" and not hits.is_empty():
 			owner_player.gain_break_stacks(1)
 		elif slot == "f":

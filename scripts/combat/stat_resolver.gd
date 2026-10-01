@@ -50,6 +50,10 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 			if not set_id.is_empty():
 				set_counts[set_id] = int(set_counts.get(set_id, 0)) + 1
 			equipped[slot] = id
+	# The S06 health tier is one contribution to the shared life-ratio bucket,
+	# regardless of whether four, six or eight pieces are worn.
+	if ruleset == Numerical.V2 and int(set_counts.get("S06", 0)) >= 2:
+		contribution["hp_ratio"] = float(contribution.get("hp_ratio", 0.0)) + 0.10
 	var raw_contribution := contribution.duplicate(true)
 	contribution = clamp_equipment_contributions(contribution, ruleset)
 	if ruleset == Numerical.V2:

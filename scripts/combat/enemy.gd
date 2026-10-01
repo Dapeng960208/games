@@ -40,6 +40,10 @@ var reaction_remaining: float = 0.0
 var navigation_timer: float = 0.0
 var navigation_vector := Vector2.ZERO
 var last_damage_context: Dictionary = {}
+## Receipt for the most recent packet, captured before death/phase callbacks.
+## Auxiliary support shields belong to the receiving actor even when HP and
+## CombatStatus shields are untouched. take_damage keeps its historical bool API.
+var last_damage_result: Dictionary = {}
 var last_damage_direction := Vector2.ZERO
 var profile: Dictionary = {}
 var brain: RefCounted
@@ -273,18 +277,26 @@ func _separation() -> Vector2:
 	return force.limit_length(move_speed * Balance.ENEMY_SEPARATION_SPEED_RATIO)
 
 func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO, context: Dictionary = {}) -> bool:
+	last_damage_result = {"confirmed":false,"hp_damage":0,"status_shield_damage":0,"auxiliary_shield_damage":0,"shield_damage":0,"shield_broken":false}
 	if not is_alive() or Game.run == null:
 		return false
 	status.ruleset_version = int(profile.get("ruleset_version", Numerical.LEGACY))
 	var damage_type := Damage.normalized_type(str(context.get("damage_type", str(kind))))
-	if status.has("invulnerable"):
+	var numerical: bool = status.ruleset_version == Numerical.V2
+	if status.has("invulnerable") or (numerical and (not is_finite(amount) or amount <= 0.0 or bool(context.get("invulnerable", false)))):
 		return false
+	var auxiliary_absorbed: Variant = Numerical.amount(0.0, status.ruleset_version)
 	# Enemy barrier/stance multipliers are reduction, so true damage bypasses
 	# them. Immunity is checked above; shields are still consumed below.
 	if room.enemy_skills != null and damage_type != "true":
+		var before_support: float = amount
 		amount = room.enemy_skills.filter_incoming_damage(self, amount, kind, from_direction)
+		auxiliary_absorbed = Numerical.amount(maxf(0.0, before_support - amount), status.ruleset_version)
 	if amount <= 0.0:
-		return false
+		if numerical and auxiliary_absorbed > 0:
+			last_damage_result.merge({"confirmed":true,"auxiliary_shield_damage":auxiliary_absorbed,"shield_damage":auxiliary_absorbed}, true)
+			last_damage_context = context.duplicate()
+		return bool(last_damage_result.confirmed) if numerical else false
 	last_damage_context = context.duplicate()
 	if last_damage_context.is_empty():
 		last_damage_context = {"damage_source":str(kind),"equipment_eligible":false,"original_basic":false,"proc_depth":1}
@@ -313,6 +325,10 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	# subsequent resurrection or spawned actor must not inflate this number.
 	var consumed_hp: float = minf(maxf(0.0, final_amount), maxf(0.0, health_before))
 	var consumed_shield: float = maxf(0.0, shield_before - status.shield())
+	last_damage_result = {"confirmed":consumed_hp + consumed_shield + float(auxiliary_absorbed) > 0.0,
+		"hp_damage":Numerical.amount(consumed_hp, status.ruleset_version),"status_shield_damage":Numerical.amount(consumed_shield, status.ruleset_version),
+		"auxiliary_shield_damage":auxiliary_absorbed,"shield_damage":Numerical.amount(consumed_shield + float(auxiliary_absorbed), status.ruleset_version),
+		"shield_broken":shield_before > 0.0 and status.shield() <= 0.0}
 	if (consumed_hp > 0.0 or consumed_shield > 0.0) and kind == &"primary" and not static_actor and _valid_aggro_target(room.player):
 		# Direct hero attacks draw attention; status ticks do not reset this hold.
 		aggro_target = weakref(room.player)
@@ -324,7 +340,8 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 		var shield_context: Dictionary = context.duplicate()
 		shield_context["feedback_kind"] = "shield"
 		room.add_damage_text(number_at, consumed_shield, kind, shield_context)
-	return health.damage(final_amount)
+	var damaged: bool = health.damage(final_amount)
+	return bool(last_damage_result.confirmed) if numerical else damaged
 
 func apply_biome_counter(kind: String, duration: float = 6.0) -> bool:
 	if actor_kind != "enemy" or static_actor or rank == "boss" or not is_alive() or is_queued_for_deletion() or (is_inside_tree() and get_tree().paused):
@@ -367,20 +384,22 @@ func apply_status(id: String, power: float, duration: float = -1.0) -> bool:
 		return false
 	if id not in StatusScript.VALID_STATES and id != "guard":
 		return false
+	status.ruleset_version = int(profile.get("ruleset_version", Numerical.LEGACY))
+	var accepted: bool = false
 	if id == "guard":
-		status.grant_guard(power, 4.0 if duration <= 0.0 else duration, "enemy", health.maximum)
+		accepted = bool(status.grant_guard_result(power, 4.0 if duration <= 0.0 else duration, "enemy", health.maximum).accepted_refresh)
 	elif id in ["damage_reduction", "invulnerable"]:
-		status.apply(id, power, duration)
+		accepted = status.apply(id, power, duration)
 	else:
 		var duration_bonus: float = room.player.stat("status_duration", 0.0)
 		if id == "chill":
 			duration_bonus += float(room.player.loadout.modifiers().get("chill_duration_bonus", 0.0))
 		var life: float = duration if duration > 0.0 else (4.0 if id == "corrosion" else 3.0) * (1.0 + minf(0.4, duration_bonus))
-		status.apply(id, power * (1.0 + room.player.stat("burn_damage", 0.0)) if id == "burn" else power, life, power)
+		accepted = status.apply(id, power * (1.0 + room.player.stat("burn_damage", 0.0)) if id == "burn" else power, life, power)
 	burn_remaining = float(status.states.get("burn", {}).get("remaining", 0.0))
 	burn_tick = float(status.states.get("burn", {}).get("tick", 0.0))
 	queue_redraw()
-	return true
+	return accepted if status.ruleset_version == Numerical.V2 else true
 
 func tick_statuses(delta: float) -> void:
 	if is_finite(delta) and delta > 0.0 and (not is_inside_tree() or not get_tree().paused):

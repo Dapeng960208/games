@@ -399,7 +399,7 @@ func _tick_attack(delta: float) -> void:
 		room.add_arc_visual(position, _attack_direction, 105.0, 100.0, Color("e9b16e"), 0.16)
 		visual_event("attack_strike", 0.08, _attack_direction)
 		if not victims.is_empty():
-			on_primary_hit(victims[0])
+			if _ruleset_version() != Numbers.V2: on_primary_hit(victims[0])
 			room.resolve_melee_relics(victims[0], _attack_direction)
 
 func cast_skill(slot: String, target: Vector2) -> bool:
@@ -789,21 +789,34 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	if status.has("corrosion"): damage_context["armor_multiplier"] = 0.85
 	var shock_damage: float = 0.0
 	var shock_source: Dictionary = _status_source_context("shock", status.states.get("shock", {}))
+	var numerical: bool = _ruleset_version() == Numbers.V2
 	if not is_dot:
-		invulnerable = Balance.HURT_INVULNERABILITY
-		knockback = (position - origin).normalized() * Balance.PLAYER_KNOCKBACK
+		if not numerical:
+			invulnerable = Balance.HURT_INVULNERABILITY
+			knockback = (position - origin).normalized() * Balance.PLAYER_KNOCKBACK
 		if status.has("corrosion"):
 			incoming *= 1.08
-		shock_damage = status.consume_shock()
-	hurt_flash = 0.08 if is_dot else 0.16
-	room.telemetry["player_hits"] += 1
-	room.add_ring(position, Color("e46b69"), 24.0 if is_dot else 38.0, 0.20 if is_dot else 0.28)
+		if not numerical: shock_damage = status.consume_shock()
+	if not numerical:
+		hurt_flash = 0.08 if is_dot else 0.16
+		room.telemetry["player_hits"] += 1
+		room.add_ring(position, Color("e46b69"), 24.0 if is_dot else 38.0, 0.20 if is_dot else 0.28)
 	var previous_shield: float = Game.run.shield
 	var previous_hp: float = Game.run.hp
 	var modifiers: Dictionary = loadout.modifiers()
 	var damaged_run: RunState = Game.run
 	damage_context["damage_reduction"] = minf(0.65, float(damage_context.damage_reduction) + maxf(0.0, float(modifiers.get("damage_reduction_bonus", 0.0))))
 	Game.damage_player(incoming, damage_context)
+	if numerical:
+		if damaged_run.hp >= previous_hp and damaged_run.shield >= previous_shield:
+			return false
+		if not is_dot:
+			shock_damage = status.consume_shock()
+			invulnerable = Balance.HURT_INVULNERABILITY
+			knockback = (position - origin).normalized() * Balance.PLAYER_KNOCKBACK
+		hurt_flash = 0.08 if is_dot else 0.16
+		room.telemetry["player_hits"] += 1
+		room.add_ring(position, Color("e46b69"), 24.0 if is_dot else 38.0, 0.20 if is_dot else 0.28)
 	_show_received_numbers(damaged_run, previous_hp, previous_shield, damage_context)
 	# Shock is a magic packet within this same received-hit event. A lethal
 	# first packet may close the run (or restore a demo's backup), so identity
@@ -862,9 +875,12 @@ func grant_guard(amount: float, duration: float, source: String) -> void:
 	_sync_status_ruleset()
 	status.absorb(maxf(0.0, status.shield() - Game.run.shield))
 	var previous_shield: float = Game.run.shield
-	var increased: bool = status.grant_guard(amount, duration, source, Game.run.max_hp, source.begins_with("set_") or source.begins_with("equipment:"))
+	var equipment: bool = source.begins_with("set_") or source.begins_with("equipment:")
+	var result: Dictionary = status.grant_guard_result(amount, duration, source, Game.run.max_hp, equipment)
 	Game.run.shield = status.shield()
-	if increased:
+	if _ruleset_version() == Numbers.V2 and bool(result.accepted_refresh) and source in ["hero_passive:three_rivets", "hero_f"] and loadout != null:
+		loadout.event("class_shield_gain", {"source":source,"accepted_refresh":true,"increased":bool(result.increased),"equipment":equipment})
+	if bool(result.increased):
 		room.add_ring(position, Color("abd6c3"), 34.0, 0.3)
 		if room.has_method("add_damage_text") and Game.run.shield > previous_shield:
 			room.add_damage_text(position + Vector2(0,-90), Game.run.shield - previous_shield, &"guard", {"feedback_kind":"guard"})
@@ -925,17 +941,28 @@ func class_modify_hit_amount(target: Node2D, amount: float, source: StringName, 
 		return passives.before_hit(target, amount, source, context)
 	var key: int = target.get_instance_id()
 	var ready: bool = float(class_marks[key].remaining) > 0.0
-	class_marks.erase(key)
+	if _ruleset_version() != Numbers.V2: class_marks.erase(key)
 	if not ready:
 		return passives.before_hit(target, amount, source, context)
-	var feedback: Node = get_node_or_null("HeroFeedback")
-	if is_instance_valid(feedback):
-		feedback.class_event("mark_burst", target.position, aim_direction)
+	if _ruleset_version() == Numbers.V2:
+		context["hunter_mark_target"] = key
+	else:
+		var feedback: Node = get_node_or_null("HeroFeedback")
+		if is_instance_valid(feedback):
+			feedback.class_event("mark_burst", target.position, aim_direction)
 	var mark_bonus: Variant = Numbers.amount(float(context.get("H", attack_power())) * 1.25, _ruleset_version())
 	return passives.before_hit(target, amount + float(mark_bonus), source, context)
 
 ## Called only after a direct hit actually removes health or shield.
 func class_record_hit(target: Node2D, source: StringName, context: Dictionary) -> void:
+	if _ruleset_version() == Numbers.V2:
+		if not bool(context.get("confirmed", false)) or float(context.get("hp_damage", 0.0)) + float(context.get("shield_damage", 0.0)) <= 0.0:
+			return
+		var mark_target: int = int(context.get("hunter_mark_target", 0))
+		if mark_target == target.get_instance_id() and class_marks.has(mark_target):
+			class_marks.erase(mark_target)
+			var feedback: Node = get_node_or_null("HeroFeedback")
+			if is_instance_valid(feedback): feedback.class_event("mark_burst", target.position, aim_direction)
 	if hero_id() == "CH02" and source == &"f" and bool(context.get("equipment_eligible", true)):
 		class_mark_target(target)
 	passives.record_hit(target, source, context)

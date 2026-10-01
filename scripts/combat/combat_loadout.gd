@@ -126,10 +126,10 @@ func _apply_commands(result: Dictionary, context: Dictionary) -> void:
 	_applying_depth += 1
 	for command: Dictionary in result.get("self_statuses", []):
 		var id: String = str(command.get("status", ""))
-		owner_player.status.apply(id, float(command.get("power", 0.0)), float(command.get("duration", 0.0)))
+		var applied: bool = owner_player.status.apply(id, float(command.get("power", 0.0)), float(command.get("duration", 0.0)))
 		var state: Dictionary = owner_player.status.states.get(id, {})
 		# A stronger same-clock write can win the status reducer; do not claim it.
-		if not state.is_empty() and is_equal_approx(float(state.power), float(command.get("power", 0.0))):
+		if applied and not state.is_empty():
 			_self_status_sources[id] = {"source":str(command.get("source", "")), "applied_at":float(state.applied_at), "power":float(state.power), "H":float(state.H)}
 	var shields: Array = result.get("shields", [])
 	if not shields.is_empty():
@@ -241,13 +241,13 @@ func _apply_bonus_hit(command: Dictionary, context: Dictionary) -> void:
 			continue
 		seen[target.get_instance_id()] = true
 		# Deliberately bypass room.resolve_direct_hit and all primary-hit callbacks.
-		var packet: Dictionary = {"damage_source":"equipment","damage_type":"magic" if Game.run.hero_id == "CH03" else "physical","attacker_stats":Game.run.stats,"proc_depth":1,"equipment_eligible":false,"original_basic":false}
+		var packet: Dictionary = {"damage_source":"equipment","damage_type":str(command.get("damage_type", "magic" if Game.run.hero_id == "CH03" else "physical")),"attacker_stats":Game.run.stats,"proc_depth":1,"equipment_eligible":false,"original_basic":false}
 		var accepted_hit: bool = bool(target.call("take_damage", float(command.get("damage_by_target", {}).get(str(identifier), amount)), &"equipment", Vector2.ZERO, packet))
 		if accepted_hit and _alive(target):
 			for status_data: Variant in command.get("states", []):
 				var status_id: String = str(status_data.get("status", "")) if status_data is Dictionary else str(status_data)
 				var duration: float = float(status_data.get("duration", 3.0)) if status_data is Dictionary else 3.0
-				_apply_status(target, status_id, float(context.get("H", 0.0)), duration)
+				_apply_status(target, status_id, float(command.get("power", context.get("H", 0.0))), duration)
 		if seen.size() >= 3:
 			break
 

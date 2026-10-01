@@ -26,7 +26,7 @@ static func display(hero: String, relic_id: String, rank: int = 1, biome: String
 			description = "普攻降低目标15%%护甲，持续%d秒，并每秒造成%d%%攻击力物理伤害。" % [5 if enhanced else 4, 12 if enhanced else 8]
 		"CH01:RL03":
 			name = "回震砧"
-			description = "每第3次普攻命中，获得%d%%最大生命护盾（4秒）及1层破势。" % (18 if enhanced else 12)
+			description = "每第3发普攻有效命中时，获得%d%%最大生命护盾（4秒）及1层破势。" % (18 if enhanced else 12)
 		"CH02:RL01":
 			name = "分流弹匣"
 			description = "普攻命中后向前分出2颗扇弹，每颗造成%d%%攻击力物理伤害。" % (60 if enhanced else 40)
@@ -35,7 +35,7 @@ static func display(hero: String, relic_id: String, rank: int = 1, biome: String
 			description = "普攻使目标流血3秒，每秒造成%d%%攻击力物理伤害。" % (15 if enhanced else 10)
 		"CH02:RL03":
 			name = "追猎准星"
-			description = "每第3次普攻命中，标记目标4秒并追加%s%%攻击力物理伤害；鼠标右键或R引爆标记。" % ("52.5" if enhanced else "35")
+			description = "每第3发普攻有效命中时，标记目标4秒并追加%s%%攻击力物理伤害；W或R引爆标记。" % ("52.5" if enhanced else "35")
 		"CH03:RL01":
 			name = "共鸣棱镜"
 			description = "普攻命中后产生法术回响，对附近最多2个额外敌人造成%d%%法强魔法伤害。" % (60 if enhanced else 40)
@@ -44,7 +44,7 @@ static func display(hero: String, relic_id: String, rank: int = 1, biome: String
 			description = "普攻使目标灼烧3秒，每秒造成%d%%法强魔法伤害。" % (18 if enhanced else 12)
 		"CH03:RL03":
 			name = "归流线圈"
-			description = "每第3次普攻命中，回%s法力、附近节点充%d层，并追加%s%%法强魔法伤害。" % [mana_refund, 2 if enhanced else 1, "52.5" if enhanced else "35"]
+			description = "每第3发普攻有效命中时，回%s法力、附近节点充%d层，并追加%s%%法强魔法伤害。" % [mana_refund, 2 if enhanced else 1, "52.5" if enhanced else "35"]
 	if Words.locale == "en":
 		name = str(ENGLISH_NAMES.get(hero+":"+id,"Unknown relic"))
 		description = _english_description(hero,id,enhanced,ruleset_version)
@@ -55,13 +55,13 @@ static func _english_description(hero: String, id: String, enhanced: bool, rules
 	match hero+":"+id:
 		"CH01:RL01": return "Basic hits cleave up to 3 extra enemies in front for %d%% attack physical damage." % (60 if enhanced else 40)
 		"CH01:RL02": return "Basic hits reduce target armor by 15%% for %ds and deal %d%% attack physical damage each second." % [5 if enhanced else 4,12 if enhanced else 8]
-		"CH01:RL03": return "Every third basic hit grants a %d%% max-HP guard for 4s and one Momentum stack." % (18 if enhanced else 12)
+		"CH01:RL03": return "Every third fired basic attack grants a %d%% max-HP guard for 4s and one Momentum stack on a confirmed hit." % (18 if enhanced else 12)
 		"CH02:RL01": return "Basic hits launch 2 forward split bullets, each dealing %d%% attack physical damage." % (60 if enhanced else 40)
 		"CH02:RL02": return "Basic hits cause 3s of bleed, dealing %d%% attack physical damage each second." % (15 if enhanced else 10)
-		"CH02:RL03": return "Every third basic hit marks for 4s and adds %s%% attack physical damage; Right Mouse or R consumes the mark." % ("52.5" if enhanced else "35")
+		"CH02:RL03": return "Every third fired basic attack marks for 4s and adds %s%% attack physical damage on a confirmed hit; W or R consumes the mark." % ("52.5" if enhanced else "35")
 		"CH03:RL01": return "Basic hits echo to up to 2 extra nearby enemies for %d%% ability-power magic damage." % (60 if enhanced else 40)
 		"CH03:RL02": return "Basic hits cause 3s of burn, dealing %d%% ability-power magic damage each second." % (18 if enhanced else 12)
-		"CH03:RL03": return "Every third basic hit restores %s mana, charges nearby nodes by %d, and adds %s%% ability-power magic damage." % [mana_refund,2 if enhanced else 1,"52.5" if enhanced else "35"]
+		"CH03:RL03": return "Every third fired basic attack restores %s mana, charges nearby nodes by %d, and adds %s%% ability-power magic damage on a confirmed hit." % [mana_refund,2 if enhanced else 1,"52.5" if enhanced else "35"]
 	return ""
 
 static func native_status(hero: String) -> String:

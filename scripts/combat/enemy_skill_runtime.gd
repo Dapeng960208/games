@@ -254,6 +254,11 @@ func filter_incoming_damage(target: Node2D, amount: float, kind: StringName, fro
 				var blocked: float = minf(Numerical.integer(result) if Numerical.is_v2(target_profile) else result, float(_property(plate_health, "current", 0.0)))
 				if blocked > 0.0:
 					plate.call("take_damage", blocked, kind, from_direction)
+					if Numerical.is_v2(target_profile):
+						# Cover is an actual receiver, so a rejected plate packet
+						# cannot manufacture absorption or a confirmed hero contact.
+						var receipt: Dictionary = _property(plate, "last_damage_result", {})
+						blocked = minf(blocked, maxf(0.0, float(receipt.get("hp_damage", 0.0)) + float(receipt.get("shield_damage", 0.0))))
 					result = maxf(0.0, result - blocked)
 				continue
 			if mode == "screen":
