@@ -17,12 +17,12 @@
 - 36类普通敌人与四个首领的明亮配色由`scripts/combat/enemy_palette.gd`着色器处理，区分珊瑚、靛蓝、翡翠、暖铜与紫晶色系，并保留黄铜关节和独立晶体/镜片色。复用原图、透明度与动作注册，没有新增怪物逐帧动画；身体受击与退场仍使用各自实际反馈逻辑。
 - 先前CH01战斧素材的七份注册继续保留，作为整族回退及历史来源：generic v4战斗待机、basic v2、secondary v2、walk v3。完整提示词与来源分别见[战斧通用来源](../assets/generated/heroes/CH01_axe_v1_provenance.json)、[普攻来源](../assets/generated/heroes/CH01_axe_basic_v2_provenance.json)、[横扫来源](../assets/generated/heroes/CH01_axe_secondary_v2_provenance.json)、[走路来源](../assets/generated/heroes/CH01_axe_walk_v3_provenance.json)；当前战斗使用上述彩绘全身家族，角色卡使用彩绘胸像。下列旧锤版动作记录保留为更早来源，不代表当前仍展示旧武器。
 - 先前锤版CH01走路初版来自内置ImageGen：[前视角](../assets/generated/heroes/CH01_walk_front_v2.png)、[后视角](../assets/generated/heroes/CH01_walk_back_v2.png)各四个不同关键姿态，左右朝向使用水平镜像；完整提示词见[来源记录](../assets/generated/heroes/CH01_walk_v2_provenance.json)。旧候选拒收说明`sources/CH01_walk_v1_rejected.json`按现有规则忽略，不属于运行资源。
-- 枪手CH02同样启用四关键姿态走路初版，复用内置ImageGen原创[前图v2](../assets/generated/heroes/CH02_walk_front_v2.png)、[背图v2](../assets/generated/heroes/CH02_walk_back_v2.png)并修正脚部锚点，PNG未变；完整来源见[CH02走路记录](../assets/generated/heroes/CH02_walk_v2_provenance.json)。本轮ImageGen v3修复候选因支撑腿错误拒收，仅保留在被忽略的`artifacts/`，不作为运行资源上传。CH03正面步态候选仍拒收、禁用；四关键姿态初版不代表八帧或八方向连续动作完成。
+- 枪手CH02同样启用四关键姿态走路初版，复用内置ImageGen原创[前图v2](../assets/generated/heroes/CH02_walk_front_v2.png)、[背图v2](../assets/generated/heroes/CH02_walk_back_v2.png)并修正脚部锚点，PNG未变；完整来源见[CH02走路记录](../assets/generated/heroes/CH02_walk_v2_provenance.json)。本轮ImageGen v3修复候选因支撑腿错误拒收，曾保存在本地 artifacts，现已按工作区清理要求删除，不作为运行资源上传。CH03正面步态候选仍拒收、禁用；四关键姿态初版不代表八帧或八方向连续动作完成。
 - 技能预警、弹体、部分反馈、交互标记、UI 排版和形状由本工程 GDScript 绘制，并与实际战斗状态同步。
 - 先前锤版CH01普攻使用内置ImageGen生成的原创透明[前视角图](../assets/generated/heroes/CH01_basic_front_v1.png)与[后视角图](../assets/generated/heroes/CH01_basic_back_v1.png)，各六姿态：三前摇、一命中、二收势；完整提示词与来源见[普攻来源记录](../assets/generated/heroes/CH01_basic_v1_provenance.json)。图集只供普攻，按真实反馈阶段以88世界像素绘制，不改伤害或冷却，也不代表所有角色动作完成。
 - 先前锤版CH01鼠标右键“破桩横扫”使用内置ImageGen原创透明[前图](../assets/generated/heroes/CH01_secondary_front_v1.png)、[背图](../assets/generated/heroes/CH01_secondary_back_v1.png)，各六关键姿态：plant/coil/drive/contact/follow/ready；完整提示词与来源见[横扫来源记录](../assets/generated/heroes/CH01_secondary_v1_provenance.json)。PNG保持生成原样，背图以帧矩形避开四源像素分隔带；专用机械解锁→扫风声由本项目原创合成，四变体替换原有技能声音分支，不增加音效库数量。
 - CH02鼠标右键已启用内置ImageGen原创透明[前图](../assets/generated/heroes/CH02_secondary_front_v1.png)、[背图](../assets/generated/heroes/CH02_secondary_back_v1.png)，源图各六姿态，当前施法仅映射brace/lock/absorb三姿态保持抵肩稳定；完整提示词与来源见[CH02技能来源记录](../assets/generated/heroes/CH02_secondary_v1_provenance.json)。
-- CH03 F已启用内置ImageGen原创透明[前图v2](../assets/generated/heroes/CH03_f_front_v2.png)、[背图v3](../assets/generated/heroes/CH03_f_back_v3.png)，各六姿态；完整提示词与来源见[CH03技能来源记录](../assets/generated/heroes/CH03_f_v1_provenance.json)。上述三项技能均使用`*_front/back_v1.json`注册为88世界像素，PNG保持生成原样；失败候选归入被忽略的本地`artifacts/`，不上传。此项不包含其余Q/R等技能或完整八方向动画。
+- CH03 F已启用内置ImageGen原创透明[前图v2](../assets/generated/heroes/CH03_f_front_v2.png)、[背图v3](../assets/generated/heroes/CH03_f_back_v3.png)，各六姿态；完整提示词与来源见[CH03技能来源记录](../assets/generated/heroes/CH03_f_v1_provenance.json)。上述三项技能均使用`*_front/back_v1.json`注册为88世界像素，PNG保持生成原样；失败候选未启用，已按工作区清理要求删除。此项不包含其余Q/R等技能或完整八方向动画。
 - 地形与道具继续复用既有岩石、机械和区域液面资源，并接入上述新地面与边缘装饰；明亮区域配色、崖面与内沿由代码绘制或着色。普通干燥障碍已缩小并拓宽通行区域，具体布局规则见[README](../README.md)；装饰不参与碰撞，实体障碍与显示足迹对应。
 - 怪物死亡后的短倒伏与退场由 `scripts/combat/enemy_defeat_feedback.gd` 捕获现有贴图、当前姿态并程序变换，未新增死亡逐帧图集；降低特效时采用静态淡出。普通、精英和召唤怪适用，首领与静态对象不使用此效果。
 - 战斗音效和四首场景音乐均为本项目程序合成的原创声音，未使用第三方录音采样或商业配乐。音乐音符事件、配器和SHA-256见 `assets/music/score.json`，可复现生成器为 `tools/compose_audio.py`；其授权见 `assets/music/README.md`。
@@ -32,3 +32,5 @@
 - Godot 引擎遵循 MIT 许可。仓库不包含引擎二进制；安装脚本从官方发行下载并核验完整性。分发独立游戏时须附引擎与依赖许可，参见 [Godot 官方许可说明](https://godotengine.org/license/)。
 
 截图、录屏及原始生成过程的重复工作副本不属于游戏运行资源，未随本次核心源码上传。CH01旧锤版走路曾因高抬膝和缺少过渡而偏负重踏步；当前彩绘战斧家族与CH02步态仍以关键姿态播放。关键姿态不等于八帧循环或完整八方向连续动画，也不代表所有英雄动作完成。
+
+当前统一尺度说明：以上各代素材中的 88 世界像素是生成注册时的历史记录；当前启用英雄身体已统一为 112 世界像素，实际显示以 presentation_metrics 和运行素材绑定为准。
