@@ -58,7 +58,12 @@ static func _action_bank(hero: String, bank: String) -> Dictionary:
 			var point: Array = item.get(label,[])
 			if point.size() == 2:
 				anchors[label] = (Vector2(float(point[0]),float(point[1]))-anchor)*scale_value+Vector2(0,FOOT_OFFSET)
+		var contacts: Array[Vector2] = []
+		for contact: Variant in item.get("foot_contacts",[]):
+			if contact is Array and contact.size() == 2:
+				contacts.append((Vector2(float(contact[0]),float(contact[1]))-anchor)*scale_value+Vector2(0,FOOT_OFFSET))
 		frames[str(item.get("name","idle"))] = {"texture":texture,"path":path,"region":region,"bounds":bounds,"anchors":anchors,"bank":bank,"phase":str(item.get("name","idle")),"frame_index":frame_index,"body_height":GENERATED_HEIGHT,"source_body_height":standard_height,"facing_x":-1 if int(data.get("facing_x",1)) < 0 else 1,"art_family":"storybook" if not replacement.is_empty() else "original"}
+		frames[str(item.get("name","idle"))]["foot_contacts"] = contacts
 	if not frames.has("idle") or not frames.has("windup") or not frames.has("release") or not frames.has("recovery"):
 		return {}
 	_action_banks[metadata_path] = frames
@@ -134,6 +139,8 @@ static func gunner_presentation_pose(p: Node2D, pose: Dictionary) -> Dictionary:
 	return held
 
 static func presentation_frame_info(hero: String, bank: String, pose: Dictionary, stride: float, walking: bool, dash: bool = false) -> Dictionary:
+	if dash:
+		return dodge_frame_info(hero,bank,float(pose.get("dash_progress",0.0)))
 	var phase: String = str(pose.get("phase", "idle"))
 	if hero == "CH02" and not dash:
 		var gun: Dictionary = gunner_shooting_frame(bank,pose)
@@ -148,6 +155,53 @@ static func presentation_frame_info(hero: String, bank: String, pose: Dictionary
 		if not basic.is_empty():
 			return basic
 	return motion_frame_info(hero,bank,phase,stride,walking,dash)
+
+## No dedicated dodge atlas is approved. Reuse an intact low authored stance;
+## the small foot-anchored weight change below is presentation, not a new clip.
+static func dodge_frame_info(hero: String, bank: String, progress: float) -> Dictionary:
+	var frame: Dictionary
+	if hero == "CH02":
+		frame = gunner_shooting_frame(bank,{"slot":"secondary","phase":"windup","progress":0.0})
+	else:
+		frame = action_frame_info(hero,bank,"recovery" if hero == "CH01" else "windup" if progress < .72 else "recovery")
+	if frame.is_empty():
+		return action_frame_info(hero,bank,"idle")
+	frame["source_phase"] = str(frame.phase)
+	frame["phase"] = "dodge"
+	frame["slot"] = "dodge"
+	frame.erase("gun_shooting_pose")
+	frame.erase("gun_recoil")
+	frame["dodge_presentation"] = true
+	return frame
+
+## Movement and dodge may face away from the pointer. A committed action still
+## uses its recorded aim; this does not write Player.aim_direction or shot data.
+static func presentation_direction(aim: Vector2, velocity: Vector2, pose: Dictionary, walking: bool, dash_direction: Vector2 = Vector2.ZERO, dash: bool = false, resolved_motion: Vector2 = Vector2.ZERO) -> Vector2:
+	var direction: Vector2 = pose.get("direction",aim)
+	if dash and dash_direction.is_finite() and not dash_direction.is_zero_approx():
+		direction = dash_direction
+	elif str(pose.get("phase","idle")) == "idle" and walking and velocity.is_finite() and velocity.length_squared() > 4.0:
+		direction = resolved_motion if resolved_motion.is_finite() and not resolved_motion.is_zero_approx() else velocity
+	return direction.normalized() if direction.is_finite() and direction.length_squared() > .001 else Vector2.RIGHT
+
+## Pixels and attachment anchors always share this transform. Shooting poses
+## retain the original unrotated anatomy and frozen launch-point contract.
+static func body_transform(asset: Dictionary, hero: String, aim: Vector2, lean: Vector2, pose: Dictionary, walking: bool = false, stride: float = 0.0) -> Transform2D:
+	var flip: float = source_horizontal_flip(aim,asset)
+	var transform := Transform2D(0.0,Vector2(flip,1.0),0.0,_action_offset(asset,hero,aim,lean,pose))
+	if bool(asset.get("dodge_presentation",false)):
+		var pressure: float = sin(clampf(float(pose.get("dash_progress",0.0)),0.0,1.0)*PI)
+		var squat: float = .065 if hero == "CH01" else .05 if hero == "CH02" else .035
+		var rotation: float = aim.x*.024*pressure if hero == "CH01" else 0.0
+		transform = Transform2D(rotation,Vector2(flip*(1.0+pressure*.015),1.0-pressure*squat),0.0,Vector2.ZERO)
+		transform.origin = Vector2(0,FOOT_OFFSET)-transform.basis_xform(Vector2(0,FOOT_OFFSET))
+	elif hero == "CH03" and walking and str(asset.get("phase","idle")) == "idle" and str(pose.get("phase","idle")) == "idle":
+		# The rejected mage walking sheet stays disabled. A restrained torso sway
+		# carries the approved idle illustration while both soles remain grounded.
+		var breath: float = absf(sin(stride*.34))
+		transform = Transform2D(Vector2(flip,0),Vector2(aim.x*.012,1.0-breath*.012),Vector2.ZERO)
+		transform.origin = Vector2(0,FOOT_OFFSET)-transform.basis_xform(Vector2(0,FOOT_OFFSET))
+	return transform
 
 ## Frozen launch-point sampling, independent of the previous rendered idle pose.
 ## Projectiles use this display anchor without moving their physical origin.
@@ -196,14 +250,18 @@ static func _walk_is_moving(p: Node2D, stride: float, velocity: Vector2) -> bool
 	var frame: int = Engine.get_physics_frames()
 	var previous: Dictionary = p.get_meta("_hero_visual_motion",{})
 	var walking: bool = velocity.length_squared() > 4.0
+	var direction: Vector2 = previous.get("direction",velocity.normalized())
 	if not previous.is_empty():
 		if frame != int(previous.frame) or not is_equal_approx(stride,float(previous.stride)):
 			walking = walking and stride > float(previous.stride)+.00001
+			var travel: Vector2 = p.position-Vector2(previous.get("position",p.position))
+			if walking and travel.length_squared() > .00001:
+				direction = travel.normalized()
 		else:
 			walking = walking and bool(previous.walking)
 	else:
 		walking = walking and stride > .00001
-	p.set_meta("_hero_visual_motion",{"frame":frame,"stride":stride,"walking":walking})
+	p.set_meta("_hero_visual_motion",{"frame":frame,"stride":stride,"walking":walking,"position":p.position,"direction":direction})
 	return walking
 
 
@@ -309,14 +367,15 @@ static func draw_hero(p: Node2D) -> void:
 		lean -= aim * progress * (4.0 if hero == "CH01" else 1.5)
 	elif state == "attack_strike":
 		lean += aim * (1.0 - progress) * (5.0 if hero == "CH01" else 1.5)
-	if dash:
-		_draw_dash(p, hero, velocity, aim)
 	var feedback: Node = p.get_node_or_null("HeroFeedback")
 	var pose: Dictionary = feedback.pose_state() if is_instance_valid(feedback) else {"phase":"idle","progress":0.0,"direction":aim,"slot":"basic"}
 	pose = gunner_presentation_pose(p,pose)
-	var pose_aim: Vector2 = pose.get("direction",aim)
-	if pose_aim.length_squared() > .01:
-		aim = pose_aim.normalized()
+	if dash:
+		pose = pose.duplicate()
+		pose["dash_progress"] = clampf(float(p.get("dash_elapsed"))/maxf(.001,float(p.get("dash_elapsed"))+float(p.get("dash_remaining"))),0.0,1.0)
+	var resolved_motion: Vector2 = p.get_meta("_hero_visual_motion",{}).get("direction",Vector2.ZERO)
+	aim = presentation_direction(aim,velocity,pose,walking,p.get("dash_direction"),dash,resolved_motion)
+	p.set_meta("hero_presentation_direction",aim)
 	var bank: String = "back" if aim.y < -.20 else "front"
 	var motion_frame: Dictionary = presentation_frame_info(hero,bank,pose,stride,walking,dash)
 	if not motion_frame.is_empty():
@@ -325,7 +384,7 @@ static func draw_hero(p: Node2D) -> void:
 		p.set_meta("hero_visual_bank",bank)
 		p.set_meta("hero_visual_frame",int(motion_frame.get("frame_index",-1)))
 		p.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
-		_draw_action_frame(p,motion_frame,hero,aim,lean,pose,hurt)
+		_draw_action_frame(p,motion_frame,hero,aim,lean,pose,hurt,walking,stride)
 		_draw_protection(p)
 		return
 	var generated: Dictionary = _generated_asset(hero)
@@ -355,45 +414,57 @@ static func draw_hero(p: Node2D) -> void:
 		var at := aim * (63.0 if hero == "CH01" else 43.0) + lean
 		p.draw_line(at - aim.orthogonal() * 5.0, at + aim.orthogonal() * 5.0, IVORY, 2.0, true)
 
-static func _draw_action_frame(p: Node2D, asset: Dictionary, hero: String, aim: Vector2, lean: Vector2, pose: Dictionary, hurt: float) -> void:
-	var shadow_width: float = 23.0 if hero == "CH01" else 18.0
-	p.draw_set_transform(Vector2(0,FOOT_OFFSET),0.0,Vector2(shadow_width/12.0,.48))
-	var shadow_color := Color(.24,.25,.34,.28) if str(asset.get("path","")).contains("CH01_storybook_") else Color(.012,.02,.023,.64)
-	p.draw_circle(Vector2.ZERO,12.0,shadow_color)
-	p.draw_set_transform(Vector2.ZERO)
+static func _draw_action_frame(p: Node2D, asset: Dictionary, hero: String, aim: Vector2, lean: Vector2, pose: Dictionary, hurt: float, walking: bool = false, stride: float = 0.0) -> void:
 	var flip: float = source_horizontal_flip(aim,asset)
 	p.set_meta("hero_visual_flip",flip)
-	# Authored walking and basic swings carry their own body weight. Registered
-	# feet must not receive the old whole-image bob/lean or release translation.
-	var offset: Vector2 = _action_offset(asset,hero,aim,lean,pose)
+	var transform: Transform2D = body_transform(asset,hero,aim,lean,pose,walking,stride)
+	_draw_contact_shadow(p,hero,asset,transform,pose)
 	# The atlas contains real torso/limb/weapon poses. Only tiny translation
 	# adds recoil; no whole-image aiming rotation or second weapon is layered on.
-	p.draw_set_transform(offset,0.0,Vector2(flip,1.0))
+	p.draw_set_transform_matrix(transform)
 	var modulation := Color(1.0+hurt*.45,1.0-hurt*.2,1.0-hurt*.3,1.0)
 	p.draw_texture_rect_region(asset.texture,asset.bounds,asset.region,modulation)
 	p.draw_set_transform(Vector2.ZERO)
 	var muzzle: Vector2 = asset.anchors.get("muzzle",asset.anchors.get("right_hand",Vector2(26,-28)))
 	var grip: Vector2 = asset.anchors.get("grip",Vector2(15,-26))
-	p.set_meta("hero_muzzle_local",offset+muzzle*Vector2(flip,1.0))
-	p.set_meta("hero_grip_local",offset+grip*Vector2(flip,1.0))
-	p.set_meta("hero_foot_local",Vector2(0,FOOT_OFFSET))
-	var tint: Color = ORANGE if hero == "CH01" else IVORY if hero == "CH02" else TEAL
-	var marker: Vector2 = aim*30
-	p.draw_polyline(PackedVector2Array([marker-aim*5+aim.orthogonal()*3.5,marker,marker-aim*5-aim.orthogonal()*3.5]),Color(tint,.62),1.2,true)
+	p.set_meta("hero_muzzle_local",transform*muzzle)
+	p.set_meta("hero_grip_local",transform*grip)
+	p.set_meta("hero_foot_local",transform*Vector2(0,FOOT_OFFSET))
+	p.set_meta("hero_body_transform",transform)
+
+
+static func _draw_contact_shadow(p: Node2D, hero: String, asset: Dictionary, transform: Transform2D, pose: Dictionary) -> void:
+	var width: float = 27.0 if hero == "CH01" else 22.0 if hero == "CH02" else 21.0
+	var phase: String = str(pose.get("phase","idle"))
+	var weight: float = 0.0
+	if str(pose.get("slot","")) == "basic" and phase in ["windup","release"]:
+		weight = float(pose.get("progress",0.0)) if phase == "windup" else 1.0-float(pose.get("progress",0.0))
+		weight *= .14 if hero == "CH01" else .045 if hero == "CH02" else .07
+	if bool(asset.get("dodge_presentation",false)):
+		weight = sin(clampf(float(pose.get("dash_progress",0.0)),0.0,1.0)*PI)*.12
+	# Two translucent tiers read as warm daylight contact, without a black oval
+	# swallowing the boots or a bright ring competing with enemy floor warnings.
+	for layer in 2:
+		var extent: float = width*(1.0+weight)*(1.16 if layer == 0 else .84)
+		p.draw_set_transform(Vector2(2,FOOT_OFFSET+1.5),0.0,Vector2(extent/12.0,.54 if layer == 0 else .36))
+		p.draw_circle(Vector2.ZERO,12.0,Color(Color("594c68"),.085 if layer == 0 else .19))
+	p.draw_set_transform(Vector2.ZERO)
+	var contacts: Array = asset.get("foot_contacts",[])
+	if contacts.is_empty():
+		var spread: float = 10.0 if hero == "CH01" else 7.0
+		contacts = [Vector2(-spread,FOOT_OFFSET),Vector2(spread,FOOT_OFFSET)]
+	for point: Vector2 in contacts:
+		var ground: Vector2 = transform*point
+		p.draw_set_transform(ground+Vector2(0,1.0),0.0,Vector2(1.28 if hero == "CH01" else 1.0,.36))
+		p.draw_circle(Vector2.ZERO,4.0,Color(Color("50435b"),.24))
+	p.draw_set_transform(Vector2.ZERO)
 
 
 static func _draw_generated(p: Node2D, asset: Dictionary, hero: String, aim: Vector2, lean: Vector2, step: float, state: String, progress: float, hurt: float) -> void:
 	# Feet are grounded near the existing actor/collision origin; image scaling
 	# and this contact shadow do not alter any attack radius or physical shape.
-	var shadow_width: float = 23.0 if hero == "CH01" else 18.0
-	p.draw_set_transform(Vector2(0, FOOT_OFFSET), 0.0, Vector2(shadow_width / 12.0, .48))
-	p.draw_circle(Vector2.ZERO, 12.0, Color(0.012,0.02,0.023,.64))
-	p.draw_set_transform(Vector2.ZERO)
+	_draw_contact_shadow(p,hero,asset,Transform2D.IDENTITY,{"phase":"idle"})
 	var direction_tint: Color = ORANGE if hero == "CH01" else (IVORY if hero == "CH02" else TEAL)
-	# A small ground-facing marker tells the actual attack direction even though
-	# this initial single image has no independently articulated weapon layer.
-	var marker: Vector2 = aim * 31.0
-	p.draw_polyline(PackedVector2Array([marker-aim*5.0+aim.orthogonal()*4.0,marker,marker-aim*5.0-aim.orthogonal()*4.0]),Color(direction_tint,.78),1.5,true)
 	if hero == "CH01" and state == "attack_strike":
 		_draw_melee_arc(p, aim, progress)
 	var squash := Vector2.ONE
@@ -634,19 +705,6 @@ static func _draw_melee_arc(p: Node2D, aim: Vector2, progress: float) -> void:
 	var tail := maxf(angle - half_angle, sweep - 0.58)
 	p.draw_arc(Vector2.ZERO, 88.0, tail, sweep, 9, Color(0.92, 0.69, 0.39, opacity * 0.55), 8.0, true)
 	p.draw_arc(Vector2.ZERO, 97.0, tail, sweep, 9, Color(0.99, 0.87, 0.64, opacity), 2.5, true)
-
-
-static func _draw_dash(p: Node2D, hero: String, velocity: Vector2, aim: Vector2) -> void:
-	var direction := velocity.normalized() if velocity.length_squared() > 1.0 else aim
-	var tint := ORANGE if hero == "CH01" else (Color("cfca94") if hero == "CH02" else TEAL)
-	var cross := direction.orthogonal()
-	for i in range(3):
-		var length := 14.0 + float(i) * 7.0
-		var at := -direction * (18.0 + float(i) * 8.0) + cross * float(i - 1) * 9.0
-		var color := Color(tint, 0.44 - float(i) * 0.1)
-		p.draw_line(at, at - direction * length, color, 3.0 if hero == "CH01" else 1.7, true)
-	if hero == "CH03":
-		p.draw_arc(-direction * 24, 20.0, direction.angle() + 0.8, direction.angle() + 5.4, 15, Color(TEAL, 0.3), 1.5, true)
 
 
 static func _draw_protection(p: Node2D) -> void:
