@@ -171,6 +171,9 @@ func _full_catalogue() -> void:
 	app.show_workshop("shop")
 	await frames()
 	var workshop: Control = app.screen.find_child("Workshop", true, false)
+	workshop.shop_sets = false
+	workshop._render()
+	await frames()
 	var all_button := workshop.find_child("ViewAllEquipment", true, false) as Button
 	check(all_button != null and not all_button.disabled, "real shop exposes its full catalogue action")
 	if all_button == null: return
@@ -241,6 +244,7 @@ func _workshop() -> void:
 			var workshop: Control = app.screen.find_child("Workshop", true, false)
 			if workshop != null:
 				workshop.selected_item = "EQ02"
+				workshop.shop_sets = false
 				workshop._render()
 			await frames()
 			_inspect_workshop(locale, page)

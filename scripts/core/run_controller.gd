@@ -10,10 +10,14 @@ var profile: Dictionary = ProfileStore.fresh_profile()
 var run: RunState = null
 var last_error: String = ""
 var storage_warning: String = ""
+var last_loadout_missing: Array[String] = []
+var damage_trail = preload("res://scripts/combat/recent_damage_trail.gd").new()
+var _session_result: Dictionary = {}
 var has_profile: bool = false
 var last_result: Dictionary:
 	get:
 		if not _demo_result.is_empty(): return _demo_result.duplicate(true)
+		if not _session_result.is_empty(): return _session_result.duplicate(true)
 		return profile.get("last_result", {}).duplicate(true)
 
 # Tests use isolated paths. Production uses Godot's OS-specific user data folder.
@@ -42,6 +46,8 @@ func _process(delta: float) -> void:
 		run.elapsed += delta
 
 func reload_profile() -> void:
+	damage_trail.clear()
+	_session_result.clear()
 	if not _demo_backup.is_empty():
 		# Reloading during a trial discards its sandbox without writing or settling
 		# the player's actual profile, including settings-only and unsaved profiles.
@@ -100,6 +106,9 @@ func new_profile() -> bool:
 	if not _save(fresh, null):
 		return false
 	profile = fresh
+	_session_result.clear()
+	damage_trail.clear()
+	last_loadout_missing.clear()
 	_demo_result.clear()
 	storage_warning = ""
 	has_profile = true
@@ -130,24 +139,30 @@ func start_run(options: Dictionary = {}) -> bool:
 		return false
 	if not next.expedition.is_empty(): next.committed_receipt = next.live_receipt()
 	run = next
+	damage_trail.clear()
+	_session_result.clear()
 	_demo_result.clear()
 	_pending_outcome = ""
 	changed.emit()
 	run_started.emit()
 	return true
 
-func start_demo(hero_id: String, difficulty: int = 0) -> bool:
+func start_demo(hero_id: String, difficulty: int = 0, branches: Dictionary = {}, preview_branches: bool = false) -> bool:
 	# A trial is a complete disposable profile so every existing reward and
 	# checkpoint path can run unchanged without touching permanent progression.
 	if run != null or _settling or not _pending_outcome.is_empty() or not _demo_backup.is_empty() \
 		or not hero_id in ProfileStore.HERO_IDS or difficulty < 0 or difficulty > 4:
 		return false
+	for key: Variant in branches:
+		if key not in ["q", "ultimate"] or branches[key] not in ["", "A", "B"]: return false
 	_demo_backup = {"profile":profile.duplicate(true),"has_profile":has_profile,
 		"last_error":last_error,"storage_warning":storage_warning}
 	var trial := ProfileStore.fresh_profile()
 	trial.settings.merge(profile.get("settings", {}), true)
 	trial.selected_hero = hero_id
-	trial.hero_xp[hero_id] = ContentRegistry.XP_THRESHOLDS[7]
+	trial.hero_xp[hero_id] = ContentRegistry.XP_THRESHOLDS[19 if preview_branches else 7]
+	if preview_branches:
+		for key: String in ["q", "ultimate"]: trial.branches[hero_id][key] = str(branches.get(key, ""))
 	profile = trial
 	has_profile = true
 	last_error = ""
@@ -213,10 +228,15 @@ func damage_player(amount: float, context: Dictionary = {}) -> float:
 	var resolved: Dictionary = Damage.resolve(amount, str(context.get("damage_type", "physical")), attacker, defender, context)
 	var damage: float = float(resolved.damage)
 	if not is_finite(damage) or damage <= 0.0: return 0.0
+	var hp_before: float = run.hp
+	var shield_before: float = run.shield
 	var absorbed := minf(run.shield, damage)
 	run.shield -= absorbed
 	var hp_loss := minf(run.hp, damage - absorbed)
 	run.hp = maxf(0.0, run.hp - hp_loss)
+	var damage_context: Dictionary = context.duplicate(true)
+	damage_context["damage_type"] = str(resolved.damage_type)
+	damage_trail.record(amount, damage, hp_before, run.hp, shield_before, run.shield, damage_context, run.elapsed)
 	changed.emit()
 	if run.hp <= 0.0:
 		finish_run("death")
@@ -325,6 +345,8 @@ func finish_run(outcome: String) -> Dictionary:
 		"equipment_retained":retained_equipment,"equipment_lost":lost_equipment,
 	}
 	next_profile.last_result = result.duplicate(true)
+	# Combat evidence is bounded session data, never a transaction or save field.
+	if outcome == "death": result["death_review"] = damage_trail.summary()
 	if run.demo:
 		# Keep a readable result for the UI, but award nothing to the real profile.
 		var wallet: int = int(_demo_backup.profile.permanent_gold)
@@ -354,6 +376,7 @@ func finish_run(outcome: String) -> Dictionary:
 		settlement_failed.emit(outcome)
 		return {}
 	profile = next_profile
+	_session_result = result.duplicate(true)
 	run.relics.clear()
 	run = null
 	_pending_outcome = ""
@@ -414,15 +437,35 @@ func preview_upgrade_stats(eq_id: String) -> Dictionary:
 	resolved.branches = hero_branches()
 	return resolved
 
+func hero_loadout(id: String) -> Dictionary:
+	var desired: Dictionary = profile.get("loadout_presets", {}).get(id, profile.loadout).duplicate(true)
+	for slot: String in ProfileStore.SLOTS:
+		var item: String = str(desired.get(slot, ""))
+		if item.is_empty() or not profile.equipment.has(item): desired[slot] = str(profile.loadout[slot])
+	return desired
+
 func select_hero(id: String) -> bool:
 	last_error = ""
+	last_loadout_missing.clear()
 	if not _camp_available() or not id in ProfileStore.HERO_IDS:
 		return false
 	if profile.selected_hero == id:
 		return true
 	var next_profile := profile.duplicate(true)
+	if not next_profile.has("loadout_presets"): next_profile.loadout_presets = {}
+	next_profile.loadout_presets[str(profile.selected_hero)] = profile.loadout.duplicate(true)
+	var desired: Dictionary = next_profile.loadout_presets.get(id, profile.loadout).duplicate(true)
+	var missing: Array[String] = []
+	for slot: String in ProfileStore.SLOTS:
+		var item: String = str(desired.get(slot, ""))
+		if item.is_empty() or not next_profile.equipment.has(item):
+			missing.append(slot)
+			desired[slot] = str(profile.loadout[slot])
 	next_profile.selected_hero = id
-	return _commit_profile(next_profile)
+	next_profile.loadout = desired
+	if not _commit_profile(next_profile): return false
+	last_loadout_missing = missing
+	return true
 
 func equipment_level(eq_id: String) -> int:
 	return int(profile.get("equipment", {}).get(eq_id, {}).get("level", 0))
@@ -474,7 +517,7 @@ func buy_equipment(eq_id: String, transaction_id: String = "") -> bool:
 	var next_profile := profile.duplicate(true)
 	next_profile.permanent_gold = int(next_profile.permanent_gold) - int(price)
 	next_profile.equipment[eq_id] = {"level": 0}
-	next_profile.applied_transactions[id] = {"kind": "purchase", "item": eq_id, "price": int(price), "level": 0}
+	next_profile.applied_transactions[id] = {"economy_version":ProfileStore.ECONOMY_RULES_VERSION, "kind": "purchase", "item": eq_id, "price": int(price), "level": 0}
 	return _commit_profile(next_profile)
 
 ## Quotes only missing pieces. Rounding is per item, so buying a piece first
@@ -513,7 +556,7 @@ func buy_equipment_set(set_id: String, transaction_id: String = "") -> bool:
 	var next_profile := profile.duplicate(true)
 	next_profile.permanent_gold = int(next_profile.permanent_gold) - int(quote.price)
 	for eq_id: String in quote.missing: next_profile.equipment[eq_id] = {"level":0}
-	next_profile.applied_transactions[id] = {"kind":"purchase_set", "item":set_id,
+	next_profile.applied_transactions[id] = {"economy_version":ProfileStore.ECONOMY_RULES_VERSION,"kind":"purchase_set", "item":set_id,
 		"price":int(quote.price), "items":quote.missing.duplicate()}
 	return _commit_profile(next_profile)
 
@@ -557,9 +600,13 @@ func sell_equipment_items(eq_ids: Array, transaction_id: String = "") -> bool:
 	var id := _transaction_id(transaction_id)
 	if id.is_empty(): return false
 	var next_profile := profile.duplicate(true)
-	for eq_id: String in ids: next_profile.equipment.erase(eq_id)
+	for eq_id: String in ids:
+		next_profile.equipment.erase(eq_id)
+		for preset: Dictionary in next_profile.get("loadout_presets", {}).values():
+			for slot: String in preset:
+				if preset[slot] == eq_id: preset[slot] = ""
 	next_profile.permanent_gold = int(next_profile.permanent_gold) + total
-	next_profile.applied_transactions[id] = {"kind":"sale","item":signature,"items":records,"price":total}
+	next_profile.applied_transactions[id] = {"economy_version":ProfileStore.ECONOMY_RULES_VERSION,"kind":"sale","item":signature,"items":records,"price":total}
 	return _commit_profile(next_profile)
 
 func equip_item(eq_id: String) -> bool:
@@ -590,7 +637,7 @@ func upgrade_equipment(eq_id: String, transaction_id: String = "") -> bool:
 	var next_profile := profile.duplicate(true)
 	next_profile.permanent_gold = int(next_profile.permanent_gold) - price
 	next_profile.equipment[eq_id].level = equipment_level(eq_id) + 1
-	next_profile.applied_transactions[id] = {"kind": "upgrade", "item": eq_id, "price": price,
+	next_profile.applied_transactions[id] = {"economy_version":ProfileStore.ECONOMY_RULES_VERSION,"kind": "upgrade", "item": eq_id, "price": price,
 		"level": next_profile.equipment[eq_id].level}
 	return _commit_profile(next_profile)
 
@@ -762,7 +809,11 @@ func _commit_expedition(value: Dictionary, runtime: Dictionary, next_profile: Di
 	if not _save(next_profile, receipt): return false
 	var live_values: Dictionary = {"hp":run.hp,"resource":run.resource,"shield":run.shield}
 	profile = next_profile
+	var session_opens: int = run.backpack_opens
+	var session_changes: int = run.loadout_changes
 	_restore_expedition(receipt)
+	run.backpack_opens = session_opens
+	run.loadout_changes = session_changes
 	if keep_live_values:
 		run.hp = float(live_values.hp)
 		run.resource = float(live_values.resource)
@@ -848,12 +899,19 @@ func _add_equipment_drop(value: Dictionary, drop_id: String, eq_id: String, drop
 	if value.claimed_drop_ids.size() >= Expedition.MAX_IDS: return false
 	if not eq_id in value.equipment_discoveries: value.equipment_discoveries.append(eq_id)
 	var owned_level: int = int(profile.equipment.get(eq_id, {}).get("level", 0))
-	# One catalogue ID owns one pending choice. A later duplicate converts to
-	# gold rather than silently replacing a decision already made by the player.
-	if value.pending_equipment.has(eq_id) or (profile.equipment.has(eq_id) and level <= owned_level):
+	# Retain the best unsecured copy. Preserve the earlier claim/choice as
+	# provenance without silently changing equipment already worn in the field.
+	var has_pending: bool = value.pending_equipment.has(eq_id)
+	var pending_level: int = int(value.pending_equipment.get(eq_id, {}).get("level", 0))
+	if has_pending and level > pending_level:
+		var previous: String = str(value.pending_equipment[eq_id].drop_id)
+		value.claimed_drop_ids[previous].result = "superseded"
+		value.pending_equipment[eq_id] = {"drop_id":drop_id}
+		value.claimed_drop_ids[drop_id] = {"equipment_id":eq_id,"result":"pending","gold":0}
+	elif has_pending or (profile.equipment.has(eq_id) and level <= owned_level):
 		var amount: int = int(int(ContentRegistry.equipment(eq_id).price) / 10)
 		value.gold_earned += amount
-		value.claimed_drop_ids[drop_id] = {"equipment_id":eq_id,"result":"gold","gold":amount}
+		value.claimed_drop_ids[drop_id] = {"equipment_id":eq_id,"result":"gold","gold":amount,"economy_version":ProfileStore.ECONOMY_RULES_VERSION}
 	else:
 		value.pending_equipment[eq_id] = {"drop_id":drop_id}
 		value.claimed_drop_ids[drop_id] = {"equipment_id":eq_id,"result":"pending","gold":0}
@@ -951,7 +1009,7 @@ func claim_expedition_optional_reward(node_index: int, objective_id: String, run
 	for boss: String in run.boss_defeats:
 		if not bosses.has(boss): bosses.append(boss)
 	var seed: int = (int(run.expedition.seed) + node_index * 104729) & 0x7fffffff
-	var rewards: Dictionary = RoomRewards.optional(room_id, objective_id, run.hero_id, seed, claim_id, run.equipment_snapshot.keys(), run.expedition.pending_equipment.keys(), bosses, int(run.expedition.difficulty))
+	var rewards: Dictionary = RoomRewards.optional(room_id, objective_id, run.hero_id, seed, claim_id, reward_discovery_ids(), run.expedition.pending_equipment.keys(), bosses, int(run.expedition.difficulty), int(run.expedition.get("reward_policy_version", 0)))
 	if rewards.is_empty(): return false
 	var value: Dictionary = run.expedition.duplicate(true)
 	var drop_ids: Array[String] = []
@@ -1095,16 +1153,53 @@ func purchase_run_supply(offer_id: String, runtime_snapshot: Dictionary = {}) ->
 	value.purchased_offer_ids.append(offer_id)
 	return _commit_expedition(value, runtime, profile.duplicate(true))
 
+func prepare_safe_resources(runtime_snapshot: Dictionary = {}, expected_checkpoint_id: String = "") -> bool:
+	# Resource recovery is a combat pacing rule, not a paid safe-room delay.
+	if not _expedition_active() or run.expedition.phase != "safe": return false
+	if run.expedition.route.nodes[int(run.expedition.node_index)].role != "supply": return false
+	if not expected_checkpoint_id.is_empty() and expected_checkpoint_id != str(run.expedition.checkpoint_id): return false
+	if str(run.stats.resource_type) not in ["mana", "energy"]: return false
+	var runtime: Dictionary = _safe_runtime(runtime_snapshot)
+	if runtime.is_empty() or runtime.get("mode") != "safe_boundary": return false
+	if float(runtime.resource) >= float(run.stats.resource_max): return true
+	runtime.resource = float(run.stats.resource_max)
+	return _commit_expedition(run.expedition.duplicate(true), runtime, profile.duplicate(true))
+
+func reward_discovery_ids() -> Array:
+	if run == null: return []
+	if int(run.expedition.get("reward_policy_version", 0)) == 0: return run.equipment_snapshot.keys()
+	var known: Array = profile.get("equipment_discoveries", []).duplicate()
+	for id: String in profile.equipment:
+		if not known.has(id): known.append(id)
+	for record: Dictionary in profile.applied_transactions.values():
+		var ids: Array = []
+		if record.get("kind") in ["purchase", "upgrade"]: ids.append(str(record.item))
+		elif record.get("kind") == "purchase_set": ids = record.items.duplicate()
+		elif record.get("kind") == "sale": ids = record.items.keys()
+		for id: String in ids:
+			if not known.has(id): known.append(id)
+	for id: String in run.expedition.get("equipment_discoveries", []):
+		if not known.has(id): known.append(id)
+	return known
+
 func _same_transaction(id: String, kind: String, item: String) -> bool:
 	var entry: Dictionary = profile.applied_transactions[id]
 	return entry.get("kind") == kind and entry.get("item") == item
 
 func _transaction_id(requested: String) -> String:
-	if requested.length() > 160 or profile.applied_transactions.size() >= ProfileStore.MAX_TRANSACTIONS:
+	if profile.applied_transactions.size() >= ProfileStore.MAX_TRANSACTIONS:
+		last_error = "STORAGE_TRANSACTION_CAPACITY"
 		return ""
+	if requested.length() > 160: return ""
 	return requested if not requested.is_empty() else Crypto.new().generate_random_bytes(16).hex_encode()
 
+func storage_capacity() -> Dictionary:
+	if _store == null: return {}
+	return _store.storage_capacity(profile, run.receipt() if run != null else null, has_profile)
+
 func _commit_profile(next_profile: Dictionary) -> bool:
+	if not next_profile.has("loadout_presets"): next_profile.loadout_presets = {}
+	next_profile.loadout_presets[str(next_profile.selected_hero)] = next_profile.loadout.duplicate(true)
 	if not _save(next_profile, null):
 		return false
 	profile = next_profile

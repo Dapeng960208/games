@@ -8,6 +8,9 @@ const BINDING_ACTIONS := ["skill_q","skill_secondary","skill_f","skill_ultimate"
 const Advice = preload("res://scripts/ui/equipment_advice.gd")
 const SetShop = preload("res://scripts/ui/equipment_set_shop.gd")
 const Recycle = preload("res://scripts/ui/equipment_recycle_panel.gd")
+const HeroDossier = preload("res://scripts/ui/hero_dossier.gd")
+const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
+const StatSheet = preload("res://scripts/ui/stat_sheet.gd")
 var app: Node
 var mode := "heroes"
 var preview_hero := ""
@@ -20,7 +23,7 @@ var busy := false
 var body: Control
 var item_list: ScrollContainer
 var action_button: Button
-var shop_sets := false
+var shop_sets := true
 var selected_set := "S09"
 var set_scroll := 0
 var inventory_recycle := false
@@ -36,7 +39,15 @@ func _render() -> void:
 		remove_child(child)
 		child.queue_free()
 	MineStyle.label(self,"WORKSHOP_KICKER",Vector2(32,21),Vector2(750,25),16,MineStyle.AMBER)
-	MineStyle.label(self,{"heroes":"HERO_DOSSIERS","skills":"SKILL_LEDGER","inventory":"EQUIPMENT_BENCH","shop":"SUPPLY_CATALOG","upgrade":"UPGRADE_BENCH"}.get(mode,"EQUIPMENT_BENCH"),Vector2(32,55),Vector2(820,46),32)
+	var heading := MineStyle.label(self,{"heroes":"HERO_DOSSIERS","skills":"SKILL_LEDGER","inventory":"EQUIPMENT_BENCH","shop":"SUPPLY_CATALOG","upgrade":"UPGRADE_BENCH"}.get(mode,"EQUIPMENT_BENCH"),Vector2(32,55),Vector2(430 if mode in ["inventory","shop","upgrade"] else 630,46),30)
+	if mode == "shop": heading.text = _t("套装商城 · 14 套", "SET SHOP · 14 SETS") if shop_sets else _t("单件装备目录", "INDIVIDUAL EQUIPMENT")
+	if mode == "inventory": heading.text = _t("装备背包 · 永久仓库", "EQUIPMENT INVENTORY")
+	if mode == "upgrade": heading.text = _t("装备强化", "EQUIPMENT REFINEMENT")
+	if mode in ["inventory","shop","upgrade"]:
+		var attributes := MineStyle.button(self,"",Vector2(472,52),Vector2(182,44),_show_character_stats)
+		attributes.name = "OpenCharacterStats"
+		attributes.text = _t("角色属性", "Character stats")
+		attributes.add_theme_font_size_override("font_size",16)
 	MineStyle.label(self,"BANK_TOTAL",Vector2(928,41),Vector2(322,46),22,MineStyle.AMBER,{"gold":Game.profile.get("permanent_gold",0)})
 	if mode == "shop":
 		var catalog_toggle := MineStyle.button(self,"",Vector2(674,52),Vector2(234,44),func(): shop_sets = not shop_sets; _render())
@@ -90,30 +101,25 @@ func _t(zh: String, en: String) -> String:
 	return en if Words.locale == "en" else zh
 
 func _render_heroes() -> void:
-	var heroes: Array = ContentRegistry.heroes()
-	for i in range(heroes.size()):
-		var id := str(heroes[i])
-		var data: Dictionary = ContentRegistry.hero(id)
-		var card := MineStyle.panel(body,Vector2(i*244,0),Vector2(228,510))
-		if id == preview_hero:
-			card.add_theme_stylebox_override("panel",MineStyle.box(MineStyle.RAISED,MineStyle.AMBER,2))
-		MineStyle.literal(card,"0"+str(i+1)+" / "+MineStyle.content_text(data,"class_name"),Vector2(17,12),Vector2(194,30),17,MineStyle.resource_color(data.get("resource_type","rage")))
-		MineStyle.hero_portrait(card,id,Vector2(4,49),Vector2(220,238))
-		MineStyle.literal(card,MineStyle.content_text(data,"name"),Vector2(18,300),Vector2(193,36),25)
-		MineStyle.literal(card,MineStyle.content_text(data,"title"),Vector2(18,341),Vector2(193,33),17,MineStyle.MUTED)
-		MineStyle.label(card,"HERO_LEVEL",Vector2(18,382),Vector2(193,32),18,MineStyle.AMBER,{"level":Game.hero_level(id)})
-		var select := MineStyle.button(card,"INSPECT",Vector2(16,439),Vector2(196,48),func(): preview_hero = id; _render())
-		select.name = "Preview_"+id
-	var hero: Dictionary = ContentRegistry.hero(preview_hero)
-	var info := MineStyle.panel(body,Vector2(742,0),Vector2(474,510))
-	MineStyle.label(info,"DOSSIER_NOTE",Vector2(22,15),Vector2(428,25),16,MineStyle.MUTED)
-	MineStyle.literal(info,MineStyle.content_text(hero,"name")+" / "+MineStyle.content_text(hero,"class_name"),Vector2(22,55),Vector2(428,66),25)
-	MineStyle.label(info,"HERO_"+preview_hero+"_PLAY",Vector2(22,132),Vector2(428,114),19)
-	MineStyle.label(info,"RESOURCE_"+str(hero.get("resource_type","rage")).to_upper()+"_RULE",Vector2(22,257),Vector2(428,102),18,MineStyle.resource_color(hero.get("resource_type","rage")))
-	MineStyle.label(info,"HERO_SWITCH_NOTE",Vector2(22,367),Vector2(428,60),16,MineStyle.MUTED)
-	action_button = MineStyle.button(info,"HERO_SELECTED" if preview_hero == Game.profile.get("selected_hero","") else "SELECT_HERO",Vector2(22,439),Vector2(428,48),_select_hero)
-	action_button.name = "PrimaryAction"
-	action_button.disabled = preview_hero == Game.profile.get("selected_hero","")
+	HeroDossier.render(self)
+
+func _show_character_stats() -> void:
+	var popup: Panel = app._push_modal("",Vector2(920,620))
+	popup.name = "CampCharacterAttributes"
+	MineStyle.literal(popup,_t("角色属性 · ","CHARACTER STATS · ")+MineStyle.content_text(ContentRegistry.hero(Game.profile.selected_hero),"name"),Vector2(24,20),Vector2(680,39),26,MineStyle.AMBER)
+	var close := MineStyle.button(popup,"BACK",Vector2(736,19),Vector2(158,42),app._pop_modal)
+	close.name = "CloseCampCharacterStats"
+	var scroll := ScrollContainer.new()
+	scroll.name = "CampStatScroll"
+	scroll.position = Vector2(24,76)
+	scroll.size = Vector2(872,521)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.focus_mode = Control.FOCUS_ALL
+	popup.add_child(scroll)
+	var sheet := StatSheet.new()
+	scroll.add_child(sheet)
+	sheet.configure(Inspect.breakdown(Game.profile.selected_hero,Game.hero_level(),Game.profile.loadout,Game.profile.equipment),850)
+	close.grab_focus()
 
 func _select_hero() -> void:
 	if busy:
@@ -274,10 +280,14 @@ func _render_equipment() -> void:
 	recommend.tooltip_text = _t("查看一件有基础收益、不会失去当前套装档位的可用装备。只选中候选，请比较收益与代价后自行挂载。", "Inspect an available item with a base-stat benefit and no lost set tier. This only selects a candidate; compare its tradeoffs before equipping.")
 	MineStyle.label(left,"DOSSIER_STATS",Vector2(16,443),Vector2(218,58),14,MineStyle.MUTED,{"hp":int(stats.get("max_hp",100)),"damage":"%.1f" % float(stats.get("attack",20)),"armor":int(stats.get("armor",0))})
 	var middle := MineStyle.panel(body,Vector2(268,0),Vector2(442,510))
-	MineStyle.literal(middle,_t("职业适配 · 已解锁", "CLASS FIT · UNLOCKED") if available_only else _t("完整装备目录", "FULL CATALOG"),Vector2(16,14),Vector2(210,25),14,MineStyle.MUTED)
+	var scope_text := _t("职业适配 · 已解锁", "CLASS FIT · UNLOCKED") if available_only else _t("完整装备目录", "FULL CATALOG")
+	if mode != "shop": scope_text = _t("已拥有 · 筛选 %d 件", "OWNED · %d MATCHES") % ids.size()
+	MineStyle.literal(middle,scope_text,Vector2(16,14),Vector2(210,25),14,MineStyle.MUTED)
 	var all_button := MineStyle.button(middle,"",Vector2(230,6),Vector2(198,44),_toggle_catalog)
 	all_button.name = "ViewAllEquipment"
 	all_button.text = _t("查看全部装备", "View all equipment") if available_only else _t("只看可用装备", "Show available gear")
+	if mode != "shop": all_button.text = _t("查看全部库存", "View all owned gear") if available_only else _t("只看适配装备", "Show class-fit gear")
+	all_button.tooltip_text = _t("仓库只显示已拥有装备；新装备请前往采购装备。查看全部会清除槽位、套装与职业筛选。", "Inventory shows owned gear. Visit the shop for new equipment. View all clears slot, set and class filters.") if mode != "shop" else _t("查看全部会清除槽位、套装与职业筛选，显示完整商城目录。", "View all clears slot, set and class filters to show the full shop catalog.")
 	all_button.add_theme_font_size_override("font_size",14)
 	var filter_button := MineStyle.button(middle,"",Vector2(14,56),Vector2(202,44),_cycle_slot)
 	filter_button.text = Words.text("FILTER_SLOT")+": "+Words.text("ALL" if slot_filter == "all" else "SLOT_"+slot_filter.to_upper())

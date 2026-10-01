@@ -65,6 +65,7 @@ func run_checks() -> void:
 	app.show_workshop("shop")
 	await frames()
 	workshop().selected_item = "EQ02"
+	workshop().shop_sets = false
 	workshop()._render()
 	await frames()
 	check(workshop().action_button.disabled,"unaffordable equipment cannot be bought")
@@ -75,6 +76,7 @@ func run_checks() -> void:
 	app.show_workshop("shop")
 	await frames()
 	workshop().selected_item = "EQ02"
+	workshop().shop_sets = false
 	workshop()._render()
 	await frames()
 	check(not workshop().action_button.disabled,"affordable implemented gear can be purchased")

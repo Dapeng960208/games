@@ -6,6 +6,9 @@ extends RefCounted
 var id: String = ""
 # Demo state deliberately never enters a persisted receipt.
 var demo: bool = false
+# Local session measurements; never serialized.
+var backpack_opens: int = 0
+var loadout_changes: int = 0
 var gold: int = 0
 var hp: float = Balance.PLAYER_HP
 var max_hp: float = Balance.PLAYER_HP

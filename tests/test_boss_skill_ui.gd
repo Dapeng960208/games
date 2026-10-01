@@ -87,6 +87,21 @@ func check_draw(boss: MineBoss, action: String, locked: bool) -> void:
 	check(warnings.size() == 1 and warnings[0].actor_id == boss.get_instance_id() and warnings[0].data.action_id == action and bool(warnings[0].data.locked) == locked, action+" production danger layer draws the same actual skill and state")
 	check(is_equal_approx(float(warnings[0].data.release_progress),float(info.progress)),action+" danger timing and cast progress agree")
 
+func check_retired_boss() -> void:
+	var boss := await install("BO01",0)
+	if boss == null: return
+	check(hud.boss_cast_plate.is_visible_in_tree(),"live boss cast plate visible before actor retirement")
+	var reference: WeakRef = weakref(boss)
+	boss.queue_free()
+	hud.refresh()
+	check(not hud.boss_cast_plate.visible and hud.boss_cast_plate.info.is_empty(),"queued boss immediately hides and clears its cast plate")
+	await frames()
+	check(reference.get_ref() == null,"retired production boss is actually freed while its room survives")
+	for index: int in 4: hud.refresh()
+	check(not hud.boss_cast_plate.visible and hud.boss_cast_plate.info.is_empty(),"repeated HUD refresh safely ignores the room's freed boss reference")
+	boss = await install("BO02",0)
+	check(boss != null and hud.boss_cast_plate.is_visible_in_tree(),"entering another boss room restores the live cast plate")
+
 func _run() -> void:
 	if not Game.profile_path.contains("test_boss_skill_ui"):
 		get_tree().quit(2)
@@ -184,6 +199,7 @@ func _run() -> void:
 			check_draw(edge,"boulder_volley",false)
 			await capture("BO04_boulder_volley_edge_en_"+str(extent.x)+"x"+str(extent.y)+".png",edge)
 	check(rendered.size() == 16,"all sixteen new skills complete actual aiming and locked GPU draw")
+	await check_retired_boss()
 	var manifest := FileAccess.open(OUTPUT+"manifest.json",FileAccess.WRITE)
 	if manifest != null:
 		manifest.store_string(JSON.stringify({"checks":checks,"failures":failures,"gpu":DisplayServer.get_name(),"rendered_actions":rendered,"captures":captures},"\t"))

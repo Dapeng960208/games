@@ -51,6 +51,7 @@ static func change(game: Node, id: String, slot: String, runtime: Dictionary, ch
 	if checkpoint != str(game.run.expedition.checkpoint_id): return {"success":false,"error":"房间已变化，请重新打开背包。"}
 	var comparison := preview(game, id, slot)
 	if comparison.is_empty(): return {"success":false,"error":"只能穿戴背包中已拥有的装备。"}
+	var changed_loadout: bool = comparison.loadout != game.run.loadout_snapshot or comparison.owned != game.run.equipment_snapshot
 	var source_error: String = Snapshot.loadout_source_error(runtime, game.run.loadout_snapshot, comparison.loadout)
 	if not source_error.is_empty(): return {"success":false,"error":source_error}
 	var adjusted: Dictionary = Snapshot.for_loadout(runtime, game.run.loadout_snapshot, comparison.loadout, comparison.next_stats, game.run.hero_id, game.run.stats)
@@ -79,6 +80,7 @@ static func change(game: Node, id: String, slot: String, runtime: Dictionary, ch
 	else:
 		if not game.call("_commit_expedition", value, adjusted, game.profile.duplicate(true), {"loadout_snapshot":comparison.loadout,"equipment_snapshot":comparison.owned}):
 			return {"success":false,"error":"存档写入失败，当前装备保持原样。"}
+	if changed_loadout: game.run.loadout_changes += 1
 	return {"success":true,"persisted":not live_combat,"runtime":adjusted}
 
 static func apply(room: Node, id: String, slot: String, checkpoint: String) -> Dictionary:

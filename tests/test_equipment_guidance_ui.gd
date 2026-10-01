@@ -135,6 +135,9 @@ func _catalog_and_recommendation() -> void:
 	app.show_workshop("shop")
 	await frames()
 	var panel := workshop()
+	panel.shop_sets = false
+	panel._render()
+	await frames()
 	check(panel.slot_filter == "weapon" and panel.available_only, "shop initially focuses on available weapons")
 	var ids: Array = panel._filtered_equipment()
 	check(ids.has("EQ01") and ids.has("EQ02") and ids.has("EQ08"), "default list retains owned and unaffordable class-appropriate weapons")
@@ -175,6 +178,9 @@ func _catalog_and_recommendation() -> void:
 	await frames()
 	app.show_workshop("shop")
 	await frames()
+	workshop().shop_sets = false
+	workshop()._render()
+	await frames()
 	before = game.profile.duplicate(true)
 	saved = FileAccess.get_file_as_bytes(game.profile_path)
 	await _click(workshop(), "RecommendEquipment")
@@ -199,6 +205,7 @@ func _context_upgrade_and_locales() -> void:
 	var saved := FileAccess.get_file_as_bytes(game.profile_path)
 	for page: String in ["shop", "upgrade", "inventory"]:
 		await _click(workshop(), "Tab_" + page)
+		if page == "shop" and workshop().shop_sets: await _click(workshop(), "ToggleSetShop")
 		check(workshop().mode == page and workshop().selected_item == "EQ08", "tab click preserves the valid selected equipment: " + page)
 	Text.set_locale("en")
 	await _click(workshop(), "Tab_upgrade")
@@ -219,6 +226,9 @@ func _context_upgrade_and_locales() -> void:
 	for locale: String in ["zh_CN", "en"]:
 		Text.set_locale(locale)
 		app.show_workshop("shop")
+		await frames()
+		workshop().shop_sets = false
+		workshop()._render()
 		await frames()
 		await _click(workshop(), "Item_EQ08")
 		panel = workshop()

@@ -116,7 +116,7 @@ func _test_dot_cadence_and_contact_protection() -> void:
 	room.player.receive_enemy_status({"id":"burn","power":50.0})
 	before = Game.run.hp
 	room.player._physics_process(0.25)
-	check(is_equal_approx(before-Game.run.hp,37.5/7.0),"player burn refresh preserves tick cadence and replaces source power before magic resistance")
+	check(is_equal_approx(before-Game.run.hp,75.0/7.0),"weaker cross-frame burn preserves stronger snapshot and its tick cadence")
 	fixture()
 	check(room.player.start_dash(Vector2.RIGHT) and room.player.dash_protected(),"steel-step fixture enters its actual protected window")
 	before = Game.run.hp
