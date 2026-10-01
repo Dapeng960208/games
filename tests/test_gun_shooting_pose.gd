@@ -5,6 +5,7 @@ extends SceneTree
 const Visual = preload("res://scripts/combat/hero_visual.gd")
 const Atlas = preload("res://scripts/combat/hero_skill_atlas.gd")
 const Resolver = preload("res://scripts/combat/stat_resolver.gd")
+const Metrics = preload("res://scripts/combat/presentation_metrics.gd")
 const STABLE := ["brace", "lock", "absorb"]
 var game: Node
 var room: Node2D
@@ -92,7 +93,7 @@ func _test_source_mapping() -> void:
 					check(frame.get("frame_name") in STABLE and frame.get("gun_shooting_pose",false), bank + " " + slot + " " + phase + " selects a stable shoulder pose")
 					if not bool(frame.get("gun_shooting_pose",false)): continue
 					var raw: Dictionary = source.frames[str(frame.frame_name)]
-					check(frame.region == raw.region and frame.bounds == raw.bounds and frame.anchors == raw.anchors and frame.body_height == 88.0, "registration preserves full authored body, shoulder/grip/muzzle, fixed anatomy and foot")
+					check(frame.region == raw.region and frame.bounds == raw.bounds and frame.anchors == raw.anchors and frame.body_height == Metrics.HERO_BODY_HEIGHT, "registration preserves full authored body, shoulder/grip/muzzle, fixed anatomy and foot")
 		var light: Dictionary = Visual.presentation_frame_info("CH02",bank,{"slot":"basic","phase":"release","progress":0.0},0.0,false)
 		var heavy: Dictionary = Visual.presentation_frame_info("CH02",bank,{"slot":"secondary","phase":"release","progress":0.0},0.0,false)
 		check(float(heavy.get("gun_recoil",0.0)) > float(light.get("gun_recoil",0.0)) and float(heavy.get("gun_recoil",2.0)) < 2.0, "secondary recoil is more distinct while remaining restrained")
