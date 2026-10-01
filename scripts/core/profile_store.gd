@@ -11,6 +11,7 @@ const Progression = preload("res://scripts/core/hero_progression.gd")
 const Loot = preload("res://scripts/core/expedition_rewards.gd")
 const Transactions = preload("res://scripts/core/instance_transactions.gd")
 const Forging = preload("res://scripts/core/instance_forging.gd")
+const EnemyCalibration = preload("res://scripts/combat/enemy_calibration.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Expedition = preload("res://scripts/core/expedition_state.gd")
 const MAX_NUMBER := 1_000_000_000_000
@@ -276,6 +277,7 @@ static func _valid_receipt(value: Variant, version: int = 1) -> bool:
 		return false
 	var numerical: Variant = value.get("ruleset_version", 1)
 	if not _number(numerical, 2) or int(numerical) < 1 or not Expedition.versions_valid(value, int(numerical), int(numerical) == 2): return false
+	if value.has("enemy_calibration_snapshot") and (numerical != 2 or not EnemyCalibration.valid(value.enemy_calibration_snapshot)): return false
 	var valid := _number(value.get("gold")) and _relics(value.get("discoveries")) \
 		and _number(value.get("shots")) and _number(value.get("kills")) \
 		and _number(value.get("elapsed"), MAX_NUMBER, false)

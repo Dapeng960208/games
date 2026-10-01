@@ -40,6 +40,7 @@ const Transactions = preload("res://scripts/core/instance_transactions.gd")
 var _test_ruleset_override: int = 0
 var _pending_instance_transactions: Dictionary = {}
 var _pending_forging_transactions: Dictionary = {}
+const EnemyCalibration = preload("res://scripts/combat/enemy_calibration.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 
 func _ready() -> void:
@@ -121,6 +122,7 @@ func reload_profile() -> void:
 		var receipt: Dictionary = document.active_run
 		run = RunState.new()
 		run.frozen_versions = _receipt_versions(receipt)
+		run.enemy_calibration_snapshot = receipt.get("enemy_calibration_snapshot",{}).duplicate(true)
 		run.id = receipt.id
 		run.gold = int(receipt.gold)
 		run.relics.assign(receipt.discoveries)
@@ -166,6 +168,7 @@ func start_run(options: Dictionary = {}) -> bool:
 	var next := RunState.new()
 	next.demo = not _demo_backup.is_empty()
 	next.frozen_versions = Expedition.versions(_profile_ruleset())
+	if next.ruleset_version() == Numbers.V2: next.enemy_calibration_snapshot = EnemyCalibration.current()
 	next.id = Crypto.new().generate_random_bytes(16).hex_encode()
 	next.hero_id = str(profile.selected_hero)
 	next.level = hero_level(next.hero_id)
@@ -973,6 +976,7 @@ func expedition_snapshot() -> Dictionary:
 func _restore_expedition(receipt: Dictionary) -> void:
 	run = RunState.new()
 	run.frozen_versions = _receipt_versions(receipt)
+	run.enemy_calibration_snapshot = receipt.get("enemy_calibration_snapshot",{}).duplicate(true)
 	run.demo = not _demo_backup.is_empty()
 	run.id = str(receipt.id)
 	run.gold = int(receipt.gold)

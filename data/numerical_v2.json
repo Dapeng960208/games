@@ -910,5 +910,78 @@
   "affix_operation_unlocks": {
     "reforge": 5,
     "refine": 10
+  },
+  "enemy_calibration": {
+    "version": 1,
+    "chapters": {
+      "B01": {
+        "normal": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        },
+        "elite": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        },
+        "boss": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        }
+      },
+      "B02": {
+        "normal": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        },
+        "elite": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        },
+        "boss": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        }
+      },
+      "B03": {
+        "normal": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        },
+        "elite": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        },
+        "boss": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        }
+      },
+      "B04": {
+        "normal": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        },
+        "elite": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        },
+        "boss": {
+          "hp": 1.0,
+          "attack": 1.0,
+          "skill": 1.0
+        }
+      }
+    }
   }
 }

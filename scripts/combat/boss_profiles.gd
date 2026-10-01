@@ -34,8 +34,11 @@ const TACTICS := {
 static func ids() -> Array[String]:
 	return ["BO01", "BO02", "BO03", "BO04"]
 
-static func resolve(boss_id: String, difficulty: int = 0, ruleset: int = 1) -> Dictionary:
-	if ruleset == 2: return NumericalV2.boss_profile(resolve(boss_id, 0), clampi(difficulty, 0, 4))
+static func resolve(boss_id: String, difficulty: int = 0, ruleset: int = 1, calibration: Variant = null) -> Dictionary:
+	if ruleset == 2:
+		var source := resolve(boss_id,0)
+		if calibration != null: source["enemy_calibration_snapshot"] = calibration
+		return NumericalV2.boss_profile(source,clampi(difficulty,0,4))
 	if ruleset != 1: return {}
 	if boss_id not in STATS:
 		return {}

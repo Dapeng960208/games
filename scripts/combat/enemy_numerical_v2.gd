@@ -4,6 +4,7 @@ extends RefCounted
 ## runtime enablement. Call from an explicit v2 route with a resolved legacy D0
 ## profile. Existing profile/brain generators remain the source of identity,
 ## geometry, sequence/counts, elite identity and counterplay timing.
+const Calibration = preload("res://scripts/combat/enemy_calibration.gd")
 const Numbers = preload("res://config/numerical_rules.gd")
 const PROFILE_VERSION := 2
 const DAMAGE_KINDS := ["melee", "charge", "projectile", "ground_area", "pull", "counter"]
@@ -75,7 +76,11 @@ static func _profile(source: Dictionary, difficulty: int, boss: bool, ruleset: i
 	for key: String in BASE_KEYS:
 		if not _nonnegative(base.get(key)): return {}
 	if int(base.get("chapter", 0)) != chapter or int(base.get("enemy_level", 0)) not in range(1, 21): return {}
+	var snapshot: Variant = source.get("enemy_calibration_snapshot",Calibration.current())
+	if not Calibration.valid(snapshot): return {}
 	var result := source.duplicate(true)
+	result["enemy_calibration_snapshot"] = snapshot.duplicate(true)
+	var calibration_rank := "boss" if boss else str(source.get("rank","normal"))
 	var levels := chapter_levels(chapter)
 	var calibration: Dictionary = Numbers.value("enemy_baseline_multiplier")
 	result["numerical_legacy_base"] = base.duplicate(true)
@@ -86,8 +91,8 @@ static func _profile(source: Dictionary, difficulty: int, boss: bool, ruleset: i
 	result["difficulty"] = difficulty
 	result["enemy_level"] = int(levels.boss_level) if boss else int(base.enemy_level)
 	if not boss: result["mechanic_tier"] = mechanic_tier(int(base.enemy_level))
-	result["max_hp"] = _round_product([base.max_hp, calibration.max_hp, Numbers.value("combat_scale"), levels.hp_factor, Numbers.value("difficulty_hp_multipliers")[difficulty]])
-	result["damage"] = _round_product([base.damage, calibration.damage, Numbers.value("combat_scale"), levels.damage_factor, Numbers.value("difficulty_damage_multipliers")[difficulty]])
+	result["max_hp"] = _round_product([base.max_hp, calibration.max_hp, Numbers.value("combat_scale"), levels.hp_factor, Numbers.value("difficulty_hp_multipliers")[difficulty], Calibration.factor(snapshot,chapter,calibration_rank,"hp")])
+	result["damage"] = _round_product([base.damage, calibration.damage, Numbers.value("combat_scale"), levels.damage_factor, Numbers.value("difficulty_damage_multipliers")[difficulty], Calibration.factor(snapshot,chapter,calibration_rank,"attack")])
 	for key: String in ["armor", "magic_resist"]:
 		var defense: float = float(base[key])
 		if not boss: defense = minf(24.0 if key == "armor" else 32.0, defense)
@@ -110,17 +115,17 @@ static func _profile(source: Dictionary, difficulty: int, boss: bool, ruleset: i
 static func skill_factor(profile: Dictionary, phase: int = 1) -> float:
 	var factors := _skill_factors(profile, phase)
 	if factors.is_empty(): return 0.0
-	return float(factors[0]) * float(factors[1])
+	return float(factors[0]) * float(factors[1]) * float(factors[2])
 
 static func _skill_factors(profile: Dictionary, phase: int) -> Array:
 	if not Numbers.is_v2(profile) or phase < 1 or phase > 3: return []
 	var difficulty := int(profile.get("difficulty", -1))
 	if difficulty < 0 or difficulty > 4: return []
 	if str(profile.get("rank", "")) == "boss" or str(profile.get("enemy_id", "")).begins_with("BO"):
-		return [Numbers.value("boss_skill_difficulty_multipliers")[difficulty], Numbers.value("boss_skill_phase_multipliers")[phase - 1]]
+		return [Numbers.value("boss_skill_difficulty_multipliers")[difficulty], Numbers.value("boss_skill_phase_multipliers")[phase - 1], Calibration.factor(profile.get("enemy_calibration_snapshot",{}),chapter_for_id(str(profile.get("enemy_id",""))),"boss","skill")]
 	var tier := int(profile.get("mechanic_tier", 0))
 	if tier < 1 or tier > 4: return []
-	return [Numbers.value("ordinary_skill_tier_multipliers")[tier - 1], Numbers.value("ordinary_skill_difficulty_multipliers")[difficulty]]
+	return [Numbers.value("ordinary_skill_tier_multipliers")[tier - 1], Numbers.value("ordinary_skill_difficulty_multipliers")[difficulty], Calibration.factor(profile.get("enemy_calibration_snapshot",{}),chapter_for_id(str(profile.get("enemy_id",""))),str(profile.get("rank","normal")),"skill")]
 
 static func damaging(command: Dictionary) -> bool:
 	return str(command.get("kind", "")) in DAMAGE_KINDS and not (str(command.get("kind", "")) == "counter" and not bool(command.get("auto_release", true)))
@@ -139,12 +144,12 @@ static func command(source: Dictionary, profile: Dictionary, phase: int = 1, ext
 	result["scale_version"] = 10
 	result["enemy_command_version"] = PROFILE_VERSION
 	result["enemy_skill_factor"] = skill_factor(profile, phase)
-	result["damage"] = _round_product([profile.damage, source.get("damage_multiplier", 1.0), factors[0], factors[1], extra_damage_multiplier]) if damaging(source) else 0
+	result["damage"] = _round_product([profile.damage, source.get("damage_multiplier", 1.0), factors[0], factors[1], factors[2], extra_damage_multiplier]) if damaging(source) else 0
 	# Alias inputs represent the same physical endpoint, never two HP pools.
 	for key: String in ["anchor_health", "cover_hp", "pod_health"]:
 		if source.has(key):
 			if not _nonnegative(source[key]): return {}
-			var amount := _round_product([source[key], Numbers.value("combat_scale"), factors[0], factors[1]])
+			var amount := _round_product([source[key], Numbers.value("combat_scale"), factors[0], factors[1], factors[2]])
 			result[key] = clampi(amount, 10, 800) if key != "pod_health" else amount
 	if result.has("anchor_health") and result.has("cover_hp"): result.cover_hp = result.anchor_health
 	if source.has("pod_break_armor_loss"):
@@ -154,7 +159,7 @@ static func command(source: Dictionary, profile: Dictionary, phase: int = 1, ext
 		var status: Dictionary = source.status.duplicate(true)
 		if STATUS_RATIOS.has(str(status.get("id", ""))):
 			if status.has("power") and not _nonnegative(status.power): return {}
-			status["power"] = _round_product([status.power, Numbers.value("combat_scale"), factors[0], factors[1]]) if status.has("power") else result.damage
+			status["power"] = _round_product([status.power, Numbers.value("combat_scale"), factors[0], factors[1], factors[2]]) if status.has("power") else result.damage
 		result.status = status
 	# Absolute support healing/shields are unit conversion only. Ratio support
 	# values remain percentages and are calculated against the actual receiver.

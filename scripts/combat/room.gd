@@ -340,12 +340,15 @@ func _configure_world_view() -> void:
 func enemy_ruleset() -> int:
 	return Game.run.ruleset_version() if Game.run != null else Numerical.LEGACY
 
+func enemy_calibration() -> Dictionary:
+	return Game.run.enemy_calibration_snapshot.duplicate(true) if Game.run != null else {}
+
 func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictionary = {}) -> MineEnemy:
 	if _living_enemy_count() >= Balance.MAX_ENEMIES:
 		return null
 	var resolved: Dictionary = {}
 	if not id.is_empty():
-		resolved = options.get("profile", EnemyProfilesScript.resolve(id, level, str(options.get("rank","normal")), enemy_ruleset(), difficulty)).duplicate(true)
+		resolved = options.get("profile", EnemyProfilesScript.resolve(id, level, str(options.get("rank","normal")), enemy_ruleset(), difficulty, enemy_calibration())).duplicate(true)
 		if resolved.is_empty():
 			return null
 	elif options.has("profile"):
@@ -353,12 +356,13 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 	elif enemy_ruleset() == Numerical.V2:
 		# The original M1/trial waves have no authored identity. Use the first
 		# published prototype so an enabled V2 player never faces legacy units.
-		resolved = EnemyProfilesScript.resolve("M01",maxi(1,EnemyProfilesScript.encounter_level(layout_id,0,difficulty,2)),"normal",2,difficulty)
+		resolved = EnemyProfilesScript.resolve("M01",maxi(1,EnemyProfilesScript.encounter_level(layout_id,0,difficulty,2)),"normal",2,difficulty,enemy_calibration())
 	# All ordinary spawn paths share the room difficulty, including objective
 	# adds and boss reinforcements. Encounter plans have already applied this;
 	# the preserved base prevents compounding their bonuses on spawn.
 	if enemy_ruleset() == Numerical.V2:
 		if not str(resolved.get("enemy_id", "")).is_empty() and (int(resolved.get("ruleset_version", 1)) == 1 or resolved.has("numerical_legacy_base")):
+			resolved["enemy_calibration_snapshot"] = enemy_calibration()
 			resolved = EnemyNumericalV2Script.ordinary_profile(resolved, difficulty)
 			if resolved.is_empty(): return null
 	else:
@@ -429,7 +433,7 @@ func spawn_enemy_summon(caster: Node2D, id: String, at: Vector2) -> MineEnemy:
 			children += 1
 	if children >= 2:
 		return null
-	var resolved: Dictionary = EnemyProfilesScript.resolve(id, caster.enemy_level, "normal", enemy_ruleset(), difficulty)
+	var resolved: Dictionary = EnemyProfilesScript.resolve(id, caster.enemy_level, "normal", enemy_ruleset(), difficulty, enemy_calibration())
 	if enemy_ruleset() != Numerical.V2: resolved = EnemyDifficultyScript.apply(resolved, difficulty)
 	if resolved.is_empty():
 		return null
@@ -1744,7 +1748,7 @@ func _encounters_exhausted() -> bool:
 	return true
 
 func _encounter_plan(index: int) -> Dictionary:
-	return EnemyProfilesScript.encounter_plan(layout_id,index,difficulty,enemy_ruleset())
+	return EnemyProfilesScript.encounter_plan(layout_id,index,difficulty,enemy_ruleset(),enemy_calibration())
 
 func _objective_encounters_pending() -> bool:
 	if not is_instance_valid(objectives):
@@ -2132,7 +2136,7 @@ func _activate_expedition_content() -> void:
 			var boss: Node2D = load(boss_script).new()
 			boss.room = self
 			boss.position = layout.get("boss_spawn",Vector2(1800,900))
-			boss.configure_boss(layout_id,difficulty,0,enemy_ruleset())
+			boss.configure_boss(layout_id,difficulty,0,enemy_ruleset(),enemy_calibration())
 			boss.completed.connect(func(_id: String,_payload: Dictionary) -> void: _boss_defeated = true)
 			_boss_actor = boss
 			enemies.add_child(boss)

@@ -28,6 +28,7 @@ var level: int = 1
 var stats: Dictionary = {}
 # Set before resolving restored stats; never infer an old adventure from global defaults.
 var frozen_versions: Dictionary = {}
+var enemy_calibration_snapshot: Dictionary = {}
 var resource: Variant = 0.0:
 	get:
 		return Rules.integer(float(resource)) if ruleset_version() == Rules.V2 else float(resource)
@@ -77,6 +78,7 @@ func live_receipt() -> Dictionary:
 		"boss_defeats": boss_defeats.duplicate(), "rules_version": 1,
 	}
 	if not frozen_versions.is_empty(): value.merge(frozen_versions, true)
+	if ruleset_version() == Rules.V2 and not enemy_calibration_snapshot.is_empty(): value["enemy_calibration_snapshot"] = enemy_calibration_snapshot.duplicate(true)
 	if ruleset_version() == Rules.V2 and expedition.is_empty(): value["pending_research_materials"] = pending_research_materials.duplicate(true)
 	if not expedition.is_empty():
 		value["expedition"] = expedition.duplicate(true)

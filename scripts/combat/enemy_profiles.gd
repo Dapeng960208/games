@@ -47,8 +47,11 @@ static func _ensure_loaded() -> void:
 	if parsed is Dictionary:
 		_data = parsed
 
-static func resolve(enemy_id: String, enemy_level: int = 1, rank: String = "normal", ruleset: int = 1, difficulty: int = 0) -> Dictionary:
-	if ruleset == 2: return NumericalV2.ordinary_profile(resolve(enemy_id, enemy_level, rank), clampi(difficulty, 0, MAX_DIFFICULTY))
+static func resolve(enemy_id: String, enemy_level: int = 1, rank: String = "normal", ruleset: int = 1, difficulty: int = 0, calibration: Variant = null) -> Dictionary:
+	if ruleset == 2:
+		var source := resolve(enemy_id,enemy_level,rank)
+		if calibration != null: source["enemy_calibration_snapshot"] = calibration
+		return NumericalV2.ordinary_profile(source,clampi(difficulty,0,MAX_DIFFICULTY))
 	if ruleset != 1: return {}
 	_ensure_loaded()
 	var result: Dictionary = Catalog.enemy(enemy_id)
@@ -203,8 +206,8 @@ static func encounter(room_id: String, zone_index: int, difficulty: int = 0, rul
 static func encounter_waves(room_id: String, zone_index: int, difficulty: int = 0, ruleset: int = 1) -> Array:
 	return encounter_plan(room_id, zone_index, difficulty, ruleset).get("waves", []).duplicate(true)
 
-static func _encounter_member(id: String, level: int, rank: String, zone: int, difficulty: int, budget: int, wave_index: int, ruleset: int = 1) -> Dictionary:
-	var profile: Dictionary = resolve(id, level, rank, 2, difficulty) if ruleset == 2 else preload("res://scripts/combat/enemy_difficulty.gd").apply(resolve(id, level, rank), difficulty)
+static func _encounter_member(id: String, level: int, rank: String, zone: int, difficulty: int, budget: int, wave_index: int, ruleset: int = 1, calibration: Variant = null) -> Dictionary:
+	var profile: Dictionary = resolve(id, level, rank, 2, difficulty, calibration) if ruleset == 2 else preload("res://scripts/combat/enemy_difficulty.gd").apply(resolve(id, level, rank), difficulty)
 	if profile.is_empty():
 		return {}
 	var reserve_count: int = int(profile["attack_parameters"].get("summon_cap", 0))
@@ -223,7 +226,7 @@ static func _encounter_member(id: String, level: int, rank: String, zone: int, d
 	profile["difficulty"] = difficulty
 	return profile
 
-static func encounter_plan(room_id: String, zone_index: int, difficulty: int = 0, ruleset: int = 1) -> Dictionary:
+static func encounter_plan(room_id: String, zone_index: int, difficulty: int = 0, ruleset: int = 1, calibration: Variant = null) -> Dictionary:
 	if ruleset not in [1, 2]: return {}
 	var definition: Dictionary = Catalog.room(room_id)
 	if definition.is_empty() or zone_index < 0 or zone_index >= ZONE_COUNT:
@@ -279,13 +282,13 @@ static func encounter_plan(room_id: String, zone_index: int, difficulty: int = 0
 			var id: String = specials[(special_cursor + offset) % specials.size()]
 			if used_specials.has(id) or (id in PROTECTIVE_IDS and protected_used) or (id in FUNCTIONAL_SUPPORT_IDS and functional_used):
 				continue
-			var profile: Dictionary = _encounter_member(id, level, "normal", zone_index, normalized_difficulty, budget, wave_index, ruleset)
+			var profile: Dictionary = _encounter_member(id, level, "normal", zone_index, normalized_difficulty, budget, wave_index, ruleset, calibration)
 			if int(profile["encounter_slot_cost"]) > slot_limit or int(profile["encounter_budget_cost"]) > budget:
 				continue
 			# Only zones 1 and 2 may allocate one elite each, independent of call order.
 			# Their small reinforcement batch keeps the initial screen readable.
 			if wave_index > 0 and not elite_used and zone_index > 0 and normalized_difficulty >= 2 and definition.get("role_tags", []).has("elite_objective") and id not in ["M12", "M36"]:
-				var elite: Dictionary = _encounter_member(id, level, "elite", zone_index, normalized_difficulty, budget, wave_index, ruleset)
+				var elite: Dictionary = _encounter_member(id, level, "elite", zone_index, normalized_difficulty, budget, wave_index, ruleset, calibration)
 				if int(elite["encounter_budget_cost"]) <= budget:
 					profile = elite
 					elite_used = true
@@ -304,7 +307,7 @@ static func encounter_plan(room_id: String, zone_index: int, difficulty: int = 0
 				var id: String = str(pool[(filler_cursor + offset) % pool.size()])
 				if id in FUNCTIONAL_SUPPORT_IDS and functional_used:
 					continue
-				var candidate: Dictionary = _encounter_member(id, level, "normal", zone_index, normalized_difficulty, budget, wave_index, ruleset)
+				var candidate: Dictionary = _encounter_member(id, level, "normal", zone_index, normalized_difficulty, budget, wave_index, ruleset, calibration)
 				if spent + int(candidate["encounter_budget_cost"]) > budget:
 					continue
 				filler = candidate

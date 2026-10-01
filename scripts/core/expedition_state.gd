@@ -152,6 +152,7 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 	var ruleset: int = int(receipt.get("ruleset_version", 1))
 	if ruleset not in [1, 2] or not versions_valid(receipt, ruleset, ruleset == 2) or not versions_valid(value, ruleset, ruleset == 2): return false
 	if int(profile.get("ruleset_version", 1)) != ruleset: return false
+	if value.has("enemy_calibration_snapshot") and value.enemy_calibration_snapshot != receipt.get("enemy_calibration_snapshot",{}): return false
 	for key: String in VERSION_FIELDS:
 		if receipt.has(key) and value.has(key) and receipt[key] != value[key]: return false
 	if value.get("format_version") != (V2_FORMAT if ruleset == 2 else FORMAT) or value.get("recovery_mode") != "checkpoint" or value.get("content_version") != Catalog.content_version(): return false

@@ -35,8 +35,8 @@ var _grave_spawned: int = 0
 var _grave_receipts: Array[Dictionary] = []
 var _grave_registered: Dictionary = {}
 
-func configure_boss(id: String, difficulty: int = 0, seed_value: int = 0, ruleset: int = 1) -> bool:
-	var resolved: Dictionary = Profiles.resolve(id, difficulty, ruleset)
+func configure_boss(id: String, difficulty: int = 0, seed_value: int = 0, ruleset: int = 1, calibration_snapshot: Dictionary = {}) -> bool:
+	var resolved: Dictionary = Profiles.resolve(id, difficulty, ruleset, calibration_snapshot)
 	if resolved.is_empty() or not Profiles.validate(resolved).is_empty():
 		return false
 	boss_seed = seed_value if seed_value != 0 else id.hash() ^ (difficulty * 104729)
