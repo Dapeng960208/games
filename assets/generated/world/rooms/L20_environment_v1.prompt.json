@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "room_id": "L20",
+  "biome_id": "B04",
+  "tool": "built-in image_gen",
+  "use_case": "stylized-concept",
+  "generation_count": 1,
+  "reference_path": "C:/webdev/games/assets/generated/world/fixed_B04_environment_v3.png",
+  "reference_role": "style_palette_and_small_stone_scale_only",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a0f5d7-70e4-7cd0-ade4-6f2ad49e85e8/exec-fb512d25-3633-42b1-8979-382ff607c2e1.png",
+  "output_path": "res://assets/generated/world/rooms/L20_environment_v1.png",
+  "requested_size": [
+    1536,
+    1024
+  ],
+  "actual_size": [
+    1536,
+    1024
+  ],
+  "pixel_edits": "none",
+  "prompt": "Use case: stylized-concept.\nAsset type: a complete original room environment plate for a children's hand-painted cartoon action game. Generate a new independent composition, not a modification of a previous map. Output 1536 x 1024 landscape.\nInput image role: the supplied reference is only an art-style, color-palette, tiny-stone scale reference. Do NOT copy its arena, perimeter silhouette, rock arrangement or layout. Draw the room requested below afresh as its own whole background.\nStyle: friendly bright illustrated near-isometric 2.5D overhead view, soft gouache brushwork, clean readable small details. Warm pale sandstone and terracotta-red rock, restrained deep indigo fabric, sage green desert plants, sunny civilized tribal everyday life. No dark gloomy realism.\nCritical playable-ground geometry: keep the entire large irregular polygon dry, flat, continuous ground with vertices in normalized image coordinates (0.19,0.16),(0.38,0.09),(0.68,0.10),(0.84,0.17),(0.91,0.32),(0.93,0.54),(0.89,0.75),(0.75,0.87),(0.53,0.94),(0.29,0.92),(0.13,0.815),(0.085,0.59),(0.11,0.35). Additionally the central placement rectangle x=.11 to .89, y=.13 to .87 is an open walkable arena. Neither area can contain pits, pools, walls, trees, buildings, huge props or any physical obstacle. Only flat pavement, sand, tiny embedded stones and shallow painted-in paving patterns may vary inside it. Existing combat routes go everywhere across this region. Place all architectural and decorative vertical objects strictly outside this polygon, compactly in the top/side/corner fringe. Border marks must stay flush with floor, no high ring wall. Broad open sand entrances left-center, right-center, and bottom-center.\nThe photographed-reference sized paving stones must be TINY individual stones, numerous stones visible across the arena, mostly 20-45 image pixels; no enormous paving bricks. Runtime hero height is about 112 world units on a 2800x1800 arena.\nNo characters, no humanoids, no animal creatures, no enemies, no training dummies, no interactable objectives, no reward chests, no loot, no HUD, no interface, no floating icons, no typography, no words, no numbers, no watermark. No big blank uniform floor. Rich distinct floor layout but calm central contrast. Complete artwork filling entire image, no white margin.\nRoom L20 赤岩石街 / 沙兽街市 · 彩陶凉棚. A sunny diagonal tribal market street entirely different from a courtyard: the main flush sandstone paving flows diagonally from bottom-left towards top-right, into a broad sunlit intersection that covers the complete playable polygon. Floor subdivided by narrow terracotta cobble ribbons and little sandy seams, all at the same elevation. Compact pottery shops with colorful glazed bowls, melon drink carts, folded embroidered rugs and roast-food awnings form clustered facades ONLY along extreme upper-left outside boundary and extreme lower-right corners outside the boundary. Awning cloth patterns are nonverbal. Indigo and saffron canopies, red clay jars and everyday shop shelves, no shopkeeper or customers. Small sun relief on a building outside the top fringe. Far right open street exits into dry grasses. No buildings or props project into playable polygon. Avoid round arena silhouette. Independent bustling bazaar architectural layout."
+}
