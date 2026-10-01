@@ -70,7 +70,9 @@ static func build(boss_id: String, action: String, origin: Vector2, target: Vect
 		"axe_fan":
 			base.merge({"kind":"melee","shape":"cone","range":285.0,"angle":2.15,"damage_multiplier":1.15,"status":{"id":"bleed","duration":2.0}}, true)
 		"fault_lines":
-			base.merge({"kind":"ground_area","shape":"line","paths":[[origin+side*95,origin+side*95+direction*720],[origin-side*95,origin-side*95+direction*720]],"width":64.0,"duration":0.0,"damage_multiplier":1.2,"tell":1.4,"cooldown":8.0}, true)
+			# One fault follows the warned aim. Symmetric side lines left a
+			# permanent safe corridor precisely under a stationary target.
+			base.merge({"kind":"ground_area","shape":"line","paths":[[origin,origin+direction*720],[origin+side*190,origin+side*190+direction*720]],"width":64.0,"duration":0.0,"damage_multiplier":1.2,"tell":1.4,"cooldown":8.0}, true)
 		"boulder_volley":
 			base.merge({"kind":"projectile","shape":"line","paths":_fan(origin,direction,3,.35,760),"count":3,"width":28.0,"speed":330.0,"projectile_radius":14.0,"damage_multiplier":.78,"status":{"id":"slow","duration":.9,"magnitude":.8},"cooldown":9.0}, true)
 		"seismic_crown":

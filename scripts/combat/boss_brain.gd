@@ -354,13 +354,33 @@ func _select_action(actor: Node2D, victim: Node2D, sequence: Array) -> String:
 		# Lightweight catalog/geometry hosts intentionally have no room movement.
 		return str(sequence[action_index % sequence.size()])
 	var distance: float = actor.position.distance_to(victim.position)
+	var victim_radius: float = _victim_radius(actor, victim)
 	var best_action: String = ""
 	var best_score: float = -INF
 	for action_value: String in sequence:
 		if not _action_available(actor, action_value) or float(_action_ready_at.get(action_value, 0.0)) > elapsed:
 			continue
+		var preview: Dictionary = _preview_action(actor, victim, action_value)
+		if preview.is_empty():
+			continue
 		var interval: Vector2 = _action_distance(action_value)
-		if action_value not in ["brood_eggs", "grave_recall", "war_drum_rage"] and distance > interval.y + 32.0:
+		var kind: String = str(preview.get("kind", ""))
+		var shape: String = str(preview.get("shape", ""))
+		if shape == "ring":
+			# Match the executable annulus, including the next alternating ring.
+			# A stationary player in its permanent inner safe zone is not a
+			# useful attack target; ordinary navigation can first make room.
+			interval = Vector2(float(preview.get("inner_radius", 0.0)), float(preview.get("radius", 0.0)))
+			var ring_distance: float = victim.position.distance_to(Vector2(preview.get("target", actor.position)))
+			if ring_distance < maxf(0.0, interval.x - victim_radius) or ring_distance > interval.y + victim_radius:
+				continue
+		elif kind == "charge":
+			# Closing strikes are useful at short distance too. Their swept
+			# body or landing blast extends beyond the travel endpoint.
+			interval = Vector2(0.0, clampf(float(preview.get("travel_distance", preview.get("range", interval.y))), 0.0, 600.0) + float(preview.get("radius", 0.0)))
+		elif kind in ["melee", "pull"]:
+			interval = Vector2(0.0, float(preview.get("range", interval.y)))
+		if kind not in ["summon", "haste"] and distance > interval.y + victim_radius:
 			continue
 		var range_gap: float = maxf(0.0, maxf(interval.x - distance, distance - interval.y))
 		var usage: int = int(_actions_used.get(action_value, 0))
@@ -376,6 +396,34 @@ func _select_action(actor: Node2D, victim: Node2D, sequence: Array) -> String:
 	# When every usable ability is cooling down, keep repositioning until an
 	# actual cooldown finishes instead of silently releasing an early attack.
 	return ""
+
+func _preview_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
+	# Reuse the same initial tracking pass as a real cast. Raw legacy builds
+	# still have victim-centered base fields until _retarget fixes them.
+	var lane_cursor_before: int = _lane_cursor
+	var disabled_lane_before: int = _disabled_lane
+	var disabled_uses_before: int = _disabled_lane_uses
+	var ring_toggle_before: bool = _ring_toggle
+	var command_before: Dictionary = command
+	var action_before: String = current_action
+	current_action = action
+	command = _build_action(actor, victim, action)
+	if not command.is_empty() and bool(command.get("tracks_target", true)):
+		_retarget(actor, victim)
+	var result: Dictionary = command
+	command = command_before
+	current_action = action_before
+	# Inspection must not spend lane/counter uses or toggle the next ring.
+	_lane_cursor = lane_cursor_before
+	_disabled_lane = disabled_lane_before
+	_disabled_lane_uses = disabled_uses_before
+	_ring_toggle = ring_toggle_before
+	return result
+
+func _victim_radius(actor: Node2D, victim: Node2D) -> float:
+	var host: Node = _property(actor, "room", null) as Node
+	var fallback: float = Balance.PLAYER_RADIUS if _property(host, "player", null) == victim else 12.0
+	return maxf(0.0, float(_property(victim, "collision_radius", _property(victim, "navigation_radius", fallback))))
 
 func _action_available(actor: Node2D, action: String) -> bool:
 	if Abilities.tier(boss_id,action) > int(definition.get("difficulty",0)): return false
@@ -580,8 +628,8 @@ func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 				return {}
 			base.merge({"kind":"haste", "shape":"circle", "target":origin, "radius":280.0, "max_targets":3, "duration":5.0, "multiplier":1.18, "damage_multiplier":0.0, "tracks_target":false, "tell":1.2, "lock":0.4, "recovery":1.2})
 		"replay_path":
-			var replay_paths: Array = _replay_paths(victim.position, 2 if phase == 2 else 4)
-			base.merge({"kind":"projectile", "shape":"line", "paths":replay_paths, "count":replay_paths.size(), "width":28.0, "speed":470.0, "projectile_radius":11.0, "damage_multiplier":0.62, "tracks_target":false, "tell":1.05, "lock":0.45, "recovery":1.25})
+			var replay_paths: Array = _replay_paths(victim.position, 2 if phase == 2 else 4, actor)
+			base.merge({"kind":"projectile", "shape":"line", "paths":replay_paths, "count":replay_paths.size(), "width":28.0, "speed":470.0, "projectile_radius":11.0, "damage_multiplier":0.62, "tracks_target":true, "tell":1.05, "lock":0.45, "recovery":1.25})
 		"alternating_ring":
 			_ring_toggle = not _ring_toggle
 			base.merge(_ring_command(origin, direction, _ring_toggle))
@@ -633,6 +681,9 @@ func _retarget(actor: Node2D, victim: Node2D) -> void:
 			command.targets = _acid_targets(actor.position, victim.position)
 		"stitch_cage":
 			command.paths = _stitch_cage_paths(actor.position, victim.position)
+		"replay_path":
+			command.paths = _replay_paths(victim.position, 2 if phase == 2 else 4, actor)
+			command.count = command.paths.size()
 	if shape == "line" and command.get("paths", []).is_empty():
 		var reach: float = float(command.get("range", actor.position.distance_to(victim.position)))
 		if str(command.get("kind", "")) == "charge" and not bool(command.get("charge_past_target", false)):
@@ -750,18 +801,28 @@ func _runway_paths(origin: Vector2, direction: Vector2, selected: Array[int]) ->
 		paths.append([start, start + direction * 780.0])
 	return paths
 
-func _replay_paths(fallback: Vector2, authored_count: int) -> Array:
+func _replay_paths(fallback: Vector2, authored_count: int, actor: Node2D = null) -> Array:
 	var count: int = maxi(1, authored_count - _broken_bells.size())
 	var history: Array[Vector2] = _trail_history.duplicate()
 	if history.size() < 3:
-		history = [fallback + Vector2(-160,0), fallback, fallback + Vector2(160,0)]
+		history = [fallback, fallback, fallback]
 	var base: Array[Vector2] = [history[history.size()-3], history[history.size()-2], history.back()]
 	var direction: Vector2 = base[0].direction_to(base[2])
+	var travelled: float = base[0].distance_to(base[1]) + base[1].distance_to(base[2])
+	if travelled < 32.0:
+		# Repeated stationary samples still warn a finite fissure. Its first
+		# path passes through the warned point instead of producing two empty
+		# zero-length shots on either side of a motionless player.
+		direction = actor.position.direction_to(fallback) if is_instance_valid(actor) else Vector2.RIGHT
+		if direction.length_squared() <= EPSILON: direction = Vector2.RIGHT
+		base = [_bounded_endpoint(actor, fallback, -direction, 160.0), fallback, _bounded_endpoint(actor, fallback, direction, 160.0)]
 	if direction.length_squared() <= EPSILON:
 		direction = Vector2.RIGHT
 	var paths: Array = []
 	for index: int in count:
-		var offset: float = (float(index) - float(count - 1) * 0.5) * 54.0
+		# Keep the center path first: removing the last path for a broken drum
+		# reduces coverage while preserving one real, readable threat.
+		var offset: float = 0.0 if index == 0 else ceilf(float(index) * 0.5) * 54.0 * (1.0 if index % 2 == 1 else -1.0) * _orbit_sign
 		var path: Array[Vector2] = []
 		for point: Vector2 in base:
 			path.append(point + direction.orthogonal() * offset)
