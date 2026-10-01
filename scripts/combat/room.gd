@@ -1115,6 +1115,7 @@ func strike_area(at: Vector2, radius: float, amount: float, source: StringName, 
 func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, applied_status: String = "", push: float = 0.0, direction: Vector2 = Vector2.ZERO, attack_context: Dictionary = {}) -> bool:
 	if Game.run == null or not target.is_alive():
 		return false
+	if Numerical.is_v2(Game.run.stats): amount = Numerical.integer(amount)
 	var context: Dictionary = attack_context.duplicate()
 	context.merge({"target":target,"target_states":target.status.states.keys(),"X":amount,"H":float(context.get("power", player.attack_power())),"damage_source":context.get("damage_source","primary" if source == &"primary" else "skill"),"skill_slot":str(source),"proc_depth":int(context.get("proc_depth",0))}, true)
 	if not context.has("attack_id"):
@@ -1146,7 +1147,6 @@ func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, ap
 	final_amount *= player.hit_chain.multiplier(source, context)
 	if Numerical.is_v2(Game.run.stats):
 		final_amount = Numerical.integer(final_amount)
-		context["X"] = int(final_amount)
 		context["ruleset_version"] = Numerical.V2
 	var health_before: float = target.health.current
 	var shield_before: float = target.status.shield()
