@@ -156,8 +156,20 @@ func _long_ledger() -> void:
 	var child_status := OS.execute(OS.get_executable_path(), ["--headless", "--path", ProjectSettings.globalize_path("res://"),
 		"--script", "res://tests/test_audit_persistence.gd", "--", "--reload-path", ProjectSettings.globalize_path(store.path)], child_output, true)
 	var child_log := "\n".join(child_output)
-	check(child_status == 0 and child_log.contains("PERSISTENCE CHILD RESTART PASS") and not child_log.contains("ERROR:"),
-		"separate real Godot process reopens two-save >1MiB history without errors")
+	var unexpected_diagnostic := false
+	var certificate_diagnostic := "ERROR: Failed to read the root certificate store."
+	for line: String in child_log.split("\n"):
+		var diagnostic := line.strip_edges()
+		if diagnostic == certificate_diagnostic:
+			# Match the existing offline tools/test.ps1 exception exactly; retain
+			# the child diagnostic and reject every other engine/script error.
+			print(child_log)
+			push_warning("Child restart reported the allowed offline Windows certificate-store diagnostic.")
+		elif diagnostic.begins_with("ERROR:") or diagnostic.begins_with("SCRIPT ERROR:"):
+			unexpected_diagnostic = true
+	if child_status != 0 or unexpected_diagnostic: print(child_log)
+	check(child_status == 0 and child_log.contains("PERSISTENCE CHILD RESTART PASS") and not unexpected_diagnostic,
+		"separate real Godot process reopens two-save >1MiB history without unexpected engine/script errors")
 	# Upper-bound sizing covers the worst current legitimate batch shape without evicting history.
 	var maximum := Store.fresh_profile()
 	var biggest := _sale(Registry.equipment_ids(), 5)
