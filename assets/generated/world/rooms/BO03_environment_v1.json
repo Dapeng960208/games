@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "texture": "res://assets/generated/world/rooms/BO03_environment_v1.png",
+  "biome_id": "B03",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "walkable_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "safe_margin": {
+    "left": 0.11,
+    "right": 0.11,
+    "top": 0.13,
+    "bottom": 0.13
+  },
+  "exterior_openings_normalized": {
+    "left": [
+      0.0,
+      0.32,
+      0.11,
+      0.36
+    ],
+    "right": [
+      0.89,
+      0.32,
+      0.11,
+      0.36
+    ]
+  },
+  "collision": false,
+  "static_decoration_only": true,
+  "palette_intent": "米白和暖浅灰不规则石路为主；淡紫只用于外围屋顶及少量小花，薄荷用于叶片和细缝；暖阳，不使用紫色主地面。",
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f5d7-4127-7b31-826a-893a04df6dae\\exec-dc36ddf2-b3da-4289-8160-f6c261eb93cd.png",
+  "notes": [
+    "Independent original background painting for this room, not a shared biome texture or overlay.",
+    "Builtin generation uses the old biome plate only as style, palette and tile-density reference.",
+    "placement_normalized_rect preserves the authored arena mapping; all runtime interactive objects remain separately rendered.",
+    "walkable_normalized_polygon follows this room painting; original authored functional anchors and complete routes remain unchanged.",
+    "Manual visual dry-floor check and runtime-anchor convex half-plane clearance check passed; gameplay runtime integration is validated separately."
+  ],
+  "placement_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.23,
+      0.31
+    ],
+    [
+      0.34,
+      0.23
+    ],
+    [
+      0.54,
+      0.2
+    ],
+    [
+      0.71,
+      0.23
+    ],
+    [
+      0.81,
+      0.28
+    ],
+    [
+      0.91,
+      0.43
+    ],
+    [
+      0.92,
+      0.61
+    ],
+    [
+      0.81,
+      0.79
+    ],
+    [
+      0.67,
+      0.87
+    ],
+    [
+      0.5,
+      0.89
+    ],
+    [
+      0.34,
+      0.86
+    ],
+    [
+      0.23,
+      0.79
+    ],
+    [
+      0.16,
+      0.66
+    ],
+    [
+      0.12,
+      0.5
+    ],
+    [
+      0.16,
+      0.39
+    ]
+  ],
+  "boundary": {
+    "winding": "clockwise_positive_cross_in_screen_coordinates",
+    "authority": "Per-room hand-inspected continuous dry stone floor outline, excluding painted exterior buildings, garden beds and waterfront.",
+    "validation_layout_scale": 0.58,
+    "decoration_positions_may_extend_beyond_walkable_polygon": true,
+    "minimum_required_anchor_clearance_world": 30,
+    "minimum_gameplay_anchor_clearance_world": 33.925,
+    "convex": true,
+    "required_anchor_clearance_world": 30,
+    "minimum_complete_route_clearance_world": 85.535,
+    "validation_status": "actual layout geometry and production GPU suite passed"
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "integer shared-image regions",
+    "texture_sampling": "full independent room texture; region_filter_clip_enabled=false",
+    "texture_memory": "one shared texture; no streaming claim"
+  },
+  "room_id": "BO03",
+  "room_name": "南瓜墓园",
+  "caption": "彩线谢幕 · 镇长礼堂",
+  "generation_tool": "builtin image_gen.imagegen",
+  "independent_room_composition": true,
+  "qa": {
+    "visual_checked": true,
+    "source_pixel_edits": "none",
+    "source_copy_identical": true,
+    "composition": "Original mayor finale square: exterior theater and civic hall, generous flat scalloped stone mosaic, distinct surrounding celebration gardens.",
+    "walkable_geometry": "Convex screen-clockwise dry-floor polygon. Exported real runtime anchor points, including every route endpoint, have at least 30world inward half-plane clearance; complete straight route segments inherit this margin in the convex inset.",
+    "sha256": "2ff5dd7648bdfb1daa10b89351b22694fec17c767dde2de4ff0c3cb6603ea580",
+    "minimum_anchor_clearance_world": 33.925,
+    "geometry_checked": true,
+    "runtime_anchor_count": 35,
+    "geometry_status": "28-room actual layout anchor and complete route clearance audit passed",
+    "runtime_validation": {
+      "date": "2026-10-01",
+      "engine": "Godot 4.7.2",
+      "suite": "room_presentation",
+      "gpu": true,
+      "checks_total": 1055,
+      "failures": 0,
+      "room_count": 28,
+      "different_loaded_pixel_hashes": 28,
+      "loaded_pixel_sha256": "022e047673a4730b57259103185fa242b6657e83dfd5963dcf428bcb375f2d5d",
+      "capture_count_total": 68,
+      "scope": "production room prepare/apply; authored gameplay preservation; navigation; background/chunk/camera/minimap identity; Chinese/English UI window matrix"
+    }
+  }
+}

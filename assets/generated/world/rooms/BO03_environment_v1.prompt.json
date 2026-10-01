@@ -1,0 +1,92 @@
+{
+  "room_id": "BO03",
+  "biome_id": "B03",
+  "tool": "builtin image_gen.imagegen",
+  "use_case": "stylized-concept",
+  "prompt": "Use case: stylized-concept.\nAsset type: finished independent game room background painting, opaque 1536 x 1024 landscape (3:2).\nInput image 1 is a STYLE, PALETTE and SMALL STONE TILE DENSITY reference ONLY. Invent an entirely new distinct room composition. Do not simply recolor this reference or add an overlay, do not copy its building arrangement. This is one complete original background for a single room in the bright Pumpkin Grave Town biome.\nStyle: polished richly detailed hand-painted cheerful fantasy cartoon, high 3/4 overhead camera, near-isometric 2.5D, tiny cream and warm pale gray cobblestones, soft mint vegetation, a little lavender purple roof tile and warm pumpkin orange, warm sunny afternoon. Friendly tidy intact fantasy village, welcoming Halloween crafts, no dark red/black horror, no blood or decay. Detailed materials and outer neighborhood life without cluttering the fighting floor. Small tiles, around 28–45 pixels each, never giant flagstones.\nABSOLUTE GEOMETRY REQUIREMENT: normalized screen coordinates x increases right, y increases down. The dry walkable polygon vertices are [(0.18,0.16),(0.37,0.12),(0.63,0.12),(0.81,0.17),(0.90,0.31),(0.92,0.55),(0.89,0.77),(0.76,0.89),(0.52,0.94),(0.30,0.91),(0.14,0.77),(0.10,0.54),(0.11,0.30)]. EVERY pixel inside this polygon must be flat contiguous dry cream stone floor or flat decorative inlay. No water, pit, steps, platform, cliff, high wall, building, tree, standing furniture or solid prop inside it; existing gameplay actors and fixed routes will be drawn later. Preserve broad open dry travel lanes through left/right center edges. No visible hard outline around that polygon, floor blends naturally into outer neighborhood. Authoring placement rectangle [0.11,0.13,0.78,0.74]. The entire polygon and route remain supported by earth, not a floating rectangular arena or island pedestal. All building silhouettes, trees, stalls, planter beds and any water must be fully outside the polygon in the outer narrow edge/corner areas; edge life can be partially cropped by image boundary. Never wrap all edges in a continuous wall. Keep the street open to left and right.\nNo text, letters, numbers, signage text, HUD, UI panels, borders, watermark, characters, people, monsters, bosses, active lamps, beacons, magic circles, loot chests, gameplay objectives or interactive furniture. Static outside architectural motifs are okay; flat paving motifs are decorations only. Output a finished full original image, not a contact sheet or mockup.\nROOM: BO03 南瓜墓园 / stitched mayor afternoon finale plaza, civic hall and small theater.\nCOMPOSITION: Largest ceremonial town square with civic architecture visibly different from all ordinary rooms: a lavender tiered civic assembly hall facade is cropped along upper-right exterior, with patchwork drapery and a top-hat cupola; a small curved outdoor theater canopy clipped upper-left beyond polygon with pale yellow fabric and violet roof accents. Extreme lower outside corners have low colorful flower gardens and thread-garland entry finials, no full perimeter fence. FLOOR: wide spacious continuous cream-stone civic plaza with a huge very subdued asymmetric scalloped patchwork-star mosaic of hundreds of tiny stone tesserae, pale cream/honey/soft gray with thin mint stitch seams. Center is completely level, no raised stage, no platform, no magic circle, no boss baked in. Three broad pale stone avenues blend into the center from left, right and bottom. Sunny friendly sleepy-town finale afternoon, NOT ominous graveyard. Show architecture and stonework unique to this boss room, tiny stone density.",
+  "reference_role": "Style, palette, and small tile scale only; independent room composition",
+  "referenced_image_paths": [
+    "assets/generated/world/fixed_B03_environment_v3.png"
+  ],
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f5d7-4127-7b31-826a-893a04df6dae\\exec-dc36ddf2-b3da-4289-8160-f6c261eb93cd.png",
+  "texture": "res://assets/generated/world/rooms/BO03_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_pixel_edits": "none",
+  "source_sha256": "2ff5dd7648bdfb1daa10b89351b22694fec17c767dde2de4ff0c3cb6603ea580",
+  "copied_sha256": "2ff5dd7648bdfb1daa10b89351b22694fec17c767dde2de4ff0c3cb6603ea580",
+  "visual_checked": true,
+  "composition_check": "Original mayor finale square: exterior theater and civic hall, generous flat scalloped stone mosaic, distinct surrounding celebration gardens.",
+  "geometry_note": "Final per-room convex polygon follows inspected dry floor; original mapping rectangle and interactive anchors retained. Required anchor and route clearance >=30world checked from real FixedRoomLayouts.build export.",
+  "geometry_check": {
+    "id": "BO03",
+    "minimum_world": 33.925,
+    "required_world": 30,
+    "anchor": "cover_foot:BO03:fixed_prop:13",
+    "safe": true
+  },
+  "final_walkable_normalized_polygon": [
+    [
+      0.23,
+      0.31
+    ],
+    [
+      0.34,
+      0.23
+    ],
+    [
+      0.54,
+      0.2
+    ],
+    [
+      0.71,
+      0.23
+    ],
+    [
+      0.81,
+      0.28
+    ],
+    [
+      0.91,
+      0.43
+    ],
+    [
+      0.92,
+      0.61
+    ],
+    [
+      0.81,
+      0.79
+    ],
+    [
+      0.67,
+      0.87
+    ],
+    [
+      0.5,
+      0.89
+    ],
+    [
+      0.34,
+      0.86
+    ],
+    [
+      0.23,
+      0.79
+    ],
+    [
+      0.16,
+      0.66
+    ],
+    [
+      0.12,
+      0.5
+    ],
+    [
+      0.16,
+      0.39
+    ]
+  ]
+}
