@@ -11,15 +11,56 @@ const MANIFESTS: Array[String] = [
 	"res://assets/generated/enemies/storybook_B03_bodies_v2.regions.json",
 	"res://assets/generated/enemies/storybook_B04_bodies_v2.regions.json",
 ]
+const VARIANT_MANIFESTS: Array[String] = [
+	"res://assets/generated/enemies/storybook_B01_variants_v1.regions.json",
+	"res://assets/generated/enemies/storybook_B02_variants_v1.regions.json",
+	"res://assets/generated/enemies/storybook_B03_variants_v1.regions.json",
+	"res://assets/generated/enemies/storybook_B04_variants_v1.regions.json",
+	"res://assets/generated/enemies/storybook_B01_reinforcements_v1.regions.json",
+	"res://assets/generated/enemies/storybook_B02_reinforcements_v1.regions.json",
+	"res://assets/generated/enemies/storybook_B03_reinforcements_v1.regions.json",
+	"res://assets/generated/enemies/storybook_B04_reinforcements_v1.regions.json",
+	"res://assets/generated/enemies/storybook_B03_shovels_v1.regions.json",
+]
 static var _entries: Dictionary = {}
+static var _variants: Dictionary = {}
+static var _skill_icons: Dictionary = {}
 static var _loaded: bool = false
 
 static func entry_for(identity: String) -> Dictionary:
 	_ensure_loaded()
 	return _entries.get(identity, {}).duplicate()
 
+static func variant_count(identity: String) -> int:
+	_ensure_loaded()
+	return (_variants.get(identity, []) as Array).size()
+
+static func variant_entry_for(identity: String, index: int) -> Dictionary:
+	_ensure_loaded()
+	var choices: Array = _variants.get(identity, [])
+	if index < 0 or index >= choices.size():
+		return entry_for(identity)
+	return (choices[index] as Dictionary).duplicate()
+
+static func variant_index_for(identity: String, serial: int, room_id: String, room_seed: int) -> int:
+	var count: int = variant_count(identity)
+	if count == 0:
+		return -1
+	# A private deterministic cycle consumes no gameplay RNG. Entries are
+	# deduplicated by their real texture/region before forming this cycle.
+	var offset: int = posmod((room_id + ":" + str(room_seed) + ":" + identity).hash(), count)
+	return posmod(offset + serial, count)
+
+static func skill_icon_for(identity: String) -> Dictionary:
+	_ensure_loaded()
+	return _skill_icons.get(identity, {}).duplicate()
+
+static func appearance_key(entry: Dictionary) -> String:
+	return str(entry.get("texture_path", "")) + ":" + str(entry.get("region", Rect2()))
+
 static func install(actor: Node2D) -> Dictionary:
-	var entry: Dictionary = entry_for(str(actor.get("enemy_id")))
+	var definition: Dictionary = actor.get("profile")
+	var entry: Dictionary = variant_entry_for(str(actor.get("enemy_id")), int(definition.get("visual_variant_index", -1)))
 	if entry.is_empty() or bool(actor.get("static_actor")):
 		return {}
 	var old_bounds: Rect2 = actor.get("body_bounds")
@@ -70,6 +111,59 @@ static func _ensure_loaded() -> void:
 			parsed["biome_id"] = str(raw.get("biome_id", ""))
 			parsed["visual_clan"] = str(raw.get("visual_clan", ""))
 			_entries[identity] = parsed
+	_load_variants()
+
+static func _load_variants() -> void:
+	var seen: Dictionary = {}
+	for manifest_path: String in VARIANT_MANIFESTS:
+		if not FileAccess.file_exists(manifest_path):
+			continue
+		var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
+		if not raw is Dictionary or not raw.get("entries") is Dictionary or raw.get("source_family", FAMILY) != FAMILY:
+			continue
+		var texture_path: String = str(raw.get("texture", ""))
+		if texture_path.is_empty() or (not FileAccess.file_exists(texture_path) and not ResourceLoader.exists(texture_path)):
+			continue
+		var texture: Texture2D = Sampler.sampled(texture_path)
+		if texture == null:
+			continue
+		for identity: String in raw.entries:
+			var candidates: Variant = raw.entries[identity]
+			if not candidates is Array or not _entries.has(identity):
+				continue
+			if not _variants.has(identity):
+				_variants[identity] = []
+			for item: Variant in candidates:
+				var parsed: Dictionary = parse_entry(item, texture.get_size())
+				if parsed.is_empty():
+					continue
+				parsed["texture"] = texture
+				parsed["texture_path"] = texture_path
+				parsed["source_family"] = FAMILY
+				parsed["biome_id"] = str(raw.get("biome_id", ""))
+				parsed["visual_clan"] = str(_entries[identity].get("visual_clan", ""))
+				var key: String = appearance_key(parsed)
+				if seen.has(key):
+					continue
+				seen[key] = true
+				parsed["visual_variant_index"] = (_variants[identity] as Array).size()
+				_variants[identity].append(parsed)
+		var icons: Variant = raw.get("skill_icons", {})
+		if not icons is Dictionary:
+			continue
+		for identity: String in icons:
+			var values: Variant = icons[identity]
+			if not values is Array or values.size() != 4:
+				continue
+			var valid: bool = true
+			for value: Variant in values:
+				if not (value is int or value is float) or not is_finite(float(value)):
+					valid = false
+			if not valid:
+				continue
+			var region := Rect2(float(values[0]), float(values[1]), float(values[2]), float(values[3]))
+			if region.has_area() and Rect2(Vector2.ZERO, texture.get_size()).encloses(region):
+				_skill_icons[identity] = {"texture":texture,"texture_path":texture_path,"region":region}
 
 static func parse_entry(raw: Variant, texture_size: Vector2) -> Dictionary:
 	if not raw is Dictionary or raw.get("full_color") != true:

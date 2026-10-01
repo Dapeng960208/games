@@ -53,6 +53,31 @@ var _foot := Vector2(0, 18)
 var _body_material: ShaderMaterial
 var _palette_colors: Dictionary = {}
 var _storybook_entry: Dictionary = {}
+var skill_badge: SkillBadge
+
+class SkillBadge extends Node2D:
+	var icon: Dictionary = {}
+	var command: Dictionary = {}
+	var locked: bool = false
+	var progress: float = 0.0
+	var reduced_fx: bool = false
+	func _draw() -> void:
+		if not visible or command.is_empty(): return
+		var edge := Color("c86558") if locked else Color("d4a34f")
+		draw_circle(Vector2.ZERO, 14.0, Color("fff0cf"))
+		var texture: Texture2D = icon.get("texture")
+		if texture != null:
+			draw_texture_rect_region(texture, Rect2(-12,-12,24,24), icon.region)
+		else:
+			# Resource fallback still communicates a cast without borrowing a
+			# different creature's icon or hiding the owner's ground warning.
+			draw_line(Vector2(0,-7), Vector2(0,3), edge, 3.0, true)
+			draw_circle(Vector2(0,8), 1.8, edge)
+		draw_arc(Vector2.ZERO, 14.0, 0, TAU, 32, Color("6d4a70"), 1.3, true)
+		draw_arc(Vector2.ZERO, 15.5, -PI*.5, -PI*.5+TAU*maxf(.02,progress), 32, edge, 2.0 if reduced_fx else 2.6, true)
+		var count: int = mini(4, int(command.get("stage_count", 1)))
+		for index: int in count:
+			draw_circle(Vector2((index-(count-1)*.5)*5.0, 20.0), 1.7, edge if index <= int(command.get("stage", 0)) else Color("bba68b"))
 
 func configure(enemy: Node2D) -> void:
 	actor = enemy
@@ -68,7 +93,19 @@ func configure(enemy: Node2D) -> void:
 	_storybook_entry = Art.install(actor)
 	var bounds: Rect2 = actor.get("body_bounds")
 	_foot = Vector2(0, bounds.end.y)
-	_bank = _load_motion_bank(str(actor.get("enemy_id")), not _storybook_entry.is_empty())
+	# Existing banks depict only the canonical original creature. A selected
+	# outfit keeps its own texture across every AI/impact pose.
+	_bank = {} if _storybook_entry.has("visual_variant_index") else _load_motion_bank(str(actor.get("enemy_id")), not _storybook_entry.is_empty())
+	if not bool(actor.get("static_actor")) and str(actor.get("enemy_id")).begins_with("M"):
+		skill_badge = SkillBadge.new()
+		skill_badge.name = "EnemySkillBadge"
+		skill_badge.icon = Art.skill_icon_for(str(actor.get("enemy_id")))
+		skill_badge.z_index = 3
+		skill_badge.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+		# This sibling stays upright, outside the body's palette and mirroring.
+		actor.add_child(skill_badge)
+		skill_badge.position = Vector2(34, bounds.position.y - 3)
+		skill_badge.visible = false
 	# Prepare compact CPU alpha data while configuring the room, never on the
 	# first strike. Include authored frames and M35's alternate empty silhouette.
 	_prepare_contact_mask(actor.get("body_texture"))
@@ -79,6 +116,7 @@ func configure(enemy: Node2D) -> void:
 	_body_material.set_shader_parameter("textured_body", actor.get("body_texture") != null or _bank.get("texture") != null)
 	material = _body_material
 	_read_phase(0.0)
+	_update_skill_badge()
 	_update_pose(0.0)
 	_select_frame()
 	queue_redraw()
@@ -92,6 +130,7 @@ func advance(delta: float) -> void:
 	var step: float = minf(delta, 0.1)
 	_clock += step
 	_read_phase(step)
+	_update_skill_badge()
 	var displacement: Vector2 = actor.position - _previous_position
 	_previous_position = actor.position
 	var distance: float = displacement.length()
@@ -180,6 +219,19 @@ func _read_phase(delta: float) -> void:
 	if brain is Object and brain.has_method("current_telegraph") and phase in [&"telegraph", &"locked"]:
 		var tell: Dictionary = brain.call("current_telegraph")
 		phase_progress = clampf(float(tell.get("progress", phase_progress)), 0.0, 1.0)
+
+func _update_skill_badge() -> void:
+	if not is_instance_valid(skill_badge): return
+	var brain: Variant = actor.get("brain")
+	if brain is Object and brain.has_method("current_telegraph") and phase in [&"telegraph", &"locked"]:
+		skill_badge.command = brain.call("current_telegraph")
+	elif phase != &"execute":
+		skill_badge.command = {}
+	skill_badge.visible = not skill_badge.command.is_empty() and actor.has_method("is_alive") and bool(actor.call("is_alive"))
+	skill_badge.locked = phase in [&"locked", &"execute"]
+	skill_badge.progress = 1.0 if phase == &"execute" else phase_progress
+	skill_badge.reduced_fx = _reduced_fx()
+	skill_badge.queue_redraw()
 
 func _update_pose(_delta: float) -> void:
 	var reduced: bool = _reduced_fx()

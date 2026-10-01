@@ -12,6 +12,7 @@ const DeploymentScript = preload("res://scripts/combat/hero_deployment.gd")
 const CameraScript = preload("res://scripts/combat/world_camera.gd")
 const Layouts = preload("res://scripts/world/room_layouts.gd")
 const EnemyProfilesScript = preload("res://scripts/combat/enemy_profiles.gd")
+const EnemyArtScript = preload("res://scripts/combat/enemy_art.gd")
 const EnemyDifficultyScript = preload("res://scripts/combat/enemy_difficulty.gd")
 const EnemySkillsScript = preload("res://scripts/combat/enemy_skill_runtime.gd")
 const EnemyTelegraphsScript = preload("res://scripts/combat/enemy_telegraphs.gd")
@@ -107,6 +108,8 @@ var _terrain_geometry: Array[Rect2] = []
 var _terrain_owner_id: int = -1
 var terrain_redraw_count: int = 0
 var _depth_canvas: Node2D
+var _enemy_visual_counts: Dictionary = {}
+var _enemy_visual_room_key: String = ""
 
 func _ready() -> void:
 	# Every raised object and actor shares one depth plane; feet provide the
@@ -365,9 +368,23 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 	if not valid_ground(enemy.position, radius):
 		enemy.free()
 		return null
+	_assign_enemy_appearance(enemy)
 	enemies.add_child(enemy)
 	enemy.z_index = 0
 	return enemy
+
+func _assign_enemy_appearance(enemy: MineEnemy) -> void:
+	if enemy.static_actor or EnemyArtScript.variant_count(enemy.enemy_id) == 0:
+		return
+	var room_key: String = layout_id + ":" + str(layout_seed)
+	if room_key != _enemy_visual_room_key:
+		_enemy_visual_counts.clear()
+		_enemy_visual_room_key = room_key
+	var serial: int = int(_enemy_visual_counts.get(enemy.enemy_id, 0))
+	# Assign after a valid spawn but before _ready installs the body. The
+	# counter survives actor deaths and all finite reinforcement waves.
+	enemy.profile["visual_variant_index"] = EnemyArtScript.variant_index_for(enemy.enemy_id, serial, layout_id, layout_seed)
+	_enemy_visual_counts[enemy.enemy_id] = serial + 1
 
 func _zone_actor_count(zone: int) -> int:
 	var count: int = 0
@@ -1507,6 +1524,8 @@ func load_room_layout(id: String, room_difficulty: int = -1, seed_override: int 
 	add_child(enemy_props)
 	enemy_corpses.clear()
 	layout_id = id
+	_enemy_visual_counts.clear()
+	_enemy_visual_room_key = ""
 	layout = next
 	_configure_ground_boundary()
 	obstructions.assign(next.obstructions)
@@ -1859,6 +1878,8 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	expedition_context = prepared.context.duplicate(true)
 	layout = prepared.layout.duplicate(true)
 	layout_id = str(expedition_context.room_id)
+	_enemy_visual_counts.clear()
+	_enemy_visual_room_key = ""
 	_configure_ground_boundary()
 	difficulty = clampi(int(expedition_context.get("difficulty",0)),0,4)
 	layout_seed = int(expedition_context.get("seed",41827))
