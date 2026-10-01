@@ -111,7 +111,7 @@ func _sweep_measure(stream: AudioStreamWAV) -> Dictionary:
 
 func _test_sweep_pcm() -> void:
 	Audio.prewarm()
-	check(Audio._streams.size() == 248 and Audio.CUES.size() == 7 and Audio.MAX_VOICES == 8, "sweep redesign adds no cache domain or voices")
+	check(Audio._streams.size() == 252 and Audio.CUES.size() == 7 and Audio.MAX_VOICES == 8, "sweep redesign adds no cache domain or voices")
 	var directory: String = "res://artifacts/hammer_sweep_audio"
 	check(DirAccess.make_dir_recursive_absolute(directory) == OK, "raw sweep sample directory is available")
 	var signatures: Dictionary = {}

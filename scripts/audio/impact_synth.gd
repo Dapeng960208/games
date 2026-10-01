@@ -17,6 +17,7 @@ static func duration(hero: String, cue: String) -> float:
 		"trap_trigger": return 0.17
 		"node_fire": return 0.12
 		"field_pulse": return 0.19
+		"grenade_burst": return 0.34
 		"defeat": return 0.30
 		"hurt": return 0.22
 		"pickup": return 0.27
@@ -38,7 +39,7 @@ static func synthesize(hero: String, cue: String, variant: int, material: String
 		_prepare(samples, rng, hero, cue.trim_prefix("prepare_"))
 	elif cue in ["resonance_1", "resonance_2", "resonance_full"]:
 		_resonance(samples, rng, cue)
-	elif cue in ["trap_trigger", "node_fire", "field_pulse"]:
+	elif cue in ["trap_trigger", "node_fire", "field_pulse", "grenade_burst"]:
 		_deployment(samples, rng, cue)
 	elif cue == "defeat":
 		_defeat(samples, rng, material)
@@ -52,9 +53,9 @@ static func synthesize(hero: String, cue: String, variant: int, material: String
 		_hit(samples, rng, hero, cue == "heavy", material)
 	else:
 		match hero:
-			"CH01": _hydraulic_release(samples, rng, cue)
+			"CH01": _axe_release(samples, rng, cue)
 			"CH02": _gun_release(samples, rng, cue)
-			"CH03": _crystal_release(samples, rng, cue)
+			"CH03": _arcane_release(samples, rng, cue)
 	return _pcm(samples)
 
 static func _resonance(out: PackedFloat32Array, rng: RandomNumberGenerator, cue: String) -> void:
@@ -82,6 +83,16 @@ static func _resonance(out: PackedFloat32Array, rng: RandomNumberGenerator, cue:
 
 static func _deployment(out: PackedFloat32Array, rng: RandomNumberGenerator, cue: String) -> void:
 	match cue:
+		"grenade_burst":
+			# Physical detonation at the live fuse event: pressure, hot crack,
+			# then irregular metallic fragments. The throw contains none of it.
+			_noise(out, rng, 0.0, 0.055, 1.22, 130.0, 5900.0, 57.0)
+			_pressure(out, 0.002, 0.23, 0.94, rng.randf_range(179.0, 197.0), 69.0, 18.0)
+			_noise(out, rng, 0.014, 0.22, 0.40, 210.0, 2700.0, 16.0)
+			for fragment: int in 6:
+				var at: float = 0.023 + float(fragment) * 0.033 + rng.randf_range(-0.006, 0.006)
+				_noise(out, rng, at, 0.031, 0.23 * (1.0 - float(fragment) * 0.10), 1700.0, 5800.0, 97.0)
+				_mode(out, at, 0.05, rng.randf_range(1490.0, 2770.0), 0.018, 76.0)
 		"trap_trigger":
 			# A cold-line latch snaps open, followed by a short pressure vent.
 			# No gun report or sub-bass explosion is hidden in this mechanism.
@@ -132,9 +143,10 @@ static func _hit(out: PackedFloat32Array, rng: RandomNumberGenerator, hero: Stri
 	var spread: float = rng.randf_range(0.92, 1.08)
 	match hero:
 		"CH01":
-			# Hammer compression has a low-mid chest instead of a long sub-bass
-			# sine. Face contact, compressed body and fractured grit remain audible.
+			# Axe contact has a low-mid chest and a brief steel cutting edge.
+			# Face contact, compressed body and fractured grit remain audible.
 			_noise(out, rng, 0.0, 0.031, 1.18 * mass, 550.0, 5800.0, 105.0)
+			_modes(out, 0.002, 0.057, [659.0, 1177.0, 2053.0], [0.09, 0.035, 0.014], 79.0, mass * spread)
 			_pressure(out, 0.002, 0.23 if heavy else 0.16, (1.20 if heavy else 1.00) * mass, 158.0 * spread, 83.0, 19.0 if heavy else 31.0)
 			_modes(out, 0.002, 0.11, [229.0, 419.0, 811.0, 1583.0], [0.38 if heavy else 0.28, 0.18, 0.06, 0.025], 37.0, spread * mass)
 			_noise(out, rng, 0.013, 0.12, 0.37 * mass, 220.0, 1850.0, 29.0)
@@ -145,6 +157,7 @@ static func _hit(out: PackedFloat32Array, rng: RandomNumberGenerator, hero: Stri
 			# A dense immediate perforation crack has its own mid/high-frequency
 			# identity against the gun report. No hammer-like low rolling tail.
 			_noise(out, rng, 0.0, 0.024, 2.30 * mass, 900.0, 6900.0, 110.0)
+			_noise(out, rng, 0.001, 0.019, 0.10 * mass, 2400.0, 7100.0, 136.0)
 			_noise(out, rng, rng.randf_range(0.002, 0.004), 0.033, 1.24 * mass, 550.0, 3900.0, 85.0)
 			_modes(out, 0.001, 0.048, [1423.0, 2339.0, 3761.0], [0.17, 0.095, 0.042], 80.0, spread * mass)
 			_pressure(out, 0.002, 0.075 if heavy else 0.055, 0.57 * mass, 370.0, 180.0, 43.0 if heavy else 63.0)
@@ -158,6 +171,9 @@ static func _hit(out: PackedFloat32Array, rng: RandomNumberGenerator, hero: Stri
 			_modes(out, 0.001, 0.13, [1183.0, 1877.0, 2833.0, 4219.0], [0.34, 0.21, 0.11, 0.055], 36.0, spread * mass)
 			_pressure(out, 0.003, 0.10 if heavy else 0.075, 0.39 * mass, 230.0, 120.0, 37.0 if heavy else 49.0)
 			_sparks(out, rng, 0.026, 0.25 if heavy else 0.16, 14 if heavy else 7, mass * (0.55 if heavy else 0.40))
+			# A faint harmonic afterglow joins the real brittle contact rather
+			# than inserting a second impact or a low-frequency explosion.
+			_modes(out, 0.020, 0.15, [587.33, 880.0, 1174.66], [0.028, 0.014, 0.008], 27.0, mass)
 			if heavy:
 				_noise(out, rng, 0.007, 0.12, 0.69, 1300.0, 6500.0, 39.0)
 				_mode(out, 0.011, 0.09, 2693.0 * spread, 0.14, 43.0)
@@ -190,25 +206,26 @@ static func _prepare(out: PackedFloat32Array, rng: RandomNumberGenerator, hero: 
 	match hero:
 		"CH01":
 			_noise(out, rng, 0.0, 0.10, strength, 180.0 * color, 1700.0, 26.0, 0.009)
-			_modes(out, 0.003, 0.06, [287.0 * color, 613.0 * color], [0.07, 0.025], 49.0, rng.randf_range(0.9, 1.1))
+			_modes(out, 0.003, 0.06, [391.0 * color, 1027.0 * color], [0.07, 0.025], 49.0, rng.randf_range(0.9, 1.1))
 		"CH02":
 			_noise(out, rng, 0.0, 0.035, strength, 720.0 * color, 4000.0, 77.0)
 			_noise(out, rng, 0.028, 0.046, strength * 0.45, 340.0, 2100.0 * color, 48.0)
 			_mode(out, 0.002, 0.033, 961.0 * color, 0.035, 80.0)
 		"CH03":
 			_noise(out, rng, 0.0, 0.11, strength, 1200.0 * color, 5700.0, 16.0, 0.020)
-			_modes(out, 0.0, 0.105, [873.0 * color, 937.0 * color], [0.055, 0.028], 17.0, rng.randf_range(0.92, 1.08))
+			_modes(out, 0.0, 0.105, [587.33 * color, 880.0 * color, 1174.66 * color], [0.055, 0.028, 0.013], 17.0, rng.randf_range(0.92, 1.08))
 
-static func _hydraulic_release(out: PackedFloat32Array, rng: RandomNumberGenerator, cue: String) -> void:
+static func _axe_release(out: PackedFloat32Array, rng: RandomNumberGenerator, cue: String) -> void:
 	if cue == "attack":
 		# Broad wind builds then passes; no impact thud on a miss.
 		_noise(out, rng, 0.0, 0.23, 0.66, 90.0, 1450.0, 8.0, 0.045)
 		_noise(out, rng, 0.036, 0.15, 0.31, 800.0, 3700.0, 15.0, 0.021)
 		_mode(out, 0.015, 0.045, 291.0, 0.16, 56.0)
+		_modes(out, 0.009, 0.063, [659.0, 1439.0], [0.064, 0.025], 54.0, rng.randf_range(0.9, 1.1))
 		_noise(out, rng, 0.013, 0.038, 0.28, 350.0, 2700.0, 88.0)
 		return
 	if cue == "secondary":
-		# A loaded linkage unlatches, then the broad hammer face sweeps the air.
+		# A loaded grip releases, then the broad axe blade sweeps the air.
 		# The wind crests after the small mechanical release instead of bursting
 		# on frame zero. Neither armour/flesh contact nor a heavy thud lives here.
 		_noise(out, rng, 0.0, 0.022, 0.51, 1100.0, 5800.0, 102.0)
@@ -219,23 +236,30 @@ static func _hydraulic_release(out: PackedFloat32Array, rng: RandomNumberGenerat
 		_noise(out, rng, wind_start+0.027, 0.174, 0.78, 850.0, rng.randf_range(4500.0,5200.0), 10.0, 0.044)
 		_noise(out, rng, wind_start+0.076, 0.128, 0.36, 1850.0, 6200.0, 13.0, 0.026)
 		return
-	# One piston discharge per real release, no baked extra hammer strokes.
-	var force: float = {"q":0.78, "secondary":0.98, "f":0.72, "ultimate":1.23}.get(cue, 0.78)
-	var length: float = 0.30 if cue == "ultimate" else 0.20
-	_noise(out, rng, 0.0, length, force, 75.0, 1400.0, 14.0, 0.001)
-	_noise(out, rng, 0.002, 0.105, force * 0.82, 540.0, 4600.0, 43.0)
-	_modes(out, 0.003, 0.11, [231.0, 673.0, 1477.0], [0.25, 0.08, 0.025], 38.0, force)
 	if cue == "f":
-		_noise(out, rng, 0.012, 0.20, 0.59, 280.0, 2600.0, 19.0)
-	elif cue == "q":
-		_noise(out, rng, 0.008, 0.15, 0.35, 680.0, 3100.0, 24.0)
+		# Planting the weapon and setting armour: a short steel latch and breath.
+		_noise(out, rng, 0.0, 0.024, 0.86, 550.0, 4300.0, 96.0)
+		_modes(out, 0.001, 0.17, [293.0, 653.0, 1457.0], [0.29, 0.11, 0.045], 28.0, rng.randf_range(0.92, 1.08))
+		_noise(out, rng, 0.007, 0.20, 0.55, 190.0, 1900.0, 19.0)
+		return
+	# One broad cutting release per real swing; body contact remains _hit.
+	var force: float = 1.32 if cue == "ultimate" else 1.04
+	var length: float = 0.30 if cue == "ultimate" else 0.19
+	_noise(out, rng, 0.0, length, force, 90.0, 1850.0, 16.0, 0.001)
+	_noise(out, rng, 0.002, 0.11, force * 0.92, 740.0, 5200.0, 40.0)
+	_modes(out, 0.003, 0.09, [291.0, 653.0, 1477.0], [0.23, 0.082, 0.027], 46.0, force)
+	if cue == "ultimate":
+		_noise(out, rng, 0.008, 0.24, 0.51, 360.0, 3200.0, 19.0)
+	else:
+		_noise(out, rng, 0.006, 0.14, 0.46, 940.0, 3600.0, 30.0)
 
 static func _gun_release(out: PackedFloat32Array, rng: RandomNumberGenerator, cue: String) -> void:
 	if cue == "f":
-		# The cold-line plate is deployed, never fired as a three-shot weapon.
-		_noise(out, rng, 0.0, 0.033, 0.67, 430.0, 4000.0, 85.0)
-		_modes(out, 0.001, 0.070, [359.0, 827.0, 1793.0], [0.15, 0.065, 0.026], 55.0, rng.randf_range(0.92, 1.08))
-		_noise(out, rng, 0.018, 0.11, 0.48, 900.0, 4500.0, 29.0)
+		# One pulled pin and an arm's throwing rush. Explosive sound is owned
+		# by the grenade's live fuse, including misses and post-throw dashes.
+		_noise(out, rng, 0.0, 0.023, 0.74, 950.0, 5200.0, 110.0)
+		_modes(out, 0.001, 0.045, [823.0, 1913.0, 3079.0], [0.15, 0.055, 0.026], 83.0, rng.randf_range(0.92, 1.08))
+		_noise(out, rng, 0.009, 0.11, 0.91, 230.0, 3100.0, 22.0, 0.011)
 		return
 	var cannon: bool = cue == "secondary"
 	var force: float = {"attack":0.85, "q":0.77, "secondary":1.30, "ultimate":1.05}.get(cue, 0.85)
@@ -244,20 +268,22 @@ static func _gun_release(out: PackedFloat32Array, rng: RandomNumberGenerator, cu
 	_noise(out, rng, 0.0, 0.015, 0.32, 1200.0, 5100.0, 180.0)
 	_modes(out, 0.0, 0.024, [773.0, 1703.0], [0.10, 0.035], 105.0, rng.randf_range(0.86, 1.1))
 	_noise(out, rng, 0.002, 0.085 if cannon else 0.052, force * 1.40, 110.0, 5300.0, 50.0 if cannon else 78.0)
+	_noise(out, rng, 0.001, 0.015, force * 0.32, 2200.0, 7300.0, 142.0)
 	_pressure(out, 0.003, 0.17 if cannon else 0.09, force * 0.57, 155.0 if cannon else 245.0, 52.0 if cannon else 93.0, 29.0 if cannon else 58.0)
 	_noise(out, rng, rng.randf_range(0.048, 0.059), 0.035, 0.24, 650.0, 3800.0, 96.0)
 	_mode(out, 0.055, 0.034, rng.randf_range(820.0, 1110.0), 0.09, 85.0)
 
-static func _crystal_release(out: PackedFloat32Array, rng: RandomNumberGenerator, cue: String) -> void:
+static func _arcane_release(out: PackedFloat32Array, rng: RandomNumberGenerator, cue: String) -> void:
 	var power: float = 0.61 if cue == "attack" else (1.0 if cue == "ultimate" else 0.80)
 	if cue == "secondary":
-		# Node placement: ceramic contact and capacitor crackle, not a bolt shot.
+		# Runic crystal placement: gentle contact and an opening harmonic aura.
 		_noise(out, rng, 0.0, 0.040, 0.57, 650.0, 4700.0, 75.0)
-		_modes(out, 0.001, 0.105, [697.0, 1291.0, 2083.0], [0.12, 0.055, 0.028], 36.0, rng.randf_range(0.91, 1.09))
+		_modes(out, 0.001, 0.17, [587.33, 880.0, 1174.66], [0.16, 0.078, 0.035], 23.0, rng.randf_range(0.91, 1.09))
 		_sparks(out, rng, 0.014, 0.14, 9, 0.19)
 		return
 	# Immediate release transient; charge sound was already played on commitment.
 	_noise(out, rng, 0.0, 0.080, power * 1.15, 740.0, 6400.0, 52.0)
+	_modes(out, 0.003, 0.17, [587.33, 880.0, 1760.0], [0.093, 0.038, 0.017], 24.0, power)
 	_pressure(out, 0.002, 0.19, power * 0.57, 203.0, 82.0, 28.0)
 	_sparks(out, rng, 0.015, 0.12, 5, power * 0.20)
 	if cue == "q":
@@ -266,8 +292,9 @@ static func _crystal_release(out: PackedFloat32Array, rng: RandomNumberGenerator
 		_noise(out, rng, 0.003, 0.25, 0.75, 110.0, 3100.0, 17.0)
 		_modes(out, 0.004, 0.17, [411.0, 709.0, 1297.0], [0.17, 0.08, 0.035], 28.0, 1.0)
 	elif cue == "ultimate":
-		_noise(out, rng, 0.006, 0.35, 0.76, 190.0, 4800.0, 12.0)
-		_pressure(out, 0.005, 0.33, 0.61, 142.0, 49.0, 16.0)
+		_noise(out, rng, 0.006, 0.35, 0.76, 370.0, 5400.0, 12.0)
+		_pressure(out, 0.005, 0.23, 0.36, 223.0, 123.0, 24.0)
+		_modes(out, 0.008, 0.33, [293.66, 440.0, 587.33], [0.20, 0.10, 0.05], 15.0, 1.0)
 		_sparks(out, rng, 0.025, 0.27, 14, 0.25)
 
 static func _sparks(out: PackedFloat32Array, rng: RandomNumberGenerator, start: float, length: float, count: int, gain: float) -> void:

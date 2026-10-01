@@ -4,22 +4,25 @@ extends Node
 ## One room owns this node. Samples are cached across rooms; players are local.
 
 signal cue_played(cue: String)
+signal skill_music_played(hero_id: String, slot: String)
 
 const Foley = preload("res://scripts/audio/impact_synth.gd")
 const ShieldFoley = preload("res://scripts/audio/shield_synth.gd")
+const RoleMusic = preload("res://scripts/audio/role_skill_music.gd")
 const SAMPLE_RATE: int = 24000
 const MAX_VOICES: int = 8
 const SAMPLE_PEAK: float = 0.74
 # Even eight perfectly correlated peaks remain below full scale on our bus.
 const VOICE_GAIN: float = 0.14
+const SKILL_MUSIC_GAIN: float = 0.08
 const RESERVED_PLAYER_VOICES: int = 2
 const IMPACT_INTERVAL: float = 0.055
 const DEFEAT_INTERVAL: float = 0.100
 const PASSIVE_INTERVAL: float = 0.100
 const PASSIVE_GAIN: float = 0.48
 const DEPLOYMENT_INTERVAL: float = 0.100
-const DEPLOYMENT_CUES: Array[String] = ["trap_trigger", "node_fire", "field_pulse"]
-const DEPLOYMENT_GAINS: Dictionary = {"trap_trigger":0.44, "node_fire":0.32, "field_pulse":0.24}
+const DEPLOYMENT_CUES: Array[String] = ["trap_trigger", "node_fire", "field_pulse", "grenade_burst"]
+const DEPLOYMENT_GAINS: Dictionary = {"trap_trigger":0.44, "node_fire":0.32, "field_pulse":0.24, "grenade_burst":0.66}
 const RESONANCE_INTERVAL: float = 0.100
 const RESONANCE_CUES: Array[String] = ["resonance_1", "resonance_2", "resonance_full"]
 # Charge is a sparse player-action confirmation, not continuous machinery.
@@ -51,6 +54,11 @@ var _cooldowns: Dictionary = {}
 var _variation_indices: Dictionary = {}
 var _gain: float = 0.85
 var _muted: bool = false
+var _music_gain: float = 0.55
+var _music_muted: bool = false
+var _skill_music_player: AudioStreamPlayer
+var _skill_music_end: float = -1.0
+var _skill_music_slot: String = ""
 var accepted_events: int = 0
 var rejected_events: int = 0
 var _resonance_pending_level: int = 0
@@ -89,6 +97,57 @@ func prepare(hero_id: String, slot: String) -> bool:
 	if "prepare_" + slot not in PREPARE_CUES:
 		return false
 	return _request(hero_id, "prepare_" + slot, "prepare", 0.04)
+
+## One musical signature on the first actual skill release. Burst projectiles
+## call cast for each shot; their ability timeline calls this only at index 0.
+## A current motif keeps its natural tail; an ultimate can take over a shorter
+## motif on this same voice. Repeated ultimate requests never restart it.
+func skill_music(hero_id: String, slot: String) -> bool:
+	var stream: AudioStreamWAV = skill_music_stream_for(hero_id, slot)
+	if stream == null:
+		return false
+	if not is_inside_tree() or get_tree().paused:
+		stop_all()
+		return false
+	_refresh_settings()
+	if _music_muted or _music_gain <= 0.0:
+		return false
+	if _skill_music_end >= 0.0:
+		if slot != "ultimate" or _skill_music_slot == "ultimate":
+			return false
+		_stop_skill_music()
+	if _skill_music_player == null:
+		_skill_music_player = AudioStreamPlayer.new()
+		_skill_music_player.name = "RoleSkillMusic"
+		_skill_music_player.bus = &"Master"
+		_skill_music_player.max_polyphony = 1
+		_skill_music_player.finished.connect(_on_skill_music_finished)
+		add_child(_skill_music_player)
+	_skill_music_player.stream = stream
+	_skill_music_player.volume_db = linear_to_db(maxf(0.000001, SKILL_MUSIC_GAIN * _music_gain))
+	_skill_music_player.pitch_scale = 1.0
+	_skill_music_end = _clock + stream.get_length()
+	_skill_music_slot = slot
+	if audible:
+		_skill_music_player.play()
+		if _skill_music_player.has_stream_playback():
+			_playback_refs.append(weakref(_skill_music_player.get_stream_playback()))
+	skill_music_played.emit(hero_id, slot)
+	return true
+
+func active_skill_music_count() -> int:
+	return 1 if _skill_music_end >= 0.0 else 0
+
+func _on_skill_music_finished() -> void:
+	if _skill_music_player != null:
+		_skill_music_player.stream = null
+	_skill_music_end = -1.0
+	_skill_music_slot = ""
+
+func _stop_skill_music() -> void:
+	if _skill_music_player != null:
+		_skill_music_player.stop()
+	_on_skill_music_finished()
 
 func impact(hero_id: String, heavy: bool = false, material: String = "stone", passive: bool = false) -> bool:
 	if passive:
@@ -132,7 +191,7 @@ func pickup() -> bool:
 func deployment(cue: String) -> bool:
 	if cue not in DEPLOYMENT_CUES:
 		return false
-	# Background machinery keeps one independent clustering gate per action;
+	# Each deployment keeps one independent clustering gate per action;
 	# cue names stay distinct from impact/heavy so they do not duck the music.
 	return _request("", cue, cue, DEPLOYMENT_INTERVAL, "stone", float(DEPLOYMENT_GAINS[cue]))
 
@@ -179,6 +238,10 @@ func _flush_resonance_charge(generation: int) -> void:
 		_cooldowns["resonance_charge"] = _clock + RESONANCE_INTERVAL
 
 func stop_all() -> void:
+	_stop_skill_music()
+	_stop_sfx()
+
+func _stop_sfx() -> void:
 	for index: int in _players.size():
 		_players[index].stop()
 		_players[index].stream = null
@@ -234,6 +297,8 @@ func advance(delta: float) -> void:
 			_players[index].stream = null
 			_ends[index] = -1.0
 			_voice_gains[index] = 1.0
+	if not audible and _skill_music_end >= 0.0 and _skill_music_end <= _clock:
+		_stop_skill_music()
 
 func _ensure_players() -> void:
 	if not _players.is_empty():
@@ -257,8 +322,14 @@ func _refresh_settings() -> void:
 		settings = game.profile.get("settings", {})
 	_muted = bool(settings.get("muted", false)) or bool(settings.get("sfx_muted", false))
 	_gain = _volume(settings.get("master_volume", 1.0)) * _volume(settings.get("sfx_volume", 0.85))
+	_music_muted = bool(settings.get("muted", false)) or bool(settings.get("music_muted", false))
+	_music_gain = _volume(settings.get("master_volume", 1.0)) * _volume(settings.get("music_volume", 0.55))
 	if _muted or _gain <= 0.0:
-		stop_all()
+		_stop_sfx()
+	if _music_muted or _music_gain <= 0.0:
+		_stop_skill_music()
+	if _skill_music_player != null:
+		_skill_music_player.volume_db = linear_to_db(maxf(0.000001, SKILL_MUSIC_GAIN * _music_gain))
 	for index: int in _players.size():
 		_players[index].volume_db = linear_to_db(maxf(0.000001, VOICE_GAIN * _gain * _voice_gains[index]))
 
@@ -284,7 +355,9 @@ func _request(hero_id: String, cue: String, group: String, interval: float, mate
 		return false
 	_ensure_players()
 	# Passive hits and loot leave two slots for player actions and direct contact.
-	var player_priority: bool = group in ["attack", "cast", "hurt", "impact", "heavy_impact"]
+	# A thrown grenade is a delayed player release, so its real detonation can
+	# use a reserve while passive field/node machinery remains background.
+	var player_priority: bool = cue == "grenade_burst" or group in ["attack", "cast", "hurt", "impact", "heavy_impact"]
 	var index: int = _free_voice(player_priority)
 	if index < 0:
 		# Do not steal an older voice: abruptly stopping its waveform clicks.
@@ -322,6 +395,7 @@ func _on_voice_finished(index: int) -> void:
 	_voice_gains[index] = 1.0
 
 static func prewarm() -> void:
+	RoleMusic.prewarm()
 	for hero_id: String in HEROES:
 		for cue: String in CUES + PREPARE_CUES + SHIELD_CUES:
 			for variation: int in VARIATIONS:
@@ -348,3 +422,6 @@ static func stream_for(hero_id: String, cue: String, variation: int = 0, materia
 	if not _streams.has(key):
 		_streams[key] = ShieldFoley.synthesize(hero_id,cue == "shield_break",variation) if cue in SHIELD_CUES else Foley.synthesize(hero_id, cue, variation, material)
 	return _streams[key]
+
+static func skill_music_stream_for(hero_id: String, slot: String) -> AudioStreamWAV:
+	return RoleMusic.stream_for(hero_id, slot)

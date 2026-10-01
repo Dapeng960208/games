@@ -213,7 +213,7 @@ func _measure(stream: AudioStreamWAV) -> Dictionary:
 
 func _test_pcm_and_export() -> void:
 	Audio.prewarm()
-	check(Audio._streams.size() == 248 and Audio.SHIELD_CUES.size() == 2 and Audio.CUES.size() == 7, "two shield cues add exactly twenty-four finite streams without changing hero skill slots")
+	check(Audio._streams.size() == 252 and Audio.SHIELD_CUES.size() == 2 and Audio.CUES.size() == 7, "two shield cues add exactly twenty-four finite streams without changing hero skill slots")
 	var signatures: Dictionary = {}
 	var exports: Array = []
 	var directory: String = "res://artifacts/shield_audio"
@@ -241,7 +241,7 @@ func _test_pcm_and_export() -> void:
 	check(signatures.size() == 24, "all hero shield takes are independently generated")
 	for index: int in 12:
 		check(Audio.stream_for("unknown", "shield_hit",index) == null and Audio.stream_for("CH01","shield_"+str(index)) == null, "unknown shield input cannot grow cache")
-	check(Audio._streams.size() == 248 and Audio.MAX_VOICES == 8 and Audio.RESERVED_PLAYER_VOICES == 2, "bounded cache and foreground reservations remain unchanged")
+	check(Audio._streams.size() == 252 and Audio.MAX_VOICES == 8 and Audio.RESERVED_PLAYER_VOICES == 2, "bounded cache and foreground reservations remain unchanged")
 	check(Audio.SAMPLE_PEAK*Audio.VOICE_GAIN*Audio.MAX_VOICES+0.58*Music.MUSIC_GAIN < 0.95, "existing correlated SFX-plus-music headroom remains safe")
 	var file: FileAccess = FileAccess.open(directory+"/samples.json",FileAccess.WRITE)
 	check(file != null, "shield sample metrics are writable")

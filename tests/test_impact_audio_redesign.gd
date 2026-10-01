@@ -156,6 +156,7 @@ func _test_materials_and_dynamics() -> void:
 
 func _test_cache_bounds() -> void:
 	# Warm the complete finite domain before probing arbitrary external inputs.
+	Audio.prewarm()
 	for hero: String in HEROES:
 		for cue: String in CUES + Audio.PREPARE_CUES:
 			for variation: int in 4:
@@ -171,7 +172,7 @@ func _test_cache_bounds() -> void:
 		for cue: String in Audio.DEPLOYMENT_CUES:
 			Audio.stream_for("", cue, variation)
 	var warmed_size: int = Audio._streams.size()
-	check(warmed_size == 248, "cache is exactly 132 hero releases/hits, 48 preparations, 8 hurt/pickup, 12 defeats, 12 deployment, 12 resonance and 24 shield events")
+	check(warmed_size == 252, "cache is exactly 132 hero releases/hits, 48 preparations, 8 hurt/pickup, 12 defeats, 16 deployment, 12 resonance and 24 shield events")
 	for index: int in 64:
 		check(Audio.stream_for("missing_%d" % index, "impact") == null, "invalid hero cannot create a stream")
 		check(Audio.stream_for("CH01", "missing_%d" % index) == null, "invalid cue cannot create a stream")

@@ -92,12 +92,12 @@ func _test_pcm() -> void:
 
 func _test_cache() -> void:
 	Audio.prewarm()
-	check(Audio._streams.size() == 248, "complete library exactly 132 hero release/hit, 48 preparation, 8 hurt/pickup, 12 collapse, 12 deployment, 12 resonance and 24 shield streams")
+	check(Audio._streams.size() == 252, "complete library exactly 132 hero release/hit, 48 preparation, 8 hurt/pickup, 12 collapse, 16 deployment, 12 resonance and 24 shield streams")
 	for index: int in 40:
 		check(Audio.stream_for("unknown" + str(index), "defeat", index * -993, "invalid" + str(index)) == Audio.stream_for("", "defeat", posmod(index * -993, 4), "stone"), "special cue normalizes all public key fields")
 		check(Audio.stream_for("", "defeat", index, "metal") == Audio.stream_for("CH01", "defeat", posmod(index, 4), "metal"), "collapse has no hero-duplicated cache")
 		check(Audio.stream_for("", "bad" + str(index)) == null, "invalid special cue rejected")
-	check(Audio._streams.size() == 248, "arbitrary inputs cannot grow warmed cache")
+	check(Audio._streams.size() == 252, "arbitrary inputs cannot grow warmed cache")
 
 func _test_crowd_and_priority() -> void:
 	check(audio.impact("CH01"), "ordinary hit accepts first")

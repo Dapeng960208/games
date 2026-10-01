@@ -237,7 +237,7 @@ func _export_samples() -> void:
 
 func _test_pcm_and_cache() -> void:
 	Audio.prewarm()
-	check(Audio.RESONANCE_CUES == ["resonance_1","resonance_2","resonance_full"] and Audio._streams.size() == 248, "three four-take resonance families coexist with the finite 248-stream library including twenty-four shield streams")
+	check(Audio.RESONANCE_CUES == ["resonance_1","resonance_2","resonance_full"] and Audio._streams.size() == 252, "three four-take resonance families coexist with the finite 252-stream library including twenty-four shield streams")
 	var signatures: Dictionary = {}
 	for level: int in [1,2,3]:
 		var cue: String = Audio.RESONANCE_CUES[level-1]
@@ -264,5 +264,5 @@ func _test_pcm_and_cache() -> void:
 		for cue: String in Audio.RESONANCE_CUES:
 			check(Audio.stream_for("unknown",cue,-41*index,"unknown") == Audio.stream_for("",cue,posmod(-41*index,4)), "charge cache inputs normalize before constructing keys")
 		check(Audio.stream_for("","resonance_"+str(index+4)) == null, "unknown charge names cannot grow the cue domain")
-	check(Audio._streams.size() == 248 and Audio.CUES.size() == 7 and Audio.MAX_VOICES == 8 and Audio.RESERVED_PLAYER_VOICES == 2, "new family preserves finite cache, seven hero slots and existing polyphony")
+	check(Audio._streams.size() == 252 and Audio.CUES.size() == 7 and Audio.MAX_VOICES == 8 and Audio.RESERVED_PLAYER_VOICES == 2, "new family preserves finite cache, seven hero slots and existing polyphony")
 	check(Audio.SAMPLE_PEAK*Audio.VOICE_GAIN*Audio.MAX_VOICES+0.58*Music.MUSIC_GAIN < 0.95, "unchanged correlated SFX-plus-music peak budget remains below full scale")

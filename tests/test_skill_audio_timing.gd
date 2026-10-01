@@ -199,7 +199,7 @@ func _energy(stream: AudioStreamWAV, begin: float, end: float) -> float:
 
 func _test_pcm() -> void:
 	Audio.prewarm()
-	check(Audio._streams.size() == 248, "complete cue domain is exactly bounded at 248 production samples including twenty-four shield streams")
+	check(Audio._streams.size() == 252, "complete cue domain is exactly bounded at 252 production samples including twenty-four shield streams")
 	for hero: String in Audio.HEROES:
 		for slot: String in ["q", "secondary", "f", "ultimate"]:
 			var preparation_signatures: Dictionary = {}

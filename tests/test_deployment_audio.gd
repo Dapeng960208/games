@@ -234,14 +234,20 @@ func _test_pool_and_settings() -> void:
 	for cue: String in Audio.DEPLOYMENT_CUES:
 		check(audio.deployment(cue), cue + " has independent same-frame clustering group")
 		check(not audio.deployment(cue), cue + " rejects same-frame repeat")
-	check(_deployment_count() == 3 and is_equal_approx(music.impact_duck_gain(), 1.0), "three accepted mechanism cues never trigger combat music duck")
-	for index: int in 3:
+	check(_deployment_count() == Audio.DEPLOYMENT_CUES.size() and is_equal_approx(music.impact_duck_gain(), 1.0), "four accepted deployment cues never trigger combat music duck")
+	for index: int in Audio.DEPLOYMENT_CUES.size():
 		var cue: String = Audio.DEPLOYMENT_CUES[index]
 		check(is_equal_approx(db_to_linear(audio.get_child(index).volume_db), Audio.VOICE_GAIN * float(Audio.DEPLOYMENT_GAINS[cue])), cue + " actual player uses low deployment gain")
-	audio.advance(0.099)
-	for cue: String in Audio.DEPLOYMENT_CUES: check(not audio.deployment(cue), cue + " gate remains closed at 99ms")
-	audio.advance(0.002)
-	for cue: String in Audio.DEPLOYMENT_CUES: check(audio.deployment(cue), cue + " gate opens beyond 100ms")
+	# Four simultaneous families plus their second round would exceed the six
+	# background slots. Check cadence independently from the reservation limit.
+	audio.stop_all()
+	for cue: String in Audio.DEPLOYMENT_CUES:
+		check(audio.deployment(cue), cue + " starts an independent cadence fixture")
+		audio.advance(0.099)
+		check(not audio.deployment(cue), cue + " gate remains closed at 99ms")
+		audio.advance(0.002)
+		check(audio.deployment(cue), cue + " gate opens beyond 100ms")
+		audio.stop_all()
 	audio.stop_all()
 	for index: int in 6:
 		check(audio._request("", "field_pulse", "field_pulse", 0.0, "stone", 0.24), "deployment fixtures occupy six actual background tracks")
@@ -251,6 +257,19 @@ func _test_pool_and_settings() -> void:
 	check(audio.attack("CH02") and audio.impact("CH02"), "player action and actual ordinary contact retain two reserved tracks")
 	check(audio.active_voice_count() == 8 and not audio.deployment("trap_trigger"), "deployment event obeys total eight-track ceiling")
 	for index: int in 6: check(audio.get_child(index).stream == retained[index], "new rejected events never cut existing deployment waveform")
+	audio.stop_all()
+	# A grenade is the player's delayed release, not passive machinery. Its
+	# explosion and one direct hit must survive six occupied background voices.
+	for index: int in 6:
+		check(audio._request("", "field_pulse", "field_pulse", 0.0, "stone", 0.24), "grenade priority fixture occupies a background voice")
+	retained.clear()
+	for voice: AudioStreamPlayer in audio._players: retained.append(voice.stream)
+	check(audio.deployment("grenade_burst") and audio.active_voice_count() == 7, "real grenade detonation uses the seventh foreground voice behind six background voices")
+	check(not audio.deployment("grenade_burst") and audio.active_voice_count() == 7, "foreground admission preserves the grenade's same-frame clustering gate")
+	check(audio.impact("CH02", true) and audio.active_voice_count() == 8, "direct heavy contact retains the eighth voice beside grenade detonation")
+	audio.advance(0.101)
+	check(not audio.deployment("grenade_burst") and audio.active_voice_count() == 8, "grenade with an open clustering gate still respects the full eight-voice cap")
+	for index: int in 6: check(audio._players[index].stream == retained[index], "foreground grenade and contact never steal a background waveform")
 	audio.stop_all()
 	game.profile.settings.reduced_fx = true
 	check(audio.deployment("node_fire"), "reduced visual effects retains deployment audio")
@@ -300,7 +319,7 @@ func _test_real_playback() -> void:
 	check(not voice.playing and voice.stream == null, "natural mechanism completion releases track")
 	check(await audio.wait_for_cleanup() and playback.get_ref() == null, "real mechanism mixer playback is destroyed after completion")
 	for index: int in 9:
-		check(audio.deployment(Audio.DEPLOYMENT_CUES[index % 3]), "immediate-stop lifecycle creates real mechanism voice")
+		check(audio.deployment(Audio.DEPLOYMENT_CUES[index % Audio.DEPLOYMENT_CUES.size()]), "immediate-stop lifecycle creates real mechanism voice")
 		audio.stop_all()
 	check(await audio.wait_for_cleanup() and audio.pending_playback_count() == 0, "repeated immediate mechanism stops leave no live playback")
 	audio.audible = false
@@ -315,7 +334,7 @@ func _energy(stream: AudioStreamWAV) -> float:
 
 func _test_pcm_and_cache() -> void:
 	Audio.prewarm()
-	check(Audio.DEPLOYMENT_CUES == ["trap_trigger", "node_fire", "field_pulse"] and Audio._streams.size() == 248, "three deployment action families coexist with the finite 248-stream library including resonance and twenty-four shield streams")
+	check(Audio.DEPLOYMENT_CUES == ["trap_trigger", "node_fire", "field_pulse", "grenade_burst"] and Audio._streams.size() == 252, "four deployment action families coexist with the finite 252-stream library including resonance and twenty-four shield streams")
 	var all_signatures: Dictionary = {}
 	for cue: String in Audio.DEPLOYMENT_CUES:
 		var signatures: Dictionary = {}
@@ -323,7 +342,7 @@ func _test_pcm_and_cache() -> void:
 			var stream: AudioStreamWAV = Audio.stream_for("", cue, variant)
 			var label: String = cue + "/v" + str(variant)
 			check(stream != null and stream.mix_rate == 24000 and not stream.stereo and stream.format == AudioStreamWAV.FORMAT_16_BITS, label + " has real authored mono PCM")
-			check(stream.get_length() >= 0.10 and stream.get_length() <= 0.20, label + " is a short mechanism action")
+			check(stream.get_length() >= 0.10 and stream.get_length() <= (0.35 if cue == "grenade_burst" else 0.20), label + " is a short mechanism action")
 			var peak: float = 0.0
 			var total: float = 0.0
 			for index: int in stream.data.size() / 2:
@@ -333,16 +352,20 @@ func _test_pcm_and_cache() -> void:
 			check(peak > 0.08 and peak <= Audio.SAMPLE_PEAK, label + " preserves audible signal and peak headroom")
 			check(absf(total / (stream.data.size() / 2)) < 0.003 and _energy(stream) > 0.00001, label + " has negligible DC and nonzero meaningful energy")
 			check(stream.data.decode_s16(0) == 0 and stream.data.decode_s16(stream.data.size() - 2) == 0 and stream.loop_mode == AudioStreamWAV.LOOP_DISABLED, label + " starts/ends at zero and never loops")
-			var hero: String = "CH02" if cue == "trap_trigger" else "CH03"
+			var hero: String = "CH02" if cue in ["trap_trigger", "grenade_burst"] else "CH03"
 			var relative_gain: float = float(Audio.DEPLOYMENT_GAINS[cue])
-			check(_energy(stream) * relative_gain * relative_gain < _energy(Audio.stream_for(hero, "heavy", variant)) * 0.10, label + " foreground heavy contact dominates actual mixed energy")
+			if cue == "grenade_burst":
+				var mixed_energy: float = _energy(stream) * relative_gain * relative_gain
+				check(mixed_energy > _energy(Audio.stream_for("CH02", "attack", variant)) * 0.6 and mixed_energy < _energy(Audio.stream_for("CH01", "heavy", variant)) * 1.2, label + " physical detonation is stronger than a dry report and bounded by heavy melee energy")
+			else:
+				check(_energy(stream) * relative_gain * relative_gain < _energy(Audio.stream_for(hero, "heavy", variant)) * 0.10, label + " foreground heavy contact dominates actual mixed energy")
 			signatures[hash(stream.data)] = true
 			all_signatures[hash(stream.data)] = true
 		check(signatures.size() == 4, cue + " has four independently generated waveforms")
-	check(all_signatures.size() == 12, "all deployment cues and variations are distinct PCM")
+	check(all_signatures.size() == 16, "all deployment cues and variations are distinct PCM")
 	for index: int in 40:
 		for cue: String in Audio.DEPLOYMENT_CUES:
 			check(Audio.stream_for("unknown" + str(index), cue, index * -119, "unknown" + str(index)) == Audio.stream_for("", cue, posmod(index * -119, 4)), "deployment external inputs normalize to authored bounded resource")
 		check(Audio.stream_for("", "deployment_unknown" + str(index)) == null, "unknown cue cannot create arbitrary synth resource")
-	check(Audio._streams.size() == 248, "external input probes cannot grow deployment cache")
+	check(Audio._streams.size() == 252, "external input probes cannot grow deployment cache")
 	check(Audio.MAX_VOICES == 8 and Audio.RESERVED_PLAYER_VOICES == 2 and Audio.VOICE_GAIN * Audio.SAMPLE_PEAK * Audio.MAX_VOICES < 0.95, "existing voice count and correlated peak headroom remain unchanged")
