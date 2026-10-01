@@ -182,7 +182,14 @@ static func detail(panel: Control) -> void:
 		action = "CLAIM_INSTANCE"
 		disabled = panel.busy
 		note = Inspect.t("待领取物品仍归你所有；背包有空间时可领取。","This item is retained; collect it when inventory space is available.")
-	MineStyle.literal(right,note,Vector2(20,433),Vector2(448,29),13,MineStyle.MUTED)
+	if item.get("instance_record") is Dictionary and panel.mode == "inventory" and not pending_claim:
+		var forge := MineStyle.button(right,"",Vector2(274,433),Vector2(194,29),func(): panel.forge_kind = "enhance"; panel._switch_page("upgrade"))
+		forge.name = "OpenInstanceForge"
+		forge.text = Inspect.t("锻造 / 锁定", "Forge / lock")
+		forge.add_theme_font_size_override("font_size",13)
+		MineStyle.literal(right,note,Vector2(20,433),Vector2(244,29),12,MineStyle.MUTED)
+	else:
+		MineStyle.literal(right,note,Vector2(20,433),Vector2(448,29),13,MineStyle.MUTED)
 	panel.action_button = MineStyle.button(right,action,Vector2(20,465),Vector2(448,36),panel._commit_item)
 	panel.action_button.name = "PrimaryAction"
 	MineStyle.primary(panel.action_button)

@@ -121,6 +121,8 @@ static func validate(record: Dictionary) -> Array[String]:
 	if not record.location is String or record.location not in LOCATIONS: errors.append("Unknown instance location.")
 	if not record.lock_state is bool: errors.append("Lock state must be a boolean.")
 	if record.has("purchase_baseline_gold") and not _nonnegative_integer(record.purchase_baseline_gold): errors.append("Invalid frozen purchase baseline.")
+	if record.has("forge_revision") and not _integer_in(record.forge_revision, 0, 1000000000000): errors.append("Invalid forge revision.")
+	if record.has("pending_reforge") and not record.pending_reforge is Dictionary: errors.append("Invalid pending reforge value.")
 	if record.has("legacy_equip_waiver"): _validate_waiver(record, errors)
 	return errors
 

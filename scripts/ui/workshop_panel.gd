@@ -11,6 +11,7 @@ const Recycle = preload("res://scripts/ui/equipment_recycle_panel.gd")
 const HeroDossier = preload("res://scripts/ui/hero_dossier.gd")
 const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
 const StatSheet = preload("res://scripts/ui/stat_sheet.gd")
+const InstanceForging = preload("res://scripts/ui/instance_forging_panel.gd")
 const InstanceCreation = preload("res://scripts/ui/instance_acquisition_panel.gd")
 const Catalog = preload("res://scripts/ui/equipment_catalog.gd")
 var app: Node
@@ -41,6 +42,16 @@ var creation_level := 0
 var creation_transaction_id := ""
 var creation_message := ""
 var creation_omitted: Dictionary = {}
+var forge_kind := "enhance"
+var forge_rank := 1
+var forge_affix_index := 0
+var forge_affix_type := ""
+var forge_source_instance_id := ""
+var forge_transaction_id := ""
+var forge_frozen_kind := ""
+var forge_frozen_request: Dictionary = {}
+var forge_message := ""
+var forge_result_details := ""
 
 func _ready() -> void:
 	preview_hero = str(Game.profile.get("selected_hero","CH01"))
@@ -58,7 +69,7 @@ func _render() -> void:
 	if mode == "shop": heading.text = _t("套装商城 · 14 套", "SET SHOP · 14 SETS") if shop_sets else _t("单件装备目录", "EQUIPMENT SHOP")
 	if mode == "inventory": heading.text = _t("装备回收" if inventory_recycle else "装备背包", "EQUIPMENT RECYCLING" if inventory_recycle else "EQUIPMENT INVENTORY")
 	if mode == "craft": heading.text = _t("定向打造", "CRAFT EQUIPMENT")
-	if mode == "upgrade": heading.text = _t("装备强化", "EQUIPMENT REFINEMENT")
+	if mode == "upgrade": heading.text = _t("装备锻造 · 强化与继承", "EQUIPMENT FORGE · IMPROVE & INHERIT") if int(Game.profile.get("ruleset_version",1)) == 2 else _t("装备强化", "EQUIPMENT REFINEMENT")
 	MineStyle.literal(header,_t("金币","GOLD"),Vector2(802,13),Vector2(160,19),12,MineStyle.AMBER)
 	MineStyle.literal(header,str(int(Game.profile.get("permanent_gold",0))),Vector2(802,34),Vector2(160,32),23,MineStyle.INK)
 	MineStyle.button(header,"RETURN_CAMP",Vector2(982,27),Vector2(214,45),app.show_camp).name = "ReturnCamp"
@@ -84,7 +95,7 @@ func _render() -> void:
 	elif mode == "inventory":
 		var recycle_toggle := MineStyle.button(header,"",Vector2(976,96),Vector2(220,40),func(): inventory_recycle = not inventory_recycle; _render())
 		recycle_toggle.name = "ToggleRecycle"
-		recycle_toggle.text = _t("返回装备背包", "Back to inventory") if inventory_recycle else _t("多选回收装备", "Recycle equipment")
+		recycle_toggle.text = _t("返回装备背包", "Back to inventory") if inventory_recycle else (_t("出售 / 拆解", "Sell / dismantle") if int(Game.profile.get("ruleset_version",1)) == 2 else _t("多选回收装备", "Recycle equipment"))
 		recycle_toggle.add_theme_font_size_override("font_size",15)
 		MineStyle.button_skin(recycle_toggle,"secondary" if inventory_recycle else "danger")
 	body = Control.new()
@@ -97,6 +108,8 @@ func _render() -> void:
 		_render_skills()
 	elif int(Game.profile.get("ruleset_version",1)) == 2 and mode in ["shop","craft"]:
 		InstanceCreation.render(self)
+	elif int(Game.profile.get("ruleset_version",1)) == 2 and mode == "upgrade":
+		InstanceForging.render(self)
 	elif mode == "shop" and shop_sets:
 		SetShop.render(self)
 	elif mode == "inventory" and inventory_recycle:

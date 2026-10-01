@@ -860,7 +860,7 @@ func show_workshop(page: String = "heroes") -> void:
 	workshop.mode = page
 	workshop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	screen.add_child(workshop)
-	_show_warning(screen,Vector2(752,671),Vector2(478,25))
+	_show_warning(screen,Vector2(784,153),Vector2(452,22))
 
 func _show_warning(parent: Node, at: Vector2, extent: Vector2) -> void:
 	if not Game.storage_warning.is_empty():

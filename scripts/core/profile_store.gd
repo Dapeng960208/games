@@ -10,6 +10,7 @@ const ECONOMY_RULES_VERSION := Economy.CURRENT_VERSION
 const Progression = preload("res://scripts/core/hero_progression.gd")
 const Loot = preload("res://scripts/core/expedition_rewards.gd")
 const Transactions = preload("res://scripts/core/instance_transactions.gd")
+const Forging = preload("res://scripts/core/instance_forging.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Expedition = preload("res://scripts/core/expedition_state.gd")
 const MAX_NUMBER := 1_000_000_000_000
@@ -461,14 +462,17 @@ static func _valid_progression(profile: Dictionary) -> bool:
 ## Document byte limits bound storage; catalog size must not cap duplicates.
 static func _valid_instance_equipment(profile: Dictionary) -> bool:
 	if not profile.get("equipment") is Dictionary: return false
+	if not Forging.validate_profile(profile).is_empty(): return false
 	if not Transactions.validate_ledger(profile.get("instance_transactions")): return false
 	if not _number(profile.get("inventory_capacity", 0), MAX_NUMBER) or not Loot.pity_valid(profile.get("gold_pity", {})): return false
 	if not profile.get("pending_claim_receipts", {}) is Dictionary: return false
 	for operation: Variant in profile.get("pending_claim_receipts", {}):
 		if not operation is String or operation.is_empty() or operation.length() > 160: return false
 		var id: Variant = profile.pending_claim_receipts[operation]
-		if not id is String or not profile.equipment.has(id) or profile.equipment[id].get("location") == "pending": return false
-	if not profile.get("equipment") is Dictionary: return false
+		if not id is String: return false
+		if not profile.equipment.has(id):
+			if not Forging.is_retired(profile, id): return false
+		elif profile.equipment[id].get("location") == "pending": return false
 	for id: Variant in profile.equipment:
 		if not id is String or id.is_empty() or id.length() > 160: return false
 		var record: Variant = profile.equipment[id]

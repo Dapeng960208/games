@@ -12,6 +12,10 @@ static func _label(parent: Control, text: String, at: Vector2, extent: Vector2, 
 	return label
 
 static func render(panel: Control) -> void:
+	if int(Game.profile.get("ruleset_version",1)) == 2:
+		if panel.forge_kind not in ["sell","dismantle"]: panel.forge_kind = "sell"
+		preload("res://scripts/ui/instance_forging_panel.gd").render(panel,true)
+		return
 	for id: String in panel.sale_selection.keys():
 		if not Game.profile.equipment.has(id) or id in Game.profile.loadout.values(): panel.sale_selection.erase(id)
 	var left := MineStyle.panel(panel.body,Vector2.ZERO,Vector2(710,510))

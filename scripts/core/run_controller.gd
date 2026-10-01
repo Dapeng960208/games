@@ -38,6 +38,7 @@ const FieldSnapshot = preload("res://scripts/combat/combat_snapshot.gd")
 const Loot = preload("res://scripts/core/expedition_rewards.gd")
 const Transactions = preload("res://scripts/core/instance_transactions.gd")
 var _pending_instance_transactions: Dictionary = {}
+var _pending_forging_transactions: Dictionary = {}
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 
 func _ready() -> void:
@@ -52,6 +53,7 @@ func _process(delta: float) -> void:
 		run.elapsed += delta
 
 func reload_profile() -> void:
+	_pending_forging_transactions.clear()
 	damage_trail.clear()
 	_session_result.clear()
 	if not _demo_backup.is_empty():
@@ -114,6 +116,8 @@ func new_profile() -> bool:
 	if not _save(fresh, null):
 		return false
 	profile = fresh
+	_pending_forging_transactions.clear()
+	_pending_instance_transactions.clear()
 	_session_result.clear()
 	damage_trail.clear()
 	last_loadout_missing.clear()
@@ -593,13 +597,15 @@ func _legacy_equipment_transaction() -> bool:
 	return false
 
 func upgrade_cost(eq_id: String) -> int:
-	if _profile_ruleset() == Numbers.V2: return 0
+	if _profile_ruleset() == Numbers.V2:
+		var quote := quote_forging_v2("enhance", {"instance_id":eq_id})
+		return int(quote.get("gold", 0)) if bool(quote.get("ok", false)) else 0
 	if not profile.equipment.has(eq_id) or equipment_level(eq_id) >= 5:
 		return 0
 	return UPGRADE_PRICES[equipment_level(eq_id)]
 
 func upgrade_has_gain(eq_id: String) -> bool:
-	if _profile_ruleset() == Numbers.V2: return false
+	if _profile_ruleset() == Numbers.V2: return bool(quote_forging_v2("enhance", {"instance_id":eq_id}).get("ok", false))
 	if not profile.equipment.has(eq_id) or equipment_level(eq_id) >= 5:
 		return false
 	var item := ContentRegistry.equipment(eq_id)
@@ -717,12 +723,17 @@ func equip_equipment_set(set_id: String) -> bool:
 	return _commit_profile(next_profile)
 
 func equipment_sell_value(eq_id: String) -> int:
-	if _profile_ruleset() == Numbers.V2: return 0
+	if _profile_ruleset() == Numbers.V2:
+		var quote := quote_forging_v2("sell", {"instance_id":eq_id})
+		return int(quote.get("gold_return", 0)) if bool(quote.get("ok", false)) else 0
 	if not profile.equipment.has(eq_id): return 0
 	return ProfileStore.equipment_sell_price(eq_id,equipment_level(eq_id))
 
 func sell_equipment_items(eq_ids: Array, transaction_id: String = "") -> bool:
 	last_error = ""
+	if _profile_ruleset() == Numbers.V2:
+		if eq_ids.size() != 1 or not eq_ids[0] is String: return false
+		return bool(forge_equipment_v2("sell", {"instance_id":eq_ids[0]}, transaction_id).get("ok", false))
 	if not _legacy_equipment_transaction(): return false
 	if not _camp_available() or eq_ids.is_empty() or eq_ids.size() > ContentRegistry.equipment_ids().size(): return false
 	var ids: Array[String] = []
@@ -770,6 +781,7 @@ func equip_item(eq_id: String) -> bool:
 
 func upgrade_equipment(eq_id: String, transaction_id: String = "") -> bool:
 	last_error = ""
+	if _profile_ruleset() == Numbers.V2: return bool(forge_equipment_v2("enhance", {"instance_id":eq_id}, transaction_id).get("ok", false))
 	if not _legacy_equipment_transaction(): return false
 	if not _camp_available():
 		return false
@@ -1634,4 +1646,82 @@ func _equip_instance_set(set_id: String) -> bool:
 				break
 		if selected.is_empty(): return false
 		next.loadout[ContentRegistry.equipment(template, 2).slot] = selected
+	return _commit_profile(next)
+
+## V2 camp forging is a detached service transaction. UI previews never roll;
+## the receipt is returned only after the candidate profile is durably saved.
+func _forging_service() -> Script:
+	return load("res://scripts/core/instance_forging.gd")
+
+func _forging_request(kind: String, spec: Dictionary, frozen: Dictionary = {}) -> Dictionary:
+	var request := _instance_request(spec)
+	var keys: Dictionary = {"source_revision":"source_instance_id","target_revision":"target_instance_id"} if kind == "inherit" else {"expected_revision":"instance_id"}
+	for key: String in keys:
+		if request.has(key): continue
+		if frozen.has(key): request[key] = frozen[key]
+		else:
+			var item: Dictionary = profile.get("equipment", {}).get(str(request.get(keys[key], "")), {})
+			request[key] = int(item.get("forge_revision", 0))
+	return request
+
+func _forging_items(kind: String, request: Dictionary) -> Dictionary:
+	var result := {}
+	var keys: Array = ["source_instance_id", "target_instance_id"] if kind == "inherit" else ["instance_id"]
+	for key: String in keys:
+		var id := str(request.get(key, ""))
+		if profile.equipment.has(id): result[id] = profile.equipment[id].duplicate(true)
+	return result
+
+func quote_forging_v2(kind: String, spec: Dictionary) -> Dictionary:
+	if _profile_ruleset() != Numbers.V2 or not _camp_available(): return {"ok":false,"error":"camp_required"}
+	return _forging_service().quote(profile, kind, _forging_request(kind, spec))
+
+func forge_equipment_v2(kind: String, spec: Dictionary, transaction_id: String) -> Dictionary:
+	if _profile_ruleset() != Numbers.V2 or not _camp_available(): return {"ok":false,"error":"camp_required"}
+	var id := transaction_id
+	if id.is_empty(): id = "forge:" + Crypto.new().generate_random_bytes(16).hex_encode()
+	if id.length() > 160: return {"ok":false,"error":"INVALID_OPERATION_ID"}
+	var frozen: Dictionary = profile.get("forging_transactions", {}).get("operations", {}).get(id, {}).get("request", {})
+	if _pending_forging_transactions.has(id): frozen = _pending_forging_transactions[id].request
+	elif not _pending_forging_transactions.is_empty(): return {"ok":false,"error":"PENDING_FORGE_RETRY"}
+	var request := _forging_request(kind, spec, frozen)
+	if _pending_forging_transactions.has(id):
+		var previous: Dictionary = _pending_forging_transactions[id]
+		if previous.kind != kind or not Loot.same(previous.request, request) or not Loot.same(previous.expected_items, _forging_items(kind, request)): return {"ok":false,"error":"OPERATION_CONFLICT"}
+	var result: Dictionary = _forging_service().transact(profile, id, kind, request)
+	if not bool(result.get("ok", false)):
+		last_error = str(result.get("error", ""))
+		return result
+	if bool(result.get("replayed", false)):
+		_pending_forging_transactions.erase(id)
+		return {"ok":true,"error":"","receipt":result.receipt.duplicate(true),"replayed":true}
+	_pending_forging_transactions[id] = {"operation_id":id,"kind":kind,"request":request.duplicate(true),"expected_items":_forging_items(kind, request)}
+	if not _commit_profile(result.profile): return {"ok":false,"error":last_error,"operation_id":id}
+	_pending_forging_transactions.erase(id)
+	return {"ok":true,"error":"","receipt":result.receipt.duplicate(true),"replayed":false}
+
+func pending_forging_v2() -> Dictionary:
+	if _pending_forging_transactions.is_empty(): return {}
+	return _pending_forging_transactions.values()[0].duplicate(true)
+
+func cancel_pending_forging_v2(operation_id: String) -> bool:
+	if not _camp_available() or not _pending_forging_transactions.has(operation_id): return false
+	if profile.get("forging_transactions", {}).get("operations", {}).has(operation_id): return false
+	_pending_forging_transactions.erase(operation_id)
+	return true
+
+func resolve_reforge_v2(instance_id: String, choice: String, transaction_id: String) -> Dictionary:
+	var item: Dictionary = profile.get("equipment", {}).get(instance_id, {})
+	return forge_equipment_v2("resolve_reforge", {"instance_id":instance_id,"pending_operation_id":str(item.get("pending_reforge", {}).get("operation_id", "")),"choice":choice}, transaction_id)
+
+func set_equipment_lock_v2(instance_id: String, locked: bool) -> bool:
+	if _profile_ruleset() != Numbers.V2 or not _camp_available() or not profile.equipment.has(instance_id): return false
+	var item: Dictionary = profile.equipment[instance_id]
+	if not item.get("pending_reforge", {}).is_empty() or not _pending_forging_transactions.is_empty():
+		last_error = "PENDING_FORGE_RETRY"
+		return false
+	if bool(item.lock_state) == locked: return true
+	var next := profile.duplicate(true)
+	next.equipment[instance_id].lock_state = locked
+	next.equipment[instance_id]["forge_revision"] = int(item.get("forge_revision", 0)) + 1
 	return _commit_profile(next)

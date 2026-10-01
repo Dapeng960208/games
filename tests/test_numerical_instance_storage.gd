@@ -142,7 +142,7 @@ func _controller(fixture: Dictionary) -> void:
 	next.equipment["high-level"] = fixture_instance("high-level", "EQ03", 50, "physical", 20)
 	next.equipment["copy-high"].lock_state = true
 	next.equipment["copy-high"].enhancement_rank = 2
-	next.equipment["copy-high"].enhancement_steps = [{"g":10,"pity":0,"base_price_peak":0}, {"g":10,"pity":0,"base_price_peak":0}]
+	next.equipment["copy-high"].enhancement_steps = [{"g":10,"pity":0,"base_price_peak":40}, {"g":10,"pity":0,"base_price_peak":60}]
 	check(Game._commit_profile(next), "controller saves generated v2 instances")
 	check(Game.profile.equipment["fixture-EQ03"].location == "equipped" and Game.profile.equipment["copy-low"].location == "inventory", "initial commit normalizes active and unequipped locations")
 	check(Game.profile.equipment["pending-copy"].location == "pending" and next.equipment["fixture-EQ03"].location == "inventory", "normalization preserves pending items and caller-owned values")
@@ -177,11 +177,11 @@ func _controller(fixture: Dictionary) -> void:
 	check(not Game.equip_item("copy-low") and Game.last_error == "STORAGE_CAPACITY_EXCEEDED", "failed equip save rejects normalized candidate")
 	check(Game.profile == before, "failed equip leaves prior loadout locations rolls and locks untouched")
 	Game._store.max_document_bytes = previous_limit
-	check(not Game.buy_equipment("EQ03", "s03-buy") and not Game.buy_equipment_set("S01", "s03-set"), "v2 purchase waits for atomic S05")
-	check(not Game.upgrade_equipment("copy-low", "s03-upgrade") and not Game.sell_equipment_items(["copy-low"], "s03-sale"), "v2 upgrade and recycle wait for S06")
+	check(not Game.buy_equipment("EQ03", "s03-buy") and not Game.buy_equipment_set("S01", "s03-set"), "zero-wallet fixture cannot buy equipment")
+	check(not Game.upgrade_equipment("copy-low", "s03-upgrade") and not Game.sell_equipment_items(["copy-low"], "s03-sale"), "level-one upgrade and missing-sale-baseline recycling reject safely")
 	check(Game.upgrade_cost("copy-low") == 0 and Game.equipment_sell_value("copy-low") == 0 and Game.preview_upgrade_stats("copy-low").is_empty(), "legacy price and fake enhancement previews disabled")
 	check(not Game._add_equipment_drop({}, "s03-drop", "EQ03", 0), "v2 drop cannot enter template overwrite or auto-gold path")
-	check(Game.profile == before, "unsupported operations leave every asset and receipt unchanged")
+	check(Game.profile == before, "rejected operations leave every asset and receipt unchanged")
 	check(Game.start_run({"expedition":true}) and Game.run.ruleset_version() == 2, "S04 enables versioned v2 expedition start")
 	check(not Game.finish_run("abandoned").is_empty() and Game.run == null, "S04 versioned expedition can return to camp")
 	check(Game.start_run(), "synthetic non-expedition v2 growth/combat path remains available")
