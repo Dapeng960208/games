@@ -5,17 +5,20 @@ extends Node2D
 
 const GRID := Vector2i(3,2)
 const SAMPLING_SHADER = preload("res://shaders/environment_sampling.gdshader")
+const NativeDetail = preload("res://scripts/world/environment_detail.gd")
 var chunks: Array[Sprite2D] = []
 var source_regions: Array[Rect2i] = []
 var world_rect := Rect2()
 var environment_id := ""
 var _texture: Texture2D
+var native_detail: Node2D
 
 func configure(texture: Texture2D, destination: Rect2, room_id: String = "") -> void:
 	if _texture==texture and world_rect==destination and environment_id==room_id and (chunks.size()==GRID.x*GRID.y or (texture==null and chunks.is_empty())): return
 	for child: Node in get_children():
 		remove_child(child)
 		child.free()
+	native_detail = null
 	chunks.clear()
 	source_regions.clear()
 	world_rect = destination
@@ -55,3 +58,11 @@ func configure(texture: Texture2D, destination: Rect2, room_id: String = "") -> 
 			add_child(sprite)
 			chunks.append(sprite)
 			source_regions.append(source)
+	# Only individually approved room packs opt in. Missing/candidate packs
+	# keep the complete original painting; neither path changes room geometry.
+	var detail := NativeDetail.new()
+	if detail.configure(room_id,destination):
+		add_child(detail)
+		native_detail = detail
+	else:
+		detail.free()
