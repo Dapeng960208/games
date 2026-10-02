@@ -1,13 +1,15 @@
 extends Panel
-## A parchment journal card with restrained copper registration details.
-
+## Soft ivory panel with restrained antique-gold ornament at generous sizes.
+static var corner: Texture2D
 func _ready() -> void:
 	resized.connect(queue_redraw)
-
+	if corner == null and ResourceLoader.exists("res://assets/generated/ui/refactor_v1/decor/panel_corner_tl.png"):
+		corner = load("res://assets/generated/ui/refactor_v1/decor/panel_corner_tl.png")
 func _draw() -> void:
-	if size.x < 44 or size.y < 24:
-		return
-	draw_line(Vector2(20,3),Vector2(minf(66,size.x-20),3),MineStyle.COPPER,2,true)
-	draw_line(Vector2(20,size.y-4),Vector2(minf(44,size.x-20),size.y-4),Color(MineStyle.COPPER,0.55),1,true)
-	var mark := Vector2(size.x-17,16)
-	draw_polyline(PackedVector2Array([mark+Vector2(-4,0),mark+Vector2(0,-4),mark+Vector2(4,0),mark+Vector2(0,4),mark+Vector2(-4,0)]),Color(MineStyle.COPPER,0.75),1,true)
+	if size.x < 240 or size.y < 160: return
+	if corner != null:
+		var edge := minf(42,size.y*0.12)
+		draw_texture_rect(corner,Rect2(3,3,edge,edge),false,Color(1,1,1,0.22))
+		draw_set_transform(Vector2(size.x-3,size.y-3),PI)
+		draw_texture_rect(corner,Rect2(0,0,edge,edge),false,Color(1,1,1,0.18))
+		draw_set_transform(Vector2.ZERO)
