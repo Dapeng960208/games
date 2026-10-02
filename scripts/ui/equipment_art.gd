@@ -46,17 +46,32 @@ static func region(id: String) -> Rect2:
 
 static func texture(id: String) -> Texture2D:
 	if _textures.has(id): return _textures[id]
-	var path := source_path(id)
+	var image := _entry_texture(_read_manifest().get("items", {}).get(id, {}))
+	if image != null: _textures[id] = image
+	return image
+
+static func slot_texture(slot: String) -> Texture2D:
+	var key := "slot:"+slot
+	if _textures.has(key): return _textures[key]
+	var image := _entry_texture(_read_manifest().get("slot_fallbacks", {}).get(slot, {}))
+	if image != null: _textures[key] = image
+	return image
+
+static func _entry_texture(entry: Dictionary) -> Texture2D:
+	var path := str(entry.get("texture", ""))
 	if path.is_empty(): return null
 	var source: Texture2D = Sampler.sampled(path)
 	if source == null: return null
-	var bounds := region(id)
+	var value: Variant = entry.get("region", [])
+	if not value is Array or value.size() != 4: return null
+	for coordinate: Variant in value:
+		if not coordinate is int and not coordinate is float: return null
+	var bounds := Rect2(float(value[0]),float(value[1]),float(value[2]),float(value[3]))
 	if not bounds.has_area() or not Rect2(Vector2.ZERO, source.get_size()).encloses(bounds): return null
 	var image := AtlasTexture.new()
 	image.atlas = source
 	image.region = bounds
 	image.filter_clip = true
-	_textures[id] = image
 	return image
 
 static func fallback_texture(_slot: String) -> Texture2D:

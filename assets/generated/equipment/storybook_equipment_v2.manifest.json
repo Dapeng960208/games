@@ -3003,6 +3003,22 @@
     "physical_identity_review_passed": true
   },
   "provenance_index": "res://assets/generated/equipment/storybook_equipment_v2.provenance.json",
+  "slot_fallbacks": {
+    "legs": {
+      "texture": "res://assets/generated/equipment/storybook_pants_v2.png",
+      "region": [113, 108, 183, 203],
+      "source_id": "PANTS01",
+      "provenance": "res://assets/generated/equipment/storybook_pants_v2.json",
+      "note": "Shared neutral slot illustration for live templates without dedicated art; does not activate the preserved racial proposal."
+    },
+    "ring": {
+      "texture": "res://assets/generated/equipment/storybook_ring_v2.png",
+      "region": [104, 122, 211, 192],
+      "source_id": "RING01",
+      "provenance": "res://assets/generated/equipment/storybook_ring_v2.json",
+      "note": "Shared neutral slot illustration for live templates without dedicated art; does not activate the preserved racial proposal."
+    }
+  },
   "future_assets": {
     "status": "preserved_previous_race_plan",
     "canonical_plan": "prior_4_race_plan_superseded_by_12_level_plan",
@@ -3478,7 +3494,7 @@
       "no_visible_source_edge_clipping": true,
       "physical_race_visual_review_passed": true
     },
-    "note": "Completed proposal artwork preserved from the previous four-race plan. These racial labels belong to that superseded plan, not the latest first four areas. No gameplay activation and no live EQ IDs; current sixty equipment entries remain unchanged."
+    "note": "Completed proposal artwork preserved from the previous four-race plan. These racial labels belong to that superseded plan, not the latest first four areas. No racial proposal or template IDs are activated. Neutral PANTS01/RING01 are now sampled only by slot_fallbacks for live legs/ring templates without dedicated art; original template artwork remains unchanged."
   },
   "catalog_name_sync": {
     "mapping": "artifacts/first_four_equipment_names.json",

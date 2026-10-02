@@ -22,6 +22,8 @@ func set_equipment(data: Dictionary) -> void:
 	# Individual source PNGs remain a missing-pack fallback in development builds.
 	if generated_texture == null and not is_empty:
 		generated_texture = Sampler.sampled("res://assets/generated/equipment/" + id + "_v1.png")
+	if generated_texture == null and not is_empty:
+		generated_texture = Art.slot_texture(str(data.get("slot", "")))
 	if generated_texture == null:
 		generated_texture = Art.fallback_texture(str(data.get("slot", "")))
 	queue_redraw()

@@ -49,11 +49,14 @@ static func render(panel: Control) -> void:
 		var row := MineStyle.button(rows,"",Vector2.ZERO,Vector2(242,44),func(): _change(panel,"selected_set" if set_mode else "selected_item",id))
 		row.name = "CreationChoice_"+id
 		row.custom_minimum_size = Vector2(242,44)
-		row.text = MineStyle.content_text(definition,"name")
-		row.add_theme_font_size_override("font_size",14)
-		row.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		row.tooltip_text = row.text
-		if id == selected: MineStyle.selected(row)
+		MineStyle.button_skin(row,"card")
+		var artwork: Dictionary = ContentRegistry.equipment(ContentRegistry.set_item_ids(id,2)[0],2) if set_mode else definition
+		MineStyle.equipment_icon(row,artwork,Vector2(8,3),Vector2(38,38)).name = "CreationChoiceArt_"+id
+		var caption := _label(row,MineStyle.content_text(definition,"name"),Vector2(54,7),Vector2(172,30),14)
+		caption.autowrap_mode = TextServer.AUTOWRAP_OFF
+		caption.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		row.tooltip_text = caption.text
+		if id == selected: MineStyle.selected(row,"card")
 	var right := MineStyle.panel(panel.body,Vector2(300,0),Vector2(916,510))
 	var definition: Dictionary = ContentRegistry.sets(2)[selected] if set_mode else ContentRegistry.equipment(selected,2)
 	_label(right,MineStyle.content_text(definition,"name"),Vector2(20,12),Vector2(876,40),25).name = "CreationItemName"
@@ -97,10 +100,11 @@ static func render(panel: Control) -> void:
 			if not panel.creation_omitted.has(id): request.template_ids.append(id)
 	else: request["template_id"] = selected
 	var quote: Dictionary = Transactions.quote_set(Game.profile,request) if set_mode else Transactions.quote_craft(Game.profile,request) if crafting else Transactions.quote_purchase(Game.profile,request)
+	_preview(right,selected,set_mode,missing)
 	var complete: bool = set_mode and missing.is_empty()
 	var lines: PackedStringArray = []
 	if set_mode:
-		lines.append(_t("该类型缺件 %d / 8；明确列出的缺件总价九折。","Missing %d / 8 for this type; 10%% off the listed missing-piece total.") % missing.size())
+		lines.append(_t("该类型缺件 %d / 8；明确列出的缺件总价九折。","Missing %d / 8 · 10%% off the listed pieces.") % missing.size())
 		lines.append(_t("已选择 %d 件，以下可取消勾选。","%d selected; uncheck any piece below.") % request.template_ids.size())
 	else:
 		lines.append(_t("主属性范围（不提前抽取结果）","Main-stat ranges (no preview roll)"))
@@ -110,27 +114,36 @@ static func render(panel: Control) -> void:
 			lines.append(Inspect.caption(key)+": "+_format_stat(key,float(low[key]))+" – "+_format_stat(key,float(high[key])))
 		lines.append(_t("普通随机词条 %d 条；分位 u 为 0–100，共101档。","%d random affixes; u=0–100, 101 possible quantiles.") % int(Numbers.value("rarities")[panel.creation_rarity].affix_count))
 	var text_scroll := ScrollContainer.new()
-	text_scroll.position = Vector2(20,175); text_scroll.size = Vector2(490,213)
+	text_scroll.name = "CreationDescription"
+	text_scroll.position = Vector2(20,248); text_scroll.size = Vector2(490,198)
 	text_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	right.add_child(text_scroll)
 	var description_rows := VBoxContainer.new()
 	description_rows.custom_minimum_size.x = 470
 	text_scroll.add_child(description_rows)
-	var description := _label(description_rows,"\n".join(lines),Vector2.ZERO,Vector2(470,0),16)
+	var description := _label(description_rows,"\n".join(lines),Vector2.ZERO,Vector2(470,0),14 if set_mode else 16)
 	description.custom_minimum_size.x = 470
 	if set_mode:
 		for id: String in missing:
+			var item := ContentRegistry.equipment(id,2)
 			var checkbox := CheckBox.new()
 			checkbox.name = "CreationInclude_"+id
-			checkbox.text = MineStyle.content_text(ContentRegistry.equipment(id,2),"name")
+			checkbox.custom_minimum_size = Vector2(470,70)
+			checkbox.tooltip_text = MineStyle.content_text(item,"name")
 			checkbox.button_pressed = not panel.creation_omitted.has(id)
 			checkbox.disabled = panel.busy
 			description_rows.add_child(checkbox)
+			MineStyle.equipment_icon(checkbox,item,Vector2(38,5),Vector2(56,56)).name = "CreationMissingArt_"+id
+			var caption := _label(checkbox,checkbox.tooltip_text,Vector2(102,5),Vector2(350,24),15)
+			caption.autowrap_mode = TextServer.AUTOWRAP_OFF
+			caption.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 			var ranges: PackedStringArray = []
 			var low := _main_range(id,request,0)
 			var high := _main_range(id,request,100)
-			for key: String in low: ranges.append(Inspect.caption(key)+" "+_format_stat(key,float(low[key]))+"–"+_format_stat(key,float(high[key])))
-			_label(description_rows," / ".join(ranges),Vector2.ZERO,Vector2(470,0),13)
+			for key: String in low:
+				var caption_text: String = {"max_hp":"HP","magic_resist":"MR"}.get(key,Inspect.caption(key)) if Words.locale == "en" else Inspect.caption(key)
+				ranges.append(caption_text+" "+_format_stat(key,float(low[key]))+"–"+_format_stat(key,float(high[key])))
+			_label(checkbox," / ".join(ranges),Vector2(102,31),Vector2(350,34),12)
 			checkbox.toggled.connect(func(enabled: bool):
 				if enabled: panel.creation_omitted.erase(id)
 				else: panel.creation_omitted[id] = true
@@ -141,7 +154,7 @@ static func render(panel: Control) -> void:
 	for material: String in quote.get("materials", {}):
 		cost_lines.append(_material_name(material)+" %d / %d" % [int(quote.materials[material]),int(Game.profile.get("materials",{}).get(material,0))])
 	if int(quote.get("pending_count",0)) > 0: cost_lines.append(_t("背包满：物品进入待领取，不折金币。","Inventory full: items wait for collection, never auto-sold."))
-	_label(right,"\n".join(cost_lines),Vector2(540,175),Vector2(352,175),17).name = "CreationCost"
+	_label(right,"\n".join(cost_lines),Vector2(540,248),Vector2(352,130),17).name = "CreationCost"
 	var message: String = panel.creation_message
 	if message.is_empty() and not bool(quote.get("ok",false)) and not complete: message = error_text(str(quote.get("error","")))
 	var affordable: bool = int(Game.profile.permanent_gold) >= int(quote.get("gold",0))
@@ -149,7 +162,7 @@ static func render(panel: Control) -> void:
 		if int(Game.profile.get("materials",{}).get(material,0)) < int(quote.materials[material]): affordable = false
 	if not affordable and message.is_empty(): message = _t("金币或材料不足。","Not enough gold or materials.")
 	if complete: message = _t("该类型八件已拥有；穿戴仍要求当前职业与等级符合。","All eight templates of this type are owned; equip requires this hero's type and level.")
-	_label(right,message,Vector2(20,397),Vector2(876,49),15).name = "CreationResult"
+	_label(right,message,Vector2(540,381),Vector2(352,65),14).name = "CreationResult"
 	var action := MineStyle.button(right,"",Vector2(20,451),Vector2(876,43),func(): _submit(panel,request,crafting,set_mode,complete))
 	action.name = "PrimaryAction"
 	action.text = _t("穿戴该套装","Equip this set") if complete else _t("打造并保存","Craft and save") if crafting else _t("购买缺件并保存","Buy missing pieces and save") if set_mode else _t("购买并保存","Buy and save")
@@ -158,6 +171,24 @@ static func render(panel: Control) -> void:
 	MineStyle.primary(action)
 	panel.action_button = action
 	panel.item_list = scroll
+
+static func _preview(parent: Control, selected: String, set_mode: bool, missing: Array) -> void:
+	var ids: Array = ContentRegistry.set_item_ids(selected,2) if set_mode else [selected]
+	for index in ids.size():
+		var item := ContentRegistry.equipment(str(ids[index]),2)
+		var preview := Control.new()
+		preview.name = "CreationPreview_"+str(item.id)
+		preview.position = Vector2(20+index*110,170)
+		preview.size = Vector2(102,70) if set_mode else Vector2(470,70)
+		preview.mouse_filter = Control.MOUSE_FILTER_PASS
+		preview.tooltip_text = MineStyle.content_text(item,"name")
+		if set_mode: preview.tooltip_text += " · "+(_t("缺少","Missing") if item.id in missing else _t("已拥有","Owned"))
+		parent.add_child(preview)
+		MineStyle.equipment_icon(preview,item,Vector2(21,0) if set_mode else Vector2.ZERO,Vector2(60,52) if set_mode else Vector2(70,70)).name = "CreationPreviewArt_"+str(item.id)
+		var caption := _label(preview,Words.text("SLOT_"+str(item.slot).to_upper()),Vector2(0,52) if set_mode else Vector2(90,20),Vector2(102,18) if set_mode else Vector2(350,30),12 if set_mode else 18)
+		caption.autowrap_mode = TextServer.AUTOWRAP_OFF
+		caption.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		if set_mode: caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 static func _main_range(template: String, request: Dictionary, quantile: int) -> Dictionary:
 	var main := {}
