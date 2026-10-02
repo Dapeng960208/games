@@ -1,0 +1,10 @@
+{
+  "checkpoint": "four-key accepted source sampling 2026-10-02",
+  "file_sha256": {
+    "assets/generated/enemies/variant_hd_v1/variant_hd_v1.overrides.json": "802a07121e4aa56a5eed9e2e7f6e5ee411cbb5350fa0b3fbc3f708fced3122e0",
+    "assets/generated/enemies/variant_hd_v1/M22_variant_00_hd_v1.png": "24ec2bd24715c317c6c39a97ccbd53dbc83a89a0c9ddf9d216ccf0e7c8f38d90",
+    "assets/generated/enemies/variant_hd_v1/M34_variant_00_hd_v1.png": "007244ffa5387ae8e72608ed19b56bf8cd40f5618d38ecd80183d09075112c85",
+    "assets/generated/enemies/variant_hd_v1/M34_variant_01_hd_v1.png": "1aa075dd227592934394dd47bf6ae830a6fee4b1058374243974176e6b827ea0",
+    "assets/generated/enemies/variant_hd_v1/M34_variant_04_hd_v1.png": "c589e110ab3b2b92f3dbcb8ed952fad1026431d847af27b84f382350b04a7a98"
+  }
+}

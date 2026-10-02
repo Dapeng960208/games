@@ -1,5 +1,7 @@
 # Ordinary-variant native-HD pilot
 
+This file retains the original four-key pilot record below. The current runtime allowlist is 22 exact keys across the original, ruins, hive and soft-combat manifests; the other 577 entries remain unchanged. See `docs/ui/ENEMY_VARIANT_HD_BATCH_2.md` for source-matched registration, the three render-only virtual canvases and completed 2K sampling acceptance.
+
 Four source-identity-reviewed native redraws only:
 
 | Enemy | Variant index | Exact original variant ID | Original body height | Native visible body height |

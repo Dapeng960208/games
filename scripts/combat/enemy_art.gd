@@ -4,6 +4,7 @@ extends RefCounted
 ## installs as a complete family, never mixing an old pose into a new body.
 
 const Sampler = preload("res://scripts/ui/texture_sampler.gd")
+const VariantHdTexture = preload("res://scripts/combat/variant_hd_texture.gd")
 const FAMILY: String = "storybook_2_5d_v1"
 const MANIFESTS: Array[String] = [
 	"res://assets/generated/enemies/storybook_B01_bodies_v2.regions.json",
@@ -56,7 +57,13 @@ const BOSS_MANIFESTS: Array[String] = [
 # A bounded, identity-matched sampling upgrade. Resolve the original 599-entry
 # cycle first; replacements never add, remove or reorder an appearance.
 const VARIANT_HD_MANIFEST: String = "res://assets/generated/enemies/variant_hd_v1/variant_hd_v1.overrides.json"
-const VARIANT_HD_INDICES: Dictionary = {"M22": [0], "M34": [0, 1, 4]}
+const VARIANT_HD_MANIFESTS: Array[String] = [
+	VARIANT_HD_MANIFEST,
+	"res://assets/generated/enemies/variant_hd_v1/ruins_v1.overrides.json",
+	"res://assets/generated/enemies/variant_hd_v1/hive_v1.overrides.json",
+	"res://assets/generated/enemies/variant_hd_v1/soft_combat_v1.overrides.json",
+]
+const VARIANT_HD_INDICES: Dictionary = {"M04": [1], "M06": [0,6,7], "M09": [7], "M12": [0,5,6,7], "M17": [0,1,2,6,7], "M22": [0,5,7], "M23": [0,3], "M34": [0,1,4]}
 static var _entries: Dictionary = {}
 static var _variants: Dictionary = {}
 static var _skill_icons: Dictionary = {}
@@ -216,15 +223,16 @@ static func _load_variants() -> void:
 				_skill_icons[identity] = {"texture":texture,"texture_path":texture_path,"region":region}
 
 static func _load_variant_hd_overrides() -> void:
-	if not FileAccess.file_exists(VARIANT_HD_MANIFEST):
-		return
-	var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(VARIANT_HD_MANIFEST))
-	if not raw is Dictionary or raw.get("schema_version") != 1 or raw.get("source_family") != FAMILY or not raw.get("overrides") is Array:
-		return
-	for candidate: Variant in raw.overrides:
-		var entry := _variant_hd_entry(candidate)
-		if not entry.is_empty():
-			_variants[entry.hd_source.identity][entry.visual_variant_index] = entry
+	for manifest_path: String in VARIANT_HD_MANIFESTS:
+		if not FileAccess.file_exists(manifest_path):
+			continue
+		var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
+		if not raw is Dictionary or raw.get("schema_version") != 1 or raw.get("source_family") != FAMILY or not raw.get("overrides") is Array:
+			continue
+		for candidate: Variant in raw.overrides:
+			var entry := _variant_hd_entry(candidate)
+			if not entry.is_empty():
+				_variants[entry.hd_source.identity][entry.visual_variant_index] = entry
 
 static func _variant_hd_entry(raw: Variant) -> Dictionary:
 	if not raw is Dictionary or not raw.get("source") is Dictionary or not raw.get("replacement") is Dictionary:
@@ -257,10 +265,19 @@ static func _variant_hd_entry(raw: Variant) -> Dictionary:
 		return {}
 	if not FileAccess.file_exists(texture_path) and not ResourceLoader.exists(texture_path):
 		return {}
-	var texture: Texture2D = Sampler.sampled(texture_path)
+	var layout: Dictionary = {}
+	var registered: Dictionary = replacement.duplicate(true)
+	if VariantHdTexture.required(identity,int(index)):
+		layout = VariantHdTexture.parse_layout(identity,int(index),replacement,raw.get("virtual_transparent_layout"))
+		if layout.is_empty(): return {}
+		registered["region"] = [layout.region.position.x,layout.region.position.y,layout.region.size.x,layout.region.size.y]
+		registered["foot"] = [layout.foot.x,layout.foot.y]
+	elif raw.has("virtual_transparent_layout"):
+		return {}
+	var texture: Texture2D = VariantHdTexture.sampled(texture_path,layout) if not layout.is_empty() else Sampler.sampled(texture_path)
 	if texture == null:
 		return {}
-	var parsed := parse_entry(replacement, texture.get_size())
+	var parsed := parse_entry(registered, texture.get_size())
 	if parsed.is_empty() or parsed.source_height <= original.source_height:
 		return {}
 	# Normalized body/foot registration must match before accepting native HD
@@ -277,6 +294,7 @@ static func _variant_hd_entry(raw: Variant) -> Dictionary:
 	result["source_height"] = parsed.source_height
 	result["hd_variant"] = true
 	result["hd_source"] = source.duplicate(true)
+	if not layout.is_empty(): result["virtual_transparent_layout"] = layout
 	return result
 
 static func parse_entry(raw: Variant, texture_size: Vector2) -> Dictionary:

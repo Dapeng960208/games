@@ -40,4 +40,6 @@ Godot 4.7.2 无界面定向检查 **2124 项通过，0 失败，无脚本/引擎
 
 渲染记录为 OpenGL Compatibility、Mesa llvmpipe 软件渲染器；这是实际图形管线/原生帧缓冲的像素证据，**不是硬件 GPU 性能验证**。日志无 SCRIPT ERROR/ERROR，仅有驱动不支持切换 VSync 的警告。测量、24 张原始截图、检查联系表、隔离档和日志均保留本地，不入 Git。此受控夹具不代表自然群战平衡、完整逐帧动作或全部 599 个外观达到高清。
 
-复现：`tools/test.ps1 -Suite enemy_variant_hd_art -Graphical -SkipImport`。Linux 使用项目内 `tools/godot/godot` 4.7.2，隔离可写 `XDG_DATA_HOME`、`XDG_CONFIG_HOME`、`XDG_CACHE_HOME`，启动 `res://tests/test_enemy_variant_hd_art.tscn`，并传入含 `test_enemy_variant_hd_art` 的独立 `--test-profile`。无图形检查加 `--headless --audio-driver Dummy`。输出在被忽略的 `artifacts/enemy-variant-hd-art/`；不得指向玩家真实存档，也不操作用户当前预览实例。
+复现：`tools/test.ps1 -Suite enemy_variant_hd_art -Graphical -SkipImport`。Linux 使用项目内 `tools/godot/godot` 4.7.2，隔离可写 `XDG_DATA_HOME`、`XDG_CONFIG_HOME`、`XDG_CACHE_HOME`，启动 `res://tests/test_enemy_variant_hd_art.tscn`，并传入含 `test_enemy_variant_hd_art` 的独立 `--test-profile`。无图形检查加 `--headless --audio-driver Dummy`。输出在被忽略的 `artifacts/enemy-variant-hd-art/`；不得指向玩家真实存档。
+
+后续扩到22个精确外观的实现与独立验收结果见[第二批运行采样](ENEMY_VARIANT_HD_BATCH_2.md)。本页四条通过数和24帧结论仅属于原独立检查点，未用于替代后续18条的验收。
