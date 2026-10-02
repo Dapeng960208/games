@@ -1,0 +1,392 @@
+{
+  "version": 1,
+  "biome_id": "B05",
+  "runtime_enabled": false,
+  "blueprint_size": [
+    2800,
+    1800
+  ],
+  "world_scale": 0.58,
+  "image_mapping": "image_xy = (placement.xy + blueprint_xy/[2800,1800]*placement.size) * image_size; world_xy = blueprint_xy*0.58",
+  "reference": {
+    "url": "https://github.com/user-attachments/assets/319066d8-9906-426f-9fea-35ba81cf5768",
+    "sha256": "e19feb1a77f78a7ec17403b300dc2680af6ac1bde651bce3964001ad7b73bf93",
+    "size": [
+      1122,
+      1402
+    ],
+    "review_source": "parent task pixel review, 2026-10-02; concept board, not room geometry",
+    "visual_contract": [
+      "bright living giant tree",
+      "pale golden root terraces",
+      "emerald canopy",
+      "peach-pink blossoms",
+      "leaf arches",
+      "cyan spring core",
+      "peripheral waterfalls"
+    ],
+    "exclude": [
+      "metal palace",
+      "gothic towers",
+      "baked text or UI",
+      "narrow floating islands in the main arena"
+    ]
+  },
+  "rooms": {
+    "L25": {
+      "id": "L25",
+      "name": "花径入口",
+      "name_en": "Blossom Path Entrance",
+      "geometry_status": "frozen_for_art_v1",
+      "biome_id": "B05",
+      "enemy_level": 21,
+      "entry": [
+        320,
+        900
+      ],
+      "exit": [
+        2480,
+        900
+      ],
+      "door_opening_width_world": 200,
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2440,
+          200
+        ],
+        [
+          2660,
+          400
+        ],
+        [
+          2680,
+          1540
+        ],
+        [
+          2480,
+          1660
+        ],
+        [
+          320,
+          1660
+        ],
+        [
+          120,
+          1440
+        ],
+        [
+          120,
+          400
+        ]
+      ],
+      "main_route": [
+        [
+          320,
+          900
+        ],
+        [
+          1344,
+          900
+        ],
+        [
+          2480,
+          900
+        ]
+      ],
+      "main_route_width_world": 180,
+      "safe_route": [
+        [
+          320,
+          900
+        ],
+        [
+          1344,
+          900
+        ],
+        [
+          2480,
+          900
+        ]
+      ],
+      "safe_route_width_world": 140,
+      "maximum_active_hazard_area_ratio": 0.3,
+      "hazard_exclusion_route": "safe_route",
+      "central_dry_ground": [
+        1344,
+        900
+      ],
+      "root_wells": [
+        {
+          "id": "L25-root-01",
+          "position": [
+            1904,
+            540
+          ],
+          "foot_radius_world": 28,
+          "network_id": "L25-north-root",
+          "frontline_hp_ratio": 0.6
+        }
+      ],
+      "root_approach": [
+        1904,
+        720
+      ],
+      "root_approach_route": [
+        [
+          1344,
+          900
+        ],
+        [
+          1904,
+          900
+        ],
+        [
+          1904,
+          720
+        ]
+      ],
+      "gates": [],
+      "bridges": [],
+      "low_cover": [
+        {
+          "id": "L25-seed-cart",
+          "position": [
+            780,
+            1200
+          ],
+          "footprint_blueprint": [
+            160,
+            90
+          ],
+          "kind": "seed_cart",
+          "maximum_visual_height_world": 90
+        },
+        {
+          "id": "L25-root-bench",
+          "position": [
+            2250,
+            600
+          ],
+          "footprint_blueprint": [
+            170,
+            100
+          ],
+          "kind": "living_root_bench",
+          "maximum_visual_height_world": 90
+        }
+      ],
+      "reward_anchor": [
+        2380,
+        1180
+      ],
+      "reward_approach_route": [
+        [
+          2180,
+          900
+        ],
+        [
+          2380,
+          900
+        ],
+        [
+          2380,
+          1180
+        ]
+      ],
+      "beacon_anchor": [
+        510,
+        1170
+      ],
+      "beacon_approach_route": [
+        [
+          510,
+          900
+        ],
+        [
+          510,
+          1170
+        ]
+      ],
+      "encounter_anchors": [
+        [
+          820,
+          800
+        ],
+        [
+          1400,
+          1000
+        ],
+        [
+          2170,
+          1080
+        ]
+      ],
+      "north_flower_beds": [
+        {
+          "position": [
+            650,
+            285
+          ],
+          "size": [
+            340,
+            100
+          ]
+        },
+        {
+          "position": [
+            1300,
+            285
+          ],
+          "size": [
+            480,
+            100
+          ]
+        },
+        {
+          "position": [
+            2130,
+            285
+          ],
+          "size": [
+            340,
+            100
+          ]
+        }
+      ],
+      "foreground_canopy_fades_on_actor_overlap": true,
+      "art": {
+        "background_path": "res://assets/generated/world/rooms/L25_environment_v1.png",
+        "metadata_path": "res://assets/generated/world/rooms/L25_environment_v1.json",
+        "ready": false,
+        "temporary_visuals_are_placeholders": true,
+        "no_baked_characters_rewards_ui_or_text": true,
+        "root_well_is_separate_state_sprite": true,
+        "camera_extent_blueprint": [
+          0,
+          0,
+          2800,
+          1800
+        ],
+        "native_detail_manifest_path": "res://assets/generated/world/rooms_2k/L25/manifest.json",
+        "placement_normalized_rect": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ],
+        "walkable_normalized_polygon": [
+          [
+            0.160142857,
+            0.212222222
+          ],
+          [
+            0.789714286,
+            0.212222222
+          ],
+          [
+            0.851,
+            0.294444444
+          ],
+          [
+            0.856571429,
+            0.763111111
+          ],
+          [
+            0.800857143,
+            0.812444444
+          ],
+          [
+            0.199142857,
+            0.812444444
+          ],
+          [
+            0.143428571,
+            0.722
+          ],
+          [
+            0.143428571,
+            0.294444444
+          ]
+        ],
+        "layout_source_size": [
+          1536,
+          1024
+        ],
+        "minimum_native_tile_density": 2.35,
+        "feather_source_pixels": [
+          16,
+          24
+        ],
+        "tile_source_rects": {
+          "top_left": [
+            0,
+            0,
+            520,
+            528
+          ],
+          "top_middle": [
+            504,
+            0,
+            528,
+            528
+          ],
+          "top_right": [
+            1016,
+            0,
+            520,
+            528
+          ],
+          "bottom_left": [
+            0,
+            504,
+            520,
+            520
+          ],
+          "bottom_middle": [
+            504,
+            504,
+            528,
+            520
+          ],
+          "bottom_right": [
+            1016,
+            504,
+            520,
+            520
+          ]
+        },
+        "minimum_tile_pixels": {
+          "top_left": [
+            1222,
+            1241
+          ],
+          "top_middle": [
+            1241,
+            1241
+          ],
+          "top_right": [
+            1222,
+            1241
+          ],
+          "bottom_left": [
+            1222,
+            1222
+          ],
+          "bottom_middle": [
+            1241,
+            1222
+          ],
+          "bottom_right": [
+            1222,
+            1222
+          ]
+        },
+        "layout_source_is_not_native_2k_evidence": true
+      }
+    }
+  }
+}
