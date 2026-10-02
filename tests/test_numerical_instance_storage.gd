@@ -42,8 +42,30 @@ func _ready() -> void:
 		return
 	_schema(fixture)
 	_storage(fixture)
+	_seed_roundtrip(fixture)
 	_controller(fixture)
 	_finish()
+
+func _seed_roundtrip(fixture: Dictionary) -> void:
+	var next := fixture.duplicate(true)
+	next.hero_xp.CH01 = 3600
+	next.permanent_gold = 100000
+	var operation := "creation:fe4b42e1c12ae8ecec34c52de5228a6e"
+	var transactions := load("res://scripts/core/instance_transactions.gd")
+	var result: Dictionary = transactions.complete_set(next,operation,{"hero_id":"CH01","set_id":"S06","template_ids":["EQ107","EQ108"],"rarity":"white","power_type":"physical","item_level":20})
+	check(result.get("ok",false),"deterministic large-seed purchase fixture")
+	if not result.get("ok",false): return
+	var expected: int = int(result.receipt.items[0].source_metadata.seed)
+	check(expected == 4226806090594618,"known decimal parser rounding boundary")
+	var path := Game.profile_path+".seed-roundtrip"
+	var store := ProfileStore.new(path)
+	for cycle in 3:
+		check(store.save_document(result.profile),"save integer receipt seed cycle "+str(cycle))
+		var loaded := ProfileStore.new(path).load_document()
+		check(not loaded.is_empty(),"reload still accepts sealed purchase cycle "+str(cycle))
+		if loaded.is_empty(): return
+		check(int(loaded.profile.instance_transactions.operations[operation].items[0].source_metadata.seed) == expected and transactions.validate_ledger(loaded.profile.instance_transactions),"seed and receipt hash survive reload/resave cycle "+str(cycle))
+		result.profile = loaded.profile
 
 func _schema(fixture: Dictionary) -> void:
 	check(ProfileStore._valid_document(document(ProfileStore.fresh_profile())), "default legacy profile unchanged")

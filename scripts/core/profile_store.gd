@@ -191,7 +191,21 @@ func _byte_limit() -> int:
 
 static func _serialize(document: Dictionary) -> PackedByteArray:
 	# Count and write the same UTF-8 bytes; String.length() is not a byte count.
-	return JSON.stringify(document).to_utf8_buffer()
+	# Reloaded JSON integers are floats. A decimal suffix on a large integral
+	# seed can lose one unit in Godot's next parse and invalidate its receipt.
+	return JSON.stringify(_json_values(document), "", true, true).to_utf8_buffer()
+
+static func _json_values(value: Variant) -> Variant:
+	if value is float and is_finite(value) and value == floor(value) and absf(value) <= 9007199254740991.0: return int(value)
+	if value is Dictionary:
+		var result := {}
+		for key: Variant in value: result[key] = _json_values(value[key])
+		return result
+	if value is Array:
+		var result: Array = []
+		for child: Variant in value: result.append(_json_values(child))
+		return result
+	return value
 
 func storage_capacity(profile: Dictionary, active_run: Variant = null, profile_initialized: bool = true) -> Dictionary:
 	var bytes := _serialize(_next_document(profile, active_run, profile_initialized)).size()
