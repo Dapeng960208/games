@@ -91,6 +91,15 @@ func _initialize() -> void:
 	bad = before.duplicate(true)
 	bad.channel = {"gate_id":"missing", "actor_id":"hero", "remaining":0.1}
 	_reject(finished, bad, before, "unknown gate")
+	# Production positions pass through Vector2 float32 then JSON decimals.
+	var world_position := Vector2(1904,540)*0.58
+	var fractional = Network.new()
+	_check(fractional.configure({"root":{"x":world_position.x,"y":world_position.y,"frontline_hp":3273,"network_id":"zone"}}),"fractional production coordinate setup")
+	var decimal: Dictionary = JSON.parse_string(JSON.stringify(fractional.snapshot()))
+	_check(fractional.restore(decimal),"decimal JSON tail does not reject original authored position")
+	before = fractional.snapshot()
+	decimal.wells.root.x += 0.001
+	_reject(fractional,decimal,before,"millipixel authored-coordinate alteration")
 	print("B05 root network: %d checks, %d failures" % [checks, failures])
 	quit(0 if failures == 0 else 1)
 

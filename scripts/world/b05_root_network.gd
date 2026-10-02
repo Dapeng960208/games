@@ -104,7 +104,11 @@ func restore(data: Dictionary) -> bool:
 		if not data.wells.get(id) is Dictionary: return false
 		var well: Dictionary = data.wells[id]
 		for field in ["x", "y", "maximum"]:
-			if not _number(well.get(field)) or float(well[field]) != float(_wells[id][field]): return false
+			if not _number(well.get(field)): return false
+			# JSON decimal serialization can lose sub-nanopixel digits from
+			# Vector2 float32 positions. Coordinates are validated, never copied.
+			var tolerance := 0.0 if field == "maximum" else 0.000001
+			if absf(float(well[field])-float(_wells[id][field])) > tolerance: return false
 		if well.get("network_id") != _wells[id].network_id or not well.get("closed") is bool: return false
 		if not _bounded(well.get("hp"), float(well.maximum)): return false
 	for id in _gates:
