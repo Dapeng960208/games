@@ -70,16 +70,16 @@ func _run() -> void:
 		check(Inspect.value("attack",463,false,false,2) == "463" and Inspect.value("attack",0,true,true,2) == "+0","settled flat integers "+locale)
 		check(Inspect.value("attack",0.4,true) == "+0.4" and Inspect.value("attack_interval",0.125) == "0.125 s","legacy fractions/time retained "+locale)
 		check(Inspect.value("hp_ratio",0.126,false,true,2) == "12.6%","ratio remains percent "+locale)
-		for extent: Vector2i in [Vector2i(1280,720),Vector2i(1440,900),Vector2i(1920,1080)]:
+		for extent: Vector2i in [Vector2i(1280,720),Vector2i(1440,900),Vector2i(1920,1080),Vector2i(2560,1440)]:
 			get_window().size = extent
 			app.show_workshop("inventory")
 			await frames()
 			var panel: Control = app.screen.find_child("Workshop",true,false)
 			var capacity: Control = app.screen.find_child("StorageCapacityHint",true,false)
 			var header: Control = panel.find_child("WorkshopHeader",true,false)
-			check(capacity != null and header.get_global_rect().encloses(capacity.get_global_rect()),"capacity hint stays inside header "+locale+str(extent))
+			check(capacity != null and get_viewport().get_visible_rect().encloses(capacity.get_global_rect()),"capacity hint stays inside screen footer "+locale+str(extent))
 			var navigation: Control = panel.find_child("OpenCharacterStats",true,false)
-			check(capacity != null and capacity.get_global_rect().end.y <= navigation.get_global_rect().position.y,"capacity hint avoids the navigation row "+locale+str(extent))
+			check(capacity != null and capacity.get_global_rect().position.y >= panel.body.get_global_rect().end.y and header.get_global_rect().end.y <= navigation.get_global_rect().position.y,"capacity footer and top navigation avoid the content "+locale+str(extent))
 			panel.selected_item = duplicate.instance_id
 			panel._render()
 			await frames()
@@ -92,7 +92,7 @@ func _run() -> void:
 			check(detail.find_child("MainRoll_attack",true,false).text.contains("k 50/100") and detail.find_child("AffixRoll_"+str(duplicate.affix_type_and_quantile[0].type),true,false).text.contains("u 20/100"),"main and affix ranges visible "+locale+str(extent))
 			check(not all_text(panel).contains("SLOT_") and not all_text(panel).contains("hp_ratio"),"no raw schema keys "+locale+str(extent))
 			check(not panel.find_child("LoadoutStatSummary",true,false).text.contains(".0"),"loadout integer summary "+locale+str(extent))
-			check(panel.action_button.position.y+panel.action_button.size.y <= 510 and detail.custom_minimum_size.x <= 448,"detail bounded and scrollable "+locale+str(extent))
+			check(get_viewport().get_visible_rect().encloses(panel.action_button.get_global_rect()) and panel.action_button.get_global_rect().end.y <= panel.body.get_global_rect().end.y and detail.custom_minimum_size.x <= 330,"art-led detail action is bounded and full numbers remain scrollable "+locale+str(extent))
 			await capture("inventory-"+locale+"-"+str(extent.x)+"x"+str(extent.y))
 			panel.detail_tab = "compare"
 			panel._render()

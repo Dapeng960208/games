@@ -18,23 +18,23 @@ static func render(panel: Control) -> void:
 		return
 	for id: String in panel.sale_selection.keys():
 		if not Game.profile.equipment.has(id) or id in Game.profile.loadout.values(): panel.sale_selection.erase(id)
-	var left := MineStyle.panel(panel.body,Vector2.ZERO,Vector2(710,510))
-	_label(left,_t("装备回收 · 选中需要售出的装备", "RECYCLE · SELECT EQUIPMENT TO SELL"),Vector2(18,10),Vector2(670,28),18,MineStyle.AMBER)
-	var select_all := MineStyle.button(left,"",Vector2(16,43),Vector2(328,38),func():
+	var left := MineStyle.panel(panel.body,Vector2.ZERO,Vector2(834,510))
+	_label(left,_t("装备回收 · 选中需要售出的装备", "RECYCLE · SELECT EQUIPMENT TO SELL"),Vector2(18,10),Vector2(798,28),18,MineStyle.AMBER)
+	var select_all := MineStyle.button(left,"",Vector2(16,43),Vector2(395,38),func():
 		for id: String in Game.profile.equipment:
 			if not id in Game.profile.loadout.values(): panel.sale_selection[id] = true
 		panel._render())
 	select_all.name = "SelectAllForSale"
 	select_all.text = _t("全选未穿戴装备", "Select all unequipped")
 	select_all.add_theme_font_size_override("font_size",16)
-	var clear := MineStyle.button(left,"",Vector2(356,43),Vector2(338,38),func(): panel.sale_selection.clear(); panel._render())
+	var clear := MineStyle.button(left,"",Vector2(423,43),Vector2(395,38),func(): panel.sale_selection.clear(); panel._render())
 	clear.name = "ClearSaleSelection"
 	clear.text = _t("清空选择", "Clear selection")
 	clear.add_theme_font_size_override("font_size",16)
 	var scroll := ScrollContainer.new()
 	scroll.name = "RecycleCatalog"
 	scroll.position = Vector2(12,91)
-	scroll.size = Vector2(686,407)
+	scroll.size = Vector2(810,407)
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.follow_focus = true
 	left.add_child(scroll)
@@ -49,26 +49,26 @@ static func render(panel: Control) -> void:
 		var item: Dictionary = Game.equipment_definition(id)
 		var equipped: bool = id in Game.profile.loadout.values()
 		var selected: bool = panel.sale_selection.has(id)
-		var row := MineStyle.button(stack,"",Vector2.ZERO,Vector2(666,76),func():
+		var row := MineStyle.button(stack,"",Vector2.ZERO,Vector2(790,76),func():
 			panel.recycle_scroll = scroll.scroll_vertical
 			if panel.sale_selection.has(id): panel.sale_selection.erase(id)
 			else: panel.sale_selection[id] = true
 			panel._render())
 		row.name = "SellItem_"+id
-		row.custom_minimum_size = Vector2(666,76)
+		row.custom_minimum_size = Vector2(790,76)
 		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.disabled = equipped
 		row.tooltip_text = Inspect.tooltip(item,Game.equipment_level(id),Game.profile.selected_hero)
 		MineStyle.button_skin(row,"card")
 		if selected: MineStyle.selected(row,"card")
 		MineStyle.equipment_icon(row,item,Vector2(8,5),Vector2(64,64))
-		var caption := _label(row,MineStyle.content_text(item,"name")+" +"+str(Game.equipment_level(id)),Vector2(84,8),Vector2(432,28),19)
+		var caption := _label(row,MineStyle.content_text(item,"name")+" +"+str(Game.equipment_level(id)),Vector2(84,8),Vector2(558,28),19)
 		caption.autowrap_mode = TextServer.AUTOWRAP_OFF
 		caption.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		_label(row,_t("已穿戴 · 无法出售", "Equipped · Cannot sell") if equipped else _t("回收获得 %d 金币", "Sell for %d gold") % Game.equipment_sell_value(id),Vector2(84,43),Vector2(432,24),15,MineStyle.MUTED if equipped else MineStyle.AMBER)
-		_label(row,"✓" if selected else ("●" if equipped else "○"),Vector2(598,18),Vector2(46,40),28,MineStyle.GREEN if selected else MineStyle.MUTED)
+		_label(row,_t("已穿戴 · 无法出售", "Equipped · Cannot sell") if equipped else _t("回收获得 %d 金币", "Sell for %d gold") % Game.equipment_sell_value(id),Vector2(84,43),Vector2(558,24),15,MineStyle.MUTED if equipped else MineStyle.AMBER)
+		_label(row,"✓" if selected else ("●" if equipped else "○"),Vector2(724,18),Vector2(46,40),28,MineStyle.GREEN if selected else MineStyle.MUTED)
 	scroll.set_deferred("scroll_vertical",panel.recycle_scroll)
-	var detail := MineStyle.panel(panel.body,Vector2(728,0),Vector2(488,510))
+	var detail := MineStyle.panel(panel.body,Vector2(850,-80),Vector2(366,590))
 	var selected_ids: Array = panel.sale_selection.keys()
 	selected_ids.sort()
 	var total := 0
@@ -78,20 +78,21 @@ static func render(panel: Control) -> void:
 		var price: int = Game.equipment_sell_value(id)
 		total += price
 		summary += MineStyle.content_text(item,"name")+" +"+str(Game.equipment_level(id))+"  ·  "+str(price)+_t(" 金币", " gold")+"\n\n"
-	_label(detail,_t("回收清单", "RECYCLE SUMMARY"),Vector2(18,12),Vector2(450,33),26)
-	_label(detail,_t("已选择 %d 件装备", "%d pieces selected") % selected_ids.size(),Vector2(18,57),Vector2(450,30),19,MineStyle.CYAN)
-	_label(detail,_t("预计获得  %d 金币", "Proceeds: %d gold") % total,Vector2(18,93),Vector2(450,38),28,MineStyle.AMBER).name = "SaleTotal"
+	_label(detail,_t("回收清单", "RECYCLE SUMMARY"),Vector2(18,12),Vector2(330,33),26)
+	_label(detail,_t("已选择 %d 件装备", "%d pieces selected") % selected_ids.size(),Vector2(18,57),Vector2(330,30),19,MineStyle.CYAN)
+	_label(detail,_t("预计获得  %d 金币", "Proceeds: %d gold") % total,Vector2(18,93),Vector2(330,38),28,MineStyle.AMBER).name = "SaleTotal"
 	var summary_scroll := ScrollContainer.new()
 	summary_scroll.name = "SaleSummary"
 	summary_scroll.position = Vector2(18,151)
-	summary_scroll.size = Vector2(452,236)
+	summary_scroll.size = Vector2(330,324)
 	summary_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	detail.add_child(summary_scroll)
-	var description := _label(summary_scroll,summary if not summary.is_empty() else _t("点击左侧装备勾选，可一次出售多件。\n当前穿戴的装备受到保护。", "Select equipment on the left to sell multiple pieces.\nEquipped items are protected."),Vector2.ZERO,Vector2(426,0),16,MineStyle.MUTED)
-	description.custom_minimum_size.x = 426
+	var description := _label(summary_scroll,summary if not summary.is_empty() else _t("点击左侧装备勾选，可一次出售多件。\n当前穿戴的装备受到保护。", "Select equipment on the left to sell multiple pieces.\nEquipped items are protected."),Vector2.ZERO,Vector2(308,0),16,MineStyle.MUTED)
+	description.custom_minimum_size.x = 308
 	description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_label(detail,_t("回收价：基础售价 25% + 强化成本 20%\n逐项向下取整；售出会移除装备及其强化。", "Value: 25% base price + 20% refinement cost.\nRounded down per part; sold gear and refinement are removed."),Vector2(18,398),Vector2(450,44),13,MineStyle.MUTED)
-	panel.action_button = MineStyle.button(detail,"",Vector2(18,449),Vector2(452,46),func(): _confirm(panel,selected_ids,total))
+	_label(detail,_t("回收价：基础售价 25% + 强化成本 20%\n逐项向下取整；售出会移除装备及其强化。", "Value: 25% base price + 20% refinement cost.\nRounded down per part; sold gear and refinement are removed."),Vector2(18,484),Vector2(330,58),13,MineStyle.MUTED)
+	panel.action_button = MineStyle.button(detail,"",Vector2(18,550),Vector2(330,36),func(): _confirm(panel,selected_ids,total))
+	panel.action_button.custom_minimum_size.y = 36
 	panel.action_button.name = "PrimaryAction"
 	MineStyle.button_skin(panel.action_button,"danger")
 	panel.action_button.text = _t("出售选中装备 · %d 金币", "Sell selected · %d gold") % total

@@ -25,12 +25,12 @@ func _t(zh: String, en: String) -> String:
 	return en if Words.locale == "en" else zh
 
 func _build() -> void:
-	MineStyle.literal(self, _t("战利品对比", "EQUIPMENT LOOT"), Vector2(24,16), Vector2(932,36), 28, MineStyle.AMBER)
+	MineStyle.literal(self, _t("战利品对比", "EQUIPMENT LOOT"), Vector2(24,16), Vector2(448,36), 28, MineStyle.INK)
 	var is_demo: bool = Game.run != null and bool(Game.run.get("demo"))
 	var rule := _t("仅在本次试玩中试装。试玩结束后恢复正式配装；包括撤离带回的装备，都不会进入正式库存。", "Fit gear only for this trial. Your regular loadout returns afterward; even extracted trial loot never enters your progression inventory.") if is_demo else _t("现在换上，仅在本局生效。无论是否装备，新装备都留在战利品中，成功撤离后才永久入库。", "Equip for this run. Either choice keeps the drop as loot; extract successfully to add it to your collection.")
 	var rule_label := MineStyle.literal(self, rule, Vector2(24,57), Vector2(932,40), 16, MineStyle.MUTED)
 	rule_label.name = "FieldEquipmentScope"
-	MineStyle.literal(self, _t("基础值对比 · 触发收益见词条 · Tab 切换 / ↑↓ 滚动", "Base values · Triggered benefits: affixes · Tab / ↑↓"), Vector2(330,26), Vector2(626,22), 13, MineStyle.MUTED)
+	MineStyle.literal(self, _t("基础值对比 · 触发收益见词条 · Tab 切换 / ↑↓ 滚动", "Base values · Triggered benefits: affixes · Tab / ↑↓"), Vector2(486,28), Vector2(470,22), 12, MineStyle.MUTED)
 	var slot := str(preview.get("slot", ""))
 	var current: Dictionary = Game.equipment_definition(str(preview.get("current_id", "")),true)
 	var candidate: Dictionary = Game.equipment_definition(str(preview.get("equipment_id", "")),true)
@@ -42,11 +42,13 @@ func _build() -> void:
 	equip_button = MineStyle.button(self, "", Vector2(24,558), Vector2(458,44), func(): _submit("equip"))
 	equip_button.name = "FieldEquipNow"
 	equip_button.text = _t("拾取并装备 · 本局生效", "Collect & equip · this run")
-	equip_button.add_theme_font_size_override("font_size", 19)
+	equip_button.add_theme_font_size_override("font_size", 17)
+	equip_button.set_meta("paired_action",true)
 	keep_button = MineStyle.button(self, "", Vector2(498,558), Vector2(458,44), func(): _submit("keep"))
 	keep_button.name = "FieldKeepCurrent"
 	keep_button.text = _t("拾取至行囊 · 保持当前装备", "Pack loot · keep current")
-	keep_button.add_theme_font_size_override("font_size", 19)
+	keep_button.add_theme_font_size_override("font_size", 17)
+	keep_button.set_meta("paired_action",true)
 	MineStyle.primary(keep_button, MineStyle.CYAN)
 	_link_focus()
 	keep_button.grab_focus()
@@ -55,13 +57,13 @@ func _equipment_card(node_name: String, item: Dictionary, slot: String, at: Vect
 	var card := MineStyle.panel(self, at, Vector2(458,250))
 	card.name = node_name
 	card.clip_contents = true
-	var accent := MineStyle.AMBER if incoming else MineStyle.CYAN
-	card.add_theme_stylebox_override("panel",MineStyle.box(MineStyle.PAPER_LIGHT.lerp(accent,0.05),accent.lightened(0.32),1))
-	var icon := MineStyle.equipment_icon(card, item if not item.is_empty() else {"slot":slot}, Vector2(12,17), Vector2(112,112))
+	var accent := MineStyle.CYAN if incoming else MineStyle.AMBER
+	card.add_theme_stylebox_override("panel",MineStyle.box(MineStyle.PAPER_LIGHT.lerp(accent,0.025),accent.lightened(0.45) if incoming else MineStyle.COPPER.lightened(0.35),1))
+	var icon := MineStyle.equipment_icon(card, item if not item.is_empty() else {"slot":slot}, Vector2(17,12), Vector2(144,144))
 	icon.name = "FieldEquipmentIcon"
-	MineStyle.literal(card, _t("新获得", "NEW DROP") if incoming else _t("当前装备", "CURRENT"), Vector2(140,9), Vector2(304,22), 14, accent)
+	MineStyle.literal(card, _t("新获得", "NEW DROP") if incoming else _t("当前装备", "CURRENT"), Vector2(174,15), Vector2(268,22), 13, accent)
 	var item_name := MineStyle.content_text(item, "name", _t("空槽位", "Empty slot"))
-	var title := MineStyle.literal(card, item_name, Vector2(140,36), Vector2(304,56), 20,Inspect.rarity_color(item))
+	var title := MineStyle.literal(card, item_name, Vector2(174,46), Vector2(268,58), 22,MineStyle.INK)
 	title.name = "FieldEquipmentName"
 	title.max_lines_visible = 2
 	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
@@ -74,12 +76,12 @@ func _equipment_card(node_name: String, item: Dictionary, slot: String, at: Vect
 	if equipment_level > 0: metadata += _t(" · 强化 +", " · Refined +")+str(equipment_level)
 	if not set_id.is_empty():
 		metadata += " · " + MineStyle.content_text(set_data, "name", set_id)
-	var detail := MineStyle.literal(card, metadata, Vector2(140,101), Vector2(304,23), 14, accent)
-	detail.autowrap_mode = TextServer.AUTOWRAP_OFF
+	var detail := MineStyle.literal(card, metadata, Vector2(174,111), Vector2(268,38), 13, accent)
+	detail.max_lines_visible = 2
 	detail.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	detail.tooltip_text = metadata
 	detail.mouse_filter = Control.MOUSE_FILTER_PASS
-	var scroll := _scroll(card, "FieldNextAffix" if incoming else "FieldCurrentAffix", Vector2(14,132), Vector2(430,106))
+	var scroll := _scroll(card, "FieldNextAffix" if incoming else "FieldCurrentAffix", Vector2(16,164), Vector2(426,72))
 	if item.is_empty():
 		_scroll_label(scroll, _t("无装备词条", "No equipment affix"), 404, 15, MineStyle.MUTED)
 	else:
@@ -93,8 +95,10 @@ func _equipment_card(node_name: String, item: Dictionary, slot: String, at: Vect
 			traits.configure(item, equipment_level, 404, Game.run.hero_id, true)
 
 func _build_stats() -> void:
-	MineStyle.literal(self, _t("本局基础属性 · 当前 → 更换后", "BASE STATS · CURRENT → EQUIPPED"), Vector2(24,363), Vector2(458,26), 17, MineStyle.CYAN)
-	var scroll := _scroll(self, "FieldStatChanges", Vector2(24,393), Vector2(458,88))
+	var card := MineStyle.panel(self,Vector2(24,367),Vector2(458,115))
+	card.name = "FieldBaseStatCard"
+	MineStyle.literal(card, _t("本局基础属性 · 当前 → 更换后", "BASE STATS · CURRENT → EQUIPPED"), Vector2(14,9), Vector2(430,26), 16, MineStyle.CYAN)
+	var scroll := _scroll(card, "FieldStatChanges", Vector2(14,43), Vector2(430,60))
 	var list := VBoxContainer.new()
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	list.add_theme_constant_override("separation", 5)
@@ -118,12 +122,12 @@ func _build_stats() -> void:
 		row.name = "FieldStat_" + key
 		row.add_theme_constant_override("separation", 4)
 		list.add_child(row)
-		var caption := _cell(row, Words.text("STAT_" + key.to_upper()), 169, 15, MineStyle.INK)
+		var caption := _cell(row, Words.text("STAT_" + key.to_upper()), 148, 14, MineStyle.INK)
 		caption.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		_cell(row, _value(key, old), 62, 15, MineStyle.MUTED)
-		_cell(row, "→", 18, 15, MineStyle.MUTED)
-		_cell(row, _value(key, next), 62, 15, tint)
-		_cell(row, ("+" if delta > 0.0 else "") + _value(key, delta), 75, 15, tint)
+		_cell(row, _value(key, old), 58, 14, MineStyle.MUTED)
+		_cell(row, "→", 16, 14, MineStyle.MUTED)
+		_cell(row, _value(key, next), 58, 14, tint)
+		_cell(row, ("+" if delta > 0.0 else "") + _value(key, delta), 72, 14, tint)
 
 func _cell(parent: Node, text: String, width: float, font_size: int, tint: Color) -> Label:
 	var label := MineStyle.literal(parent, text, Vector2.ZERO, Vector2(width,22), font_size, tint)
@@ -144,8 +148,10 @@ func _value(key: String, value: float) -> String:
 	return "%.1f" % value
 
 func _build_sets(current: Dictionary, candidate: Dictionary) -> void:
-	MineStyle.literal(self, _t("套装档位 · 更换后变化", "SET TIERS · AFTER EQUIPPING"), Vector2(498,363), Vector2(458,26), 17, MineStyle.AMBER)
-	var scroll := _scroll(self, "FieldSetChanges", Vector2(498,393), Vector2(458,88))
+	var card := MineStyle.panel(self,Vector2(498,367),Vector2(458,115))
+	card.name = "FieldSetTierCard"
+	MineStyle.literal(card, _t("套装档位 · 更换后变化", "SET TIERS · AFTER EQUIPPING"), Vector2(14,9), Vector2(430,26), 16, MineStyle.AMBER)
+	var scroll := _scroll(card, "FieldSetChanges", Vector2(14,43), Vector2(430,60))
 	var list := VBoxContainer.new()
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	list.add_theme_constant_override("separation", 5)
@@ -158,12 +164,12 @@ func _build_sets(current: Dictionary, candidate: Dictionary) -> void:
 		if not set_id.is_empty() and not affected.has(set_id):
 			affected.append(set_id)
 	if affected.is_empty():
-		_scroll_label(list, _t("此替换不影响套装档位。", "This swap does not affect set tiers."), 432, 15, MineStyle.MUTED)
+		_scroll_label(list, _t("此替换不影响套装档位。", "This swap does not affect set tiers."), 404, 15, MineStyle.MUTED)
 	for set_id: String in affected:
 		var definition: Dictionary = ContentRegistry.sets().get(set_id, {})
 		var old := int(before.get(set_id, 0))
 		var next := int(after.get(set_id, 0))
-		_scroll_label(list, MineStyle.content_text(definition, "name", set_id) + " · %d → %d" % [old, next] + _t(" 件", " pieces"), 432, 15, MineStyle.INK)
+		_scroll_label(list, MineStyle.content_text(definition, "name", set_id) + " · %d → %d" % [old, next] + _t(" 件", " pieces"), 404, 15, MineStyle.INK)
 		# Put gained/lost tiers first so consequential changes are visible before
 		# the scrollable descriptions of retained or still inactive tiers.
 		var thresholds: Array[int] = []
@@ -177,13 +183,13 @@ func _build_sets(current: Dictionary, candidate: Dictionary) -> void:
 			var tag := _t("+ 激活", "+ Gained") if gained else (_t("− 失去", "− Lost") if lost else (_t("● 保留", "● Active") if next >= tier else _t("○ 未激活", "○ Inactive")))
 			var tint := MineStyle.GREEN if gained else (MineStyle.RED if lost else MineStyle.MUTED)
 			var effect: Dictionary = definition.get("thresholds", {}).get(str(tier), {})
-			_scroll_label(list, tag + " · " + str(tier) + _t(" 件：", " pieces: ") + MineStyle.content_text(effect, "text"), 432, 14, tint)
+			_scroll_label(list, tag + " · " + str(tier) + _t(" 件：", " pieces: ") + MineStyle.content_text(effect, "text"), 404, 14, tint)
 
 func _build_advice() -> void:
 	var summary := Control.new()
 	summary.name = "FieldEquipmentAdvice"
-	summary.position = Vector2(24,482)
-	summary.size = Vector2(932,66)
+	summary.position = Vector2(24,487)
+	summary.size = Vector2(932,62)
 	summary.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(summary)
 	var before: Dictionary = preview.get("current_stats",{})
@@ -192,7 +198,7 @@ func _build_advice() -> void:
 	var lines: Array[String] = Advice.summarize(hero,before,after)
 	var loses_set := not Advice.lost_tiers(before,after).is_empty()
 	for index in mini(lines.size(),3):
-		var label := MineStyle.literal(summary,lines[index],Vector2(0,index*22),Vector2(932,22),14,MineStyle.RED if index == 0 and loses_set else MineStyle.CYAN if index == 0 else MineStyle.INK)
+		var label := MineStyle.literal(summary,lines[index],Vector2(8,index*20),Vector2(916,20),13,MineStyle.RED if index == 0 and loses_set else MineStyle.CYAN if index == 0 else MineStyle.INK)
 		label.name = "FieldAdviceLine"+str(index)
 		label.autowrap_mode = TextServer.AUTOWRAP_OFF
 		label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS

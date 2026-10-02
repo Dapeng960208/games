@@ -71,7 +71,7 @@ func artwork_ui(app: Node) -> void:
 				check(ContentRegistry.equipment(template,2).slot in ["legs","ring"],"missing piece is a new slot")
 				check_art(choice,"CreationMissingArt_"+template,template)
 				check(scroll.get_global_rect().encloses(choice.get_global_rect()),"both missing-piece cards visible: "+locale+str(extent)+" "+str(scroll.get_global_rect())+" / "+str(choice.get_global_rect()))
-			check(scroll.get_global_rect().end.y <= panel.action_button.get_global_rect().position.y,"art/cards avoid purchase action")
+			check(not scroll.get_global_rect().intersects(panel.action_button.get_global_rect()),"art/cards avoid purchase action in separate preview/order columns")
 			await capture("partial-set-"+locale+"-"+str(extent.x)+"x"+str(extent.y))
 		get_window().size = Vector2i(1280,720)
 		panel.selected_set = "S09"
