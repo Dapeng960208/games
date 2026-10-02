@@ -1,0 +1,199 @@
+{
+  "generated_with": "Built-in image_gen",
+  "date": "2026-10-02",
+  "reference": "User-supplied ivory/teal forest inventory screenshot",
+  "target_runtime_resolution": [
+    2560,
+    1440
+  ],
+  "mockups": [
+    {
+      "path": "mockups/01-inventory.png",
+      "coverage": "Inventory, equipment list, item details, comparison and set tab template",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "4d92ec31ea30d6e2ed68aca8f63350195f76b0823e353daa2e5960681923ad9f",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/02-heroes.png",
+      "coverage": "Hero roster, selected hero dossier, stats and equipped skills",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "0dc93f2cb9fdcb6caaaec60c7a532279918e0546c837e113063efd4ec9b28639",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/03-skills.png",
+      "coverage": "Skills catalog, equipped abilities, rank and branch details",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "93cff610d9052f6fd8499b774ef66e11e7e3e0dec3311e9f544de3e3c5790408",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/04-monster-codex.png",
+      "coverage": "Initial monster catalog concept; superseded by04b for clarity",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "23005c7355316eb97a6a312dd22c9f3dfdd01a8997931ddf221e76c06eacfdcc",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/04b-monster-codex-sharp.png",
+      "coverage": "Revised monster catalog and selected M01 detail; larger specimens",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "83523ce277b7decd9781d0552c070d80a518f6165405b141101c90ec2192f683",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/05-main-menu.png",
+      "coverage": "Main menu, continue, navigation hierarchy",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "a961e045718aead788d40ac485fe418a7a9a6349bd905b96cbdb519ef846fa9c",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/06-settings-controls.png",
+      "coverage": "Settings category rail, controls/bindings, sliders and toggles",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "d64908e8372c67ba66dfcfd681f97ae6ec644947d513ee7687dc7a58fb0461fd",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/07-combat-hud.png",
+      "coverage": "Combat/testplay HUD edge placement and live-label hierarchy",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "c59768ccf3db51d7845144a166247b3569ad0cf5d2e314b6efe90c439261fa4b",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/08-camp-departure.png",
+      "coverage": "Camp navigation, hero/region preparation and departure",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "9d3add9c42bc200ee13107d342845f199a0f08fa091a8814dedc8e3642445fc7",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/09-shop-crafting.png",
+      "coverage": "Shop category/grid/item details and crafting family",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "b271c76db647aa297e068081778c403c4be404cb4058bf650918fabd4d1ded0d",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/10-forge-recycle.png",
+      "coverage": "Forge selection, upgrade comparison, materials and recycling family",
+      "native_dimensions": [
+        1671,
+        941
+      ],
+      "resampled": false,
+      "sha256": "facc93cd697766c0b4bd0a83d354d05df25e8f94d2eaba2a05c77d9006accf1a",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/11-trial-select.png",
+      "coverage": "Trial/biome selection and difficulty detail",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "43825d0c995c64689f6f663b54fad8032d040a2f599e5ba9d905f46185840747",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/12-route-map.png",
+      "coverage": "Route/room map and encounter detail; styling reference only",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "913ccb615e27c25a5cbfb2d12e1545675417869038c4b6521a0ef8287dec329f",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/13-relic-supply-loot.png",
+      "coverage": "Reusable three-choice relic/supply/loot overlay",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "ff2522d3b37f05be6dfa0ccdeceb50a4e7d10dc8fdb8c6265ab40f7a5af8c754",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/14-save-profiles.png",
+      "coverage": "Save profile list, empty slot and selected profile actions",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "d3231311737a5cd3bd460a43ea8ce8744cf18f28f406cf347c2dcfe929960d5f",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/15-expedition-results.png",
+      "coverage": "Results summary/rewards, reusable success/defeat family",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "b4b297bffe4aa116e38d48e3908543f8c7b0d02b5ab824aaa9e0ccd4b1633e4b",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    },
+    {
+      "path": "mockups/16-error-recovery.png",
+      "coverage": "Recoverable error modal and focus/action hierarchy",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "resampled": false,
+      "sha256": "d94811d75cb13aa3d73d568b45a6da7ca0c39c79b7e7e9c0414a08a430709782",
+      "qa": "Viewed complete pixels; coherent16:9 composition. Text/art examples must not override actual game identities."
+    }
+  ],
+  "important": "These are generated design concepts, NOT gameplay screenshots or evidence that functionality exists. Raster text, balances, identities, bindings and unsupported controls are illustrative; implement with live crisp Chinese text and source-authoritative game data."
+}

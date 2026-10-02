@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "generated_with": "Built-in image_gen",
+  "created": "2026-10-02",
+  "assets": [
+    {
+      "path": "forest_backdrop.png",
+      "source": "generated_images/exec-e8f76d3e-c092-4737-9063-6b447238ed6a.png",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "intended_canvas": [
+        2560,
+        1440
+      ],
+      "resampled": false,
+      "prompt": "Production environment backdrop for a fantasy action-RPG camp UI. Quiet sunlit old-growth forest camp clearing, stone pathway at bottom, mossy trees framing far left and right, distant soft foliage, faint small canvas shelter far right edge. High-fidelity painterly game environment. Warm ivory sunlight, sage green and muted teal forest, antique-gold light. Center75% low-contrast airy empty negative space for opaque live UI panels. No characters/text/logos/UI/borders. Landscape16:9; requested2560x1440 but actual tool output1672x941.",
+      "qa": "Viewed full image; detailed outer forest framing and usable low-contrast center. Source native resolution accurately recorded. Runtime UI geometry and labels remain live."
+    }
+  ],
+  "related_manifests": [
+    "decor/provenance.json"
+  ]
+}

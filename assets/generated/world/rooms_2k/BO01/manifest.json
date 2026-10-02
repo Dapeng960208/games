@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "room_id": "BO01",
+  "approved": true,
+  "source_texture": "res://assets/generated/world/rooms/BO01_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "f1f7d2cacfcbf2ab9a7e226136f56a2f400c9bbd8ce2d5c5595044ca1ed95c48",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "res://assets/generated/world/rooms_2k/BO01/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "343f703f5324ad9ceef6ee31f350e5cf61012db89355acb766a03d2387b96679",
+      "decoded_rgb_sha256": "de8419bfbffd74ab1ce515856ba37b8510ad3f06f77392bee5cefa64cdc8cfcd",
+      "webp_sha256": "615fcfe19a5f6183c7a0b852a5357fe889724f9aa40a52e7c3bac4e472b7e28b",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room BO01, the Solar Crown Ceremonial Boss Garden in sunny ivory-and-gold garden ruins. The attached image is the exact source tile edit target, mechanically cropped from the existing 1536x1024 room. Repaint this EXACT tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective, object identity, and all normalized positions are LOCKED: preserve every stone joint, radial sun-crown ring and petal inlay, gateway and doorway, conservatory dome, curved balustrade, gold finial, stair edge, garden petal sculpture, water boundary, flower clump, cypress and shadow at the same normalized coordinates. Preserve all arena floor markings exactly, with their original pale low contrast. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, move, add or remove objects. Keep the boss arena empty and its walkable dry stone continuous; do not shift doors, paths, land/water boundaries, walls or floor elevations. Change ONLY fine surface detail inside existing silhouettes: delicate limestone pores and bevels, fine restrained stone grain, slender brass engraving, glass pane glints, clean flower petals and leaf veins. Closely preserve the source's creamy ivory, muted pale gold, clear turquoise water, fresh green foliage and warm sunlit hand-painted storybook palette. Keep its matte painterly material character and original exposure, not glossy plastic, photographic noise, extra contrast or dark outlines. No text, characters, boss, UI, functional objects, new decoration or watermark. Exact underlying composition, geometry, lighting and identities are authoritative."
+    },
+    {
+      "id": "top_middle",
+      "texture": "res://assets/generated/world/rooms_2k/BO01/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "59549f4cd3865f65ba90f1659caced6b9ea516f4b0dd231ccf8a52bdf9c9c11c",
+      "decoded_rgb_sha256": "413bf4b9fd8d3f2490d964d724fd5dd69c76d786899ce839fc808b883c9b02cb",
+      "webp_sha256": "f7958b36d3dae5d4411e8f855fc00dc7b8e180d8d1d57366bb76ae40e9860c2a",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room BO01, the Solar Crown Ceremonial Boss Garden in sunny ivory-and-gold garden ruins. The attached image is the exact source tile edit target, mechanically cropped from the existing 1536x1024 room. Repaint this EXACT tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective, object identity, and all normalized positions are LOCKED: preserve every stone joint, radial sun-crown ring and petal inlay, gateway and doorway, conservatory dome, curved balustrade, gold finial, stair edge, garden petal sculpture, water boundary, flower clump, cypress and shadow at the same normalized coordinates. Preserve all arena floor markings exactly, with their original pale low contrast. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, move, add or remove objects. Keep the boss arena empty and its walkable dry stone continuous; do not shift doors, paths, land/water boundaries, walls or floor elevations. Change ONLY fine surface detail inside existing silhouettes: delicate limestone pores and bevels, fine restrained stone grain, slender brass engraving, glass pane glints, clean flower petals and leaf veins. Closely preserve the source's creamy ivory, muted pale gold, clear turquoise water, fresh green foliage and warm sunlit hand-painted storybook palette. Keep its matte painterly material character and original exposure, not glossy plastic, photographic noise, extra contrast or dark outlines. No text, characters, boss, UI, functional objects, new decoration or watermark. Exact underlying composition, geometry, lighting and identities are authoritative."
+    },
+    {
+      "id": "top_right",
+      "texture": "res://assets/generated/world/rooms_2k/BO01/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "6f9699b575c27ddf2b5e78992b4fbec93fdb2961b5a412bddea7b7a757f0e21a",
+      "decoded_rgb_sha256": "32cab9a4f2c950af374331cbc83dda6bd4d848a3fdff70e9d5c4280890f685bb",
+      "webp_sha256": "1731223e8d2a0d2037438d114c6eda0c40a4673fcd8d0b62d7644f45dce74d89",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room BO01, the Solar Crown Ceremonial Boss Garden in sunny ivory-and-gold garden ruins. The attached image is the exact source tile edit target, mechanically cropped from the existing 1536x1024 room. Repaint this EXACT tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective, object identity, and all normalized positions are LOCKED: preserve every stone joint, radial sun-crown ring and petal inlay, gateway and doorway, conservatory dome, curved balustrade, gold finial, stair edge, garden petal sculpture, water boundary, flower clump, cypress and shadow at the same normalized coordinates. Preserve all arena floor markings exactly, with their original pale low contrast. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, move, add or remove objects. Keep the boss arena empty and its walkable dry stone continuous; do not shift doors, paths, land/water boundaries, walls or floor elevations. Change ONLY fine surface detail inside existing silhouettes: delicate limestone pores and bevels, fine restrained stone grain, slender brass engraving, glass pane glints, clean flower petals and leaf veins. Closely preserve the source's creamy ivory, muted pale gold, clear turquoise water, fresh green foliage and warm sunlit hand-painted storybook palette. Keep its matte painterly material character and original exposure, not glossy plastic, photographic noise, extra contrast or dark outlines. No text, characters, boss, UI, functional objects, new decoration or watermark. Exact underlying composition, geometry, lighting and identities are authoritative."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "res://assets/generated/world/rooms_2k/BO01/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "f9fdfc4b04ace83e4e17c0e14e3baa7abb3ffc074a453ea6742ffb7deafcfa41",
+      "decoded_rgb_sha256": "ad332c8d6ae053c9cd915d97813b37f586d5426a45ab6e18acaa286a1710839d",
+      "webp_sha256": "a4b0c5139809a82b78b463066770507d3ba45beadf6609617c911456b01eeb94",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room BO01, the Solar Crown Ceremonial Boss Garden in sunny ivory-and-gold garden ruins. The attached image is the exact source tile edit target, mechanically cropped from the existing 1536x1024 room. Repaint this EXACT tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective, object identity, and all normalized positions are LOCKED: preserve every stone joint, radial sun-crown ring and petal inlay, gateway and doorway, conservatory dome, curved balustrade, gold finial, stair edge, garden petal sculpture, water boundary, flower clump, cypress and shadow at the same normalized coordinates. Preserve all arena floor markings exactly, with their original pale low contrast. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, move, add or remove objects. Keep the boss arena empty and its walkable dry stone continuous; do not shift doors, paths, land/water boundaries, walls or floor elevations. Change ONLY fine surface detail inside existing silhouettes: delicate limestone pores and bevels, fine restrained stone grain, slender brass engraving, glass pane glints, clean flower petals and leaf veins. Closely preserve the source's creamy ivory, muted pale gold, clear turquoise water, fresh green foliage and warm sunlit hand-painted storybook palette. Keep its matte painterly material character and original exposure, not glossy plastic, photographic noise, extra contrast or dark outlines. No text, characters, boss, UI, functional objects, new decoration or watermark. Exact underlying composition, geometry, lighting and identities are authoritative."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "res://assets/generated/world/rooms_2k/BO01/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1265,
+        1243
+      ],
+      "generated_png_sha256": "acba5e6ba1b001dbbcbaad6bc2d98afd284c0ac5c5f0fba30da8609811662b14",
+      "decoded_rgb_sha256": "e10ee1999b0624c1aea59613383e7f1d886ea8f8793ddeeed9aa27dec2a1a617",
+      "webp_sha256": "c554d1ef4467a3283e38f56ba2f0413a54a88b297e7a2d2d6fa76a3cd5baec4e",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room BO01, the Solar Crown Ceremonial Boss Garden in sunny ivory-and-gold garden ruins. The attached image is the exact source tile edit target, mechanically cropped from the existing 1536x1024 room. Repaint this EXACT tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective, object identity, and all normalized positions are LOCKED: preserve every stone joint, radial sun-crown ring and petal inlay, gateway and doorway, conservatory dome, curved balustrade, gold finial, stair edge, garden petal sculpture, water boundary, flower clump, cypress and shadow at the same normalized coordinates. Preserve all arena floor markings exactly, with their original pale low contrast. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, move, add or remove objects. Keep the boss arena empty and its walkable dry stone continuous; do not shift doors, paths, land/water boundaries, walls or floor elevations. Change ONLY fine surface detail inside existing silhouettes: delicate limestone pores and bevels, fine restrained stone grain, slender brass engraving, glass pane glints, clean flower petals and leaf veins. Closely preserve the source's creamy ivory, muted pale gold, clear turquoise water, fresh green foliage and warm sunlit hand-painted storybook palette. Keep its matte painterly material character and original exposure, not glossy plastic, photographic noise, extra contrast or dark outlines. No text, characters, boss, UI, functional objects, new decoration or watermark. Exact underlying composition, geometry, lighting and identities are authoritative."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "res://assets/generated/world/rooms_2k/BO01/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "7346a5ab377745c95dac749cb19891fce588166870f7d47ce9649b40fc4302e3",
+      "decoded_rgb_sha256": "0a82239be0a929b75fa4fd59379e47094350efa1eeaa16301b8553c12bd513a7",
+      "webp_sha256": "a93cda83c42f220417cb84ad188ec9999981e92427b867b65e9fa1187c07e4ba",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room BO01, the Solar Crown Ceremonial Boss Garden in sunny ivory-and-gold garden ruins. The attached image is the exact source tile edit target, mechanically cropped from the existing 1536x1024 room. Repaint this EXACT tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective, object identity, and all normalized positions are LOCKED: preserve every stone joint, radial sun-crown ring and petal inlay, gateway and doorway, conservatory dome, curved balustrade, gold finial, stair edge, garden petal sculpture, water boundary, flower clump, cypress and shadow at the same normalized coordinates. Preserve all arena floor markings exactly, with their original pale low contrast. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, move, add or remove objects. Keep the boss arena empty and its walkable dry stone continuous; do not shift doors, paths, land/water boundaries, walls or floor elevations. Change ONLY fine surface detail inside existing silhouettes: delicate limestone pores and bevels, fine restrained stone grain, slender brass engraving, glass pane glints, clean flower petals and leaf veins. Closely preserve the source's creamy ivory, muted pale gold, clear turquoise water, fresh green foliage and warm sunlit hand-painted storybook palette. Keep its matte painterly material character and original exposure, not glossy plastic, photographic noise, extra contrast or dark outlines. No text, characters, boss, UI, functional objects, new decoration or watermark. Exact underlying composition, geometry, lighting and identities are authoritative."
+    }
+  ],
+  "qa": {
+    "date": "2026-10-02",
+    "engine": "Godot 4.7.2",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "checks": 46,
+    "failures": 0,
+    "layout_polygon_camera_unchanged": true,
+    "texture_release_and_reload": true,
+    "visual_review": "Integration lead inspected all five original/native pairs. Crown and circular floor inlays, southern petal staircase, conservatories, gateways, water and garden boundaries remain aligned. Native material detail is visibly clearer. No apparent hard seam or abrupt exposure step across the examined overlaps. Small repainted foliage and stone details remain; this is controlled scene acceptance, not natural crowded-combat or hardware performance validation.",
+    "rgba_mips_upper_bound_bytes": 50304108,
+    "graphics_backend": "private Xorg display :97, llvmpipe; physical GPU performance not benchmarked",
+    "evidence": [
+      {
+        "capture": "BO01_center_original_2560x1440.png",
+        "sha256": "2418c45ef230a99779000e8552a444c11887725807ef8cb2bfc49f6516f6ce67"
+      },
+      {
+        "capture": "BO01_center_native_2560x1440.png",
+        "sha256": "13de6aa5e90f94f7b7b34c3bf446153c11ff2172b8e6dc5cdbf8d36b9952731e"
+      },
+      {
+        "capture": "BO01_northwest_original_2560x1440.png",
+        "sha256": "8d99b7a6627d33c9188d5c3b9ed577292ebc32120cefd41d1ddf73c5f17f39f2"
+      },
+      {
+        "capture": "BO01_northwest_native_2560x1440.png",
+        "sha256": "d9e331dba4ee35870f542c0643000d7a496788b96f6c950b83e3112b4e967347"
+      },
+      {
+        "capture": "BO01_northeast_original_2560x1440.png",
+        "sha256": "08da0ecfdb23a8cbcc15bedfaf3cd365b47e21e72d5773eece5903620abed30a"
+      },
+      {
+        "capture": "BO01_northeast_native_2560x1440.png",
+        "sha256": "ef9307deee6b306171f05222b6eef3902973aac0eb6116cb76b36fbfa9ee63a0"
+      },
+      {
+        "capture": "BO01_southwest_original_2560x1440.png",
+        "sha256": "803ede385553f8c7fb498b9d2093d0935fd13f71d53166d6ef8ab65b612a2e92"
+      },
+      {
+        "capture": "BO01_southwest_native_2560x1440.png",
+        "sha256": "1f5db6c41c15de3edf711fb1d94edd4ecbea3eb724b5c82b5349c242781ae2fd"
+      },
+      {
+        "capture": "BO01_southeast_original_2560x1440.png",
+        "sha256": "124c839d02c540098f047af9af88a165a340666b5a7a389c9c64bd5dee9298c3"
+      },
+      {
+        "capture": "BO01_southeast_native_2560x1440.png",
+        "sha256": "1126bf1ed8fffc9063a0c51de98b738ea61f35b2d758f6a56ab6668a02ab8c9e"
+      }
+    ],
+    "log_sha256": "0e60b32416ab50a828f30804b745dc1da21f4a51764573cad90a1995004edb4e"
+  }
+}

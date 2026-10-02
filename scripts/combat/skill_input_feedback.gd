@@ -52,7 +52,8 @@ func observe(slot: String, next_reason: String, data: Dictionary) -> void:
 
 static func describe(slot: String, failure: String, data: Dictionary) -> String:
 	var english: bool = Words.locale == "en"
-	var key: String = {"attack":"Attack" if english else "普攻", "q":"Q", "secondary":"Right click" if english else "鼠标右键", "f":"F", "ultimate":"R"}.get(slot, slot)
+	var action: String = {"attack":"attack", "q":"skill_q", "secondary":"skill_secondary", "f":"skill_f", "ultimate":"skill_ultimate"}.get(slot, "")
+	var key: String = ControlBindings.label_for(action, Game.profile.get("settings",{}).get("controls",{}), Words.locale) if not action.is_empty() else slot
 	var message := ""
 	match failure:
 		"queued":

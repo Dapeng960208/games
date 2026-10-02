@@ -34,8 +34,6 @@ func refresh() -> bool:
 	# transient queued corpses. Do not truncate it: a queued corpse or
 	# objective before a living caster must never hide a real danger warning.
 	for actor: Node in room.enemies.get_children():
-		if not enabled:
-			break
 		if not _visible_caster(actor):
 			continue
 		# MineBoss installs boss_brain into the same inherited brain property.
@@ -86,11 +84,18 @@ func _visible_caster(actor: Object) -> bool:
 	return is_instance_valid(actor) and not actor.is_queued_for_deletion() and actor.is_inside_tree() and actor.is_alive() and actor.state in [&"telegraph", &"locked"]
 
 func _draw() -> void:
-	if not is_instance_valid(room) or not bool(Game.profile.get("settings", {}).get("enemy_skill_paths", true)):
+	if not is_instance_valid(room):
 		return
 	for entry: Dictionary in _entries:
 		var actor: Object = instance_from_id(int(entry.actor_id))
 		# Deletion can happen after the last process pass; never retain a freed
 		# caster's drawn commands until another AI tick.
 		if _visible_caster(actor):
-			room.draw_enemy_telegraph(self, entry.data)
+			var data: Dictionary = entry.data
+			if not _enabled:
+				# Hiding optional sequence previews never hides the current
+				# actual danger boundary, locked aim or safe ring sector.
+				data = data.duplicate(true)
+				data.erase("combo_directions")
+				data.erase("sequence_shapes")
+			room.draw_enemy_telegraph(self, data)

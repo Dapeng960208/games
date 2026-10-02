@@ -4,6 +4,7 @@ extends CharacterBody2D
 signal skill_input_feedback(slot: String, reason: String, details: Dictionary)
 
 const SKILL_BUFFER_SECONDS: float = 0.24
+const COOLDOWN_BUFFER_SECONDS: float = 0.16
 const COMBO_MAX_AGE: float = 0.90
 const COMBO_QUEUE_LIMIT: int = 3
 const HELD_MOVE_INTERVAL: float = 0.16
@@ -426,7 +427,12 @@ func cast_skill(slot: String, target: Vector2) -> bool:
 			clear_movement_target()
 		# Read the committed spec: consuming full Momentum changes the next live
 		# preview back to 30 Rage and must not spend a paid-skill discount here.
-		loadout.event("skill_cast", {"slot":slot,"base_cost":float(abilities.active.spec.cost),"cast_success":true})
+		# Payment and the new skill cooldown are already committed. A stable cast
+		# root counts once, independently of later hits, projectiles or deployments.
+		var cast_event := "cast_commit:" + str(abilities.active.serial)
+		loadout.event("skill_cast", {"event_id":cast_event, "root_event_id":cast_event,
+			"slot":slot, "base_cost":float(abilities.active.spec.cost), "paid_cost":float(abilities.active.paid_cost),
+			"cast_success":true, "damage_source":"skill", "proc_depth":0, "equipment_eligible":true, "original_basic":false})
 		if room.has_method("record_player_sound"):
 			room.record_player_sound()
 		_play_combat_audio(&"prepare", [hero_id(), slot])
@@ -442,7 +448,9 @@ func request_skill(slot: String, target: Vector2) -> bool:
 	if dash_remaining > 0.0:
 		return _reject_skill(slot, target, "dashing")
 	_pending_skill_slot = slot
-	var valid: bool = abilities.can_cast(slot, target, true)
+	var cooldown_wait: float = float(cooldowns.get(slot, 0.0))
+	var prequeue: bool = _ruleset_version() == Numbers.V2 and cooldown_wait > 0.0 and cooldown_wait <= COOLDOWN_BUFFER_SECONDS
+	var valid: bool = abilities.can_cast(slot, target, true, prequeue)
 	_pending_skill_slot = ""
 	if not valid:
 		last_cast_error = abilities.last_failure
@@ -488,6 +496,8 @@ func _combo_wait_seconds(slot: String) -> float:
 		wait = maxf(wait, abilities.recovery_chain_wait())
 	if slot == "attack":
 		wait = maxf(wait, shot_cooldown)
+	else:
+		wait = maxf(wait, float(cooldowns.get(slot, 0.0)))
 	return wait
 
 func _append_combo_input(request: Dictionary, wait: float) -> bool:

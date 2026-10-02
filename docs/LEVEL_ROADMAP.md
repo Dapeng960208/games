@@ -2,6 +2,8 @@
 
 更新日期：2026-10-02。前四副本按“一房一张背景”接入独立原画、地图用途分组与房间 UI；PR #2交付S00–S10的数值和装备循环，S11自然平衡继续暂缓。本文件记录实施和后续事项；实际范围见 [开发进度](DEVELOPMENT_PROGRESS.md)，目标见 [用户需求](USER_LEVEL_BRIEF.md) 与 [设计稿](LEVEL_DESIGN_V1.md)。
 
+PR #4已按最新授权完成合并前审查修复：普通保存增加同代陈旧状态保护，精确失败重试与Windows回收站进程锁已定向验证。全局UI、三职业、普通怪和高清资源的具体本轮检查见[PR #4审查记录](audits/PR4_ACCEPTANCE_2026-10-02.md)。S11自然平衡、长期玩法、实际音频输出及后八关仍按原边界保留，不能因合并本PR提前计作完成。
+
 第二轮审查A13–A30已通过PR #1合入，并与本地同期装备UI改进整合；历史定向证据见[修复与验收](audits/GAMEPLAY_AUDIT_ROUND2_FIXES_2026-10-01.md)。八槽/实例/随机品质已由PR #2的S03–S06实现并接入保存与界面；分支时机、战斗背包换装频率、状态/护盾理解和自然多局体验继续待游玩验证。
 
 等级、装备与全量Buff实施依据为[数值方案](balance/LEVEL_EQUIPMENT_NUMERICAL_DESIGN.md)、[目标数值全表](balance/TARGET_NUMERICAL_TABLES.md)及[S00–S11执行清单](balance/NUMERICAL_REDESIGN_EXECUTION_STEPS.md)。S00–S10已实现，正常新档默认使用×10整数规则、20级天赋、124模板/八槽实例及最高+10手动强化，旧进行中冒险冻结旧版本。本轮按用户授权验收和修复PR #2，证据见[本地验收记录](balance/PR2_ACCEPTANCE_2026-10-02.md)；自然平衡未完成。
@@ -26,6 +28,7 @@
 | COM06 P0 | 野怪攻击射程与稳定仇恨已补修；真实main暂停恢复检查通过，原整群停止现场待重启复核 | enemy.gd、enemy_brain.gd、tests/test_enemy_attack_flow.gd、tests/test_enemy_live_room.gd | 侧移及辅助转近战按实际招式接近，保留完整预警；节点失效/普攻仇恨正常；真实B03→L15原生首波与M开关均能攻击，现场运行进程早于修复写入，未确认原整群停止根因 |
 | COM07 P1 | 599普通怪身体外观与36施法徽章已接入并检查 | enemy_art.gd、enemy_visual.gd、room.gd、docs/ENEMY_VARIANTS.md | 独立房间累计分配，真实纹理/region去重；120个普通房/难度有限计划重复率0%，L15/L19极限真实生成已检查；技能召唤重复率、完整逐帧动画与主观密集群战可读性待完善 |
 | COM08 P0 | 首领贴身空招、静止岩缝与断层中缝已修复；具名战士极限站撸基准通过 | boss_brain.gd、boss_ability_catalog.gd、tests/test_boss_targeting.gd、tests/test_boss_stationary.gd | 按真实危险环与身体半径选招，不消耗轮换；静止岩缝与瞄准断层实伤、锁后侧移实躲已检查；原生Lv12／Lv20 S06＋RL03 II战士持续普攻及W/E/R均死亡，28项0失败；保留完整预警与反制，其他临时构筑和自然平衡继续游玩校调 |
+| COM09 P0 | 四关9/12/15/18种、真实新机制/难度技能、原生身体及短预警已接入并定向验证；最终GPU呈现在验收 | enemy_ability_catalog.gd、enemy_warning_timing.gd、enemy_brain.gd、boss_brain.gd、enemy_skill_runtime.gd、enemy_profiles.gd、monster_codex.gd | 54种全技能及D1–D4门槛共源；18新机制实效/反制；54种施法UI；高清身体/图鉴身份；对应关卡和数值文档同步，详见ORDINARY_MONSTER_EXPANSION.md；S11仍暂停 |
 | UI01 P1 | 装备／属性／页头重构、六类 v5 按钮和确认操作等宽已接入并截图检查 | scripts/ui/style.gd、button_skin.gd、main.gd、equipment_catalog.gd、equipment_details.gd、backpack_panel.gd、hud.gd | 中英文 51 状态共 102 张 1280×720 GPU 截图已审查；装备页另查三窗口；焦点／禁用态、真实数值与成对按钮已检查；新增界面继续按实际改动校对，证据见 UI_SCREENSHOT_AUDIT.md |
 | ANIM01 P2 | 完整角色动作和附件 | hero_art_family.gd、hero_walk_atlas.gd、hero_basic_atlas.gd、hero_skill_atlas.gd | 头像身份、身体高度、脚点一致；补连续动作与必要朝向；枪口锚点一致，拒收候选不启用 |
 
@@ -76,3 +79,5 @@ MAP01 不能整房字典覆盖运行数据。本轮通过独立表现配置只�
 ## 交付要求
 
 每次更新真实进度和待办，给出运行代码与资源，做直接相关的检查或短段实机观察，提交便于 diff 的版本。素材记录纹理、region、脚点和来源。主观手感未确认就如实保留，不扩大 review 或重复全量测试。
+
+三职业定位、独立成长、八向动作和职业装备限制已接入并完成针对性验收，详见[方案与实际验收](character-optimization/ROLE_OPTIMIZATION_2026-10-02.md)。自然长期玩法及S11全量平衡仍未完成。

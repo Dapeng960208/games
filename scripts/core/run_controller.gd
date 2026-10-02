@@ -56,6 +56,9 @@ func _ready() -> void:
 				if argument in ["--test-ruleset=1", "--test-ruleset=2"]:
 					_test_ruleset_override = int(argument.get_slice("=",1))
 	reload_profile()
+	# Explicit lifecycle cleanup, never triggered by a read-only recycle-bin view.
+	if _store != null and not _store.unresolved_error and not _store.cleanup_recycle_bin():
+		storage_warning = _store.last_error
 
 func _isolated_test_path(value: String) -> bool:
 	if value == "user://profile.json" or value.is_empty(): return false
@@ -116,7 +119,7 @@ func reload_profile() -> void:
 	if document.active_run is Dictionary:
 		if document.active_run.has("expedition"):
 			_restore_expedition(document.active_run)
-			storage_warning = "STORAGE_CHECKPOINT_RECOVERED"
+			if storage_warning != "STORAGE_CLASS_EQUIPMENT_UPDATED": storage_warning = "STORAGE_CHECKPOINT_RECOVERED"
 			changed.emit()
 			return
 		# M1 never resumes a room. A crash/forced quit is one abandonment settlement.
@@ -148,8 +151,14 @@ func new_profile() -> bool:
 	var fresh := _fresh_runtime_profile()
 	if fresh.is_empty(): return false
 	fresh.settings = profile.get("settings", fresh.settings).duplicate(true)
-	if not _save(fresh, null):
+	if has_profile:
+		_store.cleanup_recycle_bin()
+		if not _store.recycle_and_replace(fresh):
+			last_error = _store.last_error
+			return false
+	elif not _save(fresh, null):
 		return false
+	last_error = ""
 	profile = fresh
 	_pending_forging_transactions.clear()
 	_pending_instance_transactions.clear()
@@ -161,6 +170,36 @@ func new_profile() -> bool:
 	has_profile = true
 	changed.emit()
 	return true
+
+func recycle_entries() -> Array[Dictionary]:
+	if _store == null: return []
+	var entries := _store.recycle_entries()
+	last_error = _store.last_error
+	return entries
+
+func delete_profile_to_recycle() -> bool:
+	if run != null or not _demo_backup.is_empty() or not has_profile:
+		last_error = "STORAGE_RECYCLE_BUSY"
+		return false
+	_store.cleanup_recycle_bin()
+	var blank := ProfileStore.fresh_profile()
+	blank.settings = profile.get("settings", blank.settings).duplicate(true)
+	if not _store.recycle_and_replace(blank, false):
+		last_error = _store.last_error
+		return false
+	reload_profile()
+	return true
+
+func restore_recycled_profile(entry_id: String) -> bool:
+	if run != null or not _demo_backup.is_empty():
+		last_error = "STORAGE_RECYCLE_BUSY"
+		return false
+	_store.cleanup_recycle_bin()
+	if not _store.restore_recycled(entry_id):
+		last_error = _store.last_error
+		return false
+	reload_profile()
+	return not _store.unresolved_error
 
 func start_run(options: Dictionary = {}) -> bool:
 	if run != null or not has_profile:
@@ -819,7 +858,9 @@ func equip_item(eq_id: String) -> bool:
 	last_error = ""
 	if not _camp_available() or not profile.equipment.has(eq_id):
 		return false
-	if _profile_ruleset() == Numbers.V2 and not _camp_instance_fits(eq_id, str(profile.selected_hero)): return false
+	if _profile_ruleset() == Numbers.V2 and not _camp_instance_fits(eq_id, str(profile.selected_hero)):
+		last_error = Instances.equip_error(profile.equipment[eq_id], str(profile.selected_hero), hero_level())
+		return false
 	var definition := equipment_definition(eq_id)
 	if definition.is_empty():
 		return false
@@ -1704,6 +1745,9 @@ func _default_set_request(set_id: String) -> Dictionary:
 
 func _equip_instance_set(set_id: String) -> bool:
 	if not _camp_available(): return false
+	if str(profile.selected_hero) not in ContentRegistry.sets(2).get(set_id, {}).get("allowed_heroes", []):
+		last_error = "CLASS_LOCKED"
+		return false
 	var templates: Array = ContentRegistry.set_item_ids(set_id, 2)
 	if templates.size() != 8: return false
 	var ids: Array = profile.equipment.keys()

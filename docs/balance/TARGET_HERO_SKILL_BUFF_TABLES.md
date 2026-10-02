@@ -1,5 +1,7 @@
 # 新版角色、技能与Buff整数目标全表
 
+> 2026-10-02 后续修订：职业独立成长、法师独立技能/资源与技能时序、八向动作及套装职业资格的最新方案和逐项实施状态见[三职业优化](../character-optimization/ROLE_OPTIMIZATION_2026-10-02.md)。本页保留此前设计/验收基线，未按新方案重写历史夹具；不据旧表推断本轮已完成。
+
 日期：2026-10-01；现状来源提交：`8daa519f2ea1a7dcc3f422b4df96ac81d65986b9`。**本册是已确认方向的重构实施目标，尚未接入游戏或玩家档。** [主方案](LEVEL_EQUIPMENT_NUMERICAL_DESIGN.md)约束结算、装备与经济；[目标总表](TARGET_NUMERICAL_TABLES.md)记录装备与敌人；[当前Buff技能册](CURRENT_BUFF_SKILL_CATALOG.md)保留现状。
 
 本册由[标准库生成器](../../tools/balance/render_target_hero_skill_buffs.py)读取[参数文件](numerical_v2_parameters.json)、三角色定义与CURRENT册内嵌的264条实际技能预览生成。264预览是当前规则的输入；新整数金额是目标计算结果。当前册的1455条源码数值索引不是已实施重构的证明。

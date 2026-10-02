@@ -68,43 +68,62 @@ func _render() -> void:
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
-	var header := MineStyle.panel(self,Vector2(32,14),Vector2(1216,148))
+	var header := MineStyle.panel(self,Vector2.ZERO,Vector2(1280,64))
 	header.name = "WorkshopHeader"
-	MineStyle.literal(header,_t("营地工坊 / 永久档案","CAMP WORKSHOP / PERMANENT RECORD"),Vector2(18,8),Vector2(730,20),12,MineStyle.AMBER)
-	var heading := MineStyle.label(header,{"heroes":"HERO_DOSSIERS","skills":"SKILL_LEDGER","inventory":"EQUIPMENT_BENCH","shop":"SUPPLY_CATALOG","upgrade":"UPGRADE_BENCH"}.get(mode,"EQUIPMENT_BENCH"),Vector2(18,35),Vector2(730,44),28)
-	heading.name = "WorkshopHeading"
-	if mode == "shop": heading.text = _t("套装商城 · 14 套", "SET SHOP · 14 SETS") if shop_sets else _t("单件装备目录", "EQUIPMENT SHOP")
-	if mode == "inventory": heading.text = _t("装备回收" if inventory_recycle else "装备背包", "EQUIPMENT RECYCLING" if inventory_recycle else "EQUIPMENT INVENTORY")
-	if mode == "craft": heading.text = _t("定向打造", "CRAFT EQUIPMENT")
-	if mode == "upgrade": heading.text = _t("装备锻造 · 强化与继承", "EQUIPMENT FORGE · IMPROVE & INHERIT") if int(Game.profile.get("ruleset_version",1)) == 2 else _t("装备强化", "EQUIPMENT REFINEMENT")
-	MineStyle.literal(header,_t("金币","GOLD"),Vector2(802,13),Vector2(160,19),12,MineStyle.AMBER)
-	MineStyle.literal(header,str(int(Game.profile.get("permanent_gold",0))),Vector2(802,34),Vector2(160,32),23,MineStyle.INK)
-	MineStyle.button(header,"RETURN_CAMP",Vector2(982,27),Vector2(214,45),app.show_camp).name = "ReturnCamp"
-	var tabs := [["heroes",_t("英雄档案","Heroes")],["skills",_t("技能成长","Skills")],["inventory",_t("装备背包","Inventory")],["shop",_t("装备商城","Shop")],["upgrade",_t("精工强化","Refine")]]
-	if int(Game.profile.get("ruleset_version",1)) == 2: tabs.insert(4,["craft",_t("定向打造","Craft")])
+	var emblem := TextureRect.new()
+	emblem.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	emblem.texture = load("res://assets/generated/ui/refactor_v1/decor/compass_emblem.png")
+	emblem.position = Vector2(25,3)
+	emblem.size = Vector2(51,58)
+	emblem.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	emblem.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	header.add_child(emblem)
+	MineStyle.literal(header,_t("营地工坊","CAMP WORKSHOP"),Vector2(77,18),Vector2(168,32),19)
+	var tabs := [["heroes",_t("英雄","Heroes")],["skills",_t("技能","Skills")],["inventory",_t("装备","Gear")],["shop",_t("商店","Shop")],["upgrade",_t("锻造","Forge")]]
+	if int(Game.profile.get("ruleset_version",1)) == 2: tabs.insert(4,["craft",_t("打造","Craft")])
 	for i in range(tabs.size()):
 		var data: Array = tabs[i]
-		var tab := MineStyle.button(header,"",Vector2(18+i*(122 if tabs.size() == 6 else 144),96),Vector2(114 if tabs.size() == 6 else 134,40),func(): _switch_page(data[0]))
+		var tab := MineStyle.button(header,"",Vector2(271+i*93,11),Vector2(86,44),func(): _switch_page(data[0]))
 		tab.name = "Tab_"+data[0]
 		tab.text = data[1]
-		tab.add_theme_font_size_override("font_size",16)
-		if mode == data[0]: MineStyle.selected(tab)
+		tab.add_theme_font_size_override("font_size",18)
+		_nav_style(tab,mode == data[0])
+	var codex := MineStyle.button(header,"",Vector2(836,11),Vector2(90,44),func(): app.show_codex())
+	codex.name = "OpenMonsterCodex"
+	codex.text = _t("图鉴","Codex")
+	codex.add_theme_font_size_override("font_size",18)
+	_nav_style(codex,false)
+	MineStyle.literal(header,"◉",Vector2(940,21),Vector2(24,25),19,MineStyle.AMBER)
+	var gold := MineStyle.literal(header,str(int(Game.profile.get("permanent_gold",0))),Vector2(971,17),Vector2(120,31),22)
+	gold.tooltip_text = _t("永久金币","Permanent gold")
+	var return_button := MineStyle.button(header,"RETURN_CAMP",Vector2(1104,10),Vector2(153,44),app.show_camp)
+	return_button.name = "ReturnCamp"
+	return_button.add_theme_font_size_override("font_size",16)
+	_nav_style(return_button,false)
+	var heading := MineStyle.label(self,{"heroes":"HERO_DOSSIERS","skills":"SKILL_LEDGER","inventory":"EQUIPMENT_BENCH","shop":"SUPPLY_CATALOG","upgrade":"UPGRADE_BENCH"}.get(mode,"EQUIPMENT_BENCH"),Vector2(48,83),Vector2(756,45),30)
+	heading.name = "WorkshopHeading"
+	if mode == "shop": heading.text = _t("装备商城", "EQUIPMENT SHOP")
+	if mode == "inventory": heading.text = _t("装备回收" if inventory_recycle else "装备背包", "EQUIPMENT RECYCLING" if inventory_recycle else "EQUIPMENT INVENTORY")
+	if mode == "craft": heading.text = _t("定向打造", "CRAFT EQUIPMENT")
+	if mode == "upgrade": heading.text = _t("精工锻造", "EQUIPMENT FORGE") if int(Game.profile.get("ruleset_version",1)) == 2 else _t("装备强化", "EQUIPMENT REFINEMENT")
 	if mode in ["inventory","shop","craft","upgrade"]:
-		var attributes := MineStyle.button(header,"",Vector2(774,96),Vector2(184,40),_show_character_stats)
+		var attributes := MineStyle.button(self,"",Vector2(48,130),Vector2(148,32),_show_character_stats)
 		attributes.name = "OpenCharacterStats"
 		attributes.text = _t("角色属性", "Character stats")
-		attributes.add_theme_font_size_override("font_size",16)
+		attributes.add_theme_font_size_override("font_size",14)
+		_secondary_style(attributes,false)
 	if mode == "shop":
-		var catalog_toggle := MineStyle.button(header,"",Vector2(976,96),Vector2(220,40),func(): shop_sets = not shop_sets; creation_transaction_id = ""; creation_message = ""; _render())
+		var catalog_toggle := MineStyle.button(self,"",Vector2(214,130),Vector2(206,32),func(): shop_sets = not shop_sets; creation_transaction_id = ""; creation_message = ""; _render())
 		catalog_toggle.name = "ToggleSetShop"
 		catalog_toggle.text = _t("查看单件装备", "Individual items") if shop_sets else _t("查看装备套装", "Equipment sets")
-		catalog_toggle.add_theme_font_size_override("font_size",15)
+		catalog_toggle.add_theme_font_size_override("font_size",14)
+		_secondary_style(catalog_toggle,true)
 	elif mode == "inventory":
-		var recycle_toggle := MineStyle.button(header,"",Vector2(976,96),Vector2(220,40),func(): inventory_recycle = not inventory_recycle; _render())
+		var recycle_toggle := MineStyle.button(self,"",Vector2(214,130),Vector2(206,32),func(): inventory_recycle = not inventory_recycle; _render())
 		recycle_toggle.name = "ToggleRecycle"
-		recycle_toggle.text = _t("返回装备背包", "Back to inventory") if inventory_recycle else (_t("出售 / 拆解", "Sell / dismantle") if int(Game.profile.get("ruleset_version",1)) == 2 else _t("多选回收装备", "Recycle equipment"))
-		recycle_toggle.add_theme_font_size_override("font_size",15)
-		MineStyle.button_skin(recycle_toggle,"secondary" if inventory_recycle else "danger")
+		recycle_toggle.text = _t("返回装备背包", "Back to inventory") if inventory_recycle else (_t("回收装备", "Recycle gear") if int(Game.profile.get("ruleset_version",1)) == 2 else _t("多选回收装备", "Recycle equipment"))
+		recycle_toggle.add_theme_font_size_override("font_size",14)
+		_secondary_style(recycle_toggle,inventory_recycle)
 	body = Control.new()
 	body.position = Vector2(32,178)
 	body.size = Vector2(1216,510)
@@ -123,6 +142,7 @@ func _render() -> void:
 		Recycle.render(self)
 	else:
 		_render_equipment()
+	MineStyle.literal(self,_t("Esc  返回营地    ·    Tab  切换焦点    ·    Enter  确认","Esc  Return to camp    ·    Tab  Navigate    ·    Enter  Confirm"),Vector2(40,695),Vector2(750,20),12,MineStyle.MUTED)
 	var focus := find_child("PrimaryAction",true,false) as Button
 	if focus != null and not focus.disabled:
 		focus.grab_focus()
@@ -130,6 +150,15 @@ func _render() -> void:
 		var back := find_child("ReturnCamp",true,false) as Button
 		if back != null:
 			back.grab_focus()
+
+static func _nav_style(button: Button, active: bool) -> void:
+	button.custom_minimum_size = Vector2(44,32)
+	MineStyle.tab(button,active)
+
+static func _secondary_style(button: Button, active: bool) -> void:
+	button.custom_minimum_size.y = 32
+	MineStyle.button_skin(button,"selected_card" if active else "secondary")
+	button.add_theme_color_override("font_color",MineStyle.CYAN if active else MineStyle.INK)
 
 func _switch_page(next_mode: String) -> void:
 	mode = next_mode
@@ -185,58 +214,8 @@ func _select_hero() -> void:
 		app._show_save_error()
 
 func _render_skills() -> void:
-	var id: String = Game.profile.get("selected_hero","CH01")
-	var hero: Dictionary = ContentRegistry.hero(id)
-	var level: int = Game.hero_level(id)
-	var stats: Dictionary = Game.selected_stats()
-	var dossier := MineStyle.panel(body,Vector2.ZERO,Vector2(290,510))
-	MineStyle.hero_portrait(dossier,id,Vector2(37,14),Vector2(216,204))
-	MineStyle.literal(dossier,MineStyle.content_text(hero,"name"),Vector2(20,220),Vector2(250,34),26)
-	MineStyle.label(dossier,"HERO_LEVEL",Vector2(20,259),Vector2(250,29),18,MineStyle.AMBER,{"level":level})
-	var xp: int = int(Game.profile.get("hero_xp",{}).get(id,0))
-	MineStyle.label(dossier,"HERO_XP_MAX" if level >= 20 else "HERO_XP",Vector2(20,294),Vector2(250,31),17,MineStyle.MUTED,{"xp":xp,"next":ContentRegistry.next_level_xp(level)})
-	MineStyle.label(dossier,"DOSSIER_STATS",Vector2(20,339),Vector2(252,61),17,MineStyle.INK,{"hp":int(stats.get("max_hp",100)),"damage":Inspect.value("attack",float(stats.get("attack",20)),false,false,int(stats.get("ruleset_version",1))),"armor":int(stats.get("armor",0))})
-	MineStyle.button(dossier,"PASSIVE_DASH",Vector2(18,416),Vector2(254,48),func(): _show_core_actions(hero))
-	MineStyle.label(dossier,"CORE_ACTIONS_UNLOCK",Vector2(20,471),Vector2(252,29),16,MineStyle.MUTED)
-	for i in range(SKILLS.size()):
-		var skill: Dictionary = hero.get("skills",{}).get(SKILLS[i],{})
-		skill = skill.duplicate(true)
-		skill.merge(HeroAbilities.preview_spec(id,level,stats,SKILLS[i]),true)
-		var description_text := MineStyle.content_text(skill,"description")
-		for upgrade: Dictionary in hero.get("upgrades",[]):
-			if upgrade.get("skill","") == SKILLS[i] and level >= int(upgrade.get("level",99)):
-				description_text = Words.text("SKILL_UPGRADE_ACTIVE",{"level":upgrade.get("level",0)})+"\n"+MineStyle.content_text(upgrade,"description")+"\n\n"+Words.text("BASE_SKILL")+"\n"+description_text
-		var branches: Dictionary = Game.hero_branches(id)
-		var choice: String = str(branches.get(SKILLS[i],""))
-		if not choice.is_empty():
-			var branch_level := "18" if SKILLS[i] == "q" else "20"
-			var branch: Dictionary = hero.get("branches",{}).get(branch_level,{}).get(choice,{})
-			description_text = Words.text("BRANCH_ACTIVE",{"choice":choice})+" · "+MineStyle.content_text(branch,"name")+"\n"+MineStyle.content_text(branch,"description")+"\n\n"+Words.text("BASE_SKILL")+"\n"+description_text
-		description_text = SkillInspect.describe(id,level,stats,SKILLS[i],skill,null,description_text)
-		var unlocked := level >= int(skill.get("unlock",[1,2,3,4][i]))
-		var panel := MineStyle.panel(body,Vector2(310,(i/2)*182),Vector2(442,164))
-		panel.position.x += (i%2)*464
-		var binding_key: String = ControlBindings.label_for(BINDING_ACTIONS[i],Game.profile.get("settings",{}).get("controls",{}),Words.locale)
-		MineStyle.literal(panel,binding_key,Vector2(18,13),Vector2(68,31),13 if binding_key.length()>3 else 22,MineStyle.AMBER if unlocked else MineStyle.MUTED)
-		MineStyle.literal(panel,MineStyle.content_text(skill,"name"),Vector2(91,13),Vector2(333,35),21)
-		MineStyle.label(panel,"SKILL_READY" if unlocked else "SKILL_LOCKED",Vector2(18,52),Vector2(406,27),16,MineStyle.GREEN if unlocked else MineStyle.MUTED,{"level":skill.get("unlock",[1,2,3,4][i]),"cost":skill.get("cost",0),"cooldown":"%.1f" % float(skill.get("cooldown",0))})
-		var explanation := ScrollContainer.new()
-		explanation.position = Vector2(18,86)
-		explanation.size = Vector2(406,65)
-		explanation.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-		panel.add_child(explanation)
-		var description := MineStyle.literal(explanation,description_text,Vector2.ZERO,Vector2(381,0),16,MineStyle.MUTED)
-		description.custom_minimum_size.x = 381
-		description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var rail := MineStyle.panel(body,Vector2(310,382),Vector2(906,128))
-	MineStyle.label(rail,"UNLOCK_TRACK",Vector2(18,10),Vector2(650,27),17,MineStyle.AMBER)
-	MineStyle.button(rail,"SKILL_BRANCHES",Vector2(670,8),Vector2(218,44),_show_branches).name = "OpenBranches"
-	for i in range(10):
-		var gate: int = [1,2,3,4,10,12,14,16,18,20][i]
-		var mark := MineStyle.label(rail,str(gate),Vector2(18+i*86,60),Vector2(70,27),20,MineStyle.GREEN if level >= gate else MineStyle.MUTED)
-		mark.text = str(gate)
-		mark.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	MineStyle.label(rail,"UNLOCK_LEGEND",Vector2(18,94),Vector2(870,23),14,MineStyle.MUTED)
+	HeroDossier.render_skills(self)
+
 
 func _show_branches() -> void:
 	var id: String = Game.profile.get("selected_hero","CH01")
@@ -297,7 +276,7 @@ func _show_core_actions(hero: Dictionary) -> void:
 	var flow := VBoxContainer.new()
 	flow.add_theme_constant_override("separation",12)
 	scroll.add_child(flow)
-	for entry: Array in [[MineStyle.content_text(passive,"name"),23,MineStyle.CYAN],[SkillInspect.passive_text(hero,Game.selected_stats()),18,MineStyle.INK],[Words.text("DASH_LABEL")+" / "+MineStyle.content_text(dash,"name"),22,MineStyle.AMBER],[Words.text("DASH_DETAILS",{"distance":dash.get("distance",0),"cooldown":dash.get("cooldown",0)}),18,MineStyle.MUTED]]:
+	for entry: Array in [[MineStyle.content_text(passive,"name_v2" if int(Game.profile.get("ruleset_version",1)) == 2 and passive.has("name_v2") else "name"),23,MineStyle.CYAN],[SkillInspect.passive_text(hero,Game.selected_stats()),18,MineStyle.INK],[Words.text("DASH_LABEL")+" / "+MineStyle.content_text(dash,"name"),22,MineStyle.AMBER],[Words.text("DASH_DETAILS",{"distance":dash.get("distance",0),"cooldown":dash.get("cooldown",0)}),18,MineStyle.MUTED]]:
 		var label := MineStyle.literal(flow,entry[0],Vector2.ZERO,Vector2(661,0),entry[1],entry[2])
 		label.custom_minimum_size.x = 661
 	MineStyle.button(panel,"BACK",Vector2(488,414),Vector2(226,50),app._pop_modal).grab_focus()

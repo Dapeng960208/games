@@ -124,6 +124,14 @@ static func validate(record: Dictionary) -> Array[String]:
 	if record.has("forge_revision") and not _integer_in(record.forge_revision, 0, 1000000000000): errors.append("Invalid forge revision.")
 	if record.has("pending_reforge") and not record.pending_reforge is Dictionary: errors.append("Invalid pending reforge value.")
 	if record.has("legacy_equip_waiver"): _validate_waiver(record, errors)
+	if record.get("source_metadata", {}) is Dictionary and record.get("source_metadata", {}).get("generator_version") == 2 and not record.has_all(["class_policy_version", "acquired_for_hero", "allowed_heroes"]): errors.append("Generator-v2 requires complete eligibility provenance.")
+	if record.has("class_policy_version"):
+		if not _integer_in(record.class_policy_version, Registry.ClassPolicy.VERSION, Registry.ClassPolicy.VERSION): errors.append("Unknown class policy version.")
+		if not record.get("acquired_for_hero") in Registry.ClassPolicy.HEROES: errors.append("Unknown acquisition hero.")
+		if record.get("allowed_heroes") != Registry.ClassPolicy.template_allowed_heroes(str(record.template_id)): errors.append("Class membership differs from the template policy.")
+		if not record.get("source_metadata") is Dictionary or record.source_metadata.get("generator_version") != 2: errors.append("Class-stamped instances require generator-v2 provenance.")
+		var allowed: Array = Registry.ClassPolicy.template_allowed_heroes(str(record.template_id))
+		if allowed.size() == 1 and record.power_type != Registry.ClassPolicy.power_type(str(allowed[0])): errors.append("Exclusive equipment has the wrong stat type.")
 	return errors
 
 ## Flat values use reduced rational factors, then one exact integer half-up.
@@ -190,10 +198,18 @@ static func stats(record: Dictionary) -> Dictionary:
 		for key: String in source: result[key] += source[key]
 	return result
 
-static func can_equip(record: Dictionary, hero_id: String, level: int) -> bool:
-	if not validate(record).is_empty() or Registry.hero(hero_id).is_empty() or level < 1 or level > Growth.level_cap(): return false
+static func can_equip(record: Dictionary, hero_id: String, level: int, legacy_eligibility: bool = false) -> bool:
+	return equip_error(record, hero_id, level, legacy_eligibility).is_empty()
+
+## legacy_eligibility is used only by the one-time checkpoint migration to
+## reconstruct prior stats before rebinding. No gameplay caller enables it.
+static func equip_error(record: Dictionary, hero_id: String, level: int, legacy_eligibility: bool = false) -> String:
+	if not validate(record).is_empty() or Registry.hero(hero_id).is_empty() or level < 1 or level > Growth.level_cap(): return "INVALID_INSTANCE"
+	var template := Registry.equipment(str(record.template_id), 2)
+	var allowed: Array = template.get("allowed_heroes", [])
+	if not legacy_eligibility and hero_id not in allowed: return "CLASS_LOCKED"
 	var expected_type := "magic" if hero_id == "CH03" else "physical"
-	var type_ok: bool = record.power_type == expected_type
+	var type_ok: bool = record.power_type == expected_type or (not legacy_eligibility and allowed.size() == 3)
 	var level_ok: bool = level >= int(record.item_level)
 	if record.has("legacy_equip_waiver"):
 		var waiver: Dictionary = record.legacy_equip_waiver
@@ -201,7 +217,9 @@ static func can_equip(record: Dictionary, hero_id: String, level: int) -> bool:
 		if hero_id in waiver.hero_ids and hero_id in legacy.referenced_heroes:
 			type_ok = type_ok or bool(waiver.type)
 			level_ok = level_ok or (bool(waiver.level) and hero_id in waiver.get("level_hero_ids", waiver.hero_ids))
-	return type_ok and level_ok
+	if not type_ok: return "POWER_TYPE_LOCKED"
+	if not level_ok: return "ITEM_LEVEL_LOCKED"
+	return ""
 
 static func _validate_waiver(record: Dictionary, errors: Array[String]) -> void:
 	var waiver: Variant = record.legacy_equip_waiver

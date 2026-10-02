@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "source_family": "storybook_2_5d_v1",
+  "purpose": "Three exact-source normal-2K soft-combat native-HD candidates. No runtime activation.",
+  "activation_status": "Source-matched runtime sampling validated at 2560x1440 on 2026-10-02; exact allowlist only. See docs/ui/ENEMY_VARIANT_HD_BATCH_2.md.",
+  "match_policy": "Match original identity, visual_variant_index, variant_id, texture, region and source crop hash. Replace in place; preserve deterministic index/count and original fallback on mismatch.",
+  "geometry_policy": "Original region aspect ratio and centered bottom foot preserved exactly. No gameplay, collision, navigation or runtime changes.",
+  "region_policy": "Alpha >8 bounds plus 2px antialias allowance; transparent allowance preserves original crop aspect ratio.",
+  "overrides": [
+    {
+      "source": {
+        "identity": "M04",
+        "visual_variant_index": 1,
+        "variant_id": "storybook_B01_variants_v1:M04:r02c04",
+        "texture": "res://assets/generated/enemies/storybook_B01_variants_v1.png",
+        "region": [
+          418,
+          157,
+          117,
+          102
+        ],
+        "foot": [
+          476.5,
+          259
+        ],
+        "source_height": 102,
+        "crop_rgba_sha256": "8bd5a682aab54a0f1a20457d225accd1dc75517207bf9628299ef465011373dd"
+      },
+      "replacement": {
+        "texture": "res://assets/generated/enemies/variant_hd_v1/M04_variant_01_hd_v1.png",
+        "region": [
+          211.04411764705884,
+          250,
+          950.9117647058823,
+          829
+        ],
+        "foot": [
+          686.5,
+          1079
+        ],
+        "source_height": 829,
+        "full_color": true,
+        "source_identity": "M04",
+        "source_variant_id": "storybook_B01_variants_v1:M04:r02c04",
+        "native_redraw": true
+      },
+      "review": {
+        "source_identity": "source_identity_review_passed",
+        "production_visual_qa": "passed_2k_sampling_2026_10_02",
+        "visible_native_body_height": 825,
+        "visible_2k_pixels_per_source_pixel": 0.16241253920386006,
+        "visible_body_height_2k": 133.99034484318454
+      }
+    },
+    {
+      "source": {
+        "identity": "M23",
+        "visual_variant_index": 0,
+        "variant_id": "storybook_B03_variants_v1:M23:r01c05",
+        "texture": "res://assets/generated/enemies/storybook_B03_variants_v1.png",
+        "region": [
+          557,
+          5,
+          139,
+          137
+        ],
+        "foot": [
+          626.5,
+          142
+        ],
+        "source_height": 137,
+        "crop_rgba_sha256": "161d0729939cd22fb30f1800dcb8796ea571c2abea6d549b77f6f3cbed59192e"
+      },
+      "replacement": {
+        "texture": "res://assets/generated/enemies/variant_hd_v1/M23_variant_00_hd_v1.png",
+        "region": [
+          313.6934306569343,
+          313,
+          737.6131386861314,
+          727
+        ],
+        "foot": [
+          682.5,
+          1040
+        ],
+        "source_height": 727,
+        "full_color": true,
+        "source_identity": "M23",
+        "source_variant_id": "storybook_B03_variants_v1:M23:r01c05",
+        "native_redraw": true
+      },
+      "review": {
+        "source_identity": "source_identity_review_passed",
+        "production_visual_qa": "passed_2k_sampling_2026_10_02",
+        "visible_native_body_height": 723,
+        "visible_2k_pixels_per_source_pixel": 0.24693261348005505,
+        "visible_body_height_2k": 178.5322795460798
+      }
+    },
+    {
+      "source": {
+        "identity": "M23",
+        "visual_variant_index": 3,
+        "variant_id": "storybook_B03_variants_v1:M23:r04c05",
+        "texture": "res://assets/generated/enemies/storybook_B03_variants_v1.png",
+        "region": [
+          557,
+          408,
+          139,
+          129
+        ],
+        "foot": [
+          626.5,
+          537
+        ],
+        "source_height": 129,
+        "crop_rgba_sha256": "902e067968b49825035905099a7b23c5b32483d98be89e6efee8ea9e753aba0c"
+      },
+      "replacement": {
+        "texture": "res://assets/generated/enemies/variant_hd_v1/M23_variant_03_hd_v1.png",
+        "region": [
+          102.56976744186056,
+          125,
+          1137.8604651162789,
+          1056
+        ],
+        "foot": [
+          671.5,
+          1181
+        ],
+        "source_height": 1056,
+        "full_color": true,
+        "source_identity": "M23",
+        "source_variant_id": "storybook_B03_variants_v1:M23:r04c05",
+        "native_redraw": true
+      },
+      "review": {
+        "source_identity": "source_identity_review_passed",
+        "production_visual_qa": "passed_2k_sampling_2026_10_02",
+        "visible_native_body_height": 1052,
+        "visible_2k_pixels_per_source_pixel": 0.17000000946969698,
+        "visible_body_height_2k": 178.84000996212123
+      }
+    }
+  ]
+}

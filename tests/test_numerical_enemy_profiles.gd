@@ -42,7 +42,7 @@ func _initialize() -> void:
 			for key: String in ["max_hp","damage","armor","magic_resist","enemy_level"]: check(actor[key] == golden[key] and actor[key] is int,"boss frozen target "+key)
 			check(actor.reinforcement_waves == Bosses.resolve(id,difficulty).reinforcement_waves,"boss finite reinforcements unchanged")
 	check(Bosses.resolve("BO05",4,2).is_empty(),"future boss remains unimplemented")
-	check(Profiles.resolve("M37",20,"normal",2,4).is_empty(),"future monster not fabricated")
+	check(Profiles.resolve("M55",20,"normal",2,4).is_empty(),"future monster not fabricated")
 	check(Numbers.chapter_levels(12,true).boss_level == 60 and not Numbers.chapter_levels(12,true).released,"future chapter formula only")
 	print("Numerical production enemy profiles: ",checks," checks; failures=",failures)
 	quit(0 if failures.is_empty() else 1)

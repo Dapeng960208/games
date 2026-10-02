@@ -7,11 +7,15 @@ func configure(data: Dictionary, width: float, prefix: String = "HeroAttribute_"
 	name = "CharacterStatSheet"
 	custom_minimum_size.x = width
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	add_theme_constant_override("separation",5)
+	add_theme_constant_override("separation",7)
 	set_meta("breakdown",data.duplicate(true))
 	var version := int(data.total.get("ruleset_version",1))
 	var expanded := version == 2
-	_line(Inspect.t("基础 + 等级 + 天赋 + 装备 + 当前效果 = 总值", "Base + level + talents + gear + current effects = total") if expanded else Inspect.t("角色基础 + 等级成长 + 装备变化 = 当前总值", "Base + level growth + gear change = current total"),width,14,MineStyle.MUTED)
+	_line(Inspect.t("基础 + 等级 + 天赋 + 装备 + 当前效果 = 总值；pp = 百分点", "Base + level + talents + gear + effects = total; pp = percentage points") if expanded else Inspect.t("角色基础 + 等级成长 + 装备变化 = 当前总值", "Base + level growth + gear change = current total"),width,14,MineStyle.MUTED)
+	if expanded:
+		var curve: Dictionary = preload("res://config/numerical_rules.gd").value("hero_class_profiles",{}).get(str(data.hero_id),{}).get("growth",{})
+		if not curve.is_empty():
+			_line(Inspect.t("每级按初始值增加：生命 %.1f%% · 攻击 %.1f%% · 法强 %.1f%%；护甲 +%d / 魔抗 +%d", "Per level, based on starting stats: HP %.1f%% · attack %.1f%% · spell power %.1f%%; armor +%d / magic resistance +%d") % [100*float(curve.max_hp),100*float(curve.attack),100*float(curve.ability_power),int(curve.armor),int(curve.magic_resist)],width,13,MineStyle.CYAN).name = "ClassGrowthFormula"
 	var headers: Array = [Inspect.t("属性","Attribute"),Inspect.t("基础","Base"),Inspect.t("成长","Level")]
 	if expanded: headers.append(Inspect.t("天赋","Talent"))
 	headers.append(Inspect.t("装备","Gear"))
@@ -61,7 +65,7 @@ func configure(data: Dictionary, width: float, prefix: String = "HeroAttribute_"
 		_line(MineStyle.content_text(item,"name")+" +"+str(record.get("enhancement_rank",record.get("level",0))),width,15,MineStyle.CYAN)
 		_line(MineStyle.content_text(item,"affix_text"),width,14)
 	for id: String in data.total.get("sets",{}):
-		var set_data: Dictionary = ContentRegistry.sets().get(id,{})
+		var set_data: Dictionary = ContentRegistry.sets(int(data.total.get("ruleset_version",1))).get(id,{})
 		var count := int(data.total.sets[id])
 		_line(MineStyle.content_text(set_data,"name")+" · %d/%d" % [count,8 if int(data.total.get("ruleset_version",1)) == 2 else 6],width,17,MineStyle.AMBER)
 		for tier: int in [2,4,6]:
@@ -74,28 +78,35 @@ func configure(data: Dictionary, width: float, prefix: String = "HeroAttribute_"
 				_line(Inspect.t("内置冷却 %.1f 秒 · 当前增益剩余 %.1f 秒；仍需满足触发条件。","Internal cooldown %.1f s · active buff %.1f s left; trigger conditions still apply.") % [remaining,active_time],width,14,MineStyle.CYAN).name = "SetTrigger_"+key
 	var hero: Dictionary = ContentRegistry.hero(str(data.hero_id))
 	var passive: Dictionary = hero.get("passive",{})
-	_heading(Inspect.t("职业被动 · ","HERO PASSIVE · ")+MineStyle.content_text(passive,"name"),width)
+	_heading(Inspect.t("职业被动 · ","HERO PASSIVE · ")+MineStyle.content_text(passive,"name_v2" if expanded and passive.has("name_v2") else "name"),width)
 	_line(SkillInspect.passive_text(hero,data.live),width,14)
 
 func _table_row(values: Array, width: float, header: bool = false) -> HBoxContainer:
 	var row := HBoxContainer.new()
-	row.custom_minimum_size = Vector2(width,30)
+	row.custom_minimum_size = Vector2(width,32)
 	row.mouse_filter = Control.MOUSE_FILTER_PASS
 	row.add_theme_constant_override("separation",0)
 	add_child(row)
 	for i: int in values.size():
 		var span := width*.30 if i == 0 else width*.70/(values.size()-1)
-		var label := _line(str(values[i]),span,13 if header else 14,MineStyle.AMBER if header else MineStyle.INK if i == values.size()-1 else MineStyle.MUTED,row)
+		var text := str(values[i]).replace("百分点"," pp")
+		var label := _line(text,span,13 if header else 14,MineStyle.CYAN if header or i == values.size()-1 else MineStyle.INK if i == 0 else MineStyle.MUTED,row)
 		label.autowrap_mode = TextServer.AUTOWRAP_OFF
+		label.clip_text = true
+		label.tooltip_text = str(values[i])
 		label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		label.custom_minimum_size.y = 30
+		label.custom_minimum_size.y = 32
 		if i > 0: label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	return row
 
 func _heading(text: String, width: float) -> void:
-	var label := _line(text,width,17,MineStyle.AMBER)
-	label.custom_minimum_size.y = 30
+	var rule := HSeparator.new()
+	rule.custom_minimum_size = Vector2(width,8)
+	rule.add_theme_stylebox_override("separator",MineStyle.rail_box(Color("e4ddca")))
+	add_child(rule)
+	var label := _line(text,width,17,MineStyle.CYAN)
+	label.custom_minimum_size.y = 32
 
 func _line(text: String, width: float, font_size: int = 14, tint: Color = MineStyle.INK, owner: Node = self) -> Label:
 	var label := MineStyle.literal(owner,text,Vector2.ZERO,Vector2(width,0),font_size,tint)

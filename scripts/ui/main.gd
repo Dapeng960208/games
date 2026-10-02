@@ -43,7 +43,7 @@ var binding_feedback: Label
 const HERO_LOOPS := {
 	"CH01":["破岩斧卫","贴身积累破势，重击打穿敌阵。","普攻 / Q 蓄势 → W 破阵","BREAKER","Build pressure up close, then break the line."],
 	"CH02":["游走枪手","连续命中标记弱点，精确射击收割。","两次普攻 → 第三击 / 技能破绽","GUNNER","Mark a weak point with two hits. Consume it with a shot or skill."],
-	"CH03":["共鸣术士","布置节点，蓄能后连锁引爆。","W 布点 → Q 充能 → E 引爆","RESONATOR","Place nodes, charge them, trigger a chain reaction."]
+	"CH03":["共鸣术士","Q瞄准输出，W法晶自动攻击，E近身冰霜，R范围爆发。四技独立可用；交替施法额外回蓝。","四技独立：Q瞄准 / W法晶 / E冰霜 / R爆发；交替施法额外回蓝","RESONATOR","Use skills independently: Q aim, W auto-firing crystal, E close frost, R area burst. Alternating casts gives bonus mana."]
 }
 
 func _ready() -> void:
@@ -104,33 +104,179 @@ func _new_screen(next_route: String) -> void:
 	screen.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui.add_child(screen)
+	if next_route.begins_with("workshop_") or next_route == "codex":
+		var footer := ColorRect.new()
+		footer.position = Vector2(0,690)
+		footer.size = Vector2(1280,30)
+		footer.color = Color(MineStyle.PANEL,0.96)
+		footer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		screen.add_child(footer)
 	if next_route in ["result","room_error"]: _screen_shade(0.68)
 
 func show_menu() -> void:
 	_new_screen("menu")
-	_screen_shade(0.06)
-	var title_page := MineStyle.panel(screen,Vector2(66,83),Vector2(606,269))
+	_screen_shade(0.03)
+	var title_page := MineStyle.panel(screen,Vector2(36,24),Vector2(430,662))
 	title_page.name = "MenuTitlePage"
-	_camp_ui_icon(title_page,"workshop",Vector2(24,17),Vector2(39,39))
-	MineStyle.literal(title_page,"ABYSS SALVAGER  /  CIRCUIT TRIAL",Vector2(78,26),Vector2(506,24),12,MineStyle.CYAN)
-	MineStyle.label(title_page,"TITLE",Vector2(25,70),Vector2(557,80),52,MineStyle.INK)
-	MineStyle.literal(title_page,_ex_text("借敌之力，重写战场。","TURN FIRE INTO YOUR WEAPON."),Vector2(29,160),Vector2(544,40),26,MineStyle.AMBER)
-	MineStyle.literal(title_page,_ex_text("三个职业，三种连招。\n踏上阳光中的遗迹，开启你的远征。","Three heroes. Three combat styles.\nJourney through the sunlit ruins."),Vector2(29,208),Vector2(540,46),17,MineStyle.MUTED)
-	var hero_id: String = Game.profile.get("selected_hero","CH01")
-	MineStyle.hero_portrait(screen,hero_id,Vector2(733,116),Vector2(430,476)).name = "MenuHeroIllustration"
-	var caption := MineStyle.panel(screen,Vector2(786,584),Vector2(338,65))
-	MineStyle.literal(caption,MineStyle.content_text(ContentRegistry.hero(hero_id),"name"),Vector2(19,9),Vector2(304,31),25,MineStyle.INK)
-	MineStyle.literal(caption,_ex_text("准备好，向着新的区域出发。","READY FOR THE NEXT JOURNEY."),Vector2(20,41),Vector2(302,18),11,MineStyle.CYAN)
-	var demo := _camp_navigation(screen,Vector2(74,375),Vector2(420,72),_ex_text("完整技能试玩","FULL-SKILL TRIAL"),_ex_text("Lv.8 完整技能 · 独立试玩","Level 8 · All skills · Separate trial"),5,MineStyle.CYAN,show_demo_select,true)
-	demo.name = "FullSkillDemo"
-	demo.disabled = Game.run != null
-	var cont := _camp_navigation(screen,Vector2(74,460),Vector2(420,66),Words.text("CONTINUE"),_ex_text("回到营地，继续你的旅程","Return to camp and continue"),4,Color("997244"),_continue_game)
+	var emblem := TextureRect.new()
+	if ResourceLoader.exists("res://assets/generated/ui/refactor_v1/decor/compass_emblem.png"):
+		emblem.texture = load("res://assets/generated/ui/refactor_v1/decor/compass_emblem.png")
+	emblem.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	emblem.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	emblem.position = Vector2(170,12)
+	emblem.size = Vector2(90,90)
+	emblem.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	title_page.add_child(emblem)
+	MineStyle.literal(title_page,"ABYSS SALVAGER",Vector2(35,111),Vector2(360,25),14,MineStyle.AMBER).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	MineStyle.label(title_page,"TITLE",Vector2(20,146),Vector2(390,70),40 if Words.locale == "zh_CN" else 35).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	MineStyle.literal(title_page,_ex_text("借敌之力，重写战场。","TURN FIRE INTO YOUR WEAPON"),Vector2(25,221),Vector2(380,32),18,MineStyle.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	MineStyle.divider(title_page,Vector2(44,270),342)
+	var cont := MineStyle.button(title_page,"CONTINUE",Vector2(30,294),Vector2(370,56),_continue_game)
+	cont.name = "ContinueJourney"
+	cont.text = _continue_button_text()
 	cont.disabled = not Game.has_profile
-	_camp_navigation(screen,Vector2(74,542),Vector2(420,44),Words.text("NEW_GAME"),"",0,Color("997244"),_request_new_profile)
-	MineStyle.button(screen,"SETTINGS",Vector2(74,606),Vector2(267,44),show_settings)
-	MineStyle.button(screen,"QUIT",Vector2(355,606),Vector2(139,44),_quit)
-	_show_warning(screen,Vector2(516,670),Vector2(684,25))
-	(cont if demo.disabled else demo).grab_focus()
+	MineStyle.primary(cont)
+	var trial := MineStyle.button(title_page,"",Vector2(30,364),Vector2(370,50),show_demo_select)
+	trial.name = "FullSkillDemo"
+	trial.text = _ex_text("完整技能试玩", "FULL-SKILL TRIAL")
+	trial.disabled = Game.run != null
+	var profile_button := MineStyle.button(title_page,"",Vector2(30,428),Vector2(370,50),show_profile)
+	profile_button.name = "OpenProfile"
+	profile_button.text = _ex_text("存档与英雄档案", "SAVE & HERO PROFILE")
+	MineStyle.button(title_page,"NEW_GAME",Vector2(30,492),Vector2(370,44),_request_new_profile)
+	MineStyle.button(title_page,"SETTINGS",Vector2(30,554),Vector2(222,44),show_settings)
+	MineStyle.button(title_page,"QUIT",Vector2(266,554),Vector2(134,44),_quit)
+	MineStyle.literal(title_page,_ex_text("Enter 确认  ·  Esc 返回", "ENTER CONFIRM  ·  ESC BACK"),Vector2(30,617),Vector2(370,24),12,MineStyle.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var hero_id: String = Game.profile.get("selected_hero","CH01")
+	MineStyle.hero_portrait(screen,hero_id,Vector2(692,114),Vector2(440,452)).name = "MenuHeroIllustration"
+	var hero_card := MineStyle.panel(screen,Vector2(692,574),Vector2(440,94))
+	MineStyle.literal(hero_card,MineStyle.content_text(ContentRegistry.hero(hero_id),"name"),Vector2(24,12),Vector2(306,34),26)
+	MineStyle.literal(hero_card,"Lv."+str(Game.hero_level(hero_id)),Vector2(336,16),Vector2(80,30),21,MineStyle.CYAN)
+	MineStyle.literal(hero_card,_ex_text("三个职业，三种连招。开启你的远征。","THREE HEROES. THREE STYLES. YOUR JOURNEY."),Vector2(24,56),Vector2(392,22),12,MineStyle.MUTED)
+	_show_warning(screen,Vector2(666,690),Vector2(566,20))
+	(cont if Game.has_profile else trial).grab_focus()
+
+func show_profile() -> void:
+	var panel := _push_modal("",Vector2(800,640))
+	panel.name = "ProfileOverview"
+	MineStyle.literal(panel,_ex_text("存档与英雄档案","SAVE & HERO PROFILE"),Vector2(32,22),Vector2(736,44),28)
+	MineStyle.literal(panel,_ex_text("当前永久档案 · 自动保存","CURRENT PERMANENT PROFILE · AUTOSAVED") if Game.has_profile else _ex_text("暂无有效存档 · 可从回收站恢复","NO ACTIVE SAVE · RESTORE FROM THE RECYCLE BIN"),Vector2(32,80),Vector2(736,28),14,MineStyle.CYAN)
+	MineStyle.divider(panel,Vector2(32,120),736)
+	for index: int in 3:
+		var id: String = ["CH01","CH02","CH03"][index]
+		var card := MineStyle.panel(panel,Vector2(32+index*252,142),Vector2(232,258))
+		MineStyle.hero_portrait(card,id,Vector2(34,14),Vector2(164,160))
+		MineStyle.literal(card,MineStyle.content_text(ContentRegistry.hero(id),"name"),Vector2(18,184),Vector2(196,32),22)
+		MineStyle.literal(card,"Lv."+str(Game.hero_level(id)),Vector2(18,222),Vector2(196,24),17,MineStyle.CYAN)
+	MineStyle.literal(panel,_ex_text("金币 %d · 装备 %d 件 · %s","GOLD %d · %d ITEMS · %s") % [int(Game.profile.get("permanent_gold",0)),Game.profile.get("equipment",{}).size(),_ex_text("远征进行中","EXPEDITION ACTIVE") if Game.run != null else _ex_text("营地存档","CAMP SAVE")],Vector2(32,418),Vector2(736,32),17,MineStyle.MUTED)
+	var recycle := MineStyle.button(panel,"",Vector2(32,470),Vector2(360,48),show_recycle_bin)
+	recycle.name = "OpenSaveRecycleBin"
+	recycle.text = _ex_text("存档回收站 · 保留7天","RECYCLE BIN · 7 DAYS")
+	var remove := MineStyle.button(panel,"",Vector2(408,470),Vector2(360,48),_request_delete_profile)
+	remove.name = "DeleteSaveToRecycleBin"
+	remove.text = _ex_text("删除当前存档","DELETE CURRENT SAVE")
+	remove.disabled = not Game.has_profile or Game.run != null
+	remove.tooltip_text = _ex_text("远征进行中请先返回营地；删除后7天内可在回收站恢复。","Return to camp before deleting an active expedition. Deleted saves can be restored for 7 days.")
+	var actions := MineStyle.action_pair(panel,"CONTINUE","BACK",556,func(): _pop_modal(); _continue_game(),_pop_modal)
+	actions[0].text = _continue_button_text()
+	actions[0].disabled = not Game.has_profile
+	actions[1].grab_focus()
+
+func _request_delete_profile() -> void:
+	var panel := _push_modal("",Vector2(760,390))
+	panel.name = "DeleteSaveConfirmation"
+	MineStyle.literal(panel,_ex_text("将当前存档移入回收站？","MOVE THIS SAVE TO THE RECYCLE BIN?"),Vector2(28,22),Vector2(704,44),24)
+	MineStyle.literal(panel,_ex_text("完整存档会保留7天，期间可从「存档回收站」恢复。
+7天后，在下次启动或存档管理操作时永久清理。
+游戏关闭时不会运行后台清理。", "The complete save is kept for 7 days and can be restored from the Recycle Bin.
+After 7 days it is permanently removed on the next launch or save-management action. No cleanup runs while the game is closed."),Vector2(28,88),Vector2(704,192),18)
+	var pair := MineStyle.action_pair(panel,"","CANCEL",302,func():
+		if Game.delete_profile_to_recycle():
+			show_menu()
+			show_recycle_bin()
+		else: _show_save_error(),_pop_modal)
+	pair[0].name = "ConfirmRecycleSave"
+	pair[0].text = _ex_text("移入回收站","MOVE TO RECYCLE BIN")
+	pair[1].grab_focus()
+
+func show_recycle_bin() -> void:
+	var entries := Game.recycle_entries()
+	var read_error := Game.last_error
+	var panel := _push_modal("",Vector2(960,650))
+	panel.name = "SaveRecycleBin"
+	MineStyle.literal(panel,_ex_text("存档回收站 · 保留7天","SAVE RECYCLE BIN · 7-DAY RETENTION"),Vector2(28,22),Vector2(904,44),26)
+	MineStyle.literal(panel,_ex_text("到期后在下次启动或存档管理操作时清理；游戏关闭时不会后台清理。
+恢复前请先将当前存档移入回收站，避免覆盖任何进度。", "Expired saves are removed on the next launch or save-management action, never in the background while closed.
+Move your current save to the Recycle Bin before restoring another save."),Vector2(28,84),Vector2(904,75),16,MineStyle.MUTED)
+	var scroll := ScrollContainer.new()
+	scroll.name = "RecycleEntries"
+	scroll.position = Vector2(28,172)
+	scroll.size = Vector2(904,372)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	panel.add_child(scroll)
+	var rows := VBoxContainer.new()
+	rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	rows.add_theme_constant_override("separation",12)
+	scroll.add_child(rows)
+	for entry: Dictionary in entries:
+		var card := PanelContainer.new()
+		card.custom_minimum_size = Vector2(860,146)
+		rows.add_child(card)
+		var content := Control.new()
+		content.custom_minimum_size = Vector2(860,146)
+		card.add_child(content)
+		var deleted := Time.get_datetime_string_from_unix_time(int(entry.deleted_at),true)+" UTC"
+		var expires := Time.get_datetime_string_from_unix_time(int(entry.expires_at),true)+" UTC"
+		var status := _recycle_remaining(entry)
+		var summary := _ex_text("删除时间：%s
+保留至：%s
+%s", "Deleted: %s
+Keep until: %s
+%s") % [deleted,expires,status]
+		var identity := _ex_text("无法验证的存档","Unverified save")
+		if bool(entry.valid):
+			identity = MineStyle.content_text(ContentRegistry.hero(str(entry.hero)),"name")+_ex_text(" · 金币 %d · 档案 %s", " · Gold %d · Profile %s") % [int(entry.gold),str(entry.profile_id).substr(0,8)]
+		MineStyle.literal(content,identity,Vector2(16,9),Vector2(622,28),17,MineStyle.INK)
+		MineStyle.literal(content,summary,Vector2(16,44),Vector2(622,92),15)
+		var restore := MineStyle.button(content,"",Vector2(658,46),Vector2(182,48),func(): _request_restore_profile(str(entry.entry_id)))
+		restore.name = "Restore_"+str(entry.entry_id)
+		restore.text = _ex_text("恢复此存档","RESTORE SAVE")
+		restore.disabled = Game.has_profile or Game.run != null or not bool(entry.valid) or bool(entry.expired)
+		restore.tooltip_text = _ex_text("先将当前存档移入回收站，再恢复此档。", "Move the current save to the Recycle Bin first.") if Game.has_profile else status
+	if entries.is_empty():
+		MineStyle.literal(rows,_ex_text("回收站为空。删除或新建覆盖的存档会在这里保留7天。", "The Recycle Bin is empty. Deleted and replaced saves will be kept here for 7 days."),Vector2.ZERO,Vector2(870,100),19,MineStyle.MUTED)
+	if not read_error.is_empty():
+		MineStyle.literal(panel,Words.text(read_error),Vector2(28,551),Vector2(620,60),14,MineStyle.RED)
+	MineStyle.button(panel,"BACK",Vector2(690,574),Vector2(242,48),_pop_modal).grab_focus()
+
+func _recycle_remaining(entry: Dictionary) -> String:
+	if not bool(entry.valid): return _ex_text("归档校验失败，文件已保留；无法恢复或自动清理。","Archive validation failed. Files are preserved; restore and automatic cleanup are blocked.")
+	if bool(entry.clock_rollback): return _ex_text("系统时间回退：暂停清理，存档仍可恢复。","System clock moved back. Cleanup is paused; this save can still be restored.")
+	if bool(entry.expired): return _ex_text("已满7天，等待下次安全清理。","7-day retention ended; awaiting safe cleanup.")
+	var hours := ceili(float(entry.remaining_seconds)/3600.0)
+	return _ex_text("剩余 %d 天 %d 小时", "%d days %d hours remaining") % [hours / 24, hours % 24]
+
+func _request_restore_profile(entry_id: String) -> void:
+	var panel := _push_modal("",Vector2(680,326))
+	MineStyle.literal(panel,_ex_text("恢复完整存档？","RESTORE THE COMPLETE SAVE?"),Vector2(28,22),Vector2(624,44),26)
+	MineStyle.literal(panel,_ex_text("恢复原有金币、装备、英雄成长与远征记录。不会合并或重复发放奖励。", "Restore the original gold, equipment, hero progress, and expedition record. Rewards are neither merged nor granted again."),Vector2(28,86),Vector2(624,118),18)
+	var pair := MineStyle.action_pair(panel,"","CANCEL",238,func():
+		if Game.restore_recycled_profile(entry_id):
+			Words.set_locale(Game.profile.settings.get("language","zh_CN"))
+			show_menu()
+		else: _show_save_error(),_pop_modal)
+	pair[0].text = _ex_text("确认恢复","RESTORE SAVE")
+	pair[0].name = "ConfirmRestoreSave"
+	pair[1].grab_focus()
+
+func show_codex() -> void:
+	_new_screen("codex")
+	_screen_shade(0.12)
+	var codex := load("res://scripts/ui/monster_codex.gd").new() as Control
+	codex.name = "MonsterCodex"
+	screen.add_child(codex)
+	codex.configure(show_camp)
+
 func _screen_shade(opacity: float) -> void:
 	var shade := ColorRect.new()
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -167,7 +313,7 @@ func show_demo_select() -> void:
 		MineStyle.literal(card,"0"+str(index+1)+" / "+str(words[3]),Vector2(22,16),Vector2(332,28),15,accent)
 		MineStyle.hero_portrait(card,id,Vector2(81,49),Vector2(215,218))
 		MineStyle.literal(card,MineStyle.content_text(hero,"name")+" · "+_ex_text(str(words[0]),str(words[3])),Vector2(22,266),Vector2(332,38),24)
-		MineStyle.literal(card,_ex_text(str(words[1]),str(words[4])),Vector2(22,314),Vector2(332,58),17,MineStyle.MUTED)
+		MineStyle.literal(card,_ex_text(str(words[1]),str(words[4])),Vector2(22,314),Vector2(332,58),13 if id == "CH03" else 17,MineStyle.MUTED)
 		var choose := MineStyle.button(card,"",Vector2(22,369),Vector2(332,44),func(): _start_demo(id))
 		choose.name = "Demo_"+id
 		choose.text = _ex_text("Lv.8 · 完整技能试玩","LV.8 · FULL-SKILL TRIAL")
@@ -240,8 +386,14 @@ func _current_control_summary() -> String:
 	return _ex_text("移动 %s · 普攻 %s · 技能 %s\n闪避 %s · 交互 %s · 路线 %s · 背包 %s · 详情 %s · 暂停 %s", "Move %s · Attack %s · Skills %s\nDodge %s · Interact %s · Map %s · Backpack %s · Details %s · Pause %s") % [_control_label("click_move"),attack," / ".join(skills),_control_label("dash"),_control_label("interact"),_control_label("expedition_map"),_control_label("backpack"),_control_label("relic_details"),_control_label("pause")]
 
 
+func _has_resumable_expedition() -> bool:
+	return Game.run != null and not Game.expedition_snapshot().is_empty()
+
+func _continue_button_text() -> String:
+	return _ex_text("继续远征","Continue expedition") if _has_resumable_expedition() else _ex_text("返回营地","Return to camp")
+
 func _continue_game() -> void:
-	if Game.run != null and not Game.expedition_snapshot().is_empty():
+	if _has_resumable_expedition():
 		_on_run_started()
 	else:
 		show_camp()
@@ -257,21 +409,27 @@ func show_camp() -> void:
 	var level: int = Game.hero_level(hero_id)
 	var identity: Array = HERO_LOOPS.get(hero_id,HERO_LOOPS.CH01)
 	var accent := MineStyle.resource_color(str(hero.get("resource_type","rage")))
-	# The courtyard remains a vivid part of the screen. Paper is reserved for
-	# information and interactions, with the illustrated hero in the landscape.
-	var brand := MineStyle.panel(screen,Vector2(42,22),Vector2(344,79))
+	var brand := MineStyle.panel(screen,Vector2.ZERO,Vector2(1280,64))
 	brand.name = "CampBrand"
-	_camp_ui_icon(brand,"workshop",Vector2(10,7),Vector2(62,62))
-	MineStyle.literal(brand,"THE LANTERN WORKSHOP",Vector2(82,10),Vector2(244,21),11,MineStyle.CYAN)
-	var brand_title := MineStyle.label(brand,"CAMP",Vector2(80,30),Vector2(246,39),20 if Words.locale == "en" else 29,MineStyle.INK)
+	_camp_ui_icon(brand,"workshop",Vector2(26,7),Vector2(50,50))
+	var brand_title := MineStyle.label(brand,"CAMP",Vector2(88,14),Vector2(320,40),24,MineStyle.INK)
 	brand_title.name = "CampHeading"
 	brand_title.autowrap_mode = TextServer.AUTOWRAP_OFF
 	brand_title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var bank := MineStyle.panel(screen,Vector2(998,24),Vector2(238,57))
+	var codex_link := MineStyle.button(brand,"",Vector2(626,11),Vector2(140,44),show_codex)
+	codex_link.text = _ex_text("怪物图鉴","BESTIARY")
+	codex_link.name = "OpenMonsterCodex"
+	MineStyle.tab(codex_link)
+	var profile_link := MineStyle.button(brand,"",Vector2(776,11),Vector2(140,44),show_profile)
+	profile_link.text = _ex_text("存档档案","PROFILE")
+	MineStyle.tab(profile_link)
+	var bank := Control.new()
+	bank.position = Vector2(992,8)
+	bank.size = Vector2(238,48)
 	bank.name = "CampBank"
-	_camp_ui_icon(bank,"gold",Vector2(10,6),Vector2(43,43))
-	MineStyle.literal(bank,_ex_text("营地金币","CAMP GOLD"),Vector2(62,7),Vector2(162,18),11,MineStyle.AMBER)
-	MineStyle.literal(bank,str(int(Game.profile.get("permanent_gold",0))),Vector2(62,26),Vector2(162,26),20,MineStyle.INK)
+	brand.add_child(bank)
+	_camp_ui_icon(bank,"gold",Vector2(10,4),Vector2(36,36))
+	MineStyle.literal(bank,str(int(Game.profile.get("permanent_gold",0))),Vector2(62,7),Vector2(162,34),23,MineStyle.INK)
 	var portrait := MineStyle.hero_portrait(screen,hero_id,Vector2(28,116),Vector2(380,428))
 	portrait.name = "CampHeroIllustration"
 	var identity_plate := MineStyle.panel(screen,Vector2(42,505),Vector2(344,128))
@@ -346,6 +504,8 @@ func _camp_navigation(parent: Node, at: Vector2, extent: Vector2, title: String,
 func _camp_ui_icon(parent: Node, key: String, at: Vector2, extent: Vector2) -> Control:
 	var art_id: String = {"workshop":"lantern","gold":"coin","route":"compass","state_shock":"circuit_orb"}.get(key,key)
 	var painted: Texture2D = CampArtwork.texture(art_id)
+	if key in ["workshop","route"] and ResourceLoader.exists("res://assets/generated/ui/refactor_v1/decor/compass_emblem.png"):
+		painted = load("res://assets/generated/ui/refactor_v1/decor/compass_emblem.png")
 	if painted != null:
 		var illustration := TextureRect.new()
 		illustration.texture = painted
@@ -855,7 +1015,7 @@ func _next_skill_level(level: int) -> String:
 
 func show_workshop(page: String = "heroes") -> void:
 	_new_screen("workshop_"+page)
-	_screen_shade(0.68)
+	_screen_shade(0.12)
 	var workshop := Control.new()
 	workshop.name = "Workshop"
 	workshop.set_script(load("res://scripts/ui/workshop_panel.gd"))
@@ -863,11 +1023,29 @@ func show_workshop(page: String = "heroes") -> void:
 	workshop.mode = page
 	workshop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	screen.add_child(workshop)
-	_show_warning(screen,Vector2(784,87),Vector2(452,22))
+	_show_warning(screen,Vector2(840,695),Vector2(408,20))
 
 func _show_warning(parent: Node, at: Vector2, extent: Vector2) -> void:
 	if not Game.storage_warning.is_empty():
-		MineStyle.label(parent,"SAVED_WARNING",at,extent,16,MineStyle.RED,{"message":Words.text(Game.storage_warning)})
+		var message := Words.text(Game.storage_warning)
+		var backing := MineStyle.panel(parent,at,extent)
+		backing.name = "StorageWarningBacking"
+		backing.add_theme_stylebox_override("panel",MineStyle.box(MineStyle.PAPER_LIGHT,MineStyle.AMBER,1))
+		var notice := LinkButton.new()
+		notice.name = "StorageWarningNotice"
+		notice.position = Vector2(8,0)
+		notice.size = extent-Vector2(16,0)
+		notice.text = _ex_text("档案提示 · 查看详情","Save notice · View details")
+		notice.tooltip_text = message
+		notice.add_theme_font_size_override("font_size",13)
+		notice.add_theme_color_override("font_color",MineStyle.INK)
+		backing.add_child(notice)
+		notice.pressed.connect(func():
+			var modal := _push_modal(_ex_text("档案提示","Save notice"),Vector2(760,330))
+			modal.name = "StorageWarningDetails"
+			var detail := MineStyle.literal(modal,message,Vector2(28,92),Vector2(704,144),17,MineStyle.INK)
+			detail.name = "StorageWarningFullText"
+			MineStyle.button(modal,"BACK",Vector2(470,258),Vector2(262,44),_pop_modal))
 		return
 	var capacity: Dictionary = Game.storage_capacity()
 	if capacity.is_empty(): return
@@ -875,6 +1053,7 @@ func _show_warning(parent: Node, at: Vector2, extent: Vector2) -> void:
 	var remaining_receipts := int(capacity.get("remaining_transactions",0))
 	var v2: bool = int(Game.profile.get("ruleset_version",1)) == 2
 	var tight := (not v2 and remaining_receipts <= 64) or remaining_bytes < 262144
+	if not tight: return
 	var note := MineStyle.literal(parent,(_ex_text("存档空间偏低：", "Low save space: ") if tight else _ex_text("存档余量：", "Save room: "))+_ex_text("%s KiB · %d 条收据", "%s KiB · %d receipts") % [_amount(remaining_bytes/1024.0),remaining_receipts],at,extent,13,MineStyle.RED if tight else MineStyle.MUTED)
 	if v2: note.text = (_ex_text("存档空间偏低：", "Low save space: ") if tight else _ex_text("存档余量：", "Save room: "))+_amount(remaining_bytes/1024.0)+" KiB"
 	note.name = "StorageCapacityHint"
@@ -885,9 +1064,9 @@ func _request_new_profile() -> void:
 	if not Game.has_profile:
 		_create_profile()
 		return
-	var panel := _push_modal("NEW_CONFIRM_TITLE",Vector2(650,338))
-	MineStyle.label(panel,"NEW_CONFIRM_NOTE",Vector2(28,83),Vector2(594,112),19)
-	MineStyle.action_pair(panel,"CONFIRM_NEW","CANCEL",222,_create_profile,_pop_modal)[1].grab_focus()
+	var panel := _push_modal("NEW_CONFIRM_TITLE",Vector2(760,390))
+	MineStyle.label(panel,"NEW_CONFIRM_NOTE",Vector2(28,83),Vector2(704,192),18)
+	MineStyle.action_pair(panel,"CONFIRM_NEW","CANCEL",302,_create_profile,_pop_modal)[1].grab_focus()
 
 func _create_profile() -> void:
 	if Game.new_profile():
@@ -1381,7 +1560,7 @@ func _death_mechanic_note(event: Dictionary) -> String:
 	return _ex_text("本次记录为直接攻击。对照下方攻击来源、当时状态与护盾吸收，观察同类敌人的出手预警。", "This was a direct attack. Compare the recorded source, active states and shield absorption with that enemy's attack warning.")
 
 func show_settings() -> void:
-	var panel := _push_modal("SETTINGS",Vector2(880,644))
+	var panel := _push_modal("SETTINGS",Vector2(1080,644))
 	panel.name = "SettingsPanel"
 	audio_sliders.clear()
 	var settings: Dictionary = Game.profile.get("settings",{})
@@ -1393,6 +1572,7 @@ func show_settings() -> void:
 	MineStyle.selected(general if settings_tab == "general" else controls)
 	if settings_tab == "controls":
 		_build_control_settings(panel)
+		_layout_settings_atlas(panel,general,controls)
 		return
 	for index in range(3):
 		var key: String = ["master_volume","music_volume","sfx_volume"][index]
@@ -1439,6 +1619,30 @@ func show_settings() -> void:
 	paths.tooltip_text = _ex_text("隐藏野怪技能预警线与范围标记；技能伤害与判定不变。","Hide enemy warning lines and area markers. Damage and hit detection remain active.")
 	MineStyle.literal(panel,_current_control_summary()+"\n"+_ex_text("「操作与按键」可自定义；Esc 始终返回。关闭震动、自动普攻可减轻连续操作。", "Customize in Controls & Keys; Esc always returns. Disable shake or enable auto attacks for comfort."),Vector2(28,464),Vector2(824,84),16,MineStyle.MUTED)
 	MineStyle.button(panel,"BACK",Vector2(612,566),Vector2(240,48),_pop_modal)
+	_layout_settings_atlas(panel,general,controls)
+
+func _layout_settings_atlas(panel: Panel, general: Button, controls: Button) -> void:
+	for child: Node in panel.get_children():
+		if child is Control and child != general and child != controls and not child is ColorRect:
+			child.position.x += 200
+			if child.position.y == 20: child.size.x -= 200
+	general.position = Vector2(24,102)
+	general.size = Vector2(168,58)
+	general.text = _ex_text("游戏与显示","GAME & DISPLAY")
+	general.add_theme_font_size_override("font_size",14)
+	controls.position = Vector2(24,178)
+	controls.size = Vector2(168,58)
+	controls.text = _ex_text("操作与按键","CONTROLS")
+	controls.add_theme_font_size_override("font_size",14)
+	MineStyle.tab(general,settings_tab == "general")
+	MineStyle.tab(controls,settings_tab == "controls")
+	MineStyle.literal(panel,_ex_text("设置即时保存","CHANGES AUTOSAVE"),Vector2(24,564),Vector2(168,44),12,MineStyle.MUTED)
+	var line := ColorRect.new()
+	line.position = Vector2(208,96)
+	line.size = Vector2(1,518)
+	line.color = Color(MineStyle.COPPER,0.3)
+	line.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.add_child(line)
 
 func _switch_settings_tab(next_tab: String) -> void:
 	settings_tab = next_tab
@@ -1536,6 +1740,8 @@ func _process(delta: float) -> void:
 	if music_tick > 0.0 or not is_instance_valid(music): return
 	music_tick = 0.3
 	var context := "camp"
+	if route == "workshop_craft": context = "craft"
+	elif route in ["workshop_upgrade", "workshop_recycle"]: context = "forge"
 	if route == "run" and is_instance_valid(room):
 		context = "explore"
 		if room.has_method("_living_enemy_count") and room._living_enemy_count() > 0: context = "combat"
@@ -1557,6 +1763,8 @@ func _toggle_language() -> void:
 		show_workshop(old_route.trim_prefix("workshop_"))
 	elif old_route == "menu":
 		show_menu()
+	elif old_route == "codex":
+		show_codex()
 	elif old_route == "result":
 		show_result(Game.last_result)
 	elif old_route == "room_error":
@@ -1596,8 +1804,13 @@ func _toggle_camera_shake() -> void:
 	show_settings()
 
 func _show_save_error() -> void:
-	var panel := _push_modal("ERROR_TITLE",Vector2(770,355))
-	MineStyle.label(panel,"SAVE_ERROR",Vector2(28,77),Vector2(714,161),18,MineStyle.RED,{"error":Words.text(Game.last_error)})
+	var restore_conflict := Game.last_error == "STORAGE_RECYCLE_CONFLICT"
+	var panel := _push_modal("RESTORE_CONFLICT_TITLE" if restore_conflict else "ERROR_TITLE",Vector2(770,355))
+	if restore_conflict:
+		panel.name = "RestoreConflictError"
+		MineStyle.label(panel,"STORAGE_RECYCLE_CONFLICT",Vector2(28,77),Vector2(714,161),18,MineStyle.RED).name = "RestoreConflictExplanation"
+	else:
+		MineStyle.label(panel,"SAVE_ERROR",Vector2(28,77),Vector2(714,161),18,MineStyle.RED,{"error":Words.text(Game.last_error)})
 	if Game.run != null and not pending_outcome.is_empty():
 		modals[-1]["required"] = true
 		MineStyle.button(panel,"RETRY",Vector2(28,269),Vector2(714,52),func():
@@ -1616,13 +1829,14 @@ func _push_modal(title: String, dimensions: Vector2) -> Panel:
 	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 	ui.add_child(overlay)
 	var shade := ColorRect.new()
-	shade.color = Color(0.23,0.17,0.27,0.43)
+	shade.color = Color(0.16,0.23,0.20,0.46)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	overlay.add_child(shade)
 	var panel := MineStyle.panel(overlay,Vector2.ZERO,dimensions)
 	_fit_modal(panel,dimensions)
 	overlay.resized.connect(func(): _fit_modal(panel,dimensions))
-	MineStyle.label(panel,title,Vector2(28,20),Vector2(dimensions.x-56,47),30,MineStyle.AMBER)
+	MineStyle.label(panel,title,Vector2(28,20),Vector2(dimensions.x-56,47),30,MineStyle.INK)
+	MineStyle.divider(panel,Vector2(28,72),dimensions.x-56)
 	modals.append({"node":overlay,"focus":previous_focus})
 	_sync_pause()
 	return panel

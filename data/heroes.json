@@ -107,7 +107,9 @@
           "hit_stop_ms": 55
         },
         "name_en": "Earthsplit Cleave",
-        "description_en": "Prepare for 0.18 s, strike for 0.10 s, then recover for 0.26 s. Cleave a 120-degree forward arc at 115 range for 2.2H physical damage and 65 knockback against small enemies, once per target. Walls block hits. Aim can adjust up to 30 degrees during preparation, then locks. Costs 30 Rage; cooldown 4 s. Consume all Momentum on cast for +0.45H per stack. At three stacks: no Rage cost, 140 range, a 160-degree arc and 90 knockback. Dashing can cancel recovery without refunding costs or Momentum. A broad copper axe arc, earth fragments and a heavy metallic impact communicate the forward cleave."
+        "description_en": "Prepare for 0.18 s, strike for 0.10 s, then recover for 0.26 s. Cleave a 120-degree forward arc at 115 range for 2.2H physical damage and 65 knockback against small enemies, once per target. Walls block hits. Aim can adjust up to 30 degrees during preparation, then locks. Costs 30 Rage; cooldown 4 s. Consume all Momentum on cast for +0.45H per stack. At three stacks: no Rage cost, 140 range, a 160-degree arc and 90 knockback. Dashing can cancel recovery without refunding costs or Momentum. A broad copper axe arc, earth fragments and a heavy metallic impact communicate the forward cleave.",
+        "summary_v2": "正面重斩；满破势更强且免费。",
+        "summary_v2_en": "Cleave ahead; full Momentum makes it stronger and free."
       },
       "f": {
         "name": "铁壁战吼",
@@ -153,7 +155,9 @@
           "hit_stop_ms": 65
         },
         "name_en": "Skyfall Axe",
-        "description_en": "Raise the axe for 0.45 s, strike for 0.12 s, then recover for 0.45 s. Slam legal ground up to 130 units ahead for 4.0H physical damage within 180 units and 90 knockback against small enemies. Walls block damage. Costs 70 Rage; cooldown 42 s. Move at 35% speed during the cast, without invulnerability. A dash cancels without refunding costs or Momentum. Consume all Momentum on cast for +0.60H per stack per wave; three stacks add 30 radius and 25 knockback. A large axe silhouette, radial earth cracks and a low impact identify the finisher; hit feedback follows the actual landing area."
+        "description_en": "Raise the axe for 0.45 s, strike for 0.12 s, then recover for 0.45 s. Slam legal ground up to 130 units ahead for 4.0H physical damage within 180 units and 90 knockback against small enemies. Walls block damage. Costs 70 Rage; cooldown 42 s. Move at 35% speed during the cast, without invulnerability. A dash cancels without refunding costs or Momentum. Consume all Momentum on cast for +0.60H per stack per wave; three stacks add 30 radius and 25 knockback. A large axe silhouette, radial earth cracks and a low impact identify the finisher; hit feedback follows the actual landing area.",
+        "summary_v2": "砸向前方怪群，消耗破势造成重击。",
+        "summary_v2_en": "Slam the pack ahead, spending Momentum for a heavy finish."
       }
     },
     "upgrades": [
@@ -303,7 +307,9 @@
           "damage_type": "physical"
         },
         "name_en": "Skirmisher Volley",
-        "description_en": "Prepare for 0.06 s, slide up to 150 units over 0.16 s, fire three 0.35H physical shots at 0.06 s intervals, then recover for 0.08 s. Slide in the movement direction, or backward with no movement input. Shots aim at the cursor after the slide and travel up to 450 units. Costs 25 Energy; cooldown 7 s. No extra invulnerability. Walls shorten movement, while a dash cancels only unfired shots. Ivory-gold muzzle flashes, straight tracers and individual gunshots follow the actual releases; short afterimages keep the feet readable."
+        "description_en": "Prepare for 0.06 s, slide up to 150 units over 0.16 s, fire three 0.35H physical shots at 0.06 s intervals, then recover for 0.08 s. Slide in the movement direction, or backward with no movement input. Shots aim at the cursor after the slide and travel up to 450 units. Costs 25 Energy; cooldown 7 s. No extra invulnerability. Walls shorten movement, while a dash cancels only unfired shots. Ivory-gold muzzle flashes, straight tracers and individual gunshots follow the actual releases; short afterimages keep the feet readable.",
+        "summary_v2": "快速转位，再朝准星连射三发。",
+        "summary_v2_en": "Reposition quickly, then fire three shots toward the cursor."
       },
       "secondary": {
         "name": "磁轨贯穿",
@@ -324,7 +330,9 @@
           "movement_ratio": 0.65
         },
         "name_en": "Magnetic Rail Piercer",
-        "description_en": "Steady for 0.45 s, fire over 0.05 s, then recover for 0.16 s. At up to 780 range, deal 2.0H physical damage to the first enemy and pierce one more for 65% of that coefficient. Walls block the shot. Costs 30 Energy; cooldown 3.5 s. Move at 65% speed while steadying; basic fire pauses. The shot releases automatically after preparation. A dash cancels without a refund, and a legal empty shot still costs resources. The first hit on a marked target consumes its mark for +1.25H. Use E to mark and Q to line up enemies; paired rails, a gold tracer and a sharp report identify the piercer."
+        "description_en": "Steady for 0.45 s, fire over 0.05 s, then recover for 0.16 s. At up to 780 range, deal 2.0H physical damage to the first enemy and pierce one more for 65% of that coefficient. Walls block the shot. Costs 30 Energy; cooldown 3.5 s. Move at 65% speed while steadying; basic fire pauses. The shot releases automatically after preparation. A dash cancels without a refund, and a legal empty shot still costs resources. The first hit on a marked target consumes its mark for +1.25H. Use E to mark and Q to line up enemies; paired rails, a gold tracer and a sharp report identify the piercer.",
+        "summary_v2": "短暂瞄准，打出一发贯穿重弹。",
+        "summary_v2_en": "Aim briefly, then fire a heavy piercing shot."
       },
       "f": {
         "name": "震爆榴弹",
@@ -346,7 +354,9 @@
           "mark_duration": 4
         },
         "name_en": "Concussion Grenade",
-        "description_en": "Prepare for 0.15 s, release over 0.05 s, then recover for 0.15 s. Throw a timed grenade onto legal, visible ground within 260 units. Its 0.65 s fuse starts at release; it explodes once in a 110 radius for 1.1H physical damage and 30 knockback against small enemies, without Chill. Costs 30 Energy; cooldown 12 s. Invalid or unreachable targets cost nothing. Cancelling before release leaves no grenade; after release it detonates and disappears even in an empty area. Terrain blocks blast line of sight. Surviving damaged enemies gain a 4 s mark for W or R. A warm-gold landing circle, throw arc and visible fuse precede the warm impact and explosion sound."
+        "description_en": "Prepare for 0.15 s, release over 0.05 s, then recover for 0.15 s. Throw a timed grenade onto legal, visible ground within 260 units. Its 0.65 s fuse starts at release; it explodes once in a 110 radius for 1.1H physical damage and 30 knockback against small enemies, without Chill. Costs 30 Energy; cooldown 12 s. Invalid or unreachable targets cost nothing. Cancelling before release leaves no grenade; after release it detonates and disappears even in an empty area. Terrain blocks blast line of sight. Surviving damaged enemies gain a 4 s mark for W or R. A warm-gold landing circle, throw arc and visible fuse precede the warm impact and explosion sound.",
+        "summary_v2": "扔向怪群；半秒后爆炸并标记目标。",
+        "summary_v2_en": "Throw into a pack; it explodes and marks after half a second."
       },
       "ultimate": {
         "name": "火力倾泻",
@@ -367,7 +377,9 @@
           "movement_ratio": 0.45
         },
         "name_en": "Suppressive Barrage",
-        "description_en": "Deploy rails for 0.25 s, fire four shots over 0.72 s, then recover for 0.20 s. Each shot deals 1.2H physical damage at up to 760 range, without automatic penetration. Turn at up to 90 degrees per second and move at 45% speed. Maximum single-target coefficient: 4.8H if every shot lands. Costs 60 Energy; cooldown 40 s. No invulnerability or simultaneous basic fire. Dashing cancels unfired shots without refunding costs. Consume a target mark once for +1.25H on that hit. Fan-shaped muzzle flashes and gold tracers accompany each live shot; the brief role motif plays once per released cast."
+        "description_en": "Deploy rails for 0.25 s, fire four shots over 0.72 s, then recover for 0.20 s. Each shot deals 1.2H physical damage at up to 760 range, without automatic penetration. Turn at up to 90 degrees per second and move at 45% speed. Maximum single-target coefficient: 4.8H if every shot lands. Costs 60 Energy; cooldown 40 s. No invulnerability or simultaneous basic fire. Dashing cancels unfired shots without refunding costs. Consume a target mark once for +1.25H on that hit. Fan-shaped muzzle flashes and gold tracers accompany each live shot; the brief role motif plays once per released cast.",
+        "summary_v2": "边调整射线边倾泻四发火力。",
+        "summary_v2_en": "Adjust your aim while unloading a four-shot barrage."
       }
     },
     "upgrades": [
@@ -482,7 +494,14 @@
       "progress_duration": 8,
       "icd": 2,
       "name_en": "Alternating Resonance",
-      "description_en": "Alternate confirmed original basic attacks and successfully committed skills to build up to 3 Resonance stacks. The first action grants one; repeating the same action type grants none. Progress expires after 8 seconds. At three stacks, the next committed Q/W/E/R restores 8 Mana and charges one nearby armed, unfilled, visible allied node within 260 units. Internal cooldown: 2 seconds, with no accumulation during cooldown. Failed casts and derived hits do not count. No C/V input."
+      "description_en": "Alternate confirmed original basic attacks and successfully committed skills to build up to 3 Resonance stacks. The first action grants one; repeating the same action type grants none. Progress expires after 8 seconds. At three stacks, the next committed Q/W/E/R restores 8 Mana and charges one nearby armed, unfilled, visible allied node within 260 units. Internal cooldown: 2 seconds, with no accumulation during cooldown. Failed casts and derived hits do not count. No C/V input.",
+      "name_v2": "法术连携",
+      "name_v2_en": "Spell Weaving",
+      "resource_gain_v2": 10,
+      "description_v2": "交替施法积攒共鸣：开始时计1层，之后与上次计层技能不同才继续积层（Q→W→Q也有效，不要求3种技能）。第3次回复10法力、附近法晶充1层并使Q剩余冷却减少0.6秒，触发冷却1.2秒。重复同一技能不积层，8秒未继续则清空。普攻不是前置条件；回蓝只是额外奖励，单独Q也可持续使用。失败输入、法晶炮击、领域跳伤及多发弹体都不会重复触发。",
+      "description_v2_en": "Alternate spells to build Resonance: start at one stack; later casts must differ from the last spell that added a stack (Q→W→Q works; three unique spells are not required). The third restores 10 Mana, charges one nearby crystal and reduces Q remaining cooldown by 0.6 s; internal cooldown 1.2 s. Repeating one spell adds nothing; stacks expire after 8 s. Basics are not required. This is an optional bonus; Q is sustainable alone. Failed inputs, crystal shots, field ticks and missiles never trigger extra refunds.",
+      "q_cooldown_refund_v2": 0.6,
+      "icd_v2": 1.2
     },
     "original_visual": "谷频是用哼唱校准旧机器的信号技师，好奇、温和，擅长从噪声中判断矿层变化。单侧圆形接收器、高低错开的电容、短柄叉形针射器形成偏置轮廓；背负器通过线缆连接部署节点，避免常见长袍法师形象。旧白 #D2D1BB、孔雀青 #3E8D8D、深褐 #4B443D。",
     "visual": "谷频是用哼唱校准旧机器的信号技师，好奇、温和，擅长从噪声中判断矿层变化。单侧圆形接收器、高低错开的电容、短柄叉形针射器形成偏置轮廓；背负器通过线缆连接部署节点，避免常见长袍法师形象。旧白 #D2D1BB、孔雀青 #3E8D8D、深褐 #4B443D。",
@@ -518,7 +537,9 @@
           "echo_max_hits_per_target": 1
         },
         "name_en": "Arcane Crystalburst",
-        "description_en": "Gather a crystal for 0.18 s, release over 0.06 s, then recover for 0.12 s. Fire at 650 speed and 550 range; the first impact or endpoint bursts in a 65 radius for 1.25H magic damage and Shock, once per target. Terrain blocks projectile and blast. Costs 18 Mana; cooldown 5 s. Nodes within 90 of the burst emit 0.35H derived magic echoes in a 70 radius, at most one echo per target per cast. Echoes cannot apply Shock or trigger other effects. Passing within 90 of an active node adds one charge, up to three, once per node per cast. Violet-cyan crystals, runic trails and a clear crystal impact identify the arcane shot."
+        "description_en": "Gather a crystal for 0.18 s, release over 0.06 s, then recover for 0.12 s. Fire at 650 speed and 550 range; the first impact or endpoint bursts in a 65 radius for 1.25H magic damage and Shock, once per target. Terrain blocks projectile and blast. Costs 18 Mana; cooldown 5 s. Nodes within 90 of the burst emit 0.35H derived magic echoes in a 70 radius, at most one echo per target per cast. Echoes cannot apply Shock or trigger other effects. Passing within 90 of an active node adds one charge, up to three, once per node per cast. Violet-cyan crystals, runic trails and a clear crystal impact identify the arcane shot.",
+        "summary_v2": "朝准星发射晶弹，命中爆炸；可反复施放。",
+        "summary_v2_en": "Fire an exploding crystal toward the cursor; cast it frequently."
       },
       "secondary": {
         "name": "星界法晶",
@@ -544,7 +565,9 @@
           "max_charges": 3
         },
         "name_en": "Astral Crystal",
-        "description_en": "Prepare for 0.20 s, release over 0.08 s, then recover for 0.16 s. Deploy a crystal node on legal ground within 220 units. It arms after 0.35 s, lasts 14 s, has 35 health and attacks one enemy within 160 every 1.2 s for 0.15H derived magic damage. Costs 30 Mana; cooldown 3.5 s. Maximum two nodes; replacing the oldest gives no refund or explosion. Each holds three charges: Q adds one when passing within 90, R fills active nodes in its field, and Alternating Resonance can charge a nearby unfilled node. E consumes armed, visible nodes within 260 for (1.0 + 0.65 per charge)H in radius 100 + 20 per charge, even at zero charge. Three crystal sockets show energy; derived node damage cannot trigger hit chains or consume Shock."
+        "description_en": "Prepare for 0.20 s, release over 0.08 s, then recover for 0.16 s. Deploy a crystal node on legal ground within 220 units. It arms after 0.35 s, lasts 14 s, has 35 health and attacks one enemy within 160 every 1.2 s for 0.15H derived magic damage. Costs 30 Mana; cooldown 3.5 s. Maximum two nodes; replacing the oldest gives no refund or explosion. Each holds three charges: Q adds one when passing within 90, R fills active nodes in its field, and Alternating Resonance can charge a nearby unfilled node. E consumes armed, visible nodes within 260 for (1.0 + 0.65 per charge)H in radius 100 + 20 per charge, even at zero charge. Three crystal sockets show energy; derived node damage cannot trigger hit chains or consume Shock.",
+        "summary_v2": "落点立即晶爆，再留下自动攻击的法晶。",
+        "summary_v2_en": "Blast the target area, leaving a crystal that attacks automatically."
       },
       "f": {
         "name": "冰霜新星",
@@ -567,7 +590,9 @@
           "detonation_per_charge": 0.65
         },
         "name_en": "Frost Nova",
-        "description_en": "Gather frost for 0.14 s, release over 0.08 s, then recover for 0.18 s. Deal 0.8H magic damage and Chill within 140 of yourself. Consume every armed crystal node within 260 and line of sight; each explodes once for (1.0 + 0.65 per charge)H derived magic damage in radius 100 + 20 per charge. Three charges give 2.95H and radius 160. Two blasts may overlap; zero-charge nodes can detonate. Node blasts cannot apply or consume status or trigger equipment. Costs 25 Mana; cooldown 11 s. With no nodes, the personal frost ring still casts normally. Unfolding nodes cannot detonate. Ice spikes and a cyan nova identify the cast; after level 3, connected node badges reflect cooldown, Mana and action readiness."
+        "description_en": "Gather frost for 0.14 s, release over 0.08 s, then recover for 0.18 s. Deal 0.8H magic damage and Chill within 140 of yourself. Consume every armed crystal node within 260 and line of sight; each explodes once for (1.0 + 0.65 per charge)H derived magic damage in radius 100 + 20 per charge. Three charges give 2.95H and radius 160. Two blasts may overlap; zero-charge nodes can detonate. Node blasts cannot apply or consume status or trigger equipment. Costs 25 Mana; cooldown 11 s. With no nodes, the personal frost ring still casts normally. Unfolding nodes cannot detonate. Ice spikes and a cyan nova identify the cast; after level 3, connected node badges reflect cooldown, Mana and action readiness.",
+        "summary_v2": "被近身时按下：伤害并减速周围敌人。",
+        "summary_v2_en": "When enemies close in, damage and slow everything nearby."
       },
       "ultimate": {
         "name": "星陨领域",
@@ -596,7 +621,9 @@
           "tick_requires_contact": true
         },
         "name_en": "Starfall Field",
-        "description_en": "Gather stars for 0.40 s, establish the field over 0.10 s, then recover for 0.30 s. Create a 180-radius field on legal ground within 280 for 5 s. The initial original skill hit deals 0.6H magic damage and applies Shock; each full second then deals 0.8H derived magic damage and applies Chill, up to five ticks. Maximum single-target coefficient: 4.6H. Costs 60 Mana; cooldown 48 s. Ticks apply Chill only on actual health or shield damage and cannot consume Shock or trigger original-hit or equipment chains. Each tick resolves at most 12 enemies, ordered by distance then entity ID, with terrain line of sight. On creation, fill active visible nodes inside the field without consuming them. Violet-cyan runes and star pulses mark the field. Chill uses the shared 20% ordinary-enemy or 10% boss slow and base 3 s duration with existing duration modifiers."
+        "description_en": "Gather stars for 0.40 s, establish the field over 0.10 s, then recover for 0.30 s. Create a 180-radius field on legal ground within 280 for 5 s. The initial original skill hit deals 0.6H magic damage and applies Shock; each full second then deals 0.8H derived magic damage and applies Chill, up to five ticks. Maximum single-target coefficient: 4.6H. Costs 60 Mana; cooldown 48 s. Ticks apply Chill only on actual health or shield damage and cannot consume Shock or trigger original-hit or equipment chains. Each tick resolves at most 12 enemies, ordered by distance then entity ID, with terrain line of sight. On creation, fill active visible nodes inside the field without consuming them. Violet-cyan runes and star pulses mark the field. Chill uses the shared 20% ordinary-enemy or 10% boss slow and base 3 s duration with existing duration modifiers.",
+        "summary_v2": "把星陨领域放进怪群，持续伤害并减速。",
+        "summary_v2_en": "Place a starfall field on a pack for repeated damage and slows."
       }
     },
     "upgrades": [
@@ -664,6 +691,8 @@
     "description_en": "Deploy crystal nodes with W and alternate basics and skills to fill Resonance. Q charges nodes, R fills nodes in its field and applies Chill through its ticks, then E releases a frost nova and detonates the formation.",
     "visual_en": "An offset signal-technician silhouette with a circular receiver on one side, staggered capacitors and a short forked needle emitter. Cables connect the backpack to deployable nodes. Aged white, peacock teal and dark brown.",
     "magic_resist": 18,
-    "ability_power": 28
+    "ability_power": 28,
+    "quick_start_v2": "Q持续输出；被近身按E；把W和R放进怪群。法晶充能与连携回蓝会自动发生，不必先学复杂连招。",
+    "quick_start_v2_en": "Use Q for steady damage, E when enemies close in, and place W/R on packs. Crystal charging and weaving refunds are automatic extras; no complex combo is required."
   }
 }

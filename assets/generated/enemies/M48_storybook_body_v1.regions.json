@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "texture": "res://assets/generated/ui/refactor_v1/codex/M48.png",
+  "source_family": "storybook_2_5d_v1",
+  "biome_id": "B04",
+  "visual_clan": "赤岩战寨",
+  "image_size": [
+    1254,
+    1254
+  ],
+  "entries": {
+    "M48": {
+      "region": [
+        121,
+        15,
+        1113,
+        1228
+      ],
+      "foot": [
+        677.5,
+        1243
+      ],
+      "source_height": 1228,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "M48",
+      "individual_body": true
+    }
+  },
+  "source_sha256": "9d32bfb2f7b3687d9aa9fed84496e7b5fccdfb42bb942a80592a01fcfacf4c99",
+  "region_alpha_threshold": 16,
+  "region_padding_pixels": 4
+}
