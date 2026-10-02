@@ -63,6 +63,7 @@ var _actions_used: Dictionary = {}
 var _action_ready_at: Dictionary = {}
 var _last_action: String = ""
 var _recovery_elapsed: float = 0.0
+var _released_pose: Dictionary = {}
 
 func configure(next_definition: Dictionary, seed_value: int = 0) -> void:
 	definition = next_definition.duplicate(true)
@@ -104,6 +105,7 @@ func configure(next_definition: Dictionary, seed_value: int = 0) -> void:
 	_action_ready_at.clear()
 	_last_action = ""
 	_recovery_elapsed = 0.0
+	_released_pose.clear()
 
 func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 	if stopped or delta <= 0.0 or not is_instance_valid(actor) or not _alive(victim):
@@ -167,6 +169,20 @@ func current_telegraph() -> Dictionary:
 
 func phase_index() -> int:
 	return phase
+
+func action_presentation() -> Dictionary:
+	# Display clocks come from the authoritative AI. No extra attack, RNG,
+	# hit timing or actor movement is introduced by the body animation.
+	if stopped or current_action.is_empty(): return {}
+	var stage := str(state)
+	var progress := clampf(1.0-state_time/maxf(EPSILON,state_duration),0.0,1.0)
+	var pose: Dictionary = command
+	if state == &"recovery" and not _released_pose.is_empty():
+		pose = _released_pose
+		stage = "release" if _recovery_elapsed < 0.24 else "recovery"
+		progress = clampf(_recovery_elapsed/0.24,0,1) if stage == "release" else clampf((_recovery_elapsed-0.24)/maxf(EPSILON,state_duration-0.24),0,1)
+	elif state not in [&"telegraph",&"locked"]: return {}
+	return {"stage":stage,"progress":progress,"direction":pose.get("direction",Vector2.RIGHT),"kind":str(pose.get("kind","melee")),"action_id":current_action,"remaining":maxf(0,state_time),"boss_id":boss_id}
 
 func state_name() -> StringName:
 	return state
@@ -294,12 +310,14 @@ func tactical_snapshot() -> Dictionary:
 func stop(actor: Node2D = null) -> void:
 	stopped = true
 	command.clear()
+	_released_pose.clear()
 	rage_time = 0.0
 	if is_instance_valid(actor):
 		_close_weakpoint(actor)
 
 func _enter_phase(actor: Node2D) -> void:
 	command.clear()
+	_released_pose.clear()
 	action_index = 0
 	current_action = ""
 	_recovery_elapsed = 0.0
@@ -311,6 +329,7 @@ func _enter_phase(actor: Node2D) -> void:
 		actor.call("boss_phase_started", phase, _health_ratio(actor))
 
 func _begin_action(actor: Node2D, victim: Node2D, forced_action: String = "") -> void:
+	_released_pose.clear()
 	# The explicit action argument lets arena fixtures exercise one real ability;
 	# ordinary gameplay selects by distance, availability and recent casts.
 	var sequence: Array = available_actions()
@@ -529,6 +548,7 @@ func _property(object: Object, property_name: String, fallback: Variant) -> Vari
 	return object.get(property_name) if _has_property(object, property_name) else fallback
 
 func _execute(actor: Node2D) -> void:
+	_released_pose = {"direction":command.get("direction",Vector2.RIGHT),"kind":str(command.get("kind","melee"))}
 	var released: Dictionary = command.duplicate(true)
 	_last_action = current_action
 	_actions_used[current_action] = int(_actions_used.get(current_action, 0)) + 1

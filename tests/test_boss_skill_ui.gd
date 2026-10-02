@@ -55,7 +55,7 @@ func install(id: String, difficulty: int, locale: String = "zh_CN") -> MineBoss:
 
 func refresh_draw(boss: MineBoss) -> void:
 	boss.queue_redraw()
-	if is_instance_valid(boss.body_visual): boss.body_visual.queue_redraw()
+	if is_instance_valid(boss.body_visual): boss.body_visual.advance(.016); boss.body_visual.queue_redraw()
 	room.enemy_telegraphs.refresh()
 	room.queue_redraw()
 	hud.refresh()
@@ -102,6 +102,40 @@ func check_retired_boss() -> void:
 	boss = await install("BO02",0)
 	check(boss != null and hud.boss_cast_plate.is_visible_in_tree(),"entering another boss room restores the live cast plate")
 
+func check_attack_actions() -> void:
+	for index in IDS.size():
+		for locale: String in ["zh_CN","en"]:
+			var boss := await install(IDS[index],0,locale)
+			var action: String = Presentation.BASIC_ATTACKS[index]
+			var origin := boss.position
+			boss.boss_brain._begin_action(boss,room.player,action)
+			boss.boss_brain.tick(boss,boss.boss_brain.state_time*.5,room.player)
+			await refresh_draw(boss)
+			check(Presentation.readout(boss.boss_brain).basic and Presentation.readout(boss.boss_brain).stage == "telegraph","baseline attack has windup UI "+action)
+			var preparation: Vector2 = boss.body_visual.body_offset
+			await capture(boss.boss_id+"_attack_windup_"+locale+".png",boss)
+			boss.boss_brain.tick(boss,boss.boss_brain.state_time+.001,room.player)
+			boss.boss_brain.tick(boss,boss.boss_brain.state_time+.001,room.player)
+			await refresh_draw(boss)
+			check(Presentation.readout(boss.boss_brain).stage == "release" and not Presentation.readout(boss.boss_brain).casting,"actual cast starts strike UI and removes aiming warning "+action)
+			check(boss.body_visual.body_offset.distance_to(preparation)>4 and boss.position == origin,"release has a distinct local body action without collider movement "+action)
+			check(get_viewport().get_visible_rect().encloses(cast_box(boss)),"attack readout fits "+locale)
+			await capture(boss.boss_id+"_attack_release_"+locale+".png",boss)
+			boss.boss_brain.tick(boss,.26,room.player)
+			await refresh_draw(boss)
+			check(Presentation.readout(boss.boss_brain).stage == "recovery","actual AI recovery owns settle UI "+action)
+			var remaining: float = boss.boss_brain.state_time
+			get_tree().paused = true
+			await frames()
+			check(boss.boss_brain.state_time == remaining,"pausing freezes attack UI clock "+action)
+			get_tree().paused = false
+			Game.profile.settings.reduced_fx = true
+			await refresh_draw(boss)
+			check(Presentation.readout(boss.boss_brain).stage == "recovery","reduced effects retain attack stage "+action)
+			Game.profile.settings.reduced_fx = false
+			boss.boss_brain.stop(boss)
+			check(boss.boss_brain.action_presentation().is_empty(),"retirement clears action ornaments "+action)
+
 func _run() -> void:
 	if not Game.profile_path.contains("test_boss_skill_ui"):
 		get_tree().quit(2)
@@ -127,6 +161,7 @@ func _run() -> void:
 	hud.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	await frames()
 	check(hud.boss_cast_plate.get_canvas() != room.enemy_telegraphs.get_canvas(),"actual cast UI uses a separate screen canvas above world warning lines")
+	await check_attack_actions()
 	for id: String in IDS:
 		var previous_pool := 0
 		for difficulty: int in 5:

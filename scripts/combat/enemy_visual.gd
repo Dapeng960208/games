@@ -277,6 +277,12 @@ func _update_pose(_delta: float) -> void:
 			body_rotation += aim.x * 0.035 * settle
 		&"emerging":
 			body_scale += Vector2(0.018, -0.035) * (1.0 - p)
+	var action_brain: Variant = actor.get("brain")
+	if action_brain is Object and action_brain.has_method("action_presentation"):
+		var pose: Dictionary = preload("res://scripts/combat/boss_skill_presentation.gd").body_pose(action_brain.action_presentation())
+		body_offset += pose.offset
+		body_scale += pose.scale
+		body_rotation += float(pose.rotation)
 	var impact: float = 0.0
 	if _impact_duration > 0.0 and _impact_elapsed < _impact_duration:
 		var t: float = _impact_elapsed / _impact_duration

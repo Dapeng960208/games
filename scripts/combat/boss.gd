@@ -337,6 +337,8 @@ func _draw() -> void:
 	draw_set_transform(Vector2(0, 25), 0.0, Vector2(1.0, 0.46))
 	draw_circle(Vector2.ZERO, navigation_radius * 1.12, Color(0.20,0.17,0.25,0.28))
 	draw_set_transform(Vector2.ZERO)
+	if boss_brain != null:
+		preload("res://scripts/combat/boss_skill_presentation.gd").draw_action(self,boss_brain.action_presentation(),bool(Game.profile.get("settings",{}).get("reduced_fx",false)))
 	# The body child is the sole body renderer, including its impact material
 	# and anchored transform. A second static portrait here hid that reaction.
 	var phase_value: int = boss_brain.phase_index() if boss_brain != null else 1
