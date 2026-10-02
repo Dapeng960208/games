@@ -108,11 +108,14 @@ func configure(enemy: Node2D) -> void:
 	_gait = GAITS.get(_archetype, GAITS.skirmisher)
 	_storybook_entry = Art.install(actor)
 	var bounds: Rect2 = actor.get("body_bounds")
-	_foot = Vector2(0, bounds.end.y)
+	_foot = _storybook_entry.get("world_foot",Vector2(0,bounds.end.y))
 	# Existing banks depict only the canonical original creature. A selected
 	# outfit keeps its own texture across every AI/impact pose.
 	_bank = {} if _storybook_entry.has("visual_variant_index") else _load_motion_bank(str(actor.get("enemy_id")), not _storybook_entry.is_empty())
-	if not bool(actor.get("static_actor")) and str(actor.get("enemy_id")).begins_with("M"):
+	if bool(_storybook_entry.get("b05_native_bank",false)):
+		_bank = preload("res://scripts/combat/b05_enemy_art.gd").bank(str(actor.get("enemy_id")))
+		_bank["world_reference_height"] = float(_storybook_entry.world_reference_height)
+	if not bool(actor.get("static_actor")) and (str(actor.get("enemy_id")).begins_with("M") or str(actor.get("enemy_id")).begins_with("B05-M")):
 		skill_badge = SkillBadge.new()
 		skill_badge.name = "EnemySkillBadge"
 		skill_badge.identity = str(actor.get("enemy_id"))
@@ -127,6 +130,9 @@ func configure(enemy: Node2D) -> void:
 	# first strike. Include authored frames and M35's alternate empty silhouette.
 	_prepare_contact_mask(actor.get("body_texture"))
 	_prepare_contact_mask(_bank.get("texture"))
+	if bool(_bank.get("b05_native_bank",false)):
+		for frames: Array in _bank.get("clips",{}).values():
+			for frame: Dictionary in frames: _prepare_contact_mask(frame.get("texture"))
 	_prepare_contact_mask(actor.get("empty_body_texture"))
 	_body_material = Palette.material_for(str(actor.get("enemy_id")), definition, not _storybook_entry.is_empty())
 	_palette_colors = Palette.colors_for(str(actor.get("enemy_id")), definition)
@@ -397,9 +403,9 @@ func body_frame() -> Dictionary:
 	if not is_instance_valid(actor):
 		return {}
 	if not selected_frame.is_empty() and not _using_empty_body():
-		var factor: float = maxf(1.0, (actor.get("body_bounds") as Rect2).size.y) / float(_bank.body_height)
+		var factor: float = float(_bank.get("world_reference_height",maxf(1.0,(actor.get("body_bounds") as Rect2).size.y))) / float(_bank.body_height)
 		var region: Rect2 = selected_frame.region
-		return {"texture":_bank.texture,"region":region,"bounds":Rect2((region.position - selected_frame.foot) * factor, region.size * factor),"name":selected_frame.name,"source_family":str(_bank.get("source_family", "legacy")),"full_color":not _storybook_entry.is_empty()}
+		return {"texture":selected_frame.get("texture",_bank.texture),"region":region,"bounds":Rect2((region.position - selected_frame.foot) * factor, region.size * factor),"name":selected_frame.name,"source_family":str(_bank.get("source_family", "legacy")),"full_color":not _storybook_entry.is_empty()}
 	var bounds: Rect2 = actor.get("body_bounds")
 	return {"texture":actor.get("empty_body_texture") if _using_empty_body() else actor.get("body_texture"),"region":actor.get("body_region"),"bounds":Rect2(bounds.position - _foot, bounds.size),"name":"static","fallback_colors":_palette_colors,"source_family":Art.FAMILY if not _storybook_entry.is_empty() else "legacy","full_color":not _storybook_entry.is_empty()}
 
@@ -601,3 +607,20 @@ static func _numbers(values: Array) -> bool:
 		if not (value is int or value is float) or not is_finite(float(value)):
 			return false
 	return true
+
+## Display-only native organ point in room coordinates. It follows the exact
+## selected texture, fixed anatomy scale, mirroring and recoil transform.
+func b05_visual_outlet() -> Dictionary:
+	if not bool(_bank.get("b05_native_bank",false)) or selected_frame.is_empty() or not selected_frame.has("outlet"): return {}
+	var factor: float=float(_bank.world_reference_height)/float(_bank.body_height)
+	var local_point: Vector2=(Vector2(selected_frame.outlet)-Vector2(selected_frame.foot))*factor
+	var room: Variant=preload("res://scripts/combat/combat_properties.gd").read(actor,"room")
+	var world_point:=to_global(local_point)
+	return {"position":room.to_local(world_point) if room is Node2D else world_point,"pose":selected_frame.name,"texture_path":selected_frame.get("texture_path","")}
+
+func synchronize_b05_release() -> void:
+	if not bool(_bank.get("b05_native_bank",false)): return
+	_read_phase(0.0)
+	_update_pose(0.0)
+	_select_frame()
+	queue_redraw()

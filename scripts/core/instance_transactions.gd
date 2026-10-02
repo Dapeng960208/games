@@ -8,7 +8,8 @@ const Acquisition = preload("res://scripts/core/equipment_acquisition.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Registry = preload("res://scripts/data/content_registry.gd")
 const Growth = preload("res://scripts/core/hero_progression.gd")
-const VERSION := 1
+const VERSION := 1 # Ledger envelope remains compatible with mixed historical receipts.
+const RECEIPT_VERSION := 2
 const MAX_NUMBER := 1_000_000_000_000
 const MAX_PROFILE_BYTES := 32 * 1024 * 1024
 const KINDS := ["purchase", "craft", "complete_set"]
@@ -70,7 +71,7 @@ static func _transact(profile: Dictionary, operation_id: String, request: Dictio
 	next.permanent_gold = int(next.permanent_gold) - int(quote.gold)
 	next["materials"] = wallet.duplicate(true)
 	for material: String in quote.materials: next.materials[material] = int(next.materials.get(material, 0)) - int(quote.materials[material])
-	var receipt := {"version":VERSION, "operation_id":operation_id, "kind":kind, "request":canonical.duplicate(true), "request_hash":fingerprint,
+	var receipt := {"version":RECEIPT_VERSION, "operation_id":operation_id, "kind":kind, "request":canonical.duplicate(true), "request_hash":fingerprint,
 		"gold":int(quote.gold), "materials":quote.materials.duplicate(true), "items":items, "pending_instance_ids":pending}
 	receipt["result_hash"] = _receipt_hash(receipt)
 	next["instance_transactions"] = ledger.duplicate(true)
@@ -103,7 +104,7 @@ static func _quote(profile: Dictionary, request: Dictionary, kind: String, check
 				if owned.template_id == template_id and owned.power_type == canonical.power_type: return _reject("SET_PIECE_ALREADY_OWNED")
 	var cost := _cost(canonical, kind)
 	if cost.is_empty(): return _reject("INVALID_COST")
-	var historical_cost := Economy.historical_creation_cost(canonical, kind, VERSION)
+	var historical_cost := Economy.historical_creation_cost(canonical, kind, RECEIPT_VERSION)
 	if historical_cost.is_empty() or cost.gold != historical_cost.gold or not _same_materials(cost.materials, historical_cost.materials): return _reject("ECONOMY_VERSION_MISMATCH")
 	var generation_error := Acquisition.current_version_error()
 	if not generation_error.is_empty(): return _reject(generation_error)
@@ -142,8 +143,8 @@ static func validate_ledger(value: Variant) -> bool:
 
 static func _valid_receipt(operation_id: String, value: Variant) -> bool:
 	if not value is Dictionary or value.size() != 10 or not value.has_all(["version", "operation_id", "kind", "request", "request_hash", "gold", "materials", "items", "pending_instance_ids", "result_hash"]): return false
-	if not _integer(value.version, VERSION, VERSION) or value.operation_id != operation_id or value.kind not in KINDS or not value.request is Dictionary: return false
-	var canonical := _request(value.request, value.kind, true)
+	if not _integer(value.version, 1, RECEIPT_VERSION) or value.operation_id != operation_id or value.kind not in KINDS or not value.request is Dictionary: return false
+	var canonical := _request(value.request, value.kind, true, int(value.version))
 	if canonical.is_empty() or value.request_hash != request_hash(value.kind, canonical): return false
 	if not _integer(value.gold, 0, MAX_NUMBER) or not value.materials is Dictionary or not value.items is Array or not value.pending_instance_ids is Array: return false
 	var templates := _templates(canonical, value.kind)
@@ -199,19 +200,19 @@ static func _profile_error(profile: Dictionary) -> String:
 	if not validate_ledger(profile.get("instance_transactions")): return "INVALID_TRANSACTION_LEDGER"
 	return ""
 
-static func _request(request: Dictionary, kind: String, historical: bool = false) -> Dictionary:
+static func _request(request: Dictionary, kind: String, historical: bool = false, receipt_version: int = RECEIPT_VERSION) -> Dictionary:
 	if kind not in KINDS or not _tree(request): return {}
 	var required := ["hero_id", "rarity", "power_type", "item_level", "set_id", "template_ids"] if kind == "complete_set" else ["hero_id", "rarity", "power_type", "item_level", "template_id"]
 	if request.size() != required.size() or not request.has_all(required): return {}
 	if request.hero_id not in ["CH01", "CH02", "CH03"] or request.power_type not in ["physical", "magic"]: return {}
-	if not _integer(request.item_level, 1, Growth.level_cap()) or not request.rarity is String: return {}
+	if not _integer(request.item_level, 1, (20 if receipt_version == 1 else 25) if historical else Growth.level_cap()) or not request.rarity is String: return {}
 	if kind == "craft":
 		if (not Economy.V1_FORGE.has(request.rarity)) if historical else (Economy.crafting_unlock_level(request.rarity) < 0): return {}
 	elif request.rarity not in ["white", "green"]: return {}
 	var result := {"hero_id":request.hero_id, "rarity":request.rarity, "power_type":request.power_type, "item_level":int(request.item_level)}
 	if kind == "complete_set":
 		if not request.set_id is String or not request.template_ids is Array or request.template_ids.is_empty() or request.template_ids.size() > 8: return {}
-		var all: Array = Economy.historical_set_items(request.set_id) if historical else Registry.set_item_ids(request.set_id, 2)
+		var all: Array = Economy.historical_set_items(request.set_id, receipt_version) if historical else Registry.set_item_ids(request.set_id, 2)
 		if all.size() != 8: return {}
 		if not historical:
 			var slots := {}

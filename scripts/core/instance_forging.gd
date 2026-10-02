@@ -131,7 +131,7 @@ static func _quote(profile: Dictionary, kind: String, request: Dictionary) -> Di
 			if not _has_flat_main(item): return _reject("NO_FLAT_MAIN")
 		"inherit":
 			var source: Dictionary = items[request.source_instance_id]
-			if Acquisition.V1_TEMPLATES[source.template_id].slot != Acquisition.V1_TEMPLATES[item.template_id].slot or source.power_type != item.power_type: return _reject("INCOMPATIBLE_SOURCE")
+			if Acquisition._template(source.template_id).slot != Acquisition._template(item.template_id).slot or source.power_type != item.power_type: return _reject("INCOMPATIBLE_SOURCE")
 			if int(source.enhancement_rank) < rank: return _reject("SOURCE_RANK_TOO_LOW")
 			if int(source.enhancement_rank) > manual_cap(level): return _reject("ENHANCEMENT_LEVEL_LOCKED")
 			if not _has_flat_main(item): return _reject("NO_FLAT_MAIN")
@@ -192,7 +192,7 @@ static func _quote(profile: Dictionary, kind: String, request: Dictionary) -> Di
 
 static func _cost(items: Dictionary, kind: String, request: Dictionary) -> Dictionary:
 	var item: Dictionary = items[request.target_instance_id] if kind == "inherit" else items[request.instance_id]
-	var race_id := str(Acquisition.V1_TEMPLATES[item.template_id].race_id)
+	var race_id := str(Acquisition._template(item.template_id).race_id)
 	var result := {"gold":0, "materials":{}, "gold_return":0, "materials_return":{}, "base_makeup":[], "reroll_makeup":[]}
 	var rank := int(item.enhancement_rank) + 1 if kind == "enhance" else int(request.get("rank", 1))
 	match kind:
@@ -372,7 +372,7 @@ static func _price(rank: int, level: int, reroll: bool = false) -> int:
 	return Economy.ceil_ratio(int(GOLD[rank - 1]) * (100 + 3 * (level - 1)), 200 if reroll else 100)
 
 static func _canonical_peak(rank: int, amount: int, reroll: bool = false) -> bool:
-	for level in range(1, Acquisition.V1_LEVEL_CAP + 1):
+	for level in range(1, Acquisition.V3.LEVEL_CAP + 1):
 		if _price(rank, level, reroll) == amount: return true
 	return false
 
@@ -473,7 +473,7 @@ static func _valid_receipt(operation_id: String, receipt: Variant) -> bool:
 		"inherit":
 			var source: Dictionary = receipt.before[request.source_instance_id]
 			if source.has("pending_reforge") or int(source.enhancement_rank) < int(item.enhancement_rank): return false
-			if Acquisition.V1_TEMPLATES[source.template_id].slot != Acquisition.V1_TEMPLATES[item.template_id].slot or source.power_type != item.power_type: return false
+			if Acquisition._template(source.template_id).slot != Acquisition._template(item.template_id).slot or source.power_type != item.power_type: return false
 			if _gain_sum(_merged_steps(source, item)) <= _gain_sum(item.enhancement_steps): return false
 		"reforge", "refine":
 			if int(request.affix_index) >= item.affix_type_and_quantile.size(): return false

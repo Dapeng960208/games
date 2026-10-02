@@ -207,6 +207,7 @@ func _damage_context(original: bool = false) -> Dictionary:
 		context["root_event_id"] = str(options.get("root_event_id", "deployment:" + str(get_instance_id())))
 		context["attack_id"] = str(options.get("attack_id", context.root_event_id))
 		context["heavy"] = bool(options.get("heavy", false))
+		context["paid_cost"] = float(options.get("paid_cost", 0.0))
 	return context
 
 func _fire_node() -> void:

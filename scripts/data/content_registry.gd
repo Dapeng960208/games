@@ -2,6 +2,7 @@ class_name ContentRegistry
 extends RefCounted
 const Progression = preload("res://scripts/core/hero_progression.gd")
 const ClassPolicy = preload("res://scripts/core/equipment_class_policy.gd")
+const B05Catalog = preload("res://scripts/core/b05_equipment_catalog.gd")
 const Rules = preload("res://config/numerical_rules.gd")
 ## Immutable-by-copy static definitions. Combat state and ownership never live here.
 
@@ -10,6 +11,13 @@ const V2_SLOTS: Array[String] = ["weapon", "head", "chest", "hands", "legs", "fe
 const XP_THRESHOLDS: Array[int] = [0, 30, 70, 120, 170, 230, 290, 360, 630, 900, 1170, 1440, 1710, 1980, 2250, 2520, 2790, 3060, 3330, 3600]
 const UPGRADE_COSTS: Array[int] = [60, 100, 160, 240, 340]
 const STAT_KEYS: Array[String] = ["attack", "ability_power", "max_hp", "max_mana", "armor", "magic_resist", "armor_penetration", "magic_penetration", "crit_multiplier", "true_damage_bonus", "attack_speed", "move_speed", "crit_chance", "cooldown_reduction", "damage_bonus", "damage_reduction", "burn_damage", "corrosion_damage_bonus", "status_duration"]
+
+const B05_SET_TEXT := {
+ "B05-SW":{"2":["E生成护盾量+12%","E shield amount +12%"],"4":["E盾实际吸收后，下一次W追加0.30P短弧，最多3目标；6秒冷却","After E absorbs damage, next W adds a 0.30P short arc, up to 3 targets; 6s ICD"],"6":["8秒内W三次命中：E冷却-1.5秒，下一次Q伤害+10%持续6秒；8秒冷却","Three W hits in 8s: E cooldown -1.5s and next Q +10% for 6s; 8s ICD"]},
+ "B05-SG":{"2":["对猎印目标直接伤害+8%","Direct damage to marked targets +8%"],"4":["W命中猎印目标后额外贯穿180距离内一个后方目标，0.35P；每次W一次","W hitting a marked target pierces one extra target behind within 180, for 0.35P; once per W"],"6":["Q实际移动100后，下一次W主目标伤害+12%持续6秒；6秒冷却","After Q moves 100, next W primary hit +12% for 6s; 6s ICD"]},
+ "B05-SM":{"2":["Q晶爆直接伤害+8%","Q direct damage +8%"],"4":["6秒内三次相邻技能不同的付费施法且消耗至少60法力，回复60；6秒冷却","Three alternating paid casts in 6s spending at least 60 mana restore 60; 6s ICD"],"6":["W放置节点1秒后花晶环：半径110，0.40P，最多3目标；8秒冷却","1s after W node placement, bloom ring: radius 110, 0.40P, up to 3 targets; 8s ICD"]},
+ "B05-SU":{"2":["根缚与减速持续时间-20%，同类合计上限50%","Root and slow durations -20%; combined reduction capped at 50%"],"4":["走出敌方持续危险区且1秒未受该区伤害，获6%生命盾4秒；12秒冷却","Exit a hostile persistent zone and avoid its damage for 1s: 6% HP shield for 4s; 12s ICD"],"6":["三次独立直接伤害后回复3%生命并移速+8%持续3秒；12秒冷却","Three independent direct hits restore 3% HP and grant +8% speed for 3s; 12s ICD"]}
+}
 
 static var _heroes: Dictionary = _read_json("res://data/heroes.json")
 static var _equipment: Dictionary = _read_json("res://data/equipment.json")
@@ -46,12 +54,15 @@ static func equipment(id: String, ruleset: int = 1) -> Dictionary:
 	var result: Dictionary = catalog.get(id, {}).duplicate(true)
 	if ruleset == 2 and not result.is_empty():
 		result["allowed_heroes"] = ClassPolicy.allowed_heroes(str(result.get("set_id", "")))
-		result["class_policy_version"] = ClassPolicy.VERSION
+		result["class_policy_version"] = ClassPolicy.template_policy_version(id)
 	return result
 
 static func equipment_ids(ruleset: int = 1) -> Array:
 	var catalog := _v2_equipment() if ruleset == 2 else _equipment
 	var ids := catalog.keys()
+	# Registration is available for isolated checks before the chapter release gate.
+	if ruleset == 2 and int(Rules.value("implemented_chapters", 4)) < 5:
+		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B05-"))
 	ids.sort()
 	return ids
 
@@ -67,6 +78,8 @@ static func sets(ruleset: int = 1) -> Dictionary:
 				for field: String in ["text", "text_en"]:
 					var versioned := "text_v2_en" if field == "text_en" else "text_v2"
 					if threshold.has(versioned): threshold[field] = threshold[versioned]
+		if int(Rules.value("implemented_chapters", 4)) >= 5:
+			for set_id: String in B05Catalog.sets(): result[set_id] = _b05_set(set_id)
 		var materials: Dictionary = Rules.value("shop_set_races", {})
 		for set_id: String in materials:
 			if result.has(set_id): result[set_id]["race_id"] = str(materials[set_id])
@@ -74,7 +87,7 @@ static func sets(ruleset: int = 1) -> Dictionary:
 
 static func set_item_ids(set_id: String, ruleset: int = 1) -> Array[String]:
 	var result: Array[String] = []
-	if not _sets.has(set_id): return result
+	if not sets(ruleset).has(set_id): return result
 	for slot: String in slots(ruleset):
 		for id: String in equipment_ids(ruleset):
 			var item := equipment(id, ruleset)
@@ -138,7 +151,40 @@ static func _v2_equipment() -> Dictionary:
 			source.erase("combat_passive")
 			source.erase("original_name")
 			_equipment_v2[id] = source
+	for id: String in B05Catalog.equipment_ids():
+		var item := B05Catalog.equipment(id)
+		item["drop_origin"] = "B05"
+		item["affix_tendencies"] = item.affix_tendencies_by_power[item.power_types[0]].duplicate()
+		item["description"] = "繁花树庭装备；共有装备的属性取向在获得时固定，换职业不转换属性"
+		item["description_en"] = "Blooming Tree Court gear; shared items keep their acquired power type across classes"
+		item["base_stat_text"] = "属性由装备实例决定"
+		item["base_stat_text_en"] = "Stats are determined by the equipment instance"
+		item["affix_id"] = ""
+		item["affix_text"] = ""
+		item["affix_text_en"] = ""
+		var unique_text := {
+			"B05-U01":["实际根缚结束后移速+10%持续2秒；10秒冷却", "After an actual root ends: +10% speed for 2s; 10s ICD"],
+			"B05-U02":["实际受到外来治疗后获得2%最大生命盾3秒；12秒冷却，过量治疗不计", "After actual external healing: 2% max HP shield for 3s; 12s ICD; overheal excluded"],
+			"B05-U03":["摧毁敌方机关后减伤5%持续4秒；12秒冷却", "Destroy a hostile mechanism: 5% damage reduction for 4s; 12s ICD"]}
+		if unique_text.has(id):
+			item["affix_text"] = unique_text[id][0]
+			item["affix_text_en"] = unique_text[id][1]
+		item["runtime_implemented"] = true
+		_equipment_v2[id] = item
 	return _equipment_v2
+
+static func _b05_set(set_id: String) -> Dictionary:
+	var result: Dictionary = B05Catalog.sets().get(set_id, {}).duplicate(true)
+	if result.is_empty(): return result
+	result["race_id"] = "B05"
+	result["class_policy_version"] = ClassPolicy.B05_VERSION
+	result["runtime_implemented"] = true
+	for tier: String in result.thresholds:
+		result.thresholds[tier]["runtime_implemented"] = true
+		var text: Array = B05_SET_TEXT[set_id][tier]
+		result.thresholds[tier]["text"] = text[0]
+		result.thresholds[tier]["text_en"] = text[1]
+	return result
 
 static func level_for_xp(xp: int, ruleset: int = 1) -> int:
 	if ruleset == 2: return Progression.level_for_xp(xp)
@@ -289,7 +335,9 @@ static func _check_required(definition: Dictionary, fields: Array, label: String
 
 static func _validate_v2() -> Array[String]:
 	var errors: Array[String] = []
-	if equipment_ids(2).size() != 124: errors.append("Expected 124 version-two templates.")
+	var b05_released := int(Rules.value("implemented_chapters", 4)) >= 5
+	if equipment_ids(2).size() != (159 if b05_released else 124): errors.append("Unexpected version-two template count.")
+	errors.append_array(B05Catalog.validate())
 	if slots(2).size() != 8: errors.append("Expected eight version-two slots.")
 	var general_count := 0
 	for number in range(1, 125):
@@ -330,6 +378,6 @@ static func _validate_v2() -> Array[String]:
 			for id: String in pieces:
 				if equipment(id, 2).slot == slot: count += 1
 			if count != 1: errors.append(set_id + ": expected one " + slot + " piece.")
-		var thresholds: Dictionary = _sets[set_id].get("thresholds", {})
+		var thresholds: Dictionary = sets(2)[set_id].get("thresholds", {})
 		if thresholds.size() != 3 or not thresholds.has_all(["2", "4", "6"]): errors.append(set_id + ": only 2/4/6 thresholds are allowed.")
 	return errors

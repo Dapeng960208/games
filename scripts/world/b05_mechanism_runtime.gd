@@ -165,7 +165,7 @@ func tick(delta: float, paused: bool = false) -> bool:
 			continue
 		var at: Vector2 = to_local(actor.global_position)
 		for well_id in state.wells:
-			if not _network.well_reaches(well_id, at): continue
+			if not well_can_refresh(str(well_id)) or not _network.well_reaches(well_id, at): continue
 			# Only an eligible, in-range refresh needs rollback state. Actors on
 			# cooldown and out-of-range wells allocate no per-actor snapshots.
 			var previous: Dictionary = _network.snapshot()
@@ -193,7 +193,13 @@ func restore_checkpoint(data: Dictionary) -> bool:
 	if not _finite_number(data.get("version")) or float(data.version) != 1.0 or _room_id.is_empty() or data.get("room_id") != _room_id: return false
 	for field in ["shield_duration", "interaction_radius"]:
 		if not _finite_number(data.get(field)) or float(data[field]) != float(checkpoint()[field]): return false
-	if data.get("gate_positions") != checkpoint().gate_positions or not data.get("network") is Dictionary: return false
+	if not data.get("gate_positions") is Dictionary or not data.get("network") is Dictionary: return false
+	var expected_positions: Dictionary = checkpoint().gate_positions
+	if data.gate_positions.size() != expected_positions.size(): return false
+	for id in expected_positions:
+		if not data.gate_positions.get(id) is Dictionary: return false
+		for axis in ["x","y"]:
+			if not _finite_number(data.gate_positions[id].get(axis)) or absf(float(data.gate_positions[id][axis])-float(expected_positions[id][axis])) > 0.000001: return false
 	var before: Dictionary = _network.snapshot()
 	if not _network.restore(data.network): return false
 	var channel: Dictionary = _network.snapshot().channel
@@ -233,3 +239,7 @@ static func _property(object: Object, key: String) -> Variant:
 
 static func _finite_number(value: Variant) -> bool:
 	return (value is float or value is int) and is_finite(float(value))
+
+## Production hosts can deactivate phase wells or switch to a speed-only mode.
+func well_can_refresh(_well_id: String) -> bool:
+	return true

@@ -99,3 +99,27 @@ func _draw() -> void:
 				data.erase("combo_directions")
 				data.erase("sequence_shapes")
 			room.draw_enemy_telegraph(self, data)
+			if bool(data.get("b05_command",false)):
+				_draw_b05_links(actor,data)
+				for follow: Dictionary in data.get("followups",[]):
+					if str(follow.get("kind","")) in ["b05_decoy","b05_reposition","b05_root_guard"]: continue
+					var preview := follow.duplicate(true)
+					preview["locked"] = bool(data.get("locked",false))
+					room.draw_enemy_telegraph(self,preview)
+
+func _draw_b05_links(actor: Node2D, command: Dictionary) -> void:
+	var body: Variant=preload("res://scripts/combat/combat_properties.gd").read(actor,"body_visual")
+	if not body is Node2D or not body.has_method("b05_visual_outlet"): return
+	var outlet: Dictionary=body.b05_visual_outlet()
+	if outlet.is_empty(): return
+	var start: Vector2=outlet.position
+	if str(command.get("kind",""))=="b05_heal":
+		var end: Vector2=Vector2(command.target)+Vector2(0,-25)
+		draw_line(start,end,Color("68bfc6"),2.5,true)
+		draw_circle(start,3,Color("c6f5ee"))
+	elif str(command.get("caster_enemy_id",""))=="B05-M02" and bool(command.get("lob",false)):
+		var curve:=PackedVector2Array()
+		for i in range(25):
+			var t:=float(i)/24
+			curve.append(start.lerp(Vector2(command.target),t)+Vector2(0,-45*sin(PI*t)))
+		draw_polyline(curve,Color("dbad65"),1.5,true)

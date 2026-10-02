@@ -229,7 +229,17 @@ static func _main_range(template: String, request: Dictionary, quantile: int) ->
 	var affixes: Array = []
 	var legal := Instances.legal_affixes(template,request.power_type)
 	for index in int(Numbers.value("rarities")[request.rarity].affix_count): affixes.append({"type":legal[index],"u":quantile})
-	var record := Instances.create({"instance_id":"preview","template_id":template,"source_event_id":"preview","item_level":request.item_level,"rarity":request.rarity,"power_type":request.power_type,"main_rolls":main,"affix_type_and_quantile":affixes})
+	var spec := {"instance_id":"preview","template_id":template,"source_event_id":"preview","item_level":request.item_level,"rarity":request.rarity,"power_type":request.power_type,"main_rolls":main,"affix_type_and_quantile":affixes}
+	if template.begins_with("B05-"):
+		# A deterministic endpoint is still validated by the strict B05 record
+		# contract. This preview never rolls RNG, becomes an owned item or saves.
+		var allowed := ContentRegistry.ClassPolicy.template_allowed_heroes(template)
+		if allowed.is_empty(): return {}
+		var hero := str(request.get("hero_id", ""))
+		if hero not in allowed: hero = str(allowed[0])
+		spec.merge({"class_policy_version":ContentRegistry.ClassPolicy.template_policy_version(template),
+			"allowed_heroes":allowed,"acquired_for_hero":hero,"source_metadata":{"generator_version":3}})
+	var record := Instances.create(spec)
 	return Instances.main_stats(record)
 
 static func _format_stat(key: String, amount: float) -> String:

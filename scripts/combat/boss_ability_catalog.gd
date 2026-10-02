@@ -20,12 +20,18 @@ const NAMES := {
 const COLORS := {"BO01":Color("56cddb"),"BO02":Color("afcf63"),"BO03":Color("b790db"),"BO04":Color("e6ac6b")}
 
 static func unlocked(boss_id: String, difficulty: int) -> Array:
+	if boss_id == "BO05": return preload("res://scripts/combat/b05_enemy_skills.gd").BOSS_ACTIONS.slice(2,2+clampi(difficulty,0,4))
 	return UNLOCKS.get(boss_id,[]).slice(0,clampi(difficulty,0,4))
 
 static func tier(boss_id: String, action: String) -> int:
+	if boss_id == "BO05":
+		var index: int = preload("res://scripts/combat/b05_enemy_skills.gd").BOSS_ACTIONS.find(action)
+		return int(preload("res://scripts/combat/b05_enemy_skills.gd").BOSS_GATES[index]) if index >= 0 else -1
 	return UNLOCKS.get(boss_id,[]).find(action)+1
 
 static func title(action: String, english: bool = false) -> String:
+	var index: int = preload("res://scripts/combat/b05_enemy_skills.gd").BOSS_ACTIONS.find(action)
+	if index >= 0: return str((preload("res://scripts/combat/b05_enemy_skills.gd").BOSS_NAMES_EN if english else preload("res://scripts/combat/b05_enemy_skills.gd").BOSS_NAMES)[index])
 	return str(NAMES.get(action,[action,action])[1 if english else 0])
 
 static func build(boss_id: String, action: String, origin: Vector2, target: Vector2) -> Dictionary:

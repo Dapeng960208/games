@@ -69,14 +69,19 @@ var room_low_shield_used: bool = false
 var room_first_kill_used: bool = false
 var delayed_shield_at: float = -1.0
 
-static func implemented_ids() -> Array[String]:
+static func implemented_ids(ruleset: int = 1) -> Array[String]:
 	var result: Array[String] = []
 	for index in range(1, 97):
 		result.append("EQ%02d" % index)
+	# New templates have no inherited old fixed affixes.
+	if ruleset == 2:
+		for id: String in ["B05-U01", "B05-U02", "B05-U03"]: result.append(id)
 	return result
 
-static func implemented_set_ids() -> Array[String]:
-	return ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14"]
+static func implemented_set_ids(ruleset: int = 1) -> Array[String]:
+	var result: Array[String] = ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14"]
+	if ruleset == 2: result.append_array(["B05-SW", "B05-SG", "B05-SM", "B05-SU"])
+	return result
 
 func configure(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> void:
 	stats = resolved_stats.duplicate(true)
@@ -162,10 +167,14 @@ static func loadout_binding(loadout: Dictionary, resolved_stats: Dictionary = {}
 ## so retaining two pieces never keeps a former four/six-piece benefit.
 static func source_active(source: String, binding: Dictionary) -> bool:
 	var id: String = source.trim_prefix("equipment:").trim_prefix("set_").get_slice(":", 0)
-	if id.begins_with("EQ"):
+	if id == "B05-combat":
+		for template_id: String in binding.get("equipped", {}):
+			if template_id.begins_with("B05-"): return true
+		return false
+	if id.begins_with("EQ") or id in ["B05-U01", "B05-U02", "B05-U03"]:
 		return bool(binding.get("equipped", {}).get(id, false))
 	var pieces: PackedStringArray = id.split("_")
-	return pieces.size() == 2 and pieces[0] in implemented_set_ids() and pieces[1] in ["2", "4", "6"] and int(binding.get("set_counts", {}).get(pieces[0], 0)) >= int(pieces[1])
+	return pieces.size() == 2 and pieces[0] in implemented_set_ids(2) and pieces[1] in ["2", "4", "6"] and int(binding.get("set_counts", {}).get(pieces[0], 0)) >= int(pieces[1])
 
 static func _prune_loadout_sources(values: Dictionary, previous: Dictionary, next: Dictionary) -> void:
 	for id: String in values.keys():
@@ -320,6 +329,7 @@ func advance(delta: float, ctx: Dictionary) -> Dictionary:
 	if _has("EQ22") and undamaged_time >= 5.0 and _ready("EQ22") and float(ctx.get("remaining_cooldowns", {}).get("dash", 0.0)) > 0.0:
 		var root: Dictionary = _root("advance:" + str(clock))
 		_refund(out, ctx, root, "EQ22", 8.0, "dash", 0.20)
+	_b05_advance(ctx, out)
 	_modifiers(ctx, out)
 	return _cap_modifiers(out)
 
@@ -406,6 +416,7 @@ func _handle(event: String, ctx: Dictionary) -> Dictionary:
 				if stage == "feet": _after_charm(pending, root, out)
 				else: _after_rest(pending, root, out)
 		"kill": _kill(ctx, root, out)
+	_b05_event(event, ctx, root, out)
 	_modifiers(ctx, out)
 	return _cap_modifiers(out)
 
@@ -655,9 +666,13 @@ func _status_applied(ctx: Dictionary, root: Dictionary, _out: Dictionary) -> voi
 
 func _enter_room(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	var id: String = str(ctx.get("room_id", ""))
-	if id.is_empty() or rooms.has(id): return
-	rooms[id] = true
+	if id != room_id: clear_b05_temporary()
+	if id.is_empty(): return
+	# Reused fixed-room blueprints still become the current room. Retain their
+	# consumed one-time flags instead of replaying entry rewards.
 	room_id = id
+	if rooms.has(id): return
+	rooms[id] = true
 	room_low_shield_used = false
 	room_first_kill_used = false
 	undamaged_time = 0.0
@@ -856,3 +871,183 @@ func _history_total(history: Array[Dictionary]) -> float:
 	var value: float = 0.0
 	for item in history: value += float(item.amount)
 	return value
+
+
+## B05 extends the released reducer without changing historical item effects.
+## All counters use confirmed original events; stable cast roots suppress AoE ticks.
+func b05_control_duration(duration: float, other_reduction: float = 0.0) -> float:
+	var reduction := clampf(other_reduction + (0.20 if _has_set("B05-SU", 2) else 0.0), 0.0, 0.50)
+	return maxf(0.0, duration) * (1.0 - reduction)
+
+func b05_e_shield(amount: float) -> float:
+	return amount * (1.12 if Numerical.is_v2(stats) and _has_set("B05-SW", 2) else 1.0)
+
+func clear_b05_temporary() -> void:
+	for values: Dictionary in [windows, counts, buffs]:
+		for key: String in values.keys():
+			if key.begins_with("B05-"): values.erase(key)
+	# Global ICDs deliberately survive combat end, room transitions and swapping.
+
+func _b05_advance(ctx: Dictionary, out: Dictionary) -> void:
+	if not Numerical.is_v2(stats): return
+	if windows.has("B05-combat") and not _window("B05-combat"):
+		clear_b05_temporary()
+	for key: String in windows.keys():
+		if not key.begins_with("B05-SU_4:exit:") or clock < float(windows[key]): continue
+		windows.erase(key)
+		if _has_set("B05-SU", 4):
+			var root := _root("b05_exit:" + key + ":" + str(clock))
+			if _activate("B05-SU_4", 12.0, root, out): _shield(out, ctx, 0.06, "B05-SU_4")
+
+func _b05_event(event: String, ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
+	if not Numerical.is_v2(stats): return
+	var slot := str(ctx.get("skill_slot", ctx.get("slot", "")))
+	var original := _eligible(ctx)
+	if event == "skill_cast" and _paid_spell_cast(ctx) and bool(ctx.get("combat_active", false)):
+		windows["B05-combat"] = clock + 10.0
+	if event == "before_hit" and original:
+		if _has_set("B05-SG", 2) and bool(ctx.get("hunter_marked", false)): out.damage_bonus += 0.08
+		if _has_set("B05-SM", 2) and slot == "q": out.damage_bonus += 0.08
+		if _has_set("B05-SW", 6) and slot == "q":
+			if not root.flags.has("B05-SW_6:q"):
+				root.flags["B05-SW_6:q"] = _window("B05-SW_6:q")
+				windows.erase("B05-SW_6:q")
+			if bool(root.flags.get("B05-SW_6:q", false)): out.damage_bonus += 0.10
+		if _has_set("B05-SG", 6) and slot == "secondary" and (str(root.first_target).is_empty() or str(root.first_target) == str(ctx.get("target_id", ""))):
+			if not root.flags.has("B05-SG_6:w"):
+				root.flags["B05-SG_6:w"] = _window("B05-SG_6:w")
+				windows.erase("B05-SG_6:w")
+			if bool(root.flags.get("B05-SG_6:w", false)): out.damage_bonus += 0.12
+	elif event == "after_hit" and original and bool(ctx.get("confirmed", false)):
+		# before_hit previews may have consumed a conditional window in their copy.
+		# Commit B05 hit modifiers only after actual health/shield loss, like V2.
+		_b05_event("before_hit", ctx, root, _empty())
+		windows["B05-combat"] = clock + 10.0
+		if _has_set("B05-SG", 4) and slot == "secondary" and bool(ctx.get("hunter_marked", false)) and not bool(root.get("b05_pierced", false)):
+			var prior: int = out.bonus_hits.size()
+			_b05_packet(ctx, root, out, "B05-SG_4", 0.0, 0.35, ctx.get("b05_pierce_targets", []), 1, "physical")
+			if out.bonus_hits.size() > prior: root["b05_pierced"] = true
+		if bool(root.get("b05_hit_counted", false)): return
+		root["b05_hit_counted"] = true
+		if _has_set("B05-SW", 4) and slot == "secondary" and _window("B05-SW_4:absorbed") and _ready("B05-SW_4"):
+			windows.erase("B05-SW_4:absorbed")
+			_b05_packet(ctx, root, out, "B05-SW_4", 6.0, 0.30, ctx.get("b05_arc_targets", []), 3, "physical")
+		if _has_set("B05-SW", 6) and slot == "secondary" and _ready("B05-SW_6"):
+			if _b05_sequence("B05-SW_6", 8.0, 0, 0, false):
+				if _activate("B05-SW_6", 8.0, root, out, false):
+					out.cooldown_refunds.append({"slot":"F", "seconds":minf(1.5, maxf(0.0, float(ctx.get("remaining_cooldowns", {}).get("F", 0.0)))), "source":"equipment"})
+					windows["B05-SW_6:q"] = clock + 6.0
+		if _has_set("B05-SU", 6) and (_basic(ctx) or float(ctx.get("paid_cost", 0.0)) > 0.0) and _ready("B05-SU_6") and _nth("B05-SU_6", 3):
+			if _activate("B05-SU_6", 12.0, root, out):
+				_heal(out, ctx, 0.03)
+				_buff("B05-SU_6", "move_speed_bonus", 0.08, 3.0)
+	elif event == "damaged":
+		if float(ctx.get("hp_damage", 0.0)) + float(ctx.get("shield_absorbed", 0.0)) > 0.0: windows["B05-combat"] = clock + 10.0
+		if _has_set("B05-SW", 4) and float(ctx.get("e_shield_absorbed", 0.0)) > 0.0:
+			windows["B05-SW_4:absorbed"] = clock + 300.0
+	elif event == "skill_cast" and _has_set("B05-SM", 4) and _paid_spell_cast(ctx) and bool(ctx.get("combat_active", false)) and _ready("B05-SM_4"):
+		if bool(root.get("b05_paid_counted", false)): return
+		root["b05_paid_counted"] = true
+		var skill_index := ["q", "secondary", "f", "ultimate"].find(slot) + 1
+		if _b05_sequence("B05-SM_4", 6.0, skill_index, int(ctx.paid_cost), true) and _activate("B05-SM_4", 6.0, root, out, false):
+			out.resource_restore += minf(60.0, maxf(0.0, float(ctx.get("resource_max", 0.0)) - float(ctx.get("resource", 0.0))))
+	elif event == "gunner_q_completed" and _has_set("B05-SG", 6) and float(ctx.get("actual_distance", 0.0)) >= 100.0 and bool(ctx.get("combat_active", false)):
+		if _activate("B05-SG_6", 6.0, root, out, false): windows["B05-SG_6:w"] = clock + 6.0
+	elif event == "mage_w_node_placed" and _has_set("B05-SM", 6) and bool(ctx.get("node_placed", false)) and bool(ctx.get("combat_active", false)):
+		if _activate("B05-SM_6", 8.0, root, out, false):
+			var fixed_power := float(ctx.get("attacker_stats", stats).get("ability_power", 0.0))
+			_prime_b05_budget(ctx, root, fixed_power)
+			out["b05_bloom"] = {"delay":1.0, "radius":110.0, "damage":Numerical.integer(fixed_power * 0.40), "root_event_id":str(ctx.get("root_event_id", ""))}
+	elif event == "b05_bloom_due" and _has_set("B05-SM", 6):
+		_b05_packet(ctx, root, out, "B05-SM_6:ring", 0.0, 0.40, ctx.get("b05_bloom_targets", []), 3, "magic", float(ctx.get("bloom_damage", 0.0)), false)
+	elif event == "hostile_hazard":
+		var hazard := str(ctx.get("hazard_id", ""))
+		if hazard.is_empty(): return
+		var inside := "B05-SU_4:inside:" + hazard
+		var exited := "B05-SU_4:exit:" + hazard
+		if bool(ctx.get("inside", false)):
+			counts[inside] = 1
+			windows.erase(exited)
+		elif counts.has(inside):
+			counts.erase(inside)
+			if _has_set("B05-SU", 4): windows[exited] = clock + 1.0
+		if bool(ctx.get("zone_damaged", false)) and windows.has(exited): windows[exited] = clock + 1.0
+	elif event == "root_ended" and _has("B05-U01") and bool(ctx.get("actually_rooted", false)):
+		if _activate("B05-U01", 10.0, root, out, false): _buff("B05-U01", "move_speed_bonus", 0.10, 2.0)
+	elif event == "external_heal" and _has("B05-U02") and float(ctx.get("actual_healing", 0.0)) > 0.0:
+		if _activate("B05-U02", 12.0, root, out):
+			_shield(out, ctx, 0.02, "B05-U02")
+			out.shields.back().duration = 3.0
+	elif event == "hostile_destructible_destroyed" and _has("B05-U03") and bool(ctx.get("player_attributed", false)):
+		if _activate("B05-U03", 12.0, root, out, false): _buff("B05-U03", "damage_reduction_bonus", 0.05, 4.0)
+
+## Rolling three-event window. Only the last two prior qualifying events survive.
+## Slots/costs are small integers and expiries finite scalars in the save contract.
+func _b05_sequence(id: String, seconds: float, slot: int, cost: int, alternating: bool) -> bool:
+	var entries: Array[Dictionary] = []
+	for index in 2:
+		var key := id + ":seq" + str(index)
+		if _window(key): entries.append({"until":windows[key], "slot":int(counts.get(key + ":slot", 0)), "cost":int(counts.get(key + ":cost", 0))})
+	if alternating and not entries.is_empty() and int(entries.back().slot) == slot: entries.clear()
+	entries.append({"until":clock + seconds, "slot":slot, "cost":cost})
+	var spent := 0
+	for entry: Dictionary in entries: spent += int(entry.cost)
+	var complete := entries.size() >= 3 and (not alternating or spent >= 60)
+	if complete: entries.clear()
+	elif entries.size() > 2: entries = entries.slice(entries.size() - 2)
+	for index in 2:
+		var key := id + ":seq" + str(index)
+		windows.erase(key)
+		counts.erase(key + ":slot")
+		counts.erase(key + ":cost")
+		if index < entries.size():
+			windows[key] = float(entries[index].until)
+			counts[key + ":slot"] = int(entries[index].slot)
+			counts[key + ":cost"] = int(entries[index].cost)
+	return complete
+
+## B05 damage budgets are authored fixed AD/AP, never the class's blended H.
+## Geometry is supplied by the live adapter, which has actual collision/LOS data.
+func _b05_packet(ctx: Dictionary, root: Dictionary, out: Dictionary, id: String, icd: float, coefficient: float, targets: Array, limit: int, power_type: String, frozen_damage: float = -1.0, allow_new_budget: bool = true) -> void:
+	if targets.is_empty(): return
+	var power_stats: Dictionary = ctx.get("attacker_stats", stats)
+	var fixed_power := float(power_stats.get("ability_power" if power_type == "magic" else "attack", 0.0))
+	var amount := Numerical.integer(fixed_power * coefficient) if frozen_damage < 0.0 else Numerical.integer(frozen_damage)
+	if allow_new_budget:
+		_prime_b05_budget(ctx, root, fixed_power)
+	elif not root.has("b05_budget_basis"):
+		return # A derived release cannot create a new independent budget.
+	if amount <= 0: return
+	var ids: Array[String] = []
+	for value: Variant in targets:
+		var target := str(value)
+		if target.is_empty() or target in ids: continue
+		ids.append(target)
+		if ids.size() >= limit: break
+	if ids.is_empty(): return
+	var remaining := maxi(0, int(Numerical.derived_budget(float(root.b05_budget_basis), Numerical.V2)) - int(root.get("damage_spent", 0)))
+	var amounts := {}
+	var spent := 0
+	for target: String in ids:
+		var packet := mini(amount, remaining)
+		if packet <= 0: break
+		amounts[target] = packet
+		remaining -= packet
+		spent += packet
+	if spent <= 0 or not _activate(id, icd, root, out): return
+	root["damage_spent"] = int(root.get("damage_spent", 0)) + spent
+	root.coefficient = float(root.damage_spent) / maxf(1.0, float(root.raw_packet))
+	ids.assign(amounts.keys())
+	out.bonus_hits.append({"target_ids":ids, "damage":amount, "damage_by_target":amounts, "coefficient":coefficient,
+		"source":"equipment", "damage_source":"equipment", "damage_type":power_type, "proc_depth":1,
+		"equipment_eligible":false, "critical":false, "states":[], "effect_id":id})
+
+
+## B05 fixed-P supplement: one shared cast budget uses max(original X, fixed P).
+## Called only by a confirmed direct trigger or actual original node placement.
+## Old equipment _bonus still uses its unchanged original-X budget calculation.
+func _prime_b05_budget(ctx: Dictionary, root: Dictionary, fixed_power: float) -> void:
+	if not root.has("raw_packet"):
+		root["raw_packet"] = Numerical.integer(float(ctx.get("X", ctx.get("H", 0.0))))
+		root["damage_spent"] = int(floor(float(root.raw_packet) * float(root.coefficient)))
+	root["b05_budget_basis"] = maxf(float(root.get("b05_budget_basis", 0.0)), maxf(float(root.raw_packet), fixed_power))

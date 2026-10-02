@@ -6,7 +6,7 @@ var failures := 0
 func _initialize() -> void:
 	var data: Dictionary = Layout.room("L25")
 	check(not data.is_empty() and data.geometry_status == "frozen_for_art_v1", "L25 placement exists")
-	check(Layout.room("L26").is_empty() and Layout.room("L24").is_empty(), "only frozen L25 exposed")
+	check(Layout.room("L24").is_empty() and Layout.room("L31").is_empty(), "only B05 geometry exposed")
 	check(Layout.world_point(data.central_dry_ground).is_equal_approx(Vector2(779.52,522)), "central source anchor mapping")
 	check(Layout.world_point(data.root_wells[0].position).is_equal_approx(Vector2(1104.32,313.2)), "68/30 root anchor mapping")
 	check(Layout.image_point([2800,1800],Vector2i(2800,1800)).is_equal_approx(Vector2(2492,1566)), "placement rect reserves peripheral art")
@@ -28,6 +28,10 @@ func _initialize() -> void:
 	check(not Layout.hazards_allowed("L25",[PackedVector2Array([Vector2(NAN,0),Vector2.ONE,Vector2.RIGHT])]), "invalid hazard rejected")
 	data.entry[0] = 999
 	check(Layout.room("L25").entry[0] == 320, "layout copy cannot mutate source")
+	for room_id: String in ["L26","L27","L28","L29","L30","BO05"]:
+		check(not Layout.room(room_id).is_empty(),room_id+" explicit geometry present")
+		check(Layout.route_is_clear(room_id,"main_route",180.0),room_id+" full-width main route")
+		check(Layout.route_is_clear(room_id,"safe_route",140.0),room_id+" full-width safe route")
 	print("B05 room geometry: %d checks, %d failures" % [checks,failures])
 	quit(0 if failures == 0 else 1)
 

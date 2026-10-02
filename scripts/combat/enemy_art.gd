@@ -70,6 +70,7 @@ static var _skill_icons: Dictionary = {}
 static var _loaded: bool = false
 
 static func entry_for(identity: String) -> Dictionary:
+	if identity in preload("res://scripts/combat/b05_enemy_art.gd").IDS: return preload("res://scripts/combat/b05_enemy_art.gd").entry(identity)
 	_ensure_loaded()
 	return _entries.get(identity, {}).duplicate()
 
@@ -78,6 +79,7 @@ static func variant_count(identity: String) -> int:
 	return (_variants.get(identity, []) as Array).size()
 
 static func variant_entry_for(identity: String, index: int) -> Dictionary:
+	if identity in preload("res://scripts/combat/b05_enemy_art.gd").IDS: return preload("res://scripts/combat/b05_enemy_art.gd").entry(identity)
 	_ensure_loaded()
 	var choices: Array = _variants.get(identity, [])
 	if index < 0 or index >= choices.size():
@@ -94,6 +96,11 @@ static func variant_index_for(identity: String, serial: int, room_id: String, ro
 	return posmod(offset + serial, count)
 
 static func skill_icon_for(identity: String) -> Dictionary:
+	if identity in preload("res://scripts/combat/b05_enemy_art.gd").IDS:
+		var bank: Dictionary=preload("res://scripts/combat/b05_enemy_art.gd").bank(identity)
+		if bank.is_empty(): return {}
+		var frame: Dictionary=bank.clips.idle[0]
+		return {"texture":frame.texture,"texture_path":frame.texture_path,"region":Rect2(Vector2(frame.core)-Vector2(150,150),Vector2(300,300))}
 	_ensure_loaded()
 	return _skill_icons.get(identity, {}).duplicate()
 
@@ -130,6 +137,9 @@ static func install(actor: Node2D) -> Dictionary:
 		# the same painted creature rather than returning to a coal-era body.
 		actor.set("empty_body_texture", entry.texture)
 	entry["native_bounds"] = local_bounds
+	if bool(entry.get("b05_native_bank",false)):
+		entry["world_reference_height"] = height
+		entry["world_foot"] = Vector2(0,foot_y)
 	return entry
 
 static func motion_path(identity: String) -> String:

@@ -67,9 +67,12 @@ var body_visual: Node2D
 ## Temporary arena openings affect resolved defense, never the armor base. This
 ## lets natural armor changes (such as a destroyed support pod) survive expiry.
 var _biome_counters: Dictionary = {}
+var _ordinary_slow_remaining := 0.0
+var _ordinary_slow_multiplier := 1.0
 
 func configure(next_profile: Dictionary, options: Dictionary = {}) -> void:
 	_biome_counters.clear()
+	clear_ordinary_slow()
 	aggro_target = null
 	aggro_hold = 0.0
 	profile = next_profile.duplicate(true)
@@ -96,6 +99,7 @@ func configure(next_profile: Dictionary, options: Dictionary = {}) -> void:
 		set_meta("enemy_skill_anchor", true)
 
 func cast_enemy_skill(skill: Dictionary) -> void:
+	if bool(skill.get("b05_command",false)) and is_instance_valid(body_visual): body_visual.synchronize_b05_release()
 	if room.enemy_skills != null and is_alive():
 		room.enemy_skills.emit_skill(self, skill)
 
@@ -127,7 +131,7 @@ func _ready() -> void:
 	health.reset(float(profile.get("max_hp", Balance.ENEMY_HP)), int(profile.get("ruleset_version", Numerical.LEGACY)))
 	health.depleted.connect(_die)
 	if not profile.is_empty() and not static_actor:
-		brain = BrainScript.new()
+		brain = preload("res://scripts/combat/b05_enemy_brain.gd").new() if enemy_id.begins_with("B05-M") else BrainScript.new()
 		brain.configure(profile)
 	if not static_actor:
 		body_visual = BodyVisualScript.new()
@@ -136,6 +140,7 @@ func _ready() -> void:
 		body_visual.configure(self)
 
 func impact_material() -> String:
+	if enemy_id.begins_with("B05-M") or enemy_id == "BO05": return "organic"
 	if enemy_id in ["M04", "M10", "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18", "M28", "M29", "M32", "M33", "M35"]:
 		return "organic"
 	if enemy_id in ["M30", "M31", "M34", "M36"] or enemy_id.is_empty():
@@ -254,6 +259,7 @@ func _select_aggro_target() -> Node2D:
 func _finish_motion(delta: float) -> void:
 	if room.enemy_skills != null:
 		velocity *= room.enemy_skills.movement_multiplier(self)
+	if _ordinary_slow_remaining>0: velocity *= _ordinary_slow_multiplier
 	velocity += knockback
 	if reaction_remaining > 0.0:
 		velocity = knockback
@@ -285,6 +291,8 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	var numerical: bool = status.ruleset_version == Numerical.V2
 	if status.has("invulnerable") or (numerical and (not is_finite(amount) or amount <= 0.0 or bool(context.get("invulnerable", false)))):
 		return false
+	if room.enemy_skills != null and room.enemy_skills.b05 != null:
+		amount = room.enemy_skills.b05.filter_damage(self,amount,kind,from_direction,damage_type)
 	var auxiliary_absorbed: Variant = Numerical.amount(0.0, status.ruleset_version)
 	# Enemy barrier/stance multipliers are reduction, so true damage bypasses
 	# them. Immunity is checked above; shields are still consumed below.
@@ -380,6 +388,7 @@ func tick_burn(delta: float) -> void:
 	tick_statuses(delta)
 
 func apply_status(id: String, power: float, duration: float = -1.0) -> bool:
+	if id == "slow": return apply_ordinary_slow(power,duration)
 	if not is_alive():
 		return false
 	if id not in StatusScript.VALID_STATES and id != "guard":
@@ -403,6 +412,8 @@ func apply_status(id: String, power: float, duration: float = -1.0) -> bool:
 
 func tick_statuses(delta: float) -> void:
 	if is_finite(delta) and delta > 0.0 and (not is_inside_tree() or not get_tree().paused):
+		_ordinary_slow_remaining=maxf(0,_ordinary_slow_remaining-delta)
+		if _ordinary_slow_remaining<=0: _ordinary_slow_multiplier=1.0
 		for kind: String in _biome_counters.keys():
 			_biome_counters[kind] = maxf(0.0, float(_biome_counters[kind]) - delta)
 			if float(_biome_counters[kind]) <= 0.0:
@@ -627,3 +638,15 @@ func _draw_fallback_body() -> void:
 	draw_line(Vector2(-9,-4),Vector2(10,-4),colors.energy,3.0)
 	draw_circle(Vector2(0,5),5.0,colors.trim)
 	draw_circle(Vector2(0,5),2.0,colors.energy)
+
+## Ordinary movement impairment is distinct from elemental chill. Dew cleanse
+## removes exactly this family and never erases burn, root or unrelated buffs.
+func apply_ordinary_slow(multiplier: float, duration: float) -> bool:
+	if not is_alive() or not is_finite(multiplier) or not is_finite(duration) or multiplier<0 or multiplier>1 or duration<=0: return false
+	_ordinary_slow_multiplier=minf(_ordinary_slow_multiplier,multiplier) if _ordinary_slow_remaining>0 else multiplier
+	_ordinary_slow_remaining=maxf(_ordinary_slow_remaining,duration)
+	return true
+
+func clear_ordinary_slow() -> void:
+	_ordinary_slow_remaining=0
+	_ordinary_slow_multiplier=1

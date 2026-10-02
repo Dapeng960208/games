@@ -10,6 +10,8 @@ static func level_cap() -> int:
 static func thresholds(cap: int = 0) -> Array:
 	var limit := level_cap() if cap <= 0 else clampi(cap, 1, 60)
 	var result: Array = Numbers.value("xp_thresholds_1_20")
+	var frozen: Dictionary = Numbers.value("b05_progression", {})
+	result.append_array(frozen.get("xp_thresholds_21_25", []))
 	var future: Dictionary = Numbers.value("xp_after_20")
 	while result.size() < limit:
 		var level := result.size() + 1
@@ -52,18 +54,19 @@ static func hero_base(definition: Dictionary, level: int, talents: Dictionary = 
 	var profile: Dictionary = {} if legacy_role_growth else profiles.get(str(definition.get("id", "")), {})
 	var growth: Dictionary = profile.get("growth", Numbers.value("growth"))
 	var base_overrides: Dictionary = profile.get("base", {})
+	var frozen_growth: Dictionary = {} if legacy_role_growth else Numbers.value("b05_progression", {}).get("hero_growth_by_level", {}).get(str(definition.get("id", "")), {}).get(str(level), {})
 	var per_rank: Dictionary = Numbers.value("talent_per_rank")
 	var result := definition.duplicate(true)
 	var mage := str(definition.get("id", "")) == "CH03"
 	for key in ["attack", "ability_power", "max_hp"]:
 		var base := float(definition.get(key, 0.0)) * float(Numbers.value("combat_scale"))
-		var multiplier := 1.0 + float(growth[key]) * (level - 1)
+		var multiplier := float(frozen_growth.get(key, 1.0 + float(growth[key]) * (level - 1)))
 		if key == ("ability_power" if mage else "attack"):
 			multiplier *= 1.0 + int(talents.get("mastery", 0)) * float(per_rank.main_attribute_ratio)
 		if key == "max_hp": multiplier *= 1.0 + int(talents.get("vitality", 0)) * float(per_rank.hero_hp_ratio)
 		result[key] = Numbers.integer(base * multiplier)
 	for key in ["armor", "magic_resist"]:
-		result[key] = Numbers.integer(float(definition.get(key, 18.0 if mage else 12.0)) * float(Numbers.value("combat_scale")) + float(growth[key]) * (level - 1) + int(talents.get("resistance", 0)) * float(per_rank.armor_and_magic_resist_flat))
+		result[key] = Numbers.integer(float(definition.get(key, 18.0 if mage else 12.0)) * float(Numbers.value("combat_scale")) + float(frozen_growth.get(key, float(growth[key]) * (level - 1))) + int(talents.get("resistance", 0)) * float(per_rank.armor_and_magic_resist_flat))
 	for key in ["resource_max", "resource_regen", "starting_resource"]:
 		result[key] = Numbers.scale(float(base_overrides.get(key, definition.get(key, 0))), Numbers.V2)
 	result["resource_regen_delay"] = float(base_overrides.get("resource_regen_delay", definition.get("resource_regen_delay", 0.0)))
@@ -76,7 +79,7 @@ static func hero_base(definition: Dictionary, level: int, talents: Dictionary = 
 	return result
 
 static func award(profile: Dictionary, hero: String, amount: int, event_id: String, race: String, defer_materials: bool = false) -> Dictionary:
-	if hero not in ["CH01", "CH02", "CH03"] or amount < 0 or amount > 3600 or event_id.is_empty(): return {}
+	if hero not in ["CH01", "CH02", "CH03"] or amount < 0 or amount > 3600 or event_id.is_empty() or race not in ["B01", "B02", "B03", "B04", "B05"]: return {}
 	var next := profile.duplicate(true)
 	var receipts: Dictionary = next.get("progression_receipts", {})
 	if receipts.has(event_id):
@@ -92,7 +95,7 @@ static func award(profile: Dictionary, hero: String, amount: int, event_id: Stri
 	var progress := int(research.get(hero, 0)) + overflow
 	var interval := int(Numbers.value("research_xp_per_reward"))
 	var rewards := int(progress / interval)
-	if rewards > 0 and race not in ["B01", "B02", "B03", "B04"]: return {}
+	if rewards > 0 and race not in ["B01", "B02", "B03", "B04", "B05"]: return {}
 	research[hero] = progress % interval
 	next["research_xp"] = research
 	var materials: Dictionary = next.get("materials", {})

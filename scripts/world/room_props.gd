@@ -280,7 +280,7 @@ func grant_buff(effect: String, player: Node2D) -> bool:
 	var game: Node = get_node_or_null("/root/Game") if is_inside_tree() else null
 	if effect == "heal":
 		if game == null or game.run == null or not player.has_method("heal"): return false
-		return float(player.heal(float(game.run.max_hp) * 0.25)) > 0.0
+		return float(player.heal(float(game.run.max_hp) * 0.25,"external")) > 0.0
 	if effect == "resource":
 		if game == null or game.run == null: return false
 		return float(game.restore_resource(float(game.run.stats.get("resource_max", 0.0)) * 0.30)) > 0.0

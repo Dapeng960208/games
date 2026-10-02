@@ -32,6 +32,11 @@ static func obstacles(id: String) -> Array[PackedVector2Array]:
 		var center := world_point(cover.position)
 		var half := world_point(cover.footprint_blueprint) / 2.0
 		result.append(PackedVector2Array([center-half,center+Vector2(half.x,-half.y),center+half,center+Vector2(-half.x,half.y)]))
+	for rectangle: Array in definition.get("voids",[]):
+		result.append(_rectangle_polygon(rectangle))
+	for bridge: Dictionary in definition.get("bridges",[]):
+		if not bool(bridge.get("open",false)):
+			result.append(_rectangle_polygon(bridge.blocked_rect_blueprint))
 	for well: Dictionary in definition.get("root_wells",[]):
 		var footprint := PackedVector2Array()
 		for index in range(32):
@@ -83,3 +88,8 @@ static func _area(points: PackedVector2Array) -> float:
 	for index in points.size():
 		result += points[index].cross(points[(index+1)%points.size()])
 	return absf(result)/2.0
+
+static func _rectangle_polygon(values: Array) -> PackedVector2Array:
+	var at:=world_point([values[0],values[1]])
+	var size:=world_point([values[2],values[3]])
+	return PackedVector2Array([at,at+Vector2(size.x,0),at+size,at+Vector2(0,size.y)])

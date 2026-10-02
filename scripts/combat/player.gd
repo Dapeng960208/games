@@ -70,6 +70,9 @@ var _enemy_status_origins: Dictionary = {}
 var _enemy_status_contexts: Dictionary = {}
 var _enemy_slow_remaining: float = 0.0
 var _enemy_slow_multiplier: float = 1.0
+var _enemy_root_remaining: float = 0.0
+var _enemy_root_protection_remaining: float = 0.0
+var _hostile_hazards: Dictionary = {}
 ## Room-local identity state; target references never enter a save or equipment state.
 var break_stacks: int = 0
 var class_marks: Dictionary = {}
@@ -157,11 +160,13 @@ func basic_attack_variant() -> int:
 func skill_power() -> Variant:
 	return Abilities.preview_powers(hero_id(), _power_snapshot()).skill_H
 
-func heal(amount: float) -> Variant:
+func heal(amount: float, source: String = "self") -> Variant:
 	_sync_status_ruleset()
 	var restored: Variant = Game.heal_player(amount, status.healing_multiplier())
 	if restored > 0.0 and is_instance_valid(room) and room.has_method("add_damage_text"):
 		room.add_damage_text(position + Vector2(0,-72), restored, &"heal", {"feedback_kind":"heal"})
+	if restored > 0.0 and source == "external" and loadout != null:
+		loadout.event("external_heal", {"actual_healing":restored})
 	return restored
 
 func _physics_process(delta: float) -> void:
@@ -179,6 +184,7 @@ func _physics_process(delta: float) -> void:
 	rage_hurt_cooldown = maxf(0.0, rage_hurt_cooldown - delta)
 	attack_buffer = maxf(0.0, attack_buffer - delta)
 	_basic_chain_remaining = maxf(0.0, _basic_chain_remaining - delta)
+	_tick_b05_control(delta)
 	_enemy_slow_remaining = maxf(0.0, _enemy_slow_remaining - delta)
 	if _enemy_slow_remaining <= 0.0:
 		_enemy_slow_multiplier = 1.0
@@ -255,6 +261,7 @@ func _physics_process(delta: float) -> void:
 	if dash_remaining > 0.0:
 		_tick_dash(delta)
 	else:
+		if _enemy_root_remaining > 0.0: motion = Vector2.ZERO
 		velocity = motion * stat("move_speed", 220.0) * abilities.movement_scale() + knockback
 		position = room.move_actor(position, velocity * delta, Balance.PLAYER_RADIUS)
 	knockback = knockback.move_toward(Vector2.ZERO, Balance.PLAYER_KNOCKBACK_DECAY * delta)
@@ -693,7 +700,7 @@ func cancel_actions() -> void:
 func start_dash(direction: Vector2) -> bool:
 	if is_instance_valid(room) and room.has_method("objective_blocks_dash") and room.objective_blocks_dash():
 		return false
-	if dash_cooldown > 0.0 or direction.is_zero_approx() or Game.run == null:
+	if _enemy_root_remaining > 0.0 or dash_cooldown > 0.0 or direction.is_zero_approx() or Game.run == null:
 		return false
 	if room.move_actor(position, direction.normalized() * 8.0, Balance.PLAYER_RADIUS).distance_to(position) < 1.0:
 		return false
@@ -735,11 +742,20 @@ func receive_enemy_status(effect: Dictionary) -> bool:
 	if Game.run == null or Game.run.hp <= 0.0:
 		return false
 	var identifier: String = str(effect.get("id", effect.get("status", "")))
-	if identifier not in ["burn", "shock", "chill", "corrosion", "slow", "bleed", "grievous", "damage_reduction", "invulnerable"]:
+	if identifier not in ["burn", "shock", "chill", "corrosion", "slow", "root", "bleed", "grievous", "damage_reduction", "invulnerable"]:
 		return false
 	var duration: float = float(effect.get("duration", 4.0 if identifier == "corrosion" else 3.0))
 	if not is_finite(duration) or duration <= 0.0:
 		return false
+	if identifier in ["slow", "root"] and loadout != null and loadout.effects != null:
+		duration = loadout.effects.b05_control_duration(duration)
+	if identifier == "root":
+		if _enemy_root_remaining > 0.0 or _enemy_root_protection_remaining > 0.0: return false
+		_enemy_root_remaining = minf(duration, 300.0)
+		dash_remaining = 0.0
+		clear_movement_target()
+		queue_redraw()
+		return true
 	if identifier == "slow":
 		var multiplier: float = float(effect.get("magnitude", 0.8))
 		if not is_finite(multiplier) or multiplier < 0.0 or multiplier > 1.0:
@@ -779,6 +795,7 @@ func _damage_key_states() -> Array[String]:
 	for id: String in status.states:
 		if status.has(id): result.append(id)
 	if _enemy_slow_remaining > 0.0: result.append("slow")
+	if _enemy_root_remaining > 0.0: result.append("root")
 	if dash_remaining > 0.0: result.append("dash")
 	return result
 
@@ -813,6 +830,8 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 		room.telemetry["player_hits"] += 1
 		room.add_ring(position, Color("e46b69"), 24.0 if is_dot else 38.0, 0.20 if is_dot else 0.28)
 	var previous_shield: float = Game.run.shield
+	var e_guard: Dictionary = status.guards.get("hero_f", {})
+	var e_shield_active := float(e_guard.get("remaining", 0.0)) > 0.0 and float(e_guard.get("amount", 0.0)) >= previous_shield and previous_shield > 0.0
 	var previous_hp: float = Game.run.hp
 	var modifiers: Dictionary = loadout.modifiers()
 	var damaged_run: RunState = Game.run
@@ -828,6 +847,11 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 		hurt_flash = 0.08 if is_dot else 0.16
 		room.telemetry["player_hits"] += 1
 		room.add_ring(position, Color("e46b69"), 24.0 if is_dot else 38.0, 0.20 if is_dot else 0.28)
+	var consumed_total: float = maxf(0.0, previous_hp - damaged_run.hp) + maxf(0.0, previous_shield - damaged_run.shield)
+	if consumed_total > 0.0 and is_instance_valid(room):
+		var mechanisms: Variant = room.get("b05_mechanics")
+		if mechanisms is Object and mechanisms.has_method("notify_actor_hit"):
+			mechanisms.call("notify_actor_hit", "player", consumed_total)
 	_show_received_numbers(damaged_run, previous_hp, previous_shield, damage_context)
 	# Shock is a magic packet within this same received-hit event. A lethal
 	# first packet may close the run (or restore a demo's backup), so identity
@@ -855,7 +879,7 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	Game.run.shield = status.shield()
 	if not is_dot:
 		knockback *= float(modifiers.get("received_knockback_scale", 1.0))
-	loadout.event("damaged", {"hp_damage":previous_hp - Game.run.hp,"shield_absorbed":previous_shield - Game.run.shield,"shield_broken":previous_shield > 0.0 and Game.run.shield <= 0.0,"enemy_damage":true,"dot":is_dot})
+	loadout.event("damaged", {"hp_damage":previous_hp - Game.run.hp,"shield_absorbed":previous_shield - Game.run.shield,"shield_broken":previous_shield > 0.0 and Game.run.shield <= 0.0,"enemy_damage":true,"dot":is_dot,"e_shield_absorbed":maxf(0.0, previous_shield - Game.run.shield) if e_shield_active else 0.0})
 	combat_time = 5.0
 	if hero_id() == "CH01" and Game.run.hp < previous_hp and rage_hurt_cooldown <= 0.0:
 		restore_class_resource(float(Numbers.scale(5.0, _ruleset_version())))
@@ -886,6 +910,8 @@ func grant_guard(amount: float, duration: float, source: String) -> void:
 	_sync_status_ruleset()
 	status.absorb(maxf(0.0, status.shield() - Game.run.shield))
 	var previous_shield: float = Game.run.shield
+	if source == "hero_f" and hero_id() == "CH01" and loadout != null and loadout.effects != null:
+		amount = loadout.effects.b05_e_shield(amount)
 	var equipment: bool = source.begins_with("set_") or source.begins_with("equipment:")
 	var result: Dictionary = status.grant_guard_result(amount, duration, source, Game.run.max_hp, equipment)
 	Game.run.shield = status.shield()
@@ -1042,3 +1068,35 @@ func hit_feedback(duration: float) -> void:
 
 func _draw() -> void:
 	Visual.draw_hero(self)
+
+
+func has_hunter_mark(target: Node2D) -> bool:
+	if hero_id() != "CH02" or not is_instance_valid(target): return false
+	return float(class_marks.get(target.get_instance_id(), {}).get("remaining", 0.0)) > 0.0
+
+## Only a real persistent hostile zone may call this, using one stable room ID.
+## Damage means confirmed HP/shield loss, never a warning or overlap attempt.
+func notify_hostile_hazard(hazard_id: String, inside: bool, damaged: bool = false) -> void:
+	if loadout == null or hazard_id.is_empty(): return
+	var id := hazard_id.left(160)
+	# Repeated overlap samples are not new events. Keep reducer roots bounded
+	# by entries/exits and real hits rather than by physics frames.
+	if bool(_hostile_hazards.get(id, false)) == inside and not damaged: return
+	if inside: _hostile_hazards[id] = true
+	else: _hostile_hazards.erase(id)
+	loadout.event("hostile_hazard", {"hazard_id":id, "inside":inside, "zone_damaged":damaged})
+
+## The mechanism owner calls this only after a player-attributed destruction.
+func notify_hostile_destructible_destroyed(mechanism_id: String) -> void:
+	if loadout == null or mechanism_id.is_empty(): return
+	loadout.event("hostile_destructible_destroyed", {"event_id":"mechanism:" + mechanism_id.left(160), "player_attributed":true})
+
+
+func _tick_b05_control(delta: float) -> void:
+	if delta <= 0.0 or not is_finite(delta): return
+	_enemy_root_protection_remaining = maxf(0.0, _enemy_root_protection_remaining - delta)
+	var remaining := _enemy_root_remaining
+	_enemy_root_remaining = maxf(0.0, remaining - delta)
+	if remaining > 0.0 and _enemy_root_remaining <= 0.0:
+		_enemy_root_protection_remaining = maxf(0.0, 2.0 - maxf(0.0, delta - remaining))
+		if loadout != null: loadout.event("root_ended", {"actually_rooted":true})

@@ -43,7 +43,13 @@ var label_layer: Node2D
 
 func configure(next_room: Node2D, next_layout: Dictionary, node_role: String = "branch") -> void:
 	_configure_context(next_room, next_layout, node_role)
-	var biome: String = str(definition.get("biome_id", ""))
+	var biome: String = str(definition.get("biome_id", layout.get("biome_id","")))
+	if biome == "B05":
+		module = preload("res://scripts/world/objectives_b05.gd").new()
+		module.configure(self)
+		_add_fixed_optional_rewards()
+		queue_redraw()
+		return
 	if current_combat_rules():
 		module = FirstFour.new()
 		module.configure(self)

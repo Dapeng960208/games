@@ -49,6 +49,8 @@ static func _ensure_loaded() -> void:
 		_data = parsed
 
 static func resolve(enemy_id: String, enemy_level: int = 1, rank: String = "normal", ruleset: int = 1, difficulty: int = 0, calibration: Variant = null) -> Dictionary:
+	if enemy_id.begins_with("B05-M"):
+		return preload("res://scripts/combat/b05_enemy_skills.gd").profile(enemy_id,enemy_level,difficulty,rank) if ruleset == 2 else {}
 	if ruleset == 2:
 		var source := resolve(enemy_id,enemy_level,rank)
 		if calibration != null: source["enemy_calibration_snapshot"] = calibration
@@ -222,8 +224,8 @@ static func _encounter_member(id: String, level: int, rank: String, zone: int, d
 	profile["encounter_slot_cost"] = 1 + reserve_count
 	profile["reserved_summon_count"] = reserve_count
 	profile["reserved_summon_threat"] = reserve_threat
-	profile["encounter_protective_support"] = id in PROTECTIVE_IDS
-	profile["encounter_functional_support"] = id in FUNCTIONAL_SUPPORT_IDS
+	profile["encounter_protective_support"] = id in PROTECTIVE_IDS or id in ["B05-M04","B05-M08","B05-M11","B05-M18"]
+	profile["encounter_functional_support"] = id in FUNCTIONAL_SUPPORT_IDS or id in ["B05-M04","B05-M08","B05-M18"]
 	profile["difficulty"] = difficulty
 	return profile
 

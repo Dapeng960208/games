@@ -1,0 +1,332 @@
+{
+  "date_utc": "2026-10-02",
+  "status": "bounded_workshop_2k_pass_candidate_still_disabled",
+  "source_rendering": "Actual production main/workshop, Godot4.7.2, X11 software OpenGL; not an image mockup",
+  "profile": "Isolated Lv25 synthetic profiles, strict19-template v3 natural pool per class; no actual saves or production chapter activation",
+  "headless_final": {
+    "checks": 1157,
+    "failures": 0
+  },
+  "graphical_runs": [
+    {
+      "id": "initial30",
+      "scope": "Three classes, two locales, inventory/detail, forge, weapon and standalone shop previews; art passed, numeric-range and old label issues found",
+      "checks": 628,
+      "failures": [],
+      "renderer": "X11",
+      "capture_report_sha256": "690d04f6a5e87e2ff01b0e1d6edd23c70ee3d5b34bdcbee38097cc4862934998",
+      "captures": [
+        {
+          "file": "CH01-zh_CN-inventory-detail.png",
+          "height": 1440,
+          "sha256": "4e4590bcb7e601192d0127158427a6d9a7b4decacca07e0ff59e999253cdadf8",
+          "width": 2560
+        },
+        {
+          "file": "CH01-zh_CN-inventory-weapon.png",
+          "height": 1440,
+          "sha256": "25dbde2e5aba6cd3f7c2bed7548f318a2c861e6cf17df0b10d59cbf66e39510e",
+          "width": 2560
+        },
+        {
+          "file": "CH01-zh_CN-forge.png",
+          "height": 1440,
+          "sha256": "d3733e450caebadb049f6291929154696ba5b475042ab7edbeb75b546fca7e5b",
+          "width": 2560
+        },
+        {
+          "file": "CH01-zh_CN-shop-B05-SW-weapon.png",
+          "height": 1440,
+          "sha256": "62ea654d525b443fab7030724f679bdd4d7728001337369f440e03729a4db60c",
+          "width": 2560
+        },
+        {
+          "file": "CH01-zh_CN-shop-B05-U01.png",
+          "height": 1440,
+          "sha256": "612aaf4a2f3651615b8d0daf9bf70eaf3aed30dd6bda57a3cfd8b35337fc74cb",
+          "width": 2560
+        },
+        {
+          "file": "CH01-en-inventory-detail.png",
+          "height": 1440,
+          "sha256": "a5fe94b761932f0bea395b3b1c3e1956734b58334a585ddd4c21c545969a196b",
+          "width": 2560
+        },
+        {
+          "file": "CH01-en-inventory-weapon.png",
+          "height": 1440,
+          "sha256": "36f9b34428ce2a420125000c3396631f08ecd7b26b207254830a2b131b79807d",
+          "width": 2560
+        },
+        {
+          "file": "CH01-en-forge.png",
+          "height": 1440,
+          "sha256": "51fcbf61ec579084c3d33c93a6d3a40c9ab25ba9d0906554098be849f159a079",
+          "width": 2560
+        },
+        {
+          "file": "CH01-en-shop-B05-SW-weapon.png",
+          "height": 1440,
+          "sha256": "72f76207eb30b8362eb9d7ecdab0f37ed9823580d5aa4b6031dd389c09e50048",
+          "width": 2560
+        },
+        {
+          "file": "CH01-en-shop-B05-U01.png",
+          "height": 1440,
+          "sha256": "2f491108d448bc6dfc1545a117e238338f787aebd6a815acf9a67c31ced99eb1",
+          "width": 2560
+        },
+        {
+          "file": "CH02-zh_CN-inventory-detail.png",
+          "height": 1440,
+          "sha256": "4001a8ab648b7dfbb39dc599b44b2437d35ddc4980c286cf3f5c747ad12e4a7f",
+          "width": 2560
+        },
+        {
+          "file": "CH02-zh_CN-inventory-weapon.png",
+          "height": 1440,
+          "sha256": "768d977477486c908fd825434845fa8dd31f6c5b498b028aca2d8fe081e55b8a",
+          "width": 2560
+        },
+        {
+          "file": "CH02-zh_CN-forge.png",
+          "height": 1440,
+          "sha256": "f91c9e923a125834780f3156029475c653bbb6ac778218eafc9aee8dfa1c6b62",
+          "width": 2560
+        },
+        {
+          "file": "CH02-zh_CN-shop-B05-SG-weapon.png",
+          "height": 1440,
+          "sha256": "348191240c4a7b9aee6072813b525fbf7cdce663d172075a4ceb5b0635598b7e",
+          "width": 2560
+        },
+        {
+          "file": "CH02-zh_CN-shop-B05-U02.png",
+          "height": 1440,
+          "sha256": "1ba30ad9dc8326952368560f9c4af3d086ed64a3c571a84a97444abb169ee61d",
+          "width": 2560
+        },
+        {
+          "file": "CH02-en-inventory-detail.png",
+          "height": 1440,
+          "sha256": "db532744ef4fd8c4750bd02869a69436ef526ff5ed81e71c6d0a2c07531a2d06",
+          "width": 2560
+        },
+        {
+          "file": "CH02-en-inventory-weapon.png",
+          "height": 1440,
+          "sha256": "68f4ca0adf6fcb90b8c321c37859dd1a4b1d71a04038eeada4dae3d1ab9d064d",
+          "width": 2560
+        },
+        {
+          "file": "CH02-en-forge.png",
+          "height": 1440,
+          "sha256": "b6e6081d89a695d04b060a0616b5214037fadd8f95e72de78cc26fc97a44a71e",
+          "width": 2560
+        },
+        {
+          "file": "CH02-en-shop-B05-SG-weapon.png",
+          "height": 1440,
+          "sha256": "ad3da5bf8f040b925bf9029a3bcb16ecffa295d673d00c6a661d5ee9ef4424ad",
+          "width": 2560
+        },
+        {
+          "file": "CH02-en-shop-B05-U02.png",
+          "height": 1440,
+          "sha256": "4dff5497ec948bfacf2f11628594683a998db9e00c1424d38e394c09d93d0994",
+          "width": 2560
+        },
+        {
+          "file": "CH03-zh_CN-inventory-detail.png",
+          "height": 1440,
+          "sha256": "c6cd86a17f20d7d84ba3637d40dde7edff4d73ed11a75ed848f4d927888ea73d",
+          "width": 2560
+        },
+        {
+          "file": "CH03-zh_CN-inventory-weapon.png",
+          "height": 1440,
+          "sha256": "6907405f853dfb95bbc4b0e10c89aa4fc90ed2bd13164a9d5fafe9d6a97b437e",
+          "width": 2560
+        },
+        {
+          "file": "CH03-zh_CN-forge.png",
+          "height": 1440,
+          "sha256": "ccc6316ab4fbdab5f1efc758181c89a4a0afc6ef71c37ab0b2ce5269d2b5530a",
+          "width": 2560
+        },
+        {
+          "file": "CH03-zh_CN-shop-B05-SM-weapon.png",
+          "height": 1440,
+          "sha256": "9a779edc47853efbc1c7adc37db23f916c11f0634e768a91dd01622f0ceb6ea3",
+          "width": 2560
+        },
+        {
+          "file": "CH03-zh_CN-shop-B05-U03.png",
+          "height": 1440,
+          "sha256": "c1b1b5a814493f7a31cc5d92f2e33457905b09f22d1eefd11f6cf804e5326100",
+          "width": 2560
+        },
+        {
+          "file": "CH03-en-inventory-detail.png",
+          "height": 1440,
+          "sha256": "92364f7dd7ee42f4362590765ecb3d9a5815e9ab0ab5db4366accc735d53ce7a",
+          "width": 2560
+        },
+        {
+          "file": "CH03-en-inventory-weapon.png",
+          "height": 1440,
+          "sha256": "a3485b8711ff879ad067f920a334b3e18f98806a45fbaebf3c1323f5ec5228c5",
+          "width": 2560
+        },
+        {
+          "file": "CH03-en-forge.png",
+          "height": 1440,
+          "sha256": "b666d9481a213c6de0555f50dc09e5b3e82eebbbe0b3774ea2609db758b8b61f",
+          "width": 2560
+        },
+        {
+          "file": "CH03-en-shop-B05-SM-weapon.png",
+          "height": 1440,
+          "sha256": "ed96699a3e0bce5817544ef83070975532e0bbf07ab3ac8161cd8a7777d11215",
+          "width": 2560
+        },
+        {
+          "file": "CH03-en-shop-B05-U03.png",
+          "height": 1440,
+          "sha256": "fa98d4ebf7489cec3098667fbde0594b5f9945919755342179acd03e488d22ed",
+          "width": 2560
+        }
+      ],
+      "physical_icon_boxes": [
+        [
+          96.0,
+          96.0
+        ],
+        [
+          156.0,
+          156.0
+        ],
+        [
+          232.0,
+          232.0
+        ],
+        [
+          260.0,
+          260.0
+        ],
+        [
+          296.0,
+          280.0
+        ]
+      ]
+    },
+    {
+      "id": "final12",
+      "scope": "Three classes, two locales, corrected weapon shop ranges and inventory pp/hint layout",
+      "checks": 1181,
+      "failures": [],
+      "renderer": "X11",
+      "capture_report_sha256": "3356a1bbd97be460cf85f5a276a3bb08bc0a69f0949a47ff2e5bc50f1ad9527c",
+      "captures": [
+        {
+          "file": "CH01-zh_CN-inventory-detail-fixed.png",
+          "height": 1440,
+          "sha256": "3e2a833d039446d2059d7862d285785b50b9b5b19d842a3bcb8a5f10d83717f7",
+          "width": 2560
+        },
+        {
+          "file": "CH01-zh_CN-shop-B05-SW-weapon.png",
+          "height": 1440,
+          "sha256": "338fd61a288f31f635919eed92ced8552a1dfd60dc7f7a366c833f2608a9a210",
+          "width": 2560
+        },
+        {
+          "file": "CH01-en-inventory-detail-fixed.png",
+          "height": 1440,
+          "sha256": "66bc18d74829de9ec1b24c091045a46450896f9bf5587a15944962baa2925068",
+          "width": 2560
+        },
+        {
+          "file": "CH01-en-shop-B05-SW-weapon.png",
+          "height": 1440,
+          "sha256": "38e087d82387d3a0ffb7b9a31c98197993572eaaa6bb18aac407e1a82a48f893",
+          "width": 2560
+        },
+        {
+          "file": "CH02-zh_CN-inventory-detail-fixed.png",
+          "height": 1440,
+          "sha256": "3c3d9ed4b946f3b1c2f2de01ddf53837e7fd52a7d522566bc35f6aa7e76b450d",
+          "width": 2560
+        },
+        {
+          "file": "CH02-zh_CN-shop-B05-SG-weapon.png",
+          "height": 1440,
+          "sha256": "104529be5438c46a4d083e69e06766dc9f564574e1593596d46c2dd1ffa06857",
+          "width": 2560
+        },
+        {
+          "file": "CH02-en-inventory-detail-fixed.png",
+          "height": 1440,
+          "sha256": "74b6b68797fc7bba58d394c618b32d4f2cb6e9913c338a8ec210a9d96e729238",
+          "width": 2560
+        },
+        {
+          "file": "CH02-en-shop-B05-SG-weapon.png",
+          "height": 1440,
+          "sha256": "1dae9374ec2bea608b5b27bf1b5ca4e2a02f9caeb5c5c97fd9f9de1e9878ae62",
+          "width": 2560
+        },
+        {
+          "file": "CH03-zh_CN-inventory-detail-fixed.png",
+          "height": 1440,
+          "sha256": "3e343c688a5022b16094287fcb5bf12880a6fa9c62e7f6312395086961b1b4a1",
+          "width": 2560
+        },
+        {
+          "file": "CH03-zh_CN-shop-B05-SM-weapon.png",
+          "height": 1440,
+          "sha256": "5675776832237920697c5238c4a551a05a7e3ea547b41263b0c330a9abf2cef0",
+          "width": 2560
+        },
+        {
+          "file": "CH03-en-inventory-detail-fixed.png",
+          "height": 1440,
+          "sha256": "16a1227bbc0170bc1a8331812e6a66846381984e758fb3ad3a2f0da874a53e52",
+          "width": 2560
+        },
+        {
+          "file": "CH03-en-shop-B05-SM-weapon.png",
+          "height": 1440,
+          "sha256": "b78aca715cf8004bed2c1d3bd434a763ec4ff08647a3aa22214ab8ad5c8a1113",
+          "width": 2560
+        }
+      ],
+      "physical_icon_boxes": [
+        [
+          232.0,
+          232.0
+        ],
+        [
+          296.0,
+          280.0
+        ]
+      ]
+    }
+  ],
+  "fixes": {
+    "B05_preview_ranges": "Only nonpersistent deterministic endpoint specs gain authoritative class policy/hero provenance. No RNG, receipt, acquisition or save mutation. All35 templates, both legal power types and four rarities covered.",
+    "inventory_hint_and_percentage_points": "Lead-owned equipment_catalog.gd/equipment_details.gd fix; final12 screens verify pp labels and hint/action separation."
+  },
+  "review_scope": "All30 initial pages and all12 correction pages reviewed; no art-alpha/crop/slot-identity blocker in reviewed pages. Three class weapons and U01/U02/U03 also inspected in largest preview. Not every template was individually captured at the largest box.",
+  "remaining": [
+    "Field loot/pending-reward art presentation not captured by this fixture",
+    "No natural full chapter gameplay acceptance, hardware GPU performance or balance claim",
+    "Production activation remains the integration lead release decision"
+  ],
+  "representative_files": [
+    "final12/CH01-zh_CN-inventory-detail-fixed.png",
+    "initial30/CH02-en-forge.png",
+    "final12/CH03-zh_CN-shop-B05-SM-weapon.png"
+  ],
+  "capture_storage": "PNG evidence is ignored test output next to each isolated profile, not formal asset copies."
+}

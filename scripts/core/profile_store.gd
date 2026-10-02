@@ -21,7 +21,7 @@ const MAX_NUMBER := 1_000_000_000_000
 const RELIC_IDS := ["split", "ember", "arc"]
 const OUTCOMES := ["extracted", "death", "abandoned"]
 const HERO_IDS := ["CH01", "CH02", "CH03"]
-const BOSS_IDS := ["BO01", "BO02", "BO03", "BO04"]
+const BOSS_IDS := ["BO01", "BO02", "BO03", "BO04", "BO05"]
 const SLOTS := ["weapon", "head", "chest", "hands", "feet", "charm"]
 const STARTER_IDS := ["EQ01", "EQ11", "EQ21", "EQ31", "EQ41", "EQ51"]
 const MAX_TRANSACTIONS := 4096 # Bounded purchase/upgrade/recycle receipts; never evict IDs.
@@ -537,7 +537,7 @@ static func _valid_receipt(value: Variant, version: int = 1) -> bool:
 		and _number(value.get("elapsed"), MAX_NUMBER, false)
 	if not valid or version == 1:
 		return valid
-	return value.get("hero_id") in HERO_IDS and _number(value.get("level"), 20) and value.level >= 1 \
+	return value.get("hero_id") in HERO_IDS and _number(value.get("level"), Progression.level_cap() if numerical == 2 else 20) and value.level >= 1 \
 		and _number(value.get("hero_xp_gained"), 3600) and value.get("rules_version") == 1 \
 		and _unique_ids(value.get("completed_reward_ids"), 512) \
 		and _allowed_ids(value.get("boss_defeats"), BOSS_IDS)
@@ -664,7 +664,7 @@ static func _valid_progression(profile: Dictionary) -> bool:
 	if not Expedition.versions_valid(profile, ruleset, profile.has("numerical_migration")): return false
 	if profile.has("numerical_migration") and not _valid_numerical_migration(profile): return false
 	if profile.has("gold_pity"):
-		if ruleset != 2 or not profile.gold_pity is Dictionary or profile.gold_pity.size() != 4: return false
+		if ruleset != 2 or not Loot.pity_valid(profile.gold_pity): return false
 		for biome: String in ["B01", "B02", "B03", "B04"]:
 			if not _number(profile.gold_pity.get(biome), 3): return false
 	if ruleset == 2:
@@ -678,7 +678,7 @@ static func _valid_progression(profile: Dictionary) -> bool:
 	if profile.hero_xp.size() != HERO_IDS.size():
 		return false
 	for id: String in HERO_IDS:
-		if not _number(profile.hero_xp.get(id), 3600):
+		if not _number(profile.hero_xp.get(id), int(Progression.thresholds().back()) if ruleset == 2 else 3600):
 			return false
 	# A missing field is a valid early v2 document and is atomically normalized on load.
 	if profile.has("branches") and not _valid_branches(profile.branches, profile.hero_xp, ruleset):
@@ -867,13 +867,13 @@ static func _valid_v2_growth(profile: Dictionary) -> bool:
 	for hero: Variant in profile.get("research_xp", {}):
 		if hero not in HERO_IDS or not _number(profile.research_xp[hero], 359): return false
 	for material: Variant in profile.get("materials", {}):
-		if material not in ["forge", "race:B01", "race:B02", "race:B03", "race:B04", "core:B01", "core:B02", "core:B03", "core:B04"] or not _number(profile.materials[material], MAX_NUMBER): return false
+		if not Transactions._material_id(material) or not _number(profile.materials[material], MAX_NUMBER): return false
 	var receipts: Dictionary = profile.get("progression_receipts", {})
 	if receipts.size() > 100000: return false
 	for event: Variant in receipts:
 		if not event is String or event.is_empty() or event.length() > 160: return false
 		var row: Variant = receipts[event]
-		if not row is Dictionary or row.get("hero") not in HERO_IDS or not _number(row.get("amount"), 3600) or row.get("race") not in ["B01", "B02", "B03", "B04"]: return false
+		if not row is Dictionary or row.get("hero") not in HERO_IDS or not _number(row.get("amount"), 3600) or row.get("race") not in ["B01", "B02", "B03", "B04", "B05"]: return false
 		if row.has("deferred_materials"):
 			if row.deferred_materials != true or not _number(row.get("research_rewards"), 11) or not Loot.material_map_valid(row.get("material_reward")): return false
 			var expected := {} if int(row.research_rewards) == 0 else {"forge":int(row.research_rewards) * 4,"race:" + str(row.race):int(row.research_rewards)}

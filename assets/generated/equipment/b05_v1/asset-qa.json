@@ -1,0 +1,42 @@
+{
+  "status": "PASS asset QA and bounded actual workshop2K review; candidate remains disabled",
+  "checks": {
+    "exact_data_ids": 35,
+    "no_extra_ids": true,
+    "rgba_true_alpha_all_sources": true,
+    "source_native_dimensions_all": [
+      1254,
+      1254
+    ],
+    "min_effective_body_short_axis_px": 377,
+    "measured_max_ui_physical_box_px": [
+      296,
+      280
+    ],
+    "all_bodies_meet_density": true,
+    "no_source_upscale": true,
+    "retained_foreground_rgba_byte_identical": true,
+    "all_crops_have_transparent_outer_border": true,
+    "all_file_hashes_verified": true,
+    "slot_identity_and_class_differentiation_reviewed": true,
+    "no_baked_text_frames_or_ui": true,
+    "contact_sheets_at_max_render_size_reviewed": true,
+    "actual_workshop_2k_reviewed": true,
+    "imported_sampler_alpha_and_mipmaps_passed": true
+  },
+  "reviewed_examples": [
+    "B05-SW-pilot-at-2k-display.png",
+    "B05-SG-at-2k-display-paper.png",
+    "B05-SM-at-2k-display-dark.png",
+    "B05-SU-at-2k-display-paper.png",
+    "B05-U-at-2k-display-dark.png"
+  ],
+  "still_required": [
+    "Field loot/pending-reward art presentation not captured by this fixture",
+    "No natural full chapter gameplay acceptance, hardware GPU performance or balance claim",
+    "Production activation remains the integration lead release decision"
+  ],
+  "code_or_save_changes_by_art_worker": false,
+  "reviewed_examples_scope": "External asset-only contact sheets, not production runtime screenshots",
+  "runtime_review": "runtime-review.json"
+}

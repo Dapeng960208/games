@@ -32,9 +32,13 @@ const TACTICS := {
 }
 
 static func ids() -> Array[String]:
-	return ["BO01", "BO02", "BO03", "BO04"]
+	var result: Array[String] = ["BO01", "BO02", "BO03", "BO04"]
+	if int(preload("res://config/numerical_rules.gd").value("implemented_chapters",4)) >= 5: result.append("BO05")
+	return result
 
 static func resolve(boss_id: String, difficulty: int = 0, ruleset: int = 1, calibration: Variant = null) -> Dictionary:
+	if boss_id == "BO05":
+		return preload("res://scripts/combat/b05_enemy_skills.gd").boss_profile(difficulty) if ruleset == 2 else {}
 	if ruleset == 2:
 		var source := resolve(boss_id,0)
 		if calibration != null: source["enemy_calibration_snapshot"] = calibration
@@ -105,7 +109,7 @@ static func _reinforcement_waves(authored: Dictionary) -> Array[Dictionary]:
 static func validate(profile: Dictionary) -> Array[String]:
 	var errors: Array[String] = []
 	var boss_id: String = str(profile.get("boss_id", ""))
-	if boss_id not in STATS or profile.get("enemy_id", "") != boss_id:
+	if (boss_id not in STATS and boss_id != "BO05") or profile.get("enemy_id", "") != boss_id:
 		errors.append("Unknown boss identity")
 	if profile.get("phase_thresholds", []) != [0.7, 0.35]:
 		errors.append("Boss phase thresholds must be 70% and 35%")

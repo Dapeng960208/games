@@ -98,6 +98,7 @@ var last_player_sound_time: float = -100.0
 var interaction_textures: Dictionary = {}
 var _navigation_cache: RefCounted = preload("res://scripts/combat/navigation_cache.gd").new()
 var expedition_context: Dictionary = {}
+var b05_mechanics: Node2D
 var objectives: Node2D
 var _prepared_initial: Dictionary = {}
 var _expedition_restore: Dictionary = {}
@@ -231,6 +232,9 @@ func _physics_process(delta: float) -> void:
 	if Game.run == null:
 		return
 	elapsed += delta
+	if is_instance_valid(b05_mechanics):
+		if input_blocked or Game.run.hp <= 0.0: b05_mechanics.cancel_interaction()
+		b05_mechanics.tick(delta,false)
 	if is_instance_valid(enemy_props):
 		enemy_props.update(delta)
 	if is_instance_valid(objectives) and not objective_complete:
@@ -325,6 +329,10 @@ func clamp_actor(at: Vector2, radius: float) -> Vector2:
 
 func _configure_ground_boundary() -> void:
 	ARENA = layout.get("arena", DEFAULT_ARENA)
+	if str(layout.get("biome_id","")) == "B05" and layout.get("ground_polygon") is PackedVector2Array:
+		ground_polygon = layout.ground_polygon
+		ARENA = GroundBoundary.bounds(ground_polygon)
+		return
 	ground_polygon = PackedVector2Array()
 	if bool(layout.get("fixed_layout", false)) or bool(layout.get("painted_service", false)):
 		ground_polygon = WorldArt.environment_ground_polygon(ARENA, _biome_id(), WorldArt.environment_room_id(layout))
@@ -394,6 +402,12 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 		_natural_spawn_serial += 1
 	_assign_enemy_appearance(enemy)
 	enemies.add_child(enemy)
+	if is_instance_valid(b05_mechanics) and enemy.enemy_id.begins_with("B05-M"):
+		var stable_id: String = enemy.reward_spawn_id
+		if stable_id.is_empty():
+			stable_id = "b05:spawn:"+str(_natural_spawn_serial)
+			_natural_spawn_serial += 1
+		b05_mechanics.register_plant(stable_id,enemy)
 	enemy.z_index = 0
 	return enemy
 
@@ -2035,6 +2049,8 @@ func apply_prepared_expedition_node(prepared: Dictionary) -> void:
 	set_input_blocked(false)
 
 func _install_expedition_layout(prepared: Dictionary) -> void:
+	if is_instance_valid(b05_mechanics): b05_mechanics.free()
+	b05_mechanics = null
 	if is_instance_valid(circuit): circuit.reset_room()
 	ClassRelics.reset_room(self)
 	if is_instance_valid(circuit_training): circuit_training.free()
@@ -2112,6 +2128,12 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	_refresh_terrain_canvas()
 
 func _activate_expedition_content() -> void:
+	if str(layout.get("biome_id","")) == "B05" and not is_instance_valid(b05_mechanics):
+		b05_mechanics = preload("res://scripts/world/b05_room_mechanisms.gd").new()
+		add_child(b05_mechanics)
+		if not b05_mechanics.configure_room(self,layout.get("b05_geometry",{}),difficulty):
+			configuration_error = "B05 mechanism configuration rejected"
+			return
 	if not is_instance_valid(player): return
 	var state: Dictionary = Game.expedition_snapshot()
 	var role: String = str(expedition_context.get("role",""))

@@ -1090,5 +1090,129 @@
         }
       }
     }
+  },
+  "b05_progression": {
+    "version": 1,
+    "maximum_level": 25,
+    "xp_thresholds_21_25": [
+      4040,
+      4520,
+      5040,
+      5600,
+      6200
+    ],
+    "hero_growth_by_level": {
+      "CH01": {
+        "21": {
+          "attack": 1.84,
+          "ability_power": 1.4,
+          "max_hp": 2.3,
+          "armor": 240,
+          "magic_resist": 160
+        },
+        "22": {
+          "attack": 1.882,
+          "ability_power": 1.42,
+          "max_hp": 2.365,
+          "armor": 252,
+          "magic_resist": 168
+        },
+        "23": {
+          "attack": 1.924,
+          "ability_power": 1.44,
+          "max_hp": 2.43,
+          "armor": 264,
+          "magic_resist": 176
+        },
+        "24": {
+          "attack": 1.966,
+          "ability_power": 1.46,
+          "max_hp": 2.495,
+          "armor": 276,
+          "magic_resist": 184
+        },
+        "25": {
+          "attack": 2.008,
+          "ability_power": 1.48,
+          "max_hp": 2.56,
+          "armor": 288,
+          "magic_resist": 192
+        }
+      },
+      "CH02": {
+        "21": {
+          "attack": 2.04,
+          "ability_power": 1.4,
+          "max_hp": 1.9,
+          "armor": 140,
+          "magic_resist": 140
+        },
+        "22": {
+          "attack": 2.092,
+          "ability_power": 1.42,
+          "max_hp": 1.945,
+          "armor": 147,
+          "magic_resist": 147
+        },
+        "23": {
+          "attack": 2.144,
+          "ability_power": 1.44,
+          "max_hp": 1.99,
+          "armor": 154,
+          "magic_resist": 154
+        },
+        "24": {
+          "attack": 2.196,
+          "ability_power": 1.46,
+          "max_hp": 2.035,
+          "armor": 161,
+          "magic_resist": 161
+        },
+        "25": {
+          "attack": 2.248,
+          "ability_power": 1.48,
+          "max_hp": 2.08,
+          "armor": 168,
+          "magic_resist": 168
+        }
+      },
+      "CH03": {
+        "21": {
+          "attack": 1.4,
+          "ability_power": 2.3,
+          "max_hp": 1.8,
+          "armor": 100,
+          "magic_resist": 240
+        },
+        "22": {
+          "attack": 1.42,
+          "ability_power": 2.365,
+          "max_hp": 1.84,
+          "armor": 105,
+          "magic_resist": 252
+        },
+        "23": {
+          "attack": 1.44,
+          "ability_power": 2.43,
+          "max_hp": 1.88,
+          "armor": 110,
+          "magic_resist": 264
+        },
+        "24": {
+          "attack": 1.46,
+          "ability_power": 2.495,
+          "max_hp": 1.92,
+          "armor": 115,
+          "magic_resist": 276
+        },
+        "25": {
+          "attack": 1.48,
+          "ability_power": 2.56,
+          "max_hp": 1.96,
+          "armor": 120,
+          "magic_resist": 288
+        }
+      }
+    }
   }
 }
