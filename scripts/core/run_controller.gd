@@ -116,7 +116,7 @@ func reload_profile() -> void:
 	if document.active_run is Dictionary:
 		if document.active_run.has("expedition"):
 			_restore_expedition(document.active_run)
-			storage_warning = "STORAGE_CHECKPOINT_RECOVERED"
+			if storage_warning != "STORAGE_CLASS_EQUIPMENT_UPDATED": storage_warning = "STORAGE_CHECKPOINT_RECOVERED"
 			changed.emit()
 			return
 		# M1 never resumes a room. A crash/forced quit is one abandonment settlement.
@@ -819,7 +819,9 @@ func equip_item(eq_id: String) -> bool:
 	last_error = ""
 	if not _camp_available() or not profile.equipment.has(eq_id):
 		return false
-	if _profile_ruleset() == Numbers.V2 and not _camp_instance_fits(eq_id, str(profile.selected_hero)): return false
+	if _profile_ruleset() == Numbers.V2 and not _camp_instance_fits(eq_id, str(profile.selected_hero)):
+		last_error = Instances.equip_error(profile.equipment[eq_id], str(profile.selected_hero), hero_level())
+		return false
 	var definition := equipment_definition(eq_id)
 	if definition.is_empty():
 		return false
@@ -1704,6 +1706,9 @@ func _default_set_request(set_id: String) -> Dictionary:
 
 func _equip_instance_set(set_id: String) -> bool:
 	if not _camp_available(): return false
+	if str(profile.selected_hero) not in ContentRegistry.sets(2).get(set_id, {}).get("allowed_heroes", []):
+		last_error = "CLASS_LOCKED"
+		return false
 	var templates: Array = ContentRegistry.set_item_ids(set_id, 2)
 	if templates.size() != 8: return false
 	var ids: Array = profile.equipment.keys()

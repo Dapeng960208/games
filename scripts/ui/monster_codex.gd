@@ -9,6 +9,7 @@ const Bosses = preload("res://scripts/combat/boss_profiles.gd")
 const Brain = preload("res://scripts/combat/boss_brain.gd")
 const Abilities = preload("res://scripts/combat/boss_ability_catalog.gd")
 const EnemyImages = preload("res://scripts/combat/enemy_art.gd")
+const EnemyAbilities = preload("res://scripts/combat/enemy_ability_catalog.gd")
 const BiomeSkills = preload("res://scripts/combat/enemy_biome_skills.gd")
 const Numerical = preload("res://scripts/combat/enemy_numerical_v2.gd")
 const Sampler = preload("res://scripts/ui/texture_sampler.gd")
@@ -19,6 +20,7 @@ var kind_filter := "all"
 var search_query := ""
 var selected_id := "M01"
 var difficulty := 0
+var inspector_tab := "skills"
 var preview_level := 5
 var ruleset := 2
 var grid_scroll: ScrollContainer
@@ -38,7 +40,7 @@ func configure(close: Callable, initial_biome: String = "all") -> void:
 	preview_level = int(Numerical.chapter_levels(Numerical.chapter_for_id(selected_id)).boss_level)
 	var header := MineStyle.panel(self,Vector2(26,20),Vector2(1228,68))
 	MineStyle.literal(header,Inspect.t("怪物图鉴","Monster codex"),Vector2(22,10),Vector2(410,42),30)
-	MineStyle.literal(header,Inspect.t("36 种野怪 · 4 位首领","36 enemy archetypes · 4 bosses"),Vector2(390,20),Vector2(460,30),16,MineStyle.MUTED)
+	MineStyle.literal(header,Inspect.t("%d 种野怪 · %d 位首领","%d enemy archetypes · %d bosses") % [Catalog.enemy_ids().size(),Bosses.ids().size()],Vector2(390,20),Vector2(460,30),16,MineStyle.MUTED)
 	var back := MineStyle.button(header,"BACK",Vector2(1040,12),Vector2(166,44),close)
 	back.name = "CloseMonsterCodex"
 	var collection := MineStyle.panel(self,Vector2(26,105),Vector2(754,563))
@@ -182,10 +184,17 @@ func _show_entry(id: String, reset_level: bool = true) -> void:
 	tiers.select(difficulty)
 	tiers.item_selected.connect(func(index: int): difficulty = index; _show_entry(selected_id,false))
 	detail.add_child(tiers)
+	for index: int in 2:
+		var tab_key: String = ["stats","skills"][index]
+		var tab := MineStyle.button(detail,"",Vector2(20+index*213,256),Vector2(205,39),func(): inspector_tab = tab_key; _show_entry(selected_id,false))
+		tab.name = "CodexDetailTab_"+tab_key
+		tab.text = Inspect.t("属性与特性","Stats & traits") if tab_key == "stats" else Inspect.t("技能与难度解锁","Skills & unlocks")
+		tab.add_theme_font_size_override("font_size",15)
+		MineStyle.tab(tab,inspector_tab == tab_key)
 	var scroll := ScrollContainer.new()
 	scroll.name = "CodexSkillScroll"
-	scroll.position = Vector2(20,268)
-	scroll.size = Vector2(418,277)
+	scroll.position = Vector2(20,305)
+	scroll.size = Vector2(418,240)
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.focus_mode = Control.FOCUS_ALL
 	detail.add_child(scroll)
@@ -193,6 +202,10 @@ func _show_entry(id: String, reset_level: bool = true) -> void:
 	flow.custom_minimum_size.x = 394
 	flow.add_theme_constant_override("separation",9)
 	scroll.add_child(flow)
+	if inspector_tab == "skills":
+		if id.begins_with("BO"): _boss_details(flow,profile)
+		else: _enemy_skill_catalog(flow,profile)
+		return
 	var metrics := Control.new()
 	metrics.custom_minimum_size = Vector2(394,122)
 	flow.add_child(metrics)
@@ -249,6 +262,41 @@ static func portrait(parent: Node, id: String, at: Vector2, extent: Vector2) -> 
 	frame.add_child(view)
 	return view
 
+func _enemy_skill_catalog(flow: VBoxContainer, profile: Dictionary) -> void:
+	var id := str(profile.get("enemy_id",selected_id))
+	var skills: Array[Dictionary] = EnemyAbilities.all_skills(id,difficulty,profile)
+	var unlocked := 0
+	for skill: Dictionary in skills:
+		if bool(skill.get("unlocked",false)): unlocked += 1
+	_line(flow,difficulty_label(difficulty)+Inspect.t(" · 已解锁 %d / %d 项"," · %d / %d unlocked") % [unlocked,skills.size()],16,MineStyle.CYAN)
+	_line(flow,Inspect.t("基础招式保留；更高难度累计开放新招式。灰色项未开放，其数值按当前所选难度预览。","Base moves remain; higher difficulties add moves. Grey entries are locked. Their numbers preview the currently selected difficulty."),13,MineStyle.MUTED)
+	for skill: Dictionary in skills:
+		var enabled := bool(skill.get("unlocked",false))
+		var replaced := bool(skill.get("replaced",false))
+		var active := enabled and not replaced
+		var minimum := int(skill.get("min_difficulty",0))
+		var card := PanelContainer.new()
+		var key := str(skill.get("ability_id","")).replace(":","_")
+		card.name = "CodexAbility_"+key
+		card.set_meta("ability",skill.duplicate(true))
+		card.add_theme_stylebox_override("panel",MineStyle.box(MineStyle.PAPER_LIGHT if active else Color("efeee7"),Color(MineStyle.CYAN,0.35) if active else Color("d7d3c7"),1))
+		flow.add_child(card)
+		var rows := VBoxContainer.new()
+		rows.add_theme_constant_override("separation",7)
+		card.add_child(rows)
+		_skill_line(rows,MineStyle.content_text(skill,"name"),17,MineStyle.INK if active else MineStyle.MUTED).name = "AbilityName"
+		_skill_line(rows,(Inspect.t("基础招式","BASE MOVE") if minimum == 0 else difficulty_label(minimum))+" · "+(Inspect.t("已解锁 · 当前由高阶招式替代","UNLOCKED · REPLACED AT THIS TIER") if replaced else Inspect.t("已解锁","UNLOCKED") if enabled else Inspect.t("未解锁","LOCKED")),12,MineStyle.CYAN if active else MineStyle.MUTED).name = "AbilityUnlock"
+		_skill_line(rows,MineStyle.content_text(skill,"effect"),14).name = "AbilityEffect"
+		_skill_line(rows,Inspect.t("触发：","Trigger: ")+MineStyle.content_text(skill,"trigger"),13,MineStyle.MUTED).name = "AbilityTrigger"
+		_skill_line(rows,Inspect.t("应对：","Counter: ")+MineStyle.content_text(skill,"counter"),14,MineStyle.CYAN if active else MineStyle.MUTED).name = "AbilityCounter"
+		_skill_line(rows,Inspect.t("预警 %.2f秒 · 锁定 %.2f秒 · 冷却 %.2f秒","Tell %.2fs · lock %.2fs · cooldown %.2fs") % [float(skill.get("tell_seconds",0)),float(skill.get("lock_seconds",0)),float(skill.get("cooldown",0))],12,MineStyle.MUTED).name = "AbilityTiming"
+
+func _skill_line(parent: Node, text: String, font_size: int, tint: Color = MineStyle.INK) -> Label:
+	var label := MineStyle.literal(parent,text,Vector2.ZERO,Vector2(330,0),font_size,tint)
+	label.custom_minimum_size.x = 330
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	return label
+
 func _enemy_details(flow: VBoxContainer, profile: Dictionary) -> void:
 	var skill_header := HBoxContainer.new()
 	skill_header.add_theme_constant_override("separation",10)
@@ -283,31 +331,35 @@ func _enemy_details(flow: VBoxContainer, profile: Dictionary) -> void:
 func _boss_details(flow: VBoxContainer, profile: Dictionary) -> void:
 	_line(flow,Inspect.t("首领技能","BOSS ABILITIES"),18,MineStyle.CYAN)
 	_line(flow,Inspect.t("阶段切换：生命 70% / 35%；额外招式按难度累计开放。","Phase changes: 70% / 35% HP. Extra abilities unlock cumulatively by difficulty."),14,MineStyle.MUTED)
-	for skill: Dictionary in boss_skill_entries(str(profile.boss_id),difficulty):
+	for skill: Dictionary in boss_skill_entries(str(profile.boss_id),difficulty,ruleset):
 		_line(flow,str(skill.title),17,MineStyle.CYAN if bool(skill.unlocked) else MineStyle.MUTED)
 		_line(flow,str(skill.description),14)
 	_line(flow,Inspect.t("场地应对","ARENA COUNTERPLAY"),17,MineStyle.AMBER)
 	_line(flow,str(profile.get("arena",{}).get("topology_and_counter","")))
 	_line(flow,Inspect.t("招式数值来自运行时技能；伤害系数仍受难度、阶段和目标减免影响。","Move values come from runtime abilities; damage coefficients also depend on difficulty, phase and mitigation."),13,MineStyle.MUTED)
 
-static func boss_skill_entries(id: String, tier: int) -> Array[Dictionary]:
+static func boss_skill_entries(id: String, tier: int, version: int = 2) -> Array[Dictionary]:
 	var entries: Array[Dictionary] = []
 	var brain := Brain.new()
-	brain.configure(Bosses.resolve(id,4),1)
+	brain.configure(Bosses.resolve(id,4,version),1)
 	var source := Node2D.new()
 	var target := Node2D.new()
 	target.position = Vector2(300,0)
-	for action: String in brain.skill_pool():
+	var actions: Array = brain.skill_pool()
+	for action: String in actions:
+		brain.configure(Bosses.resolve(id,4,version),1)
 		var phases: PackedStringArray = []
 		for phase: int in [1,2,3]:
 			if action in brain.available_actions(phase): phases.append(str(phase))
+		var gate := Abilities.tier(id,action)
+		brain.configure(Bosses.resolve(id,maxi(tier,gate),version),1)
 		brain.phase = int(phases[0]) if not phases.is_empty() else 1
 		var command: Dictionary = brain._build_action(source,target,action)
 		if command.is_empty(): continue
-		var gate := Abilities.tier(id,action)
 		var state := Inspect.t("阶段 ","Phases ")+" / ".join(phases)
 		if gate > 0: state = difficulty_label(gate)+(" · "+Inspect.t("已开放","available") if tier >= gate else " · "+Inspect.t("未开放","locked"))
 		var description := state+"\n"+command_description(command)
+		if gate > tier: description += "\n"+Inspect.t("未开放：数值按解锁难度预览。","Locked: values preview its unlock difficulty.")
 		entries.append({"id":action,"title":Abilities.title(action,Words.locale.begins_with("en")),"unlock_difficulty":gate,"unlocked":gate <= tier,"command":command.duplicate(true),"description":description})
 	source.free()
 	target.free()

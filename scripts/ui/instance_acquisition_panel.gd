@@ -1,5 +1,6 @@
 extends RefCounted
 ## Read-only quotes/ranges; actual rolls appear only after a durable transaction.
+const Eligibility = preload("res://scripts/ui/equipment_eligibility.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Transactions = preload("res://scripts/core/instance_transactions.gd")
 const Numbers = preload("res://config/numerical_rules.gd")
@@ -16,6 +17,10 @@ static func _change(panel: Control, key: String, value: Variant) -> void:
 	if panel.busy: return
 	panel.set(key,value)
 	if key in ["selected_set","creation_power_type"]: panel.creation_omitted.clear()
+	if key in ["selected_set", "selected_item"]:
+		var definition: Dictionary = ContentRegistry.sets(2).get(str(value), {}) if key == "selected_set" else ContentRegistry.equipment(str(value), 2)
+		var allowed: Array = definition.get("allowed_heroes", [])
+		if allowed.size() == 1: panel.creation_power_type = ContentRegistry.ClassPolicy.power_type(str(allowed[0]))
 	panel.creation_transaction_id = ""
 	panel.creation_message = ""
 	panel._render()
@@ -55,7 +60,8 @@ static func render(panel: Control) -> void:
 		var caption := _label(row,MineStyle.content_text(definition,"name"),Vector2(56,11),Vector2(128,41),14)
 		caption.max_lines_visible = 2
 		caption.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		row.tooltip_text = caption.text
+		row.tooltip_text = caption.text+"\n"+Eligibility.label(definition)
+		caption.text += "\n"+Eligibility.label(definition)
 		if id == selected: MineStyle.selected(row,"card")
 	var right := Control.new()
 	right.position = Vector2(254,0)
@@ -67,13 +73,18 @@ static func render(panel: Control) -> void:
 	MineStyle.divider(right,Vector2(630,49),312)
 	var definition: Dictionary = ContentRegistry.sets(2)[selected] if set_mode else ContentRegistry.equipment(selected,2)
 	_label(right,MineStyle.content_text(definition,"name"),Vector2(20,12),Vector2(554,40),25).name = "CreationItemName"
-	_label(right,_t("每次获取生成独立实例 · 创建强化 +0","Each acquisition creates a separate instance · starts at +0"),Vector2(20,55),Vector2(554,27),15)
+	var eligibility := _label(right,Eligibility.label(definition)+_t(" · 新装备 +0", " · New item +0"),Vector2(20,55),Vector2(554,27),15)
+	eligibility.name = "CreationEligibility"
+	eligibility.tooltip_text = _t("通用件任意职业可穿；物理/法术是属性取向，请比较实际收益。专属套全部八槽均受限。", "Universal items fit all classes; Physical/Magic is their stat focus. Compare actual gains. All eight pieces of exclusive sets are restricted.")
+	eligibility.mouse_filter = Control.MOUSE_FILTER_PASS
 	_label(right,_t("品质","Quality"),Vector2(630,60),Vector2(312,24),14)
 	var quality := OptionButton.new()
 	quality.name = "CreationRarity"
 	quality.position = Vector2(630,86)
 	quality.size = Vector2(312,36)
-	for rarity: String in rarities: quality.add_item(_t(RARITY_NAMES[rarity][0],RARITY_NAMES[rarity][1]))
+	for rarity: String in rarities:
+		var gate: int = {"green":5,"purple":10,"gold":15}.get(rarity,1)
+		quality.add_item(_t(RARITY_NAMES[rarity][0],RARITY_NAMES[rarity][1])+(_t(" · Lv%d解锁"," · unlock Lv%d") % gate if crafting else ""))
 	quality.select(rarities.find(panel.creation_rarity))
 	quality.disabled = panel.busy
 	right.add_child(quality)
@@ -114,11 +125,13 @@ static func render(panel: Control) -> void:
 		lines.append(_t("该类型缺件 %d / 8；明确列出的缺件总价九折。","Missing %d / 8 · 10%% off the listed pieces.") % missing.size())
 		lines.append(_t("已选择 %d 件，以下可取消勾选。","%d selected; uncheck any piece below.") % request.template_ids.size())
 	else:
+		lines.append(_t("物理/法术决定属性取向；通用件跨职业穿戴时请比较实际收益。", "Physical/Magic sets the stat focus; compare actual benefits when sharing universal items."))
 		lines.append(_t("主属性范围（不提前抽取结果）","Main-stat ranges (no preview roll)"))
 		var low := _main_range(selected,request,0)
 		var high := _main_range(selected,request,100)
 		for key: String in low:
 			lines.append(Inspect.caption(key)+": "+_format_stat(key,float(low[key]))+" – "+_format_stat(key,float(high[key])))
+		lines.append(_t("打造：绿色Lv5 / 紫色Lv10 / 金色Lv15。先击败对应首领解锁模板。","Craft: green Lv5 / purple Lv10 / gold Lv15. Defeat the matching boss to unlock its templates.") if crafting else _t("商店仅售白色与绿色；紫色与金色请前往打造。","Shop stocks white and green. Craft purple and gold equipment."))
 		lines.append(_t("普通随机词条 %d 条；分位 u 为 0–100，共101档。","%d random affixes; u=0–100, 101 possible quantiles.") % int(Numbers.value("rarities")[panel.creation_rarity].affix_count))
 	var text_scroll := ScrollContainer.new()
 	text_scroll.name = "CreationDescription"
@@ -159,23 +172,24 @@ static func render(panel: Control) -> void:
 				panel._render())
 	var cost_lines: PackedStringArray = [_t("本次成本","COST"),_t("金币 %d / 持有 %d","Gold %d / owned %d") % [int(quote.get("gold",0)),int(Game.profile.permanent_gold)]]
 	for material: String in quote.get("materials", {}):
-		cost_lines.append(_material_name(material)+" %d / %d" % [int(quote.materials[material]),int(Game.profile.get("materials",{}).get(material,0))])
+		cost_lines.append(_material_name(material)+_t(" %d / 持有 %d"," %d / owned %d") % [int(quote.materials[material]),int(Game.profile.get("materials",{}).get(material,0))])
 	if int(quote.get("pending_count",0)) > 0: cost_lines.append(_t("背包满：物品进入待领取，不折金币。","Inventory full: items wait for collection, never auto-sold."))
-	_scroll_text(right,"CreationCost","\n".join(cost_lines),Vector2(630,293),Vector2(312,117),16)
+	_scroll_text(right,"CreationCost","\n".join(cost_lines),Vector2(630,287),Vector2(312,130),14)
 	var message: String = panel.creation_message
 	if message.is_empty() and not bool(quote.get("ok",false)) and not complete: message = error_text(str(quote.get("error","")))
 	var affordable: bool = int(Game.profile.permanent_gold) >= int(quote.get("gold",0))
 	for material: String in quote.get("materials",{}):
 		if int(Game.profile.get("materials",{}).get(material,0)) < int(quote.materials[material]): affordable = false
 	if not affordable and message.is_empty(): message = _t("金币或材料不足。","Not enough gold or materials.")
-	if complete: message = _t("该类型八件已拥有；穿戴仍要求当前职业与等级符合。","All eight templates of this type are owned; equip requires this hero's type and level.")
-	_scroll_text(right,"CreationResult",message,Vector2(630,414),Vector2(312,41),12)
+	if complete: message = _t("该属性八件已拥有；穿戴仍要求职业与等级符合。", "All eight stat variants owned; class and level requirements still apply.")
+	if message.is_empty() and Game.profile.selected_hero not in definition.get("allowed_heroes", []): message = _t("当前职业不可穿 · 可为对应职业购买\n", "Current class cannot equip · may buy for its class\n")+Eligibility.label(definition)
+	_scroll_text(right,"CreationResult",message,Vector2(630,424),Vector2(312,31),12)
 	var action := MineStyle.button(right,"",Vector2(630,461),Vector2(312,36),func(): _submit(panel,request,crafting,set_mode,complete))
 	action.custom_minimum_size.y = 36
 	action.add_theme_font_size_override("font_size",15)
 	action.name = "PrimaryAction"
 	action.text = _t("穿戴该套装","Equip this set") if complete else _t("打造并保存","Craft and save") if crafting else _t("购买缺件并保存","Buy missing pieces and save") if set_mode else _t("购买并保存","Buy and save")
-	var matching_type: bool = panel.creation_power_type == ("magic" if Game.profile.selected_hero == "CH03" else "physical")
+	var matching_type: bool = Game.profile.selected_hero in definition.get("allowed_heroes", [])
 	action.disabled = panel.busy or (not complete and (not bool(quote.get("ok",false)) or not affordable)) or (complete and not matching_type)
 	MineStyle.primary(action)
 	panel.action_button = action
@@ -226,7 +240,9 @@ static func _material_name(id: String) -> String:
 	return id.get_slice(":",1)+(_t("族材"," material") if id.begins_with("race:") else _t("核心"," core"))
 
 static func error_text(code: String) -> String:
-	var messages := {"INSUFFICIENT_GOLD":["金币不足。","Not enough gold."],"INSUFFICIENT_MATERIALS":["材料不足。","Not enough materials."],"CRAFT_LEVEL_LOCKED":["打造解锁等级：绿5、紫10、金15。","Craft unlocks: green5, purple10, gold15."],"ITEM_LEVEL_LOCKED":["装备等级不能超过当前角色。","Item level exceeds the current hero."],"TEMPLATE_LOCKED":["先击败对应首领解锁模板。","Defeat the required boss to unlock this template."],"PROFILE_CAPACITY":["存档容量不足；交易未生效。","Save capacity reached; transaction was not applied."]}
+	if code == "CLASS_POWER_MISMATCH": return _t("专属套属性不符：法师用法术，战士/枪手用物理。", "Wrong stats for class set: Mage uses Magic; Warrior/Gunner use Physical.")
+	if code == "CLASS_LOCKED": return _t("当前职业不能穿戴该专属套。", "Current class cannot equip this exclusive set.")
+	var messages := {"INSUFFICIENT_GOLD":["金币不足。","Not enough gold."],"INSUFFICIENT_MATERIALS":["材料不足。","Not enough materials."],"CRAFT_LEVEL_LOCKED":["打造解锁等级：绿5、紫10、金15。","Craft unlocks: green Lv5, purple Lv10, gold Lv15."],"ITEM_LEVEL_LOCKED":["装备等级不能超过当前角色。","Item level exceeds the current hero."],"TEMPLATE_LOCKED":["先击败对应首领解锁模板。","Defeat the required boss to unlock this template."],"PROFILE_CAPACITY":["存档容量不足；交易未生效。","Save capacity reached; transaction was not applied."]}
 	return _t(messages[code][0],messages[code][1]) if messages.has(code) else code
 
 static func _submit(panel: Control, request: Dictionary, crafting: bool, set_mode: bool, complete: bool) -> void:

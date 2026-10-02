@@ -1007,5 +1007,7 @@
   "BIOME_B04": {
     "zh_CN": "赤岩战寨",
     "en": "Redrock Warcamp"
-  }
+  },
+  "STORAGE_CLASS_EQUIPMENT_UPDATED": {"zh_CN":"职业装备规则已更新：不符职业的旧装备已保留在仓库，请重新配装；词条、强化和价值不变。","en":"Class equipment updated: incompatible old gear is retained in Inventory. Re-equip empty slots; rolls, upgrades and value are unchanged."},
+  "STORAGE_CLASS_MIGRATION_BLOCKED": {"zh_CN":"职业装备迁移未能安全完成，原存档完整保留；请勿覆盖或新建档案。","en":"Class equipment migration could not finish safely. The original save is preserved; do not overwrite it or start a new profile."}
 }

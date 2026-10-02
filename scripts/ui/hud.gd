@@ -512,6 +512,9 @@ func _ready() -> void:
 	passive_state = _line(passive_panel,"",Vector2(62,34),Vector2(210,23),16,HUD_CYAN)
 	passive_bar = MineStyle.meter(passive_panel,Vector2(14,59),Vector2(260,3),HUD_CYAN)
 	passive_hint = _line(passive_panel,"",Vector2(14,66),Vector2(260,48),16,HUD_MUTED)
+	passive_hint.add_theme_font_size_override("font_size",14)
+	passive_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	passive_hint.max_lines_visible = 2
 	passive_hint.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
 	passive_hint.max_lines_visible = 2
 	passive_button = Button.new()
@@ -995,7 +998,7 @@ func _update_passive() -> void:
 	var maximum := maxi(1,int(passive_snapshot.get("max",3)))
 	var cooldown := float(passive_snapshot.get("cooldown",passive_snapshot.get("icd",0.0)))
 	var passive_definition: Dictionary = ContentRegistry.hero(Game.run.hero_id).get("passive",{})
-	passive_title.text = MineStyle.content_text(passive_definition,"name",str(passive_snapshot.get("name","")))
+	passive_title.text = MineStyle.content_text(passive_definition,"name_v2" if Game.run.ruleset_version() == 2 and passive_definition.has("name_v2") else "name",str(passive_snapshot.get("name","")))
 	passive_state.text = ("Stacks %d / %d" if english else "累积  %d / %d") % [current,maximum]
 	if cooldown > 0:
 		passive_state.text = ("%d/%d · %.1fs" if english else "%d/%d · 冷却%.1f秒") % [current,maximum,cooldown]
@@ -1006,6 +1009,10 @@ func _update_passive() -> void:
 		"CH02": ["同目标普攻2次，下一击触发弱点。","Hit one target twice; the next hit exploits its weakness."],
 		"CH03": ["普攻与技能交替满3层，下次技能回蓝。","Alternate attacks and skills 3 times; the next skill restores mana."]
 	}
+	if Game.run.ruleset_version() == 2:
+		var refund: int = int(passive_snapshot.get("resource_refund",0))
+		var reduction: float = float(passive_snapshot.get("q_cooldown_refund",0))
+		triggers.CH03 = ["可选：交替3招回%d蓝\nQ减%.1f秒；无需普攻" % [refund,reduction],"Optional: alternate spells ×3\n+%d mana; Q −%.1fs" % [refund,reduction]]
 	passive_hint.text = str(triggers.get(Game.run.hero_id,["被动自动生效。","This passive triggers automatically."])[1 if english else 0])
 	passive_bar.max_value = maximum
 	passive_bar.value = current

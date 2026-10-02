@@ -121,7 +121,7 @@ func _render() -> void:
 	elif mode == "inventory":
 		var recycle_toggle := MineStyle.button(self,"",Vector2(214,130),Vector2(206,32),func(): inventory_recycle = not inventory_recycle; _render())
 		recycle_toggle.name = "ToggleRecycle"
-		recycle_toggle.text = _t("返回装备背包", "Back to inventory") if inventory_recycle else (_t("出售 / 拆解", "Sell / dismantle") if int(Game.profile.get("ruleset_version",1)) == 2 else _t("多选回收装备", "Recycle equipment"))
+		recycle_toggle.text = _t("返回装备背包", "Back to inventory") if inventory_recycle else (_t("回收装备", "Recycle gear") if int(Game.profile.get("ruleset_version",1)) == 2 else _t("多选回收装备", "Recycle equipment"))
 		recycle_toggle.add_theme_font_size_override("font_size",14)
 		_secondary_style(recycle_toggle,inventory_recycle)
 	body = Control.new()
@@ -276,7 +276,7 @@ func _show_core_actions(hero: Dictionary) -> void:
 	var flow := VBoxContainer.new()
 	flow.add_theme_constant_override("separation",12)
 	scroll.add_child(flow)
-	for entry: Array in [[MineStyle.content_text(passive,"name"),23,MineStyle.CYAN],[SkillInspect.passive_text(hero,Game.selected_stats()),18,MineStyle.INK],[Words.text("DASH_LABEL")+" / "+MineStyle.content_text(dash,"name"),22,MineStyle.AMBER],[Words.text("DASH_DETAILS",{"distance":dash.get("distance",0),"cooldown":dash.get("cooldown",0)}),18,MineStyle.MUTED]]:
+	for entry: Array in [[MineStyle.content_text(passive,"name_v2" if int(Game.profile.get("ruleset_version",1)) == 2 and passive.has("name_v2") else "name"),23,MineStyle.CYAN],[SkillInspect.passive_text(hero,Game.selected_stats()),18,MineStyle.INK],[Words.text("DASH_LABEL")+" / "+MineStyle.content_text(dash,"name"),22,MineStyle.AMBER],[Words.text("DASH_DETAILS",{"distance":dash.get("distance",0),"cooldown":dash.get("cooldown",0)}),18,MineStyle.MUTED]]:
 		var label := MineStyle.literal(flow,entry[0],Vector2.ZERO,Vector2(661,0),entry[1],entry[2])
 		label.custom_minimum_size.x = 661
 	MineStyle.button(panel,"BACK",Vector2(488,414),Vector2(226,50),app._pop_modal).grab_focus()

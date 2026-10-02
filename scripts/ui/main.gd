@@ -932,6 +932,7 @@ func _show_warning(parent: Node, at: Vector2, extent: Vector2) -> void:
 	var remaining_receipts := int(capacity.get("remaining_transactions",0))
 	var v2: bool = int(Game.profile.get("ruleset_version",1)) == 2
 	var tight := (not v2 and remaining_receipts <= 64) or remaining_bytes < 262144
+	if not tight: return
 	var note := MineStyle.literal(parent,(_ex_text("存档空间偏低：", "Low save space: ") if tight else _ex_text("存档余量：", "Save room: "))+_ex_text("%s KiB · %d 条收据", "%s KiB · %d receipts") % [_amount(remaining_bytes/1024.0),remaining_receipts],at,extent,13,MineStyle.RED if tight else MineStyle.MUTED)
 	if v2: note.text = (_ex_text("存档空间偏低：", "Low save space: ") if tight else _ex_text("存档余量：", "Save room: "))+_amount(remaining_bytes/1024.0)+" KiB"
 	note.name = "StorageCapacityHint"
@@ -1618,6 +1619,8 @@ func _process(delta: float) -> void:
 	if music_tick > 0.0 or not is_instance_valid(music): return
 	music_tick = 0.3
 	var context := "camp"
+	if route == "workshop_craft": context = "craft"
+	elif route in ["workshop_upgrade", "workshop_recycle"]: context = "forge"
 	if route == "run" and is_instance_valid(room):
 		context = "explore"
 		if room.has_method("_living_enemy_count") and room._living_enemy_count() > 0: context = "combat"

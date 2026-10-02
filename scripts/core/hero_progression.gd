@@ -42,11 +42,16 @@ static func available_points(talents: Dictionary, level: int) -> int:
 	for rank: Variant in talents.values(): remaining -= int(rank)
 	return maxi(0, remaining)
 
-static func hero_base(definition: Dictionary, level: int, talents: Dictionary = {}, cap: int = 0) -> Dictionary:
+static func hero_base(definition: Dictionary, level: int, talents: Dictionary = {}, cap: int = 0, legacy_role_growth: bool = false) -> Dictionary:
 	var limit := level_cap() if cap <= 0 else cap
 	level = clampi(level, 1, limit)
 	if not valid_talents(talents, level, limit): return {}
-	var growth: Dictionary = Numbers.value("growth")
+	var profiles: Dictionary = Numbers.value("hero_class_profiles", {})
+	# Migration can reconstruct the prior intrinsic limits without altering the
+	# live default or rewriting a saved item's values. Never exposed as a UI mode.
+	var profile: Dictionary = {} if legacy_role_growth else profiles.get(str(definition.get("id", "")), {})
+	var growth: Dictionary = profile.get("growth", Numbers.value("growth"))
+	var base_overrides: Dictionary = profile.get("base", {})
 	var per_rank: Dictionary = Numbers.value("talent_per_rank")
 	var result := definition.duplicate(true)
 	var mage := str(definition.get("id", "")) == "CH03"
@@ -60,7 +65,8 @@ static func hero_base(definition: Dictionary, level: int, talents: Dictionary = 
 	for key in ["armor", "magic_resist"]:
 		result[key] = Numbers.integer(float(definition.get(key, 18.0 if mage else 12.0)) * float(Numbers.value("combat_scale")) + float(growth[key]) * (level - 1) + int(talents.get("resistance", 0)) * float(per_rank.armor_and_magic_resist_flat))
 	for key in ["resource_max", "resource_regen", "starting_resource"]:
-		result[key] = Numbers.scale(float(definition.get(key, 0)), Numbers.V2)
+		result[key] = Numbers.scale(float(base_overrides.get(key, definition.get(key, 0))), Numbers.V2)
+	result["resource_regen_delay"] = float(base_overrides.get("resource_regen_delay", definition.get("resource_regen_delay", 0.0)))
 	result["talent_crit_chance"] = int(talents.get("precision", 0)) * float(per_rank.crit_chance)
 	result["talent_attack_speed"] = int(talents.get("agility", 0)) * float(per_rank.attack_speed)
 	result["talent_cooldown_reduction"] = int(talents.get("dexterity", 0)) * float(per_rank.cooldown_reduction)

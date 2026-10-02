@@ -39,6 +39,8 @@ static func render(panel: Control) -> void:
 	MineStyle.literal(caption,MineStyle.content_text(hero,"name"),Vector2(16,10),Vector2(260,36),27)
 	MineStyle.literal(caption,MineStyle.content_text(hero,"class_name")+" · Lv."+str(level),Vector2(16,54),Vector2(260,26),17,MineStyle.CYAN)
 	var play := MineStyle.label(caption,"HERO_"+id+"_PLAY",Vector2(16,85),Vector2(260,20),12,MineStyle.MUTED)
+	if int(Game.profile.get("ruleset_version",1)) == 2 and hero.has("quick_start_v2"):
+		play.text = MineStyle.content_text(hero,"quick_start_v2")
 	play.tooltip_text = play.text
 	play.text = play.text.replace("\n"," · ")
 	play.autowrap_mode = TextServer.AUTOWRAP_OFF
@@ -49,7 +51,7 @@ static func render(panel: Control) -> void:
 	MineStyle.literal(right,Inspect.t("当前职业配装 · 完整数值来源","Saved loadout · complete stat sources"),Vector2(20,54),Vector2(640,25),14,MineStyle.MUTED)
 	var stats: Dictionary = report.total
 	for index: int in 4:
-		var key: String = ["max_hp","attack","armor","magic_resist"][index]
+		var key: String = ["max_hp","ability_power" if id == "CH03" else "attack","armor","magic_resist"][index]
 		metric(right,Inspect.caption(key),Inspect.value(key,float(stats.get(key,0)),false,false,int(stats.get("ruleset_version",1))),Vector2(20+index*161,92),Vector2(151,64))
 	var scroll := ScrollContainer.new()
 	scroll.name = "HeroStatScroll"

@@ -46,12 +46,19 @@ func _run() -> void:
 	Game.run = null
 	check(Game.new_profile(),"isolated profile")
 	var profile := Fixtures.fixture_profile()
+	# This UI fixture intentionally exercises a legal full set on a warrior;
+	# S01 is now mage-only, while S02 is genuinely universal for all three.
+	profile.equipment.clear()
+	for template: String in ContentRegistry.set_item_ids("S02",2):
+		var record := Fixtures.fixture_instance("fixture-"+template,template)
+		profile.equipment[record.instance_id]=record
+		profile.loadout[ContentRegistry.equipment(template,2).slot]=record.instance_id
 	profile.hero_xp.CH01 = 3600
 	profile.hero_xp.CH03 = 3600
 	profile.talents = {"CH01":{"mastery":5,"precision":5,"vitality":5,"dexterity":4}}
-	var duplicate := Fixtures.fixture_instance("ui-roll-copy","EQ03",50,"physical",20)
+	var duplicate := Fixtures.fixture_instance("ui-roll-copy","EQ04",50,"physical",20)
 	duplicate.rarity = "gold"
-	for key: String in Instances.legal_affixes("EQ03","physical").slice(0,4): duplicate.affix_type_and_quantile.append({"type":key,"u":20})
+	for key: String in Instances.legal_affixes("EQ04","physical").slice(0,4): duplicate.affix_type_and_quantile.append({"type":key,"u":20})
 	duplicate.enhancement_steps = [{"g":8,"pity":0,"base_price_peak":Economy.enhancement_price(1,20)},{"g":10,"pity":0,"base_price_peak":Economy.enhancement_price(2,20)}]
 	duplicate.enhancement_rank = 2
 	profile.equipment[duplicate.instance_id] = duplicate
@@ -93,6 +100,10 @@ func _run() -> void:
 			check(not all_text(panel).contains("SLOT_") and not all_text(panel).contains("hp_ratio"),"no raw schema keys "+locale+str(extent))
 			check(not panel.find_child("LoadoutStatSummary",true,false).text.contains(".0"),"loadout integer summary "+locale+str(extent))
 			check(get_viewport().get_visible_rect().encloses(panel.action_button.get_global_rect()) and panel.action_button.get_global_rect().end.y <= panel.body.get_global_rect().end.y and detail.custom_minimum_size.x <= 330,"art-led detail action is bounded and full numbers remain scrollable "+locale+str(extent))
+			if "--ui-bounds-probe" in OS.get_cmdline_user_args():
+				print("UI_BOUNDS viewport=",get_viewport().get_visible_rect()," action=",panel.action_button.get_global_rect()," body=",panel.body.get_global_rect()," content_min=",detail.custom_minimum_size," action_min=",panel.action_button.get_combined_minimum_size())
+				get_tree().quit(0)
+				return
 			await capture("inventory-"+locale+"-"+str(extent.x)+"x"+str(extent.y))
 			panel.detail_tab = "compare"
 			panel._render()
@@ -185,8 +196,8 @@ func _live_ui() -> void:
 		hud.refresh()
 		var info: Dictionary = hud.skill_info("q")
 		var powers := HeroAbilities.preview_powers("CH03",mage)
-		check(info.summary.contains("180") and info.description.contains("skill H %d" % int(powers.skill_H) if locale == "en" else "技能 H %d" % int(powers.skill_H)),"HUD shared H/cost "+locale)
-		check(info.description.contains("104") and Skills.passive_text(ContentRegistry.hero("CH03"),mage,room.player).contains("104"),"passive refund uses shared gain multiplier "+locale)
+		check(info.summary.contains("120") and info.description.contains("skill H %d" % int(powers.skill_H) if locale == "en" else "技能 H %d" % int(powers.skill_H)),"HUD shared H/cost "+locale)
+		check(info.description.contains("130") and Skills.passive_text(ContentRegistry.hero("CH03"),mage,room.player).contains("130"),"passive refund uses shared gain multiplier "+locale)
 		check(Skills.authored_text("20怒气 35 health 0.10 s 160 units",2) == "200怒气 350 health 0.10 s 160 units" and Skills.authored_text("节点生命 35 → 50 / node health increases from 35 to 50",2).contains("350 → 500 / node health increases from 350 to 500"),"authored conversion includes upgrade health, excludes time/range "+locale)
 		var backpack: Control = load("res://scripts/ui/backpack_panel.gd").new()
 		add_child(backpack)
@@ -195,7 +206,7 @@ func _live_ui() -> void:
 		backpack._render()
 		await frames()
 		check(backpack.find_child("BackpackAttribute_attack",true,false).text == str(int(mage.attack)),"backpack uses V2 resolver "+locale)
-		check(backpack.find_child("BackpackAttribute_resource_regen",true,false).text == "65","integer effective regeneration "+locale)
+		check(backpack.find_child("BackpackAttribute_resource_regen",true,false).text == "104","integer effective regeneration "+locale)
 		backpack.queue_free()
 		await frames()
 	room.player.grant_guard(100,4,"hero_f")
@@ -206,7 +217,7 @@ func _live_ui() -> void:
 	check(live_sheet.find_child("SetTrigger_S06_4",true,false).text.contains("6.0") and live_sheet.find_child("SetTrigger_S06_4",true,false).text.contains("4.0"),"real accepted guard shows set cooldown and duration")
 	check(live_sheet.find_child("StatSource_damage_bonus",true,false).get_meta("sources").buff == 0.20,"real set buff is separate current source")
 	live_sheet.queue_free()
-	check(int(report.live.resource_regen) == 65,"live effective rate rounded once")
+	check(int(report.live.resource_regen) == 104,"live effective rate rounded once")
 	var capped := mage.duplicate(true)
 	capped.uncapped_equipment_contribution = {"hp_ratio":0.72,"resource_gain_bonus":0.44,"cooldown_reduction":0.37}
 	capped.equipment_contribution = {"hp_ratio":0.60,"resource_gain_bonus":0.30,"cooldown_reduction":0.30}

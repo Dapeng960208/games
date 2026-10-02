@@ -54,7 +54,10 @@
         "M15",
         "M16",
         "M17",
-        "M18"
+        "M18",
+        "M37",
+        "M38",
+        "M39"
       ],
       "boss_id": "BO02",
       "visual": "暖金树脂、透光琥珀巢室、奶油蜂蜡平台与彩色甲壳昆虫；虫群活动和巢穴危险使用清楚的轨迹、轮廓与图案提示。",
@@ -84,7 +87,13 @@
         "M24",
         "M25",
         "M26",
-        "M27"
+        "M27",
+        "M40",
+        "M41",
+        "M42",
+        "M43",
+        "M44",
+        "M45"
       ],
       "boss_id": "BO03",
       "visual": "明亮卡通小镇、橙色南瓜灯、奶油墓石、紫色屋顶与幽默缝补僵尸；保持温暖可见的街道，攻击预警使用清楚的边界与动作提示。",
@@ -114,7 +123,16 @@
         "M33",
         "M34",
         "M35",
-        "M36"
+        "M36",
+        "M46",
+        "M47",
+        "M48",
+        "M49",
+        "M50",
+        "M51",
+        "M52",
+        "M53",
+        "M54"
       ],
       "boss_id": "BO04",
       "visual": "阳光下的赤色岩寨、浅沙石地面、巨战鼓、靛蓝皮旗、兽牙图腾与粗犷兽人食人魔；冲锋、重砸和营寨机关使用明显的形状预警。",
@@ -2500,6 +2518,10 @@
         {
           "enemy_id": "M14",
           "count": 2
+        },
+        {
+          "enemy_id": "M37",
+          "count": 1
         }
       ],
       "reward_id": "gold_corrosion",
@@ -2906,6 +2928,10 @@
         {
           "enemy_id": "M14",
           "count": 2
+        },
+        {
+          "enemy_id": "M38",
+          "count": 1
         }
       ],
       "reward_id": "equipment_gold",
@@ -3283,6 +3309,10 @@
         {
           "enemy_id": "M14",
           "count": 3
+        },
+        {
+          "enemy_id": "M39",
+          "count": 1
         }
       ],
       "reward_id": "gold_summon",
@@ -3718,6 +3748,10 @@
         {
           "enemy_id": "M14",
           "count": 4
+        },
+        {
+          "enemy_id": "M37",
+          "count": 1
         }
       ],
       "reward_id": "supplies_status",
@@ -4106,6 +4140,10 @@
         {
           "enemy_id": "M14",
           "count": 2
+        },
+        {
+          "enemy_id": "M38",
+          "count": 1
         }
       ],
       "reward_id": "gold_equipment",
@@ -4522,6 +4560,10 @@
         {
           "enemy_id": "M14",
           "count": 2
+        },
+        {
+          "enemy_id": "M39",
+          "count": 1
         }
       ],
       "reward_id": "corrosion_gold",
@@ -4927,6 +4969,10 @@
       "mechanic": "接驳臂定点缓慢转动成为新桥；校准期间敌人尝试切断接头。接头受损仅回退当前步骤，已完成步骤保留",
       "reference_wave": [
         {
+          "enemy_id": "M43",
+          "count": 1
+        },
+        {
           "enemy_id": "M25",
           "count": 2
         },
@@ -4941,6 +4987,10 @@
         {
           "enemy_id": "M19",
           "count": 2
+        },
+        {
+          "enemy_id": "M40",
+          "count": 1
         }
       ],
       "reward_id": "shield_gold",
@@ -5291,6 +5341,14 @@
         {
           "enemy_id": "M19",
           "count": 2
+        },
+        {
+          "enemy_id": "M41",
+          "count": 1
+        },
+        {
+          "enemy_id": "M44",
+          "count": 1
         }
       ],
       "reward_id": "equipment_gold",
@@ -5687,6 +5745,10 @@
       "mechanic": "脉冲周期切换吸引/排斥，地板箭头提前告知方向；冲刺可越过单块通电板，禁止用磁力直接取消已开始的冲刺",
       "reference_wave": [
         {
+          "enemy_id": "M45",
+          "count": 1
+        },
+        {
           "enemy_id": "M23",
           "count": 1
         },
@@ -5697,6 +5759,10 @@
         {
           "enemy_id": "M19",
           "count": 2
+        },
+        {
+          "enemy_id": "M42",
+          "count": 1
         }
       ],
       "reward_id": "shock_gold",
@@ -6280,6 +6346,10 @@
       "mechanic": "搬动阀门把冷凝雾导向炉罐，热区会短暂除去地面寒霜；玩家选择移动安全区。反应罐过热后进入可修复停机，不能造成任务软锁",
       "reference_wave": [
         {
+          "enemy_id": "M43",
+          "count": 1
+        },
+        {
           "enemy_id": "M22",
           "count": 1
         },
@@ -6290,6 +6360,10 @@
         {
           "enemy_id": "M27",
           "count": 2
+        },
+        {
+          "enemy_id": "M40",
+          "count": 1
         }
       ],
       "reward_id": "fire_cold_gold",
@@ -6712,6 +6786,14 @@
         {
           "enemy_id": "M27",
           "count": 1
+        },
+        {
+          "enemy_id": "M41",
+          "count": 1
+        },
+        {
+          "enemy_id": "M44",
+          "count": 1
         }
       ],
       "reward_id": "equipment_gold",
@@ -7094,6 +7176,10 @@
       "mechanic": "玩家通过地面控制台选择吊车拦截位置；货舱落下成为新掩体，错过一轮会绕行重来，不要求精准限时。吊车阴影和坠落区分开预警",
       "reference_wave": [
         {
+          "enemy_id": "M45",
+          "count": 1
+        },
+        {
           "enemy_id": "M20",
           "count": 1
         },
@@ -7108,6 +7194,10 @@
         {
           "enemy_id": "M19",
           "count": 2
+        },
+        {
+          "enemy_id": "M42",
+          "count": 1
         }
       ],
       "reward_id": "equipment_gold",
@@ -7513,6 +7603,18 @@
         {
           "enemy_id": "M28",
           "count": 4
+        },
+        {
+          "enemy_id": "M46",
+          "count": 1
+        },
+        {
+          "enemy_id": "M49",
+          "count": 1
+        },
+        {
+          "enemy_id": "M52",
+          "count": 1
         }
       ],
       "reward_id": "equipment_gold",
@@ -7919,6 +8021,18 @@
         {
           "enemy_id": "M28",
           "count": 3
+        },
+        {
+          "enemy_id": "M47",
+          "count": 1
+        },
+        {
+          "enemy_id": "M50",
+          "count": 1
+        },
+        {
+          "enemy_id": "M53",
+          "count": 1
         }
       ],
       "reward_id": "equipment_gold",
@@ -8279,6 +8393,18 @@
         {
           "enemy_id": "M28",
           "count": 3
+        },
+        {
+          "enemy_id": "M48",
+          "count": 1
+        },
+        {
+          "enemy_id": "M51",
+          "count": 1
+        },
+        {
+          "enemy_id": "M54",
+          "count": 1
         }
       ],
       "reward_id": "set_gold",
@@ -8698,6 +8824,18 @@
         {
           "enemy_id": "M28",
           "count": 4
+        },
+        {
+          "enemy_id": "M46",
+          "count": 1
+        },
+        {
+          "enemy_id": "M49",
+          "count": 1
+        },
+        {
+          "enemy_id": "M53",
+          "count": 1
         }
       ],
       "reward_id": "control_shield_gold",
@@ -9109,6 +9247,18 @@
         {
           "enemy_id": "M28",
           "count": 1
+        },
+        {
+          "enemy_id": "M47",
+          "count": 1
+        },
+        {
+          "enemy_id": "M50",
+          "count": 1
+        },
+        {
+          "enemy_id": "M54",
+          "count": 1
         }
       ],
       "reward_id": "equipment_gold",
@@ -9490,6 +9640,18 @@
         {
           "enemy_id": "M28",
           "count": 3
+        },
+        {
+          "enemy_id": "M48",
+          "count": 1
+        },
+        {
+          "enemy_id": "M51",
+          "count": 1
+        },
+        {
+          "enemy_id": "M52",
+          "count": 1
         }
       ],
       "reward_id": "set_gold",

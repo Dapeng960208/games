@@ -4,6 +4,7 @@ extends Node2D
 ## Static portraits use restrained pose transforms; authored motion manifests
 ## opt in to real frames with explicit source regions and absolute foot anchors.
 
+const SkillPresentation = preload("res://scripts/combat/enemy_skill_presentation.gd")
 const TextureSampler = preload("res://scripts/ui/texture_sampler.gd")
 const Palette = preload("res://scripts/combat/enemy_palette.gd")
 const Art = preload("res://scripts/combat/enemy_art.gd")
@@ -58,26 +59,41 @@ var skill_badge: SkillBadge
 class SkillBadge extends Node2D:
 	var icon: Dictionary = {}
 	var command: Dictionary = {}
+	var identity: String = ""
+	var info: Dictionary = {}
+	var show_detail: bool = false
+	var detail_slot: int = 0
 	var locked: bool = false
 	var progress: float = 0.0
 	var reduced_fx: bool = false
 	func _draw() -> void:
-		if not visible or command.is_empty(): return
-		var edge := Color("c86558") if locked else Color("d4a34f")
+		if not visible: return
+		var active: bool = not command.is_empty()
+		var edge := Color("c86558") if locked else Color("d4a34f") if active else Color("ab9c84")
 		draw_circle(Vector2.ZERO, 14.0, Color("fff0cf"))
 		var texture: Texture2D = icon.get("texture")
 		if texture != null:
 			draw_texture_rect_region(texture, Rect2(-12,-12,24,24), icon.region)
 		else:
-			# Resource fallback still communicates a cast without borrowing a
-			# different creature's icon or hiding the owner's ground warning.
-			draw_line(Vector2(0,-7), Vector2(0,3), edge, 3.0, true)
-			draw_circle(Vector2(0,8), 1.8, edge)
-		draw_arc(Vector2.ZERO, 14.0, 0, TAU, 32, Color("6d4a70"), 1.3, true)
-		draw_arc(Vector2.ZERO, 15.5, -PI*.5, -PI*.5+TAU*maxf(.02,progress), 32, edge, 2.0 if reduced_fx else 2.6, true)
-		var count: int = mini(4, int(command.get("stage_count", 1)))
-		for index: int in count:
-			draw_circle(Vector2((index-(count-1)*.5)*5.0, 20.0), 1.7, edge if index <= int(command.get("stage", 0)) else Color("bba68b"))
+			SkillPresentation.draw_identity(self,identity,Vector2.ZERO,10.0,Color("6d4a70"))
+		draw_arc(Vector2.ZERO,14.0,0,TAU,32,Color("6d4a70"),1.3,true)
+		if active:
+			draw_arc(Vector2.ZERO,15.5,-PI*.5,-PI*.5+TAU*maxf(.02,progress),32,edge,2.0 if reduced_fx else 2.6,true)
+			var count: int = mini(7,int(command.get("stage_count",1)))
+			for index: int in count:
+				draw_circle(Vector2((index-(count-1)*.5)*5.0,20.0),1.7,edge if index <= int(command.get("stage",0)) else Color("bba68b"))
+		if show_detail:
+			var at := Vector2(21,-29) if detail_slot == 0 else Vector2(-275,-86)
+			var matrix: Transform2D = get_global_transform_with_canvas()
+			var bounds: Rect2 = matrix * Rect2(at,Vector2(254,61))
+			var viewport: Rect2 = get_viewport_rect().grow(-8)
+			var offset := Vector2.ZERO
+			if bounds.end.x > viewport.end.x: offset.x = viewport.end.x-bounds.end.x
+			elif bounds.position.x < viewport.position.x: offset.x = viewport.position.x-bounds.position.x
+			if bounds.end.y > viewport.end.y: offset.y = viewport.end.y-bounds.end.y
+			elif bounds.position.y < viewport.position.y: offset.y = viewport.position.y-bounds.position.y
+			at += matrix.basis_xform_inv(offset)
+			SkillPresentation.draw_card(self,info,at)
 
 func configure(enemy: Node2D) -> void:
 	actor = enemy
@@ -99,8 +115,9 @@ func configure(enemy: Node2D) -> void:
 	if not bool(actor.get("static_actor")) and str(actor.get("enemy_id")).begins_with("M"):
 		skill_badge = SkillBadge.new()
 		skill_badge.name = "EnemySkillBadge"
-		skill_badge.icon = Art.skill_icon_for(str(actor.get("enemy_id")))
-		skill_badge.z_index = 3
+		skill_badge.identity = str(actor.get("enemy_id"))
+		skill_badge.icon = Art.skill_icon_for(skill_badge.identity)
+		skill_badge.z_index = 7
 		skill_badge.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		# This sibling stays upright, outside the body's palette and mirroring.
 		actor.add_child(skill_badge)
@@ -223,14 +240,16 @@ func _read_phase(delta: float) -> void:
 func _update_skill_badge() -> void:
 	if not is_instance_valid(skill_badge): return
 	var brain: Variant = actor.get("brain")
-	if brain is Object and brain.has_method("current_telegraph") and phase in [&"telegraph", &"locked"]:
-		skill_badge.command = brain.call("current_telegraph")
-	elif phase != &"execute":
-		skill_badge.command = {}
-	skill_badge.visible = not skill_badge.command.is_empty() and actor.has_method("is_alive") and bool(actor.call("is_alive"))
-	skill_badge.locked = phase in [&"locked", &"execute"]
-	skill_badge.progress = 1.0 if phase == &"execute" else phase_progress
+	skill_badge.info = SkillPresentation.readout(brain) if brain is RefCounted else {}
+	skill_badge.command = skill_badge.info.get("command",{})
+	skill_badge.visible = actor.has_method("is_alive") and bool(actor.call("is_alive"))
+	skill_badge.locked = bool(skill_badge.info.get("locked",false))
+	skill_badge.progress = float(skill_badge.info.get("progress",0.0))
 	skill_badge.reduced_fx = _reduced_fx()
+	var room: Variant = preload("res://scripts/combat/combat_properties.gd").read(actor,"room")
+	var candidates: Array[int] = SkillPresentation.detail_candidates(room) if room is Node else []
+	skill_badge.detail_slot = candidates.find(actor.get_instance_id())
+	skill_badge.show_detail = skill_badge.detail_slot >= 0
 	skill_badge.queue_redraw()
 
 func _update_pose(_delta: float) -> void:

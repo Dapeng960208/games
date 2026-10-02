@@ -4,6 +4,7 @@ extends CharacterBody2D
 signal skill_input_feedback(slot: String, reason: String, details: Dictionary)
 
 const SKILL_BUFFER_SECONDS: float = 0.24
+const COOLDOWN_BUFFER_SECONDS: float = 0.16
 const COMBO_MAX_AGE: float = 0.90
 const COMBO_QUEUE_LIMIT: int = 3
 const HELD_MOVE_INTERVAL: float = 0.16
@@ -442,7 +443,9 @@ func request_skill(slot: String, target: Vector2) -> bool:
 	if dash_remaining > 0.0:
 		return _reject_skill(slot, target, "dashing")
 	_pending_skill_slot = slot
-	var valid: bool = abilities.can_cast(slot, target, true)
+	var cooldown_wait: float = float(cooldowns.get(slot, 0.0))
+	var prequeue: bool = _ruleset_version() == Numbers.V2 and cooldown_wait > 0.0 and cooldown_wait <= COOLDOWN_BUFFER_SECONDS
+	var valid: bool = abilities.can_cast(slot, target, true, prequeue)
 	_pending_skill_slot = ""
 	if not valid:
 		last_cast_error = abilities.last_failure
@@ -488,6 +491,8 @@ func _combo_wait_seconds(slot: String) -> float:
 		wait = maxf(wait, abilities.recovery_chain_wait())
 	if slot == "attack":
 		wait = maxf(wait, shot_cooldown)
+	else:
+		wait = maxf(wait, float(cooldowns.get(slot, 0.0)))
 	return wait
 
 func _append_combo_input(request: Dictionary, wait: float) -> bool:

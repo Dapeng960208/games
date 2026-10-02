@@ -1,0 +1,727 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH01",
+  "enabled": true,
+  "directions": {
+    "S": {
+      "frames": {
+        "windup": {
+          "region": [
+            102,
+            5,
+            360,
+            513
+          ],
+          "foot": [
+            279,
+            516
+          ],
+          "head": [
+            276,
+            118
+          ],
+          "grip": [
+            283,
+            85
+          ],
+          "muzzle": [
+            120,
+            92
+          ],
+          "body_height": 398,
+          "texture": "res://assets/generated/heroes/CH01_directional_S_SE_v1.png"
+        },
+        "release": {
+          "region": [
+            587,
+            134,
+            368,
+            429
+          ],
+          "foot": [
+            775,
+            515
+          ],
+          "head": [
+            769,
+            138
+          ],
+          "grip": [
+            774,
+            350
+          ],
+          "muzzle": [
+            772,
+            548
+          ],
+          "body_height": 377,
+          "weapon_axis": [
+            -2,
+            198
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_S_SE_v1.png"
+        },
+        "recovery": {
+          "region": [
+            1095,
+            138,
+            363,
+            435
+          ],
+          "foot": [
+            1270,
+            523
+          ],
+          "head": [
+            1263,
+            142
+          ],
+          "grip": [
+            1274,
+            379
+          ],
+          "muzzle": [
+            1252,
+            558
+          ],
+          "body_height": 381,
+          "weapon_axis": [
+            -22,
+            179
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_S_SE_v1.png"
+        }
+      }
+    },
+    "SE": {
+      "frames": {
+        "windup": {
+          "region": [
+            70,
+            518,
+            412,
+            481
+          ],
+          "foot": [
+            281,
+            993
+          ],
+          "head": [
+            314,
+            599
+          ],
+          "grip": [
+            230,
+            583
+          ],
+          "muzzle": [
+            101,
+            584
+          ],
+          "body_height": 394,
+          "texture": "res://assets/generated/heroes/CH01_directional_S_SE_v1.png"
+        },
+        "release": {
+          "region": [
+            566,
+            582,
+            479,
+            416
+          ],
+          "foot": [
+            741,
+            992
+          ],
+          "head": [
+            776,
+            586
+          ],
+          "grip": [
+            847,
+            813
+          ],
+          "muzzle": [
+            998,
+            968
+          ],
+          "body_height": 406,
+          "weapon_axis": [
+            151,
+            155
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_S_SE_v1.png"
+        },
+        "recovery": {
+          "region": [
+            1064,
+            599,
+            468,
+            417
+          ],
+          "foot": [
+            1261,
+            986
+          ],
+          "head": [
+            1302,
+            603
+          ],
+          "grip": [
+            1357,
+            838
+          ],
+          "muzzle": [
+            1484,
+            989
+          ],
+          "body_height": 383,
+          "weapon_axis": [
+            127,
+            151
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_S_SE_v1.png"
+        }
+      }
+    },
+    "N": {
+      "frames": {
+        "windup": {
+          "region": [
+            113,
+            14,
+            344,
+            507
+          ],
+          "foot": [
+            272,
+            517
+          ],
+          "head": [
+            286,
+            158
+          ],
+          "grip": [
+            296,
+            116
+          ],
+          "muzzle": [
+            151,
+            112
+          ],
+          "body_height": 359,
+          "texture": "res://assets/generated/heroes/CH01_directional_N_NE_v1.png"
+        },
+        "release": {
+          "region": [
+            629,
+            11,
+            301,
+            512
+          ],
+          "foot": [
+            764,
+            520
+          ],
+          "head": [
+            765,
+            171
+          ],
+          "grip": [
+            769,
+            127
+          ],
+          "muzzle": [
+            770,
+            18
+          ],
+          "body_height": 349,
+          "weapon_axis": [
+            1,
+            -109
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_N_NE_v1.png"
+        },
+        "recovery": {
+          "region": [
+            1090,
+            105,
+            420,
+            414
+          ],
+          "foot": [
+            1250,
+            514
+          ],
+          "head": [
+            1249,
+            181
+          ],
+          "grip": [
+            1316,
+            215
+          ],
+          "muzzle": [
+            1477,
+            123
+          ],
+          "body_height": 333,
+          "weapon_axis": [
+            161,
+            -92
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_N_NE_v1.png"
+        }
+      }
+    },
+    "NE": {
+      "frames": {
+        "windup": {
+          "region": [
+            86,
+            525,
+            327,
+            479
+          ],
+          "foot": [
+            250,
+            1000
+          ],
+          "head": [
+            278,
+            637
+          ],
+          "grip": [
+            245,
+            599
+          ],
+          "muzzle": [
+            99,
+            605
+          ],
+          "body_height": 363,
+          "texture": "res://assets/generated/heroes/CH01_directional_N_NE_v1.png"
+        },
+        "release": {
+          "region": [
+            548,
+            526,
+            503,
+            476
+          ],
+          "foot": [
+            733,
+            997
+          ],
+          "head": [
+            791,
+            629
+          ],
+          "grip": [
+            884,
+            638
+          ],
+          "muzzle": [
+            1027,
+            546
+          ],
+          "body_height": 368,
+          "weapon_axis": [
+            143,
+            -92
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_N_NE_v1.png"
+        },
+        "recovery": {
+          "region": [
+            1080,
+            588,
+            449,
+            407
+          ],
+          "foot": [
+            1269,
+            990
+          ],
+          "head": [
+            1300,
+            634
+          ],
+          "grip": [
+            1380,
+            718
+          ],
+          "muzzle": [
+            1506,
+            611
+          ],
+          "body_height": 356,
+          "weapon_axis": [
+            126,
+            -107
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_N_NE_v1.png"
+        }
+      }
+    },
+    "E": {
+      "frames": {
+        "windup": {
+          "region": [
+            20,
+            30,
+            429,
+            464
+          ],
+          "foot": [
+            259,
+            488
+          ],
+          "head": [
+            300,
+            84
+          ],
+          "grip": [
+            204,
+            98
+          ],
+          "muzzle": [
+            30,
+            110
+          ],
+          "body_height": 404,
+          "texture": "res://assets/generated/heroes/CH01_directional_E_W_v1.png"
+        },
+        "release": {
+          "region": [
+            452,
+            109,
+            610,
+            384
+          ],
+          "foot": [
+            667,
+            485
+          ],
+          "head": [
+            742,
+            115
+          ],
+          "grip": [
+            850,
+            256
+          ],
+          "muzzle": [
+            1052,
+            269
+          ],
+          "body_height": 370,
+          "weapon_axis": [
+            202,
+            13
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_E_W_v1.png"
+        },
+        "recovery": {
+          "region": [
+            1093,
+            83,
+            440,
+            412
+          ],
+          "foot": [
+            1273,
+            489
+          ],
+          "head": [
+            1299,
+            90
+          ],
+          "grip": [
+            1332,
+            302
+          ],
+          "muzzle": [
+            1516,
+            350
+          ],
+          "body_height": 399,
+          "weapon_axis": [
+            184,
+            48
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_E_W_v1.png"
+        }
+      }
+    },
+    "W": {
+      "frames": {
+        "windup": {
+          "region": [
+            37,
+            501,
+            428,
+            483
+          ],
+          "foot": [
+            250,
+            977
+          ],
+          "head": [
+            187,
+            578
+          ],
+          "grip": [
+            281,
+            565
+          ],
+          "muzzle": [
+            435,
+            586
+          ],
+          "body_height": 399,
+          "texture": "res://assets/generated/heroes/CH01_directional_E_W_v1.png"
+        },
+        "release": {
+          "region": [
+            468,
+            591,
+            619,
+            389
+          ],
+          "foot": [
+            884,
+            973
+          ],
+          "head": [
+            777,
+            599
+          ],
+          "grip": [
+            666,
+            747
+          ],
+          "muzzle": [
+            480,
+            762
+          ],
+          "body_height": 374,
+          "weapon_axis": [
+            -186,
+            15
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_E_W_v1.png"
+        },
+        "recovery": {
+          "region": [
+            1087,
+            566,
+            421,
+            423
+          ],
+          "foot": [
+            1337,
+            981
+          ],
+          "head": [
+            1262,
+            574
+          ],
+          "grip": [
+            1257,
+            791
+          ],
+          "muzzle": [
+            1094,
+            850
+          ],
+          "body_height": 407,
+          "weapon_axis": [
+            -163,
+            59
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_E_W_v1.png"
+        }
+      }
+    },
+    "SW": {
+      "frames": {
+        "windup": {
+          "region": [
+            31,
+            13,
+            454,
+            505
+          ],
+          "foot": [
+            259,
+            511
+          ],
+          "head": [
+            240,
+            116
+          ],
+          "grip": [
+            211,
+            113
+          ],
+          "muzzle": [
+            385,
+            75
+          ],
+          "body_height": 395,
+          "texture": "res://assets/generated/heroes/CH01_directional_SW_NW_v1.png"
+        },
+        "release": {
+          "region": [
+            489,
+            112,
+            530,
+            405
+          ],
+          "foot": [
+            831,
+            510
+          ],
+          "head": [
+            697,
+            120
+          ],
+          "grip": [
+            673,
+            326
+          ],
+          "muzzle": [
+            511,
+            448
+          ],
+          "body_height": 390,
+          "weapon_axis": [
+            -162,
+            122
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_SW_NW_v1.png"
+        },
+        "recovery": {
+          "region": [
+            1044,
+            113,
+            473,
+            412
+          ],
+          "foot": [
+            1324,
+            512
+          ],
+          "head": [
+            1241,
+            121
+          ],
+          "grip": [
+            1271,
+            353
+          ],
+          "muzzle": [
+            1074,
+            462
+          ],
+          "body_height": 391,
+          "weapon_axis": [
+            -197,
+            109
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_SW_NW_v1.png"
+        }
+      }
+    },
+    "NW": {
+      "frames": {
+        "windup": {
+          "region": [
+            37,
+            532,
+            407,
+            453
+          ],
+          "foot": [
+            237,
+            978
+          ],
+          "head": [
+            221,
+            620
+          ],
+          "grip": [
+            243,
+            591
+          ],
+          "muzzle": [
+            358,
+            593
+          ],
+          "body_height": 358,
+          "texture": "res://assets/generated/heroes/CH01_directional_SW_NW_v1.png"
+        },
+        "release": {
+          "region": [
+            524,
+            553,
+            530,
+            444
+          ],
+          "foot": [
+            857,
+            990
+          ],
+          "head": [
+            790,
+            611
+          ],
+          "grip": [
+            674,
+            642
+          ],
+          "muzzle": [
+            570,
+            566
+          ],
+          "body_height": 379,
+          "weapon_axis": [
+            -104,
+            -76
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_SW_NW_v1.png"
+        },
+        "recovery": {
+          "region": [
+            1061,
+            606,
+            443,
+            393
+          ],
+          "foot": [
+            1321,
+            992
+          ],
+          "head": [
+            1228,
+            614
+          ],
+          "grip": [
+            1177,
+            825
+          ],
+          "muzzle": [
+            1071,
+            856
+          ],
+          "body_height": 378,
+          "weapon_axis": [
+            -106,
+            31
+          ],
+          "texture": "res://assets/generated/heroes/CH01_directional_SW_NW_v1.png"
+        }
+      }
+    }
+  }
+}

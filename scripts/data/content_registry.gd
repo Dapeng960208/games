@@ -1,6 +1,7 @@
 class_name ContentRegistry
 extends RefCounted
 const Progression = preload("res://scripts/core/hero_progression.gd")
+const ClassPolicy = preload("res://scripts/core/equipment_class_policy.gd")
 const Rules = preload("res://config/numerical_rules.gd")
 ## Immutable-by-copy static definitions. Combat state and ownership never live here.
 
@@ -42,7 +43,11 @@ static func slots(ruleset: int = 1) -> Array[String]:
 
 static func equipment(id: String, ruleset: int = 1) -> Dictionary:
 	var catalog := _v2_equipment() if ruleset == 2 else _equipment
-	return catalog.get(id, {}).duplicate(true)
+	var result: Dictionary = catalog.get(id, {}).duplicate(true)
+	if ruleset == 2 and not result.is_empty():
+		result["allowed_heroes"] = ClassPolicy.allowed_heroes(str(result.get("set_id", "")))
+		result["class_policy_version"] = ClassPolicy.VERSION
+	return result
 
 static func equipment_ids(ruleset: int = 1) -> Array:
 	var catalog := _v2_equipment() if ruleset == 2 else _equipment
@@ -54,6 +59,9 @@ static func sets(ruleset: int = 1) -> Dictionary:
 	# Fourteen eight-piece sets still use the same 2/4/6 thresholds.
 	var result := _sets.duplicate(true)
 	if ruleset == 2:
+		for set_id: String in result:
+			result[set_id]["allowed_heroes"] = ClassPolicy.allowed_heroes(set_id)
+			result[set_id]["class_policy_version"] = ClassPolicy.VERSION
 		var materials: Dictionary = Rules.value("shop_set_races", {})
 		for set_id: String in materials:
 			if result.has(set_id): result[set_id]["race_id"] = str(materials[set_id])

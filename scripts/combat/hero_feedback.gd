@@ -716,9 +716,11 @@ func _draw_charge(pose: Dictionary, quality: float) -> void:
 			_diamond(at+ray*(25.0-value*9.0),ray,4.0+value*3.0,Color("c9fff1",.95*quality))
 		if slot in ["secondary","ultimate"] and not _cast.is_empty():
 			var ground: Vector2 = Vector2(_cast.target)-actor.position
-			var radius: float = 35.0 if slot == "secondary" else float(_cast.get("radius",180.0))*.65
+			var radius: float = float(_cast.get("burst_radius",35.0)) if slot == "secondary" else float(_cast.get("radius",180.0))
+			draw_arc(ground,radius,0,TAU,64,Color(CYAN,(.32+value*.30)*maxf(.6,quality)),1.6,true)
 			_rune_polygon(ground,radius,6,PI/6,Color("9551ef",value*.68*quality),3.0)
 		elif slot == "f":
+			draw_arc(Vector2.ZERO,float(_cast.get("radius",140.0)),0,TAU,64,Color(CYAN,(.32+value*.25)*maxf(.6,quality)),1.6,true)
 			_rune_polygon(Vector2(0,5),28+value*15,6,PI/6,Color("9f5afd",value*.85*quality),3.5)
 	elif hero == "CH02":
 		var direction: Vector2 = pose.direction

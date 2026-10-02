@@ -22,6 +22,28 @@ const VARIANT_MANIFESTS: Array[String] = [
 	"res://assets/generated/enemies/storybook_B04_reinforcements_v1.regions.json",
 	"res://assets/generated/enemies/storybook_B03_shovels_v1.regions.json",
 ]
+# Individual native HD bodies for appended species; manifests carry the true
+# alpha bounds and feet. Missing art never substitutes another new identity.
+const EXPANSION_MANIFESTS: Array[String] = [
+	"res://assets/generated/enemies/M37_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M38_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M39_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M40_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M41_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M42_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M43_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M44_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M45_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M46_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M47_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M48_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M49_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M50_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M51_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M52_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M53_storybook_body_v1.regions.json",
+	"res://assets/generated/enemies/M54_storybook_body_v1.regions.json",
+]
 static var _entries: Dictionary = {}
 static var _variants: Dictionary = {}
 static var _skill_icons: Dictionary = {}
@@ -64,8 +86,13 @@ static func install(actor: Node2D) -> Dictionary:
 	if entry.is_empty() or bool(actor.get("static_actor")):
 		return {}
 	var old_bounds: Rect2 = actor.get("body_bounds")
-	var height: float = maxf(1.0, old_bounds.size.y) * preload("res://scripts/combat/presentation_metrics.gd").ENEMY_BODY_FACTOR
-	var foot_y: float = old_bounds.end.y
+	# Appended species have no obsolete Mxx_v1 image to initialize bounds.
+	# Register them on the same ordinary-anatomy scale and ground pivot instead
+	# of inheriting the rust-mite fallback's 38-pixel foot position.
+	var standalone: bool = bool(entry.get("individual_body", false))
+	var native_height: float = clampf(float(actor.get("navigation_radius")) * 3.8, 66.0, 88.0) if standalone else maxf(1.0, old_bounds.size.y)
+	var height: float = native_height * preload("res://scripts/combat/presentation_metrics.gd").ENEMY_BODY_FACTOR
+	var foot_y: float = 18.0 if standalone else old_bounds.end.y
 	var region: Rect2 = entry.region
 	var source_foot: Vector2 = entry.foot
 	var factor: float = height / float(entry.source_height)
@@ -87,7 +114,7 @@ static func _ensure_loaded() -> void:
 	if _loaded:
 		return
 	_loaded = true
-	for manifest_path: String in MANIFESTS:
+	for manifest_path: String in MANIFESTS + EXPANSION_MANIFESTS:
 		if not FileAccess.file_exists(manifest_path):
 			continue
 		var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
@@ -109,6 +136,7 @@ static func _ensure_loaded() -> void:
 			parsed["texture_path"] = texture_path
 			parsed["source_family"] = FAMILY
 			parsed["biome_id"] = str(raw.get("biome_id", ""))
+			parsed["individual_body"] = manifest_path in EXPANSION_MANIFESTS
 			parsed["visual_clan"] = str(raw.get("visual_clan", ""))
 			_entries[identity] = parsed
 	_load_variants()

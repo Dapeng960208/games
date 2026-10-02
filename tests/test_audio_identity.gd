@@ -70,7 +70,7 @@ func _test_score() -> void:
 		check(pitches.size() >= 15 and instruments.size() >= 3, context + " has melody, harmony and multiple instruments")
 		fingerprints[hash(samples)] = true
 		event_counts[context] = track.note_events
-	check(fingerprints.size() == 4, "four contexts use different actual music")
+	check(fingerprints.size() == Music.CONTEXTS.size(), "all contexts use different actual music")
 	check(int(event_counts.get("combat", 0)) > int(event_counts.get("explore", 0)) * 2, "combat adds a substantially denser rhythmic arrangement")
 	check(Music.stream_for("invalid") == null, "unknown context cannot load arbitrary resources")
 	check(Audio.SAMPLE_PEAK * Audio.VOICE_GAIN * Audio.MAX_VOICES + 0.58 * Music.MUSIC_GAIN < 0.95, "music plus eight correlated SFX voices retains master headroom")
@@ -131,6 +131,14 @@ func _test_director(game: Node) -> void:
 	check(director.current_context == "boss" and director.active_stream_count() == 2, "latest queued context replaces obsolete requests")
 	director.advance(1.3)
 	check(director.active_stream_count() == 1 and not director.is_transitioning(), "outgoing music releases after the crossfade")
+	for workshop_context: String in ["craft", "forge", "craft", "camp"]:
+		director.set_context(workshop_context)
+		for repeat_index in 10: director.set_context(workshop_context)
+		check(director.active_stream_count() <= 2, "workshop switching never stacks music")
+		director.advance(1.3)
+		check(director.current_context == workshop_context and director.active_stream_count() == 1, "workshop context settles and leaving returns to camp")
+	director.set_context("boss")
+	director.advance(1.3)
 	director.set_mix(0.5, 0.4, 0.8)
 	check(is_equal_approx(director.effective_music_gain(), Music.MUSIC_GAIN * 0.2), "master/music volume multiply once")
 	paused = true

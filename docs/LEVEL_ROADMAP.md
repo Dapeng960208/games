@@ -26,6 +26,7 @@
 | COM06 P0 | 野怪攻击射程与稳定仇恨已补修；真实main暂停恢复检查通过，原整群停止现场待重启复核 | enemy.gd、enemy_brain.gd、tests/test_enemy_attack_flow.gd、tests/test_enemy_live_room.gd | 侧移及辅助转近战按实际招式接近，保留完整预警；节点失效/普攻仇恨正常；真实B03→L15原生首波与M开关均能攻击，现场运行进程早于修复写入，未确认原整群停止根因 |
 | COM07 P1 | 599普通怪身体外观与36施法徽章已接入并检查 | enemy_art.gd、enemy_visual.gd、room.gd、docs/ENEMY_VARIANTS.md | 独立房间累计分配，真实纹理/region去重；120个普通房/难度有限计划重复率0%，L15/L19极限真实生成已检查；技能召唤重复率、完整逐帧动画与主观密集群战可读性待完善 |
 | COM08 P0 | 首领贴身空招、静止岩缝与断层中缝已修复；具名战士极限站撸基准通过 | boss_brain.gd、boss_ability_catalog.gd、tests/test_boss_targeting.gd、tests/test_boss_stationary.gd | 按真实危险环与身体半径选招，不消耗轮换；静止岩缝与瞄准断层实伤、锁后侧移实躲已检查；原生Lv12／Lv20 S06＋RL03 II战士持续普攻及W/E/R均死亡，28项0失败；保留完整预警与反制，其他临时构筑和自然平衡继续游玩校调 |
+| COM09 P0 | 四关9/12/15/18种、真实新机制/难度技能、原生身体及短预警已接入并定向验证；最终GPU呈现在验收 | enemy_ability_catalog.gd、enemy_warning_timing.gd、enemy_brain.gd、boss_brain.gd、enemy_skill_runtime.gd、enemy_profiles.gd、monster_codex.gd | 54种全技能及D1–D4门槛共源；18新机制实效/反制；54种施法UI；高清身体/图鉴身份；对应关卡和数值文档同步，详见ORDINARY_MONSTER_EXPANSION.md；S11仍暂停 |
 | UI01 P1 | 装备／属性／页头重构、六类 v5 按钮和确认操作等宽已接入并截图检查 | scripts/ui/style.gd、button_skin.gd、main.gd、equipment_catalog.gd、equipment_details.gd、backpack_panel.gd、hud.gd | 中英文 51 状态共 102 张 1280×720 GPU 截图已审查；装备页另查三窗口；焦点／禁用态、真实数值与成对按钮已检查；新增界面继续按实际改动校对，证据见 UI_SCREENSHOT_AUDIT.md |
 | ANIM01 P2 | 完整角色动作和附件 | hero_art_family.gd、hero_walk_atlas.gd、hero_basic_atlas.gd、hero_skill_atlas.gd | 头像身份、身体高度、脚点一致；补连续动作与必要朝向；枪口锚点一致，拒收候选不启用 |
 
@@ -76,6 +77,5 @@ MAP01 不能整房字典覆盖运行数据。本轮通过独立表现配置只�
 ## 交付要求
 
 每次更新真实进度和待办，给出运行代码与资源，做直接相关的检查或短段实机观察，提交便于 diff 的版本。素材记录纹理、region、脚点和来源。主观手感未确认就如实保留，不扩大 review 或重复全量测试。
-
 
 三职业后续工作：[定位、八向动作、技能手感、成长与职业装备详细方案](character-optimization/ROLE_OPTIMIZATION_2026-10-02.md)。当前为逐项实施方案；未验证项目保持待完成，S11全量自然平衡仍暂停。

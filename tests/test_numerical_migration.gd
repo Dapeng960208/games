@@ -101,8 +101,8 @@ func _initialize() -> void:
 	check(item.item_level == 20 and item.rarity == "purple" and item.enhancement_rank == 5, "highest old hero sets ilvl and high N is retained")
 	check(item.power_type == "physical" and converted_item(migrated,"EQ04").power_type == "magic" and converted_item(migrated,"EQ02").power_type == "physical", "active class overrides AP tendency; unreferenced AP falls back magic")
 	check(item.legacy_equip_waiver == {"hero_ids":["CH01","CH03"],"type":true,"level":true,"level_hero_ids":["CH01","CH03"]} and item.legacy.template_id == "EQ03", "restricted waiver retains only actual original references")
-	check(Instances.can_equip(item,"CH01",8) and Instances.can_equip(item,"CH03",4) and not Instances.can_equip(item,"CH02",1), "old references keep type+level; new hero gets no waiver")
-	check(migrated.loadout.weapon == migrated.loadout_presets.CH03.weapon and migrated.equipment.size() == old.equipment.size(), "multiclass preset shares one stable identity")
+	check(not Instances.can_equip(item,"CH01",8) and Instances.can_equip(item,"CH03",4) and not Instances.can_equip(item,"CH02",1), "old type+level rights do not bypass mage-only set qualification")
+	check(migrated.loadout.weapon == "" and migrated.loadout_presets.CH03.weapon == item.instance_id and migrated.equipment.size() == old.equipment.size(), "incompatible active slot emptied while mage preset and all owned identities remain")
 	check(item.affix_type_and_quantile == [{"type":"attack","u":50},{"type":"armor_penetration","u":50},{"type":"crit_chance","u":50}], "legal authored tendencies precede stable config fill")
 	check(Instances.main_stats(item).attack == 395, "max-level purple +5 midpoint exact main stat")
 	var expected_prices := [63,95,142,205,283]
@@ -119,7 +119,7 @@ func _initialize() -> void:
 	mage_selected.loadout_presets.CH02 = mage_selected.loadout.duplicate(true)
 	mage_selected.loadout_presets.CH02.head = "EQ13" # Known but no longer owned.
 	var mage_result := Migration.migrate_profile(mage_selected)
-	check(converted_item(mage_result,"EQ03").power_type == "magic" and Instances.can_equip(converted_item(mage_result,"EQ03"),"CH01",8), "active mage preset type wins and prior physical class retains restricted compatibility")
+	check(converted_item(mage_result,"EQ03").power_type == "magic" and not Instances.can_equip(converted_item(mage_result,"EQ03"),"CH01",8) and Instances.can_equip(converted_item(mage_result,"EQ03"),"CH03",4), "active mage type retained and former physical holder cannot bypass exclusive set")
 	check(mage_result.branches == mage_selected.branches and mage_result.loadout_presets.CH02.head == "", "real learned branches retained and stale unowned preset creates no item")
 	var duplicate_paid := old.duplicate(true)
 	duplicate_paid.applied_transactions["duplicate:rank5"] = duplicate_paid.applied_transactions["paid:z"].duplicate(true)

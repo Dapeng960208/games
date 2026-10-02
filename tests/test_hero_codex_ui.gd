@@ -26,7 +26,8 @@ func frames(count: int = 3) -> void:
 func capture(id: String) -> void:
 	if DisplayServer.get_name() == "headless": return
 	await RenderingServer.frame_post_draw
-	get_viewport().get_texture().get_image().save_png("/tmp/ui-codex-test/"+id+".png")
+	DirAccess.make_dir_recursive_absolute("res://artifacts/codex-skills")
+	check(get_viewport().get_texture().get_image().save_png("res://artifacts/codex-skills/"+id+".png") == OK,"actual capture saved: "+id)
 
 func _run() -> void:
 	game = get_tree().root.get_node("Game")
@@ -42,8 +43,8 @@ func _run() -> void:
 	var closed := {"value":false}
 	guide.configure(func(): closed.value = true)
 	await frames()
-	check(Codex.entry_ids().size() == 40,"36 actual enemy and four actual boss IDs")
-	check(guide.filtered_ids().size() == 40,"all entries visible initially")
+	check(Codex.entry_ids().size() == 58,"54 actual enemy and four actual boss IDs")
+	check(guide.filtered_ids().size() == 58,"all entries visible initially")
 	for id: String in Codex.entry_ids():
 		guide._show_entry(id)
 		var profile: Dictionary = guide.detail.get_meta("resolved_profile")
@@ -71,7 +72,7 @@ func _run() -> void:
 			check(not str(profile.get("tell","")).is_empty() and not str(profile.get("counter","")).is_empty(),id+" source-backed tell and counterplay")
 	for biome: String in ["B01","B02","B03","B04"]:
 		guide._set_biome(biome)
-		check(guide.filtered_ids().size() == 10,biome+" contains nine enemies and one boss")
+		check(guide.filtered_ids().size() == {"B01":10,"B02":13,"B03":16,"B04":19}[biome],biome+" progressive ordinary roster plus one boss")
 	guide._set_biome("all")
 	guide.kind_filter = "boss"; guide._refresh_grid()
 	check(guide.filtered_ids().size() == 4,"boss-only filter")

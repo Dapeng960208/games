@@ -38,6 +38,10 @@ func configure(item: Dictionary, level: int, width: float, hero_id: String, befo
 
 	if item.get("instance_record") is Dictionary:
 		var record: Dictionary = item.instance_record
+		_line(Inspect.Eligibility.label(item),width,15).name = "EquipmentClassEligibility"
+		_line(Inspect.Eligibility.affinity(record,hero_id),width,13,MineStyle.MUTED)
+		var qualification := Inspect.Eligibility.reason(record,hero_id,Game.run.level if Game.run != null else Game.hero_level(hero_id))
+		if not qualification.is_empty(): _line(qualification,width,14,MineStyle.RED)
 		_line("iLv %d · %s · %s" % [int(record.item_level),Inspect.rarity_name(str(record.rarity)),Inspect.type_name(str(record.power_type))],width,15,Inspect.rarity_color(item)).name = "InstanceIdentity"
 		var identity := _line(Inspect.t("实例：","Instance: ")+str(record.instance_id),width,11,MineStyle.MUTED)
 		identity.name = "InstanceId"

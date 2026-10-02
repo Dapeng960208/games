@@ -131,7 +131,7 @@ func _run() -> void:
 		quit(1)
 		return
 	catalog = document.get("enemies", {})
-	_check(catalog.size() == 36, "all 36 ordinary prototypes are represented")
+	_check(catalog.size() == 54, "all 54 ordinary prototypes are represented")
 	_all_prototypes_and_tiers()
 	_lock_is_a_snapshot()
 	_spawn_and_invalid_targets()

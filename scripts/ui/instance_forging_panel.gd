@@ -7,7 +7,7 @@ const Numbers = preload("res://config/numerical_rules.gd")
 const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
 const RARITY_NAMES := {"white":["白色","White"],"green":["绿色","Green"],"purple":["紫色","Purple"],"gold":["金色","Gold"]}
 const KINDS := ["enhance","enhancement_reroll","reforge","refine","inherit","sell","dismantle"]
-const TITLES := {"enhance":["强化","Enhance"],"enhancement_reroll":["阶重锻","Reroll step"],"reforge":["词条重铸","Reforge"],"refine":["词条精炼","Refine"],"inherit":["强化继承","Inherit"],"sell":["出售","Sell"],"dismantle":["拆解","Dismantle"]}
+const TITLES := {"enhance":["强化","Enhance"],"enhancement_reroll":["调整强化加成","Adjust upgrade bonus"],"reforge":["更换词条","Replace affix"],"refine":["提升词条","Improve affix"],"inherit":["转移强化","Transfer upgrades"],"sell":["出售","Sell"],"dismantle":["分解","Dismantle"]}
 
 static func _t(zh: String,en: String) -> String:
 	return en if Words.locale == "en" else zh
@@ -57,7 +57,7 @@ static func render(panel: Control,recycling: bool = false) -> void:
 	ids.sort()
 	if not panel.selected_item in ids: panel.selected_item = str(ids[0]) if not ids.is_empty() else ""
 	var left := MineStyle.panel(panel.body,Vector2.ZERO,Vector2(238,510))
-	_label(left,_t("装备实例","EQUIPMENT"),Vector2(14,12),Vector2(210,30),19)
+	_label(left,_t("选择装备","CHOOSE EQUIPMENT"),Vector2(14,12),Vector2(210,30),19)
 	var scroll := ScrollContainer.new()
 	scroll.name = "ForgeInventory"
 	scroll.position = Vector2(12,54)
@@ -84,7 +84,11 @@ static func render(panel: Control,recycling: bool = false) -> void:
 		button.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		button.tooltip_text = id+"\n"+_power_title(str(record.power_type))+" · "+str(record.location)
 		button.disabled = _locked(panel)
-		if id == panel.selected_item: MineStyle.selected(button,"socket")
+		if id == panel.selected_item:
+			MineStyle.selected(button,"socket")
+			caption.text = "✓ "+caption.text
+			caption.add_theme_color_override("font_color",MineStyle.CYAN)
+			scroll.call_deferred("ensure_control_visible",button)
 	var right := Control.new()
 	right.position = Vector2(254,0)
 	right.size = Vector2(962,510)
@@ -102,7 +106,8 @@ static func render(panel: Control,recycling: bool = false) -> void:
 	var title := _label(right,MineStyle.content_text(item,"name")+" +"+str(int(record.enhancement_rank)),Vector2(20,217),Vector2(554,33),24)
 	title.name = "ForgeItemName"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var identity := _label(right,"iLv%d · %s · %s · %s" % [int(record.item_level),_rarity_title(str(record.rarity)),_power_title(str(record.power_type)),str(record.instance_id)],Vector2(20,255),Vector2(554,23),12)
+	var identity := _label(right,"iLv%d · %s · %s" % [int(record.item_level),_rarity_title(str(record.rarity)),_power_title(str(record.power_type))],Vector2(20,255),Vector2(554,23),12)
+	identity.tooltip_text = _t("实例编号：","Instance ID: ")+str(record.instance_id)
 	identity.name = "ForgeInstanceIdentity"
 	identity.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	identity.autowrap_mode = TextServer.AUTOWRAP_OFF
@@ -113,17 +118,40 @@ static func render(panel: Control,recycling: bool = false) -> void:
 	lock_button.text = _t("解锁装备","Unlock gear") if record.lock_state else _t("锁定装备","Lock gear")
 	lock_button.add_theme_font_size_override("font_size",14)
 	lock_button.disabled = _locked(panel) or record.has("pending_reforge")
-	var kinds: Array = ["sell","dismantle"] if recycling else KINDS
+	var kinds: Array = ["sell","dismantle"] if recycling else ["enhance","enhancement_reroll","reforge","refine","inherit"]
 	if not panel.forge_kind in kinds and panel.forge_transaction_id.is_empty(): panel.forge_kind = str(kinds[0])
-	var tab_width := 934.0 / kinds.size()
-	for index in kinds.size():
-		var kind: String = kinds[index]
-		var tab := MineStyle.button(right,"",Vector2(14+index*tab_width,8),Vector2(tab_width-6,40),func(): _change(panel,"forge_kind",kind))
-		tab.name = "ForgeAction_"+kind
-		tab.text = _title(kind)
-		tab.add_theme_font_size_override("font_size",14)
-		tab.disabled = _locked(panel)
-		MineStyle.tab(tab,kind == panel.forge_kind)
+	if recycling:
+		for index: int in 2:
+			var action_kind: String = kinds[index]
+			var tab := MineStyle.button(right,"",Vector2(14+index*320,8),Vector2(306,40),func(): _change(panel,"forge_kind",action_kind))
+			tab.name = "ForgeAction_"+action_kind
+			tab.text = _title(action_kind)
+			tab.disabled = _locked(panel)
+			MineStyle.tab(tab,panel.forge_kind == action_kind)
+	else:
+		var goals := [["enhance",_t("提升装备","UPGRADE GEAR"),["enhance","enhancement_reroll"]],["reforge",_t("调整词条","CHANGE AFFIXES"),["reforge","refine"]],["inherit",_t("转移强化","TRANSFER UPGRADES"),["inherit"]]]
+		for index: int in goals.size():
+			var goal: Array = goals[index]
+			var tab := MineStyle.button(right,"",Vector2(14+index*260,8),Vector2(252,40),func(): _change(panel,"forge_kind",goal[0]))
+			tab.name = "ForgeGoal_"+str(goal[0])
+			tab.text = str(goal[1])
+			tab.add_theme_font_size_override("font_size",14)
+			tab.disabled = _locked(panel)
+			MineStyle.tab(tab,panel.forge_kind in goal[2])
+		var recycle := MineStyle.button(right,"",Vector2(808,8),Vector2(140,40),func(): panel.inventory_recycle = true; panel._switch_page("inventory"))
+		recycle.name = "OpenForgeRecycling"
+		recycle.text = _t("回收装备","RECYCLE")
+		recycle.disabled = _locked(panel)
+		var options: Array = ["enhance","enhancement_reroll"] if panel.forge_kind in ["enhance","enhancement_reroll"] else ["reforge","refine"] if panel.forge_kind in ["reforge","refine"] else []
+		for index: int in options.size():
+			var action_kind: String = options[index]
+			var option := MineStyle.button(right,"",Vector2(14,87+index*44),Vector2(198,36),func(): _change(panel,"forge_kind",action_kind))
+			option.custom_minimum_size.y = 36
+			option.name = "ForgeAction_"+action_kind
+			option.text = _title(action_kind)
+			option.add_theme_font_size_override("font_size",12)
+			option.disabled = _locked(panel)
+			if action_kind == panel.forge_kind: MineStyle.selected(option)
 	if record.has("pending_reforge"):
 		_render_pending(panel,right,record)
 		return
@@ -134,23 +162,25 @@ static func render(panel: Control,recycling: bool = false) -> void:
 		request = panel.forge_frozen_request.duplicate(true)
 	var quote: Dictionary = Game.call("quote_forging_v2",kind,request) if Game.has_method("quote_forging_v2") else {"ok":false,"error":"FORGE_NOT_READY"}
 	var detail_rows := _detail_scroll(right,"ForgeDetails",Vector2(20,292),Vector2(554,203))
-	_text_row(detail_rows,_state_text(record),"ForgeStepList")
-	_text_row(detail_rows,_preview_text(record,quote,kind),"ForgeIntegerPreview")
-	_text_row(detail_rows,_rules_text(kind,record,panel.forge_rank),"ForgeRuleExplanation")
 	if not panel.forge_result_details.is_empty(): _text_row(detail_rows,panel.forge_result_details,"ForgeLastResult")
+	_text_row(detail_rows,_preview_text(record,quote,kind),"ForgeIntegerPreview")
+	_text_row(detail_rows,_purpose(kind),"ForgePurpose")
+	_add_advanced_details(detail_rows,_affix_text(record)+"\n"+_state_text(record)+"\n"+_rules_text(kind,record,panel.forge_rank)+"\n"+_cost_text(quote,kind,record))
 	MineStyle.divider(right,Vector2(630,188),312)
 	var costs := _detail_scroll(right,"ForgeCostsScroll",Vector2(630,202),Vector2(312,207))
-	_text_row(costs,_cost_text(quote,kind,record),"ForgeCost")
+	_text_row(costs,_reward_text(quote,kind) if kind in ["sell","dismantle"] else _brief_cost(quote),"ForgeCost")
 	var message: String = panel.forge_message
 	if message.is_empty() and not bool(quote.get("ok",false)): message = error_text(str(quote.get("error","")))
 	if message.is_empty() and not _affordable(quote): message = _t("金币或材料不足。","Not enough gold or materials.")
-	_label(right,message,Vector2(630,417),Vector2(312,36),13).name = "ForgeResult"
+	var result_label := _label(right,message,Vector2(630,417),Vector2(312,36),13)
+	result_label.name = "ForgeResult"
+	result_label.add_theme_color_override("font_color",MineStyle.CYAN if bool(quote.get("ok",false)) and _affordable(quote) else Color("a14d3c"))
 	var retry: bool = not panel.forge_transaction_id.is_empty()
 	var action := MineStyle.button(right,"",Vector2(630,464),Vector2(184 if retry else 312,34),func(): _confirm_or_submit(panel,kind,request,quote))
 	action.custom_minimum_size.y = 34
 	MineStyle.primary(action)
 	action.name = "PrimaryAction"
-	action.text = _t("重试同一交易并保存","Retry same transaction and save") if retry else _title(kind)+_t("并保存"," and save")
+	action.text = _t("重试同一交易并保存","Retry same transaction and save") if retry else _t("确认", "Confirm ")+_title(kind)
 	action.disabled = panel.busy or (not retry and (not bool(quote.get("ok",false)) or not _affordable(quote)))
 	panel.action_button = action
 	if retry: _cancel_retry_button(panel,right)
@@ -183,10 +213,13 @@ static func _selectors(panel: Control,right: Control,record: Dictionary) -> Dict
 		request["rank"] = panel.forge_rank
 	elif kind in ["reforge","refine"]:
 		var labels: Array = []
-		for affix: Dictionary in record.affix_type_and_quantile: labels.append(_caption(str(affix.type))+" · u"+str(int(affix.u)))
+		for index in record.affix_type_and_quantile.size():
+			var affix: Dictionary = record.affix_type_and_quantile[index]
+			labels.append(_t("槽%d · ","Slot %d · ") % (index+1)+_caption(str(affix.type))+" · u"+str(int(affix.u)))
 		panel.forge_affix_index = clampi(panel.forge_affix_index,0,maxi(0,labels.size()-1))
 		if kind == "reforge" and int(record.reforge_slot) >= 0: panel.forge_affix_index = int(record.reforge_slot)
-		var chooser := _choice(right,"ForgeAffix",Vector2(630,94),Vector2(312,35),labels,panel.forge_affix_index,_locked(panel) or (kind == "reforge" and int(record.reforge_slot) >= 0))
+		_label(right,_t("选择词条槽 · u为品质分位（0–100）","AFFIX SLOT · u = quality percentile (0–100)"),Vector2(630,85),Vector2(312,23),12)
+		var chooser := _choice(right,"ForgeAffix",Vector2(630,111),Vector2(312,32),labels,panel.forge_affix_index,_locked(panel) or (kind == "reforge" and int(record.reforge_slot) >= 0))
 		chooser.item_selected.connect(func(index: int): _change(panel,"forge_affix_index",index))
 		request["affix_index"] = panel.forge_affix_index
 		if kind == "reforge":
@@ -196,7 +229,7 @@ static func _selectors(panel: Control,right: Control,record: Dictionary) -> Dict
 			if not panel.forge_affix_type in legal: panel.forge_affix_type = str(legal[0]) if not legal.is_empty() else ""
 			var names: Array = []
 			for type: String in legal: names.append(_caption(type))
-			var type_choice := _choice(right,"ForgeAffixType",Vector2(630,144),Vector2(312,35),names,legal.find(panel.forge_affix_type),_locked(panel))
+			var type_choice := _choice(right,"ForgeAffixType",Vector2(630,152),Vector2(312,32),names,legal.find(panel.forge_affix_type),_locked(panel))
 			type_choice.item_selected.connect(func(index: int): _change(panel,"forge_affix_type",legal[index]))
 			request["affix_type"] = panel.forge_affix_type
 	elif kind == "inherit":
@@ -214,7 +247,7 @@ static func _selectors(panel: Control,right: Control,record: Dictionary) -> Dict
 		request = {"hero_id":Game.profile.selected_hero,"target_instance_id":record.instance_id,"source_instance_id":panel.forge_source_instance_id,
 			"target_revision":int(record.get("forge_revision",0)),"source_revision":int(Game.profile.equipment.get(panel.forge_source_instance_id,{}).get("forge_revision",0))}
 	else:
-		_label(right,_t("角色等级%d · 强化门槛 Lv5/10/15/20 → +3/+5/+8/+10","Hero Lv%d · Enhancement gates Lv5/10/15/20 → +3/+5/+8/+10") % Game.hero_level(),Vector2(630,94),Vector2(312,85),14)
+		_label(right,_t("当前 +%d → +%d\n可强化至 +%d","Current +%d → +%d\nUpgrade limit +%d") % [int(record.enhancement_rank),mini(int(record.enhancement_rank)+1,preload("res://scripts/core/instance_forging.gd").manual_cap(Game.hero_level())),preload("res://scripts/core/instance_forging.gd").manual_cap(Game.hero_level())],Vector2(630,94),Vector2(312,85),14)
 	return request
 
 static func _detail_scroll(owner: Control,id: String,at: Vector2,extent: Vector2) -> VBoxContainer:
@@ -234,7 +267,7 @@ static func _text_row(rows: VBoxContainer,text: String,id: String) -> void:
 	if text.is_empty(): return
 	var label := _label(rows,text,Vector2.ZERO,Vector2(rows.custom_minimum_size.x,0),14)
 	label.name = id
-	if id == "ForgeIntegerPreview":
+	if id in ["ForgeIntegerPreview","ForgeLastResult","PendingReforgeStats"]:
 		label.add_theme_font_size_override("font_size",16)
 		label.add_theme_color_override("font_color",MineStyle.CYAN)
 	elif id in ["ForgeStepList","ForgeRuleExplanation"]:
@@ -266,16 +299,25 @@ static func _format(key: String,value: Variant) -> String:
 	if affix.get("scaling") == "percent" or key in Inspect.RATIOS or key == "move_speed": return "%.1f%%" % (float(value)*100.0)
 	return str(int(value))
 
-static func _stat_lines(before: Dictionary,after: Dictionary) -> String:
+static func _stat_lines(before: Dictionary,after: Dictionary,changed_only: bool = true) -> String:
 	var lines: PackedStringArray = []
 	for key: String in before:
 		if not after.has(key): continue
+		if changed_only and is_equal_approx(float(before[key]),float(after[key])): continue
 		lines.append(_caption(key)+": "+_format(key,before[key])+" → "+_format(key,after[key]))
-	return "\n".join(lines)
+	return "\n".join(lines) if not lines.is_empty() else _t("数值未变化","No stat changes")
+
+static func _affix_text(record: Dictionary) -> String:
+	var values := Instances.affix_stats(record)
+	var lines: PackedStringArray = [_t("当前词条","CURRENT AFFIXES")]
+	for index in record.affix_type_and_quantile.size():
+		var affix: Dictionary = record.affix_type_and_quantile[index]
+		lines.append(_t("槽%d · ","Slot %d · ") % (index+1)+_caption(str(affix.type))+"  "+_format(str(affix.type),values.get(affix.type,0))+"  (u%d)" % int(affix.u))
+	return "\n".join(lines) if lines.size() > 1 else _t("此品质没有普通随机词条","This quality has no random affixes")
 
 static func _preview_text(record: Dictionary,quote: Dictionary,kind: String) -> String:
 	var before: Dictionary = quote.get("before_main_stats",Instances.main_stats(record))
-	var lines: PackedStringArray = [_t("主属性整数预览","MAIN ATTRIBUTE PREVIEW")]
+	var lines: PackedStringArray = [_t("属性变化","STAT CHANGES")]
 	if kind == "enhance" and quote.has("after_main_stats_min"):
 		for key: String in before:
 			lines.append(_caption(key)+": "+_format(key,before[key])+" → "+_format(key,quote.after_main_stats_min.get(key,0))+"–"+_format(key,quote.after_main_stats_max.get(key,0)))
@@ -298,7 +340,7 @@ static func _preview_text(record: Dictionary,quote: Dictionary,kind: String) -> 
 	if kind == "inherit" and quote.has("after_steps"):
 		var source_id := str(quote.get("request",{}).get("source_instance_id",""))
 		var source: Dictionary = Game.profile.equipment.get(source_id,{})
-		if not source.is_empty(): lines.append(_t("来源实例：","Source instance: ")+source_id+"\n"+_state_text(source))
+		if not source.is_empty(): lines.append(_t("来源装备：","Source gear: ")+MineStyle.content_text(Registry.equipment(str(source.template_id),2),"name")+"\n"+_state_text(source))
 		var after_record := record.duplicate(true)
 		after_record.enhancement_steps = quote.after_steps.duplicate(true)
 		lines.append(_t("目标 F %.2f → %.2f；来源强化归 +0","Target F %.2f → %.2f; source becomes +0") % [_factor(record),_factor(after_record)])
@@ -330,8 +372,10 @@ static func _rules_text(kind: String,record: Dictionary,rank: int) -> String:
 	return ""
 
 static func _material_name(id: String) -> String:
-	if id == "forge": return _t("锻材","Forge material")
-	return id.get_slice(":",1)+(_t("族材"," material") if id.begins_with("race:") else _t("核心"," core"))
+	if id == "forge": return _t("通用锻材","Forge material")
+	var biome: Dictionary = preload("res://scripts/world/world_catalog.gd").biomes().get(id.get_slice(":",1),{})
+	var region := MineStyle.content_text(biome,"name",id.get_slice(":",1))
+	return region+(_t("材料"," material") if id.begins_with("race:") else _t("核心"," core"))
 
 static func _cost_text(quote: Dictionary,kind: String,record: Dictionary = {}) -> String:
 	if not quote.has("gold"): return _t("暂不可操作：","Unavailable: ")+error_text(str(quote.get("error","")))
@@ -384,13 +428,39 @@ static func _affordable(quote: Dictionary) -> bool:
 
 static func _render_pending(panel: Control,right: Control,record: Dictionary) -> void:
 	var pending: Dictionary = record.pending_reforge
-	_label(right,_t("已付款的冻结候选 · 退出/重载不重抽","PAID, FROZEN CANDIDATE · REOPENING DOES NOT REROLL"),Vector2(630,91),Vector2(312,93),18).name = "PendingReforge"
+	_label(right,_t("选择重铸结果","CHOOSE REFORGE RESULT"),Vector2(630,91),Vector2(312,48),20).name = "PendingReforge"
+	_label(right,_t("已付款 · 槽位 %d 已绑定","PAID · SLOT %d BOUND") % (int(pending.affix_index)+1),Vector2(630,146),Vector2(312,30),15).add_theme_color_override("font_color",MineStyle.CYAN)
 	var request := {"hero_id":Game.profile.selected_hero,"instance_id":record.instance_id,"expected_revision":int(record.get("forge_revision",0)),"pending_operation_id":pending.operation_id,"choice":"replace"}
 	var quote: Dictionary = Game.call("quote_forging_v2","resolve_reforge",request) if Game.has_method("quote_forging_v2") else {}
-	var rows := _detail_scroll(right,"PendingReforgeDetails",Vector2(20,292),Vector2(554,204))
-	_text_row(rows,_t("旧：","Old: ")+_caption(str(pending.old_affix.type))+" u"+str(int(pending.old_affix.u))+"\n"+_t("新：","New: ")+_caption(str(pending.new_affix.type))+" u"+str(int(pending.new_affix.u)),"PendingReforgeComparison")
-	_text_row(rows,_stat_lines(quote.get("before_stats",{}),quote.get("after_stats",{})),"PendingReforgeStats")
-	_text_row(rows,_t("选择不会再次扣款。保留旧词条也不退还已经支付的费用；绑定槽位保持。","This choice costs nothing further. Keeping the old affix does not refund the paid fee; the slot stays bound."),"PendingReforgeRules")
+	var comparison := Control.new()
+	comparison.name = "PendingReforgeComparison"
+	comparison.position = Vector2(20,288)
+	comparison.size = Vector2(554,110)
+	right.add_child(comparison)
+	var proposed := record.duplicate(true)
+	proposed.affix_type_and_quantile[int(pending.affix_index)] = pending.new_affix.duplicate(true)
+	for index in 2:
+		var affix: Dictionary = pending.old_affix if index == 0 else pending.new_affix
+		var values := Instances.affix_stats(record if index == 0 else proposed)
+		var card := MineStyle.panel(comparison,Vector2(index*284,0),Vector2(270,110))
+		_label(card,_t("保留 · 当前词条","KEEP · CURRENT") if index == 0 else _t("替换 · 冻结候选","REPLACE · CANDIDATE"),Vector2(12,8),Vector2(246,22),13).add_theme_color_override("font_color",MineStyle.MUTED if index == 0 else MineStyle.CYAN)
+		_label(card,_caption(str(affix.type)),Vector2(12,33),Vector2(246,28),17)
+		_label(card,_format(str(affix.type),values.get(affix.type,0))+"   · u%d / 100" % int(affix.u),Vector2(12,68),Vector2(246,29),19).add_theme_color_override("font_color",MineStyle.CYAN if index else MineStyle.INK)
+	var changes := _detail_scroll(right,"PendingReforgeChanges",Vector2(20,410),Vector2(554,85))
+	_text_row(changes,_t("替换后的实际变化","CHANGES IF REPLACED"),"PendingDeltaTitle")
+	_text_row(changes,_stat_lines(quote.get("before_stats",{}),quote.get("after_stats",{})),"PendingReforgeStats")
+	var rows := _detail_scroll(right,"PendingReforgeDetails",Vector2(630,187),Vector2(312,217))
+	_text_row(rows,_t("候选已保存。退出或重载不会重抽。\n\n本次选择不再扣款；保留旧词条不退还已付费用，绑定槽位保持。","Candidate saved. Leaving or reloading never rerolls it.\n\nNo further charge. Keeping the old affix does not refund the paid fee; the slot stays bound."),"PendingReforgeRules")
+	var toggle := Button.new()
+	toggle.text = _t("查看完整属性对照","Show all stat comparisons")
+	toggle.name = "PendingAllStatsToggle"
+	toggle.toggle_mode = true
+	toggle.add_theme_font_size_override("font_size",13)
+	rows.add_child(toggle)
+	_text_row(rows,_stat_lines(quote.get("before_stats",{}),quote.get("after_stats",{}),false),"PendingAllStats")
+	var all_stats := rows.get_node("PendingAllStats") as Label
+	all_stats.hide()
+	toggle.toggled.connect(func(show_all: bool): all_stats.visible = show_all)
 	var message: String = panel.forge_message
 	if message.is_empty() and not bool(quote.get("ok",false)): message = error_text(str(quote.get("error","")))
 	_label(right,message,Vector2(630,414),Vector2(312,39),13).name = "ForgeResult"
@@ -449,20 +519,72 @@ static func _confirm_or_submit(panel: Control,kind: String,request: Dictionary,q
 		return
 	panel.busy = true
 	panel.action_button.disabled = true
-	var modal: Panel = panel.app._push_modal(_t("确认回收这一实例","Confirm recycling this instance"),Vector2(780,460))
+	var modal: Panel = panel.app._push_modal(_t("出售这件装备？","Sell this equipment?") if kind == "sell" else _t("分解这件装备？","Dismantle this equipment?"),Vector2(780,520))
 	modal.name = "ForgeRecycleConfirmation"
-	var rows := _detail_scroll(modal,"ForgeConfirmDetails",Vector2(28,88),Vector2(724,268))
-	_text_row(rows,str(request.instance_id)+"\n"+_cost_text(quote,kind,Game.profile.equipment[request.instance_id])+"\n"+_rules_text(kind,Game.profile.equipment[request.instance_id],1),"ForgeConfirmSummary")
+	var record: Dictionary = Game.profile.equipment[request.instance_id]
+	var item := Registry.equipment(str(record.template_id),2)
+	MineStyle.equipment_icon(modal,item,Vector2(28,88),Vector2(88,88))
+	_label(modal,MineStyle.content_text(item,"name")+" +"+str(int(record.enhancement_rank)),Vector2(134,91),Vector2(616,38),24).name = "ForgeConfirmItem"
+	var identity := _label(modal,_rarity_title(str(record.rarity))+" · Lv."+str(int(record.item_level)),Vector2(134,137),Vector2(616,28),16)
+	identity.tooltip_text = str(record.instance_id)
+	identity.mouse_filter = Control.MOUSE_FILTER_PASS
+	var reward := _label(modal,_reward_text(quote,kind),Vector2(28,200),Vector2(724,143),25)
+	reward.name = "ForgeConfirmReward"
+	reward.add_theme_color_override("font_color",MineStyle.CYAN)
+	_label(modal,_t("确认后这件装备会消失，无法撤销。","This equipment will be removed permanently. This cannot be undone."),Vector2(28,353),Vector2(724,43),17).name = "ForgeConfirmConsequence"
+	var more := MineStyle.button(modal,"",Vector2(28,402),Vector2(306,32),func(): _show_refund_details(panel,quote,kind,record))
+	more.custom_minimum_size.y = 32
+	more.text = _t("查看返还计算细节","How this return is calculated")
+	more.add_theme_font_size_override("font_size",13)
 	modal.get_parent().tree_exiting.connect(func():
 		if is_instance_valid(panel) and panel.is_inside_tree() and panel.busy:
 			panel.busy = false
 			panel._render())
-	var actions := MineStyle.action_pair(modal,"BACK","",382,func(): panel.busy = false; panel.app._pop_modal(); panel._render(),func(): _commit_confirmation(panel,modal,kind,request))
+	var actions := MineStyle.action_pair(modal,"BACK","",448,func(): panel.busy = false; panel.app._pop_modal(); panel._render(),func(): _commit_confirmation(panel,modal,kind,request))
 	actions[0].name = "CancelForgeRecycle"
 	actions[1].name = "ConfirmForgeRecycle"
-	actions[1].text = _title(kind)+_t("这一实例"," this instance")
+	actions[1].text = _t("确认出售","Confirm sale") if kind == "sell" else _t("确认分解","Confirm dismantle")
 	MineStyle.button_skin(actions[1],"danger")
 	actions[0].grab_focus()
+
+static func _purpose(kind: String) -> String:
+	return {
+		"enhance":_t("提高装备的主要属性；本次随机获得8%–12%强化加成。","Improve main stats with a random 8%–12% upgrade bonus."),
+		"enhancement_reroll":_t("进阶操作：重新调整某一阶强化加成，不增加强化等级。","Advanced: adjust one existing upgrade bonus without adding a rank."),
+		"reforge":_t("选择想更换的词条；付款后查看新结果，再决定保留还是替换。","Pick an affix to replace. Pay to reveal a saved result, then keep or replace."),
+		"refine":_t("保留词条种类，提升它的数值。","Keep the affix type and improve its value."),
+		"inherit":_t("把另一件同槽装备较好的强化转移到这件；来源装备强化归零。","Transfer better upgrades from a matching slot; the source returns to +0."),
+		"sell":_t("出售不需要的装备，获得下方金币。","Sell unwanted equipment for the gold shown."),
+		"dismantle":_t("分解不需要的装备，获得下方材料。","Dismantle unwanted equipment for the materials shown.")}.get(kind,"")
+
+static func _brief_cost(quote: Dictionary) -> String:
+	if not quote.has("gold"): return _t("暂不可操作：","Unavailable: ")+error_text(str(quote.get("error","")))
+	var lines: PackedStringArray = [_t("需要","YOU NEED"),_t("%d 金币 · 持有 %d","%d gold · own %d") % [int(quote.gold),int(Game.profile.permanent_gold)]]
+	for id: String in quote.get("materials",{}): lines.append(_material_name(id)+" ×"+str(int(quote.materials[id]))+_t(" · 持有 "," · own ")+str(int(Game.profile.get("materials",{}).get(id,0))))
+	return "\n".join(lines)
+
+static func _reward_text(quote: Dictionary,kind: String) -> String:
+	if kind == "sell": return _t("你将获得\n%d 金币","YOU RECEIVE\n%d gold") % int(quote.get("gold_return",0))
+	var lines: PackedStringArray = [_t("你将获得","YOU RECEIVE")]
+	for id: String in quote.get("materials_return",{}): lines.append(_material_name(id)+" ×"+str(int(quote.materials_return[id])))
+	if lines.size() == 1: lines.append(_t("没有可返还的材料","No material return"))
+	return "\n".join(lines)
+
+static func _add_advanced_details(rows: VBoxContainer, text: String) -> void:
+	var toggle := Button.new()
+	toggle.text = _t("更多属性与计算规则","More stats and calculation rules")
+	toggle.add_theme_font_size_override("font_size",13)
+	rows.add_child(toggle)
+	var details := _label(rows,text,Vector2.ZERO,Vector2(rows.custom_minimum_size.x,0),13)
+	details.name = "ForgeAdvancedDetails"
+	details.visible = false
+	toggle.pressed.connect(func(): details.visible = not details.visible)
+
+static func _show_refund_details(panel: Control,quote: Dictionary,kind: String,record: Dictionary) -> void:
+	var modal: Panel = panel.app._push_modal(_t("返还计算","Return calculation"),Vector2(760,490))
+	var rows := _detail_scroll(modal,"RefundDetails",Vector2(28,87),Vector2(704,306))
+	_text_row(rows,_cost_text(quote,kind,record)+"\n"+_rules_text(kind,record,1),"RefundMath")
+	MineStyle.button(modal,"BACK",Vector2(490,413),Vector2(242,44),panel.app._pop_modal)
 
 static func _commit_confirmation(panel: Control,modal: Panel,kind: String,request: Dictionary) -> void:
 	if not is_instance_valid(modal) or not panel.busy: return

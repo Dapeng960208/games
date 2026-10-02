@@ -12,6 +12,10 @@ func configure(data: Dictionary, width: float, prefix: String = "HeroAttribute_"
 	var version := int(data.total.get("ruleset_version",1))
 	var expanded := version == 2
 	_line(Inspect.t("基础 + 等级 + 天赋 + 装备 + 当前效果 = 总值；pp = 百分点", "Base + level + talents + gear + effects = total; pp = percentage points") if expanded else Inspect.t("角色基础 + 等级成长 + 装备变化 = 当前总值", "Base + level growth + gear change = current total"),width,14,MineStyle.MUTED)
+	if expanded:
+		var curve: Dictionary = preload("res://config/numerical_rules.gd").value("hero_class_profiles",{}).get(str(data.hero_id),{}).get("growth",{})
+		if not curve.is_empty():
+			_line(Inspect.t("每级按初始值增加：生命 %.1f%% · 攻击 %.1f%% · 法强 %.1f%%；护甲 +%d / 魔抗 +%d", "Per level, based on starting stats: HP %.1f%% · attack %.1f%% · spell power %.1f%%; armor +%d / magic resistance +%d") % [100*float(curve.max_hp),100*float(curve.attack),100*float(curve.ability_power),int(curve.armor),int(curve.magic_resist)],width,13,MineStyle.CYAN).name = "ClassGrowthFormula"
 	var headers: Array = [Inspect.t("属性","Attribute"),Inspect.t("基础","Base"),Inspect.t("成长","Level")]
 	if expanded: headers.append(Inspect.t("天赋","Talent"))
 	headers.append(Inspect.t("装备","Gear"))
@@ -74,7 +78,7 @@ func configure(data: Dictionary, width: float, prefix: String = "HeroAttribute_"
 				_line(Inspect.t("内置冷却 %.1f 秒 · 当前增益剩余 %.1f 秒；仍需满足触发条件。","Internal cooldown %.1f s · active buff %.1f s left; trigger conditions still apply.") % [remaining,active_time],width,14,MineStyle.CYAN).name = "SetTrigger_"+key
 	var hero: Dictionary = ContentRegistry.hero(str(data.hero_id))
 	var passive: Dictionary = hero.get("passive",{})
-	_heading(Inspect.t("职业被动 · ","HERO PASSIVE · ")+MineStyle.content_text(passive,"name"),width)
+	_heading(Inspect.t("职业被动 · ","HERO PASSIVE · ")+MineStyle.content_text(passive,"name_v2" if expanded and passive.has("name_v2") else "name"),width)
 	_line(SkillInspect.passive_text(hero,data.live),width,14)
 
 func _table_row(values: Array, width: float, header: bool = false) -> HBoxContainer:

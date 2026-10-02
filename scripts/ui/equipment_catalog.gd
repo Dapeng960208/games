@@ -193,7 +193,7 @@ static func detail(panel: Control) -> void:
 		note = Inspect.t("当前已穿戴 · 可在强化页提升。","Currently equipped · Refine on the upgrade page.")
 	if item.get("instance_record") is Dictionary and not equipped and not preload("res://scripts/core/equipment_instances.gd").can_equip(item.instance_record,Game.profile.selected_hero,Game.hero_level()):
 		disabled = true
-		note = Inspect.t("职业类型或装备等级不符合。","Class type or item level requirement is not met.")
+		note = Inspect.Eligibility.reason(item.instance_record, Game.profile.selected_hero, Game.hero_level())
 	var pending_claim: bool = owned and item.get("instance_record",{}).get("location","") == "pending"
 	if pending_claim and panel.mode == "inventory":
 		action = "CLAIM_INSTANCE"
@@ -208,7 +208,7 @@ static func detail(panel: Control) -> void:
 		MineStyle.literal(right,note,Vector2(18,518),Vector2(180,28),11,MineStyle.MUTED)
 	else:
 		MineStyle.literal(right,note,Vector2(18,518),Vector2(330,28),12,MineStyle.MUTED)
-	panel.action_button = MineStyle.button(right,action,Vector2(18,550),Vector2(330,36),panel._commit_item)
+	panel.action_button = MineStyle.button(right,action,Vector2(18,548),Vector2(330,36),panel._commit_item)
 	panel.action_button.custom_minimum_size.y = 36
 	panel.action_button.name = "PrimaryAction"
 	MineStyle.primary(panel.action_button)

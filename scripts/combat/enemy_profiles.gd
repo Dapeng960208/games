@@ -3,6 +3,7 @@ extends RefCounted
 ## Pure authored progression: no Game singleton, save, hero level, or RNG reads.
 ## This resolves combat parameters; catalog gameplay completion remains separate.
 
+const AbilityCatalog = preload("res://scripts/combat/enemy_ability_catalog.gd")
 const Catalog = preload("res://scripts/world/world_catalog.gd")
 const Palette = preload("res://scripts/combat/enemy_palette.gd")
 const BiomeSkills = preload("res://scripts/combat/enemy_biome_skills.gd")
@@ -17,8 +18,8 @@ const MAX_MOVE_SPEED := 132.0
 const TIER_THRESHOLDS := [1, 5, 10, 15]
 const BASE_ZONE_TOTALS := [6, 6, 7]
 const ENCOUNTER_DENSITY_MULTIPLIER := 1.4
-const PROTECTIVE_IDS := ["M06", "M08", "M17", "M25", "M26", "M30", "M34"]
-const FUNCTIONAL_SUPPORT_IDS := ["M09", "M19"]
+const PROTECTIVE_IDS := ["M06", "M08", "M17", "M25", "M26", "M30", "M34", "M42", "M45", "M51"]
+const FUNCTIONAL_SUPPORT_IDS := ["M09", "M19", "M43", "M48"]
 # Multipliers sharpen the authored roles without replacing any prototype's
 # attacks. Ordinary L20 still fits the existing 180 HP / 25 damage contract.
 const MAX_BASE_DAMAGE := 16.9
@@ -145,7 +146,7 @@ static func resolve(enemy_id: String, enemy_level: int = 1, rank: String = "norm
 		base_cost = int(ceil(float(base_cost) * 1.5))
 	result["effective_threat_cost"] = int(ceil(float(base_cost) * (1.0 + float(tier - 1) * 0.25)))
 	BiomeSkills.apply(result)
-	return result
+	return AbilityCatalog.apply(result, difficulty)
 
 static func _enforce_safety(enemy_id: String, base: Dictionary, parameters: Dictionary) -> void:
 	parameters["tell_seconds"] = maxf(float(base.get("minimum_tell_seconds", 0.55)), float(parameters.get("tell_seconds", 0.65)))
