@@ -19,6 +19,12 @@
 | [前四关设计](levels/) | 背景、敌人、首领、装备、地图与遗物 |
 | [28 房设计册](levels/fixed_layouts/index.html) | 固定蓝图、目标效果及当前实机截图 |
 | [摆放分组草稿](drafts/room-placement-20261001/README.md) | 未接入的分组方案 |
+| [全部28房原生细节验收](ui/WORLD_2K_CLARITY.md) | 原生分块、五镜头对齐、资源生命周期与无缓存复现结果 |
+| [四首领战斗高清采样](ui/BOSS_2K_CLARITY.md) | 正确身份、脚点、碰撞与实际2K状态验证 |
+| [普通怪精确变体高清采样](ui/ENEMY_VARIANT_2K_CLARITY.md) | 精确外观键保留、采样尺寸与验收范围 |
+| [世界交互文字可读性](ui/WORLD_LABEL_CONTRAST.md) | 字重、独立底板和实际中英2K文字检查 |
+| [追加18条变体与虚拟采样](ui/ENEMY_VARIANT_HD_BATCH_2.md) | 22条精确覆盖、双向/死亡/透明翼采样结果与保留限制 |
+| [七天存档回收站](SAVE_RECYCLE_BIN.md) | 删除/新建覆盖归档、冲突保护、恢复和到期清理边界 |
 | [素材版权](ASSET_LICENSES.md) | 美术、音频与字体来源 |
 | [Godot 第三方声明](GODOT_THIRD_PARTY.txt) | 引擎第三方许可 |
 | [工作区清理记录](WORKSPACE_CLEANUP.md) | 清理范围和保留原则 |
@@ -27,6 +33,6 @@
 
 - [第二轮 A13–A30 修复与验收](audits/GAMEPLAY_AUDIT_ROUND2_FIXES_2026-10-01.md)：运行代码、安全兼容、逐项引擎证据与仍需自然游玩验证的边界。
 
-三职业后续工作：[定位、八向动作、技能手感、成长与职业装备详细方案](character-optimization/ROLE_OPTIMIZATION_2026-10-02.md)。当前为逐项实施方案；未验证项目保持待完成，S11全量自然平衡仍暂停。
+三职业定位、独立成长、八向动作和职业装备限制已接入并完成针对性验收，详见[方案与实际验收](character-optimization/ROLE_OPTIMIZATION_2026-10-02.md)。自然长期玩法及S11全量平衡仍未完成。
 
 - [骷髅召唤职业完整设计（未实装）](character-optimization/SKELETON_SUMMONER_DESIGN_2026-10-02.md)：召唤技能、全属性继承、套装、遗物和验收设计，数值待验证。
