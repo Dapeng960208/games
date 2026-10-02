@@ -168,12 +168,29 @@ func failed_transactions() -> void:
 	var next_profile: Dictionary = store._current.profile.duplicate(true)
 	next_profile.permanent_gold = 654
 	# Keep its acknowledged .bak, then make only the final rename target fail.
+	write_bytes(store.path+".bak",Store._serialize(store._current))
 	DirAccess.remove_absolute(store.path)
 	DirAccess.make_dir_absolute(store.path)
 	check(not store.save_document(next_profile) and store.last_error=="STORAGE_REPLACE_FAILED","normal save can leave a flushed pending intent")
 	DirAccess.remove_absolute(store.path)
+	var pending_files := snapshot_files(store.path)
+	var changed_intent: Dictionary = next_profile.duplicate(true)
+	changed_intent.permanent_gold = 987
+	check(not store.save_document(changed_intent) and store.last_error=="STORAGE_RECYCLE_CHANGED","a different request cannot replace a flushed pending intent")
+	check(snapshot_files(store.path)==pending_files,"rejected changed retry preserves pending intent and acknowledged backup")
 	check(store.save_document(next_profile),"normal save retries its own failed rename without restart")
 	check(reload(store)._current.profile.permanent_gold==654,"normal retry commits intended gold once")
+	store = Store.new(directory+"/test_initial_save_retry.json")
+	store.recycle_clock=clock
+	DirAccess.make_dir_absolute(store.path)
+	var initial := Store.fresh_profile()
+	initial.permanent_gold=111
+	check(not store.save_document(initial) and store.last_error=="STORAGE_REPLACE_FAILED","initial save can leave its own flushed intent")
+	var initial_bytes := FileAccess.get_file_as_bytes(store.path+".tmp")
+	DirAccess.remove_absolute(store.path)
+	check(store.save_document(initial),"initial save retries with the same generated profile identity")
+	check(FileAccess.get_file_as_bytes(store.path)==initial_bytes,"initial retry preserves exact original intent bytes")
+	check(reload(store)._current.profile.permanent_gold==111,"initial retry survives restart once")
 
 func interrupted_backup_recovery() -> void:
 	current_time=1_835_000_000
@@ -224,6 +241,9 @@ func conflicts_and_integrity() -> void:
 	newer = store._current.profile.duplicate(true)
 	newer.permanent_gold = 555
 	check(store.save_document(newer),"newer same-generation save")
+	var latest_files := snapshot_files(store.path)
+	check(not stale.save_document(original) and stale.last_error=="STORAGE_RECYCLE_CHANGED","stale ordinary save cannot overwrite a newer same-generation revision")
+	check(snapshot_files(store.path)==latest_files,"stale ordinary save preserves every latest candidate byte")
 	check(not stale.recycle_and_replace(Store.fresh_profile(),false) and stale.last_error=="STORAGE_RECYCLE_CHANGED","stale snapshot cannot archive over newer save")
 	check(reload(store)._current.profile.permanent_gold==555,"stale deletion preserves latest data")
 	store = fixture("corrupt_archive")
@@ -285,7 +305,8 @@ func portable_backup_and_locks() -> void:
 	check(not DirAccess.dir_exists_absolute(store.path+".writer-lock"),"lease is released after transaction")
 	output.clear()
 	exit_code=OS.execute(OS.get_executable_path(),["--headless","--audio-driver","Dummy","--path",ProjectSettings.globalize_path("res://"),"--script","res://tests/test_save_recycle_lock.gd","--","--test-profile="+directory+"/test_lock_crash_boot.json","--lock-target="+store.path,"--lock-mode=crash"],output,true)
-	check(exit_code!=0 and DirAccess.dir_exists_absolute(store.path+".writer-lock"),"killed isolated child leaves its crash lock")
+	# Windows TerminateProcess may report exit 0 even for an abrupt self-kill.
+	check("LOCK CHILD CRASHING" in "".join(output) and DirAccess.dir_exists_absolute(store.path+".writer-lock"),"killed isolated child leaves its crash lock")
 	lease=Store.SaveLease.acquire(store.path)
 	check(lease!=null,"confirmed dead child lock is safely reclaimed")
 	lease=null
@@ -331,7 +352,14 @@ func legacy_and_receipt() -> void:
 		check(same(store._current.active_run,expected) and store._current.profile.permanent_gold==0,"restore does not independently settle or duplicate pending gold")
 
 func _run() -> void:
-	var base := "/tmp/test_save_recycle_"+str(Time.get_ticks_usec())
+	var test_profile := ""
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--test-profile="): test_profile=argument.trim_prefix("--test-profile=").replace("\\","/")
+	if not test_profile.get_file().begins_with("test_save_recycle_bin") or test_profile!=test_profile.simplify_path():
+		push_error("Save recycle core suite requires its explicit disposable test path")
+		quit(2)
+		return
+	var base := ProjectSettings.globalize_path(test_profile).get_base_dir()+"/test_save_recycle_"+str(Time.get_ticks_usec())
 	directory=base
 	DirAccess.make_dir_recursive_absolute(directory)
 	basic_restore()

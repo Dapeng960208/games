@@ -7,10 +7,15 @@ func _initialize() -> void:
 func run() -> void:
 	var target := ""
 	var mode := ""
+	var test_profile := ""
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--lock-target="): target=argument.trim_prefix("--lock-target=")
 		if argument.begins_with("--lock-mode="): mode=argument.trim_prefix("--lock-mode=")
-	if not target.begins_with("/tmp/test_save_recycle_") or "/../" in target or mode not in ["blocked","crash"]:
+		if argument.begins_with("--test-profile="): test_profile=argument.trim_prefix("--test-profile=")
+	var bootstrap := ProjectSettings.globalize_path(test_profile).replace("\\","/")
+	var fixture_root := bootstrap.get_base_dir()
+	var normalized := ProjectSettings.globalize_path(target).replace("\\","/")
+	if bootstrap.get_file() not in ["test_lock_child_boot.json","test_lock_crash_boot.json"] or not fixture_root.get_file().begins_with("test_save_recycle_") or normalized.get_base_dir()!=fixture_root or not normalized.get_file().begins_with("test_") or normalized!=normalized.simplify_path() or mode not in ["blocked","crash"]:
 		quit(3)
 		return
 	if mode=="blocked":
@@ -24,4 +29,5 @@ func run() -> void:
 		quit(5)
 		return
 	# Kill only this fixture process, bypassing destructors to model a real crash.
+	print("LOCK CHILD CRASHING")
 	OS.kill(OS.get_process_id())

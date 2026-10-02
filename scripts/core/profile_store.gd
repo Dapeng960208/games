@@ -43,6 +43,8 @@ var unresolved_error: bool:
 		return _blocked
 var _current: Dictionary = {}
 var _acknowledged_bytes := PackedByteArray()
+var _pending_save_bytes := PackedByteArray()
+var _pending_profile_id := ""
 var _blocked: bool = false
 var recycle_clock: Callable
 var recycle_fail_stage := ""
@@ -84,6 +86,8 @@ func _load_document_locked() -> Dictionary:
 	warning = ""
 	_current = {}
 	_acknowledged_bytes = PackedByteArray()
+	_pending_save_bytes = PackedByteArray()
+	_pending_profile_id = ""
 	_blocked = false
 	has_profile = false
 	var recycle := _recycle()
@@ -230,6 +234,10 @@ func _save_document_locked(profile: Dictionary, active_run: Variant = null, prof
 	if serialized.size() > _byte_limit():
 		last_error = "STORAGE_CAPACITY_EXCEEDED"
 		return false
+	# The lease prevents overlapping writes; compare revisions while holding it
+	# as well, so an older window cannot overwrite another completed transaction.
+	# Only this store's exact flushed intent may be retried without reloading.
+	if not _disk_matches_current(serialized): return false
 	var directory := ProjectSettings.globalize_path(disk_path).get_base_dir()
 	if DirAccess.make_dir_recursive_absolute(directory) != OK:
 		last_error = "STORAGE_WRITE_FAILED"
@@ -244,11 +252,15 @@ func _save_document_locked(profile: Dictionary, active_run: Variant = null, prof
 			return false
 	if not _write_serialized(disk_path + ".tmp", serialized):
 		return false
+	_pending_save_bytes = serialized
+	_pending_profile_id = str(document.profile_id)
 	if DirAccess.rename_absolute(disk_path + ".tmp", disk_path) != OK:
 		last_error = "STORAGE_REPLACE_FAILED"
 		return false
 	_current = document
 	_acknowledged_bytes = serialized
+	_pending_save_bytes = PackedByteArray()
+	_pending_profile_id = ""
 	has_profile = profile_initialized
 	return true
 
@@ -258,7 +270,7 @@ func _recycle() -> Recycle:
 	recycle.document_validator = _valid_document
 	return recycle
 
-func _disk_matches_current() -> bool:
+func _disk_matches_current(retry_bytes: PackedByteArray = PackedByteArray()) -> bool:
 	var recycle := _recycle()
 	var state := recycle.read_state()
 	if state.is_empty():
@@ -285,6 +297,8 @@ func _disk_matches_current() -> bool:
 			return false
 		if not _acknowledged_bytes.is_empty() and bytes == _acknowledged_bytes:
 			found = true
+			continue
+		if suffix == ".tmp" and not _pending_save_bytes.is_empty() and bytes == _pending_save_bytes and bytes == retry_bytes:
 			continue
 		var parsed: Variant = JSON.parse_string(bytes.get_string_from_utf8())
 		if not parsed is Dictionary or not _number(parsed.get("revision")): continue
@@ -399,9 +413,13 @@ func _restore_recycled_locked(entry_id: String) -> bool:
 	return true
 
 func _next_document(profile: Dictionary, active_run: Variant, profile_initialized: bool) -> Dictionary:
+	var identity := str(_current.get("profile_id", ""))
+	if identity.is_empty():
+		identity = _legacy_profile_id() if not _current.is_empty() else _pending_profile_id
+		if identity.is_empty(): identity = Crypto.new().generate_random_bytes(16).hex_encode()
 	return {
 		"schema_version": SCHEMA_VERSION,
-		"profile_id": _current.get("profile_id", _legacy_profile_id() if not _current.is_empty() else Crypto.new().generate_random_bytes(16).hex_encode()),
+		"profile_id": identity,
 		"profile_initialized": profile_initialized,
 		"revision": int(_current.get("revision", 0)) + 1,
 		"profile": profile.duplicate(true),
