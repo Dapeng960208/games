@@ -950,11 +950,12 @@ func _reward_caption(quality: String) -> String:
 	var signature := str(room.layout_id)+":"+quality+":"+Game.run.hero_id+":"+Words.locale+":"+str(Game.run.expedition.get("difficulty",0))+":"+str(Game.run.expedition.get("reward_policy_version",0))
 	if signature != quest_reward_signature:
 		quest_reward_signature = signature
-		var rewards: Dictionary = RewardPolicy.build(str(room.layout_id),quality,Game.run.hero_id,int(room.get("layout_seed")),"hud-preview",Game.reward_discovery_ids(),Game.run.expedition.pending_equipment.keys(),Game.profile.bosses,int(Game.run.expedition.difficulty),int(Game.run.expedition.get("reward_policy_version",0)))
+		var rewards: Dictionary = preload("res://scripts/world/room_rewards.gd").v2_completion(str(room.layout_id),int(context.get("difficulty",0)),quality) if Game.run.ruleset_version() == 2 else RewardPolicy.build(str(room.layout_id),quality,Game.run.hero_id,int(room.get("layout_seed")),"hud-preview",Game.reward_discovery_ids(),Game.run.expedition.get("pending_equipment",{}).keys(),Game.profile.bosses,int(context.get("difficulty",0)),int(Game.run.expedition.get("reward_policy_version",0)))
 		if rewards.is_empty():
 			cached_quest_reward = "Rewards at completion" if Words.locale == "en" else "完成目标后结算奖励"
 		else:
 			var gear_count: int = rewards.get("equipment",[]).size()
+			if Game.run.ruleset_version() == 2: gear_count = int(preload("res://scripts/core/equipment_acquisition.gd")._value("boss_drop_counts")[int(context.get("difficulty",0))]) if role == "boss" else 1
 			cached_quest_reward = ("%d gold · %d gear" if Words.locale == "en" else "%d 金币 · %d 件装备") % [int(rewards.get("gold",0)),gear_count]
 	return cached_quest_reward
 

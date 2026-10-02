@@ -754,7 +754,7 @@ func enemy_died(enemy: MineEnemy) -> void:
 	if enemy_corpses.size() > 48:
 		enemy_corpses.pop_front()
 	if Game.run.ruleset_version() == 2 and not expedition_context.is_empty():
-		Game.record_expedition_kill_reward(enemy.reward_spawn_id, enemy.enemy_id, enemy.rank == "elite", false, clampi(enemy.zone_index, 0, 2))
+		Game.queue_expedition_kill_reward(enemy.reward_spawn_id, enemy.enemy_id, enemy.rank == "elite", false, clampi(enemy.zone_index, 0, 2))
 	telemetry["kills"] += 1
 	Game.record_kill()
 	var context: Dictionary = enemy.last_damage_context.duplicate()

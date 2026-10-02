@@ -463,8 +463,8 @@ func _expedition_node_count() -> int:
 
 func _on_expedition_room_completed() -> void:
 	_update_expedition_status()
-	if expedition != null and expedition.active():
-		call_deferred("_show_loot_pickup")
+	if expedition != null and expedition.active() and not Game.pending_field_equipment().is_empty():
+		if is_instance_valid(hud): hud._queue_notification(_ex_text("发现战利品 · 在地面标记处交互查看", "Loot found · Interact at the ground marker to inspect"),3.5)
 
 func _show_loot_pickup() -> void:
 	if Game.run == null or expedition == null or not expedition.active() or not modals.is_empty(): return
@@ -616,7 +616,7 @@ func _choose_field_equipment(drop_id: String, decision: String, checkpoint_id: S
 		return
 	_clear_modals()
 	if is_instance_valid(hud):
-		var item: Dictionary = ContentRegistry.equipment(str(Game.run.expedition.claimed_drop_ids.get(drop_id,{}).get("equipment_id","")))
+		var item: Dictionary = Game.equipment_definition(str(Game.run.expedition.claimed_drop_ids.get(drop_id,{}).get("equipment_id","")),true)
 		hud._queue_notification(_ex_text("已装备：", "Equipped: ")+MineStyle.content_text(item,"name") if decision == "equip" else _ex_text("已收进行囊：", "Packed: ")+MineStyle.content_text(item,"name"),3.5)
 	if loot_flow_active: _show_loot_pickup()
 	else: _show_pending_expedition_offer()

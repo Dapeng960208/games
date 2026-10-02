@@ -5,6 +5,8 @@ signal choice_requested(decision: String)
 
 const Advice = preload("res://scripts/ui/equipment_advice.gd")
 const Traits = preload("res://scripts/ui/equipment_traits.gd")
+const Details = preload("res://scripts/ui/equipment_details.gd")
+const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
 const MAJOR_STATS := ["attack", "ability_power", "max_hp", "armor", "magic_resist"]
 const OTHER_STATS := ["attack_interval", "move_speed", "resource_max", "armor_penetration", "magic_penetration", "true_damage_bonus", "crit_chance", "crit_multiplier", "cooldown_reduction", "damage_bonus", "damage_reduction", "burn_damage", "corrosion_damage_bonus", "status_duration"]
 const RATIO_STATS := ["crit_chance", "crit_multiplier", "cooldown_reduction", "damage_bonus", "damage_reduction", "burn_damage", "corrosion_damage_bonus", "status_duration"]
@@ -80,9 +82,14 @@ func _equipment_card(node_name: String, item: Dictionary, slot: String, at: Vect
 	if item.is_empty():
 		_scroll_label(scroll, _t("无装备词条", "No equipment affix"), 404, 15, MineStyle.MUTED)
 	else:
-		var traits := Traits.new()
-		scroll.add_child(traits)
-		traits.configure(item, equipment_level, 404, Game.run.hero_id, true)
+		if item.get("instance_record") is Dictionary:
+			var details := Details.new()
+			scroll.add_child(details)
+			details.configure(item,equipment_level,404,Game.run.hero_id,preview.get("current_stats",{}),preview.get("next_stats",{}))
+		else:
+			var traits := Traits.new()
+			scroll.add_child(traits)
+			traits.configure(item, equipment_level, 404, Game.run.hero_id, true)
 
 func _build_stats() -> void:
 	MineStyle.literal(self, _t("本局基础属性 · 当前 → 更换后", "BASE STATS · CURRENT → EQUIPPED"), Vector2(24,363), Vector2(458,26), 17, MineStyle.CYAN)
@@ -127,6 +134,8 @@ func _cell(parent: Node, text: String, width: float, font_size: int, tint: Color
 	return label
 
 func _value(key: String, value: float) -> String:
+	if int(preview.get("next_stats",{}).get("ruleset_version",1)) == 2:
+		return Inspect.value(key,value,false,false,2)
 	if key == "attack_interval":
 		return "%.3fs" % value
 	if key in RATIO_STATS:

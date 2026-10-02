@@ -40,6 +40,7 @@ const Transactions = preload("res://scripts/core/instance_transactions.gd")
 var _test_ruleset_override: int = 0
 var _pending_instance_transactions: Dictionary = {}
 var _pending_forging_transactions: Dictionary = {}
+var _kill_flush_scheduled := false
 const EnemyCalibration = preload("res://scripts/combat/enemy_calibration.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 
@@ -368,6 +369,9 @@ func finish_run(outcome: String) -> Dictionary:
 	if _pending_outcome.is_empty():
 		_pending_outcome = "death" if run.hp <= 0.0 and outcome == "extracted" else outcome
 	outcome = _pending_outcome
+	if not run.staged_loot_requests.is_empty() and not flush_expedition_kill_rewards():
+		settlement_failed.emit(outcome)
+		return {}
 	_settling = true
 	var retained := ProfileStore.retained_gold(run.gold, outcome)
 	var next_profile := profile.duplicate(true)
@@ -1577,15 +1581,36 @@ func _ensure_loot_state(value: Dictionary) -> void:
 ## Natural actor IDs come from a deterministic zone/wave/spawn position. The
 ## commit retains the entry runtime, never a partially fought room snapshot.
 func record_expedition_kill_reward(spawn_id: String, enemy_id: String, elite: bool = false, summoned: bool = false, zone_index: int = 0) -> bool:
+	if not _stage_expedition_kill(spawn_id,enemy_id,elite,summoned,zone_index): return false
+	return flush_expedition_kill_rewards()
+
+func queue_expedition_kill_reward(spawn_id: String, enemy_id: String, elite: bool = false, summoned: bool = false, zone_index: int = 0) -> bool:
+	if not _stage_expedition_kill(spawn_id,enemy_id,elite,summoned,zone_index): return false
+	if not run.staged_loot_requests.is_empty() and not _kill_flush_scheduled:
+		_kill_flush_scheduled = true
+		call_deferred("flush_expedition_kill_rewards")
+	return true
+
+func _stage_expedition_kill(spawn_id: String, enemy_id: String, elite: bool, summoned: bool, zone_index: int) -> bool:
 	if not _expedition_active() or run.ruleset_version() != Numbers.V2 or run.expedition.phase != "combat": return false
 	if summoned: return true
 	if spawn_id.is_empty() or spawn_id.length() > 80 or Expedition.Catalog.enemy(enemy_id).is_empty() or zone_index < 0 or zone_index > 2: return false
 	var id := run.id + ":node:" + str(int(run.expedition.node_index)) + ":kill:" + spawn_id
 	var source := "elite" if elite else "normal"
+	if run.expedition.loot_events.has(id): return run.expedition.loot_events[id].result.context.source == source and int(run.expedition.loot_events[id].zone_index) == zone_index and run.expedition.loot_events[id].get("actor_id", "") == enemy_id
+	var request := {"event_id":id,"source":source,"zone_index":zone_index,"actor_id":enemy_id}
+	if run.staged_loot_requests.has(id): return run.staged_loot_requests[id] == request
+	run.staged_loot_requests[id] = request
+	return true
+
+func flush_expedition_kill_rewards() -> bool:
+	# One atomic journal write for a burst of kills, outside damage callbacks.
+	# Completion and settlement also drain staged events before changing rooms.
+	_kill_flush_scheduled = false
+	if run == null or run.staged_loot_requests.is_empty(): return true
+	if run.ruleset_version() != Numbers.V2 or run.expedition.get("phase") != "combat" or _settling: return false
 	var value := run.expedition.duplicate(true)
 	_ensure_loot_state(value)
-	if value.loot_events.has(id): return value.loot_events[id].result.context.source == source and int(value.loot_events[id].zone_index) == zone_index and value.loot_events[id].get("actor_id", "") == enemy_id
-	run.staged_loot_requests[id] = {"event_id":id,"source":source,"zone_index":zone_index,"actor_id":enemy_id}
 	for request: Dictionary in run.staged_loot_requests.values():
 		if not Loot.add(value, run.id, run.hero_id, request.event_id, request.source, int(request.zone_index), str(request.actor_id)): return false
 	var receipt := run.receipt()
