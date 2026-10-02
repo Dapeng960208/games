@@ -53,12 +53,18 @@ var forge_frozen_kind := ""
 var forge_frozen_request: Dictionary = {}
 var forge_message := ""
 var forge_result_details := ""
+var _equipment_views: Dictionary = {}
+var _resolved_stats: Dictionary = {}
 
 func _ready() -> void:
 	preview_hero = str(Game.profile.get("selected_hero","CH01"))
 	_render()
 
 func _render() -> void:
+	# These views belong to one render only. Any equip/forge/filter action starts
+	# a new render and reads the latest committed records, including duplicate IDs.
+	_equipment_views.clear()
+	_resolved_stats.clear()
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
@@ -137,6 +143,14 @@ func _switch_page(next_mode: String) -> void:
 
 func _t(zh: String, en: String) -> String:
 	return en if Words.locale == "en" else zh
+
+func _definition(id: String) -> Dictionary:
+	if not _equipment_views.has(id): _equipment_views[id] = Game.equipment_definition(id)
+	return _equipment_views[id]
+
+func _selected_stats() -> Dictionary:
+	if _resolved_stats.is_empty(): _resolved_stats = Game.selected_stats()
+	return _resolved_stats
 
 func _render_heroes() -> void:
 	HeroDossier.render(self)
@@ -295,7 +309,7 @@ func _filtered_equipment() -> Array:
 	var output: Array = []
 	for value in (ContentRegistry.equipment_ids(int(Game.profile.get("ruleset_version",1))) if mode == "shop" else Game.profile.get("equipment",{}).keys()):
 		var id := str(value)
-		var data: Dictionary = Game.equipment_definition(id)
+		var data: Dictionary = _definition(id)
 		if mode != "shop" and not Game.profile.get("equipment",{}).has(id):
 			continue
 		var equipped := str(Game.profile.get("loadout",{}).get(data.get("slot",""),"")) == id
@@ -310,12 +324,14 @@ func _filtered_equipment() -> Array:
 			if not searchable.to_lower().contains(search_query.strip_edges().to_lower()): continue
 		output.append(id)
 	output.sort_custom(func(a: String, b: String) -> bool:
-		var first: Dictionary = Game.equipment_definition(a)
-		var second: Dictionary = Game.equipment_definition(b)
+		var first: Dictionary = _definition(a)
+		var second: Dictionary = _definition(b)
 		if sort_order == 1: return MineStyle.content_text(first,"name").naturalnocasecmp_to(MineStyle.content_text(second,"name")) < 0
 		if sort_order == 2 and int(first.price) != int(second.price): return int(first.price) < int(second.price)
 		if sort_order == 3 and _item_level(a) != _item_level(b): return _item_level(a) > _item_level(b)
-		if sort_order == 0 and first.slot != second.slot: return SLOTS.find(first.slot) < SLOTS.find(second.slot)
+		if sort_order == 0 and first.slot != second.slot:
+			var slots := Game.equipment_slots()
+			return slots.find(first.slot) < slots.find(second.slot)
 		return a < b)
 	return output
 
@@ -328,12 +344,12 @@ func _toggle_catalog() -> void:
 	_render()
 
 func _unlocked(item: Dictionary) -> bool:
-	if Game.profile.get("equipment",{}).has(str(item.get("id",""))): return true
+	if Game.profile.get("equipment",{}).has(str(item.get("instance_id",item.get("id","")))): return true
 	var boss := str(item.get("unlock_boss",""))
 	return _effect_available(str(item.get("id",""))) and (boss.is_empty() or Game.profile.get("bosses",[]).has(boss))
 
 func _availability_reason(item: Dictionary) -> String:
-	var id := str(item.get("id",""))
+	var id := str(item.get("instance_id",item.get("id","")))
 	if Game.profile.get("equipment",{}).has(id):
 		var equipped := str(Game.profile.get("loadout",{}).get(item.get("slot",""),"")) == id
 		return _t("已挂载", "Equipped")+" +"+str(_item_level(id)) if equipped else Words.text("OWNED")+" +"+str(_item_level(id))
@@ -347,15 +363,15 @@ func _availability_reason(item: Dictionary) -> String:
 
 func _suggested_equipment() -> String:
 	var hero := str(Game.profile.get("selected_hero","CH01"))
-	var selected_slot := str(Game.equipment_definition(selected_item).get("slot",slot_filter))
+	var selected_slot := str(_definition(selected_item).get("slot",slot_filter))
 	if selected_slot == "all": selected_slot = "weapon"
-	var before: Dictionary = Game.selected_stats()
+	var before: Dictionary = _selected_stats()
 	# An inspect-only suggestion uses a transparent benefit predicate. It does
 	# not rank the whole build or value untriggered affixes as permanent stats.
 	var candidates := _filtered_equipment()
 	for owned_first: bool in [true,false]:
 		for id: String in candidates:
-			var item: Dictionary = Game.equipment_definition(id)
+			var item: Dictionary = _definition(id)
 			var owned: bool = Game.profile.get("equipment",{}).has(id)
 			if owned != owned_first or item.get("slot","") != selected_slot or not _unlocked(item): continue
 			if str(Game.profile.get("loadout",{}).get(selected_slot,"")) == id or not Advice.is_relevant(item,hero): continue
@@ -378,7 +394,7 @@ func _has_relevant_gain(hero: String, before: Dictionary, after: Dictionary) -> 
 
 func _item_level(id: String) -> int:
 	var item: Variant = Game.profile.get("equipment",{}).get(id,{})
-	return int(item.get("level",0)) if item is Dictionary else int(item)
+	return int(item.get("enhancement_rank",item.get("level",0))) if item is Dictionary else int(item)
 
 func _render_equipment_detail() -> void:
 	Catalog.detail(self)

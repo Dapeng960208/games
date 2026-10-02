@@ -106,6 +106,18 @@ static func rarity_name(rarity: String) -> String:
 	var pair: Array = names.get(rarity,[rarity,rarity])
 	return t(pair[0],pair[1])
 
+static func rarity(item: Dictionary) -> String:
+	return str(item.get("instance_record",{}).get("rarity",""))
+
+static func rarity_color(item: Dictionary) -> Color:
+	# White gear needs a slate outline against parchment. Text labels accompany
+	# the four colors so quality remains readable without relying on hue alone.
+	return {"white":Color("626977"),"green":Color("24704b"),"purple":Color("78399b"),"gold":Color("99600b")}.get(rarity(item),MineStyle.INK)
+
+static func rarity_label(item: Dictionary) -> String:
+	var quality := rarity(item)
+	return rarity_name(quality) if not quality.is_empty() else ""
+
 static func type_name(power_type: String) -> String:
 	return t("法术型","Magic") if power_type == "magic" else t("物理型","Physical")
 

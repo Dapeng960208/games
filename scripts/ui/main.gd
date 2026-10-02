@@ -48,6 +48,7 @@ const HERO_LOOPS := {
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	preload("res://scripts/ui/equipment_art.gd").prefetch_owned(Game.profile.get("equipment",{}))
 	get_tree().auto_accept_quit = false
 	_install_inputs()
 	Words.initialize(Game.profile.get("settings",{}).get("language","zh_CN"))
@@ -247,6 +248,7 @@ func _continue_game() -> void:
 
 func show_camp() -> void:
 	if room_start_failed and Game.run != null: return
+	preload("res://scripts/ui/equipment_art.gd").prefetch_owned(Game.profile.get("equipment",{}))
 	_new_screen("camp")
 	_screen_shade(0.07)
 	var hero_id: String = Game.profile.get("selected_hero","CH01")
@@ -1528,6 +1530,7 @@ func _commit_audio_sliders() -> void:
 	audio_sliders.clear()
 
 func _process(delta: float) -> void:
+	preload("res://scripts/ui/equipment_art.gd").finish_prefetches()
 	if _shutdown_started: return
 	music_tick -= delta
 	if music_tick > 0.0 or not is_instance_valid(music): return

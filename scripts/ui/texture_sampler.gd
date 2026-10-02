@@ -10,8 +10,14 @@ static func sampled(path: String) -> Texture2D:
 	var source_texture: Texture2D
 	var artwork: Image
 	if FileAccess.file_exists(path+".import") or (not FileAccess.file_exists(path) and ResourceLoader.exists(path)):
-		source_texture = load(path) as Texture2D
+		var status := ResourceLoader.load_threaded_get_status(path)
+		source_texture = ResourceLoader.load_threaded_get(path) as Texture2D if status == ResourceLoader.THREAD_LOAD_LOADED else load(path) as Texture2D
 		if source_texture != null:
+			# These authored atlases import with mipmaps. Keep their native texture
+			# instead of decoding/readback and uploading a duplicate on first open.
+			if path.begins_with("res://assets/generated/equipment/storybook_"):
+				textures[path] = source_texture
+				return source_texture
 			artwork = source_texture.get_image()
 	# Newly generated images can be previewed before the editor imports them.
 	if (artwork == null or artwork.is_empty()) and FileAccess.file_exists(path):

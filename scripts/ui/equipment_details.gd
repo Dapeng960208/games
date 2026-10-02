@@ -15,7 +15,7 @@ func configure(item: Dictionary, level: int, width: float, hero_id: String, befo
 	var version := 2 if item.get("instance_record") is Dictionary else int(after.get("ruleset_version",1))
 	if item.get("instance_record") is Dictionary:
 		var record: Dictionary = item.instance_record
-		_line("iLv %d · %s · %s" % [int(record.item_level),Inspect.rarity_name(str(record.rarity)),Inspect.type_name(str(record.power_type))],width,15,MineStyle.CYAN).name = "InstanceIdentity"
+		_line("iLv %d · %s · %s" % [int(record.item_level),Inspect.rarity_name(str(record.rarity)),Inspect.type_name(str(record.power_type))],width,15,Inspect.rarity_color(item)).name = "InstanceIdentity"
 		_line(Inspect.t("实例：","Instance: ")+str(record.instance_id),width,12,MineStyle.MUTED).name = "InstanceId"
 		var waiver := Inspect.waiver_note(record,hero_id)
 		if not waiver.is_empty(): _line(waiver,width,14,MineStyle.AMBER).name = "LegacyEquipWaiver"

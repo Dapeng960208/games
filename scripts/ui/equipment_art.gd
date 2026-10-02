@@ -9,6 +9,32 @@ const Sampler = preload("res://scripts/ui/texture_sampler.gd")
 const Chrome = preload("res://scripts/ui/storybook_art.gd")
 static var _manifest: Dictionary = {}
 static var _textures: Dictionary = {}
+static var _prefetches: Dictionary = {}
+static var _prefetched: Dictionary = {}
+
+static func finish_prefetches() -> void:
+	for path: String in _prefetches.keys():
+		var status := ResourceLoader.load_threaded_get_status(path)
+		if status == ResourceLoader.THREAD_LOAD_IN_PROGRESS: continue
+		if status == ResourceLoader.THREAD_LOAD_LOADED:
+			_prefetched[path] = ResourceLoader.load_threaded_get(path)
+		_prefetches.erase(path)
+
+static func prefetch_owned(records: Dictionary) -> void:
+	# Decode imported sheets in Godot's loader while the camp is visible.
+	# There is no wait, inventory mutation, or texture readback on this path.
+	var paths := {}
+	for id: String in records:
+		var record: Variant = records[id]
+		var template := str(record.get("template_id",id)) if record is Dictionary else id
+		var path := source_path(template)
+		if not path.is_empty(): paths[path] = true
+	for entry: Dictionary in _read_manifest().get("slot_fallbacks",{}).values():
+		var path := str(entry.get("texture",""))
+		if not path.is_empty(): paths[path] = true
+	for path: String in paths:
+		if _prefetches.has(path) or ResourceLoader.has_cached(path): continue
+		if ResourceLoader.load_threaded_request(path,"Texture2D") == OK: _prefetches[path] = true
 
 static func _read_manifest() -> Dictionary:
 	if not _manifest.is_empty(): return _manifest

@@ -182,9 +182,10 @@ func _detail() -> void:
 	var data: Dictionary = Game.equipment_definition(selected_id,true)
 	var current: Dictionary = Game.equipment_definition(str(comparison.current_id),true)
 	MineStyle.equipment_icon(detail_root, data if not data.is_empty() else {"slot":selected_slot}, Vector2(13,13), Vector2(96,96))
-	var title := _text(detail_root, MineStyle.content_text(data,"name",_t("未装备", "Unequipped")), Vector2(119,15), Vector2(318,49), 21)
+	var title := _text(detail_root, MineStyle.content_text(data,"name",_t("未装备", "Unequipped")), Vector2(119,15), Vector2(318,49), 21,Inspect.rarity_color(data))
 	title.max_lines_visible = 2
 	var metadata := _slot_name(selected_slot)+" · +"+str(comparison.level)
+	if not Inspect.rarity(data).is_empty(): metadata = Inspect.rarity_label(data)+" · "+metadata
 	if not data.is_empty(): metadata += " · "+MineStyle.content_text(data,"race_name")
 	_text(detail_root, metadata, Vector2(119,71), Vector2(318,42), 14, MineStyle.AMBER).max_lines_visible = 2
 	for index: int in 3:

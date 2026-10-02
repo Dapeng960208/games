@@ -61,7 +61,7 @@ func _equipment_card(node_name: String, item: Dictionary, slot: String, at: Vect
 	icon.name = "FieldEquipmentIcon"
 	MineStyle.literal(card, _t("新获得", "NEW DROP") if incoming else _t("当前装备", "CURRENT"), Vector2(140,9), Vector2(304,22), 14, accent)
 	var item_name := MineStyle.content_text(item, "name", _t("空槽位", "Empty slot"))
-	var title := MineStyle.literal(card, item_name, Vector2(140,36), Vector2(304,56), 20)
+	var title := MineStyle.literal(card, item_name, Vector2(140,36), Vector2(304,56), 20,Inspect.rarity_color(item))
 	title.name = "FieldEquipmentName"
 	title.max_lines_visible = 2
 	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
@@ -70,6 +70,7 @@ func _equipment_card(node_name: String, item: Dictionary, slot: String, at: Vect
 	var set_id := str(item.get("set_id", ""))
 	var set_data: Dictionary = ContentRegistry.sets().get(set_id, {})
 	var metadata := Words.text("SLOT_" + slot.to_upper())
+	if not Inspect.rarity(item).is_empty(): metadata = Inspect.rarity_label(item)+" · "+metadata
 	if equipment_level > 0: metadata += _t(" · 强化 +", " · Refined +")+str(equipment_level)
 	if not set_id.is_empty():
 		metadata += " · " + MineStyle.content_text(set_data, "name", set_id)

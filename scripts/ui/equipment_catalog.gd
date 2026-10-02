@@ -66,7 +66,7 @@ static func render(panel: Control) -> void:
 	scroll.add_child(grid)
 	grid.configure(394,4)
 	for id: String in ids:
-		var item: Dictionary = Game.equipment_definition(id)
+		var item: Dictionary = panel._definition(id)
 		var equipped: bool = str(Game.profile.loadout.get(item.slot,"")) == id
 		var owned: bool = Game.profile.equipment.has(id)
 		var footer := Inspect.t("已穿戴","Equipped") if equipped else Inspect.t("已拥有","Owned") if owned else str(item.price)+Inspect.t(" 金"," gold")
@@ -98,24 +98,24 @@ static func _loadout(panel: Control) -> void:
 	for index: int in Game.equipment_slots().size():
 		var slot: String = Game.equipment_slots()[index]
 		var id := str(Game.profile.loadout.get(slot,""))
-		var item: Dictionary = Game.equipment_definition(id)
+		var item: Dictionary = panel._definition(id)
 		var button := MineStyle.button(left,"",Vector2(12,(48 if Game.equipment_slots().size() == 8 else 52)+index*(41 if Game.equipment_slots().size() == 8 else 55)),Vector2(226,39 if Game.equipment_slots().size() == 8 else 48),func(): panel.slot_filter = slot; panel.set_filter = "all"; panel.search_query = ""; panel.selected_item = id; panel.list_scroll = 0; panel._render())
 		button.name = "Slot_"+slot
 		MineStyle.button_skin(button,"socket")
 		MineStyle.equipment_icon(button,item if not item.is_empty() else {"slot":slot},Vector2(1,-2),Vector2(40,40) if Game.equipment_slots().size() == 8 else Vector2(52,52)).name = "FittedEquipmentArt_"+slot
 		MineStyle.literal(button,Words.text("SLOT_"+slot.to_upper())+" +"+str(Game.equipment_level(id)),Vector2(58,3),Vector2(160,17),12,MineStyle.AMBER)
-		var label := MineStyle.literal(button,MineStyle.content_text(item,"name",Words.text("EMPTY_SLOT")),Vector2(58,18 if Game.equipment_slots().size() == 8 else 21),Vector2(160,21 if Game.equipment_slots().size() == 8 else 23),12 if Game.equipment_slots().size() == 8 else 14)
+		var label := MineStyle.literal(button,MineStyle.content_text(item,"name",Words.text("EMPTY_SLOT")),Vector2(58,18 if Game.equipment_slots().size() == 8 else 21),Vector2(160,21 if Game.equipment_slots().size() == 8 else 23),12 if Game.equipment_slots().size() == 8 else 14,Inspect.rarity_color(item))
 		label.name = "FittedEquipmentName_"+slot
 		label.autowrap_mode = TextServer.AUTOWRAP_OFF
 		label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		button.tooltip_text = Inspect.tooltip(item,Game.equipment_level(id),Game.profile.selected_hero) if not item.is_empty() else Words.text("EMPTY_SLOT")
 	var suggestion: String = panel._suggested_equipment()
-	var recommend := MineStyle.button(left,"",Vector2(12,388),Vector2(226,44),func(): panel.selected_item = suggestion; panel.slot_filter = str(Game.equipment_definition(suggestion).get("slot","all")); panel.list_scroll = 0; panel._render())
+	var recommend := MineStyle.button(left,"",Vector2(12,388),Vector2(226,44),func(): panel.selected_item = suggestion; panel.slot_filter = str(panel._definition(suggestion).get("slot","all")); panel.list_scroll = 0; panel._render())
 	recommend.name = "RecommendEquipment"
 	recommend.text = Inspect.t("查看同槽建议","Slot suggestion") if not suggestion.is_empty() else Inspect.t("暂无同槽建议","No slot suggestion")
 	recommend.add_theme_font_size_override("font_size",14)
 	recommend.disabled = suggestion.is_empty()
-	var stats: Dictionary = Game.selected_stats()
+	var stats: Dictionary = panel._selected_stats()
 	var version := int(stats.get("ruleset_version",1))
 	MineStyle.literal(left,Inspect.t("生命 %s · 护甲 %s\n攻击 %s · 法强 %s","HP %s · Armor %s\nATK %s · Power %s") % [Inspect.value("max_hp",stats.max_hp,false,false,version),Inspect.value("armor",stats.armor,false,false,version),Inspect.value("attack",stats.attack,false,false,version),Inspect.value("ability_power",stats.ability_power,false,false,version)],Vector2(16,444),Vector2(218,56),14,MineStyle.MUTED).name = "LoadoutStatSummary"
 
@@ -125,18 +125,20 @@ static func detail(panel: Control) -> void:
 		MineStyle.literal(right,Inspect.t("选择装备查看完整属性。","Select equipment to inspect every attribute."),Vector2(22,28),Vector2(444,90),19,MineStyle.MUTED)
 		panel.action_button = null
 		return
-	var item: Dictionary = Game.equipment_definition(panel.selected_item)
+	var item: Dictionary = panel._definition(panel.selected_item)
 	var owned: bool = Game.profile.equipment.has(panel.selected_item)
 	var current_id := str(Game.profile.loadout.get(item.slot,""))
 	var equipped: bool = current_id == panel.selected_item
 	MineStyle.equipment_icon(right,item,Vector2(14,9),Vector2(78,78)).name = "CandidateEquipmentArt"
-	var title := MineStyle.literal(right,MineStyle.content_text(item,"name"),Vector2(102,11),Vector2(367,53),21)
+	var title := MineStyle.literal(right,MineStyle.content_text(item,"name"),Vector2(102,11),Vector2(367,53),21,Inspect.rarity_color(item))
 	title.max_lines_visible = 2
 	title.tooltip_text = title.text
 	var level: int = Game.equipment_level(panel.selected_item)
 	if item.get("instance_record") is Dictionary:
 		title.tooltip_text += "\niLv %d · %s · %s" % [int(item.instance_record.item_level),str(item.instance_record.rarity),str(item.instance_id)]
-	MineStyle.literal(right,Words.text("SLOT_"+str(item.slot).to_upper())+" · +"+str(level)+" · "+(Inspect.t("已穿戴","Equipped") if equipped else Inspect.t("已拥有","Owned") if owned else Inspect.t("未拥有","Not owned")),Vector2(102,70),Vector2(367,26),14,MineStyle.AMBER)
+	var identity := Words.text("SLOT_"+str(item.slot).to_upper())+" · +"+str(level)+" · "+(Inspect.t("已穿戴","Equipped") if equipped else Inspect.t("已拥有","Owned") if owned else Inspect.t("未拥有","Not owned"))
+	if not Inspect.rarity(item).is_empty(): identity = Inspect.rarity_label(item)+" · "+identity
+	MineStyle.literal(right,identity,Vector2(102,70),Vector2(367,26),14,Inspect.rarity_color(item)).name = "CandidateRarity"
 	for index: int in 3:
 		var key: String = ["stats","compare","set"][index]
 		var tab := MineStyle.button(right,"",Vector2(14+index*154,105),Vector2(146,38),func(): panel.detail_tab = key; panel._render())
@@ -153,7 +155,7 @@ static func detail(panel: Control) -> void:
 	right.add_child(scroll)
 	var content := Details.new()
 	scroll.add_child(content)
-	var before: Dictionary = Game.selected_stats()
+	var before: Dictionary = panel._selected_stats()
 	var after: Dictionary = Game.preview_stats(panel.selected_item)
 	if panel.mode == "upgrade" and owned: before = Game.preview_stats(panel.selected_item); after = Game.preview_upgrade_stats(panel.selected_item)
 	content.configure(item,level,426,Game.profile.selected_hero,before,after,panel.detail_tab)

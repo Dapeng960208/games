@@ -42,11 +42,11 @@ func _card(list: VBoxContainer, offer: Dictionary) -> void:
 	card.name = "LootCard_"+suffix
 	card.set_meta("equipment_id",str(offer.equipment_id))
 	card.custom_minimum_size = Vector2(760,152)
-	card.add_theme_stylebox_override("panel", MineStyle.box(MineStyle.PAPER_LIGHT, MineStyle.AMBER.lightened(.28), 1))
+	card.add_theme_stylebox_override("panel", MineStyle.box(MineStyle.PAPER_LIGHT, Inspect.rarity_color(item) if not record.is_empty() else MineStyle.AMBER.lightened(.28), 2 if not record.is_empty() else 1))
 	list.add_child(card)
 	MineStyle.equipment_icon(card, item, Vector2(12,21), Vector2(104,104)).name = "LootItemArt"
 	var level := int(offer.get("level",0))
-	var title := MineStyle.literal(card, MineStyle.content_text(item,"name"), Vector2(128,10), Vector2(398,29), 20, MineStyle.INK)
+	var title := MineStyle.literal(card, MineStyle.content_text(item,"name"), Vector2(128,10), Vector2(398,29), 20, Inspect.rarity_color(item))
 	title.name = "LootItemName"
 	title.autowrap_mode = TextServer.AUTOWRAP_OFF
 	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
