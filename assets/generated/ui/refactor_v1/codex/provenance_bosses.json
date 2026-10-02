@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "generator": "built-in image_gen.imagegen",
+  "purpose": "Separate high-resolution codex portraits faithfully referencing current battle boss identities. Gameplay sprites and data unchanged.",
+  "correction_to_prior_audit": "Earlier provenance_B01_B02 boss_audit incorrectly treated legacy assets/bosses/BO01.png–BO04.png (1254x1254) as sufficient current identity sources. Native dimensions were accurate but those standalone images are obsolete identities. Battle renderer uses EnemyArt.install and current storybook_B01–B04_bodies_v2 regions (230–271px high). That earlier conclusion is withdrawn. These new portraits use current runtime atlas identities, not legacy standalone files.",
+  "source_audit": "Inspected current runtime manifests, actual atlas pixels and asset inventory. No existing identity-matching standalone HD boss portraits found.",
+  "entries": {
+    "BO01": {
+      "file": "BO01.png",
+      "identity": "Ivory, teal and gold humanoid shield automaton",
+      "source_atlas": "assets/generated/enemies/storybook_B01_bodies_v2.png",
+      "source_region": [
+        1656,
+        462,
+        241,
+        236
+      ],
+      "prompt": "Create a source-faithful high-definition standalone codex illustration for existing game boss BO01. Supplied image is a character identity reference atlas, NOT desired composition. Recreate ONLY BOTTOM ROW, FIFTH/FAR RIGHT COLUMN: massive stocky humanoid guard AUTOMATON of ivory enamel and antique GOLD with rich TEAL panels; small turret-like cylindrical head with narrow horizontal glowing teal eye slit; thick rounded shoulder armor, circular glowing teal/gold core in chest, huge golden articulated fist on left side of image, LARGE ROUND TEAL SHIELD edged and segmented in gold held at right, squat heavy armored feet, ornate gold joints. Preserve bulky almost-square silhouette, NO wings, no other weapons, exact teal round shield and ivory armor. Preserve exact established identity, silhouette, costume, weapon, colors and proportions from the indicated atlas cell. Do not redesign, do not substitute another species. Render newly at high native detail: premium polished hand-painted 2.5D storybook fantasy RPG art, sculptural shading, expressive form, sharp material detail, readable silhouette, three-quarter view facing right. ONE full-body figure centered filling80–85% of a1024x1024 or larger square canvas, every wing/weapon tip within generous transparent margins. True RGBA transparent background, no ground or cast shadow, no environment, no labels or text, no border, no collage, no extra figures. Repaint details at full resolution rather than enlarge source pixels.",
+      "blob_sha": "7880bc59c9555ed07ec716cb3df927e77995c046",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "fully_transparent_pixels": 628164,
+      "near_opaque_pixels": 908922,
+      "visible_bbox": [
+        26,
+        116,
+        1240,
+        1210
+      ],
+      "visual_validation": "Passed: source-specific species, silhouette, clothing, weapons, colors retained; full body with transparent background.",
+      "pixel_processing": "Original generated PNG copied unchanged; no resize or upscale."
+    },
+    "BO02": {
+      "file": "BO02.png",
+      "identity": "Amber insect queen with cyan wings",
+      "source_atlas": "assets/generated/enemies/storybook_B02_bodies_v2.png",
+      "source_region": [
+        1652,
+        446,
+        286,
+        271
+      ],
+      "prompt": "Create a source-faithful high-definition standalone codex illustration for existing game boss BO02. Supplied image is a character identity reference atlas, NOT desired composition. Recreate ONLY BOTTOM ROW, FIFTH/FAR RIGHT COLUMN: majestic large AMBER INSECT QUEEN, six ornate dark-and-gold legs, large bulbous orange-red segmented abdomen studded with big glowing honey-amber sacs, turquoise faceted eyes, elaborate gold-red armored head and chest, large curved ivory-gold mandible claws, four large transparent CYAN wings with gold veins extending upward/backward. Preserve the exact multi-legged queen insect silhouette, orange amber body, teal wings, long gold antennae and forward claws. Not a humanoid or machine. Preserve exact established identity, silhouette, costume, weapon, colors and proportions from the indicated atlas cell. Do not redesign, do not substitute another species. Render newly at high native detail: premium polished hand-painted 2.5D storybook fantasy RPG art, sculptural shading, expressive form, sharp material detail, readable silhouette, three-quarter view facing right. ONE full-body figure centered filling80–85% of a1024x1024 or larger square canvas, every wing/weapon tip within generous transparent margins. True RGBA transparent background, no ground or cast shadow, no environment, no labels or text, no border, no collage, no extra figures. Repaint details at full resolution rather than enlarge source pixels.",
+      "blob_sha": "8bcf12ba982954447aa3361dcc72bb0e55f6eeaa",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "fully_transparent_pixels": 665200,
+      "near_opaque_pixels": 817778,
+      "visible_bbox": [
+        33,
+        42,
+        1246,
+        1233
+      ],
+      "visual_validation": "Passed: source-specific species, silhouette, clothing, weapons, colors retained; full body with transparent background.",
+      "pixel_processing": "Original generated PNG copied unchanged; no resize or upscale."
+    },
+    "BO03": {
+      "file": "BO03.png",
+      "identity": "Top-hat stitched zombie mayor with pumpkin staff and lantern",
+      "source_atlas": "assets/generated/enemies/storybook_B03_bodies_v2.png",
+      "source_region": [
+        1663,
+        459,
+        244,
+        241
+      ],
+      "prompt": "Create a source-faithful high-definition standalone codex illustration for existing game boss BO03. Supplied image is a character identity reference atlas, NOT desired composition. Recreate ONLY BOTTOM ROW, FIFTH/FAR RIGHT COLUMN, the stitched zombie mayor. Large stocky pale blue-green/lavender stitched skin humanoid, luminous pale eyes, tall dark purple TOP HAT with orange pumpkin band and gold detail, teal formal long tailcoat with bright orange-gold lapels, dark purple trousers, gold buttons and mayoral medal. Right side of image: holds tall dark staff topped with a glowing orange JACK-O-LANTERN globe in golden frame and small brass bell. Left hand near hip: small glowing pumpkin lantern. Broad exposed stitched forearms with pale wrappings. Full-body, short stout boots, exactly these clothes and props. Preserve exact established identity, silhouette, costume, weapon, colors and proportions from the indicated atlas cell. Do not redesign, do not substitute another species or a machine. Render newly at high native detail: premium polished hand-painted 2.5D storybook fantasy RPG art, sculptural shading, expressive form, sharp material detail, readable silhouette, three-quarter view facing right. ONE full-body figure centered filling80–85% of a1024x1024 or larger square canvas, every hat/horn/weapon tip within generous transparent margins. True RGBA transparent background, no ground or cast shadow, no environment, no labels or text, no border, no collage, no extra figures. Repaint details at full resolution rather than enlarge source pixels.",
+      "blob_sha": "255aa673cb0616ccc2e62069f53b60c827b53195",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "fully_transparent_pixels": 746457,
+      "near_opaque_pixels": 775643,
+      "visible_bbox": [
+        72,
+        44,
+        1233,
+        1224
+      ],
+      "visual_validation": "Passed: source-specific species, silhouette, clothing, weapons, colors retained; full body with transparent background.",
+      "pixel_processing": "Original generated PNG copied unchanged; no resize or upscale."
+    },
+    "BO04": {
+      "file": "BO04.png",
+      "identity": "Green orc chieftain in red armor with horned crown and axe",
+      "source_atlas": "assets/generated/enemies/storybook_B04_bodies_v2.png",
+      "source_region": [
+        1670,
+        474,
+        231,
+        230
+      ],
+      "prompt": "Create a source-faithful high-definition standalone codex illustration for existing game boss BO04. Supplied image is a character identity reference atlas, NOT desired composition. Recreate ONLY BOTTOM ROW, FIFTH/FAR RIGHT COLUMN, the powerful green-skinned ORC CHIEFTAIN. Massive stocky muscular green orc with ivory tusks, fierce face, dark hair under broad horned helmet/crown with large curved IVORY HORNS; layered angular scarlet-red crystal/stone armor on shoulders, thick ivory fur trim, brown leather straps and gold rings, fang necklace, red torn loincloth with central small ivory skull buckle, thick legs and heavy sandals/boots. Huge broad red chipped axe held diagonally across body toward viewer-right, its long dark haft held with both hands. Preserve muscular green skin, red armor, ivory horns and fur, exact weapon silhouette. Preserve exact established identity, silhouette, costume, weapon, colors and proportions from the indicated atlas cell. Do not redesign, do not substitute another species or a machine. Render newly at high native detail: premium polished hand-painted 2.5D storybook fantasy RPG art, sculptural shading, expressive form, sharp material detail, readable silhouette, three-quarter view facing right. ONE full-body figure centered filling80–85% of a1024x1024 or larger square canvas, every hat/horn/weapon tip within generous transparent margins. True RGBA transparent background, no ground or cast shadow, no environment, no labels or text, no border, no collage, no extra figures. Repaint details at full resolution rather than enlarge source pixels.",
+      "blob_sha": "383f34694fe814338c419f2712848d8231b0c077",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "fully_transparent_pixels": 620259,
+      "near_opaque_pixels": 896378,
+      "visible_bbox": [
+        54,
+        47,
+        1231,
+        1213
+      ],
+      "visual_validation": "Passed: source-specific species, silhouette, clothing, weapons, colors retained; full body with transparent background.",
+      "pixel_processing": "Original generated PNG copied unchanged; no resize or upscale."
+    }
+  }
+}

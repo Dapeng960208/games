@@ -1,0 +1,278 @@
+{
+  "generator": "built-in image_gen.imagegen",
+  "pixel_processing": "Original generated RGBA PNG pixels unchanged. No upscaling, resizing, recoloring or atlas slicing.",
+  "scope": "M01-M18 complete. M19-M36 tracked separately in provenance_B03_B04.json.",
+  "boss_audit": "assets/bosses/BO01.png through BO04.png each already 1254x1254 RGBA; retain original high-resolution source.",
+  "entries": {
+    "M01": {
+      "file": "M01.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "Pillow histogram confirmed genuine alpha 0..255, with substantial fully transparent pixels.",
+      "prompt": "Create a genuinely new high-resolution painted fantasy bestiary illustration of ONE specific mechanical monster for a game codex. Use supplied image as identity reference ONLY: recreate the creature at BOTTOM ROW, FOURTH COLUMN, the small ivory/teal/gold four-legged pincer machine (M01). NOT any other monster. Subject: squat circular ivory-enamel and teal metallic base on four short gold articulated legs, tall single red-and-brass articulated crane arm mounted centrally, ending in one large ivory and gold crab-like pincer held toward right. Preserve this silhouette and palette exactly; no humanoid head, no extra weapons. Rich hand-painted 2.5D storybook RPG rendering, crisp gold engravings, articulate joints, restrained wear, teal luminous accents, three-quarter view facing right. Single full-body isolated creature on genuine transparent alpha, centered filling 80–85% canvas with margin all around, no cropped limbs. High-fidelity native individual illustration, at least 1024 square, suitable for 2K screen codex detail. No text, labels, border, ground, backdrop, cast shadow, atlas or collage. Repaint fine details at full resolution; do not upscale or reproduce the tiny sprite pixels.",
+      "source_reference": "assets/generated/enemies/storybook_B01_bodies_v2.png",
+      "blob_sha": "cb158b4821b32acfd75e2d66227ca55d83f1e231"
+    },
+    "M02": {
+      "file": "M02.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "Pillow histogram confirmed genuine alpha 0..255, with substantial fully transparent pixels.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M02. Supplied image is identity reference: recreate ONLY TOP ROW THIRD COLUMN: ivory and purple-enamel golden mechanical scorpion with four articulated walking legs, two powerful claw pincers and long arched segmented tail ending in purple crystal stinger. Match source silhouette precisely. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural enamel panels, articulated polished brass joints, intricate engraved trim, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, equipment, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B01_bodies_v2.png",
+      "blob_sha": "232155bc9a992f55fbfd126af5e84dc084a45e29"
+    },
+    "M03": {
+      "file": "M03.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "Pillow histogram confirmed genuine alpha 0..255, with substantial fully transparent pixels.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M03. Supplied image is identity reference: recreate ONLY TOP ROW SECOND COLUMN: low long royal-blue and gold ornate mechanical artillery cannon with an elongated brass barrel pointing right and twin black caterpillar treads. Ivory metal trim, turquoise optic at barrel base. Do not add animal limbs. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural enamel panels, articulated polished brass joints, intricate engraved trim, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, equipment, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B01_bodies_v2.png",
+      "blob_sha": "87a1577403b12f2d4638b5d70f179b32706683cf"
+    },
+    "M04": {
+      "file": "M04.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "Pillow histogram confirmed genuine alpha 0..255, with substantial fully transparent pixels.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M04. Supplied image is identity reference: recreate ONLY TOP ROW FIRST COLUMN: tiny floating ivory-and-gold mechanical bee, bright cyan round front eye, two large translucent amber wing plates, multiple small hooked brass insect legs. Preserve round white body and bee silhouette. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural enamel panels, articulated polished brass joints, intricate engraved trim, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, equipment, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B01_bodies_v2.png",
+      "blob_sha": "8650a39945a31d43ed3991ec1505ab9f3d158363"
+    },
+    "M05": {
+      "file": "M05.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "Pillow histogram confirmed genuine alpha 0..255, with substantial fully transparent pixels.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M05. Supplied image is identity reference: recreate ONLY BOTTOM ROW FIRST COLUMN: ivory-blue and gold four-legged mechanical hunter hound, squat feline machine silhouette with front-projecting short cannon snout and two tall luminous turquoise cylindrical tanks on back, flexible dark hoses. Match source. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural enamel panels, articulated polished brass joints, intricate engraved trim, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, equipment, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B01_bodies_v2.png",
+      "blob_sha": "d8a87dd591f2c380e52408c136c2c5ffc3f517f0"
+    },
+    "M06": {
+      "file": "M06.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "Pillow histogram confirmed genuine alpha 0..255, with substantial fully transparent pixels.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M06. Supplied image is identity reference: recreate ONLY BOTTOM ROW THIRD COLUMN: hovering shield-wing support drone with small red/bronze cylindrical central body and tiny teal eye, two symmetrical enormous blue enamel crescent shield-wings edged ivory and gold, articulated brass hubs and a small pointed fin underneath. No humanoid legs. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural enamel panels, articulated polished brass joints, intricate engraved trim, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, equipment, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B01_bodies_v2.png",
+      "blob_sha": "773a62d2fb48d3ed03a9bb4e27d1542c71ce3b1f"
+    },
+    "M07": {
+      "file": "M07.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "Pillow histogram confirmed genuine alpha 0..255, with substantial fully transparent pixels.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M07. Supplied image is identity reference: recreate ONLY TOP ROW FIFTH COLUMN: small tracked ivory and teal magnetic machine, golden tread wheels, large upright horseshoe magnet with RED squared tips around a floating blue energy orb in golden cage. Match exact source. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural enamel panels, articulated polished brass joints, intricate engraved trim, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, equipment, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B01_bodies_v2.png",
+      "blob_sha": "7b433ea2b517dfe0517e08574a6d2c83a5b306e0"
+    },
+    "M08": {
+      "file": "M08.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "Pillow histogram confirmed genuine alpha 0..255, with substantial fully transparent pixels.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M08. Supplied image is identity reference: recreate ONLY BOTTOM ROW SECOND COLUMN: upright stout ivory/teal/brass humanoid tower-shield guard automaton with tiny rectangular teal eye, vertical glowing turquoise cylindrical chest tank, squat armored feet, large round red shield bearing gold star in right side of image. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural enamel panels, articulated polished brass joints, intricate engraved trim, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, equipment, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B01_bodies_v2.png",
+      "blob_sha": "696ab8299779009785ed6291ae74db02280e1c34"
+    },
+    "M09": {
+      "file": "M09.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "Pillow histogram confirmed genuine alpha 0..255, with substantial fully transparent pixels.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M09. Supplied image is identity reference: recreate ONLY TOP ROW FOURTH COLUMN: round squat ivory and brass furnace robot, red enameled accents, wide open blazing orange furnace belly with door swung to right, small chimney top, stout brass arms and feet. Warm glowing molten interior, exact source silhouette. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural enamel panels, articulated polished brass joints, intricate engraved trim, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, equipment, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B01_bodies_v2.png",
+      "blob_sha": "6092bb3bcbeabc4817ca0cae8e5c76ccd991e13e"
+    },
+    "M10": {
+      "file": "M10.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "PNG header confirms RGBA; visual transparency inspected. Full alpha histogram pending integration QA due shell transport failures.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M10. Supplied image is identity reference: recreate ONLY TOP ROW FIRST COLUMN: orange-red plated beetle with turquoise faceted eyes, two long forward gold antennae, enormous curved ivory-gold scythe pincers, small armored insect legs, faceted glowing amber nodules on its back. Preserve compact beetle anatomy. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural jewel-encrusted chitin, organic insect anatomy, intricate gold-like natural shell edging, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, proportions, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B02_bodies_v2.png",
+      "blob_sha": "f5b1e472682af67ce247443c1cd5a94b919ee2d6"
+    },
+    "M11": {
+      "file": "M11.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "PNG header confirms RGBA; visual transparency inspected. Full alpha histogram pending integration QA due shell transport failures.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M11. Supplied image is identity reference: recreate ONLY TOP ROW THIRD COLUMN: slender mint-turquoise winged mosquito/mantis insect with incredibly long thin golden needle beak pointing right, four thin angular gold legs, clear cyan wing plates and turquoise eye. Preserve delicate tall legs and long needle silhouette. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural jewel-encrusted chitin, organic insect anatomy, intricate gold-like natural shell edging, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, proportions, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B02_bodies_v2.png",
+      "blob_sha": "50621138b10de4a6834fa3f30a98405f8aa7766b"
+    },
+    "M12": {
+      "file": "M12.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "PNG header confirms RGBA; visual transparency inspected. Full alpha histogram pending integration QA due shell transport failures.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M12. Supplied image is identity reference: recreate ONLY BOTTOM ROW FOURTH COLUMN: plump luminous amber mother-firefly insect with large orange-gold shell opened like folded leaf wings over glowing cyan abdomen, short legs, curled forward proboscis and one dangling golden light on long antenna. Match exact creature. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural jewel-encrusted chitin, organic insect anatomy, intricate gold-like natural shell edging, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, proportions, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B02_bodies_v2.png",
+      "blob_sha": "ed4a6ee426040df34289f6b600971aab353370e5"
+    },
+    "M13": {
+      "file": "M13.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "PNG header confirms RGBA; visual transparency inspected. Full alpha histogram pending integration QA due shell transport failures.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M13. Supplied image is identity reference: recreate ONLY BOTTOM ROW SECOND COLUMN: long thin emerald-and-gold dragonfly insect with four large translucent pale-cyan wings, long curled segmented teal tail ending in amber-gold loop, tall golden antennae and bright turquoise eye. Fine legs, pointed face. Preserve dragonfly identity. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural jewel-encrusted chitin, organic insect anatomy, intricate gold-like natural shell edging, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, proportions, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B02_bodies_v2.png",
+      "blob_sha": "8b4eeaf7a28932feb71898981bfd4c6d82664350"
+    },
+    "M14": {
+      "file": "M14.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "PNG header confirms RGBA; visual transparency inspected. Full alpha histogram pending integration QA due shell transport failures.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M14. Supplied image is identity reference: recreate ONLY TOP ROW FOURTH COLUMN: orange-red centipede-like juvenile insect with upcurved thick segmented armored tail ending in golden point, six delicate gold walking legs, bright cyan eye, long curved gold antennae, and pointed orange head. Preserve curled abdomen silhouette. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural jewel-encrusted chitin, organic insect anatomy, intricate gold-like natural shell edging, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, proportions, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B02_bodies_v2.png",
+      "blob_sha": "f6aa582d5a5281b19cb3fa406481b4f8de983221"
+    },
+    "M15": {
+      "file": "M15.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "PNG header confirms RGBA; visual transparency inspected. Full alpha histogram pending integration QA due shell transport failures.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M15. Supplied image is identity reference: recreate ONLY TOP ROW SECOND COLUMN: powerful dark royal-blue stag beetle with ornate gold-edged shell, an enormous upright C-shaped indigo and ivory serrated mandible horn arched forward above head, bright teal eyes, six stout armored legs. Match source exactly. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural jewel-encrusted chitin, organic insect anatomy, intricate gold-like natural shell edging, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, proportions, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B02_bodies_v2.png",
+      "blob_sha": "71de03830643e1249041399a8ed5a8ed1ca8eb4a"
+    },
+    "M16": {
+      "file": "M16.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "PNG header confirms RGBA; visual transparency inspected. Full alpha histogram pending integration QA due shell transport failures.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M16. Supplied image is identity reference: recreate ONLY TOP ROW FIFTH COLUMN: squat round pillbug with overlapping purple/violet and orange-red plates edged gold, fiery amber glowing segments beneath, small teal eyes and many short pale ivory-tipped feet. Preserve low rounded armored pillbug silhouette, no wings. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural jewel-encrusted chitin, organic insect anatomy, intricate gold-like natural shell edging, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, proportions, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B02_bodies_v2.png",
+      "blob_sha": "66340aadca36edc14a3f86ce63540f5adfa713ce"
+    },
+    "M17": {
+      "file": "M17.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "PNG header confirms RGBA; visual transparency inspected. Full alpha histogram pending integration QA due shell transport failures.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M17. Supplied image is identity reference: recreate ONLY BOTTOM ROW FIRST COLUMN: mint-teal and gold healer firefly with FOUR broad leafy jade/turquoise translucent wings etched gold veins and circular yellow light spots, thin legs, small head with teal eyes, curved antenna with dangling warm yellow glowing orb. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural jewel-encrusted chitin, organic insect anatomy, intricate gold-like natural shell edging, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, proportions, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B02_bodies_v2.png",
+      "blob_sha": "e9b5d3eefa1ae3a6666bc03b001b1a325ef3072e"
+    },
+    "M18": {
+      "file": "M18.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "png_color_type": 6,
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "visual_inspection": "Passed: matches source-specific creature silhouette, colors, equipment; isolated detailed illustration.",
+      "alpha_validation": "PNG header confirms RGBA; visual transparency inspected. Full alpha histogram pending integration QA due shell transport failures.",
+      "prompt": "High-fidelity isolated fantasy game codex portrait of ONE existing monster M18. Supplied image is identity reference: recreate ONLY BOTTOM ROW THIRD COLUMN: dark blue armored rhinoceros beetle with enormous twin upright red-orange and ivory-gold horn plates like jagged wall shields raised above head, turquoise gems, stout blue/gold legs and short low body. Preserve towering paired jaw-shield silhouette. Premium hand-painted 2.5D storybook fantasy RPG style, crisp sculptural jewel-encrusted chitin, organic insect anatomy, intricate gold-like natural shell edging, readable full-body silhouette in three-quarter view facing right. Native individual 1024x1024 or larger square illustration, centered with 8% clear padding around every limb. Repaint all details newly at full native resolution, do not enlarge source pixels. Preserve exact species, proportions, silhouette and colors of specified reference creature. Genuine transparent alpha background. No ground, cast shadow, scenery, text, labels, border, other monsters, grid, collage.",
+      "source_reference": "assets/generated/enemies/storybook_B02_bodies_v2.png",
+      "blob_sha": "c487bf11e3fc5a3c6a337f59fcf19e3899bf422b"
+    }
+  }
+}
