@@ -39,6 +39,7 @@ var unresolved_error: bool:
 	get:
 		return _blocked
 var _current: Dictionary = {}
+var _acknowledged_bytes := PackedByteArray()
 var _blocked: bool = false
 
 func _init(save_path: String = "user://profile.json") -> void:
@@ -67,6 +68,7 @@ func load_document() -> Dictionary:
 	last_error = ""
 	warning = ""
 	_current = {}
+	_acknowledged_bytes = PackedByteArray()
 	_blocked = false
 	has_profile = false
 	var best_path := ""
@@ -149,7 +151,11 @@ func save_document(profile: Dictionary, active_run: Variant = null, profile_init
 		last_error = "STORAGE_NO_VALID_PROFILE"
 		return false
 	var document := _next_document(profile, active_run, profile_initialized)
-	if not _valid_document(document):
+	# _current is a detached document accepted by this store. Reuse progression
+	# validation only when every permanent field is exactly equal, in the same
+	# schema. The changing run receipt still receives all normal checks.
+	var same_profile: bool = int(_current.get("schema_version",0)) == SCHEMA_VERSION and document.profile == _current.get("profile")
+	if not _valid_candidate(document,same_profile):
 		last_error = "STORAGE_INVALID_DATA"
 		return false
 	# Check the exact bytes before touching primary, temporary, or backup files.
@@ -163,7 +169,8 @@ func save_document(profile: Dictionary, active_run: Variant = null, profile_init
 		return false
 	# Preserve the last acknowledged whole transaction before replacing a candidate.
 	if not _current.is_empty():
-		if not _write_document(path + ".bak.tmp", _current):
+		if _acknowledged_bytes.is_empty(): _acknowledged_bytes = _serialize(_current)
+		if not _write_serialized(path + ".bak.tmp", _acknowledged_bytes):
 			return false
 		if DirAccess.rename_absolute(path + ".bak.tmp", path + ".bak") != OK:
 			last_error = "STORAGE_REPLACE_FAILED"
@@ -174,6 +181,7 @@ func save_document(profile: Dictionary, active_run: Variant = null, profile_init
 		last_error = "STORAGE_REPLACE_FAILED"
 		return false
 	_current = document
+	_acknowledged_bytes = serialized
 	has_profile = profile_initialized
 	return true
 
@@ -341,6 +349,9 @@ static func _valid_result(value: Variant, version: int = 1, ruleset: int = 1) ->
 		and int(value.wallet_before) + int(value.retained) == int(value.wallet_after)
 
 static func _valid_document(value: Variant) -> bool:
+	return _valid_candidate(value)
+
+static func _valid_candidate(value: Variant, identical_progression: bool = false) -> bool:
 	# Godot JSON parses numeric tokens as floats; Array.has is type-sensitive.
 	if not value is Dictionary or not _number(value.get("schema_version"), SCHEMA_VERSION) \
 		or int(value.schema_version) < 1:
@@ -372,7 +383,7 @@ static func _valid_document(value: Variant) -> bool:
 		for id: String in profile.last_result.discoveries:
 			if not id in profile.discoveries:
 				return false
-	if version >= 2 and not _valid_progression(profile):
+	if version >= 2 and not identical_progression and not _valid_progression(profile):
 		return false
 	if version >= 2 and not bool(value.get("profile_initialized", true)):
 		# A settings-only file must not disguise earned assets or an active run.

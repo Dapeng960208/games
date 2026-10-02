@@ -542,21 +542,27 @@ func set_hero_branch(slot: String, choice: String, hero_id: String = "") -> bool
 func equipment_definition(identifier: String, run_context: bool = false) -> Dictionary:
 	var in_run: bool = run_context and run != null
 	var ruleset: int = run.ruleset_version() if in_run else _profile_ruleset()
-	var owned: Dictionary = run.equipment_snapshot.duplicate(true) if in_run else profile.get("equipment", {})
+	var owned: Dictionary = run.equipment_snapshot if in_run else profile.get("equipment", {})
+	var exists := owned.has(identifier)
+	var record: Variant = owned.get(identifier)
 	if in_run and ruleset == Numbers.V2:
-		for id: String in profile.get("equipment", {}):
-			if not owned.has(id): owned[id] = profile.equipment[id].duplicate(true)
-		for id: String in run.expedition.get("pending_equipment", {}):
-			if not owned.has(id): owned[id] = run.expedition.pending_equipment[id].duplicate(true)
-	if ruleset != Numbers.V2 or not owned.has(identifier):
+		# Resolve this ID in the same precedence order; inspecting one item must
+		# not duplicate the entire camp inventory and every pending drop.
+		if not exists:
+			var camp: Dictionary = profile.get("equipment",{})
+			var pending: Dictionary = run.expedition.get("pending_equipment",{})
+			exists = camp.has(identifier) or pending.has(identifier)
+			record = camp[identifier] if camp.has(identifier) else pending.get(identifier)
+	if ruleset != Numbers.V2 or not exists:
 		return ContentRegistry.equipment(identifier, ruleset)
-	var record: Variant = owned[identifier]
-	if not record is Dictionary or record.get("instance_id") != identifier or not Instances.validate(record).is_empty(): return {}
+	if not record is Dictionary or record.get("instance_id") != identifier: return {}
+	var instance_stats := Instances.stats(record)
+	if instance_stats.is_empty(): return {}
 	var definition: Dictionary = ContentRegistry.equipment(str(record.template_id), ruleset)
 	if definition.is_empty(): return {}
 	definition["instance_id"] = identifier
 	definition["instance_record"] = record.duplicate(true)
-	definition["instance_stats"] = Instances.stats(record)
+	definition["instance_stats"] = instance_stats
 	return definition
 
 func equipment_slots(run_context: bool = false) -> Array[String]:

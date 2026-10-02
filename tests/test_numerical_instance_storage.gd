@@ -148,6 +148,12 @@ func _storage(fixture: Dictionary) -> void:
 	loaded.profile.equipment["duplicate-low"].main_rolls.attack = 77
 	check(saved.equipment["duplicate-low"].main_rolls.attack == 0 and saved.equipment["duplicate-high"].main_rolls.attack == 100, "same-template instances and saved copies do not share dictionaries")
 	var before_bytes := FileAccess.get_file_as_bytes(path)
+	var corrupted := saved.duplicate(true)
+	corrupted.equipment["duplicate-high"].main_rolls.attack = 101
+	check(not store.save_document(corrupted) and store.last_error == "STORAGE_INVALID_DATA", "cached progression rejects a changed nested roll")
+	check(FileAccess.get_file_as_bytes(path) == before_bytes, "invalid changed profile preserves acknowledged bytes")
+	check(store.save_document(saved) and ProfileStore._valid_document(ProfileStore.new(path).load_document()), "identical profile reuse remains valid on fresh reload")
+	before_bytes = FileAccess.get_file_as_bytes(path)
 	store.max_document_bytes = 1
 	check(not store.save_document(saved) and store.last_error == "STORAGE_CAPACITY_EXCEEDED", "full storage rejects complete write")
 	check(FileAccess.get_file_as_bytes(path) == before_bytes and saved.equipment.has("pending-copy") and saved.permanent_gold == 0, "full storage keeps pending ownership and never invents gold")

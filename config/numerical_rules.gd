@@ -20,7 +20,9 @@ static func value(key: String, fallback: Variant = null) -> Variant:
 	return result.duplicate(true) if result is Dictionary or result is Array else result
 
 static func versions() -> Dictionary:
-	return parameters()["versions"].duplicate(true)
+	# Validation asks for these few constants frequently. Copy only this value,
+	# retaining the detached public API without cloning the entire balance file.
+	return value("versions")
 
 static func default_ruleset() -> int:
 	return V2 if bool(value("runtime_enabled", false)) else LEGACY

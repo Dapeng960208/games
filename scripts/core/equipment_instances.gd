@@ -131,6 +131,9 @@ static func validate(record: Dictionary) -> Array[String]:
 ## under-round mathematical half points. Percentage results stay fractional.
 static func main_stats(record: Dictionary) -> Dictionary:
 	if not validate(record).is_empty(): return {}
+	return _main_stats(record)
+
+static func _main_stats(record: Dictionary) -> Dictionary:
 	var result := {}
 	var template := Registry.equipment(str(record.template_id), 2)
 	var rarity: Dictionary = Rules.value("rarities")[record.rarity]
@@ -155,6 +158,9 @@ static func main_stats(record: Dictionary) -> Dictionary:
 
 static func affix_stats(record: Dictionary) -> Dictionary:
 	if not validate(record).is_empty(): return {}
+	return _affix_stats(record)
+
+static func _affix_stats(record: Dictionary) -> Dictionary:
 	var result := {}
 	var definitions: Dictionary = Rules.value("affixes")
 	var rarity: Dictionary = Rules.value("rarities")[record.rarity]
@@ -178,7 +184,9 @@ static func stats(record: Dictionary) -> Dictionary:
 	for key: String in definitions: result[key] = 0 if definitions[key].scaling == "flat" else 0.0
 	for key: String in Registry.STAT_KEYS:
 		if not result.has(key): result[key] = 0
-	for source: Dictionary in [main_stats(record), affix_stats(record)]:
+	# Both calculations consume the same already-validated value in this call.
+	# Public main_stats/affix_stats still validate independent caller inputs.
+	for source: Dictionary in [_main_stats(record), _affix_stats(record)]:
 		for key: String in source: result[key] += source[key]
 	return result
 
