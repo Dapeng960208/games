@@ -14,7 +14,7 @@
       "file": "png/01-title.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "5bfc038efb0357e0a9b5d57648f3ca81a27c6e7ef380e067528c559bb58f01a8"
+      "sha256": "705a7c193a79047aa378aa65d9d2bd3e8a11221ab7c30916de85c7cc91b8e3e1"
     },
     {
       "id": "02-camp",
@@ -24,7 +24,7 @@
       "file": "png/02-camp.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "8321b99af83df4e69a02208c36e0e35ba0fb6a262ef0177a9b0ab26e061e89bf"
+      "sha256": "90055c16e1ff344fc5d25028755adaa4ab16b9df4c9ba249d650a7f51e9b7674"
     },
     {
       "id": "03-heroes",
@@ -34,7 +34,7 @@
       "file": "png/03-heroes.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "ee6b9ba55b9ed83b2d3896b4c14909e5d60f5c784437822a841f03d125cc7d46"
+      "sha256": "b383b8774b36b7ca85fa6ae8cd68b74cf2e376bb3a78fce0bc9e2e78d3928748"
     },
     {
       "id": "04-hero-warrior",
@@ -44,7 +44,7 @@
       "file": "png/04-hero-warrior.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "23e864afea0f582046886800cb48a2cbe78c38f75172d64bfe86cd09eb25d1a9"
+      "sha256": "fe2fc1b05ad63bafe314c618624ee6238660a5fa592fa5cc8b637d4cce3de044"
     },
     {
       "id": "05-hero-gunner",
@@ -54,7 +54,7 @@
       "file": "png/05-hero-gunner.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "2137568567e750a9651b214010450e8cfaea3ccb02ed64130499b947da5e099a"
+      "sha256": "fd04eafdf9d61bea6bc2d8359b79e012fc26a573871d5b082abe7466a1d1304b"
     },
     {
       "id": "06-hero-mage",
@@ -64,7 +64,7 @@
       "file": "png/06-hero-mage.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "a9f6a89f993b1cfa532ed24b9594d6285aadd3a55a0c44d8e736297b7970c75e"
+      "sha256": "b6be7eb6f05555e52a2ad03b6de8c92f05d9c31ffb42d2e98168d21d01b2b8c9"
     },
     {
       "id": "07-character-stats",
@@ -74,7 +74,7 @@
       "file": "png/07-character-stats.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "5b682a2c4b19affe2f8a24b0a1b962f8fc61292b0ad82b6eb656125712a41a52"
+      "sha256": "e8f509b06873ed9da619d0b893bf766cf38f46e7a467cbd848f16b00db5e9751"
     },
     {
       "id": "08-skills-warrior",
@@ -84,7 +84,7 @@
       "file": "png/08-skills-warrior.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "8d46f721f514fd55d20a9b684f4a56141f100ad9372f2f2552f3f80fc18bb991"
+      "sha256": "393901a0bbf7859ca183fecae5f2b2613c6e225faac7abffe5d7088ba99b08f8"
     },
     {
       "id": "09-skills-gunner",
@@ -94,7 +94,7 @@
       "file": "png/09-skills-gunner.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "02c2e1de31b6857653f5f5da321995d79f155101a51ecc6084770b533b2c7a8d"
+      "sha256": "f9ff05ead837dc2d6513dc12bc99dd35854607ecc6be1f3ad8342f94fa9c7678"
     },
     {
       "id": "10-skills-mage",
@@ -104,7 +104,7 @@
       "file": "png/10-skills-mage.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "03544a0f07468d57c4547926a36b3d39ca579848a8c2ad1bf10e3b9f43f14af2"
+      "sha256": "81fe3bbb2d0bdee265f880a7f900bcd2e3536008c338bdf484a193195c771b1f"
     },
     {
       "id": "11-warrior-q",
@@ -114,7 +114,7 @@
       "file": "png/11-warrior-q.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "24c47d269b37e7b779b547ff52041a0fade515dccc94c8bf88c4d11d6a789f41"
+      "sha256": "d025de36634cf9ca6474a1a5a7e0b5f76b13d8bf9f648961ffae3d2e81bf89d2"
     },
     {
       "id": "12-warrior-w",
@@ -124,7 +124,7 @@
       "file": "png/12-warrior-w.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "a14c4a10db64578a16c6bf4418fcb2343c97da4c0b21e081b08de2f5f28c0f46"
+      "sha256": "6344cb4c68af6f4bc31809d618e2e25b3018e6937b132457ec1557e212c40bd3"
     },
     {
       "id": "13-warrior-e",
@@ -134,7 +134,7 @@
       "file": "png/13-warrior-e.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "f0334078e19c3824964005d366c81035a75a01ac21c4a52e38f181c7f82d09eb"
+      "sha256": "148f0b1ab091329ae143ea7cf10e0abd2b402a5256e8558b7944296361522a00"
     },
     {
       "id": "14-warrior-r",
@@ -144,7 +144,7 @@
       "file": "png/14-warrior-r.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "6919253cca0f700f2560e011cad4175495bc3cc64742bf322717607f9f8b5410"
+      "sha256": "4a49173c1bf1dd4e42a262977174c2e35d6f04ba69a3464ce126dafa2a684af4"
     },
     {
       "id": "15-gunner-q",
@@ -154,7 +154,7 @@
       "file": "png/15-gunner-q.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "2eb56804c9b63d3531b68fb6a1b8c84a028ca72e1ef43c6a5785d5c798d2d7da"
+      "sha256": "ee89b9c70ab836f13e62b4943e08de279cb701dd65727d10b9c209b05a929527"
     },
     {
       "id": "16-gunner-w",
@@ -164,7 +164,7 @@
       "file": "png/16-gunner-w.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "4614e72f74b197f6ae682a1a0c00e7329e85ccfa184e894ace28744870298629"
+      "sha256": "0ed9747375bfdea9b05bb88a19876fecfce1ed7e9f75ed3f50bc20820b00ebb3"
     },
     {
       "id": "17-gunner-e",
@@ -174,7 +174,7 @@
       "file": "png/17-gunner-e.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "d3e743b2541f423af66c0228a0c232fcf936445cd933e9b901d81e701e2d78e5"
+      "sha256": "67780612ced0bf850ad04e2e20101e98023e9df141e36b39400a1fe52e060f3a"
     },
     {
       "id": "18-gunner-r",
@@ -184,7 +184,7 @@
       "file": "png/18-gunner-r.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "050c6477d9c995c3e32b402c75eba4592e9f55f5f273d257fb96aa715bd3f70b"
+      "sha256": "38c18e44fccfce1bf62e28ea71b29916039d5820df8df75f8a8fba0b489184f9"
     },
     {
       "id": "19-mage-q",
@@ -194,7 +194,7 @@
       "file": "png/19-mage-q.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "e9abc7ad6657698ce7fe92db4dec63e20af349f9f0cbcb2003a2f293e6fe57f3"
+      "sha256": "578002216c82b19d4c25b38aa54be391a0ed2975302cfc9e871383fd9df8502b"
     },
     {
       "id": "20-mage-w",
@@ -204,7 +204,7 @@
       "file": "png/20-mage-w.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "3ab59e1fd9e1d2af09c90f20b0af6665400e85e65ffe852039066febde00d4aa"
+      "sha256": "b016236d812bc5051fa14911bea77d2d89afb4a9df1e9063e1f9811ecb009eac"
     },
     {
       "id": "21-mage-e",
@@ -214,7 +214,7 @@
       "file": "png/21-mage-e.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "3fa0455258eb462ac182be0461160e8162d9d4ed27b7c0d415b2d813fb84cf41"
+      "sha256": "01700e4fe007342ec69ea007acb42a6469824f4278722f1c72de306a6f207061"
     },
     {
       "id": "22-mage-r",
@@ -224,7 +224,7 @@
       "file": "png/22-mage-r.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "6ea42276205c57e2342ef6d173e69732084e93d62c8c0eba653ed3ba9a722deb"
+      "sha256": "7d5f9d9022daca957ed793f431a7fe0d3245ecf299bfa46d1f491af462aa37b8"
     },
     {
       "id": "23-core-actions",
@@ -234,7 +234,7 @@
       "file": "png/23-core-actions.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "2ee0d0173dd0d132194d74585b46ed6fff4ae9f57ceae4857616fd0903f0eb80"
+      "sha256": "3b215d94591a4c7933801e86dc84db7377960c1c8669d0f1208e7c7835bdd68b"
     },
     {
       "id": "24-talents",
@@ -244,7 +244,7 @@
       "file": "png/24-talents.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "005429c110dfad9c81ef79506d2cbe4122539ad018c1ed71a8e35b178d416576"
+      "sha256": "c21cf724c31624acf9c7c2a026b5716f0c64d07b5474867338a539dd7e121db6"
     },
     {
       "id": "25-skill-branches",
@@ -254,7 +254,7 @@
       "file": "png/25-skill-branches.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "5996187fece4fff9ccd83a1090a469489668808943a2e240a56a11fc43339703"
+      "sha256": "c8e6dae38cc371d21e30f34b7faf0c7756b22e4d2e0cc96885ff5d21f042d94d"
     },
     {
       "id": "26-inventory",
@@ -264,7 +264,7 @@
       "file": "png/26-inventory.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "77d074bb224aaca4d43d507fd2a8fb4cba0ce9297b001a493191a4f62394f127"
+      "sha256": "04d7d97c3a7e895297bfcf3cd9a78b9ed85ca1dba6a0d77ae6cdcb6ea4fd3cde"
     },
     {
       "id": "27-equipment-detail",
@@ -274,7 +274,7 @@
       "file": "png/27-equipment-detail.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "41972af0c0f6036e818ea305695c015e55a5269b96249f314382abd586c8c7d1"
+      "sha256": "f82b5ead975fb12af4fd5249ea89798c105410d745f6ff2cba6f8e5123066ce4"
     },
     {
       "id": "28-equipment-compare",
@@ -284,7 +284,7 @@
       "file": "png/28-equipment-compare.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "99d7ce8cea9e02429f348ceceb147ac2dd4f8b2a63da3a2e7b01dd9652fa8d01"
+      "sha256": "33f683fa1c579be18173a67fcc1e130327170a45613394bad7b98fc57809e6eb"
     },
     {
       "id": "29-recycle",
@@ -294,7 +294,7 @@
       "file": "png/29-recycle.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "2c498e68c1d6ed41ab57a26034dd18f01ff5998d4e34016948707ea8f00009ce"
+      "sha256": "f1d5a1bc0c3ccc919bff9a5f5f0dd56520b71d176ee06864e0035f2e119a3485"
     },
     {
       "id": "30-recycle-confirm",
@@ -304,7 +304,7 @@
       "file": "png/30-recycle-confirm.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "df5074faa04aef139f55dbf92c0f976c64173fa4974c5b6e0968a29fa5221cca"
+      "sha256": "16601382b4481a6229bc8829f8dc5bde966dc5c16b35de4ca16e0adafd2c2310"
     },
     {
       "id": "31-shop-items",
@@ -314,7 +314,7 @@
       "file": "png/31-shop-items.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "cba176e82d7fc8f64dc11b07976d57168dd80395a3c74203af27dc2af1d5193e"
+      "sha256": "99543a7bc71cf70e9c5f72ef7f43630e351d0b11a2e6f3dda5e925bb277dda09"
     },
     {
       "id": "32-shop-sets",
@@ -324,7 +324,7 @@
       "file": "png/32-shop-sets.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "3e1d92834314e7c474ff0088dec6d5f1516c8a08675130ba7e63ac3b9d44ad5d"
+      "sha256": "269ca71cb7090bb569358bd9cfa6f9a8131270b484e0a0b63ba66b55bb6d8dbc"
     },
     {
       "id": "33-set-detail",
@@ -334,7 +334,7 @@
       "file": "png/33-set-detail.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "04d60233410f310f94cf9220d94a9f3b51eb9298c36af9f8ccdbc2a72699ffca"
+      "sha256": "7c71e8d5566e8177cbb265aa34f6f0ec21dd3e97f97fc9391485a15b35bfa17a"
     },
     {
       "id": "34-buy-confirm",
@@ -344,7 +344,7 @@
       "file": "png/34-buy-confirm.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "9c40679c7ef3844b8d0289fee7a6a979aecfb74a51012bb54b4480286a6e4597"
+      "sha256": "5c609d5b58cb6484d7e6a2593bcabe7fca92f7426db2a66bdce3095436ad05b8"
     },
     {
       "id": "35-buy-success",
@@ -354,7 +354,7 @@
       "file": "png/35-buy-success.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "1a7f65441cafe039f75b7e584c7907845a35f38545fe082e7469632d70cfb119"
+      "sha256": "52d698cf49e693104c48c676286775a15118efc6fe7cd4e12507657a66df5770"
     },
     {
       "id": "36-insufficient-gold",
@@ -364,7 +364,7 @@
       "file": "png/36-insufficient-gold.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "596ad25dc10277a2c8bce10c055145ee1ffa77977c5c32fbc74eb21efdea8954"
+      "sha256": "539fccbffed22df34dd8d4c7f99e4f1a4fa9f87a1dfde73d9bb77add96bc719f"
     },
     {
       "id": "37-crafting",
@@ -374,7 +374,7 @@
       "file": "png/37-crafting.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "e0b7f7205ec6d72d43608b82d1063bfce275ab97df0737ff1a7cc1afbed291f8"
+      "sha256": "d0ac7134b0a2f43ad79f4f3d8fd405aa79c6de27c395b8169e84bc04894f45d6"
     },
     {
       "id": "38-enhancement",
@@ -384,7 +384,7 @@
       "file": "png/38-enhancement.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "257e00de74aff72ee0fd650565293eb28a85344613be1461dd3e3bb4a683055e"
+      "sha256": "ce00f34fbaf5e766b90449ed715d4921241f32d0f84579e869d0871efe9ca088"
     },
     {
       "id": "39-enhancement-result",
@@ -394,7 +394,7 @@
       "file": "png/39-enhancement-result.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "dffbf44190850a7bb03ad72204ad7abac65aa25210da99c0d9177647981ecceb"
+      "sha256": "cf3c46ccd1cc1edd23b183cea6aaed714b91cf94efbe3bede26b0865b55c72ca"
     },
     {
       "id": "40-step-reroll",
@@ -404,7 +404,7 @@
       "file": "png/40-step-reroll.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "6805de021e421110ce2f8062428239fb748b662c96cc7a4ad9d3b57a37e509ea"
+      "sha256": "4e000eaa4b0471b8a64e4a74f6eff2b09e586c4d89093956494504301d20a1ef"
     },
     {
       "id": "41-affix-reforge",
@@ -414,7 +414,7 @@
       "file": "png/41-affix-reforge.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "7500fdc1de28a75285b4fcfe7396431eca73fc73f04907d3ef0720c372badd4c"
+      "sha256": "0278e3e652f41f954668acb78a48a69ea08dc96bef1f1c2965596cb00e939c36"
     },
     {
       "id": "42-reforge-choice",
@@ -424,7 +424,7 @@
       "file": "png/42-reforge-choice.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "9341dea54b612182575434cb1a4591f8ce19a8b5f6943ee80c1fe5e9d1e13093"
+      "sha256": "d475ef9f61fdd62e28bac38b75ecac0477e61c9799e59c8bf140c18be2c5d790"
     },
     {
       "id": "43-affix-refine",
@@ -434,7 +434,7 @@
       "file": "png/43-affix-refine.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "037b50e09b0e38e11c6051d52a7fa32d9f507488ab888134be927abd006f67f1"
+      "sha256": "9dd447c264b3d4b95db5ac22b6d109703c149916ff726052de5fbb9c67c1ddd8"
     },
     {
       "id": "44-inheritance",
@@ -444,7 +444,7 @@
       "file": "png/44-inheritance.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "d6b9fe4061b4c5b9adc0b59b7b0a569111d75938bdd04f202b8e6833592e63ca"
+      "sha256": "e067a4f70ad5af3cd35f4684a5fe3d2290526b6cfaf307d8919cb0896e32e212"
     },
     {
       "id": "45-dismantle-confirm",
@@ -454,7 +454,7 @@
       "file": "png/45-dismantle-confirm.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "ea5b64e66dd279d627c0d32db035eb965afabb7c1328f4cde077cfdb0e8716c6"
+      "sha256": "8c8f95aa492859ea42a1163d028a3b7a61be811d5d35b75fb6f2a93a1da241df"
     },
     {
       "id": "46-bestiary",
@@ -464,7 +464,7 @@
       "file": "png/46-bestiary.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "eef17a263d15140f0d34da04508c02831a056253364c720b8dabc8d2cf7c616b"
+      "sha256": "3218ab3894793de26e119557feb0e49314e4e69953010c84ab5ba3bac47131e4"
     },
     {
       "id": "47-monster-detail",
@@ -474,7 +474,7 @@
       "file": "png/47-monster-detail.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "6a6a15a9984f06be6761210eade2afb7b8fae4ed71275307b22f8102877350ad"
+      "sha256": "db7bb2a3c04b0f9a03a6704188fefaf10c4f7343c0cabd7969863d2ddc5aecf5"
     },
     {
       "id": "48-boss-detail",
@@ -484,7 +484,7 @@
       "file": "png/48-boss-detail.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "9da63470ec40eed67e043c31f59d18cbd508d5d83129073fd2d505c0e5229ea0"
+      "sha256": "00a4132be25a7b1248f5d9e24385eaff9bfdabc44b5bce7fe18bb7596d961838"
     },
     {
       "id": "49-undiscovered",
@@ -494,7 +494,7 @@
       "file": "png/49-undiscovered.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "ff0314c46e5b0dc68bd2d3497d595c81769de3c1452a326cf769bc8fb8d935f3"
+      "sha256": "c03b9b43ed87f4562e7848af3c504385a6f908e9735eda2ce0c5ee9bb49a903f"
     },
     {
       "id": "50-settings-general",
@@ -504,7 +504,7 @@
       "file": "png/50-settings-general.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "54b43972747bc481d523a8519820c28e90686ac56610f5e711f28d65ad20bf4f"
+      "sha256": "18f2feb289bd879df6f54867824e5b45d326d95936aca54b32db60d782a4b865"
     },
     {
       "id": "51-settings-display",
@@ -514,7 +514,7 @@
       "file": "png/51-settings-display.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "67fc73c4084eafa4152001248139e20b1e78ea12f2799f4441495c7a9fdc6b23"
+      "sha256": "55333811aa6ee30891e6e8c16c5b6bd35f2b8b34d982aa20eea24f2216fc8166"
     },
     {
       "id": "52-settings-audio",
@@ -524,7 +524,7 @@
       "file": "png/52-settings-audio.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "3063ef5699719284d8370d85dcb7267e95d68fdb82ea08754db3af46a40a7950"
+      "sha256": "05aa1c29b699b98d4a1df99a1c5aa666a1727191b4ee67bb22078ba3651f737f"
     },
     {
       "id": "53-settings-controls",
@@ -534,7 +534,7 @@
       "file": "png/53-settings-controls.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "754b62e91c5ce7d1ad650be806674092887551a5c166482d4e55456e96f1221a"
+      "sha256": "9b8afacf1160406c0069bdd3854b6b815cf953c245ab7dc3e28e31b524caa95a"
     },
     {
       "id": "54-key-conflict",
@@ -544,7 +544,7 @@
       "file": "png/54-key-conflict.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "ecf251504edbb34b87ba72354cc902a58ac0d10bdf96c0a42d0de6c8e750a66a"
+      "sha256": "a6c3f49c37d3bf560e65e5ee03ae16b5a3cdca949083c8e75ccf14650ee207b1"
     },
     {
       "id": "55-demo-select",
@@ -554,7 +554,7 @@
       "file": "png/55-demo-select.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "e668548a0f5dac418f1571cf409bca9d5d1426cec06ba7abad6fa94d2e5d2e76"
+      "sha256": "c6c1d870ed43bf6053c24659a21444199d5c7efa19d131f7b6e5b3ae9cd59805"
     },
     {
       "id": "56-demo-branches",
@@ -564,7 +564,7 @@
       "file": "png/56-demo-branches.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "912b6c09189c862963d3ce675bf9bfdfa5601499359d537b223aa65bb035db0a"
+      "sha256": "d86fedd88399080531ce1326e32248e7ae173a72e2a7c11f355b4a69c8c2045b"
     },
     {
       "id": "57-demo-hud",
@@ -574,7 +574,7 @@
       "file": "png/57-demo-hud.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "815ae1d759e8ac2bde9b41bd18c1029504930e19f5b55d7acf9d630dc2901825"
+      "sha256": "f7efa4113797297af39ddf347a3b17fde6b66a005a668185bdca3cd1fd24a459"
     },
     {
       "id": "58-archive",
@@ -584,7 +584,7 @@
       "file": "png/58-archive.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "aa440ba52634f751531c4eead5a28a252790152be2a1f7fd3319a01c929d2e31"
+      "sha256": "1c19727c30c69a404fbebd2b5637e53c2a6df7fdec25b269f218853bf3d362c7"
     },
     {
       "id": "59-run-record",
@@ -594,7 +594,7 @@
       "file": "png/59-run-record.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "baf9ad6254ff2da9b5278005fc8ec1d7d5d71cfd018da7af5767d010820e18e7"
+      "sha256": "b08b63587f8c3336376b6dc3acc0a63fb421e9e73c7345a2ea8a05214f475e3f"
     },
     {
       "id": "60-new-profile",
@@ -604,7 +604,7 @@
       "file": "png/60-new-profile.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "15751699036a94fadba62e35e67fe4b533dbcb3070040da89ede3edcc1379c3c"
+      "sha256": "1fb4d838e88acfda2b652942485fdb6ba4df0767ea0f11b66d239fa06fc9e589"
     },
     {
       "id": "61-dungeon-select",
@@ -614,7 +614,7 @@
       "file": "png/61-dungeon-select.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "4baf2f24e71433efab3cc9b3179925db165df6c7d0341f00f98b43c50596b63b"
+      "sha256": "51f96dc31d65f50bf2833f8db0aba780736ef83b5e180d79346c9ca6b7224d68"
     },
     {
       "id": "62-difficulty",
@@ -624,7 +624,7 @@
       "file": "png/62-difficulty.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "1064798ad0ef2db5cb7a14f0aca8b33c69549057e4d27d584e165160e83c8f09"
+      "sha256": "3648629829a3f83da051bf8139a39da433f1d9eaca2373cae970db5cda33ae5c"
     },
     {
       "id": "63-loading",
@@ -634,7 +634,7 @@
       "file": "png/63-loading.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "48ae0550c51a461d18e17c4a273c4064ffae85dbf16a5b6c6bada94a2992538d"
+      "sha256": "3800d94bc3b7069b32f034ab34b36f859a0a2ddc3af0ccc2d3227815dd979929"
     },
     {
       "id": "64-battle-hud",
@@ -644,7 +644,7 @@
       "file": "png/64-battle-hud.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "f17553dfbb5caaf8cb307717cf209635d7e9a4bc407e7030803b86fa0be33c2b"
+      "sha256": "fcbeaabd046e8216c35696a71617bbf6ff3550d728675024a65e22fa5dd87c50"
     },
     {
       "id": "65-boss-hud",
@@ -664,7 +664,7 @@
       "file": "png/66-field-backpack.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "34a89b6af89c6cf2e0aa3cd921ccb4f32e0ff306a9c7ab6ceb5bc788b30b47eb"
+      "sha256": "8500b642cd8fc2c3d83e03cfbfd9e1fa98e0381f6c91f555eae45749a97de04f"
     },
     {
       "id": "67-loot",
@@ -674,7 +674,7 @@
       "file": "png/67-loot.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "28a76cb97f067f68e583bf544e558336bdd58745d6553bf6afba5508a518a341"
+      "sha256": "8aefba4bfd3e9ea44734f95019420257696618ea464728ec6b1d950cd1421aee"
     },
     {
       "id": "68-route-map",
@@ -684,7 +684,7 @@
       "file": "png/68-route-map.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "456ecba345ea498fdd5a4653a2dad6c5adbfa6d794fb2cf42722e548cd1e28dd"
+      "sha256": "a9dbf99e5abc7fa5610ca116dc8f7e79a57053cb6b06a3219f437ae6bbd9ff1e"
     },
     {
       "id": "69-relic-choice",
@@ -694,7 +694,7 @@
       "file": "png/69-relic-choice.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "422610d3ba4f2458d57b09513f047718ffa2e65ebe5b6a5ef1de747a863fd48d"
+      "sha256": "f75ceab6249a68b8c265def1e93fe71df34812f93fc18a5dd1963e5ffc777b57"
     },
     {
       "id": "70-supply",
@@ -704,7 +704,7 @@
       "file": "png/70-supply.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "570f8115ace8daa1be225b0bd6ed29add6c0e4ee6fd1913ae2bfd7bf1a2cacf3"
+      "sha256": "63c0d5a80272c6f067edfc22aedc1a14f66856b02b8b69ace0c599e0f05ffc41"
     },
     {
       "id": "71-pause",
@@ -714,7 +714,7 @@
       "file": "png/71-pause.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "bc300c07d64478fb20ac991921b6edfacbef6d2e48c0c43ea1874cb785eb0dc2"
+      "sha256": "1af00a51934e039bf434f6a82b74e6320814e0844960045c9e1ac59723dad371"
     },
     {
       "id": "72-extract-confirm",
@@ -724,7 +724,7 @@
       "file": "png/72-extract-confirm.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "0a299852388db161148e3946d5a74e6f28dea510ddd3a6b57d5d27f5f1276515"
+      "sha256": "3841e32bccabdd6b2d42d4dbb5043e1920d202fa0e4c1062522185448b63f9dd"
     },
     {
       "id": "73-victory",
@@ -734,7 +734,7 @@
       "file": "png/73-victory.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "8623a4be4e0c422c6ac83718597ac3f00cb83d5eaf49633acde4c08eb80d8b34"
+      "sha256": "840e998602513aa3dc5d26ebc3e2f833a2070c421aa691713690b262acd7d6ac"
     },
     {
       "id": "74-defeat",
@@ -744,7 +744,7 @@
       "file": "png/74-defeat.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "fe1cf217ad0c17bd6733c0f74f5f6b748cc47b07ddc648d5c5766edfb45a9949"
+      "sha256": "bf0680b396a6a8f25345dc6eba98705588b72f65673d63e8027214f0f7b6fce7"
     },
     {
       "id": "75-save-failed",
@@ -754,7 +754,7 @@
       "file": "png/75-save-failed.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "d6dfbad2a49b7f7ee8724dae1ef4afd77610553188cf1e95ed42b6f5afc119e0"
+      "sha256": "73f031fb6efa53fe0346dbcfebb4cedf058ef35e733782d64c331b1fa1246410"
     },
     {
       "id": "76-room-failed",
@@ -764,7 +764,7 @@
       "file": "png/76-room-failed.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "bbbd8e0bba47b562c3c136100f7efea7741ccbb017e9cd612baef68a4fc0e812"
+      "sha256": "ea1f7bb8d7a36fcb0fe8f2b698a6ec242e3d1a6ac547384af5cd9af0d50f68aa"
     },
     {
       "id": "77-quit-confirm",
@@ -774,7 +774,7 @@
       "file": "png/77-quit-confirm.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "82ee79d6101ac716c83b8216a28874e0ae2dd26e20844085c53faa5c85ebd5fc"
+      "sha256": "b4501050b4e17b0c812f70c7ca7f56dcf0cedd6d1d20460d7209aac7975c5bb4"
     },
     {
       "id": "78-component-states",
@@ -784,7 +784,7 @@
       "file": "png/78-component-states.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "e75bfa6202c12191c573e1af8d65d97a93446e7038f7839148d7783161ce3d8d"
+      "sha256": "b526e15d81ec51f4d0964c354ff797a3786e0b143ce1f70270b665925331435f"
     }
   ],
   "art_sources": [
@@ -820,9 +820,10 @@
     "assets/generated/ui/storybook_chrome_v2.png",
     "assets/generated/ui/storybook_navigation_v2.png",
     "assets/generated/world/rooms/BO01_environment_v1.png",
-    "assets/generated/world/rooms/L04_environment_v1.png",
-    "assets/generated/world/rooms/L11_environment_v1.png",
-    "assets/generated/world/rooms/L18_environment_v1.png"
+    "assets/generated/world/rooms/L01_environment_v1.png",
+    "assets/generated/world/rooms/L07_environment_v1.png",
+    "assets/generated/world/rooms/L13_environment_v1.png",
+    "assets/generated/world/rooms/L19_environment_v1.png"
   ],
   "warnings": []
 }

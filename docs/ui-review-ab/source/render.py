@@ -133,6 +133,10 @@ for mp in sorted((ROOT/'assets/generated').rglob('*.regions.json')):
             except (OSError,ValueError,TypeError): pass
 
 def world(i=0):
+    # Pick actual chapter entry rooms, not arbitrary alphabetical atlas offsets.
+    room = {0:'L01',7:'L07',14:'L13',21:'L19',100:'BO01'}.get(i,'L01')
+    exact = ROOT / ('assets/generated/world/rooms/'+room+'_environment_v1.png')
+    if exact.exists(): return opened(str(exact.relative_to(ROOT)))
     if not WORLD_PATHS: return Image.new('RGBA',(W,H),'#d9d6b3')
     return opened(str(WORLD_PATHS[i % len(WORLD_PATHS)].relative_to(ROOT)))
 def enemy(i=0,boss=False):
@@ -225,13 +229,13 @@ class Canvas:
     def footer(self):
         self.text(1876,1044,self.screen[0]+'  /  UI概念稿 · 示意数据',14,'#554b46',align='right')
     def item(self,x,y,idx=0,selected=False,w=139,h=149,label=True):
-        rarity,color=RARITIES[(idx+1)%4]
+        rarity,color=RARITIES[2 if idx==0 else (idx+1)%4]
         self.panel(x,y,w,h,fill='#fcf2dc',edge=TEAL if selected else '#c7b690',r=10,shadow=False)
         if selected: self.d.rounded_rectangle((x+3,y+3,x+w-3,y+h-3),8,outline=TEAL,width=3)
         self.art(EQUIPMENT[idx%len(EQUIPMENT)][1],x+11,y+9,w-22,h-43)
         self.d.rectangle((x+9,y+h-31,x+13,y+h-13),fill=color)
         if label: self.text(x+20,y+h-33,GEAR_NAMES[idx%len(GEAR_NAMES)],17,INK,width=w-25,lines=1)
-        self.text(x+w-13,y+8,'+'+str(idx%5),16,INK,align='right')
+        self.text(x+w-13,y+8,'+'+str(3 if idx==0 else idx%5),16,INK,align='right')
     def portrait(self,x,y,w,h,who=0):
         self.panel(x,y,w,h,fill='#f7ebd0')
         cx=x+w/2; cy=y+h*.46
@@ -465,7 +469,7 @@ def expedition(c,mode=0):
     c.button(1359,916,486,'返回当前房间' if mode==2 else '开始远征',True)
 
 def battle(c,mode=0):
-    c.image=ImageOps.fit(world(0).convert('RGBA'),(W,H),method=Image.Resampling.LANCZOS); c.d=ImageDraw.Draw(c.image)
+    c.image=ImageOps.fit(world(100 if mode==2 else 0).convert('RGBA'),(W,H),method=Image.Resampling.LANCZOS); c.d=ImageDraw.Draw(c.image)
     c.panel(29,28,442,128); c.art(HEROES[0],41,41,95,99); c.text(151,43,'罗砧 · Lv.12',23); c.bar(151,85,286,.82,RED,17); c.bar(151,116,286,.64,GOLD,12)
     c.text(161,80,'2,034 / 2,480',13,'#fff9e8')
     c.panel(1446,28,442,224); c.text(1471,45,'晴辉遗庭  /  第 3 站',24); c.text(1473,100,'当前目标',19,TEAL); c.text(1473,139,'清理守卫并前往出口',23,width=383); c.text(1473,194,'剩余敌人  4',20,MUTED)
