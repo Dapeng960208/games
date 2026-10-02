@@ -427,7 +427,12 @@ func cast_skill(slot: String, target: Vector2) -> bool:
 			clear_movement_target()
 		# Read the committed spec: consuming full Momentum changes the next live
 		# preview back to 30 Rage and must not spend a paid-skill discount here.
-		loadout.event("skill_cast", {"slot":slot,"base_cost":float(abilities.active.spec.cost),"cast_success":true})
+		# Payment and the new skill cooldown are already committed. A stable cast
+		# root counts once, independently of later hits, projectiles or deployments.
+		var cast_event := "cast_commit:" + str(abilities.active.serial)
+		loadout.event("skill_cast", {"event_id":cast_event, "root_event_id":cast_event,
+			"slot":slot, "base_cost":float(abilities.active.spec.cost), "paid_cost":float(abilities.active.paid_cost),
+			"cast_success":true, "damage_source":"skill", "proc_depth":0, "equipment_eligible":true, "original_basic":false})
 		if room.has_method("record_player_sound"):
 			room.record_player_sound()
 		_play_combat_audio(&"prepare", [hero_id(), slot])

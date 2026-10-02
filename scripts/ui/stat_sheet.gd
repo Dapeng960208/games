@@ -65,7 +65,7 @@ func configure(data: Dictionary, width: float, prefix: String = "HeroAttribute_"
 		_line(MineStyle.content_text(item,"name")+" +"+str(record.get("enhancement_rank",record.get("level",0))),width,15,MineStyle.CYAN)
 		_line(MineStyle.content_text(item,"affix_text"),width,14)
 	for id: String in data.total.get("sets",{}):
-		var set_data: Dictionary = ContentRegistry.sets().get(id,{})
+		var set_data: Dictionary = ContentRegistry.sets(int(data.total.get("ruleset_version",1))).get(id,{})
 		var count := int(data.total.sets[id])
 		_line(MineStyle.content_text(set_data,"name")+" · %d/%d" % [count,8 if int(data.total.get("ruleset_version",1)) == 2 else 6],width,17,MineStyle.AMBER)
 		for tier: int in [2,4,6]:

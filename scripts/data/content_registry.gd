@@ -62,6 +62,11 @@ static func sets(ruleset: int = 1) -> Dictionary:
 		for set_id: String in result:
 			result[set_id]["allowed_heroes"] = ClassPolicy.allowed_heroes(set_id)
 			result[set_id]["class_policy_version"] = ClassPolicy.VERSION
+			# Versioned set copy keeps frozen legacy adventures and their text intact.
+			for threshold: Dictionary in result[set_id].get("thresholds", {}).values():
+				for field: String in ["text", "text_en"]:
+					var versioned := "text_v2_en" if field == "text_en" else "text_v2"
+					if threshold.has(versioned): threshold[field] = threshold[versioned]
 		var materials: Dictionary = Rules.value("shop_set_races", {})
 		for set_id: String in materials:
 			if result.has(set_id): result[set_id]["race_id"] = str(materials[set_id])

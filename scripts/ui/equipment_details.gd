@@ -134,7 +134,7 @@ static func set_changes(owner: Node, before: Dictionary, after: Dictionary, widt
 	ids.sort()
 	if ids.is_empty(): flow(owner,Inspect.t("此装备不属于套装。","This item has no set."),width,15,MineStyle.MUTED)
 	for id: String in ids:
-		var data: Dictionary = ContentRegistry.sets().get(id,{})
+		var data: Dictionary = ContentRegistry.sets(int(after.get("ruleset_version",1))).get(id,{})
 		var old := int(before.get("sets",{}).get(id,0))
 		var next := int(after.get("sets",{}).get(id,0))
 		flow(owner,MineStyle.content_text(data,"name")+" · %d → %d / %d" % [old,next,8 if int(after.get("ruleset_version",1)) == 2 else 6],width,17,MineStyle.AMBER)

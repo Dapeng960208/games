@@ -230,7 +230,7 @@ func _set_changes(list: Node, before: Dictionary, after: Dictionary) -> void:
 	for id: String in ids:
 		var old := int(before.get("sets", {}).get(id,0))
 		var next := int(after.get("sets", {}).get(id,0))
-		var data: Dictionary = ContentRegistry.sets().get(id, {})
+		var data: Dictionary = ContentRegistry.sets(int(after.get("ruleset_version",1))).get(id, {})
 		_flow_text(list, MineStyle.content_text(data,"name",id)+" · %d → %d" % [old,next]+_t(" 件", " pieces"),399,16,MineStyle.AMBER)
 		for threshold: int in [2,4,6]:
 			var gained := old < threshold and next >= threshold

@@ -166,7 +166,7 @@ func _build_sets(current: Dictionary, candidate: Dictionary) -> void:
 	if affected.is_empty():
 		_scroll_label(list, _t("此替换不影响套装档位。", "This swap does not affect set tiers."), 404, 15, MineStyle.MUTED)
 	for set_id: String in affected:
-		var definition: Dictionary = ContentRegistry.sets().get(set_id, {})
+		var definition: Dictionary = ContentRegistry.sets(int(preview.get("next_stats", {}).get("ruleset_version",1))).get(set_id, {})
 		var old := int(before.get(set_id, 0))
 		var next := int(after.get(set_id, 0))
 		_scroll_label(list, MineStyle.content_text(definition, "name", set_id) + " · %d → %d" % [old, next] + _t(" 件", " pieces"), 404, 15, MineStyle.INK)

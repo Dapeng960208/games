@@ -281,7 +281,7 @@ func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_
 	cast_serial += 1
 	if owner_player.get("passives") != null:
 		owner_player.passives.skill_committed(slot, cast_serial)
-	active = {"spec":data, "elapsed":0.0, "origin":origin, "target":target, "direction":direction, "initial_direction":direction, "travel_direction":travel_direction, "ground_facing":ground_facing,"power":owner_player.skill_power(), "attacker_stats":Game.run.stats.duplicate(), "events":_timeline(data), "next_event":0, "serial":cast_serial}
+	active = {"spec":data, "elapsed":0.0, "origin":origin, "target":target, "direction":direction, "initial_direction":direction, "travel_direction":travel_direction, "ground_facing":ground_facing,"power":owner_player.skill_power(), "attacker_stats":Game.run.stats.duplicate(), "events":_timeline(data), "next_event":0, "serial":cast_serial, "paid_cost":cost}
 	owner_player.visual_event("cast_" + slot, float(data.duration))
 	if is_instance_valid(feedback):
 		feedback.cast_started(data, active.direction, active.target, cast_serial)
