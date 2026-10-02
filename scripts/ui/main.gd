@@ -932,7 +932,25 @@ func show_workshop(page: String = "heroes") -> void:
 
 func _show_warning(parent: Node, at: Vector2, extent: Vector2) -> void:
 	if not Game.storage_warning.is_empty():
-		MineStyle.label(parent,"SAVED_WARNING",at,extent,16,MineStyle.RED,{"message":Words.text(Game.storage_warning)})
+		var message := Words.text(Game.storage_warning)
+		var backing := MineStyle.panel(parent,at,extent)
+		backing.name = "StorageWarningBacking"
+		backing.add_theme_stylebox_override("panel",MineStyle.box(MineStyle.PAPER_LIGHT,MineStyle.AMBER,1))
+		var notice := LinkButton.new()
+		notice.name = "StorageWarningNotice"
+		notice.position = Vector2(8,0)
+		notice.size = extent-Vector2(16,0)
+		notice.text = _ex_text("档案提示 · 查看详情","Save notice · View details")
+		notice.tooltip_text = message
+		notice.add_theme_font_size_override("font_size",13)
+		notice.add_theme_color_override("font_color",MineStyle.INK)
+		backing.add_child(notice)
+		notice.pressed.connect(func():
+			var modal := _push_modal(_ex_text("档案提示","Save notice"),Vector2(760,330))
+			modal.name = "StorageWarningDetails"
+			var detail := MineStyle.literal(modal,message,Vector2(28,92),Vector2(704,144),17,MineStyle.INK)
+			detail.name = "StorageWarningFullText"
+			MineStyle.button(modal,"BACK",Vector2(470,258),Vector2(262,44),_pop_modal))
 		return
 	var capacity: Dictionary = Game.storage_capacity()
 	if capacity.is_empty(): return

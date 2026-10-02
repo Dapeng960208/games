@@ -13,6 +13,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	# Test the real resume predicate and labels without instantiating combat rooms.
 	Game.run_started.disconnect(app._on_run_started)
+	if DisplayServer.get_name() != "headless": get_window().size = Vector2i(2560,1440)
 	for locale: String in ["zh_CN","en"]:
 		Words.locale = locale
 		Game.run = null
@@ -28,6 +29,20 @@ func _ready() -> void:
 		for key: String in ["Q","W","E","R"]: check(text.contains(key),"mage introduces standalone "+key)
 		check(text.contains("独立") if locale == "zh_CN" else text.contains("independently"),"skills are independently usable")
 		check(text.contains("额外") if locale == "zh_CN" else text.contains("bonus"),"alternation is an extra reward")
+		Game.storage_warning = "STORAGE_CLASS_EQUIPMENT_UPDATED"
+		app.show_menu()
+		var notice: LinkButton = app.screen.find_child("StorageWarningNotice",true,false)
+		check(notice != null and notice.text.length() < 40,"save warning has a concise readable entry")
+		check(notice.tooltip_text == Words.text(Game.storage_warning),"full warning remains available")
+		await capture(locale+"_notice")
+		var saved_bytes := FileAccess.get_file_as_bytes(Game.profile_path)
+		notice.pressed.emit()
+		check(app.modals[-1].node.find_child("StorageWarningFullText",true,false).text == Words.text(Game.storage_warning),"read-only dialog displays complete warning")
+		await capture(locale+"_notice_details")
+		app._pop_modal()
+		check(FileAccess.get_file_as_bytes(Game.profile_path) == saved_bytes,"warning dialog never writes the save")
+		await get_tree().process_frame
+		Game.storage_warning = ""
 	Game.run = null
 	app.set_process(false)
 	await app.music.wait_for_cleanup()
@@ -36,3 +51,9 @@ func _ready() -> void:
 	await get_tree().process_frame
 	print("MENU ROLE COPY: ",checks," checks; failures=",failures)
 	get_tree().quit(0 if failures.is_empty() else 1)
+
+func capture(label: String) -> void:
+	if DisplayServer.get_name() == "headless": return
+	DirAccess.make_dir_recursive_absolute("res://artifacts/menu-copy")
+	await RenderingServer.frame_post_draw
+	get_viewport().get_texture().get_image().save_png("res://artifacts/menu-copy/"+label+".png")
