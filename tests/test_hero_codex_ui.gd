@@ -56,6 +56,11 @@ func _run() -> void:
 		check(art_frame.clip_contents,id+" art has a hard clipping boundary")
 		check(Rect2(Vector2.ZERO,art_frame.size).grow(0.1).encloses(portrait.get_rect()),id+" texture remains inside illustration box")
 		if id.begins_with("BO"):
+			var rendered: Dictionary = preload("res://scripts/combat/enemy_art.gd").entry_for(id)
+			if portrait.get_meta("dedicated_codex_art",false):
+				check(portrait.texture.get_width() >= 512 and portrait.texture.get_height() >= 512,id+" dedicated boss portrait has native detail resolution")
+			else:
+				check(portrait.texture is AtlasTexture and portrait.texture.atlas == rendered.texture and portrait.texture.region == rendered.region,id+" codex uses the actual battle body, not the legacy fallback")
 			var skills: Array[Dictionary] = Codex.boss_skill_entries(id,0)
 			var locked := 0
 			for skill: Dictionary in skills:

@@ -52,7 +52,7 @@ The status below distinguishes implemented behavior from final graphical accepta
 
 - Forest UI backdrop: 1672×941 native, intentionally soft atmosphere; not described as native 2K art.
 - Compass and panel ornament: 1254×1254 native RGBA, substantially above actual UI display size.
-- Codex normal-enemy portraits: dedicated 1254×1254 art is being supplied per catalog ID. Missing entries use original art without enlargement beyond source physical pixels. Existing boss portraits are 1254×1254.
+- Codex normal-enemy portraits: dedicated 1254×1254 art is being supplied per catalog ID. Missing entries use original art without enlargement beyond source physical pixels. Bosses use the exact production `EnemyArt` storybook atlas regions (approximately231–286px), capped to source pixels. The standalone1254px legacy boss images are not the active battle identities and must not be used by the codex.
 - Live fonts, frames, room emblems, room-map polygons and route glyphs remain resolution-independent drawing primitives. Route thumbnails display native 1536px room sources well below their native pixel dimensions; actual fullscreen room backgrounds are a separate density problem.
 
 ## Verification boundary

@@ -221,9 +221,9 @@ static func portrait(parent: Node, id: String, at: Vector2, extent: Vector2) -> 
 	var dedicated := FileAccess.file_exists(hd_path) or ResourceLoader.exists(hd_path)
 	if dedicated:
 		view.texture = Sampler.sampled(hd_path)
-	elif id.begins_with("BO"):
-		view.texture = Sampler.sampled(str(Bosses.resolve(id).get("visual_asset","")))
 	else:
+		# Match EnemyArt.install in the actual battle renderer. BossProfiles
+		# visual_asset names pre-storybook placeholders, not current boss identity.
 		var entry := EnemyImages.entry_for(id)
 		if not entry.is_empty():
 			var atlas := AtlasTexture.new()
@@ -237,7 +237,7 @@ static func portrait(parent: Node, id: String, at: Vector2, extent: Vector2) -> 
 	view.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	view.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	var fitted := extent
-	if view.texture != null and not dedicated and not id.begins_with("BO"):
+	if view.texture != null and not dedicated:
 		var native := view.texture.get_size()
 		var pixel_ratio := maxf(1.0,parent.get_viewport().get_stretch_transform().get_scale().x) if parent.is_inside_tree() else 1.0
 		var scale_factor := minf(minf(extent.x/native.x,extent.y/native.y),1.0/pixel_ratio)
