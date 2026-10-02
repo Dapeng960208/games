@@ -1,10 +1,10 @@
 class_name MusicDirector
 extends Node
-## Four original sixteen-bar arrangements; one persistent owner, two voices only.
+## Six original sixteen-bar arrangements; one persistent owner, two voices only.
 ## UI open/close and repeated context requests never create extra playback nodes.
 ## Music is sample-looped; combat SFX keep their own bounded, higher-priority pool.
 
-const CONTEXTS: Array[String] = ["camp", "explore", "combat", "boss"]
+const CONTEXTS: Array[String] = ["camp", "craft", "forge", "explore", "combat", "boss"]
 const MUSIC_GAIN: float = 0.18
 const CROSSFADE_SECONDS: float = 1.25
 const PAUSED_GAIN: float = 0.22
@@ -66,7 +66,7 @@ func set_context(context: String) -> void:
 	if context not in CONTEXTS or desired_context == context:
 		return
 	desired_context = context
-	if context == "camp": _clear_impact_duck()
+	if context in ["camp", "craft", "forge"]: _clear_impact_duck()
 	_ensure_players()
 	# Finish the current crossfade before starting the latest queued request.
 	# This bounds concurrent streams even during rapid room/UI state changes.
@@ -95,7 +95,7 @@ func _process(delta: float) -> void:
 
 ## Called only for an accepted contact voice, never a swing or UI sound.
 func notify_impact(heavy: bool = false) -> void:
-	if not is_inside_tree() or get_tree().paused or _muted or _sfx <= 0.0 or _master <= 0.0 or desired_context == "camp":
+	if not is_inside_tree() or get_tree().paused or _muted or _sfx <= 0.0 or _master <= 0.0 or desired_context in ["camp", "craft", "forge"]:
 		return
 	# Two independent envelopes let a heavy hit expire even if lighter hits
 	# continue. Retrigger from the current gain, without an upward volume jump.

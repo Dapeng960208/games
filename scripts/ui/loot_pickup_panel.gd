@@ -81,7 +81,7 @@ func _card(list: VBoxContainer, offer: Dictionary) -> void:
 	MineStyle.primary(inspect)
 	if not record.is_empty() and not Instances.can_equip(record,Game.run.hero_id,Game.run.level):
 		inspect.disabled = true
-		inspect.tooltip_text = _t("当前职业或等级不符合；仍可收进行囊，撤离后入库。","Hero type or level does not fit; you can still pack and extract this item.")
+		inspect.tooltip_text = preload("res://scripts/ui/equipment_eligibility.gd").reason(record,Game.run.hero_id,Game.run.level)+_t("；仍可收进行囊，撤离后入库。", "; you can still pack and extract this item.")
 	var pack := MineStyle.button(card, "", Vector2(546,87), Vector2(198,44), func(): pack_requested.emit(str(offer.drop_id)))
 	pack.name = "LootPack_"+suffix
 	pack.set_meta("drop_id",str(offer.drop_id))

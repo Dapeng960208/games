@@ -983,5 +983,112 @@
         }
       }
     }
+  },
+  "hero_class_profiles": {
+    "CH01": {
+      "growth": {
+        "attack": 0.042,
+        "ability_power": 0.02,
+        "max_hp": 0.065,
+        "armor": 12,
+        "magic_resist": 8
+      },
+      "skills": {
+        "secondary": {
+          "cooldown": 3.2,
+          "windup": 0.14,
+          "duration": 0.42,
+          "level_upgrade": {
+            "level": 12,
+            "duration": 0.38
+          }
+        },
+        "ultimate": {
+          "cooldown": 36,
+          "windup": 0.38,
+          "duration": 0.82
+        }
+      }
+    },
+    "CH02": {
+      "growth": {
+        "attack": 0.052,
+        "ability_power": 0.02,
+        "max_hp": 0.045,
+        "armor": 7,
+        "magic_resist": 7
+      },
+      "skills": {
+        "q": {
+          "cooldown": 6
+        },
+        "secondary": {
+          "windup": 0.3,
+          "duration": 0.48,
+          "movement": 0.8
+        },
+        "f": {
+          "cooldown": 9,
+          "range": 360,
+          "fuse": 0.5
+        },
+        "ultimate": {
+          "cooldown": 34,
+          "windup": 0.2,
+          "duration": 1.12
+        }
+      }
+    },
+    "CH03": {
+      "growth": {
+        "attack": 0.02,
+        "ability_power": 0.065,
+        "max_hp": 0.04,
+        "armor": 5,
+        "magic_resist": 12
+      },
+      "base": {
+        "resource_max": 120,
+        "starting_resource": 120,
+        "resource_regen": 8,
+        "resource_regen_delay": 0.25
+      },
+      "skills": {
+        "q": {
+          "cost": 12,
+          "cooldown": 2.4,
+          "windup": 0.12,
+          "duration": 0.28
+        },
+        "secondary": {
+          "cost": 20,
+          "cooldown": 4,
+          "windup": 0.14,
+          "duration": 0.32,
+          "range": 360,
+          "burst_coefficient": 1.0,
+          "burst_radius": 110
+        },
+        "f": {
+          "cost": 20,
+          "cooldown": 7,
+          "windup": 0.1,
+          "duration": 0.3,
+          "level_upgrade": {
+            "level": 14,
+            "cooldown": 6
+          },
+          "coefficient": 1.4,
+          "radius": 155
+        },
+        "ultimate": {
+          "cost": 50,
+          "cooldown": 32,
+          "windup": 0.3,
+          "duration": 0.65,
+          "range": 420
+        }
+      }
+    }
   }
 }

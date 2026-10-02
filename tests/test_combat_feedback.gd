@@ -236,7 +236,7 @@ func _aim_input() -> void:
 	stage.push_input(motion,true)
 
 func _earn_resource(required: float, ledger: Dictionary) -> void:
-	var before := Game.run.resource
+	var before: float = Game.run.resource
 	var started: float = float(room.elapsed)
 	while Game.run.resource+0.01 < required and float(room.elapsed)-started < 18.0:
 		if current_hero == "CH01":

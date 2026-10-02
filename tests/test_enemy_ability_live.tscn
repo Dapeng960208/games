@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://tests/test_enemy_ability_live.gd" id="1"]
+[node name="EnemyAbilityLiveAcceptance" type="Node"]
+process_mode = 3
+script = ExtResource("1")

@@ -8,25 +8,18 @@ const Advice = preload("res://scripts/ui/equipment_advice.gd")
 func configure(item: Dictionary, level: int, width: float, hero_id: String, before: Dictionary, after: Dictionary, page: String = "stats") -> void:
 	name = "EquipmentDetailContent"
 	custom_minimum_size.x = width
-	size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	add_theme_constant_override("separation",6)
 	set_meta("item_id",str(item.get("instance_id",item.get("id",""))))
 	set_meta("level",level)
 	var version := 2 if item.get("instance_record") is Dictionary else int(after.get("ruleset_version",1))
-	if item.get("instance_record") is Dictionary:
-		var record: Dictionary = item.instance_record
-		_line("iLv %d · %s · %s" % [int(record.item_level),Inspect.rarity_name(str(record.rarity)),Inspect.type_name(str(record.power_type))],width,15,Inspect.rarity_color(item)).name = "InstanceIdentity"
-		_line(Inspect.t("实例：","Instance: ")+str(record.instance_id),width,12,MineStyle.MUTED).name = "InstanceId"
-		var waiver := Inspect.waiver_note(record,hero_id)
-		if not waiver.is_empty(): _line(waiver,width,14,MineStyle.AMBER).name = "LegacyEquipWaiver"
 	if page == "compare":
 		_compare(hero_id,before,after,width)
 	elif page == "set":
 		set_changes(self,before,after,width,str(item.get("set_id","")))
 	else:
-		_heading(Inspect.t("装备属性 · 强化 +%d 实际值","ITEM ATTRIBUTES · ACTUAL +%d VALUES") % level,width)
+		_heading(Inspect.t("装备属性 · 强化 +%d","ATTRIBUTES · +%d") % level,width)
 		_row([Inspect.t("属性","Attribute"),Inspect.t("基础","Base"),Inspect.t("强化","Refine"),Inspect.t("实际","Actual")],width,true)
-		if version == 2: _line(Inspect.t("基础列含未强化主属性＋普通词条；下方k范围只表示主属性。", "Base includes unenhanced main stats + random affixes. The k range below is for main stats only."),width,13,MineStyle.MUTED).name = "BaseIncludesAffixes"
 		var base := Inspect.item_values(item,0,hero_id)
 		var actual := Inspect.item_values(item,level,hero_id)
 		for key: String in actual:
@@ -35,12 +28,27 @@ func configure(item: Dictionary, level: int, width: float, hero_id: String, befo
 			row.name = "ItemStat_"+key
 			row.set_meta("values",{"base":float(base.get(key,0)),"refinement":float(actual[key])-float(base.get(key,0)),"actual":float(actual[key])})
 		if actual.is_empty(): _line(Inspect.t("无常驻基础属性，查看下方专属词条。","No permanent base stats; see the special affix below."),width,14)
+		if version == 2: _line(Inspect.t("基础列含未强化主属性＋普通词条；下方k范围只表示主属性。", "Base includes unenhanced main stats + random affixes. The k range below is for main stats only."),width,13,MineStyle.MUTED).name = "BaseIncludesAffixes"
 		if item.get("instance_record") is Dictionary: _instance_rolls(item.instance_record,width)
 		_heading(Inspect.t("专属词条 · 条件触发","SPECIAL AFFIX · CONDITIONAL"),width)
 		_line(MineStyle.content_text(item,"affix_text",Inspect.t("无专属词条","No special affix")),width,15)
 		_line(Inspect.t("强化只提高平值主属性；普通随机词条不吃强化，专属特性按条件触发。","Enhancement increases flat main attributes only. Random affixes do not scale with enhancement; special traits trigger under their stated conditions.") if version == 2 else Inspect.t("强化提高基础属性；专属词条按条件触发。","Refinement increases base stats; special affixes require their conditions."),width,13,MineStyle.MUTED)
 		if float(actual.get("max_mana",0)) > 0 and str(ContentRegistry.hero(hero_id).get("resource_type","")) != "mana":
 			_line(Inspect.t("当前英雄使用非魔法资源，此法力加成不生效。","This hero uses a non-mana resource; this mana bonus does not apply."),width,14,MineStyle.AMBER)
+
+	if item.get("instance_record") is Dictionary:
+		var record: Dictionary = item.instance_record
+		_line(Inspect.Eligibility.label(item),width,15).name = "EquipmentClassEligibility"
+		_line(Inspect.Eligibility.affinity(record,hero_id),width,13,MineStyle.MUTED)
+		var qualification := Inspect.Eligibility.reason(record,hero_id,Game.run.level if Game.run != null else Game.hero_level(hero_id))
+		if not qualification.is_empty(): _line(qualification,width,14,MineStyle.RED)
+		_line("iLv %d · %s · %s" % [int(record.item_level),Inspect.rarity_name(str(record.rarity)),Inspect.type_name(str(record.power_type))],width,15,Inspect.rarity_color(item)).name = "InstanceIdentity"
+		var identity := _line(Inspect.t("实例：","Instance: ")+str(record.instance_id),width,11,MineStyle.MUTED)
+		identity.name = "InstanceId"
+		identity.autowrap_mode = TextServer.AUTOWRAP_OFF
+		identity.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		var waiver := Inspect.waiver_note(record,hero_id)
+		if not waiver.is_empty(): _line(waiver,width,14,MineStyle.AMBER).name = "LegacyEquipWaiver"
 
 func _compare(hero: String, before: Dictionary, after: Dictionary, width: float) -> void:
 	var version := int(after.get("ruleset_version",1))
@@ -126,7 +134,7 @@ static func set_changes(owner: Node, before: Dictionary, after: Dictionary, widt
 	ids.sort()
 	if ids.is_empty(): flow(owner,Inspect.t("此装备不属于套装。","This item has no set."),width,15,MineStyle.MUTED)
 	for id: String in ids:
-		var data: Dictionary = ContentRegistry.sets().get(id,{})
+		var data: Dictionary = ContentRegistry.sets(int(after.get("ruleset_version",1))).get(id,{})
 		var old := int(before.get("sets",{}).get(id,0))
 		var next := int(after.get("sets",{}).get(id,0))
 		flow(owner,MineStyle.content_text(data,"name")+" · %d → %d / %d" % [old,next,8 if int(after.get("ruleset_version",1)) == 2 else 6],width,17,MineStyle.AMBER)
@@ -140,16 +148,25 @@ static func set_changes(owner: Node, before: Dictionary, after: Dictionary, widt
 
 func _row(values: Array, width: float, header: bool = false) -> HBoxContainer:
 	var row := HBoxContainer.new()
-	row.custom_minimum_size = Vector2(width,32)
+	row.custom_minimum_size = Vector2(width,34)
+	row.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	row.add_theme_constant_override("separation",0)
 	add_child(row)
 	for i: int in values.size():
-		var span := width*.40 if i == 0 else width*.20
-		var label := flow(row,str(values[i]),span,13,MineStyle.AMBER if header else MineStyle.INK if i == 3 else MineStyle.MUTED)
+		var span := width*.43 if i == 0 else width*.19
+		var label := flow(row,str(values[i]),span,12 if width < 350 else 13,MineStyle.MUTED if header else MineStyle.INK if i == 3 else MineStyle.MUTED)
 		label.autowrap_mode = TextServer.AUTOWRAP_OFF
 		label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		label.custom_minimum_size.y = 32
+		label.custom_minimum_size.y = 34
+		label.clip_text = true
+		label.size_flags_horizontal = Control.SIZE_FILL
 		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		if not header:
+			var background := MineStyle.box(Color(MineStyle.COPPER,.035 if get_child_count() % 2 == 0 else .075),Color(0,0,0,0),0)
+			background.shadow_size = 0
+			background.content_margin_left = 2
+			background.content_margin_right = 2
+			label.add_theme_stylebox_override("normal",background)
 		if i > 0: label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	return row
 

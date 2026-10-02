@@ -21,7 +21,8 @@ func set_equipment(data: Dictionary) -> void:
 	rarity_frame = null
 	if not Inspect.rarity(data).is_empty():
 		var tint := Inspect.rarity_color(data)
-		rarity_frame = MineStyle.box(MineStyle.PAPER_LIGHT.lerp(tint,.10),tint,2)
+		rarity_frame = MineStyle.box(MineStyle.PAPER_LIGHT.lerp(tint,.035),Color(tint,.35),1)
+		rarity_frame.shadow_size = 0
 	var id := str(data.get("id", ""))
 	is_empty = id.is_empty()
 	generated_texture = Art.texture(id) if not is_empty else null

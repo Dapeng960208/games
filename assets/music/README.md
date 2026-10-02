@@ -1,17 +1,19 @@
 # 深渊拾荒者：原创配乐
 
-四首音乐均由本项目原创旋律、和声、节奏与标准库合成器生成，无外部录音或采样。音乐资源及生成器输出采用 CC0-1.0，可随游戏分发。源配器与每个音符见 `tools/compose_audio.py` 和 `score.json`。
+六首音乐均由本项目原创旋律、和声、节奏与标准库合成器生成，无外部录音或采样。音乐资源及生成器输出采用 CC0-1.0，可随游戏分发。源配器与每个音符见 `tools/compose_audio.py` 和 `score.json`。
 
 | 场景 | 曲名 | 速度 | 配器与变化 |
 | --- | --- | --- | --- |
 | 营地 | 余烬工坊 / Ember Workshop | 82 BPM | 毛毡键、木质敲击、悬浮和弦；缓慢留白 |
+| 打造 | 巧手织光 / Hands of Light | 88 BPM | 毛毡键、木质琶音、玻璃应答；轻盈的制作节奏 |
+| 锻造 | 砧上星火 / Sparks on the Anvil | 104 BPM | 低音脉冲、共鸣木槌、金属感和声；克制的锻造节拍 |
 | 探索 | 潮下回声 / Below the Tide | 96 BPM | 闷弦、玻璃应答、半拍脉冲；较稀疏 |
 | 战斗 | 钢与回响 / Steel and Echo | 124 BPM | 切分贝斯、鼓组、玻璃旋律、和弦短奏 |
 | 首领 | 深渊引擎 / Abyss Engine | 136 BPM | 低音固定音型、铜管短奏、更密集的鼓与旋律呼应 |
 
 每曲为 16 小节、4/4 拍，以 D Dorian 调式和 D–A–G–E 主题联系，具有 A / A 变奏 / B / A 解决式结构。不是循环单音提示。所有 WAV 为 24kHz、16bit、双声道；每首约 28–47 秒。循环尾音通过环形混音保留，首尾每个声道的 PCM 样本完全一致。`score.json` 包含实际峰值、RMS、DC、最大相邻样本差、每秒能量、完整音符事件以及 PCM SHA-256。
 
-四份 `.wav.import` 显式设置 `compress/mode=0`，保留无损 16bit PCM；不要使用 Godot 默认有损压缩覆盖该设置。验收测试比较导入资源和原始 WAV 的完整 PCM 字节，验证编译/导入后仍满足相同峰值和循环边界。循环结束位置按解码后的实际帧数计算，不依赖压缩字节数量。
+六份 `.wav.import` 显式设置 `compress/mode=0`，保留无损 16bit PCM；不要使用 Godot 默认有损压缩覆盖该设置。验收测试比较导入资源和原始 WAV 的完整 PCM 字节，验证编译/导入后仍满足相同峰值和循环边界。循环结束位置按解码后的实际帧数计算，不依赖压缩字节数量。
 
 ## 重建与检验
 
@@ -29,7 +31,7 @@ python tools/compose_audio.py --verify-only
 
 ## 运行接口与混音
 
-常驻 `MusicDirector` 只分配两个 `AudioStreamPlayer`。调用 `configure(game)` 后，`set_context("camp" | "explore" | "combat" | "boss")` 以 1.25 秒互补幅度淡入淡出；相同请求幂等，快速请求只保留最新目标。暂停将同一条音乐平滑降至 22%，恢复后继续相位，不重新播放或叠加。
+常驻 `MusicDirector` 只分配两个 `AudioStreamPlayer`。调用 `configure(game)` 后，`set_context("camp" | "craft" | "forge" | "explore" | "combat" | "boss")` 以 1.25 秒互补幅度淡入淡出；相同请求幂等，快速请求只保留最新目标。暂停将同一条音乐平滑降至 22%，恢复后继续相位，不重新播放或叠加。
 
 `set_mix(master, music, sfx)` 接受 0–1 的值；调用者同时保存 `profile.settings.master_volume/music_volume/sfx_volume`。MusicDirector 响应 Game.changed；CombatAudio 在每帧读取相同设置。默认主音量 1、音乐 0.55、音效 0.85，支持 muted、music_muted、sfx_muted。
 
@@ -50,3 +52,7 @@ python tools/compose_audio.py --verify-only
 短乐句遵循`master_volume × music_volume`与`muted / music_muted`；释放、命中、榴弹爆炸等遵循`master_volume × sfx_volume`与`muted / sfx_muted`。静音音效仍可听到职业乐句，静音音乐仍保留动作与接触音效。降低视觉特效不会改变这两路音量。
 
 运行`.\tools\test.ps1 -Suite role_skill_audio -SkipImport -SkipRestart`可以检查12个实际PCM、独立静音、单声部与R替换、暂停及真实混音器清理，并导出[战士](../audio/previews/role_skill_CH01.wav)、[枪手](../audio/previews/role_skill_CH02.wav)、[法师](../audio/previews/role_skill_CH03.wav)试听链到忽略目录。试听链按Q、次要技能、E槽、R顺序使用生产合成器原始波形及默认增益，包含准备、释放与短乐句；枪手E槽另在释放后0.65秒加入真实榴弹爆炸波形及其0.66部署增益。无归一化、放大或伪造身体命中。它们是合成试听，PCM与静音混音器检查不替代真人听感验收。
+
+## 工坊配乐追加（2026-10-02）
+
+打造与锻造分别使用craft／forge上下文；离开工坊回营地音乐，快速切页仍最多两个播放声部。原有四首PCM不变。新增音乐同为本项目原创标准库合成及CC0-1.0输出，不宣称真实乐器录音。详见[工坊改进与定向验证](../../docs/ui-refactor/WORKSHOP_POLISH_2026-10-02.md)。

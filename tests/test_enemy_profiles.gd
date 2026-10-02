@@ -19,11 +19,11 @@ func _run() -> void:
 	_all_levels()
 	_encounters()
 	_hero_independence()
-	print("ENEMY_PROFILE_TESTS checks=" + str(checks) + " failures=" + str(failures) + " prototypes=36 levels=20 tiers=4")
+	print("ENEMY_PROFILE_TESTS checks=" + str(checks) + " failures=" + str(failures) + " prototypes=54 levels=20 tiers=4")
 	quit(0 if failures == 0 else 1)
 
 func _boundaries_and_isolation() -> void:
-	_check(Profiles.resolve("").is_empty() and Profiles.resolve("M37").is_empty() and Profiles.resolve("BO01").is_empty(), "unknown and boss IDs cannot become ordinary profiles")
+	_check(Profiles.resolve("").is_empty() and Profiles.resolve("M55").is_empty() and Profiles.resolve("BO01").is_empty(), "unknown and boss IDs cannot become ordinary profiles")
 	_check(Profiles.resolve("M01", -100)["enemy_level"] == 1, "negative level clamps to one")
 	_check(Profiles.resolve("M01", 999)["enemy_level"] == 20, "oversize level clamps to twenty")
 	_check(Profiles.resolve("M01", 20, "boss")["rank"] == "normal", "ordinary profile cannot invent boss rank")
@@ -46,7 +46,7 @@ func _boundaries_and_isolation() -> void:
 	_check(Profiles.encounter("L01", 0, -50) == Profiles.encounter("L01", 0, 0), "negative difficulty clamps without changing encounter seed")
 	_check(Profiles.encounter("L01", 0, 999) == Profiles.encounter("L01", 0, 4), "difficulty has five explicit tiers, zero through four")
 	var source: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/enemy_progression.json"))
-	_check(source["profiles"].size() == 36, "exactly 36 authored ordinary progression definitions")
+	_check(source["profiles"].size() == 54, "exactly 54 authored ordinary progression definitions")
 	var identities: Array[String] = []
 	for id: String in Catalog.enemy_ids():
 		var authored: Dictionary = source["profiles"][id]

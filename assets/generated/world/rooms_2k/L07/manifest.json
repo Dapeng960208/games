@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "room_id": "L07",
+  "approved": true,
+  "source_texture": "res://assets/generated/world/rooms/L07_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "c9fc40040094b066f75e6fb6e50831183146170da6d4135467c3ec6c38b56d77",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "res://assets/generated/world/rooms_2k/L07/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1265
+      ],
+      "generated_png_sha256": "eae0431bac648b6e449d405df2284aa5bd5ec6adfa8eba77891bc4375e68006a",
+      "decoded_rgb_sha256": "21ab0be585344119af8139a084fc1e03123c777ae8ea358b5fcb2aba38f6c87b",
+      "webp_sha256": "ce33111e15daab98df5323f5ea9d45959a6972cbec05425163ab2610c53f22c0",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is an edit target, an exact cropped tile from an existing game map for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked; no crop, expansion, camera move or rearrangement. Every paving slab, stone edge, flower, leaf, lantern, railing, stair, roof, boat and visible shadow must remain at IDENTICAL normalized coordinates. These edges join other exact map crops, so preserve all content touching every edge. Only add newly painted subtle high-definition material detail inside existing silhouettes: fine sandstone grain and chips, delicate leaf veins, fine timber grain, translucent amber highlights and water detail where present. Match the original warm cream sandstone, golden amber, leaf green and soft violet palette and bright sunlit hand-painted cartoon fantasy style. Preserve this tile's exact exposure, color balance and overall contrast. No additional objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive glossy highlights, dark outlines or saturated color shifts."
+    },
+    {
+      "id": "top_middle",
+      "texture": "res://assets/generated/world/rooms_2k/L07/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "1f5d3a3c45641b5c611b259bfa94c436468e351b7ca3219e64c4013168a11b94",
+      "decoded_rgb_sha256": "3be5c1e5d8b153366e6a04f08acc1b9e16a23a1ee8def7b93062541f75de33c6",
+      "webp_sha256": "77369760f91cec56e12ad39a3b3df2a2ba62fdf7b17d4cf875cd334b7e141fc1",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is an edit target, an exact cropped tile from an existing game map for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked; no crop, expansion, camera move or rearrangement. Every paving slab, stone edge, flower, leaf, lantern, railing, stair, roof, boat and visible shadow must remain at IDENTICAL normalized coordinates. These edges join other exact map crops, so preserve all content touching every edge. Only add newly painted subtle high-definition material detail inside existing silhouettes: fine sandstone grain and chips, delicate leaf veins, fine timber grain, translucent amber highlights and water detail where present. Match the original warm cream sandstone, golden amber, leaf green and soft violet palette and bright sunlit hand-painted cartoon fantasy style. Preserve this tile's exact exposure, color balance and overall contrast. No additional objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive glossy highlights, dark outlines or saturated color shifts."
+    },
+    {
+      "id": "top_right",
+      "texture": "res://assets/generated/world/rooms_2k/L07/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "ea6765b99e0345f47c5dfd88e635a1a8c775f40d282d412850bbf06f1a868508",
+      "decoded_rgb_sha256": "1a4eb0f926fb3207a3199e42c5acdbaeebde468b60f0739704d37e74ce7ddb02",
+      "webp_sha256": "83a6bff3befd1646ee70abef22089752c6b458b48bc8208bcb37315c088a1f6d",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is an edit target, an exact cropped tile from an existing game map for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked; no crop, expansion, camera move or rearrangement. Every paving slab, stone edge, flower, leaf, lantern, railing, stair, roof, boat and visible shadow must remain at IDENTICAL normalized coordinates. These edges join other exact map crops, so preserve all content touching every edge. Only add newly painted subtle high-definition material detail inside existing silhouettes: fine sandstone grain and chips, delicate leaf veins, fine timber grain, translucent amber highlights and water detail where present. Match the original warm cream sandstone, golden amber, leaf green and soft violet palette and bright sunlit hand-painted cartoon fantasy style. Preserve this tile's exact exposure, color balance and overall contrast. No additional objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive glossy highlights, dark outlines or saturated color shifts."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "res://assets/generated/world/rooms_2k/L07/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "cf2ef3af453ab7f6ecba0481e2e457a203f5166cdc137b46067f8709dd2199eb",
+      "decoded_rgb_sha256": "9602c3f2af4ad8ed632e24692d6e9d7a75421b38dba4da223dee493ba6be6d23",
+      "webp_sha256": "92b4507f7e1460a4715249a014ba12241c13618a89c1dfec9a1cbb3d9628f85d",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is an edit target, an exact cropped tile from an existing game map for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked; no crop, expansion, camera move or rearrangement. Every paving slab, stone edge, flower, leaf, lantern, railing, stair, roof, boat and visible shadow must remain at IDENTICAL normalized coordinates. These edges join other exact map crops, so preserve all content touching every edge. Only add newly painted subtle high-definition material detail inside existing silhouettes: fine sandstone grain and chips, delicate leaf veins, fine timber grain, translucent amber highlights and water detail where present. Match the original warm cream sandstone, golden amber, leaf green and soft violet palette and bright sunlit hand-painted cartoon fantasy style. Preserve this tile's exact exposure, color balance and overall contrast. No additional objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive glossy highlights, dark outlines or saturated color shifts."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "res://assets/generated/world/rooms_2k/L07/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1264,
+        1244
+      ],
+      "generated_png_sha256": "d989f0a9f7632de3a651715414e8cb64c0df32dff4b08a47854b2ad47d9f7406",
+      "decoded_rgb_sha256": "6a9fa374b7a51d87c43f71fce05e7d982b05b5af590da16b9ef5f31d2ea642c0",
+      "webp_sha256": "3d789f6aaf605765842a993f8b1b3c7068ca0d4dda42ba76a24834ecabd4b7b4",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is an edit target, an exact cropped tile from an existing game map for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked; no crop, expansion, camera move or rearrangement. Every paving slab, stone edge, flower, leaf, lantern, railing, stair, roof, boat and visible shadow must remain at IDENTICAL normalized coordinates. These edges join other exact map crops, so preserve all content touching every edge. Only add newly painted subtle high-definition material detail inside existing silhouettes: fine sandstone grain and chips, delicate leaf veins, fine timber grain, translucent amber highlights and water detail where present. Match the original warm cream sandstone, golden amber, leaf green and soft violet palette and bright sunlit hand-painted cartoon fantasy style. Preserve this tile's exact exposure, color balance and overall contrast. No additional objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive glossy highlights, dark outlines or saturated color shifts."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "res://assets/generated/world/rooms_2k/L07/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "8be4314f749bafcccfc88d03af66866af7dd02983f4ed97b1c2f772b341db91f",
+      "decoded_rgb_sha256": "62278b61a53765fb7166dbe4c842e63276245ad379beebde5c150ee7c8d99f85",
+      "webp_sha256": "609e181f0ed254e1d823f1b9134549d78ce93ba54fcf5d3bd9c4f0c7724014b5",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is an edit target, an exact cropped tile from an existing game map for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked; no crop, expansion, camera move or rearrangement. Every paving slab, stone edge, flower, leaf, lantern, railing, stair, roof, boat and visible shadow must remain at IDENTICAL normalized coordinates. These edges join other exact map crops, so preserve all content touching every edge. Only add newly painted subtle high-definition material detail inside existing silhouettes: fine sandstone grain and chips, delicate leaf veins, fine timber grain, translucent amber highlights and water detail where present. Match the original warm cream sandstone, golden amber, leaf green and soft violet palette and bright sunlit hand-painted cartoon fantasy style. Preserve this tile's exact exposure, color balance and overall contrast. No additional objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive glossy highlights, dark outlines or saturated color shifts."
+    }
+  ],
+  "qa": {
+    "date": "2026-10-02",
+    "engine": "Godot 4.7.2",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "checks": 46,
+    "failures": 0,
+    "layout_polygon_camera_unchanged": true,
+    "texture_release_and_reload": true,
+    "visual_review": "All five original/native pairs inspected. Ground material and building edge detail visibly improved; major roads, entrances, scene boundaries and runtime markers remain aligned. No apparent hard tile seams. Narrow feather zones retain some original texels. This controlled scene check does not establish natural crowded-combat readability.",
+    "rgba_mips_upper_bound_bytes": 50311776,
+    "graphics_backend": "private Xorg display :97, llvmpipe; physical GPU performance not benchmarked",
+    "evidence": [
+      {
+        "capture": "L07_center_original_2560x1440.png",
+        "sha256": "d168761593bbea5863fd30da0c49bba7088af044d16bc9aa675de6c6b1f3a914"
+      },
+      {
+        "capture": "L07_center_native_2560x1440.png",
+        "sha256": "199fab77156905ebddd0a53eb8ffa9f7926ecca37058ea0ed4e1883c6ef700f6"
+      },
+      {
+        "capture": "L07_northwest_original_2560x1440.png",
+        "sha256": "643944cb6de78f08f0436fecd5476524a7b78a97a231212cf70c5ec81b335907"
+      },
+      {
+        "capture": "L07_northwest_native_2560x1440.png",
+        "sha256": "78c93afd6c26c391674804647b2a5bf980c6a7971dbac73cb79d0993560de9e0"
+      },
+      {
+        "capture": "L07_northeast_original_2560x1440.png",
+        "sha256": "b346aaf1217262b7b9922944decd77b8abc69ca8266600ecf149b8a800302301"
+      },
+      {
+        "capture": "L07_northeast_native_2560x1440.png",
+        "sha256": "2007443d1145651fa22ee6204476412bed0d58a659f45ffb338e525a1cb4e4f9"
+      },
+      {
+        "capture": "L07_southwest_original_2560x1440.png",
+        "sha256": "64836be700d3dead78d7c45effe7f276571c41f5ee175154e8ef77500520cec8"
+      },
+      {
+        "capture": "L07_southwest_native_2560x1440.png",
+        "sha256": "0a5842d35a13afd4a3eed7337eeb92b21e8eb0001653830a89969de3f0fd8ed3"
+      },
+      {
+        "capture": "L07_southeast_original_2560x1440.png",
+        "sha256": "dbf1a48e407a05cb011135204f531c5d8e593e18db197e91e315c850abaf4316"
+      },
+      {
+        "capture": "L07_southeast_native_2560x1440.png",
+        "sha256": "9730797fea8129425a70f576af3050246755faf80af0d21fe8b3136b7006373f"
+      }
+    ],
+    "log_sha256": "555f03fd299774afaec505e8b19ffa9a00a67ed3ee906919a49c77c3277f9c9c"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "created_at_utc": "2026-10-02T02:22:00Z",
+  "generator": "Built-in image_gen.imagegen",
+  "source_style_reference": "User-provided warm ivory and teal fantasy inventory UI reference",
+  "assets": [
+    {
+      "file": "compass_emblem.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "format": "RGBA PNG",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: premium fantasy RPG interface emblem, isolated transparent PNG, square canvas at least 1024x1024. Primary request: a single beautifully painted antique-gold and deep teal compass rose medallion matching elegant warm ivory fantasy game UI. Centered front-facing circular compass, eight handsome points with four long cardinal tips, brushed antique brass edging, intricately engraved but readable gold ornament, deep dark teal enamel center, softly luminous warm gold needle, tiny turquoise inset accents. Hand-painted high-fidelity fantasy item illustration with convincing sculptural metal depth, refined painterly highlights, balanced symmetry, clean silhouette. Medallion fills 86 percent of square with generous transparent padding, every tip fully inside canvas. Designed to remain crisp and recognizable when displayed 96–160 pixels on a 2560x1440 interface. Restrained gold and teal only, no purple, no harsh orange, no excessive glow. Absolutely no text, letters, numbers, labels, UI mockup, background scene, checkerboard pattern or external drop shadow. Real alpha transparency outside the emblem; preserve fine ornamental cutouts.",
+      "usage": "Display at 96–160 logical pixels at 2560x1440, preserve aspect ratio. Native generated size; no upscaling."
+    },
+    {
+      "file": "panel_corner_tl.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "format": "RGBA PNG",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: subtle decorative upper-left panel corner illustration for premium fantasy RPG warm ivory and teal UI. Generate one isolated L-shaped antique-gold filigree corner, on true transparent alpha, 1024x1024 or larger square native resolution. A finely hand-painted embossed brass scrollwork corner with a small spearhead point at the elbow and very restrained curling acanthus leaf engraving, exactly one corner ornament. It should occupy upper-left quadrant primarily, with horizontal and vertical arms of comparable length extending rightward and downward, elegant airy negative space inside the L. Muted champagne antique gold, subtle brown-gold shadows, small cream highlights, no heavy dark outlines, refined artisanal ornamental metal, painterly texture matching a high-fidelity fantasy inventory interface. No panel surface, no enclosing rectangle, no teal fill, no lettering, no text, no gems, no scene or gradient backdrop, no drop shadow. Keep all artwork fully inside canvas with transparent margin. Designed to be used as restrained panel ornament around 100x100 pixels at 2560x1440; simple enough to read small, not an elaborate busy emblem.",
+      "usage": "Display around 72–110 pixels, with 0.22–0.4 UI opacity for subtle warm ivory panel ornament. Mirror at runtime for other corners. Native generated size; no upscaling."
+    }
+  ],
+  "validation": {
+    "method": "Pillow read-only dimensions and alpha histogram plus visual inspection of both native outputs",
+    "compass_emblem": {
+      "fully_transparent_pixels": 805006,
+      "fully_opaque_pixels": 212,
+      "partial_alpha_pixels": 767298
+    },
+    "panel_corner_tl": {
+      "fully_transparent_pixels": 1366462,
+      "fully_opaque_pixels": 510,
+      "partial_alpha_pixels": 205544
+    },
+    "notes": "Both are original painterly generated assets with genuine alpha, not flattened checkerboards. Retained original generated alpha unchanged."
+  }
+}

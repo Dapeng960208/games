@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "room_id": "L16",
+  "approved": true,
+  "source_texture": "res://assets/generated/world/rooms/L16_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "964a2276d3b1a679030b731d713c53315a97cce50e049e22eca3eea4cae6b18d",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "res://assets/generated/world/rooms_2k/L16/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "99c37aeb34100279a54c804421c0ac02c3e8f854273f4b0274bccd53e944527d",
+      "decoded_rgb_sha256": "130b5186bf874572ee9b6527723c0ba7763f44c0e5438c5fc515bb6aeddbd77f",
+      "webp_sha256": "23973478c79c56695d20b562a3a8c99df449541560b994442a1fef628fa2e717",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is a cropped tile from an existing game map, requiring newly painted fine detail for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked, no crop, expansion, camera move or rearrangement; positions of every paving stone, curling gold band, flower, building, shadow and visible object must remain at IDENTICAL normalized coordinates. These edges will join other exact original map crops, so preserve every edge's content. Only add subtle high-definition painted material detail within the existing silhouettes: tiny stone chips and bevels, mortar grain, fine roof/wax/wood texture where present. Match colors and overall contrast closely, keep delicate bright sunlit cartoon fantasy painting, no newly invented objects, no extra flowers, no text or characters. This is a texture fidelity restoration, not a redesign. Preserve this tile's exact muted color palette and sunlight exposure. Fine texture only, no glossy plastic effect or saturated color shift."
+    },
+    {
+      "id": "top_middle",
+      "texture": "res://assets/generated/world/rooms_2k/L16/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "a6f2f0a99e6a6c773d8ddcf3a41ffb0429f4dd044c571c961284680270ff9bfc",
+      "decoded_rgb_sha256": "7beeeddde953f667846c91de13eea3abdb8d0ba8b02e834dfc2e2dc3484ead0c",
+      "webp_sha256": "2279ec6759214ab8673bc42d063a6d84ec9dee619ee73de9e3a66e5886e6602a",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is a cropped tile from an existing game map, requiring newly painted fine detail for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked, no crop, expansion, camera move or rearrangement; positions of every paving stone, curling gold band, flower, building, shadow and visible object must remain at IDENTICAL normalized coordinates. These edges will join other exact original map crops, so preserve every edge's content. Only add subtle high-definition painted material detail within the existing silhouettes: tiny stone chips and bevels, mortar grain, fine roof/wax/wood texture where present. Match colors and overall contrast closely, keep delicate bright sunlit cartoon fantasy painting, no newly invented objects, no extra flowers, no text or characters. This is a texture fidelity restoration, not a redesign."
+    },
+    {
+      "id": "top_right",
+      "texture": "res://assets/generated/world/rooms_2k/L16/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "4da35e40120aaf34986778035f455643ebeda9a7b1b38fb8acbccb5adc6fdab3",
+      "decoded_rgb_sha256": "024bfcef01a697674ee946ec779f31d86b909cc56a4fe65b1c5b31a3d2a13adf",
+      "webp_sha256": "d8341af6763a42d9b4ef2aa0f855f73fd55fcd9add4874c3b44add2257c5cbbd",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is a cropped tile from an existing game map, requiring newly painted fine detail for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked, no crop, expansion, camera move or rearrangement; positions of every paving stone, curling gold band, flower, building, shadow and visible object must remain at IDENTICAL normalized coordinates. These edges will join other exact original map crops, so preserve every edge's content. Only add subtle high-definition painted material detail within the existing silhouettes: tiny stone chips and bevels, mortar grain, fine roof/wax/wood texture where present. Match colors and overall contrast closely, keep delicate bright sunlit cartoon fantasy painting, no newly invented objects, no extra flowers, no text or characters. This is a texture fidelity restoration, not a redesign."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "res://assets/generated/world/rooms_2k/L16/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "a41b0bc541beaa55fb2c571ef1afee6219108fd233d749c102484d3e4adc0df2",
+      "decoded_rgb_sha256": "9c47ad57259661ece52c824d9b92ec117e4c07b427ba1b843ad29aeb1b01d669",
+      "webp_sha256": "7c30e3a73d733ee08dc5faf00ba2024b0597ca44fb3271960f043f0c45842484",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is a cropped tile from an existing game map, requiring newly painted fine detail for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked, no crop, expansion, camera move or rearrangement; positions of every paving stone, curling gold band, flower, building, shadow and visible object must remain at IDENTICAL normalized coordinates. These edges will join other exact original map crops, so preserve every edge's content. Only add subtle high-definition painted material detail within the existing silhouettes: tiny stone chips and bevels, mortar grain, fine roof/wax/wood texture where present. Match colors and overall contrast closely, keep delicate bright sunlit cartoon fantasy painting, no newly invented objects, no extra flowers, no text or characters. This is a texture fidelity restoration, not a redesign. Preserve this tile's exact muted color palette and sunlight exposure. Fine texture only, no glossy plastic effect or saturated color shift."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "res://assets/generated/world/rooms_2k/L16/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "86cbc2b86dcee6956f99d0bb64a4eb0d0385fc5138c175c112040c8e6041285f",
+      "decoded_rgb_sha256": "b515448232530e789125152764a93f51bffdfc5fdcc187d55efd093ad5bd7332",
+      "webp_sha256": "493f1b7256f0f17a60b27e07970b5b197f01a1ec40dec805d4eed015bf0c01ee",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is a cropped tile from an existing game map, requiring newly painted fine detail for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked, no crop, expansion, camera move or rearrangement; positions of every paving stone, curling gold band, flower, building, shadow and visible object must remain at IDENTICAL normalized coordinates. These edges will join other exact original map crops, so preserve every edge's content. Only add subtle high-definition painted material detail within the existing silhouettes: tiny stone chips and bevels, mortar grain, fine roof/wax/wood texture where present. Match colors and overall contrast closely, keep delicate bright sunlit cartoon fantasy painting, no newly invented objects, no extra flowers, no text or characters. This is a texture fidelity restoration, not a redesign. Preserve this tile's exact muted color palette and sunlight exposure. Fine texture only, no glossy plastic effect or saturated color shift."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "res://assets/generated/world/rooms_2k/L16/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "f876ac606146d08fec29a9ccf2d569344d24f397a0cae32f9807037c04e335a4",
+      "decoded_rgb_sha256": "95bee8570e135a3f4a5d227d0082681933991b6d5da46e93dffa08d51f484b1a",
+      "webp_sha256": "46d9123dcdc9a2af4bc2b73e7a0ec705ae63ea99dabd1a8326f448d801180862",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. This exact attached image is a cropped tile from an existing game map, requiring newly painted fine detail for 2560x1440 gameplay. Repaint at the largest native square image resolution, 1536x1536 requested. CRITICAL: exact source full framing and scale are locked, no crop, expansion, camera move or rearrangement; positions of every paving stone, curling gold band, flower, building, shadow and visible object must remain at IDENTICAL normalized coordinates. These edges will join other exact original map crops, so preserve every edge's content. Only add subtle high-definition painted material detail within the existing silhouettes: tiny stone chips and bevels, mortar grain, fine roof/wax/wood texture where present. Match colors and overall contrast closely, keep delicate bright sunlit cartoon fantasy painting, no newly invented objects, no extra flowers, no text or characters. This is a texture fidelity restoration, not a redesign. Preserve this tile's exact muted color palette and sunlight exposure. Fine texture only, no glossy plastic effect or saturated color shift."
+    }
+  ],
+  "qa": {
+    "date": "2026-10-02",
+    "engine": "Godot 4.7.2",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "checks": 46,
+    "failures": 0,
+    "layout_polygon_camera_unchanged": true,
+    "texture_release_and_reload": true,
+    "visual_review": "Five native/original gameplay views inspected: material detail improved; no apparent hard joins, moved doorways, boundary changes or marker displacement. Narrow blended joins retain some original texels.",
+    "rgba_mips_upper_bound_bytes": 50305616,
+    "graphics_backend": "private Xorg display :97, llvmpipe; real hardware performance not benchmarked",
+    "evidence": [
+      {
+        "capture": "L16_center_native_2560x1440.png",
+        "sha256": "6b10668a5c9491f66fe1621c681c8928eff7f45b613ea032ef7054bf5713eb77"
+      },
+      {
+        "capture": "L16_northwest_native_2560x1440.png",
+        "sha256": "8556b9906193a8fbdd4054dea1aaa4d4ab02e9e2bc4448db7c91aa4db526d7a9"
+      },
+      {
+        "capture": "L16_northeast_native_2560x1440.png",
+        "sha256": "6eb6c0064f9706fc5392ca180fc2717f4389a28ddc29bb3c1be6d18c9bc203aa"
+      },
+      {
+        "capture": "L16_southwest_native_2560x1440.png",
+        "sha256": "3f23acb2d09d818a40a8cae235744b3a6458da6a44afc4a8e538d3cb89d7f8c3"
+      },
+      {
+        "capture": "L16_southeast_native_2560x1440.png",
+        "sha256": "96217c7e88877cc772e2c670d160b0bc9a4bb8b45be478efdb86cd3c463f6057"
+      }
+    ]
+  }
+}

@@ -6,6 +6,7 @@ extends RefCounted
 ## Arena objects call apply_arena_counter(); the host actor owns phase cleanup,
 ## finite reinforcement requests and the completion signal.
 
+const WarningTiming = preload("res://scripts/combat/enemy_warning_timing.gd")
 const EPSILON := 0.00001
 const Abilities = preload("res://scripts/combat/boss_ability_catalog.gd")
 const SEQUENCES := {
@@ -364,7 +365,7 @@ func _begin_action(actor: Node2D, victim: Node2D, forced_action: String = "") ->
 	if bool(command.get("tracks_target", true)):
 		_retarget(actor, victim)
 	state = &"telegraph"
-	state_time = maxf(0.55, float(command.get("tell", 0.8)))
+	state_time = maxf(0.001, float(command.get("tell", 0.8)))
 	state_duration = state_time
 	_set_actor_state(actor, &"telegraph")
 
@@ -584,7 +585,7 @@ func _execute(actor: Node2D) -> void:
 func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 	if Abilities.tier(boss_id,action) > 0:
 		if Abilities.tier(boss_id,action) > int(definition.get("difficulty",0)): return {}
-		return Abilities.build(boss_id,action,actor.position,victim.position)
+		return _apply_warning_timing(Abilities.build(boss_id,action,actor.position,victim.position))
 	var origin: Vector2 = actor.position
 	var target: Vector2 = victim.position
 	var direction: Vector2 = origin.direction_to(target)
@@ -660,7 +661,26 @@ func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 			base.merge({"kind":"ground_area", "shape":"ring", "target":origin, "radius":315.0, "inner_radius":145.0, "ring_gap_degrees":105.0, "damage_multiplier":0.88, "duration":0.0, "weakpoint_id":"cracked_heart", "weakpoint_duration":2.8, "tell":1.05, "lock":0.45, "recovery":2.8})
 		_:
 			return {}
-	return base
+	return _apply_warning_timing(base)
+
+func _apply_warning_timing(source: Dictionary) -> Dictionary:
+	if source.is_empty(): return {}
+	var result: Dictionary = source.duplicate(true)
+	# Preserve the authored input so previewing/reapplying never compounds a
+	# shortened warning. Geometry, damage, cooldown and weakpoints are untouched.
+	var timing: Dictionary = WarningTiming.boss(
+		float(source.get("authored_tell_seconds", source.get("tell", 0.8))),
+		float(source.get("authored_lock_seconds", source.get("lock", 0.32))),
+		int(definition.get("difficulty", 0)), source, int(definition.get("ruleset_version", 1)))
+	result["tell"] = timing.tell_seconds
+	result["lock"] = timing.lock_seconds
+	result["telegraph_seconds"] = timing.tell_seconds
+	result["locked_seconds"] = timing.lock_seconds
+	result["authored_tell_seconds"] = timing.authored_tell_seconds
+	result["authored_lock_seconds"] = timing.authored_lock_seconds
+	result["warning_family"] = timing.family
+	result["warning_difficulty"] = timing.difficulty
+	return result
 
 func _ring_command(origin: Vector2, direction: Vector2, outer: bool) -> Dictionary:
 	var radius: float = 520.0 if outer else 310.0

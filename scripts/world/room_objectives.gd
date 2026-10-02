@@ -13,6 +13,7 @@ const PropArt = preload("res://scripts/world/world_prop_art.gd")
 const FirstFour = preload("res://scripts/world/first_four_objectives.gd")
 const PropIdentity = preload("res://scripts/world/prop_identity.gd")
 const Numerical = preload("res://config/numerical_rules.gd")
+const WorldLabels = preload("res://scripts/ui/world_label_layer.gd")
 var room: Node2D
 var layout: Dictionary = {}
 var room_id: String = ""
@@ -38,6 +39,7 @@ var light_positions: Array[Vector2] = []
 var _event_serial: int = 0
 var body_layer: Node2D
 var body_nodes: Dictionary = {}
+var label_layer: Node2D
 
 func configure(next_room: Node2D, next_layout: Dictionary, node_role: String = "branch") -> void:
 	_configure_context(next_room, next_layout, node_role)
@@ -82,10 +84,13 @@ func _configure_context(next_room: Node2D, next_layout: Dictionary, node_role: S
 	role = node_role
 	definition = Catalog.room(room_id)
 	required_count = int(layout.get("fixed_objective_count", definition.get("objective_count", 0)))
-	objective_font = load("res://assets/fonts/NotoSansSC.ttf") if ResourceLoader.exists("res://assets/fonts/NotoSansSC.ttf") else ThemeDB.fallback_font
+	objective_font = WorldLabels.font()
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	z_index = 1
 	material = WorldArt.material_for(str(definition.get("biome_id", "B01")))
+	if not is_instance_valid(label_layer):
+		label_layer = WorldLabels.new()
+		label_layer.configure(self, _draw_labels)
 
 func _add_fixed_optional_rewards(claimed: Array = []) -> void:
 	for reward: Dictionary in layout.get("fixed_optional_rewards", []):
@@ -148,6 +153,7 @@ func reset() -> void:
 	ambient_darkness = 0.0
 	light_positions.clear()
 	_event_serial = 0
+	if is_instance_valid(label_layer): label_layer.queue_redraw()
 
 func _exit_tree() -> void:
 	# The layer is our room sibling. Replacing just this host must also retire it.
@@ -737,14 +743,6 @@ func draw_world(canvas: Node2D) -> void:
 		var progress: float = clampf(float(item.get("progress", 0)), 0, 1)
 		if progress > 0 and not done:
 			canvas.draw_arc(at + Vector2(0, 5), 34, -PI * .5, -PI * .5 + TAU * progress, 32, Color("4b8554"), 3, true)
-		var show_label: bool = near(at, 260) or bool(item.get("always_label", false))
-		if show_label and objective_font != null:
-			var text: String = str(item.label) + (" ✓" if done else "")
-			if not str(item.get("phase", "")).is_empty():
-				text += " · " + str(item.phase)
-			var size: Vector2 = objective_font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, 17)
-			canvas.draw_string_outline(objective_font, at + Vector2(-size.x * .5, 44), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 17, 4, Color("fff3d7"))
-			canvas.draw_string(objective_font, at + Vector2(-size.x * .5, 44), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 17, Color("392843"))
 	for hazard: Dictionary in hazards:
 		var color: Color = hazard.get("color", Color("eaae62"))
 		color.a = .85 if float(hazard.delay) > 0 else 1.0
@@ -759,3 +757,16 @@ func draw_world(canvas: Node2D) -> void:
 				canvas.draw_arc(hazard.position, float(hazard.get("inner_radius", hazard.radius * .65)), 0, TAU, 48, color, 2, true)
 		if float(hazard.delay) > 0:
 			canvas.draw_circle(hazard.position, 4, color)
+
+func _draw_labels(canvas: Node2D) -> void:
+	if objective_font == null: return
+	for item: Dictionary in elements.values():
+		if not bool(item.get("active", true)) or bool(item.get("carried", false)) or bool(item.get("destroyed", false)):
+			continue
+		var at: Vector2 = item.position
+		if not near(at, 260) and not bool(item.get("always_label", false)):
+			continue
+		var text: String = str(item.label) + (" ✓" if bool(item.get("done", false)) else "")
+		if not str(item.get("phase", "")).is_empty():
+			text += " · " + str(item.phase)
+		WorldLabels.draw_objective(canvas, objective_font, at, text)

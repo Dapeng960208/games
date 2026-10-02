@@ -1,0 +1,290 @@
+[
+  {
+    "id": "M19",
+    "source": "assets/generated/enemies/storybook_B03_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new high-resolution full-body codex portrait for fantasy game enemy M19. Reference image is the existing gameplay atlas; use ONLY the top row first character as identity reference. Subject: a pale teal round-eyed zombie sentry in a navy cap with brass badge, orange scarf, teal patchwork coat, dark trousers and boots holding a warm glowing orange pumpkin lantern. Faithfully retain that character's species, silhouette, gear, palette and personality. Repaint from scratch as detailed bright painterly 2.5D fantasy illustration with finely rendered cloth seams, material surfaces and expressive features, elegant fine outlines, warm sunny lighting. Three-quarter view, entire single character centrally framed, filling roughly 85 percent of square canvas, no clipped gear or feet. True transparent background. No scenery, no floor, no text, no border, no other characters. This is a new detailed illustration, not an enlarged low-resolution sprite.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M19.png"
+  },
+  {
+    "id": "M20",
+    "source": "assets/generated/enemies/storybook_B03_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new high-resolution full-body codex portrait for fantasy game enemy M20. Reference image is the existing gameplay atlas; use ONLY the top row second character as identity reference. Subject: a pale teal-lavender round-faced zombie crossbowman with small orange scarf, patched teal vest and brown trousers, holding an ornate chunky wooden crossbow with brass fittings. Faithfully retain that character's species, silhouette, gear, palette and personality. Repaint from scratch as detailed bright painterly 2.5D fantasy illustration with finely rendered cloth seams, material surfaces and expressive features, elegant fine outlines, warm sunny lighting. Three-quarter view, entire single character centrally framed, filling roughly 85 percent of square canvas, no clipped gear or feet. True transparent background. No scenery, no floor, no text, no border, no other characters. This is a new detailed illustration, not an enlarged low-resolution sprite.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M20.png"
+  },
+  {
+    "id": "M21",
+    "source": "assets/generated/enemies/storybook_B03_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new high-resolution full-body codex portrait for fantasy game enemy M21. Reference image is the existing gameplay atlas; use ONLY the top row third character as identity reference. Subject: a pale teal zombie leaper with round luminous eyes, dark patched teal shirt, very large gloved hands and bent limbs, crouched low on all fours. Faithfully retain that character's species, silhouette, gear, palette and personality. Repaint from scratch as detailed bright painterly 2.5D fantasy illustration with finely rendered cloth seams, material surfaces and expressive features, elegant fine outlines, warm sunny lighting. Three-quarter view, entire single character centrally framed, filling roughly 85 percent of square canvas, no clipped gear or feet. True transparent background. No scenery, no floor, no text, no border, no other characters. This is a new detailed illustration, not an enlarged low-resolution sprite.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M21.png"
+  },
+  {
+    "id": "M22",
+    "source": "assets/generated/enemies/storybook_B03_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M22. The reference atlas top row fourth character is the exact identity source. Subject: a round-bellied pale lavender zombie cook wearing patched teal apron and cream chef hat, holding a brass pumpkin cauldron of glowing orange sugar syrup and a ladle, pumpkin tank backpack. Keep species, gear, silhouette and colors. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, rich fine cloth and brass texture. Friendly cartoon undead with intact smooth skin, no exposed flesh, no decay or wounds. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M22.png"
+  },
+  {
+    "id": "M23",
+    "source": "assets/generated/enemies/storybook_B03_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M23. The reference atlas top row fifth character is the exact identity source. Subject: pale teal zombie hook-chain warlock in hooded teal patched cloak and orange scarf, large brass hooked ring weapon and broad heavy chain looped around arms. Keep species, gear, silhouette and colors. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, rich fine cloth and brass texture. Friendly cartoon undead with intact smooth skin, no exposed flesh, no decay or wounds. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M23.png"
+  },
+  {
+    "id": "M24",
+    "source": "assets/generated/enemies/storybook_B03_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M24. The reference atlas bottom row first character is the exact identity source. Subject: pale teal zombie frost-mist pump operator with fluffy orange scarf and patched teal clothes, paired pale pumpkin tank backpack, holding short brass spray nozzle. Keep species, gear, silhouette and colors. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, rich fine cloth and brass texture. Friendly cartoon undead with intact smooth skin, no exposed flesh, no decay or wounds. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M24.png"
+  },
+  {
+    "id": "M25",
+    "source": "assets/generated/enemies/storybook_B03_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M25. The reference atlas bottom row second character is the exact identity source. Subject: broad pale teal zombie shield guard in patched teal uniform, sturdy leather boots, holding a huge upright wooden coffin-shaped shield with brass border and pumpkin brass badge. Keep species, gear, silhouette and colors. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, rich fine cloth and brass texture. Friendly cartoon undead with intact smooth skin, no exposed flesh, no decay or wounds. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M25.png"
+  },
+  {
+    "id": "M26",
+    "source": "assets/generated/enemies/storybook_B03_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M26. The reference atlas bottom row third character is the exact identity source. Subject: pale lavender zombie tailor guard in patched teal waistcoat, orange scarf and brown cap, holding an enormous pair of open brass tailor scissors before the chest. Keep species, gear, silhouette and colors. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, rich fine cloth and brass texture. Friendly cartoon undead with intact smooth skin, no exposed flesh, no decay or wounds. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M26.png"
+  },
+  {
+    "id": "M27",
+    "source": "assets/generated/enemies/storybook_B03_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M27. The reference atlas bottom row fourth character is the exact identity source. Subject: pale teal round-faced zombie gardener in patched teal work coat, broad boots, holding a long metal shovel with wood handle and a large brass carrying clamp at his side. Keep species, gear, silhouette and colors. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, rich fine cloth and brass texture. Friendly cartoon undead with intact smooth skin, no exposed flesh, no decay or wounds. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M27.png"
+  },
+  {
+    "id": "M28",
+    "source": "assets/generated/enemies/storybook_B04_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M28. The reference atlas top row first character is the exact identity source. Subject: short stocky green orc scout leaning forward with large pointed ears, short pale bone knife, bright red rock shoulder armor and leather boots. Faithfully keep species, gear, silhouette, skin color and colors; only this atlas character, not the others. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, genuine detailed leather grain, natural skin and polished brass texture, saturated red terracotta rock armor. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite; no gore.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M28.png"
+  },
+  {
+    "id": "M29",
+    "source": "assets/generated/enemies/storybook_B04_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M29. The reference atlas top row second character is the exact identity source. Subject: lean teal-skinned orc flanker with asymmetrical arms, one large brass hook claw and one curved bone blade, bright red rock shoulder armor and red loincloth. Faithfully keep species, gear, silhouette, skin color and colors; only this atlas character, not the others. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, genuine detailed leather grain, natural skin and polished brass texture, saturated red terracotta rock armor. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite; no gore.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M29.png"
+  },
+  {
+    "id": "M30",
+    "source": "assets/generated/enemies/storybook_B04_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M30. The reference atlas top row third character is the exact identity source. Subject: green orc war-drum priest with three increasing-size red drums strapped to his back, bright brass drum fittings, ivory horned headdress, red rock armor and a tall horn-bone staff. Faithfully keep species, gear, silhouette, skin color and colors; only this atlas character, not the others. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, genuine detailed leather grain, natural skin and polished brass texture, saturated red terracotta rock armor. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite; no gore.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M30.png"
+  },
+  {
+    "id": "M31",
+    "source": "assets/generated/enemies/storybook_B04_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M31. The reference atlas top row fourth character is the exact identity source. Subject: teal-skinned orc cold-crystal crossbow archer in light red-rock armor and ivory horned skull-like helmet, holding pale bone crossbow with brass wheel and icy blue crystal bolt. Faithfully keep species, gear, silhouette, skin color and colors; only this atlas character, not the others. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, genuine detailed leather grain, natural skin and polished brass texture, saturated red terracotta rock armor. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite; no gore.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M31.png"
+  },
+  {
+    "id": "M32",
+    "source": "assets/generated/enemies/storybook_B04_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M32. The reference atlas top row fifth character is the exact identity source. Subject: green-skinned orc ambush hunter in deep teal hooded cloak, red rock shoulder and waist armor, crouched low and holding two curved pale bone daggers. Faithfully keep species, gear, silhouette, skin color and colors; only this atlas character, not the others. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, genuine detailed leather grain, natural skin and polished brass texture, saturated red terracotta rock armor. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite; no gore.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M32.png"
+  },
+  {
+    "id": "M33",
+    "source": "assets/generated/enemies/storybook_B04_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M33. The reference atlas bottom row first character is the exact identity source. Subject: orange-brown-skinned long-armed orc net hunter, broad palms and lean long limbs, rope net slung across back and a long forked ivory bone spear/pole, leather red cloth and small brass fittings. Faithfully keep species, gear, silhouette, skin color and colors; only this atlas character, not the others. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, genuine detailed leather grain, natural skin and polished brass texture, saturated red terracotta rock armor. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite; no gore.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M33.png"
+  },
+  {
+    "id": "M34",
+    "source": "assets/generated/enemies/storybook_B04_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M34. The reference atlas bottom row second character is the exact identity source. Subject: massive broad-shouldered green ogre counterattack guard wearing thick red rock plate shoulder armor edged in ivory spikes, short red-rock hammer in one fist and one enormous open flat palm raised outward, steady stout stance. Faithfully keep species, gear, silhouette, skin color and colors; only this atlas character, not the others. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, genuine detailed leather grain, natural skin and polished brass texture, saturated red terracotta rock armor. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite; no gore.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M34.png"
+  },
+  {
+    "id": "M35",
+    "source": "assets/generated/enemies/storybook_B04_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M35. The reference atlas bottom row third character is the exact identity source. Subject: orange-brown pot-bellied ogre lantern thief, large broad mouth with tusks, bare big rounded belly and red-rock shoulder armor, clutching a large warm glowing brass lantern, red cloth loincloth and dark boots. Faithfully keep species, gear, silhouette, skin color and colors; only this atlas character, not the others. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, genuine detailed leather grain, natural skin and polished brass texture, saturated red terracotta rock armor. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite; no gore.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M35.png"
+  },
+  {
+    "id": "M36",
+    "source": "assets/generated/enemies/storybook_B04_bodies_v2.png",
+    "prompt": "Use case: stylized-concept. Create one new detailed full-body fantasy game codex illustration for M36. The reference atlas bottom row fourth character is the exact identity source. Subject: short stocky green orc rune demolition soldier in red-rock and leather armor, holding a large spherical cyan blue rune bomb carefully between both hands, short legs and pointed ears, additional small blue explosive canisters at belt. Faithfully keep species, gear, silhouette, skin color and colors; only this atlas character, not the others. Bright hand-painted storybook 2.5D fantasy style with elegant outlines, warm sunny lighting, genuine detailed leather grain, natural skin and polished brass texture, saturated red terracotta rock armor. Single character, three-quarter view, complete head/feet/gear, generous transparent margin, centered fills85% square. True transparent background, no scenery, no floor, no text or frame. Redraw with genuine high-resolution detail, not enlarged sprite; no gore.",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "method": "built-in image_gen",
+    "path": "assets/generated/ui/refactor_v1/codex/M36.png"
+  }
+]

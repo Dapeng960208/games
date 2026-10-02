@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "texture": "res://assets/generated/ui/refactor_v1/codex/BO04.png",
+  "source_family": "storybook_2_5d_v1",
+  "biome_id": "B04",
+  "visual_clan": "赤岩兽人",
+  "image_size": [
+    1254,
+    1254
+  ],
+  "entries": {
+    "BO04": {
+      "region": [
+        49,
+        42,
+        1186,
+        1176
+      ],
+      "foot": [
+        642.0,
+        1218
+      ],
+      "source_height": 1176,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "BO04",
+      "combat_body": true
+    }
+  },
+  "source_sha256": "d2d92119bea78d0f249984805b5244ec6077623cfd194039dc37ed46222147e5",
+  "region_alpha_threshold": 16,
+  "region_padding_pixels": 4,
+  "source_provenance": "assets/generated/ui/refactor_v1/codex/provenance_bosses.json",
+  "combat_registration": {
+    "height": "clamp(navigation_radius * 3.45, 170, 220) * ENEMY_BODY_FACTOR; preserves prior combat height",
+    "foot_y": 48,
+    "foot_x": "Legacy source horizontal foot fraction, mapped into the complete HD body crop",
+    "scale": "Uniform; preserves source proportions; no texture resize or pixel edits",
+    "legacy_manifest": "assets/generated/enemies/storybook_B04_bodies_v2.regions.json",
+    "legacy_region": [
+      1670,
+      474,
+      231,
+      230
+    ],
+    "legacy_foot": [
+      1785.5,
+      704
+    ]
+  }
+}

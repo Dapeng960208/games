@@ -5,7 +5,7 @@ const Details = preload("res://scripts/ui/equipment_details.gd")
 const Grid = preload("res://scripts/ui/equipment_grid.gd")
 const Sheet = preload("res://scripts/ui/stat_sheet.gd")
 const Relics = preload("res://scripts/combat/class_relics.gd")
-## Paused parchment inventory. The owner supplies modal pause/input handling;
+## Paused expedition folio. The owner supplies modal pause/input handling;
 ## this panel never rebuilds a world scene or permanently grants trial loot.
 signal equipment_changed()
 const Gear = preload("res://scripts/core/backpack_equipment.gd")
@@ -75,10 +75,11 @@ func _button(parent: Node, id: String, text: String, at: Vector2, extent: Vector
 func _render() -> void:
 	for child: Node in get_children(): remove_child(child); child.queue_free()
 	if Game.run == null: return
-	_text(self, _t("远征行囊", "EXPEDITION BACKPACK"), Vector2(24,14), Vector2(350,40), 26, MineStyle.AMBER)
+	_text(self, _t("远征行囊", "EXPEDITION BACKPACK"), Vector2(24,14), Vector2(420,40), 26, MineStyle.INK)
 	var gear_tab := _button(self, "BackpackInventoryTab", _t("装备背包", "Equipment"), Vector2(485,16), Vector2(150,40), func(): tab = "inventory"; _render())
 	var stat_tab := _button(self, "BackpackAttributesTab", _t("角色属性", "Attributes"), Vector2(646,16), Vector2(150,40), func(): tab = "stats"; _render())
-	MineStyle.selected(gear_tab if tab == "inventory" else stat_tab)
+	MineStyle.tab(gear_tab, tab == "inventory")
+	MineStyle.tab(stat_tab, tab == "stats")
 	_button(self, "CloseBackpack", _t("关闭 · ", "Close · ")+ProfileStore.Controls.label_for("pause", Game.profile.settings.get("controls", {}), Words.locale), Vector2(866,16), Vector2(170,40), close_callback)
 	_identity()
 	if tab == "inventory": _inventory(); _detail()
@@ -92,33 +93,39 @@ func _render() -> void:
 
 func _identity() -> void:
 	var hero: Dictionary = ContentRegistry.hero(Game.run.hero_id)
-	var card := MineStyle.panel(self, Vector2(20,69), Vector2(228,493))
+	var card := MineStyle.panel(self, Vector2(20,69), Vector2(236,493))
 	card.name = "BackpackEquippedSlots"
-	MineStyle.hero_portrait(card, Game.run.hero_id, Vector2(12,8), Vector2(65,78))
-	_text(card, MineStyle.content_text(hero,"name"), Vector2(84,12), Vector2(133,28), 18)
-	_text(card, MineStyle.content_text(hero,"class_name")+" · Lv."+str(Game.run.level), Vector2(84,45), Vector2(133,35), 13, MineStyle.CYAN)
-	for index: int in SLOTS.size():
-		var slot: String = SLOTS[index]
+	MineStyle.hero_portrait(card, Game.run.hero_id, Vector2(12,5), Vector2(44,54))
+	_text(card, MineStyle.content_text(hero,"name"), Vector2(66,7), Vector2(158,26), 18)
+	_text(card, MineStyle.content_text(hero,"class_name")+" · Lv."+str(Game.run.level), Vector2(66,34), Vector2(158,22), 12, MineStyle.CYAN)
+	# A single scan path matches the inventory folio: item art, slot, name, rank.
+	var display_slots: Array[String] = ["weapon","head","chest","hands","legs","feet","ring","charm"]
+	for index: int in display_slots.size():
+		var slot: String = display_slots[index]
 		var id := str(Game.run.loadout_snapshot.get(slot, ""))
 		var item: Dictionary = Game.equipment_definition(id,true)
-		var at := Vector2(10+(index%2)*107,102+(index/2)*74)
-		var cell := _button(card, "BackpackSlot_"+slot, "", at, Vector2(100,66), func(): tab = "inventory"; filter = slot; selected_slot = slot; selected_id = id; search_query = ""; inventory_scroll = 0; message = ""; _render())
+		var at := Vector2(10,64+index*45)
+		var cell := _button(card, "BackpackSlot_"+slot, "", at, Vector2(216,44), func(): tab = "inventory"; filter = slot; selected_slot = slot; selected_id = id; search_query = ""; inventory_scroll = 0; message = ""; _render())
 		MineStyle.button_skin(cell,"socket")
 		if filter == slot: MineStyle.selected(cell,"socket")
-		MineStyle.equipment_icon(cell, item if not item.is_empty() else {"slot":slot}, Vector2(3,2), Vector2(52,52))
-		_text(cell, _slot_name(slot), Vector2(53,8), Vector2(44,22), 9 if Words.locale == "en" else 12, MineStyle.MUTED)
+		MineStyle.equipment_icon(cell, item if not item.is_empty() else {"slot":slot}, Vector2(5,3), Vector2(38,38))
+		_text(cell, _slot_name(slot), Vector2(51,3), Vector2(119,16), 11, MineStyle.CYAN if filter == slot else MineStyle.MUTED)
+		var item_name := MineStyle.content_text(item,"name",_t("空槽位", "Empty slot") if slot in Game.equipment_slots(true) else _t("未开放", "Locked"))
+		var item_label := _text(cell, item_name, Vector2(51,20), Vector2(155,20), 12)
+		item_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 		var level := int(Game.run.equipment_snapshot.get(id, {}).get("enhancement_rank", Game.run.equipment_snapshot.get(id, {}).get("level", 0)))
-		_text(cell, "+"+str(level) if not id.is_empty() else (_t("空槽", "Empty") if slot in Game.equipment_slots(true) else _t("未开放", "Locked")), Vector2(53,31), Vector2(44,22), 11 if Words.locale == "en" and id.is_empty() else 15, MineStyle.AMBER)
-		cell.tooltip_text = MineStyle.content_text(item,"name",_t("当前未穿戴装备", "No equipment worn") if slot in Game.equipment_slots(true) else _t("该槽位尚未开放", "This slot is not implemented yet"))
+		var rank := _text(cell, "+"+str(level) if not id.is_empty() else "", Vector2(176,3), Vector2(30,16), 11, MineStyle.CYAN if filter == slot else MineStyle.AMBER)
+		rank.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		cell.tooltip_text = item_name
 		if not slot in Game.equipment_slots(true): cell.modulate = Color(1,1,1,.6)
-	var hp := _text(card, _t("生命 ", "Health ")+"%d / %d" % [ceili(Game.run.hp), ceili(Game.run.max_hp)], Vector2(14,410), Vector2(200,25), 15)
+	var hp := _text(card, _t("生命 ", "Health ")+"%d / %d" % [ceili(Game.run.hp), ceili(Game.run.max_hp)], Vector2(14,433), Vector2(208,21), 13)
 	hp.name = "BackpackHealth"
-	var bar := MineStyle.meter(card, Vector2(14,439), Vector2(200,6), MineStyle.RED)
+	var bar := MineStyle.meter(card, Vector2(14,458), Vector2(208,4), MineStyle.RED)
 	bar.max_value = Game.run.max_hp; bar.value = Game.run.hp
-	_text(card, MineStyle.content_text(hero,"resource_name")+"  %d / %d" % [ceili(Game.run.resource),ceili(float(Game.run.stats.resource_max))], Vector2(14,453), Vector2(200,25), 14, MineStyle.CYAN)
+	_text(card, MineStyle.content_text(hero,"resource_name")+"  %d / %d" % [ceili(Game.run.resource),ceili(float(Game.run.stats.resource_max))], Vector2(14,468), Vector2(208,21), 12, MineStyle.CYAN)
 
 func _inventory() -> void:
-	var card := MineStyle.panel(self,Vector2(260,69),Vector2(315,493))
+	var card := MineStyle.panel(self,Vector2(268,69),Vector2(386,493))
 	card.name = "BackpackOwnedInventory"
 	var shown: Array[Dictionary] = []
 	for entry: Dictionary in Gear.available(Game):
@@ -127,12 +134,12 @@ func _inventory() -> void:
 		if filter != "all" and entry.slot != filter: continue
 		if not query.is_empty() and not (MineStyle.content_text(item,"name")+" "+MineStyle.content_text(item,"affix_text")).to_lower().contains(query): continue
 		shown.append(entry)
-	_text(card,_t("已拥有装备","OWNED EQUIPMENT")+" · "+str(shown.size()),Vector2(12,10),Vector2(212,28),17,MineStyle.AMBER)
-	_button(card,"BackpackAllItems",_t("全部","All"),Vector2(232,7),Vector2(70,36),func(): filter = "all"; search_query = ""; inventory_scroll = 0; _render())
+	_text(card,_t("已拥有装备","OWNED EQUIPMENT")+" · "+str(shown.size()),Vector2(16,12),Vector2(258,28),18,MineStyle.INK)
+	_button(card,"BackpackAllItems",_t("全部","All"),Vector2(296,8),Vector2(74,36),func(): filter = "all"; search_query = ""; inventory_scroll = 0; _render())
 	var search := LineEdit.new()
 	search.name = "BackpackSearch"
-	search.position = Vector2(12,47)
-	search.size = Vector2(291,33)
+	search.position = Vector2(16,51)
+	search.size = Vector2(354,36)
 	search.text = search_query
 	search.placeholder_text = _t("搜索名称 / 词条","Search name / affix")
 	search.add_theme_font_size_override("font_size",14)
@@ -147,8 +154,8 @@ func _inventory() -> void:
 		if next != null: next.grab_focus(); next.caret_column = value.length())
 	var choice := OptionButton.new()
 	choice.name = "BackpackSlotFilter"
-	choice.position = Vector2(12,85)
-	choice.size = Vector2(291,34)
+	choice.position = Vector2(16,94)
+	choice.size = Vector2(354,34)
 	choice.fit_to_longest_item = false
 	choice.add_theme_font_size_override("font_size",14)
 	card.add_child(choice)
@@ -156,52 +163,63 @@ func _inventory() -> void:
 	for slot: String in slots: choice.add_item(_t("全部槽位","All slots") if slot == "all" else _slot_name(slot))
 	choice.select(maxi(0,slots.find(filter)))
 	choice.item_selected.connect(func(index: int): filter = slots[index]; inventory_scroll = 0; _render())
-	var scroll := _scroll(card,"BackpackItemScroll",Vector2(10,128),Vector2(295,354))
+	var scroll := _scroll(card,"BackpackItemScroll",Vector2(16,140),Vector2(354,338))
 	var grid := Grid.new()
 	grid.name = "BackpackEquipmentGrid"
 	scroll.add_child(grid)
-	grid.configure(274,3)
+	grid.configure(334,3)
 	for entry: Dictionary in shown:
 		var item: Dictionary = Game.equipment_definition(entry.id,true)
 		var badge := _t("已穿戴","Equipped") if entry.equipped else _t("本局掉落","Run loot") if entry.pending else _t("已入库","Secured")
 		grid.add_item(item,entry.level,Game.run.hero_id,"BackpackItem_",selected_id == entry.id,badge+" +"+str(entry.level),func(): inventory_scroll = scroll.scroll_vertical; selected_id = entry.id; selected_slot = entry.slot; message = ""; _render(),entry.equipped)
 	if shown.is_empty():
-		var empty := _text(grid,_t("当前筛选无装备。点全部清除筛选；本局掉落需撤离才永久入库。","No matching gear. Choose All to clear filters. Run loot is secured after extraction."),Vector2.ZERO,Vector2(274,130),15,MineStyle.MUTED)
-		empty.custom_minimum_size.x = 274
+		var empty := _text(grid,_t("当前筛选无装备。点全部清除筛选；本局掉落需撤离才永久入库。","No matching gear. Choose All to clear filters. Run loot is secured after extraction."),Vector2.ZERO,Vector2(334,130),15,MineStyle.MUTED)
+		empty.custom_minimum_size.x = 334
 	scroll.set_deferred("scroll_vertical",inventory_scroll)
 
 func _detail() -> void:
-	detail_root = MineStyle.panel(self, Vector2(587,69), Vector2(453,493))
+	detail_root = MineStyle.panel(self, Vector2(666,69), Vector2(374,493))
 	detail_root.name = "BackpackItemDetails"
 	if not selected_slot in Game.equipment_slots(true):
-		_text(detail_root, _slot_name(selected_slot), Vector2(18,16), Vector2(417,32), 22, MineStyle.AMBER)
-		_text(detail_root, _t("此槽位为后续装备扩展预留，目前没有可穿戴物品。", "This slot is reserved for future equipment; no items are available yet."), Vector2(18,65), Vector2(417,100), 16, MineStyle.MUTED)
+		_text(detail_root, _slot_name(selected_slot), Vector2(18,16), Vector2(338,32), 22, MineStyle.AMBER)
+		_text(detail_root, _t("此槽位为后续装备扩展预留，目前没有可穿戴物品。", "This slot is reserved for future equipment; no items are available yet."), Vector2(18,65), Vector2(338,100), 16, MineStyle.MUTED)
 		return
 	var comparison := Gear.preview(Game, selected_id, selected_slot)
 	if comparison.is_empty(): return
 	var data: Dictionary = Game.equipment_definition(selected_id,true)
-	var current: Dictionary = Game.equipment_definition(str(comparison.current_id),true)
-	MineStyle.equipment_icon(detail_root, data if not data.is_empty() else {"slot":selected_slot}, Vector2(13,13), Vector2(96,96))
-	var title := _text(detail_root, MineStyle.content_text(data,"name",_t("未装备", "Unequipped")), Vector2(119,15), Vector2(318,49), 21,Inspect.rarity_color(data))
+	# The selected item is the visual anchor; all figures still come from the
+	# same live preview and complete scrollable Details component below.
+	MineStyle.equipment_icon(detail_root, data if not data.is_empty() else {"slot":selected_slot}, Vector2(133,9), Vector2(108,108))
+	var title := _text(detail_root, MineStyle.content_text(data,"name",_t("未装备", "Unequipped")), Vector2(18,121), Vector2(338,45), 21,MineStyle.INK)
 	title.max_lines_visible = 2
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.tooltip_text = title.text
+	title.mouse_filter = Control.MOUSE_FILTER_PASS
 	var metadata := _slot_name(selected_slot)+" · +"+str(comparison.level)
 	if not Inspect.rarity(data).is_empty(): metadata = Inspect.rarity_label(data)+" · "+metadata
+	if data.get("instance_record") is Dictionary: metadata = "Lv.%d · " % int(data.instance_record.item_level)+metadata
 	if not data.is_empty(): metadata += " · "+MineStyle.content_text(data,"race_name")
-	_text(detail_root, metadata, Vector2(119,71), Vector2(318,42), 14, MineStyle.AMBER).max_lines_visible = 2
+	var identity := _text(detail_root, metadata, Vector2(18,169), Vector2(338,29), 12, MineStyle.CYAN)
+	identity.max_lines_visible = 2
+	identity.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	identity.tooltip_text = metadata
+	identity.mouse_filter = Control.MOUSE_FILTER_PASS
 	for index: int in 3:
 		var page: String = ["stats","compare","set"][index]
-		var detail_button := _button(detail_root,"BackpackDetailTab_"+page,[_t("完整属性","Attributes"),_t("数值对比","Compare"),_t("套装效果","Set effects")][index],Vector2(16+index*143,117),Vector2(136,34),func(): detail_tab = page; _render())
-		if detail_tab == page: MineStyle.selected(detail_button)
-	var scroll := _scroll(detail_root,"BackpackComparisonScroll",Vector2(16,160),Vector2(421,263))
+		var detail_button := _button(detail_root,"BackpackDetailTab_"+page,[_t("属性","Attributes"),_t("对比","Compare"),_t("套装","Set effects")][index],Vector2(16+index*115,204),Vector2(112,34),func(): detail_tab = page; _render())
+		detail_button.add_theme_font_size_override("font_size",14)
+		MineStyle.tab(detail_button, detail_tab == page)
+	MineStyle.divider(detail_root,Vector2(24,198),326)
+	var scroll := _scroll(detail_root,"BackpackComparisonScroll",Vector2(16,251),Vector2(342,171))
 	var content := Details.new()
 	scroll.add_child(content)
-	content.configure(data,int(comparison.level),399,Game.run.hero_id,comparison.current_stats,comparison.next_stats,detail_tab)
+	content.configure(data,int(comparison.level),320,Game.run.hero_id,comparison.current_stats,comparison.next_stats,detail_tab)
 	var wearing: bool = selected_id == str(comparison.current_id) and int(comparison.level) == int(Game.run.equipment_snapshot.get(selected_id, {}).get("enhancement_rank",Game.run.equipment_snapshot.get(selected_id, {}).get("level",0)))
-	var equip_text := _t("选择一件装备", "Select equipment") if selected_id.is_empty() else (_t("已穿戴", "Equipped") if wearing else _t("穿戴 · 立即生效", "Equip · apply now"))
-	var equip := _button(detail_root, "BackpackEquip", equip_text, Vector2(16,437), Vector2(283,44), func(): _apply(selected_id,selected_slot))
+	var equip_text := _t("选择装备", "Select equipment") if selected_id.is_empty() else (_t("已穿戴", "Equipped") if wearing else _t("穿戴 · 立即生效", "Equip · apply now"))
+	var equip := _button(detail_root, "BackpackEquip", equip_text, Vector2(16,437), Vector2(219,44), func(): _apply(selected_id,selected_slot))
 	MineStyle.primary(equip)
 	equip.disabled = busy or wearing or selected_id.is_empty()
-	var remove := _button(detail_root, "BackpackUnequip", _t("脱下", "Unequip"), Vector2(310,437), Vector2(127,44), func(): _apply("",selected_slot))
+	var remove := _button(detail_root, "BackpackUnequip", _t("脱下", "Unequip"), Vector2(245,437), Vector2(113,44), func(): _apply("",selected_slot))
 	remove.disabled = busy or str(comparison.current_id).is_empty()
 
 func _set_changes(list: Node, before: Dictionary, after: Dictionary) -> void:
@@ -212,7 +230,7 @@ func _set_changes(list: Node, before: Dictionary, after: Dictionary) -> void:
 	for id: String in ids:
 		var old := int(before.get("sets", {}).get(id,0))
 		var next := int(after.get("sets", {}).get(id,0))
-		var data: Dictionary = ContentRegistry.sets().get(id, {})
+		var data: Dictionary = ContentRegistry.sets(int(after.get("ruleset_version",1))).get(id, {})
 		_flow_text(list, MineStyle.content_text(data,"name",id)+" · %d → %d" % [old,next]+_t(" 件", " pieces"),399,16,MineStyle.AMBER)
 		for threshold: int in [2,4,6]:
 			var gained := old < threshold and next >= threshold
@@ -222,23 +240,23 @@ func _set_changes(list: Node, before: Dictionary, after: Dictionary) -> void:
 			_flow_text(list, "%s · %d" % [tag,threshold]+_t(" 件：", " pieces: ")+MineStyle.content_text(effect,"text"),399,14,MineStyle.GREEN if gained else MineStyle.RED if lost else MineStyle.MUTED)
 
 func _attributes() -> void:
-	var card := MineStyle.panel(self,Vector2(260,69),Vector2(780,493))
+	var card := MineStyle.panel(self,Vector2(268,69),Vector2(772,493))
 	card.name = "BackpackCharacterAttributes"
-	_text(card,_t("完整属性 · 数值与加成来源","FULL ATTRIBUTES · VALUES & SOURCES"),Vector2(18,10),Vector2(744,36),21,MineStyle.AMBER)
-	var scroll := _scroll(card,"BackpackAttributeScroll",Vector2(16,57),Vector2(748,417))
+	_text(card,_t("完整属性 · 数值与加成来源","FULL ATTRIBUTES · VALUES & SOURCES"),Vector2(18,10),Vector2(736,36),21,MineStyle.AMBER)
+	var scroll := _scroll(card,"BackpackAttributeScroll",Vector2(16,57),Vector2(740,417))
 	var sheet := Sheet.new()
 	scroll.add_child(sheet)
 	var actor: Variant = room.get("player") if is_instance_valid(room) else null
-	sheet.configure(Inspect.breakdown(Game.run.hero_id,Game.run.level,Game.run.loadout_snapshot,Game.run.equipment_snapshot,actor,Game.run.ruleset_version(),Game.hero_talents(Game.run.hero_id)),726,"BackpackAttribute_")
+	sheet.configure(Inspect.breakdown(Game.run.hero_id,Game.run.level,Game.run.loadout_snapshot,Game.run.equipment_snapshot,actor,Game.run.ruleset_version(),Game.hero_talents(Game.run.hero_id)),718,"BackpackAttribute_")
 	if is_instance_valid(actor) and actor.get("loadout") != null:
 		var modifiers: Dictionary = actor.get("loadout").call("modifiers")
 		var names := {"damage_bonus":_t("触发伤害加成","Triggered damage bonus"),"crit_bonus":_t("触发暴击率","Triggered critical chance"),"attack_speed_bonus":_t("触发攻速加成","Triggered attack speed"),"move_speed_bonus":_t("触发移速加成","Triggered move speed"),"damage_reduction_bonus":_t("触发减伤加成","Triggered reduction"),"cost_reduction":_t("技能消耗减免","Skill cost reduction")}
 		for key: String in names:
-			if float(modifiers.get(key,0)) > 0: Details.flow(sheet,str(names[key])+"  %.1f%%" % (float(modifiers[key])*100),726,14,MineStyle.CYAN)
+			if float(modifiers.get(key,0)) > 0: Details.flow(sheet,str(names[key])+"  %.1f%%" % (float(modifiers[key])*100),718,14,MineStyle.CYAN)
 	for id: String in Game.run.relics:
 		var relic: Dictionary = Relics.display(Game.run.hero_id,id,int(Game.run.stats.get("relic_levels",{}).get(id,1)),str(Game.run.expedition.get("biome_id","")), Game.run.ruleset_version())
-		Details.flow(sheet,_t("本局遗物 · ","RUN RELIC · ")+MineStyle.content_text(relic,"name"),726,16,MineStyle.AMBER)
-		Details.flow(sheet,MineStyle.content_text(relic,"description"),726,14)
+		Details.flow(sheet,_t("本局遗物 · ","RUN RELIC · ")+MineStyle.content_text(relic,"name"),718,16,MineStyle.AMBER)
+		Details.flow(sheet,MineStyle.content_text(relic,"description"),718,14)
 
 func _apply(id: String, slot: String) -> void:
 	if busy: return

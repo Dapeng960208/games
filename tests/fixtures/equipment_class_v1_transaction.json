@@ -1,0 +1,71 @@
+{
+	"gold": 144,
+	"items": [
+		{
+			"affix_type_and_quantile": [],
+			"enhancement_gold_ledger": [],
+			"enhancement_rank": 0,
+			"enhancement_reroll_history": [],
+			"enhancement_steps": [],
+			"equipment_instance_version": 1,
+			"instance_id": "instance:tx:b89a675eb4a222a5f6aecbd33b622562:0",
+			"item_level": 1,
+			"location": "inventory",
+			"lock_state": false,
+			"main_rolls": {
+				"attack": 67
+			},
+			"material_ledger": [],
+			"power_type": "physical",
+			"purchase_baseline_gold": 144,
+			"rarity": "white",
+			"reforge_slot": -1,
+			"ruleset_version": 2,
+			"scale_version": 10,
+			"source_event_id": "transaction:policy:v1:purchase",
+			"source_kind": "purchase",
+			"source_metadata": {
+				"context_fingerprint": "bb97d3fdc711597919af3f89acb197d9c5e60447faf03a9a1462de07511aa2c7",
+				"event_id": "transaction:policy:v1:purchase",
+				"generator_version": 1,
+				"roll_order": [
+					"pool",
+					"rarity",
+					"slot",
+					"template",
+					"item_level",
+					"enhancement_rank",
+					"enhancement_gains",
+					"main_rolls",
+					"affixes"
+				],
+				"rules_source_commit": "8daa519f2ea1a7dcc3f422b4df96ac81d65986b9",
+				"seed": 3181710106285030,
+				"versions": {
+					"equipment_instance": 1,
+					"optional_chest_receipt": 2,
+					"reward_policy": 2,
+					"ruleset": 2,
+					"ruleset_version": 2,
+					"scale": 10,
+					"scale_version": 10
+				}
+			},
+			"template_id": "EQ03"
+		}
+	],
+	"kind": "purchase",
+	"materials": {},
+	"operation_id": "policy:v1:purchase",
+	"pending_instance_ids": [],
+	"request": {
+		"hero_id": "CH01",
+		"item_level": 1,
+		"power_type": "physical",
+		"rarity": "white",
+		"template_id": "EQ03"
+	},
+	"request_hash": "05078795b4a2ae583e9914a75f72ec247fc9c5362d3457a29e1c84cac21af5aa",
+	"result_hash": "9e25990606bbea62fc87471b07bb3a1ea3560b67b34d3711329a39e6b6894157",
+	"version": 1
+}

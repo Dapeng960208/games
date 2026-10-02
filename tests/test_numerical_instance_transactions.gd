@@ -138,7 +138,7 @@ func _initialize() -> void:
 	rejected_unchanged(set_bought.profile, "set-repeat", set_request, "complete_set", "owned missing-piece discount rejected")
 	var magic_set := set_request.duplicate(true)
 	magic_set.power_type = "magic"
-	check(Transactions.quote_set(set_bought.profile, magic_set).ok, "wrong-type ownership does not block this class set")
+	check(Transactions.quote_set(set_bought.profile, magic_set).error == "CLASS_POWER_MISMATCH", "exclusive class set cannot be bought with opposite stat type")
 	var partial := set_request.duplicate(true)
 	partial.item_level = 1
 	partial.template_ids = ["EQ61", "EQ62"]
@@ -169,10 +169,10 @@ func _initialize() -> void:
 	var roll_key: String = tampered.operations["purchase-one"].items[0].main_rolls.keys()[0]
 	tampered.operations["purchase-one"].items[0].main_rolls[roll_key] = (int(tampered.operations["purchase-one"].items[0].main_rolls[roll_key]) + 1) % 101
 	check(not Transactions.validate_ledger(tampered), "frozen random output checksum rejects silent mutation")
-	var drop := Acquisition.roll_item({"instance_id":"free-drop", "source_event_id":"event-free", "template_id":"EQ01", "item_level":20, "rarity":"green", "power_type":"physical", "source":"drop"}, 21)
+	var drop := Acquisition.roll_item({"instance_id":"free-drop", "source_event_id":"event-free", "template_id":"EQ01", "item_level":20, "rarity":"green", "power_type":"physical", "source":"drop", "hero_id":"CH01"}, 21)
 	for seed_value in range(22, 72):
 		if not drop.is_empty() and int(drop.enhancement_rank) > 0: break
-		drop = Acquisition.roll_item({"instance_id":"free-drop", "source_event_id":"event-free", "template_id":"EQ01", "item_level":20, "rarity":"green", "power_type":"physical", "source":"drop"}, seed_value)
+		drop = Acquisition.roll_item({"instance_id":"free-drop", "source_event_id":"event-free", "template_id":"EQ01", "item_level":20, "rarity":"green", "power_type":"physical", "source":"drop", "hero_id":"CH01"}, seed_value)
 	check(not drop.is_empty() and int(drop.enhancement_rank) > 0 and drop.enhancement_gold_ledger.is_empty() and drop.material_ledger.is_empty(), "free pre-enhanced drop ranks never manufacture payment")
 	for index in drop.enhancement_steps.size(): check(drop.enhancement_steps[index].base_price_peak == Economy.enhancement_price(index + 1, 20), "free rank canonical peak")
 	# Scale the immutable receipt map past the old legacy ceiling without executing

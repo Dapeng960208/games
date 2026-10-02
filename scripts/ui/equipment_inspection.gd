@@ -1,5 +1,6 @@
 extends RefCounted
 ## Read-only view data. Every permanent value comes from the production resolver.
+const Eligibility = preload("res://scripts/ui/equipment_eligibility.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Registry = preload("res://scripts/data/content_registry.gd")
 const Resolver = preload("res://scripts/combat/stat_resolver.gd")
@@ -93,6 +94,10 @@ static func tooltip(item: Dictionary, level: int, hero_id: String) -> String:
 	var lines: PackedStringArray = [MineStyle.content_text(item,"name")+" +"+str(level)]
 	if item.get("instance_record") is Dictionary:
 		var record: Dictionary = item.instance_record
+		lines.append(Eligibility.label(item))
+		lines.append(Eligibility.affinity(record, hero_id))
+		var error := Eligibility.reason(record, hero_id, Game.run.level if Game.run != null else Game.hero_level(hero_id))
+		if not error.is_empty(): lines.append(error)
 		lines.append("iLv %d · %s · %s" % [int(record.item_level),rarity_name(str(record.rarity)),str(record.instance_id)])
 	var stats := item_values(item,level,hero_id)
 	for key: String in stats:
@@ -125,7 +130,7 @@ static func waiver_note(record: Dictionary, hero_id: String) -> String:
 	var waiver: Dictionary = record.get("legacy_equip_waiver",{})
 	if hero_id not in waiver.get("hero_ids",[]): return ""
 	var notes: PackedStringArray = []
-	if bool(waiver.get("type",false)): notes.append(t("保留原职业类型兼容","Original hero type compatibility retained"))
+	if bool(waiver.get("type",false)): notes.append(t("保留旧属性类型兼容，仍遵守专属套职业限制","Original stat-type compatibility retained; class set restrictions still apply"))
 	if bool(waiver.get("level",false)) and hero_id in waiver.get("level_hero_ids",waiver.get("hero_ids",[])):
 		notes.append(t("原配装等级豁免：达到 Lv.%d 后到期","Original loadout level waiver: expires at Lv.%d") % int(record.item_level))
 	return t("旧装备兼容 · ","Legacy compatibility · ")+"; ".join(notes) if not notes.is_empty() else ""

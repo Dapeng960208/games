@@ -15,6 +15,9 @@ static var _materials: Dictionary = {}
 static var _architecture: Dictionary = {}
 static var _floors: Dictionary = {}
 static var _environments: Dictionary = {}
+static var _environment_recency: Array[String] = []
+const ENVIRONMENT_CACHE_LIMIT := 2
+const EnvironmentTexture = preload("res://scripts/world/environment_detail.gd")
 
 static func environment_room_id(layout: Dictionary) -> String:
 	# Boss encounters may override room_id for the expedition node. The fixed
@@ -23,7 +26,10 @@ static func environment_room_id(layout: Dictionary) -> String:
 
 static func environment_definition(biome_id: String, room_id: String = "") -> Dictionary:
 	var key: String = biome_id+":"+room_id
-	if _environments.has(key): return _environments[key]
+	if _environments.has(key):
+		_environment_recency.erase(key)
+		_environment_recency.append(key)
+		return _environments[key]
 	var candidates: Array[String] = []
 	if not room_id.is_empty():
 		candidates.append("res://assets/generated/world/rooms/"+room_id+"_environment_v1.json")
@@ -45,10 +51,16 @@ static func environment_definition(biome_id: String, room_id: String = "") -> Di
 		if placement_values.size()==4:
 			var proposed := Rect2(float(placement_values[0]),float(placement_values[1]),float(placement_values[2]),float(placement_values[3]))
 			if proposed.has_area() and Rect2(Vector2.ZERO,Vector2.ONE).encloses(proposed): placement=proposed
-		var texture: Texture2D = preload("res://scripts/ui/texture_sampler.gd").sampled(path)
+		# Environment textures have their own bounded residency. The global UI
+		# sampler retains every path, which would accumulate all visited rooms.
+		var texture: Texture2D = EnvironmentTexture.load_mip_texture(path)
 		if texture==null: continue
 		var result := {"path":path,"texture":texture,"source":Rect2(Vector2.ZERO,texture.get_size()),"walkable_normalized_rect":central,"placement_normalized_rect":placement,"metadata":value,"manifest_path":manifest_path,"room_id":room_id,"room_specific":manifest_path==candidates[0] and not room_id.is_empty()}
 		_environments[key] = result
+		_environment_recency.erase(key)
+		_environment_recency.append(key)
+		while _environment_recency.size()>ENVIRONMENT_CACHE_LIMIT:
+			_environments.erase(_environment_recency.pop_front())
 		return result
 	return {}
 

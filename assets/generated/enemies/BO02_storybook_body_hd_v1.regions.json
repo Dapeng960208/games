@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "texture": "res://assets/generated/ui/refactor_v1/codex/BO02.png",
+  "source_family": "storybook_2_5d_v1",
+  "biome_id": "B02",
+  "visual_clan": "琥珀虫族",
+  "image_size": [
+    1254,
+    1254
+  ],
+  "entries": {
+    "BO02": {
+      "region": [
+        28,
+        37,
+        1223,
+        1201
+      ],
+      "foot": [
+        639.5,
+        1238
+      ],
+      "source_height": 1201,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "BO02",
+      "combat_body": true
+    }
+  },
+  "source_sha256": "27ecf96524d7bbf7315411cb4b742413e67ccb07c2d370821368a565463882ea",
+  "region_alpha_threshold": 16,
+  "region_padding_pixels": 4,
+  "source_provenance": "assets/generated/ui/refactor_v1/codex/provenance_bosses.json",
+  "combat_registration": {
+    "height": "clamp(navigation_radius * 3.45, 170, 220) * ENEMY_BODY_FACTOR; preserves prior combat height",
+    "foot_y": 48,
+    "foot_x": "Legacy source horizontal foot fraction, mapped into the complete HD body crop",
+    "scale": "Uniform; preserves source proportions; no texture resize or pixel edits",
+    "legacy_manifest": "assets/generated/enemies/storybook_B02_bodies_v2.regions.json",
+    "legacy_region": [
+      1652,
+      446,
+      286,
+      271
+    ],
+    "legacy_foot": [
+      1795.0,
+      717
+    ]
+  }
+}
