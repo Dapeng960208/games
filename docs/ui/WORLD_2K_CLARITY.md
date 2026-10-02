@@ -4,7 +4,11 @@
 
 ## 当前结论
 
-**28/28 原画已审计；10/28 完整房间原生细节升级已验收并启用：L01–L05、L16、L19–L22。** 每房完成五个真实 2560×1440 镜头的原图/新图对照及 46 项检查，0 失败。剩余 18 房尚未验收，正在分批制作。原生产图片保持 fallback；房间 JSON、可走边界、摄像机、敌人、奖励及实际玩家存档未改。L20 东南测试锚点与背景墙体的视觉重叠在原图中已存在，未通过移动几何来掩盖。不能把候选数量记为交付完成。
+**28/28 完整房间原生细节包均已通过真实 2560×1440 五镜头验收。** 覆盖 L01–L24 与 BO01–BO04，共168张原生分区纹理。各房包含中心、西北、东北、西南、东南的原图/新图对照；图形断言均零失败（通常46项，L17/L18因与固定往返目标重合为48项）。地面图案、建筑/门洞位置、接缝、色彩连续性及玩法标记均逐房查看；原始 layout、walkable polygon、camera 保持一致。L20东南测试锚点与背景墙体的视觉重叠在原图中已存在，未移动几何掩盖。
+
+最终28房合并包在独立新源码副本完成全新导入，**正式资源检查1458项、0失败，导入/测试exit0且无ERROR/SCRIPT ERROR**。副本没有继承原`.godot`缓存或ignored工作图、jobs、截图；只读取正式代码/资产/manifest。实际玩家存档未参与。图形测试使用Mesa llvmpipe软件OpenGL渲染，证明原生2K画面与正确映射，不构成硬件GPU性能或自然群战平衡结论。
+
+本文件描述已验收完整交付包；发布与正在运行的试玩副本是否已更新应以实际提交为准。原画继续作fallback；羽化边缘仍含部分原图像素，不能把全场称为一张无接缝原生大母图。
 
 ## 真实瓶颈
 
@@ -26,7 +30,7 @@
 
 最初的试验候选保存在隔离验收目录，未直接启用；来源、完整提示词、生成输出、每图原生尺寸、SHA-256 和源区域保存在隔离验收产物 `artifacts/world-2k-pilot/generation_provenance.json`。被拒收的全图/坐标提示试验不启用。
 
-## 可复现的下一步
+## 历史试验过程（正式测试入口见文末）
 
 隔离的 `artifacts/world-2k-pilot/gameplay_pilot.tscn` 继承已有环境清晰度检查，仅在测试场景加载六张候选；使用生产 L16 房间及 HUD。启动时强制要求包含 `test_environment_native_pilot` 的隔离 profile 和图形渲染。它捕获：
 
@@ -46,7 +50,7 @@
 - 同一实际 layout/polygon/camera 保持完全相同；L16→L17→L18→L16 检查通过。六张纹理释放后 WeakRef 均为空，回房可重新加载
 - 六张纹理 RGBA+mip 保守上界 50,305,616 bytes（47.98 MiB）。图形监视器加载时 577,689,599 bytes、清理后 539,960,387 bytes、重载恢复相同值；差值与 RGB 纹理的实际存储相符。该监视器包含整个游戏素材，不是单房独占，也不构成硬件帧率基准
 - `environment_detail.gd` 由当前房间节点独占纹理，不设跨房永久缓存。`WorldArt` 的原背景缓存限制为 2 项，环境不再放入 UI 的永久 `TextureSampler` 缓存；现有 UI 缓存不改
-- 仅 `assets/generated/world/rooms_2k/L16/manifest.json` 的 approved=true 生效；未批准/缺失包继续加载完整原画。PNG→lossless WebP 逐像素解码相同，六图体积 13,438,612 bytes；导入时生成 mip，不改原生分辨率
+- 在最初L16检查点，只有 `assets/generated/world/rooms_2k/L16/manifest.json` 的 approved=true 生效；未批准/缺失包继续加载完整原画。PNG→lossless WebP 逐像素解码相同，六图体积 13,438,612 bytes；导入时生成 mip，不改原生分辨率
 - 现有 `environment_sampling.gdshader` 的内置 TEXTURE sampler 参数写法触发 Godot 4.7 headless 编译错误；现以内联相同九采样公式替换，直接材质创建与释放检查无 ERROR。未改变重建数学、放大阈值或缩小 mip 采样
 
 维护工具 `tools/package_environment_tiles.py`：prepare 只机械提取确切参考区，不生成/修图；package 要求 6 个来源作业、原生密度至少 2.35、逐像素无损检查，并且默认 approved=false。各包包含完整提示词、源图/生成图/无损文件与解码像素哈希。当前 L16 的五张验收截图哈希已记入该包 QA 字段；完整截图属于可重建 artifacts，不入 Git。
@@ -55,5 +59,5 @@
 
 - `tests/test_environment_native.gd/.tscn`：正式图形场景测试，只读取 `assets/generated/world/rooms_2k` 的正式包与 manifest，不依赖 ignored 的裁切图、生成 PNG 或 jobs 文件。`tools/test.ps1 -Suite environment_native -Graphical`；直接引擎调用可额外传 `--native-room=L01`。截图写到 ignored 的 `artifacts/environment-native/`
 - `tests/test_environment_native_resources.gd/.tscn`：无图形资源完整性与生命周期检查，只读正式资产；核对批准包原画哈希、WebP 文件哈希、运行时解码 RGB 与生成像素哈希、原生密度、归一化坐标映射、mip 和释放后 WeakRef。未批准包必须保持不可加载，不以候选为完成数量
-- 已完成一次针对当前批准 L16 的 headless 正式资源检查：61 项、0 失败（该时点其他候选数量影响总检查数，不是固定覆盖量）；图形逐房检查的具体数量和证据见各批准 manifest 的 QA 字段
+- 历史L16单房资源检查61项/0失败，首批10房全新源码检查522项/0失败；最终28房全新源码检查1458项/0失败。前两次总数包含当时未批准候选的禁用断言，不是固定覆盖量。图形逐房数量与证据哈希见各批准manifest的QA字段
 - 临时 private-display 批处理 runner、profile、log 和所有截图留在 ignored artifacts 或隔离临时目录，均不是 GitHub 交付物
