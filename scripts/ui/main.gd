@@ -43,7 +43,7 @@ var binding_feedback: Label
 const HERO_LOOPS := {
 	"CH01":["破岩斧卫","贴身积累破势，重击打穿敌阵。","普攻 / Q 蓄势 → W 破阵","BREAKER","Build pressure up close, then break the line."],
 	"CH02":["游走枪手","连续命中标记弱点，精确射击收割。","两次普攻 → 第三击 / 技能破绽","GUNNER","Mark a weak point with two hits. Consume it with a shot or skill."],
-	"CH03":["共鸣术士","布置节点，蓄能后连锁引爆。","W 布点 → Q 充能 → E 引爆","RESONATOR","Place nodes, charge them, trigger a chain reaction."]
+	"CH03":["共鸣术士","Q瞄准输出，W法晶自动攻击，E近身冰霜，R范围爆发。四技独立可用；交替施法额外回蓝。","四技独立：Q瞄准 / W法晶 / E冰霜 / R爆发；交替施法额外回蓝","RESONATOR","Use skills independently: Q aim, W auto-firing crystal, E close frost, R area burst. Alternating casts gives bonus mana."]
 }
 
 func _ready() -> void:
@@ -133,6 +133,7 @@ func show_menu() -> void:
 	MineStyle.divider(title_page,Vector2(44,270),342)
 	var cont := MineStyle.button(title_page,"CONTINUE",Vector2(30,294),Vector2(370,56),_continue_game)
 	cont.name = "ContinueJourney"
+	cont.text = _continue_button_text()
 	cont.disabled = not Game.has_profile
 	MineStyle.primary(cont)
 	var trial := MineStyle.button(title_page,"",Vector2(30,364),Vector2(370,50),show_demo_select)
@@ -169,6 +170,7 @@ func show_profile() -> void:
 		MineStyle.literal(card,"Lv."+str(Game.hero_level(id)),Vector2(18,222),Vector2(196,24),17,MineStyle.CYAN)
 	MineStyle.literal(panel,_ex_text("金币 %d · 装备 %d 件 · %s","GOLD %d · %d ITEMS · %s") % [int(Game.profile.get("permanent_gold",0)),Game.profile.get("equipment",{}).size(),_ex_text("远征进行中","EXPEDITION ACTIVE") if Game.run != null else _ex_text("营地存档","CAMP SAVE")],Vector2(32,418),Vector2(736,32),17,MineStyle.MUTED)
 	var actions := MineStyle.action_pair(panel,"CONTINUE","BACK",482,func(): _pop_modal(); _continue_game(),_pop_modal)
+	actions[0].text = _continue_button_text()
 	actions[0].disabled = not Game.has_profile
 	actions[1].grab_focus()
 
@@ -216,7 +218,7 @@ func show_demo_select() -> void:
 		MineStyle.literal(card,"0"+str(index+1)+" / "+str(words[3]),Vector2(22,16),Vector2(332,28),15,accent)
 		MineStyle.hero_portrait(card,id,Vector2(81,49),Vector2(215,218))
 		MineStyle.literal(card,MineStyle.content_text(hero,"name")+" · "+_ex_text(str(words[0]),str(words[3])),Vector2(22,266),Vector2(332,38),24)
-		MineStyle.literal(card,_ex_text(str(words[1]),str(words[4])),Vector2(22,314),Vector2(332,58),17,MineStyle.MUTED)
+		MineStyle.literal(card,_ex_text(str(words[1]),str(words[4])),Vector2(22,314),Vector2(332,58),13 if id == "CH03" else 17,MineStyle.MUTED)
 		var choose := MineStyle.button(card,"",Vector2(22,369),Vector2(332,44),func(): _start_demo(id))
 		choose.name = "Demo_"+id
 		choose.text = _ex_text("Lv.8 · 完整技能试玩","LV.8 · FULL-SKILL TRIAL")
@@ -289,8 +291,14 @@ func _current_control_summary() -> String:
 	return _ex_text("移动 %s · 普攻 %s · 技能 %s\n闪避 %s · 交互 %s · 路线 %s · 背包 %s · 详情 %s · 暂停 %s", "Move %s · Attack %s · Skills %s\nDodge %s · Interact %s · Map %s · Backpack %s · Details %s · Pause %s") % [_control_label("click_move"),attack," / ".join(skills),_control_label("dash"),_control_label("interact"),_control_label("expedition_map"),_control_label("backpack"),_control_label("relic_details"),_control_label("pause")]
 
 
+func _has_resumable_expedition() -> bool:
+	return Game.run != null and not Game.expedition_snapshot().is_empty()
+
+func _continue_button_text() -> String:
+	return _ex_text("继续远征","Continue expedition") if _has_resumable_expedition() else _ex_text("返回营地","Return to camp")
+
 func _continue_game() -> void:
-	if Game.run != null and not Game.expedition_snapshot().is_empty():
+	if _has_resumable_expedition():
 		_on_run_started()
 	else:
 		show_camp()
