@@ -1395,10 +1395,6 @@ func _confirm_contact(target: MineEnemy, direction: Vector2, source: StringName,
 			_contact_pulse_until = elapsed + .055
 		_contact_pulse_heavy = heavy
 		var pause: float = (.074 if heavy else .042) if hero == "CH01" else (.030 if heavy else .015) if hero == "CH02" else (.038 if heavy else .024)
-		if Numerical.is_v2(Game.run.stats):
-			# Short, distinct contact weight. Input and enemy danger clocks remain
-			# live; a cluster cannot stack several freezes onto the same attack.
-			pause = (.065 if source == &"ultimate" else .055 if heavy else .025) if hero == "CH01" else (.035 if source == &"secondary" else .020 if heavy else .012) if hero == "CH02" else (.045 if source in [&"f", &"ultimate"] else .032 if heavy else .018)
 		player.hit_feedback(minf(.085, pause + (.006 if critical else 0.0)))
 		if is_instance_valid(camera):
 			var kick: float = (3.1 if heavy else 1.75) if hero == "CH01" else (1.65 if heavy else .65) if hero == "CH02" else (2.1 if heavy else .95)

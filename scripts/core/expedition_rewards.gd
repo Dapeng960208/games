@@ -16,13 +16,10 @@ static func initialize(value: Dictionary, profile: Dictionary, run_id: String, w
 	value["pending_materials"] = {}
 	value["optional_claims"] = {}
 
-static func context(value: Dictionary, run_id: String, hero_id: String, event_id: String, source: String, zone: int = 2, generator_version: int = Acquisition.GENERATOR_VERSION) -> Dictionary:
+static func context(value: Dictionary, run_id: String, hero_id: String, event_id: String, source: String, zone: int = 2) -> Dictionary:
 	var room: String = str(value.route.nodes[int(value.node_index)].room_id)
 	var race := Rewards.biome_for_reward(room)
-	var result := {"event_id":event_id,"seed":int(value.loot_seed),"source":source,"race_id":race,"difficulty":int(value.difficulty),"challenge_level":Rewards.challenge_level(room, zone),"power_type":"magic" if hero_id == "CH03" else "physical","wish_slot":str(value.wish_slot),"force_gold":source == "boss" and int(value.difficulty) == 4 and int(value.pity_snapshot.get(race, 0)) >= 3}
-
-	if generator_version == 2: result["hero_id"] = hero_id
-	return result
+	return {"event_id":event_id,"seed":int(value.loot_seed),"source":source,"race_id":race,"difficulty":int(value.difficulty),"challenge_level":Rewards.challenge_level(room, zone),"power_type":"magic" if hero_id == "CH03" else "physical","wish_slot":str(value.wish_slot),"force_gold":source == "boss" and int(value.difficulty) == 4 and int(value.pity_snapshot.get(race, 0)) >= 3}
 
 static func materials(source: String, race: String, difficulty: int) -> Dictionary:
 	var base: Array = {"elite":[2,1],"room":[3,1],"boss":[8,4]}.get(source, [])
@@ -34,7 +31,7 @@ static func materials(source: String, race: String, difficulty: int) -> Dictiona
 
 static func add(value: Dictionary, run_id: String, hero_id: String, event_id: String, source: String, zone: int = 2, actor_id: String = "") -> bool:
 	if value.loot_events.has(event_id):
-		return same(value.loot_events[event_id].result.context, context(value, run_id, hero_id, event_id, source, zone, int(value.loot_events[event_id].result.generator_version))) and value.loot_events[event_id].get("actor_id", "") == actor_id
+		return same(value.loot_events[event_id].result.context, context(value, run_id, hero_id, event_id, source, zone)) and value.loot_events[event_id].get("actor_id", "") == actor_id
 	if value.loot_events.size() >= MAX_EVENTS: return false
 	var request := context(value, run_id, hero_id, event_id, source, zone)
 	var result := Acquisition.roll_event(request)
@@ -151,7 +148,7 @@ static func valid(value: Dictionary, receipt: Dictionary, profile: Dictionary) -
 		else: return false
 		var frozen := value.duplicate(false)
 		frozen.node_index = int(event.node_index)
-		if not same(result.context, context(frozen, str(receipt.id), str(receipt.hero_id), id, source, int(event.zone_index), int(result.generator_version))): return false
+		if not same(result.context, context(frozen, str(receipt.id), str(receipt.hero_id), id, source, int(event.zone_index))): return false
 		var key := str(int(event.node_index)) + ":" + source
 		var cap := 2 if source == "normal" else 1
 		var grant := source not in ["normal","elite"] or int(counts.get(key, 0)) < cap

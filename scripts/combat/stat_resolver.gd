@@ -10,7 +10,7 @@ const Registry = preload("res://scripts/data/content_registry.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 const EQUIPMENT_CAPS: Dictionary = {"attack": 45.0, "ability_power": 90.0, "max_hp": 220.0, "armor": 70.0, "magic_resist": 70.0, "max_mana": 150.0, "armor_penetration": 40.0, "magic_penetration": 40.0, "crit_multiplier": 1.0, "true_damage_bonus": 12.0, "attack_speed": 0.60, "move_speed": 0.45, "cooldown_reduction": 0.30, "damage_bonus": 0.60, "damage_reduction": 0.35, "burn_damage": 0.60, "corrosion_damage_bonus": 0.60, "status_duration": 0.40}
 
-static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dictionary, ruleset: int = Numerical.LEGACY, talents: Dictionary = {}, legacy_eligibility: bool = false, legacy_role_growth: bool = false) -> Dictionary:
+static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dictionary, ruleset: int = Numerical.LEGACY, talents: Dictionary = {}) -> Dictionary:
 	var definition: Dictionary = Registry.hero(hero_id)
 	if definition.is_empty():
 		return {}
@@ -20,7 +20,7 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 	var equipped: Dictionary = {}
 	var templates: Dictionary = {}
 	if ruleset == Numerical.V2:
-		var resolved := _instance_equipment(hero_id, level, loadout, owned, legacy_eligibility)
+		var resolved := _instance_equipment(hero_id, level, loadout, owned)
 		if resolved.is_empty(): return {}
 		contribution = resolved.contribution
 		set_counts = resolved.set_counts
@@ -108,7 +108,7 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 		"uncapped_equipment_contribution": raw_contribution,
 	}
 	if ruleset == Numerical.V2:
-		var base := Progression.hero_base(Registry.hero(hero_id), level, talents, 0, legacy_role_growth)
+		var base := Progression.hero_base(Registry.hero(hero_id), level, talents)
 		if base.is_empty(): return {}
 		for key in ["attack", "ability_power", "max_hp", "armor", "magic_resist"]:
 			stats[key] = int(base[key]) + int(contribution.get(key, 0))
@@ -116,11 +116,6 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 		stats["talents"] = talents.duplicate(true)
 		stats["talent_points_available"] = int(base.talent_points_available)
 		stats["hero_base"] = base
-		stats.resource_max = int(base.resource_max) + (int(contribution.max_mana) if is_mana else 0)
-		stats.max_mana = stats.resource_max if is_mana else 0
-		stats.resource_regen = int(base.resource_regen)
-		stats.starting_resource = stats.resource_max if is_mana else mini(int(base.starting_resource), int(stats.resource_max))
-		stats["resource_regen_delay"] = float(base.resource_regen_delay)
 		stats["equipment_templates"] = templates.duplicate(true)
 		stats["hp_ratio"] = float(contribution.get("hp_ratio", 0.0))
 		stats.max_hp = Numerical.integer(float(stats.max_hp) * (1.0 + float(stats.hp_ratio)))
@@ -141,7 +136,7 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 ## V2 ownership and slot identity are validated before aggregating anything.
 ## Saved instance rolls already use the complete formula and authored v2 units;
 ## never add template base_stats or rescale these values a second time.
-static func _instance_equipment(hero_id: String, level: int, loadout: Dictionary, owned: Dictionary, legacy_eligibility: bool = false) -> Dictionary:
+static func _instance_equipment(hero_id: String, level: int, loadout: Dictionary, owned: Dictionary) -> Dictionary:
 	var contribution: Dictionary = {}
 	var set_counts: Dictionary = {}
 	var equipped: Dictionary = {}
@@ -159,7 +154,7 @@ static func _instance_equipment(hero_id: String, level: int, loadout: Dictionary
 		var record: Dictionary = owned[instance_id]
 		if str(record.get("instance_id", "")) != instance_id or not Instances.validate(record).is_empty():
 			return {}
-		if not Instances.can_equip(record, hero_id, level, legacy_eligibility): return {}
+		if not Instances.can_equip(record, hero_id, level): return {}
 		var template_id: String = record.template_id
 		var item: Dictionary = Registry.equipment(template_id, Numerical.V2)
 		if item.is_empty() or str(item.get("slot", "")) != slot: return {}

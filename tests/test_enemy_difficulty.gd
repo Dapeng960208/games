@@ -56,7 +56,7 @@ func _run() -> void:
 
 
 func _test_all_profiles() -> void:
-	check(Catalog.enemy_ids().size() == 54, "all 54 authored enemy prototypes are present")
+	check(Catalog.enemy_ids().size() == 36, "all 36 authored enemy prototypes are present")
 	for id: String in Catalog.enemy_ids():
 		for rank_name: String in ["normal", "elite"]:
 			for level: int in LEVELS:

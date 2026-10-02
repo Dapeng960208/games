@@ -35,8 +35,6 @@ const Numerical = preload("res://config/numerical_rules.gd")
 ## and relic packets. Optional coefficient reservation is for equipment-derived
 ## damage; legacy relic coefficients do not consume the equipment-only 1.2X cap.
 ## skill_cost is a pure preview; skill_cast consumes EQ56 only after paid success.
-## V2 S11 counts successful original paid casts at commit, with a stable cast root
-## and actual paid_cost. Hit/deployment callbacks cannot contribute to this count.
 
 const Registry = preload("res://scripts/data/content_registry.gd")
 const ENEMY_STATES: Array[String] = ["burn", "shock", "chill", "corrosion", "bleed", "grievous"]
@@ -221,12 +219,6 @@ func _eligible(ctx: Dictionary) -> bool:
 func _basic(ctx: Dictionary) -> bool:
 	return _eligible(ctx) and bool(ctx.get("original_basic", false))
 
-func _paid_spell_cast(ctx: Dictionary) -> bool:
-	var paid_cost := float(ctx.get("paid_cost", 0.0))
-	var original := _eligible(ctx) and not _basic(ctx) and str(ctx.get("damage_source", "")) == "skill"
-	var active_slot := str(ctx.get("slot", "")) in ["q", "secondary", "f", "ultimate"]
-	return original and active_slot and bool(ctx.get("cast_success", false)) and is_finite(paid_cost) and paid_cost > 0.0
-
 func _health_ratio(ctx: Dictionary) -> float:
 	return float(ctx.get("hp", 0.0)) / maxf(1.0, float(ctx.get("max_hp", stats.get("max_hp", 1.0))))
 
@@ -388,10 +380,6 @@ func _handle(event: String, ctx: Dictionary) -> Dictionary:
 			if float(ctx.get("base_cost", 0.0)) > 0.0 and bool(ctx.get("cast_success", true)) and str(ctx.get("resource_type", resource_type)) == resource_type:
 				windows.erase("EQ56")
 				if _has_set("S11",4) and _activate("S11_4",6.0,root,out,false): _buff("S11_4","damage_bonus",0.08,3.0)
-				if Numerical.is_v2(stats) and _has_set("S11",6) and _paid_spell_cast(ctx) and not bool(root.get("paid_cast_counted", false)):
-					root["paid_cast_counted"] = true
-					# A new counter never imports partial progress from the old basic-hit rule.
-					if _nth("S11_6:paid_cast",4): _refund(out,ctx,root,"S11_6",5.0,"active",0.35)
 		"before_hit":
 			if _eligible(ctx): _before(ctx, root, out)
 		"after_hit":
@@ -607,7 +595,7 @@ func _after_charm(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	var target: String = str(ctx.get("target_id", ""))
 	var critical: bool = bool(ctx.get("critical", false))
 	var applied: Dictionary = root.applied
-	if not Numerical.is_v2(stats) and _has_set("S11",6) and _basic(ctx) and _nth("S11_6",4): _refund(out,ctx,root,"S11_6",5.0,"active",0.35)
+	if _has_set("S11",6) and _basic(ctx) and _nth("S11_6",4): _refund(out,ctx,root,"S11_6",5.0,"active",0.35)
 	if _has_set("S12",4) and critical and _activate("S12_4",6.0,root,out,false): _buff("S12_4","attack_speed_bonus",0.08,3.0)
 	if _has_set("S12",6) and critical: _bonus(out,ctx,root,"S12_6",5.0,0.30,1,false)
 	if _has_set("S14",6) and _shop_condition("low_hp",ctx): _bonus(out,ctx,root,"S14_6",6.0,0.25,3,false)

@@ -94,8 +94,6 @@ static func _quote(profile: Dictionary, request: Dictionary, kind: String, check
 	if templates.is_empty(): return _reject("INVALID_TEMPLATES")
 	for template_id: String in templates:
 		var template := Registry.equipment(template_id, 2)
-		var allowed: Array = template.get("allowed_heroes", [])
-		if allowed.size() == 1 and canonical.power_type != Registry.ClassPolicy.power_type(str(allowed[0])): return _reject("CLASS_POWER_MISMATCH")
 		var boss := str(template.get("unlock_boss", ""))
 		if not boss.is_empty() and boss not in profile.get("bosses", []): return _reject("TEMPLATE_LOCKED")
 		if kind == "complete_set":
@@ -245,7 +243,7 @@ static func _create_item(kind: String, request: Dictionary, operation_id: String
 	var identity := _instance_id(operation_id, index)
 	var seed := (operation_id + ":" + fingerprint).sha256_text().substr(0, 13).hex_to_int()
 	return Acquisition.roll_item({"instance_id":identity, "source_event_id":"transaction:" + operation_id, "template_id":template_id,
-		"rarity":request.rarity, "power_type":request.power_type, "hero_id":request.hero_id, "item_level":int(request.item_level),
+		"rarity":request.rarity, "power_type":request.power_type, "item_level":int(request.item_level),
 		"source":"craft" if kind == "craft" else "purchase", "location":location}, seed)
 
 static func _instance_id(operation_id: String, index: int) -> String:

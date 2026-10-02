@@ -99,10 +99,9 @@ static func _positive(stats: Dictionary, keys: Array) -> bool:
 
 static func is_relevant(item: Dictionary, hero_id: String) -> bool:
 	if item.is_empty() or not hero_id in HEROES: return false
-	if item.get("instance_record") is Dictionary: return Instances.can_equip(item.instance_record,hero_id,20)
+	if item.get("instance_record") is Dictionary: return Instances.can_equip(item.instance_record,hero_id,60)
 	var allowed: Array = item.get("allowed_heroes", [])
 	if not allowed.is_empty() and not allowed.has(hero_id): return false
-	if item.has("allowed_heroes") and hero_id not in item.allowed_heroes: return false
 	if not str(item.get("hero_id", "")).is_empty() and str(item.hero_id) != hero_id: return false
 	var stats: Dictionary = item.get("instance_stats", item.get("base_stats", {}))
 	if _positive(stats, COMMON): return true

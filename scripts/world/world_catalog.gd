@@ -3,7 +3,6 @@ extends RefCounted
 ## Authored world definitions only. Catalog membership does not imply a playable scene.
 ## Returned dictionaries are deep copies so a run cannot mutate shared content.
 
-const ORDINARY_ROSTER_COUNTS := {"B01": 9, "B02": 12, "B03": 15, "B04": 18}
 const ROOM_PATH := "res://data/rooms.json"
 const ENEMY_PATH := "res://data/enemies.json"
 const DAMAGE_KINDS := ["kinetic", "fire", "electric", "cold", "corrosion"]
@@ -94,8 +93,8 @@ static func validate() -> Array:
 	var errors: Array = _load_errors.duplicate()
 	if room_ids().size() != 24:
 		errors.append("Expected 24 combat templates")
-	if enemy_ids().size() != 54:
-		errors.append("Expected 54 normal enemy prototypes")
+	if enemy_ids().size() != 36:
+		errors.append("Expected 36 normal enemy prototypes")
 	if biomes().size() != 4 or bosses().size() != 4:
 		errors.append("Expected four biomes and four independent bosses")
 	if content_version() != int(_enemies.get("content_version", -1)):
@@ -140,8 +139,8 @@ static func validate() -> Array:
 		behavior_ids.append(value.get("behavior_id", ""))
 	for biome_id: String in biomes():
 		var biome: Dictionary = biomes()[biome_id]
-		if biome.get("room_ids", []).size() != 6 or biome.get("enemy_ids", []).size() != int(ORDINARY_ROSTER_COUNTS.get(biome_id, 0)):
-			errors.append(biome_id + " must own six rooms and %d enemies" % int(ORDINARY_ROSTER_COUNTS.get(biome_id, 0)))
+		if biome.get("room_ids", []).size() != 6 or biome.get("enemy_ids", []).size() != 9:
+			errors.append(biome_id + " must own six rooms and nine enemies")
 		for room_id: String in biome.get("room_ids", []):
 			if room(room_id).get("biome_id", "") != biome_id:
 				errors.append(biome_id + " has invalid room membership")

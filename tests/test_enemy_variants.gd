@@ -107,9 +107,9 @@ func _test_identity_and_skill_badge() -> void:
 	visual.skill_badge.icon = {}
 	visual.skill_badge.queue_redraw()
 	check(visual.skill_badge.visible and not visual.skill_badge.command.is_empty(), "missing icon preserves warning fallback and actual cast")
-	until(func(): return actor.state == &"recovery",8.0)
+	actor.state = &"recovery"
 	visual.advance(.016)
-	check(visual.skill_badge.visible and str(visual.skill_badge.command.get("phase","")) == "recovery", "identity badge persists and reports real recovery after cast ends")
+	check(not visual.skill_badge.visible, "badge retires after actual cast ends")
 	var counts: Dictionary = room._enemy_visual_counts.duplicate()
 	var anchor := room.spawn_enemy(Vector2(930,800), "", 1, {"static_actor":true,"actor_kind":"hazard_endpoint","profile":{"max_hp":10.0,"navigation_radius":10.0}})
 	check(anchor != null and room._enemy_visual_counts == counts and not anchor.profile.has("visual_variant_index"), "static skill endpoint consumes no appearance index")

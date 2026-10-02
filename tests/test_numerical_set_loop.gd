@@ -12,24 +12,24 @@ class GateReceiver extends Receiver:
 			wave_icd_before_direct.append(room.player.loadout.effects.cooldowns.has("S06_6"))
 		return super.take_damage(amount, kind, direction, context)
 
-func equipped_fixture(templates: Array[String], hero: String = "CH01") -> void:
-	fresh(hero, 20)
+func equipped_fixture(templates: Array[String]) -> void:
+	fresh("CH01", 20)
 	var owned: Dictionary = {}
 	var loadout: Dictionary = {}
 	for template: String in templates:
 		var definition: Dictionary = ContentRegistry.equipment(template, Rules.V2)
 		var slot: Dictionary = Rules.value("slots")[definition.slot]
 		var rolls: Dictionary = {}
-		for key: String in slot.get("shared", slot.get("magic" if hero == "CH03" else "physical", {})):
+		for key: String in slot.get("shared", slot.get("physical", {})):
 			rolls[key] = 50
 		var id := "set-loop:" + template
 		var item: Dictionary = Instances.create({"instance_id":id, "template_id":template, "source_event_id":"test:" + id,
-			"item_level":20, "rarity":"white", "power_type":"magic" if hero == "CH03" else "physical", "main_rolls":rolls,
+			"item_level":20, "rarity":"white", "power_type":"physical", "main_rolls":rolls,
 			"affix_type_and_quantile":[], "enhancement_steps":[]})
 		check(not item.is_empty(), template + " valid native instance")
 		owned[id] = item
 		loadout[definition.slot] = id
-	game.run.stats = Stats.resolve(hero, 20, loadout, owned, Rules.V2)
+	game.run.stats = Stats.resolve("CH01", 20, loadout, owned, Rules.V2)
 	game.run.stats.crit_chance = 0.0
 	game.run.max_hp = game.run.stats.max_hp
 	game.run.hp = game.run.max_hp
@@ -268,170 +268,7 @@ func _run() -> void:
 	test_caster_shield_traits()
 	test_shared_native_budget()
 	test_integer_budget_receivers()
-	test_mage_cast_commit()
-	test_mage_cast_boundaries()
-	test_mage_solar_spell_compatibility()
-	test_mage_set_descriptions()
 	if is_instance_valid(room): room.free()
 	game.run = null
 	print("NUMERICAL SET LOOP: %d/%d passed" % [checks - failures, checks])
 	get_tree().quit(0 if failures == 0 else 1)
-
-const MAGE_S11: Array[String] = ["EQ73", "EQ74", "EQ75", "EQ76", "EQ77", "EQ78"]
-const MAGE_S01: Array[String] = ["EQ03", "EQ13", "EQ23", "EQ33", "EQ43", "EQ53"]
-const CAST_COUNT := "S11_6:paid_cast"
-const SetDetails = preload("res://scripts/ui/equipment_details.gd")
-
-func paid_cast_context(serial: int) -> Dictionary:
-	return {"event_id":"paid-fixture:" + str(serial), "root_event_id":"paid-fixture:" + str(serial),
-		"slot":"q", "base_cost":40.0, "paid_cost":40.0, "resource_type":"mana", "cast_success":true,
-		"damage_source":"skill", "proc_depth":0, "equipment_eligible":true, "original_basic":false,
-		"remaining_cooldowns":{"Q":1.0, "right":3.0, "F":2.0, "R":9.0, "dash":20.0}}
-
-func test_mage_cast_commit() -> void:
-	for with_targets: bool in [false, true]:
-		equipped_fixture(MAGE_S11, "CH03")
-		var effects: RefCounted = room.player.loadout.effects
-		var targets: Array[Receiver] = []
-		if with_targets:
-			game.run.stats.branches = {"f":"B"} # Two native E waves still form one cast.
-			for offset: Vector2 in [Vector2(65,0), Vector2(75,12), Vector2(85,-12)]:
-				targets.append(dummy(room.player.position + offset))
-		var before_resource := float(game.run.resource)
-		var paid := 0.0
-		var cast_index := 0
-		for slot: String in ["q", "secondary", "f", "ultimate"]:
-			var point := room.player.position + Vector2(80,0)
-			var spec: Dictionary = room.player.abilities.spec(slot)
-			check(room.player.cast_skill(slot, point), "mage " + slot + " commits without a basic prerequisite")
-			var committed: Dictionary = room.player.abilities.active.duplicate(true)
-			paid += float(committed.paid_cost)
-			cast_index += 1
-			check(int(effects.counts.get(CAST_COUNT, 0)) == cast_index % 4, "one paid cast advances one S11 count before any release")
-			var expected_cd: float = float(spec.cooldown) - (0.35 if slot == "ultimate" else 0.0)
-			check(is_equal_approx(float(room.player.cooldowns[slot]), expected_cd), "fourth cast reduces the already-committed longest cooldown")
-			var duplicate := paid_cast_context(100 + cast_index)
-			duplicate.root_event_id = "cast_commit:" + str(committed.serial)
-			check(effects.handle("skill_cast", duplicate).cooldown_refunds.is_empty() and int(effects.counts.get(CAST_COUNT,0)) == cast_index % 4, "same committed cast cannot recount under another event ID")
-			tick_cast(float(committed.spec.duration) + 0.01)
-			fly()
-			for deployment: Node2D in deployments("node") + deployments("field"):
-				if deployment.is_alive(): deployment.advance(1.7)
-			fly()
-			check(int(effects.counts.get(CAST_COUNT,0)) == cast_index % 4, "Q projectiles, W node, E detonation and R field never add cast counts")
-		check(effects.cooldowns.has("S11_6") and effects.refund_history.size() == 1, "four paid casts grant exactly one refund, including legal empty-ground casts")
-		check(float(game.run.resource) <= before_resource and paid > 0.0, "real casts paid resources; the refund does not restore resources")
-		check(room.player.abilities.cast_serial == 4, "refund and secondary damage never recursively create a cast")
-		if with_targets:
-			var actual_hits := 0
-			for target: Receiver in targets: actual_hits += target.receipts.size()
-			check(actual_hits > 4, "multiple real victims and persistent damage were exercised")
-		# Failed/previewed attempts never become paid cast events.
-		var counter := int(effects.counts.get(CAST_COUNT,0))
-		check(not room.player.cast_skill("q", room.player.position), "cooldown rejection stays uncommitted")
-		check(int(effects.counts.get(CAST_COUNT,0)) == counter, "rejected cooldown does not advance S11")
-
-func test_mage_cast_boundaries() -> void:
-	equipped_fixture(MAGE_S11, "CH03")
-	var effects: RefCounted = room.player.loadout.effects
-	var point := room.player.position + Vector2(80,0)
-	check(room.player.abilities.try_cast("q",point,true) and not effects.counts.has(CAST_COUNT), "cast validation preview never counts")
-	game.run.resource = 0
-	check(not room.player.cast_skill("q",point) and not effects.counts.has(CAST_COUNT), "resource rejection never counts")
-	game.run.resource = 1000
-	check(not room.player.cast_skill("secondary",Vector2(INF,0)) and not effects.counts.has(CAST_COUNT), "invalid-ground rejection never counts")
-	game.run.level = 1
-	check(not room.player.cast_skill("f",point) and not effects.counts.has(CAST_COUNT), "locked spell rejection never counts")
-	game.run.level = 20
-	for index: int in 4:
-		var basic_context := paid_cast_context(90+index)
-		basic_context.original_basic = true
-		basic_context.damage_source = "primary"
-		basic_context.target_id = "basic-fixture"
-		check(effects.handle("after_hit",basic_context).cooldown_refunds.is_empty() and not effects.counts.has(CAST_COUNT), "V2 basic hits never advance or refund S11")
-	# Historical basic progress must not turn into three prepaid spells.
-	effects.counts["S11_6"] = 3
-	for invalid: Dictionary in [{"slot":"dash"}, {"paid_cost":0.0}, {"paid_cost":INF}, {"cast_success":false}, {"base_cost":0.0}, {"resource_type":"rage"}, {"proc_depth":1}, {"damage_source":"equipment"}, {"damage_source":"node"}, {"original_basic":true}, {"equipment_eligible":false}]:
-		var context := paid_cast_context(10 + checks)
-		context.merge(invalid,true)
-		check(effects.handle("skill_cast",context).cooldown_refunds.is_empty() and not effects.counts.has(CAST_COUNT), "unpaid, failed, basic and derived events cannot count as paid spells: " + str(invalid))
-	for index: int in 4:
-		var context := paid_cast_context(index)
-		var result: Dictionary = effects.handle("skill_cast",context)
-		check(result.cooldown_refunds.size() == (1 if index == 3 else 0), "only every fourth distinct paid cast refunds")
-		if index == 3:
-			check(result.cooldown_refunds[0].slot == "R" and is_equal_approx(float(result.cooldown_refunds[0].seconds),0.35), "refund selects longest active cooldown, excludes longer dash")
-		check(effects.handle("skill_cast",context).cooldown_refunds.is_empty(), "duplicate successful cast callback is idempotent")
-	for index: int in 4:
-		check(effects.handle("skill_cast",paid_cast_context(20+index)).cooldown_refunds.is_empty(), "five-second internal cooldown blocks rapid four-cast reuse")
-	check(int(effects.counts[CAST_COUNT]) == 0, "casts during internal cooldown do not bank a delayed refund")
-	effects.advance(5.0,{})
-	for index: int in 3: effects.handle("skill_cast",paid_cast_context(30+index))
-	effects.refund_history.append({"time":effects.clock,"amount":0.4})
-	var capped: Dictionary = effects.handle("skill_cast",paid_cast_context(33))
-	check(capped.cooldown_refunds.size() == 1 and is_equal_approx(float(capped.cooldown_refunds[0].seconds),0.1), "S11 shares existing 0.5-second per-second equipment refund cap")
-	effects.advance(5.0,{})
-	for index: int in 3: effects.handle("skill_cast",paid_cast_context(40+index))
-	var short_cd := paid_cast_context(43)
-	short_cd.remaining_cooldowns = {"Q":0.07, "dash":20.0}
-	var clipped: Dictionary = effects.handle("skill_cast",short_cd)
-	check(clipped.cooldown_refunds.size() == 1 and is_equal_approx(float(clipped.cooldown_refunds[0].seconds),0.07), "refund clips to positive remaining cooldown and never creates negative time")
-	effects.advance(5.0,{})
-	for index: int in 3: effects.handle("skill_cast",paid_cast_context(50+index))
-	var ready := paid_cast_context(53)
-	ready.remaining_cooldowns = {"Q":0.0,"R":0.0,"dash":20.0}
-	check(effects.handle("skill_cast",ready).cooldown_refunds.is_empty(), "all-ready active skills neither refund dash nor bank an award")
-	var loadout: Dictionary = game.run.stats.loadout.duplicate()
-	loadout.erase("charm")
-	var next_stats: Dictionary = game.run.stats.duplicate(true)
-	next_stats.loadout = loadout
-	next_stats.equipment_templates.erase("charm")
-	effects.handle("skill_cast",paid_cast_context(60))
-	effects.rebind(loadout,next_stats,"mana")
-	check(not effects.counts.has(CAST_COUNT) and effects.cooldowns.has("S11_6"), "breaking six pieces clears cast progress but preserves the internal cooldown")
-	# Explicit rule-1 fixture retains the pre-existing basic-hit contract.
-	var legacy_loadout := {}
-	for id: String in MAGE_S11: legacy_loadout[ContentRegistry.equipment(id).slot] = id
-	var legacy := EquipmentEffects.new()
-	legacy.configure(legacy_loadout, {"ruleset_version":Rules.LEGACY}, "mana")
-	for index: int in 4:
-		check(legacy.handle("skill_cast",paid_cast_context(index)).cooldown_refunds.is_empty(), "frozen legacy rules do not gain the new cast proc")
-	var refunds := 0.0
-	for index: int in 4:
-		var context := paid_cast_context(70+index)
-		context.original_basic = true
-		context.damage_source = "primary"
-		context.target_id = "legacy-target"
-		for refund: Dictionary in legacy.handle("after_hit",context).cooldown_refunds: refunds += float(refund.seconds)
-	check(is_equal_approx(refunds,0.35), "frozen legacy rules retain every-fourth-basic refund")
-
-func test_mage_solar_spell_compatibility() -> void:
-	equipped_fixture(MAGE_S01,"CH03")
-	var target: Receiver = dummy(room.player.position + Vector2(70,0))
-	check(room.player.cast_skill("f",room.player.position), "S01 mage E casts without prior basic attack or node")
-	tick_cast(float(room.player.abilities.active.spec.duration) + 0.01)
-	check(target.status.has("burn") and room.player.loadout.effects.buffs.has("S01_4"), "original spell applies weapon burn and activates S01 four-piece")
-	var context := paid_cast_context(200)
-	context.target_id = str(target.get_instance_id())
-	context.target_states = ["burn"]
-	check(float(room.player.loadout.effects.handle("before_hit",context).damage_bonus) >= 0.08, "S01 two-piece recognizes original skill damage against burn")
-	context.X = 1000
-	context.nearby_targets = [{"id":"ember-target","distance":10.0,"alive":true}]
-	var death: Dictionary = room.player.loadout.effects.handle("kill",context)
-	check(death.triggered.has("S01_6") and death.bonus_hits.size() == 1, "S01 six-piece recognizes an original spell kill on burning target")
-
-func test_mage_set_descriptions() -> void:
-	for version: int in [Rules.LEGACY, Rules.V2]:
-		var definition: Dictionary = ContentRegistry.sets(version).S11.thresholds["6"]
-		var stats := {"ruleset_version":version,"sets":{"S11":6}}
-		for language: String in ["zh_CN","en"]:
-			Words.locale = language
-			var expected: String = MineStyle.content_text(definition,"text")
-			check(expected.contains("resource-consuming cast") if language == "en" and version == Rules.V2 else expected.contains("消耗资源施法") if version == Rules.V2 else expected.contains("basic hit") if language == "en" else expected.contains("有效普攻"), "set text matches ruleset and language")
-			var list := VBoxContainer.new()
-			add_child(list)
-			SetDetails.set_changes(list,stats,stats,320,"S11")
-			var label := list.find_child("SetEffect_S11_6",true,false) as Label
-			check(label != null and label.text.contains(expected), "equipment/backpack/comparison detail renders versioned bilingual set rule")
-			list.free()
-	Words.locale = "zh_CN"

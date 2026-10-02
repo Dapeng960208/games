@@ -5,22 +5,6 @@ const Abilities = preload("res://scripts/combat/hero_abilities.gd")
 const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
 static var _authored_cache: Dictionary = {}
 
-## A read-only ledger entry: branch and upgrade prose comes from the hero catalog.
-static func ledger_entry(hero_id: String, level: int, stats: Dictionary, slot: String, branches: Dictionary = {}) -> Dictionary:
-	var hero := ContentRegistry.hero(hero_id)
-	var skill: Dictionary = hero.get("skills",{}).get(slot,{}).duplicate(true)
-	var spec := Abilities.preview_spec(hero_id,level,stats,slot)
-	skill.merge(spec,true)
-	var description := MineStyle.content_text(skill,"description")
-	for upgrade: Dictionary in hero.get("upgrades",[]):
-		if str(upgrade.get("skill","")) == slot and level >= int(upgrade.get("level",99)):
-			description = Words.text("SKILL_UPGRADE_ACTIVE",{"level":upgrade.get("level",0)})+"\n"+MineStyle.content_text(upgrade,"description")+"\n\n"+Words.text("BASE_SKILL")+"\n"+description
-	var choice := str(branches.get(slot,""))
-	if not choice.is_empty():
-		var branch: Dictionary = hero.get("branches",{}).get("18" if slot == "q" else "20",{}).get(choice,{})
-		description = Words.text("BRANCH_ACTIVE",{"choice":choice})+" · "+MineStyle.content_text(branch,"name")+"\n"+MineStyle.content_text(branch,"description")+"\n\n"+Words.text("BASE_SKILL")+"\n"+description
-	return {"slot":slot,"title":MineStyle.content_text(skill,"name"),"spec":skill,"unlock":int(skill.get("unlock",1)),"unlocked":level >= int(skill.get("unlock",1)),"description":describe(hero_id,level,stats,slot,skill,null,description)}
-
 static func authored_text(text: String, version: int) -> String:
 	if version != Numbers.V2: return text
 	if _authored_cache.has(text): return str(_authored_cache[text])
@@ -42,14 +26,14 @@ static func authored_text(text: String, version: int) -> String:
 
 static func passive_text(hero: Dictionary, stats: Dictionary, actor: Variant = null) -> String:
 	var version := int(stats.get("ruleset_version",1))
-	var text := authored_text(MineStyle.content_text(hero.get("passive",{}),"description_v2" if version == 2 and hero.get("passive",{}).has("description_v2") else "description"),version)
+	var text := authored_text(MineStyle.content_text(hero.get("passive",{}),"description"),version)
 	if version == 2 and str(hero.get("id","")) == "CH01":
 		var passive: Dictionary = hero.get("passive",{})
 		var maximum := _maximum_hp(stats,actor)
 		var shield := Numbers.integer(maximum*float(passive.get("shield_hp_ratio",0)))
 		text += "\n"+Inspect.t("当前触发护盾 %d，持续 %.1f 秒；内置冷却 %.1f 秒。多来源取最大容量，不叠加。","Current trigger grants %d shield for %.1f s; internal cooldown %.1f s. Overlapping sources use the largest capacity, without adding together.") % [shield,float(passive.get("duration",0)),float(passive.get("icd",0))]
 	if version == 2 and str(hero.get("id","")) == "CH03":
-		var gain := float(hero.get("passive",{}).get("resource_gain_v2",10))
+		var gain := float(hero.get("passive",{}).get("resource_gain",8))
 		var multiplier: float = actor.resource_gain_multiplier() if is_instance_valid(actor) and actor.has_method("resource_gain_multiplier") else 1.0+float(stats.get("resource_gain_bonus",0))
 		var amount := Numbers.integer(float(Numbers.scale(gain,version))*multiplier)
 		text += "\n"+Inspect.t("当前触发回复 %d 法力（未满资源时；受剩余容量限制）。","Current trigger restores %d Mana before the remaining-capacity limit.") % amount
@@ -69,16 +53,6 @@ static func describe(hero: String, level: int, stats: Dictionary, slot: String, 
 	var coefficient := float(spec.get("coefficient",0))
 	var packet: Variant = Abilities.packet_amount(coefficient,power,stats)
 	var lines: PackedStringArray = [Inspect.t("当前结算：普攻 H %d · 技能 H %d · 职业遗物 H %d","Current values: basic H %d · skill H %d · class relic H %d") % [int(powers.basic_H),power,int(powers.relic_H)],Inspect.t("本技能 %.2fH → 每包基础 %d；未计职业追加、增伤、暴击、连击或目标减免。","This skill %.2fH → base %d per packet, before class additions, bonuses, crit, combos or target mitigation.") % [coefficient,int(packet)]]
-	var definition: Dictionary = ContentRegistry.hero(hero).get("skills",{}).get(slot,{})
-	var summary: String = MineStyle.content_text(definition,"summary_v2", "")
-	if not summary.is_empty(): lines.insert(0,summary)
-	lines.insert(1,Inspect.t("消耗 %d · 冷却 %.2f 秒 · 准备 %.2f 秒 · 总动作 %.2f 秒","Cost %d · cooldown %.2f s · prepare %.2f s · action %.2f s") % [int(spec.cost),float(spec.cooldown),float(spec.windup),float(spec.duration)])
-	if spec.has("range"): lines.append(Inspect.t("施放/弹体最大距离 %.0f","Cast/projectile maximum range %.0f") % float(spec.range))
-	if spec.has("radius"): lines.append(Inspect.t("效果半径 %.0f","Effect radius %.0f") % float(spec.radius))
-	if spec.has("movement"): lines.append(Inspect.t("施放时移动速度 %.0f%%","Movement speed while casting %.0f%%") % (100.0*float(spec.movement)))
-	if not str(spec.get("branch","")).is_empty(): lines.append(Inspect.t("当前分支 %s；上方数字已包含其改变。","Current branch %s; the values above include its changes.") % str(spec.branch))
-	if float(spec.get("burst_coefficient",0.0)) > 0.0:
-		lines.append(Inspect.t("落点立即晶爆 %.2fH → %d，半径 %.0f；随后法晶自动攻击，最多2枚。","Immediate crystal blast %.2fH → %d, radius %.0f; then an automatic crystal remains, up to 2.") % [float(spec.burst_coefficient),int(Abilities.packet_amount(float(spec.burst_coefficient),power,stats)),float(spec.burst_radius)])
 	if spec.has("tick_coefficient"):
 		lines.append(Inspect.t("每跳 %.2fH → %d；持续 %.1f 秒。","Each tick %.2fH → %d; duration %.1f s.") % [float(spec.tick_coefficient),int(Abilities.packet_amount(float(spec.tick_coefficient),power,stats)),float(spec.lifetime)])
 	if float(spec.get("guard",0)) > 0:
@@ -93,16 +67,9 @@ static func describe(hero: String, level: int, stats: Dictionary, slot: String, 
 		lines.append(Inspect.t("共 %d 包；各包需实际命中，不视为必然总伤害。","%d packets; each must hit, so this is not guaranteed total damage.") % int(spec.get("shots",spec.get("waves",1))))
 	if hero == "CH03":
 		var multiplier: float = actor.resource_gain_multiplier() if is_instance_valid(actor) and actor.has_method("resource_gain_multiplier") else 1.0+float(stats.get("resource_gain_bonus",0))
-		var refund := Numbers.integer(float(Numbers.scale(float(ContentRegistry.hero(hero).passive.get("resource_gain_v2",10)),version))*multiplier)
-		var reduction: float = float(ContentRegistry.hero(hero).passive.get("q_cooldown_refund_v2",.6))
-		lines.append(Inspect.t("可选连携：交替施法第3次回 %d 法力，Q剩余冷却减%.1f秒；Q→W→Q也有效。无需先普攻或先放法晶。","Optional weaving: the third alternating cast restores %d Mana and trims Q by %.1f s; Q→W→Q also works. No basic attack or crystal setup is required.") % [refund,reduction])
-		lines.append(MineStyle.content_text(ContentRegistry.hero(hero),"quick_start_v2",""))
-	# Old authored timings stay available to legacy adventures. V2 uses the live
-	# spec above so an obsolete 5-second Q/48-second R cannot contradict the HUD.
-	if not summary.is_empty():
-		lines.append(Inspect.t("技能命中遵守地形与实际范围；闪避可中断，已提交成本不返还。","Terrain and actual range govern hits. Dodge can interrupt; committed costs are not refunded."))
-		return "\n".join(lines)
-	return "\n".join(lines)+"\n\n"+authored_text(authored,version)
+		var refund := Numbers.integer(float(Numbers.scale(float(ContentRegistry.hero(hero).passive.resource_gain),version))*multiplier)
+		lines.append(Inspect.t("满共鸣被动触发时回复 %d 法力，受剩余容量限制；不是每次施放返还。","Full-Resonance passive trigger restores %d Mana, limited by remaining capacity; this is conditional, not every cast.") % refund)
+	return "\n".join(lines)+"\n\n"+Inspect.t("基础动作说明（当前强化与分支以实时值为准）","Base action reference (current upgrades/branches use the values above)")+"\n"+authored_text(authored,version)
 
 static func _maximum_hp(stats: Dictionary, actor: Variant) -> float:
 	return float(actor.stat("max_hp",float(stats.get("max_hp",0)))) if is_instance_valid(actor) and actor.has_method("stat") else float(stats.get("max_hp",0))

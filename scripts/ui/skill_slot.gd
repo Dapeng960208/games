@@ -3,10 +3,10 @@ extends Button
 ## Combat input is not emitted here; the HUD opens its paused detail view on press.
 
 const CELL_SIZE := Vector2(88,110)
-const ICON_RECT := Rect2(16,8,56,56)
-const INK := Color("34382f")
+const ICON_RECT := Rect2(21,13,46,46)
+const INK := Color("392843")
 const COPPER := Color("b18b4c")
-const MUTED := Color("817967")
+const MUTED := Color("766474")
 const WARNING := Color("ae463f")
 
 const TextureSampler = preload("res://scripts/ui/texture_sampler.gd")
@@ -87,9 +87,12 @@ func _draw() -> void:
 	var active := is_hovered() or has_focus()
 	var center := Vector2(size.x*.5,36)
 	var border := Color("8b826f") if locked else COPPER
-	var frame := MineStyle.box(Color("e7e7de") if locked else Color("faf8f1"),accent if active else Color("bfa97f"),2 if active else 1)
-	frame.set_corner_radius_all(10)
-	draw_style_box(frame,Rect2(center-Vector2(35,35),Vector2(70,70)))
+	draw_circle(center+Vector2(0,3),34,Color(.20,.12,.12,.22))
+	draw_circle(center,34,Color("4c343c"))
+	draw_circle(center,32,Color("caa368") if not locked else Color("8c8c84"))
+	draw_circle(center,29,Color("492927") if not locked and slot != "dash" else Color("543d25") if slot == "dash" else Color("3f4957"))
+	draw_arc(center,31,-PI*.95,-PI*.08,40,Color("fff0ba"),2,true)
+	draw_arc(center,34,0,TAU,48,accent if active else border,2.5 if active else 1,true)
 	if input_flash > 0.0:
 		var tint: Color = accent if input_reason in ["accepted", "queued"] else WARNING
 		draw_arc(center,35,0,TAU,48,Color(tint,minf(1,input_flash*5)),3,true)
@@ -104,7 +107,8 @@ func _draw() -> void:
 		draw_set_transform(Vector2(18,13))
 		_draw_glyph(Color("f6d19b") if not locked else Color("b0a4ac"))
 		draw_set_transform(Vector2.ZERO)
-	# The live rounded frame replaces the low-resolution circular bezel.
+	if bezel_texture != null:
+		draw_texture_rect(bezel_texture,Rect2(center-Vector2(36,36),Vector2(72,72)),false,Color(.60,.66,.71,1) if locked else Color.WHITE)
 	var overlay := Color(.16,.12,.19,.77)
 	if bool(state.get("casting",false)):
 		draw_circle(center,28,overlay)

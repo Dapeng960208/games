@@ -367,9 +367,7 @@
         "name": "星铃织法 · 6 件",
         "name_en": "Starbell Weaver · 6 pieces",
         "text": "每第 4 次有效普攻命中，使剩余冷却最长的主动技能减少 0.35 秒；冷却 5 秒。",
-        "text_en": "Every fourth valid basic hit refunds 0.35 s from the active skill with the longest remaining cooldown; cooldown 5 s.",
-        "text_v2": "每第 4 次成功消耗资源施法，使剩余冷却最长的主动技能减少 0.35 秒；冷却 5 秒。每次施法只计一次，无需命中。",
-        "text_v2_en": "Every fourth successful resource-consuming cast reduces the longest remaining active-skill cooldown by 0.35 s; internal cooldown 5 s. Each cast counts once; no hit required."
+        "text_en": "Every fourth valid basic hit refunds 0.35 s from the active skill with the longest remaining cooldown; cooldown 5 s."
       }
     },
     "unlock_boss": "",

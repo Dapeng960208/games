@@ -113,19 +113,6 @@ func spec(slot: String, preview_hero: String = "", preview_level: int = -1, prev
 			"ultimate": data = {"name":"星陨领域", "cost":60.0, "cooldown":48.0, "windup":0.40, "duration":0.80, "coefficient":0.6, "tick_coefficient":0.8, "range":280.0, "radius":210.0 if level >= 16 else 180.0, "lifetime":5.0, "movement":0.65}
 	if data.is_empty():
 		return data
-	# V2 specialization is independent from archived legacy adventures. Runtime,
-	# HUD and inspection all sample this exact override before branch/cooldown math.
-	if Numbers.is_v2(effective_stats):
-		var profiles: Dictionary = Numbers.value("hero_class_profiles", {})
-		var profile: Dictionary = profiles.get(hero, {})
-		var changes: Dictionary = profile.get("skills", {}).get(slot, {}).duplicate(true)
-		var upgraded: Dictionary = changes.get("level_upgrade", {})
-		changes.erase("level_upgrade")
-		if not upgraded.is_empty() and level >= int(upgraded.get("level", 99)):
-			var upgraded_values: Dictionary = upgraded.duplicate(true)
-			upgraded_values.erase("level")
-			changes.merge(upgraded_values, true)
-		data.merge(changes, true)
 	var skill_definition: Dictionary = ContentRegistry.hero(hero).get("skills", {}).get(slot, {})
 	data["unlock"] = int(skill_definition.get("unlock", 99))
 	data["slot"] = slot
@@ -134,8 +121,6 @@ func spec(slot: String, preview_hero: String = "", preview_level: int = -1, prev
 	data["damage_type"] = "magic" if hero == "CH03" else "physical"
 	data["branch"] = _branch(slot, level, effective_stats)
 	_apply_branch(data)
-	if Numbers.is_v2(effective_stats) and hero == "CH03" and slot == "q" and str(data.branch) == "B":
-		data.cooldown = 3.0
 	if Numbers.is_v2(effective_stats):
 		data.cost = Numbers.scale(float(data.cost), Numbers.V2)
 		if data.has("health"):
@@ -195,11 +180,11 @@ func _apply_branch(data: Dictionary) -> void:
 	else:
 		data.merge({"lifetime":4.0, "tick_coefficient":0.65, "radius":140.0, "follow_player":true}, true)
 
-func can_cast(slot: String, target: Vector2, ignore_busy: bool = false, preview_cooldown: bool = false) -> bool:
+func can_cast(slot: String, target: Vector2, ignore_busy: bool = false) -> bool:
 	# Same checks as commitment, but no resource/cooldown/stack/audio mutation.
-	return try_cast(slot, target, true, false, ignore_busy, preview_cooldown)
+	return try_cast(slot, target, true, false, ignore_busy)
 
-func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_recovery_chain: bool = false, ignore_busy: bool = false, preview_cooldown: bool = false) -> bool:
+func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_recovery_chain: bool = false, ignore_busy: bool = false) -> bool:
 	last_failure = ""
 	last_failure_details = {}
 	if not is_instance_valid(owner_player) or Game.run == null or Game.run.hp <= 0.0:
@@ -209,7 +194,7 @@ func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_
 	var data: Dictionary = spec(slot)
 	if data.is_empty() or owner_player.hero_level() < int(data.unlock):
 		return _fail("locked")
-	if float(owner_player.cooldowns.get(slot, 0.0)) > 0.00001 and not (validate_only and preview_cooldown):
+	if float(owner_player.cooldowns.get(slot, 0.0)) > 0.0:
 		return _fail("cooldown")
 	var origin: Vector2 = owner_player.position
 	var direction: Vector2 = owner_player.aim_direction.normalized()
@@ -245,11 +230,6 @@ func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_
 		target = owner_player.room.move_actor(origin, offset, 4.0)
 		if not owner_player.room.valid_ground(target, 4.0):
 			return _fail("invalid_ground", {"cause":"blocked_ground"})
-	var ground_facing: bool = ground_cast or (hero == "CH01" and slot == "ultimate")
-	if ground_facing and origin.distance_squared_to(target) > 0.001:
-		# A queued landing is a committed point. Its body/weapon faces that point,
-		# even if the mouse has moved elsewhere before the queued cast starts.
-		direction = origin.direction_to(target)
 	var cost: float = float(data.cost)
 	if owner_player.has_method("resource_cost"):
 		cost = owner_player.resource_cost(cost)
@@ -277,11 +257,11 @@ func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_
 			if slot == "secondary":
 				data.arc = 160.0
 	owner_player.cooldowns[slot] = float(data.cooldown)
-	owner_player.resource_delay = float(Game.run.stats.get("resource_regen_delay", 0.5 if hero == "CH02" else 0.8))
+	owner_player.resource_delay = 0.5 if hero == "CH02" else 0.8
 	cast_serial += 1
 	if owner_player.get("passives") != null:
 		owner_player.passives.skill_committed(slot, cast_serial)
-	active = {"spec":data, "elapsed":0.0, "origin":origin, "target":target, "direction":direction, "initial_direction":direction, "travel_direction":travel_direction, "ground_facing":ground_facing,"power":owner_player.skill_power(), "attacker_stats":Game.run.stats.duplicate(), "events":_timeline(data), "next_event":0, "serial":cast_serial, "paid_cost":cost}
+	active = {"spec":data, "elapsed":0.0, "origin":origin, "target":target, "direction":direction, "initial_direction":direction, "travel_direction":travel_direction, "power":owner_player.skill_power(), "attacker_stats":Game.run.stats.duplicate(), "events":_timeline(data), "next_event":0, "serial":cast_serial}
 	owner_player.visual_event("cast_" + slot, float(data.duration))
 	if is_instance_valid(feedback):
 		feedback.cast_started(data, active.direction, active.target, cast_serial)
@@ -348,7 +328,7 @@ func _advance(from_time: float, to_time: float) -> void:
 	if data.hero == "CH02" and data.slot == "ultimate" and not aim.is_zero_approx():
 		var direction: Vector2 = active.direction
 		active.direction = direction.rotated(clampf(direction.angle_to(aim), -PI * 0.5 * elapsed, PI * 0.5 * elapsed))
-	elif from_time < float(data.windup) and not aim.is_zero_approx() and not bool(active.get("ground_facing",false)):
+	elif from_time < float(data.windup) and not aim.is_zero_approx():
 		if data.hero == "CH01" and data.slot == "secondary":
 			var initial: Vector2 = active.initial_direction
 			active.direction = initial.rotated(clampf(initial.angle_to(aim), -PI / 6.0, PI / 6.0))
@@ -413,12 +393,6 @@ func _resolve(index: int) -> void:
 		options.merge(hit_context, true)
 		room.spawn_ability_projectile(_projectile_origin(direction), direction, amount, options)
 	elif slot == "secondary":
-		# The spell is immediately useful without setting up a crystal circuit.
-		# The lingering node is an optional auto-attacking bonus, not its payoff gate.
-		if float(data.get("burst_coefficient", 0.0)) > 0.0:
-			room.strike_area(active.target, float(data.burst_radius), packet_amount(float(data.burst_coefficient), float(power), active.attacker_stats), "secondary", "", 0.0, direction, 360.0, true, hit_context)
-			room.add_ring(active.target, Color("9ba7ef"), float(data.burst_radius), 0.26)
-			if is_instance_valid(feedback): feedback.class_event("node_burst", active.target, direction, float(data.burst_radius), 0)
 		room.add_deployment("node", active.target, {"damage":amount, "power":power, "radius":data.radius, "health":data.health, "health_scale_version":10 if Numbers.is_v2(active.attacker_stats) else 1, "lifetime":14.0, "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats})
 	elif slot == "f":
 		room.strike_area(at, float(data.radius), amount, "f", "chill", 0.0, Vector2.ZERO, 360.0, true, hit_context)

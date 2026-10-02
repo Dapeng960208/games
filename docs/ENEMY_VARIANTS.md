@@ -1,40 +1,5 @@
 # 前四副本野怪外观与技能图索引
 
-## 2026-10-02扩充：54种身份与新增18张原生高清身体
-
-当前四关9/12/15/18种普通怪。M37–M54的18张独立原生1254×1254 RGBA已生成并逐张目视检查，同一原始PNG供高清图鉴和战斗身体使用，无插值放大、换色复用或Python重绘。新身体没有完整逐帧动画；延用姿态变换，不把静态立绘说成完整动作。
-
-18份独立manifest登记source_family、原始纹理、alpha区域、foot、source_height和SHA-256。区域以alpha≥16有效内容加4像素边距确定，排除近乎透明的生成扩散噪点，原PNG像素不变。新物种没有旧Mxx_v1图，EnemyArt特别按普通怪解剖高度clamp(导航半径×3.8,66,88)×1.20与足点y=18注册，避免继承rust_mite回退的y=38；导航/伤害半径不变。
-
-来源与生成提示见[新增18种provenance](../assets/generated/ui/refactor_v1/codex/provenance_new_monsters.json)。Godot4.7.2实际MineEnemy加载、真实纹理/region、脚点、碰撞不变、各行动阶段身份与独立徽章271项通过；这是运行注册检查，新增战斗UI的最终GPU像素检查见[验收记录](audits/PROGRESSIVE_MONSTERS_2026-10-02.md)。
-
-| ID | 原生图鉴/身体 | region | foot / source_height | manifest |
-|---|---|---|---|---|
-| M37 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M37.png) | [154, 157, 993, 988] | [650.5, 1145] / 988 | [元数据](../assets/generated/enemies/M37_storybook_body_v1.regions.json) |
-| M38 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M38.png) | [48, 67, 1162, 1142] | [629.0, 1209] / 1142 | [元数据](../assets/generated/enemies/M38_storybook_body_v1.regions.json) |
-| M39 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M39.png) | [27, 208, 1217, 892] | [635.5, 1100] / 892 | [元数据](../assets/generated/enemies/M39_storybook_body_v1.regions.json) |
-| M40 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M40.png) | [113, 50, 1130, 1179] | [678.0, 1229] / 1179 | [元数据](../assets/generated/enemies/M40_storybook_body_v1.regions.json) |
-| M41 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M41.png) | [27, 50, 1221, 1169] | [637.5, 1219] / 1169 | [元数据](../assets/generated/enemies/M41_storybook_body_v1.regions.json) |
-| M42 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M42.png) | [58, 42, 1159, 1173] | [637.5, 1215] / 1173 | [元数据](../assets/generated/enemies/M42_storybook_body_v1.regions.json) |
-| M43 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M43.png) | [173, 121, 964, 1033] | [655.0, 1154] / 1033 | [元数据](../assets/generated/enemies/M43_storybook_body_v1.regions.json) |
-| M44 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M44.png) | [27, 63, 1201, 1165] | [627.5, 1228] / 1165 | [元数据](../assets/generated/enemies/M44_storybook_body_v1.regions.json) |
-| M45 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M45.png) | [109, 103, 1125, 1106] | [671.5, 1209] / 1106 | [元数据](../assets/generated/enemies/M45_storybook_body_v1.regions.json) |
-| M46 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M46.png) | [29, 26, 1213, 1198] | [635.5, 1224] / 1198 | [元数据](../assets/generated/enemies/M46_storybook_body_v1.regions.json) |
-| M47 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M47.png) | [52, 105, 1188, 1072] | [646.0, 1177] / 1072 | [元数据](../assets/generated/enemies/M47_storybook_body_v1.regions.json) |
-| M48 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M48.png) | [121, 15, 1113, 1228] | [677.5, 1243] / 1228 | [元数据](../assets/generated/enemies/M48_storybook_body_v1.regions.json) |
-| M49 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M49.png) | [39, 109, 1197, 1055] | [637.5, 1164] / 1055 | [元数据](../assets/generated/enemies/M49_storybook_body_v1.regions.json) |
-| M50 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M50.png) | [45, 152, 1201, 983] | [645.5, 1135] / 983 | [元数据](../assets/generated/enemies/M50_storybook_body_v1.regions.json) |
-| M51 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M51.png) | [7, 185, 1243, 954] | [628.5, 1139] / 954 | [元数据](../assets/generated/enemies/M51_storybook_body_v1.regions.json) |
-| M52 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M52.png) | [41, 41, 1195, 1171] | [638.5, 1212] / 1171 | [元数据](../assets/generated/enemies/M52_storybook_body_v1.regions.json) |
-| M53 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M53.png) | [62, 57, 1174, 1161] | [649.0, 1218] / 1161 | [元数据](../assets/generated/enemies/M53_storybook_body_v1.regions.json) |
-| M54 | [1254² PNG](../assets/generated/ui/refactor_v1/codex/M54.png) | [248, 101, 832, 1011] | [664.0, 1112] / 1011 | [元数据](../assets/generated/enemies/M54_storybook_body_v1.regions.json) |
-
-54种施法呈现读各自enemy_id、ability_id、icon_id、vfx_identity及实际预警/锁定/阶段；既有36种沿用手绘技能图，新18种使用稳定、形状与内标记组合各不相同的身份徽章。所有怪保留来源徽章，最多两张详细技能卡，当前目标和近处已锁定威胁优先；低特效/关闭可选技能路径仍保留关键危险边界。不是把所有技能都画成无来源的一种闪光。
-
-图鉴与战斗共用enemy_ability_catalog；完整效果、反制、数值见[逐怪技能册](ORDINARY_MONSTER_EXPANSION.md)，当前V2短预警与旧V1区别见[时序表](balance/ENEMY_WARNING_TIMING.md)。下方599身体区域与36技能图是原M01–M36的历史资源集合和历史去重证据；不得把旧120计划的0重复率套给本轮追加物种，新18种目前每种只有一张独立身体。
-
-## 原M01–M36资源与历史验证
-
 更新日期：2026-10-01。本文记录已接入的普通野怪外观资源、分配规则和定向检查证据。36 个普通怪原型继续使用各自的行为、攻击序列、预警、属性与导航半径；新增索引只控制身体外观。完整逐帧动画和自然群战平衡仍待完善。
 
 ## 正式源图与元数据

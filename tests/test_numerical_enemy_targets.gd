@@ -148,7 +148,7 @@ func _test_levels_and_boundaries() -> void:
 	var from_d := Target.ordinary_profile(Difficulty.apply(basic, 4), 2)
 	check(from_d.max_hp == Target.ordinary_profile(basic, 2).max_hp, "old ordinary preserved D0 base accepted")
 	check(Target.ordinary_profile(basic, 4, 1) == basic, "legacy helper is detached no-op")
-	check(Target.ordinary_profile({"enemy_id":"M55"}, 0).is_empty() and Target.boss_profile({"enemy_id":"BO05"}, 0).is_empty(), "no invented future actor IDs")
+	check(Target.ordinary_profile({"enemy_id":"M37"}, 0).is_empty() and Target.boss_profile({"enemy_id":"BO05"}, 0).is_empty(), "no invented future actor IDs")
 	var elites: Dictionary = {}
 	for room in range(1, 25):
 		for d in range(5):

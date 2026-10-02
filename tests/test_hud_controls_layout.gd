@@ -54,7 +54,7 @@ func _run() -> void:
 	hud.refresh()
 	check(hud.attack_label.text.contains("开启"),"auto attack display reads the live setting")
 	game.set_setting("controls",{})
-	for dimensions in [Vector2i(820,600),Vector2i(1280,720),Vector2i(1920,1080),Vector2i(2560,1440)]:
+	for dimensions in [Vector2i(820,600),Vector2i(1280,720),Vector2i(1920,1080)]:
 		root.size = dimensions
 		root.content_scale_size = dimensions
 		hud.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

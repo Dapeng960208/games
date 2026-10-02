@@ -12,10 +12,10 @@ func check(ok: bool, label: String) -> void:
 	if not ok: failures.append(label)
 
 func context(source: String = "room", event_id: String = "test:event", difficulty: int = 4) -> Dictionary:
-	return {"event_id":event_id, "seed":54873, "source":source, "race_id":"B01", "difficulty":difficulty, "challenge_level":10, "power_type":"physical", "hero_id":"CH01", "wish_slot":"weapon"}
+	return {"event_id":event_id, "seed":54873, "source":source, "race_id":"B01", "difficulty":difficulty, "challenge_level":10, "power_type":"physical", "wish_slot":"weapon"}
 
 func item_spec(template_id: String = "EQ61", rarity: String = "gold", power: String = "physical", source: String = "drop") -> Dictionary:
-	return {"instance_id":"test:instance", "source_event_id":"test:event", "template_id":template_id, "rarity":rarity, "power_type":power, "hero_id":"CH03" if power == "magic" else "CH01", "item_level":20, "source":source}
+	return {"instance_id":"test:instance", "source_event_id":"test:event", "template_id":template_id, "rarity":rarity, "power_type":power, "item_level":20, "source":source}
 
 func sum_weights(weights: Dictionary) -> int:
 	var result := 0
@@ -55,10 +55,6 @@ func _test_catalog_and_sources() -> void:
 				check(weights[key] == (2 if key in catalog[id].affix_tendencies else 1), "legal tendency weights " + id + power + key)
 			for rarity: String in Acquisition.RARITIES:
 				var item := Acquisition.roll_item(item_spec(id, rarity, power), 10394)
-				var allowed: Array = catalog[id].allowed_heroes
-				if allowed.size() == 1 and power != Registry.ClassPolicy.power_type(str(allowed[0])):
-					check(item.is_empty(), "exclusive template rejects wrong stat version " + id + power)
-					continue
 				check(not item.is_empty() and Instances.validate(item).is_empty(), "all templates/types/rarities " + id + power + rarity)
 				if item.is_empty(): continue
 				check(item.enhancement_rank <= (1 if rarity == "gold" else 5), "natural enhancement ceiling")
@@ -84,7 +80,7 @@ func _test_catalog_and_sources() -> void:
 	for source: String in ["purchase", "craft"]:
 		var qualities: Array = ["white", "green"] if source == "purchase" else ["green", "purple", "gold"]
 		for rarity: String in qualities:
-			var item := Acquisition.roll_item(item_spec("EQ73", rarity, "magic", source), 754)
+			var item := Acquisition.roll_item(item_spec("EQ61", rarity, "magic", source), 754)
 			check(not item.is_empty() and item.enhancement_rank == 0 and item.enhancement_steps.is_empty() and item.location == "inventory", source + " starts at zero")
 	check(Acquisition.roll_item(item_spec("EQ61", "gold", "physical", "purchase"), 1).is_empty(), "shop cannot sell gold")
 	check(Acquisition.roll_item(item_spec("EQ61", "white", "physical", "craft"), 1).is_empty(), "craft cannot silently substitute white")
@@ -276,7 +272,7 @@ func _test_historical_stability() -> void:
 	var request := context("boss", "history:v1")
 	request.force_gold = true
 	var original := Acquisition.roll_event(request)
-	var item_request := item_spec("EQ73", "green", "magic", "purchase")
+	var item_request := item_spec("EQ61", "green", "magic", "purchase")
 	var bought := Acquisition.roll_item(item_request, 673)
 	var old_rules := Rules.parameters()
 	var old_catalog := Registry._equipment_v2.duplicate(true)

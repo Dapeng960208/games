@@ -14,13 +14,11 @@ const WalkAtlas = preload("res://scripts/combat/hero_walk_atlas.gd")
 const BasicAtlas = preload("res://scripts/combat/hero_basic_atlas.gd")
 const SkillAtlas = preload("res://scripts/combat/hero_skill_atlas.gd")
 const ArtFamily = preload("res://scripts/combat/hero_art_family.gd")
-const DirectionalAtlas = preload("res://scripts/combat/hero_directional_atlas.gd")
 const STRIDE_PER_WORLD_UNIT := .12
 static var _generated_assets: Dictionary = {}
 static var _action_banks: Dictionary = {}
 
 static func prewarm(hero: String) -> void:
-	DirectionalAtlas.load_family(hero)
 	# Include the static fallback: brief contact/recovery poses can select it
 	# even when idle and windup use an atlas. Its alpha scan must not run on
 	# the first hit's render frame, while input is already live.
@@ -155,8 +153,6 @@ static func presentation_frame_info(hero: String, bank: String, pose: Dictionary
 	if dash:
 		return dodge_frame_info(hero,bank,float(pose.get("dash_progress",0.0)))
 	var phase: String = str(pose.get("phase", "idle"))
-	var directed: Dictionary = DirectionalAtlas.frame_info(hero,pose.get("direction",Vector2.RIGHT),phase,float(pose.get("progress",0.0)))
-	if not directed.is_empty(): return directed
 	if hero == "CH02" and not dash:
 		var gun: Dictionary = gunner_shooting_frame(bank,pose)
 		if not gun.is_empty():
@@ -223,7 +219,7 @@ static func body_transform(asset: Dictionary, hero: String, aim: Vector2, lean: 
 static func release_muzzle_local(hero: String, slot: String, direction: Vector2) -> Vector2:
 	var aim: Vector2 = direction.normalized() if direction.is_finite() and direction.length_squared() > 0.001 else Vector2.RIGHT
 	var bank: String = "back" if aim.y < -0.20 else "front"
-	var pose: Dictionary = {"phase":"release","slot":slot,"progress":0.0,"authored_phase_progress":0.0,"direction":aim}
+	var pose: Dictionary = {"phase":"release","slot":slot,"progress":0.0,"authored_phase_progress":0.0}
 	var asset: Dictionary = presentation_frame_info(hero,bank,pose,0.0,false)
 	if asset.is_empty():
 		return aim * 36.0 + Vector2(0,-20)
@@ -237,7 +233,6 @@ static func release_muzzle_local(hero: String, slot: String, direction: Vector2)
 ## Compose its authored orientation with the requested aim; anchors follow the
 ## exact same transform as the pixels instead of assuming every source is SE.
 static func source_horizontal_flip(aim: Vector2, asset: Dictionary) -> float:
-	if bool(asset.get("directional_sequence",false)): return 1.0
 	return (-1.0 if aim.x < -.05 else 1.0) * (-1.0 if int(asset.get("facing_x",1)) < 0 else 1.0)
 
 static func _action_offset(asset: Dictionary, hero: String, aim: Vector2, lean: Vector2, pose: Dictionary) -> Vector2:
@@ -391,16 +386,13 @@ static func draw_hero(p: Node2D) -> void:
 		pose["dash_progress"] = clampf(float(p.get("dash_elapsed"))/maxf(.001,float(p.get("dash_elapsed"))+float(p.get("dash_remaining"))),0.0,1.0)
 	var resolved_motion: Vector2 = p.get_meta("_hero_visual_motion",{}).get("direction",Vector2.ZERO)
 	aim = presentation_direction(aim,velocity,pose,walking,p.get("dash_direction"),dash,resolved_motion)
-	pose = pose.duplicate()
-	pose["direction"] = aim
 	p.set_meta("hero_presentation_direction",aim)
 	var bank: String = "back" if aim.y < -.20 else "front"
 	var motion_frame: Dictionary = presentation_frame_info(hero,bank,pose,stride,walking,dash)
 	if not motion_frame.is_empty():
 		p.set_meta("hero_visual_source",motion_frame.path)
 		p.set_meta("hero_visual_pose",str(motion_frame.phase))
-		p.set_meta("hero_visual_bank",str(motion_frame.get("bank",bank)))
-		p.set_meta("hero_directional_key",str(motion_frame.get("direction_key","")))
+		p.set_meta("hero_visual_bank",bank)
 		p.set_meta("hero_visual_frame",int(motion_frame.get("frame_index",-1)))
 		p.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		_draw_action_frame(p,motion_frame,hero,aim,lean,pose,hurt,walking,stride)

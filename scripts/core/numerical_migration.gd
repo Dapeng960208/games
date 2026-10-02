@@ -20,8 +20,7 @@ static func migrate_profile(profile: Dictionary, event_id: String = EVENT, activ
 	if active_run != null or not _tree(profile): return {}
 	if not _integer(profile.get("ruleset_version", 1), 1, 2): return {}
 	if int(profile.get("ruleset_version", 1)) == 2:
-		var upgraded: Dictionary = load("res://scripts/core/equipment_class_migration.gd").upgrade_profile(profile)
-		return upgraded if _valid_v2(upgraded) else {}
+		return profile.duplicate(true) if _valid_v2(profile) else {}
 	if not _integer(profile.get("scale_version", 1), 1, 1) or not _valid_old(profile): return {}
 	for field in ["equipment_instance_version", "reward_policy_version", "optional_chest_receipt_version"]:
 		var legacy_version := 0 if field == "equipment_instance_version" else 1
@@ -98,8 +97,6 @@ static func migrate_profile(profile: Dictionary, event_id: String = EVENT, activ
 		if not next.has(field): next[field] = {}
 	next["gold_pity"] = {"B01":0, "B02":0, "B03":0, "B04":0}
 	next["numerical_migration"] = {"version":VERSION, "event_id":event_id, "original":original, "template_instance_ids":identities}
-	next["hero_role_revision"] = 1
-	next = load("res://scripts/core/equipment_class_migration.gd").upgrade_profile(next)
 	return _json_keys(next) if _valid_v2(next) else {}
 
 static func old_level(xp: int) -> int:

@@ -15,7 +15,7 @@ func check(ok: bool,label: String) -> void:
 		failures.append(label)
 		print("FAILED: ",label," Game=",Game.last_error," UI=",panel.forge_message if is_instance_valid(panel) else "", " Result=",panel.find_child("ForgeResult",true,false).text if is_instance_valid(panel) and panel.find_child("ForgeResult",true,false) != null else "")
 
-func item(id: String,template: String = "EQ04",rarity: String = "green",level: int = 20,gains: Array = [],pity: int = 0) -> Dictionary:
+func item(id: String,template: String = "EQ03",rarity: String = "green",level: int = 20,gains: Array = [],pity: int = 0) -> Dictionary:
 	var rolls := {}
 	for key: String in Instances.main_keys(template,"physical"): rolls[key] = 3 if id == "potential-only" else 50
 	var affixes: Array = []
@@ -29,8 +29,6 @@ func same(a: Variant,b: Variant) -> bool:
 	return JSON.stringify(Creation._canonical_values(a),"",true,true) == JSON.stringify(Creation._canonical_values(b),"",true,true)
 
 func choose(id: String,kind: String) -> void:
-	panel.mode = "inventory" if kind in ["sell","dismantle"] else "upgrade"
-	panel.inventory_recycle = kind in ["sell","dismantle"]
 	panel.selected_item = id
 	panel.forge_kind = kind
 	panel.forge_message = ""
@@ -52,12 +50,12 @@ func _run() -> void:
 		return
 	Game.run = null
 	check(Game.new_profile(),"isolated new profile")
-	var profile: Dictionary = preload("res://scripts/core/numerical_profile.gd").fresh(ProfileStore.fresh_profile())
+	var profile: Dictionary = Fixtures.fixture_profile()
 	profile.hero_xp.CH01 = 3600
 	profile.permanent_gold = 100000
 	profile.bosses = ["BO01","BO02","BO03","BO04"]
 	profile.materials = {"forge":1000,"race:B01":1000,"race:B02":1000,"race:B03":1000,"race:B04":1000,"core:B01":100,"core:B02":100,"core:B03":100,"core:B04":100}
-	for record: Dictionary in [item("forge-target"),item("inherit-source","EQ04","white",1,[8,9]),item("inherit-target","EQ04","white",20),item("dismantle-target"),item("potential-only","EQ01","white",1,[8],3)]: profile.equipment[record.instance_id] = record
+	for record: Dictionary in [item("forge-target"),item("inherit-source","EQ03","white",1,[8,9]),item("inherit-target","EQ03","white",20),item("dismantle-target"),item("potential-only","EQ01","white",1,[8],3)]: profile.equipment[record.instance_id] = record
 	check(Game._commit_profile(profile),"V2 forging fixture saved: "+Game.last_error)
 	if not failures.is_empty():
 		print(failures)
@@ -66,20 +64,13 @@ func _run() -> void:
 	app = load("res://scenes/main.tscn").instantiate()
 	add_child(app)
 	await get_tree().process_frame
-	for page: String in ["craft", "upgrade", "heroes"]:
-		app.show_workshop(page)
-		app.music_tick = 0.0
-		app._process(0.31)
-		check(app.music.desired_context == {"craft":"craft","upgrade":"forge","heroes":"camp"}[page], "actual workshop route selects music: "+page)
 	app.show_workshop("upgrade")
 	await get_tree().process_frame
 	panel = app.screen.find_child("Workshop",true,false)
 	check(panel != null and panel.find_child("ForgeInventory",true,false) != null,"actual V2 forge hub mounted")
 	choose("forge-target","enhance")
 	check(panel.find_child("ForgeIntegerPreview",true,false).text.contains("→"),"exact integer range preview")
-	check(panel.find_child("ForgeAdvancedDetails",true,false).text.contains("10/20/40/20/10"),"enhancement probability disclosure")
-	check(not panel.find_child("ForgeAdvancedDetails",true,false).visible,"calculation details start collapsed")
-	check(panel.find_child("ForgeGoal_enhance",true,false) != null,"upgrade goal is visible")
+	check(panel.find_child("ForgeRuleExplanation",true,false).text.contains("10/20/40/20/10"),"enhancement probability disclosure")
 	var gold: int = Game.profile.permanent_gold
 	var action: Button = panel.action_button
 	action.pressed.emit()
@@ -92,7 +83,7 @@ func _run() -> void:
 	await press("ForgeLock")
 	check(not Game.profile.equipment["forge-target"].lock_state and not panel.action_button.disabled,"unlock restores operation")
 	choose("potential-only","enhancement_reroll")
-	check(panel.find_child("ForgeRank",true,false) != null and panel.find_child("ForgeAdvancedDetails",true,false).text.contains("c=3"),"per-step pity displayed")
+	check(panel.find_child("ForgeRank",true,false) != null and panel.find_child("ForgeRuleExplanation",true,false).text.contains("c=3"),"per-step pity displayed")
 	await press()
 	check(Game.profile.equipment["potential-only"].enhancement_steps[0].g == 9,"fourth reroll guaranteed improvement")
 	check(panel.forge_result_details.contains("潜力提高") or panel.forge_result_details.contains("Potential improved"),"potential-only result never invents integer +1")
@@ -109,13 +100,6 @@ func _run() -> void:
 		print("Numerical forging UI blocked: ",failures)
 		get_tree().quit(1)
 		return
-	check(panel.find_child("PendingReforgeComparison",true,false).position.x == 20, "old and candidate affixes get dedicated side-by-side cards")
-	check(panel.find_child("PendingReforgeDetails",true,false).position.x == 630, "paid decision details stay in the right action pane")
-	var all_stats: Label = panel.find_child("PendingAllStats",true,false)
-	check(not all_stats.visible, "unchanged stats are hidden by default")
-	panel.find_child("PendingAllStatsToggle",true,false).button_pressed = true
-	check(all_stats.visible, "full before/after stats remain available on demand")
-	check(not panel.find_child("ForgeInstanceIdentity",true,false).text.contains("forge-target") and panel.find_child("ForgeInstanceIdentity",true,false).tooltip_text.contains("forge-target"), "instance identity is retained in secondary tooltip")
 	gold = Game.profile.permanent_gold
 	Game.reload_profile()
 	app.show_camp()
@@ -154,7 +138,7 @@ func _run() -> void:
 	choose("inherit-target","inherit")
 	panel.forge_source_instance_id = "inherit-source"
 	panel._render()
-	var cost: String = panel.find_child("ForgeAdvancedDetails",true,false).text
+	var cost: String = panel.find_child("ForgeCost",true,false).text
 	check(cost.contains("158") and (cost.contains("基础补差") or cost.contains("Base makeup")) and (cost.contains("重锻补差") or cost.contains("Reroll makeup")),"inherit full fee/base/reroll breakdown")
 	await press()
 	check(Game.profile.equipment["inherit-source"].enhancement_rank == 0 and Game.profile.equipment["inherit-target"].enhancement_rank == 2,"inherit source cleared target improved")
@@ -182,7 +166,7 @@ func _run() -> void:
 	Game.reload_profile()
 	check(not Game.profile.equipment.has("forge-target") and Game.profile.equipment["inherit-source"].enhancement_rank == 0,"forging and recycling survive reload")
 	var capped := Game.profile.duplicate(true)
-	for pair in [["head","EQ14"],["hands","EQ34"],["ring","EQ100"],["charm","EQ54"]]:
+	for pair in [["head","EQ13"],["hands","EQ33"],["ring","EQ98"],["charm","EQ53"]]:
 		var record := item("cap-"+pair[0],pair[1],"gold")
 		var affixes: Array = [{"type":"resource_gain_bonus","u":0 if pair[0] == "head" else 100}]
 		for key: String in Instances.legal_affixes(pair[1],"physical"):
@@ -199,8 +183,8 @@ func _run() -> void:
 	check(Game.profile.permanent_gold == gold,"capped quote never charges")
 	check(panel.find_child("ForgeIntegerPreview",true,false).text.contains("30.0%"),"capped resource-gain percentage is not truncated to integer zero")
 	var flat_profile: Dictionary = Game.profile.duplicate(true)
-	var flat := item("flat-preview","EQ04","green",1)
-	var other: String = Instances.legal_affixes("EQ04","physical").filter(func(key: String) -> bool: return key != "attack")[0]
+	var flat := item("flat-preview","EQ03","green",1)
+	var other: String = Instances.legal_affixes("EQ03","physical").filter(func(key: String) -> bool: return key != "attack")[0]
 	flat.affix_type_and_quantile = [{"type":"attack","u":100},{"type":other,"u":0}]
 	flat_profile.equipment["flat-preview"] = flat
 	check(Game._commit_profile(flat_profile),"flat affix preview fixture")

@@ -74,7 +74,7 @@ func restore_same_room(state: Dictionary) -> bool:
 			return false
 		if not is_finite(float(state[key])) or float(state[key]) < 0.0:
 			return false
-	if not state.get("count") is int or not state.get("seen") is Dictionary or not state.get("reservations") is Dictionary or str(state.get("last_kind", "")) not in ["", "basic", "skill", "q", "secondary", "f", "ultimate"]:
+	if not state.get("count") is int or not state.get("seen") is Dictionary or not state.get("reservations") is Dictionary or str(state.get("last_kind", "")) not in ["", "basic", "skill"]:
 		return false
 	if state.get("focus") != null and not state.focus is WeakRef:
 		return false
@@ -167,7 +167,7 @@ func record_hit(target: Node2D, source: StringName, context: Dictionary) -> void
 			_focus_remaining = FOCUS_LIFETIME
 			if _count == 2:
 				_feedback("mark", target.position)
-	elif _hero == "CH03" and basic and Game.run.ruleset_version() != Numbers.V2:
+	elif _hero == "CH03" and basic:
 		_record_rhythm("basic")
 
 ## Call once after validation and resource payment, using the committed cast's
@@ -181,20 +181,6 @@ func skill_committed(slot: String, cast_id: int) -> void:
 	_seen[root] = _clock
 	_trim(_seen)
 	if _cooldown > 0.0:
-		return
-	if Game.run.ruleset_version() == Numbers.V2:
-		# Spell weaving rewards deliberate spell changes. Basics remain optional,
-		# and a persistent field or multiple missiles cannot enter this cast ledger.
-		_record_rhythm(slot)
-		if _count >= 3:
-			var definition: Dictionary = ContentRegistry.hero(_hero).get("passive",{})
-			_count = 0
-			_cooldown = float(definition.get("icd_v2",1.2))
-			owner_player.restore_class_resource(float(Numbers.scale(float(definition.get("resource_gain_v2",10)),Numbers.V2)))
-			owner_player.cooldowns.q = maxf(0.0, float(owner_player.cooldowns.q) - float(definition.get("q_cooldown_refund_v2",.6)))
-			owner_player.charge_nearest_resonance(owner_player.position, 260.0)
-			if is_instance_valid(owner_player.room):
-				owner_player.room.add_ring(owner_player.position, Color("78d9d1"), 38.0, 0.28)
 		return
 	if _count >= 3:
 		_count = 0
@@ -214,8 +200,6 @@ func snapshot() -> Dictionary:
 	var hint: String = ""
 	var tint := Color("eabb78")
 	var max_count: int = 3
-	var spell_refund: int = Numbers.integer(float(Numbers.scale(float(definition.get("resource_gain_v2",10)),Numbers.V2))*float(owner_player.resource_gain_multiplier())) if _hero == "CH03" and is_instance_valid(owner_player) else 0
-	var q_refund: float = float(definition.get("q_cooldown_refund_v2",.6))
 	if _hero == "CH01":
 		var momentum: int = int(owner_player.break_stacks) if is_instance_valid(owner_player) else 0
 		hint = "有效普攻 %d/3 · 破势 %d/3 · 满势 W 免怒" % [_count, momentum]
@@ -225,13 +209,10 @@ func snapshot() -> Dictionary:
 		hint = "弱点就绪 · 下次普攻 / 技能 +65%攻击" if _count == 2 else "同目标命中 %d/2 · 第三击 / 技能破弱点" % _count
 	else:
 		tint = Color("78d9d1")
-		if Game.run != null and Game.run.ruleset_version() == Numbers.V2:
-			hint = "交替施法 %d/3 · 第三次回%d法力 / Q减%.1f秒" % [_count,spell_refund,q_refund]
-		else:
-			hint = "共鸣已满 · 下次技能回 %d 法力" % int(Numbers.scale(8.0, Game.run.ruleset_version() if Game.run != null else Numbers.LEGACY)) if _count >= 3 else "普攻 / 技能交替 · 共鸣 %d/3" % _count
+		hint = "共鸣已满 · 下次技能回 %d 法力" % int(Numbers.scale(8.0, Game.run.ruleset_version() if Game.run != null else Numbers.LEGACY)) if _count >= 3 else "普攻 / 技能交替 · 共鸣 %d/3" % _count
 	if _cooldown > 0.0:
 		hint = "被动冷却 %.1f 秒" % _cooldown
-	return {"name":str(definition.get("name", "职业被动")), "description":str(definition.get("description", "")), "current":_count, "max":max_count, "hint":hint, "color":tint, "icd":_cooldown, "cooldown":_cooldown, "ready":_cooldown <= 0.0 and ((_hero == "CH02" and _count == 2) or (_hero == "CH03" and _count >= 3)), "focus_remaining":_focus_remaining, "rhythm_remaining":_rhythm_remaining,"resource_refund":spell_refund,"q_cooldown_refund":q_refund}
+	return {"name":str(definition.get("name", "职业被动")), "description":str(definition.get("description", "")), "current":_count, "max":max_count, "hint":hint, "color":tint, "icd":_cooldown, "cooldown":_cooldown, "ready":_cooldown <= 0.0 and ((_hero == "CH02" and _count == 2) or (_hero == "CH03" and _count >= 3)), "focus_remaining":_focus_remaining, "rhythm_remaining":_rhythm_remaining}
 
 func _record_rhythm(kind: String) -> void:
 	if _cooldown > 0.0 or kind == _last_kind:

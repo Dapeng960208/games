@@ -49,11 +49,6 @@ static func unlock_hint(hero_id: String, slot: String) -> String:
 		"CH03:f":["先布晶、用 {q} 充能，再按 {f} 新星引爆。","Place crystals, charge with {q}, then detonate with the {f} nova."],
 		"CH03:ultimate":["{ultimate} 领域持续寒冷控制并充满法晶，接 {f} 引爆。","{ultimate} chills through field ticks and fills crystals; follow with {f}."]}
 	var pair: Array = hints.get(hero_id+":"+slot,["",""])
-	var v2: bool = Game.run.ruleset_version() == 2 if Game.run != null else int(Game.profile.get("ruleset_version",1)) == 2
-	if v2:
-		if hero_id == "CH02" and slot == "f": pair = ["{f} 投向怪群，0.5秒后爆炸并标记。","Throw {f} into a pack; it explodes and marks after 0.5 s."]
-		elif hero_id == "CH03":
-			pair = {"secondary":["{secondary} 落点立即晶爆，留下的法晶自动攻击。","{secondary} blasts immediately and leaves an auto-attacking crystal."],"f":["被近身按 {f}：立即伤害并减速，不需要先放法晶。","Press {f} when surrounded: damage and slow, with no crystal setup."],"ultimate":["把 {ultimate} 放进怪群：持续伤害与减速，无需前置。","Place {ultimate} on a pack: repeated damage and slows, no setup."]}.get(slot,pair)
 	var hint: String = str(pair[1 if Words.locale == "en" else 0])
 	for key: String in SKILLS: hint = hint.replace("{"+key+"}",key_for(key))
 	return hint

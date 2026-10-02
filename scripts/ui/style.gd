@@ -1,20 +1,20 @@
 class_name MineStyle
 extends RefCounted
 
-## Ivory atlas: warm porcelain, evergreen ink, teal enamel and antique gold.
-const BG := Color("f4f1e9")
-const PANEL := Color("faf8f1")
-const RAISED := Color("fffdf7")
+## Sunlit expedition journal: warm paper, plum ink, teal enamel and copper.
+const BG := Color("f5ecd6")
+const PANEL := Color("fff3d7")
+const RAISED := Color("fff9ea")
 const PAPER := PANEL
 const PAPER_LIGHT := RAISED
-const INK := Color("34382f")
-const MUTED := Color("817967")
-const AMBER := Color("987442")
-const CYAN := Color("258b87")
-const RED := Color("bb6254")
+const INK := Color("392843")
+const MUTED := Color("766474")
+const AMBER := Color("a66a2e")
+const CYAN := Color("257f83")
+const RED := Color("e6664f")
 const GREEN := Color("4b8554")
-const COPPER := Color("c8b58e")
-const TRACK := Color("e4ddce")
+const COPPER := Color("c49b60")
+const TRACK := Color("cbb89e")
 static var parchment_texture: Texture2D
 const ButtonSkin := preload("res://scripts/ui/button_skin.gd")
 
@@ -25,7 +25,7 @@ static func box(color: Color, border: Color = COPPER, width: int = 1) -> StyleBo
 	b.set_border_width_all(width)
 	b.set_corner_radius_all(8)
 	b.corner_detail = 6
-	b.shadow_color = Color(0.21,0.23,0.18,0.08)
+	b.shadow_color = Color(0.24,0.16,0.22,0.13)
 	b.shadow_size = 3 if color.a > 0.9 else 0
 	b.shadow_offset = Vector2(0,2)
 	b.content_margin_left = 18
@@ -81,37 +81,31 @@ static func make_theme() -> Theme:
 	result.set_stylebox("grabber", "HScrollBar", rail_box(COPPER))
 	result.set_stylebox("grabber_highlight", "HScrollBar", rail_box(AMBER))
 	result.set_color("font_color", "TooltipLabel", INK)
-	for state in ["normal", "focus", "read_only"]:
-		result.set_stylebox(state, "LineEdit", box(RAISED, CYAN if state == "focus" else Color("ddd4c1")))
-	result.set_color("font_color", "LineEdit", INK)
-	result.set_color("font_placeholder_color", "LineEdit", MUTED)
-	result.set_color("caret_color", "LineEdit", CYAN)
-	result.set_color("selection_color", "LineEdit", Color(CYAN,0.22))
 	return result
 
 static func paper_box() -> StyleBox:
-	var paper := box(PANEL, Color("ddd4c1"), 1)
-	paper.set_corner_radius_all(10)
-	paper.shadow_color = Color(0.22,0.23,0.17,0.12)
-	paper.shadow_size = 5
-	paper.shadow_offset = Vector2(0,3)
-	return paper
-
-## Quiet tab and divider helpers shared by every atlas page.
-static func tab(node: Button, active: bool = false) -> void:
-	button_skin(node, "nav_active" if active else "nav")
-	node.add_theme_color_override("font_color", CYAN if active else MUTED)
-	node.add_theme_color_override("font_hover_color", CYAN)
-	node.add_theme_color_override("font_pressed_color", CYAN)
-
-static func divider(parent: Control, at: Vector2, width: float) -> Control:
-	var line := ColorRect.new()
-	line.position = at
-	line.size = Vector2(width,1)
-	line.color = Color(COPPER,0.30)
-	line.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	parent.add_child(line)
-	return line
+	if parchment_texture == null and ResourceLoader.exists("res://assets/generated/ui/storybook_parchment_v1.png"):
+		var source: Texture2D = load("res://assets/generated/ui/storybook_parchment_v1.png")
+		var source_image := source.get_image()
+		if source_image != null:
+			if source_image.is_compressed() and source_image.decompress() != OK:
+				return box(PANEL)
+			# Keep the fine hand-painted edge at sixteen canvas pixels on any card.
+			source_image.resize(512,256,Image.INTERPOLATE_LANCZOS)
+			parchment_texture = ImageTexture.create_from_image(source_image)
+	if parchment_texture == null:
+		return box(PANEL)
+	var parchment := StyleBoxTexture.new()
+	parchment.texture = parchment_texture
+	parchment.texture_margin_left = 16
+	parchment.texture_margin_right = 16
+	parchment.texture_margin_top = 16
+	parchment.texture_margin_bottom = 16
+	parchment.content_margin_left = 18
+	parchment.content_margin_right = 18
+	parchment.content_margin_top = 12
+	parchment.content_margin_bottom = 12
+	return parchment
 
 static func rail_box(color: Color) -> StyleBoxFlat:
 	var rail := StyleBoxFlat.new()

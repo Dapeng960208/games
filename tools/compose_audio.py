@@ -24,8 +24,6 @@ OUT = ROOT / "assets" / "music"
 
 SCORES = {
     "camp": (82, "余烬工坊 / Ember Workshop", "felt keys, wooden mallets, warm suspended chords", 1101),
-    "craft": (88, "巧手织光 / Hands of Light", "felt arpeggios, wooden mallets, airy glass answers", 5505),
-    "forge": (104, "砧上星火 / Sparks on the Anvil", "measured low pulse, resonant mallets, restrained metallic answers", 6606),
     "explore": (96, "潮下回声 / Below the Tide", "muted strings, glass replies, half-time pulse", 2202),
     "combat": (124, "钢与回响 / Steel and Echo", "syncopated bass, brushed machine rhythm, resonant lead", 3303),
     "boss": (136, "深渊引擎 / Abyss Engine", "low ostinato, layered drums, brass and glass counterpoint", 4404),
@@ -124,7 +122,7 @@ def compose(context: str) -> tuple[array, dict]:
         chord = CHORDS[(bar // 2) % 4]
         phrase = bar // 4
         # Sustained harmony is quieter and less dense during combat.
-        pad_gain = .070 if context in ("camp", "craft", "explore") else .037
+        pad_gain = .070 if context in ("camp", "explore") else .037
         if bar % 2 == 0:
             for j, pitch in enumerate(chord):
                 note("pad", pitch + 12, at, 9.0, pad_gain, (j - 1.5) * .36)
@@ -134,23 +132,6 @@ def compose(context: str) -> tuple[array, dict]:
                 note("felt", chord[j] + 12, at + j * .75, 2.6, .085, -.35 + j * .22, True)
             if bar % 2:
                 note("wood", chord[2] + 24, at + 2.5, 1.1, .06, .4)
-        elif context == "craft":
-            note("felt", chord[0], at, 3.8, .12, -.15)
-            for j, offset in enumerate((0, .75, 1.5, 2.5, 3.25)):
-                note("wood", chord[j % 4] + 12, at + offset, 1.65, .075, -.4 + (j % 4) * .25, True)
-            if bar % 2:
-                note("glass", chord[2] + 24, at + 1.5, 2.0, .045, .32, True)
-        elif context == "forge":
-            for offset in (0, 2):
-                note("bass", chord[0] - 12, at + offset, 1.15, .13)
-                note("tom", 43, at + offset, .5, .06, -.15)
-            for j, offset in enumerate((.5, 1.5, 2.75, 3.5)):
-                note("wood", chord[j] + 12, at + offset, 1.25, .09, -.3 + j * .2, True)
-            if bar % 2:
-                for pitch in chord[1:]:
-                    note("glass", pitch + 12, at + 1, 2.3, .042, .25, True)
-            if bar % 4 == 3:
-                note("hat", 60, at + 3.5, .2, .018, -.25)
         elif context == "explore":
             note("bass", chord[0] - 12, at, 1.7, .10)
             for j, offset in enumerate((.5, 2, 3.25)):
@@ -187,9 +168,9 @@ def compose(context: str) -> tuple[array, dict]:
                     pitch += 5 if j % 2 == 0 else -2
                 elif phrase == 3 and j == len(motif) - 1:
                     pitch = 74  # Resolve the shared signature back to D.
-                kind = "felt" if context in ("camp", "craft") else "glass"
-                note(kind, pitch - (12 if context in ("camp", "craft", "forge") else 0), at + offset,
-                     duration + .6, .090 if context in ("craft", "forge") else .105 if context in ("camp", "explore") else .13, .15, True)
+                kind = "felt" if context == "camp" else "glass"
+                note(kind, pitch - (12 if context == "camp" else 0), at + offset,
+                     duration + .6, .105 if context in ("camp", "explore") else .13, .15, True)
         elif bar % 4 == 3:
             note("wood" if context == "camp" else "glass", chord[-1] + 12, at + 2.5, 1.5, .062, -.35, True)
 
@@ -253,7 +234,7 @@ def main():
     args = parser.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     metadata = {"license": "CC0-1.0", "origin": "Original composition and oscillator/noise synthesis; no external recordings or samples.",
-                "generator": "tools/compose_audio.py", "generator_version": 2, "tracks": []}
+                "generator": "tools/compose_audio.py", "generator_version": 1, "tracks": []}
     preview = array("h")
     for context in SCORES:
         if args.verify_only:

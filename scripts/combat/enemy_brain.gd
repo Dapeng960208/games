@@ -3,22 +3,18 @@ extends RefCounted
 ## Deterministic enemy decisions. Damage, movement attacks and room objects belong
 ## to EnemySkillRuntime; this class never changes a health pool or actor position.
 
-const WarningTiming = preload("res://scripts/combat/enemy_warning_timing.gd")
-const Abilities = preload("res://scripts/combat/enemy_ability_catalog.gd")
-
 const SPAWN_GRACE: float = 0.8
 const MIN_TELL: float = 0.55
 const MIN_AREA_TELL: float = 0.8
 const MIN_LOCK: float = 0.4
 const AREA_BEHAVIORS: Array[String] = ["triple_acid_lob", "visible_burrow_strike", "spring_jump_ring", "limited_molten_stream", "cold_mist_patrol", "safe_disarm_ring"]
-const RANGED_BEHAVIORS: Array[String] = ["locked_snipe_relocate", "triple_acid_lob", "rail_slide_pierce", "single_refraction_beam", "two_breakable_slow_lines", "resin_fork_weaver", "glasswing_return_sting", "seed_satchel_bomber", "twin_axe_returner", "net_snare_hunter", "fault_hammer_ogre", "oil_cask_ogre", "boulder_step_ogre"]
-const SUPPORT_BEHAVIORS: Array[String] = ["consume_corpse_haste", "budgeted_pod_summon", "limited_heal_pulse", "visible_scan_mark", "finite_shield_network", "funeral_bell_caller", "pumpkin_stitch_mender", "war_drum_marshal"]
+const RANGED_BEHAVIORS: Array[String] = ["locked_snipe_relocate", "triple_acid_lob", "rail_slide_pierce", "single_refraction_beam", "two_breakable_slow_lines"]
+const SUPPORT_BEHAVIORS: Array[String] = ["consume_corpse_haste", "budgeted_pod_summon", "limited_heal_pulse", "visible_scan_mark", "finite_shield_network"]
 
 var profile: Dictionary = {}
 var parameters: Dictionary = {}
 var behavior_id: String = "pick_sweep"
 var mechanic_tier: int = 1
-var selected_difficulty: int = 0
 var phase: StringName = &"emerging"
 var age: float = 0.0
 var cycle: int = 0
@@ -43,8 +39,7 @@ var _cover_ready_age: float = 0.0
 var _locked_actor_position := Vector2.ZERO
 
 func configure(definition: Dictionary) -> void:
-	profile = Abilities.apply(definition, int(definition.get("difficulty", definition.get("difficulty_mechanics", {}).get("difficulty", 0))))
-	selected_difficulty = int(profile.get("difficulty_mechanics", {}).get("difficulty", 0))
+	profile = definition.duplicate(true)
 	parameters = profile.get("attack_parameters", {}).duplicate(true)
 	behavior_id = str(profile.get("behavior_id", "pick_sweep"))
 	mechanic_tier = clampi(int(profile.get("mechanic_tier", 1)), 1, 4)
@@ -71,22 +66,7 @@ func current_telegraph() -> Dictionary:
 	result["phase"] = str(phase)
 	result["locked"] = phase == &"locked"
 	result["duration"] = _phase_duration
-	result["remaining"] = _remaining
 	result["progress"] = clampf(1.0 - _remaining / maxf(0.001, _phase_duration), 0.0, 1.0)
-	return result
-
-func current_skill() -> Dictionary:
-	# HUD uses the same command through aim, lock, release and recovery. It
-	# never rebuilds geometry or infers an ability from an animation pose.
-	if phase in [&"telegraph", &"locked"]:
-		return current_telegraph()
-	if _telegraph.is_empty() or phase not in [&"execute", &"recovery"]:
-		return {}
-	var result: Dictionary = _telegraph.duplicate(true)
-	result["phase"] = str(phase)
-	result["locked"] = phase == &"execute"
-	result["progress"] = clampf(1.0 - _remaining / maxf(0.001, _phase_duration), 0.0, 1.0)
-	result["remaining"] = _remaining
 	return result
 
 func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
@@ -109,12 +89,6 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 	_steal_cooldown = maxf(0.0, _steal_cooldown - step)
 	if behavior_id in ["steal_quest_object", "steal_scene_lamp"] and not _carrying(actor):
 		_carried_damage = 0.0
-	for interruption: String in ["enemy_hazard_broken", "enemy_guard_broken"]:
-		if actor.has_meta(interruption):
-			actor.remove_meta(interruption)
-			_sequence.clear()
-			_telegraph.clear()
-			_set_phase(&"recovery", maxf(1.4, _recovery_seconds()))
 	if actor.has_meta("enemy_pod_broken"):
 		actor.remove_meta("enemy_pod_broken")
 		_sequence.clear()
@@ -223,19 +197,14 @@ func on_damaged(actor: Node2D, context: Dictionary = {}) -> void:
 				_set_phase(&"recovery", maxf(1.0, _recovery_seconds()))
 				_publish(actor)
 				return
-	if str(_telegraph.get("kind", "")) == "counter" and phase == &"execute":
-		if bool(_telegraph.get("front_hits_only", false)):
-			var incoming: Vector2 = context.get("direction", Vector2.ZERO)
-			var facing: Vector2 = _telegraph.get("direction", Vector2.RIGHT)
-			if str(context.get("kind", "")) not in ["primary", "child"] or incoming.is_zero_approx() or incoming.normalized().dot(facing) > -cos(float(_telegraph.get("angle", 1.7)) * 0.5):
-				return
+	if behavior_id == "bounded_counter_stance" and phase == &"execute":
 		var cap: int = clampi(int(parameters.get("counter_limit", 2)), 1, 4)
 		_counter_hits = mini(_counter_hits + 1, cap)
 		if _counter_hits >= cap:
 			_remaining = minf(_remaining, 0.1)
 		return
 	# Readable support casts can be interrupted by ordinary direct attacks.
-	if (behavior_id in ["limited_heal_pulse", "budgeted_pod_summon", "finite_shield_network", "funeral_bell_caller", "pumpkin_stitch_mender", "war_drum_marshal"] or bool(_telegraph.get("interruptible", false))) and phase in [&"telegraph", &"locked"] and bool(context.get("interrupt", true)):
+	if behavior_id in ["limited_heal_pulse", "budgeted_pod_summon", "finite_shield_network"] and phase in [&"telegraph", &"locked"] and bool(context.get("interrupt", true)):
 		_sequence.clear()
 		_telegraph.clear()
 		_set_phase(&"recovery", maxf(0.9, _recovery_seconds()))
@@ -279,11 +248,8 @@ func _range() -> float:
 func _radius() -> float:
 	return maxf(12.0, float(parameters.get("radius", 64.0)))
 
-func _base_lock_seconds() -> float:
-	return maxf(MIN_LOCK, float(parameters.get("locked_line_delay_seconds", profile.get("locked_line_delay_seconds", 0.0))))
-
 func _lock_seconds() -> float:
-	return float(WarningTiming.ordinary(MIN_TELL,_base_lock_seconds(),selected_difficulty,{},int(profile.get("ruleset_version",1))).lock_seconds)
+	return maxf(MIN_LOCK, float(parameters.get("locked_line_delay_seconds", profile.get("locked_line_delay_seconds", 0.0))))
 
 func _recovery_seconds() -> float:
 	return maxf(0.45, maxf(float(parameters.get("recovery_seconds", profile.get("recovery_seconds", 0.9))), float(parameters.get("exposure_seconds", 0.0))))
@@ -427,8 +393,6 @@ func _begin_cycle(actor: Node2D, victim: Node2D) -> void:
 	_cycle_direction = actor.position.direction_to(_cycle_target)
 	if _cycle_direction.length_squared() < 0.01:
 		_cycle_direction = Vector2.RIGHT
-	if actor.has_meta("enemy_pull_connected"):
-		actor.remove_meta("enemy_pull_connected")
 	_sequence = _build_sequence()
 	_stage = 0
 	_counter_hits = 0
@@ -439,49 +403,29 @@ func _begin_stage(actor: Node2D, victim: Node2D) -> void:
 		_set_phase(&"recovery", _recovery_seconds())
 		return
 	_telegraph = _sequence[_stage].duplicate(true)
-	if (bool(_telegraph.get("requires_counter_hit", false)) and _counter_hits == 0) or (bool(_telegraph.get("requires_pull_hit", false)) and not bool(actor.get_meta("enemy_pull_connected", false))):
-		_sequence.resize(_stage + 1)
-		_telegraph.clear()
-		_set_phase(&"recovery", maxf(1.2, _recovery_seconds()))
-		return
-	if str(_telegraph.get("kind", "")) == "melee" and not bool(_telegraph.get("rear_followthrough", false)) and not _stage_reachable(actor, victim, _telegraph):
+	if str(_telegraph.get("kind", "")) == "melee" and not _stage_reachable(actor, victim, _telegraph):
 		_telegraph.clear()
 		_set_phase(&"approach", 0.0)
 		return
 	_telegraph["stage"] = _stage
 	_telegraph["stage_count"] = _sequence.size()
-	var timing: Dictionary = timing_for_command(_telegraph, _stage)
-	var tell: float = float(timing.tell_seconds)
+	var area: bool = AREA_BEHAVIORS.has(behavior_id) or _telegraph.get("kind", "") == "ground_area" or _telegraph.get("landing_shape", "") in ["circle", "ring"]
+	var tell: float = maxf(MIN_AREA_TELL if area else MIN_TELL, float(parameters.get("tell_seconds", profile.get("minimum_tell_seconds", MIN_TELL))))
+	if behavior_id == "safe_disarm_ring":
+		tell = maxf(tell, float(parameters.get("fuse_seconds", 1.3)))
+	if _stage > 0:
+		tell = maxf(tell, float(parameters.get("hazard_stagger_seconds", 0.0)))
 	_telegraph["telegraph_seconds"] = tell
 	if RANGED_BEHAVIORS.has(behavior_id):
 		var runtime: Variant = _room_property(_room(actor), "enemy_skills")
 		if runtime is Object and runtime.has_method("consume_scan_mark"):
-			tell = maxf(float(timing.minimum_tell_seconds), tell * float(runtime.call("consume_scan_mark", actor)))
+			tell = maxf(MIN_AREA_TELL if area else MIN_TELL, tell * float(runtime.call("consume_scan_mark", actor)))
 			_telegraph["telegraph_seconds"] = tell
-	_telegraph["locked_seconds"] = float(timing.lock_seconds)
-	_telegraph["warning_timing"] = timing.duplicate(true)
-	_telegraph["warning_timing"]["tell_seconds"] = tell
+	_telegraph["locked_seconds"] = _lock_seconds()
 	_set_phase(&"telegraph", tell)
 	if behavior_id == "shadow_arc_leap":
 		actor.set_meta("enemy_shadow_stealth", false)
 	_refresh_geometry(actor, victim)
-
-func timing_for_command(command: Dictionary, stage_index: int = 0) -> Dictionary:
-	# Shared by live casting, codex and exported design tables. Scan marks may
-	# reduce the tracking portion only, always preserving these safety floors.
-	var area: bool = AREA_BEHAVIORS.has(behavior_id) or command.get("kind", "") == "ground_area" or command.get("landing_shape", "") in ["circle", "ring"]
-	var tell: float = maxf(MIN_AREA_TELL if area else MIN_TELL, float(parameters.get("tell_seconds", profile.get("minimum_tell_seconds", MIN_TELL))))
-	if behavior_id == "safe_disarm_ring":
-		tell = maxf(tell, float(parameters.get("fuse_seconds", 1.3)))
-	if stage_index > 0:
-		tell = maxf(tell, float(parameters.get("hazard_stagger_seconds", 0.0)))
-	var warning: Dictionary = command.duplicate(true)
-	warning["warning_area"] = area
-	warning["bomber"] = behavior_id == "safe_disarm_ring"
-	var result: Dictionary = WarningTiming.ordinary(tell,_base_lock_seconds(),selected_difficulty,warning,int(profile.get("ruleset_version",1)))
-	result["cooldown"] = _recovery_seconds()
-	result["area"] = area
-	return result
 
 func _victim_radius(actor: Node2D, victim: Node2D) -> float:
 	var radius: Variant = _room_property(victim, "collision_radius")
@@ -533,9 +477,7 @@ func _refresh_geometry(actor: Node2D, victim: Node2D) -> void:
 	var length: float = float(_telegraph.get("range", _range()))
 	var kind: String = str(_telegraph.get("kind", "melee"))
 	if kind == "charge":
-		var travel: float = float(_sequence[_stage].get("travel_distance", length)) if bool(_telegraph.get("retreat", false)) else minf(origin.distance_to(target), float(_sequence[_stage].get("travel_distance", length)))
-		if bool(_telegraph.get("retreat", false)):
-			direction = -direction
+		var travel: float = minf(origin.distance_to(target), float(_sequence[_stage].get("travel_distance", length)))
 		_telegraph["travel_distance"] = travel
 		_telegraph["duration"] = maxf(0.1, travel / maxf(50.0, float(_telegraph.get("speed", 290.0))))
 		target = origin + direction * travel
@@ -632,9 +574,6 @@ static func normalize_geometry(command: Dictionary) -> void:
 			for point: Vector2 in base_path:
 				path.append(origin + (point - origin).rotated(deg_to_rad(angle)))
 			paths.append(path)
-		if bool(command.get("returning", false)):
-			for path: Array in paths:
-				path.append(path[0])
 		command["paths"] = paths
 	if shape == "ring" or str(command.get("landing_shape", "")) == "ring":
 		var gap: float = deg_to_rad(clampf(float(command.get("ring_gap_degrees", 0.0)), 0.0, 180.0))
@@ -644,11 +583,6 @@ static func normalize_geometry(command: Dictionary) -> void:
 
 func _execute(actor: Node2D) -> void:
 	if not _alive(actor) or _telegraph.is_empty():
-		return
-	if (bool(_telegraph.get("requires_counter_hit", false)) and _counter_hits == 0) or (bool(_telegraph.get("requires_pull_hit", false)) and not bool(actor.get_meta("enemy_pull_connected", false))):
-		_sequence.resize(_stage + 1)
-		_telegraph.clear()
-		_set_phase(&"recovery", maxf(1.2, _recovery_seconds()))
 		return
 	var command: Dictionary = _telegraph.duplicate(true)
 	command["delay"] = 0.0
@@ -753,7 +687,7 @@ func _support(kind: String, options: Dictionary = {}) -> Dictionary:
 		result[key] = options[key]
 	return result
 
-func _build_sequence(include_difficulty: bool = true) -> Array[Dictionary]:
+func _build_sequence() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	var combos: int = clampi(int(parameters.get("combo_count", 1)), 1, 3)
 	var angles: Array = parameters.get("combo_angles", [0.0])
@@ -880,76 +814,10 @@ func _build_sequence(include_difficulty: bool = true) -> Array[Dictionary]:
 			_append_swings(result, combos, {"angle": deg_to_rad(105.0), "range": 70.0, "fixed_cycle_direction": true})
 		"safe_disarm_ring":
 			result.append(_hazard({"shape": "ring", "center": "self", "duration": 0.0, "radius": _radius(), "inner_radius": 0.0, "ring_gap_degrees": float(parameters.get("ring_gap_degrees", 0.0)), "single_use": true, "cancel_on_death": true, "status": _status("shock")}))
-		"resin_fork_weaver":
-			for offset: float in [-24.0,24.0]:
-				result.append(_hazard({"shape":"line","range":230.0,"radius":10.0,"aim_offset":offset,"duration":3.0,"breakable":true,"anchor_health":16.0,"damage_multiplier":0.0,"status":_status("slow",0.7)}))
-			result.append(_skill("pull",{"shape":"line","range":220.0,"radius":14.0,"pull_distance":48.0,"damage_multiplier":0.5}))
-		"glasswing_return_sting":
-			result.append(_projectile({"count":1,"range":300.0,"radius":6.0,"speed":220.0,"returning":true,"pierce":true,"status":_status("corrosion",1.2)}))
-		"hive_echo_drummer":
-			result.append(_hazard({"shape":"circle","center":"self","radius":67.0,"duration":0.0,"damage_multiplier":0.75}))
-			result.append(_hazard({"shape":"ring","center":"self","radius":132.0,"inner_radius":65.0,"duration":0.0,"track":false,"damage_multiplier":0.8}))
-		"lantern_lure_keeper":
-			result.append(_skill("pull",{"shape":"cone","range":190.0,"angle":0.65,"pull_distance":50.0,"damage_multiplier":0.45}))
-			result.append(_hazard({"shape":"ring","center":"self","radius":115.0,"inner_radius":24.0,"ring_gap_degrees":90.0,"aim_offset":90.0,"duration":0.0}))
-		"seed_satchel_bomber":
-			result.append(_hazard({"shape":"circle","range":260.0,"radius":29.0,"target_offsets":[[0,-61],[0,61]],"lob":true,"duration":2.5,"status":_status("slow",0.7),"damage_multiplier":0.55}))
-		"coffin_lid_bulwark":
-			result.append(_skill("guard",{"mode":"screen","charges":2,"angle":1.65,"duration":4.0,"break_exposes_owner":true,"damage_multiplier":0.0}))
-			result.append(_skill("pull",{"shape":"cone","angle":1.9,"range":95.0,"repel":true,"pull_distance":55.0,"damage_multiplier":0.8}))
-		"funeral_bell_caller":
-			result.append(_support("haste",{"max_targets":2,"multiplier":1.2,"duration":3.0,"interruptible":true,"damage_multiplier":0.0}))
-			result.append(_skill("melee",{"shape":"cone","range":130.0,"angle":1.5,"status":_status("slow",1.0),"damage_multiplier":0.6}))
-		"straw_effigy_switcher":
-			result.append(_skill("decoy",{"count":1,"duration":3.5,"solid_owner_ring":true,"damage_multiplier":0.0}))
-			result.append(_charge("arc",{"landing_only":true,"landing_shape":"circle","travel_distance":150.0,"arc_angle":1.0 if cycle%2 == 0 else -1.0,"radius":35.0,"speed":190.0}))
-		"pumpkin_stitch_mender":
-			if _heal_pulses < 2:
-				result.append(_support("heal",{"max_targets":1,"heal_ratio":0.12,"max_receives":2,"exclude_self":true,"exclude_support_recipients":true,"interruptible":true,"damage_multiplier":0.0}))
-			else:
-				result.append(_projectile({"count":1,"range":210.0,"damage_multiplier":0.55,"radius":5.0}))
-			result.append(_charge("line",{"retreat":true,"travel_distance":72.0,"speed":150.0,"damage_multiplier":0.0,"radius":12.0}))
-		"twin_axe_returner":
-			result.append(_projectile({"count":2,"projectile_angles":[-17.0,17.0],"range":280.0,"radius":9.0,"speed":210.0,"returning":true,"pierce":true,"damage_multiplier":0.65}))
-		"rock_chain_dragger":
-			result.append(_skill("pull",{"shape":"line","range":210.0,"radius":13.0,"pull_distance":80.0,"damage_multiplier":0.4,"record_pull_hit":true}))
-			result.append(_skill("melee",{"shape":"cone","range":135.0,"angle":0.65,"damage_multiplier":1.15,"requires_pull_hit":true}))
-		"war_drum_marshal":
-			result.append(_support("haste",{"max_targets":2,"multiplier":1.24,"duration":3.2,"interruptible":true,"damage_multiplier":0.0}))
-			result.append(_hazard({"shape":"circle","center":"self","radius":94.0,"duration":0.0,"damage_multiplier":0.75}))
-		"tusk_lane_breaker":
-			result.append(_charge("line",{"travel_distance":240.0,"radius":25.0,"speed":275.0,"wall_stun_seconds":1.5}))
-			result.append(_skill("melee",{"range":92.0,"angle":2.2,"aim_offset":180.0,"fixed_cycle_direction":true,"rear_followthrough":true}))
-		"net_snare_hunter":
-			result.append(_hazard({"shape":"line","range":245.0,"radius":13.0,"breakable":true,"break_interrupts_owner":true,"anchor_health":18.0,"duration":4.0,"damage_multiplier":0.0,"status":_status("slow",0.9)}))
-			result.append(_projectile({"count":1,"range":260.0,"radius":5.0,"speed":360.0,"damage_multiplier":0.85}))
-		"slab_counter_ogre":
-			result.append(_skill("counter",{"duration":1.25,"hit_cap":2,"angle":1.7,"front_hits_only":true,"auto_release":false,"damage_multiplier":0.0}))
-			result.append(_skill("pull",{"shape":"cone","range":112.0,"angle":1.7,"repel":true,"pull_distance":62.0,"requires_counter_hit":true,"damage_multiplier":1.0}))
-		"fault_hammer_ogre":
-			for offset: float in [0.0,90.0]:
-				result.append(_hazard({"shape":"line","range":210.0,"radius":25.0,"aim_offset":offset,"fixed_cycle_direction":true,"track":false,"duration":0.7,"tick_interval":0.7,"damage_multiplier":0.8}))
-		"oil_cask_ogre":
-			result.append(_hazard({"shape":"circle","range":230.0,"radius":48.0,"duration":3.5,"damage_multiplier":0.0,"status":_status("slow",0.8)}))
-			result.append(_hazard({"shape":"cone","range":190.0,"angle":0.95,"duration":0.65,"tick_interval":0.65,"status":_status("burn",1.4),"damage_multiplier":0.75}))
-		"boulder_step_ogre":
-			result.append(_hazard({"shape":"ring","center":"self","radius":145.0,"inner_radius":66.0,"duration":0.0,"damage_multiplier":0.8}))
-			result.append(_projectile({"count":1,"range":230.0,"radius":12.0,"speed":200.0,"damage_multiplier":0.85}))
 		_:
 			result.append(_skill("melee"))
 	if bool(parameters.get("elite_aftershock", false)) and behavior_id != "safe_disarm_ring":
 		result.append(_hazard({"shape": "line", "radius": float(parameters.get("elite_aftershock_width", 20.0)), "duration": float(parameters.get("elite_aftershock_duration", 0.35)), "tick_interval": 0.35, "damage_multiplier": float(parameters.get("elite_aftershock_damage_multiplier", 0.35)), "track": false, "fixed_cycle_direction": true}))
-	var extra: Dictionary = Abilities.extra_command(str(profile.get("enemy_id", "")), selected_difficulty, cycle)
-	if include_difficulty and not extra.is_empty():
-		var extra_kind: String = str(extra.kind)
-		if behavior_id == "safe_disarm_ring":
-			# A one-use bomber has no next cycle. Its newest selected-D
-			# tactic precedes the one discharge, never a second explosion.
-			result.push_front(_skill(extra_kind, extra))
-		else:
-			result.append(_skill(extra_kind, extra))
-	for index: int in result.size():
-		result[index] = Abilities.decorate(result[index], profile, index)
 	return result
 
 func _append_swings(result: Array[Dictionary], count: int, options: Dictionary, angle_start: int = 0) -> void:

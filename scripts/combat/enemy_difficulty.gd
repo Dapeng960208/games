@@ -3,7 +3,6 @@ extends RefCounted
 ## Difficulty is independent of the finite level/tier ladder. The saved base
 ## makes repeated application safe for encounter plans, summons and restores.
 
-const AbilityCatalog = preload("res://scripts/combat/enemy_ability_catalog.gd")
 const MAX_DIFFICULTY := 4
 const SCALED_STATS := ["max_hp", "damage", "move_speed", "armor", "magic_resist", "recovery_seconds"]
 
@@ -31,4 +30,4 @@ static func apply(source: Dictionary, difficulty: int = 0) -> Dictionary:
 	parameters["recovery_seconds"] = recovery
 	parameters["recovery"] = recovery
 	result["attack_parameters"] = parameters
-	return AbilityCatalog.apply(result, tier)
+	return result

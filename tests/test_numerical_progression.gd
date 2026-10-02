@@ -20,16 +20,14 @@ func _initialize() -> void:
 	check(Registry.level_for_xp(170) == 5 and Registry.level_for_xp(170,2) == 4, "legacy XP unchanged")
 	for hero in Registry.heroes():
 		var definition: Dictionary = Registry.hero(hero)
-		var curves: Dictionary = {"CH01":[.042,.065,12,8],"CH02":[.052,.045,7,7],"CH03":[.02,.04,5,12]}
-		var curve: Array = curves[hero]
 		for level in [1,20,60]:
 			var base := Growth.hero_base(definition,level,{},60)
 			for key in ["attack","ability_power","max_hp","armor","magic_resist","resource_max","resource_regen","starting_resource"]:
 				check(base[key] is int,"integer base %s/%s/%s" % [hero,level,key])
-			check(base.attack == int(floor(float(definition.attack)*10*(1+curve[0]*(level-1))+.5)),"class linear AD")
-			check(base.max_hp == int(floor(float(definition.max_hp)*10*(1+curve[1]*(level-1))+.5)),"class linear HP")
-			check(base.armor == int(definition.armor)*10+curve[2]*(level-1),"class armor growth")
-			check(base.magic_resist == int(definition.magic_resist)*10+curve[3]*(level-1),"class MR growth")
+			check(base.attack == int(floor(float(definition.attack)*10*(1+.04*(level-1))+.5)),"linear AD")
+			check(base.max_hp == int(floor(float(definition.max_hp)*10*(1+.05*(level-1))+.5)),"linear HP")
+			check(base.armor == int(definition.armor)*10+10*(level-1),"armor growth")
+			check(base.magic_resist == int(definition.magic_resist)*10+8*(level-1),"MR growth")
 			check(base.talent_points_available == level-1,"one point each level2+")
 		var allocation := {"mastery":5,"precision":5,"agility":5,"dexterity":4}
 		var resolved := Stats.resolve(hero,20,{}, {},2,allocation)
@@ -37,13 +35,8 @@ func _initialize() -> void:
 		check(is_equal_approx(resolved.crit_chance,.1),"precision adds five points")
 		check(is_equal_approx(resolved.attack_speed_bonus,.1),"agility adds ten points")
 		check(is_equal_approx(resolved.cooldown_reduction,.04),"dexterity four points")
-	check(Stats.resolve("CH01",20,{},{},2).attack == 485,"Lv20 warrior AD target")
-	check(Stats.resolve("CH01",20,{},{},2).max_hp == 3353,"Lv20 warrior HP target")
-	check(Stats.resolve("CH02",20,{},{},2).attack == 477 and Stats.resolve("CH02",20,{},{},2).max_hp == 2041,"Lv20 gunner growth targets")
-	var mage := Stats.resolve("CH03",20,{},{},2)
-	check(mage.attack == 248 and mage.ability_power == 626 and mage.max_hp == 1848 and mage.armor == 155 and mage.magic_resist == 408,"Lv20 mage growth targets")
-	check(mage.resource_max == 1200 and mage.resource_regen == 80 and is_equal_approx(mage.resource_regen_delay,.25),"mage spell resource budget")
-	check(is_equal_approx(float(Stats.resolve("CH03",20,{},{}).resource_regen),5.0),"legacy resource budget unchanged")
+	check(Stats.resolve("CH01",20,{},{},2).attack == 475,"Lv20 warrior AD target")
+	check(Stats.resolve("CH01",20,{},{},2).max_hp == 2925,"Lv20 warrior HP target")
 	check(not Growth.valid_talents({"mastery":6},20),"per-node cap enforced")
 	check(not Growth.valid_talents({"mastery":5,"precision":5,"agility":5,"dexterity":5},20),"cannot spend twentieth point")
 	check(not Growth.valid_talents({"fake":1},20),"unknown talent rejected")

@@ -4,8 +4,6 @@ extends RefCounted
 ## runtime enablement. Call from an explicit v2 route with a resolved legacy D0
 ## profile. Existing profile/brain generators remain the source of identity,
 ## geometry, sequence/counts, elite identity and counterplay timing.
-const Catalog = preload("res://scripts/world/world_catalog.gd")
-const AbilityCatalog = preload("res://scripts/combat/enemy_ability_catalog.gd")
 const Calibration = preload("res://scripts/combat/enemy_calibration.gd")
 const Numbers = preload("res://config/numerical_rules.gd")
 const PROFILE_VERSION := 2
@@ -37,12 +35,9 @@ static func chapter_for_id(id: String) -> int:
 		var index := int(id.substr(2))
 		return index if index in range(1, 5) and id == "BO%02d" % index else 0
 	if id.begins_with("M"):
-		# Stable IDs are append-only: later roster additions must use their
-		# authored region, never infer a chapter from an obsolete block of nine.
-		var definition: Dictionary = Catalog.enemy(id)
-		var biome_id := str(definition.get("biome_id", ""))
-		var chapter := int(biome_id.trim_prefix("B"))
-		return chapter if not definition.is_empty() and biome_id == "B%02d" % chapter and chapter in range(1, 5) else 0
+		var index := int(id.substr(1))
+		@warning_ignore("integer_division")
+		return 1 + (index - 1) / 9 if index in range(1, 37) and id == "M%02d" % index else 0
 	return 0
 
 ## Already resolved elite sources contain HP×1.2, A×1.12 and MR+4. They are
@@ -113,7 +108,7 @@ static func _profile(source: Dictionary, difficulty: int, boss: bool, ruleset: i
 		parameters["recovery_seconds"] = recovery
 		parameters["recovery"] = recovery
 		result["attack_parameters"] = parameters
-	return result if boss else AbilityCatalog.apply(result, difficulty)
+	return result
 
 ## Phase only strengthens a packet; it never changes actor A. Coefficients and
 ## extra_damage_multiplier are distinct (e.g. a frozen racial rage bonus).

@@ -15,49 +15,52 @@ func configure(source_room: Node, close: Callable) -> void:
 	name = "CharacterDossier"
 	size = Vector2(1020,620)
 	var hero: Dictionary = ContentRegistry.hero(Game.run.hero_id)
-	MineStyle.panel(self,Vector2(16,10),Vector2(988,55))
-	MineStyle.literal(self,Inspect.t("冒险者档案","Adventurer dossier"),Vector2(35,18),Vector2(730,37),27)
-	var back := MineStyle.button(self,"BACK",Vector2(833,18),Vector2(153,40),close)
-	back.name = "CloseCharacterDossier"
-	var left := MineStyle.panel(self,Vector2(16,80),Vector2(294,524))
-	MineStyle.literal(left,MineStyle.content_text(hero,"name"),Vector2(18,14),Vector2(260,33),26)
-	MineStyle.literal(left,MineStyle.content_text(hero,"class_name")+" · Lv."+str(Game.run.level),Vector2(18,54),Vector2(260,26),16,MineStyle.CYAN)
-	MineStyle.hero_portrait(left,Game.run.hero_id,Vector2(58,93),Vector2(178,203))
-	var slots: Array[String] = Game.equipment_slots(true)
-	var per_side := 4 if slots.size() == 8 else 3
-	for index: int in slots.size():
-		var slot: String = slots[index]
+	MineStyle.panel(self,Vector2(20,9),Vector2(980,53))
+	var left := MineStyle.panel(self,Vector2(20,69),Vector2(286,531))
+	MineStyle.literal(left,MineStyle.content_text(hero,"name")+" · Lv."+str(Game.run.level),Vector2(16,13),Vector2(254,37),24,MineStyle.AMBER)
+	MineStyle.hero_portrait(left,Game.run.hero_id,Vector2(64,66),Vector2(158,187))
+	for index: int in Game.equipment_slots(true).size():
+		var slot: String = Game.equipment_slots(true)[index]
 		var id := str(Game.run.loadout_snapshot.get(slot,""))
 		var item: Dictionary = Game.equipment_definition(id,true)
-		var button := MineStyle.button(left,"",Vector2(12 if index < per_side else 236,95+(index%per_side)*51),Vector2(46,46),func(): _show_item(item))
+		var button := MineStyle.button(left,"",Vector2(12 if index < (4 if Game.equipment_slots(true).size() == 8 else 3) else 222,81+(index%(4 if Game.equipment_slots(true).size() == 8 else 3))*(46 if Game.equipment_slots(true).size() == 8 else 63)),Vector2(46,44) if Game.equipment_slots(true).size() == 8 else Vector2(52,52),func(): _show_item(item))
 		button.name = "Equipment_"+slot
 		MineStyle.button_skin(button,"socket")
-		MineStyle.equipment_icon(button,item if not item.is_empty() else {"slot":slot},Vector2(3,3),Vector2(40,40))
+		MineStyle.equipment_icon(button,item if not item.is_empty() else {"slot":slot},Vector2(3,3),Vector2(40,38) if Game.equipment_slots(true).size() == 8 else Vector2(46,46))
 		button.tooltip_text = Inspect.tooltip(item,int(Game.run.equipment_snapshot.get(id,{}).get("enhancement_rank",Game.run.equipment_snapshot.get(id,{}).get("level",0))),Game.run.hero_id)
-	var Dossier := preload("res://scripts/ui/hero_dossier.gd")
-	Dossier.metric(left,Inspect.t("当前生命","Current HP"),"%d / %d" % [ceili(Game.run.hp),ceili(Game.run.max_hp)],Vector2(16,315),Vector2(262,64))
-	Dossier.metric(left,MineStyle.content_text(hero,"resource_name"),"%d / %d" % [ceili(Game.run.resource),ceili(float(Game.run.stats.resource_max))],Vector2(16,389),Vector2(262,60))
+	MineStyle.literal(left,MineStyle.content_text(hero,"class_name"),Vector2(16,274),Vector2(254,30),18,MineStyle.CYAN)
+	MineStyle.literal(left,Inspect.t("生命 %d / %d\n资源 %d / %d","HP %d / %d\nResource %d / %d") % [ceili(Game.run.hp),ceili(Game.run.max_hp),ceili(Game.run.resource),ceili(float(Game.run.stats.resource_max))],Vector2(16,313),Vector2(254,70),17)
+	MineStyle.literal(left,Inspect.t("点装备查看强化值与完整词条；条件效果在属性表下方。","Select gear for refined stats and full affixes. Conditional effects follow the attribute table."),Vector2(16,384),Vector2(254,59),14,MineStyle.MUTED)
 	for index: int in 4:
 		var key: String = ["q","secondary","f","ultimate"][index]
 		var skill: Dictionary = hero.get("skills",{}).get(key,{})
-		var action := MineStyle.button(left,"",Vector2(16+index*66,464),Vector2(62,44),func(): _show_skill(key,skill))
+		var action := MineStyle.button(left,"",Vector2(17+index*64,461),Vector2(58,48),func(): _show_skill(key,skill))
 		action.name = "DossierSkill_"+key
 		MineStyle.button_skin(action,"socket")
-		Dossier.skill_icon(action,Game.run.hero_id,key,Vector2(8,4),Vector2(46,36))
+		var icon := TextureRect.new()
+		icon.texture = Sampler.sampled("res://assets/generated/skills/"+Game.run.hero_id+"_"+key+"_v1.png")
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.position = Vector2(7,5)
+		icon.size = Vector2(44,36)
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		action.add_child(icon)
 		action.tooltip_text = MineStyle.content_text(skill,"name")
-	var right := MineStyle.panel(self,Vector2(326,80),Vector2(678,524))
-	detail_title = MineStyle.literal(right,Inspect.t("角色属性","Character attributes"),Vector2(20,17),Vector2(470,51),24)
-	var restore := MineStyle.button(right,"",Vector2(513,20),Vector2(145,38),_show_sheet)
+	var right := MineStyle.panel(self,Vector2(322,69),Vector2(678,531))
+	detail_title = MineStyle.literal(right,Inspect.t("角色属性 · 当前配装","CHARACTER STATS · CURRENT LOADOUT"),Vector2(18,12),Vector2(490,60),22,MineStyle.AMBER)
+	var restore := MineStyle.button(right,"",Vector2(508,14),Vector2(150,39),_show_sheet)
 	restore.name = "DossierAllStats"
 	restore.text = Inspect.t("完整属性","All attributes")
 	restore.add_theme_font_size_override("font_size",14)
 	detail_scroll = ScrollContainer.new()
 	detail_scroll.name = "DossierDetailScroll"
-	detail_scroll.position = Vector2(20,83)
-	detail_scroll.size = Vector2(638,423)
+	detail_scroll.position = Vector2(18,78)
+	detail_scroll.size = Vector2(642,436)
 	detail_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	detail_scroll.focus_mode = Control.FOCUS_ALL
 	right.add_child(detail_scroll)
+	MineStyle.literal(self,Inspect.t("拾荒者 · 战斗档案","SALVAGER · COMBAT DOSSIER"),Vector2(24,17),Vector2(720,41),27,MineStyle.AMBER)
+	var back := MineStyle.button(self,"BACK",Vector2(814,17),Vector2(184,40),close)
+	back.name = "CloseCharacterDossier"
 	_show_sheet()
 	back.grab_focus()
 
@@ -67,7 +70,7 @@ func _clear_detail() -> void:
 
 func _show_sheet() -> void:
 	_clear_detail()
-	detail_title.text = Inspect.t("角色属性 · 当前配装","Attributes · current loadout")
+	detail_title.text = Inspect.t("角色属性 · 当前配装","CHARACTER STATS · CURRENT LOADOUT")
 	var actor: Variant = room.get("player") if is_instance_valid(room) else null
 	var sheet := Sheet.new()
 	detail_scroll.add_child(sheet)

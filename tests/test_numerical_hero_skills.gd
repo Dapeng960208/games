@@ -111,11 +111,6 @@ func test_catalog() -> void:
 		var expected_spec: Dictionary = JSON.parse_string(columns[6].strip_edges().xml_unescape())
 		var expected: Dictionary = JSON.parse_string(columns[7].strip_edges().xml_unescape())
 		var expected_timeline: Array = JSON.parse_string(columns[8].strip_edges().xml_unescape())
-		var historical_spec: Dictionary = expected_spec.duplicate(true)
-		_specialized_expected(expected_spec,hero,level,slot,branch)
-		for event: Dictionary in expected_timeline:
-			event.time = float(event.time)+float(expected_spec.windup)-float(historical_spec.windup)
-		if hero == "CH03" and slot == "f": expected.damage_each = Rules.integer(1.4*float(expected.skill_H))
 		var label: String = "%s/%d/%s/%s" % [hero, level, slot, branch]
 		check(not seen.has(label), label + " unique fixture")
 		seen[label] = true
@@ -131,7 +126,7 @@ func test_catalog() -> void:
 		var old_stats: Dictionary = game.run.stats.duplicate(true)
 		old_stats.erase("ruleset_version")
 		var old_spec: Dictionary = Abilities.preview_spec(hero, level, old_stats, slot)
-		var old_expected: Dictionary = historical_spec.duplicate(true)
+		var old_expected: Dictionary = expected_spec.duplicate(true)
 		old_expected.cost = float(old_expected.cost) / 10.0
 		if old_expected.has("health"): old_expected.health = float(old_expected.health) / 10.0
 		check(same(old_spec, old_expected), label + " unversioned complete preview remains legacy")
@@ -139,10 +134,9 @@ func test_catalog() -> void:
 		check(same(timeline, expected_timeline), label + " release timeline unchanged")
 		actor.abilities.active = {"spec":spec, "power":actor.skill_power(), "attacker_stats":game.run.stats.duplicate(true), "serial":1, "target":Vector2(100, 0), "direction":Vector2.RIGHT, "events":timeline}
 		for event: Dictionary in timeline: actor.abilities._resolve(int(event.index))
-		check(room.packets.size() == timeline.size() + (1 if hero == "CH03" and slot in ["secondary","ultimate"] else 0), label + " actual finite release count")
+		check(room.packets.size() == timeline.size() + (1 if hero == "CH03" and slot == "ultimate" else 0), label + " actual finite release count")
 		for packet: Dictionary in room.packets:
 			var expected_amount: int = int(expected.field_tick_damage) if packet.kind == "field" else int(expected.damage_each)
-			if hero == "CH03" and slot == "secondary" and packet.kind == "strike": expected_amount = int(expected.skill_H)
 			check(typeof(packet.amount) == TYPE_INT and packet.amount == expected_amount, label + " actual emitted integer packet " + str(packet.kind))
 			check(typeof(packet.context.power) == TYPE_INT and packet.context.power == expected.skill_H, label + " committed skill H snapshot")
 			if packet.kind == "node":
@@ -154,28 +148,6 @@ func test_catalog() -> void:
 			if hero == "CH03" and slot == "q": check(packet.context.echo_damage == expected.node_echo_damage and typeof(packet.context.echo_damage) == TYPE_INT, label + " Q echo integer packet")
 		count += 1
 	check(count == 264 and seen.size() == 264, "all 264 authored skill combinations verified")
-
-## Independent expected deltas from the published role plan. Keep the old
-## frozen fixture intact so the same rows still prove legacy compatibility.
-func _specialized_expected(spec: Dictionary, hero: String, level: int, slot: String, branch: String) -> void:
-	var changes: Dictionary = {}
-	if hero == "CH01":
-		if slot == "secondary": changes={"cooldown":3.2,"base_cooldown":3.2,"windup":.14,"duration":.38 if level>=12 else .42}
-		elif slot == "ultimate":
-			changes={"cooldown":36.0,"base_cooldown":36.0}
-			if branch != "A": changes.windup=.38
-			if branch.is_empty(): changes.duration=.82
-	elif hero == "CH02":
-		if slot == "q": changes={"cooldown":6.0,"base_cooldown":6.0}
-		elif slot == "secondary": changes={"windup":.3,"duration":.48,"movement":.8}
-		elif slot == "f": changes={"cooldown":9.0,"base_cooldown":9.0,"range":360.0,"fuse":.5}
-		elif slot == "ultimate": changes={"cooldown":34.0,"base_cooldown":34.0,"windup":.2,"duration":1.12}
-	else:
-		if slot == "q": changes={"cost":120,"cooldown":3.0 if branch=="B" else 2.4,"base_cooldown":3.0 if branch=="B" else 2.4,"windup":.12,"duration":.28}
-		elif slot == "secondary": changes={"cost":200,"cooldown":4.0,"base_cooldown":4.0,"windup":.14,"duration":.32,"range":360.0,"burst_coefficient":1.0,"burst_radius":110.0}
-		elif slot == "f": changes={"cost":200,"cooldown":6.0 if level>=14 else 7.0,"base_cooldown":6.0 if level>=14 else 7.0,"windup":.1,"duration":.3,"coefficient":1.4,"radius":155.0}
-		elif slot == "ultimate": changes={"cost":500,"cooldown":32.0,"base_cooldown":32.0,"windup":.3,"duration":.65,"range":420.0}
-	spec.merge(changes,true)
 
 func test_cast_costs_and_gates() -> void:
 	for hero: String in ["CH01", "CH02", "CH03"]:
@@ -215,7 +187,7 @@ func test_caps() -> void:
 		game.run.stats.damage_bonus = 0.9
 		game.run.stats.burn_damage = 1.25
 		game.run.stats.corrosion_damage_bonus = 1.25
-		check(is_equal_approx(actor.abilities.spec("q").cooldown, 1.44 if version == Rules.V2 else 3.5), "cooldown cap follows frozen version")
+		check(is_equal_approx(actor.abilities.spec("q").cooldown, 3.0 if version == Rules.V2 else 3.5), "cooldown cap follows frozen version")
 		check(is_equal_approx(actor.stat("attack_interval", 0.0), 0.2 if version == Rules.V2 else 0.225), "attack speed cap follows frozen version")
 		check(actor.stat("damage_bonus", 0.0) == (0.9 if version == Rules.V2 else 0.6), "direct bonus cap follows frozen version")
 		check(actor.stat("burn_damage", 0.0) == (1.0 if version == Rules.V2 else 1.25), "burn bucket cap is V2 only")
@@ -246,12 +218,13 @@ func test_resources_and_relics() -> void:
 	check(game.run.resource == 50 and game.run.resource_regen_remainder < 0.000001, "round per-second effective rate before accumulating fractional time")
 	game.run.stats.resource_gain_bonus = 0.3
 	game.run.resource = 0
-	actor.passives.skill_committed("secondary",40)
-	actor.passives.skill_committed("f",41)
+	actor.passives._record_rhythm("basic")
+	actor.passives._record_rhythm("skill")
+	actor.passives._record_rhythm("basic")
 	actor.passives.skill_committed("q", 42)
-	check(game.run.resource == 130, "mage spell weaving restores one hundred with gain bonus")
+	check(game.run.resource == 104, "mage passive restores eighty with gain bonus")
 	actor.passives.skill_committed("q", 42)
-	check(game.run.resource == 130, "duplicate committed root cannot refund twice")
+	check(game.run.resource == 104, "duplicate committed root cannot refund twice")
 	var target := TargetStub.new()
 	for rank: int in [1, 2]:
 		fresh("CH03")

@@ -13,9 +13,6 @@
 | [第二轮交互规则模型](audits/interaction_models_2026_10_01.py) | 20项独立模型检查；含合成账本体积、初始强化平台和奖励策略；不运行Godot、不读取或修改玩家档案 |
 | [用户确认需求](USER_LEVEL_BRIEF.md) | 十二种族与后续玩法、美术要求 |
 | [关卡和装备设计](LEVEL_DESIGN_V1.md) | 目标与数值草案，不代表已经实现 |
-| [54普通怪与难度技能](ORDINARY_MONSTER_EXPANSION.md) | 9/12/15/18种、逐怪基础和D1–D4技能、反制、实际房间编成 |
-| [敌人与首领短预警](balance/ENEMY_WARNING_TIMING.md) | 全54种与40首领招式的旧值/五难度新时序、家族下限和实际释放同步 |
-| [普通怪当前数值](balance/ORDINARY_MONSTER_NUMBERS.md) | 新18种基础值、54种×五难度解析、伤害与恢复公式 |
 | [前四关设计](levels/) | 背景、敌人、首领、装备、地图与遗物 |
 | [28 房设计册](levels/fixed_layouts/index.html) | 固定蓝图、目标效果及当前实机截图 |
 | [摆放分组草稿](drafts/room-placement-20261001/README.md) | 未接入的分组方案 |
@@ -26,7 +23,3 @@
 发生冲突时，以实际代码和进度记录为准。设计说明想做什么，路线图说明下一步如何做，进度说明已经做到了什么。后续更新对应条目，不再复制整套新计划。
 
 - [第二轮 A13–A30 修复与验收](audits/GAMEPLAY_AUDIT_ROUND2_FIXES_2026-10-01.md)：运行代码、安全兼容、逐项引擎证据与仍需自然游玩验证的边界。
-
-三职业后续工作：[定位、八向动作、技能手感、成长与职业装备详细方案](character-optimization/ROLE_OPTIMIZATION_2026-10-02.md)。当前为逐项实施方案；未验证项目保持待完成，S11全量自然平衡仍暂停。
-
-- [骷髅召唤职业完整设计（未实装）](character-optimization/SKELETON_SUMMONER_DESIGN_2026-10-02.md)：召唤技能、全属性继承、套装、遗物和验收设计，数值待验证。

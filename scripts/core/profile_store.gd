@@ -12,7 +12,6 @@ const Loot = preload("res://scripts/core/expedition_rewards.gd")
 const Transactions = preload("res://scripts/core/instance_transactions.gd")
 const Forging = preload("res://scripts/core/instance_forging.gd")
 const EnemyCalibration = preload("res://scripts/combat/enemy_calibration.gd")
-const ClassMigration = preload("res://scripts/core/equipment_class_migration.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Expedition = preload("res://scripts/core/expedition_state.gd")
 const MAX_NUMBER := 1_000_000_000_000
@@ -73,8 +72,6 @@ func load_document() -> Dictionary:
 	_blocked = false
 	has_profile = false
 	var best_path := ""
-	var best_needs_class_upgrade := false
-	var blocked_migration_revision := -1
 	# All candidates contain whole transactions; never merge fields across files.
 	for candidate: String in [path, path + ".tmp", path + ".bak", path + ".bak.tmp"]:
 		if not FileAccess.file_exists(candidate):
@@ -89,13 +86,6 @@ func load_document() -> Dictionary:
 		if file.get_length() <= _byte_limit() and parser.parse(file.get_as_text()) == OK:
 			parsed = parser.data
 		file.close()
-		var needs_class_upgrade: bool = parsed is Dictionary and parsed.get("profile") is Dictionary and parsed.get("profile", {}).get("ruleset_version", 1) == 2 and (not parsed.get("profile", {}).has("equipment_class_migration") or parsed.get("profile", {}).get("hero_role_revision", 0) != 1)
-		if parsed is Dictionary:
-			var source_revision := int(parsed.get("revision", 0))
-			parsed = ClassMigration.upgrade_document(parsed)
-			if needs_class_upgrade and parsed.is_empty():
-				blocked_migration_revision = maxi(blocked_migration_revision, source_revision)
-				continue
 		if not _valid_document(parsed):
 			# Keep unreadable bytes available for inspection; never silently delete.
 			var preserved := candidate + ".corrupt." + str(int(Time.get_unix_time_from_system())) + "_" + str(Time.get_ticks_usec())
@@ -108,10 +98,6 @@ func load_document() -> Dictionary:
 		if _current.is_empty() or int(document.revision) > int(_current.revision):
 			_current = document.duplicate(true)
 			best_path = candidate
-			best_needs_class_upgrade = needs_class_upgrade
-	if blocked_migration_revision >= 0 and (_current.is_empty() or blocked_migration_revision >= int(_current.revision)):
-		_blocked = true
-		last_error = "STORAGE_CLASS_MIGRATION_BLOCKED"
 	if _blocked:
 		return {}
 	if _current.is_empty():
@@ -147,16 +133,6 @@ func load_document() -> Dictionary:
 			_blocked = true
 			has_profile = false
 			return {}
-	if best_needs_class_upgrade:
-		# Preserve original acknowledged bytes before atomically saving qualification
-		# metadata/loadout cleanup. Failed writes leave the original recoverable.
-		_acknowledged_bytes = FileAccess.get_file_as_bytes(best_path)
-		if not save_document(_current.profile, _current.active_run, bool(_current.get("profile_initialized", true))):
-			_blocked = true
-			has_profile = false
-			return {}
-	if not _current.profile.get("equipment_class_migration", {}).get("removed_slots", []).is_empty():
-		warning = "STORAGE_CLASS_EQUIPMENT_UPDATED"
 	var loaded := _current.duplicate(true)
 	# Normalize optional presentation settings in memory only; opening a demo
 	# must not rewrite a save just to add the comfort default or volume keys.
@@ -513,8 +489,6 @@ static func _valid_progression(profile: Dictionary) -> bool:
 ## Document byte limits bound storage; catalog size must not cap duplicates.
 static func _valid_instance_equipment(profile: Dictionary) -> bool:
 	if not profile.get("equipment") is Dictionary: return false
-	if profile.has("hero_role_revision") and (profile.hero_role_revision != 1 or profile.hero_role_revision is bool): return false
-	if profile.has("equipment_class_migration") and not ClassMigration.valid_marker(profile.equipment_class_migration): return false
 	if not Forging.validate_profile(profile).is_empty(): return false
 	if not Transactions.validate_ledger(profile.get("instance_transactions")): return false
 	if not _number(profile.get("inventory_capacity", 0), MAX_NUMBER) or not Loot.pity_valid(profile.get("gold_pity", {})): return false

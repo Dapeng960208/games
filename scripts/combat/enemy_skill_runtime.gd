@@ -1,6 +1,5 @@
 class_name EnemySkillRuntime
 extends Node2D
-const AbilityPresentation = preload("res://scripts/combat/enemy_skill_presentation.gd")
 const Numerical = preload("res://config/numerical_rules.gd")
 const EnemyNumbers = preload("res://scripts/combat/enemy_numerical_v2.gd")
 ## Enemy-only execution. The brain owns the readable tell and locked aim; this
@@ -237,8 +236,6 @@ func filter_incoming_damage(target: Node2D, amount: float, kind: StringName, fro
 		if not _support_valid(support) or _support_target(support) != target:
 			continue
 		if str(support.kind) == "counter" and amount > 0.0:
-			if bool(support.get("front_hits_only", false)) and (kind not in [&"primary", &"child"] or from_direction.is_zero_approx() or from_direction.normalized().dot(Vector2(support.direction)) > -cos(float(support.get("angle", 1.7)) * 0.5)):
-				continue
 			support.hits = mini(int(support.get("hit_cap", 3)), int(support.get("hits", 0)) + 1)
 			if int(support.hits) >= int(support.get("hit_cap", 3)):
 				_release_counter(support)
@@ -279,8 +276,6 @@ func filter_incoming_damage(target: Node2D, amount: float, kind: StringName, fro
 				support.charges = int(support.get("charges", 3)) - 1
 				result = 0.0
 				if int(support.charges) <= 0:
-					if bool(support.get("break_exposes_owner", false)) and _owner_alive(support):
-						_owner(support).set_meta("enemy_guard_broken", true)
 					_remove_support(support)
 			else:
 				var absorbed: float = minf(Numerical.integer(result) if Numerical.is_v2(target_profile) else result, float(support.get("amount", 0.0)))
@@ -431,8 +426,6 @@ func _tick_projectile(shot: Dictionary, delta: float) -> void:
 			return
 		if not waypoints.is_empty() and end.distance_to(waypoints[0]) <= 0.1:
 			waypoints.pop_front()
-			if bool(shot.get("returning", false)):
-				shot["returning_leg"] = true
 			if waypoints.is_empty():
 				projectiles.erase(shot)
 				return
@@ -567,8 +560,6 @@ func _spawn_hazards(command: Dictionary) -> void:
 
 func _tick_hazard(area: Dictionary, delta: float) -> void:
 	if not _owner_alive(area) or (area.has("anchor_ref") and not _alive(_anchor(area))):
-		if _owner_alive(area) and area.has("anchor_ref") and bool(area.get("break_interrupts_owner", false)):
-			_owner(area).set_meta("enemy_hazard_broken", true)
 		_remove_hazard(area)
 		return
 	var step: float = minf(delta, float(area.remaining))
@@ -620,7 +611,7 @@ func _damage_source_context(command: Dictionary) -> Dictionary:
 	var owner_profile: Dictionary = _property(_owner(command), "profile", {})
 	var source_id: String = str(owner_profile.get("enemy_id", owner_profile.get("boss_id", command.get("boss_id", ""))))
 	var english: bool = TranslationServer.get_locale().begins_with("en")
-	return {"source_id":source_id, "source_name":str(owner_profile.get("name_en" if english else "name", source_id)), "attack_id":str(command.get("ability_id", command.get("action_id", command.get("behavior_id", owner_profile.get("behavior_id", "")))))}
+	return {"source_id":source_id, "source_name":str(owner_profile.get("name_en" if english else "name", source_id)), "attack_id":str(command.get("action_id", command.get("behavior_id", owner_profile.get("behavior_id", ""))))}
 
 func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 	if not _alive(victim) or not _owner_alive(command) or not victim.has_method("receive_damage"):
@@ -711,8 +702,6 @@ func _pull(command: Dictionary) -> void:
 	var cooldown: float = maxf(0.0, float(command.get("displacement_cooldown", 0.0)))
 	var receipts: Variant = _property(room, "enemy_props", null)
 	for victim: Node2D in _strike(area):
-		if bool(command.get("record_pull_hit", false)) and _owner_alive(command):
-			_owner(command).set_meta("enemy_pull_connected", true)
 		if cooldown > 0.0 and (not is_instance_valid(receipts) or not receipts.has_method("displacement_ready") or not receipts.has_method("record_displacement") or not bool(receipts.call("displacement_ready", victim))):
 			continue
 		var direction: Vector2 = (Vector2(command.origin) - victim.position).normalized()
@@ -1085,8 +1074,7 @@ func _draw() -> void:
 			_draw_shape(command, Color(1.0, 0.44, 0.27, 0.2), Color("ffc481"))
 	for area: Dictionary in hazards:
 		var color: Color = area.get("fx_color",Color("ef936b"))
-		_draw_shape(area,Color(color,.08 if bool(settings.get("reduced_fx",false)) else .16),color)
-		AbilityPresentation.draw_effect(self, area, bool(settings.get("reduced_fx",false)))
+		_draw_shape(area,Color(color,.16) if area.has("boss_id") else Color(.92,.35,.2,.23),color)
 	for visual: Dictionary in visuals:
 		if bool(visual.get("decoy", false)):
 			var at: Vector2 = visual.origin
@@ -1103,14 +1091,12 @@ func _draw() -> void:
 			var color: Color = visual.get("color", Color("ffab69"))
 			_draw_shape(visual, Color(color, 0.12), Color(color, 0.7))
 			preload("res://scripts/combat/boss_skill_presentation.gd").draw_impact(self,visual,bool(settings.get("reduced_fx",false)))
-			AbilityPresentation.draw_effect(self, visual, bool(settings.get("reduced_fx",false)))
 	for shot: Dictionary in projectiles:
 		var at: Vector2 = shot.position
 		var direction: Vector2 = shot.direction
 		var color: Color = shot.get("fx_color",Color("fc9065"))
 		draw_line(at - direction * 17.0, at, color, 5.0, true)
 		draw_circle(at, float(shot.radius), Color("fff0bc"))
-		AbilityPresentation.draw_projectile(self, shot, bool(settings.get("reduced_fx",false)))
 		if shot.has("boss_id") and not bool(settings.get("reduced_fx",false)):
 			preload("res://scripts/combat/boss_skill_presentation.gd").draw_glyph(self,str(shot.boss_id),at,float(shot.radius)+3,color,0)
 	for mark: Dictionary in marks:

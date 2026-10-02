@@ -71,7 +71,7 @@ func artwork_ui(app: Node) -> void:
 				check(ContentRegistry.equipment(template,2).slot in ["legs","ring"],"missing piece is a new slot")
 				check_art(choice,"CreationMissingArt_"+template,template)
 				check(scroll.get_global_rect().encloses(choice.get_global_rect()),"both missing-piece cards visible: "+locale+str(extent)+" "+str(scroll.get_global_rect())+" / "+str(choice.get_global_rect()))
-			check(not scroll.get_global_rect().intersects(panel.action_button.get_global_rect()),"art/cards avoid purchase action in separate preview/order columns")
+			check(scroll.get_global_rect().end.y <= panel.action_button.get_global_rect().position.y,"art/cards avoid purchase action")
 			await capture("partial-set-"+locale+"-"+str(extent.x)+"x"+str(extent.y))
 		get_window().size = Vector2i(1280,720)
 		panel.selected_set = "S09"
@@ -96,22 +96,6 @@ func artwork_ui(app: Node) -> void:
 	panel.selected_set = "S06"
 	panel.creation_power_type = "physical"
 	panel.creation_rarity = "white"
-	panel._render()
-	check(panel.find_child("CreationEligibility",true,false).text.contains("所有职业"),"universal item badge reflects real three-class eligibility")
-	panel.shop_sets = true
-	panel.selected_set = "S01"
-	panel.creation_power_type = "physical"
-	panel._render()
-	check(panel.action_button.disabled and panel.find_child("CreationEligibility",true,false).text.contains("法师"),"mage-exclusive set rejects physical creation with exact badge")
-	panel.creation_power_type = "magic"
-	panel._render()
-	check(not panel.action_button.disabled,"current warrior can buy valid mage gear without auto-equipping")
-	panel.selected_set = "S02"
-	panel.creation_power_type = "physical"
-	panel._render()
-	check(not panel.action_button.disabled and panel.find_child("CreationEligibility",true,false).text.contains("所有职业"),"B01 universal set is available to all classes")
-	panel.shop_sets = true
-	panel.selected_set = "S06"
 	panel._render()
 	var count: int = Game.profile.equipment.size()
 	panel.action_button.pressed.emit()
@@ -139,7 +123,7 @@ func _run() -> void:
 		return
 	Game.run = null
 	check(Game.new_profile(),"isolated profile")
-	var value: Dictionary = preload("res://scripts/core/numerical_profile.gd").fresh(ProfileStore.fresh_profile())
+	var value: Dictionary = Fixtures.fixture_profile()
 	value.hero_xp.CH01 = 3600
 	value.permanent_gold = 100000
 	value.bosses = ["BO01","BO02","BO03","BO04"]

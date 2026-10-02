@@ -2,14 +2,16 @@
 
 日期：2026-10-02。状态：**设计提案，未实装，未完成自然平衡验证**。
 
-基线：PR #4，提交 `927332a667eab665769c1d49a2eb36127de616cc`。本次只交付 Markdown；不改脚本、运行 JSON、装备注册、等级上限、存档、素材或现有数值配置。当前可玩范围仍为 B01–B04 / Lv1–20。下文 Lv21–60、144 种新普通怪、8 名首领和新装备全部属于后续开发目标。
+合并说明：按用户要求将 PR #6 整合至 PR #5。当前八章正文采用 PR #6 修订稿；PR #5 八份初稿完整保存在[历史目录](archive/pr5-initial/README.md)，不与当前规格叠加。设计依据为 PR #4 的 `927332a667eab665769c1d49a2eb36127de616cc`，但此次不将其代码、资源或提交历史合入 PR #5。下面 PR #4 专有文档改用固定提交链接，避免将设计依赖误写为目标分支已实现功能。
+
+本次只交付 Markdown；不改脚本、运行 JSON、装备注册、等级上限、存档、素材或现有数值配置。当前可玩范围仍为 B01–B04 / Lv1–20。下文 Lv21–60、144 种新普通怪、8 名首领和新装备全部属于后续开发目标。
 
 ## 1. 来源与冲突处理
 
 - 世界、种族、地图名称继承 [用户十二关基准](../USER_LEVEL_BRIEF.md)，不另起一条世界线。
-- 资格以 [PR #4 职业装备政策](../character-optimization/EQUIPMENT_CLASS_POLICY_2026-10-02.md) 为准；职业为战士 CH01、枪手 CH02、法师 CH03。
-- 技能触发遵循 [三职业优化](../character-optimization/ROLE_OPTIMIZATION_2026-10-02.md)：战士接敌/破势，枪手猎印/射线，法师成功付费施法。不能要求法师普攻维持套装。
-- 数值接口继承 [普通怪当前公式](../balance/ORDINARY_MONSTER_NUMBERS.md)、[章节/Boss标尺](../balance/BOSS_DIFFICULTY_CALIBRATION.md)和[预警时序](../balance/ENEMY_WARNING_TIMING.md)。历史 Boss 构筑表存在早于新职业资格的跨职配装，未来测试必须重新选择合法装备，不能直接照搬。
+- 资格以 [PR #4 职业装备政策](https://github.com/Dapeng960208/games/blob/927332a667eab665769c1d49a2eb36127de616cc/docs/character-optimization/EQUIPMENT_CLASS_POLICY_2026-10-02.md) 为准；职业为战士 CH01、枪手 CH02、法师 CH03。
+- 技能触发遵循 [三职业优化](https://github.com/Dapeng960208/games/blob/927332a667eab665769c1d49a2eb36127de616cc/docs/character-optimization/ROLE_OPTIMIZATION_2026-10-02.md)：战士接敌/破势，枪手猎印/射线，法师成功付费施法。不能要求法师普攻维持套装。
+- 数值接口继承 [普通怪当前公式](https://github.com/Dapeng960208/games/blob/927332a667eab665769c1d49a2eb36127de616cc/docs/balance/ORDINARY_MONSTER_NUMBERS.md)、[章节/Boss标尺](../balance/BOSS_DIFFICULTY_CALIBRATION.md)和[预警时序](https://github.com/Dapeng960208/games/blob/927332a667eab665769c1d49a2eb36127de616cc/docs/balance/ENEMY_WARNING_TIMING.md)。历史 Boss 构筑表存在早于新职业资格的跨职配装，未来测试必须重新选择合法装备，不能直接照搬。
 - 完整骷髅召唤职业已有独立设计但未进入当前运行范围；本提案不把召唤师加入自然掉落资格、不新增第四套职业装备。未来发布时另做资格与数值版本，不将“所有三职业”自动解释为兼容未来全部职业。
 
 ## 2. 八份关卡文档与等级
