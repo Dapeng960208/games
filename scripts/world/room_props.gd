@@ -9,6 +9,7 @@ const Appearance = preload("res://scripts/world/room_appearance.gd")
 const Art = preload("res://scripts/world/world_art.gd")
 const PropArt = preload("res://scripts/world/world_prop_art.gd")
 const BeaconBody = preload("res://scripts/world/room_beacon_body.gd")
+const WorldLabels = preload("res://scripts/ui/world_label_layer.gd")
 const BEACON_RADIUS := 72.0
 const BEACON_RECHARGE := 45.0
 const BEACON_EFFECTS := ["heal", "resource", "damage", "guard", "haste"]
@@ -43,6 +44,7 @@ var configuration_errors: Array[String] = []
 var _beacon_layer: Node2D
 var _beacon_bodies: Array[Node2D] = []
 var _entity_bodies: Dictionary = {}
+var label_layer: Node2D
 
 func _ready() -> void:
 	_ensure_beacon_layer()
@@ -56,11 +58,12 @@ func configure(owner_room: Node2D, room_layout: Dictionary) -> bool:
 	_placement_rng.seed = int(layout.get("seed", hash(room_id))) ^ 0x524F4F4D
 	_beacon_rng.seed = int(layout.get("seed", hash(room_id))) ^ 0x42454143
 	obstacle_recipes = Appearance.recipe(layout, biome_id)
-	_font = ThemeDB.fallback_font
-	if ResourceLoader.exists("res://assets/fonts/NotoSansSC.ttf"):
-		_font = load("res://assets/fonts/NotoSansSC.ttf")
+	_font = WorldLabels.font()
 	z_index = 1
 	material = Art.material_for(biome_id)
+	if not is_instance_valid(label_layer):
+		label_layer = WorldLabels.new()
+		label_layer.configure(self, _draw_labels)
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	set_process(false)
 	set_physics_process(false)
@@ -112,6 +115,7 @@ func clear() -> void:
 	_wall_break_limits.clear()
 	configuration_errors.clear()
 	elapsed = 0.0
+	if is_instance_valid(label_layer): label_layer.queue_redraw()
 
 func _exit_tree() -> void:
 	# Sibling layer removal is deferred during tree exit to avoid editing the
@@ -776,8 +780,16 @@ func _draw_supply(item: Dictionary) -> void:
 	if not used:
 		draw_circle(Vector2(0,25),3.0,tint)
 	draw_set_transform(Vector2.ZERO)
+
+func _draw_labels(canvas: Node2D) -> void:
+	for item: Dictionary in props:
+		_draw_supply_label(canvas, item)
+
+func _draw_supply_label(canvas: Node2D, item: Dictionary) -> void:
 	if _font == null:
 		return
+	var at: Vector2 = item.position
+	var used: bool = bool(item.used)
 	var observer: Node2D = room.get("player") if is_instance_valid(room) else null
 	if not is_instance_valid(observer) or observer.position.distance_to(at) > 160.0 or not _line_clear(observer.position,at):
 		return
@@ -797,11 +809,9 @@ func _draw_supply(item: Dictionary) -> void:
 	var detail_width: float = _font.get_string_size(detail,HORIZONTAL_ALIGNMENT_LEFT,-1,13).x
 	var panel_width: float = maxf(width,detail_width)+12.0
 	var panel := Rect2(at+Vector2(-panel_width*.5,32),Vector2(panel_width,40))
-	draw_rect(Rect2(panel.position+Vector2(0,2),panel.size),Color(Color("827961"),0.16))
-	draw_rect(panel,Color(Color("fff0d5"),0.96))
-	draw_rect(panel,Color("d3b176"),false,1.0)
-	draw_string(_font,at+Vector2(-width*.5,49),label,HORIZONTAL_ALIGNMENT_LEFT,-1,15,Color("69776a") if used else Color("493950"))
-	draw_string(_font,at+Vector2(-detail_width*.5,67),detail,HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color("879285") if used else Color("657368"))
+	WorldLabels.draw_panel(canvas,panel)
+	canvas.draw_string(_font,at+Vector2(-width*.5,49),label,HORIZONTAL_ALIGNMENT_LEFT,-1,15,WorldLabels.DETAIL if used else WorldLabels.INK)
+	canvas.draw_string(_font,at+Vector2(-detail_width*.5,67),detail,HORIZONTAL_ALIGNMENT_LEFT,-1,13,WorldLabels.DETAIL)
 
 func _draw_supply_art(canvas: CanvasItem, effect: String, used: bool) -> bool:
 	var asset: String = "beacon_dormant" if used else "beacon_" + effect
