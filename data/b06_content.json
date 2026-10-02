@@ -1,0 +1,1598 @@
+{
+  "schema_version": 1,
+  "biome_id": "B06",
+  "name": "琉潮珊城",
+  "name_en": "Tidal Coral City",
+  "status": "authored_only",
+  "runtime_enabled": false,
+  "source_documents": [
+    "docs/levels/06_TIDAL_CORAL_CITY.md",
+    "docs/levels/NEXT_EIGHT_CLASS_GEAR_INDEX.md"
+  ],
+  "translation_status": "implementation_translation_not_approved_glossary",
+  "blueprint": {
+    "size": [
+      2800,
+      1800
+    ],
+    "world_scale": 0.58,
+    "anchor_unit": "blueprint_percent",
+    "distance_unit": "scaled_world_pixel",
+    "minimum_main_route_width": 180,
+    "minimum_dry_area_ratio": 0.35
+  },
+  "progression": {
+    "previous_boss": "BO05",
+    "zone_levels": [
+      26,
+      28,
+      30
+    ],
+    "boss_level": 30,
+    "chapter_hp_factor": 1.6,
+    "chapter_damage_factor": 1.4,
+    "level_resolution_status": "frozen_isolated_b06_numbers_v1_no_player_level_extension"
+  },
+  "profiles": {
+    "F": {
+      "max_hp": 78,
+      "damage": 13,
+      "move_speed": 67,
+      "armor": 7,
+      "magic_resist": 5,
+      "attack_range": 90,
+      "recovery_seconds": 1.15
+    },
+    "R": {
+      "max_hp": 68,
+      "damage": 13,
+      "move_speed": 84,
+      "armor": 4,
+      "magic_resist": 4,
+      "attack_range": 280,
+      "recovery_seconds": 1.15
+    },
+    "C": {
+      "max_hp": 58,
+      "damage": 12,
+      "move_speed": 70,
+      "armor": 2,
+      "magic_resist": 12,
+      "attack_range": 260,
+      "recovery_seconds": 1.15
+    },
+    "S": {
+      "max_hp": 65,
+      "damage": 11,
+      "move_speed": 73,
+      "armor": 3,
+      "magic_resist": 8,
+      "attack_range": 200,
+      "recovery_seconds": 1.15
+    },
+    "A": {
+      "max_hp": 48,
+      "damage": 13,
+      "move_speed": 94,
+      "armor": 1,
+      "magic_resist": 3,
+      "attack_range": 150,
+      "recovery_seconds": 1.15
+    },
+    "T": {
+      "max_hp": 92,
+      "damage": 11,
+      "move_speed": 55,
+      "armor": 10,
+      "magic_resist": 4,
+      "attack_range": 100,
+      "recovery_seconds": 1.3
+    }
+  },
+  "enemy_ids": [
+    "B06-M01",
+    "B06-M02",
+    "B06-M03",
+    "B06-M04",
+    "B06-M05",
+    "B06-M06",
+    "B06-M07",
+    "B06-M08",
+    "B06-M09",
+    "B06-M10",
+    "B06-M11",
+    "B06-M12",
+    "B06-M13",
+    "B06-M14",
+    "B06-M15",
+    "B06-M16",
+    "B06-M17",
+    "B06-M18"
+  ],
+  "room_ids": [
+    "L31",
+    "L32",
+    "L33",
+    "L34",
+    "L35",
+    "L36",
+    "BO06"
+  ],
+  "contracts": {
+    "zone_concurrent_cap": 6,
+    "room_concurrent_cap": 18,
+    "interrupted_skill_cooldown_ratio": 0.5,
+    "support_heal_per_cast_max_hp_ratio": 0.08,
+    "lifetime_external_heal_max_hp_ratio": 0.25,
+    "summon_rewards": false,
+    "difficulty_hp_multipliers": [
+      1,
+      1.4,
+      2,
+      2.8,
+      4
+    ],
+    "difficulty_damage_multipliers": [
+      1,
+      1.2,
+      1.5,
+      1.85,
+      2.3
+    ],
+    "ordinary_skill_difficulty_multipliers": [
+      1,
+      1.05,
+      1.1,
+      1.15,
+      1.2
+    ],
+    "boss_skill_difficulty_multipliers": [
+      1,
+      1.06,
+      1.12,
+      1.2,
+      1.3
+    ],
+    "difficulty_composition": {
+      "0": "分开介绍排水与推移。",
+      "1": "一个潮甲前排配一个炮手。",
+      "2": "珊瑚墙后支援。",
+      "3": "一名有限精英替换重装，不加并发。",
+      "4": "音浪→潮线→炮弹，不同伤害锁定至少错开0.8秒。"
+    },
+    "difficulty_composition_status": "authored_constraints_not_generated_waves",
+    "forced_movement_protection_seconds": 2,
+    "d4_damage_lock_separation_seconds": 0.8
+  },
+  "mechanics": {
+    "tide": {
+      "low_seconds": 8,
+      "warning_seconds": 2,
+      "high_seconds": 6,
+      "first_tutorial_low_seconds": 12,
+      "period_seconds": 16,
+      "high_player_movement_slow_ratio": 0.15,
+      "fixed_to_room_not_player": true,
+      "drowning_damage": 0,
+      "minimum_dry_area_ratio": 0.35,
+      "minimum_main_route_width": 180
+    },
+    "tidal_shell": {
+      "shallow_move_speed_bonus": 0.12,
+      "high_entry_shield_max_hp_ratio": 0.1,
+      "shield_seconds": 6,
+      "icd_seconds": 12,
+      "stacking": "replace_with_higher",
+      "dry_ground_shield": false
+    },
+    "drain": {
+      "interaction_seconds": 0.6,
+      "dry_seconds": 8,
+      "cooldown_seconds": 16,
+      "requires_equipment": false
+    },
+    "forced_movement": {
+      "navigation_clipped": true,
+      "same_control_protection_seconds": 2,
+      "protected_distance_ratio": 0,
+      "corner_escape_direction_minimum": 2
+    },
+    "echo": {
+      "universal_reflection": false,
+      "selected_support_only": true,
+      "hit_protection_count": 1
+    }
+  },
+  "enemies": {
+    "B06-M01": {
+      "enemy_id": "B06-M01",
+      "biome_id": "B06",
+      "name": "三叉戟鱼卫",
+      "name_en": "Trident Fishguard",
+      "introduced_level": 26,
+      "profile": "F",
+      "raw_stats": {
+        "max_hp": 78,
+        "damage": 13,
+        "move_speed": 67,
+        "armor": 7,
+        "magic_resist": 5,
+        "attack_range": 90,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "高背鳍长戟",
+      "counter_and_drop_text": "侧移而非正后退，返扫不追踪；胸",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "三叉突刺150距、1.1a（7s；0.9s）",
+          "parameters": {
+            "range": 150,
+            "damage_a": 1.1,
+            "cooldown_seconds": 7,
+            "warning_seconds": 0.9
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2湿地突刺多前进50",
+          "parameters": {
+            "wet_extra_advance": 50
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4刺后返扫0.4a、间隔0.8s",
+          "parameters": {
+            "return_sweep_damage_a": 0.4,
+            "interval_seconds": 0.8,
+            "retarget": false
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.line_width",
+        "D4.sweep_shape"
+      ]
+    },
+    "B06-M02": {
+      "enemy_id": "B06-M02",
+      "biome_id": "B06",
+      "name": "寄居蟹炮手",
+      "name_en": "Hermit Crab Gunner",
+      "introduced_level": 26,
+      "profile": "R",
+      "raw_stats": {
+        "max_hp": 68,
+        "damage": 13,
+        "move_speed": 84,
+        "armor": 4,
+        "magic_resist": 4,
+        "attack_range": 280,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "壳背小炮",
+      "counter_and_drop_text": "炮身先指向落点，跳弹另有0.8s圈；头",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "炮弹落点半径75、1.0a（8s；1.1s）",
+          "parameters": {
+            "radius": 75,
+            "damage_a": 1.0,
+            "cooldown_seconds": 8,
+            "warning_seconds": 1.1
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2留泡区2s减速",
+          "parameters": {
+            "bubble_seconds": 2
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4高潮时弹跳一次0.4a",
+          "parameters": {
+            "high_tide_bounce_count": 1,
+            "damage_a": 0.4,
+            "warning_seconds": 0.8
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D2.slow_ratio",
+        "D2.bubble_radius",
+        "D4.bounce_target_rule"
+      ]
+    },
+    "B06-M03": {
+      "enemy_id": "B06-M03",
+      "biome_id": "B06",
+      "name": "甲壳盾卫",
+      "name_en": "Carapace Shieldguard",
+      "introduced_level": 26,
+      "profile": "T",
+      "raw_stats": {
+        "max_hp": 92,
+        "damage": 11,
+        "move_speed": 55,
+        "armor": 10,
+        "magic_resist": 4,
+        "attack_range": 100,
+        "recovery_seconds": 1.3
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "宽扇盾蟹",
+      "counter_and_drop_text": "绕侧或排水；无永久盾；胸",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "举盾正面减伤35%2.5s，随后钳击1.0a（9s；0.9s）",
+          "parameters": {
+            "frontal_damage_reduction": 0.35,
+            "shield_stance_seconds": 2.5,
+            "damage_a": 1.0,
+            "cooldown_seconds": 9,
+            "warning_seconds": 0.9
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2盾期间向干地推进70",
+          "parameters": {
+            "dry_ground_advance": 70
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4潮甲破裂后侧退80",
+          "parameters": {
+            "shell_break_side_retreat": 80
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.claw_shape"
+      ]
+    },
+    "B06-M04": {
+      "enemy_id": "B06-M04",
+      "biome_id": "B06",
+      "name": "银鳍针鱼",
+      "name_en": "Silverfin Needlefish",
+      "introduced_level": 26,
+      "profile": "A",
+      "raw_stats": {
+        "max_hp": 48,
+        "damage": 13,
+        "move_speed": 94,
+        "armor": 1,
+        "magic_resist": 3,
+        "attack_range": 150,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "细长流线鱼身",
+      "counter_and_drop_text": "跟踪结束后横移，尾圈不与正线同帧；鞋",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "锁线急游220、0.85a（6s；0.8s）",
+          "parameters": {
+            "range": 220,
+            "damage_a": 0.85,
+            "cooldown_seconds": 6,
+            "warning_seconds": 0.8
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2末端甩尾半径60、0.3a",
+          "parameters": {
+            "tail_radius": 60,
+            "damage_a": 0.3,
+            "same_frame_as_charge": false
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4高潮后回游一次无伤位移",
+          "parameters": {
+            "high_tide_return_count": 1,
+            "return_damage_a": 0
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.line_width",
+        "D2.followup_interval"
+      ]
+    },
+    "B06-M05": {
+      "enemy_id": "B06-M05",
+      "biome_id": "B06",
+      "name": "泡沫司祭",
+      "name_en": "Foam Priest",
+      "introduced_level": 26,
+      "profile": "S",
+      "raw_stats": {
+        "max_hp": 65,
+        "damage": 11,
+        "move_speed": 73,
+        "armor": 3,
+        "magic_resist": 8,
+        "attack_range": 200,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "泡冠与海草杖",
+      "counter_and_drop_text": "打断、拉开受盾目标；不能给Boss；戒",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "给单体8%HP泡盾5s（10s；引导1.0s）",
+          "parameters": {
+            "target_count": 1,
+            "shield_max_hp_ratio": 0.08,
+            "shield_seconds": 5,
+            "cooldown_seconds": 10,
+            "warning_seconds": 1.0,
+            "boss_allowed": false
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2泡盾破裂减速周围敌对单位10%2s",
+          "parameters": {
+            "shield_break_slow_ratio": 0.1,
+            "slow_seconds": 2
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4给两目标各5%盾",
+          "parameters": {
+            "target_count": 2,
+            "shield_max_hp_ratio": 0.05
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.support_range",
+        "D2.burst_radius"
+      ]
+    },
+    "B06-M06": {
+      "enemy_id": "B06-M06",
+      "biome_id": "B06",
+      "name": "海胆布雷者",
+      "name_en": "Urchin Minelayer",
+      "introduced_level": 26,
+      "profile": "R",
+      "raw_stats": {
+        "max_hp": 68,
+        "damage": 13,
+        "move_speed": 84,
+        "armor": 4,
+        "magic_resist": 4,
+        "attack_range": 280,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "背负圆刺篮",
+      "counter_and_drop_text": "雷可被攻击提前安全拆除，最大2枚；裤",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "抛1枚蟹雷，2s后半径70、1.0a（10s；投掷0.9s）",
+          "parameters": {
+            "mine_count": 1,
+            "arm_seconds": 2,
+            "radius": 70,
+            "damage_a": 1.0,
+            "cooldown_seconds": 10,
+            "warning_seconds": 0.9,
+            "active_mine_cap": 2,
+            "attack_disarm_safe": true
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2加一枚间隔1s",
+          "parameters": {
+            "additional_mine_count": 1,
+            "interval_seconds": 1
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4被潮线推移60后才引爆",
+          "parameters": {
+            "tide_displacement": 60,
+            "displace_before_explosion": true
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.mine_hp"
+      ]
+    },
+    "B06-M07": {
+      "enemy_id": "B06-M07",
+      "biome_id": "B06",
+      "name": "涡歌鲛人",
+      "name_en": "Whorlsong Siren",
+      "introduced_level": 28,
+      "profile": "C",
+      "raw_stats": {
+        "max_hp": 58,
+        "damage": 12,
+        "move_speed": 70,
+        "armor": 2,
+        "magic_resist": 12,
+        "attack_range": 260,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "波纹长尾",
+      "counter_and_drop_text": "进扇侧翼或借低掩体挡回声；手",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "扇形音浪240距、0.9a并推离50（9s；1.0s）",
+          "parameters": {
+            "range": 240,
+            "damage_a": 0.9,
+            "push_distance": 50,
+            "cooldown_seconds": 9,
+            "warning_seconds": 1.0
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2后续一条窄回声0.4a",
+          "parameters": {
+            "echo_count": 1,
+            "damage_a": 0.4
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4回声沿原线不再转向",
+          "parameters": {
+            "echo_retarget": false
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.cone_angle",
+        "D2.echo_width",
+        "D2.echo_interval"
+      ]
+    },
+    "B06-M08": {
+      "enemy_id": "B06-M08",
+      "biome_id": "B06",
+      "name": "珊瑚筑垒师",
+      "name_en": "Coral Rampart Builder",
+      "introduced_level": 28,
+      "profile": "S",
+      "raw_stats": {
+        "max_hp": 65,
+        "damage": 11,
+        "move_speed": 73,
+        "armor": 3,
+        "magic_resist": 8,
+        "attack_range": 200,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "珊枝工具架",
+      "counter_and_drop_text": "可绕可拆，不封闸与出口；饰品",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "竖一面120宽珊瑚低墙，HP为自身20%、持续7s（12s；1.2s）",
+          "parameters": {
+            "width": 120,
+            "wall_hp_self_ratio": 0.2,
+            "duration_seconds": 7,
+            "cooldown_seconds": 12,
+            "warning_seconds": 1.2,
+            "cannot_block_gate_or_exit": true
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2墙后同伴受远程伤-10%",
+          "parameters": {
+            "ranged_damage_reduction_behind_wall": 0.1
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4墙碎后筑垒师暴露2s",
+          "parameters": {
+            "wall_destroyed_exposure_seconds": 2
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D2.support_range",
+        "D4.exposure_damage_bonus"
+      ]
+    },
+    "B06-M09": {
+      "enemy_id": "B06-M09",
+      "biome_id": "B06",
+      "name": "蓝钳冲城蟹",
+      "name_en": "Blueclaw Siege Crab",
+      "introduced_level": 28,
+      "profile": "T",
+      "raw_stats": {
+        "max_hp": 92,
+        "damage": 11,
+        "move_speed": 55,
+        "armor": 10,
+        "magic_resist": 4,
+        "attack_range": 100,
+        "recovery_seconds": 1.3
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "单巨钳",
+      "counter_and_drop_text": "完整线预警，诱撞柱得1.8s空窗；武器",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "横冲200、1.2a（10s；1.1s）",
+          "parameters": {
+            "range": 200,
+            "damage_a": 1.2,
+            "cooldown_seconds": 10,
+            "warning_seconds": 1.1,
+            "pillar_collision_recovery_seconds": 1.8
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2撞墙后沿边泼水0.4a",
+          "parameters": {
+            "wall_splash_damage_a": 0.4
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4高潮中冲锋末段速度+10%",
+          "parameters": {
+            "high_tide_final_speed_bonus": 0.1
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.charge_width",
+        "D2.splash_shape",
+        "D4.final_segment_length"
+      ]
+    },
+    "B06-M10": {
+      "enemy_id": "B06-M10",
+      "biome_id": "B06",
+      "name": "珠光水母",
+      "name_en": "Pearlglow Jellyfish",
+      "introduced_level": 28,
+      "profile": "C",
+      "raw_stats": {
+        "max_hp": 58,
+        "damage": 12,
+        "move_speed": 70,
+        "armor": 2,
+        "magic_resist": 12,
+        "attack_range": 260,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "四垂丝透明伞",
+      "counter_and_drop_text": "水母悬浮仍可被近战命中；头",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "指定半径95脉冲0.9a（9s；1.2s）",
+          "parameters": {
+            "radius": 95,
+            "damage_a": 0.9,
+            "cooldown_seconds": 9,
+            "warning_seconds": 1.2
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2半径缩至65后第二跳0.4a",
+          "parameters": {
+            "second_radius": 65,
+            "damage_a": 0.4
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4两跳间距1s，外环始终安全",
+          "parameters": {
+            "interval_seconds": 1,
+            "safe_outer_ring": true
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D2.second_pulse_interval_below_d4"
+      ]
+    },
+    "B06-M11": {
+      "enemy_id": "B06-M11",
+      "biome_id": "B06",
+      "name": "海马骑枪卫",
+      "name_en": "Seahorse Lancer",
+      "introduced_level": 28,
+      "profile": "F",
+      "raw_stats": {
+        "max_hp": 78,
+        "damage": 13,
+        "move_speed": 67,
+        "armor": 7,
+        "magic_resist": 5,
+        "attack_range": 90,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "竖直海马坐骑",
+      "counter_and_drop_text": "侧跃前锁点，不允许连续位移逃出射程；裤",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "短距侧跃80后长枪刺180、1.1a（8s；1.0s）",
+          "parameters": {
+            "side_leap_distance": 80,
+            "range": 180,
+            "damage_a": 1.1,
+            "cooldown_seconds": 8,
+            "warning_seconds": 1.0,
+            "lock_before_leap": true
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2落地留下向前水线",
+          "parameters": {
+            "forward_water_line_count": 1
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4退潮时侧跃有1次8%HP盾",
+          "parameters": {
+            "low_tide_leap_shield_count": 1,
+            "shield_max_hp_ratio": 0.08
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D2.water_line_damage_shape_duration",
+        "D4.shield_seconds"
+      ]
+    },
+    "B06-M12": {
+      "enemy_id": "B06-M12",
+      "biome_id": "B06",
+      "name": "螺旋喷流螺",
+      "name_en": "Spiral Jet Snail",
+      "introduced_level": 28,
+      "profile": "R",
+      "raw_stats": {
+        "max_hp": 68,
+        "damage": 13,
+        "move_speed": 84,
+        "armor": 4,
+        "magic_resist": 4,
+        "attack_range": 280,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "水平螺壳喷嘴",
+      "counter_and_drop_text": "从喷嘴侧边近身；实体掩体截断流线；手",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "长320宽45喷流1.0a（8s；1.0s）",
+          "parameters": {
+            "range": 320,
+            "width": 45,
+            "damage_a": 1.0,
+            "cooldown_seconds": 8,
+            "warning_seconds": 1.0,
+            "solid_cover_blocks": true
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2喷流残留1.5s、每秒0.25a",
+          "parameters": {
+            "duration_seconds": 1.5,
+            "damage_a_per_second": 0.25
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4喷完反向后坐60",
+          "parameters": {
+            "recoil_distance": 60
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D2.tick_schedule"
+      ]
+    },
+    "B06-M13": {
+      "enemy_id": "B06-M13",
+      "biome_id": "B06",
+      "name": "潮钟领唱者",
+      "name_en": "Tidebell Cantor",
+      "introduced_level": 30,
+      "profile": "S",
+      "raw_stats": {
+        "max_hp": 65,
+        "damage": 11,
+        "move_speed": 73,
+        "armor": 3,
+        "magic_resist": 8,
+        "attack_range": 200,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "手提贝钟",
+      "counter_and_drop_text": "打断；CD不能归零，不影响Boss；戒",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "引导1.5s使邻近两同伴本次技能CD减少1s（13s）",
+          "parameters": {
+            "target_cap": 2,
+            "ally_skill_cooldown_reduction_seconds": 1,
+            "warning_seconds": 1.5,
+            "cooldown_seconds": 13,
+            "allow_zero_cooldown": false,
+            "boss_allowed": false
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2给一目标移速+10%3s",
+          "parameters": {
+            "target_cap": 1,
+            "move_speed_bonus": 0.1,
+            "buff_seconds": 3
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4下一潮线到来前提示目标强化",
+          "parameters": {
+            "show_empowered_target_before_tide": true
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.support_range",
+        "D0.minimum_remaining_cooldown"
+      ]
+    },
+    "B06-M14": {
+      "enemy_id": "B06-M14",
+      "biome_id": "B06",
+      "name": "锯鳍潜猎者",
+      "name_en": "Sawfin Stalker",
+      "introduced_level": 30,
+      "profile": "A",
+      "raw_stats": {
+        "max_hp": 48,
+        "damage": 13,
+        "move_speed": 94,
+        "armor": 1,
+        "magic_resist": 3,
+        "attack_range": 150,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "背鳍锯齿",
+      "counter_and_drop_text": "水迹、影子、锁圈不消失；排水直接显形；鞋",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "露出水迹1.0s后向锁点跃击、1.15a（10s）",
+          "parameters": {
+            "warning_seconds": 1.0,
+            "damage_a": 1.15,
+            "cooldown_seconds": 10,
+            "locked_target": true,
+            "visible_water_shadow_and_circle": true
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2落点两侧出0.3a水刺",
+          "parameters": {
+            "side_spike_count": 2,
+            "damage_a": 0.3
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4湿地潜行时减伤20%",
+          "parameters": {
+            "wet_stealth_damage_reduction": 0.2,
+            "drain_reveals": true
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.leap_range_radius",
+        "D2.spike_shape_interval"
+      ]
+    },
+    "B06-M15": {
+      "enemy_id": "B06-M15",
+      "biome_id": "B06",
+      "name": "砗磲护珠者",
+      "name_en": "Giant Clam Pearlguard",
+      "introduced_level": 30,
+      "profile": "T",
+      "raw_stats": {
+        "max_hp": 92,
+        "damage": 11,
+        "move_speed": 55,
+        "armor": 10,
+        "magic_resist": 4,
+        "attack_range": 100,
+        "recovery_seconds": 1.3
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "双瓣贝甲",
+      "counter_and_drop_text": "等张壳1.5s弱点；弹最多命中同目标2片；胸",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "合壳2s减伤40%，张壳时三片弹各0.45a（11s；1.1s）",
+          "parameters": {
+            "closed_shell_seconds": 2,
+            "damage_reduction": 0.4,
+            "projectile_count": 3,
+            "damage_a": 0.45,
+            "cooldown_seconds": 11,
+            "warning_seconds": 1.1,
+            "max_projectile_hits_per_target": 2,
+            "open_weakpoint_seconds": 1.5
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2中央弹更慢但大",
+          "parameters": {
+            "center_projectile_slower_and_larger": true
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4合壳时吸收附近一面泡盾而非回血",
+          "parameters": {
+            "absorbed_bubble_count": 1,
+            "heals": false
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.projectile_speed_spread",
+        "D2.center_speed_size",
+        "D4.absorption_range"
+      ]
+    },
+    "B06-M16": {
+      "enemy_id": "B06-M16",
+      "biome_id": "B06",
+      "name": "深渠网捕手",
+      "name_en": "Deepchannel Netcatcher",
+      "introduced_level": 30,
+      "profile": "R",
+      "raw_stats": {
+        "max_hp": 68,
+        "damage": 13,
+        "move_speed": 84,
+        "armor": 4,
+        "magic_resist": 4,
+        "attack_range": 280,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "折叠渔网架",
+      "counter_and_drop_text": "网中心可拆，HP为自身10%；干地移动不变；武器",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "在半径90落网，0.6a并束缚0.6s（11s；1.2s）",
+          "parameters": {
+            "radius": 90,
+            "damage_a": 0.6,
+            "root_seconds": 0.6,
+            "cooldown_seconds": 11,
+            "warning_seconds": 1.2,
+            "net_hp_self_ratio": 0.1
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2网沿潮线移动40",
+          "parameters": {
+            "tide_displacement": 40,
+            "dry_ground_displacement": 0
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4网消失前一次0.4a收束",
+          "parameters": {
+            "closing_damage_a": 0.4,
+            "closing_count": 1
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.net_duration",
+        "D4.warning_seconds"
+      ]
+    },
+    "B06-M17": {
+      "enemy_id": "B06-M17",
+      "biome_id": "B06",
+      "name": "浮礁背负兽",
+      "name_en": "Reefback Beast",
+      "introduced_level": 30,
+      "profile": "T",
+      "raw_stats": {
+        "max_hp": 92,
+        "damage": 11,
+        "move_speed": 55,
+        "armor": 10,
+        "magic_resist": 4,
+        "attack_range": 100,
+        "recovery_seconds": 1.3
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "背珊瑚礁的大鳍兽",
+      "counter_and_drop_text": "贴近环内或出环外，不能同帧全吃；饰品",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "跺地产生向外水环，半径160、1.2a（12s；1.3s）",
+          "parameters": {
+            "radius": 160,
+            "damage_a": 1.2,
+            "cooldown_seconds": 12,
+            "warning_seconds": 1.3
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2在高潮多一次反向窄环",
+          "parameters": {
+            "high_tide_reverse_ring_count": 1
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4两环间保留1.2s",
+          "parameters": {
+            "interval_seconds": 1.2,
+            "same_frame_hits": false
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.ring_width",
+        "D2.reverse_damage_a",
+        "D2.interval_below_d4"
+      ]
+    },
+    "B06-M18": {
+      "enemy_id": "B06-M18",
+      "biome_id": "B06",
+      "name": "潮庭执旗官",
+      "name_en": "Tidecourt Standardbearer",
+      "introduced_level": 30,
+      "profile": "S",
+      "raw_stats": {
+        "max_hp": 65,
+        "damage": 11,
+        "move_speed": 73,
+        "armor": 3,
+        "magic_resist": 8,
+        "attack_range": 200,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "分叉潮旗",
+      "counter_and_drop_text": "旗HP为自身20%，三职业可拆；不得全场加成；饰品",
+      "implementation_status": "authored_only",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "设潮旗6s，使范围180内潮甲持续+2s（14s；1.2s）",
+          "parameters": {
+            "duration_seconds": 6,
+            "radius": 180,
+            "tidal_shell_extra_seconds": 2,
+            "cooldown_seconds": 14,
+            "warning_seconds": 1.2,
+            "flag_hp_self_ratio": 0.2
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2旗周期发一条0.4a窄浪",
+          "parameters": {
+            "narrow_wave_damage_a": 0.4
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4排水后旗失效，执旗官受伤+15%3s",
+          "parameters": {
+            "drain_disables_flag": true,
+            "damage_taken_bonus": 0.15,
+            "buff_seconds": 3
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D2.wave_interval_width",
+        "D4.drain_detection_range"
+      ]
+    }
+  },
+  "rooms": {
+    "L31": {
+      "room_id": "L31",
+      "biome_id": "B06",
+      "name": "贝桥前街",
+      "name_en": "Shellbridge Front Street",
+      "kind": "ordinary",
+      "enemy_level": 26,
+      "layout_text": "西入东出；中央宽贝桥常干，南北水渠不封桥",
+      "encounter_text": "M01/02/03；先看潮甲再看退潮消盾",
+      "reward_bias_text": "头/胸",
+      "blueprint_percent_anchors": {},
+      "introduced_enemy_ids": [
+        "B06-M01",
+        "B06-M02",
+        "B06-M03"
+      ],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "navigation_polygon",
+        "shallow_polygons",
+        "dry_route_proof",
+        "drain_patch_links",
+        "wave_members"
+      ]
+    },
+    "L32": {
+      "room_id": "L32",
+      "biome_id": "B06",
+      "name": "螺塔码头",
+      "name_en": "Conch Tower Docks",
+      "kind": "ordinary",
+      "enemy_level": 26,
+      "layout_text": "南入东北出；闸(30,55)，三段码头高低错落但无掉落悬崖",
+      "encounter_text": "M04/05/06；一次可排掉一侧浅水",
+      "reward_bias_text": "裤/鞋、U01",
+      "blueprint_percent_anchors": {
+        "drain": [
+          30,
+          55
+        ]
+      },
+      "introduced_enemy_ids": [
+        "B06-M04",
+        "B06-M05",
+        "B06-M06"
+      ],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "navigation_polygon",
+        "shallow_polygons",
+        "dry_route_proof",
+        "drain_patch_links",
+        "wave_members"
+      ]
+    },
+    "L33": {
+      "room_id": "L33",
+      "biome_id": "B06",
+      "name": "珊瑚集市",
+      "name_en": "Coral Market",
+      "kind": "ordinary",
+      "enemy_level": 28,
+      "layout_text": "西入东出；弧形摊位沿外缘，中央两段潮线交替",
+      "encounter_text": "M07/08/09；先声波后冲锋",
+      "reward_bias_text": "手/戒",
+      "blueprint_percent_anchors": {},
+      "introduced_enemy_ids": [
+        "B06-M07",
+        "B06-M08",
+        "B06-M09"
+      ],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "navigation_polygon",
+        "shallow_polygons",
+        "dry_route_proof",
+        "drain_patch_links",
+        "wave_members"
+      ]
+    },
+    "L34": {
+      "room_id": "L34",
+      "biome_id": "B06",
+      "name": "珍珠工坊",
+      "name_en": "Pearl Workshop",
+      "kind": "ordinary",
+      "enemy_level": 28,
+      "layout_text": "西南入东北出；贝壳工作台是低掩体，闸在东侧环路",
+      "encounter_text": "M10/11/12；湿地盾卫与远程炮分角度出现",
+      "reward_bias_text": "手/戒、U02",
+      "blueprint_percent_anchors": {},
+      "introduced_enemy_ids": [
+        "B06-M10",
+        "B06-M11",
+        "B06-M12"
+      ],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "navigation_polygon",
+        "shallow_polygons",
+        "dry_route_proof",
+        "drain_patch_links",
+        "wave_members"
+      ]
+    },
+    "L35": {
+      "room_id": "L35",
+      "biome_id": "B06",
+      "name": "潮钟水庭",
+      "name_en": "Tidebell Watercourt",
+      "kind": "ordinary",
+      "enemy_level": 30,
+      "layout_text": "南入北出；潮钟(50,22)，干地成宽Y形",
+      "encounter_text": "M13/14/15；用钟提前显示下一潮线",
+      "reward_bias_text": "武器/饰品",
+      "blueprint_percent_anchors": {
+        "tide_bell": [
+          50,
+          22
+        ]
+      },
+      "introduced_enemy_ids": [
+        "B06-M13",
+        "B06-M14",
+        "B06-M15"
+      ],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "navigation_polygon",
+        "shallow_polygons",
+        "dry_route_proof",
+        "drain_patch_links",
+        "wave_members"
+      ]
+    },
+    "L36": {
+      "room_id": "L36",
+      "biome_id": "B06",
+      "name": "巨蟹船坞",
+      "name_en": "Giant Crab Dockyard",
+      "kind": "ordinary",
+      "enemy_level": 30,
+      "layout_text": "西入东出；三条平行水渠、两座常干横桥",
+      "encounter_text": "M16/17/18，有限三波；排水后拆支援",
+      "reward_bias_text": "武器/饰品、U03",
+      "blueprint_percent_anchors": {},
+      "introduced_enemy_ids": [
+        "B06-M16",
+        "B06-M17",
+        "B06-M18"
+      ],
+      "wave_count": 3,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "navigation_polygon",
+        "shallow_polygons",
+        "dry_route_proof",
+        "drain_patch_links",
+        "wave_members"
+      ]
+    },
+    "BO06": {
+      "room_id": "BO06",
+      "biome_id": "B06",
+      "name": "行走堡垒湾",
+      "name_en": "Walking Fortress Bay",
+      "kind": "boss",
+      "enemy_level": 30,
+      "layout_text": "南入；中间干岛、两侧排水闸(20,50)/(80,50)",
+      "encounter_text": "行走巨蟹堡垒，潮线沿外环推进",
+      "reward_bias_text": "本职业/共有首领池",
+      "blueprint_percent_anchors": {
+        "drains": [
+          [
+            20,
+            50
+          ],
+          [
+            80,
+            50
+          ]
+        ]
+      },
+      "introduced_enemy_ids": [],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "navigation_polygon",
+        "shallow_polygons",
+        "dry_route_proof",
+        "drain_patch_links",
+        "wave_members"
+      ]
+    }
+  },
+  "boss": {
+    "boss_id": "BO06",
+    "biome_id": "B06",
+    "name": "行走巨蟹堡垒",
+    "name_en": "Walking Crab Fortress",
+    "level": 30,
+    "raw_stats": {
+      "max_hp": 1100,
+      "damage": 26,
+      "move_speed": 54,
+      "armor": 9,
+      "magic_resist": 9
+    },
+    "d0_design_stats": {
+      "max_hp": 23760,
+      "damage": 491
+    },
+    "stat_contract": {
+      "baseline_multiplier": 1.35,
+      "combat_scale": 10,
+      "defense_per_difficulty": 2,
+      "ordinary_level_growth": false
+    },
+    "phases": [
+      {
+        "phase": 1,
+        "hp_lower_ratio": 0.7,
+        "hp_upper_ratio": 1,
+        "tide_enabled": false
+      },
+      {
+        "phase": 2,
+        "hp_lower_ratio": 0.4,
+        "hp_upper_ratio": 0.7,
+        "tide_enabled": true
+      },
+      {
+        "phase": 3,
+        "hp_lower_ratio": 0,
+        "hp_upper_ratio": 0.4,
+        "tide_enabled": true,
+        "cannon_alternation_changes": true,
+        "additional_tide_cycles": 0
+      }
+    ],
+    "frontal_damage_reduction_ratio": 0.35,
+    "exposed_seconds": 5,
+    "exposed_damage_taken_bonus_ratio": 0.15,
+    "exposure_icd_seconds": 12,
+    "exposure_requires": [
+      "drained_area",
+      "claw_hits_fixed_reef_pillar"
+    ],
+    "high_tide_end_output_window_seconds": 2.5,
+    "phase_change_resets_player_skills_or_gate_uses": false,
+    "skills": [
+      {
+        "skill_id": "siege_claw",
+        "name": "破城钳",
+        "name_en": "Siege Claw",
+        "minimum_difficulty": 0,
+        "parameters": {
+          "radius": 170,
+          "damage_a": 1.15,
+          "cooldown_seconds": 7,
+          "warning_seconds": 1.2,
+          "recovery_seconds": 1.4,
+          "retarget_after_lock": false
+        },
+        "unresolved_parameters": [
+          "cone_angle"
+        ],
+        "implementation_status": "authored_only",
+        "source_text": "正面半径170、1.15a；CD7s、预警1.2s、收势1.4s",
+        "counter_text": "侧移或诱击礁柱；攻击锁后不转身"
+      },
+      {
+        "skill_id": "twin_tide_cannon",
+        "name": "双口潮炮",
+        "name_en": "Twin Tide Cannon",
+        "minimum_difficulty": 0,
+        "parameters": {
+          "line_count": 2,
+          "width": 60,
+          "interval_seconds": 0.8,
+          "damage_a": 0.8,
+          "cooldown_seconds": 12,
+          "warning_seconds": 1.3,
+          "middle_safe_corridor": true
+        },
+        "unresolved_parameters": [
+          "line_length"
+        ],
+        "implementation_status": "authored_only",
+        "source_text": "左右各一条宽60射线，间隔0.8s、各0.8a；CD12s、预警1.3s",
+        "counter_text": "中间安全走廊不被另一招覆盖"
+      },
+      {
+        "skill_id": "advancing_tide",
+        "name": "潮线推进",
+        "name_en": "Advancing Tide",
+        "minimum_difficulty": 1,
+        "parameters": {
+          "width": 100,
+          "damage_a": 0.7,
+          "push_distance": 50,
+          "cooldown_seconds": 16,
+          "warning_seconds": 1.5
+        },
+        "unresolved_parameters": [
+          "line_length",
+          "travel_speed"
+        ],
+        "implementation_status": "authored_only",
+        "source_text": "从一侧推进宽100水墙、0.7a并推50；CD16s、预警1.5s",
+        "counter_text": "提前去高台或操作排水闸"
+      },
+      {
+        "skill_id": "shell_bombardment",
+        "name": "壳上炮击",
+        "name_en": "Shell Bombardment",
+        "minimum_difficulty": 2,
+        "parameters": {
+          "target_count": 2,
+          "radius": 90,
+          "damage_a": 0.85,
+          "interval_seconds": 0.8,
+          "cooldown_seconds": 17,
+          "warning_seconds": 1.4,
+          "high_tide_unselected_dry_island_minimum": 1
+        },
+        "unresolved_parameters": [],
+        "implementation_status": "authored_only",
+        "source_text": "两个半径90圈各0.85a，间隔0.8s；CD17s、预警1.4s",
+        "counter_text": "高潮时至少一个干岛不被选中"
+      },
+      {
+        "skill_id": "coral_escort",
+        "name": "珊城护航",
+        "name_en": "Coral Escort",
+        "minimum_difficulty": 3,
+        "parameters": {
+          "enemy_id": "B06-M01",
+          "count": 2,
+          "hp_ratio": 0.5,
+          "maximum_casts_per_battle": 2,
+          "rewards": false,
+          "shared_capacity": true,
+          "can_heal_or_shield_boss": false
+        },
+        "unresolved_parameters": [
+          "cooldown_seconds",
+          "warning_seconds"
+        ],
+        "implementation_status": "authored_only",
+        "source_text": "最多召唤2只M01派生护卫，本战最多2次，HP50%",
+        "counter_text": "占总容量，不给Boss治疗/护盾，无额外掉落"
+      },
+      {
+        "skill_id": "return_tide_pincer",
+        "name": "回潮夹击",
+        "name_en": "Return Tide Pincer",
+        "minimum_difficulty": 4,
+        "parameters": {
+          "sequence": [
+            "outer_wave",
+            "inner_claw"
+          ],
+          "damage_a": [
+            0.7,
+            0.9
+          ],
+          "interval_seconds": 1.2,
+          "cooldown_seconds": 24,
+          "warning_seconds": 1.6,
+          "gate_approach_remains_open": true
+        },
+        "unresolved_parameters": [
+          "outer_ring_radii",
+          "inner_claw_radius"
+        ],
+        "implementation_status": "authored_only",
+        "source_text": "先外环水浪0.7a，再内钳圈0.9a，间隔1.2s；CD24s、预警1.6s",
+        "counter_text": "按潮线先入后出，闸旁保留接近路线"
+      }
+    ],
+    "unresolved_parameters": [
+      "skill_to_phase_availability",
+      "fixed_reef_pillar_geometry",
+      "frontal_armor_angle",
+      "phase_three_cannon_pattern"
+    ]
+  }
+}
