@@ -38,50 +38,48 @@ func configure(close: Callable, initial_biome: String = "all") -> void:
 	preview_level = int(Numerical.chapter_levels(Numerical.chapter_for_id(selected_id)).boss_level)
 	var header := MineStyle.panel(self,Vector2(26,20),Vector2(1228,68))
 	MineStyle.literal(header,Inspect.t("怪物图鉴","Monster codex"),Vector2(22,10),Vector2(410,42),30)
-	MineStyle.literal(header,Inspect.t("36 种野怪 · 4 位首领","36 enemy archetypes · 4 bosses"),Vector2(454,20),Vector2(502,30),16,MineStyle.MUTED)
+	MineStyle.literal(header,Inspect.t("36 种野怪 · 4 位首领","36 enemy archetypes · 4 bosses"),Vector2(390,20),Vector2(460,30),16,MineStyle.MUTED)
 	var back := MineStyle.button(header,"BACK",Vector2(1040,12),Vector2(166,44),close)
 	back.name = "CloseMonsterCodex"
-	var regions := MineStyle.panel(self,Vector2(26,105),Vector2(194,563))
-	MineStyle.literal(regions,Inspect.t("冒险区域","REGIONS"),Vector2(16,15),Vector2(162,28),16,MineStyle.CYAN)
+	var collection := MineStyle.panel(self,Vector2(26,105),Vector2(754,563))
 	for index: int in 5:
 		var key: String = "all" if index == 0 else BIOMES[index-1]
-		var button := MineStyle.button(regions,"",Vector2(10,58+index*72),Vector2(174,62),func(): _set_biome(key))
+		var button := MineStyle.button(collection,"",Vector2(16+index*144,68),Vector2(136,39),func(): _set_biome(key))
 		button.name = "CodexRegion_"+key
 		button.text = Inspect.t("全部区域","All regions") if key == "all" else MineStyle.content_text(Catalog.biomes()[key],"name")
-		button.add_theme_font_size_override("font_size",16)
+		button.add_theme_font_size_override("font_size",14)
+		button.tooltip_text = button.text
 		region_buttons[key] = button
-	MineStyle.literal(regions,Inspect.t("观察预警，寻找反击时机。\n等级与难度会改变数值。","Watch the tells. Find an opening.\nLevel and difficulty affect values."),Vector2(16,454),Vector2(162,89),14,MineStyle.MUTED)
-	var collection := MineStyle.panel(self,Vector2(234,105),Vector2(582,563))
 	var search := LineEdit.new()
 	search.name = "CodexSearch"
 	search.position = Vector2(16,14)
-	search.size = Vector2(550,42)
+	search.size = Vector2(414,42)
 	search.placeholder_text = Inspect.t("搜索怪物名称 / 编号","Search name / ID")
 	search.add_theme_font_size_override("font_size",16)
 	search.text_changed.connect(func(value: String): search_query = value; _refresh_grid())
 	collection.add_child(search)
 	for index: int in 3:
 		var kind: String = ["all","enemy","boss"][index]
-		var filter := MineStyle.button(collection,"",Vector2(16+index*136,69),Vector2(124,36),func(): kind_filter = kind; _refresh_grid())
+		var filter := MineStyle.button(collection,"",Vector2(443+index*99,14),Vector2(95,42),func(): kind_filter = kind; _refresh_grid())
 		filter.name = "CodexKind_"+kind
 		filter.text = [Inspect.t("全部","All"),Inspect.t("野怪","Enemies"),Inspect.t("首领","Bosses")][index]
 		filter.add_theme_font_size_override("font_size",14)
 		kind_buttons[kind] = filter
-	result_count = MineStyle.literal(collection,"",Vector2(430,74),Vector2(134,25),13,MineStyle.MUTED)
+	result_count = MineStyle.literal(header,"",Vector2(856,23),Vector2(170,24),13,MineStyle.MUTED)
 	result_count.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	grid_scroll = ScrollContainer.new()
 	grid_scroll.name = "CodexCollectionScroll"
 	grid_scroll.position = Vector2(16,122)
-	grid_scroll.size = Vector2(550,424)
+	grid_scroll.size = Vector2(722,424)
 	grid_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	grid_scroll.focus_mode = Control.FOCUS_ALL
 	collection.add_child(grid_scroll)
 	grid = GridContainer.new()
 	grid.columns = 3
-	grid.add_theme_constant_override("h_separation",10)
+	grid.add_theme_constant_override("h_separation",12)
 	grid.add_theme_constant_override("v_separation",12)
 	grid_scroll.add_child(grid)
-	detail = MineStyle.panel(self,Vector2(832,105),Vector2(422,563))
+	detail = MineStyle.panel(self,Vector2(796,105),Vector2(458,563))
 	detail.name = "CodexInspector"
 	MineStyle.literal(self,Inspect.t("图鉴仅供查看 · 属性取自当前规则的真实解析器","Read-only guide · stats use the current ruleset's production resolver"),Vector2(32,684),Vector2(1216,25),13,MineStyle.MUTED)
 	_refresh_grid()
@@ -132,20 +130,20 @@ func _refresh_grid() -> void:
 	result_count.text = Inspect.t("%d 条目","%d entries") % ids.size()
 	for id: String in ids:
 		var data := definition(id)
-		var button := MineStyle.button(grid,"",Vector2.ZERO,Vector2(170,178),func(): _show_entry(id))
-		button.custom_minimum_size = Vector2(170,178)
+		var button := MineStyle.button(grid,"",Vector2.ZERO,Vector2(230,204),func(): _show_entry(id))
+		button.custom_minimum_size = Vector2(230,204)
 		button.name = "CodexEntry_"+id
 		MineStyle.button_skin(button,"card")
 		if id == selected_id: MineStyle.selected(button,"card")
-		portrait(button,id,Vector2(19,9),Vector2(132,112))
-		MineStyle.literal(button,id+" · "+(Inspect.t("首领","BOSS") if id.begins_with("BO") else role_label(str(data.get("role","")))),Vector2(10,125),Vector2(150,18),11,MineStyle.AMBER if id.begins_with("BO") else MineStyle.CYAN)
-		var title := MineStyle.literal(button,MineStyle.content_text(data,"name"),Vector2(10,147),Vector2(150,25),14)
+		portrait(button,id,Vector2(17,9),Vector2(196,143))
+		MineStyle.literal(button,id+" · "+(Inspect.t("首领","BOSS") if id.begins_with("BO") else role_label(str(data.get("role","")))),Vector2(12,156),Vector2(206,18),12,MineStyle.AMBER if id.begins_with("BO") else MineStyle.CYAN)
+		var title := MineStyle.literal(button,MineStyle.content_text(data,"name"),Vector2(12,177),Vector2(206,23),16)
 		title.autowrap_mode = TextServer.AUTOWRAP_OFF
 		title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		button.tooltip_text = MineStyle.content_text(data,"name")
 	if ids.is_empty():
-		var empty := MineStyle.literal(grid,Inspect.t("没有匹配的怪物\n试试其他名称或区域","No matches\nTry another name or region"),Vector2.ZERO,Vector2(530,100),18,MineStyle.MUTED)
-		empty.custom_minimum_size = Vector2(530,100)
+		var empty := MineStyle.literal(grid,Inspect.t("没有匹配的怪物\n试试其他名称或区域","No matches\nTry another name or region"),Vector2.ZERO,Vector2(710,100),18,MineStyle.MUTED)
+		empty.custom_minimum_size = Vector2(710,100)
 	elif selected_id not in ids:
 		_show_entry(ids[0])
 
@@ -161,13 +159,13 @@ func _show_entry(id: String, reset_level: bool = true) -> void:
 			if child.name == "CodexEntry_"+id: MineStyle.selected(child,"card")
 	var profile := resolved_entry(id,preview_level,difficulty,ruleset)
 	detail.set_meta("resolved_profile",profile)
-	portrait(detail,id,Vector2(17,12),Vector2(148,144))
-	var title := MineStyle.literal(detail,MineStyle.content_text(data,"name"),Vector2(180,20),Vector2(222,81),23)
+	portrait(detail,id,Vector2(18,10),Vector2(184,184))
+	var title := MineStyle.literal(detail,MineStyle.content_text(data,"name"),Vector2(217,27),Vector2(221,88),23)
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	MineStyle.literal(detail,id+" · "+MineStyle.content_text(Catalog.biomes().get(str(data.get("biome_id","")),{}),"name"),Vector2(180,108),Vector2(222,42),13,MineStyle.CYAN)
+	MineStyle.literal(detail,id+" · "+MineStyle.content_text(Catalog.biomes().get(str(data.get("biome_id","")),{}),"name"),Vector2(217,126),Vector2(221,50),14,MineStyle.CYAN)
 	level_picker = OptionButton.new()
 	level_picker.name = "CodexLevel"
-	level_picker.position = Vector2(20,172)
+	level_picker.position = Vector2(20,213)
 	level_picker.size = Vector2(116,35)
 	level_picker.add_theme_font_size_override("font_size",14)
 	for level: int in range(1,21): level_picker.add_item("Lv."+str(level),level)
@@ -177,8 +175,8 @@ func _show_entry(id: String, reset_level: bool = true) -> void:
 	detail.add_child(level_picker)
 	var tiers := OptionButton.new()
 	tiers.name = "CodexDifficulty"
-	tiers.position = Vector2(150,172)
-	tiers.size = Vector2(252,35)
+	tiers.position = Vector2(150,213)
+	tiers.size = Vector2(288,35)
 	tiers.add_theme_font_size_override("font_size",14)
 	for index: int in 5: tiers.add_item(difficulty_label(index),index)
 	tiers.select(difficulty)
@@ -186,23 +184,23 @@ func _show_entry(id: String, reset_level: bool = true) -> void:
 	detail.add_child(tiers)
 	var scroll := ScrollContainer.new()
 	scroll.name = "CodexSkillScroll"
-	scroll.position = Vector2(20,226)
-	scroll.size = Vector2(382,319)
+	scroll.position = Vector2(20,268)
+	scroll.size = Vector2(418,277)
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.focus_mode = Control.FOCUS_ALL
 	detail.add_child(scroll)
 	var flow := VBoxContainer.new()
-	flow.custom_minimum_size.x = 358
+	flow.custom_minimum_size.x = 394
 	flow.add_theme_constant_override("separation",9)
 	scroll.add_child(flow)
 	var metrics := Control.new()
-	metrics.custom_minimum_size = Vector2(358,122)
+	metrics.custom_minimum_size = Vector2(394,122)
 	flow.add_child(metrics)
 	for index: int in 4:
 		var key: String = ["max_hp","damage","armor","magic_resist"][index]
 		var caption := Inspect.t("基础攻击 A","Base attack A") if key == "damage" else Inspect.caption(key)
 		var amount := str(int(profile.get(key,0))) if ruleset == 2 else "%.1f" % float(profile.get(key,0))
-		Dossier.metric(metrics,caption,amount,Vector2((index%2)*185,(index/2)*64),Vector2(173,58))
+		Dossier.metric(metrics,caption,amount,Vector2((index%2)*203,(index/2)*64),Vector2(191,58))
 	if id.begins_with("BO"): _boss_details(flow,profile)
 	else: _enemy_details(flow,profile)
 
@@ -259,8 +257,8 @@ func _enemy_details(flow: VBoxContainer, profile: Dictionary) -> void:
 		icon.custom_minimum_size = Vector2(40,40)
 		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		skill_header.add_child(icon)
-	var heading := MineStyle.literal(skill_header,Inspect.t("技能与应对","SKILLS & COUNTERPLAY"),Vector2.ZERO,Vector2(306,40),17,MineStyle.CYAN)
-	heading.custom_minimum_size = Vector2(306,40)
+	var heading := MineStyle.literal(skill_header,Inspect.t("技能与应对","SKILLS & COUNTERPLAY"),Vector2.ZERO,Vector2(344,40),17,MineStyle.CYAN)
+	heading.custom_minimum_size = Vector2(344,40)
 	heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_line(flow,MineStyle.content_text(profile,"tell"))
 	_line(flow,Inspect.t("应对：","Counter: ")+MineStyle.content_text(profile,"counter"),15,MineStyle.CYAN)
@@ -350,7 +348,7 @@ static func difficulty_label(value: int) -> String:
 	return "D%d · " % value+[Inspect.t("普通","Normal"),Inspect.t("进阶","Advanced"),Inspect.t("困难","Hard"),Inspect.t("险境","Perilous"),Inspect.t("极限","Extreme")][clampi(value,0,4)]
 
 func _line(parent: Node, text: String, font_size: int = 15, tint: Color = MineStyle.INK) -> Label:
-	var label := MineStyle.literal(parent,text,Vector2.ZERO,Vector2(358,0),font_size,tint)
-	label.custom_minimum_size.x = 358
+	var label := MineStyle.literal(parent,text,Vector2.ZERO,Vector2(394,0),font_size,tint)
+	label.custom_minimum_size.x = 394
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	return label

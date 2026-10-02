@@ -5,11 +5,11 @@ signal skill_details_requested(slot: String)
 signal inventory_requested()
 signal layout_changed(screen_size: Vector2)
 
-const HUD_INK := Color("392843")
-const HUD_MUTED := Color("766474")
-const HUD_AMBER := Color("a66a2e")
-const HUD_CYAN := Color("257f83")
-const HUD_RED := Color("e6664f")
+const HUD_INK := Color("34382f")
+const HUD_MUTED := Color("817967")
+const HUD_AMBER := Color("987442")
+const HUD_CYAN := Color("258b87")
+const HUD_RED := Color("bb6254")
 const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
 const SkillInspect = preload("res://scripts/ui/skill_inspection.gd")
 const Numbers = preload("res://config/numerical_rules.gd")
@@ -61,20 +61,8 @@ class ParchmentPlate extends Panel:
 				bitmap.generate_mipmaps()
 				skin = ImageTexture.create_from_image(bitmap)
 	func _paper(at: Rect2) -> void:
-		if skin != null:
-			var box := StyleBoxTexture.new()
-			box.texture = skin
-			var margins: Array = [72,20,72,20] if art_key in ["skill_ribbon","circuit_ribbon"] else [116,56,76,42]
-			for side in [SIDE_LEFT,SIDE_TOP,SIDE_RIGHT,SIDE_BOTTOM]:
-				box.set_texture_margin(side,float(margins[side])*skin_scale)
-				box.set_expand_margin(side,0)
-			box.axis_stretch_horizontal = StyleBoxTexture.AXIS_STRETCH_MODE_STRETCH
-			box.axis_stretch_vertical = StyleBoxTexture.AXIS_STRETCH_MODE_STRETCH
-			draw_style_box(box,at)
-			return
-		# Native parchment fallback remains readable while new art is imported.
-		var box := MineStyle.paper_box()
-		draw_style_box(box,at)
+		var surface := MineStyle.paper_box()
+		draw_style_box(surface,at)
 	func _draw() -> void:
 		match art_key:
 			"hero_ribbon":
@@ -86,10 +74,10 @@ class ParchmentPlate extends Panel:
 				_paper(Rect2(40,2,size.x-40,size.y-2))
 			"quest_note":
 				# A soft page wash sits only under the text; no standing hard card.
-				if skin != null:
+				if false and skin != null:
 					draw_texture_rect(skin,Rect2(Vector2.ZERO,size),false,Color(1,1,1,.80))
 				else:
-					draw_style_box(MineStyle.box(Color(.99,.93,.80,.62),Color.TRANSPARENT,0),Rect2(10,4,size.x-10,size.y-6))
+					draw_style_box(MineStyle.box(Color(.98,.97,.93,.94),Color("d8ceb9"),1),Rect2(10,4,size.x-10,size.y-6))
 				draw_line(Vector2(35,34),Vector2(size.x-8,34),room_accent if not room_emblem.is_empty() else Color("af8f59"),1.5,true)
 				if not room_emblem.is_empty():
 					IdentityPlate.draw_emblem(self,room_emblem,Vector2(20,20),16,room_accent)
@@ -98,8 +86,8 @@ class ParchmentPlate extends Panel:
 				else:
 					var center := Vector2(20,20)
 					draw_arc(center,12,0,TAU,28,Color("b68d54"),2,true)
-					draw_polyline(PackedVector2Array([center+Vector2(0,-18),center+Vector2(7,0),center+Vector2(0,18),center+Vector2(-7,0),center+Vector2(0,-18)]),Color("392843"),2,true)
-					draw_polyline(PackedVector2Array([center+Vector2(-18,0),center+Vector2(0,-7),center+Vector2(18,0),center+Vector2(0,7),center+Vector2(-18,0)]),Color("392843"),2,true)
+					draw_polyline(PackedVector2Array([center+Vector2(0,-18),center+Vector2(7,0),center+Vector2(0,18),center+Vector2(-7,0),center+Vector2(0,-18)]),Color("34382f"),2,true)
+					draw_polyline(PackedVector2Array([center+Vector2(-18,0),center+Vector2(0,-7),center+Vector2(18,0),center+Vector2(0,7),center+Vector2(-18,0)]),Color("34382f"),2,true)
 				if room_chapter > 0:
 					var tab := PackedVector2Array([Vector2(size.x-23,3),Vector2(size.x-7,3),Vector2(size.x-7,25),Vector2(size.x-15,21),Vector2(size.x-23,25)])
 					draw_colored_polygon(tab,Color(room_accent,.85))
@@ -145,7 +133,7 @@ class ExpeditionBeads extends Control:
 		if compass != null:
 			draw_texture_rect(compass,Rect2(size.x-39,y-17,34,34),false,Color(1,.91,.61,.92))
 		else:
-			draw_polyline(PackedVector2Array([Vector2(size.x-33,y+8),Vector2(size.x-24,y-13),Vector2(size.x-15,y+8),Vector2(size.x-33,y+8)]),Color("a66a2e"),1.5,true)
+			draw_polyline(PackedVector2Array([Vector2(size.x-33,y+8),Vector2(size.x-24,y-13),Vector2(size.x-15,y+8),Vector2(size.x-33,y+8)]),Color("987442"),1.5,true)
 
 class HeroBust extends Control:
 	var hero_id := ""
@@ -173,11 +161,11 @@ class HeroBust extends Control:
 
 class PassiveGlyph extends Control:
 	var hero_id := "CH01"
-	var accent := Color("257f83")
+	var accent := Color("258b87")
 	func _draw() -> void:
 		var center := size*.5
 		draw_circle(center+Vector2(0,2),23,Color(.20,.12,.12,.18))
-		draw_circle(center,23,Color("a66a2e"))
+		draw_circle(center,23,Color("987442"))
 		draw_circle(center,20,Color("fff1cf"))
 		draw_arc(center,22,-PI*.95,-PI*.08,32,Color("ffe8a2"),2,true)
 		if hero_id == "CH01":
@@ -258,7 +246,7 @@ class BuffChip extends Button:
 		var width := font.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x
 		var at := Vector2((size.x-width)*0.5,39)
 		draw_string_outline(font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,16,2,Color("fff3d7"))
-		draw_string(font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color("392843"))
+		draw_string(font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color("34382f"))
 
 	func _draw_glyph(accent: Color) -> void:
 		# Original, distinct silhouettes remain usable before generated PNG import.
