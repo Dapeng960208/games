@@ -14,7 +14,7 @@
       "file": "png/01-title.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "bb5359db4f4c8dd3854c852b989dfca8f687d35f87628261d5a8c44fbb6c27a1"
+      "sha256": "5bfc038efb0357e0a9b5d57648f3ca81a27c6e7ef380e067528c559bb58f01a8"
     },
     {
       "id": "02-camp",
@@ -24,7 +24,7 @@
       "file": "png/02-camp.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "2fbd2f03f647a0f16ea3330d59c6feaab446c090924cc7b9d90fe7bc79040f92"
+      "sha256": "8321b99af83df4e69a02208c36e0e35ba0fb6a262ef0177a9b0ab26e061e89bf"
     },
     {
       "id": "03-heroes",
@@ -34,7 +34,7 @@
       "file": "png/03-heroes.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "468c4c7a77bfadcfd3f0c18ea62934c88863d22e635f441106fef58ad8ab10a6"
+      "sha256": "ee6b9ba55b9ed83b2d3896b4c14909e5d60f5c784437822a841f03d125cc7d46"
     },
     {
       "id": "04-hero-warrior",
@@ -44,7 +44,7 @@
       "file": "png/04-hero-warrior.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "873f962c9ecd45c30edd843f2c11895e1f5db4cb4718097f690b52774b505a60"
+      "sha256": "23e864afea0f582046886800cb48a2cbe78c38f75172d64bfe86cd09eb25d1a9"
     },
     {
       "id": "05-hero-gunner",
@@ -54,7 +54,7 @@
       "file": "png/05-hero-gunner.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "1d10df1f3c87c4cd3fddece241193ac2674f0ac8e3dfa9f70cd9d68643ee1d13"
+      "sha256": "2137568567e750a9651b214010450e8cfaea3ccb02ed64130499b947da5e099a"
     },
     {
       "id": "06-hero-mage",
@@ -64,7 +64,7 @@
       "file": "png/06-hero-mage.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "95e2a569f63dd447ccb90286b8483a6ea54063b870366f09624a5bc7887d2e48"
+      "sha256": "a9f6a89f993b1cfa532ed24b9594d6285aadd3a55a0c44d8e736297b7970c75e"
     },
     {
       "id": "07-character-stats",
@@ -74,7 +74,7 @@
       "file": "png/07-character-stats.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "3ed22f4412afbba86c605be6fac03252254da760151308c8903f52340169703b"
+      "sha256": "5b682a2c4b19affe2f8a24b0a1b962f8fc61292b0ad82b6eb656125712a41a52"
     },
     {
       "id": "08-skills-warrior",
@@ -84,7 +84,7 @@
       "file": "png/08-skills-warrior.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "d4c9ff14e2f158f6e27ed81966f3e1c23de8f40832be5db6db75db524eb55de6"
+      "sha256": "8d46f721f514fd55d20a9b684f4a56141f100ad9372f2f2552f3f80fc18bb991"
     },
     {
       "id": "09-skills-gunner",
@@ -94,7 +94,7 @@
       "file": "png/09-skills-gunner.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "4afd4c10b3c1d894e6b93cd7ab76bf81e61124922770c5b968a65c25afe5ffc1"
+      "sha256": "02c2e1de31b6857653f5f5da321995d79f155101a51ecc6084770b533b2c7a8d"
     },
     {
       "id": "10-skills-mage",
@@ -104,7 +104,7 @@
       "file": "png/10-skills-mage.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "0f2c48139d2e93e0b9eb3444052403ca3e3cd36844f2cc86e18bf8cf66e19202"
+      "sha256": "03544a0f07468d57c4547926a36b3d39ca579848a8c2ad1bf10e3b9f43f14af2"
     },
     {
       "id": "11-warrior-q",
@@ -114,7 +114,7 @@
       "file": "png/11-warrior-q.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "ee26212e24e47df6ba91e18058affe28eef47302194a16a34f828db9872b0ea4"
+      "sha256": "24c47d269b37e7b779b547ff52041a0fade515dccc94c8bf88c4d11d6a789f41"
     },
     {
       "id": "12-warrior-w",
@@ -124,7 +124,7 @@
       "file": "png/12-warrior-w.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "65a758ceb5047544885fe78524ab10b32aadb9b4183b69f7bb80b6f078a73824"
+      "sha256": "a14c4a10db64578a16c6bf4418fcb2343c97da4c0b21e081b08de2f5f28c0f46"
     },
     {
       "id": "13-warrior-e",
@@ -134,7 +134,7 @@
       "file": "png/13-warrior-e.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "bd96b03b082f4710e55dd8767652ed78b7c531069d62e17244c520f42a858c26"
+      "sha256": "f0334078e19c3824964005d366c81035a75a01ac21c4a52e38f181c7f82d09eb"
     },
     {
       "id": "14-warrior-r",
@@ -144,7 +144,7 @@
       "file": "png/14-warrior-r.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "e4affd513c43ef3b7fbecb00f316ca318f24b848e0a078f4cf99d8cb31383c94"
+      "sha256": "6919253cca0f700f2560e011cad4175495bc3cc64742bf322717607f9f8b5410"
     },
     {
       "id": "15-gunner-q",
@@ -154,7 +154,7 @@
       "file": "png/15-gunner-q.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "711b110ba89ed722bd9718d8ae33248dc36bdfdac8e78f9a4833f67f5fd35260"
+      "sha256": "2eb56804c9b63d3531b68fb6a1b8c84a028ca72e1ef43c6a5785d5c798d2d7da"
     },
     {
       "id": "16-gunner-w",
@@ -164,7 +164,7 @@
       "file": "png/16-gunner-w.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "114d64bd63943bc3d1744d6739537be6b51812163de850c358056ea14c3a193b"
+      "sha256": "4614e72f74b197f6ae682a1a0c00e7329e85ccfa184e894ace28744870298629"
     },
     {
       "id": "17-gunner-e",
@@ -174,7 +174,7 @@
       "file": "png/17-gunner-e.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "d96d582c26dcc405733eda532bb23efec5306570428cec96fac462d2604ac590"
+      "sha256": "d3e743b2541f423af66c0228a0c232fcf936445cd933e9b901d81e701e2d78e5"
     },
     {
       "id": "18-gunner-r",
@@ -184,7 +184,7 @@
       "file": "png/18-gunner-r.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "9e445bb505c3657e371f3ee1dafc0f8a2d8605fd70692ab304f929b3d5740a9c"
+      "sha256": "050c6477d9c995c3e32b402c75eba4592e9f55f5f273d257fb96aa715bd3f70b"
     },
     {
       "id": "19-mage-q",
@@ -194,7 +194,7 @@
       "file": "png/19-mage-q.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "8d6bb77b25f574a6008a5a7471330dfe8800ca9c1b14b91b471e82814965491c"
+      "sha256": "e9abc7ad6657698ce7fe92db4dec63e20af349f9f0cbcb2003a2f293e6fe57f3"
     },
     {
       "id": "20-mage-w",
@@ -204,7 +204,7 @@
       "file": "png/20-mage-w.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "d239c6c02e443a2e9fa3903167022aa62e5f6098bb635c2c6467c853ef771667"
+      "sha256": "3ab59e1fd9e1d2af09c90f20b0af6665400e85e65ffe852039066febde00d4aa"
     },
     {
       "id": "21-mage-e",
@@ -214,7 +214,7 @@
       "file": "png/21-mage-e.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "bf2249a8e4193d757d06be5038a71e0fa2bfea0556b8bb105450eb42969b5eb1"
+      "sha256": "3fa0455258eb462ac182be0461160e8162d9d4ed27b7c0d415b2d813fb84cf41"
     },
     {
       "id": "22-mage-r",
@@ -224,7 +224,7 @@
       "file": "png/22-mage-r.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "973a4233234afebfd82e47548578d0ca79a5f351ae9a106ab48dcf182afd14f9"
+      "sha256": "6ea42276205c57e2342ef6d173e69732084e93d62c8c0eba653ed3ba9a722deb"
     },
     {
       "id": "23-core-actions",
@@ -234,7 +234,7 @@
       "file": "png/23-core-actions.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "0f754882a75a4ad99cf8f8ca16f6791095c7f7a735e43c2fbf8506da4ce18ca0"
+      "sha256": "2ee0d0173dd0d132194d74585b46ed6fff4ae9f57ceae4857616fd0903f0eb80"
     },
     {
       "id": "24-talents",
@@ -244,7 +244,7 @@
       "file": "png/24-talents.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "ee9fba678631ba77761a92e05cd4b6249b92affab4eff26ea91863a4b64058d1"
+      "sha256": "005429c110dfad9c81ef79506d2cbe4122539ad018c1ed71a8e35b178d416576"
     },
     {
       "id": "25-skill-branches",
@@ -254,7 +254,7 @@
       "file": "png/25-skill-branches.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "a62c34f0bf0cd58ea4aabd2fa0a635573a380f59a5d28a866c97285b160347bc"
+      "sha256": "5996187fece4fff9ccd83a1090a469489668808943a2e240a56a11fc43339703"
     },
     {
       "id": "26-inventory",
@@ -264,7 +264,7 @@
       "file": "png/26-inventory.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "f33c5fce111a24ecf23ae520d57a2384a246e6d889843f40485782e097731649"
+      "sha256": "77d074bb224aaca4d43d507fd2a8fb4cba0ce9297b001a493191a4f62394f127"
     },
     {
       "id": "27-equipment-detail",
@@ -274,7 +274,7 @@
       "file": "png/27-equipment-detail.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "3e4a4abfaffd902551673bebd6a7e519a31c2c8d5448444e00546c980bab7d48"
+      "sha256": "41972af0c0f6036e818ea305695c015e55a5269b96249f314382abd586c8c7d1"
     },
     {
       "id": "28-equipment-compare",
@@ -284,7 +284,7 @@
       "file": "png/28-equipment-compare.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "cb89e2f1ba388e9ef5cdbfbe316501167aeda9fa3753d1cefd1c2a0abdd59c56"
+      "sha256": "99d7ce8cea9e02429f348ceceb147ac2dd4f8b2a63da3a2e7b01dd9652fa8d01"
     },
     {
       "id": "29-recycle",
@@ -294,7 +294,7 @@
       "file": "png/29-recycle.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "70c06f0c2c1a6b0eb0d1c9ae9568833e62dd20f558f8946850aa75514037a8fb"
+      "sha256": "2c498e68c1d6ed41ab57a26034dd18f01ff5998d4e34016948707ea8f00009ce"
     },
     {
       "id": "30-recycle-confirm",
@@ -304,7 +304,7 @@
       "file": "png/30-recycle-confirm.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "96b5badfb0f8ce6df60723c1c28c1dd9c99c852cc7b67b602cc83c9ba15cbd9a"
+      "sha256": "df5074faa04aef139f55dbf92c0f976c64173fa4974c5b6e0968a29fa5221cca"
     },
     {
       "id": "31-shop-items",
@@ -314,7 +314,7 @@
       "file": "png/31-shop-items.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "f5bd45ab5cebcad9663cc955d8316d1dec09051ca9846966ea34469177fc52c7"
+      "sha256": "cba176e82d7fc8f64dc11b07976d57168dd80395a3c74203af27dc2af1d5193e"
     },
     {
       "id": "32-shop-sets",
@@ -324,7 +324,7 @@
       "file": "png/32-shop-sets.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "aa72d3dd0e9e623f4966b8d047afc56669b73e82ac3d95708a75e240f8b5a99e"
+      "sha256": "3e1d92834314e7c474ff0088dec6d5f1516c8a08675130ba7e63ac3b9d44ad5d"
     },
     {
       "id": "33-set-detail",
@@ -334,7 +334,7 @@
       "file": "png/33-set-detail.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "dd30c3c0014e1e0c4c84eb8afb8281b7c68bf177de0802df37b585fec7d2e0f7"
+      "sha256": "04d60233410f310f94cf9220d94a9f3b51eb9298c36af9f8ccdbc2a72699ffca"
     },
     {
       "id": "34-buy-confirm",
@@ -344,7 +344,7 @@
       "file": "png/34-buy-confirm.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "5365f8b9db5c8885340eda4b78cbe7e37e50ff9952c8948bfb1fb349e1210dbf"
+      "sha256": "9c40679c7ef3844b8d0289fee7a6a979aecfb74a51012bb54b4480286a6e4597"
     },
     {
       "id": "35-buy-success",
@@ -354,7 +354,7 @@
       "file": "png/35-buy-success.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "d20934a6b65595d0f82fdfe309d965d98ee51b8e386599b8d60966ca989122b2"
+      "sha256": "1a7f65441cafe039f75b7e584c7907845a35f38545fe082e7469632d70cfb119"
     },
     {
       "id": "36-insufficient-gold",
@@ -364,7 +364,7 @@
       "file": "png/36-insufficient-gold.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "c1fd1a6c09b6afd5f593da62799a21f0d27ddb25852a3f089faed22bc2001dd1"
+      "sha256": "596ad25dc10277a2c8bce10c055145ee1ffa77977c5c32fbc74eb21efdea8954"
     },
     {
       "id": "37-crafting",
@@ -374,7 +374,7 @@
       "file": "png/37-crafting.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "44545e2172158055edea5f871010fe5f36a3bac1c15d30da3b95ae37d86ccfd8"
+      "sha256": "e0b7f7205ec6d72d43608b82d1063bfce275ab97df0737ff1a7cc1afbed291f8"
     },
     {
       "id": "38-enhancement",
@@ -384,7 +384,7 @@
       "file": "png/38-enhancement.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "2332644e67d6b19ebbbd4e2c759780d890d6ab90d4cf6a3a292374f8ae1416cc"
+      "sha256": "257e00de74aff72ee0fd650565293eb28a85344613be1461dd3e3bb4a683055e"
     },
     {
       "id": "39-enhancement-result",
@@ -394,7 +394,7 @@
       "file": "png/39-enhancement-result.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "23f8122200c2db52482d82a85810a07011ca68dda795022cca5d51243dee4d3f"
+      "sha256": "dffbf44190850a7bb03ad72204ad7abac65aa25210da99c0d9177647981ecceb"
     },
     {
       "id": "40-step-reroll",
@@ -404,7 +404,7 @@
       "file": "png/40-step-reroll.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "63390bba5c436d063c5466bc4bd3ffa176fca6250a6b6f899fa4155e34ab5ef0"
+      "sha256": "6805de021e421110ce2f8062428239fb748b662c96cc7a4ad9d3b57a37e509ea"
     },
     {
       "id": "41-affix-reforge",
@@ -414,7 +414,7 @@
       "file": "png/41-affix-reforge.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "f09d93b062c79956eb58d6329b557286ae36e3a81c56907bb03e149beba9c5c2"
+      "sha256": "7500fdc1de28a75285b4fcfe7396431eca73fc73f04907d3ef0720c372badd4c"
     },
     {
       "id": "42-reforge-choice",
@@ -424,7 +424,7 @@
       "file": "png/42-reforge-choice.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "2e78d6341aae4151aa99fba8ac0d822bce70b75c1d75b90ff105c5cd48d71ea2"
+      "sha256": "9341dea54b612182575434cb1a4591f8ce19a8b5f6943ee80c1fe5e9d1e13093"
     },
     {
       "id": "43-affix-refine",
@@ -434,7 +434,7 @@
       "file": "png/43-affix-refine.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "9c3a491190435557dedb38d21aa92f9d8080c442708c89c906f770995bca366d"
+      "sha256": "037b50e09b0e38e11c6051d52a7fa32d9f507488ab888134be927abd006f67f1"
     },
     {
       "id": "44-inheritance",
@@ -444,7 +444,7 @@
       "file": "png/44-inheritance.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "297b9165cc7d17f25282f1f4bcda58070cd8199b5b698ab542f6c3c925d6b485"
+      "sha256": "d6b9fe4061b4c5b9adc0b59b7b0a569111d75938bdd04f202b8e6833592e63ca"
     },
     {
       "id": "45-dismantle-confirm",
@@ -454,7 +454,7 @@
       "file": "png/45-dismantle-confirm.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "f03f5e63e3a0d902bfdf129c8816d97e5533de36b0c7095a9aea744b5475b6cb"
+      "sha256": "ea5b64e66dd279d627c0d32db035eb965afabb7c1328f4cde077cfdb0e8716c6"
     },
     {
       "id": "46-bestiary",
@@ -464,7 +464,7 @@
       "file": "png/46-bestiary.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "b5cf82780d7d028d8637a5a583834ac48f7174c6fcbaa6167fe5524ad67e456b"
+      "sha256": "eef17a263d15140f0d34da04508c02831a056253364c720b8dabc8d2cf7c616b"
     },
     {
       "id": "47-monster-detail",
@@ -474,7 +474,7 @@
       "file": "png/47-monster-detail.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "b4dddc3ce332829fcebc46a8e46c8047c0a64985f9756b5c1b9a4bbc8760f835"
+      "sha256": "6a6a15a9984f06be6761210eade2afb7b8fae4ed71275307b22f8102877350ad"
     },
     {
       "id": "48-boss-detail",
@@ -484,7 +484,7 @@
       "file": "png/48-boss-detail.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "37e3755ae9298e2a32a2a7a0d41800ff30d318912ce6ef6718ec03acbff7c92a"
+      "sha256": "9da63470ec40eed67e043c31f59d18cbd508d5d83129073fd2d505c0e5229ea0"
     },
     {
       "id": "49-undiscovered",
@@ -494,7 +494,7 @@
       "file": "png/49-undiscovered.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "3039b1194cd84144657433ad59b8578754d4c2fb9728b86ab49f2eccbd7ea082"
+      "sha256": "ff0314c46e5b0dc68bd2d3497d595c81769de3c1452a326cf769bc8fb8d935f3"
     },
     {
       "id": "50-settings-general",
@@ -504,7 +504,7 @@
       "file": "png/50-settings-general.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "a1dc82658578f101db55e60ea97be4cec1ee2ed0ddcaf172318a9a8818b2920c"
+      "sha256": "54b43972747bc481d523a8519820c28e90686ac56610f5e711f28d65ad20bf4f"
     },
     {
       "id": "51-settings-display",
@@ -514,7 +514,7 @@
       "file": "png/51-settings-display.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "470034533949d93b795185fd490879ae113d40a7c24e3b73bcd7c6def26ba645"
+      "sha256": "67fc73c4084eafa4152001248139e20b1e78ea12f2799f4441495c7a9fdc6b23"
     },
     {
       "id": "52-settings-audio",
@@ -524,7 +524,7 @@
       "file": "png/52-settings-audio.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "c64ccf6616190aaa50519d3b9bffa0fcba0a1dce8f0380d5c5fe8a84a9d0d611"
+      "sha256": "3063ef5699719284d8370d85dcb7267e95d68fdb82ea08754db3af46a40a7950"
     },
     {
       "id": "53-settings-controls",
@@ -534,7 +534,7 @@
       "file": "png/53-settings-controls.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "ba57968af05ad25586c83e14d56d934c1cea2d915e4f4e7d2403b16e6b557a27"
+      "sha256": "754b62e91c5ce7d1ad650be806674092887551a5c166482d4e55456e96f1221a"
     },
     {
       "id": "54-key-conflict",
@@ -544,7 +544,7 @@
       "file": "png/54-key-conflict.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "4abeaaa92b4fe91c69a764c8a8c5227dbe5364a26352a87267a6ad29e77da477"
+      "sha256": "ecf251504edbb34b87ba72354cc902a58ac0d10bdf96c0a42d0de6c8e750a66a"
     },
     {
       "id": "55-demo-select",
@@ -554,7 +554,7 @@
       "file": "png/55-demo-select.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "67917b21d3d5617b0030be9db2ea658d208831bd9a0715836912de31df07e753"
+      "sha256": "e668548a0f5dac418f1571cf409bca9d5d1426cec06ba7abad6fa94d2e5d2e76"
     },
     {
       "id": "56-demo-branches",
@@ -564,7 +564,7 @@
       "file": "png/56-demo-branches.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "718feeab062bcefff184e00d5b6b041ff7df1af184ddc13919a9c48505c9a03d"
+      "sha256": "912b6c09189c862963d3ce675bf9bfdfa5601499359d537b223aa65bb035db0a"
     },
     {
       "id": "57-demo-hud",
@@ -574,7 +574,7 @@
       "file": "png/57-demo-hud.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "3e0c9688ec884ff8f425506c8d2482cadaa1c8aa0b436aca5aaeceaae780429d"
+      "sha256": "815ae1d759e8ac2bde9b41bd18c1029504930e19f5b55d7acf9d630dc2901825"
     },
     {
       "id": "58-archive",
@@ -584,7 +584,7 @@
       "file": "png/58-archive.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "d7a53b95966d2d78272a116fe837e0b3e2e0c76385429a2c5a77685776be3e39"
+      "sha256": "aa440ba52634f751531c4eead5a28a252790152be2a1f7fd3319a01c929d2e31"
     },
     {
       "id": "59-run-record",
@@ -594,7 +594,7 @@
       "file": "png/59-run-record.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "b726faf5826888cb60513113291e9974a04414f3a73d879e1399b3dce4354eb3"
+      "sha256": "baf9ad6254ff2da9b5278005fc8ec1d7d5d71cfd018da7af5767d010820e18e7"
     },
     {
       "id": "60-new-profile",
@@ -604,7 +604,7 @@
       "file": "png/60-new-profile.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "b6e3148b80e01b12a1bd49179117cd78e26bc18136446d54a3570b205f64ab4d"
+      "sha256": "15751699036a94fadba62e35e67fe4b533dbcb3070040da89ede3edcc1379c3c"
     },
     {
       "id": "61-dungeon-select",
@@ -614,7 +614,7 @@
       "file": "png/61-dungeon-select.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "202b6bdfefdbfcd4a125f204f12ea75151e66d43317ddc70737e1a6c1098c900"
+      "sha256": "4baf2f24e71433efab3cc9b3179925db165df6c7d0341f00f98b43c50596b63b"
     },
     {
       "id": "62-difficulty",
@@ -624,7 +624,7 @@
       "file": "png/62-difficulty.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "879f6f99fdecc9cae6a3fd2b83dacddb70cee390e64156f509e23a4841143c26"
+      "sha256": "1064798ad0ef2db5cb7a14f0aca8b33c69549057e4d27d584e165160e83c8f09"
     },
     {
       "id": "63-loading",
@@ -634,7 +634,7 @@
       "file": "png/63-loading.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "5569d08e4ce47f4b4be4412784e311f05496455efb002a397f3bc1daba657579"
+      "sha256": "48ae0550c51a461d18e17c4a273c4064ffae85dbf16a5b6c6bada94a2992538d"
     },
     {
       "id": "64-battle-hud",
@@ -644,7 +644,7 @@
       "file": "png/64-battle-hud.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "3c5e0e346941fc1626486e260b2e4c38fcaf5d5e5ebfa1e4d560ab8081b03d15"
+      "sha256": "f17553dfbb5caaf8cb307717cf209635d7e9a4bc407e7030803b86fa0be33c2b"
     },
     {
       "id": "65-boss-hud",
@@ -654,7 +654,7 @@
       "file": "png/65-boss-hud.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "d46cfc5ab78c47261db45fa0eeab6b8a99eafac0d82b7664b4dc1faf7370e669"
+      "sha256": "1995f226fe76076b9ff4211cfd94c3164a9f964055760406504ac74cd220a9c2"
     },
     {
       "id": "66-field-backpack",
@@ -664,7 +664,7 @@
       "file": "png/66-field-backpack.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "a5e02a5efdffbf7c38e0afaa91c30258d2818871f6cde6966f6e6113503ffc9b"
+      "sha256": "34a89b6af89c6cf2e0aa3cd921ccb4f32e0ff306a9c7ab6ceb5bc788b30b47eb"
     },
     {
       "id": "67-loot",
@@ -674,7 +674,7 @@
       "file": "png/67-loot.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "e6b9a25962d30d78f4263e387ad789dc41a5b0d93592d162dd3548073070131a"
+      "sha256": "28a76cb97f067f68e583bf544e558336bdd58745d6553bf6afba5508a518a341"
     },
     {
       "id": "68-route-map",
@@ -684,7 +684,7 @@
       "file": "png/68-route-map.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "d7d8da031ee8566370600dd6b3c18e2baff6e025abf0ae8e660b87f0f662603d"
+      "sha256": "456ecba345ea498fdd5a4653a2dad6c5adbfa6d794fb2cf42722e548cd1e28dd"
     },
     {
       "id": "69-relic-choice",
@@ -694,7 +694,7 @@
       "file": "png/69-relic-choice.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "763eaaf5168d2addc484dba15c419f286f1f5afb1725c44134aa09bf10768332"
+      "sha256": "422610d3ba4f2458d57b09513f047718ffa2e65ebe5b6a5ef1de747a863fd48d"
     },
     {
       "id": "70-supply",
@@ -704,7 +704,7 @@
       "file": "png/70-supply.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "530219bcd39cc9ad4f1cdc9911113ea8faed040125aeea4f93687d4ca648e1d0"
+      "sha256": "570f8115ace8daa1be225b0bd6ed29add6c0e4ee6fd1913ae2bfd7bf1a2cacf3"
     },
     {
       "id": "71-pause",
@@ -714,7 +714,7 @@
       "file": "png/71-pause.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "6132309566b689065bbe1e3aa277c6571afef6d7b7b92a2838efb6fb2843f78e"
+      "sha256": "bc300c07d64478fb20ac991921b6edfacbef6d2e48c0c43ea1874cb785eb0dc2"
     },
     {
       "id": "72-extract-confirm",
@@ -724,7 +724,7 @@
       "file": "png/72-extract-confirm.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "fe192eb0e1e6b68a20a07338ce2fba0da734e157d453da3430e5e757755d3a41"
+      "sha256": "0a299852388db161148e3946d5a74e6f28dea510ddd3a6b57d5d27f5f1276515"
     },
     {
       "id": "73-victory",
@@ -734,7 +734,7 @@
       "file": "png/73-victory.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "4a3fb4314b41127a5e86dfeb2e0d3662948de99aef7265d3289b7139e929a376"
+      "sha256": "8623a4be4e0c422c6ac83718597ac3f00cb83d5eaf49633acde4c08eb80d8b34"
     },
     {
       "id": "74-defeat",
@@ -744,7 +744,7 @@
       "file": "png/74-defeat.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "e2b1fdadcc900acbbdba725bcc2c98c14f8fb64a85a91562d6c33de6093bea19"
+      "sha256": "fe1cf217ad0c17bd6733c0f74f5f6b748cc47b07ddc648d5c5766edfb45a9949"
     },
     {
       "id": "75-save-failed",
@@ -754,7 +754,7 @@
       "file": "png/75-save-failed.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "4a57de03eaa5b4bb3bb074afc4539eb566895be6e434490d8c89a86af998ce8b"
+      "sha256": "d6dfbad2a49b7f7ee8724dae1ef4afd77610553188cf1e95ed42b6f5afc119e0"
     },
     {
       "id": "76-room-failed",
@@ -764,7 +764,7 @@
       "file": "png/76-room-failed.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "22c0ead5a2486e62a398e3d9f2e7086dda69005aacbd1b0f2f44f73aef783abd"
+      "sha256": "bbbd8e0bba47b562c3c136100f7efea7741ccbb017e9cd612baef68a4fc0e812"
     },
     {
       "id": "77-quit-confirm",
@@ -774,7 +774,7 @@
       "file": "png/77-quit-confirm.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "ff09d38ae21d70c6372fc7db36c9514a83767d1dd97080c7fd4fb990f1cd23bc"
+      "sha256": "82ee79d6101ac716c83b8216a28874e0ae2dd26e20844085c53faa5c85ebd5fc"
     },
     {
       "id": "78-component-states",
@@ -784,25 +784,26 @@
       "file": "png/78-component-states.png",
       "width": 1920,
       "height": 1080,
-      "sha256": "8c3ebd67af61703fe27d3f7f3d8c58f8623ce54d4baa44f8390cb4782ac237e7"
+      "sha256": "e75bfa6202c12191c573e1af8d65d97a93446e7038f7839148d7783161ce3d8d"
     }
   ],
   "art_sources": [
-    "assets/bosses/BO01.png",
-    "assets/generated/enemies/M01_v1.png",
-    "assets/generated/enemies/M02_v1.png",
-    "assets/generated/enemies/M03_v1.png",
-    "assets/generated/enemies/M04_v1.png",
-    "assets/generated/enemies/M05_v1.png",
-    "assets/generated/enemies/M06_v1.png",
-    "assets/generated/enemies/M07_v1.png",
-    "assets/generated/enemies/M08_v1.png",
+    "assets/generated/enemies/storybook_B01_bodies_v1.png",
+    "assets/generated/enemies/storybook_B01_bodies_v2.png",
+    "assets/generated/enemies/storybook_B02_bodies_v1.png",
+    "assets/generated/enemies/storybook_B02_bodies_v2.png",
+    "assets/generated/enemies/storybook_B03_bodies_v1.png",
+    "assets/generated/enemies/storybook_B03_bodies_v2.png",
+    "assets/generated/enemies/storybook_B04_bodies_v1.png",
+    "assets/generated/enemies/storybook_B04_bodies_v2.png",
     "assets/generated/equipment/storybook_charm_v2.png",
     "assets/generated/equipment/storybook_chest_v2.png",
     "assets/generated/equipment/storybook_feet_v2.png",
     "assets/generated/equipment/storybook_first4_race_gear_v1.png",
     "assets/generated/equipment/storybook_hands_v2.png",
     "assets/generated/equipment/storybook_head_v2.png",
+    "assets/generated/equipment/storybook_pants_v2.png",
+    "assets/generated/equipment/storybook_ring_v2.png",
     "assets/generated/equipment/storybook_shop_S09_v2.png",
     "assets/generated/equipment/storybook_shop_S10_v2.png",
     "assets/generated/equipment/storybook_shop_S11_v2.png",
@@ -810,6 +811,7 @@
     "assets/generated/equipment/storybook_shop_S13_v2.png",
     "assets/generated/equipment/storybook_shop_S14_v2.png",
     "assets/generated/equipment/storybook_weapon_v2.png",
+    "assets/generated/heroes/CH01_storybook_actions_front_v1.png",
     "assets/generated/heroes/CH01_storybook_portrait_v1.png",
     "assets/generated/heroes/CH02_storybook_portrait_v1.png",
     "assets/generated/heroes/CH03_storybook_portrait_v1.png",

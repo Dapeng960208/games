@@ -18,7 +18,15 @@ FONT = ROOT / 'assets/fonts/NotoSansSC.ttf'
 if not FONT.exists():
     FONT = Path('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc')
 @functools.lru_cache(maxsize=64)
-def font(size): return ImageFont.truetype(str(FONT), size)
+def font(size):
+    f = ImageFont.truetype(str(FONT), size)
+    try:
+        axes = f.get_variation_axes()
+        weights = [(600 if size >= 28 else 480) if b'Weight' in a['name'] else a['default'] for a in axes]
+        f.set_variation_by_axes(weights)
+    except (AttributeError, OSError):
+        pass
+    return f
 def read(p): return json.loads(p.read_text(encoding='utf-8-sig'))
 def rgb(s): return tuple(int(s[i:i+2], 16) for i in (1,3,5))
 @functools.lru_cache(maxsize=128)
@@ -49,6 +57,30 @@ for name in ['storybook_equipment_v2.manifest.json','storybook_shop_sets_v2.mani
                 image = crop_entry(entry)
                 if image: EQUIPMENT.append((key,image))
             except (OSError,ValueError,TypeError) as exc: WARNINGS.append(f'{key}: {exc}')
+
+# Bind rendered labels to the actual cropped illustration and equipment slot.
+GEAR_META = {}; SLOT_ART = {}
+for filename in ['storybook_equipment_v2.manifest.json','storybook_shop_sets_v2.manifest.json']:
+    mp = ROOT/'assets/generated/equipment'/filename
+    if mp.exists():
+        md = read(mp); GEAR_META.update(md.get('items',{})); SLOT_ART.update(md.get('slot_fallbacks',{}))
+old_gear = list(EQUIPMENT); ordered = []; chosen = set()
+for slot, fallback_name in [('weapon','武器'),('head','头部'),('chest','胸甲'),('hands','手套'),('legs','腿部'),('feet','鞋靴'),('ring','戒指'),('charm','饰品')]:
+    matches = [(key,im) for key,im in old_gear if GEAR_META.get(key,{}).get('slot') == slot]
+    matches.sort(key=lambda pair: (GEAR_META[pair[0]].get('race_id') != 'B01', pair[0]))
+    if matches:
+        ordered.append(matches[0]); chosen.add(matches[0][0])
+    elif slot in SLOT_ART:
+        key='slot:'+slot; ordered.append((key,crop_entry(SLOT_ART[slot]))); GEAR_META[key]={'name':fallback_name,'slot':slot}
+    else:
+        raise RuntimeError('No verified equipment-slot art: '+slot)
+EQUIPMENT = ordered + [pair for pair in old_gear if pair[0] not in chosen]
+GEAR_NAMES = [GEAR_META.get(key,{}).get('name',key) for key,im in EQUIPMENT]
+PRIMARY_NAME = GEAR_NAMES[0]
+weapon_options=[pair for pair in old_gear if GEAR_META.get(pair[0],{}).get('slot') == 'weapon']
+COMPARE_GEAR = [weapon_options[0][1],weapon_options[1][1]]
+COMPARE_NAMES = [GEAR_META[pair[0]].get('name',pair[0]) for pair in weapon_options[:2]]
+
 HEROES = []
 for i in range(1,4):
     options = [f'assets/generated/heroes/CH0{i}_storybook_portrait_v1.png',f'assets/generated/heroes/CH0{i}_portrait_v1.png']
@@ -74,14 +106,38 @@ SKILL_COPY = [
 '释放近身寒冷新星，并引爆视线内已展开的法晶。',
 '在目标区域展开持续领域，脉冲施加寒冷并为范围内法晶充能。']
 SLOT_NAMES = ['武器','头部','胸甲','手套','腿部','鞋靴','戒指','饰品']
-ITEM_NAMES = ['守庭战斧','日曜头冠','巡庭胸甲','黄铜护手','巡卫长裤','遗庭战靴','日轮戒指','构装护符']
+ITEM_NAMES = GEAR_NAMES[:8]
 RARITIES = [('白色','#b7afa0'),('绿色',GREEN),('紫色',PURPLE),('金色',GOLD)]
+
+
+# Use a complete approved gameplay body, never a portrait bust on the arena floor.
+WORLD_HERO = None
+family_path = ROOT/'assets/generated/heroes/CH01_storybook_family_v1.json'
+if family_path.exists():
+    family = read(family_path)
+    if family.get('enabled'):
+        action_path = family.get('assets',{}).get('actions',{}).get('front')
+        if action_path:
+            action = read(ROOT/action_path.replace('res://',''))
+            frames = action.get('frames',[])
+            frame = next((f for f in frames if f.get('name') == 'idle'),frames[0] if frames else {})
+            if frame.get('region'): WORLD_HERO = crop_entry(frame,action.get('texture'))
+if WORLD_HERO is None: WORLD_HERO = opened('assets/characters/salvager.png')
+ENEMY_ART = {}
+for mp in sorted((ROOT/'assets/generated').rglob('*.regions.json')):
+    if 'storybook' not in mp.name or not ('bodies' in mp.name or 'boss' in mp.name): continue
+    md=read(mp)
+    for identity,entry in md.get('entries',md.get('regions',{})).items():
+        if identity.startswith(('M','BO')):
+            try: ENEMY_ART[identity]=crop_entry(entry,md.get('texture'))
+            except (OSError,ValueError,TypeError): pass
 
 def world(i=0):
     if not WORLD_PATHS: return Image.new('RGBA',(W,H),'#d9d6b3')
     return opened(str(WORLD_PATHS[i % len(WORLD_PATHS)].relative_to(ROOT)))
 def enemy(i=0,boss=False):
     stem = f'BO{i+1:02d}' if boss else f'M{i+1:02d}'
+    if stem in ENEMY_ART: return ENEMY_ART[stem]
     opts = sorted((ROOT/'assets/generated').rglob(stem+'*storybook*.png'))
     opts += sorted((ROOT/'assets/generated').rglob(stem+'_v1.png'))
     if boss and (ROOT/f'assets/bosses/{stem}.png').exists(): opts += [ROOT/f'assets/bosses/{stem}.png']
@@ -174,7 +230,7 @@ class Canvas:
         if selected: self.d.rounded_rectangle((x+3,y+3,x+w-3,y+h-3),8,outline=TEAL,width=3)
         self.art(EQUIPMENT[idx%len(EQUIPMENT)][1],x+11,y+9,w-22,h-43)
         self.d.rectangle((x+9,y+h-31,x+13,y+h-13),fill=color)
-        if label: self.text(x+20,y+h-33,ITEM_NAMES[idx%8],17,INK,width=w-25,lines=1)
+        if label: self.text(x+20,y+h-33,GEAR_NAMES[idx%len(GEAR_NAMES)],17,INK,width=w-25,lines=1)
         self.text(x+w-13,y+8,'+'+str(idx%5),16,INK,align='right')
     def portrait(self,x,y,w,h,who=0):
         self.panel(x,y,w,h,fill='#f7ebd0')
@@ -188,9 +244,9 @@ class Canvas:
 def roster(c,trial=False):
     c.shell('英雄')
     for j in range(3):
-        x=40+j*626; c.portrait(x,229,586,652,j)
+        x=40+j*626; c.portrait(x,229,586,620,j)
         c.chip(x+22,247,'0'+str(j+1)+' / '+ROLES[j],ACCENTS[j],155)
-        c.text(x+35,795,['承伤蓄势，近战破阵','标记弱点，游击收割','布置法晶，共鸣引爆'][j],22,MUTED,width=510)
+        c.text(x+35,858,['承伤蓄势，近战破阵','标记弱点，游击收割','布置法晶，共鸣引爆'][j],22,MUTED,width=510)
         c.button(x+26,906,535,'进入独立试玩' if trial else ('当前出战' if j==0 else '查看英雄'),primary=j==0)
 
 def hero(c,who=0):
@@ -275,7 +331,7 @@ def inventory(c,state=0):
         if state==1 and j in [1,3,4,7]: c.chip(x+90,y+5,'✓',TEAL,37)
     c.button(588,925,353,'全部拾取' if state==3 else ('已选 4 件' if state==1 else '多选回收'),primary=state in [1,3])
     c.button(962,925,363,'整理背包')
-    c.panel(1387,225,498,765); c.heading(1418,253,'守庭战斧 +3')
+    c.panel(1387,225,498,765); c.heading(1418,253,PRIMARY_NAME+' +3')
     c.chip(1419,331,'紫色 · 武器',PURPLE,176); c.art(EQUIPMENT[0][1],1505,379,255,238)
     c.rows(1418,637,429,[('物理攻击','+110'),('暴击率','+8%'),('装备等级','iLv.12')],gap=55)
     c.text(1419,817,'日曜巡卫  3 / 8',21,TEAL)
@@ -284,7 +340,7 @@ def inventory(c,state=0):
 
 def equipment(c,mode=0):
     c.shell('商城' if mode else '背包'); c.panel(37,225,820,766)
-    c.text(77,260,'日曜巡卫套装' if mode else '守庭战斧 +3',39); c.chip(78,330,'金色 · 套装' if mode else '紫色 · 武器',GOLD if mode else PURPLE,190)
+    c.text(77,260,'日曜巡卫套装' if mode else PRIMARY_NAME+' +3',39); c.chip(78,330,'金色 · 套装' if mode else '紫色 · 武器',GOLD if mode else PURPLE,190)
     if mode:
         for j in range(8): c.item(82+(j%4)*183,408+(j//4)*199,j,w=160,h=176)
         c.text(92,841,'拥有进度  3 / 8',25,TEAL); c.bar(93,894,686,.375)
@@ -301,8 +357,8 @@ def compare(c,reforge=False):
     for j in range(2):
         x=39+j*934; c.panel(x,225,909,765,edge=TEAL if j else GOLD)
         c.chip(x+34,255,['原词条','新词条'][j] if reforge else ['当前穿戴','选中装备'][j],TEAL if j else MUTED,190)
-        c.art(EQUIPMENT[j*2][1],x+321,314,264,231)
-        c.text(x+455,568,['巡卫战斧 +2','守庭战斧 +3'][j],34,align='center')
+        c.art(COMPARE_GEAR[0] if reforge else COMPARE_GEAR[j],x+321,314,264,231)
+        c.text(x+455,568,COMPARE_NAMES[j]+(' +2' if j==0 else ' +3'),34,align='center')
         c.rows(x+42,649,823,[('物理攻击',['296','326  ↑ 30'][j]),('暴击率',['13%','18%  ↑ 5%'][j]),('生命上限',['2,520','2,480  ↓ 40'][j])],gap=68)
         c.button(x+43,905,821,(['保留原词条','采用新词条'][j] if reforge else ['保留当前装备','穿戴选中装备'][j]),primary=bool(j))
 
@@ -316,7 +372,7 @@ def shop(c,sets=False):
         x=380+(j%3)*498; y=379+(j//3)*270
         c.panel(x,y,471,244,fill='#f9efd9',shadow=False)
         c.art(EQUIPMENT[(j*8)%len(EQUIPMENT)][1],x+12,y+16,179,169)
-        c.text(x+205,y+29,(['日曜巡卫','琥珀守卫','缝线旅者','赤岩斗士','铜羽猎手','星纹贤者'][j] if sets else ITEM_NAMES[j%8]),26,width=243,lines=1)
+        c.text(x+205,y+29,(['日曜巡卫','琥珀守卫','缝线旅者','赤岩斗士','铜羽猎手','星纹贤者'][j] if sets else GEAR_NAMES[(j*8)%len(GEAR_NAMES)]),26,width=243,lines=1)
         c.chip(x+207,y+87,'套装' if sets else RARITIES[j%4][0],RARITIES[j%4][1],120)
         c.text(x+208,y+148,('3 / 8 已拥有' if j==0 else '点击查看详情') if sets else 'iLv.12  /  物理型',18,MUTED)
         c.button(x+19,y+187,432,('补齐套装  2,160' if sets else '购买  480'),primary=j==0,h=46)
@@ -329,7 +385,7 @@ def forge(c,mode=0):
     c.panel(422,225,1465,765)
     titles=['定向打造','装备强化','阶重锻','词条重铸','词条精炼','强化继承']
     for j,t in enumerate(titles): c.button(447+j*234,250,220,t,primary=j==mode,h=53)
-    c.text(461,344,'守庭战斧 +3',35); c.chip(1630,348,'已锁定',MUTED,194)
+    c.text(461,344,PRIMARY_NAME+' +3',35); c.chip(1630,348,'已锁定',MUTED,194)
     c.panel(457,423,570,411,fill='#f7ead0',shadow=False)
     c.art(EQUIPMENT[0][1],575,454,331,289); c.text(740,776,'当前 +3  →  目标 +4' if mode==1 else ['武器 · 紫色 · iLv.12','强化阶','选择第 2 阶','第 1 条：暴击率','暴击率 +8%','来源 +3 → 目标 +0'][mode],25,align='center')
     c.heading(1061,421,['打造条件','强化预览','重锻预览','重铸预览','精炼预览','继承预览'][mode])
@@ -344,7 +400,7 @@ def codex(c):
     c.panel(351,225,1536,765); c.text(387,255,'怪物图鉴',32); c.text(1848,267,'已发现  18 / 40',21,TEAL,align='right')
     for j in range(8):
         x=383+(j%4)*371; y=345+(j//4)*309; c.panel(x,y,343,287,fill='#f8ecd3',shadow=False)
-        c.art(enemy(j),x+30,y+14,283,190)
+        c.art(enemy([0,1,9,10,18,19,27,28][j]),x+30,y+14,283,190)
         c.text(x+170,y+219,['巡庭构装体','晶核守卫','琥珀猎虫','巨叶伏虫','缝线居民','墓镇守卫','赤岩斥候','战寨重装'][j],25,align='center')
         c.text(x+170,y+257,'已发现 · 查看资料',17,TEAL,align='center')
 
@@ -413,7 +469,7 @@ def battle(c,mode=0):
     c.panel(29,28,442,128); c.art(HEROES[0],41,41,95,99); c.text(151,43,'罗砧 · Lv.12',23); c.bar(151,85,286,.82,RED,17); c.bar(151,116,286,.64,GOLD,12)
     c.text(161,80,'2,034 / 2,480',13,'#fff9e8')
     c.panel(1446,28,442,224); c.text(1471,45,'晴辉遗庭  /  第 3 站',24); c.text(1473,100,'当前目标',19,TEAL); c.text(1473,139,'清理守卫并前往出口',23,width=383); c.text(1473,194,'剩余敌人  4',20,MUTED)
-    c.art(HEROES[0],789,429,156,244)
+    c.art(WORLD_HERO,789,429,156,244)
     for j in range(3): c.art(enemy(j),1030+j*174,395+(j%2)*128,139,177)
     c.d.arc((898,469,1368,699),180,355,fill='#da9c42',width=8)
     c.d.arc((907,478,1359,690),180,355,fill='#fff1bd',width=3)
@@ -452,10 +508,10 @@ def modal(c,state=0):
     c.text(960,410,c.screen[1],44,TEAL if positive else INK,align='center')
     messages=[
 '将回收已选中的 4 件装备。穿戴中与锁定装备不会被选入。\n预计获得 720 金币。回收后无法恢复。',
-'购买守庭战斧 ×1，花费 480 金币。\n当前 12,680 → 购买后 12,200。',
-'守庭战斧已加入永久背包。\n现在可以前往背包查看或继续选购。',
+'购买晴辉构装旅者核心 ×1，花费 480 金币。\n当前 12,680 → 购买后 12,200。',
+'晴辉构装旅者核心已加入永久背包。\n现在可以前往背包查看或继续选购。',
 '需要 480 金币，当前可用 320。\n本次购买没有发生扣款，原选择已保留。',
-'守庭战斧  +3 → +4\n本次结果已保存，具体属性变化在装备详情中查看。',
+'晴辉构装旅者核心  +3 → +4\n本次结果已保存，具体属性变化在装备详情中查看。',
 '拆解后装备将被永久移除。\n预计返还构装残片 ×8，请核对目标装备。',
 'Q 已绑定「破阵冲锋」。\n请选择其他按键，或明确确认替换原绑定。',
 '开始新档案将覆盖当前永久进度。\n本操作不可撤销，取消可保留现有档案。',
