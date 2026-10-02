@@ -1,0 +1,71 @@
+name: Reference A UI review
+on:
+  push:
+    branches: [codex/ui-ab-high-fidelity-20261002]
+    paths:
+      - 'docs/ui-reference-a/source/**'
+      - '.github/workflows/ui-reference-a.yml'
+permissions:
+  contents: write
+concurrency:
+  group: reference-a-ui-review
+  cancel-in-progress: true
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/ui-ab-high-fidelity-20261002
+      - name: Prepare existing artwork for local composition
+        if: hashFiles('docs/ui-reference-a/source/render.py') == ''
+        run: |
+          python - <<'PY'
+          import pathlib, zipfile
+          root=pathlib.Path('.')
+          selected=set()
+          for folder in ['ui','equipment']:
+              selected.update(p for p in (root/'assets/generated'/folder).glob('*') if p.suffix in ['.png','.json'])
+          hp=root/'assets/generated/heroes'
+          for pattern in ['*portrait*.png','*family*.json','*actions*front*','*storybook_actions*','*story*front*.json']:
+              selected.update(p for p in hp.glob(pattern) if p.suffix in ['.png','.json'])
+          for room in ['L01','L07','L13','L19','BO01','BO02','BO03','BO04']:
+              selected.update((root/'assets/generated/world/rooms').glob(room+'*environment*.png'))
+          for pattern in ['*camp*.png','*menu*.png']:
+              selected.update((root/'assets/generated').rglob(pattern))
+          for pattern in ['storybook*bod*.png','storybook*bod*.json','*boss*.png','*boss*.json']:
+              selected.update((root/'assets/generated/enemies').glob(pattern))
+          selected.update((root/'data').glob('*.json'))
+          with zipfile.ZipFile('reference-a-artwork.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in sorted(selected):
+                  if p.is_file(): z.write(p,str(p))
+          print('Packaged',len(selected),'existing artwork/data files. No font files.')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('docs/ui-reference-a/source/render.py') == ''
+        with:
+          name: reference-a-existing-artwork
+          path: reference-a-artwork.zip
+          retention-days: 1
+      - name: Render reference A review images
+        if: hashFiles('docs/ui-reference-a/source/render.py') != ''
+        run: |
+          python -m pip install Pillow==11.3.0
+          python docs/ui-reference-a/source/render.py
+      - name: Commit reviewed design files only
+        if: hashFiles('docs/ui-reference-a/source/render.py') != ''
+        run: |
+          git config user.name 'UI Review Renderer'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/ui-reference-a
+          if ! git diff --cached --quiet; then
+            git commit -m 'design: render complete reference-A high-resolution UI suite'
+            git push origin HEAD:codex/ui-ab-high-fidelity-20261002
+          fi
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('docs/ui-reference-a/source/render.py') != ''
+        with:
+          name: reference-a-ui-suite
+          path: docs/ui-reference-a
+          retention-days: 7
