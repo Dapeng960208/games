@@ -3,6 +3,8 @@ extends RefCounted
 ## One document commits rewards, discoveries, and active-run clearing together.
 ## A flushed newer temporary document is a recoverable commit intent.
 
+const SaveLease = preload("res://scripts/core/profile_save_lease.gd")
+const Recycle = preload("res://scripts/core/profile_recycle_bin.gd")
 const SCHEMA_VERSION := 3
 const SETTLEMENT_RULES_VERSION := 3
 const Economy = preload("res://scripts/core/economy_history.gd")
@@ -42,6 +44,9 @@ var unresolved_error: bool:
 var _current: Dictionary = {}
 var _acknowledged_bytes := PackedByteArray()
 var _blocked: bool = false
+var recycle_clock: Callable
+var recycle_fail_stage := ""
+var _generation := ""
 
 func _init(save_path: String = "user://profile.json") -> void:
 	path = save_path
@@ -66,17 +71,38 @@ static func fresh_profile() -> Dictionary:
 	}
 
 func load_document() -> Dictionary:
+	var lease := SaveLease.acquire(path)
+	if lease == null:
+		_blocked = true
+		has_profile = false
+		last_error = "STORAGE_IN_USE"
+		return {}
+	return _load_document_locked()
+
+func _load_document_locked() -> Dictionary:
 	last_error = ""
 	warning = ""
 	_current = {}
 	_acknowledged_bytes = PackedByteArray()
 	_blocked = false
 	has_profile = false
+	var recycle := _recycle()
+	var recycle_state := recycle.read_state()
+	if recycle_state.is_empty():
+		last_error = recycle.last_error
+		_blocked = true
+		return {}
+	_generation = str(recycle_state.active_generation)
+	var disk_path := recycle.active_path(recycle_state)
+	if not _generation.is_empty() and not FileAccess.file_exists(disk_path) and not FileAccess.file_exists(disk_path + ".tmp") and not FileAccess.file_exists(disk_path + ".bak") and not FileAccess.file_exists(disk_path + ".bak.tmp"):
+		last_error = "STORAGE_RECYCLE_INVALID"
+		_blocked = true
+		return {}
 	var best_path := ""
 	var best_needs_class_upgrade := false
 	var blocked_migration_revision := -1
 	# All candidates contain whole transactions; never merge fields across files.
-	for candidate: String in [path, path + ".tmp", path + ".bak", path + ".bak.tmp"]:
+	for candidate: String in [disk_path, disk_path + ".tmp", disk_path + ".bak", disk_path + ".bak.tmp"]:
 		if not FileAccess.file_exists(candidate):
 			continue
 		var file := FileAccess.open(candidate, FileAccess.READ)
@@ -120,13 +146,13 @@ func load_document() -> Dictionary:
 			_blocked = true
 		return {}
 	has_profile = bool(_current.get("profile_initialized", true))
-	if best_path != path:
+	if best_path != disk_path:
 		warning = "STORAGE_RECOVERED"
 	if int(_current.schema_version) == 1:
 		# Keep the original, strictly validated v1 document before the atomic upgrade.
 		# Never replace an earlier migration backup, including on a failed retry.
-		if not FileAccess.file_exists(path + ".v1.bak"):
-			if DirAccess.copy_absolute(best_path, path + ".v1.bak") != OK:
+		if not FileAccess.file_exists(disk_path + ".v1.bak"):
+			if DirAccess.copy_absolute(best_path, disk_path + ".v1.bak") != OK:
 				last_error = "STORAGE_PRESERVE_FAILED"
 				_blocked = true
 				has_profile = false
@@ -157,6 +183,7 @@ func load_document() -> Dictionary:
 			return {}
 	if not _current.profile.get("equipment_class_migration", {}).get("removed_slots", []).is_empty():
 		warning = "STORAGE_CLASS_EQUIPMENT_UPDATED"
+	if _acknowledged_bytes.is_empty(): _acknowledged_bytes = FileAccess.get_file_as_bytes(best_path)
 	var loaded := _current.duplicate(true)
 	# Normalize optional presentation settings in memory only; opening a demo
 	# must not rewrite a save just to add the comfort default or volume keys.
@@ -170,10 +197,26 @@ func load_document() -> Dictionary:
 	return loaded
 
 func save_document(profile: Dictionary, active_run: Variant = null, profile_initialized: bool = true) -> bool:
+	var lease := SaveLease.acquire(path)
+	if lease == null:
+		last_error = "STORAGE_IN_USE"
+		return false
+	return _save_document_locked(profile, active_run, profile_initialized)
+
+func _save_document_locked(profile: Dictionary, active_run: Variant = null, profile_initialized: bool = true) -> bool:
 	last_error = ""
 	if _blocked:
 		last_error = "STORAGE_NO_VALID_PROFILE"
 		return false
+	var recycle := _recycle()
+	var recycle_state := recycle.read_state()
+	if recycle_state.is_empty():
+		last_error = recycle.last_error
+		return false
+	if recycle_state.active_generation != _generation:
+		last_error = "STORAGE_RECYCLE_CHANGED"
+		return false
+	var disk_path := recycle.active_path(recycle_state)
 	var document := _next_document(profile, active_run, profile_initialized)
 	# _current is a detached document accepted by this store. Reuse progression
 	# validation only when every permanent field is exactly equal, in the same
@@ -187,21 +230,21 @@ func save_document(profile: Dictionary, active_run: Variant = null, profile_init
 	if serialized.size() > _byte_limit():
 		last_error = "STORAGE_CAPACITY_EXCEEDED"
 		return false
-	var directory := ProjectSettings.globalize_path(path).get_base_dir()
+	var directory := ProjectSettings.globalize_path(disk_path).get_base_dir()
 	if DirAccess.make_dir_recursive_absolute(directory) != OK:
 		last_error = "STORAGE_WRITE_FAILED"
 		return false
 	# Preserve the last acknowledged whole transaction before replacing a candidate.
 	if not _current.is_empty():
 		if _acknowledged_bytes.is_empty(): _acknowledged_bytes = _serialize(_current)
-		if not _write_serialized(path + ".bak.tmp", _acknowledged_bytes):
+		if not _write_serialized(disk_path + ".bak.tmp", _acknowledged_bytes):
 			return false
-		if DirAccess.rename_absolute(path + ".bak.tmp", path + ".bak") != OK:
+		if DirAccess.rename_absolute(disk_path + ".bak.tmp", disk_path + ".bak") != OK:
 			last_error = "STORAGE_REPLACE_FAILED"
 			return false
-	if not _write_serialized(path + ".tmp", serialized):
+	if not _write_serialized(disk_path + ".tmp", serialized):
 		return false
-	if DirAccess.rename_absolute(path + ".tmp", path) != OK:
+	if DirAccess.rename_absolute(disk_path + ".tmp", disk_path) != OK:
 		last_error = "STORAGE_REPLACE_FAILED"
 		return false
 	_current = document
@@ -209,9 +252,156 @@ func save_document(profile: Dictionary, active_run: Variant = null, profile_init
 	has_profile = profile_initialized
 	return true
 
+func _recycle() -> Recycle:
+	var recycle := Recycle.new(path, recycle_clock)
+	recycle.fail_stage = recycle_fail_stage
+	recycle.document_validator = _valid_document
+	return recycle
+
+func _disk_matches_current() -> bool:
+	var recycle := _recycle()
+	var state := recycle.read_state()
+	if state.is_empty():
+		last_error = recycle.last_error
+		return false
+	if state.active_generation != _generation:
+		last_error = "STORAGE_RECYCLE_CHANGED"
+		return false
+	var disk_path := recycle.active_path(state)
+	var found := _current.is_empty()
+	for suffix: String in ["", ".tmp", ".bak", ".bak.tmp"]:
+		var filename := disk_path + suffix
+		if not FileAccess.file_exists(filename): continue
+		var file := FileAccess.open(filename, FileAccess.READ)
+		if file == null or file.get_length() > _byte_limit():
+			last_error = "STORAGE_READ_FAILED"
+			return false
+		var expected_length := file.get_length()
+		var bytes := file.get_buffer(expected_length)
+		var read_error := file.get_error()
+		file.close()
+		if read_error != OK or bytes.size() != expected_length:
+			last_error = "STORAGE_READ_FAILED"
+			return false
+		if not _acknowledged_bytes.is_empty() and bytes == _acknowledged_bytes:
+			found = true
+			continue
+		var parsed: Variant = JSON.parse_string(bytes.get_string_from_utf8())
+		if not parsed is Dictionary or not _number(parsed.get("revision")): continue
+		if int(parsed.revision) < int(_current.get("revision", 0)): continue
+		if not _valid_document(parsed): continue
+		if _serialize(parsed) != _serialize(_current):
+			last_error = "STORAGE_RECYCLE_CHANGED"
+			return false
+		found = true
+	if not found: last_error = "STORAGE_RECYCLE_CHANGED"
+	return found
+
+func _legacy_profile_id() -> String:
+	return ProjectSettings.globalize_path(path).sha256_text().substr(0, 32)
+
+func recycle_entries() -> Array[Dictionary]:
+	var recycle := _recycle()
+	var entries: Array[Dictionary] = recycle.list_entries()
+	last_error = recycle.last_error
+	return entries
+
+func cleanup_recycle_bin() -> bool:
+	var lease := SaveLease.acquire(path)
+	if lease == null:
+		last_error = "STORAGE_IN_USE"
+		return false
+	return _cleanup_recycle_bin_locked()
+
+func _cleanup_recycle_bin_locked() -> bool:
+	var recycle := _recycle()
+	var success: bool = recycle.cleanup_expired()
+	last_error = recycle.last_error
+	return success
+
+func recycle_and_replace(profile: Dictionary, initialized: bool = true) -> bool:
+	var lease := SaveLease.acquire(path)
+	if lease == null:
+		last_error = "STORAGE_IN_USE"
+		return false
+	return _recycle_and_replace_locked(profile, initialized)
+
+func _recycle_and_replace_locked(profile: Dictionary, initialized: bool = true) -> bool:
+	last_error = ""
+	if _blocked or not has_profile or _current.is_empty():
+		last_error = "STORAGE_RECYCLE_UNAVAILABLE"
+		return false
+	if not _disk_matches_current(): return false
+	var replacement := _next_document(profile, null, initialized)
+	replacement.profile_id = Crypto.new().generate_random_bytes(16).hex_encode()
+	if not _valid_document(replacement):
+		last_error = "STORAGE_INVALID_DATA"
+		return false
+	var bytes := _serialize(replacement)
+	if bytes.size() > _byte_limit():
+		last_error = "STORAGE_CAPACITY_EXCEEDED"
+		return false
+	var recycle := _recycle()
+	# The accepted complete document includes the active receipt and migration
+	# metadata. Raw candidate files are retained alongside it without alteration.
+	if not recycle.archive_and_switch(_serialize(_current), str(_current.get("profile_id", _legacy_profile_id())), bytes, _generation):
+		last_error = recycle.last_error
+		return false
+	_generation = str(recycle.read_state().get("active_generation", ""))
+	_current = replacement
+	_acknowledged_bytes = bytes
+	has_profile = initialized
+	return true
+
+func restore_recycled(entry_id: String) -> bool:
+	var lease := SaveLease.acquire(path)
+	if lease == null:
+		last_error = "STORAGE_IN_USE"
+		return false
+	return _restore_recycled_locked(entry_id)
+
+func _restore_recycled_locked(entry_id: String) -> bool:
+	last_error = ""
+	if _blocked:
+		last_error = "STORAGE_RECYCLE_INVALID"
+		return false
+	# Recovery never overwrites even a newly created, otherwise empty profile.
+	if has_profile:
+		last_error = "STORAGE_RECYCLE_CONFLICT"
+		return false
+	if not _disk_matches_current(): return false
+	var recycle := _recycle()
+	var archive: Dictionary = recycle.get_archive(entry_id)
+	if archive.is_empty():
+		last_error = recycle.last_error
+		return false
+	var value: Variant = JSON.parse_string(Marshalls.base64_to_raw(archive.snapshot).get_string_from_utf8())
+	if not _valid_document(value) or not bool(value.get("profile_initialized", true)):
+		last_error = "STORAGE_RECYCLE_INVALID"
+		return false
+	var restored: Dictionary = value.duplicate(true)
+	if restored.has("profile_id") and restored.profile_id != archive.profile_id:
+		last_error = "STORAGE_RECYCLE_INVALID"
+		return false
+	restored.profile_id = archive.profile_id
+	restored.revision = maxi(int(_current.get("revision", 0)), int(restored.revision)) + 1
+	var bytes := _serialize(restored)
+	if bytes.size() > _byte_limit():
+		last_error = "STORAGE_CAPACITY_EXCEEDED"
+		return false
+	if not recycle.restore(entry_id, bytes, _generation):
+		last_error = recycle.last_error
+		return false
+	_generation = str(recycle.read_state().get("active_generation", ""))
+	_current = restored
+	_acknowledged_bytes = bytes
+	has_profile = true
+	return true
+
 func _next_document(profile: Dictionary, active_run: Variant, profile_initialized: bool) -> Dictionary:
 	return {
 		"schema_version": SCHEMA_VERSION,
+		"profile_id": _current.get("profile_id", _legacy_profile_id() if not _current.is_empty() else Crypto.new().generate_random_bytes(16).hex_encode()),
 		"profile_initialized": profile_initialized,
 		"revision": int(_current.get("revision", 0)) + 1,
 		"profile": profile.duplicate(true),
@@ -380,6 +570,7 @@ static func _valid_candidate(value: Variant, identical_progression: bool = false
 	if not value is Dictionary or not _number(value.get("schema_version"), SCHEMA_VERSION) \
 		or int(value.schema_version) < 1:
 		return false
+	if value.has("profile_id") and not Recycle.safe_id(value.profile_id): return false
 	var version := int(value.schema_version)
 	if value.has("profile_initialized") and not value.profile_initialized is bool:
 		return false

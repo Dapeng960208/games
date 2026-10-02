@@ -252,8 +252,8 @@
     "en": "REPLACE THIS PROFILE?"
   },
   "NEW_CONFIRM_NOTE": {
-    "zh_CN": "将覆盖当前永久金币、发现记录与远征统计。此操作不能从游戏内撤销。",
-    "en": "This replaces your banked gold, discoveries, and expedition history. It cannot be undone from the game."
+    "zh_CN": "当前完整存档会移入回收站，保留7天，期间可在「存档与英雄档案 → 存档回收站」恢复。\n7天后，在下次启动或存档管理操作时永久清理。游戏关闭时不会后台清理。",
+    "en": "Your complete current save moves to the Recycle Bin for 7 days. Restore it from Save & Hero Profile → Recycle Bin.\nAfter 7 days it is permanently removed on the next launch or save-management action. No cleanup runs while the game is closed."
   },
   "CONFIRM_NEW": {
     "zh_CN": "确认覆盖并建立档案",
@@ -1009,5 +1009,53 @@
     "en": "Redrock Warcamp"
   },
   "STORAGE_CLASS_EQUIPMENT_UPDATED": {"zh_CN":"职业装备规则已更新：不符职业的旧装备已保留在仓库，请重新配装；词条、强化和价值不变。","en":"Class equipment updated: incompatible old gear is retained in Inventory. Re-equip empty slots; rolls, upgrades and value are unchanged."},
-  "STORAGE_CLASS_MIGRATION_BLOCKED": {"zh_CN":"职业装备迁移未能安全完成，原存档完整保留；请勿覆盖或新建档案。","en":"Class equipment migration could not finish safely. The original save is preserved; do not overwrite it or start a new profile."}
+  "STORAGE_CLASS_MIGRATION_BLOCKED": {"zh_CN":"职业装备迁移未能安全完成，原存档完整保留；请勿覆盖或新建档案。","en":"Class equipment migration could not finish safely. The original save is preserved; do not overwrite it or start a new profile."},
+  "STORAGE_RECYCLE_INVALID": {
+    "zh_CN": "回收站数据无法安全校验，已保留文件。请检查存储状态后重试。",
+    "en": "Recycle Bin data could not be safely validated. Files were preserved. Check your storage and retry."
+  },
+  "STORAGE_RECYCLE_CHANGED": {
+    "zh_CN": "存档已被另一个操作更改，请重新启动游戏后重试。",
+    "en": "Another operation changed this save. Restart the game before trying again."
+  },
+  "STORAGE_RECYCLE_CLOCK": {
+    "zh_CN": "系统时间回退，已暂停回收站清理。请校准时间后重试。",
+    "en": "The system clock moved back. Recycle Bin cleanup is paused. Correct the clock and retry."
+  },
+  "STORAGE_RECYCLE_UNAVAILABLE": {
+    "zh_CN": "此存档当前无法恢复或移入回收站。",
+    "en": "This save is not available for restore or deletion."
+  },
+  "STORAGE_RECYCLE_EXPIRED": {
+    "zh_CN": "此存档已超过7天保留期。",
+    "en": "This save has passed its 7-day retention period."
+  },
+  "STORAGE_RECYCLE_WRITE_FAILED": {
+    "zh_CN": "回收站写入失败，原存档未被替换。请检查可用空间与写入权限。",
+    "en": "Could not write the Recycle Bin; the current save was not replaced. Check free space and write permissions."
+  },
+  "STORAGE_RECYCLE_COLLISION": {
+    "zh_CN": "回收站标识冲突，原存档保持不变。请重试。",
+    "en": "Recycle Bin identifier collision. The original save is unchanged. Please retry."
+  },
+  "STORAGE_RECYCLE_CONFLICT": {
+    "zh_CN": "当前已有有效存档。请先将其移入回收站，再恢复旧档；不会覆盖或合并进度。",
+    "en": "A valid save is already active. Move it to the Recycle Bin before restoring this save. Progress will not be overwritten or merged."
+  },
+  "STORAGE_RECYCLE_BUSY": {
+    "zh_CN": "请先结束远征或试玩并返回营地，再管理存档。",
+    "en": "Finish the expedition or trial and return to camp before managing saves."
+  },
+  "STORAGE_RECYCLE_CLEANUP_FAILED": {
+    "zh_CN": "已到期的回收文件暂时无法清理，文件仍保留。请检查写入权限。",
+    "en": "Some expired recycle files could not be removed and were preserved. Check write permissions."
+  },
+  "STORAGE_IN_USE": {
+    "zh_CN": "此存档正在被另一个游戏实例使用，或写入锁无法安全确认。请关闭其他实例后重试；原文件已保留。",
+    "en": "Another game instance is using this save, or its write lock cannot be safely verified. Close other instances and retry. Original files were preserved."
+  },
+  "RESTORE_CONFLICT_TITLE": {
+    "zh_CN": "无法恢复：当前已有存档",
+    "en": "CANNOT RESTORE: A SAVE IS ACTIVE"
+  }
 }
