@@ -31,3 +31,6 @@ python tools/balance/render_target_enemy_skills.py --check
 ```
 
 敌人现状导出需先使用册末记录的隔离Godot命令生成JSON；其缓存不入库。角色、Buff和三份目标表的一致性检查不依赖缓存或实际玩家存档。Godot实际预览与静态源码梳理的边界在各册内明确标注；文档检查不替代未来运行重构后的战斗验收。
+
+
+三职业后续工作：[定位、八向动作、技能手感、成长与职业装备详细方案](../character-optimization/ROLE_OPTIMIZATION_2026-10-02.md)。当前为逐项实施方案；未验证项目保持待完成，S11全量自然平衡仍暂停。
