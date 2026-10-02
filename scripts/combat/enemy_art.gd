@@ -53,6 +53,10 @@ const BOSS_MANIFESTS: Array[String] = [
 	"res://assets/generated/enemies/BO03_storybook_body_hd_v1.regions.json",
 	"res://assets/generated/enemies/BO04_storybook_body_hd_v1.regions.json",
 ]
+# A bounded, identity-matched sampling upgrade. Resolve the original 599-entry
+# cycle first; replacements never add, remove or reorder an appearance.
+const VARIANT_HD_MANIFEST: String = "res://assets/generated/enemies/variant_hd_v1/variant_hd_v1.overrides.json"
+const VARIANT_HD_INDICES: Dictionary = {"M22": [0], "M34": [0, 1, 4]}
 static var _entries: Dictionary = {}
 static var _variants: Dictionary = {}
 static var _skill_icons: Dictionary = {}
@@ -157,6 +161,7 @@ static func _ensure_loaded() -> void:
 			parsed["visual_clan"] = str(raw.get("visual_clan", ""))
 			_entries[identity] = parsed
 	_load_variants()
+	_load_variant_hd_overrides()
 
 static func _load_variants() -> void:
 	var seen: Dictionary = {}
@@ -209,6 +214,70 @@ static func _load_variants() -> void:
 			var region := Rect2(float(values[0]), float(values[1]), float(values[2]), float(values[3]))
 			if region.has_area() and Rect2(Vector2.ZERO, texture.get_size()).encloses(region):
 				_skill_icons[identity] = {"texture":texture,"texture_path":texture_path,"region":region}
+
+static func _load_variant_hd_overrides() -> void:
+	if not FileAccess.file_exists(VARIANT_HD_MANIFEST):
+		return
+	var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(VARIANT_HD_MANIFEST))
+	if not raw is Dictionary or raw.get("schema_version") != 1 or raw.get("source_family") != FAMILY or not raw.get("overrides") is Array:
+		return
+	for candidate: Variant in raw.overrides:
+		var entry := _variant_hd_entry(candidate)
+		if not entry.is_empty():
+			_variants[entry.hd_source.identity][entry.visual_variant_index] = entry
+
+static func _variant_hd_entry(raw: Variant) -> Dictionary:
+	if not raw is Dictionary or not raw.get("source") is Dictionary or not raw.get("replacement") is Dictionary:
+		return {}
+	var source: Dictionary = raw.source
+	var identity: String = str(source.get("identity", ""))
+	var index: Variant = source.get("visual_variant_index")
+	if not (index is int or index is float) or not is_finite(float(index)) or float(index) != floorf(float(index)):
+		return {}
+	if not VARIANT_HD_INDICES.has(identity) or not int(index) in VARIANT_HD_INDICES[identity]:
+		return {}
+	var choices: Array = _variants.get(identity, [])
+	if int(index) >= choices.size():
+		return {}
+	var original: Dictionary = choices[int(index)]
+	if str(source.get("variant_id", "")) != str(original.get("variant_id", "")) or str(source.get("texture", "")) != str(original.get("texture_path", "")):
+		return {}
+	var source_body: Dictionary = source.duplicate(true)
+	source_body["full_color"] = true
+	var source_entry := parse_entry(source_body, (original.texture as Texture2D).get_size())
+	if source_entry.is_empty() or source_entry.region != original.region or source_entry.foot != original.foot or source_entry.source_height != original.source_height:
+		return {}
+	var replacement: Dictionary = raw.replacement
+	if replacement.get("source_identity") != identity or replacement.get("source_variant_id") != original.variant_id or replacement.get("native_redraw") != true:
+		return {}
+	var texture_path: String = str(replacement.get("texture", ""))
+	# Exact reviewed files only; adding a manifest candidate cannot opt in
+	# another variant or a canonical-body substitution.
+	if texture_path != "res://assets/generated/enemies/variant_hd_v1/%s_variant_%02d_hd_v1.png" % [identity, int(index)]:
+		return {}
+	if not FileAccess.file_exists(texture_path) and not ResourceLoader.exists(texture_path):
+		return {}
+	var texture: Texture2D = Sampler.sampled(texture_path)
+	if texture == null:
+		return {}
+	var parsed := parse_entry(replacement, texture.get_size())
+	if parsed.is_empty() or parsed.source_height <= original.source_height:
+		return {}
+	# Normalized body/foot registration must match before accepting native HD
+	# pixels. Existing install, animation and collision paths remain unchanged.
+	var old_box := Rect2((original.region.position - original.foot) / original.source_height, original.region.size / original.source_height)
+	var new_box := Rect2((parsed.region.position - parsed.foot) / parsed.source_height, parsed.region.size / parsed.source_height)
+	if not old_box.is_equal_approx(new_box):
+		return {}
+	var result: Dictionary = original.duplicate(true)
+	result["texture"] = texture
+	result["texture_path"] = texture_path
+	result["region"] = parsed.region
+	result["foot"] = parsed.foot
+	result["source_height"] = parsed.source_height
+	result["hd_variant"] = true
+	result["hd_source"] = source.duplicate(true)
+	return result
 
 static func parse_entry(raw: Variant, texture_size: Vector2) -> Dictionary:
 	if not raw is Dictionary or raw.get("full_color") != true:
