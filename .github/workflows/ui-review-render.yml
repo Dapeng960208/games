@@ -27,6 +27,9 @@ jobs:
       - name: Install image renderer
         if: steps.source.outputs.ready == 'true'
         run: python -m pip install Pillow==11.3.0
+      - name: Correct reviewed layout and art mappings
+        if: steps.source.outputs.ready == 'true'
+        run: python docs/ui-review-ab/polish_once.py
       - name: Render review PNGs
         if: steps.source.outputs.ready == 'true'
         run: python docs/ui-review-ab/source/render.py
@@ -38,7 +41,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add docs/ui-review-ab
           if ! git diff --cached --quiet; then
-            git commit -m 'design: render high-resolution UI review PNGs'
+            git commit -m 'design: polish 78 UI PNGs and correct illustration identities'
             git push origin HEAD:codex/ui-ab-high-fidelity-20261002
           fi
       - uses: actions/upload-artifact@v4
