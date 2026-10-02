@@ -52,6 +52,9 @@ func _run() -> void:
 		check(guide.find_child("Portrait_"+id,true,false).texture != null,id+" original portrait loads")
 		var portrait := guide.detail.find_child("Portrait_"+id,true,false) as TextureRect
 		check(portrait != null and portrait.size.x <= 184.1 and portrait.size.y <= 184.1,id+" portrait respects fixed inspector bounds")
+		var art_frame: Control = portrait.get_parent()
+		check(art_frame.clip_contents,id+" art has a hard clipping boundary")
+		check(Rect2(Vector2.ZERO,art_frame.size).grow(0.1).encloses(portrait.get_rect()),id+" texture remains inside illustration box")
 		if id.begins_with("BO"):
 			var skills: Array[Dictionary] = Codex.boss_skill_entries(id,0)
 			var locked := 0

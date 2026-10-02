@@ -205,6 +205,15 @@ func _show_entry(id: String, reset_level: bool = true) -> void:
 	else: _enemy_details(flow,profile)
 
 static func portrait(parent: Node, id: String, at: Vector2, extent: Vector2) -> TextureRect:
+	# A separate clipped illustration box prevents any texture minimum-size
+	# regression from painting over the card caption or inspector heading.
+	var frame := Control.new()
+	frame.name = "PortraitFrame_"+id
+	frame.position = at
+	frame.size = extent
+	frame.clip_contents = true
+	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	parent.add_child(frame)
 	var view := TextureRect.new()
 	view.name = "Portrait_"+id
 	# Dedicated codex portraits can be upgraded independently of combat bodies.
@@ -233,11 +242,11 @@ static func portrait(parent: Node, id: String, at: Vector2, extent: Vector2) -> 
 		var pixel_ratio := maxf(1.0,parent.get_viewport().get_stretch_transform().get_scale().x) if parent.is_inside_tree() else 1.0
 		var scale_factor := minf(minf(extent.x/native.x,extent.y/native.y),1.0/pixel_ratio)
 		fitted = native*scale_factor
-	view.position = at+(extent-fitted)*0.5
+	view.position = (extent-fitted)*0.5
 	view.size = fitted
 	view.set_meta("dedicated_codex_art",dedicated)
 	view.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	parent.add_child(view)
+	frame.add_child(view)
 	return view
 
 func _enemy_details(flow: VBoxContainer, profile: Dictionary) -> void:
