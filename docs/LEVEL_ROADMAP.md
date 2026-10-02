@@ -2,6 +2,8 @@
 
 更新日期：2026-10-02。前四副本按“一房一张背景”接入独立原画、地图用途分组与房间 UI；PR #2交付S00–S10的数值和装备循环，S11自然平衡继续暂缓。本文件记录实施和后续事项；实际范围见 [开发进度](DEVELOPMENT_PROGRESS.md)，目标见 [用户需求](USER_LEVEL_BRIEF.md) 与 [设计稿](LEVEL_DESIGN_V1.md)。
 
+PR #4已按最新授权完成合并前审查修复：普通保存增加同代陈旧状态保护，精确失败重试与Windows回收站进程锁已定向验证。全局UI、三职业、普通怪和高清资源的具体本轮检查见[PR #4审查记录](audits/PR4_ACCEPTANCE_2026-10-02.md)。S11自然平衡、长期玩法、实际音频输出及后八关仍按原边界保留，不能因合并本PR提前计作完成。
+
 第二轮审查A13–A30已通过PR #1合入，并与本地同期装备UI改进整合；历史定向证据见[修复与验收](audits/GAMEPLAY_AUDIT_ROUND2_FIXES_2026-10-01.md)。八槽/实例/随机品质已由PR #2的S03–S06实现并接入保存与界面；分支时机、战斗背包换装频率、状态/护盾理解和自然多局体验继续待游玩验证。
 
 等级、装备与全量Buff实施依据为[数值方案](balance/LEVEL_EQUIPMENT_NUMERICAL_DESIGN.md)、[目标数值全表](balance/TARGET_NUMERICAL_TABLES.md)及[S00–S11执行清单](balance/NUMERICAL_REDESIGN_EXECUTION_STEPS.md)。S00–S10已实现，正常新档默认使用×10整数规则、20级天赋、124模板/八槽实例及最高+10手动强化，旧进行中冒险冻结旧版本。本轮按用户授权验收和修复PR #2，证据见[本地验收记录](balance/PR2_ACCEPTANCE_2026-10-02.md)；自然平衡未完成。

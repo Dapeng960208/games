@@ -26,22 +26,24 @@
 
 普通保存、加载/迁移、回收、恢复和到期清理整个事务共用一个本机跨进程写入锁。竞争写入会显示「请关闭其他实例后重试」，不会覆盖活动事务。锁使用原子mkdir和随机token命名的所有者文件，只有确证原进程退出才能回收；回收时原子认领该token的文件，不能错删新所有者。活跃/复用PID、缺失/损坏所有者或不确定的锁均保留并拒绝写入。锁元数据不包含玩家经济数据。
 
-Linux使用procfs判断进程是否仍存在；Windows以系统Get-Process的明确「找不到该PID」结果确认退出，查询失败一律保留。Windows路径目前仅代码复核，尚未在Windows实机执行。进程在创建锁但尚未写好所有者时崩溃会留下不确定锁并阻止写入，需人工核实后处理，不能为了自动继续而冒险清除。
+Linux使用procfs判断进程是否仍存在；Windows以系统Get-Process的明确「找不到该PID」结果确认退出，查询失败一律保留。PR #4合并前审查已在Windows / Godot 4.7.2隔离夹具中执行真实独立子进程互斥、自终止遗锁和死进程锁回收。进程在创建锁但尚未写好所有者时崩溃会留下不确定锁并阻止写入，需人工核实后处理，不能为了自动继续而冒险清除。
 
-该锁是事务级互斥。回收代际改变后，旧窗口的普通保存也会拒绝写入。本次没有改造原来普通游玩在两个窗口同代交替写入的陈旧状态问题，不宣称通用多窗口游玩支持；请保持一个游戏实例。普通保存自身.tmp的失败原地重试语义保持，并加了对应回归。
+该锁是事务级互斥。普通保存还会在锁内核对磁盘候选，回收代际改变或同代有效revision被另一实例更新后，旧窗口均拒绝写入并提示重启，不改动最新候选。普通保存只允许原实例逐字节重试自己的已flush `.tmp` 意图；改变请求会被拒绝，首次保存失败重试也保留原随机profile_id。这是防止陈旧覆盖的保护，不宣称通用多窗口游玩支持；请保持一个游戏实例。对应复现、拒绝后字节保留及重试回归见[PR #4审查记录](audits/PR4_ACCEPTANCE_2026-10-02.md)。
 
 ## 定向验证
 
-`tests/test_save_recycle_bin.gd` 仅使用 `/tmp/test_save_recycle_*` 可丢弃夹具，覆盖完整文档/原始字节、7天精确边界、读操作无破坏、跨重启、时钟回退、存储/容量/rename/索引失败、恢复冲突、重复删除恢复、过期清理、校验损坏、路径穿越、碰撞、旧版迁移和未结算远征收据。
+`tests/test_save_recycle_bin.gd` 仅在显式 `--test-profile` 所在目录内建立 `test_save_recycle_*` 可丢弃夹具，覆盖完整文档/原始字节、7天精确边界、读操作无破坏、跨重启、时钟回退、存储/容量/rename/索引失败、恢复冲突、重复删除恢复、过期清理、校验损坏、路径穿越、碰撞、旧版迁移和未结算远征收据。子进程只接受同一规范夹具目录中的测试文件。
 
-运行：Godot --headless --path . --script tests/test_save_recycle_bin.gd -- --test-profile=/tmp/test_save_recycle_bootstrap.json
+Windows运行：`./tools/test.ps1 -Suite save_recycle_bin -SkipImport -SkipRestart`（首次运行先导入资源，不传 `-SkipImport`）。该入口隔离APPDATA/LOCALAPPDATA并设置显式测试路径。Linux直接运行示例：`Godot --headless --audio-driver Dummy --path . --script tests/test_save_recycle_bin.gd -- --test-profile=/tmp/test_save_recycle_bin_bootstrap.json`。
 
-2026-10-02最终验证（项目正式引擎 Godot 4.7.2 stable / Linux / headless，nice 10、串行；另在系统4.6.3重复通过）：
+2026-10-02合并前Windows定向复核：核心222/222、原保存160/160、职业装备/迁移2251/2251通过；核心包含同代陈旧保存拒绝、不同意图重试拒绝、首次保存原样重试及真实子进程锁行为。按既有离线入口仅允许并保留Windows根证书库读取这一精确启动诊断，其他SCRIPT ERROR/ERROR均使检查失败。完整本轮记录见[PR #4审查与验收](audits/PR4_ACCEPTANCE_2026-10-02.md)。
+
+2026-10-02原分支验证（项目正式引擎 Godot 4.7.2 stable / Linux / headless，nice 10、串行；另在系统4.6.3重复通过）：
 
 - `test_save_recycle_bin.gd`：214/214，含首次备用候选中断、跨目录恢复、真实独立子进程互斥/崩溃锁回收、活跃或复用PID保守拒绝，以及普通保存.tmp原地重试
 - `test_save_recycle_ui.tscn`：198/198（增加中英恢复冲突专用标题/正文及无磁盘故障误导的断言），中英实际新建覆盖/删除/恢复按钮与控制器链、取消、冲突禁用，以及1280×720和2560×1440虚拟视口节点边界
 - 既有 `test_audit_persistence.gd`：160/160，事务历史、保存容量、失败保留和原保存回归
-- 三份最终日志均无SCRIPT ERROR或ERROR；独立只读数据安全复核通过。Windows实机仍未执行
+- 三份Linux最终日志均无SCRIPT ERROR或ERROR；独立只读数据安全复核通过。Windows进程锁与核心复核结果见上方新增记录
 - 实际图形像素验收：Godot 4.7.2 / OpenGL Compatibility / Mesa llvmpipe软件渲染，1280×720与2560×1440，中英五状态（档案总览、已填充回收站、覆盖警告、删除警告、恢复冲突）20张截图，62/62检查。修正恢复冲突页的通用磁盘错误前缀后，补采四张冲突页，22/22检查
 - 20张最终画面逐张复核：标题与确认按钮完整、正文与保留期限可读、恢复卡片信息未与按钮重叠、长列表在滚动范围内裁剪。四张更新后的冲突页准确说明已有有效档及先移入回收站的步骤。以上是软件渲染像素证据，不作为硬件GPU性能或Windows验收结论。截图、图形夹具和日志保持在被忽略的artifacts目录
 
