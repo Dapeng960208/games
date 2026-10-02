@@ -7,11 +7,11 @@ func configure(data: Dictionary, width: float, prefix: String = "HeroAttribute_"
 	name = "CharacterStatSheet"
 	custom_minimum_size.x = width
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	add_theme_constant_override("separation",5)
+	add_theme_constant_override("separation",7)
 	set_meta("breakdown",data.duplicate(true))
 	var version := int(data.total.get("ruleset_version",1))
 	var expanded := version == 2
-	_line(Inspect.t("基础 + 等级 + 天赋 + 装备 + 当前效果 = 总值", "Base + level + talents + gear + current effects = total") if expanded else Inspect.t("角色基础 + 等级成长 + 装备变化 = 当前总值", "Base + level growth + gear change = current total"),width,14,MineStyle.MUTED)
+	_line(Inspect.t("基础 + 等级 + 天赋 + 装备 + 当前效果 = 总值；pp = 百分点", "Base + level + talents + gear + effects = total; pp = percentage points") if expanded else Inspect.t("角色基础 + 等级成长 + 装备变化 = 当前总值", "Base + level growth + gear change = current total"),width,14,MineStyle.MUTED)
 	var headers: Array = [Inspect.t("属性","Attribute"),Inspect.t("基础","Base"),Inspect.t("成长","Level")]
 	if expanded: headers.append(Inspect.t("天赋","Talent"))
 	headers.append(Inspect.t("装备","Gear"))
@@ -79,23 +79,30 @@ func configure(data: Dictionary, width: float, prefix: String = "HeroAttribute_"
 
 func _table_row(values: Array, width: float, header: bool = false) -> HBoxContainer:
 	var row := HBoxContainer.new()
-	row.custom_minimum_size = Vector2(width,30)
+	row.custom_minimum_size = Vector2(width,32)
 	row.mouse_filter = Control.MOUSE_FILTER_PASS
 	row.add_theme_constant_override("separation",0)
 	add_child(row)
 	for i: int in values.size():
 		var span := width*.30 if i == 0 else width*.70/(values.size()-1)
-		var label := _line(str(values[i]),span,13 if header else 14,MineStyle.AMBER if header else MineStyle.INK if i == values.size()-1 else MineStyle.MUTED,row)
+		var text := str(values[i]).replace("百分点"," pp")
+		var label := _line(text,span,13 if header else 14,MineStyle.CYAN if header or i == values.size()-1 else MineStyle.INK if i == 0 else MineStyle.MUTED,row)
 		label.autowrap_mode = TextServer.AUTOWRAP_OFF
+		label.clip_text = true
+		label.tooltip_text = str(values[i])
 		label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		label.custom_minimum_size.y = 30
+		label.custom_minimum_size.y = 32
 		if i > 0: label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	return row
 
 func _heading(text: String, width: float) -> void:
-	var label := _line(text,width,17,MineStyle.AMBER)
-	label.custom_minimum_size.y = 30
+	var rule := HSeparator.new()
+	rule.custom_minimum_size = Vector2(width,8)
+	rule.add_theme_stylebox_override("separator",MineStyle.rail_box(Color("e4ddca")))
+	add_child(rule)
+	var label := _line(text,width,17,MineStyle.CYAN)
+	label.custom_minimum_size.y = 32
 
 func _line(text: String, width: float, font_size: int = 14, tint: Color = MineStyle.INK, owner: Node = self) -> Label:
 	var label := MineStyle.literal(owner,text,Vector2.ZERO,Vector2(width,0),font_size,tint)

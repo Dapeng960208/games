@@ -5,6 +5,22 @@ const Abilities = preload("res://scripts/combat/hero_abilities.gd")
 const Inspect = preload("res://scripts/ui/equipment_inspection.gd")
 static var _authored_cache: Dictionary = {}
 
+## A read-only ledger entry: branch and upgrade prose comes from the hero catalog.
+static func ledger_entry(hero_id: String, level: int, stats: Dictionary, slot: String, branches: Dictionary = {}) -> Dictionary:
+	var hero := ContentRegistry.hero(hero_id)
+	var skill: Dictionary = hero.get("skills",{}).get(slot,{}).duplicate(true)
+	var spec := Abilities.preview_spec(hero_id,level,stats,slot)
+	skill.merge(spec,true)
+	var description := MineStyle.content_text(skill,"description")
+	for upgrade: Dictionary in hero.get("upgrades",[]):
+		if str(upgrade.get("skill","")) == slot and level >= int(upgrade.get("level",99)):
+			description = Words.text("SKILL_UPGRADE_ACTIVE",{"level":upgrade.get("level",0)})+"\n"+MineStyle.content_text(upgrade,"description")+"\n\n"+Words.text("BASE_SKILL")+"\n"+description
+	var choice := str(branches.get(slot,""))
+	if not choice.is_empty():
+		var branch: Dictionary = hero.get("branches",{}).get("18" if slot == "q" else "20",{}).get(choice,{})
+		description = Words.text("BRANCH_ACTIVE",{"choice":choice})+" · "+MineStyle.content_text(branch,"name")+"\n"+MineStyle.content_text(branch,"description")+"\n\n"+Words.text("BASE_SKILL")+"\n"+description
+	return {"slot":slot,"title":MineStyle.content_text(skill,"name"),"spec":skill,"unlock":int(skill.get("unlock",1)),"unlocked":level >= int(skill.get("unlock",1)),"description":describe(hero_id,level,stats,slot,skill,null,description)}
+
 static func authored_text(text: String, version: int) -> String:
 	if version != Numbers.V2: return text
 	if _authored_cache.has(text): return str(_authored_cache[text])
