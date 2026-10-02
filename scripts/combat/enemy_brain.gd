@@ -318,11 +318,7 @@ func _has_shield(actor: Node2D) -> bool:
 	return status is Object and status.has_method("shield") and float(status.call("shield")) > 0.0
 
 func _room_property(room: Node, key: String) -> Variant:
-	if room != null:
-		for property: Dictionary in room.get_property_list():
-			if str(property.name) == key:
-				return room.get(key)
-	return null
+	return preload("res://scripts/combat/combat_properties.gd").read(room,key)
 
 func _chase(actor: Node2D, victim: Node2D) -> void:
 	var target: Vector2 = victim.position

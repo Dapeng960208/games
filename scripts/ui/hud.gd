@@ -365,6 +365,10 @@ var quest_full_action := ""
 var quest_bullets: Control
 
 func _ready() -> void:
+	# Load these shared combat indicators before input starts, so a first hit,
+	# guard proc or speed buff doesn't decode a full PNG during combat.
+	for artwork: String in ["guard","pressure","haste"]:
+		preload("res://scripts/ui/texture_sampler.gd").sampled("res://assets/generated/props/buff_"+artwork+"_v1.png")
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	theme = MineStyle.make_theme()
 	status_panel = _plate(self,Vector2(12,22),Vector2(374,126),"hero_ribbon")

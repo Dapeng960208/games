@@ -18,6 +18,17 @@ const STRIDE_PER_WORLD_UNIT := .12
 static var _generated_assets: Dictionary = {}
 static var _action_banks: Dictionary = {}
 
+static func prewarm(hero: String) -> void:
+	# Include the static fallback: brief contact/recovery poses can select it
+	# even when idle and windup use an atlas. Its alpha scan must not run on
+	# the first hit's render frame, while input is already live.
+	_generated_asset(hero)
+	for bank: String in ["front","back"]:
+		_action_bank(hero,bank)
+		BasicAtlas.frame_info(hero,bank,"windup",0.0)
+		for slot: String in ["q","secondary","f","ultimate"]: SkillAtlas.frame_info(hero,slot,bank,"windup",0.0)
+	WalkAtlas.frame_info(hero,"front",0.0)
+
 static func _action_bank(hero: String, bank: String) -> Dictionary:
 	var replacement: String = ArtFamily.metadata_path(hero,"actions",bank)
 	var metadata_path: String = replacement if not replacement.is_empty() else "res://assets/generated/heroes/%s_actions_%s_v2.json" % [hero,bank]

@@ -1010,12 +1010,7 @@ func _alive(node: Variant) -> bool:
 	return is_instance_valid(node) and node is Node and not node.is_queued_for_deletion() and (not node.has_method("is_alive") or bool(node.is_alive()))
 
 func _property(object: Variant, key: String, fallback: Variant) -> Variant:
-	if not is_instance_valid(object) or not object is Object:
-		return fallback
-	for entry: Dictionary in object.get_property_list():
-		if str(entry.name) == key:
-			return object.get(key)
-	return fallback
+	return preload("res://scripts/combat/combat_properties.gd").read(object,key,fallback)
 
 func _radius(actor: Node2D, fallback: float) -> float:
 	var default_radius: float = Balance.PLAYER_RADIUS if is_instance_valid(room) and actor == _property(room, "player", null) else fallback

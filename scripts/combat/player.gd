@@ -74,6 +74,7 @@ var break_stacks: int = 0
 var class_marks: Dictionary = {}
 
 func _ready() -> void:
+	if Game.run != null: preload("res://scripts/combat/hero_visual.gd").prewarm(Game.run.hero_id)
 	_sync_status_ruleset()
 	abilities = Abilities.new()
 	abilities.configure(self)
