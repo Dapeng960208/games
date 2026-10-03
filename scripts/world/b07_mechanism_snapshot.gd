@@ -23,6 +23,6 @@ static func validate_checkpoint(value: Variant) -> bool:
 	var probe := State.new()
 	return probe.configure(value.room_id,definition.mirrors,definition.altar.id,int(definition.required_mirrors),hp) and probe.restore(value.mechanisms)
 static func restore(room: Node, value: Dictionary) -> bool:
-	if not validate_checkpoint(value) or value.room_id != room.get("layout_id") or value.difficulty != room.get("difficulty") or value.calibration != room.enemy_calibration(): return false
+	if not validate_checkpoint(value) or value.room_id != room.get("layout_id") or value.difficulty != room.get("difficulty") or int(value.calibration.get("version",0)) != int(room.enemy_calibration().get("version",0)): return false
 	var host: Variant = room.get("b07_mechanics")
 	return is_instance_valid(host) and host.restore_checkpoint(value.mechanisms)

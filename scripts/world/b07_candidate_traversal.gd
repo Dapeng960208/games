@@ -13,7 +13,7 @@ var last_error := ""
 func configure(host: Node2D, selected_difficulty: int, selected_seed: int) -> bool:
 	if room != null or not is_instance_valid(host) or selected_difficulty < 0 or selected_difficulty > 4: return false
 	# A candidate must never borrow the player's normal profile location.
-	if not Game.profile_path.contains("test_b07_") or Game.run == null: return false
+	if not preload("res://config/numerical_rules.gd").b07_candidate_enabled() or not Game.profile_path.begins_with("user://test_b07_candidate/") or Game.run == null: return false
 	room = host
 	difficulty = selected_difficulty
 	seed_value = selected_seed
@@ -64,16 +64,25 @@ func checkpoint() -> Dictionary:
 		return {}
 	var hero := CombatSnapshot.capture(room)
 	if hero.is_empty() or not CombatSnapshot.validate(hero,Game.run.hero_id,Game.run.stats): return {}
-	return {"version":1,"format":"b07_clear_boundary","room_id":room.layout_id,"node_index":node_index,"difficulty":difficulty,"seed":seed_value,"finished":finished,"hero":hero,"sun":room.b07_mechanics.checkpoint(),"profile_id":str(Game.profile.get("id","")),"hero_id":Game.run.hero_id}
+	return {"version":2,"format":"b07_clear_boundary","room_id":room.layout_id,"node_index":node_index,"difficulty":difficulty,"seed":seed_value,"finished":finished,"hero":hero,"sun":room.b07_mechanics.checkpoint(),"profile_path":Game.profile_path,"run_id":Game.run.id,"hero_id":Game.run.hero_id}
 func restore_checkpoint(value: Dictionary) -> bool:
-	if not is_instance_valid(room) or _changing or value.size() != 11 or not value.has_all(["version","format","room_id","node_index","difficulty","seed","finished","hero","sun","profile_id","hero_id"]): return false
-	if value.version != 1 or value.format != "b07_clear_boundary" or value.hero_id != Game.run.hero_id or value.profile_id != str(Game.profile.get("id","")): return false
+	if not is_instance_valid(room) or _changing or value.size() != 12 or not value.has_all(["version","format","room_id","node_index","difficulty","seed","finished","hero","sun","profile_path","run_id","hero_id"]): return false
+	if value.version != 2 or value.format != "b07_clear_boundary" or value.hero_id != Game.run.hero_id or value.profile_path != Game.profile_path or value.run_id != Game.run.id: return false
 	if not value.node_index is int and not value.node_index is float: return false
 	if not is_finite(float(value.node_index)) or float(value.node_index) != floorf(float(value.node_index)): return false
 	var index := int(value.node_index)
 	if index < 0 or index >= Candidate.route().size() or value.room_id != Candidate.route()[index].room_id or value.difficulty != difficulty or value.seed != seed_value or not value.finished is bool: return false
 	if bool(value.finished) and index != Candidate.route().size()-1: return false
 	if not value.hero is Dictionary or not CombatSnapshot.validate(value.hero,Game.run.hero_id,Game.run.stats) or not value.sun is Dictionary: return false
+	# Reject identity/calibration conflicts before _install replaces any actors.
+	# A clear-boundary snapshot belongs to this active candidate session, not a
+	# different profile/run or a different room's independently valid hero state.
+	if value.hero.get("equipment",{}).get("room_id","") != value.room_id: return false
+	var nested: Variant = value.hero.get("runtime",{}).get("b07_mechanisms")
+	if not nested is Dictionary or not preload("res://scripts/world/b07_mechanism_snapshot.gd").validate_checkpoint(nested): return false
+	if nested.room_id != value.room_id or nested.difficulty != difficulty: return false
+	if int(nested.calibration.get("version",0)) != int(room.enemy_calibration().get("version",0)): return false
+	if JSON.parse_string(JSON.stringify(nested.mechanisms)) != JSON.parse_string(JSON.stringify(value.sun)): return false
 	var probe := preload("res://scripts/world/b07_sun_runtime.gd").new()
 	var sun_ok := probe.configure(str(value.room_id),difficulty,room.enemy_calibration()) and probe.restore_checkpoint(value.sun)
 	probe.free()
