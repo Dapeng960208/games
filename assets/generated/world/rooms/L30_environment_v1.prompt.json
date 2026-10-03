@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "room_id": "L30",
+  "tool": "image_gen",
+  "model": "unknown_not_exposed",
+  "model_version": "unknown_not_exposed",
+  "prompt": "Use case: sketch-to-render. NEW production B05 fantasy2.5D game environment, native1536×1024 landscape opaque fullbleed. Image1 is absolute PREPROJECTED minimum dryfloor substrate. Image2 is STYLE only, never copy poster, text or characters. EVERY cream pixel in image1 must be uninterrupted dry pale-golden wood at the SAME pixelcoordinate. Do not foreshorten, shrink floor, turn into oval, or add perspective to guide. Floor fills to y94% at south, spans nearly90%width. Blue area only is permitted trees, architecture, cyan mist and waterfalls. Broad palegold matte livingwood with tiny quiet grain; all combat ground remains a single flat footplane. High-angle near-isometric rendering applies only to peripheral tree architecture. Rich emerald foliage, peachpink blossom accents, tactile golden living-root bark, warm upperleft daylight and distant cyanwaterfalls. No metal,stone palace,spooky rot,black grading. No actors,UI,text,labels,rootwells,core,rewards,beacons,warning marks,targets,or functional props. All these added by game separately. No central raisedstructures,steps,pools,holes,rails,planters,obstacles. Keep empty ground readable. Individual fineplanks around25–40sourcepixelswide. Native painting with finebark/leaf detail, not enlargement. Do not draw guidecolors.\nROOM: L30 Four Seasons Conservatory. Only WEST and EAST entrances, broad flat corridors centered y50%, open all the way to canvas edges. No north/south exit. Original distinct conservatory livingdistrict: periphery north edge contains grown-goldenwood greenhouse alcoves with leafshaped translucent mintglass and four seasonal garden accents (freshspringbuds,warm summerleaves,muted amber autumnleaves,pale frostyblue winterflowers), all architecture above y14%or beyond x94%/below y94%, never insidecream. No roof over playablefloor. Tiny habitation details,shelves and cultivation niches only in that far outeredge. Three very subtle concentric arcgrain flows across the broad plain floor imply outer circulation, no physical raisedring, no centeremblem. Centerrootwell position(50%,50%)must be emptywood, as all otheranchors. Uppermainroute and lowersaferoute broad and dry. Preserve exactguide. No narrow garden paths.\n",
+  "prompt_sha256": "639c38f9c65670346e3250eda2d6bc5e863c03977f95e469014d57e310f47a37",
+  "source_sha256": "2eafa5aa34354ee799aed630539ee12816d7e02bc4fe05c83eb59a467c2ec648",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "source_pixel_edits": "none; exact source bytes copied",
+  "recovery_status": "new-generation-after-loss"
+}
