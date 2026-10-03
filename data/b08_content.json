@@ -1,0 +1,394 @@
+{
+  "version": 1,
+  "biome_id": "B08",
+  "name": "浮羽空港",
+  "status": "isolated_candidate_scaffold",
+  "source": "docs/levels/08_FEATHER_SKYPORT.md",
+  "runtime_enabled": false,
+  "profiles": {
+    "F": {
+      "max_hp": 78,
+      "damage": 13,
+      "move_speed": 67,
+      "armor": 7,
+      "magic_resist": 5,
+      "attack_range": 90,
+      "recovery_seconds": 1.15
+    },
+    "R": {
+      "max_hp": 68,
+      "damage": 13,
+      "move_speed": 84,
+      "armor": 4,
+      "magic_resist": 4,
+      "attack_range": 280,
+      "recovery_seconds": 1.15
+    },
+    "C": {
+      "max_hp": 58,
+      "damage": 12,
+      "move_speed": 70,
+      "armor": 2,
+      "magic_resist": 12,
+      "attack_range": 260,
+      "recovery_seconds": 1.15
+    },
+    "S": {
+      "max_hp": 65,
+      "damage": 11,
+      "move_speed": 73,
+      "armor": 3,
+      "magic_resist": 8,
+      "attack_range": 200,
+      "recovery_seconds": 1.15
+    },
+    "A": {
+      "max_hp": 48,
+      "damage": 13,
+      "move_speed": 94,
+      "armor": 1,
+      "magic_resist": 3,
+      "attack_range": 150,
+      "recovery_seconds": 1.15
+    },
+    "T": {
+      "max_hp": 92,
+      "damage": 11,
+      "move_speed": 55,
+      "armor": 10,
+      "magic_resist": 4,
+      "attack_range": 100,
+      "recovery_seconds": 1.3
+    }
+  },
+  "rooms": {
+    "L43": {
+      "room_id": "L43",
+      "name": "云桥入口",
+      "level": 36,
+      "layout_design": "西入东出；中央常稳桥、北侧顺风支路，风标(30,50)",
+      "encounter_design": "M01/02/03；看落点后走已结束线",
+      "reward_design": "头/胸",
+      "enemy_ids": [
+        "B08-M01",
+        "B08-M02",
+        "B08-M03"
+      ]
+    },
+    "L44": {
+      "room_id": "L44",
+      "name": "翼帆货栈",
+      "level": 36,
+      "layout_design": "南入北出；货架沿外缘，主道不放大箱墙",
+      "encounter_design": "M04/05/06；先拆报风旗再打盾卫",
+      "reward_design": "裤/鞋、U01",
+      "enemy_ids": [
+        "B08-M04",
+        "B08-M05",
+        "B08-M06"
+      ]
+    },
+    "L45": {
+      "room_id": "L45",
+      "name": "缆索工台",
+      "level": 38,
+      "layout_design": "西南入东北出；两根缆柱与宽外环，桥头均有安全台",
+      "encounter_design": "M07/08/09；拉扯不影响唯一通路",
+      "reward_design": "手/戒",
+      "enemy_ids": [
+        "B08-M07",
+        "B08-M08",
+        "B08-M09"
+      ]
+    },
+    "L46": {
+      "room_id": "L46",
+      "name": "风轮维修坪",
+      "level": 38,
+      "layout_design": "西入东出；三座风轮分布成三角，中央完整干地",
+      "encounter_design": "M10/11/12；走侧路重建射线",
+      "reward_design": "手/戒、U02",
+      "enemy_ids": [
+        "B08-M10",
+        "B08-M11",
+        "B08-M12"
+      ]
+    },
+    "L47": {
+      "room_id": "L47",
+      "name": "浮岛瞭望台",
+      "level": 40,
+      "layout_design": "南入北出；两片平台由两座常通桥连接",
+      "encounter_design": "M13/14/15；先后而非同时切两条风道",
+      "reward_design": "武器/饰品",
+      "enemy_ids": [
+        "B08-M13",
+        "B08-M14",
+        "B08-M15"
+      ]
+    },
+    "L48": {
+      "room_id": "L48",
+      "name": "苍帆主泊位",
+      "level": 40,
+      "layout_design": "西入东北出；飞艇缆索沿外围，三条错位宽走廊",
+      "encounter_design": "M16/17/18，有限三波；最终组合报风与俯冲",
+      "reward_design": "武器/饰品、U03",
+      "enemy_ids": [
+        "B08-M16",
+        "B08-M17",
+        "B08-M18"
+      ]
+    },
+    "BO08": {
+      "room_id": "BO08",
+      "name": "风羽指挥台",
+      "level": 40,
+      "layout_design": "南入；中央主台、左右翼台，双桥永久连通",
+      "encounter_design": "苍穹风羽统领；风标在左右翼台内侧",
+      "reward_design": "本职业/共有首领池",
+      "enemy_ids": []
+    }
+  },
+  "enemies": {
+    "B08-M01": {
+      "enemy_id": "B08-M01",
+      "name": "羽弓射手",
+      "name_en": "Feather Archer",
+      "level": 36,
+      "role": "R",
+      "silhouette": "长羽弓与短翼",
+      "active_design": "一发直线羽箭320、1.0a（7s；0.9s）",
+      "difficulty_additions_design": "D2第二箭向不同锁点0.5a；D4顺风箭速+10%但锁定时间不缩",
+      "counter_design": "绕货台获得射线遮挡；头",
+      "implementation": "planned"
+    },
+    "B08-M02": {
+      "enemy_id": "B08-M02",
+      "name": "俯冲枪卫",
+      "name_en": "Diving Lancer",
+      "level": 36,
+      "role": "F",
+      "silhouette": "长枪大翼",
+      "active_design": "影子锁点后俯冲，半径75、1.15a（9s；1.1s）",
+      "difficulty_additions_design": "D2落地前方一条0.3a风线；D4着地后侧移60再收势",
+      "counter_design": "圈锁后离开，着地仍可近战命中；胸",
+      "implementation": "planned"
+    },
+    "B08-M03": {
+      "enemy_id": "B08-M03",
+      "name": "浮翼斥候",
+      "name_en": "Wing Scout",
+      "level": 36,
+      "role": "A",
+      "silhouette": "小翼短披肩",
+      "active_design": "绕目标弧移120后短刺0.85a（7s；0.9s）",
+      "difficulty_additions_design": "D2留下一个无伤羽影诱饵；D4真实体脚点始终带族徽",
+      "counter_design": "识别真实脚点，不用不可辨假目标强迫试错；鞋",
+      "implementation": "planned"
+    },
+    "B08-M04": {
+      "enemy_id": "B08-M04",
+      "name": "御风祭司",
+      "name_en": "Wind Priest",
+      "level": 36,
+      "role": "S",
+      "silhouette": "扇羽法杖",
+      "active_design": "给一同伴下次转位加速15%，持续5s（11s；1.1s）",
+      "difficulty_additions_design": "D2受援者转位后获4%HP盾；D4祭司施法结束暴露1.5s",
+      "counter_design": "优先打断；不叠加同类加速，不作用Boss；戒",
+      "implementation": "planned"
+    },
+    "B08-M05": {
+      "enemy_id": "B08-M05",
+      "name": "羽盾港卫",
+      "name_en": "Feather Shield Guard",
+      "level": 36,
+      "role": "T",
+      "silhouette": "扇面大羽盾",
+      "active_design": "顶盾推进100并盾击1.0a（10s；1.0s）",
+      "difficulty_additions_design": "D2推进末端小风扇0.35a；D4风势加成仅施于盾击一次",
+      "counter_design": "从侧路绕盾，桥边推移受裁剪；胸",
+      "implementation": "planned"
+    },
+    "B08-M06": {
+      "enemy_id": "B08-M06",
+      "name": "风铃投掷者",
+      "name_en": "Chime Thrower",
+      "level": 36,
+      "role": "R",
+      "silhouette": "腰挂风铃",
+      "active_design": "抛铃落地后半径80声爆0.9a（8s；1.0s）",
+      "difficulty_additions_design": "D2铃在0.8s后再响0.3a；D4第二响半径缩至55",
+      "counter_design": "声波圈清晰可见，离圈或拆铃；裤",
+      "implementation": "planned"
+    },
+    "B08-M07": {
+      "enemy_id": "B08-M07",
+      "name": "缆索钩手",
+      "name_en": "Cable Hooker",
+      "level": 38,
+      "role": "F",
+      "silhouette": "双索钩",
+      "active_design": "射出长220钩索，0.7a并拉近50（9s；1.0s）",
+      "difficulty_additions_design": "D2钩空后横甩80距0.4a；D4钩命中后自身也前移40",
+      "counter_design": "钩受实体阻挡，不能隔墙/跨不可走空隙拉人；手",
+      "implementation": "planned"
+    },
+    "B08-M08": {
+      "enemy_id": "B08-M08",
+      "name": "旋翼驯鸟师",
+      "name_en": "Rotor Bird Tamer",
+      "level": 38,
+      "role": "S",
+      "silhouette": "肩架与哨笛",
+      "active_design": "指挥一只派生鸟沿固定弧线掠过0.8a（11s；1.2s）",
+      "difficulty_additions_design": "D2鸟返航无伤并暴露驯鸟师2s；D4鸟路线多一个可见转点",
+      "counter_design": "鸟为技能弹体不算新物种、不掉落；饰品",
+      "implementation": "planned"
+    },
+    "B08-M09": {
+      "enemy_id": "B08-M09",
+      "name": "云帆术士",
+      "name_en": "Cloud Sail Mage",
+      "level": 38,
+      "role": "C",
+      "silhouette": "背负小帆",
+      "active_design": "展开半径95风圈，0.7a并慢速推40（10s；1.2s）",
+      "difficulty_additions_design": "D2圈停留2s每秒0.2a；D4风圈边缘有固定出口扇",
+      "counter_design": "从出口扇走出，不逆风硬顶；头",
+      "implementation": "planned"
+    },
+    "B08-M10": {
+      "enemy_id": "B08-M10",
+      "name": "顺风信使",
+      "name_en": "Tailwind Courier",
+      "level": 38,
+      "role": "A",
+      "silhouette": "长飘带双小翼",
+      "active_design": "直线送信冲刺240，路径0.85a（7s；0.9s）",
+      "difficulty_additions_design": "D2末端给一同伴移速+8%；D4冲刺后必须着地1.2s",
+      "counter_design": "等落地点，不能无限冲刺拖战；鞋",
+      "implementation": "planned"
+    },
+    "B08-M11": {
+      "enemy_id": "B08-M11",
+      "name": "空港重弩手",
+      "name_en": "Skyport Arbalist",
+      "level": 38,
+      "role": "R",
+      "silhouette": "折叠站架弩",
+      "active_design": "架弩射长380重箭1.2a（10s；1.2s）",
+      "difficulty_additions_design": "D2射后爆开两片0.3a羽屑；D4架弩期间正面减伤15%",
+      "counter_design": "绕侧或者离开箭线；站架不完全挡路；武器",
+      "implementation": "planned"
+    },
+    "B08-M12": {
+      "enemy_id": "B08-M12",
+      "name": "尾羽刀卫",
+      "name_en": "Tailfeather Blade",
+      "level": 38,
+      "role": "F",
+      "silhouette": "两条长刀羽",
+      "active_design": "斜斩两段各0.55a、间隔0.7s（8s；1.0s）",
+      "difficulty_additions_design": "D2第二段向后短退60；D4退后留0.3a短羽线",
+      "counter_design": "沿第一段结束区接近；裤",
+      "implementation": "planned"
+    },
+    "B08-M13": {
+      "enemy_id": "B08-M13",
+      "name": "雷翎祈风者",
+      "name_en": "Thunder Plume Caller",
+      "level": 40,
+      "role": "C",
+      "silhouette": "竖雷羽冠",
+      "active_design": "在锁点落一道半径80雷击1.15a（10s；1.2s）",
+      "difficulty_additions_design": "D2雷点延迟1s横传一段0.4a；D4横传最多一次",
+      "counter_design": "预警显示落点与横传方向；戒",
+      "implementation": "planned"
+    },
+    "B08-M14": {
+      "enemy_id": "B08-M14",
+      "name": "漂岛护阵者",
+      "name_en": "Island Anchor Guard",
+      "level": 40,
+      "role": "T",
+      "silhouette": "宽翼石锚甲",
+      "active_design": "将锚砸向前方半径110、1.2a（11s；1.2s）",
+      "difficulty_additions_design": "D2锚形成可拆风挡5s；D4风挡被拆后护阵者失衡2s",
+      "counter_design": "侧击锚后再进，锚HP为自身15%；胸",
+      "implementation": "planned"
+    },
+    "B08-M15": {
+      "enemy_id": "B08-M15",
+      "name": "燕翼穿梭者",
+      "name_en": "Swallow Shuttle",
+      "level": 40,
+      "role": "A",
+      "silhouette": "分叉细长翼",
+      "active_design": "宣告两个落点，先后切入各0.5a（9s；首点1.1s）",
+      "difficulty_additions_design": "D2两点间留无伤风痕；D4第二击后移速降低20%1.5s",
+      "counter_design": "两次都预告，不中途追玩家改点；鞋",
+      "implementation": "planned"
+    },
+    "B08-M16": {
+      "enemy_id": "B08-M16",
+      "name": "舷侧轰击手",
+      "name_en": "Broadside Gunner",
+      "level": 40,
+      "role": "R",
+      "silhouette": "肩扛帆炮",
+      "active_design": "发低速风弹、半径85、1.15a（10s；1.2s）",
+      "difficulty_additions_design": "D2命中地面分两条0.3a侧风；D4主弹落点与风标反向",
+      "counter_design": "先离主圈再走中间夹角，不能全屏炸；武器",
+      "implementation": "planned"
+    },
+    "B08-M17": {
+      "enemy_id": "B08-M17",
+      "name": "高空报风官",
+      "name_en": "High Wind Officer",
+      "level": 40,
+      "role": "S",
+      "silhouette": "三角信号旗",
+      "active_design": "引导1.3s给两同伴各一次占风势（14s）",
+      "difficulty_additions_design": "D2标出一条临时敌方风线；D4打断后旗落地可拆且禁援4s",
+      "counter_design": "先清旗，再处理俯冲；不改变玩家风道；饰品",
+      "implementation": "planned"
+    },
+    "B08-M18": {
+      "enemy_id": "B08-M18",
+      "name": "苍羽航卫",
+      "name_en": "Azure Wing Marine",
+      "level": 40,
+      "role": "T",
+      "silhouette": "宽肩长翼双枪",
+      "active_design": "先枪扫1.0a，再以翼推70、0.3a，间隔1s（12s；1.3s）",
+      "difficulty_additions_design": "D2结束后面对原方向守势2s；D4背侧受伤+15%2s",
+      "counter_design": "先避枪再绕背；翼推不叠第二次位移；饰品",
+      "implementation": "planned"
+    }
+  },
+  "boss": {
+    "enemy_id": "BO08",
+    "name": "苍穹风羽统领",
+    "level": 40,
+    "raw": {
+      "max_hp": 1300,
+      "damage": 30,
+      "move_speed": 58,
+      "armor": 11,
+      "magic_resist": 11
+    },
+    "phase_thresholds": [
+      0.7,
+      0.35
+    ],
+    "implementation": "planned"
+  },
+  "limits": {
+    "formal_art": false,
+    "equipment": false,
+    "campaign_unlock": false,
+    "natural_balance": false
+  }
+}
