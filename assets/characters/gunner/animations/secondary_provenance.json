@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH02",
+  "slot": "secondary",
+  "asset_version": 1,
+  "generated_at_local_date": "2026-09-30",
+  "tool": "built-in image_gen.imagegen",
+  "requested_transparent_background": true,
+  "requested_original_size": [
+    1536,
+    1024
+  ],
+  "generation_calls": 2,
+  "correction_calls": 0,
+  "pixel_editing": "none; each selected original PNG copied byte-for-byte into workspace; alpha inspected read-only through System.Drawing",
+  "banks": [
+    {
+      "bank": "front",
+      "prompt": "Use case: stylized-concept. Asset type: original production 2.5D hand-painted game character sprite animation atlas, CH02 secondary precision shot. Target original output size 1536x1024 pixels, landscape aspect ratio 3:2, exactly THREE columns and TWO rows with SIX equal square 512x512 cells. True alpha transparent background.\nThe supplied image is a CHARACTER AND WEAPON IDENTITY REFERENCE, not a pose sequence to duplicate. Preserve this exact adult female industrial markswoman: short dark brown swept hair, small gold hair ornament and neat rear hair coil, olive-green work jacket with white rolled cuffs, black/dark gray trousers, brown leather belts and harness with fine brass hardware, tall dark boots and brass knee guards, teal circular waist spool, parchment/tool rolls and narrow brass surveying instrument on her leather backpack. Same slim athletic anatomy and face as reference. Detailed hand-painted painterly sprite style with precise edges, readable hands, face and mechanical hardware. Consistent upper-left light.\nWEAPON IDENTITY IS CRITICAL: retain the original very LONG THIN folding-ruler rifle: narrow ivory/cream twin ruler rails, fine dark calibration markings as texture, round brass hinge joints, dark green receiver and small green/brass muzzle cap, skeletal gold triangular stock. Keep its length, thin silhouette, hinge spacing, two hand grips and muzzle geometry consistent in all six frames. It is a slender measuring-rail rifle, never a fat cannon, machine gun, shortened pistol or shotgun.\nSix distinct sequential poses, left-to-right top row then left-to-right bottom row:\n1 SHOULDER: raising the long rifle from low diagonal carry toward her shoulder, rear elbow elevated, muzzle partway up, torso still nearly upright.\n2 BRACE: stock settles into shoulder, forward hand reaches to firmly support the long ruler rails, wider planted stance, knees visibly begin bending; rifle nearly on the aim axis.\n3 LOCK: the strongest low stable aiming pose: cheek rests beside stock, neck lowered, both knees flexed and hips clearly dropped, front hand steady under thin rail, eye aligned with the rifle. Whole body anatomically the SAME SCALE as the other frames despite crouching.\n4 FIRE: a SINGLE precision-shot recoil pose: rifle shifts rearward into shoulder with muzzle held on the SAME aim axis as LOCK, rear shoulder and elbow recoil slightly back, ribcage visibly rotates back, knees remain planted. No muzzle flash or projectile; anatomy conveys the firing impulse.\n5 ABSORB: arms and shoulder absorb and settle after recoil, elbows fold a little, torso follows forward, hips still grounded, gun remains near target but relaxes fractionally.\n6 READY: rifle returns clearly to LOW DIAGONAL carry, elbows relax, knees straighten toward original upright ready posture, not another aiming pose.\nMake the pose silhouettes legibly different through elbow angles, weapon elevation, head/cheek position and knee bend, not translations or repeated copies. Head size, limb lengths, weapon length and rendering scale MUST stay constant throughout. Same stationary foot placement and heel ground baseline in every cell; action is upper-body and knee compression, not walking, leaping or running. Isometric three-quarter slightly elevated camera locked across all six frames.\nEvery cell must contain the FULL figure, all boots, backpack tip and entire long rifle, with minimum 24px transparent margin and clear blank transparent gutters. Each full silhouette should occupy at most 86% cell width. No object may cross any cell boundary; no clipping. Match subject scale in all six cells. Transparent background only: NO ground plane, NO cast/contact shadow, NO glow, NO smoke, NO dust, NO gunfire VFX, NO motion blur, NO trails, NO numbers, NO labels, NO letters, NO grid lines, NO frame boxes, NO UI. Exactly six isolated characters.\nVIEW BANK FRONT: use the attached front reference for exact face and front equipment. All SIX sprites show the same FRONT three-quarter view, face and front jacket visible, aiming toward SCREEN LOWER-RIGHT (southeast). When raised, the long rifle axis projects diagonally toward lower right; keep that aim direction through BRACE, LOCK, FIRE and ABSORB. No rear-view sprites in this atlas.",
+      "reference_images": [
+        "C:/webdev/games/assets/generated/heroes/CH02_actions_front_v2.png"
+      ],
+      "reference_role": "Viewed local image used for exact character, clothing, weapon and view-bank identity.",
+      "original_generation_path": "C:/Users/13326/.codex/generated_images/01a0ee77-9fe6-7782-9a9d-98a5e8a0d101/exec-ee816413-6ebd-44af-be50-961dae219113.png",
+      "workspace_path": "C:/webdev/games/assets/generated/heroes/CH02_secondary_front_v1.png",
+      "sha256": "E9ADA38AB4015CFD5A83B611B56E2656ECE3B9D08852B92DA141638ABCE07FEB",
+      "bytes": 2138786,
+      "actual_size": [
+        1536,
+        1024
+      ],
+      "source_destination_sha256_equal": true,
+      "metadata": "asset://heroes/CH02_secondary_front_v1.json",
+      "alpha_transparent_pixels": 1111883,
+      "alpha_total_pixels": 1572864,
+      "measured_axis_angles": {
+        "lock_axis_degrees": 3.5763343749973515,
+        "fire_axis_degrees": -10.097504384075286,
+        "change_degrees": -13.673838759072638
+      }
+    },
+    {
+      "bank": "back",
+      "prompt": "Use case: stylized-concept. Asset type: original production 2.5D hand-painted game character sprite animation atlas, CH02 secondary precision shot. Target original output size 1536x1024 pixels, landscape aspect ratio 3:2, exactly THREE columns and TWO rows with SIX equal square 512x512 cells. True alpha transparent background.\nThe supplied image is a CHARACTER AND WEAPON IDENTITY REFERENCE, not a pose sequence to duplicate. Preserve this exact adult female industrial markswoman: short dark brown swept hair, small gold hair ornament and neat rear hair coil, olive-green work jacket with white rolled cuffs, black/dark gray trousers, brown leather belts and harness with fine brass hardware, tall dark boots and brass knee guards, teal circular waist spool, parchment/tool rolls and narrow brass surveying instrument on her leather backpack. Same slim athletic anatomy and face as reference. Detailed hand-painted painterly sprite style with precise edges, readable hands, face and mechanical hardware. Consistent upper-left light.\nWEAPON IDENTITY IS CRITICAL: retain the original very LONG THIN folding-ruler rifle: narrow ivory/cream twin ruler rails, fine dark calibration markings as texture, round brass hinge joints, dark green receiver and small green/brass muzzle cap, skeletal gold triangular stock. Keep its length, thin silhouette, hinge spacing, two hand grips and muzzle geometry consistent in all six frames. It is a slender measuring-rail rifle, never a fat cannon, machine gun, shortened pistol or shotgun.\nSix distinct sequential poses, left-to-right top row then left-to-right bottom row:\n1 SHOULDER: raising the long rifle from low diagonal carry toward her shoulder, rear elbow elevated, muzzle partway up, torso still nearly upright.\n2 BRACE: stock settles into shoulder, forward hand reaches to firmly support the long ruler rails, wider planted stance, knees visibly begin bending; rifle nearly on the aim axis.\n3 LOCK: the strongest low stable aiming pose: cheek rests beside stock, neck lowered, both knees flexed and hips clearly dropped, front hand steady under thin rail, eye aligned with the rifle. Whole body anatomically the SAME SCALE as the other frames despite crouching.\n4 FIRE: a SINGLE precision-shot recoil pose: rifle shifts rearward into shoulder with muzzle held on the SAME aim axis as LOCK, rear shoulder and elbow recoil slightly back, ribcage visibly rotates back, knees remain planted. No muzzle flash or projectile; anatomy conveys the firing impulse.\n5 ABSORB: arms and shoulder absorb and settle after recoil, elbows fold a little, torso follows forward, hips still grounded, gun remains near target but relaxes fractionally.\n6 READY: rifle returns clearly to LOW DIAGONAL carry, elbows relax, knees straighten toward original upright ready posture, not another aiming pose.\nMake the pose silhouettes legibly different through elbow angles, weapon elevation, head/cheek position and knee bend, not translations or repeated copies. Head size, limb lengths, weapon length and rendering scale MUST stay constant throughout. Same stationary foot placement and heel ground baseline in every cell; action is upper-body and knee compression, not walking, leaping or running. Isometric three-quarter slightly elevated camera locked across all six frames.\nEvery cell must contain the FULL figure, all boots, backpack tip and entire long rifle, with minimum 24px transparent margin and clear blank transparent gutters. Each full silhouette should occupy at most 86% cell width. No object may cross any cell boundary; no clipping. Match subject scale in all six cells. Transparent background only: NO ground plane, NO cast/contact shadow, NO glow, NO smoke, NO dust, NO gunfire VFX, NO motion blur, NO trails, NO numbers, NO labels, NO letters, NO grid lines, NO frame boxes, NO UI. Exactly six isolated characters.\nVIEW BANK BACK: use the attached back reference for exact backpack, rear hair, straps and rear equipment. All SIX sprites show the same BACK three-quarter view, back and rear shoulders visible, aiming away toward SCREEN UPPER-RIGHT (northeast). When raised, the long rifle axis projects diagonally toward upper right; keep that aim direction through BRACE, LOCK, FIRE and ABSORB. The face is mostly hidden and only a small cheek edge may be visible; no front-view sprites in this atlas.",
+      "reference_images": [
+        "C:/webdev/games/assets/generated/heroes/CH02_actions_back_v2.png"
+      ],
+      "reference_role": "Viewed local image used for exact character, clothing, weapon and view-bank identity.",
+      "original_generation_path": "C:/Users/13326/.codex/generated_images/01a0ee77-9fe6-7782-9a9d-98a5e8a0d101/exec-941a58fc-0b52-44e9-8f60-7f31efe49a6c.png",
+      "workspace_path": "C:/webdev/games/assets/generated/heroes/CH02_secondary_back_v1.png",
+      "sha256": "1800937FFFDFF48F50A8E9EE7BCB11F9936D7FF192650885159C3586D73C739F",
+      "bytes": 2116221,
+      "actual_size": [
+        1536,
+        1024
+      ],
+      "source_destination_sha256_equal": true,
+      "metadata": "asset://heroes/CH02_secondary_back_v1.json",
+      "alpha_transparent_pixels": 1115072,
+      "alpha_total_pixels": 1572864,
+      "measured_axis_angles": {
+        "lock_axis_degrees": -15.113473059575968,
+        "fire_axis_degrees": -18.904575842611656,
+        "change_degrees": -3.7911027830356883
+      }
+    }
+  ],
+  "verification": {
+    "count": "Each original atlas visually contains exactly six poses in a 3-column, 2-row arrangement.",
+    "transparency": "Both PNGs have alpha minimum 0 and maximum 254. Empty corners and inter-frame sample pixels have A=0. Preview's brown RGB background is a display artifact, not an opaque backdrop.",
+    "pixel_integrity": "Original and workspace SHA256 values match.",
+    "scale": "A single standing anatomical body_height is registered per bank (front432, back408); no per-frame body_height or rescaling.",
+    "status": "disabled_pending_root_review",
+    "limitations": [
+      "Front fire changes the ruler-barrel angle by about 13.7 degrees relative to lock.",
+      "Front/back shoulder frames begin at different amounts of weapon elevation.",
+      "Back fire gun tip is within about 4 pixels of its cell's right boundary at alpha>128.",
+      "Anchor coordinates are manually selected visual registration points with stated pixel tolerances; no automatic anatomy tracking was used."
+    ],
+    "no_code_or_import_changes": true
+  }
+}

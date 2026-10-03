@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://tests/equipment/test_numerical_acquisition_ui.gd" id="1"]
+[node name="NumericalAcquisitionUi" type="Node"]
+script = ExtResource("1")

@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "room_id": "L29",
+  "approved": false,
+  "candidate_only": true,
+  "source_texture": "asset://world/rooms/L29_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "6092a0b0eae5c6639473fd1cc8e849185effc05de38259ee158b136df91de497",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L29/top_left.png",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "9c2210a5bf02ec03e81111d05fe81c570f64349c26560f1cf9d9014e1f5683c4",
+      "native_density": [
+        2.4115384615384614,
+        2.375
+      ],
+      "prompt": "Use case: precise-object-edit.\nProduction game room B05 L29, Sunlit Terrace. The attached image is ONE EXACT cropped source tile from the approved-composition1536×1024 base, not a whole room. Repaint THIS EXACT TILE at the largest native resolution,1536-square requested, with genuinely newly painted fine detail for2560×1440 gameplay. Preserve the original source aspect/framing and every feature's normalized position. This must match its existing neighboring tiles exactly.\nHARD INVARIANTS: do not zoom, reframe, crop, rotate, perspective-transform, change composition, move any ground edge or doorway, resize or shift flowerbeds, alter the floor's leaf-pattern paths, add/remove petals, or remodel a tree/trunk/root. Preserve ALL outlines, floor joint locations, edge intersections, inlays, flowerbed boundaries, architecture, cyan window insets, waterfall shapes, foliage masses, shadows and colors at identical normalized coordinates. Every image edge must continue the exact source content into its neighboring tile. No new geometry, decoration or functional objects. The frozen game geometry and separate perimeter overlay are handled elsewhere.\nChange ONLY fine surface detail inside the existing shapes: delicate pale golden wood grain and tiny root bark fibers, fine warm paving pores and beveled joins, green leaf veins, crisp pink flower petal edges and centers, tiny organic architectural wood detail, clean separated water highlights. Actual new painted detail, not enlargement or a sharpening filter. Preserve subtle atmospheric depth while resolving soft source textures with controlled tactile detail.\nStyle/palette remains EXACTLY luminous hand-painted living-tree fantasy2.5D: pale golden/cream timber paving with quiet sage-green leaf inlays, emerald/yellow-green foliage, peach-pink blossoms, cool cyan water, warm upper-left sunlight. No additional saturation, harsh contrast, dark grading, glossy plastic, photoreal noise or changed light. Keep the floor quiet for combat. Keep distant scenery arranged identically. Opaque full-bleed image, no alpha or new border.\nNo text, characters, UI, labels, rootwell, crystal core, cart, bench, chest, beacon, enemy, warning area, glowing circle or extra prop. One exact source tile only. Do not draw a grid or six-panel sheet.\nTile identity: top_left. Only this attached exact tile is the edit target.\nFor this L29 tile preserve the distinctive western soft tree shade, pale golden north-south grain and exact existing border branches. Exact source rect[0,0,520,528] from1536×1024 source. Generate native1536×1536, without changing any normalized feature locations.\n",
+      "prompt_sha256": "f3fe1d1257dba606e4876b5a65b5a4d7938fb2fac60308e00dee35d28294f3c6",
+      "source_pixel_edits": "none",
+      "model": "unknown_not_exposed"
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L29/top_middle.png",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "3d5be452564eb2100759a855cdb945c0d82ded0c0d43f086d04254cecdcef9da",
+      "native_density": [
+        2.375,
+        2.375
+      ],
+      "prompt": "Use case: precise-object-edit.\nProduction game room B05 L29, Sunlit Terrace. The attached image is ONE EXACT cropped source tile from the approved-composition1536×1024 base, not a whole room. Repaint THIS EXACT TILE at the largest native resolution,1536-square requested, with genuinely newly painted fine detail for2560×1440 gameplay. Preserve the original source aspect/framing and every feature's normalized position. This must match its existing neighboring tiles exactly.\nHARD INVARIANTS: do not zoom, reframe, crop, rotate, perspective-transform, change composition, move any ground edge or doorway, resize or shift flowerbeds, alter the floor's leaf-pattern paths, add/remove petals, or remodel a tree/trunk/root. Preserve ALL outlines, floor joint locations, edge intersections, inlays, flowerbed boundaries, architecture, cyan window insets, waterfall shapes, foliage masses, shadows and colors at identical normalized coordinates. Every image edge must continue the exact source content into its neighboring tile. No new geometry, decoration or functional objects. The frozen game geometry and separate perimeter overlay are handled elsewhere.\nChange ONLY fine surface detail inside the existing shapes: delicate pale golden wood grain and tiny root bark fibers, fine warm paving pores and beveled joins, green leaf veins, crisp pink flower petal edges and centers, tiny organic architectural wood detail, clean separated water highlights. Actual new painted detail, not enlargement or a sharpening filter. Preserve subtle atmospheric depth while resolving soft source textures with controlled tactile detail.\nStyle/palette remains EXACTLY luminous hand-painted living-tree fantasy2.5D: pale golden/cream timber paving with quiet sage-green leaf inlays, emerald/yellow-green foliage, peach-pink blossoms, cool cyan water, warm upper-left sunlight. No additional saturation, harsh contrast, dark grading, glossy plastic, photoreal noise or changed light. Keep the floor quiet for combat. Keep distant scenery arranged identically. Opaque full-bleed image, no alpha or new border.\nNo text, characters, UI, labels, rootwell, crystal core, cart, bench, chest, beacon, enemy, warning area, glowing circle or extra prop. One exact source tile only. Do not draw a grid or six-panel sheet.\nTile identity: top_middle. Only this attached exact tile is the edit target.\nFor this L29 tile preserve the distinctive western soft tree shade, pale golden north-south grain and exact existing border branches. Exact source rect[504,0,528,528] from1536×1024 source. Generate native1536×1536, without changing any normalized feature locations.\n",
+      "prompt_sha256": "cc61c7083e71416dd19a92a36c1b6ea7785e6fb692c4f163cbb384dce5721109",
+      "source_pixel_edits": "none",
+      "model": "unknown_not_exposed"
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L29/top_right.png",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "e1a7626fc8b204e37ca1b1409a1fce0f20fd5e744874de43ac67bfdcb93a2fa3",
+      "native_density": [
+        2.4115384615384614,
+        2.375
+      ],
+      "prompt": "Use case: precise-object-edit.\nProduction game room B05 L29, Sunlit Terrace. The attached image is ONE EXACT cropped source tile from the approved-composition1536×1024 base, not a whole room. Repaint THIS EXACT TILE at the largest native resolution,1536-square requested, with genuinely newly painted fine detail for2560×1440 gameplay. Preserve the original source aspect/framing and every feature's normalized position. This must match its existing neighboring tiles exactly.\nHARD INVARIANTS: do not zoom, reframe, crop, rotate, perspective-transform, change composition, move any ground edge or doorway, resize or shift flowerbeds, alter the floor's leaf-pattern paths, add/remove petals, or remodel a tree/trunk/root. Preserve ALL outlines, floor joint locations, edge intersections, inlays, flowerbed boundaries, architecture, cyan window insets, waterfall shapes, foliage masses, shadows and colors at identical normalized coordinates. Every image edge must continue the exact source content into its neighboring tile. No new geometry, decoration or functional objects. The frozen game geometry and separate perimeter overlay are handled elsewhere.\nChange ONLY fine surface detail inside the existing shapes: delicate pale golden wood grain and tiny root bark fibers, fine warm paving pores and beveled joins, green leaf veins, crisp pink flower petal edges and centers, tiny organic architectural wood detail, clean separated water highlights. Actual new painted detail, not enlargement or a sharpening filter. Preserve subtle atmospheric depth while resolving soft source textures with controlled tactile detail.\nStyle/palette remains EXACTLY luminous hand-painted living-tree fantasy2.5D: pale golden/cream timber paving with quiet sage-green leaf inlays, emerald/yellow-green foliage, peach-pink blossoms, cool cyan water, warm upper-left sunlight. No additional saturation, harsh contrast, dark grading, glossy plastic, photoreal noise or changed light. Keep the floor quiet for combat. Keep distant scenery arranged identically. Opaque full-bleed image, no alpha or new border.\nNo text, characters, UI, labels, rootwell, crystal core, cart, bench, chest, beacon, enemy, warning area, glowing circle or extra prop. One exact source tile only. Do not draw a grid or six-panel sheet.\nTile identity: top_right. Only this attached exact tile is the edit target.\nFor this L29 tile preserve the distinctive western soft tree shade, pale golden north-south grain and exact existing border branches. Exact source rect[1016,0,520,528] from1536×1024 source. Generate native1536×1536, without changing any normalized feature locations.\n",
+      "prompt_sha256": "69da5af7fd397e11f9641038a107936f182bd43295dc62f866e0868416dc44a1",
+      "source_pixel_edits": "none",
+      "model": "unknown_not_exposed"
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L29/bottom_left.png",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "c985d6c1645a3528339c7e644a210f0a143ee89268f8fffb4d400c750f132c73",
+      "native_density": [
+        2.4115384615384614,
+        2.4115384615384614
+      ],
+      "prompt": "Use case: precise-object-edit.\nProduction game room B05 L29, Sunlit Terrace. The attached image is ONE EXACT cropped source tile from the approved-composition1536×1024 base, not a whole room. Repaint THIS EXACT TILE at the largest native resolution,1536-square requested, with genuinely newly painted fine detail for2560×1440 gameplay. Preserve the original source aspect/framing and every feature's normalized position. This must match its existing neighboring tiles exactly.\nHARD INVARIANTS: do not zoom, reframe, crop, rotate, perspective-transform, change composition, move any ground edge or doorway, resize or shift flowerbeds, alter the floor's leaf-pattern paths, add/remove petals, or remodel a tree/trunk/root. Preserve ALL outlines, floor joint locations, edge intersections, inlays, flowerbed boundaries, architecture, cyan window insets, waterfall shapes, foliage masses, shadows and colors at identical normalized coordinates. Every image edge must continue the exact source content into its neighboring tile. No new geometry, decoration or functional objects. The frozen game geometry and separate perimeter overlay are handled elsewhere.\nChange ONLY fine surface detail inside the existing shapes: delicate pale golden wood grain and tiny root bark fibers, fine warm paving pores and beveled joins, green leaf veins, crisp pink flower petal edges and centers, tiny organic architectural wood detail, clean separated water highlights. Actual new painted detail, not enlargement or a sharpening filter. Preserve subtle atmospheric depth while resolving soft source textures with controlled tactile detail.\nStyle/palette remains EXACTLY luminous hand-painted living-tree fantasy2.5D: pale golden/cream timber paving with quiet sage-green leaf inlays, emerald/yellow-green foliage, peach-pink blossoms, cool cyan water, warm upper-left sunlight. No additional saturation, harsh contrast, dark grading, glossy plastic, photoreal noise or changed light. Keep the floor quiet for combat. Keep distant scenery arranged identically. Opaque full-bleed image, no alpha or new border.\nNo text, characters, UI, labels, rootwell, crystal core, cart, bench, chest, beacon, enemy, warning area, glowing circle or extra prop. One exact source tile only. Do not draw a grid or six-panel sheet.\nTile identity: bottom_left. Only this attached exact tile is the edit target.\nFor this L29 tile preserve the distinctive western soft tree shade, pale golden north-south grain and exact existing border branches. Exact source rect[0,504,520,520] from1536×1024 source. Generate native1536×1536, without changing any normalized feature locations.\n\nPreserve original southern edge and framing exactly. Separate runtime floor/fascia overlay handles the final collision-aligned boundary; do not shift the existing edge in this tile. Keep every detail's normalized location, including edge intersections, unchanged.\n",
+      "prompt_sha256": "422c5466a4058e36f4c2a613f49eccb246a8184a6216b5fb5e12a84320646580",
+      "source_pixel_edits": "none",
+      "model": "unknown_not_exposed"
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L29/bottom_middle.png",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "9c25e108bed14f4cd8db182e3605080fbb8def5f06140d77c3792b7b9ac2491b",
+      "native_density": [
+        2.375,
+        2.4115384615384614
+      ],
+      "prompt": "Use case: precise-object-edit.\nProduction game room B05 L29, Sunlit Terrace. The attached image is ONE EXACT cropped source tile from the approved-composition1536×1024 base, not a whole room. Repaint THIS EXACT TILE at the largest native resolution,1536-square requested, with genuinely newly painted fine detail for2560×1440 gameplay. Preserve the original source aspect/framing and every feature's normalized position. This must match its existing neighboring tiles exactly.\nHARD INVARIANTS: do not zoom, reframe, crop, rotate, perspective-transform, change composition, move any ground edge or doorway, resize or shift flowerbeds, alter the floor's leaf-pattern paths, add/remove petals, or remodel a tree/trunk/root. Preserve ALL outlines, floor joint locations, edge intersections, inlays, flowerbed boundaries, architecture, cyan window insets, waterfall shapes, foliage masses, shadows and colors at identical normalized coordinates. Every image edge must continue the exact source content into its neighboring tile. No new geometry, decoration or functional objects. The frozen game geometry and separate perimeter overlay are handled elsewhere.\nChange ONLY fine surface detail inside the existing shapes: delicate pale golden wood grain and tiny root bark fibers, fine warm paving pores and beveled joins, green leaf veins, crisp pink flower petal edges and centers, tiny organic architectural wood detail, clean separated water highlights. Actual new painted detail, not enlargement or a sharpening filter. Preserve subtle atmospheric depth while resolving soft source textures with controlled tactile detail.\nStyle/palette remains EXACTLY luminous hand-painted living-tree fantasy2.5D: pale golden/cream timber paving with quiet sage-green leaf inlays, emerald/yellow-green foliage, peach-pink blossoms, cool cyan water, warm upper-left sunlight. No additional saturation, harsh contrast, dark grading, glossy plastic, photoreal noise or changed light. Keep the floor quiet for combat. Keep distant scenery arranged identically. Opaque full-bleed image, no alpha or new border.\nNo text, characters, UI, labels, rootwell, crystal core, cart, bench, chest, beacon, enemy, warning area, glowing circle or extra prop. One exact source tile only. Do not draw a grid or six-panel sheet.\nTile identity: bottom_middle. Only this attached exact tile is the edit target.\nFor this L29 tile preserve the distinctive western soft tree shade, pale golden north-south grain and exact existing border branches. Exact source rect[504,504,528,520] from1536×1024 source. Generate native1536×1536, without changing any normalized feature locations.\n\nPreserve original southern edge and framing exactly. Separate runtime floor/fascia overlay handles the final collision-aligned boundary; do not shift the existing edge in this tile. Keep every detail's normalized location, including edge intersections, unchanged.\n",
+      "prompt_sha256": "3947f6f73953d1908d3829ef79b2ec7ebb2174e184d4de2274e9165917492009",
+      "source_pixel_edits": "none",
+      "model": "unknown_not_exposed"
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L29/bottom_right.png",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "d8d49226eefaa6b9e3669d1c232ba0fbeb56548adf821c18fbdad4a6577d9258",
+      "native_density": [
+        2.4115384615384614,
+        2.4115384615384614
+      ],
+      "prompt": "Use case: precise-object-edit.\nProduction game room B05 L29, Sunlit Terrace. The attached image is ONE EXACT cropped source tile from the approved-composition1536×1024 base, not a whole room. Repaint THIS EXACT TILE at the largest native resolution,1536-square requested, with genuinely newly painted fine detail for2560×1440 gameplay. Preserve the original source aspect/framing and every feature's normalized position. This must match its existing neighboring tiles exactly.\nHARD INVARIANTS: do not zoom, reframe, crop, rotate, perspective-transform, change composition, move any ground edge or doorway, resize or shift flowerbeds, alter the floor's leaf-pattern paths, add/remove petals, or remodel a tree/trunk/root. Preserve ALL outlines, floor joint locations, edge intersections, inlays, flowerbed boundaries, architecture, cyan window insets, waterfall shapes, foliage masses, shadows and colors at identical normalized coordinates. Every image edge must continue the exact source content into its neighboring tile. No new geometry, decoration or functional objects. The frozen game geometry and separate perimeter overlay are handled elsewhere.\nChange ONLY fine surface detail inside the existing shapes: delicate pale golden wood grain and tiny root bark fibers, fine warm paving pores and beveled joins, green leaf veins, crisp pink flower petal edges and centers, tiny organic architectural wood detail, clean separated water highlights. Actual new painted detail, not enlargement or a sharpening filter. Preserve subtle atmospheric depth while resolving soft source textures with controlled tactile detail.\nStyle/palette remains EXACTLY luminous hand-painted living-tree fantasy2.5D: pale golden/cream timber paving with quiet sage-green leaf inlays, emerald/yellow-green foliage, peach-pink blossoms, cool cyan water, warm upper-left sunlight. No additional saturation, harsh contrast, dark grading, glossy plastic, photoreal noise or changed light. Keep the floor quiet for combat. Keep distant scenery arranged identically. Opaque full-bleed image, no alpha or new border.\nNo text, characters, UI, labels, rootwell, crystal core, cart, bench, chest, beacon, enemy, warning area, glowing circle or extra prop. One exact source tile only. Do not draw a grid or six-panel sheet.\nTile identity: bottom_right. Only this attached exact tile is the edit target.\nFor this L29 tile preserve the distinctive western soft tree shade, pale golden north-south grain and exact existing border branches. Exact source rect[1016,504,520,520] from1536×1024 source. Generate native1536×1536, without changing any normalized feature locations.\n\nPreserve original southern edge and framing exactly. Separate runtime floor/fascia overlay handles the final collision-aligned boundary; do not shift the existing edge in this tile. Keep every detail's normalized location, including edge intersections, unchanged.\n",
+      "prompt_sha256": "fe7e627f6334eee9a50dc6ffe9529329547f30b6698fc98510ed7b1e72adf606",
+      "source_pixel_edits": "none",
+      "model": "unknown_not_exposed"
+    }
+  ],
+  "known_limits": "Independent native repaint overlaps can mismatch; feathered full-room review is required. Exact floor/fascia overlays remain above detail."
+}

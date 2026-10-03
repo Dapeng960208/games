@@ -1,4 +1,4 @@
-extends "res://scripts/combat/b06_enemy_runtime.gd"
+extends "res://scripts/levels/b06/combat/enemy_runtime.gd"
 ## Read-only audit at the exact native filter seam. Calls production once.
 var damage_filter_audit: Array[Dictionary] = []
 func filter_damage(target: Node2D, amount: float, kind: StringName, from_direction: Vector2, damage_type: String, context: Dictionary = {}) -> float:

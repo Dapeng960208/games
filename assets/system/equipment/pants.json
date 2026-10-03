@@ -1,0 +1,366 @@
+{
+  "asset": "asset://equipment/storybook_pants_v2.png",
+  "status": "proposal_only",
+  "live": false,
+  "proposal_scope": "Future pants-slot concepts only. Proposal IDs PANTS01–PANTS10 are not live equipment IDs.",
+  "generated_date": "2026-09-30",
+  "source": "OpenAI built-in image_gen.imagegen",
+  "mode": "One initial generation, one race-identity replacement and one spacing repair",
+  "style_reference": "C:\\Users\\13326\\AppData\\Local\\Temp\\codex-clipboard-02f51a21-0c7d-42c9-825e-c4f6367709c9.png",
+  "style_reference_usage": "Visually inspected; described through the exact locked style standard in the prompts.",
+  "locked_style_standard": "明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。",
+  "initial_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-09f7-76a3-9c56-a2fcf9498006\\exec-aee1d490-27d2-45b0-8afe-a4b9001e898c.png",
+  "race_replacement_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-09f7-76a3-9c56-a2fcf9498006\\exec-37872a72-4075-441f-9350-2ca5f2b0cff4.png",
+  "selected_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dc-09f7-76a3-9c56-a2fcf9498006\\exec-36601187-2f5c-4538-8a26-21600e8762c3.png",
+  "target_dimensions": [
+    2560,
+    1024
+  ],
+  "atlas_layout": {
+    "columns": 5,
+    "rows": 2,
+    "order": "row-major ascending PANTS01–PANTS10"
+  },
+  "race_distribution": {
+    "universal": [
+      "PANTS01",
+      "PANTS02"
+    ],
+    "B01": [
+      "PANTS03",
+      "PANTS04"
+    ],
+    "B02": [
+      "PANTS05",
+      "PANTS06"
+    ],
+    "B03": [
+      "PANTS07",
+      "PANTS08"
+    ],
+    "B04": [
+      "PANTS09",
+      "PANTS10"
+    ]
+  },
+  "transparent_background": true,
+  "alpha_threshold": 16,
+  "padding": 2,
+  "initial_prompt": "Use case: stylized-concept\nAsset type: a single transparent fantasy-game equipment atlas containing TEN PANTS / leg-armor proposal icons.\nStyle standard (exact): 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。\nInterpretation: bright, clean, handpainted CARTOON fantasy in a classical-ruins and magical-steam-mechanics world. High three-quarter slightly overhead near-isometric camera. Clearly dimensional 2.5D small physical equipment, chunky charming proportions, hand-drawn deep-plum outlines, soft painted light and fresh saturated accents. Show tangible top and side surfaces and hollow waist/cuff openings; warm sunlit upper-left highlights. Unified cream, pale ivory, pale warm stone, clean golden brass, teal and blue. No grime, weathered realistic texture, dark gray industrial realism, photorealism, flat glyphs, or vector cutouts. Bright readable videogame inventory artwork matching a handpainted storybook hero with orange scarf, dark plum clothing and gold-brass fittings.\nCanvas/layout: exactly one wide transparent RGBA sheet, requested 2560x1024 pixels, aspect 2.5:1. EXACTLY FIVE equal columns by TWO equal rows, strict row-major order stated below. Exactly one complete pants or leg-armor piece in each cell. Every piece has a waist, joined left and right leg forms, and open hollow cuffs; no human legs, no body, no mannequin. Camera consistent across all items. Keep each FULL garment entirely within the middle 60% of its square cell, centered horizontally and vertically. At least 20% of each cell completely blank on every side. Each piece about equal overall height. Substantial transparent gutters between icons, no overlap, no edge clipping.\nTOP ROW, left to right:\n1 / PANTS01 补片勘探裤 — Patchwork Survey Trousers: full cream/taupe canvas work trousers with a simple brass-buckle belt and exactly THREE small clean brass repair patches on the cloth. Soft bulging empty pants shape, visible hollow waist, clear fabric folds and small metal patches.\n2 / PANTS02 平衡载重裤 — Balanced Load Trousers: full pale cream work trousers with a crossed carrying belt and TWO symmetric chunky cargo pouches, one fixed on each outer thigh. Each pouch is a real closed cream-and-brass case, the crossed belt visibly fastens the pouches.\n3 / PANTS03 司炉隔热裤 — Furnace Insulation Trousers: thick insulated warm PLUM-purple heavy trousers with brass fasteners and small glowing AMBER knee vent plates. Bright orange amber vents contained within the knee plates, pale piping, plush layered cuffs, warm purple fabric rather than dark gray.\n4 / PANTS04 鸣轨绝缘裤 — Singing-Rail Insulation Trousers: full PALE INDIGO fabric trousers, copper conductor loops routed neatly along the outer sides and clear BLUE knee pads. Cream lining visible at waist and cuffs, dimensional blue kneepads, bright copper loops.\n5 / PANTS05 霜潮贝片护腿 — Frost-Tide Shell Leg Armor: one complete hollow lower-body armor garment, CREAM layered shell plates over both thighs with ICE-BLUE edges. Rounded seashell cuisses and overlapping shell knee plates, pale fabric joining the upper waist, airy bright white/blue appearance, complete pair joined at waist.\nBOTTOM ROW, left to right:\n6 / PANTS06 铜蚀导流裤 — Verdigris Channel Trousers: full cream trousers with VERDIGRIS brass outer-side plates and vivid GREEN liquid capillary routing integrated along the side hardware. Green liquid visibly inside narrow glass tubes, clean bright copper/brass guides, side plates and joined garment are a single complete item.\n7 / PANTS07 誓卫方垒腿甲 — Oathguard Fortress Leg Armor: full hollow pale IVORY plate cuisses with rectangular fortress-like KNEE GUARDS and deep-PLUM fabric lining. Two square blocky castellated knee guards, clean brass hinges, pale ivory armor shapes, full joined lower-body garment with hollow waist and cuffs.\n8 / PANTS08 断层负岩护腿 — Faultline Rock-Load Leg Armor: complete hollow leg armor with WARM PALE STONE knee shields, YELLOW binding straps, and small BRASS shock absorbers alongside both legs. Clearly chunky dimensional stone guards, bright mustard-yellow straps and mechanical spring dampers, full joined waist-and-two-leg garment.\n9 / PANTS09 棱镜折光长裤 — Prism Refraction Trousers: complete CREAM long trousers, ASYMMETRIC VIOLET glass panels set on the outer leg surfaces, with fine WHITE unlabelled measuring tick marks on the panel edges. One violet panel larger than the other, visibly thick translucent glass and brass mounts. No digits.\n10 / PANTS10 逐风尾鳍裤 — Windcourier Tail-Fin Trousers: complete soft CREAM lightweight trousers with AZURE hip fins and exactly TWO short flowing cream tail ribbons extending from the belt. Thin real blue fins on the sides of the hips, short white tails, very light fabric cuffs; trousers still fully complete.\nTransparency: genuine transparent background, alpha exactly zero outside each equipment object, including all gutters. No painted checkerboard, no colored background, no vignette, ground, pedestal, floor, detached cast shadow, exterior glow, smoke, dust or particles.\nConstraints: ten different faithful complete physical garments only. No boots, shoes, helmet, torso armor, weapons, swords, bags alone, human anatomy, mannequin, UI, text, labels, numbers, frames, rarity-coded color borders, grid lines, logo or watermark. Do not add or omit an item. Strict 5 columns x 2 rows. Preserve clear individual silhouettes, high readability and attractive storybook volume.",
+  "race_override_prompt": "Use case: stylized-concept\nEdit/rebuild this transparent proposal equipment atlas.\nPreserve the first two universal trousers and the bright cream/brass handpainted illustration style, but COMPLETELY REPLACE icons 3 through 10 with the distinctive race-derived fantasy wearable lower-body forms below. They must have radically different structures, silhouettes and materials rather than being ordinary human trousers with differently colored panels. Also make all ten objects 30% smaller and recenter them to create large transparent gutters.\nExact style standard: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。\nBright handpainted CARTOON fantasy, high 3/4 slightly overhead near-isometric perspective, dimensional miniature physical equipment with visible tops and sides and thickness. Charming chunky shapes with deep plum ink outlines, clean sunny painted color. Cream, warm pale stone, gold-brass and teal unify the sheet but each race has distinct material. No photorealism, dark gray industrial grime, flat symbols or flat vector glyphs.\nCanvas target 2560x1024, ratio 2.5:1. EXACTLY FIVE equal columns x TWO equal rows. Strict row-major ordering. ONE complete hollow wearable lower-body garment or joined leg armor in each cell: waist plus paired left/right leg shells or leg wards connected as ONE object, hollow waist and open cuffs, no human legs, no wearer, no mannequin, no boots. Every object fully contained in middle60% of cell, centered, at least20% transparent blank margin on all four sides. Equal overall height. Complete full silhouette including all fins/leaves/wing folds, no overlap or clipping. Show the side faces in 3/4 view.\nTOP ROW left to right:\nPANTS01 补片勘探裤 (universal): retain cream/taupe cloth work trousers with a brass belt buckle and exactly THREE small brass repair patches, same icon identity.\nPANTS02 平衡载重裤 (universal): retain cream work trousers with a crossed load-bearing belt and TWO symmetric real cargo thigh pouches, one on each side, same icon identity.\nPANTS03 辉砂壳瓣护腿 (INSECT B01, S01): A complete hollow wearable lower-body shell assembled from AMBER segmented insect CARAPACE plates; bulbous beetle-shell thighs, layered amber chitin knee segments, cream insect WING PLATES folded along outer thighs, small gold-brass clasps joining the shells. Chitin waist with curved segmented ridges. Strong sculptural insect exoskeleton identity. NO cloth trouser body, NO insect animal, NO extra insect legs.\nPANTS04 酸晶翅膜腿甲 (INSECT B01, S02): Complete hollow paired leg armor from folded translucent insect WING MEMBRANES, thin creamy iridescent membrane fins spanning between plum chitin struts, ACID-GREEN crystal nodes embedded at the knees/outer leg edges, segmented chitin waist. Delicate but thick enough visible edges, angular folded membranes distinct from icon3 solid beetle shell. NO ordinary cloth pants, NO insect animal or human legs.\nPANTS05 苔冠菌丝裤 (FLORA B02, S03): Complete joined hollow living woven MYCELIUM lower-body garment, pale cream braided mushroom-fiber leg tubes, wide rounded MUSHROOM KNEECAPS like moss-capped fungi, small luminous MINT spore clusters nestled at the waist and thigh folds. Sculptural moss and woven fibers integrated into body. Friendly fantastical living plant form, visible hollow waist, no ordinary cloth.\nPANTS06 荧孢藤织护腿 (FLORA B02, S04): Complete living VINE-WOVEN leg wards joined at a braided vine waist, curling teal and fresh green vines form open latticed paired leg sleeves, pale cream leafy reinforcements, visibly attached luminous mint and yellow-green SPORE PODS growing on the outer vines. Entire garment is living vine structure, emphatically NOT generic fabric pants and not simple plant decals.\nBOTTOM ROW left to right:\nPANTS07 曜铜摆轮腿甲 (MACHINE B03, S05): Complete hollow ornate warm COPPER and BRASS CLOCKWORK cuisses. Rounded antique-copper thigh housings, exposed decorative gold GEAR JOINTS at both knees, small clear CRYSTAL STEAM CAPSULES at outer thighs. A sculptural wearable pair of clockwork leg shells connected at mechanical waist, cream joints and teal crystal liquid accents. Bright clean illustration, no dark industrial realism or cloth trousers.\nPANTS08 晶汽联节护腿 (MACHINE B03, S06): Complete hollow brass LINKED SEGMENTED leg armor, a GYROSCOPE waist with three interlocking brass rings, narrow interlinked brass plates along both legs and clear BLUE liquid/crystal RESERVOIRS visible at side thighs. Articulated linked mechanism and gyroscope waist clearly distinguish it from icon7 gear cuisses; small steam valves integrated, no external smoke, no ordinary pants.\nPANTS09 镜潮叠棱腿铠 (CRYSTAL B04, S07): Complete hollow paired leg armor made of many overlapping MIRRORED CRYSTAL shards, translucent DEEP BLUE and VIOLET faceted plates with bright cream reflected highlights. A visible STAR-WAVE seam floats narrowly BETWEEN shard layers within the garment silhouette, curved bands of tiny luminous star shapes connecting mirrored plates. Strong angular crystalline shell, no human fabric pants, no digits or text.\nPANTS10 星浪浮璃护腿 (CRYSTAL B04, S08): Complete hollow paired leg wards made from TRANSPARENT OCEAN CRYSTAL, LIGHT TEAL angular ORIGAMI FIN FOLDS, broad airy glass folds around hips and tapering glass leg sleeves, soft star-and-wave patterns painted WITHIN the transparent glass surfaces. Floating-glass impression but one cohesive full joined lower-body garment. Light teal translucent fins distinguish it from deep blue/violet mirrored shard armor. No cloth tails or ordinary trousers.\nTransparency: genuine RGBA alpha0 background. ALL blank gutters outside objects completely transparent. Internal highlights/glow only, no exterior glow, shadows on a floor, background, checkerboard, smoke, dust, particles, pedestal or ground. No UI text, labels, numbers, names, frames, borders, badges, grids, watermark or logos.\nExactly10 objects, correct 5x2 row-major order, complete silhouettes, no clipping. All ten must be visibly different meaningful fantasy garments, TWO universal items then TWO insect / TWO flora / TWO machine / TWO crystal, no living creatures or humans.",
+  "final_spacing_prompt": "Edit the attached transparent atlas with ONE precise change only: reduce the scale and correct center positions of all ten COMPLETE equipment objects. Preserve all ten current object designs, colors, surface details, outlines, identities, hollow waist/cuffs, handpainted bright cartoon fantasy style, and strict row-major order. Do not redesign or duplicate them.\nThe existing objects are still much too large and the bottom row is too high. SHRINK EACH WHOLE OBJECT TO 65% OF ITS PRESENT WIDTH AND HEIGHT, then center it inside its own equal square cell. That is a substantial 35% reduction of each object, not a canvas shrink. The same wide 2.5:1 canvas, target2560x1024, exact FIVE columns and TWO rows. Normalized cell-center coordinates (percentage of entire canvas): top row centers (10%,25%), (30%,25%), (50%,25%), (70%,25%), (90%,25%); bottom row centers (10%,75%), (30%,75%), (50%,75%), (70%,75%), (90%,75%). Each entire silhouette should be only 48–55% of a cell height, with at least22% blank transparent margin on all four sides. Do not expand bodies to fill the canvas. Leave large clearly empty transparent gutters and generous separation between rows. Every protruding insect wing, mushroom cap, vine pod, brass gyroscope ring and crystal fin stays attached to its own complete object and fully visible, with no cropping.\nOrder remains exactly: TOP universal patched cream worktrousers; universal crossed-belt cargo trousers; amber insect carapace legs with cream wing plates; creamy insect folded membrane leg armor with acid-green nodes; woven mycelium legs with moss mushroom kneecaps and mint spores. BOTTOM living vine-woven leg wards with attached luminous spore pods; copper clockwork gear-knee cuisses with steam capsules; brass gyroscope-waist linked leg armor with blue reservoirs; dark blue-violet overlapping mirrored crystal legs; light-teal translucent ocean-crystal origami-fin leg wards.\nGenuine transparent RGBA, alpha0 for all blank background pixels and gutters. Remove any detached background particles rather than extending them into the margins. No exterior glow, floor, shadows, scene, UI text, numbers, frames, cell lines, labels or watermark. No wearer, mannequin or anatomy. Ten complete hollow wearable objects only.",
+  "image_postprocessing": "None. Final built-in PNG copied byte-for-byte with source original retained.",
+  "limitations": "Built-in output dimensions are measured rather than assumed. Race artwork is proposal only; no live equipment data or runtime changes.",
+  "inspection": "Ten complete hollow wearable lower-body garments/leg armor in correct 5x2 row-major order. Two universal, two insect, two flora, two machine, two crystal. Bright physical handpainted objects with hollow openings and dimensional side surfaces. No wearer, UI text, floor or outside cast shadows.",
+  "item_descriptions": {
+    "PANTS01": {
+      "proposal_id": "PANTS01",
+      "slot": "pants",
+      "name": "补片勘探裤",
+      "visual": "cream/taupe work trousers with three small brass repair patches",
+      "race_id": "",
+      "set_family": ""
+    },
+    "PANTS02": {
+      "proposal_id": "PANTS02",
+      "slot": "pants",
+      "name": "平衡载重裤",
+      "visual": "crossed carrying belt and symmetric cargo thigh pouches",
+      "race_id": "",
+      "set_family": ""
+    },
+    "PANTS03": {
+      "proposal_id": "PANTS03",
+      "slot": "pants",
+      "name": "辉砂壳瓣护腿",
+      "visual": "amber segmented insect carapace hollow wearable leg shells, cream wing plates and brass clasps",
+      "race_id": "B01",
+      "set_family": "S01"
+    },
+    "PANTS04": {
+      "proposal_id": "PANTS04",
+      "slot": "pants",
+      "name": "酸晶翅膜腿甲",
+      "visual": "folded insect wing membranes, acid-green crystal nodes and a chitin waist",
+      "race_id": "B01",
+      "set_family": "S02"
+    },
+    "PANTS05": {
+      "proposal_id": "PANTS05",
+      "slot": "pants",
+      "name": "苔冠菌丝裤",
+      "visual": "mushroom kneecaps and woven mycelium body with luminous mint spores",
+      "race_id": "B02",
+      "set_family": "S03"
+    },
+    "PANTS06": {
+      "proposal_id": "PANTS06",
+      "slot": "pants",
+      "name": "荧孢藤织护腿",
+      "visual": "living vine-woven leg wards and attached luminous spore pods",
+      "race_id": "B02",
+      "set_family": "S04"
+    },
+    "PANTS07": {
+      "proposal_id": "PANTS07",
+      "slot": "pants",
+      "name": "曜铜摆轮腿甲",
+      "visual": "antique copper/brass clockwork cuisses, visible gear joints and crystal steam capsules",
+      "race_id": "B03",
+      "set_family": "S05"
+    },
+    "PANTS08": {
+      "proposal_id": "PANTS08",
+      "slot": "pants",
+      "name": "晶汽联节护腿",
+      "visual": "gyroscope waist, brass linked segmented leg armor and blue reservoirs",
+      "race_id": "B03",
+      "set_family": "S06"
+    },
+    "PANTS09": {
+      "proposal_id": "PANTS09",
+      "slot": "pants",
+      "name": "镜潮叠棱腿铠",
+      "visual": "mirrored overlapping crystal shards, floating star-wave seam and translucent deep blue/violet",
+      "race_id": "B04",
+      "set_family": "S07"
+    },
+    "PANTS10": {
+      "proposal_id": "PANTS10",
+      "slot": "pants",
+      "name": "星浪浮璃护腿",
+      "visual": "transparent ocean-crystal origami fin folds and light-teal star-wave surfaces",
+      "race_id": "B04",
+      "set_family": "S08"
+    }
+  },
+  "actual_dimensions": [
+    1983,
+    793
+  ],
+  "measurements": {
+    "PANTS01": {
+      "bounds_alpha16": [
+        115,
+        110,
+        179,
+        199
+      ],
+      "region": [
+        113,
+        108,
+        183,
+        203
+      ],
+      "gutters_px": [
+        115,
+        110,
+        103,
+        87
+      ],
+      "min_gutter_percent": 21.97
+    },
+    "PANTS02": {
+      "bounds_alpha16": [
+        501,
+        109,
+        204,
+        198
+      ],
+      "region": [
+        499,
+        107,
+        208,
+        202
+      ],
+      "gutters_px": [
+        104,
+        109,
+        88,
+        89
+      ],
+      "min_gutter_percent": 22.22
+    },
+    "PANTS03": {
+      "bounds_alpha16": [
+        879,
+        106,
+        228,
+        206
+      ],
+      "region": [
+        877,
+        104,
+        232,
+        210
+      ],
+      "gutters_px": [
+        86,
+        106,
+        83,
+        84
+      ],
+      "min_gutter_percent": 20.91
+    },
+    "PANTS04": {
+      "bounds_alpha16": [
+        1274,
+        108,
+        213,
+        202
+      ],
+      "region": [
+        1272,
+        106,
+        217,
+        206
+      ],
+      "gutters_px": [
+        84,
+        108,
+        99,
+        86
+      ],
+      "min_gutter_percent": 21.21
+    },
+    "PANTS05": {
+      "bounds_alpha16": [
+        1676,
+        109,
+        202,
+        203
+      ],
+      "region": [
+        1674,
+        107,
+        206,
+        207
+      ],
+      "gutters_px": [
+        90,
+        109,
+        105,
+        84
+      ],
+      "min_gutter_percent": 21.21
+    },
+    "PANTS06": {
+      "bounds_alpha16": [
+        103,
+        481,
+        205,
+        215
+      ],
+      "region": [
+        101,
+        479,
+        209,
+        219
+      ],
+      "gutters_px": [
+        103,
+        85,
+        89,
+        97
+      ],
+      "min_gutter_percent": 21.41
+    },
+    "PANTS07": {
+      "bounds_alpha16": [
+        504,
+        475,
+        203,
+        219
+      ],
+      "region": [
+        502,
+        473,
+        207,
+        223
+      ],
+      "gutters_px": [
+        107,
+        79,
+        86,
+        99
+      ],
+      "min_gutter_percent": 19.9
+    },
+    "PANTS08": {
+      "bounds_alpha16": [
+        892,
+        468,
+        201,
+        227
+      ],
+      "region": [
+        890,
+        466,
+        205,
+        231
+      ],
+      "gutters_px": [
+        99,
+        72,
+        97,
+        98
+      ],
+      "min_gutter_percent": 18.14
+    },
+    "PANTS09": {
+      "bounds_alpha16": [
+        1270,
+        475,
+        222,
+        222
+      ],
+      "region": [
+        1268,
+        473,
+        226,
+        226
+      ],
+      "gutters_px": [
+        80,
+        79,
+        94,
+        96
+      ],
+      "min_gutter_percent": 19.9
+    },
+    "PANTS10": {
+      "bounds_alpha16": [
+        1670,
+        474,
+        216,
+        222
+      ],
+      "region": [
+        1668,
+        472,
+        220,
+        226
+      ],
+      "gutters_px": [
+        84,
+        78,
+        97,
+        97
+      ],
+      "min_gutter_percent": 19.65
+    }
+  },
+  "validation": {
+    "image_mode": "RGBA",
+    "proposal_count": 10,
+    "visible_alpha_pixels": 317288,
+    "uncovered_visible_alpha_pixels": 0,
+    "all_regions_disjoint": true,
+    "all_regions_within_image": true,
+    "no_visible_alpha_at_canvas_edge": true,
+    "copied_byte_for_byte": true,
+    "alpha_zero_fraction": 0.773734,
+    "minimum_gutter_percent": 18.14,
+    "selected_source_sha256": "3c506afffc532f4d46cb216f18cd333096e2b3fedc07b9438dc1e0940e3dee01"
+  }
+}

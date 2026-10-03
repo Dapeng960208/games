@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://tests/levels/b06/test_b06_candidate_traversal.gd" id="1"]
+[node name="B06CandidateTraversal" type="Node"]
+script = ExtResource("1")

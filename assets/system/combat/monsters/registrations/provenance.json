@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "identity": "M22",
+      "visual_variant_index": 0,
+      "variant_id": "storybook_B03_variants_v1:M22:r01c04",
+      "file": "M22_variant_00_hd_v1.png",
+      "sha256": "24ec2bd24715c317c6c39a97ccbd53dbc83a89a0c9ddf9d216ccf0e7c8f38d90",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generation_method": "Native source-faithful repaint plus targeted imagegen repair. Not an enlargement or sharpening pass. PNG copied byte-for-byte from reviewed candidate.",
+      "selected_revision": 3,
+      "original_manifest": "assets/generated/enemies/storybook_B03_variants_v1.regions.json",
+      "original_texture": "asset://enemies/storybook_B03_variants_v1.png",
+      "original_region": [
+        426,
+        15,
+        116,
+        118
+      ],
+      "original_rgba_sha256": "c8c763fa430e9e0ab29f50743e445d6215901763dc1087583e498e32f4ac8761",
+      "prompt_sequence": [
+        "Use case: identity-preserve. Asset type: native-high-resolution production candidate, full-body single enemy sprite for a bright hand-painted 2.5D fantasy game. Input image is the exact original combat variant and is the sole identity authority. Repaint THIS SAME INDIVIDUAL character at native high resolution, reconstructing clean hand-painted detail; do not simply resize, sharpen, trace pixel edges, or invent a different variant. Preserve the exact silhouette, proportions, head and face, every costume/armor piece, weapon geometry, palette, stance, viewing angle, facing direction, limb placement and foot contact. Match the original high camera three-quarter front view, rich solid 2.5D volume, warm self lighting, dark plum outlines, bright readable hand-painted surfaces. Composition: ONE complete sprite on a 1024x1024 transparent canvas, with its body including all weapons approximately 800 pixels tall, preserving the original width-to-height ratio. Center the whole silhouette horizontally; retain all head, armor, weapon, shield and feet, with at least 70 pixels clear margin. Transparent backdrop: actual alpha=0 outside the silhouette, including holes; no floor, cast shadow, glow halo, particles, border, grid, text, labels or watermark. Do not crop or add props, limbs, weapons or decorative motifs. This is restoration of the low-resolution individual, not redesign. Identity invariants for this individual: squat pumpkin-headed zombie cannon carrier with orange ridged pumpkin head, ragged pale straw-like material around top/head edge, green lower jaw and face with severe toothy grin; purple high scarf/collar and purple patched coat, brown belts and chunky brown boots. Both hands grip the same huge barrel cannon across the body: broad bright orange cylindrical pumpkin-like barrel projecting prominently toward image RIGHT and slightly toward viewer, dark open muzzle ring on the far right containing the original clustered round purple, blue, yellow and orange ammunition; angular gold-orange surface, purple fastenings and purple rounded details. Body is left of the cannon; both stubby bent legs and their original asymmetric brown boot positions remain visible. Preserve original battered cloth and wood/metal cannon material and all proportions. Do not make it a chef, cook, mechanical robot, pumpkin pot, humanoid knight, or cute mascot. Keep exact original cannon shape rather than redesigning it.",
+        "Use case: identity-preserve. Image 1 is the exact original low-resolution game sprite, the authoritative visual identity. Image 2 is a high-resolution repaint candidate that needs a narrowly targeted repair. Deliver one native-high-resolution hand-painted 2.5D full-body sprite on a genuinely transparent canvas. Keep the same individual, colors, attached clothing, weapon/shield, proportions, stance, camera, and framing angle as image 1. Keep the high-quality crisp painted detail from image 2 but correct the listed mismatches. Do not introduce new details that change identity. IMPORTANT COMPOSITION: draw the complete sprite SMALLER on the output canvas, occupying only the CENTRAL 65% of its width and height, with at least 17% EMPTY TRANSPARENT MARGIN on every side. A single complete character only, alpha=0 background, no ground shadows, labels or text. The complete body should remain at least 750 native pixels tall, not a digitally enlarged low-resolution bitmap. Preserve all feet and all weapon tips completely inside the central safe area. REPAIR THIS CANNON CARRIER'S HEAD: match image 1's compact plain round orange pumpkin head, sparse pale ragged tufts close to its sides, small ordinary inset eyes and restrained little grin. Remove the invented large leafy/straw mane and visible top stem of image 2; no shaggy head crest. Restore original eye anatomy and expression rather than big black magic eye sockets with bright yellow glowing bulbs. The original pumpkin-headed zombie's green lower face and compact head must be faithfully recognizable. Keep the original purple outfit and original huge orange cannon aimed right, same multicolored round ammunition cluster, exact stance and BOTH BROWN BOOTS. Do not make it a chef or change any weapon.",
+        "Use case: identity-preserve. Faithful final repair of this exact individual game enemy. Image 1 is the original low-resolution combat sprite and controls identity and proportions. Image 2 is the native-HD candidate to edit. Keep image 2's crisp native painted quality, genuinely transparent background, complete full-body stance, purple outfit, brown boots, large orange cannon and multicolored round cannonballs.\nONLY CORRECT THESE SOURCE-IDENTITY MISMATCHES: (1) REMOVE all the extra straw/hay/leaf tufts from the TOP OF THE HEAD and from BOTH SHOULDERS and BOTH ARMS. Original image 1 is a simple round orange pumpkin-headed zombie with only small discreet worn seams, not a straw-haired scarecrow. The entire crown/top silhouette is plain rounded pumpkin, with NO stem, hair, hat or leaf tuft. Shoulders and arms are patched fabric and wrappings only, with NO straw protruding. (2) EYES are the original SMALL DARK RECESSED eye holes. REMOVE both luminous orange-yellow eye dots entirely. Deep shadow inside each small recess, no glow, no bright center, no luminous pupil, no orange bulb. Tiny subdued neutral highlights only if needed. Keep the original small face relative to the pumpkin head and the original understated crooked mouth, not a large toothy cute smile. (3) Preserve the compact plain orange pumpkin head shape and size of image 1; don't change cannon geometry or colors, don't change pose, hands, feet, costume or palette.\nOne isolated full body only. Native transparent canvas 1254 square; full body occupies central 75% with all limbs, boots and cannon safely inside, generous clear margins. No floor/shadow/halo/sparks/text/labels/frame. High-angle three-quarter 2.5D bright hand-painted game sprite. Do not produce a chef, robot, straw scarecrow or a different cannon carrier. This is source-faithful restoration, not redesign."
+      ],
+      "alpha_region_threshold": 8,
+      "alpha_region_padding_pixels": 2,
+      "source_identity_review": "Parent visually reviewed original versus candidate on 2026-10-02 and approved the exact identity for runtime sampling validation.",
+      "known_limit": "Very faint alpha<=8 noise outside selected body region; excluded by source rectangle. Candidate PNG pixels are unchanged."
+    },
+    {
+      "identity": "M34",
+      "visual_variant_index": 0,
+      "variant_id": "storybook_B04_variants_v1:M34:r01c07",
+      "file": "M34_variant_00_hd_v1.png",
+      "sha256": "007244ffa5387ae8e72608ed19b56bf8cd40f5618d38ecd80183d09075112c85",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generation_method": "Native source-faithful repaint plus targeted imagegen repair. Not an enlargement or sharpening pass. PNG copied byte-for-byte from reviewed candidate.",
+      "selected_revision": 2,
+      "original_manifest": "assets/generated/enemies/storybook_B04_variants_v1.regions.json",
+      "original_texture": "asset://enemies/storybook_B04_variants_v1.png",
+      "original_region": [
+        846,
+        25,
+        115,
+        125
+      ],
+      "original_rgba_sha256": "c9c8ddcb13da3e8bbc53f476e728d524bfff0c40289df96d24fc06dbb5bbf576",
+      "prompt_sequence": [
+        "Use case: identity-preserve. Asset type: native-high-resolution production candidate, full-body single enemy sprite for a bright hand-painted 2.5D fantasy game. Input image is the exact original combat variant and is the sole identity authority. Repaint THIS SAME INDIVIDUAL character at native high resolution, reconstructing clean hand-painted detail; do not simply resize, sharpen, trace pixel edges, or invent a different variant. Preserve the exact silhouette, proportions, head and face, every costume/armor piece, weapon geometry, palette, stance, viewing angle, facing direction, limb placement and foot contact. Match the original high camera three-quarter front view, rich solid 2.5D volume, warm self lighting, dark plum outlines, bright readable hand-painted surfaces. Composition: ONE complete sprite on a 1024x1024 transparent canvas, with its body including all weapons approximately 800 pixels tall, preserving the original width-to-height ratio. Center the whole silhouette horizontally; retain all head, armor, weapon, shield and feet, with at least 70 pixels clear margin. Transparent backdrop: actual alpha=0 outside the silhouette, including holes; no floor, cast shadow, glow halo, particles, border, grid, text, labels or watermark. Do not crop or add props, limbs, weapons or decorative motifs. This is restoration of the low-resolution individual, not redesign. Identity invariants for this individual: stocky broad-shouldered green-skinned tusked shield-orc warrior with the exact red swept-back crest/plume on a dark helmet, stern square face facing right, two ivory lower tusks. His near arm on image LEFT is muscular green with a dark gray metal forearm bracer and green clenched fist held low; preserve the original comparatively exposed green shoulder/chest areas, brown-red leather chest straps and red belt with round metal fittings, muted brown skirt/tassets and boots. A huge vertically elongated OVAL shield dominates image RIGHT, turned at the same angle, with bright silver metal rim, red-orange wood face, dark diagonal crossing braces and centered metal boss. Preserve the precise original shoulder/back armor contour and any original small edge details; do not borrow another orc's shoulder plates. Same two bent legs, full brown boots, squat grounded stance. No new weapon, axe, ornament, horns or armor pieces.",
+        "Use case: identity-preserve. Image 1 is the exact original low-resolution game sprite, the authoritative visual identity. Image 2 is a high-resolution repaint candidate that needs a narrowly targeted repair. Deliver one native-high-resolution hand-painted 2.5D full-body sprite on a genuinely transparent canvas. Keep the same individual, colors, attached clothing, weapon/shield, proportions, stance, camera, and framing angle as image 1. Keep the high-quality crisp painted detail from image 2 but correct the listed mismatches. Do not introduce new details that change identity. IMPORTANT COMPOSITION: draw the complete sprite SMALLER on the output canvas, occupying only the CENTRAL 65% of its width and height, with at least 17% EMPTY TRANSPARENT MARGIN on every side. A single complete character only, alpha=0 background, no ground shadows, labels or text. The complete body should remain at least 750 native pixels tall, not a digitally enlarged low-resolution bitmap. Preserve all feet and all weapon tips completely inside the central safe area. REPAIR THIS RED-CRESTED LIGHTLY ARMORED SHIELD ORC'S FEET: original image 1 has brown open-toed strapped sandals/greaves showing toes, not closed leather boots. Restore BOTH original visible bare toe clusters and sandal shape, same foot sizes, orientations and contact positions. Change only the toe-covering parts while preserving the brown ankle/shin armor. Restore original open-mouth tusked snarl; image 2's closed mouth is incorrect. Keep the red crest, exposed green shoulder with brown strap, shield's pointed top and bottom, exact red-orange wood and silver brace pattern. Do not add red shoulder armor or spiked gray shoulder plates."
+      ],
+      "alpha_region_threshold": 8,
+      "alpha_region_padding_pixels": 2,
+      "source_identity_review": "Parent visually reviewed original versus candidate on 2026-10-02 and approved the exact identity for runtime sampling validation.",
+      "known_limit": "Very faint alpha<=8 noise outside selected body region; excluded by source rectangle. Candidate PNG pixels are unchanged."
+    },
+    {
+      "identity": "M34",
+      "visual_variant_index": 1,
+      "variant_id": "storybook_B04_variants_v1:M34:r02c07",
+      "file": "M34_variant_01_hd_v1.png",
+      "sha256": "1aa075dd227592934394dd47bf6ae830a6fee4b1058374243974176e6b827ea0",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generation_method": "Native source-faithful repaint plus targeted imagegen repair. Not an enlargement or sharpening pass. PNG copied byte-for-byte from reviewed candidate.",
+      "selected_revision": 2,
+      "original_manifest": "assets/generated/enemies/storybook_B04_variants_v1.regions.json",
+      "original_texture": "asset://enemies/storybook_B04_variants_v1.png",
+      "original_region": [
+        846,
+        166,
+        115,
+        125
+      ],
+      "original_rgba_sha256": "5580e68a9e4a2d153fa33648ff1f21d731127b3906cbd605fc1e8370f54ebf7b",
+      "prompt_sequence": [
+        "Use case: identity-preserve. Asset type: native-high-resolution production candidate, full-body single enemy sprite for a bright hand-painted 2.5D fantasy game. Input image is the exact original combat variant and is the sole identity authority. Repaint THIS SAME INDIVIDUAL character at native high resolution, reconstructing clean hand-painted detail; do not simply resize, sharpen, trace pixel edges, or invent a different variant. Preserve the exact silhouette, proportions, head and face, every costume/armor piece, weapon geometry, palette, stance, viewing angle, facing direction, limb placement and foot contact. Match the original high camera three-quarter front view, rich solid 2.5D volume, warm self lighting, dark plum outlines, bright readable hand-painted surfaces. Composition: ONE complete sprite on a 1024x1024 transparent canvas, with its body including all weapons approximately 800 pixels tall, preserving the original width-to-height ratio. Center the whole silhouette horizontally; retain all head, armor, weapon, shield and feet, with at least 70 pixels clear margin. Transparent backdrop: actual alpha=0 outside the silhouette, including holes; no floor, cast shadow, glow halo, particles, border, grid, text, labels or watermark. Do not crop or add props, limbs, weapons or decorative motifs. This is restoration of the low-resolution individual, not redesign. Identity invariants for this individual: stocky broad-shouldered green-skinned tusked shield-orc warrior with the exact long red swept-back crest/plume on a dark helmet, stern square face facing right and two ivory lower tusks. Preserve THIS VARIANT'S prominent RED SHOULDER PLATES / red leather-metal shoulder garment and red chest harness, red round shoulder insert, dark belt with circular metal clasp, exposed green upper arm at image LEFT, dark gray forearm bracer and green fist held low. Muted brown skirt/tassets and brown boots. Huge vertically elongated OVAL shield on image RIGHT, exact original angle: bright silver metal rim, ORANGE wood face, dark diagonal crossing braces and central round metal boss. Same two bent legs and full asymmetric brown boots, stocky squat grounded stance. It must stay visibly distinct from the lower-armored variant and the gray spiked-shoulder variant. No new weapon, axe, ornament, horns or armor pieces.",
+        "Use case: identity-preserve. Image 1 is the exact original low-resolution game sprite, the authoritative visual identity. Image 2 is a high-resolution repaint candidate that needs a narrowly targeted repair. Deliver one native-high-resolution hand-painted 2.5D full-body sprite on a genuinely transparent canvas. Keep the same individual, colors, attached clothing, weapon/shield, proportions, stance, camera, and framing angle as image 1. Keep the high-quality crisp painted detail from image 2 but correct the listed mismatches. Do not introduce new details that change identity. IMPORTANT COMPOSITION: draw the complete sprite SMALLER on the output canvas, occupying only the CENTRAL 65% of its width and height, with at least 17% EMPTY TRANSPARENT MARGIN on every side. A single complete character only, alpha=0 background, no ground shadows, labels or text. The complete body should remain at least 750 native pixels tall, not a digitally enlarged low-resolution bitmap. Preserve all feet and all weapon tips completely inside the central safe area. REPAIR THIS RED-SHOULDER-PLATED SHIELD ORC'S FEET: original image 1 has brown open-toed strapped sandals/greaves showing toes, not closed leather boots. Restore BOTH original visible bare toe clusters and sandal shape, same foot sizes, orientations and contact positions. Change only the toe-covering parts while preserving the brown ankle/shin armor. Restore original open-mouth tusked snarl; image 2's closed mouth is incorrect. Keep the red crest, distinctive red metal shoulder plates with round silver insert, orange oval shield with silver rim, exact original shield brace configuration. Do not borrow the other variants' armor."
+      ],
+      "alpha_region_threshold": 8,
+      "alpha_region_padding_pixels": 2,
+      "source_identity_review": "Parent visually reviewed original versus candidate on 2026-10-02 and approved the exact identity for runtime sampling validation.",
+      "known_limit": "Very faint alpha<=8 noise outside selected body region; excluded by source rectangle. Candidate PNG pixels are unchanged."
+    },
+    {
+      "identity": "M34",
+      "visual_variant_index": 4,
+      "variant_id": "storybook_B04_variants_v1:M34:r05c07",
+      "file": "M34_variant_04_hd_v1.png",
+      "sha256": "c589e110ab3b2b92f3dbcb8ed952fad1026431d847af27b84f382350b04a7a98",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generation_method": "Native source-faithful repaint plus targeted imagegen repair. Not an enlargement or sharpening pass. PNG copied byte-for-byte from reviewed candidate.",
+      "selected_revision": 2,
+      "original_manifest": "assets/generated/enemies/storybook_B04_variants_v1.regions.json",
+      "original_texture": "asset://enemies/storybook_B04_variants_v1.png",
+      "original_region": [
+        846,
+        622,
+        118,
+        125
+      ],
+      "original_rgba_sha256": "f4be6299420593df032dbd8f0ae2774be6276e0222d9f3b4b98314a0fd9d09a1",
+      "prompt_sequence": [
+        "Use case: identity-preserve. Asset type: native-high-resolution production candidate, full-body single enemy sprite for a bright hand-painted 2.5D fantasy game. Input image is the exact original combat variant and is the sole identity authority. Repaint THIS SAME INDIVIDUAL character at native high resolution, reconstructing clean hand-painted detail; do not simply resize, sharpen, trace pixel edges, or invent a different variant. Preserve the exact silhouette, proportions, head and face, every costume/armor piece, weapon geometry, palette, stance, viewing angle, facing direction, limb placement and foot contact. Match the original high camera three-quarter front view, rich solid 2.5D volume, warm self lighting, dark plum outlines, bright readable hand-painted surfaces. Composition: ONE complete sprite on a 1024x1024 transparent canvas, with its body including all weapons approximately 800 pixels tall, preserving the original width-to-height ratio. Center the whole silhouette horizontally; retain all head, armor, weapon, shield and feet, with at least 70 pixels clear margin. Transparent backdrop: actual alpha=0 outside the silhouette, including holes; no floor, cast shadow, glow halo, particles, border, grid, text, labels or watermark. Do not crop or add props, limbs, weapons or decorative motifs. This is restoration of the low-resolution individual, not redesign. Identity invariants for this individual: stocky broad-shouldered green-skinned tusked shield-orc warrior. Preserve the exact dark gray angular helmet/head piece WITHOUT the other variants' red plume; stern square green face facing right, red eyes and two ivory lower tusks. Preserve THIS VARIANT'S large gray-metal SPIKED SHOULDER PAULDRON on image LEFT and tall angular gray metal shoulder/back silhouette visible behind the head, with original spike count and placements. Near arm on image LEFT exposed muscular green, dark gray forearm bracer, green clenched fist held low. Brown-red leather straps and belt, dark skirt/tassets and brown boots. Huge vertically elongated OVAL shield on image RIGHT, exact angle: bright silver metal rim, RED painted wood face, dark diagonal crossing braces and central round metal boss. Same bent legs, full asymmetric brown boot positions and squat grounded stance. Keep all spikes part of the attached armor; no new detached weapon, axe or ornament. It must stay visibly distinct from the two red-crested variants.",
+        "Use case: identity-preserve. Image 1 is the exact original low-resolution game sprite, the authoritative visual identity. Image 2 is a high-resolution repaint candidate that needs a narrowly targeted repair. Deliver one native-high-resolution hand-painted 2.5D full-body sprite on a genuinely transparent canvas. Keep the same individual, colors, attached clothing, weapon/shield, proportions, stance, camera, and framing angle as image 1. Keep the high-quality crisp painted detail from image 2 but correct the listed mismatches. Do not introduce new details that change identity. IMPORTANT COMPOSITION: draw the complete sprite SMALLER on the output canvas, occupying only the CENTRAL 65% of its width and height, with at least 17% EMPTY TRANSPARENT MARGIN on every side. A single complete character only, alpha=0 background, no ground shadows, labels or text. The complete body should remain at least 750 native pixels tall, not a digitally enlarged low-resolution bitmap. Preserve all feet and all weapon tips completely inside the central safe area. REPAIR THIS GRAY-SPIKED-SHOULDER SHIELD ORC'S FEET: original image 1 has brown open-toed strapped sandals/greaves showing toes, not closed leather boots. Restore BOTH original visible bare toe clusters and sandal shape, same foot sizes, orientations and contact positions. Change only the toe-covering parts while preserving the brown ankle/shin armor. Keep the original open-mouth tusked snarl, dark gray swept-back headpiece without a red plume, gray spiked shoulder armor, red oval shield with silver rim and exact brace configuration. Restore original ROUND belt buckle; image 2 invented a square buckle. Do not invent or enlarge armor spikes."
+      ],
+      "alpha_region_threshold": 8,
+      "alpha_region_padding_pixels": 2,
+      "source_identity_review": "Parent visually reviewed original versus candidate on 2026-10-02 and approved the exact identity for runtime sampling validation.",
+      "known_limit": "Very faint alpha<=8 noise outside selected body region; excluded by source rectangle. Candidate PNG pixels are unchanged."
+    }
+  ]
+}

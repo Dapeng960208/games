@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """One natural B06 route attempt per managed engine lock, no injected damage."""
 import argparse,json,os,pathlib,re,subprocess,sys
-ROOT=pathlib.Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT/'tools'))
+ROOT=next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'project.godot').is_file())
+sys.path.insert(0,str(ROOT/'tools/testing'))
 from test_workspace import ensure_managed
 from b06_naked_source_dependencies import fingerprint
 
@@ -10,8 +10,8 @@ def main():
  p=argparse.ArgumentParser();p.add_argument('--archive',type=int,choices=[14,15],default=14);p.add_argument('--difficulty',type=int,choices=range(5),default=0);p.add_argument('--hero',choices=['CH01','CH02','CH03'],required=True);p.add_argument('--seed',type=int,default=1001);p.add_argument('--max-seconds',type=int,default=3600);p.add_argument('--parse-only',action='store_true');a=p.parse_args()
  ensure_managed('B06');out=pathlib.Path(os.environ['GAMES_TEST_OUTPUT_DIR']);before=fingerprint()
  cmd=['godot','--headless','--path',str(ROOT),'--audio-driver','Dummy','--rendering-method','gl_compatibility','--fixed-fps','60']
- if a.parse_only:cmd+=['res://tests/test_b06_naked_chapter.tscn','--','--candidate-b06','--test-profile=user://test_b06_candidate/test_b06_naked_chapter/parse.json','--parse-only=true']
- else:cmd+=['res://tests/test_b06_naked_chapter.tscn','--','--candidate-b06','--test-profile=user://test_b06_candidate/test_b06_naked_chapter/route.json',f'--hero={a.hero}','--level=26',f'--difficulty={a.difficulty}',f'--seed={a.seed}','--mode=chapter',f'--max-seconds={a.max_seconds}',f'--output={out}/observations.json']
+ if a.parse_only:cmd+=['res://tests/levels/b06/test_b06_naked_chapter.tscn','--','--candidate-b06','--test-profile=user://test_b06_candidate/test_b06_naked_chapter/parse.json','--parse-only=true']
+ else:cmd+=['res://tests/levels/b06/test_b06_naked_chapter.tscn','--','--candidate-b06','--test-profile=user://test_b06_candidate/test_b06_naked_chapter/route.json',f'--hero={a.hero}','--level=26',f'--difficulty={a.difficulty}',f'--seed={a.seed}','--mode=chapter',f'--max-seconds={a.max_seconds}',f'--output={out}/observations.json']
  if a.archive==15:cmd.append('--enemy-species-candidate=15')
  cmd.append('--expected-archive='+str(a.archive))
  (out/'protocol.json').write_text(json.dumps({'schema':'b06-natural-naked-route-v1','source_sha256':before,'command':cmd,'no_universal_seed_claim':True},indent=2))

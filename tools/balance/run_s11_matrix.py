@@ -18,7 +18,7 @@ import statistics
 import subprocess
 import time
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / 'project.godot').is_file())
 SAMPLES = ("G2", "P5", "G0", "mixed", "green", "white", "lowG2")
 SEEDS = list(range(1001, 1011))
 SCHEMA = "s11-controlled-matrix-v2"
@@ -33,7 +33,7 @@ def measurement_protocol(args, manifest):
         engine_sha = hashlib.file_digest(binary, "sha256").hexdigest()
     control = (ROOT / "tests/support/s11_battle_controller.gd").read_text()
     controller_version = re.search(r'const VERSION := "([^"]+)"', control).group(1)
-    data = json.loads((ROOT / "data/numerical_v2.json").read_text())
+    data = json.loads((ROOT / "data/rules/numerical.json").read_text())
     directed = (ROOT / "tests/support/s11_directed_controller.gd").read_text() if args.experiment in ("phase_coverage", "p3_tolerance") else ""
     directed_version = re.search(r'const DIRECTED_VERSION := "([^"]+)"', directed).group(1) if directed else None
     return {"schema": SCHEMA, "protocol_pinned": True, "seeds": args.seeds,
@@ -93,7 +93,7 @@ def run_job(args, case):
     timing = ["--max-fps", "60"] if args.real_time else ["--fixed-fps", "60"]
     display = [] if args.gpu else ["--headless"]
     rendering = ["--disable-render-loop"] if args.disable_render_loop else []
-    scene = {"battle":"res://tests/test_s11_battle_matrix.tscn", "elite_fixture":"res://tests/test_s11_elite_observation.tscn", "failure_classification":"res://tests/test_s11_failure_classification.tscn"}.get(args.experiment, "res://tests/test_s11_directed_observation.tscn")
+    scene = {"battle":"res://tests/balance/test_s11_battle_matrix.tscn", "elite_fixture":"res://tests/balance/test_s11_elite_observation.tscn", "failure_classification":"res://tests/balance/test_s11_failure_classification.tscn"}.get(args.experiment, "res://tests/balance/test_s11_directed_observation.tscn")
     command = [str(args.godot), *display, *timing, *rendering, "--audio-driver", args.audio_driver, "--path", str(ROOT), scene, "--",
                "--test-profile=user://test_s11_battle_matrix/profile.json", "--test-ruleset=2",
                f"--chapters={chapter}", f"--heroes={hero}", f"--samples={sample}",

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH01",
+  "tool": "built-in image_gen",
+  "candidates": [
+    {
+      "pair": "S_SE",
+      "prompt": "Use case: identity-preserve. Asset type: production transparent action sprite atlas for a 2.5D RPG. Create a landscape 1536 x 1024 RGBA image containing exactly six independently drawn full-body sprites of the SAME brown-haired young male armored axe warrior CH01 as the three supplied reference images. The references are identity/costume/style guides, not layout or pose guides. Preserve his exact youthful face, tousled medium brown hair, charcoal plate armor with rich gold edging and star emblems, orange-red scarf, orange-red waist cloth, leather belt, armored boots and broad single-headed silver-edged charcoal-and-gold axe. Same detailed painterly storybook game-art style, crisp contours.\n\nLAYOUT: invisible regular 3 columns x 2 rows, each cell 512 x 512. Clear transparent gutters. Each complete sprite, both feet, full axe and scarf fit inside its own cell with at least 15 pixels of transparent margin. No sprite overlaps another cell. Anatomical head crown to bottom of feet height should be 355-390 pixels in EVERY cell, excluding raised weapon; do not draw small figures. Consistent camera elevation about 25 degrees, feet fixed on ground, upright screen vertical bodies. No grid, labels, text, background, floor, shadows, magic, motion arcs or particles. Actual alpha transparency.\n\nCOLUMNS left to right: WINDUP, RELEASE / CONTACT, RECOVERY. Every column is a genuinely distinct pose showing a coherent two-handed axe attack.\nTOP ROW: direction S, straight toward viewer and screen bottom. Torso, face, hips and boots face directly toward camera, bilaterally frontal. Windup lifts the axe overhead centered above his head using two hands. Release is a foreshortened forceful downward chop straight toward screen bottom: both hands extend forward at abdomen height and the axe haft projects toward viewer, its blade/contact edge BELOW both hands centered on his body axis, not to either side; foreshortening must read as a real forward/down-screen strike. Recovery brings the axe down and in at center with bent knees, maintaining frontal S orientation.\nBOTTOM ROW: direction SE, toward viewer and screen lower-right at a true 45-degree angle. Full torso, face, hips and boots turned toward lower-right. Windup lifts the axe over rear shoulder. Release is a two-handed diagonal chop with the axe blade clearly projecting lower-right of both hands. Recovery follows through low toward lower-right. Not merely the frontal row with head turned: all three are separately drawn 3/4 view poses.\n\nKeep anatomy complete and coherent. No whole-body rotation, no mirrored reused frames, no detached weapons, no extra arms or axes, no cropped feet. Strongly preserve reference warrior and his armor details. Prioritize genuine S and SE directional axe contact geometry.",
+      "saved_path": "assets/generated/heroes/CH01_directional_S_SE_v1.png",
+      "status": "accepted_pixel_review",
+      "actual_dimensions": [
+        1536,
+        1024
+      ],
+      "rgba": true,
+      "alpha_zero_fraction": 0.6318531036376953,
+      "review": "All six independent silhouettes complete, direction S is frontal axe below hands, SE is lower-right. Nonuniform observed regions avoid unrelated sprites. Initial raw-RGB/background and fixed-grid concerns resolved by alpha/component inspection; no image edit needed.",
+      "minimum_anatomical_body_height": 377,
+      "generation_id": "exec-080ee95a-defa-4dd7-8574-689d6ba86a01"
+    },
+    {
+      "pair": "N_NE",
+      "prompt": "Use case: identity-preserve. Asset type: production RPG directional attack sprites. Create one 1536 x 1024 landscape RGBA atlas with SIX independently drawn complete full-body sprites of the exact SAME CH01 warrior from the three reference images. These inputs guide identity, costume and painterly storybook rendering, not layout. Preserve young adult brown-haired warrior, charcoal armor with gold edging/star insignias, orange-red scarf and split waistcloth, leather belt and straps, steel boots, single broad charcoal-and-gold axe with silver cutting edge. No redesign, no generic substitute.\n\nInvisible 3 columns x 2 rows. Every sprite with whole axe, full head and both feet completely inside its own approximate 512 x 512 cell, with blank transparent gutters, no overlap. Native anatomical crown-to-feet body height 360–390px per figure, excluding weapon. Consistent elevated 2.5D game camera; upright screen-vertical figures, NEVER rotate the whole person. Actual transparent alpha background; no floor, shadows, glow, lettering, labels, frame, grid, motion effects, duplicates or extra limbs. Both hands wield ONE axe.\n\nColumns left to right: windup, release/contact, recovery. All three poses distinct and sequential.\nTOP ROW N: exact rear view facing screen UP/away from viewer, back of head, back plate and back of both boots visible; no face. Hips, knees and torso face away. Windup pulls axe back overhead ready for a forward chop. RELEASE: two-handed forward chop AWAY from camera, BOTH hands extending toward screen TOP; axe blade contact edge is centered clearly ABOVE both hands with shaft directed vertically upward on screen, foreshortened due to striking away. It must NOT point left/right or toward the viewer. Recovery follows through to the front/away/up side, maintaining true rear N orientation.\nBOTTOM ROW NE: rear three-quarter view facing screen UPPER-RIGHT; see back and right flank, tiny or no facial profile. Windup draws axe behind left shoulder. RELEASE: clear two-hand axe strike extending screen UPPER-RIGHT, blade/contact ABOVE AND RIGHT of both gripping hands. Shaft and perspective visibly lead upper-right. Recovery remains upper-right orientation with axe withdrawing slightly from its strike.\nAxe contact direction in RELEASE is crucial: N=(0,-1), NE=(1,-1) in screen pixels. Do not disguise side-facing assets with turned heads. Reconstruct six anatomically correct directional poses preserving reference identity. Entire bodies and weapons fully within image, no cutoffs.",
+      "saved_path": "assets/generated/heroes/CH01_directional_N_NE_rejected_01.png",
+      "status": "rejected",
+      "reason": "Top-middle N release appears to alter the single-headed axe into symmetric double blade; head-to-foot height is marginal approximately 315–320px. Other five poses good.",
+      "generation_id": "exec-61483933-4d6a-4f88-8b0b-1a6d7b3e4d69"
+    },
+    {
+      "pair": "N_NE",
+      "prompt": "Use case: precise-object-edit. Edit ONLY the TOP MIDDLE warrior pose in this 1536x1024 transparent six-pose atlas. Preserve the other five figures exactly in place and preserve background alpha transparency.\n\nThe top-middle pose is the true N release: rear view, attacking straight toward screen UP/away. Make its body more upright/taller so anatomical hair crown is about y=165 and boot soles about y=510 (345px crown-to-feet), with head, back, shoulders, arms, legs and BOTH complete boots visible. The character remains centered at x=770. Keep the same exact brown-haired warrior armor and orange scarf design. Hands extend away from viewer to about (770,145), and the axe cutting contact is visibly above the grip centered around x=770, y=60. IMPORTANT preserve the reference SINGLE-HEADED broad axe, not the double-bladed symmetric axe now in top-middle: one broad silver cutting edge on ONE side of the charcoal/gold blade attached to its haft. Tilt/foreshorten this single-head axe in true perspective so its cutting contact still leads straight screen-UP. Do not rotate the whole warrior. Do not point the axe sideways. This is a release chop away from viewer, not a second identical windup.\nFit whole top-middle sprite within x=560..1000 and y=10..515, leaving other figures untouched. Actual transparent alpha background, no extra objects, labels or ground.",
+      "saved_path": "assets/generated/heroes/CH01_directional_N_NE_v1.png",
+      "status": "accepted_pixel_review",
+      "actual_dimensions": [
+        1536,
+        1024
+      ],
+      "rgba": true,
+      "alpha_zero_fraction": 0.7015329996744791,
+      "minimum_anatomical_body_height": 333,
+      "review": "All six independent complete silhouettes; corrected N release single-headed axe and 349px anatomical height. True rear N release contact up, three-quarter rear NE release upper-right.",
+      "generation_id": "exec-b88f532b-5f9b-4ae1-b5d7-67bfa4dd0dd6"
+    },
+    {
+      "pair": "E_W",
+      "prompt": "Use case: identity-preserve. Production 2.5D RPG attack sprite atlas. Generate one 1536 x 1024 landscape transparent RGBA PNG with six complete individually drawn poses of the exact CH01 male warrior in supplied references. Preserve his youthful face, tousled brown hair, charcoal/gold star-emblem armor, orange-red scarf and waistcloth, leather belt, armored boots and single broad silver-edged charcoal/gold axe. Same crisp detailed storybook painterly rendering. No change of character.\n\nInvisible regular three columns x two rows. Every full-body sprite including the entire axe and both feet stays in its own 512px x 512px cell with transparent margins. Native anatomical crown-to-feet height 350-390px in every pose. Ensure the long horizontal weapon fits by compact foreshortened pose and stance; DO NOT shrink the entire figure. Upright screen-vertical bodies in elevated game camera. No whole-body rotation, no mirrors, no extra weapon or limbs. Pure transparent background, no environment, ground, shadows, glow, text, labels, arrows, grid or motion effects.\n\nColumns windup, release/contact, recovery.\nTOP ROW true E facing screen RIGHT: strict right-facing side view of face, shoulders, torso, hips, knees and boots. Windup pulls axe high behind LEFT side ready to swing. RELEASE lunges a little to RIGHT with a two-handed compact lateral slash: both gripping hands ahead of chest, axe's blade/contact edge CLEARLY RIGHT of both hands at essentially the SAME Y coordinate, haft roughly horizontal. Recovery holds the axe out to right slightly lower and body eases back. Gaze right in all three.\nBOTTOM ROW true W facing screen LEFT: independent freshly drawn left-facing side view, seen from the warrior's opposite side with costume details consistent in 3D; NOT horizontally flipped copies of the top row. Windup loads axe high behind RIGHT shoulder. RELEASE lunges LEFT, axe blade/contact edge clearly LEFT of both hands at essentially the SAME Y coordinate, shaft horizontal. Recovery withdraws the axe slightly with gaze/torso still left.\nEach row must read as one coherent three-stage axe attack with visually distinct silhouettes. Direction is not just head turn; full body faces horizontally right or left. RELEASE contact E=(1,0), W=(-1,0), no downward or upward diagonal strike in the middle column. Keep entire axe and feet visible in every sprite.",
+      "saved_path": "assets/generated/heroes/CH01_directional_E_W_rejected_01.png",
+      "status": "rejected",
+      "reason": "E release axis-aligned crop would include a sliver of E recovery left boot (overlap in x1098..1115). Requires layout correction.",
+      "generation_id": "exec-f6ccbe50-99f5-44e0-ab16-6afbd367ada2"
+    },
+    {
+      "pair": "E_W",
+      "prompt": "Use case: precise-object-edit. Keep this exact 1536 x 1024 six-figure atlas and all of its art, alpha and poses. Correct ONLY the layout of TOP MIDDLE sprite (E release). Move the WHOLE top-middle figure with his entire axe approximately 28 pixels LEFT, without scaling or cropping. Current sprite bounds are approximately x496..1115, y113..486. Desired bounds x468..1087, y113..486. This creates a narrow TRANSPARENT VERTICAL CORRIDOR between his axe and the top-right recovery sprite whose left boot starts x1098. No piece of the neighboring recovery figure may enter top-middle's rectangular crop x468..1087. Do not move the top-left or top-right or any bottom-row sprite. Preserve all six figures exactly: anatomy, both feet, axe, orange scarf, armor, body height, directional pose and clear true transparent alpha. No background, text, shadows or extra content.",
+      "saved_path": "assets/generated/heroes/CH01_directional_E_W_v1.png",
+      "status": "accepted_pixel_review",
+      "actual_dimensions": [
+        1536,
+        1024
+      ],
+      "rgba": true,
+      "alpha_zero_fraction": 0.6457646687825521,
+      "minimum_anatomical_body_height": 370,
+      "review": "Top-middle E release moved left through built-in image edit; all effective silhouettes can be isolated with rectangular regions. E and W release blade contact vectors horizontal within 5 degrees.",
+      "generation_id": "exec-67470464-13da-4f92-b63f-46cf17592239"
+    },
+    {
+      "pair": "SW_NW",
+      "prompt": "Use case: identity-preserve. Create one production 1536 x 1024 landscape RGBA sprite atlas, actual transparent alpha background. Exactly six separately drawn complete fullbody sprites of the exact same CH01 brown-haired young adult warrior from the three reference images: youthful face, tousled hair, charcoal/gold star-emblem plate armor, orange-red scarf and waistcloth, leather belt, armored boots and broad SINGLE-HEADED charcoal/gold axe with silver cutting edge. Same crisp painterly storybook style, no redesign.\n\nLAYOUT: invisible 3 columns x 2 rows, each cell roughly 512 x 512. Leave clean blank transparent vertical corridors between columns and horizontal corridor between rows so every figure can be cropped in one separate rectangle containing no neighboring pixels. Every full axe, both hands, entire body, head, scarf and both feet inside its own area with at least 12px outer margin. Native anatomical head crown to footsole height 350-390px EACH, excluding axe. Keep stance and weapon compact enough to fit. Upright bodies, same 2.5D elevated camera, no wholebody rotation or mirrored reused sprites. No floor, shadows, glow, scenery, text, grid, particles, arrows or motion arcs.\n\nColumns left to right: windup, release/contact, recovery. Each is a distinct stage of coherent two-handed axe chop.\nTOP ROW SW: front three-quarter view facing screen LOWER-LEFT, with visible face and chest. Entire head, torso, hips, knees and boots aim lower-left. Windup brings axe behind/right of head overhead. RELEASE forceful chop toward LOWER-LEFT: both gripping hands extend forward-left, blade contact projects well BELOW AND LEFT of both hands, actual diagonal shaft perspective. Recovery follows through low to lower-left while body keeps SW orientation.\nBOTTOM ROW NW: REAR three-quarter view facing screen UPPER-LEFT, showing back of head and back armor, tiny/no face. Entire torso/hips/boots turned away-left. Windup loads axe behind/right shoulder. RELEASE two hands thrust/chop the axe toward screen UPPER-LEFT: axe contact point clearly ABOVE AND LEFT of both hands, shaft diagonally upper-left. Recovery eases arms back while still facing away-left.\nImportant RELEASE screen directions SW=(-1,+1), NW=(-1,-1). Bottom row is a real rear-view reconstruction, NOT top-row poses rotated/flipped. Preserve exact reference warrior, costume and single-blade axe. Do not crop or overlap any fullbody silhouette.",
+      "saved_path": "assets/generated/heroes/CH01_directional_SW_NW_rejected_01.png",
+      "status": "rejected",
+      "reason": "SW axes point lower-left but heads/torso/toes read lower-right; direction fails. SW release rectangle also overlaps NW release rectangle by one vertical pixel.",
+      "generation_id": "exec-4a0011fa-cd76-40f5-bec1-ede20866f7af"
+    },
+    {
+      "pair": "SW_NW",
+      "prompt": "Use case: precise-object-edit. Correct the TOP ROW of Image 1 only; keep all three BOTTOM ROW rear-view sprites intact. Image 2 shows the same warrior and its bottom row has the correctly left-facing face/body profile: use that left-facing orientation as guidance, but show the requested SW three-quarter frontal angle.\n\nCRITICAL ERROR TO FIX: all TOP ROW faces in image 1 currently look screen RIGHT. They MUST face screen LOWER-LEFT. Redraw EACH of the three top warriors so his NOSE points LEFT, his eyes look LOWER-LEFT, chest is three-quarter FRONT LEFT, left-facing hips/knees/toes aim LOWER-LEFT. We see his face and front armor from the opposite three-quarter angle. This is a true body turn in 3D, not just swiveling the head. Do not mirror the image. The top row is SW attack. Preserve the exact same youthful brown-haired face, charcoal and gold star armor, orange scarf/waistcloth, axe design and detailed painting.\n\nTop-left windup: SW facing lower-left, axe raised behind/right shoulder.\nTop-middle release: SW facing lower-left, both hands reaching lower-left, retain axe cutting blade BELOW AND LEFT of grip, forceful diagonal SW slash. Bring the lowest tip of this axe up so the entire top-middle sprite ends at or above y535. It must not intrude into the bottom row starting y549.\nTop-right recovery: SW facing lower-left, low follow-through holding axe toward lower-left, distinct recovery stance.\nKeep top three anatomical crown-to-feet height at least 340 px. Keep all axes and full feet inside their separate non-overlapping rectangular regions. Preserve 1536x1024 size and actual alpha transparency. NO backgrounds, text, effects or new objects. TOP ROW must visibly look LEFT, no right-facing eyes or toes.",
+      "saved_path": "assets/generated/heroes/CH01_directional_SW_NW_rejected_02.png",
+      "status": "rejected",
+      "reason": "SW direction corrected successfully, but changed top-row layout makes SW windup bounds overlap adjacent release crop by 41px and bottom-row crop by 9px. Requires compact layout.",
+      "generation_id": "exec-34e47aa8-3bee-46fc-9361-5dfba6f61f7d"
+    },
+    {
+      "pair": "SW_NW",
+      "prompt": "Use case: precise-object-edit. Preserve ALL SIX EXACT POSES AND THEIR DIRECTIONS in this input. They are now correctly posed: top row front three-quarter LEFT, bottom row rear three-quarter LEFT. Do not turn any head, torso, axe or boot. Only correct crowded atlas layout.\n\nOutput same 1536x1024 RGBA transparent atlas with six fully separate sprite silhouettes. Shrink each entire illustrated figure approximately 15 percent and center it in its own 512x512 cell. Native anatomical hair-crown-to-footsole height must still be 325–365 pixels in each sprite. Render crisp detail at native output resolution. Maintain proportions and whole body, both feet, axe and scarf. Never crop.\nTOP LEFT: all pixels inside x25..487 and y25..487.\nTOP MIDDLE: all pixels inside x537..999 and y25..487.\nTOP RIGHT: all pixels inside x1049..1511 and y25..487.\nBOTTOM LEFT: all pixels inside x25..487 and y537..999.\nBOTTOM MIDDLE: all pixels inside x537..999 and y537..999.\nBOTTOM RIGHT: all pixels inside x1049..1511 and y537..999.\nKeep wide fully transparent gutters across x488..536, x1000..1048 and y488..536. No figure may touch a gutter. All top row figures must end BEFORE y488. All bottom row figures must start AFTER y536. Single rectangular crops must never include parts of a neighbor. Keep current youthful brown-haired CH01, charcoal/gold armor, orange scarf, broad single axe and painterly detail. Do not redesign. No text, grid, effects, ground or opaque background. Maintain genuine alpha transparency.",
+      "saved_path": "assets/generated/heroes/CH01_directional_SW_NW_v1.png",
+      "status": "accepted_pixel_review",
+      "actual_dimensions": [
+        1536,
+        1024
+      ],
+      "rgba": true,
+      "alpha_zero_fraction": 0.6282215118408203,
+      "minimum_anatomical_body_height": 358,
+      "review": "True front-left SW and rear-left NW poses. Second targeted layout correction separates all six rectangular crops without reducing body below320px.",
+      "generation_id": "exec-857c8bb9-e5df-4e0f-bac1-d04c9f50734f"
+    }
+  ],
+  "accepted_atlases": [
+    "CH01_directional_S_SE_v1.png",
+    "CH01_directional_N_NE_v1.png",
+    "CH01_directional_E_W_v1.png",
+    "CH01_directional_SW_NW_v1.png"
+  ],
+  "review_summary": "24 individual directional poses visually reviewed. Four native1536x1024 RGBA atlases, exact referenced CH01 identity, observed anatomical head/feet and grip/contact anchors. No pixel mirroring, wholebody rotation, resizing, background removal, or other deterministic asset edits were used; accepted bytes are direct image_gen outputs. Aggregate enabled after final three-hero graphical acceptance.",
+  "anchor_policy": "Pixel-space absolute anchors. Body height measured from anatomical hair crown to sole baseline, excluding weapon. Foot anchor uses baseline between the feet. Muzzle for warrior is leading axe cutting contact; weapon_axis=contact-grip where supplied. Overhead windup axis omitted. Recovery retains actual visible weapon geometry, which may differ from release direction.",
+  "runtime_status": "Enabled. Final three-hero native 2560x1440 graphical acceptance: 433 checks, zero failures, 96 direction/phase samples; 502 sampler and anchor contract checks. Controlled test evidence is local only.",
+  "runtime_test": "res://tests/captures/test_directional_combat_capture.tscn"
+}

@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "room_id": "L24",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L24_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "ed67ad198190b37ba6827d2ac239df0057b3f18a84275330a0cef3bfc5fa2854",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L24/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "10f59220dfe4861b98596e87cb6ef52d8c16e7a35fca3780fa961e5d7ef7955f",
+      "decoded_rgb_sha256": "3b58d0a561c323ea34b035548fd8c86ca917515346de50553424ad7a25e1e03d",
+      "webp_sha256": "e3e587010d7c2e9aed6c5bfdccc1d605603c932be30ee30ed42e77f2e3b117b7",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B04 Red Rock War Camp. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all circle and stripe markings, rock silhouettes, plants, flags and ropes, every ground edge, light/shadow shapes, and soft warm painterly palette. Do not introduce anything new. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle aged mortar detail, subtle cloth weave or wood grain where those materials already exist. Maintain the original red sandstone and indigo camp identity, gentle low-gloss illustrated surfaces and crisp readable material edges; no stronger contrast, no photographic texture, no gloss boost, no oversharpening, no new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L24 top_left: preserve same cream indigo-pattern tent at upper-right with its crates and ivory corner supports, two small orange sun-pattern supply awnings down left side, terracotta ledges and pots, broad irregular pale cream cobbled court precisely as in the target. For any triangular pavement inlay, preserve the exact number, color sequence, vertices, direction and normalized placement of each triangle, with no new markings. Copy all four crop edges exactly."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L24/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "923a68eb8247fcbace70c6b08e7644420b9ff6ed1d506435006bf11b20e50e0c",
+      "decoded_rgb_sha256": "58563e64340e85fad70f8880c2bda662b4263a53736e702337539b95009489ab",
+      "webp_sha256": "9ef7fa0c9abd91146cda6fcba6fd7fa4d05df8ae8c9715cb11bef3f2ef22174a",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B04 Red Rock War Camp. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all circle and stripe markings, rock silhouettes, plants, flags and ropes, every ground edge, light/shadow shapes, and soft warm painterly palette. Do not introduce anything new. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle aged mortar detail, subtle cloth weave or wood grain where those materials already exist. Maintain the original red sandstone and indigo camp identity, gentle low-gloss illustrated surfaces and crisp readable material edges; no stronger contrast, no photographic texture, no gloss boost, no oversharpening, no new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L24 top_middle: preserve exact huge ivory tusk arch gate and three indigo/red hanging banners at top center, distant canyon and small palms, cream pavement on left and terracotta pavement on right, narrow straight triangular inlay divider leading to the same three-way triangular stone junction near lower center precisely as in the target. For any triangular pavement inlay, preserve the exact number, color sequence, vertices, direction and normalized placement of each triangle, with no new markings. Copy all four crop edges exactly."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L24/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "fa746774cc0f8fce6be6a3c2fd9bfa2b7a905a9cca3eace335dfa78b0ac74c84",
+      "decoded_rgb_sha256": "c77f165cec2125a59378a3960f95c02ae0ad4d5320ac684a7f4966a795132692",
+      "webp_sha256": "732c7c56989d7b11629f6ae83947eb2ca3a0b3be7822a6377fbe208055dc60e9",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B04 Red Rock War Camp. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all circle and stripe markings, rock silhouettes, plants, flags and ropes, every ground edge, light/shadow shapes, and soft warm painterly palette. Do not introduce anything new. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle aged mortar detail, subtle cloth weave or wood grain where those materials already exist. Maintain the original red sandstone and indigo camp identity, gentle low-gloss illustrated surfaces and crisp readable material edges; no stronger contrast, no photographic texture, no gloss boost, no oversharpening, no new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L24 top_right: preserve two identical round tents at the top, orange roof at left and indigo roof at right with ivory support columns and sun-emblem banners, warm terracotta cobbled court, sandy right margin with the exact shrubs and blue banners precisely as in the target. Preserve every triangular paving inlay vertex, color sequence and crop-edge crossing. Keep tents and objects at exact original size and positions. Copy all four crop edges exactly."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L24/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "926a5eb7fe1925b19ef86d47b11e32cc9e9768031e80b6247d6c0d6efefb56c9",
+      "decoded_rgb_sha256": "1ccbbfc1b5a729a6698711ea4809b837e2e97d96b2874f6326250755c155c3c2",
+      "webp_sha256": "98e383dc1881b81eb9782223e1129acec6d34082a15785883b49dca15baf380b",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B04 Red Rock War Camp. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all circle and stripe markings, rock silhouettes, plants, flags and ropes, every ground edge, light/shadow shapes, and soft warm painterly palette. Do not introduce anything new. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle aged mortar detail, subtle cloth weave or wood grain where those materials already exist. Maintain the original red sandstone and indigo camp identity, gentle low-gloss illustrated surfaces and crisp readable material edges; no stronger contrast, no photographic texture, no gloss boost, no oversharpening, no new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L24 bottom_left: preserve cream stone court with the narrow diagonal strip of alternating muted red, grey and cream triangular inlay near the top, sandy diagonal margin, lower-left cream patterned supply canopy and crate, two indigo banners and the exact red-rock ledges/trees precisely as in the target. Preserve every triangular paving inlay vertex, color sequence and crop-edge crossing. Keep tents and objects at exact original size and positions. Copy all four crop edges exactly."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L24/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "6d6734171a1fb28b00e1a2d7ed66f700ec7cde473da7ff4364fdd4db3a84681f",
+      "decoded_rgb_sha256": "bcd4883a6374d3dba4da4d6b04e8bbe01e1c12a610d16062bab1c34eac5e20bf",
+      "webp_sha256": "68bac6c3c4e72f3b0ff8dd9c5930293294f1e346bee409d1615a9a811b89bcaf",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B04 Red Rock War Camp. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all circle and stripe markings, rock silhouettes, plants, flags and ropes, every ground edge, light/shadow shapes, and soft warm painterly palette. Do not introduce anything new. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle aged mortar detail, subtle cloth weave or wood grain where those materials already exist. Maintain the original red sandstone and indigo camp identity, gentle low-gloss illustrated surfaces and crisp readable material edges; no stronger contrast, no photographic texture, no gloss boost, no oversharpening, no new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L24 bottom_middle: preserve large unobstructed cream cobblestone court with scattered grey accents and the small partial triangular-inlay border clipped at upper-left corner, exact wide sandy entrance across the lower quarter, few corner rocks, agaves and shrubs precisely as in the target. Preserve any existing triangle positions and all steps and platform boundaries, tree trunk and hanging disc positions. Do not add decorations or enhance shine. Copy all four crop edges exactly."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L24/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "ce1f3356da32a407a7a3d3874b9ad7e7386400d46153db6b2880d2e9d51d0051",
+      "decoded_rgb_sha256": "4a2e3fd6a287ccb04f9c4036c9bbbc21a685b7e854627a6cfff17091f5e6777d",
+      "webp_sha256": "97febf84a62d2a2d098ffeb2b758b0b489573f5afb488b0536b4f3069eb03cca",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B04 Red Rock War Camp. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all circle and stripe markings, rock silhouettes, plants, flags and ropes, every ground edge, light/shadow shapes, and soft warm painterly palette. Do not introduce anything new. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle aged mortar detail, subtle cloth weave or wood grain where those materials already exist. Maintain the original red sandstone and indigo camp identity, gentle low-gloss illustrated surfaces and crisp readable material edges; no stronger contrast, no photographic texture, no gloss boost, no oversharpening, no new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L24 bottom_right: preserve cream cobblestone court and exact diagonal triangular inlay stripe across the upper-left, lower-right raised ivory-stone ceremonial platform with blue-trimmed steps, indigo canopy and red rug, one small tree with hanging gold discs, exact blue banners and red-rock margin precisely as in the target. Preserve any existing triangle positions and all steps and platform boundaries, tree trunk and hanging disc positions. Do not add decorations or enhance shine. Copy all four crop edges exactly."
+    }
+  ],
+  "qa": {
+    "date": "2026-10-02",
+    "engine": "Godot 4.7.2",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "checks": 46,
+    "failures": 0,
+    "layout_polygon_camera_unchanged": true,
+    "texture_release_and_reload": true,
+    "visual_review": "All five original/native pairs inspected. Ground material and building edge detail visibly improved; major roads, entrances, scene boundaries and runtime markers remain aligned. No apparent hard tile seams. Narrow feather zones retain some original texels. This controlled scene check does not establish natural crowded-combat readability.",
+    "rgba_mips_upper_bound_bytes": 50305616,
+    "graphics_backend": "private Xorg display :97, llvmpipe; physical GPU performance not benchmarked",
+    "evidence": [
+      {
+        "capture": "L24_center_original_2560x1440.png",
+        "sha256": "3e1e7b02b8cbdc9dcf720670907164510f353eaa970f57566e47c28ceb3be500"
+      },
+      {
+        "capture": "L24_center_native_2560x1440.png",
+        "sha256": "75f0159e2eff8ee9a082ee8cf2c9d408e5ce1cb078380106a1d5432297499f29"
+      },
+      {
+        "capture": "L24_northwest_original_2560x1440.png",
+        "sha256": "569fafb4658bda7904b9dac1d20c527a6cbcc4a2a8fee8318e171a6c329ad42c"
+      },
+      {
+        "capture": "L24_northwest_native_2560x1440.png",
+        "sha256": "95fe865cf55cdfbbaf9efffd4f5b0168d31b3d405e83238078495d9323140bcd"
+      },
+      {
+        "capture": "L24_northeast_original_2560x1440.png",
+        "sha256": "86d17781a27c4791b7928b0e9572b86cb2f4c934c25e37e317c38e6b8351a785"
+      },
+      {
+        "capture": "L24_northeast_native_2560x1440.png",
+        "sha256": "5286b20ad3d4d889012e84707b7209e81d3ab942362cf0dd007534d71cd00876"
+      },
+      {
+        "capture": "L24_southwest_original_2560x1440.png",
+        "sha256": "3ab0258acf7826def0d0883f1d0dc5570a383c0c4efc438f40bedfe5e4b0e7cb"
+      },
+      {
+        "capture": "L24_southwest_native_2560x1440.png",
+        "sha256": "9ccb74e34a2bff4e81ef5a3d898c1fc72f3b5f058fbab6db93102f4685e48e59"
+      },
+      {
+        "capture": "L24_southeast_original_2560x1440.png",
+        "sha256": "81f3b72bdc7c441fd9c2eb50cdb90b76a19d6698e548bad1565ee23d1dc06970"
+      },
+      {
+        "capture": "L24_southeast_native_2560x1440.png",
+        "sha256": "ca5da9ecac246f924b27a60022df411b5eb0162343645e93b9070a82abb29aa4"
+      }
+    ],
+    "log_sha256": "abab8ef121646df9a702597ff6659824d6bd65715a6748ba92de9e7bd73ad11f"
+  }
+}

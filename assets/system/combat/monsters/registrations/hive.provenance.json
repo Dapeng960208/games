@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "identity": "M17",
+      "visual_variant_index": 0,
+      "variant_id": "storybook_B02_variants_v1:M17:r01c08",
+      "file": "M17_variant_00_hd_v1.png",
+      "sha256": "0a6fbf14b6b7e75b5dd69c4a555d09d05a85daf3dc5e77c7439d9303717ff89e",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generation_method": "Native source-faithful repaint with targeted imagegen identity/registration repairs. Final candidate bytes unchanged; no raster enlargement, sharpening, alpha cleanup or pixel editing.",
+      "selected_revision": 1,
+      "candidate_artifact": "artifacts/variant-hd-v1/hive-batch/M17_variant_00_r1.png",
+      "original_manifest": "assets/generated/enemies/storybook_B02_variants_v1.regions.json",
+      "original_texture": "asset://enemies/storybook_B02_variants_v1.png",
+      "original_region": [
+        983,
+        8,
+        124,
+        121
+      ],
+      "original_rgba_sha256": "d9c9852e528178ed8607bd3bb3bcfca8003bae310150be07d9c4064632e8d0a8",
+      "prompt_sequence": [
+        "Use case: identity-preserve. Asset type: exact-source native-HD restoration of a single game enemy sprite. The supplied image is the original specific combat variant and is the sole identity authority. Repaint this SAME INDIVIDUAL at genuinely native high resolution, reconstructing clean hand-painted surfaces, fine edge curves and translucent wing veins. Do not merely resize/sharpen the original. Preserve the individual silhouette, proportions, body angle, wing arrangement, antenna shapes, limbs, pose, head/eye expression, clothing/accessories, palette, and all attached effects. Bright hand-painted fantasy 2.5D game style, high-angle three-quarter view, dark plum/brown fine outlines and solid volumetric shading matching the original. One complete sprite, no redesign, no other characters, no text or labels.\nComposition: 1254x1254 transparent canvas. The entire character and its held glowing orb must fit within the central 75% of the canvas with at least 12% clear margin on every side; complete visible body roughly 850-950 native pixels tall, never cropped. Real alpha transparency outside the art; preserve the existing tightly-contained magical orb halo because it is part of this specific source. No added floor, ground shadow, background, global glow, particles or props. Match the original width-to-height silhouette ratio. This individual is an orange-gold insect with a dark charcoal cap on its head, small warm amber face, two large dark brown oval eyes with tiny white highlights, two long curled golden antennae, slim segmented striped amber-and-dark-brown abdomen tapering down-left, and small fine jointed hanging legs. Its FOUR leaflike translucent mint-green wings spread up-left, up-right behind head, and two smaller lower-left wings; wing margins are warm ochre brown and veins pale yellow-gold. Preserve these broad pale mint leaf panels rather than turning them into feathers. A small orange light at image-right beside its face, and the much larger spherical bright GOLDEN YELLOW orb hangs directly below and a little right of the head, held by the bent front limbs, glowing white-yellow center with thin yellow halo. The largest upper-left wing is broad and rounded, upper-right wing taller pointed. Preserve exactly the source's flying diagonal pose, asymmetric wing shapes, two antenna curls, leg count and positions.\n"
+      ],
+      "alpha_region_threshold": 8,
+      "alpha_region_padding_pixels": 2,
+      "source_identity_review": "Original and native-HD same-scale source identity review passed on 2026-10-02. Selected source PNG bytes remain unchanged.",
+      "known_limit": "Alpha <= 8 outside selected visible body may include faint generator noise, excluded by supplied rectangle; body geometry tests and production GPU sampling remain separate gates.",
+      "revision_history": [],
+      "rendering_attention": "Validate semi-transparent wings and orb halos under actual 2K linear/mipmap sampling for colored edge noise or shimmer. Identity review does not prove GPU acceptance.",
+      "runtime_sampling_review": "Source registration, mirrored production rendering and skill-state 2K sampling passed; see docs/system/ui/enemy_variant_hd_batch_2.md for results and limits."
+    },
+    {
+      "identity": "M17",
+      "visual_variant_index": 1,
+      "variant_id": "storybook_B02_variants_v1:M17:r02c08",
+      "file": "M17_variant_01_hd_v1.png",
+      "sha256": "74f8440ed06d5c1e2937a858da2e8a2ab7f5d79c0ee1e285ce6322b4ad0d4914",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generation_method": "Native source-faithful repaint with targeted imagegen identity/registration repairs. Final candidate bytes unchanged; no raster enlargement, sharpening, alpha cleanup or pixel editing.",
+      "selected_revision": 1,
+      "candidate_artifact": "artifacts/variant-hd-v1/hive-batch/M17_variant_01_r1.png",
+      "original_manifest": "assets/generated/enemies/storybook_B02_variants_v1.regions.json",
+      "original_texture": "asset://enemies/storybook_B02_variants_v1.png",
+      "original_region": [
+        980,
+        140,
+        128,
+        127
+      ],
+      "original_rgba_sha256": "d8068d742b7dcbcff44698f371ad20ef8c908744a132b07ff60b16db3b709250",
+      "prompt_sequence": [
+        "Use case: identity-preserve. Asset type: exact-source native-HD restoration of a single game enemy sprite. The supplied image is the original specific combat variant and is the sole identity authority. Repaint this SAME INDIVIDUAL at genuinely native high resolution, reconstructing clean hand-painted surfaces, fine edge curves and translucent wing veins. Do not merely resize/sharpen the original. Preserve the individual silhouette, proportions, body angle, wing arrangement, antenna shapes, limbs, pose, head/eye expression, clothing/accessories, palette, and all attached effects. Bright hand-painted fantasy 2.5D game style, high-angle three-quarter view, dark plum/brown fine outlines and solid volumetric shading matching the original. One complete sprite, no redesign, no other characters, no text or labels.\nComposition: 1254x1254 transparent canvas. The entire character and its held glowing orb must fit within the central 75% of the canvas with at least 12% clear margin on every side; complete visible body roughly 850-950 native pixels tall, never cropped. Real alpha transparency outside the art; preserve the existing tightly-contained magical orb halo because it is part of this specific source. No added floor, ground shadow, background, global glow, particles or props. Match the original width-to-height silhouette ratio. This individual is a rust-orange insect with a warm orange-red head, dark crown, two large brown oval eyes and TWO DISTINCT SHORTER ANTENNAE ending in thick club-shaped pale orange/cream bulbs. The clubs splay upwards like the source; do NOT substitute long curled tendrils. Slim striped amber/dark segmented abdomen tapers down-left with small thin jointed legs hanging. FOUR translucent wings: two tall upper wings and two small lower wings spreading to image-left; the top wings have saturated DARK LEAF-GREEN outer fields, bright yellow-green centers and GOLDEN orange branching veins. Preserve source's sharper triangular green wings and original arrangement. A small amber glowing light next to right cheek, and one much larger bright LIME GREEN spherical orb under its head/front claws, white-yellow central glare and thin lime halo. Preserve source's exact diagonal flying stance, wing arrangement, club antenna shapes and green/yellow palette.\n"
+      ],
+      "alpha_region_threshold": 8,
+      "alpha_region_padding_pixels": 2,
+      "source_identity_review": "Original and native-HD same-scale source identity review passed on 2026-10-02. Selected source PNG bytes remain unchanged.",
+      "known_limit": "Alpha <= 8 outside selected visible body may include faint generator noise, excluded by supplied rectangle; body geometry tests and production GPU sampling remain separate gates.",
+      "revision_history": [],
+      "rendering_attention": "Validate semi-transparent wings and orb halos under actual 2K linear/mipmap sampling for colored edge noise or shimmer. Identity review does not prove GPU acceptance.",
+      "runtime_sampling_review": "Source registration, mirrored production rendering and skill-state 2K sampling passed; see docs/system/ui/enemy_variant_hd_batch_2.md for results and limits."
+    },
+    {
+      "identity": "M17",
+      "visual_variant_index": 2,
+      "variant_id": "storybook_B02_variants_v1:M17:r03c08",
+      "file": "M17_variant_02_hd_v1.png",
+      "sha256": "cda06866a90e1f521009a9616845508d861bd0333d631c4ab9722c15c2685ce8",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generation_method": "Native source-faithful repaint with targeted imagegen identity/registration repairs. Final candidate bytes unchanged; no raster enlargement, sharpening, alpha cleanup or pixel editing.",
+      "selected_revision": 2,
+      "candidate_artifact": "artifacts/variant-hd-v1/hive-batch/M17_variant_02_r2.png",
+      "original_manifest": "assets/generated/enemies/storybook_B02_variants_v1.regions.json",
+      "original_texture": "asset://enemies/storybook_B02_variants_v1.png",
+      "original_region": [
+        975,
+        280,
+        135,
+        122
+      ],
+      "original_rgba_sha256": "a669eff2d8e604b9f0693a33d0bdc8f0211843493fa057174d35d3097511ecb8",
+      "prompt_sequence": [
+        "Use case: identity-preserve. Asset type: exact-source native-HD restoration of a single game enemy sprite. The supplied image is the original specific combat variant and is the sole identity authority. Repaint this SAME INDIVIDUAL at genuinely native high resolution, reconstructing clean hand-painted surfaces, fine edge curves and translucent wing veins. Do not merely resize/sharpen the original. Preserve the individual silhouette, proportions, body angle, wing arrangement, antenna shapes, limbs, pose, head/eye expression, clothing/accessories, palette, and all attached effects. Bright hand-painted fantasy 2.5D game style, high-angle three-quarter view, dark plum/brown fine outlines and solid volumetric shading matching the original. One complete sprite, no redesign, no other characters, no text or labels.\nComposition: 1254x1254 transparent canvas. The entire character and its held glowing orb must fit within the central 75% of the canvas with at least 12% clear margin on every side; complete visible body roughly 850-950 native pixels tall, never cropped. Real alpha transparency outside the art; preserve the existing tightly-contained magical orb halo because it is part of this specific source. No added floor, ground shadow, background, global glow, particles or props. Match the original width-to-height silhouette ratio. This exact individual has an olive-yellow face, dark charcoal blue-green cap/head shell with a thin gold rim, ordinary large dark oval eyes, and TWO VERY THIN delicate antennae ending in inward little curls (not bulbs, not luminous). Slim segmented dark green-and-ochre abdomen tapers diagonally down-left; preserve the small hanging jointed olive/brown legs. The visible leaf-green wings have DARK DESATURATED BLUE-GREEN outer edges and narrow yellow-green veins: a broad upper-left leaf wing, a tall slender upright far wing above the head, and smaller leftward lower wing. Preserve the exact asymmetry and original source count; any hidden wing stays hidden. Small golden glowing bead at image-right beside its face, and larger LIME GREEN magic orb with white-yellow core just below the face/front claws, thin lime halo. Face is modest size exactly as original, not enlarged to a toy mascot. Keep source's flying diagonal angle, narrow curled antennae and dark moss/teal/yellow-green palette.\n",
+        "Use case: identity-preserve. Image 1 is the exact original game enemy variant and is the sole identity authority. Image 2 is an already source-reviewed native-HD restoration of it. Keep the identical individual in image 2: exact face, every wing/antenna/limb or costume/hat/weapon, original palette, all attached original effects, camera, pose, and complete silhouette. Do not change character details. This edit fixes transparent canvas registration only.\nCRITICAL CANVAS LAYOUT: Output a SQUARE 1254 by 1254 transparent image. Repaint this COMPLETE sprite wholly inside the CENTRAL 60% OF THE CANVAS, approximately 700-750 pixels in total visible body height. Leave at least 250 pixels of COMPLETELY EMPTY TRANSPARENCY above, below, left and right of the entire silhouette and all attached effects, weapon/antenna tips and feet. The current sprite is too close to its canvas edges: make it visibly much smaller within a much larger empty transparent canvas. ALL of the old full character must be visible, unchanged in its proportions. No part may extend into the outer 20% border. Native detailed raster repaint with clean hand-painted surfaces, not a low-res enlargement or sharpened pixel copy.\nKeep original soft hand-painted 2.5D art. Real alpha=0 background and spacious transparent margins. No ground or cast shadow, no background fill, no frame, labels, text, particles, new props or stronger outlines/glow. Preserve all details exactly, and preserve the transparent holes between appendages. One sprite only; do not crop.\n"
+      ],
+      "alpha_region_threshold": 8,
+      "alpha_region_padding_pixels": 2,
+      "source_identity_review": "Original and native-HD same-scale source identity review passed on 2026-10-02. Selected source PNG bytes remain unchanged.",
+      "known_limit": "Alpha <= 8 outside selected visible body may include faint generator noise, excluded by supplied rectangle; body geometry tests and production GPU sampling remain separate gates.",
+      "revision_history": [
+        {
+          "revision": 1,
+          "disposition": "superseded",
+          "reason": "Original-aspect registration rectangle exceeded texture bounds; r2 regenerated transparent margins."
+        }
+      ],
+      "rendering_attention": "Validate semi-transparent wings and orb halos under actual 2K linear/mipmap sampling for colored edge noise or shimmer. Identity review does not prove GPU acceptance.",
+      "runtime_sampling_review": "Source registration, mirrored production rendering and skill-state 2K sampling passed; see docs/system/ui/enemy_variant_hd_batch_2.md for results and limits."
+    },
+    {
+      "identity": "M17",
+      "visual_variant_index": 6,
+      "variant_id": "storybook_B02_variants_v1:M17:r07c08",
+      "file": "M17_variant_06_hd_v1.png",
+      "sha256": "d4c24fe1854e6f68bd677e079d94262d944e07536c9ff4a7dc4dc635cd582b49",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generation_method": "Native source-faithful repaint with targeted imagegen identity/registration repairs. Final candidate bytes unchanged; no raster enlargement, sharpening, alpha cleanup or pixel editing.",
+      "selected_revision": 2,
+      "candidate_artifact": "artifacts/variant-hd-v1/hive-batch/M17_variant_06_r2.png",
+      "original_manifest": "assets/generated/enemies/storybook_B02_variants_v1.regions.json",
+      "original_texture": "asset://enemies/storybook_B02_variants_v1.png",
+      "original_region": [
+        975,
+        831,
+        133,
+        125
+      ],
+      "original_rgba_sha256": "0726f7c7dba568e506b07ad345388db7c69fcbf6137f89896ccd1aaecf017118",
+      "prompt_sequence": [
+        "Use case: identity-preserve. Asset type: exact-source native-HD restoration of a single game enemy sprite. The supplied image is the original specific combat variant and is the sole identity authority. Repaint this SAME INDIVIDUAL at genuinely native high resolution, reconstructing clean hand-painted surfaces, fine edge curves and translucent wing veins. Do not merely resize/sharpen the original. Preserve the individual silhouette, proportions, body angle, wing arrangement, antenna shapes, limbs, pose, head/eye expression, clothing/accessories, palette, and all attached effects. Bright hand-painted fantasy 2.5D game style, high-angle three-quarter view, dark plum/brown fine outlines and solid volumetric shading matching the original. One complete sprite, no redesign, no other characters, no text or labels.\nComposition: 1254x1254 transparent canvas. The entire character and its held glowing orb must fit within the central 75% of the canvas with at least 12% clear margin on every side; complete visible body roughly 850-950 native pixels tall, never cropped. Real alpha transparency outside the art; preserve the existing tightly-contained magical orb halo because it is part of this specific source. No added floor, ground shadow, background, global glow, particles or props. Match the original width-to-height silhouette ratio. This exact individual has a golden-yellow face, plain brown/gold dark cap, two large dark oval eyes and TWO LONG slender gold antennae with curled drooping tips, no thick antenna clubs. Slender amber-and-dark-brown segmented abdomen points down-left with thin dangling jointed legs. Broad mint and yellow translucent insect leaf wings spread upwards and leftwards, DARK TEAL-GREEN borders and pale cream-yellow inner leaf panels/veins. Visible silhouette has the large broad top-left wing, upright top-right wing and small lower-left wings in precisely the source arrangement. No ochre-brown borders: retain this specific dark teal/mint-edged identity. Small orange glowing bead beside face at image-right, large GOLDEN YELLOW/orange orb with brilliant pale center hanging directly below face/front limbs. Preserve exact orb size relative to face and wings, original pose and appendage positions. No invented helmet crest or new markings.\n",
+        "Use case: identity-preserve. Image 1 is the exact original game enemy variant and is the sole identity authority. Image 2 is an already source-reviewed native-HD restoration of it. Keep the identical individual in image 2: exact face, every wing/antenna/limb or costume/hat/weapon, original palette, all attached original effects, camera, pose, and complete silhouette. Do not change character details. This edit fixes transparent canvas registration only.\nCRITICAL CANVAS LAYOUT: Output a SQUARE 1254 by 1254 transparent image. Repaint this COMPLETE sprite wholly inside the CENTRAL 60% OF THE CANVAS, approximately 700-750 pixels in total visible body height. Leave at least 250 pixels of COMPLETELY EMPTY TRANSPARENCY above, below, left and right of the entire silhouette and all attached effects, weapon/antenna tips and feet. The current sprite is too close to its canvas edges: make it visibly much smaller within a much larger empty transparent canvas. ALL of the old full character must be visible, unchanged in its proportions. No part may extend into the outer 20% border. Native detailed raster repaint with clean hand-painted surfaces, not a low-res enlargement or sharpened pixel copy.\nKeep original soft hand-painted 2.5D art. Real alpha=0 background and spacious transparent margins. No ground or cast shadow, no background fill, no frame, labels, text, particles, new props or stronger outlines/glow. Preserve all details exactly, and preserve the transparent holes between appendages. One sprite only; do not crop.\n"
+      ],
+      "alpha_region_threshold": 8,
+      "alpha_region_padding_pixels": 2,
+      "source_identity_review": "Original and native-HD same-scale source identity review passed on 2026-10-02. Selected source PNG bytes remain unchanged.",
+      "known_limit": "Alpha <= 8 outside selected visible body may include faint generator noise, excluded by supplied rectangle; body geometry tests and production GPU sampling remain separate gates.",
+      "revision_history": [
+        {
+          "revision": 1,
+          "disposition": "superseded",
+          "reason": "Original-aspect registration rectangle exceeded texture bounds; r2 regenerated transparent margins."
+        }
+      ],
+      "rendering_attention": "Validate semi-transparent wings and orb halos under actual 2K linear/mipmap sampling for colored edge noise or shimmer. Identity review does not prove GPU acceptance.",
+      "runtime_sampling_review": "Source registration, mirrored production rendering and skill-state 2K sampling passed; see docs/system/ui/enemy_variant_hd_batch_2.md for results and limits."
+    },
+    {
+      "identity": "M17",
+      "visual_variant_index": 7,
+      "variant_id": "storybook_B02_variants_v1:M17:r08c08",
+      "file": "M17_variant_07_hd_v1.png",
+      "sha256": "d14cdb3d3546af64724032a0c9cc9ecac65e6bf8c943a1e5fa8136b03b163dfb",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generation_method": "Native source-faithful repaint with targeted imagegen identity/registration repairs. Final candidate bytes unchanged; no raster enlargement, sharpening, alpha cleanup or pixel editing.",
+      "selected_revision": 4,
+      "candidate_artifact": "artifacts/variant-hd-v1/hive-batch/M17_variant_07_r4.png",
+      "original_manifest": "assets/generated/enemies/storybook_B02_variants_v1.regions.json",
+      "original_texture": "asset://enemies/storybook_B02_variants_v1.png",
+      "original_region": [
+        994,
+        970,
+        114,
+        123
+      ],
+      "original_rgba_sha256": "ef710e60126b5580beffae0cff210809758c81d98fa706077c2b117334f77fb9",
+      "prompt_sequence": [
+        "Use case: identity-preserve. Asset type: exact-source native-HD restoration of a single game enemy sprite. The supplied image is the original specific combat variant and is the sole identity authority. Repaint this SAME INDIVIDUAL at genuinely native high resolution, reconstructing clean hand-painted surfaces, fine edge curves and translucent wing veins. Do not merely resize/sharpen the original. Preserve the individual silhouette, proportions, body angle, wing arrangement, antenna shapes, limbs, pose, head/eye expression, clothing/accessories, palette, and all attached effects. Bright hand-painted fantasy 2.5D game style, high-angle three-quarter view, dark plum/brown fine outlines and solid volumetric shading matching the original. One complete sprite, no redesign, no other characters, no text or labels.\nComposition: 1254x1254 transparent canvas. The entire character and its held glowing orb must fit within the central 75% of the canvas with at least 12% clear margin on every side; complete visible body roughly 850-950 native pixels tall, never cropped. Real alpha transparency outside the art; preserve the existing tightly-contained magical orb halo because it is part of this specific source. No added floor, ground shadow, background, global glow, particles or props. Match the original width-to-height silhouette ratio. This specific individual has a warm golden amber face, dark brown/black small cap over head, two dark oval eyes, TWO long thin golden antennae ending in delicate hooked droops. Its segmented gold/dark brown abdomen tapers down-left with original small dangling jointed legs. Preserve its particular WIDE HORIZONTAL near upper-left wing and its narrower upper-right wing leaning up-right: translucent MINT GREEN with PALE CREAM-YELLOW internal leaf cells, dark teal green thin borders. Preserve all the smaller lower-left wing tips and the thin upright golden pointed form at top center that is already present in the source. Do not replace this source's wing geometry with a different insect variant. One small amber light just right of cheek and a large round LIME GREEN glowing orb, yellow-white bright center and restrained soft lime halo, under its front limbs. This variant's large orb is green, not orange/gold. Keep original count and arrangement of wings and appendages. Restrained soft hand-painted source shading, no heavier black outlines, no additional glow amplification.\n",
+        "Use case: identity-preserve. Image 1 is the exact original game enemy variant and is the sole identity authority. Image 2 is an already source-reviewed native-HD restoration of it. Keep the identical individual in image 2: exact face, every wing/antenna/limb or costume/hat/weapon, original palette, all attached original effects, camera, pose, and complete silhouette. Do not change character details. This edit fixes transparent canvas registration only.\nCRITICAL CANVAS LAYOUT: Output a SQUARE 1254 by 1254 transparent image. Repaint this COMPLETE sprite wholly inside the CENTRAL 60% OF THE CANVAS, approximately 700-750 pixels in total visible body height. Leave at least 250 pixels of COMPLETELY EMPTY TRANSPARENCY above, below, left and right of the entire silhouette and all attached effects, weapon/antenna tips and feet. The current sprite is too close to its canvas edges: make it visibly much smaller within a much larger empty transparent canvas. ALL of the old full character must be visible, unchanged in its proportions. No part may extend into the outer 20% border. Native detailed raster repaint with clean hand-painted surfaces, not a low-res enlargement or sharpened pixel copy.\nKeep original soft hand-painted 2.5D art. Real alpha=0 background and spacious transparent margins. No ground or cast shadow, no background fill, no frame, labels, text, particles, new props or stronger outlines/glow. Preserve all details exactly, and preserve the transparent holes between appendages. One sprite only; do not crop.\n",
+        "Use case: identity-preserve. Image 1 is the exact original insect combat sprite and controls its silhouette. Image 2 is its native-HD repaint, already matching the individual details. Make a small SOURCE-PROPORTION repair, keeping every existing detail and truly transparent background:\nThe original's COMPLETE visible silhouette including wing tips, antenna tips and light-orb halo is TALLER THAN IT IS WIDE: width 114 units for height 123 units (width/height 0.927). The repaint is too wide at almost 1:1. Restore the original 114:123 silhouette by moving the outer left wing tips and outer right antenna curl inward a small amount, narrowing their spread about 7%, while keeping the body/head/orb sizes and full vertical extent unchanged. Preserve the wings' original individual broad mint-green leaf shapes and teal borders, the two curled golden antennae, the thin gold pointed upright ornament behind the head, the dark cap, small golden face, segmented body, every leg and the LIME GREEN orb. Do not delete, shorten vertically, replace or add any appendage. No global resize, no sharpening, no glow amplification. Repaint clean native detail, with source's diagonal flying pose and exact relative positions. Match the tall original width-to-height silhouette more faithfully.\nCanvas remains 1254x1254 transparent. Keep the complete roughly 760px-tall sprite in the middle, with at least 200px clear alpha=0 margin each side. Ensure total visible art width including all halo and antennae is no more than 0.92 times total visible height. No floor, shadow, new props, text, border, labels or background.\n",
+        "Use case: identity-preserve. Image 1 is the original game sprite. Image 2 is its source-reviewed native-HD repaint. Restore the original complete silhouette aspect ratio very subtly, keeping exactly the same insect individual. The original is only SLIGHTLY TALLER than wide, overall width/height = 0.927. Keep the complete horizontal wing spread and antenna spread essentially the SAME as image 2. Do NOT squeeze or narrow the wings. Instead, lengthen the upper-right tall green wing upward a small amount, roughly six percent of the full sprite height, to match the source's taller silhouette. Preserve every other body, head, limb, golden upright ornament and orb position and dimension. The overall art should have about 745 pixels width and 805 pixels height, neither square nor extremely skinny. Reconstruct native-painted detail, do not simply enlarge/sharpen a bitmap.\nPreserve exact source details: golden face, brown cap, TWO long curled golden antennae, diagonal segmented body, all thin jointed legs, mint leaf wings with teal borders, the slender upright golden point behind wings, small golden cheek light and large LIME GREEN magical orb. Do not add appendages, redesign eyes, change palette, darken edges or amplify glow. Keep soft hand-painted high-angle three-quarter fantasy 2.5D style.\nOne complete sprite centered on 1254x1254 genuinely transparent canvas with at least 180px empty margin all around. No ground, shadow, scene, text, labels, border or new effects.\n"
+      ],
+      "alpha_region_threshold": 8,
+      "alpha_region_padding_pixels": 2,
+      "source_identity_review": "Original and native-HD same-scale source identity review passed on 2026-10-02. Selected source PNG bytes remain unchanged.",
+      "known_limit": "Alpha <= 8 outside selected visible body may include faint generator noise, excluded by supplied rectangle; body geometry tests and production GPU sampling remain separate gates.",
+      "revision_history": [
+        {
+          "revision": 1,
+          "disposition": "superseded",
+          "reason": "Registration rectangle exceeded texture bounds."
+        },
+        {
+          "revision": 2,
+          "disposition": "superseded",
+          "reason": "Wide silhouette required excess vertical allowance and reduced visible height to 168.62px."
+        },
+        {
+          "revision": 3,
+          "disposition": "rejected",
+          "reason": "Over-narrowed wings; r4 branched from r2 instead and restored source silhouette height."
+        }
+      ],
+      "rendering_attention": "Validate semi-transparent wings and orb halos under actual 2K linear/mipmap sampling for colored edge noise or shimmer. Identity review does not prove GPU acceptance.",
+      "runtime_sampling_review": "Source registration, mirrored production rendering and skill-state 2K sampling passed; see docs/system/ui/enemy_variant_hd_batch_2.md for results and limits."
+    },
+    {
+      "identity": "M22",
+      "visual_variant_index": 5,
+      "variant_id": "storybook_B03_variants_v1:M22:r06c04",
+      "file": "M22_variant_05_hd_v1.png",
+      "sha256": "5aa12dd29302c95c39cdad993de3092ed8b15731bef19d3b0231fcd0cb922f26",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generation_method": "Native source-faithful repaint with targeted imagegen identity/registration repairs. Final candidate bytes unchanged; no raster enlargement, sharpening, alpha cleanup or pixel editing.",
+      "selected_revision": 3,
+      "candidate_artifact": "artifacts/variant-hd-v1/hive-batch/M22_variant_05_r3.png",
+      "original_manifest": "assets/generated/enemies/storybook_B03_variants_v1.regions.json",
+      "original_texture": "asset://enemies/storybook_B03_variants_v1.png",
+      "original_region": [
+        424,
+        674,
+        117,
+        121
+      ],
+      "original_rgba_sha256": "e71b7ef93f15db0722619b462c1719e75a25edab214c6233ec8e90214016d29b",
+      "prompt_sequence": [
+        "Use case: identity-preserve. Asset type: native-HD restoration of one specific original fantasy game enemy sprite. Image 1 is the original low-resolution combat variant and is the only identity authority. Repaint this SAME INDIVIDUAL with native high-resolution hand-painted surfaces, fine clean edges and sculpted 2.5D shading, not resizing or sharpening. Bright source-faithful fantasy cartoon 2.5D style, warm lighting, high-angle three-quarter view, source's soft outlines and palette. Preserve exact silhouette, head proportions, costume, weapon geometry, hands, feet, pose and viewing direction. No redesign.\nSubject invariants: a squat grey-green zombie cannon carrier with a skeletal blunt-nosed face, the original two small pale yellow-orange lit eye interiors in dark sockets, uneven grin and sparse teeth. It wears a PURPLE PATCHWORK JESTER-LIKE HOOD with multiple sagging polygonal lobes and orange/yellow triangular patches across the crown, as in the source; NOT a chef hat, pumpkin head, bare skull, leafy hair, or wizard cone. Purple hood/scarf wraps shoulders, brown leather belts and battered brown trouser panels, two chunky brown boots in exact asymmetric crouching positions. Image-LEFT upper arm/sleeve is PALE DIRTY CREAM FABRIC with tears, stitches and muted rusty scuffs; preserve the clearly exposed pale sleeve and light grey-green hands. Both hands hold the huge horizontal ORANGE CANNON pointing image-RIGHT and slightly toward viewer. Broad orange pumpkin-like barrel with distinct purple diamond/triangular painted patches, thick purple-grey metal fastening rings, large orange rim with dark purple interior; muzzle visibly holds the original cluster of small round PURPLE/MAGENTA, CYAN, GREEN/YELLOW and ORANGE cannonballs. Body is behind the left half of the barrel. Match source size ratios and subtle worn cloth/wood/metal texture. No extra equipment, no new ornament, no extra straw, no eye-glow increase.\nComposition: one complete isolated sprite on truly transparent 1254x1254 canvas. Full body including the cannon and both boots occupies the central 75% with 12% clear margins on all sides; body should be 850-950 native pixels tall. Exact original width/height silhouette and all limbs/boots completely visible. Real alpha=0 outside the sprite. No floor, ground shadow, background, particles, glow halo, grid, text, watermark or frame.\n",
+        "Use case: identity-preserve. Image 1 is the exact original low-resolution game enemy and the identity authority. Image 2 is a native-HD repaint of that same individual. Edit image 2 with ONE targeted correction: RESTORE the original second hand at the UPPER LEFT BREECH of the cannon. In image 1, a small pale grey-green/cream hand with curled visible knuckles braces over the top of the cannon's rear body, immediately image-right of the larger left hand that grips the handle. It is NOT a silver metal fitting. Render that original small curled hand visibly in pale green-grey skin, positioned exactly like the original above the barrel's left rear edge, connected plausibly to the mostly concealed other arm. Keep the larger visible hand and pale ragged sleeve unchanged. TWO hands total, both in original positions; no extra arms or fingers.\nPreserve everything else from image 2: grey-green zombie face with restrained small orange eye interiors, purple-orange patchwork floppy hood and scarf, pale ripped sleeve, brown leather belts/trousers and both boots, original large orange barrel with purple triangular patches, orange muzzle and colored ammunition, source camera angle, stance and silhouette. Do not change outfit, add straw, amplify glow, redesign cannon, or further darken outlines. Keep soft bright native hand-painted 2.5D detail and real alpha transparency.\nOne complete isolated full-body sprite on a transparent 1254x1254 canvas, generous clear margin around all hat/boots/muzzle. No floor, cast shadow, background, particles, halo, text or labels. Do not crop any part.\n",
+        "Use case: identity-preserve. Image 1 is the original combat sprite and controls every identity/pose detail. Image 2 is a native-HD candidate with a wrongly placed hand. Make only this precise hand-placement repair:\n1. REMOVE the invented row of pale fingers from the TOP of the cannon next to the chin (candidate around x745,y520). Restore the unoccupied orange barrel silhouette there.\n2. The far hand belongs at the SMALL REAR BREECH FITTING immediately beside the near gripping hand, LOW on the LEFT SIDE of the cannon (candidate around x485,y715). Replace that shiny purple/silver roughly pentagonal metal plate with the original SMALL PALE GREY-CREAM CURLED HAND. Source image 1 clearly shows the white/pale knuckles there, just right of the larger near green hand. The far hand is wrapped across the rear cannon/handle at that lower spot; its arm stays occluded behind the weapon/body. It must not be on the upper barrel, muzzle, cheek or shoulder. Two hands total, not three.\nKeep the precise existing rest of image 2: same patched purple/orange floppy hood, compact grey-green zombie face with source orange eye interiors, ragged cream near sleeve, crouching brown legs and two boots, orange/purple cannon and multicolored ammunition, camera, scale, native detail and genuinely transparent background. Preserve proportions and source silhouette. No redesign, outline darkening, new glow, floor, cast shadow, text or background. Keep full sprite completely inside transparent canvas.\n"
+      ],
+      "alpha_region_threshold": 8,
+      "alpha_region_padding_pixels": 2,
+      "source_identity_review": "Original and native-HD same-scale source identity review passed on 2026-10-02. Selected source PNG bytes remain unchanged.",
+      "known_limit": "Alpha <= 8 outside selected visible body may include faint generator noise, excluded by supplied rectangle; body geometry tests and production GPU sampling remain separate gates.",
+      "revision_history": [
+        {
+          "revision": 1,
+          "disposition": "rejected",
+          "reason": "Missing original small far hand at rear grip."
+        },
+        {
+          "revision": 2,
+          "disposition": "rejected",
+          "reason": "Added far hand at incorrect top-of-barrel position."
+        }
+      ],
+      "rendering_attention": "Check complete weapon, two hands/grip, both boots, edge alpha and horizontal flips under actual 2K sampling.",
+      "runtime_sampling_review": "Source registration, mirrored production rendering and skill-state 2K sampling passed; see docs/system/ui/enemy_variant_hd_batch_2.md for results and limits."
+    },
+    {
+      "identity": "M22",
+      "visual_variant_index": 7,
+      "variant_id": "storybook_B03_variants_v1:M22:r08c04",
+      "file": "M22_variant_07_hd_v1.png",
+      "sha256": "abfb4276ecd4c47e2538a7a07ea0bb69f7c9abba1f35858288d5d8b8abb66852",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "generator": "OpenAI built-in image_gen",
+      "generation_method": "Native source-faithful repaint with targeted imagegen identity/registration repairs. Final candidate bytes unchanged; no raster enlargement, sharpening, alpha cleanup or pixel editing.",
+      "selected_revision": 3,
+      "candidate_artifact": "artifacts/variant-hd-v1/hive-batch/M22_variant_07_r3.png",
+      "original_manifest": "assets/generated/enemies/storybook_B03_variants_v1.regions.json",
+      "original_texture": "asset://enemies/storybook_B03_variants_v1.png",
+      "original_region": [
+        420,
+        937,
+        137,
+        126
+      ],
+      "original_rgba_sha256": "7c6a88f6665f66114309c2a7d7849ec24bbca699b8cab034905b49e1cf55ed42",
+      "prompt_sequence": [
+        "Use case: identity-preserve. Asset type: exact-source native-high-resolution restoration of ONE original combat enemy sprite for a bright hand-painted 2.5D fantasy game. The supplied original is the only identity authority. Repaint THIS SAME INDIVIDUAL at native resolution; clean reconstructed painterly detail rather than resizing or sharpening. Keep the original costume, face anatomy, weapon, stance, silhouette, palette, proportions and every limb. Soft source-faithful shading and fine outlines, high camera three-quarter front view. No redesign.\nThe individual: squat GREY-GREEN zombie with small pale yellow-orange eyes in dark sockets, black triangular nose and compact crooked skeletal grin, grey-green skin. A floppy ragged PURPLE POINTED WIZARD-LIKE HOOD/HAT with several irregular crumpled points on top and sagging lobe to the upper left, small orange stitched patches, wrapped purple scarf collar. Keep this exact distinctive tall irregular hat silhouette; not a chef hat, pumpkin head, or jester hood with many orange crown patches. Its image-LEFT sleeve is ORANGE patched cloth, forearm is grey-green with dark cuff, hand grips the cannon handle. The second grey-green hand is visibly braced around the upper breech at the cannon left side. Brown belts and purple/brown patched lower coat, squat bent legs and two scuffed brown boots in the original positions, left boot forward. Huge orange cylindrical cannon runs across the body and projects toward image-RIGHT and viewer: broad surface with LARGE pink-purple and lavender harlequin diamonds/triangles, warm orange segments and dark purple fastening rings. Thick orange muzzle rim, dark purple inner barrel, clustered round magenta/purple, cyan/teal, yellow/orange colorful ammunition clearly visible inside. Match the original cannon dimensions and angle, the small underside loop, and the exact placement of its hands and boots. Source eyes have restrained small bright centers, no increase in glow. Do not add straw, hair, spikes, badges, armor, or props.\nOne isolated complete sprite on genuinely transparent 1254x1254 canvas, full silhouette including feet, hat and cannon occupying only the central 75% with at least 12% transparent margin all around. Body 850-950 native pixels tall. No scene, floor, shadow, halo, smoke, particles, text, watermark, grid or border. Preserve source silhouette width/height ratio. No cropped boot, hat tip, or muzzle.\n",
+        "Use case: identity-preserve. Image 1 is the exact original game sprite. Image 2 is the native-HD repaint to correct. Keep the same individual, costume, face, hat, cannon, ammunition and soft native hand-painted 2.5D quality. Repair only pose details to match image 1:\nA. REMOVE the invented grey-green knuckles resting on TOP of the cannon beside the chin. The original's far grip is low at the rear left breech, immediately beside the large near green hand: retain the small dark-purple rear grip/fitting shape there exactly like image 1, with any far fingers concealed at that low grip. No visible hand on the barrel top.\nB. Match original COMPACT ASYMMETRIC CROUCHED STANCE. Image-left boot remains the forward planted boot. Move the image-RIGHT/rear leg and boot inward and upward, tucking it partly behind the underside/rear of the big cannon, so only the small original rear boot is visible near the body's center. Do not leave two large widely spread feet on the same baseline as the candidate currently has. Source rear boot is higher than the near boot, narrower, partly occluded by the barrel; preserve that exact visible silhouette. Keep the cannon underside loop intact.\nEverything else unchanged: original grey-green zombie with restrained orange-yellow eye interiors, irregular floppy tall purple pointed hood with orange stitched patches, orange near sleeve, purple/brown lower costume, big orange cannon with pink/lavender geometric patches and colored balls. No new accessories, no chef hat, no pumpkin head, no straw. Truly transparent full-body canvas, all parts in frame. No ground, shadow, halo, text or border.\n",
+        "Use case: identity-preserve. Image 1 is the exact original game enemy variant and is the sole identity authority. Image 2 is an already source-reviewed native-HD restoration of it. Keep the identical individual in image 2: exact face, every wing/antenna/limb or costume/hat/weapon, original palette, all attached original effects, camera, pose, and complete silhouette. Do not change character details. This edit fixes transparent canvas registration only.\nCRITICAL CANVAS LAYOUT: Output a SQUARE 1254 by 1254 transparent image. Repaint this COMPLETE sprite wholly inside the CENTRAL 60% OF THE CANVAS, approximately 700-750 pixels in total visible body height. Leave at least 250 pixels of COMPLETELY EMPTY TRANSPARENCY above, below, left and right of the entire silhouette and all attached effects, weapon/antenna tips and feet. The current sprite is too close to its canvas edges: make it visibly much smaller within a much larger empty transparent canvas. ALL of the old full character must be visible, unchanged in its proportions. No part may extend into the outer 20% border. Native detailed raster repaint with clean hand-painted surfaces, not a low-res enlargement or sharpened pixel copy.\nKeep original soft hand-painted 2.5D art. Real alpha=0 background and spacious transparent margins. No ground or cast shadow, no background fill, no frame, labels, text, particles, new props or stronger outlines/glow. Preserve all details exactly, and preserve the transparent holes between appendages. One sprite only; do not crop.\n"
+      ],
+      "alpha_region_threshold": 8,
+      "alpha_region_padding_pixels": 2,
+      "source_identity_review": "Original and native-HD same-scale source identity review passed on 2026-10-02. Selected source PNG bytes remain unchanged.",
+      "known_limit": "Alpha <= 8 outside selected visible body may include faint generator noise, excluded by supplied rectangle; body geometry tests and production GPU sampling remain separate gates.",
+      "revision_history": [
+        {
+          "revision": 1,
+          "disposition": "rejected",
+          "reason": "Invented top-of-barrel hand and too-wide same-baseline boot stance."
+        },
+        {
+          "revision": 2,
+          "disposition": "superseded",
+          "reason": "Identity repairs accepted; registration rectangle required more transparent margin."
+        }
+      ],
+      "rendering_attention": "Check complete weapon, two hands/grip, both boots, edge alpha and horizontal flips under actual 2K sampling.",
+      "runtime_sampling_review": "Source registration, mirrored production rendering and skill-state 2K sampling passed; see docs/system/ui/enemy_variant_hd_batch_2.md for results and limits."
+    }
+  ]
+}

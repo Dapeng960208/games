@@ -7,7 +7,6 @@ build/
 *.log
 # Local screenshots, recordings and acceptance evidence
 artifacts/
-assets/audio/previews/
 # Source tests, active documents and development tools are versioned.
 __pycache__/
 *.pyc
@@ -17,14 +16,6 @@ assets/**/sources/
 .env
 .env.*
 !.env.example
-
-# Rejected generation drafts and local publication transport records
-assets/generated/heroes/*_rejected_*
-assets/generated/heroes/CH01_directional_v1_blobs.json
-assets/generated/heroes/CH02_CH03_directional_blob_manifest.json
-assets/generated/heroes/CH02_directional_s_se_v1.*
-assets/generated/heroes/CH02_directional_e_sw_v1.*
-assets/generated/heroes/CH03_directional_e_sw_v1.*
 
 # Managed QA output if a workspace-local layout is used
 /_test_output/

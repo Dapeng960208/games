@@ -1,0 +1,34 @@
+{
+  "tool": "built-in image_gen",
+  "created_utc": "2026-09-30",
+  "source": "C:/Users/13326/.codex/generated_images/01a0f2a4-84e7-7401-87d3-873211921744/exec-3f8f3969-b5cd-40ef-96f1-bc1cb79beff0.png",
+  "prompt": "Use case: stylized-concept. Asset type: raw terrain texture bank for a bright handpainted cartoon fantasy 2.5D game. One WIDE image with exactly THREE equally sized SQUARE terrain-texture panels side by side in reading order. NO panel frames, NO text, NO labels, NO objects projecting upward. These are three flat horizontal ground surfaces viewed from a high near-top-down three-quarter angle, filled completely to each panel's edges with continuous tileable-looking ground. Each square has uniform quiet illumination and fine handpainted colored outlines; broad low contrast patterns readable at action-game camera scale. Bright warm sunlit world, clean classical ruins plus whimsical magic-steam fantasy, fresh vivid cheerful colors. No dark cave, no soot, no depressing greys.\nLEFT square: Amber Insect Nest open valley ground — honey-gold sandstone and warm light amber sandy earth, a few small inset hexagonal cell-like carved stone paving details, sparse sage-green moss and fine leafy joints; pale honey crystal dust integrated flush with the ground. Not a sea of eggs or insects. Terrain stays calm and walkable.\nMIDDLE square: Pumpkin Grave Town cheerful zombie realm ground — pale mint/ivory cobbled cemetery paths, soft mauve lavender stone seams, tiny flush orange leaves and warm purple garden-soil gaps. Cartoony welcoming Halloween colors, scattered small painted pumpkin-vine impressions only, absolutely no gravestones, pumpkins as raised objects, corpses, skulls, tombs or scenery. This is bright warm mint-and-lavender ground, not grim horror.\nRIGHT square: Red-Rock Orc Stronghold ground — sunlit rich red-orange terracotta block paving and warm rusty-red clay earth with a few clean rough honey-brown timber plank strips flush with ground, ivory mortar and muted sage grass at joints. Handpainted chunky facets with slight material texture, warm bright ochre-red, no dark mud, no large weapons/crates/totems.\nConsistent clean painterly game art with 2.5D high-camera compressed horizontal paving shapes, quiet light-and-color variation, ground only. All three squares same pattern scale and soft daylight. Keep textures distinct and contained in their respective equal square panel. No perspective horizon, no shadows of objects, no characters, no UI, no decorative frame, no vignette, no directional spotlight, no watermark. Opaque image.",
+  "source_pixels_unchanged": true,
+  "texture": "asset://world/storybook_floor_factions_v2.png",
+  "regions": {
+    "B02": [
+      0,
+      0,
+      724,
+      724
+    ],
+    "B03": [
+      724,
+      0,
+      724,
+      724
+    ],
+    "B04": [
+      1448,
+      0,
+      724,
+      724
+    ]
+  },
+  "themes": {
+    "B02": "琥珀虫巢",
+    "B03": "南瓜墓镇",
+    "B04": "赤岩战寨"
+  },
+  "sampling": "Explicit individual panel UVs, mirrored tiles at a fixed world scale. Do not tile the entire bank or stretch the last edge tile."
+}

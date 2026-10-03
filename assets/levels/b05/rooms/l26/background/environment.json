@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "room_id": "L26",
+  "biome_id": "B05",
+  "texture": "asset://world/rooms/L26_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "walkable_normalized_rect": [
+    0.28,
+    0.32,
+    0.44,
+    0.33
+  ],
+  "placement_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.160142857,
+      0.212222222
+    ],
+    [
+      0.789714286,
+      0.212222222
+    ],
+    [
+      0.851,
+      0.294444444
+    ],
+    [
+      0.856571429,
+      0.763111111
+    ],
+    [
+      0.800857143,
+      0.812444444
+    ],
+    [
+      0.199142857,
+      0.812444444
+    ],
+    [
+      0.143428571,
+      0.722
+    ],
+    [
+      0.143428571,
+      0.294444444
+    ]
+  ],
+  "source_sha256": "679c7823f8cf765700a00922c30732d71e5f5ffe457ee8194df03b00cc122cf0",
+  "approved": false,
+  "candidate_only": true,
+  "model_metadata": {
+    "specific_model": "unknown",
+    "model_version": "unknown",
+    "model_reported_by_tool": false,
+    "model_parameter_submitted": false,
+    "reason": "Recorded image_gen return did not supply a model name or version."
+  },
+  "provenance_generation_id": "L26_base_v1",
+  "metadata_rebuilt_after_recovery": true,
+  "recovery_note": "Original PNG bytes restored and independently matched the pre-loss source SHA256. Metadata reconstructed from recorded task evidence; merge with Git-backed QA rather than overwriting existing approved state."
+}

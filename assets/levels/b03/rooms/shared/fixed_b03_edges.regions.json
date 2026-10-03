@@ -1,0 +1,485 @@
+{
+  "schema_version": 1,
+  "texture": "asset://world/fixed_B03_edges_v1.png",
+  "biome_id": "B03",
+  "regions": {
+    "B03_edge_east": [
+      8,
+      149,
+      431,
+      276
+    ],
+    "B03_edge_corner": [
+      499,
+      73,
+      356,
+      330
+    ],
+    "B03_edge_backdrop": [
+      896,
+      18,
+      410,
+      422
+    ],
+    "B03_edge_gateway": [
+      1334,
+      40,
+      436,
+      392
+    ],
+    "B03_edge_north": [
+      30,
+      457,
+      377,
+      403
+    ],
+    "B03_edge_south": [
+      446,
+      515,
+      430,
+      329
+    ],
+    "B03_edge_foreground": [
+      900,
+      634,
+      418,
+      206
+    ],
+    "B03_edge_west": [
+      1372,
+      496,
+      383,
+      359
+    ]
+  },
+  "anchors": {
+    "B03_edge_east": [
+      216,
+      268
+    ],
+    "B03_edge_corner": [
+      178,
+      322
+    ],
+    "B03_edge_backdrop": [
+      205,
+      414
+    ],
+    "B03_edge_gateway": [
+      218,
+      384
+    ],
+    "B03_edge_north": [
+      188,
+      395
+    ],
+    "B03_edge_south": [
+      215,
+      321
+    ],
+    "B03_edge_foreground": [
+      209,
+      198
+    ],
+    "B03_edge_west": [
+      192,
+      351
+    ]
+  },
+  "ground_footprints": {
+    "B03_edge_east": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B03_edge_corner": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B03_edge_backdrop": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B03_edge_gateway": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B03_edge_north": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B03_edge_south": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B03_edge_foreground": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B03_edge_west": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "collisions": {
+    "B03_edge_east": false,
+    "B03_edge_corner": false,
+    "B03_edge_backdrop": false,
+    "B03_edge_gateway": false,
+    "B03_edge_north": false,
+    "B03_edge_south": false,
+    "B03_edge_foreground": false,
+    "B03_edge_west": false
+  },
+  "native_sizes": {
+    "B03_edge_east": [
+      431,
+      276
+    ],
+    "B03_edge_corner": [
+      356,
+      330
+    ],
+    "B03_edge_backdrop": [
+      410,
+      422
+    ],
+    "B03_edge_gateway": [
+      436,
+      392
+    ],
+    "B03_edge_north": [
+      377,
+      403
+    ],
+    "B03_edge_south": [
+      430,
+      329
+    ],
+    "B03_edge_foreground": [
+      418,
+      206
+    ],
+    "B03_edge_west": [
+      383,
+      359
+    ]
+  },
+  "edge_names": {
+    "B03_edge_east": "低墓栏",
+    "B03_edge_corner": "南瓜花圃转角",
+    "B03_edge_backdrop": "紫瓦小屋远景",
+    "B03_edge_gateway": "棺材邮局入口",
+    "B03_edge_north": "暖阳墓园树",
+    "B03_edge_south": "场外码头岸线",
+    "B03_edge_foreground": "近景花叶",
+    "B03_edge_west": "幽灵茶摊外檐"
+  },
+  "suggested_world_widths": {
+    "B03_edge_east": 300,
+    "B03_edge_corner": 260,
+    "B03_edge_backdrop": 420,
+    "B03_edge_gateway": 380,
+    "B03_edge_north": 330,
+    "B03_edge_south": 340,
+    "B03_edge_foreground": 300,
+    "B03_edge_west": 350
+  },
+  "atlas_layout": {
+    "columns": 4,
+    "rows": 2,
+    "uniform_grid": true,
+    "row_major_keys": [
+      "B03_edge_east",
+      "B03_edge_corner",
+      "B03_edge_backdrop",
+      "B03_edge_gateway",
+      "B03_edge_north",
+      "B03_edge_south",
+      "B03_edge_foreground",
+      "B03_edge_west"
+    ],
+    "source_cells": {
+      "B03_edge_east": [
+        0,
+        0,
+        444,
+        444
+      ],
+      "B03_edge_corner": [
+        444,
+        0,
+        443,
+        444
+      ],
+      "B03_edge_backdrop": [
+        887,
+        0,
+        443,
+        444
+      ],
+      "B03_edge_gateway": [
+        1330,
+        0,
+        444,
+        444
+      ],
+      "B03_edge_north": [
+        0,
+        444,
+        444,
+        443
+      ],
+      "B03_edge_south": [
+        444,
+        444,
+        443,
+        443
+      ],
+      "B03_edge_foreground": [
+        887,
+        444,
+        443,
+        443
+      ],
+      "B03_edge_west": [
+        1330,
+        444,
+        444,
+        443
+      ]
+    }
+  },
+  "coordinate_spaces": {
+    "regions": "Atlas-global [x,y,width,height], bbox alpha>=32 with 2px padding inside equal source cell.",
+    "anchors": "Crop-local bottom-center visible base footpoint [x,y].",
+    "ground_footprints": "All [0,0,0,0]; exterior scenery has no collision."
+  },
+  "qa": {
+    "size": [
+      1774,
+      887
+    ],
+    "mode": "RGBA",
+    "corners_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "transparent_fraction": 0.5286805911264932,
+    "sha256": "2c7f8c8d60206e6b7a97821c4743cabcb85158d487d481f650bd3324407573dc",
+    "source_pixel_edits": "none; original generated RGBA copied unchanged",
+    "alpha_threshold": 32,
+    "region_padding": 2,
+    "regions": {
+      "B03_edge_east": {
+        "source_cell": [
+          0,
+          0,
+          444,
+          444
+        ],
+        "alpha_bounds": [
+          10,
+          151,
+          427,
+          272
+        ],
+        "region": [
+          8,
+          149,
+          431,
+          276
+        ],
+        "visible_alpha_pixels": 60868,
+        "min_cell_margin": 7,
+        "visible_cell_edge_pixels": 0
+      },
+      "B03_edge_corner": {
+        "source_cell": [
+          444,
+          0,
+          443,
+          444
+        ],
+        "alpha_bounds": [
+          501,
+          75,
+          352,
+          326
+        ],
+        "region": [
+          499,
+          73,
+          356,
+          330
+        ],
+        "visible_alpha_pixels": 59026,
+        "min_cell_margin": 34,
+        "visible_cell_edge_pixels": 0
+      },
+      "B03_edge_backdrop": {
+        "source_cell": [
+          887,
+          0,
+          443,
+          444
+        ],
+        "alpha_bounds": [
+          898,
+          20,
+          406,
+          418
+        ],
+        "region": [
+          896,
+          18,
+          410,
+          422
+        ],
+        "visible_alpha_pixels": 106061,
+        "min_cell_margin": 6,
+        "visible_cell_edge_pixels": 0
+      },
+      "B03_edge_gateway": {
+        "source_cell": [
+          1330,
+          0,
+          444,
+          444
+        ],
+        "alpha_bounds": [
+          1336,
+          42,
+          432,
+          388
+        ],
+        "region": [
+          1334,
+          40,
+          436,
+          392
+        ],
+        "visible_alpha_pixels": 81087,
+        "min_cell_margin": 6,
+        "visible_cell_edge_pixels": 0
+      },
+      "B03_edge_north": {
+        "source_cell": [
+          0,
+          444,
+          444,
+          443
+        ],
+        "alpha_bounds": [
+          32,
+          459,
+          373,
+          399
+        ],
+        "region": [
+          30,
+          457,
+          377,
+          403
+        ],
+        "visible_alpha_pixels": 91999,
+        "min_cell_margin": 15,
+        "visible_cell_edge_pixels": 0
+      },
+      "B03_edge_south": {
+        "source_cell": [
+          444,
+          444,
+          443,
+          443
+        ],
+        "alpha_bounds": [
+          448,
+          517,
+          426,
+          325
+        ],
+        "region": [
+          446,
+          515,
+          430,
+          329
+        ],
+        "visible_alpha_pixels": 87989,
+        "min_cell_margin": 4,
+        "visible_cell_edge_pixels": 0
+      },
+      "B03_edge_foreground": {
+        "source_cell": [
+          887,
+          444,
+          443,
+          443
+        ],
+        "alpha_bounds": [
+          902,
+          636,
+          414,
+          202
+        ],
+        "region": [
+          900,
+          634,
+          418,
+          206
+        ],
+        "visible_alpha_pixels": 44063,
+        "min_cell_margin": 14,
+        "visible_cell_edge_pixels": 0
+      },
+      "B03_edge_west": {
+        "source_cell": [
+          1330,
+          444,
+          444,
+          443
+        ],
+        "alpha_bounds": [
+          1374,
+          498,
+          379,
+          355
+        ],
+        "region": [
+          1372,
+          496,
+          383,
+          359
+        ],
+        "visible_alpha_pixels": 88148,
+        "min_cell_margin": 21,
+        "visible_cell_edge_pixels": 0
+      }
+    },
+    "source_copy_identical": true
+  },
+  "notes": [
+    "Exactly eight standalone B03 exterior cutouts, placed outside authored arena with no collision.",
+    "True generated transparency; no background removal, image compositing, atlas repacking or recoloring.",
+    "Shoreline is for exterior only, never introduces a pool or void into walkable arena.",
+    "Foreground and upper scenery should fade near player occlusion; natural low scenery must not hide combat indicators.",
+    "Existing room data decides fixed placement; suggested widths are optional art guidance, not physical footprint."
+  ]
+}

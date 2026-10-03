@@ -1,0 +1,55 @@
+# B07-M01 长矛蜥卫：idle 身份试稿
+
+> 状态：候选／待验证。V2 的身份已获认可，仅有一张右向 idle；`runtime_quality_gate_passed=false`、`animation_complete=false`。目录迁移不代表新图形验收或完整动画。
+
+[本关当前实现](../../implementation.md) · [L37 环境试验](../../rooms/l37/visual_alignment.md) · [物种设计](../../README.md)
+
+## 身份与授权范围
+
+B07-M01，长矛蜥卫／Spear Lizard Guard，L37 首现、Lv31、F 前排档案。用户概念图 `B07(1).png` 左下“沙蜥战士”是解剖／材料依据：细长蜥吻、眼冠／高背鳞、长尾、趾爪、沙金鳞片、朱橙布和铜金轻甲；主武器为长矛，可配克制小圆盾。不混成双斧重卫、坐骑、翼龙或虫体。
+
+原 `B07_M01_spear_lizard_guard_idle_ready_v2.png` 以字节不变方式迁移为 `idle.png`，原生 1254×1254 RGBA，SHA-256 `9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e`。未裁切、放大、调色、清理 alpha 或新增生成。V1 只保留生成提示词，不引入其 PNG。
+
+## 登记与比例合同
+
+`asset://levels/b07/registration/native_art.json` 只在合法 B07 隔离候选、美术试验旗标满足时服务 B07-M01。`frames.idle.texture` 为完整逻辑 ID `asset://levels/b07/enemies/m01/idle.png`，不依赖相对目录拼接。只存在 idle 时动作 bank 为空，不伪装成完整 native 动作库。
+
+| 项目 | 不变的原生值／定义 |
+|---|---|
+| 原生尺寸 | 1254×1254 |
+| region（x,y,w,h） | (24,23,1198,1189) |
+| foot | (687.5,1027.5)，两承重脚接地中心的中点 |
+| source_height／reference_body_height_px | 824.5，解剖冠顶至 foot 的高度，排除长矛和超长尾巴 |
+| 近／远脚接地点 | (510,1090)／(865,965) |
+| 解剖冠顶 | (679,203) |
+| core_anchor | (687,585) |
+| visual_outlet／spear_tip | (1199,65) |
+| alpha128_bounds | (78,64,1123,1108) |
+| 人工语义锚点不确定度 | 约 ±8 原生像素 |
+
+身体按现行 `18×3.8×1.20=82.08` 世界像素，英雄 112，比例约 0.733；0.72 相机约 59.10／80.64 屏幕像素，0.75 时 M01 约 61.56。不能用图片总高、alpha 包围盒、矛长或尾长缩小身体。世界脚点为局部 (0,18)，姿态与左右镜像都应围绕真实脚点，不改变导航半径。
+
+`storybook_2_5d_v1` 保留源色，不沿用虫体占位调色。锁线刺、尾扫、光照减伤、碰撞、伤害、掉落和预警仍用真实命令；矛尖是视觉锚点，不推导命中。
+
+## 已知风险与完成门槛
+
+- 原生像素与约 82／59 像素身体的单图缩略检查可辨长矛、蜥头、盾和尾巴；它不是同场景比例、脚点或动画验收。
+- 原图边缘无非零 alpha 像素，矛尖／尾端未裁切。保留了原始 alpha=1 的弱痕迹和红／黄低透明杂边风险，不能声称运行边缘已干净。alpha 1–32 共 26294 像素，其中红风险 9127、黄风险 3205；这些诊断计数可重叠，不替代视觉判定。
+- 在亮砂岩和暗峡谷、真实 0.72／0.75 视角及 2560×1440 目标中检查 alpha、脚点、透视、身体比例、左右镜像和危险线分离。运行质量门保持 false；不能为了通过测试盲目阈值裁 alpha。
+- 待 idle 实际质量门确认，再决定制作 telegraph（收矛蓄势）和 execute（右向突刺）。三姿态也不等于八方向、连续行走、尾扫、死亡或完整动画。
+- 当前没有 telegraph／execute／walk／tail_sweep／death 原画；M02／M03 仍是旧占位。不得用本图宣称 B07 三种角色或全关美术完成。
+
+## 完整文件清单
+
+| 逻辑 ID | 物理文件 |
+|---|---|
+| `asset://levels/b07/enemies/m01/idle.png` | `assets/levels/b07/enemies/m01/idle.png` |
+| `asset://levels/b07/enemies/m01/provenance.json` | `assets/levels/b07/enemies/m01/provenance.json` |
+| `asset://levels/b07/enemies/m01/provenance/idle.prompt.txt` | `assets/levels/b07/enemies/m01/provenance/idle.prompt.txt` |
+| `asset://levels/b07/enemies/m01/provenance/idle_initial.prompt.txt` | `assets/levels/b07/enemies/m01/provenance/idle_initial.prompt.txt` |
+| `asset://levels/b07/registration/native_art.json` | `assets/levels/b07/registration/native_art.json` |
+
+全部已逐项登记到 `assets/manifest.json`。provenance 保留原始名称／版本、源图和源元数据哈希、两轮原提示词、透明测量、归一化锚点及来源参考；其中原始来源路径只是历史生成定位，不是当前运行资源路径。
+
+
+迁移后已在实际2560×1440入口与0.75近景查看该idle：矛、蜥吻、尾巴可辨，脚点/原色/82.08世界身高保持；暗峡谷边缘未见明显的大范围光晕。仍只有一张右向idle，没有真实蓄势／突刺／全方向动画；低透明杂边风险和runtime_quality_gate_passed=false继续保留，有限帧检查不代表所有背景/动作的最终验收。

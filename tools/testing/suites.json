@@ -1,0 +1,1169 @@
+{
+  "approved_ui": {
+    "script": "tests/ui/test_approved_ui.gd",
+    "scene": "tests/ui/test_approved_ui.tscn"
+  },
+  "audio_identity": {
+    "script": "tests/audio/test_audio_identity.gd"
+  },
+  "audit_combat": {
+    "script": "tests/combat/test_audit_combat.gd",
+    "scene": "tests/combat/test_audit_combat.tscn"
+  },
+  "audit_controller": {
+    "script": "tests/app/test_audit_controller.gd"
+  },
+  "audit_rewards": {
+    "script": "tests/app/test_audit_rewards.gd",
+    "scene": "tests/app/test_audit_rewards.tscn"
+  },
+  "audit_ui": {
+    "script": "tests/ui/test_audit_ui.gd",
+    "scene": "tests/ui/test_audit_ui.tscn"
+  },
+  "b05_acquisition_saves": {
+    "script": "tests/levels/b05/test_b05_acquisition_saves.gd"
+  },
+  "b05_actor_live": {
+    "script": "tests/levels/b05/test_b05_actor_live.gd",
+    "scene": "tests/levels/b05/test_b05_actor_live.tscn"
+  },
+  "b05_art_residency": {
+    "script": "tests/levels/b05/test_b05_art_residency.gd"
+  },
+  "b05_balance_calibration": {
+    "script": "tests/levels/b05/test_b05_balance_calibration.gd"
+  },
+  "b05_balance_matrix": {
+    "script": "tests/levels/b05/test_b05_balance_matrix.gd",
+    "scene": "tests/levels/b05/test_b05_balance_matrix.tscn"
+  },
+  "b05_boss_art": {
+    "script": "tests/levels/b05/test_b05_boss_art.gd",
+    "scene": "tests/levels/b05/test_b05_boss_art.tscn"
+  },
+  "b05_boss_root_rotation": {
+    "script": "tests/levels/b05/test_b05_boss_root_rotation.gd",
+    "scene": "tests/levels/b05/test_b05_boss_root_rotation.tscn"
+  },
+  "b05_bounded_combat": {
+    "script": "tests/levels/b05/test_b05_bounded_combat.gd",
+    "scene": "tests/levels/b05/test_b05_bounded_combat.tscn"
+  },
+  "b05_candidate_traversal": {
+    "script": "tests/levels/b05/test_b05_candidate_traversal.gd",
+    "scene": "tests/levels/b05/test_b05_candidate_traversal.tscn"
+  },
+  "b05_codex": {
+    "script": "tests/levels/b05/test_b05_codex.gd",
+    "scene": "tests/levels/b05/test_b05_codex.tscn"
+  },
+  "b05_combat": {
+    "script": "tests/levels/b05/test_b05_combat.gd"
+  },
+  "b05_content": {
+    "script": "tests/levels/b05/test_b05_content.gd"
+  },
+  "b05_counter_skill_sensitivity": {
+    "script": "tests/levels/b05/test_b05_counter_skill_sensitivity.gd",
+    "scene": "tests/levels/b05/test_b05_counter_skill_sensitivity.tscn"
+  },
+  "b05_enemy_numbers": {
+    "script": "tests/levels/b05/test_b05_enemy_numbers.gd"
+  },
+  "b05_environment_overview": {
+    "script": "tests/levels/b05/test_b05_environment_overview.gd",
+    "scene": "tests/levels/b05/test_b05_environment_overview.tscn"
+  },
+  "b05_environment_pilot": {
+    "script": "tests/levels/b05/test_b05_environment_pilot.gd",
+    "scene": "tests/levels/b05/test_b05_environment_pilot.tscn"
+  },
+  "b05_environment_rooms": {
+    "script": "tests/levels/b05/test_b05_environment_rooms.gd",
+    "scene": "tests/levels/b05/test_b05_environment_rooms.tscn"
+  },
+  "b05_equipment_art": {
+    "script": "tests/levels/b05/test_b05_equipment_art.gd",
+    "scene": "tests/levels/b05/test_b05_equipment_art.tscn"
+  },
+  "b05_equipment_catalog": {
+    "script": "tests/levels/b05/test_b05_equipment_catalog.gd"
+  },
+  "b05_equipment_live": {
+    "script": "tests/levels/b05/test_b05_equipment_live.gd",
+    "scene": "tests/levels/b05/test_b05_equipment_live.tscn"
+  },
+  "b05_equipment_runtime": {
+    "script": "tests/levels/b05/test_b05_equipment_runtime.gd"
+  },
+  "b05_hazard_admission": {
+    "script": "tests/levels/b05/test_b05_hazard_admission.gd"
+  },
+  "b05_hazard_live": {
+    "script": "tests/levels/b05/test_b05_hazard_live.gd",
+    "scene": "tests/levels/b05/test_b05_hazard_live.tscn"
+  },
+  "b05_l26_surface": {
+    "script": "tests/levels/b05/test_b05_l26_surface.gd",
+    "scene": "tests/levels/b05/test_b05_l26_surface.tscn"
+  },
+  "b05_map_registration": {
+    "script": "tests/levels/b05/test_b05_map_registration.gd"
+  },
+  "b05_mechanism_runtime": {
+    "script": "tests/levels/b05/test_b05_mechanism_runtime.gd"
+  },
+  "b05_monster_pose_capture": {
+    "script": "tests/levels/b05/test_b05_monster_pose_capture.gd",
+    "scene": "tests/levels/b05/test_b05_monster_pose_capture.tscn"
+  },
+  "b05_naked_chapter": {
+    "script": "tests/levels/b05/test_b05_naked_chapter.gd",
+    "scene": "tests/levels/b05/test_b05_naked_chapter.tscn"
+  },
+  "b05_natural_encounters": {
+    "script": "tests/levels/b05/test_b05_natural_encounters.gd",
+    "scene": "tests/levels/b05/test_b05_natural_encounters.tscn"
+  },
+  "b05_outer_environment": {
+    "script": "tests/levels/b05/test_b05_outer_environment.gd",
+    "scene": "tests/levels/b05/test_b05_outer_environment.tscn"
+  },
+  "b05_p3_tolerance": {
+    "script": "tests/levels/b05/test_b05_p3_tolerance.gd",
+    "scene": "tests/levels/b05/test_b05_p3_tolerance.tscn"
+  },
+  "b05_pose_bank": {
+    "script": "tests/levels/b05/test_b05_pose_bank.gd"
+  },
+  "b05_profile_json": {
+    "script": "tests/levels/b05/test_b05_profile_json.gd"
+  },
+  "b05_projectile_mouths": {
+    "script": "tests/levels/b05/test_b05_projectile_mouths.gd",
+    "scene": "tests/levels/b05/test_b05_projectile_mouths.tscn"
+  },
+  "b05_room_geometry": {
+    "script": "tests/levels/b05/test_b05_room_geometry.gd"
+  },
+  "b05_room_transitions": {
+    "script": "tests/levels/b05/test_b05_room_transitions.gd",
+    "scene": "tests/levels/b05/test_b05_room_transitions.tscn"
+  },
+  "b05_root_network": {
+    "script": "tests/levels/b05/test_b05_root_network.gd"
+  },
+  "b05_root_well_live": {
+    "script": "tests/levels/b05/test_b05_root_well_live.gd",
+    "scene": "tests/levels/b05/test_b05_root_well_live.tscn"
+  },
+  "b05_sunleaf": {
+    "script": "tests/levels/b05/test_b05_sunleaf.gd",
+    "scene": "tests/levels/b05/test_b05_sunleaf.tscn"
+  },
+  "b06_acquisition_saves": {
+    "script": "tests/levels/b06/test_b06_acquisition_saves.gd"
+  },
+  "b06_balance_matrix": {
+    "script": "tests/levels/b06/test_b06_balance_matrix.gd",
+    "scene": "tests/levels/b06/test_b06_balance_matrix.tscn"
+  },
+  "b06_boss_live": {
+    "script": "tests/levels/b06/test_b06_boss_live.gd",
+    "scene": "tests/levels/b06/test_b06_boss_live.tscn"
+  },
+  "b06_boss_state": {
+    "script": "tests/levels/b06/test_b06_boss_state.gd"
+  },
+  "b06_candidate_combat_snapshot": {
+    "script": "tests/levels/b06/test_b06_candidate_combat_snapshot.gd",
+    "scene": "tests/levels/b06/test_b06_candidate_combat_snapshot.tscn"
+  },
+  "b06_candidate_traversal": {
+    "script": "tests/levels/b06/test_b06_candidate_traversal.gd",
+    "scene": "tests/levels/b06/test_b06_candidate_traversal.tscn"
+  },
+  "b06_codex": {
+    "script": "tests/levels/b06/test_b06_codex.gd",
+    "scene": "tests/levels/b06/test_b06_codex.tscn"
+  },
+  "b06_combat_snapshot": {
+    "script": "tests/levels/b06/test_b06_combat_snapshot.gd",
+    "scene": "tests/levels/b06/test_b06_combat_snapshot.tscn"
+  },
+  "b06_content": {
+    "script": "tests/levels/b06/test_b06_content.gd"
+  },
+  "b06_enemy_numbers": {
+    "script": "tests/levels/b06/test_b06_enemy_numbers.gd"
+  },
+  "b06_enemy_skills": {
+    "script": "tests/levels/b06/test_b06_enemy_skills.gd",
+    "scene": "tests/levels/b06/test_b06_enemy_skills.tscn"
+  },
+  "b06_environment_batch": {
+    "script": "tests/levels/b06/test_b06_environment_batch.gd",
+    "scene": "tests/levels/b06/test_b06_environment_batch.tscn"
+  },
+  "b06_environment_final": {
+    "script": "tests/levels/b06/test_b06_environment_final.gd",
+    "scene": "tests/levels/b06/test_b06_environment_final.tscn"
+  },
+  "b06_environment_lifecycle": {
+    "script": "tests/levels/b06/test_b06_environment_lifecycle.gd",
+    "scene": "tests/levels/b06/test_b06_environment_lifecycle.tscn"
+  },
+  "b06_environment_main": {
+    "script": "tests/levels/b06/test_b06_environment_main.gd",
+    "scene": "tests/levels/b06/test_b06_environment_main.tscn"
+  },
+  "b06_environment_pilot": {
+    "script": "tests/levels/b06/test_b06_environment_pilot.gd",
+    "scene": "tests/levels/b06/test_b06_environment_pilot.tscn"
+  },
+  "b06_environment_watercourt": {
+    "script": "tests/levels/b06/test_b06_environment_watercourt.gd",
+    "scene": "tests/levels/b06/test_b06_environment_watercourt.tscn"
+  },
+  "b06_equipment_art": {
+    "script": "tests/levels/b06/test_b06_equipment_art.gd",
+    "scene": "tests/levels/b06/test_b06_equipment_art.tscn"
+  },
+  "b06_equipment_catalog": {
+    "script": "tests/levels/b06/test_b06_equipment_catalog.gd"
+  },
+  "b06_equipment_effects": {
+    "script": "tests/levels/b06/test_b06_equipment_effects.gd"
+  },
+  "b06_equipment_effects_live": {
+    "script": "tests/levels/b06/test_b06_equipment_effects_live.gd",
+    "scene": "tests/levels/b06/test_b06_equipment_effects_live.tscn"
+  },
+  "b06_equipment_r_live": {
+    "script": "tests/levels/b06/test_b06_equipment_r_live.gd",
+    "scene": "tests/levels/b06/test_b06_equipment_r_live.tscn"
+  },
+  "b06_hud_visibility": {
+    "script": "tests/levels/b06/test_b06_hud_visibility.gd",
+    "scene": "tests/levels/b06/test_b06_hud_visibility.tscn"
+  },
+  "b06_main_progression": {
+    "script": "tests/levels/b06/test_b06_main_progression.gd",
+    "scene": "tests/levels/b06/test_b06_main_progression.tscn"
+  },
+  "b06_naked_chapter": {
+    "script": "tests/levels/b06/test_b06_naked_chapter.gd",
+    "scene": "tests/levels/b06/test_b06_naked_chapter.tscn"
+  },
+  "b06_native_art": {
+    "script": "tests/levels/b06/test_b06_native_art.gd"
+  },
+  "b06_native_capture": {
+    "script": "tests/levels/b06/test_b06_native_capture.gd",
+    "scene": "tests/levels/b06/test_b06_native_capture.tscn"
+  },
+  "b06_ordinary_capture": {
+    "script": "tests/levels/b06/test_b06_ordinary_capture.gd",
+    "scene": "tests/levels/b06/test_b06_ordinary_capture.tscn"
+  },
+  "b06_room_geometry": {
+    "script": "tests/levels/b06/test_b06_room_geometry.gd"
+  },
+  "b06_room_native_capture": {
+    "script": "tests/levels/b06/test_b06_room_native_capture.gd",
+    "scene": "tests/levels/b06/test_b06_room_native_capture.tscn"
+  },
+  "b06_tide_live": {
+    "script": "tests/levels/b06/test_b06_tide_live.gd",
+    "scene": "tests/levels/b06/test_b06_tide_live.tscn"
+  },
+  "b06_tide_runtime": {
+    "script": "tests/levels/b06/test_b06_tide_runtime.gd"
+  },
+  "b06_tide_state": {
+    "script": "tests/levels/b06/test_b06_tide_state.gd"
+  },
+  "b07_candidate_session": {
+    "script": "tests/levels/b07/test_candidate_session.gd",
+    "scene": "tests/levels/b07/test_candidate_session.tscn"
+  },
+  "b07_combat": {
+    "script": "tests/levels/b07/test_combat.gd"
+  },
+  "b07_content": {
+    "script": "tests/levels/b07/test_content.gd"
+  },
+  "b07_l37_art_trial": {
+    "script": "tests/levels/b07/test_l37_art_trial.gd",
+    "scene": "tests/levels/b07/test_l37_art_trial.tscn"
+  },
+  "b07_live": {
+    "script": "tests/levels/b07/test_live.gd",
+    "scene": "tests/levels/b07/test_live.tscn"
+  },
+  "b07_sun_state": {
+    "script": "tests/levels/b07/test_sun_state.gd"
+  },
+  "b07_support_burrow": {
+    "script": "tests/levels/b07/test_support_burrow.gd",
+    "scene": "tests/levels/b07/test_support_burrow.tscn"
+  },
+  "backpack": {
+    "script": "tests/equipment/test_backpack.gd",
+    "scene": "tests/equipment/test_backpack.tscn"
+  },
+  "biome_enemy_skills": {
+    "script": "tests/combat/test_biome_enemy_skills.gd"
+  },
+  "boss_body_feedback": {
+    "script": "tests/combat/test_boss_body_feedback.gd",
+    "scene": "tests/combat/test_boss_body_feedback.tscn"
+  },
+  "boss_hd_art": {
+    "script": "tests/combat/test_boss_hd_art.gd",
+    "scene": "tests/combat/test_boss_hd_art.tscn"
+  },
+  "boss_progression_integration": {
+    "script": "tests/combat/test_boss_progression_integration.gd"
+  },
+  "boss_progression_policy": {
+    "script": "tests/combat/test_boss_progression_policy.gd"
+  },
+  "boss_skill_ui": {
+    "script": "tests/ui/test_boss_skill_ui.gd",
+    "scene": "tests/ui/test_boss_skill_ui.tscn"
+  },
+  "boss_stationary": {
+    "script": "tests/combat/test_boss_stationary.gd",
+    "scene": "tests/combat/test_boss_stationary.tscn"
+  },
+  "boss_tactics": {
+    "script": "tests/combat/test_boss_tactics.gd",
+    "scene": "tests/combat/test_boss_tactics.tscn"
+  },
+  "boss_targeting": {
+    "script": "tests/combat/test_boss_targeting.gd",
+    "scene": "tests/combat/test_boss_targeting.tscn"
+  },
+  "boss_unlocks": {
+    "script": "tests/combat/test_boss_unlocks.gd",
+    "scene": "tests/combat/test_boss_unlocks.tscn"
+  },
+  "boss_warning_timing": {
+    "script": "tests/combat/test_boss_warning_timing.gd"
+  },
+  "bosses": {
+    "script": "tests/combat/test_bosses.gd"
+  },
+  "breaker_combo_payoff": {
+    "script": "tests/combat/test_breaker_combo_payoff.gd"
+  },
+  "buff_beacons": {
+    "script": "tests/world/test_buff_beacons.gd",
+    "scene": "tests/world/test_buff_beacons.tscn"
+  },
+  "class_identity": {
+    "script": "tests/characters/test_class_identity.gd"
+  },
+  "class_relics": {
+    "script": "tests/combat/test_class_relics.gd"
+  },
+  "combat": {
+    "script": "tests/combat/test_combat.gd",
+    "scene": "tests/combat/test_combat.tscn"
+  },
+  "combat_audio": {
+    "script": "tests/audio/test_combat_audio.gd",
+    "scene": "tests/audio/test_combat_audio.tscn"
+  },
+  "combat_combos": {
+    "script": "tests/combat/test_combat_combos.gd",
+    "scene": "tests/combat/test_combat_combos.tscn"
+  },
+  "combat_feedback": {
+    "script": "tests/combat/test_combat_feedback.gd",
+    "scene": "tests/combat/test_combat_feedback.tscn"
+  },
+  "combat_mix_audit": {
+    "script": "tests/combat/test_combat_mix_audit.gd"
+  },
+  "combat_playability": {
+    "script": "tests/combat/test_combat_playability.gd",
+    "scene": "tests/combat/test_combat_playability.tscn"
+  },
+  "combat_readability": {
+    "script": "tests/combat/test_combat_readability.gd"
+  },
+  "combat_snapshot": {
+    "script": "tests/combat/test_combat_snapshot.gd"
+  },
+  "compact_hud": {
+    "script": "tests/ui/test_compact_hud.gd"
+  },
+  "contact_audio_design": {
+    "script": "tests/audio/test_contact_audio_design.gd"
+  },
+  "contact_playability": {
+    "script": "tests/combat/test_contact_playability.gd",
+    "scene": "tests/combat/test_contact_playability.tscn"
+  },
+  "contact_surface": {
+    "script": "tests/combat/test_contact_surface.gd"
+  },
+  "content": {
+    "script": "tests/app/test_content.gd"
+  },
+  "continuous_knockback": {
+    "script": "tests/combat/test_continuous_knockback.gd",
+    "scene": "tests/combat/test_continuous_knockback.tscn"
+  },
+  "control_settings": {
+    "script": "tests/app/test_control_settings.gd",
+    "scene": "tests/app/test_control_settings.tscn"
+  },
+  "core": {
+    "script": "tests/app/test_core.gd"
+  },
+  "core_damage": {
+    "script": "tests/combat/test_core_damage.gd"
+  },
+  "core_expedition": {
+    "script": "tests/app/test_core_expedition.gd"
+  },
+  "crowd_feedback": {
+    "script": "tests/combat/test_crowd_feedback.gd",
+    "scene": "tests/combat/test_crowd_feedback.tscn"
+  },
+  "damage_attributes": {
+    "script": "tests/combat/test_damage_attributes.gd",
+    "scene": "tests/combat/test_damage_attributes.tscn"
+  },
+  "defeat_audio": {
+    "script": "tests/audio/test_defeat_audio.gd"
+  },
+  "defeat_integration": {
+    "script": "tests/combat/test_defeat_integration.gd",
+    "scene": "tests/combat/test_defeat_integration.tscn"
+  },
+  "demo_playable": {
+    "script": "tests/app/test_demo_playable.gd",
+    "scene": "tests/app/test_demo_playable.tscn"
+  },
+  "demo_session": {
+    "script": "tests/app/test_demo_session.gd"
+  },
+  "demo_ui": {
+    "script": "tests/ui/test_demo_ui.gd",
+    "scene": "tests/ui/test_demo_ui.tscn"
+  },
+  "deployment_audio": {
+    "script": "tests/audio/test_deployment_audio.gd"
+  },
+  "directional_combat_capture": {
+    "script": "tests/captures/test_directional_combat_capture.gd",
+    "scene": "tests/captures/test_directional_combat_capture.tscn"
+  },
+  "directional_hit_camera": {
+    "script": "tests/combat/test_directional_hit_camera.gd",
+    "scene": "tests/combat/test_directional_hit_camera.tscn"
+  },
+  "display_coverage": {
+    "script": "tests/ui/test_display_coverage.gd",
+    "scene": "tests/ui/test_display_coverage.tscn"
+  },
+  "dynamic_route_ui": {
+    "script": "tests/ui/test_dynamic_route_ui.gd",
+    "scene": "tests/ui/test_dynamic_route_ui.tscn"
+  },
+  "dynamic_routes": {
+    "script": "tests/world/test_dynamic_routes.gd"
+  },
+  "enemy_ability_expansion": {
+    "script": "tests/combat/test_enemy_ability_expansion.gd"
+  },
+  "enemy_ability_live": {
+    "script": "tests/combat/test_enemy_ability_live.gd",
+    "scene": "tests/combat/test_enemy_ability_live.tscn"
+  },
+  "enemy_archetypes": {
+    "script": "tests/combat/test_enemy_archetypes.gd"
+  },
+  "enemy_art": {
+    "script": "tests/combat/test_enemy_art.gd",
+    "scene": "tests/combat/test_enemy_art.tscn"
+  },
+  "enemy_art_residency": {
+    "script": "tests/combat/test_enemy_art_residency.gd"
+  },
+  "enemy_attack_flow": {
+    "script": "tests/combat/test_enemy_attack_flow.gd",
+    "scene": "tests/combat/test_enemy_attack_flow.tscn"
+  },
+  "enemy_brain": {
+    "script": "tests/combat/test_enemy_brain.gd"
+  },
+  "enemy_calibration_snapshot": {
+    "script": "tests/combat/test_enemy_calibration_snapshot.gd",
+    "scene": "tests/combat/test_enemy_calibration_snapshot.tscn"
+  },
+  "enemy_contact_hold": {
+    "script": "tests/combat/test_enemy_contact_hold.gd"
+  },
+  "enemy_defeat_feedback": {
+    "script": "tests/combat/test_enemy_defeat_feedback.gd",
+    "scene": "tests/combat/test_enemy_defeat_feedback.tscn"
+  },
+  "enemy_difficulty": {
+    "script": "tests/combat/test_enemy_difficulty.gd",
+    "scene": "tests/combat/test_enemy_difficulty.tscn"
+  },
+  "enemy_displacement": {
+    "script": "tests/combat/test_enemy_displacement.gd",
+    "scene": "tests/combat/test_enemy_displacement.tscn"
+  },
+  "enemy_integration": {
+    "script": "tests/combat/test_enemy_integration.gd",
+    "scene": "tests/combat/test_enemy_integration.tscn"
+  },
+  "enemy_live_room": {
+    "script": "tests/world/test_enemy_live_room.gd",
+    "scene": "tests/world/test_enemy_live_room.tscn"
+  },
+  "enemy_presentation": {
+    "script": "tests/combat/test_enemy_presentation.gd"
+  },
+  "enemy_profiles": {
+    "script": "tests/combat/test_enemy_profiles.gd"
+  },
+  "enemy_role_behavior": {
+    "script": "tests/characters/test_enemy_role_behavior.gd",
+    "scene": "tests/characters/test_enemy_role_behavior.tscn"
+  },
+  "enemy_skills": {
+    "script": "tests/combat/test_enemy_skills.gd"
+  },
+  "enemy_species_profiles": {
+    "script": "tests/combat/test_enemy_species_profiles.gd",
+    "scene": "tests/combat/test_enemy_species_profiles.tscn"
+  },
+  "enemy_telegraphs": {
+    "script": "tests/combat/test_enemy_telegraphs.gd",
+    "scene": "tests/combat/test_enemy_telegraphs.tscn"
+  },
+  "enemy_threat_capture": {
+    "script": "tests/captures/test_enemy_threat_capture.gd",
+    "scene": "tests/captures/test_enemy_threat_capture.tscn"
+  },
+  "enemy_variant_budget": {
+    "script": "tests/combat/test_enemy_variant_budget.gd"
+  },
+  "enemy_variant_hd_art": {
+    "script": "tests/combat/test_enemy_variant_hd_art.gd",
+    "scene": "tests/combat/test_enemy_variant_hd_art.tscn"
+  },
+  "enemy_variants": {
+    "script": "tests/combat/test_enemy_variants.gd",
+    "scene": "tests/combat/test_enemy_variants.tscn"
+  },
+  "enemy_warning_timing": {
+    "script": "tests/combat/test_enemy_warning_timing.gd"
+  },
+  "environment_clarity": {
+    "script": "tests/world/test_environment_clarity.gd",
+    "scene": "tests/world/test_environment_clarity.tscn"
+  },
+  "environment_native": {
+    "script": "tests/world/test_environment_native.gd",
+    "scene": "tests/world/test_environment_native.tscn"
+  },
+  "environment_native_resources": {
+    "script": "tests/world/test_environment_native_resources.gd",
+    "scene": "tests/world/test_environment_native_resources.tscn"
+  },
+  "equipment_advice": {
+    "script": "tests/equipment/test_equipment_advice.gd"
+  },
+  "equipment_art": {
+    "script": "tests/equipment/test_equipment_art.gd",
+    "scene": "tests/equipment/test_equipment_art.tscn"
+  },
+  "equipment_class_policy": {
+    "script": "tests/equipment/test_equipment_class_policy.gd"
+  },
+  "equipment_effects": {
+    "script": "tests/equipment/test_equipment_effects.gd"
+  },
+  "equipment_guidance_ui": {
+    "script": "tests/equipment/test_equipment_guidance_ui.gd"
+  },
+  "equipment_market": {
+    "script": "tests/equipment/test_equipment_market.gd"
+  },
+  "equipment_ui": {
+    "script": "tests/equipment/test_equipment_ui.gd"
+  },
+  "expedition_flow": {
+    "script": "tests/app/test_expedition_flow.gd"
+  },
+  "expedition_ui_compile": {
+    "script": "tests/ui/test_expedition_ui_compile.gd"
+  },
+  "failure_learning_policy": {
+    "script": "tests/app/test_failure_learning_policy.gd"
+  },
+  "field_equipment": {
+    "script": "tests/equipment/test_field_equipment.gd"
+  },
+  "field_equipment_ui": {
+    "script": "tests/equipment/test_field_equipment_ui.gd"
+  },
+  "field_growth_integration": {
+    "script": "tests/app/test_field_growth_integration.gd"
+  },
+  "field_loadout": {
+    "script": "tests/app/test_field_loadout.gd"
+  },
+  "first_four_construct_hive": {
+    "script": "tests/app/test_first_four_construct_hive.gd"
+  },
+  "first_four_growth_integration": {
+    "script": "tests/balance/test_first_four_growth_integration.gd",
+    "scene": "tests/balance/test_first_four_growth_integration.tscn"
+  },
+  "first_four_loot": {
+    "script": "tests/equipment/test_first_four_loot.gd"
+  },
+  "first_four_natural_chapter": {
+    "script": "tests/balance/test_first_four_natural_chapter.gd",
+    "scene": "tests/balance/test_first_four_natural_chapter.tscn"
+  },
+  "first_run_progression": {
+    "script": "tests/app/test_first_run_progression.gd"
+  },
+  "fixed_room_layouts": {
+    "script": "tests/world/test_fixed_room_layouts.gd"
+  },
+  "global_crit_policy": {
+    "script": "tests/combat/test_global_crit_policy.gd",
+    "scene": "tests/combat/test_global_crit_policy.tscn"
+  },
+  "growth_feedback": {
+    "script": "tests/app/test_growth_feedback.gd",
+    "scene": "tests/app/test_growth_feedback.tscn"
+  },
+  "gun_shooting_pose": {
+    "script": "tests/characters/test_gun_shooting_pose.gd"
+  },
+  "hero_codex_ui": {
+    "script": "tests/characters/test_hero_codex_ui.gd",
+    "scene": "tests/characters/test_hero_codex_ui.tscn"
+  },
+  "hero_directional_atlas": {
+    "script": "tests/characters/test_hero_directional_atlas.gd"
+  },
+  "hero_motion": {
+    "script": "tests/characters/test_hero_motion.gd",
+    "scene": "tests/characters/test_hero_motion.tscn"
+  },
+  "hero_motion_detail": {
+    "script": "tests/characters/test_hero_motion_detail.gd",
+    "scene": "tests/characters/test_hero_motion_detail.tscn"
+  },
+  "hero_passives": {
+    "script": "tests/characters/test_hero_passives.gd"
+  },
+  "hero_render": {
+    "script": "tests/characters/test_hero_render.gd",
+    "scene": "tests/characters/test_hero_render.tscn"
+  },
+  "hero_signature_capture": {
+    "script": "tests/captures/test_hero_signature_capture.gd",
+    "scene": "tests/captures/test_hero_signature_capture.tscn"
+  },
+  "hero_skill_atlas": {
+    "script": "tests/characters/test_hero_skill_atlas.gd",
+    "scene": "tests/characters/test_hero_skill_atlas.tscn"
+  },
+  "hero_storybook_family": {
+    "script": "tests/characters/test_hero_storybook_family.gd",
+    "scene": "tests/characters/test_hero_storybook_family.tscn"
+  },
+  "hero_walk_review": {
+    "script": "tests/captures/test_hero_walk_review.gd",
+    "scene": "tests/captures/test_hero_walk_review.tscn"
+  },
+  "heroes": {
+    "script": "tests/characters/test_heroes.gd",
+    "scene": "tests/characters/test_heroes.tscn"
+  },
+  "hit_chain": {
+    "script": "tests/combat/test_hit_chain.gd"
+  },
+  "hit_chain_capture": {
+    "script": "tests/captures/test_hit_chain_capture.gd",
+    "scene": "tests/captures/test_hit_chain_capture.tscn"
+  },
+  "hit_chain_ui": {
+    "script": "tests/ui/test_hit_chain_ui.gd"
+  },
+  "hit_feel": {
+    "script": "tests/combat/test_hit_feel.gd"
+  },
+  "hud_buffs": {
+    "script": "tests/ui/test_hud_buffs.gd"
+  },
+  "hud_controls_layout": {
+    "script": "tests/ui/test_hud_controls_layout.gd"
+  },
+  "impact_anchor_audit": {
+    "script": "tests/app/test_impact_anchor_audit.gd"
+  },
+  "impact_audio_priority": {
+    "script": "tests/audio/test_impact_audio_priority.gd"
+  },
+  "impact_audio_redesign": {
+    "script": "tests/audio/test_impact_audio_redesign.gd"
+  },
+  "impact_visuals": {
+    "script": "tests/app/test_impact_visuals.gd",
+    "scene": "tests/app/test_impact_visuals.tscn"
+  },
+  "inventory_performance": {
+    "script": "tests/app/test_inventory_performance.gd",
+    "scene": "tests/app/test_inventory_performance.tscn"
+  },
+  "legacy_profile_reset": {
+    "script": "tests/persistence/test_legacy_profile_reset.gd"
+  },
+  "loot_status_ui": {
+    "script": "tests/equipment/test_loot_status_ui.gd"
+  },
+  "mage_balance_candidate": {
+    "script": "tests/balance/test_mage_balance_candidate.gd",
+    "scene": "tests/balance/test_mage_balance_candidate.tscn"
+  },
+  "mage_spell_only_capture": {
+    "script": "tests/captures/test_mage_spell_only_capture.gd",
+    "scene": "tests/captures/test_mage_spell_only_capture.tscn"
+  },
+  "main_audio_shutdown": {
+    "script": "tests/audio/test_main_audio_shutdown.gd",
+    "scene": "tests/audio/test_main_audio_shutdown.tscn"
+  },
+  "menu_role_copy": {
+    "script": "tests/characters/test_menu_role_copy.gd",
+    "scene": "tests/characters/test_menu_role_copy.tscn"
+  },
+  "monster_expansion_art": {
+    "script": "tests/combat/test_monster_expansion_art.gd",
+    "scene": "tests/combat/test_monster_expansion_art.tscn"
+  },
+  "monster_role_policy": {
+    "script": "tests/characters/test_monster_role_policy.gd",
+    "scene": "tests/characters/test_monster_role_policy.tscn"
+  },
+  "music_duck": {
+    "script": "tests/audio/test_music_duck.gd",
+    "scene": "tests/audio/test_music_duck.tscn"
+  },
+  "new_controls": {
+    "script": "tests/ui/test_new_controls.gd",
+    "scene": "tests/ui/test_new_controls.tscn"
+  },
+  "numerical_acquisition": {
+    "script": "tests/equipment/test_numerical_acquisition.gd"
+  },
+  "numerical_acquisition_lifecycle": {
+    "script": "tests/equipment/test_numerical_acquisition_lifecycle.gd",
+    "scene": "tests/equipment/test_numerical_acquisition_lifecycle.tscn"
+  },
+  "numerical_acquisition_ui": {
+    "script": "tests/equipment/test_numerical_acquisition_ui.gd",
+    "scene": "tests/equipment/test_numerical_acquisition_ui.tscn"
+  },
+  "numerical_combat_live": {
+    "script": "tests/combat/test_numerical_combat_live.gd",
+    "scene": "tests/combat/test_numerical_combat_live.tscn"
+  },
+  "numerical_confirmed_casts": {
+    "script": "tests/combat/test_numerical_confirmed_casts.gd",
+    "scene": "tests/combat/test_numerical_confirmed_casts.tscn"
+  },
+  "numerical_confirmed_receivers": {
+    "script": "tests/combat/test_numerical_confirmed_receivers.gd",
+    "scene": "tests/combat/test_numerical_confirmed_receivers.tscn"
+  },
+  "numerical_enemy_actors": {
+    "script": "tests/combat/test_numerical_enemy_actors.gd",
+    "scene": "tests/combat/test_numerical_enemy_actors.tscn"
+  },
+  "numerical_enemy_profiles": {
+    "script": "tests/combat/test_numerical_enemy_profiles.gd"
+  },
+  "numerical_enemy_skills": {
+    "script": "tests/combat/test_numerical_enemy_skills.gd",
+    "scene": "tests/combat/test_numerical_enemy_skills.tscn"
+  },
+  "numerical_forging": {
+    "script": "tests/equipment/test_numerical_forging.gd"
+  },
+  "numerical_forging_lifecycle": {
+    "script": "tests/equipment/test_numerical_forging_lifecycle.gd",
+    "scene": "tests/equipment/test_numerical_forging_lifecycle.tscn"
+  },
+  "numerical_forging_ui": {
+    "script": "tests/equipment/test_numerical_forging_ui.gd",
+    "scene": "tests/equipment/test_numerical_forging_ui.tscn"
+  },
+  "numerical_fresh_profile": {
+    "script": "tests/app/test_numerical_fresh_profile.gd"
+  },
+  "numerical_growth_transactions": {
+    "script": "tests/app/test_numerical_growth_transactions.gd",
+    "scene": "tests/app/test_numerical_growth_transactions.tscn"
+  },
+  "numerical_hero_skills": {
+    "script": "tests/characters/test_numerical_hero_skills.gd"
+  },
+  "numerical_instance_loadout": {
+    "script": "tests/equipment/test_numerical_instance_loadout.gd"
+  },
+  "numerical_instance_storage": {
+    "script": "tests/persistence/test_numerical_instance_storage.gd",
+    "scene": "tests/persistence/test_numerical_instance_storage.tscn"
+  },
+  "numerical_instance_transactions": {
+    "script": "tests/equipment/test_numerical_instance_transactions.gd"
+  },
+  "numerical_instance_ui": {
+    "script": "tests/equipment/test_numerical_instance_ui.gd",
+    "scene": "tests/equipment/test_numerical_instance_ui.tscn"
+  },
+  "numerical_instances": {
+    "script": "tests/equipment/test_numerical_instances.gd"
+  },
+  "numerical_loot_ui": {
+    "script": "tests/equipment/test_numerical_loot_ui.gd",
+    "scene": "tests/equipment/test_numerical_loot_ui.tscn"
+  },
+  "numerical_packets": {
+    "script": "tests/app/test_numerical_packets.gd"
+  },
+  "numerical_progression": {
+    "script": "tests/app/test_numerical_progression.gd"
+  },
+  "numerical_receive_paths": {
+    "script": "tests/app/test_numerical_receive_paths.gd",
+    "scene": "tests/app/test_numerical_receive_paths.tscn"
+  },
+  "numerical_resources": {
+    "script": "tests/app/test_numerical_resources.gd"
+  },
+  "numerical_reward_scaling_lifecycle": {
+    "script": "tests/app/test_numerical_reward_scaling_lifecycle.gd",
+    "scene": "tests/app/test_numerical_reward_scaling_lifecycle.tscn"
+  },
+  "numerical_rules": {
+    "script": "tests/app/test_numerical_rules.gd"
+  },
+  "numerical_runtime_lifecycle": {
+    "script": "tests/app/test_numerical_runtime_lifecycle.gd",
+    "scene": "tests/app/test_numerical_runtime_lifecycle.tscn"
+  },
+  "numerical_set_loop": {
+    "script": "tests/equipment/test_numerical_set_loop.gd",
+    "scene": "tests/equipment/test_numerical_set_loop.tscn"
+  },
+  "numerical_stat_budgets": {
+    "script": "tests/combat/test_numerical_stat_budgets.gd"
+  },
+  "numerical_ui_alignment": {
+    "script": "tests/ui/test_numerical_ui_alignment.gd",
+    "scene": "tests/ui/test_numerical_ui_alignment.tscn"
+  },
+  "objective_depth": {
+    "script": "tests/world/test_objective_depth.gd",
+    "scene": "tests/world/test_objective_depth.tscn"
+  },
+  "objectives_b02": {
+    "script": "tests/world/test_objectives_b02.gd",
+    "scene": "tests/world/test_objectives_b02.tscn"
+  },
+  "objectives_b03": {
+    "script": "tests/world/test_objectives_b03.gd",
+    "scene": "tests/world/test_objectives_b03.tscn"
+  },
+  "objectives_b04": {
+    "script": "tests/world/test_objectives_b04.gd",
+    "scene": "tests/world/test_objectives_b04.tscn"
+  },
+  "optional_objective_runtime": {
+    "script": "tests/world/test_optional_objective_runtime.gd",
+    "scene": "tests/world/test_optional_objective_runtime.tscn"
+  },
+  "perimeter_visual": {
+    "script": "tests/world/test_perimeter_visual.gd",
+    "scene": "tests/world/test_perimeter_visual.tscn"
+  },
+  "pit_presentation": {
+    "script": "tests/world/test_pit_presentation.gd",
+    "scene": "tests/world/test_pit_presentation.tscn"
+  },
+  "player_boss_balance": {
+    "script": "tests/combat/test_player_boss_balance.gd",
+    "scene": "tests/combat/test_player_boss_balance.tscn"
+  },
+  "player_enemy_status": {
+    "script": "tests/combat/test_player_enemy_status.gd",
+    "scene": "tests/combat/test_player_enemy_status.tscn"
+  },
+  "playthrough": {
+    "script": "tests/app/test_playthrough.gd",
+    "scene": "tests/app/test_playthrough.tscn"
+  },
+  "pointer_probe": {
+    "script": "tests/captures/test_pointer_probe.gd",
+    "scene": "tests/captures/test_pointer_probe.tscn"
+  },
+  "primary_confirmation": {
+    "script": "tests/ui/test_primary_confirmation.gd",
+    "scene": "tests/ui/test_primary_confirmation.tscn"
+  },
+  "progression": {
+    "script": "tests/app/test_progression.gd"
+  },
+  "progressive_monster_roster": {
+    "script": "tests/combat/test_progressive_monster_roster.gd"
+  },
+  "projectile_identity_capture": {
+    "script": "tests/captures/test_projectile_identity_capture.gd"
+  },
+  "projectile_visual": {
+    "script": "tests/app/test_projectile_visual.gd",
+    "scene": "tests/app/test_projectile_visual.tscn"
+  },
+  "quest_ui": {
+    "script": "tests/ui/test_quest_ui.gd"
+  },
+  "relic_art_retirement": {
+    "script": "tests/combat/test_relic_art_retirement.gd"
+  },
+  "resonance_audibility": {
+    "script": "tests/audio/test_resonance_audibility.gd"
+  },
+  "resonance_audio": {
+    "script": "tests/audio/test_resonance_audio.gd"
+  },
+  "resonance_circuit": {
+    "script": "tests/ui/test_resonance_circuit.gd",
+    "scene": "tests/ui/test_resonance_circuit.tscn"
+  },
+  "resonance_loop": {
+    "script": "tests/combat/test_resonance_loop.gd"
+  },
+  "resonance_playability": {
+    "script": "tests/combat/test_resonance_playability.gd",
+    "scene": "tests/combat/test_resonance_playability.tscn"
+  },
+  "reward_route_preview": {
+    "script": "tests/world/test_reward_route_preview.gd",
+    "scene": "tests/world/test_reward_route_preview.tscn"
+  },
+  "role_motion_capture": {
+    "script": "tests/captures/test_role_motion_capture.gd",
+    "scene": "tests/captures/test_role_motion_capture.tscn"
+  },
+  "role_skill_audio": {
+    "script": "tests/audio/test_role_skill_audio.gd"
+  },
+  "role_skill_redesign": {
+    "script": "tests/characters/test_role_skill_redesign.gd",
+    "scene": "tests/characters/test_role_skill_redesign.tscn"
+  },
+  "role_specialization": {
+    "script": "tests/characters/test_role_specialization.gd",
+    "scene": "tests/characters/test_role_specialization.tscn"
+  },
+  "role_vfx_capture": {
+    "script": "tests/captures/test_role_vfx_capture.gd",
+    "scene": "tests/captures/test_role_vfx_capture.tscn"
+  },
+  "room_difficulty": {
+    "script": "tests/world/test_room_difficulty.gd"
+  },
+  "room_failure": {
+    "script": "tests/world/test_room_failure.gd"
+  },
+  "room_generator": {
+    "script": "tests/world/test_room_generator.gd",
+    "scene": "tests/world/test_room_generator.tscn"
+  },
+  "room_layouts": {
+    "script": "tests/world/test_room_layouts.gd"
+  },
+  "room_objectives": {
+    "script": "tests/world/test_room_objectives.gd",
+    "scene": "tests/world/test_room_objectives.tscn"
+  },
+  "room_playthrough": {
+    "script": "tests/world/test_room_playthrough.gd",
+    "scene": "tests/world/test_room_playthrough.tscn"
+  },
+  "room_presentation": {
+    "script": "tests/world/test_room_presentation.gd",
+    "scene": "tests/world/test_room_presentation.tscn"
+  },
+  "room_props": {
+    "script": "tests/world/test_room_props.gd"
+  },
+  "room_props_followup_render": {
+    "script": "tests/world/test_room_props_followup_render.gd",
+    "scene": "tests/world/test_room_props_followup_render.tscn"
+  },
+  "room_props_render": {
+    "script": "tests/world/test_room_props_render.gd",
+    "scene": "tests/world/test_room_props_render.tscn"
+  },
+  "room_rewards": {
+    "script": "tests/world/test_room_rewards.gd"
+  },
+  "route_journal": {
+    "script": "tests/world/test_route_journal.gd",
+    "scene": "tests/world/test_route_journal.tscn"
+  },
+  "routes": {
+    "script": "tests/world/test_routes.gd"
+  },
+  "s11_battle_matrix": {
+    "script": "tests/balance/test_s11_battle_matrix.gd",
+    "scene": "tests/balance/test_s11_battle_matrix.tscn"
+  },
+  "s11_directed_observation": {
+    "script": "tests/balance/test_s11_directed_observation.gd",
+    "scene": "tests/balance/test_s11_directed_observation.tscn"
+  },
+  "s11_elite_observation": {
+    "script": "tests/balance/test_s11_elite_observation.gd",
+    "scene": "tests/balance/test_s11_elite_observation.tscn"
+  },
+  "s11_failure_classification": {
+    "script": "tests/balance/test_s11_failure_classification.gd",
+    "scene": "tests/balance/test_s11_failure_classification.tscn"
+  },
+  "s11_natural_progression": {
+    "script": "tests/balance/test_s11_natural_progression.gd",
+    "scene": "tests/balance/test_s11_natural_progression.tscn"
+  },
+  "save_recycle_bin": {
+    "script": "tests/persistence/test_save_recycle_bin.gd"
+  },
+  "save_recycle_ui": {
+    "script": "tests/persistence/test_save_recycle_ui.gd",
+    "scene": "tests/persistence/test_save_recycle_ui.tscn"
+  },
+  "shared_enemy_growth": {
+    "script": "tests/combat/test_shared_enemy_growth.gd",
+    "scene": "tests/combat/test_shared_enemy_growth.tscn"
+  },
+  "shield_audio": {
+    "script": "tests/audio/test_shield_audio.gd"
+  },
+  "shield_contact": {
+    "script": "tests/combat/test_shield_contact.gd"
+  },
+  "shield_contact_native": {
+    "script": "tests/combat/test_shield_contact_native.gd",
+    "scene": "tests/combat/test_shield_contact_native.tscn"
+  },
+  "skill_audio_timing": {
+    "script": "tests/audio/test_skill_audio_timing.gd"
+  },
+  "skill_feedback_capture": {
+    "script": "tests/captures/test_skill_feedback_capture.gd",
+    "scene": "tests/captures/test_skill_feedback_capture.tscn"
+  },
+  "skill_input": {
+    "script": "tests/combat/test_skill_input.gd",
+    "scene": "tests/combat/test_skill_input.tscn"
+  },
+  "skill_input_ui": {
+    "script": "tests/ui/test_skill_input_ui.gd",
+    "scene": "tests/ui/test_skill_input_ui.tscn"
+  },
+  "storybook_rebuild": {
+    "script": "tests/ui/test_storybook_rebuild.gd",
+    "scene": "tests/ui/test_storybook_rebuild.tscn"
+  },
+  "supply_guard": {
+    "script": "tests/app/test_supply_guard.gd"
+  },
+  "terrain_cache": {
+    "script": "tests/world/test_terrain_cache.gd",
+    "scene": "tests/world/test_terrain_cache.tscn"
+  },
+  "terrain_readability": {
+    "script": "tests/world/test_terrain_readability.gd",
+    "scene": "tests/world/test_terrain_readability.tscn"
+  },
+  "ui": {
+    "script": "tests/ui/test_ui.gd"
+  },
+  "ui_edges": {
+    "script": "tests/ui/test_ui_edges.gd"
+  },
+  "ui_refactor_gallery": {
+    "script": "tests/ui/test_ui_refactor_gallery.gd",
+    "scene": "tests/ui/test_ui_refactor_gallery.tscn"
+  },
+  "ui_text_audit": {
+    "script": "tests/ui/test_ui_text_audit.gd",
+    "scene": "tests/ui/test_ui_text_audit.tscn"
+  },
+  "wall_movement": {
+    "script": "tests/world/test_wall_movement.gd",
+    "scene": "tests/world/test_wall_movement.tscn"
+  },
+  "warrior_balance_candidate": {
+    "script": "tests/balance/test_warrior_balance_candidate.gd",
+    "scene": "tests/balance/test_warrior_balance_candidate.tscn"
+  },
+  "workshop_art": {
+    "script": "tests/ui/test_workshop_art.gd"
+  },
+  "workshop_ui": {
+    "script": "tests/ui/test_workshop_ui.gd"
+  },
+  "world_camera": {
+    "script": "tests/world/test_world_camera.gd",
+    "scene": "tests/world/test_world_camera.tscn"
+  },
+  "world_depth": {
+    "script": "tests/world/test_world_depth.gd",
+    "scene": "tests/world/test_world_depth.tscn"
+  },
+  "world_factions": {
+    "script": "tests/world/test_world_factions.gd",
+    "scene": "tests/world/test_world_factions.tscn"
+  },
+  "world_label_contrast": {
+    "script": "tests/world/test_world_label_contrast.gd",
+    "scene": "tests/world/test_world_label_contrast.tscn"
+  },
+  "world_prop_art": {
+    "script": "tests/world/test_world_prop_art.gd",
+    "scene": "tests/world/test_world_prop_art.tscn"
+  },
+  "world_readability": {
+    "script": "tests/world/test_world_readability.gd",
+    "scene": "tests/world/test_world_readability.tscn"
+  },
+  "world_readability_capture": {
+    "script": "tests/captures/test_world_readability_capture.gd",
+    "scene": "tests/captures/test_world_readability_capture.tscn"
+  },
+  "world_visual": {
+    "script": "tests/world/test_world_visual.gd",
+    "scene": "tests/world/test_world_visual.tscn"
+  }
+}

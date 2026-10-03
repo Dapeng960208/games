@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "room_id": "L18",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L18_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "94c241fdbbecad3c19631d3b82cfa6a4518d9524e9b95a5581e5d63980c8ba51",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L18/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "d1b4a973be870db4216adbeca81b7ed7322cd9592ac80711b3599969de867c05",
+      "decoded_rgb_sha256": "1813a1ab474ac1cb024b86e9b61a9db231dbc173ca911949c6e9bc28bbc30c04",
+      "webp_sha256": "10157735178b4206f607cc54d77c5b4152ea0d8901f85609d2931ce7d82e1af0",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B03 sunny pumpkin village. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all ground markings, plant silhouettes, roof and fence contours, every ground edge, light/shadow shapes, and soft warm painterly palette. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle mortar detail, subtle wood grain, fine leaf veins, fine pumpkin ridges, cloth weave or roof texture where those materials already exist. Maintain gentle low-gloss illustrated surfaces, exact muted sunlight exposure and crisp readable material edges; no stronger contrast, photographic texture, gloss boost, oversharpening, new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L18 top_left. Preserve upper-left cream cottage and purple roof, wooden door and exact steps, upper-right wooden crates, barrel and sailboat, left turquoise canal and cropped wooden sailboat with cream moon-emblem sail, rope-wrapped dock posts, pumpkins and flower beds. Keep exact gray curving pavement ribbons and fish-shaped floor mosaic clipped at right. Copy all four crop edges exactly."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L18/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "0dd03b0b305945cd2b5e79b5b340afad3c3fddafb1439ecfd11c151e1ed6dbc8",
+      "decoded_rgb_sha256": "26ff801054bbcb3ee0cc4d7393795a306773beb8d0d36209196243980673444f",
+      "webp_sha256": "f03b60d631a15041bfb90fccf49ccfc7809f78ca680e52b9314235a3d311e247",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B03 sunny pumpkin village. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all ground markings, plant silhouettes, roof and fence contours, every ground edge, light/shadow shapes, and soft warm painterly palette. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle mortar detail, subtle wood grain, fine leaf veins, fine pumpkin ridges, cloth weave or roof texture where those materials already exist. Maintain gentle low-gloss illustrated surfaces, exact muted sunlight exposure and crisp readable material edges; no stronger contrast, photographic texture, gloss boost, oversharpening, new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L18 top_middle. Preserve the entirely open pale golden cobbled court with exact broad gray curving ribbons crossing from edge to edge, round gray stone patches and the fish-shaped gray paving inlay at upper-right. Preserve its silhouette, tail, eye and exact placement. Keep every flower tuft and shadow shape. Copy all four crop edges exactly."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L18/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "6770c25b2642ab4a4677e557ba402e0534dc743fa55644b4aecb630912ad2deb",
+      "decoded_rgb_sha256": "ea31c6f8977a11165c22fc7a73cbd518b9f63bd26e283afe32922766aa38f1c8",
+      "webp_sha256": "997e212bd0eb3d71fff13031b53d8ceca8ed79854c4bfbc8feb80d3c9334cdc5",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B03 sunny pumpkin village. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all ground markings, plant silhouettes, roof and fence contours, every ground edge, light/shadow shapes, and soft warm painterly palette. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle mortar detail, subtle wood grain, fine leaf veins, fine pumpkin ridges, cloth weave or roof texture where those materials already exist. Maintain gentle low-gloss illustrated surfaces, exact muted sunlight exposure and crisp readable material edges; no stronger contrast, photographic texture, gloss boost, oversharpening, new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L18 top_right. Preserve exact upper-right purple-roof gazebo with wood pillars, white balustrade, curved steps, small purple table, planters and flower border; pumpkin at upper-left; curved cream canal wall, dock posts and turquoise water at right. Keep gray curving paths and fish mosaic near lower-left exactly positioned. Copy all four crop edges exactly."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L18/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "8573028e29b77350cb5e4b03706cf5409f7e10c7bea6290fdcd30587bc353578",
+      "decoded_rgb_sha256": "860c2fa99b3d11f1715764c3aa260582defab7e0ac50ab6cc09cde1bd7613638",
+      "webp_sha256": "8a3cd2d38ce5a170877d9d3cd2663d221686bd171189b5baadd1102587c2e771",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B03 sunny pumpkin village. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all ground markings, plant silhouettes, roof and fence contours, every ground edge, light/shadow shapes, and soft warm painterly palette. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle mortar detail, subtle wood grain, fine leaf veins, fine pumpkin ridges, cloth weave or roof texture where those materials already exist. Maintain gentle low-gloss illustrated surfaces, exact muted sunlight exposure and crisp readable material edges; no stronger contrast, photographic texture, gloss boost, oversharpening, new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L18 bottom_left. Preserve the diagonal canal seawall and exact wooden dock planks and rope-wrapped posts, turquoise water with lily pads, wooden sailboat clipped lower-left and its cream moon-emblem sail. Keep the fish-shaped ground mosaic and precise gray path curves above, all planters, pumpkins and flowers. Copy all four crop edges exactly."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L18/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "c61398e7a11383ab43e843699e296c0d66db0a052979c1b1cc081fb156a60b49",
+      "decoded_rgb_sha256": "bb34989c1c5151985c2e040bb2206ea032d5319bef5e5fc533e7a3da6253347f",
+      "webp_sha256": "bafaf09ad2e1d3c9788a4a2f4845777fed2e9c0d8ffc72be757c03b974b8e65f",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B03 sunny pumpkin village. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all ground markings, plant silhouettes, roof and fence contours, every ground edge, light/shadow shapes, and soft warm painterly palette. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle mortar detail, subtle wood grain, fine leaf veins, fine pumpkin ridges, cloth weave or roof texture where those materials already exist. Maintain gentle low-gloss illustrated surfaces, exact muted sunlight exposure and crisp readable material edges; no stronger contrast, photographic texture, gloss boost, oversharpening, new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L18 bottom_middle. Preserve the entire open pale gold cobbled court, exact multiple broad gray meandering bands, round and irregular gray patches, fish-shaped floor inlay near upper-right, flower tufts and lower cast shadow. Keep every fish edge, fin, eye and tail at its original coordinate. No new decor. Copy all four crop edges exactly."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L18/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "d10f57286fa86fb2c71279029a1548ec321975b478131490b0bdacdc19f41f73",
+      "decoded_rgb_sha256": "0df5fe2183ade9abbdffab13f7a85bcadd247681b8a43986d0558b2a84716a8f",
+      "webp_sha256": "02d4363ba91d1153621b1f90b4e5b0e33ea3b8cc4c6f476206b609defd413cb3",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native-resolution high-detail tile repaint for a 2.5D painterly fantasy game environment, B03 sunny pumpkin village. The sole input image is the exact EDIT TARGET crop from the original room artwork. Repaint this exact image at native 1536 by 1536 square resolution with genuinely finer hand-painted material detail. Preserve the original's exact normalized positions, framing and camera, architecture, paving joint network, stone sizes and shapes, all ground markings, plant silhouettes, roof and fence contours, every ground edge, light/shadow shapes, and soft warm painterly palette. Keep the entire same crop visible edge to edge with corresponding features touching exactly the same image edges; no zoom, padding, crop, rotation, redesign or perspective change. Only add small-scale stone grain, tiny stone pores, gentle mortar detail, subtle wood grain, fine leaf veins, fine pumpkin ridges, cloth weave or roof texture where those materials already exist. Maintain gentle low-gloss illustrated surfaces, exact muted sunlight exposure and crisp readable material edges; no stronger contrast, photographic texture, gloss boost, oversharpening, new objects, text, characters, interface or watermark. Structural fidelity matters more than decorative detail. All large-scale contours and every cobblestone boundary must remain at the same normalized coordinates. This is L18 bottom_right. Preserve the precise curved cream seawall that separates cobbled court at upper-left from turquoise canal at right and bottom, exact rope-wrapped wood posts and dock planks, cropped boats at right, lily pads, purple roof and cream chimney clipped at lower-right. Preserve gray paving curves and flower tufts. Copy all four crop edges exactly."
+    }
+  ],
+  "qa": {
+    "date": "2026-10-02",
+    "engine": "Godot 4.7.2",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "checks": 48,
+    "failures": 0,
+    "layout_polygon_camera_unchanged": true,
+    "texture_release_and_reload": true,
+    "visual_review": "All five original/native pairs reviewed by source-art owner, with integration-lead checks of the center and representative edge pair. Building/door footprints, path motifs and runtime anchors remain aligned, with no apparent hard tile joins. Material detail improves; small repainted details and mild contrast differences remain. Controlled static views do not establish natural crowded-combat readability.",
+    "rgba_mips_upper_bound_bytes": 50304432,
+    "graphics_backend": "private Xorg display :97, llvmpipe; physical GPU performance not benchmarked",
+    "evidence": [
+      {
+        "capture": "L18_center_original_2560x1440.png",
+        "sha256": "314ee892442a8dd36d5fd5fe36cf650f1f49ea52f74a6cd1a3d9e410b9d2c54d"
+      },
+      {
+        "capture": "L18_center_native_2560x1440.png",
+        "sha256": "e061c6b33a7eac26d46181d48a71adc272a0d327376af7585c695c9cd45976e0"
+      },
+      {
+        "capture": "L18_northwest_original_2560x1440.png",
+        "sha256": "20ce9890c473610b925943438cfb44a2c21fc15fc5541e94fc45ed5bf3a8e027"
+      },
+      {
+        "capture": "L18_northwest_native_2560x1440.png",
+        "sha256": "3db7cfcf0eb67b46af7ae8dc1a38b67025a370c52b1aee8e5f8c3301c49b8932"
+      },
+      {
+        "capture": "L18_northeast_original_2560x1440.png",
+        "sha256": "e93ac1ea68bef6359a57b302f22294ad5a34729735224d8d3f6d00d275c18500"
+      },
+      {
+        "capture": "L18_northeast_native_2560x1440.png",
+        "sha256": "8baaeb5210ec4b0dd351e466e1887c69a5e59c48f28b5802f402391bf5fa5df0"
+      },
+      {
+        "capture": "L18_southwest_original_2560x1440.png",
+        "sha256": "5a771da27a64f58263859dd4229182c15c598cfaedfbce2239af04daf3b2cde5"
+      },
+      {
+        "capture": "L18_southwest_native_2560x1440.png",
+        "sha256": "a33baa863691212e363fe0e242a866a7f64f0d06648f4182a11ab888635d0279"
+      },
+      {
+        "capture": "L18_southeast_original_2560x1440.png",
+        "sha256": "50fb04340f72015d75c76beb867721fe165f38b053bc12144ed4485d90f7f592"
+      },
+      {
+        "capture": "L18_southeast_native_2560x1440.png",
+        "sha256": "261c3e73bdc680f942d22521b450224f5cd07b746f7eba0cd9d7db4d70bda922"
+      }
+    ],
+    "log_sha256": "737e376cac8740947602489b3cc6886b2c29c8723f0d5499c0f46055e7467f8e"
+  }
+}

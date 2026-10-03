@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "room_id": "L37",
+  "biome_id": "B07",
+  "candidate_only": true,
+  "status": "art_trial_only_composition_not_accepted",
+  "migration_utc_date": "2026-10-03",
+  "assets": {
+    "asset://levels/b07/rooms/l37/canyon_backdrop.png": {
+      "physical_path": "res://assets/levels/b07/rooms/l37/canyon_backdrop.png",
+      "original_filename": "L37_canyon_backdrop_v1.png",
+      "original_version": "v1",
+      "native_size": [
+        1552,
+        1013
+      ],
+      "mode": "RGB",
+      "bytes": 2461212,
+      "sha256": "1b600432ede4233d608bece8e4be4f1a4fd03ff457674e3a1c925bf9369d6a31",
+      "unchanged_generated_pixels": true,
+      "prompt": "asset://levels/b07/rooms/l37/provenance/canyon_backdrop.prompt.txt",
+      "original_prompt_filename": "L37_canyon_backdrop_v1.prompt.txt",
+      "original_prompt_sha256": "84bf4f8bd0eea5cd5716c2651b2f56024654c7b70121258daa7a7e6965efb9f7"
+    },
+    "asset://levels/b07/rooms/l37/cliff_foundation.png": {
+      "physical_path": "res://assets/levels/b07/rooms/l37/cliff_foundation.png",
+      "original_filename": "L37_cliff_foundation_v1.png",
+      "original_version": "v1",
+      "native_size": [
+        2172,
+        724
+      ],
+      "mode": "RGB",
+      "bytes": 2620620,
+      "sha256": "92418f56db75b9d22b23e6b5bfb0db215cd70553e50c3599190c44a50fac11f0",
+      "unchanged_generated_pixels": true,
+      "prompt": "asset://levels/b07/rooms/l37/provenance/cliff_foundation.prompt.txt",
+      "original_prompt_filename": "L37_cliff_foundation_v1.prompt.txt",
+      "original_prompt_sha256": "fb3b4d3143e706f72612ec95d42a3e38009c960fdffd3180a1907b9d1688cdba"
+    },
+    "asset://levels/b07/rooms/l37/sandstone_floor.png": {
+      "physical_path": "res://assets/levels/b07/rooms/l37/sandstone_floor.png",
+      "original_filename": "L37_sandstone_floor_v1.png",
+      "original_version": "v1",
+      "native_size": [
+        1565,
+        1005
+      ],
+      "mode": "RGB",
+      "bytes": 2295248,
+      "sha256": "6ae03e1c588fc95c15778e89117f1c83e3f7daefa19180db08032d5af4658484",
+      "unchanged_generated_pixels": true,
+      "prompt": "asset://levels/b07/rooms/l37/provenance/sandstone_floor.prompt.txt",
+      "original_prompt_filename": "L37_sandstone_floor_v1.prompt.txt",
+      "original_prompt_sha256": "23a3a35fe4c1ea374805d63b7227ede03dd82395fc51775ec27f9e1f249cf27a"
+    },
+    "asset://levels/b07/rooms/l37/west_guardian.png": {
+      "physical_path": "res://assets/levels/b07/rooms/l37/west_guardian.png",
+      "original_filename": "L37_west_guardian_v1.png",
+      "original_version": "v1",
+      "native_size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "bytes": 2393925,
+      "sha256": "f48a8fe396899058222768b52c90384a8ef0f9917783f13e43fea5050cb760cb",
+      "unchanged_generated_pixels": true,
+      "prompt": "asset://levels/b07/rooms/l37/provenance/west_guardian.prompt.txt",
+      "original_prompt_filename": "L37_west_guardian_v1.prompt.txt",
+      "original_prompt_sha256": "e8477e3f5fc664878051c13147f6a2898dcec8a54e0ff2392eeb7415aef2222e"
+    }
+  },
+  "source_records": {
+    "canyon_layers": "asset://levels/b07/rooms/l37/provenance/canyon_source.json",
+    "floor_generation_and_rejected_background_lineage": "asset://levels/b07/rooms/l37/provenance/floor_source.json",
+    "rejected_background_prompt": "asset://levels/b07/rooms/l37/provenance/environment_source.prompt.txt"
+  },
+  "current_trial_contract": {
+    "documentation": "docs/levels/b07/rooms/l37/visual_alignment.md",
+    "blueprint_render_rect": [
+      -900,
+      -800,
+      4600,
+      3000
+    ],
+    "blueprint_to_world_scale": 0.58,
+    "navigation_unchanged": true,
+    "floor_clip": "exact authoritative walkable polygon",
+    "foundation_extrusion_blueprint": [
+      0,
+      260
+    ],
+    "foundation_visible_edge_rule": "edge.cross(Vector2(0,260)) < 0",
+    "foundation_uv": "finite vertical depth; repeat only horizontally using depth * source_width / source_height",
+    "superseded_foundation_extrusion_blueprint": [
+      -180,
+      330
+    ],
+    "superseded_reason": "Diagonal west-wall material mapping failed visual review; do not restore it.",
+    "guardian_plinth_blueprint": [
+      [
+        -745,
+        1260
+      ],
+      [
+        -390,
+        1150
+      ],
+      [
+        -25,
+        1275
+      ],
+      [
+        -400,
+        1425
+      ]
+    ],
+    "guardian_plinth_depth_blueprint": 440,
+    "camera_zoom": 0.72,
+    "camera_follow_offset_world": [
+      260,
+      110
+    ],
+    "camera_trial_only": true
+  },
+  "validation": {
+    "source_bytes_copied_unchanged": true,
+    "new_generation_performed": false,
+    "post_generation_upscale_repaint_or_alpha_edit": false,
+    "actual_entry_renderer_second_trial": "rendered successfully before directory migration; not overall visual acceptance",
+    "composition_accepted": false,
+    "remaining_findings": [
+      "Bright floor occupies approximately 75% of entry frame.",
+      "Principal sun landmark and gate-city are not visible in entry composition.",
+      "M02/M03 are old placeholder bodies.",
+      "Native backdrop and floor resolution are below the 2560x1440 target; no upscaling used."
+    ],
+    "target_viewport": [
+      2560,
+      1440
+    ],
+    "target_viewport_verified": false,
+    "post_migration_engine_or_visual_verification_performed": false
+  },
+  "excluded_image_sources": [
+    "L37_environment_candidate_v1.png",
+    "L37_environment_candidate_v2.png",
+    "L37_low_stone_cover_v1.png"
+  ],
+  "excluded_source_policy": "No rejected full-scene or optional halo cover PNG, QA screenshot, thumbnail or temporary input is part of this asset set. Historical prompt/hash records preserve derivation only."
+}

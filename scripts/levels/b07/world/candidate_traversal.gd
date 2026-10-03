@@ -1,0 +1,102 @@
+extends RefCounted
+## Explicit isolated traversal. Does not mutate chapter unlocks, expedition node
+## transactions or rewards. In-progress hostile checkpoint support is separate.
+const Candidate = preload("res://scripts/levels/b07/world/candidate.gd")
+const CombatSnapshot = preload("res://scripts/domain/combat/combat_snapshot.gd")
+var room: Node2D
+var node_index := -1
+var difficulty := 0
+var seed_value := 0
+var finished := false
+var _changing := false
+var last_error := ""
+func configure(host: Node2D, selected_difficulty: int, selected_seed: int) -> bool:
+	if room != null or not is_instance_valid(host) or selected_difficulty < 0 or selected_difficulty > 4: return false
+	# A candidate must never borrow the player's normal profile location.
+	if not preload("res://scripts/infrastructure/content/runtime_rules.gd").b07_candidate_enabled() or not Game.profile_path.begins_with("user://test_b07_candidate/") or Game.run == null: return false
+	room = host
+	difficulty = selected_difficulty
+	seed_value = selected_seed
+	room.interaction_requested.connect(_requested)
+	return true
+func start() -> bool:
+	if node_index != -1 or not is_instance_valid(room): return false
+	return _install(0)
+func _context(index: int) -> Dictionary:
+	var context: Dictionary = Candidate.route()[index].duplicate(true)
+	context.merge({"node_index":index,"difficulty":difficulty,"seed":seed_value+index},true)
+	return context
+func _install(index: int) -> bool:
+	if _changing or index < 0 or index >= Candidate.route().size(): return false
+	_changing = true
+	var context := _context(index)
+	var previous: Dictionary = CombatSnapshot.capture(room)
+	if not previous.is_empty(): context["runtime"] = previous
+	var prepared: Dictionary = room.prepare_expedition_node(context)
+	if not bool(prepared.get("valid",false)):
+		last_error = str(prepared.get("error","candidate preparation failed"))
+		_changing = false
+		return false
+	room.apply_prepared_expedition_node(prepared)
+	node_index = index
+	_changing = false
+	return true
+func advance(expected_index: int) -> bool:
+	if _changing or finished or expected_index != node_index or not is_instance_valid(room) or not room.objective_complete: return false
+	if room._living_enemy_count() > 0 or not is_instance_valid(room.b07_mechanics) or not room.b07_mechanics.state.gate_open: return false
+	if room.player.position.distance_to(room.exit_position) > 68: return false
+	if not room.has_line_of_sight(room.player.position,room.exit_position): return false
+	if node_index+1 == Candidate.route().size():
+		finished = true
+		room.set_input_blocked(true)
+		return true
+	return _install(node_index+1)
+func _requested(kind: String, payload: Dictionary) -> void:
+	if kind != "b07_candidate_next": return
+	if not advance(int(payload.get("node_index",-1))): room.set_input_blocked(false)
+func checkpoint() -> Dictionary:
+	last_error = ""
+	if not is_instance_valid(room) or node_index < 0 or not room.objective_complete or room._living_enemy_count() > 0:
+		last_error = "Active hostile actor checkpoints are not admitted by the clear-boundary traversal format."
+		return {}
+	if room.projectiles.get_child_count() > 0 or room.enemy_skills.active_effect_count() > 0:
+		last_error = "Wait for active projectiles and hostile effects to retire before this clear-boundary checkpoint."
+		return {}
+	var hero := CombatSnapshot.capture(room)
+	if hero.is_empty() or not CombatSnapshot.validate(hero,Game.run.hero_id,Game.run.stats): return {}
+	return {"version":2,"format":"b07_clear_boundary","room_id":room.layout_id,"node_index":node_index,"difficulty":difficulty,"seed":seed_value,"finished":finished,"hero":hero,"sun":room.b07_mechanics.checkpoint(),"profile_path":Game.profile_path,"run_id":Game.run.id,"hero_id":Game.run.hero_id}
+func restore_checkpoint(value: Dictionary) -> bool:
+	if not is_instance_valid(room) or _changing or value.size() != 12 or not value.has_all(["version","format","room_id","node_index","difficulty","seed","finished","hero","sun","profile_path","run_id","hero_id"]): return false
+	if value.version != 2 or value.format != "b07_clear_boundary" or value.hero_id != Game.run.hero_id or value.profile_path != Game.profile_path or value.run_id != Game.run.id: return false
+	if not value.node_index is int and not value.node_index is float: return false
+	if not is_finite(float(value.node_index)) or float(value.node_index) != floorf(float(value.node_index)): return false
+	var index := int(value.node_index)
+	if index < 0 or index >= Candidate.route().size() or value.room_id != Candidate.route()[index].room_id or value.difficulty != difficulty or value.seed != seed_value or not value.finished is bool: return false
+	if bool(value.finished) and index != Candidate.route().size()-1: return false
+	if not value.hero is Dictionary or not CombatSnapshot.validate(value.hero,Game.run.hero_id,Game.run.stats) or not value.sun is Dictionary: return false
+	# Reject identity/calibration conflicts before _install replaces any actors.
+	# A clear-boundary snapshot belongs to this active candidate session, not a
+	# different profile/run or a different room's independently valid hero state.
+	if value.hero.get("equipment",{}).get("room_id","") != value.room_id: return false
+	var nested: Variant = value.hero.get("runtime",{}).get("b07_mechanisms")
+	if not nested is Dictionary or not preload("res://scripts/levels/b07/world/mechanism_snapshot.gd").validate_checkpoint(nested): return false
+	if nested.room_id != value.room_id or nested.difficulty != difficulty: return false
+	if int(nested.calibration.get("version",0)) != int(room.enemy_calibration().get("version",0)): return false
+	if JSON.parse_string(JSON.stringify(nested.mechanisms)) != JSON.parse_string(JSON.stringify(value.sun)): return false
+	var probe := preload("res://scripts/levels/b07/world/sun_runtime.gd").new()
+	var sun_ok := probe.configure(str(value.room_id),difficulty,room.enemy_calibration()) and probe.restore_checkpoint(value.sun)
+	probe.free()
+	if not sun_ok: return false
+	if not _install(index): return false
+	for actor in room.enemies.get_children(): actor.free()
+	room.enemy_skills.reset_room()
+	room._boss_actor = null
+	room.objective_complete = true
+	room.objective_rewarded = false
+	room._completion_emitted = true
+	if not room.b07_mechanics.restore_checkpoint(value.sun): return false
+	if not CombatSnapshot.restore(room,value.hero): return false
+	room.player.position = room.exit_position
+	finished = bool(value.finished)
+	room.set_input_blocked(finished)
+	return true

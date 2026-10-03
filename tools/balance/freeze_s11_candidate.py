@@ -18,7 +18,7 @@ import re
 import shutil
 import subprocess
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / 'project.godot').is_file())
 CHAPTERS = ("B01", "B02", "B03", "B04")
 RANKS = ("normal", "elite", "boss")
 FACTORS = ("hp", "attack", "skill")
@@ -90,8 +90,8 @@ def main():
             parser.error("Do not repeat a factor")
         changes.append((chapter, rank, factor, amount))
 
-    archive_relative = "scripts/combat/enemy_calibration.gd"
-    parameters_relative = "data/numerical_v2.json"
+    archive_relative = "scripts/domain/combat/enemy_calibration.gd"
+    parameters_relative = "data/rules/numerical.json"
     source_proof = {p: digest(source / p) for p in [archive_relative, parameters_relative]}
     base = git(source, "rev-parse", "HEAD")
     subprocess.run(["git", "worktree", "add", "--quiet", "--detach", str(destination), base], cwd=source, check=True)

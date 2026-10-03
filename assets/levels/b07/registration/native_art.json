@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "asset_family": "storybook_2_5d_v1",
+  "candidate_only": true,
+  "identities": {
+    "B07-M01": {
+      "reference_body_height_px": 824.5,
+      "facing": "right",
+      "source_identity_review_passed": true,
+      "runtime_quality_gate_passed": false,
+      "animation_complete": false,
+      "frames": {
+        "idle": {
+          "texture": "asset://levels/b07/enemies/m01/idle.png",
+          "region": [
+            24,
+            23,
+            1198,
+            1189
+          ],
+          "foot": [
+            687.5,
+            1027.5
+          ],
+          "core_anchor": [
+            687.0,
+            585.0
+          ],
+          "visual_outlet": [
+            1199.0,
+            65.0
+          ],
+          "spear_tip": [
+            1199.0,
+            65.0
+          ],
+          "alpha128_bounds": [
+            78,
+            64,
+            1123,
+            1108
+          ],
+          "source_height": 824.5,
+          "native_size": [
+            1254,
+            1254
+          ],
+          "coordinate_space": "absolute native source pixels; x right, y down",
+          "foot_near_contact_center": [
+            510.0,
+            1090.0
+          ],
+          "foot_far_contact_center": [
+            865.0,
+            965.0
+          ],
+          "normalized": {
+            "foot": [
+              0.54824561,
+              0.81937799
+            ],
+            "core_anchor": [
+              0.54784689,
+              0.46650718
+            ],
+            "visual_outlet": [
+              0.95614035,
+              0.05183413
+            ],
+            "foot_near_contact_center": [
+              0.40669856,
+              0.8692185
+            ],
+            "foot_far_contact_center": [
+              0.68979266,
+              0.76953748
+            ],
+            "anatomical_crest_top": [
+              0.5414673,
+              0.16188198
+            ]
+          }
+        }
+      },
+      "source_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "room_id": "L14",
+  "biome_id": "B03",
+  "tool": "builtin image_gen.imagegen",
+  "use_case": "stylized-concept",
+  "prompt": "Use case: stylized-concept.\nAsset type: finished independent game room background painting, opaque 1536 x 1024 landscape (3:2).\nInput image 1 is a STYLE, PALETTE and SMALL STONE TILE DENSITY reference ONLY. Invent an entirely new distinct room composition. Do not simply recolor this reference or add an overlay, do not copy its building arrangement. This is one complete original background for a single room in the bright Pumpkin Grave Town biome.\nStyle: polished richly detailed hand-painted cheerful fantasy cartoon, high 3/4 overhead camera, near-isometric 2.5D, tiny cream and warm pale gray cobblestones, soft mint vegetation, a little lavender purple roof tile and warm pumpkin orange, warm sunny afternoon. Friendly tidy intact fantasy village, welcoming Halloween crafts, no dark red/black horror, no blood or decay. Detailed materials and outer neighborhood life without cluttering the fighting floor. Small tiles, around 28–45 pixels each, never giant flagstones.\nABSOLUTE GEOMETRY REQUIREMENT: normalized screen coordinates x increases right, y increases down. The dry walkable polygon vertices are [(0.18,0.16),(0.37,0.12),(0.63,0.12),(0.81,0.17),(0.90,0.31),(0.92,0.55),(0.89,0.77),(0.76,0.89),(0.52,0.94),(0.30,0.91),(0.14,0.77),(0.10,0.54),(0.11,0.30)]. EVERY pixel inside this polygon must be flat contiguous dry cream stone floor or flat decorative inlay. No water, pit, steps, platform, cliff, high wall, building, tree, standing furniture or solid prop inside it; existing gameplay actors and fixed routes will be drawn later. Preserve broad open dry travel lanes through left/right center edges. No visible hard outline around that polygon, floor blends naturally into outer neighborhood. Authoring placement rectangle [0.11,0.13,0.78,0.74]. The entire polygon and route remain supported by earth, not a floating rectangular arena or island pedestal. All building silhouettes, trees, stalls, planter beds and any water must be fully outside the polygon in the outer narrow edge/corner areas; edge life can be partially cropped by image boundary. Never wrap all edges in a continuous wall. Keep the street open to left and right.\nNo text, letters, numbers, signage text, HUD, UI panels, borders, watermark, characters, people, monsters, bosses, active lamps, beacons, magic circles, loot chests, gameplay objectives or interactive furniture. Static outside architectural motifs are okay; flat paving motifs are decorations only. Output a finished full original image, not a contact sheet or mockup.\nROOM: L14 无灯糖仓 / translucent candy warehouse and cooling yard.\nCOMPOSITION: Completely different industrial sweet-making neighborhood: cropped transparent sugar-glass warehouses with lavender rafters cluster at the upper-right outside edge, sunlight passing through soft pastel panes. One low rounded sugar-goods depot at the far left outer edge, bottom corners show candy-wrapper drying awnings, mint striped cloth and translucent sugar crystal yardwork details outside polygon only. No yellow wall panel. Floor design: diagonal bands of closely laid small diamond paving and cream herringbone work lanes, subtle muted pastel wrapper diamond inlays flush into stones, a light broad S-shaped working street across the open center. Its huge central paved yard feels like a candy cooling yard, with distinct rotated masonry and long diagonal lane rhythm, not L13's fan/junction. No actual sugar rack or vat in the interior.",
+  "reference_role": "Style, palette, and small tile scale only; independent room composition",
+  "referenced_image_paths": [
+    "assets/generated/world/fixed_B03_environment_v3.png"
+  ],
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f5d7-4127-7b31-826a-893a04df6dae\\exec-bfe0c7b7-3af0-4292-86ac-8929376e7c2b.png",
+  "texture": "asset://world/rooms/L14_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_pixel_edits": "none",
+  "source_sha256": "43aa369af1c9cd6027ee87b42c23b8fe55d9481fe8a9afd7608d9227f1dad578",
+  "copied_sha256": "43aa369af1c9cd6027ee87b42c23b8fe55d9481fe8a9afd7608d9227f1dad578",
+  "visual_checked": true,
+  "composition_check": "Original sugar cooling yard: glass candy warehouses, mint striped drying awnings, diamond/herringbone masonry with candy-wrapper inlays.",
+  "geometry_note": "Final per-room convex polygon follows inspected dry floor; original mapping rectangle and interactive anchors retained. Required anchor and route clearance >=30world checked from real FixedRoomLayouts.build export.",
+  "geometry_check": {
+    "id": "L14",
+    "minimum_world": 48.396,
+    "required_world": 30,
+    "anchor": "entry",
+    "safe": true
+  },
+  "final_walkable_normalized_polygon": [
+    [
+      0.14,
+      0.35
+    ],
+    [
+      0.29,
+      0.24
+    ],
+    [
+      0.5,
+      0.2
+    ],
+    [
+      0.74,
+      0.21
+    ],
+    [
+      0.87,
+      0.24
+    ],
+    [
+      0.9,
+      0.4
+    ],
+    [
+      0.9,
+      0.51
+    ],
+    [
+      0.85,
+      0.67
+    ],
+    [
+      0.76,
+      0.83
+    ],
+    [
+      0.56,
+      0.9
+    ],
+    [
+      0.32,
+      0.86
+    ],
+    [
+      0.14,
+      0.75
+    ],
+    [
+      0.12,
+      0.56
+    ]
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "texture": "asset://props/storybook_props_b03_b04_v1.png",
+  "regions": {
+    "B03_transformer": [
+      83,
+      33,
+      399,
+      434
+    ],
+    "B03_pipe_manifold": [
+      591,
+      69,
+      397,
+      395
+    ],
+    "B03_wrecked_drone": [
+      1064,
+      96,
+      431,
+      376
+    ],
+    "B04_crystal_cluster": [
+      90,
+      537,
+      359,
+      457
+    ],
+    "B04_resonance_obelisk": [
+      609,
+      494,
+      325,
+      497
+    ],
+    "B04_broken_receiver": [
+      1125,
+      546,
+      349,
+      448
+    ]
+  },
+  "anchors": {
+    "B03_transformer": [
+      201,
+      369
+    ],
+    "B03_pipe_manifold": [
+      209,
+      340
+    ],
+    "B03_wrecked_drone": [
+      308,
+      338
+    ],
+    "B04_crystal_cluster": [
+      194,
+      385
+    ],
+    "B04_resonance_obelisk": [
+      174,
+      432
+    ],
+    "B04_broken_receiver": [
+      170,
+      373
+    ]
+  },
+  "ground_footprints": {
+    "B03_transformer": [
+      11,
+      306,
+      379,
+      126
+    ],
+    "B03_pipe_manifold": [
+      33,
+      286,
+      353,
+      107
+    ],
+    "B03_wrecked_drone": [
+      205,
+      297,
+      201,
+      78
+    ],
+    "B04_crystal_cluster": [
+      37,
+      316,
+      313,
+      138
+    ],
+    "B04_resonance_obelisk": [
+      27,
+      369,
+      294,
+      126
+    ],
+    "B04_broken_receiver": [
+      24,
+      312,
+      290,
+      130
+    ]
+  },
+  "atlas_size": [
+    1536,
+    1024
+  ],
+  "layout": {
+    "columns": 3,
+    "rows": 2,
+    "nominal_cell_size": [
+      512,
+      512
+    ]
+  },
+  "alpha_bounds": {
+    "threshold": 32,
+    "padding_pixels": 2,
+    "method": "Full alpha-threshold bounding box of each complete visual prop; no pixels altered. Row separation is y=480, preserving the obelisk tip above its nominal row."
+  },
+  "coordinate_system": {
+    "regions": "absolute atlas pixels",
+    "anchors": "crop-local projected supporting-base center",
+    "ground_footprints": "crop-local estimated ground support rectangle; visual metadata only"
+  },
+  "validation": {
+    "true_rgba": true,
+    "pixel_format": "Format32bppArgb",
+    "raw_png_preserved": true,
+    "requested_clear_gutter_fraction": 0.12,
+    "strict_gutter_requirement_met": false,
+    "notes": "The generator did not strictly honor 12% gutters after refinement. B04_resonance_obelisk begins at atlas y=496, 16px above its nominal row. Regions preserve the complete alpha>=32 extents with 2px padding and do not cut at grid boundaries."
+  }
+}

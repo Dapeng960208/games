@@ -3,3 +3,5 @@
 *.json text eol=lf
 *.md text eol=lf
 *.py text eol=lf
+# Generated prompt provenance stores hashes of the original LF UTF-8 bytes.
+*.prompt.txt text eol=lf

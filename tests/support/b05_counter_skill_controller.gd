@@ -12,7 +12,7 @@ func attack_target(time: float, target: Node2D, threats: Array[Dictionary], coun
 	# A second, predeclared reasonable policy: use legal Q for the root approach,
 	# otherwise retain baseline basic-counter handling; do not spend R on roots.
 	super.attack_target(time,target,threats,true)
-	var player: SalvagerPlayer=room.player
+	var player: HeroActor=room.player
 	if player.abilities.busy() or not player.combo_queue.is_empty() or player.dash_remaining>0:return
 	var distance:=player.position.distance_to(target.position)
 	var spec:Dictionary=player.skill_definition("q")
