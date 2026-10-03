@@ -1,5 +1,5 @@
 extends RefCounted
-## B06 candidate-only source registry. Native pixels and authored geometry stay
+## B06 source registry. Native pixels and authored geometry stay
 ## unchanged. Presentation points must never become damage/collision origins.
 const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const ROOT := "asset://b06_native_v1/"
@@ -58,7 +58,7 @@ static func _registered_frame(spec: Dictionary, pose: String, prefix: String) ->
 		"core":Vector2(float(source.core_anchor[0]),float(source.core_anchor[1])),
 		"outlet":Vector2(float(source.visual_outlet[0]),float(source.visual_outlet[1])),
 		"source_pose_scale":float(source.get("source_pose_scale",1.0)),
-		"reference_height":reference_height,"candidate_only":true,"runtime_quality_gate_passed":bool(spec.get("runtime_quality_gate_passed",false))}
+		"reference_height":reference_height,"candidate_only":false,"runtime_quality_gate_passed":bool(spec.get("runtime_quality_gate_passed",false))}
 
 static func first_room_entry(identity: String) -> Dictionary:
 	var idle := first_room_frame(identity)

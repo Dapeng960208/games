@@ -1,5 +1,5 @@
 extends RefCounted
-## Explicit candidate compiler; never inserted into the default chapter catalog.
+## Released B06 layout compiler; geometry remains the authoritative source.
 const Geometry = preload("res://scripts/levels/b06/world/room_geometry.gd")
 const Fixed = preload("res://scripts/domain/world/fixed_room_layouts.gd")
 static func build(id: String, seed_value: int = 0) -> Dictionary:

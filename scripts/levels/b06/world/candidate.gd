@@ -24,4 +24,4 @@ static func encounter_plan(id: String, zone: int, difficulty: int, calibration: 
 		waves.append(members)
 	var total := 0
 	for wave: Array in waves: total += wave.size()
-	return {"room_id":id,"zone_index":zone,"biome_id":"B06","enemy_level":int(definition.enemy_level),"total_count":total,"initial_count":waves[0].size(),"completion_requires_all_waves":true,"waves":waves,"concurrent_threat_budget":18,"concurrent_cap":6,"reinforce_alive_threshold":0,"reinforce_threat_fraction":0.0,"reinforce_delay_seconds":3.0,"candidate_contact_only":true}
+	return {"room_id":id,"zone_index":zone,"biome_id":"B06","enemy_level":int(definition.enemy_level),"total_count":total,"initial_count":waves[0].size(),"completion_requires_all_waves":true,"waves":waves,"concurrent_threat_budget":18,"concurrent_cap":6,"reinforce_alive_threshold":0,"reinforce_threat_fraction":0.0,"reinforce_delay_seconds":3.0,"candidate_contact_only":false}

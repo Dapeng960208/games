@@ -1,12 +1,12 @@
 extends RefCounted
-## Candidate ornaments only. Warning geometry and frozen commands own damage.
+## Released chapter ornaments only. Warning geometry and frozen commands own damage.
 const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const MAX_EFFECT_EXTENT := 160.0
 static var _manifests: Dictionary = {}
 
 static func frame(boss: String, action: String, kind: String = "effect") -> Dictionary:
-	if (boss == "BO05" and not Rules.b05_candidate_enabled()) or (boss == "BO06" and not Rules.b06_candidate_enabled()) or boss not in ["BO05","BO06"]: return {}
+	if (boss == "BO05" and not Rules.chapter_enabled(5)) or (boss == "BO06" and not Rules.chapter_enabled(6)) or boss not in ["BO05","BO06"]: return {}
 	if not _manifests.has(boss):
 		var path := "asset://levels/"+boss.to_lower().replace("bo","b")+"/bosses/"+boss.to_lower()+"/skill_art.json"
 		var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(path))) if FileAccess.file_exists(AssetCatalog.resolve(path)) else null

@@ -263,7 +263,7 @@ static func portrait(parent: Node, id: String, at: Vector2, extent: Vector2) -> 
 	else:
 		# Match EnemyArt.install in the actual battle renderer. BossProfiles
 		# visual_asset names pre-storybook placeholders, not current boss identity.
-		var entry := preload("res://scripts/levels/b06/art/native_art.gd").boss_frame("","idle") if id == "BO06" and Rules.b06_candidate_enabled() else EnemyImages.entry_for(id)
+		var entry := preload("res://scripts/levels/b06/art/native_art.gd").boss_frame("","idle") if id == "BO06" and Rules.chapter_enabled(6) else EnemyImages.entry_for(id)
 		if not entry.is_empty():
 			var atlas := AtlasTexture.new()
 			atlas.atlas = entry.texture
@@ -394,7 +394,7 @@ func _boss_details(flow: VBoxContainer, profile: Dictionary) -> void:
 static func boss_skill_entries(id: String, tier: int, version: int = 2) -> Array[Dictionary]:
 	var entries: Array[Dictionary] = []
 	if id == "BO06":
-		if not Rules.b06_candidate_enabled() or version != 2: return entries
+		if not Rules.chapter_enabled(6) or version != 2: return entries
 		var skills = preload("res://scripts/levels/b06/combat/enemy_skills.gd")
 		for index: int in skills.BOSS_ACTIONS.size():
 			var action: String = skills.BOSS_ACTIONS[index]

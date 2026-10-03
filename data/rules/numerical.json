@@ -20,7 +20,7 @@
     "hard_rarity_gate": false,
     "medians_require_fixed_seeds": 10
   },
-  "implemented_chapters": 4,
+  "implemented_chapters": 6,
   "planned_chapters": 12,
   "growth": {
     "attack": 0.04,

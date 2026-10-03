@@ -199,9 +199,8 @@ func _build_biome_selector() -> void:
 			host._update_departure_difficulty_hint())
 	host.screen.add_child(picker)
 	GameStyle.literal(host.screen,host._ex_text("击败首领并撤离后开放下一区域", "Defeat the boss and extract to unlock the next area"),Vector2(454,286),Vector2(490,18),10,GameStyle.MUTED)
-	var roadmap = GameStyle.literal(host.screen,host._ex_text("12 个地区规划 · 4 个已实现 / 8 个待开发", "12 REGIONS PLANNED · 4 PLAYABLE / 8 TODO"),Vector2(953,286),Vector2(259,18),10,GameStyle.CYAN)
-	if WorldCatalog.b06_enabled(): roadmap.text = host._ex_text("4 个已发布 · B05/B06 隔离候选", "4 RELEASED · B05/B06 ISOLATED CANDIDATES")
-	elif WorldCatalog.b05_enabled(): roadmap.text = host._ex_text("4 个已发布 · B05 隔离候选", "4 RELEASED · B05 ISOLATED CANDIDATE")
+	var count := WorldCatalog.biomes().size()
+	var roadmap = GameStyle.literal(host.screen,host._ex_text("12 个地区规划 · %d 个正式开放 / %d 个待开发", "12 REGIONS PLANNED · %d RELEASED / %d TODO") % [count,12-count],Vector2(953,286),Vector2(259,18),10,GameStyle.CYAN)
 	roadmap.name = "CampRegionPlanSummary"
 	roadmap.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	roadmap.tooltip_text = host._ex_text("前四个地区保留逐关解锁。其余八个地区仅作开发计划展示，尚不能进入。","The first four regions unlock in order. The other eight are roadmap entries and cannot be entered.")
+	roadmap.tooltip_text = host._ex_text("正式地区按击败前一首领并撤离的顺序解锁。B07–B12 为待开发地区。","Released regions unlock after defeating the previous boss and extracting. B07–B12 are planned regions.")
