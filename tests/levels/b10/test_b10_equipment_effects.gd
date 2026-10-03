@@ -71,8 +71,16 @@ func _run() -> void:
 	get_tree().quit(0 if failures.is_empty() else 1)
 
 func _generation() -> void:
-	check(Catalog.validate().is_empty(), "35 natural templates plus separate fixed reward validate")
-	check(ContentRegistry.validate(2).is_empty(), "shared content registry validates")
+	var catalog_errors: Array[String] = Catalog.validate()
+	check(catalog_errors.is_empty(), "35 natural templates plus separate fixed reward validate: " + str(catalog_errors))
+	var registry_errors: Array[String] = ContentRegistry.validate(2)
+	check(registry_errors.is_empty(), "shared content registry validates: " + str(registry_errors))
+	var changed := Catalog.catalog()
+	changed.equipment[Catalog.FINALE_RING_ID].fixed_stats.attack += 1
+	check(not Catalog.validate(changed).is_empty(), "catalog rejects a changed fixed reward value")
+	changed = Catalog.catalog()
+	changed.equipment[Catalog.FINALE_RING_ID].fixed_stats["resource_gain_bonus"] = 0
+	check(not Catalog.validate(changed).is_empty(), "catalog rejects an extra fixed reward key even with zero value")
 	check(Acquisition.current_version_error().is_empty(), "prior archives plus separate B10 generator remain compatible")
 	check(Catalog.equipment_ids().size() == 36, "B10 catalog has 35 natural and one unique reward")
 	for hero: String in HEROES:
@@ -252,7 +260,16 @@ func _finale_fixed_stats() -> void:
 		check(ring.source_kind == "finale_reward" and ring.source_metadata == {"generator_version":5, "reward_id":"B10-D4-FINALE"} and ring.allowed_heroes == HEROES, "fixed reward retains universal eligibility provenance")
 		check(ring == Instances.make_finale_ring(ring.source_event_id, hero), "fixed constructor repeats identical record without a random roll")
 		var values := Instances.stats(ring)
-		check(values == Catalog.FINALE_STATS and values.size() == ContentRegistry.STAT_KEYS.size(), "fixed reward has precisely all nineteen authored attributes")
+		var main_values := Instances.main_stats(ring)
+		check(main_values.size() == ContentRegistry.STAT_KEYS.size() and main_values.has_all(ContentRegistry.STAT_KEYS), "fixed reward has precisely all nineteen authored main attributes")
+		var expected_keys: Array = Numbers.value("affixes").keys()
+		for key: String in ContentRegistry.STAT_KEYS:
+			if not expected_keys.has(key): expected_keys.append(key)
+		check(values.size() == expected_keys.size() and values.has_all(expected_keys), "fixed reward uses the complete normalized runtime stat shape")
+		for key: String in ContentRegistry.STAT_KEYS:
+			check(float(main_values.get(key, 0)) == float(Catalog.FINALE_STATS[key]) and float(values.get(key, 0)) == float(Catalog.FINALE_STATS[key]), "fixed exact authored value: " + key)
+		for key: String in values:
+			if not Catalog.FINALE_STATS.has(key): check(float(values[key]) == 0.0, "fixed reward has no unauthored extra benefit: " + key)
 		for key: String in ContentRegistry.STAT_KEYS: check(float(values.get(key, 0)) > 0, hero + " fixed positive stat " + key)
 		var loadout := {"ring":ring.instance_id}
 		var owned := {ring.instance_id:ring}
@@ -400,7 +417,7 @@ func _live_projectiles() -> void:
 	shots[0].hit(first)
 	check(first_packets.size() == 2, "confirmed bound hit applies direct plus equipment health packet")
 	if first_packets.size() == 2: near(first_packets[1], shots[0].options.b06_r_bonus.damage, "live extra health loss matches reserved supplement")
-	var after := first.health.current
+	var after: float = first.health.current
 	shots[0].hit(first)
 	near(first.health.current, after, "repeat callback cannot damage twice")
 	shots[1].hit(other)

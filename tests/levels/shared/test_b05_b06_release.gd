@@ -68,7 +68,8 @@ func _run() -> void:
 			var result := Transactions.craft(profile,operation,request) if kind == "craft" else Transactions.complete_set(profile,operation,request) if kind == "complete_set" else Transactions.purchase(profile,operation,request)
 			check(result.ok and var_to_str(profile) == before,"immutable lawful B06 "+hero+kind+str(result.get("error","")))
 			if not result.ok: continue
-			check(result.receipt.version == 3 and Transactions._valid_receipt(operation,JSON.parse_string(JSON.stringify(result.receipt))),"v3 receipt validates after JSON "+kind)
+			check(result.receipt.version == Transactions.RECEIPT_VERSION and Transactions._valid_receipt(operation,JSON.parse_string(JSON.stringify(result.receipt))),"current receipt validates after JSON "+kind)
+			_historical_v3(hero, kind, base)
 			check(result.receipt.items.size() == (7 if kind == "complete_set" else 1),"exact item count "+kind)
 			for item: Dictionary in result.receipt.items:
 				check(Instances.validate(item).is_empty() and item.item_level == 30 and item.class_policy_version == 3,"actual Lv30 class-qualified item")
@@ -76,8 +77,57 @@ func _run() -> void:
 			var repeated := Transactions.craft(profile,operation,request) if kind == "craft" else Transactions.complete_set(profile,operation,request) if kind == "complete_set" else Transactions.purchase(profile,operation,request)
 			check(repeated.ok and repeated.receipt == result.receipt and repeated.profile == profile,"repeat never charges or rerolls "+kind)
 		var store := Store.new(output.path_join("release_"+hero+".json"))
-		check(store.save_document(profile),"durable v3 B06 profile "+hero+store.last_error)
+		check(store.save_document(profile),"durable current B06 profile "+hero+store.last_error)
 		var loaded := Store.new(store.path).load_document()
 		check(not loaded.is_empty() and loaded.profile.equipment.size() == profile.equipment.size() and Transactions.validate_ledger(loaded.profile.instance_transactions),"disk reload preserves items and receipts "+hero)
 	print("B05_B06_RELEASE checks=",checks," failures=",failures)
 	get_tree().quit(1 if failures else 0)
+
+func _historical_v3(hero: String, kind: String, base: Dictionary) -> void:
+	# origin/main e67e32a: transaction v3's original request, seed and item stream.
+	# Generate directly from frozen B06 generator v4; never relabel a v4 receipt.
+	var sid: String = {"CH01":"B06-SW", "CH02":"B06-SG", "CH03":"B06-SM"}[hero]
+	var request := {"hero_id":hero, "rarity":"gold" if kind == "craft" else "green", "power_type":"magic" if hero == "CH03" else "physical", "item_level":30}
+	if kind == "complete_set":
+		var templates: Array = Economy.historical_set_items(sid, 3)
+		templates.sort()
+		request.merge({"set_id":sid, "template_ids":templates})
+	else: request["template_id"] = sid + "-weapon"
+	var operation := "historical:v3:" + hero + ":" + kind
+	var fingerprint: String = JSON.stringify([kind, request], "", true, true).sha256_text()
+	var seed: int = (operation + ":" + fingerprint).sha256_text().substr(0, 13).hex_to_int()
+	var cost: Dictionary = Economy.historical_creation_cost(request, kind, 3)
+	check(cost.get("gold") == {"purchase":404, "craft":1496, "complete_set":2509}[kind] and cost.get("materials") == ({"forge":48, "race:B06":24, "core:B06":6} if kind == "craft" else {}), "v3 frozen exact financial contract " + hero + kind)
+	if cost.is_empty(): return
+	var items: Array = []
+	var ids: Array = request.template_ids if kind == "complete_set" else [request.template_id]
+	for index: int in ids.size():
+		var identity := "instance:tx:" + operation.sha256_text().substr(0, 32) + ":" + str(index)
+		var spec: Dictionary = Acquisition._canonical({"instance_id":identity, "source_event_id":"transaction:" + operation, "template_id":ids[index], "rarity":request.rarity, "power_type":request.power_type, "hero_id":hero, "item_level":30, "source":"craft" if kind == "craft" else "purchase", "location":"inventory"})
+		var rng: RandomNumberGenerator = Acquisition._rng(seed, spec.source_event_id, "item:" + identity + ":" + str(spec.source), 4)
+		var item: Dictionary = Acquisition._finish_item(spec, rng, seed, Acquisition._fingerprint(spec), 4)
+		check(Acquisition.V4.TEMPLATES.has(item.template_id) and item.class_policy_version == 3 and item.source_metadata.generator_version == 4 and Instances.validate(item).is_empty(), "v3 receipt owns an original archived B06 instance")
+		items.append(item)
+	var receipt := {"version":3, "operation_id":operation, "kind":kind, "request":request, "request_hash":fingerprint, "gold":int(cost.gold), "materials":cost.materials.duplicate(true), "items":items, "pending_instance_ids":[]}
+	# The original v3 hash normalizes integral numbers and sorts JSON keys.
+	receipt["result_hash"] = JSON.stringify(Acquisition._canonical(receipt), "", true, true).sha256_text()
+	check(Transactions._valid_receipt(operation, receipt), "original v3 receipt remains valid " + hero + kind)
+	var persisted: Dictionary = JSON.parse_string(JSON.stringify(receipt))
+	check(Transactions._valid_receipt(operation, persisted) and Transactions._receipt_hash(persisted) == receipt.result_hash, "original v3 receipt survives numeric JSON roundtrip " + hero + kind)
+	var profile := base.duplicate(true)
+	profile.selected_hero = hero
+	profile.hero_xp[hero] = Growth.thresholds().back()
+	profile["instance_transactions"] = {"version":1, "operations":{operation:receipt}}
+	for item: Dictionary in items: profile.equipment[item.instance_id] = item.duplicate(true)
+	profile = JSON.parse_string(JSON.stringify(profile))
+	var before := JSON.stringify(profile, "", true, true)
+	var replayed := Transactions.craft(profile, operation, request) if kind == "craft" else Transactions.complete_set(profile, operation, request) if kind == "complete_set" else Transactions.purchase(profile, operation, request)
+	check(replayed.ok and replayed.replayed and replayed.receipt.version == 3 and Transactions._receipt_hash(replayed.receipt) == receipt.result_hash and JSON.stringify(replayed.profile, "", true, true) == before and JSON.stringify(profile, "", true, true) == before, "current service replays original v3 without repricing, charging or rerolling " + hero + kind)
+	var damaged := persisted.duplicate(true)
+	damaged.gold += 1
+	damaged.result_hash = Transactions._receipt_hash(damaged)
+	check(not Transactions._valid_receipt(operation, damaged), "v3 rejects a resealed wrong historical cost")
+	damaged = persisted.duplicate(true)
+	damaged.items[0].purchase_baseline_gold += 1
+	damaged.result_hash = Transactions._receipt_hash(damaged)
+	check(not Transactions._valid_receipt(operation, damaged), "v3 rejects a resealed wrong purchase baseline")

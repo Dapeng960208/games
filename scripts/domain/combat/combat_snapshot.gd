@@ -29,6 +29,7 @@ const EFFECT_HISTORIES := ["heal_history", "resource_history", "refund_history"]
 const EFFECT_NUMBERS := ["clock", "undamaged_time", "eq12_spent_at", "movement_time", "dash_time", "delayed_shield_at"]
 const MODIFIERS := ["damage_bonus", "crit_bonus", "attack_speed_bonus", "move_speed_bonus", "damage_reduction_bonus", "knockback_scale", "received_knockback_scale", "slow_resistance", "chill_duration_bonus", "cost_reduction"]
 const B06_MODIFIERS := ["received_displacement_reduction", "terrain_slow_reduction", "received_healing_bonus", "immediate_w_radius_scale", "b09_glide_distance_scale", "b09_direct_reduction"]
+const B10_MODIFIERS := ["b10_direct_damage_reduction", "b10_ranged_damage_reduction"]
 
 static func capture(room: Node) -> Dictionary:
 	var game: Node = _game()
@@ -151,7 +152,7 @@ static func for_loadout(snapshot: Dictionary, old_loadout: Dictionary, new_loado
 	var hero: Dictionary = Rules.Registry.hero(hero_id)
 	var context: Dictionary = {"hp":result.hp, "max_hp":new_stats.max_hp, "resource":result.resource, "resource_max":new_stats.resource_max, "resource_type":new_stats.get("resource_type", ""), "shield":shield, "current_speed":0.0, "base_speed":float(hero.get("move_speed", 220.0)), "nearby_burning":false, "self_chilled":result.status.states.has("chill") and float(result.status.states.get("chill", {}).get("remaining", 0.0)) > 0.0}
 	var modifiers: Dictionary = reducer.call("passive_modifiers", context)
-	for key: String in MODIFIERS + B06_MODIFIERS:
+	for key: String in MODIFIERS + B06_MODIFIERS + B10_MODIFIERS:
 		result.equipment.adapter.modifiers[key] = float(modifiers[key])
 	if Numbers.is_v2(new_stats): _integer_values(result)
 	return result if validate(result, hero_id, new_stats) else {}
@@ -291,7 +292,9 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	# Keep historical modifier snapshots unchanged; absent B06 keys are neutral.
 	for key: String in B06_MODIFIERS:
 		if not loadout._modifiers.has(key): loadout._modifiers[key] = 1.0 if key.ends_with("_scale") else 0.0
-	if rebound or effects.equipped.keys().any(func(id: String) -> bool: return id.begins_with("B06-") or id.begins_with("B09-")):
+	for key: String in B10_MODIFIERS:
+		if not loadout._modifiers.has(key): loadout._modifiers[key] = 0.0
+	if rebound or effects.equipped.keys().any(func(id: String) -> bool: return id.begins_with("B06-") or id.begins_with("B09-") or id.begins_with("B10-")):
 		loadout.call("refresh_modifiers")
 	actor.queue_redraw()
 	return true
@@ -328,7 +331,15 @@ static func restore_room_entry(room: Node, snapshot: Dictionary) -> bool:
 	return true
 
 static func validate(value: Variant, hero_id: String, stats: Dictionary, fresh_allowed: bool = false) -> bool:
-	if not value is Dictionary or not _json(value) or JSON.stringify(value).length() > 180000:
+	if not value is Dictionary: return false
+	var bounded: Dictionary=value
+	if value.get("runtime") is Dictionary and value.runtime.has("b10_combat"):
+		# B10's bounded local actor references contain 64-bit Godot IDs. Its
+		# dedicated schema owns those IDs; player/equipment retain their limits.
+		if not _runtime_valid(value.runtime): return false
+		bounded=value.duplicate()
+		bounded.erase("runtime")
+	if not _json(bounded) or JSON.stringify(bounded).length() > 180000:
 		return false
 	if not _number(value.get("snapshot_version"), VERSION, true) or int(value.snapshot_version) not in [1, VERSION] or value.get("hero_id") != hero_id or hero_id not in ["CH01", "CH02", "CH03"]:
 		return false
@@ -475,6 +486,10 @@ static func _equipment_valid(value: Variant, v2: bool = false) -> bool:
 		if adapter.modifiers.has(key):
 			modifier_keys.append(key)
 			if not _number(adapter.modifiers[key], 1.1 if key.ends_with("_scale") else 0.5): return false
+	for key: String in B10_MODIFIERS:
+		if adapter.modifiers.has(key):
+			modifier_keys.append(key)
+			if not _number(adapter.modifiers[key],0.5): return false
 	if not _keys(adapter.modifiers, modifier_keys): return false
 	for key: String in MODIFIERS:
 		if not _number(adapter.modifiers[key], 1.0): return false

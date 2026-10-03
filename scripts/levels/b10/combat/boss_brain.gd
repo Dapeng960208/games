@@ -68,7 +68,7 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 					command=B10.timed(B10.area(B10.base(definition,actor.position,victim.position),extension.core_position(actor,index),42,0,0),1.5,int(definition.difficulty),true)
 					command.ability_name="星核重建 · 可打断"
 					return
-			_begin_action(actor,victim)
+			_begin_b10_action(actor,victim)
 		elif state==&"recovery" and not weakpoint_open() and actor.position.distance_to(victim.position)>350 and actor.position.distance_to(Vector2(actor.room.layout.get("boss_spawn",actor.room.layout.get("dragon_spawn",actor.position))))<240:
 			actor.velocity=actor.room.navigation_direction(actor.position,victim.position,float(definition.navigation_radius))*float(definition.move_speed)
 	elif state==&"telegraph":
@@ -96,7 +96,7 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 			_set_actor_state(actor,&"recovery")
 	_recovery_elapsed+=delta
 
-func _begin_action(actor: Node2D, victim: Node2D) -> void:
+func _begin_b10_action(actor: Node2D, victim: Node2D) -> void:
 	var extension: Variant=B10.runtime(actor)
 	if not extension.can_lock(actor):
 		state=&"recovery"

@@ -71,7 +71,7 @@ func show_expedition(at_exit: bool = false) -> void:
 	var state: Dictionary = host.expedition.snapshot()
 	var finale: bool = str(state.get("biome_id",state.get("route",{}).get("biome_id",""))) == "B10"
 	if finale: Finale.panel_style(panel)
-	var title := host._ex_text("10 · 星辉龙庭行图 · %d 站","10 · DRAGON COURT ATLAS · %d STOPS") if finale else host._ex_text("远征行图 · 本次 %d 站", "EXPEDITION ATLAS · %d STOPS")
+	var title: String = host._ex_text("10 · 星辉龙庭行图 · %d 站","10 · DRAGON COURT ATLAS · %d STOPS") if finale else host._ex_text("远征行图 · 本次 %d 站", "EXPEDITION ATLAS · %d STOPS")
 	GameStyle.literal(panel,title % host._expedition_node_count(),Vector2(28,20),Vector2(1016,45),28,Finale.DEEP if finale else GameStyle.AMBER)
 	var chart = host.ExpeditionPanel.new()
 	chart.name = "ExpeditionRouteChart"

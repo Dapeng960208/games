@@ -48,7 +48,8 @@ func _run() -> void:
 			check(not Routes.choose(route, 1, "L60").get("valid", true), "a saved choice cannot skip the earlier guardians")
 		check(not Routes.generate_single_biome("B10", 71, [], 51).get("valid", true), "departure beyond Lv50 is rejected")
 		check(not Routes.generate("B10", 71, [], 20).get("valid", true), "final court never enters the historical descent-ring route API")
-		check(not Routes.generate("B01", 71, [], 21).get("valid", true), "the historical route API keeps its original Lv20 bound")
+		check(Routes.generate("B01", 71, [], 30).get("valid", false), "the main branch's six-chapter legacy route retains its Lv30 bound")
+		check(not Routes.generate("B01", 71, [], 31).get("valid", true), "the final chapter does not widen the immutable legacy route beyond Lv30")
 	# Historical version-one schedules remain the same after a new region ships.
 	for origin: String in ["B01", "B02", "B03", "B04"]:
 		var legacy := Routes.generate(origin, 960208, [], 20)

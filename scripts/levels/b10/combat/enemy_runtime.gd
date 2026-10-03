@@ -136,6 +136,9 @@ func constrain(caster: Node2D, value: Dictionary) -> Dictionary:
 
 func connected(actor: Node2D) -> bool:
 	if not host._alive(actor): return false
+	# Guardians own their phase cores directly and never consume an ordinary
+	# monster link slot or enter the ordinary checkpoint identity map.
+	if boss_ref!=null and boss_ref.get_ref()==actor: return boss_core_count(actor)>0
 	var id: int=actor.get_instance_id()
 	if links.has(id): return _core_alive(int(links[id]))
 	for index in cores.size():
@@ -184,6 +187,8 @@ func _core_destroyed(index: int, ref: WeakRef) -> void:
 	if boss_ref!=null and host._alive(boss_ref.get_ref()) and boss_core_count(boss_ref.get_ref())==0 and exposed_phase!=current_phase:
 		exposed_phase=current_phase
 		boss_ref.get_ref().boss_brain.cores_cleared(boss_ref.get_ref())
+		for pending: Dictionary in host.jobs.duplicate():
+			if int(pending.get("owner_id",0))==boss_ref.get_ref().get_instance_id() and bool(pending.get("core_required",false)): host.jobs.erase(pending)
 	# Detached ownership means another monster's death cannot delete a core.
 	# One core connects at most two stable actors and never heals either actor.
 	for link_id: int in links.keys():

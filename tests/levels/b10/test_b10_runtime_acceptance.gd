@@ -19,6 +19,7 @@ const INPUTS := ["move_left", "move_right", "move_up", "move_down", "click_move"
 var checks := 0
 var failures := 0
 var output := ""
+var room_filter := ""
 var records: Array[Dictionary] = []
 var captures: Array[String] = []
 var source_files: Dictionary = {}
@@ -44,6 +45,11 @@ func _run() -> void:
 		printerr("B10 runtime acceptance requires its managed isolated profile and a real GPU window")
 		get_tree().quit(2)
 		return
+	room_filter = OS.get_environment("GAMES_B10_ACCEPTANCE_ROOM")
+	if not room_filter.is_empty() and not Content.room_ids().has(room_filter):
+		check(false, "GAMES_B10_ACCEPTANCE_ROOM must name one exact B10 room ID: " + room_filter)
+		get_tree().quit(2)
+		return
 	get_tree().create_timer(900).timeout.connect(func(): push_error("B10 runtime acceptance timed out"); get_tree().quit(1))
 	get_window().content_scale_size = Vector2i(1280, 720)
 	get_window().size = Vector2i(2560, 1440)
@@ -66,7 +72,10 @@ func _run() -> void:
 	await _frames(5)
 	check(get_window().size == Vector2i(2560, 1440) and get_viewport().get_visible_rect().size.is_equal_approx(Vector2(1280, 720)), "real 2K window presents the local-input logical 1280x720 GPU viewport")
 	var rooms := _room_matrix()
-	check(rooms.size() == 49, "matrix owns 42 formal B01-B06 rooms and seven B10 rooms")
+	if room_filter.is_empty():
+		check(rooms.size() == 49, "matrix owns 42 formal B01-B06 rooms and seven B10 rooms")
+	else:
+		check(rooms.size() == 1 and str(rooms[0].id) == room_filter, "subset contains only B10 room " + room_filter)
 	for hero: String in HEROES:
 		_release_all()
 		Game.run = null
@@ -81,23 +90,39 @@ func _run() -> void:
 		check(Game.run.hero_id == hero and Game.run.skill_loadout_snapshot.size() == 4, hero + " production departure freezes real profession and four slots")
 		for entry: Dictionary in rooms:
 			await _inspect(hero, entry)
-	check(records.size() == 147, "all 49 rooms installed for all three professions")
-	check(original_paths.size() == 49, "all 49 rooms own independent background paths")
-	check(body_records.size() == 25, "all eighteen monster and seven dragon single-pose sources admitted")
-	check(prop_records.size() == 4, "all four native scene-object sources admitted and drawn")
-	check(combat_records.size() == 3, "all professions exercised real primary and four skill effects in B10")
+	if room_filter.is_empty():
+		check(records.size() == 147, "all 49 rooms installed for all three professions")
+		check(original_paths.size() == 49, "all 49 rooms own independent background paths")
+	else:
+		check(records.size() == HEROES.size(), "subset " + room_filter + " installed for all three professions")
+		check(original_paths.size() == 1 and original_paths.has(room_filter), "subset owns only its requested independent background")
+	if room_filter.is_empty() or room_filter == "L55":
+		check(body_records.size() == 25, "all eighteen monster and seven dragon single-pose sources admitted")
+		check(prop_records.size() == 4, "all four native scene-object sources admitted and drawn")
+		check(combat_records.size() == 3, "all professions exercised real primary and four skill effects in B10")
 	_release_all()
 	Game.run = null
 	var report := FileAccess.open(output.path_join("b10_runtime_acceptance.json"), FileAccess.WRITE)
 	check(report != null, "managed report opens")
 	if report != null:
-		report.store_string(JSON.stringify({"checks": checks, "failures": failures, "renderer": RenderingServer.get_video_adapter_name(), "display_server": DisplayServer.get_name(), "logical_viewport": [1280, 720], "framebuffer": [2560, 1440], "scope": "Controlled production render/navigation/HUD/combat integration; single native body pose per enemy; no natural clearing, balance, continuous animation, monitor visibility or long-session performance claim", "fixtures": ["fresh managed isolated profiles", "camera/actor placement for views", "ordinary spawned AI disabled", "one durable reward-disabled B10 target", "resource and identity cooldown refills between independent casts", "four-object gallery drawn through production native frame helper"], "records": records, "native_bodies": body_records, "native_props": prop_records, "combat": combat_records, "captures": captures}, "\t"))
+		var report_data := {"checks": checks, "failures": failures, "renderer": RenderingServer.get_video_adapter_name(), "display_server": DisplayServer.get_name(), "logical_viewport": [1280, 720], "framebuffer": [2560, 1440], "scope": "Controlled production render/navigation/HUD/combat integration; single native body pose per enemy; no natural clearing, balance, continuous animation, monitor visibility or long-session performance claim", "fixtures": ["fresh managed isolated profiles", "camera/actor placement for views", "ordinary spawned AI disabled", "one durable reward-disabled B10 target", "resource and identity cooldown refills between independent casts", "four-object gallery drawn through production native frame helper"], "records": records, "native_bodies": body_records, "native_props": prop_records, "combat": combat_records, "captures": captures}
+		if not room_filter.is_empty():
+			report_data["room_filter"] = room_filter
+			report_data["scope"] = "Subset: B10 room " + room_filter + " for all three professions; controlled production render/navigation/HUD/native environment integration; no other room or full matrix acceptance claim; no natural clearing, balance, continuous animation, monitor visibility or long-session performance claim"
+			if room_filter == "L55":
+				report_data["scope"] += "; this room also exercises single-pose body sources, native props gallery, primary and four real skill effects"
+			else:
+				report_data["fixtures"] = report_data.fixtures.slice(0, 3)
+		report.store_string(JSON.stringify(report_data, "\t"))
 		report.close()
 	print("B10_RUNTIME_ACCEPTANCE checks=", checks, " failures=", failures, " rooms=", records.size(), " output=", output)
 	get_tree().quit(1 if failures else 0)
 
 func _room_matrix() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
+	if not room_filter.is_empty():
+		result.append({"id": room_filter, "biome": "B10", "capture": true})
+		return result
 	for chapter: int in range(1, 7):
 		for index: int in range(6):
 			result.append({"id": "L%02d" % ((chapter - 1) * 6 + index + 1), "biome": "B%02d" % chapter, "capture": index == 0})
@@ -115,7 +140,8 @@ func _inspect(hero: String, entry: Dictionary) -> void:
 	add_child(room)
 	await _frames(2)
 	room.combat_audio.audible = false
-	var context := {"room_id": id, "biome_id": biome, "role": "boss" if id.begins_with("BO") else "branch", "difficulty": 0, "seed": SEED, "node_index": 1, "node_count": 7, "phase": "combat", "expedition": true, "b06_progression": biome == "B06"}
+	# Formal B06 current_context supplies both historical fields; no debug switch.
+	var context := {"room_id": id, "biome_id": biome, "role": "boss" if id.begins_with("BO") else "branch", "difficulty": 0, "seed": SEED, "node_index": 1, "node_count": 7, "phase": "combat", "expedition": true, "b06_candidate": biome == "B06", "b06_progression": biome == "B06"}
 	var prepared: Dictionary = room.prepare_expedition_node(context)
 	check(bool(prepared.get("valid", false)), label + " production room prepares: " + str(prepared.get("error", "")))
 	if not bool(prepared.get("valid", false)):
@@ -123,6 +149,12 @@ func _inspect(hero: String, entry: Dictionary) -> void:
 		return
 	room.apply_prepared_expedition_node(prepared)
 	room.spawn_enabled = false
+	var configured: bool = room.configuration_ready and room.configuration_error.is_empty() and is_instance_valid(room.player)
+	check(configured, label + " actual room configuration: " + room.configuration_error)
+	if not configured:
+		check(await room.combat_audio.wait_for_cleanup(), label + " failed configuration audio cleanup")
+		room.free()
+		return
 	for enemy: Node in room.enemies.get_children():
 		enemy.training_ai_disabled = true
 		enemy.reward_enabled = false
@@ -133,7 +165,6 @@ func _inspect(hero: String, entry: Dictionary) -> void:
 	hud_layer.add_child(hud)
 	hud.set_process(false)
 	await _frames(3)
-	check(room.configuration_ready and room.configuration_error.is_empty(), label + " actual room configuration")
 	check(room.player.hero_id() == hero, label + " actual actor profession")
 	check(room.valid_ground(room.layout.entry, RADIUS) and room.valid_ground(room.exit_position, RADIUS), label + " entrance and exit have player clearance")
 	var definition: Dictionary = Art.environment_definition(biome, id)
@@ -167,7 +198,9 @@ func _inspect(hero: String, entry: Dictionary) -> void:
 	await _frames(2)
 
 func _mapping(room: Node2D, definition: Dictionary, biome: String, id: String, label: String) -> void:
-	check(not definition.is_empty() and bool(definition.get("room_specific", false)), label + " independently registered room painting without faction fallback")
+	var painting_ready: bool = not definition.is_empty() and bool(definition.get("room_specific", false)) and definition.get("texture") != null and definition.has("placement_normalized_rect")
+	check(painting_ready, label + " independently registered room painting without faction fallback")
+	if not painting_ready: return
 	var path := str(definition.get("path", ""))
 	if not original_paths.has(id):
 		check(not original_paths.values().has(path), label + " background is independent of other rooms")
@@ -269,19 +302,26 @@ func _native_details(room: Node2D, definition: Dictionary, id: String, label: St
 		var key := str(anchor.key)
 		if str(anchor.get("render_mode", "")) == "independent_sprite": check(rendered.has(key), label + " production objectives draw independent native landmark " + key)
 		else: check(not rendered.has(key), label + " baked scenery does not receive a duplicate sprite " + key)
+	if definition.is_empty() or definition.get("texture") == null: return
 	var backdrop: Node2D = room.get_node("MineBackdrop")
-	var detail: Node2D = backdrop.environment_chunks.native_detail
+	var chunks: Node2D = backdrop.environment_chunks
+	var detail: Node2D = chunks.native_detail if is_instance_valid(chunks) else null
 	check(is_instance_valid(detail) and detail.active_room_id == id and detail.tiles.size() == 6 and detail.resident_bytes > 0, label + " all six native detailed repaints resident, no mother-only fallback")
 	if not is_instance_valid(detail): return
 	var manifest := _json("asset://world/rooms_2k/" + id + "/manifest.json")
 	check(manifest.get("tiles", []).size() == 6 and manifest.get("room_id", "") == id, label + " correct native detail source manifest")
-	if manifest.get("tiles", []).size() != 6: return
+	if manifest.get("tiles", []).size() != 6 or detail.tiles.size() != 6: return
+	var source_size: Array = manifest.get("source_size", [])
+	check(source_size.size() == 2 and float(source_size[0]) > 0 and float(source_size[1]) > 0, label + " detail manifest records two valid native source dimensions")
+	if source_size.size() != 2 or float(source_size[0]) <= 0 or float(source_size[1]) <= 0: return
 	var destination: Rect2 = Art.environment_world_rect(room.layout.arena, "B10", id)
-	var source := Vector2(float(manifest.source_size[0]), float(manifest.source_size[1]))
+	var source := Vector2(float(source_size[0]), float(source_size[1]))
 	var distinct := {}
 	for index: int in detail.tiles.size():
 		var sprite: Sprite2D = detail.tiles[index]
 		var tile: Dictionary = manifest.tiles[index]
+		check(is_instance_valid(sprite) and sprite.texture != null, label + " detailed tile has a loaded source texture " + str(index))
+		if not is_instance_valid(sprite) or sprite.texture == null: continue
 		var region: Array = tile.source_rect
 		var reference := Rect2(float(region[0]), float(region[1]), float(region[2]), float(region[3]))
 		var expected := Rect2(destination.position + reference.position / source * destination.size, reference.size / source * destination.size)
@@ -306,7 +346,7 @@ func _native_bodies(room: Node2D) -> void:
 	for id: String in ids:
 		var frame: Dictionary = NativeArt.frame(id)
 		check(not frame.is_empty() and frame.get("texture") != null and str(frame.get("texture_path", "")) == Skills.art_id(id) and frame.get("source_family", "") == "b10_bright_handpainted_2_5d", id + " production native single pose loads without fallback")
-		if frame.is_empty(): continue
+		if frame.is_empty() or frame.get("texture") == null: continue
 		var path := AssetCatalog.resolve(str(frame.texture_path))
 		seen[path] = true
 		var provenance: Dictionary = frame.get("source_metadata", {})
@@ -452,10 +492,14 @@ func _source_image(path: String, expected_size: Array, expected_hash: String, la
 		var digest := HashingContext.new()
 		digest.start(HashingContext.HASH_SHA256)
 		digest.update(bytes)
-		var image := Image.load_from_file(resolved)
-		source_files[resolved] = {"sha256": digest.finish().hex_encode(), "size": [image.get_width(), image.get_height()] if image != null else []}
+		var image := Image.new()
+		var decoded := image.load_png_from_buffer(bytes) == OK
+		check(decoded, label + " original PNG bytes decode")
+		source_files[resolved] = {"sha256": digest.finish().hex_encode(), "size": [image.get_width(), image.get_height()] if decoded else []}
 	var actual: Dictionary = source_files[resolved]
-	check(expected_size.size() == 2 and actual["size"] == expected_size, label + " actual source dimensions match provenance")
+	# JSON numbers and Image dimensions carry different Variant number types.
+	# Compare exact numeric components without truncating fractional metadata.
+	check(expected_size.size() == 2 and actual["size"].size() == 2 and float(actual["size"][0]) == float(expected_size[0]) and float(actual["size"][1]) == float(expected_size[1]), label + " actual source dimensions match provenance")
 	check(expected_hash.length() == 64 and actual.sha256 == expected_hash, label + " original PNG SHA256 matches generation provenance")
 
 func _observe_skill(slot: String, reason: String, details: Dictionary) -> void:

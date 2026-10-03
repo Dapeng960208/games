@@ -37,7 +37,7 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 		return
 	if phase in [&"emerging",&"recovery"] and remaining<=0:
 		command.clear()
-		_set(&"chase",0)
+		_transition(&"chase",0)
 	if phase==&"chase":
 		var candidate := Skills.active(profile,actor.position,victim.position,Skills.connected(actor),cycle) if cooldown<=0 else Skills.basic(profile,actor.position,victim.position)
 		active=bool(candidate.get("active",false))
@@ -57,7 +57,7 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 		elif not extension is Object or extension.can_lock(actor):
 			command=candidate
 			if extension is Object: command=extension.constrain(actor,command)
-			_set(&"telegraph",float(command.telegraph_seconds))
+			_transition(&"telegraph",float(command.telegraph_seconds))
 	elif phase==&"telegraph":
 		# The first published warning fixes location and recipient, so portals
 		# and moving targets cannot drag a late hit onto another landing pad.
@@ -66,7 +66,7 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 			locked_origin=actor.position
 			serial+=1
 			command["cast_id"]="%s:%d:%d"%[profile.enemy_id,actor.get_instance_id(),serial]
-			_set(&"locked",float(command.locked_seconds))
+			_transition(&"locked",float(command.locked_seconds))
 	elif phase==&"locked":
 		actor.aim_direction=command.direction
 		if str(command.kind) in ["melee","charge"] and actor.position.distance_to(locked_origin)>30:
@@ -77,9 +77,9 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 			if active:
 				cooldown=float(command.cooldown)
 				cycle+=1
-			_set(&"execute",maxf(.22,float(command.get("duration",0)) if str(command.kind)=="charge" else .22))
+			_transition(&"execute",maxf(.22,float(command.get("duration",0)) if str(command.kind)=="charge" else .22))
 	elif phase==&"execute" and remaining<=0 and not actor.has_meta("enemy_skill_motion"):
-		_set(&"recovery",float(command.get("recovery",1.15)))
+		_transition(&"recovery",float(command.get("recovery",1.15)))
 	actor.state=phase
 	actor.state_time=remaining
 
@@ -103,7 +103,7 @@ func interrupt(actor: Node2D) -> void:
 
 func hold_recovery(actor: Node2D, seconds: float) -> void:
 	command.clear()
-	_set(&"recovery",maxf(remaining if phase==&"recovery" else 0.0,seconds))
+	_transition(&"recovery",maxf(remaining if phase==&"recovery" else 0.0,seconds))
 	actor.state=phase
 	actor.state_time=remaining
 
@@ -116,7 +116,7 @@ func current_skill() -> Dictionary:
 func current_telegraph() -> Dictionary:
 	return current_skill() if phase in [&"telegraph",&"locked"] else {}
 
-func _set(value: StringName, seconds: float) -> void:
+func _transition(value: StringName, seconds: float) -> void:
 	phase=value
 	remaining=seconds
 	duration=seconds

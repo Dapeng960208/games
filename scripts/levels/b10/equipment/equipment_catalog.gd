@@ -193,7 +193,14 @@ static func _validate_finale_ring(item: Dictionary, errors: Array[String]) -> vo
 		return
 	if item.id != FINALE_RING_ID or not _text(item.name) or not _text(item.name_en) or item.slot != "ring" or item.design_slot != "ring" or item.set_id != "" or item.race_id != "B10" or item.unlock_boss != "BO09": errors.append("Invalid finale ring identity.")
 	if item.allowed_heroes != HEROES or item.power_types != ["physical", "magic"] or item.reward_only != true or not item.reward_only is bool: errors.append("Finale ring must remain a universal exclusive reward.")
-	if item.fixed_stats != FINALE_STATS or item.base_stats != {} or item.affix_tendencies_by_power != {"physical":[], "magic":[]} or item.unique_effect != {} or not _integer(item.price, 0) or not _number(item.main_coefficient) or float(item.main_coefficient) != 1.0 or not _integer(item.ruleset_version, 2): errors.append("Finale ring fixed stats or creation policy changed.")
+	# JSON numbers and GDScript constants may have different Variant types.
+	# Preserve the exact authored values and key set rather than compare types.
+	if not item.fixed_stats is Dictionary or not _keys(item.fixed_stats, FINALE_STATS.keys()):
+		errors.append("Finale ring must retain exactly its nineteen fixed stat keys.")
+	else:
+		for key: String in FINALE_STATS:
+			if not _number(item.fixed_stats[key]) or float(item.fixed_stats[key]) != float(FINALE_STATS[key]): errors.append("Finale ring fixed stat changed: " + key)
+	if item.base_stats != {} or item.affix_tendencies_by_power != {"physical":[], "magic":[]} or item.unique_effect != {} or not _integer(item.price, 0) or not _number(item.main_coefficient) or float(item.main_coefficient) != 1.0 or not _integer(item.ruleset_version, 2): errors.append("Finale ring fixed stats or creation policy changed.")
 
 static func _validate_qualification(item: Dictionary, sid: String, label: String, errors: Array[String]) -> void:
 	var hero: String = SET_HERO.get(sid, "")

@@ -7,7 +7,7 @@ const Economy = preload("res://scripts/domain/equipment/instance_economy.gd")
 const Acquisition = preload("res://scripts/domain/equipment/equipment_acquisition.gd")
 const Instances = preload("res://scripts/domain/equipment/equipment_instances.gd")
 const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
-const World = preload("res://scripts/domain/world/world_catalog.gd")
+const Expedition = preload("res://scripts/app/expedition_controller.gd")
 const Growth = preload("res://scripts/domain/progression/hero_progression.gd")
 const VERSION := 1 # Ledger envelope remains compatible with mixed historical receipts.
 const RECEIPT_VERSION := 4
@@ -97,7 +97,7 @@ static func _quote(profile: Dictionary, request: Dictionary, kind: String, check
 	for template_id: String in templates:
 		var template := Registry.equipment(template_id, 2)
 		if bool(template.get("reward_only", false)): return _reject("REWARD_ONLY_TEMPLATE")
-		if str(template.get("race_id", "")) == "B10" and not World.region_unlocked("B10", profile.get("bosses", []), World.biomes()): return _reject("TEMPLATE_REGION_LOCKED")
+		if str(template.get("race_id", "")) == "B10" and not Expedition.unlocked_biomes(profile).has("B10"): return _reject("TEMPLATE_REGION_LOCKED")
 		var allowed: Array = template.get("allowed_heroes", [])
 		if allowed.size() == 1 and canonical.power_type != Registry.ClassPolicy.power_type(str(allowed[0])): return _reject("CLASS_POWER_MISMATCH")
 		var boss := str(template.get("unlock_boss", ""))

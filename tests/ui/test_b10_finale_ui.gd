@@ -6,6 +6,7 @@ extends Node
 const MainScene = preload("res://scenes/app/main.tscn")
 const Growth = preload("res://scripts/domain/progression/hero_progression.gd")
 const Finale = preload("res://scripts/presentation/components/finale_artwork.gd")
+const EquipmentArt = preload("res://scripts/infrastructure/assets/equipment_art.gd")
 const RING := "B10-EASTER-RING"
 var app: Node
 var checks := 0
@@ -42,7 +43,7 @@ func capture(file_name: String) -> void:
 	await RenderingServer.frame_post_draw
 	var pixels: Image = get_viewport().get_texture().get_image()
 	check(pixels.get_size() == Vector2i(2560,1440), "actual 2K framebuffer: " + file_name)
-	var path := output.path_join(file_name + ".png")
+	var path: String = output.path_join(file_name + ".png")
 	if check(pixels.save_png(path) == OK, "managed graphical screenshot: " + file_name):
 		captures.append(path)
 
@@ -62,7 +63,7 @@ func _run() -> void:
 	if not check(Game.new_profile() and Game.select_hero("CH01"), "fresh managed profile"):
 		await finish()
 		return
-	Game.set_setting("automatic_attack",false)
+	Game.set_setting("auto_attack",false)
 	Game.set_setting("camera_shake",false)
 	Game.run_finished.connect(_remember_result)
 	app = MainScene.instantiate()
@@ -123,6 +124,10 @@ func _run() -> void:
 	app.room.process_mode = Node.PROCESS_MODE_DISABLED
 	check(str(Game.run.expedition.route.biome_id) == "B10" and int(Game.run.expedition.difficulty) == 4 and Game.hero_level("CH01") == 50, "actual departure freezes B10 D4 with legal level 50")
 	check(is_instance_valid(app.hud) and app.hud.status_panel.position == Vector2(12,22), "finale reuses the existing profession/combat HUD")
+	var departure_runtime: Dictionary = app.room.expedition_runtime_snapshot()
+	if not check(not departure_runtime.is_empty() and departure_runtime.get("mode") == "safe_boundary", "production entrance capture supplies a valid safe boundary before any relic/route transaction"):
+		await finish()
+		return
 	await resolve_choices()
 	app.show_expedition(true)
 	await frames()
@@ -143,7 +148,7 @@ func _run() -> void:
 		if not await press("Choose_" + str(next.room_id)):
 			await finish()
 			return
-		if not check(int(Game.run.expedition.node_index) == index and app.room.layout_id == str(next.room_id), "route-card callback commits and applies " + str(next.room_id) + ": " + Game.last_error):
+		if not check(int(Game.run.expedition.node_index) == index and app.room.layout_id == str(next.room_id), "route-card callback commits and applies %s: actual node=%d layout=%s phase=%s saved mode=%s error=%s" % [str(next.room_id),int(Game.run.expedition.node_index),str(app.room.layout_id),str(Game.run.expedition.phase),str(Game.run.expedition.runtime.get("mode","")),Game.last_error]):
 			await finish()
 			return
 		app.room.process_mode = Node.PROCESS_MODE_DISABLED
@@ -226,7 +231,7 @@ func clear_actual_room() -> bool:
 		for actor in room.enemies.get_children():
 			if actor.is_alive() and not actor.is_queued_for_deletion(): actors.append(actor)
 		for actor in actors:
-			var identity := str(actor.get("boss_id")) if actor.get("boss_id") != null else str(actor.enemy_id)
+			var identity: String = str(actor.get("boss_id")) if actor.get("boss_id") != null else str(actor.enemy_id)
 			slain.append(identity)
 			actor.take_damage(100000000,&"primary",Vector2.RIGHT,{"damage_type":"true","attacker_stats":Game.run.stats})
 		await frames()
@@ -244,10 +249,17 @@ func extract_through_button() -> bool:
 	await frames()
 	var confirm: Button
 	if not app.modals.is_empty():
-		for node: Node in app.modals.back().find_children("*","Button",true,false):
-			var candidate := node as Button
-			if candidate != null and candidate.text == Words.text("CONFIRM_EXTRACT"): confirm = candidate
+		var modal_entry: Dictionary = app.modals.back()
+		var modal_root: Control = modal_entry.get("node") as Control
+		if is_instance_valid(modal_root):
+			for node: Node in modal_root.find_children("*","Button",true,false):
+				var candidate := node as Button
+				if candidate != null and candidate.text == Words.text("CONFIRM_EXTRACT"): confirm = candidate
 	if not check(confirm != null and not confirm.disabled, "actual legal extraction confirmation exists"):
+		return false
+	if not check(is_instance_valid(app.room) and is_instance_valid(app.room.combat_audio), "current room combat audio exists before extraction"):
+		return false
+	if not check(await app.room.combat_audio.wait_for_cleanup(), "current room combat playback cleanup before extraction"):
 		return false
 	confirm.pressed.emit()
 	await frames(5)
@@ -261,10 +273,21 @@ func finish() -> void:
 		app.set_process_unhandled_input(false)
 		if is_instance_valid(app.room): await app.room.combat_audio.wait_for_cleanup()
 		if is_instance_valid(app.music): check(await app.music.wait_for_cleanup(),"Main music cleanup")
+	# Main's disabled _process normally collects these asynchronous requests.
+	# Preserve its resource cache and only consume completed loader results.
+	var prefetch_deadline: int = Time.get_ticks_msec() + 2000
+	EquipmentArt.finish_prefetches()
+	while not EquipmentArt._prefetches.is_empty() and Time.get_ticks_msec() < prefetch_deadline:
+		await get_tree().process_frame
+		EquipmentArt.finish_prefetches()
+	check(EquipmentArt._prefetches.is_empty(), "disabled Main equipment prefetches collected before teardown")
+	if is_instance_valid(app):
 		app.free()
+	app = null
+	await frames(2)
 	if Game.run_finished.is_connected(_remember_result): Game.run_finished.disconnect(_remember_result)
 	Game.run = null
-	var report := FileAccess.open(output.path_join("b10_finale_ui.json"),FileAccess.WRITE)
+	var report: FileAccess = FileAccess.open(output.path_join("b10_finale_ui.json"),FileAccess.WRITE)
 	if check(report != null,"managed UI acceptance report opens"):
 		report.store_string(JSON.stringify({"checks":checks,"failures":failures,"renderer":RenderingServer.get_video_adapter_name(),"logical_viewport":[1280,720],"framebuffer":[2560,1440],"scope":"UI integration with controlled prior BO09/level setup, traversal and actor lethal hits; real Main departure/cards/room clear/loot/extraction/ending; not natural combat, balance or full-role acceptance; ring replay and capacity remain in b10_finale_ring","captures":captures,"rooms":rooms},"\t"))
 		report.close()

@@ -123,7 +123,7 @@ func _make_room(id: String) -> void:
 	room.objectives.configure(room,room.layout,str(room.expedition_context.role))
 	room._expedition_ready=true
 	if id=="BO10":
-		var boss:=load("res://scripts/gameplay/bosses/boss_actor.gd").new()
+		var boss: Node2D=load("res://scripts/gameplay/bosses/boss_actor.gd").new()
 		boss.room=room
 		boss.position=room.layout.boss_spawn
 		boss.configure(Skills.boss_profile("BO10",4))
@@ -201,6 +201,14 @@ func _core_phase_contract(hero: String) -> void:
 	check(room._boss_actor.boss_brain.phase==3 and room.enemy_skills.b10.boss_core_count(room._boss_actor)==0,hero+" restore cannot rebuild destroyed cores for free")
 	var snapshot:=Snapshot.capture(room)
 	check(not snapshot.is_empty() and snapshot.runtime.has("b10_combat"),hero+" production combat snapshot includes strict B10 state")
+	if not snapshot.is_empty():
+		check(Snapshot.validate(JSON.parse_string(JSON.stringify(snapshot)),hero,Game.run.stats),hero+" production snapshot JSON retains local 64-bit IDs")
+		var compatible: Dictionary=snapshot.duplicate(true)
+		for key: String in Snapshot.B10_MODIFIERS: compatible.equipment.adapter.modifiers.erase(key)
+		check(Snapshot.validate(compatible,hero,Game.run.stats),hero+" earlier snapshots without B10 modifier fields remain valid")
+		compatible=snapshot.duplicate(true)
+		compatible.equipment.adapter.modifiers.b10_direct_damage_reduction=.5001
+		check(not Snapshot.validate(compatible,hero,Game.run.stats),hero+" B10 reduction beyond its strict limit is rejected")
 
 func _echo_and_partition_contract() -> void:
 	var at:=Geometry.world_point(Geometry.room("L55").encounter_anchors[0])
@@ -210,19 +218,19 @@ func _echo_and_partition_contract() -> void:
 	var extension: RefCounted=room.enemy_skills.b10
 	extension.advance(.01)
 	check(extension.connected(actor),"a live core connects its first caster")
-	var skill:=extension.constrain(actor,Skills.active(p,at,at+Vector2(40,0),true))
+	var skill: Dictionary=extension.constrain(actor,Skills.active(p,at,at+Vector2(40,0),true))
 	room.enemy_skills.emit_skill(actor,skill)
 	var echoes: Array=[]
 	for job: Dictionary in room.enemy_skills.jobs:
 		if int(job.get("stage",0))==99: echoes.append(job)
 	check(echoes.size()==1 and echoes[0].coefficient==25 and echoes[0].remaining==.9,"exactly one 0.25a delayed echo")
-	var before:=room.enemy_skills.jobs.size()
+	var before: int=room.enemy_skills.jobs.size()
 	extension.released(echoes[0])
 	check(room.enemy_skills.jobs.size()==before,"derived echo cannot schedule another echo")
 	room.enemy_skills.emit_skill(actor,skill)
 	check(room.enemy_skills.jobs.size()==before,"ten-second echo gate prevents duplicate same-window scheduling")
-	var command:=extension.prepare(actor,skill)
-	var source_position:=room.player.position
+	var command: Dictionary=extension.prepare(actor,skill)
+	var source_position: Vector2=room.player.position
 	var gate: Dictionary=Geometry.room("L55").gates[0]
 	room.player.position=Geometry.world_point(gate.position)
 	command["source_zone"]=Geometry.zone_at("L55",at)
@@ -249,7 +257,7 @@ func _echo_and_partition_contract() -> void:
 	check(actor.brain.phase==&"recovery" and actor.brain.remaining>=1.18,"guard expiry retains 1.2 seconds of vulnerable recovery")
 	room.enemy_skills.jobs.clear()
 	extension.echo_ready.clear()
-	var bent:=extension.constrain(actor,Skills.active(Skills.profile("B10-M07",48,4),actor.position,actor.position+Vector2(200,0),true))
+	var bent: Dictionary=extension.constrain(actor,Skills.active(Skills.profile("B10-M07",48,4),actor.position,actor.position+Vector2(200,0),true))
 	bent=extension.prepare(actor,bent)
 	var bent_cast:=str(bent.cast_id)
 	extension.released(bent)
