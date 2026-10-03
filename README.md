@@ -1,6 +1,6 @@
 # 深渊拾荒者 Abyss Salvager
 
-Godot 4 单人动作游戏原型。当前正式入口开放 **B01–B04、等级 1–20、战士／枪手／法师**。B05、B06 保留为隔离候选；B07–B12 和召唤师为未实现设计。内容状态更新于 2026-10-03，以 [开发进度](docs/DEVELOPMENT_PROGRESS.md) 和运行配置为准。
+Godot 4 单人动作游戏原型。当前正式入口开放 **B01–B04、等级 1–20、战士／枪手／法师**。B05、B06 保留为隔离候选；B09 已接入原创资源与独立七房战斗候选，B07、B08、B10–B12 和召唤师仍为未实现设计。内容状态更新于 2026-10-03，以 [开发进度](docs/DEVELOPMENT_PROGRESS.md) 和运行配置为准。
 
 明亮手绘卡通奇幻风，高机位三分之四斜俯视与 2.5D 质感；界面使用米白羊皮纸、黄铜、深紫文字和圆形技能徽章。
 
@@ -30,6 +30,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\setup.ps1
 # 只运行相关检查
 .\tools\test.ps1 -Suite legacy_profile_reset -SkipImport
 python tools/maintenance/audit_repository.py
+# B09 原创霜晶资源与独立七房候选（独立测试档）
+.\tools\play_b09.ps1
+.\tools\test.ps1 -Suite b09_candidate -SkipImport
 ```
 
 也可双击 `RUN_GAME.cmd`，已有引擎可通过 `-EnginePath` 或 `GODOT_BIN` 指定。测试会重定向到独立存档目录。实际玩家存档为 `%APPDATA%\AbyssSalvagerM1\profile.json`，不属于仓库清理范围。

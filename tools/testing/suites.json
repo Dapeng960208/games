@@ -284,6 +284,10 @@
   "b06_tide_state": {
     "script": "tests/levels/b06/test_b06_tide_state.gd"
   },
+  "b09_candidate": {
+    "script": "tests/levels/b09/test_b09_candidate.gd",
+    "scene": "tests/levels/b09/test_b09_candidate.tscn"
+  },
   "backpack": {
     "script": "tests/equipment/test_backpack.gd",
     "scene": "tests/equipment/test_backpack.tscn"
@@ -707,6 +711,9 @@
   "inventory_performance": {
     "script": "tests/app/test_inventory_performance.gd",
     "scene": "tests/app/test_inventory_performance.tscn"
+  },
+  "legacy_profile_reset": {
+    "script": "tests/persistence/test_legacy_profile_reset.gd"
   },
   "loot_status_ui": {
     "script": "tests/equipment/test_loot_status_ui.gd"
@@ -1137,8 +1144,5 @@
   "world_visual": {
     "script": "tests/world/test_world_visual.gd",
     "scene": "tests/world/test_world_visual.tscn"
-  },
-  "legacy_profile_reset": {
-    "script": "tests/persistence/test_legacy_profile_reset.gd"
   }
 }
