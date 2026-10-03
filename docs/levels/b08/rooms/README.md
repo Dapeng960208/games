@@ -8,4 +8,6 @@
 
 具体 [背景＋六区域原生详情合同](../art/background_detail_contract.md) 与 [逐房资源层清单](resource_layers.json) 按 B02/L07 实际目录和消费链路登记；[狭桥布局提案](l43_layout_alternative.md) 尚未采用。
 
+第三版原画的 [只读边界影响与保留560世界避风路的局部修订提案](l43_boundary_impact.md) 尚未实施；净面积接近不代表通行不变，B08 几何仍待独立确认。
+
 [本关说明](../README.md) · [关卡索引](../../README.md)

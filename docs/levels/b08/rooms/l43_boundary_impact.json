@@ -1,0 +1,5162 @@
+{
+  "status": "read_only_unapproved_geometry_proposal_no_image_or_runtime_changes",
+  "original_candidate_analysis": {
+    "schema": "l43-candidate03-readonly-floor-measurement-v1",
+    "source_path": "environment_candidate_03.png (preserved staging source, not a registered runtime asset)",
+    "source_sha256": "fd36bc4dd59ff6755342002d48e0e1b3ed2baa3562b3732dabe2fae666cad6fa",
+    "contract_sha256": "6609c64a5b81b0531c3636839c66cb8112f0255697832e75010cc4be70dcfaa3",
+    "status": "Analysis only. No approval to change B08 geometry; no changes proposed for execution.",
+    "method": "Original RGB inspection; read-only pixel row sampling; manual polygon trace; analytic GEOS polygon set/clearance calculations. No arbitrary fit and no runtime tests.",
+    "source_size": [
+      1536,
+      1024
+    ],
+    "fixed_transform": {
+      "placement_normalized_rect": [
+        0.11,
+        0.13,
+        0.78,
+        0.74
+      ],
+      "arena": [
+        0,
+        0,
+        1624,
+        1044
+      ],
+      "world_per_source_pixel": [
+        1.355502136752137,
+        1.3777449324324325
+      ],
+      "world_source_origin": [
+        -229.02564102564105,
+        -183.40540540540542
+      ],
+      "formula": "world=(source/source_size-placement.xy)*arena.size/placement.wh"
+    },
+    "trace": {
+      "outer_source_xy": [
+        [
+          203,
+          360
+        ],
+        [
+          456,
+          360
+        ],
+        [
+          457,
+          323
+        ],
+        [
+          514,
+          323
+        ],
+        [
+          516,
+          234
+        ],
+        [
+          1073,
+          234
+        ],
+        [
+          1078,
+          360
+        ],
+        [
+          1331,
+          360
+        ],
+        [
+          1347,
+          644
+        ],
+        [
+          951,
+          644
+        ],
+        [
+          947,
+          598
+        ],
+        [
+          589,
+          598
+        ],
+        [
+          586,
+          644
+        ],
+        [
+          189,
+          644
+        ]
+      ],
+      "outer_world_xy": [
+        [
+          46.141292735042725,
+          312.58277027027026
+        ],
+        [
+          389.0833333333334,
+          312.58277027027026
+        ],
+        [
+          390.4388354700855,
+          261.60620777027026
+        ],
+        [
+          467.70245726495733,
+          261.60620777027026
+        ],
+        [
+          470.4134615384616,
+          138.9869087837838
+        ],
+        [
+          1225.4281517094018,
+          138.9869087837838
+        ],
+        [
+          1232.2056623931626,
+          312.58277027027026
+        ],
+        [
+          1575.1477029914531,
+          312.58277027027026
+        ],
+        [
+          1596.8357371794873,
+          703.862331081081
+        ],
+        [
+          1060.056891025641,
+          703.862331081081
+        ],
+        [
+          1054.6348824786326,
+          640.4860641891892
+        ],
+        [
+          569.3651175213677,
+          640.4860641891892
+        ],
+        [
+          565.2986111111111,
+          703.862331081081
+        ],
+        [
+          27.164262820512818,
+          703.862331081081
+        ]
+      ],
+      "nonwalkable_aperture_source_xy": [
+        [
+          617,
+          399
+        ],
+        [
+          919,
+          399
+        ],
+        [
+          919,
+          445
+        ],
+        [
+          617,
+          445
+        ]
+      ],
+      "nonwalkable_aperture_world_xy": [
+        [
+          607.3191773504275,
+          366.3148226351351
+        ],
+        [
+          1016.6808226495727,
+          366.3148226351351
+        ],
+        [
+          1016.6808226495727,
+          429.691089527027
+        ],
+        [
+          607.3191773504275,
+          429.691089527027
+        ]
+      ],
+      "visible_sky_source_xy": [
+        [
+          617,
+          409
+        ],
+        [
+          919,
+          409
+        ],
+        [
+          919,
+          445
+        ],
+        [
+          617,
+          445
+        ]
+      ],
+      "visible_sky_world_xy": [
+        [
+          607.3191773504275,
+          380.0922719594595
+        ],
+        [
+          1016.6808226495727,
+          380.0922719594595
+        ],
+        [
+          1016.6808226495727,
+          429.691089527027
+        ],
+        [
+          607.3191773504275,
+          429.691089527027
+        ]
+      ],
+      "definition": "Includes horizontal pale stone edge lip, excludes vertical outer fascia/arches. Aperture includes inner vertical wall from y399 through y409 and blue sky to y445. Blue-sky-only contour is not a valid dry-floor mask."
+    },
+    "uncertainty": {
+      "source_vertex_nominal_precision_px": 1,
+      "interpretive_trace_tolerance_px": 5,
+      "world_conservative_radial_bound": 6.888724662162162,
+      "note": "Not exact segmentation. Vertices visually traced against original RGB, aided by RGB edge rows. +/-5 source px is a stated trace tolerance, not a statistical CI. This bound uses max axis scale and buffers all boundaries, intentionally conservative. Decorative rim exclusion is a separate semantic 8-14px change and is not hidden in this tolerance.",
+      "painted_area_world2_bounds": [
+        648859.8756022294,
+        721458.1410040304
+      ],
+      "added_world2_bounds": [
+        57846.208204566305,
+        94379.85462925048
+      ],
+      "lost_world2_bounds": [
+        47067.31362521988,
+        83131.93260233695
+      ]
+    },
+    "areas_world2": {
+      "current": 674145.6000000001,
+      "measured": 685158.8796825765,
+      "shared": 611508.9453059348,
+      "added": 73649.9343766416,
+      "lost": 62636.65469406513,
+      "net_delta": 11013.279682576424,
+      "symmetric_difference": 136286.58907070674,
+      "net_percent_current": 1.633664846670574,
+      "added_percent_current": 10.924929922651959,
+      "lost_percent_current": 9.291265075981379,
+      "symmetric_percent_current": 20.21619499863334,
+      "intersection_over_union": 0.8177488594067169,
+      "if_blue_sky_only_counted": 690798.8390060074,
+      "false_floor_from_inner_vertical_hole_wall": 5639.9593234308995
+    },
+    "topology": {
+      "current": {
+        "components": 1,
+        "holes": 1
+      },
+      "measured": {
+        "components": 1,
+        "holes": 1
+      }
+    },
+    "added_components": [
+      {
+        "area_world2": 27164.5679092731,
+        "geometry_world_wkt": "POLYGON ((390.43884 261.60621, 389.08333 312.58277, 46.14129 312.58277, 27.16426 703.86233, 104.4 703.86233, 104.4 313.2, 394.4 313.2, 394.4 266.8, 440.8 266.8, 440.8 261.60621, 390.43884 261.60621))"
+      },
+      {
+        "area_world2": 17693.98847105263,
+        "geometry_world_wkt": "POLYGON ((1225.42815 138.98691, 470.41346 138.98691, 469.89582 162.4, 1226.34224 162.4, 1225.42815 138.98691))"
+      },
+      {
+        "area_world2": 26142.399968408998,
+        "geometry_world_wkt": "POLYGON ((1596.83574 703.86233, 1575.1477 312.58277, 1252.8 312.58277, 1252.8 313.2, 1519.6 313.2, 1519.6 703.86233, 1596.83574 703.86233))"
+      },
+      {
+        "area_world2": 321.4374741731024,
+        "geometry_world_wkt": "POLYGON ((1060.05689 703.86233, 1067.2 703.86233, 1067.2 667, 1056.90322 667, 1060.05689 703.86233))"
+      },
+      {
+        "area_world2": 356.87298616616926,
+        "geometry_world_wkt": "POLYGON ((565.29861 703.86233, 567.66386 667, 556.8 667, 556.8 703.86233, 565.29861 703.86233))"
+      },
+      {
+        "area_world2": 1970.6675675675872,
+        "geometry_world_wkt": "POLYGON ((626.4 429.69109, 626.4 435, 997.6 435, 997.6 429.69109, 626.4 429.69109))"
+      }
+    ],
+    "lost_components": [
+      {
+        "area_world2": 12919.0361432225,
+        "geometry_world_wkt": "POLYGON ((1056.90322 667, 1054.63488 640.48606, 569.36512 640.48606, 567.66386 667, 1056.90322 667))"
+      },
+      {
+        "area_world2": 17434.441418918923,
+        "geometry_world_wkt": "POLYGON ((1067.2 742.4, 1519.6 742.4, 1519.6 703.86233, 1067.2 703.86233, 1067.2 742.4))"
+      },
+      {
+        "area_world2": 3533.206952869803,
+        "geometry_world_wkt": "POLYGON ((1252.8 162.4, 1226.34224 162.4, 1232.20566 312.58277, 1252.8 312.58277, 1252.8 162.4))"
+      },
+      {
+        "area_world2": 2777.6883047847004,
+        "geometry_world_wkt": "POLYGON ((440.8 162.4, 440.8 261.60621, 467.70246 261.60621, 469.89582 162.4, 440.8 162.4))"
+      },
+      {
+        "area_world2": 17434.441418918927,
+        "geometry_world_wkt": "POLYGON ((104.4 742.4, 556.8 742.4, 556.8 703.86233, 104.4 703.86233, 104.4 742.4))"
+      },
+      {
+        "area_world2": 8537.84045535028,
+        "geometry_world_wkt": "POLYGON ((997.6 382.8, 997.6 429.69109, 1016.68082 429.69109, 1016.68082 366.31482, 607.31918 366.31482, 607.31918 429.69109, 626.4 429.69109, 626.4 382.8, 997.6 382.8))"
+      }
+    ],
+    "anchors": {
+      "entry": {
+        "source_xy": [
+          331.55657142857143,
+          537.2586666666666
+        ],
+        "world_xy": [
+          220.39999999999998,
+          556.8
+        ],
+        "inside_current": true,
+        "inside_measured": true,
+        "current_full_circle_max_radius_world": 115.99999999999999,
+        "measured_full_circle_max_radius_world": 147.06233108108108,
+        "margin_after_hero14_world": 133.06233108108108,
+        "margin_after_enemy18_world": 129.06233108108108,
+        "robust_margin_after_enemy18_and_5px_trace_uncertainty_world": 122.17360641891892
+      },
+      "exit": {
+        "source_xy": [
+          1200.1645714285714,
+          537.2586666666666
+        ],
+        "world_xy": [
+          1397.8,
+          556.8
+        ],
+        "inside_current": true,
+        "inside_measured": true,
+        "current_full_circle_max_radius_world": 121.79999999999994,
+        "measured_full_circle_max_radius_world": 147.06233108108108,
+        "margin_after_hero14_world": 133.06233108108108,
+        "margin_after_enemy18_world": 129.06233108108108,
+        "robust_margin_after_enemy18_and_5px_trace_uncertainty_world": 122.17360641891892
+      },
+      "vane": {
+        "source_xy": [
+          528.384,
+          512.0
+        ],
+        "world_xy": [
+          487.2,
+          522.0
+        ],
+        "inside_current": true,
+        "inside_measured": true,
+        "current_full_circle_max_radius_world": 160.83892563679973,
+        "measured_full_circle_max_radius_world": 144.1875651515929,
+        "margin_after_hero14_world": 130.1875651515929,
+        "margin_after_enemy18_world": 126.1875651515929,
+        "robust_margin_after_enemy18_and_5px_trace_uncertainty_world": 119.29884048943075
+      },
+      "flag": {
+        "source_xy": [
+          420.0846502463054,
+          482.8218850574713
+        ],
+        "world_xy": [
+          340.4,
+          481.8
+        ],
+        "inside_current": true,
+        "inside_measured": true,
+        "current_full_circle_max_radius_world": 168.60000000000002,
+        "measured_full_circle_max_radius_world": 169.21722972973004,
+        "margin_after_hero14_world": 155.21722972973004,
+        "margin_after_enemy18_world": 151.21722972973004,
+        "robust_margin_after_enemy18_and_5px_trace_uncertainty_world": 144.32850506756787
+      },
+      "m01": {
+        "source_xy": [
+          661.0285714285714,
+          524.6293333333333
+        ],
+        "world_xy": [
+          667.0,
+          539.4
+        ],
+        "inside_current": true,
+        "inside_measured": true,
+        "current_full_circle_max_radius_world": 104.39999999999999,
+        "measured_full_circle_max_radius_world": 101.08606418918907,
+        "margin_after_hero14_world": 87.08606418918907,
+        "margin_after_enemy18_world": 83.08606418918907,
+        "robust_margin_after_enemy18_and_5px_trace_uncertainty_world": 76.19733952702691
+      },
+      "m02": {
+        "source_xy": [
+          832.1828571428572,
+          524.6293333333333
+        ],
+        "world_xy": [
+          898.9999999999999,
+          539.4
+        ],
+        "inside_current": true,
+        "inside_measured": true,
+        "current_full_circle_max_radius_world": 104.39999999999999,
+        "measured_full_circle_max_radius_world": 101.08606418918907,
+        "margin_after_hero14_world": 87.08606418918907,
+        "margin_after_enemy18_world": 83.08606418918907,
+        "robust_margin_after_enemy18_and_5px_trace_uncertainty_world": 76.19733952702691
+      },
+      "m03": {
+        "source_xy": [
+          1003.3371428571429,
+          533.0488888888889
+        ],
+        "world_xy": [
+          1131.0,
+          551.0
+        ],
+        "inside_current": true,
+        "inside_measured": true,
+        "current_full_circle_max_radius_world": 132.3874616419546,
+        "measured_full_circle_max_radius_world": 117.64092339880648,
+        "margin_after_hero14_world": 103.64092339880648,
+        "margin_after_enemy18_world": 99.64092339880648,
+        "robust_margin_after_enemy18_and_5px_trace_uncertainty_world": 92.75219873664432
+      }
+    },
+    "wind_lane": {
+      "blueprint_xywh": [
+        880,
+        325,
+        1150,
+        220
+      ],
+      "source_xyxy": [
+        545.4994285714286,
+        269.9377777777778,
+        1037.568,
+        362.5528888888889
+      ],
+      "world_xywh": [
+        510.4,
+        188.5,
+        667.0,
+        127.6
+      ],
+      "current_inside": true,
+      "measured_inside": true,
+      "current_min_boundary_clearance_world": 26.099999999999998,
+      "measured_min_boundary_clearance_world": 41.0711922860353,
+      "measured_nonfloor_overlap_world2": 0.0,
+      "margin_after_hero14_world": 27.0711922860353,
+      "margin_after_enemy18_world": 23.0711922860353
+    },
+    "navigation": {
+      "measurement_scope": "Static polygon clearance only. No runtime/pathfinding, collision, wind, or combat tests were run. Widths count horizontal dry stone lip; separate inner-paving interpretation remains uncertain.",
+      "current_north_corridor_world": 220.39999999999998,
+      "measured_north_corridor_world": 227.32791385135135,
+      "current_central_south_branch_world": 231.99999999999997,
+      "measured_central_south_branch_world": 210.79497466216216,
+      "central_branch_height_change_world": -21.20502533783781,
+      "painted_wind_north_bypass_band_world": 49.513091216216246,
+      "painted_wind_south_bypass_band_world": 50.21482263513512,
+      "current_wind_north_bypass_band_world": 26.099999999999998,
+      "current_wind_south_bypass_band_world": 66.69999999999999,
+      "painted_full_body_wind_free_north_band_center_range_hero14_world": 21.513091216216246,
+      "painted_full_body_wind_free_north_band_center_range_enemy18_world": 13.513091216216246,
+      "painted_full_body_wind_free_south_band_center_range_hero14_world": 22.21482263513512,
+      "painted_full_body_wind_free_south_band_center_range_enemy18_world": 14.214822635135121,
+      "center_test_wind_note": "geometry.gd lane_at() checks the actor center. Full-body wind-free bypass is a stricter geometric diagnostic, not the runtime lane trigger.",
+      "eroded_topology": {
+        "14": {
+          "current": {
+            "components": 1,
+            "holes": 1
+          },
+          "measured": {
+            "components": 1,
+            "holes": 1
+          }
+        },
+        "18": {
+          "current": {
+            "components": 1,
+            "holes": 1
+          },
+          "measured": {
+            "components": 1,
+            "holes": 1
+          }
+        }
+      }
+    },
+    "current_world_wkt": "POLYGON ((556.8 667, 1067.2 667, 1067.2 742.4, 1519.6 742.4, 1519.6 313.2, 1252.8 313.2, 1252.8 162.4, 440.8 162.4, 440.8 266.8, 394.4 266.8, 394.4 313.2, 104.4 313.2, 104.4 742.4, 556.8 742.4, 556.8 667), (626.4 382.8, 997.6 382.8, 997.6 435, 626.4 435, 626.4 382.8))",
+    "measured_world_wkt": "POLYGON ((46.14129 312.58277, 389.08333 312.58277, 390.43884 261.60621, 467.70246 261.60621, 470.41346 138.98691, 1225.42815 138.98691, 1232.20566 312.58277, 1575.1477 312.58277, 1596.83574 703.86233, 1060.05689 703.86233, 1054.63488 640.48606, 569.36512 640.48606, 565.29861 703.86233, 27.16426 703.86233, 46.14129 312.58277), (607.31918 366.31482, 1016.68082 366.31482, 1016.68082 429.69109, 607.31918 429.69109, 607.31918 366.31482))",
+    "counterexamples": [
+      {
+        "name": "current legal north-hole edge actor",
+        "world_xy": [
+          800,
+          360
+        ],
+        "source_xy": [
+          759.1471921182266,
+          394.41655172413795
+        ],
+        "current_max_radius_world": 22.8,
+        "painted_max_radius_world": 6.314822635135101,
+        "hero14_fits_current": true,
+        "enemy18_fits_current": true,
+        "hero14_fits_painted": false,
+        "enemy18_fits_painted": false,
+        "reason": "Center stays dry but full circle overlaps inner vertical aperture wall/void."
+      },
+      {
+        "name": "current legal west-hole edge actor",
+        "world_xy": [
+          606,
+          405
+        ],
+        "source_xy": [
+          616.0267980295566,
+          427.07862068965517
+        ],
+        "current_max_radius_world": 20.4,
+        "painted_max_radius_world": 1.3191773504274806,
+        "hero14_fits_current": true,
+        "enemy18_fits_current": true,
+        "hero14_fits_painted": false,
+        "enemy18_fits_painted": false,
+        "reason": "The hole expands 19.08 world toward the actor."
+      },
+      {
+        "name": "current legal southwest slab edge actor",
+        "world_xy": [
+          400,
+          722
+        ],
+        "source_xy": [
+          464.0535960591133,
+          657.1647509578544
+        ],
+        "current_max_radius_world": 20.4,
+        "painted_signed_clearance_world": -18.137668918918962,
+        "hero14_fits_current": true,
+        "enemy18_fits_current": true,
+        "hero14_fits_painted": false,
+        "enemy18_fits_painted": false,
+        "reason": "The center lies 18.14 world past the painted horizontal floor, on vertical fascia."
+      },
+      {
+        "name": "current legal central south edge actor",
+        "world_xy": [
+          800,
+          647
+        ],
+        "source_xy": [
+          759.1471921182266,
+          602.727969348659
+        ],
+        "current_max_radius_world": 20,
+        "painted_signed_clearance_world": -6.513935810810835,
+        "hero14_fits_current": true,
+        "enemy18_fits_current": true,
+        "hero14_fits_painted": false,
+        "enemy18_fits_painted": false,
+        "reason": "The center lies 6.51 world past the painted central floor edge."
+      },
+      {
+        "name": "painted west slab actor position blocked by current geometry",
+        "world_xy": [
+          70,
+          500
+        ],
+        "source_xy": [
+          220.6013793103448,
+          496.031877394636
+        ],
+        "current_signed_clearance_world": -34.400000000000006,
+        "hero14_fits_current": false,
+        "enemy18_fits_current": false,
+        "hero14_fits_painted": true,
+        "enemy18_fits_painted": true,
+        "reason": "Extra painted floor west of current x104.4 boundary reads navigable but is collision void.",
+        "painted_max_radius_world": 32.90974599642386
+      }
+    ],
+    "boundary_displacements_world": {
+      "south_slabs_northward": 38.53766891891894,
+      "central_south_boundary_northward": 26.513935810810835,
+      "northern_top_northward": 23.413091216216202,
+      "hole_west_edge_westward": 19.080822649572497,
+      "hole_east_edge_eastward": 19.080822649572724,
+      "hole_aperture_north_edge_northward": 16.48517736486491,
+      "hole_south_edge_northward": 5.308910472973025
+    },
+    "actual_navigation_grid_analysis": {
+      "source": "room_controller.gd lines285-299; geometry.gd contains() center plus8 radial samples",
+      "runtime_grid": {
+        "size": [
+          42,
+          28
+        ],
+        "cell_world_size": [
+          40,
+          40
+        ],
+        "offset": [
+          20,
+          20
+        ],
+        "radius": 40,
+        "point_to_cell": "Vector2i((point - Vector2(20,20))/40), i.e. truncation toward zero; supplied positive anchors use int",
+        "diagonal_mode": "DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES",
+        "target_handling": "navigation_direction first returns a direct direction when blocked_fraction passes; otherwise target is clamp_actor(target,radius) before cell conversion. All supplied anchors already fit14/18; no target clamp changes them."
+      },
+      "continuous40_eroded_topology": {
+        "current": {
+          "components": 1,
+          "holes": 1
+        },
+        "painted_nominal": {
+          "components": 1,
+          "holes": 1
+        },
+        "painted_inward5_then40": {
+          "components": 1,
+          "holes": 1
+        },
+        "painted_inward6_889_then40": {
+          "components": 1,
+          "holes": 1
+        }
+      },
+      "grid_sets": {
+        "current_runtime_9sample": {
+          "free_cells": 310,
+          "components": 1,
+          "component_sizes": [
+            310
+          ],
+          "entry_component_size": 310
+        },
+        "painted_runtime_9sample_nominal": {
+          "free_cells": 311,
+          "components": 1,
+          "component_sizes": [
+            311
+          ],
+          "entry_component_size": 311
+        },
+        "current_full_circle40": {
+          "free_cells": 308,
+          "components": 1,
+          "component_sizes": [
+            308
+          ],
+          "entry_component_size": 308
+        },
+        "painted_full_circle40": {
+          "free_cells": 309,
+          "components": 1,
+          "component_sizes": [
+            309
+          ],
+          "entry_component_size": 309
+        },
+        "painted_9sample_inward5world": {
+          "free_cells": 263,
+          "components": 1,
+          "component_sizes": [
+            263
+          ],
+          "entry_component_size": 263
+        },
+        "painted_9sample_inward6_889world": {
+          "free_cells": 262,
+          "components": 1,
+          "component_sizes": [
+            262
+          ],
+          "entry_component_size": 262
+        }
+      },
+      "anchors": {
+        "entry": {
+          "cell_xy": [
+            5,
+            13
+          ],
+          "cell_world_xy": [
+            220,
+            540
+          ],
+          "actor_to_cell_world": 16.804761230079958,
+          "cell_current_full_circle_max_radius_world": 115.6,
+          "cell_painted_full_circle_max_radius_world": 163.86233000000001,
+          "painted_spare_after40_world": 123.86233000000001,
+          "point_solid": {
+            "current_runtime_9sample": false,
+            "painted_runtime_9sample_nominal": false,
+            "current_full_circle40": false,
+            "painted_full_circle40": false,
+            "painted_9sample_inward5world": false,
+            "painted_9sample_inward6_889world": false
+          },
+          "reachable_from_entry": {
+            "current_runtime_9sample": true,
+            "painted_runtime_9sample_nominal": true,
+            "current_full_circle40": true,
+            "painted_full_circle40": true,
+            "painted_9sample_inward5world": true,
+            "painted_9sample_inward6_889world": true
+          },
+          "path_length_from_entry_world": {
+            "current_runtime_9sample": 0,
+            "painted_runtime_9sample_nominal": 0,
+            "current_full_circle40": 0,
+            "painted_full_circle40": 0,
+            "painted_9sample_inward5world": 0,
+            "painted_9sample_inward6_889world": 0
+          }
+        },
+        "exit": {
+          "cell_xy": [
+            34,
+            13
+          ],
+          "cell_world_xy": [
+            1380,
+            540
+          ],
+          "actor_to_cell_world": 24.47611080216783,
+          "cell_current_full_circle_max_radius_world": 139.5999999999999,
+          "cell_painted_full_circle_max_radius_world": 163.86233000000001,
+          "painted_spare_after40_world": 123.86233000000001,
+          "point_solid": {
+            "current_runtime_9sample": false,
+            "painted_runtime_9sample_nominal": false,
+            "current_full_circle40": false,
+            "painted_full_circle40": false,
+            "painted_9sample_inward5world": false,
+            "painted_9sample_inward6_889world": false
+          },
+          "reachable_from_entry": {
+            "current_runtime_9sample": true,
+            "painted_runtime_9sample_nominal": true,
+            "current_full_circle40": true,
+            "painted_full_circle40": true,
+            "painted_9sample_inward5world": true,
+            "painted_9sample_inward6_889world": true
+          },
+          "path_length_from_entry_world": {
+            "current_runtime_9sample": 1160.0,
+            "painted_runtime_9sample_nominal": 1160.0,
+            "current_full_circle40": 1160.0,
+            "painted_full_circle40": 1160.0,
+            "painted_9sample_inward5world": 1160.0,
+            "painted_9sample_inward6_889world": 1160.0
+          }
+        },
+        "vane": {
+          "cell_xy": [
+            11,
+            12
+          ],
+          "cell_world_xy": [
+            460,
+            500
+          ],
+          "actor_to_cell_world": 34.983424646537955,
+          "cell_current_full_circle_max_radius_world": 178.64478721753957,
+          "cell_painted_full_circle_max_radius_world": 163.23689417916677,
+          "painted_spare_after40_world": 123.23689417916677,
+          "point_solid": {
+            "current_runtime_9sample": false,
+            "painted_runtime_9sample_nominal": false,
+            "current_full_circle40": false,
+            "painted_full_circle40": false,
+            "painted_9sample_inward5world": false,
+            "painted_9sample_inward6_889world": false
+          },
+          "reachable_from_entry": {
+            "current_runtime_9sample": true,
+            "painted_runtime_9sample_nominal": true,
+            "current_full_circle40": true,
+            "painted_full_circle40": true,
+            "painted_9sample_inward5world": true,
+            "painted_9sample_inward6_889world": true
+          },
+          "path_length_from_entry_world": {
+            "current_runtime_9sample": 256.5685424949238,
+            "painted_runtime_9sample_nominal": 256.5685424949238,
+            "current_full_circle40": 256.5685424949238,
+            "painted_full_circle40": 256.5685424949238,
+            "painted_9sample_inward5world": 256.5685424949238,
+            "painted_9sample_inward6_889world": 256.5685424949238
+          }
+        },
+        "flag": {
+          "cell_xy": [
+            8,
+            11
+          ],
+          "cell_world_xy": [
+            340,
+            460
+          ],
+          "actor_to_cell_world": 21.803669415949244,
+          "cell_current_full_circle_max_radius_world": 146.8,
+          "cell_painted_full_circle_max_radius_world": 147.41723000000002,
+          "painted_spare_after40_world": 107.41723000000002,
+          "point_solid": {
+            "current_runtime_9sample": false,
+            "painted_runtime_9sample_nominal": false,
+            "current_full_circle40": false,
+            "painted_full_circle40": false,
+            "painted_9sample_inward5world": false,
+            "painted_9sample_inward6_889world": false
+          },
+          "reachable_from_entry": {
+            "current_runtime_9sample": true,
+            "painted_runtime_9sample_nominal": true,
+            "current_full_circle40": true,
+            "painted_full_circle40": true,
+            "painted_9sample_inward5world": true,
+            "painted_9sample_inward6_889world": true
+          },
+          "path_length_from_entry_world": {
+            "current_runtime_9sample": 153.1370849898476,
+            "painted_runtime_9sample_nominal": 153.1370849898476,
+            "current_full_circle40": 153.1370849898476,
+            "painted_full_circle40": 153.1370849898476,
+            "painted_9sample_inward5world": 153.1370849898476,
+            "painted_9sample_inward6_889world": 153.1370849898476
+          }
+        },
+        "m01": {
+          "cell_xy": [
+            16,
+            12
+          ],
+          "cell_world_xy": [
+            660,
+            500
+          ],
+          "actor_to_cell_world": 40.016996389034475,
+          "cell_current_full_circle_max_radius_world": 65.0,
+          "cell_painted_full_circle_max_radius_world": 70.30891000000003,
+          "painted_spare_after40_world": 30.308910000000026,
+          "point_solid": {
+            "current_runtime_9sample": false,
+            "painted_runtime_9sample_nominal": false,
+            "current_full_circle40": false,
+            "painted_full_circle40": false,
+            "painted_9sample_inward5world": false,
+            "painted_9sample_inward6_889world": false
+          },
+          "reachable_from_entry": {
+            "current_runtime_9sample": true,
+            "painted_runtime_9sample_nominal": true,
+            "current_full_circle40": true,
+            "painted_full_circle40": true,
+            "painted_9sample_inward5world": true,
+            "painted_9sample_inward6_889world": true
+          },
+          "path_length_from_entry_world": {
+            "current_runtime_9sample": 456.5685424949238,
+            "painted_runtime_9sample_nominal": 456.5685424949238,
+            "current_full_circle40": 456.5685424949238,
+            "painted_full_circle40": 456.5685424949238,
+            "painted_9sample_inward5world": 456.5685424949238,
+            "painted_9sample_inward6_889world": 456.5685424949238
+          }
+        },
+        "m02": {
+          "cell_xy": [
+            21,
+            12
+          ],
+          "cell_world_xy": [
+            860,
+            500
+          ],
+          "actor_to_cell_world": 55.43789317786156,
+          "cell_current_full_circle_max_radius_world": 65.0,
+          "cell_painted_full_circle_max_radius_world": 70.30891000000003,
+          "painted_spare_after40_world": 30.308910000000026,
+          "point_solid": {
+            "current_runtime_9sample": false,
+            "painted_runtime_9sample_nominal": false,
+            "current_full_circle40": false,
+            "painted_full_circle40": false,
+            "painted_9sample_inward5world": false,
+            "painted_9sample_inward6_889world": false
+          },
+          "reachable_from_entry": {
+            "current_runtime_9sample": true,
+            "painted_runtime_9sample_nominal": true,
+            "current_full_circle40": true,
+            "painted_full_circle40": true,
+            "painted_9sample_inward5world": true,
+            "painted_9sample_inward6_889world": true
+          },
+          "path_length_from_entry_world": {
+            "current_runtime_9sample": 656.5685424949238,
+            "painted_runtime_9sample_nominal": 656.5685424949238,
+            "current_full_circle40": 656.5685424949238,
+            "painted_full_circle40": 656.5685424949238,
+            "painted_9sample_inward5world": 656.5685424949238,
+            "painted_9sample_inward6_889world": 656.5685424949238
+          }
+        },
+        "m03": {
+          "cell_xy": [
+            27,
+            13
+          ],
+          "cell_world_xy": [
+            1100,
+            540
+          ],
+          "actor_to_cell_world": 32.89376840679705,
+          "cell_current_full_circle_max_radius_world": 131.1672215151331,
+          "cell_painted_full_circle_max_radius_world": 110.25172273909367,
+          "painted_spare_after40_world": 70.25172273909367,
+          "point_solid": {
+            "current_runtime_9sample": false,
+            "painted_runtime_9sample_nominal": false,
+            "current_full_circle40": false,
+            "painted_full_circle40": false,
+            "painted_9sample_inward5world": false,
+            "painted_9sample_inward6_889world": false
+          },
+          "reachable_from_entry": {
+            "current_runtime_9sample": true,
+            "painted_runtime_9sample_nominal": true,
+            "current_full_circle40": true,
+            "painted_full_circle40": true,
+            "painted_9sample_inward5world": true,
+            "painted_9sample_inward6_889world": true
+          },
+          "path_length_from_entry_world": {
+            "current_runtime_9sample": 880.0,
+            "painted_runtime_9sample_nominal": 880.0,
+            "current_full_circle40": 880.0,
+            "painted_full_circle40": 880.0,
+            "painted_9sample_inward5world": 880.0,
+            "painted_9sample_inward6_889world": 880.0
+          }
+        }
+      },
+      "nominal_runtime_added_cells": [
+        {
+          "cell_xy": [
+            2,
+            9
+          ],
+          "world_xy": [
+            100,
+            380
+          ],
+          "current_full_circle_max_radius_world": -4.400000000000006,
+          "painted_full_circle_max_radius_world": 57.06136903600482,
+          "painted_nine_sample_signed_min_distance_world": 17.10833106056068
+        },
+        {
+          "cell_xy": [
+            2,
+            10
+          ],
+          "world_xy": [
+            100,
+            420
+          ],
+          "current_full_circle_max_radius_world": -4.400000000000006,
+          "painted_full_circle_max_radius_world": 58.999088451379194,
+          "painted_nine_sample_signed_min_distance_world": 19.046050475935054
+        },
+        {
+          "cell_xy": [
+            2,
+            11
+          ],
+          "world_xy": [
+            100,
+            460
+          ],
+          "current_full_circle_max_radius_world": -4.400000000000006,
+          "painted_full_circle_max_radius_world": 60.93680786675356,
+          "painted_nine_sample_signed_min_distance_world": 20.983769891309432
+        },
+        {
+          "cell_xy": [
+            2,
+            12
+          ],
+          "world_xy": [
+            100,
+            500
+          ],
+          "current_full_circle_max_radius_world": -4.400000000000006,
+          "painted_full_circle_max_radius_world": 62.874527282127936,
+          "painted_nine_sample_signed_min_distance_world": 22.921489306683803
+        },
+        {
+          "cell_xy": [
+            2,
+            13
+          ],
+          "world_xy": [
+            100,
+            540
+          ],
+          "current_full_circle_max_radius_world": -4.400000000000006,
+          "painted_full_circle_max_radius_world": 64.81224669750232,
+          "painted_nine_sample_signed_min_distance_world": 24.859208722058177
+        },
+        {
+          "cell_xy": [
+            2,
+            14
+          ],
+          "world_xy": [
+            100,
+            580
+          ],
+          "current_full_circle_max_radius_world": -4.400000000000006,
+          "painted_full_circle_max_radius_world": 66.74996611287669,
+          "painted_nine_sample_signed_min_distance_world": 26.79692813743255
+        },
+        {
+          "cell_xy": [
+            2,
+            15
+          ],
+          "world_xy": [
+            100,
+            620
+          ],
+          "current_full_circle_max_radius_world": -4.400000000000006,
+          "painted_full_circle_max_radius_world": 68.68768552825107,
+          "painted_nine_sample_signed_min_distance_world": 28.734647552806926
+        },
+        {
+          "cell_xy": [
+            2,
+            16
+          ],
+          "world_xy": [
+            100,
+            660
+          ],
+          "current_full_circle_max_radius_world": -4.400000000000006,
+          "painted_full_circle_max_radius_world": 43.862330000000036,
+          "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+        },
+        {
+          "cell_xy": [
+            3,
+            9
+          ],
+          "world_xy": [
+            140,
+            380
+          ],
+          "current_full_circle_max_radius_world": 35.599999999999994,
+          "painted_full_circle_max_radius_world": 67.41723000000002,
+          "painted_nine_sample_signed_min_distance_world": 27.41723000000002
+        },
+        {
+          "cell_xy": [
+            3,
+            10
+          ],
+          "world_xy": [
+            140,
+            420
+          ],
+          "current_full_circle_max_radius_world": 35.599999999999994,
+          "painted_full_circle_max_radius_world": 98.95212642682333,
+          "painted_nine_sample_signed_min_distance_world": 58.999088451379194
+        },
+        {
+          "cell_xy": [
+            3,
+            11
+          ],
+          "world_xy": [
+            140,
+            460
+          ],
+          "current_full_circle_max_radius_world": 35.599999999999994,
+          "painted_full_circle_max_radius_world": 100.8898458421977,
+          "painted_nine_sample_signed_min_distance_world": 60.93680786675356
+        },
+        {
+          "cell_xy": [
+            3,
+            12
+          ],
+          "world_xy": [
+            140,
+            500
+          ],
+          "current_full_circle_max_radius_world": 35.599999999999994,
+          "painted_full_circle_max_radius_world": 102.82756525757209,
+          "painted_nine_sample_signed_min_distance_world": 62.874527282127936
+        },
+        {
+          "cell_xy": [
+            3,
+            13
+          ],
+          "world_xy": [
+            140,
+            540
+          ],
+          "current_full_circle_max_radius_world": 35.599999999999994,
+          "painted_full_circle_max_radius_world": 104.76528467294646,
+          "painted_nine_sample_signed_min_distance_world": 64.81224669750232
+        },
+        {
+          "cell_xy": [
+            3,
+            14
+          ],
+          "world_xy": [
+            140,
+            580
+          ],
+          "current_full_circle_max_radius_world": 35.599999999999994,
+          "painted_full_circle_max_radius_world": 106.70300408832084,
+          "painted_nine_sample_signed_min_distance_world": 66.74996611287669
+        },
+        {
+          "cell_xy": [
+            3,
+            15
+          ],
+          "world_xy": [
+            140,
+            620
+          ],
+          "current_full_circle_max_radius_world": 35.599999999999994,
+          "painted_full_circle_max_radius_world": 83.86233000000003,
+          "painted_nine_sample_signed_min_distance_world": 43.862330000000036
+        },
+        {
+          "cell_xy": [
+            3,
+            16
+          ],
+          "world_xy": [
+            140,
+            660
+          ],
+          "current_full_circle_max_radius_world": 35.599999999999994,
+          "painted_full_circle_max_radius_world": 43.862330000000036,
+          "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+        },
+        {
+          "cell_xy": [
+            10,
+            8
+          ],
+          "world_xy": [
+            420,
+            340
+          ],
+          "current_full_circle_max_radius_world": 37.06211003167523,
+          "painted_full_circle_max_radius_world": 41.322451340183115,
+          "painted_nine_sample_signed_min_distance_world": 2.608421380285655
+        },
+        {
+          "cell_xy": [
+            13,
+            4
+          ],
+          "world_xy": [
+            540,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            14,
+            4
+          ],
+          "world_xy": [
+            580,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            15,
+            4
+          ],
+          "world_xy": [
+            620,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            16,
+            4
+          ],
+          "world_xy": [
+            660,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            17,
+            4
+          ],
+          "world_xy": [
+            700,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            18,
+            4
+          ],
+          "world_xy": [
+            740,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            19,
+            4
+          ],
+          "world_xy": [
+            780,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            20,
+            4
+          ],
+          "world_xy": [
+            820,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            21,
+            4
+          ],
+          "world_xy": [
+            860,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            22,
+            4
+          ],
+          "world_xy": [
+            900,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            23,
+            4
+          ],
+          "world_xy": [
+            940,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            24,
+            4
+          ],
+          "world_xy": [
+            980,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            25,
+            4
+          ],
+          "world_xy": [
+            1020,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            25,
+            11
+          ],
+          "world_xy": [
+            1020,
+            460
+          ],
+          "current_full_circle_max_radius_world": 33.56724594005291,
+          "painted_full_circle_max_radius_world": 30.490112844338594,
+          "painted_nine_sample_signed_min_distance_world": 2.02463875253801
+        },
+        {
+          "cell_xy": [
+            26,
+            4
+          ],
+          "world_xy": [
+            1060,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            27,
+            4
+          ],
+          "world_xy": [
+            1100,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            28,
+            4
+          ],
+          "world_xy": [
+            1140,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            29,
+            4
+          ],
+          "world_xy": [
+            1180,
+            180
+          ],
+          "current_full_circle_max_radius_world": 17.599999999999994,
+          "painted_full_circle_max_radius_world": 41.013090000000005,
+          "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+        },
+        {
+          "cell_xy": [
+            37,
+            9
+          ],
+          "world_xy": [
+            1500,
+            380
+          ],
+          "current_full_circle_max_radius_world": 19.599999999999913,
+          "painted_full_circle_max_radius_world": 67.41723000000002,
+          "painted_nine_sample_signed_min_distance_world": 27.417230000000014
+        },
+        {
+          "cell_xy": [
+            37,
+            10
+          ],
+          "world_xy": [
+            1500,
+            420
+          ],
+          "current_full_circle_max_radius_world": 19.599999999999913,
+          "painted_full_circle_max_radius_world": 80.97737741828847,
+          "painted_nine_sample_signed_min_distance_world": 41.03868257006195
+        },
+        {
+          "cell_xy": [
+            37,
+            11
+          ],
+          "world_xy": [
+            1500,
+            460
+          ],
+          "current_full_circle_max_radius_world": 19.599999999999913,
+          "painted_full_circle_max_radius_world": 83.1911194584199,
+          "painted_nine_sample_signed_min_distance_world": 43.25242461019339
+        },
+        {
+          "cell_xy": [
+            37,
+            12
+          ],
+          "world_xy": [
+            1500,
+            500
+          ],
+          "current_full_circle_max_radius_world": 19.599999999999913,
+          "painted_full_circle_max_radius_world": 85.40486149855134,
+          "painted_nine_sample_signed_min_distance_world": 45.46616665032482
+        },
+        {
+          "cell_xy": [
+            37,
+            13
+          ],
+          "world_xy": [
+            1500,
+            540
+          ],
+          "current_full_circle_max_radius_world": 19.599999999999913,
+          "painted_full_circle_max_radius_world": 87.61860353868278,
+          "painted_nine_sample_signed_min_distance_world": 47.67990869045626
+        },
+        {
+          "cell_xy": [
+            37,
+            14
+          ],
+          "world_xy": [
+            1500,
+            580
+          ],
+          "current_full_circle_max_radius_world": 19.599999999999913,
+          "painted_full_circle_max_radius_world": 89.83234557881421,
+          "painted_nine_sample_signed_min_distance_world": 49.893650730587694
+        },
+        {
+          "cell_xy": [
+            37,
+            15
+          ],
+          "world_xy": [
+            1500,
+            620
+          ],
+          "current_full_circle_max_radius_world": 19.599999999999913,
+          "painted_full_circle_max_radius_world": 83.86233000000003,
+          "painted_nine_sample_signed_min_distance_world": 43.862330000000036
+        },
+        {
+          "cell_xy": [
+            37,
+            16
+          ],
+          "world_xy": [
+            1500,
+            660
+          ],
+          "current_full_circle_max_radius_world": 19.599999999999913,
+          "painted_full_circle_max_radius_world": 43.862330000000036,
+          "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+        },
+        {
+          "cell_xy": [
+            38,
+            10
+          ],
+          "world_xy": [
+            1540,
+            420
+          ],
+          "current_full_circle_max_radius_world": -20.40000000000009,
+          "painted_full_circle_max_radius_world": 41.03868257006195,
+          "painted_nine_sample_signed_min_distance_world": 1.0999877218354408
+        },
+        {
+          "cell_xy": [
+            38,
+            11
+          ],
+          "world_xy": [
+            1540,
+            460
+          ],
+          "current_full_circle_max_radius_world": -20.40000000000009,
+          "painted_full_circle_max_radius_world": 43.25242461019339,
+          "painted_nine_sample_signed_min_distance_world": 3.313729761966876
+        },
+        {
+          "cell_xy": [
+            38,
+            12
+          ],
+          "world_xy": [
+            1540,
+            500
+          ],
+          "current_full_circle_max_radius_world": -20.40000000000009,
+          "painted_full_circle_max_radius_world": 45.46616665032482,
+          "painted_nine_sample_signed_min_distance_world": 5.527471802098312
+        },
+        {
+          "cell_xy": [
+            38,
+            13
+          ],
+          "world_xy": [
+            1540,
+            540
+          ],
+          "current_full_circle_max_radius_world": -20.40000000000009,
+          "painted_full_circle_max_radius_world": 47.67990869045626,
+          "painted_nine_sample_signed_min_distance_world": 7.7412138422297465
+        },
+        {
+          "cell_xy": [
+            38,
+            14
+          ],
+          "world_xy": [
+            1540,
+            580
+          ],
+          "current_full_circle_max_radius_world": -20.40000000000009,
+          "painted_full_circle_max_radius_world": 49.893650730587694,
+          "painted_nine_sample_signed_min_distance_world": 9.954955882361181
+        },
+        {
+          "cell_xy": [
+            38,
+            15
+          ],
+          "world_xy": [
+            1540,
+            620
+          ],
+          "current_full_circle_max_radius_world": -20.40000000000009,
+          "painted_full_circle_max_radius_world": 52.10739277071912,
+          "painted_nine_sample_signed_min_distance_world": 12.168697922492616
+        },
+        {
+          "cell_xy": [
+            38,
+            16
+          ],
+          "world_xy": [
+            1540,
+            660
+          ],
+          "current_full_circle_max_radius_world": -20.40000000000009,
+          "painted_full_circle_max_radius_world": 43.862330000000036,
+          "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+        }
+      ],
+      "nominal_runtime_lost_cells": [
+        {
+          "cell_xy": [
+            4,
+            17
+          ],
+          "world_xy": [
+            180,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.39999999999998,
+          "painted_full_circle_max_radius_world": 3.8623300000000422,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            5,
+            17
+          ],
+          "world_xy": [
+            220,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.39999999999998,
+          "painted_full_circle_max_radius_world": 3.8623300000000422,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            6,
+            17
+          ],
+          "world_xy": [
+            260,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.39999999999998,
+          "painted_full_circle_max_radius_world": 3.8623300000000422,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            7,
+            17
+          ],
+          "world_xy": [
+            300,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.39999999999998,
+          "painted_full_circle_max_radius_world": 3.8623300000000422,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            8,
+            17
+          ],
+          "world_xy": [
+            340,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.39999999999998,
+          "painted_full_circle_max_radius_world": 3.8623300000000422,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            9,
+            17
+          ],
+          "world_xy": [
+            380,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.39999999999998,
+          "painted_full_circle_max_radius_world": 3.8623300000000422,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            10,
+            17
+          ],
+          "world_xy": [
+            420,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.39999999999998,
+          "painted_full_circle_max_radius_world": 3.8623300000000422,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            11,
+            7
+          ],
+          "world_xy": [
+            460,
+            300
+          ],
+          "current_full_circle_max_radius_world": 38.352053400046245,
+          "painted_full_circle_max_radius_world": 38.39379000000003,
+          "painted_nine_sample_signed_min_distance_world": -1.606209999999976
+        },
+        {
+          "cell_xy": [
+            11,
+            17
+          ],
+          "world_xy": [
+            460,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.39999999999998,
+          "painted_full_circle_max_radius_world": 3.8623300000000422,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            12,
+            5
+          ],
+          "world_xy": [
+            500,
+            220
+          ],
+          "current_full_circle_max_radius_world": 57.599999999999994,
+          "painted_full_circle_max_radius_world": 31.369998874563205,
+          "painted_nine_sample_signed_min_distance_world": -8.62022847903235
+        },
+        {
+          "cell_xy": [
+            12,
+            6
+          ],
+          "world_xy": [
+            500,
+            260
+          ],
+          "current_full_circle_max_radius_world": 59.199999999999996,
+          "painted_full_circle_max_radius_world": 32.25414603863605,
+          "painted_nine_sample_signed_min_distance_world": -1.606209999999976
+        },
+        {
+          "cell_xy": [
+            12,
+            17
+          ],
+          "world_xy": [
+            500,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.39999999999998,
+          "painted_full_circle_max_radius_world": 3.8623300000000422,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            14,
+            8
+          ],
+          "world_xy": [
+            580,
+            340
+          ],
+          "current_full_circle_max_radius_world": 63.12527227664051,
+          "painted_full_circle_max_radius_world": 37.931614090423274,
+          "painted_nine_sample_signed_min_distance_world": -0.9650912474620555
+        },
+        {
+          "cell_xy": [
+            14,
+            9
+          ],
+          "world_xy": [
+            580,
+            380
+          ],
+          "current_full_circle_max_radius_world": 46.484405987384605,
+          "painted_full_circle_max_radius_world": 27.319179999999964,
+          "painted_nine_sample_signed_min_distance_world": -12.680820000000042
+        },
+        {
+          "cell_xy": [
+            14,
+            10
+          ],
+          "world_xy": [
+            580,
+            420
+          ],
+          "current_full_circle_max_radius_world": 46.39999999999998,
+          "painted_full_circle_max_radius_world": 27.319179999999964,
+          "painted_nine_sample_signed_min_distance_world": -9.691089999999974
+        },
+        {
+          "cell_xy": [
+            14,
+            15
+          ],
+          "world_xy": [
+            580,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -11.862588638086153
+        },
+        {
+          "cell_xy": [
+            15,
+            8
+          ],
+          "world_xy": [
+            620,
+            340
+          ],
+          "current_full_circle_max_radius_world": 43.27585932133527,
+          "painted_full_circle_max_radius_world": 26.314819999999997,
+          "painted_nine_sample_signed_min_distance_world": -12.680820000000042
+        },
+        {
+          "cell_xy": [
+            15,
+            15
+          ],
+          "world_xy": [
+            620,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -19.513940000000048
+        },
+        {
+          "cell_xy": [
+            16,
+            8
+          ],
+          "world_xy": [
+            660,
+            340
+          ],
+          "current_full_circle_max_radius_world": 42.80000000000001,
+          "painted_full_circle_max_radius_world": 26.314819999999997,
+          "painted_nine_sample_signed_min_distance_world": -13.685180000000003
+        },
+        {
+          "cell_xy": [
+            16,
+            15
+          ],
+          "world_xy": [
+            660,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -19.513940000000048
+        },
+        {
+          "cell_xy": [
+            17,
+            8
+          ],
+          "world_xy": [
+            700,
+            340
+          ],
+          "current_full_circle_max_radius_world": 42.80000000000001,
+          "painted_full_circle_max_radius_world": 26.314819999999997,
+          "painted_nine_sample_signed_min_distance_world": -13.685180000000003
+        },
+        {
+          "cell_xy": [
+            17,
+            15
+          ],
+          "world_xy": [
+            700,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -19.513940000000048
+        },
+        {
+          "cell_xy": [
+            18,
+            8
+          ],
+          "world_xy": [
+            740,
+            340
+          ],
+          "current_full_circle_max_radius_world": 42.80000000000001,
+          "painted_full_circle_max_radius_world": 26.314819999999997,
+          "painted_nine_sample_signed_min_distance_world": -13.685180000000003
+        },
+        {
+          "cell_xy": [
+            18,
+            15
+          ],
+          "world_xy": [
+            740,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -19.513940000000048
+        },
+        {
+          "cell_xy": [
+            19,
+            8
+          ],
+          "world_xy": [
+            780,
+            340
+          ],
+          "current_full_circle_max_radius_world": 42.80000000000001,
+          "painted_full_circle_max_radius_world": 26.314819999999997,
+          "painted_nine_sample_signed_min_distance_world": -13.685180000000003
+        },
+        {
+          "cell_xy": [
+            19,
+            15
+          ],
+          "world_xy": [
+            780,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -19.513940000000048
+        },
+        {
+          "cell_xy": [
+            20,
+            8
+          ],
+          "world_xy": [
+            820,
+            340
+          ],
+          "current_full_circle_max_radius_world": 42.80000000000001,
+          "painted_full_circle_max_radius_world": 26.314819999999997,
+          "painted_nine_sample_signed_min_distance_world": -13.685180000000003
+        },
+        {
+          "cell_xy": [
+            20,
+            15
+          ],
+          "world_xy": [
+            820,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -19.513940000000048
+        },
+        {
+          "cell_xy": [
+            21,
+            8
+          ],
+          "world_xy": [
+            860,
+            340
+          ],
+          "current_full_circle_max_radius_world": 42.80000000000001,
+          "painted_full_circle_max_radius_world": 26.314819999999997,
+          "painted_nine_sample_signed_min_distance_world": -13.685180000000003
+        },
+        {
+          "cell_xy": [
+            21,
+            15
+          ],
+          "world_xy": [
+            860,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -19.513940000000048
+        },
+        {
+          "cell_xy": [
+            22,
+            8
+          ],
+          "world_xy": [
+            900,
+            340
+          ],
+          "current_full_circle_max_radius_world": 42.80000000000001,
+          "painted_full_circle_max_radius_world": 26.314819999999997,
+          "painted_nine_sample_signed_min_distance_world": -13.685180000000003
+        },
+        {
+          "cell_xy": [
+            22,
+            15
+          ],
+          "world_xy": [
+            900,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -19.513940000000048
+        },
+        {
+          "cell_xy": [
+            23,
+            8
+          ],
+          "world_xy": [
+            940,
+            340
+          ],
+          "current_full_circle_max_radius_world": 42.80000000000001,
+          "painted_full_circle_max_radius_world": 26.314819999999997,
+          "painted_nine_sample_signed_min_distance_world": -13.685180000000003
+        },
+        {
+          "cell_xy": [
+            23,
+            15
+          ],
+          "world_xy": [
+            940,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -19.513940000000048
+        },
+        {
+          "cell_xy": [
+            24,
+            8
+          ],
+          "world_xy": [
+            980,
+            340
+          ],
+          "current_full_circle_max_radius_world": 42.80000000000001,
+          "painted_full_circle_max_radius_world": 26.314819999999997,
+          "painted_nine_sample_signed_min_distance_world": -13.685180000000003
+        },
+        {
+          "cell_xy": [
+            24,
+            15
+          ],
+          "world_xy": [
+            980,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -19.513940000000048
+        },
+        {
+          "cell_xy": [
+            25,
+            8
+          ],
+          "world_xy": [
+            1020,
+            340
+          ],
+          "current_full_circle_max_radius_world": 48.30734933734203,
+          "painted_full_circle_max_radius_world": 26.52332383968494,
+          "painted_nine_sample_signed_min_distance_world": -1.9694512474620183
+        },
+        {
+          "cell_xy": [
+            25,
+            15
+          ],
+          "world_xy": [
+            1020,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 20.486059999999952,
+          "painted_nine_sample_signed_min_distance_world": -19.513940000000048
+        },
+        {
+          "cell_xy": [
+            26,
+            15
+          ],
+          "world_xy": [
+            1060,
+            620
+          ],
+          "current_full_circle_max_radius_world": 47.0,
+          "painted_full_circle_max_radius_world": 21.176948952528484,
+          "painted_nine_sample_signed_min_distance_world": -7.798211247462064
+        },
+        {
+          "cell_xy": [
+            28,
+            17
+          ],
+          "world_xy": [
+            1140,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.399999999999984,
+          "painted_full_circle_max_radius_world": 3.8623300000000427,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            29,
+            17
+          ],
+          "world_xy": [
+            1180,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.399999999999984,
+          "painted_full_circle_max_radius_world": 3.8623300000000427,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            30,
+            8
+          ],
+          "world_xy": [
+            1220,
+            340
+          ],
+          "current_full_circle_max_radius_world": 42.356581542895995,
+          "painted_full_circle_max_radius_world": 30.011375125250474,
+          "painted_nine_sample_signed_min_distance_world": -0.8670412474619978
+        },
+        {
+          "cell_xy": [
+            30,
+            17
+          ],
+          "world_xy": [
+            1220,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.399999999999984,
+          "painted_full_circle_max_radius_world": 3.8623300000000427,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            31,
+            17
+          ],
+          "world_xy": [
+            1260,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.399999999999984,
+          "painted_full_circle_max_radius_world": 3.8623300000000427,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            32,
+            17
+          ],
+          "world_xy": [
+            1300,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.399999999999984,
+          "painted_full_circle_max_radius_world": 3.8623300000000427,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            33,
+            17
+          ],
+          "world_xy": [
+            1340,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.399999999999984,
+          "painted_full_circle_max_radius_world": 3.8623300000000427,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            34,
+            17
+          ],
+          "world_xy": [
+            1380,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.399999999999984,
+          "painted_full_circle_max_radius_world": 3.8623300000000427,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            35,
+            17
+          ],
+          "world_xy": [
+            1420,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.399999999999984,
+          "painted_full_circle_max_radius_world": 3.8623300000000427,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        },
+        {
+          "cell_xy": [
+            36,
+            17
+          ],
+          "world_xy": [
+            1460,
+            700
+          ],
+          "current_full_circle_max_radius_world": 42.399999999999984,
+          "painted_full_circle_max_radius_world": 3.8623300000000427,
+          "painted_nine_sample_signed_min_distance_world": -36.13766999999996
+        }
+      ],
+      "nine_sample_false_fullcircle_pass": {
+        "current": [
+          {
+            "cell_xy": [
+              11,
+              7
+            ],
+            "world_xy": [
+              460,
+              300
+            ],
+            "current_full_circle_max_radius_world": 38.352053400046245,
+            "painted_full_circle_max_radius_world": 38.39379000000003,
+            "painted_nine_sample_signed_min_distance_world": -1.606209999999976
+          },
+          {
+            "cell_xy": [
+              27,
+              16
+            ],
+            "world_xy": [
+              1100,
+              660
+            ],
+            "current_full_circle_max_radius_world": 33.538634438509824,
+            "painted_full_circle_max_radius_world": 43.53661260491185,
+            "painted_nine_sample_signed_min_distance_world": 3.6821991359179425
+          }
+        ],
+        "painted": [
+          {
+            "cell_xy": [
+              13,
+              15
+            ],
+            "world_xy": [
+              540,
+              620
+            ],
+            "current_full_circle_max_radius_world": 49.91232312766055,
+            "painted_full_circle_max_radius_world": 35.80487294961401,
+            "painted_nine_sample_signed_min_distance_world": 0.5792887509734506
+          },
+          {
+            "cell_xy": [
+              25,
+              11
+            ],
+            "world_xy": [
+              1020,
+              460
+            ],
+            "current_full_circle_max_radius_world": 33.56724594005291,
+            "painted_full_circle_max_radius_world": 30.490112844338594,
+            "painted_nine_sample_signed_min_distance_world": 2.02463875253801
+          }
+        ]
+      },
+      "source_trace_sensitivity": {
+        "world_normal_tolerance": 5,
+        "nominal_free_unstable_to_inward5": [
+          {
+            "cell_xy": [
+              2,
+              16
+            ],
+            "world_xy": [
+              100,
+              660
+            ],
+            "current_full_circle_max_radius_world": -4.400000000000006,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              3,
+              16
+            ],
+            "world_xy": [
+              140,
+              660
+            ],
+            "current_full_circle_max_radius_world": 35.599999999999994,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              4,
+              16
+            ],
+            "world_xy": [
+              180,
+              660
+            ],
+            "current_full_circle_max_radius_world": 75.6,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              5,
+              16
+            ],
+            "world_xy": [
+              220,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              6,
+              16
+            ],
+            "world_xy": [
+              260,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              7,
+              16
+            ],
+            "world_xy": [
+              300,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              8,
+              16
+            ],
+            "world_xy": [
+              340,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              9,
+              16
+            ],
+            "world_xy": [
+              380,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              10,
+              8
+            ],
+            "world_xy": [
+              420,
+              340
+            ],
+            "current_full_circle_max_radius_world": 37.06211003167523,
+            "painted_full_circle_max_radius_world": 41.322451340183115,
+            "painted_nine_sample_signed_min_distance_world": 2.608421380285655
+          },
+          {
+            "cell_xy": [
+              10,
+              16
+            ],
+            "world_xy": [
+              420,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              11,
+              16
+            ],
+            "world_xy": [
+              460,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              12,
+              16
+            ],
+            "world_xy": [
+              500,
+              660
+            ],
+            "current_full_circle_max_radius_world": 57.229712562619035,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              13,
+              4
+            ],
+            "world_xy": [
+              540,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              13,
+              15
+            ],
+            "world_xy": [
+              540,
+              620
+            ],
+            "current_full_circle_max_radius_world": 49.91232312766055,
+            "painted_full_circle_max_radius_world": 35.80487294961401,
+            "painted_nine_sample_signed_min_distance_world": 0.5792887509734506
+          },
+          {
+            "cell_xy": [
+              14,
+              4
+            ],
+            "world_xy": [
+              580,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              14,
+              11
+            ],
+            "world_xy": [
+              580,
+              460
+            ],
+            "current_full_circle_max_radius_world": 52.70635635291058,
+            "painted_full_circle_max_radius_world": 40.804014768898654,
+            "painted_nine_sample_signed_min_distance_world": 2.02463875253801
+          },
+          {
+            "cell_xy": [
+              15,
+              4
+            ],
+            "world_xy": [
+              620,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              16,
+              4
+            ],
+            "world_xy": [
+              660,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              17,
+              4
+            ],
+            "world_xy": [
+              700,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              18,
+              4
+            ],
+            "world_xy": [
+              740,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              19,
+              4
+            ],
+            "world_xy": [
+              780,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              20,
+              4
+            ],
+            "world_xy": [
+              820,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              21,
+              4
+            ],
+            "world_xy": [
+              860,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              22,
+              4
+            ],
+            "world_xy": [
+              900,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              23,
+              4
+            ],
+            "world_xy": [
+              940,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              24,
+              4
+            ],
+            "world_xy": [
+              980,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              25,
+              4
+            ],
+            "world_xy": [
+              1020,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              25,
+              11
+            ],
+            "world_xy": [
+              1020,
+              460
+            ],
+            "current_full_circle_max_radius_world": 33.56724594005291,
+            "painted_full_circle_max_radius_world": 30.490112844338594,
+            "painted_nine_sample_signed_min_distance_world": 2.02463875253801
+          },
+          {
+            "cell_xy": [
+              26,
+              4
+            ],
+            "world_xy": [
+              1060,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              26,
+              9
+            ],
+            "world_xy": [
+              1060,
+              380
+            ],
+            "current_full_circle_max_radius_world": 62.46278892268578,
+            "painted_full_circle_max_radius_world": 43.31917999999997,
+            "painted_nine_sample_signed_min_distance_world": 3.3191799999999607
+          },
+          {
+            "cell_xy": [
+              26,
+              10
+            ],
+            "world_xy": [
+              1060,
+              420
+            ],
+            "current_full_circle_max_radius_world": 62.39999999999998,
+            "painted_full_circle_max_radius_world": 43.31917999999997,
+            "painted_nine_sample_signed_min_distance_world": 3.3191799999999607
+          },
+          {
+            "cell_xy": [
+              27,
+              4
+            ],
+            "world_xy": [
+              1100,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              27,
+              16
+            ],
+            "world_xy": [
+              1100,
+              660
+            ],
+            "current_full_circle_max_radius_world": 33.538634438509824,
+            "painted_full_circle_max_radius_world": 43.53661260491185,
+            "painted_nine_sample_signed_min_distance_world": 3.6821991359179425
+          },
+          {
+            "cell_xy": [
+              28,
+              4
+            ],
+            "world_xy": [
+              1140,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              28,
+              16
+            ],
+            "world_xy": [
+              1140,
+              660
+            ],
+            "current_full_circle_max_radius_world": 73.13576416501023,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              29,
+              4
+            ],
+            "world_xy": [
+              1180,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              29,
+              16
+            ],
+            "world_xy": [
+              1180,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              30,
+              16
+            ],
+            "world_xy": [
+              1220,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              31,
+              16
+            ],
+            "world_xy": [
+              1260,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              32,
+              16
+            ],
+            "world_xy": [
+              1300,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              33,
+              16
+            ],
+            "world_xy": [
+              1340,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              34,
+              16
+            ],
+            "world_xy": [
+              1380,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              35,
+              16
+            ],
+            "world_xy": [
+              1420,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              36,
+              16
+            ],
+            "world_xy": [
+              1460,
+              660
+            ],
+            "current_full_circle_max_radius_world": 59.59999999999991,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              37,
+              16
+            ],
+            "world_xy": [
+              1500,
+              660
+            ],
+            "current_full_circle_max_radius_world": 19.599999999999913,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              38,
+              10
+            ],
+            "world_xy": [
+              1540,
+              420
+            ],
+            "current_full_circle_max_radius_world": -20.40000000000009,
+            "painted_full_circle_max_radius_world": 41.03868257006195,
+            "painted_nine_sample_signed_min_distance_world": 1.0999877218354408
+          },
+          {
+            "cell_xy": [
+              38,
+              11
+            ],
+            "world_xy": [
+              1540,
+              460
+            ],
+            "current_full_circle_max_radius_world": -20.40000000000009,
+            "painted_full_circle_max_radius_world": 43.25242461019339,
+            "painted_nine_sample_signed_min_distance_world": 3.313729761966876
+          },
+          {
+            "cell_xy": [
+              38,
+              16
+            ],
+            "world_xy": [
+              1540,
+              660
+            ],
+            "current_full_circle_max_radius_world": -20.40000000000009,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          }
+        ],
+        "nominal_solid_unstable_to_outward5": [
+          {
+            "cell_xy": [
+              11,
+              7
+            ],
+            "world_xy": [
+              460,
+              300
+            ],
+            "current_full_circle_max_radius_world": 38.352053400046245,
+            "painted_full_circle_max_radius_world": 38.39379000000003,
+            "painted_nine_sample_signed_min_distance_world": -1.606209999999976
+          },
+          {
+            "cell_xy": [
+              12,
+              6
+            ],
+            "world_xy": [
+              500,
+              260
+            ],
+            "current_full_circle_max_radius_world": 59.199999999999996,
+            "painted_full_circle_max_radius_world": 32.25414603863605,
+            "painted_nine_sample_signed_min_distance_world": -1.606209999999976
+          },
+          {
+            "cell_xy": [
+              14,
+              8
+            ],
+            "world_xy": [
+              580,
+              340
+            ],
+            "current_full_circle_max_radius_world": 63.12527227664051,
+            "painted_full_circle_max_radius_world": 37.931614090423274,
+            "painted_nine_sample_signed_min_distance_world": -0.9650912474620555
+          },
+          {
+            "cell_xy": [
+              25,
+              8
+            ],
+            "world_xy": [
+              1020,
+              340
+            ],
+            "current_full_circle_max_radius_world": 48.30734933734203,
+            "painted_full_circle_max_radius_world": 26.52332383968494,
+            "painted_nine_sample_signed_min_distance_world": -1.9694512474620183
+          },
+          {
+            "cell_xy": [
+              30,
+              8
+            ],
+            "world_xy": [
+              1220,
+              340
+            ],
+            "current_full_circle_max_radius_world": 42.356581542895995,
+            "painted_full_circle_max_radius_world": 30.011375125250474,
+            "painted_nine_sample_signed_min_distance_world": -0.8670412474619978
+          },
+          {
+            "cell_xy": [
+              38,
+              9
+            ],
+            "world_xy": [
+              1540,
+              380
+            ],
+            "current_full_circle_max_radius_world": -20.40000000000009,
+            "painted_full_circle_max_radius_world": 38.824940529930515,
+            "painted_nine_sample_signed_min_distance_world": -1.1137543182959952
+          }
+        ],
+        "all_5world_uncertain_nodes": [
+          {
+            "cell_xy": [
+              2,
+              16
+            ],
+            "world_xy": [
+              100,
+              660
+            ],
+            "current_full_circle_max_radius_world": -4.400000000000006,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              3,
+              16
+            ],
+            "world_xy": [
+              140,
+              660
+            ],
+            "current_full_circle_max_radius_world": 35.599999999999994,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              4,
+              16
+            ],
+            "world_xy": [
+              180,
+              660
+            ],
+            "current_full_circle_max_radius_world": 75.6,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              5,
+              16
+            ],
+            "world_xy": [
+              220,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              6,
+              16
+            ],
+            "world_xy": [
+              260,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              7,
+              16
+            ],
+            "world_xy": [
+              300,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              8,
+              16
+            ],
+            "world_xy": [
+              340,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              9,
+              16
+            ],
+            "world_xy": [
+              380,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              10,
+              8
+            ],
+            "world_xy": [
+              420,
+              340
+            ],
+            "current_full_circle_max_radius_world": 37.06211003167523,
+            "painted_full_circle_max_radius_world": 41.322451340183115,
+            "painted_nine_sample_signed_min_distance_world": 2.608421380285655
+          },
+          {
+            "cell_xy": [
+              10,
+              16
+            ],
+            "world_xy": [
+              420,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              11,
+              7
+            ],
+            "world_xy": [
+              460,
+              300
+            ],
+            "current_full_circle_max_radius_world": 38.352053400046245,
+            "painted_full_circle_max_radius_world": 38.39379000000003,
+            "painted_nine_sample_signed_min_distance_world": -1.606209999999976
+          },
+          {
+            "cell_xy": [
+              11,
+              16
+            ],
+            "world_xy": [
+              460,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999998,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              12,
+              6
+            ],
+            "world_xy": [
+              500,
+              260
+            ],
+            "current_full_circle_max_radius_world": 59.199999999999996,
+            "painted_full_circle_max_radius_world": 32.25414603863605,
+            "painted_nine_sample_signed_min_distance_world": -1.606209999999976
+          },
+          {
+            "cell_xy": [
+              12,
+              16
+            ],
+            "world_xy": [
+              500,
+              660
+            ],
+            "current_full_circle_max_radius_world": 57.229712562619035,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000422
+          },
+          {
+            "cell_xy": [
+              13,
+              4
+            ],
+            "world_xy": [
+              540,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              13,
+              15
+            ],
+            "world_xy": [
+              540,
+              620
+            ],
+            "current_full_circle_max_radius_world": 49.91232312766055,
+            "painted_full_circle_max_radius_world": 35.80487294961401,
+            "painted_nine_sample_signed_min_distance_world": 0.5792887509734506
+          },
+          {
+            "cell_xy": [
+              14,
+              4
+            ],
+            "world_xy": [
+              580,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              14,
+              8
+            ],
+            "world_xy": [
+              580,
+              340
+            ],
+            "current_full_circle_max_radius_world": 63.12527227664051,
+            "painted_full_circle_max_radius_world": 37.931614090423274,
+            "painted_nine_sample_signed_min_distance_world": -0.9650912474620555
+          },
+          {
+            "cell_xy": [
+              14,
+              11
+            ],
+            "world_xy": [
+              580,
+              460
+            ],
+            "current_full_circle_max_radius_world": 52.70635635291058,
+            "painted_full_circle_max_radius_world": 40.804014768898654,
+            "painted_nine_sample_signed_min_distance_world": 2.02463875253801
+          },
+          {
+            "cell_xy": [
+              15,
+              4
+            ],
+            "world_xy": [
+              620,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              16,
+              4
+            ],
+            "world_xy": [
+              660,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              17,
+              4
+            ],
+            "world_xy": [
+              700,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              18,
+              4
+            ],
+            "world_xy": [
+              740,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              19,
+              4
+            ],
+            "world_xy": [
+              780,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              20,
+              4
+            ],
+            "world_xy": [
+              820,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              21,
+              4
+            ],
+            "world_xy": [
+              860,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              22,
+              4
+            ],
+            "world_xy": [
+              900,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              23,
+              4
+            ],
+            "world_xy": [
+              940,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              24,
+              4
+            ],
+            "world_xy": [
+              980,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              25,
+              4
+            ],
+            "world_xy": [
+              1020,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              25,
+              8
+            ],
+            "world_xy": [
+              1020,
+              340
+            ],
+            "current_full_circle_max_radius_world": 48.30734933734203,
+            "painted_full_circle_max_radius_world": 26.52332383968494,
+            "painted_nine_sample_signed_min_distance_world": -1.9694512474620183
+          },
+          {
+            "cell_xy": [
+              25,
+              11
+            ],
+            "world_xy": [
+              1020,
+              460
+            ],
+            "current_full_circle_max_radius_world": 33.56724594005291,
+            "painted_full_circle_max_radius_world": 30.490112844338594,
+            "painted_nine_sample_signed_min_distance_world": 2.02463875253801
+          },
+          {
+            "cell_xy": [
+              26,
+              4
+            ],
+            "world_xy": [
+              1060,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              26,
+              9
+            ],
+            "world_xy": [
+              1060,
+              380
+            ],
+            "current_full_circle_max_radius_world": 62.46278892268578,
+            "painted_full_circle_max_radius_world": 43.31917999999997,
+            "painted_nine_sample_signed_min_distance_world": 3.3191799999999607
+          },
+          {
+            "cell_xy": [
+              26,
+              10
+            ],
+            "world_xy": [
+              1060,
+              420
+            ],
+            "current_full_circle_max_radius_world": 62.39999999999998,
+            "painted_full_circle_max_radius_world": 43.31917999999997,
+            "painted_nine_sample_signed_min_distance_world": 3.3191799999999607
+          },
+          {
+            "cell_xy": [
+              27,
+              4
+            ],
+            "world_xy": [
+              1100,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              27,
+              16
+            ],
+            "world_xy": [
+              1100,
+              660
+            ],
+            "current_full_circle_max_radius_world": 33.538634438509824,
+            "painted_full_circle_max_radius_world": 43.53661260491185,
+            "painted_nine_sample_signed_min_distance_world": 3.6821991359179425
+          },
+          {
+            "cell_xy": [
+              28,
+              4
+            ],
+            "world_xy": [
+              1140,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              28,
+              16
+            ],
+            "world_xy": [
+              1140,
+              660
+            ],
+            "current_full_circle_max_radius_world": 73.13576416501023,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              29,
+              4
+            ],
+            "world_xy": [
+              1180,
+              180
+            ],
+            "current_full_circle_max_radius_world": 17.599999999999994,
+            "painted_full_circle_max_radius_world": 41.013090000000005,
+            "painted_nine_sample_signed_min_distance_world": 1.0130900000000054
+          },
+          {
+            "cell_xy": [
+              29,
+              16
+            ],
+            "world_xy": [
+              1180,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              30,
+              8
+            ],
+            "world_xy": [
+              1220,
+              340
+            ],
+            "current_full_circle_max_radius_world": 42.356581542895995,
+            "painted_full_circle_max_radius_world": 30.011375125250474,
+            "painted_nine_sample_signed_min_distance_world": -0.8670412474619978
+          },
+          {
+            "cell_xy": [
+              30,
+              16
+            ],
+            "world_xy": [
+              1220,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              31,
+              16
+            ],
+            "world_xy": [
+              1260,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              32,
+              16
+            ],
+            "world_xy": [
+              1300,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              33,
+              16
+            ],
+            "world_xy": [
+              1340,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              34,
+              16
+            ],
+            "world_xy": [
+              1380,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              35,
+              16
+            ],
+            "world_xy": [
+              1420,
+              660
+            ],
+            "current_full_circle_max_radius_world": 82.39999999999999,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              36,
+              16
+            ],
+            "world_xy": [
+              1460,
+              660
+            ],
+            "current_full_circle_max_radius_world": 59.59999999999991,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              37,
+              16
+            ],
+            "world_xy": [
+              1500,
+              660
+            ],
+            "current_full_circle_max_radius_world": 19.599999999999913,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          },
+          {
+            "cell_xy": [
+              38,
+              9
+            ],
+            "world_xy": [
+              1540,
+              380
+            ],
+            "current_full_circle_max_radius_world": -20.40000000000009,
+            "painted_full_circle_max_radius_world": 38.824940529930515,
+            "painted_nine_sample_signed_min_distance_world": -1.1137543182959952
+          },
+          {
+            "cell_xy": [
+              38,
+              10
+            ],
+            "world_xy": [
+              1540,
+              420
+            ],
+            "current_full_circle_max_radius_world": -20.40000000000009,
+            "painted_full_circle_max_radius_world": 41.03868257006195,
+            "painted_nine_sample_signed_min_distance_world": 1.0999877218354408
+          },
+          {
+            "cell_xy": [
+              38,
+              11
+            ],
+            "world_xy": [
+              1540,
+              460
+            ],
+            "current_full_circle_max_radius_world": -20.40000000000009,
+            "painted_full_circle_max_radius_world": 43.25242461019339,
+            "painted_nine_sample_signed_min_distance_world": 3.313729761966876
+          },
+          {
+            "cell_xy": [
+              38,
+              16
+            ],
+            "world_xy": [
+              1540,
+              660
+            ],
+            "current_full_circle_max_radius_world": -20.40000000000009,
+            "painted_full_circle_max_radius_world": 43.862330000000036,
+            "painted_nine_sample_signed_min_distance_world": 3.8623300000000427
+          }
+        ],
+        "interpretation": "These are geometric sensitivity bounds, not alternate implemented geometry. No production grid was changed."
+      },
+      "wind_lane_grid": {
+        "grid_centers_inside_lane_count": 48,
+        "minimum_full_circle_clearance_world": 66.31481999999998,
+        "minimum_spare_after40_world": 26.314819999999983,
+        "all_nominal_free": true,
+        "all_5world_robust_free": true
+      },
+      "limits": "Static emulation of grid construction and graph adjacency, not Godot execution. Hypothetical painted geometry has no authorized implementation. Counts are exact for the nominal traced polygon and source runtime sampling, not the uncertain painted boundary.",
+      "north_bridge_parallel_route": {
+        "start_cell": [
+          13,
+          8
+        ],
+        "start_world": [
+          540,
+          340
+        ],
+        "finish_cell": [
+          27,
+          8
+        ],
+        "finish_world": [
+          1100,
+          340
+        ],
+        "upper_region_limit_world_y": 420,
+        "definition": "Local north-bridge route excludes central/south branch by restricting centers to y<=420. Wind-free excludes centers inside actual lane rectangle, matching lane_at semantics.",
+        "results": {
+          "current9": {
+            "upper_region_path_world": 560.0,
+            "upper_region_avoiding_wind_center_path_world": 560.0,
+            "global_avoiding_wind_center_path_world": 560.0
+          },
+          "painted9": {
+            "upper_region_path_world": 616.5685424949238,
+            "upper_region_avoiding_wind_center_path_world": null,
+            "global_avoiding_wind_center_path_world": 809.7056274847714
+          },
+          "painted9_inward5": {
+            "upper_region_path_world": 616.5685424949238,
+            "upper_region_avoiding_wind_center_path_world": null,
+            "global_avoiding_wind_center_path_world": 856.5685424949238
+          },
+          "painted_full45": {
+            "upper_region_path_world": 616.5685424949238,
+            "upper_region_avoiding_wind_center_path_world": null,
+            "global_avoiding_wind_center_path_world": 856.5685424949238
+          },
+          "painted_full46_889": {
+            "upper_region_path_world": 616.5685424949238,
+            "upper_region_avoiding_wind_center_path_world": null,
+            "global_avoiding_wind_center_path_world": 856.5685424949238
+          }
+        },
+        "interpretation": "The current north bridge has a local center-wind-free parallel route. The measured footprint loses it even nominally on the runtime40-radius grid. A wind-free route still exists globally by detouring below the hole via the central branch. This is not a full gameplay reachability failure."
+      },
+      "additional_full_circle_uncertainty_grid": {
+        "painted_full45": {
+          "free_cells": 263,
+          "all_anchors_reachable": true
+        },
+        "painted_full46_889": {
+          "free_cells": 262,
+          "all_anchors_reachable": true
+        }
+      },
+      "calculation_engine": "GEOS C 3.13.1 via Python ctypes. Shapely was not installed and was not used. No Godot engine run."
+    }
+  },
+  "restore_original_hole_proposal": {
+    "schema": "l43-minimal-hole-restoration-readonly-proposal-v1",
+    "status": "Hypothetical analysis only; no geometry/data/runtime/PNG changes authorized or performed.",
+    "source_path": "/workspace/scratch/2244020fc8d6/b08-art/independent_room_1144/l43/environment_candidate_03.png",
+    "source_sha256": "fd36bc4dd59ff6755342002d48e0e1b3ed2baa3562b3732dabe2fae666cad6fa",
+    "contract_path": "/workspace/scratch/2244020fc8d6/b08-art/independent_room_1144/l43/registration_contract.json",
+    "contract_sha256": "6609c64a5b81b0531c3636839c66cb8112f0255697832e75010cc4be70dcfaa3",
+    "method": "GEOS C3.13.1 static geometry and Python graph emulation of inspected runtime. Not Shapely; not a Godot engine run.",
+    "fixed_transform": {
+      "placement_normalized_rect": [
+        0.11,
+        0.13,
+        0.78,
+        0.74
+      ],
+      "arena": [
+        0,
+        0,
+        1624,
+        1044
+      ],
+      "world_per_source_pixel": [
+        1.355502136752137,
+        1.3777449324324325
+      ],
+      "world_source_origin": [
+        -229.02564102564105,
+        -183.40540540540542
+      ],
+      "formula": "world=(source/source_size-placement.xy)*arena.size/placement.wh"
+    },
+    "unchanged_hypothetical_outer_source_xy": [
+      [
+        203,
+        360
+      ],
+      [
+        456,
+        360
+      ],
+      [
+        457,
+        323
+      ],
+      [
+        514,
+        323
+      ],
+      [
+        516,
+        234
+      ],
+      [
+        1073,
+        234
+      ],
+      [
+        1078,
+        360
+      ],
+      [
+        1331,
+        360
+      ],
+      [
+        1347,
+        644
+      ],
+      [
+        951,
+        644
+      ],
+      [
+        947,
+        598
+      ],
+      [
+        589,
+        598
+      ],
+      [
+        586,
+        644
+      ],
+      [
+        189,
+        644
+      ]
+    ],
+    "target_nonwalkable_aperture_world_xywh": [
+      626.4,
+      382.8,
+      371.2,
+      52.2
+    ],
+    "target_nonwalkable_aperture_source_xy": [
+      [
+        631.0765714285714,
+        410.9653333333333
+      ],
+      [
+        904.9234285714284,
+        410.9653333333333
+      ],
+      [
+        904.9234285714284,
+        448.85333333333335
+      ],
+      [
+        631.0765714285714,
+        448.85333333333335
+      ]
+    ],
+    "target_nonwalkable_aperture_source_xywh": [
+      631.0765714285714,
+      410.9653333333333,
+      273.84685714285706,
+      37.888000000000034
+    ],
+    "candidate03_nominal_nonwalkable_aperture_source_xywh": [
+      617,
+      399,
+      302,
+      46
+    ],
+    "local_source_changes": {
+      "add_flat_floor_rectangles_xywh": [
+        [
+          617,
+          399,
+          302,
+          11.96533333333332
+        ],
+        [
+          617,
+          410.9653333333333,
+          14.076571428571356,
+          34.03466666666668
+        ],
+        [
+          904.9234285714284,
+          410.9653333333333,
+          14.076571428571583,
+          34.03466666666668
+        ]
+      ],
+      "remove_floor_for_expanded_hole_rectangles_xywh": [
+        [
+          631.0765714285714,
+          445,
+          273.84685714285706,
+          3.853333333333353
+        ]
+      ],
+      "exact_geometry_change_bbox_xyxy": [
+        617,
+        399,
+        919,
+        448.85333333333335
+      ],
+      "integer_containing_bbox_xywh": [
+        617,
+        399,
+        302,
+        50
+      ],
+      "suggested_art_edit_context_bbox_xywh": [
+        596,
+        384,
+        344,
+        81
+      ],
+      "context_reason": "Approximate padding around existing visible raised/outlined rim near x600..934,y390..457, to remove stale rim and place a flat replacement. Geometric changes stay in the tighter bbox; padding is style context, not permission to alter floor outside target.",
+      "critical_semantics": "Target includes all inner vertical wall plus sky aperture. Do not merely align blue sky while leaving fascia outside it. Horizontal paving outside the target must stay flat and clear. Fractional coordinates are the precise mapping; integer envelope is not a replacement target."
+    },
+    "area_world2": {
+      "current": 674145.6000000001,
+      "candidate03_measured": 685158.8796825765,
+      "proposal": 691726.0525703592,
+      "local_added_floor": 8537.84045535028,
+      "local_removed_floor": 1970.6675675675872,
+      "net_change_from_candidate03": 6567.172887782683,
+      "net_percent_from_candidate03": 0.9584890574322196,
+      "net_change_from_current": 17580.452570359106,
+      "net_percent_from_current": 2.607812402893248,
+      "added_vs_current": 71679.266809074,
+      "lost_vs_current": 54098.814238714855,
+      "symmetric_difference_vs_current": 125778.08104778886
+    },
+    "topology": {
+      "nominal": {
+        "components": 1,
+        "holes": 1
+      },
+      "full40_eroded": {
+        "components": 1,
+        "holes": 1
+      },
+      "full45_eroded": {
+        "components": 1,
+        "holes": 1
+      }
+    },
+    "anchors": {
+      "entry": {
+        "world_xy": [
+          220.39999999999998,
+          556.8
+        ],
+        "source_xy": [
+          331.55657142857143,
+          537.2586666666666
+        ],
+        "full_circle_capacity_world": 147.06233108108108,
+        "spare_after14_world": 133.06233108108108,
+        "spare_after18_world": 129.06233108108108,
+        "inside": true,
+        "actual_grid_cell": [
+          5,
+          13
+        ],
+        "actual_grid_world_xy": [
+          220,
+          540
+        ],
+        "grid_fullcircle_capacity_world": 163.862331081081,
+        "grid_reachability_from_entry": {
+          "runtime9_nominal": true,
+          "full40_nominal": true,
+          "runtime9_inward5": true,
+          "full45": true,
+          "runtime9_outward5": true
+        }
+      },
+      "exit": {
+        "world_xy": [
+          1397.8,
+          556.8
+        ],
+        "source_xy": [
+          1200.1645714285714,
+          537.2586666666666
+        ],
+        "full_circle_capacity_world": 147.06233108108108,
+        "spare_after14_world": 133.06233108108108,
+        "spare_after18_world": 129.06233108108108,
+        "inside": true,
+        "actual_grid_cell": [
+          34,
+          13
+        ],
+        "actual_grid_world_xy": [
+          1380,
+          540
+        ],
+        "grid_fullcircle_capacity_world": 163.86233108108104,
+        "grid_reachability_from_entry": {
+          "runtime9_nominal": true,
+          "full40_nominal": true,
+          "runtime9_inward5": true,
+          "full45": true,
+          "runtime9_outward5": true
+        }
+      },
+      "vane": {
+        "world_xy": [
+          487.2,
+          522.0
+        ],
+        "source_xy": [
+          528.384,
+          512.0
+        ],
+        "full_circle_capacity_world": 144.1875651515929,
+        "spare_after14_world": 130.1875651515929,
+        "spare_after18_world": 126.1875651515929,
+        "inside": true,
+        "actual_grid_cell": [
+          11,
+          12
+        ],
+        "actual_grid_world_xy": [
+          460,
+          500
+        ],
+        "grid_fullcircle_capacity_world": 178.03669049336875,
+        "grid_reachability_from_entry": {
+          "runtime9_nominal": true,
+          "full40_nominal": true,
+          "runtime9_inward5": true,
+          "full45": true,
+          "runtime9_outward5": true
+        }
+      },
+      "flag": {
+        "world_xy": [
+          340.4,
+          481.8
+        ],
+        "source_xy": [
+          420.0846502463054,
+          482.8218850574713
+        ],
+        "full_circle_capacity_world": 169.21722972973004,
+        "spare_after14_world": 155.21722972973004,
+        "spare_after18_world": 151.21722972973004,
+        "inside": true,
+        "actual_grid_cell": [
+          8,
+          11
+        ],
+        "actual_grid_world_xy": [
+          340,
+          460
+        ],
+        "grid_fullcircle_capacity_world": 147.41722972973005,
+        "grid_reachability_from_entry": {
+          "runtime9_nominal": true,
+          "full40_nominal": true,
+          "runtime9_inward5": true,
+          "full45": true,
+          "runtime9_outward5": true
+        }
+      },
+      "m01": {
+        "world_xy": [
+          667.0,
+          539.4
+        ],
+        "source_xy": [
+          661.0285714285714,
+          524.6293333333333
+        ],
+        "full_circle_capacity_world": 101.08606418918907,
+        "spare_after14_world": 87.08606418918907,
+        "spare_after18_world": 83.08606418918907,
+        "inside": true,
+        "actual_grid_cell": [
+          16,
+          12
+        ],
+        "actual_grid_world_xy": [
+          660,
+          500
+        ],
+        "grid_fullcircle_capacity_world": 65.0,
+        "grid_reachability_from_entry": {
+          "runtime9_nominal": true,
+          "full40_nominal": true,
+          "runtime9_inward5": true,
+          "full45": true,
+          "runtime9_outward5": true
+        }
+      },
+      "m02": {
+        "world_xy": [
+          898.9999999999999,
+          539.4
+        ],
+        "source_xy": [
+          832.1828571428572,
+          524.6293333333333
+        ],
+        "full_circle_capacity_world": 101.08606418918907,
+        "spare_after14_world": 87.08606418918907,
+        "spare_after18_world": 83.08606418918907,
+        "inside": true,
+        "actual_grid_cell": [
+          21,
+          12
+        ],
+        "actual_grid_world_xy": [
+          860,
+          500
+        ],
+        "grid_fullcircle_capacity_world": 65.0,
+        "grid_reachability_from_entry": {
+          "runtime9_nominal": true,
+          "full40_nominal": true,
+          "runtime9_inward5": true,
+          "full45": true,
+          "runtime9_outward5": true
+        }
+      },
+      "m03": {
+        "world_xy": [
+          1131.0,
+          551.0
+        ],
+        "source_xy": [
+          1003.3371428571429,
+          533.0488888888889
+        ],
+        "full_circle_capacity_world": 117.64092339880648,
+        "spare_after14_world": 103.64092339880648,
+        "spare_after18_world": 99.64092339880648,
+        "inside": true,
+        "actual_grid_cell": [
+          27,
+          13
+        ],
+        "actual_grid_world_xy": [
+          1100,
+          540
+        ],
+        "grid_fullcircle_capacity_world": 110.25172553734141,
+        "grid_reachability_from_entry": {
+          "runtime9_nominal": true,
+          "full40_nominal": true,
+          "runtime9_inward5": true,
+          "full45": true,
+          "runtime9_outward5": true
+        }
+      }
+    },
+    "wind_lane": {
+      "blueprint_xywh": [
+        880,
+        325,
+        1150,
+        220
+      ],
+      "world_xywh": [
+        510.4,
+        188.5,
+        667.0,
+        127.6
+      ],
+      "full_lane_inside": true,
+      "minimum_boundary_clearance_world": 41.0711922860353,
+      "spare_after14_world": 27.0711922860353,
+      "spare_after18_world": 23.0711922860353,
+      "spare_after40_world": 1.0711922860352985,
+      "robust_to_5world_inward_for_all40circle_centers": false
+    },
+    "navigation": {
+      "grid": {
+        "size": [
+          42,
+          28
+        ],
+        "cell_world_size": [
+          40,
+          40
+        ],
+        "offset": [
+          20,
+          20
+        ],
+        "radius": 40,
+        "point_to_cell": "Vector2i((point - Vector2(20,20))/40), i.e. truncation toward zero; supplied positive anchors use int",
+        "diagonal_mode": "DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES",
+        "target_handling": "navigation_direction first returns a direct direction when blocked_fraction passes; otherwise target is clamp_actor(target,radius) before cell conversion. All supplied anchors already fit14/18; no target clamp changes them."
+      },
+      "grid_counts": {
+        "runtime9_nominal": {
+          "free": 324,
+          "components": 1,
+          "entry_reachable": 324
+        },
+        "full40_nominal": {
+          "free": 323,
+          "components": 1,
+          "entry_reachable": 323
+        },
+        "runtime9_inward5": {
+          "free": 271,
+          "components": 1,
+          "entry_reachable": 271
+        },
+        "full45": {
+          "free": 270,
+          "components": 1,
+          "entry_reachable": 270
+        },
+        "runtime9_outward5": {
+          "free": 330,
+          "components": 1,
+          "entry_reachable": 330
+        }
+      },
+      "route_world_endpoints": [
+        [
+          540,
+          340
+        ],
+        [
+          1100,
+          340
+        ]
+      ],
+      "local_north_region_max_world_y": 420,
+      "route_lengths": {
+        "runtime9_nominal": {
+          "north_route_world": 560.0,
+          "north_windfree_route_world": 560.0,
+          "global_windfree_route_world": 560.0
+        },
+        "full40_nominal": {
+          "north_route_world": 560.0,
+          "north_windfree_route_world": 560.0,
+          "global_windfree_route_world": 560.0
+        },
+        "runtime9_inward5": {
+          "north_route_world": 593.1370849898476,
+          "north_windfree_route_world": null,
+          "global_windfree_route_world": 833.1370849898476
+        },
+        "full45": {
+          "north_route_world": 593.1370849898476,
+          "north_windfree_route_world": null,
+          "global_windfree_route_world": 833.1370849898476
+        },
+        "runtime9_outward5": {
+          "north_route_world": 560.0,
+          "north_windfree_route_world": 560.0,
+          "global_windfree_route_world": 560.0
+        }
+      },
+      "nominal_straight_route_full_circle_capacity_world": 42.80000000000002,
+      "nominal_straight_route_spare_after40_world": 2.8000000000000185,
+      "worst_inward5_route_capacity_world": 37.80000000000002,
+      "worst_inward5_route_spare_after40_world": -2.1999999999999815,
+      "nine_sample_false_fullcircle_passes": [
+        {
+          "cell": [
+            13,
+            15
+          ],
+          "world": [
+            540,
+            620
+          ],
+          "full_circle_capacity_world": 35.804873313661204,
+          "nine_sample_margin_world": 0.5792869639630143
+        }
+      ],
+      "nominal_free_unstable_to_inward5": [
+        {
+          "cell": [
+            2,
+            16
+          ],
+          "world": [
+            100,
+            660
+          ],
+          "full_circle_capacity_world": 43.86233108108104,
+          "nine_sample_margin_world": 3.862331081081037
+        },
+        {
+          "cell": [
+            3,
+            16
+          ],
+          "world": [
+            140,
+            660
+          ],
+          "full_circle_capacity_world": 43.86233108108104,
+          "nine_sample_margin_world": 3.862331081081037
+        },
+        {
+          "cell": [
+            4,
+            16
+          ],
+          "world": [
+            180,
+            660
+          ],
+          "full_circle_capacity_world": 43.86233108108104,
+          "nine_sample_margin_world": 3.862331081081037
+        },
+        {
+          "cell": [
+            5,
+            16
+          ],
+          "world": [
+            220,
+            660
+          ],
+          "full_circle_capacity_world": 43.86233108108104,
+          "nine_sample_margin_world": 3.862331081081037
+        },
+        {
+          "cell": [
+            6,
+            16
+          ],
+          "world": [
+            260,
+            660
+          ],
+          "full_circle_capacity_world": 43.86233108108104,
+          "nine_sample_margin_world": 3.862331081081037
+        },
+        {
+          "cell": [
+            7,
+            16
+          ],
+          "world": [
+            300,
+            660
+          ],
+          "full_circle_capacity_world": 43.86233108108104,
+          "nine_sample_margin_world": 3.862331081081037
+        },
+        {
+          "cell": [
+            8,
+            16
+          ],
+          "world": [
+            340,
+            660
+          ],
+          "full_circle_capacity_world": 43.86233108108104,
+          "nine_sample_margin_world": 3.862331081081037
+        },
+        {
+          "cell": [
+            9,
+            16
+          ],
+          "world": [
+            380,
+            660
+          ],
+          "full_circle_capacity_world": 43.86233108108104,
+          "nine_sample_margin_world": 3.862331081081037
+        },
+        {
+          "cell": [
+            10,
+            8
+          ],
+          "world": [
+            420,
+            340
+          ],
+          "full_circle_capacity_world": 41.322448666924274,
+          "nine_sample_margin_world": 2.6084181865541596
+        },
+        {
+          "cell": [
+            10,
+            16
+          ],
+          "world": [
+            420,
+            660
+          ],
+          "full_circle_capacity_world": 43.86233108108104,
+          "nine_sample_margin_world": 3.862331081081037
+        },
+        {
+          "cell": [
+            11,
+            16
+          ],
+          "world": [
+            460,
+            660
+          ],
+          "full_circle_capacity_world": 43.86233108108104,
+          "nine_sample_margin_world": 3.862331081081037
+        },
+        {
+          "cell": [
+            12,
+            16
+          ],
+          "world": [
+            500,
+            660
+          ],
+          "full_circle_capacity_world": 43.86233108108104,
+          "nine_sample_margin_world": 3.862331081081037
+        },
+        {
+          "cell": [
+            13,
+            4
+          ],
+          "world": [
+            540,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            13,
+            15
+          ],
+          "world": [
+            540,
+            620
+          ],
+          "full_circle_capacity_world": 35.804873313661204,
+          "nine_sample_margin_world": 0.5792869639630143
+        },
+        {
+          "cell": [
+            14,
+            4
+          ],
+          "world": [
+            580,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            15,
+            4
+          ],
+          "world": [
+            620,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            16,
+            4
+          ],
+          "world": [
+            660,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            16,
+            8
+          ],
+          "world": [
+            660,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            17,
+            4
+          ],
+          "world": [
+            700,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            17,
+            8
+          ],
+          "world": [
+            700,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            18,
+            4
+          ],
+          "world": [
+            740,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            18,
+            8
+          ],
+          "world": [
+            740,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            19,
+            4
+          ],
+          "world": [
+            780,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            19,
+            8
+          ],
+          "world": [
+            780,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            20,
+            4
+          ],
+          "world": [
+            820,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            20,
+            8
+          ],
+          "world": [
+            820,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            21,
+            4
+          ],
+          "world": [
+            860,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            21,
+            8
+          ],
+          "world": [
+            860,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            22,
+            4
+          ],
+          "world": [
+            900,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            22,
+            8
+          ],
+          "world": [
+            900,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            23,
+            4
+          ],
+          "world": [
+            940,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            23,
+            8
+          ],
+          "world": [
+            940,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            24,
+            4
+          ],
+          "world": [
+            980,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            24,
+            8
+          ],
+          "world": [
+            980,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            25,
+            4
+          ],
+          "world": [
+            1020,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            26,
+            4
+          ],
+          "world": [
+            1060,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            27,
+            4
+          ],
+          "world": [
+            1100,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            27,
+            16
+          ],
+          "world": [
+            1100,
+            660
+          ],
+          "full_circle_capacity_world": 43.53661092583152,
+          "nine_sample_margin_world": 3.682197393436321
+        },
+        {
+          "cell": [
+            28,
+            4
+          ],
+          "world": [
+            1140,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            28,
+            16
+          ],
+          "world": [
+            1140,
+            660
+          ],
+          "full_circle_capacity_world": 43.862331081081045,
+          "nine_sample_margin_world": 3.8623310810810385
+        },
+        {
+          "cell": [
+            29,
+            4
+          ],
+          "world": [
+            1180,
+            180
+          ],
+          "full_circle_capacity_world": 41.013091216216004,
+          "nine_sample_margin_world": 1.0130912162159973
+        },
+        {
+          "cell": [
+            29,
+            16
+          ],
+          "world": [
+            1180,
+            660
+          ],
+          "full_circle_capacity_world": 43.862331081081045,
+          "nine_sample_margin_world": 3.8623310810810385
+        },
+        {
+          "cell": [
+            30,
+            16
+          ],
+          "world": [
+            1220,
+            660
+          ],
+          "full_circle_capacity_world": 43.862331081081045,
+          "nine_sample_margin_world": 3.8623310810810385
+        },
+        {
+          "cell": [
+            31,
+            16
+          ],
+          "world": [
+            1260,
+            660
+          ],
+          "full_circle_capacity_world": 43.862331081081045,
+          "nine_sample_margin_world": 3.8623310810810385
+        },
+        {
+          "cell": [
+            32,
+            16
+          ],
+          "world": [
+            1300,
+            660
+          ],
+          "full_circle_capacity_world": 43.862331081081045,
+          "nine_sample_margin_world": 3.8623310810810385
+        },
+        {
+          "cell": [
+            33,
+            16
+          ],
+          "world": [
+            1340,
+            660
+          ],
+          "full_circle_capacity_world": 43.862331081081045,
+          "nine_sample_margin_world": 3.8623310810810385
+        },
+        {
+          "cell": [
+            34,
+            16
+          ],
+          "world": [
+            1380,
+            660
+          ],
+          "full_circle_capacity_world": 43.862331081081045,
+          "nine_sample_margin_world": 3.8623310810810385
+        },
+        {
+          "cell": [
+            35,
+            16
+          ],
+          "world": [
+            1420,
+            660
+          ],
+          "full_circle_capacity_world": 43.862331081081045,
+          "nine_sample_margin_world": 3.8623310810810385
+        },
+        {
+          "cell": [
+            36,
+            16
+          ],
+          "world": [
+            1460,
+            660
+          ],
+          "full_circle_capacity_world": 43.862331081081045,
+          "nine_sample_margin_world": 3.8623310810810385
+        },
+        {
+          "cell": [
+            37,
+            16
+          ],
+          "world": [
+            1500,
+            660
+          ],
+          "full_circle_capacity_world": 43.862331081081045,
+          "nine_sample_margin_world": 3.8623310810810385
+        },
+        {
+          "cell": [
+            38,
+            10
+          ],
+          "world": [
+            1540,
+            420
+          ],
+          "full_circle_capacity_world": 41.03868397049592,
+          "nine_sample_margin_world": 1.0999890892342816
+        },
+        {
+          "cell": [
+            38,
+            11
+          ],
+          "world": [
+            1540,
+            460
+          ],
+          "full_circle_capacity_world": 43.25242541463203,
+          "nine_sample_margin_world": 3.313730533370392
+        },
+        {
+          "cell": [
+            38,
+            16
+          ],
+          "world": [
+            1540,
+            660
+          ],
+          "full_circle_capacity_world": 43.862331081081045,
+          "nine_sample_margin_world": 3.8623310810810385
+        }
+      ],
+      "restored_route_cells": [
+        {
+          "cell": [
+            13,
+            8
+          ],
+          "world": [
+            540,
+            340
+          ],
+          "full_circle_capacity_world": 96.41991495536593,
+          "nine_sample_margin_world": 59.90112110516652
+        },
+        {
+          "cell": [
+            14,
+            8
+          ],
+          "world": [
+            580,
+            340
+          ],
+          "full_circle_capacity_world": 63.12527227664051,
+          "nine_sample_margin_world": 23.21391844245148
+        },
+        {
+          "cell": [
+            15,
+            8
+          ],
+          "world": [
+            620,
+            340
+          ],
+          "full_circle_capacity_world": 43.27585932133527,
+          "nine_sample_margin_world": 6.985699678629175
+        },
+        {
+          "cell": [
+            16,
+            8
+          ],
+          "world": [
+            660,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            17,
+            8
+          ],
+          "world": [
+            700,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            18,
+            8
+          ],
+          "world": [
+            740,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            19,
+            8
+          ],
+          "world": [
+            780,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            20,
+            8
+          ],
+          "world": [
+            820,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            21,
+            8
+          ],
+          "world": [
+            860,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            22,
+            8
+          ],
+          "world": [
+            900,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            23,
+            8
+          ],
+          "world": [
+            940,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            24,
+            8
+          ],
+          "world": [
+            980,
+            340
+          ],
+          "full_circle_capacity_world": 42.80000000000001,
+          "nine_sample_margin_world": 2.800000000000012
+        },
+        {
+          "cell": [
+            25,
+            8
+          ],
+          "world": [
+            1020,
+            340
+          ],
+          "full_circle_capacity_world": 48.30734933734203,
+          "nine_sample_margin_world": 14.515728752537994
+        },
+        {
+          "cell": [
+            26,
+            8
+          ],
+          "world": [
+            1060,
+            340
+          ],
+          "full_circle_capacity_world": 75.6676945598318,
+          "nine_sample_margin_world": 37.07545454251385
+        },
+        {
+          "cell": [
+            27,
+            8
+          ],
+          "world": [
+            1100,
+            340
+          ],
+          "full_circle_capacity_world": 110.98468362796731,
+          "nine_sample_margin_world": 75.5238216044253
+        }
+      ],
+      "interpretation": "Restores nominal560-world local wind-free route under9-point and full40-circle tests. Does NOT restore a5-world-robust route. Geometry remains hypothetical and outward/inner paint interpretation can change grid states."
+    }
+  }
+}
