@@ -31,6 +31,10 @@
   "b05_art_residency": {
     "script": "tests/levels/b05/test_b05_art_residency.gd"
   },
+  "b05_b06_first_room_art": {
+    "script": "tests/levels/shared/test_b05_b06_first_room_art.gd",
+    "scene": "tests/levels/shared/test_b05_b06_first_room_art.tscn"
+  },
   "b05_balance_calibration": {
     "script": "tests/levels/b05/test_b05_balance_calibration.gd"
   },

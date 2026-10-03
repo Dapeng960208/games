@@ -4,12 +4,24 @@ extends RefCounted
 const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const ROOT := "asset://enemies/b05_poses_v1/"
 const REGENERATED_ROOT := "asset://enemies/b05_regenerated_poses_v1/"
+const FIRST_ROOM_ROOT := "asset://levels/b05/enemies/"
+const FIRST_ROOM_IDS := ["B05-M01","B05-M02","B05-M04"]
 const IDS := ["B05-M01","B05-M02","B05-M03","B05-M04","B05-M05","B05-M06","B05-M07","B05-M08","B05-M09","B05-M10","B05-M11","B05-M12","B05-M13","B05-M14","B05-M15","B05-M16","B05-M17","B05-M18"]
 static var _banks: Dictionary={}
 static var _loaded: Dictionary={}
+static var _first_room_banks: Dictionary={}
+static var _first_room_loaded: Dictionary={}
 
 static func entry(identity: String) -> Dictionary:
-	var value:=bank(identity)
+	return _entry_from_bank(bank(identity))
+
+## An explicitly selected room body variant; codex/default art remains unchanged.
+static func first_room_entry(identity: String) -> Dictionary:
+	var result := _entry_from_bank(first_room_bank(identity))
+	if not result.is_empty(): result["first_room_race_variant"] = true
+	return result
+
+static func _entry_from_bank(value: Dictionary) -> Dictionary:
 	if value.is_empty(): return {}
 	var frame: Dictionary=value.clips.idle[0]
 	return {"texture":frame.texture,"texture_path":frame.texture_path,"region":frame.region,"foot":frame.foot,
@@ -21,6 +33,13 @@ static func bank(identity: String) -> Dictionary:
 	_ensure_loaded(identity)
 	return _banks.get(identity,{}).duplicate(true)
 
+static func first_room_bank(identity: String) -> Dictionary:
+	if identity not in FIRST_ROOM_IDS: return {}
+	if not _first_room_loaded.has(identity):
+		_first_room_loaded[identity] = true
+		_load_manifest(FIRST_ROOM_ROOT,identity,true)
+	return _first_room_banks.get(identity,{}).duplicate(true)
+
 static func _ensure_loaded(identity: String) -> void:
 	if _loaded.has(identity): return
 	_loaded[identity]=true
@@ -29,9 +48,10 @@ static func _ensure_loaded(identity: String) -> void:
 	_load_manifest(ROOT,identity)
 	_load_manifest(REGENERATED_ROOT,identity)
 
-static func _load_manifest(source_root: String, requested_identity: String) -> void:
-	if not FileAccess.file_exists(AssetCatalog.resolve(source_root+"manifest.json")): return
-	var raw: Variant=JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(source_root+"manifest.json")))
+static func _load_manifest(source_root: String, requested_identity: String, first_room_variant: bool = false) -> void:
+	var manifest_name := "manifest_first_room_revision.json" if first_room_variant else "manifest.json"
+	if not FileAccess.file_exists(AssetCatalog.resolve(source_root+manifest_name)): return
+	var raw: Variant=JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(source_root+manifest_name)))
 	if not raw is Dictionary or raw.get("asset_family")!="storybook_2_5d_v1": return
 	for identity: String in [requested_identity]:
 		var source: Dictionary=raw.get("identities",{}).get(identity,{})
@@ -60,4 +80,5 @@ static func _load_manifest(source_root: String, requested_identity: String) -> v
 			clips["locked"]=clips.execute
 		clips["walk"]=clips.idle
 		clips["recovery"]=clips.idle
-		_banks[identity]={"clips":clips,"texture":clips.idle[0].texture,"body_height":float(source.reference_body_height_px),"source_family":"storybook_2_5d_v1","facing":"right","b05_native_bank":true,"runtime_quality_gate_passed":bool(source.get("runtime_quality_gate_passed",raw.get("runtime_quality_gate_passed",false)))}
+		var target: Dictionary = _first_room_banks if first_room_variant else _banks
+		target[identity]={"clips":clips,"texture":clips.idle[0].texture,"body_height":float(source.reference_body_height_px),"source_family":"storybook_2_5d_v1","facing":"right","b05_native_bank":true,"runtime_quality_gate_passed":bool(source.get("runtime_quality_gate_passed",raw.get("runtime_quality_gate_passed",false)))}

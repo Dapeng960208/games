@@ -26,6 +26,8 @@
 
 系统规范见 [system](system/README.md)。当前运行参数源为 `data/rules/numerical.json`，默认四章与 Lv20，数值文档的设计或候选不能覆盖该闸门。
 
+B05/B06 美术优化任务已按用户指令停止并保存 WIP：新增首房种族动作、分层代码及几何草稿保留，资源索引／生产层配置和新版 2K 整体验收未完成，原怪物 UI 与源图未删除。见 [停止 checkpoint](levels/b05_b06_stop_checkpoint.md)。
+
 ## 关卡
 
 | 关卡 | 状态 | 入口范围 |

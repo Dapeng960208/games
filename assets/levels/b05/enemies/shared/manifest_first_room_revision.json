@@ -1,0 +1,599 @@
+{
+  "schema_version": 1,
+  "asset_family": "storybook_2_5d_v1",
+  "scope": [
+    "B05-M01",
+    "B05-M02",
+    "B05-M04"
+  ],
+  "status": "candidate_first_room_body_variants",
+  "runtime_quality_gate_passed": false,
+  "generation_tool": "image_gen.imagegen",
+  "native_generated": true,
+  "upscaled": false,
+  "raster_processing": "Byte-for-byte PNG copies, no resize, sharpening, alpha cleanup or synthetic painting. Runtime regions select the original source columns.",
+  "source_reference": {
+    "library_file_id": "libfile_002d410d5a7081918d45f9c9b31ec629",
+    "name": "B05(1).png",
+    "use": "User-attached plant-spirit/tree-city reference visually reviewed; original Library bytes were not materialized in this consumer environment. No source hash or license is inferred."
+  },
+  "license": {
+    "generated_asset": "Model/tool output; no explicit separate license supplied. Preserve tool provenance and user reference rights without inventing a license.",
+    "reference": "User-supplied reference, rights and original bytes not independently verified."
+  },
+  "contract": {
+    "selection": "Explicit actor profile.first_room_race_variant true only. Default entry/bank, original codex, portraits, skill icons and original action files unchanged.",
+    "facing": "right",
+    "camera": "elevated three-quarter stylized 2.5D",
+    "scale_rule": "Fixed body pixel/world ratio per identity across all poses; source absolute foot anchors compensate harmless cell-position variation. Do not normalize alpha bbox independently per pose.",
+    "authored_clips": [
+      "idle",
+      "telegraph",
+      "execute"
+    ],
+    "frames_per_clip": 1,
+    "walk": "Existing runtime motion with idle key pose; not a new full walking animation.",
+    "recovery": "Idle key pose with existing runtime transformation.",
+    "m04_execute_semantics": "Interruptible sustained healing channel, original target restrictions retained.",
+    "collision_damage": "Body variants are presentation only; navigation radius, collision, damage, timing, roster IDs and progression unchanged.",
+    "ui": "New body variants are not automatically used in old codex/portrait/skill UI.",
+    "color": "Original generated PNG colors retained by native source-body presentation.",
+    "directional_coverage": "Canonical right-facing key poses plus runtime horizontal mirroring; no new eight-direction animation coverage."
+  },
+  "source_qa": {
+    "all_selected_images_actually_viewed": true,
+    "checked": "Human faces and separate vine-whip/sprout-cannon/flower-speaker roles; all three poses fully contained in separate cells; alpha>=16 no edge crossing or outer clipping; planted-foot registration inspected.",
+    "runtime_2k_conclusion": "Pending actual L25 production-frame verification at 2560x1440. Source-pixel QA alone is not runtime acceptance.",
+    "target_viewport": [
+      2560,
+      1440
+    ],
+    "conservative_max_screen_anatomy_budget_px": 256,
+    "budget_note": "A conservative verification budget, not a forced 2K source size. Actual measured screen occupancy must be recorded by integration test. Native ordinary-body height is clamped to 66-88 world pixels then multiplied by 1.20; viewport camera fitting determines final pixels."
+  },
+  "identities": {
+    "B05-M01": {
+      "name": "藤鞭树卫",
+      "appearance_role": "Leaf-crowned humanoid adult with thin vine whip; existing frontline and vine-whip responsibility retained.",
+      "reference_body_height_px": 710,
+      "reference_definition": "Idle anatomical leaf/flower crown to registered planted foot anchor, excluding transparent canvas and detached weapon tips. Shared ratio across all key poses.",
+      "runtime_quality_gate_passed": false,
+      "atlas": {
+        "source_generated_file": "exec-22aaa285-37c0-4214-9e69-dea63b13192f.png",
+        "sha256": "d47f0618665ff9bd11bc96ea8eec8b2930c5020a19a3f4e99448cd137f750323",
+        "bytes": 1253595,
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "columns": 3,
+        "rows": 1,
+        "source_copy_byte_verified": true,
+        "prompt": "Edit this actual transparent sprite PNG. Retain the same three character designs, faces, outfits, original colors and distinct idle/anticipation/release or healing arm actions. Repair ONLY composition and camera readability as production sprites. Crucially make EACH entire character and weapon substantially SMALLER and NARROWER so there is generous complete transparent gutter, never clipping or crossing cells. Exact square 1254x1254 PNG, three equal columns418px: cell1 x0–417, cell2 x418–835, cell3 x836–1253. Put the SAME anatomy at equal size in all cells. Each full body with clothing/weapon fits a narrow240px wide by~680px high box, locally x80–338, anatomy top around y300 and both feet around y990. Entire weapon loop/staff/extended sleeve must also stay locally x50–368, absolutely never x<50 or x>368. No outer edge clipping: source image has at least50px transparent empty gutter each cell side, >180px transparent bottom and >180px top. Fully visible complete feet and entire dangling leaves/gown at bottom. Mild elevated three-quarter game camera, enough to see top leaf crown but preserve humanoid face; all face right. No ground shadow, backdrop, pedestal, text, grid or UI. Pose distinction remains clear without stretching weapon/gown across gutter. Most important is entirely isolated three sprites with truly transparent gaps, NOT huge figures filling the canvas. Transparent background alpha retained. Keep species role: adult leaf-crowned human-faced vinewhip warden with a THIN coiled living vine.\nOriginal design brief to retain:\nCreate production game character sprite art, one PNG with real transparent background, square 1254x1254 canvas. The PNG is exactly THREE separate equal vertical columns, each column 418 pixels wide, in ONE row; no grid lines, letters or labels. Three full-body key poses of the SAME identifiable plant-spirit humanoid adult vine-whip warden: left idle, middle attack anticipation, right whip release. She/he must look like the elegant living botanical people of an aerial giant-tree city, not a bird, ent, wooden armored golem, waterdrop, or monster mask: clearly visible pale cream HUMAN FACE, pointed plant ears, almond eyes, gold-edged sage-green leaf crown, slim mature human limbs, flowing layered jade and olive leaf clothing, pink blossom details, slender brown vine belt, warm gold trim. Bright painterly storybook fantasy 2.5D at elevated three-quarter camera, consistently facing right, refined readable outline, natural painted material detail, original colors green cream pink gold.\n\nSTRICT atlas composition: each full figure AND all weapon parts remain only within its own 418px column, with at least 40px transparent empty side borders. Each humanoid is deliberately narrow, same anatomy size across poses, crown approximately y=260, both feet grounded around y=1040. No image part may touch the outer canvas or column boundary. Body anatomy around 760 pixels tall, actual visible figure no taller than 820px, with large transparent top/bottom margins. The left and middle and right feet have exactly corresponding local positions in their cells. Full entire plant-shoe feet visible, same base anatomy and camera. Compact whip arranged vertically beside each body, never long horizontally: idle coiled living vine hanging beside hip; middle same vine arm winding a narrow high curved vine loop; right extended arm to right with a short tightly curving vine snap fully INSIDE cell. Distinct readable keyposes but no large change in body's stance or scale. Face and outfit are identical between cells. Weapon must be thin and natural, never an enormous trunk arm. No drawn hit effect or projectile, no magical root spears, no ground shadow, no pedestal, no background, no border, no checkerboard baked in. This is actual transparent RGBA sprite artwork with crisp readable small-game silhouette.\n",
+        "initial_prompt": "Create production game character sprite art, one PNG with real transparent background, square 1254x1254 canvas. The PNG is exactly THREE separate equal vertical columns, each column 418 pixels wide, in ONE row; no grid lines, letters or labels. Three full-body key poses of the SAME identifiable plant-spirit humanoid adult vine-whip warden: left idle, middle attack anticipation, right whip release. She/he must look like the elegant living botanical people of an aerial giant-tree city, not a bird, ent, wooden armored golem, waterdrop, or monster mask: clearly visible pale cream HUMAN FACE, pointed plant ears, almond eyes, gold-edged sage-green leaf crown, slim mature human limbs, flowing layered jade and olive leaf clothing, pink blossom details, slender brown vine belt, warm gold trim. Bright painterly storybook fantasy 2.5D at elevated three-quarter camera, consistently facing right, refined readable outline, natural painted material detail, original colors green cream pink gold.\n\nSTRICT atlas composition: each full figure AND all weapon parts remain only within its own 418px column, with at least 40px transparent empty side borders. Each humanoid is deliberately narrow, same anatomy size across poses, crown approximately y=260, both feet grounded around y=1040. No image part may touch the outer canvas or column boundary. Body anatomy around 760 pixels tall, actual visible figure no taller than 820px, with large transparent top/bottom margins. The left and middle and right feet have exactly corresponding local positions in their cells. Full entire plant-shoe feet visible, same base anatomy and camera. Compact whip arranged vertically beside each body, never long horizontally: idle coiled living vine hanging beside hip; middle same vine arm winding a narrow high curved vine loop; right extended arm to right with a short tightly curving vine snap fully INSIDE cell. Distinct readable keyposes but no large change in body's stance or scale. Face and outfit are identical between cells. Weapon must be thin and natural, never an enormous trunk arm. No drawn hit effect or projectile, no magical root spears, no ground shadow, no pedestal, no background, no border, no checkerboard baked in. This is actual transparent RGBA sprite artwork with crisp readable small-game silhouette.\n",
+        "initial_candidate": {
+          "source_generated_file": "exec-65cf0fac-b49a-48ab-b012-6f397f14dd0a.png",
+          "sha256": "0fe82fa356ac12056e8647673b6516e19e2d9cfbd975eaa744419fc0d9c99335",
+          "reason": "Composition repair needed: atlas gutters too small / silhouette crossing nominal column boundaries; M04 outer gown clipped. Original output retained in generated_images; not installed."
+        }
+      },
+      "resolution": {
+        "effective_idle_anatomy_px": 710,
+        "max_screen_anatomy_budget_px": 256,
+        "source_to_budget_ratio": 2.773,
+        "ui_variant_enabled": false,
+        "actual_2k_measurement": "Pending production capture; quality gate remains false."
+      },
+      "frames": {
+        "idle": {
+          "texture": "m01/animations/first_room_race_atlas.png",
+          "region": [
+            0,
+            0,
+            418,
+            1254
+          ],
+          "foot": [
+            244,
+            1103
+          ],
+          "core_anchor": [
+            236,
+            614
+          ],
+          "visual_outlet": [
+            141,
+            750
+          ],
+          "outlets": [
+            [
+              141,
+              750
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            224,
+            394
+          ],
+          "visible_bbox_alpha16": [
+            62,
+            393,
+            391,
+            1116
+          ],
+          "visible_bbox_alpha128": [
+            63,
+            394,
+            391,
+            1115
+          ],
+          "effective_pose_anatomy_height_px": 709,
+          "source_generated_file": "exec-22aaa285-37c0-4214-9e69-dea63b13192f.png",
+          "sha256": "d47f0618665ff9bd11bc96ea8eec8b2930c5020a19a3f4e99448cd137f750323",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA"
+        },
+        "telegraph": {
+          "texture": "m01/animations/first_room_race_atlas.png",
+          "region": [
+            418,
+            0,
+            418,
+            1254
+          ],
+          "foot": [
+            621,
+            1102
+          ],
+          "core_anchor": [
+            622,
+            615
+          ],
+          "visual_outlet": [
+            514,
+            454
+          ],
+          "outlets": [
+            [
+              514,
+              454
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            622,
+            400
+          ],
+          "visible_bbox_alpha16": [
+            466,
+            261,
+            777,
+            1114
+          ],
+          "visible_bbox_alpha128": [
+            466,
+            263,
+            776,
+            1113
+          ],
+          "effective_pose_anatomy_height_px": 702,
+          "source_generated_file": "exec-22aaa285-37c0-4214-9e69-dea63b13192f.png",
+          "sha256": "d47f0618665ff9bd11bc96ea8eec8b2930c5020a19a3f4e99448cd137f750323",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA"
+        },
+        "execute": {
+          "texture": "m01/animations/first_room_race_atlas.png",
+          "region": [
+            836,
+            0,
+            418,
+            1254
+          ],
+          "foot": [
+            990,
+            1105
+          ],
+          "core_anchor": [
+            985,
+            615
+          ],
+          "visual_outlet": [
+            1100,
+            559
+          ],
+          "outlets": [
+            [
+              1100,
+              559
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            982,
+            402
+          ],
+          "visible_bbox_alpha16": [
+            842,
+            400,
+            1224,
+            1118
+          ],
+          "visible_bbox_alpha128": [
+            843,
+            402,
+            1223,
+            1117
+          ],
+          "effective_pose_anatomy_height_px": 703,
+          "source_generated_file": "exec-22aaa285-37c0-4214-9e69-dea63b13192f.png",
+          "sha256": "d47f0618665ff9bd11bc96ea8eec8b2930c5020a19a3f4e99448cd137f750323",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA"
+        }
+      }
+    },
+    "B05-M02": {
+      "name": "种荚炮手",
+      "appearance_role": "Young human-faced sprout with compact gold-edged seedpod cannon; existing ranged pod-shot responsibility retained.",
+      "reference_body_height_px": 687,
+      "reference_definition": "Idle anatomical leaf/flower crown to registered planted foot anchor, excluding transparent canvas and detached weapon tips. Shared ratio across all key poses.",
+      "runtime_quality_gate_passed": false,
+      "atlas": {
+        "source_generated_file": "exec-3c0caa70-e8bc-47b2-889a-7aeebd892593.png",
+        "sha256": "685a67e212ad85c276ae9ecf9a17234176aa7758f28de90e3565ffbed5a1d6c8",
+        "bytes": 1047582,
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "columns": 3,
+        "rows": 1,
+        "source_copy_byte_verified": true,
+        "prompt": "Edit this actual transparent sprite PNG. Retain the same three character designs, faces, outfits, original colors and distinct idle/anticipation/release or healing arm actions. Repair ONLY composition and camera readability as production sprites. Crucially make EACH entire character and weapon substantially SMALLER and NARROWER so there is generous complete transparent gutter, never clipping or crossing cells. Exact square 1254x1254 PNG, three equal columns418px: cell1 x0–417, cell2 x418–835, cell3 x836–1253. Put the SAME anatomy at equal size in all cells. Each full body with clothing/weapon fits a narrow240px wide by~680px high box, locally x80–338, anatomy top around y300 and both feet around y990. Entire weapon loop/staff/extended sleeve must also stay locally x50–368, absolutely never x<50 or x>368. No outer edge clipping: source image has at least50px transparent empty gutter each cell side, >180px transparent bottom and >180px top. Fully visible complete feet and entire dangling leaves/gown at bottom. Mild elevated three-quarter game camera, enough to see top leaf crown but preserve humanoid face; all face right. No ground shadow, backdrop, pedestal, text, grid or UI. Pose distinction remains clear without stretching weapon/gown across gutter. Most important is entirely isolated three sprites with truly transparent gaps, NOT huge figures filling the canvas. Transparent background alpha retained. Keep species role: human-faced young sprout seedpod gunner, compact gold green pink pod muzzle carried at chest.\nOriginal design brief to retain:\nCreate production game character sprite art, one PNG with real transparent background, square 1254x1254 canvas. Exactly THREE separate equal vertical columns, each 418 pixels wide, in ONE row; no grid lines, letters or labels. Three full-body key poses of the SAME identifiable plant-spirit humanoid seedpod gunner: left idle, middle preparing a shot, right firing pose. Match an elegant giant-tree aerial city species: clear cream HUMAN childlike face, bright eyes, pointed leaf ears, sprouting golden-edged light-green leaf hair crown with a tiny pink bud, slender young humanoid legs and arms, layered soft green leaf tunic, natural vine belt, golden botanical trim, small seed satchel. Not a wooden golem, bird face, huge plant creature or disguised cannon. A compact golden-edged green seedpod cannon is carried by both arms at chest/waist, its small flower-petal muzzle aimed RIGHT. The gunner, rather than the cannon, defines the silhouette. Human figure readable, cute but mature fantasy art rather than overly chibi. Bright painterly storybook fantasy, elevated three-quarter 2.5D view, all poses face right, same leaf outfit and face across cells, consistent painted outline and detail, palette fresh light-green, cream, warm gold, subtle pink.\n\nSTRICT composition: each figure AND entire pod weapon are isolated inside its own 418px column, at least 35px transparent side borders, with large top and bottom transparent margins. Narrow figure fits width, body anatomy about 730 pixels tall; crown approximately y=290, both feet approximately y=1040, exactly corresponding local foot positions in all three cells. The two feet and full pod muzzle are never cropped. Same anatomy scale and camera in every cell. Cannon weapon never exceeds ~160 pixels length. Left cannon at rest; middle cannon angled slightly upward and petal muzzle visibly closed to prepare; right arm extended a little and petal muzzle open, firing pose with NO projectile or baked effect. Pose change readable without changing feet or body height. No lettering, no border, no background, no shadow, no pedestal or floor, no big magic spear or bullet or luminous effects. Actual transparent RGBA sprite artwork, complete clear silhouette in all cells.\n",
+        "initial_prompt": "Create production game character sprite art, one PNG with real transparent background, square 1254x1254 canvas. Exactly THREE separate equal vertical columns, each 418 pixels wide, in ONE row; no grid lines, letters or labels. Three full-body key poses of the SAME identifiable plant-spirit humanoid seedpod gunner: left idle, middle preparing a shot, right firing pose. Match an elegant giant-tree aerial city species: clear cream HUMAN childlike face, bright eyes, pointed leaf ears, sprouting golden-edged light-green leaf hair crown with a tiny pink bud, slender young humanoid legs and arms, layered soft green leaf tunic, natural vine belt, golden botanical trim, small seed satchel. Not a wooden golem, bird face, huge plant creature or disguised cannon. A compact golden-edged green seedpod cannon is carried by both arms at chest/waist, its small flower-petal muzzle aimed RIGHT. The gunner, rather than the cannon, defines the silhouette. Human figure readable, cute but mature fantasy art rather than overly chibi. Bright painterly storybook fantasy, elevated three-quarter 2.5D view, all poses face right, same leaf outfit and face across cells, consistent painted outline and detail, palette fresh light-green, cream, warm gold, subtle pink.\n\nSTRICT composition: each figure AND entire pod weapon are isolated inside its own 418px column, at least 35px transparent side borders, with large top and bottom transparent margins. Narrow figure fits width, body anatomy about 730 pixels tall; crown approximately y=290, both feet approximately y=1040, exactly corresponding local foot positions in all three cells. The two feet and full pod muzzle are never cropped. Same anatomy scale and camera in every cell. Cannon weapon never exceeds ~160 pixels length. Left cannon at rest; middle cannon angled slightly upward and petal muzzle visibly closed to prepare; right arm extended a little and petal muzzle open, firing pose with NO projectile or baked effect. Pose change readable without changing feet or body height. No lettering, no border, no background, no shadow, no pedestal or floor, no big magic spear or bullet or luminous effects. Actual transparent RGBA sprite artwork, complete clear silhouette in all cells.\n",
+        "initial_candidate": {
+          "source_generated_file": "exec-944d9102-5cc2-4153-82f8-b919bb084541.png",
+          "sha256": "c7d951094ac952b34d41e9f2a8364554aec6fd77262fc42662b747b120201ae2",
+          "reason": "Composition repair needed: atlas gutters too small / silhouette crossing nominal column boundaries; M04 outer gown clipped. Original output retained in generated_images; not installed."
+        }
+      },
+      "resolution": {
+        "effective_idle_anatomy_px": 687,
+        "max_screen_anatomy_budget_px": 256,
+        "source_to_budget_ratio": 2.684,
+        "ui_variant_enabled": false,
+        "actual_2k_measurement": "Pending production capture; quality gate remains false."
+      },
+      "frames": {
+        "idle": {
+          "texture": "m02/animations/first_room_race_atlas.png",
+          "region": [
+            0,
+            0,
+            418,
+            1254
+          ],
+          "foot": [
+            230,
+            1054
+          ],
+          "core_anchor": [
+            249,
+            650
+          ],
+          "visual_outlet": [
+            377,
+            655
+          ],
+          "outlets": [
+            [
+              377,
+              655
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            212,
+            367
+          ],
+          "visible_bbox_alpha16": [
+            89,
+            366,
+            403,
+            1063
+          ],
+          "visible_bbox_alpha128": [
+            90,
+            367,
+            403,
+            1062
+          ],
+          "effective_pose_anatomy_height_px": 687,
+          "source_generated_file": "exec-3c0caa70-e8bc-47b2-889a-7aeebd892593.png",
+          "sha256": "685a67e212ad85c276ae9ecf9a17234176aa7758f28de90e3565ffbed5a1d6c8",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA"
+        },
+        "telegraph": {
+          "texture": "m02/animations/first_room_race_atlas.png",
+          "region": [
+            418,
+            0,
+            418,
+            1254
+          ],
+          "foot": [
+            633,
+            1056
+          ],
+          "core_anchor": [
+            645,
+            649
+          ],
+          "visual_outlet": [
+            773,
+            558
+          ],
+          "outlets": [
+            [
+              773,
+              558
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            622,
+            365
+          ],
+          "visible_bbox_alpha16": [
+            474,
+            364,
+            797,
+            1064
+          ],
+          "visible_bbox_alpha128": [
+            475,
+            365,
+            796,
+            1063
+          ],
+          "effective_pose_anatomy_height_px": 691,
+          "source_generated_file": "exec-3c0caa70-e8bc-47b2-889a-7aeebd892593.png",
+          "sha256": "685a67e212ad85c276ae9ecf9a17234176aa7758f28de90e3565ffbed5a1d6c8",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA"
+        },
+        "execute": {
+          "texture": "m02/animations/first_room_race_atlas.png",
+          "region": [
+            836,
+            0,
+            418,
+            1254
+          ],
+          "foot": [
+            1001,
+            1059
+          ],
+          "core_anchor": [
+            1016,
+            651
+          ],
+          "visual_outlet": [
+            1223,
+            558
+          ],
+          "outlets": [
+            [
+              1223,
+              558
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            1004,
+            373
+          ],
+          "visible_bbox_alpha16": [
+            845,
+            372,
+            1232,
+            1067
+          ],
+          "visible_bbox_alpha128": [
+            846,
+            373,
+            1231,
+            1066
+          ],
+          "effective_pose_anatomy_height_px": 686,
+          "source_generated_file": "exec-3c0caa70-e8bc-47b2-889a-7aeebd892593.png",
+          "sha256": "685a67e212ad85c276ae9ecf9a17234176aa7758f28de90e3565ffbed5a1d6c8",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA"
+        }
+      }
+    },
+    "B05-M04": {
+      "name": "露珠护蕊",
+      "appearance_role": "Human-faced pink flower speaker with cyan dew staff; existing interruptible support healing channel retained, no boss healing.",
+      "reference_body_height_px": 721,
+      "reference_definition": "Idle anatomical leaf/flower crown to registered planted foot anchor, excluding transparent canvas and detached weapon tips. Shared ratio across all key poses.",
+      "runtime_quality_gate_passed": false,
+      "atlas": {
+        "source_generated_file": "exec-0835325d-fc72-437c-aea5-505267716a63.png",
+        "sha256": "13a4447f8ed6d7c0a316ef8b54584160158f96230468a16c2ac433ff8c5bba49",
+        "bytes": 1473787,
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "columns": 3,
+        "rows": 1,
+        "source_copy_byte_verified": true,
+        "prompt": "Edit this actual transparent sprite PNG. Retain the same three character designs, faces, outfits, original colors and distinct idle/anticipation/release or healing arm actions. Repair ONLY composition and camera readability as production sprites. Crucially make EACH entire character and weapon substantially SMALLER and NARROWER so there is generous complete transparent gutter, never clipping or crossing cells. Exact square 1254x1254 PNG, three equal columns418px: cell1 x0–417, cell2 x418–835, cell3 x836–1253. Put the SAME anatomy at equal size in all cells. Each full body with clothing/weapon fits a narrow240px wide by~680px high box, locally x80–338, anatomy top around y300 and both feet around y990. Entire weapon loop/staff/extended sleeve must also stay locally x50–368, absolutely never x<50 or x>368. No outer edge clipping: source image has at least50px transparent empty gutter each cell side, >180px transparent bottom and >180px top. Fully visible complete feet and entire dangling leaves/gown at bottom. Mild elevated three-quarter game camera, enough to see top leaf crown but preserve humanoid face; all face right. No ground shadow, backdrop, pedestal, text, grid or UI. Pose distinction remains clear without stretching weapon/gown across gutter. Most important is entirely isolated three sprites with truly transparent gaps, NOT huge figures filling the canvas. Transparent background alpha retained. Keep species role: human-faced pink flower-crowned leaf healer with slender cyan dew-crystal staff, open-palm sustained support channel.\nOriginal design brief to retain:\nCreate production game character sprite art, one PNG with real transparent background, square 1254x1254 canvas. EXACTLY THREE equal vertical columns of 418 pixels each, in ONE row; no grid lines, letters or labels. Three full-body key poses of the SAME graceful plant-spirit humanoid bloom healer: left idle, middle healing preparation, right sustained healing channel. She is the flower-speaker race of an aerial giant-tree pink-blossom city: explicitly HUMAN cream face with delicate eyes and nose, pointed leafy ears, long sage-green leafy hair, pink blossom and golden leaf crown, slim mature humanoid body, elegant layered leaf-and-pink-petal gown, visible slender legs and two leaf slippers, warm gold details and small cyan accents. Must NOT have a giant blue drop for a head, NOT jellyfish, water elemental, bird, ent or faceless creature. Cyan DEWDROP only belongs to small crystal at top of slender natural wooden/gold staff carried beside her. Distinct feminine plant-spirit human silhouette. Bright painterly storybook fantasy 2.5D elevated three-quarter camera, consistently facing RIGHT, soft warm sunlight, crisp natural outlines, lovely detailed leaf materials; restrained pink green cream gold turquoise color palette matching lush tree city.\n\nSTRICT composition: each narrow complete figure, gown, crown, staff and both feet are only inside its own 418px column, at least 40px transparent empty side borders, never crossing columns or clipping. Large transparent top/bottom margin. Anatomy height about 760px: crown around y=270, corresponding two-foot positions around y=1040 in all cells. Fixed anatomy scale, staff length, face, gown and camera between all poses. Left hand resting and staff quiet; middle free hand gathered near chest and dew staff held upright preparing; right free hand directed gently forward with open palm, staff held close and crystal angled toward ally, clearly a sustained support channel rather than attack. No drawn healing beam, particles or circles: actual gameplay VFX are separate. Distinct readable arm poses, fixed planted feet. No shadow, platform, background, grid border, symbols, text, checkerboard. True transparent RGBA production character keyposes, no cropping.\n",
+        "initial_prompt": "Create production game character sprite art, one PNG with real transparent background, square 1254x1254 canvas. EXACTLY THREE equal vertical columns of 418 pixels each, in ONE row; no grid lines, letters or labels. Three full-body key poses of the SAME graceful plant-spirit humanoid bloom healer: left idle, middle healing preparation, right sustained healing channel. She is the flower-speaker race of an aerial giant-tree pink-blossom city: explicitly HUMAN cream face with delicate eyes and nose, pointed leafy ears, long sage-green leafy hair, pink blossom and golden leaf crown, slim mature humanoid body, elegant layered leaf-and-pink-petal gown, visible slender legs and two leaf slippers, warm gold details and small cyan accents. Must NOT have a giant blue drop for a head, NOT jellyfish, water elemental, bird, ent or faceless creature. Cyan DEWDROP only belongs to small crystal at top of slender natural wooden/gold staff carried beside her. Distinct feminine plant-spirit human silhouette. Bright painterly storybook fantasy 2.5D elevated three-quarter camera, consistently facing RIGHT, soft warm sunlight, crisp natural outlines, lovely detailed leaf materials; restrained pink green cream gold turquoise color palette matching lush tree city.\n\nSTRICT composition: each narrow complete figure, gown, crown, staff and both feet are only inside its own 418px column, at least 40px transparent empty side borders, never crossing columns or clipping. Large transparent top/bottom margin. Anatomy height about 760px: crown around y=270, corresponding two-foot positions around y=1040 in all cells. Fixed anatomy scale, staff length, face, gown and camera between all poses. Left hand resting and staff quiet; middle free hand gathered near chest and dew staff held upright preparing; right free hand directed gently forward with open palm, staff held close and crystal angled toward ally, clearly a sustained support channel rather than attack. No drawn healing beam, particles or circles: actual gameplay VFX are separate. Distinct readable arm poses, fixed planted feet. No shadow, platform, background, grid border, symbols, text, checkerboard. True transparent RGBA production character keyposes, no cropping.\n",
+        "initial_candidate": {
+          "source_generated_file": "exec-c9d3b0ed-4a60-4c22-b5ee-b16faea5af0c.png",
+          "sha256": "48a150c99490dd199525257d94cc91f043f2274f2f5f546d71ca8cbd80fa9ae6",
+          "reason": "Composition repair needed: atlas gutters too small / silhouette crossing nominal column boundaries; M04 outer gown clipped. Original output retained in generated_images; not installed."
+        }
+      },
+      "resolution": {
+        "effective_idle_anatomy_px": 721,
+        "max_screen_anatomy_budget_px": 256,
+        "source_to_budget_ratio": 2.816,
+        "ui_variant_enabled": false,
+        "actual_2k_measurement": "Pending production capture; quality gate remains false."
+      },
+      "frames": {
+        "idle": {
+          "texture": "m04/animations/first_room_race_atlas.png",
+          "region": [
+            0,
+            0,
+            418,
+            1254
+          ],
+          "foot": [
+            252,
+            1082
+          ],
+          "core_anchor": [
+            242,
+            555
+          ],
+          "visual_outlet": [
+            316,
+            355
+          ],
+          "outlets": [
+            [
+              316,
+              355
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            224,
+            361
+          ],
+          "visible_bbox_alpha16": [
+            43,
+            287,
+            408,
+            1093
+          ],
+          "visible_bbox_alpha128": [
+            44,
+            288,
+            407,
+            1091
+          ],
+          "effective_pose_anatomy_height_px": 721,
+          "source_generated_file": "exec-0835325d-fc72-437c-aea5-505267716a63.png",
+          "sha256": "13a4447f8ed6d7c0a316ef8b54584160158f96230468a16c2ac433ff8c5bba49",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA"
+        },
+        "telegraph": {
+          "texture": "m04/animations/first_room_race_atlas.png",
+          "region": [
+            418,
+            0,
+            418,
+            1254
+          ],
+          "foot": [
+            663,
+            1087
+          ],
+          "core_anchor": [
+            650,
+            555
+          ],
+          "visual_outlet": [
+            709,
+            348
+          ],
+          "outlets": [
+            [
+              709,
+              348
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            623,
+            357
+          ],
+          "visible_bbox_alpha16": [
+            442,
+            282,
+            806,
+            1094
+          ],
+          "visible_bbox_alpha128": [
+            443,
+            282,
+            805,
+            1092
+          ],
+          "effective_pose_anatomy_height_px": 730,
+          "source_generated_file": "exec-0835325d-fc72-437c-aea5-505267716a63.png",
+          "sha256": "13a4447f8ed6d7c0a316ef8b54584160158f96230468a16c2ac433ff8c5bba49",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA"
+        },
+        "execute": {
+          "texture": "m04/animations/first_room_race_atlas.png",
+          "region": [
+            836,
+            0,
+            418,
+            1254
+          ],
+          "foot": [
+            1022,
+            1086
+          ],
+          "core_anchor": [
+            1014,
+            566
+          ],
+          "visual_outlet": [
+            1200,
+            482
+          ],
+          "outlets": [
+            [
+              1200,
+              482
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            1006,
+            361
+          ],
+          "visible_bbox_alpha16": [
+            846,
+            361,
+            1236,
+            1093
+          ],
+          "visible_bbox_alpha128": [
+            847,
+            362,
+            1236,
+            1091
+          ],
+          "effective_pose_anatomy_height_px": 725,
+          "source_generated_file": "exec-0835325d-fc72-437c-aea5-505267716a63.png",
+          "sha256": "13a4447f8ed6d7c0a316ef8b54584160158f96230468a16c2ac433ff8c5bba49",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA"
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,11 @@
 extends Node2D
 ## L31 candidate art only. Never owns geometry, tide time, collision or progression.
 const Geometry = preload("res://scripts/levels/b06/world/room_geometry.gd")
+const FirstRoomEnvironment = preload("res://scripts/presentation/world/first_room_environment.gd")
 const ROOT := "asset://b06_l31_environment_pilot/"
+const LAYER_CONFIG := "asset://levels/b06/rooms/l31/first_room_layers.json"
 var tide: Node2D
+var scenery: Node2D
 var floor_texture: Texture2D
 var water_texture: Texture2D
 var inlay_texture: Texture2D
@@ -14,29 +17,45 @@ var water_layers: Array[Polygon2D] = []
 var source_rect := Rect2(-1624.0*.11/.78,-1044.0*.13/.74,1624.0/.78,1044.0/.74)
 func configure(layout: Dictionary, tide_runtime: Node2D) -> bool:
 	if str(layout.get("room_id","")) != "L31" or not bool(layout.get("b06_candidate",false)) or not is_instance_valid(tide_runtime) or tide_runtime.room_id != "L31": return false
-	for file: String in ["L31-floor-tile-v2.png","L31-water-v1.png","L31-shell-inlay-v1.png","L31-north-skyline-v1.png","L31-south-facade-v1.png","L31-east-facade-v1.png","L31-west-facade-v1.png"]:
+	var layered := FileAccess.file_exists(AssetCatalog.resolve(LAYER_CONFIG))
+	var required: Array[String] = ["L31-water-v1.png"]
+	if not layered:
+		required.append_array(["L31-floor-tile-v2.png","L31-shell-inlay-v1.png","L31-north-skyline-v1.png","L31-south-facade-v1.png","L31-east-facade-v1.png","L31-west-facade-v1.png"])
+	for file: String in required:
 		if not ResourceLoader.exists(AssetCatalog.resolve(ROOT+file)) or not load(AssetCatalog.resolve(ROOT+file)) is Texture2D: return false
 	if not ResourceLoader.exists(AssetCatalog.resolve("res://shaders/levels/b06/shallow_water.gdshader")): return false
-	floor_texture = load(AssetCatalog.resolve(ROOT+"L31-floor-tile-v2.png"))
 	water_texture = load(AssetCatalog.resolve(ROOT+"L31-water-v1.png"))
-	inlay_texture = load(AssetCatalog.resolve(ROOT+"L31-shell-inlay-v1.png"))
-	if floor_texture == null or water_texture == null: return false
+	if water_texture == null: return false
+	if layered:
+		var candidate := FirstRoomEnvironment.new()
+		if not candidate.configure(layout, LAYER_CONFIG):
+			candidate.free()
+			return false
+		scenery = candidate
+		scenery.name = "FirstRoomScenery"
+		add_child(scenery)
+	else:
+		floor_texture = load(AssetCatalog.resolve(ROOT+"L31-floor-tile-v2.png"))
+		inlay_texture = load(AssetCatalog.resolve(ROOT+"L31-shell-inlay-v1.png"))
+		if floor_texture == null or inlay_texture == null: return false
 	definition = Geometry.room("L31")
-	floor_polygon = Geometry.polygon("L31")
+	floor_polygon = layout.get("ground_polygon", Geometry.polygon("L31"))
 	tide = tide_runtime
 	tide.native_water_visual = true
 	tide.queue_redraw()
-	z_index = -2
+	z_index = 0 if layered else -2
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
-	exterior = [
-		{"texture":load(AssetCatalog.resolve(ROOT+"L31-north-skyline-v1.png")),"rect":Rect2(104.4,-352.73,1415.2,471.73)},
-		{"texture":load(AssetCatalog.resolve(ROOT+"L31-south-facade-v1.png")),"rect":Rect2(104.4,849.73,1415.2,471.73)},
-		{"texture":load(AssetCatalog.resolve(ROOT+"L31-east-facade-v1.png")),"rect":Rect2(1497.0,116.0,270.67,812.0)},
-		{"texture":load(AssetCatalog.resolve(ROOT+"L31-west-facade-v1.png")),"rect":Rect2(-119.0,116.0,270.67,812.0)}
-	]
+	if not layered:
+		exterior = [
+			{"texture":load(AssetCatalog.resolve(ROOT+"L31-north-skyline-v1.png")),"rect":Rect2(104.4,-352.73,1415.2,471.73)},
+			{"texture":load(AssetCatalog.resolve(ROOT+"L31-south-facade-v1.png")),"rect":Rect2(104.4,849.73,1415.2,471.73)},
+			{"texture":load(AssetCatalog.resolve(ROOT+"L31-east-facade-v1.png")),"rect":Rect2(1497.0,116.0,270.67,812.0)},
+			{"texture":load(AssetCatalog.resolve(ROOT+"L31-west-facade-v1.png")),"rect":Rect2(-119.0,116.0,270.67,812.0)}
+		]
 	for patch: Dictionary in definition.shallow_patches:
 		var layer := Polygon2D.new()
+		layer.z_index = -1 if layered else 0
 		layer.polygon = Geometry.points(patch.polygon)
 		layer.texture = water_texture
 		var uv := PackedVector2Array()
@@ -61,11 +80,12 @@ func _process(_delta: float) -> void:
 func refresh_water() -> void:
 	if not is_instance_valid(tide): return
 	for layer in water_layers:
-		var wet: bool = tide.state.is_wet(str(layer.get_meta("patch_id")))
+		var wet: bool = tide.is_patch_wet(str(layer.get_meta("patch_id")))
 		layer.material.set_shader_parameter("wet_opacity",.48 if wet else .025)
 	queue_redraw()
 func _draw() -> void:
 	if definition.is_empty() or not is_instance_valid(tide): return
+	if is_instance_valid(scenery): return
 	# Full exterior overscan; one unmirrored continuous source, no tile joins.
 	draw_texture_rect(water_texture,source_rect,false)
 	for item: Dictionary in exterior: _draw_exterior(item.texture,item.rect)

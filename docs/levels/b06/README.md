@@ -4,6 +4,8 @@
 
 > 状态：隔离候选／待验证；正式入口未开放。
 
+2026-10-03 首房美术优化任务按用户指令停止，新增外观与分层场景为未验收 WIP；原怪物 UI、源图及 ID 保留。交接见 [停止 checkpoint](../b05_b06_stop_checkpoint.md)。
+
 - [普通怪](enemies/README.md)
 - [首领](bosses/README.md)
 - [房间](rooms/README.md)

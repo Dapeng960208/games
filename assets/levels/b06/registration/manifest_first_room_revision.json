@@ -1,0 +1,574 @@
+{
+  "schema_version": 1,
+  "asset_family": "storybook_2_5d_v1",
+  "chapter": "B06",
+  "candidate_only": true,
+  "runtime_quality_gate_passed": false,
+  "registration_status": "source_pixel_reviewed_first_room_variant_runtime_pending",
+  "scope": "Explicit L31 encounter appearance variants only; default manifest, codex, skill icons, stable enemy IDs and combat roles stay unchanged",
+  "generation_date_utc": "2026-10-03",
+  "identities": {
+    "B06-M01": {
+      "kind": "enemy",
+      "variant_id": "first_room_sea_race",
+      "preserves_stable_identity": true,
+      "original_registry_unchanged": true,
+      "reference_body_height_px": 535,
+      "scale_policy": "one_fixed_identity_reference_height_all_poses_source_pose_scale_one",
+      "description": "adult human-faced sea-person trident guard",
+      "frames": {
+        "idle": {
+          "texture": "asset://levels/b06/enemies/m01/animations/first_room_race_atlas.png",
+          "source_sha256": "169ec08896d3e09fe46270df79630e36e1e81a462a81448985793f73ce191a42",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            106,
+            266,
+            151,
+            705
+          ],
+          "alpha128_bounds": [
+            114,
+            274,
+            135,
+            689
+          ],
+          "foot": [
+            188,
+            954
+          ],
+          "core_anchor": [
+            176,
+            620
+          ],
+          "visual_outlet": [
+            212,
+            282
+          ],
+          "source_pose_scale": 1,
+          "body_effective_bounds_px": [
+            114,
+            425,
+            133,
+            538
+          ],
+          "weapon_effective_bounds_px": [
+            172,
+            274,
+            77,
+            616
+          ],
+          "anchor_method": "source-pixel visual review; full atlas retained, alpha128 subject bounds with 8px region padding, one fixed anatomical identity height; presentation anchors never drive collision or damage",
+          "pixel_measurement_note": "alpha128_bounds measured exactly; body/weapon sub-bounds manually reviewed semantic envelopes; dynamic region fitting is not used"
+        },
+        "telegraph": {
+          "texture": "asset://levels/b06/enemies/m01/animations/first_room_race_atlas.png",
+          "source_sha256": "169ec08896d3e09fe46270df79630e36e1e81a462a81448985793f73ce191a42",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            512,
+            245,
+            152,
+            725
+          ],
+          "alpha128_bounds": [
+            520,
+            253,
+            136,
+            709
+          ],
+          "foot": [
+            593,
+            954
+          ],
+          "core_anchor": [
+            586,
+            620
+          ],
+          "visual_outlet": [
+            615,
+            262
+          ],
+          "source_pose_scale": 1,
+          "body_effective_bounds_px": [
+            520,
+            424,
+            137,
+            538
+          ],
+          "weapon_effective_bounds_px": [
+            574,
+            253,
+            84,
+            632
+          ],
+          "anchor_method": "source-pixel visual review; full atlas retained, alpha128 subject bounds with 8px region padding, one fixed anatomical identity height; presentation anchors never drive collision or damage",
+          "pixel_measurement_note": "alpha128_bounds measured exactly; body/weapon sub-bounds manually reviewed semantic envelopes; dynamic region fitting is not used"
+        },
+        "execute": {
+          "texture": "asset://levels/b06/enemies/m01/animations/first_room_race_atlas.png",
+          "source_sha256": "169ec08896d3e09fe46270df79630e36e1e81a462a81448985793f73ce191a42",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            873,
+            290,
+            367,
+            681
+          ],
+          "alpha128_bounds": [
+            881,
+            298,
+            351,
+            665
+          ],
+          "foot": [
+            971,
+            954
+          ],
+          "core_anchor": [
+            971,
+            647
+          ],
+          "visual_outlet": [
+            1224,
+            306
+          ],
+          "source_pose_scale": 1,
+          "body_effective_bounds_px": [
+            881,
+            455,
+            150,
+            508
+          ],
+          "weapon_effective_bounds_px": [
+            982,
+            298,
+            250,
+            470
+          ],
+          "anchor_method": "source-pixel visual review; full atlas retained, alpha128 subject bounds with 8px region padding, one fixed anatomical identity height; presentation anchors never drive collision or damage",
+          "pixel_measurement_note": "alpha128_bounds measured exactly; body/weapon sub-bounds manually reviewed semantic envelopes; dynamic region fitting is not used"
+        }
+      },
+      "provenance": {
+        "generator": "image_gen.imagegen",
+        "generated_source_filename": "exec-cf0adf72-36d1-41e5-82e0-34b2eaa758e1.png",
+        "source_sha256": "169ec08896d3e09fe46270df79630e36e1e81a462a81448985793f73ce191a42",
+        "native_dimensions": [
+          1254,
+          1254
+        ],
+        "physical_source": "assets/levels/b06/enemies/m01/animations/first_room_race_atlas.png",
+        "prompt": "Create transparent production game sprite sheet. Canvas1254x1254, three columns, one row, three SMALL slender adult SEA PEOPLE humanoids of the SAME CHARACTER. At x209,627,1045 respectively. Body head-to-feet height exactly600px, head y360, boots y960. Each COMPLETE figure INCLUDING gold trident strictly at most260px wide. Put a HUGE EMPTY transparent 158px vertical gutter between figures. Left figure x79..339, middle x497..757, right x915..1175. There must be no pixels near column boundaries x418,x836. The character: clear small human face, short turquoise blue fin-shaped hair tightly framing head, small fin ears, slim adult woman, white-blue shell tunic with gold trim and blue boots, petite coral ornaments, NO long floating hair, NO wide ribbons or skirt, NO monster head. Elevated35degree downward three-quarter camera facing right/up-right, consistent across all poses. Foot baseline and head size identical. Gold slender three-prong trident with SMALL weapon head about65px wide, short shaft about500px high. LEFT idle holding trident vertical close to body. MIDDLE anticipation body upright, elbows tucked, vertical trident close to right shoulder. RIGHT execute slight forward lean and trident jab at a STEEP angle UP-RIGHT, weapon tip only about100px right of torso. Feet close together, no lunging/spread stance, knees slightly bent. Entire body+weapon should resemble a narrow chess piece silhouette with clean useful weapon outlet. Warm bright hand-painted storybook 2.5D game art, crisp outline and readable face. ALL THREE figures fully separate with ample transparency, no clipping. No text, no shadows, no pedestal, no ground, no frames, no diagram marks, no glow. This is a technical narrow action atlas, keep figures SMALL and narrow with lots of empty space.",
+        "reference_sources": [],
+        "user_reference": {
+          "library_file_id": "libfile_fae6e261f1348191923fe80922f215a1",
+          "viewed_in_conversation": true,
+          "materialized_original_bytes": false
+        },
+        "license": "unknown; no license grant inferred from generation",
+        "source_edits": "none: selected generated RGBA PNG copied byte-for-byte; no upscale, recolor or synthetic art",
+        "maximum_display_review": {
+          "world_reference_height_limit": 105.6,
+          "formula": "body_height / reference_body_height_px * 105.6 * actual_game_camera_zoom",
+          "gameplay_2560x1440_status": "pending real L31 encounter capture",
+          "codex_variant_usage": "not used; default old registry and UI remain unchanged",
+          "minimum_effective_density_policy": "at least 1 source pixel per maximum displayed pixel; 1.25–1.5 margin is implementation guidance"
+        }
+      }
+    },
+    "B06-M02": {
+      "kind": "enemy",
+      "variant_id": "first_room_sea_race",
+      "preserves_stable_identity": true,
+      "original_registry_unchanged": true,
+      "reference_body_height_px": 530,
+      "scale_policy": "one_fixed_identity_reference_height_all_poses_source_pose_scale_one",
+      "description": "young human-faced sea-person operating compact hermit-crab shell cannon",
+      "frames": {
+        "idle": {
+          "texture": "asset://levels/b06/enemies/m02/animations/first_room_race_atlas.png",
+          "source_sha256": "4fee082f66d403bdf7210bcdb0df6fcc39f06616185e8d88bd3a309b3e252c36",
+          "native_dimensions": [
+            2172,
+            724
+          ],
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            223,
+            139,
+            398,
+            562
+          ],
+          "alpha128_bounds": [
+            231,
+            147,
+            382,
+            546
+          ],
+          "foot": [
+            409,
+            676
+          ],
+          "core_anchor": [
+            369,
+            403
+          ],
+          "visual_outlet": [
+            590,
+            415
+          ],
+          "source_pose_scale": 1,
+          "body_effective_bounds_px": [
+            231,
+            147,
+            214,
+            540
+          ],
+          "weapon_effective_bounds_px": [
+            329,
+            363,
+            284,
+            330
+          ],
+          "anchor_method": "source-pixel visual review; full atlas retained, alpha128 subject bounds with 8px region padding, one fixed anatomical identity height; presentation anchors never drive collision or damage",
+          "pixel_measurement_note": "alpha128_bounds measured exactly; body/weapon sub-bounds manually reviewed semantic envelopes; dynamic region fitting is not used"
+        },
+        "telegraph": {
+          "texture": "asset://levels/b06/enemies/m02/animations/first_room_race_atlas.png",
+          "source_sha256": "4fee082f66d403bdf7210bcdb0df6fcc39f06616185e8d88bd3a309b3e252c36",
+          "native_dimensions": [
+            2172,
+            724
+          ],
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            932,
+            170,
+            443,
+            531
+          ],
+          "alpha128_bounds": [
+            940,
+            178,
+            427,
+            515
+          ],
+          "foot": [
+            1120,
+            676
+          ],
+          "core_anchor": [
+            1090,
+            443
+          ],
+          "visual_outlet": [
+            1332,
+            412
+          ],
+          "source_pose_scale": 1,
+          "body_effective_bounds_px": [
+            940,
+            178,
+            228,
+            504
+          ],
+          "weapon_effective_bounds_px": [
+            1086,
+            355,
+            281,
+            338
+          ],
+          "anchor_method": "source-pixel visual review; full atlas retained, alpha128 subject bounds with 8px region padding, one fixed anatomical identity height; presentation anchors never drive collision or damage",
+          "pixel_measurement_note": "alpha128_bounds measured exactly; body/weapon sub-bounds manually reviewed semantic envelopes; dynamic region fitting is not used"
+        },
+        "execute": {
+          "texture": "asset://levels/b06/enemies/m02/animations/first_room_race_atlas.png",
+          "source_sha256": "4fee082f66d403bdf7210bcdb0df6fcc39f06616185e8d88bd3a309b3e252c36",
+          "native_dimensions": [
+            2172,
+            724
+          ],
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            1618,
+            199,
+            446,
+            502
+          ],
+          "alpha128_bounds": [
+            1626,
+            207,
+            430,
+            486
+          ],
+          "foot": [
+            1822,
+            676
+          ],
+          "core_anchor": [
+            1799,
+            440
+          ],
+          "visual_outlet": [
+            2024,
+            411
+          ],
+          "source_pose_scale": 1,
+          "body_effective_bounds_px": [
+            1626,
+            207,
+            223,
+            471
+          ],
+          "weapon_effective_bounds_px": [
+            1787,
+            353,
+            269,
+            340
+          ],
+          "anchor_method": "source-pixel visual review; full atlas retained, alpha128 subject bounds with 8px region padding, one fixed anatomical identity height; presentation anchors never drive collision or damage",
+          "pixel_measurement_note": "alpha128_bounds measured exactly; body/weapon sub-bounds manually reviewed semantic envelopes; dynamic region fitting is not used"
+        }
+      },
+      "provenance": {
+        "generator": "image_gen.imagegen",
+        "generated_source_filename": "exec-dc91987d-efa6-47e7-8d89-47912a890db4.png",
+        "source_sha256": "4fee082f66d403bdf7210bcdb0df6fcc39f06616185e8d88bd3a309b3e252c36",
+        "native_dimensions": [
+          2172,
+          724
+        ],
+        "physical_source": "assets/levels/b06/enemies/m02/animations/first_room_race_atlas.png",
+        "prompt": "Use this blue-white-gold SEA PEOPLE sprite art style and elevated three-quarter facing right/up-right game camera, but create a DIFFERENT identity for a ranged enemy: young humanoid aquatic cannon operator controlling a little hermit-crab shell cannon. Transparent square1254x1254 canvas, EXACTLY THREE columns of418px ONE row. Same youthful character and same crab-shell cannon in all three poses. All pixels in left column x45..365, middle x463..783, right x881..1201. Huge empty transparent gutters. Each COMPLETE operator+crab machine about600px high, feet/crab-support baseline y=1010, head aroundy=410. Child/young sea-person with recognisable human face, bright blue eyes, short turquoise fin hair, small pink fin ears, white and blue tunic with tiny gold shell trim, innocent but determined face. No fish head, no dragon, no ordinary huge crab as the whole character. Small hermit crab with tan legs and ivory spiral SHELL CANNON by operator's front/right side aroundwaistheight; shell has a clearly visible SHORT gold-rimmed cobalt barrel/bore aimed RIGHT/up-right. Operator guides shell cannon with both hands. Hermit crab remains a small companion aboutknee-to-waist height, young human body is clearly visible above it. LEFT idle hands resting on shell grips, cannon bore clearlyright. MIDDLE telegraph leaning forward slightly and aiming barrelright, no separate VFX. RIGHT execute braced operator with SHORT recoil posture and cannon barrelright, small bright cyan light INSIDE bore only, no projectile/smoke/explosion. Keep operator head size and full anatomical height identical acrossposes, fixed support baseline. Entire body, barrel and crab legs confinedtoowncolumnwith25pxmargin, no cross-columnparts. Narrowcompactsilhouette, no longwide hair or ribbons, feetclose. Crisp bright hand-painted storybook fantasygame sprites with readable small contours, warm highlights, slight top-downview. NO ground, NO pedestal, NO oval shadow, NO labels/text/frames/watermark/checkerboard. Lots of transparency around each figure. All weapon/leg tips complete.",
+        "reference_sources": [
+          {
+            "logical_id": "levels/b06/enemies/m01/animations/first_room_race_atlas.png",
+            "sha256": "169ec08896d3e09fe46270df79630e36e1e81a462a81448985793f73ce191a42"
+          }
+        ],
+        "user_reference": {
+          "library_file_id": "libfile_fae6e261f1348191923fe80922f215a1",
+          "viewed_in_conversation": true,
+          "materialized_original_bytes": false
+        },
+        "license": "unknown; no license grant inferred from generation",
+        "source_edits": "none: selected generated RGBA PNG copied byte-for-byte; no upscale, recolor or synthetic art",
+        "maximum_display_review": {
+          "world_reference_height_limit": 105.6,
+          "formula": "body_height / reference_body_height_px * 105.6 * actual_game_camera_zoom",
+          "gameplay_2560x1440_status": "pending real L31 encounter capture",
+          "codex_variant_usage": "not used; default old registry and UI remain unchanged",
+          "minimum_effective_density_policy": "at least 1 source pixel per maximum displayed pixel; 1.25–1.5 margin is implementation guidance"
+        }
+      }
+    },
+    "B06-M03": {
+      "kind": "enemy",
+      "variant_id": "first_room_sea_race",
+      "preserves_stable_identity": true,
+      "original_registry_unchanged": true,
+      "reference_body_height_px": 690,
+      "scale_policy": "one_fixed_identity_reference_height_all_poses_source_pose_scale_one",
+      "description": "adult human-faced sea-person turtle-shell shield guard",
+      "frames": {
+        "idle": {
+          "texture": "asset://levels/b06/enemies/m03/animations/first_room_race_atlas.png",
+          "source_sha256": "b7c18efb4d688a70b1d601f8392bf26d9f6c747efb68d90dce2cb55a6dac4618",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            59,
+            316,
+            350,
+            716
+          ],
+          "alpha128_bounds": [
+            67,
+            324,
+            334,
+            700
+          ],
+          "foot": [
+            244,
+            1015
+          ],
+          "core_anchor": [
+            237,
+            629
+          ],
+          "visual_outlet": [
+            140,
+            620
+          ],
+          "source_pose_scale": 1,
+          "body_effective_bounds_px": [
+            127,
+            324,
+            274,
+            700
+          ],
+          "weapon_effective_bounds_px": [
+            67,
+            514,
+            142,
+            251
+          ],
+          "anchor_method": "source-pixel visual review; full atlas retained, alpha128 subject bounds with 8px region padding, one fixed anatomical identity height; presentation anchors never drive collision or damage",
+          "pixel_measurement_note": "alpha128_bounds measured exactly; body/weapon sub-bounds manually reviewed semantic envelopes; dynamic region fitting is not used"
+        },
+        "telegraph": {
+          "texture": "asset://levels/b06/enemies/m03/animations/first_room_race_atlas.png",
+          "source_sha256": "b7c18efb4d688a70b1d601f8392bf26d9f6c747efb68d90dce2cb55a6dac4618",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            509,
+            325,
+            277,
+            708
+          ],
+          "alpha128_bounds": [
+            517,
+            333,
+            261,
+            692
+          ],
+          "foot": [
+            627,
+            1015
+          ],
+          "core_anchor": [
+            649,
+            649
+          ],
+          "visual_outlet": [
+            657,
+            611
+          ],
+          "source_pose_scale": 1,
+          "body_effective_bounds_px": [
+            517,
+            333,
+            261,
+            692
+          ],
+          "weapon_effective_bounds_px": [
+            567,
+            442,
+            155,
+            285
+          ],
+          "anchor_method": "source-pixel visual review; full atlas retained, alpha128 subject bounds with 8px region padding, one fixed anatomical identity height; presentation anchors never drive collision or damage",
+          "pixel_measurement_note": "alpha128_bounds measured exactly; body/weapon sub-bounds manually reviewed semantic envelopes; dynamic region fitting is not used"
+        },
+        "execute": {
+          "texture": "asset://levels/b06/enemies/m03/animations/first_room_race_atlas.png",
+          "source_sha256": "b7c18efb4d688a70b1d601f8392bf26d9f6c747efb68d90dce2cb55a6dac4618",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            842,
+            362,
+            401,
+            679
+          ],
+          "alpha128_bounds": [
+            850,
+            370,
+            385,
+            663
+          ],
+          "foot": [
+            1025,
+            1020
+          ],
+          "core_anchor": [
+            1030,
+            673
+          ],
+          "visual_outlet": [
+            1175,
+            535
+          ],
+          "source_pose_scale": 1,
+          "body_effective_bounds_px": [
+            850,
+            370,
+            274,
+            663
+          ],
+          "weapon_effective_bounds_px": [
+            1124,
+            391,
+            111,
+            268
+          ],
+          "anchor_method": "source-pixel visual review; full atlas retained, alpha128 subject bounds with 8px region padding, one fixed anatomical identity height; presentation anchors never drive collision or damage",
+          "pixel_measurement_note": "alpha128_bounds measured exactly; body/weapon sub-bounds manually reviewed semantic envelopes; dynamic region fitting is not used"
+        }
+      },
+      "provenance": {
+        "generator": "image_gen.imagegen",
+        "generated_source_filename": "exec-0ae33069-77c0-4d63-b729-385309017f62.png",
+        "source_sha256": "b7c18efb4d688a70b1d601f8392bf26d9f6c747efb68d90dce2cb55a6dac4618",
+        "native_dimensions": [
+          1254,
+          1254
+        ],
+        "physical_source": "assets/levels/b06/enemies/m03/animations/first_room_race_atlas.png",
+        "prompt": "Use this refined human-faced blue fin-haired sea race, white-blue-gold shell clothing and warm painted storybook game art style. Create a NEW adult sea-people SHIELD GUARD identity, NOT the trident woman. Square transparent RGBA canvas with THREE totally separate narrow action sprites, three equal columns in one row, idle/telegraph/execute left to right. All three are the SAME mature human-faced aquatic guardian with short turquoise fin crown hair, visible eyes nose mouth, small fin ears, white and blue fitted tunic and blue boots with gold shell trim, slim adult proportions. Clearly a humanoid with head torso arms two legs. Main weapon is one compact white/cobalt blue/gold turtle-shell shield, elongated oval like a small sea turtle carapace about half body height and half body width; no turtle head or crab claws attached to humanoid, no giant shell replacing entire body. Shield held on right arm at waist/chest on right/front side, OTHER hand open, NO trident or sword. Three figures at x209/627/1045 on1254square canvas. Each COMPLETE figure with shield at most280px wide, about600px high, fixed boot-support baseliney1000, heady400. Large transparent gutters. First idle shield by torso, face clear. Second telegraph guard braces with shield raised in front of chest, face/head clearly above shield. Third execute compact shield bash slightly toward upper-right, arm bends and shield advances a little but doesn't extend to edge, narrow stable stance with feet near each other. Same body height and head size in all poses, same elevated35degree three-quarter game camera looking down toward shoulders and feet, facing right/up-right. Fully transparent background. No scene, no ground, no shadows, no labels, no frames, no halo, no effect, no text, no watermark. Every body and shield edge complete and inside own column with generous margins, no cross-cell pixels, no long hair or ribbons. Fine painted details and crisp clean contour readable at small game size.",
+        "reference_sources": [
+          {
+            "logical_id": "levels/b06/enemies/m01/animations/first_room_race_atlas.png",
+            "sha256": "169ec08896d3e09fe46270df79630e36e1e81a462a81448985793f73ce191a42"
+          }
+        ],
+        "user_reference": {
+          "library_file_id": "libfile_fae6e261f1348191923fe80922f215a1",
+          "viewed_in_conversation": true,
+          "materialized_original_bytes": false
+        },
+        "license": "unknown; no license grant inferred from generation",
+        "source_edits": "none: selected generated RGBA PNG copied byte-for-byte; no upscale, recolor or synthetic art",
+        "maximum_display_review": {
+          "world_reference_height_limit": 105.6,
+          "formula": "body_height / reference_body_height_px * 105.6 * actual_game_camera_zoom",
+          "gameplay_2560x1440_status": "pending real L31 encounter capture",
+          "codex_variant_usage": "not used; default old registry and UI remain unchanged",
+          "minimum_effective_density_policy": "at least 1 source pixel per maximum displayed pixel; 1.25–1.5 margin is implementation guidance"
+        }
+      }
+    }
+  }
+}
