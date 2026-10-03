@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. Original B09 Frost Crystal Court ROOM DESIGN overview, Prism Sculpture Workshop: west entrance, east exit, broad snow floor with a few LOW isolated crystal pillars as diagonal cover, crystal chisels and prism sculptures arranged near outer edges, brass warm lantern on the eastern loop, three differently angled crystal display pedestals, bright lavender workshop arches on north edge. New architecture: geometrically cut transparent ice and pale lavender crystal palace, champagne-gold trims and warm brass lanterns, sunlit snow, bright cheerful winter fantasy. Polished detailed hand-painted storybook game art, same visual family as newly created crystalline monsters. HIGH camera 65-degree overhead near-isometric 2.5D, whole room and all entrances visible, orthographic overview landscape 1536x1024. Entire playable room inside frame, maximum floor clarity, plenty of empty room for action RPG combat, fine dark-violet contours, warm sun from upper left, icy blue long shadows only at perimeter. Distinguish matte coarse snow from shiny cyan ice. No players, monsters, Boss, HUD, text, labels, numbers or watermarks. This is a design illustration; no earlier jungle, coral, pumpkin or desert rooms copied.",
+  "reference_images": [],
+  "sha256": "bd2f2b6b5fa07c42d786dd185b1bd7644d26b40117f029563bbd5f5b79472975",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte source copy, no pixel editing.",
+  "license": "Project-generated original artwork."
+}

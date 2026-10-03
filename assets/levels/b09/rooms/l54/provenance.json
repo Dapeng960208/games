@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. Original B09 Frost Crystal Court ROOM DESIGN overview, Crown Crystal Long Steps: west entrance northeast exit, exactly three low snow-covered platforms connected sequentially by pairs of wide open paths, centrally placed warm lantern always accessible, small glossy ice patches off main walking lane, gold-trimmed faceted palace balustrades and crown motifs, keep platforms broad and combat lanes empty. New architecture: geometrically cut transparent ice and pale lavender crystal palace, champagne-gold trims and warm brass lanterns, sunlit snow, bright cheerful winter fantasy. Polished detailed hand-painted storybook game art, same visual family as newly created crystalline monsters. HIGH camera 65-degree overhead near-isometric 2.5D, whole room and all entrances visible, orthographic overview landscape 1536x1024. Entire playable room inside frame, maximum floor clarity, plenty of empty room for action RPG combat, fine dark-violet contours, warm sun from upper left, icy blue long shadows only at perimeter. Distinguish matte coarse snow from shiny cyan ice. No players, monsters, Boss, HUD, text, labels, numbers or watermarks. This is a design illustration; no earlier jungle, coral, pumpkin or desert rooms copied.",
+  "reference_images": [],
+  "sha256": "0f97fc7053ca2f0dec1e46b051e4be21c1ea0aa90e7967845c73c2ff2c738358",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte source copy, no pixel editing.",
+  "license": "Project-generated original artwork."
+}
