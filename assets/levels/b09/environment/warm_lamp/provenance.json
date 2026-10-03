@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. BRAND NEW B09 Frost Crystal Court environment resource. ONE freestanding brass warm-lantern mechanism for an icy crystal palace. Champagne brass snowflake-shaped base, knee-high short ornate pole, hexagonal amber glass lantern with a small warm flame, faceted lavender roof and gold handle. Clearly readable switch, snow on edges, warm restrained orange light inside glass. Full object with base visible, centered. Bright polished hand-painted storybook fantasy game art, thin dark violet contour for raised objects, crisp cyan and pale lavender facets, champagne gold trim, sunny warm highlights. High-angle near-isometric 2.5D action RPG camera facing lower-right, actual transparent alpha background and empty pixels behind object, no ambient colored aura, no scenery, no floor or shadow. 1024x1024 square. No text, labels, numbers, HUD, borders, logos or watermark. No coral, plants, old copied assets.",
+  "reference_images": [],
+  "sha256": "95d918c7f13c755e5373e52a10a26b9979832e4254b763a1d2c9c60c9b0c611b",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "processing": "Byte-for-byte source copy, no pixel editing.",
+  "license": "Project-generated original artwork."
+}

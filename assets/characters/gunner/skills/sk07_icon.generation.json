@@ -1,0 +1,36 @@
+{
+  "skill_id": "CH02_SK07",
+  "skill_name": "爆裂弹",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in generate",
+  "generated_date_utc": "2026-10-03",
+  "recorded_at_utc": "2026-10-03 09:34:07 UTC",
+  "prompt": "Use case: stylized-concept\nAsset type: original hand-painted fantasy RPG skill icon, requested 2048 x 2048 square native source.\nSubject: EXPLOSIVE ROUND. One enormous pointed brass bullet is punching diagonally from lower left toward upper right through a sharp orange-and-gold jagged explosion burst. The bullet has a stout brass casing, bright ivory pointed nose, and one teal metal band. Explosive jagged triangular rays and a few chunky ember fragments frame it. Dominant silhouette is a single pointed cartridge crossing an angular starburst, NOT a round hand grenade, no gun.\nStyle: polished bright hand-painted cartoon fantasy, painterly 2.5D volume, warm upper-left lighting, fresh distinct colors. Antique brass, ivory, saturated amber and coral-orange explosion, restrained teal.\nComposition: single circular skill badge, thin antique brass rim at 92% of canvas width, dark petrol painted interior. Generous safe margin around all subjects, bold simplified forms legible at 44 pixels. Genuine alpha transparency outside the circle.\nConstraints: original design, only one standalone icon, no text, letters, numbers, logos, watermark, grid, interface, tiny full-body character, grenade, gun, or cropped border. Preserve real native resolution; no upscaling.",
+  "transparent_background": true,
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10117-56a0-7d23-ac6c-045c504fdeb4/exec-aaf184c2-7f6f-439a-84da-7f6521a9ef8b.png",
+  "project_asset": "res://assets/characters/gunner/skills/sk07_icon.png",
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "image_mode": "RGBA",
+  "png_color_type": 6,
+  "file_bytes": 2288511,
+  "sha256": "03f2497d3b5e51a38e217cca196dcfd9c57bb791584514ba94864ee3328e2f0a",
+  "processing": "Original built-in PNG copied unchanged, with no crop, repaint, resize, or upscaling.",
+  "alpha_checks": {
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "center_alpha": 252
+  },
+  "inspection": "Inspected the actual generated output. Unique skill-specific silhouette and painterly fantasy style retained. Native source is 1254 by 1254, not 2048 by 2048; reduced-size runtime legibility remains subject to integrated UI verification.",
+  "ownership": "Project-original generated artwork. No external game artwork or code used."
+}

@@ -2,10 +2,11 @@ class_name ControlBindings
 extends RefCounted
 ## Persist physical keys and mouse buttons instead of relying on a runtime InputMap.
 
-const EDITABLE_ACTIONS := ["click_move", "attack", "skill_q", "skill_secondary", "skill_f", "skill_ultimate", "dash", "interact", "move_up", "move_down", "move_left", "move_right", "backpack", "expedition_map", "relic_details", "pause"]
+const EDITABLE_ACTIONS := ["click_move", "attack", "skill_q", "skill_secondary", "skill_f", "skill_ultimate", "dash", "reload", "interact", "move_up", "move_down", "move_left", "move_right", "backpack", "expedition_map", "relic_details", "pause"]
 const KEY_DEFAULTS := {
 	"skill_q": KEY_Q, "skill_secondary": KEY_W,
 	"skill_f": KEY_E, "skill_ultimate": KEY_R, "dash": KEY_SPACE,
+	"reload": KEY_T,
 	"interact": KEY_F, "move_up": KEY_UP, "move_down": KEY_DOWN,
 	"move_left": KEY_LEFT, "move_right": KEY_RIGHT,
 	"relic_details": KEY_TAB, "expedition_map": KEY_M, "backpack": KEY_B,
@@ -29,9 +30,9 @@ static func resolve(overrides: Dictionary = {}) -> Dictionary:
 	# Explicit player bindings predate these mouse defaults. Keep them intact;
 	# only move an untouched default that would now overlap a saved custom key.
 	# In particular, saved left-click movement keeps the previous A attack.
-	for action: String in ["click_move", "attack"]:
+	for action: String in ["click_move", "attack", "reload"]:
 		if overrides.has(action) or _occupied(action, bindings[action], bindings).is_empty(): continue
-		var candidates: Array = [{"type": "mouse", "code": MOUSE_BUTTON_LEFT}] if action == "click_move" else [{"type": "key", "code": KEY_A}]
+		var candidates: Array = [{"type": "mouse", "code": MOUSE_BUTTON_LEFT}] if action == "click_move" else [{"type": "key", "code": KEY_Y}] if action == "reload" else [{"type": "key", "code": KEY_A}]
 		for code: int in [MOUSE_BUTTON_MIDDLE, MOUSE_BUTTON_XBUTTON1, MOUSE_BUTTON_XBUTTON2]:
 			candidates.append({"type": "mouse", "code": code})
 		for code: int in [KEY_G, KEY_H, KEY_J, KEY_K, KEY_L, KEY_Z, KEY_X, KEY_C, KEY_V, KEY_T, KEY_Y, KEY_U, KEY_I, KEY_O, KEY_P]:

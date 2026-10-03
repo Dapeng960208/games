@@ -1,0 +1,25 @@
+{
+  "skill_id": "CH01_SK03",
+  "name": "铁壁战吼",
+  "tool": "image_gen.imagegen",
+  "execution_mode": "built-in",
+  "prompt": "Use case: stylized-concept. Asset type: one production original handpainted cartoon fantasy RPG skill icon for CH01_SK03 铁壁战吼, one icon only. Requested square canvas 2048x2048, original native pixels, no upscaling. Close-up three-quarter PROFILE of a powerful adult warrior's head wearing a chunky silver-steel open battle helmet. The exposed mouth is visibly open in a fierce shout toward the RIGHT; three bold widening amber soundwave arcs fan outward from the mouth. A broad pale-steel protective halo curves behind the helmet to suggest defensive warcry; NOT a separate shield, NOT an axe, NOT a full character. The helmet-and-open-mouth silhouette occupies most of the left half, strong clear fan-shaped soundwaves occupy right half; face must read adult warrior. Thin antique-brass circular rim occupies 92 percent of canvas width, actual transparent outside circle; deep navy interior with restrained glow. Hero palette steel silver, navy, vermilion, amber. Painterly 2.5D sculpted volume, original bright handpainted cartoon fantasy, warm upper-left sunshine, bold simple shapes, generous 8 percent margin, immediately recognizable at 44 px. No text, numbers, letters, logos, watermark, grid, copied game art, or tiny fullbody.",
+  "default_generated_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10114-b76b-7ee2-b438-176959d88d93\\exec-dd3d5c2a-bd99-4e4f-a931-43861dad4e67.png",
+  "asset_path": "assets/characters/warrior/skills/sk03_icon.png",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "image_mode": "RGBA",
+  "png_color_type": 6,
+  "sha256": "65d8d24db2ac85cd89aab04346206157adc0766c4e0db0a67f0443909f80d3da",
+  "creation_date_utc": "2026-10-03T09:30:22.819587+00:00",
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_2k": false,
+  "local_image_editing": false,
+  "source_copied_unchanged": true,
+  "original_design": true
+}

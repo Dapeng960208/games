@@ -63,6 +63,31 @@ func key(code: int, pressed: bool) -> void:
 	event.pressed = pressed
 	Input.parse_input_event(event)
 
+func check_click_cache_geometry() -> void:
+	var navigation: RefCounted = room.player.click_navigation
+	var wall: Rect2 = room.obstructions[0]
+	var arena: Rect2 = room.ARENA
+	var ground: PackedVector2Array = room.ground_polygon.duplicate()
+	var builds: int = navigation.graph_builds
+	room.obstructions[0] = Rect2(600,280,80,150)
+	check(navigation.request(Vector2(430,350), Vector2(750,350), 14.0) and navigation.graph_builds == builds + 1, "same-count moved prop rebuilds click graph")
+	builds = navigation.graph_builds
+	room.obstructions[0] = wall
+	check(navigation.request(Vector2(430,350), Vector2(750,350), 14.0) and navigation.graph_builds == builds + 1, "restored prop rebuilds click graph")
+	builds = navigation.graph_builds
+	check(navigation.request(Vector2(430,350), Vector2(750,350), 18.0) and navigation.graph_builds == builds + 1, "actor radius rebuilds click graph")
+	builds = navigation.graph_builds
+	room.ARENA = arena.grow(10.0)
+	check(navigation.request(Vector2(430,350), Vector2(750,350), 18.0) and navigation.graph_builds == builds + 1, "arena change rebuilds click graph")
+	builds = navigation.graph_builds
+	room.ground_polygon = PackedVector2Array([room.ARENA.position, Vector2(room.ARENA.end.x,room.ARENA.position.y), room.ARENA.end, Vector2(room.ARENA.position.x,room.ARENA.end.y)])
+	check(navigation.request(Vector2(430,350), Vector2(750,350), 18.0) and navigation.graph_builds == builds + 1, "ground polygon change rebuilds click graph")
+	room.ARENA = arena
+	room.ground_polygon = ground
+	navigation.configure(room)
+	check(navigation.request(Vector2(430,350), Vector2(750,350), 14.0) and navigation.graph_builds == builds + 2, "room configure clears previous click graph")
+	navigation.cancel()
+
 func check_gunner_direction() -> void:
 	# Actual auto-shoot selection points SE while the live mouse points NW.
 	# Presentation must follow that committed packet through the cooldown gap.
@@ -162,6 +187,7 @@ func _run() -> void:
 	check(room.player.click_navigation.is_active(), "actual right mouse starts route")
 	check(room.player.click_navigation.path.size() >= 3, "route turns around blocking prop")
 	var searches: int = room.player.click_navigation.route_searches
+	var graph_builds: int = room.player.click_navigation.graph_builds
 	await frames(210)
 	check(room.player.position.distance_to(Vector2(750,350)) <= 4.0, "automatic walking reaches clicked ground without crossing wall")
 	check(room.player.click_navigation.route_searches == searches, "unchanged route never re-searches per frame")
@@ -171,6 +197,7 @@ func _run() -> void:
 	aim(Vector2(750,350))
 	mouse(MOUSE_BUTTON_RIGHT, true)
 	await frames()
+	check(room.player.click_navigation.graph_builds == graph_builds, "completed and cancelled route retains fixed click graph")
 	searches = room.player.click_navigation.route_searches
 	await frames(12)
 	check(room.player.click_navigation.route_searches == searches, "holding right mouse with stable target reuses cached route")
@@ -182,6 +209,7 @@ func _run() -> void:
 	check(room.player.click_navigation.route_searches == searches + 1, "held replanning respects 0.16 second interval")
 	await frames(12)
 	check(room.player.click_navigation.route_searches == searches + 2 and room.player.click_navigation.goal.distance_to(Vector2(850,350)) < 1, "latest held cursor becomes next destination after interval")
+	check(room.player.click_navigation.graph_builds == graph_builds, "different held click goals reuse fixed corner links")
 	aim(Vector2(860,350))
 	await frames(12)
 	check(room.player.click_navigation.route_searches == searches + 2, "10px cursor jitter does not re-search")
@@ -193,6 +221,7 @@ func _run() -> void:
 	check(room.player.request_move(Vector2(430,350)), "new click can escape a rounded prop corner")
 	await frames(75)
 	check(room.player.position.distance_to(Vector2(430,350)) <= 4.0, "corner click reaches destination without sticking")
+	check_click_cache_geometry()
 	room.obstructions.clear()
 	room.player.position = Vector2(430,350)
 	var target: EnemyActor = room.spawn_enemy(Vector2(490,350), "M01")

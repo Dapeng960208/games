@@ -40,7 +40,7 @@ func tick(delta: float) -> void:
 	# Keep consumed IDs when the chain ends: a late pierce cannot count twice.
 
 func _original(source: StringName, context: Dictionary) -> bool:
-	return source in [&"primary", &"q", &"secondary", &"f", &"ultimate"] and bool(context.get("equipment_eligible", false)) and int(context.get("proc_depth", 0)) == 0 and (source != &"primary" or bool(context.get("original_basic", false))) and not str(context.get("attack_id", "")).is_empty()
+	return source in [&"primary", &"q", &"secondary", &"f", &"ultimate", &"skill"] and bool(context.get("equipment_eligible", false)) and int(context.get("proc_depth", 0)) == 0 and (source != &"primary" or bool(context.get("original_basic", false))) and not str(context.get("attack_id", "")).is_empty()
 
 func multiplier(source: StringName, context: Dictionary) -> float:
 	if not _available() or not _original(source, context):

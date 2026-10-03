@@ -98,8 +98,16 @@ func prepare(hero_id: String, slot: String) -> bool:
 		return false
 	return _request(hero_id, "prepare_" + slot, "prepare", 0.04)
 
+func reload(kind: String) -> bool:
+	# Reuse the existing dry latch Foley; no shot report accompanies a reload.
+	var cue: String = {"reload_start":"resonance_1", "reload_complete":"resonance_2", "reload_success":"resonance_full", "reload_missed":"prepare_f"}.get(kind, "")
+	if cue.is_empty():
+		return false
+	return _request("CH02", cue, "reload", 0.0, "stone", 0.45 if kind == "reload_missed" else 0.70)
+
 ## One musical signature on the first actual skill release. Burst projectiles
-## call cast for each shot; their ability timeline calls this only at index 0.
+## call cast for each shot; their ability timeline calls this on the first
+## successful release, including a later index when an earlier effect failed.
 ## A current motif keeps its natural tail; an ultimate can take over a shorter
 ## motif on this same voice. Repeated ultimate requests never restart it.
 func skill_music(hero_id: String, slot: String) -> bool:
@@ -357,7 +365,7 @@ func _request(hero_id: String, cue: String, group: String, interval: float, mate
 	# Passive hits and loot leave two slots for player actions and direct contact.
 	# A thrown grenade is a delayed player release, so its real detonation can
 	# use a reserve while passive field/node machinery remains background.
-	var player_priority: bool = cue == "grenade_burst" or group in ["attack", "cast", "hurt", "impact", "heavy_impact"]
+	var player_priority: bool = cue == "grenade_burst" or group in ["attack", "cast", "reload", "hurt", "impact", "heavy_impact"]
 	var index: int = _free_voice(player_priority)
 	if index < 0:
 		# Do not steal an older voice: abruptly stopping its waveform clicks.

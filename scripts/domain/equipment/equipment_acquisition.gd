@@ -12,6 +12,7 @@ const Economy = preload("res://scripts/domain/equipment/instance_economy.gd")
 const V3 = preload("res://scripts/domain/equipment/equipment_acquisition_v3.gd")
 const V4 = preload("res://scripts/domain/equipment/equipment_acquisition_v4.gd")
 const V5 = preload("res://scripts/domain/equipment/equipment_acquisition_v5.gd")
+const B10 = preload("res://scripts/domain/equipment/equipment_acquisition_b10.gd")
 const GENERATOR_VERSION := 5
 # Immutable v2 eligibility overlay. All numerical/roll definitions remain v1.
 const V2_SET_HEROES := {"S01":["CH03"],"S02":["CH01","CH02","CH03"],"S03":["CH01","CH02","CH03"],"S04":["CH02"],"S05":["CH01"],"S06":["CH01","CH02","CH03"],"S07":["CH02"],"S08":["CH01","CH02","CH03"],"S09":["CH01"],"S10":["CH01","CH02","CH03"],"S11":["CH03"],"S12":["CH02"],"S13":["CH01","CH02","CH03"],"S14":["CH01"]}
@@ -188,7 +189,7 @@ const ITEM_KEYS: Array[String] = ["instance_id", "source_event_id", "template_id
 ## with a freshly generated gold item (same count, new N/g and k/u).
 ## The frozen_result overload rejects changed requests and invalid receipts.
 static func roll_event(context: Dictionary, frozen_result: Dictionary = {}) -> Dictionary:
-	var version := int(frozen_result.get("generator_version", 5 if context.get("race_id") == "B10" else (4 if context.get("race_id") == "B06" else 3)))
+	var version := int(frozen_result.get("generator_version", 5 if context.get("race_id") in ["B09", "B10"] else 4 if context.get("race_id") == "B06" else 3))
 	var error := _event_error(context, version)
 	if not error.is_empty(): return _failure(error)
 	var request: Dictionary = _canonical(context)
@@ -200,6 +201,7 @@ static func roll_event(context: Dictionary, frozen_result: Dictionary = {}) -> D
 			return _failure("event_context_changed")
 		if not event_result_valid(frozen_result): return _failure("invalid_frozen_result")
 		return frozen_result.duplicate(true)
+	if request.race_id == "B09" and not Rules.b09_candidate_enabled(): return _failure("unreleased_template")
 	if int(request.challenge_level) > Growth.level_cap() or (request.race_id == "B05" and Growth.level_cap() < V3.LEVEL_CAP): return _failure("unreleased_challenge_level")
 	var version_error := _dispatch_version(version, true)
 	if not version_error.is_empty(): return _failure(version_error)
@@ -250,7 +252,7 @@ static func _roll_event_version(context: Dictionary, version: int) -> Dictionary
 ## Purchases/crafts are +0. Transactions own unlocks, affordability, capacity,
 ## context freezing and persistence; no caller-supplied random values/ledgers.
 static func roll_item(spec: Dictionary, seed: int) -> Dictionary:
-	var version := 5 if V5.TEMPLATES.has(spec.get("template_id")) or int(spec.get("item_level", 1)) > V3.LEVEL_CAP and not V4.TEMPLATES.has(spec.get("template_id")) else (4 if V4.TEMPLATES.has(spec.get("template_id")) else 3)
+	var version := 5 if V5.TEMPLATES.has(spec.get("template_id")) or B10.TEMPLATES.has(spec.get("template_id")) else 4 if V4.TEMPLATES.has(spec.get("template_id")) else 3
 	if not _dispatch_version(GENERATOR_VERSION, true).is_empty() or not _item_error(spec).is_empty(): return {}
 	var request: Dictionary = _canonical(spec)
 	if not request.has("location"): request.location = "pending" if request.source == "drop" else "inventory"
@@ -266,7 +268,7 @@ static func current_version_error() -> String:
 
 static func _dispatch_version(version: int, current_creation: bool) -> String:
 	if version not in [1, 2, 3, 4, 5]: return "unsupported_generator_version"
-	if current_creation and (not _live_v1_matches() or not _live_v2_matches() or not _live_v3_matches() or not _live_v4_matches() or not _live_v5_matches()): return "generation_version_mismatch"
+	if current_creation and (not _live_v1_matches() or not _live_v2_matches() or not _live_v3_matches() or not _live_v4_matches() or not _live_v5_matches() or not _live_b10_matches()): return "generation_version_mismatch"
 	return ""
 
 static func _allowed_heroes_v2(template_id: String) -> Array:
@@ -274,30 +276,32 @@ static func _allowed_heroes_v2(template_id: String) -> Array:
 	var set_id: String = V2_TEMPLATE_SETS[template_id]
 	return ["CH01", "CH02", "CH03"] if set_id.is_empty() else V2_SET_HEROES.get(set_id, []).duplicate()
 
-static func _level_cap(version: int) -> int:
-	return V5.LEVEL_CAP if version >= 5 else (V4.LEVEL_CAP if version >= 4 else (V3.LEVEL_CAP if version >= 3 else V1_LEVEL_CAP))
+static func _level_cap(version: int, race_id: String = "") -> int:
+	if version >= 5 and race_id == "B10": return B10.LEVEL_CAP
+	return V5.LEVEL_CAP if version >= 5 else V4.LEVEL_CAP if version >= 4 else (V3.LEVEL_CAP if version >= 3 else V1_LEVEL_CAP)
 
 static func _allowed_heroes(template_id: String, version: int) -> Array:
+	if version >= 5 and B10.TEMPLATES.has(template_id): return B10.TEMPLATES[template_id].allowed_heroes.duplicate()
 	if version >= 5 and V5.TEMPLATES.has(template_id): return V5.TEMPLATES[template_id].allowed_heroes.duplicate()
 	if version >= 4 and V4.TEMPLATES.has(template_id): return V4.TEMPLATES[template_id].allowed_heroes.duplicate()
 	if version >= 3 and V3.TEMPLATES.has(template_id): return V3.TEMPLATES[template_id].allowed_heroes.duplicate()
 	return _allowed_heroes_v2(template_id)
 
 static func _live_v3_matches() -> bool:
-	if Growth.level_cap() not in [20, V3.LEVEL_CAP, V4.LEVEL_CAP, V5.LEVEL_CAP]: return false
-	if Registry.equipment_ids(2).size() != V1_TEMPLATES.size() + (V3.TEMPLATES.size() if Rules.chapter_enabled("B05") else 0) + (V4.TEMPLATES.size() if Rules.chapter_enabled("B06") else 0) + (V5.TEMPLATES.size() if Rules.chapter_enabled("B10") else 0): return false
+	if Growth.level_cap() not in [20, V3.LEVEL_CAP, V4.LEVEL_CAP, V5.LEVEL_CAP, B10.LEVEL_CAP]: return false
+	if Registry.equipment_ids(2).size() != V1_TEMPLATES.size() + (V3.TEMPLATES.size() if int(Rules.value("implemented_chapters")) >= 5 else 0) + (V4.TEMPLATES.size() if int(Rules.value("implemented_chapters")) >= 6 else 0) + (V5.TEMPLATES.size() if Rules.b09_candidate_enabled() else 0) + (B10.TEMPLATES.size() if Rules.chapter_enabled("B10") else 0) + (1 if not Registry.equipment("B10-EASTER-RING", 2).is_empty() else 0): return false
 	for id: String in V3.TEMPLATES:
 		var live := Registry.equipment(id, 2)
 		for key: String in V3.TEMPLATES[id]:
 			if _canonical(live.get(key)) != _canonical(V3.TEMPLATES[id][key]): return false
 	return true
 
-static func _live_v5_matches() -> bool:
-	if Growth.level_cap() < V5.LEVEL_CAP: return true
-	for id: String in V5.TEMPLATES:
+static func _live_b10_matches() -> bool:
+	if not Rules.chapter_enabled("B10"): return true
+	for id: String in B10.TEMPLATES:
 		var live := Registry.equipment(id, 2)
-		for key: String in V5.TEMPLATES[id]:
-			if _canonical(live.get(key)) != _canonical(V5.TEMPLATES[id][key]): return false
+		for key: String in B10.TEMPLATES[id]:
+			if _canonical(live.get(key)) != _canonical(B10.TEMPLATES[id][key]): return false
 	return true
 
 static func _live_v4_matches() -> bool:
@@ -306,6 +310,14 @@ static func _live_v4_matches() -> bool:
 		var live := Registry.equipment(id, 2)
 		for key: String in V4.TEMPLATES[id]:
 			if _canonical(live.get(key)) != _canonical(V4.TEMPLATES[id][key]): return false
+	return true
+
+static func _live_v5_matches() -> bool:
+	if not Rules.b09_candidate_enabled(): return true
+	for id: String in V5.TEMPLATES:
+		var live := Registry.equipment(id, 2)
+		for key: String in V5.TEMPLATES[id]:
+			if _canonical(live.get(key)) != _canonical(V5.TEMPLATES[id][key]): return false
 	return true
 
 static func _live_v2_matches() -> bool:
@@ -338,18 +350,20 @@ static func _live_v1_matches() -> bool:
 ## Keys are available slots in registry order; templates are stable-ID sorted.
 ## Never falls back to another race or includes a shop-exclusive template.
 static func natural_pool(race_id: String, hero_id: String = "", version: int = 0) -> Dictionary:
-	if version == 0: version = 5 if Growth.level_cap() >= V5.LEVEL_CAP else (4 if Growth.level_cap() >= V4.LEVEL_CAP else 3)
+	if version == 0: version = 5 if Rules.b09_candidate_enabled() or Rules.chapter_enabled("B10") else 4 if Growth.level_cap() >= V4.LEVEL_CAP else 3
 	if version not in [1, 2, 3, 4, 5] or (not hero_id.is_empty() and hero_id not in ["CH01", "CH02", "CH03"]): return {}
 	# B05 is class-filtered from its first generation; never offer all 35 as a
 	# natural pool when a caller omitted the hero context.
 	if race_id == "B05" and (version < 3 or hero_id.is_empty()): return {}
 	if race_id == "B06" and (version < 4 or hero_id.is_empty()): return {}
-	if race_id == "B10" and (version < 5 or hero_id.is_empty()): return {}
+	if race_id in ["B09", "B10"] and (version < 5 or hero_id.is_empty()): return {}
 	var unordered := {}
 	var ids := V1_TEMPLATES.keys()
 	if version >= 3: ids.append_array(V3.TEMPLATES.keys())
 	if version >= 4: ids.append_array(V4.TEMPLATES.keys())
-	if version >= 5: ids.append_array(V5.TEMPLATES.keys())
+	if version >= 5:
+		ids.append_array(V5.TEMPLATES.keys())
+		ids.append_array(B10.TEMPLATES.keys())
 	for id: String in ids:
 		var template := _template(id, version)
 		if not hero_id.is_empty() and hero_id not in _allowed_heroes(id, version): continue
@@ -397,14 +411,14 @@ static func template_weights(candidates: Array, context: Dictionary, version: in
 		if template.is_empty() or template.get("race_id") != context.race_id or bool(template.get("shop_only", false)): return {}
 		if version >= 2 and context.hero_id not in _allowed_heroes(id, version): return {}
 		var preferred := false
-		if (version >= 3 and context.race_id == "B05") or (version >= 4 and context.race_id == "B06") or (version >= 5 and context.race_id == "B10"):
-			var preferences = V5 if context.race_id == "B10" else (V4 if context.race_id == "B06" else V3)
+		if (version >= 3 and context.race_id == "B05") or (version >= 4 and context.race_id == "B06") or (version >= 5 and context.race_id in ["B09", "B10"]):
+			var preferences = B10 if context.race_id == "B10" else V5 if context.race_id == "B09" else V4 if context.race_id == "B06" else V3
 			var room: String = str(context.get("room_id", ""))
 			var monster: String = str(context.get("monster_id", ""))
 			preferred = template.slot in preferences.ROOM_PREFERRED_SLOTS.get(room, []) or template.slot == preferences.MONSTER_PREFERRED_SLOT.get(monster, "")
 			var unique: Array = preferences.UNIQUE_PREFERENCES.get(id, [])
 			preferred = preferred or room in unique or monster in unique
-		result[id] = (V5.PREFERENCE_WEIGHT if context.race_id == "B10" else (V4.PREFERENCE_WEIGHT if context.race_id == "B06" else V3.PREFERENCE_WEIGHT)) if preferred else 1
+		result[id] = (B10.PREFERENCE_WEIGHT if context.race_id == "B10" else V5.PREFERENCE_WEIGHT if context.race_id == "B09" else V4.PREFERENCE_WEIGHT if context.race_id == "B06" else V3.PREFERENCE_WEIGHT) if preferred else 1
 	return result
 
 ## Integer common-denominator encoding of original_slot_weight / slot_count.
@@ -473,7 +487,7 @@ static func _event_item(context: Dictionary, pool: Dictionary, index: int, force
 	if template_id.is_empty(): return {}
 	var item_level := int(context.challenge_level)
 	if context.source != "boss":
-		item_level = clampi(item_level + int(_weighted(rng, _value("item_level_offsets"))), 1, V1_LEVEL_CAP if int(context.challenge_level) <= V1_LEVEL_CAP else _level_cap(version))
+		item_level = clampi(item_level + int(_weighted(rng, _value("item_level_offsets"))), 1, V1_LEVEL_CAP if int(context.challenge_level) <= V1_LEVEL_CAP else _level_cap(version, str(context.race_id)))
 	var spec := {"instance_id":"v2:" + (str(context.event_id) + ":" + str(index)).sha256_text(),
 		"source_event_id":context.event_id, "template_id":template_id, "rarity":rarity,
 		"power_type":context.power_type, "item_level":item_level, "source":"drop", "location":"pending"}
@@ -519,7 +533,7 @@ static func _finish_item(spec: Dictionary, rng: RandomNumberGenerator, seed: int
 		"equipment_instance_version":int(_value("versions").equipment_instance), "ruleset_version":int(_value("versions").ruleset),
 		"scale_version":int(_value("versions").scale), "enhancement_reroll_history":[], "reforge_slot":-1, "lock_state":false}
 	if version >= 2:
-		item["class_policy_version"] = 4 if V5.TEMPLATES.has(spec.template_id) else (3 if V4.TEMPLATES.has(spec.template_id) else (2 if V3.TEMPLATES.has(spec.template_id) else 1))
+		item["class_policy_version"] = 4 if V5.TEMPLATES.has(spec.template_id) or B10.TEMPLATES.has(spec.template_id) else 3 if V4.TEMPLATES.has(spec.template_id) else (2 if V3.TEMPLATES.has(spec.template_id) else 1)
 		item["allowed_heroes"] = _allowed_heroes(str(spec.template_id), version)
 		item["acquired_for_hero"] = item.allowed_heroes[0] if item.allowed_heroes.size() == 1 else spec.hero_id
 	return item
@@ -530,6 +544,7 @@ static func _value(key: String) -> Variant:
 	return V1_PARAMETERS[key]
 
 static func _template(id: String, version: int = GENERATOR_VERSION) -> Dictionary:
+	if version >= 5 and B10.TEMPLATES.has(id): return B10.TEMPLATES[id]
 	if version >= 5 and V5.TEMPLATES.has(id): return V5.TEMPLATES[id]
 	if version >= 4 and V4.TEMPLATES.has(id): return V4.TEMPLATES[id]
 	if version >= 3 and V3.TEMPLATES.has(id): return V3.TEMPLATES[id]
@@ -590,23 +605,27 @@ static func _event_error(context: Dictionary, version: int = 1) -> String:
 	if version >= 2 and (context.get("hero_id") not in ["CH01", "CH02", "CH03"] or context.get("power_type") != ("magic" if context.get("hero_id") == "CH03" else "physical")): return "invalid_hero_context"
 	if not context.has_all(["event_id", "seed", "source", "race_id", "difficulty", "challenge_level", "power_type"]): return "missing_event_field"
 	if not _text(context.event_id) or not _text(context.race_id): return "invalid_event_identity"
-	var preferences = V5 if version >= 5 and context.race_id == "B10" else (V4 if version >= 4 and context.race_id == "B06" else V3)
+	var preferences = B10 if version >= 5 and context.race_id == "B10" else V5 if version >= 5 and context.race_id == "B09" else V4 if version >= 4 and context.race_id == "B06" else V3
 	if context.race_id == "B10":
+		if version < 5 or context.get("room_id") not in B10.ROOM_LEVELS: return "invalid_room_context"
+		if context.challenge_level != B10.ROOM_LEVELS[context.room_id]: return "invalid_challenge_level"
+		if context.source != "summon" and (context.source == "boss") != (context.room_id == "BO10"): return "invalid_boss_room"
+	if context.race_id == "B09":
 		if version < 5 or context.get("room_id") not in V5.ROOM_LEVELS: return "invalid_room_context"
 		if context.challenge_level != V5.ROOM_LEVELS[context.room_id]: return "invalid_challenge_level"
-		if context.room_id == "BO10" and context.source not in ["boss", "summon"]: return "invalid_boss_room"
+		if context.source != "summon" and (context.source == "boss") != (context.room_id == "BO09"): return "invalid_boss_room"
 	if context.race_id == "B06":
 		if version < 4 or context.get("room_id") not in V4.ROOM_LEVELS: return "invalid_room_context"
 		if context.challenge_level != V4.ROOM_LEVELS[context.room_id]: return "invalid_challenge_level"
 		if context.source != "summon" and (context.source == "boss") != (context.room_id == "BO06"): return "invalid_boss_room"
 	if context.has("room_id"):
-		if context.race_id not in ["B05", "B06", "B10"] or not context.room_id is String or not preferences.ROOM_PREFERRED_SLOTS.has(context.room_id): return "invalid_room_context"
+		if context.race_id not in ["B05", "B06", "B09", "B10"] or not context.room_id is String or not preferences.ROOM_PREFERRED_SLOTS.has(context.room_id): return "invalid_room_context"
 	if context.has("monster_id"):
-		if context.race_id not in ["B05", "B06", "B10"] or context.source not in ["normal", "elite"] or not context.monster_id is String or not preferences.MONSTER_PREFERRED_SLOT.has(context.monster_id): return "invalid_monster_context"
+		if context.race_id not in ["B05", "B06", "B09", "B10"] or context.source not in ["normal", "elite"] or not context.monster_id is String or not preferences.MONSTER_PREFERRED_SLOT.has(context.monster_id): return "invalid_monster_context"
 	if not _integer(context.seed, -9007199254740991, 9007199254740991): return "invalid_seed"
 	if not context.source is String or context.source not in EVENT_SOURCES: return "invalid_source"
 	if not _integer(context.difficulty, 0, _value("normal_quality_weights").size() - 1): return "invalid_difficulty"
-	if not _integer(context.challenge_level, 1, _level_cap(version)): return "invalid_challenge_level"
+	if not _integer(context.challenge_level, 1, _level_cap(version, str(context.race_id))): return "invalid_challenge_level"
 	if context.power_type not in ["physical", "magic"]: return "invalid_power_type"
 	if not context.get("wish_slot", "") is String: return "invalid_wish_slot"
 	if context.get("wish_slot", "") != "" and context.wish_slot not in V1_SLOT_ORDER: return "invalid_wish_slot"
@@ -624,11 +643,13 @@ static func _item_error(spec: Dictionary) -> String:
 	for key in ["instance_id", "source_event_id", "template_id"]:
 		if not _text(spec[key]): return "invalid_item_identity"
 	if _template(str(spec.template_id)).is_empty(): return "invalid_template"
+	if V5.TEMPLATES.has(spec.template_id) and not Rules.b09_candidate_enabled(): return "unreleased_template"
 	if V3.TEMPLATES.has(spec.template_id) and Growth.level_cap() < V3.LEVEL_CAP: return "unreleased_template"
 	if V4.TEMPLATES.has(spec.template_id) and Growth.level_cap() < V4.LEVEL_CAP: return "unreleased_template"
-	if V5.TEMPLATES.has(spec.template_id) and Growth.level_cap() < V5.LEVEL_CAP: return "unreleased_template"
+	if B10.TEMPLATES.has(spec.template_id) and not Rules.chapter_enabled("B10"): return "unreleased_template"
 	if spec.rarity not in RARITIES or spec.power_type not in ["physical", "magic"]: return "invalid_item_type"
-	if not _integer(spec.item_level, 45 if V5.TEMPLATES.has(spec.template_id) else (25 if V4.TEMPLATES.has(spec.template_id) else 1), mini(_level_cap(4 if V4.TEMPLATES.has(spec.template_id) else 5), Growth.level_cap())): return "invalid_item_level"
+	if not _integer(spec.item_level, 45 if B10.TEMPLATES.has(spec.template_id) else 41 if V5.TEMPLATES.has(spec.template_id) else 25 if V4.TEMPLATES.has(spec.template_id) else 1, mini(_level_cap(5 if V5.TEMPLATES.has(spec.template_id) or B10.TEMPLATES.has(spec.template_id) else 4 if V4.TEMPLATES.has(spec.template_id) else 3, str(_template(str(spec.template_id)).get("race_id", ""))), Growth.level_cap())): return "invalid_item_level"
+	if V5.TEMPLATES.has(spec.template_id) and spec.source != "drop": return "b09_creation_economy_not_released"
 	if spec.source not in ["purchase", "craft", "drop"]: return "invalid_item_source"
 	if spec.source == "purchase" and spec.rarity not in _value("shop_rarities"): return "invalid_shop_rarity"
 	if spec.source == "craft" and not _value("forge_costs").has(spec.rarity): return "invalid_craft_rarity"

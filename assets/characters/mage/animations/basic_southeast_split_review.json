@@ -1,0 +1,445 @@
+{
+  "schema_version": 2,
+  "hero_id": "CH03",
+  "direction": "SE",
+  "action": "basic",
+  "enabled": false,
+  "production_ready": false,
+  "status": "isolated_component_review_only",
+  "reason": "one direction/action only; natural scale/anchor and complete-family approval outstanding",
+  "sources": [
+    {
+      "file": "basic_southeast_a.png",
+      "sha256": "a7f14daf6736b1d53a004034bd26dc0ef4bdfaef9e2b69c0b7eba0feaf917c4e",
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "scale": 1,
+      "landmark_provenance": "basic_southeast_a.generation.json",
+      "alpha8_source_pixels": 529511,
+      "major_independent_components": 4,
+      "outer_edge_alpha128_pixels": 0,
+      "outer_edge_alpha8_pixels": 0,
+      "landmark_accuracy_px": 5,
+      "occluded_boot_accuracy_px": 35,
+      "standing_reference_frame": "SE_0",
+      "reference_body_height": 460,
+      "reference_measurement_verified": false,
+      "fixed_reference_preview_scale": 0.8847826086956522
+    },
+    {
+      "file": "basic_southeast_b.png",
+      "sha256": "2df3b2dae60321d0fa365f43328b484645cd1bfb7c100a61ba1e707c406c2dbc",
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "scale": 1,
+      "landmark_provenance": "basic_southeast_b.generation.json",
+      "alpha8_source_pixels": 491265,
+      "major_independent_components": 4,
+      "outer_edge_alpha128_pixels": 0,
+      "outer_edge_alpha8_pixels": 0,
+      "landmark_accuracy_px": 5,
+      "occluded_boot_accuracy_px": 35,
+      "standing_reference_frame": "SE_7",
+      "reference_body_height": 407,
+      "reference_measurement_verified": false,
+      "fixed_reference_preview_scale": 1.0
+    }
+  ],
+  "atlas_dimensions_each": [
+    1536,
+    1536
+  ],
+  "cell_dimensions": [
+    768,
+    768
+  ],
+  "review_texture_directory": "tools/godot/art_preview/mage/split_native",
+  "scale": 1,
+  "upscaled": false,
+  "native_2k_requirement_met": false,
+  "source_reference_body_heights": {
+    "a": 460,
+    "b": 407
+  },
+  "body_extent_excludes": "weapons, muzzle flashes, hats, capes and detached ornaments",
+  "body_extent_measurement": "manual hair-top to farther sole-contact point; a visible/estimated anatomy extent, not an opaque texture bounding box",
+  "body_scale_rule": "native atlases are 1:1; each source uses one fixed standing reference for world scaling; crouch extents never drive per-frame resizing",
+  "reference_preview": {
+    "target_body_height": 407,
+    "source_fixed_scales": {
+      "a": 0.8847826086956522,
+      "b": 1.0
+    },
+    "upscaled": false,
+    "purpose": "continuity review only; originals and native atlases unchanged"
+  },
+  "processing": "independent alpha8 connected bodies; detached pixels assigned to closest body bounds; alpha<8 cleared and hidden RGB zeroed; manual ground anchor alignment; no redraw",
+  "landmark_quality": "manual source annotations are unverified estimates; verify soles before production",
+  "start_end_visible_scale_ratio": 0.8848,
+  "phases": {
+    "windup": [
+      0,
+      1,
+      2
+    ],
+    "release": [
+      3,
+      4
+    ],
+    "recovery": [
+      5,
+      6,
+      7
+    ]
+  },
+  "frames": [
+    {
+      "name": "SE_0",
+      "texture_file": "basic_southeast_aligned_a.png",
+      "region": [
+        0,
+        0,
+        768,
+        768
+      ],
+      "foot": [
+        249,
+        545
+      ],
+      "source_file": "basic_southeast_a.png",
+      "source_foot": [
+        376,
+        581
+      ],
+      "source_bounds_xywh": [
+        187,
+        53,
+        352,
+        559
+      ],
+      "source_hair_top_y": 145,
+      "source_boot_bottom_points": [
+        [
+          359,
+          604
+        ],
+        [
+          393,
+          558
+        ]
+      ],
+      "visible_body_extent": 460,
+      "body_height": 460,
+      "landmark_accuracy_px": 7,
+      "landmark_verified": false,
+      "risks": []
+    },
+    {
+      "name": "SE_1",
+      "texture_file": "basic_southeast_aligned_a.png",
+      "region": [
+        768,
+        0,
+        768,
+        768
+      ],
+      "foot": [
+        1017,
+        545
+      ],
+      "source_file": "basic_southeast_a.png",
+      "source_foot": [
+        922,
+        581
+      ],
+      "source_bounds_xywh": [
+        724,
+        52,
+        363,
+        561
+      ],
+      "source_hair_top_y": 148,
+      "source_boot_bottom_points": [
+        [
+          903,
+          605
+        ],
+        [
+          941,
+          557
+        ]
+      ],
+      "visible_body_extent": 458,
+      "body_height": 460,
+      "landmark_accuracy_px": 7,
+      "landmark_verified": false,
+      "risks": []
+    },
+    {
+      "name": "SE_2",
+      "texture_file": "basic_southeast_aligned_a.png",
+      "region": [
+        0,
+        768,
+        768,
+        768
+      ],
+      "foot": [
+        249,
+        1313
+      ],
+      "source_file": "basic_southeast_a.png",
+      "source_foot": [
+        385,
+        1167.5
+      ],
+      "source_bounds_xywh": [
+        165,
+        653,
+        377,
+        548
+      ],
+      "source_hair_top_y": 749,
+      "source_boot_bottom_points": [
+        [
+          369,
+          1193
+        ],
+        [
+          401,
+          1142
+        ]
+      ],
+      "visible_body_extent": 445,
+      "body_height": 460,
+      "landmark_accuracy_px": 18,
+      "landmark_verified": false,
+      "risks": [
+        "occluded boot anchor is an estimate, not a measured sole",
+        "visible hair-to-sole extent below 448px; retain natural crouch scale, never per-frame enlarge"
+      ]
+    },
+    {
+      "name": "SE_3",
+      "texture_file": "basic_southeast_aligned_a.png",
+      "region": [
+        768,
+        768,
+        768,
+        768
+      ],
+      "foot": [
+        1017,
+        1313
+      ],
+      "source_file": "basic_southeast_a.png",
+      "source_foot": [
+        979.5,
+        1153.5
+      ],
+      "source_bounds_xywh": [
+        747,
+        655,
+        389,
+        546
+      ],
+      "source_hair_top_y": 760,
+      "source_boot_bottom_points": [
+        [
+          967,
+          1193
+        ],
+        [
+          992,
+          1114
+        ]
+      ],
+      "visible_body_extent": 434,
+      "body_height": 460,
+      "landmark_accuracy_px": 14,
+      "landmark_verified": false,
+      "risks": [
+        "occluded boot anchor is an estimate, not a measured sole",
+        "visible hair-to-sole extent below 448px; retain natural crouch scale, never per-frame enlarge"
+      ]
+    },
+    {
+      "name": "SE_4",
+      "texture_file": "basic_southeast_aligned_b.png",
+      "region": [
+        0,
+        0,
+        768,
+        768
+      ],
+      "foot": [
+        249,
+        545
+      ],
+      "source_file": "basic_southeast_b.png",
+      "source_foot": [
+        353,
+        562
+      ],
+      "source_bounds_xywh": [
+        146,
+        62,
+        401,
+        537
+      ],
+      "source_hair_top_y": 177,
+      "source_boot_bottom_points": [
+        [
+          399,
+          591
+        ],
+        [
+          307,
+          533
+        ]
+      ],
+      "visible_body_extent": 415,
+      "body_height": 407,
+      "landmark_accuracy_px": 8,
+      "landmark_verified": false,
+      "risks": [
+        "visible hair-to-sole extent below 448px; retain natural crouch scale, never per-frame enlarge"
+      ]
+    },
+    {
+      "name": "SE_5",
+      "texture_file": "basic_southeast_aligned_b.png",
+      "region": [
+        768,
+        0,
+        768,
+        768
+      ],
+      "foot": [
+        1017,
+        545
+      ],
+      "source_file": "basic_southeast_b.png",
+      "source_foot": [
+        951.5,
+        562
+      ],
+      "source_bounds_xywh": [
+        761,
+        63,
+        364,
+        539
+      ],
+      "source_hair_top_y": 169,
+      "source_boot_bottom_points": [
+        [
+          986,
+          593
+        ],
+        [
+          917,
+          531
+        ]
+      ],
+      "visible_body_extent": 425,
+      "body_height": 407,
+      "landmark_accuracy_px": 8,
+      "landmark_verified": false,
+      "risks": [
+        "visible hair-to-sole extent below 448px; retain natural crouch scale, never per-frame enlarge"
+      ]
+    },
+    {
+      "name": "SE_6",
+      "texture_file": "basic_southeast_aligned_b.png",
+      "region": [
+        0,
+        768,
+        768,
+        768
+      ],
+      "foot": [
+        249,
+        1313
+      ],
+      "source_file": "basic_southeast_b.png",
+      "source_foot": [
+        386.5,
+        1159.5
+      ],
+      "source_bounds_xywh": [
+        154,
+        675,
+        386,
+        518
+      ],
+      "source_hair_top_y": 779,
+      "source_boot_bottom_points": [
+        [
+          371,
+          1186
+        ],
+        [
+          402,
+          1133
+        ]
+      ],
+      "visible_body_extent": 408,
+      "body_height": 407,
+      "landmark_accuracy_px": 18,
+      "landmark_verified": false,
+      "risks": [
+        "occluded boot anchor is an estimate, not a measured sole",
+        "visible hair-to-sole extent below 448px; retain natural crouch scale, never per-frame enlarge"
+      ]
+    },
+    {
+      "name": "SE_7",
+      "texture_file": "basic_southeast_aligned_b.png",
+      "region": [
+        768,
+        768,
+        768,
+        768
+      ],
+      "foot": [
+        1017,
+        1313
+      ],
+      "source_file": "basic_southeast_b.png",
+      "source_foot": [
+        981.5,
+        1157.5
+      ],
+      "source_bounds_xywh": [
+        752,
+        670,
+        385,
+        519
+      ],
+      "source_hair_top_y": 777,
+      "source_boot_bottom_points": [
+        [
+          966,
+          1183
+        ],
+        [
+          997,
+          1132
+        ]
+      ],
+      "visible_body_extent": 407,
+      "body_height": 407,
+      "landmark_accuracy_px": 18,
+      "landmark_verified": false,
+      "risks": [
+        "occluded boot anchor is an estimate, not a measured sole",
+        "visible hair-to-sole extent below 448px; retain natural crouch scale, never per-frame enlarge"
+      ]
+    }
+  ]
+}

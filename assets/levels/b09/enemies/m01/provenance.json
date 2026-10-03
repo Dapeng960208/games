@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. BRAND NEW original production game sprite sheet for Frost Crystal Court B09. Subject Prism Guard: a faceless living ice crystal construct, angular translucent floating limbs, glowing lavender diamond heart, two broad prism shoulder plates, two removable chest plates, straight crystal sword. No flesh, scales, fins, fish, coral or spear. Draw exactly three complete separate poses of this SAME creature: left idle, middle overhead sword windup, right diagonal sword slash. 1536x1024 landscape, single row of 3 equal cells; absolutely keep each pose inside its own third with comfortable transparent margins, including weapons. All full bodies and feet visible, same scale. Feet near 86% canvas height. Each creature faces lower-right, camera is high-angle near-isometric 2.5D overhead as in a fantasy action RPG. Bright detailed hand-painted storybook cartoon game art, dark violet fine outlines, clean cyan and lavender ice facets, small warm champagne-gold highlights, visible heart cores, soft sunny shading. Strong silhouette at 100 pixels tall. Actual transparent background alpha, no colored backdrop, no aura filling background, no floor, no shadows, no letters, no labels, no border, no HUD, no watermarks. No copied existing creatures.",
+  "reference_images": [],
+  "sha256": "e3099f8eb701bb51244037196068a78428986a43c3dadc4bf62897ffcbb82691",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte copy; source pixels and alpha unchanged. Runtime uses source regions.",
+  "license": "Project-generated original artwork; no third-party character artwork reused."
+}

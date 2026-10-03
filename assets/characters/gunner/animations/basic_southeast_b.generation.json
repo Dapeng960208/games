@@ -1,0 +1,175 @@
+{
+  "asset": "CH02 岑线 SE 普攻分离源 B",
+  "status": "processing_candidate_not_production_ready",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "part": "b",
+  "frames": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "frame_order": "row-major",
+  "columns": 2,
+  "rows": 2,
+  "direction": "SE",
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "transparent_background": true,
+  "source": "C:/Users/13326/.codex/generated_images/01a10039-7c89-7121-bda0-cee509b4235e/exec-4135ab1e-1a69-4a13-87a4-805b51f088e5.png",
+  "references": [
+    "assets/characters/gunner/portraits/full_illustration.png",
+    "assets/characters/gunner/animations/basic_southeast.png"
+  ],
+  "inspection": {
+    "path": "C:/Users/13326/.codex/generated_images/01a10039-7c89-7121-bda0-cee509b4235e/exec-4135ab1e-1a69-4a13-87a4-805b51f088e5.png",
+    "width": 1254,
+    "height": 1254,
+    "transparent_fraction": 0.6884712142833522,
+    "outer_edge_nontransparent": 0,
+    "mid_x_nontransparent": 3,
+    "mid_y_nontransparent": 0,
+    "components": [
+      {
+        "x": 106,
+        "y": 59,
+        "right": 632,
+        "bottom": 608,
+        "pixels": 114155
+      },
+      {
+        "x": 742,
+        "y": 62,
+        "right": 1219,
+        "bottom": 601,
+        "pixels": 109380
+      },
+      {
+        "x": 116,
+        "y": 655,
+        "right": 557,
+        "bottom": 1203,
+        "pixels": 105956
+      },
+      {
+        "x": 735,
+        "y": 661,
+        "right": 1173,
+        "bottom": 1207,
+        "pixels": 103093
+      }
+    ]
+  },
+  "known_issues": [
+    "Built-in tool returned 1254x1254 despite explicit 2048x2048 request; this is not native 2K.",
+    "Requested eight-percent empty margin in every nominal quadrant is not fully achieved; process using the four separate component bounds instead of slicing exact midpoint.",
+    "Small generation pose/scale variations require anchor normalization before runtime integration."
+  ],
+  "credit": "Original AI-generated character action art using OpenAI built-in image_gen; user-directed original project design; no third-party IP copied.",
+  "prompt": "Use case: stylized-concept. Asset type: original fantasy action RPG hand-painted SE-direction gunner sprite source. Input 1 is the female portrait identity, clothing and exact rifle reference. Input 2 is the existing SE animation style and eight pose sequence reference, but its tightly packed layout must NOT be copied. SAME adult female Cenxian, SAME short wavy chestnut hair and face, SAME ivory fitted coat with turquoise panels and tiny coral lining, high waist turquoise trousers, ivory boots, gold/silver/blue-cyan large energy rune carbine with orbital sight. Fixed HIGH CAMERA three-quarter oblique top-down NEAR ISOMETRIC, all frames face SOUTHEAST down-right. Bright HAND-PAINTED CARTOON FANTASY, sculpted rounded 2.5D solid volume, warm sunlight, clean fresh vivid color, actual brush-painted shading, NOT photorealistic, NOT thin-line vector or stick figures. ONE 2048x2048 square TRUE TRANSPARENT alpha PNG. EXACTLY TWO COLUMNS AND TWO ROWS, 4 invisible equal cells. ONE complete full-body gunner in EACH cell, four gunner poses total. Do not draw lines, numbers or labels. Entire character HEAD TO BOOTS occupies approximately 40% of canvas HEIGHT (=80% of her cell height). SAME SCALE. EVERY CELL has minimum 8% cell-size EMPTY TRANSPARENT margin at TOP BOTTOM LEFT RIGHT around character, entire weapon, orbital sight, muzzle flash and coat. Make rifle compact diagonally down-right so every part stays inside its OWN cell, no particle trails, no flash reaching adjacent cells, no cut off muzzle. Feet anchored in consistent position near bottom of each cell. All four characters have genuine continuous changing elbow/shoulder/gun/coat pose, NOT copied static pose. SAME weapon geometry throughout. No backdrop, no ground, no shadows on floor, no lettering, no extra objects or other characters. Read frames left-to-right top row, then left-to-right bottom row. This is PART B of the SAME continuous eight-frame shooting action, frames 4,5,6,7: TOP LEFT frame4 second trigger RELEASE with small contained cyan muzzle flash and a little further backward shoulder recoil; TOP RIGHT frame5 absorb recoil, rifle returns forward and elbow settles, no flash; BOTTOM LEFT frame6 lower rifle toward ready guard, shoulders settle and coat follows, no flash; BOTTOM RIGHT frame7 return to initial low ready guard matching start, no flash. Only frame4 has a muzzle flash. Weighted slight movements, feet remain planted. All parts stay within each cell with ample transparent gaps.",
+  "landmark_annotation": {
+    "coordinate_space": "original_source_pixels",
+    "source_size": [
+      1254,
+      1254
+    ],
+    "frame_order": "row-major",
+    "method": "Manual hair/boot region selection with alpha >=192 contour assistance. Hair excludes gun, glow and cape. Boot points are visible sole bottom contour centers; foot anchor is their mean. Estimates require visual alignment review.",
+    "position_accuracy_px": 4,
+    "verified": false,
+    "frames": [
+      {
+        "frame_index": 4,
+        "hair_top_y": 62,
+        "boot_bottom_points": [
+          [
+            165.5,
+            569
+          ],
+          [
+            501.7,
+            606
+          ]
+        ],
+        "foot_anchor_xy": [
+          333.6,
+          587.5
+        ],
+        "occluded_boot": false,
+        "position_accuracy_px": 4,
+        "verified": false
+      },
+      {
+        "frame_index": 5,
+        "hair_top_y": 64,
+        "boot_bottom_points": [
+          [
+            795.3,
+            576
+          ],
+          [
+            1138.5,
+            600
+          ]
+        ],
+        "foot_anchor_xy": [
+          966.9,
+          588
+        ],
+        "occluded_boot": false,
+        "position_accuracy_px": 4,
+        "verified": false
+      },
+      {
+        "frame_index": 6,
+        "hair_top_y": 657,
+        "boot_bottom_points": [
+          [
+            167.6,
+            1171
+          ],
+          [
+            511.5,
+            1202
+          ]
+        ],
+        "foot_anchor_xy": [
+          339.6,
+          1186.5
+        ],
+        "occluded_boot": false,
+        "position_accuracy_px": 4,
+        "verified": false
+      },
+      {
+        "frame_index": 7,
+        "hair_top_y": 663,
+        "boot_bottom_points": [
+          [
+            793.6,
+            1170
+          ],
+          [
+            1124.3,
+            1206
+          ]
+        ],
+        "foot_anchor_xy": [
+          959,
+          1188
+        ],
+        "occluded_boot": false,
+        "position_accuracy_px": 4,
+        "verified": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,5754 @@
+{
+  "schema_version": 3,
+  "hero_id": "CH03",
+  "enabled": true,
+  "production_ready": true,
+  "directions": {
+    "E": {
+      "reference_body_height": 478,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 478,
+          "region": [
+            0,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            327.5,
+            623
+          ],
+          "head": [
+            339,
+            182
+          ],
+          "grip": [
+            418,
+            271
+          ],
+          "muzzle": [
+            420,
+            76
+          ],
+          "source_frame": {
+            "name": "idle",
+            "slot": "TL",
+            "region": [
+              173,
+              15,
+              398,
+              613
+            ],
+            "foot": [
+              391.5,
+              616
+            ],
+            "head": [
+              403,
+              175
+            ],
+            "grip": [
+              482,
+              264
+            ],
+            "muzzle": [
+              484,
+              69
+            ],
+            "body_height": 478,
+            "hair_top_y": 138,
+            "boot_contact_points": [
+              [
+                407,
+                620
+              ],
+              [
+                376,
+                612
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              403,
+              175
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              173,
+              15,
+              56,
+              -1
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_e_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 470.5,
+          "region": [
+            640,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            968,
+            622.5
+          ],
+          "head": [
+            968,
+            177
+          ],
+          "grip": [
+            1046,
+            263
+          ],
+          "muzzle": [
+            1044,
+            74
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "slot": "TR",
+            "region": [
+              712,
+              14,
+              423,
+              612
+            ],
+            "foot": [
+              968,
+              619.5
+            ],
+            "head": [
+              968,
+              174
+            ],
+            "grip": [
+              1046,
+              260
+            ],
+            "muzzle": [
+              1044,
+              71
+            ],
+            "body_height": 470.5,
+            "hair_top_y": 149,
+            "boot_contact_points": [
+              [
+                1058,
+                620
+              ],
+              [
+                878,
+                619
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              968,
+              174
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              85,
+              14,
+              119,
+              1
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_e_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 461.5,
+          "region": [
+            0,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            327.5,
+            1326.5
+          ],
+          "head": [
+            356,
+            894
+          ],
+          "grip": [
+            430,
+            986
+          ],
+          "muzzle": [
+            433,
+            804
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "slot": "BL",
+            "region": [
+              139,
+              641,
+              439,
+              585
+            ],
+            "foot": [
+              387.5,
+              1215.5
+            ],
+            "head": [
+              416,
+              783
+            ],
+            "grip": [
+              490,
+              875
+            ],
+            "muzzle": [
+              493,
+              693
+            ],
+            "body_height": 461.5,
+            "hair_top_y": 754,
+            "boot_contact_points": [
+              [
+                485,
+                1220
+              ],
+              [
+                290,
+                1211
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              416,
+              783
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              139,
+              14,
+              49,
+              28
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_e_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 457.5,
+          "region": [
+            640,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            968,
+            1326.5
+          ],
+          "head": [
+            983,
+            897
+          ],
+          "grip": [
+            1057,
+            984
+          ],
+          "muzzle": [
+            1065,
+            802
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "slot": "BR",
+            "region": [
+              732,
+              647,
+              411,
+              580
+            ],
+            "foot": [
+              961,
+              1217.5
+            ],
+            "head": [
+              976,
+              788
+            ],
+            "grip": [
+              1050,
+              875
+            ],
+            "muzzle": [
+              1058,
+              693
+            ],
+            "body_height": 457.5,
+            "hair_top_y": 760,
+            "boot_contact_points": [
+              [
+                1019,
+                1221
+              ],
+              [
+                903,
+                1214
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              976,
+              788
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              105,
+              20,
+              111,
+              27
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_e_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 470.5,
+          "region": [
+            0,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            327.5,
+            622.5
+          ],
+          "head": [
+            350,
+            184
+          ],
+          "grip": [
+            170,
+            262
+          ],
+          "muzzle": [
+            169,
+            79
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "slot": "TL",
+            "region": [
+              165,
+              18,
+              464,
+              608
+            ],
+            "foot": [
+              421.5,
+              615.5
+            ],
+            "head": [
+              444,
+              177
+            ],
+            "grip": [
+              264,
+              255
+            ],
+            "muzzle": [
+              263,
+              72
+            ],
+            "body_height": 470.5,
+            "hair_top_y": 145,
+            "boot_contact_points": [
+              [
+                498,
+                616
+              ],
+              [
+                345,
+                615
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              444,
+              177
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              165,
+              18,
+              -2,
+              1
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_e_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 474.5,
+          "region": [
+            640,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            968.5,
+            622.5
+          ],
+          "head": [
+            935,
+            181
+          ],
+          "grip": [
+            1021,
+            266
+          ],
+          "muzzle": [
+            1031,
+            76
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "slot": "TR",
+            "region": [
+              710,
+              18,
+              399,
+              611
+            ],
+            "foot": [
+              966.5,
+              619.5
+            ],
+            "head": [
+              933,
+              178
+            ],
+            "grip": [
+              1019,
+              263
+            ],
+            "muzzle": [
+              1029,
+              73
+            ],
+            "body_height": 474.5,
+            "hair_top_y": 145,
+            "boot_contact_points": [
+              [
+                1010,
+                620
+              ],
+              [
+                923,
+                619
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              933,
+              178
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              83,
+              18,
+              145,
+              -2
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_e_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 454.5,
+          "region": [
+            0,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            328,
+            1327.5
+          ],
+          "head": [
+            418,
+            915
+          ],
+          "grip": [
+            476,
+            999
+          ],
+          "muzzle": [
+            500,
+            807
+          ],
+          "source_frame": {
+            "name": "dash",
+            "slot": "BL",
+            "region": [
+              109,
+              639,
+              539,
+              576
+            ],
+            "foot": [
+              389,
+              1208.5
+            ],
+            "head": [
+              479,
+              796
+            ],
+            "grip": [
+              537,
+              880
+            ],
+            "muzzle": [
+              561,
+              688
+            ],
+            "body_height": 454.5,
+            "hair_top_y": 754,
+            "boot_contact_points": [
+              [
+                541,
+                1209
+              ],
+              [
+                237,
+                1208
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              479,
+              796
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              109,
+              12,
+              -21,
+              39
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_e_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 447.5,
+          "region": [
+            640,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            968,
+            1327.5
+          ],
+          "head": [
+            948,
+            916
+          ],
+          "grip": [
+            1106,
+            964
+          ],
+          "muzzle": [
+            1155,
+            798
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "slot": "BR",
+            "region": [
+              684,
+              630,
+              556,
+              595
+            ],
+            "foot": [
+              994,
+              1218.5
+            ],
+            "head": [
+              974,
+              807
+            ],
+            "grip": [
+              1132,
+              855
+            ],
+            "muzzle": [
+              1181,
+              689
+            ],
+            "body_height": 447.5,
+            "hair_top_y": 771,
+            "boot_contact_points": [
+              [
+                1119,
+                1219
+              ],
+              [
+                869,
+                1218
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              974,
+              807
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              57,
+              3,
+              14,
+              29
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_e_b.png"
+        }
+      ]
+    },
+    "SE": {
+      "reference_body_height": 449,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 449,
+          "region": [
+            0,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            319,
+            606
+          ],
+          "head": [
+            291,
+            207
+          ],
+          "grip": [
+            416,
+            312
+          ],
+          "muzzle": [
+            421,
+            117
+          ],
+          "source_frame": {
+            "name": "idle",
+            "slot": "TL",
+            "region": [
+              160,
+              25,
+              435,
+              602
+            ],
+            "visible_alpha64_core": [
+              164,
+              29,
+              427,
+              594
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              393,
+              589
+            ],
+            "head": [
+              365,
+              190
+            ],
+            "grip": [
+              490,
+              295
+            ],
+            "muzzle": [
+              495,
+              100
+            ],
+            "staff_tip": [
+              495,
+              31
+            ],
+            "body_height": 449,
+            "hair_top_y": 140,
+            "boot_contact_points": [
+              [
+                389,
+                614
+              ],
+              [
+                397,
+                564
+              ]
+            ],
+            "foot_estimated": true,
+            "landmark_accuracy_px": 18,
+            "hair_check": {
+              "manual_head_roi": [
+                320,
+                120,
+                120,
+                135
+              ],
+              "first_warm_pixel_row": 131,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              365,
+              190
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 0,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              160,
+              25,
+              32,
+              0
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_se_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 444.5,
+          "region": [
+            640,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            959,
+            606.5
+          ],
+          "head": [
+            947,
+            209
+          ],
+          "grip": [
+            1076,
+            295
+          ],
+          "muzzle": [
+            1082,
+            105
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "slot": "TR",
+            "region": [
+              741,
+              31,
+              465,
+              618
+            ],
+            "visible_alpha64_core": [
+              745,
+              35,
+              457,
+              610
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              983,
+              608.5
+            ],
+            "head": [
+              971,
+              211
+            ],
+            "grip": [
+              1100,
+              297
+            ],
+            "muzzle": [
+              1106,
+              107
+            ],
+            "staff_tip": [
+              1106,
+              33
+            ],
+            "body_height": 444.5,
+            "hair_top_y": 164,
+            "boot_contact_points": [
+              [
+                1034,
+                638
+              ],
+              [
+                932,
+                579
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                925,
+                145,
+                112,
+                123
+              ],
+              "first_warm_pixel_row": 145,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              971,
+              211
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 84,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 84,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              114,
+              31,
+              48,
+              -22
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_se_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 411.5,
+          "region": [
+            0,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            319,
+            1310.5
+          ],
+          "head": [
+            264,
+            952
+          ],
+          "grip": [
+            384,
+            1027
+          ],
+          "muzzle": [
+            389,
+            846
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "slot": "BL",
+            "region": [
+              115,
+              629,
+              477,
+              599
+            ],
+            "visible_alpha64_core": [
+              119,
+              633,
+              469,
+              591
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              422,
+              1170.5
+            ],
+            "head": [
+              367,
+              812
+            ],
+            "grip": [
+              487,
+              887
+            ],
+            "muzzle": [
+              492,
+              706
+            ],
+            "staff_tip": [
+              492,
+              632
+            ],
+            "body_height": 411.5,
+            "hair_top_y": 759,
+            "boot_contact_points": [
+              [
+                404,
+                1216
+              ],
+              [
+                440,
+                1125
+              ]
+            ],
+            "foot_estimated": true,
+            "landmark_accuracy_px": 18,
+            "hair_check": {
+              "manual_head_roi": [
+                327,
+                735,
+                106,
+                125
+              ],
+              "first_warm_pixel_row": 738,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              367,
+              812
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 0,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              115,
+              2,
+              35,
+              26
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_se_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 440,
+          "region": [
+            640,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            959,
+            1310
+          ],
+          "head": [
+            940,
+            924
+          ],
+          "grip": [
+            1077,
+            1009
+          ],
+          "muzzle": [
+            1081,
+            821
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "slot": "BR",
+            "region": [
+              758,
+              632,
+              439,
+              601
+            ],
+            "visible_alpha64_core": [
+              762,
+              636,
+              431,
+              593
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              975,
+              1197
+            ],
+            "head": [
+              956,
+              811
+            ],
+            "grip": [
+              1093,
+              896
+            ],
+            "muzzle": [
+              1097,
+              708
+            ],
+            "staff_tip": [
+              1097,
+              634
+            ],
+            "body_height": 440,
+            "hair_top_y": 757,
+            "boot_contact_points": [
+              [
+                950,
+                1221
+              ],
+              [
+                1000,
+                1173
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                910,
+                734,
+                120,
+                132
+              ],
+              "first_warm_pixel_row": 737,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              956,
+              811
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 544,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 544,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              131,
+              5,
+              57,
+              21
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_se_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 447.5,
+          "region": [
+            0,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            319,
+            606.5
+          ],
+          "head": [
+            314,
+            204
+          ],
+          "grip": [
+            447,
+            294
+          ],
+          "muzzle": [
+            463,
+            98
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "slot": "TL",
+            "region": [
+              118,
+              21,
+              499,
+              627
+            ],
+            "visible_alpha64_core": [
+              122,
+              25,
+              491,
+              619
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              372,
+              614.5
+            ],
+            "head": [
+              367,
+              212
+            ],
+            "grip": [
+              500,
+              302
+            ],
+            "muzzle": [
+              516,
+              106
+            ],
+            "staff_tip": [
+              518,
+              25
+            ],
+            "body_height": 447.5,
+            "hair_top_y": 167,
+            "boot_contact_points": [
+              [
+                427,
+                636
+              ],
+              [
+                317,
+                593
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                311,
+                146,
+                115,
+                118
+              ],
+              "first_warm_pixel_row": 146,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              367,
+              212
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 0,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              118,
+              21,
+              10,
+              -21
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_se_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 449.5,
+          "region": [
+            640,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            959.5,
+            605.5
+          ],
+          "head": [
+            943,
+            198
+          ],
+          "grip": [
+            1081,
+            288
+          ],
+          "muzzle": [
+            1093,
+            97
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "slot": "TR",
+            "region": [
+              703,
+              30,
+              482,
+              626
+            ],
+            "visible_alpha64_core": [
+              707,
+              34,
+              474,
+              618
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              950.5,
+              615.5
+            ],
+            "head": [
+              934,
+              208
+            ],
+            "grip": [
+              1072,
+              298
+            ],
+            "muzzle": [
+              1084,
+              107
+            ],
+            "staff_tip": [
+              1087,
+              35
+            ],
+            "body_height": 449.5,
+            "hair_top_y": 166,
+            "boot_contact_points": [
+              [
+                991,
+                641
+              ],
+              [
+                910,
+                590
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                880,
+                144,
+                118,
+                120
+              ],
+              "first_warm_pixel_row": 144,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              934,
+              208
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 29,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 29,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              76,
+              30,
+              69,
+              -29
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_se_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 358.5,
+          "region": [
+            0,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            319.5,
+            1309.5
+          ],
+          "head": [
+            374,
+            994
+          ],
+          "grip": [
+            442,
+            1055
+          ],
+          "muzzle": [
+            499,
+            878
+          ],
+          "source_frame": {
+            "name": "dash",
+            "slot": "BL",
+            "region": [
+              81,
+              664,
+              560,
+              560
+            ],
+            "visible_alpha64_core": [
+              85,
+              668,
+              552,
+              552
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              368.5,
+              1171.5
+            ],
+            "head": [
+              423,
+              856
+            ],
+            "grip": [
+              491,
+              917
+            ],
+            "muzzle": [
+              548,
+              740
+            ],
+            "staff_tip": [
+              556,
+              672
+            ],
+            "body_height": 358.5,
+            "hair_top_y": 813,
+            "boot_contact_points": [
+              [
+                450,
+                1208
+              ],
+              [
+                287,
+                1135
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                365,
+                784,
+                134,
+                125
+              ],
+              "first_warm_pixel_row": 802,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              423,
+              856
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 0,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              81,
+              37,
+              -14,
+              30
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_se_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 419,
+          "region": [
+            640,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            959,
+            1310
+          ],
+          "head": [
+            929,
+            940
+          ],
+          "grip": [
+            1011,
+            1024
+          ],
+          "muzzle": [
+            1105,
+            836
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "slot": "BR",
+            "region": [
+              719,
+              645,
+              511,
+              578
+            ],
+            "visible_alpha64_core": [
+              723,
+              649,
+              503,
+              570
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              989,
+              1194
+            ],
+            "head": [
+              959,
+              824
+            ],
+            "grip": [
+              1041,
+              908
+            ],
+            "muzzle": [
+              1135,
+              720
+            ],
+            "staff_tip": [
+              1144,
+              662
+            ],
+            "body_height": 419,
+            "hair_top_y": 775,
+            "boot_contact_points": [
+              [
+                881,
+                1210
+              ],
+              [
+                1097,
+                1178
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                900,
+                753,
+                136,
+                120
+              ],
+              "first_warm_pixel_row": 763,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              959,
+              824
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 206,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 206,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              92,
+              18,
+              24,
+              31
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_se_b.png"
+        }
+      ]
+    },
+    "S": {
+      "reference_body_height": 448.5,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 448.5,
+          "region": [
+            0,
+            0,
+            512,
+            704
+          ],
+          "foot": [
+            250,
+            622.5
+          ],
+          "head": [
+            242,
+            220
+          ],
+          "grip": [
+            366,
+            299
+          ],
+          "muzzle": [
+            360,
+            100
+          ],
+          "source_frame": {
+            "name": "idle",
+            "slot": "TL",
+            "region": [
+              158,
+              24,
+              397,
+              593
+            ],
+            "foot": [
+              355,
+              604.5
+            ],
+            "head": [
+              347,
+              202
+            ],
+            "grip": [
+              471,
+              281
+            ],
+            "muzzle": [
+              465,
+              82
+            ],
+            "body_height": 448.5,
+            "hair_top_y": 156,
+            "boot_contact_points": [
+              [
+                333,
+                609
+              ],
+              [
+                377,
+                600
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              347,
+              202
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              158,
+              24,
+              72,
+              10
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_s_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 431,
+          "region": [
+            512,
+            0,
+            512,
+            704
+          ],
+          "foot": [
+            762.5,
+            622
+          ],
+          "head": [
+            748,
+            236
+          ],
+          "grip": [
+            880,
+            309
+          ],
+          "muzzle": [
+            874,
+            109
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "slot": "TR",
+            "region": [
+              729,
+              24,
+              405,
+              618
+            ],
+            "foot": [
+              934.5,
+              595
+            ],
+            "head": [
+              920,
+              209
+            ],
+            "grip": [
+              1052,
+              282
+            ],
+            "muzzle": [
+              1046,
+              82
+            ],
+            "body_height": 431,
+            "hair_top_y": 164,
+            "boot_contact_points": [
+              [
+                914,
+                635
+              ],
+              [
+                955,
+                555
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              920,
+              209
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 50,
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              102,
+              24,
+              120,
+              -15
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_s_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 417,
+          "region": [
+            0,
+            704,
+            512,
+            704
+          ],
+          "foot": [
+            250,
+            1326
+          ],
+          "head": [
+            236,
+            945
+          ],
+          "grip": [
+            360,
+            1024
+          ],
+          "muzzle": [
+            354,
+            819
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "slot": "BL",
+            "region": [
+              158,
+              631,
+              394,
+              600
+            ],
+            "foot": [
+              361,
+              1190
+            ],
+            "head": [
+              347,
+              809
+            ],
+            "grip": [
+              471,
+              888
+            ],
+            "muzzle": [
+              465,
+              683
+            ],
+            "body_height": 417,
+            "hair_top_y": 773,
+            "boot_contact_points": [
+              [
+                340,
+                1225
+              ],
+              [
+                382,
+                1155
+              ]
+            ],
+            "foot_estimated": true,
+            "landmark_accuracy_px": 18,
+            "component_seed": [
+              347,
+              809
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              158,
+              4,
+              75,
+              23
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_s_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 427,
+          "region": [
+            512,
+            704,
+            512,
+            704
+          ],
+          "foot": [
+            761.5,
+            1326
+          ],
+          "head": [
+            760,
+            940
+          ],
+          "grip": [
+            879,
+            1015
+          ],
+          "muzzle": [
+            879,
+            818
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "slot": "BR",
+            "region": [
+              742,
+              631,
+              399,
+              581
+            ],
+            "foot": [
+              939.5,
+              1204
+            ],
+            "head": [
+              938,
+              818
+            ],
+            "grip": [
+              1057,
+              893
+            ],
+            "muzzle": [
+              1057,
+              696
+            ],
+            "body_height": 427,
+            "hair_top_y": 777,
+            "boot_contact_points": [
+              [
+                918,
+                1201
+              ],
+              [
+                961,
+                1207
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              938,
+              818
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 274,
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              115,
+              4,
+              113,
+              42
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_s_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 465,
+          "region": [
+            0,
+            0,
+            512,
+            704
+          ],
+          "foot": [
+            250,
+            622
+          ],
+          "head": [
+            244,
+            207
+          ],
+          "grip": [
+            388,
+            285
+          ],
+          "muzzle": [
+            382,
+            87
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "slot": "TL",
+            "region": [
+              136,
+              21,
+              440,
+              613
+            ],
+            "foot": [
+              354,
+              615
+            ],
+            "head": [
+              348,
+              200
+            ],
+            "grip": [
+              492,
+              278
+            ],
+            "muzzle": [
+              486,
+              80
+            ],
+            "body_height": 465,
+            "hair_top_y": 150,
+            "boot_contact_points": [
+              [
+                336,
+                629
+              ],
+              [
+                372,
+                601
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              348,
+              200
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 7,
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              136,
+              21,
+              51,
+              -7
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_s_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 470,
+          "region": [
+            512,
+            0,
+            512,
+            704
+          ],
+          "foot": [
+            762.5,
+            622
+          ],
+          "head": [
+            753,
+            208
+          ],
+          "grip": [
+            878,
+            281
+          ],
+          "muzzle": [
+            867,
+            79
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "slot": "TR",
+            "region": [
+              725,
+              21,
+              413,
+              614
+            ],
+            "foot": [
+              930.5,
+              626
+            ],
+            "head": [
+              921,
+              212
+            ],
+            "grip": [
+              1046,
+              285
+            ],
+            "muzzle": [
+              1035,
+              83
+            ],
+            "body_height": 470,
+            "hair_top_y": 156,
+            "boot_contact_points": [
+              [
+                909,
+                628
+              ],
+              [
+                952,
+                624
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              921,
+              212
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 5,
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              98,
+              21,
+              116,
+              -8
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_s_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 370,
+          "region": [
+            0,
+            704,
+            512,
+            704
+          ],
+          "foot": [
+            249.5,
+            1326
+          ],
+          "head": [
+            264,
+            987
+          ],
+          "grip": [
+            392,
+            1038
+          ],
+          "muzzle": [
+            416,
+            863
+          ],
+          "source_frame": {
+            "name": "dash",
+            "slot": "BL",
+            "region": [
+              135,
+              631,
+              471,
+              591
+            ],
+            "foot": [
+              367.5,
+              1163
+            ],
+            "head": [
+              382,
+              824
+            ],
+            "grip": [
+              510,
+              875
+            ],
+            "muzzle": [
+              534,
+              700
+            ],
+            "body_height": 370,
+            "hair_top_y": 793,
+            "boot_contact_points": [
+              [
+                391,
+                1210
+              ],
+              [
+                344,
+                1116
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              382,
+              824
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 42,
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              135,
+              4,
+              21,
+              32
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_s_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 410.5,
+          "region": [
+            512,
+            704,
+            512,
+            704
+          ],
+          "foot": [
+            762,
+            1326.5
+          ],
+          "head": [
+            739,
+            958
+          ],
+          "grip": [
+            771,
+            1031
+          ],
+          "muzzle": [
+            770,
+            810
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "slot": "BR",
+            "region": [
+              730,
+              633,
+              421,
+              582
+            ],
+            "foot": [
+              944,
+              1206.5
+            ],
+            "head": [
+              921,
+              838
+            ],
+            "grip": [
+              953,
+              911
+            ],
+            "muzzle": [
+              952,
+              690
+            ],
+            "body_height": 410.5,
+            "hair_top_y": 796,
+            "boot_contact_points": [
+              [
+                842,
+                1206
+              ],
+              [
+                1046,
+                1207
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "component_seed": [
+              921,
+              838
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 22,
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              103,
+              6,
+              103,
+              39
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_s_b.png"
+        }
+      ]
+    },
+    "SW": {
+      "reference_body_height": 475,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 475,
+          "region": [
+            0,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            284.5,
+            623
+          ],
+          "head": [
+            258,
+            202
+          ],
+          "grip": [
+            396,
+            296
+          ],
+          "muzzle": [
+            399,
+            96
+          ],
+          "source_frame": {
+            "name": "idle",
+            "slot": "TL",
+            "region": [
+              132,
+              15,
+              442,
+              620
+            ],
+            "visible_alpha64_core": [
+              136,
+              19,
+              434,
+              612
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              347.5,
+              612
+            ],
+            "head": [
+              321,
+              191
+            ],
+            "grip": [
+              459,
+              285
+            ],
+            "muzzle": [
+              462,
+              85
+            ],
+            "staff_tip": [
+              461,
+              19
+            ],
+            "body_height": 475,
+            "hair_top_y": 137,
+            "boot_contact_points": [
+              [
+                326,
+                625
+              ],
+              [
+                369,
+                599
+              ]
+            ],
+            "foot_estimated": true,
+            "landmark_accuracy_px": 18,
+            "hair_check": {
+              "manual_head_roi": [
+                274,
+                126,
+                129,
+                129
+              ],
+              "first_warm_pixel_row": 132,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              321,
+              191
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 16,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 16,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              132,
+              15,
+              53,
+              -8
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_sw_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 450.5,
+          "region": [
+            640,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            925,
+            622.5
+          ],
+          "head": [
+            928,
+            220
+          ],
+          "grip": [
+            1064,
+            306
+          ],
+          "muzzle": [
+            1072,
+            103
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "slot": "TR",
+            "region": [
+              754,
+              24,
+              437,
+              625
+            ],
+            "visible_alpha64_core": [
+              758,
+              28,
+              429,
+              617
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              909,
+              615.5
+            ],
+            "head": [
+              912,
+              213
+            ],
+            "grip": [
+              1048,
+              299
+            ],
+            "muzzle": [
+              1056,
+              96
+            ],
+            "staff_tip": [
+              1056,
+              30
+            ],
+            "body_height": 450.5,
+            "hair_top_y": 165,
+            "boot_contact_points": [
+              [
+                849,
+                637
+              ],
+              [
+                969,
+                594
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                860,
+                145,
+                119,
+                130
+              ],
+              "first_warm_pixel_row": 150,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              912,
+              213
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 221,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 221,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              127,
+              24,
+              63,
+              -22
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_sw_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 431.5,
+          "region": [
+            0,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            285,
+            1327.5
+          ],
+          "head": [
+            264,
+            955
+          ],
+          "grip": [
+            405,
+            1027
+          ],
+          "muzzle": [
+            404,
+            833
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "slot": "BL",
+            "region": [
+              156,
+              626,
+              415,
+              603
+            ],
+            "visible_alpha64_core": [
+              160,
+              630,
+              407,
+              595
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              342,
+              1190.5
+            ],
+            "head": [
+              321,
+              818
+            ],
+            "grip": [
+              462,
+              890
+            ],
+            "muzzle": [
+              461,
+              696
+            ],
+            "staff_tip": [
+              461,
+              631
+            ],
+            "body_height": 431.5,
+            "hair_top_y": 759,
+            "boot_contact_points": [
+              [
+                287,
+                1218
+              ],
+              [
+                397,
+                1163
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                274,
+                749,
+                123,
+                130
+              ],
+              "first_warm_pixel_row": 759,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              321,
+              818
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 118,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 118,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              156,
+              -1,
+              56,
+              25
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_sw_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 453.5,
+          "region": [
+            640,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            924.5,
+            1327.5
+          ],
+          "head": [
+            915,
+            932
+          ],
+          "grip": [
+            1057,
+            1019
+          ],
+          "muzzle": [
+            1060,
+            814
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "slot": "BR",
+            "region": [
+              736,
+              626,
+              449,
+              600
+            ],
+            "visible_alpha64_core": [
+              740,
+              630,
+              441,
+              592
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              921.5,
+              1208.5
+            ],
+            "head": [
+              912,
+              813
+            ],
+            "grip": [
+              1054,
+              900
+            ],
+            "muzzle": [
+              1057,
+              695
+            ],
+            "staff_tip": [
+              1055,
+              635
+            ],
+            "body_height": 453.5,
+            "hair_top_y": 755,
+            "boot_contact_points": [
+              [
+                876,
+                1203
+              ],
+              [
+                967,
+                1214
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                862,
+                737,
+                127,
+                130
+              ],
+              "first_warm_pixel_row": 754,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              912,
+              813
+            ],
+            "region_is_neighbor_free": false,
+            "neighbor_main_visible_pixels_in_region": 835,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 835,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              109,
+              -1,
+              69,
+              28
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_sw_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 455.5,
+          "region": [
+            0,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            285,
+            623.5
+          ],
+          "head": [
+            270,
+            219
+          ],
+          "grip": [
+            416,
+            288
+          ],
+          "muzzle": [
+            413,
+            94
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "slot": "TL",
+            "region": [
+              118,
+              11,
+              482,
+              646
+            ],
+            "visible_alpha64_core": [
+              122,
+              15,
+              474,
+              638
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              337,
+              614.5
+            ],
+            "head": [
+              322,
+              210
+            ],
+            "grip": [
+              468,
+              279
+            ],
+            "muzzle": [
+              465,
+              85
+            ],
+            "staff_tip": [
+              466,
+              15
+            ],
+            "body_height": 455.5,
+            "hair_top_y": 159,
+            "boot_contact_points": [
+              [
+                292,
+                644
+              ],
+              [
+                382,
+                585
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                270,
+                135,
+                120,
+                120
+              ],
+              "first_warm_pixel_row": 141,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              322,
+              210
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 0,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              118,
+              11,
+              27,
+              -30
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_sw_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 448.5,
+          "region": [
+            640,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            925.5,
+            622.5
+          ],
+          "head": [
+            921,
+            226
+          ],
+          "grip": [
+            1073,
+            294
+          ],
+          "muzzle": [
+            1075,
+            89
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "slot": "TR",
+            "region": [
+              749,
+              12,
+              436,
+              642
+            ],
+            "visible_alpha64_core": [
+              753,
+              16,
+              428,
+              634
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              910.5,
+              621.5
+            ],
+            "head": [
+              906,
+              225
+            ],
+            "grip": [
+              1058,
+              293
+            ],
+            "muzzle": [
+              1060,
+              88
+            ],
+            "staff_tip": [
+              1061,
+              16
+            ],
+            "body_height": 448.5,
+            "hair_top_y": 173,
+            "boot_contact_points": [
+              [
+                856,
+                640
+              ],
+              [
+                965,
+                603
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                855,
+                155,
+                125,
+                124
+              ],
+              "first_warm_pixel_row": 157,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              906,
+              225
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 0,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              0,
+              627,
+              627
+            ],
+            "cell_insets": [
+              122,
+              12,
+              69,
+              -27
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_sw_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 359,
+          "region": [
+            0,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            285,
+            1327
+          ],
+          "head": [
+            225,
+            1019
+          ],
+          "grip": [
+            417,
+            1040
+          ],
+          "muzzle": [
+            371,
+            876
+          ],
+          "source_frame": {
+            "name": "dash",
+            "slot": "BL",
+            "region": [
+              71,
+              664,
+              551,
+              572
+            ],
+            "visible_alpha64_core": [
+              75,
+              668,
+              543,
+              564
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              308,
+              1191
+            ],
+            "head": [
+              248,
+              883
+            ],
+            "grip": [
+              440,
+              904
+            ],
+            "muzzle": [
+              394,
+              740
+            ],
+            "staff_tip": [
+              372,
+              669
+            ],
+            "body_height": 359,
+            "hair_top_y": 832,
+            "boot_contact_points": [
+              [
+                225,
+                1224
+              ],
+              [
+                391,
+                1158
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                197,
+                807,
+                143,
+                130
+              ],
+              "first_warm_pixel_row": 824,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              248,
+              883
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 0,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              0,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              71,
+              37,
+              5,
+              18
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_sw_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 421,
+          "region": [
+            640,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            925,
+            1327
+          ],
+          "head": [
+            933,
+            965
+          ],
+          "grip": [
+            831,
+            1065
+          ],
+          "muzzle": [
+            706,
+            905
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "slot": "BR",
+            "region": [
+              666,
+              680,
+              554,
+              552
+            ],
+            "visible_alpha64_core": [
+              670,
+              684,
+              546,
+              544
+            ],
+            "antialias_padding_px": 4,
+            "foot": [
+              938,
+              1217
+            ],
+            "head": [
+              946,
+              855
+            ],
+            "grip": [
+              844,
+              955
+            ],
+            "muzzle": [
+              719,
+              795
+            ],
+            "staff_tip": [
+              694,
+              739
+            ],
+            "body_height": 421,
+            "hair_top_y": 796,
+            "boot_contact_points": [
+              [
+                834,
+                1220
+              ],
+              [
+                1042,
+                1214
+              ]
+            ],
+            "foot_estimated": false,
+            "landmark_accuracy_px": 12,
+            "hair_check": {
+              "manual_head_roi": [
+                900,
+                778,
+                148,
+                130
+              ],
+              "first_warm_pixel_row": 791,
+              "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+            },
+            "component_seed": [
+              946,
+              855
+            ],
+            "region_is_neighbor_free": true,
+            "neighbor_main_visible_pixels_in_region": 0,
+            "foreigncomponent": {
+              "pixels_at_alpha64": 0,
+              "requires_connected_component_extraction": true
+            },
+            "requires_component_extraction": true,
+            "cell": [
+              627,
+              627,
+              627,
+              627
+            ],
+            "cell_insets": [
+              39,
+              53,
+              34,
+              22
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_sw_b.png"
+        }
+      ]
+    },
+    "W": {
+      "reference_body_height": 485,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 485,
+          "region": [
+            0,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            336,
+            606
+          ],
+          "head": [
+            350,
+            156
+          ],
+          "grip": [
+            237,
+            252
+          ],
+          "muzzle": [
+            237,
+            120
+          ],
+          "source_frame": {
+            "name": "idle",
+            "cell": "TL",
+            "region": [
+              150,
+              7,
+              410,
+              616
+            ],
+            "foot": [
+              338,
+              600
+            ],
+            "head": [
+              352,
+              150
+            ],
+            "grip": [
+              239,
+              246
+            ],
+            "muzzle": [
+              239,
+              114
+            ],
+            "body_height": 485,
+            "landmark_accuracy_px": 12,
+            "visible_alpha_gt8_bbox": [
+              160,
+              17,
+              389,
+              596
+            ],
+            "requires_component_isolation": true
+          },
+          "texture": "asset://heroes/ch03_poses_w_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 480,
+          "region": [
+            640,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            976,
+            606
+          ],
+          "head": [
+            985,
+            167
+          ],
+          "grip": [
+            879,
+            257
+          ],
+          "muzzle": [
+            876,
+            122
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "cell": "TR",
+            "region": [
+              708,
+              4,
+              460,
+              612
+            ],
+            "foot": [
+              895,
+              595
+            ],
+            "head": [
+              904,
+              156
+            ],
+            "grip": [
+              798,
+              246
+            ],
+            "muzzle": [
+              795,
+              111
+            ],
+            "body_height": 480,
+            "landmark_accuracy_px": 12,
+            "visible_alpha_gt8_bbox": [
+              718,
+              14,
+              440,
+              590
+            ],
+            "requires_component_isolation": true
+          },
+          "texture": "asset://heroes/ch03_poses_w_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 453,
+          "region": [
+            0,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            336,
+            1310
+          ],
+          "head": [
+            331,
+            887
+          ],
+          "grip": [
+            229,
+            978
+          ],
+          "muzzle": [
+            222,
+            846
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "cell": "BL",
+            "region": [
+              159,
+              619,
+              452,
+              602
+            ],
+            "foot": [
+              356,
+              1189
+            ],
+            "head": [
+              351,
+              766
+            ],
+            "grip": [
+              249,
+              857
+            ],
+            "muzzle": [
+              242,
+              725
+            ],
+            "body_height": 453,
+            "landmark_accuracy_px": 15,
+            "visible_alpha_gt8_bbox": [
+              169,
+              629,
+              432,
+              581
+            ],
+            "requires_component_isolation": true
+          },
+          "texture": "asset://heroes/ch03_poses_w_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 475,
+          "region": [
+            640,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            976,
+            1310
+          ],
+          "head": [
+            964,
+            873
+          ],
+          "grip": [
+            870,
+            971
+          ],
+          "muzzle": [
+            861,
+            851
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "cell": "BR",
+            "region": [
+              734,
+              622,
+              441,
+              607
+            ],
+            "foot": [
+              931,
+              1196
+            ],
+            "head": [
+              919,
+              759
+            ],
+            "grip": [
+              825,
+              857
+            ],
+            "muzzle": [
+              816,
+              737
+            ],
+            "body_height": 475,
+            "landmark_accuracy_px": 12,
+            "visible_alpha_gt8_bbox": [
+              744,
+              632,
+              421,
+              586
+            ],
+            "requires_component_isolation": true
+          },
+          "texture": "asset://heroes/ch03_poses_w_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 484,
+          "region": [
+            0,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            336,
+            606
+          ],
+          "head": [
+            349,
+            156
+          ],
+          "grip": [
+            470,
+            246
+          ],
+          "muzzle": [
+            461,
+            106
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "cell": "TL",
+            "region": [
+              125,
+              28,
+              520,
+              640
+            ],
+            "foot": [
+              345,
+              630
+            ],
+            "head": [
+              358,
+              180
+            ],
+            "grip": [
+              479,
+              270
+            ],
+            "muzzle": [
+              470,
+              130
+            ],
+            "body_height": 484,
+            "landmark_accuracy_px": 12,
+            "visible_alpha_gt8_bbox": [
+              138,
+              40,
+              491,
+              612
+            ],
+            "requires_component_isolation": true
+          },
+          "texture": "asset://heroes/ch03_poses_w_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 475,
+          "region": [
+            640,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            976,
+            606
+          ],
+          "head": [
+            967,
+            161
+          ],
+          "grip": [
+            872,
+            249
+          ],
+          "muzzle": [
+            866,
+            119
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "cell": "TR",
+            "region": [
+              736,
+              30,
+              460,
+              637
+            ],
+            "foot": [
+              928,
+              628
+            ],
+            "head": [
+              919,
+              183
+            ],
+            "grip": [
+              824,
+              271
+            ],
+            "muzzle": [
+              818,
+              141
+            ],
+            "body_height": 475,
+            "landmark_accuracy_px": 12,
+            "visible_alpha_gt8_bbox": [
+              747,
+              53,
+              439,
+              600
+            ],
+            "requires_component_isolation": true
+          },
+          "texture": "asset://heroes/ch03_poses_w_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 373,
+          "region": [
+            0,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            336,
+            1310
+          ],
+          "head": [
+            216,
+            973
+          ],
+          "grip": [
+            144,
+            1019
+          ],
+          "muzzle": [
+            76,
+            901
+          ],
+          "source_frame": {
+            "name": "dash",
+            "cell": "BL",
+            "region": [
+              65,
+              680,
+              590,
+              555
+            ],
+            "foot": [
+              405,
+              1198
+            ],
+            "head": [
+              285,
+              861
+            ],
+            "grip": [
+              213,
+              907
+            ],
+            "muzzle": [
+              145,
+              789
+            ],
+            "body_height": 373,
+            "landmark_accuracy_px": 18,
+            "body_height_note": "Crouched/extended pose reduces projected vertical head-to-foot distance; this is measured, not substituted standing height.",
+            "visible_alpha_gt8_bbox": [
+              85,
+              719,
+              556,
+              491
+            ],
+            "requires_component_isolation": true
+          },
+          "texture": "asset://heroes/ch03_poses_w_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 391,
+          "region": [
+            640,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            976,
+            1310
+          ],
+          "head": [
+            955,
+            953
+          ],
+          "grip": [
+            862,
+            992
+          ],
+          "muzzle": [
+            806,
+            878
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "cell": "BR",
+            "region": [
+              690,
+              672,
+              530,
+              563
+            ],
+            "foot": [
+              943,
+              1208
+            ],
+            "head": [
+              922,
+              851
+            ],
+            "grip": [
+              829,
+              890
+            ],
+            "muzzle": [
+              773,
+              776
+            ],
+            "body_height": 391,
+            "landmark_accuracy_px": 15,
+            "visible_alpha_gt8_bbox": [
+              705,
+              690,
+              496,
+              529
+            ],
+            "requires_component_isolation": true
+          },
+          "texture": "asset://heroes/ch03_poses_w_b.png"
+        }
+      ]
+    },
+    "NW": {
+      "reference_body_height": 416,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 416,
+          "region": [
+            0,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            341,
+            614
+          ],
+          "head": [
+            336,
+            239
+          ],
+          "grip": [
+            191,
+            259
+          ],
+          "muzzle": [
+            166,
+            22
+          ],
+          "source_frame": {
+            "name": "idle",
+            "cell": "TL",
+            "region": [
+              177,
+              12,
+              401,
+              619
+            ],
+            "foot": [
+              410,
+              610
+            ],
+            "head": [
+              405,
+              235
+            ],
+            "grip": [
+              260,
+              255
+            ],
+            "component_seed": [
+              260,
+              255
+            ],
+            "muzzle": [
+              235,
+              18
+            ],
+            "staff_tip": [
+              235,
+              18
+            ],
+            "staff_crystal_center": [
+              244,
+              106
+            ],
+            "body_height": 416,
+            "anatomy_top": [
+              405,
+              194
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              177,
+              12,
+              401,
+              619
+            ],
+            "component_seed_bbox": [
+              177,
+              12,
+              401,
+              619
+            ],
+            "component_alpha_gt8_pixel_count": 140756
+          },
+          "texture": "asset://heroes/ch03_poses_nw_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 385,
+          "region": [
+            640,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            981,
+            614
+          ],
+          "head": [
+            1036,
+            271
+          ],
+          "grip": [
+            877,
+            284
+          ],
+          "muzzle": [
+            857,
+            35
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "cell": "TR",
+            "region": [
+              762,
+              8,
+              423,
+              631
+            ],
+            "foot": [
+              945,
+              588
+            ],
+            "head": [
+              1000,
+              245
+            ],
+            "grip": [
+              841,
+              258
+            ],
+            "component_seed": [
+              841,
+              258
+            ],
+            "muzzle": [
+              821,
+              9
+            ],
+            "staff_tip": [
+              821,
+              9
+            ],
+            "staff_crystal_center": [
+              826,
+              104
+            ],
+            "body_height": 385,
+            "anatomy_top": [
+              1000,
+              203
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 252,
+            "visible_alpha_gt8_bbox": [
+              762,
+              8,
+              423,
+              631
+            ],
+            "component_seed_bbox": [
+              762,
+              8,
+              423,
+              631
+            ],
+            "component_alpha_gt8_pixel_count": 137426
+          },
+          "texture": "asset://heroes/ch03_poses_nw_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 375,
+          "region": [
+            0,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            341,
+            1318
+          ],
+          "head": [
+            354,
+            995
+          ],
+          "grip": [
+            191,
+            1000
+          ],
+          "muzzle": [
+            174,
+            771
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "cell": "BL",
+            "region": [
+              172,
+              630,
+              442,
+              597
+            ],
+            "foot": [
+              396,
+              1186
+            ],
+            "head": [
+              409,
+              863
+            ],
+            "grip": [
+              246,
+              868
+            ],
+            "component_seed": [
+              246,
+              868
+            ],
+            "muzzle": [
+              229,
+              639
+            ],
+            "staff_tip": [
+              229,
+              639
+            ],
+            "staff_crystal_center": [
+              226,
+              722
+            ],
+            "body_height": 375,
+            "anatomy_top": [
+              409,
+              811
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              172,
+              630,
+              442,
+              597
+            ],
+            "component_seed_bbox": [
+              172,
+              630,
+              442,
+              597
+            ],
+            "component_alpha_gt8_pixel_count": 136102
+          },
+          "texture": "asset://heroes/ch03_poses_nw_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 398,
+          "region": [
+            640,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            981,
+            1318
+          ],
+          "head": [
+            1008,
+            967
+          ],
+          "grip": [
+            844,
+            987
+          ],
+          "muzzle": [
+            824,
+            759
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "cell": "BR",
+            "region": [
+              763,
+              627,
+              458,
+              587
+            ],
+            "foot": [
+              977,
+              1202
+            ],
+            "head": [
+              1004,
+              851
+            ],
+            "grip": [
+              840,
+              871
+            ],
+            "component_seed": [
+              840,
+              871
+            ],
+            "muzzle": [
+              820,
+              643
+            ],
+            "staff_tip": [
+              820,
+              643
+            ],
+            "staff_crystal_center": [
+              827,
+              723
+            ],
+            "body_height": 398,
+            "anatomy_top": [
+              1004,
+              804
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              763,
+              627,
+              458,
+              587
+            ],
+            "component_seed_bbox": [
+              763,
+              627,
+              458,
+              587
+            ],
+            "component_alpha_gt8_pixel_count": 146708
+          },
+          "texture": "asset://heroes/ch03_poses_nw_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 427,
+          "region": [
+            0,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            341,
+            614
+          ],
+          "head": [
+            346,
+            236
+          ],
+          "grip": [
+            195,
+            247
+          ],
+          "muzzle": [
+            171,
+            20
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "cell": "TL",
+            "region": [
+              155,
+              14,
+              432,
+              611
+            ],
+            "foot": [
+              393,
+              612
+            ],
+            "head": [
+              398,
+              234
+            ],
+            "grip": [
+              247,
+              245
+            ],
+            "component_seed": [
+              247,
+              245
+            ],
+            "muzzle": [
+              223,
+              18
+            ],
+            "staff_tip": [
+              223,
+              18
+            ],
+            "staff_crystal_center": [
+              235,
+              105
+            ],
+            "body_height": 427,
+            "anatomy_top": [
+              398,
+              185
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              155,
+              14,
+              432,
+              611
+            ],
+            "component_seed_bbox": [
+              155,
+              14,
+              432,
+              611
+            ],
+            "component_alpha_gt8_pixel_count": 145227
+          },
+          "texture": "asset://heroes/ch03_poses_nw_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 406,
+          "region": [
+            640,
+            0,
+            640,
+            704
+          ],
+          "foot": [
+            981,
+            614
+          ],
+          "head": [
+            1005,
+            256
+          ],
+          "grip": [
+            859,
+            261
+          ],
+          "muzzle": [
+            827,
+            39
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "cell": "TR",
+            "region": [
+              765,
+              20,
+              437,
+              594
+            ],
+            "foot": [
+              971,
+              600
+            ],
+            "head": [
+              995,
+              242
+            ],
+            "grip": [
+              849,
+              247
+            ],
+            "component_seed": [
+              849,
+              247
+            ],
+            "muzzle": [
+              817,
+              25
+            ],
+            "staff_tip": [
+              817,
+              25
+            ],
+            "staff_crystal_center": [
+              834,
+              103
+            ],
+            "body_height": 406,
+            "anatomy_top": [
+              995,
+              194
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 252,
+            "visible_alpha_gt8_bbox": [
+              765,
+              20,
+              437,
+              594
+            ],
+            "component_seed_bbox": [
+              765,
+              20,
+              437,
+              594
+            ],
+            "component_alpha_gt8_pixel_count": 137211
+          },
+          "texture": "asset://heroes/ch03_poses_nw_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 359,
+          "region": [
+            0,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            341,
+            1318
+          ],
+          "head": [
+            271,
+            994
+          ],
+          "grip": [
+            114,
+            1028
+          ],
+          "muzzle": [
+            56,
+            819
+          ],
+          "source_frame": {
+            "name": "dash",
+            "cell": "BL",
+            "region": [
+              128,
+              647,
+              525,
+              560
+            ],
+            "foot": [
+              453,
+              1146
+            ],
+            "head": [
+              383,
+              822
+            ],
+            "grip": [
+              226,
+              856
+            ],
+            "component_seed": [
+              226,
+              856
+            ],
+            "muzzle": [
+              168,
+              647
+            ],
+            "staff_tip": [
+              168,
+              647
+            ],
+            "staff_crystal_center": [
+              190,
+              735
+            ],
+            "body_height": 359,
+            "anatomy_top": [
+              383,
+              787
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 252,
+            "visible_alpha_gt8_bbox": [
+              128,
+              647,
+              525,
+              560
+            ],
+            "component_seed_bbox": [
+              128,
+              647,
+              525,
+              560
+            ],
+            "component_alpha_gt8_pixel_count": 136227
+          },
+          "texture": "asset://heroes/ch03_poses_nw_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 386,
+          "region": [
+            640,
+            704,
+            640,
+            704
+          ],
+          "foot": [
+            981,
+            1318
+          ],
+          "head": [
+            979,
+            980
+          ],
+          "grip": [
+            826,
+            949
+          ],
+          "muzzle": [
+            802,
+            731
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "cell": "BR",
+            "region": [
+              767,
+              611,
+              450,
+              605
+            ],
+            "foot": [
+              1003,
+              1203
+            ],
+            "head": [
+              1001,
+              865
+            ],
+            "grip": [
+              848,
+              834
+            ],
+            "component_seed": [
+              848,
+              834
+            ],
+            "muzzle": [
+              824,
+              616
+            ],
+            "staff_tip": [
+              824,
+              616
+            ],
+            "staff_crystal_center": [
+              831,
+              704
+            ],
+            "body_height": 386,
+            "anatomy_top": [
+              1001,
+              817
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 252,
+            "visible_alpha_gt8_bbox": [
+              767,
+              611,
+              450,
+              605
+            ],
+            "component_seed_bbox": [
+              767,
+              611,
+              450,
+              605
+            ],
+            "component_alpha_gt8_pixel_count": 140242
+          },
+          "texture": "asset://heroes/ch03_poses_nw_b.png"
+        }
+      ]
+    },
+    "N": {
+      "reference_body_height": 423,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 423,
+          "region": [
+            0,
+            0,
+            448,
+            704
+          ],
+          "foot": [
+            215,
+            627
+          ],
+          "head": [
+            230,
+            235
+          ],
+          "grip": [
+            109,
+            254
+          ],
+          "muzzle": [
+            105,
+            110
+          ],
+          "source_frame": {
+            "name": "idle",
+            "cell": "TL",
+            "region": [
+              198,
+              2,
+              340,
+              618
+            ],
+            "foot": [
+              376,
+              613
+            ],
+            "head": [
+              391,
+              221
+            ],
+            "grip": [
+              270,
+              240
+            ],
+            "muzzle": [
+              266,
+              96
+            ],
+            "body_height": 423,
+            "anatomy_top": [
+              391,
+              190
+            ],
+            "landmark_accuracy_px": 25,
+            "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+            "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+            "requires_component_isolation": true,
+            "visible_alpha_gt8_bbox": [
+              198,
+              2,
+              340,
+              618
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_n_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 402,
+          "region": [
+            448,
+            0,
+            448,
+            704
+          ],
+          "foot": [
+            663,
+            627
+          ],
+          "head": [
+            685,
+            260
+          ],
+          "grip": [
+            555,
+            277
+          ],
+          "muzzle": [
+            564,
+            133
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "cell": "TR",
+            "region": [
+              746,
+              1,
+              373,
+              619
+            ],
+            "foot": [
+              940,
+              590
+            ],
+            "head": [
+              962,
+              223
+            ],
+            "grip": [
+              832,
+              240
+            ],
+            "muzzle": [
+              841,
+              96
+            ],
+            "body_height": 402,
+            "anatomy_top": [
+              962,
+              188
+            ],
+            "landmark_accuracy_px": 25,
+            "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+            "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+            "requires_component_isolation": true,
+            "visible_alpha_gt8_bbox": [
+              746,
+              1,
+              373,
+              619
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_n_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 371,
+          "region": [
+            0,
+            704,
+            448,
+            704
+          ],
+          "foot": [
+            215,
+            1331
+          ],
+          "head": [
+            231,
+            996
+          ],
+          "grip": [
+            102,
+            1005
+          ],
+          "muzzle": [
+            100,
+            862
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "cell": "BL",
+            "region": [
+              183,
+              631,
+              390,
+              596
+            ],
+            "foot": [
+              382,
+              1188
+            ],
+            "head": [
+              398,
+              853
+            ],
+            "grip": [
+              269,
+              862
+            ],
+            "muzzle": [
+              267,
+              719
+            ],
+            "body_height": 371,
+            "anatomy_top": [
+              398,
+              817
+            ],
+            "landmark_accuracy_px": 25,
+            "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+            "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+            "requires_component_isolation": true,
+            "visible_alpha_gt8_bbox": [
+              183,
+              631,
+              390,
+              596
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_n_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 409,
+          "region": [
+            448,
+            704,
+            448,
+            704
+          ],
+          "foot": [
+            663,
+            1331
+          ],
+          "head": [
+            683,
+            962
+          ],
+          "grip": [
+            542,
+            973
+          ],
+          "muzzle": [
+            542,
+            831
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "cell": "BR",
+            "region": [
+              752,
+              631,
+              362,
+              595
+            ],
+            "foot": [
+              941,
+              1220
+            ],
+            "head": [
+              961,
+              851
+            ],
+            "grip": [
+              820,
+              862
+            ],
+            "muzzle": [
+              820,
+              720
+            ],
+            "body_height": 409,
+            "anatomy_top": [
+              961,
+              811
+            ],
+            "landmark_accuracy_px": 25,
+            "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+            "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+            "requires_component_isolation": true,
+            "visible_alpha_gt8_bbox": [
+              752,
+              631,
+              362,
+              595
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_n_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 420,
+          "region": [
+            0,
+            0,
+            448,
+            704
+          ],
+          "foot": [
+            215,
+            627
+          ],
+          "head": [
+            208,
+            243
+          ],
+          "grip": [
+            97,
+            243
+          ],
+          "muzzle": [
+            95,
+            117
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "cell": "TL",
+            "region": [
+              194,
+              13,
+              355,
+              598
+            ],
+            "foot": [
+              381,
+              604
+            ],
+            "head": [
+              374,
+              220
+            ],
+            "grip": [
+              263,
+              220
+            ],
+            "muzzle": [
+              261,
+              94
+            ],
+            "body_height": 420,
+            "anatomy_top": [
+              374,
+              184
+            ],
+            "landmark_accuracy_px": 25,
+            "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+            "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+            "requires_component_isolation": true,
+            "visible_alpha_gt8_bbox": [
+              194,
+              13,
+              355,
+              598
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_n_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 401,
+          "region": [
+            448,
+            0,
+            448,
+            704
+          ],
+          "foot": [
+            663,
+            627
+          ],
+          "head": [
+            663,
+            261
+          ],
+          "grip": [
+            556,
+            265
+          ],
+          "muzzle": [
+            562,
+            136
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "cell": "TR",
+            "region": [
+              789,
+              12,
+              349,
+              598
+            ],
+            "foot": [
+              970,
+              582
+            ],
+            "head": [
+              970,
+              216
+            ],
+            "grip": [
+              863,
+              220
+            ],
+            "muzzle": [
+              869,
+              91
+            ],
+            "body_height": 401,
+            "anatomy_top": [
+              970,
+              181
+            ],
+            "landmark_accuracy_px": 25,
+            "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+            "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+            "requires_component_isolation": true,
+            "visible_alpha_gt8_bbox": [
+              789,
+              12,
+              349,
+              598
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_n_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 356,
+          "region": [
+            0,
+            704,
+            448,
+            704
+          ],
+          "foot": [
+            215,
+            1331
+          ],
+          "head": [
+            221,
+            999
+          ],
+          "grip": [
+            106,
+            1009
+          ],
+          "muzzle": [
+            124,
+            899
+          ],
+          "source_frame": {
+            "name": "dash",
+            "cell": "BL",
+            "region": [
+              217,
+              652,
+              351,
+              538
+            ],
+            "foot": [
+              403,
+              1156
+            ],
+            "head": [
+              409,
+              824
+            ],
+            "grip": [
+              294,
+              834
+            ],
+            "muzzle": [
+              312,
+              724
+            ],
+            "body_height": 356,
+            "anatomy_top": [
+              409,
+              800
+            ],
+            "landmark_accuracy_px": 25,
+            "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+            "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+            "requires_component_isolation": true,
+            "visible_alpha_gt8_bbox": [
+              217,
+              652,
+              351,
+              538
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_n_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 377,
+          "region": [
+            448,
+            704,
+            448,
+            704
+          ],
+          "foot": [
+            663,
+            1331
+          ],
+          "head": [
+            651,
+            987
+          ],
+          "grip": [
+            656,
+            857
+          ],
+          "muzzle": [
+            652,
+            789
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "cell": "BR",
+            "region": [
+              791,
+              625,
+              331,
+              606
+            ],
+            "foot": [
+              960,
+              1228
+            ],
+            "head": [
+              948,
+              884
+            ],
+            "grip": [
+              953,
+              754
+            ],
+            "muzzle": [
+              949,
+              686
+            ],
+            "body_height": 377,
+            "anatomy_top": [
+              948,
+              851
+            ],
+            "landmark_accuracy_px": 25,
+            "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+            "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+            "requires_component_isolation": true,
+            "visible_alpha_gt8_bbox": [
+              791,
+              625,
+              331,
+              606
+            ]
+          },
+          "texture": "asset://heroes/ch03_poses_n_b.png"
+        }
+      ]
+    },
+    "NE": {
+      "reference_body_height": 415,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 415,
+          "region": [
+            0,
+            0,
+            576,
+            704
+          ],
+          "foot": [
+            256,
+            616
+          ],
+          "head": [
+            294,
+            241
+          ],
+          "grip": [
+            176,
+            219
+          ],
+          "muzzle": [
+            157,
+            19
+          ],
+          "source_frame": {
+            "name": "idle",
+            "cell": "TL",
+            "region": [
+              189,
+              5,
+              364,
+              623
+            ],
+            "foot": [
+              367,
+              605
+            ],
+            "head": [
+              405,
+              230
+            ],
+            "grip": [
+              287,
+              208
+            ],
+            "component_seed": [
+              287,
+              208
+            ],
+            "muzzle": [
+              268,
+              8
+            ],
+            "staff_tip": [
+              268,
+              8
+            ],
+            "staff_crystal_center": [
+              270,
+              90
+            ],
+            "body_height": 415,
+            "anatomy_top": [
+              405,
+              190
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              189,
+              5,
+              364,
+              623
+            ],
+            "component_seed_bbox": [
+              189,
+              5,
+              364,
+              623
+            ],
+            "component_alpha_gt8_pixel_count": 140294
+          },
+          "texture": "asset://heroes/ch03_poses_ne_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 405,
+          "region": [
+            576,
+            0,
+            576,
+            704
+          ],
+          "foot": [
+            832,
+            616
+          ],
+          "head": [
+            851,
+            258
+          ],
+          "grip": [
+            711,
+            227
+          ],
+          "muzzle": [
+            679,
+            30
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "cell": "TR",
+            "region": [
+              739,
+              6,
+              391,
+              640
+            ],
+            "foot": [
+              968,
+              598
+            ],
+            "head": [
+              987,
+              240
+            ],
+            "grip": [
+              847,
+              209
+            ],
+            "component_seed": [
+              847,
+              209
+            ],
+            "muzzle": [
+              815,
+              12
+            ],
+            "staff_tip": [
+              815,
+              12
+            ],
+            "staff_crystal_center": [
+              817,
+              90
+            ],
+            "body_height": 405,
+            "anatomy_top": [
+              987,
+              193
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              739,
+              6,
+              391,
+              640
+            ],
+            "component_seed_bbox": [
+              739,
+              6,
+              391,
+              640
+            ],
+            "component_alpha_gt8_pixel_count": 141555
+          },
+          "texture": "asset://heroes/ch03_poses_ne_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 385,
+          "region": [
+            0,
+            704,
+            576,
+            704
+          ],
+          "foot": [
+            256,
+            1320
+          ],
+          "head": [
+            295,
+            978
+          ],
+          "grip": [
+            163,
+            945
+          ],
+          "muzzle": [
+            132,
+            751
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "cell": "BL",
+            "region": [
+              175,
+              629,
+              397,
+              611
+            ],
+            "foot": [
+              374,
+              1205
+            ],
+            "head": [
+              413,
+              863
+            ],
+            "grip": [
+              281,
+              830
+            ],
+            "component_seed": [
+              281,
+              830
+            ],
+            "muzzle": [
+              250,
+              636
+            ],
+            "staff_tip": [
+              250,
+              636
+            ],
+            "staff_crystal_center": [
+              256,
+              718
+            ],
+            "body_height": 385,
+            "anatomy_top": [
+              413,
+              820
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              175,
+              629,
+              397,
+              611
+            ],
+            "component_seed_bbox": [
+              175,
+              629,
+              397,
+              611
+            ],
+            "component_alpha_gt8_pixel_count": 145498
+          },
+          "texture": "asset://heroes/ch03_poses_ne_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 392,
+          "region": [
+            576,
+            704,
+            576,
+            704
+          ],
+          "foot": [
+            832,
+            1320
+          ],
+          "head": [
+            886,
+            972
+          ],
+          "grip": [
+            744,
+            944
+          ],
+          "muzzle": [
+            730,
+            746
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "cell": "BR",
+            "region": [
+              759,
+              627,
+              435,
+              609
+            ],
+            "foot": [
+              943,
+              1206
+            ],
+            "head": [
+              997,
+              858
+            ],
+            "grip": [
+              855,
+              830
+            ],
+            "component_seed": [
+              855,
+              830
+            ],
+            "muzzle": [
+              841,
+              632
+            ],
+            "staff_tip": [
+              841,
+              632
+            ],
+            "staff_crystal_center": [
+              841,
+              720
+            ],
+            "body_height": 392,
+            "anatomy_top": [
+              997,
+              814
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              759,
+              627,
+              435,
+              609
+            ],
+            "component_seed_bbox": [
+              759,
+              627,
+              435,
+              609
+            ],
+            "component_alpha_gt8_pixel_count": 155128
+          },
+          "texture": "asset://heroes/ch03_poses_ne_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 399,
+          "region": [
+            0,
+            0,
+            576,
+            704
+          ],
+          "foot": [
+            256,
+            616
+          ],
+          "head": [
+            257,
+            261
+          ],
+          "grip": [
+            126,
+            218
+          ],
+          "muzzle": [
+            110,
+            35
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "cell": "TL",
+            "region": [
+              163,
+              21,
+              413,
+              616
+            ],
+            "foot": [
+              394,
+              606
+            ],
+            "head": [
+              395,
+              251
+            ],
+            "grip": [
+              264,
+              208
+            ],
+            "component_seed": [
+              264,
+              208
+            ],
+            "muzzle": [
+              248,
+              25
+            ],
+            "staff_tip": [
+              248,
+              25
+            ],
+            "staff_crystal_center": [
+              248,
+              98
+            ],
+            "body_height": 399,
+            "anatomy_top": [
+              395,
+              207
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              163,
+              21,
+              413,
+              616
+            ],
+            "component_seed_bbox": [
+              163,
+              21,
+              413,
+              616
+            ],
+            "component_alpha_gt8_pixel_count": 141468
+          },
+          "texture": "asset://heroes/ch03_poses_ne_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 394,
+          "region": [
+            576,
+            0,
+            576,
+            704
+          ],
+          "foot": [
+            832,
+            616
+          ],
+          "head": [
+            831,
+            267
+          ],
+          "grip": [
+            700,
+            224
+          ],
+          "muzzle": [
+            672,
+            43
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "cell": "TR",
+            "region": [
+              746,
+              22,
+              347,
+              619
+            ],
+            "foot": [
+              986,
+              600
+            ],
+            "head": [
+              985,
+              251
+            ],
+            "grip": [
+              854,
+              208
+            ],
+            "component_seed": [
+              854,
+              208
+            ],
+            "muzzle": [
+              826,
+              27
+            ],
+            "staff_tip": [
+              826,
+              27
+            ],
+            "staff_crystal_center": [
+              835,
+              94
+            ],
+            "body_height": 394,
+            "anatomy_top": [
+              985,
+              206
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              746,
+              22,
+              347,
+              619
+            ],
+            "component_seed_bbox": [
+              746,
+              22,
+              347,
+              619
+            ],
+            "component_alpha_gt8_pixel_count": 134147
+          },
+          "texture": "asset://heroes/ch03_poses_ne_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 362,
+          "region": [
+            0,
+            704,
+            576,
+            704
+          ],
+          "foot": [
+            256,
+            1320
+          ],
+          "head": [
+            425,
+            998
+          ],
+          "grip": [
+            301,
+            955
+          ],
+          "muzzle": [
+            347,
+            813
+          ],
+          "source_frame": {
+            "name": "dash",
+            "cell": "BL",
+            "region": [
+              134,
+              666,
+              468,
+              560
+            ],
+            "foot": [
+              302,
+              1177
+            ],
+            "head": [
+              471,
+              855
+            ],
+            "grip": [
+              347,
+              812
+            ],
+            "component_seed": [
+              347,
+              812
+            ],
+            "muzzle": [
+              393,
+              670
+            ],
+            "staff_tip": [
+              393,
+              670
+            ],
+            "staff_crystal_center": [
+              370,
+              741
+            ],
+            "body_height": 362,
+            "anatomy_top": [
+              471,
+              815
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              134,
+              666,
+              468,
+              560
+            ],
+            "component_seed_bbox": [
+              134,
+              666,
+              468,
+              560
+            ],
+            "component_alpha_gt8_pixel_count": 133795
+          },
+          "texture": "asset://heroes/ch03_poses_ne_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 388,
+          "region": [
+            576,
+            704,
+            576,
+            704
+          ],
+          "foot": [
+            832,
+            1320
+          ],
+          "head": [
+            895,
+            979
+          ],
+          "grip": [
+            1017,
+            925
+          ],
+          "muzzle": [
+            1050,
+            758
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "cell": "BR",
+            "region": [
+              720,
+              635,
+              486,
+              598
+            ],
+            "foot": [
+              917,
+              1200
+            ],
+            "head": [
+              980,
+              859
+            ],
+            "grip": [
+              1102,
+              805
+            ],
+            "component_seed": [
+              1102,
+              805
+            ],
+            "muzzle": [
+              1135,
+              638
+            ],
+            "staff_tip": [
+              1135,
+              638
+            ],
+            "staff_crystal_center": [
+              1133,
+              711
+            ],
+            "body_height": 388,
+            "anatomy_top": [
+              980,
+              812
+            ],
+            "landmark_accuracy_px": 25,
+            "requires_component_isolation": true,
+            "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+            "head_note": "Manual natural head center behind hat brim, not hat center.",
+            "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+            "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+            "component_seed_alpha": 253,
+            "visible_alpha_gt8_bbox": [
+              720,
+              635,
+              486,
+              598
+            ],
+            "component_seed_bbox": [
+              720,
+              635,
+              486,
+              598
+            ],
+            "component_alpha_gt8_pixel_count": 144118
+          },
+          "texture": "asset://heroes/ch03_poses_ne_b.png"
+        }
+      ]
+    }
+  },
+  "source_native_sizes": {
+    "poses_e_a": [
+      1254,
+      1254
+    ],
+    "poses_e_b": [
+      1254,
+      1254
+    ],
+    "poses_se_a": [
+      1254,
+      1254
+    ],
+    "poses_se_b": [
+      1254,
+      1254
+    ],
+    "poses_s_a": [
+      1254,
+      1254
+    ],
+    "poses_s_b": [
+      1254,
+      1254
+    ],
+    "poses_sw_a": [
+      1254,
+      1254
+    ],
+    "poses_sw_b": [
+      1254,
+      1254
+    ],
+    "poses_w_a": [
+      1254,
+      1254
+    ],
+    "poses_w_b": [
+      1254,
+      1254
+    ],
+    "poses_nw_a": [
+      1254,
+      1254
+    ],
+    "poses_nw_b": [
+      1254,
+      1254
+    ],
+    "poses_n_a": [
+      1254,
+      1254
+    ],
+    "poses_n_b": [
+      1254,
+      1254
+    ],
+    "poses_ne_a": [
+      1254,
+      1254
+    ],
+    "poses_ne_b": [
+      1254,
+      1254
+    ]
+  },
+  "native_2k_sources_met": false,
+  "registration": "Measured original pixels; runtime sole=(0,8), fixed standing scale per authored direction; no body rotation or mirroring.",
+  "limitations": [
+    "64 shared authored body poses in eight directions, not twelve independent eight-frame skill animations.",
+    "Individual skills retain production effect timelines and use explicit basic, guard/cast or travel body categories.",
+    "Manual anatomy/weapon anchors require graphical verification."
+  ]
+}

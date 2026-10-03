@@ -102,10 +102,17 @@ if (-not $SkipImport) {
 if ($ImportOnly) { Write-Host "Resource import completed. Isolated profile directory: $testDirectory"; return }
 foreach ($testName in $Suite) {
     $definition = Get-SuiteDefinition $testName
+    if ($testName -eq 'b09_2k' -and -not $Graphical) { throw 'b09_2k requires -Graphical and an actual GPU framebuffer.' }
     [string[]]$arguments = if ($definition.scene) { @("res://$($definition.scene)") } else { @('--script', "res://$($definition.script)") }
     # The legacy playthrough suite shares the combat fixture's safety prefix.
     $profileName = if ($testName -eq 'playthrough') { 'combat_playthrough' } else { $testName }
-    $arguments += @('--', "--test-profile=$(Get-TestProfile $profileName)")
+    if ($testName -in @('b09_2k','b09_inventory','b09_equipment','b09_monster_contract','b09_map_native')) {
+        $arguments += @('--', '--candidate-b09', "--test-profile=user://test_b09_candidate/$testName.json")
+        if ($testName -eq 'b09_2k') { $arguments += '--b09-resolution=2560x1440' }
+    } else {
+        $arguments += @('--', "--test-profile=$(Get-TestProfile $profileName)")
+        if ($testName -eq 'b09_equipment_release_gate') { $arguments += '--b09-release-gate' }
+    }
     $testRuleset = $Ruleset
     if ($testRuleset -ne 0) { $arguments += "--test-ruleset=$testRuleset" }
     if ($Candidate) { $arguments += "--candidate-$Candidate" }

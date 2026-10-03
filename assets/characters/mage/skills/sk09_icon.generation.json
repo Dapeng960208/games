@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "skill_id": "CH03_SK09",
+  "skill_name": "星链跳跃",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "generation_date_utc": "2026-10-03T09:36:53.3792295Z",
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "image_mode": "RGBA",
+  "png_color_type": 6,
+  "transparent_background": true,
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10119-2571-7212-a298-ec39a3d44e43/exec-cedfdcbc-a42d-4b88-8aeb-01a096ab39de.png",
+  "final_path": "assets/characters/mage/skills/sk09_icon.png",
+  "sha256": "6e4025ab176bd9136a4c3af96e089e01892abe92d935400be437edc729b2bef5",
+  "prompt": "Use case: stylized-concept. Asset type: one original fantasy game skill icon, CH03_SK09 星链跳跃 (Star Chain Leap), request native 2048x2048 square source. Create a single polished hand-painted cartoon fantasy round badge with sculpted 2.5D volume, warm upper-left light contrasting cool magic. Dominant emblem: EXACTLY THREE large four-point silver-blue stars at three offset triangular positions, connected in sequence by a thick angular luminous blue-silver lightning-like chain. Clearly distinguish this angular three-node chain from a fan of three projectiles. Midnight purple and obsidian inside the badge, silver and ghost blue magic, white bright cores only. Thin silver circular rim filling 92% width; genuinely transparent outside the circle. Broad simple masses, crisp silhouette readable at 44 pixels, generous 8% safety margin, beautiful painterly detail at native resolution. No pink, red, text, letters, numbers, logos, watermark, grid, tiny full-body character, copied game imagery, extra nodes or extra stars.",
+  "edit_prompt": null,
+  "edit_reference": null,
+  "processing": "Copied original PNG unchanged; no upscaling or repainting",
+  "visual_review": "Distinct skill identity and painterly round badge inspected at native display; SK11 four-point spirit corrected with built-in image edit"
+}

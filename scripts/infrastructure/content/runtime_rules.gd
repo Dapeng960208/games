@@ -37,12 +37,17 @@ static func chapter_enabled(chapter: Variant) -> bool:
 		chapter_id = "B%02d" % chapter
 	elif chapter is String:
 		chapter_id = chapter
-	if chapter_id == "B10" and b05_candidate_enabled(): return false
+	if chapter_id == "B10" and (b05_candidate_enabled() or b09_candidate_enabled()): return false
 	return chapter_id in released_chapters()
+static func b09_candidate_enabled() -> bool:
+	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b09")
 
 static func _candidate_arguments_valid(args: PackedStringArray, chapter: String = "b05") -> bool:
-	if chapter not in ["b05","b06"] or not args.has("--candidate-"+chapter): return false
-	if args.has("--candidate-b05") and args.has("--candidate-b06"): return false
+	if chapter not in ["b05","b06","b09"] or not args.has("--candidate-"+chapter): return false
+	var flags := 0
+	for id: String in ["b05","b06","b09"]:
+		if args.has("--candidate-"+id): flags += 1
+	if flags != 1: return false
 	var paths: Array[String] = []
 	for argument: String in args:
 		if argument.begins_with("--test-profile="): paths.append(argument.trim_prefix("--test-profile="))

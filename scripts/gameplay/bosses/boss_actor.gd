@@ -90,6 +90,7 @@ func _initialize_boss_runtime() -> void:
 	boss_brain = preload("res://scripts/levels/b06/combat/boss_brain.gd").new() if boss_id == "BO06" else preload("res://scripts/levels/b05/combat/boss_brain.gd").new() if boss_id == "BO05" else BossBrainScript.new()
 	if bool(profile.get("b10_combat_version",false)):
 		boss_brain = preload("res://scripts/levels/b10/combat/boss_brain.gd").new()
+	if boss_id == "BO09": boss_brain = preload("res://scripts/levels/b09/combat/brain.gd").new()
 	boss_brain.configure(profile, boss_seed)
 	if boss_id == "BO06" and is_instance_valid(room) and get_parent() == room.enemies and is_instance_valid(room.b06_mechanics):
 		room.b06_mechanics.reset_boss_encounter(self)
@@ -121,6 +122,9 @@ func _load_boss_art() -> void:
 			body_region = native.region
 			body_bounds = native.bounds
 			return
+	if boss_id == "BO09":
+		preload("res://scripts/presentation/monsters/enemy_art.gd").install(self)
+		return
 	if boss_id == "BO05" and B05BossArt.frames().has("idle"):
 		_boss_art_path = B05BossArt.frames().idle.path
 		body_texture = B05BossArt.frames().idle.texture

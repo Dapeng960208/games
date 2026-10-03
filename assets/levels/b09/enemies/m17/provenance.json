@@ -1,0 +1,27 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Edit this ORIGINAL B09 crystal winter court character sprite sheet, preserving the SAME character identity, materials, outfit, weapons and painterly game art style. This reference is our newly generated B09 asset. Only rearrange and scale the three poses for technical game atlas use. Output a landscape 1536 x 1024 RGBA TRANSPARENT image. EXACTLY THREE isolated full body poses: LEFT idle, MIDDLE attack windup, RIGHT attack release. Pose centers x=256,768,1280. Each COMPLETE silhouette including ALL weapon tips and visual effects MUST fit in its own column: left x=70..440, middle x=582..952, right x=1094..1464. Reduce character and weapon size if needed! Body height about 650 pixels, feet near y=850; leave a wide transparent moat between EVERY column, no particles/glow/bits in the separating bands x=450..570 and x=960..1080. Do not let a sword, spear, ruler, cannon, deer antler, arm or ring reach into neighboring poses. Pose weapons diagonally upward or upright to fit; keep full character visible. Maintain clean readable anatomy, original crystalline snow court design with lavender, ice cyan, ivory and warm gold. No text, no floor, no background, no frames, no guide lines, no contact sheet labels. Alpha transparency around each pose and in all margins.",
+  "reference_images": [
+    {
+      "identity": "B09-M17",
+      "sha256": "96acde617c7918bb839353f461e9f352b6bdd9b9b06ed4a06a3206b0b0adbd57",
+      "origin": "Own original B09 generation in this task"
+    }
+  ],
+  "sha256": "f5b72880ca11a17bded4d6cdb6fb2420f36951b1d05964994acca7911b2acc1b",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte copy; source pixels and alpha unchanged. Runtime uses source regions.",
+  "license": "Project-generated original artwork; no third-party character artwork reused.",
+  "generation_history": [
+    {
+      "prompt": "Use case: stylized-concept. BRAND NEW ORIGINAL B09 Frost Crystal Court character sprite sheet. Royal Snow Rider: crystal knight riding one faceted icy deer-shaped mount, champagne-gold antlers, two broad knight shoulder plates, violet heart core, long crystal lance. Rider and mount form one connected full unit. Exactly three separate complete poses of the SAME creature in one horizontal row: idle mounted, deer crouched before charge, forward deer charge with lance. 1536x1024, three equal 512-wide cells, every weapon, antler, limb, crown and body entirely within its cell with generous clear margins, identical size and ground/feet pivots aligned near 86% height. High-angle near-isometric 2.5D game camera, all facing lower-right. Bright polished hand-painted fantasy cartoon, readable clean silhouette, fine dark-violet outline, complex cyan and lilac geometric ice facets, restrained champagne-gold trim, warm sun highlights. Actual transparent alpha background, EMPTY pixels behind and between creatures, no background aura, no backdrop color, no floor, no shadows, no labels, no text, borders or watermarks. Entirely new art, no old plant/fish/insect characters.",
+      "sha256": "96acde617c7918bb839353f461e9f352b6bdd9b9b06ed4a06a3206b0b0adbd57"
+    }
+  ]
+}

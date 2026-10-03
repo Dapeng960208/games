@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "skill_id": "CH03_SK11",
+  "skill_name": "星灵巡游",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "generation_date_utc": "2026-10-03T09:36:53.4534702Z",
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "image_mode": "RGBA",
+  "png_color_type": 6,
+  "transparent_background": true,
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10119-2571-7212-a298-ec39a3d44e43/exec-6ae4e6aa-f70f-4b4d-a42a-f318c792aa39.png",
+  "final_path": "assets/characters/mage/skills/sk11_icon.png",
+  "sha256": "fd3f5d8d62696c5faf169d47a623188d77811c8ebae68b3229332ece94fdff55",
+  "prompt": "Use case: stylized-concept. Asset type: one original fantasy game skill icon, CH03_SK11 星灵巡游 (Star Spirit Patrol), request native 2048x2048 square source. Single polished hand-painted cartoon fantasy round badge, sculpted 2.5D volume, warm upper-left lighting and cool magic contrast. Dominant emblem: ONE and only ONE cute plump four-point star familiar with two dark eyes, silver-white and ghost-blue glow. It is flying along a broad diagonal elliptical orbit circling a dark central empty space; four small blue-white pulse burst points mark the orbit. Familiar is large and clearly visible, orbit is a thick sweeping band, distinguish it from a vortex or three-star chain. Midnight purple and obsidian painted inner field, silver metal and spectral blue magic, restrained white bright cores. Thin silver circular rim occupying 92% width, genuinely transparent outside circle; generous 8% safety margin. Bold large silhouette readable at 44 pixels and lovely painterly detail at native resolution. No additional familiar, no full-body mage, no pink or red, no text, letters, numbers, logos, watermark, grid, copied game imagery, additional ornamental stars on the rim.",
+  "edit_prompt": "Use case: precise-object-edit. Edit only the large cute star familiar in the upper-left: change its silhouette from a five-point star to EXACTLY FOUR rounded points aligned like a diamond/cross: one top lobe, one bottom lobe, one left lobe, one right lobe. The two dark eyes remain. It must clearly have only four corners, not the familiar pentagram star shape. Preserve everything else exactly: single spirit, its size and position, four pulse burst points on the diagonal elliptical orbit, dark purple background, silver rim, warm light, blue magic and painterly rendering. Preserve the original transparency outside the rim. No text, watermark or other changes.",
+  "edit_reference": "C:/Users/13326/.codex/generated_images/01a10119-2571-7212-a298-ec39a3d44e43/exec-47972d84-70e8-4942-aa50-dc6b0bb5042e.png",
+  "processing": "Copied original PNG unchanged; no upscaling or repainting",
+  "visual_review": "Distinct skill identity and painterly round badge inspected at native display; SK11 four-point spirit corrected with built-in image edit"
+}

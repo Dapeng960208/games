@@ -10,6 +10,8 @@ const SETTLEMENT_RULES_VERSION := 3
 const Economy = preload("res://scripts/domain/equipment/economy_history.gd")
 const ECONOMY_RULES_VERSION := Economy.CURRENT_VERSION
 const Progression = preload("res://scripts/domain/progression/hero_progression.gd")
+const SkillProgress = preload("res://scripts/domain/progression/skill_progression.gd")
+const CombatState = preload("res://scripts/domain/combat/combat_snapshot.gd")
 const Loot = preload("res://scripts/domain/expedition/expedition_rewards.gd")
 const Transactions = preload("res://scripts/domain/equipment/instance_transactions.gd")
 const Forging = preload("res://scripts/domain/equipment/instance_forging.gd")
@@ -55,7 +57,7 @@ func _init(save_path: String = "user://profile.json") -> void:
 	path = save_path
 
 static func fresh_profile() -> Dictionary:
-	return {
+	var result := {
 		"permanent_gold": 0, "discoveries": [], "total_runs": 0,
 		"last_result": {},
 		"settings": {"language": "zh_CN", "reduced_fx": false, "camera_shake": false, "fullscreen": false,
@@ -72,6 +74,8 @@ static func fresh_profile() -> Dictionary:
 		"equipment_discoveries": [],
 		"applied_transactions": {"starter_grant_v1": {"kind": "starter"}},
 	}
+	result.merge(SkillProgress.fresh_fields(), true)
+	return result
 
 func load_document() -> Dictionary:
 	var lease := SaveLease.acquire(path)
@@ -182,6 +186,15 @@ func _load_document_locked() -> Dictionary:
 	if not _current.profile.get("equipment_class_migration", {}).get("removed_slots", []).is_empty():
 		warning = "STORAGE_CLASS_EQUIPMENT_UPDATED"
 	if _acknowledged_bytes.is_empty(): _acknowledged_bytes = FileAccess.get_file_as_bytes(AssetCatalog.resolve(best_path))
+	if not _current.profile.has("skill_system_version") or (_current.active_run is Dictionary and _current.active_run.has("expedition") and not _current.active_run.has("skill_loadout_snapshot")):
+		# The old whole document has passed every validator above. Preserve its
+		# bytes and checkpoint while adding only the two scoped subsystem versions.
+		var migrated := upgrade_skill_document(_current)
+		if migrated.is_empty() or not save_document(migrated.profile, migrated.active_run, bool(migrated.get("profile_initialized", true))):
+			_blocked = true
+			has_profile = false
+			if last_error.is_empty(): last_error = "STORAGE_SKILL_MIGRATION_BLOCKED"
+			return {}
 	var loaded := _current.duplicate(true)
 	# Normalize optional presentation settings in memory only; opening a demo
 	# must not rewrite a save just to add the comfort default or volume keys.
@@ -581,6 +594,29 @@ static func _valid_result(value: Variant, version: int = 1, ruleset: int = 1) ->
 static func _valid_document(value: Variant) -> bool:
 	return _valid_candidate(value)
 
+static func upgrade_skill_document(document: Dictionary) -> Dictionary:
+	if not _valid_document(document): return {}
+	var result := document.duplicate(true)
+	result.profile = SkillProgress.upgrade_profile(result.profile)
+	if result.profile.is_empty(): return {}
+	var receipt: Variant = result.active_run
+	if receipt is Dictionary and not receipt.has("skill_loadout_snapshot"):
+		var hero_id: String = receipt.hero_id
+		receipt["skill_loadout_snapshot"] = SkillProgress.starter_ids(hero_id)
+		receipt["skill_branches_snapshot"] = {hero_id + "_SK01":"", hero_id + "_SK04":""}
+		receipt["role_combat_version"] = SkillProgress.ROLE_VERSION
+		for pair: Array in [["q", 1, 4], ["ultimate", 4, 5]]:
+			var choice := str(receipt.get("branches_snapshot", {}).get(pair[0], ""))
+			if choice in ["A", "B"]:
+				var id := "%s_SK%02d" % [hero_id, int(pair[1])]
+				receipt.skill_branches_snapshot[id] = choice
+				result.profile.skill_state[hero_id].mastery[id] = maxi(int(result.profile.skill_state[hero_id].mastery[id]), int(SkillProgress.THRESHOLDS[int(pair[2]) - 1]))
+		if receipt.has("expedition"):
+			var stats := Expedition.Resolver.resolve(hero_id, int(receipt.level), receipt.loadout_snapshot, receipt.equipment_snapshot, int(result.profile.get("ruleset_version", 1)), result.profile.get("talents", {}).get(hero_id, {}))
+			receipt.expedition.runtime = CombatState.upgrade(receipt.expedition.runtime, hero_id, stats, int(receipt.expedition.node_index) == 0 and receipt.expedition.completed_nodes.is_empty())
+			if receipt.expedition.runtime.is_empty(): return {}
+	return result if _valid_document(result) else {}
+
 static func _valid_candidate(value: Variant, identical_progression: bool = false) -> bool:
 	# Godot JSON parses numeric tokens as floats; Array.has is type-sensitive.
 	if not value is Dictionary or not _number(value.get("schema_version"), SCHEMA_VERSION) \
@@ -622,6 +658,8 @@ static func _valid_candidate(value: Variant, identical_progression: bool = false
 			return false
 	if value.active_run == null:
 		return true
+	if not value.active_run is Dictionary: return false
+	if not SkillProgress.valid_run_skills(value.active_run, profile): return false
 	if not _valid_receipt(value.active_run, version) or value.active_run.id == profile.last_result.get("run_id", ""): return false
 	if int(value.active_run.get("ruleset_version", 1)) != int(profile.get("ruleset_version", 1)): return false
 	if value.active_run.has("expedition"):
@@ -656,6 +694,7 @@ static func _allowed_ids(value: Variant, allowed: Array) -> bool:
 	return true
 
 static func _valid_progression(profile: Dictionary) -> bool:
+	if not SkillProgress.valid(profile): return false
 	var version: Variant = profile.get("ruleset_version", 1)
 	if not _number(version, 2) or int(version) < 1: return false
 	var ruleset: int = int(version)
@@ -840,9 +879,14 @@ static func _settings_only(profile: Dictionary) -> bool:
 	if int(profile.get("ruleset_version", 1)) == 2:
 		var blank := NativeProfile.fresh(fresh_profile())
 		blank.settings = profile.settings.duplicate(true)
+		if not profile.has("skill_system_version"):
+			for field: String in SkillProgress.fresh_fields(): blank.erase(field)
 		return _serialize(profile) == _serialize(blank)
 	# Structural validation is retained for preserving obsolete source bytes.
 	if int(profile.get("ruleset_version", 1)) != 1: return false
+	if profile.has("skill_system_version"):
+		for field: String in SkillProgress.fresh_fields():
+			if profile[field] != SkillProgress.fresh_fields()[field]: return false
 	if not profile.get("equipment_discoveries", []).is_empty(): return false
 	if int(profile.permanent_gold) != 0 or int(profile.total_runs) != 0 or not profile.last_result.is_empty() \
 		or not profile.discoveries.is_empty() or not profile.bosses.is_empty() or not profile.tutorial_completed.is_empty() \

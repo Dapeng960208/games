@@ -100,6 +100,7 @@ var interaction_textures: Dictionary = {}
 var _navigation_cache: RefCounted = preload("res://scripts/gameplay/world/navigation_cache.gd").new()
 var expedition_context: Dictionary = {}
 var b05_mechanics: Node2D
+var b09_mechanics: Node2D
 var b05_environment: Node2D
 var _b05_previous_visibility: Array[Dictionary] = []
 var b06_mechanics: Node2D
@@ -227,6 +228,7 @@ func set_input_blocked(blocked: bool) -> void:
 	input_blocked = blocked
 	release_gate = true
 	if blocked:
+		if is_instance_valid(b09_mechanics): b09_mechanics.cancel_interaction()
 		if is_instance_valid(b05_mechanics): b05_mechanics.cancel_interaction()
 		if is_instance_valid(player):
 			player.clear_buffered_skill()
@@ -256,6 +258,7 @@ func _physics_process(delta: float) -> void:
 	if Game.run == null:
 		return
 	elapsed += delta
+	if is_instance_valid(b09_mechanics): b09_mechanics.tick(delta)
 	if is_instance_valid(b06_mechanics):
 		if input_blocked or Game.run.hp <= 0.0: b06_mechanics.cancel_interaction()
 		b06_mechanics.tick(delta,false)
@@ -356,7 +359,7 @@ func clamp_actor(at: Vector2, radius: float) -> Vector2:
 
 func _configure_ground_boundary() -> void:
 	ARENA = layout.get("arena", DEFAULT_ARENA)
-	if (str(layout.get("biome_id","")) in ["B05", "B10"] or bool(layout.get("b06_candidate",false))) and layout.get("ground_polygon") is PackedVector2Array:
+	if (str(layout.get("biome_id","")) in ["B05", "B10"] or bool(layout.get("b06_candidate",false)) or bool(layout.get("b09_candidate",false))) and layout.get("ground_polygon") is PackedVector2Array:
 		ground_polygon = layout.ground_polygon
 		ARENA = GroundBoundary.bounds(ground_polygon)
 		return
@@ -692,18 +695,31 @@ func fire_from_player(direction: Vector2, critical: bool = false) -> bool:
 		return false
 	if player.hero_id() == "CH01":
 		return player.fire(direction)
+	var frozen_power: float = player.primary_power_snapshot()
+	var frozen_stats: Dictionary = player.primary_stats_snapshot()
+	var projectile_origin: Vector2 = player.position
+	var visual_muzzle: Vector2 = player.position+HeroVisual.release_muzzle_local(player.hero_id(),"basic",direction)
+	if player.hero_id() == "CH03" and player.role_kit != null and player.role_kit.has_method("projectile_origin"):
+		var star_origin: Vector2 = player.role_kit.projectile_origin(direction)
+		if valid_ground(star_origin, 2.0) and has_line_of_sight(player.position, star_origin): projectile_origin = star_origin
+		var companion: Node2D = player.role_kit.get("companion")
+		if is_instance_valid(companion): visual_muzzle = player.position+companion.position+direction.normalized()*12.0
+	var projectile := spawn_projectile(projectile_origin, direction, frozen_power * (1.5 if critical else 1.0), &"primary")
+	if projectile == null:
+		return false
 	record_attack()
-	var projectile := spawn_projectile(player.position, direction, player.basic_power() * (1.5 if critical else 1.0), &"primary")
 	projectile.speed = 950.0 if player.hero_id() == "CH02" else 720.0
 	projectile.distance_left = player.stat("range", 650.0 if player.hero_id() == "CH02" else 480.0)
 	projectile.remaining = projectile.distance_left / projectile.speed + 0.1
 	projectile.attack_id = attack_serial
 	projectile.critical = critical
-	projectile.options["power"] = player.basic_power()
+	projectile.options["power"] = frozen_power
+	projectile.options["attacker_stats"] = frozen_stats
+	projectile.options["class_state"] = player.primary_class_snapshot()
 	projectile.options["visual_hero"] = player.hero_id()
 	projectile.options["basic_variant"] = player.basic_attack_variant()
 	projectile.arc_ready = Game.run.relics.has("arc") and Game.run.shots % 3 == 0
-	projectile.configure_player_visual(player.position+HeroVisual.release_muzzle_local(player.hero_id(),"basic",direction))
+	projectile.configure_player_visual(visual_muzzle)
 	return true
 
 func spawn_projectile(at: Vector2, direction: Vector2, damage: float, source: StringName, ignore_id: int = 0) -> ProjectileActor:
@@ -733,6 +749,9 @@ func resolve_weapon_hit(projectile: ProjectileActor, target: EnemyActor) -> void
 	telemetry["primary_hits" if is_primary else "child_hits"] += 1
 	if is_primary:
 		var context: Dictionary = {"attack_id":"basic:" + str(projectile.attack_id),"root_event_id":"basic:" + str(projectile.attack_id),"original_basic":true,"equipment_eligible":true,"attack_delivery":"projectile"}
+		context["power"] = float(projectile.options.get("power", projectile.damage))
+		context["attacker_stats"] = projectile.options.get("attacker_stats", Game.run.stats).duplicate(true)
+		context["class_state"] = projectile.options.get("class_state", {}).duplicate(true)
 		context["basic_variant"] = int(projectile.options.get("basic_variant",0))
 		var reserved: Dictionary = _prepare_relics(context, projectile.trigger_budget, projectile.arc_ready)
 		context["native_statuses"] = [ClassRelics.native_status(player.hero_id())] if bool(reserved.get("burn", false)) else []
@@ -799,6 +818,13 @@ func _draw() -> void:
 		draw_line(corpse.at-Vector2(7,3),corpse.at+Vector2(6,4),Color("6d6150"),3.0)
 		draw_line(corpse.at-Vector2(5,-3),corpse.at+Vector2(4,-5),Color("3f5353"),2.0)
 	_draw_exit()
+	var archive: Dictionary = skill_archive()
+	if not archive.is_empty():
+		var archive_at: Vector2 = archive.position
+		var archive_icon: Texture2D = interaction_textures.get("loot")
+		if archive_icon != null:
+			draw_texture_rect(archive_icon, Rect2(archive_at-Vector2(25,44), Vector2(50,50)), false, Color.WHITE if objective_rewarded else Color(.6,.6,.6,.75))
+		draw_arc(archive_at, 30, 0, TAU, 32, Color("7acfc0") if objective_rewarded else Color("8c877a"), 2.0, true)
 	if not expedition_context.is_empty() and str(expedition_context.get("role","")) in ["entrance","supply"]:
 		var at: Vector2 = layout.get("service_position",Vector2(1260,900))
 		var icon: Texture2D = interaction_textures.get("loot")
@@ -961,7 +987,7 @@ func resolve_direct_hit(target: EnemyActor, amount: float, source: StringName, a
 	if Numerical.is_v2(Game.run.stats):
 		return _resolve_numerical_direct_hit(target, amount, source, applied_status, push, direction, attack_context)
 	var context: Dictionary = attack_context.duplicate()
-	context.merge({"target":target,"target_states":target.status.states.keys(),"X":amount,"H":float(context.get("power", player.basic_power() if source == &"primary" else player.skill_power())),"damage_source":context.get("damage_source","primary" if source == &"primary" else "skill"),"skill_slot":str(source),"proc_depth":int(context.get("proc_depth",0))}, true)
+	context.merge({"target":target,"target_states":target.status.states.keys(),"X":amount,"H":float(context.get("power", player.basic_power() if source == &"primary" else player.skill_power())),"damage_source":context.get("damage_source","primary" if source == &"primary" else "skill"),"skill_slot":str(context.get("skill_slot",source)),"proc_depth":int(context.get("proc_depth",0))}, true)
 	if Numerical.is_v2(Game.run.stats):
 		context["X"] = Numerical.integer(amount)
 		context["H"] = Numerical.integer(float(context.H))
@@ -976,7 +1002,9 @@ func resolve_direct_hit(target: EnemyActor, amount: float, source: StringName, a
 	var native_statuses: Array = context.get("native_statuses", []).duplicate()
 	if not applied_status.is_empty() and player.loadout.effects.reserve_native(str(context.root_event_id), "native:" + applied_status):
 		native_statuses.append(applied_status)
+	context["b09_layers_before"] = int(target.get_meta("b09_layers",0))
 	var modifiers: Dictionary = player.loadout.event("before_hit", context)
+	context["b09_shield_damage_bonus"] = float(modifiers.get("b09_shield_damage_bonus",0.0))
 	var root_id: String = str(context.root_event_id)
 	if source == &"primary" and not crit_rolls.has(root_id):
 		crit_rolls[root_id] = Crit.roll(run_seed, layout_id + ":" + root_id, Crit.chance(context.attacker_stats, float(modifiers.get("crit_bonus", 0.0)))) if Crit.enabled(context.attacker_stats) else randf() < clampf(player.stat("crit_chance", 0.05) + float(modifiers.get("crit_bonus", 0.0)), 0.0, 0.75)
@@ -1044,14 +1072,14 @@ func _resolve_numerical_direct_hit(target: EnemyActor, amount: float, source: St
 	if not is_finite(amount) or Numerical.integer(amount) <= 0:
 		return false
 	var context: Dictionary = attack_context.duplicate()
-	var original: bool = source in [&"primary", &"q", &"secondary", &"f", &"ultimate"] and int(context.get("proc_depth", 0)) == 0 and bool(context.get("equipment_eligible", true)) and bool(context.get("original", true))
+	var original: bool = source in [&"primary", &"q", &"secondary", &"f", &"ultimate", &"skill"] and int(context.get("proc_depth", 0)) == 0 and bool(context.get("equipment_eligible", true)) and bool(context.get("original", true))
 	if not original:
 		resolve_derived_hit(target, amount, source, direction, context)
 		return bool(target.last_damage_result.get("confirmed", false))
 	context["ruleset_version"] = Numerical.V2
 	context["X"] = Numerical.integer(amount)
 	context["H"] = Numerical.integer(float(context.get("power", player.basic_power() if source == &"primary" else player.skill_power())))
-	context.merge({"target":target,"target_states":target.status.states.keys(),"damage_source":"primary" if source == &"primary" else "skill","skill_slot":str(source),"proc_depth":0,"original_basic":source == &"primary","equipment_eligible":true}, true)
+	context.merge({"target":target,"target_states":target.status.states.keys(),"damage_source":"primary" if source == &"primary" else "skill","skill_slot":str(context.get("skill_slot",source)),"proc_depth":0,"original_basic":source == &"primary","equipment_eligible":true}, true)
 	if not context.has("attack_id"):
 		attack_serial += 1
 		context["attack_id"] = "direct:" + str(attack_serial)
@@ -1067,7 +1095,9 @@ func _resolve_numerical_direct_hit(target: EnemyActor, amount: float, source: St
 	# Keep the pre-hit values even when this contact kills or grants a class shield.
 	context["target_full_hp"] = target.health.current == target.health.maximum
 	context["shield"] = Game.run.shield
+	context["b09_layers_before"] = int(target.get_meta("b09_layers",0))
 	var modifiers: Dictionary = player.loadout.event("before_hit", context)
+	context["b09_shield_damage_bonus"] = float(modifiers.get("b09_shield_damage_bonus",0.0))
 	if not crit_rolls.has(root_id):
 		crit_rolls[root_id] = Crit.roll(run_seed, layout_id + ":" + root_id, Crit.chance(context.attacker_stats, float(modifiers.get("crit_bonus", 0.0)))) if Crit.enabled(context.attacker_stats) else randf() < clampf(player.stat("crit_chance", 0.05) + float(modifiers.get("crit_bonus", 0.0)), 0.0, 0.75)
 		if not Crit.enabled(context.attacker_stats): _trim_root_history(crit_rolls)
@@ -1175,13 +1205,26 @@ func _confirm_contact(target: EnemyActor, direction: Vector2, source: StringName
 	# This is reached only after HP or shield was actually consumed. Whiffs,
 	# invulnerability and periodic status packets do not manufacture an impact.
 	var hero: String = player.hero_id()
-	var default_heavy: bool = str(source).contains("ultimate") or str(source).contains("secondary") or source in [&"circuit", &"node_detonation"] or (hero == "CH03" and source == &"f")
+	# This is the skill's frozen origin category, never its current input slot.
+	var contact_kind: StringName = StringName(str(context.get("skill_slot", context.get("origin_slot", str(source)))))
+	var default_heavy: bool = str(contact_kind).contains("ultimate") or str(contact_kind).contains("secondary") or contact_kind in [&"circuit", &"node_detonation"] or (hero == "CH03" and contact_kind == &"f")
 	# Explicit projectile tiers preserve the gunner's light-light-light-finisher rhythm.
 	# This is presentation metadata only; damage and proc attribution are already settled.
 	var heavy: bool = not passive and (critical or bool(context.get("heavy", default_heavy)))
 	var material: String = target.impact_material()
 	var forward: Vector2 = direction.normalized() if not direction.is_zero_approx() else (target.position-player.position).normalized()
-	target.receive_confirmed_impact(forward, .28 if passive else 1.3 if heavy else .95 if hero == "CH01" else .65, heavy, hero)
+	# One contact clock drives both bodies. A cluster can upgrade the weight,
+	# while later recipients use the player's remaining pause without refreshing it.
+	var pulse: bool = not passive and (elapsed >= _contact_pulse_until or (heavy and not _contact_pulse_heavy))
+	if pulse:
+		if elapsed >= _contact_pulse_until:
+			_contact_pulse_until = elapsed + .055
+		_contact_pulse_heavy = heavy
+		var pause: float = (.074 if heavy else .042) if hero == "CH01" else (.030 if heavy else .015) if hero == "CH02" else (.038 if heavy else .024)
+		if Numerical.is_v2(Game.run.stats):
+			pause = (.065 if contact_kind == &"ultimate" else .055 if heavy else .025) if hero == "CH01" else (.035 if contact_kind == &"secondary" else .020 if heavy else .012) if hero == "CH02" else (.045 if contact_kind in [&"f", &"ultimate"] else .032 if heavy else .018)
+		player.hit_feedback(minf(.085, pause + (.006 if critical else 0.0)))
+	target.receive_confirmed_impact(forward, .28 if passive else 1.3 if heavy else .95 if hero == "CH01" else .65, heavy, hero, -1.0 if passive else player.visual_hitstop)
 	var at: Vector2 = target.position + Vector2(0, target.body_bounds.end.y-target.body_bounds.size.y*.53)
 	var event: Dictionary = {"hero_id":hero,"source":str(source),"heavy":heavy,"passive":passive,"critical":critical,"killed":not target.is_alive(),"material":material,"damage":damage,"anchor":weakref(target),"anchor_offset":at-target.position}
 	event["basic_variant"] = int(context.get("basic_variant",0)) if source == &"primary" else 0
@@ -1208,16 +1251,7 @@ func _confirm_contact(target: EnemyActor, direction: Vector2, source: StringName
 			combat_audio.impact(hero, heavy, material, passive)
 	# One contact pulse per cluster, with separate per-target visual reactions.
 	# Only presentation pauses; movement, dodge and damage timing stay responsive.
-	if not passive and (elapsed >= _contact_pulse_until or (heavy and not _contact_pulse_heavy)):
-		if elapsed >= _contact_pulse_until:
-			_contact_pulse_until = elapsed + .055
-		_contact_pulse_heavy = heavy
-		var pause: float = (.074 if heavy else .042) if hero == "CH01" else (.030 if heavy else .015) if hero == "CH02" else (.038 if heavy else .024)
-		if Numerical.is_v2(Game.run.stats):
-			# Short, distinct contact weight. Input and enemy danger clocks remain
-			# live; a cluster cannot stack several freezes onto the same attack.
-			pause = (.065 if source == &"ultimate" else .055 if heavy else .025) if hero == "CH01" else (.035 if source == &"secondary" else .020 if heavy else .012) if hero == "CH02" else (.045 if source in [&"f", &"ultimate"] else .032 if heavy else .018)
-		player.hit_feedback(minf(.085, pause + (.006 if critical else 0.0)))
+	if pulse:
 		if is_instance_valid(camera):
 			var kick: float = (3.1 if heavy else 1.75) if hero == "CH01" else (1.65 if heavy else .65) if hero == "CH02" else (2.1 if heavy else .95)
 			camera.impact(kick, forward, heavy)
@@ -1278,13 +1312,15 @@ func _emit_reserved_relics(reserved: Dictionary, context: Dictionary, at: Vector
 func spawn_ability_projectile(at: Vector2, direction: Vector2, amount: float, options: Dictionary) -> ProjectileActor:
 	if Game.run == null:
 		return null
-	if str(options.get("source", "")) != "node" and not has_line_of_sight(player.position, at):
+	if bool(options.get("deployment_origin", false)) and not valid_ground(at, 2.0):
+		return null
+	if not bool(options.get("deployment_origin", false)) and str(options.get("source", "")) != "node" and not has_line_of_sight(player.position, at):
 		at = player.position
 	var projectile := spawn_projectile(at, direction, amount, StringName(options.get("source", "skill")))
 	if projectile == null:
 		return null
 	projectile.options = options.duplicate()
-	if bool(options.get("original",false)) and str(options.get("source","")) in ["q","secondary","f","ultimate"]:
+	if bool(options.get("original",false)) and str(options.get("source","")) in ["q","secondary","f","ultimate","skill"]:
 		projectile.options["visual_hero"] = player.hero_id()
 	if not projectile.options.has("root_event_id"):
 		attack_serial += 1
@@ -1295,7 +1331,11 @@ func spawn_ability_projectile(at: Vector2, direction: Vector2, amount: float, op
 	projectile.remaining = projectile.distance_left / projectile.speed + 0.1
 	projectile.pierce_remaining = int(options.get("pierce", 0))
 	if projectile.options.has("visual_hero"):
-		projectile.configure_player_visual(player.position+HeroVisual.release_muzzle_local(player.hero_id(),str(options.get("source","basic")),direction))
+		var visual_muzzle: Vector2 = at if bool(options.get("deployment_origin", false)) else player.position+HeroVisual.release_muzzle_local(player.hero_id(),str(options.get("source","basic")),direction,str(options.get("skill_id","")))
+		if player.hero_id() == "CH03" and player.role_kit != null:
+			var companion: Node2D = player.role_kit.get("companion")
+			if is_instance_valid(companion): visual_muzzle = player.position+companion.position+direction.normalized()*12.0
+		projectile.configure_player_visual(visual_muzzle)
 	return projectile
 
 func add_deployment(kind: String, at: Vector2, options: Dictionary) -> Node2D:
@@ -1569,7 +1609,7 @@ func _encounter_plan(index: int) -> Dictionary:
 func _objective_encounters_pending() -> bool:
 	# B05 objectives describe mechanisms; its ordinary finite zones still
 	# require traversal/clearance even when no extra objective task is pending.
-	if bool(layout.get("b06_candidate",false)) or str(expedition_context.get("biome_id",""))=="B05": return not _encounters_exhausted()
+	if bool(layout.get("b09_candidate",false)) or bool(layout.get("b06_candidate",false)) or str(expedition_context.get("biome_id",""))=="B05": return not _encounters_exhausted()
 	if not is_instance_valid(objectives):
 		return false
 	for index in encounter_zones.size():
@@ -1719,6 +1759,8 @@ func prepare_expedition_node(context: Dictionary) -> Dictionary:
 	var next: Dictionary = {}
 	if role in ["entrance","supply"]:
 		next = _service_layout(context)
+	elif bool(context.get("b09_candidate",false)) and str(context.get("biome_id","")) == "B09":
+		next = preload("res://scripts/levels/b09/world/layouts.gd").build(id,seed_value)
 	elif bool(context.get("b06_candidate",false)) and str(context.get("biome_id","")) == "B06":
 		next = preload("res://scripts/levels/b06/world/room_layouts.gd").build(id,seed_value)
 	elif role == "boss":
@@ -1760,6 +1802,8 @@ func apply_prepared_expedition_node(prepared: Dictionary) -> void:
 	set_input_blocked(false)
 
 func _install_expedition_layout(prepared: Dictionary) -> void:
+	if is_instance_valid(b09_mechanics): b09_mechanics.free()
+	b09_mechanics = null
 	_release_b05_environment()
 	_release_b06_environment()
 	if is_instance_valid(b06_mechanics): b06_mechanics.free()
@@ -1843,6 +1887,10 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	_refresh_terrain_canvas()
 
 func _activate_expedition_content() -> void:
+	if bool(layout.get("b09_candidate",false)) and not is_instance_valid(b09_mechanics):
+		b09_mechanics = preload("res://scripts/levels/b09/world/mechanics.gd").new()
+		add_child(b09_mechanics)
+		b09_mechanics.configure(self)
 	if bool(layout.get("b06_candidate",false)) and not is_instance_valid(b06_mechanics):
 		b06_mechanics = preload("res://scripts/levels/b06/world/tide_runtime.gd").new()
 		add_child(b06_mechanics)
@@ -1885,14 +1933,21 @@ func _activate_expedition_content() -> void:
 			var boss: Node2D = load(AssetCatalog.resolve(boss_script)).new()
 			boss.room = self
 			boss.position = layout.get("boss_spawn",Vector2(1800,900))
-			if bool(layout.get("b06_candidate",false)) and layout_id == "BO06":
+			if bool(layout.get("b09_candidate",false)) and layout_id == "BO09":
+				boss.configure(preload("res://scripts/levels/b09/combat/skills.gd").boss_profile(difficulty),{"reward_enabled":false,"actor_kind":"boss"})
+			elif bool(layout.get("b06_candidate",false)) and layout_id == "BO06":
 				boss.configure(preload("res://scripts/levels/b06/combat/enemy_skills.gd").boss_profile(difficulty),{"reward_enabled":false,"actor_kind":"boss"})
 			else:
 				boss.configure_boss(layout_id,difficulty,0,enemy_ruleset(),enemy_calibration())
 			boss.completed.connect(func(_id: String,_payload: Dictionary) -> void: _boss_defeated = true)
 			_boss_actor = boss
 			enemies.add_child(boss)
-			if bool(layout.get("b06_candidate",false)):
+			if bool(layout.get("b09_candidate",false)):
+				b09_mechanics.register_actor(boss)
+				objectives = load(AssetCatalog.resolve("res://scripts/gameplay/world/room_objectives.gd")).new()
+				add_child(objectives)
+				objectives.configure(self,layout,role)
+			elif bool(layout.get("b06_candidate",false)):
 				b06_mechanics.bind_boss(boss)
 				objectives = load(AssetCatalog.resolve("res://scripts/gameplay/world/room_objectives.gd")).new()
 				add_child(objectives)
@@ -1925,7 +1980,7 @@ func _tick_expedition(delta: float) -> void:
 			var task_done: bool = is_instance_valid(objectives) and objectives.is_complete()
 			if not task_done or _objective_encounters_pending(): _update_encounters(delta)
 			objective_complete = task_done and _living_enemy_count() == 0 and not _objective_encounters_pending()
-	if bool(layout.get("b06_candidate",false)) and not bool(expedition_context.get("b06_progression",false)):
+	if bool(layout.get("b09_candidate",false)) or (bool(layout.get("b06_candidate",false)) and not bool(expedition_context.get("b06_progression",false))):
 		# Preview traversal has no persistent progression or economic settlement.
 		if objective_complete and not _completion_emitted:
 			_completion_emitted = true
@@ -2010,6 +2065,16 @@ func claim_optional_objective_reward(id: String) -> bool:
 		add_ring(at, Color("b9de91"), 35.0, .32)
 		if is_instance_valid(combat_audio): combat_audio.pickup()
 	return success
+
+func skill_archive() -> Dictionary:
+	if Game.run == null or expedition_context.is_empty(): return {}
+	var archive: Dictionary = layout.get("fixed_room", {}).get("skill_archive", {})
+	if archive.is_empty() or Game.skill_group_learned(str(archive.get("group_id", ""))): return {}
+	var coordinates: Array = archive.get("position", [])
+	if coordinates.size() != 2: return {}
+	var at: Vector2 = Vector2(float(coordinates[0]), float(coordinates[1])) * preload("res://scripts/domain/world/fixed_room_layouts.gd").PLAYFIELD_SCALE
+	if not valid_ground(at, 18.0): return {}
+	return {"group_id":str(archive.group_id),"position":at}
 
 func _service_layout(context: Dictionary) -> Dictionary:
 	var scale: float = preload("res://scripts/domain/world/fixed_room_layouts.gd").PLAYFIELD_SCALE

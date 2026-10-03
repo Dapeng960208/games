@@ -1,0 +1,400 @@
+{
+  "asset": "CH02 adult female Cen Xian formal eight-direction NW source a",
+  "status": "formal_eight_direction_source_candidate_pending_runtime_packing",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "direction": "NW",
+  "direction_degrees": 225,
+  "direction_mapping": "screenright0/down90/left180/up270; screen-projected direction, not world yaw",
+  "direction_bin_limits": [
+    202.5,
+    247.5
+  ],
+  "part": "a",
+  "frame_order": "row-major",
+  "columns": 2,
+  "rows": 2,
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "final_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "native_2k": false,
+  "transparent_background": true,
+  "is_derived_source": true,
+  "pure_imagegen_output": false,
+  "source": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/gunner/animations/runtime_sources/poses_nw_a.png",
+  "sha256": "24233bbf257725c66225291a10214c5d9dcb905ae1ad9d62e5c75b144d41ef55",
+  "source_history": [
+    "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-766d5183-fc52-480b-b6b4-2376c2b26b56.png",
+    "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-a0297eb5-4479-4612-a570-92bd30345900.png",
+    "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-80f8c02d-d956-4cda-9223-8829c11f534f.png",
+    "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/gunner/animations/runtime_sources/poses_nw_a.png"
+  ],
+  "references": [
+    "assets/characters/gunner/portraits/full_illustration.png"
+  ],
+  "prompt": "Use case: stylized-concept. Create a NEW original production CH02 adult female Cen Xian NORTHWEST225degree combat sprite sheet PART A. Inputportrait isidentity/costume/carbine reference. This is a real newlydrawn 45° screen-diagonal direction, not renaming/reusing/mirroring/rotating any prior30°or60°sheet.\nBrightwarm hand-paintedcartoonfantasy, high35°obliqueDOWNWARD near-isometric2.5D camera visiblyshowing crown/backshoulder/uppercoatplanes, rifleTOPplanes andbootTOPplanes. Real solidthickness, painterlymaterial, crispreadablecontours. Allfourbody/head/hips/boots faceAWAY-UPLEFT, genuineLEFT-REAR45°threequarter, show BACKofivorytealcoat andbackofshortchestnutwavybob; onlytiny LEFT nose/cheek silhouette permitted, nofrontalface, nofrontshirt/tie/chest surfaces.\nAdult agile feminineproportions. Sameivory#f8f3e8 fittedwaistshortsurveycoat withteal#329ca9 backpanels andtinycoral#e9846c lining, highwaist practical tealtrousers, ivorytealcalfboots, browngloves, goldbrass/silver coolcyancrystal surveyingcarbine withfoldingbarrel andorbitalringsight. Keepweaponcompactandintact.\nPhysical projectile direction in actual IMAGEPIXELS for windup: from BREECH(the rearcenterofbarrel above trigger/receiver) to MUZZLE(frontbarrel opening) is UPLEFT EXACT45°, screen225° where right0/down90/left180/up270. Thus muzzle.x-breech.x isNEGATIVE and muzzle.y-breech.y isNEGATIVE with EQUAL absolutevalues. This is physicalbarrelaxis in thescreen, NOTworldyaw. Drawa clearup-left45°straightgunbarrel.\nExact2x2 FOUR independent COMPLETEsprites on genuineTRANSPARENTalpha, no borders/labels. Requested native2048x2048 PNG iftoolpermits, donotfakeupscale. Standinghairtop-to-mean-groundfeet about40%ofwholecanvasheight (~500pxifnative1254). Samehead/body/adultscale acrossallfour. Eachquadrant leaves35pxminimumtransparentmargin around completehair/outfit/gun/boots; no pixelscrossmidlines; wholepersonplusgun<550pxwideat1254. Toprowfeetat44%canvasheight, bottomat94%, clearseparation.\nTL idle: lowreadycarbine, relaxedbentelbows, bothbootsgrounded facingNW.\nTR walk_left: genuine largeAWAYUPLEFTstride, anatomicalLEFTlegforward rightlegback, lowreadyweaponstable.\nBL walk_right: genuineoppositephase RIGHTlegforward LEFTlegback, distinctknees/coathem.\nBR basic_windup: plantedboots, carbinefullyshouldered andaimedphysical225°45°upleft, cheeknearstock,rearshoulderandbackcoatreadable, nofiring.\nNo ground/floor/groundshadow/background/FXflash/particles/projectiles/motiontrail/text/watermark/strays; exactly4 separatecompleteadultcharacters.",
+  "targeted_edit_prompt": "Use case: precise-object-edit. Image1 is the new CH02 NORTHWEST225° A sheet edit target.\nONE clearlyidentified defect correction: NW orientation. TOPLEFT andTOPRIGHT identity/camera/materials arealreadycorrect; keep them. BOTTOMLEFT was incorrectlydrawn facingRIGHTBACK instead ofLEFTBACK. Redraw BOTTOMLEFT as a genuine anatomicalNW225° LEFT-REAR45°body with BACKivorytealcoat, backofchestnutbob and tinyLEFTnoseedge, anatomicalRIGHTlegforwardandLEFTlegback(oppositephaseofTR), carbinelowreadypointingNW. Do not mirror/rotate an existingfigure.\nBOTTOMRIGHT shoulder-aim mustfollow the SAME NW225°orientation with actualphysicalGUNaxis from BREECH(rearcenterofbarrel atreceiver) to muzzle UPLEFT EXACT45°: muzzle.x-breech.x negative, muzzle.y-breech.y negative and equalabsolutevalues. Currentgunis too shallow; liftmuzzle until barrelis diagonal45° relative screen. Physicalpixelaxis, notworldyaw. Adapt wrist/shoulder normally, completegun.\nPreserveadultfemaleCH02identity/shortchestnutwavybob/ivorytealcoral fittedwaistcoat/highwaisttrousers/boots/goldbrasscyan surveyingcarbine, warm dimensionalhandpaintedstyle, high35°downwardcamera. Keep4completeindependentfigures exactly2x2 with35pxblanktransparentmarginsandfullboots/gun. Requestednative2048squareifavailable, otherwiseactualnativepixels, noupscale. Genuinealpha, nofloor/shadow/background/FX/trails/text/labels/borders/strays.",
+  "edit_count": 1,
+  "inspection": {
+    "source": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/gunner/animations/runtime_sources/poses_nw_a.png",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "24233bbf257725c66225291a10214c5d9dcb905ae1ad9d62e5c75b144d41ef55",
+    "alpha_zero_fraction": 0.7600164322652361,
+    "outer_edge_nontransparent": 0,
+    "mid_x_nontransparent": 0,
+    "mid_y_nontransparent": 22,
+    "components_alpha16": [
+      {
+        "region": [
+          128,
+          19,
+          381,
+          584
+        ],
+        "pixels": 85487
+      },
+      {
+        "region": [
+          682,
+          24,
+          408,
+          582
+        ],
+        "pixels": 85797
+      },
+      {
+        "region": [
+          112,
+          662,
+          403,
+          554
+        ],
+        "pixels": 74418
+      },
+      {
+        "region": [
+          743,
+          637,
+          397,
+          554
+        ],
+        "pixels": 86205
+      }
+    ],
+    "coordinate_space": "absolute final source pixels",
+    "landmarks_method": "Manual visible head/grip/physical breech/muzzle and hair/sole annotations supported by read-only Pillow alpha contours. Body height excludes gun bbox. Dash foot uses explicit estimated ground projection. Physical weapon axis is breech-to-muzzle; never replace measured angle with the nominal target.",
+    "frame_foreign_component_pixels_alpha16": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "manual_landmarks_verified": false
+  },
+  "frames": [
+    {
+      "head": [
+        388,
+        82
+      ],
+      "grip": [
+        254,
+        282
+      ],
+      "breech": [
+        251,
+        263
+      ],
+      "muzzle": [
+        144,
+        309
+      ],
+      "hair_top_y": 20,
+      "boot_bottom_points": [
+        [
+          343,
+          598
+        ],
+        [
+          464,
+          532
+        ]
+      ],
+      "name": "idle",
+      "region": [
+        120,
+        11,
+        397,
+        600
+      ],
+      "component_seed": [
+        388,
+        82
+      ],
+      "foot": [
+        403.5,
+        565
+      ],
+      "body_height": 545,
+      "landmark_accuracy_px": 12,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    },
+    {
+      "head": [
+        923,
+        89
+      ],
+      "grip": [
+        802,
+        272
+      ],
+      "breech": [
+        805,
+        257
+      ],
+      "muzzle": [
+        698,
+        311
+      ],
+      "hair_top_y": 25,
+      "boot_bottom_points": [
+        [
+          855,
+          491
+        ],
+        [
+          1056,
+          599
+        ]
+      ],
+      "name": "walk_left",
+      "region": [
+        674,
+        16,
+        424,
+        598
+      ],
+      "component_seed": [
+        923,
+        89
+      ],
+      "foot": [
+        955.5,
+        545
+      ],
+      "body_height": 520,
+      "landmark_accuracy_px": 12,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    },
+    {
+      "head": [
+        335.08,
+        718.35
+      ],
+      "grip": [
+        226.22,
+        893.89
+      ],
+      "breech": [
+        218.86,
+        875.75
+      ],
+      "muzzle": [
+        119.32,
+        930.17
+      ],
+      "hair_top_y": 663.92,
+      "boot_bottom_points": [
+        [
+          265.93,
+          1095.91
+        ],
+        [
+          476.3,
+          1213.59
+        ]
+      ],
+      "frame_source": "source_parts/poses_nw_walk_right.png",
+      "frame_processing": "Independent new NW gait downsampled uniformly0.49 into BL; adult head width matching, no mirroring/rotation.",
+      "landmark_accuracy_px": 8,
+      "name": "walk_right",
+      "region": [
+        104,
+        654,
+        419,
+        570
+      ],
+      "component_seed": [
+        335.08,
+        718.35
+      ],
+      "foot": [
+        371.115,
+        1154.75
+      ],
+      "body_height": 490.83,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    },
+    {
+      "head": [
+        977,
+        743
+      ],
+      "grip": [
+        893,
+        789
+      ],
+      "breech": [
+        888,
+        759
+      ],
+      "muzzle": [
+        758,
+        656
+      ],
+      "hair_top_y": 684,
+      "boot_bottom_points": [
+        [
+          853,
+          1187
+        ],
+        [
+          1126,
+          1182
+        ]
+      ],
+      "name": "basic_windup",
+      "region": [
+        735,
+        629,
+        413,
+        570
+      ],
+      "component_seed": [
+        977,
+        743
+      ],
+      "foot": [
+        989.5,
+        1184.5
+      ],
+      "body_height": 500.5,
+      "landmark_accuracy_px": 12,
+      "weapon_axis_origin": "breech",
+      "source_px_weapon_axis": [
+        -130,
+        -103
+      ],
+      "measured_axis_degrees": 218.39005610637,
+      "target_axis_degrees": 225,
+      "axis_deviation_degrees": -6.609943893629975,
+      "direction_bin_limits": [
+        202.5,
+        247.5
+      ],
+      "measured_axis_inside_direction_bin": true,
+      "screen_mapping": "right0/down90/left180/up270; actual source pixel barrel axis, not world yaw",
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    }
+  ],
+  "known_issues": [
+    "Actual ImageGen images are1254x1254 despite2048square request; this is not native2K and no upscaling occurred.",
+    "Nominal35px safety margins are not consistently achieved; use actual complete components rather than slicing exact quadrants.",
+    "Manual landmarks typically12px error; dash ground projection35-40px uncertainty. Preserve adult head/torso scale and do not enlarge dash based on its crouched body_height.",
+    "Physical breech-to-muzzle windup/release directions are actual source pixel measurements, including recorded deviation from225/315. Aim frames still lie within their formal45degree direction bins.",
+    "NW A is a user-authorized derived composite. BL was uniformly downsampled0.49; other3 quadrant pixels are unchanged with exact pixel diff0. Do not describe final bank as a pure native ImageGen output."
+  ],
+  "credit": "Original user-directed AI-generated project character artwork using OpenAI built-in image_gen; no third-party character IP copied.",
+  "raw_bank": {
+    "kind": "derived_local_frame_composite",
+    "native_tool_output": false,
+    "processing": {
+      "final": "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\gunner\\animations\\runtime_sources\\poses_nw_a.png",
+      "final_sha256": "24233bbf257725c66225291a10214c5d9dcb905ae1ad9d62e5c75b144d41ef55",
+      "original_sheet": "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\gunner\\animations\\runtime_sources\\source_parts\\poses_nw_a_original.png",
+      "original_sheet_sha256": "b265de98cf374ab6fc4d410232a41d04e73d1eb4d0f62eda35d1d1dc9e46184a",
+      "standalone": "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\gunner\\animations\\runtime_sources\\source_parts\\poses_nw_walk_right.png",
+      "standalone_sha256": "a05f504ae71716f4438b3a7a20087b79e2b510690e2d2bcfc84d2e50018cbf5f",
+      "native_original_dimensions": [
+        1254,
+        1254
+      ],
+      "native_standalone_dimensions": [
+        1254,
+        1254
+      ],
+      "final_dimensions": [
+        1254,
+        1254
+      ],
+      "operation": "Replace only incorrect NW A bottom-left frame with independently image-generated NW gait sprite; other3 frame pixels retained",
+      "clear_region": [
+        185,
+        629,
+        434,
+        589
+      ],
+      "standalone_crop_region": [
+        134,
+        42,
+        830,
+        1138
+      ],
+      "uniform_requested_downsample": 0.49,
+      "effective_scale_x": 0.4903614457831325,
+      "effective_scale_y": 0.4903339191564148,
+      "resize_dimensions": [
+        407,
+        558
+      ],
+      "resampling": "Pillow Image.Resampling.LANCZOS",
+      "paste_xy": [
+        110,
+        660
+      ],
+      "changed_pixels_outside_bottom_left_quadrant": 0,
+      "other_three_frames_original_pixels_preserved": true,
+      "pure_imagegen_native_output": false,
+      "native_2k": false,
+      "upscaled": false
+    },
+    "standalone_tool_prompt": "Use case: stylized-concept. Create ONE NEW standalone transparent complete CH02 adultwoman sprite, notsheet. Image1 is actualcorrectNW225° LEFT-REAR45°gaitcamera/costume/headsize reference. Image2portrait identityandcarbine. Keep exact SAMEbodilydirection/camera/backcoat, and draw NEW oppositewalkingphase. DO NOTmirror,rotate,orfaceoppositedirection.\nThe character ALWAYS facesAWAYUPLEFT225°. Backofhead/brownshortwavybob/backshoulders/BACKivorytealshortcoat visible, tinyLEFTnoseedgeonly, NO RIGHT-facingnose orfrontalchest. Keepadultagilefemaleproportions, ivory#f8f3e8 fittedwaistshortsurveycoat withteal#329ca9backpanels tinycoral#e9846clining, practicalhighwaisttealtrousers, ivorytealcalfboots, gloves, brasssilvercyancrystal surveyingcarbine foldedmechanicalbarrel/orbitalsight.\nOppositegaitphase toreference: anatomicalRIGHTlegstepsFORWARDalongUPLEFT, anatomicalLEFTlegextendsBACKalongDOWNRIGHT. Substantialstride withdifferentbentknees/bootplacementandcoathem; hips/torso/headstillNWback-left. Lowreadycarbineheldstable towardleft, completebarrelandbothhands. NO bodyflipping whenrightlegleads. Do notcopytheoldleftleg-leadingpose.\nHigh35°obliqueDOWNWARDnear-isometric2.5Dcamera, crown/backshoulder/coat/gun/bootTOPplanes, warmbrightdimensionalhand-paintedcartoon, thickrealmaterials. ONEcompletefigure centeredonTRUEtransparentalpha withampleclearblank35px+around entirehair/gun/coat/boots. Requestednative2048squareifavailable; detailedfigureapprox900-1050pxhairtomeansoleifactual1254, sinceitwillbeuniformlydownsampledlocallytosheetheadscale. No fakeupscale. No floor/groundshadow/backdrop/FX/motiontrail/text/labels/borders/strays.",
+    "selected_source_inputs": [
+      {
+        "path": "assets/characters/gunner/animations/runtime_sources/source_parts/poses_nw_a_original.png",
+        "sha256": "b265de98cf374ab6fc4d410232a41d04e73d1eb4d0f62eda35d1d1dc9e46184a",
+        "consumed_frames": [
+          "idle",
+          "walk_left",
+          "basic_windup"
+        ],
+        "role": "Base sheet retains original pixels in3selectedquadrants; original incorrectBL is not consumed."
+      },
+      {
+        "path": "assets/characters/gunner/animations/runtime_sources/source_parts/poses_nw_walk_right.png",
+        "sha256": "a05f504ae71716f4438b3a7a20087b79e2b510690e2d2bcfc84d2e50018cbf5f",
+        "consumed_frames": [
+          "walk_right"
+        ],
+        "role": "Selected independently generated correctNW replacement; uniformlydownsampled0.49"
+      }
+    ]
+  }
+}

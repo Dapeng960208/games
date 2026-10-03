@@ -1,0 +1,27 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Edit this ORIGINAL B09 crystal winter court character sprite sheet, preserving the SAME character identity, materials, outfit, weapons and painterly game art style. This reference is our newly generated B09 asset. Only rearrange and scale the three poses for technical game atlas use. Output a landscape 1536 x 1024 RGBA TRANSPARENT image. EXACTLY THREE isolated full body poses: LEFT idle, MIDDLE attack windup, RIGHT attack release. Pose centers x=256,768,1280. Each COMPLETE silhouette including ALL weapon tips and visual effects MUST fit in its own column: left x=70..440, middle x=582..952, right x=1094..1464. Reduce character and weapon size if needed! Body height about 650 pixels, feet near y=850; leave a wide transparent moat between EVERY column, no particles/glow/bits in the separating bands x=450..570 and x=960..1080. Do not let a sword, spear, ruler, cannon, deer antler, arm or ring reach into neighboring poses. Pose weapons diagonally upward or upright to fit; keep full character visible. Maintain clean readable anatomy, original crystalline snow court design with lavender, ice cyan, ivory and warm gold. No text, no floor, no background, no frames, no guide lines, no contact sheet labels. Alpha transparency around each pose and in all margins.",
+  "reference_images": [
+    {
+      "identity": "B09-M03",
+      "sha256": "db98e4662a0668c09b5c97935b5c444d3e45239882051dfeeecd34b48f196fe8",
+      "origin": "Own original B09 generation in this task"
+    }
+  ],
+  "sha256": "cfc525d1888f674dc8978d2b07a01b1735c6a9b4f748d39ed508554022d3f7e6",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte copy; source pixels and alpha unchanged. Runtime uses source regions.",
+  "license": "Project-generated original artwork; no third-party character artwork reused.",
+  "generation_history": [
+    {
+      "prompt": "Use case: stylized-concept. BRAND NEW original production game sprite sheet for Frost Crystal Court B09. Subject Icicle Thrower: lean tripod crystal creature with three-pronged ice arms, one large pointed amber-tinted core, asymmetric long throwing arm. Geometric translucent ice body, no human, no fish. Draw exactly three complete separate poses of this SAME creature: left idle, middle drawing back a long icicle, right throwing icicle forward. 1536x1024 landscape, single row of 3 equal cells; absolutely keep each pose inside its own third with comfortable transparent margins, including weapons. All full bodies and feet visible, same scale. Feet near 86% canvas height. Each creature faces lower-right, camera is high-angle near-isometric 2.5D overhead as in a fantasy action RPG. Bright detailed hand-painted storybook cartoon game art, dark violet fine outlines, clean cyan and lavender ice facets, small warm champagne-gold highlights, visible heart cores, soft sunny shading. Strong silhouette at 100 pixels tall. Actual transparent background alpha, no colored backdrop, no aura filling background, no floor, no shadows, no letters, no labels, no border, no HUD, no watermarks. No copied existing creatures.",
+      "sha256": "db98e4662a0668c09b5c97935b5c444d3e45239882051dfeeecd34b48f196fe8"
+    }
+  ]
+}

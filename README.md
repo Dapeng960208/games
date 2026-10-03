@@ -1,6 +1,6 @@
 # 深渊拾荒者 Abyss Salvager
 
-Godot 4 单人动作游戏原型。当前正式内容登记 **B01–B06及最终B10、等级1–50、战士／枪手／法师**。B05、B06 按前章首领通关并撤离的顺序解锁；B07–B09 和召唤师为未实现设计。内容状态更新于 2026-10-03，以 [开发进度](docs/DEVELOPMENT_PROGRESS.md) 和运行配置为准。
+Godot 4 单人动作游戏原型。当前正常入口开放 **B01–B06、战士／枪手／法师**；B10 星辉龙庭已登记为第十章及最终章，使用 Lv46／48／50，等级上限为 50。B10 保留 BO09 通关解锁条件，B07、B08 未实现且 B09 仍为隔离候选，因此当前正常流程不能连通终章；本轮终章统一验收使用隔离存档。内容状态以 [开发进度](docs/DEVELOPMENT_PROGRESS.md) 和运行配置为准，资源接入不代表验收通过。
 
 明亮手绘卡通奇幻风，高机位三分之四斜俯视与 2.5D 质感；界面使用米白羊皮纸、黄铜、深紫文字和圆形技能徽章。
 
@@ -16,6 +16,8 @@ Godot 4 单人动作游戏原型。当前正式内容登记 **B01–B06及最终
 
 当前默认采用新数值规则。死亡扣本局 50% 金币、丢弃未结算经验与临时装备，保留已有等级、已结算经验与永久装备；成功撤离后新装备永久入库。换装不会回血、重置冷却或重复发奖。本次正式开放不修改敌人校准、掉落概率或伤害规则。B05/B06 当前原画验收见 [全房原画与共用坐标](docs/levels/b05_b06_room_paintings.md)，开放与保存兼容见 [正式接入记录](docs/levels/b05_b06_release.md)。
 
+B09 为**隔离候选／地图与 2K 受控接入验收通过**：18 种普通怪、霜晶女王、七房有限遭遇与 35 装备运行链已接入。地图使用七张 background、42 张逐片原生高清 detail 和共用环境／镜头管线；职业头像、HP／资源条与底部技能栏复用既有 HUD。合并后的机制、装备、正式闸门及地图路径检查通过；合并后新地图 GPU 247 项通过。自然通关、完整设计、连续动画与长期性能仍待验证，B09 不修改正式六章／Lv30／194 装备闸门。详见 [B09 候选说明](docs/levels/b09/candidate.md) 与 [验收记录](docs/levels/b09/validation.md)。
+
 ## Windows 运行与检查
 
 默认引擎为 Godot 4.7.2-stable，二进制不入库。首次安装会下载并校验配置的官方版本，游戏离线运行。
@@ -30,6 +32,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\setup.ps1
 # 只运行相关检查
 .\tools\test.ps1 -Suite legacy_profile_reset -SkipImport
 python tools/maintenance/audit_repository.py
+# B09 原创霜晶资源、35装备与七房候选（独立测试档，默认2K）
+.\tools\play_b09.ps1
+.\tools\test.ps1 -Suite b09_candidate -SkipImport
+.\tools\test.ps1 -Suite b09_monster_contract,b09_equipment,b09_inventory -SkipImport
+.\tools\test.ps1 -Suite b09_map_native -Graphical -SkipImport
+.\tools\test.ps1 -Suite b09_2k -Graphical -SkipImport
 ```
 
 也可双击 `RUN_GAME.cmd`，已有引擎可通过 `-EnginePath` 或 `GODOT_BIN` 指定。测试会重定向到独立存档目录。实际玩家存档为 `%APPDATA%\AbyssSalvagerM1\profile.json`，不属于仓库清理范围。
@@ -79,4 +87,4 @@ docs/{characters,system,levels,engineering,legal}/
 - [目录结构规范](docs/engineering/repository_structure.md)：完整层级、放置责任、命名和搬迁检查。
 - [素材许可与来源](docs/legal/asset_licenses.md)：字体许可、原创资源来源及退役资源的必要归属记录。
 
-最终B10星辉龙庭包含六个守关龙房间与九头龙终战；入口要求第九章已解锁，第七至九章未实现时保持锁定。原炎魔第十章和菌灵第十一章已移除。
+最终 B10 星辉龙庭包含六个守关龙房间与单头星冠古龙终战；入口要求 BO09 已通关，本轮保留该条件并用隔离存档验收。D4 终章通关后正常撤离可领取一次专属彩蛋戒指；统一验收仍在进行。

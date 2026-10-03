@@ -27,6 +27,7 @@ var biome_skill_cooldowns: Dictionary = {}
 var _biome_clock: float = 0.0
 var b10 = preload("res://scripts/levels/b10/combat/enemy_runtime.gd").new()
 var b06 = preload("res://scripts/levels/b06/combat/enemy_runtime.gd").new()
+var b09 = preload("res://scripts/levels/b09/combat/runtime.gd").new()
 var b05 = preload("res://scripts/levels/b05/combat/skill_runtime.gd").new()
 var _hazard_serial: int = 0
 var _crit_serial: int = 0
@@ -37,6 +38,7 @@ func configure(host: Node2D) -> void:
 	b05.configure(self)
 	b06.configure(self)
 	b10.configure(self)
+	b09.configure(self)
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	z_index = 1
 
@@ -67,8 +69,10 @@ func emit_skill(caster: Node2D, skill: Dictionary) -> void:
 		else: _execute(command)
 		queue_redraw()
 		return
-	if bool(command.get("b05_command",false)) or bool(command.get("b06_command",false)):
-		if bool(command.get("b05_command",false)):
+	if bool(command.get("b05_command",false)) or bool(command.get("b06_command",false)) or bool(command.get("b09_command",false)):
+		if bool(command.get("b09_command",false)):
+			command = b09.prepare(caster,command)
+		elif bool(command.get("b05_command",false)):
 			var mechanism: Variant=preload("res://scripts/levels/b05/combat/enemy_skills.gd").mechanics(caster)
 			if not command.has("b05_admission_id") and mechanism is Object and mechanism.has_method("constrain_enemy_command"):
 				command=mechanism.constrain_enemy_command(command,caster)
@@ -372,6 +376,9 @@ func clear_target_guards(target: Node2D) -> int:
 
 func _execute(command: Dictionary) -> void:
 	if bool(command.get("b10_command",false)) and b10.execute(command): return
+	if bool(command.get("b09_command",false)) and not bool(command.get("b09_custom_done",false)):
+		if not _owner_alive(command): return
+		if b09.execute(command): return
 	if bool(command.get("b06_command",false)):
 		if not b06.admitted(command): return
 		if b06.execute(command):
@@ -424,6 +431,7 @@ func _execute(command: Dictionary) -> void:
 	if bool(command.get("b10_command",false)): b10.released(command)
 	if bool(command.get("b05_command",false)): b05.released(command)
 	if bool(command.get("b06_command",false)): b06.released(command)
+	if bool(command.get("b09_command",false)): b09.released(command)
 
 func _spawn_projectiles(command: Dictionary) -> void:
 	var count: int = clampi(int(command.get("count", 1)), 1, 5)
@@ -478,6 +486,9 @@ static func projectile_visual_position(shot: Dictionary) -> Vector2:
 	return Vector2(shot.position)+Vector2(shot.get("b05_visual_offset",Vector2.ZERO))*maxf(0,1.0-float(shot.get("b05_visual_age",0))/.14)
 
 func _tick_projectile(shot: Dictionary, delta: float) -> void:
+	if shot.has("b09_refraction_anchor") and not _alive(shot.b09_refraction_anchor.get_ref()):
+		projectiles.erase(shot)
+		return
 	if not _owner_alive(shot):
 		projectiles.erase(shot)
 		return
@@ -627,6 +638,7 @@ func _finish_motion(motion: Dictionary, impact: bool) -> void:
 
 	if bool(motion.get("b05_command",false)): b05.motion_finished(motion,impact)
 	if bool(motion.get("b06_command",false)): b06.motion_finished(motion,impact)
+	if bool(motion.get("b09_command",false)): b09.motion_finished(motion,impact)
 
 func _spawn_hazards(command: Dictionary) -> void:
 	var points: Array = command.get("targets", [command.get("target", command.origin)])

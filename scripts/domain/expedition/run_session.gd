@@ -51,6 +51,8 @@ var boss_defeats: Array[String] = []
 var loadout_snapshot: Dictionary = {}
 var equipment_snapshot: Dictionary = {}
 var branches_snapshot: Dictionary = {}
+var skill_loadout_snapshot: Array[String] = []
+var skill_branches_snapshot: Dictionary = {}
 var relics: Array[String] = []
 var shots: int = 0
 var kills: int = 0
@@ -79,6 +81,10 @@ func live_receipt() -> Dictionary:
 		"completed_reward_ids": completed_reward_ids.duplicate(),
 		"boss_defeats": boss_defeats.duplicate(), "rules_version": 1,
 	}
+	if not skill_loadout_snapshot.is_empty():
+		value["skill_loadout_snapshot"] = skill_loadout_snapshot.duplicate()
+		value["skill_branches_snapshot"] = skill_branches_snapshot.duplicate(true)
+		value["role_combat_version"] = 2
 	if not frozen_versions.is_empty(): value.merge(frozen_versions, true)
 	if ruleset_version() == Rules.V2 and not enemy_calibration_snapshot.is_empty(): value["enemy_calibration_snapshot"] = enemy_calibration_snapshot.duplicate(true)
 	if ruleset_version() == Rules.V2 and expedition.is_empty(): value["pending_research_materials"] = pending_research_materials.duplicate(true)

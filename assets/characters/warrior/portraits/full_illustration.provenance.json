@@ -1,0 +1,29 @@
+{
+  "asset_id": "hero.warrior.full_illustration",
+  "hero_id": "CH01",
+  "character": "罗砧",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "generation_type": "original stylized concept",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_2k_requirement_met": false,
+  "upscaled": false,
+  "alpha": "RGBA; all four corners alpha0, subject samples alpha240–255; genuine empty alpha background",
+  "palette": {
+    "navy": "#233b66",
+    "silver": "#e0e6ef",
+    "vermilion": "#d6554e"
+  },
+  "source_sha256": "8750E0521EC71DDA790C9340304D7668D22CD92321B561F3AE9F64A06C530619",
+  "source_filename": "exec-74159187-303c-4a90-be12-da074ff9c69b.png",
+  "copyright": "Original AI-generated project character concept. No borrowed third-party character or weapon. Retain this provenance.",
+  "limitation": "Built-in generator returned1254x1254 on three explicit native2048 requests; acceptance as native2K remains pending. No image transforms or artificial upsampling were performed.",
+  "prompt": "Use case: stylized-concept.\nGenerate one original bright hand-painted cartoon fantasy action-game character, native 2048×2048 (2K) PNG with real transparent alpha background. Create the raster at this native resolution; do not simulate it.\nOne adult male warrior, Luo Zhen, age 26, athletic broad shoulders, handsome friendly grown-up face, short tousled chestnut hair. Full body with both complete boots and ALL huge weapon inside frame with at least a little transparent margin.\nBright hand-painted CARTOON FANTASY style, charming polished 2.5D volumetric game art, soft visible brushwork, clear chunky geometry, fresh vividly colored sunlit materials. Adult proportions in a stylized 5.5-head-tall body. Warm afternoon sunlight on top planes, gentle cool fill and readable painted occlusion. High camera three-quarter 35–40 degree downward near-ISOMETRIC angle, show top planes of hair, shoulders, boots and axe, not an eye-level illustration.\nBeautiful tailored battle coat in luminous navy #233b66, clean broad silver #e0e6ef chest and shoulder armor, fitted trousers, armored boots, vivid vermilion #d6554e scarf flowing behind him. Small antique-gold diamond fittings. Fashionable heroic clothing, no rags, no hides, no muddy grimdark colors.\nSpectacular enormous crescent axe resting diagonally over one shoulder, about as tall as he is, a chunky gold-and-silver edge with black rock blade plates, several clearly shaped FLOATING ROCK blade fragments held around its head, bright orange magical runic sunstone at center, thin orange glowing cracks. Cool magical heavy weapon with a monumental clean silhouette; his glove grips the haft correctly. Restrict local glow to the axe.\nRelaxed confident combat-ready stance, charming lively expression, small fore-shortening consistent with high camera. No other characters. Empty transparent background. The body and weapon should be opaque with clean antialiased edges. No ground, platform, gradient, atmosphere, glow fog, black background, printed checkerboard, text, watermark, labels, frame or UI."
+}

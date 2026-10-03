@@ -1,0 +1,99 @@
+{
+  "direction": "se",
+  "tool": "built-in tools.image_gen__imagegen",
+  "workflow": "Original independently generated direction-specific asset from text and visual references. Not a rotation or derivative of the other direction.",
+  "requested_canvas": [
+    2048,
+    2048
+  ],
+  "actual_native_canvas": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "transparent_background": true,
+  "source_path": "C:/Users/13326/.codex/generated_images/01a101bb-db56-7a73-a6d0-b590fd94e183/exec-21bae87f-602c-4b6e-9518-9efffb69cfdc.png",
+  "output_path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/tools/godot/art_preview/slash_directional/candidates/se/slash_se.png",
+  "source_sha256": "adb7394069967d8cff9a64bae243075bdace2915bdae14c3cf84de7c399eba95",
+  "bytes": 376042,
+  "checked_at_utc": "2026-10-03T13:23:45.8113980Z",
+  "reference_inputs": [
+    {
+      "path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-e8afba6d-6fa2-41c4-8c17-9e2f75a898f4.png",
+      "width": 252,
+      "height": 212,
+      "sha256": "5570ee660f9e684aebcefe726ea1d821b9249414e3ef439a314c937c004af4c4",
+      "role": "User-selected good visual reference for bright top/front cutting core style and placement only"
+    },
+    {
+      "path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/animations/runtime/poses_se_b.png",
+      "width": 1920,
+      "height": 1536,
+      "sha256": "1adc27780fae62c43f3462093ce7b2c8748f8c1b61501fd4a70791fa16e75ea4",
+      "role": "SE direction pose/orientation guide; top-left release pose only"
+    }
+  ],
+  "avoidance_reference": {
+    "path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-b7851f68-d9e7-4ece-96d1-dcb1b27b04f5.png",
+    "role": "Inspected only to avoid chest/leg wrapping lines; not sent as generation input"
+  },
+  "alpha": {
+    "transparent_pixels": 1390261,
+    "partial_alpha_pixels": 182255,
+    "opaque_pixels": 0,
+    "center_alpha": 0,
+    "alpha16_bbox_inclusive": [
+      293,
+      143,
+      1142,
+      784
+    ],
+    "alpha16_lower_half_pixels": 17916,
+    "lower_half_alpha16_empty_fraction": 0.9772135863800432
+  },
+  "prompt": "Use case: stylized-concept\nCreate one NEW original transparent PNG isolated warrior normal-axe-attack light effect, direction SE (diagonal screen DOWN-RIGHT). Requested canvas 2048 x 2048.\nInput 1 is a STYLE and TOP/FRONT placement reference only: use the bright white-gold active cutting face, not the full sweep. Input 2 is a POSE guide only: use its TOP-LEFT release pose facing down-right. Output ONLY independent energy, omit character, weapon, ground, world, UI and text.\n\nSilhouette is the decisive requirement: a SHORT single 110-degree curved knife of light, entirely on the axe's right/front side. It slopes diagonally from an upper-left trailing point toward a lower-right forward cutting point, with a gentle bowed outer edge. Imagine a short section cut from the upper-right edge of an ellipse, ending BEFORE the ellipse bends back toward the left. The bottom endpoint must aim DOWN-RIGHT and terminate sharply: it MUST NOT turn back left. Absolutely no lower-left return, no bottom hook, no large C, no enclosing crescent, no ring, no shield, no arch. The lower half remains almost completely empty alpha. Left-center and the area behind the axe stay empty, so this short attack does not wrap a torso or feet.\n\nAn ivory-white cutting core, delicate warm-gold feathering at the edge, only two fine short parallel trailing filaments near the top rear point. Expressive hand-painted cartoon fantasy game VFX, high three-quarter overhead perspective, clean luminous tapered silhouette. Compact diagonal front crest, light and airy, not solid golden cloth. Place the full intact short arc around upper-middle / upper-right of the square, generous margins, about half the canvas width and one quarter of its height. Genuine transparent outer background and transparent hollow area. Single texture, no panels.",
+  "visual_inspection": {
+    "shape": "Selected revision is a short upper-left to lower-right bowed cutting segment with sharp forward termination; long lower-left return from first attempt is removed. Empty center and mostly transparent lower half. No person, axe, scene, UI or text.",
+    "direction_risk": "Direction is more clearly down-right than first attempt; bright forward tip has a small gold spur. Oversized placement or low anchoring could touch the leg, so the final pose composite should confirm the blade-front anchor.",
+    "style_risk": "Warm-gold feathering is broader than the requested few fine parallel trailing threads; prompt requested restraint, but source remains painterly and thick at the active crest.",
+    "local_view_image": "Viewed local selected PNG at original detail; view_image displayed only sparse rim fragments, while the built-in generated preview displayed the intact arc. Checked sample RGB/alpha remains high-alpha. Native compositing should confirm display.",
+    "representative_pixel": {
+      "direction": "se",
+      "xy": [
+        960,
+        550
+      ],
+      "rgba": [
+        253,
+        236,
+        126,
+        253
+      ]
+    }
+  },
+  "generation_history": [
+    {
+      "status": "discarded",
+      "reason": "Lower-end leftward return too long, shape too similar to E, potential leg-wrapping risk",
+      "path": "C:/Users/13326/.codex/generated_images/01a101bb-db56-7a73-a6d0-b590fd94e183/exec-2250a16f-8271-4fd1-a0c2-44522afd8819.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d23b80877800a24f4e9b727df9604c7689a838b40303227da9af3e857f14dcae",
+      "prompt": "Use case: stylized-concept\nAsset type: one original hand-painted 2D game VFX PNG texture, a warrior's single normal axe attack. Requested canvas 2048 x 2048 pixels, genuine transparent background, soft alpha.\nInput images: Image 1 is ONLY a visual reference for the bright short attack arc at the TOP and FRONT of the weapon. Image 2 is ONLY a pose/orientation guide; use its TOP-LEFT attack-release pose. Do not reproduce or output either source scene. Create a new independent light effect asset.\nStyle: Original polished cartoon fantasy painterly VFX. A decisive ivory-white luminous cutting edge core with a restrained warm-gold feather glow, and only two or three fine short parallel golden trailing threads. Sharp tapered ends and graceful energetic brushstrokes. No dark outline, no beige material, no opaque cloth ribbon.\nConstraints: The entire output contains ONLY the isolated light effect, no person, no body, no axe or other weapon, no ground, no scene, no text, no UI, no impact starburst, no shield. One single short unilateral slash path spanning only about 100 to 140 degrees of the swing. Keep a large hollow transparent area behind the cutting face. The back/open side must be extremely compact and must NEVER return around the invisible character's torso or legs. Do not generate a full circle, half-circle, full crescent C, ring, halo, enclosing paired lines, inverted U arch, or wrapping shield. Keep the lower half of the square mostly transparent. No disconnected large loop, no duplicate slash. One image, not a sprite sheet, no panels, no rotation copies. Generous transparent margins, every tip intact.\nDirection: SE, attack points diagonally DOWN and RIGHT toward the viewer's lower-right.\nComposition: Imagine the invisible SE-facing warrior centered left, extending an axe diagonally toward lower-right, as in image 2 top-left. Draw one compact curved luminous blade-path ONLY at the axe blade's OUTSIDE on the right, from upper-right toward lower-right. It follows the diagonal SE cutting motion. The upper trailing taper starts high and slightly left of the active face, bends gently down-right into a bright compact right-side cutting crest, then ends in a SHORT lower-right point. The rear end and open-side return are tightly shortened: NO loop back toward lower-left, NO big open C, NO circle around feet. The main energetic face angles toward screen lower-right, visibly distinct from a straight east-facing sweep. Use high three-quarter overhead / near-isometric perspective, slightly compressed ellipse depth. Do not trace the character, legs, or the axe itself.\nFraming: Keep this short diagonal light path concentrated in the upper-right and center-right portion of the square. Effective footprint roughly 38 percent canvas width and 35 percent canvas height. Leave the left-center and most of the lower half fully transparent, with only the short forward tip reaching a little below mid-height."
+    },
+    {
+      "status": "selected",
+      "source_path": "C:/Users/13326/.codex/generated_images/01a101bb-db56-7a73-a6d0-b590fd94e183/exec-21bae87f-602c-4b6e-9518-9efffb69cfdc.png",
+      "sha256": "adb7394069967d8cff9a64bae243075bdace2915bdae14c3cf84de7c399eba95",
+      "prompt": "Use case: stylized-concept\nCreate one NEW original transparent PNG isolated warrior normal-axe-attack light effect, direction SE (diagonal screen DOWN-RIGHT). Requested canvas 2048 x 2048.\nInput 1 is a STYLE and TOP/FRONT placement reference only: use the bright white-gold active cutting face, not the full sweep. Input 2 is a POSE guide only: use its TOP-LEFT release pose facing down-right. Output ONLY independent energy, omit character, weapon, ground, world, UI and text.\n\nSilhouette is the decisive requirement: a SHORT single 110-degree curved knife of light, entirely on the axe's right/front side. It slopes diagonally from an upper-left trailing point toward a lower-right forward cutting point, with a gentle bowed outer edge. Imagine a short section cut from the upper-right edge of an ellipse, ending BEFORE the ellipse bends back toward the left. The bottom endpoint must aim DOWN-RIGHT and terminate sharply: it MUST NOT turn back left. Absolutely no lower-left return, no bottom hook, no large C, no enclosing crescent, no ring, no shield, no arch. The lower half remains almost completely empty alpha. Left-center and the area behind the axe stay empty, so this short attack does not wrap a torso or feet.\n\nAn ivory-white cutting core, delicate warm-gold feathering at the edge, only two fine short parallel trailing filaments near the top rear point. Expressive hand-painted cartoon fantasy game VFX, high three-quarter overhead perspective, clean luminous tapered silhouette. Compact diagonal front crest, light and airy, not solid golden cloth. Place the full intact short arc around upper-middle / upper-right of the square, generous margins, about half the canvas width and one quarter of its height. Genuine transparent outer background and transparent hollow area. Single texture, no panels."
+    }
+  ],
+  "production_asset": "res://assets/characters/warrior/fx/directional/slash_se.png",
+  "production_sha256": "adb7394069967d8cff9a64bae243075bdace2915bdae14c3cf84de7c399eba95",
+  "production_native_dimensions": [
+    1254,
+    1254
+  ],
+  "production_processing": "original native PNG copied byte-for-byte; no rotation, mirroring, resampling or alpha cleaning",
+  "production_native_2k": false
+}

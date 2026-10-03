@@ -1,0 +1,24 @@
+{
+  "skill_id": "CH01_SK06",
+  "name": "磐石护身",
+  "prompt": "Use case: stylized-concept. Asset type: production original handpainted cartoon fantasy RPG skill icon, one icon only. Primary request: 磐石护身, stone defensive ward. One massive shield-shaped slab of chunky gray rock tightly wrapped around a silver-steel breastplate silhouette, broad hexagonal rock plates form a compact protective shell. An inset muted orange diamond core makes the shield easy to read. Stable upright shield composition with a thick flat bottom, no weapon, no swinging arc, no explosion, no tiny person. Square canvas requested 2048x2048 original native pixels, no upscale. Thin antique-brass circular rim occupying 92% of image width; completely transparent outside the circle, inside deep navy with very restrained amber protective glow. Palette steel silver, navy, dark rock gray, small vermillion and amber accents. Painterly 2.5D sculpted form, bright warm upper-left sunlight, original handpainted cartoon fantasy, crisp bold large dominant silhouette, readable at 44 pixels, simplified large shapes with generous 8% safe margin. Static heavy defensive identity. No text, numbers, letters, watermark, logo, grid, copied game art, tiny full-body characters, multiple icons, or background outside the circle.",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in generation",
+  "output_source": "C:/Users/13326/.codex/generated_images/01a10115-0bdc-75c0-a131-86d31577a770/exec-716565e2-c28a-4eb5-be58-bb2c5641f2f7.png",
+  "final_path": "res://assets/characters/warrior/skills/sk06_icon.png",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "image_mode": "RGBA",
+  "alpha_channel_present": true,
+  "top_left_corner_alpha": 0,
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "upscaled": false,
+  "local_image_editing": false,
+  "sha256": "316f981c97fdb840294d1602227ad2aa37ac93b2d7d9379afd6778fd0affd223",
+  "generated_at_utc": "2026-10-03T09:30:48.573162+00:00"
+}

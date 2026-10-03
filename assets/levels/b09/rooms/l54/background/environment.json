@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "biome_id": "B09",
+  "room_id": "L54",
+  "texture": "asset://b09/l54/background/environment.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "regions": {
+    "L54_environment": [
+      0,
+      0,
+      1536,
+      1024
+    ]
+  },
+  "walkable_normalized_rect": [
+    0.45,
+    0.38,
+    0.11,
+    0.12
+  ],
+  "placement_normalized_rect": [
+    0.1,
+    0.1,
+    0.8,
+    0.74
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.13737,
+      0.600586
+    ],
+    [
+      0.160156,
+      0.551758
+    ],
+    [
+      0.208333,
+      0.488281
+    ],
+    [
+      0.26888,
+      0.444336
+    ],
+    [
+      0.416667,
+      0.341797
+    ],
+    [
+      0.491536,
+      0.310547
+    ],
+    [
+      0.660156,
+      0.249023
+    ],
+    [
+      0.722656,
+      0.229492
+    ],
+    [
+      0.807292,
+      0.209961
+    ],
+    [
+      0.865885,
+      0.22168
+    ],
+    [
+      0.904948,
+      0.280273
+    ],
+    [
+      0.911458,
+      0.34668
+    ],
+    [
+      0.860677,
+      0.404297
+    ],
+    [
+      0.253906,
+      0.74707
+    ],
+    [
+      0.201172,
+      0.717773
+    ],
+    [
+      0.15625,
+      0.660156
+    ]
+  ],
+  "camera": "高机位三分之四斜俯视、近等距2.5D",
+  "baked_scenery": true,
+  "boundary": {
+    "convex": true,
+    "convexity_verified": true,
+    "winding": "clockwise_positive_cross_in_screen_coordinates",
+    "authority": "B09房间原画岸顶雪面、台阶前平台与桥面；非谷底冰壁",
+    "validation_layout_scale": 0.58,
+    "required_anchor_clearance_world": 14,
+    "internal_gaps": "room_geometry.json的岸边阶梯矩形，不能将凸外包络内的云崖当成可走地面"
+  },
+  "notes": [
+    "复用本批B09独立原画，按前四关WorldArt环境路径呈現完整地景；不铺矩形雪白底。",
+    "placement负责原画与全部玩法点共用坐标变换；凸外边界用于脚点和扫掠，内部裂隙另有真实碰撞。",
+    "静态灯、晶柱、入口建筑、栏杆与完整桥已经画入环境，不重复叠加sprite；功能圈与动态预警由运行时绘制。",
+    "蓝色可走冰面按源图池边生成内接水平矩形；动态冰雪不得覆盖原画不可走云崖。"
+  ],
+  "qa": {
+    "source_pixel_edits": "L54局部增补两座平行桥",
+    "geometry_status": "源图人工测定与Python半平面/碰撞预检查；GPU路径与闭桥最终验收由集成检查确认，不凭设计图标通过"
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "integer shared-image regions",
+    "texture_sampling": "full independent room texture; region_filter_clip_enabled=false",
+    "texture_memory": "one shared texture; no streaming claim"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "skill_id": "CH02_SK05",
+  "skill_name": "扇面齐射",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in generate",
+  "generated_date_utc": "2026-10-03",
+  "recorded_at_utc": "2026-10-03 09:34:07 UTC",
+  "prompt": "Use case: stylized-concept\nAsset type: original hand-painted fantasy RPG skill icon, requested 2048 x 2048 square native source.\nSubject: FAN VOLLEY. Exactly THREE large brass-cased pointed bullets, separated clearly in a wide fan from one lower-central origin toward upper-left, straight up, and upper-right. Each bullet is a chunky unmistakable projectile with an ivory tip and short teal wind trail. The dominant silhouette is a three-pronged fan, not a gun.\nStyle: polished bright hand-painted cartoon fantasy, painterly 2.5D volume, warm upper-left lighting, fresh distinct colors. Teal, olive, antique brass, ivory with cyan motion accents.\nComposition: single circular skill badge, thin antique brass rim at 92% of canvas width, dark petrol painted interior. Generous safe margin around all subjects, bold simplified forms legible at 44 pixels. Genuine alpha transparency outside the circle.\nConstraints: original design, only one standalone icon, no text, letters, numbers, logos, watermark, grid, interface, tiny full-body character, repeated gun symbol, or cropped border. Preserve real native resolution; no upscaling.",
+  "transparent_background": true,
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10117-56a0-7d23-ac6c-045c504fdeb4/exec-09f6f912-e6ff-451f-a808-5d3cc4e9b143.png",
+  "project_asset": "res://assets/characters/gunner/skills/sk05_icon.png",
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "image_mode": "RGBA",
+  "png_color_type": 6,
+  "file_bytes": 2180787,
+  "sha256": "cd0c72cc4cf185516dd3f05548365ae8342bfeb8a2b486d585c8f3a0af3681b5",
+  "processing": "Original built-in PNG copied unchanged, with no crop, repaint, resize, or upscaling.",
+  "alpha_checks": {
+    "corner_alpha": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "center_alpha": 253
+  },
+  "inspection": "Inspected the actual generated output. Unique skill-specific silhouette and painterly fantasy style retained. Native source is 1254 by 1254, not 2048 by 2048; reduced-size runtime legibility remains subject to integrated UI verification.",
+  "ownership": "Project-original generated artwork. No external game artwork or code used."
+}

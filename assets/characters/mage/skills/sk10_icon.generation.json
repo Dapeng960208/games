@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "skill_id": "CH03_SK10",
+  "skill_name": "双星共鸣",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "generation_date_utc": "2026-10-03T09:36:53.4368256Z",
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "image_mode": "RGBA",
+  "png_color_type": 6,
+  "transparent_background": true,
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10119-2571-7212-a298-ec39a3d44e43/exec-eaa50a42-98a8-4b9e-a165-f0aedf06b1b8.png",
+  "final_path": "assets/characters/mage/skills/sk10_icon.png",
+  "sha256": "fce870424b063cc4be48a6dc60cfb149d353d33e7834248ae6fb3c2e7606ca1b",
+  "prompt": "Use case: stylized-concept. Asset type: one original fantasy game skill icon, CH03_SK10 双星共鸣 (Twin Star Resonance), request native 2048x2048 square source. Single polished hand-painted cartoon fantasy round badge, sculpted 2.5D volume, warm upper-left light and cool magic contrast. Dominant emblem: EXACTLY TWO equal-size large silver-edged four-point stars facing one another, one upper-left and one lower-right, separated by a small bright silver bell; two thick concentric resonance waves pulse between them. Twin symmetrical stars and ringing waves are the clear silhouette, no chain and no multiple projectiles. Obsidian and midnight purple painted inner field, silver metal, ghost-blue magic and restrained white cores. Thin silver circular rim occupying 92% width, genuinely transparent outside circle; all subject inside with generous 8% margin. Large clear shapes readable at 44 pixels; refined brush-painted fantasy detail. No pink, red, text, letters, numbers, logos, watermark, grid, tiny full-body characters, copied game imagery, additional star emblems on the rim.",
+  "edit_prompt": null,
+  "edit_reference": null,
+  "processing": "Copied original PNG unchanged; no upscaling or repainting",
+  "visual_review": "Distinct skill identity and painterly round badge inspected at native display; SK11 four-point spirit corrected with built-in image edit"
+}

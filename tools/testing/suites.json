@@ -1,8 +1,4 @@
 {
-  "b10_room_geometry": {
-    "script": "tests/levels/b10/test_b10_room_geometry.gd",
-    "scene": "tests/levels/b10/test_b10_room_geometry.tscn"
-  },
   "approved_ui": {
     "script": "tests/ui/test_approved_ui.gd",
     "scene": "tests/ui/test_approved_ui.tscn"
@@ -34,6 +30,22 @@
   },
   "b05_art_residency": {
     "script": "tests/levels/b05/test_b05_art_residency.gd"
+  },
+  "b05_b06_boss_skill_art": {
+    "script": "tests/levels/shared/test_b05_b06_boss_skill_art.gd",
+    "scene": "tests/levels/shared/test_b05_b06_boss_skill_art.tscn"
+  },
+  "b05_b06_first_room_art": {
+    "script": "tests/levels/shared/test_b05_b06_first_room_art.gd",
+    "scene": "tests/levels/shared/test_b05_b06_first_room_art.tscn"
+  },
+  "b05_b06_release": {
+    "script": "tests/levels/shared/test_b05_b06_release.gd",
+    "scene": "tests/levels/shared/test_b05_b06_release.tscn"
+  },
+  "b05_b06_room_paintings": {
+    "script": "tests/levels/shared/test_b05_b06_room_paintings.gd",
+    "scene": "tests/levels/shared/test_b05_b06_room_paintings.tscn"
   },
   "b05_balance_calibration": {
     "script": "tests/levels/b05/test_b05_balance_calibration.gd"
@@ -288,6 +300,41 @@
   "b06_tide_state": {
     "script": "tests/levels/b06/test_b06_tide_state.gd"
   },
+  "b09_2k": {
+    "script": "tests/levels/b09/test_b09_2k.gd",
+    "scene": "tests/levels/b09/test_b09_2k.tscn"
+  },
+  "b09_candidate": {
+    "script": "tests/levels/b09/test_b09_candidate.gd",
+    "scene": "tests/levels/b09/test_b09_candidate.tscn"
+  },
+  "b09_equipment": {
+    "script": "tests/levels/b09/test_b09_equipment.gd",
+    "scene": "tests/levels/b09/test_b09_equipment.tscn"
+  },
+  "b09_equipment_release_gate": {
+    "script": "tests/levels/b09/test_b09_equipment.gd",
+    "scene": "tests/levels/b09/test_b09_equipment.tscn"
+  },
+  "b09_inventory": {
+    "script": "tests/levels/b09/test_b09_inventory.gd",
+    "scene": "tests/levels/b09/test_b09_inventory.tscn"
+  },
+  "b09_map_native": {
+    "script": "tests/levels/b09/test_b09_map_native.gd",
+    "scene": "tests/levels/b09/test_b09_map_native.tscn"
+  },
+  "b09_monster_contract": {
+    "script": "tests/levels/b09/test_b09_monster_contract.gd",
+    "scene": "tests/levels/b09/test_b09_monster_contract.tscn"
+  },
+  "b10_chapter_entry": {
+    "script": "tests/levels/b10/test_b10_chapter_entry.gd"
+  },
+  "b10_room_geometry": {
+    "script": "tests/levels/b10/test_b10_room_geometry.gd",
+    "scene": "tests/levels/b10/test_b10_room_geometry.tscn"
+  },
   "backpack": {
     "script": "tests/equipment/test_backpack.gd",
     "scene": "tests/equipment/test_backpack.tscn"
@@ -357,6 +404,10 @@
     "scene": "tests/audio/test_combat_audio.tscn"
   },
   "combat_combos": {
+    "script": "tests/combat/test_combat_combos.gd",
+    "scene": "tests/combat/test_combat_combos.tscn"
+  },
+  "combat_combos_continuity": {
     "script": "tests/combat/test_combat_combos.gd",
     "scene": "tests/combat/test_combat_combos.tscn"
   },
@@ -712,6 +763,9 @@
     "script": "tests/app/test_inventory_performance.gd",
     "scene": "tests/app/test_inventory_performance.tscn"
   },
+  "legacy_profile_reset": {
+    "script": "tests/persistence/test_legacy_profile_reset.gd"
+  },
   "loot_status_ui": {
     "script": "tests/equipment/test_loot_status_ui.gd"
   },
@@ -946,9 +1000,29 @@
     "script": "tests/world/test_reward_route_preview.gd",
     "scene": "tests/world/test_reward_route_preview.tscn"
   },
+  "role_kits": {
+    "script": "tests/characters/test_role_kits.gd",
+    "scene": "tests/characters/test_role_kits.tscn"
+  },
   "role_motion_capture": {
     "script": "tests/captures/test_role_motion_capture.gd",
     "scene": "tests/captures/test_role_motion_capture.tscn"
+  },
+  "role_natural_ui": {
+    "script": "tests/ui/test_role_natural_ui.gd",
+    "scene": "tests/ui/test_role_natural_ui.tscn"
+  },
+  "role_natural_ui_chapter": {
+    "script": "tests/ui/test_role_natural_ui.gd",
+    "scene": "tests/ui/test_role_natural_ui.tscn"
+  },
+  "role_natural_ui_effects": {
+    "script": "tests/ui/test_role_natural_ui.gd",
+    "scene": "tests/ui/test_role_natural_ui.tscn"
+  },
+  "role_natural_ui_visuals": {
+    "script": "tests/ui/test_role_natural_ui.gd",
+    "scene": "tests/ui/test_role_natural_ui.tscn"
   },
   "role_skill_audio": {
     "script": "tests/audio/test_role_skill_audio.gd"
@@ -1011,6 +1085,14 @@
   "routes": {
     "script": "tests/world/test_routes.gd"
   },
+  "runtime_role_art": {
+    "script": "tests/characters/test_runtime_role_art.gd",
+    "scene": "tests/characters/test_runtime_role_art.tscn"
+  },
+  "runtime_warrior_feedback": {
+    "script": "tests/characters/test_runtime_role_art.gd",
+    "scene": "tests/characters/test_runtime_role_art.tscn"
+  },
   "s11_battle_matrix": {
     "script": "tests/balance/test_s11_battle_matrix.gd",
     "scene": "tests/balance/test_s11_battle_matrix.tscn"
@@ -1038,6 +1120,9 @@
     "script": "tests/persistence/test_save_recycle_ui.gd",
     "scene": "tests/persistence/test_save_recycle_ui.tscn"
   },
+  "shared_action_family": {
+    "script": "tests/characters/test_shared_action_family.gd"
+  },
   "shared_enemy_growth": {
     "script": "tests/combat/test_shared_enemy_growth.gd",
     "scene": "tests/combat/test_shared_enemy_growth.tscn"
@@ -1055,9 +1140,17 @@
   "skill_audio_timing": {
     "script": "tests/audio/test_skill_audio_timing.gd"
   },
+  "skill_config_migration": {
+    "script": "tests/persistence/test_skill_config_migration.gd",
+    "scene": "tests/persistence/test_skill_config_migration.tscn"
+  },
   "skill_feedback_capture": {
     "script": "tests/captures/test_skill_feedback_capture.gd",
     "scene": "tests/captures/test_skill_feedback_capture.tscn"
+  },
+  "skill_icon_hud": {
+    "script": "tests/ui/test_skill_system_ui_flow.gd",
+    "scene": "tests/ui/test_skill_system_ui_flow.tscn"
   },
   "skill_input": {
     "script": "tests/combat/test_skill_input.gd",
@@ -1066,6 +1159,18 @@
   "skill_input_ui": {
     "script": "tests/ui/test_skill_input_ui.gd",
     "scene": "tests/ui/test_skill_input_ui.tscn"
+  },
+  "skill_system_ui_flow": {
+    "script": "tests/ui/test_skill_system_ui_flow.gd",
+    "scene": "tests/ui/test_skill_system_ui_flow.tscn"
+  },
+  "skill_system_ui_module": {
+    "script": "tests/ui/test_skill_system_ui_flow.gd",
+    "scene": "tests/ui/test_skill_system_ui_flow.tscn"
+  },
+  "skill_system_ui_retry": {
+    "script": "tests/ui/test_skill_system_ui_flow.gd",
+    "scene": "tests/ui/test_skill_system_ui_flow.tscn"
   },
   "storybook_rebuild": {
     "script": "tests/ui/test_storybook_rebuild.gd",
@@ -1141,27 +1246,5 @@
   "world_visual": {
     "script": "tests/world/test_world_visual.gd",
     "scene": "tests/world/test_world_visual.tscn"
-  },
-  "legacy_profile_reset": {
-    "script": "tests/persistence/test_legacy_profile_reset.gd"
-  },
-  "b10_chapter_entry": {
-    "script": "tests/levels/b10/test_b10_chapter_entry.gd"
-  },
-  "b05_b06_first_room_art": {
-    "script": "tests/levels/shared/test_b05_b06_first_room_art.gd",
-    "scene": "tests/levels/shared/test_b05_b06_first_room_art.tscn"
-  },
-  "b05_b06_boss_skill_art": {
-    "script": "tests/levels/shared/test_b05_b06_boss_skill_art.gd",
-    "scene": "tests/levels/shared/test_b05_b06_boss_skill_art.tscn"
-  },
-  "b05_b06_release": {
-    "script": "tests/levels/shared/test_b05_b06_release.gd",
-    "scene": "tests/levels/shared/test_b05_b06_release.tscn"
-  },
-  "b05_b06_room_paintings": {
-    "script": "tests/levels/shared/test_b05_b06_room_paintings.gd",
-    "scene": "tests/levels/shared/test_b05_b06_room_paintings.tscn"
   }
 }

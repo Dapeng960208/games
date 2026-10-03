@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. BRAND NEW B09 Frost Crystal Court environment resource. ONE wide north palace gateway decorative piece for Frost Crystal Court, angular lavender crystal arch with golden floating crown emblem, snowy stepped base and two cyan crystal pylons, no doors blocking its open archway. Full complete wide piece, centered. Bright polished hand-painted storybook fantasy game art, thin dark violet contour for raised objects, crisp cyan and pale lavender facets, champagne gold trim, sunny warm highlights. High-angle near-isometric 2.5D action RPG camera facing lower-right, actual transparent alpha background and empty pixels behind object, no ambient colored aura, no scenery, no floor or shadow. 1536x1024 landscape. No text, labels, numbers, HUD, borders, logos or watermark. No coral, plants, old copied assets.",
+  "reference_images": [],
+  "sha256": "e22da667c60591aced09560b784b1184d575411c2eddde98f505541b4ea44b4d",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte source copy, no pixel editing.",
+  "license": "Project-generated original artwork."
+}

@@ -1,0 +1,36 @@
+{
+  "skill_id": "CH02_SK06",
+  "skill_name": "烟幕跃步",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in generate",
+  "generated_date_utc": "2026-10-03",
+  "recorded_at_utc": "2026-10-03 09:34:07 UTC",
+  "prompt": "Use case: stylized-concept\nAsset type: original hand-painted fantasy RPG skill icon, requested 2048 x 2048 square native source.\nSubject: SMOKE LEAP. One bold teal tactical ankle boot with antique-brass buckles, lifting forward diagonally toward the upper right out of a large curling ivory-white smoke cloud. Clear vigorous airborne step, sole visible and pointed toe leading; a short cyan wind arc shows movement. No person attached, the boot is the single dominant symbol, cloud secondary.\nStyle: polished bright hand-painted cartoon fantasy, painterly 2.5D volume, warm upper-left lighting, fresh distinct colors. Teal leather, olive trim, antique brass, ivory smoke with cyan accent.\nComposition: single circular skill badge, thin antique brass rim at 92% of canvas width, dark petrol painted interior. Generous safe margin around all subjects, bold simplified forms legible at 44 pixels. Genuine alpha transparency outside the circle.\nConstraints: original design, only one standalone icon, no text, letters, numbers, logos, watermark, grid, interface, gun, tiny full-body character, multiple boots, or cropped border. Preserve real native resolution; no upscaling.",
+  "transparent_background": true,
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10117-56a0-7d23-ac6c-045c504fdeb4/exec-4cc65bca-79a7-4649-98dd-064653a7a7c7.png",
+  "project_asset": "res://assets/characters/gunner/skills/sk06_icon.png",
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "image_mode": "RGBA",
+  "png_color_type": 6,
+  "file_bytes": 2161557,
+  "sha256": "a58c87b86f20d61d1a3b09a7b3570331bb5720325ff4eb6788b8d84a64abee82",
+  "processing": "Original built-in PNG copied unchanged, with no crop, repaint, resize, or upscaling.",
+  "alpha_checks": {
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "center_alpha": 253
+  },
+  "inspection": "Inspected the actual generated output. Unique skill-specific silhouette and painterly fantasy style retained. Native source is 1254 by 1254, not 2048 by 2048; reduced-size runtime legibility remains subject to integrated UI verification.",
+  "ownership": "Project-original generated artwork. No external game artwork or code used."
+}

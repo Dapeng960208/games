@@ -4,6 +4,7 @@ const Progression = preload("res://scripts/domain/progression/hero_progression.g
 const ClassPolicy = preload("res://scripts/domain/equipment/equipment_class_policy.gd")
 const B05Catalog = preload("res://scripts/levels/b05/equipment/equipment_catalog.gd")
 const B10Catalog = preload("res://scripts/levels/b10/equipment/equipment_catalog.gd")
+const B09Catalog = preload("res://scripts/levels/b09/equipment/equipment_catalog.gd")
 const B06Catalog = preload("res://scripts/levels/b06/equipment/equipment_catalog.gd")
 const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 ## Immutable-by-copy static definitions. Combat state and ownership never live here.
@@ -15,16 +16,16 @@ const UPGRADE_COSTS: Array[int] = [60, 100, 160, 240, 340]
 const STAT_KEYS: Array[String] = ["attack", "ability_power", "max_hp", "max_mana", "armor", "magic_resist", "armor_penetration", "magic_penetration", "crit_multiplier", "true_damage_bonus", "attack_speed", "move_speed", "crit_chance", "cooldown_reduction", "damage_bonus", "damage_reduction", "burn_damage", "corrosion_damage_bonus", "status_duration"]
 
 const B05_SET_TEXT := {
- "B05-SW":{"2":["E生成护盾量+12%","E shield amount +12%"],"4":["E盾实际吸收后，下一次W追加0.30P短弧，最多3目标；6秒冷却","After E absorbs damage, next W adds a 0.30P short arc, up to 3 targets; 6s ICD"],"6":["8秒内W三次命中：E冷却-1.5秒，下一次Q伤害+10%持续6秒；8秒冷却","Three W hits in 8s: E cooldown -1.5s and next Q +10% for 6s; 8s ICD"]},
- "B05-SG":{"2":["对猎印目标直接伤害+8%","Direct damage to marked targets +8%"],"4":["W命中猎印目标后额外贯穿180距离内一个后方目标，0.35P；每次W一次","W hitting a marked target pierces one extra target behind within 180, for 0.35P; once per W"],"6":["Q实际移动100后，下一次W主目标伤害+12%持续6秒；6秒冷却","After Q moves 100, next W primary hit +12% for 6s; 6s ICD"]},
- "B05-SM":{"2":["Q晶爆直接伤害+8%","Q direct damage +8%"],"4":["6秒内三次相邻技能不同的付费施法且消耗至少60法力，回复60；6秒冷却","Three alternating paid casts in 6s spending at least 60 mana restore 60; 6s ICD"],"6":["W放置节点1秒后花晶环：半径110，0.40P，最多3目标；8秒冷却","1s after W node placement, bloom ring: radius 110, 0.40P, up to 3 targets; 8s ICD"]},
+ "B05-SW":{"2":["铁壁战吼生成护盾量+12%","Ironwall Cry shield amount +12%"],"4":["铁壁战吼护盾实际吸收后，下一次裂地重斩追加0.30P短弧，最多3目标；6秒冷却","After Ironwall Cry absorbs damage, next Earthsplit Cleave adds a 0.30P short arc, up to 3 targets; 6s ICD"],"6":["8秒内裂地重斩三次命中：铁壁战吼冷却-1.5秒，下一次破阵冲锋伤害+10%持续6秒；8秒冷却","Three Earthsplit Cleave hits in 8s reduce Ironwall Cry cooldown by 1.5s and empower next Breach Charge by 10% for 6s; 8s ICD"]},
+ "B05-SG":{"2":["持有强化普攻弹时，原始直接伤害+8%","Original direct damage +8% while empowered basic rounds are available"],"4":["持有强化弹时磁轨贯穿有效命中，额外贯穿180距离内一个后方目标，0.35P；每次施法一次","Magnetic Piercer hitting while empowered rounds are available pierces one extra target behind within 180 for 0.35P; once per cast"],"6":["游击撤射实际移动100后，下一次磁轨贯穿主目标伤害+12%持续6秒；6秒冷却","After Skirmish Retreat moves 100, next Magnetic Piercer primary hit +12% for 6s; 6s ICD"]},
+ "B05-SM":{"2":["星铃飞弹直接伤害+8%","Starbell Missile direct damage +8%"],"4":["6秒内三次相邻技能身份不同的付费施法且消耗至少60法力，回复60；6秒冷却","Three paid casts with alternating skill identities in 6s spending at least 60 mana restore 60; 6s ICD"],"6":["星灵跃击首次实际释放1秒后，落点星环半径110、0.40P、最多3目标；8秒冷却，每次施法一次","1s after Starspirit Leap's first actual release, a radius-110 ring adds 0.40P to up to 3 targets at its release point; 8s ICD, once per cast"]},
  "B05-SU":{"2":["根缚与减速持续时间-20%，同类合计上限50%","Root and slow durations -20%; combined reduction capped at 50%"],"4":["走出敌方持续危险区且1秒未受该区伤害，获6%生命盾4秒；12秒冷却","Exit a hostile persistent zone and avoid its damage for 1s: 6% HP shield for 4s; 12s ICD"],"6":["三次独立直接伤害后回复3%生命并移速+8%持续3秒；12秒冷却","Three independent direct hits restore 3% HP and grant +8% speed for 3s; 12s ICD"]}
 }
 
 const B06_SET_TEXT := {
- "B06-SW":{"2":["E盾存在时受强制位移距离-25%，同类上限50%","While E shield exists, forced movement distance -25%; combined cap 50%"],"4":["E后4秒内首次W实命中返还该W实际怒气消耗15%；冷却8秒","First W hit within 4s after E refunds 15% of actual Rage cost; 8s ICD"],"6":["护盾实承伤后6秒内下一次Q/W实命中追加前方120范围0.40P波，最多3目标；冷却8秒","After shield absorption, next Q/W hit within 6s adds a forward 120-range 0.40P wave, up to 3 targets; 8s ICD"]},
- "B06-SG":{"2":["W主目标伤害+8%","W primary target damage +8%"],"4":["Q真实转位后4秒内首次W命中猎印目标，E剩余冷却-1秒；冷却7秒","First W hit on a hunter-marked target within 4s after real Q movement reduces E cooldown by 1s; 7s ICD"],"6":["W实穿透2敌给主目标6秒潮标；下一次R实际前3发命中该目标各追加0.12P；冷却12秒","W piercing 2 enemies marks its primary target for 6s; next R first 3 fired rounds add 0.12P only on that target; 12s ICD"]},
- "B06-SM":{"2":["W即时晶爆半径+10%，不扩大节点","W immediate burst radius +10%; node unchanged"],"4":["E实际命中后6秒内下一次W即时伤害+12%；冷却8秒","E hit empowers next immediate W burst by 12% within 6s; 8s ICD"],"6":["3次成功付费Q后，下一次W晶爆0.8秒后追加半径110、0.45P环，最多4目标；冷却10秒","After 3 paid Q casts, next W adds a radius-110 0.45P ring after 0.8s, up to 4 targets; 10s ICD"]},
+ "B06-SW":{"2":["铁壁战吼护盾存在时受强制位移距离-25%，同类上限50%","While Ironwall Cry's shield exists, forced movement distance -25%; combined cap 50%"],"4":["铁壁战吼后4秒内首次裂地重斩有效命中，返还该次实际怒气消耗15%；冷却8秒","First Earthsplit Cleave hit within 4s after Ironwall Cry refunds 15% of its actual Rage cost; 8s ICD"],"6":["护盾实承伤后6秒内，下一次破阵冲锋或裂地重斩实命中追加前方120范围0.40P波，最多3目标；冷却8秒","After shield absorption, next Breach Charge or Earthsplit Cleave hit within 6s adds a forward 120-range 0.40P wave, up to 3 targets; 8s ICD"]},
+ "B06-SG":{"2":["磁轨贯穿主目标伤害+8%","Magnetic Piercer primary target damage +8%"],"4":["游击撤射真实转位后4秒内，持有强化弹时首次磁轨贯穿命中，震爆榴弹剩余冷却-1秒；冷却7秒","First Magnetic Piercer hit with empowered rounds within 4s after real Skirmish Retreat movement reduces Shock Grenade cooldown by 1s; 7s ICD"],"6":["磁轨贯穿实穿透2敌，保留主目标6秒；下一次火力倾泻实际前3发命中该目标各追加0.12P；冷却12秒","Magnetic Piercer crossing 2 enemies reserves its primary target for 6s; next Firepower Burst's first 3 fired rounds add 0.12P only on that target; 12s ICD"]},
+ "B06-SM":{"2":["星灵跃击即时星爆半径+10%","Starspirit Leap's immediate burst radius +10%"],"4":["星环守护实际命中后6秒内，下一次星灵跃击即时伤害+12%；冷却8秒","Starhalo Guard hit empowers the next immediate Starspirit Leap burst by 12% within 6s; 8s ICD"],"6":["3次成功付费星铃飞弹后，下一次星灵跃击0.8秒后追加半径110、0.45P星环，最多4目标；冷却10秒","After 3 paid Starbell Missile casts, next Starspirit Leap adds a radius-110 0.45P ring after 0.8s, up to 4 targets; 10s ICD"]},
  "B06-SU":{"2":["受到强制位移距离-20%，同类上限50%","Forced movement distance -20%; combined cap 50%"],"4":["战斗每12秒获6%生命盾4秒；进房不免费刷新，换装不重置周期","Every 12s in combat: 6% HP shield for 4s; entry and swaps do not reset cadence"],"6":["六件装备取向一致时，本套盾自然消失或击破后6秒内下一次直接命中追加0.25P，移速+8%3秒；冷却12秒","With six pieces sharing one power type, after this set shield expires or breaks: next direct hit within 6s adds 0.25P and +8% speed for 3s; 12s ICD"]}
 }
 const B06_UNIQUE_TEXT := {
@@ -77,6 +78,8 @@ static func slots(ruleset: int = 1) -> Array[String]:
 
 static func equipment(id: String, ruleset: int = 1) -> Dictionary:
 	var catalog := _v2_equipment() if ruleset == 2 else _equipment
+	if id.begins_with("B09-") and not Rules.b09_candidate_enabled(): return {}
+	if id.begins_with("B10-") and not Rules.chapter_enabled("B10"): return {}
 	var result: Dictionary = catalog.get(id, {}).duplicate(true)
 	if ruleset == 2 and not result.is_empty():
 		result["allowed_heroes"] = ClassPolicy.allowed_heroes(str(result.get("set_id", "")))
@@ -93,6 +96,7 @@ static func equipment_ids(ruleset: int = 1) -> Array:
 		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B06-"))
 	if ruleset == 2 and not Rules.chapter_enabled("B10"):
 		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B10-"))
+	if ruleset == 2 and not Rules.b09_candidate_enabled(): ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B09-"))
 	ids.sort()
 	return ids
 
@@ -114,6 +118,14 @@ static func sets(ruleset: int = 1) -> Dictionary:
 			for set_id: String in B06Catalog.sets(): result[set_id] = _b06_set(set_id)
 		if Rules.chapter_enabled("B10"):
 			for set_id: String in B10Catalog.sets(): result[set_id] = _b10_set(set_id)
+		if Rules.b09_candidate_enabled():
+			for set_id: String in B09Catalog.sets():
+				var definition: Dictionary = B09Catalog.sets()[set_id]
+				definition.merge({"race_id":"B09", "class_policy_version":4})
+				for tier: Dictionary in definition.thresholds.values():
+					tier["text"] = " ".join(tier.conditions)
+					tier["text_en"] = tier.text
+				result[set_id] = definition
 		var materials: Dictionary = Rules.value("shop_set_races", {})
 		for set_id: String in materials:
 			if result.has(set_id): result[set_id]["race_id"] = str(materials[set_id])
@@ -233,6 +245,14 @@ static func _v2_equipment() -> Dictionary:
 		item["affix_text"] = B10_UNIQUE_TEXT.get(id, ["", ""])[0]
 		item["affix_text_en"] = B10_UNIQUE_TEXT.get(id, ["", ""])[1]
 		item["runtime_implemented"] = true
+		_equipment_v2[id] = item
+	for id: String in B09Catalog.equipment_ids():
+		var item := B09Catalog.equipment(id)
+		item.merge({"drop_origin":"B09", "class_policy_version":4, "description":"霜晶王庭候选装备；固定取向、属性与效果由真实装备实例解析", "description_en":"Crystal Court candidate gear; instance stats and combat effects", "base_stat_text":"属性由装备实例决定", "base_stat_text_en":"Stats are determined by the equipment instance", "affix_id":"", "affix_text":"", "affix_text_en":""})
+		item["affix_tendencies"] = item.affix_tendencies_by_power[item.power_types[0]].duplicate()
+		if not item.unique_effect.is_empty():
+			item["affix_text"] = " ".join(item.unique_effect.conditions)
+			item["affix_text_en"] = item.affix_text
 		_equipment_v2[id] = item
 	return _equipment_v2
 
@@ -423,10 +443,11 @@ static func _check_required(definition: Dictionary, fields: Array, label: String
 static func _validate_v2() -> Array[String]:
 	var errors: Array[String] = []
 	var b05_released := int(Rules.value("implemented_chapters", 4)) >= 5
-	if equipment_ids(2).size() != (194 if int(Rules.value("implemented_chapters",4))>=6 else 159 if b05_released else 124): errors.append("Unexpected version-two template count.")
+	if equipment_ids(2).size() != ((194 if int(Rules.value("implemented_chapters",4))>=6 else 159 if b05_released else 124) + (35 if Rules.b09_candidate_enabled() else 0) + (35 if Rules.chapter_enabled("B10") else 0)): errors.append("Unexpected version-two template count.")
 	errors.append_array(B05Catalog.validate())
 	errors.append_array(B06Catalog.validate())
 	errors.append_array(B10Catalog.validate())
+	errors.append_array(B09Catalog.validate())
 	if slots(2).size() != 8: errors.append("Expected eight version-two slots.")
 	var general_count := 0
 	for number in range(1, 125):

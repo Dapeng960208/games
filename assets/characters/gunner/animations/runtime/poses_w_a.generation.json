@@ -1,0 +1,322 @@
+{
+  "asset": "CH02 adult female Cen Xian WEST production pose source a",
+  "status": "candidate_requires_runtime_packing_and_alignment_review",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "direction": "W",
+  "direction_degrees": 180,
+  "part": "a",
+  "frame_order": "row-major",
+  "columns": 2,
+  "rows": 2,
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "transparent_background": true,
+  "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-80bfc293-8d9d-4838-8b62-fc4102c8d196.png",
+  "sha256": "7a70980d731e4f1657751857a172799e1a1b490bab0b97d44b47091a8d5307d7",
+  "previous_source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-6e952697-5afb-4d85-b050-a0c970b4c692.png",
+  "references": [
+    "assets/characters/gunner/portraits/full_illustration.png",
+    "assets/characters/gunner/animations/basic_southeast_a.png"
+  ],
+  "prompt": "Use case: stylized-concept. Asset type: production original hand-painted 2.5D action-game character sprite sheet, CH02 adult woman Cen Xian.\nInput image 1 is identity and costume / weapon reference. Input image 2 is paint style / anatomical scale reference only, NOT direction or poses.\nCreate a NEW authentic WEST direction sheet, not rotated or mirrored. All four sprites face screen LEFT in genuine left-side view, camera high oblique downward near-isometric 2.5D; head, torso, hips, knees and gun all point left. Visible weapon top planes and thick solid boots show elevated camera. Adult agile female anatomy, short chestnut-brown wavy bob, ivory #f8f3e8 tailored waist surveyor short coat with teal #329ca9 lining and small coral #e9846c accents, high-waist teal practical fitted trousers, ivory teal sturdy calf boots, leather gloves, gold brass fittings. Same cool ivory/silver/gold cyan-energy carbine with folding mechanical barrel and circular orbital sight as reference, moderate length, keep muzzle within own cell. Warm bright hand-painted cartoon fantasy, clean firm outlines, painted textures, actual thickness and material; keep adult feminine character.\nExact 2 by 2 layout, FOUR separate complete full-body character sprites on genuine transparent alpha, no decorative sheet borders and no labels. Native desired 2048 x 2048 PNG. Within each quadrant keep a 35px minimum safe transparent border; no pixels crossing cells. At actual delivered resolution each upright figure hair-top to average two soles should be roughly 450-550 real pixels (not tiny), torso silhouette width 250-400px, whole figure plus gun under 550px width. Keep comparable standing height in all cells and leave transparent clear gaps.\nTOP LEFT idle: left-facing relaxed low ready carbine, bent elbows, both boots grounded.\nTOP RIGHT walk_left: large genuine leftward stride, anatomical left leg stepping forward screen left and right leg behind, arms stabilizing low-ready gun.\nBOTTOM LEFT walk_right: opposite genuine walk phase, right leg screen-left forward and left leg behind, clear different coat hem / knees.\nBOTTOM RIGHT basic_windup: plant both feet, shoulder carbine aiming exactly screen LEFT horizontal projectile ray, cheek near stock, fully visible muzzle on left.\nKeep each gun and entire outfit intact, both boots complete, no detached accessories, no floor, no ground shadow, no painted backdrop, no gradients around figures, no text, no action trail, no flash, no projectile, no FX. Draw each pose independently; no full-body image rotation, no pasted duplicates, no mirroring of the previous southeast.",
+  "targeted_edit_prompt": "Use case: precise-object-edit. Edit target is image 1, the WEST CH02 four-pose sheet. Supporting reference image 2 is identity only.\nONE targeted correction: fix grid spacing and sprite size so the four sprites are cleanly isolated in their own 2x2 cells. Keep the adult woman identity, detailed hand-painted art, all exact costumes, carbine construction, genuine left-facing camera and the same idle / two opposite walk phases / shoulder-aim windup.\nReturn a genuine transparent PNG. All FOUR figures should be slightly smaller than in image 1, uniformly about 16 percent smaller. Each figure hair-top to soles should be about 40 percent of full canvas height, never over 42 percent. Full character plus gun fully fits within its own quadrant with large blank transparent margins. The top row feet MUST end well above the horizontal halfway line. Position centers near x=25percent and 75percent; top row hair at y=6percent and feet at y=46percent; bottom row hair at y=56percent and feet at y=96percent. Keep complete boots and complete carbine. At native tool resolution approximately1254 square this means roughly500px body height; do not deliver towering625px bodies. Desired native2048² if available, do not fake upscale.\nNo color specks, no pixels at outside canvas edge, no pixels along either center grid line, no ground shadow, no FX, no labels, no border. Preserve natural texture and real volume. This is a layout and safe-margin repair only.",
+  "edit_count": 1,
+  "inspection": {
+    "alpha_zero_fraction": 0.7685651529141834,
+    "outer_edge_nontransparent": 28,
+    "mid_x_nontransparent": 0,
+    "mid_y_nontransparent": 0,
+    "region_coordinate_space": "absolute original source pixels",
+    "region_includes_safety_margin": true,
+    "manual_landmarks_verified": false,
+    "method": "Manual visual hair/head/hand/muzzle/sole annotations supported by Pillow alpha contour read measurements; body_height is hair top to average of two sole bottom centers, excluding weapon bbox."
+  },
+  "frames": [
+    {
+      "name": "idle",
+      "body_height": 507,
+      "region": [
+        0,
+        0,
+        640,
+        576
+      ],
+      "foot": [
+        370,
+        532
+      ],
+      "head": [
+        370,
+        89
+      ],
+      "grip": [
+        353,
+        248
+      ],
+      "muzzle": [
+        174,
+        330
+      ],
+      "source_frame": {
+        "name": "idle",
+        "region": [
+          99,
+          86,
+          393,
+          538
+        ],
+        "foot": [
+          315,
+          599
+        ],
+        "head": [
+          315,
+          156
+        ],
+        "grip": [
+          298,
+          315
+        ],
+        "muzzle": [
+          119,
+          397
+        ],
+        "body_height": 507,
+        "hair_top_y": 92,
+        "boot_bottom_points": [
+          [
+            211,
+            586
+          ],
+          [
+            419,
+            612
+          ]
+        ],
+        "landmark_accuracy_px": 8
+      }
+    },
+    {
+      "name": "walk_left",
+      "body_height": 475.5,
+      "region": [
+        640,
+        0,
+        640,
+        576
+      ],
+      "foot": [
+        1010,
+        531.5
+      ],
+      "head": [
+        988,
+        120
+      ],
+      "grip": [
+        977,
+        282
+      ],
+      "muzzle": [
+        804,
+        342
+      ],
+      "source_frame": {
+        "name": "walk_left",
+        "region": [
+          699,
+          106,
+          403,
+          510
+        ],
+        "foot": [
+          930,
+          587.5
+        ],
+        "head": [
+          908,
+          176
+        ],
+        "grip": [
+          897,
+          338
+        ],
+        "muzzle": [
+          724,
+          398
+        ],
+        "body_height": 475.5,
+        "hair_top_y": 112,
+        "boot_bottom_points": [
+          [
+            815,
+            604
+          ],
+          [
+            1045,
+            571
+          ]
+        ],
+        "landmark_accuracy_px": 8,
+        "risk": "Rear sole is lifted in stride; foot is the average of two visible soles, not both-grounded contact."
+      }
+    },
+    {
+      "name": "walk_right",
+      "body_height": 486,
+      "region": [
+        0,
+        576,
+        640,
+        576
+      ],
+      "foot": [
+        370,
+        1108
+      ],
+      "head": [
+        377,
+        683
+      ],
+      "grip": [
+        367,
+        846
+      ],
+      "muzzle": [
+        177,
+        904
+      ],
+      "source_frame": {
+        "name": "walk_right",
+        "region": [
+          108,
+          681,
+          409,
+          510
+        ],
+        "foot": [
+          327,
+          1175
+        ],
+        "head": [
+          334,
+          750
+        ],
+        "grip": [
+          324,
+          913
+        ],
+        "muzzle": [
+          134,
+          971
+        ],
+        "body_height": 486,
+        "hair_top_y": 689,
+        "boot_bottom_points": [
+          [
+            195,
+            1182
+          ],
+          [
+            459,
+            1168
+          ]
+        ],
+        "landmark_accuracy_px": 8
+      }
+    },
+    {
+      "name": "basic_windup",
+      "body_height": 466,
+      "region": [
+        640,
+        576,
+        640,
+        576
+      ],
+      "foot": [
+        1009.5,
+        1108
+      ],
+      "head": [
+        1001,
+        702
+      ],
+      "grip": [
+        912,
+        781
+      ],
+      "muzzle": [
+        729,
+        759
+      ],
+      "source_frame": {
+        "name": "basic_windup",
+        "region": [
+          684,
+          699,
+          491,
+          505
+        ],
+        "foot": [
+          989.5,
+          1173
+        ],
+        "head": [
+          981,
+          767
+        ],
+        "grip": [
+          892,
+          846
+        ],
+        "muzzle": [
+          709,
+          824
+        ],
+        "body_height": 466,
+        "hair_top_y": 707,
+        "boot_bottom_points": [
+          [
+            839,
+            1157
+          ],
+          [
+            1140,
+            1189
+          ]
+        ],
+        "landmark_accuracy_px": 8
+      }
+    }
+  ],
+  "known_issues": [
+    "Built-in generator returned native 1254x1254; this is not native 2K and has not been upscaled.",
+    "35px nominal cell safety margin is not consistently achieved; select the complete independent absolute source regions and repack locally rather than hard-cutting quadrants.",
+    "Alpha contains a small number of outside-edge specks. They lie outside selected character regions and must not be copied into packed frames.",
+    "Small pose-dependent standing height variation requires alignment review. Landmarks are manual estimates; do not treat them as automatic validated pixel-perfect contact."
+  ],
+  "credit": "Original user-directed AI-generated project character artwork using OpenAI built-in image_gen, no third-party character IP copied.",
+  "native_source_dimensions": [
+    1254,
+    1254
+  ],
+  "packed_dimensions": [
+    1280,
+    1152
+  ],
+  "raw_source": "assets/characters/gunner/animations/runtime_sources/poses_w_a.png",
+  "raw_source_sha256": "7a70980d731e4f1657751857a172799e1a1b490bab0b97d44b47091a8d5307d7",
+  "pixel_scale": 1,
+  "processing": "Existing independent alpha8 components; alpha<8/hidden RGB cleared, sole anchors aligned by integer translation. No redraw, rotation, mirroring, pixel resizing or pose fitting.",
+  "retained_alpha8_pixels": 316513,
+  "standing_reference_body_height": 507
+}

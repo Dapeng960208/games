@@ -7,6 +7,7 @@ func _init(context: Node) -> void:
 	host = context
 
 func valid_ground(at: Vector2, radius: float = 0.0) -> bool:
+	if is_instance_valid(host.b09_mechanics) and host.b09_mechanics.blocks_ground(at,radius): return false
 	if is_instance_valid(host.b05_mechanics) and host.b05_mechanics.blocks_ground(at,radius): return false
 	if bool(host.layout.get("b06_candidate",false)) and is_instance_valid(host.enemy_skills) and host.enemy_skills.b06 != null and host.enemy_skills.b06.has_method("wall_blocks_point") and host.enemy_skills.b06.wall_blocks_point(at,radius): return false
 	if not host.ground_polygon.is_empty() and not host.GroundBoundary.contains(host.ground_polygon, at, radius):
@@ -60,7 +61,9 @@ func blocked_fraction(from: Vector2, to: Vector2, radius: float = 0.0) -> float:
 	elif offset.x < 0.0: result = minf(result, (allowed.position.x - from.x) / offset.x)
 	if offset.y > 0.0: result = minf(result, (allowed.end.y - from.y) / offset.y)
 	elif offset.y < 0.0: result = minf(result, (allowed.position.y - from.y) / offset.y)
-	for wall: Rect2 in host.obstructions:
+	var obstacles: Array[Rect2] = host.obstructions.duplicate()
+	if is_instance_valid(host.b09_mechanics): obstacles.append_array(host.b09_mechanics.navigation_bounds())
+	for wall: Rect2 in obstacles:
 		var box: Rect2 = wall.grow(radius)
 		var start: float = 0.0
 		var finish: float = 1.0
@@ -86,6 +89,10 @@ func has_line_of_sight(from: Vector2, to: Vector2) -> bool:
 	return host.blocked_fraction(from, to) >= 1.0
 
 func navigation_direction(from: Vector2, to: Vector2, radius: float) -> Vector2:
+	if is_instance_valid(host.b09_mechanics):
+		var obstacles: Array[Rect2] = host.obstructions.duplicate()
+		obstacles.append_array(host.b09_mechanics.navigation_bounds())
+		return host._navigation_cache.direction(from,to,radius,obstacles,host.ARENA,host.ground_polygon)
 	if is_instance_valid(host.b05_mechanics):
 		var navigation_obstacles: Array[Rect2] = host.obstructions.duplicate()
 		navigation_obstacles.append_array(host.b05_mechanics.navigation_bounds())
@@ -101,6 +108,7 @@ func navigation_target() -> Dictionary:
 		return {}
 	if not host.expedition_context.is_empty():
 		var role: String = str(host.expedition_context.get("role",""))
+		if bool(host.layout.get("b09_candidate",false)) and host.objective_complete: return {"position":host.exit_position,"title":"霜晶宫廷已清理 · 前往出口","kind":"next"}
 		if role == "entrance": return {"position":host.exit_position,"title":"完成整备后前往第一处矿区 · M 查看路线","kind":"next"}
 		if role == "supply": return {"position":host.layout.get("service_position",host.exit_position),"title":"购买补给，或前往下一站","kind":"supply"}
 		if host.objective_rewarded: return {"position":host.exit_position,"title":"领取成长奖励，继续远征" if role != "boss" else "首领已击败 · 前往撤离井","kind":"next" if role != "boss" else "extract"}

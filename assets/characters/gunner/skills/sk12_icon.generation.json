@@ -1,0 +1,19 @@
+{
+  "skill_id": "CH02_SK12",
+  "skill_name": "磁轨哨机",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in_generate",
+  "prompt": "Use case: stylized-concept. Asset type: original fantasy RPG skill icon CH02_SK12, Magnetic Rail Sentry. Generate a polished handpainted cartoon fantasy circular badge at native 2048 x 2048 if supported; do not upscale. Dark petrol painted interior, thin antique brass circular rim taking 92% width, genuinely transparent outside the circle. Subject: a single small deployable automatic magnetic rail cannon on THREE clearly separated sturdy splayed tripod legs planted on a compact stone ground disc, seen in high three-quarter near-isometric view. Bold silver-steel gun barrel with twin magnetic rails, elegant teal-and-brass casing, a large glowing cyan muzzle ring, one clear mechanical central turret joint and exactly three visible legs. Make this unmistakably a ground-mounted small sentry emplacement, not a handheld pistol, no character holding it. One short cyan energy bolt near the muzzle. Fresh teal, olive, brass and ivory palette with cool cyan technology light. Painterly 2.5D volume, warm upper-left sunlight, chunky beautiful strokes, simple strong main silhouette rather than tiny mechanics. Generous 8% safe margin, centered close-up, distinctive readable at 44 pixels. One single icon, no sheet/grid, no text, letters, numbers, logos, watermark, no copied game asset, no tiny character, no realistic photo.",
+  "original_output": "C:\\Users\\13326\\.codex\\generated_images\\01a10117-a5e5-7d11-ba36-43d1ce3448c2\\exec-96a49a95-8861-4011-b24c-21cb8b1927d8.png",
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "sha256": "8e7c91a9e9a0a7b3327abbd96d37ceaf9ec4f2606eeb235f8883458c5247ca1d",
+  "transparent_background": true,
+  "substantive_local_editing": false,
+  "generated_on": "2026-10-03",
+  "png_color_type": 6,
+  "runtime_asset": "res://assets/characters/gunner/skills/sk12_icon.png",
+  "native_2k": false
+}

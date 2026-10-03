@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. BRAND NEW B09 Frost Crystal Court environment resource. ONE seamless flat glossy cyan ICE floor TEXTURE tile, no raised terrain or objects, translucent icy blue geometric fissure veins and a few fine white glints, hand-painted fantasy detail, restrained saturation. Perfect TOP DOWN orthographic 1024 square, edges tile seamlessly, opaque cyan ice fill across whole image. Bright polished hand-painted storybook fantasy game art, thin dark violet contour for raised objects, crisp cyan and pale lavender facets, champagne gold trim, sunny warm highlights. Opaque flat tile texture with no perspective. 1024x1024 square. No text, labels, numbers, HUD, borders, logos or watermark. No coral, plants, old copied assets.",
+  "reference_images": [],
+  "sha256": "37a6e288e9b112f1cabecedf49a98f89c07dd3b13220bc3def59ed991eea9f70",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "processing": "Byte-for-byte source copy, no pixel editing.",
+  "license": "Project-generated original artwork."
+}

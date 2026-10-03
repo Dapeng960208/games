@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "role": "CH03",
+  "direction": "n",
+  "direction_angle_degrees": 270,
+  "file": "poses_n_b.png",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-d845f9a6-35d0-4db8-85ce-8bae7cb62473.png",
+  "tool": "image_gen.imagegen",
+  "prompt": "Use case: stylized-concept. Asset type: exactlyFOUR original complete animation sprites in2x2layout,true transparentRGBA,requested native2048x2048. Reference1 exactNORTH270degreeA sheet,reference2 identityonly(OMITpet/background). FourNEWactions all FULLBACK facing straight SCREENUP directly awaycamera. Show rearhat,rearcurls,backbodiceseams,backskirt and bootheels only. ZERO face,eyes,nose,frontbodice. Camera35degree highdownward nearisometric2.5D withhat/shoulder/boot topsvisible. AdultCH03Lumi22,fullbust/clearnarrowwaist/slenderlimbs,chestnutcurls,obsidianblack-midnightpurple fittedmidlengthdress,silvercrescents,blackboots,compactwitchhat,black-silverstar-ringpurplecrystalstaff withcontainedicyblueglow. Warm dimensional handpaintedcartoon.\nANATOMICAL LEFThandholds staff at SCREENLEFT(viewerleft) inall4;RIGHTemptyhand atSCREENRIGHTcommands;guardbothhandsstaff. Exactly2arms/2hands,noswappingormirroring. SameanatomysizeasA.\nLayout4isolatedspritespaceachownquadrantwith>35pxalpha0paddingandcentralgutter. On1254nativefallbackcenters(313,313),(940,313),(313,940),(940,940),completeartmax535pxwide/tall. Keepnaturalheadhairtopto meanbootsoles450realpixelsupright excludinghat;compacthatcrown/staffshaft,ringlevelnearhead,tofittotalheight535. Everyhat/staff/hem/bootwhole,nowrap intoadjacentcell.\nTL BASIC_RELEASE:lefthandstaffuprightatscreenleft,rightEMPTYhandextendedFORWARDtostraightUPtarget,aforeshortenedcommandpoint above/rightshoulder,palm/indexpointUP,notright;drawNOpet.\nTR BASIC_RECOVERY: rightemptyhanddrawsbacktowardfrontchest(occludedfromback),weightsettles,leftstaffatscreenleft.\nBL DASH:lowquick forwardlean movingstraightUP,onebootforward andoneboottrailingvisible,rearcurl/skirtcompact,leftstaffclose,noFXtrail,keepprojectedanatomynaturalsize.\nBR GUARD_CAST:BOTHhandsbringstaffinFRONTofbodyupward,raisecrystalnearhead,cleartwohandswithbracedlegs,rearview,smalllightinside ringonly.\nNo pet,extraanimal/person,floor,contact/castshadow,trails,blur,text,guidegrid,watermark,croppedparts,broadFX. Emptyalpha0.",
+  "edit_prompt": null,
+  "transparent_background": true,
+  "requested_native_size": [
+    2048,
+    2048
+  ],
+  "native_resampling": false,
+  "tool_output": {
+    "output_hint": "Generated images are saved to C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad as C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-d845f9a6-35d0-4db8-85ce-8bae7cb62473.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  "reference_roles": {
+    "portrait": "Identity and material only; no pet; no front-view copying.",
+    "direction_a": "Same direction and original anatomy scale."
+  },
+  "initial_source_file": "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-d845f9a6-35d0-4db8-85ce-8bae7cb62473.png",
+  "status": "candidate_direction_valid_pending_parent_review",
+  "handoff_risk": [],
+  "frames": [
+    {
+      "name": "basic_release",
+      "cell": "TL",
+      "region": [
+        194,
+        13,
+        355,
+        598
+      ],
+      "foot": [
+        381,
+        604
+      ],
+      "head": [
+        374,
+        220
+      ],
+      "grip": [
+        263,
+        220
+      ],
+      "muzzle": [
+        261,
+        94
+      ],
+      "body_height": 420,
+      "anatomy_top": [
+        374,
+        184
+      ],
+      "landmark_accuracy_px": 25,
+      "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+      "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+      "requires_component_isolation": true,
+      "visible_alpha_gt8_bbox": [
+        194,
+        13,
+        355,
+        598
+      ]
+    },
+    {
+      "name": "basic_recovery",
+      "cell": "TR",
+      "region": [
+        789,
+        12,
+        349,
+        598
+      ],
+      "foot": [
+        970,
+        582
+      ],
+      "head": [
+        970,
+        216
+      ],
+      "grip": [
+        863,
+        220
+      ],
+      "muzzle": [
+        869,
+        91
+      ],
+      "body_height": 401,
+      "anatomy_top": [
+        970,
+        181
+      ],
+      "landmark_accuracy_px": 25,
+      "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+      "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+      "requires_component_isolation": true,
+      "visible_alpha_gt8_bbox": [
+        789,
+        12,
+        349,
+        598
+      ]
+    },
+    {
+      "name": "dash",
+      "cell": "BL",
+      "region": [
+        217,
+        652,
+        351,
+        538
+      ],
+      "foot": [
+        403,
+        1156
+      ],
+      "head": [
+        409,
+        824
+      ],
+      "grip": [
+        294,
+        834
+      ],
+      "muzzle": [
+        312,
+        724
+      ],
+      "body_height": 356,
+      "anatomy_top": [
+        409,
+        800
+      ],
+      "landmark_accuracy_px": 25,
+      "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+      "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+      "requires_component_isolation": true,
+      "visible_alpha_gt8_bbox": [
+        217,
+        652,
+        351,
+        538
+      ]
+    },
+    {
+      "name": "guard_cast",
+      "cell": "BR",
+      "region": [
+        791,
+        625,
+        331,
+        606
+      ],
+      "foot": [
+        960,
+        1228
+      ],
+      "head": [
+        948,
+        884
+      ],
+      "grip": [
+        953,
+        754
+      ],
+      "muzzle": [
+        949,
+        686
+      ],
+      "body_height": 377,
+      "anatomy_top": [
+        948,
+        851
+      ],
+      "landmark_accuracy_px": 25,
+      "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+      "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+      "requires_component_isolation": true,
+      "visible_alpha_gt8_bbox": [
+        791,
+        625,
+        331,
+        606
+      ]
+    }
+  ],
+  "region_basis": "Exact alpha>8 main connected-component bounds, measured read-only; original PNG retained byte-for-byte. Alpha 1-8 outside rectangles is recorded separately. Where noted, rectangles may include neighboring component pixels and require repair or component-aware extraction by runtime agent.",
+  "known_limitations": [
+    "Native tool output1254x1254; requested2048not reached, no upscaling.",
+    "Projected body height and source padding may be below requested450px/35px; actual native measurements are recorded; no atlas/hat/staff bbox is substituted for anatomy.",
+    "Manual landmark uncertainty20-25px where sleeves, skirt or high camera occlude joints."
+  ],
+  "copy_to_assets": true,
+  "initial_tool_arguments": {
+    "prompt": "Use case: stylized-concept. Asset type: exactlyFOUR original complete animation sprites in2x2layout,true transparentRGBA,requested native2048x2048. Reference1 exactNORTH270degreeA sheet,reference2 identityonly(OMITpet/background). FourNEWactions all FULLBACK facing straight SCREENUP directly awaycamera. Show rearhat,rearcurls,backbodiceseams,backskirt and bootheels only. ZERO face,eyes,nose,frontbodice. Camera35degree highdownward nearisometric2.5D withhat/shoulder/boot topsvisible. AdultCH03Lumi22,fullbust/clearnarrowwaist/slenderlimbs,chestnutcurls,obsidianblack-midnightpurple fittedmidlengthdress,silvercrescents,blackboots,compactwitchhat,black-silverstar-ringpurplecrystalstaff withcontainedicyblueglow. Warm dimensional handpaintedcartoon.\nANATOMICAL LEFThandholds staff at SCREENLEFT(viewerleft) inall4;RIGHTemptyhand atSCREENRIGHTcommands;guardbothhandsstaff. Exactly2arms/2hands,noswappingormirroring. SameanatomysizeasA.\nLayout4isolatedspritespaceachownquadrantwith>35pxalpha0paddingandcentralgutter. On1254nativefallbackcenters(313,313),(940,313),(313,940),(940,940),completeartmax535pxwide/tall. Keepnaturalheadhairtopto meanbootsoles450realpixelsupright excludinghat;compacthatcrown/staffshaft,ringlevelnearhead,tofittotalheight535. Everyhat/staff/hem/bootwhole,nowrap intoadjacentcell.\nTL BASIC_RELEASE:lefthandstaffuprightatscreenleft,rightEMPTYhandextendedFORWARDtostraightUPtarget,aforeshortenedcommandpoint above/rightshoulder,palm/indexpointUP,notright;drawNOpet.\nTR BASIC_RECOVERY: rightemptyhanddrawsbacktowardfrontchest(occludedfromback),weightsettles,leftstaffatscreenleft.\nBL DASH:lowquick forwardlean movingstraightUP,onebootforward andoneboottrailingvisible,rearcurl/skirtcompact,leftstaffclose,noFXtrail,keepprojectedanatomynaturalsize.\nBR GUARD_CAST:BOTHhandsbringstaffinFRONTofbodyupward,raisecrystalnearhead,cleartwohandswithbracedlegs,rearview,smalllightinside ringonly.\nNo pet,extraanimal/person,floor,contact/castshadow,trails,blur,text,guidegrid,watermark,croppedparts,broadFX. Emptyalpha0.",
+    "referenced_image_paths": [
+      "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-5ea3a695-3aab-4357-900f-c8f1b63dbd55.png",
+      "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/mage/portraits/full_illustration.png"
+    ],
+    "transparent_background": true
+  },
+  "tool_arguments": {
+    "prompt": "Use case: stylized-concept. Asset type: exactlyFOUR original complete animation sprites in2x2layout,true transparentRGBA,requested native2048x2048. Reference1 exactNORTH270degreeA sheet,reference2 identityonly(OMITpet/background). FourNEWactions all FULLBACK facing straight SCREENUP directly awaycamera. Show rearhat,rearcurls,backbodiceseams,backskirt and bootheels only. ZERO face,eyes,nose,frontbodice. Camera35degree highdownward nearisometric2.5D withhat/shoulder/boot topsvisible. AdultCH03Lumi22,fullbust/clearnarrowwaist/slenderlimbs,chestnutcurls,obsidianblack-midnightpurple fittedmidlengthdress,silvercrescents,blackboots,compactwitchhat,black-silverstar-ringpurplecrystalstaff withcontainedicyblueglow. Warm dimensional handpaintedcartoon.\nANATOMICAL LEFThandholds staff at SCREENLEFT(viewerleft) inall4;RIGHTemptyhand atSCREENRIGHTcommands;guardbothhandsstaff. Exactly2arms/2hands,noswappingormirroring. SameanatomysizeasA.\nLayout4isolatedspritespaceachownquadrantwith>35pxalpha0paddingandcentralgutter. On1254nativefallbackcenters(313,313),(940,313),(313,940),(940,940),completeartmax535pxwide/tall. Keepnaturalheadhairtopto meanbootsoles450realpixelsupright excludinghat;compacthatcrown/staffshaft,ringlevelnearhead,tofittotalheight535. Everyhat/staff/hem/bootwhole,nowrap intoadjacentcell.\nTL BASIC_RELEASE:lefthandstaffuprightatscreenleft,rightEMPTYhandextendedFORWARDtostraightUPtarget,aforeshortenedcommandpoint above/rightshoulder,palm/indexpointUP,notright;drawNOpet.\nTR BASIC_RECOVERY: rightemptyhanddrawsbacktowardfrontchest(occludedfromback),weightsettles,leftstaffatscreenleft.\nBL DASH:lowquick forwardlean movingstraightUP,onebootforward andoneboottrailingvisible,rearcurl/skirtcompact,leftstaffclose,noFXtrail,keepprojectedanatomynaturalsize.\nBR GUARD_CAST:BOTHhandsbringstaffinFRONTofbodyupward,raisecrystalnearhead,cleartwohandswithbracedlegs,rearview,smalllightinside ringonly.\nNo pet,extraanimal/person,floor,contact/castshadow,trails,blur,text,guidegrid,watermark,croppedparts,broadFX. Emptyalpha0.",
+    "referenced_image_paths": [
+      "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-5ea3a695-3aab-4357-900f-c8f1b63dbd55.png",
+      "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/mage/portraits/full_illustration.png"
+    ],
+    "transparent_background": true
+  },
+  "generation_history": [
+    {
+      "kind": "initial",
+      "source_file": "C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-d845f9a6-35d0-4db8-85ce-8bae7cb62473.png",
+      "sha256": "311e45a27d6ddfc0fa7b851b3d0f95f59e064db98f8655506deb2ad9a49901a5",
+      "native_size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "kind": "selected_source",
+      "source_file": "C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-d845f9a6-35d0-4db8-85ce-8bae7cb62473.png",
+      "sha256": "311e45a27d6ddfc0fa7b851b3d0f95f59e064db98f8655506deb2ad9a49901a5",
+      "native_size": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "native_size": [
+    1254,
+    1254
+  ],
+  "png_mode": "RGBA",
+  "source_sha256": "311e45a27d6ddfc0fa7b851b3d0f95f59e064db98f8655506deb2ad9a49901a5",
+  "alpha_check": {
+    "extrema": [
+      0,
+      255
+    ],
+    "canvas_border_nonzero_count": 22,
+    "canvas_border_max_alpha": 1,
+    "outside_frame_regions_nonzero_count": 1378,
+    "outside_frame_regions_max_alpha": 7,
+    "outside_frame_regions_alpha_gt8_count": 0,
+    "pixel_mutation": false
+  }
+}

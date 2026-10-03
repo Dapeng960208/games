@@ -22,7 +22,7 @@ static func context(value: Dictionary, run_id: String, hero_id: String, event_id
 	var result := {"event_id":event_id,"seed":int(value.loot_seed),"source":source,"race_id":race,"difficulty":int(value.difficulty),"challenge_level":Rewards.challenge_level(room, zone),"power_type":"magic" if hero_id == "CH03" else "physical","wish_slot":str(value.wish_slot),"force_gold":source == "boss" and int(value.difficulty) == 4 and int(value.pity_snapshot.get(race, 0)) >= 3}
 
 	if generator_version >= 2: result["hero_id"] = hero_id
-	if (generator_version >= 3 and race == "B05") or (generator_version >= 4 and race == "B06") or (generator_version >= 5 and race == "B10"):
+	if (generator_version >= 3 and race == "B05") or (generator_version >= 4 and race == "B06") or (generator_version >= 5 and race in ["B09", "B10"]):
 		result["room_id"] = room
 		if source in ["normal", "elite"] and not actor_id.is_empty(): result["monster_id"] = actor_id
 	return result
@@ -212,7 +212,8 @@ static func material_map_valid(value: Variant) -> bool:
 static func pity_valid(value: Variant) -> bool:
 	if not value is Dictionary: return false
 	for key: Variant in value:
-		if key not in ["B01","B02","B03","B04","B05","B06","B10"] or not _number(value[key], 3): return false
+		if key not in ["B01","B02","B03","B04","B05","B06","B10"] and not (key=="B09" and preload("res://scripts/infrastructure/content/runtime_rules.gd").b09_candidate_enabled()): return false
+		if not _number(value[key],3): return false
 	return true
 
 static func _number(value: Variant, maximum: int) -> bool:

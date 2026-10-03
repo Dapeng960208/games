@@ -10,10 +10,13 @@ const BasicAtlas = preload("res://scripts/presentation/characters/hero_basic_atl
 const SkillAtlas = preload("res://scripts/presentation/characters/hero_skill_atlas.gd")
 const ArtFamily = preload("res://scripts/presentation/characters/hero_art_family.gd")
 const DirectionalAtlas = preload("res://scripts/presentation/characters/hero_directional_atlas.gd")
+const SharedActionFamily = preload("res://scripts/presentation/characters/hero_shared_action_family.gd")
 const STRIDE_PER_WORLD_UNIT := .12
 static var _action_banks: Dictionary = {}
 
 static func prewarm(hero: String) -> void:
+	if not DirectionalAtlas.load_combat_clips(hero).is_empty(): return
+	if not SharedActionFamily.load_family(hero).is_empty(): return
 	DirectionalAtlas.load_family(hero)
 	# Include the static fallback: brief contact/recovery poses can select it
 	# even when idle and windup use an atlas. Its alpha scan must not run on
@@ -78,10 +81,15 @@ static func _action_bank(hero: String, bank: String) -> Dictionary:
 	return frames
 
 static func action_frame_info(hero: String, bank: String = "front", phase: String = "idle") -> Dictionary:
+	var authored: Dictionary = DirectionalAtlas.combat_frame_info(hero,Vector2(1,-1) if bank == "back" else Vector2(1,1),phase,0.0,"idle" if phase == "idle" else "basic")
+	if not authored.is_empty(): return authored
+	if not SharedActionFamily.load_family(hero).is_empty(): return SharedActionFamily.frame_info(hero,Vector2(1,-1) if bank == "back" else Vector2(1,1),"idle",0.0,"idle")
 	var frames: Dictionary = _action_bank(hero,bank)
 	return frames.get(phase,frames.get("idle",{})).duplicate()
 
 static func walk_frame_info(hero: String, bank: String = "front", distance: float = 0.0) -> Dictionary:
+	var authored: Dictionary = SharedActionFamily.frame_info(hero,Vector2(1,-1) if bank == "back" else Vector2(1,1),"walk",fposmod(distance,150.0)/150.0,"walk")
+	if not authored.is_empty(): return authored
 	return WalkAtlas.frame_info(hero,bank,distance)
 
 static func basic_frame_info(hero: String, bank: String, phase: String, progress: float) -> Dictionary:
@@ -134,7 +142,7 @@ static func gunner_presentation_pose(p: Node2D, pose: Dictionary) -> Dictionary:
 		var age: float = float(feedback.get("_basic_age"))
 		if age < 0.29:
 			var basic: Dictionary = pose.duplicate()
-			basic.merge({"slot":"basic", "phase":"release" if age < 0.09 else "recovery",
+			basic.merge({"slot":"basic", "skill_id":"", "input_slot":"", "phase":"release" if age < 0.09 else "recovery",
 				"progress":clampf(age/0.09 if age < 0.09 else (age-0.09)/0.20,0.0,1.0),
 				"direction":feedback.get("_basic_direction")},true)
 			basic.erase("authored_phase_progress")
@@ -142,14 +150,28 @@ static func gunner_presentation_pose(p: Node2D, pose: Dictionary) -> Dictionary:
 	if str(pose.get("phase", "idle")) != "idle" or float(p.shot_cooldown) <= 0.0 or not is_instance_valid(feedback) or str(feedback.get("_basic")) != "attack_strike":
 		return pose
 	var held: Dictionary = pose.duplicate()
-	held.merge({"phase":"recovery", "slot":"basic", "progress":1.0, "authored_phase_progress":1.0,
+	held.merge({"phase":"recovery", "slot":"basic", "skill_id":"", "input_slot":"", "progress":1.0, "authored_phase_progress":1.0,
 		"direction":feedback.get("_basic_direction"), "gun_hold":true},true)
 	return held
 
 static func presentation_frame_info(hero: String, bank: String, pose: Dictionary, stride: float, walking: bool, dash: bool = false) -> Dictionary:
+	var phase: String = str(pose.get("phase", "idle"))
+	var action: String = str(pose.get("skill_id",""))
+	var sample: float = float(pose.get("authored_phase_progress",pose.get("progress",0.0)))
+	if dash:
+		action = "dash"
+		sample = float(pose.get("dash_progress",0.0))
+	elif phase == "idle":
+		action = "walk" if walking else "reload" if hero == "CH02" and pose.has("reload_progress") else "idle"
+		sample = fposmod(stride/STRIDE_PER_WORLD_UNIT,150.0)/150.0 if walking else float(pose.get("reload_progress",pose.get("idle_progress",0.0)))
+	elif action.is_empty():
+		action = "basic" if str(pose.get("slot","basic")) == "basic" else hero+"_SK%02d" % (["q","secondary","f","ultimate"].find(str(pose.get("slot","")))+1)
+	var complete: Dictionary = DirectionalAtlas.combat_frame_info(hero,pose.get("direction",Vector2.RIGHT),phase,sample,action)
+	if not complete.is_empty(): return complete
+	# An unknown presentation tail keeps the new person, never an old body.
+	if not SharedActionFamily.load_family(hero).is_empty(): return SharedActionFamily.frame_info(hero,pose.get("direction",Vector2.RIGHT),"idle",0.0,"idle")
 	if dash:
 		return dodge_frame_info(hero,bank,float(pose.get("dash_progress",0.0)))
-	var phase: String = str(pose.get("phase", "idle"))
 	var directed: Dictionary = DirectionalAtlas.frame_info(hero,pose.get("direction",Vector2.RIGHT),phase,float(pose.get("progress",0.0)))
 	if not directed.is_empty(): return directed
 	if hero == "CH02" and not dash:
@@ -199,7 +221,7 @@ static func presentation_direction(aim: Vector2, velocity: Vector2, pose: Dictio
 static func body_transform(asset: Dictionary, hero: String, aim: Vector2, lean: Vector2, pose: Dictionary, walking: bool = false, stride: float = 0.0) -> Transform2D:
 	var flip: float = source_horizontal_flip(aim,asset)
 	var transform := Transform2D(0.0,Vector2(flip,1.0),0.0,_action_offset(asset,hero,aim,lean,pose))
-	if bool(asset.get("dodge_presentation",false)):
+	if bool(asset.get("dodge_presentation",false)) and not bool(asset.get("articulated_clip",false)):
 		var pressure: float = sin(clampf(float(pose.get("dash_progress",0.0)),0.0,1.0)*PI)
 		var squat: float = .065 if hero == "CH01" else .05 if hero == "CH02" else .035
 		var rotation: float = aim.x*.024*pressure if hero == "CH01" else 0.0
@@ -213,12 +235,33 @@ static func body_transform(asset: Dictionary, hero: String, aim: Vector2, lean: 
 		transform.origin = Vector2(0,FOOT_OFFSET)-transform.basis_xform(Vector2(0,FOOT_OFFSET))
 	return transform
 
+## Sample the committed warrior pose directly; rendered metadata can still be
+## windup or already recovery. The weapon uses the body's exact transform.
+static func warrior_basic_weapon_anchors(direction: Vector2, phase: String) -> Dictionary:
+	if phase not in ["windup","release"]:
+		return {}
+	var aim: Vector2 = direction.normalized() if direction.is_finite() and direction.length_squared() > .001 else Vector2.RIGHT
+	var progress: float = 1.0 if phase == "windup" else 0.0
+	var pose: Dictionary = {"phase":phase,"slot":"basic","skill_id":"","progress":progress,"direction":aim}
+	var asset: Dictionary = presentation_frame_info("CH01","back" if aim.y < -.20 else "front",pose,0.0,false)
+	if asset.is_empty():
+		return {}
+	var anchors: Dictionary = asset.get("anchors",{})
+	if not anchors.get("grip") is Vector2 or not anchors.get("muzzle") is Vector2:
+		return {}
+	var grip: Vector2 = anchors.grip
+	var muzzle: Vector2 = anchors.muzzle
+	if not grip.is_finite() or not muzzle.is_finite():
+		return {}
+	var transform: Transform2D = body_transform(asset,"CH01",aim,-aim*4.0 if phase == "windup" else aim*5.0,pose)
+	return {"grip":transform*grip,"muzzle":transform*muzzle}
+
 ## Frozen launch-point sampling, independent of the previous rendered idle pose.
 ## Projectiles use this display anchor without moving their physical origin.
-static func release_muzzle_local(hero: String, slot: String, direction: Vector2) -> Vector2:
+static func release_muzzle_local(hero: String, slot: String, direction: Vector2, skill_id: String = "") -> Vector2:
 	var aim: Vector2 = direction.normalized() if direction.is_finite() and direction.length_squared() > 0.001 else Vector2.RIGHT
 	var bank: String = "back" if aim.y < -0.20 else "front"
-	var pose: Dictionary = {"phase":"release","slot":slot,"progress":0.0,"authored_phase_progress":0.0,"direction":aim}
+	var pose: Dictionary = {"phase":"release","slot":slot,"skill_id":skill_id,"progress":0.0,"authored_phase_progress":0.0,"direction":aim}
 	var asset: Dictionary = presentation_frame_info(hero,bank,pose,0.0,false)
 	if asset.is_empty():
 		return aim * 36.0 + Vector2(0,-20)
@@ -320,6 +363,10 @@ static func draw_hero(p: Node2D) -> void:
 	var feedback: Node = p.get_node_or_null("HeroFeedback")
 	var pose: Dictionary = feedback.pose_state() if is_instance_valid(feedback) else {"phase":"idle","progress":0.0,"direction":aim,"slot":"basic"}
 	pose = gunner_presentation_pose(p,pose)
+	pose["idle_progress"] = fposmod(float(p.get("combat_time")),1.8)/1.8
+	if hero == "CH02" and p.has_method("class_state_view"):
+		var class_view: Dictionary = p.class_state_view()
+		if bool(class_view.get("reloading",false)): pose["reload_progress"] = float(class_view.get("reload_progress",0.0))
 	if dash:
 		pose = pose.duplicate()
 		pose["dash_progress"] = clampf(float(p.get("dash_elapsed"))/maxf(.001,float(p.get("dash_elapsed"))+float(p.get("dash_remaining"))),0.0,1.0)

@@ -1,0 +1,1307 @@
+{
+  "schema_version": 1,
+  "chapter_id": "B09",
+  "runtime_enabled": true,
+  "source_document": "docs/levels/b09/README.md#5-专属与共有套装",
+  "effect_contract": {
+    "runtime_implemented": true,
+    "power_basis": "instance_fixed_power_type_ad_or_ap",
+    "derived_damage_triggers_extra_damage": false,
+    "count_once_per_cast_id": true,
+    "cooldowns_min_seconds": 0.0,
+    "reset_ultimate": false,
+    "heal_can_crit": false,
+    "shield_can_crit": false,
+    "shield_stack_rule": "replace_with_higher",
+    "out_of_combat_clear_seconds": 10.0,
+    "clear_temporary_stacks_on_room_change": true,
+    "equipment_change_can_heal_refresh_shield_or_reset_cooldown": false
+  },
+  "sets": {
+    "B09-SW": {
+      "id": "B09-SW",
+      "name": "碎晶重誓",
+      "name_en": "Crystalbreaker Oath",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "runtime_implemented": true,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "2件，W对敌人护盾的伤害+12%。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        },
+        "4": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "4件，W命中晶面目标时额外破1层，单次W上限2层；对无晶面目标改为追加0.20P单体伤害，ICD7秒，不绕过Boss阶段免疫。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        },
+        "6": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "6件，自己破坏护盾/最后晶面后下一次W伤害+12%，命中回复最大HP3%，有效6秒、ICD10秒；过量治疗不触发其它伤害效果。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        }
+      }
+    },
+    "B09-SG": {
+      "id": "B09-SG",
+      "name": "霜线定轨",
+      "name_en": "Frostline Trajectory",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "runtime_implemented": true,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "2件，E直接伤害+8%。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        },
+        "4": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "4件，E命中后施加本套“霜线印”4秒，并造成普通敌人10%/Boss5%减速2秒，ICD8秒；不叠无限硬控。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        },
+        "6": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "6件，W命中霜线印目标追加0.40P单体伤害并消耗印，获得移速+8%3秒，ICD10秒；无需依赖枪手原生不存在的寒冷，也不要求另一套武器作前置。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        }
+      }
+    },
+    "B09-SM": {
+      "id": "B09-SM",
+      "name": "雪冠凝晶",
+      "name_en": "Snowcrown Crystal",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "runtime_implemented": true,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "2件，E直接伤害+8%。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        },
+        "4": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "4件，E一次真实命中至少2敌人回复60法力，ICD8秒；单Boss场景改为回复30，必须实际成功扣费，派生场不计。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        },
+        "6": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "6件，W或R成功提交后为其首段命中的最多3目标挂“凝晶”4秒；对每个目标首次Q命中追加0.25P并消耗其印，整轮ICD10秒。无需普攻，Q/W/E/R本体伤害不以印记为门槛。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        }
+      }
+    },
+    "B09-SU": {
+      "id": "B09-SU",
+      "name": "暖灯踏雪",
+      "name_en": "Warm Lantern Snowstride",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "runtime_implemented": true,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "2件，普通减速持续时间-20%，同类减免合计≤50%，不取消裂桥。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        },
+        "4": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "4件，HP低于50%时受到直接伤害-8%，不作用自损/固定环境回摆。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        },
+        "6": {
+          "runtime_implemented": true,
+          "trigger": "see_authored_contract",
+          "conditions": [
+            "6件，累计承受相当于最大HP10%的真实伤害后，移除1层普通减速或持续伤害状态并获得最大HP3%盾4秒，ICD15秒；优先清最长剩余持续伤害，再清减速，不清Boss阶段标记。只有真实承伤计数，不能靠装备切换触发。"
+          ],
+          "parameters": {
+            "source_document": "docs/levels/b09/README.md"
+          }
+        }
+      }
+    }
+  },
+  "equipment": {
+    "B09-SW-head": {
+      "id": "B09-SW-head",
+      "name": "碎晶誓盔",
+      "name_en": "Crystalbreaker Oath head",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B09-SW",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SW-chest": {
+      "id": "B09-SW-chest",
+      "name": "重誓冰甲",
+      "name_en": "Crystalbreaker Oath chest",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B09-SW",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SW-hands": {
+      "id": "B09-SW-hands",
+      "name": "破晶重手",
+      "name_en": "Crystalbreaker Oath hands",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B09-SW",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SW-legs": {
+      "id": "B09-SW-legs",
+      "name": "重誓护腿裤",
+      "name_en": "Crystalbreaker Oath legs",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B09-SW",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SW-feet": {
+      "id": "B09-SW-feet",
+      "name": "碎晶踏阵靴",
+      "name_en": "Crystalbreaker Oath feet",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B09-SW",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SW-ring": {
+      "id": "B09-SW-ring",
+      "name": "重誓晶戒",
+      "name_en": "Crystalbreaker Oath ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B09-SW",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "resource_gain_bonus"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SW-accessory": {
+      "id": "B09-SW-accessory",
+      "name": "破晶誓印",
+      "name_en": "Crystalbreaker Oath accessory",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B09-SW",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "resource_gain_bonus",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SW-weapon": {
+      "id": "B09-SW-weapon",
+      "name": "碎晶重刃",
+      "name_en": "Crystalbreaker Oath weapon",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B09-SW",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "damage_bonus"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SG-head": {
+      "id": "B09-SG-head",
+      "name": "霜线测轨镜",
+      "name_en": "Frostline Trajectory head",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B09-SG",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SG-chest": {
+      "id": "B09-SG-chest",
+      "name": "定轨御寒衣",
+      "name_en": "Frostline Trajectory chest",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B09-SG",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SG-hands": {
+      "id": "B09-SG-hands",
+      "name": "定轨稳枪手",
+      "name_en": "Frostline Trajectory hands",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B09-SG",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SG-legs": {
+      "id": "B09-SG-legs",
+      "name": "霜线轻裤",
+      "name_en": "Frostline Trajectory legs",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B09-SG",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SG-feet": {
+      "id": "B09-SG-feet",
+      "name": "定轨停滑靴",
+      "name_en": "Frostline Trajectory feet",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B09-SG",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SG-ring": {
+      "id": "B09-SG-ring",
+      "name": "霜线准星戒",
+      "name_en": "Frostline Trajectory ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B09-SG",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SG-accessory": {
+      "id": "B09-SG-accessory",
+      "name": "定轨测冰仪",
+      "name_en": "Frostline Trajectory accessory",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B09-SG",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "damage_bonus",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SG-weapon": {
+      "id": "B09-SG-weapon",
+      "name": "霜线精射枪",
+      "name_en": "Frostline Trajectory weapon",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B09-SG",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "damage_bonus"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SM-head": {
+      "id": "B09-SM-head",
+      "name": "雪冠晶额",
+      "name_en": "Snowcrown Crystal head",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B09-SM",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_mana",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SM-chest": {
+      "id": "B09-SM-chest",
+      "name": "凝晶法袍",
+      "name_en": "Snowcrown Crystal chest",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B09-SM",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_hp",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SM-hands": {
+      "id": "B09-SM-hands",
+      "name": "雪冠施法手",
+      "name_en": "Snowcrown Crystal hands",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B09-SM",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "ability_power",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SM-legs": {
+      "id": "B09-SM-legs",
+      "name": "凝晶纹裤",
+      "name_en": "Snowcrown Crystal legs",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B09-SM",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SM-feet": {
+      "id": "B09-SM-feet",
+      "name": "雪冠步履",
+      "name_en": "Snowcrown Crystal feet",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B09-SM",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "move_speed"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SM-ring": {
+      "id": "B09-SM-ring",
+      "name": "三雪晶戒",
+      "name_en": "Snowcrown Crystal ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B09-SM",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "ability_power",
+          "resource_gain_bonus"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SM-accessory": {
+      "id": "B09-SM-accessory",
+      "name": "雪冠聚晶瓶",
+      "name_en": "Snowcrown Crystal accessory",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B09-SM",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_mana",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SM-weapon": {
+      "id": "B09-SM-weapon",
+      "name": "雪冠棱杖",
+      "name_en": "Snowcrown Crystal weapon",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B09-SM",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "ability_power",
+          "damage_bonus"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SU-head": {
+      "id": "B09-SU-head",
+      "name": "暖灯兜帽",
+      "name_en": "Warm Lantern Snowstride head",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B09-SU",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "magic_resist"
+        ],
+        "magic": [
+          "max_hp",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SU-chest": {
+      "id": "B09-SU-chest",
+      "name": "踏雪夹衣",
+      "name_en": "Warm Lantern Snowstride chest",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B09-SU",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "damage_reduction"
+        ],
+        "magic": [
+          "max_hp",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SU-hands": {
+      "id": "B09-SU-hands",
+      "name": "灯绒护手",
+      "name_en": "Warm Lantern Snowstride hands",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B09-SU",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "cooldown_reduction"
+        ],
+        "magic": [
+          "ability_power",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SU-legs": {
+      "id": "B09-SU-legs",
+      "name": "暖灯长裤",
+      "name_en": "Warm Lantern Snowstride legs",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B09-SU",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ],
+        "magic": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SU-feet": {
+      "id": "B09-SU-feet",
+      "name": "踏雪软靴",
+      "name_en": "Warm Lantern Snowstride feet",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B09-SU",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed",
+          "damage_reduction"
+        ],
+        "magic": [
+          "move_speed",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SU-ring": {
+      "id": "B09-SU-ring",
+      "name": "暖光指环",
+      "name_en": "Warm Lantern Snowstride ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B09-SU",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "max_hp"
+        ],
+        "magic": [
+          "ability_power",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SU-accessory": {
+      "id": "B09-SU-accessory",
+      "name": "携行暖灯",
+      "name_en": "Warm Lantern Snowstride accessory",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B09-SU",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ],
+        "magic": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-SU-weapon": {
+      "id": "B09-SU-weapon",
+      "name": "暖光旅仪",
+      "name_en": "Warm Lantern Snowstride weapon",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B09-SU",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack"
+        ],
+        "magic": [
+          "ability_power"
+        ]
+      },
+      "unique_effect": {},
+      "runtime_implemented": true
+    },
+    "B09-U01": {
+      "id": "B09-U01",
+      "name": "粗纹雪履",
+      "name_en": "Rough Snow Shoes",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed",
+          "damage_reduction"
+        ],
+        "magic": [
+          "move_speed",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {
+        "runtime_implemented": true,
+        "trigger": "see_authored_contract",
+        "conditions": [
+          "粗纹雪履：亮冰额外滑行距离-25%，保留至少地图原值50%，其它地图不额外改移动"
+        ],
+        "parameters": {
+          "source_document": "docs/levels/b09/README.md"
+        }
+      },
+      "source_preferences": [
+        "L50",
+        "B09-M04",
+        "B09-M09"
+      ],
+      "runtime_implemented": true
+    },
+    "B09-U02": {
+      "id": "B09-U02",
+      "name": "余温晶戒",
+      "name_en": "Residual Warmth Ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "max_hp"
+        ],
+        "magic": [
+          "ability_power",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {
+        "runtime_implemented": true,
+        "trigger": "see_authored_contract",
+        "conditions": [
+          "余温晶戒：清除普通负面状态后回复最大HP2%，ICD15秒"
+        ],
+        "parameters": {
+          "source_document": "docs/levels/b09/README.md"
+        }
+      },
+      "source_preferences": [
+        "L52",
+        "B09-M06",
+        "B09-M08"
+      ],
+      "runtime_implemented": true
+    },
+    "B09-U03": {
+      "id": "B09-U03",
+      "name": "碎晶暖匣",
+      "name_en": "Crystalbreak Warm Box",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "",
+      "race_id": "B09",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO08",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ],
+        "magic": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {
+        "runtime_implemented": true,
+        "trigger": "see_authored_contract",
+        "conditions": [
+          "碎晶暖匣：自己破敌人最后晶面/护盾后受伤-6%4秒，ICD12秒"
+        ],
+        "parameters": {
+          "source_document": "docs/levels/b09/README.md"
+        }
+      },
+      "source_preferences": [
+        "L54",
+        "B09-M13",
+        "B09-M18"
+      ],
+      "runtime_implemented": true
+    }
+  }
+}

@@ -928,6 +928,16 @@
             "safety_contract": "危险激活前必须保留至少一条连接入口、出口及必需任务物的可通行路径；桥上有实体时不得收桥；本白盒仅验证静态状态。"
           }
         ]
+      },
+      "skill_reward_group": "SG01",
+      "skill_archive": {
+        "group_id": "SG01",
+        "position": [
+          1210,
+          1390
+        ],
+        "name": "职业技能档案",
+        "requires_clear": true
       }
     },
     "L03": {
@@ -2088,7 +2098,8 @@
             "safety_contract": "危险激活前必须保留至少一条连接入口、出口及必需任务物的可通行路径；桥上有实体时不得收桥；本白盒仅验证静态状态。"
           }
         ]
-      }
+      },
+      "skill_reward_group": "SG02"
     },
     "L06": {
       "room_id": "L06",
@@ -3252,6 +3263,16 @@
             "safety_contract": "危险激活前必须保留至少一条连接入口、出口及必需任务物的可通行路径；桥上有实体时不得收桥；本白盒仅验证静态状态。"
           }
         ]
+      },
+      "skill_reward_group": "SG03",
+      "skill_archive": {
+        "group_id": "SG03",
+        "position": [
+          1620,
+          700
+        ],
+        "name": "职业技能档案",
+        "requires_clear": true
       }
     },
     "L09": {
@@ -4506,6 +4527,16 @@
             "safety_contract": "危险激活前必须保留至少一条连接入口、出口及必需任务物的可通行路径；桥上有实体时不得收桥；本白盒仅验证静态状态。"
           }
         ]
+      },
+      "skill_reward_group": "SG04",
+      "skill_archive": {
+        "group_id": "SG04",
+        "position": [
+          750,
+          1530
+        ],
+        "name": "职业技能档案",
+        "requires_clear": true
       }
     },
     "L12": {
@@ -5702,6 +5733,16 @@
             "safety_contract": "危险激活前必须保留至少一条连接入口、出口及必需任务物的可通行路径；桥上有实体时不得收桥；本白盒仅验证静态状态。"
           }
         ]
+      },
+      "skill_reward_group": "SG05",
+      "skill_archive": {
+        "group_id": "SG05",
+        "position": [
+          2000,
+          1130
+        ],
+        "name": "职业技能档案",
+        "requires_clear": true
       }
     },
     "L15": {
@@ -7132,7 +7173,8 @@
             "safety_contract": "危险激活前必须保留至少一条连接入口、出口及必需任务物的可通行路径；桥上有实体时不得收桥；本白盒仅验证静态状态。"
           }
         ]
-      }
+      },
+      "skill_reward_group": "SG06"
     },
     "L18": {
       "room_id": "L18",
@@ -8340,6 +8382,16 @@
             "safety_contract": "危险激活前必须保留至少一条连接入口、出口及必需任务物的可通行路径；桥上有实体时不得收桥；本白盒仅验证静态状态。"
           }
         ]
+      },
+      "skill_reward_group": "SG07",
+      "skill_archive": {
+        "group_id": "SG07",
+        "position": [
+          1810,
+          450
+        ],
+        "name": "职业技能档案",
+        "requires_clear": true
       }
     },
     "L21": {
@@ -9582,7 +9634,8 @@
             "safety_contract": "危险激活前必须保留至少一条连接入口、出口及必需任务物的可通行路径；桥上有实体时不得收桥；本白盒仅验证静态状态。"
           }
         ]
-      }
+      },
+      "skill_reward_group": "SG08"
     },
     "L24": {
       "room_id": "L24",

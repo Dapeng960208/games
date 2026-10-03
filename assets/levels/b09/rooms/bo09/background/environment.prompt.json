@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. Original B09 Frost Crystal Court ROOM DESIGN overview, Frost Crystal Throne Arena: south entrance, huge rough snow CIRCULAR RING in center, left and right cyan glossy ice wings, exactly two warm brass lanterns at 25% and75% width at half depth, enormous lavender crystal throne and FLOATING CROWN architecture on north edge, two short intact outer bridges at sides, spacious royal arena with clear snow approach. New architecture: geometrically cut transparent ice and pale lavender crystal palace, champagne-gold trims and warm brass lanterns, sunlit snow, bright cheerful winter fantasy. Polished detailed hand-painted storybook game art, same visual family as newly created crystalline monsters. HIGH camera 65-degree overhead near-isometric 2.5D, whole room and all entrances visible, orthographic overview landscape 1536x1024. Entire playable room inside frame, maximum floor clarity, plenty of empty room for action RPG combat, fine dark-violet contours, warm sun from upper left, icy blue long shadows only at perimeter. Distinguish matte coarse snow from shiny cyan ice. No players, monsters, Boss, HUD, text, labels, numbers or watermarks. This is a design illustration; no earlier jungle, coral, pumpkin or desert rooms copied.",
+  "reference_images": [],
+  "sha256": "0a7fc2581a5df5235252a483a59f97324a5a42f7d889e10e72e1db7fb00f28bc",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte source copy, no pixel editing.",
+  "license": "Project-generated original artwork."
+}

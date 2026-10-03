@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "room_id": "L52",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L52_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "bd2f2b6b5fa07c42d786dd185b1bd7644d26b40117f029563bbd5f5b79472975",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L52/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "f785e4fa235962d62de55680e3399ad5ea8496812d56906c5a441ec2eab545f2",
+      "decoded_rgb_sha256": "66df940cc3a559cc2647e37e28eea1fdccf999899c7edce3df1ead5e8dbe6d88",
+      "webp_sha256": "bf1d216510dd4b2f0bd90dcacca9d75ba49510dbda8f7a3ff252d5e7d1d0c730",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native high resolution game environment detail tile, L52 crystal sculpture workshop top_left. Input image: edit target, exact crop of the approved B09 room map. Generate largest native square output, 1536 x 1536 pixels. Primary request: preserve this ENTIRE exact crop in its whole framing, with every object at the SAME NORMALIZED position and the SAME NORMALIZED scale. LOCK camera, high three-quarter downward view, 2.5D perspective, exposure, illumination, color palette, border silhouettes and all cropped edge continuation. Only add fine handpainted material fidelity inside the original shapes: delicate snow surface brushwork, crystal facets, ivory stone edges, gold trim, ice translucency. Bright handpainted cartoon fantasy. Keep every crystal column, wall, stair, roadway, building, sculptor workbench, stool, lamp and ice patch exactly where it is, with unchanged silhouette and dimensions. Preserve the pale distant mountains and all scene composition. No crop, expansion, zoom, reframing, rearrangement, added structures, added objects, text, HUD, characters, grid, watermark or new lighting. This tile will be reassembled with five neighboring crops and must match their original edge geometry. Return a native square detailed repaint of the full supplied crop, not a new concept design.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-e3f5-7900-b255-c269aab72551\\exec-6a0c5d8d-8e1c-4a5f-a593-ef93b455a1d1.png",
+      "reference_png_sha256": "0f764ddb88e83b92192d8f9b0839bcb861eae6da453d7192836f9f1998e01592"
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L52/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "956ee5824b428f62f808a0b2c35829e101bc5b5b659b88b017b6c9797703dd9b",
+      "decoded_rgb_sha256": "1760cbd2c2eb0de6110120409910c54fc0fbebc76cdbaffc14bbd7191fbc251b",
+      "webp_sha256": "2e1774fe9d43bd7ac359c49dc259d7848ff3038f7fcffc2deb740c50d99a3521",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native high resolution game environment detail tile, L52 crystal sculpture workshop top_middle. Input image: exact cropped approved B09 map, EDIT TARGET. Generate largest native square output, 1536 x 1536 pixels. Preserve the WHOLE supplied crop: every object stays at the exact same NORMALIZED position, scale and silhouette, including all partial shapes crossing edges. LOCK full framing, camera, bright high three-quarter downward 2.5D perspective, light exposure and original pale blue purple ivory gold colors. ONLY add fine handpainted material fidelity within existing shapes: crisp crystal facets, snow brushwork, ivory stone seams, warm gold edging and translucent ice. Bright handpainted cartoon fantasy. Keep the three arched wall bays with their central crystal sculpture on circular plinth, left and right workshop benches, hanging lanterns, central lower crystal pile and partial bottom-right crystal pile exactly in their original positions and proportions. Keep every wall, column, staircase and roadway unchanged. Do not zoom, crop, expand, reframe, move, rotate, rearrange, add or remove objects. No characters, HUD, text, watermarks, grid or new light sources. The tile will be reassembled with five adjacent crops and must maintain all original edge geometry. Return full-crop native detail repaint, not a redesigned map.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-e3f5-7900-b255-c269aab72551\\exec-24bfd39b-2610-423e-9927-1654e869bc27.png",
+      "reference_png_sha256": "29ad3b48c7362379cc63a81784032d415317f66406d253a0dfaf226d91198bbc"
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L52/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "f93b2238efe1497bf2c4fe49d2cb3fb2c05d863eb2e8af7f41fa6ee278d4a79f",
+      "decoded_rgb_sha256": "6bce677db3c19da1cc537e2c55e47daf177a1aebdf24e3f2e9388388b417586b",
+      "webp_sha256": "f299ac350c3b784c9cd86b61afee3e9236dbbc8a3906f0ebd961024e97453ab6",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native high resolution game environment detail tile, L52 crystal sculpture workshop top_right. Input image: EDIT TARGET exact crop from approved room background. Generate largest native square output, 1536 x 1536 pixels. Preserve ENTIRE exact crop with all objects in their SAME NORMALIZED positions, scales, orientations and silhouettes. LOCK camera, framing, bright high three-quarter downward 2.5D perspective, light exposure, original blue purple ivory gold palette and every boundary edge continuation. Only increase fine handpainted material fidelity WITHIN existing shapes: snow brushwork, crystal facets, ivory stone masonry, gold filigree, translucent ice. Bright handpainted cartoon fantasy. Keep the large right-side sunlit arched doorway, its narrow ivory stair bridge, four small balustrade posts and hanging lamps at exactly the original positions and dimensions; keep the upper-left partial crystal sculpture on its round plinth, violet banner, left ice wall, benches, stool and ground ice patches unchanged. No redesigning entrance or widening walkways. No zoom, crop, expand, reframe, rotate, rearrange, add or remove any objects. No characters, HUD, text, watermark or grid. Neighboring tiles require unchanged crop-edge geometry. Return a native full-crop detail repaint.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-e3f5-7900-b255-c269aab72551\\exec-aabb63d5-2713-4aee-bb76-142d9c753538.png",
+      "reference_png_sha256": "1f0d6d4367254f45b7573e7e19e520f2debedc649ef14f9a432203f784e3c3db"
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L52/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "6aa95f4a5f5e8a3e275f0639c6d5dee5cdb81da4cda4004e4b5fc2395fd54cf3",
+      "decoded_rgb_sha256": "aaeadb9b0ea1e6143cd5be7c3f515f718bcadc9724129a186fda91a7798f9b46",
+      "webp_sha256": "e8748ef8934574d1f06dd2dbd38cdcde4a6b029560a75116c907b64b58107d5d",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native high resolution game environment detail tile, L52 crystal sculpture workshop bottom_left. Input image is EDIT TARGET, an exact approved game-map crop. Generate largest native square output, 1536 x 1536 pixels. Preserve the WHOLE exact crop with every object at its SAME NORMALIZED position and SAME NORMALIZED scale and silhouette. LOCK camera, framing, bright high three-quarter downward view and 2.5D perspective, exposure, illumination, original snow-blue lavender ivory-gold colors, and all crop-edge continuations. ONLY add fine handpainted material fidelity inside the existing shapes: fine snow brushwork, crystal facets, ivory stone seams, gold ornament and sheer ice cliff texture. Bright handpainted cartoon fantasy. Keep the diagonal balustrade running from upper left through center to lower right, its posts, lamp, purple banner, crystal-topped pillars, central sculptor bench, snow-covered pine on left, rocks and cliff contour exactly unchanged. Keep the upper walkway, ice patch and all partial objects crossing boundaries. Do not move, widen, rotate, crop, expand, zoom, reframe, rearrange, add or remove anything. No characters, text, HUD, watermark, grid or new lights. This tile must join five adjacent crops using original edge geometry. Native full-crop detailed repaint, no new composition.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-e3f5-7900-b255-c269aab72551\\exec-3e11d365-5258-46bf-96a5-b2e6acfe0d76.png",
+      "reference_png_sha256": "6ab99cea6390bce2f9c681143beed9d874e6198cca3aa95b7285b1677632d185"
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L52/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "44111155684767433f956a91509bd8ce3d8bc3d8d51323b3c4772097e04741c2",
+      "decoded_rgb_sha256": "39b61cbbc92792238b89047414ca4caef64532518a39019f01c9e7434e41ba8c",
+      "webp_sha256": "55818aefb04af0e860644e4c731aebd3d17b29a3c301e7672df61f80f02ad02a",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native high resolution game environment detail tile, L52 crystal sculpture workshop bottom_middle. Input image: EDIT TARGET exact original map crop. Generate largest native square output, 1536 x 1536 pixels. Preserve the WHOLE supplied crop and keep every object at its SAME NORMALIZED position, scale and silhouette. LOCK framing, camera, bright high three-quarter downward 2.5D perspective, light exposure, pale blue lavender ivory-gold palette and boundary continuation. Only enrich handpainted material fidelity WITHIN original shapes: fine snow brushwork, subtle ice polygon seams, crystal facets, ivory stone texture, small gold-trim detail and ice cliff facets. Bright handpainted cartoon fantasy. Keep the large open snowy courtyard unchanged, ice patch centered in the right-middle, partial crystal outcrops upper-right and left edge, the bottom-central crystal workbench, left stool, lower balustrade, its twin pillars and gold crest at exactly original positions and sizes. No additions in empty snow. No widening, moving, rotating, cropping, expanding, zooming, reframing or changing shape of any feature. No characters, HUD, text, grid, watermark or changed lights. The tile joins adjacent original crops, so preserve exact normalized boundary geometry. Return full-crop native detailed repaint.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-e3f5-7900-b255-c269aab72551\\exec-d934d993-bc01-496b-adc1-ad1e24e60a61.png",
+      "reference_png_sha256": "1d504f2b5203877911522f6623aa37631789c6066960e626046f1b31cdd25b23"
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L52/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "3a28127884e43f914c895f10425a56a6f01ca146c45c50dbdba68c0a48beac10",
+      "decoded_rgb_sha256": "3da2f6606a1b1b0d20d811f231b56569fb363e95d60e7288fb08fa8fb03dbdad",
+      "webp_sha256": "2d33539448f8e70f0ea1bb17777aae2a24c818f678446971f2737c4a5480854b",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: native high resolution game environment detail tile, L52 crystal sculpture workshop bottom_right. Input image: EDIT TARGET exact approved game-map crop. Generate largest native square output, 1536 x 1536 pixels. Preserve the WHOLE exact crop: every object has the SAME NORMALIZED position, scale, orientation and silhouette, including boundary-crossing partial objects. LOCK framing, camera, bright high three-quarter downward 2.5D view, exposure and original snowy pale blue lavender ivory-gold palette. ONLY add fine handpainted material fidelity inside existing shapes: crystal facets, snow brushwork, ivory stone seam detail, gold trim and ice cliff texture. Bright handpainted cartoon fantasy. Keep the diagonal outer wall and balustrade from lower left to upper right, purple banner, crystal-capped posts, sculpted crystal on upper-right square plinth, crystal outcrop, lower snow-covered pines, cliff rocks, workshop slivers at top edge and courtyard ice patches exactly in original positions and proportions. No added objects in snow or changed wall height. No zoom, crop, expand, move, rotate, reframe, redesign, add or remove any feature. No characters, text, HUD, grid, watermark or new lighting. All edge contours must remain compatible with five neighboring crops. Return native full-crop detailed repaint.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-e3f5-7900-b255-c269aab72551\\exec-ff882aea-ae99-42c9-bfde-0d5ce46e0ff1.png",
+      "reference_png_sha256": "679259c661924b5fc9042e5343b1dcc0626dcb5e63c64428709eb1d3d40f26e9"
+    }
+  ],
+  "approval_scope": "Static 2K GPU visual review only; movement, combat and natural balance are separate checks.",
+  "acceptance": {
+    "date": "2026-10-03",
+    "resolution": [
+      2560,
+      1440
+    ],
+    "renderer": "OpenGL Compatibility",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "source_comparison": true,
+    "visual_review": "Passed complete painted scenery, tile seams, palette, bridge continuity and lamp-foot proximity. L51/L54 rechecked after removing untouched-gap mother-image overpainting.",
+    "capture_directory": "artifacts/b09_native_visual",
+    "geometry_changed_by_tiles": false,
+    "scale_or_upscale_applied": false,
+    "natural_playthrough_claimed": false
+  }
+}

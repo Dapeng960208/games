@@ -1,0 +1,1738 @@
+{
+  "version": 1,
+  "biome_id": "B09",
+  "source_family": "storybook_2_5d_v1",
+  "identities": {
+    "B09-M01": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 744,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            484,
+            1024
+          ],
+          "alpha160_bounds": [
+            40,
+            170,
+            430,
+            744
+          ],
+          "foot": [
+            255.0,
+            914
+          ],
+          "core_anchor": [
+            255.0,
+            542.0
+          ],
+          "visual_outlet": [
+            470,
+            542.0
+          ],
+          "texture": "asset://b09/m01/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            484,
+            0,
+            532,
+            1024
+          ],
+          "alpha160_bounds": [
+            500,
+            29,
+            485,
+            922
+          ],
+          "foot": [
+            742.5,
+            951
+          ],
+          "core_anchor": [
+            742.5,
+            490.0
+          ],
+          "visual_outlet": [
+            985,
+            490.0
+          ],
+          "texture": "asset://b09/m01/poses.png"
+        },
+        "execute": {
+          "region": [
+            1016,
+            0,
+            520,
+            1024
+          ],
+          "alpha160_bounds": [
+            1048,
+            231,
+            470,
+            708
+          ],
+          "foot": [
+            1283.0,
+            939
+          ],
+          "core_anchor": [
+            1283.0,
+            585.0
+          ],
+          "visual_outlet": [
+            1518,
+            585.0
+          ],
+          "texture": "asset://b09/m01/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M02": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 526,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            501,
+            1024
+          ],
+          "alpha160_bounds": [
+            49,
+            222,
+            416,
+            526
+          ],
+          "foot": [
+            257.0,
+            748
+          ],
+          "core_anchor": [
+            257.0,
+            485.0
+          ],
+          "visual_outlet": [
+            465,
+            485.0
+          ],
+          "texture": "asset://b09/m02/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            501,
+            0,
+            472,
+            1024
+          ],
+          "alpha160_bounds": [
+            539,
+            221,
+            406,
+            519
+          ],
+          "foot": [
+            742.0,
+            740
+          ],
+          "core_anchor": [
+            742.0,
+            480.5
+          ],
+          "visual_outlet": [
+            945,
+            480.5
+          ],
+          "texture": "asset://b09/m02/poses.png"
+        },
+        "execute": {
+          "region": [
+            973,
+            0,
+            563,
+            1024
+          ],
+          "alpha160_bounds": [
+            1003,
+            222,
+            506,
+            499
+          ],
+          "foot": [
+            1256.0,
+            721
+          ],
+          "core_anchor": [
+            1256.0,
+            471.5
+          ],
+          "visual_outlet": [
+            1509,
+            471.5
+          ],
+          "texture": "asset://b09/m02/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M03": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 629,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            509,
+            1024
+          ],
+          "alpha160_bounds": [
+            27,
+            204,
+            459,
+            629
+          ],
+          "foot": [
+            256.5,
+            833
+          ],
+          "core_anchor": [
+            256.5,
+            518.5
+          ],
+          "visual_outlet": [
+            486,
+            518.5
+          ],
+          "texture": "asset://b09/m03/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            509,
+            0,
+            435,
+            1024
+          ],
+          "alpha160_bounds": [
+            533,
+            121,
+            405,
+            722
+          ],
+          "foot": [
+            735.5,
+            843
+          ],
+          "core_anchor": [
+            735.5,
+            482.0
+          ],
+          "visual_outlet": [
+            938,
+            482.0
+          ],
+          "texture": "asset://b09/m03/poses.png"
+        },
+        "execute": {
+          "region": [
+            944,
+            0,
+            592,
+            1024
+          ],
+          "alpha160_bounds": [
+            952,
+            239,
+            570,
+            603
+          ],
+          "foot": [
+            1237.0,
+            842
+          ],
+          "core_anchor": [
+            1237.0,
+            540.5
+          ],
+          "visual_outlet": [
+            1522,
+            540.5
+          ],
+          "texture": "asset://b09/m03/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M04": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 610,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            525,
+            1024
+          ],
+          "alpha160_bounds": [
+            44,
+            231,
+            456,
+            610
+          ],
+          "foot": [
+            272.0,
+            841
+          ],
+          "core_anchor": [
+            272.0,
+            536.0
+          ],
+          "visual_outlet": [
+            500,
+            536.0
+          ],
+          "texture": "asset://b09/m04/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            525,
+            0,
+            494,
+            1024
+          ],
+          "alpha160_bounds": [
+            551,
+            275,
+            460,
+            522
+          ],
+          "foot": [
+            781.0,
+            797
+          ],
+          "core_anchor": [
+            781.0,
+            536.0
+          ],
+          "visual_outlet": [
+            1011,
+            536.0
+          ],
+          "texture": "asset://b09/m04/poses.png"
+        },
+        "execute": {
+          "region": [
+            1019,
+            0,
+            517,
+            1024
+          ],
+          "alpha160_bounds": [
+            1029,
+            234,
+            469,
+            400
+          ],
+          "foot": [
+            1263.5,
+            634
+          ],
+          "core_anchor": [
+            1263.5,
+            434.0
+          ],
+          "visual_outlet": [
+            1498,
+            434.0
+          ],
+          "texture": "asset://b09/m04/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M05": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 567,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            497,
+            1024
+          ],
+          "alpha160_bounds": [
+            29,
+            243,
+            444,
+            567
+          ],
+          "foot": [
+            251.0,
+            810
+          ],
+          "core_anchor": [
+            251.0,
+            526.5
+          ],
+          "visual_outlet": [
+            473,
+            526.5
+          ],
+          "texture": "asset://b09/m05/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            497,
+            0,
+            518,
+            1024
+          ],
+          "alpha160_bounds": [
+            523,
+            239,
+            477,
+            592
+          ],
+          "foot": [
+            761.5,
+            831
+          ],
+          "core_anchor": [
+            761.5,
+            535.0
+          ],
+          "visual_outlet": [
+            1000,
+            535.0
+          ],
+          "texture": "asset://b09/m05/poses.png"
+        },
+        "execute": {
+          "region": [
+            1015,
+            0,
+            521,
+            1024
+          ],
+          "alpha160_bounds": [
+            1031,
+            270,
+            494,
+            533
+          ],
+          "foot": [
+            1278.0,
+            803
+          ],
+          "core_anchor": [
+            1278.0,
+            536.5
+          ],
+          "visual_outlet": [
+            1525,
+            536.5
+          ],
+          "texture": "asset://b09/m05/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M06": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 658,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            472,
+            1024
+          ],
+          "alpha160_bounds": [
+            69,
+            152,
+            340,
+            658
+          ],
+          "foot": [
+            239.0,
+            810
+          ],
+          "core_anchor": [
+            239.0,
+            481.0
+          ],
+          "visual_outlet": [
+            409,
+            481.0
+          ],
+          "texture": "asset://b09/m06/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            472,
+            0,
+            499,
+            1024
+          ],
+          "alpha160_bounds": [
+            536,
+            152,
+            423,
+            669
+          ],
+          "foot": [
+            747.5,
+            821
+          ],
+          "core_anchor": [
+            747.5,
+            486.5
+          ],
+          "visual_outlet": [
+            959,
+            486.5
+          ],
+          "texture": "asset://b09/m06/poses.png"
+        },
+        "execute": {
+          "region": [
+            971,
+            0,
+            565,
+            1024
+          ],
+          "alpha160_bounds": [
+            984,
+            159,
+            552,
+            622
+          ],
+          "foot": [
+            1260.0,
+            781
+          ],
+          "core_anchor": [
+            1260.0,
+            470.0
+          ],
+          "visual_outlet": [
+            1536,
+            470.0
+          ],
+          "texture": "asset://b09/m06/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M07": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 838,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            450,
+            1024
+          ],
+          "alpha160_bounds": [
+            55,
+            171,
+            321,
+            838
+          ],
+          "foot": [
+            215.5,
+            1009
+          ],
+          "core_anchor": [
+            215.5,
+            590.0
+          ],
+          "visual_outlet": [
+            376,
+            590.0
+          ],
+          "texture": "asset://b09/m07/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            450,
+            0,
+            499,
+            1024
+          ],
+          "alpha160_bounds": [
+            525,
+            15,
+            400,
+            936
+          ],
+          "foot": [
+            725.0,
+            951
+          ],
+          "core_anchor": [
+            725.0,
+            483.0
+          ],
+          "visual_outlet": [
+            925,
+            483.0
+          ],
+          "texture": "asset://b09/m07/poses.png"
+        },
+        "execute": {
+          "region": [
+            949,
+            0,
+            587,
+            1024
+          ],
+          "alpha160_bounds": [
+            975,
+            126,
+            547,
+            841
+          ],
+          "foot": [
+            1248.5,
+            967
+          ],
+          "core_anchor": [
+            1248.5,
+            546.5
+          ],
+          "visual_outlet": [
+            1522,
+            546.5
+          ],
+          "texture": "asset://b09/m07/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M08": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 589,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            507,
+            1024
+          ],
+          "alpha160_bounds": [
+            46,
+            193,
+            428,
+            589
+          ],
+          "foot": [
+            260.0,
+            782
+          ],
+          "core_anchor": [
+            260.0,
+            487.5
+          ],
+          "visual_outlet": [
+            474,
+            487.5
+          ],
+          "texture": "asset://b09/m08/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            507,
+            0,
+            487,
+            1024
+          ],
+          "alpha160_bounds": [
+            541,
+            165,
+            445,
+            627
+          ],
+          "foot": [
+            763.5,
+            792
+          ],
+          "core_anchor": [
+            763.5,
+            478.5
+          ],
+          "visual_outlet": [
+            986,
+            478.5
+          ],
+          "texture": "asset://b09/m08/poses.png"
+        },
+        "execute": {
+          "region": [
+            994,
+            0,
+            542,
+            1024
+          ],
+          "alpha160_bounds": [
+            1004,
+            184,
+            510,
+            616
+          ],
+          "foot": [
+            1259.0,
+            800
+          ],
+          "core_anchor": [
+            1259.0,
+            492.0
+          ],
+          "visual_outlet": [
+            1514,
+            492.0
+          ],
+          "texture": "asset://b09/m08/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M09": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 776,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            505,
+            1024
+          ],
+          "alpha160_bounds": [
+            31,
+            141,
+            451,
+            776
+          ],
+          "foot": [
+            256.5,
+            917
+          ],
+          "core_anchor": [
+            256.5,
+            529.0
+          ],
+          "visual_outlet": [
+            482,
+            529.0
+          ],
+          "texture": "asset://b09/m09/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            505,
+            0,
+            511,
+            1024
+          ],
+          "alpha160_bounds": [
+            530,
+            275,
+            481,
+            623
+          ],
+          "foot": [
+            770.5,
+            898
+          ],
+          "core_anchor": [
+            770.5,
+            586.5
+          ],
+          "visual_outlet": [
+            1011,
+            586.5
+          ],
+          "texture": "asset://b09/m09/poses.png"
+        },
+        "execute": {
+          "region": [
+            1016,
+            0,
+            520,
+            1024
+          ],
+          "alpha160_bounds": [
+            1023,
+            168,
+            497,
+            754
+          ],
+          "foot": [
+            1271.5,
+            922
+          ],
+          "core_anchor": [
+            1271.5,
+            545.0
+          ],
+          "visual_outlet": [
+            1520,
+            545.0
+          ],
+          "texture": "asset://b09/m09/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M10": {
+      "source_size": [
+        1881,
+        836
+      ],
+      "reference_body_height_px": 568,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            594,
+            836
+          ],
+          "alpha160_bounds": [
+            34,
+            113,
+            542,
+            568
+          ],
+          "foot": [
+            305.0,
+            681
+          ],
+          "core_anchor": [
+            305.0,
+            397.0
+          ],
+          "visual_outlet": [
+            576,
+            397.0
+          ],
+          "texture": "asset://b09/m10/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            594,
+            0,
+            587,
+            836
+          ],
+          "alpha160_bounds": [
+            613,
+            103,
+            542,
+            571
+          ],
+          "foot": [
+            884.0,
+            674
+          ],
+          "core_anchor": [
+            884.0,
+            388.5
+          ],
+          "visual_outlet": [
+            1155,
+            388.5
+          ],
+          "texture": "asset://b09/m10/poses.png"
+        },
+        "execute": {
+          "region": [
+            1181,
+            0,
+            700,
+            836
+          ],
+          "alpha160_bounds": [
+            1209,
+            119,
+            659,
+            546
+          ],
+          "foot": [
+            1538.5,
+            665
+          ],
+          "core_anchor": [
+            1538.5,
+            392.0
+          ],
+          "visual_outlet": [
+            1868,
+            392.0
+          ],
+          "texture": "asset://b09/m10/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M11": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 524,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            530,
+            1024
+          ],
+          "alpha160_bounds": [
+            48,
+            273,
+            454,
+            524
+          ],
+          "foot": [
+            275.0,
+            797
+          ],
+          "core_anchor": [
+            275.0,
+            535.0
+          ],
+          "visual_outlet": [
+            502,
+            535.0
+          ],
+          "texture": "asset://b09/m11/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            530,
+            0,
+            477,
+            1024
+          ],
+          "alpha160_bounds": [
+            559,
+            206,
+            386,
+            593
+          ],
+          "foot": [
+            752.0,
+            799
+          ],
+          "core_anchor": [
+            752.0,
+            502.5
+          ],
+          "visual_outlet": [
+            945,
+            502.5
+          ],
+          "texture": "asset://b09/m11/poses.png"
+        },
+        "execute": {
+          "region": [
+            1007,
+            0,
+            529,
+            1024
+          ],
+          "alpha160_bounds": [
+            1071,
+            134,
+            441,
+            670
+          ],
+          "foot": [
+            1291.5,
+            804
+          ],
+          "core_anchor": [
+            1291.5,
+            469.0
+          ],
+          "visual_outlet": [
+            1512,
+            469.0
+          ],
+          "texture": "asset://b09/m11/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M12": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 754,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            517,
+            1024
+          ],
+          "alpha160_bounds": [
+            36,
+            125,
+            453,
+            754
+          ],
+          "foot": [
+            262.5,
+            879
+          ],
+          "core_anchor": [
+            262.5,
+            502.0
+          ],
+          "visual_outlet": [
+            489,
+            502.0
+          ],
+          "texture": "asset://b09/m12/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            517,
+            0,
+            507,
+            1024
+          ],
+          "alpha160_bounds": [
+            547,
+            125,
+            463,
+            695
+          ],
+          "foot": [
+            778.5,
+            820
+          ],
+          "core_anchor": [
+            778.5,
+            472.5
+          ],
+          "visual_outlet": [
+            1010,
+            472.5
+          ],
+          "texture": "asset://b09/m12/poses.png"
+        },
+        "execute": {
+          "region": [
+            1024,
+            0,
+            512,
+            1024
+          ],
+          "alpha160_bounds": [
+            1039,
+            126,
+            465,
+            709
+          ],
+          "foot": [
+            1271.5,
+            835
+          ],
+          "core_anchor": [
+            1271.5,
+            480.5
+          ],
+          "visual_outlet": [
+            1504,
+            480.5
+          ],
+          "texture": "asset://b09/m12/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M13": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 534,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            517,
+            1024
+          ],
+          "alpha160_bounds": [
+            25,
+            288,
+            485,
+            534
+          ],
+          "foot": [
+            267.5,
+            822
+          ],
+          "core_anchor": [
+            267.5,
+            555.0
+          ],
+          "visual_outlet": [
+            510,
+            555.0
+          ],
+          "texture": "asset://b09/m13/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            517,
+            0,
+            496,
+            1024
+          ],
+          "alpha160_bounds": [
+            525,
+            172,
+            479,
+            642
+          ],
+          "foot": [
+            764.5,
+            814
+          ],
+          "core_anchor": [
+            764.5,
+            493.0
+          ],
+          "visual_outlet": [
+            1004,
+            493.0
+          ],
+          "texture": "asset://b09/m13/poses.png"
+        },
+        "execute": {
+          "region": [
+            1013,
+            0,
+            523,
+            1024
+          ],
+          "alpha160_bounds": [
+            1023,
+            305,
+            492,
+            569
+          ],
+          "foot": [
+            1269.0,
+            874
+          ],
+          "core_anchor": [
+            1269.0,
+            589.5
+          ],
+          "visual_outlet": [
+            1515,
+            589.5
+          ],
+          "texture": "asset://b09/m13/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M14": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 878,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            479,
+            1024
+          ],
+          "alpha160_bounds": [
+            58,
+            77,
+            335,
+            878
+          ],
+          "foot": [
+            225.5,
+            955
+          ],
+          "core_anchor": [
+            225.5,
+            516.0
+          ],
+          "visual_outlet": [
+            393,
+            516.0
+          ],
+          "texture": "asset://b09/m14/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            479,
+            0,
+            520,
+            1024
+          ],
+          "alpha160_bounds": [
+            566,
+            93,
+            381,
+            853
+          ],
+          "foot": [
+            756.5,
+            946
+          ],
+          "core_anchor": [
+            756.5,
+            519.5
+          ],
+          "visual_outlet": [
+            947,
+            519.5
+          ],
+          "texture": "asset://b09/m14/poses.png"
+        },
+        "execute": {
+          "region": [
+            999,
+            0,
+            537,
+            1024
+          ],
+          "alpha160_bounds": [
+            1052,
+            30,
+            392,
+            935
+          ],
+          "foot": [
+            1248.0,
+            965
+          ],
+          "core_anchor": [
+            1248.0,
+            497.5
+          ],
+          "visual_outlet": [
+            1444,
+            497.5
+          ],
+          "texture": "asset://b09/m14/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M15": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 671,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            499,
+            1024
+          ],
+          "alpha160_bounds": [
+            47,
+            175,
+            418,
+            671
+          ],
+          "foot": [
+            256.0,
+            846
+          ],
+          "core_anchor": [
+            256.0,
+            510.5
+          ],
+          "visual_outlet": [
+            465,
+            510.5
+          ],
+          "texture": "asset://b09/m15/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            499,
+            0,
+            397,
+            1024
+          ],
+          "alpha160_bounds": [
+            535,
+            227,
+            337,
+            567
+          ],
+          "foot": [
+            703.5,
+            794
+          ],
+          "core_anchor": [
+            703.5,
+            510.5
+          ],
+          "visual_outlet": [
+            872,
+            510.5
+          ],
+          "texture": "asset://b09/m15/poses.png"
+        },
+        "execute": {
+          "region": [
+            896,
+            0,
+            640,
+            1024
+          ],
+          "alpha160_bounds": [
+            921,
+            152,
+            592,
+            719
+          ],
+          "foot": [
+            1217.0,
+            871
+          ],
+          "core_anchor": [
+            1217.0,
+            511.5
+          ],
+          "visual_outlet": [
+            1513,
+            511.5
+          ],
+          "texture": "asset://b09/m15/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M16": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 579,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            508,
+            1024
+          ],
+          "alpha160_bounds": [
+            73,
+            240,
+            395,
+            579
+          ],
+          "foot": [
+            270.5,
+            819
+          ],
+          "core_anchor": [
+            270.5,
+            529.5
+          ],
+          "visual_outlet": [
+            468,
+            529.5
+          ],
+          "texture": "asset://b09/m16/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            508,
+            0,
+            470,
+            1024
+          ],
+          "alpha160_bounds": [
+            549,
+            221,
+            397,
+            598
+          ],
+          "foot": [
+            747.5,
+            819
+          ],
+          "core_anchor": [
+            747.5,
+            520.0
+          ],
+          "visual_outlet": [
+            946,
+            520.0
+          ],
+          "texture": "asset://b09/m16/poses.png"
+        },
+        "execute": {
+          "region": [
+            978,
+            0,
+            558,
+            1024
+          ],
+          "alpha160_bounds": [
+            1011,
+            228,
+            510,
+            591
+          ],
+          "foot": [
+            1266.0,
+            819
+          ],
+          "core_anchor": [
+            1266.0,
+            523.5
+          ],
+          "visual_outlet": [
+            1521,
+            523.5
+          ],
+          "texture": "asset://b09/m16/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M17": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 741,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            466,
+            1024
+          ],
+          "alpha160_bounds": [
+            26,
+            155,
+            389,
+            741
+          ],
+          "foot": [
+            220.5,
+            896
+          ],
+          "core_anchor": [
+            220.5,
+            525.5
+          ],
+          "visual_outlet": [
+            415,
+            525.5
+          ],
+          "texture": "asset://b09/m17/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            466,
+            0,
+            539,
+            1024
+          ],
+          "alpha160_bounds": [
+            518,
+            65,
+            472,
+            822
+          ],
+          "foot": [
+            754.0,
+            887
+          ],
+          "core_anchor": [
+            754.0,
+            476.0
+          ],
+          "visual_outlet": [
+            990,
+            476.0
+          ],
+          "texture": "asset://b09/m17/poses.png"
+        },
+        "execute": {
+          "region": [
+            1005,
+            0,
+            531,
+            1024
+          ],
+          "alpha160_bounds": [
+            1022,
+            191,
+            499,
+            719
+          ],
+          "foot": [
+            1271.5,
+            910
+          ],
+          "core_anchor": [
+            1271.5,
+            550.5
+          ],
+          "visual_outlet": [
+            1521,
+            550.5
+          ],
+          "texture": "asset://b09/m17/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "B09-M18": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 751,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            515,
+            1024
+          ],
+          "alpha160_bounds": [
+            17,
+            102,
+            490,
+            751
+          ],
+          "foot": [
+            262.0,
+            853
+          ],
+          "core_anchor": [
+            262.0,
+            477.5
+          ],
+          "visual_outlet": [
+            507,
+            477.5
+          ],
+          "texture": "asset://b09/m18/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            515,
+            0,
+            495,
+            1024
+          ],
+          "alpha160_bounds": [
+            525,
+            70,
+            468,
+            783
+          ],
+          "foot": [
+            759.0,
+            853
+          ],
+          "core_anchor": [
+            759.0,
+            461.5
+          ],
+          "visual_outlet": [
+            993,
+            461.5
+          ],
+          "texture": "asset://b09/m18/poses.png"
+        },
+        "execute": {
+          "region": [
+            1010,
+            0,
+            526,
+            1024
+          ],
+          "alpha160_bounds": [
+            1029,
+            126,
+            503,
+            802
+          ],
+          "foot": [
+            1280.5,
+            928
+          ],
+          "core_anchor": [
+            1280.5,
+            527.0
+          ],
+          "visual_outlet": [
+            1532,
+            527.0
+          ],
+          "texture": "asset://b09/m18/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    },
+    "BO09": {
+      "source_size": [
+        1536,
+        1024
+      ],
+      "reference_body_height_px": 825,
+      "frames": {
+        "idle": {
+          "region": [
+            0,
+            0,
+            474,
+            1024
+          ],
+          "alpha160_bounds": [
+            11,
+            92,
+            424,
+            825
+          ],
+          "foot": [
+            223.0,
+            917
+          ],
+          "core_anchor": [
+            223.0,
+            504.5
+          ],
+          "visual_outlet": [
+            435,
+            504.5
+          ],
+          "texture": "asset://b09/bo09/poses.png"
+        },
+        "telegraph": {
+          "region": [
+            474,
+            0,
+            558,
+            1024
+          ],
+          "alpha160_bounds": [
+            514,
+            57,
+            494,
+            881
+          ],
+          "foot": [
+            761.0,
+            938
+          ],
+          "core_anchor": [
+            761.0,
+            497.5
+          ],
+          "visual_outlet": [
+            1008,
+            497.5
+          ],
+          "texture": "asset://b09/bo09/poses.png"
+        },
+        "execute": {
+          "region": [
+            1032,
+            0,
+            504,
+            1024
+          ],
+          "alpha160_bounds": [
+            1057,
+            112,
+            471,
+            827
+          ],
+          "foot": [
+            1292.5,
+            939
+          ],
+          "core_anchor": [
+            1292.5,
+            525.5
+          ],
+          "visual_outlet": [
+            1528,
+            525.5
+          ],
+          "texture": "asset://b09/bo09/poses.png"
+        }
+      },
+      "runtime_quality_gate_passed": false
+    }
+  },
+  "registration_method": "Three isolated alpha160 column groups; region cuts at transparent gaps; source pixels unchanged.",
+  "animation_scope": "Three static poses only; walk and recovery reuse idle. Continuous/directional animation not accepted."
+}

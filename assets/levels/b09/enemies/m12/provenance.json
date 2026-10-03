@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. BRAND NEW original game character sheet for B09 Frost Crystal Court. Prism Shaper: floating multi-facet lavender crystal artisan with three floating chisel tools and small detached angular hands, cloak-like plates, no flesh, no feet, unique triangular silhouette. Exactly three separate complete poses of the SAME creature in one horizontal row: idle with chisels, gathering ice between chisels, chisels sculpting a short floating crystal block. 1536x1024 landscape, three equally wide cells, all characters and weapons fit completely in their own cells with generous empty margins, identical character size and feet/ground pivots aligned at 86% height. All face lower-right, high-angle near-isometric 2.5D overhead camera. Bright polished hand-painted cartoon fantasy, crisp thin dark-violet outlines, cyan and lavender transparent ice facets, small champagne-gold trims and warm sunny highlights, strong readable silhouette. Actual transparent alpha background, no glow behind bodies, no colored background, no scenery, no floor, no shadows, no labels, no borders, no text or watermark. Not a fish, insect, plant, or existing character.",
+  "reference_images": [],
+  "sha256": "9ca88a6a95bce71092c995b144e27a082cebd7f4ec579f61df9571d684b2c3be",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte copy; source pixels and alpha unchanged. Runtime uses source regions.",
+  "license": "Project-generated original artwork; no third-party character artwork reused."
+}

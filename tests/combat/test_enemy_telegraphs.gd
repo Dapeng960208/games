@@ -60,7 +60,7 @@ func displayed(actor: EnemyActor) -> Dictionary:
 
 func geometry(data: Dictionary) -> Dictionary:
 	var copy: Dictionary = data.duplicate(true)
-	for key: String in ["progress","release_progress","lock_fraction","duration","locked","phase"]:
+	for key: String in ["progress","release_progress","lock_fraction","duration","remaining","locked","phase"]:
 		copy.erase(key)
 	return copy
 
@@ -68,6 +68,7 @@ func check_layer_and_timing() -> void:
 	fixture()
 	var actor: EnemyActor = enemy("M01")
 	check(room.enemy_telegraphs.z_index==5 and room.enemy_telegraphs.z_index>room.impact_feedback.z_index and room.enemy_telegraphs.z_index>room.enemy_skills.z_index and room.enemy_telegraphs.z_index>actor.z_index, "dedicated tell layer is above actor, contact and released skill layers")
+	check(is_instance_valid(actor.body_visual.skill_badge) and not actor.body_visual.skill_badge.z_as_relative and actor.body_visual.skill_badge.z_index < room.enemy_telegraphs.z_index, "automatic enemy detail cards cannot cover primary danger geometry through their actor layer")
 	room.enemy_telegraphs.refresh()
 	check(room.enemy_telegraphs.snapshot().is_empty(), "emerging actors have no fake attack tells")
 	wait_phase(actor,&"telegraph")

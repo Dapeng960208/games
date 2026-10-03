@@ -39,10 +39,12 @@ const Numerical = preload("res://scripts/infrastructure/content/runtime_rules.gd
 ## and actual paid_cost. Hit/deployment callbacks cannot contribute to this count.
 
 const B10 = preload("res://scripts/levels/b10/combat/equipment_effects.gd")
+const B09 = preload("res://scripts/levels/b09/combat/equipment_effects.gd")
 const B06 = preload("res://scripts/levels/b06/combat/equipment_effects.gd")
 const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
 const ENEMY_STATES: Array[String] = ["burn", "shock", "chill", "corrosion", "bleed", "grievous"]
 const ACTIVE_SLOTS: Array[String] = ["Q", "right", "F", "R"]
+const SKILL_ORIGINS: Array[String] = ["q", "secondary", "f", "ultimate"]
 var clock: float = 0.0
 var equipped: Dictionary = {}
 var instance_loadout: Dictionary = {}
@@ -77,12 +79,12 @@ static func implemented_ids(ruleset: int = 1) -> Array[String]:
 		result.append("EQ%02d" % index)
 	# New templates have no inherited old fixed affixes.
 	if ruleset == 2:
-		for id: String in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03", "B10-U01", "B10-U02", "B10-U03"]: result.append(id)
+		for id: String in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03", "B09-U01", "B09-U02", "B09-U03", "B10-U01", "B10-U02", "B10-U03"]: result.append(id)
 	return result
 
 static func implemented_set_ids(ruleset: int = 1) -> Array[String]:
 	var result: Array[String] = ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14"]
-	if ruleset == 2: result.append_array(["B05-SW", "B05-SG", "B05-SM", "B05-SU", "B06-SW", "B06-SG", "B06-SM", "B06-SU", "B10-SW", "B10-SG", "B10-SM", "B10-SU"])
+	if ruleset == 2: result.append_array(["B05-SW", "B05-SG", "B05-SM", "B05-SU", "B06-SW", "B06-SG", "B06-SM", "B06-SU", "B09-SW", "B09-SG", "B09-SM", "B09-SU", "B10-SW", "B10-SG", "B10-SM", "B10-SU"])
 	return result
 
 func configure(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> void:
@@ -169,11 +171,11 @@ static func loadout_binding(loadout: Dictionary, resolved_stats: Dictionary = {}
 ## so retaining two pieces never keeps a former four/six-piece benefit.
 static func source_active(source: String, binding: Dictionary) -> bool:
 	var id: String = source.trim_prefix("equipment:").trim_prefix("set_").get_slice(":", 0)
-	if id in ["B05-combat", "B06-combat", "B10-combat"]:
+	if id in ["B05-combat", "B06-combat", "B09-combat", "B10-combat"]:
 		for template_id: String in binding.get("equipped", {}):
 			if template_id.begins_with(id.trim_suffix("combat")): return true
 		return false
-	if id.begins_with("EQ") or id in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03", "B10-U01", "B10-U02", "B10-U03"]:
+	if id.begins_with("EQ") or id in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03", "B09-U01", "B09-U02", "B09-U03", "B10-U01", "B10-U02", "B10-U03"]:
 		return bool(binding.get("equipped", {}).get(id, false))
 	var pieces: PackedStringArray = id.split("_")
 	return pieces.size() == 2 and pieces[0] in implemented_set_ids(2) and pieces[1] in ["2", "4", "6"] and int(binding.get("set_counts", {}).get(pieces[0], 0)) >= int(pieces[1])
@@ -213,7 +215,7 @@ func _empty() -> Dictionary:
 		"move_speed_bonus":0.0, "damage_reduction_bonus":0.0,
 		"knockback_scale":1.0, "received_knockback_scale":1.0, "slow_resistance":0.0,
 		"received_displacement_reduction":0.0, "terrain_slow_reduction":0.0, "received_healing_bonus":0.0, "immediate_w_radius_scale":1.0,
-		"chill_duration_bonus":0.0, "cost_reduction":0.0, "resource_restore":0.0,
+		"b09_glide_distance_scale":1.0, "b09_direct_reduction":0.0, "chill_duration_bonus":0.0, "cost_reduction":0.0, "resource_restore":0.0,
 		"resource_type":resource_type, "heal_ratio":0.0, "shield_ratio":0.0,
 		"shield_duration":4.0, "shields":[], "resume_after_statuses":false, "cooldown_refunds":[], "statuses":[],
 		"status_extensions":[], "self_statuses":[], "bonus_hits":[], "triggered":[]}
@@ -228,21 +230,65 @@ func _state(ctx: Dictionary, id: String) -> bool:
 	return id in ctx.get("target_states", [])
 
 func _eligible(ctx: Dictionary) -> bool:
-	return bool(ctx.get("equipment_eligible", false)) and int(ctx.get("proc_depth", 0)) == 0 and str(ctx.get("damage_source", "primary")) in ["primary", "basic", "skill"] and bool(ctx.get("valid_target", true))
+	return bool(ctx.get("equipment_eligible", false)) and bool(ctx.get("original", true)) and not bool(ctx.get("derived", false)) and int(ctx.get("proc_depth", 0)) == 0 and str(ctx.get("damage_source", ctx.get("source", "primary"))) in ["primary", "basic", "skill"] and bool(ctx.get("valid_target", true))
 
 func _basic(ctx: Dictionary) -> bool:
 	return _eligible(ctx) and bool(ctx.get("original_basic", false))
 
 func _paid_spell_cast(ctx: Dictionary) -> bool:
 	var paid_cost := float(ctx.get("paid_cost", 0.0))
-	var original := _eligible(ctx) and not _basic(ctx) and str(ctx.get("damage_source", "")) == "skill"
-	var active_slot := str(ctx.get("slot", "")) in ["q", "secondary", "f", "ultimate"]
-	return original and active_slot and bool(ctx.get("cast_success", false)) and is_finite(paid_cost) and paid_cost > 0.0
+	var original := _eligible(ctx) and not _basic(ctx) and str(ctx.get("damage_source", ctx.get("source", ""))) == "skill"
+	var active_skill := _skill_index(ctx) > 0 if not str(ctx.get("skill_id", "")).is_empty() else str(ctx.get("slot", "")) in SKILL_ORIGINS
+	return original and active_skill and bool(ctx.get("cast_success", false)) and is_finite(paid_cost) and paid_cost > 0.0
+
+## Equipment names a skill identity, never the current input binding.
+func _skill_index(ctx: Dictionary) -> int:
+	var id := str(ctx.get("skill_id", ""))
+	if id.length() != 9 or id.left(4) not in ["CH01", "CH02", "CH03"] or id.substr(4, 3) != "_SK": return 0
+	var index := int(id.right(2))
+	return index if index >= 1 and index <= 12 and id == id.left(4) + "_SK%02d" % index else 0
+
+func skill_origin(ctx: Dictionary) -> String:
+	if not str(ctx.get("skill_id", "")).is_empty():
+		var index := _skill_index(ctx)
+		return SKILL_ORIGINS[index - 1] if index >= 1 and index <= 4 else ""
+	return str(ctx.get("skill_slot", ctx.get("slot", "")))
+
+func canonical_skill_id(ctx: Dictionary, origin: String) -> String:
+	var index := SKILL_ORIGINS.find(origin)
+	var hero := str(ctx.get("hero_id", str(ctx.get("skill_id", "")).left(4)))
+	if hero not in ["CH01", "CH02", "CH03"]:
+		hero = str({"rage":"CH01", "energy":"CH02", "mana":"CH03"}.get(resource_type, ""))
+	return hero + "_SK%02d" % (index + 1) if index >= 0 and not hero.is_empty() else ""
+
+func _berserk(ctx: Dictionary) -> bool:
+	var state: Dictionary = ctx.get("class_state", {})
+	return bool(ctx.get("berserk_active", state.get("berserk_active", false))) or str(state.get("phase", "")) in ["berserk", "frenzy", "fury"]
+
+func _empowered(ctx: Dictionary) -> bool:
+	var state: Dictionary = ctx.get("class_state", {})
+	return bool(ctx.get("empowered_round", false)) or int(ctx.get("empowered_rounds", state.get("empowered_rounds", state.get("empowered_shots_remaining", 0)))) > 0
+
+## Set refunds retain authored budgets and target canonical skill identities.
+func _refund_specific(out: Dictionary, ctx: Dictionary, origin: String, seconds: float, source: String) -> void:
+	var id := canonical_skill_id(ctx, origin)
+	var remaining: Dictionary = ctx.get("remaining_cooldowns", {})
+	var key := id
+	if not remaining.has(key) and str(ctx.get("skill_id", "")).is_empty(): key = str({"q":"Q", "secondary":"right", "f":"F", "ultimate":"R"}.get(origin, origin))
+	var available := maxf(0.0, float(remaining.get(key, 0.0)))
+	for pending: Dictionary in out.cooldown_refunds:
+		if str(pending.get("skill_id", pending.get("slot", ""))) == key: available = maxf(0.0, available - float(pending.get("seconds", 0.0)))
+	var accepted := minf(maxf(0.0, seconds), available)
+	if accepted <= 0.0: return
+	var command := {"seconds":accepted, "source":"equipment", "effect_id":source}
+	command["skill_id" if key == id else "slot"] = key
+	out.cooldown_refunds.append(command)
 
 func _health_ratio(ctx: Dictionary) -> float:
 	return float(ctx.get("hp", 0.0)) / maxf(1.0, float(ctx.get("max_hp", stats.get("max_hp", 1.0))))
 
 func _modifiers(ctx: Dictionary, out: Dictionary) -> void:
+	B09.modifiers(self,ctx,out)
 	B06.modifiers(self, ctx, out)
 	B10.modifiers(self, ctx, out)
 	var shielded: bool = float(ctx.get("shield", 0.0)) > 0.0
@@ -335,6 +381,7 @@ func advance(delta: float, ctx: Dictionary) -> Dictionary:
 		var root: Dictionary = _root("advance:" + str(clock))
 		_refund(out, ctx, root, "EQ22", 8.0, "dash", 0.20)
 	B06.advance(self, delta, ctx, out)
+	B09.advance(self,ctx)
 	B10.advance(self, delta, ctx, out)
 	_b05_advance(ctx, out)
 	_modifiers(ctx, out)
@@ -399,7 +446,7 @@ func _handle(event: String, ctx: Dictionary) -> Dictionary:
 				_shield(out, ctx, 0.02)
 		"damaged": _damaged(ctx, root, out)
 		"class_shield_gain":
-			if Numerical.is_v2(stats) and _has_set("S06", 4) and bool(ctx.get("accepted_refresh", false)) and not bool(ctx.get("equipment", false)) and str(ctx.get("source", "")) in ["hero_passive:three_rivets", "hero_f"] and _activate("S06_4", 6.0, root, out, false):
+			if Numerical.is_v2(stats) and _has_set("S06", 4) and bool(ctx.get("accepted_refresh", false)) and not bool(ctx.get("equipment", false)) and (str(ctx.get("source", "")) == "hero_f" or str(ctx.get("source", "")).begins_with("hero_skill:CH01_SK")) and _activate("S06_4", 6.0, root, out, false):
 				_buff("S06_4", "damage_bonus", 0.20, 4.0)
 		"skill_cast":
 			if float(ctx.get("base_cost", 0.0)) > 0.0 and bool(ctx.get("cast_success", true)) and str(ctx.get("resource_type", resource_type)) == resource_type:
@@ -425,6 +472,7 @@ func _handle(event: String, ctx: Dictionary) -> Dictionary:
 		"kill": _kill(ctx, root, out)
 	_b05_event(event, ctx, root, out)
 	B06.event(self, event, ctx, root, out)
+	B09.event(self,event,ctx,root,out)
 	B10.event(self, event, ctx, root, out)
 	_modifiers(ctx, out)
 	return _cap_modifiers(out)
@@ -658,8 +706,8 @@ func _after_charm(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if _has_set("S04", 6) and _state(ctx, "corrosion"): _bonus(out, ctx, root, "S04_6", 6.0, 0.35, 3, true)
 	if _has_set("S06", 6):
 		if Numerical.is_v2(stats):
-			if bool(ctx.get("full_break_w", false)) and bool(ctx.get("shielded_cast", false)):
-				_bonus(out, ctx, root, "S06_6", 4.0, 0.60, 3, false, "", float(ctx.get("H_skill", ctx.get("H", 0.0))), "physical")
+			if not _basic(ctx) and _berserk(ctx) and bool(ctx.get("shielded_cast", float(ctx.get("shield", 0.0)) > 0.0)):
+				_bonus(out, ctx, root, "S06_6", 4.0, 0.60, 3, false, "", float(ctx.get("base_power", ctx.get("H_skill", ctx.get("H", 0.0)))), "physical")
 		elif bool(root.flags.get("S06_6", false)):
 			_bonus(out, ctx, root, "S06_6", 8.0, 0.40, 3, false)
 	if _has_set("S07", 4) and critical and (_state(ctx, "chill") or _state(ctx, "corrosion")): _refund(out, ctx, root, "S07_4", 2.0, "active", 0.25)
@@ -680,6 +728,7 @@ func _enter_room(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 		clear_b05_temporary()
 		clear_b06_temporary()
 		clear_b10_temporary()
+		B09.clear_temporary(self)
 	if id.is_empty(): return
 	# Reused fixed-room blueprints still become the current room. Retain their
 	# consumed one-time flags instead of replaying entry rewards.
@@ -814,16 +863,21 @@ func _refund(out: Dictionary, ctx: Dictionary, root: Dictionary, id: String, icd
 	var slot: String = "dash" if kind == "dash" else ""
 	var longest: float = float(remaining.get("dash", 0.0)) if kind == "dash" else 0.0
 	if kind == "active":
-		for candidate in ACTIVE_SLOTS:
-			if float(remaining.get(candidate, 0.0)) > longest:
+		var candidates: Array = remaining.keys()
+		candidates.sort()
+		var stable := candidates.any(func(value: Variant) -> bool: return _skill_index({"skill_id":str(value)}) > 0)
+		for candidate: String in candidates:
+			if (_skill_index({"skill_id":candidate}) > 0 if stable else candidate in ACTIVE_SLOTS) and float(remaining.get(candidate, 0.0)) > longest:
 				slot = candidate
 				longest = float(remaining[candidate])
 	for pending: Dictionary in out.cooldown_refunds:
-		if str(pending.slot) == slot:
+		if str(pending.get("skill_id", pending.get("slot", ""))) == slot:
 			longest = maxf(0.0, longest - float(pending.seconds))
 	var accepted: float = maxf(0.0, minf(desired, minf(0.50 - _history_total(refund_history), longest)))
 	if accepted <= 0.0 or not _activate(id, icd, root, out): return
-	out.cooldown_refunds.append({"slot":slot, "seconds":accepted, "source":"equipment"})
+	var command := {"seconds":accepted, "source":"equipment"}
+	command["skill_id" if _skill_index({"skill_id":slot}) > 0 else "slot"] = slot
+	out.cooldown_refunds.append(command)
 	refund_history.append({"time":clock, "amount":accepted})
 
 func _bonus(out: Dictionary, ctx: Dictionary, root: Dictionary, id: String, icd: float, coefficient: float, limit: int, exclude_primary: bool, state: String = "", damage_base: float = -1.0, damage_type: String = "") -> void:
@@ -892,6 +946,9 @@ func b05_control_duration(duration: float, other_reduction: float = 0.0) -> floa
 	var reduction := clampf(other_reduction + (0.20 if _has_set("B05-SU", 2) else 0.0), 0.0, 0.50)
 	return maxf(0.0, duration) * (1.0 - reduction)
 
+func b09_slow_duration(duration: float) -> float:
+	return b05_control_duration(duration,0.20 if Numerical.b09_candidate_enabled() and _has_set("B09-SU",2) else 0.0)
+
 func b05_e_shield(amount: float) -> float:
 	return amount * (1.12 if Numerical.is_v2(stats) and _has_set("B05-SW", 2) else 1.0)
 
@@ -914,12 +971,12 @@ func _b05_advance(ctx: Dictionary, out: Dictionary) -> void:
 
 func _b05_event(event: String, ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if not Numerical.is_v2(stats): return
-	var slot := str(ctx.get("skill_slot", ctx.get("slot", "")))
+	var slot := skill_origin(ctx)
 	var original := _eligible(ctx)
 	if event == "skill_cast" and _paid_spell_cast(ctx) and bool(ctx.get("combat_active", false)):
 		windows["B05-combat"] = clock + 10.0
 	if event == "before_hit" and original:
-		if _has_set("B05-SG", 2) and bool(ctx.get("hunter_marked", false)): out.damage_bonus += 0.08
+		if _has_set("B05-SG", 2) and _empowered(ctx): out.damage_bonus += 0.08
 		if _has_set("B05-SM", 2) and slot == "q": out.damage_bonus += 0.08
 		if _has_set("B05-SW", 6) and slot == "q":
 			if not root.flags.has("B05-SW_6:q"):
@@ -936,7 +993,7 @@ func _b05_event(event: String, ctx: Dictionary, root: Dictionary, out: Dictionar
 		# Commit B05 hit modifiers only after actual health/shield loss, like V2.
 		_b05_event("before_hit", ctx, root, _empty())
 		windows["B05-combat"] = clock + 10.0
-		if _has_set("B05-SG", 4) and slot == "secondary" and bool(ctx.get("hunter_marked", false)) and not bool(root.get("b05_pierced", false)):
+		if _has_set("B05-SG", 4) and slot == "secondary" and _empowered(ctx) and not bool(root.get("b05_pierced", false)):
 			var prior: int = out.bonus_hits.size()
 			_b05_packet(ctx, root, out, "B05-SG_4", 0.0, 0.35, ctx.get("b05_pierce_targets", []), 1, "physical")
 			if out.bonus_hits.size() > prior: root["b05_pierced"] = true
@@ -948,7 +1005,7 @@ func _b05_event(event: String, ctx: Dictionary, root: Dictionary, out: Dictionar
 		if _has_set("B05-SW", 6) and slot == "secondary" and _ready("B05-SW_6"):
 			if _b05_sequence("B05-SW_6", 8.0, 0, 0, false):
 				if _activate("B05-SW_6", 8.0, root, out, false):
-					out.cooldown_refunds.append({"slot":"F", "seconds":minf(1.5, maxf(0.0, float(ctx.get("remaining_cooldowns", {}).get("F", 0.0)))), "source":"equipment"})
+					_refund_specific(out, ctx, "f", 1.5, "B05-SW_6")
 					windows["B05-SW_6:q"] = clock + 6.0
 		if _has_set("B05-SU", 6) and (_basic(ctx) or float(ctx.get("paid_cost", 0.0)) > 0.0) and _ready("B05-SU_6") and _nth("B05-SU_6", 3):
 			if _activate("B05-SU_6", 12.0, root, out):
@@ -961,16 +1018,16 @@ func _b05_event(event: String, ctx: Dictionary, root: Dictionary, out: Dictionar
 	elif event == "skill_cast" and _has_set("B05-SM", 4) and _paid_spell_cast(ctx) and bool(ctx.get("combat_active", false)) and _ready("B05-SM_4"):
 		if bool(root.get("b05_paid_counted", false)): return
 		root["b05_paid_counted"] = true
-		var skill_index := ["q", "secondary", "f", "ultimate"].find(slot) + 1
+		var skill_index := _skill_index(ctx) if not str(ctx.get("skill_id", "")).is_empty() else SKILL_ORIGINS.find(slot) + 1
 		if _b05_sequence("B05-SM_4", 6.0, skill_index, int(ctx.paid_cost), true) and _activate("B05-SM_4", 6.0, root, out, false):
 			out.resource_restore += minf(60.0, maxf(0.0, float(ctx.get("resource_max", 0.0)) - float(ctx.get("resource", 0.0))))
 	elif event == "gunner_q_completed" and _has_set("B05-SG", 6) and float(ctx.get("actual_distance", 0.0)) >= 100.0 and bool(ctx.get("combat_active", false)):
 		if _activate("B05-SG_6", 6.0, root, out, false): windows["B05-SG_6:w"] = clock + 6.0
-	elif event == "mage_w_node_placed" and _has_set("B05-SM", 6) and bool(ctx.get("node_placed", false)) and bool(ctx.get("combat_active", false)):
+	elif event == "skill_released" and canonical_skill_id(ctx, "secondary") == str(ctx.get("skill_id", "")) and resource_type == "mana" and _has_set("B05-SM", 6) and _eligible(ctx) and bool(ctx.get("combat_active", false)):
 		if _activate("B05-SM_6", 8.0, root, out, false):
 			var fixed_power := float(ctx.get("attacker_stats", stats).get("ability_power", 0.0))
 			_prime_b05_budget(ctx, root, fixed_power)
-			out["b05_bloom"] = {"delay":1.0, "radius":110.0, "damage":Numerical.integer(fixed_power * 0.40), "root_event_id":str(ctx.get("root_event_id", ""))}
+			out["b05_bloom"] = {"delay":1.0, "radius":110.0, "damage":Numerical.integer(fixed_power * 0.40), "root_event_id":str(ctx.get("root_event_id", "")), "position":ctx.get("burst_position", ctx.get("target_position", ctx.get("position", Vector2.ZERO)))}
 	elif event == "b05_bloom_due" and _has_set("B05-SM", 6):
 		_b05_packet(ctx, root, out, "B05-SM_6:ring", 0.0, 0.40, ctx.get("b05_bloom_targets", []), 3, "magic", float(ctx.get("bloom_damage", 0.0)), false)
 	elif event == "hostile_hazard":
