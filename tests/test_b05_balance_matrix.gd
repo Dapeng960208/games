@@ -246,17 +246,18 @@ func install() -> void:
 		# this preserves full health, normal guard, AI, counterplay and mechanics.
 		check(boss.configure_boss(room_id,int(config.difficulty),int(config.seed),2,run_ref.enemy_calibration_snapshot),"production Boss configuration accepts the fixed combat seed")
 		check(boss.boss_seed==int(config.seed) and boss.boss_brain._rng.seed==int(config.seed),"private Boss AI seed matches requested seed")
-		if arg("boss-test-candidate","") == "A":
-			check(int(config.difficulty)==4 and int(run_ref.enemy_calibration_snapshot.get("version",0))==15,"candidate A restricted to archive15 D4")
+		if arg("boss-test-candidate","") in ["A","B"]:
+			var boss_candidate := arg("boss-test-candidate","")
+			check(int(config.difficulty)==4 and int(run_ref.enemy_calibration_snapshot.get("version",0))==15,"test candidate restricted to archive15 D4")
 			var baseline_profile: Dictionary = boss.profile.duplicate(true)
 			var candidate_profile: Dictionary = baseline_profile.duplicate(true)
-			var overrides := {"max_hp":177834,"armor":3300,"magic_resist":380,"damage":984}
+			var overrides: Dictionary = {"max_hp":177834,"armor":3300,"magic_resist":380,"damage":984} if boss_candidate == "A" else {"max_hp":183169,"armor":3300,"magic_resist":440,"damage":984}
 			candidate_profile.merge(overrides,true)
 			boss.configure(candidate_profile,{"reward_enabled":false,"actor_kind":"boss","zone_index":-1})
-			config["boss_test_candidate"] = "A"
-			fixture["boss_test_override"]={"candidate_id":"B05-D4-A","test_only":true,"baseline_profile":baseline_profile,"overrides":overrides,"applied_before_physics":true}
-			check(boss.health.maximum==177834 and boss.health.current==177834 and boss.armor==3300 and boss.magic_resist==380 and boss.contact_damage==984,"candidate A real actor fields match declared test profile")
-			check(boss.boss_seed==int(config.seed) and boss.boss_brain._rng.seed==int(config.seed),"candidate A preserves native Boss seed")
+			config["boss_test_candidate"] = boss_candidate
+			fixture["boss_test_override"]={"candidate_id":"B05-D4-"+boss_candidate,"test_only":true,"baseline_profile":baseline_profile,"overrides":overrides,"applied_before_physics":true}
+			check(boss.health.maximum==int(overrides.max_hp) and boss.health.current==int(overrides.max_hp) and boss.armor==int(overrides.armor) and boss.magic_resist==int(overrides.magic_resist) and boss.contact_damage==int(overrides.damage),"test candidate real actor fields match declared test profile")
+			check(boss.boss_seed==int(config.seed) and boss.boss_brain._rng.seed==int(config.seed),"test candidate preserves native Boss seed")
 
 		boss.completed.connect(_boss_completed)
 		boss.phase_changed.connect(_phase_changed)

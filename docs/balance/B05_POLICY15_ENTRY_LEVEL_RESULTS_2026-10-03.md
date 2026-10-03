@@ -33,3 +33,15 @@ D1三职裸装seed1001正常路线均L26死亡：战40.233秒、枪39.983秒、�
 root要求单独试B05 D4 Boss HP177834、护甲3300、魔抗380、攻击984。仅测试入口复制完整profile并覆盖四字段，调用原生Boss.configure，保持真health/brain/phase/seed初始化；开打前核实际health当前/上限、甲/MR/攻击和种子。Boss其余预警、根网、资源与玩家策略不变，无强制等待。protocol/summary/config/fixture均标记候选A，独立证据boss_candidate_a；不得与正式archive15基线混淆。三职首seed在跑，暂无结果。
 
 候选A首seed三职完成：战84.767秒、枪58.967秒、有效法57.350秒，均击败。结束HP88.64%/63.89%/51.46%。真实字段、crit包、源稳定与phase检查均通过；枪和法仍低于60秒，A没有全职业达标，不扩十seed。法师HP预算增大却比基线58.983秒略快，说明需审计根网/阶段/资源/暴击时序，不能仅按血量线性外推。独立原始数值证据evidence/b05_policy15_entry21_boss_candidate_a_v1.json，正式基线仍在combat文件。
+
+## 测试候选B与运行异常
+
+下一组测试入口覆盖B05 D4 HP183169/护甲3300/魔抗440/攻击984，其余同A/同Lv21 G2。生产archive15仍不改。
+
+首场战士run20261003T011726187650Z-2788a820在19.231墙秒提前退出，仅BEGIN，无observations/战斗终局/脚本错误，count0；不计胜负或平衡结果。Godot内部日志也只有BEGIN，旧runner未保存引擎returncode，无法事后确定信号。源码无变化。未反复重试，避免影响用户试玩。
+
+已仅改测试runner增加engine_returncode/engine_signal、子进程峰值RSS及前后meminfo采样，下次执行可进一步定位。01:19只读系统快照约9.97GiB总内存、8.62GiB已用、1.34GiB available、无swap，不能据此确认OOM；cgroup目录不可见且dmesg无读取权限。没有证据将提前退出归因于用户试玩终止。
+
+01:23获准nice+10单次战士B诊断，run20261003T012353911730Z-e02944e4在停止指令到达前已自然退出0。实战88.583秒击败、37条实际Boss命令、125检查0失败；只保留诊断，暂停余下职业。该批前后source同，和A相比只有测试matrix/runner变化；之后显示修复改变project.godot、scripts/combat/mine_backdrop.gd、room.gd，所以不代表最新显示源码。
+
+资源证据：测试子进程峰值RSS1,615,736KiB，开跑前MemAvailable1,449,372KiB、无swap；低CPU优先级不会限制内存，该测试内存需求超过当时可用内存。结束后available约3,150,996KiB。01:25读取/proc/vmstat累计oom_kill=14，无开跑前该计数或受害PID，故不能断言此次被杀进程身份；但已形成明确内存压力风险证据。停止时没有仍在运行的本代理测试，后续不排队、不重载。完整诊断见evidence/b05_policy15_entry21_candidate_b_diagnostic_v1.json。
