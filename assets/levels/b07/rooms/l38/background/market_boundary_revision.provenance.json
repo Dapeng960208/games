@@ -1,0 +1,19 @@
+{
+  "status": "blocked_do_not_integrate",
+  "generation_tool": "built-in image_gen",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-83698886-ffa2-4e74-81a0-a7114742e788.png",
+  "sha256": "c97e5f25f930527bf986f2e7444da925729c14adb990bb3982a59836e75661b3",
+  "size": [
+    1536,
+    1024
+  ],
+  "prompt": "docs/levels/b07/rooms/l38/market_boundary_revision.prompt.txt",
+  "qa": "docs/levels/b07/rooms/l38/painting_source_qa.json",
+  "revision_count": 1,
+  "runtime_registered": false,
+  "formal_acceptance": false,
+  "references": [
+    "artifacts/l38_independent_guide/fixed_floor_mask.png",
+    "assets/levels/b07/rooms/l38/background/market_boundary_candidate.png"
+  ]
+}

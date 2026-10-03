@@ -1,0 +1,167 @@
+{
+  "status": "fixed_geometry_design_preparation_only",
+  "baseline": "854c40b00be0fa49d0633cf04392af63ad7ec14e",
+  "source": "data/levels/b07/content.json#room_geometry.L38",
+  "geometry_sha256": "b633e664e93a556932fe545443e6d3a0cb2f5ebaa9c5b9e6dfcf79f60558fb1d",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "placement_normalized_rect": [
+    0.1,
+    0.12,
+    0.8,
+    0.7714285714285715
+  ],
+  "world_rect": [
+    -203,
+    -162.4,
+    2030,
+    1353.3333333333333
+  ],
+  "mapping": "world = blueprint * .58 = world_rect.position + source_pixel / source_size * world_rect.size",
+  "floor_polygon_pixels": [
+    [
+      228.206,
+      184.32
+    ],
+    [
+      1220.023,
+      184.32
+    ],
+    [
+      1320.96,
+      298.423
+    ],
+    [
+      1320.96,
+      807.497
+    ],
+    [
+      1149.806,
+      868.937
+    ],
+    [
+      373.029,
+      868.937
+    ],
+    [
+      215.04,
+      759.223
+    ],
+    [
+      215.04,
+      311.589
+    ]
+  ],
+  "anchors_pixels": {
+    "entry": [
+      768.0,
+      772.389
+    ],
+    "exit": [
+      768.0,
+      267.703
+    ],
+    "altar": [
+      768.0,
+      377.417
+    ],
+    "L38_mirror_1": [
+      645.12,
+      495.909
+    ],
+    "L38_mirror_2": [
+      890.88,
+      495.909
+    ],
+    "L38_gate_near": [
+      706.56,
+      311.589
+    ],
+    "L38_gate_far": [
+      785.554,
+      272.091
+    ]
+  },
+  "encounters_pixels": [
+    [
+      776.777,
+      684.617
+    ],
+    [
+      789.943,
+      495.909
+    ],
+    [
+      798.72,
+      302.811
+    ]
+  ],
+  "safe_route_width_world": 180,
+  "safe_routes_pixels": [
+    [
+      [
+        768.0,
+        772.389
+      ],
+      [
+        421.303,
+        750.446
+      ],
+      [
+        421.303,
+        294.034
+      ],
+      [
+        768.0,
+        267.703
+      ]
+    ],
+    [
+      [
+        768.0,
+        772.389
+      ],
+      [
+        645.12,
+        495.909
+      ]
+    ],
+    [
+      [
+        768.0,
+        772.389
+      ],
+      [
+        890.88,
+        495.909
+      ]
+    ]
+  ],
+  "covers_pixels": [
+    [
+      513.463,
+      416.914,
+      52.66285714285715,
+      32.91428571428571
+    ],
+    [
+      1127.863,
+      478.354,
+      52.66285714285715,
+      32.91428571428571
+    ]
+  ],
+  "runtime_geometry_change": false,
+  "detail_gate": "No native detail generation until full painting fixed-boundary and anchor QA passes",
+  "camera": "Existing WorldCamera .85, no art-trial offset; eventual integration only, no code change in this design preparation",
+  "art_direction": "明亮手绘卡通奇幻，高机位三分之四斜俯视，2.5D 绿松石集市；边界外布棚和砂岩店铺，边界内同高平整铺地，不烘焙功能物件。",
+  "layering": {
+    "background": "One independently generated complete painting; source pixels must match the fixed floor silhouette before integration",
+    "detail": "Six native repaint tiles only after mother-image approval; L07 source rectangles and feather 16x24, not props or cropped-upscaled substitutes",
+    "gameplay_objects": "Existing B07 runtime mirror, altar, cover and gate nodes share .58 blueprint coordinates; no duplicate static objects",
+    "actors_and_ui": "Reuse existing careers and battle HUD; no new system",
+    "status": "No L38 runtime wiring or geometry authorization in this phase"
+  }
+}

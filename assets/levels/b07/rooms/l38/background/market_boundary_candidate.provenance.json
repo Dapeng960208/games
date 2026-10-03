@@ -1,0 +1,20 @@
+{
+  "status": "blocked_fixed_boundary_mismatch",
+  "generation_tool": "built-in image_gen",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-8101cab4-5f15-4c64-b980-8e540df1684a.png",
+  "sha256": "7ac993f2a9c780b6369fab16d5eeff6c2569bc8faae813f8e694192d1bc24faa",
+  "size": [
+    1536,
+    1024
+  ],
+  "prompt": "docs/levels/b07/rooms/l38/market_painting.prompt.txt",
+  "runtime_registered": false,
+  "observations": [
+    "Style and turquoise bazaar identity present; independent full painting, not modules",
+    "Floor south edge visually around y788 instead of fixed y869; approximately 81 source pixels / 107 world pixels short",
+    "North edge around y145 instead of fixed y184; east edge around x1360 instead of x1321",
+    "Entry around (768,772) sits dangerously close to actual front bevel rather than expected 97px inset",
+    "No six details generated while mother image blocked"
+  ],
+  "formal_acceptance": false
+}

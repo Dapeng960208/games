@@ -1866,6 +1866,10 @@
     "world/rooms_2k/l37/top_right.webp": "res://assets/levels/b07/rooms/l37/detail/top_right.webp",
     "world/rooms_2k/l37/bottom_left.webp": "res://assets/levels/b07/rooms/l37/detail/bottom_left.webp",
     "world/rooms_2k/l37/bottom_middle.webp": "res://assets/levels/b07/rooms/l37/detail/bottom_middle.webp",
-    "world/rooms_2k/l37/bottom_right.webp": "res://assets/levels/b07/rooms/l37/detail/bottom_right.webp"
+    "world/rooms_2k/l37/bottom_right.webp": "res://assets/levels/b07/rooms/l37/detail/bottom_right.webp",
+    "levels/b07/rooms/l38/background/market_boundary_candidate.png": "res://assets/levels/b07/rooms/l38/background/market_boundary_candidate.png",
+    "levels/b07/rooms/l38/background/market_boundary_candidate.provenance.json": "res://assets/levels/b07/rooms/l38/background/market_boundary_candidate.provenance.json",
+    "levels/b07/rooms/l38/background/market_boundary_revision.png": "res://assets/levels/b07/rooms/l38/background/market_boundary_revision.png",
+    "levels/b07/rooms/l38/background/market_boundary_revision.provenance.json": "res://assets/levels/b07/rooms/l38/background/market_boundary_revision.provenance.json"
   }
 }
