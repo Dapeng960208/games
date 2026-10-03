@@ -1,0 +1,54 @@
+{
+  "id": "sandstone_paving_tile",
+  "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sandstone_paving_tile.png",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-8a8b7b64-ed4c-460b-9e0d-91c780133959.png",
+  "sha256": "85eea3d6d9ae2dadd73bb89a23c0ae3afa34cbffeaf055980b7010e9953c61d8",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGB",
+  "candidate_only": true,
+  "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sandstone_paving_tile.prompt.txt",
+  "alpha": {
+    "1": {
+      "bbox": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "content_size": [
+        1254,
+        1254
+      ],
+      "edge_pixels": 5016
+    },
+    "16": {
+      "bbox": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "content_size": [
+        1254,
+        1254
+      ],
+      "edge_pixels": 5016
+    },
+    "128": {
+      "bbox": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "content_size": [
+        1254,
+        1254
+      ],
+      "edge_pixels": 5016
+    }
+  }
+}

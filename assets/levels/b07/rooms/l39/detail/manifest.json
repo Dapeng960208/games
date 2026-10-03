@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "room_id": "L39",
+  "approved": false,
+  "candidate_only": true,
+  "partial": true,
+  "status": "partial_candidate_generation_stopped_by_user",
+  "source_texture": "asset://world/rooms/L39_environment_v1.png",
+  "source_path": "assets/levels/b07/rooms/l39/background/courtyard_boundary_revision.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+  "source_status": "blocked_do_not_integrate",
+  "source_change_requires_reregistration": true,
+  "generation_tool": "built-in image_gen",
+  "representation": "five of six native detail repaints over frozen exact source crop mapping; partial candidate, not enabled",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "required_tile_count": 6,
+  "completed_tile_count": 5,
+  "missing_ids": [
+    "bottom_right"
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L39/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+      "source_crop_sha256": "12b8cfa70e8d907dfae1b687c9d21fdbaa92275155553d1fb5c58a99796c0acb",
+      "native_size": [
+        1244,
+        1265
+      ],
+      "native_density": [
+        2.3923076923076922,
+        2.3958333333333335
+      ],
+      "generated_png_sha256": "5f558f36972aa84d401d15480589a0ec1dc2434160f4a85e9ca7217d971a8ada",
+      "decoded_rgb_sha256": "f7b8739ccd23793328272783b064a554c0c7eca94a59e3174599480c60d98268",
+      "webp_sha256": "1829caef90f1902fb240be7758ba468d71376fa101ce101b81d0cc763238039f",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: L39 top_left native-density game environment detail tile.\nInput image 1 is the EXACT EDIT TARGET: an exact 520x528 crop of the frozen full map. Repaint this entire crop at 1536x1536 requested native output resolution, minimum 1264 pixels each axis. Preserve the input's full framing: do not crop, zoom, expand, or reposition the camera. Native high-density newly painted material detail is required, not a simple enlargement.\nCRITICAL LOCK: every object, silhouette, contour, paving slab seam, dragon relief, stone pillar, orange awning, sun banner, plant, pot, and shadow must stay at IDENTICAL NORMALIZED COORDINATES. The left wall, vertical golden floor border, turquoise inlays, and curved floor motifs must meet all four image edges at the identical normalized locations and angles. Preserve every partial object cut by an edge; do not complete it. Do not add, remove, resize, rearrange, straighten, or simplify objects. Preserve exact top-down/isometric geometry and relative scale.\nOnly enrich fine surface details inside the existing forms: delicate sandstone grains and worn chips, sharp shallow engraved borders, subtle fabric weave, tiny leaf veins and fine ceramic/timber texture where already present. Match the original bright hand-painted cartoon fantasy style, sun-warmed gold sandstone, muted turquoise inlay, orange cloth, and rich green plants. Keep the exact exposure, color balance, lighting direction and broad contrast. Keep broad plain paving readable and uncluttered. No characters, UI, labels, letters, watermark, new props, new highlights or redesigned patterns. This tile will be registered against neighboring crop tiles, so geometry and edge continuity are more important than creative changes.",
+      "prompt_file": "docs/levels/b07/rooms/l39/detail_top_left.prompt.txt",
+      "prompt_sha256": "8b70a8d9fe7cf51114fe6cdfc42552bd7e9f78f5bb66a7512030fd299083a537",
+      "image_qa": {
+        "input_viewed": true,
+        "output_viewed": true,
+        "visual_note": "Reference crop and actual generated output visually inspected. Dragon reliefs, awnings, sun banners, vertical courtyard border and inlaid floor ribbons remain compositionally recognizable in matching regions; fine surface material is clearer. Exact normalized/pixel edge alignment has not been established.",
+        "seam_reviewed": false,
+        "pixel_boundary_alignment_verified": false,
+        "runtime_validated": false
+      },
+      "native_source_path": "assets/levels/b07/rooms/l39/detail/source/top_left.png",
+      "original_generation_output_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-0b5713f9-290d-4ffd-b102-4d425b91bd70.png"
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L39/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+      "source_crop_sha256": "056307fb74d908a03c9f5c596d4a9c9cd68102bb607f8b9da8dfa637247359c0",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "native_density": [
+        2.375,
+        2.375
+      ],
+      "generated_png_sha256": "58dc2bffa4a3f7a537eac7dd16ef4dd9f1cbb1d03e5b815714d62da77e1b15e9",
+      "decoded_rgb_sha256": "8375b31e97afbc7e1878787c814102f1605b1568a1779f28b4181dd813a83152",
+      "webp_sha256": "64c1bff68cca2f97fe7f480576778aeda9871e9456ae2e9fdd6be4c9003cbc57",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: L39 top_middle native-density game environment detail tile.\nInput image 1 is the EXACT EDIT TARGET, an exact 528x528 crop of the frozen full map. Repaint the complete identical crop at 1536x1536 requested native resolution, minimum 1264 pixels per axis. Create genuinely finer painted materials at native density, never merely enlarge the low-resolution crop.\nLOCKED composition: retain identical normalized positions and sizes of all arches, three pillars, shelves, books, jars, pots, plants, steps, every paving joint, turquoise star inlay, orange floor ribbon and lower central sun medallion. Preserve the partially clipped features at all four edges exactly, and do not complete them. Preserve the exact sun medallion center around x=0.50,y=0.78 and the exact curves entering each border. Keep top-down near-isometric projection and all existing perspectives unchanged. No camera movement, zoom, crop, reframe, extension, geometry changes or redesigned motifs.\nOnly restore subtle fine sandstone grain and hairline chips within existing slabs, delicate carved surface texture on columns, existing leaves' veins and tiny wood/fabric/ceramic details inside their present silhouettes. Maintain the original clean bright hand-painted cartoon fantasy look with golden sandstone, muted turquoise inlays, orange cloth and green plants. Match exposure, palette, lighting direction, shadow shapes and broad contrast exactly. Do not introduce gritty dark outlines, glossy highlights, extra floor cracks, extra objects, text, characters, UI, labels or watermark. The result will align with neighboring crop tiles; border and normalized geometry fidelity take priority.",
+      "prompt_file": "docs/levels/b07/rooms/l39/detail_top_middle.prompt.txt",
+      "prompt_sha256": "d38bfd39727cb4d943fe8bd7442b6091411e960c1802c0ae877b2157802cf195",
+      "image_qa": {
+        "input_viewed": true,
+        "output_viewed": true,
+        "visual_note": "Reference crop and actual generated output visually inspected. Two library arches, three columns, steps, paving pattern and lower sun medallion retain overall framing. Sharper tile joints and fine material variation are visible; exact feature and seam alignment remains unverified.",
+        "seam_reviewed": false,
+        "pixel_boundary_alignment_verified": false,
+        "runtime_validated": false
+      },
+      "native_source_path": "assets/levels/b07/rooms/l39/detail/source/top_middle.png",
+      "original_generation_output_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-70e5ce15-df25-40cd-9cc9-49661c5861fc.png"
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L39/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+      "source_crop_sha256": "8230b51f295cf75c6ad69ee21ebb440bd91b92c242c7a6c6e081811ef9150033",
+      "native_size": [
+        1241,
+        1268
+      ],
+      "native_density": [
+        2.3865384615384615,
+        2.4015151515151514
+      ],
+      "generated_png_sha256": "c21ba51f4118476cf4548cbf2b3f3c06b3b45838cc631f093baef038e23ef53b",
+      "decoded_rgb_sha256": "63e076a3d66f879cb1f39ad4b70603b1b6ee33fc5537a512a35414ee79a3d8e1",
+      "webp_sha256": "2646f0ec2078e6a9490622aab1939a4a4b53724babe53989761a41c1442e83b9",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: L39 top_right native-density game environment detail tile.\nInput image 1 is the EXACT EDIT TARGET, an exact 520x528 crop of the frozen full map. Repaint the complete identical crop at 1536x1536 requested native resolution, minimum 1264 pixels each axis. Add genuinely native high-density painted surface detail, not a simple resized crop.\nComposition LOCK: all stone pillars, arches, orange sun banners and awning, dragon-head reliefs, palms, pots, cliff edges, vertical courtyard border, paving joints, floor ribbons, star inlays and shadows stay at IDENTICAL NORMALIZED coordinates, sizes and angles. Preserve the precise vertical ground-wall boundary near x=0.62 and its termination at the bottom edge. Preserve clipped dragon relief at lower right, partial upper left banner, clipped floor motifs, every cut-off feature and every border crossing in its current location. No camera move, reframe, zoom, crop, extension, new geometry, added objects, removed objects, redesigned motifs or completed edge objects.\nOnly add delicate sandstone grain, subtle tiny weathering chips within existing forms, fine shallow decorative engraving, fine fabric weave, leaf veins, and small wood or ceramic texture where those materials exist. Match the original bright clean hand-painted cartoon fantasy style; warm golden sandstone, muted turquoise, orange cloth, green palms. Keep exactly the same exposure, palette, lighting direction, shadow footprints and broad contrast. Keep paving light and readable. No stronger outlines, gritty texture, glossy highlights, characters, UI, text, labels or watermark. Neighboring tiles share these edges, so spatial fidelity and material consistency are mandatory.",
+      "prompt_file": "docs/levels/b07/rooms/l39/detail_top_right.prompt.txt",
+      "prompt_sha256": "64658b4d19a84ffc2a0412872f84ab10672955fee47b43f6487ae6a9db15393b",
+      "image_qa": {
+        "input_viewed": true,
+        "output_viewed": true,
+        "visual_note": "Reference crop and actual generated output visually inspected. Dragon relief, orange canopy and banners, cliff, plants and vertical courtyard border retain overall framing. Sharper stone grain and fabric are visible; fine silhouette, floor-joint and shadow differences need registration review.",
+        "seam_reviewed": false,
+        "pixel_boundary_alignment_verified": false,
+        "runtime_validated": false
+      },
+      "native_source_path": "assets/levels/b07/rooms/l39/detail/source/top_right.png",
+      "original_generation_output_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7d8acdea-4c07-42f4-8805-e394a8f46749.png"
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L39/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+      "source_crop_sha256": "f72d2122de17c81bcda295c10ebe7dbf2496cbc19cd33b07e15cde4fc8b0595b",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "native_density": [
+        2.4115384615384614,
+        2.4115384615384614
+      ],
+      "generated_png_sha256": "5b5e0a21479778eeaa0a8c63bf9dbbd1dfa1aa5a3c68952875c5b3f6b7ab0b47",
+      "decoded_rgb_sha256": "1722b4e870d4b310f709fbb6eb050d8e2ed3dc84d87f9f4930c27cfffe1348c5",
+      "webp_sha256": "44145ac347a7aa7c69a7a907ac8a02e1a8e69df7afbf4309f5d7c47f766afc20",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: L39 bottom_left native-density game environment detail tile.\nInput image 1 is the EXACT EDIT TARGET: an exact 520x520 crop of the frozen full map. Repaint the entire identical crop at 1536x1536 requested native resolution, minimum 1264 pixels each axis. Provide newly painted fine material definition at native density, not a resized crop.\nPreserve the entire image framing and all normalized coordinates exactly. LOCK every sandstone block silhouette, left orange awning, pillars with turquoise bands, gold finials, palms, flower pots, central stair-like wall forms, foreground masonry, vertical left courtyard edge and lower horizontal courtyard edge. Each paving joint, inlaid turquoise star and curving orange floor ribbon must remain where it is. The floor occupies exactly the same upper-right area. Preserve the existing mild foreground softness, scale and depth; do not magnify, sharpen into a new style or redraw geometry. Keep every edge-clipped object truncated in precisely the same place. No zoom, camera move, crop, extension, added or removed objects.\nEnhance only subtle existing surface details: sandstone grain, tiny worn chips inside existing edges, fine turquoise stone and bronze engraving, cloth weave and delicate leaf veins. Maintain original bright hand-painted cartoon fantasy art, golden sandstone, orange-red cloth, muted turquoise and rich green palms. Lock exposure, color balance, broad contrast, sunlight direction and exact shadow shapes. Do not add clutter, stronger dark outlines, gritty noise, new cracks, extra highlights, characters, letters, labels, UI or watermark. Geometry and edge continuity with neighboring tiles are mandatory.",
+      "prompt_file": "docs/levels/b07/rooms/l39/detail_bottom_left.prompt.txt",
+      "prompt_sha256": "34e38b6495f90924ab19e91419714fcc577ab94e3828dd8446faeb9f129e592d",
+      "image_qa": {
+        "input_viewed": true,
+        "output_viewed": true,
+        "visual_note": "Reference crop and actual generated output visually inspected. Courtyard corner, canopy, finials, palms and foreground wall retain overall arrangement and existing foreground softness. Fine texture is increased. Exact edge correspondence and neighboring overlap were not checked.",
+        "seam_reviewed": false,
+        "pixel_boundary_alignment_verified": false,
+        "runtime_validated": false
+      },
+      "native_source_path": "assets/levels/b07/rooms/l39/detail/source/bottom_left.png",
+      "original_generation_output_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-f16d1fe2-dd5b-4416-a412-2ab1b0bd6cc5.png"
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L39/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+      "source_crop_sha256": "8c3a641b0a2ba00fff48dccb3ad996727cbf400929dc77d07598d596bd172087",
+      "native_size": [
+        1264,
+        1244
+      ],
+      "native_density": [
+        2.393939393939394,
+        2.3923076923076922
+      ],
+      "generated_png_sha256": "e84e6edbbd16806c84a8d8fbc7996c0a9402f95214cdf4a58ad53dcbc15e1598",
+      "decoded_rgb_sha256": "9fb7a1eb4b3cd28ee142b0059c8061cd2791e3265416658a219fbd0c8929ef61",
+      "webp_sha256": "994dacdcea7eea9b167f77e374ef8dba5312b5b825b0654677e164c7854f74ce",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: L39 bottom_middle native-density game environment detail tile.\nInput image 1 is the EXACT EDIT TARGET, an exact 528x520 crop of the frozen map. Repaint this whole unchanged crop at 1536x1536 requested native resolution, minimum 1264 pixels each axis. New fine painted texture at native density is required, not a simple upscale.\nLOCK exact normalized geometry: light paving occupies the top 65 percent; the straight horizontal courtyard parapet begins at the same y=0.65; the central bronze crest, turquoise frieze, two stone pillars, two orange sun banners, central doorway, arch and cropped side palms retain IDENTICAL relative positions, outlines, sizes and perspective. Preserve every paving seam, turquoise star, tiny chip, and clipped orange floor ribbon where it is. Keep all four border crossings precisely positioned; leave clipped objects clipped. No zoom, crop, expansion, camera change, lens change, shifted stones, added or missing objects, or redesigned patterns.\nAdd only subtle material fidelity within existing silhouettes: fine sandstone grain and gentle surface wear, tiny engraved stone detail, fine bronze and turquoise texture, understated cloth weave and existing leaf veins. Preserve the clean bright hand-painted cartoon fantasy style, warm gold sandstone, muted turquoise, orange banners and green palms. Match exposure, palette, broad contrast, sunlight direction and shadow footprints. Keep the open floor clear and legible. No gritty or dark outlines, excessive sharpening, extra cracks, new decor, glossy highlights, characters, letters, labels, interface or watermark. Registration against neighboring crops is required, so border/geometry fidelity takes precedence over creative changes.",
+      "prompt_file": "docs/levels/b07/rooms/l39/detail_bottom_middle.prompt.txt",
+      "prompt_sha256": "312400daafd00aefbabd78f35d194a9d1db21bf5b11ff39b5dadcb9efc145068",
+      "image_qa": {
+        "input_viewed": true,
+        "output_viewed": true,
+        "visual_note": "Reference crop and actual generated output visually inspected. Courtyard parapet, central crest and doorway, side columns and banners retain overall composition; paving and sandstone details are clearer. Exact floor joints, edge correspondence and neighboring overlap were not checked.",
+        "seam_reviewed": false,
+        "pixel_boundary_alignment_verified": false,
+        "runtime_validated": false
+      },
+      "native_source_path": "assets/levels/b07/rooms/l39/detail/source/bottom_middle.png",
+      "original_generation_output_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-79510984-726e-485b-8dca-bbf250244aeb.png"
+    }
+  ],
+  "qa": {
+    "date": "2026-10-03",
+    "reference_crops_viewed": [
+      "top_left",
+      "top_middle",
+      "top_right",
+      "bottom_left",
+      "bottom_middle"
+    ],
+    "generated_outputs_viewed": [
+      "top_left",
+      "top_middle",
+      "top_right",
+      "bottom_left",
+      "bottom_middle"
+    ],
+    "visual_review": "Individual input crops and actual generated outputs inspected only. Full mosaic, overlap-strip and runtime checks were not performed before the user stopped B07 development and art generation. No pixel-boundary, no-seam or runtime acceptance is claimed.",
+    "offline_mosaic_reviewed": false,
+    "overlap_strips_reviewed": false,
+    "pixel_boundary_alignment_verified": false,
+    "runtime_validated": false,
+    "approved": false,
+    "no_art_pixel_postprocessing": true,
+    "runtime_registered": false,
+    "source_pngs_preserved_in_assets": true
+  }
+}

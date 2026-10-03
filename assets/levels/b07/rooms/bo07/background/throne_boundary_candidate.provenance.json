@@ -1,0 +1,17 @@
+{
+  "generation_tool": "built-in image_gen",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-1d152ff7-c640-44c1-8872-160ee31bd8f9.png",
+  "sha256": "0ea46a73578a2ac1681e70572529ca442fa90dc4a545244544b22d7fb9684574",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "original_bytes_preserved": true,
+  "pixel_processing": "none",
+  "prompt": "docs/levels/b07/rooms/bo07/throne_painting.prompt.txt",
+  "qa": "docs/levels/b07/rooms/bo07/painting_source_qa.json",
+  "status": "blocked_fixed_boundary_and_front_stair",
+  "formal_acceptance": false,
+  "runtime_registered": false
+}

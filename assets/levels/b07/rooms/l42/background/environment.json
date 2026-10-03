@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "biome_id": "B07",
+  "room_id": "L42",
+  "name": "方尖碑广场独立完整母图候选",
+  "candidate_only": true,
+  "runtime_eligible": false,
+  "runtime_integrated": false,
+  "formal_acceptance": false,
+  "qa_status": "blocked_fixed_floor_boundary_mismatch",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "c629b8452bfa2cd760f717e275aed25cc4441fb7e2f3fcb374b9e6b55369103d",
+  "source_path": "assets/levels/b07/rooms/l42/background/environment.png",
+  "placement_normalized_rect": [
+    0.1,
+    0.12,
+    0.8,
+    0.7714285714285715
+  ],
+  "world_rect": [
+    -203,
+    -162.4,
+    2030,
+    1353.3333333333333
+  ],
+  "fixed_design_walkable_normalized_polygon": [
+    [
+      0.14285714285714285,
+      0.3
+    ],
+    [
+      0.22285714285714286,
+      0.17142857142857143
+    ],
+    [
+      0.7914285714285715,
+      0.17142857142857143
+    ],
+    [
+      0.8657142857142858,
+      0.26999999999999996
+    ],
+    [
+      0.8657142857142858,
+      0.7457142857142857
+    ],
+    [
+      0.7742857142857144,
+      0.8442857142857142
+    ],
+    [
+      0.23142857142857143,
+      0.8442857142857142
+    ],
+    [
+      0.14285714285714285,
+      0.7371428571428571
+    ]
+  ],
+  "anchors_normalized": {
+    "entry": [
+      0.19714285714285715,
+      0.5057142857142857
+    ],
+    "exit": [
+      0.7828571428571428,
+      0.28285714285714286
+    ],
+    "altar": [
+      0.612,
+      0.38999999999999996
+    ],
+    "L42_mirror_1": [
+      0.276,
+      0.33599999999999997
+    ],
+    "L42_mirror_2": [
+      0.7159999999999999,
+      0.29742857142857143
+    ],
+    "L42_mirror_3": [
+      0.292,
+      0.6599999999999999
+    ],
+    "L42_mirror_4": [
+      0.7319999999999999,
+      0.6599999999999999
+    ],
+    "L42_gate_near": [
+      0.7428571428571429,
+      0.3257142857142857
+    ],
+    "L42_gate_far": [
+      0.7942857142857142,
+      0.2657142857142857
+    ]
+  },
+  "collision": "none; existing fixed room geometry and runtime covers/interactive objects remain authoritative",
+  "geometry_changed": false,
+  "floor_registration_source": "docs/levels/b07/rooms/l42/painting_design_contract.json",
+  "pixel_qa": "docs/levels/b07/rooms/l42/source_pixel_qa.json",
+  "generation_provenance": "boundary_revision_candidate.provenance.json",
+  "detail_source_frozen": true,
+  "detail_generation_required": true,
+  "detail_generation_paused": true,
+  "stop_reason": "Latest user instruction stopped all B07 code development and art generation; no detail generation was started for L42.",
+  "notes": [
+    "One initial generation plus one directed edit; generation limit reached.",
+    "All generated pixels preserved. environment.png is byte-identical to selected original output.",
+    "No shared manifest, code, geometry or runtime state changed. No Godot run.",
+    "Use as six-detail source only until fixed boundary mismatch receives an explicitly authorized resolution."
+  ]
+}

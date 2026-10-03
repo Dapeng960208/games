@@ -1,0 +1,9 @@
+{
+  "generation_tool": "built-in image_gen",
+  "selected_source": "boundary_revision_candidate.png",
+  "prompt_file": "docs/levels/b07/rooms/l42/independent_painting_boundary_revision.prompt.txt",
+  "original_prompt_file": "docs/levels/b07/rooms/l42/independent_painting.prompt.txt",
+  "unchanged_generated_pixels": true,
+  "source_sha256": "c629b8452bfa2cd760f717e275aed25cc4441fb7e2f3fcb374b9e6b55369103d",
+  "acceptance": "Frozen source for user-required six native details. Fixed boundary alignment remains blocked. No geometry or runtime changes."
+}

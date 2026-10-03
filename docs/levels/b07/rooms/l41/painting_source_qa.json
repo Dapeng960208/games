@@ -1,0 +1,65 @@
+{
+  "status": "blocked_fixed_boundary_mismatch_after_one_revision",
+  "formal_acceptance": false,
+  "runtime_changes": false,
+  "detail_tiles": 0,
+  "size": [
+    1536,
+    1024
+  ],
+  "trace_uncertainty_source_px": 8,
+  "manual_painted_floor_trace_pixels": [
+    [
+      225,
+      291
+    ],
+    [
+      407,
+      157
+    ],
+    [
+      1128,
+      157
+    ],
+    [
+      1305,
+      291
+    ],
+    [
+      1342,
+      742
+    ],
+    [
+      1202,
+      868
+    ],
+    [
+      334,
+      868
+    ],
+    [
+      192,
+      739
+    ]
+  ],
+  "trace_purpose": "read-only source QA, not runtime geometry",
+  "approx_area_change_percent": -1.6486403849097941,
+  "anchor_clearance_world": {
+    "entry": 120.56145833333335,
+    "exit": 140.50651041666663,
+    "altar": 372.5065104166667,
+    "L41_mirror_1": 401.438429061808,
+    "L41_mirror_2": 396.2147782061188,
+    "L41_gate_near": 198.50651041666666,
+    "L41_gate_far": 117.30651041666665
+  },
+  "safe_route_min_clearance_world": 120.56145833333335,
+  "observations": [
+    "One targeted edit materially extended front paving from~797 to~868px and moved north edge from~210 to~157px",
+    "All real gameplay anchors appear on flat paving and estimated 180-world safe corridors retain clearance",
+    "Upper polygon corners shifted horizontally: observed(407,157)/(1128,157), fixed(342.31,171.15)/(1189.30,171.15); discrepancies~60px not just stone bevel",
+    "Side edges lean; lower corners observed at y739-742 versus fixed772-781. Fixed outer contour crosses nonwalkable facade locally",
+    "Two candidates retained. No repeated third attempt, no native details, no geometry edit"
+  ],
+  "next_scope": "Potential room-specific boundary approval may preserve gameplay anchors/safe routes; requires exact trace and navigation tests before any integration. This QA is not permission."
+}

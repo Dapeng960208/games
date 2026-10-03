@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M14",
+  "action": "blade_arc",
+  "variant": "blade_arc",
+  "category": "effect_or_prop",
+  "selected": false,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc/candidate.png",
+  "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc/prompt.txt",
+  "source_filename": "exec-46e0ca30-b9d8-4a0d-ad05-b08bb302c1ee.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-46e0ca30-b9d8-4a0d-ad05-b08bb302c1ee.png",
+  "source_sha256": "d1082ed6a705f1206de0ee2267a7abca9b0db32933778ab4bd205580caea50ed",
+  "png_sha256": "d1082ed6a705f1206de0ee2267a7abca9b0db32933778ab4bd205580caea50ed",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m14/idle_candidate.png",
+  "identity_reference_sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1312,
+      1199
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1243118,
+    "alpha_zero_fraction": 0.7902405968388291,
+    "low_alpha_1_15_pixel_count": 81028,
+    "opaque_pixel_count": 59,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        57,
+        21,
+        1246,
+        1161
+      ],
+      "bounds_xywh": [
+        57,
+        21,
+        1189,
+        1140
+      ],
+      "effective_pixel_count": 329970,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        57,
+        21,
+        66,
+        38
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        92,
+        137,
+        1210,
+        1102
+      ],
+      "bounds_xywh": [
+        92,
+        137,
+        1118,
+        965
+      ],
+      "effective_pixel_count": 248942,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        92,
+        137,
+        102,
+        97
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        93,
+        138,
+        1183,
+        1097
+      ],
+      "bounds_xywh": [
+        93,
+        138,
+        1090,
+        959
+      ],
+      "effective_pixel_count": 171049,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        93,
+        138,
+        129,
+        102
+      ]
+    },
+    "visual_review": "Initial generated variant inspected and retained as source history; see selected corrective variant."
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: ONE standalone transparent game skill-effect or physical-prop candidate, not a sprite sheet. Painterly crisp 2.5D fantasy art matching the provided identity reference's warm copper-gold, sandstone ivory, vermilion and turquoise palette, warm upper-left lighting, elevated game view. Reference is STYLE/MATERIAL/EQUIPMENT ONLY. NO character, body, hands, creature, room, floor, environment, ground plate, cast shadow, text, labels or interface. Genuine transparent alpha background. Entire requested asset inside central 75% of canvas with generous empty alpha=0 margins, all tips visible, do not crop. One isolated object/effect only; design candidate, not a programmed hit area.\nASSET m14/blade_arc: ONE short warm copper-gold crescent slash arc sliver produced by one twin-blade cut. Thin pointed ends, bright but restrained amber core with short soft transparent falloff. Directional curved segment roughly 60 degrees, not a full ring, not two/three arcs and not a weapon itself. NO sparks, no hit burst, no ghost weapon; third beat is harmless and must not be depicted."
+}

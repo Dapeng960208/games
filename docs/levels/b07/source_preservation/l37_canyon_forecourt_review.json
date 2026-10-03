@@ -1,0 +1,462 @@
+{
+  "schema_version": 1,
+  "room_id": "L37",
+  "status": "composition_proof_only_not_runtime_approved",
+  "created_utc": "2026-10-03T04:14:50Z",
+  "concept": "Canyon Gate Forecourt",
+  "parent_approved_visual_bounds_blueprint": [
+    -900,
+    -800,
+    4600,
+    3000
+  ],
+  "world_scale": 0.58,
+  "visual_bounds_world": [
+    -522,
+    -464,
+    2668,
+    1740
+  ],
+  "source_geometry": {
+    "version": 1,
+    "room_id": "L37",
+    "biome_id": "B07",
+    "name": "晒鳞城门",
+    "name_en": "Sunscale Gate",
+    "coordinate_unit": "blueprint_pixel",
+    "world_scale": 0.58,
+    "entry": [
+      320,
+      900
+    ],
+    "exit": [
+      2480,
+      900
+    ],
+    "main_route": [
+      [
+        320,
+        900
+      ],
+      [
+        570,
+        1370
+      ],
+      [
+        2220,
+        1370
+      ],
+      [
+        2480,
+        900
+      ]
+    ],
+    "safe_routes": [
+      [
+        [
+          320,
+          900
+        ],
+        [
+          570,
+          1370
+        ],
+        [
+          2220,
+          1370
+        ],
+        [
+          2480,
+          900
+        ]
+      ],
+      [
+        [
+          320,
+          900
+        ],
+        [
+          980,
+          630
+        ]
+      ]
+    ],
+    "safe_route_width": 180,
+    "walkable_polygon": [
+      [
+        120,
+        220
+      ],
+      [
+        650,
+        100
+      ],
+      [
+        2460,
+        100
+      ],
+      [
+        2700,
+        330
+      ],
+      [
+        2700,
+        1510
+      ],
+      [
+        2400,
+        1700
+      ],
+      [
+        410,
+        1700
+      ],
+      [
+        120,
+        1470
+      ]
+    ],
+    "encounter_anchors": [
+      [
+        800,
+        1050
+      ],
+      [
+        1440,
+        900
+      ],
+      [
+        2200,
+        850
+      ]
+    ],
+    "mirrors": [
+      {
+        "id": "L37_mirror_1",
+        "position": [
+          980,
+          630
+        ],
+        "initial_state": 0,
+        "interaction_seconds": 0.6,
+        "interaction_safe_radius": 90,
+        "states": [
+          {
+            "direction_id": "reveal_west",
+            "label": "西侧显形",
+            "label_en": "Reveal west",
+            "path": [
+              [
+                980,
+                630
+              ],
+              [
+                580,
+                390
+              ]
+            ],
+            "targets": [
+              "reveal_west"
+            ]
+          },
+          {
+            "direction_id": "sun_altar",
+            "label": "引光祭坛",
+            "label_en": "Light the altar",
+            "path": [
+              [
+                980,
+                630
+              ],
+              [
+                1904,
+                630
+              ]
+            ],
+            "targets": [
+              "L37_sun_altar"
+            ]
+          },
+          {
+            "direction_id": "reveal_east",
+            "label": "东侧显形",
+            "label_en": "Reveal east",
+            "path": [
+              [
+                980,
+                630
+              ],
+              [
+                1380,
+                870
+              ]
+            ],
+            "targets": [
+              "reveal_east"
+            ]
+          }
+        ]
+      }
+    ],
+    "altar": {
+      "id": "L37_sun_altar",
+      "position": [
+        1904,
+        630
+      ]
+    },
+    "required_mirrors": 1,
+    "manual_gates": [
+      {
+        "id": "L37_gate_near",
+        "position": [
+          2340,
+          1000
+        ],
+        "side": "near"
+      },
+      {
+        "id": "L37_gate_far",
+        "position": [
+          2520,
+          860
+        ],
+        "side": "far"
+      }
+    ],
+    "stone_covers": [
+      {
+        "id": "L37_cover_1",
+        "rect": [
+          1420,
+          660,
+          120,
+          70
+        ],
+        "kind": "low_stone"
+      },
+      {
+        "id": "L37_cover_2",
+        "rect": [
+          2160,
+          650,
+          110,
+          70
+        ],
+        "kind": "low_stone"
+      }
+    ],
+    "puzzle_beam_player_damage": 0,
+    "persistent_damage_exclusion_radius": 90,
+    "formal_art_status": "not_included"
+  },
+  "authoritative_user_reference": {
+    "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+    "library_file_id": "libfile_029361d330048191bdefec30b980495e",
+    "sha256": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+    "actual_pixels_inspected": true,
+    "attached_to_every_canyon_generation_call": true
+  },
+  "layer_contract_source": "docs/art/b07/L37_VISUAL_ALIGNMENT.md",
+  "assets": {
+    "L37_canyon_forecourt_v1.png": {
+      "width": 1552,
+      "height": 1013,
+      "mode": "RGB",
+      "bytes": 2984672,
+      "sha256": "69e92879cc6d3381bda251de649a6d9481ec74b1ccd4418f04c9d77ae42efe89",
+      "status": "composition_proof_not_runtime_approved",
+      "prompt_file": "L37_canyon_forecourt_v1.prompt.txt",
+      "generated_source": "generated_images/exec-3536c2f2-b439-4495-b2b9-e1d2f65c4a5e.png",
+      "pixel_to_blueprint_normalized_mapping": {
+        "x_formula": "blueprint_x=-900+source_x*4600/source_width",
+        "y_formula": "blueprint_y=-800+source_y*3000/source_height",
+        "x_scale": 2.963917525773196,
+        "y_scale": 2.9615004935834155,
+        "note": "Explicit registration only; no pixels resampled. Exact terrace shape still fails under this mapping."
+      },
+      "uniform_cover_alternative": {
+        "scale": 2.963917525773196,
+        "center_crop_offset_blueprint": [
+          0.0,
+          1.224226804123873
+        ],
+        "note": "Aspect-preserving transform also does not fix authored terrace shape mismatch."
+      },
+      "target_polygon_source_pixels": [
+        [
+          344.14,
+          344.42
+        ],
+        [
+          522.96,
+          303.9
+        ],
+        [
+          1133.63,
+          303.9
+        ],
+        [
+          1214.61,
+          381.56
+        ],
+        [
+          1214.61,
+          780.01
+        ],
+        [
+          1113.39,
+          844.17
+        ],
+        [
+          441.98,
+          844.17
+        ],
+        [
+          344.14,
+          766.5
+        ]
+      ]
+    },
+    "L37_canyon_forecourt_v2.png": {
+      "width": 1552,
+      "height": 1013,
+      "mode": "RGB",
+      "bytes": 2852143,
+      "sha256": "5e9510ce0a02de23f1eec1efb359cad9b3b74ab4665627d276dda7f83ba95d1d",
+      "status": "composition_proof_not_runtime_approved",
+      "prompt_file": "L37_canyon_forecourt_v2.prompt.txt",
+      "generated_source": "generated_images/exec-04af20d6-163a-4c87-a184-e745f746a950.png",
+      "pixel_to_blueprint_normalized_mapping": {
+        "x_formula": "blueprint_x=-900+source_x*4600/source_width",
+        "y_formula": "blueprint_y=-800+source_y*3000/source_height",
+        "x_scale": 2.963917525773196,
+        "y_scale": 2.9615004935834155,
+        "note": "Explicit registration only; no pixels resampled. Exact terrace shape still fails under this mapping."
+      },
+      "uniform_cover_alternative": {
+        "scale": 2.963917525773196,
+        "center_crop_offset_blueprint": [
+          0.0,
+          1.224226804123873
+        ],
+        "note": "Aspect-preserving transform also does not fix authored terrace shape mismatch."
+      },
+      "target_polygon_source_pixels": [
+        [
+          344.14,
+          344.42
+        ],
+        [
+          522.96,
+          303.9
+        ],
+        [
+          1133.63,
+          303.9
+        ],
+        [
+          1214.61,
+          381.56
+        ],
+        [
+          1214.61,
+          780.01
+        ],
+        [
+          1113.39,
+          844.17
+        ],
+        [
+          441.98,
+          844.17
+        ],
+        [
+          344.14,
+          766.5
+        ]
+      ]
+    }
+  },
+  "target_polygon_normalized": [
+    [
+      0.22173913,
+      0.34
+    ],
+    [
+      0.336956522,
+      0.3
+    ],
+    [
+      0.730434783,
+      0.3
+    ],
+    [
+      0.782608696,
+      0.376666667
+    ],
+    [
+      0.782608696,
+      0.77
+    ],
+    [
+      0.717391304,
+      0.833333333
+    ],
+    [
+      0.284782609,
+      0.833333333
+    ],
+    [
+      0.22173913,
+      0.756666667
+    ]
+  ],
+  "generation": {
+    "mode": "built-in image_gen.imagegen",
+    "sequence": [
+      "reference-guided transformation from user design plus layout guide",
+      "one targeted geometry correction with master, actual user design and guide"
+    ],
+    "target_resolution": [
+      4600,
+      3000
+    ],
+    "no_exact_resolution_claim": true,
+    "postprocessing": "Unmodified PNG file copies only. No image stretching, crop, painted pixel edits, code changes, or gameplay geometry changes."
+  },
+  "pixel_findings": {
+    "positive": [
+      "canyon fortress city is materially closer to user design than earlier flat courtyard",
+      "large lizard-head guardian, giant gold sun mirror, stepped gate-city and red-orange banners",
+      "visible deep canyon and lower arched bridges around terrace",
+      "v2 extended southern flat-floor area substantially"
+    ],
+    "blocking": [
+      "v1 front cliff facade occupied canonical south safe route",
+      "v2 north floor edge ~source_y350 while target edge is304; hard-clipping still slices rim masonry",
+      "v2 left chamfer and rim do not match canonical polygon under uniform registration",
+      "v2 western guardian head source_y~50..230 maps to blueprint_y~-652..-119 and is outside proposed entry view top~228; the tower/banner is visible but head likely is not",
+      "v2 same-level-looking right external walkway can imply unreachable continuation",
+      "master cannot be directly activated or inverse-clipped as a substitute for true layers"
+    ],
+    "not_claimed": [
+      "actual engine composite validation",
+      "safe-route or collision acceptance",
+      "final camera visibility",
+      "exact cliff edge match",
+      "final floor paving-scale acceptance"
+    ]
+  },
+  "next_proposed_contract": {
+    "requires_developer_feasibility_and_actual_frame_check_before_more_assets": true,
+    "layers": [
+      "registered canyon/city backdrop with the entire central terrace and rim removed",
+      "separately positionable west guardian/sun silhouette to keep it inside real entry view",
+      "dedicated cliff/foundation artwork module with explicit top-contact baseline for exact-edge mapping",
+      "plain matching floor on authoritative polygon",
+      "existing runtime objects at exact anchors"
+    ],
+    "constraint": "Do not move collisions or gameplay anchors to fit generated painting. Do not clip through tall sculpture/column bases. No further asset generation yet."
+  }
+}

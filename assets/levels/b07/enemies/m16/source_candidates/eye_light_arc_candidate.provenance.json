@@ -1,0 +1,10 @@
+{
+  "status": "historical_source_candidate_preserved_at_user_stop",
+  "formal_acceptance": false,
+  "runtime_integration": false,
+  "original_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc/candidate.png",
+  "sha256": "8c85849c93ce32623a71acf4eee657b28179b2aacb77a94321aa5f25e0fbb992",
+  "byte_identical": true,
+  "reason": "Preserve original/failed source before authorized B07 workspace cleanup; no new image generation or pixel edits",
+  "related_source_group": "actions_late_0839/m16/eye_light_arc"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "terraced_city_rooted",
+  "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_rooted.png",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-37907c98-de13-4133-aec2-548fe7523ea0.png",
+  "sha256": "fa7f7001e7686811789d8290af0f54a56ecb5cd352d12b62c5dbe8f4307bcec1",
+  "native_size": [
+    1145,
+    1374
+  ],
+  "mode": "RGBA",
+  "candidate_only": true,
+  "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_rooted.prompt.txt",
+  "alpha": {
+    "1": {
+      "bbox": [
+        0,
+        0,
+        1145,
+        1374
+      ],
+      "content_size": [
+        1145,
+        1374
+      ],
+      "edge_pixels": 279
+    },
+    "16": {
+      "bbox": [
+        6,
+        9,
+        1139,
+        1362
+      ],
+      "content_size": [
+        1133,
+        1353
+      ],
+      "edge_pixels": 0
+    },
+    "128": {
+      "bbox": [
+        7,
+        11,
+        1138,
+        1362
+      ],
+      "content_size": [
+        1131,
+        1351
+      ],
+      "edge_pixels": 0
+    }
+  }
+}

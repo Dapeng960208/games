@@ -1,0 +1,20 @@
+{
+  "generation_tool": "built-in image_gen",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-04215e0f-9a92-4f25-9d26-2c50a86fda11.png",
+  "sha256": "763a2415a633ace4f36b03f63a1ee1aeb790eb036d3a6d6f6f65408003741f58",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "pixel_processing": "none; original byte copy",
+  "prompt": "docs/levels/b07/rooms/l41/temple_painting.prompt.txt",
+  "status": "blocked_fixed_floor_boundary_mismatch",
+  "observations": [
+    "North floor edge ~210px instead of171px",
+    "South edge ~797px instead of878px",
+    "Entry y776.78 lies only20px/~26world from actual edge; safe half-width90 not met",
+    "Temple sunwheel and lizard guardians identity present, plain flat center and separate gameplay prop anchors retained"
+  ],
+  "runtime_registered": false,
+  "formal_acceptance": false
+}

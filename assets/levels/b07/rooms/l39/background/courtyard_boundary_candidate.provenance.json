@@ -1,0 +1,48 @@
+{
+  "status": "blocked_do_not_integrate",
+  "formal_acceptance": false,
+  "room_id": "L39",
+  "generation_tool": "built-in image_gen",
+  "intent": "independent_complete_room_painting",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-b33b0f6b-ecba-489c-ac1b-563832fe44fc.png",
+  "destination": "assets/levels/b07/rooms/l39/background/courtyard_boundary_candidate.png",
+  "sha256": "b2c13a6c50b3d52c32508f171c001f1c029b05021653f228f1f9800fa0634531",
+  "source_sha256": "b2c13a6c50b3d52c32508f171c001f1c029b05021653f228f1f9800fa0634531",
+  "byte_identical_to_generated_source": true,
+  "size": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "prompt": "docs/levels/b07/rooms/l39/courtyard_painting.prompt.txt",
+  "prompt_sha256": "58ba4be7f687b406e918d7ee6a9e21c5d4e255eb2001d0815a63f405e5742632",
+  "qa": "docs/levels/b07/rooms/l39/painting_source_qa.json",
+  "revision_count": 0,
+  "generation_budget": "one initial generation plus one targeted revision; exhausted",
+  "art_pixel_postprocessing": "none; source PNG bytes copied without resizing, compositing, recoloring, cropping, warping or pixel edits",
+  "runtime_registered": false,
+  "runtime_changes": false,
+  "native_detail_count": 0,
+  "references": [
+    {
+      "role": "edit_target_geometry_only",
+      "path": "artifacts/l39_independent_guide/exact_floor_mask.png",
+      "sha256": "6f3218158ed71cb75f4ec1669e04b4f31890f4cbe495db3109229328b0af25b8"
+    },
+    {
+      "role": "annotated_geometry_only",
+      "path": "artifacts/l39_independent_guide/fixed_geometry_guide.png",
+      "sha256": "e9cc1422b95728d47e729d3ee47911a3ba0b6a0e9f06ecdba6e417af498e5977"
+    },
+    {
+      "role": "user_style_reference",
+      "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+      "sha256": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984"
+    },
+    {
+      "role": "style_and_density_reference",
+      "path": "assets/levels/b02/rooms/l07/background/environment.png",
+      "sha256": "c9fc40040094b066f75e6fb6e50831183146170da6d4135467c3ec6c38b56d77"
+    }
+  ]
+}

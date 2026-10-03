@@ -1,0 +1,68 @@
+{
+  "status": "blocked_fixed_boundary_mismatch_after_one_revision",
+  "formal_acceptance": false,
+  "native_detail_count": 0,
+  "runtime_changes": false,
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_mode": "RGB",
+  "manual_floor_trace_pixels": [
+    [
+      210,
+      289
+    ],
+    [
+      356,
+      171
+    ],
+    [
+      1173,
+      171
+    ],
+    [
+      1327,
+      290
+    ],
+    [
+      1327,
+      704
+    ],
+    [
+      1189,
+      837
+    ],
+    [
+      348,
+      837
+    ],
+    [
+      211,
+      701
+    ]
+  ],
+  "manual_uncertainty_source_px": 8,
+  "trace_is_runtime_geometry": false,
+  "approx_area_change_percent": -9.204065422468544,
+  "anchor_clearance_world": {
+    "entry": 96.99140625000007,
+    "exit": 133.60390624999994,
+    "altar": 421.7914062500001,
+    "BO07_mirror_1": 249.60390625,
+    "BO07_mirror_2": 249.60390625,
+    "BO07_mirror_3": 212.99140625000007,
+    "BO07_mirror_4": 212.99140625000007,
+    "boss_spawn": 377.20390625
+  },
+  "safe_route_min_clearance_world": 79.87946604033189,
+  "review_required_safe_route_half_width_world": 90,
+  "observations": [
+    "First painting floor south ~780px and foreground stair/balustrade intrude into fixed floor; failed",
+    "Revision removes foreground stair/parapet and flattens side edges, but actual walkable top plane south ~837px; lower vertical fascia must not be counted as walkable",
+    "Fixed south edge868.94 still crosses cliff facade; diagonal turn~701-704px vs fixed763.61; upper corners~356/1173 vs303/1233",
+    "All four mirror anchors, central altar, boss spawn and entry/exit lie on flat clear paving; closed-loop safety width still needs room-specific scrutiny",
+    "Royal gold disc and lizard guardian identity present; this does not establish exact fixed-boundary match"
+  ],
+  "restoration_scope": "No more third image. If later permitted to fit polygon to art, revise safe loop as needed after precise trace/navigation proof; no assumption that L37 approval covers boss arena."
+}

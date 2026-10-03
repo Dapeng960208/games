@@ -1,0 +1,101 @@
+{
+  "room_id": "L40",
+  "status": "blocked_fixed_boundary_pixel_qa",
+  "formal_acceptance": false,
+  "mother_image_usable": false,
+  "attempts_used": 2,
+  "attempt_limit": 2,
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "source_sha256": "dbd486457fe2cafcca59aaf2c3b1b5ad5d727c856258075816eb945814021f07",
+  "contract": "docs/levels/b07/rooms/l40/painting_design_contract.json",
+  "geometry_unchanged": true,
+  "inspection_method": "Actual original PNG visually inspected, then fixed geometry overlay and 25px grid diagnostic crops inspected; observations are manual source-pixel estimates, not segmentation or inference from mapping equations.",
+  "observation_uncertainty_source_pixels": 8,
+  "edge_checks": [
+    {
+      "edge": "northwest corner",
+      "expected_pixels": [
+        206.263,
+        188.709
+      ],
+      "observed": "At required corner there is perimeter decoration/support. Actual floor-to-side contact is around x220 at y220; irregular diagonal north return, not required square corner.",
+      "pass": false
+    },
+    {
+      "edge": "north horizontal",
+      "expected": "y188.709, x206.263 to1158.583",
+      "observed": "Main back contact around y155–175; floor visually extends 14–34px too far north; endpoint is irregular due to workshop perimeter.",
+      "pass": false
+    },
+    {
+      "edge": "northeast diagonal",
+      "expected": "(1158.583,188.709) to (1342.903,329.143)",
+      "observed": "Main return roughly (1148,160) to (1358,318), with workshop feet interrupting contact.",
+      "pass": false
+    },
+    {
+      "edge": "east vertical",
+      "expected": "x1342.903, y329.143 to798.720",
+      "observed": "Actual contact around x1353–1364 and turns southwest around y695–710, about89–104px too early.",
+      "pass": false
+    },
+    {
+      "edge": "southeast diagonal",
+      "expected": "(1342.903,798.720) to (1184.914,868.937)",
+      "observed": "Approximately (1358,702) to (1207,800), so the required diagonal crosses visible wall/support instead of floor.",
+      "pass": false
+    },
+    {
+      "edge": "south horizontal",
+      "expected": "y868.937, x355.474 to1184.914",
+      "observed": "Paving/flush lip contact y790–805, roughly64–79px too early. Central floor surface itself stops around y790–798.",
+      "pass": false
+    },
+    {
+      "edge": "southwest diagonal",
+      "expected": "(355.474,868.937) to (206.263,750.446)",
+      "observed": "Approximately (356,800) to (213,663). Required diagonal falls on the wall and exterior columns.",
+      "pass": false
+    },
+    {
+      "edge": "west vertical",
+      "expected": "x206.263, y188.709 to750.446",
+      "observed": "Contact generally x218–228 with local decoration, then begins southeast return around y660 instead of750.45.",
+      "pass": false
+    }
+  ],
+  "anchors": {
+    "count": 8,
+    "all_centers_on_plain_floor": true,
+    "reserve_radius_55px_visual_clear": true,
+    "functional_objects_baked": false,
+    "covers_on_plain_floor": true,
+    "encounter_anchors_on_plain_floor": true,
+    "safe_routes_visually_clear": true,
+    "note": "These local checks do not establish whole-footprint registration."
+  },
+  "style": {
+    "bright_hand_painted_cartoon_fantasy": true,
+    "high_three_quarter_camera": true,
+    "lizard_sandstone_workshop_identity": true,
+    "continuous_floor_without_pits_or_height_change": true,
+    "art_quality_override_of_boundary_failure": false
+  },
+  "numeric_mapping_roundtrip_max_error_world": 2.2737367544323206e-13,
+  "numeric_mapping_note": "Mathematical correctness only; does not prove painted-boundary fidelity.",
+  "runtime_validation": "Not run; no runtime integration or geometry edits authorized in this task.",
+  "detail_status": "Not generated. Six native L07-mode detail tiles remain gated on a usable mother image and coordinator instruction.",
+  "evidence": [
+    "artifacts/l40_independent_guide/independent_candidate_qa_overlay.png",
+    "artifacts/l40_independent_guide/boundary_revision_qa_overlay.png",
+    "artifacts/l40_independent_guide/boundary_revision_pixel_grid.png",
+    "artifacts/l40_independent_guide/northwest_pixel_qa.png",
+    "artifacts/l40_independent_guide/northeast_pixel_qa.png",
+    "artifacts/l40_independent_guide/southwest_pixel_qa.png",
+    "artifacts/l40_independent_guide/southeast_pixel_qa.png",
+    "artifacts/l40_independent_guide/south_pixel_qa.png"
+  ]
+}

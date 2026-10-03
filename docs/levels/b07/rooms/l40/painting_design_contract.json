@@ -1,0 +1,185 @@
+{
+  "status": "blocked_fixed_boundary_pixel_qa",
+  "room_id": "L40",
+  "source": "data/levels/b07/content.json#room_geometry.L40",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "geometry_sha256": "1128abf2c495aca50c38334bdcc8a8190689318c7fbf1a1830467390e1c51ead",
+  "placement_normalized_rect": [
+    0.1,
+    0.12,
+    0.8,
+    0.7714285714285715
+  ],
+  "world_rect": [
+    -203,
+    -162.4,
+    2030,
+    1353.3333333333333
+  ],
+  "mapping": "world = world_rect.position + normalized * world_rect.size = blueprint * 0.58",
+  "floor_polygon_pixels": [
+    [
+      206.26285714285714,
+      188.70857142857142
+    ],
+    [
+      1158.582857142857,
+      188.70857142857142
+    ],
+    [
+      1342.902857142857,
+      329.1428571428571
+    ],
+    [
+      1342.902857142857,
+      798.7199999999999
+    ],
+    [
+      1184.9142857142856,
+      868.9371428571428
+    ],
+    [
+      355.4742857142857,
+      868.9371428571428
+    ],
+    [
+      206.26285714285714,
+      750.4457142857142
+    ]
+  ],
+  "anchors_pixels": {
+    "entry": [
+      294.0342857142857,
+      517.8514285714285
+    ],
+    "exit": [
+      1237.577142857143,
+      517.8514285714285
+    ],
+    "altar": [
+      940.0319999999999,
+      478.3542857142857
+    ],
+    "L40_mirror_1": [
+      497.664,
+      336.16457142857143
+    ],
+    "L40_mirror_2": [
+      768.0,
+      636.3428571428572
+    ],
+    "L40_mirror_3": [
+      1062.9119999999998,
+      367.76228571428567
+    ],
+    "L40_gate_near": [
+      1176.1371428571429,
+      561.7371428571428
+    ],
+    "L40_gate_far": [
+      1255.1314285714286,
+      500.29714285714283
+    ]
+  },
+  "encounters_pixels": [
+    [
+      522.24,
+      579.2914285714286
+    ],
+    [
+      789.9428571428571,
+      434.4685714285714
+    ],
+    [
+      1114.6971428571428,
+      605.6228571428571
+    ]
+  ],
+  "safe_route_width_blueprint": 180,
+  "safe_route_width_source_pixels": 78.99428571428571,
+  "safe_routes_pixels": [
+    [
+      [
+        294.0342857142857,
+        517.8514285714285
+      ],
+      [
+        399.36,
+        732.8914285714285
+      ],
+      [
+        1141.0285714285715,
+        732.8914285714285
+      ],
+      [
+        1237.577142857143,
+        517.8514285714285
+      ]
+    ],
+    [
+      [
+        294.0342857142857,
+        517.8514285714285
+      ],
+      [
+        497.664,
+        336.16457142857143
+      ]
+    ],
+    [
+      [
+        294.0342857142857,
+        517.8514285714285
+      ],
+      [
+        768.0,
+        636.3428571428572
+      ]
+    ],
+    [
+      [
+        294.0342857142857,
+        517.8514285714285
+      ],
+      [
+        1062.9119999999998,
+        367.76228571428567
+      ]
+    ]
+  ],
+  "covers_pixels": [
+    [
+      649.5085714285715,
+      272.09142857142854,
+      52.66285714285715,
+      32.91428571428571
+    ],
+    [
+      890.8799999999999,
+      623.1771428571428,
+      52.66285714285715,
+      32.91428571428571
+    ],
+    [
+      1145.4171428571428,
+      416.9142857142857,
+      43.885714285714286,
+      26.33142857142857
+    ]
+  ],
+  "runtime_geometry_change": false,
+  "detail_gate": "No detail generation before mother painting boundary/anchor pixel QA passes and coordinator continues",
+  "art_direction": "明亮手绘卡通奇幻，高机位三分之四斜俯视，蜥族砂岩抛光反光工坊，固定范围内不烘焙功能物件。",
+  "detail_reference": "assets/levels/b02/rooms/l07/detail/manifest.json; six native repaint tiles, feather 16x24 source pixels",
+  "notes": [
+    "Geometry guide contains only flat polygons; it is not game art.",
+    "Actual returned PNG bytes must be preserved without artistic pixel edits, resizing or compositing."
+  ],
+  "qa_result": "docs/levels/b07/rooms/l40/independent_painting_qa.json",
+  "review_required_safe_route_width_world": 180,
+  "review_required_half_width_world": 90,
+  "review_width_note": "The review contract retains the stronger 180 WORLD-pixel corridor required for B07; do not use only the authored blueprint width scaled by .58 as acceptance."
+}

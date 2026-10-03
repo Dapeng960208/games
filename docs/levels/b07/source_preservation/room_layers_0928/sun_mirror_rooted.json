@@ -1,0 +1,54 @@
+{
+  "id": "sun_mirror_rooted",
+  "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_rooted.png",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-79ba5aef-3f26-4e5e-8bb7-3749f2b706ca.png",
+  "sha256": "529c2dcb6b3f8dbd9116f92d1c6a4f900042b843af75094e42bd7e44893dbe82",
+  "native_size": [
+    1224,
+    1285
+  ],
+  "mode": "RGBA",
+  "candidate_only": true,
+  "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_rooted.prompt.txt",
+  "alpha": {
+    "1": {
+      "bbox": [
+        0,
+        1,
+        1204,
+        1285
+      ],
+      "content_size": [
+        1204,
+        1284
+      ],
+      "edge_pixels": 180
+    },
+    "16": {
+      "bbox": [
+        239,
+        7,
+        1003,
+        1284
+      ],
+      "content_size": [
+        764,
+        1277
+      ],
+      "edge_pixels": 0
+    },
+    "128": {
+      "bbox": [
+        240,
+        8,
+        1003,
+        1283
+      ],
+      "content_size": [
+        763,
+        1275
+      ],
+      "edge_pixels": 0
+    }
+  }
+}

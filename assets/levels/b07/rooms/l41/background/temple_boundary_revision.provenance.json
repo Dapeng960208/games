@@ -1,0 +1,15 @@
+{
+  "generation_tool": "built-in image_gen",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-9d4465d7-0082-4e6f-b9ca-c88e5f54a2c8.png",
+  "sha256": "97e92558bbe0150c4362fba548587583c34d72ce3107bfb877bc106c5447ebf8",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "pixel_processing": "none; original byte copy",
+  "prompt": "docs/levels/b07/rooms/l41/temple_revision.prompt.txt",
+  "qa": "docs/levels/b07/rooms/l41/painting_source_qa.json",
+  "status": "blocked_fixed_boundary_mismatch_after_one_revision",
+  "runtime_registered": false,
+  "formal_acceptance": false
+}

@@ -1,0 +1,1325 @@
+{
+  "scope": "B07 attributed generated originals cross-check before user-authorized parent cleanup",
+  "external_generated_images": [
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-97d66d79-0962-404a-b240-7f3267208ff0.png",
+      "sha256": "b2d2686eb30bf49a6c13bcce74fed8587c9593a52ff5b17cf578114bbab5721e",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/detail/source/bottom_middle.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-beba1c8e-a75d-4566-be34-6f721afc3c36.png",
+      "sha256": "237bdbae4ce96c7791b1c8f2ffb763f9541642912a12b31e4442737fdc7313cf",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m06/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1070fc4a-fddd-4139-807f-764b4fd5cc07.png",
+      "sha256": "8a91518991c12bb8ec382718857c258ec212c0d6b2e673f8d0e79cd215a56646",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/actions/twin_slash/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1572e484-9afa-4d8e-89b5-d77d8a533744.png",
+      "sha256": "3c0ea6732eb31f26f00e0ac504327a69f405fcf04163efe0bf5dcb91aee2e608",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/detail/source/top_right.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-683883db-34ab-4728-9c64-35f505b648a6.png",
+      "sha256": "d1a8ae76c0024fa98bb911f909c7988e4faaef9a0db9d31c8cbf7dc079a6c715",
+      "preserved_paths": [
+        "assets/levels/b07/effects/mirror_short_light/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8ca1fccd-d1c3-40b7-b8df-631919afd1cb.png",
+      "sha256": "18f4bd611a7fb7a468fa54291fb38724cb779c41d4173b3fe584820d44f43bfe",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l41/temple_portico/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-018917eb-8191-4f3d-88f5-4502b6ef4ebc.png",
+      "sha256": "d29b00c12645bf40931f5d5ffca54c2cf6b9d60ab2f8ae099e78b8de9fa21b6d",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/background/low_parapet_boundary_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7f3bcccd-98aa-4afe-a74a-a52cdb930646.png",
+      "sha256": "aa62bb971e0ced96c57f5d8940d0aee92830f9b1761424c2247fde50e81ee02a",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_north_facade_v1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-2a07c5d5-fcdd-40d3-86fa-5b9f2ee6b162.png",
+      "sha256": "51e6fcd0d4cc8ce31245686e186572c48c8140577d01fb035e21de7f97b972c3",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/source_candidates/sandstone_impact_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7ea627ff-171e-4fc7-bdb4-c69b4b7dae28.png",
+      "sha256": "73e86ac4995ec7597d044f70aa7fda85b05ca69c61561625396ae8fa87e71af8",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/actions/sun_spear/telegraph_retracted_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8101cab4-5f15-4c64-b980-8e540df1684a.png",
+      "sha256": "7ac993f2a9c780b6369fab16d5eeff6c2569bc8faae813f8e694192d1bc24faa",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l38/background/market_boundary_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5ca9def3-72a5-49ae-b2fb-6d1b61261dc7.png",
+      "sha256": "2a0b46b6caf8e8817662f0ff01202a7f383e99f0a7808265adc3949ec86fce27",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m15/actions/camouflage_banner/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-79510984-726e-485b-8dca-bbf250244aeb.png",
+      "sha256": "e84e6edbbd16806c84a8d8fbc7996c0a9402f95214cdf4a58ad53dcbc15e1598",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l39/detail/source/bottom_middle.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-59904f0d-4bec-4a18-9ed7-6244990b34b4.png",
+      "sha256": "158c20e5f0499ec2066d4b5333b197aebed88e90eebbe3f7846f1dfdbd4f731e",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/source_candidates/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-145f0c18-4653-4ebc-bd06-daa91d9c8a7e.png",
+      "sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m02/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-98922ad8-3145-4304-95dc-9d48e93d535d.png",
+      "sha256": "6ae03e1c588fc95c15778e89117f1c83e3f7daefa19180db08032d5af4658484",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/sandstone_floor.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d2a7dbe6-3f6c-4a7a-8850-b3b1d5cd52d6.png",
+      "sha256": "be955ca269084972743cab082a7e8225156467d2340ec1617a0c891c1be5d792",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m03/actions/returning_disc/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d4df1cb3-f70a-4b46-b1b2-6ea19cdc95b2.png",
+      "sha256": "bdc46b05a71ec99e6d8cc19a58fe8798109cb22617843d42dd6b5a143d72b107",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/actions/stargazer_arc/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-6781a589-4154-49b9-9f58-7745a0421b08.png",
+      "sha256": "e03630f17c7f6ca67bea703e15fa8204d658c6e7f486d253f3bb90a6692abb83",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m04/actions/sunscale_shield/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b1397287-ae4f-4fb1-80bf-bb09f0f2b7a5.png",
+      "sha256": "6a9acac46d12abb10085e66c9bb2b1739e4cc491e23fda5e8bdae58c6fdaac40",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/sun_spear/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-187ed10d-1be2-4d42-b43a-987a6a98823c.png",
+      "sha256": "b42f3415af92bead26e8bcfaf9623e355810db96d78feb0ecdfdc0a2818ecf96",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m07/actions/sand_vortex/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d0dfe8a1-a9c3-419f-8988-f90e5da49ae4.png",
+      "sha256": "86031fd7866eb9ac867421db6ccbbb415ffb0dbbb79a1e320235d47b5198a47e",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_environment_candidate_v1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7d8acdea-4c07-42f4-8805-e394a8f46749.png",
+      "sha256": "c21ba51f4118476cf4548cbf2b3f3c06b3b45838cc631f093baef038e23ef53b",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l39/detail/source/top_right.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-17f69b55-092b-404c-ad46-117dd6d52b5d.png",
+      "sha256": "69c56b74140113ed860662b8585fc2e25a4b2fc457148ef813023bc417d986de",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/lower_arch_bridge/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-15750442-4686-4d07-bacf-4d3f69d0a4ee.png",
+      "sha256": "606c90506f974b6ce21b579c4fdd6f6c056103708b7a129fa36f20a0364c5c39",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l42/sandstone_obelisk/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-10f91a92-5254-4b26-b094-095839252ecf.png",
+      "sha256": "14497434248d58c629895ef1e59c7fb55664a3561099e45533fb47a942672378",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/actions/mirror_slash/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-40c99cda-3858-4f5a-a878-04e1aba0227d.png",
+      "sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m03/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-654f5cfd-d3cd-4d70-9389-74b8fa29809f.png",
+      "sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-abb9f23c-3a5c-4666-b51b-de2bda963d05.png",
+      "sha256": "a7c8f5e854a4b71a011de093f55083dfd8ec9d2718289ce80d009891a235e26c",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/north_gate_midground_repair_1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-4653a974-aa88-4f0f-8490-06693310c8c1.png",
+      "sha256": "4db488bd72a6fb8586f8696b4df995e6fce20e89e46c6cf589f79f9cbe8809c8",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sand_disc/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5e3850ac-7f1a-4e08-8cc1-22bc17b018b2.png",
+      "sha256": "fc71588592acbe1bd5fb883b95180bcb6bc69472711b6869f2cc2b1e62b4c2b8",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-04215e0f-9a92-4f25-9d26-2c50a86fda11.png",
+      "sha256": "763a2415a633ace4f36b03f63a1ee1aeb790eb036d3a6d6f6f65408003741f58",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l41/background/temple_boundary_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-f1347b05-95e9-45c2-9362-6f833e1689d6.png",
+      "sha256": "2b0d600892e6502c3bb8755b9b2a408c56022fb193dc7c6992847fa2e81a6d92",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/source_candidates/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ac17a098-f1b6-4b10-885e-f2955db6f985.png",
+      "sha256": "e52e136d1225efb94986285b0e7136d46fa46e671e6230040a8efe77a12ff542",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m15/actions/camouflage_banner/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-49753896-2ce1-4dc2-9faf-d71c08f13282.png",
+      "sha256": "317c96e0774625a897309a504828fc9bfdc3ae7836fa92aec4be8fb486f78fe8",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m13/actions/sun_beam/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-a525ed53-f4bd-41ab-a0eb-f1be5fe7df9f.png",
+      "sha256": "0fa744a0a4e6b1211e4fabf7a2160cc9e1f4490ec082b06de0a825286b6565f6",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l40/mirror_workbench/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-37c3757c-0154-468a-b1c0-59eefa982a74.png",
+      "sha256": "701d63c7e0c603b6915933258f17c4e13477193958b53ac2113c789e93274eef",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/golden_tail/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-e0ca6e46-7e7e-4c6c-a787-74346acc12af.png",
+      "sha256": "0754198247a8fe18ef369ff3b19a345b89aecc0f6a57ceefe21dfc3fe143ced9",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sand_ridge_segment/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-825d485b-45a8-4b97-9fa5-8bfb6b9dead1.png",
+      "sha256": "37364993594bcb8c59478909c02f82fc11e26b5c64de28d6a537fbdf2e80451a",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m06/actions/sand_emerge/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-60fba05b-7ce6-4d9a-b598-916cc797927f.png",
+      "sha256": "a194f27224a132180c3f02d0cf15e686adc77920a13a875e9cb3200fe66d5639",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m05/actions/turquoise_heal/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d386f35b-d40b-4c57-9e6d-e2b0220e75cc.png",
+      "sha256": "28ffe9a30391c9c1f2545d97a65e6371e9414efb801f6c81e55d8e702a710b02",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m02/actions/sand_ball/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-888f0aa5-735f-4731-9744-875529759b1c.png",
+      "sha256": "456841f7032a8560c251203739d5f04dcd8522278a853521fe69eb4d3c33ec90",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/actions/mirror_slash/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-709f8347-5efa-471f-a7b1-31c66393cb79.png",
+      "sha256": "9837508d413380e171ccd4eb0a3a252655e6fecd4631c1990d3a9562d82190d1",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l39/sand_study_table/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-672f45d4-6b45-40e7-acc9-7d4c1f64ca00.png",
+      "sha256": "954af834380a71dd093cdd73901f8d9c4f7e78c5fd1a9b1922e41687c36e5cbf",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l40/detail/source/top_middle.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3536c2f2-b439-4495-b2b9-e1d2f65c4a5e.png",
+      "sha256": "69e92879cc6d3381bda251de649a6d9481ec74b1ccd4418f04c9d77ae42efe89",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_canyon_forecourt_v1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7b4b610d-aeb9-4231-b392-22ba9c1a95dd.png",
+      "sha256": "24925927d403c553bc2f577fdb752e8b5c4414db3ef5f7d8159be3013a3fff90",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m13/actions/sun_beam/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-0b9bff16-1ceb-4f17-ad94-26b15bae3d39.png",
+      "sha256": "baf6fbe0deb2cd1b047144a2b1943d583831071dfbabe0b8a56e4736e4fe1384",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m02/actions/sand_ball/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d6c54aea-0b33-420f-b635-ca8e6fbd15d1.png",
+      "sha256": "d82b4e289c77034e669452e60dad241887ace9f153138bf67befeefde2ab1157",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/actions/obelisk_cross/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-61323597-da02-46b3-8f37-9e6923684c62.png",
+      "sha256": "eaf25624c1cbf522d7aa474763a0f2746d5b0ce56f7db28cda8d534e39804512",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/actions/tail_sweep/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-e3d09e7c-1986-4b85-8bea-775e30c04047.png",
+      "sha256": "9fdd7cf6ff8a98aa572fca3692bd974677d03075b1f97cf15caa5a4d47fecfaa",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/background/environment.png",
+        "assets/levels/b07/rooms/l37/background/mask_first_boundary_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5caa2aae-b6c6-4455-b4d8-626b3d76e1f4.png",
+      "sha256": "5588f042cd6cb51cc49c942b470f0e32c67aaa6992e630d7f19208c9c10a4e73",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m10/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-dd80806e-740b-4506-a052-957caecab365.png",
+      "sha256": "57ac5f776cc77d1d50d79c538bbbab3a670e3545301fc5722e6df521cdf481af",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/bo07/throne_backdrop/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1c9ae1f2-b4cd-46ff-ae40-10850e8f04d2.png",
+      "sha256": "036da4d5c5c8715f748520d671b92cad2352d45533c49f39b8b4a619f47eec8a",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/sun_disc/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-0c66d322-b3b3-43b4-a846-36fae94f86bd.png",
+      "sha256": "f6d4369a905e6dca597d431d1684a06c617aa2aa888fa44b49aa65a24a89aa2e",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m09/actions/dart_venom/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8793df5a-dbdf-4d44-872b-c4b4f3fd808d.png",
+      "sha256": "cbdcd7353287c82633bb63b5e43f563c9482b2a05616eb5689a4b9f507153911",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m06/actions/sand_emerge/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-36beb86f-35a5-4ea3-8df9-a936cc892a45.png",
+      "sha256": "64b83d6ad66bb8eb9884e161ee6c714ece5748140c6c576e1aaf2a039c824269",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l40/background/independent_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-08a741ef-772c-470f-8b3a-5b8b5ed69003.png",
+      "sha256": "750384638ac694ba198a4d14b4fce43a202cec7f3b5ba478d222819b224b1d2d",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sandstone_impact/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-df198a64-0f47-44e7-9792-a008b16c114a.png",
+      "sha256": "d4fd9eeeff0fdd01b9f47dc1e17d101bfee8d653151c7739574e5a68ae572707",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l40/detail/source/top_left.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b6766f63-eb9d-42c0-99a2-61361000434f.png",
+      "sha256": "d02a347f98ca459148174b432c115537ddd94497e278e7bb39e0203ef9321de1",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/source_candidates/b07_m01_spear_lizard_guard_idle_ready_v1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-4654cfc9-5860-42c7-b945-388d7971149d.png",
+      "sha256": "bbdde63ed00a3c290aed070274253acdd75a0ba3e1411e0a57b753d45462db0f",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sun_disc/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-e290f110-0b76-4be0-91de-9d974ee4dc8b.png",
+      "sha256": "bddea855af8d0739607624074cc8a57827e1f7b94f5671ec4340e5e44263a80b",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m07/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-916e2c1d-af75-41e7-8980-73f0bbfc7288.png",
+      "sha256": "bbc75dbb7318467079eba57102d9d362b2816f7aab91b24c6ecbf87583aecef6",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m18/actions/light_ceremony/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-be8327c7-dc36-4ad8-a78e-86b257a37734.png",
+      "sha256": "dbd486457fe2cafcca59aaf2c3b1b5ad5d727c856258075816eb945814021f07",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l40/background/boundary_revision_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-91ace1f4-d112-4a9d-b6bf-009de37f431b.png",
+      "sha256": "11fdf57a8a6226f7368455b76114d029fc8d2b4aab6965d70fef3bb05c62666a",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m10/actions/mirror_attendant/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-edae4c0c-2a70-42f1-bf9c-069455ad38d9.png",
+      "sha256": "53c6e5e8b3918f08b8416fdd00a4d58e982152ef75be367a8ef9a8b329cfc5b7",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/source_candidates/telegraph_repair_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-f82285d4-d422-4816-95fe-87457600a0da.png",
+      "sha256": "7f619a486d687d53f48de3f8247a6a0e28eefb5db4d0caa0b70ac56c1577459c",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/actions/sand_ridge/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3779226e-fca2-40b4-b230-f4ba8febd0ca.png",
+      "sha256": "b8bd294902b3a3bcdef4c15a2f9571db2178efd56aacce48ed106b13414f993c",
+      "preserved_paths": [
+        "assets/levels/b07/effects/poison_dart/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-48385d2f-433d-4b87-a072-71a527418f8a.png",
+      "sha256": "07411af8fdbc34b130d637648bb11f06fe8aa4d0b4f25c669529af8faef6a8ed",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/actions/sand_ridge/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-0af5e6c9-2a03-4912-8e3b-c5ca6deb35ff.png",
+      "sha256": "d01d70d7c763e8b32a4a4629ad3581640237eb91bd92fcd81299a1214c7c66b8",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/actions/sun_spear/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-271c3cae-4aec-436a-909f-fe51c22e7656.png",
+      "sha256": "9d5da404b3e85a894dae3c08bb7b718f60854fecbaacbb5e84e42a1bfece3a1b",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m02/actions/camouflage_leap/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-4d14096a-c2c4-4c76-9832-3b0da9740f33.png",
+      "sha256": "b7c22057e1515742638f779c77ab5f602ac89b02a036a5f9be00b4ad9fa4c3c2",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-83698886-ffa2-4e74-81a0-a7114742e788.png",
+      "sha256": "c97e5f25f930527bf986f2e7444da925729c14adb990bb3982a59836e75661b3",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l38/background/market_boundary_revision.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5d904c51-50ba-425c-b456-69b9026f1ea5.png",
+      "sha256": "f0313da1d993d539408286e734610943e3be4d81436ffdc605ba18ac9ea4bf2b",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b153d3d5-3e40-4a4c-bef2-a84a86c690e0.png",
+      "sha256": "67d6c84bf2f1ddd60afbb00efbf878906750582b180a65dcd8c59f1f432d2615",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m07/actions/sand_vortex/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d1a25b1d-9cce-4ef2-be42-9fd02b8662da.png",
+      "sha256": "b1d3b3ca5e8c1645e66e7bdaf5783d23bf249c752f4e34fa821856287ecaff31",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sunscale_shield/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3f1fe19f-dbb8-4cee-902f-c074c4726f8d.png",
+      "sha256": "c4f79c882d196a17db4b7d15a51b5d10e2afc2b90290bca8a7ba1ac47fad4f29",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/actions/stargazer_arc/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7f430573-ab96-402e-aaae-23ac984016a0.png",
+      "sha256": "96122633419b7a12867fc952565f469a6f00ea12cd4ef65bfab9a511f9c455e4",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/bridge_rooted_initial.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-c75aafb1-ec99-4b47-bb93-93fb4fa3e42f.png",
+      "sha256": "8cb558269e8ac10a5e0e83d845f531cf95447ae2825b2783bf6387bd88b0669c",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sand_vortex/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b5d9549f-20a8-4386-9cc9-c8a1a05ba6dc.png",
+      "sha256": "1b600432ede4233d608bece8e4be4f1a4fd03ff457674e3a1c925bf9369d6a31",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/canyon_backdrop.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-282436fe-6323-42e6-9dd9-f6f561847325.png",
+      "sha256": "936d6621733f00cabc14c62670a587f0bac181a7b168a7a644063a66c154cd00",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/actions/sun_spear/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-e67f7c9e-d354-4315-9bc8-ff1af919796d.png",
+      "sha256": "bdceb65dae69957c91d562e5d1267534a8a45e86732526b6d2e0fbe63ffc561a",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sun_mirror_pedestal/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ab9e40b8-8db8-41a8-81ca-9263e1a03b32.png",
+      "sha256": "5d6c4bee0ccf7ecc5f448ee28d4b75fd96962319d77b1346860377ff50970162",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/actions/twin_slash/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-a49af630-3bb2-46e0-8a19-9932a739c9dc.png",
+      "sha256": "f049c7252dbc5fad19a8ce3eb8dde667192c801e9c8927f2f6cb8dbceb50984e",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/golden_tail/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-46e0ca30-b9d8-4a0d-ad05-b08bb302c1ee.png",
+      "sha256": "d1082ed6a705f1206de0ee2267a7abca9b0db32933778ab4bd205580caea50ed",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/source_candidates/blade_arc_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-96c6f76c-ece2-43f8-afb4-37d74f35e3e9.png",
+      "sha256": "a5fe604aa560ecb29c7ebd110a2a4fb55dc5840a333b230ed5454544ef435d01",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m15/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-780947b3-3e7a-4ac5-9927-c3e668332334.png",
+      "sha256": "46a12fa3d6fe17fab4252e2adf825566667ff44f78c664d202fcec3267ce3295",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/actions/sand_ridge/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-70e5ce15-df25-40cd-9cc9-49661c5861fc.png",
+      "sha256": "58dc2bffa4a3f7a537eac7dd16ef4dd9f1cbb1d03e5b815714d62da77e1b15e9",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l39/detail/source/top_middle.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-beb6caa9-332c-4895-8552-2b4d1c24888b.png",
+      "sha256": "b3d8da17831d18f1ef12f056373d98afb2a81ad05034bcd6224aa98f469529bc",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sun_altar_disc/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b2eb9e5b-09f3-4fcb-b335-3a2bdfa7a22e.png",
+      "sha256": "baec432c3da72933e1599844611be6716ace5fe7e2b00854c0854c93024ccc29",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/sun_disc/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-dcb9fb9b-facc-4699-9059-ce4c54257495.png",
+      "sha256": "35fac59333be0ff2863d51098857ad212c7ed174a23f820452df2c5629b15ce4",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/bo07/background/throne_boundary_revision.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5ad3308f-58f7-4118-8031-24924155e431.png",
+      "sha256": "f48a8fe396899058222768b52c90384a8ef0f9917783f13e43fea5050cb760cb",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/west_guardian.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ba41b8a1-e0b6-4750-8ca6-c5e0c600d361.png",
+      "sha256": "63e7c429d3f9095e622d021e54f18a9dfa589e4a7ca1f116ee981c3e6d107158",
+      "preserved_paths": [
+        "assets/levels/b07/effects/spear_impact/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8d613ba3-abd0-4230-8d0d-9a1249f56f23.png",
+      "sha256": "2f92be2b4ae060114c7472447d752a7192cc654364c65d9689a957ddfa9a3693",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m18/actions/light_ceremony/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-e0a88b55-59e3-43a6-90b3-0f291d8e74f9.png",
+      "sha256": "c629b8452bfa2cd760f717e275aed25cc4441fb7e2f3fcb374b9e6b55369103d",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l42/background/environment.png",
+        "assets/levels/b07/rooms/l42/background/boundary_revision_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-43fe18ab-c6e6-4367-b950-a37544612eae.png",
+      "sha256": "6af5771d9c77e4356222578ad17ea446a4258f646c29ebb35ef5af7cabf7b08e",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m06/actions/sand_emerge/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-aaae5f1c-d5f0-4817-9626-21d62581fe84.png",
+      "sha256": "9faae348481abe940cd94813f1f594ebffeb8e76994bc418cf028468ecdd0a2b",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m04/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3d6a6a54-d7e2-4f7c-83f9-f24c6125a5ee.png",
+      "sha256": "4b3f69558ba3a2e8f01538e398b3d90d565d8c8e25ed1ca9c63f70d7abe69772",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/detail/source/top_left.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-c6a55a99-d4bc-4393-8d65-80f87176fd36.png",
+      "sha256": "d62b11a4077287ff1c72f7726d6a17db4b5ce158006baf805105bf6b873d3b64",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sand_landing/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-04af20d6-163a-4c87-a184-e745f746a950.png",
+      "sha256": "5e9510ce0a02de23f1eec1efb359cad9b3b74ab4665627d276dda7f83ba95d1d",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_canyon_forecourt_v2.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b64e9d64-b0f4-4b56-a020-d38fe5fac83f.png",
+      "sha256": "cb565b29840a3654ec8e4f1532a72b4b0ad2dc3312b24d9664cf9d69a6b57e13",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m02/actions/camouflage_leap/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-113f7e2d-5f0b-4ad4-a9e3-ee74ec9a1c92.png",
+      "sha256": "cc45f9901be89b590c752cff18fe43c5b24ba7f006855fbeca766f05553781da",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m05/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/b07_m04_recovery_returned_data.png",
+      "sha256": "e9f4e1a14795892e738eafd86b474707febbd32210b8372a5518ddd5700ea97b",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m04/actions/sunscale_shield/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-a328896c-3b9c-4f7b-93b6-ca344f084b27.png",
+      "sha256": "1502d7f2cd6edf4c4fb4015b01caa6c8b61d8087a53e98ca6d424f0679023438",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/north_gate_midground_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-c0217b04-79e2-45b7-8850-2b4239365695.png",
+      "sha256": "59a553cb1da10c47abfdd089ed4f33e67e7bc822ad201693854c1a8e437c86f5",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m15/source_candidates/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-31c9e9b6-890f-4ed8-a706-5ed6e963ebed.png",
+      "sha256": "e99927c89f81b571b2f1174616099c9eb9ede7eef83359715976ae76e821cb84",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l42/background/independent_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-054da97a-ef6c-40d5-bebf-015efc7363b3.png",
+      "sha256": "c5e190b6d796309fd1d879b56cdb2dca9f274de698a968ce088148821337f015",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/bridge_rooted/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-a231f788-40fb-4f70-a67c-e36f80fbefb1.png",
+      "sha256": "92418f56db75b9d22b23e6b5bfb0db215cd70553e50c3599190c44a50fac11f0",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/cliff_foundation.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8a8b7b64-ed4c-460b-9e0d-91c780133959.png",
+      "sha256": "85eea3d6d9ae2dadd73bb89a23c0ae3afa34cbffeaf055980b7010e9953c61d8",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sandstone_paving_tile/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-751799e7-6181-4f88-9ea7-23729e6815f1.png",
+      "sha256": "58e3250d356e776bf622f5ca397bf40a9b9d7ec5c35458cc185acbc19631af49",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/golden_tail/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-9d4465d7-0082-4e6f-b9ca-c88e5f54a2c8.png",
+      "sha256": "97e92558bbe0150c4362fba548587583c34d72ce3107bfb877bc106c5447ebf8",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l41/background/temple_boundary_revision.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-37907c98-de13-4133-aec2-548fe7523ea0.png",
+      "sha256": "fa7f7001e7686811789d8290af0f54a56ecb5cd352d12b62c5dbe8f4307bcec1",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/terraced_city_rooted/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-75366444-e4b4-4c40-bf19-b68dfd977516.png",
+      "sha256": "6b88db7576a8139a3fd0e53b6f011bb7d5b3b0de2580a48ecb9cfd24a817b3bf",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m03/actions/returning_disc/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-cfaac1ef-b37b-4b2a-b3a9-1f0ab03138ab.png",
+      "sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-74417c50-88fc-4958-8a63-d7e27adcac66.png",
+      "sha256": "ef28208ac3636ffcc67f776cb49d3fd5ad35c62528bae63da503dcb57e97486a",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m05/actions/turquoise_heal/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7987f6a2-42a9-449b-9a47-caf8b0e2346f.png",
+      "sha256": "760649f227c544f1d221b1f2666d620483c199cdf523717e2aeb1cbadd0d5f25",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/actions/awning_bolt/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-970448a2-914e-46e5-bacd-dc775d50ed64.png",
+      "sha256": "71b36484d086081428d3e7d4105c8a939c75cafd3d21b602f2f0fddc675d7b4f",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/actions/obelisk_cross/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-57dcb20f-ba8a-49db-96eb-1a53f9c3d282.png",
+      "sha256": "19b8f356f52abaaa2c558b3c6e7b17315474c41520547e353128646138e5836e",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-0b5713f9-290d-4ffd-b102-4d425b91bd70.png",
+      "sha256": "5f558f36972aa84d401d15480589a0ec1dc2434160f4a85e9ca7217d971a8ada",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l39/detail/source/top_left.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-f8dbfb58-66f7-4484-a6fd-8709c5030fdf.png",
+      "sha256": "d1848ba561b9d9696f45c3e4672fe7f02e5ef5562dfda98dd706970df20676f9",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sun_beam_node/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-107458b0-3289-4952-8164-99a52e42042e.png",
+      "sha256": "5db684c4efbdb8105b54133ed6b951be2c3cacc77d325e9201e39138520973ca",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sand_ball/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ff47fcd3-b931-4aff-8a6e-81b5f9ad025f.png",
+      "sha256": "185a088e657e1cf0c17e7f49fdf5dc25259559af76a6dec69f90279ed373efe0",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m04/actions/sunscale_shield/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-6a6cce2a-7675-4fc2-8bc9-dd162fc8ed29.png",
+      "sha256": "29bd816b49ef71ecdda00dc1bbd2a73af347b184fe642b2e0730e5cf9bb1f833",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/detail/source/top_middle.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-77f1b64d-7fd9-4dfa-a386-c582f08e8177.png",
+      "sha256": "0fe63f86ad864522c561b769ce809c3d793989c5acd8764b7c26edd62e02e5ab",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sand_mound/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-82b8711e-ea4f-4844-89c8-f53011e61f29.png",
+      "sha256": "caa8f523e21b05db7c9c21dc29bbc1bbe3ff32dd9addf1d56b101b08d75a681a",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/sun_spear/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8ab58125-1508-409a-8751-bced45b5d5d4.png",
+      "sha256": "bee3becfec07e148423ec668092db45c512301be3499392ee27011f2a37bb78b",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/actions/awning_bolt/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-f16d1fe2-dd5b-4416-a412-2ab1b0bd6cc5.png",
+      "sha256": "5b5e0a21479778eeaa0a8c63bf9dbbd1dfa1aa5a3c68952875c5b3f6b7ab0b47",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l39/detail/source/bottom_left.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-72c1708c-5399-415d-9b66-39c24fea3e50.png",
+      "sha256": "3ed4ff0424515abd60cb90cfc1b8a0416526389385324fb954b1558562a5a9bd",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m13/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8f352f52-735b-4f8c-863a-e7f75302a8ba.png",
+      "sha256": "bab8314fd6e111f7848168eb7062e5f21a06add85f8826b1bd8589cd0a61fff3",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/terraced_city_wing/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d14d38a4-a456-4591-88d3-647ec05bfcc5.png",
+      "sha256": "b5fc70973cedb10a3c2d1e83cf3a6deef012ac74cd9a72dc73ff1136f5a09ee7",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m09/actions/dart_venom/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-99ac4977-bf27-4973-9c98-fd26984ed945.png",
+      "sha256": "b9bc215a15c9d11e2ebe8e696b4afadac0c416661ee0415bc3c3149bc8e02f5f",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/low_stone_cover/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-03974712-b676-45d2-9086-4da1a0f3888e.png",
+      "sha256": "05421cccd98421b570f64e38fc3e2c5aff4e91b2d1f2484068dac8f70290431c",
+      "preserved_paths": [
+        "assets/levels/b07/effects/mirror_state_indicator/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7c7dd0ef-037b-4396-acaa-b77003c5bdd5.png",
+      "sha256": "847e202d749c7d191266ea856f0d54eabdbe7da59e48cbcb636d065cb0cf3bab",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/actions/twin_slash/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d5e24bbe-54a0-46bb-b6ca-2d8b892579d6.png",
+      "sha256": "979758a9adf0ae34629b1f80efe6da8af905b6146d6a6cf62a585ee15100c9e0",
+      "preserved_paths": [
+        "assets/levels/b07/effects/heavy_crossbow_bolt/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-c8189794-7c9f-4838-b4fe-1004e59df235.png",
+      "sha256": "cbbc12e733fac71c539ae43e348644f07ea93266d680f4f06bf1d78aafe04680",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m02/actions/camouflage_leap/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-98cf5514-a518-4036-af7f-33b2b3734609.png",
+      "sha256": "c6c7802422d1f3b65426aebb559282737eb71528036ad81748bf8a2ae27db461",
+      "preserved_paths": [
+        "assets/levels/b07/effects/eye_light_arc/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ff3fa338-3357-44b1-b7bb-20ff221d12b4.png",
+      "sha256": "e7f698a631218c0b826c1585caf91f9fa27573ed415b07001749f812c9773272",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m09/actions/dart_venom/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-cc4f39ac-395a-4ac6-a492-b608ec939355.png",
+      "sha256": "b0a0ac5be2deaafccd39bfcd25ec4249e59041c1153c92c9560050f39e4f3d62",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m07/actions/sand_vortex/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8ffe34aa-d3f8-4209-8b51-5afed8d82441.png",
+      "sha256": "80e2972caf7ef7dc9ab7f7b29d968eefeb3365f31c552232ebd56091b1edb779",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/actions/tail_sweep/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-40f98dba-3afa-4ad2-a37d-16c2114bd4ed.png",
+      "sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-a0937ba9-c7c7-446c-bcde-fc965f9a0a7e.png",
+      "sha256": "ada00368813d916372bf754db94d481f2c1e77e87d56ee612b7c643700345e44",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l41/detail/source/top_middle.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-137f02a6-e682-45d2-ada7-4aec674c59a7.png",
+      "sha256": "dd8c99d773b981df1d097d86bdc96564c11fffadcfaadfc6f6c3f374dfc24bb7",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_environment_candidate_v2.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-6a5f2665-bcd7-4672-9fd8-7193a4176852.png",
+      "sha256": "1d82405a4b4e02ed21d7c9280d45c4c90cf2f6e5bfe9ba449f3e0df449ff2c6f",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m03/actions/returning_disc/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-30257f02-6750-4254-8d25-78e5318770c3.png",
+      "sha256": "8c85849c93ce32623a71acf4eee657b28179b2aacb77a94321aa5f25e0fbb992",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/source_candidates/eye_light_arc_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8ee065ed-5049-41b3-9f56-f13391f52264.png",
+      "sha256": "cb2f589d1d8ea306d95cb0940298988d9cf77be4d0d1b5504db894a11a5ae70a",
+      "preserved_paths": [
+        "assets/levels/b07/effects/support_node/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-0bb80bbc-5d0f-42fe-bdb3-6af79ac84e69.png",
+      "sha256": "8da6f16b339e73e09b1fc82c61878d5537d661384ecea7b471e5a9245887d2e0",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m13/actions/sun_beam/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-da76a49b-f8a3-47db-9103-ddb28abed02c.png",
+      "sha256": "085af8296cddb788fa546d6566be2198e716ee6c355ce5ec2122ca4f469599ba",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/altar_lines/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-dbc6f636-fe58-4aec-af70-229f092566da.png",
+      "sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l39/background/courtyard_boundary_revision.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-62f833bb-48a8-436f-93e1-342466121fd3.png",
+      "sha256": "5d73394753d06908752225ed629f40a77fb486c20d5fa1f58dd41bf8a780979e",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l41/detail/source/top_left.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-fc8e0c52-5001-4e3a-8dcd-2a234ef47942.png",
+      "sha256": "2406841ad059ba30e8e0bbfc7b783db309fb6883f01eb3a71c887a48847064fb",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m05/actions/turquoise_heal/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-08cc8a3f-927e-42a8-8d2d-afa0a51f1426.png",
+      "sha256": "b5ccd4f2a2b355ad7699883243bb400a8c200e5e553d8bf64932495d70e87588",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_low_stone_cover_v1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b6a01040-f76b-4ed4-9e1a-6943fcd55cf1.png",
+      "sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/idle.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-79ba5aef-3f26-4e5e-8bb7-3749f2b706ca.png",
+      "sha256": "529c2dcb6b3f8dbd9116f92d1c6a4f900042b843af75094e42bd7e44893dbe82",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/sun_mirror_rooted/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-9de5a7f1-88f5-421e-bd68-25a96ad1b01a.png",
+      "sha256": "1db645bfe7af7f22e067acc63cc9f14bc87e9f933677cb9c3b7bca291afc2ed6",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/altar_lines/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-878ac509-b7f7-444b-be7b-79bf3b1c3278.png",
+      "sha256": "a5d1a176e326d79ea9da46de6769036a28380b011bb30f6afe4cfd04e1bd4091",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m18/actions/light_ceremony/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-28d54d4d-859b-4914-952a-228a03ac0512.png",
+      "sha256": "a08dac731e2718b576374dc2a6d4883a3b3e93bcec8b6e031c1b238c6e51a21c",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/altar_lines/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-9bfcb50b-9cb5-4a09-ab0a-7c5d8c9f950c.png",
+      "sha256": "c39ed2a83eab65bd30b84294f8ee3fadf5bc5dc7be004250be624c081cd73a38",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m03/actions/returning_disc/catch_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b7f1af48-bd2e-4678-8a2e-8b7821479e3b.png",
+      "sha256": "b9effdb51aaaa09aa49a48eac51c99af8f5ab196aab86d1b699a40ba7c4fd105",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/background/boundary_mismatch_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8a2c9aef-48cb-45e7-988e-e792d4b60a9b.png",
+      "sha256": "b616039ba747bd4f038e39d8ea66032fdd106f60b31d48ed1a20b53ce80b3b88",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/actions/sun_spear/telegraph_hand_corrected_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-f415c10a-2573-45f6-bc34-9a8cdefaedf3.png",
+      "sha256": "ca0c79ab91e3aa16e4a611ca3bdc59df7e90fa4c7a5fd75f246f29fd0aedd1bf",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/sun_disc/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-f7738126-a797-4ad2-a690-726b2fdc8309.png",
+      "sha256": "761646300258fe8096954f66550a1a2be821fae9d0022e3923478211b25e3321",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/detail/source/bottom_right.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3a3cc174-0358-40ce-9f36-b14a0cf40e9b.png",
+      "sha256": "10ce0fa9bda9dc3507cc26b58385a4cc1661e9aa62146a78b38c5d9f2b7a8dc0",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m02/actions/sand_ball/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7be16982-e909-4869-b788-f5a623fb45d8.png",
+      "sha256": "c0c555189af50bacb682ed14a399a5d621bde575df2c314911ce9ee31e97aad1",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/manual_gate_lever/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7ff27fd2-8a73-44fb-b51c-b1e03bd48b54.png",
+      "sha256": "ea93b42dc857679732082f65db49852ea48dd6e763643168e94fcfcdac4786c0",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/altar_suppressed/exposed_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-68dd576d-a790-4507-a367-ff51658deb10.png",
+      "sha256": "e9fc940ebf37a22e2764af49aeb0f86ca88b29c1869de0e6848e8afa9f665fbf",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/actions/tail_sweep/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-2b8f9009-5cf3-4608-aa32-70489e59123c.png",
+      "sha256": "ebac3f964faf821191075888d9d567f9b157d5194eb00fa6fc8568564810470e",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/actions/sun_spear/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-de2477b9-5721-4d34-a8a3-d46f2f01d242.png",
+      "sha256": "972edd2c81e9044f69ffd882f19da31e028b151368a16687885137bc5b614fd7",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/detail/source/bottom_left.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-15359cf5-8695-4891-95ea-bdc5b692be23.png",
+      "sha256": "e28eecebd0487e8e71c390dacf3b5bb08ce7f44aadf7a523dcd23b3e24111b52",
+      "preserved_paths": [
+        "assets/levels/b07/effects/turquoise_link/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-c2cabff8-232b-42ea-ab70-e12802d646a8.png",
+      "sha256": "7c70a16d7faec7020d2715085440f1f60493c3aa68cd1fe1aa9cfc1174264fc1",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m18/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-a29061b2-3e11-49dc-bcc4-72272456c5d1.png",
+      "sha256": "a9d6d22cb778365fcc18fa05170174765394001de482899f3904abc8950bb955",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/actions/stargazer_arc/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d6cca582-3650-441d-b86a-204fe847771a.png",
+      "sha256": "f7837557a84c912e8202c9347fcb0470339287a91b652f43df15a91e92f62a10",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/source_candidates/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b33b0f6b-ecba-489c-ac1b-563832fe44fc.png",
+      "sha256": "b2c13a6c50b3d52c32508f171c001f1c029b05021653f228f1f9800fa0634531",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l39/background/courtyard_boundary_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1d152ff7-c640-44c1-8872-160ee31bd8f9.png",
+      "sha256": "0ea46a73578a2ac1681e70572529ca442fa90dc4a545244544b22d7fb9684574",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/bo07/background/throne_boundary_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-503fb6b0-1d4d-4bc8-b8de-98e66f62b0b5.png",
+      "sha256": "23af2e4cf8fc5154cfc0a0a54bfa79261ba10358fc68074409b393276dc4e46f",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/actions/awning_bolt/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-9b6daa0f-bc75-42b1-8fb4-dd038dae72e9.png",
+      "sha256": "d4b4911104ae9ccae9d0c8ea4866616496bc99122441c394605c7e4a55783d61",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/north_gate_midground_repair_2.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-67544a36-6e04-4eb4-98ff-0d555282cced.png",
+      "sha256": "984a9281dfea39ba05f835e768cb1a673be2181153709b53145b3cb988d3913b",
+      "preserved_paths": [
+        "assets/levels/b07/effects/altar_beam/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1e2199c4-18d5-4865-a134-53bd957b07af.png",
+      "sha256": "42b88fa8cbe62b6a0283915584fadbed9f7364c0148d064c9deef225d230d7a3",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sun_mirror_landmark/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b09267c6-a2fb-40e2-8edf-fe616b19256b.png",
+      "sha256": "7a8be9559cfc2579aee6a5f28333e19f6805a1500feca25f0b78add7486d9191",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l38/market_awning_stall/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ba17145b-82db-4c08-982f-1e7e18977b22.png",
+      "sha256": "b5b798077413890ac4157c524549ffe1aafbd8de96c4f740abcb6d910ec3b62a",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m10/actions/mirror_attendant/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-adc23fe7-7d70-4eeb-9ad6-ec08bfc0f2d5.png",
+      "sha256": "f1b9e7be76fab4bd2394f3b1bb43595472d361a240ddb9c8894aa0c3bea44144",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/actions/obelisk_cross/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1396d026-b21c-4522-b904-053bc6c78155.png",
+      "sha256": "cb9de73edc59e5c0e490e5b31fc74fe25331861a042ae5885155ee31c6bb1a5b",
+      "preserved_paths": [
+        "assets/levels/b07/effects/fallen_banner/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ba5719a8-05d8-4d27-ab92-7b3a8520515c.png",
+      "sha256": "41528e88b9d7f9d692cdda3257d9d86c7a1f1115ce369308d7ec12b93e3f9d3d",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/actions/mirror_slash/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-be917f17-3b67-4605-ba9b-a0715f14b398.png",
+      "sha256": "90410340b9d17773fbc17db538ed9e068d075ac4be4da313618827bb2a49c906",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/source_candidates/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7e99dd92-32be-4d65-a00d-2be2e1482cb0.png",
+      "sha256": "89aec53a3bdee0f9f777ed447c6781ccc81c9fe93a31b118155ad0c0a10e8832",
+      "preserved_paths": [
+        "assets/levels/b07/bosses/bo07/actions/sun_spear/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-0352e3aa-d3dd-4825-81a0-08126175fa86.png",
+      "sha256": "db5bd5b2fe771bfbc1dff0d3ae015264eda6d77db5492f27c3599e35dfc98ef5",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m15/actions/camouflage_banner/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-be2a6238-bf02-4c9e-8b99-79858cbf5ccf.png",
+      "sha256": "5cc75bdb67cdb08483f5cf5cf5422ac1ee66bc82754d89752749233a9d10dbb1",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m09/idle_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-bcb539d3-37f5-406a-8439-73e2675fc2db.png",
+      "sha256": "669098ecc68dee676770428f566e3c4007927e9540cb41c5c573728619170f6d",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/north_gate_midground_repair_3.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3a25033a-abf5-4d90-aaee-83641048645c.png",
+      "sha256": "b80f1d24ddc8f5ee0c1b5cbcafea59e156123a3c516d1477863896ed65321843",
+      "preserved_paths": [
+        "assets/levels/b07/effects/blade_arc/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5639d3e7-14af-45eb-9119-6844f4c2c383.png",
+      "sha256": "0e4fa17221edfc8107de5e70053c33f773738114af89cacd09c9ac5556bf0665",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m10/actions/mirror_attendant/recovery_candidate.png"
+      ]
+    }
+  ],
+  "unpreserved_originals": [],
+  "backup_state": "Current worktree preservation; remote recoverability begins only after parent verifies pushed stop checkpoint"
+}

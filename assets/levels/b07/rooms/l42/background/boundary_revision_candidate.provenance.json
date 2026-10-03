@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "generation_tool": "built-in image_gen",
+  "room_id": "L42",
+  "mode": "one targeted boundary correction of candidate",
+  "source_original_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-e0a88b55-59e3-43a6-90b3-0f291d8e74f9.png",
+  "output_path": "assets/levels/b07/rooms/l42/background/boundary_revision_candidate.png",
+  "selected_copy_path": "assets/levels/b07/rooms/l42/background/environment.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "png_sha256": "c629b8452bfa2cd760f717e275aed25cc4441fb7e2f3fcb374b9e6b55369103d",
+  "decoded_rgb_sha256": "9d78f0539003cabafbff55db831588309685b3856f3ab9ff8ee49535b9a5441e",
+  "unchanged_generated_pixels": true,
+  "prompt_file": "docs/levels/b07/rooms/l42/independent_painting_boundary_revision.prompt.txt",
+  "references": [
+    {
+      "role": "edit_target",
+      "path": "assets/levels/b07/rooms/l42/background/independent_candidate.png",
+      "sha256": "e99927c89f81b571b2f1174616099c9eb9ede7eef83359715976ae76e821cb84"
+    },
+    {
+      "role": "exact_geometry_authority",
+      "path": "artifacts/l42_independent_guide/fixed_floor_guide.png",
+      "sha256": "95a8a8e598afe5d0e95696fa3918c02ebeed84c8581d5b3804c1f1a98a7f3421"
+    }
+  ],
+  "runtime_integrated": false,
+  "candidate_only": true,
+  "qa_status": "blocked_fixed_floor_boundary_mismatch",
+  "selection_reason": "South paving-to-facade boundary improved approximately 57 pixels toward fixed design; retains complete coherent painting and clear runtime anchors. Selected for required six native detail repaints; not an approval of fixed boundary alignment."
+}

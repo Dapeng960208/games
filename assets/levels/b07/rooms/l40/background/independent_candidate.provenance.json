@@ -1,0 +1,46 @@
+{
+  "status": "candidate_failed_fixed_boundary_qa",
+  "generation_tool": "built-in image_gen",
+  "source_png": "/workspace/scratch/2244020fc8d6/generated_images/exec-36beb86f-35a5-4ea3-8df9-a936cc892a45.png",
+  "workspace_png": "assets/levels/b07/rooms/l40/background/independent_candidate.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "64b83d6ad66bb8eb9884e161ee6c714ece5748140c6c576e1aaf2a039c824269",
+  "prompt": "docs/levels/b07/rooms/l40/independent_painting.prompt.txt",
+  "inputs": [
+    {
+      "role": "exact_floor_mask_edit_target",
+      "path": "artifacts/l40_independent_guide/fixed_footprint_guide.png",
+      "sha256": "68aec8b5a80dd0a605d152f8304bd9d391ed5c840bc3fd2cdcbfae85678f75b9"
+    },
+    {
+      "role": "user_culture_reference",
+      "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+      "sha256": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984"
+    },
+    {
+      "role": "B07_material_and_camera_reference",
+      "path": "assets/levels/b07/rooms/l37/background/environment.png",
+      "sha256": "9fdd7cf6ff8a98aa572fca3692bd974677d03075b1f97cf15caa5a4d47fecfaa"
+    },
+    {
+      "role": "painting_quality_and_paver_scale_reference",
+      "path": "assets/levels/b02/rooms/l07/background/environment.png",
+      "sha256": "c9fc40040094b066f75e6fb6e50831183146170da6d4135467c3ec6c38b56d77"
+    }
+  ],
+  "pixel_processing": "Unmodified original PNG bytes; QA overlay is separate and not an asset.",
+  "generation_attempt": 1,
+  "date_utc": "2026-10-03",
+  "qa": {
+    "fixed_boundary_pass": false,
+    "reason": "South edge observed around y760 instead of y868.94; northwest corner chamfered and north floor extends to about y150 instead of y188.71. Eight gameplay anchors remain empty floor.",
+    "overlay": "artifacts/l40_independent_guide/independent_candidate_qa_overlay.png",
+    "runtime_wiring": false,
+    "detail_generation": false
+  },
+  "prompt_sha256": "c9bb7e09f25900b73b25b4961019f1b34eb5e408dfefe8dfdcbb5759c91db13b",
+  "raw_bytes_verified_identical": true
+}

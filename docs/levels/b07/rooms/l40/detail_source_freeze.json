@@ -1,0 +1,11 @@
+{
+  "status": "required_native_details_in_progress_mother_runtime_blocked",
+  "source": "assets/levels/b07/rooms/l40/background/boundary_revision_candidate.png",
+  "source_sha256": "dbd486457fe2cafcca59aaf2c3b1b5ad5d727c856258075816eb945814021f07",
+  "source_alias": "asset://world/rooms/L40_environment_v1.png",
+  "native_detail_target": 6,
+  "approved": false,
+  "candidate_only": true,
+  "source_change_requires_reregistration": true,
+  "authorization": "User explicitly requires details for every independent room; blocked mother only prevents runtime acceptance, not detail generation"
+}

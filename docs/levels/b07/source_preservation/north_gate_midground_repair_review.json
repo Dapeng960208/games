@@ -1,0 +1,268 @@
+{
+  "task": "B07 north gate transparent wide-low architecture correction",
+  "generated_utc": "2026-10-03T06:46:00Z",
+  "original": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_candidate.png",
+  "style_reference": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+  "target_world_content_size": [
+    2150,
+    390
+  ],
+  "target_max_camera_effective_display": [
+    1871,
+    339
+  ],
+  "best_candidate": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_2.png",
+  "review": {
+    "overall": "FAIL",
+    "wide_low_geometry": "Repair 2 alpha>8 measures 2025x369, aspect 5.488:1, near target. No vertical resampling performed.",
+    "pixel_edges": "FAIL: visibly persistent red/yellow edge fringe in all outputs. Alpha>0 contains stray very-low-alpha dust beyond meaningful silhouette.",
+    "mirror": "Full tips and circular silhouette preserved. Repair 2 remains around x62% rather than requested x54%; approximate diameter 220 native px scales to ~234 world units, larger than target190–220.",
+    "support_baseline": "FAIL: left-to-right rise ~70 native px, about74 world units rather than120. Right baseline nearly flat in repair2.",
+    "visual_identity": "Warm sandstone city/arches/orange banners/two lizard heads retained. No baked background rectangle or walkable plaza.",
+    "fresh_reference_attempt": "Repair3 from design reference only still has fringe and regresses width/height ratio; rejected.",
+    "native_resolution": "Repair2 meaningful width2025 exceeds requested effective display1871, but alpha and geometric failures prevent acceptance.",
+    "inspection": "All original/reference/generated images visually inspected, actual alpha bounds measured with Pillow. No game tests, code edits, commits or pushes."
+  },
+  "candidates": [
+    {
+      "candidate": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_1.png",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-abb9f23c-3a5c-4666-b51b-de2bda963d05.png",
+      "sha256": "a7c8f5e854a4b71a011de093f55083dfd8ec9d2718289ce80d009891a235e26c",
+      "native_size": [
+        2079,
+        756
+      ],
+      "mode": "RGBA",
+      "alpha_bounds_threshold_gt": {
+        "0": {
+          "bbox": [
+            25,
+            19,
+            2047,
+            732
+          ],
+          "size": [
+            2022,
+            713
+          ],
+          "aspect_ratio": 2.835904628330996
+        },
+        "8": {
+          "bbox": [
+            28,
+            179,
+            2045,
+            590
+          ],
+          "size": [
+            2017,
+            411
+          ],
+          "aspect_ratio": 4.907542579075426
+        },
+        "32": {
+          "bbox": [
+            28,
+            179,
+            2045,
+            589
+          ],
+          "size": [
+            2017,
+            410
+          ],
+          "aspect_ratio": 4.919512195121952
+        },
+        "128": {
+          "bbox": [
+            29,
+            180,
+            2044,
+            589
+          ],
+          "size": [
+            2015,
+            409
+          ],
+          "aspect_ratio": 4.9266503667481665
+        },
+        "250": {
+          "bbox": [
+            37,
+            190,
+            2041,
+            588
+          ],
+          "size": [
+            2004,
+            398
+          ],
+          "aspect_ratio": 5.035175879396985
+        }
+      },
+      "prompt_file": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_1.prompt.txt",
+      "method": "built-in imagegen; raw bytes copied, no postprocessing",
+      "status": "FAIL_NOT_FOR_INTEGRATION"
+    },
+    {
+      "candidate": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_2.png",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-9b6daa0f-bc75-42b1-8fb4-dd038dae72e9.png",
+      "sha256": "d4b4911104ae9ccae9d0c8ea4866616496bc99122441c394605c7e4a55783d61",
+      "native_size": [
+        2079,
+        756
+      ],
+      "mode": "RGBA",
+      "alpha_bounds_threshold_gt": {
+        "0": {
+          "bbox": [
+            22,
+            101,
+            2054,
+            737
+          ],
+          "size": [
+            2032,
+            636
+          ],
+          "aspect_ratio": 3.1949685534591197
+        },
+        "8": {
+          "bbox": [
+            26,
+            225,
+            2051,
+            594
+          ],
+          "size": [
+            2025,
+            369
+          ],
+          "aspect_ratio": 5.487804878048781
+        },
+        "32": {
+          "bbox": [
+            26,
+            225,
+            2051,
+            594
+          ],
+          "size": [
+            2025,
+            369
+          ],
+          "aspect_ratio": 5.487804878048781
+        },
+        "128": {
+          "bbox": [
+            27,
+            226,
+            2051,
+            593
+          ],
+          "size": [
+            2024,
+            367
+          ],
+          "aspect_ratio": 5.514986376021798
+        },
+        "250": {
+          "bbox": [
+            32,
+            234,
+            2047,
+            592
+          ],
+          "size": [
+            2015,
+            358
+          ],
+          "aspect_ratio": 5.628491620111732
+        }
+      },
+      "prompt_file": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_2.prompt.txt",
+      "method": "built-in imagegen; raw bytes copied, no postprocessing",
+      "status": "FAIL_NOT_FOR_INTEGRATION"
+    },
+    {
+      "candidate": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_3.png",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-bcb539d3-37f5-406a-8439-73e2675fc2db.png",
+      "sha256": "669098ecc68dee676770428f566e3c4007927e9540cb41c5c573728619170f6d",
+      "native_size": [
+        1971,
+        798
+      ],
+      "mode": "RGBA",
+      "alpha_bounds_threshold_gt": {
+        "0": {
+          "bbox": [
+            0,
+            31,
+            1971,
+            798
+          ],
+          "size": [
+            1971,
+            767
+          ],
+          "aspect_ratio": 2.5697522816166884
+        },
+        "8": {
+          "bbox": [
+            8,
+            143,
+            1961,
+            696
+          ],
+          "size": [
+            1953,
+            553
+          ],
+          "aspect_ratio": 3.5316455696202533
+        },
+        "32": {
+          "bbox": [
+            8,
+            143,
+            1961,
+            696
+          ],
+          "size": [
+            1953,
+            553
+          ],
+          "aspect_ratio": 3.5316455696202533
+        },
+        "128": {
+          "bbox": [
+            9,
+            144,
+            1960,
+            695
+          ],
+          "size": [
+            1951,
+            551
+          ],
+          "aspect_ratio": 3.540834845735027
+        },
+        "250": {
+          "bbox": [
+            16,
+            158,
+            1959,
+            694
+          ],
+          "size": [
+            1943,
+            536
+          ],
+          "aspect_ratio": 3.625
+        }
+      },
+      "prompt_file": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_3.prompt.txt",
+      "method": "built-in imagegen; raw bytes copied, no postprocessing",
+      "status": "FAIL_NOT_FOR_INTEGRATION"
+    }
+  ]
+}

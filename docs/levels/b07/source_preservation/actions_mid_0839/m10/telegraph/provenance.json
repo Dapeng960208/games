@@ -1,0 +1,15 @@
+{
+  "id": "m10",
+  "action": "telegraph",
+  "status": "design_candidate_not_runtime",
+  "tool": "image_gen.imagegen",
+  "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m10/idle_candidate.png",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-91ace1f4-d112-4a9d-b6bf-009de37f431b.png",
+  "copy_byte_preserved": true,
+  "generated_at_utc": "2026-10-03",
+  "prompt": "prompt.txt",
+  "sha256": "11fdf57a8a6226f7368455b76114d029fc8d2b4aab6965d70fef3bb05c62666a",
+  "bytes": 1447091,
+  "source_sha256": "11fdf57a8a6226f7368455b76114d029fc8d2b4aab6965d70fef3bb05c62666a",
+  "copy_byte_verified": true
+}

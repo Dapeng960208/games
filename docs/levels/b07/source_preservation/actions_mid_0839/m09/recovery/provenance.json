@@ -1,0 +1,15 @@
+{
+  "id": "m09",
+  "action": "recovery",
+  "status": "design_candidate_not_runtime",
+  "tool": "image_gen.imagegen",
+  "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m09/idle_candidate.png",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-d14d38a4-a456-4591-88d3-647ec05bfcc5.png",
+  "copy_byte_preserved": true,
+  "generated_at_utc": "2026-10-03",
+  "prompt": "prompt.txt",
+  "sha256": "b5fc70973cedb10a3c2d1e83cf3a6deef012ac74cd9a72dc73ff1136f5a09ee7",
+  "bytes": 1356952,
+  "source_sha256": "b5fc70973cedb10a3c2d1e83cf3a6deef012ac74cd9a72dc73ff1136f5a09ee7",
+  "copy_byte_verified": true
+}

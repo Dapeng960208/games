@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M16",
+  "action": "recovery",
+  "variant": "recovery",
+  "category": "pose",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/recovery/candidate.png",
+  "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/recovery/prompt.txt",
+  "source_filename": "exec-d4df1cb3-f70a-4b46-b1b2-6ea19cdc95b2.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d4df1cb3-f70a-4b46-b1b2-6ea19cdc95b2.png",
+  "source_sha256": "bdc46b05a71ec99e6d8cc19a58fe8798109cb22617843d42dd6b5a143d72b107",
+  "png_sha256": "bdc46b05a71ec99e6d8cc19a58fe8798109cb22617843d42dd6b5a143d72b107",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m16/idle_candidate.png",
+  "identity_reference_sha256": "b7c22057e1515742638f779c77ab5f602ac89b02a036a5f9be00b4ad9fa4c3c2",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1035789,
+    "alpha_zero_fraction": 0.6586826461543157,
+    "low_alpha_1_15_pixel_count": 29983,
+    "opaque_pixel_count": 682,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        30,
+        53,
+        1254,
+        1202
+      ],
+      "bounds_xywh": [
+        30,
+        53,
+        1224,
+        1149
+      ],
+      "effective_pixel_count": 536727,
+      "edge_pixel_count": 16,
+      "margins_ltrb": [
+        30,
+        53,
+        0,
+        52
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        33,
+        90,
+        1245,
+        1196
+      ],
+      "bounds_xywh": [
+        33,
+        90,
+        1212,
+        1106
+      ],
+      "effective_pixel_count": 506744,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        33,
+        90,
+        9,
+        58
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        34,
+        91,
+        1244,
+        1196
+      ],
+      "bounds_xywh": [
+        34,
+        91,
+        1210,
+        1105
+      ],
+      "effective_pixel_count": 498834,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        34,
+        91,
+        10,
+        58
+      ]
+    },
+    "foot_contacts_manual": [
+      [
+        606,
+        1130
+      ],
+      [
+        1047,
+        989
+      ]
+    ],
+    "foot_midpoint": [
+      826.5,
+      1059.5
+    ],
+    "anatomical_crown_xy_manual": [
+      853,
+      93
+    ],
+    "body_height_excluding_weapon_tail_accessories": 966.5,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 966.5,
+    "maximum_display_body_px_at_1_5_sampling_margin": 644.33,
+    "visual_review": "Exactly one hinged lens lifted, one visible natural eye, other lens closed.",
+    "defects": [
+      "Raised hand right margin tight; below requested 8%."
+    ],
+    "foot_anchor_runtime_registered": false
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m16/recovery: B07-M16 crystal-goggle stargazer lizard. Preserve broad eyes/narrow snout, exactly two round amber faceted CRYSTAL GOGGLE LENSES in ornate bronze eye frame, orange head crest, deep-red hooded short robe/ivory front cloth, long tail, no held weapon. RECOVERY weak-point pose: crouched exhausted forward lean; anatomical LEFT hand at screen-right visibly flips open ONLY the screen-right amber lens on its physical hinge upward above eyebrow, revealing a single unprotected natural golden lizard eye below. Opposite screen-left lens stays down covering its eye. Open lens remains attached to goggle frame, not removed. Other hand hangs near knee, both feet planted, tail relaxed. Show unmistakably one lens open / one shut, no glow."
+}

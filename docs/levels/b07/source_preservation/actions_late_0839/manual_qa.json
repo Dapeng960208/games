@@ -1,0 +1,327 @@
+{
+  "schema": "manual_visual_review_v1",
+  "coordinateConvention": "Normalized image coordinates x/right,y/down; approximate visually estimated planted toe/foot-pad centers, not automatic alpha bottom. Anatomical crown excludes weapon/flag/stone shoulder towers/three-ring crown. Estimated tolerance ±20px (±35px for partly hidden foot). No runtime registration.",
+  "sharedLimits": [
+    "Design candidates only; M14–M18 unique active skills are not implemented and still use base attack fallback.",
+    "Three independent key poses do not form continuous animation, complete multi-hit coverage, directional coverage or a validated 2K game render.",
+    "Camera is more frontal/lower than a strict elevated 45-degree runtime camera, especially M18; uniform runtime camera pass not approved.",
+    "No body PNG is cropped, resized, alpha-thresholded or otherwise edited by script. Generated PNG bytes preserved.",
+    "Normal alpha composites on light sandstone and dark purple have no broad RGB preview halos; faint low-alpha edge noise remains in source PNGs."
+  ],
+  "assets": {
+    "m14/telegraph": {
+      "feet": [
+        [
+          0.445,
+          0.924
+        ],
+        [
+          0.922,
+          0.795
+        ]
+      ],
+      "anatomicalCrown": [
+        0.638,
+        0.078
+      ],
+      "pose": "Left blade held back high; other blade low, torso coiled.",
+      "defects": [
+        "Minimum strong-alpha margin below requested 8%."
+      ]
+    },
+    "m14/execute_framing_fix": {
+      "feet": [
+        [
+          0.307,
+          0.75
+        ],
+        [
+          0.855,
+          0.868
+        ]
+      ],
+      "anatomicalCrown": [
+        0.535,
+        0.145
+      ],
+      "pose": "Single left-hand extended slash, other hand maintains blade; no complete second hit.",
+      "defects": [
+        "Framing improved once, but requested 10% margin is not fully achieved.",
+        "Minor ornament redraw from first candidate; not exact pixel continuation."
+      ]
+    },
+    "m14/recovery": {
+      "feet": [
+        [
+          0.417,
+          0.932
+        ],
+        [
+          0.878,
+          0.816
+        ]
+      ],
+      "anatomicalCrown": [
+        0.635,
+        0.029
+      ],
+      "pose": "Both blades lowered toward hips, clear recovery stance.",
+      "defects": [
+        "Minimum strong-alpha margin below requested 8%."
+      ]
+    },
+    "m15/telegraph": {
+      "feet": [
+        [
+          0.345,
+          0.931
+        ],
+        [
+          0.817,
+          0.857
+        ]
+      ],
+      "anatomicalCrown": [
+        0.667,
+        0.395
+      ],
+      "pose": "Flag hoist with hunched braced stance and two hands on pole.",
+      "defects": [
+        "Telegraph-to-execute silhouette difference is moderate; still missing in-between and timing.",
+        "Minimum strong-alpha margin below requested 8%."
+      ]
+    },
+    "m15/execute_framing_fix": {
+      "feet": [
+        [
+          0.381,
+          0.882
+        ],
+        [
+          0.773,
+          0.829
+        ]
+      ],
+      "anatomicalCrown": [
+        0.629,
+        0.391
+      ],
+      "pose": "Raised flag, extended neck and wider open banner fan.",
+      "defects": [
+        "Framing improved once, but requested 10% margin is not fully achieved.",
+        "Minor flag pattern redraw, not exact continuous animation."
+      ]
+    },
+    "m15/recovery": {
+      "feet": [
+        [
+          0.507,
+          0.925
+        ],
+        [
+          0.799,
+          0.814
+        ]
+      ],
+      "anatomicalCrown": [
+        0.742,
+        0.267
+      ],
+      "pose": "Lowered diagonal pole and sagging three cloth layers.",
+      "defects": [
+        "Grip order/orientation changes with pole tilt and needs animation hand-lock review.",
+        "Top finial margin below requested 8%."
+      ]
+    },
+    "m16/telegraph": {
+      "feet": [
+        [
+          0.396,
+          0.882
+        ],
+        [
+          0.915,
+          0.772
+        ]
+      ],
+      "anatomicalCrown": [
+        0.698,
+        0.11
+      ],
+      "pose": "Both hands adjust closed lenses, head turned toward sweep start.",
+      "defects": [
+        "Torso not a deep crouch; charging relies partly on hands/head.",
+        "Side margin below requested 8%."
+      ]
+    },
+    "m16/execute": {
+      "feet": [
+        [
+          0.38,
+          0.864
+        ],
+        [
+          0.866,
+          0.765
+        ]
+      ],
+      "anatomicalCrown": [
+        0.695,
+        0.114
+      ],
+      "pose": "Neck thrust and head turned to opposite sweep end, hands spread.",
+      "defects": [
+        "Right-hand claw margin tight; below requested 8%.",
+        "A single pose cannot establish a precise 60-degree animated sweep."
+      ]
+    },
+    "m16/recovery": {
+      "feet": [
+        [
+          0.483,
+          0.901
+        ],
+        [
+          0.835,
+          0.789
+        ]
+      ],
+      "anatomicalCrown": [
+        0.68,
+        0.074
+      ],
+      "pose": "Exactly one hinged lens lifted, one visible natural eye, other lens closed.",
+      "defects": [
+        "Raised hand right margin tight; below requested 8%."
+      ]
+    },
+    "m17/telegraph": {
+      "feet": [
+        [
+          0.351,
+          0.917
+        ],
+        [
+          0.851,
+          0.789
+        ]
+      ],
+      "anatomicalCrown": [
+        0.631,
+        0.281
+      ],
+      "pose": "Both stone fists raised, exactly two shoulder obelisks attached.",
+      "defects": [
+        "Upper fist margins below requested 8%.",
+        "Raised arm proportions need cross-pose alignment."
+      ]
+    },
+    "m17/execute": {
+      "feet": [
+        [
+          0.209,
+          0.744
+        ],
+        [
+          0.724,
+          0.753
+        ]
+      ],
+      "anatomicalCrown": [
+        0.645,
+        0.269
+      ],
+      "pose": "Both fists strike at a common imaginary ground plane, living lizard crouches behind.",
+      "defects": [
+        "Far/right foot toes partly hidden by fist; foot center is uncertain ±35px.",
+        "No drawn cross or impact terrain; ground hit geometry remains separate."
+      ]
+    },
+    "m17/recovery": {
+      "feet": [
+        [
+          0.412,
+          0.907
+        ],
+        [
+          0.827,
+          0.803
+        ]
+      ],
+      "anatomicalCrown": [
+        0.666,
+        0.206
+      ],
+      "pose": "Stone fists braced at knees, lowered head and tired hunched stance.",
+      "defects": [
+        "Fist-knee contact reads but requires rigged continuity verification.",
+        "Shoulder towers impose large alpha bbox not body height."
+      ]
+    },
+    "m18/telegraph": {
+      "feet": [
+        [
+          0.446,
+          0.928
+        ],
+        [
+          0.866,
+          0.789
+        ]
+      ],
+      "anatomicalCrown": [
+        0.595,
+        0.192
+      ],
+      "pose": "Empty hand raised beside crown, original right hand keeps scepter upright.",
+      "defects": [
+        "Camera materially lower than desired high-angle game view.",
+        "Crown/robe/tail margins tight; below requested 8%."
+      ]
+    },
+    "m18/execute": {
+      "feet": [
+        [
+          0.368,
+          0.932
+        ],
+        [
+          0.87,
+          0.799
+        ]
+      ],
+      "anatomicalCrown": [
+        0.462,
+        0.19
+      ],
+      "pose": "Arms spread to two absent ally directions; original hand keeps scepter.",
+      "defects": [
+        "Scepter extends toward screen-left rather than requested screen-right, but maintains original holding hand.",
+        "Camera materially lower than desired high-angle game view.",
+        "Crown/robe/tail margins below requested 8%."
+      ]
+    },
+    "m18/recovery": {
+      "feet": [
+        [
+          0.462,
+          0.872
+        ],
+        [
+          0.927,
+          0.82
+        ]
+      ],
+      "anatomicalCrown": [
+        0.469,
+        0.175
+      ],
+      "pose": "Backward stagger, low scepter, empty hand reaches for balance; three crown rings intact.",
+      "defects": [
+        "Camera materially lower than desired high-angle game view.",
+        "Knees partly covered by long robe, so degree of buckle remains uncertain.",
+        "Side margins below requested 8%."
+      ]
+    }
+  }
+}

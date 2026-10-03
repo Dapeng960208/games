@@ -1,0 +1,220 @@
+{
+  "status": "blocked_do_not_integrate",
+  "formal_acceptance": false,
+  "room_id": "L39",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_mode": "RGB",
+  "native_detail_count": 0,
+  "runtime_changes": false,
+  "geometry_changes": false,
+  "camera_changes": false,
+  "godot_run": false,
+  "geometry_sha256": "e23a9dad1202f16991b8fbda333042bb434424450b53a3e01808a95413ad36c6",
+  "geometry_hash_serialization": "UTF-8 json.dumps(room_geometry.L39,sort_keys=True,ensure_ascii=False,separators=(comma,colon))",
+  "pixel_to_world": 1.3216145833333333,
+  "review_method": "Actual original PNGs, fixed-coordinate overlay, and unscaled north/south/contact-edge closeups were visually inspected. Target formulas alone are not a pixel match. Manual ranges are approximate and are not exact image segmentation.",
+  "style_identity": {
+    "bright_hand_painted_cartoon_fantasy": true,
+    "high_three_quarter_2_5d": true,
+    "lizard_sandstone_academy": true,
+    "academy_evidence": "Peripheral scroll/book alcoves, arched teaching galleries, restrained terracotta shade awnings and lizard-head carving. Fine low-contrast sand-flow teaching motifs on a single paved courtyard.",
+    "runtime_objects_baked": false,
+    "independent_full_image": true,
+    "floating_or_disconnected_platform": false,
+    "interior_false_pit_or_raised_platform": false
+  },
+  "first_candidate": {
+    "path": "assets/levels/b07/rooms/l39/background/courtyard_boundary_candidate.png",
+    "sha256": "b2c13a6c50b3d52c32508f171c001f1c029b05021653f228f1f9800fa0634531",
+    "status": "failed_fixed_boundary",
+    "south_main_paving_inner_edge_y_range": [
+      807,
+      813
+    ],
+    "south_top_facing_coping_outer_edge_y_range": [
+      828,
+      837
+    ],
+    "other_findings": [
+      "North arcade feet around y135-150, substantially north of fixed y179.93",
+      "West/east floor borders outside the fixed x219.43/x1320.96 edges",
+      "SW/SE diagonals begin early and fixed lower perimeter crosses wall faces or planting"
+    ]
+  },
+  "revision": {
+    "path": "assets/levels/b07/rooms/l39/background/courtyard_boundary_revision.png",
+    "sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+    "status": "failed_fixed_boundary",
+    "south_fixed_y": 868.9371428571428,
+    "south_main_paving_inner_edge_y_range": [
+      843,
+      847
+    ],
+    "south_top_facing_coping_outer_edge_y_range": [
+      858,
+      863
+    ],
+    "south_fixed_minus_outer_coping_range_px": [
+      5.937142857142817,
+      10.937142857142817
+    ],
+    "south_vertical_face_observation": "The fixed south y868.94 line crosses the cap front/vertical decorated face, not the main courtyard plane. Counting the narrow coping top reduces the south mismatch but does not fix it.",
+    "north_fixed_y": 179.93142857142857,
+    "north_arcade_ground_contact_range_y": [
+      135,
+      149
+    ],
+    "west_fixed_x": 219.42857142857142,
+    "west_main_paving_range_x": [
+      198,
+      205
+    ],
+    "east_fixed_x": 1320.96,
+    "east_main_paving_range_x": [
+      1332,
+      1341
+    ],
+    "southwest_fixed_turn_y": 741.6685714285713,
+    "southwest_observed_main_paving_turn_y_range": [
+      692,
+      705
+    ],
+    "southeast_fixed_turn_y": 750.4457142857142,
+    "southeast_observed_main_paving_turn_y_range": [
+      697,
+      711
+    ],
+    "approx_main_paving_trace_pixels": [
+      [
+        202,
+        287
+      ],
+      [
+        355,
+        140
+      ],
+      [
+        1137,
+        140
+      ],
+      [
+        1336,
+        285
+      ],
+      [
+        1336,
+        704
+      ],
+      [
+        1155,
+        844
+      ],
+      [
+        374,
+        844
+      ],
+      [
+        202,
+        700
+      ]
+    ],
+    "trace_uncertainty_source_px": 8,
+    "trace_purpose": "Read-only visual QA estimate. Never use as replacement runtime geometry; coping, plants and architecture make boundary interpretation locally ambiguous.",
+    "anchors": {
+      "entry": {
+        "source_pixel": [
+          355.4742857142857,
+          719.7257142857143
+        ],
+        "visual_observation": "empty flat paving; no baked runtime object",
+        "approx_main_paving_clearance_source_px": 83.4,
+        "approx_main_paving_clearance_world": 110.22
+      },
+      "exit": {
+        "source_pixel": [
+          1184.9142857142858,
+          302.81142857142856
+        ],
+        "visual_observation": "empty flat paving; no baked runtime object",
+        "approx_main_paving_clearance_source_px": 103.37,
+        "approx_main_paving_clearance_world": 136.61
+      },
+      "altar": {
+        "source_pixel": [
+          768.0,
+          478.3542857142857
+        ],
+        "visual_observation": "empty flat paving; no baked runtime object",
+        "approx_main_paving_clearance_source_px": 338.35,
+        "approx_main_paving_clearance_world": 447.17
+      },
+      "L39_mirror_1": {
+        "source_pixel": [
+          460.79999999999995,
+          636.3428571428572
+        ],
+        "visual_observation": "empty flat paving; no baked runtime object",
+        "approx_main_paving_clearance_source_px": 207.66,
+        "approx_main_paving_clearance_world": 274.44
+      },
+      "L39_mirror_2": {
+        "source_pixel": [
+          1075.1999999999998,
+          359.86285714285714
+        ],
+        "visual_observation": "empty flat paving; no baked runtime object",
+        "approx_main_paving_clearance_source_px": 214.09,
+        "approx_main_paving_clearance_world": 282.94
+      },
+      "L39_gate_near": {
+        "source_pixel": [
+          1123.4742857142858,
+          346.6971428571428
+        ],
+        "visual_observation": "empty flat paving; no baked runtime object",
+        "approx_main_paving_clearance_source_px": 175.02,
+        "approx_main_paving_clearance_world": 231.31
+      },
+      "L39_gate_far": {
+        "source_pixel": [
+          1206.857142857143,
+          333.53142857142853
+        ],
+        "visual_observation": "empty flat paving; no baked runtime object",
+        "approx_main_paving_clearance_source_px": 115.28,
+        "approx_main_paving_clearance_world": 152.35
+      }
+    },
+    "routes": "All specified route vertices and route centerlines are over visible paving in the revision; this does not establish exact complete boundary agreement or runtime corridor/actor validation.",
+    "covers": "Both fixed stone-cover footprints and all three encounter anchors are visible empty paving. Runtime nodes remain responsible for their objects."
+  },
+  "reference_inspection": [
+    "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+    "assets/levels/b07/rooms/l37/background/environment.png",
+    "assets/levels/b02/rooms/l07/background/environment.png"
+  ],
+  "evidence_local_only": [
+    "artifacts/l39_independent_guide/fixed_geometry_guide.png",
+    "artifacts/l39_independent_guide/exact_floor_mask.png",
+    "artifacts/l39_independent_guide/candidate_fixed_overlay.png",
+    "artifacts/l39_independent_guide/revision_fixed_overlay.png",
+    "artifacts/l39_independent_guide/revision_south_center_closeup.png",
+    "artifacts/l39_independent_guide/revision_south_left_closeup.png",
+    "artifacts/l39_independent_guide/revision_east_lower_closeup.png",
+    "artifacts/l39_independent_guide/revision_north_center_closeup.png"
+  ],
+  "detail_gate": "Closed. No detail generation, environment.json runtime alias or integration until source-boundary approval.",
+  "stopping_reason": "Authorized generation budget exhausted: one initial image and one targeted revision. No further same-class generation in this task.",
+  "checks": {
+    "raw_source_byte_identity": true,
+    "source_dimensions_read_not_assumed": true,
+    "source_hashes_recorded": true,
+    "prompt_texts_recorded": true,
+    "functional_anchor_empty_floor_visual_check": true,
+    "fixed_boundary_pixel_match": false,
+    "no_art_pixels_changed_in_code": true
+  }
+}

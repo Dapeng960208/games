@@ -1,0 +1,29 @@
+[
+  {
+    "id": "m14",
+    "action": "blade_arc_design_fix",
+    "original": "blade_arc",
+    "prompt": "Use case: precise-object-edit. Single targeted correction to standalone game VFX candidate. Keep this isolated effect's gold/amber palette only. Correct it to exactly ONE SIMPLE SINGLE thin curved luminous crescent sliver with two tapered endpoints. Remove all branching fork shapes, side lobes, extra overlapping trails, turquoise streaks, and arrowheads. Make the thickness about 5% of the arc span, and visible sweep only about 60 degrees. No physical weapon, no geometric ornament, no sparks, no full ring. Pure transparent alpha background; generous margin. One restrained slash arc, not multiple cuts.",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-3a25033a-abf5-4d90-aaee-83641048645c.png",
+    "category": "effect_design_repair",
+    "reference_edit_target": "/workspace/scratch/2244020fc8d6/generated_images/exec-46e0ca30-b9d8-4a0d-ad05-b08bb302c1ee.png"
+  },
+  {
+    "id": "m16",
+    "action": "eye_light_arc_design_fix",
+    "original": "eye_light_arc",
+    "prompt": "Use case: precise-object-edit. Single targeted correction to standalone game VFX candidate. Keep the warm amber scanning-light palette. Replace the thick ornate crystal-decorated ribbon with ONE VERY THIN SMOOTH AMBER LIGHT ARC, about 60 degrees of curve, tapered endpoints, ribbon thickness only 3% of its span. REMOVE every diamond/crystal/solid decoration, spark and turquoise streak. No physical object, no full ring, no multiple lines, no broad white flash. Soft restrained alpha falloff limited to narrow arc. Genuine transparent background; generous margin.",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-98cf5514-a518-4036-af7f-33b2b3734609.png",
+    "category": "effect_design_repair",
+    "reference_edit_target": "/workspace/scratch/2244020fc8d6/generated_images/exec-30257f02-6750-4254-8d25-78e5318770c3.png"
+  },
+  {
+    "id": "m17",
+    "action": "sandstone_impact_design_fix",
+    "original": "sandstone_impact",
+    "prompt": "Use case: precise-object-edit. Single targeted correction to standalone game VFX candidate. Keep the existing arrangement of the single compact stone-debris impact cluster, but correct ALL stones to plain natural ivory-sand sandstone. REMOVE EVERY turquoise gemstone, gold metallic plate, copper seam, engraved motif and armor panel. Irregular plain chipped rock only, warm lighting. 7 to 10 main scattered chips plus a few small grains, no floor, no ground plate, no cross or target geometry. This is earth debris, not shattered character armor. Genuine transparent alpha background and generous margin.",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-08a741ef-772c-470f-8b3a-5b8b5ed69003.png",
+    "category": "effect_design_repair",
+    "reference_edit_target": "/workspace/scratch/2244020fc8d6/generated_images/exec-2a07c5d5-fcdd-40d3-86fa-5b9f2ee6b162.png"
+  }
+]

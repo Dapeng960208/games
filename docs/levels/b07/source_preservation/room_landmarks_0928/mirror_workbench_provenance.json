@@ -1,0 +1,111 @@
+{
+  "asset_id": "mirror_workbench",
+  "room_id": "L40",
+  "tool": "image_gen__imagegen",
+  "mode": "built-in generation, one separate call for this asset",
+  "transparent_background_requested": true,
+  "reference": {
+    "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+    "sha256": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+    "role": "User visual style reference; actually inspected with view_image before generation. Not submitted as an edit target.",
+    "inspected": true
+  },
+  "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/mirror_workbench.prompt.txt",
+  "prompt": "Use case: stylized-concept. Asset type: one independent production-candidate transparent PNG game environment prop for B07 金沙蜥城, not a scene or a sheet.\nVisual reference grounding: I inspected the user's B07(1).png: sunlit golden sandstone reptilian desert city, worn layered warm sandstone, copper-gold sun-disk hardware, red-orange fabric banners, small turquoise/teal accents, bright hand-painted fantasy detailing, high oblique near-isometric 2.5D with visible top and front-right side planes. Apply that visual language to the requested single object.\nStyle: crisp premium hand-painted game illustration; warm clear sunlight from upper left, readable simplified silhouette, restrained fine texture, rich warm colors, subtle brown contour accents, no photorealism. The whole subject is intact and centered, with at least 8 percent transparent margin on all four sides; no clipped finials, cloth, shadows, plinth or accessories. Camera high oblique about 40 degrees downward, orthographic-like near-isometric, visible top surfaces.\nPalette: honey/golden sandstone, copper and antique gold, terracotta red-orange fabric, very small turquoise accents only. Real alpha-transparent background, nothing outside the isolated object, no ground tile or rectangular floor slab, no sky, no canyon scenery, no frame, no characters, no words, no letters, no numbers, no logos, no watermark, no light beams, no attack effects, no baked glowing magical attack light. Sun symbols must be purely ornamental carved/metal motifs. Only tiny attached contact shade, no detached opaque shadow field. This image is a visual candidate only and must not imply new collision or traversable floor geometry.\nSubject: One low compact mirror-polishing workshop bench: squat warm golden sandstone and dark honey wood worktable with copper clamps, a small round bronze sun-mirror lying low at an angle in a fixed cradle, a hand polishing pad and a few restrained copper tools attached/resting on the bench. Mirror surface muted pale honey-silver with soft non-glowing reflection, no reflected landscape or character, no projected beam. A little turquoise enamel on the cradle and a folded red-orange cloth on one corner. All tools and mirror kept within a single modest bench silhouette. No big standing mirror or towering machinery.\nGeometry safeguard: Single low workbench candidate; no collision or layout changes.",
+  "generated_original_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-a525ed53-f4bd-41ab-a0eb-f1be5fe7df9f.png",
+  "preserved_raw_png_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/mirror_workbench_initial.png",
+  "sha256": "0fa744a0a4e6b1211e4fabf7a2160cc9e1f4490ec082b06de0a825286b6565f6",
+  "bytes": 1510306,
+  "raw_bytes_preserved": true,
+  "source_transformations": [],
+  "generation_status": "Single initial generation selected as candidate; no revisions generated.",
+  "selection_status": "candidate_pending_unified_convergence",
+  "not_runtime_integrated": true,
+  "usage_constraints": "L40 low workbench visual candidate only; the mirror does not imply a new interaction, beam or collision.",
+  "recorded_at_utc": "2026-10-03T09:39:48.105261+00:00",
+  "qa": {
+    "id": "mirror_workbench",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-a525ed53-f4bd-41ab-a0eb-f1be5fe7df9f.png",
+    "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/mirror_workbench_initial.png",
+    "mode": "RGBA",
+    "size": [
+      1312,
+      1199
+    ],
+    "sha256": "0fa744a0a4e6b1211e4fabf7a2160cc9e1f4490ec082b06de0a825286b6565f6",
+    "alpha_minmax": [
+      0,
+      255
+    ],
+    "transparent_fraction": 0.5817710134461644,
+    "alpha16_bbox": [
+      102,
+      132,
+      1221,
+      1115
+    ],
+    "alpha16_margin_percent": [
+      7.77,
+      11.01,
+      6.94,
+      7.01
+    ],
+    "alpha16_edge_contacts": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "alpha128_bbox": [
+      103,
+      133,
+      1220,
+      1114
+    ],
+    "alpha128_margin_percent": [
+      7.85,
+      11.09,
+      7.01,
+      7.09
+    ],
+    "alpha128_edge_contacts": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "alpha_zero_pixels": 915177,
+    "alpha_1_to_15_pixels": 15064,
+    "alpha_16_to_127_pixels": 3823,
+    "alpha_128_to_255_pixels": 639024,
+    "alpha0_hidden_rgb_note": "Source bytes retained as generated; view assets with correct alpha compositing, not raw RGB.",
+    "alpha16_content_size": [
+      1119,
+      983
+    ],
+    "alpha128_content_size": [
+      1117,
+      981
+    ],
+    "margin_5pct_pass": true,
+    "bbox_convention": "[left, top, right_exclusive, bottom_exclusive]; alpha >= threshold; percentages ordered left, top, right, bottom",
+    "visual_qa": {
+      "inspected": true,
+      "raw_view_inspected": true,
+      "standard_rgba_composite_inspected": [
+        "qa_composite_light.jpg",
+        "qa_composite_dark.jpg"
+      ],
+      "clean_transparent_cutout": true,
+      "no_visible_baked_attack_light": true,
+      "no_text_or_people": true,
+      "no_sky_canyon_or_rectangular_ground": true,
+      "complete_object_no_clipping": true,
+      "observation": "Compact polishing bench with restrained tools, non-emissive circular mirror, red-orange cloth and turquoise accents. Low bench body, raised tabletop mirror.",
+      "open_issues": [
+        "Workshop mirror may be confused with gameplay functional mirrors; distinguish at unified convergence before integration.",
+        "Raised mirror silhouette requires room-scale and occlusion validation."
+      ]
+    }
+  }
+}

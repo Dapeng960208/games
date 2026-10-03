@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M16",
+  "action": "eye_light_arc",
+  "variant": "eye_light_arc_design_fix",
+  "category": "effect_or_prop",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc_design_fix/candidate.png",
+  "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc_design_fix/prompt.txt",
+  "source_filename": "exec-98cf5514-a518-4036-af7f-33b2b3734609.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-98cf5514-a518-4036-af7f-33b2b3734609.png",
+  "source_sha256": "c6c7802422d1f3b65426aebb559282737eb71528036ad81748bf8a2ae27db461",
+  "png_sha256": "c6c7802422d1f3b65426aebb559282737eb71528036ad81748bf8a2ae27db461",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m16/idle_candidate.png",
+  "identity_reference_sha256": "b7c22057e1515742638f779c77ab5f602ac89b02a036a5f9be00b4ad9fa4c3c2",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1432701,
+    "alpha_zero_fraction": 0.9110883450470456,
+    "low_alpha_1_15_pixel_count": 52985,
+    "opaque_pixel_count": 0,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        31,
+        53,
+        1241,
+        1188
+      ],
+      "bounds_xywh": [
+        31,
+        53,
+        1210,
+        1135
+      ],
+      "effective_pixel_count": 139815,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        31,
+        53,
+        13,
+        66
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        57,
+        352,
+        1227,
+        1048
+      ],
+      "bounds_xywh": [
+        57,
+        352,
+        1170,
+        696
+      ],
+      "effective_pixel_count": 86830,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        57,
+        352,
+        27,
+        206
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        67,
+        372,
+        1218,
+        1037
+      ],
+      "bounds_xywh": [
+        67,
+        372,
+        1151,
+        665
+      ],
+      "effective_pixel_count": 33226,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        67,
+        372,
+        36,
+        217
+      ]
+    },
+    "visual_review": "Single very fine smooth amber core arc; crystals and extra fragments removed on one correction.",
+    "defects": [
+      "Soft outer glow remains comparatively broad; composite opacity should be tuned in engine.",
+      "Actual angle and hit area remain code-owned, not image-owned."
+    ]
+  },
+  "prompt_text": "Use case: precise-object-edit. Single targeted correction to standalone game VFX candidate. Keep the warm amber scanning-light palette. Replace the thick ornate crystal-decorated ribbon with ONE VERY THIN SMOOTH AMBER LIGHT ARC, about 60 degrees of curve, tapered endpoints, ribbon thickness only 3% of its span. REMOVE every diamond/crystal/solid decoration, spark and turquoise streak. No physical object, no full ring, no multiple lines, no broad white flash. Soft restrained alpha falloff limited to narrow arc. Genuine transparent background; generous margin.",
+  "edit_target_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-30257f02-6750-4254-8d25-78e5318770c3.png",
+  "single_targeted_revision": true
+}
