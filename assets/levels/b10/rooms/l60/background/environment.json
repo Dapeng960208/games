@@ -200,6 +200,17 @@
         445,
         590
       ]
+    ],
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
     ]
   },
   "runtime_chunks": {

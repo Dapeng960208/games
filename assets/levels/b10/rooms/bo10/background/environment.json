@@ -135,7 +135,18 @@
   "qa": {
     "source_pixel_edits": "none",
     "geometry_status": "authored blueprint mapping; unified GPU and gameplay acceptance pending",
-    "acceptance_claimed": false
+    "acceptance_claimed": false,
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
   },
   "runtime_chunks": {
     "grid": [

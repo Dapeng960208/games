@@ -316,13 +316,23 @@
     "源图为原生1564×1006，六片高清细节另由ImageGen原生生成，不裁切源图放大作为detail交付。"
   ],
   "qa": {
-    "status": "pending_unified_acceptance",
+    "status": "native_source_and_gpu_mapping_verified",
     "source_pixel_edits": "none",
     "source_bytes_preserved": true,
     "source_sha256": "ce3caa7071a1cb00d59fc91e024be2fa82ec9b155ca3565a4592d1aeb5f529e7",
     "scale_or_upscale_applied": false,
     "geometry_status": "authored mapping metadata; unified in-game acceptance pending",
-    "natural_playthrough_claimed": false
+    "natural_playthrough_claimed": false,
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
   },
   "runtime_chunks": {
     "grid": [
@@ -335,5 +345,6 @@
   },
   "geometry_authority": "res://data/levels/b10/room_geometry.json",
   "geometry_status": "painted_native_mapping_prepared",
-  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite."
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite.",
+  "source_sha256": "ce3caa7071a1cb00d59fc91e024be2fa82ec9b155ca3565a4592d1aeb5f529e7"
 }

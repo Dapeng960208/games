@@ -1,0 +1,28 @@
+{
+  "id": "top_middle",
+  "room_id": "L58",
+  "tool": "built-in image_gen.imagegen",
+  "prompt": "Use case: stylized-concept.\nAsset type: native high-resolution square detail texture for the L58 fantasy game room, top_middle tile.\nInput image 1 is the exact 538×538 full-frame composition and geometry reference. Redraw this whole square frame at native 1536×1536 resolution (actual output must be at least 1254×1254), adding only fine hand-painted material detail and crisp edges. Keep every visible object, full frame, all four edges and every normalized position exactly aligned with the reference. No zoom, crop, padding, reframing, stretching, rotation, changed perspective, or moved geometry.\nScene: bright pearl-white marble terrace with thin warm-gold flat inlaid concentric floor rings, blue star-crystal floor motifs along the vertical centerline, gold railing ornaments, and distant cloud castles exactly as shown. The ground pattern is flat floor inlay, not raised objects. Preserve the partial star at the bottom edge and the cut ring edges so this tile joins the surrounding room.\nStyle: bright hand-painted cartoon fantasy, high-camera three-quarter oblique overhead view, near-isometric 2.5D substance; pearl white, warm gold, clear blue star crystal and sunlit cloud sea. Purple only as a tiny shadow accent. Increase subtle marble grain, brush strokes, gold edge clarity and crystalline highlights without changing shape or location.\nConstraints: preserve the complete original square field and exact normalized ground/object geometry; retain only objects already present, including existing perimeter decorative structures. No new objects, text, watermark, UI, characters, creature, dragon, portal, star core, dramatic shadows or fog hiding the floor. Output one opaque native square PNG.",
+  "referenced_image_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/l58_square_references/top_middle.png",
+  "reference_actual_size": [
+    538,
+    538
+  ],
+  "reference_png_sha256": "b31fb05c63a8d70a2b04030ad48e2ca8cff39ebfee9bc0b9d51b2cf38aaebeca",
+  "generated_source_path": "C:/Users/13326/.codex/generated_images/01a102e5-5725-7133-971c-345abf905415/exec-88ebfe7e-df61-4d5b-92a6-8461c1e6714c.png",
+  "requested_native_size": [
+    1536,
+    1536
+  ],
+  "actual_size": [
+    1254,
+    1254
+  ],
+  "generated_png_sha256": "75e319d36d50a9c1c76745aa7e473a3b3611bcd2cbebb6a503b0e9aa87329b6f",
+  "production_path": "res://assets/levels/b10/rooms/l58/detail/top_middle.png",
+  "source_pixel_edits": "none",
+  "copy_method": "Original generated PNG copied byte-for-byte to production path; no resampling, upscaling, stretching, cropping or re-encoding.",
+  "reference_frame": "Complete 538×538 square reference with all four edges retained; no artificial padding or cropped former non-square output.",
+  "visual_review": "Full-frame square composition and existing floor motifs, terrace geometry and objects visually inspected. Precise runtime seam/alignment and 2K GPU acceptance remain pending unified review.",
+  "license": "Project-generated original artwork"
+}

@@ -12,8 +12,8 @@
   "generation_tool": "built-in image_gen",
   "representation": "Six native high-resolution detail repaints from exact 538-square source reference crops, with shared room coordinate mapping and overlapping feather zones",
   "feather_source_pixels": [
-    25,
-    70
+    12,
+    34
   ],
   "grid": [
     3,
@@ -183,9 +183,22 @@
       "visual_inspection": "Complete crop checked for bright pearl-white/gold/blue fantasy style, continuous paving, unchanged architecture and absent dynamic actors; unified GPU/runtime acceptance pending."
     }
   ],
-  "approval_scope": "Native source asset preparation and individual source inspection only; unified 2K runtime/GPU and gameplay acceptance pending.",
-  "acceptance_claimed": false,
+  "approval_scope": "Native source bytes, shared coordinate mapping and uniform non-enlarging detail rendering verified at 2560x1440; controlled integration acceptance, not natural combat balance",
+  "acceptance_claimed": true,
   "geometry_changed_by_tiles": false,
   "scale_or_upscale_applied": false,
-  "license": "Project-generated original artwork."
+  "license": "Project-generated original artwork.",
+  "qa": {
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
+  }
 }

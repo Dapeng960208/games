@@ -128,7 +128,18 @@
     "source_pixel_edits": "none",
     "style_source_inspection": "complete",
     "geometry_status": "目视测定源图内缘；由art_inventory统一逆变换与碰撞/锚点检查，GPU最终验收待统一完成。",
-    "runtime_acceptance": "pending unified chapter acceptance"
+    "runtime_acceptance": "pending unified chapter acceptance",
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
   },
   "runtime_chunks": {
     "grid": [
@@ -347,5 +358,6 @@
       }
     ]
   },
-  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite."
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite.",
+  "source_sha256": "079b1a961b111f5b5ce8a669606c802f138d1484d13222d4e57d4da17b4f3aad"
 }

@@ -11,8 +11,8 @@
   "generation_tool": "built-in image_gen",
   "representation": "six independently generated native detail repaints over exact square regions of one independent room painting; overlapping feather zones preserve fallback",
   "feather_source_pixels": [
-    12,
-    34
+    11,
+    33
   ],
   "source_overlap_pixels": [
     23,
@@ -180,14 +180,24 @@
       "license": "AI-generated project artwork created at the user's request; no third-party game asset imported."
     }
   ],
-  "approval_scope": "Resource integration flag only; unified in-game 2K acceptance, movement and combat remain pending.",
+  "approval_scope": "Native source bytes, shared coordinate mapping and uniform non-enlarging detail rendering verified at 2560x1440; controlled integration acceptance, not natural combat balance",
   "qa": {
-    "status": "pending_unified_acceptance",
+    "status": "native_source_and_gpu_mapping_verified",
     "native_generation": true,
     "scale_or_upscale_applied": false,
     "generated_png_bytes_preserved": true,
     "geometry_changed_by_tiles": false,
-    "natural_playthrough_claimed": false
+    "natural_playthrough_claimed": false,
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
   },
   "coordinate_mapping": {
     "placement_normalized_rect": [
@@ -207,5 +217,6 @@
       2349.207
     ],
     "coverage_note": "Equivalent coverage only; no stitched or upsampled image generated."
-  }
+  },
+  "acceptance_claimed": true
 }

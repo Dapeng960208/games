@@ -11,8 +11,8 @@
   "generation_tool": "built-in image_gen",
   "representation": "six independently generated native detail repaints over exact original source mapping; overlapping feather zones retain fallback",
   "feather_source_pixels": [
-    16,
-    24
+    7,
+    27
   ],
   "tiles": [
     {
@@ -178,14 +178,24 @@
       }
     }
   ],
-  "approval_scope": "approved means native pack is permitted for controlled runtime integration; unified 2K GPU and gameplay acceptance remains pending",
+  "approval_scope": "Native source bytes, shared coordinate mapping and uniform non-enlarging detail rendering verified at 2560x1440; controlled integration acceptance, not natural combat balance",
   "qa": {
-    "status": "pending_unified_acceptance",
+    "status": "native_source_and_gpu_mapping_verified",
     "native_dimensions_verified": true,
     "png_hashes_recorded": true,
     "geometry_changed_by_tiles": false,
     "scale_or_upscale_applied": false,
-    "natural_playthrough_claimed": false
+    "natural_playthrough_claimed": false,
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
   },
   "license": {
     "origin": "AI-generated original project artwork",
@@ -193,5 +203,6 @@
     "reference_role": "User-provided B10 design reference used for visual direction only",
     "project_usage": "Generated for this project at the user's request",
     "pixel_edits": "none; original generated PNG copied byte-for-byte"
-  }
+  },
+  "acceptance_claimed": true
 }

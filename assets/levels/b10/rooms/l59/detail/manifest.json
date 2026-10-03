@@ -11,8 +11,8 @@
   "generation_tool": "built-in image_gen",
   "representation": "six independently generated native square detail repaints over exact original square mapping; overlapping feather zones retain complete room fallback",
   "feather_source_pixels": [
-    25,
-    70
+    12,
+    34
   ],
   "native_mapping": "all source_rect and native_size are square; runtime uses uniform scaling only",
   "tiles": [
@@ -173,12 +173,26 @@
       "license": "Project-generated original artwork."
     }
   ],
-  "approval_scope": "Source-image style and composition inspection only; unified integrated 2K GPU, geometry and gameplay acceptance pending.",
+  "approval_scope": "Native source bytes, shared coordinate mapping and uniform non-enlarging detail rendering verified at 2560x1440; controlled integration acceptance, not natural combat balance",
   "acceptance": {
     "visual_source_inspection": "All six native PNGs inspected; pearl-white/gold/blue palette, high three-quarter overhead 2.5D and static floor layout retained.",
     "geometry_changed_by_tiles": false,
     "scale_or_upscale_applied": false,
     "natural_playthrough_claimed": false,
     "runtime_acceptance": "pending unified chapter acceptance"
-  }
+  },
+  "qa": {
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
+  },
+  "acceptance_claimed": true
 }

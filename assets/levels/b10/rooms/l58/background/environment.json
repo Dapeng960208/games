@@ -141,7 +141,18 @@
   "qa": {
     "source_pixel_edits": "none",
     "geometry_status": "source painting manually surveyed; shared source/blueprint mapping authored; unified GPU/path/2K acceptance pending",
-    "native_2k": "detail textures 1254x1254 each; no claim that the 1564x1006 overview is native 2K"
+    "native_2k": "detail textures 1254x1254 each; no claim that the 1564x1006 overview is native 2K",
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
   },
   "runtime_chunks": {
     "grid": [
@@ -321,5 +332,6 @@
       }
     ]
   },
-  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite."
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite.",
+  "source_sha256": "e0b1cf6f1a3b17ec6857fbfdbba53cbd86210ca83859a86c163d5057e318ea29"
 }

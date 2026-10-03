@@ -1,0 +1,25 @@
+{
+  "id": "top_right",
+  "tool": "image_gen.imagegen (built-in)",
+  "prompt": "Use case: style-transfer.\nAsset type: production game room detail texture, L58 top_right; a square high-resolution redraw registered to the supplied square reference.\nInput image 1 is the sole composition and geometry reference. Render a native 1536 × 1536 PNG (square, at least 1254 × 1254 actual pixels). Redraw the complete 538 × 538 reference frame at higher native detail; do not crop, extend, rotate, mirror, add borders or padding, recenter, or change any normalized coordinates.\nPrimary request: faithfully refine the existing pearl-white and warm-gold fantasy courtyard with sapphire-blue star crystal, hanging gold bells, flowering planter, ornate blue-and-gold vertical banner, cream tiles, curved low walls, stairs and cloud sky. Keep every existing object, every tile edge, every gold ring arc, every footprint and every perimeter landmark at precisely the same normalized position, shape and perspective as the reference. Preserve all four full image edges and objects that meet them. Keep the existing outer decorative bells.\nStyle/medium: bright hand-painted cartoon fantasy, high-camera three-quarter oblique overhead view, near-isometric 2.5D depth. Crisp delicate painted outlines, softly modeled gold metal, pearl marble, blue faceted stained crystal, tiny white flowers and green foliage, luminous warm daylight. Pearl white / warm gold / blue star crystal dominate; purple is allowed only as tiny shadow tint.\nOnly increase fine painted material detail and edge clarity within the unchanged geometry. The lower-left partial concentric gold floor arc, upper hanging bell stage, right banner, top-left blue window and right-edge planter must be identical in placement and size. Do not add or remove objects.\nAvoid: any character, human, creature, dragon, portal, star core, text, letters, numbers, UI, watermarks, new ornaments, camera change, perspective distortion, dark mood, purple field, blank bands. This image is a texture aligned to a shared map coordinate transform, so exact framing is more important than creative reinterpretation.",
+  "referenced_image_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/l58_square_references/top_right.png",
+  "reference_actual_size": [
+    538,
+    538
+  ],
+  "reference_sha256": "478edc193707486c6307cc45eb299c544a30e61b7d175c23c7481e40cd79eb09",
+  "generated_source_path": "C:/Users/13326/.codex/generated_images/01a102e5-d20b-7523-966f-bbeb4f5ff166/exec-12efbbcf-27fa-407f-ac33-78d15f5441c5.png",
+  "requested_size": [
+    1536,
+    1536
+  ],
+  "actual_size": [
+    1254,
+    1254
+  ],
+  "generated_png_sha256": "398fb54f5f3d8f4dc788580c09bb14b2d0869c8276bf5eddddd0b2ce3ec29835",
+  "source_pixel_edits": "none",
+  "production_save": "Original generated PNG copied byte-for-byte without resize, upsample, stretching or re-encoding.",
+  "license": "Project-generated original artwork",
+  "validation": "Square full-frame reference was supplied and visual composition inspected. Unified 2K GPU and map-coordinate acceptance remains pending."
+}

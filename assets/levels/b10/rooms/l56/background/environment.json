@@ -197,9 +197,19 @@
       1006
     ],
     "source_pixel_edits": "none",
-    "status": "pending_unified_acceptance",
+    "status": "native_source_and_gpu_mapping_verified",
     "geometry_status": "Source paving boundary manually measured; integration will validate synchronized blueprint mapping and route clearance",
-    "runtime_validation": "pending; no tests or GPU acceptance claimed by this asset generation task"
+    "runtime_validation": "pending; no tests or GPU acceptance claimed by this asset generation task",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
   },
   "geometry_authority": "res://data/levels/b10/room_geometry.json",
   "geometry_status": "painted_native_mapping_prepared",
@@ -362,5 +372,6 @@
       }
     ]
   },
-  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite."
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite.",
+  "source_sha256": "23059b77b096a54db4316c2377072acef80a124633852542db5b0320a3e25b58"
 }

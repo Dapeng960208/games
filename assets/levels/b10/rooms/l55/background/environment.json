@@ -24,14 +24,24 @@
     "license": "Original generated game art; user-supplied style reference source preserved separately"
   },
   "qa": {
-    "status": "pending_unified_acceptance",
+    "status": "native_source_and_gpu_mapping_verified",
     "sha256": "88d4a9111acd3e1f59a4b058e99c355e80d443791f0fa44bda0f64d835108189",
     "background_role": "Original low frequency complete fallback; six native detail plates provide the 2K close view",
     "actual_native_size": [
       1564,
       1006
     ],
-    "native_2k_background": false
+    "native_2k_background": false,
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
   },
   "placement_normalized_rect": [
     0.06,
@@ -284,5 +294,6 @@
     },
     "validation_status": "pending_unified_runtime_acceptance"
   },
-  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite."
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite.",
+  "source_sha256": "88d4a9111acd3e1f59a4b058e99c355e80d443791f0fa44bda0f64d835108189"
 }

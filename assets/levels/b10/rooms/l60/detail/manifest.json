@@ -12,8 +12,8 @@
   "generation_tool": "built-in image_gen",
   "representation": "Six native high-resolution detail repaints from exact 532-square source crops; source and native detail share aspect ratio and room coordinate mapping",
   "feather_source_pixels": [
-    16,
-    58
+    7,
+    28
   ],
   "grid": [
     3,
@@ -183,7 +183,7 @@
       "visual_inspection": "Complete crop visually checked for bright pearl-white/gold/blue hand-painted style, preserved feature layout, paving continuity and absent runtime actors. Unified GPU/runtime acceptance pending."
     }
   ],
-  "approval_scope": "Candidate detail resources approved for integration rendering; final unified GPU/room/role acceptance pending.",
+  "approval_scope": "Native source bytes, shared coordinate mapping and uniform non-enlarging detail rendering verified at 2560x1440; controlled integration acceptance, not natural combat balance",
   "acceptance": {
     "status": "pending_unified_acceptance",
     "target_resolution": [
@@ -193,5 +193,19 @@
     "geometry_changed_by_tiles": false,
     "scale_or_upscale_applied": false,
     "natural_playthrough_claimed": false
-  }
+  },
+  "qa": {
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
+  },
+  "acceptance_claimed": true
 }

@@ -21,12 +21,21 @@ def read(path):
 resources = read(ROOT / 'assets/manifest.json')['resources']
 
 def resolve(identifier):
-    return ROOT / resources.get(identifier.removeprefix('asset://'), identifier).removeprefix('res://')
+    return ROOT / resources.get(identifier.removeprefix('asset://').lower(), identifier).removeprefix('res://')
 
 def pixels(path, size, digest):
     with Image.open(path) as image:
         check(list(image.size) == list(size), f'native dimensions {path}')
     check(hashlib.sha256(path.read_bytes()).hexdigest().lower() == digest.lower(), f'original source bytes {path}')
+
+def covers_source(rectangles, width, height):
+    # Rectangles are axis-aligned, so their edges partition the complete source
+    # into cells with constant coverage. Checking every cell is exhaustive.
+    xs = sorted({0, width} | {max(0, min(width, x)) for rect in rectangles for x in (rect[0], rect[2])})
+    ys = sorted({0, height} | {max(0, min(height, y)) for rect in rectangles for y in (rect[1], rect[3])})
+    return all(any(left <= (x0 + x1) / 2 <= right and top <= (y0 + y1) / 2 <= bottom
+                   for left, top, right, bottom in rectangles)
+               for x0, x1 in zip(xs, xs[1:]) for y0, y1 in zip(ys, ys[1:]))
 
 backgrounds = set()
 for room in ['l55', 'l56', 'l57', 'l58', 'l59', 'l60', 'bo10']:
@@ -42,11 +51,25 @@ for room in ['l55', 'l56', 'l57', 'l58', 'l59', 'l60', 'bo10']:
     sy = 1800 * .58 / (placement[3] * height)
     check(abs(sx - sy) < .00001, f'uniform background mapping {room}')
     check(len(detail['tiles']) == 6, f'six details {room}')
+    source_rectangles, opaque_rectangles = [], []
+    feather_x, feather_y = (max(1, value) for value in detail.get('feather_source_pixels', [16, 24]))
     for tile in detail['tiles']:
-        pixels(resolve(tile['texture']), tile['native_size'], tile['sha256'])
+        pixels(resolve(tile['texture']), tile['native_size'], tile.get('sha256', tile.get('generated_png_sha256')))
         rect, native = tile['source_rect'], tile['native_size']
+        x, y, w, h = rect
+        check(w == h and w > 0 and x >= 0 and y >= 0 and x + w <= width and y + h <= height,
+              f'square source crop within original painting {room}/{tile["id"]}')
+        source_rectangles.append((x, y, x + w, y + h))
+        # The production shader reaches alpha=1 only beyond each enabled
+        # edge's feather width. Outer source edges are deliberately unfeathered.
+        opaque_rectangles.append((x + feather_x if x > 0 else x,
+                                  y + feather_y if y > 0 else y,
+                                  x + w - feather_x if x + w < width else x + w,
+                                  y + h - feather_y if y + h < height else y + h))
         factor = max(rect[2] * sx / native[0], rect[3] * sy / native[1])
         check(factor * .85 * 2 <= 1, f'2K native detail pixel budget {room}/{tile["id"]}')
+    check(covers_source(source_rectangles, width, height), f'native details cover entire source {room}')
+    check(covers_source(opaque_rectangles, width, height), f'feathered native details never expose fallback {room}')
 check(len(backgrounds) == 7, 'seven independent room paintings')
 
 actors = list((PACK / 'enemies').glob('*/body.png')) + list((PACK / 'bosses').glob('*/body.png'))

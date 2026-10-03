@@ -2,8 +2,8 @@
   "schema_version": 1,
   "room_id": "L55",
   "approved": true,
-  "approval_scope": "Original art permitted to load for unified acceptance; no runtime acceptance assertion",
-  "acceptance_claimed": false,
+  "approval_scope": "Native source bytes, shared coordinate mapping and uniform non-enlarging detail rendering verified at 2560x1440; controlled integration acceptance, not natural combat balance",
+  "acceptance_claimed": true,
   "source_texture": "asset://world/rooms/L55_environment_v1.png",
   "source_size": [
     1564,
@@ -34,7 +34,8 @@
       "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
       "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/top_left.json",
       "world_pixels_per_native_pixel": 0.5062340385215114,
-      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694,
+      "generated_png_sha256": "b982ef1fe4d2920f62b07a29c1f7eb15bd3d1c8b285dd873c78012fa21afb96b"
     },
     {
       "id": "top_middle",
@@ -53,7 +54,8 @@
       "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
       "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/top_middle.json",
       "world_pixels_per_native_pixel": 0.5062340385215114,
-      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694,
+      "generated_png_sha256": "0c50ee2a0fe7219dd8c2d34005b20a425f48edf5b3118e5ba31cbb7266a46abd"
     },
     {
       "id": "top_right",
@@ -72,7 +74,8 @@
       "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
       "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/top_right.json",
       "world_pixels_per_native_pixel": 0.5062340385215114,
-      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694,
+      "generated_png_sha256": "956d47e0257b2a3a10207bf1367f998d6a887d036e86fa90e2c23c52da32ab2b"
     },
     {
       "id": "bottom_left",
@@ -91,7 +94,8 @@
       "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
       "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/bottom_left.json",
       "world_pixels_per_native_pixel": 0.5062340385215114,
-      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694,
+      "generated_png_sha256": "2cd381d93c281f1be64ea802a7de8aa2e38d4e8e79803766fd59143103515de0"
     },
     {
       "id": "bottom_middle",
@@ -110,7 +114,8 @@
       "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
       "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/bottom_middle.json",
       "world_pixels_per_native_pixel": 0.5062340385215114,
-      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694,
+      "generated_png_sha256": "fbaee8c04f373c5f2da370b6e2aff7bcf880e057dcf34f2084da3042d2712c2e"
     },
     {
       "id": "bottom_right",
@@ -129,11 +134,12 @@
       "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
       "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/bottom_right.json",
       "world_pixels_per_native_pixel": 0.5062340385215114,
-      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694,
+      "generated_png_sha256": "fbd3ca4028b148fe6b0cf94dd8aca7d8e408d526cdc10c1c9d10a76bbfa2ab91"
     }
   ],
   "qa": {
-    "status": "pending_unified_acceptance",
+    "status": "native_source_and_gpu_mapping_verified",
     "visual_source_review": "Each native detail inspected against its exact reference crop; geometry and full GPU camera coverage still pending unified acceptance",
     "framebuffer_target": [
       2560,
@@ -147,6 +153,16 @@
     "canvas_scale_reference": 2,
     "maximum_predicted_screen_pixels_per_native_pixel": 0.8605978654865694,
     "source_files_unmodified": true,
-    "background_native_2k": false
+    "background_native_2k": false,
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
   }
 }
