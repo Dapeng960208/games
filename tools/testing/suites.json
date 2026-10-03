@@ -331,9 +331,29 @@
   "b10_chapter_entry": {
     "script": "tests/levels/b10/test_b10_chapter_entry.gd"
   },
+  "b10_combat": {
+    "script": "tests/levels/b10/test_b10_combat.gd",
+    "scene": "tests/levels/b10/test_b10_combat.tscn"
+  },
+  "b10_equipment_effects": {
+    "script": "tests/levels/b10/test_b10_equipment_effects.gd",
+    "scene": "tests/levels/b10/test_b10_equipment_effects.tscn"
+  },
+  "b10_finale_ring": {
+    "script": "tests/levels/b10/test_b10_finale_ring.gd",
+    "scene": "tests/levels/b10/test_b10_finale_ring.tscn"
+  },
+  "b10_finale_ui": {
+    "script": "tests/ui/test_b10_finale_ui.gd",
+    "scene": "tests/ui/test_b10_finale_ui.tscn"
+  },
   "b10_room_geometry": {
     "script": "tests/levels/b10/test_b10_room_geometry.gd",
     "scene": "tests/levels/b10/test_b10_room_geometry.tscn"
+  },
+  "b10_runtime_acceptance": {
+    "script": "tests/levels/b10/test_b10_runtime_acceptance.gd",
+    "scene": "tests/levels/b10/test_b10_runtime_acceptance.tscn"
   },
   "backpack": {
     "script": "tests/equipment/test_backpack.gd",
