@@ -87,7 +87,7 @@ func _initialize_boss_runtime() -> void:
 	status = StatusScript.new(int(profile.get("ruleset_version", 1)))
 	if boss_id == "BO01":
 		status.grant_guard(health.maximum * 0.22, 3600.0, "boss_solar", health.maximum)
-	boss_brain = preload("res://scripts/combat/b06_boss_brain.gd").new() if boss_id == "BO06" else preload("res://scripts/combat/b05_boss_brain.gd").new() if boss_id == "BO05" else BossBrainScript.new()
+	boss_brain = preload("res://scripts/combat/b07_boss_brain.gd").new() if boss_id == "BO07" else preload("res://scripts/combat/b06_boss_brain.gd").new() if boss_id == "BO06" else preload("res://scripts/combat/b05_boss_brain.gd").new() if boss_id == "BO05" else BossBrainScript.new()
 	boss_brain.configure(profile, boss_seed)
 	if boss_id == "BO06" and is_instance_valid(room) and get_parent() == room.enemies and is_instance_valid(room.b06_mechanics):
 		room.b06_mechanics.reset_boss_encounter(self)

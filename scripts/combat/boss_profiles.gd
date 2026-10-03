@@ -38,6 +38,8 @@ static func ids() -> Array[String]:
 	return result
 
 static func resolve(boss_id: String, difficulty: int = 0, ruleset: int = 1, calibration: Variant = null) -> Dictionary:
+	if boss_id == "BO07":
+		return preload("res://scripts/combat/b07_enemy_skills.gd").boss_profile(difficulty,calibration) if ruleset == 2 and preload("res://config/numerical_rules.gd").b07_candidate_enabled() else {}
 	if boss_id == "BO06":
 		return preload("res://scripts/combat/b06_enemy_skills.gd").boss_profile(difficulty,calibration) if ruleset == 2 and preload("res://config/numerical_rules.gd").b06_candidate_enabled() else {}
 	if boss_id == "BO05":

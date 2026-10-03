@@ -863,6 +863,8 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 		room.add_ring(position, Color("e46b69"), 24.0 if is_dot else 38.0, 0.20 if is_dot else 0.28)
 	var consumed_total: float = maxf(0.0, previous_hp - damaged_run.hp) + maxf(0.0, previous_shield - damaged_run.shield)
 	if consumed_total > 0.0 and is_instance_valid(room):
+		var sunlight: Variant = room.get("b07_mechanics")
+		if is_instance_valid(sunlight): sunlight.notify_actor_hit("player",consumed_total)
 		var tide: Variant = room.get("b06_mechanics")
 		if is_instance_valid(tide): tide.notify_actor_hit("player",consumed_total)
 		var mechanisms: Variant = room.get("b05_mechanics")

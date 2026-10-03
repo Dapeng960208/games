@@ -44,3 +44,7 @@ python tools/test_workspace.py cleanup --biome B05 --keep 5 --apply --confirm-de
 尚未整体迁移：Windows `tools/test.ps1` 仍使用 `tools/godot/test-runs`；旧 B01–B04 等历史 GDScript 中仍有 `res://artifacts` 路径；历史手动命令和现存 `/tmp` 输出不自动迁移或删除。Windows入口不是本Linux规范的已验证入口。运行旧截图套件前先检查并改其输出路径，不能据管理器存在宣称所有测试完成迁移。
 
 验证范围：`tools/test_workspace_paths.py` 检查路径拒绝、符号链接、默认dry-run、保留数量、活跃/未完成批次保护；不运行全游戏回归。修改后的图形捕获仍需实际调用时验证，不据路径检查宣称视觉验收通过。
+
+## B07 独立开发补充（2026-10-03）
+
+B07分支增加`--biome B07`及同格式`_test_output/B07`、`_tmp/B07`；继续使用唯一`/tmp/games-godot.lock`，没有新引擎锁。`tools/run_b07_foundation_tests.py`只复制纯逻辑依赖至受管临时目录，不复制正式美术。生产技能/房间检查使用明确的候选隔离档；普通玩家档不作为测试输入或输出。

@@ -26,9 +26,15 @@ static func b05_candidate_enabled() -> bool:
 static func b06_candidate_enabled() -> bool:
 	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b06")
 
+static func b07_candidate_enabled() -> bool:
+	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b07")
+
 static func _candidate_arguments_valid(args: PackedStringArray, chapter: String = "b05") -> bool:
-	if chapter not in ["b05","b06"] or not args.has("--candidate-"+chapter): return false
-	if args.has("--candidate-b05") and args.has("--candidate-b06"): return false
+	if chapter not in ["b05","b06","b07"] or not args.has("--candidate-"+chapter): return false
+	var candidates := 0
+	for id: String in ["b05","b06","b07"]:
+		if args.has("--candidate-"+id): candidates += 1
+	if candidates != 1: return false
 	var paths: Array[String] = []
 	for argument: String in args:
 		if argument.begins_with("--test-profile="): paths.append(argument.trim_prefix("--test-profile="))
@@ -41,6 +47,7 @@ static func _candidate_arguments_valid(args: PackedStringArray, chapter: String 
 	return true
 
 static func value(key: String, fallback: Variant = null) -> Variant:
+	if key == "implemented_chapters" and b07_candidate_enabled(): return 7
 	if key == "implemented_chapters" and b06_candidate_enabled(): return 6
 	if key == "implemented_chapters" and b05_candidate_enabled(): return 5
 	if _parameters.is_empty(): parameters()

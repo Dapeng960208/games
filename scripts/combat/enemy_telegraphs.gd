@@ -99,10 +99,10 @@ func _draw() -> void:
 				data.erase("combo_directions")
 				data.erase("sequence_shapes")
 			room.draw_enemy_telegraph(self, data)
-			if bool(data.get("b05_command",false)):
+			if bool(data.get("b05_command",false)) or bool(data.get("b07_command",false)):
 				_draw_b05_links(actor,data)
 				for follow: Dictionary in data.get("followups",[]):
-					if str(follow.get("kind","")) in ["b05_decoy","b05_reposition","b05_root_guard"]: continue
+					if str(follow.get("kind","")) in ["b05_decoy","b05_reposition","b05_root_guard","b07_reposition"]: continue
 					var preview := follow.duplicate(true)
 					preview["locked"] = bool(data.get("locked",false))
 					room.draw_enemy_telegraph(self,preview)

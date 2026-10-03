@@ -145,7 +145,7 @@ func _ready() -> void:
 	health.reset(float(profile.get("max_hp", Balance.ENEMY_HP)), int(profile.get("ruleset_version", Numerical.LEGACY)))
 	health.depleted.connect(_die)
 	if not profile.is_empty() and not static_actor:
-		brain = preload("res://scripts/combat/b05_enemy_brain.gd").new() if enemy_id.begins_with("B05-M") else BrainScript.new()
+		brain = preload("res://scripts/combat/b07_enemy_brain.gd").new() if enemy_id.begins_with("B07-M") else preload("res://scripts/combat/b05_enemy_brain.gd").new() if enemy_id.begins_with("B05-M") else BrainScript.new()
 		if enemy_id.begins_with("B06-M") and not bool(profile.get("b06_candidate_contact_only",true)):
 			brain = preload("res://scripts/combat/b06_enemy_brain.gd").new()
 		brain.configure(profile)
@@ -318,6 +318,7 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	if room.enemy_skills != null and room.enemy_skills.b05 != null:
 		amount = room.enemy_skills.b05.filter_damage(self,amount,kind,from_direction,damage_type)
 		amount = room.enemy_skills.b06.filter_damage(self,amount,kind,from_direction,damage_type,context)
+	if is_instance_valid(room.b07_mechanics): amount = room.b07_mechanics.filter_damage(self,amount,from_direction,damage_type)
 	var auxiliary_absorbed: Variant = Numerical.amount(0.0, status.ruleset_version)
 	# Enemy barrier/stance multipliers are reduction, so true damage bypasses
 	# them. Immunity is checked above; shields are still consumed below.
@@ -362,6 +363,7 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 		"hp_damage":Numerical.amount(consumed_hp, status.ruleset_version),"status_shield_damage":Numerical.amount(consumed_shield, status.ruleset_version),
 		"auxiliary_shield_damage":auxiliary_absorbed,"shield_damage":Numerical.amount(consumed_shield + float(auxiliary_absorbed), status.ruleset_version),
 		"shield_broken":shield_before > 0.0 and status.shield() <= 0.0}
+	if (consumed_hp > 0.0 or consumed_shield > 0.0) and is_instance_valid(room.b07_mechanics): room.b07_mechanics.reveal_actor(self,3.0)
 	if (consumed_hp > 0.0 or consumed_shield > 0.0) and kind == &"primary" and not static_actor and _valid_aggro_target(room.player):
 		# Direct hero attacks draw attention; status ticks do not reset this hold.
 		aggro_target = weakref(room.player)

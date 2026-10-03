@@ -44,6 +44,11 @@ var label_layer: Node2D
 func configure(next_room: Node2D, next_layout: Dictionary, node_role: String = "branch") -> void:
 	_configure_context(next_room, next_layout, node_role)
 	var biome: String = str(definition.get("biome_id", layout.get("biome_id","")))
+	if biome == "B07" and bool(layout.get("b07_candidate",false)):
+		module = preload("res://scripts/world/objectives_b07.gd").new()
+		module.configure(self)
+		queue_redraw()
+		return
 	if biome == "B06" and bool(layout.get("b06_candidate",false)):
 		module = preload("res://scripts/world/objectives_b06.gd").new()
 		module.configure(self)
