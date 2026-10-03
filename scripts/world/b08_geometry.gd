@@ -30,7 +30,7 @@ static func lanes(id: String) -> Array:
 	var index := 0
 	for values: Array in LANES.get(id,[]):
 		var shape := rect(values)
-		result.append({"id":"lane_%d"%index,"rect":shape,"direction":Vector2.DOWN if shape.size.y>shape.size.x else Vector2.RIGHT,"vane":shape.get_center()})
+		result.append({"id":"lane_%d"%index,"rect":shape,"direction":Vector2.DOWN if shape.size.y>shape.size.x else Vector2.RIGHT,"vane":point([840,900]) if id=="L43" else shape.get_center()})
 		index += 1
 	return result
 static func contains(id: String, at: Vector2, radius: float = 0) -> bool:

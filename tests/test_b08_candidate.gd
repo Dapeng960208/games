@@ -17,6 +17,7 @@ func run() -> void:
 	check(not Gate.valid_arguments(["--candidate-b08","--candidate-b06","--test-profile=user://test_b08_candidate/a.json"]),"mixed chapter rejected")
 	check(not Gate.valid_arguments(["--candidate-b08","--test-profile=user://test_b08_candidate/../profile.json"]),"traversal rejected")
 	check(Content.catalog().enemies.size()==18 and Content.room_ids().size()==7,"authored identities")
+	check(Geometry.lanes("L43")[0].vane==Geometry.point([840,900]),"canonical L43 vane 30%,50%")
 	check(not preload("res://config/numerical_rules.gd").b05_candidate_enabled(),"production chapter gate unchanged")
 	var wind := Wind.new()
 	check(wind.configure(["north","south"]),"wind configure")

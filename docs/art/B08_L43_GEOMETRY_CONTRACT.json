@@ -68,15 +68,11 @@
     1,
     0
   ],
-  "prototype_vane_blueprint": [
-    1455,
-    435
-  ],
   "canonical_vane_reserved_blueprint": [
     840,
     900
   ],
-  "vane_alignment_status": "Prototype currently at lane center; move to canonical 30%,50% before formal art activation. Never bake vane into environment.",
+  "vane_alignment_status": "Aligned to canonical 30%,50%. Never bake vane into environment.",
   "runtime_flag_blueprint": [
     586.206897,
     830.689655
@@ -98,5 +94,9 @@
     "assets/generated/world/rooms/L25_environment_v1.png",
     "assets/generated/b06_l31_environment_pilot/L31-north-skyline-v1.png",
     "assets/generated/b06_l31_environment_pilot/L31-floor-tile-v2.png"
+  ],
+  "vane_blueprint": [
+    840,
+    900
   ]
 }
