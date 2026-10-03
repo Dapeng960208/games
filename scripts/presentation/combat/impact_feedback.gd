@@ -261,8 +261,8 @@ func _draw_cleave(at: Vector2, dir: Vector2, radius: float, t: float, fade: floa
 	var snap: float = _core_strength(event, 0.075, 0.09)
 	var center := at + dir * (1.0 + t * 2.0)
 	var extent: float = radius * 0.45
-	# A broad diagonal axe bite, with a bright cutting edge and copper wake.
-	# Its narrow waist keeps the actual enemy silhouette readable on contact.
+	var basic: bool = str(event.source) == "primary" and not bool(event.passive)
+	# A narrow axe bite keeps the actual enemy silhouette readable on contact.
 	var cut := (n + dir * 0.32).normalized()
 	var core := PackedVector2Array([center - cut * extent * 1.12,
 		center - cut * extent * 0.75 - dir * extent * 0.26,
@@ -270,8 +270,14 @@ func _draw_cleave(at: Vector2, dir: Vector2, radius: float, t: float, fade: floa
 		center + cut * extent * 1.15,
 		center + cut * extent * 0.72 + dir * extent * 0.22,
 		center - cut * extent * 0.68 + dir * extent * 0.12])
-	_contact_chip(core, AMBER, snap)
+	_contact_chip(core, Color("fff8e6") if basic else AMBER, snap)
 	draw_line(center - cut * extent * 0.9, center + cut * extent * 0.94, Color(IVORY, snap), 3.1, true)
+	if basic:
+		# Only confirmed body contact emits these brief white-gold star rays.
+		for index in 6:
+			var ray := dir.rotated(TAU * index / 6.0 + 0.18)
+			var reach: float = radius * (0.52 + _noise(int(event.serial), index) * 0.24) * (1.0 + t * 0.2)
+			_contact_line(PackedVector2Array([center + ray * 2.5, center + ray * reach]), Color("fff9e8") if index % 2 == 0 else AMBER, snap, 1.8)
 	# One broken, flattened pressure front; it reads as compression, not a spell ring.
 	if bool(event.heavy):
 		var pressure := PackedVector2Array()

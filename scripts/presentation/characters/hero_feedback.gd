@@ -9,6 +9,7 @@ const CYAN := Color("78d9d1")
 const COPPER := Color("df945a")
 const VIOLET := Color("a183d7")
 const Chain = preload("res://scripts/domain/combat/hit_chain.gd")
+const Visual = preload("res://scripts/presentation/characters/hero_visual.gd")
 var actor: Node2D
 var effects: Array[Dictionary] = []
 var release_events: Array[Dictionary] = []
@@ -36,6 +37,20 @@ var _step_distance: float = 0.0
 var _step_side: float = 1.0
 var _was_dashing: bool = false
 var _chain_font: Font
+var _front_basic: Node2D
+const BASIC_SLASH_DIRECTIONS := ["E","SE","S","SW","W","NW","N","NE"]
+# Each original image owns its facing. Offsets are texture centers from release muzzle.
+const BASIC_SLASH_LAYOUTS := {
+	"E":{"size":Vector2(190,110),"offset":Vector2(-5,-18)},
+	"SE":{"size":Vector2(160,105),"offset":Vector2(25,-25)},
+	"S":{"size":Vector2(180,85),"offset":Vector2(0,34)},
+	"SW":{"size":Vector2(180,120),"offset":Vector2(-43,45)},
+	"W":{"size":Vector2(190,110),"offset":Vector2(-10,-12)},
+	"NW":{"size":Vector2(185,105),"offset":Vector2(-10,-20)},
+	"N":{"size":Vector2(190,80),"offset":Vector2(0,-28)},
+	"NE":{"size":Vector2(185,105),"offset":Vector2(10,-18)}
+}
+static var _basic_slash_textures: Dictionary = {}
 
 func configure(player: Node2D) -> void:
 	actor = player
@@ -47,6 +62,34 @@ func configure(player: Node2D) -> void:
 	_motion_stride = float(player.stride)
 	_motion_ready = true
 	_chain_font = GameStyle.make_theme().default_font
+	if actor.hero_id() == "CH01":
+		for direction: String in BASIC_SLASH_DIRECTIONS:
+			var texture_id: String = "asset://heroes/ch01_basic_slash_"+direction.to_lower()+".png"
+			if _basic_slash_textures.has(texture_id):
+				continue
+			var path: String = AssetCatalog.resolve(texture_id)
+			if path.is_empty() or not ResourceLoader.exists(path):
+				continue
+			var texture: Texture2D = load(path)
+			if texture == null:
+				continue
+			var source: Image = texture.get_image()
+			if source != null and source.is_compressed():
+				source.decompress()
+			if source != null and not source.is_empty() and not source.is_compressed() and not source.has_mipmaps():
+				source.generate_mipmaps()
+				texture = ImageTexture.create_from_image(source)
+			_basic_slash_textures[texture_id] = texture
+	if actor.hero_id() == "CH01" and not is_instance_valid(_front_basic):
+		_front_basic = Node2D.new()
+		_front_basic.name = "WarriorBasicBlade"
+		_front_basic.z_as_relative = false
+		_front_basic.z_index = 3
+		_front_basic.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+		_front_basic.draw.connect(_draw_front_basic)
+		add_child(_front_basic)
+	if is_instance_valid(_front_basic):
+		_front_basic.queue_redraw()
 
 func advance(delta: float) -> void:
 	if not is_instance_valid(actor) or delta <= 0.0 or get_tree().paused:
@@ -64,6 +107,8 @@ func advance(delta: float) -> void:
 			if float(effects[index].age) >= float(effects[index].duration):
 				effects.remove_at(index)
 	queue_redraw()
+	if is_instance_valid(_front_basic):
+		_front_basic.queue_redraw()
 
 func observe_basic(kind: String, duration: float, committed_direction: Vector2 = Vector2.ZERO) -> void:
 	if kind not in ["attack_windup","attack_strike"] or not is_instance_valid(actor):
@@ -83,7 +128,18 @@ func observe_basic(kind: String, duration: float, committed_direction: Vector2 =
 	basic_events += 1
 	var hero: String = actor.hero_id()
 	var details: Dictionary = {"hero":hero,"slot":"basic","radius":105.0,"arc":100.0,"heavy":false,"variant":(basic_events-1)%3}
-	if hero == "CH03":
+	if hero == "CH01":
+		var windup: Dictionary = Visual.warrior_basic_weapon_anchors(_basic_direction,"windup")
+		var release: Dictionary = Visual.warrior_basic_weapon_anchors(_basic_direction,"release")
+		var end: Vector2 = release.muzzle if not release.is_empty() else Visual.release_muzzle_local("CH01","basic",_basic_direction)
+		var start: Vector2 = windup.get("muzzle",end-_basic_direction*60.0)
+		# Legacy pose banks can have no forward travel; retain a short weapon-height wake.
+		if (end-start).dot(_basic_direction) <= .01:
+			start = end-_basic_direction*60.0
+		var slash_direction: String = BASIC_SLASH_DIRECTIONS[posmod(roundi(_basic_direction.angle()/(PI/4.0)),8)]
+		var slash_layout: Dictionary = BASIC_SLASH_LAYOUTS[slash_direction]
+		details.merge({"weapon_start":start,"weapon_end":end,"weapon_grip":release.get("grip",end-_basic_direction*28.0),"slash_direction":slash_direction,"slash_texture_id":"asset://heroes/ch01_basic_slash_"+slash_direction.to_lower()+".png","slash_offset":slash_layout.offset,"slash_size":slash_layout.size})
+	elif hero == "CH03":
 		details["emitter_at"] = _star_emitter(_basic_direction)
 	_emit("swing" if hero == "CH01" else "muzzle" if hero == "CH02" else "arcane_release",actor.position,_basic_direction,.26 if hero == "CH01" else .18 if hero == "CH02" else .24,details)
 
@@ -222,6 +278,8 @@ func _emit(kind: String, at: Vector2, direction: Vector2, duration: float, detai
 	packet.merge({"kind":kind,"at":at,"direction":direction.normalized(),"age":0.0,"duration":duration},true)
 	effects.append(packet)
 	queue_redraw()
+	if is_instance_valid(_front_basic):
+		_front_basic.queue_redraw()
 
 func _sample_motion(stopped: bool) -> void:
 	var at: Vector2 = actor.position
@@ -285,6 +343,8 @@ func _draw() -> void:
 	if str(pose.phase) == "windup":
 		_draw_charge(pose,quality)
 	for effect: Dictionary in effects:
+		if effect.has("weapon_start"):
+			continue # The original warrior basic is drawn once on its front layer.
 		var t: float = clampf(float(effect.age)/float(effect.duration),0.0,1.0)
 		var fade: float = (1.0-t)*quality
 		var at: Vector2 = Vector2(effect.at)-actor.position
@@ -295,7 +355,7 @@ func _draw() -> void:
 			"footfall": _draw_footfall(at,dir,str(effect.hero),t,fade,reduced)
 			"dash_depart","dash_land": _draw_dodge_stamp(at,dir,str(effect.hero),t,fade,reduced,str(effect.kind) == "dash_land")
 			"muzzle": _draw_muzzle(effect,t,fade,tint)
-			"swing": _draw_cleave(at,dir,radius,float(effect.get("arc",100.0)),bool(effect.get("heavy",false)),t,fade,reduced,int(effect.get("variant",0)))
+			"swing": _draw_cleave(at,dir,radius,float(effect.get("arc",100.0)),bool(effect.get("heavy",false)),t,fade,reduced,int(effect.get("variant",-1)))
 			"chain_tick","chain_burst": _draw_chain_pulse(effect,at,t,fade,reduced)
 			"ground_break": _draw_fissure(at,dir,radius,t,fade,reduced,float(effect.get("arc",160.0)) if str(effect.get("slot","")) == "secondary" else 360.0)
 			"fault_line": _draw_fault_line(at,dir,radius,float(effect.line_width),t,fade,reduced)
@@ -453,8 +513,30 @@ func _draw_dodge_stamp(at: Vector2, dir: Vector2, hero: String, t: float, fade: 
 		draw_line(from,end,Color("493645",fade*.4),4.0,true)
 		draw_line(from,end,Color(tint,fade*.8),2.0,true)
 
-func _draw_cleave(at: Vector2, dir: Vector2, radius: float, degrees: float, heavy: bool, t: float, fade: float, reduced: bool, variant: int = 0) -> void:
-	# The broad axe face is present on contact, then thins into its copper wake.
+func _draw_front_basic() -> void:
+	if not is_instance_valid(actor) or not is_instance_valid(_front_basic) or actor.hero_id() != "CH01":
+		return
+	var reduced: bool = bool(Game.profile.get("settings",{}).get("reduced_fx",false))
+	var quality: float = .52 if reduced else 1.0
+	for effect: Dictionary in effects:
+		if not effect.has("slash_texture_id"):
+			continue
+		var texture: Texture2D = _basic_slash_textures.get(str(effect.slash_texture_id))
+		if texture == null:
+			continue
+		var age: float = float(effect.age)
+		var body: float = (1.0-smoothstep(.065,.09,age))*quality
+		var tail: float = 0.0 if reduced else (1.0-smoothstep(.085,.18,age))*.16
+		var opacity: float = maxf(body,tail)
+		if opacity <= .001:
+			continue
+		var size: Vector2 = effect.slash_size
+		var center: Vector2 = Vector2(effect.at)-actor.position+Vector2(effect.weapon_end)+Vector2(effect.slash_offset)
+		_front_basic.draw_texture_rect(texture,Rect2(center-size*.5,size),false,Color(1,1,1,opacity))
+	_front_basic.draw_set_transform(Vector2.ZERO)
+
+func _draw_cleave(at: Vector2, dir: Vector2, radius: float, degrees: float, heavy: bool, t: float, fade: float, reduced: bool, variant: int = -1) -> void:
+	# Skills and counters retain their copper wake on the ground layer.
 	var visible: float = minf(1.0,fade*1.45)
 	var arc: float = deg_to_rad(minf(degrees,220.0))
 	var start: float = dir.angle()-arc*.5+arc*.16*t*(0.0 if variant == 1 else 1.0)

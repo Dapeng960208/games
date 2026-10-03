@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "direction": "NW",
+  "status": "isolated_art_preview_candidate_not_production",
+  "asset_type": "original_direction_specific_detached_warrior_axe_slash",
+  "generator": "built-in image_gen.imagegen",
+  "transparent_background_requested": true,
+  "requested_native_size": [
+    2048,
+    2048
+  ],
+  "upsampled": false,
+  "transforms_applied": [],
+  "output": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/tools/godot/art_preview/slash_directional/candidates/nw/slash_nw.png",
+  "provenance": "Generated original effect using structural visual reference and the actual TOP-LEFT release pose as direction reference. The images contain no reference character, weapon, scene or UI. Two independent directional drawing workflows; no rotations or mirrors.",
+  "inspected_references": [
+    {
+      "original_path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-e8afba6d-6fa2-41c4-8c17-9e2f75a898f4.png",
+      "role": "positive structural reference; input round 1",
+      "sha256": "5570ee660f9e684aebcefe726ea1d821b9249414e3ef439a314c937c004af4c4"
+    },
+    {
+      "original_path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-b7851f68-d9e7-4ece-96d1-dcb1b27b04f5.png",
+      "role": "negative example, actual view only; not passed into ImageGen",
+      "sha256": "dd29c28c69ec85fee50785eb435c0e12f25e6ea07edb65e78660c0823027f67b"
+    },
+    {
+      "original_path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/animations/runtime/poses_nw_b.png",
+      "role": "actual directional pose bank, TOP-LEFT release; input both rounds",
+      "sha256": "7e21a5972d7fb347e9c6bd355724ca7362a04483cbd89294b2ac31b8e722c0d1"
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "mode": "directional generation from references",
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original transparent 2.5D hand-painted cartoon fantasy game attack-VFX sprite, specifically NORTHWEST / screen-upper-left facing overhead axe release. Request native 2048 x 2048 PNG with true alpha.\nInput images: image 1 is STRUCTURAL REFERENCE ONLY for brilliant ivory-white leading blade and a few fine parallel warm-gold motion filaments; do not copy hero or scenery. Image 2 is the real warrior pose bank: use ONLY the TOP-LEFT release pose. The warrior's raised axe blade is to the UPPER LEFT of the head, its handle slopes down-right toward the hands. Build a new slash for this raised northwestern axe position, never mirror a north/east effect or rotate a generic C.\nOutput ONLY detached slash light, absolutely no character, axe, weapon, hand, body, armor, ground, scene, UI, text or watermark.\nShape and direction: a SHORT DIAGONAL wide ivory blade sweep on the UPPER-LEFT/front exterior of the raised axe. Its bright leading edge bows gently toward upper-left. The open concave side faces LOWER RIGHT where the warrior will be. Approximately 100–120 degree sweep, distinctly compact and diagonally foreshortened in high-angle 2.5D perspective, NOT a circle fragment drawn upright. Both endpoints are short and sharp: one tapers on the upper-right side, the other tapers on the lower-left side; neither extends down to a torso or feet. A slight brush-strand trail follows the diagonal tangential path, kept tightly adjacent to the wide white blade. Give this diagonal shape its own asymmetry and taper lengths. Leave a large truly transparent wedge on lower-right, zero strokes returning around the character. There should be visible empty air between the intended axe tip and the detached slash.\nStyle: crisp luminous ivory-white cutting edge, a subtle cream inner transition, only 2–4 thin parallel warm-gold tapered brush strands along that same short upper-left slash. Bright hand-painted cartoon fantasy, controlled small bloom and sparse tiny leading-edge flecks, readable game silhouette.\nComposition: one isolated effect centered with generous transparent padding on a square canvas, no pose collage. True alpha inside and behind the blade; no mist filling the open side.\nAvoid: long lower tail, C-shaped loop, full ring, protective dome, shield, archway, halo, complete oval, torso/waist/leg enclosure, diagonal full-body wrap, 180–300 degree crescent, rear connecting light, foggy field, colored backdrop or painted checkerboard. This is an ORIGINAL NORTHWEST-specific effect.",
+      "original_generated_path": "C:/Users/13326/.codex/generated_images/01a101ec-97f2-7f12-a314-31945091f25f/exec-525a832c-b821-4bb7-b3d9-bea3697a9519.png",
+      "input_original_paths": [
+        "C:/Users/13326/AppData/Local/Temp/codex-clipboard-e8afba6d-6fa2-41c4-8c17-9e2f75a898f4.png",
+        "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/animations/runtime/poses_nw_b.png"
+      ],
+      "accepted": false,
+      "actual_view_note": "Rejected: low hanging left end made approximately 150-degree curve; gold halo overly wide.",
+      "original_native_and_alpha": {
+        "native_width": 1254,
+        "native_height": 1254,
+        "sha256": "0b526b4ec5bd49bc5bb189d95bce3d1649bdc2f41c8cf0a7f7d33f12ef762196",
+        "alpha": {
+          "fully_transparent_pixels": 1263505,
+          "partially_transparent_pixels": 309011,
+          "opaque_pixels": 0,
+          "nonzero_bounds": [
+            69,
+            35,
+            1214,
+            1230
+          ],
+          "is_genuine_transparent": true
+        }
+      }
+    },
+    {
+      "round": 2,
+      "mode": "targeted image edit",
+      "prompt": "Edit image 1, the NORTHWEST axe-slash transparent effect. Image 2 TOP-LEFT release pose is direction reference only; never output its character or axe. Preserve hand-painted bright ivory-white blade and NORTHWEST leading direction. Make ONE geometric correction: SHORTEN THE LOW HANGING LEFT END so it ends halfway down the canvas, not near the bottom. Remove the low bottom hook completely. It must be a compact slanted short approximately 100–115 degree cutting sweep above and in front of the upper-left raised axe, with its white blade facing upper-left and its open side facing lower-right. The upper-right and lower-left tips are both SHORT, razor tapered and unequal, no vertical dangling arm. Keep the shape diagonal and relatively shallow; no semicircle and no full C. Thin the warm-gold haze to only 2–3 fine parallel brush filaments immediately beside the white blade, no cloud or leaf-shaped flames. All lower-right, lower half and back-side area empty alpha, so no stroke can wrap around a torso. One detached original NORTHWEST slash VFX asset only, request native2048x2048 PNG true alpha with generous transparent padding. No character, weapon, ground, scene, text, UI, watermark, arch, shield, ring or protective dome.",
+      "original_generated_path": "C:/Users/13326/.codex/generated_images/01a101ec-97f2-7f12-a314-31945091f25f/exec-d571743f-9367-412b-9eb1-5e017ab79897.png",
+      "input_original_paths": [
+        "C:/Users/13326/.codex/generated_images/01a101ec-97f2-7f12-a314-31945091f25f/exec-525a832c-b821-4bb7-b3d9-bea3697a9519.png",
+        "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/animations/runtime/poses_nw_b.png"
+      ],
+      "accepted_as_candidate": true,
+      "actual_view_note": "Compact diagonally foreshortened upper-left-leading white blade; both ends shortened; estimated 110-degree sweep. Lower-right open with no low return hook.",
+      "original_native_and_alpha": {
+        "native_width": 1254,
+        "native_height": 1254,
+        "sha256": "8b294225e0d2cd0de0713f03b0c12a25d66cf5e2f43aac394ecbf307a43fa7ff",
+        "alpha": {
+          "fully_transparent_pixels": 1380801,
+          "partially_transparent_pixels": 191715,
+          "opaque_pixels": 0,
+          "nonzero_bounds": [
+            33,
+            21,
+            1210,
+            1214
+          ],
+          "is_genuine_transparent": true
+        }
+      }
+    }
+  ],
+  "visual_validation": {
+    "actual_view_performed": true,
+    "no_character_weapon_scene_ui_text": true,
+    "direction_specific_independent_drawing": true,
+    "ring_risk": "Low after removal of low hanging arm; shallow curve remains above-left.",
+    "limitations": [
+      "Generated native size is lower than requested 2048 square; no upsampling.",
+      "Warm-gold border remains wider than ideal fine filaments.",
+      "Visible axe/effect gap requires compositing against the actual release pose; standalone asset cannot prove final placement."
+    ]
+  },
+  "actual_native_and_alpha": {
+    "native_width": 1254,
+    "native_height": 1254,
+    "sha256": "8b294225e0d2cd0de0713f03b0c12a25d66cf5e2f43aac394ecbf307a43fa7ff",
+    "alpha": {
+      "fully_transparent_pixels": 1380801,
+      "partially_transparent_pixels": 191715,
+      "opaque_pixels": 0,
+      "nonzero_bounds": [
+        33,
+        21,
+        1210,
+        1214
+      ],
+      "is_genuine_transparent": true
+    }
+  },
+  "production_asset": "res://assets/characters/warrior/fx/directional/slash_nw.png",
+  "production_sha256": "8b294225e0d2cd0de0713f03b0c12a25d66cf5e2f43aac394ecbf307a43fa7ff",
+  "production_native_dimensions": [
+    1254,
+    1254
+  ],
+  "production_processing": "original native PNG copied byte-for-byte; no rotation, mirroring, resampling or alpha cleaning",
+  "production_native_2k": false
+}

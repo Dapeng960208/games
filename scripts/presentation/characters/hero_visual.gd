@@ -235,6 +235,27 @@ static func body_transform(asset: Dictionary, hero: String, aim: Vector2, lean: 
 		transform.origin = Vector2(0,FOOT_OFFSET)-transform.basis_xform(Vector2(0,FOOT_OFFSET))
 	return transform
 
+## Sample the committed warrior pose directly; rendered metadata can still be
+## windup or already recovery. The weapon uses the body's exact transform.
+static func warrior_basic_weapon_anchors(direction: Vector2, phase: String) -> Dictionary:
+	if phase not in ["windup","release"]:
+		return {}
+	var aim: Vector2 = direction.normalized() if direction.is_finite() and direction.length_squared() > .001 else Vector2.RIGHT
+	var progress: float = 1.0 if phase == "windup" else 0.0
+	var pose: Dictionary = {"phase":phase,"slot":"basic","skill_id":"","progress":progress,"direction":aim}
+	var asset: Dictionary = presentation_frame_info("CH01","back" if aim.y < -.20 else "front",pose,0.0,false)
+	if asset.is_empty():
+		return {}
+	var anchors: Dictionary = asset.get("anchors",{})
+	if not anchors.get("grip") is Vector2 or not anchors.get("muzzle") is Vector2:
+		return {}
+	var grip: Vector2 = anchors.grip
+	var muzzle: Vector2 = anchors.muzzle
+	if not grip.is_finite() or not muzzle.is_finite():
+		return {}
+	var transform: Transform2D = body_transform(asset,"CH01",aim,-aim*4.0 if phase == "windup" else aim*5.0,pose)
+	return {"grip":transform*grip,"muzzle":transform*muzzle}
+
 ## Frozen launch-point sampling, independent of the previous rendered idle pose.
 ## Projectiles use this display anchor without moving their physical origin.
 static func release_muzzle_local(hero: String, slot: String, direction: Vector2, skill_id: String = "") -> Vector2:

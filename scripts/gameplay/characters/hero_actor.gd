@@ -573,7 +573,6 @@ func _tick_attack(delta: float) -> void:
 		# Even auto attacks may whiff when a target moves around the windup;
 		# tracking validates the recipient, it never turns a committed swing.
 		var victims: Array = room.strike_area(position, 105.0, _attack_power * (1.5 if _attack_critical else 1.0), &"primary", "", 12.0, _attack_direction, 100.0, true, {"root_event_id":_attack_event_id, "attack_id":_attack_event_id, "power":_attack_power, "attacker_stats":_attack_stats, "class_state":_attack_class_state, "original_basic":true, "equipment_eligible":true, "proc_depth":0}, true)
-		room.add_arc_visual(position, _attack_direction, 105.0, 100.0, Color("e9b16e"), 0.16)
 		visual_event("attack_strike", 0.08, _attack_direction)
 		if not victims.is_empty():
 			if _ruleset_version() != Numbers.V2: on_primary_hit(victims[0])

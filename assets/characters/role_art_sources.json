@@ -94,5 +94,38 @@
       "hud": 112
     },
     "native_2048_source": false
+  },
+  "warrior_directional_basic_slash": {
+    "tool": "built-in image_gen.imagegen",
+    "status": "PASS in actual Main eight-facing release peaks and natural contact; each original facing independently aligned outside the axe silhouette",
+    "directions": [
+      "E",
+      "SE",
+      "S",
+      "SW",
+      "W",
+      "NW",
+      "N",
+      "NE"
+    ],
+    "textures": "assets/characters/warrior/fx/directional/slash_<direction>.png",
+    "generation_records": "assets/characters/warrior/fx/directional/slash_<direction>.generation.json",
+    "reference_use": "User-supplied combat crop used for visual structure and each corresponding project-original release pose; no third-party bitmap imported as production texture",
+    "native_source_dimensions": [
+      1254,
+      1254
+    ],
+    "native_2k_requirement_met": false,
+    "upscaled": false,
+    "runtime_rotated_or_mirrored": false,
+    "alignment": "Each facing has its own size and center offset from the frozen release weapon anchor; visible arc must be outside the actual axe silhouette",
+    "historical_single_c": "Retired to ignored art_preview/slash_v3/retired_production; failed directional geometry and overlap expectations",
+    "graphical_validation_run": "20261003T141215057-502f8219",
+    "graphical_validation_checks": 320,
+    "graphical_validation_exit_code": 0,
+    "graphical_validation_errors": 0,
+    "graphical_validation_warnings": 0,
+    "actual_2k_render_capture": "CH01-warrior-basic-2k-contact.png; 2560x1440; physical monitor remains 1920x1080",
+    "validation_scope": "Qualitative visible separation reviewed in all eight actual release frames; dense contact may occlude part of the trail. Shared release poses are not continuous per-frame blade animation."
   }
 }

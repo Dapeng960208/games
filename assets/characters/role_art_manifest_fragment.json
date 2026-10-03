@@ -102,6 +102,14 @@
     "heroes/ch03_poses_n_a.png": "res://assets/characters/mage/animations/runtime/poses_n_a.png",
     "heroes/ch03_poses_n_b.png": "res://assets/characters/mage/animations/runtime/poses_n_b.png",
     "heroes/ch03_poses_ne_a.png": "res://assets/characters/mage/animations/runtime/poses_ne_a.png",
-    "heroes/ch03_poses_ne_b.png": "res://assets/characters/mage/animations/runtime/poses_ne_b.png"
+    "heroes/ch03_poses_ne_b.png": "res://assets/characters/mage/animations/runtime/poses_ne_b.png",
+    "heroes/ch01_basic_slash_e.png": "res://assets/characters/warrior/fx/directional/slash_e.png",
+    "heroes/ch01_basic_slash_se.png": "res://assets/characters/warrior/fx/directional/slash_se.png",
+    "heroes/ch01_basic_slash_s.png": "res://assets/characters/warrior/fx/directional/slash_s.png",
+    "heroes/ch01_basic_slash_sw.png": "res://assets/characters/warrior/fx/directional/slash_sw.png",
+    "heroes/ch01_basic_slash_w.png": "res://assets/characters/warrior/fx/directional/slash_w.png",
+    "heroes/ch01_basic_slash_nw.png": "res://assets/characters/warrior/fx/directional/slash_nw.png",
+    "heroes/ch01_basic_slash_n.png": "res://assets/characters/warrior/fx/directional/slash_n.png",
+    "heroes/ch01_basic_slash_ne.png": "res://assets/characters/warrior/fx/directional/slash_ne.png"
   }
 }
