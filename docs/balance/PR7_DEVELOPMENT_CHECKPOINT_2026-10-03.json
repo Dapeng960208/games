@@ -1,0 +1,658 @@
+{
+  "schema_version": 1,
+  "source_commit": "07b4397c6358acebf6441ab870dd9407f2913d91",
+  "status": "draft development checkpoint; numerical/gameplay/whole-project acceptance incomplete",
+  "scope": "B05 and B06 runtime, formal assets, first-six chapter archive15 explicit-candidate source and reproducible tests. No B07+ runtime added.",
+  "numerical_boundary": "Archive15 remains an explicit candidate. Candidate A is receiver-only experimental test configuration, not an adopted production resolver or accepted balance.",
+  "excluded_files": [
+    {
+      "path": "assets/generated/b06_bo06_environment/BO06-flat-bay-emblem-inlay-v1.png",
+      "sha": "57c84ea5a29639fdc04c4053dd0c65fe47683a86",
+      "bytes": 2182556,
+      "reason": "Superseded/rejected visual source; selected replacement retained"
+    },
+    {
+      "path": "assets/generated/b06_bo06_environment/BO06-flat-bay-emblem-inlay-v1.png.import",
+      "sha": "8281a37415fc4f666d7ad8724366c4a7f4aa6895",
+      "bytes": 1027,
+      "reason": "Importer sidecar of excluded source"
+    },
+    {
+      "path": "assets/generated/b06_l31_environment_pilot/L31-floor-tile-v1.png",
+      "sha": "b219d83255ff8db8c69df602d5b938d804ba4d07",
+      "bytes": 2890108,
+      "reason": "Superseded/rejected visual source; selected replacement retained"
+    },
+    {
+      "path": "assets/generated/b06_l31_environment_pilot/L31-floor-tile-v1.png.import",
+      "sha": "f413b28ab942493d2ea8ec4a48117750963d7067",
+      "bytes": 998,
+      "reason": "Importer sidecar of excluded source"
+    },
+    {
+      "path": "assets/generated/b06_l31_environment_pilot/L31-floor-v3.png",
+      "sha": "07fcf859fc21d7eec6cf2e39dbe0869fbebd1ebb",
+      "bytes": 2546427,
+      "reason": "Superseded/rejected visual source; selected replacement retained"
+    },
+    {
+      "path": "assets/generated/b06_l31_environment_pilot/L31-floor-v3.png.import",
+      "sha": "7fd7496772a23aa17742b9249fbce782b5174ac6",
+      "bytes": 983,
+      "reason": "Importer sidecar of excluded source"
+    },
+    {
+      "path": "assets/generated/world/rooms_2k/L27/void_v1.png",
+      "sha": "844619945a9fc5f0c518e4ba2b3ee078b3f5f0aa",
+      "bytes": 3003538,
+      "reason": "Superseded/rejected visual source; selected replacement retained"
+    },
+    {
+      "path": "assets/generated/world/rooms_2k/L27/void_v1.json",
+      "sha": "db6ce8a1a1de0ccae7aceca27d098dcd97931e1f",
+      "bytes": 3367,
+      "reason": "Superseded direct-texture metadata; current void_v2 retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_local_pressure_bounded_v1.json",
+      "sha": "2d035655afa7df2cfff8a549109fb9e8660aab7d",
+      "bytes": 2744084,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_naked_warrior_equipment_dependency_v1.json",
+      "sha": "f74b7f7f61df6e9299055b7f0679e19643ea7779",
+      "bytes": 1250166,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_ordinary_pressure_candidate10_results.json",
+      "sha": "0a27e9d419e76363f6e8fa3fa6c6011a38d766ed",
+      "bytes": 2161853,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_policy13_combat_v1.json",
+      "sha": "2017710644e5a937acc83dca9991ea5ef130af52",
+      "bytes": 3072486,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_policy13_naked_v1.json",
+      "sha": "3f99db7822b2ba8c0b4d8319cf16dd07557cb51a",
+      "bytes": 1013576,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_policy14_combat_v1.json",
+      "sha": "03fdf8e1697d09a497cc33729a093101b4101d19",
+      "bytes": 18783047,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T155652701018Z-93c4929c.json",
+      "sha": "e632682f9d62d4c8bdf957ab7fdeec113d0527b6",
+      "bytes": 157765,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T155823244647Z-c9e63f96.json",
+      "sha": "bf7796eb8ad56a60942e71b3d7ca5221bf0d972b",
+      "bytes": 157161,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T160011013241Z-40eece7a.json",
+      "sha": "dc62ee2fe8843ebda688c87a9df1b1413402e9f8",
+      "bytes": 507546,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T160129932348Z-71cc9432.json",
+      "sha": "e6b99dc06e72085d6b7f39ccdaf2f84fcde0de91",
+      "bytes": 467491,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T160252880910Z-4edf2b28.json",
+      "sha": "0cfe66773625dceb79970a0235f2affe7fa02225",
+      "bytes": 660996,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T160646028317Z-0ff1f24f.json",
+      "sha": "90090be592fa93978609750f03a4a92028f2e949",
+      "bytes": 88604,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T160731867064Z-480e513e.json",
+      "sha": "0d4a37477beb00aa4e24571b0de0662e25b03dca",
+      "bytes": 90493,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T160744946776Z-12db8d45.json",
+      "sha": "a3fc9739e30bc1b51e0276aca6f4dec4188daac3",
+      "bytes": 108473,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T161056558325Z-989afb49.json",
+      "sha": "5fc7dd32e281cadd87cc0c17c15f717de06d86bb",
+      "bytes": 24532,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T161154821326Z-86f893b0.json",
+      "sha": "ee257777ea4176a0ad3af7af54ec599da6217174",
+      "bytes": 24533,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T161205494890Z-c5984f47.json",
+      "sha": "d0134a59051cce29cf29d5c2ce357f4526801cca",
+      "bytes": 24532,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T161229550015Z-20817db0.json",
+      "sha": "ce0016ebc601f5ff99c1f7964a5b4fb604fdbe73",
+      "bytes": 197930,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T161313509611Z-8c3aea42.json",
+      "sha": "493785a2e5874739122554e80756df53b45d5470",
+      "bytes": 190050,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T161336952415Z-3d6e2971.json",
+      "sha": "935df30ba0c174273b51d69a7c5587dad97f70c7",
+      "bytes": 259985,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T161918106036Z-d20b1664.json",
+      "sha": "3730b22c0dcdbd039e75f92bdbca57b9d764bf49",
+      "bytes": 304015,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T162053499256Z-5272415f.json",
+      "sha": "039986ec32927afb2571a26f740edce657f97806",
+      "bytes": 338260,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T162117441169Z-253aec0c.json",
+      "sha": "6a56cbaa6eb114a7f81474179a521d157dd0574d",
+      "bytes": 333991,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T162152824973Z-2adc458b.json",
+      "sha": "d3f25c351da4228cdf33bdb2b3446adc83f4b1b0",
+      "bytes": 553641,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T162344710438Z-ce9d763f.json",
+      "sha": "7140026dd2be279731d03b705f309c7fd1573ae4",
+      "bytes": 1015675,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T162558627102Z-c6980eeb.json",
+      "sha": "241a74d6d99a92ce94dbaad97700f8ed073095b4",
+      "bytes": 376874,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T162628172509Z-bb3264eb.json",
+      "sha": "1ca78cf1dfdcfac204a26459d2b9a6c981379ecc",
+      "bytes": 344086,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T162639427838Z-3042e36b.json",
+      "sha": "b39319acea7a8ce66257d2161381fb330f3fc3e3",
+      "bytes": 52494,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T162702619944Z-567561c7.json",
+      "sha": "2bb718066814ec622a3309c8fafa1c5777f66783",
+      "bytes": 627963,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T162951871783Z-9b1a0e3b.json",
+      "sha": "b4e17d73fc8730f6abae0b9fb293d128861500fc",
+      "bytes": 1128341,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T163105043228Z-05605e8e.json",
+      "sha": "d55a195009c703646c230e382f6a6012b361f428",
+      "bytes": 1156364,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T163115312211Z-f6ece587.json",
+      "sha": "db61d48cbf3c0fca05ee09eb8586336ca167e57f",
+      "bytes": 90227,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T163222232842Z-bdf344cc.json",
+      "sha": "3bd091deabe994531bd9bd374e413d36894ff8e3",
+      "bytes": 1119507,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T163709549238Z-e6ad448a.json",
+      "sha": "37d5a481ae170dc8168abefc51018f2209459361",
+      "bytes": 799400,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T164448080581Z-c48a6b03.json",
+      "sha": "faf3a857f8433de5340cb63b9ad9e2bc687e8a8d",
+      "bytes": 47993,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T164517916234Z-8ad3d1de.json",
+      "sha": "35e02f40a1922a1621451dd41e7274e6013ec5fb",
+      "bytes": 588630,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T164627681380Z-3c458b71.json",
+      "sha": "c4614d5f9b9f0918f97aba951b7cb883f01def9c",
+      "bytes": 121610,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T164656800101Z-cc625efc.json",
+      "sha": "ed66d9f0e24a5c30eeb2f84fc99a7fe7d05be009",
+      "bytes": 79537,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T164855818605Z-a3805f89.json",
+      "sha": "a7deacf989f8322defbd99dae4ac2479cb2e06cf",
+      "bytes": 304100,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T165014265676Z-0673923f.json",
+      "sha": "814b7a1255204d58a218d8c03bb240291ddc2d0d",
+      "bytes": 168457,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T165028972341Z-5558fa6c.json",
+      "sha": "fcd7e85ba1e4e5b873a986e349f02ee162033bdb",
+      "bytes": 115016,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T165040654918Z-90c582db.json",
+      "sha": "8b2ecc4fb7003896ffd03acdcae8dc60cd9312d8",
+      "bytes": 113890,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T165041486020Z-3cdcbecb.json",
+      "sha": "a21713e411673cf0e5c123805089921bbf476f03",
+      "bytes": 311804,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T165529155253Z-28725659.json",
+      "sha": "c3b0114482db2f802d0a13ffc3e7c32383d7562b",
+      "bytes": 119404,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T165541439439Z-d7326055.json",
+      "sha": "bbbe2feb5a90610c88c6763f172de2c89ce91e47",
+      "bytes": 101103,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T165553503247Z-69633afb.json",
+      "sha": "0af31bf50294f66774ca960423a09620bcdd89d3",
+      "bytes": 382015,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T165634057647Z-c206b58d.json",
+      "sha": "eb60ab8da73a2d118e663d03e8befe6f9ee0f590",
+      "bytes": 411347,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T170204156104Z-0b408390.json",
+      "sha": "f4f0bec176d096a6403a0640dc74cd31d1aace21",
+      "bytes": 584,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T170306610307Z-d7cc3648.json",
+      "sha": "94cdc5301ae4896e95c45fb8721e3ed7fa897a51",
+      "bytes": 518,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T170410376212Z-92e059cf.json",
+      "sha": "323705ce022c6647da4933759814126286b138b8",
+      "bytes": 518,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T170411880641Z-d86c69a4.json",
+      "sha": "7d3d99641ba991c99de74ad47b52ca4220a708c9",
+      "bytes": 518,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T170511043727Z-c49af0f6.json",
+      "sha": "14582d2c15899974094577255a2ec3eeeb020a52",
+      "bytes": 518,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T170650716503Z-7948206f.json",
+      "sha": "a20b156e0776016aebafa5e6dda70a80cd41f68f",
+      "bytes": 401919,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T171019210042Z-ed711d00.json",
+      "sha": "b4d3800badd0373562bb3b8a09dd5158518d660d",
+      "bytes": 720032,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T171117541440Z-94f696d0.json",
+      "sha": "b41efcebf40d097adda755bfa8333b153f88f357",
+      "bytes": 378808,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T171145300477Z-3fb65b23.json",
+      "sha": "a65253b515d766d985750c7a4b568d62f8b19a1c",
+      "bytes": 312358,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T171750383844Z-e7d10103.json",
+      "sha": "3f15f0860e810efb970168b092dbe47686665b02",
+      "bytes": 730671,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T171841868083Z-6ff6745c.json",
+      "sha": "db4ffc7b08147d814c3ec6a43f741e79c190caf3",
+      "bytes": 706184,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T171939674762Z-55bdcf24.json",
+      "sha": "5393521551b9d4772523540e4a9c18126fa92ef2",
+      "bytes": 299883,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T172405134654Z-6c70cd5a.json",
+      "sha": "4b2ee32d1baa095e33ba730ba6a89bc8ecbed2cf",
+      "bytes": 699860,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T172502614081Z-86edd4cc.json",
+      "sha": "0ed27416932192c60b8e059f09b18a0f5713b738",
+      "bytes": 716344,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T172553664225Z-d27bef0e.json",
+      "sha": "e54093e831659de66a98bdb09e61ffde0e1432eb",
+      "bytes": 301747,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T172626569219Z-ce783d2c.json",
+      "sha": "20518d6d9b93e221b8dc3df6916d4e839e5c79b5",
+      "bytes": 393214,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T172658938801Z-77133fd3.json",
+      "sha": "7b71f5ce877d35fa60485de01dd98f9c67247a6b",
+      "bytes": 729538,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T172802344157Z-d1589804.json",
+      "sha": "5bf4b2a16943fbc2103d8b7450116475c88b40cf",
+      "bytes": 735836,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T172854732709Z-1d63ad4b.json",
+      "sha": "3bac8d384dceb99899812387e881e44ca9f1c8cc",
+      "bytes": 84287,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T172859240964Z-8bc74a0a.json",
+      "sha": "bf3bfacca69019a8bb2cb381fd3f2e5366547769",
+      "bytes": 316852,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T172910047163Z-7d7db162.json",
+      "sha": "452ad4cec2f846d75f7912c1468e4e444747bbba",
+      "bytes": 75108,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T172944158823Z-66f7c11b.json",
+      "sha": "294fea6cc28a37d66de88961b96deb50f6bf80f5",
+      "bytes": 743322,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T173057836864Z-01c0932b.json",
+      "sha": "fe7f914427f34127991ee066e94db64a1ee59869",
+      "bytes": 751305,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T173153837051Z-0285986b.json",
+      "sha": "21a560ba6ae8f597284cbc71af2fd7d5bb0501e1",
+      "bytes": 320142,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T173241190985Z-3dc45b42.json",
+      "sha": "190dec11cff9ef10774b44978f68e6695d0e809d",
+      "bytes": 406530,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T173720553838Z-66398878.json",
+      "sha": "a83b65957ef56eb6e0a200f94e2eb07d41bd69cd",
+      "bytes": 715611,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T173822897800Z-01574939.json",
+      "sha": "4e06c713caf1361e36200f139a09396b1ca7d20e",
+      "bytes": 719465,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T173923395144Z-8939a3db.json",
+      "sha": "2bb10dfa6d5386af445ec2689b7cb14658e68d77",
+      "bytes": 762856,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T174049184593Z-91bafd04.json",
+      "sha": "a618f601d8787b12ad02a55328c92fd215911ce2",
+      "bytes": 697273,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T174204438619Z-00d52d83.json",
+      "sha": "30078dff772db05cc7ebba4297445eb076c877ba",
+      "bytes": 760992,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T174330164079Z-ade1e674.json",
+      "sha": "28f3bb329a06d352ace5cf9d2241dce9ee5a0369",
+      "bytes": 755318,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T174447433455Z-5f5322fc.json",
+      "sha": "3d4256764882e0ec8cbab526d599676ecc481087",
+      "bytes": 755960,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T174556232547Z-8df8d755.json",
+      "sha": "00db1867f463d266b24ea1e5730212c8e7e211b2",
+      "bytes": 737191,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T174650306256Z-fcf530c2.json",
+      "sha": "a8f46edc2dfed8a9d1aecdbc23af55b9e331d1b9",
+      "bytes": 561266,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T174750350021Z-fbe4ef5a.json",
+      "sha": "9c2b7ac064729d578df03e99f96794172b2d3e55",
+      "bytes": 607399,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T174930768531Z-15a7eae8.json",
+      "sha": "f149e9b89b02f071f7fa67777c09104f0e3918cf",
+      "bytes": 579649,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T175028141999Z-e0a50ad5.json",
+      "sha": "d4df7a14dc21fb4f9f361140ce70da87404fda8c",
+      "bytes": 571976,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T175107015979Z-4a9c77db.json",
+      "sha": "36237f097913020a5f497e99e955475f23941908",
+      "bytes": 317213,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T175214057270Z-b7350127.json",
+      "sha": "7b21bbe49d1b8d9a669f9ffb366a5aeeae80010e",
+      "bytes": 332743,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T175608856417Z-3269b627.json",
+      "sha": "d721614a318ad343d1c6f800bb62b0e0fd356e07",
+      "bytes": 1102124,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T175749198935Z-83c42ef7.json",
+      "sha": "9cdd57fe5c8c51f483b9ac15f8b5dc23cefb7c85",
+      "bytes": 1082265,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T180123024645Z-8e81d52f.json",
+      "sha": "67fa1ce6f427310c5ba15f47abb1cbb54cb575e9",
+      "bytes": 737859,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T180247821029Z-bcae43f9.json",
+      "sha": "a9bcdbe831cd0773eb3c903d90d640a27b9c4614",
+      "bytes": 1009591,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T180357067119Z-767a7c8f.json",
+      "sha": "d346223d74381eef65ab4a32a99d93d2682259c4",
+      "bytes": 168259,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T180439410412Z-0f08adee.json",
+      "sha": "95ee63d2cce4c8975cdea8aa9132dacd226d268d",
+      "bytes": 157964,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T180954175378Z-6532b690.json",
+      "sha": "27d85c24eaf5c3f60bb0bb04d1e9cf87e11afc74",
+      "bytes": 168937,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T181945282509Z-5aafbc25.json",
+      "sha": "72115d759e40a5bb911ec9061e6999839dbd2d49",
+      "bytes": 124461,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T182038336143Z-be0a8886.json",
+      "sha": "94ac0a08b2249adb52299c427b46229b8feaef38",
+      "bytes": 124605,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T182108041753Z-ca83ef21.json",
+      "sha": "5e88893ce8f4a24734f405ba9c48c024597f532b",
+      "bytes": 111372,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T182119175831Z-ab39c672.json",
+      "sha": "da53248b2cd163d3acf0d69614f5890b1a325244",
+      "bytes": 111517,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T182130513759Z-164bc3e5.json",
+      "sha": "ce456c9f5d405fd98ddda621daf24456472522d8",
+      "bytes": 120068,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/20261002T182142959267Z-1b373173.json",
+      "sha": "2cdd0bf92c37e46d460b8d9ac6ec78fb31853cbb",
+      "bytes": 120211,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    },
+    {
+      "path": "docs/balance/evidence/b05_runs/index.json",
+      "sha": "15908262500f645cb25d92121e61370c5df38fb3",
+      "bytes": 35658,
+      "reason": "Historical verbose numerical run evidence; historical summaries and current archive15 full evidence retained"
+    }
+  ],
+  "retained_source_resource_note": "Two original BO05 pose inputs and seven B06 room source textures remain for source integrity/regression test coverage. They are not represented as selected new runtime environments."
+}

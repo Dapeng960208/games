@@ -1,5 +1,13 @@
 # 数值重构文档入口
 
+## 当前共享模型入口
+
+2026-10-03：archive15/数值v4已进入**显式隔离候选**，默认仍14。按最新要求base1.0、坦克HP2/双防1.3，独立法强、全局暴击和各定位增强的口径写回[原总案第8/9节](LEVEL_EQUIPMENT_NUMERICAL_DESIGN.md)；六章原正文已列90种定位、实际出场采样等级和[15真实profile全表](resolver_tables/ARCHIVE15_B01_B06.csv)。profile一致性与真实伤害/行为、连续整关验收分开；不以14旧战斗样本证明15平衡。
+
+2026-10-02冻结archive14，覆盖B01–B06普通/精英，Boss保持独立v2。公式、原型/定位系数、双防成长和取整已回写[原数值总案第9节](LEVEL_EQUIPMENT_NUMERICAL_DESIGN.md#9-野怪首领与难度标尺)；各章原正文列出当前完整roster和Boss五难度表。[完整2730行resolver表](resolver_tables/ARCHIVE14_B01_B06.csv)及[来源哈希](resolver_tables/ARCHIVE14_MANIFEST.json)可由 `python tools/balance/sync_level_numerical_docs.py --check` 复核。默认发布仍为前四章，B05/B06为隔离候选；数值一致不代表三职业/装备/连续整关平衡已验收。
+
+下文保留各轮历史记录；旧CURRENT/TARGET及archive13表不能当archive14当前面板。
+
 2026-10-02新增普通怪范围：四关9/12/15/18种，共54种；新增18种及全部普通怪难度技能单独记录于[当前普通怪数值](ORDINARY_MONSTER_NUMBERS.md)与[逐怪技能/关卡册](../ORDINARY_MONSTER_EXPANSION.md)。本轮追加的普通怪和首领短预警见[实际时序全表](ENEMY_WARNING_TIMING.md)，仅V2改变前摇/锁定，恢复和伤害不变。下方36种CURRENT快照保留旧数值基线，不覆盖本轮技能扩充。
 
 最新状态（2026-10-02）：本次PR #2交付S00–S10，已完成本地合并前验收及发现问题的修复；新规则默认启用，旧进行中冒险保持冻结规则。用户授权验收后合并并清理PR分支。S11继续暂缓，所有实验参数均未进入生产配置，自然平衡未验收。见 [本地验收记录](PR2_ACCEPTANCE_2026-10-02.md)、[S11暂缓与已知问题](S11_DEFERRED_ISSUES_2026-10-01.md)、[实施记录](IMPLEMENTATION_LOG.md)和[运行校准表](RUNTIME_CALIBRATION_TABLES.md)。
