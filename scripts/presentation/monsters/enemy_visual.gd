@@ -118,13 +118,16 @@ func configure(enemy: Node2D) -> void:
 	# Ordinary identities keep their registered current body. Native candidate
 	# chapters supply their own active pose banks below.
 	_bank = {}
+	if bool(_storybook_entry.get("b09_native_bank",false)):
+		_bank = preload("res://scripts/levels/b09/art/actors.gd").bank(str(actor.get("enemy_id")))
+		_bank["world_reference_height"] = float(_storybook_entry.world_reference_height)
 	if bool(_storybook_entry.get("b05_native_bank",false)):
 		_bank = preload("res://scripts/levels/b05/art/enemy_art.gd").bank(str(actor.get("enemy_id")))
 		_bank["world_reference_height"] = float(_storybook_entry.world_reference_height)
 	if bool(_storybook_entry.get("b06_native_bank",false)):
 		_bank = preload("res://scripts/levels/b06/art/native_art.gd").bank(str(actor.get("enemy_id")))
 		_bank["world_reference_height"] = float(_storybook_entry.world_reference_height)
-	if not bool(actor.get("static_actor")) and (str(actor.get("enemy_id")).begins_with("M") or str(actor.get("enemy_id")).begins_with("B05-M") or str(actor.get("enemy_id")).begins_with("B06-M")):
+	if not bool(actor.get("static_actor")) and (str(actor.get("enemy_id")).begins_with("M") or str(actor.get("enemy_id")).begins_with("B05-M") or str(actor.get("enemy_id")).begins_with("B06-M") or str(actor.get("enemy_id")).begins_with("B09-M")):
 		skill_badge = SkillBadge.new()
 		skill_badge.name = "EnemySkillBadge"
 		skill_badge.identity = str(actor.get("enemy_id"))

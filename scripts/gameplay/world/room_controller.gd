@@ -100,6 +100,7 @@ var interaction_textures: Dictionary = {}
 var _navigation_cache: RefCounted = preload("res://scripts/gameplay/world/navigation_cache.gd").new()
 var expedition_context: Dictionary = {}
 var b05_mechanics: Node2D
+var b09_mechanics: Node2D
 var b06_mechanics: Node2D
 var b06_environment: Node2D
 var _b06_environment_tide: Node2D
@@ -222,6 +223,7 @@ func set_input_blocked(blocked: bool) -> void:
 	input_blocked = blocked
 	release_gate = true
 	if blocked:
+		if is_instance_valid(b09_mechanics): b09_mechanics.cancel_interaction()
 		if is_instance_valid(b05_mechanics): b05_mechanics.cancel_interaction()
 		if is_instance_valid(player):
 			player.clear_buffered_skill()
@@ -251,6 +253,7 @@ func _physics_process(delta: float) -> void:
 	if Game.run == null:
 		return
 	elapsed += delta
+	if is_instance_valid(b09_mechanics): b09_mechanics.tick(delta)
 	if is_instance_valid(b06_mechanics):
 		if input_blocked or Game.run.hp <= 0.0: b06_mechanics.cancel_interaction()
 		b06_mechanics.tick(delta,false)
@@ -351,7 +354,7 @@ func clamp_actor(at: Vector2, radius: float) -> Vector2:
 
 func _configure_ground_boundary() -> void:
 	ARENA = layout.get("arena", DEFAULT_ARENA)
-	if (str(layout.get("biome_id","")) == "B05" or bool(layout.get("b06_candidate",false))) and layout.get("ground_polygon") is PackedVector2Array:
+	if (str(layout.get("biome_id","")) == "B05" or bool(layout.get("b06_candidate",false)) or bool(layout.get("b09_candidate",false))) and layout.get("ground_polygon") is PackedVector2Array:
 		ground_polygon = layout.ground_polygon
 		ARENA = GroundBoundary.bounds(ground_polygon)
 		return
@@ -1535,7 +1538,7 @@ func _encounter_plan(index: int) -> Dictionary:
 func _objective_encounters_pending() -> bool:
 	# B05 objectives describe mechanisms; its ordinary finite zones still
 	# require traversal/clearance even when no extra objective task is pending.
-	if bool(layout.get("b06_candidate",false)) or str(expedition_context.get("biome_id",""))=="B05": return not _encounters_exhausted()
+	if bool(layout.get("b09_candidate",false)) or bool(layout.get("b06_candidate",false)) or str(expedition_context.get("biome_id",""))=="B05": return not _encounters_exhausted()
 	if not is_instance_valid(objectives):
 		return false
 	for index in encounter_zones.size():
@@ -1685,6 +1688,8 @@ func prepare_expedition_node(context: Dictionary) -> Dictionary:
 	var next: Dictionary = {}
 	if role in ["entrance","supply"]:
 		next = _service_layout(context)
+	elif bool(context.get("b09_candidate",false)) and str(context.get("biome_id","")) == "B09":
+		next = preload("res://scripts/levels/b09/world/layouts.gd").build(id,seed_value)
 	elif bool(context.get("b06_candidate",false)) and str(context.get("biome_id","")) == "B06":
 		next = preload("res://scripts/levels/b06/world/room_layouts.gd").build(id,seed_value)
 	elif role == "boss":
@@ -1726,6 +1731,8 @@ func apply_prepared_expedition_node(prepared: Dictionary) -> void:
 	set_input_blocked(false)
 
 func _install_expedition_layout(prepared: Dictionary) -> void:
+	if is_instance_valid(b09_mechanics): b09_mechanics.free()
+	b09_mechanics = null
 	_release_b06_environment()
 	if is_instance_valid(b06_mechanics): b06_mechanics.free()
 	b06_mechanics = null
@@ -1808,6 +1815,10 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	_refresh_terrain_canvas()
 
 func _activate_expedition_content() -> void:
+	if bool(layout.get("b09_candidate",false)) and not is_instance_valid(b09_mechanics):
+		b09_mechanics = preload("res://scripts/levels/b09/world/mechanics.gd").new()
+		add_child(b09_mechanics)
+		b09_mechanics.configure(self)
 	if bool(layout.get("b06_candidate",false)) and not is_instance_valid(b06_mechanics):
 		b06_mechanics = preload("res://scripts/levels/b06/world/tide_runtime.gd").new()
 		add_child(b06_mechanics)
@@ -1850,14 +1861,21 @@ func _activate_expedition_content() -> void:
 			var boss: Node2D = load(AssetCatalog.resolve(boss_script)).new()
 			boss.room = self
 			boss.position = layout.get("boss_spawn",Vector2(1800,900))
-			if bool(layout.get("b06_candidate",false)) and layout_id == "BO06":
+			if bool(layout.get("b09_candidate",false)) and layout_id == "BO09":
+				boss.configure(preload("res://scripts/levels/b09/combat/skills.gd").boss_profile(difficulty),{"reward_enabled":false,"actor_kind":"boss"})
+			elif bool(layout.get("b06_candidate",false)) and layout_id == "BO06":
 				boss.configure(preload("res://scripts/levels/b06/combat/enemy_skills.gd").boss_profile(difficulty),{"reward_enabled":false,"actor_kind":"boss"})
 			else:
 				boss.configure_boss(layout_id,difficulty,0,enemy_ruleset(),enemy_calibration())
 			boss.completed.connect(func(_id: String,_payload: Dictionary) -> void: _boss_defeated = true)
 			_boss_actor = boss
 			enemies.add_child(boss)
-			if bool(layout.get("b06_candidate",false)):
+			if bool(layout.get("b09_candidate",false)):
+				b09_mechanics.register_actor(boss)
+				objectives = load(AssetCatalog.resolve("res://scripts/gameplay/world/room_objectives.gd")).new()
+				add_child(objectives)
+				objectives.configure(self,layout,role)
+			elif bool(layout.get("b06_candidate",false)):
 				b06_mechanics.bind_boss(boss)
 				objectives = load(AssetCatalog.resolve("res://scripts/gameplay/world/room_objectives.gd")).new()
 				add_child(objectives)
@@ -1886,7 +1904,7 @@ func _tick_expedition(delta: float) -> void:
 			var task_done: bool = is_instance_valid(objectives) and objectives.is_complete()
 			if not task_done or _objective_encounters_pending(): _update_encounters(delta)
 			objective_complete = task_done and _living_enemy_count() == 0 and not _objective_encounters_pending()
-	if bool(layout.get("b06_candidate",false)) and not bool(expedition_context.get("b06_progression",false)):
+	if bool(layout.get("b09_candidate",false)) or (bool(layout.get("b06_candidate",false)) and not bool(expedition_context.get("b06_progression",false))):
 		# Preview traversal has no persistent progression or economic settlement.
 		if objective_complete and not _completion_emitted:
 			_completion_emitted = true

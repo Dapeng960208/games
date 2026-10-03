@@ -26,9 +26,15 @@ static func b05_candidate_enabled() -> bool:
 static func b06_candidate_enabled() -> bool:
 	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b06")
 
+static func b09_candidate_enabled() -> bool:
+	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b09")
+
 static func _candidate_arguments_valid(args: PackedStringArray, chapter: String = "b05") -> bool:
-	if chapter not in ["b05","b06"] or not args.has("--candidate-"+chapter): return false
-	if args.has("--candidate-b05") and args.has("--candidate-b06"): return false
+	if chapter not in ["b05","b06","b09"] or not args.has("--candidate-"+chapter): return false
+	var flags := 0
+	for id: String in ["b05","b06","b09"]:
+		if args.has("--candidate-"+id): flags += 1
+	if flags != 1: return false
 	var paths: Array[String] = []
 	for argument: String in args:
 		if argument.begins_with("--test-profile="): paths.append(argument.trim_prefix("--test-profile="))

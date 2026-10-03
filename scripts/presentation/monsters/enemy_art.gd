@@ -70,6 +70,7 @@ static var _skill_icons: Dictionary = {}
 static var _loaded: Dictionary = {}
 
 static func entry_for(identity: String) -> Dictionary:
+	if identity.begins_with("B09-M") or identity == "BO09": return preload("res://scripts/levels/b09/art/actors.gd").entry(identity)
 	if identity.begins_with("B06-M"): return preload("res://scripts/levels/b06/art/native_art.gd").entry(identity)
 	if identity in preload("res://scripts/levels/b05/art/enemy_art.gd").IDS: return preload("res://scripts/levels/b05/art/enemy_art.gd").entry(identity)
 	_ensure_loaded(identity)
@@ -80,6 +81,7 @@ static func variant_count(identity: String) -> int:
 	return (_variants.get(identity, []) as Array).size()
 
 static func variant_entry_for(identity: String, index: int) -> Dictionary:
+	if identity.begins_with("B09-M") or identity == "BO09": return preload("res://scripts/levels/b09/art/actors.gd").entry(identity)
 	if identity.begins_with("B06-M"): return preload("res://scripts/levels/b06/art/native_art.gd").entry(identity)
 	if identity in preload("res://scripts/levels/b05/art/enemy_art.gd").IDS: return preload("res://scripts/levels/b05/art/enemy_art.gd").entry(identity)
 	_ensure_loaded(identity)
@@ -98,6 +100,10 @@ static func variant_index_for(identity: String, serial: int, room_id: String, ro
 	return posmod(offset + serial, count)
 
 static func skill_icon_for(identity: String) -> Dictionary:
+	if identity.begins_with("B09-M"):
+		var frame: Dictionary = preload("res://scripts/levels/b09/art/actors.gd").frame(identity)
+		if frame.is_empty(): return {}
+		return {"texture":frame.texture,"texture_path":frame.texture_path,"region":Rect2(Vector2(frame.core)-Vector2(110,110),Vector2(220,220))}
 	if identity.begins_with("B06-M"):
 		var frame: Dictionary = preload("res://scripts/levels/b06/art/native_art.gd").frame(identity)
 		if frame.is_empty(): return {}
@@ -142,7 +148,7 @@ static func install(actor: Node2D) -> Dictionary:
 		# the same painted creature rather than returning to a coal-era body.
 		actor.set("empty_body_texture", entry.texture)
 	entry["native_bounds"] = local_bounds
-	if bool(entry.get("b05_native_bank",false)) or bool(entry.get("b06_native_bank",false)):
+	if bool(entry.get("b05_native_bank",false)) or bool(entry.get("b06_native_bank",false)) or bool(entry.get("b09_native_bank",false)):
 		entry["world_reference_height"] = height
 		entry["world_foot"] = Vector2(0,foot_y)
 	return entry

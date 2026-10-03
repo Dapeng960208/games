@@ -137,6 +137,8 @@ func _ready() -> void:
 		brain = preload("res://scripts/levels/b05/combat/enemy_brain.gd").new() if enemy_id.begins_with("B05-M") else BrainScript.new()
 		if enemy_id.begins_with("B06-M") and not bool(profile.get("b06_candidate_contact_only",true)):
 			brain = preload("res://scripts/levels/b06/combat/enemy_brain.gd").new()
+		if enemy_id.begins_with("B09-M"):
+			brain = preload("res://scripts/levels/b09/combat/brain.gd").new()
 		brain.configure(profile)
 	if not static_actor:
 		body_visual = BodyVisualScript.new()
@@ -307,6 +309,8 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	if room.enemy_skills != null and room.enemy_skills.b05 != null:
 		amount = room.enemy_skills.b05.filter_damage(self,amount,kind,from_direction,damage_type)
 		amount = room.enemy_skills.b06.filter_damage(self,amount,kind,from_direction,damage_type,context)
+	if is_instance_valid(room.b09_mechanics):
+		amount = room.b09_mechanics.filter_damage(self,amount,kind,context)
 	var auxiliary_absorbed: Variant = Numerical.amount(0.0, status.ruleset_version)
 	# Enemy barrier/stance multipliers are reduction, so true damage bypasses
 	# them. Immunity is checked above; shields are still consumed below.
@@ -624,6 +628,12 @@ func _draw() -> void:
 		draw_string(room.fx_font,Vector2(-text_width*.5,37),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,11,Color("49364f"))
 
 func _draw_skill_anchor() -> void:
+	if str(get_meta("enemy_skill_anchor_kind","")) in ["crystal_column","crystal_wall"]:
+		var texture := TextureSampler.sampled("asset://b09/crystal_column/source.png")
+		if texture!=null: draw_texture_rect(texture,Rect2(-36,-78,72,86),false)
+		draw_rect(Rect2(-14,-82,28,5),Color("4d3854"))
+		draw_rect(Rect2(-13,-81,26*health.current/maxf(1,health.maximum),3),Color("61bca9"))
+		return
 	var plate: bool = str(get_meta("enemy_skill_anchor_kind", "")) == "weld_cover" or actor_kind == "cover"
 	var facing: Vector2 = get_meta("enemy_skill_anchor_direction",Vector2.RIGHT)
 	draw_set_transform(Vector2.ZERO,facing.angle())

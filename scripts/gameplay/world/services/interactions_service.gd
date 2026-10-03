@@ -28,6 +28,8 @@ func nearby_interaction() -> Dictionary:
 		var loot_at = host.loot_position()
 		if host.player.position.distance_to(loot_at) <= Balance.INTERACTION_RADIUS and host.has_line_of_sight(host.player.position,loot_at):
 			return {"kind":"loot","position":loot_at,"label":"整理战利品" if Words.locale != "en" else "Collect loot"}
+	if bool(host.layout.get("b09_candidate",false)) and host.objective_complete and host.player.position.distance_to(host.exit_position) <= Balance.INTERACTION_RADIUS and host.has_line_of_sight(host.player.position,host.exit_position):
+		return {"kind":"b09_candidate_next","position":host.exit_position,"label":"完成霜晶宫廷" if host.layout_id == "BO09" else "前往下一霜晶房间"}
 	if is_instance_valid(host.b05_mechanics):
 		var gate: Dictionary = host.b05_mechanics.nearby_mechanism(host.player.position)
 		if not gate.is_empty(): return gate
@@ -65,7 +67,7 @@ func interaction_hint() -> String:
 	if nearby.is_empty():
 		return ""
 	var key: String = host._interaction_key()
-	if nearby.kind in ["objective","b05_gate","b05_sunleaf","next","early_extract","relic_choice","supply","loot","b06_candidate_next"]:
+	if nearby.kind in ["objective","b05_gate","b05_sunleaf","next","early_extract","relic_choice","supply","loot","b06_candidate_next","b09_candidate_next"]:
 		return "[" + key + "] " + str(nearby.get("label","继续远征"))
 	if nearby["kind"] == "extract":
 		return tr("INTERACT_EXTRACT").replace("[E]", "["+key+"]")
@@ -89,7 +91,7 @@ func interact() -> void:
 		host.b05_mechanics.toggle_sunleaf(str(nearby.id),host.player)
 	elif nearby.kind == "objective":
 		host.objectives.interact(str(nearby.id),host.player)
-	elif nearby.kind in ["next","early_extract","relic_choice","supply","loot","b06_candidate_next"]:
+	elif nearby.kind in ["next","early_extract","relic_choice","supply","loot","b06_candidate_next","b09_candidate_next"]:
 		host.set_input_blocked(true)
 		host.interaction_requested.emit(str(nearby.kind),host.expedition_context.duplicate(true))
 	elif nearby["kind"] == "extract":

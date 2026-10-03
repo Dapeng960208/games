@@ -275,6 +275,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if _enemy_root_remaining > 0.0: motion = Vector2.ZERO
 		velocity = motion * stat("move_speed", 220.0) * abilities.movement_scale() + knockback * _b06_knockback_distance_scale
+		if is_instance_valid(room.b09_mechanics): velocity = room.b09_mechanics.movement_velocity(self,motion,velocity,delta)
 		position = room.move_actor(position, velocity * delta, Balance.PLAYER_RADIUS)
 	knockback = knockback.move_toward(Vector2.ZERO, Balance.PLAYER_KNOCKBACK_DECAY * delta)
 	stride += position.distance_to(from) * 0.12

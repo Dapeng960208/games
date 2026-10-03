@@ -48,7 +48,7 @@ static func detail_candidates(room: Node) -> Array[int]:
 static func draw_identity(canvas: CanvasItem, identity: String, at: Vector2, radius: float, tint: Color) -> void:
  # Fallbacks use stable source identity, not a different monster's portrait.
  # Six silhouettes × nine inner marks remain distinct even without color.
- var number: int = clampi(int(identity.trim_prefix("B05-M")),1,18)-1 if identity.begins_with("B05-M") else clampi(int(identity.trim_prefix("M")),1,54)-1
+ var number: int = clampi(int(identity.trim_prefix("B09-M")),1,18)-1 if identity.begins_with("B09-M") else clampi(int(identity.trim_prefix("B05-M")),1,18)-1 if identity.begins_with("B05-M") else clampi(int(identity.trim_prefix("M")),1,54)-1
  var sides: int = 3+number%6
  var outline := PackedVector2Array()
  for index: int in range(sides+1): outline.append(at+Vector2.from_angle(-PI*.5+TAU*index/sides)*radius)
