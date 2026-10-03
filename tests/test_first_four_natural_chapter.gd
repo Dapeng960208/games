@@ -36,6 +36,11 @@ var kills_start := 0
 var wall_start := 0
 var output_path := ""
 var outcome := ""
+var boss_hp_experiment := false
+var boss_experiment_profile := {}
+var boss_experiment_actor_id := 0
+var boss_phase_events: Array = []
+var enemy_command_start := 0
 var chapter := 1
 var equipment_mode := "naked"
 var mode := "chapter"
@@ -109,6 +114,7 @@ func _run() -> void:
 		get_tree().quit(2); return
 	output_path = arg("output",Game.profile_path.get_base_dir().path_join("naked_chapter.json"))
 	chapter=int(arg("chapter","1"))
+	boss_hp_experiment=arg("boss-hp-experiment","none")=="B02-plus20"
 	equipment_mode=arg("equipment","naked")
 	check(equipment_mode in ["naked","green0","G2","P5"],"explicit legal equipment mode")
 	if arg("parse-only","false")=="true":
@@ -128,6 +134,7 @@ func _run() -> void:
 	var level := int(arg("level",str((chapter-1)*5+1)))
 	var difficulty := int(arg("difficulty","0"))
 	var fight_seed := int(arg("seed","1001"))
+	if boss_hp_experiment: check(chapter==2 and hero=="CH01" and difficulty==0 and fight_seed==1001 and equipment_mode=="naked","HP-only experiment authorization scope")
 	check(mode in ["chapter","group"],"bounded defined mode")
 	check(Engine.physics_ticks_per_second==60 and is_equal_approx(Engine.time_scale,1.0),"native60Hz time_scale1")
 	var fixture := frozen_fixture(hero,level)
@@ -184,6 +191,8 @@ func _run() -> void:
 	var prepared := room.prepare_expedition_node(context)
 	if not check(bool(prepared.get("valid",false)),"production room preflight"): get_tree().quit(1); return
 	room.apply_prepared_expedition_node(prepared); stage.add_child(room)
+	room.enemy_skills.set_script(preload("res://tests/support/s11_directed_enemy_skills.gd"))
+	room.enemy_skills.configure(room)
 	room.player.abilities=preload("res://tests/support/b05_balance_observed_abilities.gd").new()
 	room.player.abilities.configure(room.player)
 	trail.player_reference=weakref(room.player)
@@ -271,6 +280,19 @@ func advance_native() -> bool:
 
 func start_room() -> void:
 	current_run=Game.run
+	if boss_hp_experiment and room.layout_id=="BO02":
+		var boss: MineBoss=room._boss_actor
+		check(is_instance_valid(boss) and boss.health.current==boss.health.maximum,"HP experiment before any Boss damage")
+		boss_experiment_profile=boss.profile.duplicate(true)
+		boss_experiment_actor_id=boss.get_instance_id()
+		var before_hp: int=boss.health.maximum
+		var before_guards: Dictionary=boss.status.guards.duplicate(true)
+		boss.health.reset(roundi(float(before_hp)*1.2),2)
+		check(boss.profile==boss_experiment_profile and boss.contact_damage==boss_experiment_profile.damage and boss.armor==boss_experiment_profile.armor and boss.magic_resist==boss_experiment_profile.magic_resist and boss.status.guards==before_guards,"only HP receiver changed; canonical commands AD defenses guards unchanged")
+		report["boss_hp_experiment"]={"id":"B02-plus20","base_max_hp":before_hp,"test_max_hp":boss.health.maximum,"canonical_profile":boss_experiment_profile.duplicate(true),"method":"test-only native CombatHealth receiver +20%; attack profile unchanged; not production snapshot compatibility","production_changed":false}
+		boss_phase_events.append({"t":elapsed,"phase":1,"hp":boss.health.current,"max_hp":boss.health.maximum})
+		boss.phase_changed.connect(func(_id: String,phase: int,ratio: float)->void:boss_phase_events.append({"t":elapsed,"phase":phase,"hp_ratio":ratio}))
+	enemy_command_start=room.enemy_skills.executed_commands.size()
 	room_started=elapsed; next_objective=elapsed; next_sample=elapsed
 	outgoing_start=room.packets.size();ability_start=room.player.abilities.audit.size()
 	packet_start=trail.all_events.size(); kills_start=int(room.telemetry.kills)
@@ -309,6 +331,18 @@ func finish_room(result: String) -> void:
 		check(float(payment.resource_before)+0.00001>=float(payment.paid_cost),"ability has legal resource payment")
 		check(is_equal_approx(float(payment.resource_after_class_refund),float(payment.resource_before)-float(payment.paid_cost)+float(payment.effective_class_refund)),"native ability payment balances")
 	current_row.merge({"shield_absorbed":shield_absorbed,"shield_sources":shield_sources.keys(),"combat_healing_feedback":healing,"native_net_healing_inferred":float(current_run.hp)-float(current_row.start_hp)+hp_loss,"ability_payment_and_timeline":payments,"outgoing_packets":room.packets.slice(outgoing_start),"empty_equipment_verified":current_run.equipment_snapshot.is_empty() and room.player.loadout.effects.equipped.is_empty(),"unclaimed_native_pending_items":current_run.expedition.get("pending_equipment",{}).size()})
+	var observed_commands: Array=room.enemy_skills.executed_commands.slice(enemy_command_start)
+	current_row["actual_enemy_commands"]=observed_commands.duplicate(true)
+	if boss_hp_experiment and room.layout_id=="BO02":
+		var boss_commands: Array=observed_commands.filter(func(c:Dictionary)->bool:return int(c.get("owner_id",0))==boss_experiment_actor_id)
+		check(not boss_commands.is_empty(),"HP experiment has real Boss command execution")
+		var positive:=0
+		for command: Dictionary in boss_commands:
+			if float(command.get("damage",0))>0: positive+=1
+		check(positive>0,"HP experiment canonical Boss commands carry positive damage")
+		check(trail.all_events.slice(packet_start).any(func(p:Dictionary)->bool:return p.source_id=="BO02" and float(p.raw)>0 and float(p.hp_loss)+float(p.shield_absorbed)>0),"HP experiment Boss has real positive receiver hit")
+		report["boss_phase_events"]=boss_phase_events.duplicate(true)
+		report.boss_hp_experiment["real_positive_command_count"]=positive
 	room_rows.append(current_row.duplicate(true))
 	print("FIRST_FOUR_NATURAL_ROOM ",JSON.stringify({"room":room.layout_id,"outcome":result,"seconds":current_row.active_seconds,"hp_loss":hp_loss,"hp":current_run.hp,"hits":hits,"kills":current_row.kills}))
 	current_row={}
