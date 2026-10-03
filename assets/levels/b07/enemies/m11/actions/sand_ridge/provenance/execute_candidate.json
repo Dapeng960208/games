@@ -1,0 +1,193 @@
+{
+  "id": "m11",
+  "action": "execute",
+  "kind": "character_key_pose",
+  "relative_dir": "m11/execute/repair",
+  "crown": [
+    971,
+    693
+  ],
+  "feet": [
+    [
+      235,
+      967
+    ],
+    [
+      525,
+      931
+    ],
+    [
+      813,
+      1119
+    ],
+    [
+      1112,
+      1074
+    ]
+  ],
+  "read": "Repair clearly restores fourth far hind paw; lowered head and compressed front stance suggest stomp.",
+  "issues": [
+    "Right snout/forepaw tight; contact frame has no ground or impact VFX by design.",
+    "Four-foot anchor is inferred from paw contact centers, requires scene validation."
+  ],
+  "path": "assets/levels/b07/enemies/m11/actions/sand_ridge/execute_candidate.png",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGBA",
+  "bytes": 1313098,
+  "sha256": "46a12fa3d6fe17fab4252e2adf825566667ff44f78c664d202fcec3267ce3295",
+  "transparent_pixel_count": 1034126,
+  "partial_alpha_pixel_count": 537695,
+  "opaque_pixel_count": 695,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        21,
+        20,
+        1241,
+        1238
+      ],
+      "bbox_size": [
+        1220,
+        1218
+      ],
+      "effective_pixels": 538390,
+      "margin_ltrb": [
+        21,
+        20,
+        13,
+        16
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        26,
+        110,
+        1233,
+        1193
+      ],
+      "bbox_size": [
+        1207,
+        1083
+      ],
+      "effective_pixels": 515527,
+      "margin_ltrb": [
+        26,
+        110,
+        21,
+        61
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        27,
+        111,
+        1233,
+        1192
+      ],
+      "bbox_size": [
+        1206,
+        1081
+      ],
+      "effective_pixels": 509828,
+      "margin_ltrb": [
+        27,
+        111,
+        21,
+        62
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/repair/provenance.json",
+  "prompt_path": "provenance/execute_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/repair/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "manual_foot_qa": {
+    "support_contact_centers_px": [
+      [
+        235,
+        967
+      ],
+      [
+        525,
+        931
+      ],
+      [
+        813,
+        1119
+      ],
+      [
+        1112,
+        1074
+      ]
+    ],
+    "anchor_mean_px": [
+      671.2,
+      1022.8
+    ],
+    "anchor_normalized": [
+      0.53525,
+      0.81563
+    ],
+    "anatomical_crown_px": [
+      971,
+      693
+    ],
+    "body_effective_height_px": 329.8,
+    "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+    "max_body_display_height_at_1_to_1_px": 329.8,
+    "max_body_display_height_at_1_5_source_to_display_px": 219.9,
+    "accepted_runtime_anchor": false
+  },
+  "minimum_margin_alpha16": 21,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/repair/candidate.png",
+  "resource": "asset://levels/b07/enemies/m11/actions/sand_ridge/execute_candidate.png",
+  "original_provenance": {
+    "id": "m11",
+    "action": "execute_repair",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m11/idle_candidate.png",
+    "edit_target": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/candidate.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-780947b3-3e7a-4ac5-9927-c3e668332334.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "repair_limit": "one_targeted_retry_only",
+    "sha256": "46a12fa3d6fe17fab4252e2adf825566667ff44f78c664d202fcec3267ce3295",
+    "bytes": 1313098,
+    "source_sha256": "46a12fa3d6fe17fab4252e2adf825566667ff44f78c664d202fcec3267ce3295",
+    "copy_byte_verified": true
+  },
+  "ability": "sand_ridge"
+}

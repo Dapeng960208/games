@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M04",
+  "status": "design_candidate_not_runtime_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-aaae5f1c-d5f0-4817-9626-21d62581fe84.png",
+  "source_sha256": "9faae348481abe940cd94813f1f594ebffeb8e76994bc418cf028468ecdd0a2b",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "native_mode": "RGBA",
+  "original_colors_preserved": true,
+  "postprocessing": "none; source PNG byte-for-byte copy",
+  "candidate_only": true,
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "pose": "single_right_three_quarter_idle_ready",
+  "references": [
+    "user-provided B07(1).png: authoritative world and species",
+    "accepted M01 idle: painted family only"
+  ],
+  "reference_sha256": {
+    "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+    "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+  },
+  "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+  "prompt": "provenance/idle_candidate.prompt.txt",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      30,
+      184,
+      1207,
+      1000
+    ],
+    "alpha128_pixel_count": 590212,
+    "transparent_pixel_count": 957890,
+    "low_alpha_1_32_count": 20307,
+    "nonzero_edge_pixel_count": 22,
+    "edge_alpha128_pixel_count": 0,
+    "body_crown_or_anatomical_dorsal_y": 184,
+    "foot_contacts_manual": [
+      [
+        430,
+        1090
+      ],
+      [
+        1000,
+        995
+      ]
+    ],
+    "foot_midpoint": [
+      715.0,
+      1042.5
+    ],
+    "body_height_excluding_weapon_tail_accessories": 858.5,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 858.5,
+    "maximum_display_body_px_at_1_5_sampling_margin": 572.33,
+    "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+    "visual_review": "Broad sun shield role readable; right margin narrow."
+  }
+}

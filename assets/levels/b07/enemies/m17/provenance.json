@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M17",
+  "status": "design_candidate_not_runtime_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-654f5cfd-d3cd-4d70-9389-74b8fa29809f.png",
+  "source_sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "native_mode": "RGBA",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte copy",
+  "candidate_only": true,
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "pose": "single_right_three_quarter_idle_ready",
+  "references": [
+    "user-provided B07(1).png: authoritative world and species design",
+    "assets/levels/b07/enemies/m01/idle.png: accepted painted family, not copied pixel asset"
+  ],
+  "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+  "prompt": "provenance/idle_candidate.prompt.txt",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      120,
+      123,
+      1017,
+      1039
+    ],
+    "opaque_or_partial_pixel_count": 478324,
+    "alpha128_pixel_count": 458361,
+    "transparent_pixel_count": 1094192,
+    "low_alpha_1_32_count": 16201,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "body_crown_y": 309,
+    "foot_contacts_manual": [
+      [
+        516,
+        1070
+      ],
+      [
+        1004,
+        992
+      ]
+    ],
+    "foot_midpoint": [
+      760.0,
+      1031.0
+    ],
+    "body_height_excluding_weapon_tail_accessories": 722.0,
+    "semantic_landmark_uncertainty_px": 15,
+    "maximum_display_body_px_at_1_to_1_sampling": 722.0,
+    "maximum_display_body_px_at_1_5_sampling_margin": 481.33,
+    "sampling_note": "Single-frame anatomical content only, no canvas whitespace or atlas total. Runtime scale and maximum camera not assigned for these new candidates; no 2K runtime acceptance claim.",
+    "visual_review": "Native colors and species/role identity readable. No runtime, animation or final alpha acceptance. Camera pitch and edge fringe remain to review in actual scene."
+  },
+  "framing_revision": {
+    "prior_source": "exec-144a9631-39bc-4e70-98f5-69c348783f3f.png",
+    "reason": "Original obelisk top alpha128 y=3 and isolated speck; regenerated to leave space, not padded/upscaled. Original remains in generation workspace.",
+    "prior_sha256": "c09f9c9c22fed850d475bc01282b8ca6c1b7a6d845ff4599d389a1c2962843ca",
+    "initial_prompt": "provenance/idle_initial.prompt.txt"
+  },
+  "reference_sha256": {
+    "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+    "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "room_id": "L41",
+  "approved": false,
+  "candidate_only": true,
+  "status": "user_stopped_partial_source_candidates",
+  "source_texture": "asset://world/rooms/L41_environment_v1.png",
+  "source_sha256": "97e92558bbe0150c4362fba548587583c34d72ce3107bfb877bc106c5447ebf8",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "generation_tool": "built-in image_gen",
+  "representation": "native detail repaints over exact mother source rectangles; partial, not runtime validated",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "missing_ids": [
+    "top_right",
+    "bottom_left",
+    "bottom_middle",
+    "bottom_right"
+  ],
+  "mother_boundary_status": "blocked_runtime_acceptance",
+  "source_change_requires_reregistration": true,
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L41/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "effective_content_bbox": [
+        0,
+        0,
+        1244,
+        1264
+      ],
+      "minimum_native_density": 2.3923076923076922,
+      "generated_png_sha256": "5d73394753d06908752225ed629f40a77fb486c20d5fa1f58dd41bf8a780979e",
+      "preserved_png": "assets/levels/b07/rooms/l41/detail/source/top_left.png",
+      "original_generation_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-62f833bb-48a8-436f-93e1-342466121fd3.png",
+      "decoded_rgb_sha256": "03de06ac2b6c63313114d613a90d31ca53deb718fb3847d36f339e280cbdd1ff",
+      "webp_sha256": "86c317bb488b87c626e1b4cc79d53c88528edee30d378e1424ff35972c8cd340",
+      "encoding": "lossless WebP; decoded pixels identical; no resizing or art pixel edits",
+      "prompt": "Use case: precise-object-edit. Repaint this exact cropped game-background tile at native high resolution, target1536x1536, adding finer hand-painted sandstone grain, subtle masonry chips, red textile weave and turquoise enamel texture. Preserve the FULL input framing and identical normalized coordinates of every paving joint, floor boundary, facade, lizard carving, cloth edge, column, plant and shadow. No crop, expansion, rotation, perspective change, extra objects, altered silhouettes or rearrangement. It is one exact tile of a six-tile larger room, so preserve all details meeting each of the four image edges and overlap zones. Maintain the same bright warm cream/gold/red/turquoise painterly cartoon fantasy 2.5D palette, exposure, soft shadows and contrast; no glossy photorealism or stronger dark outlines. Enhance small material detail only INSIDE existing surfaces; never move the playable ground edge. No text, people, UI, new stairs, cracks or rocks. All source content visible, no blank border; genuinely repaint at high native density, not a resized crop.",
+      "visual_qa": {
+        "viewed": true,
+        "whole_framing": "same composition and scene edge retained visually",
+        "material": "newly painted masonry detail; increased local grout/texture contrast",
+        "key_floor_boundary": "major edge remains near original; exact source-pixel measurement not completed before stop",
+        "seams": "not checked as full set; only two tiles exist",
+        "runtime_acceptance": false
+      }
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L41/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "effective_content_bbox": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "minimum_native_density": 2.375,
+      "generated_png_sha256": "ada00368813d916372bf754db94d481f2c1e77e87d56ee612b7c643700345e44",
+      "preserved_png": "assets/levels/b07/rooms/l41/detail/source/top_middle.png",
+      "original_generation_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-a0937ba9-c7c7-446c-bcde-fc965f9a0a7e.png",
+      "decoded_rgb_sha256": "5d0234b65fd1c3a96a8b2a2548e7c1cbc76a044ffe4cd92c4dc92d33fe558b41",
+      "webp_sha256": "5926380ea9d5653bfa3f4ce750cc39620bbc19cc486d8f716fa28adf4decf7ed",
+      "encoding": "lossless WebP; decoded pixels identical; no resizing or art pixel edits",
+      "prompt": "Use case: precise-object-edit. Repaint this exact cropped game-background tile at native high resolution, target1536x1536, adding finer hand-painted sandstone grain, subtle masonry chips, red textile weave and turquoise enamel texture. Preserve the FULL input framing and identical normalized coordinates of every paving joint, floor boundary, facade, lizard carving, cloth edge, column, plant and shadow. No crop, expansion, rotation, perspective change, extra objects, altered silhouettes or rearrangement. It is one exact tile of a six-tile larger room, so preserve all details meeting each of the four image edges and overlap zones. Maintain the same bright warm cream/gold/red/turquoise painterly cartoon fantasy 2.5D palette, exposure, soft shadows and contrast; no glossy photorealism or stronger dark outlines. Enhance small material detail only INSIDE existing surfaces; never move the playable ground edge. No text, people, UI, new stairs, cracks or rocks. All source content visible, no blank border; genuinely repaint at high native density, not a resized crop.",
+      "visual_qa": {
+        "viewed": true,
+        "whole_framing": "same composition and scene edge retained visually",
+        "material": "newly painted masonry detail; increased local grout/texture contrast",
+        "key_floor_boundary": "major edge remains near original; exact source-pixel measurement not completed before stop",
+        "seams": "not checked as full set; only two tiles exist",
+        "runtime_acceptance": false
+      }
+    }
+  ]
+}

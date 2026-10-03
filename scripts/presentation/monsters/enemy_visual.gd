@@ -4,6 +4,7 @@ extends Node2D
 ## Registered ordinary bodies use restrained pose transforms; native candidate
 ## chapters supply current frames with source regions and absolute foot anchors.
 
+const L37CardLayout = preload("res://scripts/levels/b07/art/l37_skill_card_layout.gd")
 const SkillPresentation = preload("res://scripts/presentation/monsters/enemy_skill_presentation.gd")
 const Palette = preload("res://scripts/presentation/monsters/enemy_palette.gd")
 const Art = preload("res://scripts/presentation/monsters/enemy_art.gd")
@@ -64,7 +65,14 @@ class SkillBadge extends Node2D:
 	var locked: bool = false
 	var progress: float = 0.0
 	var reduced_fx: bool = false
+	# Read-only test instrumentation. No selection/layout behavior changes.
+	var observe_render := "--b07-live-render-observe" in OS.get_cmdline_user_args()
+	var last_detail_draw: Dictionary = {}
+	func _record_detail_draw(at: Vector2) -> void:
+		if observe_render:
+			last_detail_draw={"frame":Engine.get_process_frames(),"rect":get_global_transform_with_canvas()*Rect2(at,Vector2(254,61)),"info":info.duplicate(true)}
 	func _draw() -> void:
+		if observe_render: last_detail_draw={}
 		if not visible: return
 		var active: bool = not command.is_empty()
 		var edge := Color("c86558") if locked else Color("d4a34f") if active else Color("ab9c84")
@@ -80,6 +88,17 @@ class SkillBadge extends Node2D:
 			var count: int = mini(7,int(command.get("stage_count",1)))
 			for index: int in count:
 				draw_circle(Vector2((index-(count-1)*.5)*5.0,20.0),1.7,edge if index <= int(command.get("stage",0)) else Color("bba68b"))
+		var room: Node = preload("res://scripts/domain/combat/combat_properties.gd").read(get_parent(),"room")
+		if L37CardLayout.enabled(room):
+			var review: Dictionary = L37CardLayout.placement(self)
+			if not review.is_empty():
+				var at: Vector2 = review.origin
+				# A tether keeps displaced/perimeter cards associated with their owner.
+				var tether_end := Vector2.ZERO.clamp(at,at+Vector2(254,61))
+				if tether_end.length()>20: draw_line(Vector2.ZERO,tether_end,Color("b89365"),1.0,true)
+				_record_detail_draw(at)
+				SkillPresentation.draw_card(self,info,at)
+			return
 		if show_detail:
 			var at := detail_origin()
 			var matrix: Transform2D = get_global_transform_with_canvas()
@@ -91,6 +110,7 @@ class SkillBadge extends Node2D:
 			if bounds.end.y > viewport.end.y: offset.y = viewport.end.y-bounds.end.y
 			elif bounds.position.y < viewport.position.y: offset.y = viewport.position.y-bounds.position.y
 			at += matrix.basis_xform_inv(offset)
+			_record_detail_draw(at)
 			SkillPresentation.draw_card(self,info,at)
 
 	func detail_origin() -> Vector2:
@@ -129,11 +149,17 @@ func configure(enemy: Node2D) -> void:
 		var art = preload("res://scripts/levels/b06/art/native_art.gd")
 		_bank = art.first_room_bank(str(actor.get("enemy_id"))) if bool(_storybook_entry.get("first_room_race_variant",false)) else art.bank(str(actor.get("enemy_id")))
 		_bank["world_reference_height"] = float(_storybook_entry.world_reference_height)
-	if not bool(actor.get("static_actor")) and (str(actor.get("enemy_id")).begins_with("M") or str(actor.get("enemy_id")).begins_with("B05-M") or str(actor.get("enemy_id")).begins_with("B06-M") or str(actor.get("enemy_id")).begins_with("B09-M")):
+	if bool(_storybook_entry.get("b07_native_bank",false)):
+		_bank=preload("res://scripts/levels/b07/art/native_art.gd").bank_for_actor(actor)
+		if not _bank.is_empty(): _bank["world_reference_height"]=float(_storybook_entry.world_reference_height)
+	if not bool(actor.get("static_actor")) and (str(actor.get("enemy_id")).begins_with("M") or str(actor.get("enemy_id")).begins_with("B05-M") or str(actor.get("enemy_id")).begins_with("B06-M") or bool(_storybook_entry.get("b07_native_bank",false)) or str(actor.get("enemy_id")).begins_with("B09-M")):
 		skill_badge = SkillBadge.new()
 		skill_badge.name = "EnemySkillBadge"
 		skill_badge.identity = str(actor.get("enemy_id"))
 		skill_badge.icon = Art.skill_icon_for(skill_badge.identity)
+		if bool(_bank.get("b07_review_bank",false)):
+			var idle: Dictionary = _bank.clips.idle[0]
+			skill_badge.icon = {"texture":idle.texture,"texture_path":idle.texture_path,"region":Rect2(idle.core-Vector2(150,150),Vector2(300,300))}
 		# Nearby prose and icons stay below the room's z=5 danger geometry,
 		# regardless of the owning actor's body layer.
 		skill_badge.z_as_relative = false
@@ -152,7 +178,7 @@ func configure(enemy: Node2D) -> void:
 	# first strike. Include authored frames and M35's alternate empty silhouette.
 	_prepare_contact_mask(actor.get("body_texture"))
 	_prepare_contact_mask(_bank.get("texture"))
-	if bool(_bank.get("b05_native_bank",false)) or bool(_bank.get("b06_native_bank",false)):
+	if bool(_bank.get("b05_native_bank",false)) or bool(_bank.get("b06_native_bank",false)) or bool(_bank.get("b07_native_bank",false)):
 		for frames: Array in _bank.get("clips",{}).values():
 			for frame: Dictionary in frames: _prepare_contact_mask(frame.get("texture"))
 	_prepare_contact_mask(actor.get("empty_body_texture"))
@@ -273,6 +299,10 @@ func _read_phase(delta: float) -> void:
 
 func _update_skill_badge() -> void:
 	if not is_instance_valid(skill_badge): return
+	var room: Variant = preload("res://scripts/domain/combat/combat_properties.gd").read(actor,"room")
+	if room is Node and L37CardLayout.ensure(room):
+		skill_badge.reduced_fx = _reduced_fx()
+		return
 	var brain: Variant = actor.get("brain")
 	skill_badge.info = SkillPresentation.readout(brain) if brain is RefCounted else {}
 	skill_badge.command = skill_badge.info.get("command",{})
@@ -280,7 +310,6 @@ func _update_skill_badge() -> void:
 	skill_badge.locked = bool(skill_badge.info.get("locked",false))
 	skill_badge.progress = float(skill_badge.info.get("progress",0.0))
 	skill_badge.reduced_fx = _reduced_fx()
-	var room: Variant = preload("res://scripts/domain/combat/combat_properties.gd").read(actor,"room")
 	var candidates: Array[int] = SkillPresentation.detail_candidates(room) if room is Node else []
 	skill_badge.detail_slot = candidates.find(actor.get_instance_id())
 	skill_badge.show_detail = skill_badge.detail_slot >= 0
@@ -336,6 +365,12 @@ func _update_pose(_delta: float) -> void:
 		body_offset += pose.offset
 		body_scale += pose.scale
 		body_rotation += float(pose.rotation)
+	if bool(_bank.get("b07_review_bank",false)):
+		# Key-pose review keeps registered anatomy/root stable. Movement is a
+		# static idle fallback, with no invented walk cycle or pose squash.
+		body_offset = Vector2.ZERO
+		body_scale = Vector2.ONE
+		body_rotation = 0.0
 	var impact: float = 0.0
 	if _impact_duration > 0.0 and _impact_elapsed < _impact_duration:
 		var t: float = _impact_elapsed / _impact_duration
@@ -392,6 +427,10 @@ func _select_frame() -> void:
 	selected_frame = {}
 	asset_mode = "storybook_static" if not _storybook_entry.is_empty() else "static_pose"
 	if _bank.is_empty() or _using_empty_body():
+		return
+	if bool(_bank.get("b07_review_bank",false)):
+		selected_frame = preload("res://scripts/levels/b07/art/actor_review.gd").select_frame(actor,_bank)
+		asset_mode = "b07_review_static_idle" if selected_frame.get("name","idle") == "idle" else "b07_review_key_pose"
 		return
 	var clips: Dictionary = _bank.clips
 	var action: String = "idle"

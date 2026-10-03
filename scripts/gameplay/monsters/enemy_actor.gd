@@ -135,7 +135,7 @@ func _ready() -> void:
 	health.reset(float(profile.get("max_hp", Balance.ENEMY_HP)), int(profile.get("ruleset_version", Numerical.LEGACY)))
 	health.depleted.connect(_die)
 	if not profile.is_empty() and not static_actor:
-		brain = preload("res://scripts/levels/b05/combat/enemy_brain.gd").new() if enemy_id.begins_with("B05-M") else BrainScript.new()
+		brain = preload("res://scripts/levels/b07/combat/enemy_brain.gd").new() if enemy_id.begins_with("B07-M") else preload("res://scripts/levels/b05/combat/enemy_brain.gd").new() if enemy_id.begins_with("B05-M") else BrainScript.new()
 		if enemy_id.begins_with("B06-M") and not bool(profile.get("b06_candidate_contact_only",true)):
 			brain = preload("res://scripts/levels/b06/combat/enemy_brain.gd").new()
 		if enemy_id.begins_with("B09-M"):
@@ -310,6 +310,7 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	if room.enemy_skills != null and room.enemy_skills.b05 != null:
 		amount = room.enemy_skills.b05.filter_damage(self,amount,kind,from_direction,damage_type)
 		amount = room.enemy_skills.b06.filter_damage(self,amount,kind,from_direction,damage_type,context)
+	if is_instance_valid(room.b07_mechanics): amount = room.b07_mechanics.filter_damage(self,amount,from_direction,damage_type)
 	if is_instance_valid(room.b09_mechanics):
 		amount = room.b09_mechanics.filter_damage(self,amount,kind,context)
 	var auxiliary_absorbed: Variant = Numerical.amount(0.0, status.ruleset_version)
@@ -323,6 +324,10 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 		if numerical and auxiliary_absorbed > 0:
 			last_damage_result.merge({"confirmed":true,"auxiliary_shield_damage":auxiliary_absorbed,"shield_damage":auxiliary_absorbed}, true)
 			last_damage_context = context.duplicate()
+			if enemy_id.begins_with("B07-M") and brain != null:
+				var hit_context: Dictionary=context.duplicate()
+				hit_context.merge({"damage":0,"shield_damage":auxiliary_absorbed,"kind":str(kind),"direction":from_direction},true)
+				brain.on_damaged(self,hit_context)
 		return bool(last_damage_result.confirmed) if numerical else false
 	last_damage_context = context.duplicate()
 	if last_damage_context.is_empty():
@@ -351,7 +356,7 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 		hurt_flash = 0.1
 	if brain != null:
 		var hit_context: Dictionary = context.duplicate()
-		hit_context.merge({"damage":final_amount,"kind":str(kind),"direction":from_direction},true)
+		hit_context.merge({"damage":final_amount,"shield_damage":maxf(0.0,shield_before-status.shield())+float(auxiliary_absorbed),"kind":str(kind),"direction":from_direction},true)
 		brain.on_damaged(self, hit_context)
 	if final_amount > 0.0:
 		last_damage_direction = from_direction.normalized() if from_direction.is_finite() else Vector2.ZERO
@@ -363,6 +368,7 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 		"hp_damage":Numerical.amount(consumed_hp, status.ruleset_version),"status_shield_damage":Numerical.amount(consumed_shield, status.ruleset_version),
 		"auxiliary_shield_damage":auxiliary_absorbed,"shield_damage":Numerical.amount(consumed_shield + float(auxiliary_absorbed), status.ruleset_version),
 		"shield_broken":shield_before > 0.0 and status.shield() <= 0.0}
+	if (consumed_hp > 0.0 or consumed_shield > 0.0) and is_instance_valid(room.b07_mechanics): room.b07_mechanics.reveal_actor(self,3.0)
 	if (consumed_hp > 0.0 or consumed_shield > 0.0) and kind == &"primary" and not static_actor and _valid_aggro_target(room.player):
 		# Direct hero attacks draw attention; status ticks do not reset this hold.
 		aggro_target = weakref(room.player)

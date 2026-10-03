@@ -1,0 +1,151 @@
+{
+  "status": "narrow_terminal_and_D0_cue_review_passed",
+  "baseline": "6ef6d21a59df41d16a3ef6d3fac510288e5b130b",
+  "run_id": "20261003T125643448515Z-2bc37134",
+  "exit_code": 0,
+  "errors": 0,
+  "warnings": [
+    "llvmpipe cannot change V-Sync"
+  ],
+  "render_samples": 284,
+  "published_batch_checks": 284,
+  "published_batch_issues": [],
+  "terminal_ui": {
+    "checked": true,
+    "hud_interaction": false,
+    "hud_processing": false,
+    "hud_visible": false,
+    "input_blocked": true,
+    "outcome": "death",
+    "published_batch": {
+      "frame": 284,
+      "placements": {},
+      "selected_ids": [],
+      "terminal": true
+    }
+  },
+  "terminal_visible_cards": 0,
+  "raw_brain_candidate_count_at_terminal": 2,
+  "terminal_note": "Raw retained brain candidate count remains 2; presentation publishes 0 and hides/clears badges. No combat command rewrite. Actor bodies and death standing pose remain visible.",
+  "first_phase_cues": [
+    {
+      "enemy_id": "B07-M01",
+      "cue": "侧走离开矛线"
+    },
+    {
+      "enemy_id": "B07-M03",
+      "cue": "侧走避开去程飞盘"
+    },
+    {
+      "enemy_id": "B07-M02",
+      "cue": "离开跃击落点；光照、近身或造成伤害可显形"
+    }
+  ],
+  "frames": [
+    {
+      "file": "L37_live_00_entry.png",
+      "size": [
+        2560,
+        1440
+      ],
+      "sha256": "a7625c5ecbf0ce55a268b878f3780cd44d9bf062a0d4a173156b2602a11b14e4",
+      "snapshot_t": 0.116666666666667,
+      "viewed": true
+    },
+    {
+      "file": "L37_live_01_timed_0_8.png",
+      "size": [
+        2560,
+        1440
+      ],
+      "sha256": "30c300200442a5b40b3fb2abd2ae2f811da398b21f73eba73d25837c871130f3",
+      "snapshot_t": 0.816666666666668,
+      "viewed": true
+    },
+    {
+      "file": "L37_live_02_M03_outgoing.png",
+      "size": [
+        2560,
+        1440
+      ],
+      "sha256": "cc67efed6b963d36c571cb5aac9291858dbce345bea27a607341048b2458466e",
+      "snapshot_t": 1.88333333333333,
+      "viewed": true
+    },
+    {
+      "file": "L37_live_03_timed_9_25.png",
+      "size": [
+        2560,
+        1440
+      ],
+      "sha256": "081ccd40d50dd51eedd6a12e8e5b91a3c6efa0e637348da27038f9aa498a9d30",
+      "snapshot_t": 9.25000000000004,
+      "viewed": true
+    },
+    {
+      "file": "L37_live_04_M02_motion_start.png",
+      "size": [
+        2560,
+        1440
+      ],
+      "sha256": "0337402edb8aff60a128a3efea363cd42560fcf6eeb36e8bcade6aca1be72174",
+      "snapshot_t": 12.7833333333335,
+      "viewed": true
+    },
+    {
+      "file": "L37_live_05_timed_20_0.png",
+      "size": [
+        2560,
+        1440
+      ],
+      "sha256": "86afd0036bcaccdd850e8344b2621e82b1c1ef0efa624b1f5e035bffed8d0ee5",
+      "snapshot_t": 20.0500000000001,
+      "viewed": true
+    },
+    {
+      "file": "L37_live_06_terminal_player_death.png",
+      "size": [
+        2560,
+        1440
+      ],
+      "sha256": "23be32e36893f5002207d993ec428f75b491089f173c6ec8ba29cc14b0e59c0e",
+      "snapshot_t": 24.4166666666666,
+      "viewed": true
+    }
+  ],
+  "regressions": [
+    {
+      "run": "20261003T125108912322Z-23aee48f",
+      "combat_checks": 925,
+      "failures": 0
+    },
+    {
+      "run": "20261003T125137025498Z-80cf8be0",
+      "session_checks": 74,
+      "failures": 3,
+      "reason": "archived14 negative fixture identical to current default14"
+    },
+    {
+      "run": "20261003T125242281416Z-5def16da",
+      "session_checks": 77,
+      "session_failures": 0,
+      "batch_exit": 124,
+      "remaining_failure": "Pure layout compile-time Game reference; fixed via actual /root/Game lookup"
+    },
+    {
+      "run": "20261003T125336419417Z-3da0e5b6",
+      "pure_layout": "passed",
+      "terminal_off_checks": 64,
+      "terminal_on_checks": 100,
+      "failures": 0,
+      "exit_code": 0
+    }
+  ],
+  "not_accepted": [
+    "natural long combat and difficulty balance",
+    "complete continuous animations (0)",
+    "M11 blocked art",
+    "L37 full reference composition",
+    "L38 fixed geometry painting (two blocked candidates, zero details, not integrated)"
+  ]
+}

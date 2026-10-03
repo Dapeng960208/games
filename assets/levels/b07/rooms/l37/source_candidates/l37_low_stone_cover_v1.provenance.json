@@ -1,0 +1,10 @@
+{
+  "status": "historical_source_candidate_preserved_at_user_stop",
+  "formal_acceptance": false,
+  "runtime_integration": false,
+  "original_path": "/workspace/scratch/2244020fc8d6/b07-art/L37_low_stone_cover_v1.png",
+  "sha256": "b5ccd4f2a2b355ad7699883243bb400a8c200e5e553d8bf64932495d70e87588",
+  "byte_identical": true,
+  "reason": "Preserve original/failed source before authorized B07 workspace cleanup; no new image generation or pixel edits",
+  "related_source_group": "."
+}

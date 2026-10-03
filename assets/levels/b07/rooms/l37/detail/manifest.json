@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "room_id": "L37",
+  "approved": false,
+  "source_texture": "asset://world/rooms/L37_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "9fdd7cf6ff8a98aa572fca3692bd974677d03075b1f97cf15caa5a4d47fecfaa",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L37/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "4b3f69558ba3a2e8f01538e398b3d90d565d8c8e25ed1ca9c63f70d7abe69772",
+      "decoded_rgb_sha256": "c399497ada6bed733aa949755a080ba071347b349e6b1de3732bf383ec1f2db7",
+      "webp_sha256": "3d3f27a9a68a288d6b1295fb52e02ee6d2d6ff36beaaafa197feae66cf2fb9e9",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset: native high-resolution detail repaint of an exact crop of the existing L37 game map. The sole input image is the EDIT TARGET, not a loose reference. Generate at native 1536x1536 resolution, or largest native nearly-square resolution; minimum 1241 pixels in each dimension. Repaint this exact full crop with subtle newly painted fine sandstone grain, stone chips, fine timber grain, leaf veins, cloth weave and tiny material detail only inside existing silhouettes. Strict registration: keep EVERY existing floor tile joint, turquoise inlay, outer floor boundary, stair, tower, arch, banner, foliage, serpent statue if present and shadow at identical normalized coordinates. Preserve full framing, all four edges, silhouette outlines, scale, orthographic/isometric perspective and all object counts. This crop joins adjacent map crops, so NO zoom, crop, extension, camera movement, rearrangement, new objects, changed floor layout or new cracks. Preserve the exact warm golden cream sandstone, muted turquoise, terracotta banners and green leaves, bright sunlit hand-painted fantasy style, original exposure, color balance and contrast. Output the same opaque complete scene with finer native painted material detail only, no borders, no text, no transparency. Texture fidelity restoration, not redesign; avoid increased saturation, darker outlines or glossy highlights.",
+      "generation_output_original_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3d6a6a54-d7e2-4f7c-83f9-f24c6125a5ee.png",
+      "source_crop_sha256": "bdf3b26729eab53ff8aa0e125c5ac713da041a5645cfeaef5e184b3c3501231e",
+      "visual_qa": "Inspected source crop and original generated output visually. Major serpent head, tall banner, background bridge, and outer floor diagonal/vertical boundary retain their normalized placement. Fine stone pits and foliage detail are native and visibly increased. Floor joint linework and serpent scale edges are locally reinterpreted; microcontrast is stronger. No obvious major camera/layout shift, but exact subpixel registration is not certified.",
+      "preserved_original_png": "res://assets/levels/b07/rooms/l37/detail/source/top_left.png"
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L37/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "29bd816b49ef71ecdda00dc1bbd2a73af347b184fe642b2e0730e5cf9bb1f833",
+      "decoded_rgb_sha256": "3fc06f6a4ec412d28c849c67d9a5c81bc0e4eb85cdb396efa8bf65afeaca7ad7",
+      "webp_sha256": "3ace3b04b1e446ac829b4add151876fb86d5bf7326a28ad731d15c0f9c2fd711",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset: native high-resolution detail repaint of an exact crop of the existing L37 game map. The sole input image is the EDIT TARGET, not a loose reference. Generate at native 1536x1536 resolution, or largest native nearly-square resolution; minimum 1241 pixels in each dimension. Repaint this exact full crop with subtle newly painted fine sandstone grain, stone chips, fine timber grain, leaf veins, cloth weave and tiny material detail only inside existing silhouettes. Strict registration: keep EVERY existing floor tile joint, turquoise inlay, outer floor boundary, stair, tower, arch, banner, foliage, serpent statue if present and shadow at identical normalized coordinates. Preserve full framing, all four edges, silhouette outlines, scale, orthographic/isometric perspective and all object counts. This crop joins adjacent map crops, so NO zoom, crop, extension, camera movement, rearrangement, new objects, changed floor layout or new cracks. Preserve the exact warm golden cream sandstone, muted turquoise, terracotta banners and green leaves, bright sunlit hand-painted fantasy style, original exposure, color balance and contrast. Output the same opaque complete scene with finer native painted material detail only, no borders, no text, no transparency. Texture fidelity restoration, not redesign; avoid increased saturation, darker outlines or glossy highlights.",
+      "generation_output_original_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-6a6cce2a-7675-4fc2-8bc9-dd162fc8ed29.png",
+      "source_crop_sha256": "65be395fc9f0d36a1bab1594877b3980e84ba51271e6f0f1e7bbe10861e965e4",
+      "visual_qa": "Inspected source crop and original generated output visually. Straight upper floor edge, central turquoise motif, compass center and background architecture preserve normalized placement closely. Fine sandstone detail is increased. Some small paving seams and inlay edge curvature are reinterpreted, with stronger microcontrast. No obvious large registration drift, but overlap seams require composite QA.",
+      "preserved_original_png": "res://assets/levels/b07/rooms/l37/detail/source/top_middle.png"
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L37/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "3c0ea6732eb31f26f00e0ac504327a69f405fcf04163efe0bf5dcb91aee2e608",
+      "decoded_rgb_sha256": "f79613c3f4e8647f464ab1f3eac69decb98ee2d5c1ee149c4f5fddeafae09e9e",
+      "webp_sha256": "8cb0ffa6d8b4f53479af37d82616a2f2e4a901bce24467923a6bdb869124a394",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset: native high-resolution detail repaint of an exact crop of the existing L37 game map. The sole input image is the EDIT TARGET, not a loose reference. Generate at native 1536x1536 resolution, or largest native nearly-square resolution; minimum 1241 pixels in each dimension. Repaint this exact full crop with subtle newly painted fine sandstone grain, stone chips, fine timber grain, leaf veins, cloth weave and tiny material detail only inside existing silhouettes. Strict registration: keep EVERY existing floor tile joint, turquoise inlay, outer floor boundary, stair, tower, arch, banner, foliage, serpent statue if present and shadow at identical normalized coordinates. Preserve full framing, all four edges, silhouette outlines, scale, orthographic/isometric perspective and all object counts. This crop joins adjacent map crops, so NO zoom, crop, extension, camera movement, rearrangement, new objects, changed floor layout or new cracks. Preserve the exact warm golden cream sandstone, muted turquoise, terracotta banners and green leaves, bright sunlit hand-painted fantasy style, original exposure, color balance and contrast. Output the same opaque complete scene with finer native painted material detail only, no borders, no text, no transparency. Texture fidelity restoration, not redesign; avoid increased saturation, darker outlines or glossy highlights.",
+      "generation_output_original_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1572e484-9afa-4d8e-89b5-d77d8a533744.png",
+      "source_crop_sha256": "fd01e53657a771155f49a2ab1736a57c537d0c1aea1a25c0fcaf4b0a6b9a2999",
+      "visual_qa": "Inspected source crop and original generated output visually. Upper floor corner, diagonal-to-vertical boundary, turquoise motifs, bridge and large right banner retain normalized placement closely. Stone grain and foliage detail are increased. Minor local paving edge and foliage shape reinterpretation is visible, with stronger microcontrast; exact source boundary alignment requires composite QA.",
+      "preserved_original_png": "res://assets/levels/b07/rooms/l37/detail/source/top_right.png"
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L37/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "972edd2c81e9044f69ffd882f19da31e028b151368a16687885137bc5b614fd7",
+      "decoded_rgb_sha256": "2eec29e8d839b1c12aca4521508deb9057fcc402cc05955ca119112f1581c3af",
+      "webp_sha256": "34bada98c27ccd5e547dd4cb098b5e31fb6418ad931a6c3ba6d5d6687493712f",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: exact source-region native detail repaint for an existing 2.5D hand-painted fantasy game environment. Input image 1 is the EDIT TARGET, not a loose reference. Repaint this exact full cropped tile at native 1536x1536 resolution requested, preserving identical normalized coordinates. Absolute invariants: exact framing, camera, perspective, scale, every stone slab and grout line, every architectural silhouette, floor boundary, turquoise inlay, vine, banner and shadow; all four image edges must register to the attached crop. No crop, expansion, rearrangement, new paving divisions, new objects, changes to floor or layout. Only paint finer material detail inside existing surfaces: subtle sandstone grain, tiny edge chips, fine existing leaf veins, delicate woven banner texture, subdued turquoise mineral texture. Preserve warm golden sandstone, muted turquoise, foliage greens, lavender mist, exact exposure, light direction and color balance. Bright sunlit painterly cartoon style, never photorealistic or sharpened gritty noise. Keep the source's broad quiet floor surfaces quiet, with only subtle microtexture. This is a registered high-definition restoration, not a redesign. Return the single complete tile with opaque background and absolutely no border, labels, text, watermark or collage.",
+      "generation_output_original_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-de2477b9-5721-4d34-a8a3-d46f2f01d242.png",
+      "source_crop_sha256": "5b2c6237b28c5ff4ea7568bf075cad0a87951ea33355ac79ab4ed48f0d12ea7d",
+      "visual_qa": "Viewed source crop and original generated output. Main diagonal floor ledge, turquoise inlay junction, foreground tower, upper-left tower and image-edge architecture retain close normalized placement. Fine stone texture, leaves and banner folds are clearer. Leaf clusters and small tower ornament contours changed locally, and grout/shadow contrast is stronger. No obvious new major objects or changed walkable floor boundary; exact pixel-level registration is not established.",
+      "preserved_original_png": "res://assets/levels/b07/rooms/l37/detail/source/bottom_left.png"
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L37/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "b2d2686eb30bf49a6c13bcce74fed8587c9593a52ff5b17cf578114bbab5721e",
+      "decoded_rgb_sha256": "5969232ef28d47eaf78f9154d1cead116ce197e45c38cfec1487bd135ee1aaa7",
+      "webp_sha256": "6ec1f4a90c2f7a71cf597a2310c78bc006f2ca21bd059691aaefa8f0ef4f029d",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: exact source-region native detail repaint for an existing 2.5D hand-painted fantasy game environment. Input image 1 is the EDIT TARGET, not a loose reference. Repaint this exact full cropped tile at native 1536x1536 resolution requested, preserving identical normalized coordinates. Absolute invariants: exact framing, camera, perspective, scale, every stone slab and grout line, every architectural silhouette, floor boundary, turquoise inlay, vine, banner and shadow; all four image edges must register to the attached crop. No crop, expansion, rearrangement, new paving divisions, new objects, changes to floor or layout. Only paint finer material detail inside existing surfaces: subtle sandstone grain, tiny edge chips, fine existing leaf veins, delicate woven banner texture, subdued turquoise mineral texture. Preserve warm golden sandstone, muted turquoise, foliage greens, lavender mist, exact exposure, light direction and color balance. Bright sunlit painterly cartoon style, never photorealistic or sharpened gritty noise. Keep the source's broad quiet floor surfaces quiet, with only subtle microtexture. This is a registered high-definition restoration, not a redesign. Return the single complete tile with opaque background and absolutely no border, labels, text, watermark or collage.",
+      "generation_output_original_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-97d66d79-0962-404a-b240-7f3267208ff0.png",
+      "source_crop_sha256": "df7455bea83acca32558b543ff203d4042ab7d0edf86a47773eaa9265553d02a",
+      "visual_qa": "Viewed source crop and original generated output. Central turquoise diamond, vertical inlay, horizontal front platform boundary, banner/pillar groups and right-hand arch retain close normalized placement. Stone surfaces and foliage have finer detail. Some individual paver joints/leaf contours and banner fold shapes differ; grout contrast increased. Square output maps the 528x520 source region as normalized coordinates, following L07 runtime scaling; exact registration and seam acceptability need full six-tile composite/runtime review.",
+      "preserved_original_png": "res://assets/levels/b07/rooms/l37/detail/source/bottom_middle.png"
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L37/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "761646300258fe8096954f66550a1a2be821fae9d0022e3923478211b25e3321",
+      "decoded_rgb_sha256": "4ef9f1540e7fd4fb671aaf6e55564c91368dddee7f9483b0d5667c9d27593bc4",
+      "webp_sha256": "1d0a32d874517e448ac42f54692b025925d29b3e8574afe1625d8ce1f867d1ad",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: exact source-region native detail repaint for an existing 2.5D hand-painted fantasy game environment. Input image 1 is the EDIT TARGET, not a loose reference. Repaint this exact full cropped tile at native 1536x1536 resolution requested, preserving identical normalized coordinates. Absolute invariants: exact framing, camera, perspective, scale, every stone slab and grout line, every architectural silhouette, floor boundary, turquoise inlay, vine, banner and shadow; all four image edges must register to the attached crop. No crop, expansion, rearrangement, new paving divisions, new objects, changes to floor or layout. Only paint finer material detail inside existing surfaces: subtle sandstone grain, tiny edge chips, fine existing leaf veins, delicate woven banner texture, subdued turquoise mineral texture. Preserve warm golden sandstone, muted turquoise, foliage greens, lavender mist, exact exposure, light direction and color balance. Bright sunlit painterly cartoon style, never photorealistic or sharpened gritty noise. Keep the source's broad quiet floor surfaces quiet, with only subtle microtexture. This is a registered high-definition restoration, not a redesign. Return the single complete tile with opaque background and absolutely no border, labels, text, watermark or collage.",
+      "generation_output_original_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-f7738126-a797-4ad2-a690-726b2fdc8309.png",
+      "source_crop_sha256": "cdc870bc4c746d6186ab234fdb0444e647d2107b9455cd4e306b5881b034b4ad",
+      "visual_qa": "Viewed source crop and original generated output. Right vertical floor edge, lower-left ledge, diagonal inlay, foreground arched facade, far-right tower and banner retain close normalized placement. Fine foliage and sandstone texture increased. Local leaf arrangements and tiny architectural contours differ, while grout/shadow contrast is stronger. No obvious major floor-layout change. Exact pixel registration and cross-tile seams remain unverified.",
+      "preserved_original_png": "res://assets/levels/b07/rooms/l37/detail/source/bottom_right.png"
+    }
+  ],
+  "status": "runtime_review_checked_not_formally_approved",
+  "candidate_only": true,
+  "qa": {
+    "date": "2026-10-03",
+    "run": "20261003T122349570762Z-6cb9a02e",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "renderer": "Godot 4.6.3 gl_compatibility llvmpipe",
+    "controlled_static_checks": 136,
+    "failures": 0,
+    "original_native_pairs": 3,
+    "real_ai_scripted_input_frames": 7,
+    "actual_draw_samples": 280,
+    "card_batch_identity_or_count_issues": 0,
+    "hud_and_body_card_overlaps": 0,
+    "visual_review": "All 13 actual 2K frames inspected. Native stone, lizard carving and masonry detail visibly clearer. No obvious hard seams in entry/center/exit pairs. Local grout and foliage reinterpretation remains. Existing custom-drawn combo/buff HUD now avoids skill cards in captured live frames. This does not prove full-perimeter walking, natural human play, complete animations or balance.",
+    "stop_reason": "player_death",
+    "scripted_probe_seconds": 24.3833333333,
+    "limitations": [
+      "crowded actor bodies overlap",
+      "death HUD remains stale at451 after run cleanup",
+      "D0 has no M03 return leg; this probe does not test D2 return",
+      "candidate Lv31 starter gear and fixed input are not balance baseline"
+    ],
+    "frames": [
+      {
+        "file": "L37_painting_entry_original.png",
+        "sha256": "d908218498a39beb394185642f649aad81cee1677152df8c0383ef80a436500c"
+      },
+      {
+        "file": "L37_painting_entry_native.png",
+        "sha256": "5c73e8d2b4596b27be92a8d5c69fbc24436d579b561625f6fd52f6894315eed7"
+      },
+      {
+        "file": "L37_painting_center_original.png",
+        "sha256": "4c16c251dcb6bd44794a0b85526a26d28e3525b1874c0f99714d12477f2360f9"
+      },
+      {
+        "file": "L37_painting_center_native.png",
+        "sha256": "4dce5a64ad67cd83f9182b3fc26412a7f48228a3531a3f25fcbb2d66acae6ccc"
+      },
+      {
+        "file": "L37_painting_exit_original.png",
+        "sha256": "7683f64ca9448368fa11f7de7bb7223aa3f228dd747595d28d560b2ef489801c"
+      },
+      {
+        "file": "L37_painting_exit_native.png",
+        "sha256": "31dc13b3685e5b0fb062dfdba6ce79d3710d0685fb786b3fd2682c89ee9fabf2"
+      },
+      {
+        "file": "L37_live_00_entry.png",
+        "sha256": "a9688dea17c16f5f25969ea9bf9c5b8afe7805452a5417e178ba7ab4d2469ad0"
+      },
+      {
+        "file": "L37_live_01_timed_0_8.png",
+        "sha256": "8050c3b25cd117a4abc45fa570db409ed3c13e3c395e72c27c22525406b3a300"
+      },
+      {
+        "file": "L37_live_02_M03_outgoing.png",
+        "sha256": "0fe3ddd2fb558c67912fabc1e9e6ea811293637a5b931adb3c3e180f987f5823"
+      },
+      {
+        "file": "L37_live_03_timed_9_25.png",
+        "sha256": "b4a18795eda42a3ae3c87ef324591002bde2b9dea060c7471880f2b21583ee68"
+      },
+      {
+        "file": "L37_live_04_M02_motion_start.png",
+        "sha256": "ec236ae5961fd3d985685f130c7d789c4c6d39f5a78af04c2beec87e3fc4c1b8"
+      },
+      {
+        "file": "L37_live_05_timed_20_0.png",
+        "sha256": "c260731e9b99a37610a37afdb2ec242a019363058480277ee922ee7f1c8b2b3a"
+      },
+      {
+        "file": "L37_live_06_terminal_player_death.png",
+        "sha256": "acb21c83f21d3033b54619ce34c20eaba11889b0d3a17f207d7f42ab86b29c17"
+      }
+    ]
+  }
+}

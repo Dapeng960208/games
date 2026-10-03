@@ -1,0 +1,184 @@
+[
+  {
+    "effect_id": "sunscale_shield",
+    "status": "unregistered_visual_candidate",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-d1a25b1d-9cce-4ef2-be42-9fd02b8662da.png",
+    "source_sha256": "b1d3b3ca5e8c1645e66e7bdaf5783d23bf249c752f4e34fa821856287ecaff31",
+    "native_size": [
+      1312,
+      1199
+    ],
+    "original_bytes_preserved": true,
+    "prompt": "provenance/effect_candidate.prompt.txt",
+    "source_license": "AI-generated original visual source",
+    "qa": {
+      "alpha16_bounds_xywh": [
+        490,
+        71,
+        712,
+        1034
+      ],
+      "alpha128_bounds_xywh": [
+        496,
+        74,
+        703,
+        1028
+      ],
+      "nonzero_edge_pixels": 18,
+      "alpha128_edge_pixels": 0,
+      "center_alpha": 0,
+      "transparent_pixels": 1255295,
+      "low_alpha_1_32_pixels": 93376,
+      "visual_review": "Viewed original. Decorative material only, native colors. Alpha fringe and actual battlefield readability unaccepted.",
+      "geometry_warning": "Generated curve/spiral does not define hitbox, reduction angle or skill radius; current command geometry remains authoritative.",
+      "specific_issue": "Crescent is broad with ornamental metal-like motifs; not exact 120 degree runtime boundary."
+    },
+    "runtime_quality_gate_passed": false
+  },
+  {
+    "effect_id": "turquoise_link",
+    "status": "unregistered_visual_candidate",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-15359cf5-8695-4891-95ea-bdc5b692be23.png",
+    "source_sha256": "e28eecebd0487e8e71c390dacf3b5bb08ce7f44aadf7a523dcd23b3e24111b52",
+    "native_size": [
+      1774,
+      887
+    ],
+    "original_bytes_preserved": true,
+    "prompt": "provenance/effect_candidate.prompt.txt",
+    "source_license": "AI-generated original visual source",
+    "qa": {
+      "alpha16_bounds_xywh": [
+        442,
+        405,
+        890,
+        179
+      ],
+      "alpha128_bounds_xywh": [
+        443,
+        411,
+        888,
+        168
+      ],
+      "nonzero_edge_pixels": 0,
+      "alpha128_edge_pixels": 0,
+      "center_alpha": 0,
+      "transparent_pixels": 1472742,
+      "low_alpha_1_32_pixels": 34949,
+      "visual_review": "Viewed original. Decorative material only, native colors. Alpha fringe and actual battlefield readability unaccepted.",
+      "geometry_warning": "Generated curve/spiral does not define hitbox, reduction angle or skill radius; current command geometry remains authoritative."
+    },
+    "runtime_quality_gate_passed": false
+  },
+  {
+    "effect_id": "sand_mound",
+    "status": "unregistered_visual_candidate",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-77f1b64d-7fd9-4dfa-a386-c582f08e8177.png",
+    "source_sha256": "0fe63f86ad864522c561b769ce809c3d793989c5acd8764b7c26edd62e02e5ab",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "original_bytes_preserved": true,
+    "prompt": "provenance/effect_candidate.prompt.txt",
+    "source_license": "AI-generated original visual source",
+    "qa": {
+      "alpha16_bounds_xywh": [
+        204,
+        274,
+        1137,
+        527
+      ],
+      "alpha128_bounds_xywh": [
+        207,
+        275,
+        1133,
+        525
+      ],
+      "nonzero_edge_pixels": 10,
+      "alpha128_edge_pixels": 0,
+      "center_alpha": 252,
+      "transparent_pixels": 1231690,
+      "low_alpha_1_32_pixels": 37300,
+      "visual_review": "Viewed original. Decorative material only, native colors. Alpha fringe and actual battlefield readability unaccepted.",
+      "geometry_warning": "Generated curve/spiral does not define hitbox, reduction angle or skill radius; current command geometry remains authoritative."
+    },
+    "runtime_quality_gate_passed": false
+  },
+  {
+    "effect_id": "sand_vortex",
+    "status": "unregistered_visual_candidate",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-c75aafb1-ec99-4b47-bb93-93fb4fa3e42f.png",
+    "source_sha256": "8cb558269e8ac10a5e0e83d845f531cf95447ae2825b2783bf6387bd88b0669c",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "original_bytes_preserved": true,
+    "prompt": "provenance/effect_candidate.prompt.txt",
+    "source_license": "AI-generated original visual source",
+    "qa": {
+      "alpha16_bounds_xywh": [
+        54,
+        227,
+        1442,
+        633
+      ],
+      "alpha128_bounds_xywh": [
+        56,
+        228,
+        1439,
+        629
+      ],
+      "nonzero_edge_pixels": 19,
+      "alpha128_edge_pixels": 0,
+      "center_alpha": 0,
+      "transparent_pixels": 905592,
+      "low_alpha_1_32_pixels": 199920,
+      "visual_review": "Viewed original. Decorative material only, native colors. Alpha fringe and actual battlefield readability unaccepted.",
+      "geometry_warning": "Generated curve/spiral does not define hitbox, reduction angle or skill radius; current command geometry remains authoritative.",
+      "specific_issue": "Interior dust has nonzero transparency; player-foot visibility requires scene review."
+    },
+    "runtime_quality_gate_passed": false
+  },
+  {
+    "effect_id": "sun_beam_node",
+    "status": "unregistered_visual_candidate",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-f8dbfb58-66f7-4484-a6fd-8709c5030fdf.png",
+    "source_sha256": "d1848ba561b9d9696f45c3e4672fe7f02e5ef5562dfda98dd706970df20676f9",
+    "native_size": [
+      1322,
+      1190
+    ],
+    "original_bytes_preserved": true,
+    "prompt": "provenance/effect_candidate.prompt.txt",
+    "source_license": "AI-generated original visual source",
+    "qa": {
+      "alpha16_bounds_xywh": [
+        482,
+        200,
+        411,
+        765
+      ],
+      "alpha128_bounds_xywh": [
+        495,
+        206,
+        393,
+        750
+      ],
+      "nonzero_edge_pixels": 0,
+      "alpha128_edge_pixels": 0,
+      "center_alpha": 252,
+      "transparent_pixels": 1386867,
+      "low_alpha_1_32_pixels": 63042,
+      "visual_review": "Viewed original. Decorative material only, native colors. Alpha fringe and actual battlefield readability unaccepted.",
+      "geometry_warning": "Generated curve/spiral does not define hitbox, reduction angle or skill radius; current command geometry remains authoritative."
+    },
+    "runtime_quality_gate_passed": false
+  }
+]

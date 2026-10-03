@@ -1,0 +1,74 @@
+{
+  "status": "blocked_pixel_boundary_mismatch_not_runtime",
+  "tool": "built-in image_gen edit",
+  "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-e3d09e7c-1986-4b85-8bea-775e30c04047.png",
+  "sha256": "9fdd7cf6ff8a98aa572fca3692bd974677d03075b1f97cf15caa5a4d47fecfaa",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "alpha": "opaque RGB",
+  "prompt": "docs/levels/b07/rooms/l37/independent_painting_mask_first.prompt.txt",
+  "guide_authority": "docs/levels/b07/rooms/independent_room_mapping_plan.json#rooms/L37",
+  "observations": [
+    "No tall foreground parapet, coherent high-angle hand-painted sandstone city",
+    "South floor still ends near y820 vs required y869; actual walkable polygon still covers cliff face",
+    "No runtime environment manifest created: pixel fit still blocked"
+  ],
+  "action": "preserve unchanged; no source warping, geometry shifts, floor overpaint or integration",
+  "independent_pixel_review": {
+    "status": "failed",
+    "measurement_uncertainty_source_px": [
+      5,
+      10
+    ],
+    "observed_corners_source_px": [
+      [
+        209,
+        240
+      ],
+      [
+        434,
+        143
+      ],
+      [
+        1230,
+        143
+      ],
+      [
+        1354,
+        263
+      ],
+      [
+        1378,
+        724
+      ],
+      [
+        1238,
+        822
+      ],
+      [
+        333,
+        822
+      ],
+      [
+        192,
+        699
+      ]
+    ],
+    "south_floor_y": [
+      818,
+      825
+    ],
+    "required_south_floor_y": 868.94,
+    "east_edge": "slanted (1353,264) to (1378,724), required vertical x1338.51",
+    "west_lower_corner": [
+      192,
+      699
+    ],
+    "required_west_lower_corner": [
+      206.26,
+      768
+    ]
+  }
+}

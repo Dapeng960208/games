@@ -1,0 +1,175 @@
+{
+  "id": "m09",
+  "action": "telegraph",
+  "kind": "character_key_pose",
+  "relative_dir": "m09/telegraph",
+  "crown": [
+    553,
+    122
+  ],
+  "feet": [
+    [
+      200,
+      1140
+    ],
+    [
+      828,
+      937
+    ]
+  ],
+  "read": "Pipe supported by same two hands and long tail; raised head and chest anticipation.",
+  "issues": [
+    "Anticipation differs subtly from idle; inhale/readability not strongly exaggerated.",
+    "Blowpipe tip only 12px from right at alpha>=16."
+  ],
+  "path": "assets/levels/b07/enemies/m09/actions/dart_venom/telegraph_candidate.png",
+  "width": 1223,
+  "height": 1286,
+  "mode": "RGBA",
+  "bytes": 1301651,
+  "sha256": "f6d4369a905e6dca597d431d1684a06c617aa2aa888fa44b49aa65a24a89aa2e",
+  "transparent_pixel_count": 1047765,
+  "partial_alpha_pixel_count": 523942,
+  "opaque_pixel_count": 1071,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        79,
+        21,
+        1222,
+        1258
+      ],
+      "bbox_size": [
+        1143,
+        1237
+      ],
+      "effective_pixels": 525013,
+      "margin_ltrb": [
+        79,
+        21,
+        1,
+        28
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        86,
+        121,
+        1211,
+        1226
+      ],
+      "bbox_size": [
+        1125,
+        1105
+      ],
+      "effective_pixels": 488317,
+      "margin_ltrb": [
+        86,
+        121,
+        12,
+        60
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        86,
+        122,
+        1210,
+        1225
+      ],
+      "bbox_size": [
+        1124,
+        1103
+      ],
+      "effective_pixels": 480456,
+      "margin_ltrb": [
+        86,
+        122,
+        13,
+        61
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/telegraph/provenance.json",
+  "prompt_path": "provenance/telegraph_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/telegraph/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "manual_foot_qa": {
+    "support_contact_centers_px": [
+      [
+        200,
+        1140
+      ],
+      [
+        828,
+        937
+      ]
+    ],
+    "anchor_mean_px": [
+      514.0,
+      1038.5
+    ],
+    "anchor_normalized": [
+      0.42028,
+      0.80754
+    ],
+    "anatomical_crown_px": [
+      553,
+      122
+    ],
+    "body_effective_height_px": 916.5,
+    "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+    "max_body_display_height_at_1_to_1_px": 916.5,
+    "max_body_display_height_at_1_5_source_to_display_px": 611.0,
+    "accepted_runtime_anchor": false
+  },
+  "minimum_margin_alpha16": 12,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/telegraph/candidate.png",
+  "resource": "asset://levels/b07/enemies/m09/actions/dart_venom/telegraph_candidate.png",
+  "original_provenance": {
+    "id": "m09",
+    "action": "telegraph",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m09/idle_candidate.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-0c66d322-b3b3-43b4-a846-36fae94f86bd.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "sha256": "f6d4369a905e6dca597d431d1684a06c617aa2aa888fa44b49aa65a24a89aa2e",
+    "bytes": 1301651,
+    "source_sha256": "f6d4369a905e6dca597d431d1684a06c617aa2aa888fa44b49aa65a24a89aa2e",
+    "copy_byte_verified": true
+  },
+  "ability": "dart_venom"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M07",
+  "ability": "sand_vortex",
+  "phase": "telegraph",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-cc4f39ac-395a-4ac6-a492-b608ec939355.png",
+  "source_sha256": "b0a0ac5be2deaafccd39bfcd25ec4249e59041c1153c92c9560050f39e4f3d62",
+  "resource": "asset://levels/b07/enemies/m07/actions/sand_vortex/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m07/idle_candidate.png",
+  "reference_sha256": "bddea855af8d0739607624074cc8a57827e1f7b94f5671ec4340e5e44263a80b",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      39,
+      59,
+      1191,
+      1162
+    ],
+    "alpha128_pixel_count": 536384,
+    "transparent_pixel_count": 982473,
+    "low_alpha_1_32_count": 45718,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 100.3,
+    "foot_landmarks": [
+      [
+        489.1,
+        1153.7
+      ],
+      [
+        1028.3,
+        953.0
+      ]
+    ],
+    "foot_midpoint": [
+      758.7,
+      1053.35
+    ],
+    "visible_anatomical_vertical_extent": 953.0,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Staff identity and original hand retained; execute staff tip margin narrow. Bone scale/foot continuity still pending.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

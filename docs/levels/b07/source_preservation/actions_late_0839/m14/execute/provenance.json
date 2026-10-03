@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M14",
+  "action": "execute",
+  "variant": "execute",
+  "category": "pose",
+  "selected": false,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute/candidate.png",
+  "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute/prompt.txt",
+  "source_filename": "exec-f1347b05-95e9-45c2-9362-6f833e1689d6.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-f1347b05-95e9-45c2-9362-6f833e1689d6.png",
+  "source_sha256": "2b0d600892e6502c3bb8755b9b2a408c56022fb193dc7c6992847fa2e81a6d92",
+  "png_sha256": "2b0d600892e6502c3bb8755b9b2a408c56022fb193dc7c6992847fa2e81a6d92",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m14/idle_candidate.png",
+  "identity_reference_sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1312,
+      1199
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1052124,
+    "alpha_zero_fraction": 0.668827173050713,
+    "low_alpha_1_15_pixel_count": 45756,
+    "opaque_pixel_count": 472,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        14,
+        21,
+        1312,
+        1199
+      ],
+      "bounds_xywh": [
+        14,
+        21,
+        1298,
+        1178
+      ],
+      "effective_pixel_count": 520964,
+      "edge_pixel_count": 33,
+      "margins_ltrb": [
+        14,
+        21,
+        0,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        17,
+        94,
+        1302,
+        1121
+      ],
+      "bounds_xywh": [
+        17,
+        94,
+        1285,
+        1027
+      ],
+      "effective_pixel_count": 475208,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        17,
+        94,
+        10,
+        78
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        18,
+        95,
+        1302,
+        1120
+      ],
+      "bounds_xywh": [
+        18,
+        95,
+        1284,
+        1025
+      ],
+      "effective_pixel_count": 465914,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        18,
+        95,
+        10,
+        79
+      ]
+    },
+    "visual_review": "Initial generated variant inspected and retained as source history; see selected corrective variant."
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m14/execute: B07-M14 twin-blade guard. Preserve two SHORT crescent copper-gold blades, one in EACH hand, long flexible neck, red-brown light armor and red scarf, long tail. EXECUTE a single anatomical LEFT-hand slash, left arm now forcefully extending diagonally across front toward screen-right, copper blade fully visible. Right-hand sword remains held low backward, not released. Torso twists, forward knee bends in a compact grounded step, rear foot firmly braced, long tail counters to rear. This represents only the first left cut, not the complete two-hit sequence. No slashing trails, no ghosts, no extra blades."
+}

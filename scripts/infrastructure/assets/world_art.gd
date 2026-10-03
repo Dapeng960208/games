@@ -18,6 +18,10 @@ static var _environments: Dictionary = {}
 static var _environment_recency: Array[String] = []
 const ENVIRONMENT_CACHE_LIMIT := 2
 const EnvironmentTexture = preload("res://scripts/presentation/world/environment_detail.gd")
+const B07_ROOM_PAINTING_REVIEW_FLAG := "--b07-room-painting-review"
+
+static func b07_room_painting_review_enabled() -> bool:
+	return B07_ROOM_PAINTING_REVIEW_FLAG in OS.get_cmdline_user_args() and preload("res://scripts/infrastructure/content/runtime_rules.gd").b07_candidate_enabled()
 
 static func environment_room_id(layout: Dictionary) -> String:
 	# Boss encounters may override room_id for the expedition node. The fixed
@@ -25,6 +29,10 @@ static func environment_room_id(layout: Dictionary) -> String:
 	return str(layout.get("blueprint_room_id",layout.get("room_id","")))
 
 static func environment_definition(biome_id: String, room_id: String = "") -> Dictionary:
+	var b07_review: bool = biome_id=="B07" and room_id=="L37"
+	# Gate before cache lookup: a previously loaded review cannot leak into the
+	# historical art trial or a run without real isolated candidate permission.
+	if b07_review and not b07_room_painting_review_enabled(): return {}
 	var key: String = biome_id+":"+room_id
 	if _environments.has(key):
 		_environment_recency.erase(key)
@@ -35,13 +43,16 @@ static func environment_definition(biome_id: String, room_id: String = "") -> Di
 		candidates.append("asset://world/rooms/"+room_id+"_environment_v1.json")
 	# Older rooms and service layouts still have their approved faction art.
 	# An absent or incomplete room resource can use that compatibility fallback.
-	candidates.append("asset://world/fixed_"+biome_id+"_environment_v3.json")
-	candidates.append("asset://world/fixed_"+biome_id+"_environment_v2.json")
+	# A shared fallback must never count as the independent L37 review image.
+	if not b07_review:
+		candidates.append("asset://world/fixed_"+biome_id+"_environment_v3.json")
+		candidates.append("asset://world/fixed_"+biome_id+"_environment_v2.json")
 	for manifest_path: String in candidates:
 		if not FileAccess.file_exists(AssetCatalog.resolve(manifest_path)): continue
 		var value: Variant = JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(manifest_path)))
 		if not value is Dictionary: continue
 		var path: String = str(value.get("texture",""))
+		if b07_review and (value.get("room_id")!="L37" or value.get("biome_id")!="B07" or value.get("candidate_only")!=true or path!="asset://world/rooms/L37_environment_v1.png"): continue
 		var values: Array = value.get("walkable_normalized_rect",[])
 		if values.size()!=4 or not FileAccess.file_exists(AssetCatalog.resolve(path)): continue
 		var central := Rect2(float(values[0]),float(values[1]),float(values[2]),float(values[3]))

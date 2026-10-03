@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "BO07",
+  "ability": "golden_tail",
+  "phase": "telegraph",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-37c3757c-0154-468a-b1c0-59eefa982a74.png",
+  "source_sha256": "701d63c7e0c603b6915933258f17c4e13477193958b53ac2113c789e93274eef",
+  "resource": "asset://levels/b07/bosses/bo07/actions/golden_tail/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png",
+  "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      68,
+      21,
+      1093,
+      1194
+    ],
+    "alpha128_pixel_count": 646082,
+    "transparent_pixel_count": 861383,
+    "low_alpha_1_32_count": 56136,
+    "nonzero_edge_pixel_count": 8,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 275.9,
+    "foot_landmarks": [
+      [
+        363.7,
+        1128.6
+      ],
+      [
+        1040.8,
+        1028.3
+      ]
+    ],
+    "foot_midpoint": [
+      702.25,
+      1078.4499999999998
+    ],
+    "visible_anatomical_vertical_extent": 802.6,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "High coiled turquoise tail readable; spear/crown edge margins tight.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

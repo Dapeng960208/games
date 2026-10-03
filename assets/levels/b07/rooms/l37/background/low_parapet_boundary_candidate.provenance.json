@@ -1,0 +1,28 @@
+{
+  "status": "blocked_pixel_boundary_mismatch_not_runtime",
+  "tool": "built-in image_gen edit",
+  "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-018917eb-8191-4f3d-88f5-4502b6ef4ebc.png",
+  "sha256": "d29b00c12645bf40931f5d5ffca54c2cf6b9d60ab2f8ae099e78b8de9fa21b6d",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "alpha": "opaque RGB",
+  "prompt": "docs/levels/b07/rooms/l37/independent_painting_boundary_revision.prompt.txt",
+  "references": [
+    {
+      "target": "boundary_mismatch_candidate.png"
+    },
+    {
+      "layout_guide": "artifacts/l37_independent_guide/layout_guide.png",
+      "sha256": "07c43afb2d60ea8d74beaffd31f73a556ec1e9bf9ae163bec90797dee26e5b48",
+      "authority": "docs/levels/b07/rooms/independent_room_mapping_plan.json#rooms/L37"
+    }
+  ],
+  "observations": [
+    "Front parapet shortened and foreground support coherent, but floor edge still near y810 not required y869",
+    "East floor extends near x1400 not required x1338: implies non-walkable floor beyond physics edge",
+    "Core gameplay anchors look like clear floor; this does not establish full boundary fit"
+  ],
+  "action": "preserve unchanged; independent pixel review pending; no runtime registration"
+}

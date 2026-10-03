@@ -1,0 +1,192 @@
+{
+  "id": "m11",
+  "action": "telegraph",
+  "kind": "character_key_pose",
+  "relative_dir": "m11/telegraph",
+  "crown": [
+    956,
+    548
+  ],
+  "feet": [
+    [
+      383,
+      979
+    ],
+    [
+      568,
+      868
+    ],
+    [
+      887,
+      1018
+    ],
+    [
+      1169,
+      1045
+    ]
+  ],
+  "read": "Four-paw low beast identity and original palette retained, crouched wind-up candidate.",
+  "issues": [
+    "BLOCKING POSE READABILITY: front paws are not convincingly lifted; cannot count as accepted stomp anticipation.",
+    "One repair lifted forepaws but hid far hind leg and reduced right margin to 2px; repair rejected.",
+    "Foot anchor here is tentative because intended lifted-front-paw support state is not achieved."
+  ],
+  "path": "assets/levels/b07/enemies/m11/actions/sand_ridge/telegraph_candidate.png",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGBA",
+  "bytes": 1367058,
+  "sha256": "07411af8fdbc34b130d637648bb11f06fe8aa4d0b4f25c669529af8faef6a8ed",
+  "transparent_pixel_count": 1013959,
+  "partial_alpha_pixel_count": 557440,
+  "opaque_pixel_count": 1117,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        22,
+        21,
+        1246,
+        1254
+      ],
+      "bbox_size": [
+        1224,
+        1233
+      ],
+      "effective_pixels": 558557,
+      "margin_ltrb": [
+        22,
+        21,
+        8,
+        0
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        97,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        24,
+        76,
+        1244,
+        1102
+      ],
+      "bbox_size": [
+        1220,
+        1026
+      ],
+      "effective_pixels": 541210,
+      "margin_ltrb": [
+        24,
+        76,
+        10,
+        152
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        25,
+        76,
+        1243,
+        1101
+      ],
+      "bbox_size": [
+        1218,
+        1025
+      ],
+      "effective_pixels": 536025,
+      "margin_ltrb": [
+        25,
+        76,
+        11,
+        153
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/provenance.json",
+  "prompt_path": "provenance/telegraph_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "manual_foot_qa": {
+    "support_contact_centers_px": [
+      [
+        383,
+        979
+      ],
+      [
+        568,
+        868
+      ],
+      [
+        887,
+        1018
+      ],
+      [
+        1169,
+        1045
+      ]
+    ],
+    "anchor_mean_px": [
+      751.8,
+      977.5
+    ],
+    "anchor_normalized": [
+      0.59952,
+      0.77951
+    ],
+    "anatomical_crown_px": [
+      956,
+      548
+    ],
+    "body_effective_height_px": 429.5,
+    "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+    "max_body_display_height_at_1_to_1_px": 429.5,
+    "max_body_display_height_at_1_5_source_to_display_px": 286.3,
+    "accepted_runtime_anchor": false
+  },
+  "minimum_margin_alpha16": 10,
+  "qa_status": "pose_readability_blocked",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/candidate.png",
+  "resource": "asset://levels/b07/enemies/m11/actions/sand_ridge/telegraph_candidate.png",
+  "original_provenance": {
+    "id": "m11",
+    "action": "telegraph",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m11/idle_candidate.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-48385d2f-433d-4b87-a072-71a527418f8a.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "sha256": "07411af8fdbc34b130d637648bb11f06fe8aa4d0b4f25c669529af8faef6a8ed",
+    "bytes": 1367058,
+    "source_sha256": "07411af8fdbc34b130d637648bb11f06fe8aa4d0b4f25c669529af8faef6a8ed",
+    "copy_byte_verified": true
+  },
+  "ability": "sand_ridge"
+}

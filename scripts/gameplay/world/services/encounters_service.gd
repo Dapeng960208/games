@@ -35,7 +35,7 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 		return null
 	var enemy: EnemyActor = host.EnemyScene.instantiate()
 	enemy.room = host
-	if bool(host.layout.get("b09_candidate",false)) or (bool(host.layout.get("b06_candidate",false)) and not bool(host.expedition_context.get("b06_progression",false))):
+	if bool(host.layout.get("b07_candidate",false)) or bool(host.layout.get("b09_candidate",false)) or (bool(host.layout.get("b06_candidate",false)) and not bool(host.expedition_context.get("b06_progression",false))):
 		options = options.duplicate(true)
 		options["reward_enabled"] = false
 	enemy.configure(resolved, options)
@@ -181,6 +181,7 @@ func _encounters_exhausted() -> bool:
 	return true
 
 func _encounter_plan(index: int) -> Dictionary:
+	if bool(host.layout.get("b07_candidate",false)): return preload("res://scripts/levels/b07/world/candidate.gd").encounter_plan(host.layout_id,index,host.difficulty,host.enemy_calibration())
 	if bool(host.layout.get("b09_candidate",false)): return preload("res://scripts/levels/b09/world/layouts.gd").encounter_plan(host.layout_id,index,host.difficulty)
 	if bool(host.layout.get("b06_candidate",false)): return preload("res://scripts/levels/b06/world/candidate.gd").encounter_plan(host.layout_id,index,host.difficulty)
 	return host.EnemyProfilesScript.encounter_plan(host.layout_id,index,host.difficulty,host.enemy_ruleset(),host.enemy_calibration())

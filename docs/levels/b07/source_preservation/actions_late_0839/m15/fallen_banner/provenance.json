@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M15",
+  "action": "fallen_banner",
+  "variant": "fallen_banner",
+  "category": "effect_or_prop",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/fallen_banner/candidate.png",
+  "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/fallen_banner/prompt.txt",
+  "source_filename": "exec-1396d026-b21c-4522-b904-053bc6c78155.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1396d026-b21c-4522-b904-053bc6c78155.png",
+  "source_sha256": "cb9de73edc59e5c0e490e5b31fc74fe25331861a042ae5885155ee31c6bb1a5b",
+  "png_sha256": "cb9de73edc59e5c0e490e5b31fc74fe25331861a042ae5885155ee31c6bb1a5b",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m15/idle_candidate.png",
+  "identity_reference_sha256": "a5fe604aa560ecb29c7ebd110a2a4fb55dc5840a333b230ed5454544ef435d01",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1000707,
+    "alpha_zero_fraction": 0.6362323760986328,
+    "low_alpha_1_15_pixel_count": 33941,
+    "opaque_pixel_count": 0,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        19,
+        21,
+        1519,
+        1024
+      ],
+      "bounds_xywh": [
+        19,
+        21,
+        1500,
+        1003
+      ],
+      "effective_pixel_count": 572157,
+      "edge_pixel_count": 5,
+      "margins_ltrb": [
+        19,
+        21,
+        17,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        27,
+        89,
+        1517,
+        862
+      ],
+      "bounds_xywh": [
+        27,
+        89,
+        1490,
+        773
+      ],
+      "effective_pixel_count": 538216,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        27,
+        89,
+        19,
+        162
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        28,
+        90,
+        1516,
+        860
+      ],
+      "bounds_xywh": [
+        28,
+        90,
+        1488,
+        770
+      ],
+      "effective_pixel_count": 530275,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        28,
+        90,
+        20,
+        164
+      ]
+    },
+    "visual_review": "Exactly three original-color cloth panels and sun motifs, fallen tilted flag assembly; no character. Normal alpha compositing required for preview halo.",
+    "defects": [
+      "Long staff lower extension is not clearly distinguishable from fan crossbars; verify physical flag topology before a detach animation.",
+      "Fabric looks tilted/draped rather than heavily crumpled; this is a fallen-prop candidate, not a validated state transition."
+    ]
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: ONE standalone transparent game skill-effect or physical-prop candidate, not a sprite sheet. Painterly crisp 2.5D fantasy art matching the provided identity reference's warm copper-gold, sandstone ivory, vermilion and turquoise palette, warm upper-left lighting, elevated game view. Reference is STYLE/MATERIAL/EQUIPMENT ONLY. NO character, body, hands, creature, room, floor, environment, ground plate, cast shadow, text, labels or interface. Genuine transparent alpha background. Entire requested asset inside central 75% of canvas with generous empty alpha=0 margins, all tips visible, do not crop. One isolated object/effect only; design candidate, not a programmed hit area.\nASSET m15/fallen_banner: The reference lizard's physical flag ONLY after it has fallen: one bronze-red wrapped pole with gold spear-shaped finial, exactly THREE connected layered ivory/terracotta/muted-sage cloth banners, original sun motifs and turquoise tassel fittings. It lies tipped diagonally sideways, fabric crumpled and sagging in a readable detached prop silhouette, pole remains one intact item, no lizard or hand, no floor beneath it. Unpowered fallen condition, no magic glow."
+}

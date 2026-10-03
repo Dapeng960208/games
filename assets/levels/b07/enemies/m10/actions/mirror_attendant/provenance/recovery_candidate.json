@@ -1,0 +1,175 @@
+{
+  "id": "m10",
+  "action": "recovery",
+  "kind": "character_key_pose",
+  "relative_dir": "m10/recovery",
+  "crown": [
+    938,
+    324
+  ],
+  "feet": [
+    [
+      650,
+      1110
+    ],
+    [
+      1114,
+      1065
+    ]
+  ],
+  "read": "Left crank lowered, right strap steady, three mirrors plain, full tail/feet.",
+  "issues": [
+    "Top mirror margin 19px.",
+    "Mirror settled angle does not perfectly preserve execute angle; phase continuity unresolved."
+  ],
+  "path": "assets/levels/b07/enemies/m10/actions/mirror_attendant/recovery_candidate.png",
+  "width": 1312,
+  "height": 1199,
+  "mode": "RGBA",
+  "bytes": 1350652,
+  "sha256": "0e4fa17221edfc8107de5e70053c33f773738114af89cacd09c9ac5556bf0665",
+  "transparent_pixel_count": 1027397,
+  "partial_alpha_pixel_count": 545334,
+  "opaque_pixel_count": 357,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        33,
+        9,
+        1290,
+        1181
+      ],
+      "bbox_size": [
+        1257,
+        1172
+      ],
+      "effective_pixels": 545691,
+      "margin_ltrb": [
+        33,
+        9,
+        22,
+        18
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        75,
+        19,
+        1251,
+        1178
+      ],
+      "bbox_size": [
+        1176,
+        1159
+      ],
+      "effective_pixels": 507812,
+      "margin_ltrb": [
+        75,
+        19,
+        61,
+        21
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        76,
+        19,
+        1250,
+        1177
+      ],
+      "bbox_size": [
+        1174,
+        1158
+      ],
+      "effective_pixels": 500612,
+      "margin_ltrb": [
+        76,
+        19,
+        62,
+        22
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/recovery/provenance.json",
+  "prompt_path": "provenance/recovery_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/recovery/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "manual_foot_qa": {
+    "support_contact_centers_px": [
+      [
+        650,
+        1110
+      ],
+      [
+        1114,
+        1065
+      ]
+    ],
+    "anchor_mean_px": [
+      882.0,
+      1087.5
+    ],
+    "anchor_normalized": [
+      0.67226,
+      0.90701
+    ],
+    "anatomical_crown_px": [
+      938,
+      324
+    ],
+    "body_effective_height_px": 763.5,
+    "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+    "max_body_display_height_at_1_to_1_px": 763.5,
+    "max_body_display_height_at_1_5_source_to_display_px": 509.0,
+    "accepted_runtime_anchor": false
+  },
+  "minimum_margin_alpha16": 19,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/recovery/candidate.png",
+  "resource": "asset://levels/b07/enemies/m10/actions/mirror_attendant/recovery_candidate.png",
+  "original_provenance": {
+    "id": "m10",
+    "action": "recovery",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m10/idle_candidate.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-5639d3e7-14af-45eb-9119-6844f4c2c383.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "sha256": "0e4fa17221edfc8107de5e70053c33f773738114af89cacd09c9ac5556bf0665",
+    "bytes": 1350652,
+    "source_sha256": "0e4fa17221edfc8107de5e70053c33f773738114af89cacd09c9ac5556bf0665",
+    "copy_byte_verified": true
+  },
+  "ability": "mirror_attendant"
+}

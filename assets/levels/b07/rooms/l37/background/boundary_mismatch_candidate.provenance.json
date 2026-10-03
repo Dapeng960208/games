@@ -1,0 +1,18 @@
+{
+  "status": "blocked_pixel_boundary_mismatch_not_runtime",
+  "tool": "built-in image_gen",
+  "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-b7f1af48-bd2e-4678-8a2e-8b7821479e3b.png",
+  "sha256": "b9effdb51aaaa09aa49a48eac51c99af8f5ab196aab86d1b699a40ba7c4fd105",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "alpha": "opaque RGB",
+  "prompt": "docs/levels/b07/rooms/l37/independent_painting.prompt.txt",
+  "observations": [
+    "South playable boundary near y780 vs required y869, parapet/front wall intrudes into walkable floor",
+    "West inner parapet approx x230 vs required x206 in straight section",
+    "North floor starts near y140 vs required y167; mismatched source registration"
+  ],
+  "action": "preserve unchanged; do not integrate; targeted revision required"
+}

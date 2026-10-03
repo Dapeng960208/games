@@ -1,0 +1,61 @@
+{
+  "id": "lower_arch_bridge",
+  "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/lower_arch_bridge.png",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-17f69b55-092b-404c-ad46-117dd6d52b5d.png",
+  "sha256": "69c56b74140113ed860662b8585fc2e25a4b2fc457148ef813023bc417d986de",
+  "native_size": [
+    1983,
+    793
+  ],
+  "mode": "RGBA",
+  "candidate_only": true,
+  "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/lower_arch_bridge.prompt.txt",
+  "alpha": {
+    "1": {
+      "bbox": [
+        37,
+        18,
+        1965,
+        784
+      ],
+      "content_size": [
+        1928,
+        766
+      ],
+      "edge_pixels": 0
+    },
+    "16": {
+      "bbox": [
+        65,
+        21,
+        1934,
+        781
+      ],
+      "content_size": [
+        1869,
+        760
+      ],
+      "edge_pixels": 0
+    },
+    "128": {
+      "bbox": [
+        65,
+        22,
+        1933,
+        780
+      ],
+      "content_size": [
+        1868,
+        758
+      ],
+      "edge_pixels": 0
+    }
+  },
+  "physical_path": "assets/levels/b07/rooms/shared/lower_arch_bridge/source_candidate.png",
+  "manual_review": "双拱完整、拱洞透明、正常双背景无宽红黄晕边；上下边距21/12px偏紧，桥面仅非导航外景。",
+  "normal_alpha_composites_viewed": true,
+  "repeat_2x2_viewed": false,
+  "runtime_integrated": false,
+  "unchanged_source_bytes": true,
+  "qa_status": "review_candidate_unaccepted"
+}

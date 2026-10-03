@@ -41,6 +41,8 @@ func refresh() -> bool:
 		if brain == null:
 			continue
 		var data: Dictionary = brain.current_telegraph()
+		# Support follows the same fixed recipient identities, including during lock.
+		if str(data.get("kind",""))=="b07_heal": data=preload("res://scripts/levels/b07/combat/support.gd").link(actor,data)
 		if not data.is_empty():
 			next.append({"actor_id": actor.get_instance_id(), "data": presentation_data(data)})
 	var reduced: bool = bool(Game.profile.get("settings", {}).get("reduced_fx", false))
@@ -98,7 +100,10 @@ func _draw() -> void:
 				data = data.duplicate(true)
 				data.erase("combo_directions")
 				data.erase("sequence_shapes")
-			room.draw_enemy_telegraph(self, data)
+			if str(data.get("kind",""))!="b07_heal": room.draw_enemy_telegraph(self, data)
+			if bool(data.get("b07_command",false)):
+				draw_set_transform_matrix(room.telegraph_canvas_transform(self))
+				preload("res://scripts/levels/b07/art/skill_presentation.gd").draw_warning(self,actor,data)
 			if bool(data.get("b09_command",false)):
 				if data.has("shatter"): room.draw_enemy_telegraph(self,data.shatter)
 				for follow: Dictionary in data.get("followups",[]):
@@ -106,10 +111,10 @@ func _draw() -> void:
 					var preview := follow.duplicate(true)
 					preview["locked"]=bool(data.get("locked",false))
 					room.draw_enemy_telegraph(self,preview)
-			if bool(data.get("b05_command",false)):
+			if bool(data.get("b05_command",false)) or bool(data.get("b07_command",false)):
 				_draw_b05_links(actor,data)
 				for follow: Dictionary in data.get("followups",[]):
-					if str(follow.get("kind","")) in ["b05_decoy","b05_reposition","b05_root_guard"]: continue
+					if str(follow.get("kind","")) in ["b05_decoy","b05_reposition","b05_root_guard","b07_reposition"]: continue
 					var preview := follow.duplicate(true)
 					preview["locked"] = bool(data.get("locked",false))
 					room.draw_enemy_telegraph(self,preview)

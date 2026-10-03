@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "room_id": "L37",
+  "module": "north_horizontal_facade",
+  "status": "superseded_by_user_design_reference_do_not_promote_as_faithful",
+  "created_utc": "2026-10-03T03:58:16Z",
+  "asset": "L37_north_facade_v1.png",
+  "native_size": [
+    2172,
+    724
+  ],
+  "mode": "RGBA",
+  "bytes": 1547375,
+  "sha256": "aa62bb971e0ced96c57f5d8940d0aee92830f9b1761424c2247fde50e81ee02a",
+  "alpha": {
+    "extrema": [
+      0,
+      255
+    ],
+    "significant_alpha_threshold_integer": 5,
+    "visible_bbox_alpha_gt_5": [
+      43,
+      111,
+      2133,
+      512
+    ],
+    "draw_region_xywh": [
+      43,
+      111,
+      2090,
+      401
+    ],
+    "nonzero_bbox": [
+      29,
+      23,
+      2142,
+      724
+    ],
+    "max_alpha_below_source_baseline": 4,
+    "max_alpha_bottom_twenty_percent": 1,
+    "cleanup_contract": "Do not use the entire raw PNG rectangle as a visual footprint. Draw source region (43,111,2090,401). Discard alpha <= 5/255 in the runtime material to suppress generator residual alpha dust. File pixels are untouched.",
+    "limitation": "Raw alpha outside the visible silhouette is not identically zero. There is no broad high-opacity glow, but a low-alpha dust residue remains. No claim of perfectly clean original alpha."
+  },
+  "source_contact_baseline_y": 512,
+  "blueprint_placement": {
+    "left_contact": [
+      650,
+      100
+    ],
+    "right_contact": [
+      2460,
+      100
+    ],
+    "uniform_source_px_to_blueprint": 0.8660287081339713,
+    "visible_render_size_blueprint": [
+      1810,
+      347.2775119617225
+    ],
+    "visible_render_top_left_blueprint": [
+      650,
+      -247.2775119617225
+    ],
+    "source_to_blueprint_formula": "x = 650 + (source_x - 43) * (1810/2090); y = 100 + (source_y - 512) * (1810/2090)",
+    "source_canvas_top_left_blueprint": [
+      612.7607655502393,
+      -343.4066985645933
+    ],
+    "world_scale": 0.58,
+    "world_visible_top_left": [
+      377.0,
+      -143.42095693779905
+    ],
+    "world_visible_size": [
+      1049.8,
+      201.42095693779905
+    ],
+    "world_baseline_segment": [
+      [
+        377.0,
+        58
+      ],
+      [
+        1426.8,
+        58
+      ]
+    ],
+    "rotation_degrees": 0,
+    "no_anisotropic_stretch": true,
+    "clip_guidance": "Do not inverse-clip this module against the floor polygon; place the entire significant silhouette above its baseline. The canonical horizontal edge is x650..2460,y100. Art extends north of the blueprint rectangle; permit north overscan if desired or crop the top by viewport only, preserving complete lower bases."
+  },
+  "provenance": {
+    "generator": "built-in image_gen.imagegen",
+    "generation_count": 1,
+    "transparent_background_requested": true,
+    "prompt_file": "L37_north_facade_v1.prompt.txt",
+    "original_generated_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7f3bcccd-98aa-4afe-a74a-a52cdb930646.png",
+    "new_module_not_copied_from_scene": true,
+    "style_pixels_inspected": [
+      "L37_environment_candidate_v2.png"
+    ],
+    "actual_engine_screenshot_inspected": "/workspace/scratch/2244020fc8d6/games-recovery/_test_output/B07/20261003T035215205279Z-351c0d0f/L37_layered_north_mirror.png",
+    "postprocessing": "Copied original PNG only; alpha analysis does not modify pixels."
+  },
+  "visual_review": {
+    "passed": [
+      "one complete standalone horizontal facade",
+      "intact column/pilaster bases",
+      "clear golden sandstone / turquoise lizard ceremonial identity",
+      "modest vermilion cloth accents",
+      "no ground patch, floor blocker, step, beam, mirror or functional altar",
+      "all significant alpha remains above the assigned baseline",
+      "no broad visible halo like rejected stone-cover extraction"
+    ],
+    "limits": [
+      "handpainted bottom contacts vary by a few source pixels; conservative baseline at y512 keeps every significant pixel north of walkable area",
+      "tiny low-opacity residual alpha needs runtime threshold as documented",
+      "frontal wall composition shows shallow top surfaces; check camera/style at actual game zoom",
+      "north overscan or top viewport cropping needed for full-height facade",
+      "no new engine composite, collision test or gameplay test performed"
+    ]
+  },
+  "superseded_utc": "2026-10-03T04:00:12Z",
+  "new_authoritative_visual_reference": {
+    "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+    "library_file_id": "libfile_029361d330048191bdefec30b980495e",
+    "inspected_actual_pixels": true,
+    "native_size": [
+      1122,
+      1402
+    ],
+    "observed_direction": "canyon-spanning multilevel golden sandstone fortress city, cross-gorge stone arch bridges, red-orange banners, giant golden sun mirrors, lizard-head stone gate guardians, stepped terraces and restrained palms; turquoise is secondary",
+    "next_action": "Pause further generation. Prepare one cohesive first-room layered visual brief, coordinate geometry with developer, and wait for parent approval before new generation. Attach actual user reference to future imagegen, not only a verbal style description."
+  }
+}

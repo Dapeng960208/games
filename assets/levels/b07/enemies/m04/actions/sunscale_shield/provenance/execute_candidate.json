@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M04",
+  "ability": "sunscale_shield",
+  "phase": "execute",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-6781a589-4154-49b9-9f58-7745a0421b08.png",
+  "source_sha256": "e03630f17c7f6ca67bea703e15fa8204d658c6e7f486d253f3bb90a6692abb83",
+  "resource": "asset://levels/b07/enemies/m04/actions/sunscale_shield/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m04/idle_candidate.png",
+  "reference_sha256": "9faae348481abe940cd94813f1f594ebffeb8e76994bc418cf028468ecdd0a2b",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      17,
+      190,
+      1232,
+      903
+    ],
+    "alpha128_pixel_count": 590557,
+    "transparent_pixel_count": 946160,
+    "low_alpha_1_32_count": 30365,
+    "nonzero_edge_pixel_count": 69,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 188.1,
+    "foot_landmarks": [
+      [
+        188.1,
+        1015.7
+      ],
+      [
+        1015.7,
+        1028.3
+      ]
+    ],
+    "foot_midpoint": [
+      601.9,
+      1022.0
+    ],
+    "visible_anatomical_vertical_extent": 833.9,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Shield remains same anatomical arm; silhouette and pose compression differ, scale/foot continuity pending.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

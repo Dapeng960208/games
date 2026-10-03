@@ -1,6 +1,6 @@
 # 深渊拾荒者 Abyss Salvager
 
-Godot 4 单人动作游戏原型。当前正式入口开放 **B01–B06、等级 1–30、战士／枪手／法师**。B05、B06 按前章首领通关并撤离的顺序解锁；B09 已接入独立七房战斗候选，B07、B08、B10–B12 和召唤师仍为未实现设计。内容状态更新于 2026-10-03，以 [开发进度](docs/DEVELOPMENT_PROGRESS.md) 和运行配置为准。
+Godot 4 单人动作游戏原型。当前正式入口开放 **B01–B06、等级 1–30、战士／枪手／法师**。B05、B06 按前章首领通关并撤离的顺序解锁；B07、B09 已接入独立七房战斗候选，B08、B10–B12 和召唤师仍为未实现设计。内容状态更新于 2026-10-03，以 [开发进度](docs/DEVELOPMENT_PROGRESS.md) 和运行配置为准。
 
 明亮手绘卡通奇幻风，高机位三分之四斜俯视与 2.5D 质感；界面使用米白羊皮纸、黄铜、深紫文字和圆形技能徽章。
 
@@ -61,7 +61,7 @@ python tools/maintenance/audit_repository.py
 assets/
   characters/{warrior,gunner,mage}/{animations,portraits,skills,ui}/
   system/{audio,fonts,equipment,ui,world,combat,relics}/
-  levels/b01...b06/{enemies,bosses,rooms,decorations,ui}/
+  levels/b01...b07/{enemies,bosses,rooms,decorations,ui}/
   manifest.json                   # 逻辑资源 ID → 实际文件
 scripts/
   app/                           # 运行入口与用例服务
@@ -81,6 +81,7 @@ docs/{characters,system,levels,engineering,legal}/
 
 角色按职业，系统按功能，关卡普通怪与首领分别归档。物理资源名称使用小写 `snake_case`；旧目录不再作为加载入口。新增资源先登记 `assets/manifest.json`，由 `AssetCatalog` 统一解析；文件搬迁不改变怪物、装备、房间和存档里的稳定 ID。
 
+- [B07候选边界](docs/levels/b07/implementation.md)：独立入口、清场检查点与显式原画试验，不计入正式章节。
 - [文档入口](docs/README.md)：与资源相同的职业、系统、关卡层级。
 - [当前进度](docs/DEVELOPMENT_PROGRESS.md)与[路线图](docs/LEVEL_ROADMAP.md)：明确已接入、候选、待验证和未实现。
 - [开发规范](docs/DEVELOPMENT_STANDARDS.md)：代码职责、命名、清理和保存边界。

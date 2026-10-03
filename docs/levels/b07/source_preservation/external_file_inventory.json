@@ -1,0 +1,2654 @@
+{
+  "external_root": "/workspace/scratch/2244020fc8d6/b07-art",
+  "scope": "B07 only; parent cleanup after remote commit verification",
+  "files": [
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_ART_REVIEW.md",
+      "sha256": "531ae52a71c95f1e9bc8b6ab7ed10443c270fcd73f6d42597b9026ef1be218a9",
+      "bytes": 5720,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_art_review.md"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_art_candidate_metadata.json",
+      "sha256": "b1ee8d78195037af3928392c2279213971bec4786fa657f4cc86b7e48d80e180",
+      "bytes": 16281,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_art_candidate_metadata.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_canyon_backdrop_v1.png",
+      "sha256": "1b600432ede4233d608bece8e4be4f1a4fd03ff457674e3a1c925bf9369d6a31",
+      "bytes": 2461212,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/canyon_backdrop.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_canyon_backdrop_v1.prompt.txt",
+      "sha256": "84bf4f8bd0eea5cd5716c2651b2f56024654c7b70121258daa7a7e6965efb9f7",
+      "bytes": 3143,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/provenance/canyon_backdrop.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_canyon_forecourt_review.json",
+      "sha256": "18b5894c8601d3bdea1996ea33ffb9af5bf1866573a9b7e8d4ab444d7576dfb3",
+      "bytes": 10644,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_canyon_forecourt_review.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_canyon_forecourt_v1.png",
+      "sha256": "69e92879cc6d3381bda251de649a6d9481ec74b1ccd4418f04c9d77ae42efe89",
+      "bytes": 2984672,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_canyon_forecourt_v1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_canyon_forecourt_v1.prompt.txt",
+      "sha256": "86c0da7cdea2c838832b610b10c88c2e980840dc1bdcba8eea1a9bcd178618fc",
+      "bytes": 6717,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_canyon_forecourt_v1_prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_canyon_forecourt_v2.png",
+      "sha256": "5e9510ce0a02de23f1eec1efb359cad9b3b74ab4665627d276dda7f83ba95d1d",
+      "bytes": 2852143,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_canyon_forecourt_v2.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_canyon_forecourt_v2.prompt.txt",
+      "sha256": "d9a34dfc13b67746342e2a59bec1b82ee2c20ab05f4fa6b2ae0235d7661284e7",
+      "bytes": 3186,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_canyon_forecourt_v2_prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_canyon_layout_guide.png",
+      "sha256": "1235b31816d0e4441c6b2a3860d9f57f232e0e30f7bc0b09d29591a83c067b51",
+      "bytes": 50564,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_canyon_layout_guide.svg",
+      "sha256": "8f4c13f1d201f03af621a14a09dcaa6c3610e9ca580c774250e7d575fdc35616",
+      "bytes": 1070,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_canyon_true_layers_v1.metadata.json",
+      "sha256": "28b8f63f92cb0335f979234c476296cce108ced56468bdf8199540954847f398",
+      "bytes": 10328,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_canyon_true_layers_v1_metadata.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_cliff_foundation_v1.png",
+      "sha256": "92418f56db75b9d22b23e6b5bfb0db215cd70553e50c3599190c44a50fac11f0",
+      "bytes": 2620620,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/cliff_foundation.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_cliff_foundation_v1.prompt.txt",
+      "sha256": "fb3b4d3143e706f72612ec95d42a3e38009c960fdffd3180a1907b9d1688cdba",
+      "bytes": 2330,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/provenance/cliff_foundation.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_environment_candidate_v1.png",
+      "sha256": "86031fd7866eb9ac867421db6ccbbb415ffb0dbbb79a1e320235d47b5198a47e",
+      "bytes": 2839102,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_environment_candidate_v1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_environment_candidate_v1.prompt.txt",
+      "sha256": "2f39c6707b8e918e533f9de8be971a71aa22438121123e7d7cbd03b4a8c9cfc3",
+      "bytes": 5126,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_environment_candidate_v1_prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_environment_candidate_v2.integration_copy.png",
+      "sha256": "dd8c99d773b981df1d097d86bdc96564c11fffadcfaadfc6f6c3f374dfc24bb7",
+      "bytes": 2690722,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_environment_candidate_v2.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_environment_candidate_v2.png",
+      "sha256": "dd8c99d773b981df1d097d86bdc96564c11fffadcfaadfc6f6c3f374dfc24bb7",
+      "bytes": 2690722,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_environment_candidate_v2.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_environment_candidate_v2.prompt.txt",
+      "sha256": "fa770858feea39a0bf85d144eee2de27f1007ffda970d2d5c6963082504eb8c1",
+      "bytes": 3160,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/provenance/environment_source.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_guardian_alpha_qa.png",
+      "sha256": "87ac0bc9dbc90a9bc80c97dc8b91612c863debb5ceba83f42727793c1a985bcf",
+      "bytes": 1760080,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_guardian_alpha_qa.svg",
+      "sha256": "b27a51595019877439200e9edca88a33f82772943154aeae40d49622a15f172c",
+      "bytes": 322,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_low_stone_cover_v1.png",
+      "sha256": "b5ccd4f2a2b355ad7699883243bb400a8c200e5e553d8bf64932495d70e87588",
+      "bytes": 1550738,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_low_stone_cover_v1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_low_stone_cover_v1.prompt.txt",
+      "sha256": "697a050efe85c780a02c09e5a3ecbde4b9df27714ab0c4f5ed2f3aa6a61b538c",
+      "bytes": 1246,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_low_stone_cover_v1_prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_north_facade_v1.metadata.json",
+      "sha256": "52ec6251290341781c37777cfa08d284d9f282848f353562ec07931805c824b2",
+      "bytes": 5137,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_north_facade_v1_metadata.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_north_facade_v1.png",
+      "sha256": "aa62bb971e0ced96c57f5d8940d0aee92830f9b1761424c2247fde50e81ee02a",
+      "bytes": 1547375,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/l37_north_facade_v1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_north_facade_v1.prompt.txt",
+      "sha256": "fdec261f5aefc23c55ee3af23dec7cd554e6fe2dd7a0294d313f8eb8fc9381d5",
+      "bytes": 3296,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_north_facade_v1_prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_sandstone_floor_v1.png",
+      "sha256": "6ae03e1c588fc95c15778e89117f1c83e3f7daefa19180db08032d5af4658484",
+      "bytes": 2295248,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/sandstone_floor.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_sandstone_floor_v1.prompt.txt",
+      "sha256": "23a3a35fe4c1ea374805d63b7227ede03dd82395fc51775ec27f9e1f249cf27a",
+      "bytes": 1557,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/provenance/sandstone_floor.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_west_guardian_v1.png",
+      "sha256": "f48a8fe396899058222768b52c90384a8ef0f9917783f13e43fea5050cb760cb",
+      "bytes": 2393925,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/west_guardian.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/L37_west_guardian_v1.prompt.txt",
+      "sha256": "e8477e3f5fc664878051c13147f6a2898dcec8a54e0ff2392eeb7415aef2222e",
+      "bytes": 2540,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/provenance/west_guardian.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/README.md",
+      "sha256": "4824fd813cec041719a29b8f6edf6a76f579e257e426af5958d9278f1256a79e",
+      "bytes": 2237,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/readme.md"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/batch1_sources.json",
+      "sha256": "567cf85fe7390dc84d7362491d216e359eb2ea0af4b894c9217e82c7f801730f",
+      "bytes": 13611,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/batch1_sources.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/build_index_qa.py",
+      "sha256": "34b80434dd3d7ec65028a03bebc9923a333c6146a2e9a10495d758aaeef9d95e",
+      "bytes": 9168,
+      "status": "excluded_non_source_working_file"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics/m14_alpha_composite_qa.jpg",
+      "sha256": "c9a69b7d7c8bc34cc475241759d34535763dc99fc223bd3e76fe1f513fd57397",
+      "bytes": 320641,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics/m14_selected_alpha_qa.jpg",
+      "sha256": "c7a683ad8ef40af9252a477642c8840437d51dd41728240d9a1149cfa5c30b05",
+      "bytes": 316682,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics/m15_alpha_composite_qa.jpg",
+      "sha256": "743398fa69fc2d0a84f74fa1d1a1ae77786f0f7069f54bd876d922fc843cf55e",
+      "bytes": 380112,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics/m15_selected_alpha_qa.jpg",
+      "sha256": "dfe820b8f6dcfe80cd5cddbd37521cab6dc3d27368f03831b3b6547c581cfab3",
+      "bytes": 369332,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics/m16_alpha_composite_qa.jpg",
+      "sha256": "8f0c720f8ed24ecf8bace64bdc9f62f2180b571164f3bc621ed6bc4ee64140e2",
+      "bytes": 304461,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics/m16_selected_alpha_qa.jpg",
+      "sha256": "9d130e9373b924890f9507d855df46f88c8c43140d16056f973581d11f789e48",
+      "bytes": 311993,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics/m17_alpha_composite_qa.jpg",
+      "sha256": "a76665b776f3c65ca6d45ba2e4de3f1e98043c470ec2c36b0a2dd4e5a1c9b349",
+      "bytes": 352113,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics/m17_selected_alpha_qa.jpg",
+      "sha256": "87b2aa506b125f518651c08755c3a59e4d8fc3a68cd4cdb89e3a33fb5159ab36",
+      "bytes": 359521,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics/m18_alpha_composite_qa.jpg",
+      "sha256": "8c555faacaeb2dd67e7a983a41cc56577c85a8d0613fecfdf8e20c43883ff764",
+      "bytes": 302042,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics/m18_selected_alpha_qa.jpg",
+      "sha256": "2208dfe7d79d01c7020cf9a85e52748978d3a48303e3851c74c145c28b30e74d",
+      "bytes": 309614,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics/selected_effects_alpha_qa.jpg",
+      "sha256": "782e0603c33b5d4f71c09f581122717df6165b05d6382385f97d1d2b767d46f0",
+      "bytes": 384654,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/effect_repairs_plan.json",
+      "sha256": "8cde06c7a8cb888274f5f09597066641da79515e7a7ad7f7402a3327709e73ea",
+      "bytes": 2586,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/effect_repairs_plan.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/effect_repairs_sources.json",
+      "sha256": "8b36570177529adfe9bfb94e3cb7198371423be95295d77aead1f5b619c4f66a",
+      "bytes": 2967,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/effect_repairs_sources.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/effects_and_repairs_sources.json",
+      "sha256": "07ab667cc979bf2d8acbff86e2b47d625f5176f5307f17f28ed476e456b3a365",
+      "bytes": 12697,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/effects_and_repairs_sources.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/effects_plan.json",
+      "sha256": "5eba465686f1263d969210061ab32d4b4666c965160f4651f611641b8226fa06",
+      "bytes": 8758,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/effects_plan.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/generation_plan.json",
+      "sha256": "4de9cf14d059012836a6181914fd2c3fe50736181758da6c61af3a33addf119c",
+      "bytes": 41496,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/generation_plan.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/index.json",
+      "sha256": "6f4aae822f61f1a46f476dd09dbd84a459f0ed7ad32e1bd8facd64e8ccbf02c1",
+      "bytes": 119213,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/index.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc/candidate.png",
+      "sha256": "d1082ed6a705f1206de0ee2267a7abca9b0db32933778ab4bd205580caea50ed",
+      "bytes": 666315,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/source_candidates/blade_arc_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc/prompt.txt",
+      "sha256": "ffc5ea301817f66cf0bc19b8a7bdf0e1cb228255dad291e0ad6e2c2de52806ba",
+      "bytes": 1113,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m14/blade_arc/prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc/provenance.json",
+      "sha256": "2e7c49bb11536f6dcb892312dd8ced709f3f17bfccddf004dbe955ee993df957",
+      "bytes": 3976,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m14/blade_arc/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc_design_fix/candidate.png",
+      "sha256": "b80f1d24ddc8f5ee0c1b5cbcafea59e156123a3c516d1477863896ed65321843",
+      "bytes": 327930,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/blade_arc/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc_design_fix/prompt.txt",
+      "sha256": "11fe0d43b55c893c9bc9db898b280fd9e5244f8003d01d9dced1241c06ebd40e",
+      "bytes": 607,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/blade_arc/provenance/effect_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc_design_fix/provenance.json",
+      "sha256": "195afa01fd392642a21f21ade0c933e8942eea4c1db1e182d4b91051b46777e5",
+      "bytes": 3913,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m14/blade_arc_design_fix/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute/candidate.png",
+      "sha256": "2b0d600892e6502c3bb8755b9b2a408c56022fb193dc7c6992847fa2e81a6d92",
+      "bytes": 1315586,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/source_candidates/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute/prompt.txt",
+      "sha256": "8f4cb9a930fdaf831bc8548b2ae7e1a9c78f43a2908cdc2ee34ab53b75b7c177",
+      "bytes": 1812,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m14/execute/prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute/provenance.json",
+      "sha256": "7865bb6cace3c8becdc1213e994f6b3061f91d37fce10e5bd96ab22a3395994e",
+      "bytes": 4649,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m14/execute/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute_framing_fix/candidate.png",
+      "sha256": "5d6c4bee0ccf7ecc5f448ee28d4b75fd96962319d77b1346860377ff50970162",
+      "bytes": 1079822,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/actions/twin_slash/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute_framing_fix/prompt.txt",
+      "sha256": "5e5c881aab65c75ff6dfa2f0a220ae746130d7108d46fe89af5409c4ea96ca9b",
+      "bytes": 766,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/actions/twin_slash/provenance/execute_candidate.prompt.txt",
+        "assets/levels/b07/enemies/m15/actions/camouflage_banner/provenance/execute_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute_framing_fix/provenance.json",
+      "sha256": "57f2712e7781533719ccc9b91ad995e7a00585144487aac6e640693eaefe21c5",
+      "bytes": 4482,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m14/execute_framing_fix/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/recovery/candidate.png",
+      "sha256": "8a91518991c12bb8ec382718857c258ec212c0d6b2e673f8d0e79cd215a56646",
+      "bytes": 1271414,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/actions/twin_slash/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/recovery/prompt.txt",
+      "sha256": "1aa3ce5c205eaf01bfb6db6120cc4dba6c3a50437f8960126ab54f61f96d17be",
+      "bytes": 1855,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/actions/twin_slash/provenance/recovery_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/recovery/provenance.json",
+      "sha256": "cdb11c10f3f606910b9e76307486cc87a56298a97026da17e78f3bc4c327f55a",
+      "bytes": 5241,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m14/recovery/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/telegraph/candidate.png",
+      "sha256": "847e202d749c7d191266ea856f0d54eabdbe7da59e48cbcb636d065cb0cf3bab",
+      "bytes": 1338581,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/actions/twin_slash/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/telegraph/prompt.txt",
+      "sha256": "7c9341987de46a6e1a23eff2f4097ebc2b04105fe75bfb891d11b5e4c869d52d",
+      "bytes": 1836,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/actions/twin_slash/provenance/telegraph_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/telegraph/provenance.json",
+      "sha256": "86a406ee38990faa376b052d943912f94d21b43e645680e2e531657c608c0e1b",
+      "bytes": 5227,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m14/telegraph/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute/candidate.png",
+      "sha256": "59a553cb1da10c47abfdd089ed4f33e67e7bc822ad201693854c1a8e437c86f5",
+      "bytes": 1763903,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m15/source_candidates/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute/prompt.txt",
+      "sha256": "f12fcab23fda54f83bc2be8dd6f67be45594787bce9a5cb90b5cd968f616134f",
+      "bytes": 1957,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m15/execute/prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute/provenance.json",
+      "sha256": "de4f3a76eccb3373c8945826322297e36d2453f049eda328ed249e73f25f6059",
+      "bytes": 4785,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m15/execute/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute_framing_fix/candidate.png",
+      "sha256": "e52e136d1225efb94986285b0e7136d46fa46e671e6230040a8efe77a12ff542",
+      "bytes": 1376326,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m15/actions/camouflage_banner/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute_framing_fix/prompt.txt",
+      "sha256": "5e5c881aab65c75ff6dfa2f0a220ae746130d7108d46fe89af5409c4ea96ca9b",
+      "bytes": 766,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m14/actions/twin_slash/provenance/execute_candidate.prompt.txt",
+        "assets/levels/b07/enemies/m15/actions/camouflage_banner/provenance/execute_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute_framing_fix/provenance.json",
+      "sha256": "4a234c3efb07e8fd87a35197fb5f03ab9db0f0c388fa78d2ab0e67c36718605f",
+      "bytes": 4426,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m15/execute_framing_fix/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/fallen_banner/candidate.png",
+      "sha256": "cb9de73edc59e5c0e490e5b31fc74fe25331861a042ae5885155ee31c6bb1a5b",
+      "bytes": 2129153,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/fallen_banner/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/fallen_banner/prompt.txt",
+      "sha256": "ff49536b21624bd82ca5462cfd1503f851611d17fa0669c8011dc79b0f4baef5",
+      "bytes": 1209,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/fallen_banner/provenance/effect_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/fallen_banner/provenance.json",
+      "sha256": "44f771ffbe4c8844ed5424c3184130d9039bccb028140b4a24d66ea6a3a2c80c",
+      "bytes": 4428,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m15/fallen_banner/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/recovery/candidate.png",
+      "sha256": "2a0b46b6caf8e8817662f0ff01202a7f383e99f0a7808265adc3949ec86fce27",
+      "bytes": 1453418,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m15/actions/camouflage_banner/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/recovery/prompt.txt",
+      "sha256": "d709dc8bb3cbb4c04a149c30c3c64751d01d134bd3a0e2e8f88f8bae7fe89517",
+      "bytes": 1907,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m15/actions/camouflage_banner/provenance/recovery_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/recovery/provenance.json",
+      "sha256": "4075ea2ff50eeaaade4320989a243db4a8316cfadd3a831248079f94c4dd55b8",
+      "bytes": 5380,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m15/recovery/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/telegraph/candidate.png",
+      "sha256": "db5bd5b2fe771bfbc1dff0d3ae015264eda6d77db5492f27c3599e35dfc98ef5",
+      "bytes": 1782571,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m15/actions/camouflage_banner/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/telegraph/prompt.txt",
+      "sha256": "91cc778e091f6f897d0d1bc368f14988f0e1846d541be1d93382c659b254e84c",
+      "bytes": 1859,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m15/actions/camouflage_banner/provenance/telegraph_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/telegraph/provenance.json",
+      "sha256": "638579d0f90af730f5cbc8a62dc60c332931f52b80b289ca8a749050f3c7d590",
+      "bytes": 5355,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m15/telegraph/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/execute/candidate.png",
+      "sha256": "c4f79c882d196a17db4b7d15a51b5d10e2afc2b90290bca8a7ba1ac47fad4f29",
+      "bytes": 1297806,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/actions/stargazer_arc/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/execute/prompt.txt",
+      "sha256": "20f2ec9c914a4d4f10698dbbe477ce1df5feb7924f04eff30bc2eeb87e1e96ed",
+      "bytes": 1864,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/actions/stargazer_arc/provenance/execute_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/execute/provenance.json",
+      "sha256": "72ba25433e3a59636792319f234b8b1f9737ef7f4d741a9fb06ed33af969ee0d",
+      "bytes": 5342,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m16/execute/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc/candidate.png",
+      "sha256": "8c85849c93ce32623a71acf4eee657b28179b2aacb77a94321aa5f25e0fbb992",
+      "bytes": 486850,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/source_candidates/eye_light_arc_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc/prompt.txt",
+      "sha256": "9131fe1cc3e26a56ff58c95316e8577a241b77f75f92d75a9c477de739105928",
+      "bytes": 1161,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m16/eye_light_arc/prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc/provenance.json",
+      "sha256": "e332f1ab8e34f489d6424513df4f4728fa246b3b74f3166db9308422d56eaf6e",
+      "bytes": 4036,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m16/eye_light_arc/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc_design_fix/candidate.png",
+      "sha256": "c6c7802422d1f3b65426aebb559282737eb71528036ad81748bf8a2ae27db461",
+      "bytes": 283927,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/eye_light_arc/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc_design_fix/prompt.txt",
+      "sha256": "4a15f54092d3e1cee4f33a4e05ed2561e0aa6739bcf25cc72f5fb236d190740e",
+      "bytes": 564,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/eye_light_arc/provenance/effect_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc_design_fix/provenance.json",
+      "sha256": "7d97e6caac4546091a228c14ce26a0aef1a874818aeded9eda6a986575574cd7",
+      "bytes": 3816,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m16/eye_light_arc_design_fix/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/recovery/candidate.png",
+      "sha256": "bdc46b05a71ec99e6d8cc19a58fe8798109cb22617843d42dd6b5a143d72b107",
+      "bytes": 1373797,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/actions/stargazer_arc/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/recovery/prompt.txt",
+      "sha256": "74ad943d9b6c9f41422871de7a9b1db2dff5440391cf951b4e12306e55205c61",
+      "bytes": 1936,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/actions/stargazer_arc/provenance/recovery_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/recovery/provenance.json",
+      "sha256": "38e52b077e64ee456f57a8bdb962f0c3e3426f2c736fd0882a622d66c2b111c0",
+      "bytes": 5345,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m16/recovery/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/telegraph/candidate.png",
+      "sha256": "a9d6d22cb778365fcc18fa05170174765394001de482899f3904abc8950bb955",
+      "bytes": 1295562,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/actions/stargazer_arc/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/telegraph/prompt.txt",
+      "sha256": "6f6fbe02832e7fbfbd28edf9336e7629101c2b8d8e2323b375c17fb0710847a9",
+      "bytes": 1834,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m16/actions/stargazer_arc/provenance/telegraph_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/telegraph/provenance.json",
+      "sha256": "206033fe0a484066c8fe553b25177fc42f7b91ace1f7b9347b40056f89c5cd96",
+      "bytes": 5296,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m16/telegraph/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/execute/candidate.png",
+      "sha256": "f1b9e7be76fab4bd2394f3b1bb43595472d361a240ddb9c8894aa0c3bea44144",
+      "bytes": 1642565,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/actions/obelisk_cross/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/execute/prompt.txt",
+      "sha256": "353ebc2026f349a5d3a1d70b93188b59993cfd8ec7401eac8a0fb3c6e31556d2",
+      "bytes": 2008,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/actions/obelisk_cross/provenance/execute_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/execute/provenance.json",
+      "sha256": "2ba36952efca658b8121512d1799b3937ac187a931900fa17f60e61ef1922f3d",
+      "bytes": 5532,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m17/execute/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/recovery/candidate.png",
+      "sha256": "d82b4e289c77034e669452e60dad241887ace9f153138bf67befeefde2ab1157",
+      "bytes": 1444185,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/actions/obelisk_cross/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/recovery/prompt.txt",
+      "sha256": "12ce2942008496d2161c06150dbd2656ce63a67bc2a707d06b01956bf97d7969",
+      "bytes": 1874,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/actions/obelisk_cross/provenance/recovery_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/recovery/provenance.json",
+      "sha256": "24258254e2229f2df588bb36c31c635741bc8530534c7a8448445099da63d595",
+      "bytes": 5361,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m17/recovery/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact/candidate.png",
+      "sha256": "51e6fcd0d4cc8ce31245686e186572c48c8140577d01fb035e21de7f97b972c3",
+      "bytes": 1203173,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/source_candidates/sandstone_impact_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact/prompt.txt",
+      "sha256": "175318f771eab11957a7d9b257a7fa1dded7c84348407c212c8a0167505458a0",
+      "bytes": 1214,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m17/sandstone_impact/prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact/provenance.json",
+      "sha256": "af4768707fd22e5955746a44968858cda76fd7920c72ae26efb5463a1f1affb8",
+      "bytes": 4107,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m17/sandstone_impact/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact_design_fix/candidate.png",
+      "sha256": "750384638ac694ba198a4d14b4fce43a202cec7f3b5ba478d222819b224b1d2d",
+      "bytes": 1266836,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sandstone_impact/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact_design_fix/prompt.txt",
+      "sha256": "c5e2311a76457599931c8b3841339fcbf3e91e0f35208c79eb69bcd5440df0fc",
+      "bytes": 604,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sandstone_impact/provenance/effect_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact_design_fix/provenance.json",
+      "sha256": "f9335324a26f7ba532f3ba37f02715b02610db3ecc7e739c92440023001c9af2",
+      "bytes": 3930,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m17/sandstone_impact_design_fix/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/telegraph/candidate.png",
+      "sha256": "71b36484d086081428d3e7d4105c8a939c75cafd3d21b602f2f0fddc675d7b4f",
+      "bytes": 1496915,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/actions/obelisk_cross/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/telegraph/prompt.txt",
+      "sha256": "2b385d8fa7455df0c2a2cf59d591b88bc071c480eda875a4c6960ce5eb40c9bc",
+      "bytes": 1893,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m17/actions/obelisk_cross/provenance/telegraph_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/telegraph/provenance.json",
+      "sha256": "f8e83d2ae89bfa88e6b621c45ae7df31c0ed8cc31a5746263392a269b9ceb5f1",
+      "bytes": 5338,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m17/telegraph/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/execute/candidate.png",
+      "sha256": "bbc75dbb7318467079eba57102d9d362b2816f7aab91b24c6ecbf87583aecef6",
+      "bytes": 2394717,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m18/actions/light_ceremony/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/execute/prompt.txt",
+      "sha256": "a6749b4693c2f04d3e711b78243d782192973703127f0543c979bef72727dd00",
+      "bytes": 2036,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m18/actions/light_ceremony/provenance/execute_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/execute/provenance.json",
+      "sha256": "29197204905c65f35488a869af2f069ab2506efb3ff4489c7edd7dbc932d1715",
+      "bytes": 5612,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m18/execute/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/recovery/candidate.png",
+      "sha256": "a5d1a176e326d79ea9da46de6769036a28380b011bb30f6afe4cfd04e1bd4091",
+      "bytes": 2284273,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m18/actions/light_ceremony/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/recovery/prompt.txt",
+      "sha256": "76bba7c1a4f1e6098537728e9c5f87ea000d69f8c233c8a47e2e957053b2c99e",
+      "bytes": 2111,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m18/actions/light_ceremony/provenance/recovery_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/recovery/provenance.json",
+      "sha256": "8584f8301a53c1dda31e7936635f36eef9e5141f0666996fa405f4a5d4629a34",
+      "bytes": 5665,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m18/recovery/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/support_node/candidate.png",
+      "sha256": "cb2f589d1d8ea306d95cb0940298988d9cf77be4d0d1b5504db894a11a5ae70a",
+      "bytes": 1455278,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/support_node/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/support_node/prompt.txt",
+      "sha256": "57e720b2c616321fe33a36c6eca5220f727f0cd5f5aa981a0588b82f645529a1",
+      "bytes": 1198,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/support_node/provenance/effect_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/support_node/provenance.json",
+      "sha256": "b8d4cbf94418914e99e3eb5d2ae46afe6b1347f0303a293cbf415f037c4ae1ab",
+      "bytes": 4305,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m18/support_node/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/telegraph/candidate.png",
+      "sha256": "2f92be2b4ae060114c7472447d752a7192cc654364c65d9689a957ddfa9a3693",
+      "bytes": 2337062,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m18/actions/light_ceremony/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/telegraph/prompt.txt",
+      "sha256": "28ec361d3aeb0f16578a4ce6e94b895bd21e2bd2f21d4f7f3e4c60e8deaf39e0",
+      "bytes": 1952,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m18/actions/light_ceremony/provenance/telegraph_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/telegraph/provenance.json",
+      "sha256": "2ea0c91a27bcd303bbb329d13930e6dbe3baf2a4d41a85497118bde3c117262b",
+      "bytes": 5431,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/m18/telegraph/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/manual_qa.json",
+      "sha256": "b3d330948f9dcde00a5db064fe01a06463ecf355fd67865fcde6dabfa75a8f45",
+      "bytes": 8238,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/manual_qa.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/pose_alpha_qa.json",
+      "sha256": "01cd7526227995f1edad69a80d7a80d6963a8c0ff18666c3b1e5b476c5e195c5",
+      "bytes": 7062,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/pose_sources.json",
+      "sha256": "34fd29974a346ef2b20e9fd477cb8a8a55560abf65afe9b8c75eabeec4184d19",
+      "bytes": 42381,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_late_0839/pose_sources.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/DELIVERY.md",
+      "sha256": "0fbaab7e503d70939b9e7597b5c66c6ef32eb8e899cb6fdc10f0d632d9c5da1c",
+      "bytes": 3497,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/delivery.md"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/build_qa.py",
+      "sha256": "448effbc9b65ced0838d0114ca01b882e7f63306a2964a8fb00660f48fe53b82",
+      "bytes": 6618,
+      "status": "excluded_non_source_working_file"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m08_alpha_composites.jpg",
+      "sha256": "e2b19ecf44c014e3587beb5abdaeeaded95b579b22c3aed875ad879e49521e6a",
+      "bytes": 248284,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m08_mirror_short_light_dark_purple.png",
+      "sha256": "e4f6d5a96f84ad591a047cb3994023a9c941e04b63648c6c75a623b5706e7169",
+      "bytes": 301163,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m08_mirror_short_light_sand.png",
+      "sha256": "352f31a9525389ff0cd47d595e346fcde88c45d97afaac86f26b6f31b257be64",
+      "bytes": 275227,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m09_alpha_composites.jpg",
+      "sha256": "04917d599cd86394adfdbef7ac440a88df596e7aac9e018f6365e9296aa94a80",
+      "bytes": 235495,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m09_poison_dart_dark_purple.png",
+      "sha256": "7b3fd2740ac69cac8642c8477bc2c18c9c770bfe46283a58d0759b2ac315a620",
+      "bytes": 195555,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m09_poison_dart_sand.png",
+      "sha256": "f09dd001e6d2615981da84d17c2246ef3956916c83232f98af0ade82111dec0f",
+      "bytes": 208624,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m10_alpha_composites.jpg",
+      "sha256": "23e9667ac2a785f617ffedc2a442d9511eebb7b501446844a8336840f8520e56",
+      "bytes": 295929,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m10_mirror_state_indicator_dark_purple.png",
+      "sha256": "c06851693cd441e733f88f5bae650f13e09f347f50b7bbb6661cf1ce452278cc",
+      "bytes": 1011051,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m10_mirror_state_indicator_sand.png",
+      "sha256": "32e0b480e4b1666ca706e6e523c91537b6802bfc785fa0977d12438e818fe6da",
+      "bytes": 1009644,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m11_alpha_composites.jpg",
+      "sha256": "830d01b5f1b58a31c78b9ff1b65d99e838f303901b60b572a1362b87d4177ec9",
+      "bytes": 283241,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m11_sand_ridge_segment_dark_purple.png",
+      "sha256": "9503f02b6fc479a0836642fc4880b840561413e6ee57cf07d4b852c63ec4a257",
+      "bytes": 693893,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m11_sand_ridge_segment_sand.png",
+      "sha256": "1194c8d3013a1ec1aba7d712c5766450e75a1a1690339c3169ab7d34faf1054c",
+      "bytes": 693861,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m12_alpha_composites.jpg",
+      "sha256": "ba9ee891053a9de68cfa79fb50a9dbe5dffada014ff3074255e42d6301365ec4",
+      "bytes": 274729,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m12_heavy_crossbow_bolt_dark_purple.png",
+      "sha256": "ec2f96d9e3e54b68f00a063590dda74c2adea84a2d89a80904e67466114ba8d8",
+      "bytes": 651702,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/diagnostics/m12_heavy_crossbow_bolt_sand.png",
+      "sha256": "13a809d44067852914a6e8d023589e5def56bda0c4795f7815860e0932ffdae8",
+      "bytes": 664112,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/extra_generation_plan.json",
+      "sha256": "2cad24be07625e9a8c6a6cd254bde90b8eb7ed59bfe825c43ba7b08a9acea162",
+      "bytes": 12110,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/extra_generation_plan.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/generation_plan.json",
+      "sha256": "b16f4c37a91d6beb57ad758ea6c8055eb5940d75ddb93fcf5e8746304cdd268c",
+      "bytes": 35355,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/generation_plan.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/index.json",
+      "sha256": "cd962e39dc95b428ff6f1959ddf5fc0f25da9894b0dda9f0003863a0243558c9",
+      "bytes": 131779,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/index.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/candidate.png",
+      "sha256": "158c20e5f0499ec2066d4b5333b197aebed88e90eebbe3f7846f1dfdbd4f731e",
+      "bytes": 1241941,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/source_candidates/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/prompt.txt",
+      "sha256": "299f56cf148eb8e4b16058ffdf793fe6e30c238d66ebc4a9311577c0d9a95836",
+      "bytes": 2055,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m08/execute/prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/provenance.json",
+      "sha256": "99135dbe9e3532326c8f06208e0e25977480f15eeb1e5f8cfb852b349b8337a4",
+      "bytes": 655,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m08/execute/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/repair/candidate.png",
+      "sha256": "456841f7032a8560c251203739d5f04dcd8522278a853521fe69eb4d3c33ec90",
+      "bytes": 1242627,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/actions/mirror_slash/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/repair/prompt.txt",
+      "sha256": "572ed4f7acce16c08a8ae8c0d8c5c992cbc4f79d263689ec1ba4e4afac87aba0",
+      "bytes": 760,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/actions/mirror_slash/provenance/execute_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/repair/provenance.json",
+      "sha256": "9fa5382fc12d23c51f78d648aa3927d2381d58b3524820a6fbb523d85e2c3a73",
+      "bytes": 810,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m08/execute/repair/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/mirror_short_light/candidate.png",
+      "sha256": "d1a8ae76c0024fa98bb911f909c7988e4faaef9a0db9d31c8cbf7dc079a6c715",
+      "bytes": 429179,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/mirror_short_light/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/mirror_short_light/prompt.txt",
+      "sha256": "e7a791879e43b046e8de580776e01ad0f1fd76434ea6b772ca17f795f5092002",
+      "bytes": 1102,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/mirror_short_light/provenance/effect_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/mirror_short_light/provenance.json",
+      "sha256": "6e7980c096b18c25435afab97f37857a53698ec11bb23e9b3dcf302f04388061",
+      "bytes": 733,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m08/mirror_short_light/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/recovery/candidate.png",
+      "sha256": "14497434248d58c629895ef1e59c7fb55664a3561099e45533fb47a942672378",
+      "bytes": 1255804,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/actions/mirror_slash/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/recovery/prompt.txt",
+      "sha256": "93e91da569fa4d61d95151f5084d2f761d1a295e8bf699910f8c93ad7e606058",
+      "bytes": 1986,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/actions/mirror_slash/provenance/recovery_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/recovery/provenance.json",
+      "sha256": "187f89efa9b476fd6419c802419d64e756365317ca380b4e398432fd8c3b92fd",
+      "bytes": 656,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m08/recovery/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/telegraph/candidate.png",
+      "sha256": "41528e88b9d7f9d692cdda3257d9d86c7a1f1115ce369308d7ec12b93e3f9d3d",
+      "bytes": 1259082,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/actions/mirror_slash/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/telegraph/prompt.txt",
+      "sha256": "d1f7744c062646c5a9de7f6b4a0e25e51c3a24287504f1472bb125e6911f011e",
+      "bytes": 1974,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m08/actions/mirror_slash/provenance/telegraph_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/telegraph/provenance.json",
+      "sha256": "e45223c5a985213dd1ec0bdb080e8f8e448387cceb511643b7cbd25853945750",
+      "bytes": 657,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m08/telegraph/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/execute/candidate.png",
+      "sha256": "e7f698a631218c0b826c1585caf91f9fa27573ed415b07001749f812c9773272",
+      "bytes": 1206696,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m09/actions/dart_venom/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/execute/prompt.txt",
+      "sha256": "d209063091639ae189c52c2dc81cef39ccb6a0305b538b4fbc0175cc94f7af1a",
+      "bytes": 2084,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m09/actions/dart_venom/provenance/execute_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/execute/provenance.json",
+      "sha256": "d86c2d194c641a530923c4820b5907397012b949ac9ab0c0aa0c75909666d9f2",
+      "bytes": 655,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m09/execute/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/poison_dart/candidate.png",
+      "sha256": "b8bd294902b3a3bcdef4c15a2f9571db2178efd56aacce48ed106b13414f993c",
+      "bytes": 1101490,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/poison_dart/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/poison_dart/prompt.txt",
+      "sha256": "f342b72c05a2133ba10d47b9d87b2df10e9667a36d2f94fe9357e96eb149dbdd",
+      "bytes": 1025,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/poison_dart/provenance/effect_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/poison_dart/provenance.json",
+      "sha256": "b292cd04e8e8a6b8d273ec202ec5ec6b578848ba78762baf2891859ee15107f6",
+      "bytes": 727,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m09/poison_dart/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/recovery/candidate.png",
+      "sha256": "b5fc70973cedb10a3c2d1e83cf3a6deef012ac74cd9a72dc73ff1136f5a09ee7",
+      "bytes": 1356952,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m09/actions/dart_venom/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/recovery/prompt.txt",
+      "sha256": "ba02a5482b5778c59ec338ec1c7de97cdbe41c4f7657989a4a20429fcf0f1675",
+      "bytes": 2081,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m09/actions/dart_venom/provenance/recovery_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/recovery/provenance.json",
+      "sha256": "472f1803c567365176a858cefed3f55e6429bd41e7b29b46010e446e2e5b2acb",
+      "bytes": 656,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m09/recovery/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/telegraph/candidate.png",
+      "sha256": "f6d4369a905e6dca597d431d1684a06c617aa2aa888fa44b49aa65a24a89aa2e",
+      "bytes": 1301651,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m09/actions/dart_venom/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/telegraph/prompt.txt",
+      "sha256": "cfb5876d6ff20d8b116c009eaf1b2f67a52d04d90f666c685b1dd575471dd44e",
+      "bytes": 2054,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m09/actions/dart_venom/provenance/telegraph_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/telegraph/provenance.json",
+      "sha256": "a6939603b968d1beeffb6423253afb7abf0fcf07872d0921504799a9b619039b",
+      "bytes": 657,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m09/telegraph/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/execute/candidate.png",
+      "sha256": "b5b798077413890ac4157c524549ffe1aafbd8de96c4f740abcb6d910ec3b62a",
+      "bytes": 1359953,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m10/actions/mirror_attendant/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/execute/prompt.txt",
+      "sha256": "76109fcb5a86b586583bb2474cfc3a8264b25c31a0dd3fdd74dc7fccbb653980",
+      "bytes": 2152,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m10/actions/mirror_attendant/provenance/execute_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/execute/provenance.json",
+      "sha256": "cc451a9d9b5e9c606e43af57b20d12efd07b6795c9019cf40dbc23b405afff05",
+      "bytes": 655,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m10/execute/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/mirror_state_indicator/candidate.png",
+      "sha256": "05421cccd98421b570f64e38fc3e2c5aff4e91b2d1f2484068dac8f70290431c",
+      "bytes": 1969124,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/mirror_state_indicator/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/mirror_state_indicator/prompt.txt",
+      "sha256": "e198d92e327e2c52dbb278b61c0989f25ff7c3c08ff6d970e145f709bfa9cb0d",
+      "bytes": 1324,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/mirror_state_indicator/provenance/effect_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/mirror_state_indicator/provenance.json",
+      "sha256": "e7ab7d747a18bffd3f46c606f0fb84c300c8527abc74a5cc9cabcb6c50edb117",
+      "bytes": 738,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m10/mirror_state_indicator/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/recovery/candidate.png",
+      "sha256": "0e4fa17221edfc8107de5e70053c33f773738114af89cacd09c9ac5556bf0665",
+      "bytes": 1350652,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m10/actions/mirror_attendant/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/recovery/prompt.txt",
+      "sha256": "9fdba9f48bb58a1cef501543751b0a5f6fdf15f69562be3d233e8cbef51c9112",
+      "bytes": 2104,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m10/actions/mirror_attendant/provenance/recovery_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/recovery/provenance.json",
+      "sha256": "94099e17e7878dd84ca887ffb72ba4ed3eb512fe66856ad340cfc8ee4fec5e1d",
+      "bytes": 656,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m10/recovery/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/telegraph/candidate.png",
+      "sha256": "11fdf57a8a6226f7368455b76114d029fc8d2b4aab6965d70fef3bb05c62666a",
+      "bytes": 1447091,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m10/actions/mirror_attendant/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/telegraph/prompt.txt",
+      "sha256": "f30f558ea0b55050f493c83dfe0252395705fcc643cf11394aab7d3e50c2ced6",
+      "bytes": 2080,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m10/actions/mirror_attendant/provenance/telegraph_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/telegraph/provenance.json",
+      "sha256": "3c746ed8593db0153b9ccc65fc9bce46d869d84c12142ffaf6606c03b8a93003",
+      "bytes": 657,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m10/telegraph/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/candidate.png",
+      "sha256": "90410340b9d17773fbc17db538ed9e068d075ac4be4da313618827bb2a49c906",
+      "bytes": 1279288,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/source_candidates/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/prompt.txt",
+      "sha256": "dcd71ba875106f5c1d533e0c00072b64da9abd79e34e59b410ee868b8a1e5ee8",
+      "bytes": 2015,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m11/execute/prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/provenance.json",
+      "sha256": "48fa224d205d34d310a1f407fdd26b2e8c8c00cff7ee807d9c13651322a02548",
+      "bytes": 655,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m11/execute/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/repair/candidate.png",
+      "sha256": "46a12fa3d6fe17fab4252e2adf825566667ff44f78c664d202fcec3267ce3295",
+      "bytes": 1313098,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/actions/sand_ridge/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/repair/prompt.txt",
+      "sha256": "0f39a348d05cd7af6cc705cfe9ed2a5a391f60f067632da0673edaded25ca172",
+      "bytes": 747,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/actions/sand_ridge/provenance/execute_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/repair/provenance.json",
+      "sha256": "d41aa55514ae13a8f92831be04a14e37d75f9202df25be05f4992cb1f37d3ec5",
+      "bytes": 810,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m11/execute/repair/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/recovery/candidate.png",
+      "sha256": "7f619a486d687d53f48de3f8247a6a0e28eefb5db4d0caa0b70ac56c1577459c",
+      "bytes": 1279376,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/actions/sand_ridge/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/recovery/prompt.txt",
+      "sha256": "aa2eae4e0fc311fed800078fb5c13279b53a109473341db0c0dd7e1c1fa4607f",
+      "bytes": 1962,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/actions/sand_ridge/provenance/recovery_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/recovery/provenance.json",
+      "sha256": "e8b57838354efd0772d15107aaaae82883b5305b9072de9dca6bfa6f85e1f4cc",
+      "bytes": 656,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m11/recovery/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/sand_ridge_segment/candidate.png",
+      "sha256": "0754198247a8fe18ef369ff3b19a345b89aecc0f6a57ceefe21dfc3fe143ced9",
+      "bytes": 854998,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sand_ridge_segment/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/sand_ridge_segment/prompt.txt",
+      "sha256": "83ed21cf5946be0c9efff4f47f111485cb624667f287c85ee8ecf828ef1d68ff",
+      "bytes": 1117,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/sand_ridge_segment/provenance/effect_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/sand_ridge_segment/provenance.json",
+      "sha256": "a0e466327c88962030997b782671de3ee223a3a91bd156c5be92e89e4d74b5c3",
+      "bytes": 733,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m11/sand_ridge_segment/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/candidate.png",
+      "sha256": "07411af8fdbc34b130d637648bb11f06fe8aa4d0b4f25c669529af8faef6a8ed",
+      "bytes": 1367058,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/actions/sand_ridge/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/prompt.txt",
+      "sha256": "bb6bc6d978387beccf4fa9b5613c0ad61eebea77c38dc92c0b22717df91567a3",
+      "bytes": 2033,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/actions/sand_ridge/provenance/telegraph_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/provenance.json",
+      "sha256": "8fb3a20016dac0b1e315830636ebb9d6cd563f286297dd9fb476988147fcc770",
+      "bytes": 657,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m11/telegraph/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/repair/candidate.png",
+      "sha256": "53c6e5e8b3918f08b8416fdd00a4d58e982152ef75be367a8ef9a8b329cfc5b7",
+      "bytes": 1325255,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m11/source_candidates/telegraph_repair_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/repair/prompt.txt",
+      "sha256": "f215fa37122a71101ec3916faed557d35e5eb6ab1b30b2c94eacf8860d3f8654",
+      "bytes": 911,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m11/telegraph/repair/prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/repair/provenance.json",
+      "sha256": "73d490eb1e7928ebad4f941b6e974b9646056e583dbea806af66d3d3e7bd6441",
+      "bytes": 814,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m11/telegraph/repair/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/execute/candidate.png",
+      "sha256": "760649f227c544f1d221b1f2666d620483c199cdf523717e2aeb1cbadd0d5f25",
+      "bytes": 1493561,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/actions/awning_bolt/execute_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/execute/prompt.txt",
+      "sha256": "a48a33fbba8388d0d74c7af50a120eac7dfa870828567932618e905cf17d446b",
+      "bytes": 2078,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/actions/awning_bolt/provenance/execute_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/execute/provenance.json",
+      "sha256": "4da180b01e6c60b5df136f30390e6d420ad0264743eec7ad4b84940e5574cc0c",
+      "bytes": 655,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m12/execute/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/heavy_crossbow_bolt/candidate.png",
+      "sha256": "979758a9adf0ae34629b1f80efe6da8af905b6146d6a6cf62a585ee15100c9e0",
+      "bytes": 814388,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/heavy_crossbow_bolt/effect_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/heavy_crossbow_bolt/prompt.txt",
+      "sha256": "8d6cbd378316aecc55037b0e7e26345f76f06143a1d1c11ea65a3f5152eb0c5e",
+      "bytes": 1014,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/effects/heavy_crossbow_bolt/provenance/effect_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/heavy_crossbow_bolt/provenance.json",
+      "sha256": "644a229a7aa39f11a2c67ba3eb24468b0a78d47e45f7ed5f5977077888b94039",
+      "bytes": 734,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m12/heavy_crossbow_bolt/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/candidate.png",
+      "sha256": "f7837557a84c912e8202c9347fcb0470339287a91b652f43df15a91e92f62a10",
+      "bytes": 1672743,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/source_candidates/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/prompt.txt",
+      "sha256": "102e866f46bf56a7dbafa1e213d0811a2765f22f7e1888dc06732540aa52c7eb",
+      "bytes": 2067,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m12/recovery/prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/provenance.json",
+      "sha256": "671a2bb5725b33307a5e9e5ab9973828718b3f0d5ae4de463d4d1395e535fe24",
+      "bytes": 656,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m12/recovery/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/repair/candidate.png",
+      "sha256": "bee3becfec07e148423ec668092db45c512301be3499392ee27011f2a37bb78b",
+      "bytes": 1602847,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/actions/awning_bolt/recovery_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/repair/prompt.txt",
+      "sha256": "ddce93489285dd4e3054cf50ed9a1a17eefbca549d0b8d232767794f537e848d",
+      "bytes": 805,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/actions/awning_bolt/provenance/recovery_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/repair/provenance.json",
+      "sha256": "d962b3be11458dd9d1eadd20e0a7b4f65a7384b0d769074d3394c6fd2f87dcdf",
+      "bytes": 812,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m12/recovery/repair/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/telegraph/candidate.png",
+      "sha256": "23af2e4cf8fc5154cfc0a0a54bfa79261ba10358fc68074409b393276dc4e46f",
+      "bytes": 1372328,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/actions/awning_bolt/telegraph_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/telegraph/prompt.txt",
+      "sha256": "95c3b95a0d73973e51d3f0e1bbb1bc2d69e7d1ea1c08ca4adc4c486627b41a88",
+      "bytes": 2039,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m12/actions/awning_bolt/provenance/telegraph_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/telegraph/provenance.json",
+      "sha256": "ae7200014a60f476cd96cae84c18723e41ef90a2688823a44ab9ff1ac7e7cb0f",
+      "bytes": 657,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/m12/telegraph/provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/manual_qa.json",
+      "sha256": "55754b4b8ab3a7be93e02d4ae5a9250eace0faa4837d72cfae7dbf28ba3f6071",
+      "bytes": 18862,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actions_mid_0839/manual_qa.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actors/m01/B07_M01_spear_lizard_guard_idle_ready_v1.png",
+      "sha256": "d02a347f98ca459148174b432c115537ddd94497e278e7bb39e0203ef9321de1",
+      "bytes": 1122804,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/source_candidates/b07_m01_spear_lizard_guard_idle_ready_v1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actors/m01/B07_M01_spear_lizard_guard_idle_ready_v1.prompt.txt",
+      "sha256": "44003b611e47b5565ca9ba97c20f0ab8793e677ca4ee2c0500d808a6b76f63c0",
+      "bytes": 3457,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/provenance/idle_initial.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actors/m01/B07_M01_spear_lizard_guard_idle_ready_v2.metadata.json",
+      "sha256": "4d4f3054f0fc86c17afb7eb349b6f4e2bcc1c3d068eaff036a06ca04b6691c61",
+      "bytes": 7938,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actors/m01/b07_m01_spear_lizard_guard_idle_ready_v2_metadata.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actors/m01/B07_M01_spear_lizard_guard_idle_ready_v2.png",
+      "sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+      "bytes": 978742,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/idle.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actors/m01/B07_M01_spear_lizard_guard_idle_ready_v2.prompt.txt",
+      "sha256": "1f4753ca271825cb90b2bb1e8237a9055e1db63623068c60282d8e4cba84b8a3",
+      "bytes": 2013,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/enemies/m01/provenance/idle.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actors/m01/M01_PILOT_REVIEW.md",
+      "sha256": "ab7c0aa7b782d76e1227df41f0b29ba36eaa4d9a203a538fcf846ca397a79398",
+      "bytes": 3545,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/actors/m01/m01_pilot_review.md"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/geometry-guide.png",
+      "sha256": "ccdc45d65bbf18a1d51e8ece140d598c3a8f01c25460b7c2962ad72660ae709c",
+      "bytes": 48477,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/geometry-guide.svg",
+      "sha256": "585ca601f96083d4397db0822bd6773ab7d936869a9d880abf5a99d35100c612",
+      "bytes": 1142,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_build_qa.py",
+      "sha256": "d70d17827c67e20de59195d8d71e60a95d18c170331cbfc1336b1f3e0cc2084f",
+      "bytes": 5624,
+      "status": "excluded_non_source_working_file"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial.png",
+      "sha256": "96122633419b7a12867fc952565f469a6f00ea12cd4ef65bfab9a511f9c455e4",
+      "bytes": 2573004,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/bridge_rooted_initial.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial.prompt.txt",
+      "sha256": "4a8bd64d6ea02202c7bcd3d3014a425a7974f000ea4b67ac16ca15a2a8eadf51",
+      "bytes": 2847,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_support_1003/bridge_rooted_initial_prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial.provenance.json",
+      "sha256": "c97e39ad667922be874794dc05071df7ce589198a653eb13eb1fac1b81b304c3",
+      "bytes": 4234,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/l37_support_1003/bridge_rooted_initial_provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial_qa_dark.jpg",
+      "sha256": "73b1d58bda21af6f3ab093c43075494725fe2d4105b517536df1940deaf9d3b8",
+      "bytes": 503753,
+      "status": "excluded_non_source_working_file"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial_qa_light.jpg",
+      "sha256": "801bc43ac606d2e1bdc9a0a48e7516cc96c1230e806e30670d17372eafbd0082",
+      "bytes": 503024,
+      "status": "excluded_non_source_working_file"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision.png",
+      "sha256": "c5e190b6d796309fd1d879b56cdb2dca9f274de698a968ce088148821337f015",
+      "bytes": 2496460,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/bridge_rooted/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision.prompt.txt",
+      "sha256": "11d6a116aa7b8d80558f3132f3dd977664044b081a4e93d906ce3409d2883b94",
+      "bytes": 1853,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/bridge_rooted/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision.provenance.json",
+      "sha256": "26ed5e7545788f7b9b83fb647737b928caa02228942d1beb26a18ff71efaf57b",
+      "bytes": 2986,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/bridge_rooted/provenance/source_candidate.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision_qa_dark.jpg",
+      "sha256": "6336f0feabc346b7b5f5aab172b4ee0cbd03daeed3249213641d84d401a7999e",
+      "bytes": 502416,
+      "status": "excluded_non_source_working_file"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision_qa_light.jpg",
+      "sha256": "c00b54aae7e17e804deed87b085f4eb7a85704ae0337fa93d194fde483e6b87f",
+      "bytes": 499087,
+      "status": "excluded_non_source_working_file"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/index_bridge.json",
+      "sha256": "54304580b4daad0b59d383b6841b7faced9708672349b2975527ee49aa948586",
+      "bytes": 8374,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "docs/levels/b07/rooms/l37/bridge_rooted_qa.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_candidate.png",
+      "sha256": "1502d7f2cd6edf4c4fb4015b01caa6c8b61d8087a53e98ca6d424f0679023438",
+      "bytes": 1234980,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/north_gate_midground_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_candidate.prompt.txt",
+      "sha256": "b017896a7c03bb9973f3df28cce459c4c4c57c26d5c8222095b00b67b1436e8b",
+      "bytes": 4906,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/north_gate_midground_candidate_prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_layout_guide.png",
+      "sha256": "50ccb2b2e3c440f461b09dd45e930f4b63115e64c46c8298531fa3921cc745be",
+      "bytes": 47124,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_layout_guide.svg",
+      "sha256": "ee74d9acadffc09b4edd5d1d24be84cf7b6ae1b56a32a92882a47e988d067cfa",
+      "bytes": 1119,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_1.png",
+      "sha256": "a7c8f5e854a4b71a011de093f55083dfd8ec9d2718289ce80d009891a235e26c",
+      "bytes": 883980,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/north_gate_midground_repair_1.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_1.prompt.txt",
+      "sha256": "68dd7dba0915de72708527f6491e3ef616227dcaa5b1c21c0127785ae2fc11cd",
+      "bytes": 2189,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/north_gate_midground_repair_1_prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_2.png",
+      "sha256": "d4b4911104ae9ccae9d0c8ea4866616496bc99122441c394605c7e4a55783d61",
+      "bytes": 852777,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/north_gate_midground_repair_2.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_2.prompt.txt",
+      "sha256": "2c1f157ad2c1c52c2811a1d67b9708fd354fd417f8a168d8c33d69a416169d33",
+      "bytes": 1490,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/north_gate_midground_repair_2_prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_3.png",
+      "sha256": "669098ecc68dee676770428f566e3c4007927e9540cb41c5c573728619170f6d",
+      "bytes": 1277954,
+      "status": "original_bytes_newly_preserved",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/source_candidates/north_gate_midground_repair_3.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_3.prompt.txt",
+      "sha256": "f5caa8c3c71762ec8d0b4591c345beab5e10e8d8b0460735ab3b3ff4c7cf168f",
+      "bytes": 1853,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/north_gate_midground_repair_3_prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/north_gate_midground_repair_review.json",
+      "sha256": "4b233e3116e60ee64f5007737ce5acb62604234503b12809744817c244e6c44f",
+      "bytes": 7368,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/north_gate_midground_repair_review.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_audit_qa/north_gate_midground_candidate_standard_alpha_composite.jpg",
+      "sha256": "87a08bd17a1cc6f4477599ee8fa285b7a9bb96a1a887a3c4bf7baabb68ae39fa",
+      "bytes": 669542,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_audit_qa/north_gate_midground_repair_2_alpha_edge_crop.png",
+      "sha256": "dcd0901c0c9eeaebf58effa413bbab2f79b2e0f43ff00dd9767e6fe6e588b666",
+      "bytes": 163869,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_audit_qa/north_gate_midground_repair_2_standard_alpha_composite.jpg",
+      "sha256": "292000795131eebdf65016367ce946ca3b21ce5e785195e301cc6e37eee3b671",
+      "bytes": 498546,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_audit_qa/north_gate_midground_repair_3_standard_alpha_composite.jpg",
+      "sha256": "d5e68a69771a024cede8c1d890cb12d53ebd2a182ded38e823f7cd21c3aaa98b",
+      "bytes": 719775,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_audit_qa/west_guardian_alpha_edge_crop.png",
+      "sha256": "ccd3452c51eb16c3bae6dbad04887185f0049f461a1224ea485c38d50f7dd06f",
+      "bytes": 70121,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_audit_qa/west_guardian_standard_alpha_composite.jpg",
+      "sha256": "44cdc43597f60370990b43483bf436f201dfb43bc8d40a9ec6f7e0ef1522d8b5",
+      "bytes": 891540,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_geometry_audit.json",
+      "sha256": "39dafde75c7858be75cac853b93f961c8b79f10a68c04a5036f30e0ebc8793b6",
+      "bytes": 63203,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "docs/levels/b07/rooms/geometry_source_audit.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_geometry_audit.md",
+      "sha256": "31d3e4a1d0b9c86e506eaac78c8f2ce970961d033d548ee0e1cb0e94fea3f136",
+      "bytes": 15111,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_geometry_audit.md"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/index.json",
+      "sha256": "ce2917c2557dbd233a9033f45fc7585112ccd457dfead17a6d8605946ffa8358",
+      "bytes": 21956,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_landmarks_0928/index.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/initial_qa.json",
+      "sha256": "b6d442d628e5b7af8af4948c220e43e5fc22aad47ba4319a91c0d06215a8a7c9",
+      "bytes": 5990,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_landmarks_0928/initial_qa.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/market_awning_stall.prompt.txt",
+      "sha256": "a98ac9833942a771a6fec7d25e025cc8aa190f6991466f1971845715e47d5c84",
+      "bytes": 2261,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l38/market_awning_stall/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/market_awning_stall.provenance.json",
+      "sha256": "055c502ddef61f337f83eba7627a4d91eb02c1ea0de77716b32f9dd93a572ce4",
+      "bytes": 6181,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_landmarks_0928/market_awning_stall_provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/market_awning_stall_initial.png",
+      "sha256": "7a8be9559cfc2579aee6a5f28333e19f6805a1500feca25f0b78add7486d9191",
+      "bytes": 1938495,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l38/market_awning_stall/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/mirror_workbench.prompt.txt",
+      "sha256": "7772a1374b738699678ba72c658579bf010ab70e150ccfcbf67896a239474de9",
+      "bytes": 2398,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l40/mirror_workbench/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/mirror_workbench.provenance.json",
+      "sha256": "9335c0664dcd7051d9da07e1d99cf9d404c11c29ac2e650c75ccee598669c2cc",
+      "bytes": 6266,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_landmarks_0928/mirror_workbench_provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/mirror_workbench_initial.png",
+      "sha256": "0fa744a0a4e6b1211e4fabf7a2160cc9e1f4490ec082b06de0a825286b6565f6",
+      "bytes": 1510306,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l40/mirror_workbench/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/prompts.json",
+      "sha256": "10ef4c30e19773ce1929efa59470853a6b2c0b6b438d2983022e1438df5ec79d",
+      "bytes": 19613,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_landmarks_0928/prompts.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/qa_composite_dark.jpg",
+      "sha256": "70a4785965939fac56fe97a5e94d8c990a3c956ea3f90f989c7197e1cd5c80b8",
+      "bytes": 373161,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/qa_composite_light.jpg",
+      "sha256": "8dbdb5a2e7f40478d45963fb363ace5edad9c42c75f188ec8d7a4e7b36170926",
+      "bytes": 378849,
+      "status": "excluded_diagnostic_not_source"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sand_study_table.prompt.txt",
+      "sha256": "7d4e53c53af4bf99f1105f46eca90d2932bb888df0f39f4bf8c905671858e752",
+      "bytes": 2293,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l39/sand_study_table/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sand_study_table.provenance.json",
+      "sha256": "0db074ba0fe5c85b4b3b9b6b89331a343387adbbde4fa0340a3ed196ea1ba2ac",
+      "bytes": 6121,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_landmarks_0928/sand_study_table_provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sand_study_table_initial.png",
+      "sha256": "9837508d413380e171ccd4eb0a3a252655e6fecd4631c1990d3a9562d82190d1",
+      "bytes": 1498858,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l39/sand_study_table/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sandstone_obelisk.prompt.txt",
+      "sha256": "1f266a07cda209d7e7e47b06bb69f08aa405506e5dfbbc8a0ff9a935d967645e",
+      "bytes": 2389,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l42/sandstone_obelisk/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sandstone_obelisk.provenance.json",
+      "sha256": "f54165c156397c318fa81f8d9a9e74079fc60d4127cad3cb0b54e6ca0e73def2",
+      "bytes": 6326,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_landmarks_0928/sandstone_obelisk_provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sandstone_obelisk_initial.png",
+      "sha256": "606c90506f974b6ce21b579c4fdd6f6c056103708b7a129fa36f20a0364c5c39",
+      "bytes": 1552290,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l42/sandstone_obelisk/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/temple_portico.prompt.txt",
+      "sha256": "b90ca9393e7b71e16883eb932eecaecb11a9da090219262dc1bf1b78d061dadb",
+      "bytes": 2553,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l41/temple_portico/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/temple_portico.provenance.json",
+      "sha256": "1d87335c9b4b59c21d6b42324a6bf02c047ff4a0dcf57d3c9930a59de6fabb62",
+      "bytes": 6286,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_landmarks_0928/temple_portico_provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/temple_portico_initial.png",
+      "sha256": "18f4bd611a7fb7a468fa54291fb38724cb779c41d4173b3fe584820d44f43bfe",
+      "bytes": 1718244,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l41/temple_portico/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/throne_backdrop.prompt.txt",
+      "sha256": "43ba3968fe44d12a9a7d567371c596b3595067d4af1c5ce1526e1753d912b2ec",
+      "bytes": 2569,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/bo07/throne_backdrop/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/throne_backdrop.provenance.json",
+      "sha256": "29882e8680ff389ef44ebdcf009d55e1e0a0868ff91c0a8e5ba761dc769bfb5a",
+      "bytes": 6402,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_landmarks_0928/throne_backdrop_provenance.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/throne_backdrop_initial.png",
+      "sha256": "57ac5f776cc77d1d50d79c538bbbab3a670e3545301fc5722e6df521cdf481af",
+      "bytes": 1873120,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/bo07/throne_backdrop/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/lower_arch_bridge.json",
+      "sha256": "628e630b68b0ea3afd492d514e68321dae9be464272165d4e93c716b76b7342c",
+      "bytes": 1050,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_layers_0928/lower_arch_bridge.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/lower_arch_bridge.png",
+      "sha256": "69c56b74140113ed860662b8585fc2e25a4b2fc457148ef813023bc417d986de",
+      "bytes": 1482630,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/lower_arch_bridge/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/lower_arch_bridge.prompt.txt",
+      "sha256": "a854e1f3ba21c4608dc67332a591b48222dd2dc88088e51dd7943ae1deae8a75",
+      "bytes": 1017,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/lower_arch_bridge/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sandstone_paving_tile.json",
+      "sha256": "728ec3adfa41c6c2618112366d389e3ba1ee2e05a78fdc10ae960641e866f42a",
+      "bytes": 1071,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_layers_0928/sandstone_paving_tile.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sandstone_paving_tile.png",
+      "sha256": "85eea3d6d9ae2dadd73bb89a23c0ae3afa34cbffeaf055980b7010e9953c61d8",
+      "bytes": 2149154,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sandstone_paving_tile/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sandstone_paving_tile.prompt.txt",
+      "sha256": "1f135d2127072dac7a7958fbf1e83e8f917b6099960afacf5671222a97ec8ba3",
+      "bytes": 919,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sandstone_paving_tile/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_landmark.json",
+      "sha256": "ce96e13b72427e44101d5f09dbcc09867f27c877009429cf732be98bf20b7454",
+      "bytes": 1063,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_layers_0928/sun_mirror_landmark.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_landmark.png",
+      "sha256": "42b88fa8cbe62b6a0283915584fadbed9f7364c0148d064c9deef225d230d7a3",
+      "bytes": 1449624,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sun_mirror_landmark/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_landmark.prompt.txt",
+      "sha256": "74ff0de4f884207fed46d7c79306688d0073e403137476d95d733652d4d66b8d",
+      "bytes": 1062,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sun_mirror_landmark/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_rooted.json",
+      "sha256": "629983e39b3ad995ad9a046778627e0d87fd51039e8e0ab23a2430f52db2a5f5",
+      "bytes": 1055,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_layers_0928/sun_mirror_rooted.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_rooted.png",
+      "sha256": "529c2dcb6b3f8dbd9116f92d1c6a4f900042b843af75094e42bd7e44893dbe82",
+      "bytes": 1481210,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/sun_mirror_rooted/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_rooted.prompt.txt",
+      "sha256": "974525d49db7b1435c8f06bcfe2017d18eb387477bb178eed60338dbdf6b07ca",
+      "bytes": 1059,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/sun_mirror_rooted/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_rooted.json",
+      "sha256": "9c69dced8ea9cc1886369f43f73c16a67b2588ccc2bf81f22c89c67b3d97dd8f",
+      "bytes": 1063,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_layers_0928/terraced_city_rooted.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_rooted.png",
+      "sha256": "fa7f7001e7686811789d8290af0f54a56ecb5cd352d12b62c5dbe8f4307bcec1",
+      "bytes": 2808194,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/terraced_city_rooted/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_rooted.prompt.txt",
+      "sha256": "7d1826a5ed9655370140bcd9383dab9d92d67d12f492c7ebc6dba536ac170166",
+      "bytes": 1483,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/l37/terraced_city_rooted/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_wing.json",
+      "sha256": "9a70415ee712ab837de9de6ac7a27361c62595e03a8f42a37c94edae3645fedc",
+      "bytes": 1053,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_layers_0928/terraced_city_wing.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_wing.png",
+      "sha256": "bab8314fd6e111f7848168eb7062e5f21a06add85f8826b1bd8589cd0a61fff3",
+      "bytes": 1744882,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/terraced_city_wing/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_wing.prompt.txt",
+      "sha256": "d4b6a9034ffef76787fdafb9d9bb579eb0c465901fde949ac783ad6439563505",
+      "bytes": 1159,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/terraced_city_wing/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/index.json",
+      "sha256": "2fc4fafe77095856fff361f6a2370bb0fea1f11a56c4249669c4fc0412bfd2b5",
+      "bytes": 24302,
+      "status": "source_metadata_newly_preserved",
+      "preserved_paths": [
+        "docs/levels/b07/source_preservation/room_props_0928/index.json"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/low_stone_cover.png",
+      "sha256": "b9bc215a15c9d11e2ebe8e696b4afadac0c416661ee0415bc3c3149bc8e02f5f",
+      "bytes": 1272721,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/low_stone_cover/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/low_stone_cover.prompt.txt",
+      "sha256": "6e2f4293fcbe602d228dcd3a5aab088afdbb76f3ebbfa25eab84d03980246b48",
+      "bytes": 2381,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/low_stone_cover/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/manual_gate_lever.png",
+      "sha256": "c0c555189af50bacb682ed14a399a5d621bde575df2c314911ce9ee31e97aad1",
+      "bytes": 1390966,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/manual_gate_lever/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/manual_gate_lever.prompt.txt",
+      "sha256": "3435d9f1a09496c11259001d4868b42342476f7de65660d19d19796202b7bfc7",
+      "bytes": 2360,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/manual_gate_lever/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/qa_dual_background.jpg",
+      "sha256": "db2ea8f82d5b82e79bc2c1ffbe5e9eaa92f62cd54176f48d0e6646fb306ce7b5",
+      "bytes": 556626,
+      "status": "excluded_non_source_working_file"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_altar_disc.png",
+      "sha256": "b3d8da17831d18f1ef12f056373d98afb2a81ad05034bcd6224aa98f469529bc",
+      "bytes": 1923186,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sun_altar_disc/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_altar_disc.prompt.txt",
+      "sha256": "033e9181b36d2534ba3e0ffb1645adffdc4eb25f65a48b8b94e562143ebc69c5",
+      "bytes": 2369,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sun_altar_disc/provenance/source_candidate.prompt.txt"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_mirror_pedestal.png",
+      "sha256": "bdceb65dae69957c91d562e5d1267534a8a45e86732526b6d2e0fbe63ffc561a",
+      "bytes": 1254593,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sun_mirror_pedestal/source_candidate.png"
+      ]
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_mirror_pedestal.prompt.txt",
+      "sha256": "b6215d2fee2da71fe7c1cc05e85cb04556c844057fcef5400bedae3377f1d246",
+      "bytes": 2496,
+      "status": "byte_identical_in_repository",
+      "preserved_paths": [
+        "assets/levels/b07/rooms/shared/sun_mirror_pedestal/provenance/source_candidate.prompt.txt"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "status": "historical_source_candidate_preserved_at_user_stop",
+  "formal_acceptance": false,
+  "runtime_integration": false,
+  "original_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute/candidate.png",
+  "sha256": "59a553cb1da10c47abfdd089ed4f33e67e7bc822ad201693854c1a8e437c86f5",
+  "byte_identical": true,
+  "reason": "Preserve original/failed source before authorized B07 workspace cleanup; no new image generation or pixel edits",
+  "related_source_group": "actions_late_0839/m15/execute"
+}

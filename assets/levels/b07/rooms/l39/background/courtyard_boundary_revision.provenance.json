@@ -1,0 +1,43 @@
+{
+  "status": "blocked_do_not_integrate",
+  "formal_acceptance": false,
+  "room_id": "L39",
+  "generation_tool": "built-in image_gen",
+  "intent": "single_targeted_boundary_revision",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-dbc6f636-fe58-4aec-af70-229f092566da.png",
+  "destination": "assets/levels/b07/rooms/l39/background/courtyard_boundary_revision.png",
+  "sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+  "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+  "byte_identical_to_generated_source": true,
+  "size": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "prompt": "docs/levels/b07/rooms/l39/courtyard_boundary_revision.prompt.txt",
+  "prompt_sha256": "d0ee03948248ff85cf0b80225f57d662ac6d65b74825f64283e8dd9c031f5a96",
+  "qa": "docs/levels/b07/rooms/l39/painting_source_qa.json",
+  "revision_count": 1,
+  "generation_budget": "one initial generation plus one targeted revision; exhausted",
+  "art_pixel_postprocessing": "none; source PNG bytes copied without resizing, compositing, recoloring, cropping, warping or pixel edits",
+  "runtime_registered": false,
+  "runtime_changes": false,
+  "native_detail_count": 0,
+  "references": [
+    {
+      "role": "edit_target",
+      "path": "assets/levels/b07/rooms/l39/background/courtyard_boundary_candidate.png",
+      "sha256": "b2c13a6c50b3d52c32508f171c001f1c029b05021653f228f1f9800fa0634531"
+    },
+    {
+      "role": "exact_geometry_reference",
+      "path": "artifacts/l39_independent_guide/exact_floor_mask.png",
+      "sha256": "6f3218158ed71cb75f4ec1669e04b4f31890f4cbe495db3109229328b0af25b8"
+    },
+    {
+      "role": "boundary_qa_reference",
+      "path": "artifacts/l39_independent_guide/candidate_fixed_overlay.png",
+      "sha256": "13558f205d095baa62573e64bb5b787d41f44438e2cb1ddbacbd6345b48b302d"
+    }
+  ]
+}

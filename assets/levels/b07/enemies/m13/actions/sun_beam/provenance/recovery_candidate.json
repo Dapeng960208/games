@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M13",
+  "ability": "sun_beam",
+  "phase": "recovery",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-7b4b610d-aeb9-4231-b392-22ba9c1a95dd.png",
+  "source_sha256": "24925927d403c553bc2f577fdb752e8b5c4414db3ef5f7d8159be3013a3fff90",
+  "resource": "asset://levels/b07/enemies/m13/actions/sun_beam/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "native_size": [
+    1278,
+    1230
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m13/idle_candidate.png",
+  "reference_sha256": "3ed4ff0424515abd60cb90cfc1b8a0416526389385324fb954b1558562a5a9bd",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      113,
+      40,
+      979,
+      1157
+    ],
+    "alpha128_pixel_count": 374504,
+    "transparent_pixel_count": 1168542,
+    "low_alpha_1_32_count": 24273,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 36.9,
+    "foot_landmarks": [
+      [
+        626.2,
+        1131.6
+      ],
+      [
+        869.0,
+        1057.8
+      ]
+    ],
+    "foot_midpoint": [
+      747.6,
+      1094.6999999999998
+    ],
+    "visible_anatomical_vertical_extent": 1057.8,
+    "semantic_uncertainty_px": 30.8,
+    "visual_review": "Disc and robes retained; execute reaches right edge, palm-disc separation partly lost; independent disc layer still needed.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

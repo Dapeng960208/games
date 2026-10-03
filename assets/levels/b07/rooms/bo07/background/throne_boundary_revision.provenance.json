@@ -1,0 +1,17 @@
+{
+  "generation_tool": "built-in image_gen",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-dcb9fb9b-facc-4699-9059-ce4c54257495.png",
+  "sha256": "35fac59333be0ff2863d51098857ad212c7ed174a23f820452df2c5629b15ce4",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "original_bytes_preserved": true,
+  "pixel_processing": "none",
+  "prompt": "docs/levels/b07/rooms/bo07/throne_revision.prompt.txt",
+  "qa": "docs/levels/b07/rooms/bo07/painting_source_qa.json",
+  "status": "blocked_fixed_boundary_mismatch_after_one_revision",
+  "formal_acceptance": false,
+  "runtime_registered": false
+}

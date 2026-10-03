@@ -1,0 +1,29 @@
+{
+  "asset": "bridge_rooted",
+  "chapter": "B07",
+  "room": "L37",
+  "variant": "initial",
+  "method": "built-in image_gen__imagegen",
+  "transparent_background": true,
+  "generated_utc_date": "2026-10-03",
+  "raw_generated_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7f430573-ab96-402e-aaae-23ac984016a0.png",
+  "saved_source_png": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial.png",
+  "source_sha256": "96122633419b7a12867fc952565f469a6f00ea12cd4ef65bfab9a511f9c455e4",
+  "raw_source_sha256": "96122633419b7a12867fc952565f469a6f00ea12cd4ef65bfab9a511f9c455e4",
+  "bytes_preserved": true,
+  "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial.prompt.txt",
+  "prompt": "Use case: precise-object-edit.\nAsset type: transparent PNG environment component for B07 Golden Sand Lizard City, a hand-painted high-angle 2.5D game.\nInput 1 is the exact EDIT TARGET: the complete double-arch lower bridge. Input 2 is REFERENCE ONLY for painterly sandstone cliff geology, lighting, and city style, not a composition to copy.\nChange only the bridge's support and surrounding canvas: extend down from EACH OF ITS THREE EXISTING MASONRY PIER BASES into a massive tall naturally eroded sandstone rock pillar. These three individual rock columns must convincingly physically touch and carry the masonry, with irregular layered rock shoulders tightly joined to the masonry bases. Build tall deep uneven angular sandstone cliff strata, weathered ledges, fractures and natural tapering uneven silhouettes. The lower rocks descend extremely far below the bridge. Do not stretch the existing bridge image or make straight extruded plinths.\nPRESERVE the complete existing double-arch bridge: same sloping high camera angle, same facing, same three masonry piers, same two open arches, same paving deck and parapet, same copper-gold ornaments and orange-red sun banners with their original saturated colors. Do not invent an additional route, path, stair, city wing, building or tower. Bridge has three supports total, NOT more.\nComposition: landscape 3:2 canvas. Entire bridge including golden finials fully visible with safe margin at left, right and top. Bridge deck occupies approximately the upper 15–35 percent of the image. The three rock piers extend dramatically downward toward the bottom 5–10 percent with unequal depths and irregular natural rough ends; the central pier can descend deepest. They should appear as tall canyon spires continuing below the game camera when placed, never as a disconnected floating bridge. No flat regular square pedestal under any pillar, no broad flat island or base connecting them. TWO genuinely transparent arch windows remain between the piers and open into tall transparent canyon gaps all the way downward. Wide visible transparent gap between each rock column.\nStyle: carefully hand-painted high-camera 2.5D fantasy sandstone city asset; coherent hard sunny upper-left lighting and warm shaded rock planes, matching both input images. Rock geology should resemble reference image's layered natural cliffs. More natural asymmetry in cliff silhouettes, without changing bridge identity.\nBackground: REAL ALPHA TRANSPARENCY only, including arch holes and between the three supports. Isolated environment component, no sky, no canyon backdrop, no ground plane, no scenery behind holes, no dark shadow rectangle, no clouds or fog hiding root boundaries, no checkerboard drawn into image, no characters, no text, no watermark.\nThis is one complete grounded bridge component, not a full scene.\n",
+  "referenced_images": [
+    {
+      "role": "edit_target",
+      "path": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/rooms/shared/lower_arch_bridge/source_candidate.png",
+      "sha256": "69c56b74140113ed860662b8585fc2e25a4b2fc457148ef813023bc417d986de"
+    },
+    {
+      "role": "style_reference",
+      "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+      "sha256": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984"
+    }
+  ],
+  "postprocessing": "None on source PNG; standard alpha-composite JPGs are review-only diagnostics."
+}

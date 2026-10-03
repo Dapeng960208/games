@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-d2a7dbe6-3f6c-4a7a-8850-b3b1d5cd52d6.png",
+  "source_sha256": "be955ca269084972743cab082a7e8225156467d2340ec1617a0c891c1be5d792",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/enemies/m03/actions/returning_disc/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      34,
+      112,
+      1212,
+      1083
+    ],
+    "alpha128_pixel_count": 424407,
+    "transparent_pixel_count": 1109438,
+    "low_alpha_1_32_count": 32550,
+    "nonzero_edge_pixel_count": 24,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Hand empty after release and belt spare retained. Torso rotation changes apparent arm overlap; verify same throwing shoulder/hand with windup before animation. This is a continuity risk, not a proven hand swap.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "anatomical_crown_y": 111,
+    "foot_landmarks": [
+      [
+        474,
+        1115
+      ],
+      [
+        1101,
+        951
+      ]
+    ],
+    "foot_midpoint": [
+      787.5,
+      1033.0
+    ],
+    "airborne_no_ground_contact": false,
+    "visible_anatomical_vertical_extent": 922.0,
+    "semantic_uncertainty_px": 20,
+    "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+    "scale_and_foot_continuity_passed": false
+  },
+  "identity": "B07-M03",
+  "ability": "returning_disc",
+  "phase": "execute",
+  "reference_sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+  "reference_path": "assets/levels/b07/enemies/m03/idle_candidate.png"
+}

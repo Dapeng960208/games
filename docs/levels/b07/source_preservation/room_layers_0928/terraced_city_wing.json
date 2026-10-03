@@ -1,0 +1,54 @@
+{
+  "id": "terraced_city_wing",
+  "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_wing.png",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-8f352f52-735b-4f8c-863a-e7f75302a8ba.png",
+  "sha256": "bab8314fd6e111f7848168eb7062e5f21a06add85f8826b1bd8589cd0a61fff3",
+  "native_size": [
+    2098,
+    749
+  ],
+  "mode": "RGBA",
+  "candidate_only": true,
+  "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_wing.prompt.txt",
+  "alpha": {
+    "1": {
+      "bbox": [
+        28,
+        16,
+        2073,
+        736
+      ],
+      "content_size": [
+        2045,
+        720
+      ],
+      "edge_pixels": 0
+    },
+    "16": {
+      "bbox": [
+        31,
+        19,
+        2069,
+        734
+      ],
+      "content_size": [
+        2038,
+        715
+      ],
+      "edge_pixels": 0
+    },
+    "128": {
+      "bbox": [
+        31,
+        20,
+        2068,
+        733
+      ],
+      "content_size": [
+        2037,
+        713
+      ],
+      "edge_pixels": 0
+    }
+  }
+}

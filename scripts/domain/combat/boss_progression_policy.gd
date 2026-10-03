@@ -8,17 +8,17 @@ const FIELDS := ["max_hp", "damage", "armor", "magic_resist"]
 const HP_D := [100, 140, 200, 280, 400]
 const ATTACK_D := [100, 120, 150, 185, 230]
 # Frozen authored V1 units, before x13.5 and chapter/difficulty factors.
-const V1_HP := [1450, 1620, 1480, 1880, 1000, 1100]
-const V1_ATTACK := [20, 18, 19, 21, 24, 26]
-const V1_ARMOR := [18, 12, 10, 22, 8, 9]
-const V1_MR := [18, 15, 12, 18, 8, 9]
+const V1_HP := [1450, 1620, 1480, 1880, 1000, 1100, 1200]
+const V1_ATTACK := [20, 18, 19, 21, 24, 26, 28]
+const V1_ARMOR := [18, 12, 10, 22, 8, 9, 10]
+const V1_MR := [18, 15, 12, 18, 8, 9, 10]
 const CHAPTER_HP_FLOOR_PERCENT := 115
 const CHAPTER_ATTACK_FLOOR_PERCENT := 108
 const CHAPTER_DEFENSE_STEP := 20
 const DIFFICULTY_DEFENSE_STEP := 30
 
 static func stats(chapter: int, difficulty: int, version: int = VERSION) -> Dictionary:
-	if chapter < 1 or chapter > 6 or difficulty < 0 or difficulty > 4 or version not in [1, VERSION]: return {}
+	if chapter < 1 or chapter > 7 or difficulty < 0 or difficulty > 4 or version not in [1, VERSION]: return {}
 	var original := _v1(chapter, difficulty)
 	if version == 1: return original
 	var baseline := _v1(1, 0)

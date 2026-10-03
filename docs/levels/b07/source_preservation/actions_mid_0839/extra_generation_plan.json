@@ -1,0 +1,77 @@
+{
+  "repairs": [
+    {
+      "id": "m08",
+      "action": "execute_repair",
+      "base_action": "execute",
+      "dir": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/repair",
+      "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m08/idle_candidate.png",
+      "target": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/candidate.png",
+      "prompt": "Use case: precise-object-edit. Target image 1: current generated action candidate. Image 2: original identity reference. Only correct framing: recompose this complete same diagonal-slash pose with 7 percent transparent breathing room around the entire character INCLUDING blade tip on lower-right, empty claw hand on upper-right, tail and both feet. Do not crop. Do not merely extend canvas: draw entire same character with all features inside safety margin. Preserve exact pose, handedness, palette, equipment, proportions and high-angle style. No VFX. Genuine transparent background. One character only. Original richly hand-painted fantasy style. Do not change species, tools or held-hand identity. This is a design key-pose candidate, not final animation."
+    },
+    {
+      "id": "m11",
+      "action": "telegraph_repair",
+      "base_action": "telegraph",
+      "dir": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/repair",
+      "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m11/idle_candidate.png",
+      "target": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/candidate.png",
+      "prompt": "Use case: precise-object-edit. Target image 1: current generated action candidate. Image 2: original identity reference. Correct only the stomp ANTICIPATION pose. The current pose does not read as front feet lifted. Make BOTH front forelegs bend back upward toward the chest, BOTH front paws visibly hang in the air at mid-body height, toes curled downward, with large clear transparent negative space below raised paws. Hind legs alone hold weight, both hind feet visibly lower on the implied ground, with the far hind paw separately exposed. Raise chest slightly but keep low long FOUR-LEGGED reptile anatomy, not humanoid. Exact same identity, four limbs only, full tail and armor. No terrain, no VFX. Genuine transparent background. One character only. Original richly hand-painted fantasy style. Do not change species, tools or held-hand identity. This is a design key-pose candidate, not final animation."
+    },
+    {
+      "id": "m11",
+      "action": "execute_repair",
+      "base_action": "execute",
+      "dir": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/repair",
+      "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m11/idle_candidate.png",
+      "target": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/candidate.png",
+      "prompt": "Use case: precise-object-edit. Target image 1: current generated action candidate. Image 2: original identity reference. Correct only missing far hind leg readability. Same stomp impact pose with head lowered and BOTH front paws planted/compressed. Show exactly FOUR limbs: near front and far front paws forward, near hind and far hind paws braced rearward; far hind paw visible in a separate clear gap below the rear belly, not fused with front paws. Preserve low long lizard body, armor and tail, red saddle, four-legged identity. No VFX. Genuine transparent background. One character only. Original richly hand-painted fantasy style. Do not change species, tools or held-hand identity. This is a design key-pose candidate, not final animation."
+    },
+    {
+      "id": "m12",
+      "action": "recovery_repair",
+      "base_action": "recovery",
+      "dir": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/repair",
+      "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m12/idle_candidate.png",
+      "target": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/candidate.png",
+      "prompt": "Use case: precise-object-edit. Target image 1: current generated action candidate. Image 2: original identity reference. Correct only duplicated hand/anatomy and reload mechanics. There must be EXACTLY TWO arms and TWO hands: anatomical RIGHT hand (viewer-left) pulls the recocking handle toward chest; anatomical LEFT hand (viewer-right) supports UNDER the fore-stock and has one visible set of claws. REMOVE the extra hand perched on top of stock at viewer-right. Preserve same low lizard, awning cloak, original crossbow, full feet and tail, same palette. No extra weapon. No flying bolt or VFX. Genuine transparent background. One character only. Original richly hand-painted fantasy style. Do not change species, tools or held-hand identity. This is a design key-pose candidate, not final animation."
+    }
+  ],
+  "props": [
+    {
+      "id": "m08",
+      "action": "mirror_short_light",
+      "dir": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/mirror_short_light",
+      "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m08/idle_candidate.png",
+      "prompt": "Use case: stylized-concept. Asset type: B07 isolated independent skill object/VFX design candidate. Input image 1 is MATERIAL AND PALETTE REFERENCE ONLY; do not include its character. Subject: A single short narrow silver-white slash of reflected light, a slim gently curved wedge with warm pale-gold rim and subtle turquoise center tint matching the mirror blade. It is light ONLY, no physical sword, no hand, no character. Crisp central luminous core with clean tapered ends and restrained natural-alpha feathering. No large flare, no ring, no broad cone, no ground and no cast shadow. Isolated down-right diagonal orientation. This is a separate short-light VFX visual candidate; not authoritative hit geometry. Bright richly hand-painted cartoon fantasy matching original reference, high-angle near-isometric 2.5D where applicable, warm upper-left light. One coherent standalone asset centered on genuine transparent background, complete object with comfortable margin, useful large image content. No text, labels, border, frame or background. Never draw any creature or character. Preserve alpha."
+    },
+    {
+      "id": "m09",
+      "action": "poison_dart",
+      "dir": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/poison_dart",
+      "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m09/idle_candidate.png",
+      "prompt": "Use case: stylized-concept. Asset type: B07 isolated independent skill object/VFX design candidate. Input image 1 is MATERIAL AND PALETTE REFERENCE ONLY; do not include its character. Subject: One very slender short blowgun poison dart, brass-banded reed shaft, tiny sharpened dark-metal needle tip with a restrained emerald-green coating only on tip and short tan feather tuft at rear. Match reference materials; dart must be much slimmer than a crossbow bolt. Orient down-right diagonal, show complete tip and tail. No glow, trail, droplets, smoke, character, blowpipe, labels or ground. Single projectile sprite visual candidate only. Bright richly hand-painted cartoon fantasy matching original reference, high-angle near-isometric 2.5D where applicable, warm upper-left light. One coherent standalone asset centered on genuine transparent background, complete object with comfortable margin, useful large image content. No text, labels, border, frame or background. Never draw any creature or character. Preserve alpha."
+    },
+    {
+      "id": "m10",
+      "action": "mirror_state_indicator",
+      "dir": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/mirror_state_indicator",
+      "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m10/idle_candidate.png",
+      "prompt": "Use case: stylized-concept. Asset type: B07 isolated independent skill object/VFX design candidate. Input image 1 is MATERIAL AND PALETTE REFERENCE ONLY; do not include its character. Subject: One compact enemy mirror-pedestal orientation indicator concept: a small freestanding copper-gold circular mirror on a simple hinged bronze pedestal, visually related to the mirror-bearer's devices, with TWO restrained translucent turquoise outline ghost positions either side showing left/center/right three possible mirror orientations. Single physical mirror, two non-solid ghost contours, no beam lines, no arrows, no circular hazard boundary, no room, no character. All three orientations belong to the same compact base, no surrounding scenery. Mirror faces have plain silver-blue sheen, never landscape reflections. This is a standalone three-state-preview visual design candidate, not implemented state logic or authoritative geometry. Bright richly hand-painted cartoon fantasy matching original reference, high-angle near-isometric 2.5D where applicable, warm upper-left light. One coherent standalone asset centered on genuine transparent background, complete object with comfortable margin, useful large image content. No text, labels, border, frame or background. Never draw any creature or character. Preserve alpha."
+    },
+    {
+      "id": "m11",
+      "action": "sand_ridge_segment",
+      "dir": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/sand_ridge_segment",
+      "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m11/idle_candidate.png",
+      "prompt": "Use case: stylized-concept. Asset type: B07 isolated independent skill object/VFX design candidate. Input image 1 is MATERIAL AND PALETTE REFERENCE ONLY; do not include its character. Subject: One short low sandstone-and-packed-sand ridge segment, five modest connected angular tan sandstone chunks rising in a narrow line from a small integral sand seam. Terraced shapes match packbeast back armor materials, warm sand-gold/ochre with restrained cream sunlit faces. High-angle 2.5D view, line oriented down-right. No character, no feet, no rider, no broad terrain tile, no huge boulders, no dust cloud, no shockwave, no warning boundary or cast ground shadow. This is one independent ridge visual module, not collision geometry. Bright richly hand-painted cartoon fantasy matching original reference, high-angle near-isometric 2.5D where applicable, warm upper-left light. One coherent standalone asset centered on genuine transparent background, complete object with comfortable margin, useful large image content. No text, labels, border, frame or background. Never draw any creature or character. Preserve alpha."
+    },
+    {
+      "id": "m12",
+      "action": "heavy_crossbow_bolt",
+      "dir": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/heavy_crossbow_bolt",
+      "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m12/idle_candidate.png",
+      "prompt": "Use case: stylized-concept. Asset type: B07 isolated independent skill object/VFX design candidate. Input image 1 is MATERIAL AND PALETTE REFERENCE ONLY; do not include its character. Subject: One heavy crossbow bolt matching the reference arbalist equipment: short thick dark wooden shaft, broad steel diamond head, small copper/brass collar, red and cream stiff fletching at rear. Solid hefty silhouette distinct from a slender blowdart. Orient down-right diagonal, full sharp tip and tail included. No crossbow, hands, character, glow, trail, smoke, hazard geometry or ground. Standalone projectile sprite visual candidate. Bright richly hand-painted cartoon fantasy matching original reference, high-angle near-isometric 2.5D where applicable, warm upper-left light. One coherent standalone asset centered on genuine transparent background, complete object with comfortable margin, useful large image content. No text, labels, border, frame or background. Never draw any creature or character. Preserve alpha."
+    }
+  ]
+}

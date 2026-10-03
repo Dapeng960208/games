@@ -1,0 +1,10 @@
+{
+  "status": "historical_source_candidate_preserved_at_user_stop",
+  "formal_acceptance": false,
+  "runtime_integration": false,
+  "original_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/repair/candidate.png",
+  "sha256": "53c6e5e8b3918f08b8416fdd00a4d58e982152ef75be367a8ef9a8b329cfc5b7",
+  "byte_identical": true,
+  "reason": "Preserve original/failed source before authorized B07 workspace cleanup; no new image generation or pixel edits",
+  "related_source_group": "actions_mid_0839/m11/telegraph/repair"
+}

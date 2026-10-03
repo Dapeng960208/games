@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-c6a55a99-d4bc-4393-8d65-80f87176fd36.png",
+  "source_sha256": "d62b11a4077287ff1c72f7726d6a17db4b5ce158006baf805105bf6b873d3b64",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/effects/sand_landing/effect_candidate.png",
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      43,
+      169,
+      1481,
+      663
+    ],
+    "alpha128_pixel_count": 249067,
+    "transparent_pixel_count": 1114440,
+    "low_alpha_1_32_count": 172648,
+    "nonzero_edge_pixel_count": 80,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Open dust ring, center alpha checked separately. Impact only, not radius55 warning authority.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "center_alpha": 0
+  },
+  "effect_id": "sand_landing",
+  "ability": "M02 camouflage_leap",
+  "references": []
+}

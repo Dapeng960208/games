@@ -1,0 +1,126 @@
+{
+  "status": "stopped_by_user",
+  "baseline": "87b0c1989e89cae8b9dd70a0f6244f6e9d0b49ed",
+  "new_code_changes": 0,
+  "new_tests_run": 0,
+  "new_native_detail_count": 9,
+  "all_native_detail_count": 15,
+  "rooms": [
+    {
+      "room_id": "L37",
+      "current_independent_mother_unique_candidates": 3,
+      "mother_png_files": 4,
+      "native_detail_count": 6,
+      "native_detail_target": 6,
+      "integrated": true,
+      "runtime_status": "L37 review-only; targeted 2K/mapping/navigation checks, not full acceptance",
+      "detail_status": "prior six-tile visual review, approved=false",
+      "missing_detail_ids": []
+    },
+    {
+      "room_id": "L38",
+      "current_independent_mother_unique_candidates": 2,
+      "mother_png_files": 2,
+      "native_detail_count": 0,
+      "native_detail_target": 6,
+      "integrated": false,
+      "runtime_status": "not_integrated_mother_fixed_boundary_blocked",
+      "detail_status": "not_started_before_user_stop",
+      "missing_detail_ids": [
+        "top_left",
+        "top_middle",
+        "top_right",
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right"
+      ]
+    },
+    {
+      "room_id": "L39",
+      "current_independent_mother_unique_candidates": 2,
+      "mother_png_files": 2,
+      "native_detail_count": 5,
+      "native_detail_target": 6,
+      "integrated": false,
+      "runtime_status": "not_integrated_mother_fixed_boundary_blocked",
+      "detail_status": "partial_candidates_unvalidated_seams",
+      "missing_detail_ids": [
+        "bottom_right"
+      ]
+    },
+    {
+      "room_id": "L40",
+      "current_independent_mother_unique_candidates": 2,
+      "mother_png_files": 2,
+      "native_detail_count": 2,
+      "native_detail_target": 6,
+      "integrated": false,
+      "runtime_status": "not_integrated_mother_fixed_boundary_blocked",
+      "detail_status": "partial_candidates_unvalidated_seams",
+      "missing_detail_ids": [
+        "top_right",
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right"
+      ]
+    },
+    {
+      "room_id": "L41",
+      "current_independent_mother_unique_candidates": 2,
+      "mother_png_files": 2,
+      "native_detail_count": 2,
+      "native_detail_target": 6,
+      "integrated": false,
+      "runtime_status": "not_integrated_mother_fixed_boundary_blocked",
+      "detail_status": "partial_candidates_unvalidated_seams",
+      "missing_detail_ids": [
+        "top_right",
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right"
+      ]
+    },
+    {
+      "room_id": "L42",
+      "current_independent_mother_unique_candidates": 2,
+      "mother_png_files": 3,
+      "native_detail_count": 0,
+      "native_detail_target": 6,
+      "integrated": false,
+      "runtime_status": "not_integrated_mother_fixed_boundary_blocked",
+      "detail_status": "not_started_before_user_stop",
+      "missing_detail_ids": [
+        "top_left",
+        "top_middle",
+        "top_right",
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right"
+      ]
+    },
+    {
+      "room_id": "BO07",
+      "current_independent_mother_unique_candidates": 2,
+      "mother_png_files": 2,
+      "native_detail_count": 0,
+      "native_detail_target": 6,
+      "integrated": false,
+      "runtime_status": "not_integrated_mother_fixed_boundary_blocked",
+      "detail_status": "not_started_before_user_stop",
+      "missing_detail_ids": [
+        "top_left",
+        "top_middle",
+        "top_right",
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right"
+      ]
+    }
+  ],
+  "continuous_animation_sets": 0,
+  "known_actor_blocker": "M11",
+  "equipment_runtime_ids": 0,
+  "equipment_dedicated_art": 0,
+  "mother_generation_inflight": 0,
+  "detail_generation_inflight": 0
+}

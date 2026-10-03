@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M17",
+  "action": "sandstone_impact",
+  "variant": "sandstone_impact",
+  "category": "effect_or_prop",
+  "selected": false,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact/candidate.png",
+  "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact/prompt.txt",
+  "source_filename": "exec-2a07c5d5-fcdd-40d3-86fa-5b9f2ee6b162.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-2a07c5d5-fcdd-40d3-86fa-5b9f2ee6b162.png",
+  "source_sha256": "51e6fcd0d4cc8ce31245686e186572c48c8140577d01fb035e21de7f97b972c3",
+  "png_sha256": "51e6fcd0d4cc8ce31245686e186572c48c8140577d01fb035e21de7f97b972c3",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m17/idle_candidate.png",
+  "identity_reference_sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1103027,
+    "alpha_zero_fraction": 0.701440875641329,
+    "low_alpha_1_15_pixel_count": 57802,
+    "opaque_pixel_count": 730,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        0,
+        19,
+        1210,
+        1254
+      ],
+      "bounds_xywh": [
+        0,
+        19,
+        1210,
+        1235
+      ],
+      "effective_pixel_count": 469489,
+      "edge_pixel_count": 14,
+      "margins_ltrb": [
+        0,
+        19,
+        44,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        136,
+        189,
+        1157,
+        1099
+      ],
+      "bounds_xywh": [
+        136,
+        189,
+        1021,
+        910
+      ],
+      "effective_pixel_count": 411687,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        136,
+        189,
+        97,
+        155
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        137,
+        189,
+        1156,
+        1097
+      ],
+      "bounds_xywh": [
+        137,
+        189,
+        1019,
+        908
+      ],
+      "effective_pixel_count": 400729,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        137,
+        189,
+        98,
+        157
+      ]
+    },
+    "visual_review": "Initial generated variant inspected and retained as source history; see selected corrective variant."
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: ONE standalone transparent game skill-effect or physical-prop candidate, not a sprite sheet. Painterly crisp 2.5D fantasy art matching the provided identity reference's warm copper-gold, sandstone ivory, vermilion and turquoise palette, warm upper-left lighting, elevated game view. Reference is STYLE/MATERIAL/EQUIPMENT ONLY. NO character, body, hands, creature, room, floor, environment, ground plate, cast shadow, text, labels or interface. Genuine transparent alpha background. Entire requested asset inside central 75% of canvas with generous empty alpha=0 margins, all tips visible, do not crop. One isolated object/effect only; design candidate, not a programmed hit area.\nASSET m17/sandstone_impact: ONE compact sandstone impact debris cluster: 7 to 10 irregular ivory-sandstone rock chips/fragments caught in a small low outward/upward burst, copper-warm edges and a few fine sand flecks, no enormous dust cloud. Readable individually separated stones, low central mound of fragments permitted but no ground/floor/slab. No armor or hands. No drawn cross, no cross-shaped arrangement, no circles or target shapes; gameplay will supply actual hit geometry separately."
+}

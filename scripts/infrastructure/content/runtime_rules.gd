@@ -26,13 +26,16 @@ static func b05_candidate_enabled() -> bool:
 static func b06_candidate_enabled() -> bool:
 	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b06")
 
+static func b07_candidate_enabled() -> bool:
+	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b07")
+
 static func b09_candidate_enabled() -> bool:
 	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b09")
 
 static func _candidate_arguments_valid(args: PackedStringArray, chapter: String = "b05") -> bool:
-	if chapter not in ["b05","b06","b09"] or not args.has("--candidate-"+chapter): return false
+	if chapter not in ["b05","b06","b07","b09"] or not args.has("--candidate-"+chapter): return false
 	var flags := 0
-	for id: String in ["b05","b06","b09"]:
+	for id: String in ["b05","b06","b07","b09"]:
 		if args.has("--candidate-"+id): flags += 1
 	if flags != 1: return false
 	var paths: Array[String] = []
@@ -50,6 +53,7 @@ static func chapter_enabled(chapter: int) -> bool:
 	return chapter >= 1 and chapter <= int(value("implemented_chapters", 4))
 
 static func value(key: String, fallback: Variant = null) -> Variant:
+	if key == "implemented_chapters" and b07_candidate_enabled(): return 7
 	if _parameters.is_empty(): parameters()
 	var result: Variant = _parameters.get(key, fallback)
 	return result.duplicate(true) if result is Dictionary or result is Array else result

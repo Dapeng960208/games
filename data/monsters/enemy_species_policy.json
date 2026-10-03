@@ -1355,6 +1355,276 @@
       "skill_base_attack_budget_ratio": 0,
       "crit_chance_bonus": 0.0,
       "crit_multiplier_bonus": 0.0
+    },
+    "B07-M01": {
+      "chapter": 7,
+      "primary_role": "warrior",
+      "secondary_role": "B07候选：继承现行warrior锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M02": {
+      "chapter": 7,
+      "primary_role": "assassin",
+      "secondary_role": "B07候选：继承现行assassin锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "B07-M03": {
+      "chapter": 7,
+      "primary_role": "ranged",
+      "secondary_role": "B07候选：继承现行ranged锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "B07-M04": {
+      "chapter": 7,
+      "primary_role": "tank",
+      "secondary_role": "B07候选：继承现行tank锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M05": {
+      "chapter": 7,
+      "primary_role": "support",
+      "secondary_role": "B07候选：继承现行support锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M06": {
+      "chapter": 7,
+      "primary_role": "assassin",
+      "secondary_role": "B07候选：继承现行assassin锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "B07-M07": {
+      "chapter": 7,
+      "primary_role": "caster",
+      "secondary_role": "B07候选：继承现行caster锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M08": {
+      "chapter": 7,
+      "primary_role": "warrior",
+      "secondary_role": "B07候选：继承现行warrior锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M09": {
+      "chapter": 7,
+      "primary_role": "ranged",
+      "secondary_role": "B07候选：继承现行ranged锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "B07-M10": {
+      "chapter": 7,
+      "primary_role": "support",
+      "secondary_role": "B07候选：继承现行support锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M11": {
+      "chapter": 7,
+      "primary_role": "tank",
+      "secondary_role": "B07候选：继承现行tank锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M12": {
+      "chapter": 7,
+      "primary_role": "ranged",
+      "secondary_role": "B07候选：继承现行ranged锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "B07-M13": {
+      "chapter": 7,
+      "primary_role": "caster",
+      "secondary_role": "B07候选：继承现行caster锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M14": {
+      "chapter": 7,
+      "primary_role": "warrior",
+      "secondary_role": "B07候选：继承现行warrior锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M15": {
+      "chapter": 7,
+      "primary_role": "support",
+      "secondary_role": "B07候选：继承现行support锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M16": {
+      "chapter": 7,
+      "primary_role": "caster",
+      "secondary_role": "B07候选：继承现行caster锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M17": {
+      "chapter": 7,
+      "primary_role": "tank",
+      "secondary_role": "B07候选：继承现行tank锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B07-M18": {
+      "chapter": 7,
+      "primary_role": "support",
+      "secondary_role": "B07候选：继承现行support锚点，待自然战斗校核",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
     }
   },
   "crit_authority": "Shared CritPolicy defaults .25/2.0, caps1.0/3.0. Assistant candidate species bonuses: ranged+.10/+.25, assassin+.15/+.50, all others0. Bonuses are added once, not user-specified exact coefficients."

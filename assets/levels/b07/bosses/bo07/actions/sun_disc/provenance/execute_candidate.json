@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "BO07",
+  "ability": "sun_disc",
+  "phase": "execute",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-1c9ae1f2-b4cd-46ff-ae40-10850e8f04d2.png",
+  "source_sha256": "036da4d5c5c8715f748520d671b92cad2352d45533c49f39b8b4a619f47eec8a",
+  "resource": "asset://levels/b07/bosses/bo07/actions/sun_disc/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png",
+  "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      24,
+      9,
+      1210,
+      1218
+    ],
+    "alpha128_pixel_count": 648427,
+    "transparent_pixel_count": 858158,
+    "low_alpha_1_32_count": 56639,
+    "nonzero_edge_pixel_count": 5,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 313.5,
+    "foot_landmarks": [
+      [
+        413.8,
+        1141.1
+      ],
+      [
+        1028.3,
+        1078.4
+      ]
+    ],
+    "foot_midpoint": [
+      721.05,
+      1109.75
+    ],
+    "visible_anatomical_vertical_extent": 796.2,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Empty release hand but spear-bearing side differs from windup; continuity repair needed.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

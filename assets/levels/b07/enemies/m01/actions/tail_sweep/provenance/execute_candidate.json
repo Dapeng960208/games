@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M01",
+  "ability": "tail_sweep",
+  "phase": "execute",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-8ffe34aa-d3f8-4209-8b51-5afed8d82441.png",
+  "source_sha256": "80e2972caf7ef7dc9ab7f7b29d968eefeb3365f31c552232ebd56091b1edb779",
+  "resource": "asset://levels/b07/enemies/m01/actions/tail_sweep/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m01/idle.png",
+  "reference_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      19,
+      49,
+      1215,
+      1144
+    ],
+    "alpha128_pixel_count": 340330,
+    "transparent_pixel_count": 1196278,
+    "low_alpha_1_32_count": 30821,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 250.8,
+    "foot_landmarks": [
+      [
+        551.8,
+        1116.1
+      ],
+      [
+        1091.0,
+        953.0
+      ]
+    ],
+    "foot_midpoint": [
+      821.4,
+      1034.55
+    ],
+    "visible_anatomical_vertical_extent": 783.8,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Tail extends backward with intact spear; sweep motion not continuous.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

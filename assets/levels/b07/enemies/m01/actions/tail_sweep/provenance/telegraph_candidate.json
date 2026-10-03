@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M01",
+  "ability": "tail_sweep",
+  "phase": "telegraph",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-61323597-da02-46b3-8f37-9e6923684c62.png",
+  "source_sha256": "eaf25624c1cbf522d7aa474763a0f2746d5b0ce56f7db28cda8d534e39804512",
+  "resource": "asset://levels/b07/enemies/m01/actions/tail_sweep/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m01/idle.png",
+  "reference_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      75,
+      35,
+      1145,
+      1184
+    ],
+    "alpha128_pixel_count": 398912,
+    "transparent_pixel_count": 1144895,
+    "low_alpha_1_32_count": 23797,
+    "nonzero_edge_pixel_count": 3,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 238.3,
+    "foot_landmarks": [
+      [
+        464.0,
+        1141.1
+      ],
+      [
+        1040.8,
+        1015.7
+      ]
+    ],
+    "foot_midpoint": [
+      752.4,
+      1078.4
+    ],
+    "visible_anatomical_vertical_extent": 840.1,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Tail coiled for windup; pose close to idle, warning readability needs motion transition.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

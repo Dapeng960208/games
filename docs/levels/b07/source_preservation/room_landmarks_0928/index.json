@@ -1,0 +1,596 @@
+{
+  "schema_version": 1,
+  "chapter": "B07",
+  "status": "six_independent_visual_candidates_not_integrated",
+  "output_dir": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928",
+  "reference_path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+  "reference_actually_inspected": true,
+  "all_source_png_bytes_preserved": true,
+  "asset_count": 6,
+  "five_percent_margin_pass_count": 3,
+  "raw_edge_contact_count": 0,
+  "standard_rgba_composite_status": "All six actually inspected on light and dark backgrounds; clean alpha cutouts, no visible raw-preview halo.",
+  "candidate_limitations": "Three assets meet 5% all-side alpha16 margin. Market, obelisk and throne need margin convergence. Sand-table height and workbench mirror identity must be reconciled. None is approved for runtime integration.",
+  "qa_preview_only_files": [
+    "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/qa_composite_light.jpg",
+    "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/qa_composite_dark.jpg"
+  ],
+  "qa_preview_exclusion": "QA composite JPGs are review evidence only; do not upload as production game assets.",
+  "non_changes": [
+    "No repository files edited",
+    "No geometry or collision changes",
+    "No runtime wiring",
+    "No tests or pushes",
+    "Original eight WIP resources untouched"
+  ],
+  "assets": [
+    {
+      "id": "market_awning_stall",
+      "room": "L38",
+      "status": "candidate_pending_unified_convergence",
+      "selected_source_png": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/market_awning_stall_initial.png",
+      "source_sha256": "7a8be9559cfc2579aee6a5f28333e19f6805a1500feca25f0b78add7486d9191",
+      "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/market_awning_stall.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/market_awning_stall.provenance.json",
+      "usage_constraints": "L38 market decoration candidate; derive placement and collision from existing approved geometry only.",
+      "qa": {
+        "id": "market_awning_stall",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-b09267c6-a2fb-40e2-8edf-fe616b19256b.png",
+        "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/market_awning_stall_initial.png",
+        "mode": "RGBA",
+        "size": [
+          1312,
+          1199
+        ],
+        "sha256": "7a8be9559cfc2579aee6a5f28333e19f6805a1500feca25f0b78add7486d9191",
+        "alpha_minmax": [
+          0,
+          255
+        ],
+        "transparent_fraction": 0.4802318751398523,
+        "alpha16_bbox": [
+          45,
+          34,
+          1293,
+          1171
+        ],
+        "alpha16_margin_percent": [
+          3.43,
+          2.84,
+          1.45,
+          2.34
+        ],
+        "alpha16_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha128_bbox": [
+          46,
+          35,
+          1293,
+          1170
+        ],
+        "alpha128_margin_percent": [
+          3.51,
+          2.92,
+          1.45,
+          2.42
+        ],
+        "alpha128_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha_zero_pixels": 755447,
+        "alpha_1_to_15_pixels": 31550,
+        "alpha_16_to_127_pixels": 8032,
+        "alpha_128_to_255_pixels": 778059,
+        "alpha0_hidden_rgb_note": "Source bytes retained as generated; view assets with correct alpha compositing, not raw RGB.",
+        "alpha16_content_size": [
+          1248,
+          1137
+        ],
+        "alpha128_content_size": [
+          1247,
+          1135
+        ],
+        "margin_5pct_pass": false,
+        "bbox_convention": "[left, top, right_exclusive, bottom_exclusive]; alpha >= threshold; percentages ordered left, top, right, bottom",
+        "visual_qa": {
+          "inspected": true,
+          "raw_view_inspected": true,
+          "standard_rgba_composite_inspected": [
+            "qa_composite_light.jpg",
+            "qa_composite_dark.jpg"
+          ],
+          "clean_transparent_cutout": true,
+          "no_visible_baked_attack_light": true,
+          "no_text_or_people": true,
+          "no_sky_canyon_or_rectangular_ground": true,
+          "complete_object_no_clipping": true,
+          "observation": "Single red-orange canopy, turquoise counter, warm sandstone/copper-gold framing; intact no ground tile or text. Clear market identity but chunky pillars make it visually large.",
+          "open_issues": [
+            "Canvas margin below 5% on all four sides; preserve this source and pad/reframe at unified convergence.",
+            "Thick architectural posts and prop density require room-scale/occlusion convergence before runtime integration."
+          ]
+        }
+      }
+    },
+    {
+      "id": "sand_study_table",
+      "room": "L39",
+      "status": "candidate_pending_unified_convergence",
+      "selected_source_png": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sand_study_table_initial.png",
+      "source_sha256": "9837508d413380e171ccd4eb0a3a252655e6fecd4631c1990d3a9562d82190d1",
+      "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sand_study_table.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sand_study_table.provenance.json",
+      "usage_constraints": "L39 visual alternative at existing altar anchor [1400,810], not a second altar and never an additional collider.",
+      "qa": {
+        "id": "sand_study_table",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-709f8347-5efa-471f-a7b1-31c66393cb79.png",
+        "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sand_study_table_initial.png",
+        "mode": "RGBA",
+        "size": [
+          1374,
+          1145
+        ],
+        "sha256": "9837508d413380e171ccd4eb0a3a252655e6fecd4631c1990d3a9562d82190d1",
+        "alpha_minmax": [
+          0,
+          255
+        ],
+        "transparent_fraction": 0.5869535922910191,
+        "alpha16_bbox": [
+          191,
+          136,
+          1187,
+          1019
+        ],
+        "alpha16_margin_percent": [
+          13.9,
+          11.88,
+          13.61,
+          11.0
+        ],
+        "alpha16_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha128_bbox": [
+          192,
+          137,
+          1186,
+          1018
+        ],
+        "alpha128_margin_percent": [
+          13.97,
+          11.97,
+          13.68,
+          11.09
+        ],
+        "alpha128_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha_zero_pixels": 923413,
+        "alpha_1_to_15_pixels": 8094,
+        "alpha_16_to_127_pixels": 2313,
+        "alpha_128_to_255_pixels": 639410,
+        "alpha0_hidden_rgb_note": "Source bytes retained as generated; view assets with correct alpha compositing, not raw RGB.",
+        "alpha16_content_size": [
+          996,
+          883
+        ],
+        "alpha128_content_size": [
+          994,
+          881
+        ],
+        "margin_5pct_pass": true,
+        "bbox_convention": "[left, top, right_exclusive, bottom_exclusive]; alpha >= threshold; percentages ordered left, top, right, bottom",
+        "visual_qa": {
+          "inspected": true,
+          "raw_view_inspected": true,
+          "standard_rgba_composite_inspected": [
+            "qa_composite_light.jpg",
+            "qa_composite_dark.jpg"
+          ],
+          "clean_transparent_cutout": true,
+          "no_visible_baked_attack_light": true,
+          "no_text_or_people": true,
+          "no_sky_canyon_or_rectangular_ground": true,
+          "complete_object_no_clipping": true,
+          "observation": "Readable round sand tray, sandstone markers, carved route-like patterns, bronze rim and warm material family. Actual pedestal is higher/more solid than the low-table brief.",
+          "open_issues": [
+            "Pedestal is too tall/solid to treat as an unobstructive altar skin; height, occlusion and geometry must be reconciled before integration."
+          ]
+        }
+      }
+    },
+    {
+      "id": "mirror_workbench",
+      "room": "L40",
+      "status": "candidate_pending_unified_convergence",
+      "selected_source_png": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/mirror_workbench_initial.png",
+      "source_sha256": "0fa744a0a4e6b1211e4fabf7a2160cc9e1f4490ec082b06de0a825286b6565f6",
+      "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/mirror_workbench.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/mirror_workbench.provenance.json",
+      "usage_constraints": "L40 low workbench visual candidate only; the mirror does not imply a new interaction, beam or collision.",
+      "qa": {
+        "id": "mirror_workbench",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-a525ed53-f4bd-41ab-a0eb-f1be5fe7df9f.png",
+        "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/mirror_workbench_initial.png",
+        "mode": "RGBA",
+        "size": [
+          1312,
+          1199
+        ],
+        "sha256": "0fa744a0a4e6b1211e4fabf7a2160cc9e1f4490ec082b06de0a825286b6565f6",
+        "alpha_minmax": [
+          0,
+          255
+        ],
+        "transparent_fraction": 0.5817710134461644,
+        "alpha16_bbox": [
+          102,
+          132,
+          1221,
+          1115
+        ],
+        "alpha16_margin_percent": [
+          7.77,
+          11.01,
+          6.94,
+          7.01
+        ],
+        "alpha16_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha128_bbox": [
+          103,
+          133,
+          1220,
+          1114
+        ],
+        "alpha128_margin_percent": [
+          7.85,
+          11.09,
+          7.01,
+          7.09
+        ],
+        "alpha128_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha_zero_pixels": 915177,
+        "alpha_1_to_15_pixels": 15064,
+        "alpha_16_to_127_pixels": 3823,
+        "alpha_128_to_255_pixels": 639024,
+        "alpha0_hidden_rgb_note": "Source bytes retained as generated; view assets with correct alpha compositing, not raw RGB.",
+        "alpha16_content_size": [
+          1119,
+          983
+        ],
+        "alpha128_content_size": [
+          1117,
+          981
+        ],
+        "margin_5pct_pass": true,
+        "bbox_convention": "[left, top, right_exclusive, bottom_exclusive]; alpha >= threshold; percentages ordered left, top, right, bottom",
+        "visual_qa": {
+          "inspected": true,
+          "raw_view_inspected": true,
+          "standard_rgba_composite_inspected": [
+            "qa_composite_light.jpg",
+            "qa_composite_dark.jpg"
+          ],
+          "clean_transparent_cutout": true,
+          "no_visible_baked_attack_light": true,
+          "no_text_or_people": true,
+          "no_sky_canyon_or_rectangular_ground": true,
+          "complete_object_no_clipping": true,
+          "observation": "Compact polishing bench with restrained tools, non-emissive circular mirror, red-orange cloth and turquoise accents. Low bench body, raised tabletop mirror.",
+          "open_issues": [
+            "Workshop mirror may be confused with gameplay functional mirrors; distinguish at unified convergence before integration.",
+            "Raised mirror silhouette requires room-scale and occlusion validation."
+          ]
+        }
+      }
+    },
+    {
+      "id": "temple_portico",
+      "room": "L41",
+      "status": "candidate_pending_unified_convergence",
+      "selected_source_png": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/temple_portico_initial.png",
+      "source_sha256": "18f4bd611a7fb7a468fa54291fb38724cb779c41d4173b3fe584820d44f43bfe",
+      "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/temple_portico.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/temple_portico.provenance.json",
+      "usage_constraints": "L41 outer/rear decoration only; short plinth/ledges are image forms, not a new traversable staircase or floor connection.",
+      "qa": {
+        "id": "temple_portico",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-8ca1fccd-d1c3-40b7-b8df-631919afd1cb.png",
+        "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/temple_portico_initial.png",
+        "mode": "RGBA",
+        "size": [
+          1312,
+          1199
+        ],
+        "sha256": "18f4bd611a7fb7a468fa54291fb38724cb779c41d4173b3fe584820d44f43bfe",
+        "alpha_minmax": [
+          0,
+          255
+        ],
+        "transparent_fraction": 0.5201743322687605,
+        "alpha16_bbox": [
+          142,
+          96,
+          1202,
+          1134
+        ],
+        "alpha16_margin_percent": [
+          10.82,
+          8.01,
+          8.38,
+          5.42
+        ],
+        "alpha16_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha128_bbox": [
+          143,
+          96,
+          1202,
+          1133
+        ],
+        "alpha128_margin_percent": [
+          10.9,
+          8.01,
+          8.38,
+          5.5
+        ],
+        "alpha128_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha_zero_pixels": 818280,
+        "alpha_1_to_15_pixels": 13316,
+        "alpha_16_to_127_pixels": 3214,
+        "alpha_128_to_255_pixels": 738278,
+        "alpha0_hidden_rgb_note": "Source bytes retained as generated; view assets with correct alpha compositing, not raw RGB.",
+        "alpha16_content_size": [
+          1060,
+          1038
+        ],
+        "alpha128_content_size": [
+          1059,
+          1037
+        ],
+        "margin_5pct_pass": true,
+        "bbox_convention": "[left, top, right_exclusive, bottom_exclusive]; alpha >= threshold; percentages ordered left, top, right, bottom",
+        "visual_qa": {
+          "inspected": true,
+          "raw_view_inspected": true,
+          "standard_rgba_composite_inspected": [
+            "qa_composite_light.jpg",
+            "qa_composite_dark.jpg"
+          ],
+          "clean_transparent_cutout": true,
+          "no_visible_baked_attack_light": true,
+          "no_text_or_people": true,
+          "no_sky_canyon_or_rectangular_ground": true,
+          "complete_object_no_clipping": true,
+          "observation": "Self-contained sandstone rear portico, sun crest, scale frieze and hanging red-orange cloth. No extended walkable staircase, path, bridge or ground plate.",
+          "open_issues": [
+            "Room-scale placement, occlusion and adjacency remain unverified."
+          ]
+        }
+      }
+    },
+    {
+      "id": "sandstone_obelisk",
+      "room": "L42",
+      "status": "candidate_pending_unified_convergence",
+      "selected_source_png": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sandstone_obelisk_initial.png",
+      "source_sha256": "606c90506f974b6ce21b579c4fdd6f6c056103708b7a129fa36f20a0364c5c39",
+      "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sandstone_obelisk.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sandstone_obelisk.provenance.json",
+      "usage_constraints": "L42 existing footprint blueprint [120,75]; image does not create or enlarge collision.",
+      "qa": {
+        "id": "sandstone_obelisk",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-15750442-4686-4d07-bacf-4d3f69d0a4ee.png",
+        "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/sandstone_obelisk_initial.png",
+        "mode": "RGBA",
+        "size": [
+          1024,
+          1536
+        ],
+        "sha256": "606c90506f974b6ce21b579c4fdd6f6c056103708b7a129fa36f20a0364c5c39",
+        "alpha_minmax": [
+          0,
+          254
+        ],
+        "transparent_fraction": 0.8125572204589844,
+        "alpha16_bbox": [
+          313,
+          72,
+          715,
+          1448
+        ],
+        "alpha16_margin_percent": [
+          30.57,
+          4.69,
+          30.18,
+          5.73
+        ],
+        "alpha16_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha128_bbox": [
+          313,
+          73,
+          714,
+          1447
+        ],
+        "alpha128_margin_percent": [
+          30.57,
+          4.75,
+          30.27,
+          5.79
+        ],
+        "alpha128_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha_zero_pixels": 1278042,
+        "alpha_1_to_15_pixels": 8884,
+        "alpha_16_to_127_pixels": 2133,
+        "alpha_128_to_255_pixels": 283805,
+        "alpha0_hidden_rgb_note": "Source bytes retained as generated; view assets with correct alpha compositing, not raw RGB.",
+        "alpha16_content_size": [
+          402,
+          1376
+        ],
+        "alpha128_content_size": [
+          401,
+          1374
+        ],
+        "margin_5pct_pass": false,
+        "bbox_convention": "[left, top, right_exclusive, bottom_exclusive]; alpha >= threshold; percentages ordered left, top, right, bottom",
+        "visual_qa": {
+          "inspected": true,
+          "raw_view_inspected": true,
+          "standard_rgba_composite_inspected": [
+            "qa_composite_light.jpg",
+            "qa_composite_dark.jpg"
+          ],
+          "clean_transparent_cutout": true,
+          "no_visible_baked_attack_light": true,
+          "no_text_or_people": true,
+          "no_sky_canyon_or_rectangular_ground": true,
+          "complete_object_no_clipping": true,
+          "observation": "Slender sandstone obelisk with complete point and short foot pedestal. Standard RGBA compositing on light and dark backgrounds shows a clean cutout; the gold halo in raw RGB preview is invisible alpha-zero RGB, not a visible attack glow.",
+          "open_issues": [
+            "Top alpha16 margin 4.69%, below the 5% target; preserve and reframe at unified convergence.",
+            "Tall silhouette needs room-scale occlusion validation; apparent painted base never defines collision."
+          ]
+        }
+      }
+    },
+    {
+      "id": "throne_backdrop",
+      "room": "BO07",
+      "status": "candidate_pending_unified_convergence",
+      "selected_source_png": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/throne_backdrop_initial.png",
+      "source_sha256": "57ac5f776cc77d1d50d79c538bbbab3a670e3545301fc5722e6df521cdf481af",
+      "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/throne_backdrop.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/throne_backdrop.provenance.json",
+      "usage_constraints": "BO07 rear decorative backdrop outside playable space; not a floor layer, collider or obstacle.",
+      "qa": {
+        "id": "throne_backdrop",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-dd80806e-740b-4506-a052-957caecab365.png",
+        "path": "/workspace/scratch/2244020fc8d6/b07-art/room_landmarks_0928/throne_backdrop_initial.png",
+        "mode": "RGBA",
+        "size": [
+          1306,
+          1205
+        ],
+        "sha256": "57ac5f776cc77d1d50d79c538bbbab3a670e3545301fc5722e6df521cdf481af",
+        "alpha_minmax": [
+          0,
+          255
+        ],
+        "transparent_fraction": 0.5001919007707802,
+        "alpha16_bbox": [
+          165,
+          25,
+          1167,
+          1144
+        ],
+        "alpha16_margin_percent": [
+          12.63,
+          2.07,
+          10.64,
+          5.06
+        ],
+        "alpha16_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha128_bbox": [
+          166,
+          25,
+          1167,
+          1143
+        ],
+        "alpha128_margin_percent": [
+          12.71,
+          2.07,
+          10.64,
+          5.15
+        ],
+        "alpha128_edge_contacts": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha_zero_pixels": 787167,
+        "alpha_1_to_15_pixels": 16332,
+        "alpha_16_to_127_pixels": 4052,
+        "alpha_128_to_255_pixels": 766179,
+        "alpha0_hidden_rgb_note": "Source bytes retained as generated; view assets with correct alpha compositing, not raw RGB.",
+        "alpha16_content_size": [
+          1002,
+          1119
+        ],
+        "alpha128_content_size": [
+          1001,
+          1118
+        ],
+        "margin_5pct_pass": false,
+        "bbox_convention": "[left, top, right_exclusive, bottom_exclusive]; alpha >= threshold; percentages ordered left, top, right, bottom",
+        "visual_qa": {
+          "inspected": true,
+          "raw_view_inspected": true,
+          "standard_rgba_composite_inspected": [
+            "qa_composite_light.jpg",
+            "qa_composite_dark.jpg"
+          ],
+          "clean_transparent_cutout": true,
+          "no_visible_baked_attack_light": true,
+          "no_text_or_people": true,
+          "no_sky_canyon_or_rectangular_ground": true,
+          "complete_object_no_clipping": true,
+          "observation": "Empty high-backed royal sun throne with two carved lizard-head posts, solid gold disk and red-orange fabric, compact foot and no arena ground.",
+          "open_issues": [
+            "Top alpha16 margin 2.07%, below 5%; preserve and reframe at unified convergence.",
+            "Rear placement and visual scale require convergence so the obstacle-free arena remains unobstructed."
+          ]
+        }
+      }
+    }
+  ]
+}

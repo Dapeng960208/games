@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M18",
+  "action": "support_node",
+  "variant": "support_node",
+  "category": "effect_or_prop",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "assets/levels/b07/effects/support_node/effect_candidate.png",
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "source_filename": "exec-8ee065ed-5049-41b3-9f56-f13391f52264.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8ee065ed-5049-41b3-9f56-f13391f52264.png",
+  "source_sha256": "cb2f589d1d8ea306d95cb0940298988d9cf77be4d0d1b5504db894a11a5ae70a",
+  "png_sha256": "cb2f589d1d8ea306d95cb0940298988d9cf77be4d0d1b5504db894a11a5ae70a",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m18/idle_candidate.png",
+  "identity_reference_sha256": "7c70a16d7faec7020d2715085440f1f60493c3aa68cd1fe1aa9cfc1174264fc1",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1258043,
+    "alpha_zero_fraction": 0.7998421986897787,
+    "low_alpha_1_15_pixel_count": 56077,
+    "opaque_pixel_count": 0,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        39,
+        31,
+        1522,
+        1000
+      ],
+      "bounds_xywh": [
+        39,
+        31,
+        1483,
+        969
+      ],
+      "effective_pixel_count": 314821,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        39,
+        31,
+        14,
+        24
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        105,
+        146,
+        1430,
+        805
+      ],
+      "bounds_xywh": [
+        105,
+        146,
+        1325,
+        659
+      ],
+      "effective_pixel_count": 258744,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        105,
+        146,
+        106,
+        219
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        106,
+        146,
+        1429,
+        804
+      ],
+      "bounds_xywh": [
+        106,
+        146,
+        1323,
+        658
+      ],
+      "effective_pixel_count": 213537,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        106,
+        146,
+        107,
+        220
+      ]
+    },
+    "visual_review": "Gold/turquoise support junction with two short side connectors; isolated and no character or shield.",
+    "defects": [
+      "Decorative emblem is more ornate and physical-looking than a minimal light seed; design candidate only.",
+      "Side connector ends have physical gem caps rather than alpha-only tapered endpoints."
+    ]
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: ONE standalone transparent game skill-effect or physical-prop candidate, not a sprite sheet. Painterly crisp 2.5D fantasy art matching the provided identity reference's warm copper-gold, sandstone ivory, vermilion and turquoise palette, warm upper-left lighting, elevated game view. Reference is STYLE/MATERIAL/EQUIPMENT ONLY. NO character, body, hands, creature, room, floor, environment, ground plate, cast shadow, text, labels or interface. Genuine transparent alpha background. Entire requested asset inside central 75% of canvas with generous empty alpha=0 margins, all tips visible, do not crop. One isolated object/effect only; design candidate, not a programmed hit area.\nASSET m18/support_node: ONE small gold-and-turquoise magical support-link junction node: faceted turquoise seed at center embraced by one thin warm golden oval, two very short tapering luminous connector stubs branching gently left and right. Elegant restrained ceremonial sun style. No three-ring crown, no character, no target, no shield, no full connection network, no long beam, no floor rune. Controlled translucent falloff only near node, most of canvas fully transparent.",
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/support_node/candidate.png",
+  "resource": "asset://levels/b07/effects/support_node/effect_candidate.png",
+  "ability": "light_ceremony"
+}

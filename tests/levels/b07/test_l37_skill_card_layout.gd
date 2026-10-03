@@ -1,0 +1,93 @@
+extends SceneTree
+## Pure screen geometry checks: no game scene, assets generated or graphics.
+const Layout = preload("res://scripts/levels/b07/art/l37_skill_card_layout.gd")
+class PaintedHud:
+	extends Control
+	func active_buff_coverage_rects() -> Array[Rect2]:
+		return [Rect2(global_position+Vector2(20,30),Vector2(236,102))]
+func _initialize() -> void:
+	_run.call_deferred()
+
+func _run() -> void:
+	var viewport := Rect2(8,8,1264,704)
+	var native := Rect2(500,320,254,61)
+	var bodies: Array[Rect2] = [Rect2(460,240,300,220)]
+	var occupied: Array[Rect2] = []
+	var first := Layout.choose(native,viewport,bodies,occupied)
+	assert(viewport.encloses(first.rect))
+	assert(not first.fallback)
+	assert(not Rect2(first.rect).intersects(bodies[0].grow(Layout.GAP)))
+	occupied.append(first.rect)
+	var second := Layout.choose(native,viewport,bodies,occupied)
+	assert(viewport.encloses(second.rect))
+	assert(not Rect2(second.rect).intersects(Rect2(first.rect).grow(Layout.GAP)))
+	assert(not Rect2(second.rect).intersects(bodies[0].grow(Layout.GAP)))
+	var full: Array[Rect2] = [viewport]
+	var fallback := Layout.choose(native,viewport,full,occupied)
+	assert(fallback.fallback and fallback.perimeter and fallback.overlap_score>0)
+	assert(viewport.encloses(fallback.rect))
+	var small := Layout.choose(native,Rect2(0,0,100,30),full,occupied)
+	assert(not small.fits_viewport)
+	# Exercise the actual screen-to-local mapping with scaled camera matrices.
+	# Translation must not be included in a displacement vector's inverse.
+	for scale_value: Vector2 in [Vector2(.72,.72),Vector2(1.44,1.44),Vector2(.72,1.15)]:
+		var matrix := Transform2D(0.0,scale_value,0.0,Vector2(415,207))
+		var origin := Vector2(21,-29)
+		var before: Rect2 = matrix*Rect2(origin,Layout.SIZE)
+		var offset := Vector2(-187,93)
+		var local := Layout.displaced_origin(matrix,origin,offset)
+		var actual: Rect2 = matrix*Rect2(local,Layout.SIZE)
+		assert(actual.position.is_equal_approx(before.position+offset))
+		assert(actual.size.is_equal_approx(before.size))
+	# HUD bounds come from the existing visible controls, not fixed coordinates.
+	var scene := Node.new()
+	root.add_child(scene)
+	var canvas := CanvasLayer.new()
+	scene.add_child(canvas)
+	var fullscreen := Control.new()
+	fullscreen.size = root.get_visible_rect().size
+	canvas.add_child(fullscreen)
+	var ribbon := Panel.new()
+	ribbon.position = Vector2(440,300)
+	ribbon.size = Vector2(320,110)
+	fullscreen.add_child(ribbon)
+	var empty_label := Label.new()
+	empty_label.position = Vector2(0,500)
+	empty_label.size = Vector2(120,30)
+	fullscreen.add_child(empty_label)
+	var hidden_panel := Panel.new()
+	hidden_panel.size = Vector2(400,100)
+	fullscreen.add_child(hidden_panel)
+	hidden_panel.hide()
+	var hud := Layout.hud_rects(scene)
+	assert(hud.size() == 1)
+	assert(hud[0].is_equal_approx(ribbon.get_global_transform_with_canvas()*Rect2(Vector2.ZERO,ribbon.size)))
+	var clear_card := Layout.choose(native,viewport,hud,[])
+	assert(not clear_card.fallback)
+	assert(not Rect2(clear_card.rect).intersects(hud[0].grow(Layout.GAP)))
+	ribbon.position += Vector2(90,60)
+	assert(Layout.hud_rects(scene)[0].position.is_equal_approx(ribbon.position))
+	var custom := PaintedHud.new()
+	custom.position=Vector2(800,166)
+	fullscreen.add_child(custom)
+	var with_custom := Layout.hud_rects(scene)
+	assert(with_custom.size()==2)
+	assert(with_custom[1].is_equal_approx(custom.get_canvas_transform()*custom.active_buff_coverage_rects()[0]))
+	var blocked_card := Rect2(with_custom[1].position,Layout.SIZE)
+	var relocated := Layout.choose(blocked_card,viewport,with_custom,[])
+	assert(not Rect2(relocated.rect).intersects(with_custom[1].grow(Layout.GAP)))
+	custom.hide()
+	assert(Layout.hud_rects(scene).size()==1)
+	canvas.hide()
+	assert(Layout.hud_rects(scene).is_empty())
+	scene.free()
+	assert(Layout.publish(null).is_empty())
+	assert(not Layout.enabled(null))
+	assert(Layout.placement(null).is_empty())
+	var actor := Node2D.new()
+	var badge := Node2D.new()
+	actor.add_child(badge)
+	assert(Layout.placement(badge).is_empty())
+	actor.free()
+	print("L37 CARD LAYOUT: pure geometry checks passed; live visual acceptance pending")
+	quit()

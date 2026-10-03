@@ -19,7 +19,7 @@ static func definition(id: String) -> Dictionary:
 static func stats(id: String, raw: Dictionary, archetype: String, level: int, chapter: int, difficulty: int, rank: String) -> Dictionary:
 	var species := definition(id)
 	if species.is_empty() or int(species.get("chapter",0)) != chapter or not Growth.ROLES.has(archetype): return {}
-	if level < 1 or level > 60 or chapter < 1 or chapter > 6 or difficulty not in range(5) or rank not in ["normal","elite"]: return {}
+	if level < 1 or level > 60 or chapter < 1 or chapter > 7 or difficulty not in range(5) or rank not in ["normal","elite"]: return {}
 	for key: String in FIELDS:
 		var value: Variant = raw.get(key)
 		if not (value is int or value is float) or not is_finite(float(value)) or float(value)<0: return {}

@@ -1,0 +1,180 @@
+{
+  "status": "fixed_geometry_design_preparation_only",
+  "baseline": "87b0c1989e89cae8b9dd70a0f6244f6e9d0b49ed",
+  "room_id": "L39",
+  "name": "驭沙学庭",
+  "source": "data/levels/b07/content.json#room_geometry.L39",
+  "geometry_sha256": "e23a9dad1202f16991b8fbda333042bb434424450b53a3e01808a95413ad36c6",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "placement_normalized_rect": [
+    0.1,
+    0.12,
+    0.8,
+    0.7714285714285715
+  ],
+  "blueprint_bounds": [
+    -350,
+    -280,
+    3500,
+    2333.3333333333335
+  ],
+  "world_rect": [
+    -203,
+    -162.4,
+    2030,
+    1353.3333333333333
+  ],
+  "mapping": "world = blueprint * .58 = world_rect.position + source_pixel / source_size * world_rect.size",
+  "floor_polygon_pixels": [
+    [
+      219.42857142857142,
+      320.36571428571426
+    ],
+    [
+      337.92,
+      179.93142857142857
+    ],
+    [
+      1136.6399999999999,
+      179.93142857142857
+    ],
+    [
+      1320.96,
+      315.97714285714284
+    ],
+    [
+      1320.96,
+      750.4457142857142
+    ],
+    [
+      1167.3600000000001,
+      868.9371428571428
+    ],
+    [
+      386.19428571428574,
+      868.9371428571428
+    ],
+    [
+      219.42857142857142,
+      741.6685714285713
+    ]
+  ],
+  "anchors_pixels": {
+    "entry": [
+      355.4742857142857,
+      719.7257142857143
+    ],
+    "exit": [
+      1184.9142857142858,
+      302.81142857142856
+    ],
+    "altar": [
+      768.0,
+      478.3542857142857
+    ],
+    "L39_mirror_1": [
+      460.79999999999995,
+      636.3428571428572
+    ],
+    "L39_mirror_2": [
+      1075.1999999999998,
+      359.86285714285714
+    ],
+    "L39_gate_near": [
+      1123.4742857142858,
+      346.6971428571428
+    ],
+    "L39_gate_far": [
+      1206.857142857143,
+      333.53142857142853
+    ]
+  },
+  "encounters_pixels": [
+    [
+      522.24,
+      684.6171428571428
+    ],
+    [
+      807.4971428571428,
+      539.7942857142857
+    ],
+    [
+      1132.2514285714285,
+      386.1942857142857
+    ]
+  ],
+  "safe_route_width_blueprint": 180,
+  "safe_route_width_world": 104.39999999999999,
+  "safe_routes_pixels": [
+    [
+      [
+        355.4742857142857,
+        719.7257142857143
+      ],
+      [
+        658.2857142857142,
+        754.8342857142857
+      ],
+      [
+        1184.9142857142858,
+        671.4514285714286
+      ],
+      [
+        1184.9142857142858,
+        302.81142857142856
+      ]
+    ],
+    [
+      [
+        355.4742857142857,
+        719.7257142857143
+      ],
+      [
+        460.79999999999995,
+        636.3428571428572
+      ]
+    ],
+    [
+      [
+        355.4742857142857,
+        719.7257142857143
+      ],
+      [
+        1075.1999999999998,
+        359.86285714285714
+      ]
+    ]
+  ],
+  "covers_pixels": [
+    [
+      548.5714285714286,
+      307.2,
+      52.66285714285715,
+      32.91428571428571
+    ],
+    [
+      825.0514285714286,
+      320.36571428571426,
+      52.66285714285715,
+      32.91428571428571
+    ]
+  ],
+  "runtime_geometry_change": false,
+  "detail_gate": "No native detail generation until full painting fixed-boundary and anchor pixel QA passes",
+  "art_direction": "明亮手绘卡通奇幻，高机位三分之四斜俯视，2.5D 蜥族砂岩学庭；边界外露台书廊和蜥首学院雕刻，边界内单一同高平整石地，不烘焙沙盘/镜座/祭坛/门/掩体。",
+  "layering": {
+    "background": "One independently generated complete painting; actual visible ground silhouette must match fixed geometry",
+    "detail": "Only after mother-image approval: six native repaints with L07 source rectangles and feather 16x24",
+    "gameplay_objects": "Runtime-only mirror, altar/sand_table, cover and gate nodes; no duplicates baked in painting",
+    "actors_and_ui": "Runtime-only; do not bake into painting"
+  },
+  "geometry_hash_serialization": "UTF-8 json.dumps(room_geometry.L39,sort_keys=True,ensure_ascii=False,separators=(comma,colon))",
+  "width_units_note": "content uses coordinate_unit blueprint_pixel; the world value shown here is an arithmetic conversion by .58, not a claim about an unexamined runtime consumer",
+  "source_size_note": "Both generated PNGs actually are 1536x1024 RGB; no resize applied.",
+  "review_required_safe_route_width_world": 180,
+  "review_required_half_width_world": 90,
+  "review_width_note": "The review contract retains the stronger 180 WORLD-pixel corridor required for B07; do not use only the authored blueprint width scaled by .58 as acceptance."
+}

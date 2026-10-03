@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "BO07",
+  "ability": "altar_lines",
+  "phase": "telegraph",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-9de5a7f1-88f5-421e-bd68-25a96ad1b01a.png",
+  "source_sha256": "1db645bfe7af7f22e067acc63cc9f14bc87e9f933677cb9c3b7bca291afc2ed6",
+  "resource": "asset://levels/b07/bosses/bo07/actions/altar_lines/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png",
+  "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      70,
+      14,
+      1126,
+      1227
+    ],
+    "alpha128_pixel_count": 575631,
+    "transparent_pixel_count": 930529,
+    "low_alpha_1_32_count": 57046,
+    "nonzero_edge_pixel_count": 6,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 351.1,
+    "foot_landmarks": [
+      [
+        501.6,
+        1166.2
+      ],
+      [
+        1040.8,
+        1091.0
+      ]
+    ],
+    "foot_midpoint": [
+      771.2,
+      1128.6
+    ],
+    "visible_anatomical_vertical_extent": 777.5,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Raised spear ritual gesture readable, no baked beam.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

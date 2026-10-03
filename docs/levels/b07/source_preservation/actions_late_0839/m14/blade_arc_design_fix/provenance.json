@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M14",
+  "action": "blade_arc",
+  "variant": "blade_arc_design_fix",
+  "category": "effect_or_prop",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc_design_fix/candidate.png",
+  "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc_design_fix/prompt.txt",
+  "source_filename": "exec-3a25033a-abf5-4d90-aaee-83641048645c.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3a25033a-abf5-4d90-aaee-83641048645c.png",
+  "source_sha256": "b80f1d24ddc8f5ee0c1b5cbcafea59e156123a3c516d1477863896ed65321843",
+  "png_sha256": "b80f1d24ddc8f5ee0c1b5cbcafea59e156123a3c516d1477863896ed65321843",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m14/idle_candidate.png",
+  "identity_reference_sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1312,
+      1199
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1402331,
+    "alpha_zero_fraction": 0.8914510822026486,
+    "low_alpha_1_15_pixel_count": 58816,
+    "opaque_pixel_count": 0,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        65,
+        21,
+        1250,
+        1175
+      ],
+      "bounds_xywh": [
+        65,
+        21,
+        1185,
+        1154
+      ],
+      "effective_pixel_count": 170757,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        65,
+        21,
+        62,
+        24
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        169,
+        356,
+        1170,
+        1110
+      ],
+      "bounds_xywh": [
+        169,
+        356,
+        1001,
+        754
+      ],
+      "effective_pixel_count": 111941,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        169,
+        356,
+        142,
+        89
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        175,
+        377,
+        1152,
+        1105
+      ],
+      "bounds_xywh": [
+        175,
+        377,
+        977,
+        728
+      ],
+      "effective_pixel_count": 63440,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        175,
+        377,
+        160,
+        94
+      ]
+    },
+    "visual_review": "One simple connected amber slash arc; branch lobes and turquoise streaks removed on the single correction. No character or weapon.",
+    "defects": [
+      "Arc extent is illustrative rather than a verified 60-degree geometric primitive; do not use PNG pixels as hit geometry.",
+      "Soft ribbon falloff still wider than its narrow bright core."
+    ]
+  },
+  "prompt_text": "Use case: precise-object-edit. Single targeted correction to standalone game VFX candidate. Keep this isolated effect's gold/amber palette only. Correct it to exactly ONE SIMPLE SINGLE thin curved luminous crescent sliver with two tapered endpoints. Remove all branching fork shapes, side lobes, extra overlapping trails, turquoise streaks, and arrowheads. Make the thickness about 5% of the arc span, and visible sweep only about 60 degrees. No physical weapon, no geometric ornament, no sparks, no full ring. Pure transparent alpha background; generous margin. One restrained slash arc, not multiple cuts.",
+  "edit_target_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-46e0ca30-b9d8-4a0d-ad05-b08bb302c1ee.png",
+  "single_targeted_revision": true
+}

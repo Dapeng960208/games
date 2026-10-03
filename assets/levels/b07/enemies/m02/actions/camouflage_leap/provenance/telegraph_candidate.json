@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-271c3cae-4aec-436a-909f-fe51c22e7656.png",
+  "source_sha256": "9d5da404b3e85a894dae3c08bb7b718f60854fecbaacbb5e84e42a1bfece3a1b",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/enemies/m02/actions/camouflage_leap/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      128,
+      94,
+      1364,
+      861
+    ],
+    "alpha128_pixel_count": 548920,
+    "transparent_pixel_count": 982878,
+    "low_alpha_1_32_count": 34953,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Crouch readable, spiral tail retained; anatomy/feet need same-scale overlay review.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "anatomical_crown_y": 99,
+    "foot_landmarks": [
+      [
+        573,
+        884
+      ],
+      [
+        1159,
+        809
+      ]
+    ],
+    "foot_midpoint": [
+      866.0,
+      846.5
+    ],
+    "airborne_no_ground_contact": false,
+    "visible_anatomical_vertical_extent": 747.5,
+    "semantic_uncertainty_px": 20,
+    "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+    "scale_and_foot_continuity_passed": false
+  },
+  "identity": "B07-M02",
+  "ability": "camouflage_leap",
+  "phase": "telegraph",
+  "reference_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+  "reference_path": "assets/levels/b07/enemies/m02/idle_candidate.png"
+}

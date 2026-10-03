@@ -1,0 +1,634 @@
+{
+  "method": "Individual original PNGs viewed; coordinates manually estimated in source pixels. Feet are support-contact centers, not alpha bounds. These are visual QA estimates, not approved runtime anchors.",
+  "selected": [
+    {
+      "id": "m08",
+      "action": "telegraph",
+      "kind": "character_key_pose",
+      "relative_dir": "m08/telegraph",
+      "crown": [
+        931,
+        194
+      ],
+      "feet": [
+        [
+          457,
+          1101
+        ],
+        [
+          1220,
+          906
+        ]
+      ],
+      "read": "Right-hand mirror blade raised; empty left hand, two feet and full tail readable.",
+      "issues": [
+        "Rightmost fingers/foot and blade have tight composition; camera is only moderately elevated."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m08",
+      "action": "execute",
+      "kind": "character_key_pose",
+      "relative_dir": "m08/execute/repair",
+      "crown": [
+        903,
+        102
+      ],
+      "feet": [
+        [
+          342,
+          1040
+        ],
+        [
+          1190,
+          805
+        ]
+      ],
+      "read": "Right-hand diagonal slash; left arm counterbalances; weapon, tail and feet retained.",
+      "issues": [
+        "Repair increased blade-side margin from 1px to 13px at alpha>=16, still far short of requested safety margin. Do not treat as framing passed."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m08",
+      "action": "recovery",
+      "kind": "character_key_pose",
+      "relative_dir": "m08/recovery",
+      "crown": [
+        1010,
+        106
+      ],
+      "feet": [
+        [
+          605,
+          1070
+        ],
+        [
+          1220,
+          937
+        ]
+      ],
+      "read": "Right blade lowered, back scales exposed, empty left hand; feet preserved.",
+      "issues": [
+        "Recovery is visually close to idle; exposed-back vulnerability needs stronger in-game differentiation."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m09",
+      "action": "telegraph",
+      "kind": "character_key_pose",
+      "relative_dir": "m09/telegraph",
+      "crown": [
+        553,
+        122
+      ],
+      "feet": [
+        [
+          200,
+          1140
+        ],
+        [
+          828,
+          937
+        ]
+      ],
+      "read": "Pipe supported by same two hands and long tail; raised head and chest anticipation.",
+      "issues": [
+        "Anticipation differs subtly from idle; inhale/readability not strongly exaggerated.",
+        "Blowpipe tip only 12px from right at alpha>=16."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m09",
+      "action": "execute",
+      "kind": "character_key_pose",
+      "relative_dir": "m09/execute",
+      "crown": [
+        586,
+        206
+      ],
+      "feet": [
+        [
+          211,
+          1075
+        ],
+        [
+          770,
+          850
+        ]
+      ],
+      "read": "Crouch thrusts forward into blowpipe, correct right rear/left front hand positions; no projectile baked in.",
+      "issues": [
+        "Cheek inflation subtle; tail brace still near pipe front and needs mechanical plausibility review."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m09",
+      "action": "recovery",
+      "kind": "character_key_pose",
+      "relative_dir": "m09/recovery",
+      "crown": [
+        585,
+        135
+      ],
+      "feet": [
+        [
+          202,
+          1110
+        ],
+        [
+          790,
+          939
+        ]
+      ],
+      "read": "Right hand draws dart from belt while left holds pipe; open mouth, two feet, full tail.",
+      "issues": [
+        "Pipe tip right margin 16px; stance scale and footpoint shift across poses require later rig/scale alignment."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m10",
+      "action": "telegraph",
+      "kind": "character_key_pose",
+      "relative_dir": "m10/telegraph",
+      "crown": [
+        877,
+        365
+      ],
+      "feet": [
+        [
+          597,
+          1103
+        ],
+        [
+          1068,
+          1015
+        ]
+      ],
+      "read": "Left crank raised, right strap grip, three plain mirrors; exact mirror count and character identity retained.",
+      "issues": [
+        "Mirror top margin 22px; top-heavy frame strongly affects total height.",
+        "Camera lower than intended high-angle target."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m10",
+      "action": "execute",
+      "kind": "character_key_pose",
+      "relative_dir": "m10/execute",
+      "crown": [
+        900,
+        352
+      ],
+      "feet": [
+        [
+          528,
+          1105
+        ],
+        [
+          1145,
+          1010
+        ]
+      ],
+      "read": "Left crank down/forward, right support, central mirror turns edge-on; three mirrors retained.",
+      "issues": [
+        "Mirror crown top margin 10px; central mirror angle differs but not all three angles strictly match.",
+        "Camera lower than intended high-angle target."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m10",
+      "action": "recovery",
+      "kind": "character_key_pose",
+      "relative_dir": "m10/recovery",
+      "crown": [
+        938,
+        324
+      ],
+      "feet": [
+        [
+          650,
+          1110
+        ],
+        [
+          1114,
+          1065
+        ]
+      ],
+      "read": "Left crank lowered, right strap steady, three mirrors plain, full tail/feet.",
+      "issues": [
+        "Top mirror margin 19px.",
+        "Mirror settled angle does not perfectly preserve execute angle; phase continuity unresolved."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m11",
+      "action": "telegraph",
+      "kind": "character_key_pose",
+      "relative_dir": "m11/telegraph",
+      "crown": [
+        956,
+        548
+      ],
+      "feet": [
+        [
+          383,
+          979
+        ],
+        [
+          568,
+          868
+        ],
+        [
+          887,
+          1018
+        ],
+        [
+          1169,
+          1045
+        ]
+      ],
+      "read": "Four-paw low beast identity and original palette retained, crouched wind-up candidate.",
+      "issues": [
+        "BLOCKING POSE READABILITY: front paws are not convincingly lifted; cannot count as accepted stomp anticipation.",
+        "One repair lifted forepaws but hid far hind leg and reduced right margin to 2px; repair rejected.",
+        "Foot anchor here is tentative because intended lifted-front-paw support state is not achieved."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m11",
+      "action": "execute",
+      "kind": "character_key_pose",
+      "relative_dir": "m11/execute/repair",
+      "crown": [
+        971,
+        693
+      ],
+      "feet": [
+        [
+          235,
+          967
+        ],
+        [
+          525,
+          931
+        ],
+        [
+          813,
+          1119
+        ],
+        [
+          1112,
+          1074
+        ]
+      ],
+      "read": "Repair clearly restores fourth far hind paw; lowered head and compressed front stance suggest stomp.",
+      "issues": [
+        "Right snout/forepaw tight; contact frame has no ground or impact VFX by design.",
+        "Four-foot anchor is inferred from paw contact centers, requires scene validation."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m11",
+      "action": "recovery",
+      "kind": "character_key_pose",
+      "relative_dir": "m11/recovery",
+      "crown": [
+        1006,
+        556
+      ],
+      "feet": [
+        [
+          337,
+          945
+        ],
+        [
+          606,
+          844
+        ],
+        [
+          855,
+          1104
+        ],
+        [
+          1134,
+          1015
+        ]
+      ],
+      "read": "All four paws distinguishable, neck rises and forelimbs settle.",
+      "issues": [
+        "Far hind paw remains partially occluded although identifiable; recovery close to idle.",
+        "Tail 20px from left at alpha>=16."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m12",
+      "action": "telegraph",
+      "kind": "character_key_pose",
+      "relative_dir": "m12/telegraph",
+      "crown": [
+        939,
+        293
+      ],
+      "feet": [
+        [
+          510,
+          1006
+        ],
+        [
+          1159,
+          919
+        ]
+      ],
+      "read": "Low drawn-crossbow aim, right trigger hand and left fore-stock hand retained; loaded bolt on rail.",
+      "issues": [
+        "Cloth covers much of body; head and foot positions need scale reconciliation across phases."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m12",
+      "action": "execute",
+      "kind": "character_key_pose",
+      "relative_dir": "m12/execute",
+      "crown": [
+        806,
+        143
+      ],
+      "feet": [
+        [
+          492,
+          1020
+        ],
+        [
+          1106,
+          914
+        ]
+      ],
+      "read": "Crossbow rail now empty, slight upper-body recoil; two hands remain; no projectile or flash.",
+      "issues": [
+        "String looks partly tensioned rather than fully relaxed; clear release timing not yet verified.",
+        "Recoil pose rises appreciably relative to telegraph."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m12",
+      "action": "recovery",
+      "kind": "character_key_pose",
+      "relative_dir": "m12/recovery/repair",
+      "crown": [
+        921,
+        164
+      ],
+      "feet": [
+        [
+          497,
+          1032
+        ],
+        [
+          1098,
+          960
+        ]
+      ],
+      "read": "Repair removed extra hand. Exactly two visible hands, right on recocking ring and left under stock.",
+      "issues": [
+        "Reload mechanical sequence needs more frames; bolt is already visible on rail in this recocking key pose.",
+        "Original recovery had duplicate left hand and is rejected, not a valid alternate."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m08",
+      "action": "mirror_short_light",
+      "kind": "independent_object_vfx",
+      "relative_dir": "m08/mirror_short_light",
+      "pivot": [
+        699,
+        657
+      ],
+      "read": "Separate pale-gold/silver short curved light slash, no body or weapon hilt.",
+      "issues": [
+        "Visual core looks fairly solid like a translucent blade; blend mode/opacity and compact runtime scale unresolved.",
+        "No authoritative hit geometry encoded."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m09",
+      "action": "poison_dart",
+      "kind": "independent_object_vfx",
+      "relative_dir": "m09/poison_dart",
+      "pivot": [
+        720,
+        505
+      ],
+      "read": "Slender brass/reed dart with green-coated needle tip, entire projectile visible.",
+      "issues": [
+        "Raw RGBA preview warm halo is absent in normal-alpha sand/dark-purple composites; do not diagnose alpha failure from raw RGB preview.",
+        "Feather tuft is visually larger than a typical blowdart; fit to pipe bore unverified."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m10",
+      "action": "mirror_state_indicator",
+      "kind": "independent_object_vfx",
+      "relative_dir": "m10/mirror_state_indicator",
+      "pivot": [
+        769,
+        844
+      ],
+      "read": "One central solid mirror, two cyan ghost orientations joined to a compact base; no room or beams.",
+      "issues": [
+        "All three preview orientations are baked into one CONCEPT object, not runtime-separated three-state assets or implemented logic.",
+        "Raw RGBA preview halos are absent in normal-alpha sand/dark-purple composites; ghost mirror silhouettes remain deliberately visible.",
+        "Ghost frames overlap central pedestal; runtime state separation still required."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m11",
+      "action": "sand_ridge_segment",
+      "kind": "independent_object_vfx",
+      "relative_dir": "m11/sand_ridge_segment",
+      "pivot": [
+        633,
+        844
+      ],
+      "read": "Independent short sandstone ridge strip with no beast, shockwave or warning boundary.",
+      "issues": [
+        "Taller left rock makes ridge less uniformly low than brief; scale/collision not established.",
+        "Several small pebbles baked into integral base; no runtime destructible separation."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    },
+    {
+      "id": "m12",
+      "action": "heavy_crossbow_bolt",
+      "kind": "independent_object_vfx",
+      "relative_dir": "m12/heavy_crossbow_bolt",
+      "pivot": [
+        694,
+        598
+      ],
+      "read": "Heavy wood/brass bolt with wide metal diamond head and red/cream fletching, clearly different from dart.",
+      "issues": [
+        "Projectile proportions need fit validation against crossbow rail; no speed/hitbox inferred."
+      ],
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      }
+    }
+  ]
+}

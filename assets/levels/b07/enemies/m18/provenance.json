@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M18",
+  "status": "design_candidate_not_runtime_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-c2cabff8-232b-42ea-ab70-e12802d646a8.png",
+  "source_sha256": "7c70a16d7faec7020d2715085440f1f60493c3aa68cd1fe1aa9cfc1174264fc1",
+  "native_size": [
+    1024,
+    1536
+  ],
+  "native_mode": "RGBA",
+  "original_colors_preserved": true,
+  "postprocessing": "none; source PNG byte-for-byte copy",
+  "candidate_only": true,
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "pose": "single_right_three_quarter_idle_ready",
+  "references": [
+    "user-provided B07(1).png: authoritative world and species",
+    "accepted M01 idle: painted family only"
+  ],
+  "reference_sha256": {
+    "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+    "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+  },
+  "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+  "prompt": "provenance/idle_candidate.prompt.txt",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      13,
+      14,
+      998,
+      1459
+    ],
+    "alpha128_pixel_count": 528471,
+    "transparent_pixel_count": 1000286,
+    "low_alpha_1_32_count": 37569,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "body_crown_or_anatomical_dorsal_y": 225,
+    "foot_contacts_manual": [
+      [
+        506,
+        1400
+      ],
+      [
+        833,
+        1260
+      ]
+    ],
+    "foot_midpoint": [
+      669.5,
+      1330.0
+    ],
+    "body_height_excluding_weapon_tail_accessories": 1105.0,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 1105.0,
+    "maximum_display_body_px_at_1_5_sampling_margin": 736.67,
+    "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+    "visual_review": "Three vertical rings distinct from king back crown. RGB contains glow in alpha-zero pixels: not an opaque backdrop. Alpha must be respected; edge fringe pending. Camera relatively low."
+  },
+  "revision": {
+    "initial_source": "exec-8701155f-e713-4918-a521-813c6fae93ce.png",
+    "initial_sha256": "4fb47772dc787eea087f10273a63e59aa44d06d030892136f114475fff68f794",
+    "initial_prompt": "provenance/idle_initial.prompt.txt",
+    "request": "True transparent edge extraction; initial/source retained in generation workspace. Alpha verified numerically; hidden RGB glow must not be confused with opaque background."
+  }
+}

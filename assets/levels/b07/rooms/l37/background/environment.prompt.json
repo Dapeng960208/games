@@ -1,0 +1,7 @@
+{
+  "generation_tool": "built-in image_gen",
+  "selected_source": "mask_first_boundary_candidate.png",
+  "prompt_file": "docs/levels/b07/rooms/l37/independent_painting_mask_first.prompt.txt",
+  "unchanged_generated_pixels": true,
+  "acceptance": "selected for explicitly authorized boundary remapping review; old fixed-polygon failure retained in candidate provenance"
+}

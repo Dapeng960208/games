@@ -1,0 +1,287 @@
+[
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M02",
+    "ability": "sand_ball",
+    "phase": "telegraph",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-d386f35b-d40b-4c57-9e6d-e2b0220e75cc.png",
+    "source_sha256": "28ffe9a30391c9c1f2545d97a65e6371e9414efb801f6c81e55d8e702a710b02",
+    "resource": "asset://levels/b07/enemies/m02/actions/sand_ball/telegraph_candidate.png",
+    "prompt": "provenance/telegraph_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m02/idle_candidate.png",
+    "reference_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        57,
+        144,
+        1187,
+        1009
+      ],
+      "alpha128_pixel_count": 573344,
+      "transparent_pixel_count": 952068,
+      "low_alpha_1_32_count": 39898,
+      "nonzero_edge_pixel_count": 20,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 137.9,
+      "foot_landmarks": [
+        [
+          376.2,
+          1091.0
+        ],
+        [
+          1028.3,
+          940.5
+        ]
+      ],
+      "foot_midpoint": [
+        702.25,
+        1015.75
+      ],
+      "visible_anatomical_vertical_extent": 877.8,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Sand ball in original hand and release-preparation distinct; right fingertips near edge.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M02",
+    "ability": "sand_ball",
+    "phase": "execute",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-3a3cc174-0358-40ce-9f36-b14a0cf40e9b.png",
+    "source_sha256": "10ce0fa9bda9dc3507cc26b58385a4cc1661e9aa62146a78b38c5d9f2b7a8dc0",
+    "resource": "asset://levels/b07/enemies/m02/actions/sand_ball/execute_candidate.png",
+    "prompt": "provenance/execute_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m02/idle_candidate.png",
+    "reference_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        31,
+        150,
+        1218,
+        1015
+      ],
+      "alpha128_pixel_count": 487956,
+      "transparent_pixel_count": 1035477,
+      "low_alpha_1_32_count": 41787,
+      "nonzero_edge_pixel_count": 29,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 150.5,
+      "foot_landmarks": [
+        [
+          326.0,
+          1116.1
+        ],
+        [
+          1040.8,
+          928.0
+        ]
+      ],
+      "foot_midpoint": [
+        683.4,
+        1022.05
+      ],
+      "visible_anatomical_vertical_extent": 871.6,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Empty release palm; apparent arms exchange across torso rotation needs shoulder tracking, not assumed correct.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M02",
+    "ability": "sand_ball",
+    "phase": "recovery",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-0b9bff16-1ceb-4f17-ad94-26b15bae3d39.png",
+    "source_sha256": "baf6fbe0deb2cd1b047144a2b1943d583831071dfbabe0b8a56e4736e4fe1384",
+    "resource": "asset://levels/b07/enemies/m02/actions/sand_ball/recovery_candidate.png",
+    "prompt": "provenance/recovery_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m02/idle_candidate.png",
+    "reference_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        61,
+        145,
+        1176,
+        998
+      ],
+      "alpha128_pixel_count": 530245,
+      "transparent_pixel_count": 988873,
+      "low_alpha_1_32_count": 45666,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 150.5,
+      "foot_landmarks": [
+        [
+          451.4,
+          1078.4
+        ],
+        [
+          1003.2,
+          915.4
+        ]
+      ],
+      "foot_midpoint": [
+        727.3,
+        996.9000000000001
+      ],
+      "visible_anatomical_vertical_extent": 846.4,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Empty lowered hand and low recovery; pose scale pending.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M03",
+    "ability": "returning_disc",
+    "phase": "catch",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-9bfcb50b-9cb5-4a09-ab0a-7c5d8c9f950c.png",
+    "source_sha256": "c39ed2a83eab65bd30b84294f8ee3fadf5bc5dc7be004250be624c081cd73a38",
+    "resource": "asset://levels/b07/enemies/m03/actions/returning_disc/catch_candidate.png",
+    "prompt": "provenance/catch_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m03/idle_candidate.png",
+    "reference_sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        40,
+        56,
+        1175,
+        1170
+      ],
+      "alpha128_pixel_count": 454939,
+      "transparent_pixel_count": 1082652,
+      "low_alpha_1_32_count": 29523,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 62.7,
+      "foot_landmarks": [
+        [
+          489.1,
+          1128.6
+        ],
+        [
+          1078.4,
+          1015.7
+        ]
+      ],
+      "foot_midpoint": [
+        783.75,
+        1072.15
+      ],
+      "visible_anatomical_vertical_extent": 1009.5,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Returned disc held at chest with original gold shoulder arm; belt spare retained.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "BO07",
+    "ability": "altar_suppressed",
+    "phase": "exposed",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-7ff27fd2-8a73-44fb-b51c-b1e03bd48b54.png",
+    "source_sha256": "ea93b42dc857679732082f65db49852ea48dd6e763643168e94fcfcdac4786c0",
+    "resource": "asset://levels/b07/bosses/bo07/actions/altar_suppressed/exposed_candidate.png",
+    "prompt": "provenance/exposed_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png",
+    "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        19,
+        9,
+        1217,
+        1229
+      ],
+      "alpha128_pixel_count": 550896,
+      "transparent_pixel_count": 980839,
+      "low_alpha_1_32_count": 34096,
+      "nonzero_edge_pixel_count": 22,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 288.4,
+      "foot_landmarks": [
+        [
+          564.3,
+          1141.1
+        ],
+        [
+          865.3,
+          1091.0
+        ]
+      ],
+      "foot_midpoint": [
+        714.8,
+        1116.05
+      ],
+      "visible_anatomical_vertical_extent": 827.6,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Back scales newly exposed and bowed posture; armor opening design inferred from existing exposed state, not a new mechanic.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  }
+]

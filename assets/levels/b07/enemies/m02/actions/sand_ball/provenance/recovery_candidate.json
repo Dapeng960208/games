@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M02",
+  "ability": "sand_ball",
+  "phase": "recovery",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-0b9bff16-1ceb-4f17-ad94-26b15bae3d39.png",
+  "source_sha256": "baf6fbe0deb2cd1b047144a2b1943d583831071dfbabe0b8a56e4736e4fe1384",
+  "resource": "asset://levels/b07/enemies/m02/actions/sand_ball/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m02/idle_candidate.png",
+  "reference_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      61,
+      145,
+      1176,
+      998
+    ],
+    "alpha128_pixel_count": 530245,
+    "transparent_pixel_count": 988873,
+    "low_alpha_1_32_count": 45666,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 150.5,
+    "foot_landmarks": [
+      [
+        451.4,
+        1078.4
+      ],
+      [
+        1003.2,
+        915.4
+      ]
+    ],
+    "foot_midpoint": [
+      727.3,
+      996.9000000000001
+    ],
+    "visible_anatomical_vertical_extent": 846.4,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Empty lowered hand and low recovery; pose scale pending.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

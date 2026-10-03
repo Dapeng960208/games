@@ -36,6 +36,8 @@ func nearby_interaction() -> Dictionary:
 	if is_instance_valid(host.b05_mechanics):
 		var gate: Dictionary = host.b05_mechanics.nearby_mechanism(host.player.position)
 		if not gate.is_empty(): return gate
+	if bool(host.layout.get("b07_candidate",false)) and host.objective_complete and is_instance_valid(host.b07_mechanics) and host.b07_mechanics.state.gate_open and host.player.position.distance_to(host.exit_position) <= Balance.INTERACTION_RADIUS and host.has_line_of_sight(host.player.position,host.exit_position):
+		return {"kind":"b07_candidate_next","position":host.exit_position,"label":"结束候选预览" if host.layout_id == "BO07" else "前往下一候选房"}
 	if bool(host.layout.get("b06_candidate",false)) and not bool(host.expedition_context.get("b06_progression",false)) and host.objective_complete and host.player.position.distance_to(host.exit_position) <= Balance.INTERACTION_RADIUS and host.has_line_of_sight(host.player.position,host.exit_position):
 		return {"kind":"b06_candidate_next","position":host.exit_position,"label":"结束候选预览" if host.layout_id == "BO06" else "前往下一候选房"}
 	if is_instance_valid(host.objectives):
@@ -70,7 +72,7 @@ func interaction_hint() -> String:
 	if nearby.is_empty():
 		return ""
 	var key: String = host._interaction_key()
-	if nearby.kind in ["objective","b05_gate","b05_sunleaf","next","early_extract","relic_choice","supply","loot","b06_candidate_next","b09_candidate_next","skill_archive"]:
+	if nearby.kind in ["objective","b05_gate","b05_sunleaf","next","early_extract","relic_choice","supply","loot","b06_candidate_next","b07_candidate_next","b09_candidate_next","skill_archive"]:
 		return "[" + key + "] " + str(nearby.get("label","继续远征"))
 	if nearby["kind"] == "extract":
 		return tr("INTERACT_EXTRACT").replace("[E]", "["+key+"]")
@@ -99,7 +101,7 @@ func interact() -> void:
 		host.b05_mechanics.toggle_sunleaf(str(nearby.id),host.player)
 	elif nearby.kind == "objective":
 		host.objectives.interact(str(nearby.id),host.player)
-	elif nearby.kind in ["next","early_extract","relic_choice","supply","loot","b06_candidate_next","b09_candidate_next"]:
+	elif nearby.kind in ["next","early_extract","relic_choice","supply","loot","b06_candidate_next","b07_candidate_next","b09_candidate_next"]:
 		host.set_input_blocked(true)
 		host.interaction_requested.emit(str(nearby.kind),host.expedition_context.duplicate(true))
 	elif nearby["kind"] == "extract":

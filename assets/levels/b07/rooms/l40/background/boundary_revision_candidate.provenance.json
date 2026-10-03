@@ -1,0 +1,34 @@
+{
+  "room_id": "L40",
+  "status": "candidate_failed_fixed_boundary_qa",
+  "generation_tool": "built-in image_gen",
+  "generation_attempt": 2,
+  "kind": "one_targeted_boundary_revision",
+  "source_png": "/workspace/scratch/2244020fc8d6/generated_images/exec-be8327c7-dc36-4ad8-a78e-86b257a37734.png",
+  "workspace_png": "assets/levels/b07/rooms/l40/background/boundary_revision_candidate.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "dbd486457fe2cafcca59aaf2c3b1b5ad5d727c856258075816eb945814021f07",
+  "raw_bytes_verified_identical": true,
+  "prompt": "docs/levels/b07/rooms/l40/independent_painting_boundary_revision.prompt.txt",
+  "prompt_sha256": "19eca3310de54cd3133d9d668b85d55c2012b3b04ea5126f9069f5fa9dfcc275",
+  "inputs": [
+    {
+      "role": "edit_target",
+      "path": "assets/levels/b07/rooms/l40/background/independent_candidate.png",
+      "sha256": "64b83d6ad66bb8eb9884e161ee6c714ece5748140c6c576e1aaf2a039c824269"
+    },
+    {
+      "role": "exact_floor_footprint_reference",
+      "path": "artifacts/l40_independent_guide/fixed_footprint_guide.png",
+      "sha256": "68aec8b5a80dd0a605d152f8304bd9d391ed5c840bc3fd2cdcbfae85678f75b9"
+    }
+  ],
+  "pixel_processing": "Unmodified original PNG bytes; no resizing, compositing, warping or code edits to art. Separate QA overlays are diagnostic artifacts only.",
+  "date_utc": "2026-10-03",
+  "qa": "docs/levels/b07/rooms/l40/independent_painting_qa.json",
+  "runtime_wiring": false,
+  "detail_generation": false
+}

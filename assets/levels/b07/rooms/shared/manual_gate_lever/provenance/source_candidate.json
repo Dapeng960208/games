@@ -1,0 +1,108 @@
+{
+  "id": "manual_gate_lever",
+  "status": "static_neutral_candidate_not_integrated",
+  "file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/manual_gate_lever.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7be16982-e909-4869-b788-f5a623fb45d8.png",
+  "source_sha256": "c0c555189af50bacb682ed14a399a5d621bde575df2c314911ce9ee31e97aad1",
+  "file_sha256": "c0c555189af50bacb682ed14a399a5d621bde575df2c314911ce9ee31e97aad1",
+  "byte_preserved": true,
+  "prompt_file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/manual_gate_lever.prompt.txt",
+  "prompt": "Use case: stylized-concept\nAsset type: one transparent 2.5D hand-painted fantasy game environment prop, B07 Golden Sand Lizard City.\nInput image: B07(1).png is a STYLE AND MATERIAL REFERENCE ONLY. Do not reproduce the poster, typography, landscape, temple, or layout.\nShared visual direction: bright warm hand-painted fantasy, high-camera oblique near-isometric view (about 55 degrees downward); readable adult-scale game prop, solid silhouette, subtly uneven painted outlines and broad illustrated material shading. Match the reference's honey-gold sandstone, ochre shadows, burnished brass/copper-gold sun motifs; restrained tiny turquoise inlays, terracotta red-orange cloth only when requested. Illumination from upper left; opaque colored materials and crisp silhouette.\nComposition: exactly ONE independent complete object, centered on a square canvas with comfortable clear margin on ALL sides, no cropped part, see its top and two sides. Camera and silhouette appropriate to placing it into a top-down action RPG room.\nBackground: actual true transparent alpha everywhere outside the prop, no colored backdrop, no baked checkerboard, no ground plane, no cast shadow on invisible floor, no scenery.\nConstraints: single static neutral-state candidate, not an animation sheet. No characters, other props, diagram, UI, lettering, numbers, frame, watermark, gameplay beams, lasers, effects, bloom, particles, interaction rings, arrows, direction indicators or floor decals. Do not bake gameplay light paths or room collision layout into this image.\nPrimary request: one hand-operated gate lever mechanism fixed to its own compact low square sandstone base. A clear single tilted brass/copper-gold lever stem with a short horizontal handgrip, mounted on a visible pivot bracket and notched semicircular guide plate. The lever is in one neutral resting position. Warm golden sandstone base has one small sun emblem carved on the front, subtly worn edges, one tiny turquoise inlay. A narrow terracotta red-orange cloth wrap around the handgrip gives a readable touch point. Functional and simple, low human-hand-operated scale, no exaggerated machinery. Show whole lever, pivot, guide and base as one coherent object. Absolutely no full gate, door, archway, wall, chains extending outside the object, remote linkage, scenery, second lever or state variations.",
+  "generator": "built-in image_gen",
+  "transparent_background_requested": true,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha": {
+    "minimum": 0,
+    "maximum": 255,
+    "zero_pixels": 997596,
+    "nonzero_pixels": 574920,
+    "opaque_pixels": 536,
+    "fraction_zero": 0.634394816968476,
+    "thresholds": {
+      "16": {
+        "bbox_xyxy_exclusive": [
+          142,
+          60,
+          1165,
+          1227
+        ],
+        "edge_contacts": {
+          "left": false,
+          "top": false,
+          "right": false,
+          "bottom": false
+        },
+        "margin_ltrb": [
+          142,
+          60,
+          89,
+          27
+        ]
+      },
+      "128": {
+        "bbox_xyxy_exclusive": [
+          142,
+          60,
+          1165,
+          1226
+        ],
+        "edge_contacts": {
+          "left": false,
+          "top": false,
+          "right": false,
+          "bottom": false
+        },
+        "margin_ltrb": [
+          142,
+          60,
+          89,
+          28
+        ]
+      }
+    },
+    "core_alpha_ge_128": {
+      "count": 557445,
+      "mean": 252.26735193606544,
+      "alpha_ge_250_fraction": 0.9808106629353569,
+      "most_frequent_values": [
+        [
+          253,
+          424827
+        ],
+        [
+          252,
+          107616
+        ],
+        [
+          251,
+          9723
+        ],
+        [
+          250,
+          3136
+        ],
+        [
+          249,
+          1786
+        ]
+      ]
+    }
+  },
+  "visual_qa_pending": false,
+  "visual_qa": {
+    "pass": true,
+    "observations": [
+      "Single hand lever, pivot, notched guide and compact stone base are coherent and fully visible.",
+      "No full gate, door, archway, wall or remote linkage; terracotta handle cloth identifies hand contact."
+    ],
+    "convergence_notes": [
+      "Only one neutral lever position; open/closed or interaction poses are not yet authored.",
+      "Smallest alpha16 margin is 27 pixels at bottom; no clipping, but preserve source padding for later packing."
+    ]
+  },
+  "physical_path": "assets/levels/b07/rooms/shared/manual_gate_lever/source_candidate.png"
+}

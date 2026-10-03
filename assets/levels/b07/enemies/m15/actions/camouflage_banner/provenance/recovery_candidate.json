@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M15",
+  "action": "recovery",
+  "variant": "recovery",
+  "category": "pose",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "assets/levels/b07/enemies/m15/actions/camouflage_banner/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "source_filename": "exec-5ca9def3-72a5-49ae-b2fb-6d1b61261dc7.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5ca9def3-72a5-49ae-b2fb-6d1b61261dc7.png",
+  "source_sha256": "2a0b46b6caf8e8817662f0ff01202a7f383e99f0a7808265adc3949ec86fce27",
+  "png_sha256": "2a0b46b6caf8e8817662f0ff01202a7f383e99f0a7808265adc3949ec86fce27",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m15/idle_candidate.png",
+  "identity_reference_sha256": "a5fe604aa560ecb29c7ebd110a2a4fb55dc5840a333b230ed5454544ef435d01",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1303,
+      1207
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1000819,
+    "alpha_zero_fraction": 0.6363614398230837,
+    "low_alpha_1_15_pixel_count": 42528,
+    "opaque_pixel_count": 512,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        73,
+        9,
+        1279,
+        1207
+      ],
+      "bounds_xywh": [
+        73,
+        9,
+        1206,
+        1198
+      ],
+      "effective_pixel_count": 571902,
+      "edge_pixel_count": 25,
+      "margins_ltrb": [
+        73,
+        9,
+        24,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        180,
+        11,
+        1203,
+        1190
+      ],
+      "bounds_xywh": [
+        180,
+        11,
+        1023,
+        1179
+      ],
+      "effective_pixel_count": 529374,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        180,
+        11,
+        100,
+        17
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        181,
+        12,
+        1203,
+        1190
+      ],
+      "bounds_xywh": [
+        181,
+        12,
+        1022,
+        1178
+      ],
+      "effective_pixel_count": 519654,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        181,
+        12,
+        100,
+        17
+      ]
+    },
+    "foot_contacts_manual": [
+      [
+        661,
+        1116
+      ],
+      [
+        1041,
+        982
+      ]
+    ],
+    "foot_midpoint": [
+      851.0,
+      1049.0
+    ],
+    "anatomical_crown_xy_manual": [
+      967,
+      322
+    ],
+    "body_height_excluding_weapon_tail_accessories": 727.0,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 727.0,
+    "maximum_display_body_px_at_1_5_sampling_margin": 484.67,
+    "visual_review": "Lowered diagonal pole and sagging three cloth layers.",
+    "defects": [
+      "Grip order/orientation changes with pole tilt and needs animation hand-lock review.",
+      "Top finial margin below requested 8%."
+    ],
+    "foot_anchor_runtime_registered": false
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m15/recovery: B07-M15 camouflage banner lizard. Preserve hunched slim golden lizard, curled tail, light armor turquoise clasps, exactly THREE attached layered physical fan-shaped cloth banners: ivory, terracotta and muted sage, same sun motif. Preserve ONE tall gold-tipped flag staff gripped with BOTH hands, anatomical left hand upper and right hand lower as reference. RECOVERY: tired lower stance, hands drop staff diagonally beside body with its bottom near the right foot, shoulders slack and knees bent; flag's three cloth panels visibly droop and fold downward behind shoulder instead of flying high. Full pole and panels, both feet, entire curly tail visible. No broken flag, no camouflage effect or magic.",
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/recovery/candidate.png",
+  "resource": "asset://levels/b07/enemies/m15/actions/camouflage_banner/recovery_candidate.png",
+  "ability": "camouflage_banner"
+}

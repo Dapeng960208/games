@@ -1,0 +1,138 @@
+{
+  "id": "m08",
+  "action": "mirror_short_light",
+  "kind": "independent_object_vfx",
+  "relative_dir": "m08/mirror_short_light",
+  "pivot": [
+    699,
+    657
+  ],
+  "read": "Separate pale-gold/silver short curved light slash, no body or weapon hilt.",
+  "issues": [
+    "Visual core looks fairly solid like a translucent blade; blend mode/opacity and compact runtime scale unresolved.",
+    "No authoritative hit geometry encoded."
+  ],
+  "path": "assets/levels/b07/effects/mirror_short_light/effect_candidate.png",
+  "width": 1312,
+  "height": 1199,
+  "mode": "RGBA",
+  "bytes": 429179,
+  "sha256": "d1a8ae76c0024fa98bb911f909c7988e4faaef9a0db9d31c8cbf7dc079a6c715",
+  "transparent_pixel_count": 1380716,
+  "partial_alpha_pixel_count": 192358,
+  "opaque_pixel_count": 14,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        89,
+        21,
+        1264,
+        1199
+      ],
+      "bbox_size": [
+        1175,
+        1178
+      ],
+      "effective_pixels": 192372,
+      "margin_ltrb": [
+        89,
+        21,
+        48,
+        0
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        54,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        119,
+        174,
+        1248,
+        973
+      ],
+      "bbox_size": [
+        1129,
+        799
+      ],
+      "effective_pixels": 139934,
+      "margin_ltrb": [
+        119,
+        174,
+        64,
+        226
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        131,
+        186,
+        1236,
+        965
+      ],
+      "bbox_size": [
+        1105,
+        779
+      ],
+      "effective_pixels": 99346,
+      "margin_ltrb": [
+        131,
+        186,
+        76,
+        234
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/mirror_short_light/provenance.json",
+  "prompt_path": "provenance/effect_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/mirror_short_light/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "minimum_margin_alpha16": 64,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/mirror_short_light/candidate.png",
+  "resource": "asset://levels/b07/effects/mirror_short_light/effect_candidate.png",
+  "original_provenance": {
+    "id": "m08",
+    "action": "mirror_short_light",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m08/idle_candidate.png",
+    "edit_target": null,
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-683883db-34ab-4728-9c64-35f505b648a6.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "repair_limit": "one_targeted_retry_only",
+    "sha256": "d1a8ae76c0024fa98bb911f909c7988e4faaef9a0db9d31c8cbf7dc079a6c715",
+    "bytes": 429179,
+    "source_sha256": "d1a8ae76c0024fa98bb911f909c7988e4faaef9a0db9d31c8cbf7dc079a6c715",
+    "copy_byte_verified": true
+  },
+  "ability": "mirror_slash"
+}

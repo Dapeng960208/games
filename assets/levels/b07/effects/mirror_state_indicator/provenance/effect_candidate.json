@@ -1,0 +1,139 @@
+{
+  "id": "m10",
+  "action": "mirror_state_indicator",
+  "kind": "independent_object_vfx",
+  "relative_dir": "m10/mirror_state_indicator",
+  "pivot": [
+    769,
+    844
+  ],
+  "read": "One central solid mirror, two cyan ghost orientations joined to a compact base; no room or beams.",
+  "issues": [
+    "All three preview orientations are baked into one CONCEPT object, not runtime-separated three-state assets or implemented logic.",
+    "Raw RGBA preview halos are absent in normal-alpha sand/dark-purple composites; ghost mirror silhouettes remain deliberately visible.",
+    "Ghost frames overlap central pedestal; runtime state separation still required."
+  ],
+  "path": "assets/levels/b07/effects/mirror_state_indicator/effect_candidate.png",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGBA",
+  "bytes": 1969124,
+  "sha256": "05421cccd98421b570f64e38fc3e2c5aff4e91b2d1f2484068dac8f70290431c",
+  "transparent_pixel_count": 1003129,
+  "partial_alpha_pixel_count": 569735,
+  "opaque_pixel_count": 0,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        0,
+        15,
+        1510,
+        998
+      ],
+      "bbox_size": [
+        1510,
+        983
+      ],
+      "effective_pixels": 569735,
+      "margin_ltrb": [
+        0,
+        15,
+        26,
+        26
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        5,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        103,
+        117,
+        1458,
+        910
+      ],
+      "bbox_size": [
+        1355,
+        793
+      ],
+      "effective_pixels": 527330,
+      "margin_ltrb": [
+        103,
+        117,
+        78,
+        114
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        107,
+        118,
+        1455,
+        909
+      ],
+      "bbox_size": [
+        1348,
+        791
+      ],
+      "effective_pixels": 501794,
+      "margin_ltrb": [
+        107,
+        118,
+        81,
+        115
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/mirror_state_indicator/provenance.json",
+  "prompt_path": "provenance/effect_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/mirror_state_indicator/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "minimum_margin_alpha16": 78,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/mirror_state_indicator/candidate.png",
+  "resource": "asset://levels/b07/effects/mirror_state_indicator/effect_candidate.png",
+  "original_provenance": {
+    "id": "m10",
+    "action": "mirror_state_indicator",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m10/idle_candidate.png",
+    "edit_target": null,
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-03974712-b676-45d2-9086-4da1a0f3888e.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "repair_limit": "one_targeted_retry_only",
+    "sha256": "05421cccd98421b570f64e38fc3e2c5aff4e91b2d1f2484068dac8f70290431c",
+    "bytes": 1969124,
+    "source_sha256": "05421cccd98421b570f64e38fc3e2c5aff4e91b2d1f2484068dac8f70290431c",
+    "copy_byte_verified": true
+  },
+  "ability": "mirror_attendant"
+}

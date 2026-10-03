@@ -1,0 +1,18 @@
+{
+  "room_id": "L39",
+  "current_independent_mother_unique_candidates": 2,
+  "mother_png_files": 2,
+  "native_detail_count": 5,
+  "native_detail_target": 6,
+  "integrated": false,
+  "runtime_status": "not_integrated_mother_fixed_boundary_blocked",
+  "detail_status": "partial_candidates_unvalidated_seams",
+  "missing_detail_ids": [
+    "bottom_right"
+  ],
+  "status": "stopped_by_user",
+  "approved": false,
+  "latest_user_requirement": "停止B07代码开发和美术资源生成，梳理进度反馈到PR，提交所有未提交的内容。",
+  "no_inflight_generation": true,
+  "source_change_requires_reregistration": true
+}

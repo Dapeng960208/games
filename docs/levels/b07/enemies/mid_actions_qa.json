@@ -1,0 +1,3389 @@
+{
+  "status": "design_candidates_not_runtime",
+  "real_runtime_note": "All five identities still use basic attack fallback; these assets do not create skill implementation or runtime coverage.",
+  "assets": [
+    {
+      "id": "m08",
+      "action": "telegraph",
+      "kind": "character_key_pose",
+      "relative_dir": "m08/telegraph",
+      "crown": [
+        931,
+        194
+      ],
+      "feet": [
+        [
+          457,
+          1101
+        ],
+        [
+          1220,
+          906
+        ]
+      ],
+      "read": "Right-hand mirror blade raised; empty left hand, two feet and full tail readable.",
+      "issues": [
+        "Rightmost fingers/foot and blade have tight composition; camera is only moderately elevated."
+      ],
+      "path": "assets/levels/b07/enemies/m08/actions/mirror_slash/telegraph_candidate.png",
+      "width": 1312,
+      "height": 1199,
+      "mode": "RGBA",
+      "bytes": 1259082,
+      "sha256": "41528e88b9d7f9d692cdda3257d9d86c7a1f1115ce369308d7ec12b93e3f9d3d",
+      "transparent_pixel_count": 1075957,
+      "partial_alpha_pixel_count": 496300,
+      "opaque_pixel_count": 831,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            0,
+            14,
+            1300,
+            1199
+          ],
+          "bbox_size": [
+            1300,
+            1185
+          ],
+          "effective_pixels": 497131,
+          "margin_ltrb": [
+            0,
+            14,
+            12,
+            0
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            5,
+            3,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            34,
+            31,
+            1298,
+            1173
+          ],
+          "bbox_size": [
+            1264,
+            1142
+          ],
+          "effective_pixels": 463836,
+          "margin_ltrb": [
+            34,
+            31,
+            14,
+            26
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            35,
+            32,
+            1297,
+            1172
+          ],
+          "bbox_size": [
+            1262,
+            1140
+          ],
+          "effective_pixels": 455952,
+          "margin_ltrb": [
+            35,
+            32,
+            15,
+            27
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/telegraph/provenance.json",
+      "prompt_path": "provenance/telegraph_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/telegraph/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            457,
+            1101
+          ],
+          [
+            1220,
+            906
+          ]
+        ],
+        "anchor_mean_px": [
+          838.5,
+          1003.5
+        ],
+        "anchor_normalized": [
+          0.6391,
+          0.83695
+        ],
+        "anatomical_crown_px": [
+          931,
+          194
+        ],
+        "body_effective_height_px": 809.5,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 809.5,
+        "max_body_display_height_at_1_5_source_to_display_px": 539.7,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 14,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/telegraph/candidate.png",
+      "resource": "asset://levels/b07/enemies/m08/actions/mirror_slash/telegraph_candidate.png",
+      "original_provenance": {
+        "id": "m08",
+        "action": "telegraph",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m08/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-ba5719a8-05d8-4d27-ab92-7b3a8520515c.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "41528e88b9d7f9d692cdda3257d9d86c7a1f1115ce369308d7ec12b93e3f9d3d",
+        "bytes": 1259082,
+        "source_sha256": "41528e88b9d7f9d692cdda3257d9d86c7a1f1115ce369308d7ec12b93e3f9d3d",
+        "copy_byte_verified": true
+      },
+      "ability": "mirror_slash"
+    },
+    {
+      "id": "m08",
+      "action": "execute",
+      "kind": "character_key_pose",
+      "relative_dir": "m08/execute/repair",
+      "crown": [
+        903,
+        102
+      ],
+      "feet": [
+        [
+          342,
+          1040
+        ],
+        [
+          1190,
+          805
+        ]
+      ],
+      "read": "Right-hand diagonal slash; left arm counterbalances; weapon, tail and feet retained.",
+      "issues": [
+        "Repair increased blade-side margin from 1px to 13px at alpha>=16, still far short of requested safety margin. Do not treat as framing passed."
+      ],
+      "path": "assets/levels/b07/enemies/m08/actions/mirror_slash/execute_candidate.png",
+      "width": 1312,
+      "height": 1199,
+      "mode": "RGBA",
+      "bytes": 1242627,
+      "sha256": "456841f7032a8560c251203739d5f04dcd8522278a853521fe69eb4d3c33ec90",
+      "transparent_pixel_count": 1076920,
+      "partial_alpha_pixel_count": 495624,
+      "opaque_pixel_count": 544,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            46,
+            31,
+            1301,
+            1175
+          ],
+          "bbox_size": [
+            1255,
+            1144
+          ],
+          "effective_pixels": 496168,
+          "margin_ltrb": [
+            46,
+            31,
+            11,
+            24
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            48,
+            99,
+            1299,
+            1108
+          ],
+          "bbox_size": [
+            1251,
+            1009
+          ],
+          "effective_pixels": 463571,
+          "margin_ltrb": [
+            48,
+            99,
+            13,
+            91
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            49,
+            100,
+            1298,
+            1108
+          ],
+          "bbox_size": [
+            1249,
+            1008
+          ],
+          "effective_pixels": 457107,
+          "margin_ltrb": [
+            49,
+            100,
+            14,
+            91
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/repair/provenance.json",
+      "prompt_path": "provenance/execute_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/repair/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            342,
+            1040
+          ],
+          [
+            1190,
+            805
+          ]
+        ],
+        "anchor_mean_px": [
+          766.0,
+          922.5
+        ],
+        "anchor_normalized": [
+          0.58384,
+          0.76939
+        ],
+        "anatomical_crown_px": [
+          903,
+          102
+        ],
+        "body_effective_height_px": 820.5,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 820.5,
+        "max_body_display_height_at_1_5_source_to_display_px": 547.0,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 13,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/repair/candidate.png",
+      "resource": "asset://levels/b07/enemies/m08/actions/mirror_slash/execute_candidate.png",
+      "original_provenance": {
+        "id": "m08",
+        "action": "execute_repair",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m08/idle_candidate.png",
+        "edit_target": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-888f0aa5-735f-4731-9744-875529759b1c.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "repair_limit": "one_targeted_retry_only",
+        "sha256": "456841f7032a8560c251203739d5f04dcd8522278a853521fe69eb4d3c33ec90",
+        "bytes": 1242627,
+        "source_sha256": "456841f7032a8560c251203739d5f04dcd8522278a853521fe69eb4d3c33ec90",
+        "copy_byte_verified": true
+      },
+      "ability": "mirror_slash"
+    },
+    {
+      "id": "m08",
+      "action": "recovery",
+      "kind": "character_key_pose",
+      "relative_dir": "m08/recovery",
+      "crown": [
+        1010,
+        106
+      ],
+      "feet": [
+        [
+          605,
+          1070
+        ],
+        [
+          1220,
+          937
+        ]
+      ],
+      "read": "Right blade lowered, back scales exposed, empty left hand; feet preserved.",
+      "issues": [
+        "Recovery is visually close to idle; exposed-back vulnerability needs stronger in-game differentiation."
+      ],
+      "path": "assets/levels/b07/enemies/m08/actions/mirror_slash/recovery_candidate.png",
+      "width": 1312,
+      "height": 1199,
+      "mode": "RGBA",
+      "bytes": 1255804,
+      "sha256": "14497434248d58c629895ef1e59c7fb55664a3561099e45533fb47a942672378",
+      "transparent_pixel_count": 1083653,
+      "partial_alpha_pixel_count": 489014,
+      "opaque_pixel_count": 421,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            48,
+            49,
+            1295,
+            1199
+          ],
+          "bbox_size": [
+            1247,
+            1150
+          ],
+          "effective_pixels": 489435,
+          "margin_ltrb": [
+            48,
+            49,
+            17,
+            0
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            44,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            51,
+            100,
+            1290,
+            1147
+          ],
+          "bbox_size": [
+            1239,
+            1047
+          ],
+          "effective_pixels": 451750,
+          "margin_ltrb": [
+            51,
+            100,
+            22,
+            52
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            52,
+            101,
+            1289,
+            1146
+          ],
+          "bbox_size": [
+            1237,
+            1045
+          ],
+          "effective_pixels": 444109,
+          "margin_ltrb": [
+            52,
+            101,
+            23,
+            53
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/recovery/provenance.json",
+      "prompt_path": "provenance/recovery_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/recovery/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            605,
+            1070
+          ],
+          [
+            1220,
+            937
+          ]
+        ],
+        "anchor_mean_px": [
+          912.5,
+          1003.5
+        ],
+        "anchor_normalized": [
+          0.6955,
+          0.83695
+        ],
+        "anatomical_crown_px": [
+          1010,
+          106
+        ],
+        "body_effective_height_px": 897.5,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 897.5,
+        "max_body_display_height_at_1_5_source_to_display_px": 598.3,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 22,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/recovery/candidate.png",
+      "resource": "asset://levels/b07/enemies/m08/actions/mirror_slash/recovery_candidate.png",
+      "original_provenance": {
+        "id": "m08",
+        "action": "recovery",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m08/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-10f91a92-5254-4b26-b094-095839252ecf.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "14497434248d58c629895ef1e59c7fb55664a3561099e45533fb47a942672378",
+        "bytes": 1255804,
+        "source_sha256": "14497434248d58c629895ef1e59c7fb55664a3561099e45533fb47a942672378",
+        "copy_byte_verified": true
+      },
+      "ability": "mirror_slash"
+    },
+    {
+      "id": "m09",
+      "action": "telegraph",
+      "kind": "character_key_pose",
+      "relative_dir": "m09/telegraph",
+      "crown": [
+        553,
+        122
+      ],
+      "feet": [
+        [
+          200,
+          1140
+        ],
+        [
+          828,
+          937
+        ]
+      ],
+      "read": "Pipe supported by same two hands and long tail; raised head and chest anticipation.",
+      "issues": [
+        "Anticipation differs subtly from idle; inhale/readability not strongly exaggerated.",
+        "Blowpipe tip only 12px from right at alpha>=16."
+      ],
+      "path": "assets/levels/b07/enemies/m09/actions/dart_venom/telegraph_candidate.png",
+      "width": 1223,
+      "height": 1286,
+      "mode": "RGBA",
+      "bytes": 1301651,
+      "sha256": "f6d4369a905e6dca597d431d1684a06c617aa2aa888fa44b49aa65a24a89aa2e",
+      "transparent_pixel_count": 1047765,
+      "partial_alpha_pixel_count": 523942,
+      "opaque_pixel_count": 1071,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            79,
+            21,
+            1222,
+            1258
+          ],
+          "bbox_size": [
+            1143,
+            1237
+          ],
+          "effective_pixels": 525013,
+          "margin_ltrb": [
+            79,
+            21,
+            1,
+            28
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            86,
+            121,
+            1211,
+            1226
+          ],
+          "bbox_size": [
+            1125,
+            1105
+          ],
+          "effective_pixels": 488317,
+          "margin_ltrb": [
+            86,
+            121,
+            12,
+            60
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            86,
+            122,
+            1210,
+            1225
+          ],
+          "bbox_size": [
+            1124,
+            1103
+          ],
+          "effective_pixels": 480456,
+          "margin_ltrb": [
+            86,
+            122,
+            13,
+            61
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/telegraph/provenance.json",
+      "prompt_path": "provenance/telegraph_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/telegraph/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            200,
+            1140
+          ],
+          [
+            828,
+            937
+          ]
+        ],
+        "anchor_mean_px": [
+          514.0,
+          1038.5
+        ],
+        "anchor_normalized": [
+          0.42028,
+          0.80754
+        ],
+        "anatomical_crown_px": [
+          553,
+          122
+        ],
+        "body_effective_height_px": 916.5,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 916.5,
+        "max_body_display_height_at_1_5_source_to_display_px": 611.0,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 12,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/telegraph/candidate.png",
+      "resource": "asset://levels/b07/enemies/m09/actions/dart_venom/telegraph_candidate.png",
+      "original_provenance": {
+        "id": "m09",
+        "action": "telegraph",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m09/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-0c66d322-b3b3-43b4-a846-36fae94f86bd.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "f6d4369a905e6dca597d431d1684a06c617aa2aa888fa44b49aa65a24a89aa2e",
+        "bytes": 1301651,
+        "source_sha256": "f6d4369a905e6dca597d431d1684a06c617aa2aa888fa44b49aa65a24a89aa2e",
+        "copy_byte_verified": true
+      },
+      "ability": "dart_venom"
+    },
+    {
+      "id": "m09",
+      "action": "execute",
+      "kind": "character_key_pose",
+      "relative_dir": "m09/execute",
+      "crown": [
+        586,
+        206
+      ],
+      "feet": [
+        [
+          211,
+          1075
+        ],
+        [
+          770,
+          850
+        ]
+      ],
+      "read": "Crouch thrusts forward into blowpipe, correct right rear/left front hand positions; no projectile baked in.",
+      "issues": [
+        "Cheek inflation subtle; tail brace still near pipe front and needs mechanical plausibility review."
+      ],
+      "path": "assets/levels/b07/enemies/m09/actions/dart_venom/execute_candidate.png",
+      "width": 1223,
+      "height": 1286,
+      "mode": "RGBA",
+      "bytes": 1206696,
+      "sha256": "e7f698a631218c0b826c1585caf91f9fa27573ed415b07001749f812c9773272",
+      "transparent_pixel_count": 1103409,
+      "partial_alpha_pixel_count": 468252,
+      "opaque_pixel_count": 1117,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            45,
+            23,
+            1208,
+            1286
+          ],
+          "bbox_size": [
+            1163,
+            1263
+          ],
+          "effective_pixels": 469369,
+          "margin_ltrb": [
+            45,
+            23,
+            15,
+            0
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            8,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            49,
+            206,
+            1206,
+            1157
+          ],
+          "bbox_size": [
+            1157,
+            951
+          ],
+          "effective_pixels": 430891,
+          "margin_ltrb": [
+            49,
+            206,
+            17,
+            129
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            50,
+            206,
+            1206,
+            1156
+          ],
+          "bbox_size": [
+            1156,
+            950
+          ],
+          "effective_pixels": 423235,
+          "margin_ltrb": [
+            50,
+            206,
+            17,
+            130
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/execute/provenance.json",
+      "prompt_path": "provenance/execute_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/execute/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            211,
+            1075
+          ],
+          [
+            770,
+            850
+          ]
+        ],
+        "anchor_mean_px": [
+          490.5,
+          962.5
+        ],
+        "anchor_normalized": [
+          0.40106,
+          0.74844
+        ],
+        "anatomical_crown_px": [
+          586,
+          206
+        ],
+        "body_effective_height_px": 756.5,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 756.5,
+        "max_body_display_height_at_1_5_source_to_display_px": 504.3,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 17,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/execute/candidate.png",
+      "resource": "asset://levels/b07/enemies/m09/actions/dart_venom/execute_candidate.png",
+      "original_provenance": {
+        "id": "m09",
+        "action": "execute",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m09/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-ff3fa338-3357-44b1-b7bb-20ff221d12b4.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "e7f698a631218c0b826c1585caf91f9fa27573ed415b07001749f812c9773272",
+        "bytes": 1206696,
+        "source_sha256": "e7f698a631218c0b826c1585caf91f9fa27573ed415b07001749f812c9773272",
+        "copy_byte_verified": true
+      },
+      "ability": "dart_venom"
+    },
+    {
+      "id": "m09",
+      "action": "recovery",
+      "kind": "character_key_pose",
+      "relative_dir": "m09/recovery",
+      "crown": [
+        585,
+        135
+      ],
+      "feet": [
+        [
+          202,
+          1110
+        ],
+        [
+          790,
+          939
+        ]
+      ],
+      "read": "Right hand draws dart from belt while left holds pipe; open mouth, two feet, full tail.",
+      "issues": [
+        "Pipe tip right margin 16px; stance scale and footpoint shift across poses require later rig/scale alignment."
+      ],
+      "path": "assets/levels/b07/enemies/m09/actions/dart_venom/recovery_candidate.png",
+      "width": 1223,
+      "height": 1286,
+      "mode": "RGBA",
+      "bytes": 1356952,
+      "sha256": "b5fc70973cedb10a3c2d1e83cf3a6deef012ac74cd9a72dc73ff1136f5a09ee7",
+      "transparent_pixel_count": 1054026,
+      "partial_alpha_pixel_count": 517613,
+      "opaque_pixel_count": 1139,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            0,
+            51,
+            1209,
+            1254
+          ],
+          "bbox_size": [
+            1209,
+            1203
+          ],
+          "effective_pixels": 518752,
+          "margin_ltrb": [
+            0,
+            51,
+            14,
+            32
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            6,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            81,
+            135,
+            1207,
+            1181
+          ],
+          "bbox_size": [
+            1126,
+            1046
+          ],
+          "effective_pixels": 484933,
+          "margin_ltrb": [
+            81,
+            135,
+            16,
+            105
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            81,
+            136,
+            1207,
+            1180
+          ],
+          "bbox_size": [
+            1126,
+            1044
+          ],
+          "effective_pixels": 476450,
+          "margin_ltrb": [
+            81,
+            136,
+            16,
+            106
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/recovery/provenance.json",
+      "prompt_path": "provenance/recovery_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/recovery/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            202,
+            1110
+          ],
+          [
+            790,
+            939
+          ]
+        ],
+        "anchor_mean_px": [
+          496.0,
+          1024.5
+        ],
+        "anchor_normalized": [
+          0.40556,
+          0.79666
+        ],
+        "anatomical_crown_px": [
+          585,
+          135
+        ],
+        "body_effective_height_px": 889.5,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 889.5,
+        "max_body_display_height_at_1_5_source_to_display_px": 593.0,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 16,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/recovery/candidate.png",
+      "resource": "asset://levels/b07/enemies/m09/actions/dart_venom/recovery_candidate.png",
+      "original_provenance": {
+        "id": "m09",
+        "action": "recovery",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m09/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-d14d38a4-a456-4591-88d3-647ec05bfcc5.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "b5fc70973cedb10a3c2d1e83cf3a6deef012ac74cd9a72dc73ff1136f5a09ee7",
+        "bytes": 1356952,
+        "source_sha256": "b5fc70973cedb10a3c2d1e83cf3a6deef012ac74cd9a72dc73ff1136f5a09ee7",
+        "copy_byte_verified": true
+      },
+      "ability": "dart_venom"
+    },
+    {
+      "id": "m10",
+      "action": "telegraph",
+      "kind": "character_key_pose",
+      "relative_dir": "m10/telegraph",
+      "crown": [
+        877,
+        365
+      ],
+      "feet": [
+        [
+          597,
+          1103
+        ],
+        [
+          1068,
+          1015
+        ]
+      ],
+      "read": "Left crank raised, right strap grip, three plain mirrors; exact mirror count and character identity retained.",
+      "issues": [
+        "Mirror top margin 22px; top-heavy frame strongly affects total height.",
+        "Camera lower than intended high-angle target."
+      ],
+      "path": "assets/levels/b07/enemies/m10/actions/mirror_attendant/telegraph_candidate.png",
+      "width": 1312,
+      "height": 1199,
+      "mode": "RGBA",
+      "bytes": 1447091,
+      "sha256": "11fdf57a8a6226f7368455b76114d029fc8d2b4aab6965d70fef3bb05c62666a",
+      "transparent_pixel_count": 983445,
+      "partial_alpha_pixel_count": 589329,
+      "opaque_pixel_count": 314,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            58,
+            17,
+            1292,
+            1199
+          ],
+          "bbox_size": [
+            1234,
+            1182
+          ],
+          "effective_pixels": 589643,
+          "margin_ltrb": [
+            58,
+            17,
+            20,
+            0
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            60,
+            22,
+            1266,
+            1177
+          ],
+          "bbox_size": [
+            1206,
+            1155
+          ],
+          "effective_pixels": 554392,
+          "margin_ltrb": [
+            60,
+            22,
+            46,
+            22
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            61,
+            23,
+            1265,
+            1176
+          ],
+          "bbox_size": [
+            1204,
+            1153
+          ],
+          "effective_pixels": 546795,
+          "margin_ltrb": [
+            61,
+            23,
+            47,
+            23
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/telegraph/provenance.json",
+      "prompt_path": "provenance/telegraph_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/telegraph/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            597,
+            1103
+          ],
+          [
+            1068,
+            1015
+          ]
+        ],
+        "anchor_mean_px": [
+          832.5,
+          1059.0
+        ],
+        "anchor_normalized": [
+          0.63453,
+          0.88324
+        ],
+        "anatomical_crown_px": [
+          877,
+          365
+        ],
+        "body_effective_height_px": 694.0,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 694.0,
+        "max_body_display_height_at_1_5_source_to_display_px": 462.7,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 22,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/telegraph/candidate.png",
+      "resource": "asset://levels/b07/enemies/m10/actions/mirror_attendant/telegraph_candidate.png",
+      "original_provenance": {
+        "id": "m10",
+        "action": "telegraph",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m10/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-91ace1f4-d112-4a9d-b6bf-009de37f431b.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "11fdf57a8a6226f7368455b76114d029fc8d2b4aab6965d70fef3bb05c62666a",
+        "bytes": 1447091,
+        "source_sha256": "11fdf57a8a6226f7368455b76114d029fc8d2b4aab6965d70fef3bb05c62666a",
+        "copy_byte_verified": true
+      },
+      "ability": "mirror_attendant"
+    },
+    {
+      "id": "m10",
+      "action": "execute",
+      "kind": "character_key_pose",
+      "relative_dir": "m10/execute",
+      "crown": [
+        900,
+        352
+      ],
+      "feet": [
+        [
+          528,
+          1105
+        ],
+        [
+          1145,
+          1010
+        ]
+      ],
+      "read": "Left crank down/forward, right support, central mirror turns edge-on; three mirrors retained.",
+      "issues": [
+        "Mirror crown top margin 10px; central mirror angle differs but not all three angles strictly match.",
+        "Camera lower than intended high-angle target."
+      ],
+      "path": "assets/levels/b07/enemies/m10/actions/mirror_attendant/execute_candidate.png",
+      "width": 1312,
+      "height": 1199,
+      "mode": "RGBA",
+      "bytes": 1359953,
+      "sha256": "b5b798077413890ac4157c524549ffe1aafbd8de96c4f740abcb6d910ec3b62a",
+      "transparent_pixel_count": 1027335,
+      "partial_alpha_pixel_count": 545379,
+      "opaque_pixel_count": 374,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            49,
+            1,
+            1282,
+            1183
+          ],
+          "bbox_size": [
+            1233,
+            1182
+          ],
+          "effective_pixels": 545753,
+          "margin_ltrb": [
+            49,
+            1,
+            30,
+            16
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            53,
+            10,
+            1248,
+            1180
+          ],
+          "bbox_size": [
+            1195,
+            1170
+          ],
+          "effective_pixels": 510482,
+          "margin_ltrb": [
+            53,
+            10,
+            64,
+            19
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            56,
+            11,
+            1247,
+            1179
+          ],
+          "bbox_size": [
+            1191,
+            1168
+          ],
+          "effective_pixels": 503280,
+          "margin_ltrb": [
+            56,
+            11,
+            65,
+            20
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/execute/provenance.json",
+      "prompt_path": "provenance/execute_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/execute/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            528,
+            1105
+          ],
+          [
+            1145,
+            1010
+          ]
+        ],
+        "anchor_mean_px": [
+          836.5,
+          1057.5
+        ],
+        "anchor_normalized": [
+          0.63758,
+          0.88198
+        ],
+        "anatomical_crown_px": [
+          900,
+          352
+        ],
+        "body_effective_height_px": 705.5,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 705.5,
+        "max_body_display_height_at_1_5_source_to_display_px": 470.3,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 10,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/execute/candidate.png",
+      "resource": "asset://levels/b07/enemies/m10/actions/mirror_attendant/execute_candidate.png",
+      "original_provenance": {
+        "id": "m10",
+        "action": "execute",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m10/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-ba17145b-82db-4c08-982f-1e7e18977b22.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "b5b798077413890ac4157c524549ffe1aafbd8de96c4f740abcb6d910ec3b62a",
+        "bytes": 1359953,
+        "source_sha256": "b5b798077413890ac4157c524549ffe1aafbd8de96c4f740abcb6d910ec3b62a",
+        "copy_byte_verified": true
+      },
+      "ability": "mirror_attendant"
+    },
+    {
+      "id": "m10",
+      "action": "recovery",
+      "kind": "character_key_pose",
+      "relative_dir": "m10/recovery",
+      "crown": [
+        938,
+        324
+      ],
+      "feet": [
+        [
+          650,
+          1110
+        ],
+        [
+          1114,
+          1065
+        ]
+      ],
+      "read": "Left crank lowered, right strap steady, three mirrors plain, full tail/feet.",
+      "issues": [
+        "Top mirror margin 19px.",
+        "Mirror settled angle does not perfectly preserve execute angle; phase continuity unresolved."
+      ],
+      "path": "assets/levels/b07/enemies/m10/actions/mirror_attendant/recovery_candidate.png",
+      "width": 1312,
+      "height": 1199,
+      "mode": "RGBA",
+      "bytes": 1350652,
+      "sha256": "0e4fa17221edfc8107de5e70053c33f773738114af89cacd09c9ac5556bf0665",
+      "transparent_pixel_count": 1027397,
+      "partial_alpha_pixel_count": 545334,
+      "opaque_pixel_count": 357,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            33,
+            9,
+            1290,
+            1181
+          ],
+          "bbox_size": [
+            1257,
+            1172
+          ],
+          "effective_pixels": 545691,
+          "margin_ltrb": [
+            33,
+            9,
+            22,
+            18
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            75,
+            19,
+            1251,
+            1178
+          ],
+          "bbox_size": [
+            1176,
+            1159
+          ],
+          "effective_pixels": 507812,
+          "margin_ltrb": [
+            75,
+            19,
+            61,
+            21
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            76,
+            19,
+            1250,
+            1177
+          ],
+          "bbox_size": [
+            1174,
+            1158
+          ],
+          "effective_pixels": 500612,
+          "margin_ltrb": [
+            76,
+            19,
+            62,
+            22
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/recovery/provenance.json",
+      "prompt_path": "provenance/recovery_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/recovery/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            650,
+            1110
+          ],
+          [
+            1114,
+            1065
+          ]
+        ],
+        "anchor_mean_px": [
+          882.0,
+          1087.5
+        ],
+        "anchor_normalized": [
+          0.67226,
+          0.90701
+        ],
+        "anatomical_crown_px": [
+          938,
+          324
+        ],
+        "body_effective_height_px": 763.5,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 763.5,
+        "max_body_display_height_at_1_5_source_to_display_px": 509.0,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 19,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/recovery/candidate.png",
+      "resource": "asset://levels/b07/enemies/m10/actions/mirror_attendant/recovery_candidate.png",
+      "original_provenance": {
+        "id": "m10",
+        "action": "recovery",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m10/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-5639d3e7-14af-45eb-9119-6844f4c2c383.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "0e4fa17221edfc8107de5e70053c33f773738114af89cacd09c9ac5556bf0665",
+        "bytes": 1350652,
+        "source_sha256": "0e4fa17221edfc8107de5e70053c33f773738114af89cacd09c9ac5556bf0665",
+        "copy_byte_verified": true
+      },
+      "ability": "mirror_attendant"
+    },
+    {
+      "id": "m11",
+      "action": "telegraph",
+      "kind": "character_key_pose",
+      "relative_dir": "m11/telegraph",
+      "crown": [
+        956,
+        548
+      ],
+      "feet": [
+        [
+          383,
+          979
+        ],
+        [
+          568,
+          868
+        ],
+        [
+          887,
+          1018
+        ],
+        [
+          1169,
+          1045
+        ]
+      ],
+      "read": "Four-paw low beast identity and original palette retained, crouched wind-up candidate.",
+      "issues": [
+        "BLOCKING POSE READABILITY: front paws are not convincingly lifted; cannot count as accepted stomp anticipation.",
+        "One repair lifted forepaws but hid far hind leg and reduced right margin to 2px; repair rejected.",
+        "Foot anchor here is tentative because intended lifted-front-paw support state is not achieved."
+      ],
+      "path": "assets/levels/b07/enemies/m11/actions/sand_ridge/telegraph_candidate.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "bytes": 1367058,
+      "sha256": "07411af8fdbc34b130d637648bb11f06fe8aa4d0b4f25c669529af8faef6a8ed",
+      "transparent_pixel_count": 1013959,
+      "partial_alpha_pixel_count": 557440,
+      "opaque_pixel_count": 1117,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            22,
+            21,
+            1246,
+            1254
+          ],
+          "bbox_size": [
+            1224,
+            1233
+          ],
+          "effective_pixels": 558557,
+          "margin_ltrb": [
+            22,
+            21,
+            8,
+            0
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            97,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            24,
+            76,
+            1244,
+            1102
+          ],
+          "bbox_size": [
+            1220,
+            1026
+          ],
+          "effective_pixels": 541210,
+          "margin_ltrb": [
+            24,
+            76,
+            10,
+            152
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            25,
+            76,
+            1243,
+            1101
+          ],
+          "bbox_size": [
+            1218,
+            1025
+          ],
+          "effective_pixels": 536025,
+          "margin_ltrb": [
+            25,
+            76,
+            11,
+            153
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/provenance.json",
+      "prompt_path": "provenance/telegraph_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            383,
+            979
+          ],
+          [
+            568,
+            868
+          ],
+          [
+            887,
+            1018
+          ],
+          [
+            1169,
+            1045
+          ]
+        ],
+        "anchor_mean_px": [
+          751.8,
+          977.5
+        ],
+        "anchor_normalized": [
+          0.59952,
+          0.77951
+        ],
+        "anatomical_crown_px": [
+          956,
+          548
+        ],
+        "body_effective_height_px": 429.5,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 429.5,
+        "max_body_display_height_at_1_5_source_to_display_px": 286.3,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 10,
+      "qa_status": "pose_readability_blocked",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/candidate.png",
+      "resource": "asset://levels/b07/enemies/m11/actions/sand_ridge/telegraph_candidate.png",
+      "original_provenance": {
+        "id": "m11",
+        "action": "telegraph",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m11/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-48385d2f-433d-4b87-a072-71a527418f8a.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "07411af8fdbc34b130d637648bb11f06fe8aa4d0b4f25c669529af8faef6a8ed",
+        "bytes": 1367058,
+        "source_sha256": "07411af8fdbc34b130d637648bb11f06fe8aa4d0b4f25c669529af8faef6a8ed",
+        "copy_byte_verified": true
+      },
+      "ability": "sand_ridge"
+    },
+    {
+      "id": "m11",
+      "action": "execute",
+      "kind": "character_key_pose",
+      "relative_dir": "m11/execute/repair",
+      "crown": [
+        971,
+        693
+      ],
+      "feet": [
+        [
+          235,
+          967
+        ],
+        [
+          525,
+          931
+        ],
+        [
+          813,
+          1119
+        ],
+        [
+          1112,
+          1074
+        ]
+      ],
+      "read": "Repair clearly restores fourth far hind paw; lowered head and compressed front stance suggest stomp.",
+      "issues": [
+        "Right snout/forepaw tight; contact frame has no ground or impact VFX by design.",
+        "Four-foot anchor is inferred from paw contact centers, requires scene validation."
+      ],
+      "path": "assets/levels/b07/enemies/m11/actions/sand_ridge/execute_candidate.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "bytes": 1313098,
+      "sha256": "46a12fa3d6fe17fab4252e2adf825566667ff44f78c664d202fcec3267ce3295",
+      "transparent_pixel_count": 1034126,
+      "partial_alpha_pixel_count": 537695,
+      "opaque_pixel_count": 695,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            21,
+            20,
+            1241,
+            1238
+          ],
+          "bbox_size": [
+            1220,
+            1218
+          ],
+          "effective_pixels": 538390,
+          "margin_ltrb": [
+            21,
+            20,
+            13,
+            16
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            26,
+            110,
+            1233,
+            1193
+          ],
+          "bbox_size": [
+            1207,
+            1083
+          ],
+          "effective_pixels": 515527,
+          "margin_ltrb": [
+            26,
+            110,
+            21,
+            61
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            27,
+            111,
+            1233,
+            1192
+          ],
+          "bbox_size": [
+            1206,
+            1081
+          ],
+          "effective_pixels": 509828,
+          "margin_ltrb": [
+            27,
+            111,
+            21,
+            62
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/repair/provenance.json",
+      "prompt_path": "provenance/execute_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/repair/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            235,
+            967
+          ],
+          [
+            525,
+            931
+          ],
+          [
+            813,
+            1119
+          ],
+          [
+            1112,
+            1074
+          ]
+        ],
+        "anchor_mean_px": [
+          671.2,
+          1022.8
+        ],
+        "anchor_normalized": [
+          0.53525,
+          0.81563
+        ],
+        "anatomical_crown_px": [
+          971,
+          693
+        ],
+        "body_effective_height_px": 329.8,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 329.8,
+        "max_body_display_height_at_1_5_source_to_display_px": 219.9,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 21,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/repair/candidate.png",
+      "resource": "asset://levels/b07/enemies/m11/actions/sand_ridge/execute_candidate.png",
+      "original_provenance": {
+        "id": "m11",
+        "action": "execute_repair",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m11/idle_candidate.png",
+        "edit_target": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-780947b3-3e7a-4ac5-9927-c3e668332334.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "repair_limit": "one_targeted_retry_only",
+        "sha256": "46a12fa3d6fe17fab4252e2adf825566667ff44f78c664d202fcec3267ce3295",
+        "bytes": 1313098,
+        "source_sha256": "46a12fa3d6fe17fab4252e2adf825566667ff44f78c664d202fcec3267ce3295",
+        "copy_byte_verified": true
+      },
+      "ability": "sand_ridge"
+    },
+    {
+      "id": "m11",
+      "action": "recovery",
+      "kind": "character_key_pose",
+      "relative_dir": "m11/recovery",
+      "crown": [
+        1006,
+        556
+      ],
+      "feet": [
+        [
+          337,
+          945
+        ],
+        [
+          606,
+          844
+        ],
+        [
+          855,
+          1104
+        ],
+        [
+          1134,
+          1015
+        ]
+      ],
+      "read": "All four paws distinguishable, neck rises and forelimbs settle.",
+      "issues": [
+        "Far hind paw remains partially occluded although identifiable; recovery close to idle.",
+        "Tail 20px from left at alpha>=16."
+      ],
+      "path": "assets/levels/b07/enemies/m11/actions/sand_ridge/recovery_candidate.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "bytes": 1279376,
+      "sha256": "7f619a486d687d53f48de3f8247a6a0e28eefb5db4d0caa0b70ac56c1577459c",
+      "transparent_pixel_count": 1071041,
+      "partial_alpha_pixel_count": 500722,
+      "opaque_pixel_count": 753,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            15,
+            53,
+            1238,
+            1214
+          ],
+          "bbox_size": [
+            1223,
+            1161
+          ],
+          "effective_pixels": 501475,
+          "margin_ltrb": [
+            15,
+            53,
+            16,
+            40
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            20,
+            150,
+            1235,
+            1180
+          ],
+          "bbox_size": [
+            1215,
+            1030
+          ],
+          "effective_pixels": 478549,
+          "margin_ltrb": [
+            20,
+            150,
+            19,
+            74
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            21,
+            151,
+            1234,
+            1180
+          ],
+          "bbox_size": [
+            1213,
+            1029
+          ],
+          "effective_pixels": 472833,
+          "margin_ltrb": [
+            21,
+            151,
+            20,
+            74
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/recovery/provenance.json",
+      "prompt_path": "provenance/recovery_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/recovery/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            337,
+            945
+          ],
+          [
+            606,
+            844
+          ],
+          [
+            855,
+            1104
+          ],
+          [
+            1134,
+            1015
+          ]
+        ],
+        "anchor_mean_px": [
+          733.0,
+          977.0
+        ],
+        "anchor_normalized": [
+          0.58453,
+          0.77911
+        ],
+        "anatomical_crown_px": [
+          1006,
+          556
+        ],
+        "body_effective_height_px": 421.0,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 421.0,
+        "max_body_display_height_at_1_5_source_to_display_px": 280.7,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 19,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/recovery/candidate.png",
+      "resource": "asset://levels/b07/enemies/m11/actions/sand_ridge/recovery_candidate.png",
+      "original_provenance": {
+        "id": "m11",
+        "action": "recovery",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m11/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-f82285d4-d422-4816-95fe-87457600a0da.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "7f619a486d687d53f48de3f8247a6a0e28eefb5db4d0caa0b70ac56c1577459c",
+        "bytes": 1279376,
+        "source_sha256": "7f619a486d687d53f48de3f8247a6a0e28eefb5db4d0caa0b70ac56c1577459c",
+        "copy_byte_verified": true
+      },
+      "ability": "sand_ridge"
+    },
+    {
+      "id": "m12",
+      "action": "telegraph",
+      "kind": "character_key_pose",
+      "relative_dir": "m12/telegraph",
+      "crown": [
+        939,
+        293
+      ],
+      "feet": [
+        [
+          510,
+          1006
+        ],
+        [
+          1159,
+          919
+        ]
+      ],
+      "read": "Low drawn-crossbow aim, right trigger hand and left fore-stock hand retained; loaded bolt on rail.",
+      "issues": [
+        "Cloth covers much of body; head and foot positions need scale reconciliation across phases."
+      ],
+      "path": "assets/levels/b07/enemies/m12/actions/awning_bolt/telegraph_candidate.png",
+      "width": 1377,
+      "height": 1142,
+      "mode": "RGBA",
+      "bytes": 1372328,
+      "sha256": "23af2e4cf8fc5154cfc0a0a54bfa79261ba10358fc68074409b393276dc4e46f",
+      "transparent_pixel_count": 1020384,
+      "partial_alpha_pixel_count": 551497,
+      "opaque_pixel_count": 653,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            65,
+            53,
+            1349,
+            1142
+          ],
+          "bbox_size": [
+            1284,
+            1089
+          ],
+          "effective_pixels": 552150,
+          "margin_ltrb": [
+            65,
+            53,
+            28,
+            0
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            6,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            67,
+            205,
+            1347,
+            1063
+          ],
+          "bbox_size": [
+            1280,
+            858
+          ],
+          "effective_pixels": 525839,
+          "margin_ltrb": [
+            67,
+            205,
+            30,
+            79
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            68,
+            205,
+            1346,
+            1063
+          ],
+          "bbox_size": [
+            1278,
+            858
+          ],
+          "effective_pixels": 520546,
+          "margin_ltrb": [
+            68,
+            205,
+            31,
+            79
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/telegraph/provenance.json",
+      "prompt_path": "provenance/telegraph_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/telegraph/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            510,
+            1006
+          ],
+          [
+            1159,
+            919
+          ]
+        ],
+        "anchor_mean_px": [
+          834.5,
+          962.5
+        ],
+        "anchor_normalized": [
+          0.60603,
+          0.84282
+        ],
+        "anatomical_crown_px": [
+          939,
+          293
+        ],
+        "body_effective_height_px": 669.5,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 669.5,
+        "max_body_display_height_at_1_5_source_to_display_px": 446.3,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 30,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/telegraph/candidate.png",
+      "resource": "asset://levels/b07/enemies/m12/actions/awning_bolt/telegraph_candidate.png",
+      "original_provenance": {
+        "id": "m12",
+        "action": "telegraph",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m12/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-503fb6b0-1d4d-4bc8-b8de-98e66f62b0b5.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "23af2e4cf8fc5154cfc0a0a54bfa79261ba10358fc68074409b393276dc4e46f",
+        "bytes": 1372328,
+        "source_sha256": "23af2e4cf8fc5154cfc0a0a54bfa79261ba10358fc68074409b393276dc4e46f",
+        "copy_byte_verified": true
+      },
+      "ability": "awning_bolt"
+    },
+    {
+      "id": "m12",
+      "action": "execute",
+      "kind": "character_key_pose",
+      "relative_dir": "m12/execute",
+      "crown": [
+        806,
+        143
+      ],
+      "feet": [
+        [
+          492,
+          1020
+        ],
+        [
+          1106,
+          914
+        ]
+      ],
+      "read": "Crossbow rail now empty, slight upper-body recoil; two hands remain; no projectile or flash.",
+      "issues": [
+        "String looks partly tensioned rather than fully relaxed; clear release timing not yet verified.",
+        "Recoil pose rises appreciably relative to telegraph."
+      ],
+      "path": "assets/levels/b07/enemies/m12/actions/awning_bolt/execute_candidate.png",
+      "width": 1377,
+      "height": 1142,
+      "mode": "RGBA",
+      "bytes": 1493561,
+      "sha256": "760649f227c544f1d221b1f2666d620483c199cdf523717e2aeb1cbadd0d5f25",
+      "transparent_pixel_count": 963513,
+      "partial_alpha_pixel_count": 608016,
+      "opaque_pixel_count": 1005,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            33,
+            21,
+            1359,
+            1142
+          ],
+          "bbox_size": [
+            1326,
+            1121
+          ],
+          "effective_pixels": 609021,
+          "margin_ltrb": [
+            33,
+            21,
+            18,
+            0
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            20,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            36,
+            94,
+            1357,
+            1091
+          ],
+          "bbox_size": [
+            1321,
+            997
+          ],
+          "effective_pixels": 585911,
+          "margin_ltrb": [
+            36,
+            94,
+            20,
+            51
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            37,
+            94,
+            1356,
+            1090
+          ],
+          "bbox_size": [
+            1319,
+            996
+          ],
+          "effective_pixels": 580492,
+          "margin_ltrb": [
+            37,
+            94,
+            21,
+            52
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/execute/provenance.json",
+      "prompt_path": "provenance/execute_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/execute/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            492,
+            1020
+          ],
+          [
+            1106,
+            914
+          ]
+        ],
+        "anchor_mean_px": [
+          799.0,
+          967.0
+        ],
+        "anchor_normalized": [
+          0.58025,
+          0.84676
+        ],
+        "anatomical_crown_px": [
+          806,
+          143
+        ],
+        "body_effective_height_px": 824.0,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 824.0,
+        "max_body_display_height_at_1_5_source_to_display_px": 549.3,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 20,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/execute/candidate.png",
+      "resource": "asset://levels/b07/enemies/m12/actions/awning_bolt/execute_candidate.png",
+      "original_provenance": {
+        "id": "m12",
+        "action": "execute",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m12/idle_candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-7987f6a2-42a9-449b-9a47-caf8b0e2346f.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "sha256": "760649f227c544f1d221b1f2666d620483c199cdf523717e2aeb1cbadd0d5f25",
+        "bytes": 1493561,
+        "source_sha256": "760649f227c544f1d221b1f2666d620483c199cdf523717e2aeb1cbadd0d5f25",
+        "copy_byte_verified": true
+      },
+      "ability": "awning_bolt"
+    },
+    {
+      "id": "m12",
+      "action": "recovery",
+      "kind": "character_key_pose",
+      "relative_dir": "m12/recovery/repair",
+      "crown": [
+        921,
+        164
+      ],
+      "feet": [
+        [
+          497,
+          1032
+        ],
+        [
+          1098,
+          960
+        ]
+      ],
+      "read": "Repair removed extra hand. Exactly two visible hands, right on recocking ring and left under stock.",
+      "issues": [
+        "Reload mechanical sequence needs more frames; bolt is already visible on rail in this recocking key pose.",
+        "Original recovery had duplicate left hand and is rejected, not a valid alternate."
+      ],
+      "path": "assets/levels/b07/enemies/m12/actions/awning_bolt/recovery_candidate.png",
+      "width": 1377,
+      "height": 1142,
+      "mode": "RGBA",
+      "bytes": 1602847,
+      "sha256": "bee3becfec07e148423ec668092db45c512301be3499392ee27011f2a37bb78b",
+      "transparent_pixel_count": 920077,
+      "partial_alpha_pixel_count": 651392,
+      "opaque_pixel_count": 1065,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            59,
+            51,
+            1343,
+            1142
+          ],
+          "bbox_size": [
+            1284,
+            1091
+          ],
+          "effective_pixels": 652457,
+          "margin_ltrb": [
+            59,
+            51,
+            34,
+            0
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            64,
+            75,
+            1339,
+            1097
+          ],
+          "bbox_size": [
+            1275,
+            1022
+          ],
+          "effective_pixels": 632752,
+          "margin_ltrb": [
+            64,
+            75,
+            38,
+            45
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            65,
+            76,
+            1338,
+            1096
+          ],
+          "bbox_size": [
+            1273,
+            1020
+          ],
+          "effective_pixels": 627583,
+          "margin_ltrb": [
+            65,
+            76,
+            39,
+            46
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/repair/provenance.json",
+      "prompt_path": "provenance/recovery_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/repair/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "manual_foot_qa": {
+        "support_contact_centers_px": [
+          [
+            497,
+            1032
+          ],
+          [
+            1098,
+            960
+          ]
+        ],
+        "anchor_mean_px": [
+          797.5,
+          996.0
+        ],
+        "anchor_normalized": [
+          0.57916,
+          0.87215
+        ],
+        "anatomical_crown_px": [
+          921,
+          164
+        ],
+        "body_effective_height_px": 832.0,
+        "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+        "max_body_display_height_at_1_to_1_px": 832.0,
+        "max_body_display_height_at_1_5_source_to_display_px": 554.7,
+        "accepted_runtime_anchor": false
+      },
+      "minimum_margin_alpha16": 38,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/repair/candidate.png",
+      "resource": "asset://levels/b07/enemies/m12/actions/awning_bolt/recovery_candidate.png",
+      "original_provenance": {
+        "id": "m12",
+        "action": "recovery_repair",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m12/idle_candidate.png",
+        "edit_target": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/candidate.png",
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-8ab58125-1508-409a-8751-bced45b5d5d4.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "repair_limit": "one_targeted_retry_only",
+        "sha256": "bee3becfec07e148423ec668092db45c512301be3499392ee27011f2a37bb78b",
+        "bytes": 1602847,
+        "source_sha256": "bee3becfec07e148423ec668092db45c512301be3499392ee27011f2a37bb78b",
+        "copy_byte_verified": true
+      },
+      "ability": "awning_bolt"
+    },
+    {
+      "id": "m08",
+      "action": "mirror_short_light",
+      "kind": "independent_object_vfx",
+      "relative_dir": "m08/mirror_short_light",
+      "pivot": [
+        699,
+        657
+      ],
+      "read": "Separate pale-gold/silver short curved light slash, no body or weapon hilt.",
+      "issues": [
+        "Visual core looks fairly solid like a translucent blade; blend mode/opacity and compact runtime scale unresolved.",
+        "No authoritative hit geometry encoded."
+      ],
+      "path": "assets/levels/b07/effects/mirror_short_light/effect_candidate.png",
+      "width": 1312,
+      "height": 1199,
+      "mode": "RGBA",
+      "bytes": 429179,
+      "sha256": "d1a8ae76c0024fa98bb911f909c7988e4faaef9a0db9d31c8cbf7dc079a6c715",
+      "transparent_pixel_count": 1380716,
+      "partial_alpha_pixel_count": 192358,
+      "opaque_pixel_count": 14,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            89,
+            21,
+            1264,
+            1199
+          ],
+          "bbox_size": [
+            1175,
+            1178
+          ],
+          "effective_pixels": 192372,
+          "margin_ltrb": [
+            89,
+            21,
+            48,
+            0
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            54,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            119,
+            174,
+            1248,
+            973
+          ],
+          "bbox_size": [
+            1129,
+            799
+          ],
+          "effective_pixels": 139934,
+          "margin_ltrb": [
+            119,
+            174,
+            64,
+            226
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            131,
+            186,
+            1236,
+            965
+          ],
+          "bbox_size": [
+            1105,
+            779
+          ],
+          "effective_pixels": 99346,
+          "margin_ltrb": [
+            131,
+            186,
+            76,
+            234
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/mirror_short_light/provenance.json",
+      "prompt_path": "provenance/effect_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/mirror_short_light/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "minimum_margin_alpha16": 64,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/mirror_short_light/candidate.png",
+      "resource": "asset://levels/b07/effects/mirror_short_light/effect_candidate.png",
+      "original_provenance": {
+        "id": "m08",
+        "action": "mirror_short_light",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m08/idle_candidate.png",
+        "edit_target": null,
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-683883db-34ab-4728-9c64-35f505b648a6.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "repair_limit": "one_targeted_retry_only",
+        "sha256": "d1a8ae76c0024fa98bb911f909c7988e4faaef9a0db9d31c8cbf7dc079a6c715",
+        "bytes": 429179,
+        "source_sha256": "d1a8ae76c0024fa98bb911f909c7988e4faaef9a0db9d31c8cbf7dc079a6c715",
+        "copy_byte_verified": true
+      },
+      "ability": "mirror_slash"
+    },
+    {
+      "id": "m09",
+      "action": "poison_dart",
+      "kind": "independent_object_vfx",
+      "relative_dir": "m09/poison_dart",
+      "pivot": [
+        720,
+        505
+      ],
+      "read": "Slender brass/reed dart with green-coated needle tip, entire projectile visible.",
+      "issues": [
+        "Raw RGBA preview warm halo is absent in normal-alpha sand/dark-purple composites; do not diagnose alpha failure from raw RGB preview.",
+        "Feather tuft is visually larger than a typical blowdart; fit to pipe bore unverified."
+      ],
+      "path": "assets/levels/b07/effects/poison_dart/effect_candidate.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 1101490,
+      "sha256": "b8bd294902b3a3bcdef4c15a2f9571db2178efd56aacce48ed106b13414f993c",
+      "transparent_pixel_count": 1486763,
+      "partial_alpha_pixel_count": 86101,
+      "opaque_pixel_count": 0,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            0,
+            11,
+            1498,
+            990
+          ],
+          "bbox_size": [
+            1498,
+            979
+          ],
+          "effective_pixels": 86101,
+          "margin_ltrb": [
+            0,
+            11,
+            38,
+            34
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            127,
+            163,
+            1317,
+            832
+          ],
+          "bbox_size": [
+            1190,
+            669
+          ],
+          "effective_pixels": 76952,
+          "margin_ltrb": [
+            127,
+            163,
+            219,
+            192
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            129,
+            164,
+            1315,
+            831
+          ],
+          "bbox_size": [
+            1186,
+            667
+          ],
+          "effective_pixels": 74582,
+          "margin_ltrb": [
+            129,
+            164,
+            221,
+            193
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/poison_dart/provenance.json",
+      "prompt_path": "provenance/effect_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/poison_dart/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "minimum_margin_alpha16": 127,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/poison_dart/candidate.png",
+      "resource": "asset://levels/b07/effects/poison_dart/effect_candidate.png",
+      "original_provenance": {
+        "id": "m09",
+        "action": "poison_dart",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m09/idle_candidate.png",
+        "edit_target": null,
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-3779226e-fca2-40b4-b230-f4ba8febd0ca.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "repair_limit": "one_targeted_retry_only",
+        "sha256": "b8bd294902b3a3bcdef4c15a2f9571db2178efd56aacce48ed106b13414f993c",
+        "bytes": 1101490,
+        "source_sha256": "b8bd294902b3a3bcdef4c15a2f9571db2178efd56aacce48ed106b13414f993c",
+        "copy_byte_verified": true
+      },
+      "ability": "dart_venom"
+    },
+    {
+      "id": "m10",
+      "action": "mirror_state_indicator",
+      "kind": "independent_object_vfx",
+      "relative_dir": "m10/mirror_state_indicator",
+      "pivot": [
+        769,
+        844
+      ],
+      "read": "One central solid mirror, two cyan ghost orientations joined to a compact base; no room or beams.",
+      "issues": [
+        "All three preview orientations are baked into one CONCEPT object, not runtime-separated three-state assets or implemented logic.",
+        "Raw RGBA preview halos are absent in normal-alpha sand/dark-purple composites; ghost mirror silhouettes remain deliberately visible.",
+        "Ghost frames overlap central pedestal; runtime state separation still required."
+      ],
+      "path": "assets/levels/b07/effects/mirror_state_indicator/effect_candidate.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 1969124,
+      "sha256": "05421cccd98421b570f64e38fc3e2c5aff4e91b2d1f2484068dac8f70290431c",
+      "transparent_pixel_count": 1003129,
+      "partial_alpha_pixel_count": 569735,
+      "opaque_pixel_count": 0,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            0,
+            15,
+            1510,
+            998
+          ],
+          "bbox_size": [
+            1510,
+            983
+          ],
+          "effective_pixels": 569735,
+          "margin_ltrb": [
+            0,
+            15,
+            26,
+            26
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            5,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            103,
+            117,
+            1458,
+            910
+          ],
+          "bbox_size": [
+            1355,
+            793
+          ],
+          "effective_pixels": 527330,
+          "margin_ltrb": [
+            103,
+            117,
+            78,
+            114
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            107,
+            118,
+            1455,
+            909
+          ],
+          "bbox_size": [
+            1348,
+            791
+          ],
+          "effective_pixels": 501794,
+          "margin_ltrb": [
+            107,
+            118,
+            81,
+            115
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/mirror_state_indicator/provenance.json",
+      "prompt_path": "provenance/effect_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/mirror_state_indicator/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "minimum_margin_alpha16": 78,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m10/mirror_state_indicator/candidate.png",
+      "resource": "asset://levels/b07/effects/mirror_state_indicator/effect_candidate.png",
+      "original_provenance": {
+        "id": "m10",
+        "action": "mirror_state_indicator",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m10/idle_candidate.png",
+        "edit_target": null,
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-03974712-b676-45d2-9086-4da1a0f3888e.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "repair_limit": "one_targeted_retry_only",
+        "sha256": "05421cccd98421b570f64e38fc3e2c5aff4e91b2d1f2484068dac8f70290431c",
+        "bytes": 1969124,
+        "source_sha256": "05421cccd98421b570f64e38fc3e2c5aff4e91b2d1f2484068dac8f70290431c",
+        "copy_byte_verified": true
+      },
+      "ability": "mirror_attendant"
+    },
+    {
+      "id": "m11",
+      "action": "sand_ridge_segment",
+      "kind": "independent_object_vfx",
+      "relative_dir": "m11/sand_ridge_segment",
+      "pivot": [
+        633,
+        844
+      ],
+      "read": "Independent short sandstone ridge strip with no beast, shockwave or warning boundary.",
+      "issues": [
+        "Taller left rock makes ridge less uniformly low than brief; scale/collision not established.",
+        "Several small pebbles baked into integral base; no runtime destructible separation."
+      ],
+      "path": "assets/levels/b07/effects/sand_ridge_segment/effect_candidate.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "bytes": 854998,
+      "sha256": "0754198247a8fe18ef369ff3b19a345b89aecc0f6a57ceefe21dfc3fe143ced9",
+      "transparent_pixel_count": 1231735,
+      "partial_alpha_pixel_count": 340422,
+      "opaque_pixel_count": 359,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            54,
+            21,
+            1244,
+            1254
+          ],
+          "bbox_size": [
+            1190,
+            1233
+          ],
+          "effective_pixels": 340781,
+          "margin_ltrb": [
+            54,
+            21,
+            10,
+            0
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            4,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            59,
+            210,
+            1200,
+            1049
+          ],
+          "bbox_size": [
+            1141,
+            839
+          ],
+          "effective_pixels": 329336,
+          "margin_ltrb": [
+            59,
+            210,
+            54,
+            205
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            60,
+            211,
+            1199,
+            1048
+          ],
+          "bbox_size": [
+            1139,
+            837
+          ],
+          "effective_pixels": 326734,
+          "margin_ltrb": [
+            60,
+            211,
+            55,
+            206
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/sand_ridge_segment/provenance.json",
+      "prompt_path": "provenance/effect_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/sand_ridge_segment/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "minimum_margin_alpha16": 54,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/sand_ridge_segment/candidate.png",
+      "resource": "asset://levels/b07/effects/sand_ridge_segment/effect_candidate.png",
+      "original_provenance": {
+        "id": "m11",
+        "action": "sand_ridge_segment",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m11/idle_candidate.png",
+        "edit_target": null,
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-e0ca6e46-7e7e-4c6c-a787-74346acc12af.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "repair_limit": "one_targeted_retry_only",
+        "sha256": "0754198247a8fe18ef369ff3b19a345b89aecc0f6a57ceefe21dfc3fe143ced9",
+        "bytes": 854998,
+        "source_sha256": "0754198247a8fe18ef369ff3b19a345b89aecc0f6a57ceefe21dfc3fe143ced9",
+        "copy_byte_verified": true
+      },
+      "ability": "sand_ridge"
+    },
+    {
+      "id": "m12",
+      "action": "heavy_crossbow_bolt",
+      "kind": "independent_object_vfx",
+      "relative_dir": "m12/heavy_crossbow_bolt",
+      "pivot": [
+        694,
+        598
+      ],
+      "read": "Heavy wood/brass bolt with wide metal diamond head and red/cream fletching, clearly different from dart.",
+      "issues": [
+        "Projectile proportions need fit validation against crossbow rail; no speed/hitbox inferred."
+      ],
+      "path": "assets/levels/b07/effects/heavy_crossbow_bolt/effect_candidate.png",
+      "width": 1377,
+      "height": 1142,
+      "mode": "RGBA",
+      "bytes": 814388,
+      "sha256": "979758a9adf0ae34629b1f80efe6da8af905b6146d6a6cf62a585ee15100c9e0",
+      "transparent_pixel_count": 1268088,
+      "partial_alpha_pixel_count": 303928,
+      "opaque_pixel_count": 518,
+      "alpha_thresholds": {
+        "1": {
+          "bbox_xyxy_exclusive": [
+            25,
+            21,
+            1337,
+            1142
+          ],
+          "bbox_size": [
+            1312,
+            1121
+          ],
+          "effective_pixels": 304446,
+          "margin_ltrb": [
+            25,
+            21,
+            40,
+            0
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            7,
+            0,
+            0
+          ]
+        },
+        "16": {
+          "bbox_xyxy_exclusive": [
+            66,
+            73,
+            1332,
+            1033
+          ],
+          "bbox_size": [
+            1266,
+            960
+          ],
+          "effective_pixels": 294166,
+          "margin_ltrb": [
+            66,
+            73,
+            45,
+            109
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "128": {
+          "bbox_xyxy_exclusive": [
+            67,
+            74,
+            1331,
+            1032
+          ],
+          "bbox_size": [
+            1264,
+            958
+          ],
+          "effective_pixels": 291277,
+          "margin_ltrb": [
+            67,
+            74,
+            46,
+            110
+          ],
+          "boundary_pixel_counts_top_bottom_left_right": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/heavy_crossbow_bolt/provenance.json",
+      "prompt_path": "provenance/effect_candidate.prompt.txt",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/heavy_crossbow_bolt/provenance.json",
+      "status": "design_candidate_not_runtime",
+      "individual_image_visually_inspected": true,
+      "runtime_active_implemented": false,
+      "continuous_animation": false,
+      "minimum_margin_alpha16": 45,
+      "qa_status": "candidate_with_recorded_caveats",
+      "normal_alpha_composite_qa": {
+        "backgrounds": [
+          "sand #e4cf9d",
+          "dark purple #2f1e3e"
+        ],
+        "inspected": true,
+        "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+      },
+      "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/heavy_crossbow_bolt/candidate.png",
+      "resource": "asset://levels/b07/effects/heavy_crossbow_bolt/effect_candidate.png",
+      "original_provenance": {
+        "id": "m12",
+        "action": "heavy_crossbow_bolt",
+        "status": "design_candidate_not_runtime",
+        "tool": "image_gen.imagegen",
+        "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m12/idle_candidate.png",
+        "edit_target": null,
+        "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-d5e24bbe-54a0-46bb-b6ca-2d8b892579d6.png",
+        "copy_byte_preserved": true,
+        "generated_at_utc": "2026-10-03",
+        "prompt": "prompt.txt",
+        "repair_limit": "one_targeted_retry_only",
+        "sha256": "979758a9adf0ae34629b1f80efe6da8af905b6146d6a6cf62a585ee15100c9e0",
+        "bytes": 814388,
+        "source_sha256": "979758a9adf0ae34629b1f80efe6da8af905b6146d6a6cf62a585ee15100c9e0",
+        "copy_byte_verified": true
+      },
+      "ability": "awning_bolt"
+    }
+  ],
+  "original_index": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/index.json",
+  "rejected_or_superseded": [
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/candidate.png",
+      "reason": "Superseded: blade-side effective margin 1px; repaired selected image still has narrow 13px margin."
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/telegraph/repair/candidate.png",
+      "reason": "Rejected: raised front feet but far hind foot lost; right margin 2px. Original retained as explicitly blocked/readability-limited anticipation candidate."
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/execute/candidate.png",
+      "reason": "Rejected: far hind foot absent. Repair restores readable fourth paw."
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/candidate.png",
+      "reason": "Rejected: duplicate left hand. Repair restores two-hand anatomy."
+    }
+  ]
+}

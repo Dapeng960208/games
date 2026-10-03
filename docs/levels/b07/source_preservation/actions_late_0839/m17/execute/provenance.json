@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M17",
+  "action": "execute",
+  "variant": "execute",
+  "category": "pose",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/execute/candidate.png",
+  "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/execute/prompt.txt",
+  "source_filename": "exec-adc23fe7-7d70-4eeb-9ad6-ec08bfc0f2d5.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-adc23fe7-7d70-4eeb-9ad6-ec08bfc0f2d5.png",
+  "source_sha256": "f1b9e7be76fab4bd2394f3b1bb43595472d361a240ddb9c8894aa0c3bea44144",
+  "png_sha256": "f1b9e7be76fab4bd2394f3b1bb43595472d361a240ddb9c8894aa0c3bea44144",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m17/idle_candidate.png",
+  "identity_reference_sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 895562,
+    "alpha_zero_fraction": 0.5695089906875351,
+    "low_alpha_1_15_pixel_count": 19212,
+    "opaque_pixel_count": 745,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        0,
+        120,
+        1224,
+        1254
+      ],
+      "bounds_xywh": [
+        0,
+        120,
+        1224,
+        1134
+      ],
+      "effective_pixel_count": 676954,
+      "edge_pixel_count": 13,
+      "margins_ltrb": [
+        0,
+        120,
+        30,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        55,
+        123,
+        1222,
+        1126
+      ],
+      "bounds_xywh": [
+        55,
+        123,
+        1167,
+        1003
+      ],
+      "effective_pixel_count": 657742,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        55,
+        123,
+        32,
+        128
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        56,
+        124,
+        1221,
+        1125
+      ],
+      "bounds_xywh": [
+        56,
+        124,
+        1165,
+        1001
+      ],
+      "effective_pixel_count": 652110,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        56,
+        124,
+        33,
+        129
+      ]
+    },
+    "foot_contacts_manual": [
+      [
+        262,
+        933
+      ],
+      [
+        908,
+        944
+      ]
+    ],
+    "foot_midpoint": [
+      585.0,
+      938.5
+    ],
+    "anatomical_crown_xy_manual": [
+      809,
+      337
+    ],
+    "body_height_excluding_weapon_tail_accessories": 601.5,
+    "semantic_landmark_uncertainty_px": 35,
+    "maximum_display_body_px_at_1_to_1_sampling": 601.5,
+    "maximum_display_body_px_at_1_5_sampling_margin": 401.0,
+    "visual_review": "Both fists strike at a common imaginary ground plane, living lizard crouches behind.",
+    "defects": [
+      "Far/right foot toes partly hidden by fist; foot center is uncertain ±35px.",
+      "No drawn cross or impact terrain; ground hit geometry remains separate."
+    ],
+    "foot_anchor_runtime_registered": false
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m17/execute: B07-M17 living-lizard obelisk heavy guard. Preserve broad stocky golden/ivory lizard, EXACTLY TWO tall tapered sandstone OBELISK SHOULDER ARMOR pieces mounted to shoulders, copper seams/turquoise inlays, two enormous stone gauntlets, red scarf/loincloth, thick fleshy scaled tail. EXECUTE double-fist ground slam contact pose: deeply bent knees, torso hinging forward, BOTH massive stone fists pressed down at imaginary ground level in front of the body, one on each side with their bottom surfaces level; head lowered but reptilian face visible between the two fixed shoulder obelisks. Both clawed feet visible behind/outside fists. Thick tail lifts slightly behind for counterweight. No terrain, no ground surface, no cracks, no cross mark, no debris or shockwave; cross-shaped strike VFX is separate."
+}

@@ -1,0 +1,956 @@
+[
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-282436fe-6323-42e6-9dd9-f6f561847325.png",
+    "source_sha256": "936d6621733f00cabc14c62670a587f0bac181a7b168a7a644063a66c154cd00",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/enemies/m01/actions/sun_spear/telegraph_candidate.png",
+    "prompt": "provenance/telegraph_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        52,
+        102,
+        1432,
+        868
+      ],
+      "alpha128_pixel_count": 341939,
+      "transparent_pixel_count": 1196488,
+      "low_alpha_1_32_count": 29900,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Spear/shield hand assignment appears swapped relative to idle: reject for animation continuity until corrected.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 103,
+      "foot_landmarks": [
+        [
+          400,
+          874
+        ],
+        [
+          998,
+          790
+        ]
+      ],
+      "foot_midpoint": [
+        699.0,
+        832.0
+      ],
+      "airborne_no_ground_contact": false,
+      "visible_anatomical_vertical_extent": 729.0,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "B07-M01",
+    "ability": "sun_spear",
+    "phase": "telegraph",
+    "reference_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+    "reference_path": "assets/levels/b07/enemies/m01/idle.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-0af5e6c9-2a03-4912-8e3b-c5ca6deb35ff.png",
+    "source_sha256": "d01d70d7c763e8b32a4a4629ad3581640237eb91bd92fcd81299a1214c7c66b8",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/enemies/m01/actions/sun_spear/execute_candidate.png",
+    "prompt": "provenance/execute_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        7,
+        124,
+        1522,
+        819
+      ],
+      "alpha128_pixel_count": 336751,
+      "transparent_pixel_count": 1206710,
+      "low_alpha_1_32_count": 25406,
+      "nonzero_edge_pixel_count": 12,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Identity and shield retained; spear tip and tail margins tight; compare hand assignment against corrected telegraph.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 120,
+      "foot_landmarks": [
+        [
+          260,
+          851
+        ],
+        [
+          973,
+          787
+        ]
+      ],
+      "foot_midpoint": [
+        616.5,
+        819.0
+      ],
+      "airborne_no_ground_contact": false,
+      "visible_anatomical_vertical_extent": 699.0,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "B07-M01",
+    "ability": "sun_spear",
+    "phase": "execute",
+    "reference_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+    "reference_path": "assets/levels/b07/enemies/m01/idle.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-2b8f9009-5cf3-4608-aa32-70489e59123c.png",
+    "source_sha256": "ebac3f964faf821191075888d9d567f9b157d5194eb00fa6fc8568564810470e",
+    "native_size": [
+      1402,
+      1122
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/enemies/m01/actions/sun_spear/recovery_candidate.png",
+    "prompt": "provenance/recovery_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        61,
+        69,
+        1307,
+        1027
+      ],
+      "alpha128_pixel_count": 382186,
+      "transparent_pixel_count": 1159954,
+      "low_alpha_1_32_count": 26022,
+      "nonzero_edge_pixel_count": 28,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Spear lowered and identity retained; stronger upright posture than thrust; not same frame scale.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 68,
+      "foot_landmarks": [
+        [
+          515,
+          999
+        ],
+        [
+          960,
+          893
+        ]
+      ],
+      "foot_midpoint": [
+        737.5,
+        946.0
+      ],
+      "airborne_no_ground_contact": false,
+      "visible_anatomical_vertical_extent": 878.0,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "B07-M01",
+    "ability": "sun_spear",
+    "phase": "recovery",
+    "reference_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+    "reference_path": "assets/levels/b07/enemies/m01/idle.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-271c3cae-4aec-436a-909f-fe51c22e7656.png",
+    "source_sha256": "9d5da404b3e85a894dae3c08bb7b718f60854fecbaacbb5e84e42a1bfece3a1b",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/enemies/m02/actions/camouflage_leap/telegraph_candidate.png",
+    "prompt": "provenance/telegraph_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        128,
+        94,
+        1364,
+        861
+      ],
+      "alpha128_pixel_count": 548920,
+      "transparent_pixel_count": 982878,
+      "low_alpha_1_32_count": 34953,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Crouch readable, spiral tail retained; anatomy/feet need same-scale overlay review.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 99,
+      "foot_landmarks": [
+        [
+          573,
+          884
+        ],
+        [
+          1159,
+          809
+        ]
+      ],
+      "foot_midpoint": [
+        866.0,
+        846.5
+      ],
+      "airborne_no_ground_contact": false,
+      "visible_anatomical_vertical_extent": 747.5,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "B07-M02",
+    "ability": "camouflage_leap",
+    "phase": "telegraph",
+    "reference_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+    "reference_path": "assets/levels/b07/enemies/m02/idle_candidate.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-b64e9d64-b0f4-4b56-a020-d38fe5fac83f.png",
+    "source_sha256": "cb565b29840a3654ec8e4f1532a72b4b0ad2dc3312b24d9664cf9d69a6b57e13",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/enemies/m02/actions/camouflage_leap/execute_candidate.png",
+    "prompt": "provenance/execute_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        47,
+        57,
+        1486,
+        797
+      ],
+      "alpha128_pixel_count": 588136,
+      "transparent_pixel_count": 945703,
+      "low_alpha_1_32_count": 33149,
+      "nonzero_edge_pixel_count": 30,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Airborne key pose has no ground contact: listed points are foot sole landmarks only, NOT root ground anchor.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 111,
+      "foot_landmarks": [
+        [
+          150,
+          643
+        ],
+        [
+          361,
+          768
+        ]
+      ],
+      "foot_midpoint": [
+        255.5,
+        705.5
+      ],
+      "airborne_no_ground_contact": true,
+      "visible_anatomical_vertical_extent": 594.5,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "B07-M02",
+    "ability": "camouflage_leap",
+    "phase": "execute",
+    "reference_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+    "reference_path": "assets/levels/b07/enemies/m02/idle_candidate.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-c8189794-7c9f-4838-b4fe-1004e59df235.png",
+    "source_sha256": "cbbc12e733fac71c539ae43e348644f07ea93266d680f4f06bf1d78aafe04680",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/enemies/m02/actions/camouflage_leap/recovery_candidate.png",
+    "prompt": "provenance/recovery_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        183,
+        80,
+        1266,
+        910
+      ],
+      "alpha128_pixel_count": 585612,
+      "transparent_pixel_count": 946417,
+      "low_alpha_1_32_count": 34594,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Landing crouch readable, near hand touches down; ground root should be feet midpoint, not hand.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 83,
+      "foot_landmarks": [
+        [
+          497,
+          891
+        ],
+        [
+          1100,
+          833
+        ]
+      ],
+      "foot_midpoint": [
+        798.5,
+        862.0
+      ],
+      "airborne_no_ground_contact": false,
+      "visible_anatomical_vertical_extent": 779.0,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "B07-M02",
+    "ability": "camouflage_leap",
+    "phase": "recovery",
+    "reference_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+    "reference_path": "assets/levels/b07/enemies/m02/idle_candidate.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-6a5f2665-bcd7-4672-9fd8-7193a4176852.png",
+    "source_sha256": "1d82405a4b4e02ed21d7c9280d45c4c90cf2f6e5bfe9ba449f3e0df449ff2c6f",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/enemies/m03/actions/returning_disc/telegraph_candidate.png",
+    "prompt": "provenance/telegraph_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        124,
+        20,
+        1232,
+        991
+      ],
+      "alpha128_pixel_count": 417793,
+      "transparent_pixel_count": 1116704,
+      "low_alpha_1_32_count": 33192,
+      "nonzero_edge_pixel_count": 6,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Raised disc windup readable; head very near top, final proportion/hand consistency pending.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 20,
+      "foot_landmarks": [
+        [
+          666,
+          939
+        ],
+        [
+          1216,
+          775
+        ]
+      ],
+      "foot_midpoint": [
+        941.0,
+        857.0
+      ],
+      "airborne_no_ground_contact": false,
+      "visible_anatomical_vertical_extent": 837.0,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "B07-M03",
+    "ability": "returning_disc",
+    "phase": "telegraph",
+    "reference_sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+    "reference_path": "assets/levels/b07/enemies/m03/idle_candidate.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-d2a7dbe6-3f6c-4a7a-8850-b3b1d5cd52d6.png",
+    "source_sha256": "be955ca269084972743cab082a7e8225156467d2340ec1617a0c891c1be5d792",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/enemies/m03/actions/returning_disc/execute_candidate.png",
+    "prompt": "provenance/execute_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        34,
+        112,
+        1212,
+        1083
+      ],
+      "alpha128_pixel_count": 424407,
+      "transparent_pixel_count": 1109438,
+      "low_alpha_1_32_count": 32550,
+      "nonzero_edge_pixel_count": 24,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Hand empty after release and belt spare retained. Torso rotation changes apparent arm overlap; verify same throwing shoulder/hand with windup before animation. This is a continuity risk, not a proven hand swap.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 111,
+      "foot_landmarks": [
+        [
+          474,
+          1115
+        ],
+        [
+          1101,
+          951
+        ]
+      ],
+      "foot_midpoint": [
+        787.5,
+        1033.0
+      ],
+      "airborne_no_ground_contact": false,
+      "visible_anatomical_vertical_extent": 922.0,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "B07-M03",
+    "ability": "returning_disc",
+    "phase": "execute",
+    "reference_sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+    "reference_path": "assets/levels/b07/enemies/m03/idle_candidate.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-75366444-e4b4-4c40-bf19-b68dfd977516.png",
+    "source_sha256": "6b88db7576a8139a3fd0e53b6f011bb7d5b3b0de2580a48ecb9cfd24a817b3bf",
+    "native_size": [
+      1346,
+      1168
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/enemies/m03/actions/returning_disc/recovery_candidate.png",
+    "prompt": "provenance/recovery_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        77,
+        32,
+        1171,
+        1124
+      ],
+      "alpha128_pixel_count": 435752,
+      "transparent_pixel_count": 1096420,
+      "low_alpha_1_32_count": 34663,
+      "nonzero_edge_pixel_count": 8,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Empty waiting hands and belt spare retained; still key pose only.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 29,
+      "foot_landmarks": [
+        [
+          642,
+          1084
+        ],
+        [
+          1147,
+          960
+        ]
+      ],
+      "foot_midpoint": [
+        894.5,
+        1022.0
+      ],
+      "airborne_no_ground_contact": false,
+      "visible_anatomical_vertical_extent": 993.0,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "B07-M03",
+    "ability": "returning_disc",
+    "phase": "recovery",
+    "reference_sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+    "reference_path": "assets/levels/b07/enemies/m03/idle_candidate.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-b1397287-ae4f-4fb1-80bf-bb09f0f2b7a5.png",
+    "source_sha256": "6a9acac46d12abb10085e66c9bb2b1739e4cc491e23fda5e8bdae58c6fdaac40",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/bosses/bo07/actions/sun_spear/telegraph_candidate.png",
+    "prompt": "provenance/telegraph_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        52,
+        11,
+        1454,
+        999
+      ],
+      "alpha128_pixel_count": 505678,
+      "transparent_pixel_count": 1019929,
+      "low_alpha_1_32_count": 40132,
+      "nonzero_edge_pixel_count": 6,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Royal crown/tail identity retained; crouch and long weapon readable, top crown margin tight.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 236,
+      "foot_landmarks": [
+        [
+          405,
+          938
+        ],
+        [
+          1027,
+          872
+        ]
+      ],
+      "foot_midpoint": [
+        716.0,
+        905.0
+      ],
+      "airborne_no_ground_contact": false,
+      "visible_anatomical_vertical_extent": 669.0,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "BO07",
+    "ability": "sun_spear",
+    "phase": "telegraph",
+    "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+    "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-82b8711e-ea4f-4844-89c8-f53011e61f29.png",
+    "source_sha256": "caa8f523e21b05db7c9c21dc29bbc1bbe3ff32dd9addf1d56b101b08d75a681a",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/bosses/bo07/actions/sun_spear/execute_candidate.png",
+    "prompt": "provenance/execute_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        32,
+        16,
+        1481,
+        994
+      ],
+      "alpha128_pixel_count": 526980,
+      "transparent_pixel_count": 995780,
+      "low_alpha_1_32_count": 43072,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Royal thrust retained; posture change modest, final arm reach/foot spacing need common-scale pass.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 230,
+      "foot_landmarks": [
+        [
+          268,
+          938
+        ],
+        [
+          1059,
+          862
+        ]
+      ],
+      "foot_midpoint": [
+        663.5,
+        900.0
+      ],
+      "airborne_no_ground_contact": false,
+      "visible_anatomical_vertical_extent": 670.0,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "BO07",
+    "ability": "sun_spear",
+    "phase": "execute",
+    "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+    "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-7e99dd92-32be-4d65-a00d-2be2e1482cb0.png",
+    "source_sha256": "89aec53a3bdee0f9f777ed447c6781ccc81c9fe93a31b118155ad0c0a10e8832",
+    "native_size": [
+      1374,
+      1145
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/bosses/bo07/actions/sun_spear/recovery_candidate.png",
+    "prompt": "provenance/recovery_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        35,
+        12,
+        1315,
+        1109
+      ],
+      "alpha128_pixel_count": 529111,
+      "transparent_pixel_count": 1002469,
+      "low_alpha_1_32_count": 34791,
+      "nonzero_edge_pixel_count": 17,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Lowered spear recovery readable; crown and spear margins tight, upright/crouch should not be individually height-normalized.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "anatomical_crown_y": 183,
+      "foot_landmarks": [
+        [
+          497,
+          1038
+        ],
+        [
+          915,
+          1016
+        ]
+      ],
+      "foot_midpoint": [
+        706.0,
+        1027.0
+      ],
+      "airborne_no_ground_contact": false,
+      "visible_anatomical_vertical_extent": 844.0,
+      "semantic_uncertainty_px": 20,
+      "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+      "scale_and_foot_continuity_passed": false
+    },
+    "identity": "BO07",
+    "ability": "sun_spear",
+    "phase": "recovery",
+    "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+    "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png"
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-ba41b8a1-e0b6-4750-8ca6-c5e0c600d361.png",
+    "source_sha256": "63e7c429d3f9095e622d021e54f18a9dfa589e4a7ca1f116ee981c3e6d107158",
+    "native_size": [
+      1774,
+      887
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/effects/spear_impact/effect_candidate.png",
+    "prompt": "provenance/effect_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        284,
+        178,
+        1331,
+        530
+      ],
+      "alpha128_pixel_count": 132385,
+      "transparent_pixel_count": 1403208,
+      "low_alpha_1_32_count": 32047,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Compact directional hit glint; decorative only, not 180/240 range line.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "center_alpha": 253
+    },
+    "effect_id": "spear_impact",
+    "ability": "M01/BO07 sun_spear",
+    "references": []
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-c6a55a99-d4bc-4393-8d65-80f87176fd36.png",
+    "source_sha256": "d62b11a4077287ff1c72f7726d6a17db4b5ce158006baf805105bf6b873d3b64",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/effects/sand_landing/effect_candidate.png",
+    "prompt": "provenance/effect_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        43,
+        169,
+        1481,
+        663
+      ],
+      "alpha128_pixel_count": 249067,
+      "transparent_pixel_count": 1114440,
+      "low_alpha_1_32_count": 172648,
+      "nonzero_edge_pixel_count": 80,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Open dust ring, center alpha checked separately. Impact only, not radius55 warning authority.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "center_alpha": 0
+    },
+    "effect_id": "sand_landing",
+    "ability": "M02 camouflage_leap",
+    "references": []
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-107458b0-3289-4952-8164-99a52e42042e.png",
+    "source_sha256": "5db684c4efbdb8105b54133ed6b951be2c3cacc77d325e9201e39138520973ca",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/effects/sand_ball/effect_candidate.png",
+    "prompt": "provenance/effect_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        360,
+        276,
+        761,
+        484
+      ],
+      "alpha128_pixel_count": 188205,
+      "transparent_pixel_count": 1346125,
+      "low_alpha_1_32_count": 32286,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Compact sand ball/trail; gameplay projectile follows existing command.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "center_alpha": 253
+    },
+    "effect_id": "sand_ball",
+    "ability": "M02 D2 after_motion sand_ball",
+    "references": []
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-4653a974-aa88-4f0f-8490-06693310c8c1.png",
+    "source_sha256": "4db488bd72a6fb8586f8696b4df995e6fce20e89e46c6cf589f79f9cbe8809c8",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/effects/sand_disc/effect_candidate.png",
+    "prompt": "provenance/effect_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        190,
+        168,
+        1188,
+        711
+      ],
+      "alpha128_pixel_count": 666967,
+      "transparent_pixel_count": 897125,
+      "low_alpha_1_32_count": 7205,
+      "nonzero_edge_pixel_count": 20,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Turquoise/bronze disk identity; pattern differs subtly from handheld prop, common polish must match.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "center_alpha": 253
+    },
+    "effect_id": "sand_disc",
+    "ability": "M03 returning_disc",
+    "references": []
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-4654cfc9-5860-42c7-b945-388d7971149d.png",
+    "source_sha256": "bbdde63ed00a3c290aed070274253acdd75a0ba3e1411e0a57b753d45462db0f",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/effects/sun_disc/effect_candidate.png",
+    "prompt": "provenance/effect_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        206,
+        51,
+        1166,
+        903
+      ],
+      "alpha128_pixel_count": 542361,
+      "transparent_pixel_count": 1016462,
+      "low_alpha_1_32_count": 11826,
+      "nonzero_edge_pixel_count": 1,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Royal golden projectile, no harness; return path remains code-driven.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "center_alpha": 253
+    },
+    "effect_id": "sun_disc",
+    "ability": "BO07 sun_disc",
+    "references": []
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_or_vfx_candidate_not_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-67544a36-6e04-4eb4-98ff-0d555282cced.png",
+    "source_sha256": "984a9281dfea39ba05f835e768cb1a673be2181153709b53145b3cb988d3913b",
+    "native_size": [
+      2172,
+      724
+    ],
+    "native_mode": "RGBA",
+    "resource": "asset://levels/b07/effects/altar_beam/effect_candidate.png",
+    "prompt": "provenance/effect_candidate.prompt.txt",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        141,
+        323,
+        1871,
+        104
+      ],
+      "alpha128_pixel_count": 132691,
+      "transparent_pixel_count": 1207379,
+      "low_alpha_1_32_count": 161287,
+      "nonzero_edge_pixel_count": 5,
+      "edge_alpha128_pixel_count": 0,
+      "visual_review": "Beam segment generated rounded fade ends rather than requested flat tileable ends; not seamless-ready.",
+      "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+      "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+      "center_alpha": 253
+    },
+    "effect_id": "altar_beam",
+    "ability": "BO07 altar_lines",
+    "references": []
+  }
+]

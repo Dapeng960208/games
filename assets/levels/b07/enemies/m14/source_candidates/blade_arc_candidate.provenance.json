@@ -1,0 +1,10 @@
+{
+  "status": "historical_source_candidate_preserved_at_user_stop",
+  "formal_acceptance": false,
+  "runtime_integration": false,
+  "original_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc/candidate.png",
+  "sha256": "d1082ed6a705f1206de0ee2267a7abca9b0db32933778ab4bd205580caea50ed",
+  "byte_identical": true,
+  "reason": "Preserve original/failed source before authorized B07 workspace cleanup; no new image generation or pixel edits",
+  "related_source_group": "actions_late_0839/m14/blade_arc"
+}

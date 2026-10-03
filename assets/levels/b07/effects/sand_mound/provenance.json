@@ -1,0 +1,36 @@
+{
+  "effect_id": "sand_mound",
+  "status": "unregistered_visual_candidate",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-77f1b64d-7fd9-4dfa-a386-c582f08e8177.png",
+  "source_sha256": "0fe63f86ad864522c561b769ce809c3d793989c5acd8764b7c26edd62e02e5ab",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "original_bytes_preserved": true,
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "source_license": "AI-generated original visual source",
+  "qa": {
+    "alpha16_bounds_xywh": [
+      204,
+      274,
+      1137,
+      527
+    ],
+    "alpha128_bounds_xywh": [
+      207,
+      275,
+      1133,
+      525
+    ],
+    "nonzero_edge_pixels": 10,
+    "alpha128_edge_pixels": 0,
+    "center_alpha": 252,
+    "transparent_pixels": 1231690,
+    "low_alpha_1_32_pixels": 37300,
+    "visual_review": "Viewed original. Decorative material only, native colors. Alpha fringe and actual battlefield readability unaccepted.",
+    "geometry_warning": "Generated curve/spiral does not define hitbox, reduction angle or skill radius; current command geometry remains authoritative."
+  },
+  "runtime_quality_gate_passed": false
+}

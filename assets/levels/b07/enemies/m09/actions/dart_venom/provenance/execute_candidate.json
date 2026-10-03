@@ -1,0 +1,174 @@
+{
+  "id": "m09",
+  "action": "execute",
+  "kind": "character_key_pose",
+  "relative_dir": "m09/execute",
+  "crown": [
+    586,
+    206
+  ],
+  "feet": [
+    [
+      211,
+      1075
+    ],
+    [
+      770,
+      850
+    ]
+  ],
+  "read": "Crouch thrusts forward into blowpipe, correct right rear/left front hand positions; no projectile baked in.",
+  "issues": [
+    "Cheek inflation subtle; tail brace still near pipe front and needs mechanical plausibility review."
+  ],
+  "path": "assets/levels/b07/enemies/m09/actions/dart_venom/execute_candidate.png",
+  "width": 1223,
+  "height": 1286,
+  "mode": "RGBA",
+  "bytes": 1206696,
+  "sha256": "e7f698a631218c0b826c1585caf91f9fa27573ed415b07001749f812c9773272",
+  "transparent_pixel_count": 1103409,
+  "partial_alpha_pixel_count": 468252,
+  "opaque_pixel_count": 1117,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        45,
+        23,
+        1208,
+        1286
+      ],
+      "bbox_size": [
+        1163,
+        1263
+      ],
+      "effective_pixels": 469369,
+      "margin_ltrb": [
+        45,
+        23,
+        15,
+        0
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        8,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        49,
+        206,
+        1206,
+        1157
+      ],
+      "bbox_size": [
+        1157,
+        951
+      ],
+      "effective_pixels": 430891,
+      "margin_ltrb": [
+        49,
+        206,
+        17,
+        129
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        50,
+        206,
+        1206,
+        1156
+      ],
+      "bbox_size": [
+        1156,
+        950
+      ],
+      "effective_pixels": 423235,
+      "margin_ltrb": [
+        50,
+        206,
+        17,
+        130
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/execute/provenance.json",
+  "prompt_path": "provenance/execute_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/execute/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "manual_foot_qa": {
+    "support_contact_centers_px": [
+      [
+        211,
+        1075
+      ],
+      [
+        770,
+        850
+      ]
+    ],
+    "anchor_mean_px": [
+      490.5,
+      962.5
+    ],
+    "anchor_normalized": [
+      0.40106,
+      0.74844
+    ],
+    "anatomical_crown_px": [
+      586,
+      206
+    ],
+    "body_effective_height_px": 756.5,
+    "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+    "max_body_display_height_at_1_to_1_px": 756.5,
+    "max_body_display_height_at_1_5_source_to_display_px": 504.3,
+    "accepted_runtime_anchor": false
+  },
+  "minimum_margin_alpha16": 17,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m09/execute/candidate.png",
+  "resource": "asset://levels/b07/enemies/m09/actions/dart_venom/execute_candidate.png",
+  "original_provenance": {
+    "id": "m09",
+    "action": "execute",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m09/idle_candidate.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-ff3fa338-3357-44b1-b7bb-20ff221d12b4.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "sha256": "e7f698a631218c0b826c1585caf91f9fa27573ed415b07001749f812c9773272",
+    "bytes": 1206696,
+    "source_sha256": "e7f698a631218c0b826c1585caf91f9fa27573ed415b07001749f812c9773272",
+    "copy_byte_verified": true
+  },
+  "ability": "dart_venom"
+}

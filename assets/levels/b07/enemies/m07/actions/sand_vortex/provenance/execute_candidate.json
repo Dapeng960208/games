@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M07",
+  "ability": "sand_vortex",
+  "phase": "execute",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-b153d3d5-3e40-4a4c-bef2-a84a86c690e0.png",
+  "source_sha256": "67d6c84bf2f1ddd60afbb00efbf878906750582b180a65dcd8c59f1f432d2615",
+  "resource": "asset://levels/b07/enemies/m07/actions/sand_vortex/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m07/idle_candidate.png",
+  "reference_sha256": "bddea855af8d0739607624074cc8a57827e1f7b94f5671ec4340e5e44263a80b",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      11,
+      26,
+      1243,
+      1216
+    ],
+    "alpha128_pixel_count": 477600,
+    "transparent_pixel_count": 1035986,
+    "low_alpha_1_32_count": 50818,
+    "nonzero_edge_pixel_count": 135,
+    "edge_alpha128_pixel_count": 1,
+    "anatomical_crown_y": 150.5,
+    "foot_landmarks": [
+      [
+        363.7,
+        1166.2
+      ],
+      [
+        902.9,
+        1040.8
+      ]
+    ],
+    "foot_midpoint": [
+      633.3,
+      1103.5
+    ],
+    "visible_anatomical_vertical_extent": 953.0,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Staff identity and original hand retained; execute staff tip margin narrow. Bone scale/foot continuity still pending.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

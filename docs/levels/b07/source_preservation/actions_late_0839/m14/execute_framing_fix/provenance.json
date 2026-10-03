@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M14",
+  "action": "execute",
+  "variant": "execute_framing_fix",
+  "category": "pose",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute_framing_fix/candidate.png",
+  "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute_framing_fix/prompt.txt",
+  "source_filename": "exec-ab9e40b8-8db8-41a8-81ca-9263e1a03b32.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ab9e40b8-8db8-41a8-81ca-9263e1a03b32.png",
+  "source_sha256": "5d6c4bee0ccf7ecc5f448ee28d4b75fd96962319d77b1346860377ff50970162",
+  "png_sha256": "5d6c4bee0ccf7ecc5f448ee28d4b75fd96962319d77b1346860377ff50970162",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m14/idle_candidate.png",
+  "identity_reference_sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1312,
+      1199
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1150827,
+    "alpha_zero_fraction": 0.7315719146036331,
+    "low_alpha_1_15_pixel_count": 38501,
+    "opaque_pixel_count": 361,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        49,
+        21,
+        1292,
+        1167
+      ],
+      "bounds_xywh": [
+        49,
+        21,
+        1243,
+        1146
+      ],
+      "effective_pixel_count": 422261,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        49,
+        21,
+        20,
+        32
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        83,
+        169,
+        1241,
+        1079
+      ],
+      "bounds_xywh": [
+        83,
+        169,
+        1158,
+        910
+      ],
+      "effective_pixel_count": 383760,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        83,
+        169,
+        71,
+        120
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        83,
+        170,
+        1240,
+        1077
+      ],
+      "bounds_xywh": [
+        83,
+        170,
+        1157,
+        907
+      ],
+      "effective_pixel_count": 375066,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        83,
+        170,
+        72,
+        122
+      ]
+    },
+    "foot_contacts_manual": [
+      [
+        403,
+        899
+      ],
+      [
+        1122,
+        1041
+      ]
+    ],
+    "foot_midpoint": [
+      762.5,
+      970.0
+    ],
+    "anatomical_crown_xy_manual": [
+      702,
+      174
+    ],
+    "body_height_excluding_weapon_tail_accessories": 796.0,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 796.0,
+    "maximum_display_body_px_at_1_5_sampling_margin": 530.67,
+    "visual_review": "Single left-hand extended slash, other hand maintains blade; no complete second hit.",
+    "defects": [
+      "Framing improved once, but requested 10% margin is not fully achieved.",
+      "Minor ornament redraw from first candidate; not exact pixel continuation."
+    ],
+    "foot_anchor_runtime_registered": false
+  },
+  "prompt_text": "Use case: precise-object-edit. Repair framing only in this transparent game action candidate. Keep EXACTLY the current character identity, every color, pose, hands, equipment, action direction, and proportions unchanged. The first image is the target. Re-render the same complete silhouette at a smaller scale occupying no more than 78% of the canvas width and height, centered with AT LEAST 10% pure transparent empty margin on each side. Ensure every weapon blade / flag finial / cloth panel / claw / tail tip is fully visible with generous safety margin. Do not invent detail, change the pose, add effects or add background. Genuine alpha=0 background. No crop, no ground, no halo. Save native transparent image; do not simply increase canvas around clipped tips.",
+  "edit_target_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-f1347b05-95e9-45c2-9362-6f833e1689d6.png",
+  "single_targeted_revision": true
+}

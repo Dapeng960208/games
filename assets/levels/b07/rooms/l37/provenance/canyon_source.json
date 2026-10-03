@@ -1,0 +1,232 @@
+{
+  "record_scope": "Historical generation source record. Embedded paths, reviews and suggested placements describe the original generation only; not an active registry or current acceptance claim.",
+  "current_contract": "docs/levels/b07/rooms/l37/visual_alignment.md",
+  "original_metadata_filename": "L37_canyon_true_layers_v1.metadata.json",
+  "original_metadata_sha256": "fe4c0f99c3ddd40b6eab061a9a296185daa17423d519f4dbad0a18e7fcedb319",
+  "source_record": {
+    "schema_version": 1,
+    "room_id": "L37",
+    "candidate_id": "L37_canyon_true_layers_v1",
+    "status": "delivered_for_one_actual_entry_feasibility_frame_not_runtime_accepted",
+    "created_utc": "2026-10-03T04:24:55Z",
+    "authoritative_visual_reference": {
+      "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+      "library_file_id": "libfile_029361d330048191bdefec30b980495e",
+      "sha256": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "actual_pixels_inspected": true,
+      "attached_to_each_of_three_approved_generation_calls": true
+    },
+    "layout_contract": "games-recovery/b07/docs/art/b07/L37_VISUAL_ALIGNMENT.md",
+    "blueprint_render_rect": [
+      -900,
+      -800,
+      4600,
+      3000
+    ],
+    "runtime_scale": 0.58,
+    "navigation_unchanged": true,
+    "assets": {
+      "L37_canyon_backdrop_v1.png": {
+        "native_size": [
+          1552,
+          1013
+        ],
+        "mode": "RGB",
+        "bytes": 2461212,
+        "sha256": "1b600432ede4233d608bece8e4be4f1a4fd03ff457674e3a1c925bf9369d6a31",
+        "unchanged_generated_pixels": true
+      },
+      "L37_cliff_foundation_v1.png": {
+        "native_size": [
+          2172,
+          724
+        ],
+        "mode": "RGB",
+        "bytes": 2620620,
+        "sha256": "92418f56db75b9d22b23e6b5bfb0db215cd70553e50c3599190c44a50fac11f0",
+        "unchanged_generated_pixels": true
+      },
+      "L37_west_guardian_v1.png": {
+        "native_size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "bytes": 2393925,
+        "sha256": "f48a8fe396899058222768b52c90384a8ef0f9917783f13e43fea5050cb760cb",
+        "unchanged_generated_pixels": true
+      },
+      "L37_sandstone_floor_v1.png": {
+        "native_size": [
+          1565,
+          1005
+        ],
+        "mode": "RGB",
+        "bytes": 2295248,
+        "sha256": "6ae03e1c588fc95c15778e89117f1c83e3f7daefa19180db08032d5af4658484",
+        "unchanged_generated_pixels": true
+      }
+    },
+    "layers": [
+      {
+        "order": 0,
+        "asset": "L37_canyon_backdrop_v1.png",
+        "role": "distant canyon and northeast stepped gate-city; complete central arena/rim and old western foreground guardian removed",
+        "blueprint_rect": [
+          -900,
+          -800,
+          4600,
+          3000
+        ],
+        "native_size": [
+          1552,
+          1013
+        ],
+        "mapping_normalized": "u=(blueprint_x+900)/4600; v=(blueprint_y+800)/3000",
+        "preferred_uniform_cover": {
+          "scale_native_to_blueprint": 2.963917525773196,
+          "center_crop_offset_blueprint": [
+            0.0,
+            1.224226804123873
+          ],
+          "formula": "blueprint_x=-900+source_x*scale-crop_x; blueprint_y=-800+source_y*scale-crop_y"
+        },
+        "limit": "Generator did not move the entire gate-city base to y<26%. Its distant lower stairs/cliffs may be occluded by the foreground terrace; inspect depth/order in the actual frame instead of claiming exact painted registration."
+      },
+      {
+        "order": 1,
+        "asset": "L37_cliff_foundation_v1.png",
+        "role": "authored vertical sandstone fortification/stratified cliff material for exact edge-attached facade quads",
+        "native_size": [
+          2172,
+          724
+        ],
+        "top_contact_source_y": 0,
+        "source_rect": [
+          0,
+          0,
+          2172,
+          724
+        ],
+        "extrusion_blueprint": [
+          -180,
+          330
+        ],
+        "visible_edge_rule": "edge.cross(Vector2(-180,330)) < 0",
+        "only_draw_outside_walkable_polygon": true,
+        "uv_contract": {
+          "horizontal_repeat_period_blueprint": 990,
+          "texture_vertical_depth_blueprint": 330,
+          "u": "edge_distance_blueprint/990",
+          "v": "facade_depth_fraction",
+          "native_pixels_per_blueprint_unit": 2.193939393939394
+        },
+        "contains_no_landmarks": true,
+        "tiling_note": "Requested and visually reviewed as near-seamless material. Exact left/right pixels do not match; actual repeat joins and corner seams remain unverified.",
+        "raw_left_right_edge_mean_absolute_rgb_difference": 39.11187845303867
+      },
+      {
+        "order": 2,
+        "asset": "L37_sandstone_floor_v1.png",
+        "role": "previously generated plain sandstone material reused only as a floor surface within the new canyon design",
+        "blueprint_rect": [
+          0,
+          0,
+          2800,
+          1800
+        ],
+        "clip": "exact authoritative room polygon",
+        "no_new_floor_generation": true,
+        "warning": "This texture alone is not the approved visual direction. Paving scale and color compatibility still need actual-frame review."
+      },
+      {
+        "order": 3,
+        "asset": "L37_west_guardian_v1.png",
+        "role": "independently positioned monumental sandstone lizard guardian with short pedestal, sun relief and red-orange banner",
+        "native_size": [
+          1024,
+          1536
+        ],
+        "source_region_xywh": [
+          68,
+          88,
+          913,
+          1378
+        ],
+        "significant_alpha_threshold_integer": 5,
+        "suggested_visible_blueprint_rect": [
+          -700,
+          398.94852135815995,
+          650,
+          981.05147864184
+        ],
+        "suggested_contact_baseline_blueprint_y": 1380,
+        "uniform_source_to_blueprint_scale": 0.7119386637458927,
+        "source_to_blueprint_formula": "x=-700+(source_x-68)*(650/913); y=1380+(source_y-1466)*(650/913)",
+        "rightmost_significant_pixel_blueprint_x": -50,
+        "placement_rule": "Keep entire significant silhouette left of gameplay polygon, with head clearly in actual entry viewport. Proposed rect is a placement starting point; check pedestal grounding against canyon/foundation in actual frame.",
+        "alpha": {
+          "range": [
+            0,
+            254
+          ],
+          "nonzero_bbox": [
+            0,
+            81,
+            990,
+            1514
+          ],
+          "bbox_alpha_gt_5": [
+            68,
+            88,
+            981,
+            1466
+          ],
+          "runtime_recommendation": "Discard alpha<=5/255 if needed for tiny generator alpha dust. Do not flatten hidden RGB under transparent pixels.",
+          "visible_halo": "No broad halo in actual alpha-composited QA. The source contains colored RGB under fully transparent pixels, which some raw previews show misleadingly.",
+          "qa_method": "Unmodified PNG composited on opaque sandstone-color SVG rectangle using Inkscape; source PNG untouched.",
+          "qa_only_files": [
+            "L37_guardian_alpha_qa.svg",
+            "L37_guardian_alpha_qa.png"
+          ]
+        }
+      }
+    ],
+    "provenance": {
+      "tool": "built-in image_gen.imagegen",
+      "approved_generation_count_this_step": 3,
+      "outputs": {
+        "L37_canyon_backdrop_v1.png": "generated_images/exec-b5d9549f-20a8-4386-9cc9-c8a1a05ba6dc.png",
+        "L37_cliff_foundation_v1.png": "generated_images/exec-a231f788-40fb-4f70-a67c-e36f80fbefb1.png",
+        "L37_west_guardian_v1.png": "generated_images/exec-5ad3308f-58f7-4118-8031-24924155e431.png"
+      },
+      "prompts": [
+        "L37_canyon_backdrop_v1.prompt.txt",
+        "L37_cliff_foundation_v1.prompt.txt",
+        "L37_west_guardian_v1.prompt.txt"
+      ],
+      "no_image_resizing_or_repainting_after_generation": true,
+      "no_repository_or_code_changes": true
+    },
+    "validation": {
+      "passed": [
+        "actual user reference attached to every new layer call",
+        "backdrop has no baked central platform/rim or obsolete foreground guardian",
+        "foundation contains no recognizable tower, statue, gate or bridge to distort",
+        "guardian is a distinct 2.5D sandstone landmark and alpha composites cleanly",
+        "all actual image dimensions and explicit mapping recorded",
+        "no functional mirror, altar, beam or gate state baked into these layers"
+      ],
+      "pending": [
+        "one real entry-frame feasibility capture",
+        "guardian head visibility at default camera and grounded pedestal placement",
+        "grand gate and sun-mirror visibility during movement",
+        "foundation joins, corner seams and exact terrace border",
+        "floor material color/scale versus hero",
+        "runtime alpha filtering/mipmaps",
+        "collision and gameplay behavior unchanged in integration"
+      ],
+      "stopping_condition": "No more assets or image generation until parent/developer reviews one real entry feasibility frame."
+    }
+  }
+}

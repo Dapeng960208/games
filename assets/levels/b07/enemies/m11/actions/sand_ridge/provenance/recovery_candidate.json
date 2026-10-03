@@ -1,0 +1,191 @@
+{
+  "id": "m11",
+  "action": "recovery",
+  "kind": "character_key_pose",
+  "relative_dir": "m11/recovery",
+  "crown": [
+    1006,
+    556
+  ],
+  "feet": [
+    [
+      337,
+      945
+    ],
+    [
+      606,
+      844
+    ],
+    [
+      855,
+      1104
+    ],
+    [
+      1134,
+      1015
+    ]
+  ],
+  "read": "All four paws distinguishable, neck rises and forelimbs settle.",
+  "issues": [
+    "Far hind paw remains partially occluded although identifiable; recovery close to idle.",
+    "Tail 20px from left at alpha>=16."
+  ],
+  "path": "assets/levels/b07/enemies/m11/actions/sand_ridge/recovery_candidate.png",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGBA",
+  "bytes": 1279376,
+  "sha256": "7f619a486d687d53f48de3f8247a6a0e28eefb5db4d0caa0b70ac56c1577459c",
+  "transparent_pixel_count": 1071041,
+  "partial_alpha_pixel_count": 500722,
+  "opaque_pixel_count": 753,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        15,
+        53,
+        1238,
+        1214
+      ],
+      "bbox_size": [
+        1223,
+        1161
+      ],
+      "effective_pixels": 501475,
+      "margin_ltrb": [
+        15,
+        53,
+        16,
+        40
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        20,
+        150,
+        1235,
+        1180
+      ],
+      "bbox_size": [
+        1215,
+        1030
+      ],
+      "effective_pixels": 478549,
+      "margin_ltrb": [
+        20,
+        150,
+        19,
+        74
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        21,
+        151,
+        1234,
+        1180
+      ],
+      "bbox_size": [
+        1213,
+        1029
+      ],
+      "effective_pixels": 472833,
+      "margin_ltrb": [
+        21,
+        151,
+        20,
+        74
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/recovery/provenance.json",
+  "prompt_path": "provenance/recovery_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/recovery/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "manual_foot_qa": {
+    "support_contact_centers_px": [
+      [
+        337,
+        945
+      ],
+      [
+        606,
+        844
+      ],
+      [
+        855,
+        1104
+      ],
+      [
+        1134,
+        1015
+      ]
+    ],
+    "anchor_mean_px": [
+      733.0,
+      977.0
+    ],
+    "anchor_normalized": [
+      0.58453,
+      0.77911
+    ],
+    "anatomical_crown_px": [
+      1006,
+      556
+    ],
+    "body_effective_height_px": 421.0,
+    "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+    "max_body_display_height_at_1_to_1_px": 421.0,
+    "max_body_display_height_at_1_5_source_to_display_px": 280.7,
+    "accepted_runtime_anchor": false
+  },
+  "minimum_margin_alpha16": 19,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/recovery/candidate.png",
+  "resource": "asset://levels/b07/enemies/m11/actions/sand_ridge/recovery_candidate.png",
+  "original_provenance": {
+    "id": "m11",
+    "action": "recovery",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m11/idle_candidate.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-f82285d4-d422-4816-95fe-87457600a0da.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "sha256": "7f619a486d687d53f48de3f8247a6a0e28eefb5db4d0caa0b70ac56c1577459c",
+    "bytes": 1279376,
+    "source_sha256": "7f619a486d687d53f48de3f8247a6a0e28eefb5db4d0caa0b70ac56c1577459c",
+    "copy_byte_verified": true
+  },
+  "ability": "sand_ridge"
+}

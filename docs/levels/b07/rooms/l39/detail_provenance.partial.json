@@ -1,0 +1,160 @@
+{
+  "room_id": "L39",
+  "status": "partial_candidate_generation_stopped_by_user",
+  "source_path": "assets/levels/b07/rooms/l39/background/courtyard_boundary_revision.png",
+  "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+  "source_status": "blocked_do_not_integrate",
+  "source_change_requires_reregistration": true,
+  "completed_tile_count": 5,
+  "missing_ids": [
+    "bottom_right"
+  ],
+  "entries": [
+    {
+      "id": "top_left",
+      "generation_tool": "built-in image_gen",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-0b5713f9-290d-4ffd-b102-4d425b91bd70.png",
+      "preserved_native": "assets/levels/b07/rooms/l39/detail/source/top_left.png",
+      "generated_png_sha256": "5f558f36972aa84d401d15480589a0ec1dc2434160f4a85e9ca7217d971a8ada",
+      "byte_identical_to_generated_source": true,
+      "native_size": [
+        1244,
+        1265
+      ],
+      "prompt_file": "docs/levels/b07/rooms/l39/detail_top_left.prompt.txt",
+      "prompt_sha256": "8b70a8d9fe7cf51114fe6cdfc42552bd7e9f78f5bb66a7512030fd299083a537",
+      "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+      "source_crop_sha256": "12b8cfa70e8d907dfae1b687c9d21fdbaa92275155553d1fb5c58a99796c0acb",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "art_pixel_postprocessing": "none; original native PNG copied byte-for-byte and RGB encoded as lossless WebP without resizing, cropping, recoloring, warping or compositing",
+      "artifact_native_copy": "artifacts/l39_native_detail_generation/native/top_left.png"
+    },
+    {
+      "id": "top_middle",
+      "generation_tool": "built-in image_gen",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-70e5ce15-df25-40cd-9cc9-49661c5861fc.png",
+      "preserved_native": "assets/levels/b07/rooms/l39/detail/source/top_middle.png",
+      "generated_png_sha256": "58dc2bffa4a3f7a537eac7dd16ef4dd9f1cbb1d03e5b815714d62da77e1b15e9",
+      "byte_identical_to_generated_source": true,
+      "native_size": [
+        1254,
+        1254
+      ],
+      "prompt_file": "docs/levels/b07/rooms/l39/detail_top_middle.prompt.txt",
+      "prompt_sha256": "d38bfd39727cb4d943fe8bd7442b6091411e960c1802c0ae877b2157802cf195",
+      "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+      "source_crop_sha256": "056307fb74d908a03c9f5c596d4a9c9cd68102bb607f8b9da8dfa637247359c0",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "art_pixel_postprocessing": "none; original native PNG copied byte-for-byte and RGB encoded as lossless WebP without resizing, cropping, recoloring, warping or compositing",
+      "artifact_native_copy": "artifacts/l39_native_detail_generation/native/top_middle.png"
+    },
+    {
+      "id": "top_right",
+      "generation_tool": "built-in image_gen",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-7d8acdea-4c07-42f4-8805-e394a8f46749.png",
+      "preserved_native": "assets/levels/b07/rooms/l39/detail/source/top_right.png",
+      "generated_png_sha256": "c21ba51f4118476cf4548cbf2b3f3c06b3b45838cc631f093baef038e23ef53b",
+      "byte_identical_to_generated_source": true,
+      "native_size": [
+        1241,
+        1268
+      ],
+      "prompt_file": "docs/levels/b07/rooms/l39/detail_top_right.prompt.txt",
+      "prompt_sha256": "64658b4d19a84ffc2a0412872f84ab10672955fee47b43f6487ae6a9db15393b",
+      "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+      "source_crop_sha256": "8230b51f295cf75c6ad69ee21ebb440bd91b92c242c7a6c6e081811ef9150033",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "art_pixel_postprocessing": "none; original native PNG copied byte-for-byte and RGB encoded as lossless WebP without resizing, cropping, recoloring, warping or compositing",
+      "artifact_native_copy": "artifacts/l39_native_detail_generation/native/top_right.png"
+    },
+    {
+      "id": "bottom_left",
+      "generation_tool": "built-in image_gen",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-f16d1fe2-dd5b-4416-a412-2ab1b0bd6cc5.png",
+      "preserved_native": "assets/levels/b07/rooms/l39/detail/source/bottom_left.png",
+      "generated_png_sha256": "5b5e0a21479778eeaa0a8c63bf9dbbd1dfa1aa5a3c68952875c5b3f6b7ab0b47",
+      "byte_identical_to_generated_source": true,
+      "native_size": [
+        1254,
+        1254
+      ],
+      "prompt_file": "docs/levels/b07/rooms/l39/detail_bottom_left.prompt.txt",
+      "prompt_sha256": "34e38b6495f90924ab19e91419714fcc577ab94e3828dd8446faeb9f129e592d",
+      "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+      "source_crop_sha256": "f72d2122de17c81bcda295c10ebe7dbf2496cbc19cd33b07e15cde4fc8b0595b",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "art_pixel_postprocessing": "none; original native PNG copied byte-for-byte and RGB encoded as lossless WebP without resizing, cropping, recoloring, warping or compositing",
+      "artifact_native_copy": "artifacts/l39_native_detail_generation/native/bottom_left.png"
+    },
+    {
+      "id": "bottom_middle",
+      "generation_tool": "built-in image_gen",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-79510984-726e-485b-8dca-bbf250244aeb.png",
+      "preserved_native": "assets/levels/b07/rooms/l39/detail/source/bottom_middle.png",
+      "generated_png_sha256": "e84e6edbbd16806c84a8d8fbc7996c0a9402f95214cdf4a58ad53dcbc15e1598",
+      "byte_identical_to_generated_source": true,
+      "native_size": [
+        1264,
+        1244
+      ],
+      "prompt_file": "docs/levels/b07/rooms/l39/detail_bottom_middle.prompt.txt",
+      "prompt_sha256": "312400daafd00aefbabd78f35d194a9d1db21bf5b11ff39b5dadcb9efc145068",
+      "source_sha256": "770303def7180147167d16c60a2ac0b5474a60344391f1d92d2d521a59053bef",
+      "source_crop_sha256": "8c3a641b0a2ba00fff48dccb3ad996727cbf400929dc77d07598d596bd172087",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "art_pixel_postprocessing": "none; original native PNG copied byte-for-byte and RGB encoded as lossless WebP without resizing, cropping, recoloring, warping or compositing",
+      "artifact_native_copy": "artifacts/l39_native_detail_generation/native/bottom_middle.png"
+    }
+  ],
+  "qa": {
+    "date": "2026-10-03",
+    "reference_crops_viewed": [
+      "top_left",
+      "top_middle",
+      "top_right",
+      "bottom_left",
+      "bottom_middle"
+    ],
+    "generated_outputs_viewed": [
+      "top_left",
+      "top_middle",
+      "top_right",
+      "bottom_left",
+      "bottom_middle"
+    ],
+    "visual_review": "Individual input crops and actual generated outputs inspected only. Full mosaic, overlap-strip and runtime checks were not performed before the user stopped B07 development and art generation. No pixel-boundary, no-seam or runtime acceptance is claimed.",
+    "offline_mosaic_reviewed": false,
+    "overlap_strips_reviewed": false,
+    "pixel_boundary_alignment_verified": false,
+    "runtime_validated": false,
+    "approved": false,
+    "no_art_pixel_postprocessing": true,
+    "runtime_registered": false,
+    "source_pngs_preserved_in_assets": true
+  }
+}

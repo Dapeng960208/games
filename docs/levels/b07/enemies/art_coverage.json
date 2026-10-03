@@ -1,0 +1,2798 @@
+{
+  "updated_utc": "2026-10-03T09:19:00Z",
+  "identity_count": 19,
+  "pose_png_count_including_revisions": 76,
+  "pose_design_points": 74,
+  "effect_count": 21,
+  "runtime_registered_new_candidates": 0,
+  "continuous_animation_sets_complete": 0,
+  "explicit_blockers": [
+    "M11 sand_ridge telegraph lift readability unaccepted; attempted revision omitted a rear leg and was rejected."
+  ],
+  "files": [
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/altar_lines/execute_candidate.png",
+      "sha256": "a08dac731e2718b576374dc2a6d4883a3b3e93bcec8b6e031c1b238c6e51a21c",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          26,
+          8,
+          1207,
+          1237
+        ],
+        "alpha128_bounds_xywh": [
+          27,
+          9,
+          1205,
+          1235
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/altar_lines/recovery_candidate.png",
+      "sha256": "085af8296cddb788fa546d6566be2198e716ee6c355ce5ec2122ca4f469599ba",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          26,
+          25,
+          1209,
+          1201
+        ],
+        "alpha128_bounds_xywh": [
+          27,
+          25,
+          1207,
+          1200
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/altar_lines/telegraph_candidate.png",
+      "sha256": "1db645bfe7af7f22e067acc63cc9f14bc87e9f933677cb9c3b7bca291afc2ed6",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          69,
+          13,
+          1128,
+          1229
+        ],
+        "alpha128_bounds_xywh": [
+          70,
+          14,
+          1126,
+          1227
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/altar_suppressed/exposed_candidate.png",
+      "sha256": "ea93b42dc857679732082f65db49852ea48dd6e763643168e94fcfcdac4786c0",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          18,
+          8,
+          1218,
+          1231
+        ],
+        "alpha128_bounds_xywh": [
+          19,
+          9,
+          1217,
+          1229
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/golden_tail/execute_candidate.png",
+      "sha256": "f049c7252dbc5fad19a8ce3eb8dde667192c801e9c8927f2f6cb8dbceb50984e",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          10,
+          30,
+          1238,
+          1181
+        ],
+        "alpha128_bounds_xywh": [
+          11,
+          31,
+          1236,
+          1179
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/golden_tail/recovery_candidate.png",
+      "sha256": "58e3250d356e776bf622f5ca397bf40a9b9d7ec5c35458cc185acbc19631af49",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          32,
+          32,
+          1194,
+          1193
+        ],
+        "alpha128_bounds_xywh": [
+          33,
+          33,
+          1193,
+          1191
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/golden_tail/telegraph_candidate.png",
+      "sha256": "701d63c7e0c603b6915933258f17c4e13477193958b53ac2113c789e93274eef",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          67,
+          19,
+          1095,
+          1196
+        ],
+        "alpha128_bounds_xywh": [
+          68,
+          21,
+          1093,
+          1194
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/sun_disc/execute_candidate.png",
+      "sha256": "036da4d5c5c8715f748520d671b92cad2352d45533c49f39b8b4a619f47eec8a",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          23,
+          8,
+          1212,
+          1220
+        ],
+        "alpha128_bounds_xywh": [
+          24,
+          9,
+          1210,
+          1218
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/sun_disc/recovery_candidate.png",
+      "sha256": "ca0c79ab91e3aa16e4a611ca3bdc59df7e90fa4c7a5fd75f246f29fd0aedd1bf",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          44,
+          4,
+          1157,
+          1232
+        ],
+        "alpha128_bounds_xywh": [
+          45,
+          5,
+          1155,
+          1230
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/sun_disc/telegraph_candidate.png",
+      "sha256": "baec432c3da72933e1599844611be6716ace5fe7e2b00854c0854c93024ccc29",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          27,
+          14,
+          1199,
+          1222
+        ],
+        "alpha128_bounds_xywh": [
+          27,
+          15,
+          1198,
+          1221
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/sun_spear/execute_candidate.png",
+      "sha256": "caa8f523e21b05db7c9c21dc29bbc1bbe3ff32dd9addf1d56b101b08d75a681a",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          31,
+          15,
+          1483,
+          996
+        ],
+        "alpha128_bounds_xywh": [
+          32,
+          16,
+          1481,
+          994
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/sun_spear/recovery_candidate.png",
+      "sha256": "89aec53a3bdee0f9f777ed447c6781ccc81c9fe93a31b118155ad0c0a10e8832",
+      "native_size": [
+        1374,
+        1145
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          35,
+          11,
+          1316,
+          1111
+        ],
+        "alpha128_bounds_xywh": [
+          35,
+          12,
+          1315,
+          1109
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/actions/sun_spear/telegraph_candidate.png",
+      "sha256": "6a9acac46d12abb10085e66c9bb2b1739e4cc491e23fda5e8bdae58c6fdaac40",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          52,
+          10,
+          1455,
+          1001
+        ],
+        "alpha128_bounds_xywh": [
+          52,
+          11,
+          1454,
+          999
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/bosses/bo07/idle_candidate.png",
+      "sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          29,
+          18,
+          1197,
+          1214
+        ],
+        "alpha128_bounds_xywh": [
+          30,
+          19,
+          1195,
+          1212
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/altar_beam/effect_candidate.png",
+      "sha256": "984a9281dfea39ba05f835e768cb1a673be2181153709b53145b3cb988d3913b",
+      "native_size": [
+        2172,
+        724
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          85,
+          306,
+          2007,
+          135
+        ],
+        "alpha128_bounds_xywh": [
+          141,
+          323,
+          1871,
+          104
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/blade_arc/effect_candidate.png",
+      "sha256": "b80f1d24ddc8f5ee0c1b5cbcafea59e156123a3c516d1477863896ed65321843",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          169,
+          356,
+          1001,
+          754
+        ],
+        "alpha128_bounds_xywh": [
+          175,
+          377,
+          977,
+          728
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/eye_light_arc/effect_candidate.png",
+      "sha256": "c6c7802422d1f3b65426aebb559282737eb71528036ad81748bf8a2ae27db461",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          57,
+          352,
+          1170,
+          696
+        ],
+        "alpha128_bounds_xywh": [
+          67,
+          372,
+          1151,
+          665
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/fallen_banner/effect_candidate.png",
+      "sha256": "cb9de73edc59e5c0e490e5b31fc74fe25331861a042ae5885155ee31c6bb1a5b",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          27,
+          89,
+          1490,
+          773
+        ],
+        "alpha128_bounds_xywh": [
+          28,
+          90,
+          1488,
+          770
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/heavy_crossbow_bolt/effect_candidate.png",
+      "sha256": "979758a9adf0ae34629b1f80efe6da8af905b6146d6a6cf62a585ee15100c9e0",
+      "native_size": [
+        1377,
+        1142
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          66,
+          73,
+          1266,
+          960
+        ],
+        "alpha128_bounds_xywh": [
+          67,
+          74,
+          1264,
+          958
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/mirror_short_light/effect_candidate.png",
+      "sha256": "d1a8ae76c0024fa98bb911f909c7988e4faaef9a0db9d31c8cbf7dc079a6c715",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          119,
+          174,
+          1129,
+          799
+        ],
+        "alpha128_bounds_xywh": [
+          131,
+          186,
+          1105,
+          779
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/mirror_state_indicator/effect_candidate.png",
+      "sha256": "05421cccd98421b570f64e38fc3e2c5aff4e91b2d1f2484068dac8f70290431c",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          103,
+          117,
+          1355,
+          793
+        ],
+        "alpha128_bounds_xywh": [
+          107,
+          118,
+          1348,
+          791
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/poison_dart/effect_candidate.png",
+      "sha256": "b8bd294902b3a3bcdef4c15a2f9571db2178efd56aacce48ed106b13414f993c",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          127,
+          163,
+          1190,
+          669
+        ],
+        "alpha128_bounds_xywh": [
+          129,
+          164,
+          1186,
+          667
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/sand_ball/effect_candidate.png",
+      "sha256": "5db684c4efbdb8105b54133ed6b951be2c3cacc77d325e9201e39138520973ca",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          358,
+          273,
+          763,
+          488
+        ],
+        "alpha128_bounds_xywh": [
+          360,
+          276,
+          761,
+          484
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/sand_disc/effect_candidate.png",
+      "sha256": "4db488bd72a6fb8586f8696b4df995e6fce20e89e46c6cf589f79f9cbe8809c8",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          189,
+          167,
+          1189,
+          713
+        ],
+        "alpha128_bounds_xywh": [
+          190,
+          168,
+          1188,
+          711
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/sand_landing/effect_candidate.png",
+      "sha256": "d62b11a4077287ff1c72f7726d6a17db4b5ce158006baf805105bf6b873d3b64",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          32,
+          167,
+          1501,
+          666
+        ],
+        "alpha128_bounds_xywh": [
+          43,
+          169,
+          1481,
+          663
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/sand_mound/effect_candidate.png",
+      "sha256": "0fe63f86ad864522c561b769ce809c3d793989c5acd8764b7c26edd62e02e5ab",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          204,
+          274,
+          1137,
+          527
+        ],
+        "alpha128_bounds_xywh": [
+          207,
+          275,
+          1133,
+          525
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/sand_ridge_segment/effect_candidate.png",
+      "sha256": "0754198247a8fe18ef369ff3b19a345b89aecc0f6a57ceefe21dfc3fe143ced9",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          59,
+          210,
+          1141,
+          839
+        ],
+        "alpha128_bounds_xywh": [
+          60,
+          211,
+          1139,
+          837
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/sand_vortex/effect_candidate.png",
+      "sha256": "8cb558269e8ac10a5e0e83d845f531cf95447ae2825b2783bf6387bd88b0669c",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          54,
+          227,
+          1442,
+          633
+        ],
+        "alpha128_bounds_xywh": [
+          56,
+          228,
+          1439,
+          629
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/sandstone_impact/effect_candidate.png",
+      "sha256": "750384638ac694ba198a4d14b4fce43a202cec7f3b5ba478d222819b224b1d2d",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          113,
+          164,
+          1074,
+          949
+        ],
+        "alpha128_bounds_xywh": [
+          114,
+          166,
+          1073,
+          946
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/spear_impact/effect_candidate.png",
+      "sha256": "63e7c429d3f9095e622d021e54f18a9dfa589e4a7ca1f116ee981c3e6d107158",
+      "native_size": [
+        1774,
+        887
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          279,
+          175,
+          1348,
+          534
+        ],
+        "alpha128_bounds_xywh": [
+          284,
+          178,
+          1331,
+          530
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/sun_beam_node/effect_candidate.png",
+      "sha256": "d1848ba561b9d9696f45c3e4672fe7f02e5ef5562dfda98dd706970df20676f9",
+      "native_size": [
+        1322,
+        1190
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          482,
+          200,
+          411,
+          765
+        ],
+        "alpha128_bounds_xywh": [
+          495,
+          206,
+          393,
+          750
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/sun_disc/effect_candidate.png",
+      "sha256": "bbdde63ed00a3c290aed070274253acdd75a0ba3e1411e0a57b753d45462db0f",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          205,
+          51,
+          1167,
+          904
+        ],
+        "alpha128_bounds_xywh": [
+          206,
+          51,
+          1166,
+          903
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/sunscale_shield/effect_candidate.png",
+      "sha256": "b1d3b3ca5e8c1645e66e7bdaf5783d23bf249c752f4e34fa821856287ecaff31",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          490,
+          71,
+          712,
+          1034
+        ],
+        "alpha128_bounds_xywh": [
+          496,
+          74,
+          703,
+          1028
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/support_node/effect_candidate.png",
+      "sha256": "cb2f589d1d8ea306d95cb0940298988d9cf77be4d0d1b5504db894a11a5ae70a",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          105,
+          146,
+          1325,
+          659
+        ],
+        "alpha128_bounds_xywh": [
+          106,
+          146,
+          1323,
+          658
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/effects/turquoise_link/effect_candidate.png",
+      "sha256": "e28eecebd0487e8e71c390dacf3b5bb08ce7f44aadf7a523dcd23b3e24111b52",
+      "native_size": [
+        1774,
+        887
+      ],
+      "category": "effect",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          442,
+          405,
+          890,
+          179
+        ],
+        "alpha128_bounds_xywh": [
+          443,
+          411,
+          888,
+          168
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m01/actions/sun_spear/execute_candidate.png",
+      "sha256": "d01d70d7c763e8b32a4a4629ad3581640237eb91bd92fcd81299a1214c7c66b8",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          6,
+          123,
+          1524,
+          821
+        ],
+        "alpha128_bounds_xywh": [
+          7,
+          124,
+          1522,
+          819
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m01/actions/sun_spear/recovery_candidate.png",
+      "sha256": "ebac3f964faf821191075888d9d567f9b157d5194eb00fa6fc8568564810470e",
+      "native_size": [
+        1402,
+        1122
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          59,
+          69,
+          1310,
+          1028
+        ],
+        "alpha128_bounds_xywh": [
+          61,
+          69,
+          1307,
+          1027
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m01/actions/sun_spear/telegraph_candidate.png",
+      "sha256": "936d6621733f00cabc14c62670a587f0bac181a7b168a7a644063a66c154cd00",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          51,
+          102,
+          1434,
+          869
+        ],
+        "alpha128_bounds_xywh": [
+          52,
+          102,
+          1432,
+          868
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m01/actions/sun_spear/telegraph_hand_corrected_candidate.png",
+      "sha256": "b616039ba747bd4f038e39d8ea66032fdd106f60b31d48ed1a20b53ce80b3b88",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          14,
+          213,
+          1227,
+          926
+        ],
+        "alpha128_bounds_xywh": [
+          16,
+          214,
+          1223,
+          924
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m01/actions/sun_spear/telegraph_retracted_candidate.png",
+      "sha256": "73e86ac4995ec7597d044f70aa7fda85b05ca69c61561625396ae8fa87e71af8",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          10,
+          41,
+          1464,
+          929
+        ],
+        "alpha128_bounds_xywh": [
+          12,
+          42,
+          1461,
+          927
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m01/actions/tail_sweep/execute_candidate.png",
+      "sha256": "80e2972caf7ef7dc9ab7f7b29d968eefeb3365f31c552232ebd56091b1edb779",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          17,
+          48,
+          1218,
+          1145
+        ],
+        "alpha128_bounds_xywh": [
+          19,
+          49,
+          1215,
+          1144
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m01/actions/tail_sweep/recovery_candidate.png",
+      "sha256": "e9fc940ebf37a22e2764af49aeb0f86ca88b29c1869de0e6848e8afa9f665fbf",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          44,
+          176,
+          1173,
+          959
+        ],
+        "alpha128_bounds_xywh": [
+          45,
+          177,
+          1171,
+          957
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m01/actions/tail_sweep/telegraph_candidate.png",
+      "sha256": "eaf25624c1cbf522d7aa474763a0f2746d5b0ce56f7db28cda8d534e39804512",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          74,
+          34,
+          1147,
+          1186
+        ],
+        "alpha128_bounds_xywh": [
+          75,
+          35,
+          1145,
+          1184
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m01/idle.png",
+      "sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          76,
+          63,
+          1126,
+          1109
+        ],
+        "alpha128_bounds_xywh": [
+          78,
+          64,
+          1123,
+          1108
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m02/actions/camouflage_leap/execute_candidate.png",
+      "sha256": "cb565b29840a3654ec8e4f1532a72b4b0ad2dc3312b24d9664cf9d69a6b57e13",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          46,
+          57,
+          1488,
+          798
+        ],
+        "alpha128_bounds_xywh": [
+          47,
+          57,
+          1486,
+          797
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m02/actions/camouflage_leap/recovery_candidate.png",
+      "sha256": "cbbc12e733fac71c539ae43e348644f07ea93266d680f4f06bf1d78aafe04680",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          182,
+          79,
+          1268,
+          912
+        ],
+        "alpha128_bounds_xywh": [
+          183,
+          80,
+          1266,
+          910
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m02/actions/camouflage_leap/telegraph_candidate.png",
+      "sha256": "9d5da404b3e85a894dae3c08bb7b718f60854fecbaacbb5e84e42a1bfece3a1b",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          128,
+          94,
+          1365,
+          862
+        ],
+        "alpha128_bounds_xywh": [
+          128,
+          94,
+          1364,
+          861
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m02/actions/sand_ball/execute_candidate.png",
+      "sha256": "10ce0fa9bda9dc3507cc26b58385a4cc1661e9aa62146a78b38c5d9f2b7a8dc0",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          30,
+          148,
+          1220,
+          1017
+        ],
+        "alpha128_bounds_xywh": [
+          31,
+          150,
+          1218,
+          1015
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m02/actions/sand_ball/recovery_candidate.png",
+      "sha256": "baf6fbe0deb2cd1b047144a2b1943d583831071dfbabe0b8a56e4736e4fe1384",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          60,
+          144,
+          1178,
+          1000
+        ],
+        "alpha128_bounds_xywh": [
+          61,
+          145,
+          1176,
+          998
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m02/actions/sand_ball/telegraph_candidate.png",
+      "sha256": "28ffe9a30391c9c1f2545d97a65e6371e9414efb801f6c81e55d8e702a710b02",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          57,
+          143,
+          1188,
+          1010
+        ],
+        "alpha128_bounds_xywh": [
+          57,
+          144,
+          1187,
+          1009
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m02/idle_candidate.png",
+      "sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          61,
+          146,
+          1170,
+          998
+        ],
+        "alpha128_bounds_xywh": [
+          63,
+          147,
+          1167,
+          996
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m03/actions/returning_disc/catch_candidate.png",
+      "sha256": "c39ed2a83eab65bd30b84294f8ee3fadf5bc5dc7be004250be624c081cd73a38",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          39,
+          56,
+          1177,
+          1171
+        ],
+        "alpha128_bounds_xywh": [
+          40,
+          56,
+          1175,
+          1170
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m03/actions/returning_disc/execute_candidate.png",
+      "sha256": "be955ca269084972743cab082a7e8225156467d2340ec1617a0c891c1be5d792",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          33,
+          111,
+          1214,
+          1085
+        ],
+        "alpha128_bounds_xywh": [
+          34,
+          112,
+          1212,
+          1083
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m03/actions/returning_disc/recovery_candidate.png",
+      "sha256": "6b88db7576a8139a3fd0e53b6f011bb7d5b3b0de2580a48ecb9cfd24a817b3bf",
+      "native_size": [
+        1346,
+        1168
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          75,
+          32,
+          1174,
+          1124
+        ],
+        "alpha128_bounds_xywh": [
+          77,
+          32,
+          1171,
+          1124
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m03/actions/returning_disc/telegraph_candidate.png",
+      "sha256": "1d82405a4b4e02ed21d7c9280d45c4c90cf2f6e5bfe9ba449f3e0df449ff2c6f",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          123,
+          19,
+          1234,
+          993
+        ],
+        "alpha128_bounds_xywh": [
+          124,
+          20,
+          1232,
+          991
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m03/idle_candidate.png",
+      "sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          48,
+          85,
+          1166,
+          1108
+        ],
+        "alpha128_bounds_xywh": [
+          48,
+          86,
+          1166,
+          1106
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m04/actions/sunscale_shield/execute_candidate.png",
+      "sha256": "e03630f17c7f6ca67bea703e15fa8204d658c6e7f486d253f3bb90a6692abb83",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          16,
+          189,
+          1233,
+          905
+        ],
+        "alpha128_bounds_xywh": [
+          17,
+          190,
+          1232,
+          903
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m04/actions/sunscale_shield/recovery_candidate.png",
+      "sha256": "e9f4e1a14795892e738eafd86b474707febbd32210b8372a5518ddd5700ea97b",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          23,
+          137,
+          1200,
+          1063
+        ],
+        "alpha128_bounds_xywh": [
+          23,
+          138,
+          1199,
+          1062
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m04/actions/sunscale_shield/telegraph_candidate.png",
+      "sha256": "185a088e657e1cf0c17e7f49fdf5dc25259559af76a6dec69f90279ed373efe0",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          29,
+          160,
+          1213,
+          1062
+        ],
+        "alpha128_bounds_xywh": [
+          29,
+          161,
+          1212,
+          1061
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m04/idle_candidate.png",
+      "sha256": "9faae348481abe940cd94813f1f594ebffeb8e76994bc418cf028468ecdd0a2b",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          29,
+          183,
+          1209,
+          1002
+        ],
+        "alpha128_bounds_xywh": [
+          30,
+          184,
+          1207,
+          1000
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m05/actions/turquoise_heal/execute_candidate.png",
+      "sha256": "a194f27224a132180c3f02d0cf15e686adc77920a13a875e9cb3200fe66d5639",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          130,
+          32,
+          1103,
+          1202
+        ],
+        "alpha128_bounds_xywh": [
+          131,
+          33,
+          1101,
+          1200
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m05/actions/turquoise_heal/recovery_candidate.png",
+      "sha256": "ef28208ac3636ffcc67f776cb49d3fd5ad35c62528bae63da503dcb57e97486a",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          200,
+          63,
+          800,
+          1159
+        ],
+        "alpha128_bounds_xywh": [
+          201,
+          64,
+          798,
+          1157
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m05/actions/turquoise_heal/telegraph_candidate.png",
+      "sha256": "2406841ad059ba30e8e0bbfc7b783db309fb6883f01eb3a71c887a48847064fb",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          217,
+          53,
+          841,
+          1176
+        ],
+        "alpha128_bounds_xywh": [
+          218,
+          54,
+          839,
+          1174
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m05/idle_candidate.png",
+      "sha256": "cc45f9901be89b590c752cff18fe43c5b24ba7f006855fbeca766f05553781da",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          194,
+          64,
+          844,
+          1158
+        ],
+        "alpha128_bounds_xywh": [
+          195,
+          65,
+          842,
+          1156
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m06/actions/sand_emerge/execute_candidate.png",
+      "sha256": "37364993594bcb8c59478909c02f82fc11e26b5c64de28d6a537fbdf2e80451a",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          23,
+          217,
+          1226,
+          891
+        ],
+        "alpha128_bounds_xywh": [
+          24,
+          218,
+          1224,
+          889
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m06/actions/sand_emerge/recovery_candidate.png",
+      "sha256": "cbdcd7353287c82633bb63b5e43f563c9482b2a05616eb5689a4b9f507153911",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          90,
+          237,
+          1076,
+          853
+        ],
+        "alpha128_bounds_xywh": [
+          91,
+          238,
+          1074,
+          852
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m06/actions/sand_emerge/telegraph_candidate.png",
+      "sha256": "6af5771d9c77e4356222578ad17ea446a4258f646c29ebb35ef5af7cabf7b08e",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          187,
+          327,
+          970,
+          682
+        ],
+        "alpha128_bounds_xywh": [
+          188,
+          328,
+          968,
+          681
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m06/idle_candidate.png",
+      "sha256": "237bdbae4ce96c7791b1c8f2ffb763f9541642912a12b31e4442737fdc7313cf",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          129,
+          295,
+          1046,
+          716
+        ],
+        "alpha128_bounds_xywh": [
+          130,
+          296,
+          1044,
+          715
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m07/actions/sand_vortex/execute_candidate.png",
+      "sha256": "67d6c84bf2f1ddd60afbb00efbf878906750582b180a65dcd8c59f1f432d2615",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          8,
+          25,
+          1246,
+          1218
+        ],
+        "alpha128_bounds_xywh": [
+          11,
+          26,
+          1243,
+          1216
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m07/actions/sand_vortex/recovery_candidate.png",
+      "sha256": "b42f3415af92bead26e8bcfaf9623e355810db96d78feb0ecdfdc0a2818ecf96",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          65,
+          25,
+          1167,
+          1211
+        ],
+        "alpha128_bounds_xywh": [
+          66,
+          26,
+          1165,
+          1209
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m07/actions/sand_vortex/telegraph_candidate.png",
+      "sha256": "b0a0ac5be2deaafccd39bfcd25ec4249e59041c1153c92c9560050f39e4f3d62",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          38,
+          58,
+          1193,
+          1163
+        ],
+        "alpha128_bounds_xywh": [
+          39,
+          59,
+          1191,
+          1162
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m07/idle_candidate.png",
+      "sha256": "bddea855af8d0739607624074cc8a57827e1f7b94f5671ec4340e5e44263a80b",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          73,
+          25,
+          1159,
+          1204
+        ],
+        "alpha128_bounds_xywh": [
+          74,
+          25,
+          1157,
+          1203
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m08/actions/mirror_slash/execute_candidate.png",
+      "sha256": "456841f7032a8560c251203739d5f04dcd8522278a853521fe69eb4d3c33ec90",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          48,
+          99,
+          1251,
+          1009
+        ],
+        "alpha128_bounds_xywh": [
+          49,
+          100,
+          1249,
+          1008
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m08/actions/mirror_slash/recovery_candidate.png",
+      "sha256": "14497434248d58c629895ef1e59c7fb55664a3561099e45533fb47a942672378",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          51,
+          100,
+          1239,
+          1047
+        ],
+        "alpha128_bounds_xywh": [
+          52,
+          101,
+          1237,
+          1045
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m08/actions/mirror_slash/telegraph_candidate.png",
+      "sha256": "41528e88b9d7f9d692cdda3257d9d86c7a1f1115ce369308d7ec12b93e3f9d3d",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          34,
+          31,
+          1264,
+          1142
+        ],
+        "alpha128_bounds_xywh": [
+          35,
+          32,
+          1262,
+          1140
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m08/idle_candidate.png",
+      "sha256": "19b8f356f52abaaa2c558b3c6e7b17315474c41520547e353128646138e5836e",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          50,
+          105,
+          1230,
+          1054
+        ],
+        "alpha128_bounds_xywh": [
+          53,
+          106,
+          1226,
+          1052
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m09/actions/dart_venom/execute_candidate.png",
+      "sha256": "e7f698a631218c0b826c1585caf91f9fa27573ed415b07001749f812c9773272",
+      "native_size": [
+        1223,
+        1286
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          49,
+          206,
+          1157,
+          951
+        ],
+        "alpha128_bounds_xywh": [
+          50,
+          206,
+          1156,
+          950
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m09/actions/dart_venom/recovery_candidate.png",
+      "sha256": "b5fc70973cedb10a3c2d1e83cf3a6deef012ac74cd9a72dc73ff1136f5a09ee7",
+      "native_size": [
+        1223,
+        1286
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          81,
+          135,
+          1126,
+          1046
+        ],
+        "alpha128_bounds_xywh": [
+          81,
+          136,
+          1126,
+          1044
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m09/actions/dart_venom/telegraph_candidate.png",
+      "sha256": "f6d4369a905e6dca597d431d1684a06c617aa2aa888fa44b49aa65a24a89aa2e",
+      "native_size": [
+        1223,
+        1286
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          86,
+          121,
+          1125,
+          1105
+        ],
+        "alpha128_bounds_xywh": [
+          86,
+          122,
+          1124,
+          1103
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m09/idle_candidate.png",
+      "sha256": "5cc75bdb67cdb08483f5cf5cf5422ac1ee66bc82754d89752749233a9d10dbb1",
+      "native_size": [
+        1223,
+        1286
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          182,
+          236,
+          1021,
+          936
+        ],
+        "alpha128_bounds_xywh": [
+          183,
+          237,
+          1020,
+          934
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m10/actions/mirror_attendant/execute_candidate.png",
+      "sha256": "b5b798077413890ac4157c524549ffe1aafbd8de96c4f740abcb6d910ec3b62a",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          53,
+          10,
+          1195,
+          1170
+        ],
+        "alpha128_bounds_xywh": [
+          56,
+          11,
+          1191,
+          1168
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m10/actions/mirror_attendant/recovery_candidate.png",
+      "sha256": "0e4fa17221edfc8107de5e70053c33f773738114af89cacd09c9ac5556bf0665",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          75,
+          19,
+          1176,
+          1159
+        ],
+        "alpha128_bounds_xywh": [
+          76,
+          19,
+          1174,
+          1158
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m10/actions/mirror_attendant/telegraph_candidate.png",
+      "sha256": "11fdf57a8a6226f7368455b76114d029fc8d2b4aab6965d70fef3bb05c62666a",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          60,
+          22,
+          1206,
+          1155
+        ],
+        "alpha128_bounds_xywh": [
+          61,
+          23,
+          1204,
+          1153
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m10/idle_candidate.png",
+      "sha256": "5588f042cd6cb51cc49c942b470f0e32c67aaa6992e630d7f19208c9c10a4e73",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          100,
+          11,
+          1105,
+          1176
+        ],
+        "alpha128_bounds_xywh": [
+          101,
+          12,
+          1103,
+          1174
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m11/actions/sand_ridge/execute_candidate.png",
+      "sha256": "46a12fa3d6fe17fab4252e2adf825566667ff44f78c664d202fcec3267ce3295",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          26,
+          110,
+          1207,
+          1083
+        ],
+        "alpha128_bounds_xywh": [
+          27,
+          111,
+          1206,
+          1081
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m11/actions/sand_ridge/recovery_candidate.png",
+      "sha256": "7f619a486d687d53f48de3f8247a6a0e28eefb5db4d0caa0b70ac56c1577459c",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          20,
+          150,
+          1215,
+          1030
+        ],
+        "alpha128_bounds_xywh": [
+          21,
+          151,
+          1213,
+          1029
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m11/actions/sand_ridge/telegraph_candidate.png",
+      "sha256": "07411af8fdbc34b130d637648bb11f06fe8aa4d0b4f25c669529af8faef6a8ed",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          24,
+          76,
+          1220,
+          1026
+        ],
+        "alpha128_bounds_xywh": [
+          25,
+          76,
+          1218,
+          1025
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m11/idle_candidate.png",
+      "sha256": "f0313da1d993d539408286e734610943e3be4d81436ffdc605ba18ac9ea4bf2b",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          22,
+          199,
+          1207,
+          959
+        ],
+        "alpha128_bounds_xywh": [
+          23,
+          200,
+          1205,
+          957
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m12/actions/awning_bolt/execute_candidate.png",
+      "sha256": "760649f227c544f1d221b1f2666d620483c199cdf523717e2aeb1cbadd0d5f25",
+      "native_size": [
+        1377,
+        1142
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          36,
+          94,
+          1321,
+          997
+        ],
+        "alpha128_bounds_xywh": [
+          37,
+          94,
+          1319,
+          996
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m12/actions/awning_bolt/recovery_candidate.png",
+      "sha256": "bee3becfec07e148423ec668092db45c512301be3499392ee27011f2a37bb78b",
+      "native_size": [
+        1377,
+        1142
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          64,
+          75,
+          1275,
+          1022
+        ],
+        "alpha128_bounds_xywh": [
+          65,
+          76,
+          1273,
+          1020
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m12/actions/awning_bolt/telegraph_candidate.png",
+      "sha256": "23af2e4cf8fc5154cfc0a0a54bfa79261ba10358fc68074409b393276dc4e46f",
+      "native_size": [
+        1377,
+        1142
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          67,
+          205,
+          1280,
+          858
+        ],
+        "alpha128_bounds_xywh": [
+          68,
+          205,
+          1278,
+          858
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m12/idle_candidate.png",
+      "sha256": "fc71588592acbe1bd5fb883b95180bcb6bc69472711b6869f2cc2b1e62b4c2b8",
+      "native_size": [
+        1378,
+        1142
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          71,
+          99,
+          1274,
+          979
+        ],
+        "alpha128_bounds_xywh": [
+          71,
+          100,
+          1273,
+          978
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m13/actions/sun_beam/execute_candidate.png",
+      "sha256": "8da6f16b339e73e09b1fc82c61878d5537d661384ecea7b471e5a9245887d2e0",
+      "native_size": [
+        1278,
+        1230
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          25,
+          61,
+          1229,
+          1130
+        ],
+        "alpha128_bounds_xywh": [
+          26,
+          62,
+          1227,
+          1128
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m13/actions/sun_beam/recovery_candidate.png",
+      "sha256": "24925927d403c553bc2f577fdb752e8b5c4414db3ef5f7d8159be3013a3fff90",
+      "native_size": [
+        1278,
+        1230
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          112,
+          39,
+          981,
+          1159
+        ],
+        "alpha128_bounds_xywh": [
+          113,
+          40,
+          979,
+          1157
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m13/actions/sun_beam/telegraph_candidate.png",
+      "sha256": "317c96e0774625a897309a504828fc9bfdc3ae7836fa92aec4be8fb486f78fe8",
+      "native_size": [
+        1278,
+        1230
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          75,
+          23,
+          1141,
+          1179
+        ],
+        "alpha128_bounds_xywh": [
+          76,
+          24,
+          1138,
+          1177
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m13/idle_candidate.png",
+      "sha256": "3ed4ff0424515abd60cb90cfc1b8a0416526389385324fb954b1558562a5a9bd",
+      "native_size": [
+        1278,
+        1230
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          109,
+          61,
+          1040,
+          1136
+        ],
+        "alpha128_bounds_xywh": [
+          111,
+          61,
+          1038,
+          1136
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m14/actions/twin_slash/execute_candidate.png",
+      "sha256": "5d6c4bee0ccf7ecc5f448ee28d4b75fd96962319d77b1346860377ff50970162",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          83,
+          169,
+          1158,
+          910
+        ],
+        "alpha128_bounds_xywh": [
+          83,
+          170,
+          1157,
+          907
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m14/actions/twin_slash/recovery_candidate.png",
+      "sha256": "8a91518991c12bb8ec382718857c258ec212c0d6b2e673f8d0e79cd215a56646",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          37,
+          32,
+          1258,
+          1147
+        ],
+        "alpha128_bounds_xywh": [
+          38,
+          32,
+          1256,
+          1146
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m14/actions/twin_slash/telegraph_candidate.png",
+      "sha256": "847e202d749c7d191266ea856f0d54eabdbe7da59e48cbcb636d065cb0cf3bab",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          41,
+          59,
+          1239,
+          1113
+        ],
+        "alpha128_bounds_xywh": [
+          42,
+          60,
+          1238,
+          1111
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m14/idle_candidate.png",
+      "sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          40,
+          67,
+          1253,
+          1111
+        ],
+        "alpha128_bounds_xywh": [
+          41,
+          68,
+          1251,
+          1109
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m15/actions/camouflage_banner/execute_candidate.png",
+      "sha256": "e52e136d1225efb94986285b0e7136d46fa46e671e6230040a8efe77a12ff542",
+      "native_size": [
+        1303,
+        1207
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          94,
+          79,
+          1123,
+          1044
+        ],
+        "alpha128_bounds_xywh": [
+          95,
+          80,
+          1121,
+          1043
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m15/actions/camouflage_banner/recovery_candidate.png",
+      "sha256": "2a0b46b6caf8e8817662f0ff01202a7f383e99f0a7808265adc3949ec86fce27",
+      "native_size": [
+        1303,
+        1207
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          180,
+          11,
+          1023,
+          1179
+        ],
+        "alpha128_bounds_xywh": [
+          181,
+          12,
+          1022,
+          1178
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m15/actions/camouflage_banner/telegraph_candidate.png",
+      "sha256": "db5bd5b2fe771bfbc1dff0d3ae015264eda6d77db5492f27c3599e35dfc98ef5",
+      "native_size": [
+        1303,
+        1207
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          79,
+          30,
+          1210,
+          1165
+        ],
+        "alpha128_bounds_xywh": [
+          80,
+          31,
+          1208,
+          1163
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m15/idle_candidate.png",
+      "sha256": "a5fe604aa560ecb29c7ebd110a2a4fb55dc5840a333b230ed5454544ef435d01",
+      "native_size": [
+        1303,
+        1207
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          169,
+          16,
+          1111,
+          1175
+        ],
+        "alpha128_bounds_xywh": [
+          170,
+          17,
+          1109,
+          1174
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m16/actions/stargazer_arc/execute_candidate.png",
+      "sha256": "c4f79c882d196a17db4b7d15a51b5d10e2afc2b90290bca8a7ba1ac47fad4f29",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          31,
+          142,
+          1211,
+          1011
+        ],
+        "alpha128_bounds_xywh": [
+          32,
+          143,
+          1209,
+          1010
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m16/actions/stargazer_arc/recovery_candidate.png",
+      "sha256": "bdc46b05a71ec99e6d8cc19a58fe8798109cb22617843d42dd6b5a143d72b107",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          33,
+          90,
+          1212,
+          1106
+        ],
+        "alpha128_bounds_xywh": [
+          34,
+          91,
+          1210,
+          1105
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m16/actions/stargazer_arc/telegraph_candidate.png",
+      "sha256": "a9d6d22cb778365fcc18fa05170174765394001de482899f3904abc8950bb955",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          36,
+          135,
+          1191,
+          1033
+        ],
+        "alpha128_bounds_xywh": [
+          37,
+          136,
+          1189,
+          1031
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m16/idle_candidate.png",
+      "sha256": "b7c22057e1515742638f779c77ab5f602ac89b02a036a5f9be00b4ad9fa4c3c2",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          57,
+          122,
+          1133,
+          1061
+        ],
+        "alpha128_bounds_xywh": [
+          59,
+          123,
+          1130,
+          1060
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m17/actions/obelisk_cross/execute_candidate.png",
+      "sha256": "f1b9e7be76fab4bd2394f3b1bb43595472d361a240ddb9c8894aa0c3bea44144",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          55,
+          123,
+          1167,
+          1003
+        ],
+        "alpha128_bounds_xywh": [
+          56,
+          124,
+          1165,
+          1001
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m17/actions/obelisk_cross/recovery_candidate.png",
+      "sha256": "d82b4e289c77034e669452e60dad241887ace9f153138bf67befeefde2ab1157",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          65,
+          53,
+          1119,
+          1152
+        ],
+        "alpha128_bounds_xywh": [
+          66,
+          54,
+          1117,
+          1151
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m17/actions/obelisk_cross/telegraph_candidate.png",
+      "sha256": "71b36484d086081428d3e7d4105c8a939c75cafd3d21b602f2f0fddc675d7b4f",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          59,
+          22,
+          1173,
+          1195
+        ],
+        "alpha128_bounds_xywh": [
+          60,
+          23,
+          1170,
+          1193
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m17/idle_candidate.png",
+      "sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          119,
+          122,
+          1018,
+          1041
+        ],
+        "alpha128_bounds_xywh": [
+          120,
+          123,
+          1017,
+          1039
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m18/actions/light_ceremony/execute_candidate.png",
+      "sha256": "bbc75dbb7318467079eba57102d9d362b2816f7aab91b24c6ecbf87583aecef6",
+      "native_size": [
+        1024,
+        1536
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          15,
+          16,
+          993,
+          1499
+        ],
+        "alpha128_bounds_xywh": [
+          16,
+          17,
+          991,
+          1498
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m18/actions/light_ceremony/recovery_candidate.png",
+      "sha256": "a5d1a176e326d79ea9da46de6769036a28380b011bb30f6afe4cfd04e1bd4091",
+      "native_size": [
+        1024,
+        1536
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          19,
+          46,
+          992,
+          1359
+        ],
+        "alpha128_bounds_xywh": [
+          20,
+          47,
+          991,
+          1357
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m18/actions/light_ceremony/telegraph_candidate.png",
+      "sha256": "2f92be2b4ae060114c7472447d752a7192cc654364c65d9689a957ddfa9a3693",
+      "native_size": [
+        1024,
+        1536
+      ],
+      "category": "pose",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          14,
+          12,
+          1000,
+          1480
+        ],
+        "alpha128_bounds_xywh": [
+          15,
+          13,
+          998,
+          1479
+        ]
+      }
+    },
+    {
+      "path": "assets/levels/b07/enemies/m18/idle_candidate.png",
+      "sha256": "7c70a16d7faec7020d2715085440f1f60493c3aa68cd1fe1aa9cfc1174264fc1",
+      "native_size": [
+        1024,
+        1536
+      ],
+      "category": "identity",
+      "candidate_only": true,
+      "pixel_qa": {
+        "alpha16_bounds_xywh": [
+          13,
+          13,
+          999,
+          1460
+        ],
+        "alpha128_bounds_xywh": [
+          13,
+          14,
+          998,
+          1459
+        ]
+      }
+    }
+  ]
+}

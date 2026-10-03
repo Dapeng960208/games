@@ -1,0 +1,10 @@
+{
+  "status": "historical_source_candidate_preserved_at_user_stop",
+  "formal_acceptance": false,
+  "runtime_integration": false,
+  "original_path": "/workspace/scratch/2244020fc8d6/b07-art/L37_canyon_forecourt_v1.png",
+  "sha256": "69e92879cc6d3381bda251de649a6d9481ec74b1ccd4418f04c9d77ae42efe89",
+  "byte_identical": true,
+  "reason": "Preserve original/failed source before authorized B07 workspace cleanup; no new image generation or pixel edits",
+  "related_source_group": "."
+}

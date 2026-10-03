@@ -4,6 +4,7 @@ extends RefCounted
 const Catalog = preload("res://scripts/domain/combat/enemy_ability_catalog.gd")
 const Properties = preload("res://scripts/domain/combat/combat_properties.gd")
 const Text = preload("res://scripts/infrastructure/localization/strings.gd")
+const L37ReviewFx = preload("res://scripts/levels/b07/art/l37_review_fx.gd")
 const MAX_DETAIL := 2
 
 static func readout(brain: RefCounted) -> Dictionary:
@@ -95,6 +96,7 @@ static func draw_card(canvas: CanvasItem, info: Dictionary, at: Vector2) -> void
  canvas.draw_rect(Rect2(at+Vector2(7,53),Vector2(240*clampf(float(info.progress),0,1),3)),color)
 
 static func draw_effect(canvas: Node2D, command: Dictionary, reduced: bool) -> void:
+ if L37ReviewFx.draw_effect(canvas,command,reduced): return
  var id: String = str(command.get("caster_enemy_id",""))
  if id.is_empty(): return
  var at: Vector2 = command.get("origin",Vector2.ZERO)
@@ -103,6 +105,7 @@ static func draw_effect(canvas: Node2D, command: Dictionary, reduced: bool) -> v
  draw_identity(canvas,id,at,6.0 if reduced else 10.0,Color(color,.75))
 
 static func draw_projectile(canvas: Node2D, command: Dictionary, reduced: bool) -> void:
+ if L37ReviewFx.draw_projectile(canvas,command,reduced): return
  var id: String = str(command.get("caster_enemy_id",""))
  if id.is_empty(): return
  var at: Vector2 = command.get("position",Vector2.ZERO)

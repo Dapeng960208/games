@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M15",
+  "action": "execute",
+  "variant": "execute",
+  "category": "pose",
+  "selected": false,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute/candidate.png",
+  "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute/prompt.txt",
+  "source_filename": "exec-c0217b04-79e2-45b7-8850-2b4239365695.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-c0217b04-79e2-45b7-8850-2b4239365695.png",
+  "source_sha256": "59a553cb1da10c47abfdd089ed4f33e67e7bc822ad201693854c1a8e437c86f5",
+  "png_sha256": "59a553cb1da10c47abfdd089ed4f33e67e7bc822ad201693854c1a8e437c86f5",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m15/idle_candidate.png",
+  "identity_reference_sha256": "a5fe604aa560ecb29c7ebd110a2a4fb55dc5840a333b230ed5454544ef435d01",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1303,
+      1207
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 858600,
+    "alpha_zero_fraction": 0.5459328132580413,
+    "low_alpha_1_15_pixel_count": 53684,
+    "opaque_pixel_count": 1435,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        0,
+        8,
+        1303,
+        1207
+      ],
+      "bounds_xywh": [
+        0,
+        8,
+        1303,
+        1199
+      ],
+      "effective_pixel_count": 714121,
+      "edge_pixel_count": 76,
+      "margins_ltrb": [
+        0,
+        8,
+        0,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        11,
+        10,
+        1298,
+        1199
+      ],
+      "bounds_xywh": [
+        11,
+        10,
+        1287,
+        1189
+      ],
+      "effective_pixel_count": 660437,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        11,
+        10,
+        5,
+        8
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        13,
+        11,
+        1297,
+        1198
+      ],
+      "bounds_xywh": [
+        13,
+        11,
+        1284,
+        1187
+      ],
+      "effective_pixel_count": 647608,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        13,
+        11,
+        6,
+        9
+      ]
+    },
+    "visual_review": "Initial generated variant inspected and retained as source history; see selected corrective variant."
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m15/execute: B07-M15 camouflage banner lizard. Preserve hunched slim golden lizard, curled tail, light armor turquoise clasps, exactly THREE attached layered physical fan-shaped cloth banners: ivory, terracotta and muted sage, same sun motif. Preserve ONE tall gold-tipped flag staff gripped with BOTH hands, anatomical left hand upper and right hand lower as reference. EXECUTE: broad planted stance, arms fully raise and tilt staff to screen-right, all three cloth layers spread in a generous clear fan above left/back side as the lizard bestows weak camouflage on absent allies. Body leans into the staff, neck extends and looks toward screen-right. No allies, no links, no camouflage transparency, no magical effects; just expressive physical flag-raising pose."
+}

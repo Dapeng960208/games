@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-b64e9d64-b0f4-4b56-a020-d38fe5fac83f.png",
+  "source_sha256": "cb565b29840a3654ec8e4f1532a72b4b0ad2dc3312b24d9664cf9d69a6b57e13",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/enemies/m02/actions/camouflage_leap/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      47,
+      57,
+      1486,
+      797
+    ],
+    "alpha128_pixel_count": 588136,
+    "transparent_pixel_count": 945703,
+    "low_alpha_1_32_count": 33149,
+    "nonzero_edge_pixel_count": 30,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Airborne key pose has no ground contact: listed points are foot sole landmarks only, NOT root ground anchor.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "anatomical_crown_y": 111,
+    "foot_landmarks": [
+      [
+        150,
+        643
+      ],
+      [
+        361,
+        768
+      ]
+    ],
+    "foot_midpoint": [
+      255.5,
+      705.5
+    ],
+    "airborne_no_ground_contact": true,
+    "visible_anatomical_vertical_extent": 594.5,
+    "semantic_uncertainty_px": 20,
+    "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+    "scale_and_foot_continuity_passed": false
+  },
+  "identity": "B07-M02",
+  "ability": "camouflage_leap",
+  "phase": "execute",
+  "reference_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+  "reference_path": "assets/levels/b07/enemies/m02/idle_candidate.png"
+}

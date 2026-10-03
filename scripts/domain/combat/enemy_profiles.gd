@@ -50,6 +50,8 @@ static func _ensure_loaded() -> void:
 		_data = parsed
 
 static func resolve(enemy_id: String, enemy_level: int = 1, rank: String = "normal", ruleset: int = 1, difficulty: int = 0, calibration: Variant = null) -> Dictionary:
+	if enemy_id.begins_with("B07-M") and preload("res://scripts/infrastructure/content/runtime_rules.gd").b07_candidate_enabled():
+		return preload("res://scripts/levels/b07/combat/enemy_skills.gd").profile(enemy_id,enemy_level,difficulty,rank,calibration) if ruleset == 2 else {}
 	if enemy_id.begins_with("B06-M") and Catalog.b06_enabled():
 		return preload("res://scripts/levels/b06/combat/enemy_skills.gd").profile(enemy_id,enemy_level,difficulty,rank,calibration) if ruleset==2 else {}
 	if enemy_id.begins_with("B05-M"):

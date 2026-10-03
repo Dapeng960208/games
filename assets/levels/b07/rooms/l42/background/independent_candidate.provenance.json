@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "generation_tool": "built-in image_gen",
+  "room_id": "L42",
+  "mode": "geometry-guide edit into independent full room painting",
+  "source_original_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-31c9e9b6-890f-4ed8-a706-5ed6e963ebed.png",
+  "output_path": "assets/levels/b07/rooms/l42/background/independent_candidate.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "png_sha256": "e99927c89f81b571b2f1174616099c9eb9ede7eef83359715976ae76e821cb84",
+  "decoded_rgb_sha256": "c3ba9191a07ace10b65ee4bb6ff879453aa83f4556d723a3c3be1184f428f957",
+  "unchanged_generated_pixels": true,
+  "prompt_file": "docs/levels/b07/rooms/l42/independent_painting.prompt.txt",
+  "references": [
+    {
+      "role": "geometry_edit_target",
+      "path": "artifacts/l42_independent_guide/fixed_floor_guide.png",
+      "sha256": "95a8a8e598afe5d0e95696fa3918c02ebeed84c8581d5b3804c1f1a98a7f3421"
+    },
+    {
+      "role": "user_identity_style_reference",
+      "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+      "sha256": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984"
+    },
+    {
+      "role": "style_camera_only",
+      "path": "assets/levels/b07/rooms/l37/background/environment.png",
+      "sha256": "9fdd7cf6ff8a98aa572fca3692bd974677d03075b1f97cf15caa5a4d47fecfaa"
+    }
+  ],
+  "runtime_integrated": false,
+  "candidate_only": true,
+  "qa_status": "fixed_boundary_mismatch"
+}

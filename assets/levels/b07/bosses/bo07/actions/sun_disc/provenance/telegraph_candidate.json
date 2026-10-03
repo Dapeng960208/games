@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "BO07",
+  "ability": "sun_disc",
+  "phase": "telegraph",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-b2eb9e5b-09f3-4fcb-b335-3a2bdfa7a22e.png",
+  "source_sha256": "baec432c3da72933e1599844611be6716ace5fe7e2b00854c0854c93024ccc29",
+  "resource": "asset://levels/b07/bosses/bo07/actions/sun_disc/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png",
+  "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      27,
+      15,
+      1198,
+      1221
+    ],
+    "alpha128_pixel_count": 668494,
+    "transparent_pixel_count": 856245,
+    "low_alpha_1_32_count": 39594,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 288.4,
+    "foot_landmarks": [
+      [
+        438.9,
+        1153.7
+      ],
+      [
+        1040.8,
+        1053.4
+      ]
+    ],
+    "foot_midpoint": [
+      739.8499999999999,
+      1103.5500000000002
+    ],
+    "visible_anatomical_vertical_extent": 815.1,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Held sun disc readable, separate from back crown.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

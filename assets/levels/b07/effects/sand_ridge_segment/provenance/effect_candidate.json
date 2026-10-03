@@ -1,0 +1,138 @@
+{
+  "id": "m11",
+  "action": "sand_ridge_segment",
+  "kind": "independent_object_vfx",
+  "relative_dir": "m11/sand_ridge_segment",
+  "pivot": [
+    633,
+    844
+  ],
+  "read": "Independent short sandstone ridge strip with no beast, shockwave or warning boundary.",
+  "issues": [
+    "Taller left rock makes ridge less uniformly low than brief; scale/collision not established.",
+    "Several small pebbles baked into integral base; no runtime destructible separation."
+  ],
+  "path": "assets/levels/b07/effects/sand_ridge_segment/effect_candidate.png",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGBA",
+  "bytes": 854998,
+  "sha256": "0754198247a8fe18ef369ff3b19a345b89aecc0f6a57ceefe21dfc3fe143ced9",
+  "transparent_pixel_count": 1231735,
+  "partial_alpha_pixel_count": 340422,
+  "opaque_pixel_count": 359,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        54,
+        21,
+        1244,
+        1254
+      ],
+      "bbox_size": [
+        1190,
+        1233
+      ],
+      "effective_pixels": 340781,
+      "margin_ltrb": [
+        54,
+        21,
+        10,
+        0
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        4,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        59,
+        210,
+        1200,
+        1049
+      ],
+      "bbox_size": [
+        1141,
+        839
+      ],
+      "effective_pixels": 329336,
+      "margin_ltrb": [
+        59,
+        210,
+        54,
+        205
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        60,
+        211,
+        1199,
+        1048
+      ],
+      "bbox_size": [
+        1139,
+        837
+      ],
+      "effective_pixels": 326734,
+      "margin_ltrb": [
+        60,
+        211,
+        55,
+        206
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/sand_ridge_segment/provenance.json",
+  "prompt_path": "provenance/effect_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/sand_ridge_segment/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "minimum_margin_alpha16": 54,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m11/sand_ridge_segment/candidate.png",
+  "resource": "asset://levels/b07/effects/sand_ridge_segment/effect_candidate.png",
+  "original_provenance": {
+    "id": "m11",
+    "action": "sand_ridge_segment",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m11/idle_candidate.png",
+    "edit_target": null,
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-e0ca6e46-7e7e-4c6c-a787-74346acc12af.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "repair_limit": "one_targeted_retry_only",
+    "sha256": "0754198247a8fe18ef369ff3b19a345b89aecc0f6a57ceefe21dfc3fe143ced9",
+    "bytes": 854998,
+    "source_sha256": "0754198247a8fe18ef369ff3b19a345b89aecc0f6a57ceefe21dfc3fe143ced9",
+    "copy_byte_verified": true
+  },
+  "ability": "sand_ridge"
+}

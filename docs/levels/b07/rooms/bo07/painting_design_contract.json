@@ -1,0 +1,659 @@
+{
+  "status": "design_contract_only",
+  "room_id": "BO07",
+  "source": "data/levels/b07/content.json#room_geometry.BO07",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "placement_normalized_rect": [
+    0.1,
+    0.12,
+    0.8,
+    0.7714285714285715
+  ],
+  "world_rect": [
+    -203,
+    -162.4,
+    2030,
+    1353.3333333333333
+  ],
+  "mapping": "world=blueprint*.58",
+  "fixed_floor_polygon_pixels": [
+    [
+      197.48571428571427,
+      272.09142857142854
+    ],
+    [
+      302.81142857142856,
+      166.76571428571427
+    ],
+    [
+      1233.1885714285713,
+      166.76571428571427
+    ],
+    [
+      1338.5142857142857,
+      272.09142857142854
+    ],
+    [
+      1338.5142857142857,
+      763.6114285714285
+    ],
+    [
+      1233.1885714285713,
+      868.9371428571428
+    ],
+    [
+      302.81142857142856,
+      868.9371428571428
+    ],
+    [
+      197.48571428571427,
+      763.6114285714285
+    ]
+  ],
+  "anchors_pixels": {
+    "entry": [
+      768.0,
+      763.6114285714285
+    ],
+    "exit": [
+      768.0,
+      272.09142857142854
+    ],
+    "altar": [
+      768.0,
+      517.8514285714285
+    ],
+    "BO07_mirror_1": [
+      460.79999999999995,
+      359.86285714285714
+    ],
+    "BO07_mirror_2": [
+      1075.1999999999998,
+      359.86285714285714
+    ],
+    "BO07_mirror_3": [
+      460.79999999999995,
+      675.8399999999999
+    ],
+    "BO07_mirror_4": [
+      1075.1999999999998,
+      675.8399999999999
+    ],
+    "boss_spawn": [
+      768.0,
+      456.41142857142853
+    ]
+  },
+  "safe_routes_pixels": [
+    [
+      [
+        768.0,
+        763.6114285714285
+      ],
+      [
+        359.86285714285714,
+        763.6114285714285
+      ],
+      [
+        311.5885714285714,
+        517.8514285714285
+      ],
+      [
+        359.86285714285714,
+        272.09142857142854
+      ],
+      [
+        1176.1371428571429,
+        272.09142857142854
+      ],
+      [
+        1224.4114285714286,
+        517.8514285714285
+      ],
+      [
+        1176.1371428571429,
+        763.6114285714285
+      ],
+      [
+        768.0,
+        763.6114285714285
+      ]
+    ],
+    [
+      [
+        768.0,
+        763.6114285714285
+      ],
+      [
+        460.79999999999995,
+        359.86285714285714
+      ]
+    ],
+    [
+      [
+        768.0,
+        763.6114285714285
+      ],
+      [
+        1075.1999999999998,
+        359.86285714285714
+      ]
+    ],
+    [
+      [
+        768.0,
+        763.6114285714285
+      ],
+      [
+        460.79999999999995,
+        675.8399999999999
+      ]
+    ],
+    [
+      [
+        768.0,
+        763.6114285714285
+      ],
+      [
+        1075.1999999999998,
+        675.8399999999999
+      ]
+    ]
+  ],
+  "geometry": {
+    "version": 1,
+    "room_id": "BO07",
+    "biome_id": "B07",
+    "name": "日轮王台",
+    "name_en": "Sunwheel Throne",
+    "coordinate_unit": "blueprint_pixel",
+    "world_scale": 0.58,
+    "entry": [
+      1400,
+      1460
+    ],
+    "exit": [
+      1400,
+      340
+    ],
+    "main_route": [
+      [
+        1400,
+        1460
+      ],
+      [
+        470,
+        1460
+      ],
+      [
+        360,
+        900
+      ],
+      [
+        470,
+        340
+      ],
+      [
+        2330,
+        340
+      ],
+      [
+        2440,
+        900
+      ],
+      [
+        2330,
+        1460
+      ],
+      [
+        1400,
+        1460
+      ]
+    ],
+    "safe_routes": [
+      [
+        [
+          1400,
+          1460
+        ],
+        [
+          470,
+          1460
+        ],
+        [
+          360,
+          900
+        ],
+        [
+          470,
+          340
+        ],
+        [
+          2330,
+          340
+        ],
+        [
+          2440,
+          900
+        ],
+        [
+          2330,
+          1460
+        ],
+        [
+          1400,
+          1460
+        ]
+      ],
+      [
+        [
+          1400,
+          1460
+        ],
+        [
+          700,
+          540
+        ]
+      ],
+      [
+        [
+          1400,
+          1460
+        ],
+        [
+          2100,
+          540
+        ]
+      ],
+      [
+        [
+          1400,
+          1460
+        ],
+        [
+          700,
+          1260
+        ]
+      ],
+      [
+        [
+          1400,
+          1460
+        ],
+        [
+          2100,
+          1260
+        ]
+      ]
+    ],
+    "safe_route_width": 180,
+    "walkable_polygon": [
+      [
+        100,
+        340
+      ],
+      [
+        340,
+        100
+      ],
+      [
+        2460,
+        100
+      ],
+      [
+        2700,
+        340
+      ],
+      [
+        2700,
+        1460
+      ],
+      [
+        2460,
+        1700
+      ],
+      [
+        340,
+        1700
+      ],
+      [
+        100,
+        1460
+      ]
+    ],
+    "encounter_anchors": [],
+    "mirrors": [
+      {
+        "id": "BO07_mirror_1",
+        "position": [
+          700,
+          540
+        ],
+        "initial_state": 0,
+        "interaction_seconds": 0.6,
+        "interaction_safe_radius": 90,
+        "states": [
+          {
+            "direction_id": "reveal_west",
+            "label": "西侧显形",
+            "label_en": "Reveal west",
+            "path": [
+              [
+                700,
+                540
+              ],
+              [
+                350,
+                320
+              ]
+            ],
+            "targets": [
+              "reveal_west"
+            ]
+          },
+          {
+            "direction_id": "sun_altar",
+            "label": "引光祭坛",
+            "label_en": "Light the altar",
+            "path": [
+              [
+                700,
+                540
+              ],
+              [
+                1400,
+                900
+              ]
+            ],
+            "targets": [
+              "BO07_sun_altar"
+            ]
+          },
+          {
+            "direction_id": "reveal_east",
+            "label": "东侧显形",
+            "label_en": "Reveal east",
+            "path": [
+              [
+                700,
+                540
+              ],
+              [
+                1100,
+                780
+              ]
+            ],
+            "targets": [
+              "reveal_east"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "BO07_mirror_2",
+        "position": [
+          2100,
+          540
+        ],
+        "initial_state": 0,
+        "interaction_seconds": 0.6,
+        "interaction_safe_radius": 90,
+        "states": [
+          {
+            "direction_id": "reveal_west",
+            "label": "西侧显形",
+            "label_en": "Reveal west",
+            "path": [
+              [
+                2100,
+                540
+              ],
+              [
+                1700,
+                320
+              ]
+            ],
+            "targets": [
+              "reveal_west"
+            ]
+          },
+          {
+            "direction_id": "sun_altar",
+            "label": "引光祭坛",
+            "label_en": "Light the altar",
+            "path": [
+              [
+                2100,
+                540
+              ],
+              [
+                1400,
+                900
+              ]
+            ],
+            "targets": [
+              "BO07_sun_altar"
+            ]
+          },
+          {
+            "direction_id": "reveal_east",
+            "label": "东侧显形",
+            "label_en": "Reveal east",
+            "path": [
+              [
+                2100,
+                540
+              ],
+              [
+                2440,
+                780
+              ]
+            ],
+            "targets": [
+              "reveal_east"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "BO07_mirror_3",
+        "position": [
+          700,
+          1260
+        ],
+        "initial_state": 0,
+        "interaction_seconds": 0.6,
+        "interaction_safe_radius": 90,
+        "states": [
+          {
+            "direction_id": "reveal_west",
+            "label": "西侧显形",
+            "label_en": "Reveal west",
+            "path": [
+              [
+                700,
+                1260
+              ],
+              [
+                350,
+                1020
+              ]
+            ],
+            "targets": [
+              "reveal_west"
+            ]
+          },
+          {
+            "direction_id": "sun_altar",
+            "label": "引光祭坛",
+            "label_en": "Light the altar",
+            "path": [
+              [
+                700,
+                1260
+              ],
+              [
+                1400,
+                900
+              ]
+            ],
+            "targets": [
+              "BO07_sun_altar"
+            ]
+          },
+          {
+            "direction_id": "reveal_east",
+            "label": "东侧显形",
+            "label_en": "Reveal east",
+            "path": [
+              [
+                700,
+                1260
+              ],
+              [
+                1100,
+                1450
+              ]
+            ],
+            "targets": [
+              "reveal_east"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "BO07_mirror_4",
+        "position": [
+          2100,
+          1260
+        ],
+        "initial_state": 0,
+        "interaction_seconds": 0.6,
+        "interaction_safe_radius": 90,
+        "states": [
+          {
+            "direction_id": "reveal_west",
+            "label": "西侧显形",
+            "label_en": "Reveal west",
+            "path": [
+              [
+                2100,
+                1260
+              ],
+              [
+                1700,
+                1020
+              ]
+            ],
+            "targets": [
+              "reveal_west"
+            ]
+          },
+          {
+            "direction_id": "sun_altar",
+            "label": "引光祭坛",
+            "label_en": "Light the altar",
+            "path": [
+              [
+                2100,
+                1260
+              ],
+              [
+                1400,
+                900
+              ]
+            ],
+            "targets": [
+              "BO07_sun_altar"
+            ]
+          },
+          {
+            "direction_id": "reveal_east",
+            "label": "东侧显形",
+            "label_en": "Reveal east",
+            "path": [
+              [
+                2100,
+                1260
+              ],
+              [
+                2440,
+                1450
+              ]
+            ],
+            "targets": [
+              "reveal_east"
+            ]
+          }
+        ]
+      }
+    ],
+    "altar": {
+      "id": "BO07_sun_altar",
+      "position": [
+        1400,
+        900
+      ]
+    },
+    "required_mirrors": 2,
+    "manual_gates": [],
+    "stone_covers": [],
+    "puzzle_beam_player_damage": 0,
+    "persistent_damage_exclusion_radius": 90,
+    "formal_art_status": "not_included",
+    "boss_spawn": [
+      1400,
+      760
+    ],
+    "outer_route": [
+      [
+        1400,
+        1460
+      ],
+      [
+        470,
+        1460
+      ],
+      [
+        360,
+        900
+      ],
+      [
+        470,
+        340
+      ],
+      [
+        2330,
+        340
+      ],
+      [
+        2440,
+        900
+      ],
+      [
+        2330,
+        1460
+      ],
+      [
+        1400,
+        1460
+      ]
+    ],
+    "sunlit_zones": [
+      [
+        1030,
+        760
+      ],
+      [
+        1770,
+        1040
+      ]
+    ]
+  },
+  "geometry_sha256": "d05c44b47f1cd1e4673e28cefac92acc1da556d03aeca9d094ea9f3603630088",
+  "runtime_changes": false,
+  "detail_gate": "native six details only after actual fixed-pixel mother QA"
+}

@@ -1,0 +1,4170 @@
+{
+  "schema_version": 1,
+  "biome_id": "B07",
+  "name": "金沙蜥城",
+  "name_en": "Golden Sand Lizard City",
+  "status": "runtime_candidate",
+  "runtime_enabled": false,
+  "source_documents": [
+    "docs/levels/07_GOLDEN_SAND_LIZARD_CITY.md",
+    "docs/levels/NEXT_EIGHT_CLASS_GEAR_INDEX.md"
+  ],
+  "translation_status": "implementation_translation_not_approved_glossary",
+  "blueprint": {
+    "size": [
+      2800,
+      1800
+    ],
+    "world_scale": 0.58,
+    "anchor_unit": "blueprint_percent",
+    "distance_unit": "scaled_world_pixel",
+    "minimum_main_route_width": 180,
+    "geometry_source": "purpose_built_fixed_b07_layout_v1",
+    "formal_art_status": "not_included"
+  },
+  "progression": {
+    "previous_boss": "BO06",
+    "zone_levels": [
+      31,
+      33,
+      35
+    ],
+    "boss_level": 35,
+    "chapter_hp_factor": 1.72,
+    "chapter_damage_factor": 1.48,
+    "level_resolution_status": "shared_versioned_growth_no_player_scaling"
+  },
+  "profiles": {
+    "F": {
+      "max_hp": 78,
+      "damage": 13,
+      "move_speed": 67,
+      "armor": 7,
+      "magic_resist": 5,
+      "attack_range": 90,
+      "recovery_seconds": 1.15
+    },
+    "R": {
+      "max_hp": 68,
+      "damage": 13,
+      "move_speed": 84,
+      "armor": 4,
+      "magic_resist": 4,
+      "attack_range": 280,
+      "recovery_seconds": 1.15
+    },
+    "C": {
+      "max_hp": 58,
+      "damage": 12,
+      "move_speed": 70,
+      "armor": 2,
+      "magic_resist": 12,
+      "attack_range": 260,
+      "recovery_seconds": 1.15
+    },
+    "S": {
+      "max_hp": 65,
+      "damage": 11,
+      "move_speed": 73,
+      "armor": 3,
+      "magic_resist": 8,
+      "attack_range": 200,
+      "recovery_seconds": 1.15
+    },
+    "A": {
+      "max_hp": 48,
+      "damage": 13,
+      "move_speed": 94,
+      "armor": 1,
+      "magic_resist": 3,
+      "attack_range": 150,
+      "recovery_seconds": 1.15
+    },
+    "T": {
+      "max_hp": 92,
+      "damage": 11,
+      "move_speed": 55,
+      "armor": 10,
+      "magic_resist": 4,
+      "attack_range": 100,
+      "recovery_seconds": 1.3
+    }
+  },
+  "enemy_ids": [
+    "B07-M01",
+    "B07-M02",
+    "B07-M03",
+    "B07-M04",
+    "B07-M05",
+    "B07-M06",
+    "B07-M07",
+    "B07-M08",
+    "B07-M09",
+    "B07-M10",
+    "B07-M11",
+    "B07-M12",
+    "B07-M13",
+    "B07-M14",
+    "B07-M15",
+    "B07-M16",
+    "B07-M17",
+    "B07-M18"
+  ],
+  "room_ids": [
+    "L37",
+    "L38",
+    "L39",
+    "L40",
+    "L41",
+    "L42",
+    "BO07"
+  ],
+  "contracts": {
+    "zone_concurrent_cap": 6,
+    "room_concurrent_cap": 18,
+    "interrupted_skill_cooldown_ratio": 0.5,
+    "support_heal_per_cast_max_hp_ratio": 0.08,
+    "lifetime_external_heal_max_hp_ratio": 0.25,
+    "summon_rewards": false,
+    "difficulty_hp_multipliers": [
+      1,
+      1.4,
+      2,
+      2.8,
+      4
+    ],
+    "difficulty_damage_multipliers": [
+      1,
+      1.2,
+      1.5,
+      1.85,
+      2.3
+    ],
+    "ordinary_skill_difficulty_multipliers": [
+      1,
+      1.05,
+      1.1,
+      1.15,
+      1.2
+    ],
+    "boss_skill_difficulty_multipliers": [
+      1,
+      1.06,
+      1.12,
+      1.2,
+      1.3
+    ],
+    "difficulty_composition_status": "authored_constraints_not_generated_waves",
+    "difficulty_composition": {
+      "0": "单镜配一名伪装怪。",
+      "1": "前排护射手，保留绕背路。",
+      "2": "搬镜侍从搭配固定斜线攻击。",
+      "3": "替换一名精英并增加跨角度支援，不提高并发。",
+      "4": "最多两个输出方向，保留一个通向镜座的安全扇区。"
+    }
+  },
+  "mechanics": {
+    "sun_mirror": {
+      "state_count": 3,
+      "interaction_seconds": 0.6,
+      "next_direction_full_preview": true,
+      "fixed_paths": true,
+      "puzzle_beam_player_damage": 0,
+      "interaction_safe_radius": 90,
+      "minimum_safe_route_width": 180,
+      "persist_states_and_gate_together": true,
+      "requires_equipment": false
+    },
+    "sunscale": {
+      "frontal_angle_degrees": 120,
+      "lit_frontal_damage_reduction_ratio": 0.2,
+      "side_rear_damage_reduction_ratio": 0,
+      "lost_light_immediate": true,
+      "player_damage_reflection": false,
+      "immunity": false,
+      "damage_reduction_stacking": "strongest_only"
+    },
+    "camouflage": {
+      "minimum_body_opacity": 0.35,
+      "footprints_visible": true,
+      "skill_telegraphs_visible": true,
+      "proximity_reveal_distance": 120,
+      "actual_damage_reveal_seconds": 3,
+      "beam_reveals": true,
+      "existing_legal_target_locks_remain_valid": true
+    },
+    "manual_gate": {
+      "both_sides_available": true,
+      "combat_victory_allows_open": true,
+      "opened_road_never_reclosed_by_enemy_mirrors": true
+    }
+  },
+  "enemies": {
+    "B07-M01": {
+      "enemy_id": "B07-M01",
+      "biome_id": "B07",
+      "name": "长矛蜥卫",
+      "name_en": "Spear Lizard Guard",
+      "introduced_level": 31,
+      "profile": "F",
+      "raw_stats": {
+        "max_hp": 78,
+        "damage": 13,
+        "move_speed": 67,
+        "armor": 7,
+        "magic_resist": 5,
+        "attack_range": 90,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "高背鳞长矛",
+      "counter_and_drop_text": "侧走离开矛线，尾扫有0.8s独立提示；胸",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "锁线刺180、1.1a（7s；0.9s）",
+          "parameters": {
+            "range": 180,
+            "damage_a": 1.1,
+            "cooldown_seconds": 7,
+            "warning_seconds": 0.9,
+            "locked_direction": true
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2收矛后尾扫0.4a",
+          "parameters": {
+            "tail_sweep_damage_a": 0.4,
+            "tail_sweep_warning_seconds": 0.8
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4受光时刺后前移60",
+          "parameters": {
+            "lit_advance_distance": 60
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.line_width",
+        "D2.sweep_radius"
+      ],
+      "sunscale_eligible": true,
+      "camouflage_eligible": false
+    },
+    "B07-M02": {
+      "enemy_id": "B07-M02",
+      "biome_id": "B07",
+      "name": "变色龙斥候",
+      "name_en": "Chameleon Scout",
+      "introduced_level": 31,
+      "profile": "A",
+      "raw_stats": {
+        "max_hp": 48,
+        "damage": 13,
+        "move_speed": 94,
+        "armor": 1,
+        "magic_resist": 3,
+        "attack_range": 150,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "卷尾宽眼",
+      "counter_and_drop_text": "光照/近身/实际伤害显形；鞋",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "伪装1.0s后跃向锁点、0.95a（8s）",
+          "parameters": {
+            "camouflage_seconds": 1,
+            "warning_seconds": 1,
+            "damage_a": 0.95,
+            "cooldown_seconds": 8,
+            "locked_landing": true
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2落地投一枚沙团0.3a",
+          "parameters": {
+            "sand_ball_count": 1,
+            "sand_ball_damage_a": 0.3
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4伪装时移速+10%",
+          "parameters": {
+            "camouflaged_move_speed_bonus_ratio": 0.1
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.leap_range",
+        "D2.sand_ball_warning_seconds"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": true
+    },
+    "B07-M03": {
+      "enemy_id": "B07-M03",
+      "biome_id": "B07",
+      "name": "沙盘投手",
+      "name_en": "Sand Disc Thrower",
+      "introduced_level": 31,
+      "profile": "R",
+      "raw_stats": {
+        "max_hp": 68,
+        "damage": 13,
+        "move_speed": 84,
+        "armor": 4,
+        "magic_resist": 4,
+        "attack_range": 280,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "手持圆盘",
+      "counter_and_drop_text": "两段预警分别显示，不追踪回返；头",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "掷直线260飞盘1.0a（7s；0.9s）",
+          "parameters": {
+            "range": 260,
+            "damage_a": 1,
+            "cooldown_seconds": 7,
+            "warning_seconds": 0.9
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2从原路回返0.4a",
+          "parameters": {
+            "return_damage_a": 0.4,
+            "return_retargets": false,
+            "separate_return_telegraph": true
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4回返只在受光时变为斜线",
+          "parameters": {
+            "lit_return_fixed_diagonal": true
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.disc_width",
+        "D2.return_delay_seconds"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": false
+    },
+    "B07-M04": {
+      "enemy_id": "B07-M04",
+      "biome_id": "B07",
+      "name": "日鳞仪卫",
+      "name_en": "Sunscale Ceremonial Guard",
+      "introduced_level": 31,
+      "profile": "T",
+      "raw_stats": {
+        "max_hp": 92,
+        "damage": 11,
+        "move_speed": 55,
+        "armor": 10,
+        "magic_resist": 4,
+        "attack_range": 100,
+        "recovery_seconds": 1.3
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "太阳圆盾",
+      "counter_and_drop_text": "转镜或绕盾；不累加成免疫；胸",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "光盾正面减伤35%2s，盾击1.1a（10s；1.0s）",
+          "parameters": {
+            "frontal_damage_reduction_ratio": 0.35,
+            "shield_seconds": 2,
+            "damage_a": 1.1,
+            "cooldown_seconds": 10,
+            "warning_seconds": 1,
+            "damage_reduction_stacking": "strongest_only"
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2盾击推出50",
+          "parameters": {
+            "push_distance": 50
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4失光后盾击CD额外延后2s",
+          "parameters": {
+            "lost_light_extra_cooldown_seconds": 2
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.shield_bash_range"
+      ],
+      "sunscale_eligible": true,
+      "camouflage_eligible": false
+    },
+    "B07-M05": {
+      "enemy_id": "B07-M05",
+      "biome_id": "B07",
+      "name": "绿松石祀者",
+      "name_en": "Turquoise Priest",
+      "introduced_level": 31,
+      "profile": "S",
+      "raw_stats": {
+        "max_hp": 65,
+        "damage": 11,
+        "move_speed": 73,
+        "armor": 3,
+        "magic_resist": 8,
+        "attack_range": 200,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "石珠颈环",
+      "counter_and_drop_text": "移走光束、打断祀者；无法治疗Boss；戒",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "引导1.3s给受光同伴治疗6%HP（11s）",
+          "parameters": {
+            "warning_seconds": 1.3,
+            "cooldown_seconds": 11,
+            "heal_max_hp_ratio": 0.06,
+            "requires_lit_target": true,
+            "target_count": 1,
+            "boss_allowed": false
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2改为治疗4%加4%盾",
+          "parameters": {
+            "heal_max_hp_ratio": 0.04,
+            "shield_max_hp_ratio": 0.04
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4一条治疗线连接两人各3%",
+          "parameters": {
+            "target_count": 2,
+            "heal_max_hp_ratio": 0.03,
+            "healing_line": true
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.support_range",
+        "D2.shield_seconds",
+        "D4.shield_override"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": false
+    },
+    "B07-M06": {
+      "enemy_id": "B07-M06",
+      "biome_id": "B07",
+      "name": "沙蜥掘行者",
+      "name_en": "Sand Lizard Burrower",
+      "introduced_level": 31,
+      "profile": "A",
+      "raw_stats": {
+        "max_hp": 48,
+        "damage": 13,
+        "move_speed": 94,
+        "armor": 1,
+        "magic_resist": 3,
+        "attack_range": 150,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "铲鼻短尾",
+      "counter_and_drop_text": "隆起与影子持续可见，出土1.2s空窗；裤",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "地面隆起1.1s后钻出、半径70、1.0a（9s）",
+          "parameters": {
+            "warning_seconds": 1.1,
+            "radius": 70,
+            "damage_a": 1,
+            "cooldown_seconds": 9,
+            "burrow_tell_always_visible": true,
+            "recovery_window_seconds": 1.2
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2钻出点留2s减速沙",
+          "parameters": {
+            "slow_sand_seconds": 2
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4钻出后无伤转位80",
+          "parameters": {
+            "harmless_reposition_distance": 80
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D2.slow_ratio"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": false
+    },
+    "B07-M07": {
+      "enemy_id": "B07-M07",
+      "biome_id": "B07",
+      "name": "驭沙祭司",
+      "name_en": "Sandweaver Priest",
+      "introduced_level": 33,
+      "profile": "C",
+      "raw_stats": {
+        "max_hp": 58,
+        "damage": 12,
+        "move_speed": 70,
+        "armor": 2,
+        "magic_resist": 12,
+        "attack_range": 260,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "螺旋沙杖",
+      "counter_and_drop_text": "拉扯不出导航边界；从侧面离涡；手",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "半径100沙涡、0.6a并拉近40（10s；1.2s）",
+          "parameters": {
+            "radius": 100,
+            "damage_a": 0.6,
+            "pull_distance": 40,
+            "cooldown_seconds": 10,
+            "warning_seconds": 1.2,
+            "navigation_clipped": true
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2沙涡持续2s、每秒0.2a",
+          "parameters": {
+            "vortex_seconds": 2,
+            "tick_interval_seconds": 1,
+            "tick_damage_a": 0.2
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4结束后向外一道0.3a沙线",
+          "parameters": {
+            "outward_sand_line_damage_a": 0.3
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D4.line_range",
+        "D4.line_warning_seconds"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": false
+    },
+    "B07-M08": {
+      "enemy_id": "B07-M08",
+      "biome_id": "B07",
+      "name": "镜鳞刀客",
+      "name_en": "Mirrorscale Duelist",
+      "introduced_level": 33,
+      "profile": "F",
+      "raw_stats": {
+        "max_hp": 78,
+        "damage": 13,
+        "move_speed": 67,
+        "armor": 7,
+        "magic_resist": 5,
+        "attack_range": 90,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "单片镜刃",
+      "counter_and_drop_text": "光刃与实体刀同源，不反射玩家攻击；武器",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "向前斜斩130、1.1a（7s；0.9s）",
+          "parameters": {
+            "range": 130,
+            "damage_a": 1.1,
+            "cooldown_seconds": 7,
+            "warning_seconds": 0.9,
+            "reflects_player_damage": false
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2镜刃在受光时多一道0.35a短光",
+          "parameters": {
+            "lit_short_light_damage_a": 0.35
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4斩后背鳞暴露2s",
+          "parameters": {
+            "back_exposed_seconds": 2
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D2.short_light_range",
+        "D4.exposed_damage_modifier"
+      ],
+      "sunscale_eligible": true,
+      "camouflage_eligible": false
+    },
+    "B07-M09": {
+      "enemy_id": "B07-M09",
+      "biome_id": "B07",
+      "name": "梭尾吹箭手",
+      "name_en": "Spindle-tail Blowgunner",
+      "introduced_level": 33,
+      "profile": "R",
+      "raw_stats": {
+        "max_hp": 68,
+        "damage": 13,
+        "move_speed": 84,
+        "armor": 4,
+        "magic_resist": 4,
+        "attack_range": 280,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "长尾支架吹管",
+      "counter_and_drop_text": "用石台挡箭；毒最多1层；戒",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "射一枚细箭300、0.75a，附0.1a/秒持续3s（9s；1.0s）",
+          "parameters": {
+            "range": 300,
+            "damage_a": 0.75,
+            "poison_damage_a_per_second": 0.1,
+            "poison_seconds": 3,
+            "cooldown_seconds": 9,
+            "warning_seconds": 1,
+            "poison_max_stacks": 1,
+            "poison_reapply": "refresh_duration"
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2第二箭另锁位置",
+          "parameters": {
+            "second_arrow_separate_position_lock": true
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4两箭间隔1.0s、毒不加层只刷新",
+          "parameters": {
+            "arrow_interval_seconds": 1
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D2.second_arrow_warning_seconds"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": false
+    },
+    "B07-M10": {
+      "enemy_id": "B07-M10",
+      "biome_id": "B07",
+      "name": "搬镜侍从",
+      "name_en": "Mirror Bearer",
+      "introduced_level": 33,
+      "profile": "S",
+      "raw_stats": {
+        "max_hp": 65,
+        "damage": 11,
+        "move_speed": 73,
+        "armor": 3,
+        "magic_resist": 8,
+        "attack_range": 200,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "背三面镜架",
+      "counter_and_drop_text": "只改敌方支架，不撤玩家已开道路；饰品",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "引导1.2s旋转一座敌方镜架，维持6s（13s）",
+          "parameters": {
+            "warning_seconds": 1.2,
+            "cooldown_seconds": 13,
+            "enemy_mirror_seconds": 6,
+            "enemy_mirror_count": 1,
+            "player_mirror_mutation": false,
+            "opened_road_revocation": false
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2镜线经过同伴给予8%移速",
+          "parameters": {
+            "beam_ally_move_speed_bonus_ratio": 0.08
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4改镜前先播下一态轮廓",
+          "parameters": {
+            "next_direction_preview_required": true
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.enemy_mirror_selection_range",
+        "D2.speed_bonus_seconds"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": false
+    },
+    "B07-M11": {
+      "enemy_id": "B07-M11",
+      "biome_id": "B07",
+      "name": "石脊驮兽",
+      "name_en": "Stoneback Packbeast",
+      "introduced_level": 33,
+      "profile": "T",
+      "raw_stats": {
+        "max_hp": 92,
+        "damage": 11,
+        "move_speed": 55,
+        "armor": 10,
+        "magic_resist": 4,
+        "attack_range": 100,
+        "recovery_seconds": 1.3
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "阶梯背甲",
+      "counter_and_drop_text": "绕脊侧或等1.5s收势；石块不堵镜座；胸",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "跺地放一条长220沙脊、1.2a（11s；1.2s）",
+          "parameters": {
+            "range": 220,
+            "damage_a": 1.2,
+            "cooldown_seconds": 11,
+            "warning_seconds": 1.2,
+            "recovery_window_seconds": 1.5
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2两侧各留一块可拆矮石",
+          "parameters": {
+            "breakable_stone_count": 2,
+            "blocks_mirror_access": false
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4受光时沙脊长+40",
+          "parameters": {
+            "lit_extra_range": 40
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.ridge_width",
+        "D2.stone_hp"
+      ],
+      "sunscale_eligible": true,
+      "camouflage_eligible": false
+    },
+    "B07-M12": {
+      "enemy_id": "B07-M12",
+      "biome_id": "B07",
+      "name": "幕棚伏弩手",
+      "name_en": "Awning Arbalist",
+      "introduced_level": 33,
+      "profile": "R",
+      "raw_stats": {
+        "max_hp": 68,
+        "damage": 13,
+        "move_speed": 84,
+        "armor": 4,
+        "magic_resist": 4,
+        "attack_range": 280,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "布棚披肩弩",
+      "counter_and_drop_text": "光束揭开幕棚，弹道受实体遮挡；头",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "低姿瞄准后射重弩340、1.15a（9s；1.1s）",
+          "parameters": {
+            "range": 340,
+            "damage_a": 1.15,
+            "cooldown_seconds": 9,
+            "warning_seconds": 1.1,
+            "blocked_by_solid_cover": true
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2射后侧移70",
+          "parameters": {
+            "post_shot_side_step": 70
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4两次射击之间必有1.2s可见窗口",
+          "parameters": {
+            "minimum_visible_window_seconds": 1.2
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.projectile_width"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": true
+    },
+    "B07-M13": {
+      "enemy_id": "B07-M13",
+      "biome_id": "B07",
+      "name": "日盘咏者",
+      "name_en": "Sun Disc Chanter",
+      "introduced_level": 35,
+      "profile": "C",
+      "raw_stats": {
+        "max_hp": 58,
+        "damage": 12,
+        "move_speed": 70,
+        "armor": 2,
+        "magic_resist": 12,
+        "attack_range": 260,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "悬日盘法器",
+      "counter_and_drop_text": "预览两段方向，转镜可让第二段落空；饰品",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "长360窄光束1.25a（11s；1.3s）",
+          "parameters": {
+            "range": 360,
+            "damage_a": 1.25,
+            "cooldown_seconds": 11,
+            "warning_seconds": 1.3
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2终点折向固定镜线一次0.4a",
+          "parameters": {
+            "fixed_mirror_bounce_count": 1,
+            "bounce_damage_a": 0.4,
+            "preview_both_segments": true
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4折线延迟1.0s",
+          "parameters": {
+            "bounce_delay_seconds": 1
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.beam_width",
+        "D2.bounce_length"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": false
+    },
+    "B07-M14": {
+      "enemy_id": "B07-M14",
+      "biome_id": "B07",
+      "name": "裂沙双刃卫",
+      "name_en": "Riftsand Twinblade Guard",
+      "introduced_level": 35,
+      "profile": "F",
+      "raw_stats": {
+        "max_hp": 78,
+        "damage": 13,
+        "move_speed": 67,
+        "armor": 7,
+        "magic_resist": 5,
+        "attack_range": 90,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "双短刃长颈",
+      "counter_and_drop_text": "每拍均锁向，不能三连无缝追踪；武器",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "左右两斩各0.6a、间隔0.7s（8s；首斩1.0s）",
+          "parameters": {
+            "damage_a": [
+              0.6,
+              0.6
+            ],
+            "interval_seconds": 0.7,
+            "cooldown_seconds": 8,
+            "warning_seconds": 1,
+            "each_stage_direction_locked": true
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2第二斩步进50",
+          "parameters": {
+            "second_cut_advance_distance": 50
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4两斩后第三拍仅无伤佯攻",
+          "parameters": {
+            "third_beat_feint_damage_a": 0
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.slash_range",
+        "D2.second_cut_warning_seconds"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": false
+    },
+    "B07-M15": {
+      "enemy_id": "B07-M15",
+      "biome_id": "B07",
+      "name": "迷彩执旗蜥",
+      "name_en": "Camouflage Banner Lizard",
+      "introduced_level": 35,
+      "profile": "S",
+      "raw_stats": {
+        "max_hp": 65,
+        "damage": 11,
+        "move_speed": 73,
+        "armor": 3,
+        "magic_resist": 8,
+        "attack_range": 200,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "多层沙旗",
+      "counter_and_drop_text": "旗可拆、HP为主体20%；不隐藏预警；裤",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "给予两同伴3秒弱伪装，保留轮廓（12s；1.1s）",
+          "parameters": {
+            "target_count": 2,
+            "weak_camouflage_seconds": 3,
+            "cooldown_seconds": 12,
+            "warning_seconds": 1.1,
+            "minimum_visible_opacity": 0.35,
+            "banner_hp_ratio": 0.2,
+            "telegraphs_remain_visible": true
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2被显形目标短时移速+8%",
+          "parameters": {
+            "revealed_target_move_speed_bonus_ratio": 0.08
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4旗倒后同伴3秒不能再伪装",
+          "parameters": {
+            "banner_destroyed_camouflage_lockout_seconds": 3
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.support_range",
+        "D2.speed_bonus_seconds"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": true
+    },
+    "B07-M16": {
+      "enemy_id": "B07-M16",
+      "biome_id": "B07",
+      "name": "炽瞳观星蜥",
+      "name_en": "Blazing-eye Stargazer",
+      "introduced_level": 35,
+      "profile": "C",
+      "raw_stats": {
+        "max_hp": 58,
+        "damage": 12,
+        "move_speed": 70,
+        "armor": 2,
+        "magic_resist": 12,
+        "attack_range": 260,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "双目晶镜",
+      "counter_and_drop_text": "地面显示扫向；不闪白屏、不反转按键；戒",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "目光扫一段60度弧，1.0a（10s；1.2s）",
+          "parameters": {
+            "sweep_angle_degrees": 60,
+            "damage_a": 1,
+            "cooldown_seconds": 10,
+            "warning_seconds": 1.2,
+            "ground_direction_tell": true,
+            "screen_flash": false,
+            "reverse_controls": false
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2扫后留下1秒细光弧",
+          "parameters": {
+            "remaining_light_arc_seconds": 1
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4收势时一侧眼罩打开，承伤+15%2s",
+          "parameters": {
+            "recovery_damage_taken_bonus_ratio": 0.15,
+            "exposed_seconds": 2
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.sweep_range",
+        "D2.arc_damage"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": false
+    },
+    "B07-M17": {
+      "enemy_id": "B07-M17",
+      "biome_id": "B07",
+      "name": "方尖碑守卫",
+      "name_en": "Obelisk Guardian",
+      "introduced_level": 35,
+      "profile": "T",
+      "raw_stats": {
+        "max_hp": 92,
+        "damage": 11,
+        "move_speed": 55,
+        "armor": 10,
+        "magic_resist": 4,
+        "attack_range": 100,
+        "recovery_seconds": 1.3
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "碑形肩甲",
+      "counter_and_drop_text": "先走对角再回已结束地纹；鞋",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "砸出十字地纹，0.95a（12s；1.3s）",
+          "parameters": {
+            "shape": "cross",
+            "damage_a": 0.95,
+            "cooldown_seconds": 12,
+            "warning_seconds": 1.3
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2十字后在空对角出两小圈0.35a",
+          "parameters": {
+            "diagonal_circle_count": 2,
+            "diagonal_damage_a": 0.35
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4两次图形间隔1.2s",
+          "parameters": {
+            "pattern_interval_seconds": 1.2
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.cross_width",
+        "D2.circle_radius"
+      ],
+      "sunscale_eligible": true,
+      "camouflage_eligible": false
+    },
+    "B07-M18": {
+      "enemy_id": "B07-M18",
+      "biome_id": "B07",
+      "name": "驭光司仪",
+      "name_en": "Lightweaver Celebrant",
+      "introduced_level": 35,
+      "profile": "S",
+      "raw_stats": {
+        "max_hp": 65,
+        "damage": 11,
+        "move_speed": 73,
+        "armor": 3,
+        "magic_resist": 8,
+        "attack_range": 200,
+        "recovery_seconds": 1.15
+      },
+      "hp_input_multiplier": 1,
+      "damage_input_multiplier": 1,
+      "silhouette": "三环太阳冠",
+      "counter_and_drop_text": "先转镜或杀司仪；不与其它司仪叠加；饰品",
+      "implementation_status": "runtime_candidate",
+      "skills": {
+        "0": {
+          "minimum_difficulty": 0,
+          "source_text": "连接最多2名受光同伴，下一次攻击+0.2a（14s；1.3s）",
+          "parameters": {
+            "target_count": 2,
+            "next_attack_bonus_a": 0.2,
+            "cooldown_seconds": 14,
+            "warning_seconds": 1.3,
+            "requires_lit_target": true,
+            "stacks_with_other_celebrants": false
+          }
+        },
+        "2": {
+          "minimum_difficulty": 2,
+          "source_text": "D2附8%HP一次性盾",
+          "parameters": {
+            "shield_max_hp_ratio": 0.08,
+            "shield_once": true
+          }
+        },
+        "4": {
+          "minimum_difficulty": 4,
+          "source_text": "D4镜线中断时司仪失衡2s",
+          "parameters": {
+            "beam_interrupted_stagger_seconds": 2
+          }
+        }
+      },
+      "unresolved_parameters": [
+        "D0.support_range",
+        "D2.shield_seconds"
+      ],
+      "sunscale_eligible": false,
+      "camouflage_eligible": false
+    }
+  },
+  "rooms": {
+    "L37": {
+      "room_id": "L37",
+      "biome_id": "B07",
+      "name": "晒鳞城门",
+      "name_en": "Sunscale Gate",
+      "kind": "ordinary",
+      "enemy_level": 31,
+      "layout_text": "西入东出；单镜(35,35)、祭盘(68,35)，南侧宽阴影路",
+      "encounter_text": "M01/02/03，先显形再打开门",
+      "reward_bias_text": "头/胸",
+      "blueprint_percent_anchors": {
+        "mirrors": [
+          [
+            35,
+            35
+          ]
+        ],
+        "altar": [
+          68,
+          35
+        ]
+      },
+      "introduced_enemy_ids": [
+        "B07-M01",
+        "B07-M02",
+        "B07-M03"
+      ],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "wave_members"
+      ],
+      "geometry_status": "fixed_runtime_v1"
+    },
+    "L38": {
+      "room_id": "L38",
+      "biome_id": "B07",
+      "name": "绿松石集市",
+      "name_en": "Turquoise Bazaar",
+      "kind": "ordinary",
+      "enemy_level": 31,
+      "layout_text": "南入北出；布棚沿两侧，中央双镜只需激活一座",
+      "encounter_text": "M04/05/06；光盾前排和绕背路",
+      "reward_bias_text": "裤/鞋、U01",
+      "blueprint_percent_anchors": {},
+      "introduced_enemy_ids": [
+        "B07-M04",
+        "B07-M05",
+        "B07-M06"
+      ],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "wave_members"
+      ],
+      "geometry_status": "fixed_runtime_v1"
+    },
+    "L39": {
+      "room_id": "L39",
+      "biome_id": "B07",
+      "name": "驭沙学庭",
+      "name_en": "Sandweaver Courtyard",
+      "kind": "ordinary",
+      "enemy_level": 33,
+      "layout_text": "西南入东北出；沙盘(50,45)、镜座(25,65)/(75,30)",
+      "encounter_text": "M07/08/09；漩涡推位后重新取角",
+      "reward_bias_text": "手/戒",
+      "blueprint_percent_anchors": {
+        "sand_table": [
+          50,
+          45
+        ],
+        "mirrors": [
+          [
+            25,
+            65
+          ],
+          [
+            75,
+            30
+          ]
+        ]
+      },
+      "introduced_enemy_ids": [
+        "B07-M07",
+        "B07-M08",
+        "B07-M09"
+      ],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "wave_members"
+      ],
+      "geometry_status": "fixed_runtime_v1"
+    },
+    "L40": {
+      "room_id": "L40",
+      "biome_id": "B07",
+      "name": "反光工坊",
+      "name_en": "Reflection Workshop",
+      "kind": "ordinary",
+      "enemy_level": 33,
+      "layout_text": "西入东出；三座非同轴镜架、低矮石台分区",
+      "encounter_text": "M10/11/12；搬镜侍从只改敌方支架",
+      "reward_bias_text": "手/戒、U02",
+      "blueprint_percent_anchors": {},
+      "introduced_enemy_ids": [
+        "B07-M10",
+        "B07-M11",
+        "B07-M12"
+      ],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "wave_members"
+      ],
+      "geometry_status": "fixed_runtime_v1"
+    },
+    "L41": {
+      "room_id": "L41",
+      "biome_id": "B07",
+      "name": "日轮阶庙",
+      "name_en": "Sunwheel Temple Steps",
+      "kind": "ordinary",
+      "enemy_level": 35,
+      "layout_text": "南入北出；阶梯两侧均可走，祭坛居中、镜座分列",
+      "encounter_text": "M13/14/15；先破伪装支援再进入庙前",
+      "reward_bias_text": "武器/饰品",
+      "blueprint_percent_anchors": {},
+      "introduced_enemy_ids": [
+        "B07-M13",
+        "B07-M14",
+        "B07-M15"
+      ],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "wave_members"
+      ],
+      "geometry_status": "fixed_runtime_v1"
+    },
+    "L42": {
+      "room_id": "L42",
+      "biome_id": "B07",
+      "name": "方尖碑广场",
+      "name_en": "Obelisk Plaza",
+      "kind": "ordinary",
+      "enemy_level": 35,
+      "layout_text": "西入东北出；两碑形成宽环路，四镜只需任意两镜连通",
+      "encounter_text": "M16/17/18，有限三波，最后练习压坛",
+      "reward_bias_text": "武器/饰品、U03",
+      "blueprint_percent_anchors": {},
+      "introduced_enemy_ids": [
+        "B07-M16",
+        "B07-M17",
+        "B07-M18"
+      ],
+      "wave_count": 3,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "wave_members"
+      ],
+      "geometry_status": "fixed_runtime_v1"
+    },
+    "BO07": {
+      "room_id": "BO07",
+      "biome_id": "B07",
+      "name": "日轮王台",
+      "name_en": "Sunwheel Throne",
+      "kind": "boss",
+      "enemy_level": 35,
+      "layout_text": "南入；四镜在四角内侧，中央太阳祭坛",
+      "encounter_text": "日轮蜥王；圆形外路始终连通",
+      "reward_bias_text": "本职业/共有首领池",
+      "blueprint_percent_anchors": {},
+      "introduced_enemy_ids": [],
+      "wave_count": null,
+      "wave_members": null,
+      "navigation_polygon": null,
+      "unresolved_parameters": [
+        "wave_members"
+      ],
+      "geometry_status": "fixed_runtime_v1"
+    }
+  },
+  "boss": {
+    "boss_id": "BO07",
+    "biome_id": "B07",
+    "name": "日轮蜥王",
+    "name_en": "Sunwheel Lizard King",
+    "level": 35,
+    "raw_stats": {
+      "max_hp": 1200,
+      "damage": 28,
+      "move_speed": 56,
+      "armor": 10,
+      "magic_resist": 10
+    },
+    "d0_design_stats": {
+      "max_hp": 27864,
+      "damage": 559
+    },
+    "stat_contract": {
+      "baseline_multiplier": 1.35,
+      "combat_scale": 10,
+      "defense_per_difficulty": 2,
+      "ordinary_level_growth": false,
+      "runtime_authority": "boss_progression_policy"
+    },
+    "phases": [
+      {
+        "phase": 1,
+        "hp_lower_ratio": 0.7,
+        "hp_upper_ratio": 1,
+        "altar_active": false
+      },
+      {
+        "phase": 2,
+        "hp_lower_ratio": 0.35,
+        "hp_upper_ratio": 0.7,
+        "altar_active": true
+      },
+      {
+        "phase": 3,
+        "hp_lower_ratio": 0,
+        "hp_upper_ratio": 0.35,
+        "altar_active": true,
+        "sunlit_reposition_zones": 2
+      }
+    ],
+    "altar": {
+      "damage_reduction_ratio": 0.3,
+      "mirrors_required": 2,
+      "suppressed_seconds": 8,
+      "shield_boss_design_hp_ratio": 0.08,
+      "exposed_seconds": 4,
+      "exposed_damage_taken_bonus_ratio": 0.15,
+      "suppression_icd_seconds": 12,
+      "shield_damage_is_not_boss_healing": true,
+      "destroyable_by_all_classes": true,
+      "shield_hp_basis": "resolved_boss_profile_max_hp",
+      "historical_authored_hp_is_not_runtime_basis": true
+    },
+    "phase_change_resets_player_skills_or_mirrors": false,
+    "shared_danger_scheduler": true,
+    "melee_approach_always_available": true,
+    "skills": [
+      {
+        "skill_id": "sun_spear_thrust",
+        "name": "日矛突贯",
+        "name_en": "Sun Spear Thrust",
+        "minimum_difficulty": 0,
+        "parameters": {
+          "range": 240,
+          "shape": "line",
+          "damage_a": 1.2,
+          "cooldown_seconds": 7,
+          "warning_seconds": 1.2,
+          "recovery_seconds": 1.3,
+          "direction_locked": true
+        },
+        "unresolved_parameters": [
+          "line_width"
+        ],
+        "implementation_status": "runtime_candidate",
+        "source_text": "长240线、1.2a；CD7s、预警1.2s、收势1.3s",
+        "counter_text": "锁后横移，再从尾侧接近"
+      },
+      {
+        "skill_id": "golden_tail_sweep",
+        "name": "金尾横扫",
+        "name_en": "Golden Tail Sweep",
+        "minimum_difficulty": 0,
+        "parameters": {
+          "shape": "rear_semicircle",
+          "damage_a": 1,
+          "cooldown_seconds": 10,
+          "warning_seconds": 1.2,
+          "front_safe_sector": true
+        },
+        "unresolved_parameters": [
+          "inner_radius",
+          "outer_radius"
+        ],
+        "implementation_status": "runtime_candidate",
+        "source_text": "近身环的后半圆、1.0a；CD10s、预警1.2s",
+        "counter_text": "背后不是永久安全区，移到前侧窄安全扇"
+      },
+      {
+        "skill_id": "sun_disc_return",
+        "name": "日盘回旋",
+        "name_en": "Returning Sun Disc",
+        "minimum_difficulty": 1,
+        "parameters": {
+          "damage_a": [
+            0.8,
+            0.5
+          ],
+          "interval_seconds": 1,
+          "cooldown_seconds": 14,
+          "warning_seconds": 1.3,
+          "separate_outbound_return_paths": true,
+          "mirror_approach_remains_open": true
+        },
+        "unresolved_parameters": [
+          "path_width",
+          "path_range"
+        ],
+        "implementation_status": "runtime_candidate",
+        "source_text": "去程0.8a、回程0.5a，间隔1.0s；CD14s、预警1.3s",
+        "counter_text": "去回线路分别显示，镜座附近不同时封锁"
+      },
+      {
+        "skill_id": "altar_light_web",
+        "name": "祭坛光网",
+        "name_en": "Altar Light Web",
+        "minimum_difficulty": 2,
+        "parameters": {
+          "maximum_mirror_lines": 2,
+          "damage_a": 0.8,
+          "cooldown_seconds": 18,
+          "warning_seconds": 1.5,
+          "fixed_paths": true,
+          "unselected_third_sector_safe": true
+        },
+        "unresolved_parameters": [
+          "beam_width"
+        ],
+        "implementation_status": "runtime_candidate",
+        "source_text": "最多两条固定镜线各0.8a；CD18s、预警1.5s",
+        "counter_text": "转任意一镜或沿未被选中的第三扇区走"
+      },
+      {
+        "skill_id": "sand_shadow_guards",
+        "name": "沙影王卫",
+        "name_en": "Sand Shadow Royal Guards",
+        "minimum_difficulty": 3,
+        "parameters": {
+          "enemy_id": "B07-M02",
+          "count": 2,
+          "hp_ratio": 0.5,
+          "maximum_casts_per_battle": 2,
+          "rewards": false,
+          "shared_capacity": true,
+          "camouflage_tells_visible": true
+        },
+        "unresolved_parameters": [
+          "cooldown_seconds",
+          "warning_seconds"
+        ],
+        "implementation_status": "runtime_candidate",
+        "source_text": "2只M02派生侍卫，HP50%，每战最多2轮",
+        "counter_text": "仍保留脚印/可见技能，不给掉落和额外经验"
+      },
+      {
+        "skill_id": "sunwheel_return",
+        "name": "日轮归位",
+        "name_en": "Sunwheel Return",
+        "minimum_difficulty": 4,
+        "parameters": {
+          "marked_endpoint_count": 3,
+          "damage_a": 0.65,
+          "interval_seconds": 1,
+          "cooldown_seconds": 24,
+          "warning_seconds": 1.6,
+          "post_reposition_pause_seconds": 0.8,
+          "final_recovery_seconds": 2,
+          "invulnerable": false
+        },
+        "unresolved_parameters": [
+          "spear_impact_radius"
+        ],
+        "implementation_status": "runtime_candidate",
+        "source_text": "先标出三处移动终点，依次矛落0.65a，间隔1.0s；CD24s、预警1.6s",
+        "counter_text": "每次转位后停留0.8s，最后收势2秒；不是无敌瞬移连杀"
+      }
+    ],
+    "unresolved_parameters": [
+      "skill_to_phase_availability"
+    ]
+  },
+  "room_geometry": {
+    "L37": {
+      "version": 1,
+      "room_id": "L37",
+      "biome_id": "B07",
+      "name": "晒鳞城门",
+      "name_en": "Sunscale Gate",
+      "coordinate_unit": "blueprint_pixel",
+      "world_scale": 0.58,
+      "entry": [
+        320,
+        900
+      ],
+      "exit": [
+        2480,
+        900
+      ],
+      "main_route": [
+        [
+          320,
+          900
+        ],
+        [
+          570,
+          1370
+        ],
+        [
+          2220,
+          1370
+        ],
+        [
+          2480,
+          900
+        ]
+      ],
+      "safe_routes": [
+        [
+          [
+            320,
+            900
+          ],
+          [
+            570,
+            1370
+          ],
+          [
+            2220,
+            1370
+          ],
+          [
+            2480,
+            900
+          ]
+        ],
+        [
+          [
+            320,
+            900
+          ],
+          [
+            980,
+            630
+          ]
+        ]
+      ],
+      "safe_route_width": 180,
+      "walkable_polygon": [
+        [
+          128.515625,
+          269.153645833
+        ],
+        [
+          641.2109375,
+          48.125
+        ],
+        [
+          2452.734375,
+          48.125
+        ],
+        [
+          2735.286458333,
+          319.283854167
+        ],
+        [
+          2789.973958333,
+          1369.739583333
+        ],
+        [
+          2470.963541667,
+          1593.046875
+        ],
+        [
+          411.067708333,
+          1593.046875
+        ],
+        [
+          87.5,
+          1310.494791667
+        ]
+      ],
+      "encounter_anchors": [
+        [
+          800,
+          1050
+        ],
+        [
+          1440,
+          900
+        ],
+        [
+          2200,
+          850
+        ]
+      ],
+      "mirrors": [
+        {
+          "id": "L37_mirror_1",
+          "position": [
+            980,
+            630
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  980,
+                  630
+                ],
+                [
+                  580,
+                  390
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  980,
+                  630
+                ],
+                [
+                  1904,
+                  630
+                ]
+              ],
+              "targets": [
+                "L37_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  980,
+                  630
+                ],
+                [
+                  1380,
+                  870
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        }
+      ],
+      "altar": {
+        "id": "L37_sun_altar",
+        "position": [
+          1904,
+          630
+        ]
+      },
+      "required_mirrors": 1,
+      "manual_gates": [
+        {
+          "id": "L37_gate_near",
+          "position": [
+            2340,
+            1000
+          ],
+          "side": "near"
+        },
+        {
+          "id": "L37_gate_far",
+          "position": [
+            2520,
+            860
+          ],
+          "side": "far"
+        }
+      ],
+      "stone_covers": [
+        {
+          "id": "L37_cover_1",
+          "rect": [
+            1420,
+            660,
+            120,
+            70
+          ],
+          "kind": "low_stone"
+        },
+        {
+          "id": "L37_cover_2",
+          "rect": [
+            2160,
+            650,
+            110,
+            70
+          ],
+          "kind": "low_stone"
+        }
+      ],
+      "puzzle_beam_player_damage": 0,
+      "persistent_damage_exclusion_radius": 90,
+      "formal_art_status": "not_included"
+    },
+    "L38": {
+      "version": 1,
+      "room_id": "L38",
+      "biome_id": "B07",
+      "name": "绿松石集市",
+      "name_en": "Turquoise Bazaar",
+      "coordinate_unit": "blueprint_pixel",
+      "world_scale": 0.58,
+      "entry": [
+        1400,
+        1480
+      ],
+      "exit": [
+        1400,
+        330
+      ],
+      "main_route": [
+        [
+          1400,
+          1480
+        ],
+        [
+          610,
+          1430
+        ],
+        [
+          610,
+          390
+        ],
+        [
+          1400,
+          330
+        ]
+      ],
+      "safe_routes": [
+        [
+          [
+            1400,
+            1480
+          ],
+          [
+            610,
+            1430
+          ],
+          [
+            610,
+            390
+          ],
+          [
+            1400,
+            330
+          ]
+        ],
+        [
+          [
+            1400,
+            1480
+          ],
+          [
+            1120,
+            850
+          ]
+        ],
+        [
+          [
+            1400,
+            1480
+          ],
+          [
+            1680,
+            850
+          ]
+        ]
+      ],
+      "safe_route_width": 180,
+      "walkable_polygon": [
+        [
+          170,
+          140
+        ],
+        [
+          2430,
+          140
+        ],
+        [
+          2660,
+          400
+        ],
+        [
+          2660,
+          1560
+        ],
+        [
+          2270,
+          1700
+        ],
+        [
+          500,
+          1700
+        ],
+        [
+          140,
+          1450
+        ],
+        [
+          140,
+          430
+        ]
+      ],
+      "encounter_anchors": [
+        [
+          1420,
+          1280
+        ],
+        [
+          1450,
+          850
+        ],
+        [
+          1470,
+          410
+        ]
+      ],
+      "mirrors": [
+        {
+          "id": "L38_mirror_1",
+          "position": [
+            1120,
+            850
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  1120,
+                  850
+                ],
+                [
+                  720,
+                  610
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  1120,
+                  850
+                ],
+                [
+                  1400,
+                  580
+                ]
+              ],
+              "targets": [
+                "L38_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  1120,
+                  850
+                ],
+                [
+                  1520,
+                  1090
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L38_mirror_2",
+          "position": [
+            1680,
+            850
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  1680,
+                  850
+                ],
+                [
+                  1280,
+                  610
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  1680,
+                  850
+                ],
+                [
+                  1400,
+                  580
+                ]
+              ],
+              "targets": [
+                "L38_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  1680,
+                  850
+                ],
+                [
+                  2080,
+                  1090
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        }
+      ],
+      "altar": {
+        "id": "L38_sun_altar",
+        "position": [
+          1400,
+          580
+        ]
+      },
+      "required_mirrors": 1,
+      "manual_gates": [
+        {
+          "id": "L38_gate_near",
+          "position": [
+            1260,
+            430
+          ],
+          "side": "near"
+        },
+        {
+          "id": "L38_gate_far",
+          "position": [
+            1440,
+            340
+          ],
+          "side": "far"
+        }
+      ],
+      "stone_covers": [
+        {
+          "id": "L38_cover_1",
+          "rect": [
+            820,
+            670,
+            120,
+            75
+          ],
+          "kind": "low_stone"
+        },
+        {
+          "id": "L38_cover_2",
+          "rect": [
+            2220,
+            810,
+            120,
+            75
+          ],
+          "kind": "low_stone"
+        }
+      ],
+      "puzzle_beam_player_damage": 0,
+      "persistent_damage_exclusion_radius": 90,
+      "formal_art_status": "not_included"
+    },
+    "L39": {
+      "version": 1,
+      "room_id": "L39",
+      "biome_id": "B07",
+      "name": "驭沙学庭",
+      "name_en": "Sandweaver Courtyard",
+      "coordinate_unit": "blueprint_pixel",
+      "world_scale": 0.58,
+      "entry": [
+        460,
+        1360
+      ],
+      "exit": [
+        2350,
+        410
+      ],
+      "main_route": [
+        [
+          460,
+          1360
+        ],
+        [
+          1150,
+          1440
+        ],
+        [
+          2350,
+          1250
+        ],
+        [
+          2350,
+          410
+        ]
+      ],
+      "safe_routes": [
+        [
+          [
+            460,
+            1360
+          ],
+          [
+            1150,
+            1440
+          ],
+          [
+            2350,
+            1250
+          ],
+          [
+            2350,
+            410
+          ]
+        ],
+        [
+          [
+            460,
+            1360
+          ],
+          [
+            700,
+            1170
+          ]
+        ],
+        [
+          [
+            460,
+            1360
+          ],
+          [
+            2100,
+            540
+          ]
+        ]
+      ],
+      "safe_route_width": 180,
+      "walkable_polygon": [
+        [
+          150,
+          450
+        ],
+        [
+          420,
+          130
+        ],
+        [
+          2240,
+          130
+        ],
+        [
+          2660,
+          440
+        ],
+        [
+          2660,
+          1430
+        ],
+        [
+          2310,
+          1700
+        ],
+        [
+          530,
+          1700
+        ],
+        [
+          150,
+          1410
+        ]
+      ],
+      "encounter_anchors": [
+        [
+          840,
+          1280
+        ],
+        [
+          1490,
+          950
+        ],
+        [
+          2230,
+          600
+        ]
+      ],
+      "mirrors": [
+        {
+          "id": "L39_mirror_1",
+          "position": [
+            700,
+            1170
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  700,
+                  1170
+                ],
+                [
+                  350,
+                  930
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  700,
+                  1170
+                ],
+                [
+                  1400,
+                  810
+                ]
+              ],
+              "targets": [
+                "L39_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  700,
+                  1170
+                ],
+                [
+                  1100,
+                  1410
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L39_mirror_2",
+          "position": [
+            2100,
+            540
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  2100,
+                  540
+                ],
+                [
+                  1700,
+                  320
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  2100,
+                  540
+                ],
+                [
+                  1400,
+                  810
+                ]
+              ],
+              "targets": [
+                "L39_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  2100,
+                  540
+                ],
+                [
+                  2440,
+                  780
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        }
+      ],
+      "altar": {
+        "id": "L39_sun_altar",
+        "position": [
+          1400,
+          810
+        ]
+      },
+      "required_mirrors": 1,
+      "manual_gates": [
+        {
+          "id": "L39_gate_near",
+          "position": [
+            2210,
+            510
+          ],
+          "side": "near"
+        },
+        {
+          "id": "L39_gate_far",
+          "position": [
+            2400,
+            480
+          ],
+          "side": "far"
+        }
+      ],
+      "stone_covers": [
+        {
+          "id": "L39_cover_1",
+          "rect": [
+            900,
+            420,
+            120,
+            75
+          ],
+          "kind": "low_stone"
+        },
+        {
+          "id": "L39_cover_2",
+          "rect": [
+            1530,
+            450,
+            120,
+            75
+          ],
+          "kind": "low_stone"
+        }
+      ],
+      "puzzle_beam_player_damage": 0,
+      "persistent_damage_exclusion_radius": 90,
+      "formal_art_status": "not_included",
+      "sand_table": [
+        1400,
+        810
+      ]
+    },
+    "L40": {
+      "version": 1,
+      "room_id": "L40",
+      "biome_id": "B07",
+      "name": "反光工坊",
+      "name_en": "Reflection Workshop",
+      "coordinate_unit": "blueprint_pixel",
+      "world_scale": 0.58,
+      "entry": [
+        320,
+        900
+      ],
+      "exit": [
+        2470,
+        900
+      ],
+      "main_route": [
+        [
+          320,
+          900
+        ],
+        [
+          560,
+          1390
+        ],
+        [
+          2250,
+          1390
+        ],
+        [
+          2470,
+          900
+        ]
+      ],
+      "safe_routes": [
+        [
+          [
+            320,
+            900
+          ],
+          [
+            560,
+            1390
+          ],
+          [
+            2250,
+            1390
+          ],
+          [
+            2470,
+            900
+          ]
+        ],
+        [
+          [
+            320,
+            900
+          ],
+          [
+            784,
+            486
+          ]
+        ],
+        [
+          [
+            320,
+            900
+          ],
+          [
+            1400,
+            1170
+          ]
+        ],
+        [
+          [
+            320,
+            900
+          ],
+          [
+            2072,
+            558
+          ]
+        ]
+      ],
+      "safe_route_width": 180,
+      "walkable_polygon": [
+        [
+          120,
+          150
+        ],
+        [
+          2290,
+          150
+        ],
+        [
+          2710,
+          470
+        ],
+        [
+          2710,
+          1540
+        ],
+        [
+          2350,
+          1700
+        ],
+        [
+          460,
+          1700
+        ],
+        [
+          120,
+          1430
+        ]
+      ],
+      "encounter_anchors": [
+        [
+          840,
+          1040
+        ],
+        [
+          1450,
+          710
+        ],
+        [
+          2190,
+          1100
+        ]
+      ],
+      "mirrors": [
+        {
+          "id": "L40_mirror_1",
+          "position": [
+            784,
+            486
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  784,
+                  486
+                ],
+                [
+                  384,
+                  320
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  784,
+                  486
+                ],
+                [
+                  1792,
+                  810
+                ]
+              ],
+              "targets": [
+                "L40_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  784,
+                  486
+                ],
+                [
+                  1184,
+                  726
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L40_mirror_2",
+          "position": [
+            1400,
+            1170
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  1400,
+                  1170
+                ],
+                [
+                  1000,
+                  930
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  1400,
+                  1170
+                ],
+                [
+                  1792,
+                  810
+                ]
+              ],
+              "targets": [
+                "L40_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  1400,
+                  1170
+                ],
+                [
+                  1800,
+                  1410
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L40_mirror_3",
+          "position": [
+            2072,
+            558
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  2072,
+                  558
+                ],
+                [
+                  1672,
+                  320
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  2072,
+                  558
+                ],
+                [
+                  1792,
+                  810
+                ]
+              ],
+              "targets": [
+                "L40_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  2072,
+                  558
+                ],
+                [
+                  2440,
+                  798
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        }
+      ],
+      "altar": {
+        "id": "L40_sun_altar",
+        "position": [
+          1792,
+          810
+        ]
+      },
+      "required_mirrors": 1,
+      "manual_gates": [
+        {
+          "id": "L40_gate_near",
+          "position": [
+            2330,
+            1000
+          ],
+          "side": "near"
+        },
+        {
+          "id": "L40_gate_far",
+          "position": [
+            2510,
+            860
+          ],
+          "side": "far"
+        }
+      ],
+      "stone_covers": [
+        {
+          "id": "L40_cover_1",
+          "rect": [
+            1130,
+            340,
+            120,
+            75
+          ],
+          "kind": "low_stone"
+        },
+        {
+          "id": "L40_cover_2",
+          "rect": [
+            1680,
+            1140,
+            120,
+            75
+          ],
+          "kind": "low_stone"
+        },
+        {
+          "id": "L40_cover_3",
+          "rect": [
+            2260,
+            670,
+            100,
+            60
+          ],
+          "kind": "low_stone"
+        }
+      ],
+      "puzzle_beam_player_damage": 0,
+      "persistent_damage_exclusion_radius": 90,
+      "formal_art_status": "not_included"
+    },
+    "L41": {
+      "version": 1,
+      "room_id": "L41",
+      "biome_id": "B07",
+      "name": "日轮阶庙",
+      "name_en": "Sunwheel Temple Steps",
+      "coordinate_unit": "blueprint_pixel",
+      "world_scale": 0.58,
+      "entry": [
+        1400,
+        1490
+      ],
+      "exit": [
+        1400,
+        320
+      ],
+      "main_route": [
+        [
+          1400,
+          1490
+        ],
+        [
+          540,
+          1400
+        ],
+        [
+          540,
+          390
+        ],
+        [
+          1400,
+          320
+        ]
+      ],
+      "safe_routes": [
+        [
+          [
+            1400,
+            1490
+          ],
+          [
+            540,
+            1400
+          ],
+          [
+            540,
+            390
+          ],
+          [
+            1400,
+            320
+          ]
+        ],
+        [
+          [
+            1400,
+            1490
+          ],
+          [
+            812,
+            990
+          ]
+        ],
+        [
+          [
+            1400,
+            1490
+          ],
+          [
+            1988,
+            990
+          ]
+        ],
+        [
+          [
+            1400,
+            1490
+          ],
+          [
+            2280,
+            1400
+          ],
+          [
+            2280,
+            390
+          ],
+          [
+            1400,
+            320
+          ]
+        ]
+      ],
+      "safe_route_width": 180,
+      "walkable_polygon": [
+        [
+          120,
+          370
+        ],
+        [
+          430,
+          110
+        ],
+        [
+          2360,
+          110
+        ],
+        [
+          2680,
+          380
+        ],
+        [
+          2680,
+          1500
+        ],
+        [
+          2360,
+          1720
+        ],
+        [
+          460,
+          1720
+        ],
+        [
+          120,
+          1480
+        ]
+      ],
+      "encounter_anchors": [
+        [
+          1410,
+          1280
+        ],
+        [
+          1360,
+          870
+        ],
+        [
+          1420,
+          440
+        ]
+      ],
+      "mirrors": [
+        {
+          "id": "L41_mirror_1",
+          "position": [
+            812,
+            990
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  812,
+                  990
+                ],
+                [
+                  412,
+                  750
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  812,
+                  990
+                ],
+                [
+                  1400,
+                  720
+                ]
+              ],
+              "targets": [
+                "L41_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  812,
+                  990
+                ],
+                [
+                  1212,
+                  1230
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L41_mirror_2",
+          "position": [
+            1988,
+            990
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  1988,
+                  990
+                ],
+                [
+                  1588,
+                  750
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  1988,
+                  990
+                ],
+                [
+                  1400,
+                  720
+                ]
+              ],
+              "targets": [
+                "L41_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  1988,
+                  990
+                ],
+                [
+                  2388,
+                  1230
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        }
+      ],
+      "altar": {
+        "id": "L41_sun_altar",
+        "position": [
+          1400,
+          720
+        ]
+      },
+      "required_mirrors": 1,
+      "manual_gates": [
+        {
+          "id": "L41_gate_near",
+          "position": [
+            1260,
+            420
+          ],
+          "side": "near"
+        },
+        {
+          "id": "L41_gate_far",
+          "position": [
+            1440,
+            280
+          ],
+          "side": "far"
+        }
+      ],
+      "stone_covers": [
+        {
+          "id": "L41_cover_1",
+          "rect": [
+            980,
+            530,
+            100,
+            70
+          ],
+          "kind": "low_stone"
+        },
+        {
+          "id": "L41_cover_2",
+          "rect": [
+            1800,
+            530,
+            100,
+            70
+          ],
+          "kind": "low_stone"
+        }
+      ],
+      "puzzle_beam_player_damage": 0,
+      "persistent_damage_exclusion_radius": 90,
+      "formal_art_status": "not_included",
+      "secondary_route": [
+        [
+          1400,
+          1490
+        ],
+        [
+          2280,
+          1400
+        ],
+        [
+          2280,
+          390
+        ],
+        [
+          1400,
+          320
+        ]
+      ]
+    },
+    "L42": {
+      "version": 1,
+      "room_id": "L42",
+      "biome_id": "B07",
+      "name": "方尖碑广场",
+      "name_en": "Obelisk Plaza",
+      "coordinate_unit": "blueprint_pixel",
+      "world_scale": 0.58,
+      "entry": [
+        340,
+        900
+      ],
+      "exit": [
+        2390,
+        380
+      ],
+      "main_route": [
+        [
+          340,
+          900
+        ],
+        [
+          600,
+          1440
+        ],
+        [
+          2310,
+          1440
+        ],
+        [
+          2390,
+          380
+        ]
+      ],
+      "safe_routes": [
+        [
+          [
+            340,
+            900
+          ],
+          [
+            600,
+            1440
+          ],
+          [
+            2310,
+            1440
+          ],
+          [
+            2390,
+            380
+          ]
+        ],
+        [
+          [
+            340,
+            900
+          ],
+          [
+            616,
+            504
+          ]
+        ],
+        [
+          [
+            340,
+            900
+          ],
+          [
+            600,
+            380
+          ],
+          [
+            2156,
+            414
+          ]
+        ],
+        [
+          [
+            340,
+            900
+          ],
+          [
+            672,
+            1260
+          ]
+        ],
+        [
+          [
+            340,
+            900
+          ],
+          [
+            600,
+            1440
+          ],
+          [
+            2212,
+            1260
+          ]
+        ]
+      ],
+      "safe_route_width": 180,
+      "walkable_polygon": [
+        [
+          150,
+          420
+        ],
+        [
+          430,
+          120
+        ],
+        [
+          2420,
+          120
+        ],
+        [
+          2680,
+          350
+        ],
+        [
+          2680,
+          1460
+        ],
+        [
+          2360,
+          1690
+        ],
+        [
+          460,
+          1690
+        ],
+        [
+          150,
+          1440
+        ]
+      ],
+      "encounter_anchors": [
+        [
+          740,
+          1020
+        ],
+        [
+          1510,
+          1180
+        ],
+        [
+          2190,
+          710
+        ]
+      ],
+      "mirrors": [
+        {
+          "id": "L42_mirror_1",
+          "position": [
+            616,
+            504
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  616,
+                  504
+                ],
+                [
+                  350,
+                  320
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  616,
+                  504
+                ],
+                [
+                  1792,
+                  630
+                ]
+              ],
+              "targets": [
+                "L42_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  616,
+                  504
+                ],
+                [
+                  1016,
+                  744
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L42_mirror_2",
+          "position": [
+            2156,
+            414
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  2156,
+                  414
+                ],
+                [
+                  1756,
+                  320
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  2156,
+                  414
+                ],
+                [
+                  1792,
+                  630
+                ]
+              ],
+              "targets": [
+                "L42_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  2156,
+                  414
+                ],
+                [
+                  2440,
+                  654
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L42_mirror_3",
+          "position": [
+            672,
+            1260
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  672,
+                  1260
+                ],
+                [
+                  350,
+                  1020
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  672,
+                  1260
+                ],
+                [
+                  1792,
+                  630
+                ]
+              ],
+              "targets": [
+                "L42_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  672,
+                  1260
+                ],
+                [
+                  1072,
+                  1450
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L42_mirror_4",
+          "position": [
+            2212,
+            1260
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  2212,
+                  1260
+                ],
+                [
+                  1812,
+                  1020
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  2212,
+                  1260
+                ],
+                [
+                  1792,
+                  630
+                ]
+              ],
+              "targets": [
+                "L42_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  2212,
+                  1260
+                ],
+                [
+                  2440,
+                  1450
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        }
+      ],
+      "altar": {
+        "id": "L42_sun_altar",
+        "position": [
+          1792,
+          630
+        ]
+      },
+      "required_mirrors": 2,
+      "manual_gates": [
+        {
+          "id": "L42_gate_near",
+          "position": [
+            2250,
+            480
+          ],
+          "side": "near"
+        },
+        {
+          "id": "L42_gate_far",
+          "position": [
+            2430,
+            340
+          ],
+          "side": "far"
+        }
+      ],
+      "stone_covers": [
+        {
+          "id": "L42_cover_1",
+          "rect": [
+            1120,
+            780,
+            120,
+            75
+          ],
+          "kind": "low_stone"
+        },
+        {
+          "id": "L42_cover_2",
+          "rect": [
+            1680,
+            1040,
+            120,
+            75
+          ],
+          "kind": "low_stone"
+        }
+      ],
+      "puzzle_beam_player_damage": 0,
+      "persistent_damage_exclusion_radius": 90,
+      "formal_art_status": "not_included",
+      "obelisks": [
+        [
+          1120,
+          780
+        ],
+        [
+          1680,
+          1040
+        ]
+      ],
+      "finite_wave_count": 3
+    },
+    "BO07": {
+      "version": 1,
+      "room_id": "BO07",
+      "biome_id": "B07",
+      "name": "日轮王台",
+      "name_en": "Sunwheel Throne",
+      "coordinate_unit": "blueprint_pixel",
+      "world_scale": 0.58,
+      "entry": [
+        1400,
+        1460
+      ],
+      "exit": [
+        1400,
+        340
+      ],
+      "main_route": [
+        [
+          1400,
+          1460
+        ],
+        [
+          470,
+          1460
+        ],
+        [
+          360,
+          900
+        ],
+        [
+          470,
+          340
+        ],
+        [
+          2330,
+          340
+        ],
+        [
+          2440,
+          900
+        ],
+        [
+          2330,
+          1460
+        ],
+        [
+          1400,
+          1460
+        ]
+      ],
+      "safe_routes": [
+        [
+          [
+            1400,
+            1460
+          ],
+          [
+            470,
+            1460
+          ],
+          [
+            360,
+            900
+          ],
+          [
+            470,
+            340
+          ],
+          [
+            2330,
+            340
+          ],
+          [
+            2440,
+            900
+          ],
+          [
+            2330,
+            1460
+          ],
+          [
+            1400,
+            1460
+          ]
+        ],
+        [
+          [
+            1400,
+            1460
+          ],
+          [
+            700,
+            540
+          ]
+        ],
+        [
+          [
+            1400,
+            1460
+          ],
+          [
+            2100,
+            540
+          ]
+        ],
+        [
+          [
+            1400,
+            1460
+          ],
+          [
+            700,
+            1260
+          ]
+        ],
+        [
+          [
+            1400,
+            1460
+          ],
+          [
+            2100,
+            1260
+          ]
+        ]
+      ],
+      "safe_route_width": 180,
+      "walkable_polygon": [
+        [
+          100,
+          340
+        ],
+        [
+          340,
+          100
+        ],
+        [
+          2460,
+          100
+        ],
+        [
+          2700,
+          340
+        ],
+        [
+          2700,
+          1460
+        ],
+        [
+          2460,
+          1700
+        ],
+        [
+          340,
+          1700
+        ],
+        [
+          100,
+          1460
+        ]
+      ],
+      "encounter_anchors": [],
+      "mirrors": [
+        {
+          "id": "BO07_mirror_1",
+          "position": [
+            700,
+            540
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  700,
+                  540
+                ],
+                [
+                  350,
+                  320
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  700,
+                  540
+                ],
+                [
+                  1400,
+                  900
+                ]
+              ],
+              "targets": [
+                "BO07_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  700,
+                  540
+                ],
+                [
+                  1100,
+                  780
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "BO07_mirror_2",
+          "position": [
+            2100,
+            540
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  2100,
+                  540
+                ],
+                [
+                  1700,
+                  320
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  2100,
+                  540
+                ],
+                [
+                  1400,
+                  900
+                ]
+              ],
+              "targets": [
+                "BO07_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  2100,
+                  540
+                ],
+                [
+                  2440,
+                  780
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "BO07_mirror_3",
+          "position": [
+            700,
+            1260
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  700,
+                  1260
+                ],
+                [
+                  350,
+                  1020
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  700,
+                  1260
+                ],
+                [
+                  1400,
+                  900
+                ]
+              ],
+              "targets": [
+                "BO07_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  700,
+                  1260
+                ],
+                [
+                  1100,
+                  1450
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "BO07_mirror_4",
+          "position": [
+            2100,
+            1260
+          ],
+          "initial_state": 0,
+          "interaction_seconds": 0.6,
+          "interaction_safe_radius": 90,
+          "states": [
+            {
+              "direction_id": "reveal_west",
+              "label": "西侧显形",
+              "label_en": "Reveal west",
+              "path": [
+                [
+                  2100,
+                  1260
+                ],
+                [
+                  1700,
+                  1020
+                ]
+              ],
+              "targets": [
+                "reveal_west"
+              ]
+            },
+            {
+              "direction_id": "sun_altar",
+              "label": "引光祭坛",
+              "label_en": "Light the altar",
+              "path": [
+                [
+                  2100,
+                  1260
+                ],
+                [
+                  1400,
+                  900
+                ]
+              ],
+              "targets": [
+                "BO07_sun_altar"
+              ]
+            },
+            {
+              "direction_id": "reveal_east",
+              "label": "东侧显形",
+              "label_en": "Reveal east",
+              "path": [
+                [
+                  2100,
+                  1260
+                ],
+                [
+                  2440,
+                  1450
+                ]
+              ],
+              "targets": [
+                "reveal_east"
+              ]
+            }
+          ]
+        }
+      ],
+      "altar": {
+        "id": "BO07_sun_altar",
+        "position": [
+          1400,
+          900
+        ]
+      },
+      "required_mirrors": 2,
+      "manual_gates": [],
+      "stone_covers": [],
+      "puzzle_beam_player_damage": 0,
+      "persistent_damage_exclusion_radius": 90,
+      "formal_art_status": "not_included",
+      "boss_spawn": [
+        1400,
+        760
+      ],
+      "outer_route": [
+        [
+          1400,
+          1460
+        ],
+        [
+          470,
+          1460
+        ],
+        [
+          360,
+          900
+        ],
+        [
+          470,
+          340
+        ],
+        [
+          2330,
+          340
+        ],
+        [
+          2440,
+          900
+        ],
+        [
+          2330,
+          1460
+        ],
+        [
+          1400,
+          1460
+        ]
+      ],
+      "sunlit_zones": [
+        [
+          1030,
+          760
+        ],
+        [
+          1770,
+          1040
+        ]
+      ]
+    }
+  }
+}

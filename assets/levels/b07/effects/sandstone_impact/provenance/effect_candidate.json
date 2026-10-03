@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M17",
+  "action": "sandstone_impact",
+  "variant": "sandstone_impact_design_fix",
+  "category": "effect_or_prop",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "assets/levels/b07/effects/sandstone_impact/effect_candidate.png",
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "source_filename": "exec-08a741ef-772c-470f-8b3a-5b8b5ed69003.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-08a741ef-772c-470f-8b3a-5b8b5ed69003.png",
+  "source_sha256": "750384638ac694ba198a4d14b4fce43a202cec7f3b5ba478d222819b224b1d2d",
+  "png_sha256": "750384638ac694ba198a4d14b4fce43a202cec7f3b5ba478d222819b224b1d2d",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m17/idle_candidate.png",
+  "identity_reference_sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1059574,
+    "alpha_zero_fraction": 0.6738080884391637,
+    "low_alpha_1_15_pixel_count": 55951,
+    "opaque_pixel_count": 1437,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        67,
+        50,
+        1208,
+        1254
+      ],
+      "bounds_xywh": [
+        67,
+        50,
+        1141,
+        1204
+      ],
+      "effective_pixel_count": 512942,
+      "edge_pixel_count": 4,
+      "margins_ltrb": [
+        67,
+        50,
+        46,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        113,
+        164,
+        1187,
+        1113
+      ],
+      "bounds_xywh": [
+        113,
+        164,
+        1074,
+        949
+      ],
+      "effective_pixel_count": 456991,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        113,
+        164,
+        67,
+        141
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        114,
+        166,
+        1187,
+        1112
+      ],
+      "bounds_xywh": [
+        114,
+        166,
+        1073,
+        946
+      ],
+      "effective_pixel_count": 447687,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        114,
+        166,
+        67,
+        142
+      ]
+    },
+    "visual_review": "Plain natural sandstone chips; all gemstone/metal armor details removed in one correction. No floor/cross/circle pattern.",
+    "defects": [
+      "Cluster is tall and illustrative; final scale/duration and ground perspective must be chosen in engine.",
+      "Several small grains beyond 7–10 main chips remain, intentional debris."
+    ]
+  },
+  "prompt_text": "Use case: precise-object-edit. Single targeted correction to standalone game VFX candidate. Keep the existing arrangement of the single compact stone-debris impact cluster, but correct ALL stones to plain natural ivory-sand sandstone. REMOVE EVERY turquoise gemstone, gold metallic plate, copper seam, engraved motif and armor panel. Irregular plain chipped rock only, warm lighting. 7 to 10 main scattered chips plus a few small grains, no floor, no ground plate, no cross or target geometry. This is earth debris, not shattered character armor. Genuine transparent alpha background and generous margin.",
+  "edit_target_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-2a07c5d5-fcdd-40d3-86fa-5b9f2ee6b162.png",
+  "single_targeted_revision": true,
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact_design_fix/candidate.png",
+  "resource": "asset://levels/b07/effects/sandstone_impact/effect_candidate.png",
+  "ability": "obelisk_cross"
+}

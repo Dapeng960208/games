@@ -1,0 +1,2718 @@
+{
+  "schema_version": 1,
+  "batch": "B07 M14–M18 action and isolated-skill design candidates",
+  "root": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839",
+  "status": "design_candidates_only_not_runtime_registered",
+  "requested_candidate_count": 20,
+  "selected_pose_count": 15,
+  "selected_effect_or_prop_count": 5,
+  "generated_png_count": 25,
+  "superseded_original_count": 5,
+  "complete_continuous_animations": 0,
+  "runtime_skill_coverage_claim": false,
+  "repo_modified": false,
+  "tests_or_pushes_run": false,
+  "shared_limits": [
+    "Design candidates only; M14–M18 unique active skills are not implemented and still use base attack fallback.",
+    "Three independent key poses do not form continuous animation, complete multi-hit coverage, directional coverage or a validated 2K game render.",
+    "Camera is more frontal/lower than a strict elevated 45-degree runtime camera, especially M18; uniform runtime camera pass not approved.",
+    "No body PNG is cropped, resized, alpha-thresholded or otherwise edited by script. Generated PNG bytes preserved.",
+    "Normal alpha composites on light sandstone and dark purple have no broad RGB preview halos; faint low-alpha edge noise remains in source PNGs."
+  ],
+  "coordinate_convention": "Normalized image coordinates x/right,y/down; approximate visually estimated planted toe/foot-pad centers, not automatic alpha bottom. Anatomical crown excludes weapon/flag/stone shoulder towers/three-ring crown. Estimated tolerance ±20px (±35px for partly hidden foot). No runtime registration.",
+  "selected_assets": [
+    {
+      "schema_version": 1,
+      "identity": "B07-M14",
+      "action": "telegraph",
+      "variant": "telegraph",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/telegraph/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/telegraph/prompt.txt",
+      "source_filename": "exec-7c7dd0ef-037b-4396-acaa-b77003c5bdd5.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7c7dd0ef-037b-4396-acaa-b77003c5bdd5.png",
+      "source_sha256": "847e202d749c7d191266ea856f0d54eabdbe7da59e48cbcb636d065cb0cf3bab",
+      "png_sha256": "847e202d749c7d191266ea856f0d54eabdbe7da59e48cbcb636d065cb0cf3bab",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m14/idle_candidate.png",
+      "identity_reference_sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1312,
+          1199
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1027203,
+        "alpha_zero_fraction": 0.6529850841148112,
+        "low_alpha_1_15_pixel_count": 37915,
+        "opaque_pixel_count": 528,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            35,
+            39,
+            1282,
+            1199
+          ],
+          "bounds_xywh": [
+            35,
+            39,
+            1247,
+            1160
+          ],
+          "effective_pixel_count": 545885,
+          "edge_pixel_count": 2,
+          "margins_ltrb": [
+            35,
+            39,
+            30,
+            0
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            41,
+            59,
+            1280,
+            1172
+          ],
+          "bounds_xywh": [
+            41,
+            59,
+            1239,
+            1113
+          ],
+          "effective_pixel_count": 507970,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            41,
+            59,
+            32,
+            27
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            42,
+            60,
+            1280,
+            1171
+          ],
+          "bounds_xywh": [
+            42,
+            60,
+            1238,
+            1111
+          ],
+          "effective_pixel_count": 498627,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            42,
+            60,
+            32,
+            28
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            584,
+            1108
+          ],
+          [
+            1210,
+            953
+          ]
+        ],
+        "foot_midpoint": [
+          897.0,
+          1030.5
+        ],
+        "anatomical_crown_xy_manual": [
+          837,
+          94
+        ],
+        "body_height_excluding_weapon_tail_accessories": 936.5,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 936.5,
+        "maximum_display_body_px_at_1_5_sampling_margin": 624.33,
+        "visual_review": "Left blade held back high; other blade low, torso coiled.",
+        "defects": [
+          "Minimum strong-alpha margin below requested 8%."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m14/telegraph: B07-M14 twin-blade guard. Preserve two SHORT crescent copper-gold blades, one in EACH hand, long flexible neck, red-brown light armor and red scarf, long tail. TELEGRAPH first/left-hand cut: lower center of gravity, knees bent; character's anatomical LEFT hand (screen-right arm in reference) cocks its blade beside and behind the left shoulder, elbow high, preparing a cross-body slash. Anatomical RIGHT hand (screen-left in reference) holds the second blade low beside hip in guard. Torso clearly coiled against pelvis, tail counter-curved low behind. Both planted clawed feet distinctly visible. No additional arms or weapons."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M14",
+      "action": "execute",
+      "variant": "execute_framing_fix",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute_framing_fix/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute_framing_fix/prompt.txt",
+      "source_filename": "exec-ab9e40b8-8db8-41a8-81ca-9263e1a03b32.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ab9e40b8-8db8-41a8-81ca-9263e1a03b32.png",
+      "source_sha256": "5d6c4bee0ccf7ecc5f448ee28d4b75fd96962319d77b1346860377ff50970162",
+      "png_sha256": "5d6c4bee0ccf7ecc5f448ee28d4b75fd96962319d77b1346860377ff50970162",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m14/idle_candidate.png",
+      "identity_reference_sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1312,
+          1199
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1150827,
+        "alpha_zero_fraction": 0.7315719146036331,
+        "low_alpha_1_15_pixel_count": 38501,
+        "opaque_pixel_count": 361,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            49,
+            21,
+            1292,
+            1167
+          ],
+          "bounds_xywh": [
+            49,
+            21,
+            1243,
+            1146
+          ],
+          "effective_pixel_count": 422261,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            49,
+            21,
+            20,
+            32
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            83,
+            169,
+            1241,
+            1079
+          ],
+          "bounds_xywh": [
+            83,
+            169,
+            1158,
+            910
+          ],
+          "effective_pixel_count": 383760,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            83,
+            169,
+            71,
+            120
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            83,
+            170,
+            1240,
+            1077
+          ],
+          "bounds_xywh": [
+            83,
+            170,
+            1157,
+            907
+          ],
+          "effective_pixel_count": 375066,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            83,
+            170,
+            72,
+            122
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            403,
+            899
+          ],
+          [
+            1122,
+            1041
+          ]
+        ],
+        "foot_midpoint": [
+          762.5,
+          970.0
+        ],
+        "anatomical_crown_xy_manual": [
+          702,
+          174
+        ],
+        "body_height_excluding_weapon_tail_accessories": 796.0,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 796.0,
+        "maximum_display_body_px_at_1_5_sampling_margin": 530.67,
+        "visual_review": "Single left-hand extended slash, other hand maintains blade; no complete second hit.",
+        "defects": [
+          "Framing improved once, but requested 10% margin is not fully achieved.",
+          "Minor ornament redraw from first candidate; not exact pixel continuation."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: precise-object-edit. Repair framing only in this transparent game action candidate. Keep EXACTLY the current character identity, every color, pose, hands, equipment, action direction, and proportions unchanged. The first image is the target. Re-render the same complete silhouette at a smaller scale occupying no more than 78% of the canvas width and height, centered with AT LEAST 10% pure transparent empty margin on each side. Ensure every weapon blade / flag finial / cloth panel / claw / tail tip is fully visible with generous safety margin. Do not invent detail, change the pose, add effects or add background. Genuine alpha=0 background. No crop, no ground, no halo. Save native transparent image; do not simply increase canvas around clipped tips.",
+      "edit_target_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-f1347b05-95e9-45c2-9362-6f833e1689d6.png",
+      "single_targeted_revision": true
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M14",
+      "action": "recovery",
+      "variant": "recovery",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/recovery/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/recovery/prompt.txt",
+      "source_filename": "exec-1070fc4a-fddd-4139-807f-764b4fd5cc07.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1070fc4a-fddd-4139-807f-764b4fd5cc07.png",
+      "source_sha256": "8a91518991c12bb8ec382718857c258ec212c0d6b2e673f8d0e79cd215a56646",
+      "png_sha256": "8a91518991c12bb8ec382718857c258ec212c0d6b2e673f8d0e79cd215a56646",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m14/idle_candidate.png",
+      "identity_reference_sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1312,
+          1199
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1064755,
+        "alpha_zero_fraction": 0.6768566030635286,
+        "low_alpha_1_15_pixel_count": 37567,
+        "opaque_pixel_count": 424,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            32,
+            29,
+            1299,
+            1199
+          ],
+          "bounds_xywh": [
+            32,
+            29,
+            1267,
+            1170
+          ],
+          "effective_pixel_count": 508333,
+          "edge_pixel_count": 4,
+          "margins_ltrb": [
+            32,
+            29,
+            13,
+            0
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            37,
+            32,
+            1295,
+            1179
+          ],
+          "bounds_xywh": [
+            37,
+            32,
+            1258,
+            1147
+          ],
+          "effective_pixel_count": 470766,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            37,
+            32,
+            17,
+            20
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            38,
+            32,
+            1294,
+            1178
+          ],
+          "bounds_xywh": [
+            38,
+            32,
+            1256,
+            1146
+          ],
+          "effective_pixel_count": 461896,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            38,
+            32,
+            18,
+            21
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            547,
+            1117
+          ],
+          [
+            1152,
+            978
+          ]
+        ],
+        "foot_midpoint": [
+          849.5,
+          1047.5
+        ],
+        "anatomical_crown_xy_manual": [
+          833,
+          35
+        ],
+        "body_height_excluding_weapon_tail_accessories": 1012.5,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 1012.5,
+        "maximum_display_body_px_at_1_5_sampling_margin": 675.0,
+        "visual_review": "Both blades lowered toward hips, clear recovery stance.",
+        "defects": [
+          "Minimum strong-alpha margin below requested 8%."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m14/recovery: B07-M14 twin-blade guard. Preserve two SHORT crescent copper-gold blades, one in EACH hand, long flexible neck, red-brown light armor and red scarf, long tail. RECOVERY key pose after the second/right cut: both blades visibly DRAWN BACK safely toward hips with tips pointing downward and outward, elbows bent and lowered, shoulders dropping, torso unwinds to a stable slightly slumped stance. One foot is slightly forward from the second stepping cut, both feet planted and visible. Tail settles low in a curve. Clearly an end-of-combo pause, not attacking, not idle's raised blade. This is only a recovery sample, not the missing second-hit frames."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M14",
+      "action": "blade_arc",
+      "variant": "blade_arc_design_fix",
+      "category": "effect_or_prop",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc_design_fix/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc_design_fix/prompt.txt",
+      "source_filename": "exec-3a25033a-abf5-4d90-aaee-83641048645c.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3a25033a-abf5-4d90-aaee-83641048645c.png",
+      "source_sha256": "b80f1d24ddc8f5ee0c1b5cbcafea59e156123a3c516d1477863896ed65321843",
+      "png_sha256": "b80f1d24ddc8f5ee0c1b5cbcafea59e156123a3c516d1477863896ed65321843",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m14/idle_candidate.png",
+      "identity_reference_sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1312,
+          1199
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1402331,
+        "alpha_zero_fraction": 0.8914510822026486,
+        "low_alpha_1_15_pixel_count": 58816,
+        "opaque_pixel_count": 0,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            65,
+            21,
+            1250,
+            1175
+          ],
+          "bounds_xywh": [
+            65,
+            21,
+            1185,
+            1154
+          ],
+          "effective_pixel_count": 170757,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            65,
+            21,
+            62,
+            24
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            169,
+            356,
+            1170,
+            1110
+          ],
+          "bounds_xywh": [
+            169,
+            356,
+            1001,
+            754
+          ],
+          "effective_pixel_count": 111941,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            169,
+            356,
+            142,
+            89
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            175,
+            377,
+            1152,
+            1105
+          ],
+          "bounds_xywh": [
+            175,
+            377,
+            977,
+            728
+          ],
+          "effective_pixel_count": 63440,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            175,
+            377,
+            160,
+            94
+          ]
+        },
+        "visual_review": "One simple connected amber slash arc; branch lobes and turquoise streaks removed on the single correction. No character or weapon.",
+        "defects": [
+          "Arc extent is illustrative rather than a verified 60-degree geometric primitive; do not use PNG pixels as hit geometry.",
+          "Soft ribbon falloff still wider than its narrow bright core."
+        ]
+      },
+      "prompt_text": "Use case: precise-object-edit. Single targeted correction to standalone game VFX candidate. Keep this isolated effect's gold/amber palette only. Correct it to exactly ONE SIMPLE SINGLE thin curved luminous crescent sliver with two tapered endpoints. Remove all branching fork shapes, side lobes, extra overlapping trails, turquoise streaks, and arrowheads. Make the thickness about 5% of the arc span, and visible sweep only about 60 degrees. No physical weapon, no geometric ornament, no sparks, no full ring. Pure transparent alpha background; generous margin. One restrained slash arc, not multiple cuts.",
+      "edit_target_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-46e0ca30-b9d8-4a0d-ad05-b08bb302c1ee.png",
+      "single_targeted_revision": true
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M15",
+      "action": "telegraph",
+      "variant": "telegraph",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/telegraph/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/telegraph/prompt.txt",
+      "source_filename": "exec-0352e3aa-d3dd-4825-81a0-08126175fa86.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-0352e3aa-d3dd-4825-81a0-08126175fa86.png",
+      "source_sha256": "db5bd5b2fe771bfbc1dff0d3ae015264eda6d77db5492f27c3599e35dfc98ef5",
+      "png_sha256": "db5bd5b2fe771bfbc1dff0d3ae015264eda6d77db5492f27c3599e35dfc98ef5",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m15/idle_candidate.png",
+      "identity_reference_sha256": "a5fe604aa560ecb29c7ebd110a2a4fb55dc5840a333b230ed5454544ef435d01",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1303,
+          1207
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 856510,
+        "alpha_zero_fraction": 0.5446039062236723,
+        "low_alpha_1_15_pixel_count": 47473,
+        "opaque_pixel_count": 1220,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            0,
+            23,
+            1291,
+            1197
+          ],
+          "bounds_xywh": [
+            0,
+            23,
+            1291,
+            1174
+          ],
+          "effective_pixel_count": 716211,
+          "edge_pixel_count": 3,
+          "margins_ltrb": [
+            0,
+            23,
+            12,
+            10
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            79,
+            30,
+            1289,
+            1195
+          ],
+          "bounds_xywh": [
+            79,
+            30,
+            1210,
+            1165
+          ],
+          "effective_pixel_count": 668738,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            79,
+            30,
+            14,
+            12
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            80,
+            31,
+            1288,
+            1194
+          ],
+          "bounds_xywh": [
+            80,
+            31,
+            1208,
+            1163
+          ],
+          "effective_pixel_count": 656907,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            80,
+            31,
+            15,
+            13
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            450,
+            1124
+          ],
+          [
+            1065,
+            1034
+          ]
+        ],
+        "foot_midpoint": [
+          757.5,
+          1079.0
+        ],
+        "anatomical_crown_xy_manual": [
+          869,
+          477
+        ],
+        "body_height_excluding_weapon_tail_accessories": 602.0,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 602.0,
+        "maximum_display_body_px_at_1_5_sampling_margin": 401.33,
+        "visual_review": "Flag hoist with hunched braced stance and two hands on pole.",
+        "defects": [
+          "Telegraph-to-execute silhouette difference is moderate; still missing in-between and timing.",
+          "Minimum strong-alpha margin below requested 8%."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m15/telegraph: B07-M15 camouflage banner lizard. Preserve hunched slim golden lizard, curled tail, light armor turquoise clasps, exactly THREE attached layered physical fan-shaped cloth banners: ivory, terracotta and muted sage, with same sun motif. Preserve ONE tall gold-tipped flag staff gripped with BOTH hands, anatomical left hand upper and right hand lower as reference. TELEGRAPH: body crouches and braces, both hands hoist the same staff upward and slightly backward, cloth gathers and lifts into a compact fan over the back. Full staff/finial/all three cloth panels visible. All feet visible; silhouette solid and fully visible, no actual fading/camouflage."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M15",
+      "action": "execute",
+      "variant": "execute_framing_fix",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute_framing_fix/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute_framing_fix/prompt.txt",
+      "source_filename": "exec-ac17a098-f1b6-4b10-885e-f2955db6f985.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ac17a098-f1b6-4b10-885e-f2955db6f985.png",
+      "source_sha256": "e52e136d1225efb94986285b0e7136d46fa46e671e6230040a8efe77a12ff542",
+      "png_sha256": "e52e136d1225efb94986285b0e7136d46fa46e671e6230040a8efe77a12ff542",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m15/idle_candidate.png",
+      "identity_reference_sha256": "a5fe604aa560ecb29c7ebd110a2a4fb55dc5840a333b230ed5454544ef435d01",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1303,
+          1207
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1007323,
+        "alpha_zero_fraction": 0.6404969476467854,
+        "low_alpha_1_15_pixel_count": 53567,
+        "opaque_pixel_count": 2084,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            0,
+            0,
+            1279,
+            1207
+          ],
+          "bounds_xywh": [
+            0,
+            0,
+            1279,
+            1207
+          ],
+          "effective_pixel_count": 565398,
+          "edge_pixel_count": 61,
+          "margins_ltrb": [
+            0,
+            0,
+            24,
+            0
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            94,
+            79,
+            1217,
+            1123
+          ],
+          "bounds_xywh": [
+            94,
+            79,
+            1123,
+            1044
+          ],
+          "effective_pixel_count": 511831,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            94,
+            79,
+            86,
+            84
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            95,
+            80,
+            1216,
+            1123
+          ],
+          "bounds_xywh": [
+            95,
+            80,
+            1121,
+            1043
+          ],
+          "effective_pixel_count": 501088,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            95,
+            80,
+            87,
+            84
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            496,
+            1065
+          ],
+          [
+            1007,
+            1001
+          ]
+        ],
+        "foot_midpoint": [
+          751.5,
+          1033.0
+        ],
+        "anatomical_crown_xy_manual": [
+          820,
+          472
+        ],
+        "body_height_excluding_weapon_tail_accessories": 561.0,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 561.0,
+        "maximum_display_body_px_at_1_5_sampling_margin": 374.0,
+        "visual_review": "Raised flag, extended neck and wider open banner fan.",
+        "defects": [
+          "Framing improved once, but requested 10% margin is not fully achieved.",
+          "Minor flag pattern redraw, not exact continuous animation."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: precise-object-edit. Repair framing only in this transparent game action candidate. Keep EXACTLY the current character identity, every color, pose, hands, equipment, action direction, and proportions unchanged. The first image is the target. Re-render the same complete silhouette at a smaller scale occupying no more than 78% of the canvas width and height, centered with AT LEAST 10% pure transparent empty margin on each side. Ensure every weapon blade / flag finial / cloth panel / claw / tail tip is fully visible with generous safety margin. Do not invent detail, change the pose, add effects or add background. Genuine alpha=0 background. No crop, no ground, no halo. Save native transparent image; do not simply increase canvas around clipped tips.",
+      "edit_target_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-c0217b04-79e2-45b7-8850-2b4239365695.png",
+      "single_targeted_revision": true
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M15",
+      "action": "recovery",
+      "variant": "recovery",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/recovery/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/recovery/prompt.txt",
+      "source_filename": "exec-5ca9def3-72a5-49ae-b2fb-6d1b61261dc7.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5ca9def3-72a5-49ae-b2fb-6d1b61261dc7.png",
+      "source_sha256": "2a0b46b6caf8e8817662f0ff01202a7f383e99f0a7808265adc3949ec86fce27",
+      "png_sha256": "2a0b46b6caf8e8817662f0ff01202a7f383e99f0a7808265adc3949ec86fce27",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m15/idle_candidate.png",
+      "identity_reference_sha256": "a5fe604aa560ecb29c7ebd110a2a4fb55dc5840a333b230ed5454544ef435d01",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1303,
+          1207
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1000819,
+        "alpha_zero_fraction": 0.6363614398230837,
+        "low_alpha_1_15_pixel_count": 42528,
+        "opaque_pixel_count": 512,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            73,
+            9,
+            1279,
+            1207
+          ],
+          "bounds_xywh": [
+            73,
+            9,
+            1206,
+            1198
+          ],
+          "effective_pixel_count": 571902,
+          "edge_pixel_count": 25,
+          "margins_ltrb": [
+            73,
+            9,
+            24,
+            0
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            180,
+            11,
+            1203,
+            1190
+          ],
+          "bounds_xywh": [
+            180,
+            11,
+            1023,
+            1179
+          ],
+          "effective_pixel_count": 529374,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            180,
+            11,
+            100,
+            17
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            181,
+            12,
+            1203,
+            1190
+          ],
+          "bounds_xywh": [
+            181,
+            12,
+            1022,
+            1178
+          ],
+          "effective_pixel_count": 519654,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            181,
+            12,
+            100,
+            17
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            661,
+            1116
+          ],
+          [
+            1041,
+            982
+          ]
+        ],
+        "foot_midpoint": [
+          851.0,
+          1049.0
+        ],
+        "anatomical_crown_xy_manual": [
+          967,
+          322
+        ],
+        "body_height_excluding_weapon_tail_accessories": 727.0,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 727.0,
+        "maximum_display_body_px_at_1_5_sampling_margin": 484.67,
+        "visual_review": "Lowered diagonal pole and sagging three cloth layers.",
+        "defects": [
+          "Grip order/orientation changes with pole tilt and needs animation hand-lock review.",
+          "Top finial margin below requested 8%."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m15/recovery: B07-M15 camouflage banner lizard. Preserve hunched slim golden lizard, curled tail, light armor turquoise clasps, exactly THREE attached layered physical fan-shaped cloth banners: ivory, terracotta and muted sage, same sun motif. Preserve ONE tall gold-tipped flag staff gripped with BOTH hands, anatomical left hand upper and right hand lower as reference. RECOVERY: tired lower stance, hands drop staff diagonally beside body with its bottom near the right foot, shoulders slack and knees bent; flag's three cloth panels visibly droop and fold downward behind shoulder instead of flying high. Full pole and panels, both feet, entire curly tail visible. No broken flag, no camouflage effect or magic."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M15",
+      "action": "fallen_banner",
+      "variant": "fallen_banner",
+      "category": "effect_or_prop",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/fallen_banner/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/fallen_banner/prompt.txt",
+      "source_filename": "exec-1396d026-b21c-4522-b904-053bc6c78155.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1396d026-b21c-4522-b904-053bc6c78155.png",
+      "source_sha256": "cb9de73edc59e5c0e490e5b31fc74fe25331861a042ae5885155ee31c6bb1a5b",
+      "png_sha256": "cb9de73edc59e5c0e490e5b31fc74fe25331861a042ae5885155ee31c6bb1a5b",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m15/idle_candidate.png",
+      "identity_reference_sha256": "a5fe604aa560ecb29c7ebd110a2a4fb55dc5840a333b230ed5454544ef435d01",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1536,
+          1024
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1000707,
+        "alpha_zero_fraction": 0.6362323760986328,
+        "low_alpha_1_15_pixel_count": 33941,
+        "opaque_pixel_count": 0,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            19,
+            21,
+            1519,
+            1024
+          ],
+          "bounds_xywh": [
+            19,
+            21,
+            1500,
+            1003
+          ],
+          "effective_pixel_count": 572157,
+          "edge_pixel_count": 5,
+          "margins_ltrb": [
+            19,
+            21,
+            17,
+            0
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            27,
+            89,
+            1517,
+            862
+          ],
+          "bounds_xywh": [
+            27,
+            89,
+            1490,
+            773
+          ],
+          "effective_pixel_count": 538216,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            27,
+            89,
+            19,
+            162
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            28,
+            90,
+            1516,
+            860
+          ],
+          "bounds_xywh": [
+            28,
+            90,
+            1488,
+            770
+          ],
+          "effective_pixel_count": 530275,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            28,
+            90,
+            20,
+            164
+          ]
+        },
+        "visual_review": "Exactly three original-color cloth panels and sun motifs, fallen tilted flag assembly; no character. Normal alpha compositing required for preview halo.",
+        "defects": [
+          "Long staff lower extension is not clearly distinguishable from fan crossbars; verify physical flag topology before a detach animation.",
+          "Fabric looks tilted/draped rather than heavily crumpled; this is a fallen-prop candidate, not a validated state transition."
+        ]
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: ONE standalone transparent game skill-effect or physical-prop candidate, not a sprite sheet. Painterly crisp 2.5D fantasy art matching the provided identity reference's warm copper-gold, sandstone ivory, vermilion and turquoise palette, warm upper-left lighting, elevated game view. Reference is STYLE/MATERIAL/EQUIPMENT ONLY. NO character, body, hands, creature, room, floor, environment, ground plate, cast shadow, text, labels or interface. Genuine transparent alpha background. Entire requested asset inside central 75% of canvas with generous empty alpha=0 margins, all tips visible, do not crop. One isolated object/effect only; design candidate, not a programmed hit area.\nASSET m15/fallen_banner: The reference lizard's physical flag ONLY after it has fallen: one bronze-red wrapped pole with gold spear-shaped finial, exactly THREE connected layered ivory/terracotta/muted-sage cloth banners, original sun motifs and turquoise tassel fittings. It lies tipped diagonally sideways, fabric crumpled and sagging in a readable detached prop silhouette, pole remains one intact item, no lizard or hand, no floor beneath it. Unpowered fallen condition, no magic glow."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M16",
+      "action": "telegraph",
+      "variant": "telegraph",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/telegraph/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/telegraph/prompt.txt",
+      "source_filename": "exec-a29061b2-3e11-49dc-bcc4-72272456c5d1.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-a29061b2-3e11-49dc-bcc4-72272456c5d1.png",
+      "source_sha256": "a9d6d22cb778365fcc18fa05170174765394001de482899f3904abc8950bb955",
+      "png_sha256": "a9d6d22cb778365fcc18fa05170174765394001de482899f3904abc8950bb955",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m16/idle_candidate.png",
+      "identity_reference_sha256": "b7c22057e1515742638f779c77ab5f602ac89b02a036a5f9be00b4ad9fa4c3c2",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1071553,
+        "alpha_zero_fraction": 0.6814258169710197,
+        "low_alpha_1_15_pixel_count": 28029,
+        "opaque_pixel_count": 657,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            34,
+            60,
+            1230,
+            1198
+          ],
+          "bounds_xywh": [
+            34,
+            60,
+            1196,
+            1138
+          ],
+          "effective_pixel_count": 500963,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            34,
+            60,
+            24,
+            56
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            36,
+            135,
+            1227,
+            1168
+          ],
+          "bounds_xywh": [
+            36,
+            135,
+            1191,
+            1033
+          ],
+          "effective_pixel_count": 472934,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            36,
+            135,
+            27,
+            86
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            37,
+            136,
+            1226,
+            1167
+          ],
+          "bounds_xywh": [
+            37,
+            136,
+            1189,
+            1031
+          ],
+          "effective_pixel_count": 465774,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            37,
+            136,
+            28,
+            87
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            497,
+            1106
+          ],
+          [
+            1147,
+            968
+          ]
+        ],
+        "foot_midpoint": [
+          822.0,
+          1037.0
+        ],
+        "anatomical_crown_xy_manual": [
+          875,
+          138
+        ],
+        "body_height_excluding_weapon_tail_accessories": 899.0,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 899.0,
+        "maximum_display_body_px_at_1_5_sampling_margin": 599.33,
+        "visual_review": "Both hands adjust closed lenses, head turned toward sweep start.",
+        "defects": [
+          "Torso not a deep crouch; charging relies partly on hands/head.",
+          "Side margin below requested 8%."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m16/telegraph: B07-M16 crystal-goggle stargazer lizard. Preserve broad eyes/narrow snout, exactly two round amber faceted CRYSTAL GOGGLE LENSES in ornate bronze eye frame, orange head crest, deep-red hooded short robe/ivory front cloth, long tail, no held weapon. TELEGRAPH: deep forward crouch with neck and goggled head pulled back and turned toward initial screen-left sweep limit, both small clawed hands raised to either temple adjusting the two goggle mounts. Both lenses CLOSED DOWN over eyes and visible. Knees braced, tail low counterbalance. Clearly charging a head sweep through body pose only. No glow, no beam, no external light."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M16",
+      "action": "execute",
+      "variant": "execute",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/execute/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/execute/prompt.txt",
+      "source_filename": "exec-3f1fe19f-dbb8-4cee-902f-c074c4726f8d.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3f1fe19f-dbb8-4cee-902f-c074c4726f8d.png",
+      "source_sha256": "c4f79c882d196a17db4b7d15a51b5d10e2afc2b90290bca8a7ba1ac47fad4f29",
+      "png_sha256": "c4f79c882d196a17db4b7d15a51b5d10e2afc2b90290bca8a7ba1ac47fad4f29",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m16/idle_candidate.png",
+      "identity_reference_sha256": "b7c22057e1515742638f779c77ab5f602ac89b02a036a5f9be00b4ad9fa4c3c2",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1075562,
+        "alpha_zero_fraction": 0.6839752345922077,
+        "low_alpha_1_15_pixel_count": 32566,
+        "opaque_pixel_count": 1249,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            19,
+            21,
+            1244,
+            1254
+          ],
+          "bounds_xywh": [
+            19,
+            21,
+            1225,
+            1233
+          ],
+          "effective_pixel_count": 496954,
+          "edge_pixel_count": 9,
+          "margins_ltrb": [
+            19,
+            21,
+            10,
+            0
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            31,
+            142,
+            1242,
+            1153
+          ],
+          "bounds_xywh": [
+            31,
+            142,
+            1211,
+            1011
+          ],
+          "effective_pixel_count": 464388,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            31,
+            142,
+            12,
+            101
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            32,
+            143,
+            1241,
+            1153
+          ],
+          "bounds_xywh": [
+            32,
+            143,
+            1209,
+            1010
+          ],
+          "effective_pixel_count": 456636,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            32,
+            143,
+            13,
+            101
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            477,
+            1083
+          ],
+          [
+            1086,
+            959
+          ]
+        ],
+        "foot_midpoint": [
+          781.5,
+          1021.0
+        ],
+        "anatomical_crown_xy_manual": [
+          872,
+          143
+        ],
+        "body_height_excluding_weapon_tail_accessories": 878.0,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 878.0,
+        "maximum_display_body_px_at_1_5_sampling_margin": 585.33,
+        "visual_review": "Neck thrust and head turned to opposite sweep end, hands spread.",
+        "defects": [
+          "Right-hand claw margin tight; below requested 8%.",
+          "A single pose cannot establish a precise 60-degree animated sweep."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m16/execute: B07-M16 crystal-goggle stargazer lizard. Preserve broad eyes/narrow snout, exactly two round amber faceted CRYSTAL GOGGLE LENSES in ornate bronze eye frame, orange head crest, deep-red hooded short robe/ivory front cloth, long tail, no held weapon. EXECUTE: body braced in wide crouch, hips stable, long neck thrust out toward screen-right and head turned strongly to sweep endpoint while shoulders twist, both hands spread away from temples for balance. Both crystal lenses remain down over eyes; reflect warm material highlights only. Distinct sweeping-head key pose with full tail counterbalancing. No actual beam or scan arc, no trails or duplicate heads."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M16",
+      "action": "recovery",
+      "variant": "recovery",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/recovery/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/recovery/prompt.txt",
+      "source_filename": "exec-d4df1cb3-f70a-4b46-b1b2-6ea19cdc95b2.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d4df1cb3-f70a-4b46-b1b2-6ea19cdc95b2.png",
+      "source_sha256": "bdc46b05a71ec99e6d8cc19a58fe8798109cb22617843d42dd6b5a143d72b107",
+      "png_sha256": "bdc46b05a71ec99e6d8cc19a58fe8798109cb22617843d42dd6b5a143d72b107",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m16/idle_candidate.png",
+      "identity_reference_sha256": "b7c22057e1515742638f779c77ab5f602ac89b02a036a5f9be00b4ad9fa4c3c2",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1035789,
+        "alpha_zero_fraction": 0.6586826461543157,
+        "low_alpha_1_15_pixel_count": 29983,
+        "opaque_pixel_count": 682,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            30,
+            53,
+            1254,
+            1202
+          ],
+          "bounds_xywh": [
+            30,
+            53,
+            1224,
+            1149
+          ],
+          "effective_pixel_count": 536727,
+          "edge_pixel_count": 16,
+          "margins_ltrb": [
+            30,
+            53,
+            0,
+            52
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            33,
+            90,
+            1245,
+            1196
+          ],
+          "bounds_xywh": [
+            33,
+            90,
+            1212,
+            1106
+          ],
+          "effective_pixel_count": 506744,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            33,
+            90,
+            9,
+            58
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            34,
+            91,
+            1244,
+            1196
+          ],
+          "bounds_xywh": [
+            34,
+            91,
+            1210,
+            1105
+          ],
+          "effective_pixel_count": 498834,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            34,
+            91,
+            10,
+            58
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            606,
+            1130
+          ],
+          [
+            1047,
+            989
+          ]
+        ],
+        "foot_midpoint": [
+          826.5,
+          1059.5
+        ],
+        "anatomical_crown_xy_manual": [
+          853,
+          93
+        ],
+        "body_height_excluding_weapon_tail_accessories": 966.5,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 966.5,
+        "maximum_display_body_px_at_1_5_sampling_margin": 644.33,
+        "visual_review": "Exactly one hinged lens lifted, one visible natural eye, other lens closed.",
+        "defects": [
+          "Raised hand right margin tight; below requested 8%."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m16/recovery: B07-M16 crystal-goggle stargazer lizard. Preserve broad eyes/narrow snout, exactly two round amber faceted CRYSTAL GOGGLE LENSES in ornate bronze eye frame, orange head crest, deep-red hooded short robe/ivory front cloth, long tail, no held weapon. RECOVERY weak-point pose: crouched exhausted forward lean; anatomical LEFT hand at screen-right visibly flips open ONLY the screen-right amber lens on its physical hinge upward above eyebrow, revealing a single unprotected natural golden lizard eye below. Opposite screen-left lens stays down covering its eye. Open lens remains attached to goggle frame, not removed. Other hand hangs near knee, both feet planted, tail relaxed. Show unmistakably one lens open / one shut, no glow."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M16",
+      "action": "eye_light_arc",
+      "variant": "eye_light_arc_design_fix",
+      "category": "effect_or_prop",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc_design_fix/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc_design_fix/prompt.txt",
+      "source_filename": "exec-98cf5514-a518-4036-af7f-33b2b3734609.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-98cf5514-a518-4036-af7f-33b2b3734609.png",
+      "source_sha256": "c6c7802422d1f3b65426aebb559282737eb71528036ad81748bf8a2ae27db461",
+      "png_sha256": "c6c7802422d1f3b65426aebb559282737eb71528036ad81748bf8a2ae27db461",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m16/idle_candidate.png",
+      "identity_reference_sha256": "b7c22057e1515742638f779c77ab5f602ac89b02a036a5f9be00b4ad9fa4c3c2",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1432701,
+        "alpha_zero_fraction": 0.9110883450470456,
+        "low_alpha_1_15_pixel_count": 52985,
+        "opaque_pixel_count": 0,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            31,
+            53,
+            1241,
+            1188
+          ],
+          "bounds_xywh": [
+            31,
+            53,
+            1210,
+            1135
+          ],
+          "effective_pixel_count": 139815,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            31,
+            53,
+            13,
+            66
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            57,
+            352,
+            1227,
+            1048
+          ],
+          "bounds_xywh": [
+            57,
+            352,
+            1170,
+            696
+          ],
+          "effective_pixel_count": 86830,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            57,
+            352,
+            27,
+            206
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            67,
+            372,
+            1218,
+            1037
+          ],
+          "bounds_xywh": [
+            67,
+            372,
+            1151,
+            665
+          ],
+          "effective_pixel_count": 33226,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            67,
+            372,
+            36,
+            217
+          ]
+        },
+        "visual_review": "Single very fine smooth amber core arc; crystals and extra fragments removed on one correction.",
+        "defects": [
+          "Soft outer glow remains comparatively broad; composite opacity should be tuned in engine.",
+          "Actual angle and hit area remain code-owned, not image-owned."
+        ]
+      },
+      "prompt_text": "Use case: precise-object-edit. Single targeted correction to standalone game VFX candidate. Keep the warm amber scanning-light palette. Replace the thick ornate crystal-decorated ribbon with ONE VERY THIN SMOOTH AMBER LIGHT ARC, about 60 degrees of curve, tapered endpoints, ribbon thickness only 3% of its span. REMOVE every diamond/crystal/solid decoration, spark and turquoise streak. No physical object, no full ring, no multiple lines, no broad white flash. Soft restrained alpha falloff limited to narrow arc. Genuine transparent background; generous margin.",
+      "edit_target_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-30257f02-6750-4254-8d25-78e5318770c3.png",
+      "single_targeted_revision": true
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M17",
+      "action": "telegraph",
+      "variant": "telegraph",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/telegraph/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/telegraph/prompt.txt",
+      "source_filename": "exec-970448a2-914e-46e5-bacd-dc775d50ed64.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-970448a2-914e-46e5-bacd-dc775d50ed64.png",
+      "source_sha256": "71b36484d086081428d3e7d4105c8a939c75cafd3d21b602f2f0fddc675d7b4f",
+      "png_sha256": "71b36484d086081428d3e7d4105c8a939c75cafd3d21b602f2f0fddc675d7b4f",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m17/idle_candidate.png",
+      "identity_reference_sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 953528,
+        "alpha_zero_fraction": 0.6063709367663032,
+        "low_alpha_1_15_pixel_count": 27651,
+        "opaque_pixel_count": 761,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            0,
+            17,
+            1238,
+            1254
+          ],
+          "bounds_xywh": [
+            0,
+            17,
+            1238,
+            1237
+          ],
+          "effective_pixel_count": 618988,
+          "edge_pixel_count": 1,
+          "margins_ltrb": [
+            0,
+            17,
+            16,
+            0
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            59,
+            22,
+            1232,
+            1217
+          ],
+          "bounds_xywh": [
+            59,
+            22,
+            1173,
+            1195
+          ],
+          "effective_pixel_count": 591337,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            59,
+            22,
+            22,
+            37
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            60,
+            23,
+            1230,
+            1216
+          ],
+          "bounds_xywh": [
+            60,
+            23,
+            1170,
+            1193
+          ],
+          "effective_pixel_count": 584425,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            60,
+            23,
+            24,
+            38
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            440,
+            1150
+          ],
+          [
+            1067,
+            989
+          ]
+        ],
+        "foot_midpoint": [
+          753.5,
+          1069.5
+        ],
+        "anatomical_crown_xy_manual": [
+          791,
+          352
+        ],
+        "body_height_excluding_weapon_tail_accessories": 717.5,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 717.5,
+        "maximum_display_body_px_at_1_5_sampling_margin": 478.33,
+        "visual_review": "Both stone fists raised, exactly two shoulder obelisks attached.",
+        "defects": [
+          "Upper fist margins below requested 8%.",
+          "Raised arm proportions need cross-pose alignment."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m17/telegraph: B07-M17 living-lizard obelisk heavy guard. Preserve broad stocky golden/ivory lizard, EXACTLY TWO tall tapered sandstone OBELISK SHOULDER ARMOR pieces mounted to shoulders, copper seams/turquoise inlays, two enormous stone gauntlets, red scarf/loincloth, thick fleshy scaled tail. TELEGRAPH ground slam: spread clawed feet wide, knees bent, torso leans slightly back; lift BOTH stone fists high above and ahead of shoulders, elbows bent outward, preparing a double fist overhead slam. Both obelisk shoulder towers remain firmly attached and anatomically separate from the hands. Entire fists, towers, clawed feet, thick tail fit. Living reptile, not a stone golem. No terrain or cracks."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M17",
+      "action": "execute",
+      "variant": "execute",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/execute/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/execute/prompt.txt",
+      "source_filename": "exec-adc23fe7-7d70-4eeb-9ad6-ec08bfc0f2d5.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-adc23fe7-7d70-4eeb-9ad6-ec08bfc0f2d5.png",
+      "source_sha256": "f1b9e7be76fab4bd2394f3b1bb43595472d361a240ddb9c8894aa0c3bea44144",
+      "png_sha256": "f1b9e7be76fab4bd2394f3b1bb43595472d361a240ddb9c8894aa0c3bea44144",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m17/idle_candidate.png",
+      "identity_reference_sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 895562,
+        "alpha_zero_fraction": 0.5695089906875351,
+        "low_alpha_1_15_pixel_count": 19212,
+        "opaque_pixel_count": 745,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            0,
+            120,
+            1224,
+            1254
+          ],
+          "bounds_xywh": [
+            0,
+            120,
+            1224,
+            1134
+          ],
+          "effective_pixel_count": 676954,
+          "edge_pixel_count": 13,
+          "margins_ltrb": [
+            0,
+            120,
+            30,
+            0
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            55,
+            123,
+            1222,
+            1126
+          ],
+          "bounds_xywh": [
+            55,
+            123,
+            1167,
+            1003
+          ],
+          "effective_pixel_count": 657742,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            55,
+            123,
+            32,
+            128
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            56,
+            124,
+            1221,
+            1125
+          ],
+          "bounds_xywh": [
+            56,
+            124,
+            1165,
+            1001
+          ],
+          "effective_pixel_count": 652110,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            56,
+            124,
+            33,
+            129
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            262,
+            933
+          ],
+          [
+            908,
+            944
+          ]
+        ],
+        "foot_midpoint": [
+          585.0,
+          938.5
+        ],
+        "anatomical_crown_xy_manual": [
+          809,
+          337
+        ],
+        "body_height_excluding_weapon_tail_accessories": 601.5,
+        "semantic_landmark_uncertainty_px": 35,
+        "maximum_display_body_px_at_1_to_1_sampling": 601.5,
+        "maximum_display_body_px_at_1_5_sampling_margin": 401.0,
+        "visual_review": "Both fists strike at a common imaginary ground plane, living lizard crouches behind.",
+        "defects": [
+          "Far/right foot toes partly hidden by fist; foot center is uncertain ±35px.",
+          "No drawn cross or impact terrain; ground hit geometry remains separate."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m17/execute: B07-M17 living-lizard obelisk heavy guard. Preserve broad stocky golden/ivory lizard, EXACTLY TWO tall tapered sandstone OBELISK SHOULDER ARMOR pieces mounted to shoulders, copper seams/turquoise inlays, two enormous stone gauntlets, red scarf/loincloth, thick fleshy scaled tail. EXECUTE double-fist ground slam contact pose: deeply bent knees, torso hinging forward, BOTH massive stone fists pressed down at imaginary ground level in front of the body, one on each side with their bottom surfaces level; head lowered but reptilian face visible between the two fixed shoulder obelisks. Both clawed feet visible behind/outside fists. Thick tail lifts slightly behind for counterweight. No terrain, no ground surface, no cracks, no cross mark, no debris or shockwave; cross-shaped strike VFX is separate."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M17",
+      "action": "recovery",
+      "variant": "recovery",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/recovery/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/recovery/prompt.txt",
+      "source_filename": "exec-d6c54aea-0b33-420f-b635-ca8e6fbd15d1.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d6c54aea-0b33-420f-b635-ca8e6fbd15d1.png",
+      "source_sha256": "d82b4e289c77034e669452e60dad241887ace9f153138bf67befeefde2ab1157",
+      "png_sha256": "d82b4e289c77034e669452e60dad241887ace9f153138bf67befeefde2ab1157",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m17/idle_candidate.png",
+      "identity_reference_sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 960769,
+        "alpha_zero_fraction": 0.6109756593891572,
+        "low_alpha_1_15_pixel_count": 15373,
+        "opaque_pixel_count": 1442,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            39,
+            19,
+            1236,
+            1254
+          ],
+          "bounds_xywh": [
+            39,
+            19,
+            1197,
+            1235
+          ],
+          "effective_pixel_count": 611747,
+          "edge_pixel_count": 30,
+          "margins_ltrb": [
+            39,
+            19,
+            18,
+            0
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            65,
+            53,
+            1184,
+            1205
+          ],
+          "bounds_xywh": [
+            65,
+            53,
+            1119,
+            1152
+          ],
+          "effective_pixel_count": 596374,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            65,
+            53,
+            70,
+            49
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            66,
+            54,
+            1183,
+            1205
+          ],
+          "bounds_xywh": [
+            66,
+            54,
+            1117,
+            1151
+          ],
+          "effective_pixel_count": 591567,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            66,
+            54,
+            71,
+            49
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            517,
+            1137
+          ],
+          [
+            1037,
+            1007
+          ]
+        ],
+        "foot_midpoint": [
+          777.0,
+          1072.0
+        ],
+        "anatomical_crown_xy_manual": [
+          835,
+          258
+        ],
+        "body_height_excluding_weapon_tail_accessories": 814.0,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 814.0,
+        "maximum_display_body_px_at_1_5_sampling_margin": 542.67,
+        "visual_review": "Stone fists braced at knees, lowered head and tired hunched stance.",
+        "defects": [
+          "Fist-knee contact reads but requires rigged continuity verification.",
+          "Shoulder towers impose large alpha bbox not body height."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m17/recovery: B07-M17 living-lizard obelisk heavy guard. Preserve broad stocky golden/ivory lizard, EXACTLY TWO tall tapered sandstone OBELISK SHOULDER ARMOR pieces mounted to shoulders, copper seams/turquoise inlays, two enormous stone gauntlets, red scarf/loincloth, thick fleshy scaled tail. RECOVERY after slam: torso hunched and tired, BOTH elbows bent downward and the huge stone fists braced against the fronts/tops of its OWN knees while it slowly straightens. Hands/fists are on knees, not touching imaginary ground and not raised to attack. Both feet planted wide, head droops, thick tail relaxed. Shoulder towers firmly attached, complete and unclipped. No ground or VFX."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M17",
+      "action": "sandstone_impact",
+      "variant": "sandstone_impact_design_fix",
+      "category": "effect_or_prop",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact_design_fix/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact_design_fix/prompt.txt",
+      "source_filename": "exec-08a741ef-772c-470f-8b3a-5b8b5ed69003.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-08a741ef-772c-470f-8b3a-5b8b5ed69003.png",
+      "source_sha256": "750384638ac694ba198a4d14b4fce43a202cec7f3b5ba478d222819b224b1d2d",
+      "png_sha256": "750384638ac694ba198a4d14b4fce43a202cec7f3b5ba478d222819b224b1d2d",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m17/idle_candidate.png",
+      "identity_reference_sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1059574,
+        "alpha_zero_fraction": 0.6738080884391637,
+        "low_alpha_1_15_pixel_count": 55951,
+        "opaque_pixel_count": 1437,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            67,
+            50,
+            1208,
+            1254
+          ],
+          "bounds_xywh": [
+            67,
+            50,
+            1141,
+            1204
+          ],
+          "effective_pixel_count": 512942,
+          "edge_pixel_count": 4,
+          "margins_ltrb": [
+            67,
+            50,
+            46,
+            0
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            113,
+            164,
+            1187,
+            1113
+          ],
+          "bounds_xywh": [
+            113,
+            164,
+            1074,
+            949
+          ],
+          "effective_pixel_count": 456991,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            113,
+            164,
+            67,
+            141
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            114,
+            166,
+            1187,
+            1112
+          ],
+          "bounds_xywh": [
+            114,
+            166,
+            1073,
+            946
+          ],
+          "effective_pixel_count": 447687,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            114,
+            166,
+            67,
+            142
+          ]
+        },
+        "visual_review": "Plain natural sandstone chips; all gemstone/metal armor details removed in one correction. No floor/cross/circle pattern.",
+        "defects": [
+          "Cluster is tall and illustrative; final scale/duration and ground perspective must be chosen in engine.",
+          "Several small grains beyond 7–10 main chips remain, intentional debris."
+        ]
+      },
+      "prompt_text": "Use case: precise-object-edit. Single targeted correction to standalone game VFX candidate. Keep the existing arrangement of the single compact stone-debris impact cluster, but correct ALL stones to plain natural ivory-sand sandstone. REMOVE EVERY turquoise gemstone, gold metallic plate, copper seam, engraved motif and armor panel. Irregular plain chipped rock only, warm lighting. 7 to 10 main scattered chips plus a few small grains, no floor, no ground plate, no cross or target geometry. This is earth debris, not shattered character armor. Genuine transparent alpha background and generous margin.",
+      "edit_target_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-2a07c5d5-fcdd-40d3-86fa-5b9f2ee6b162.png",
+      "single_targeted_revision": true
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M18",
+      "action": "telegraph",
+      "variant": "telegraph",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/telegraph/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/telegraph/prompt.txt",
+      "source_filename": "exec-8d613ba3-abd0-4230-8d0d-9a1249f56f23.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8d613ba3-abd0-4230-8d0d-9a1249f56f23.png",
+      "source_sha256": "2f92be2b4ae060114c7472447d752a7192cc654364c65d9689a957ddfa9a3693",
+      "png_sha256": "2f92be2b4ae060114c7472447d752a7192cc654364c65d9689a957ddfa9a3693",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m18/idle_candidate.png",
+      "identity_reference_sha256": "7c70a16d7faec7020d2715085440f1f60493c3aa68cd1fe1aa9cfc1174264fc1",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1024,
+          1536
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 886354,
+        "alpha_zero_fraction": 0.5635286966959635,
+        "low_alpha_1_15_pixel_count": 44761,
+        "opaque_pixel_count": 0,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            12,
+            10,
+            1024,
+            1495
+          ],
+          "bounds_xywh": [
+            12,
+            10,
+            1012,
+            1485
+          ],
+          "effective_pixel_count": 686510,
+          "edge_pixel_count": 19,
+          "margins_ltrb": [
+            12,
+            10,
+            0,
+            41
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            14,
+            12,
+            1014,
+            1492
+          ],
+          "bounds_xywh": [
+            14,
+            12,
+            1000,
+            1480
+          ],
+          "effective_pixel_count": 641749,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            14,
+            12,
+            10,
+            44
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            15,
+            13,
+            1013,
+            1492
+          ],
+          "bounds_xywh": [
+            15,
+            13,
+            998,
+            1479
+          ],
+          "effective_pixel_count": 631867,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            15,
+            13,
+            11,
+            44
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            457,
+            1425
+          ],
+          [
+            887,
+            1212
+          ]
+        ],
+        "foot_midpoint": [
+          672.0,
+          1318.5
+        ],
+        "anatomical_crown_xy_manual": [
+          609,
+          295
+        ],
+        "body_height_excluding_weapon_tail_accessories": 1023.5,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 1023.5,
+        "maximum_display_body_px_at_1_5_sampling_margin": 682.33,
+        "visual_review": "Empty hand raised beside crown, original right hand keeps scepter upright.",
+        "defects": [
+          "Camera materially lower than desired high-angle game view.",
+          "Crown/robe/tail margins tight; below requested 8%."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m18/telegraph: B07-M18 light conductor ceremonial lizard. Preserve slender long neck golden/ivory lizard, EXACTLY THREE physical gold solar rings vertically stacked on the tall narrow crown fixed to head, ivory ceremonial robes, turquoise jewelry, vermilion long tail ribbons and full long tail. Preserve the short sun-headed ritual SCEPTER in anatomical RIGHT hand (screen-left hand as reference); anatomical LEFT hand is empty. TELEGRAPH channel: knees slightly bend under robe, head inclines toward the crown, empty left palm lifts beside the crown as if guiding it; right hand raises short scepter upright to chest height. Physical crown does not detach. Full toes visible under robe. No glow, no translucent background halo; no beams, no additional rings."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M18",
+      "action": "execute",
+      "variant": "execute",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/execute/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/execute/prompt.txt",
+      "source_filename": "exec-916e2c1d-af75-41e7-8980-73f0bbfc7288.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-916e2c1d-af75-41e7-8980-73f0bbfc7288.png",
+      "source_sha256": "bbc75dbb7318467079eba57102d9d362b2816f7aab91b24c6ecbf87583aecef6",
+      "png_sha256": "bbc75dbb7318467079eba57102d9d362b2816f7aab91b24c6ecbf87583aecef6",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m18/idle_candidate.png",
+      "identity_reference_sha256": "7c70a16d7faec7020d2715085440f1f60493c3aa68cd1fe1aa9cfc1174264fc1",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1024,
+          1536
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 868792,
+        "alpha_zero_fraction": 0.5523630777994791,
+        "low_alpha_1_15_pixel_count": 51567,
+        "opaque_pixel_count": 0,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            11,
+            13,
+            1010,
+            1518
+          ],
+          "bounds_xywh": [
+            11,
+            13,
+            999,
+            1505
+          ],
+          "effective_pixel_count": 704072,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            11,
+            13,
+            14,
+            18
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            15,
+            16,
+            1008,
+            1515
+          ],
+          "bounds_xywh": [
+            15,
+            16,
+            993,
+            1499
+          ],
+          "effective_pixel_count": 652505,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            15,
+            16,
+            16,
+            21
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            16,
+            17,
+            1007,
+            1515
+          ],
+          "bounds_xywh": [
+            16,
+            17,
+            991,
+            1498
+          ],
+          "effective_pixel_count": 640532,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            16,
+            17,
+            17,
+            21
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            377,
+            1432
+          ],
+          [
+            891,
+            1227
+          ]
+        ],
+        "foot_midpoint": [
+          634.0,
+          1329.5
+        ],
+        "anatomical_crown_xy_manual": [
+          473,
+          292
+        ],
+        "body_height_excluding_weapon_tail_accessories": 1037.5,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 1037.5,
+        "maximum_display_body_px_at_1_5_sampling_margin": 691.67,
+        "visual_review": "Arms spread to two absent ally directions; original hand keeps scepter.",
+        "defects": [
+          "Scepter extends toward screen-left rather than requested screen-right, but maintains original holding hand.",
+          "Camera materially lower than desired high-angle game view.",
+          "Crown/robe/tail margins below requested 8%."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m18/execute: B07-M18 light conductor ceremonial lizard. Preserve slender long neck golden/ivory lizard, EXACTLY THREE physical gold solar rings vertically stacked on the tall narrow crown fixed to head, ivory ceremonial robes, turquoise jewelry, vermilion long tail ribbons and full long tail. Preserve short sun-headed ritual SCEPTER in anatomical RIGHT hand (screen-left as reference); anatomical LEFT hand empty. EXECUTE connecting to two absent allies: right scepter arm extends diagonally forward to screen-right at chest height, empty left arm extends outward in a separate open-palm gesture; torso leans into command, feet braced apart, head/crown proudly raised, tail counter-curves behind. Single character only. No allies, no connection lines, no shield, no beams/glows. Represent the cast through a genuinely expansive new body pose."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M18",
+      "action": "recovery",
+      "variant": "recovery",
+      "category": "pose",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/recovery/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/recovery/prompt.txt",
+      "source_filename": "exec-878ac509-b7f7-444b-be7b-79bf3b1c3278.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-878ac509-b7f7-444b-be7b-79bf3b1c3278.png",
+      "source_sha256": "a5d1a176e326d79ea9da46de6769036a28380b011bb30f6afe4cfd04e1bd4091",
+      "png_sha256": "a5d1a176e326d79ea9da46de6769036a28380b011bb30f6afe4cfd04e1bd4091",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m18/idle_candidate.png",
+      "identity_reference_sha256": "7c70a16d7faec7020d2715085440f1f60493c3aa68cd1fe1aa9cfc1174264fc1",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1024,
+          1536
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 913088,
+        "alpha_zero_fraction": 0.5805257161458334,
+        "low_alpha_1_15_pixel_count": 45936,
+        "opaque_pixel_count": 0,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            13,
+            44,
+            1014,
+            1536
+          ],
+          "bounds_xywh": [
+            13,
+            44,
+            1001,
+            1492
+          ],
+          "effective_pixel_count": 659776,
+          "edge_pixel_count": 14,
+          "margins_ltrb": [
+            13,
+            44,
+            10,
+            0
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            19,
+            46,
+            1011,
+            1405
+          ],
+          "bounds_xywh": [
+            19,
+            46,
+            992,
+            1359
+          ],
+          "effective_pixel_count": 613840,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            19,
+            46,
+            13,
+            131
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            20,
+            47,
+            1011,
+            1404
+          ],
+          "bounds_xywh": [
+            20,
+            47,
+            991,
+            1357
+          ],
+          "effective_pixel_count": 603415,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            20,
+            47,
+            13,
+            132
+          ]
+        },
+        "foot_contacts_manual": [
+          [
+            473,
+            1339
+          ],
+          [
+            949,
+            1260
+          ]
+        ],
+        "foot_midpoint": [
+          711.0,
+          1299.5
+        ],
+        "anatomical_crown_xy_manual": [
+          480,
+          269
+        ],
+        "body_height_excluding_weapon_tail_accessories": 1030.5,
+        "semantic_landmark_uncertainty_px": 20,
+        "maximum_display_body_px_at_1_to_1_sampling": 1030.5,
+        "maximum_display_body_px_at_1_5_sampling_margin": 687.0,
+        "visual_review": "Backward stagger, low scepter, empty hand reaches for balance; three crown rings intact.",
+        "defects": [
+          "Camera materially lower than desired high-angle game view.",
+          "Knees partly covered by long robe, so degree of buckle remains uncertain.",
+          "Side margins below requested 8%."
+        ],
+        "foot_anchor_runtime_registered": false
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m18/recovery: B07-M18 light conductor ceremonial lizard. Preserve slender long neck golden/ivory lizard, EXACTLY THREE physical gold solar rings vertically stacked on the tall narrow crown fixed to head, ivory ceremonial robes, turquoise jewelry, vermilion long tail ribbons and full long tail. Preserve short sun-headed ritual SCEPTER in anatomical RIGHT hand (screen-left as reference); anatomical LEFT hand empty. RECOVERY interrupted mirror-channel stagger: knees buckle, torso pitches diagonally backward and to screen-left, empty left hand reaches out for balance, right scepter arm drops low outward with head of scepter pointing down and no longer casting. Crown tilts with head but all three rings remain attached, unbroken; face shows loss of balance. Both feet still visible and bracing on imagined ground; full tail flared counterbalance. No broken mirror prop, no rings flying away, no magic or background."
+    },
+    {
+      "schema_version": 1,
+      "identity": "B07-M18",
+      "action": "support_node",
+      "variant": "support_node",
+      "category": "effect_or_prop",
+      "selected": true,
+      "status": "design_candidate_not_runtime_registered",
+      "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+      "animation_complete": false,
+      "runtime_quality_gate_passed": false,
+      "generated_at_date_utc": "2026-10-03",
+      "generator": "built-in image_gen",
+      "postprocessing": "none; native PNG copied byte-for-byte",
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/support_node/candidate.png",
+      "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/support_node/prompt.txt",
+      "source_filename": "exec-8ee065ed-5049-41b3-9f56-f13391f52264.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8ee065ed-5049-41b3-9f56-f13391f52264.png",
+      "source_sha256": "cb2f589d1d8ea306d95cb0940298988d9cf77be4d0d1b5504db894a11a5ae70a",
+      "png_sha256": "cb2f589d1d8ea306d95cb0940298988d9cf77be4d0d1b5504db894a11a5ae70a",
+      "native_bytes_preserved": true,
+      "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m18/idle_candidate.png",
+      "identity_reference_sha256": "7c70a16d7faec7020d2715085440f1f60493c3aa68cd1fe1aa9cfc1174264fc1",
+      "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+      "qa": {
+        "native_size": [
+          1536,
+          1024
+        ],
+        "native_mode": "RGBA",
+        "alpha_zero_pixel_count": 1258043,
+        "alpha_zero_fraction": 0.7998421986897787,
+        "low_alpha_1_15_pixel_count": 56077,
+        "opaque_pixel_count": 0,
+        "alpha1": {
+          "bounds_xyxy_exclusive": [
+            39,
+            31,
+            1522,
+            1000
+          ],
+          "bounds_xywh": [
+            39,
+            31,
+            1483,
+            969
+          ],
+          "effective_pixel_count": 314821,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            39,
+            31,
+            14,
+            24
+          ]
+        },
+        "alpha16": {
+          "bounds_xyxy_exclusive": [
+            105,
+            146,
+            1430,
+            805
+          ],
+          "bounds_xywh": [
+            105,
+            146,
+            1325,
+            659
+          ],
+          "effective_pixel_count": 258744,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            105,
+            146,
+            106,
+            219
+          ]
+        },
+        "alpha128": {
+          "bounds_xyxy_exclusive": [
+            106,
+            146,
+            1429,
+            804
+          ],
+          "bounds_xywh": [
+            106,
+            146,
+            1323,
+            658
+          ],
+          "effective_pixel_count": 213537,
+          "edge_pixel_count": 0,
+          "margins_ltrb": [
+            106,
+            146,
+            107,
+            220
+          ]
+        },
+        "visual_review": "Gold/turquoise support junction with two short side connectors; isolated and no character or shield.",
+        "defects": [
+          "Decorative emblem is more ornate and physical-looking than a minimal light seed; design candidate only.",
+          "Side connector ends have physical gem caps rather than alpha-only tapered endpoints."
+        ]
+      },
+      "prompt_text": "Use case: stylized-concept. Asset type: ONE standalone transparent game skill-effect or physical-prop candidate, not a sprite sheet. Painterly crisp 2.5D fantasy art matching the provided identity reference's warm copper-gold, sandstone ivory, vermilion and turquoise palette, warm upper-left lighting, elevated game view. Reference is STYLE/MATERIAL/EQUIPMENT ONLY. NO character, body, hands, creature, room, floor, environment, ground plate, cast shadow, text, labels or interface. Genuine transparent alpha background. Entire requested asset inside central 75% of canvas with generous empty alpha=0 margins, all tips visible, do not crop. One isolated object/effect only; design candidate, not a programmed hit area.\nASSET m18/support_node: ONE small gold-and-turquoise magical support-link junction node: faceted turquoise seed at center embraced by one thin warm golden oval, two very short tapering luminous connector stubs branching gently left and right. Elegant restrained ceremonial sun style. No three-ring crown, no character, no target, no shield, no full connection network, no long beam, no floor rune. Controlled translucent falloff only near node, most of canvas fully transparent."
+    }
+  ],
+  "all_generated_variant_provenance": [
+    {
+      "identity": "B07-M14",
+      "variant": "telegraph",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/telegraph/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/telegraph/provenance.json"
+    },
+    {
+      "identity": "B07-M14",
+      "variant": "execute",
+      "selected": false,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute/provenance.json"
+    },
+    {
+      "identity": "B07-M14",
+      "variant": "recovery",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/recovery/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/recovery/provenance.json"
+    },
+    {
+      "identity": "B07-M15",
+      "variant": "telegraph",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/telegraph/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/telegraph/provenance.json"
+    },
+    {
+      "identity": "B07-M15",
+      "variant": "execute",
+      "selected": false,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute/provenance.json"
+    },
+    {
+      "identity": "B07-M15",
+      "variant": "recovery",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/recovery/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/recovery/provenance.json"
+    },
+    {
+      "identity": "B07-M16",
+      "variant": "telegraph",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/telegraph/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/telegraph/provenance.json"
+    },
+    {
+      "identity": "B07-M16",
+      "variant": "execute",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/execute/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/execute/provenance.json"
+    },
+    {
+      "identity": "B07-M16",
+      "variant": "recovery",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/recovery/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/recovery/provenance.json"
+    },
+    {
+      "identity": "B07-M17",
+      "variant": "telegraph",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/telegraph/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/telegraph/provenance.json"
+    },
+    {
+      "identity": "B07-M17",
+      "variant": "execute",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/execute/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/execute/provenance.json"
+    },
+    {
+      "identity": "B07-M17",
+      "variant": "recovery",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/recovery/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/recovery/provenance.json"
+    },
+    {
+      "identity": "B07-M18",
+      "variant": "telegraph",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/telegraph/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/telegraph/provenance.json"
+    },
+    {
+      "identity": "B07-M18",
+      "variant": "execute",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/execute/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/execute/provenance.json"
+    },
+    {
+      "identity": "B07-M18",
+      "variant": "recovery",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/recovery/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/recovery/provenance.json"
+    },
+    {
+      "identity": "B07-M14",
+      "variant": "blade_arc",
+      "selected": false,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc/provenance.json"
+    },
+    {
+      "identity": "B07-M15",
+      "variant": "fallen_banner",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/fallen_banner/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/fallen_banner/provenance.json"
+    },
+    {
+      "identity": "B07-M16",
+      "variant": "eye_light_arc",
+      "selected": false,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc/provenance.json"
+    },
+    {
+      "identity": "B07-M17",
+      "variant": "sandstone_impact",
+      "selected": false,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact/provenance.json"
+    },
+    {
+      "identity": "B07-M18",
+      "variant": "support_node",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/support_node/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/support_node/provenance.json"
+    },
+    {
+      "identity": "B07-M14",
+      "variant": "execute_framing_fix",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute_framing_fix/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/execute_framing_fix/provenance.json"
+    },
+    {
+      "identity": "B07-M15",
+      "variant": "execute_framing_fix",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute_framing_fix/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute_framing_fix/provenance.json"
+    },
+    {
+      "identity": "B07-M14",
+      "variant": "blade_arc_design_fix",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc_design_fix/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/blade_arc_design_fix/provenance.json"
+    },
+    {
+      "identity": "B07-M16",
+      "variant": "eye_light_arc_design_fix",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc_design_fix/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc_design_fix/provenance.json"
+    },
+    {
+      "identity": "B07-M17",
+      "variant": "sandstone_impact_design_fix",
+      "selected": true,
+      "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact_design_fix/candidate.png",
+      "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/sandstone_impact_design_fix/provenance.json"
+    }
+  ],
+  "diagnostics_directory": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/diagnostics",
+  "diagnostics_are_not_formal_game_assets": true
+}

@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "enemy_id": "B07-M01",
+  "candidate_only": true,
+  "status": "identity_accepted_idle_pilot_runtime_quality_not_accepted",
+  "resource": "asset://levels/b07/enemies/m01/idle.png",
+  "registration": "asset://levels/b07/registration/native_art.json",
+  "physical_path": "res://assets/levels/b07/enemies/m01/idle.png",
+  "original_filename": "B07_M01_spear_lizard_guard_idle_ready_v2.png",
+  "original_version": "v2",
+  "source_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+  "prompts": {
+    "asset://levels/b07/enemies/m01/provenance/idle_initial.prompt.txt": {
+      "original_filename": "B07_M01_spear_lizard_guard_idle_ready_v1.prompt.txt",
+      "sha256": "44003b611e47b5565ca9ba97c20f0ab8793e677ca4ee2c0500d808a6b76f63c0"
+    },
+    "asset://levels/b07/enemies/m01/provenance/idle.prompt.txt": {
+      "original_filename": "B07_M01_spear_lizard_guard_idle_ready_v2.prompt.txt",
+      "sha256": "1f4753ca271825cb90b2bb1e8237a9055e1db63623068c60282d8e4cba84b8a3"
+    }
+  },
+  "source_metadata_filename": "B07_M01_spear_lizard_guard_idle_ready_v2.metadata.json",
+  "source_metadata_sha256": "4d4f3054f0fc86c17afb7eb349b6f4e2bcc1c3d068eaff036a06ca04b6691c61",
+  "source_record_scope": "Original generation measurements and review, including original source filenames. Current texture resolution is the logical resource above; runtime acceptance remains false.",
+  "source_record": {
+    "schema": "b07_actor_art_pilot_measurement_v1",
+    "enemy_id": "B07-M01",
+    "name_en": "SpearLizardGuard",
+    "name_zh": "长矛蜥卫",
+    "facing": "right",
+    "pose": "idle_ready",
+    "status": "identity_accepted_idle_pilot_pending_in_game_gate",
+    "runtime_quality_gate_passed": false,
+    "identity_review_passed": true,
+    "animation_complete": false,
+    "reference_body_height_px": 824.5,
+    "body_height_definition": "Highest anatomical crown/crest y to the midpoint of the two load-bearing foot contact-center y positions. Spear and tail excluded. Contact centers are semantic manual landmarks, not the alpha bottom or claw-tip extrema.",
+    "body_measurements": {
+      "anatomical_crest_top_px": [
+        679.0,
+        203.0
+      ],
+      "both_foot_contact_midpoint_px": [
+        687.5,
+        1027.5
+      ],
+      "crest_to_foot_midpoint_px": 824.5,
+      "crest_to_lowest_toe_pixel_edge_px": 969.0,
+      "lowest_toe_pixel_inclusive_y": 1171,
+      "lowest_toe_pixel_exclusive_y": 1172,
+      "target_world_body_height": 82.08,
+      "comparison_hero_world_body_height": 112.0,
+      "relative_body_height_to_hero": 0.7328571428571429,
+      "world_units_per_native_pixel": 0.09955124317768345,
+      "body_display_height_at_camera_072": 59.0976,
+      "body_display_height_at_camera_075": 61.56,
+      "manual_landmark_uncertainty_px": 8,
+      "contact_center_rationale": "Near foot center is the weight-bearing metatarsal/toe-base cluster at (510,1090); far foot is the equivalent cluster at (865,965). Their mean is the ground attachment. Sharp claw tips extend toward the camera and do not define the attachment."
+    },
+    "frames": {
+      "idle": {
+        "texture": "B07_M01_spear_lizard_guard_idle_ready_v2.png",
+        "region": [
+          24,
+          23,
+          1198,
+          1189
+        ],
+        "foot": [
+          687.5,
+          1027.5
+        ],
+        "core_anchor": [
+          687.0,
+          585.0
+        ],
+        "visual_outlet": [
+          1199.0,
+          65.0
+        ],
+        "spear_tip": [
+          1199.0,
+          65.0
+        ],
+        "alpha128_bounds": [
+          78,
+          64,
+          1123,
+          1108
+        ],
+        "source_height": 824.5,
+        "native_size": [
+          1254,
+          1254
+        ],
+        "coordinate_space": "absolute native source pixels; x right, y down",
+        "foot_near_contact_center": [
+          510.0,
+          1090.0
+        ],
+        "foot_far_contact_center": [
+          865.0,
+          965.0
+        ],
+        "normalized": {
+          "foot": [
+            0.54824561,
+            0.81937799
+          ],
+          "core_anchor": [
+            0.54784689,
+            0.46650718
+          ],
+          "visual_outlet": [
+            0.95614035,
+            0.05183413
+          ],
+          "foot_near_contact_center": [
+            0.40669856,
+            0.8692185
+          ],
+          "foot_far_contact_center": [
+            0.68979266,
+            0.76953748
+          ],
+          "anatomical_crest_top": [
+            0.5414673,
+            0.16188198
+          ]
+        }
+      }
+    },
+    "alpha_inspection": {
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "nonzero_bounds": [
+        24,
+        23,
+        1198,
+        1189
+      ],
+      "alpha_gt1_bounds": [
+        74,
+        61,
+        1130,
+        1114
+      ],
+      "alpha_gt32_bounds": [
+        77,
+        64,
+        1124,
+        1108
+      ],
+      "alpha_ge128_bounds": [
+        78,
+        64,
+        1123,
+        1108
+      ],
+      "transparent_pixel_fraction": 0.7687521144458943,
+      "interior_alpha_median_gt32": 253.0,
+      "image_edge_nonzero_pixel_count": 0,
+      "alpha_policy": "Native generated alpha is preserved without thresholding or cleanup. Most interior pixels have alpha 253/255; no opaque background. Alpha 1 traces outside the main silhouette are recorded in nonzero bounds.",
+      "meaningful_alpha_gt1_margins_left_top_right_bottom": [
+        74,
+        61,
+        50,
+        79
+      ],
+      "low_alpha_1_to_32_pixel_count": 26294,
+      "low_alpha_red_risk_pixel_count": 9127,
+      "low_alpha_yellow_risk_pixel_count": 3205,
+      "edge_fringe_risk": "Parent preview inspection identified low-alpha red/yellow fringe. It has NOT been cleaned, and no clean in-game alpha claim is made. Validate against both light sandstone and dark game backgrounds at normal gameplay zoom before acceptance. Thresholds are diagnostic only; do not threshold the production image blindly."
+    },
+    "visual_qa": {
+      "native_viewed": true,
+      "source_concept_viewed": true,
+      "scaled_preview_body82_world_viewed": true,
+      "scaled_preview_camera072_viewed": true,
+      "scaled_preview_note": "Read-only Pillow inspection downscales only, separate /tmp images, did not alter the native art. Identity is recognizable at approximately 59 screen-pixel crest-to-foot body height; fine sun/scale detailing is naturally not readable at that size.",
+      "silhouette_assessment": "Single long upper-right spear first-read, projecting right-facing lizard muzzle and crown, distinct shield on rear side, long leftward tail and two separate clawed feet.",
+      "perspective_assessment": "V2 increased elevated three-quarter top-plane visibility and reduced V1 head/frontality. Exact camera calibration remains subject to in-game overlay review.",
+      "ground_shadow_present": false,
+      "clipped_extremities": false,
+      "in_game_validation_performed": false,
+      "multi_direction_validation_performed": false,
+      "telegraph_or_execute_generated": false,
+      "alpha_edges_clean_in_game": false
+    },
+    "generation": {
+      "tool": "built-in image_gen.imagegen",
+      "model": "not exposed by tool",
+      "native_resolution_generated": true,
+      "upscaled": false,
+      "post_generation_pixel_edits": false,
+      "iterations": 2,
+      "selected_iteration": 2,
+      "prompts": [
+        "B07_M01_spear_lizard_guard_idle_ready_v1.prompt.txt",
+        "B07_M01_spear_lizard_guard_idle_ready_v2.prompt.txt"
+      ],
+      "original_selected_output": "/workspace/scratch/2244020fc8d6/generated_images/exec-b6a01040-f76b-4ed4-9e1a-6943fcd55cf1.png",
+      "selected_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "references": [
+      {
+        "role": "authoritative anatomy, costume and palette; bottom-left 沙蜥战士 only",
+        "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+        "library_file_id": "libfile_029361d330048191bdefec30b980495e",
+        "sha256": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+        "source_character_approx_region": [
+          38,
+          1184,
+          152,
+          146
+        ]
+      },
+      {
+        "role": "game human-hero perspective/density only; beetle enemies excluded",
+        "path": "/workspace/scratch/2244020fc8d6/games-recovery/_test_output/B07/20261003T035215205279Z-351c0d0f/L37_layered_north_mirror.png",
+        "sha256": "87c44fc6f4e8e06f8b7f836fae78cc306949ee7b7b719cf066b63824dcff8d7c"
+      }
+    ],
+    "integration_cautions": [
+      "Parent accepted idle-pilot identity; HOLD telegraph/thrust generation until actual game frame validates 82.08 world body height, feet, perspective and low-alpha edge fringe.",
+      "Parent identity review is required before the next real telegraph and thrust poses.",
+      "This is a one-pose art pilot, not an animation or eight-direction bank.",
+      "Use reference_body_height_px, not total image height or spear/tail alpha bounds, for body scale.",
+      "Preserve source colors; do not inherit beetle placeholder tinting.",
+      "Use native source image with declared region and absolute foot; no crop, resize, padded body workaround or floor/shadow bake is needed.",
+      "Core and spear visual outlet are art landmarks only. Collision, danger-line and damage logic must remain independently authored.",
+      "Do not publish V1, QA thumbnails or temporary source screenshots as official art."
+    ],
+    "identity_review_scope": "Parent visually inspected V2 on 2026-10-03 and accepted identity for the idle pilot only; runtime scale, foot attachment, perspective and alpha remain unvalidated in game."
+  },
+  "migration": {
+    "native_pixels_unchanged": true,
+    "new_generation": false,
+    "upscaled": false,
+    "post_migration_in_game_validation": false
+  }
+}

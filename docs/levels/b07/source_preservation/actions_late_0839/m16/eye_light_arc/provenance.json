@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M16",
+  "action": "eye_light_arc",
+  "variant": "eye_light_arc",
+  "category": "effect_or_prop",
+  "selected": false,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc/candidate.png",
+  "prompt": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/eye_light_arc/prompt.txt",
+  "source_filename": "exec-30257f02-6750-4254-8d25-78e5318770c3.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-30257f02-6750-4254-8d25-78e5318770c3.png",
+  "source_sha256": "8c85849c93ce32623a71acf4eee657b28179b2aacb77a94321aa5f25e0fbb992",
+  "png_sha256": "8c85849c93ce32623a71acf4eee657b28179b2aacb77a94321aa5f25e0fbb992",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m16/idle_candidate.png",
+  "identity_reference_sha256": "b7c22057e1515742638f779c77ab5f602ac89b02a036a5f9be00b4ad9fa4c3c2",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1357418,
+    "alpha_zero_fraction": 0.8632141103810709,
+    "low_alpha_1_15_pixel_count": 60843,
+    "opaque_pixel_count": 0,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        33,
+        21,
+        1243,
+        1254
+      ],
+      "bounds_xywh": [
+        33,
+        21,
+        1210,
+        1233
+      ],
+      "effective_pixel_count": 215098,
+      "edge_pixel_count": 6,
+      "margins_ltrb": [
+        33,
+        21,
+        11,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        87,
+        318,
+        1234,
+        1067
+      ],
+      "bounds_xywh": [
+        87,
+        318,
+        1147,
+        749
+      ],
+      "effective_pixel_count": 154255,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        87,
+        318,
+        20,
+        187
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        98,
+        329,
+        1228,
+        1054
+      ],
+      "bounds_xywh": [
+        98,
+        329,
+        1130,
+        725
+      ],
+      "effective_pixel_count": 90596,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        98,
+        329,
+        26,
+        200
+      ]
+    },
+    "visual_review": "Initial generated variant inspected and retained as source history; see selected corrective variant."
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: ONE standalone transparent game skill-effect or physical-prop candidate, not a sprite sheet. Painterly crisp 2.5D fantasy art matching the provided identity reference's warm copper-gold, sandstone ivory, vermilion and turquoise palette, warm upper-left lighting, elevated game view. Reference is STYLE/MATERIAL/EQUIPMENT ONLY. NO character, body, hands, creature, room, floor, environment, ground plate, cast shadow, text, labels or interface. Genuine transparent alpha background. Entire requested asset inside central 75% of canvas with generous empty alpha=0 margins, all tips visible, do not crop. One isolated object/effect only; design candidate, not a programmed hit area.\nASSET m16/eye_light_arc: ONE short fine amber light arc after a crystal-goggle eye scan, a subtle curved luminous ribbon segment, around 60 degrees, narrow tapering tips and controlled soft alpha falloff. Use amber/yellow gold core without blinding white center. NO eyeball, no goggles, no creature, no full ring, no sector-filled triangle, no large flash or additional ray. It is a reusable decorative arc component, not collision geometry."
+}

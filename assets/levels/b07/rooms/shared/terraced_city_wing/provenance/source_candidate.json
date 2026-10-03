@@ -1,0 +1,61 @@
+{
+  "id": "terraced_city_wing",
+  "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_wing.png",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-8f352f52-735b-4f8c-863a-e7f75302a8ba.png",
+  "sha256": "bab8314fd6e111f7848168eb7062e5f21a06add85f8826b1bd8589cd0a61fff3",
+  "native_size": [
+    2098,
+    749
+  ],
+  "mode": "RGBA",
+  "candidate_only": true,
+  "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_wing.prompt.txt",
+  "alpha": {
+    "1": {
+      "bbox": [
+        28,
+        16,
+        2073,
+        736
+      ],
+      "content_size": [
+        2045,
+        720
+      ],
+      "edge_pixels": 0
+    },
+    "16": {
+      "bbox": [
+        31,
+        19,
+        2069,
+        734
+      ],
+      "content_size": [
+        2038,
+        715
+      ],
+      "edge_pixels": 0
+    },
+    "128": {
+      "bbox": [
+        31,
+        20,
+        2068,
+        733
+      ],
+      "content_size": [
+        2037,
+        713
+      ],
+      "edge_pixels": 0
+    }
+  },
+  "physical_path": "assets/levels/b07/rooms/shared/terraced_city_wing/source_candidate.png",
+  "manual_review": "三层阶城/蜥首/红旗可辨，正常双背景无宽红黄晕边；上尖顶留白19px不足，非旧宽低城门替代；外围支撑落点未定。",
+  "normal_alpha_composites_viewed": true,
+  "repeat_2x2_viewed": false,
+  "runtime_integrated": false,
+  "unchanged_source_bytes": true,
+  "qa_status": "review_candidate_unaccepted"
+}

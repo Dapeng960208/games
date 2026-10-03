@@ -1,0 +1,17 @@
+{
+  "id": "m12",
+  "action": "heavy_crossbow_bolt",
+  "status": "design_candidate_not_runtime",
+  "tool": "image_gen.imagegen",
+  "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m12/idle_candidate.png",
+  "edit_target": null,
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-d5e24bbe-54a0-46bb-b6ca-2d8b892579d6.png",
+  "copy_byte_preserved": true,
+  "generated_at_utc": "2026-10-03",
+  "prompt": "prompt.txt",
+  "repair_limit": "one_targeted_retry_only",
+  "sha256": "979758a9adf0ae34629b1f80efe6da8af905b6146d6a6cf62a585ee15100c9e0",
+  "bytes": 814388,
+  "source_sha256": "979758a9adf0ae34629b1f80efe6da8af905b6146d6a6cf62a585ee15100c9e0",
+  "copy_byte_verified": true
+}

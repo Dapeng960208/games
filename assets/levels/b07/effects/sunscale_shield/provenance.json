@@ -1,0 +1,37 @@
+{
+  "effect_id": "sunscale_shield",
+  "status": "unregistered_visual_candidate",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-d1a25b1d-9cce-4ef2-be42-9fd02b8662da.png",
+  "source_sha256": "b1d3b3ca5e8c1645e66e7bdaf5783d23bf249c752f4e34fa821856287ecaff31",
+  "native_size": [
+    1312,
+    1199
+  ],
+  "original_bytes_preserved": true,
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "source_license": "AI-generated original visual source",
+  "qa": {
+    "alpha16_bounds_xywh": [
+      490,
+      71,
+      712,
+      1034
+    ],
+    "alpha128_bounds_xywh": [
+      496,
+      74,
+      703,
+      1028
+    ],
+    "nonzero_edge_pixels": 18,
+    "alpha128_edge_pixels": 0,
+    "center_alpha": 0,
+    "transparent_pixels": 1255295,
+    "low_alpha_1_32_pixels": 93376,
+    "visual_review": "Viewed original. Decorative material only, native colors. Alpha fringe and actual battlefield readability unaccepted.",
+    "geometry_warning": "Generated curve/spiral does not define hitbox, reduction angle or skill radius; current command geometry remains authoritative.",
+    "specific_issue": "Crescent is broad with ornamental metal-like motifs; not exact 120 degree runtime boundary."
+  },
+  "runtime_quality_gate_passed": false
+}

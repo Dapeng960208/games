@@ -1,0 +1,11 @@
+{
+  "status": "required_native_details_in_progress_mother_runtime_blocked",
+  "source": "assets/levels/b07/rooms/l41/background/temple_boundary_revision.png",
+  "source_sha256": "97e92558bbe0150c4362fba548587583c34d72ce3107bfb877bc106c5447ebf8",
+  "source_alias": "asset://world/rooms/L41_environment_v1.png",
+  "native_detail_target": 6,
+  "approved": false,
+  "candidate_only": true,
+  "source_change_requires_reregistration": true,
+  "authorization": "User explicitly requires details for every independent room; blocked mother only prevents runtime acceptance, not detail generation"
+}

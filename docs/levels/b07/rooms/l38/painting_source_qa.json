@@ -1,0 +1,128 @@
+{
+  "status": "blocked_do_not_integrate",
+  "formal_acceptance": false,
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_mode": "RGB",
+  "native_detail_count": 0,
+  "runtime_changes": false,
+  "fixed_geometry_hash": "b633e664e93a556932fe545443e6d3a0cb2f5ebaa9c5b9e6dfcf79f60558fb1d",
+  "pixel_to_world": 1.3216145833333333,
+  "trace_purpose": "Read-only approximate impact estimation; no geometry approval and not runtime data",
+  "approx_visible_paving_rim_polygon_pixels": [
+    [
+      239,
+      150
+    ],
+    [
+      1236,
+      150
+    ],
+    [
+      1350,
+      275
+    ],
+    [
+      1370,
+      700
+    ],
+    [
+      1190,
+      790
+    ],
+    [
+      360,
+      790
+    ],
+    [
+      210,
+      687
+    ],
+    [
+      229,
+      285
+    ]
+  ],
+  "trace_uncertainty_source_px": 8,
+  "fixed_polygon_area_source_px2": 736610.5601045,
+  "approx_painted_polygon_area_source_px2": 705641.0,
+  "approx_area_change_percent": -4.2043328974412875,
+  "fixed_south_edge_y": 868.937,
+  "approx_painted_south_edge_y": 790,
+  "south_shortfall_source_px": 78.93700000000001,
+  "south_shortfall_world": 104.32429036458335,
+  "entry_clearance_world_estimate": 23.27495442708332,
+  "main_route_vertex_clearance_world_estimate": [
+    23.27495442708332,
+    52.27514322916663,
+    190.3574348958333,
+    155.55800130208328
+  ],
+  "required_route_half_width_world": 90,
+  "entry_minimum_north_shift_world_estimate": 66.72504557291668,
+  "anchors": {
+    "entry": {
+      "source_pixel": [
+        768.0,
+        772.389
+      ],
+      "approx_painted_clearance_world": 23.27495442708332
+    },
+    "exit": {
+      "source_pixel": [
+        768.0,
+        267.703
+      ],
+      "approx_painted_clearance_world": 155.55800130208328
+    },
+    "altar": {
+      "source_pixel": [
+        768.0,
+        377.417
+      ],
+      "approx_painted_clearance_world": 300.5576236979166
+    },
+    "L38_mirror_1": {
+      "source_pixel": [
+        645.12,
+        495.909
+      ],
+      "approx_painted_clearance_world": 388.6749544270833
+    },
+    "L38_mirror_2": {
+      "source_pixel": [
+        890.88,
+        495.909
+      ],
+      "approx_painted_clearance_world": 388.6749544270833
+    },
+    "L38_gate_near": {
+      "source_pixel": [
+        706.56,
+        311.589
+      ],
+      "approx_painted_clearance_world": 213.55837890625
+    },
+    "L38_gate_far": {
+      "source_pixel": [
+        785.554,
+        272.091
+      ],
+      "approx_painted_clearance_world": 161.35724609375
+    }
+  },
+  "visual_findings": [
+    "Both generated candidates have bright painterly 2.5D turquoise/red fabric bazaar, lizard carvings and plausible connected sandstone foundation",
+    "Fixed polygon overlay crosses the painted front facade, not walkable paving; identity/style alone do not pass",
+    "Entry is on the narrow bevel/rim margin; bodies and 180-width safety corridor cannot be validated there",
+    "Central two mirrors, altar, gates, encounters and both covers remain over visually flat paving with no baked duplicate objects",
+    "North/east boundary drift also leaves visible paving outside the authorized polygon",
+    "No six detail repaints until full image boundary and anchor agreement passes"
+  ],
+  "restoration_options": {
+    "keep_fixed_geometry": "Precise boundary-controlled image edit must extend actual south paving ~79 source pixels, extend southwest slope, lower north boundary ~34px, and retract east boundary ~30–49px, retaining side stalls outside contour. Existing built-in single refinement failed, so no more same-class generation authorized in this phase. No stretch/warp or geometric cover-up.",
+    "fit_geometry_to_candidate": "Requires explicit L38 permission. Approximate area and clearance imply moving south entry and southwest safe-route segment; not merely changing an outer polygon. Preserve all other gameplay points only after exact trace/navigation testing. The L37-only approval does not cover these changes."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-82b8711e-ea4f-4844-89c8-f53011e61f29.png",
+  "source_sha256": "caa8f523e21b05db7c9c21dc29bbc1bbe3ff32dd9addf1d56b101b08d75a681a",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/bosses/bo07/actions/sun_spear/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      32,
+      16,
+      1481,
+      994
+    ],
+    "alpha128_pixel_count": 526980,
+    "transparent_pixel_count": 995780,
+    "low_alpha_1_32_count": 43072,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Royal thrust retained; posture change modest, final arm reach/foot spacing need common-scale pass.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "anatomical_crown_y": 230,
+    "foot_landmarks": [
+      [
+        268,
+        938
+      ],
+      [
+        1059,
+        862
+      ]
+    ],
+    "foot_midpoint": [
+      663.5,
+      900.0
+    ],
+    "airborne_no_ground_contact": false,
+    "visible_anatomical_vertical_extent": 670.0,
+    "semantic_uncertainty_px": 20,
+    "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+    "scale_and_foot_continuity_passed": false
+  },
+  "identity": "BO07",
+  "ability": "sun_spear",
+  "phase": "execute",
+  "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+  "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png"
+}

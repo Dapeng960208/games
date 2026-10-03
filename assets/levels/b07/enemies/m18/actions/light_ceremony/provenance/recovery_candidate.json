@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M18",
+  "action": "recovery",
+  "variant": "recovery",
+  "category": "pose",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "assets/levels/b07/enemies/m18/actions/light_ceremony/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "source_filename": "exec-878ac509-b7f7-444b-be7b-79bf3b1c3278.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-878ac509-b7f7-444b-be7b-79bf3b1c3278.png",
+  "source_sha256": "a5d1a176e326d79ea9da46de6769036a28380b011bb30f6afe4cfd04e1bd4091",
+  "png_sha256": "a5d1a176e326d79ea9da46de6769036a28380b011bb30f6afe4cfd04e1bd4091",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m18/idle_candidate.png",
+  "identity_reference_sha256": "7c70a16d7faec7020d2715085440f1f60493c3aa68cd1fe1aa9cfc1174264fc1",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1024,
+      1536
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 913088,
+    "alpha_zero_fraction": 0.5805257161458334,
+    "low_alpha_1_15_pixel_count": 45936,
+    "opaque_pixel_count": 0,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        13,
+        44,
+        1014,
+        1536
+      ],
+      "bounds_xywh": [
+        13,
+        44,
+        1001,
+        1492
+      ],
+      "effective_pixel_count": 659776,
+      "edge_pixel_count": 14,
+      "margins_ltrb": [
+        13,
+        44,
+        10,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        19,
+        46,
+        1011,
+        1405
+      ],
+      "bounds_xywh": [
+        19,
+        46,
+        992,
+        1359
+      ],
+      "effective_pixel_count": 613840,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        19,
+        46,
+        13,
+        131
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        20,
+        47,
+        1011,
+        1404
+      ],
+      "bounds_xywh": [
+        20,
+        47,
+        991,
+        1357
+      ],
+      "effective_pixel_count": 603415,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        20,
+        47,
+        13,
+        132
+      ]
+    },
+    "foot_contacts_manual": [
+      [
+        473,
+        1339
+      ],
+      [
+        949,
+        1260
+      ]
+    ],
+    "foot_midpoint": [
+      711.0,
+      1299.5
+    ],
+    "anatomical_crown_xy_manual": [
+      480,
+      269
+    ],
+    "body_height_excluding_weapon_tail_accessories": 1030.5,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 1030.5,
+    "maximum_display_body_px_at_1_5_sampling_margin": 687.0,
+    "visual_review": "Backward stagger, low scepter, empty hand reaches for balance; three crown rings intact.",
+    "defects": [
+      "Camera materially lower than desired high-angle game view.",
+      "Knees partly covered by long robe, so degree of buckle remains uncertain.",
+      "Side margins below requested 8%."
+    ],
+    "foot_anchor_runtime_registered": false
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m18/recovery: B07-M18 light conductor ceremonial lizard. Preserve slender long neck golden/ivory lizard, EXACTLY THREE physical gold solar rings vertically stacked on the tall narrow crown fixed to head, ivory ceremonial robes, turquoise jewelry, vermilion long tail ribbons and full long tail. Preserve short sun-headed ritual SCEPTER in anatomical RIGHT hand (screen-left as reference); anatomical LEFT hand empty. RECOVERY interrupted mirror-channel stagger: knees buckle, torso pitches diagonally backward and to screen-left, empty left hand reaches out for balance, right scepter arm drops low outward with head of scepter pointing down and no longer casting. Crown tilts with head but all three rings remain attached, unbroken; face shows loss of balance. Both feet still visible and bracing on imagined ground; full tail flared counterbalance. No broken mirror prop, no rings flying away, no magic or background.",
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/recovery/candidate.png",
+  "resource": "asset://levels/b07/enemies/m18/actions/light_ceremony/recovery_candidate.png",
+  "ability": "light_ceremony"
+}

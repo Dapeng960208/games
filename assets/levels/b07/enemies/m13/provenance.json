@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M13",
+  "status": "design_candidate_not_runtime_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-72c1708c-5399-415d-9b66-39c24fea3e50.png",
+  "source_sha256": "3ed4ff0424515abd60cb90cfc1b8a0416526389385324fb954b1558562a5a9bd",
+  "native_size": [
+    1278,
+    1230
+  ],
+  "native_mode": "RGBA",
+  "original_colors_preserved": true,
+  "postprocessing": "none; source PNG byte-for-byte copy",
+  "candidate_only": true,
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "pose": "single_right_three_quarter_idle_ready",
+  "references": [
+    "user-provided B07(1).png: authoritative world and species",
+    "accepted M01 idle: painted family only"
+  ],
+  "reference_sha256": {
+    "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+    "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+  },
+  "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+  "prompt": "provenance/idle_candidate.prompt.txt",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      111,
+      61,
+      1038,
+      1136
+    ],
+    "alpha128_pixel_count": 402694,
+    "transparent_pixel_count": 1130926,
+    "low_alpha_1_32_count": 32555,
+    "nonzero_edge_pixel_count": 10,
+    "edge_alpha128_pixel_count": 0,
+    "body_crown_or_anatomical_dorsal_y": 61,
+    "foot_contacts_manual": [
+      [
+        587,
+        1120
+      ],
+      [
+        835,
+        1018
+      ]
+    ],
+    "foot_midpoint": [
+      711.0,
+      1069.0
+    ],
+    "body_height_excluding_weapon_tail_accessories": 1008.0,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 1008.0,
+    "maximum_display_body_px_at_1_5_sampling_margin": 672.0,
+    "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+    "visual_review": "Levitating turquoise disc and open hands readable; disc is baked in idle and must separate in future action/VFX work."
+  }
+}

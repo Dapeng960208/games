@@ -1,0 +1,17 @@
+{
+  "id": "m09",
+  "action": "poison_dart",
+  "status": "design_candidate_not_runtime",
+  "tool": "image_gen.imagegen",
+  "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m09/idle_candidate.png",
+  "edit_target": null,
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-3779226e-fca2-40b4-b230-f4ba8febd0ca.png",
+  "copy_byte_preserved": true,
+  "generated_at_utc": "2026-10-03",
+  "prompt": "prompt.txt",
+  "repair_limit": "one_targeted_retry_only",
+  "sha256": "b8bd294902b3a3bcdef4c15a2f9571db2178efd56aacce48ed106b13414f993c",
+  "bytes": 1101490,
+  "source_sha256": "b8bd294902b3a3bcdef4c15a2f9571db2178efd56aacce48ed106b13414f993c",
+  "copy_byte_verified": true
+}

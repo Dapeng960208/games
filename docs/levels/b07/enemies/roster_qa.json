@@ -1,0 +1,1161 @@
+[
+  {
+    "schema_version": 1,
+    "identity": "B07-M02",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-145f0c18-4653-4ebc-bd06-daa91d9c8a7e.png",
+    "source_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species design",
+      "assets/levels/b07/enemies/m01/idle.png: accepted painted family, not copied pixel asset"
+    ],
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        63,
+        147,
+        1167,
+        996
+      ],
+      "opaque_or_partial_pixel_count": 582356,
+      "alpha128_pixel_count": 525222,
+      "transparent_pixel_count": 990160,
+      "low_alpha_1_32_count": 49525,
+      "nonzero_edge_pixel_count": 9,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_y": 148,
+      "foot_contacts_manual": [
+        [
+          467,
+          1065
+        ],
+        [
+          967,
+          901
+        ]
+      ],
+      "foot_midpoint": [
+        717.0,
+        983.0
+      ],
+      "body_height_excluding_weapon_tail_accessories": 835.0,
+      "semantic_landmark_uncertainty_px": 15,
+      "maximum_display_body_px_at_1_to_1_sampling": 835.0,
+      "maximum_display_body_px_at_1_5_sampling_margin": 556.67,
+      "sampling_note": "Single-frame anatomical content only, no canvas whitespace or atlas total. Runtime scale and maximum camera not assigned for these new candidates; no 2K runtime acceptance claim.",
+      "visual_review": "Native colors and species/role identity readable. No runtime, animation or final alpha acceptance. Camera pitch and edge fringe remain to review in actual scene."
+    },
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M03",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-40c99cda-3858-4f5a-a878-04e1aba0227d.png",
+    "source_sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species design",
+      "assets/levels/b07/enemies/m01/idle.png: accepted painted family, not copied pixel asset"
+    ],
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        48,
+        86,
+        1166,
+        1106
+      ],
+      "opaque_or_partial_pixel_count": 484826,
+      "alpha128_pixel_count": 451970,
+      "transparent_pixel_count": 1087690,
+      "low_alpha_1_32_count": 27194,
+      "nonzero_edge_pixel_count": 3,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_y": 86,
+      "foot_contacts_manual": [
+        [
+          552,
+          1072
+        ],
+        [
+          1080,
+          930
+        ]
+      ],
+      "foot_midpoint": [
+        816.0,
+        1001.0
+      ],
+      "body_height_excluding_weapon_tail_accessories": 915.0,
+      "semantic_landmark_uncertainty_px": 15,
+      "maximum_display_body_px_at_1_to_1_sampling": 915.0,
+      "maximum_display_body_px_at_1_5_sampling_margin": 610.0,
+      "sampling_note": "Single-frame anatomical content only, no canvas whitespace or atlas total. Runtime scale and maximum camera not assigned for these new candidates; no 2K runtime acceptance claim.",
+      "visual_review": "Native colors and species/role identity readable. No runtime, animation or final alpha acceptance. Camera pitch and edge fringe remain to review in actual scene."
+    },
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M04",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-aaae5f1c-d5f0-4817-9626-21d62581fe84.png",
+    "source_sha256": "9faae348481abe940cd94813f1f594ebffeb8e76994bc418cf028468ecdd0a2b",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        30,
+        184,
+        1207,
+        1000
+      ],
+      "alpha128_pixel_count": 590212,
+      "transparent_pixel_count": 957890,
+      "low_alpha_1_32_count": 20307,
+      "nonzero_edge_pixel_count": 22,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 184,
+      "foot_contacts_manual": [
+        [
+          430,
+          1090
+        ],
+        [
+          1000,
+          995
+        ]
+      ],
+      "foot_midpoint": [
+        715.0,
+        1042.5
+      ],
+      "body_height_excluding_weapon_tail_accessories": 858.5,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 858.5,
+      "maximum_display_body_px_at_1_5_sampling_margin": 572.33,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Broad sun shield role readable; right margin narrow."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M05",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-113f7e2d-5f0b-4ad4-a9e3-ee74ec9a1c92.png",
+    "source_sha256": "cc45f9901be89b590c752cff18fe43c5b24ba7f006855fbeca766f05553781da",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        195,
+        65,
+        842,
+        1156
+      ],
+      "alpha128_pixel_count": 340831,
+      "transparent_pixel_count": 1197932,
+      "low_alpha_1_32_count": 28954,
+      "nonzero_edge_pixel_count": 4,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 65,
+      "foot_contacts_manual": [
+        [
+          694,
+          1150
+        ],
+        [
+          907,
+          1090
+        ]
+      ],
+      "foot_midpoint": [
+        800.5,
+        1120.0
+      ],
+      "body_height_excluding_weapon_tail_accessories": 1055.0,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 1055.0,
+      "maximum_display_body_px_at_1_5_sampling_margin": 703.33,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Large turquoise necklace and bowl distinct. Camera is relatively low; compare actual overhead scene later."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M06",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-beba1c8e-a75d-4566-be34-6f721afc3c36.png",
+    "source_sha256": "237bdbae4ce96c7791b1c8f2ffb763f9541642912a12b31e4442737fdc7313cf",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        130,
+        296,
+        1044,
+        715
+      ],
+      "alpha128_pixel_count": 364227,
+      "transparent_pixel_count": 1180299,
+      "low_alpha_1_32_count": 24126,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 296,
+      "foot_contacts_manual": [
+        [
+          365,
+          870
+        ],
+        [
+          810,
+          785
+        ]
+      ],
+      "foot_midpoint": [
+        587.5,
+        827.5
+      ],
+      "body_height_excluding_weapon_tail_accessories": 531.5,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 531.5,
+      "maximum_display_body_px_at_1_5_sampling_margin": 354.33,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Shovel snout, short tail and digging hands distinct; crouched anatomical height only, not standing reference."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M07",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-e290f110-0b76-4be0-91de-9d974ee4dc8b.png",
+    "source_sha256": "bddea855af8d0739607624074cc8a57827e1f7b94f5671ec4340e5e44263a80b",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species design",
+      "assets/levels/b07/enemies/m01/idle.png: accepted painted family, not copied pixel asset"
+    ],
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        74,
+        25,
+        1157,
+        1203
+      ],
+      "opaque_or_partial_pixel_count": 546375,
+      "alpha128_pixel_count": 493276,
+      "transparent_pixel_count": 1026141,
+      "low_alpha_1_32_count": 45015,
+      "nonzero_edge_pixel_count": 12,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_y": 98,
+      "foot_contacts_manual": [
+        [
+          489,
+          1130
+        ],
+        [
+          935,
+          978
+        ]
+      ],
+      "foot_midpoint": [
+        712.0,
+        1054.0
+      ],
+      "body_height_excluding_weapon_tail_accessories": 956.0,
+      "semantic_landmark_uncertainty_px": 15,
+      "maximum_display_body_px_at_1_to_1_sampling": 956.0,
+      "maximum_display_body_px_at_1_5_sampling_margin": 637.33,
+      "sampling_note": "Single-frame anatomical content only, no canvas whitespace or atlas total. Runtime scale and maximum camera not assigned for these new candidates; no 2K runtime acceptance claim.",
+      "visual_review": "Native colors and species/role identity readable. No runtime, animation or final alpha acceptance. Camera pitch and edge fringe remain to review in actual scene."
+    },
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M08",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-57dcb20f-ba8a-49db-96eb-1a53f9c3d282.png",
+    "source_sha256": "19b8f356f52abaaa2c558b3c6e7b17315474c41520547e353128646138e5836e",
+    "native_size": [
+      1312,
+      1199
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        53,
+        106,
+        1226,
+        1052
+      ],
+      "alpha128_pixel_count": 420753,
+      "transparent_pixel_count": 1107694,
+      "low_alpha_1_32_count": 38786,
+      "nonzero_edge_pixel_count": 11,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 106,
+      "foot_contacts_manual": [
+        [
+          590,
+          1083
+        ],
+        [
+          1163,
+          942
+        ]
+      ],
+      "foot_midpoint": [
+        876.5,
+        1012.5
+      ],
+      "body_height_excluding_weapon_tail_accessories": 906.5,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 906.5,
+      "maximum_display_body_px_at_1_5_sampling_margin": 604.33,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Single reflective blade and back scales distinct; right hand/foot margin narrow."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M09",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-be2a6238-bf02-4c9e-8b99-79858cbf5ccf.png",
+    "source_sha256": "5cc75bdb67cdb08483f5cf5cf5422ac1ee66bc82754d89752749233a9d10dbb1",
+    "native_size": [
+      1223,
+      1286
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        183,
+        237,
+        1020,
+        934
+      ],
+      "alpha128_pixel_count": 344557,
+      "transparent_pixel_count": 1181337,
+      "low_alpha_1_32_count": 41192,
+      "nonzero_edge_pixel_count": 14,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 237,
+      "foot_contacts_manual": [
+        [
+          287,
+          1080
+        ],
+        [
+          782,
+          930
+        ]
+      ],
+      "foot_midpoint": [
+        534.5,
+        1005.0
+      ],
+      "body_height_excluding_weapon_tail_accessories": 768.0,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 768.0,
+      "maximum_display_body_px_at_1_5_sampling_margin": 512.0,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Blowpipe and tail support distinct; tail supports near pipe front rather than elbow, needs common identity review."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M10",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-5caa2aae-b6c6-4455-b4d8-626b3d76e1f4.png",
+    "source_sha256": "5588f042cd6cb51cc49c942b470f0e32c67aaa6992e630d7f19208c9c10a4e73",
+    "native_size": [
+      1312,
+      1199
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        101,
+        12,
+        1103,
+        1174
+      ],
+      "alpha128_pixel_count": 475384,
+      "transparent_pixel_count": 1052306,
+      "low_alpha_1_32_count": 39899,
+      "nonzero_edge_pixel_count": 12,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 309,
+      "foot_contacts_manual": [
+        [
+          642,
+          1091
+        ],
+        [
+          1006,
+          1040
+        ]
+      ],
+      "foot_midpoint": [
+        824.0,
+        1065.5
+      ],
+      "body_height_excluding_weapon_tail_accessories": 756.5,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 756.5,
+      "maximum_display_body_px_at_1_5_sampling_margin": 504.33,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Exactly three mirrors present; mirror top margin narrow and painted scenery reflected in glass, simplify at common polish pass."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M11",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-5d904c51-50ba-425c-b456-69b9026f1ea5.png",
+    "source_sha256": "f0313da1d993d539408286e734610943e3be4d81436ffdc605ba18ac9ea4bf2b",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        23,
+        200,
+        1205,
+        957
+      ],
+      "alpha128_pixel_count": 443007,
+      "transparent_pixel_count": 1106652,
+      "low_alpha_1_32_count": 18895,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 555,
+      "foot_contacts_manual": [
+        [
+          351,
+          920
+        ],
+        [
+          606,
+          829
+        ],
+        [
+          819,
+          1090
+        ],
+        [
+          1093,
+          1005
+        ]
+      ],
+      "foot_midpoint": [
+        717.25,
+        961.0
+      ],
+      "body_height_excluding_weapon_tail_accessories": 406.0,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 406.0,
+      "maximum_display_body_px_at_1_5_sampling_margin": 270.67,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Four-legged pack beast identity; far rear foot partly occluded, revise at common polish pass. Dorsal anatomical top excludes stair armor and raised tail."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M12",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-5e3850ac-7f1a-4e08-8cc1-22bc17b018b2.png",
+    "source_sha256": "fc71588592acbe1bd5fb883b95180bcb6bc69472711b6869f2cc2b1e62b4c2b8",
+    "native_size": [
+      1378,
+      1142
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        71,
+        100,
+        1273,
+        978
+      ],
+      "alpha128_pixel_count": 555436,
+      "transparent_pixel_count": 991870,
+      "low_alpha_1_32_count": 22360,
+      "nonzero_edge_pixel_count": 25,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 177,
+      "foot_contacts_manual": [
+        [
+          482,
+          1000
+        ],
+        [
+          1070,
+          917
+        ]
+      ],
+      "foot_midpoint": [
+        776.0,
+        958.5
+      ],
+      "body_height_excluding_weapon_tail_accessories": 781.5,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 781.5,
+      "maximum_display_body_px_at_1_5_sampling_margin": 521.0,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Awning cloak and crossbow distinct; right crossbow margin narrow, wearable cloth remains visible."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M13",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-72c1708c-5399-415d-9b66-39c24fea3e50.png",
+    "source_sha256": "3ed4ff0424515abd60cb90cfc1b8a0416526389385324fb954b1558562a5a9bd",
+    "native_size": [
+      1278,
+      1230
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        111,
+        61,
+        1038,
+        1136
+      ],
+      "alpha128_pixel_count": 402694,
+      "transparent_pixel_count": 1130926,
+      "low_alpha_1_32_count": 32555,
+      "nonzero_edge_pixel_count": 10,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 61,
+      "foot_contacts_manual": [
+        [
+          587,
+          1120
+        ],
+        [
+          835,
+          1018
+        ]
+      ],
+      "foot_midpoint": [
+        711.0,
+        1069.0
+      ],
+      "body_height_excluding_weapon_tail_accessories": 1008.0,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 1008.0,
+      "maximum_display_body_px_at_1_5_sampling_margin": 672.0,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Levitating turquoise disc and open hands readable; disc is baked in idle and must separate in future action/VFX work."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M14",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-cfaac1ef-b37b-4b2a-b3a9-1f0ab03138ab.png",
+    "source_sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+    "native_size": [
+      1312,
+      1199
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        41,
+        68,
+        1251,
+        1109
+      ],
+      "alpha128_pixel_count": 458938,
+      "transparent_pixel_count": 1063716,
+      "low_alpha_1_32_count": 43704,
+      "nonzero_edge_pixel_count": 12,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 68,
+      "foot_contacts_manual": [
+        [
+          545,
+          1092
+        ],
+        [
+          1167,
+          971
+        ]
+      ],
+      "foot_midpoint": [
+        856.0,
+        1031.5
+      ],
+      "body_height_excluding_weapon_tail_accessories": 963.5,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 963.5,
+      "maximum_display_body_px_at_1_5_sampling_margin": 642.33,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Two hooked short blades and long neck distinct; upper right blade margin narrow."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M15",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-96c6f76c-ece2-43f8-afb4-37d74f35e3e9.png",
+    "source_sha256": "a5fe604aa560ecb29c7ebd110a2a4fb55dc5840a333b230ed5454544ef435d01",
+    "native_size": [
+      1303,
+      1207
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        170,
+        17,
+        1109,
+        1174
+      ],
+      "alpha128_pixel_count": 549345,
+      "transparent_pixel_count": 954525,
+      "low_alpha_1_32_count": 59523,
+      "nonzero_edge_pixel_count": 5,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 390,
+      "foot_contacts_manual": [
+        [
+          624,
+          1120
+        ],
+        [
+          974,
+          1000
+        ]
+      ],
+      "foot_midpoint": [
+        799.0,
+        1060.0
+      ],
+      "body_height_excluding_weapon_tail_accessories": 670.0,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 670.0,
+      "maximum_display_body_px_at_1_5_sampling_margin": 446.67,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Three layered physical pennants and curled tail distinct; pole tip margin narrow."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M16",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-4d14096a-c2c4-4c76-9832-3b0da9740f33.png",
+    "source_sha256": "b7c22057e1515742638f779c77ab5f602ac89b02a036a5f9be00b4ad9fa4c3c2",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        59,
+        123,
+        1130,
+        1060
+      ],
+      "alpha128_pixel_count": 417591,
+      "transparent_pixel_count": 1115910,
+      "low_alpha_1_32_count": 33472,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 123,
+      "foot_contacts_manual": [
+        [
+          612,
+          1092
+        ],
+        [
+          964,
+          997
+        ]
+      ],
+      "foot_midpoint": [
+        788.0,
+        1044.5
+      ],
+      "body_height_excluding_weapon_tail_accessories": 921.5,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 921.5,
+      "maximum_display_body_px_at_1_5_sampling_margin": 614.33,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Two amber crystal lens housings and hand gesture readable; need future open-eye recovery pose."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M17",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-654f5cfd-d3cd-4d70-9389-74b8fa29809f.png",
+    "source_sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species design",
+      "assets/levels/b07/enemies/m01/idle.png: accepted painted family, not copied pixel asset"
+    ],
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        120,
+        123,
+        1017,
+        1039
+      ],
+      "opaque_or_partial_pixel_count": 478324,
+      "alpha128_pixel_count": 458361,
+      "transparent_pixel_count": 1094192,
+      "low_alpha_1_32_count": 16201,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_y": 309,
+      "foot_contacts_manual": [
+        [
+          516,
+          1070
+        ],
+        [
+          1004,
+          992
+        ]
+      ],
+      "foot_midpoint": [
+        760.0,
+        1031.0
+      ],
+      "body_height_excluding_weapon_tail_accessories": 722.0,
+      "semantic_landmark_uncertainty_px": 15,
+      "maximum_display_body_px_at_1_to_1_sampling": 722.0,
+      "maximum_display_body_px_at_1_5_sampling_margin": 481.33,
+      "sampling_note": "Single-frame anatomical content only, no canvas whitespace or atlas total. Runtime scale and maximum camera not assigned for these new candidates; no 2K runtime acceptance claim.",
+      "visual_review": "Native colors and species/role identity readable. No runtime, animation or final alpha acceptance. Camera pitch and edge fringe remain to review in actual scene."
+    },
+    "framing_revision": {
+      "prior_source": "exec-144a9631-39bc-4e70-98f5-69c348783f3f.png",
+      "reason": "Original obelisk top alpha128 y=3 and isolated speck; regenerated to leave space, not padded/upscaled. Original remains in generation workspace.",
+      "prior_sha256": "c09f9c9c22fed850d475bc01282b8ca6c1b7a6d845ff4599d389a1c2962843ca",
+      "initial_prompt": "provenance/idle_initial.prompt.txt"
+    },
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "B07-M18",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-c2cabff8-232b-42ea-ab70-e12802d646a8.png",
+    "source_sha256": "7c70a16d7faec7020d2715085440f1f60493c3aa68cd1fe1aa9cfc1174264fc1",
+    "native_size": [
+      1024,
+      1536
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; source PNG byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species",
+      "accepted M01 idle: painted family only"
+    ],
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    },
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        13,
+        14,
+        998,
+        1459
+      ],
+      "alpha128_pixel_count": 528471,
+      "transparent_pixel_count": 1000286,
+      "low_alpha_1_32_count": 37569,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_or_anatomical_dorsal_y": 225,
+      "foot_contacts_manual": [
+        [
+          506,
+          1400
+        ],
+        [
+          833,
+          1260
+        ]
+      ],
+      "foot_midpoint": [
+        669.5,
+        1330.0
+      ],
+      "body_height_excluding_weapon_tail_accessories": 1105.0,
+      "semantic_landmark_uncertainty_px": 20,
+      "maximum_display_body_px_at_1_to_1_sampling": 1105.0,
+      "maximum_display_body_px_at_1_5_sampling_margin": 736.67,
+      "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+      "visual_review": "Three vertical rings distinct from king back crown. RGB contains glow in alpha-zero pixels: not an opaque backdrop. Alpha must be respected; edge fringe pending. Camera relatively low."
+    },
+    "revision": {
+      "initial_source": "exec-8701155f-e713-4918-a521-813c6fae93ce.png",
+      "initial_sha256": "4fb47772dc787eea087f10273a63e59aa44d06d030892136f114475fff68f794",
+      "initial_prompt": "provenance/idle_initial.prompt.txt",
+      "request": "True transparent edge extraction; initial/source retained in generation workspace. Alpha verified numerically; hidden RGB glow must not be confused with opaque background."
+    }
+  },
+  {
+    "schema_version": 1,
+    "identity": "BO07",
+    "status": "design_candidate_not_runtime_registered",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-40f98dba-3afa-4ad2-a37d-16c2114bd4ed.png",
+    "source_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte copy",
+    "candidate_only": true,
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "pose": "single_right_three_quarter_idle_ready",
+    "references": [
+      "user-provided B07(1).png: authoritative world and species design",
+      "assets/levels/b07/enemies/m01/idle.png: accepted painted family, not copied pixel asset"
+    ],
+    "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+    "prompt": "provenance/idle_candidate.prompt.txt",
+    "qa": {
+      "alpha128_bounds_xywh": [
+        30,
+        19,
+        1195,
+        1212
+      ],
+      "opaque_or_partial_pixel_count": 631851,
+      "alpha128_pixel_count": 577726,
+      "transparent_pixel_count": 940665,
+      "low_alpha_1_32_count": 45849,
+      "nonzero_edge_pixel_count": 8,
+      "edge_alpha128_pixel_count": 0,
+      "body_crown_y": 280,
+      "foot_contacts_manual": [
+        [
+          492,
+          1128
+        ],
+        [
+          987,
+          1060
+        ]
+      ],
+      "foot_midpoint": [
+        739.5,
+        1094.0
+      ],
+      "body_height_excluding_weapon_tail_accessories": 814.0,
+      "semantic_landmark_uncertainty_px": 15,
+      "maximum_display_body_px_at_1_to_1_sampling": 814.0,
+      "maximum_display_body_px_at_1_5_sampling_margin": 542.67,
+      "sampling_note": "Single-frame anatomical content only, no canvas whitespace or atlas total. Runtime scale and maximum camera not assigned for these new candidates; no 2K runtime acceptance claim.",
+      "visual_review": "Native colors and species/role identity readable. No runtime, animation or final alpha acceptance. Camera pitch and edge fringe remain to review in actual scene."
+    },
+    "reference_sha256": {
+      "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+      "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+    }
+  }
+]

@@ -1,0 +1,233 @@
+{
+  "room_id": "L42",
+  "status": "blocked_fixed_boundary_alignment",
+  "date": "2026-10-03",
+  "generation_count": 2,
+  "generation_limit_reached": true,
+  "selected_source": "assets/levels/b07/rooms/l42/background/environment.png",
+  "selected_source_sha256": "c629b8452bfa2cd760f717e275aed25cc4441fb7e2f3fcb374b9e6b55369103d",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "geometry_unchanged": true,
+  "runtime_not_executed": true,
+  "details_required_despite_boundary_block": true,
+  "checks": {
+    "full_independent_opaque_painting": "pass",
+    "reference_identity_and_style": "pass: sunlit hand-painted lizard sandstone plaza with two exterior gold-tipped obelisks",
+    "single_flat_continuous_floor": "pass: no internal holes, false platforms or raised obstacles observed",
+    "runtime_anchors": "pass source visual: entry/exit, four mirror centers and interaction discs, altar and manual gates are on clear flat paving",
+    "runtime_stone_covers": "pass source visual: cover rectangles are clear paving with no baked duplicate blockers",
+    "safe_route_centerlines": "pass source visual: all fixed centerlines cross continuous paving",
+    "full_safe_route_width": "not mathematically certified against observed irregular painted edge; runtime not run",
+    "fixed_floor_boundary": "fail across north, south and lower side edges"
+  },
+  "measurement_method": "Visually inspected native original and cyan fixed-boundary overlay, plus all four edge crops. Recorded true outer top-surface to vertical facade/cliff boundary. Luminance edge samples support the visually identified physical transition; internal paving seams and outer coping top-surface are not treated as blocking lines. Typical source observation uncertainty 2px.",
+  "edge_samples": [
+    {
+      "edge": "south",
+      "axis": "y",
+      "cross_coordinate": 450,
+      "expected": 864.5485714285713,
+      "observed": 829,
+      "delta": -35.55,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "south",
+      "axis": "y",
+      "cross_coordinate": 600,
+      "expected": 864.5485714285713,
+      "observed": 829,
+      "delta": -35.55,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "south",
+      "axis": "y",
+      "cross_coordinate": 768,
+      "expected": 864.5485714285713,
+      "observed": 829,
+      "delta": -35.55,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "south",
+      "axis": "y",
+      "cross_coordinate": 1000,
+      "expected": 864.5485714285713,
+      "observed": 829,
+      "delta": -35.55,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "south",
+      "axis": "y",
+      "cross_coordinate": 1100,
+      "expected": 864.5485714285713,
+      "observed": 829,
+      "delta": -35.55,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "north",
+      "axis": "y",
+      "cross_coordinate": 450,
+      "expected": 175.54285714285714,
+      "observed": 150,
+      "delta": -25.54,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "north",
+      "axis": "y",
+      "cross_coordinate": 600,
+      "expected": 175.54285714285714,
+      "observed": 150,
+      "delta": -25.54,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "north",
+      "axis": "y",
+      "cross_coordinate": 768,
+      "expected": 175.54285714285714,
+      "observed": 150,
+      "delta": -25.54,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "north",
+      "axis": "y",
+      "cross_coordinate": 1000,
+      "expected": 175.54285714285714,
+      "observed": 150,
+      "delta": -25.54,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "north",
+      "axis": "y",
+      "cross_coordinate": 1100,
+      "expected": 175.54285714285714,
+      "observed": 150,
+      "delta": -25.54,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "west",
+      "axis": "x",
+      "cross_coordinate": 350,
+      "expected": 219.42857142857142,
+      "observed": 214,
+      "delta": -5.43,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "west",
+      "axis": "x",
+      "cross_coordinate": 450,
+      "expected": 219.42857142857142,
+      "observed": 206,
+      "delta": -13.43,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "west",
+      "axis": "x",
+      "cross_coordinate": 550,
+      "expected": 219.42857142857142,
+      "observed": 198,
+      "delta": -21.43,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "west",
+      "axis": "x",
+      "cross_coordinate": 650,
+      "expected": 219.42857142857142,
+      "observed": 190,
+      "delta": -29.43,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "east",
+      "axis": "x",
+      "cross_coordinate": 350,
+      "expected": 1329.737142857143,
+      "observed": 1325,
+      "delta": -4.74,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "east",
+      "axis": "x",
+      "cross_coordinate": 450,
+      "expected": 1329.737142857143,
+      "observed": 1332,
+      "delta": 2.26,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "east",
+      "axis": "x",
+      "cross_coordinate": 550,
+      "expected": 1329.737142857143,
+      "observed": 1341,
+      "delta": 11.26,
+      "uncertainty_px": 2
+    },
+    {
+      "edge": "east",
+      "axis": "x",
+      "cross_coordinate": 650,
+      "expected": 1329.737142857143,
+      "observed": 1349,
+      "delta": 19.26,
+      "uncertainty_px": 2
+    }
+  ],
+  "observed_corner_estimates_pixels": [
+    [
+      219,
+      282
+    ],
+    [
+      395,
+      150
+    ],
+    [
+      1148,
+      150
+    ],
+    [
+      1320,
+      282
+    ],
+    [
+      1352,
+      697
+    ],
+    [
+      1198,
+      829
+    ],
+    [
+      338,
+      829
+    ],
+    [
+      187,
+      697
+    ]
+  ],
+  "corner_estimate_uncertainty_pixels": 5,
+  "notes": [
+    "The inner south joint near y807 is decorative paving-to-coping; the flat coping remains floor until the actual top-to-vertical contact near y829.",
+    "North joint near y169 is inside the flat top surface; actual exterior contact is near y150.",
+    "The exposed vertical front strip under y829 is not walkable ground. Moving runtime polygon to this image is not authorized.",
+    "Selected output was copied byte-for-byte; no code paint, geometric warp, resampling, collage or pixel repair was applied.",
+    "Six detail repaints should use this frozen source; this QA block applies only to runtime fixed-boundary acceptance."
+  ]
+}

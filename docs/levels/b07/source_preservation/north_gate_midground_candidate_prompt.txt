@@ -1,0 +1,24 @@
+Use case: reference-guided architectural sprite / precise-object-edit.
+INPUT 1: the user's authoritative “B07 Golden Sand Lizard City” design poster. This is the visual authority: bright golden sandstone fortress architecture, crested lizard-head guardians, polished golden sun mirrors with pointed rays, red-orange long banners.
+INPUT 2: the existing canyon backdrop painting. Match its sandstone color, architecture, sunlit painterly detail and high three-quarter 2.5D perspective, but DO NOT output any of its sky, canyon, fog or landscape.
+INPUT 3: an engineering SILHOUETTE / PLACEMENT guide only. The entire guide canvas is the output canvas. Use its stepped bottom contact line, broad low arrangement and circular mirror position. Do not reproduce its gray fill, blocks, blue line, dotted border or diagram appearance.
+
+CREATE ONLY ONE INDEPENDENT TRANSPARENT MIDGROUND ARCHITECTURE COMPONENT: a complete, naturally WIDE AND LOW sandstone GATE-CITY COMPLEX, with one full giant golden sun mirror, two or three carved lizard-head guardians, intact portals/pillars/stone supports, and red-orange hanging banners. This must have an irregular architectural silhouette and true transparent exterior, not a rectangular crop of a scene. It will be placed in a narrow northern scenery band of a game room.
+
+NATURAL COMPOSITION, NOT SQUASHING: Arrange several low architectural masses horizontally at their natural proportions instead of vertically compressing the original tall city. A compact arched gatehouse on the left-middle, a distinct large round sun mirror on a LOW pedestal around the middle-right, and a low fortified gate building with lizard-head parapets on the right. Interconnect them with modest masonry wall sections and shallow non-walkable rock supports. Let the LEFT WING sit lower, rising gradually to the right terrace. The mirror sits beside the gatehouse rather than squeezed above it. The gatehouse and guardian heads must NOT overlap or hide any of the mirror's circular face or outer pointed rays.
+The complete mirror including ALL rays is visible and round. Natural stone proportions, intricate but readable handpainted masonry, a few red-orange vertical banners and small turquoise inlays only. No squashed circles, compressed towers, or stretched columns. Preserve reference 1's grand ritual identity and reference 2's lighting. No generic turquoise mural strip.
+
+PRECISE FOOTPRINT expressed in blueprint units, already projected for the game:
+The output canvas corresponds to Rect(-375,-350,2300,766.6667).
+All significant painted pixels must stay inside Rect(-300,-210,2150,390). Thus the complete architecture occupies at most x=-300..1850 and y=-210..180, leaving REAL transparent safety padding on every side.
+The highest real pixel, including mirror rays, must be below y=-210.
+The mirror center is approximately (900,-85), OUTER DIAMETER including rays 190–220. Its bottom stays above y=30. All mirror rays complete, no cropped tip.
+The complete bottom architectural support silhouette rests on or ABOVE this stepped/rising line:
+(-260,180) → (80,180) → (650,60) → (1850,60).
+Complete gate/pillar feet and stone foundation bases must be above that line. Left wing extends lower to y180; right wing rests at y60. Nothing drops below the line except at most a tiny irregular nonfunctional stone edge, not a pillar or mirror support. Do not draw the line itself. This is the guide's blue line. No need for an artificial perfectly rectangular ground slab.
+
+CANVAS / RESOLUTION: Aim for native 3000×1000 RGBA, a 3:1 landscape canvas, or the closest supported native size; do not fake high resolution by upscaling. The effective architecture should use about 90–94% of canvas width but only about the middle half of canvas height, matching the guide, with abundant transparent top/bottom padding. Effective source detail should ideally be around 2350–2800 pixels wide; preserve actual native output if the generator supports less.
+TRUE ALPHA: outside the architectural silhouette is transparent, including the large open space around the mirror and between separated roof shapes. The artwork itself is opaque. Only normal thin contour antialiasing. No broad glow, smoky alpha halo, sky, canyon, sand fog, black/white matte or checkerboard. Transparent windows/arch openings may show through where physically open, but don't add any new path.
+
+ABSOLUTELY NO playable courtyard, large paving slab, ground plane, stairs inviting the player to walk, foreground route, bridge connecting to gameplay floor, new enemies/people, active puzzle apparatus, laser beam, handles, UI, writing, poster frame, captions or cut-off architecture. The giant mirror here is a passive architectural landmark with no emitted beam.
+Output only this SINGLE fully contained, transparent, coherently painted gate-city midground asset. Do not return a full scene or a sheet of variants.

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-67544a36-6e04-4eb4-98ff-0d555282cced.png",
+  "source_sha256": "984a9281dfea39ba05f835e768cb1a673be2181153709b53145b3cb988d3913b",
+  "native_size": [
+    2172,
+    724
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/effects/altar_beam/effect_candidate.png",
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      141,
+      323,
+      1871,
+      104
+    ],
+    "alpha128_pixel_count": 132691,
+    "transparent_pixel_count": 1207379,
+    "low_alpha_1_32_count": 161287,
+    "nonzero_edge_pixel_count": 5,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Beam segment generated rounded fade ends rather than requested flat tileable ends; not seamless-ready.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "center_alpha": 253
+  },
+  "effect_id": "altar_beam",
+  "ability": "BO07 altar_lines",
+  "references": []
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-75366444-e4b4-4c40-bf19-b68dfd977516.png",
+  "source_sha256": "6b88db7576a8139a3fd0e53b6f011bb7d5b3b0de2580a48ecb9cfd24a817b3bf",
+  "native_size": [
+    1346,
+    1168
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/enemies/m03/actions/returning_disc/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      77,
+      32,
+      1171,
+      1124
+    ],
+    "alpha128_pixel_count": 435752,
+    "transparent_pixel_count": 1096420,
+    "low_alpha_1_32_count": 34663,
+    "nonzero_edge_pixel_count": 8,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Empty waiting hands and belt spare retained; still key pose only.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "anatomical_crown_y": 29,
+    "foot_landmarks": [
+      [
+        642,
+        1084
+      ],
+      [
+        1147,
+        960
+      ]
+    ],
+    "foot_midpoint": [
+      894.5,
+      1022.0
+    ],
+    "airborne_no_ground_contact": false,
+    "visible_anatomical_vertical_extent": 993.0,
+    "semantic_uncertainty_px": 20,
+    "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+    "scale_and_foot_continuity_passed": false
+  },
+  "identity": "B07-M03",
+  "ability": "returning_disc",
+  "phase": "recovery",
+  "reference_sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+  "reference_path": "assets/levels/b07/enemies/m03/idle_candidate.png"
+}
