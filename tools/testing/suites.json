@@ -1187,5 +1187,13 @@
   "world_visual": {
     "script": "tests/world/test_world_visual.gd",
     "scene": "tests/world/test_world_visual.tscn"
+  },
+  "runtime_role_art": {
+    "script": "tests/characters/test_runtime_role_art.gd",
+    "scene": "tests/characters/test_runtime_role_art.tscn"
+  },
+  "runtime_warrior_feedback": {
+    "script": "tests/characters/test_runtime_role_art.gd",
+    "scene": "tests/characters/test_runtime_role_art.tscn"
   }
 }
