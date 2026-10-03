@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "biome_id": "B08",
+  "room_id": "L43",
+  "name": "浮羽空港入口独立原画候选",
+  "texture": "asset://world/rooms/L43_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "placement_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "walkable_normalized_rect": [
+    0.12174479166666667,
+    0.22705078125,
+    0.7555338541666666,
+    0.4013671875
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.13216145833333334,
+      0.35107421875
+    ],
+    [
+      0.2955729166666667,
+      0.35107421875
+    ],
+    [
+      0.2972005208333333,
+      0.314453125
+    ],
+    [
+      0.33203125,
+      0.314453125
+    ],
+    [
+      0.3349609375,
+      0.22705078125
+    ],
+    [
+      0.69921875,
+      0.22705078125
+    ],
+    [
+      0.7027994791666666,
+      0.35107421875
+    ],
+    [
+      0.8671875,
+      0.35107421875
+    ],
+    [
+      0.8772786458333334,
+      0.62841796875
+    ],
+    [
+      0.6178385416666666,
+      0.62841796875
+    ],
+    [
+      0.6165364583333334,
+      0.58349609375
+    ],
+    [
+      0.3828125,
+      0.58349609375
+    ],
+    [
+      0.3815104166666667,
+      0.62841796875
+    ],
+    [
+      0.12174479166666667,
+      0.62841796875
+    ]
+  ],
+  "walkable_normalized_holes": [
+    [
+      [
+        0.4108571428571428,
+        0.4013333333333334
+      ],
+      [
+        0.5891428571428572,
+        0.4013333333333334
+      ],
+      [
+        0.5891428571428572,
+        0.43833333333333335
+      ],
+      [
+        0.4108571428571428,
+        0.43833333333333335
+      ]
+    ]
+  ],
+  "boundary_kind": "concave_outer_with_cloud_hole",
+  "anchors_normalized": {
+    "entry": [
+      0.21585714285714286,
+      0.5246666666666666
+    ],
+    "exit": [
+      0.7813571428571429,
+      0.5246666666666666
+    ],
+    "vane": [
+      0.344,
+      0.5
+    ],
+    "flag": [
+      0.2734926108374384,
+      0.4715057471264368
+    ],
+    "m01": [
+      0.4303571428571428,
+      0.5123333333333333
+    ],
+    "m02": [
+      0.5417857142857143,
+      0.5123333333333333
+    ],
+    "m03": [
+      0.6532142857142857,
+      0.5205555555555555
+    ]
+  },
+  "boundary": {
+    "authority": "Source dry horizontal face traced in shared WorldArt mapping; approved L43-only outer revision, original cloud hole preserved.",
+    "convex": false,
+    "components": 1,
+    "holes": 1,
+    "original_world_hole_xywh": [
+      626.4,
+      382.8,
+      371.2,
+      52.2
+    ],
+    "north_bypass_world": [
+      [
+        540,
+        340
+      ],
+      [
+        1100,
+        340
+      ]
+    ],
+    "north_bypass_length": 560,
+    "full_circle_navigation_radius": 40,
+    "nominal_bypass_clearance": 42.8,
+    "outer_source_trace_xy": [
+      [
+        203,
+        359.5
+      ],
+      [
+        454,
+        359.5
+      ],
+      [
+        456.5,
+        322
+      ],
+      [
+        510,
+        322
+      ],
+      [
+        514.5,
+        232.5
+      ],
+      [
+        1074,
+        232.5
+      ],
+      [
+        1079.5,
+        359.5
+      ],
+      [
+        1332,
+        359.5
+      ],
+      [
+        1347.5,
+        643.5
+      ],
+      [
+        949,
+        643.5
+      ],
+      [
+        947,
+        597.5
+      ],
+      [
+        588,
+        597.5
+      ],
+      [
+        586,
+        643.5
+      ],
+      [
+        187,
+        643.5
+      ]
+    ],
+    "status": "registered concave floor and unchanged hole passed direct runtime navigation/movement checks",
+    "hole_source_edge_tolerance_pixels": 1,
+    "outer_clear_edge_tolerance_pixels": 1,
+    "outer_soft_corner_tolerance_pixels": 2,
+    "floor_area_world_squared": 694642.210346365,
+    "nav_grid_full_circle_cells": 324
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "integer shared-image regions",
+    "texture_memory": "one shared texture; no streaming claim"
+  },
+  "provenance": {
+    "mode": "built-in image_gen with explicitly authorized masked local raster derivation",
+    "prompt": "asset://world/rooms/L43_environment_v1.prompt.json",
+    "derivation": "asset://b08/rooms/l43/background/provenance/derivation.json"
+  },
+  "qa": {
+    "sha256": "3689bb6cb2edd18d30cb500af03cdeb319e546e79f42881a7fcf2df3399bfc32",
+    "source_size": [
+      1536,
+      1024
+    ],
+    "outside_edit_context_changed_pixels": 0,
+    "context_xywh": [
+      596,
+      384,
+      344,
+      81
+    ],
+    "source_registration": "Local complete hole within approximately one source pixel; original outer pixels unchanged",
+    "visual_status": "Three actual2560x1440 controlled frames reviewed: mother-only composition and sharedHUD candidate; detail and natural combat still pending",
+    "geometry_status": "managed exact circular geometry and registered mapping passed; actual2K visual review pending",
+    "outer_trace": "asset://b08/rooms/l43/background/provenance/perimeter_review.json",
+    "runtime_checks": {
+      "engine": "Godot4.6.3",
+      "final_refined_batch": "20261003T130932119736Z-ae0be829",
+      "painted_navigation_checks": 146,
+      "resource_gate_checks": 10,
+      "scene_checks": 29,
+      "failures": 0,
+      "hud_adapter_batch": "20261003T130028040882Z-f26ab794",
+      "hud_adapter_checks": 59,
+      "circle_predicates_batch": "20261003T124509740907Z-2e7db52b",
+      "circle_predicate_checks": 94,
+      "scope": "targeted managed headless only; not natural combat or actual rendered acceptance"
+    },
+    "renderer_batch": "20261003T131137615284Z-6a063854",
+    "rendered_frame_sha256": {
+      "painting_entry.png": "b3ce3f02363f4ec86e8a4ea3483124450c134edc1189c6a8bd00f9eed7b3fb2e",
+      "painting_north_bypass.png": "f0ee91dedcb7b29aa9c7fc3063720c8e2668e7d59272a70a2d2e072c924d2928",
+      "painting_shared_backpack.png": "59ccfa08544b5c29cf862dbbe01e9a53a52dd401fe63407baa94dc893c151ee8"
+    }
+  }
+}

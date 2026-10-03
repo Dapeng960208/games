@@ -1,5 +1,5 @@
 {
-  "status": "planned_resource_structure_no_approved_independent_art",
+  "status": "l43_registered_mother_candidate_other_six_rooms_planned_no_final_art_acceptance",
   "reference": "assets/levels/b02/rooms/l07",
   "rooms": [
     {
@@ -11,7 +11,8 @@
         "logical_texture": "asset://world/rooms/L43_environment_v1.png",
         "logical_metadata": "asset://world/rooms/L43_environment_v1.json",
         "approved_sources": 0,
-        "status": "three_staging_candidates_fail_fixed_registration"
+        "status": "derived_masked_mother_registered_explicit_candidate_geometry_verified_actual2k_pending",
+        "candidate_sources": 1
       },
       "detail": {
         "manifest": "assets/levels/b08/rooms/l43/detail/manifest.json",
@@ -25,13 +26,13 @@
           "bottom_right"
         ],
         "approved_sources": 0,
-        "status": "not_generated_wait_for_registered_background",
+        "status": "six_native_repaints_in_source_review_not_integrated",
         "contract": "native region repaint of the same room mother image; source_rect normalized through same destination; six required; narrow feather overlap"
       },
       "runtime_layers": {
         "dynamic_props": "retain actual footpoints and shared depth nodes",
         "wind_and_warnings": "runtime only, not baked",
-        "collision": "existing B08 fixed union unchanged pending explicit geometry approval"
+        "collision": "L43-only approved traced concave outer plus original world hole; exact circle and swept checks; legacy path and other rooms retained"
       },
       "existing_assembly": "L43 opt-in module-based prototype is preserved separately; not counted as background+six detail repaints"
     },

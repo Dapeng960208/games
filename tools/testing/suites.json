@@ -1200,5 +1200,21 @@
   "b08_room_art_gate": {
     "script": "tests/levels/b08/test_room_art_gate.gd",
     "scene": "tests/levels/b08/test_room_art_gate.tscn"
+  },
+  "b08_circle_boundary": {
+    "script": "tests/levels/b08/test_circle_boundary.gd",
+    "scene": "tests/levels/b08/test_circle_boundary.tscn"
+  },
+  "b08_painted_floor": {
+    "script": "tests/levels/b08/test_painted_floor.gd",
+    "scene": "tests/levels/b08/test_painted_floor.tscn"
+  },
+  "b08_room_painting": {
+    "script": "tests/levels/b08/test_room_painting.gd",
+    "scene": "tests/levels/b08/test_room_painting.tscn"
+  },
+  "b08_room_painting_capture": {
+    "script": "tests/levels/b08/test_room_painting_capture.gd",
+    "scene": "tests/levels/b08/test_room_painting_capture.tscn"
   }
 }

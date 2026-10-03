@@ -1519,6 +1519,13 @@
     "b08/rooms/l43/edge_joints/provenance/narrow_buttress_prompt.txt": "res://assets/levels/b08/rooms/l43/detail/edge_joints/provenance/narrow_buttress_prompt.txt",
     "b08/rooms/l43/edge_joints/provenance/broad_corner_source.json": "res://assets/levels/b08/rooms/l43/detail/edge_joints/provenance/broad_corner_source.json",
     "b08/rooms/l43/edge_joints/provenance/narrow_buttress_source.json": "res://assets/levels/b08/rooms/l43/detail/edge_joints/provenance/narrow_buttress_source.json",
-    "b08/rooms/l43/edge_joints/manifest.json": "res://assets/levels/b08/rooms/l43/detail/edge_joints/manifest.json"
+    "b08/rooms/l43/edge_joints/manifest.json": "res://assets/levels/b08/rooms/l43/detail/edge_joints/manifest.json",
+    "world/rooms/l43_environment_v1.png": "res://assets/levels/b08/rooms/l43/background/environment.png",
+    "world/rooms/l43_environment_v1.json": "res://assets/levels/b08/rooms/l43/background/environment.json",
+    "world/rooms/l43_environment_v1.prompt.json": "res://assets/levels/b08/rooms/l43/background/environment.prompt.json",
+    "b08/rooms/l43/background/provenance/hole_prompt.txt": "res://assets/levels/b08/rooms/l43/background/provenance/hole_prompt.txt",
+    "b08/rooms/l43/background/provenance/derivation.json": "res://assets/levels/b08/rooms/l43/background/provenance/derivation.json",
+    "b08/rooms/l43/background/provenance/edge_measurement.json": "res://assets/levels/b08/rooms/l43/background/provenance/edge_measurement.json",
+    "b08/rooms/l43/background/provenance/perimeter_review.json": "res://assets/levels/b08/rooms/l43/background/provenance/perimeter_review.json"
   }
 }

@@ -7,6 +7,10 @@ const SkyContent = preload("res://scripts/levels/b08/content.gd")
 const SkyNumbers = preload("res://scripts/levels/b08/numbers.gd")
 const SkyActor = preload("res://scripts/levels/b08/enemy_actor.gd")
 const SkyBrain = preload("res://scripts/levels/b08/enemy_brain.gd")
+const RoomPainting = preload("res://scripts/levels/b08/presentation/room_art_mapping.gd")
+const ExistingHUD = preload("res://scripts/levels/b08/presentation/hud_host.gd")
+var painted_mapping
+var candidate_ui: Node
 var wind = preload("res://scripts/levels/b08/wind_state.gd").new()
 var harbor = preload("res://scripts/levels/b08/harbor_runtime.gd").new()
 var _authored_waves: Array = []
@@ -50,6 +54,11 @@ func _ready() -> void:
 	get_tree().auto_accept_quit = false
 	_lifecycle_frames = int(argument("b08-quit-after-frames","-1"))
 	super._ready()
+	if not configuration_ready or not is_instance_valid(player):
+		push_error("B08 room rejected: "+configuration_error)
+		Game.reload_profile()
+		get_tree().quit(2)
+		return
 	_started = true
 	harbor.configure(self)
 	var layer := CanvasLayer.new()
@@ -64,10 +73,18 @@ func _ready() -> void:
 func load_room_layout(id: String, _room_difficulty: int = -1, _seed_override: int = -1) -> bool:
 	if SkyContent.room(id).is_empty(): return false
 	layout_id = id
-	layout = {"id":id,"biome_id":"B08","name":SkyContent.room(id).name,"entry":SkyGeometry.point(SkyGeometry.ENTRY[id]),"exit":SkyGeometry.point(SkyGeometry.EXIT[id]),"arena":Rect2(0,0,1624,1044),"props":[],"decorations":[],"encounters":[]}
+	layout = {"id":id,"room_id":id,"blueprint_room_id":id,"biome_id":"B08","name":SkyContent.room(id).name,"entry":SkyGeometry.point(SkyGeometry.ENTRY[id]),"exit":SkyGeometry.point(SkyGeometry.EXIT[id]),"arena":Rect2(0,0,1624,1044),"props":[],"decorations":[],"encounters":[]}
 	ARENA = layout.arena
 	exit_position = layout.exit
 	relic_positions = {}
+	painted_mapping=null
+	configuration_ready=false
+	if RoomPainting.requested(id):
+		var mapping:=RoomPainting.new()
+		if not mapping.configure(id,ARENA):
+			configuration_error=str(mapping.errors)
+			return false
+		painted_mapping=mapping
 	configuration_ready = true
 	_build_navigation()
 	return true
@@ -77,9 +94,19 @@ func _create_ground_canvases() -> void:
 	_floor_canvas.z_index = -3
 	add_child(_floor_canvas)
 	_floor_canvas.draw.connect(_draw_floor)
+func painting_ready() -> bool: return painted_mapping!=null and painted_mapping.floor!=null
 func _configure_world_view() -> void:
-	$MineBackdrop.hide()
-	if is_instance_valid(camera): camera.configure(self,player,ARENA,ARENA)
+	if painting_ready():
+		$MineBackdrop.z_index=-20
+		$MineBackdrop.configure(layout.arena,"B08",layout_seed,layout_id)
+		$MineBackdrop.configure_layout(layout)
+		if OS.get_cmdline_user_args().has("--b08-native-room-detail"):
+			$MineBackdrop.environment_chunks.configure_candidate_detail(true)
+		$MineBackdrop.show()
+		if is_instance_valid(camera): camera.configure(self,player,painted_mapping.floor.bounds,$MineBackdrop.painted_bounds())
+	else:
+		$MineBackdrop.hide()
+		if is_instance_valid(camera): camera.configure(self,player,ARENA,ARENA)
 func _refresh_terrain_canvas() -> void: pass
 func _draw_interaction_focus(_canvas: Node2D) -> void: pass
 func _update_encounters(_delta: float = 0.0) -> void: pass
@@ -87,6 +114,7 @@ func interaction_hint() -> String: return ""
 func navigation_target() -> Dictionary: return {"position":exit_position,"kind":"preview","title":"Next candidate room"}
 
 func _open_room(id: String) -> void:
+	_release_candidate_ui()
 	for actor: Node in enemies.get_children(): actor.free()
 	for shot: Node in projectiles.get_children(): shot.free()
 	if enemy_skills!=null: enemy_skills.reset_room()
@@ -94,7 +122,10 @@ func _open_room(id: String) -> void:
 	warnings.clear()
 	wind = preload("res://scripts/levels/b08/wind_state.gd").new()
 	harbor.reset()
-	load_room_layout(id)
+	if not load_room_layout(id):
+		push_error("B08 room rejected: "+configuration_error)
+		request_quit()
+		return
 	var ids: Array = []
 	for lane: Dictionary in SkyGeometry.lanes(id): ids.append(lane.id)
 	wind.configure(ids)
@@ -119,7 +150,22 @@ func _open_room(id: String) -> void:
 	enemies.add_child(_flag)
 	_configure_sky_environment()
 	_configure_world_view()
+	_configure_candidate_ui()
 	_floor_canvas.queue_redraw()
+
+func _release_candidate_ui() -> void:
+	if is_instance_valid(candidate_ui):
+		candidate_ui.close_panels()
+		candidate_ui.free()
+	candidate_ui=null
+func _configure_candidate_ui() -> void:
+	_hud.show()
+	if not ExistingHUD.enabled_for(self): return
+	var host:=ExistingHUD.new()
+	host.room=self
+	add_child(host)
+	candidate_ui=host
+	_hud.hide()
 
 func _configure_sky_environment() -> void:
 	if is_instance_valid(sky_interactions): sky_interactions.free()
@@ -128,12 +174,13 @@ func _configure_sky_environment() -> void:
 	sky_environment=null
 	sky_projectile_art=null
 	if layout_id!="L43" or not OS.get_cmdline_user_args().has("--b08-art-l43"): return
-	var environment:=preload("res://scripts/levels/b08/presentation/l43_environment.gd").new()
-	add_child(environment)
 	var convergence:=OS.get_cmdline_user_args().has("--b08-art-convergence")
-	if not environment.configure(layout_id,OS.get_cmdline_user_args().has("--b08-art-background-depth-review"),convergence):
-		push_error("B08 reference art rejected: "+str(environment.errors)); environment.free(); return
-	sky_environment=environment
+	if not painting_ready():
+		var environment:=preload("res://scripts/levels/b08/presentation/l43_environment.gd").new()
+		add_child(environment)
+		if not environment.configure(layout_id,OS.get_cmdline_user_args().has("--b08-art-background-depth-review"),convergence):
+			push_error("B08 reference art rejected: "+str(environment.errors)); environment.free(); return
+		sky_environment=environment
 	if convergence:
 		var projectile_art:=preload("res://scripts/levels/b08/presentation/projectile_art.gd").new()
 		if projectile_art.configure(layout_id): sky_projectile_art=projectile_art
@@ -212,6 +259,7 @@ func cleanup_for_exit() -> bool:
 		if not shutdown_done: await shutdown_ready
 		return shutdown_clean
 	shutdown_started = true
+	_release_candidate_ui()
 	set_input_blocked(true)
 	wind.cancel_turn()
 	_channel_lane = ""
@@ -262,8 +310,10 @@ func admit_warning(owner: String) -> bool:
 func release_warning(owner: String) -> void: warnings.erase(owner)
 func on_screen(at: Vector2) -> bool:
 	return get_viewport_rect().grow(-35).has_point(get_global_transform_with_canvas()*at)
-func valid_ground(at: Vector2, radius: float = 0.0) -> bool: return SkyGeometry.contains(layout_id,at,radius)
+func valid_ground(at: Vector2, radius: float = 0.0) -> bool:
+	return painted_mapping.floor.contains(at,radius) if painting_ready() else SkyGeometry.contains(layout_id,at,radius)
 func clamp_actor(at: Vector2, radius: float) -> Vector2:
+	if painting_ready(): return painted_mapping.floor.clamp_point(at,radius)
 	if valid_ground(at,radius): return at
 	var closest := SkyGeometry.point(SkyGeometry.ENTRY.get(layout_id,[1400,900]))
 	var distance := INF
@@ -275,8 +325,11 @@ func clamp_actor(at: Vector2, radius: float) -> Vector2:
 func move_actor(from: Vector2, displacement: Vector2, radius: float) -> Vector2:
 	var motion := displacement
 	if is_instance_valid(player) and from.is_equal_approx(player.position) and is_equal_approx(radius,Balance.PLAYER_RADIUS) and player.dash_remaining<=0 and player.knockback.length_squared()<.01 and not player.abilities.busy(): motion *= wind_multiplier(from,motion)
-	return SkyGeometry.move(layout_id,from,motion,radius)
+	return _move_ground(from,motion,radius)
+func _move_ground(from: Vector2, motion: Vector2, radius: float) -> Vector2:
+	return painted_mapping.floor.move(from,motion,radius) if painting_ready() else SkyGeometry.move(layout_id,from,motion,radius)
 func blocked_fraction(from: Vector2, to: Vector2, radius: float = 0.0) -> float:
+	if painting_ready(): return painted_mapping.floor.blocked_fraction(from,to,radius)
 	var steps := maxi(1,ceili(from.distance_to(to)/4))
 	for index in range(1,steps+1):
 		if not valid_ground(from.lerp(to,float(index)/steps),radius): return float(index-1)/steps
@@ -318,7 +371,7 @@ func _hurt(actor: Node2D, data: Dictionary, push: float = 0) -> void:
 		if wind.admit_displacement("player"):
 			if push>0:
 				player.knockback = Vector2.ZERO
-				player.position = SkyGeometry.move(layout_id,player.position,actor.position.direction_to(player.position)*push,Balance.PLAYER_RADIUS)
+				player.position = _move_ground(player.position,actor.position.direction_to(player.position)*push,Balance.PLAYER_RADIUS)
 		else: player.knockback = previous_knockback
 func hit_circle(actor: Node2D, action: Dictionary, coefficient: float, radius: float) -> void:
 	if player.position.distance_to(action.target)<=radius+Balance.PLAYER_RADIUS and has_line_of_sight(action.target,player.position): _hurt(actor,packet(actor,action,coefficient))
@@ -360,14 +413,14 @@ func _tick_feathers(delta: float) -> void:
 		if shot.remaining<=0 or fraction<.999: feathers.erase(shot)
 
 func _draw_floor() -> void:
-	if not is_instance_valid(sky_environment):
+	if not painting_ready() and not is_instance_valid(sky_environment):
 		_floor_canvas.draw_rect(ARENA,Color("83b3cc"))
 		for shape: Rect2 in SkyGeometry.floors(layout_id):
 			_floor_canvas.draw_rect(shape,Color("eee8d5"))
 			_floor_canvas.draw_rect(shape,Color("9d9174"),false,3)
 	for lane: Dictionary in SkyGeometry.lanes(layout_id):
 		var direction: Vector2 = wind.direction(lane.id,lane.direction)
-		if is_instance_valid(sky_environment):
+		if painting_ready() or is_instance_valid(sky_environment):
 			preload("res://scripts/levels/b08/presentation/wind_lane.gd").draw_lane(_floor_canvas,lane,wind,wind.now,bool(Game.profile.settings.get("reduced_fx",false)))
 		else:
 			_floor_canvas.draw_rect(lane.rect,Color(.35,.75,.84,.35))

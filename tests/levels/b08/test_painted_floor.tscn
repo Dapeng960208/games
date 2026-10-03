@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://tests/levels/b08/test_painted_floor.gd" id="1"]
+[node name="B08PaintedFloor" type="Node"]
+script = ExtResource("1")

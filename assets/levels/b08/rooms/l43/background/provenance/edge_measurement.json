@@ -1,0 +1,74 @@
+{
+  "north": {
+    "min": 410,
+    "max": 411,
+    "counts": {
+      "410": 1,
+      "411": 262
+    }
+  },
+  "south": {
+    "min": 449,
+    "max": 450,
+    "counts": {
+      "449": 247,
+      "450": 16
+    }
+  },
+  "left": {
+    "min": 631,
+    "max": 632,
+    "counts": {
+      "631": 8,
+      "632": 19
+    }
+  },
+  "right": {
+    "min": 905,
+    "max": 905,
+    "counts": {
+      "905": 27
+    }
+  },
+  "interpretation": {
+    "method": "Largest directional luminance transition in narrowly bounded inspected wall strips. Manual full-image and enlarged inspection distinguishes wall, sky, and flush paving. Not exact semantic segmentation.",
+    "complete_hole_xyxy_observed_approx": [
+      631,
+      411,
+      905,
+      449
+    ],
+    "raster_contract_error_xyxy_px": [
+      -0.0765714285714,
+      0.0346666666667,
+      0.0765714285716,
+      0.14666666666665
+    ],
+    "edge_uncertainty_px": 1,
+    "north_world_y_nominal": 382.84776182432427,
+    "north_bypass_clearance_world_nominal": 42.847761824324266,
+    "north_bypass_clearance_world_conservative_y410": 41.47001689189187,
+    "radius_world": 40,
+    "runtime_check": "No engine test; local static geometric clearance only.",
+    "south_note": "Largest positive transition can be y450 in light decorative paving. The wall-to-paving return is approximately y449; this color-gradient location is not automatically the non-walkable border."
+  },
+  "original_rectangle_border_gradient": {
+    "mean_abs": 2.8780392156862744,
+    "max_abs": 57.0
+  },
+  "derived_rectangle_border_gradient": {
+    "mean_abs": 2.8780392156862744,
+    "max_abs": 57.0
+  },
+  "scope_verification": {
+    "mother_original_sha256": "fd36bc4dd59ff6755342002d48e0e1b3ed2baa3562b3732dabe2fae666cad6fa",
+    "approved_context_xywh": [
+      596,
+      384,
+      344,
+      81
+    ],
+    "outside_context_changed_pixels": 0,
+    "selected_sha256": "3689bb6cb2edd18d30cb500af03cdeb319e546e79f42881a7fcf2df3399bfc32"
+  }
+}

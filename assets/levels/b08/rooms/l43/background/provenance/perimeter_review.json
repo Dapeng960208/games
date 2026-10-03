@@ -1,0 +1,498 @@
+{
+  "source": "/workspace/scratch/2244020fc8d6/b08-art/independent_room_1144/l43/revision_hole_02_derived/environment_derived_hole_02_refined.png",
+  "source_sha256": "3689bb6cb2edd18d30cb500af03cdeb319e546e79f42881a7fcf2df3399bfc32",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "previous_outline_xy": [
+    [
+      203.0,
+      360.0
+    ],
+    [
+      456.0,
+      360.0
+    ],
+    [
+      457.0,
+      323.0
+    ],
+    [
+      514.0,
+      323.0
+    ],
+    [
+      516.0,
+      234.0
+    ],
+    [
+      1073.0,
+      234.0
+    ],
+    [
+      1078.0,
+      360.0
+    ],
+    [
+      1331.0,
+      360.0
+    ],
+    [
+      1347.0,
+      644.0
+    ],
+    [
+      951.0,
+      644.0
+    ],
+    [
+      947.0,
+      598.0
+    ],
+    [
+      589.0,
+      598.0
+    ],
+    [
+      586.0,
+      644.0
+    ],
+    [
+      189.0,
+      644.0
+    ]
+  ],
+  "recommended_outline_xy": [
+    [
+      203.0,
+      359.5
+    ],
+    [
+      454.0,
+      359.5
+    ],
+    [
+      456.5,
+      322.0
+    ],
+    [
+      510.0,
+      322.0
+    ],
+    [
+      514.5,
+      232.5
+    ],
+    [
+      1074.0,
+      232.5
+    ],
+    [
+      1079.5,
+      359.5
+    ],
+    [
+      1332.0,
+      359.5
+    ],
+    [
+      1347.5,
+      643.5
+    ],
+    [
+      949.0,
+      643.5
+    ],
+    [
+      947.0,
+      597.5
+    ],
+    [
+      588.0,
+      597.5
+    ],
+    [
+      586.0,
+      643.5
+    ],
+    [
+      187.0,
+      643.5
+    ]
+  ],
+  "vertex_displacements_xy": [
+    [
+      0.0,
+      -0.5
+    ],
+    [
+      -2.0,
+      -0.5
+    ],
+    [
+      -0.5,
+      -1.0
+    ],
+    [
+      -4.0,
+      -1.0
+    ],
+    [
+      -1.5,
+      -1.5
+    ],
+    [
+      1.0,
+      -1.5
+    ],
+    [
+      1.5,
+      -0.5
+    ],
+    [
+      1.0,
+      -0.5
+    ],
+    [
+      0.5,
+      -0.5
+    ],
+    [
+      -2.0,
+      -0.5
+    ],
+    [
+      0.0,
+      -0.5
+    ],
+    [
+      -1.0,
+      -0.5
+    ],
+    [
+      0.0,
+      -0.5
+    ],
+    [
+      -2.0,
+      -0.5
+    ]
+  ],
+  "hole_world_xywh_preserved": [
+    626.4,
+    382.8,
+    371.2,
+    52.2
+  ],
+  "hole_source_xywh_preserved_approx": [
+    631.08,
+    410.965,
+    273.847,
+    37.888
+  ],
+  "semantics": "Horizontal dry paving plus horizontal cream/gold perimeter curb through its outer edge. Exclude shaded vertical fascia, underlying arches, sky and scenery. No convex hull. No modification or inference within the cloud-hole edit mask.",
+  "measurement": "Manual native-size and 3x/8x crop review of all fourteen corners and edges; constrained directional pixel-gradient measurements corroborate visible top-face transitions. Use half-pixel edge locations between adjacent pixel centers. Straight 14-segment approximation; not semantic segmentation.",
+  "recommended_tolerance_px": {
+    "clear_edge": 1,
+    "soft_or_decorated_edge": 2,
+    "corner_ambiguity": 2
+  },
+  "integration_scope": "Read-only recommendation. No repository, geometry, physics, anchor, wind, source image or hole changes performed.",
+  "edges": [
+    {
+      "edge": 1,
+      "name": "West wing north",
+      "axis_for_signed_deviation": "source_y",
+      "old_trace_observed_deviation_px": [
+        -0.5,
+        -0.5,
+        -0.5,
+        -0.5,
+        0.5
+      ],
+      "recommended_trace_observed_residual_px": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "included_scanlines": 238,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 2,
+      "name": "West lower riser",
+      "axis_for_signed_deviation": "source_x",
+      "old_trace_observed_deviation_px": [
+        -1.878,
+        -1.822,
+        -1.162,
+        -0.935,
+        -0.284
+      ],
+      "recommended_trace_observed_residual_px": [
+        -0.4,
+        -0.327,
+        -0.033,
+        0.46,
+        0.6
+      ],
+      "included_scanlines": 22,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 3,
+      "name": "West intermediate ledge north",
+      "axis_for_signed_deviation": "source_y",
+      "old_trace_observed_deviation_px": [
+        -1.5,
+        -1.5,
+        -1.5,
+        -0.5,
+        -0.5
+      ],
+      "recommended_trace_observed_residual_px": [
+        -0.5,
+        -0.5,
+        -0.5,
+        0.5,
+        0.5
+      ],
+      "included_scanlines": 32,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 4,
+      "name": "West upper riser",
+      "axis_for_signed_deviation": "source_x",
+      "old_trace_observed_deviation_px": [
+        -3.994,
+        -3.83,
+        -2.77,
+        -1.99,
+        -1.298
+      ],
+      "recommended_trace_observed_residual_px": [
+        -0.556,
+        -0.409,
+        -0.036,
+        0.387,
+        0.528
+      ],
+      "included_scanlines": 74,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 5,
+      "name": "High platform north",
+      "axis_for_signed_deviation": "source_y",
+      "old_trace_observed_deviation_px": [
+        -1.5,
+        -1.5,
+        -1.5,
+        -1.5,
+        -0.5
+      ],
+      "recommended_trace_observed_residual_px": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "included_scanlines": 538,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 6,
+      "name": "East high riser",
+      "axis_for_signed_deviation": "source_x",
+      "old_trace_observed_deviation_px": [
+        0.389,
+        0.86,
+        1.325,
+        1.89,
+        2.206
+      ],
+      "recommended_trace_observed_residual_px": [
+        -0.778,
+        -0.352,
+        0.045,
+        0.491,
+        0.841
+      ],
+      "included_scanlines": 109,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 7,
+      "name": "East wing north",
+      "axis_for_signed_deviation": "source_y",
+      "old_trace_observed_deviation_px": [
+        -0.5,
+        -0.5,
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "recommended_trace_observed_residual_px": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "included_scanlines": 238,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 8,
+      "name": "East outer side",
+      "axis_for_signed_deviation": "source_x",
+      "old_trace_observed_deviation_px": [
+        -0.218,
+        0.528,
+        0.993,
+        1.448,
+        1.824
+      ],
+      "recommended_trace_observed_residual_px": [
+        -1.004,
+        -0.243,
+        0.213,
+        0.633,
+        1.01
+      ],
+      "included_scanlines": 268,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 9,
+      "name": "East wing front",
+      "axis_for_signed_deviation": "source_y",
+      "old_trace_observed_deviation_px": [
+        -1.5,
+        -0.5,
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "recommended_trace_observed_residual_px": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "included_scanlines": 375,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 10,
+      "name": "Notch east side",
+      "axis_for_signed_deviation": "source_x",
+      "old_trace_observed_deviation_px": [
+        -1.804,
+        -1.587,
+        -1.065,
+        -0.456,
+        -0.196
+      ],
+      "recommended_trace_observed_residual_px": [
+        -0.565,
+        -0.435,
+        -0.043,
+        0.261,
+        0.391
+      ],
+      "included_scanlines": 31,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 11,
+      "name": "Notch rear/front lip",
+      "axis_for_signed_deviation": "source_y",
+      "old_trace_observed_deviation_px": [
+        -1.5,
+        -0.5,
+        -0.5,
+        -0.5,
+        0.5
+      ],
+      "recommended_trace_observed_residual_px": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "included_scanlines": 320,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 12,
+      "name": "Notch west side",
+      "axis_for_signed_deviation": "source_x",
+      "old_trace_observed_deviation_px": [
+        -0.978,
+        -0.783,
+        -0.391,
+        0.0,
+        0.196
+      ],
+      "recommended_trace_observed_residual_px": [
+        -0.304,
+        -0.174,
+        0.087,
+        0.522,
+        0.652
+      ],
+      "included_scanlines": 31,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 13,
+      "name": "West wing front",
+      "axis_for_signed_deviation": "source_y",
+      "old_trace_observed_deviation_px": [
+        -1.5,
+        -0.5,
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "recommended_trace_observed_residual_px": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "included_scanlines": 378,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    },
+    {
+      "edge": 14,
+      "name": "West outer side",
+      "axis_for_signed_deviation": "source_x",
+      "old_trace_observed_deviation_px": [
+        -2.289,
+        -1.83,
+        -0.785,
+        -0.106,
+        0.338
+      ],
+      "recommended_trace_observed_residual_px": [
+        -0.542,
+        -0.303,
+        0.12,
+        0.569,
+        1.077
+      ],
+      "included_scanlines": 262,
+      "scope": "8 px endpoint margins excluded; corners also visually inspected at 8x; decorative gradient outliers excluded from summary, all retained in gradient_samples.json"
+    }
+  ]
+}

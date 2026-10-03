@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "status": "controlled_source_mapping_hud_slice_reviewed_not_final_room_acceptance",
+  "headless": {
+    "circle_boundary": {
+      "batch": "20261003T124509740907Z-2e7db52b",
+      "checks": 94,
+      "failures": 0
+    },
+    "refined_navigation_and_scene": {
+      "batch": "20261003T130932119736Z-ae0be829",
+      "checks": {
+        "navigation": 146,
+        "asset_gate": 10,
+        "scene": 29
+      },
+      "failures": 0
+    },
+    "wired_hud": {
+      "batch": "20261003T130028040882Z-f26ab794",
+      "checks": 59,
+      "failures": 0
+    }
+  },
+  "renderer": {
+    "batch": "20261003T131137615284Z-6a063854",
+    "report_sha256": "de3cc7ec818cfd2e062c46cac43591a75cf22254ca0fe2ea2c51700d0fcfbf3b",
+    "audio_cleanup": true,
+    "captures": [
+      {
+        "actors": [
+          {
+            "foot": "(667.0, 539.4)",
+            "id": "B08-M01",
+            "legal_full_circle": true,
+            "pose": "idle",
+            "radius": 18.0
+          },
+          {
+            "foot": "(899.0, 539.4)",
+            "id": "B08-M02",
+            "legal_full_circle": true,
+            "pose": "idle",
+            "radius": 18.0
+          },
+          {
+            "foot": "(1131.0, 551.0)",
+            "id": "B08-M03",
+            "legal_full_circle": true,
+            "pose": "idle",
+            "radius": 18.0
+          },
+          {
+            "foot": "(340.4, 481.8)",
+            "id": "B08-FLAG",
+            "legal_full_circle": true,
+            "pose": "runtime_prop",
+            "radius": 18.0
+          }
+        ],
+        "camera_center": "(523.9412, 556.8)",
+        "file": "painting_entry.png",
+        "modal_paused": false,
+        "native_detail_loaded": false,
+        "player_foot": "(220.4, 556.8)",
+        "player_legal_full_circle": true,
+        "sample": "same frame_post_draw as PNG",
+        "scope": "original entry; finite encounter frozen for source/mapping review",
+        "sha256": "b3ce3f02363f4ec86e8a4ea3483124450c134edc1189c6a8bd00f9eed7b3fb2e",
+        "source_pixels": [
+          1536,
+          1024
+        ],
+        "source_sha256": "3689bb6cb2edd18d30cb500af03cdeb319e546e79f42881a7fcf2df3399bfc32",
+        "source_to_frame_pixel_scale": "(2.304354, 2.342166)",
+        "wind_direction": "(1.0, 0.0)",
+        "world_rect": "[P: (-229.0256, -183.4054), S: (2082.051, 1410.811)]",
+        "zoom": "(0.85, 0.85)"
+      },
+      {
+        "actors": [
+          {
+            "foot": "(667.0, 539.4)",
+            "id": "B08-M01",
+            "legal_full_circle": true,
+            "pose": "idle",
+            "radius": 18.0
+          },
+          {
+            "foot": "(899.0, 539.4)",
+            "id": "B08-M02",
+            "legal_full_circle": true,
+            "pose": "idle",
+            "radius": 18.0
+          },
+          {
+            "foot": "(1131.0, 551.0)",
+            "id": "B08-M03",
+            "legal_full_circle": true,
+            "pose": "idle",
+            "radius": 18.0
+          },
+          {
+            "foot": "(340.4, 481.8)",
+            "id": "B08-FLAG",
+            "legal_full_circle": true,
+            "pose": "runtime_prop",
+            "radius": 18.0
+          }
+        ],
+        "camera_center": "(812.0, 340.0)",
+        "file": "painting_north_bypass.png",
+        "modal_paused": false,
+        "native_detail_loaded": false,
+        "player_foot": "(812.0, 340.0)",
+        "player_legal_full_circle": true,
+        "sample": "same frame_post_draw as PNG",
+        "scope": "original north wind-free path; full radius40 swept route already tested",
+        "sha256": "f0ee91dedcb7b29aa9c7fc3063720c8e2668e7d59272a70a2d2e072c924d2928",
+        "source_pixels": [
+          1536,
+          1024
+        ],
+        "source_sha256": "3689bb6cb2edd18d30cb500af03cdeb319e546e79f42881a7fcf2df3399bfc32",
+        "source_to_frame_pixel_scale": "(2.304354, 2.342166)",
+        "wind_direction": "(1.0, 0.0)",
+        "world_rect": "[P: (-229.0256, -183.4054), S: (2082.051, 1410.811)]",
+        "zoom": "(0.85, 0.85)"
+      },
+      {
+        "actors": [
+          {
+            "foot": "(667.0, 539.4)",
+            "id": "B08-M01",
+            "legal_full_circle": true,
+            "pose": "idle",
+            "radius": 18.0
+          },
+          {
+            "foot": "(899.0, 539.4)",
+            "id": "B08-M02",
+            "legal_full_circle": true,
+            "pose": "idle",
+            "radius": 18.0
+          },
+          {
+            "foot": "(1131.0, 551.0)",
+            "id": "B08-M03",
+            "legal_full_circle": true,
+            "pose": "idle",
+            "radius": 18.0
+          },
+          {
+            "foot": "(340.4, 481.8)",
+            "id": "B08-FLAG",
+            "legal_full_circle": true,
+            "pose": "runtime_prop",
+            "radius": 18.0
+          }
+        ],
+        "camera_center": "(523.9412, 556.8)",
+        "file": "painting_shared_backpack.png",
+        "modal_paused": true,
+        "native_detail_loaded": false,
+        "player_foot": "(220.4, 556.8)",
+        "player_legal_full_circle": true,
+        "sample": "same frame_post_draw as PNG",
+        "scope": "existing read-only backpack and character UI, real modal pause",
+        "sha256": "59ccfa08544b5c29cf862dbbe01e9a53a52dd401fe63407baa94dc893c151ee8",
+        "source_pixels": [
+          1536,
+          1024
+        ],
+        "source_sha256": "3689bb6cb2edd18d30cb500af03cdeb319e546e79f42881a7fcf2df3399bfc32",
+        "source_to_frame_pixel_scale": "(2.304354, 2.342166)",
+        "wind_direction": "(1.0, 0.0)",
+        "world_rect": "[P: (-229.0256, -183.4054), S: (2082.051, 1410.811)]",
+        "zoom": "(0.85, 0.85)"
+      }
+    ],
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "isolated_profile_unchanged": true,
+    "limits": [
+      "Frozen AI and controlled camera targets, not natural combat acceptance",
+      "Independent mother only; six native detail repaints not accepted",
+      "Derived local hole patch remains slightly softer than the original mother",
+      "Shared mini-map shows real anchors, not an inaccurate convex floor fill"
+    ],
+    "logical_viewport": [
+      1280,
+      720
+    ],
+    "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "status": "controlled_renderer_review_pending"
+  },
+  "pixel_review": {
+    "reviewed_frames": 3,
+    "results": [
+      "One complete painting joins dry floor, front arches, floating rock and clouds in the real follow camera",
+      "Original cloud opening is visible without old raised rim or hard local patch boundary",
+      "Actor full-circle feet all legal in the same post-draw samples",
+      "Existing combat HUD and read-only backpack are legible",
+      "No six-native-detail pack loaded; mother stone detail is visibly soft at source-to-frame scale2.304x2.342"
+    ],
+    "remaining": [
+      "Native detail seam and ground-edge review",
+      "Full natural AI combat on the new approved outer boundary",
+      "Complete animation and arbitrary facing remain outside this room-source check",
+      "Small shared map contains anchors, not the full concave floor"
+    ]
+  }
+}

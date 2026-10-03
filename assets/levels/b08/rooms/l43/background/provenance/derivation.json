@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "classification": "derived masked raster edit, not native imagegen original or native 2K",
+  "source_package": "independent_room_1144/l43",
+  "source_original_sha256": "fd36bc4dd59ff6755342002d48e0e1b3ed2baa3562b3732dabe2fae666cad6fa",
+  "generated_material_sha256": "720f40e8389b0decf3f4ff3d35dc3f600f5163a0fb46f2ea5d4db60e4d555003",
+  "source_tool_original": "exec-9897e207-8cd3-4be3-942d-61a5e75d3255.png",
+  "material_tool_original": "exec-96dbd31f-e89f-4ae7-a95e-014a662f83ec.png",
+  "transform": {
+    "classification": "derived raster edit; not native imagegen original",
+    "mother_source": "/workspace/scratch/2244020fc8d6/b08-art/independent_room_1144/l43/environment_candidate_03.png",
+    "local_material_source": "/workspace/scratch/2244020fc8d6/b08-art/independent_room_1144/l43/revision_hole_01/environment_candidate_hole_01.png",
+    "output": "/workspace/scratch/2244020fc8d6/b08-art/independent_room_1144/l43/revision_hole_02_derived/environment_derived_hole_02.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "context_xyxy": [
+      596,
+      384,
+      940,
+      465
+    ],
+    "source_x_knots": [
+      596.0,
+      615.0,
+      921.0,
+      940.0
+    ],
+    "destination_x_knots": [
+      596.0,
+      631.0,
+      905.0,
+      940.0
+    ],
+    "source_y_knots": [
+      384.0,
+      407.0,
+      446.0,
+      465.0
+    ],
+    "destination_y_knots": [
+      384.0,
+      411.0,
+      449.0,
+      465.0
+    ],
+    "target_exact_xyxy": [
+      631.0765714285714,
+      410.9653333333333,
+      904.9234285714284,
+      448.85333333333335
+    ],
+    "raster_destination_complete_hole_xyxy": [
+      631,
+      411,
+      905,
+      449
+    ],
+    "interpolation": "inverse separable piecewise bilinear RGB; no global transform",
+    "blend": "smoothstep product: 3px left/right and 5px top/bottom, entirely in approved context; boundary pixels alpha 0",
+    "outside_context_changed_pixels": 0,
+    "inside_context_changed_pixels": 26613,
+    "sha256": {
+      "environment_candidate_03.png": "fd36bc4dd59ff6755342002d48e0e1b3ed2baa3562b3732dabe2fae666cad6fa",
+      "environment_candidate_hole_01.png": "720f40e8389b0decf3f4ff3d35dc3f600f5163a0fb46f2ea5d4db60e4d555003",
+      "environment_derived_hole_02.png": "79e831447e864b606de173ff9e3af1a7661279e67e5dae1f50563da887c593f9"
+    }
+  },
+  "final": {
+    "selected_output": "/workspace/scratch/2244020fc8d6/b08-art/independent_room_1144/l43/revision_hole_02_derived/environment_derived_hole_02_refined.png",
+    "classification": "derived authorized masked raster edit; not native imagegen output",
+    "step": "Pillow UnsharpMask(radius=0.75, percent=80, threshold=3), composited only through the same smoothstep local mask; no sharpening outside the authorized rectangle",
+    "parent_transform_record": "transform_and_integrity.json",
+    "outside_context_changed_pixels": 0,
+    "inside_context_changed_pixels": 26615,
+    "actual_changed_pixel_bbox_xyxy_inclusive": [
+      597,
+      385,
+      938,
+      463
+    ],
+    "sha256": {
+      "environment_candidate_03.png": "fd36bc4dd59ff6755342002d48e0e1b3ed2baa3562b3732dabe2fae666cad6fa",
+      "environment_derived_hole_02.png": "79e831447e864b606de173ff9e3af1a7661279e67e5dae1f50563da887c593f9",
+      "environment_derived_hole_02_refined.png": "3689bb6cb2edd18d30cb500af03cdeb319e546e79f42881a7fcf2df3399bfc32"
+    }
+  },
+  "preservation": "Original PNGs and reproducible edit_hole.py/refine_local.py remain in source package; formal environment.png is a byte-identical copy of selected derived output."
+}
