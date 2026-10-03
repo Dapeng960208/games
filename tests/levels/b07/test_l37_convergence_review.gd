@@ -210,6 +210,13 @@ func _check_actors(room: Node2D) -> void:
 		check(not Actors.enabled_for(actor),"review excluded from another actual room")
 		room.layout_id = original_id
 	check(frame_count == 14,"exactly fourteen registered discrete key poses")
+	# Actual-room gate also excludes another chapter and another B07 room.
+	var previous_id: String = room.layout_id
+	for other: String in ["L38","L01"]:
+		room.layout_id=other
+		check(not CardLayout.enabled(room) and not CardLayout.ensure(room),"card coordinator rejects another room/chapter: "+other)
+	room.layout_id=previous_id
+
 
 func _directed_actions(room: Node2D, out: String, capture: bool) -> void:
 	# Directed isolated capture, not a natural-play claim. Keep the real player
@@ -276,6 +283,7 @@ func _refresh_badges(room: Node2D) -> void:
 	for actor: Node2D in room.enemies.get_children():
 		actor.body_visual._update_skill_badge()
 		actor.queue_redraw()
+	CardLayout.publish(room)
 
 func _save_frame(out: String, filename: String) -> void:
 	check(capture_room.enemy_skills.process_mode == Node.PROCESS_MODE_DISABLED,"snapshot runtime explicitly frozen")

@@ -1,0 +1,47 @@
+{
+  "room": "L37",
+  "review_only": true,
+  "baseline_commit": "e674b2ae9527ed2899a0c826d3b9b43e040076ca",
+  "normal_ai": true,
+  "manual_fsm_steps": false,
+  "input": "bounded scripted ordinary keyboard; auto_attack setting enabled only in fresh isolated profile",
+  "natural_human_play": false,
+  "baseline_post_draw_run": "20261003T111340531950Z-c1c68021",
+  "baseline": {
+    "render_samples": 280,
+    "card_identity_count_mismatch_samples": 1,
+    "hud_overlap_samples": 3,
+    "body_overlap_samples": 1,
+    "actual_2k_images_viewed": 7
+  },
+  "fixed_headless_run": "20261003T112220311312Z-43e67435",
+  "fixed_headless_batch_checks": 3442,
+  "fixed_headless_batch_issues": 0,
+  "fixed_graphical_run": "20261003T112544247538Z-d35f0ba1",
+  "fixed": {
+    "render_samples": 291,
+    "published_batch_checks": 291,
+    "published_batch_issues": 0,
+    "card_identity_count_mismatch_samples": 0,
+    "hud_overlap_samples": 0,
+    "body_overlap_samples": 0,
+    "actual_2k_images_viewed": 7,
+    "engine_failures": 0,
+    "script_errors": 0,
+    "stop_reason": "player_death",
+    "observed_simulation_seconds": 24.3833333333332
+  },
+  "limits": [
+    "candidate Lv31 starter equipment and fixed inputs are not a normal-growth or balance benchmark",
+    "D0 has no M03 return leg",
+    "M02 natural leap killed before confirmed landing",
+    "other-room checks verify review gates, not whole other chapters",
+    "perimeter cards can have long attribution lines",
+    "death HUD last-value retention and difficulty-generic counter prose remain",
+    "sparse courtyard is not full reference composition",
+    "complete continuous animation sets remain zero; M11 blocked"
+  ],
+  "assets_generated": 0,
+  "geometry_camera_numbers_saves_changed": false,
+  "previous_evidence_preserved": true
+}

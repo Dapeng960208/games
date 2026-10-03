@@ -65,7 +65,14 @@ class SkillBadge extends Node2D:
 	var locked: bool = false
 	var progress: float = 0.0
 	var reduced_fx: bool = false
+	# Read-only test instrumentation. No selection/layout behavior changes.
+	var observe_render := "--b07-live-render-observe" in OS.get_cmdline_user_args()
+	var last_detail_draw: Dictionary = {}
+	func _record_detail_draw(at: Vector2) -> void:
+		if observe_render:
+			last_detail_draw={"frame":Engine.get_process_frames(),"rect":get_global_transform_with_canvas()*Rect2(at,Vector2(254,61)),"info":info.duplicate(true)}
 	func _draw() -> void:
+		if observe_render: last_detail_draw={}
 		if not visible: return
 		var active: bool = not command.is_empty()
 		var edge := Color("c86558") if locked else Color("d4a34f") if active else Color("ab9c84")
@@ -81,16 +88,19 @@ class SkillBadge extends Node2D:
 			var count: int = mini(7,int(command.get("stage_count",1)))
 			for index: int in count:
 				draw_circle(Vector2((index-(count-1)*.5)*5.0,20.0),1.7,edge if index <= int(command.get("stage",0)) else Color("bba68b"))
-		if show_detail:
-			var at := detail_origin()
+		var room: Node = preload("res://scripts/domain/combat/combat_properties.gd").read(get_parent(),"room")
+		if L37CardLayout.enabled(room):
 			var review: Dictionary = L37CardLayout.placement(self)
 			if not review.is_empty():
-				at = review.origin
+				var at: Vector2 = review.origin
 				# A tether keeps displaced/perimeter cards associated with their owner.
 				var tether_end := Vector2.ZERO.clamp(at,at+Vector2(254,61))
 				if tether_end.length()>20: draw_line(Vector2.ZERO,tether_end,Color("b89365"),1.0,true)
+				_record_detail_draw(at)
 				SkillPresentation.draw_card(self,info,at)
-				return
+			return
+		if show_detail:
+			var at := detail_origin()
 			var matrix: Transform2D = get_global_transform_with_canvas()
 			var bounds: Rect2 = matrix * Rect2(at,Vector2(254,61))
 			var viewport: Rect2 = get_viewport_rect().grow(-8)
@@ -100,6 +110,7 @@ class SkillBadge extends Node2D:
 			if bounds.end.y > viewport.end.y: offset.y = viewport.end.y-bounds.end.y
 			elif bounds.position.y < viewport.position.y: offset.y = viewport.position.y-bounds.position.y
 			at += matrix.basis_xform_inv(offset)
+			_record_detail_draw(at)
 			SkillPresentation.draw_card(self,info,at)
 
 	func detail_origin() -> Vector2:
@@ -274,6 +285,10 @@ func _read_phase(delta: float) -> void:
 
 func _update_skill_badge() -> void:
 	if not is_instance_valid(skill_badge): return
+	var room: Variant = preload("res://scripts/domain/combat/combat_properties.gd").read(actor,"room")
+	if room is Node and L37CardLayout.ensure(room):
+		skill_badge.reduced_fx = _reduced_fx()
+		return
 	var brain: Variant = actor.get("brain")
 	skill_badge.info = SkillPresentation.readout(brain) if brain is RefCounted else {}
 	skill_badge.command = skill_badge.info.get("command",{})
@@ -281,7 +296,6 @@ func _update_skill_badge() -> void:
 	skill_badge.locked = bool(skill_badge.info.get("locked",false))
 	skill_badge.progress = float(skill_badge.info.get("progress",0.0))
 	skill_badge.reduced_fx = _reduced_fx()
-	var room: Variant = preload("res://scripts/domain/combat/combat_properties.gd").read(actor,"room")
 	var candidates: Array[int] = SkillPresentation.detail_candidates(room) if room is Node else []
 	skill_badge.detail_slot = candidates.find(actor.get_instance_id())
 	skill_badge.show_detail = skill_badge.detail_slot >= 0

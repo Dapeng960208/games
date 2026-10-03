@@ -9,29 +9,99 @@ const Hero = preload("res://scripts/presentation/characters/hero_visual.gd")
 const SIZE := Vector2(254,61)
 const GAP := 10.0
 
+const BATCH_META := &"_l37_skill_card_batch"
+const COORDINATOR := "L37SkillCardBatch"
+
+class Coordinator extends Node:
+	var refresh: Callable
+	func _process(_delta: float) -> void:
+		refresh.call(get_parent())
+
+static func enabled(room: Node) -> bool:
+	if not is_instance_valid(room): return false
+	var runtime: Node2D = Props.read(room,"enemy_skills")
+	return is_instance_valid(runtime) and Fx.enabled(runtime)
+
+static func ensure(room: Node) -> bool:
+	if not enabled(room): return false
+	if room.get_node_or_null(COORDINATOR) == null:
+		var coordinator := Coordinator.new()
+		coordinator.name = COORDINATOR
+		# Camera and telegraphs use 100. Publish after those and ordinary HUD
+		# processing, once all actor physics have completed for this render.
+		coordinator.process_priority = 10000
+		coordinator.refresh = publish
+		room.add_child(coordinator)
+	return true
+
+## The runtime and frozen-scene tests use this same read-only presentation
+## transaction. Never refresh from an individual actor's physics or _draw.
+static func publish(room: Node) -> Dictionary:
+	if not enabled(room):
+		if is_instance_valid(room): room.remove_meta(BATCH_META)
+		return {}
+	var ids := Cards.detail_candidates(room)
+	var placements: Dictionary = {}
+	var obstacles := body_rects(room)
+	obstacles.append_array(hud_rects(room.get_parent()))
+	var occupied: Array[Rect2] = []
+	var enemies: Node = Props.read(room,"enemies")
+	# Clear old selections and refresh all readouts before planning any card.
+	for actor: Node in enemies.get_children():
+		var badge: Node2D = actor.get_node_or_null("EnemySkillBadge")
+		if badge == null: continue
+		var alive: bool = not actor.is_queued_for_deletion() and actor.has_method("is_alive") and actor.call("is_alive")
+		var brain: Variant = Props.read(actor,"brain")
+		badge.info = Cards.readout(brain).duplicate(true) if alive and brain is RefCounted else {}
+		badge.command = badge.info.get("command",{})
+		badge.visible = alive
+		badge.locked = bool(badge.info.get("locked",false))
+		badge.progress = float(badge.info.get("progress",0.0))
+		badge.detail_slot = ids.find(actor.get_instance_id())
+		badge.show_detail = badge.detail_slot >= 0
+	for id: int in ids:
+		var owner: Node2D = instance_from_id(id)
+		if not is_instance_valid(owner): continue
+		var badge: Node2D = owner.get_node_or_null("EnemySkillBadge")
+		if badge == null: continue
+		var matrix := badge.get_global_transform_with_canvas()
+		var native: Rect2 = matrix * Rect2(badge.detail_origin(),SIZE)
+		var chosen := choose(native,badge.get_viewport_rect().grow(-8),obstacles,occupied)
+		occupied.append(chosen.rect)
+		chosen["origin"] = displaced_origin(matrix,badge.detail_origin(),Vector2(chosen.rect.position)-native.position)
+		placements[id] = chosen
+	var batch := {"frame":Engine.get_process_frames(),"selected_ids":ids,"placements":placements}
+	room.set_meta(BATCH_META,batch)
+	for actor: Node in enemies.get_children():
+		var badge: Node2D = actor.get_node_or_null("EnemySkillBadge")
+		if badge != null: badge.queue_redraw()
+	return batch
+
 static func placement(badge: Node2D) -> Dictionary:
 	if not is_instance_valid(badge): return {}
 	var actor: Node2D = badge.get_parent()
-	var room: Node2D = Props.read(actor,"room")
-	var runtime: Node2D = Props.read(room,"enemy_skills")
-	if not is_instance_valid(runtime) or not Fx.enabled(runtime): return {}
-	var bodies := body_rects(room)
-	var occupied: Array[Rect2] = []
-	var result: Dictionary = {}
-	for id: int in Cards.detail_candidates(room):
-		var owner: Node2D = instance_from_id(id)
-		if not is_instance_valid(owner): continue
-		var other: Node2D = owner.get_node_or_null("EnemySkillBadge")
-		if other == null: continue
-		var matrix := other.get_global_transform_with_canvas()
-		var native: Rect2 = matrix * Rect2(other.detail_origin(),SIZE)
-		var chosen := choose(native,other.get_viewport_rect().grow(-8),bodies,occupied)
-		occupied.append(chosen.rect)
-		if other == badge:
-			result = chosen
-			# Translation in screen space preserves the existing typography/scale.
-			result["origin"] = displaced_origin(matrix,other.detail_origin(),Vector2(chosen.rect.position)-native.position)
+	var room: Node = Props.read(actor,"room")
+	if not enabled(room): return {}
+	var batch: Dictionary = room.get_meta(BATCH_META,{})
+	return batch.get("placements",{}).get(actor.get_instance_id(),{})
+
+## Real visible HUD content only: full-screen roots and layout containers
+## are not obstacles. Canvas transforms include viewport/canvas scaling.
+static func hud_rects(scene: Node) -> Array[Rect2]:
+	var result: Array[Rect2] = []
+	if is_instance_valid(scene): _collect_hud(scene,false,result)
 	return result
+
+static func _collect_hud(node: Node, in_canvas: bool, result: Array[Rect2]) -> void:
+	if node is CanvasLayer:
+		if not node.visible: return
+		in_canvas = true
+	if in_canvas and node is Control and node.is_visible_in_tree():
+		var content: bool = node is Panel or node is PanelContainer or node is BaseButton or node is Label or node is RichTextLabel or node is TextureRect or node is ProgressBar
+		if node is Label or node is RichTextLabel: content = not node.text.is_empty()
+		var rect: Rect2 = node.get_global_transform_with_canvas()*Rect2(Vector2.ZERO,node.size)
+		if content and rect.has_area() and not rect.encloses(node.get_viewport_rect()): result.append(rect)
+	for child: Node in node.get_children(): _collect_hud(child,in_canvas,result)
 
 ## Unlike basis_xform_inv, affine_inverse handles the camera's .72 scale.
 static func displaced_origin(matrix: Transform2D, origin: Vector2, screen_offset: Vector2) -> Vector2:
