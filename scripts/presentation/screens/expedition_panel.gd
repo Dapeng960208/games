@@ -6,11 +6,13 @@ signal early_extract_requested()
 
 const JourneyArt = preload("res://scripts/presentation/components/route_journey_art.gd")
 const ChoiceCard = preload("res://scripts/presentation/components/route_choice_card.gd")
+const Finale = preload("res://scripts/presentation/components/finale_artwork.gd")
 const Layouts = preload("res://scripts/domain/world/fixed_room_layouts.gd")
 const ENEMY_ZH := {"melee":"近战", "charger":"冲锋", "ranged":"射手", "swarm":"虫群", "cover_support":"掩体", "displacement":"牵引", "defender":"盾卫", "support":"支援", "artillery":"抛射", "summoner":"召唤", "flanker":"侧袭", "ambusher":"伏击", "controller":"控场", "healer":"治疗"}
 var controller: RefCounted
 var allow_advance := false
 var submitted := false
+var finale := false
 
 func configure(source: RefCounted, can_advance: bool) -> void:
 	controller = source
@@ -36,6 +38,7 @@ func _binding(action: String) -> String:
 func _build() -> void:
 	var state: Dictionary = controller.snapshot()
 	var nodes: Array = state.get("route", {}).get("nodes", [])
+	finale = str(state.get("biome_id",state.get("route",{}).get("biome_id",""))) == "B10"
 	var current: int = int(state.get("node_index", 0))
 	var completed: Array = state.get("completed_nodes", [])
 	var route_scroll := ScrollContainer.new()
@@ -51,6 +54,7 @@ func _build() -> void:
 	timeline.nodes = nodes
 	timeline.current = current
 	timeline.completed = completed
+	timeline.finale = finale
 	timeline.custom_minimum_size = Vector2(maxf(1008,nodes.size()*JourneyArt.STEP-13),100)
 	route_scroll.add_child(timeline)
 	route_scroll.set_deferred("scroll_horizontal",maxi(0,int(current*JourneyArt.STEP-440)))
@@ -80,6 +84,16 @@ func _build() -> void:
 		GameStyle.literal(self,_t("主目标未完成，出口尚未开放", "Exit closed until the objective is complete"),Vector2(0,438),Vector2(750,29),15,GameStyle.MUTED)
 
 func _build_endpoint(current_node: Dictionary) -> void:
+	if finale and str(current_node.get("room_id","")) == "BO10":
+		Finale.banner(self,Vector2(206,182),Vector2(596,128))
+		var heading := GameStyle.literal(self,_t("星冠古龙 · 旅程终点","STARCROWN ANCIENT DRAGON · JOURNEY'S END"),Vector2(0,316),Vector2(1008,37),25,Finale.BLUE)
+		heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		var note := GameStyle.literal(self,_t("星冠古龙已败 · 存活撤离后写入终章完成记录。","The Ancient Dragon is defeated. Extract alive to record your completed journey.") if controller.current_complete() else _t("击破星核打开输出窗口，击败古龙后存活撤离。","Break the star cores to expose the dragon, then defeat it and extract alive."),Vector2(60,360),Vector2(888,34),17,Finale.DEEP)
+		note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		var ring := GameStyle.literal(self,Finale.ring_status()+" · "+Finale.ring_condition(),Vector2(40,396),Vector2(928,28),13,Finale.BLUE)
+		ring.name = "FinaleRouteRewardStatus"
+		ring.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		return
 	var marker := JourneyArt.new()
 	marker.position = Vector2(455,188)
 	marker.size = Vector2(100,100)
@@ -115,6 +129,7 @@ func _build_options(next: Dictionary, ready: bool, state: Dictionary) -> void:
 		var preview: Dictionary = controller.preview(option)
 		var risk := GameStyle.content_text(preview,"risk","")
 		var card := ChoiceCard.new()
+		card.finale = finale
 		card.name = "Choose_"+option
 		card.custom_minimum_size = Vector2(488,203)
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -138,6 +153,7 @@ func _build_options(next: Dictionary, ready: bool, state: Dictionary) -> void:
 		var title := _option_label(card,"RouteTitle",_catalog_name(option,str(next.get("role","")),str(preview.get("name",option))),11,18,GameStyle.AMBER)
 		var cursor_y := title.position.y+title.size.y+5.0
 		var objective := GameStyle.content_text(preview,"objective","")
+		if finale and option == "BO10": objective = _t("单头星冠古龙 · 三阶段星核盾与最终撤离","Starcrown Ancient Dragon · three core phases and final extraction")
 		if objective.is_empty():
 			objective = _t("安全整备 · 用本局金币购买补给", "Safe stop · buy supplies with carried gold") if next.get("role","")=="supply" else _t("区域首领 · 三阶段战斗与最终撤离", "Area boss · phase battle and final extraction")
 		var goal := _option_label(card,"RouteObjective",objective,cursor_y,14,GameStyle.INK)
@@ -149,6 +165,7 @@ func _build_options(next: Dictionary, ready: bool, state: Dictionary) -> void:
 		var enemies := _option_label(card,"RouteEnemies",threat,cursor_y,12,GameStyle.CYAN)
 		cursor_y = enemies.position.y+enemies.size.y+7.0
 		var reward := str(preview.get("reward",""))
+		if finale and option == "BO10": reward = _t("本职业与共有首领奖励 · ","Hero and shared boss loot · ")+Finale.ring_status()
 		if reward.is_empty(): reward = _t("补给购买与修复", "Supplies and repairs") if next.get("role","")=="supply" else _t("首领奖励 · 装备需撤离带回", "Boss rewards · extract to keep equipment")
 		var reward_label := _option_label(card,"RouteReward",reward,cursor_y,13 if Words.locale=="en" else 14,GameStyle.GREEN)
 		cursor_y = reward_label.position.y+reward_label.size.y+6.0

@@ -6,6 +6,7 @@ var landmark_texture: Texture2D
 var role := "branch"
 var preview_index := 0
 var illustration_width := 132.0
+var finale := false
 
 func _ready() -> void:
 	auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
@@ -21,9 +22,10 @@ func _ready() -> void:
 func _draw() -> void:
 	var active := not disabled and (is_hovered() or has_focus())
 	var color := Color("257f83") if active else Color("ad864d")
+	if finale: color = Color("315a97") if active else Color("b99451")
 	var image_bounds := Rect2(7, 7, illustration_width - 14, maxf(90, size.y - 20))
 	var background := Rect2(2, 2, size.x - 4, size.y - 4)
-	draw_style_box(_wash(Color(1.0, .975, .90, .94) if active else Color(1.0, .97, .89, .65)), background)
+	draw_style_box(_wash((Color("f5f9ff") if active else Color("edf3fc",.8)) if finale else (Color(1.0, .975, .90, .94) if active else Color(1.0, .97, .89, .65))), background)
 	if active: draw_style_box(_outline(color), background)
 	if scene_texture != null:
 		var source_size := scene_texture.get_size()

@@ -1,6 +1,7 @@
 extends RefCounted
 ## Expedition behavior owned by this host.
 ## The host retains state and lifecycle; this service never owns its Node.
+const Finale = preload("res://scripts/presentation/components/finale_artwork.gd")
 var host
 
 func _init(context: Node) -> void:
@@ -67,7 +68,11 @@ func show_expedition(at_exit: bool = false) -> void:
 		return
 	var panel = host._push_modal("",Vector2(1072,580))
 	panel.name = "ExpeditionRouteModal"
-	GameStyle.literal(panel,host._ex_text("远征行图 · 本次 %d 站", "EXPEDITION ATLAS · %d STOPS") % host._expedition_node_count(),Vector2(28,20),Vector2(1016,45),28,GameStyle.AMBER)
+	var state: Dictionary = host.expedition.snapshot()
+	var finale: bool = str(state.get("biome_id",state.get("route",{}).get("biome_id",""))) == "B10"
+	if finale: Finale.panel_style(panel)
+	var title := host._ex_text("10 · 星辉龙庭行图 · %d 站","10 · DRAGON COURT ATLAS · %d STOPS") if finale else host._ex_text("远征行图 · 本次 %d 站", "EXPEDITION ATLAS · %d STOPS")
+	GameStyle.literal(panel,title % host._expedition_node_count(),Vector2(28,20),Vector2(1016,45),28,Finale.DEEP if finale else GameStyle.AMBER)
 	var chart = host.ExpeditionPanel.new()
 	chart.name = "ExpeditionRouteChart"
 	chart.position = Vector2(28,78)
