@@ -7,6 +7,7 @@ const HEIGHT := preload("res://scripts/shared/presentation_metrics.gd").HERO_BOD
 const FOOT := Vector2(0,8)
 const DIRECTIONS := ["E","SE","S","SW","W","NW","N","NE"]
 const PHASES := ["windup","release","recovery"]
+const SharedActionFamily = preload("res://scripts/presentation/characters/hero_shared_action_family.gd")
 static var _families: Dictionary = {}
 static var _textures: Dictionary = {}
 static var _combat_clips: Dictionary = {}
@@ -34,7 +35,8 @@ static func frame_info(hero: String, direction: Vector2, phase: String, progress
 static func combat_frame_info(hero: String, direction: Vector2, phase: String, progress: float, action: String) -> Dictionary:
 	if not is_finite(progress): return {}
 	var clips: Dictionary = load_combat_clips(hero)
-	if clips.is_empty() or not clips.has(action): return {}
+	if clips.is_empty(): return SharedActionFamily.frame_info(hero,direction,phase,progress,action)
+	if not clips.has(action): return {}
 	var clip: Dictionary = clips[action]
 	var key: String = direction_key(direction)
 	var sequence: Array = clip.directions[key]

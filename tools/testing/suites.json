@@ -1061,6 +1061,9 @@
     "script": "tests/persistence/test_save_recycle_ui.gd",
     "scene": "tests/persistence/test_save_recycle_ui.tscn"
   },
+  "shared_action_family": {
+    "script": "tests/characters/test_shared_action_family.gd"
+  },
   "shared_enemy_growth": {
     "script": "tests/combat/test_shared_enemy_growth.gd",
     "scene": "tests/combat/test_shared_enemy_growth.tscn"
@@ -1098,6 +1101,10 @@
     "script": "tests/ui/test_skill_system_ui_flow.gd",
     "scene": "tests/ui/test_skill_system_ui_flow.tscn"
   },
+  "skill_system_ui_retry": {
+    "script": "tests/ui/test_skill_system_ui_flow.gd",
+    "scene": "tests/ui/test_skill_system_ui_flow.tscn"
+  },
   "skill_system_ui_module": {
     "script": "tests/ui/test_skill_system_ui_flow.gd",
     "scene": "tests/ui/test_skill_system_ui_flow.tscn"
@@ -1116,6 +1123,10 @@
   "terrain_readability": {
     "script": "tests/world/test_terrain_readability.gd",
     "scene": "tests/world/test_terrain_readability.tscn"
+  },
+  "skill_icon_hud": {
+    "script": "tests/ui/test_skill_system_ui_flow.gd",
+    "scene": "tests/ui/test_skill_system_ui_flow.tscn"
   },
   "ui": {
     "script": "tests/ui/test_ui.gd"

@@ -1290,7 +1290,7 @@ func spawn_ability_projectile(at: Vector2, direction: Vector2, amount: float, op
 	projectile.remaining = projectile.distance_left / projectile.speed + 0.1
 	projectile.pierce_remaining = int(options.get("pierce", 0))
 	if projectile.options.has("visual_hero"):
-		var visual_muzzle: Vector2 = at if bool(options.get("deployment_origin", false)) else player.position+HeroVisual.release_muzzle_local(player.hero_id(),str(options.get("source","basic")),direction)
+		var visual_muzzle: Vector2 = at if bool(options.get("deployment_origin", false)) else player.position+HeroVisual.release_muzzle_local(player.hero_id(),str(options.get("source","basic")),direction,str(options.get("skill_id","")))
 		if player.hero_id() == "CH03" and player.role_kit != null:
 			var companion: Node2D = player.role_kit.get("companion")
 			if is_instance_valid(companion): visual_muzzle = player.position+companion.position+direction.normalized()*12.0

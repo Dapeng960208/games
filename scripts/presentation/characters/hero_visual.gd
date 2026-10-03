@@ -10,11 +10,13 @@ const BasicAtlas = preload("res://scripts/presentation/characters/hero_basic_atl
 const SkillAtlas = preload("res://scripts/presentation/characters/hero_skill_atlas.gd")
 const ArtFamily = preload("res://scripts/presentation/characters/hero_art_family.gd")
 const DirectionalAtlas = preload("res://scripts/presentation/characters/hero_directional_atlas.gd")
+const SharedActionFamily = preload("res://scripts/presentation/characters/hero_shared_action_family.gd")
 const STRIDE_PER_WORLD_UNIT := .12
 static var _action_banks: Dictionary = {}
 
 static func prewarm(hero: String) -> void:
 	if not DirectionalAtlas.load_combat_clips(hero).is_empty(): return
+	if not SharedActionFamily.load_family(hero).is_empty(): return
 	DirectionalAtlas.load_family(hero)
 	# Include the static fallback: brief contact/recovery poses can select it
 	# even when idle and windup use an atlas. Its alpha scan must not run on
@@ -81,10 +83,13 @@ static func _action_bank(hero: String, bank: String) -> Dictionary:
 static func action_frame_info(hero: String, bank: String = "front", phase: String = "idle") -> Dictionary:
 	var authored: Dictionary = DirectionalAtlas.combat_frame_info(hero,Vector2(1,-1) if bank == "back" else Vector2(1,1),phase,0.0,"idle" if phase == "idle" else "basic")
 	if not authored.is_empty(): return authored
+	if not SharedActionFamily.load_family(hero).is_empty(): return SharedActionFamily.frame_info(hero,Vector2(1,-1) if bank == "back" else Vector2(1,1),"idle",0.0,"idle")
 	var frames: Dictionary = _action_bank(hero,bank)
 	return frames.get(phase,frames.get("idle",{})).duplicate()
 
 static func walk_frame_info(hero: String, bank: String = "front", distance: float = 0.0) -> Dictionary:
+	var authored: Dictionary = SharedActionFamily.frame_info(hero,Vector2(1,-1) if bank == "back" else Vector2(1,1),"walk",fposmod(distance,150.0)/150.0,"walk")
+	if not authored.is_empty(): return authored
 	return WalkAtlas.frame_info(hero,bank,distance)
 
 static func basic_frame_info(hero: String, bank: String, phase: String, progress: float) -> Dictionary:
@@ -137,7 +142,7 @@ static func gunner_presentation_pose(p: Node2D, pose: Dictionary) -> Dictionary:
 		var age: float = float(feedback.get("_basic_age"))
 		if age < 0.29:
 			var basic: Dictionary = pose.duplicate()
-			basic.merge({"slot":"basic", "phase":"release" if age < 0.09 else "recovery",
+			basic.merge({"slot":"basic", "skill_id":"", "input_slot":"", "phase":"release" if age < 0.09 else "recovery",
 				"progress":clampf(age/0.09 if age < 0.09 else (age-0.09)/0.20,0.0,1.0),
 				"direction":feedback.get("_basic_direction")},true)
 			basic.erase("authored_phase_progress")
@@ -145,7 +150,7 @@ static func gunner_presentation_pose(p: Node2D, pose: Dictionary) -> Dictionary:
 	if str(pose.get("phase", "idle")) != "idle" or float(p.shot_cooldown) <= 0.0 or not is_instance_valid(feedback) or str(feedback.get("_basic")) != "attack_strike":
 		return pose
 	var held: Dictionary = pose.duplicate()
-	held.merge({"phase":"recovery", "slot":"basic", "progress":1.0, "authored_phase_progress":1.0,
+	held.merge({"phase":"recovery", "slot":"basic", "skill_id":"", "input_slot":"", "progress":1.0, "authored_phase_progress":1.0,
 		"direction":feedback.get("_basic_direction"), "gun_hold":true},true)
 	return held
 
@@ -163,6 +168,8 @@ static func presentation_frame_info(hero: String, bank: String, pose: Dictionary
 		action = "basic" if str(pose.get("slot","basic")) == "basic" else hero+"_SK%02d" % (["q","secondary","f","ultimate"].find(str(pose.get("slot","")))+1)
 	var complete: Dictionary = DirectionalAtlas.combat_frame_info(hero,pose.get("direction",Vector2.RIGHT),phase,sample,action)
 	if not complete.is_empty(): return complete
+	# An unknown presentation tail keeps the new person, never an old body.
+	if not SharedActionFamily.load_family(hero).is_empty(): return SharedActionFamily.frame_info(hero,pose.get("direction",Vector2.RIGHT),"idle",0.0,"idle")
 	if dash:
 		return dodge_frame_info(hero,bank,float(pose.get("dash_progress",0.0)))
 	var directed: Dictionary = DirectionalAtlas.frame_info(hero,pose.get("direction",Vector2.RIGHT),phase,float(pose.get("progress",0.0)))
@@ -230,10 +237,10 @@ static func body_transform(asset: Dictionary, hero: String, aim: Vector2, lean: 
 
 ## Frozen launch-point sampling, independent of the previous rendered idle pose.
 ## Projectiles use this display anchor without moving their physical origin.
-static func release_muzzle_local(hero: String, slot: String, direction: Vector2) -> Vector2:
+static func release_muzzle_local(hero: String, slot: String, direction: Vector2, skill_id: String = "") -> Vector2:
 	var aim: Vector2 = direction.normalized() if direction.is_finite() and direction.length_squared() > 0.001 else Vector2.RIGHT
 	var bank: String = "back" if aim.y < -0.20 else "front"
-	var pose: Dictionary = {"phase":"release","slot":slot,"progress":0.0,"authored_phase_progress":0.0,"direction":aim}
+	var pose: Dictionary = {"phase":"release","slot":slot,"skill_id":skill_id,"progress":0.0,"authored_phase_progress":0.0,"direction":aim}
 	var asset: Dictionary = presentation_frame_info(hero,bank,pose,0.0,false)
 	if asset.is_empty():
 		return aim * 36.0 + Vector2(0,-20)
