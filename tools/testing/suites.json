@@ -969,6 +969,10 @@
     "script": "tests/ui/test_role_natural_ui.gd",
     "scene": "tests/ui/test_role_natural_ui.tscn"
   },
+  "role_natural_ui_visuals": {
+    "script": "tests/ui/test_role_natural_ui.gd",
+    "scene": "tests/ui/test_role_natural_ui.tscn"
+  },
   "role_skill_audio": {
     "script": "tests/audio/test_role_skill_audio.gd"
   },

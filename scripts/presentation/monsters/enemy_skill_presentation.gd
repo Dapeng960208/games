@@ -28,6 +28,9 @@ static func detail_candidates(room: Node) -> Array[int]:
  var player: Variant = Properties.read(room,"player")
  var container: Variant = Properties.read(room,"enemies")
  if not player is Node2D or not container is Node: return result
+ # Keep the icon and primary telegraph visible while action FX need the space.
+ var abilities: Variant = Properties.read(player,"abilities")
+ if float(Properties.read(player,"dash_remaining",0.0)) > 0.0 or (abilities is Object and abilities.has_method("busy") and bool(abilities.call("busy"))): return result
  var target_ref: Variant = Properties.read(player,"_automatic_attack_target")
  var target: Object = target_ref.get_ref() if target_ref is WeakRef else null
  var candidates: Array[Dictionary] = []
