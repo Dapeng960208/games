@@ -2,9 +2,43 @@ extends RefCounted
 ## Expedition behavior owned by this host.
 ## The host retains state and lifecycle; this service never owns its Node.
 var host
+const FINALE_RING_ID := "B10-EASTER-RING"
 
 func _init(context: Node) -> void:
 	host = context
+
+func finale_ring_claimed(profile: Dictionary) -> bool:
+	if not str(profile.get("finale_ring_claimed", "")).is_empty(): return true
+	# Earlier candidate profiles may own the ring before the permanent receipt
+	# exists. Discovery also survives selling or dismantling that old instance.
+	if FINALE_RING_ID in profile.get("equipment_discoveries", []): return true
+	for item: Dictionary in profile.get("equipment", {}).values():
+		if item.get("template_id") == FINALE_RING_ID: return true
+	return false
+
+func bank_finale_ring(next_profile: Dictionary) -> Dictionary:
+	var result := {"ok":true,"retained":[]}
+	if finale_ring_claimed(next_profile) or host.run == null or host.run.hp <= 0.0: return result
+	var value: Dictionary = host.run.expedition
+	if host.run.ruleset_version() != host.Numbers.V2 or value.is_empty() or int(value.difficulty) != 4 or value.phase != "cleared": return result
+	var index: int = int(value.node_index)
+	var node: Dictionary = value.route.nodes[index]
+	var completion: String = host.run.id + ":node:" + str(index) + ":complete"
+	if value.route.biome_id != "B10" or index != value.route.nodes.size() - 1 or node.role != "boss" or node.room_id != "BO10": return result
+	if "BO10" not in host.run.boss_defeats or index not in value.completed_nodes or value.completion_events.get(completion, -1) != index or completion not in host.run.completed_reward_ids: return result
+	# The deterministic item and its forever receipt join the existing detached
+	# extraction save. A failed write neither consumes the claim nor rerolls it.
+	var source: String = host.run.id + ":finale_ring"
+	var item: Dictionary = host.Instances.make_finale_ring(source, host.run.hero_id)
+	if item.is_empty() or not host.Instances.validate(item).is_empty() or next_profile.equipment.has(item.instance_id): return {"ok":false,"retained":[]}
+	var count: int = host.Loot.inventory_count(next_profile)
+	var capacity: int = int(next_profile.get("inventory_capacity", 0))
+	item.location = "inventory" if capacity == 0 or count < capacity else "pending"
+	next_profile.equipment[item.instance_id] = item
+	next_profile["finale_ring_claimed"] = source
+	if FINALE_RING_ID not in next_profile.equipment_discoveries: next_profile.equipment_discoveries.append(FINALE_RING_ID)
+	result.retained.append(str(item.instance_id))
+	return result
 
 func advance_expedition_node(runtime_snapshot: Dictionary = {}, expected_checkpoint_id: String = "") -> bool:
 	if not host._expedition_active() or not host.run.expedition.phase in ["safe", "cleared"]: return false

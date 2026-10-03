@@ -24,7 +24,7 @@ const MAX_NUMBER := 1_000_000_000_000
 const RELIC_IDS := ["split", "ember", "arc"]
 const OUTCOMES := ["extracted", "death", "abandoned"]
 const HERO_IDS := ["CH01", "CH02", "CH03"]
-const BOSS_IDS := ["BO01", "BO02", "BO03", "BO04", "BO05", "BO06", "BO10"]
+const BOSS_IDS := ["BO01", "BO02", "BO03", "BO04", "BO05", "BO06", "BO09", "BO10"]
 const SLOTS := ["weapon", "head", "chest", "hands", "feet", "charm"]
 const STARTER_IDS := ["EQ01", "EQ11", "EQ21", "EQ31", "EQ41", "EQ51"]
 const MAX_TRANSACTIONS := 4096 # Bounded purchase/upgrade/recycle receipts; never evict IDs.
@@ -698,6 +698,11 @@ static func _valid_progression(profile: Dictionary) -> bool:
 	var version: Variant = profile.get("ruleset_version", 1)
 	if not _number(version, 2) or int(version) < 1: return false
 	var ruleset: int = int(version)
+	if profile.has("finale_ring_claimed"):
+		var claim: Variant = profile.finale_ring_claimed
+		if not claim is String: return false
+		if not claim.is_empty() and (not claim.ends_with(":finale_ring") or not Recycle.safe_id(claim.trim_suffix(":finale_ring"))): return false
+		if not claim.is_empty() and (ruleset != 2 or "BO10" not in profile.get("bosses", []) or "B10-EASTER-RING" not in profile.get("equipment_discoveries", [])): return false
 	if not Expedition.versions_valid(profile, ruleset, profile.has("numerical_migration")): return false
 	if profile.has("numerical_migration") and not _valid_numerical_migration(profile): return false
 	if profile.has("gold_pity"):
@@ -772,10 +777,14 @@ static func _valid_instance_equipment(profile: Dictionary) -> bool:
 		if not profile.equipment.has(id):
 			if not Forging.is_retired(profile, id): return false
 		elif profile.equipment[id].get("location") == "pending": return false
+	var finale_ring_seen := false
 	for id: Variant in profile.equipment:
 		if not id is String or id.is_empty() or id.length() > 160: return false
 		var record: Variant = profile.equipment[id]
 		if not record is Dictionary or record.get("instance_id") != id or not Instances.validate(record).is_empty(): return false
+		if record.template_id == "B10-EASTER-RING":
+			if finale_ring_seen: return false
+			finale_ring_seen = true
 	if not _valid_instance_loadout(profile.get("loadout"), profile.equipment, str(profile.selected_hero),
 		ContentRegistry.level_for_xp(int(profile.hero_xp[profile.selected_hero]), 2)): return false
 	# Newly constructed values may say inventory before their first commit, but
