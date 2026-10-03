@@ -6,6 +6,7 @@ const MainScene = preload("res://scenes/app/main.tscn")
 const Catalog = preload("res://scripts/domain/combat/skill_catalog.gd")
 const Driver = preload("res://tests/support/role_natural_controller.gd")
 const EFFECTS_LOADOUTS := {"CH01":["CH01_SK10","CH01_SK08","CH01_SK12","CH01_SK01"],"CH02":["CH02_SK08","CH02_SK12","CH02_SK01","CH02_SK07"],"CH03":["CH03_SK07","CH03_SK08","CH03_SK12","CH03_SK03"]}
+const VISUAL_LOADOUTS := {"CH01":["CH01_SK07","CH01_SK01","CH01_SK03","CH01_SK06"],"CH02":["CH02_SK12","CH02_SK01","CH02_SK02","CH02_SK10"]}
 var app: Node
 var driver: RefCounted
 var failures: Array[String] = []
@@ -20,6 +21,7 @@ var observed_releases: Dictionary = {}
 var release_count := 0
 var report_path := ""
 var effects_probe := false
+var visual_probe := false
 var observed_deployments: Dictionary = {}
 var rhythm_next := 0.0
 var rhythm_actor := 0
@@ -83,8 +85,10 @@ func _run() -> void:
 	report_path = Game.profile_path.get_base_dir()+"/role_natural_ui.json"
 	var chapter_only: bool = Game.profile_path.contains("test_role_natural_ui_chapter")
 	effects_probe = Game.profile_path.contains("test_role_natural_ui_effects")
-	for hero: String in Catalog.HEROES:
-		for group: int in ([0] if chapter_only or effects_probe else [0,1,2]):
+	visual_probe = Game.profile_path.contains("test_role_natural_ui_visuals")
+	var heroes: Array = ["CH01","CH02"] if visual_probe else Catalog.HEROES
+	for hero: String in heroes:
+		for group: int in ([0] if chapter_only or effects_probe or visual_probe else [0,1,2]):
 			await configure(hero,group)
 			await play(hero,group,false)
 			if Game.run != null:
@@ -94,7 +98,7 @@ func _run() -> void:
 				await frames()
 			Game.reload_profile()
 			check(Game.profile.skill_state[hero].learned.size() == 12,"permanent unlocks retained after actual attempt "+hero+"/"+str(group))
-		if not chapter_only and not effects_probe:
+		if not chapter_only and not effects_probe and not visual_probe:
 			await configure(hero,0)
 			await play(hero,0,true)
 			if Game.run != null: Game.finish_run("abandoned"); await frames()
@@ -104,9 +108,10 @@ func _run() -> void:
 		if bool(attempt.death_probe): continue
 		for identity: String in attempt.coverage:
 			if bool(attempt.coverage[identity]): covered += 1
-	check(covered == (12 if chapter_only or effects_probe else 36),"all configured skills have actual releases and matching native effects via camp configurations")
-	for hero: String in Catalog.HEROES:
-		if effects_probe: continue # This targeted probe abandons only after observed effects; no route/boss claim.
+	if visual_probe: check(captured_visuals.size() == 2,"two targeted skills captured after real release at visible mid-phase")
+	else: check(covered == (12 if chapter_only or effects_probe else 36),"all configured skills have actual releases and matching native effects via camp configurations")
+	for hero: String in heroes:
+		if effects_probe or visual_probe: continue # Targeted probes make no route/boss claim.
 		var attempts: Array[Dictionary] = []
 		for attempt: Dictionary in rows:
 			if str(attempt.hero) == hero: attempts.append(attempt)
@@ -130,6 +135,7 @@ func configure(hero: String, group: int) -> void:
 	var desired: Array[String] = []
 	for index: int in 4:
 		var identity: String = str(EFFECTS_LOADOUTS[hero][index]) if effects_probe else hero+"_SK%02d" % (group*4+index+1)
+		if visual_probe: identity = str(VISUAL_LOADOUTS[hero][index])
 		desired.append(identity)
 		check(await click("InspectSkill_"+Catalog.INPUT_SLOTS[index]),"chooses draft slot "+Catalog.INPUT_SLOTS[index])
 		check(await click("SkillPool_"+identity),"chooses learned skill "+identity)
@@ -174,11 +180,11 @@ func play(hero: String, group: int, death_probe: bool) -> void:
 	driver.configure(app.room)
 	driver.coverage = row.coverage
 	driver.passive_death = death_probe
-	driver.effects_probe = effects_probe
+	driver.effects_probe = effects_probe or visual_probe
 	elapsed = 0.0
 	next_log = 0.0
 	active = true
-	var limit: float = 120.0 if effects_probe else 90.0 if death_probe else 480.0 if Game.profile_path.contains("test_role_natural_ui_chapter") else 240.0 if group == 0 else 120.0
+	var limit: float = 120.0 if effects_probe or visual_probe else 90.0 if death_probe else 480.0 if Game.profile_path.contains("test_role_natural_ui_chapter") else 240.0 if group == 0 else 120.0
 	var last_room: String = ""
 	var restart_done := false
 	var host_begin: int = Time.get_ticks_msec()
@@ -188,6 +194,9 @@ func play(hero: String, group: int, death_probe: bool) -> void:
 		await get_tree().process_frame
 		if Game.run == null:
 			row.outcome = str(Game.last_result.get("outcome","settled"))
+			break
+		if visual_probe and not row.visual_samples.is_empty():
+			row.outcome = "target_visual_observed"
 			break
 		if effects_probe and all_covered():
 			row.outcome = "target_effects_observed"
@@ -242,7 +251,7 @@ func play(hero: String, group: int, death_probe: bool) -> void:
 	await frames(5)
 	await capture(hero+"-set"+str(group)+("-death" if death_probe else "-outcome"))
 	rows.append(row.duplicate(true))
-	if not death_probe:
+	if not death_probe and not visual_probe:
 		for identity: String in row.coverage: check(bool(row.coverage[identity]),"native actual release and effect observed "+identity)
 	print("ROLE_NATURAL_ATTEMPT ",JSON.stringify({"hero":hero,"set":group,"death_probe":death_probe,"outcome":row.outcome,"t":elapsed,"coverage":row.coverage,"boss_seen":row.boss_seen,"restart":row.restart}))
 	save_report()
@@ -407,6 +416,7 @@ func observe_visuals(player: HeroActor, room: RoomController) -> void:
 	for effect: Dictionary in player.abilities.feedback.effects:
 		var identity: String = str(effect.get("skill_id",""))
 		if identity not in ["CH01_SK07","CH02_SK12"] or captured_visuals.has(identity): continue
+		if visual_probe and float(effect.age) < 0.12: continue
 		var kind: String = str(effect.kind)
 		if kind not in ["fault_line","sentry_place"]: continue
 		captured_visuals[identity] = true
