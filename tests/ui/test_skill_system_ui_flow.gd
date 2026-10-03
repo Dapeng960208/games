@@ -6,6 +6,7 @@ extends Node
 const MainScene = preload("res://scenes/app/main.tscn")
 const Catalog = preload("res://scripts/domain/combat/skill_catalog.gd")
 const Workshop = preload("res://scripts/presentation/equipment/workshop_panel.gd")
+const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 var app: Node
 var checks := 0
 var failures: Array[String] = []
@@ -59,6 +60,9 @@ func capture(name_value: String) -> void:
 	check(pixels.save_png(directory + "/" + name_value + ".png") == OK, "actual graphical capture " + name_value)
 
 func _run() -> void:
+	if Game.profile_path.contains("test_skill_icon_hud"):
+		await _icon_hud_preview()
+		return
 	if Game.profile_path.contains("test_skill_system_ui_module"):
 		await _fixture_preview()
 		return
@@ -125,6 +129,13 @@ func _fixture_preview() -> void:
 		page._render()
 		await frames()
 		check(page.find_children("SkillPool_CH*", "Button", true, false).size() == 12, hero + " fixture contains twelve skills")
+		for index: int in 12:
+			var identity: String = hero + "_SK%02d" % (index+1)
+			var item: Button = page.find_child("SkillPool_"+identity,true,false) as Button
+			var icons: Array[Node] = item.find_children("*","TextureRect",true,false) if item != null else []
+			var icon: TextureRect = icons[0] as TextureRect if icons.size() == 1 else null
+			var logical: String = "asset://skill."+identity.to_lower()
+			check(item != null and str(item.get_meta("entry",{}).get("icon_id","")) == logical.trim_prefix("asset://") and icon != null and icon.texture != null and icon.texture == Sampler.sampled(logical) and icon.texture.get_size() == Vector2(1254,1254) and AssetCatalog.resolve(logical).ends_with("_icon.png"), identity + " actual pool TextureRect binds its original native PNG by stable icon identity")
 		check(page.find_children("SkillPool_CH*", "Button", true, false).filter(func(node: Node) -> bool: return node.visible).size() == 12, hero + " empty search displays all twelve pool entries")
 		var search: LineEdit = page.find_child("SkillPoolSearch", true, false)
 		search.text = "NO_MATCH_FIXTURE"
@@ -180,6 +191,64 @@ func _fixture_preview() -> void:
 	app.queue_free()
 	await frames()
 	print("SKILL UI MODULE: %d checks; failures=%s; fixed-value preview only; renderer=%s" % [checks, failures, DisplayServer.get_name()])
+	get_tree().quit(0 if failures.is_empty() else 1)
+
+func _icon_hud_preview() -> void:
+	check(Game.new_profile(),"isolated icon HUD profile")
+	check(bool(Game.grant_skill_group("SG01","fixture:icon-hud-unlock").ok),"synthetic collection setup unlocks each role's SK05")
+	app = MainScene.instantiate()
+	get_tree().root.add_child(app)
+	await frames()
+	for hero: String in Catalog.HEROES:
+		check(Game.select_hero(hero),hero+" camp selects icon-check role")
+		app.show_workshop("heroes")
+		await frames()
+		await capture(hero+"-native-icon-character")
+		app.show_workshop("skills")
+		await frames()
+		await press("InspectSkill_q")
+		await press("SkillPool_"+hero+"_SK05")
+		await press("ReplaceDraftSkill")
+		await press("SwapSkill_q")
+		await press("ApplySkillConfig")
+		check(Game.get_loadout(hero)[1] == hero+"_SK05",hero+" actual camp swap applies SK05 to W")
+		await capture(hero+"-native-icon-skills")
+		app.show_camp()
+		app._start_run()
+		await frames()
+		if app.find_child("ConfirmWishDeparture",true,false) != null: await press("ConfirmWishDeparture")
+		await frames(4)
+		for offer_index: int in 8:
+			if app.modals.is_empty():
+				app._show_pending_expedition_offer()
+				await frames()
+			if app.find_child("ConfirmZeroBenefitSkip",true,false) != null:
+				await press("ConfirmZeroBenefitSkip")
+			elif app.find_child("SkipExpeditionRelic",true,false) != null:
+				await press("SkipExpeditionRelic")
+			elif app.find_child("FieldKeepCurrent",true,false) != null:
+				await press("FieldKeepCurrent")
+			else:
+				break
+		check(app.modals.is_empty(),hero+" actual relic decision leaves all four HUD slots unobstructed")
+		check(Game.run != null and is_instance_valid(app.hud) and app.route == "run",hero+" actual entrance creates HUD")
+		if Game.run == null or not is_instance_valid(app.hud): continue
+		app.hud.refresh()
+		var original: Array[Texture2D] = []
+		for index: int in 4:
+			var cell: Button = app.hud.skill_slots[index]
+			var identity: String = Game.run.skill_loadout_snapshot[index]
+			var logical: String = "asset://skill."+identity.to_lower()
+			check(cell.skill_id == identity and cell.icon_id == logical and cell.generated_texture != null and cell.generated_texture == Sampler.sampled(logical) and cell.generated_texture.get_size() == Vector2(1254,1254),hero+" live HUD slot "+str(index)+" uses the frozen skill's original PNG")
+			original.append(cell.generated_texture)
+		for index: int in 5: app.hud.refresh(); await frames(1)
+		check(range(4).all(func(index: int)->bool: return app.hud.skill_slots[index].generated_texture == original[index]),hero+" repeated HUD refresh reuses cached icon texture instances")
+		await capture(hero+"-native-icon-hud")
+		check(not Game.finish_run("abandoned").is_empty(),hero+" entrance-only icon fixture cleans up explicitly")
+		await frames()
+	app.queue_free()
+	await frames()
+	print("SKILL ICON HUD: %d checks; failures=%s; renderer=%s; entrance-only identity fixture" % [checks,failures,DisplayServer.get_name()])
 	get_tree().quit(0 if failures.is_empty() else 1)
 
 func _camp_configuration(hero: String) -> void:
