@@ -1,5 +1,11 @@
 # B07 金沙蜥城：当前隔离候选
 
+## 最新 L37 独立背景与详情候选（2026-10-03）
+
+用户已批准首房按第三张完整原画的实际地坪边缘小幅重标：面积减少2.044%，其他入口/出口/机关/遭遇/掩体/光路与数值不变。L37现有 `background/environment.png/json/prompt.json` 与 `detail/` 六张原生重绘WebP及manifest，按B02 L07既有WorldArt/EnvironmentDetail统一映射、共用.85镜头/职业/HUD。仅显式 `--b07-room-painting-review` 与 `--b07-native-detail-review` 启用，历史试验源图保留。
+
+最新完整来源/范围/实图证据见 [painting_integration](rooms/l37/painting_integration.md)。首房3组底图/详情2K A/B及7张真实AI脚本输入帧已查看；不能扩称全章视觉、自然战斗或平衡验收。其余6房独立背景与详情未完成；角色连续动画0套、M11阻塞、装备仍未实现。较早阶段下文保留其原验收范围，不以早期17文件/单idle清单覆盖后续源图与离散关键姿态工作；角色当前清单见 `enemies/art_review_status.md`。
+
 > 状态：候选／待验证。2026-10-03 同步 main 新目录与资源索引；迁移前记录和本次复验分开列出。默认四章、Lv20、生产档与正式发布范围不变。
 
 本页描述当前实现及验收边界；[关卡设计](README.md)仍是身份、机制与装备目标的依据。实际数值使用共享运行公式，设计目标不是已发布功能。B08–B12 不在本候选内。
@@ -82,10 +88,10 @@ M06 钻出：至少 1.1 秒预警，锁点后不追人；地面隆起、脚下�
 - `scripts/levels/b07/world`：候选会话、遍历、固定几何和机关；`combat`：真实技能／状态；`art`：隔离美术登记、地景、立面与守像基座。
 - `scenes/gameplay/world/b07/candidate.tscn`、`data/levels/b07`、`tests/levels/b07`、`tools/testing/run_b07_foundation_tests.py`：关卡入口、数据和定向检查。
 - `assets/levels/b07/rooms/l37`：4 张环境试验图、来源／提示词；`enemies/m01`：1 张 idle 身份试稿与来源；`registration/native_art.json`：明确身份／姿态登记。全部 17 个文件各自登记在 `assets/manifest.json`，完整清单见房间和怪物简案。
-- `docs/levels/b07/implementation.md`、`rooms/l37/visual_alignment.md`、`enemies/m01/art_brief.md`：唯一当前候选说明；不再维护旧实施过程、暂停记录或 archive 树。
+- `docs/levels/b07/implementation.md`、`rooms/l37/visual_alignment.md`、`enemies/m01/art_brief.md`：早期候选说明；不再维护旧实施过程、暂停记录或 archive 树。
 
 本次结构同步已按当前路径通过资源／注册／命名／套件／文档审计；实际生产会话74项、M05／M06场景511项、迁移后的轻量内容3548项／镜态83项均退出0、无SCRIPT ERROR／ERROR。独立美术旗标开／关两路解析通过；主相机和未批准原画没有被默认开启。B07自有导入别名按源MD5指向既有不可变缓存，763个新别名、88个当前类记录，未写入B05缓存或做全库导入。
 
 另修正两项 main 继承问题：与B08共用的13项路径／文档补丁，以及BO05现用美术脚本缺少TextureSampler显式依赖的一行修正。修正前511行末虽打印0失败，但因存在解析错误被判失败；修正后复验干净。四张真实2K输出已核对；这只证明输出尺寸与本次软件渲染可见内容，不表示各资产最大显示下的细节、整体视觉或自然玩法已通过。本次本地提交不包含推送／发布。
 
-剩余范围：10 种真实主动、Boss 两招、M13 连续光学折线、35 件装备模板／效果／获取链、完整原画与动作、专属 UI／双语、2K实际显示下的资产质量／目标硬件视觉、自然平衡、战中完整保存与跨进程／长流程恢复。M01 只有获身份认可的 idle，不是完整动画；其他房间美术不随 L37 试验扩展。
+剩余范围：10 种真实主动、Boss 两招、M13 连续光学折线、35 件装备模板／效果／获取链、完整原画与动作、既有职业/战斗 UI 复用的双语与可读性收敛、2K实际显示下的资产质量／目标硬件视觉、自然平衡、战中完整保存与跨进程／长流程恢复。M01 只有获身份认可的 idle，不是完整动画；其他房间美术不随 L37 试验扩展。

@@ -58,7 +58,8 @@ func _run() -> void:
 			var west_face := false
 			for face: Dictionary in foundation.faces:
 				var edge: Array = face.blueprint_edge
-				if edge == [Vector2(120,1470),Vector2(120,220)]: west_face = true
+				var authored: Array=Geometry.room("L37").walkable_polygon
+				if edge == [Vector2(authored[-1][0],authored[-1][1]),Vector2(authored[0][0],authored[0][1])]: west_face = true
 				check(Vector2(face.polygon[0]).is_equal_approx(Vector2(edge[0])*Geometry.SCALE),"foundation original first ground contact")
 				check(Vector2(face.polygon[1]).is_equal_approx(Vector2(edge[1])*Geometry.SCALE),"foundation original second ground contact")
 				check((Vector2(face.polygon[2])-Vector2(face.polygon[1])).is_equal_approx(Vector2(-140,260)*Geometry.SCALE),"review exterior extrusion")

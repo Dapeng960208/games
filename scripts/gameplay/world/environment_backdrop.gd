@@ -25,6 +25,7 @@ var ground_composition: Node2D
 var b05_floor_repair: Node2D
 var b05_fixed_void: Node2D
 var b07_art_trial: Node2D
+var b07_room_painting_review_ready := false
 
 func _ready() -> void:
 	texture_repeat = CanvasItem.TEXTURE_REPEAT_DISABLED
@@ -37,8 +38,14 @@ func _load_floor_texture() -> void:
 	floor_texture = Art.floor_texture_for(biome)
 
 func _load_environment() -> void:
-	environment_texture = Art.environment_texture_for(biome,blueprint_room_id)
-	environment_world_rect = Art.environment_world_rect(arena,biome,blueprint_room_id)
+	b07_room_painting_review_ready = false
+	if biome=="B07" and blueprint_room_id=="L37" and not bool(perimeter_layout.get("b07_candidate",false)):
+		environment_texture = null
+		environment_world_rect = Rect2()
+	else:
+		environment_texture = Art.environment_texture_for(biome,blueprint_room_id)
+		environment_world_rect = Art.environment_world_rect(arena,biome,blueprint_room_id)
+		b07_room_painting_review_ready = biome=="B07" and blueprint_room_id=="L37" and Art.b07_room_painting_review_enabled() and environment_texture!=null and environment_world_rect.has_area()
 	if not is_instance_valid(environment_chunks):
 		environment_chunks = Chunks.new()
 		environment_chunks.name = "EnvironmentChunks"
@@ -69,7 +76,9 @@ func configure_layout(layout: Dictionary,allow_candidates: bool=false) -> void:
 		ground_composition.z_index = 1
 		add_child(ground_composition)
 	ground_composition.configure(layout,biome)
-	if is_instance_valid(environment_chunks): environment_chunks.configure_candidate_detail(allow_candidates and biome=="B05")
+	if is_instance_valid(environment_chunks):
+		var b07_detail_review: bool = b07_room_painting_review_ready and "--b07-native-detail-review" in OS.get_cmdline_user_args()
+		environment_chunks.configure_candidate_detail((allow_candidates and biome=="B05") or b07_detail_review)
 	if is_instance_valid(b05_fixed_void): b05_fixed_void.free()
 	b05_fixed_void=null
 	if biome=="B05" and blueprint_room_id=="L27":
@@ -88,7 +97,9 @@ func configure_layout(layout: Dictionary,allow_candidates: bool=false) -> void:
 		else: overlay.free()
 	if is_instance_valid(b07_art_trial): b07_art_trial.free()
 	b07_art_trial=null
-	if biome=="B07" and blueprint_room_id=="L37":
+	if biome=="B07" and blueprint_room_id=="L37" and not b07_room_painting_review_ready:
+		if Art.b07_room_painting_review_enabled():
+			push_warning("L37 room painting review unavailable: candidate layout or independent painting invalid; review_ready=false")
 		var review_script = preload("res://scripts/levels/b07/art/l37_convergence_environment.gd")
 		var trial = review_script.new() if review_script.requested() else preload("res://scripts/levels/b07/art/room_environment.gd").new()
 		if trial.configure(layout):

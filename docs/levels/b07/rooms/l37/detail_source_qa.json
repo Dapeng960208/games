@@ -1,0 +1,161 @@
+{
+  "status": "numeric_overlap_observation_not_visual_acceptance",
+  "method": "read-only normalized source-grid resampling for comparison only; no final asset resized",
+  "overlap_pairs": [
+    {
+      "tiles": [
+        "top_left",
+        "top_middle"
+      ],
+      "overlap_source_rect": [
+        504,
+        0,
+        16,
+        528
+      ],
+      "mean_rgb_abs_difference_0_255": 10.372,
+      "p95_channel_abs_difference": 33.0
+    },
+    {
+      "tiles": [
+        "top_left",
+        "bottom_left"
+      ],
+      "overlap_source_rect": [
+        0,
+        504,
+        520,
+        24
+      ],
+      "mean_rgb_abs_difference_0_255": 8.507,
+      "p95_channel_abs_difference": 28.0
+    },
+    {
+      "tiles": [
+        "top_left",
+        "bottom_middle"
+      ],
+      "overlap_source_rect": [
+        504,
+        504,
+        16,
+        24
+      ],
+      "mean_rgb_abs_difference_0_255": 10.22,
+      "p95_channel_abs_difference": 28.0
+    },
+    {
+      "tiles": [
+        "top_middle",
+        "top_right"
+      ],
+      "overlap_source_rect": [
+        1016,
+        0,
+        16,
+        528
+      ],
+      "mean_rgb_abs_difference_0_255": 8.396,
+      "p95_channel_abs_difference": 28.0
+    },
+    {
+      "tiles": [
+        "top_middle",
+        "bottom_left"
+      ],
+      "overlap_source_rect": [
+        504,
+        504,
+        16,
+        24
+      ],
+      "mean_rgb_abs_difference_0_255": 9.272,
+      "p95_channel_abs_difference": 26.45
+    },
+    {
+      "tiles": [
+        "top_middle",
+        "bottom_middle"
+      ],
+      "overlap_source_rect": [
+        504,
+        504,
+        528,
+        24
+      ],
+      "mean_rgb_abs_difference_0_255": 12.131,
+      "p95_channel_abs_difference": 47.0
+    },
+    {
+      "tiles": [
+        "top_middle",
+        "bottom_right"
+      ],
+      "overlap_source_rect": [
+        1016,
+        504,
+        16,
+        24
+      ],
+      "mean_rgb_abs_difference_0_255": 11.302,
+      "p95_channel_abs_difference": 42.0
+    },
+    {
+      "tiles": [
+        "top_right",
+        "bottom_middle"
+      ],
+      "overlap_source_rect": [
+        1016,
+        504,
+        16,
+        24
+      ],
+      "mean_rgb_abs_difference_0_255": 8.57,
+      "p95_channel_abs_difference": 33.0
+    },
+    {
+      "tiles": [
+        "top_right",
+        "bottom_right"
+      ],
+      "overlap_source_rect": [
+        1016,
+        504,
+        520,
+        24
+      ],
+      "mean_rgb_abs_difference_0_255": 8.477,
+      "p95_channel_abs_difference": 27.0
+    },
+    {
+      "tiles": [
+        "bottom_left",
+        "bottom_middle"
+      ],
+      "overlap_source_rect": [
+        504,
+        504,
+        16,
+        520
+      ],
+      "mean_rgb_abs_difference_0_255": 21.926,
+      "p95_channel_abs_difference": 84.0
+    },
+    {
+      "tiles": [
+        "bottom_middle",
+        "bottom_right"
+      ],
+      "overlap_source_rect": [
+        1016,
+        504,
+        16,
+        520
+      ],
+      "mean_rgb_abs_difference_0_255": 17.159,
+      "p95_channel_abs_difference": 69.0
+    }
+  ],
+  "decision": "runtime feather seams must be inspected; new local material linework differs"
+}

@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "biome_id": "B07",
+  "room_id": "L37",
+  "candidate_only": true,
+  "qa_status": "candidate_mapping_navigation_and_three_views_checked",
+  "texture": "asset://world/rooms/L37_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "placement_normalized_rect": [
+    0.1,
+    0.12,
+    0.8,
+    0.7714285714285715
+  ],
+  "walkable_normalized_rect": [
+    0.125,
+    0.140625,
+    0.7721354166666666,
+    0.662109375
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.13671875,
+      0.2353515625
+    ],
+    [
+      0.283203125,
+      0.140625
+    ],
+    [
+      0.80078125,
+      0.140625
+    ],
+    [
+      0.8815104166666666,
+      0.2568359375
+    ],
+    [
+      0.8971354166666666,
+      0.70703125
+    ],
+    [
+      0.8059895833333334,
+      0.802734375
+    ],
+    [
+      0.21744791666666666,
+      0.802734375
+    ],
+    [
+      0.125,
+      0.681640625
+    ]
+  ],
+  "source_floor_edge_pixels": [
+    [
+      210,
+      241
+    ],
+    [
+      435,
+      144
+    ],
+    [
+      1230,
+      144
+    ],
+    [
+      1354,
+      263
+    ],
+    [
+      1378,
+      724
+    ],
+    [
+      1238,
+      822
+    ],
+    [
+      334,
+      822
+    ],
+    [
+      192,
+      698
+    ]
+  ],
+  "anchors_normalized": {
+    "entry": [
+      0.19142857142857145,
+      0.5057142857142857
+    ],
+    "exit": [
+      0.8085714285714285,
+      0.5057142857142857
+    ],
+    "altar": [
+      0.644,
+      0.38999999999999996
+    ],
+    "L37_mirror_1": [
+      0.38,
+      0.38999999999999996
+    ],
+    "L37_gate_near": [
+      0.7685714285714286,
+      0.5485714285714285
+    ],
+    "L37_gate_far": [
+      0.82,
+      0.48857142857142855
+    ]
+  },
+  "camera": "shared WorldCamera .85, no B07 trial offset",
+  "boundary_source": "Actual mask_first_boundary_candidate.png paving-to-cliff edge, manual observation and luminance-edge sampling; irregular bevel tolerance about 4-8 source px, body-radius inset remains active",
+  "authorization": "User approved re-marking L37 boundary to the third complete painting; other gameplay points unchanged",
+  "source_sha256": "9fdd7cf6ff8a98aa572fca3692bd974677d03075b1f97cf15caa5a4d47fecfaa",
+  "historical_geometry": [
+    [
+      120,
+      220
+    ],
+    [
+      650,
+      100
+    ],
+    [
+      2460,
+      100
+    ],
+    [
+      2700,
+      330
+    ],
+    [
+      2700,
+      1510
+    ],
+    [
+      2400,
+      1700
+    ],
+    [
+      410,
+      1700
+    ],
+    [
+      120,
+      1470
+    ]
+  ],
+  "formal_acceptance": false,
+  "qa": {
+    "run": "20261003T122349570762Z-6cb9a02e",
+    "checks": 136,
+    "failures": 0,
+    "view_count": 3,
+    "formal_acceptance": false,
+    "scope": "L37 candidate only; common camera/foot mapping and current scripted route"
+  }
+}

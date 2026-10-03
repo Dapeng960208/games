@@ -97,6 +97,13 @@ static func _collect_hud(node: Node, in_canvas: bool, result: Array[Rect2]) -> v
 		if not node.visible: return
 		in_canvas = true
 	if in_canvas and node is Control and node.is_visible_in_tree():
+		# Existing HUD exposes its custom-drawn combo ribbon and buff chips.
+		# These are plain Controls, not Panel/Label children; omitting them made
+		# both runtime placement and the post-draw observer miss real overlap.
+		if node.has_method("active_buff_coverage_rects"):
+			var canvas_transform: Transform2D = node.get_canvas_transform()
+			for painted: Rect2 in node.active_buff_coverage_rects():
+				if painted.has_area(): result.append(canvas_transform*painted)
 		var content: bool = node is Panel or node is PanelContainer or node is BaseButton or node is Label or node is RichTextLabel or node is TextureRect or node is ProgressBar
 		if node is Label or node is RichTextLabel: content = not node.text.is_empty()
 		var rect: Rect2 = node.get_global_transform_with_canvas()*Rect2(Vector2.ZERO,node.size)

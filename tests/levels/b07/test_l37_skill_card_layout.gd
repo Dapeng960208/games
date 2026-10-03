@@ -1,6 +1,10 @@
 extends SceneTree
 ## Pure screen geometry checks: no game scene, assets generated or graphics.
 const Layout = preload("res://scripts/levels/b07/art/l37_skill_card_layout.gd")
+class PaintedHud:
+	extends Control
+	func active_buff_coverage_rects() -> Array[Rect2]:
+		return [Rect2(global_position+Vector2(20,30),Vector2(236,102))]
 func _initialize() -> void:
 	_run.call_deferred()
 
@@ -63,6 +67,17 @@ func _run() -> void:
 	assert(not Rect2(clear_card.rect).intersects(hud[0].grow(Layout.GAP)))
 	ribbon.position += Vector2(90,60)
 	assert(Layout.hud_rects(scene)[0].position.is_equal_approx(ribbon.position))
+	var custom := PaintedHud.new()
+	custom.position=Vector2(800,166)
+	fullscreen.add_child(custom)
+	var with_custom := Layout.hud_rects(scene)
+	assert(with_custom.size()==2)
+	assert(with_custom[1].is_equal_approx(custom.get_canvas_transform()*custom.active_buff_coverage_rects()[0]))
+	var blocked_card := Rect2(with_custom[1].position,Layout.SIZE)
+	var relocated := Layout.choose(blocked_card,viewport,with_custom,[])
+	assert(not Rect2(relocated.rect).intersects(with_custom[1].grow(Layout.GAP)))
+	custom.hide()
+	assert(Layout.hud_rects(scene).size()==1)
 	canvas.hide()
 	assert(Layout.hud_rects(scene).is_empty())
 	scene.free()
