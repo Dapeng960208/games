@@ -1192,5 +1192,13 @@
   "b08_displacement_contract": {
     "script": "tests/levels/b08/test_displacement_contract.gd",
     "scene": "tests/levels/b08/test_displacement_contract.tscn"
+  },
+  "b08_hud_adapter": {
+    "script": "tests/levels/b08/test_hud_adapter.gd",
+    "scene": "tests/levels/b08/test_hud_adapter.tscn"
+  },
+  "b08_room_art_gate": {
+    "script": "tests/levels/b08/test_room_art_gate.gd",
+    "scene": "tests/levels/b08/test_room_art_gate.tscn"
   }
 }

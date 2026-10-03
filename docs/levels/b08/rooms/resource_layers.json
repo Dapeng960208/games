@@ -1,0 +1,237 @@
+{
+  "status": "planned_resource_structure_no_approved_independent_art",
+  "reference": "assets/levels/b02/rooms/l07",
+  "rooms": [
+    {
+      "room_id": "L43",
+      "background": {
+        "png": "assets/levels/b08/rooms/l43/background/environment.png",
+        "metadata": "assets/levels/b08/rooms/l43/background/environment.json",
+        "provenance": "assets/levels/b08/rooms/l43/background/environment.prompt.json",
+        "logical_texture": "asset://world/rooms/L43_environment_v1.png",
+        "logical_metadata": "asset://world/rooms/L43_environment_v1.json",
+        "approved_sources": 0,
+        "status": "three_staging_candidates_fail_fixed_registration"
+      },
+      "detail": {
+        "manifest": "assets/levels/b08/rooms/l43/detail/manifest.json",
+        "logical_manifest": "asset://world/rooms_2k/L43/manifest.json",
+        "tile_ids": [
+          "top_left",
+          "top_middle",
+          "top_right",
+          "bottom_left",
+          "bottom_middle",
+          "bottom_right"
+        ],
+        "approved_sources": 0,
+        "status": "not_generated_wait_for_registered_background",
+        "contract": "native region repaint of the same room mother image; source_rect normalized through same destination; six required; narrow feather overlap"
+      },
+      "runtime_layers": {
+        "dynamic_props": "retain actual footpoints and shared depth nodes",
+        "wind_and_warnings": "runtime only, not baked",
+        "collision": "existing B08 fixed union unchanged pending explicit geometry approval"
+      },
+      "existing_assembly": "L43 opt-in module-based prototype is preserved separately; not counted as background+six detail repaints"
+    },
+    {
+      "room_id": "L44",
+      "background": {
+        "png": "assets/levels/b08/rooms/l44/background/environment.png",
+        "metadata": "assets/levels/b08/rooms/l44/background/environment.json",
+        "provenance": "assets/levels/b08/rooms/l44/background/environment.prompt.json",
+        "logical_texture": "asset://world/rooms/L44_environment_v1.png",
+        "logical_metadata": "asset://world/rooms/L44_environment_v1.json",
+        "approved_sources": 0,
+        "status": "not_generated"
+      },
+      "detail": {
+        "manifest": "assets/levels/b08/rooms/l44/detail/manifest.json",
+        "logical_manifest": "asset://world/rooms_2k/L44/manifest.json",
+        "tile_ids": [
+          "top_left",
+          "top_middle",
+          "top_right",
+          "bottom_left",
+          "bottom_middle",
+          "bottom_right"
+        ],
+        "approved_sources": 0,
+        "status": "not_generated_wait_for_registered_background",
+        "contract": "native region repaint of the same room mother image; source_rect normalized through same destination; six required; narrow feather overlap"
+      },
+      "runtime_layers": {
+        "dynamic_props": "retain actual footpoints and shared depth nodes",
+        "wind_and_warnings": "runtime only, not baked",
+        "collision": "existing B08 fixed union unchanged pending explicit geometry approval"
+      },
+      "existing_assembly": "debug geometry and reusable module source plan only"
+    },
+    {
+      "room_id": "L45",
+      "background": {
+        "png": "assets/levels/b08/rooms/l45/background/environment.png",
+        "metadata": "assets/levels/b08/rooms/l45/background/environment.json",
+        "provenance": "assets/levels/b08/rooms/l45/background/environment.prompt.json",
+        "logical_texture": "asset://world/rooms/L45_environment_v1.png",
+        "logical_metadata": "asset://world/rooms/L45_environment_v1.json",
+        "approved_sources": 0,
+        "status": "not_generated"
+      },
+      "detail": {
+        "manifest": "assets/levels/b08/rooms/l45/detail/manifest.json",
+        "logical_manifest": "asset://world/rooms_2k/L45/manifest.json",
+        "tile_ids": [
+          "top_left",
+          "top_middle",
+          "top_right",
+          "bottom_left",
+          "bottom_middle",
+          "bottom_right"
+        ],
+        "approved_sources": 0,
+        "status": "not_generated_wait_for_registered_background",
+        "contract": "native region repaint of the same room mother image; source_rect normalized through same destination; six required; narrow feather overlap"
+      },
+      "runtime_layers": {
+        "dynamic_props": "retain actual footpoints and shared depth nodes",
+        "wind_and_warnings": "runtime only, not baked",
+        "collision": "existing B08 fixed union unchanged pending explicit geometry approval"
+      },
+      "existing_assembly": "debug geometry and reusable module source plan only"
+    },
+    {
+      "room_id": "L46",
+      "background": {
+        "png": "assets/levels/b08/rooms/l46/background/environment.png",
+        "metadata": "assets/levels/b08/rooms/l46/background/environment.json",
+        "provenance": "assets/levels/b08/rooms/l46/background/environment.prompt.json",
+        "logical_texture": "asset://world/rooms/L46_environment_v1.png",
+        "logical_metadata": "asset://world/rooms/L46_environment_v1.json",
+        "approved_sources": 0,
+        "status": "not_generated"
+      },
+      "detail": {
+        "manifest": "assets/levels/b08/rooms/l46/detail/manifest.json",
+        "logical_manifest": "asset://world/rooms_2k/L46/manifest.json",
+        "tile_ids": [
+          "top_left",
+          "top_middle",
+          "top_right",
+          "bottom_left",
+          "bottom_middle",
+          "bottom_right"
+        ],
+        "approved_sources": 0,
+        "status": "not_generated_wait_for_registered_background",
+        "contract": "native region repaint of the same room mother image; source_rect normalized through same destination; six required; narrow feather overlap"
+      },
+      "runtime_layers": {
+        "dynamic_props": "retain actual footpoints and shared depth nodes",
+        "wind_and_warnings": "runtime only, not baked",
+        "collision": "existing B08 fixed union unchanged pending explicit geometry approval"
+      },
+      "existing_assembly": "debug geometry and reusable module source plan only"
+    },
+    {
+      "room_id": "L47",
+      "background": {
+        "png": "assets/levels/b08/rooms/l47/background/environment.png",
+        "metadata": "assets/levels/b08/rooms/l47/background/environment.json",
+        "provenance": "assets/levels/b08/rooms/l47/background/environment.prompt.json",
+        "logical_texture": "asset://world/rooms/L47_environment_v1.png",
+        "logical_metadata": "asset://world/rooms/L47_environment_v1.json",
+        "approved_sources": 0,
+        "status": "not_generated"
+      },
+      "detail": {
+        "manifest": "assets/levels/b08/rooms/l47/detail/manifest.json",
+        "logical_manifest": "asset://world/rooms_2k/L47/manifest.json",
+        "tile_ids": [
+          "top_left",
+          "top_middle",
+          "top_right",
+          "bottom_left",
+          "bottom_middle",
+          "bottom_right"
+        ],
+        "approved_sources": 0,
+        "status": "not_generated_wait_for_registered_background",
+        "contract": "native region repaint of the same room mother image; source_rect normalized through same destination; six required; narrow feather overlap"
+      },
+      "runtime_layers": {
+        "dynamic_props": "retain actual footpoints and shared depth nodes",
+        "wind_and_warnings": "runtime only, not baked",
+        "collision": "existing B08 fixed union unchanged pending explicit geometry approval"
+      },
+      "existing_assembly": "debug geometry and reusable module source plan only"
+    },
+    {
+      "room_id": "L48",
+      "background": {
+        "png": "assets/levels/b08/rooms/l48/background/environment.png",
+        "metadata": "assets/levels/b08/rooms/l48/background/environment.json",
+        "provenance": "assets/levels/b08/rooms/l48/background/environment.prompt.json",
+        "logical_texture": "asset://world/rooms/L48_environment_v1.png",
+        "logical_metadata": "asset://world/rooms/L48_environment_v1.json",
+        "approved_sources": 0,
+        "status": "not_generated"
+      },
+      "detail": {
+        "manifest": "assets/levels/b08/rooms/l48/detail/manifest.json",
+        "logical_manifest": "asset://world/rooms_2k/L48/manifest.json",
+        "tile_ids": [
+          "top_left",
+          "top_middle",
+          "top_right",
+          "bottom_left",
+          "bottom_middle",
+          "bottom_right"
+        ],
+        "approved_sources": 0,
+        "status": "not_generated_wait_for_registered_background",
+        "contract": "native region repaint of the same room mother image; source_rect normalized through same destination; six required; narrow feather overlap"
+      },
+      "runtime_layers": {
+        "dynamic_props": "retain actual footpoints and shared depth nodes",
+        "wind_and_warnings": "runtime only, not baked",
+        "collision": "existing B08 fixed union unchanged pending explicit geometry approval"
+      },
+      "existing_assembly": "debug geometry and reusable module source plan only"
+    },
+    {
+      "room_id": "BO08",
+      "background": {
+        "png": "assets/levels/b08/rooms/bo08/background/environment.png",
+        "metadata": "assets/levels/b08/rooms/bo08/background/environment.json",
+        "provenance": "assets/levels/b08/rooms/bo08/background/environment.prompt.json",
+        "logical_texture": "asset://world/rooms/BO08_environment_v1.png",
+        "logical_metadata": "asset://world/rooms/BO08_environment_v1.json",
+        "approved_sources": 0,
+        "status": "not_generated"
+      },
+      "detail": {
+        "manifest": "assets/levels/b08/rooms/bo08/detail/manifest.json",
+        "logical_manifest": "asset://world/rooms_2k/BO08/manifest.json",
+        "tile_ids": [
+          "top_left",
+          "top_middle",
+          "top_right",
+          "bottom_left",
+          "bottom_middle",
+          "bottom_right"
+        ],
+        "approved_sources": 0,
+        "status": "not_generated_wait_for_registered_background",
+        "contract": "native region repaint of the same room mother image; source_rect normalized through same destination; six required; narrow feather overlap"
+      },
+      "runtime_layers": {
+        "dynamic_props": "retain actual footpoints and shared depth nodes",
+        "wind_and_warnings": "runtime only, not baked",
+        "collision": "existing B08 fixed union unchanged pending explicit geometry approval"
+      },
+      "existing_assembly": "debug geometry and reusable module source plan only"
+    }
+  ]
+}
