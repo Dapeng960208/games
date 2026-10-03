@@ -147,8 +147,11 @@ func activate_lamp(id: String) -> bool:
 	var radius := 100.0 if clock<float(lamps[id].siphon_until) else 160.0
 	for actor: Node2D in room.enemies.get_children():
 		if not _alive(actor) or not bool(actor.profile.get("b09_candidate",false)) or actor.position.distance_to(lamps[id].at)>radius: continue
-		break_layer(actor)
-		if actor.brain!=null and actor.brain.has_method("current_skill") and actor.brain.current_skill().get("kind") in ["b09_reform","b09_shield"]: actor.brain.interrupt(actor)
+		var last_layer := int(actor.get_meta("b09_layers",0))==1
+		if break_layer(actor) and last_layer: _barrier_broken(actor,{"damage_source":"skill","b09_lamp":true,"equipment_eligible":true,"proc_depth":0})
+		if actor.brain!=null and actor.brain.has_method("current_skill"):
+			var kind: String=str(actor.brain.current_skill().get("kind",""))
+			if kind=="b09_reform" or (kind=="b09_shield" and room.difficulty>=4): actor.brain.interrupt(actor)
 	return true
 
 func break_layer(actor: Node2D) -> bool:
@@ -179,7 +182,14 @@ func filter_damage(actor: Node2D, amount: float, kind: StringName, context: Dict
 			if roots.size()>32: roots.pop_front()
 			actor.set_meta("b09_hit_roots",roots)
 	if layers==0 and clock<float(actor.get_meta("b09_exposed_until",0.0)) and (actor.actor_kind=="boss" or (actor.enemy_id=="B09-M13" and room.difficulty>=4)): reduction*=1.15
+	if layers>0 and int(actor.get_meta("b09_layers",0))==0: _barrier_broken(actor,context)
 	return amount*reduction
+
+func _barrier_broken(actor: Node2D, context: Dictionary) -> void:
+	if not is_instance_valid(room.player) or not bool(context.get("equipment_eligible",false)) or int(context.get("proc_depth",1))!=0: return
+	var event := context.duplicate(true)
+	event.merge({"target":actor,"crystal_broken":true},true)
+	room.player.loadout.event("b09_barrier_broken",event)
 
 func allies(caster: Node2D) -> Array:
 	var result: Array=[]
@@ -212,7 +222,8 @@ func movement_velocity(actor: Node2D, input_motion: Vector2, desired: Vector2, d
 	if remaining<=0: return desired
 	var step := minf(delta,remaining)
 	actor.set_meta("b09_glide_remaining",maxf(0,remaining-delta))
-	return desired+Vector2(actor.get_meta("b09_glide_direction",Vector2.ZERO))*160.0*step/maxf(delta,0.001)
+	var scale := clampf(float(actor.loadout.modifiers().get("b09_glide_distance_scale",1.0)),0.5,1.0)
+	return desired+Vector2(actor.get_meta("b09_glide_direction",Vector2.ZERO))*160.0*scale*step/maxf(delta,0.001)
 
 func cancel_glide(actor: Node2D) -> void:
 	actor.set_meta("b09_glide_remaining",0.0)

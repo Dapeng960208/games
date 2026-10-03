@@ -104,6 +104,7 @@ foreach ($testName in $Suite) {
         if ($testName -eq 'b09_2k') { $arguments += '--b09-resolution=2560x1440' }
     } else {
         $arguments += @('--', "--test-profile=$(Get-TestProfile $profileName)")
+        if ($testName -eq 'b09_equipment_release_gate') { $arguments += '--b09-release-gate' }
     }
     $testRuleset = $Ruleset
     if ($testRuleset -ne 0) { $arguments += "--test-ruleset=$testRuleset" }

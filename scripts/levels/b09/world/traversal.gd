@@ -1,5 +1,5 @@
 extends RefCounted
-## A finite preview route, with no chapter or economy transaction.
+## Finite candidate route. Gear rewards use its isolated profile only.
 const Content = preload("res://scripts/levels/b09/world/content.gd")
 const Snapshot = preload("res://scripts/domain/combat/combat_snapshot.gd")
 var room: Node2D
@@ -9,6 +9,7 @@ var seed_value := 309
 var finished := false
 var last_error := ""
 var _changing := false
+var _rewarded: Dictionary = {}
 
 func configure(host: Node2D, selected_difficulty: int, selected_seed: int) -> bool:
 	if room != null or not is_instance_valid(host) or selected_difficulty not in range(5) or Game.run == null: return false
@@ -42,6 +43,12 @@ func _install(index: int) -> bool:
 func advance(expected_index: int) -> bool:
 	if _changing or finished or expected_index!=node_index or not is_instance_valid(room) or not room.objective_complete or room._living_enemy_count()>0: return false
 	if room.player.position.distance_to(room.exit_position)>68 or not room.has_line_of_sight(room.player.position,room.exit_position): return false
+	var inventory: Variant=room.get_meta("b09_inventory") if room.has_meta("b09_inventory") else null
+	if inventory!=null and not _rewarded.has(node_index):
+		if not inventory.clear_reward(room.layout_id,difficulty,seed_value+node_index):
+			last_error=inventory.last_error
+			return false
+		_rewarded[node_index]=true
 	if node_index+1==Content.room_ids().size():
 		finished=true
 		room.set_input_blocked(true)

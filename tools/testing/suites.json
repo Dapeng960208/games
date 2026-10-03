@@ -11,6 +11,10 @@
     "script": "tests/levels/b09/test_b09_equipment.gd",
     "scene": "tests/levels/b09/test_b09_equipment.tscn"
   },
+  "b09_equipment_release_gate": {
+    "script": "tests/levels/b09/test_b09_equipment.gd",
+    "scene": "tests/levels/b09/test_b09_equipment.tscn"
+  },
   "b09_monster_contract": {
     "script": "tests/levels/b09/test_b09_monster_contract.gd",
     "scene": "tests/levels/b09/test_b09_monster_contract.tscn"

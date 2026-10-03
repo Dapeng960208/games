@@ -135,6 +135,9 @@ func enemy_died(enemy: EnemyActor) -> void:
 			child.queue_free()
 	if Game.run == null:
 		return
+	if bool(host.layout.get("b09_candidate",false)):
+		var inventory: Variant=host.get_meta("b09_inventory") if host.has_meta("b09_inventory") else null
+		if inventory!=null: inventory.kill_reward(enemy)
 	if not enemy.reward_enabled:
 		return
 	host.enemy_corpses.append({"at":enemy.position,"remaining":18.0,"zone":enemy.zone_index})
