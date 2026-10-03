@@ -62,6 +62,8 @@ func mapped_input(action: String, pressed: bool) -> void:
 		event.pressed=pressed
 		event.echo=false
 	Input.parse_input_event(event)
+	# Synthetic events can stay buffered past the next physics frame.
+	Input.flush_buffered_events()
 
 func release_all() -> void:
 	for action: String in ["move_left","move_right","move_up","move_down","click_move","attack","dash","interact","skill_q","skill_secondary","skill_f","skill_ultimate"]:
@@ -377,7 +379,7 @@ func _run_checks() -> void:
 	frame_samples.sort()
 	var total := 0.0
 	for value: float in frame_samples: total+=value
-	var report := {"checks":checks,"failures":failures,"renderer":RenderingServer.get_video_adapter_name(),"window":[get_window().size.x,get_window().size.y],"observations":observations,"frame_intervals_ms":{"count":frame_samples.size(),"mean":total/maxi(1,frame_samples.size()),"p95":frame_samples[int((frame_samples.size()-1)*0.95)] if not frame_samples.is_empty() else 0.0,"max":frame_samples.back() if not frame_samples.is_empty() else 0.0},"method":"Real GPU framebuffer; ordinary B09 preview startup, mapped physical key/mouse event objects via Input.parse_input_event, official Viewport local pointer, automatic player/room/brain/effect physics. Durable targets/resource refills/invulnerability/phase placement/finite-wave clearing are fixtures. Captures are direct framebuffer PNGs; no compositing or offline resizing. OS cursor/device input, natural clearing/balance, long-session performance and monitor visibility are not certified."}
+	var report := {"checks":checks,"failures":failures,"renderer":RenderingServer.get_video_adapter_name(),"window":[get_window().size.x,get_window().size.y],"observations":observations,"frame_intervals_ms":{"count":frame_samples.size(),"mean":total/maxi(1,frame_samples.size()),"p95":frame_samples[int((frame_samples.size()-1)*0.95)] if not frame_samples.is_empty() else 0.0,"max":frame_samples.back() if not frame_samples.is_empty() else 0.0},"method":"Real GPU framebuffer; ordinary B09 preview startup, mapped physical key/mouse event objects via Input.parse_input_event with explicit buffer flush before physics, official Viewport local pointer, automatic player/room/brain/effect physics. Durable targets/resource refills/invulnerability/phase placement/finite-wave clearing are fixtures. Captures are direct framebuffer PNGs; no compositing or offline resizing. OS cursor/device input, natural clearing/balance, long-session performance and monitor visibility are not certified."}
 	var file := FileAccess.open(OUTPUT.path_join("report.json"),FileAccess.WRITE)
 	file.store_string(JSON.stringify(report,"\t"))
 	file.close()

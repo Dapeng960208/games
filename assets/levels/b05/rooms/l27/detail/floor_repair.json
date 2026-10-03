@@ -14,8 +14,8 @@
     2.44921875,
     2.44921875
   ],
-  "approved": false,
-  "candidate_only": true,
+  "approved": true,
+  "candidate_only": false,
   "generation_tool": "built-in image_gen",
   "model_metadata": {
     "specific_model": "unknown",
@@ -62,5 +62,16 @@
     0.9800120815504405,
     0.8224050115965029,
     0.5617023504583313
-  ]
+  ],
+  "status": "released",
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T130008562-a228f36f",
+    "report": "docs/levels/b05_b06_room_paintings.md",
+    "candidate_arguments": false,
+    "framebuffer": [
+      2560,
+      1440
+    ]
+  }
 }

@@ -42,9 +42,9 @@ func _ready() -> void: _run.call_deferred()
 func _run() -> void:
 	if OS.get_cmdline_user_args().has("--b09-release-gate"):
 		check(not Rules.b09_candidate_enabled(),"ordinary profile lacks B09 candidate")
-		check(int(Rules.value("implemented_chapters"))==4,"formal chapters unchanged")
-		check(preload("res://scripts/domain/progression/hero_progression.gd").level_cap()==20,"formal level cap20")
-		check(ContentRegistry.equipment_ids(2).size()==124,"formal catalog remains124")
+		check(int(Rules.value("implemented_chapters"))==6,"six formal chapters remain released")
+		check(preload("res://scripts/domain/progression/hero_progression.gd").level_cap()==30,"formal level cap30")
+		check(ContentRegistry.equipment_ids(2).size()==194,"formal catalog retains194 released templates")
 		check(ContentRegistry.equipment("B09-SW-weapon",2).is_empty(),"B09 definition inaccessible outside strict candidate")
 		check(not ContentRegistry.sets(2).has("B09-SW"),"B09 sets inaccessible")
 		var denied := Acquisition.roll_item({"instance_id":"unreleased","source_event_id":"unreleased","template_id":"B09-SW-weapon","rarity":"purple","power_type":"physical","item_level":45,"source":"drop","hero_id":"CH01"},1)
@@ -71,7 +71,7 @@ func _catalog() -> void:
 	check(Catalog.validate().is_empty(),"authored 35 templates/four sets")
 	check(ContentRegistry.validate(2).is_empty(),"shared registry validates candidate")
 	check(Acquisition.current_version_error().is_empty(),"generation preserves v1-v4 archive")
-	check(int(Rules.value("implemented_chapters"))==4,"formal chapters stay four")
+	check(int(Rules.value("implemented_chapters"))==6,"candidate preserves six formal chapters")
 	for hero: String in ["CH01","CH02","CH03"]:
 		var pool := Acquisition.natural_pool("B09",hero,5)
 		var count := 0

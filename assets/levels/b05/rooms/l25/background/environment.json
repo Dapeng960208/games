@@ -2,7 +2,7 @@
   "schema_version": 1,
   "biome_id": "B05",
   "room_id": "L25",
-  "texture": "asset://world/rooms/L25_environment_v1.png",
+  "texture": "asset://world/rooms/l25_environment_released.png",
   "source_size": [
     1536,
     1024
@@ -16,72 +16,218 @@
     ]
   },
   "walkable_normalized_rect": [
-    0.28,
-    0.3,
-    0.44,
-    0.4
+    0.11,
+    0.13,
+    0.78,
+    0.68
   ],
   "placement_normalized_rect": [
     0.11,
     0.13,
     0.78,
-    0.74
+    0.68
   ],
   "walkable_normalized_polygon": [
     [
-      0.160142857,
-      0.212222222
+      0.14342857142857143,
+      0.3755555555555556
     ],
     [
-      0.789714286,
-      0.212222222
+      0.22142857142857142,
+      0.3188888888888889
+    ],
+    [
+      0.4164285714285714,
+      0.3188888888888889
+    ],
+    [
+      0.461,
+      0.40955555555555556
+    ],
+    [
+      0.5919285714285715,
+      0.40955555555555556
+    ],
+    [
+      0.6197857142857143,
+      0.26222222222222225
+    ],
+    [
+      0.7897142857142857,
+      0.26222222222222225
     ],
     [
       0.851,
-      0.294444444
+      0.334
     ],
     [
-      0.856571429,
-      0.763111111
+      0.851,
+      0.6211111111111112
     ],
     [
-      0.800857143,
-      0.812444444
+      0.7841428571428571,
+      0.6702222222222223
     ],
     [
-      0.199142857,
-      0.812444444
+      0.6922142857142858,
+      0.6702222222222223
     ],
     [
-      0.143428571,
-      0.722
+      0.6476428571428572,
+      0.5304444444444445
     ],
     [
-      0.143428571,
-      0.294444444
+      0.4637857142857143,
+      0.5304444444444445
+    ],
+    [
+      0.42478571428571427,
+      0.6475555555555556
+    ],
+    [
+      0.21864285714285714,
+      0.6475555555555556
+    ],
+    [
+      0.14342857142857143,
+      0.5795555555555556
     ]
   ],
-  "approved": false,
-  "candidate_only": true,
+  "approved": true,
+  "candidate_only": false,
   "geometry_source": "data/levels/b05/room_geometry.json rooms.L25",
   "geometry_checkpoint": "9d57d5de11fb3a568a95a0335a3993acdde4b669",
   "geometry_file_sha256": "be78e3e77400688dfd37aac64ead1aa0f1c3e48c69c0a22dc10c8bbb6ae46a25",
   "qa": {
-    "status": "awaiting frozen production camera and edge alignment review",
-    "source_sha256": "85926041f53b1c58b16ea610213f6ed5a036e5cf5a64a88264d8d0a5e9f4891b",
+    "status": "accepted_normal_runtime",
+    "style": "bright hand-painted cartoon fantasy; high three-quarter overhead; 2.5D",
     "actual_dimensions": [
       1536,
       1024
     ],
-    "native_2k": false,
-    "no_source_pixel_edits": true,
-    "manual_pixel_review": "All frozen anchors/routes appear on dry ground. Side passages encompass required vertical interval. Baked backdrop has no functional props or combat-overlapping tree canopies. North flower beds are low decoration. Painted exterior curb overshoots fixed polygon; particularly west/northwest shoulder and south by roughly25px. Exact edge alignment not approved.",
-    "runtime_validation": false
+    "runtime_framebuffer": [
+      2560,
+      1440
+    ],
+    "upscaled": false,
+    "coordinate_mapping": "shared blueprint placement; fixed geometry and mechanism feet; painting camera bounds"
   },
-  "notes": [
-    "Candidate staging only; WorldArt base loader does not enforce approved, so do not copy into production until integrator chooses a pilot.",
-    "Generated source remains1536x1024 despite first prompt requesting3840x2560. Six native detail tiles are not yet made.",
-    "Frozen geometry and placement are preserved without camera/player/HUD changes.",
-    "No upscaling, warping, sharpening, retouching or procedural replacement of generated pixels used."
-  ]
+  "independent_complete_painting": true,
+  "native_detail_enabled": false,
+  "mode": "complete_environment_plate",
+  "status": "released",
+  "render_mapping": "完整原画按本房placement_normalized_rect映射到2800×1800、0.58世界坐标；通行、机关脚点和镜头使用同一映射。原画像素不重采样修改。",
+  "provenance": {
+    "method": "built-in image_gen",
+    "selected_source": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-b7ddf701-9b7a-4407-b287-40dc1de22eaf.png",
+    "sha256": "5a367cf99a8161ee1282545c9abed6fdd87f4d7dbac568f28244dbdf80fd6cb5",
+    "reference": "asset://world/rooms/L26_environment_v1.png",
+    "reference_role": "style_or_bridge_alignment_reference",
+    "prompt": "asset://world/rooms/l25_environment_released.prompt.json",
+    "pixel_edits": "none_after_imagegen",
+    "composition": "independent_complete_room_environment",
+    "previous_manifest": {
+      "schema_version": 1,
+      "biome_id": "B05",
+      "room_id": "L25",
+      "texture": "asset://world/rooms/L25_environment_v1.png",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "regions": {
+        "L25_environment": [
+          0,
+          0,
+          1536,
+          1024
+        ]
+      },
+      "walkable_normalized_rect": [
+        0.28,
+        0.3,
+        0.44,
+        0.4
+      ],
+      "placement_normalized_rect": [
+        0.11,
+        0.13,
+        0.78,
+        0.74
+      ],
+      "walkable_normalized_polygon": [
+        [
+          0.160142857,
+          0.212222222
+        ],
+        [
+          0.789714286,
+          0.212222222
+        ],
+        [
+          0.851,
+          0.294444444
+        ],
+        [
+          0.856571429,
+          0.763111111
+        ],
+        [
+          0.800857143,
+          0.812444444
+        ],
+        [
+          0.199142857,
+          0.812444444
+        ],
+        [
+          0.143428571,
+          0.722
+        ],
+        [
+          0.143428571,
+          0.294444444
+        ]
+      ],
+      "approved": false,
+      "candidate_only": true,
+      "geometry_source": "data/levels/b05/room_geometry.json rooms.L25",
+      "geometry_checkpoint": "9d57d5de11fb3a568a95a0335a3993acdde4b669",
+      "geometry_file_sha256": "be78e3e77400688dfd37aac64ead1aa0f1c3e48c69c0a22dc10c8bbb6ae46a25",
+      "qa": {
+        "status": "awaiting frozen production camera and edge alignment review",
+        "source_sha256": "85926041f53b1c58b16ea610213f6ed5a036e5cf5a64a88264d8d0a5e9f4891b",
+        "actual_dimensions": [
+          1536,
+          1024
+        ],
+        "native_2k": false,
+        "no_source_pixel_edits": true,
+        "manual_pixel_review": "All frozen anchors/routes appear on dry ground. Side passages encompass required vertical interval. Baked backdrop has no functional props or combat-overlapping tree canopies. North flower beds are low decoration. Painted exterior curb overshoots fixed polygon; particularly west/northwest shoulder and south by roughly25px. Exact edge alignment not approved.",
+        "runtime_validation": false
+      },
+      "notes": [
+        "Candidate staging only; WorldArt base loader does not enforce approved, so do not copy into production until integrator chooses a pilot.",
+        "Generated source remains1536x1024 despite first prompt requesting3840x2560. Six native detail tiles are not yet made.",
+        "Frozen geometry and placement are preserved without camera/player/HUD changes.",
+        "No upscaling, warping, sharpening, retouching or procedural replacement of generated pixels used."
+      ]
+    }
+  },
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T130008562-a228f36f",
+    "checks": 554,
+    "failures": 0,
+    "candidate_arguments": false,
+    "renderer": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "report": "docs/levels/b05_b06_room_paintings.md",
+    "scope": "all fourteen real rooms; centre and four corners; seven high tides; existing HUD and actors",
+    "grounded_obstacles": "low cover and closed bridge source art; no added plinth; actual collision foot preserved"
+  },
+  "source_sha256": "5a367cf99a8161ee1282545c9abed6fdd87f4d7dbac568f28244dbdf80fd6cb5"
 }

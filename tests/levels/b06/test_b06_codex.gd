@@ -11,7 +11,7 @@ func _ready()->void:
  run.call_deferred()
 func run()->void:
  var ids:=Codex.entry_ids()
- if not preload("res://scripts/infrastructure/content/runtime_rules.gd").b06_candidate_enabled():
+ if not preload("res://scripts/infrastructure/content/runtime_rules.gd").chapter_enabled(6):
   check(ids.size()==58 and "BO06" not in ids,"default released catalog unchanged")
   check(Codex.resolved_entry("BO06",30,4).is_empty(),"default fortress resolver closed")
   check(Codex.boss_skill_entries("BO06",4).is_empty(),"default fortress guide closed")

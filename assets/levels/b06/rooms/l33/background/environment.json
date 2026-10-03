@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "room_id": "L33",
+  "biome_id": "B06",
+  "texture": "asset://world/rooms/L33_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "walkable_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "placement_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.16014285714285714,
+      0.2122222222222222
+    ],
+    [
+      0.8398571428571429,
+      0.2122222222222222
+    ],
+    [
+      0.8398571428571429,
+      0.7877777777777777
+    ],
+    [
+      0.16014285714285714,
+      0.7877777777777777
+    ]
+  ],
+  "approved": true,
+  "candidate_only": false,
+  "mode": "complete_environment_plate",
+  "geometry_source": "data/levels/b06/room_geometry.json rooms.L33",
+  "render_mapping": "完整原画、通行边界、机关脚点及镜头共用2800×1800蓝图与0.58世界缩放；原画按placement_normalized_rect映射，潮水由运行时覆盖。",
+  "provenance": {
+    "method": "built-in image_gen",
+    "selected_source": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-76d4ba0b-bf7f-434a-b397-8c0b89563df2.png",
+    "sha256": "a09e96a9a7c90f87893b8a505ee0c825a959b5fd773e025c52f8041e83c2b5a4",
+    "prompt": "asset://world/rooms/L33_environment_v1.prompt.json",
+    "reference": "asset://world/rooms/L19_environment_v1.png",
+    "reference_role": "hand_painted_high_oblique_style_only",
+    "pixel_edits": "none",
+    "composition": "independent_complete_room_environment"
+  },
+  "qa": {
+    "status": "accepted_normal_runtime",
+    "style": "bright hand-painted cartoon fantasy; high three-quarter overhead; 2.5D",
+    "actual_dimensions": [
+      1536,
+      1024
+    ],
+    "runtime_framebuffer": [
+      2560,
+      1440
+    ],
+    "upscaled": false,
+    "coordinate_mapping": "shared blueprint placement; fixed geometry and mechanism feet; painting camera bounds"
+  },
+  "status": "released",
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T130008562-a228f36f",
+    "checks": 554,
+    "failures": 0,
+    "candidate_arguments": false,
+    "renderer": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "report": "docs/levels/b05_b06_room_paintings.md",
+    "scope": "all fourteen real rooms; centre and four corners; seven high tides; existing HUD and actors"
+  },
+  "source_sha256": "a09e96a9a7c90f87893b8a505ee0c825a959b5fd773e025c52f8041e83c2b5a4"
+}

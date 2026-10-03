@@ -1,5 +1,5 @@
 {
-  "approved": false,
+  "approved": true,
   "patches": [
     {
       "name": "L27_west",
@@ -30,7 +30,7 @@
       "prompt_sha256": "885d41afb75b6eac0715350d3ff1cf5418a0a877ed08ab7b64a28dea679036a7",
       "tool": "image_gen built-in",
       "model": "not reported",
-      "approved": false,
+      "approved": true,
       "texture": "asset://world/rooms_2k/L27/L27_west_v1.png",
       "unique_patch": true,
       "recommended_repair_source_rect": [
@@ -53,5 +53,17 @@
       ],
       "entrance_join_note": "Locally reveal only the original flat west-entry inlay under the repair edge, keeping all other repaired perimeter ground opaque."
     }
-  ]
+  ],
+  "candidate_only": false,
+  "status": "released",
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T130008562-a228f36f",
+    "report": "docs/levels/b05_b06_room_paintings.md",
+    "candidate_arguments": false,
+    "framebuffer": [
+      2560,
+      1440
+    ]
+  }
 }

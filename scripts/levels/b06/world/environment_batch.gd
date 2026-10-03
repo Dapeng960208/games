@@ -1,5 +1,5 @@
 extends Node2D
-## L32–L36/BO06 candidate art only. Never owns geometry, tide time, collision or progression.
+## L32–L36/BO06 room-owned art only. Never owns geometry, tide time, collision or progression.
 const Geometry = preload("res://scripts/levels/b06/world/room_geometry.gd")
 const WATER := "asset://b06_l31_environment_pilot/L31-water-v1.png"
 var room_id := ""

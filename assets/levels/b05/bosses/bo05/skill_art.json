@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "boss_id": "BO05",
+  "candidate_only": false,
+  "max_effect_extent_world": 160,
+  "actions": {
+    "crown_sweep": {
+      "effect": {
+        "texture": "asset://levels/b05/bosses/bo05/effects/skill_effect_atlas.png",
+        "region": [
+          0,
+          0,
+          627,
+          418
+        ],
+        "alpha128_bounds": [
+          181,
+          107,
+          325,
+          269
+        ]
+      },
+      "icon": {
+        "texture": "asset://levels/b05/bosses/bo05/icons/candidates/skill_icons_atlas.png",
+        "region": [
+          5,
+          168,
+          411,
+          402
+        ],
+        "alpha128_bounds": [
+          8,
+          171,
+          405,
+          396
+        ]
+      }
+    },
+    "three_roots": {
+      "effect": {
+        "texture": "asset://levels/b05/bosses/bo05/effects/skill_effect_atlas.png",
+        "region": [
+          627,
+          0,
+          627,
+          418
+        ],
+        "alpha128_bounds": [
+          768,
+          104,
+          305,
+          286
+        ]
+      },
+      "icon": {
+        "texture": "asset://levels/b05/bosses/bo05/icons/candidates/skill_icons_atlas.png",
+        "region": [
+          422,
+          168,
+          410,
+          402
+        ],
+        "alpha128_bounds": [
+          425,
+          171,
+          404,
+          396
+        ]
+      }
+    },
+    "pod_rain": {
+      "effect": {
+        "texture": "asset://levels/b05/bosses/bo05/effects/skill_effect_atlas.png",
+        "region": [
+          0,
+          418,
+          627,
+          418
+        ],
+        "alpha128_bounds": [
+          211,
+          509,
+          271,
+          278
+        ]
+      },
+      "icon": {
+        "texture": "asset://levels/b05/bosses/bo05/icons/candidates/skill_icons_atlas.png",
+        "region": [
+          839,
+          168,
+          410,
+          405
+        ],
+        "alpha128_bounds": [
+          842,
+          171,
+          404,
+          399
+        ]
+      }
+    },
+    "growth_rings": {
+      "effect": {
+        "texture": "asset://levels/b05/bosses/bo05/effects/skill_effect_atlas.png",
+        "region": [
+          627,
+          418,
+          627,
+          418
+        ],
+        "alpha128_bounds": [
+          740,
+          529,
+          361,
+          242
+        ]
+      },
+      "icon": {
+        "texture": "asset://levels/b05/bosses/bo05/icons/candidates/skill_icons_atlas.png",
+        "region": [
+          6,
+          688,
+          409,
+          394
+        ],
+        "alpha128_bounds": [
+          9,
+          691,
+          403,
+          388
+        ]
+      }
+    },
+    "bloom_transplant": {
+      "effect": {
+        "texture": "asset://levels/b05/bosses/bo05/effects/skill_effect_atlas.png",
+        "region": [
+          0,
+          836,
+          627,
+          418
+        ],
+        "alpha128_bounds": [
+          163,
+          909,
+          368,
+          224
+        ]
+      },
+      "icon": {
+        "texture": "asset://levels/b05/bosses/bo05/icons/candidates/skill_icons_atlas.png",
+        "region": [
+          424,
+          688,
+          406,
+          394
+        ],
+        "alpha128_bounds": [
+          427,
+          691,
+          400,
+          388
+        ]
+      }
+    },
+    "season_bloom": {
+      "effect": {
+        "texture": "asset://levels/b05/bosses/bo05/effects/skill_effect_atlas.png",
+        "region": [
+          627,
+          836,
+          627,
+          418
+        ],
+        "alpha128_bounds": [
+          746,
+          899,
+          346,
+          239
+        ]
+      },
+      "icon": {
+        "texture": "asset://levels/b05/bosses/bo05/icons/candidates/skill_icons_atlas.png",
+        "region": [
+          840,
+          689,
+          410,
+          392
+        ],
+        "alpha128_bounds": [
+          843,
+          692,
+          404,
+          386
+        ]
+      }
+    }
+  }
+}

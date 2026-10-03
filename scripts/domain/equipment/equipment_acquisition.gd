@@ -632,7 +632,6 @@ static func _item_error(spec: Dictionary) -> String:
 	if not _integer(spec.item_level, 41 if V5.TEMPLATES.has(spec.template_id) else 25 if V4.TEMPLATES.has(spec.template_id) else 1, mini(_level_cap(5 if V5.TEMPLATES.has(spec.template_id) else 4 if V4.TEMPLATES.has(spec.template_id) else 3), Growth.level_cap())): return "invalid_item_level"
 	if V5.TEMPLATES.has(spec.template_id) and spec.source != "drop": return "b09_creation_economy_not_released"
 	if spec.source not in ["purchase", "craft", "drop"]: return "invalid_item_source"
-	if V4.TEMPLATES.has(spec.template_id) and spec.source != "drop": return "b06_creation_economy_not_released"
 	if spec.source == "purchase" and spec.rarity not in _value("shop_rarities"): return "invalid_shop_rarity"
 	if spec.source == "craft" and not _value("forge_costs").has(spec.rarity): return "invalid_craft_rarity"
 	if spec.get("location", "inventory") not in ["inventory", "pending"]: return "invalid_item_location"

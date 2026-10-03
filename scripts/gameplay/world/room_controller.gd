@@ -101,6 +101,8 @@ var _navigation_cache: RefCounted = preload("res://scripts/gameplay/world/naviga
 var expedition_context: Dictionary = {}
 var b05_mechanics: Node2D
 var b09_mechanics: Node2D
+var b05_environment: Node2D
+var _b05_previous_visibility: Array[Dictionary] = []
 var b06_mechanics: Node2D
 var b06_environment: Node2D
 var _b06_environment_tide: Node2D
@@ -131,9 +133,12 @@ var _navigation_service = preload("res://scripts/gameplay/world/services/navigat
 
 func _enter_tree() -> void:
 	# A retained room can be removed and reattached without receiving _ready again.
-	if is_node_ready(): _configure_b06_environment.call_deferred()
+	if is_node_ready():
+		_configure_b05_environment.call_deferred()
+		_configure_b06_environment.call_deferred()
 
 func _exit_tree() -> void:
+	_release_b05_environment()
 	_release_b06_environment()
 
 func _ready() -> void:
@@ -364,24 +369,50 @@ func _configure_ground_boundary() -> void:
 		if not ground_polygon.is_empty(): ARENA = GroundBoundary.bounds(ground_polygon)
 
 func _configure_world_view() -> void:
+	_release_b05_environment()
+	_release_b06_environment()
 	var painted_arena: Rect2 = layout.get("arena", ARENA)
 	$MineBackdrop.configure(painted_arena, _biome_id(), layout_seed, WorldArt.environment_room_id(layout))
-	$MineBackdrop.configure_layout(layout,Numerical.b05_candidate_enabled())
+	$MineBackdrop.configure_layout(layout,Numerical.chapter_enabled(5))
 	if is_instance_valid(camera):
 		camera.configure(self, player, ARENA, $MineBackdrop.painted_bounds())
+	_configure_b05_environment()
 	_configure_b06_environment()
 
+func _configure_b05_environment() -> void:
+	_release_b05_environment()
+	if not is_inside_tree() or not Numerical.chapter_enabled(5): return
+	if layout_id != "L25" or str(layout.get("room_id", "")) != "L25" or str(layout.get("biome_id", "")) != "B05" or _biome_id() != "B05": return
+	if bool(WorldArt.environment_definition("B05",layout_id).get("metadata",{}).get("independent_complete_painting",false)): return
+	var environment: Node2D = preload("res://scripts/presentation/world/first_room_environment.gd").new()
+	if not environment.configure(layout, "asset://levels/b05/rooms/l25/first_room_layers.json"):
+		environment.free()
+		return
+	environment.name = "B05Environment"
+	b05_environment = environment
+	add_child(environment)
+	for layer: Node2D in [get_node_or_null("MineBackdrop"), _floor_canvas, _terrain_canvas, _depth_canvas]:
+		if not is_instance_valid(layer): continue
+		_b05_previous_visibility.append({"node":layer, "visible":layer.visible})
+		layer.hide()
+
+func _release_b05_environment() -> void:
+	if is_instance_valid(b05_environment): b05_environment.free()
+	b05_environment = null
+	for previous: Dictionary in _b05_previous_visibility:
+		if is_instance_valid(previous.node): previous.node.visible = previous.visible
+	_b05_previous_visibility.clear()
+
 func _create_b06_environment(id: String) -> Node2D:
-	var path := "res://scripts/levels/b06/world/environment_pilot.gd" if id == "L31" else "res://scripts/levels/b06/world/environment_batch.gd"
+	var path := "res://scripts/levels/b06/world/environment_painting.gd"
 	if not ResourceLoader.exists(AssetCatalog.resolve(path)): return null
 	var script: Script = load(AssetCatalog.resolve(path))
 	return script.new() if script != null and script.can_instantiate() else null
 
 func _configure_b06_environment() -> void:
 	_release_b06_environment()
-	# The isolated process gate is required in addition to matching authored data.
-	# Merely preparing a B06 layout for a tool/fixture cannot enable candidate art.
-	if not is_inside_tree() or not Numerical.b06_candidate_enabled(): return
+	# Match the released room and its live tide before taking scenery ownership.
+	if not is_inside_tree() or not Numerical.chapter_enabled(6): return
 	if not bool(layout.get("b06_candidate",false)) or str(layout.get("biome_id","")) != "B06" or _biome_id() != "B06": return
 	if layout_id not in ["L31","L32","L33","L34","L35","L36","BO06"] or str(layout.get("room_id","")) != layout_id: return
 	if not is_instance_valid(b06_mechanics) or b06_mechanics.room_id != layout_id: return
@@ -396,6 +427,7 @@ func _configure_b06_environment() -> void:
 		return
 	environment.name = "B06Environment"
 	add_child(environment)
+	if is_instance_valid(camera): camera.configure(self,player,ARENA,environment.painted_bounds())
 	# Only superseded scenery is hidden. Props, actors, gameplay mechanisms,
 	# projectiles, telegraphs, feedback, interactions and HUD remain untouched.
 	for layer: Node2D in [get_node_or_null("MineBackdrop"),_floor_canvas,_terrain_canvas,_depth_canvas]:
@@ -426,6 +458,8 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 	return _encounters_service.spawn_enemy(at, id, level, options)
 
 func _assign_enemy_appearance(enemy: EnemyActor) -> void:
+	if (layout_id == "L25" and Numerical.chapter_enabled(5) and _biome_id() == "B05" and enemy.enemy_id in ["B05-M01", "B05-M02", "B05-M04"]) or (layout_id == "L31" and Numerical.chapter_enabled(6) and _biome_id() == "B06" and enemy.enemy_id in ["B06-M01", "B06-M02", "B06-M03"]):
+		enemy.profile["first_room_race_variant"] = true
 	if enemy.static_actor or EnemyArtScript.variant_count(enemy.enemy_id) == 0:
 		return
 	var room_key: String = layout_id + ":" + str(layout_seed)
@@ -1737,6 +1771,7 @@ func apply_prepared_expedition_node(prepared: Dictionary) -> void:
 func _install_expedition_layout(prepared: Dictionary) -> void:
 	if is_instance_valid(b09_mechanics): b09_mechanics.free()
 	b09_mechanics = null
+	_release_b05_environment()
 	_release_b06_environment()
 	if is_instance_valid(b06_mechanics): b06_mechanics.free()
 	b06_mechanics = null

@@ -15,7 +15,7 @@ static func parameters() -> Dictionary:
 	return _parameters.duplicate(true)
 
 ## Candidate preview requires BOTH a debug flag and an explicitly isolated save.
-## The shipped JSON and parameters() remain the approved four-chapter rules.
+## Experiment flags stay isolated; released chapters come from the shipped JSON.
 static var _candidate_b05 := -1
 static func b05_candidate_enabled() -> bool:
 	if b06_candidate_enabled(): return true
@@ -46,9 +46,10 @@ static func _candidate_arguments_valid(args: PackedStringArray, chapter: String 
 		if component in ["", ".", ".."]: return false
 	return true
 
+static func chapter_enabled(chapter: int) -> bool:
+	return chapter >= 1 and chapter <= int(value("implemented_chapters", 4))
+
 static func value(key: String, fallback: Variant = null) -> Variant:
-	if key == "implemented_chapters" and b06_candidate_enabled(): return 6
-	if key == "implemented_chapters" and b05_candidate_enabled(): return 5
 	if _parameters.is_empty(): parameters()
 	var result: Variant = _parameters.get(key, fallback)
 	return result.duplicate(true) if result is Dictionary or result is Array else result

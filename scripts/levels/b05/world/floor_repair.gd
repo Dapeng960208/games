@@ -1,5 +1,5 @@
 extends Node2D
-## Candidate-only native material overlay. Frozen collision/portals are unchanged.
+## Room-owned native material overlay. Frozen collision/portals are unchanged.
 const Geometry=preload("res://scripts/levels/b05/world/room_geometry.gd")
 const WorldArt=preload("res://scripts/infrastructure/assets/world_art.gd")
 const Sampler=preload("res://scripts/presentation/world/environment_detail.gd")

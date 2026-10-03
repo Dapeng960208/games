@@ -27,16 +27,12 @@ static func _change(panel: Control, key: String, value: Variant) -> void:
 
 static func creation_ids(set_mode: bool) -> Array:
 	var ids: Array = ContentRegistry.sets(2).keys() if set_mode else ContentRegistry.equipment_ids(2)
-	# B06 has a frozen natural-acquisition archive, not a purchase/craft
-	# transaction version. Never offer a button that cannot legally create it.
-	ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B06-"))
 	ids.sort()
 	return ids
 
-static func creation_level_cap() -> int:
-	# Camp creation still uses the accepted V3 contract, even when a candidate
-	# hero has progressed beyond25. Natural V4 loot does not extend this quote.
-	return mini(Game.hero_level(),preload("res://scripts/domain/equipment/equipment_acquisition_v3.gd").LEVEL_CAP)
+static func creation_level_cap(identity: String = "") -> int:
+	var cap := 30 if identity.begins_with("B06-") else 25
+	return mini(Game.hero_level(),cap)
 
 static func render(panel: Control) -> void:
 	var crafting: bool = panel.mode == "craft"
@@ -44,10 +40,12 @@ static func render(panel: Control) -> void:
 	var rarities: Array = ["green","purple","gold"] if crafting else ["white","green"]
 	if not panel.creation_rarity in rarities: panel.creation_rarity = str(rarities[0])
 	if panel.creation_power_type.is_empty(): panel.creation_power_type = "magic" if Game.profile.selected_hero == "CH03" else "physical"
-	panel.creation_level = clampi(creation_level_cap() if panel.creation_level <= 0 else panel.creation_level,1,creation_level_cap())
 	var ids: Array = creation_ids(set_mode)
 	var selected: String = panel.selected_set if set_mode else panel.selected_item
 	if not selected in ids: selected = str(ids[0])
+	var cap := creation_level_cap(selected)
+	var minimum := mini(25,cap) if selected.begins_with("B06-") else 1
+	panel.creation_level = clampi(cap if panel.creation_level <= 0 else panel.creation_level,minimum,cap)
 	if set_mode: panel.selected_set = selected
 	else: panel.selected_item = selected
 	var left := GameStyle.panel(panel.body,Vector2.ZERO,Vector2(238,510))
@@ -111,12 +109,12 @@ static func render(panel: Control) -> void:
 	power.disabled = panel.busy
 	right.add_child(power)
 	power.item_selected.connect(func(index: int): _change(panel,"creation_power_type","magic" if index == 1 else "physical"))
-	_label(right,_t("装备等级（当前可打造至Lv%d）","Item level (creation cap Lv%d)") % creation_level_cap(),Vector2(630,208),Vector2(312,24),14)
+	_label(right,_t("装备等级（当前可打造至Lv%d）","Item level (creation cap Lv%d)") % cap,Vector2(630,208),Vector2(312,24),14)
 	var item_level := SpinBox.new()
 	item_level.name = "CreationItemLevel"
 	item_level.position = Vector2(630,234)
 	item_level.size = Vector2(312,36)
-	item_level.min_value = 1; item_level.max_value = creation_level_cap(); item_level.step = 1
+	item_level.min_value = minimum; item_level.max_value = cap; item_level.step = 1
 	item_level.value = panel.creation_level
 	item_level.editable = not panel.busy
 	right.add_child(item_level)
@@ -133,8 +131,6 @@ static func render(panel: Control) -> void:
 	_preview(right,selected,set_mode,missing)
 	var complete: bool = set_mode and missing.is_empty()
 	var lines: PackedStringArray = []
-	if int(Numbers.value("implemented_chapters",4)) >= 6:
-		lines.append(_t("B06候选装备目前仅由战利品获得；商城与打造尚未开放。","B06 candidate gear is loot-only; shop and crafting are not enabled."))
 	if set_mode:
 		lines.append(_t("该类型缺件 %d / 8；明确列出的缺件总价九折。","Missing %d / 8 · 10%% off the listed pieces.") % missing.size())
 		lines.append(_t("已选择 %d 件，以下可取消勾选。","%d selected; uncheck any piece below.") % request.template_ids.size())

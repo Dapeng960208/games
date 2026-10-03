@@ -53,11 +53,41 @@
       0.294444444
     ]
   ],
-  "approved": false,
-  "candidate_only": true,
+  "approved": true,
+  "candidate_only": false,
   "source_sha256": "6092a0b0eae5c6639473fd1cc8e849185effc05de38259ee158b136df91de497",
   "source_selection": "b05-art/environment/L29/generated/L29_base_v1.png",
   "recovery_status": "byte-recovered-original",
   "geometry_unchanged": true,
-  "known_limits": "Candidate only; exact overlays, native detail seams and full-room acceptance pending."
+  "known_limits": "Candidate only; exact overlays, native detail seams and full-room acceptance pending.",
+  "status": "released",
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T130008562-a228f36f",
+    "checks": 554,
+    "failures": 0,
+    "candidate_arguments": false,
+    "renderer": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "report": "docs/levels/b05_b06_room_paintings.md",
+    "scope": "all fourteen real rooms; centre and four corners; seven high tides; existing HUD and actors",
+    "grounded_obstacles": "low cover and closed bridge source art; no added plinth; actual collision foot preserved"
+  },
+  "qa": {
+    "status": "accepted_normal_runtime",
+    "style": "bright hand-painted cartoon fantasy; high three-quarter overhead; 2.5D",
+    "actual_dimensions": [
+      1536,
+      1024
+    ],
+    "runtime_framebuffer": [
+      2560,
+      1440
+    ],
+    "upscaled": false,
+    "coordinate_mapping": "shared blueprint placement; fixed geometry and mechanism feet; painting camera bounds"
+  }
 }
