@@ -1,0 +1,4649 @@
+{
+  "schema_version": 3,
+  "hero_id": "CH01",
+  "enabled": true,
+  "production_ready": true,
+  "directions": {
+    "E": {
+      "reference_body_height": 513.5,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 513.5,
+          "region": [
+            0,
+            0,
+            896,
+            704
+          ],
+          "foot": [
+            390,
+            605.5
+          ],
+          "head": [
+            394,
+            147
+          ],
+          "grip": [
+            316,
+            377
+          ],
+          "muzzle": [
+            526,
+            451
+          ],
+          "source_frame": {
+            "frame_index": 0,
+            "name": "idle",
+            "head": [
+              407,
+              119
+            ],
+            "boot_bottom_points": [
+              [
+                338,
+                596
+              ],
+              [
+                468,
+                559
+              ]
+            ],
+            "foot": [
+              403,
+              577.5
+            ],
+            "hair_top_y": 64,
+            "grip": [
+              329,
+              349
+            ],
+            "muzzle": [
+              539,
+              423
+            ],
+            "body_height": 513.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual anatomy landmarks in full source, airborne sole mean is not a certified ground projection.",
+              "Use fixed anatomy scale by idle, never expand compressed dash to upright height.",
+              "BBox contains foreign alpha; seed-connected component extraction required before pack."
+            ],
+            "region": [
+              42,
+              57,
+              619,
+              549
+            ],
+            "alpha_component_seed": [
+              407,
+              119
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 136489,
+            "foreign_alpha_pixels_in_region": 203
+          },
+          "texture": "asset://heroes/ch01_poses_e_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 479,
+          "region": [
+            896,
+            0,
+            896,
+            704
+          ],
+          "foot": [
+            1286,
+            606
+          ],
+          "head": [
+            1331,
+            185
+          ],
+          "grip": [
+            1252,
+            399
+          ],
+          "muzzle": [
+            1434,
+            459
+          ],
+          "source_frame": {
+            "frame_index": 1,
+            "name": "walk_left",
+            "head": [
+              1037,
+              142
+            ],
+            "boot_bottom_points": [
+              [
+                854,
+                561
+              ],
+              [
+                1130,
+                565
+              ]
+            ],
+            "foot": [
+              992,
+              563
+            ],
+            "hair_top_y": 84,
+            "grip": [
+              958,
+              356
+            ],
+            "muzzle": [
+              1140,
+              416
+            ],
+            "body_height": 479,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual anatomy landmarks in full source, airborne sole mean is not a certified ground projection.",
+              "Use fixed anatomy scale by idle, never expand compressed dash to upright height.",
+              "BBox contains foreign alpha; seed-connected component extraction required before pack."
+            ],
+            "region": [
+              644,
+              79,
+              608,
+              510
+            ],
+            "alpha_component_seed": [
+              1037,
+              142
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 131979,
+            "foreign_alpha_pixels_in_region": 796
+          },
+          "texture": "asset://heroes/ch01_poses_e_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 484.5,
+          "region": [
+            0,
+            704,
+            896,
+            704
+          ],
+          "foot": [
+            390.5,
+            1309.5
+          ],
+          "head": [
+            423,
+            876
+          ],
+          "grip": [
+            348,
+            1103
+          ],
+          "muzzle": [
+            183,
+            1158
+          ],
+          "source_frame": {
+            "frame_index": 2,
+            "name": "walk_right",
+            "head": [
+              447,
+              732
+            ],
+            "boot_bottom_points": [
+              [
+                287,
+                1178
+              ],
+              [
+                542,
+                1153
+              ]
+            ],
+            "foot": [
+              414.5,
+              1165.5
+            ],
+            "hair_top_y": 681,
+            "grip": [
+              372,
+              959
+            ],
+            "muzzle": [
+              207,
+              1014
+            ],
+            "body_height": 484.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual anatomy landmarks in full source, airborne sole mean is not a certified ground projection.",
+              "Use fixed anatomy scale by idle, never expand compressed dash to upright height.",
+              "BBox contains foreign alpha; seed-connected component extraction required before pack."
+            ],
+            "region": [
+              37,
+              673,
+              567,
+              523
+            ],
+            "alpha_component_seed": [
+              447,
+              732
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 133110,
+            "foreign_alpha_pixels_in_region": 6
+          },
+          "texture": "asset://heroes/ch01_poses_e_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 465.5,
+          "region": [
+            896,
+            704,
+            896,
+            704
+          ],
+          "foot": [
+            1286.5,
+            1309.5
+          ],
+          "head": [
+            1360,
+            898
+          ],
+          "grip": [
+            1213,
+            830
+          ],
+          "muzzle": [
+            1087,
+            830
+          ],
+          "source_frame": {
+            "frame_index": 3,
+            "name": "basic_windup",
+            "head": [
+              1084,
+              768
+            ],
+            "boot_bottom_points": [
+              [
+                848,
+                1194
+              ],
+              [
+                1173,
+                1165
+              ]
+            ],
+            "foot": [
+              1010.5,
+              1179.5
+            ],
+            "hair_top_y": 714,
+            "grip": [
+              937,
+              700
+            ],
+            "muzzle": [
+              811,
+              700
+            ],
+            "body_height": 465.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual anatomy landmarks in full source, airborne sole mean is not a certified ground projection.",
+              "Use fixed anatomy scale by idle, never expand compressed dash to upright height.",
+              "BBox contains foreign alpha; seed-connected component extraction required before pack."
+            ],
+            "region": [
+              683,
+              587,
+              559,
+              622
+            ],
+            "alpha_component_seed": [
+              1084,
+              768
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 156934,
+            "foreign_alpha_pixels_in_region": 2
+          },
+          "texture": "asset://heroes/ch01_poses_e_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 478.5,
+          "region": [
+            0,
+            0,
+            896,
+            704
+          ],
+          "foot": [
+            390,
+            606.5
+          ],
+          "head": [
+            460,
+            191
+          ],
+          "grip": [
+            586,
+            298
+          ],
+          "muzzle": [
+            750,
+            309
+          ],
+          "source_frame": {
+            "frame_index": 4,
+            "name": "basic_release",
+            "head": [
+              384,
+              165
+            ],
+            "boot_bottom_points": [
+              [
+                126,
+                596
+              ],
+              [
+                502,
+                565
+              ]
+            ],
+            "foot": [
+              314,
+              580.5
+            ],
+            "hair_top_y": 102,
+            "grip": [
+              510,
+              272
+            ],
+            "muzzle": [
+              674,
+              283
+            ],
+            "body_height": 478.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual anatomy landmarks in full source, airborne sole mean is not a certified ground projection.",
+              "Use fixed anatomy scale by idle, never expand compressed dash to upright height.",
+              "BBox contains foreign alpha; seed-connected component extraction required before pack."
+            ],
+            "region": [
+              8,
+              96,
+              792,
+              512
+            ],
+            "alpha_component_seed": [
+              384,
+              165
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 152017,
+            "foreign_alpha_pixels_in_region": 48
+          },
+          "texture": "asset://heroes/ch01_poses_e_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 515,
+          "region": [
+            896,
+            0,
+            896,
+            704
+          ],
+          "foot": [
+            1286,
+            606
+          ],
+          "head": [
+            1340,
+            146
+          ],
+          "grip": [
+            1287,
+            364
+          ],
+          "muzzle": [
+            1430,
+            442
+          ],
+          "source_frame": {
+            "frame_index": 5,
+            "name": "basic_recovery",
+            "head": [
+              1057,
+              150
+            ],
+            "boot_bottom_points": [
+              [
+                872,
+                619
+              ],
+              [
+                1134,
+                601
+              ]
+            ],
+            "foot": [
+              1003,
+              610
+            ],
+            "hair_top_y": 95,
+            "grip": [
+              1004,
+              368
+            ],
+            "muzzle": [
+              1147,
+              446
+            ],
+            "body_height": 515,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual anatomy landmarks in full source, airborne sole mean is not a certified ground projection.",
+              "Use fixed anatomy scale by idle, never expand compressed dash to upright height.",
+              "BBox contains foreign alpha; seed-connected component extraction required before pack."
+            ],
+            "region": [
+              795,
+              92,
+              447,
+              544
+            ],
+            "alpha_component_seed": [
+              1057,
+              150
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 122888,
+            "foreign_alpha_pixels_in_region": 29
+          },
+          "texture": "asset://heroes/ch01_poses_e_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 378.5,
+          "region": [
+            0,
+            704,
+            896,
+            704
+          ],
+          "foot": [
+            389.5,
+            1309.5
+          ],
+          "head": [
+            633,
+            978
+          ],
+          "grip": [
+            401,
+            1096
+          ],
+          "muzzle": [
+            240,
+            1007
+          ],
+          "source_frame": {
+            "frame_index": 6,
+            "name": "dash",
+            "head": [
+              583,
+              810
+            ],
+            "boot_bottom_points": [
+              [
+                172,
+                1156
+              ],
+              [
+                507,
+                1127
+              ]
+            ],
+            "foot": [
+              339.5,
+              1141.5
+            ],
+            "hair_top_y": 763,
+            "grip": [
+              351,
+              928
+            ],
+            "muzzle": [
+              190,
+              839
+            ],
+            "body_height": 378.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual anatomy landmarks in full source, airborne sole mean is not a certified ground projection.",
+              "Use fixed anatomy scale by idle, never expand compressed dash to upright height.",
+              "Compressed/stepping actual anatomical bodyheight below448; not corrected by weaponbbox or upscale."
+            ],
+            "region": [
+              58,
+              738,
+              584,
+              432
+            ],
+            "alpha_component_seed": [
+              583,
+              810
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 134058,
+            "foreign_alpha_pixels_in_region": 0
+          },
+          "texture": "asset://heroes/ch01_poses_e_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 480.5,
+          "region": [
+            896,
+            704,
+            896,
+            704
+          ],
+          "foot": [
+            1286,
+            1309.5
+          ],
+          "head": [
+            1275,
+            884
+          ],
+          "grip": [
+            1352,
+            950
+          ],
+          "muzzle": [
+            1424,
+            882
+          ],
+          "source_frame": {
+            "frame_index": 7,
+            "name": "guard_cast",
+            "head": [
+              982,
+              748
+            ],
+            "boot_bottom_points": [
+              [
+                843,
+                1182
+              ],
+              [
+                1143,
+                1165
+              ]
+            ],
+            "foot": [
+              993,
+              1173.5
+            ],
+            "hair_top_y": 693,
+            "grip": [
+              1059,
+              814
+            ],
+            "muzzle": [
+              1131,
+              746
+            ],
+            "body_height": 480.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual anatomy landmarks in full source, airborne sole mean is not a certified ground projection.",
+              "Use fixed anatomy scale by idle, never expand compressed dash to upright height."
+            ],
+            "region": [
+              715,
+              640,
+              520,
+              561
+            ],
+            "alpha_component_seed": [
+              982,
+              748
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 137839,
+            "foreign_alpha_pixels_in_region": 0
+          },
+          "texture": "asset://heroes/ch01_poses_e_b.png"
+        }
+      ]
+    },
+    "SE": {
+      "reference_body_height": 489.5,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 489.5,
+          "region": [
+            0,
+            0,
+            960,
+            768
+          ],
+          "foot": [
+            421,
+            578.5
+          ],
+          "head": [
+            451,
+            134
+          ],
+          "grip": [
+            426,
+            389
+          ],
+          "muzzle": [
+            187,
+            203
+          ],
+          "source_frame": {
+            "frame_index": 0,
+            "name": "idle",
+            "head": [
+              420,
+              123
+            ],
+            "boot_bottom_points": [
+              [
+                238,
+                520
+              ],
+              [
+                542,
+                615
+              ]
+            ],
+            "foot": [
+              390,
+              567.5
+            ],
+            "hair_top_y": 78,
+            "grip": [
+              395,
+              378
+            ],
+            "muzzle": [
+              156,
+              192
+            ],
+            "body_height": 489.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              31,
+              46,
+              635,
+              585
+            ],
+            "alpha_component_seed": [
+              420,
+              123
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 163218,
+            "foreign_alpha_pixels_in_region": 48
+          },
+          "texture": "asset://heroes/ch01_poses_se_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 515,
+          "region": [
+            960,
+            0,
+            960,
+            768
+          ],
+          "foot": [
+            1381,
+            579
+          ],
+          "head": [
+            1387,
+            119
+          ],
+          "grip": [
+            1373,
+            321
+          ],
+          "muzzle": [
+            1574,
+            330
+          ],
+          "source_frame": {
+            "frame_index": 1,
+            "name": "walk_left",
+            "head": [
+              939,
+              109
+            ],
+            "boot_bottom_points": [
+              [
+                888,
+                521
+              ],
+              [
+                978,
+                617
+              ]
+            ],
+            "foot": [
+              933,
+              569
+            ],
+            "hair_top_y": 54,
+            "grip": [
+              925,
+              311
+            ],
+            "muzzle": [
+              1126,
+              320
+            ],
+            "body_height": 515,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              661,
+              54,
+              583,
+              576
+            ],
+            "alpha_component_seed": [
+              939,
+              109
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 141912,
+            "foreign_alpha_pixels_in_region": 2235
+          },
+          "texture": "asset://heroes/ch01_poses_se_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 482.5,
+          "region": [
+            0,
+            768,
+            960,
+            768
+          ],
+          "foot": [
+            421,
+            1346.5
+          ],
+          "head": [
+            421,
+            915
+          ],
+          "grip": [
+            392,
+            1113
+          ],
+          "muzzle": [
+            145,
+            1020
+          ],
+          "source_frame": {
+            "frame_index": 2,
+            "name": "walk_right",
+            "head": [
+              446,
+              718
+            ],
+            "boot_bottom_points": [
+              [
+                375,
+                1081
+              ],
+              [
+                517,
+                1218
+              ]
+            ],
+            "foot": [
+              446,
+              1149.5
+            ],
+            "hair_top_y": 667,
+            "grip": [
+              417,
+              916
+            ],
+            "muzzle": [
+              170,
+              823
+            ],
+            "body_height": 482.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              38,
+              662,
+              697,
+              565
+            ],
+            "alpha_component_seed": [
+              446,
+              718
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 152901,
+            "foreign_alpha_pixels_in_region": 29
+          },
+          "texture": "asset://heroes/ch01_poses_se_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 470.5,
+          "region": [
+            960,
+            768,
+            960,
+            768
+          ],
+          "foot": [
+            1381.5,
+            1347.5
+          ],
+          "head": [
+            1392,
+            935
+          ],
+          "grip": [
+            1346,
+            878
+          ],
+          "muzzle": [
+            1574,
+            975
+          ],
+          "source_frame": {
+            "frame_index": 3,
+            "name": "basic_windup",
+            "head": [
+              957,
+              738
+            ],
+            "boot_bottom_points": [
+              [
+                795,
+                1082
+              ],
+              [
+                1098,
+                1219
+              ]
+            ],
+            "foot": [
+              946.5,
+              1150.5
+            ],
+            "hair_top_y": 680,
+            "grip": [
+              911,
+              681
+            ],
+            "muzzle": [
+              1139,
+              778
+            ],
+            "body_height": 470.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              731,
+              614,
+              519,
+              618
+            ],
+            "alpha_component_seed": [
+              957,
+              738
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 143710,
+            "foreign_alpha_pixels_in_region": 609
+          },
+          "texture": "asset://heroes/ch01_poses_se_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 471,
+          "region": [
+            0,
+            0,
+            960,
+            768
+          ],
+          "foot": [
+            421,
+            579
+          ],
+          "head": [
+            636,
+            159
+          ],
+          "grip": [
+            662,
+            423
+          ],
+          "muzzle": [
+            796,
+            564
+          ],
+          "source_frame": {
+            "frame_index": 4,
+            "name": "basic_release",
+            "head": [
+              429,
+              88
+            ],
+            "boot_bottom_points": [
+              [
+                79,
+                562
+              ],
+              [
+                349,
+                454
+              ]
+            ],
+            "foot": [
+              214,
+              508
+            ],
+            "hair_top_y": 37,
+            "grip": [
+              455,
+              352
+            ],
+            "muzzle": [
+              589,
+              493
+            ],
+            "body_height": 471,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              44,
+              31,
+              669,
+              629
+            ],
+            "alpha_component_seed": [
+              429,
+              88
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 185083,
+            "foreign_alpha_pixels_in_region": 5443
+          },
+          "texture": "asset://heroes/ch01_poses_se_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 533,
+          "region": [
+            960,
+            0,
+            960,
+            768
+          ],
+          "foot": [
+            1381,
+            579
+          ],
+          "head": [
+            1331,
+            109
+          ],
+          "grip": [
+            1471,
+            278
+          ],
+          "muzzle": [
+            1637,
+            345
+          ],
+          "source_frame": {
+            "frame_index": 5,
+            "name": "basic_recovery",
+            "head": [
+              819,
+              89
+            ],
+            "boot_bottom_points": [
+              [
+                795,
+                606
+              ],
+              [
+                943,
+                512
+              ]
+            ],
+            "foot": [
+              869,
+              559
+            ],
+            "hair_top_y": 26,
+            "grip": [
+              959,
+              258
+            ],
+            "muzzle": [
+              1125,
+              325
+            ],
+            "body_height": 533,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "Recovery torso and head counterturn while drawing axe back; this settle pose must not be interpreted as the release aiming ray.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              679,
+              18,
+              565,
+              601
+            ],
+            "alpha_component_seed": [
+              819,
+              89
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 170775,
+            "foreign_alpha_pixels_in_region": 3069
+          },
+          "texture": "asset://heroes/ch01_poses_se_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 369.5,
+          "region": [
+            0,
+            768,
+            960,
+            768
+          ],
+          "foot": [
+            421,
+            1346.5
+          ],
+          "head": [
+            699,
+            1026
+          ],
+          "grip": [
+            415,
+            1042
+          ],
+          "muzzle": [
+            294,
+            978
+          ],
+          "source_frame": {
+            "frame_index": 6,
+            "name": "dash",
+            "head": [
+              581,
+              773
+            ],
+            "boot_bottom_points": [
+              [
+                188,
+                1082
+              ],
+              [
+                418,
+                1105
+              ]
+            ],
+            "foot": [
+              303,
+              1093.5
+            ],
+            "hair_top_y": 724,
+            "grip": [
+              297,
+              789
+            ],
+            "muzzle": [
+              176,
+              725
+            ],
+            "body_height": 369.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing.",
+              "Compressed/stepping actualvisible bodyheight below448, notreplacedwithweaponbbox/upscale."
+            ],
+            "region": [
+              28,
+              653,
+              602,
+              459
+            ],
+            "alpha_component_seed": [
+              581,
+              773
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 145722,
+            "foreign_alpha_pixels_in_region": 85
+          },
+          "texture": "asset://heroes/ch01_poses_se_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 555.5,
+          "region": [
+            960,
+            768,
+            960,
+            768
+          ],
+          "foot": [
+            1381,
+            1347.5
+          ],
+          "head": [
+            1396,
+            844
+          ],
+          "grip": [
+            1438,
+            957
+          ],
+          "muzzle": [
+            1619,
+            938
+          ],
+          "source_frame": {
+            "frame_index": 7,
+            "name": "guard_cast",
+            "head": [
+              892,
+              681
+            ],
+            "boot_bottom_points": [
+              [
+                720,
+                1147
+              ],
+              [
+                1034,
+                1222
+              ]
+            ],
+            "foot": [
+              877,
+              1184.5
+            ],
+            "hair_top_y": 629,
+            "grip": [
+              934,
+              794
+            ],
+            "muzzle": [
+              1115,
+              775
+            ],
+            "body_height": 555.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              655,
+              618,
+              596,
+              619
+            ],
+            "alpha_component_seed": [
+              892,
+              681
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 194961,
+            "foreign_alpha_pixels_in_region": 744
+          },
+          "texture": "asset://heroes/ch01_poses_se_b.png"
+        }
+      ]
+    },
+    "S": {
+      "reference_body_height": 510,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 510,
+          "region": [
+            0,
+            0,
+            704,
+            768
+          ],
+          "foot": [
+            294.5,
+            570
+          ],
+          "head": [
+            299,
+            117
+          ],
+          "grip": [
+            416,
+            367
+          ],
+          "muzzle": [
+            511,
+            391
+          ],
+          "source_frame": {
+            "frame_index": 0,
+            "name": "idle",
+            "head": [
+              310,
+              115
+            ],
+            "boot_bottom_points": [
+              [
+                195,
+                568
+              ],
+              [
+                416,
+                568
+              ]
+            ],
+            "foot": [
+              305.5,
+              568
+            ],
+            "hair_top_y": 58,
+            "grip": [
+              427,
+              365
+            ],
+            "muzzle": [
+              522,
+              389
+            ],
+            "body_height": 510,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+              "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height."
+            ],
+            "region": [
+              60,
+              54,
+              597,
+              523
+            ],
+            "alpha_component_seed": [
+              310,
+              115
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_area": 163218,
+            "alpha_component_dilation_px": 2,
+            "foreign_alpha_pixels_in_region": 0
+          },
+          "texture": "asset://heroes/ch01_poses_s_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 449,
+          "region": [
+            704,
+            0,
+            704,
+            768
+          ],
+          "foot": [
+            999.5,
+            570
+          ],
+          "head": [
+            1029,
+            178
+          ],
+          "grip": [
+            1135,
+            365
+          ],
+          "muzzle": [
+            1223,
+            438
+          ],
+          "source_frame": {
+            "frame_index": 1,
+            "name": "walk_left",
+            "head": [
+              936,
+              126
+            ],
+            "boot_bottom_points": [
+              [
+                857,
+                608
+              ],
+              [
+                956,
+                428
+              ]
+            ],
+            "foot": [
+              906.5,
+              518
+            ],
+            "hair_top_y": 69,
+            "grip": [
+              1042,
+              313
+            ],
+            "muzzle": [
+              1130,
+              386
+            ],
+            "body_height": 449,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+              "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height."
+            ],
+            "region": [
+              697,
+              68,
+              549,
+              554
+            ],
+            "alpha_component_seed": [
+              936,
+              126
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_area": 135094,
+            "alpha_component_dilation_px": 2,
+            "foreign_alpha_pixels_in_region": 0
+          },
+          "texture": "asset://heroes/ch01_poses_s_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 438,
+          "region": [
+            0,
+            768,
+            704,
+            768
+          ],
+          "foot": [
+            295,
+            1338
+          ],
+          "head": [
+            294,
+            958
+          ],
+          "grip": [
+            456,
+            1163
+          ],
+          "muzzle": [
+            538,
+            1211
+          ],
+          "source_frame": {
+            "frame_index": 2,
+            "name": "walk_right",
+            "head": [
+              302,
+              739
+            ],
+            "boot_bottom_points": [
+              [
+                336,
+                1212
+              ],
+              [
+                270,
+                1026
+              ]
+            ],
+            "foot": [
+              303,
+              1119
+            ],
+            "hair_top_y": 681,
+            "grip": [
+              464,
+              944
+            ],
+            "muzzle": [
+              546,
+              992
+            ],
+            "body_height": 438,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+              "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height.",
+              "Bounding rectangle contains adjacent art; isolate seed-connected alpha figure before packing, never use bare rectangle crop.",
+              "Anatomical head-to-average-sole height is below448px in this compressed/stepping pose; do not infer body height from axe bbox or upscale."
+            ],
+            "region": [
+              74,
+              664,
+              577,
+              561
+            ],
+            "alpha_component_seed": [
+              302,
+              739
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_area": 143301,
+            "alpha_component_dilation_px": 2,
+            "foreign_alpha_pixels_in_region": 1
+          },
+          "texture": "asset://heroes/ch01_poses_s_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 411.5,
+          "region": [
+            704,
+            768,
+            704,
+            768
+          ],
+          "foot": [
+            999.5,
+            1337.5
+          ],
+          "head": [
+            1004,
+            979
+          ],
+          "grip": [
+            1005,
+            880
+          ],
+          "muzzle": [
+            1165,
+            926
+          ],
+          "source_frame": {
+            "frame_index": 3,
+            "name": "basic_windup",
+            "head": [
+              915,
+              833
+            ],
+            "boot_bottom_points": [
+              [
+                751,
+                1177
+              ],
+              [
+                1070,
+                1206
+              ]
+            ],
+            "foot": [
+              910.5,
+              1191.5
+            ],
+            "hair_top_y": 780,
+            "grip": [
+              916,
+              734
+            ],
+            "muzzle": [
+              1076,
+              780
+            ],
+            "body_height": 411.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+              "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height.",
+              "Bounding rectangle contains adjacent art; isolate seed-connected alpha figure before packing, never use bare rectangle crop.",
+              "Anatomical head-to-average-sole height is below448px in this compressed/stepping pose; do not infer body height from axe bbox or upscale."
+            ],
+            "region": [
+              710,
+              636,
+              497,
+              584
+            ],
+            "alpha_component_seed": [
+              915,
+              833
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_area": 157849,
+            "alpha_component_dilation_px": 2,
+            "foreign_alpha_pixels_in_region": 1
+          },
+          "texture": "asset://heroes/ch01_poses_s_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 454.5,
+          "region": [
+            0,
+            0,
+            704,
+            768
+          ],
+          "foot": [
+            294.5,
+            569.5
+          ],
+          "head": [
+            338,
+            172
+          ],
+          "grip": [
+            337,
+            416
+          ],
+          "muzzle": [
+            368,
+            577
+          ],
+          "source_frame": {
+            "frame_index": 4,
+            "name": "basic_release",
+            "head": [
+              345,
+              122
+            ],
+            "boot_bottom_points": [
+              [
+                164,
+                580
+              ],
+              [
+                439,
+                459
+              ]
+            ],
+            "foot": [
+              301.5,
+              519.5
+            ],
+            "hair_top_y": 65,
+            "grip": [
+              344,
+              366
+            ],
+            "muzzle": [
+              375,
+              527
+            ],
+            "body_height": 454.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+              "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height.",
+              "Bounding rectangle contains adjacent art; isolate seed-connected alpha figure before packing, never use bare rectangle crop."
+            ],
+            "region": [
+              127,
+              62,
+              436,
+              600
+            ],
+            "alpha_component_seed": [
+              345,
+              122
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_area": 146417,
+            "alpha_component_dilation_px": 2,
+            "foreign_alpha_pixels_in_region": 1
+          },
+          "texture": "asset://heroes/ch01_poses_s_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 512,
+          "region": [
+            704,
+            0,
+            704,
+            768
+          ],
+          "foot": [
+            999,
+            570
+          ],
+          "head": [
+            1013,
+            117
+          ],
+          "grip": [
+            1159,
+            354
+          ],
+          "muzzle": [
+            1229,
+            416
+          ],
+          "source_frame": {
+            "frame_index": 5,
+            "name": "basic_recovery",
+            "head": [
+              924,
+              126
+            ],
+            "boot_bottom_points": [
+              [
+                794,
+                578
+              ],
+              [
+                1026,
+                580
+              ]
+            ],
+            "foot": [
+              910,
+              579
+            ],
+            "hair_top_y": 67,
+            "grip": [
+              1070,
+              363
+            ],
+            "muzzle": [
+              1140,
+              425
+            ],
+            "body_height": 512,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+              "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height."
+            ],
+            "region": [
+              690,
+              57,
+              554,
+              532
+            ],
+            "alpha_component_seed": [
+              924,
+              126
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_area": 150015,
+            "alpha_component_dilation_px": 2,
+            "foreign_alpha_pixels_in_region": 0
+          },
+          "texture": "asset://heroes/ch01_poses_s_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 389.5,
+          "region": [
+            0,
+            768,
+            704,
+            768
+          ],
+          "foot": [
+            294.5,
+            1338.5
+          ],
+          "head": [
+            285,
+            1008
+          ],
+          "grip": [
+            415,
+            1021
+          ],
+          "muzzle": [
+            483,
+            1030
+          ],
+          "source_frame": {
+            "frame_index": 6,
+            "name": "dash",
+            "head": [
+              338,
+              776
+            ],
+            "boot_bottom_points": [
+              [
+                310,
+                1194
+              ],
+              [
+                385,
+                1019
+              ]
+            ],
+            "foot": [
+              347.5,
+              1106.5
+            ],
+            "hair_top_y": 717,
+            "grip": [
+              468,
+              789
+            ],
+            "muzzle": [
+              536,
+              798
+            ],
+            "body_height": 389.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+              "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height.",
+              "Bounding rectangle contains adjacent art; isolate seed-connected alpha figure before packing, never use bare rectangle crop.",
+              "Anatomical head-to-average-sole height is below448px in this compressed/stepping pose; do not infer body height from axe bbox or upscale."
+            ],
+            "region": [
+              66,
+              666,
+              575,
+              542
+            ],
+            "alpha_component_seed": [
+              338,
+              776
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_area": 127768,
+            "alpha_component_dilation_px": 2,
+            "foreign_alpha_pixels_in_region": 1
+          },
+          "texture": "asset://heroes/ch01_poses_s_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 525,
+          "region": [
+            704,
+            768,
+            704,
+            768
+          ],
+          "foot": [
+            999,
+            1338
+          ],
+          "head": [
+            994,
+            868
+          ],
+          "grip": [
+            1129,
+            972
+          ],
+          "muzzle": [
+            1224,
+            982
+          ],
+          "source_frame": {
+            "frame_index": 7,
+            "name": "guard_cast",
+            "head": [
+              915,
+              714
+            ],
+            "boot_bottom_points": [
+              [
+                754,
+                1181
+              ],
+              [
+                1086,
+                1187
+              ]
+            ],
+            "foot": [
+              920,
+              1184
+            ],
+            "hair_top_y": 659,
+            "grip": [
+              1050,
+              818
+            ],
+            "muzzle": [
+              1145,
+              828
+            ],
+            "body_height": 525,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+              "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height.",
+              "Bounding rectangle contains adjacent art; isolate seed-connected alpha figure before packing, never use bare rectangle crop."
+            ],
+            "region": [
+              677,
+              653,
+              577,
+              539
+            ],
+            "alpha_component_seed": [
+              915,
+              714
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_area": 162211,
+            "alpha_component_dilation_px": 2,
+            "foreign_alpha_pixels_in_region": 2
+          },
+          "texture": "asset://heroes/ch01_poses_s_b.png"
+        }
+      ]
+    },
+    "SW": {
+      "reference_body_height": 472,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 472,
+          "region": [
+            0,
+            0,
+            768,
+            896
+          ],
+          "foot": [
+            394.5,
+            618
+          ],
+          "head": [
+            341,
+            192
+          ],
+          "grip": [
+            291,
+            433
+          ],
+          "muzzle": [
+            181,
+            480
+          ],
+          "source_frame": {
+            "frame_index": 0,
+            "name": "idle",
+            "head": [
+              347,
+              121
+            ],
+            "boot_bottom_points": [
+              [
+                277,
+                509
+              ],
+              [
+                524,
+                585
+              ]
+            ],
+            "foot": [
+              400.5,
+              547
+            ],
+            "hair_top_y": 75,
+            "grip": [
+              297,
+              362
+            ],
+            "muzzle": [
+              187,
+              409
+            ],
+            "body_height": 472,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              20,
+              71,
+              604,
+              533
+            ],
+            "alpha_component_seed": [
+              347,
+              121
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 140371,
+            "foreign_alpha_pixels_in_region": 8092
+          },
+          "texture": "asset://heroes/ch01_poses_sw_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 475.5,
+          "region": [
+            768,
+            0,
+            768,
+            896
+          ],
+          "foot": [
+            1162,
+            618.5
+          ],
+          "head": [
+            1159,
+            192
+          ],
+          "grip": [
+            1073,
+            360
+          ],
+          "muzzle": [
+            1020,
+            357
+          ],
+          "source_frame": {
+            "frame_index": 1,
+            "name": "walk_left",
+            "head": [
+              917,
+              120
+            ],
+            "boot_bottom_points": [
+              [
+                862,
+                607
+              ],
+              [
+                978,
+                486
+              ]
+            ],
+            "foot": [
+              920,
+              546.5
+            ],
+            "hair_top_y": 71,
+            "grip": [
+              831,
+              288
+            ],
+            "muzzle": [
+              778,
+              285
+            ],
+            "body_height": 475.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              636,
+              69,
+              605,
+              550
+            ],
+            "alpha_component_seed": [
+              917,
+              120
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 135272,
+            "foreign_alpha_pixels_in_region": 6538
+          },
+          "texture": "asset://heroes/ch01_poses_sw_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 457,
+          "region": [
+            0,
+            896,
+            768,
+            896
+          ],
+          "foot": [
+            394.5,
+            1514
+          ],
+          "head": [
+            359,
+            1106
+          ],
+          "grip": [
+            317,
+            1285
+          ],
+          "muzzle": [
+            215,
+            1344
+          ],
+          "source_frame": {
+            "frame_index": 2,
+            "name": "walk_right",
+            "head": [
+              333,
+              704
+            ],
+            "boot_bottom_points": [
+              [
+                293,
+                1187
+              ],
+              [
+                444,
+                1037
+              ]
+            ],
+            "foot": [
+              368.5,
+              1112
+            ],
+            "hair_top_y": 655,
+            "grip": [
+              291,
+              883
+            ],
+            "muzzle": [
+              189,
+              942
+            ],
+            "body_height": 457,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              24,
+              650,
+              667,
+              553
+            ],
+            "alpha_component_seed": [
+              333,
+              704
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 148872,
+            "foreign_alpha_pixels_in_region": 7799
+          },
+          "texture": "asset://heroes/ch01_poses_sw_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 494.5,
+          "region": [
+            768,
+            896,
+            768,
+            896
+          ],
+          "foot": [
+            1161.5,
+            1513.5
+          ],
+          "head": [
+            1202,
+            1066
+          ],
+          "grip": [
+            1197,
+            1008
+          ],
+          "muzzle": [
+            1369,
+            1083
+          ],
+          "source_frame": {
+            "frame_index": 3,
+            "name": "basic_windup",
+            "head": [
+              960,
+              728
+            ],
+            "boot_bottom_points": [
+              [
+                780,
+                1183
+              ],
+              [
+                1059,
+                1168
+              ]
+            ],
+            "foot": [
+              919.5,
+              1175.5
+            ],
+            "hair_top_y": 681,
+            "grip": [
+              955,
+              670
+            ],
+            "muzzle": [
+              1127,
+              745
+            ],
+            "body_height": 494.5,
+            "landmark_accuracy_px": 45,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "Far boot hidden behind coat; second sole/ground placement is visual anatomical projection estimate, not directly visible measurement.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "occluded_boot": true,
+            "region": [
+              737,
+              595,
+              514,
+              600
+            ],
+            "alpha_component_seed": [
+              960,
+              728
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 157594,
+            "foreign_alpha_pixels_in_region": 3665
+          },
+          "texture": "asset://heroes/ch01_poses_sw_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 431.5,
+          "region": [
+            0,
+            0,
+            768,
+            896
+          ],
+          "foot": [
+            394,
+            617.5
+          ],
+          "head": [
+            346,
+            244
+          ],
+          "grip": [
+            284,
+            503
+          ],
+          "muzzle": [
+            197,
+            632
+          ],
+          "source_frame": {
+            "frame_index": 4,
+            "name": "basic_release",
+            "head": [
+              358,
+              128
+            ],
+            "boot_bottom_points": [
+              [
+                223,
+                410
+              ],
+              [
+                589,
+                593
+              ]
+            ],
+            "foot": [
+              406,
+              501.5
+            ],
+            "hair_top_y": 70,
+            "grip": [
+              296,
+              387
+            ],
+            "muzzle": [
+              209,
+              516
+            ],
+            "body_height": 431.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing.",
+              "Compressed/stepping actualvisible bodyheight below448, notreplacedwithweaponbbox/upscale."
+            ],
+            "region": [
+              29,
+              24,
+              636,
+              693
+            ],
+            "alpha_component_seed": [
+              358,
+              128
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 175093,
+            "foreign_alpha_pixels_in_region": 11311
+          },
+          "texture": "asset://heroes/ch01_poses_sw_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 509,
+          "region": [
+            768,
+            0,
+            768,
+            896
+          ],
+          "foot": [
+            1162.5,
+            618
+          ],
+          "head": [
+            1151,
+            166
+          ],
+          "grip": [
+            1282,
+            430
+          ],
+          "muzzle": [
+            1022,
+            360
+          ],
+          "source_frame": {
+            "frame_index": 5,
+            "name": "basic_recovery",
+            "head": [
+              939,
+              101
+            ],
+            "boot_bottom_points": [
+              [
+                887,
+                617
+              ],
+              [
+                1014,
+                489
+              ]
+            ],
+            "foot": [
+              950.5,
+              553
+            ],
+            "hair_top_y": 44,
+            "grip": [
+              1070,
+              365
+            ],
+            "muzzle": [
+              810,
+              295
+            ],
+            "body_height": 509,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              656,
+              35,
+              584,
+              595
+            ],
+            "alpha_component_seed": [
+              939,
+              101
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 167569,
+            "foreign_alpha_pixels_in_region": 1316
+          },
+          "texture": "asset://heroes/ch01_poses_sw_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 389.5,
+          "region": [
+            0,
+            896,
+            768,
+            896
+          ],
+          "foot": [
+            393.5,
+            1513.5
+          ],
+          "head": [
+            298,
+            1182
+          ],
+          "grip": [
+            515,
+            1256
+          ],
+          "muzzle": [
+            550,
+            1112
+          ],
+          "source_frame": {
+            "frame_index": 6,
+            "name": "dash",
+            "head": [
+              226,
+              812
+            ],
+            "boot_bottom_points": [
+              [
+                168,
+                1212
+              ],
+              [
+                475,
+                1075
+              ]
+            ],
+            "foot": [
+              321.5,
+              1143.5
+            ],
+            "hair_top_y": 754,
+            "grip": [
+              443,
+              886
+            ],
+            "muzzle": [
+              478,
+              742
+            ],
+            "body_height": 389.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing.",
+              "Compressed/stepping actualvisible bodyheight below448, notreplacedwithweaponbbox/upscale."
+            ],
+            "region": [
+              133,
+              648,
+              520,
+              578
+            ],
+            "alpha_component_seed": [
+              226,
+              812
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 153151,
+            "foreign_alpha_pixels_in_region": 7095
+          },
+          "texture": "asset://heroes/ch01_poses_sw_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 561.5,
+          "region": [
+            768,
+            896,
+            768,
+            896
+          ],
+          "foot": [
+            1161.5,
+            1513.5
+          ],
+          "head": [
+            1143,
+            1009
+          ],
+          "grip": [
+            1210,
+            1073
+          ],
+          "muzzle": [
+            1382,
+            1053
+          ],
+          "source_frame": {
+            "frame_index": 7,
+            "name": "guard_cast",
+            "head": [
+              883,
+              711
+            ],
+            "boot_bottom_points": [
+              [
+                710,
+                1211
+              ],
+              [
+                1093,
+                1220
+              ]
+            ],
+            "foot": [
+              901.5,
+              1215.5
+            ],
+            "hair_top_y": 654,
+            "grip": [
+              950,
+              775
+            ],
+            "muzzle": [
+              1122,
+              755
+            ],
+            "body_height": 561.5,
+            "landmark_accuracy_px": 18,
+            "risks": [
+              "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+              "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+              "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+            ],
+            "region": [
+              648,
+              611,
+              603,
+              620
+            ],
+            "alpha_component_seed": [
+              883,
+              711
+            ],
+            "alpha_component_threshold": 16,
+            "alpha_component_dilation_px": 2,
+            "alpha_component_area": 201892,
+            "foreign_alpha_pixels_in_region": 777
+          },
+          "texture": "asset://heroes/ch01_poses_sw_b.png"
+        }
+      ]
+    },
+    "W": {
+      "reference_body_height": 497,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 497,
+          "region": [
+            0,
+            0,
+            832,
+            640
+          ],
+          "foot": [
+            394,
+            563
+          ],
+          "head": [
+            329,
+            140
+          ],
+          "grip": [
+            453,
+            379
+          ],
+          "muzzle": [
+            231,
+            444
+          ],
+          "source_frame": {
+            "name": "idle",
+            "region": [
+              37,
+              91,
+              565,
+              505
+            ],
+            "foot": [
+              334,
+              568
+            ],
+            "head": [
+              269,
+              145
+            ],
+            "grip": [
+              393,
+              384
+            ],
+            "muzzle": [
+              171,
+              449
+            ],
+            "body_height": 497,
+            "landmark_accuracy_px": 10
+          },
+          "texture": "asset://heroes/ch01_poses_w_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 470,
+          "region": [
+            832,
+            0,
+            832,
+            640
+          ],
+          "foot": [
+            1226,
+            563
+          ],
+          "head": [
+            1151,
+            145
+          ],
+          "grip": [
+            1293,
+            353
+          ],
+          "muzzle": [
+            1472,
+            398
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "region": [
+              667,
+              108,
+              574,
+              478
+            ],
+            "foot": [
+              872,
+              572
+            ],
+            "head": [
+              797,
+              154
+            ],
+            "grip": [
+              939,
+              362
+            ],
+            "muzzle": [
+              1118,
+              407
+            ],
+            "body_height": 470,
+            "landmark_accuracy_px": 13,
+            "foot_risk": "Trailing heel lift makes the projected ground contact an estimate."
+          },
+          "texture": "asset://heroes/ch01_poses_w_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 474,
+          "region": [
+            0,
+            640,
+            832,
+            640
+          ],
+          "foot": [
+            394,
+            1203
+          ],
+          "head": [
+            321,
+            780
+          ],
+          "grip": [
+            476,
+            990
+          ],
+          "muzzle": [
+            651,
+            1060
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "region": [
+              90,
+              700,
+              559,
+              482
+            ],
+            "foot": [
+              283,
+              1168
+            ],
+            "head": [
+              210,
+              745
+            ],
+            "grip": [
+              365,
+              955
+            ],
+            "muzzle": [
+              540,
+              1025
+            ],
+            "body_height": 474,
+            "landmark_accuracy_px": 13,
+            "foot_risk": "Trailing heel lift makes the projected ground contact an estimate."
+          },
+          "texture": "asset://heroes/ch01_poses_w_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 465,
+          "region": [
+            832,
+            640,
+            832,
+            640
+          ],
+          "foot": [
+            1226,
+            1203
+          ],
+          "head": [
+            1168,
+            814
+          ],
+          "grip": [
+            1257,
+            756
+          ],
+          "muzzle": [
+            1422,
+            779
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "region": [
+              704,
+              639,
+              511,
+              580
+            ],
+            "foot": [
+              894,
+              1190
+            ],
+            "head": [
+              836,
+              801
+            ],
+            "grip": [
+              925,
+              743
+            ],
+            "muzzle": [
+              1090,
+              766
+            ],
+            "body_height": 465,
+            "landmark_accuracy_px": 12
+          },
+          "texture": "asset://heroes/ch01_poses_w_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 443,
+          "region": [
+            0,
+            0,
+            832,
+            640
+          ],
+          "foot": [
+            394,
+            563
+          ],
+          "head": [
+            347,
+            181
+          ],
+          "grip": [
+            215,
+            245
+          ],
+          "muzzle": [
+            148,
+            201
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "region": [
+              39,
+              128,
+              647,
+              494
+            ],
+            "foot": [
+              419,
+              604
+            ],
+            "head": [
+              372,
+              222
+            ],
+            "grip": [
+              240,
+              286
+            ],
+            "muzzle": [
+              173,
+              242
+            ],
+            "body_height": 443,
+            "landmark_accuracy_px": 12
+          },
+          "texture": "asset://heroes/ch01_poses_w_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 484,
+          "region": [
+            832,
+            0,
+            832,
+            640
+          ],
+          "foot": [
+            1226,
+            563
+          ],
+          "head": [
+            1168,
+            140
+          ],
+          "grip": [
+            1342,
+            360
+          ],
+          "muzzle": [
+            1484,
+            431
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "region": [
+              705,
+              130,
+              539,
+              492
+            ],
+            "foot": [
+              882,
+              606
+            ],
+            "head": [
+              824,
+              183
+            ],
+            "grip": [
+              998,
+              403
+            ],
+            "muzzle": [
+              1140,
+              474
+            ],
+            "body_height": 484,
+            "landmark_accuracy_px": 11
+          },
+          "texture": "asset://heroes/ch01_poses_w_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 422,
+          "region": [
+            0,
+            640,
+            832,
+            640
+          ],
+          "foot": [
+            394,
+            1203
+          ],
+          "head": [
+            180,
+            864
+          ],
+          "grip": [
+            415,
+            1010
+          ],
+          "muzzle": [
+            635,
+            1068
+          ],
+          "source_frame": {
+            "name": "dash",
+            "region": [
+              59,
+              738,
+              622,
+              430
+            ],
+            "foot": [
+              326,
+              1140
+            ],
+            "head": [
+              112,
+              801
+            ],
+            "grip": [
+              347,
+              947
+            ],
+            "muzzle": [
+              567,
+              1005
+            ],
+            "body_height": 422,
+            "landmark_accuracy_px": 20,
+            "foot_risk": "Both shoes are in a running airborne/crouched pose; expected ground projection is manually estimated.",
+            "region_neighbor_overlap_risk": "Bounding rectangles overlap the bottom-right sprite by 2 columns. Processor must isolate the selected alpha component before packing; region alone is not neighbor-free."
+          },
+          "texture": "asset://heroes/ch01_poses_w_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 485,
+          "region": [
+            832,
+            640,
+            832,
+            640
+          ],
+          "foot": [
+            1226,
+            1203
+          ],
+          "head": [
+            1200,
+            777
+          ],
+          "grip": [
+            1343,
+            845
+          ],
+          "muzzle": [
+            1465,
+            833
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "region": [
+              671,
+              678,
+              566,
+              518
+            ],
+            "foot": [
+              875,
+              1180
+            ],
+            "head": [
+              849,
+              754
+            ],
+            "grip": [
+              992,
+              822
+            ],
+            "muzzle": [
+              1114,
+              810
+            ],
+            "body_height": 485,
+            "landmark_accuracy_px": 13,
+            "region_neighbor_overlap_risk": "Bottom-left and bottom-right alpha components are separate but bounding rectangles overlap by 2 columns. Isolate selected component before packing."
+          },
+          "texture": "asset://heroes/ch01_poses_w_b.png"
+        }
+      ]
+    },
+    "NW": {
+      "reference_body_height": 523,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 523,
+          "region": [
+            0,
+            0,
+            768,
+            704
+          ],
+          "foot": [
+            353,
+            629
+          ],
+          "head": [
+            305,
+            168
+          ],
+          "grip": [
+            258,
+            441
+          ],
+          "muzzle": [
+            150,
+            478
+          ],
+          "source_frame": {
+            "name": "idle",
+            "region": [
+              19,
+              53,
+              609,
+              531
+            ],
+            "foot": [
+              337,
+              562
+            ],
+            "head": [
+              289,
+              101
+            ],
+            "grip": [
+              242,
+              374
+            ],
+            "muzzle": [
+              134,
+              411
+            ],
+            "body_height": 523,
+            "landmark_accuracy_px": 22,
+            "component_seed": [
+              289,
+              101
+            ],
+            "alpha_component_bbox": [
+              23,
+              57,
+              624,
+              580
+            ],
+            "alpha_component_pixels": 142400,
+            "foot_risk": "Rear shoe sole is partly occluded by coat tails. The second sole ground projection is estimated; common ground-foot packing requires visual review.",
+            "grip_order_risk": "Visible near-side anatomical left hand appears forward toward axehead despite requested right-forward invariant. Compared with overhead poses this is a slide/regrip risk; one targeted built-in edit did not resolve it. No extra arm or detached axe observed."
+          },
+          "texture": "asset://heroes/ch01_poses_nw_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 509,
+          "region": [
+            768,
+            0,
+            768,
+            704
+          ],
+          "foot": [
+            1121,
+            629
+          ],
+          "head": [
+            1018,
+            197
+          ],
+          "grip": [
+            1085,
+            450
+          ],
+          "muzzle": [
+            944,
+            450
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "region": [
+              646,
+              73,
+              562,
+              517
+            ],
+            "foot": [
+              938,
+              553
+            ],
+            "head": [
+              835,
+              121
+            ],
+            "grip": [
+              902,
+              374
+            ],
+            "muzzle": [
+              761,
+              374
+            ],
+            "body_height": 509,
+            "landmark_accuracy_px": 18,
+            "component_seed": [
+              835,
+              121
+            ],
+            "alpha_component_bbox": [
+              650,
+              77,
+              1204,
+              586
+            ],
+            "alpha_component_pixels": 132871,
+            "foot_risk": "Stride heel lift and different depth make the two-sole expected ground average approximate.",
+            "grip_order_risk": "Visible near-side anatomical left hand appears forward toward axehead despite requested right-forward invariant. Compared with overhead poses this is a slide/regrip risk; one targeted built-in edit did not resolve it. No extra arm or detached axe observed."
+          },
+          "texture": "asset://heroes/ch01_poses_nw_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 497,
+          "region": [
+            0,
+            704,
+            768,
+            704
+          ],
+          "foot": [
+            353,
+            1333
+          ],
+          "head": [
+            306,
+            898
+          ],
+          "grip": [
+            325,
+            1165
+          ],
+          "muzzle": [
+            195,
+            1156
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "region": [
+              46,
+              674,
+              559,
+              505
+            ],
+            "foot": [
+              321,
+              1155
+            ],
+            "head": [
+              274,
+              720
+            ],
+            "grip": [
+              293,
+              987
+            ],
+            "muzzle": [
+              163,
+              978
+            ],
+            "body_height": 497,
+            "landmark_accuracy_px": 18,
+            "component_seed": [
+              274,
+              720
+            ],
+            "alpha_component_bbox": [
+              50,
+              678,
+              601,
+              1175
+            ],
+            "alpha_component_pixels": 128442,
+            "foot_risk": "Stride heel lift and different depth make the two-sole expected ground average approximate.",
+            "grip_order_risk": "Visible near-side anatomical left hand appears forward toward axehead despite requested right-forward invariant. Compared with overhead poses this is a slide/regrip risk; one targeted built-in edit did not resolve it. No extra arm or detached axe observed."
+          },
+          "texture": "asset://heroes/ch01_poses_nw_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 491,
+          "region": [
+            768,
+            704,
+            768,
+            704
+          ],
+          "foot": [
+            1121,
+            1333
+          ],
+          "head": [
+            1063,
+            928
+          ],
+          "grip": [
+            1173,
+            876
+          ],
+          "muzzle": [
+            1311,
+            911
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "region": [
+              693,
+              632,
+              543,
+              581
+            ],
+            "foot": [
+              925,
+              1164
+            ],
+            "head": [
+              867,
+              759
+            ],
+            "grip": [
+              977,
+              707
+            ],
+            "muzzle": [
+              1115,
+              742
+            ],
+            "body_height": 491,
+            "landmark_accuracy_px": 16,
+            "component_seed": [
+              867,
+              759
+            ],
+            "alpha_component_bbox": [
+              697,
+              636,
+              1232,
+              1209
+            ],
+            "alpha_component_pixels": 153483,
+            "grip_order_risk": "Both hands are attached to physical shaft; overhead/cross-body overlap makes anatomical forward/rear grip order approximate. Compare neighboring phases for natural sliding/regrip before final acceptance."
+          },
+          "texture": "asset://heroes/ch01_poses_nw_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 494,
+          "region": [
+            0,
+            0,
+            768,
+            704
+          ],
+          "foot": [
+            353,
+            629
+          ],
+          "head": [
+            283,
+            200
+          ],
+          "grip": [
+            220,
+            166
+          ],
+          "muzzle": [
+            140,
+            113
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "region": [
+              17,
+              6,
+              625,
+              643
+            ],
+            "foot": [
+              358,
+              623
+            ],
+            "head": [
+              288,
+              194
+            ],
+            "grip": [
+              225,
+              160
+            ],
+            "muzzle": [
+              145,
+              107
+            ],
+            "body_height": 494,
+            "landmark_accuracy_px": 18,
+            "component_seed": [
+              288,
+              194
+            ],
+            "alpha_component_bbox": [
+              21,
+              10,
+              638,
+              645
+            ],
+            "alpha_component_pixels": 153714,
+            "grip_order_risk": "Both hands are attached to physical shaft; overhead/cross-body overlap makes anatomical forward/rear grip order approximate. Compare neighboring phases for natural sliding/regrip before final acceptance."
+          },
+          "texture": "asset://heroes/ch01_poses_nw_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 501,
+          "region": [
+            768,
+            0,
+            768,
+            704
+          ],
+          "foot": [
+            1121,
+            629
+          ],
+          "head": [
+            1065,
+            217
+          ],
+          "grip": [
+            1024,
+            480
+          ],
+          "muzzle": [
+            918,
+            486
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "region": [
+              647,
+              139,
+              602,
+              509
+            ],
+            "foot": [
+              957,
+              598
+            ],
+            "head": [
+              901,
+              186
+            ],
+            "grip": [
+              860,
+              449
+            ],
+            "muzzle": [
+              754,
+              455
+            ],
+            "body_height": 501,
+            "landmark_accuracy_px": 20,
+            "component_seed": [
+              901,
+              186
+            ],
+            "alpha_component_bbox": [
+              651,
+              143,
+              1245,
+              644
+            ],
+            "alpha_component_pixels": 145879,
+            "grip_order_risk": "Visible near-side anatomical left hand appears forward toward axehead despite requested right-forward invariant. Compared with overhead poses this is a slide/regrip risk; one targeted built-in edit did not resolve it. No extra arm or detached axe observed."
+          },
+          "texture": "asset://heroes/ch01_poses_nw_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 508,
+          "region": [
+            0,
+            704,
+            768,
+            704
+          ],
+          "foot": [
+            353,
+            1333
+          ],
+          "head": [
+            137,
+            918
+          ],
+          "grip": [
+            399,
+            1042
+          ],
+          "muzzle": [
+            561,
+            1147
+          ],
+          "source_frame": {
+            "name": "dash",
+            "region": [
+              90,
+              702,
+              603,
+              516
+            ],
+            "foot": [
+              366,
+              1164
+            ],
+            "head": [
+              150,
+              749
+            ],
+            "grip": [
+              412,
+              873
+            ],
+            "muzzle": [
+              574,
+              978
+            ],
+            "body_height": 508,
+            "landmark_accuracy_px": 24,
+            "component_seed": [
+              150,
+              749
+            ],
+            "alpha_component_bbox": [
+              94,
+              706,
+              689,
+              1214
+            ],
+            "alpha_component_pixels": 138332,
+            "foot_risk": "Running crouch has raised/airborne shoe. Foot is expected ground projection, not lowest alpha pixel; estimate uncertainty is 24px and needs runtime visual review.",
+            "grip_order_risk": "Low trailing axe pose may use a one-hand slide/regrip; anatomical grip continuity requires visual review."
+          },
+          "texture": "asset://heroes/ch01_poses_nw_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 477,
+          "region": [
+            768,
+            704,
+            768,
+            704
+          ],
+          "foot": [
+            1121,
+            1333
+          ],
+          "head": [
+            1090,
+            902
+          ],
+          "grip": [
+            1193,
+            927
+          ],
+          "muzzle": [
+            1343,
+            945
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "region": [
+              706,
+              674,
+              546,
+              513
+            ],
+            "foot": [
+              902,
+              1181
+            ],
+            "head": [
+              871,
+              750
+            ],
+            "grip": [
+              974,
+              775
+            ],
+            "muzzle": [
+              1124,
+              793
+            ],
+            "body_height": 477,
+            "landmark_accuracy_px": 18,
+            "component_seed": [
+              871,
+              750
+            ],
+            "alpha_component_bbox": [
+              710,
+              678,
+              1248,
+              1183
+            ],
+            "alpha_component_pixels": 155402,
+            "grip_order_risk": "Both hands are attached to physical shaft; overhead/cross-body overlap makes anatomical forward/rear grip order approximate. Compare neighboring phases for natural sliding/regrip before final acceptance."
+          },
+          "texture": "asset://heroes/ch01_poses_nw_b.png"
+        }
+      ]
+    },
+    "N": {
+      "reference_body_height": 526,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 526,
+          "region": [
+            0,
+            0,
+            768,
+            832
+          ],
+          "foot": [
+            372,
+            720
+          ],
+          "head": [
+            367,
+            251
+          ],
+          "grip": [
+            246,
+            478
+          ],
+          "muzzle": [
+            151,
+            590
+          ],
+          "source_frame": {
+            "name": "idle",
+            "region": [
+              23,
+              61,
+              597,
+              534
+            ],
+            "foot": [
+              351,
+              575
+            ],
+            "head": [
+              346,
+              106
+            ],
+            "grip": [
+              225,
+              333
+            ],
+            "muzzle": [
+              130,
+              445
+            ],
+            "body_height": 526,
+            "landmark_accuracy_px": 12,
+            "alpha_component_bbox": [
+              27,
+              65,
+              616,
+              591
+            ],
+            "alpha_component_pixels": 128357
+          },
+          "texture": "asset://heroes/ch01_poses_n_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 536,
+          "region": [
+            768,
+            0,
+            768,
+            832
+          ],
+          "foot": [
+            1140,
+            720
+          ],
+          "head": [
+            1136,
+            294
+          ],
+          "grip": [
+            1225,
+            490
+          ],
+          "muzzle": [
+            1380,
+            567
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "region": [
+              777,
+              57,
+              463,
+              544
+            ],
+            "foot": [
+              915,
+              530
+            ],
+            "head": [
+              911,
+              104
+            ],
+            "grip": [
+              1000,
+              300
+            ],
+            "muzzle": [
+              1155,
+              377
+            ],
+            "body_height": 536,
+            "landmark_accuracy_px": 18,
+            "alpha_component_bbox": [
+              781,
+              61,
+              1236,
+              597
+            ],
+            "alpha_component_pixels": 106045,
+            "foot_risk": "Forward and trailing soles have different projected depth and heel lift. Average expected ground projection is manually estimated."
+          },
+          "texture": "asset://heroes/ch01_poses_n_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 521,
+          "region": [
+            0,
+            832,
+            768,
+            832
+          ],
+          "foot": [
+            372,
+            1552
+          ],
+          "head": [
+            354,
+            1135
+          ],
+          "grip": [
+            232,
+            1343
+          ],
+          "muzzle": [
+            130,
+            1422
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "region": [
+              23,
+              663,
+              604,
+              529
+            ],
+            "foot": [
+              366,
+              1122
+            ],
+            "head": [
+              348,
+              705
+            ],
+            "grip": [
+              226,
+              913
+            ],
+            "muzzle": [
+              124,
+              992
+            ],
+            "body_height": 521,
+            "landmark_accuracy_px": 18,
+            "alpha_component_bbox": [
+              27,
+              667,
+              623,
+              1188
+            ],
+            "alpha_component_pixels": 109498,
+            "foot_risk": "Forward and trailing soles have different projected depth and heel lift. Average expected ground projection is manually estimated."
+          },
+          "texture": "asset://heroes/ch01_poses_n_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 474,
+          "region": [
+            768,
+            832,
+            768,
+            832
+          ],
+          "foot": [
+            1140,
+            1552
+          ],
+          "head": [
+            1125,
+            1129
+          ],
+          "grip": [
+            1173,
+            1091
+          ],
+          "muzzle": [
+            1336,
+            1123
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "region": [
+              751,
+              606,
+              480,
+              588
+            ],
+            "foot": [
+              914,
+              1181
+            ],
+            "head": [
+              899,
+              758
+            ],
+            "grip": [
+              947,
+              720
+            ],
+            "muzzle": [
+              1110,
+              752
+            ],
+            "body_height": 474,
+            "landmark_accuracy_px": 14,
+            "alpha_component_bbox": [
+              755,
+              610,
+              1227,
+              1190
+            ],
+            "alpha_component_pixels": 149072
+          },
+          "texture": "asset://heroes/ch01_poses_n_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 453,
+          "region": [
+            0,
+            0,
+            768,
+            832
+          ],
+          "foot": [
+            372,
+            720
+          ],
+          "head": [
+            377,
+            336
+          ],
+          "grip": [
+            378,
+            221
+          ],
+          "muzzle": [
+            398,
+            100
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "region": [
+              212,
+              11,
+              417,
+              742
+            ],
+            "foot": [
+              351,
+              719
+            ],
+            "head": [
+              356,
+              335
+            ],
+            "grip": [
+              357,
+              220
+            ],
+            "muzzle": [
+              377,
+              99
+            ],
+            "body_height": 453,
+            "landmark_accuracy_px": 15,
+            "alpha_component_bbox": [
+              216,
+              15,
+              625,
+              749
+            ],
+            "alpha_component_pixels": 124237
+          },
+          "texture": "asset://heroes/ch01_poses_n_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 485,
+          "region": [
+            768,
+            0,
+            768,
+            832
+          ],
+          "foot": [
+            1140,
+            720
+          ],
+          "head": [
+            1136,
+            285
+          ],
+          "grip": [
+            1284,
+            500
+          ],
+          "muzzle": [
+            1396,
+            553
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "region": [
+              741,
+              237,
+              505,
+              493
+            ],
+            "foot": [
+              897,
+              721
+            ],
+            "head": [
+              893,
+              286
+            ],
+            "grip": [
+              1041,
+              501
+            ],
+            "muzzle": [
+              1153,
+              554
+            ],
+            "body_height": 485,
+            "landmark_accuracy_px": 15,
+            "alpha_component_bbox": [
+              745,
+              241,
+              1242,
+              726
+            ],
+            "alpha_component_pixels": 122686,
+            "region_neighbor_overlap_risk": "This complete selected-sprite bounding rectangle intersects neighboring component bounds (bottom_right). Processor must isolate selected alpha component before packing; region alone is not neighbor-free."
+          },
+          "texture": "asset://heroes/ch01_poses_n_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 474,
+          "region": [
+            0,
+            832,
+            768,
+            832
+          ],
+          "foot": [
+            372,
+            1552
+          ],
+          "head": [
+            348,
+            1168
+          ],
+          "grip": [
+            216,
+            1326
+          ],
+          "muzzle": [
+            120,
+            1453
+          ],
+          "source_frame": {
+            "name": "dash",
+            "region": [
+              38,
+              763,
+              608,
+              482
+            ],
+            "foot": [
+              398,
+              1190
+            ],
+            "head": [
+              374,
+              806
+            ],
+            "grip": [
+              242,
+              964
+            ],
+            "muzzle": [
+              146,
+              1091
+            ],
+            "body_height": 474,
+            "landmark_accuracy_px": 24,
+            "alpha_component_bbox": [
+              42,
+              767,
+              642,
+              1241
+            ],
+            "alpha_component_pixels": 111251,
+            "foot_risk": "Crouched running pose has a raised/airborne shoe. Foot is manually estimated average expected ground projection, not lowest alpha pixel; requires runtime visual foot review."
+          },
+          "texture": "asset://heroes/ch01_poses_n_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 444,
+          "region": [
+            768,
+            832,
+            768,
+            832
+          ],
+          "foot": [
+            1140,
+            1552
+          ],
+          "head": [
+            1131,
+            1154
+          ],
+          "grip": [
+            1221,
+            1177
+          ],
+          "muzzle": [
+            1354,
+            1174
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "region": [
+              694,
+              725,
+              550,
+              501
+            ],
+            "foot": [
+              903,
+              1221
+            ],
+            "head": [
+              894,
+              823
+            ],
+            "grip": [
+              984,
+              846
+            ],
+            "muzzle": [
+              1117,
+              843
+            ],
+            "body_height": 444,
+            "landmark_accuracy_px": 16,
+            "alpha_component_bbox": [
+              698,
+              729,
+              1240,
+              1222
+            ],
+            "alpha_component_pixels": 133556,
+            "region_neighbor_overlap_risk": "This complete selected-sprite bounding rectangle intersects neighboring component bounds (top_right). Processor must isolate selected alpha component before packing; region alone is not neighbor-free."
+          },
+          "texture": "asset://heroes/ch01_poses_n_b.png"
+        }
+      ]
+    },
+    "NE": {
+      "reference_body_height": 491,
+      "frames": [
+        {
+          "name": "idle",
+          "body_height": 491,
+          "region": [
+            0,
+            0,
+            832,
+            768
+          ],
+          "foot": [
+            379,
+            638
+          ],
+          "head": [
+            393,
+            199
+          ],
+          "grip": [
+            494,
+            460
+          ],
+          "muzzle": [
+            619,
+            496
+          ],
+          "source_frame": {
+            "name": "idle",
+            "region": [
+              20,
+              83,
+              616,
+              499
+            ],
+            "foot": [
+              295,
+              563
+            ],
+            "head": [
+              309,
+              124
+            ],
+            "grip": [
+              410,
+              385
+            ],
+            "muzzle": [
+              535,
+              421
+            ],
+            "body_height": 491,
+            "landmark_accuracy_px": 22,
+            "component_seed": [
+              309,
+              124
+            ],
+            "alpha_component_bbox": [
+              24,
+              87,
+              632,
+              578
+            ],
+            "alpha_component_pixels": 124362,
+            "foot_risk": "Rear shoe sole is partly occluded by coat tails. The second sole ground projection is estimated; common ground-foot packing requires visual review."
+          },
+          "texture": "asset://heroes/ch01_poses_ne_a.png"
+        },
+        {
+          "name": "walk_left",
+          "body_height": 497,
+          "region": [
+            832,
+            0,
+            832,
+            768
+          ],
+          "foot": [
+            1211,
+            638
+          ],
+          "head": [
+            1211,
+            233
+          ],
+          "grip": [
+            1293,
+            412
+          ],
+          "muzzle": [
+            1400,
+            434
+          ],
+          "source_frame": {
+            "name": "walk_left",
+            "region": [
+              648,
+              83,
+              588,
+              505
+            ],
+            "foot": [
+              946,
+              530
+            ],
+            "head": [
+              946,
+              125
+            ],
+            "grip": [
+              1028,
+              304
+            ],
+            "muzzle": [
+              1135,
+              326
+            ],
+            "body_height": 497,
+            "landmark_accuracy_px": 20,
+            "component_seed": [
+              946,
+              125
+            ],
+            "alpha_component_bbox": [
+              652,
+              87,
+              1232,
+              584
+            ],
+            "alpha_component_pixels": 117358,
+            "foot_risk": "Stride heel lift and different depth make the two-sole expected ground average approximate.",
+            "stride_phase_review_risk": "Coat occludes upper legs; opposite anatomical left/right leading-leg phase is requested but visual assignment is not confidently verified. Review separated poses before final animation acceptance."
+          },
+          "texture": "asset://heroes/ch01_poses_ne_a.png"
+        },
+        {
+          "name": "walk_right",
+          "body_height": 504,
+          "region": [
+            0,
+            768,
+            832,
+            768
+          ],
+          "foot": [
+            379,
+            1406
+          ],
+          "head": [
+            381,
+            1008
+          ],
+          "grip": [
+            448,
+            1240
+          ],
+          "muzzle": [
+            553,
+            1278
+          ],
+          "source_frame": {
+            "name": "walk_right",
+            "region": [
+              37,
+              682,
+              602,
+              512
+            ],
+            "foot": [
+              369,
+              1125
+            ],
+            "head": [
+              371,
+              727
+            ],
+            "grip": [
+              438,
+              959
+            ],
+            "muzzle": [
+              543,
+              997
+            ],
+            "body_height": 504,
+            "landmark_accuracy_px": 20,
+            "component_seed": [
+              371,
+              727
+            ],
+            "alpha_component_bbox": [
+              41,
+              686,
+              635,
+              1190
+            ],
+            "alpha_component_pixels": 119259,
+            "foot_risk": "Stride heel lift and different depth make the two-sole expected ground average approximate.",
+            "stride_phase_review_risk": "Coat occludes upper legs; opposite anatomical left/right leading-leg phase is requested but visual assignment is not confidently verified. Review separated poses before final animation acceptance."
+          },
+          "texture": "asset://heroes/ch01_poses_ne_a.png"
+        },
+        {
+          "name": "basic_windup",
+          "body_height": 475,
+          "region": [
+            832,
+            768,
+            832,
+            768
+          ],
+          "foot": [
+            1211,
+            1406
+          ],
+          "head": [
+            1179,
+            1010
+          ],
+          "grip": [
+            1070,
+            977
+          ],
+          "muzzle": [
+            956,
+            975
+          ],
+          "source_frame": {
+            "name": "basic_windup",
+            "region": [
+              660,
+              606,
+              536,
+              594
+            ],
+            "foot": [
+              1026,
+              1160
+            ],
+            "head": [
+              994,
+              764
+            ],
+            "grip": [
+              885,
+              731
+            ],
+            "muzzle": [
+              771,
+              729
+            ],
+            "body_height": 475,
+            "landmark_accuracy_px": 18,
+            "component_seed": [
+              994,
+              764
+            ],
+            "alpha_component_bbox": [
+              664,
+              610,
+              1192,
+              1196
+            ],
+            "alpha_component_pixels": 138154,
+            "grip_order_risk": "Both hands are attached to physical shaft; overhead/cross-body overlap makes anatomical forward/rear grip order approximate. Compare neighboring phases for natural sliding/regrip before final acceptance."
+          },
+          "texture": "asset://heroes/ch01_poses_ne_a.png"
+        },
+        {
+          "name": "basic_release",
+          "body_height": 501,
+          "region": [
+            0,
+            0,
+            832,
+            768
+          ],
+          "foot": [
+            379,
+            638
+          ],
+          "head": [
+            396,
+            238
+          ],
+          "grip": [
+            541,
+            150
+          ],
+          "muzzle": [
+            651,
+            120
+          ],
+          "source_frame": {
+            "name": "basic_release",
+            "region": [
+              31,
+              3,
+              692,
+              688
+            ],
+            "foot": [
+              344,
+              629
+            ],
+            "head": [
+              361,
+              229
+            ],
+            "grip": [
+              506,
+              141
+            ],
+            "muzzle": [
+              616,
+              111
+            ],
+            "body_height": 501,
+            "landmark_accuracy_px": 18,
+            "component_seed": [
+              361,
+              229
+            ],
+            "alpha_component_bbox": [
+              35,
+              7,
+              719,
+              687
+            ],
+            "alpha_component_pixels": 143872,
+            "region_neighbor_overlap_risk": "Full selected-sprite rectangle intersects top_right, bottom_right component bounds. Packing must isolate the connected alpha component selected by component_seed; region alone is not neighbor-free.",
+            "grip_order_risk": "Both hands are attached to physical shaft; overhead/cross-body overlap makes anatomical forward/rear grip order approximate. Compare neighboring phases for natural sliding/regrip before final acceptance."
+          },
+          "texture": "asset://heroes/ch01_poses_ne_b.png"
+        },
+        {
+          "name": "basic_recovery",
+          "body_height": 470,
+          "region": [
+            832,
+            0,
+            832,
+            768
+          ],
+          "foot": [
+            1211,
+            638
+          ],
+          "head": [
+            1190,
+            238
+          ],
+          "grip": [
+            1314,
+            487
+          ],
+          "muzzle": [
+            1422,
+            524
+          ],
+          "source_frame": {
+            "name": "basic_recovery",
+            "region": [
+              605,
+              167,
+              645,
+              478
+            ],
+            "foot": [
+              930,
+              608
+            ],
+            "head": [
+              909,
+              208
+            ],
+            "grip": [
+              1033,
+              457
+            ],
+            "muzzle": [
+              1141,
+              494
+            ],
+            "body_height": 470,
+            "landmark_accuracy_px": 20,
+            "component_seed": [
+              909,
+              208
+            ],
+            "alpha_component_bbox": [
+              609,
+              171,
+              1246,
+              641
+            ],
+            "alpha_component_pixels": 128612,
+            "region_neighbor_overlap_risk": "Full selected-sprite rectangle intersects top_left component bounds. Packing must isolate the connected alpha component selected by component_seed; region alone is not neighbor-free."
+          },
+          "texture": "asset://heroes/ch01_poses_ne_b.png"
+        },
+        {
+          "name": "dash",
+          "body_height": 463,
+          "region": [
+            0,
+            768,
+            832,
+            768
+          ],
+          "foot": [
+            379,
+            1406
+          ],
+          "head": [
+            567,
+            1028
+          ],
+          "grip": [
+            351,
+            1158
+          ],
+          "muzzle": [
+            189,
+            1245
+          ],
+          "source_frame": {
+            "name": "dash",
+            "region": [
+              18,
+              729,
+              587,
+              471
+            ],
+            "foot": [
+              331,
+              1150
+            ],
+            "head": [
+              519,
+              772
+            ],
+            "grip": [
+              303,
+              902
+            ],
+            "muzzle": [
+              141,
+              989
+            ],
+            "body_height": 463,
+            "landmark_accuracy_px": 24,
+            "component_seed": [
+              519,
+              772
+            ],
+            "alpha_component_bbox": [
+              22,
+              733,
+              601,
+              1196
+            ],
+            "alpha_component_pixels": 110495,
+            "foot_risk": "Running crouch has raised/airborne shoe. Foot is expected ground projection, not lowest alpha pixel; estimate uncertainty is 24px and needs runtime visual review.",
+            "grip_order_risk": "Low trailing axe pose may use a one-hand slide/regrip; anatomical grip continuity requires visual review."
+          },
+          "texture": "asset://heroes/ch01_poses_ne_b.png"
+        },
+        {
+          "name": "guard_cast",
+          "body_height": 480,
+          "region": [
+            832,
+            768,
+            832,
+            768
+          ],
+          "foot": [
+            1211,
+            1406
+          ],
+          "head": [
+            1162,
+            999
+          ],
+          "grip": [
+            1273,
+            1014
+          ],
+          "muzzle": [
+            1391,
+            1019
+          ],
+          "source_frame": {
+            "name": "guard_cast",
+            "region": [
+              613,
+              683,
+              625,
+              530
+            ],
+            "foot": [
+              955,
+              1177
+            ],
+            "head": [
+              906,
+              770
+            ],
+            "grip": [
+              1017,
+              785
+            ],
+            "muzzle": [
+              1135,
+              790
+            ],
+            "body_height": 480,
+            "landmark_accuracy_px": 18,
+            "component_seed": [
+              906,
+              770
+            ],
+            "alpha_component_bbox": [
+              617,
+              687,
+              1234,
+              1209
+            ],
+            "alpha_component_pixels": 144794,
+            "region_neighbor_overlap_risk": "Full selected-sprite rectangle intersects top_left component bounds. Packing must isolate the connected alpha component selected by component_seed; region alone is not neighbor-free.",
+            "grip_order_risk": "Both hands are attached to physical shaft; overhead/cross-body overlap makes anatomical forward/rear grip order approximate. Compare neighboring phases for natural sliding/regrip before final acceptance."
+          },
+          "texture": "asset://heroes/ch01_poses_ne_b.png"
+        }
+      ]
+    }
+  },
+  "source_native_sizes": {
+    "poses_e_a": [
+      1254,
+      1254
+    ],
+    "poses_e_b": [
+      1254,
+      1254
+    ],
+    "poses_se_a": [
+      1254,
+      1254
+    ],
+    "poses_se_b": [
+      1254,
+      1254
+    ],
+    "poses_s_a": [
+      1254,
+      1254
+    ],
+    "poses_s_b": [
+      1254,
+      1254
+    ],
+    "poses_sw_a": [
+      1254,
+      1254
+    ],
+    "poses_sw_b": [
+      1254,
+      1254
+    ],
+    "poses_w_a": [
+      1254,
+      1254
+    ],
+    "poses_w_b": [
+      1254,
+      1254
+    ],
+    "poses_nw_a": [
+      1254,
+      1254
+    ],
+    "poses_nw_b": [
+      1254,
+      1254
+    ],
+    "poses_n_a": [
+      1254,
+      1254
+    ],
+    "poses_n_b": [
+      1254,
+      1254
+    ],
+    "poses_ne_a": [
+      1254,
+      1254
+    ],
+    "poses_ne_b": [
+      1254,
+      1254
+    ]
+  },
+  "native_2k_sources_met": false,
+  "registration": "Measured original pixels; runtime sole=(0,8), fixed standing scale per authored direction; no body rotation or mirroring.",
+  "limitations": [
+    "64 shared authored body poses in eight directions, not twelve independent eight-frame skill animations.",
+    "Individual skills retain production effect timelines and use explicit basic, guard/cast or travel body categories.",
+    "Manual anatomy/weapon anchors require graphical verification."
+  ]
+}

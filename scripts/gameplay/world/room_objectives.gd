@@ -14,6 +14,7 @@ const FirstFour = preload("res://scripts/levels/shared/first_four_objectives.gd"
 const PropIdentity = preload("res://scripts/presentation/world/prop_identity.gd")
 const Numerical = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const WorldLabels = preload("res://scripts/presentation/hud/world_label_layer.gd")
+const SkillPresentation = preload("res://scripts/presentation/monsters/enemy_skill_presentation.gd")
 var room: Node2D
 var layout: Dictionary = {}
 var room_id: String = ""
@@ -46,6 +47,9 @@ func configure(next_room: Node2D, next_layout: Dictionary, node_role: String = "
 	var biome: String = str(definition.get("biome_id", layout.get("biome_id","")))
 	if biome == "B07" and bool(layout.get("b07_candidate",false)):
 		module = preload("res://scripts/levels/b07/world/objectives.gd").new()
+	elif biome == "B09" and bool(layout.get("b09_candidate",false)):
+		module = preload("res://scripts/levels/b09/world/objectives.gd").new()
+	if module != null:
 		module.configure(self)
 		queue_redraw()
 		return
@@ -776,6 +780,7 @@ func draw_world(canvas: Node2D) -> void:
 
 func _draw_labels(canvas: Node2D) -> void:
 	if objective_font == null: return
+	if SkillPresentation.basic_in_progress(player()): return
 	for item: Dictionary in elements.values():
 		if not bool(item.get("active", true)) or bool(item.get("carried", false)) or bool(item.get("destroyed", false)):
 			continue

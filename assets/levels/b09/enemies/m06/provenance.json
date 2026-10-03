@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. BRAND NEW original production game sprite sheet, B09 Frost Crystal Court. Warm-light Thief: small sneaky hovering cluster of violet crystals clutching a small stolen brass lantern containing warm amber light, pointed crystal hood, long angular arms. Exactly three separate complete poses of the SAME character in one horizontal row: idle hugging lantern, pulling warm light into lantern, directing a thin light siphon. 1536x1024 landscape, 3 equal cells; each full figure and every weapon stays inside its own third, transparent margins on all sides, aligned feet/ground pivots near 86% height, same character scale. High-angle near-isometric 2.5D overhead camera, all face lower-right. Bright hand-painted cartoon fantasy, fine dark violet outlines, crisp cyan ice and lavender geometric facets, small champagne gold accents, warm sunny highlights. Distinct silhouette readable at game size. ACTUAL transparent background alpha, clear empty spaces between figures and limbs, no backdrop color or glow, no floor or shadows. No labels, text, borders, HUD, watermarks, human skin, fish, coral, plant monsters.",
+  "reference_images": [],
+  "sha256": "6b2465b20636a10673ae1caa57c39162b60486790571720666a5a75e9346e174",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte copy; source pixels and alpha unchanged. Runtime uses source regions.",
+  "license": "Project-generated original artwork; no third-party character artwork reused."
+}

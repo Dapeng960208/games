@@ -1,4 +1,5 @@
 extends "res://scripts/presentation/monsters/enemy_visual.gd"
+const TextureSampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 ## BO05-only native full-canvas pose renderer. No per-pose auto-fit or cropping.
 ## Anchors are source-pixel registrations, not collision or damage origins.
 const TextureSampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")

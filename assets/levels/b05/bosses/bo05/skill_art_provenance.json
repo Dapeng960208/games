@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "source_checkpoint": "1e82047b7a33523ad6c0301627e856a6eadf95a2",
+  "model": "unknown; image_gen did not return a model identifier",
+  "generation_tool": "image_gen.imagegen",
+  "effect": {
+    "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-d7811871-26d0-40ff-8057-09d00825b061.png",
+    "sha256": "ef9a42213412766fe51ac4aadf3d8d3cfeccdbe601665ceeef6d8ed8f93ec104",
+    "native_pixels": [
+      1254,
+      1254
+    ],
+    "prompt": "Use case: stylized-concept. Production transparent game FX sprite atlas for the BLOOMING TREE KING, bright refined painted storybook 2.5D fantasy, delicate living honey-gold roots, emerald leaves, peach pink blossoms. EXACTLY SIX DISTINCT independent effects arranged in TWO COLUMNS and THREE ROWS on a square canvas. No icons, no circular badge borders, no text, no characters, no landscape, no opaque haze. Each entire effect including dust and petals must fit within the central 70% WIDTH and 65% HEIGHT of its own equal cell, generous fully transparent gutters on all four sides. Requested 1536-square maximum native resolution, actual output authoritative. Ordered left-to-right top-to-bottom: 1 a curved sweeping woody branch arc with a few green leaves and pink petals, facing right, open C shape; 2 three grounded tapered living root spikes erupting from a narrow broken soil seam, growth UPWARD not a flying spear; 3 two plump falling seedpods with a few falling seeds and restrained downward motion streaks; 4 a wide elliptical blossom ring with two clearly separated inner and outer tiers of pink petals, hollow transparent center, viewed high from above; 5 TWO distinct tiny baby sprout plants rooted in separate small glowing flower circles, protective flower heart between them; 6 FOUR DISTINCT seasonal leaves green/pink/orange/pale blue spiralling around a hollow elliptical woody annual ring. Clearly six different semantic silhouettes and warm original colors. These are actual independent combat effect sprites, not a decorative concept board. Truly transparent RGBA background including centers of rings, no cast ground shadow, no grid lines, no motif touches any cell border. Keep fine material quality but readable at small game scale.",
+    "correction_prompt": "Edit this six-effect transparent atlas. Preserve exactly these six semantic designs, colors, order and painted material detail. FIX COMPOSITION ONLY. Canvas exactly square, TWO columns and THREE rows. Make every COMPLETE effect 35% SMALLER relative to its cell; all petals, glow, droplets, streaks and dust must shrink together. Centers are x=25%/75%, y=1/6,1/2,5/6 of canvas. Every motif's complete nonzero-alpha silhouette including glow fits within the CENTRAL 55% of cell width and 55% of cell height. Each motif is isolated with at least 20% cell fully alpha ZERO on all four sides. No overlapping across cell boundaries, no silhouette chopped. Clear all colored glow outside these central motifs to alpha ZERO. Do not fill ring centers. Preserve order and distinct shapes; no added symbol, text, badge or background. Keep truly transparent RGBA throughout all empty areas.",
+    "processing": "original output copied byte-for-byte; runtime cell sampling and aspect fitting only",
+    "generation_chain": [
+      {
+        "stage": "six semantic original effects",
+        "prompt": "Use case: stylized-concept. Production transparent game FX sprite atlas for the BLOOMING TREE KING, bright refined painted storybook 2.5D fantasy, delicate living honey-gold roots, emerald leaves, peach pink blossoms. EXACTLY SIX DISTINCT independent effects arranged in TWO COLUMNS and THREE ROWS on a square canvas. No icons, no circular badge borders, no text, no characters, no landscape, no opaque haze. Each entire effect including dust and petals must fit within the central 70% WIDTH and 65% HEIGHT of its own equal cell, generous fully transparent gutters on all four sides. Requested 1536-square maximum native resolution, actual output authoritative. Ordered left-to-right top-to-bottom: 1 a curved sweeping woody branch arc with a few green leaves and pink petals, facing right, open C shape; 2 three grounded tapered living root spikes erupting from a narrow broken soil seam, growth UPWARD not a flying spear; 3 two plump falling seedpods with a few falling seeds and restrained downward motion streaks; 4 a wide elliptical blossom ring with two clearly separated inner and outer tiers of pink petals, hollow transparent center, viewed high from above; 5 TWO distinct tiny baby sprout plants rooted in separate small glowing flower circles, protective flower heart between them; 6 FOUR DISTINCT seasonal leaves green/pink/orange/pale blue spiralling around a hollow elliptical woody annual ring. Clearly six different semantic silhouettes and warm original colors. These are actual independent combat effect sprites, not a decorative concept board. Truly transparent RGBA background including centers of rings, no cast ground shadow, no grid lines, no motif touches any cell border. Keep fine material quality but readable at small game scale.",
+        "output_sha256": "af17f2a7b716e05939c8e8b7ac0d1343d7e06a2d3c9626093c0887e7592a47eb",
+        "retained_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-7c55c6a6-8706-4a82-a990-68f76ca0172e.png"
+      },
+      {
+        "stage": "transparent cell composition correction",
+        "prompt": "Edit this six-effect transparent atlas. Preserve exactly these six semantic designs, colors, order and painted material detail. FIX COMPOSITION ONLY. Canvas exactly square, TWO columns and THREE rows. Make every COMPLETE effect 35% SMALLER relative to its cell; all petals, glow, droplets, streaks and dust must shrink together. Centers are x=25%/75%, y=1/6,1/2,5/6 of canvas. Every motif's complete nonzero-alpha silhouette including glow fits within the CENTRAL 55% of cell width and 55% of cell height. Each motif is isolated with at least 20% cell fully alpha ZERO on all four sides. No overlapping across cell boundaries, no silhouette chopped. Clear all colored glow outside these central motifs to alpha ZERO. Do not fill ring centers. Preserve order and distinct shapes; no added symbol, text, badge or background. Keep truly transparent RGBA throughout all empty areas.",
+        "reference_sha256": "af17f2a7b716e05939c8e8b7ac0d1343d7e06a2d3c9626093c0887e7592a47eb",
+        "output_sha256": "ef9a42213412766fe51ac4aadf3d8d3cfeccdbe601665ceeef6d8ed8f93ec104"
+      }
+    ]
+  },
+  "icons": {
+    "source": "checkpoint original; exact early prompt unavailable, retained source record",
+    "sha256": "0c65499645d78fd2b1aa4e1da06cc955053fb1bcf399716f129b78712b35ad3b",
+    "native_pixels": [
+      1254,
+      1254
+    ],
+    "processing": "original atlas retained; alpha128 bbox plus 3px sampling margin"
+  },
+  "runtime_verified": true,
+  "verification": {
+    "suite": "b05_b06_boss_skill_art",
+    "checks": 197,
+    "failures": 0,
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "renderer": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "run_id": "20261003T104001798-1ad6be1a",
+    "cast_icon_physical_pixels": [
+      48,
+      48
+    ],
+    "codex_icon_physical_pixels": [
+      64,
+      64
+    ],
+    "scope": "six real commands each, warnings/releases and reduced FX; not natural balance"
+  },
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T112327490-ed3efb13",
+    "candidate_arguments": false,
+    "renderer": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "framebuffer": [
+      2560,
+      1440
+    ]
+  }
+}

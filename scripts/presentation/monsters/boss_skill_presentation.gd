@@ -1,6 +1,7 @@
 extends RefCounted
 ## Read-only cast UI and faction ornaments. Frozen combat geometry owns damage.
 const Catalog = preload("res://scripts/domain/combat/boss_ability_catalog.gd")
+const SkillArt = preload("res://scripts/presentation/monsters/boss_skill_art.gd")
 const Text = preload("res://scripts/infrastructure/localization/strings.gd")
 const BASIC_ATTACKS := ["hammer_fan","root_fork","capacitor_burst","resonance_ring"]
 
@@ -11,7 +12,7 @@ static func readout(brain: RefCounted) -> Dictionary:
 	var timing: Dictionary = (load(AssetCatalog.resolve("res://scripts/presentation/monsters/enemy_telegraphs.gd")) as Script).presentation_data(warning)
 	var action := str(brain.current_action)
 	var pose: Dictionary = brain.action_presentation()
-	return {"title":Catalog.title(action,Text.locale == "en"),"casting":not warning.is_empty(),"stage":str(pose.get("stage","idle")),"basic":action in BASIC_ATTACKS,"locked":bool(warning.get("locked",false)),"remaining":maxf(0,float(brain.state_time))+(0.0 if bool(warning.get("locked",false)) else float(warning.get("lock",0))),"progress":float(timing.get("release_progress",0)) if not warning.is_empty() else float(pose.get("progress",0)),"boss_id":str(brain.boss_id),"difficulty":int(brain.definition.get("difficulty",0)),"unlocked":Catalog.unlocked(str(brain.boss_id),int(brain.definition.get("difficulty",0))).size(),"pool":brain.skill_pool().size(),"weakpoint":brain.weakpoint_open()}
+	return {"title":Catalog.title(action,Text.locale == "en"),"casting":not warning.is_empty(),"stage":str(pose.get("stage","idle")),"basic":action in BASIC_ATTACKS,"locked":bool(warning.get("locked",false)),"remaining":maxf(0,float(brain.state_time))+(0.0 if bool(warning.get("locked",false)) else float(warning.get("lock",0))),"progress":float(timing.get("release_progress",0)) if not warning.is_empty() else float(pose.get("progress",0)),"boss_id":str(brain.boss_id),"action_id":action,"difficulty":int(brain.definition.get("difficulty",0)),"unlocked":Catalog.unlocked(str(brain.boss_id),int(brain.definition.get("difficulty",0))).size(),"pool":brain.skill_pool().size(),"weakpoint":brain.weakpoint_open()}
 
 static func cast_text(info: Dictionary) -> String:
 	var english := Text.locale == "en"
@@ -32,7 +33,8 @@ static func draw_cast(canvas: CanvasItem, info: Dictionary, font: Font, at: Vect
 	var width := box.size.x
 	canvas.draw_style_box(GameStyle.box(Color("fff2d6"),Color("ba9256"),1),box)
 	var color := Color("d85d49") if bool(info.locked) else tint.darkened(.2)
-	draw_glyph(canvas, str(info.boss_id),box.position+Vector2(20,15),10,color,0)
+	if not SkillArt.draw_icon(canvas,str(info.boss_id),str(info.get("action_id","")),box.position+Vector2(20,15),24):
+		draw_glyph(canvas,str(info.boss_id),box.position+Vector2(20,15),10,color,0)
 	canvas.draw_string(font,box.position+Vector2(38,21),text,HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color("49364f"))
 	if str(info.stage) != "idle":
 		canvas.draw_rect(Rect2(box.position+Vector2(8,32),Vector2(width-16,3)),Color("d9c8ad"))
@@ -65,6 +67,7 @@ static func draw_action(canvas: Node2D, info: Dictionary, reduced: bool) -> void
 		canvas.draw_line(at-aim*20,at-aim*7,color,2,true)
 		return
 	if stage != "release": return
+	if SkillArt.draw_release(canvas,info,reduced): return
 	color.a = (1.0-p)*(0.45 if reduced else 0.9)
 	var angle := aim.angle()
 	if str(info.action_id) in ["resonance_ring","alternating_ring","heart_crack","crag_leap"]:
@@ -99,6 +102,7 @@ static func draw_glyph(canvas: CanvasItem, boss_id: String, at: Vector2, radius:
 static func draw_impact(canvas: Node2D, command: Dictionary, reduced: bool) -> void:
 	var id := str(command.get("boss_id",""))
 	if id.is_empty() or reduced: return
+	if SkillArt.draw_impact(canvas,command,reduced): return
 	var at: Vector2 = command.get("origin",Vector2.ZERO)
 	var color: Color = command.get("fx_color",Catalog.COLORS.get(id,Color("d4ad67")))
 	var radius := minf(32,float(command.get("radius",28))*.4)

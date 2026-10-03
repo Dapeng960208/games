@@ -128,14 +128,23 @@ func contact_position(event: Dictionary) -> Vector2:
 func add_floating_damage(at: Vector2, amount: float, kind: StringName, context: Dictionary = {}) -> void:
 	if amount <= 0.0 or not is_finite(amount) or not at.is_finite():
 		return
-	var lane: int = 0
-	for old in events:
-		if old.kind == "number" and float(old.age) < 0.28 and Vector2(old.origin).distance_squared_to(at) < 42.0 * 42.0:
-			lane += 1
-	var offset := Vector2(float((lane % 3) - 1) * 29.0 if lane > 0 else 0.0, -float(lane % 3) * 17.0)
-	_append({"kind":"number", "at":at + offset, "origin":at, "amount":amount,
+	var number: Dictionary = {"kind":"number", "at":at, "origin":at, "amount":amount,
 		"source":str(kind), "age":0.0, "duration":0.72, "reduced":_reduced(),
-		"presentation":NumberPresentation.presentation(amount, str(kind), context)})
+		"presentation":NumberPresentation.presentation(amount, str(kind), context)}
+	_append(number)
+	# Allocate after the existing cap evicts its oldest event. Reserve lanes for
+	# all still-visible nearby numbers, including those older than 0.28 seconds.
+	var occupied: Dictionary = {}
+	for index in range(events.size()-1):
+		var old: Dictionary = events[index]
+		if old.kind == "number" and Vector2(old.origin).distance_squared_to(at) < 42.0 * 42.0:
+			occupied[int(old.get("lane",0))] = true
+	var lane: int = 0
+	while occupied.has(lane):
+		lane += 1
+	var columns: Array[int] = [0,-1,1,-2,2]
+	number["lane"] = lane
+	number["at"] = at+Vector2(float(columns[lane%5])*96.0,-floorf(float(lane)/5.0)*38.0)
 
 func clear_feedback() -> void:
 	events.clear()
@@ -252,8 +261,8 @@ func _draw_cleave(at: Vector2, dir: Vector2, radius: float, t: float, fade: floa
 	var snap: float = _core_strength(event, 0.075, 0.09)
 	var center := at + dir * (1.0 + t * 2.0)
 	var extent: float = radius * 0.45
-	# A broad diagonal axe bite, with a bright cutting edge and copper wake.
-	# Its narrow waist keeps the actual enemy silhouette readable on contact.
+	var basic: bool = str(event.source) == "primary" and not bool(event.passive)
+	# A narrow axe bite keeps the actual enemy silhouette readable on contact.
 	var cut := (n + dir * 0.32).normalized()
 	var core := PackedVector2Array([center - cut * extent * 1.12,
 		center - cut * extent * 0.75 - dir * extent * 0.26,
@@ -261,8 +270,14 @@ func _draw_cleave(at: Vector2, dir: Vector2, radius: float, t: float, fade: floa
 		center + cut * extent * 1.15,
 		center + cut * extent * 0.72 + dir * extent * 0.22,
 		center - cut * extent * 0.68 + dir * extent * 0.12])
-	_contact_chip(core, AMBER, snap)
+	_contact_chip(core, Color("fff8e6") if basic else AMBER, snap)
 	draw_line(center - cut * extent * 0.9, center + cut * extent * 0.94, Color(IVORY, snap), 3.1, true)
+	if basic:
+		# Only confirmed body contact emits these brief white-gold star rays.
+		for index in 6:
+			var ray := dir.rotated(TAU * index / 6.0 + 0.18)
+			var reach: float = radius * (0.52 + _noise(int(event.serial), index) * 0.24) * (1.0 + t * 0.2)
+			_contact_line(PackedVector2Array([center + ray * 2.5, center + ray * reach]), Color("fff9e8") if index % 2 == 0 else AMBER, snap, 1.8)
 	# One broken, flattened pressure front; it reads as compression, not a spell ring.
 	if bool(event.heavy):
 		var pressure := PackedVector2Array()

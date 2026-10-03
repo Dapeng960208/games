@@ -1,0 +1,25 @@
+{
+  "skill_id": "CH01_SK09",
+  "name": "投斧回旋",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in generate",
+  "date": "2026-10-03",
+  "prompt": "Use case: stylized-concept. Asset type: original handpainted cartoon fantasy RPG skill badge CH01_SK09, Returning thrown axe. Generate ONE finished square icon, requested native 2048 x 2048, not a sheet. Subject: one spectacular large silver-steel battle axe with broad angular stone-edged blade, short dark navy handle and vermillion grip, flying diagonally toward the upper right. A single bold bright amber curved U-shaped return trajectory curls beneath and behind the axe and points back toward the lower-left; clearly reads as a THROWN RETURNING AXE, not an axe planted in the ground, not two axes and not a circular spin. The axe is the dominant close-up silhouette, occupying most of the badge. Sculpted painterly 2.5D volumes, crisp hand-painted edges, warm upper-left sunlight, steel silver blade reflections and amber motion trail against dark navy. Near-isometric three-quarter high camera. Circular thin antique-brass rim at 92 percent canvas width, dark navy inside the badge, genuinely transparent outside the circle. Generous safe margin; all artwork and glow contained inside the rim. Strong simple dominant shapes immediately recognizable at 44 pixel thumbnail size. Original custom game art. No person, no text, no numbers, no letters, no logo, no watermark, no grid, no extra badges, no copied game art.",
+  "transparent_background": true,
+  "original_output": "C:\\Users\\13326\\.codex\\generated_images\\01a10116-5bb7-7b22-af3b-85b25fc566ee\\exec-b1148e05-020d-4c8e-9bf3-9e8ced4c5100.png",
+  "workspace_output": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/skills/sk09_icon.png",
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_2k": false,
+  "color_mode": "RGBA",
+  "bit_depth": 8,
+  "sha256": "eacfb4a7de1f5c20237145d334800508304064feece17e71b954ad5e7cad8930",
+  "processing": "Original tool PNG copied byte for byte; no resizing, recoloring, or local image edits.",
+  "visual_review": "Actual generated image inspected. Unique main silhouette and contained brass-rim composition."
+}

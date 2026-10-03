@@ -15,7 +15,7 @@ static func parameters() -> Dictionary:
 	return _parameters.duplicate(true)
 
 ## Candidate preview requires BOTH a debug flag and an explicitly isolated save.
-## The shipped JSON and parameters() remain the approved four-chapter rules.
+## Experiment flags stay isolated; released chapters come from the shipped JSON.
 static var _candidate_b05 := -1
 static func b05_candidate_enabled() -> bool:
 	if b06_candidate_enabled(): return true
@@ -29,12 +29,15 @@ static func b06_candidate_enabled() -> bool:
 static func b07_candidate_enabled() -> bool:
 	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b07")
 
+static func b09_candidate_enabled() -> bool:
+	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b09")
+
 static func _candidate_arguments_valid(args: PackedStringArray, chapter: String = "b05") -> bool:
-	if chapter not in ["b05","b06","b07"] or not args.has("--candidate-"+chapter): return false
-	var candidates := 0
-	for id: String in ["b05","b06","b07"]:
-		if args.has("--candidate-"+id): candidates += 1
-	if candidates != 1: return false
+	if chapter not in ["b05","b06","b07","b09"] or not args.has("--candidate-"+chapter): return false
+	var flags := 0
+	for id: String in ["b05","b06","b07","b09"]:
+		if args.has("--candidate-"+id): flags += 1
+	if flags != 1: return false
 	var paths: Array[String] = []
 	for argument: String in args:
 		if argument.begins_with("--test-profile="): paths.append(argument.trim_prefix("--test-profile="))
@@ -46,10 +49,11 @@ static func _candidate_arguments_valid(args: PackedStringArray, chapter: String 
 		if component in ["", ".", ".."]: return false
 	return true
 
+static func chapter_enabled(chapter: int) -> bool:
+	return chapter >= 1 and chapter <= int(value("implemented_chapters", 4))
+
 static func value(key: String, fallback: Variant = null) -> Variant:
 	if key == "implemented_chapters" and b07_candidate_enabled(): return 7
-	if key == "implemented_chapters" and b06_candidate_enabled(): return 6
-	if key == "implemented_chapters" and b05_candidate_enabled(): return 5
 	if _parameters.is_empty(): parameters()
 	var result: Variant = _parameters.get(key, fallback)
 	return result.duplicate(true) if result is Dictionary or result is Array else result

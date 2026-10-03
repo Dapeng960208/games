@@ -10,6 +10,7 @@ const SetShop = preload("res://scripts/presentation/equipment/equipment_set_shop
 const Recycle = preload("res://scripts/presentation/equipment/equipment_recycle_panel.gd")
 const HeroDossier = preload("res://scripts/presentation/screens/hero_dossier.gd")
 const SkillInspect = preload("res://scripts/presentation/screens/skill_inspection.gd")
+const MenuBackdrop = preload("res://scripts/presentation/screens/menu_backdrop.gd")
 const Inspect = preload("res://scripts/presentation/equipment/equipment_inspection.gd")
 const StatSheet = preload("res://scripts/presentation/screens/stat_sheet.gd")
 const InstanceForging = preload("res://scripts/presentation/equipment/instance_forging_panel.gd")
@@ -61,6 +62,9 @@ func _ready() -> void:
 	_render()
 
 func _render() -> void:
+	var owner := get_viewport().gui_get_focus_owner()
+	var focus_name := str(get_meta("dossier_focus",""))
+	if focus_name.is_empty() and owner != null and is_ancestor_of(owner): focus_name = str(owner.name)
 	# These views belong to one render only. Any equip/forge/filter action starts
 	# a new render and reads the latest committed records, including duplicate IDs.
 	_equipment_views.clear()
@@ -68,6 +72,10 @@ func _render() -> void:
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
+	if mode in ["heroes", "skills"]:
+		var backdrop := MenuBackdrop.new()
+		backdrop.name = "WorkshopBackdrop"
+		add_child(backdrop)
 	var header := GameStyle.panel(self,Vector2.ZERO,Vector2(1280,64))
 	header.name = "WorkshopHeader"
 	var emblem := TextureRect.new()
@@ -142,14 +150,15 @@ func _render() -> void:
 		Recycle.render(self)
 	else:
 		_render_equipment()
-	GameStyle.literal(self,_t("Esc  返回营地    ·    Tab  切换焦点    ·    Enter  确认","Esc  Return to camp    ·    Tab  Navigate    ·    Enter  Confirm"),Vector2(40,695),Vector2(750,20),12,GameStyle.MUTED)
-	var focus := find_child("PrimaryAction",true,false) as Button
-	if focus != null and not focus.disabled:
-		focus.grab_focus()
-	else:
-		var back := find_child("ReturnCamp",true,false) as Button
-		if back != null:
-			back.grab_focus()
+	var footer := GameStyle.panel(self,Vector2(32,690),Vector2(1216,30))
+	footer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	GameStyle.literal(footer,_t("Esc  返回营地    ·    Tab  切换焦点    ·    Enter  确认","Esc  Return to camp    ·    Tab  Navigate    ·    Enter  Confirm"),Vector2(8,4),Vector2(1196,22),14,GameStyle.INK)
+	var focus := find_child(focus_name,true,false) as Control if not focus_name.is_empty() else null
+	if focus == null or not focus.is_visible_in_tree() or focus.focus_mode == Control.FOCUS_NONE or focus is BaseButton and focus.disabled:
+		focus = find_child("InspectSkill_"+SKILLS[clampi(int(get_meta("dossier_slot",0)),0,3)],true,false) as Control if mode == "skills" else find_child("PrimaryAction",true,false) as Control
+	if focus == null or focus is BaseButton and focus.disabled: focus = find_child("ReturnCamp",true,false) as Control
+	if focus != null: focus.grab_focus.call_deferred()
+	remove_meta("dossier_focus")
 
 static func _nav_style(button: Button, active: bool) -> void:
 	button.custom_minimum_size = Vector2(44,32)
@@ -162,6 +171,7 @@ static func _secondary_style(button: Button, active: bool) -> void:
 
 func _switch_page(next_mode: String) -> void:
 	mode = next_mode
+	set_meta("dossier_focus","Tab_"+next_mode)
 	creation_transaction_id = ""
 	creation_message = ""
 	app.route = "workshop_"+mode

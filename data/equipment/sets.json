@@ -182,13 +182,17 @@
         "name": "缝补回声 · 4 件",
         "text": "有护盾时冲刺后首个主攻击，直接伤害 +12%；窗口 2 秒，ICD 3 秒",
         "name_en": "Patchwork Echo · 4 pieces",
-        "text_en": "While shielded, the first primary attack within 2 s after a dash deals +12% direct damage. Internal cooldown: 3 s."
+        "text_en": "While shielded, the first primary attack within 2 s after a dash deals +12% direct damage. Internal cooldown: 3 s.",
+        "text_v2": "战士主动技能实际生成或刷新护盾后，伤害 +20%，持续 4 秒；冷却 6 秒。装备或遗物护盾不触发。",
+        "text_v2_en": "An accepted Warrior active-skill shield grants +20% damage for 4 s; internal cooldown 6 s. Equipment and relic shields do not trigger it."
       },
       "6": {
         "name": "缝补回声 · 6 件",
         "text": "护盾被敌人打破后，5 秒内下一次主攻击附带冲击波，对最多 3 名目标造成 X×40% 附加伤害；ICD 8 秒",
         "name_en": "Patchwork Echo · 6 pieces",
-        "text_en": "After an enemy breaks your shield, the next primary attack within 5 s creates a shockwave dealing extra damage equal to 40% of X to up to 3 targets. Internal cooldown: 8 s."
+        "text_en": "After an enemy breaks your shield, the next primary attack within 5 s creates a shockwave dealing extra damage equal to 40% of X to up to 3 targets. Internal cooldown: 8 s.",
+        "text_v2": "在狂暴且有护盾时释放的原始主动技能有效命中，追加 0.60H 物理冲击波，最多 3 名目标；冷却 4 秒，同一施法只触发一次。",
+        "text_v2_en": "A confirmed original active-skill hit cast while berserk and shielded adds a 0.60H physical shockwave to up to 3 targets; 4 s internal cooldown, once per cast."
       }
     },
     "unlock_boss": "",

@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "direction": "SW",
+  "status": "candidate_not_runtime_validated",
+  "generated_with": "built-in image_gen.imagegen",
+  "requested_native_size": [
+    2048,
+    2048
+  ],
+  "actual_native_size": [
+    1254,
+    1254
+  ],
+  "native_2k_sources_met": false,
+  "upsampled": false,
+  "final_source_original_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101e9-8e99-75e0-b52e-5b4b67eabee7\\exec-26b9cea0-739c-4f59-bb16-39c1c05d683b.png",
+  "final_source_sha256": "a493d63bb56f1b577b38b43a2a73b7df49efd02627573e1c90a66f3c67bcce3b",
+  "final_candidate_path": "tools/godot/art_preview/slash_directional/candidates/sw/slash_sw.png",
+  "byte_copy_only": true,
+  "provenance": {
+    "origin": "Original separately generated directional effect, followed by edits of only its own original output. No source image asset was traced or copied; no other direction was rotated or mirrored.",
+    "model": "Not exposed by built-in tool; not guessed.",
+    "references": [
+      {
+        "path": "C:\\Users\\13326\\AppData\\Local\\Temp\\codex-clipboard-e8afba6d-6fa2-41c4-8c17-9e2f75a898f4.png",
+        "sha256": "5570ee660f9e684aebcefe726ea1d821b9249414e3ef439a314c937c004af4c4",
+        "role": "User positive silhouette/timing reference, supplied to initial imagegen",
+        "inspected_with_view_image": true
+      },
+      {
+        "path": "C:\\Users\\13326\\AppData\\Local\\Temp\\codex-clipboard-b7851f68-d9e7-4ece-96d1-dcb1b27b04f5.png",
+        "sha256": "dd29c28c69ec85fee50785eb435c0e12f25e6ea07edb65e78660c0823027f67b",
+        "role": "User failure example, inspected only; never supplied as imagegen input",
+        "inspected_with_view_image": true
+      },
+      {
+        "path": "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\warrior\\animations\\runtime\\poses_s_b.png",
+        "sha256": "90287e3132b5900a2943f950fc337a19dae61d00bb45403e12917b56513c9661",
+        "role": "Actual warrior S pose bank, top-left release inspected",
+        "inspected_with_view_image": true
+      },
+      {
+        "path": "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\warrior\\animations\\runtime\\poses_sw_b.png",
+        "sha256": "85b9e7145a764c1761aef7694715ea4a4b22d792ebd54b941ea35c496a2ce282",
+        "role": "Actual warrior SW pose bank, top-left release inspected",
+        "inspected_with_view_image": true
+      }
+    ],
+    "original_outputs_preserved": true
+  },
+  "generation_history": [
+    {
+      "stage": 1,
+      "intent": "independent_original_generation",
+      "prompt": "Use case: stylized-concept.\nAsset type: original standalone RGBA melee slash VFX sprite for a bright hand-painted cartoon fantasy game, high-angle near-isometric 2.5D.\nInput images: Image 1 is ONLY a silhouette, brightness and timing reference from the user; do not copy its asset, character, sword, grass, enemies or UI. Image 2 is ONLY the actual warrior release pose reference: use the TOP-LEFT figure only to understand where the axe blade points, and do not depict or copy any figure or weapon.\nPrimary request: create ONE freshly painted directional slash of light ONLY, using a genuinely transparent background. Request native 2048 x 2048 square canvas if available. The entire output is the isolated effect, with generous transparent padding.\nStyle/medium: clean polished hand-painted cartoon game VFX, thick clearly defined luminous ivory-white blade edge with a few very thin warm-gold parallel motion filaments immediately beside it. Strong graphic silhouette at small game scale, restrained soft bloom. Light should remain ivory-white rather than become an orange flame.\nConstraints: ONE single-sided short 100-140 degree arc with pointed fading tips, transparent open center, no complete ring or looping tail. The main white arc must never sweep back through the future warrior chest or legs: this light is placed BEYOND the axe cutting edge with a visible air gap between weapon and light in game. Do not depict the air gap as a line or any physical object. Independently design this direction, no rotated or mirrored generic C. Original asset from scratch, no traced source.\nAvoid: people, characters, anatomy, axe, sword, any weapon, ground, environment, shadows, floor glow, UI, text, watermark, ring, shield, dome, archway, tall horseshoe, long return curve, thick gold rim, orange explosion, fire, giant starburst, smoke, opaque background.\nDirection-specific composition SOUTHWEST / SW, screen lower-left: in the TOP-LEFT pose the warrior releases the axe down-left. Paint a freshly designed short DIAGONAL slash with the ivory-white leading arc bulging toward the lower-left, its open concave inner side facing upper-right. Concentrate the light along the LEFT-LOWER outside of the axe swing, not across the future body. A small upper-left pointed start and broad curved leading edge sweep to a short lower-right tapered end; the arc stays compact and asymmetrical rather than wrapping around the feet. Add only 2-3 very fine gold filaments running just inside the upper diagonal edge, each short and parallel to the blade. No long returning bottom hook, no closed or near-closed curve. Frame the entire effect centered with clear transparent padding; do not crop tips.",
+      "referenced_image_paths": [
+        "C:\\Users\\13326\\AppData\\Local\\Temp\\codex-clipboard-e8afba6d-6fa2-41c4-8c17-9e2f75a898f4.png",
+        "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\warrior\\animations\\runtime\\poses_sw_b.png"
+      ],
+      "transparent_background_requested": true,
+      "requested_native_size": [
+        2048,
+        2048
+      ],
+      "actual_native_size": [
+        1254,
+        1254
+      ],
+      "pixel_format": "Format32bppArgb",
+      "alpha_corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101e9-8e99-75e0-b52e-5b4b67eabee7\\exec-92dc62c8-342e-4fc1-8590-85bc72bfe81a.png",
+      "sha256": "dc180b5eeee066b70f4ecc224b4d6c93bf2220875411503de083ed152a3b6bdb",
+      "view_image_inspected": true,
+      "review": "Correct lower-left convex leading edge; broad gold-orange haze and long bottom-right return rejected.",
+      "selected": false
+    },
+    {
+      "stage": 2,
+      "intent": "targeted_imagegen_edit",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent original SOUTHWEST slash VFX sprite for a hand-painted bright cartoon 2.5D fantasy game.\nInput image: edit target, previously generated isolated diagonal SW light effect; keep its lower-left convex leading edge and upper-right open concave inner side, freshly drawn asymmetry and diagonal orientation.\nPrimary request: refine this isolated slash into a SHORT compact single-sided 110-130 degree blade sweep. Shorten the overlong rightward bottom return tip to about HALF its current length so the effect ends quickly and cannot curl around the future feet. Keep the upper-left tapered tip short. Use a clean dominant ivory-white main cutting blade. Remove the broad orange flame cloud: retain only 2-3 very fine pale warm-gold parallel filaments along the short upper diagonal inner edge, minimal nearly colorless bloom. Clear transparent open center; no rotation, mirroring, ring or near-ring. Genuinely transparent background. Request native 2048x2048 square if available. No people, weapons, ground, scene, UI, text, smoke, starburst or opaque backdrop. Keep generous transparent padding and all tips uncut.",
+      "referenced_image_paths": [
+        "C:\\Users\\13326\\.codex\\generated_images\\01a101e9-8e99-75e0-b52e-5b4b67eabee7\\exec-92dc62c8-342e-4fc1-8590-85bc72bfe81a.png"
+      ],
+      "transparent_background_requested": true,
+      "requested_native_size": [
+        2048,
+        2048
+      ],
+      "actual_native_size": [
+        1254,
+        1254
+      ],
+      "pixel_format": "Format32bppArgb",
+      "alpha_corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101e9-8e99-75e0-b52e-5b4b67eabee7\\exec-eecc92ee-4d08-482e-9a90-7f11282161ac.png",
+      "sha256": "0fefd355ea97948385ca492be9163068ac47fd2e142567e16372e9487b59aff9",
+      "view_image_inspected": true,
+      "review": "Compact lower-right tip accepted; broad amber hue remained, rejected.",
+      "selected": false
+    },
+    {
+      "stage": 3,
+      "intent": "targeted_imagegen_edit",
+      "prompt": "Use case: precise-object-edit. Input image: isolated SOUTHWEST slash light VFX edit target.\nChange ONLY color hierarchy. Preserve EXACTLY the current compact asymmetric SW curved blade silhouette, current lower-left convex leading edge, upper-right transparent opening, short upper tip, short bottom-right end and current canvas framing and ample margins. Do not lengthen or rotate. Repaint the broad gold-orange haze into a restrained nearly COLORLESS white glow, and make the broad existing main blade ivory-white. Remove all broad orange/golden flame fill and orange outline. Gold is permitted ONLY in TWO very thin pale warm-gold parallel lines following the short inner upper-diagonal edge. Everything else visible is ivory-white to almost transparent pale white. Preserve transparent background and shape. No new elements, no sparks, no people, weapon, ground, smoke, rings, shields, arch, text or UI. Native 2048 x 2048 square requested if available.",
+      "referenced_image_paths": [
+        "C:\\Users\\13326\\.codex\\generated_images\\01a101e9-8e99-75e0-b52e-5b4b67eabee7\\exec-eecc92ee-4d08-482e-9a90-7f11282161ac.png"
+      ],
+      "transparent_background_requested": true,
+      "requested_native_size": [
+        2048,
+        2048
+      ],
+      "actual_native_size": [
+        1254,
+        1254
+      ],
+      "pixel_format": "Format32bppArgb",
+      "alpha_corners": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101e9-8e99-75e0-b52e-5b4b67eabee7\\exec-26b9cea0-739c-4f59-bb16-39c1c05d683b.png",
+      "sha256": "a493d63bb56f1b577b38b43a2a73b7df49efd02627573e1c90a66f3c67bcce3b",
+      "view_image_inspected": true,
+      "review": "Selected. Ivory-white independent SW sweep, lower-left leading bulge, transparent upper-right opening, compact lower-right end and two pale-gold inner lines.",
+      "selected": true
+    }
+  ],
+  "visual_review": {
+    "checked_utc": "2026-10-03T13:24:00Z",
+    "alpha": "32bpp ARGB; all four canvas corner alpha samples are 0; native transparent image bytes preserved.",
+    "contour": "Compact asymmetrical lower-left-convex diagonal arc, opens upper-right, short lower-right end.",
+    "risks": [
+      "Upper-left tip can intrude toward the body if anchored too far inward; actual runtime crop/scale and visible axe-to-light gap still require review.",
+      "This is an isolated sprite; no claim of in-game body clearance or runtime acceptance."
+    ]
+  },
+  "postprocess": "None. No cropping, resizing, upsampling, recoloring or alpha modification by script. Final candidate is an unchanged byte copy of selected built-in output.",
+  "production_asset": "res://assets/characters/warrior/fx/directional/slash_sw.png",
+  "production_sha256": "a493d63bb56f1b577b38b43a2a73b7df49efd02627573e1c90a66f3c67bcce3b",
+  "production_native_dimensions": [
+    1254,
+    1254
+  ],
+  "production_processing": "original native PNG copied byte-for-byte; no rotation, mirroring, resampling or alpha cleaning",
+  "production_native_2k": false
+}

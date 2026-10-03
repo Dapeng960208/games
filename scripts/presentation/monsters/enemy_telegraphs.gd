@@ -104,6 +104,13 @@ func _draw() -> void:
 			if bool(data.get("b07_command",false)):
 				draw_set_transform_matrix(room.telegraph_canvas_transform(self))
 				preload("res://scripts/levels/b07/art/skill_presentation.gd").draw_warning(self,actor,data)
+			if bool(data.get("b09_command",false)):
+				if data.has("shatter"): room.draw_enemy_telegraph(self,data.shatter)
+				for follow: Dictionary in data.get("followups",[]):
+					if float(follow.get("coefficient",0))<=0: continue
+					var preview := follow.duplicate(true)
+					preview["locked"]=bool(data.get("locked",false))
+					room.draw_enemy_telegraph(self,preview)
 			if bool(data.get("b05_command",false)) or bool(data.get("b07_command",false)):
 				_draw_b05_links(actor,data)
 				for follow: Dictionary in data.get("followups",[]):

@@ -83,6 +83,8 @@ static func draw_ground_obstacles(canvas: CanvasItem, recipes: Array, time: floa
 				var gap: Dictionary = item.duplicate()
 				gap["force_recessed"] = true
 				_draw_void(canvas,gap,time)
+			elif (str(item.get("kind",""))=="b05_low_cover" or str(item.get("kind","")).begins_with("b05_bridge:")):
+				_ellipse(canvas,rect.get_center(),rect.size*Vector2(.45,.20),Color(.30,.32,.28,.08))
 			elif rect.has_area():
 				_draw_cast_shadow(canvas,rect,120.0 if int(item.get("index",0))%3==0 else 65.0,str(item.get("biome_id","B01")))
 		else:
@@ -113,11 +115,11 @@ static func depth_recipe(layout: Dictionary, biome_id: String, obstacle_recipes:
 		elif bool(item.get("static",false)):
 			if is_recessed_terrain(item): continue
 			item["depth_kind"] = "island"
-			item["foot"] = Vector2(rect.get_center().x,rect.end.y)
+			item["foot"] = rect.get_center() if (str(item.get("kind",""))=="b05_low_cover" or str(item.get("kind","")).begins_with("b05_bridge:")) else Vector2(rect.get_center().x,rect.end.y)
 			var index: int = int(item.get("index",0))
 			item["architecture"] = "column" if index%3==0 else ("wall_horizontal" if rect.size.x >= rect.size.y else "wall_vertical")
 			item["art_size"] = Vector2(minf(170,rect.size.x*0.8),220) if index%3==0 else Vector2(minf(230,rect.size.x*0.92),165)
-			item["visual_bounds"] = architecture_bounds(item.architecture,Vector2(item.foot)-Vector2(0,26),item.art_size,biome_id)
+			item["visual_bounds"] = architecture_bounds(item.architecture,Vector2(item.foot)-(Vector2.ZERO if (str(item.get("kind",""))=="b05_low_cover" or str(item.get("kind","")).begins_with("b05_bridge:")) else Vector2(0,26)),item.art_size,biome_id)
 			item["occludes"] = true
 		else:
 			item["depth_kind"] = "prop"
@@ -176,8 +178,10 @@ static func draw_depth_item(canvas: Node2D, item: Dictionary) -> void:
 		"prop": _draw_instance(canvas,item)
 		"island":
 			var rect: Rect2 = item.get("collision_rect",Rect2())
-			_draw_raised_plinth(canvas,rect,str(item.get("biome_id","B01")))
-			_draw_architecture(canvas,str(item.get("architecture","rock_island")),Vector2(item.foot)-Vector2(0,26),item.get("art_size",Vector2(150,180)),str(item.get("biome_id","B01")))
+			# B05 low cover and closed vine bridges stand at their collision foot.
+			var grounded := (str(item.get("kind",""))=="b05_low_cover" or str(item.get("kind","")).begins_with("b05_bridge:"))
+			if not grounded: _draw_raised_plinth(canvas,rect,str(item.get("biome_id","B01")))
+			_draw_architecture(canvas,str(item.get("architecture","rock_island")),Vector2(item.foot)-(Vector2.ZERO if grounded else Vector2(0,26)),item.get("art_size",Vector2(150,180)),str(item.get("biome_id","B01")))
 		"architecture": _draw_architecture(canvas,str(item.get("architecture","column")),item.get("foot",Vector2.ZERO),item.get("art_size",Vector2(160,290)),str(item.get("biome_id","B01")))
 		"perimeter": Perimeter.draw_item(canvas,item)
 	canvas.draw_set_transform(Vector2.ZERO)

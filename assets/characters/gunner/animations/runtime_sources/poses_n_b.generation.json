@@ -1,0 +1,274 @@
+{
+  "asset": "CH02 adult female Cen Xian N original runtime pose source b",
+  "status": "candidate_requires_runtime_packing_and_alignment_review",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "direction": "N",
+  "direction_degrees": 270,
+  "part": "b",
+  "frame_order": "row-major",
+  "columns": 2,
+  "rows": 2,
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "transparent_background": true,
+  "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-3a939c96-bae7-4d52-90ec-724b1df4c11b.png",
+  "sha256": "0f5a2aca4f46c2e8d294209e148aa50defd40c2874862d297d112d664998c3a0",
+  "source_history": [
+    "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-60bdf60b-da74-4655-98b9-e9ac5627cc1c.png",
+    "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-3a939c96-bae7-4d52-90ec-724b1df4c11b.png"
+  ],
+  "edit_count": 1,
+  "references": [
+    "assets/characters/gunner/animations/runtime_sources/poses_n_a.png",
+    "assets/characters/gunner/portraits/full_illustration.png"
+  ],
+  "prompt": "Use case: stylized-concept. New original CH02 PART B transparent PNG for production game. Image1 directionA sets SAME ADULT woman identity/camera/scale, image2portrait costume/gun. Keep adult agile anatomy, chestnut short wavy bob, ivory#f8f3e8 fittedwaist shortcoat with teal#329ca9 and tinycoral#e9846c lining, highwaist practical teal trousers/boots, leathergloves, goldsilver cyan energycarbine withfoldingbarrel orbital sight. Brightwarm paintedcartoon, high35°oblique downwardnear-isometric2.5D showsbackshoulders/crown/gun/bootTOPplanes, realmaterialvolume.\nExact2x2 FOUR independent COMPLETE poses, genuineblanktransparentbackground. Maintain SAME human scale as A, upright hairtop-to-soles about500px at1254; B mustneithershrink norenlarge comparedA. Bodywidth250-400px wholebody+gun<550px. All completecoat/gun/bothboots insideownquadrant,35px+ blankmargin. Topbodyfeet before45%canvasheight, bottomfeetbefore95%; no centerlinecrossing.\nTL basic_release: shouldered carbine firing alongEXACT declaredscreenvector, smallbackwards recoil,no FX; this gunaxis is critical.\nTR basic_recovery: absorb recoil withknees, slightlylower gun/elbow into lowready.\nBL dash: distinct LOW forward lean/rolling-preparation evasive dash towarddeclaredvector, one rearbootkick, tightcradledgun, entirebodyvisible, no motiontrail. Lowerpose doesNOTmean smallerhead/torso.\nBR guard_cast precise reload: right handholdinggungrip, LEFT handchanging/supportingmagazinebeneathreceiver; focusedrearbody; groundedboots.\nDrawindependent realanatomy, no mirrored/rotatedbody, no pastedduplicates. No flash/projectile/trail/FX, floor/shadow/backdrop/labels/text/borders/strays. Requested native2048square, donot fakeupscale.\nAllfourposes MUST genuinelyface N 270degrees (screenright0/down90/left180/up270): STRAIGHT UP, muzzle-minus-grip dx≈0 dynegative. Genuine FULLBACK, ONLY backofhead/bob and backofcoat, no eyes/nose/face/frontalchest inANYcell.",
+  "targeted_edit_prompt": "Use case: precise-object-edit. Image1 N PARTB is edit target. ONE targeted correction ONLY BOTTOMLEFT dashpose. Current dashlooks likeuprightwalk; redraw as explosive LOW hunched forward evasive dash/rollingpreparation AWAY screenUPN270°. Bend bothknees and hips, adulttorso clearlycompressedlow and inclinedaway, one rearbootkicking backwardtowardviewer, carbine cradledtightforwardalongupdirection. Keep original samehead/torsoanatomysize, NOT uniformly shrinkingcharacter. Hairtop-to-ground roughly350px instead500 becausegenuinelycrouched; samebootsize/material. Keepgenuinefullback crown/backofbob/backivorytealcoat; absolutelyno face/chestfront. Show topplanesofback/bootsfromhigh35°downcamera, nofloorshadows/trails/FX.\nPreserve otherthreecells TLrelease/TRrecovery/BRleftmagazinere-loadunchanged, sameadultCH02identity/clothing/carbine. All4spritesfullycomplete isolated2x2 with35pxtransparentmargin. TruealphaPNG requestednative2048square, nofakeupscale.",
+  "inspection": {
+    "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-3a939c96-bae7-4d52-90ec-724b1df4c11b.png",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "0f5a2aca4f46c2e8d294209e148aa50defd40c2874862d297d112d664998c3a0",
+    "alpha_zero_fraction": 0.7835360657697601,
+    "outer_edge_nontransparent": 8,
+    "mid_x_nontransparent": 0,
+    "mid_y_nontransparent": 19,
+    "components_alpha16": [
+      {
+        "region": [
+          210,
+          15,
+          269,
+          605
+        ],
+        "pixels": 78703
+      },
+      {
+        "region": [
+          808,
+          40,
+          250,
+          588
+        ],
+        "pixels": 76386
+      },
+      {
+        "region": [
+          189,
+          704,
+          301,
+          477
+        ],
+        "pixels": 64038
+      },
+      {
+        "region": [
+          797,
+          641,
+          295,
+          575
+        ],
+        "pixels": 80162
+      }
+    ],
+    "coordinate_space": "absolute original source pixels",
+    "native_2k": false,
+    "frame_foreign_component_pixels_alpha16": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "method": "Pillow / numpy read-only alpha measurements; manual hair/head/hand/muzzle/sole annotations. body_height is hair top to the visible-sole mean or explicitly estimated ground projection for airborne dash, never whole gun bbox. Head-seeded independent component measurement counts foreign pixels inside rectangular frame regions.",
+    "manual_landmarks_verified": false
+  },
+  "frames": [
+    {
+      "head": [
+        319,
+        146
+      ],
+      "grip": [
+        405,
+        218
+      ],
+      "muzzle": [
+        390,
+        47
+      ],
+      "hair_top_y": 88,
+      "boot_bottom_points": [
+        [
+          235,
+          603
+        ],
+        [
+          446,
+          615
+        ]
+      ],
+      "name": "basic_release",
+      "region": [
+        202,
+        7,
+        285,
+        621
+      ],
+      "foot": [
+        340.5,
+        609
+      ],
+      "body_height": 521,
+      "landmark_accuracy_px": 10,
+      "source_px_weapon_axis": [
+        -15,
+        -171
+      ],
+      "measured_axis_degrees": 264.9868862449642,
+      "target_axis_degrees": 270,
+      "axis_deviation_degrees": -5.013113755035874,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    },
+    {
+      "head": [
+        920,
+        184
+      ],
+      "grip": [
+        1007,
+        267
+      ],
+      "muzzle": [
+        993,
+        72
+      ],
+      "hair_top_y": 126,
+      "boot_bottom_points": [
+        [
+          872,
+          580
+        ],
+        [
+          1039,
+          624
+        ]
+      ],
+      "name": "basic_recovery",
+      "region": [
+        800,
+        32,
+        266,
+        604
+      ],
+      "foot": [
+        955.5,
+        602
+      ],
+      "body_height": 476,
+      "landmark_accuracy_px": 10,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    },
+    {
+      "head": [
+        370,
+        806
+      ],
+      "grip": [
+        458,
+        900
+      ],
+      "muzzle": [
+        444,
+        739
+      ],
+      "hair_top_y": 759,
+      "boot_bottom_points": [
+        [
+          282,
+          1089
+        ],
+        [
+          360,
+          1170
+        ]
+      ],
+      "foot": [
+        340,
+        1185
+      ],
+      "landmark_accuracy_px": 35,
+      "foot_method": "Estimated body ground projection below the low forward tumble posture; both turned rear-visible soles are raised.",
+      "risk": "Low forward dash has airborne soles. Ground projection carries approx35px uncertainty. Keep adult head/torso size; do not enlarge crouch to upright height.",
+      "name": "dash",
+      "region": [
+        181,
+        696,
+        317,
+        493
+      ],
+      "body_height": 426,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    },
+    {
+      "head": [
+        923,
+        763
+      ],
+      "grip": [
+        1012,
+        874
+      ],
+      "muzzle": [
+        995,
+        679
+      ],
+      "hair_top_y": 704,
+      "boot_bottom_points": [
+        [
+          824,
+          1210
+        ],
+        [
+          1063,
+          1210
+        ]
+      ],
+      "name": "guard_cast",
+      "region": [
+        789,
+        633,
+        311,
+        591
+      ],
+      "foot": [
+        943.5,
+        1210
+      ],
+      "body_height": 506,
+      "landmark_accuracy_px": 10,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    }
+  ],
+  "known_issues": [
+    "Built-in generator returned native1254x1254 despite2048x2048 request. Not native2K; no upscale was performed.",
+    "Nominal35px empty margins are not consistently achieved. Source must be separated with actual component geometry, not hard-cut midpoint quadrants.",
+    "Small outside-edge alpha specks are preserved in the original source but lie outside character regions; exclude from packed runtime frames.",
+    "Actual camera and pose-dependent body-height/scale variation require runtime visual alignment review. Keep dash anatomy scale and do not stretch crouch to upright height.",
+    "Manual visible landmark estimates typically10px; airborne ground projections35-40px and hidden muzzle positions carry explicit per-frame risk."
+  ],
+  "credit": "Original user-directed AI-generated project character artwork using OpenAI built-in image_gen; no third-party character IP copied."
+}

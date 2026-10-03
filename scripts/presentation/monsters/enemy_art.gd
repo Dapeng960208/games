@@ -71,6 +71,7 @@ static var _loaded: Dictionary = {}
 
 static func entry_for(identity: String) -> Dictionary:
 	if identity.begins_with("B07-M"): return preload("res://scripts/levels/b07/art/native_art.gd").entry(identity)
+	if identity.begins_with("B09-M") or identity == "BO09": return preload("res://scripts/levels/b09/art/actors.gd").entry(identity)
 	if identity.begins_with("B06-M"): return preload("res://scripts/levels/b06/art/native_art.gd").entry(identity)
 	if identity in preload("res://scripts/levels/b05/art/enemy_art.gd").IDS: return preload("res://scripts/levels/b05/art/enemy_art.gd").entry(identity)
 	_ensure_loaded(identity)
@@ -82,6 +83,7 @@ static func variant_count(identity: String) -> int:
 
 static func variant_entry_for(identity: String, index: int) -> Dictionary:
 	if identity.begins_with("B07-M"): return preload("res://scripts/levels/b07/art/native_art.gd").entry(identity)
+	if identity.begins_with("B09-M") or identity == "BO09": return preload("res://scripts/levels/b09/art/actors.gd").entry(identity)
 	if identity.begins_with("B06-M"): return preload("res://scripts/levels/b06/art/native_art.gd").entry(identity)
 	if identity in preload("res://scripts/levels/b05/art/enemy_art.gd").IDS: return preload("res://scripts/levels/b05/art/enemy_art.gd").entry(identity)
 	_ensure_loaded(identity)
@@ -104,6 +106,10 @@ static func skill_icon_for(identity: String) -> Dictionary:
 		var frame: Dictionary=preload("res://scripts/levels/b07/art/native_art.gd").frame(identity)
 		if frame.is_empty(): return {}
 		return {"texture":frame.texture,"texture_path":frame.texture_path,"region":Rect2(Vector2(frame.core)-Vector2(150,150),Vector2(300,300))}
+	if identity.begins_with("B09-M"):
+		var frame: Dictionary = preload("res://scripts/levels/b09/art/actors.gd").frame(identity)
+		if frame.is_empty(): return {}
+		return {"texture":frame.texture,"texture_path":frame.texture_path,"region":Rect2(Vector2(frame.core)-Vector2(110,110),Vector2(220,220))}
 	if identity.begins_with("B06-M"):
 		var frame: Dictionary = preload("res://scripts/levels/b06/art/native_art.gd").frame(identity)
 		if frame.is_empty(): return {}
@@ -122,6 +128,16 @@ static func appearance_key(entry: Dictionary) -> String:
 static func install(actor: Node2D) -> Dictionary:
 	var definition: Dictionary = actor.get("profile")
 	var entry: Dictionary = preload("res://scripts/levels/b07/art/native_art.gd").entry_for_actor(actor) if str(actor.get("enemy_id")).begins_with("B07-M") else variant_entry_for(str(actor.get("enemy_id")), int(definition.get("visual_variant_index", -1)))
+	# First-room race additions are encounter body variants. The default entry,
+	# codex portrait and skill badge continue using their existing registration.
+	if bool(definition.get("first_room_race_variant", false)):
+		var identity := str(actor.get("enemy_id"))
+		var added: Dictionary = {}
+		if identity.begins_with("B05-M"):
+			added = preload("res://scripts/levels/b05/art/enemy_art.gd").first_room_entry(identity)
+		elif identity.begins_with("B06-M"):
+			added = preload("res://scripts/levels/b06/art/native_art.gd").first_room_entry(identity)
+		if not added.is_empty(): entry = added
 	if entry.is_empty() or bool(actor.get("static_actor")):
 		return {}
 	var old_bounds: Rect2 = actor.get("body_bounds")
@@ -150,7 +166,7 @@ static func install(actor: Node2D) -> Dictionary:
 		# the same painted creature rather than returning to a coal-era body.
 		actor.set("empty_body_texture", entry.texture)
 	entry["native_bounds"] = local_bounds
-	if bool(entry.get("b05_native_bank",false)) or bool(entry.get("b06_native_bank",false)) or bool(entry.get("b07_native_bank",false)):
+	if bool(entry.get("b05_native_bank",false)) or bool(entry.get("b06_native_bank",false)) or bool(entry.get("b07_native_bank",false)) or bool(entry.get("b09_native_bank",false)):
 		entry["world_reference_height"] = height
 		entry["world_foot"] = Vector2(0,foot_y)
 	return entry

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "room_id": "L53",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L53_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "7448fa54ad36611cc8ba8a6906830098627d700f3aa13666f4f5ade2227e930d",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L53/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "8e6e86f712c3411082eda11480c46496872dbf7333fd70bcb40c0f285b819e9d",
+      "decoded_rgb_sha256": "1c07732dcc31fa480302bc465446514c316f6bb4c05d2da837a8cc50c4a93184",
+      "webp_sha256": "1db8b411431d17880c05567622a881d1c0633a77aa365aa3e05ce4bee927963a",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: L53 game-room native detailed environment tile, top_left.\nInput image: exact cropped edit target, not a style reference.\nCreate the largest native square raster, 1536 x 1536 pixels requested. Match the entire input image precisely from edge to edge, mapped to the square canvas. Lock its framing, normalized object positions, silhouettes, all borders, perspective, camera, exposure and color palette. This tile is part of one continuous map, so never change anything that meets an image edge.\nChange only fine painted material fidelity INSIDE existing shapes: finer snowy brushwork, ivory-and-gold architectural surfaces, translucent ice crystals, tiny snow sparkle and subtle ice striation. Bright hand-painted cartoon fantasy, high three-quarter overhead viewpoint and 2.5D depth, matching the supplied image.\nPreserve the ice-core circular courtyard, four blue-ice fan sectors, central warm lamp, stairs, outer bridges and all floor outlines wherever present in this exact crop. Preserve the tall left crystal gate, rear wall arches, snowy trees, right blue crystal cluster, lower-left bridge and their exact scale and position. Preserve all shadows and walkable ground boundaries.\nDo not crop, expand, reframe, rearrange, add new objects, move or resize architecture, change silhouettes, remove anything, or introduce text, HUD, characters, monsters, border or watermark. This is detail-only repainting of the precise existing cropped map.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-3b96-7f20-967b-a1408eecc8f6/exec-e618576f-13bb-469e-bea7-c36d895494b2.png",
+      "reference_sha256": "ad734f193bcdb287af9ce8169b3c57b12dcec026e11ad0b501fbe17546f8f8a7",
+      "reference_source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_density": 2.3923076923076922
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L53/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "e5725e2710c1b94d21c24ffdd7664cc8690829bbaf0ee76e13286c321834fde4",
+      "decoded_rgb_sha256": "ebec03a5695f2a6330e8fae92cc7b8f79c84d94bc4741d3845f09d7bee92eb8a",
+      "webp_sha256": "f5c3821a73acd904326365f5dd89ef48ba3ebab521045657da592f03daf09b11",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: L53 game-room native detailed environment tile, top_middle.\nInput image: exact cropped edit target, not a style reference.\nCreate the largest native square raster, 1536 x 1536 pixels requested. Match the entire input image precisely from edge to edge, mapped to the square canvas. Lock framing, normalized object positions, silhouettes, borders, perspective, camera, exposure and palette. This tile is part of one continuous map; never change anything that meets an image edge.\nChange ONLY fine painted material fidelity inside existing shapes: finer snow brushwork, ivory-and-gold architectural surfaces, translucent ice crystals, tiny snow sparkle and subtle ice striation. Bright hand-painted cartoon fantasy, high three-quarter overhead viewpoint and 2.5D depth matching the input.\nPreserve the ice-core circular courtyard, four blue-ice fan sectors, central warm lamp, stairs, outer bridges and all floor outlines wherever present in this exact crop. Here preserve exactly the top-center stair and its four posts, the walls on both top sides, the faint horizontal snow shadows and the central warm golden lamp at bottom center. Keep the large clear snowy floor fully open. Match all clipped edge crystals and walls precisely, and retain their exact scale and position.\nDo not crop, expand, reframe, rearrange, add new objects, move or resize architecture, change silhouettes, remove anything, or introduce text, HUD, characters, monsters, border or watermark. Detail-only repainting of the precise existing cropped map.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-3b96-7f20-967b-a1408eecc8f6/exec-017cd12a-8e0e-4642-92da-1f084205bed0.png",
+      "reference_sha256": "8eb3b7a6d84274e6298fcd225bb82fbba6bf883518d340e02cc09debe02ed822",
+      "reference_source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_density": 2.375
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L53/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "10b7da1cde80870c2c4a58f5bf601486619b20f8bc9e77e5c6e7a42c02d4b434",
+      "decoded_rgb_sha256": "1a024a3f7a345919456767cc7236bc386407e546bd82295522b2110190bb5fe4",
+      "webp_sha256": "0bc230dbea44d0d4e791dd7eff4d5b269420689e83a7989aeaae6be3267f3374",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: L53 game-room native detailed environment tile, top_right.\nInput image: exact cropped edit target, not a style reference.\nCreate the largest native square raster, 1536 x 1536 pixels requested. Match the ENTIRE input image precisely edge to edge, mapped to the square canvas. Lock framing, normalized object positions, silhouettes, borders, perspective, camera, exposure and palette. It belongs to a continuous map: never change anything that meets an image edge.\nChange ONLY fine hand-painted material fidelity inside existing shapes: finer snow brushwork, ivory-and-gold architectural surfaces, translucent ice crystals, tiny snow sparkle and subtle ice striation. Bright hand-painted cartoon fantasy, high three-quarter overhead camera and 2.5D depth matching input.\nPreserve the ice-core circular courtyard, four blue-ice fan sectors, central warm lamp, stairs, outer bridges and all floor outlines wherever present. In this exact crop preserve the tall right purple crystal gate, the upper-left warm wall lamp, the wall arches, snowy trees, left blue crystal cluster and lower-right bridge. Preserve every shape, position, shadow and open snowy floor contour. No new structure or decoration.\nDo not crop, expand, reframe, rearrange, add objects, move or resize architecture, change silhouettes, remove anything, or introduce text, HUD, characters, monsters, border or watermark. Detail-only repainting of this exact cropped map.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-3b96-7f20-967b-a1408eecc8f6/exec-f2764117-e7ad-4b19-bb10-069401af523a.png",
+      "reference_sha256": "7d2bdc6b21a44b7da7e2bd022ac2bc2215343e21374b082f1fb1cfe66ec6fc47",
+      "reference_source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_density": 2.3923076923076922
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L53/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "64614dc3b4e91a94a4c5f8551f4e46914719dc23e5893dcebf6e18121c2751d2",
+      "decoded_rgb_sha256": "1c8872f133556ac2c2edeabb65bd2a2854f2a26dad93187641e11610d3606a9c",
+      "webp_sha256": "90534964fc3488f933d524e4907cf799b37de945bcffc8c2b8b76bc29535f344",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: L53 game-room native detailed environment tile, bottom_left.\nInput image: exact cropped edit target, not a style reference.\nCreate the largest native square raster, 1536 x 1536 pixels requested. Match the entire input image precisely from edge to edge, mapped to the square canvas. Lock framing, normalized object positions, silhouettes, borders, perspective, camera, exposure and palette. This tile is part of a continuous map, so never change anything that meets an image edge.\nChange ONLY fine painted material fidelity inside existing shapes: finer snow brushwork, ivory-and-gold architectural surfaces, translucent ice crystals, tiny snow sparkle and subtle ice striation. Bright hand-painted cartoon fantasy, high three-quarter overhead camera and 2.5D depth matching the supplied image.\nPreserve the ice-core circular courtyard, four blue-ice fan sectors, central warm lamp, stairs, outer bridges and all floor outlines wherever present in this exact crop. Specifically preserve the foreground diagonal palace wall, tall purple crystal posts, clipped left cliff, the open snow ground across the upper half, upper-right blue crystal cluster, its circular ice patch, the snowy tree and all shadows. Keep all wall edges and ground boundaries at exactly the same normalized positions.\nDo not crop, expand, reframe, rearrange, add new objects, move or resize architecture, change silhouettes, remove anything, or introduce text, HUD, characters, monsters, border or watermark. Detail-only repainting of the precise existing cropped map.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-3b96-7f20-967b-a1408eecc8f6/exec-7c8d09fa-6743-49df-afe3-51bc777ff1fc.png",
+      "reference_sha256": "81ec220b375b3ba56f36694a996ba87a0e3be057f0d1bf8efe5ccf8da8daa0bf",
+      "reference_source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_density": 2.4115384615384614
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L53/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "fc3656a7fc4012a8a97314f3a4fb4e78dc116cd94c57a3fcfe34e70ee0556ef4",
+      "decoded_rgb_sha256": "0b9b8a632ce908e38dddf53d3ce6b94626f735a3a115af9c5a24ddc351415612",
+      "webp_sha256": "f9f96731d3bc5d9a79815748cd2d8b0281ecaf8ffda62d0ee94d80291711da21",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: L53 game-room native detailed environment tile, bottom_middle.\nInput image: exact cropped edit target, not a style reference.\nCreate the largest native square raster, 1536 x 1536 pixels requested. Match the entire input image precisely edge to edge, mapped to the square canvas. Lock framing, normalized object positions, silhouettes, borders, perspective, camera, exposure and palette. This is one tile of a continuous map: do not change anything that meets an edge.\nChange ONLY fine hand-painted material fidelity INSIDE existing shapes: finer snow brushwork, ivory-and-gold architectural surfaces, translucent ice crystals, tiny snow sparkle and subtle ice striation. Bright hand-painted cartoon fantasy, high three-quarter overhead camera and 2.5D depth matching the supplied map.\nPreserve the ice-core circular courtyard, four blue-ice fan sectors, central warm lamp, stairs, outer bridges and all floor outlines wherever present in this exact crop. Preserve exactly the lower central staircase, four crystal-topped stair posts, two warm side lamps, two clipped foreground crystal towers and the large open snowy ground above. Keep the clipped ice patches on both sides unchanged in position and contour. Preserve the faint clipped central lamp base at the top edge. No new objects or decorations.\nDo not crop, expand, reframe, rearrange, add anything, move or resize architecture, change silhouettes, remove objects, or introduce text, HUD, characters, monsters, border or watermark. Detail-only repainting of this precise cropped map.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-3b96-7f20-967b-a1408eecc8f6/exec-e8dd760c-977e-44cc-8315-5e963306783d.png",
+      "reference_sha256": "46cc4a5e26898a8f57b5979592f18fed6129fa5e51df5b6dd643cb87ad1668e4",
+      "reference_source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_density": 2.375
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L53/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "828113f3ebcec0f9a5e91090514b616a9c69d81e292ccae7d7e0ee76a049062a",
+      "decoded_rgb_sha256": "7acf7153657ca7db0946703dabcb8bb3f4fc8e5b306ce224a585e687d22555f8",
+      "webp_sha256": "311ee70253c913d8232c746beda47f68422df317bcd2b5bcd0da3e303cd146b8",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: L53 game-room native detailed environment tile, bottom_right.\nInput image: exact cropped edit target, not a style reference.\nCreate the largest native square raster, 1536 x 1536 pixels requested. Match the ENTIRE input image precisely from edge to edge, mapped to the square canvas. Lock framing, normalized object positions, silhouettes, borders, perspective, camera, exposure and palette. This is part of a continuous map; never change anything at an image edge.\nChange ONLY fine painted material fidelity inside existing shapes: finer snow brushwork, ivory-and-gold architectural surfaces, translucent ice crystals, tiny snow sparkle and subtle ice striation. Bright hand-painted cartoon fantasy, high three-quarter overhead viewpoint and 2.5D depth matching the input.\nPreserve the ice-core circular courtyard, four blue-ice fan sectors, central warm lamp, stairs, outer bridges and all floor outlines wherever present in this exact crop. Specifically preserve the foreground diagonal wall, large purple crystal posts, upper-left blue crystal cluster and its ice patch, snowy fir trees, cliff at right and lower cloud bank. Keep every outline, exact normalized object position, size, shadows, and open snowy ground contour unchanged.\nDo not crop, expand, reframe, rearrange, add new objects, move or resize architecture, change silhouettes, remove anything, or introduce text, HUD, characters, monsters, border or watermark. Detail-only repainting of this precise existing cropped map.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-3b96-7f20-967b-a1408eecc8f6/exec-e8f28014-5b90-4658-b1ab-54837033be8f.png",
+      "reference_sha256": "e4414b195ce9988a08b56bd2d75c9b01f9eb08db2861cc6379261d37880faa69",
+      "reference_source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_density": 2.4115384615384614
+    }
+  ],
+  "generation_date": "2026-10-03",
+  "model": null,
+  "requested_native_size": [
+    1536,
+    1536
+  ],
+  "approval_scope": "Static 2K GPU visual review only; movement, combat and natural balance are separate checks.",
+  "acceptance": {
+    "date": "2026-10-03",
+    "resolution": [
+      2560,
+      1440
+    ],
+    "renderer": "OpenGL Compatibility",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "source_comparison": true,
+    "visual_review": "Passed complete painted scenery, tile seams, palette, bridge continuity and lamp-foot proximity. L51/L54 rechecked after removing untouched-gap mother-image overpainting.",
+    "capture_directory": "artifacts/b09_native_visual",
+    "geometry_changed_by_tiles": false,
+    "scale_or_upscale_applied": false,
+    "natural_playthrough_claimed": false
+  }
+}

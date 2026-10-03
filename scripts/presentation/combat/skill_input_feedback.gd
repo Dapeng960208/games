@@ -52,14 +52,21 @@ func observe(slot: String, next_reason: String, data: Dictionary) -> void:
 
 static func describe(slot: String, failure: String, data: Dictionary) -> String:
 	var english: bool = Words.locale == "en"
-	var action: String = {"attack":"attack", "q":"skill_q", "secondary":"skill_secondary", "f":"skill_f", "ultimate":"skill_ultimate"}.get(slot, "")
-	var key: String = ControlBindings.label_for(action, Game.profile.get("settings",{}).get("controls",{}), Words.locale) if not action.is_empty() else slot
+	var action: String = {"attack":"attack", "q":"skill_q", "secondary":"skill_secondary", "f":"skill_f", "ultimate":"skill_ultimate", "reload":"reload", "dash":"dash"}.get(slot, "")
+	var key: String = str(data.get("key",ControlBindings.label_for(action, Game.profile.get("settings",{}).get("controls",{}), Words.locale) if not action.is_empty() else slot))
 	var message := ""
 	match failure:
 		"queued":
 			var queue_position: int = int(data.get("queue_position", 1))
 			message = ("Queued · %d" % queue_position if english else "连招已准备 · 第 %d 步" % queue_position) if queue_position > 1 else ("Queued" if english else "接招已准备")
-		"locked": message = "Unlocks at Lv.%d" % int(data.get("unlock", 1)) if english else "%d 级解锁" % int(data.get("unlock", 1))
+		"locked": message = str(data.get("lock_reason","Skill not learned" if english else "尚未学会该技能"))
+		"reloading": message = "Reloading; skills remain available" if english else "装填中，主动技能仍可释放"
+		"ammo_empty", "empty_magazine": message = "Empty magazine; reloading" if english else "弹匣已空，正在装填"
+		"precision_missed", "reload_missed": message = "Precision missed; reload continues" if english else "精准判定未命中，继续装填"
+		"precision_used", "reload_attempt_used": message = "Precision attempt already used" if english else "本次精准判定已使用"
+		"reload_precision": message = "Precision reload · 3 enhanced rounds" if english else "精准装填 · 三发强化弹"
+		"reload_full": message = "Magazine is full" if english else "弹匣已满"
+		"invalid_skill": message = "Skill configuration unavailable" if english else "技能配置暂不可用"
 		"resource":
 			var missing: int = ceili(maxf(0.0, float(data.get("cost", 0)) - float(data.get("resource", 0))))
 			message = "Need %d more resource" % missing if english else "资源还差 %d" % missing
@@ -90,7 +97,7 @@ func _draw() -> void:
 	if remaining <= 0.0 or notice.is_empty() or not is_instance_valid(room) or not is_instance_valid(room.player) or _font == null:
 		return
 	var alpha: float = minf(1.0, remaining / 0.16)
-	var tint: Color = QUEUED if reason == "queued" else WARNING
+	var tint: Color = QUEUED if reason in ["queued", "reload_precision"] else WARNING
 	var origin: Vector2 = room.player.position
 	if reason == "invalid_ground":
 		var reach: float = maxf(0.0, float(details.get("range", 0.0)))

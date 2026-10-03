@@ -8,6 +8,7 @@ const Routes = preload("res://scripts/domain/world/route_generator.gd")
 const Catalog = preload("res://scripts/domain/world/world_catalog.gd")
 const Resolver = preload("res://scripts/domain/combat/stat_resolver.gd")
 const Snapshot = preload("res://scripts/domain/combat/combat_snapshot.gd")
+const Skills = preload("res://scripts/domain/progression/skill_progression.gd")
 const FORMAT := 1
 const V2_FORMAT := 2
 const Numbers = preload("res://scripts/infrastructure/content/runtime_rules.gd")
@@ -88,7 +89,7 @@ static func fresh(run_id: String, options: Dictionary, profile: Dictionary, stat
 	if not bool(route.get("valid", false)): return {}
 	route.erase("candidate_paths")
 	var ruleset: int = int(stats.get("ruleset_version", 1))
-	var initial: Dictionary = {"snapshot_version":1,"mode":"fresh_entry","hero_id":str(stats.hero_id),"hp":Numbers.amount(float(stats.max_hp), ruleset),"resource":Numbers.amount(float(stats.starting_resource), ruleset)}
+	var initial: Dictionary = {"snapshot_version":Snapshot.VERSION,"mode":"fresh_entry","hero_id":str(stats.hero_id),"hp":Numbers.amount(float(stats.max_hp), ruleset),"resource":Numbers.amount(float(stats.starting_resource), ruleset)}
 	if ruleset == 2: initial.merge({"ruleset_version":2,"scale_version":10,"resource_regen_remainder":0.0,"resource_decay_remainder":0.0})
 	var value: Dictionary = {"format_version":FORMAT,"reward_policy_version":1,"recovery_mode":"checkpoint","content_version":Catalog.content_version(),"seed":seed_value,"difficulty":difficulty,
 		"route":route,"departure_level":departure_level,"node_count":route.nodes.size(),"node_index":0,"phase":"safe","completed_nodes":[],"locked_nodes":{},"completion_events":{},
@@ -129,23 +130,10 @@ static func add_supply_offers(value: Dictionary, run_id: String) -> void:
 		value.offers[id] = {"offer_id":id,"kind":"supply","product_id":product,"label":SUPPLIES[product].label,"price":SUPPLIES[product].price,"decision":"","required":false,"node_index":index}
 
 static func runtime_valid(value: Variant, hero_id: String, stats: Dictionary, fresh_allowed: bool = false) -> bool:
-	if not value is Dictionary or not json_tree(value) or JSON.stringify(value).length() > 180000: return false
-	if value.get("snapshot_version") != 1 or value.get("hero_id") != hero_id: return false
-	if not number(value.get("hp"), float(stats.max_hp) + 0.00001, false) or float(value.hp) <= 0.0 or not number(value.get("resource"), float(stats.resource_max) + 0.00001, false): return false
-	if value.get("mode") == "fresh_entry": return Snapshot.validate(value, hero_id, stats, fresh_allowed)
-	if value.get("mode") != "safe_boundary": return false
-	for key in ["player", "status", "equipment"]:
-		if not value.get(key) is Dictionary: return false
-	var player: Dictionary = value.player
-	if not player.get("cooldowns") is Dictionary: return false
-	for key in ["q", "secondary", "f", "ultimate"]:
-		if not number(player.cooldowns.get(key), 300.0, false): return false
-	for key in ["dash_cooldown", "shot_cooldown"]:
-		if not number(player.get(key), 300.0, false): return false
-	if not value.status.get("guards") is Dictionary or not value.status.get("states") is Dictionary: return false
 	return Snapshot.validate(value, hero_id, stats, fresh_allowed)
 
 static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
+	if not Skills.valid_run_skills(receipt, profile): return false
 	var value: Variant = receipt.get("expedition")
 	if not value is Dictionary or not json_tree(value): return false
 	if not number(receipt.get("ruleset_version", 1), 2): return false

@@ -1,0 +1,23 @@
+{
+  "skill_id": "CH02_SK03",
+  "name": "震爆榴弹",
+  "asset_path": "assets/characters/gunner/skills/sk03_icon.png",
+  "prompt": "Use case: stylized-concept. Create ONE original polished square 2048 by 2048 fantasy RPG skill source icon, not a sheet. Painterly cartoon fantasy 2.5D material volume, warm upper-left highlights, confident clean handpainted edges, a strong central large silhouette readable as a 44-pixel badge. Thin antique brass circular rim takes 92% of square width, dark petrol painted inside, genuinely transparent outside the circle; generous 8% composition safety margin. Palette teal, olive, antique brass, ivory, cyan and amber with specific effect accents. Keep every important subject inside rim. No text, letters, numbers, watermark, logos, game copies, grid, multiple icons, border UI, characters or full body. Asset: gunner CH02_SK03 震爆榴弹 (concussive grenade). Subject: ONE large round teal-and-antique-brass fantasy grenade, chunky ivory highlights and brass pull ring, at upper center. A vivid large coral-orange radial concussive shockwave blooms outward from underneath, with broad smooth rings and chunky orange rays. Very clear grenade silhouette readable small. NO gun, ammunition rain or cyan rail beam. Dominant teal grenade and coral-orange pressure shockwave, golden highlights.",
+  "tool": "image_gen.imagegen",
+  "mode": "built_in_generate",
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10117-0185-7291-ae0c-f299bf80a9fc/exec-33363153-83d4-4566-8872-276a70a217b8.png",
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "transparent_background": true,
+  "local_processing": "Copied original PNG bytes unchanged; no upscale, resizing, cropping or repainting",
+  "sha256": "3bdd2f675e50b17f3f11f3230184c35cc10fe961395da6d3f698566335b75b8e",
+  "generated_date": "2026-10-03",
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_2k_achieved": false,
+  "visual_review": "Original distinct skill identity, handpainted fantasy circular badge, transparent exterior, inspected actual generated output"
+}

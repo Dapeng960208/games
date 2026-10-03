@@ -1,0 +1,20 @@
+{
+  "skill_id": "CH01_SK10",
+  "name": "反震架势",
+  "prompt": "Use case: stylized-concept. Asset type: one original hand-painted cartoon fantasy RPG round skill badge for Countershock Stance (CH01_SK10). Requested 2048 by 2048 square native source; no artificial upscaling. Dark navy circular interior surrounded by a thin antique brass rim occupying 92% of canvas width, genuinely transparent outside circle. Subject: one large sculpted silver steel shield at diagonal angle, visibly intercepting a sharp incoming impact from upper right and reflecting a single bold orange crescent shockwave outward toward lower left. Show active reversal/counterattack rather than a passive bubble shield: impact sparks on shield and obvious outgoing curved shockwave. Steel silver, navy, vermilion and amber palette. Original painterly 2.5D volume, warm upper-left sunshine highlights, bright fresh hand-painted cartoon fantasy style; polished material edges, broad brush shading. Close-up bold dominant shield-and-shockwave silhouette recognizable at 44px, simple composition, generous 8% safe margin, no character body. No text, numbers, logo, watermark, grids, tiny details, copied game art. One asset only.",
+  "tool": "image_gen.imagegen",
+  "intent": "generate",
+  "mode": "built-in",
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10116-a891-72a3-ae19-8470387e8c09/exec-80d8877f-a829-4390-9f5b-5309453159ca.png",
+  "native_width": 1254,
+  "native_height": 1254,
+  "png_color_type": 6,
+  "alpha_preserved": true,
+  "transparent_background": true,
+  "requested_native_width": 2048,
+  "requested_native_height": 2048,
+  "upscaled": false,
+  "copied_unchanged": true,
+  "sha256": "a05c44cb7ec5ac01a8f9569e3af019abe826e5eab83d28a459f3df048c077dfb",
+  "date_utc": "2026-10-03T09:31:02.3947893Z"
+}

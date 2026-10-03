@@ -1,6 +1,6 @@
 extends Node2D
 ## Owns only this room's native repaint textures. No static image/texture cache:
-## changing rooms frees all six textures, rather than retaining 28 room packs.
+## changing rooms frees all six textures, rather than retaining every visited room pack.
 const SAMPLING = preload("res://shaders/world/environment_detail.gdshader")
 const ROOT := "asset://world/rooms_2k/"
 var resident_bytes := 0
@@ -38,6 +38,10 @@ func clear() -> void:
 
 func configure(room_id: String, destination: Rect2, allow_candidate: bool = false) -> bool:
 	clear()
+	var plate_path := AssetCatalog.resolve("asset://world/rooms/"+room_id+"_environment_v1.json")
+	if FileAccess.file_exists(plate_path):
+		var plate: Variant = JSON.parse_string(FileAccess.get_file_as_string(plate_path))
+		if plate is Dictionary and not bool(plate.get("native_detail_enabled",true)): return false
 	if room_id.is_empty() or not destination.has_area(): return false
 	var path := ROOT + room_id + "/manifest.json"
 	if not FileAccess.file_exists(AssetCatalog.resolve(path)): return false

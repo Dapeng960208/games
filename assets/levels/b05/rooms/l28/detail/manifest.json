@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "room_id": "L28",
-  "approved": false,
-  "candidate_only": true,
+  "approved": true,
+  "candidate_only": false,
   "source_texture": "asset://world/rooms/L28_environment_v1.png",
   "source_size": [
     1536,
@@ -52,7 +52,8 @@
           2.375
         ],
         "status": "candidate_pending_runtime_seam_and_camera_qa"
-      }
+      },
+      "decoded_rgb_sha256": "46da650df222a53a21280fd1bc2d4bbab03fd8b35f1b1f4ba935b334313353ba"
     },
     {
       "id": "top_middle",
@@ -92,7 +93,8 @@
           2.375
         ],
         "status": "candidate_pending_runtime_seam_and_camera_qa"
-      }
+      },
+      "decoded_rgb_sha256": "a3e4c5d97233c936134c187c8b22524db72741be5e93c173f7a00a2b8be1437d"
     },
     {
       "id": "top_right",
@@ -132,7 +134,8 @@
           2.375
         ],
         "status": "candidate_pending_runtime_seam_and_camera_qa"
-      }
+      },
+      "decoded_rgb_sha256": "fa1ce05d882d18bfef32ee382fca605edd5f590abfeab4ae8776908c3d440af4"
     },
     {
       "id": "bottom_left",
@@ -172,7 +175,8 @@
           2.4115384615384614
         ],
         "status": "candidate_pending_runtime_seam_and_camera_qa"
-      }
+      },
+      "decoded_rgb_sha256": "447dbedf6ae33e7a2980eb5d776dfa4ca039624805d56194030bf4784668b30c"
     },
     {
       "id": "bottom_middle",
@@ -212,7 +216,8 @@
           2.4115384615384614
         ],
         "status": "candidate_pending_runtime_seam_and_camera_qa"
-      }
+      },
+      "decoded_rgb_sha256": "703ccee78fdadc2249ed335a93cd1c4b85b98570097fc8ef0a7b71dfd7c6389a"
     },
     {
       "id": "bottom_right",
@@ -252,11 +257,30 @@
           2.4115384615384614
         ],
         "status": "candidate_pending_runtime_seam_and_camera_qa"
-      }
+      },
+      "decoded_rgb_sha256": "8eac4e8b38a29cd09044e11cc5536dd25d77b51f02728d005cfc2f7d5896b61a"
     }
   ],
   "generation_manifest": "b05-art/regenerated/maps/L28/L28_NATIVE_SELECTED_MANIFEST.json",
   "generation_manifest_sha256": "005b6cabe2669b6c4ea939fdc0576d33814611682b45daa51ce3966ff1699a00",
   "source_pixel_edits": "none; byte-identical native generated PNGs",
-  "known_limits": "Candidate only. Runtime seam, collision-edge and full-room acceptance pending."
+  "known_limits": "Candidate only. Runtime seam, collision-edge and full-room acceptance pending.",
+  "status": "released",
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T130008562-a228f36f",
+    "report": "docs/levels/b05_b06_room_paintings.md",
+    "candidate_arguments": false,
+    "framebuffer": [
+      2560,
+      1440
+    ]
+  },
+  "native_integrity_verification": {
+    "run_id": "20261003T123335334-674e1d89",
+    "approved_rooms": 34,
+    "checks": 1771,
+    "failures": 0,
+    "source_png_and_decoded_rgb_unchanged": true
+  }
 }

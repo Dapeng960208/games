@@ -17,13 +17,18 @@ const NAMES := {
 	"glide":["缝线牵引","Stitch pull"],"capacitor_burst":["糖桶投掷","Candy barrel"],"stitch_cage":["缝线牢笼","Stitch cage"],"grave_recall":["墓穴召回","Grave recall"],"runway_pair":["双缝针道","Stitch lanes"],"sweep_land":["镇长扑击","Mayor slam"],
 	"resonance_ring":["震地重击","Ground slam"],"sound_blade":["酋长冲锋","Warchief charge"],"crag_leap":["崩岩跳斩","Crag leap"],"war_drum_rage":["战鼓狂怒","War drum rage"],"replay_path":["岩缝追击","Rock fissures"],"alternating_ring":["外圈震击","Outer slam"],"heart_crack":["裂地喘息","Exhausted slam"],
 }
-const COLORS := {"BO01":Color("56cddb"),"BO02":Color("afcf63"),"BO03":Color("b790db"),"BO04":Color("e6ac6b")}
+const COLORS := {"BO01":Color("56cddb"),"BO02":Color("afcf63"),"BO03":Color("b790db"),"BO04":Color("e6ac6b"),"BO05":Color("85b766"),"BO06":Color("50bdcb")}
 
 static func unlocked(boss_id: String, difficulty: int) -> Array:
 	if boss_id == "BO05": return preload("res://scripts/levels/b05/combat/enemy_skills.gd").BOSS_ACTIONS.slice(2,2+clampi(difficulty,0,4))
+	if boss_id == "BO06": return preload("res://scripts/levels/b06/combat/enemy_skills.gd").BOSS_ACTIONS.slice(2,2+clampi(difficulty,0,4))
 	return UNLOCKS.get(boss_id,[]).slice(0,clampi(difficulty,0,4))
 
 static func tier(boss_id: String, action: String) -> int:
+	if boss_id == "BO06":
+		var skills = preload("res://scripts/levels/b06/combat/enemy_skills.gd")
+		var index: int = skills.BOSS_ACTIONS.find(action)
+		return int(skills.BOSS_GATES[index]) if index >= 0 else -1
 	if boss_id == "BO05":
 		var index: int = preload("res://scripts/levels/b05/combat/enemy_skills.gd").BOSS_ACTIONS.find(action)
 		return int(preload("res://scripts/levels/b05/combat/enemy_skills.gd").BOSS_GATES[index]) if index >= 0 else -1

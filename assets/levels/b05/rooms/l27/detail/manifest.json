@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "room_id": "L27",
-  "approved": false,
-  "candidate_only": true,
+  "approved": true,
+  "candidate_only": false,
   "source_texture": "asset://world/rooms/L27_environment_v1.png",
   "source_size": [
     1536,
@@ -73,7 +73,8 @@
         "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
         "reference_crop_pixel_exact": true,
         "visual_inspected": true
-      }
+      },
+      "decoded_rgb_sha256": "7d33dcd5054784f3c0ae76aeaab50ea31e82f7ff368d9eebbfd6619e96e73f31"
     },
     {
       "id": "top_middle",
@@ -134,7 +135,8 @@
         "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
         "reference_crop_pixel_exact": true,
         "visual_inspected": true
-      }
+      },
+      "decoded_rgb_sha256": "dbaeafdab190168050fad9cfd234413a57ada769b263a559a0c7cbaf1c759c95"
     },
     {
       "id": "top_right",
@@ -195,7 +197,8 @@
         "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
         "reference_crop_pixel_exact": true,
         "visual_inspected": true
-      }
+      },
+      "decoded_rgb_sha256": "1dab9848f68cd9c8e66bd80dda6e989abe18cdb5e1a672f22537594f88915ff1"
     },
     {
       "id": "bottom_left",
@@ -256,7 +259,8 @@
         "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
         "reference_crop_pixel_exact": true,
         "visual_inspected": true
-      }
+      },
+      "decoded_rgb_sha256": "1e33d18ef6f7d67329c20c0462613ae3e3e6ab3f9b7fd14fcf12251441ded29e"
     },
     {
       "id": "bottom_middle",
@@ -317,7 +321,8 @@
         "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
         "reference_crop_pixel_exact": true,
         "visual_inspected": true
-      }
+      },
+      "decoded_rgb_sha256": "7d0abe4a3c4d8ec689a26705775acb81d03d1110c53230bfe403018224f192ef"
     },
     {
       "id": "bottom_right",
@@ -378,11 +383,30 @@
         "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
         "reference_crop_pixel_exact": true,
         "visual_inspected": true
-      }
+      },
+      "decoded_rgb_sha256": "730cda913c4bf4feeac1a5e3d53d33ba29c1084ece747cfc1fe54a049851306e"
     }
   ],
   "generation_manifest": "b05-art/regenerated/maps/L27/L27_SIX_NATIVE_TILES_MANIFEST.json",
   "generation_manifest_sha256": "ba61f5d2a792984ad2d6de160ee03db247032a92c2a655e2b239fc27c1489289",
   "source_pixel_edits": "none; byte-identical native generated PNGs",
-  "known_limits": "Candidate only. Runtime seam, collision-edge and full-room acceptance pending."
+  "known_limits": "Candidate only. Runtime seam, collision-edge and full-room acceptance pending.",
+  "status": "released",
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T130008562-a228f36f",
+    "report": "docs/levels/b05_b06_room_paintings.md",
+    "candidate_arguments": false,
+    "framebuffer": [
+      2560,
+      1440
+    ]
+  },
+  "native_integrity_verification": {
+    "run_id": "20261003T123335334-674e1d89",
+    "approved_rooms": 34,
+    "checks": 1771,
+    "failures": 0,
+    "source_png_and_decoded_rgb_unchanged": true
+  }
 }

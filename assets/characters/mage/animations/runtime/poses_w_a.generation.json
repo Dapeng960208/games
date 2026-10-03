@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "role": "CH03",
+  "direction": "w",
+  "direction_angle_degrees": 180,
+  "tool": "image_gen.imagegen",
+  "transparent_background": true,
+  "requested_native_size": [
+    2048,
+    2048
+  ],
+  "native_resampling": false,
+  "landmark_basis": "Manual visual landmarks in original native PNG. body_height measures natural hair/head top to mean sole ground point excluding hat and staff; no claim of subpixel accuracy.",
+  "source_layout": "2x2 TL/TR/BL/BR; manually bounded rectangles may extend across nominal cell line where pose does, with no adjacent character included.",
+  "handedness": "Generation prompted staff-bearing hand; exact anatomical handedness of W candidate requires parent visual review.",
+  "status": "candidate_for_parent_review",
+  "file": "poses_w_a.png",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-91fb736a-0c1b-4a0a-ac5d-3ac99a3bfbfd.png",
+  "prompt": "Use case: stylized-concept. Asset type: original production game character animation source sheet, exactly four isolated complete sprites on true transparent RGBA, requested native 2048 x 2048 pixels.\nReference image 1 is character identity and costume only: adult woman CH03 Lumi, age 22. Reference image 2 is rendering and scale only; do NOT copy its southeast orientation or its poses. Create new WEST-facing poses, anatomically redrawn, never mirror/rotate an existing drawing.\nCharacter: chestnut brown curly long hair, clearly adult face and adult dressed proportions, full bust with a clearly narrow cinched waist and slender shoulders, arms, calves. Curvy and proportionate, not bulky or obese. Fully dressed practical obsidian-black / midnight-purple fitted mid-length witch dress, silver magical embroidery and crescent clasps, black crescent boots with both boots visible below skirt, large black-purple witch hat but compact enough to preserve body resolution. Same portrait design simplified for legible game-scale animation. Huge ornate black-silver star-ring/crescent staff with central dark-purple crystal and tightly contained icy-blue magical glow. No pet; the only pet is implemented separately.\nCamera/style: warm dimensional hand-painted cartoon fantasy, high-angle near-isometric 2.5D camera about 35 degrees downward, grounded feet, clear dark-cloth highlights and volume. All four characters face WEST / screen left, viewed from a leftward front three-quarter angle. Their noses, chest, knees and boots aim left; show a sliver of front torso/face, not right-facing, not back-facing, not camera-facing. Maintain camera, same woman, costume, staff, and same anatomy scale in all cells.\nLayout: exactly 2 columns x 2 rows of four separately painted sprites, no grids drawn and no labels. Each sprite wholly within its quarter with at least 35 pixels true transparent padding around hat, staff, hem and boots and blank transparent central gutters. The person from natural hairline/top of head (excluding hat) to mean boot soles is 450–550 REAL native pixels; whole character including hat stays under 560 px tall. Place sprites centrally within cells, reserve lots of transparency rather than stretching hat; keep equal standing anatomy scale. If a lower native canvas is returned, keep the body at approximately 450 px, do not resize the file artificially.\nPose top-left IDLE: calm poised western stance, empty hand resting naturally near waist, ring staff upright at side.\nPose top-right WALK_LEFT: walking west, left boot leading in a clear stride with heel planted and right boot trailing, skirt lifted only by natural stride to reveal both covered boots; staff upright at side, arm counter-swing.\nPose bottom-left WALK_RIGHT: reciprocal walking west stride, right boot leads and left boot trails; different lower-body silhouette from top-right and visible two boots, natural arm counter-swing, upright staff.\nPose bottom-right BASIC_WINDUP: slight preparatory weight shift, staff still upright at side, EMPTY hand raised lightly in front of chest to command toward screen left; no staff swinging, no projectile.\nStrict avoid: pet, familiar, extra person, background, floor, contact shadow, cast shadow, motion trail, broad aura, FX splashes, text, watermark, guide lines, detached accessories, cropped staff/hat/boots, overlapping cells, repeated identical poses, sexually suggestive stance, white/pink/teal clothes, male engineer. Preserve true alpha outside all sprites and within empty gaps.",
+  "edit_prompt": "Use case: identity-preserve. Correct this sprite sheet's single main defect: all four sprites face SCREEN RIGHT but must face SCREEN LEFT (WEST). You must REDRAW real anatomy and clothing for a screen-left/front three-quarter view, not mirror the whole sheet. The woman's nose, chest, knees and toes must point to the LEFT EDGE. Staff must appear primarily on each sprite's left side, ahead of the left-facing character. Rotate the CHARACTER'S viewpoint 90 degrees across the vertical view axis, do NOT rotate a raster. The front of her bodice is visible obliquely as she faces left. Keep this exact adult woman CH03 Lumi age22, curly chestnut hair, full bust and very narrow waist, slender limbs, black/midnight-purple fitted mid-length dress with silver crescent embroidery, compact witchhat and crescent black boots. Keep staff black-silver star-ring with purple crystal and small contained blue glow. True transparent RGBA. Exactly 2x2 separate sprites same original quadrant order: TL idle; TR walking left with left leg leading; BL reciprocal walking left with right leg leading; BR empty-hand lightly raised basic windup. Maintain 450–550 native px body from top of natural head/hair to mean boot sole; requested native canvas 2048x2048. All sprites and staff/hat must be completely inside cell with >35 transparent px on all four sides, reduce excessive staff glow and hat footprint to fit whole body under560px. Do NOT turn the face toward screen right or camera. No pet, no floor, no shadow, no text, no trails. Keep warm dimensional hand-painted fantasy and high-camera downward angle. This is a WEST sheet: FACE AND BOOTS LEFT, never right.",
+  "tool_arguments": {
+    "referenced_image_paths": [
+      "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-13dfa0aa-77e1-4d55-ae2b-984fa1549f7d.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case: identity-preserve. Correct this sprite sheet's single main defect: all four sprites face SCREEN RIGHT but must face SCREEN LEFT (WEST). You must REDRAW real anatomy and clothing for a screen-left/front three-quarter view, not mirror the whole sheet. The woman's nose, chest, knees and toes must point to the LEFT EDGE. Staff must appear primarily on each sprite's left side, ahead of the left-facing character. Rotate the CHARACTER'S viewpoint 90 degrees across the vertical view axis, do NOT rotate a raster. The front of her bodice is visible obliquely as she faces left. Keep this exact adult woman CH03 Lumi age22, curly chestnut hair, full bust and very narrow waist, slender limbs, black/midnight-purple fitted mid-length dress with silver crescent embroidery, compact witchhat and crescent black boots. Keep staff black-silver star-ring with purple crystal and small contained blue glow. True transparent RGBA. Exactly 2x2 separate sprites same original quadrant order: TL idle; TR walking left with left leg leading; BL reciprocal walking left with right leg leading; BR empty-hand lightly raised basic windup. Maintain 450–550 native px body from top of natural head/hair to mean boot sole; requested native canvas 2048x2048. All sprites and staff/hat must be completely inside cell with >35 transparent px on all four sides, reduce excessive staff glow and hat footprint to fit whole body under560px. Do NOT turn the face toward screen right or camera. No pet, no floor, no shadow, no text, no trails. Keep warm dimensional hand-painted fantasy and high-camera downward angle. This is a WEST sheet: FACE AND BOOTS LEFT, never right."
+  },
+  "tool_output": {
+    "output_hint": "Generated images are saved to C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad as C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-91fb736a-0c1b-4a0a-ac5d-3ac99a3bfbfd.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  "generation_history": [
+    {
+      "kind": "initial",
+      "source_file": "C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-13dfa0aa-77e1-4d55-ae2b-984fa1549f7d.png",
+      "sha256": "371b2aafb56c9e5af45d6801bba828d807a8767e2ecd6116e62fbe5fcebf266b",
+      "native_size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "kind": "single_targeted_edit",
+      "source_file": "C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-91fb736a-0c1b-4a0a-ac5d-3ac99a3bfbfd.png",
+      "sha256": "ee3bb53c1e4018517f21d2076ca9bebf399437dc9a5b832d6bf8220ef89122bc",
+      "native_size": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "frames": [
+    {
+      "name": "idle",
+      "body_height": 485,
+      "region": [
+        0,
+        0,
+        640,
+        704
+      ],
+      "foot": [
+        336,
+        606
+      ],
+      "head": [
+        350,
+        156
+      ],
+      "grip": [
+        237,
+        252
+      ],
+      "muzzle": [
+        237,
+        120
+      ],
+      "source_frame": {
+        "name": "idle",
+        "cell": "TL",
+        "region": [
+          150,
+          7,
+          410,
+          616
+        ],
+        "foot": [
+          338,
+          600
+        ],
+        "head": [
+          352,
+          150
+        ],
+        "grip": [
+          239,
+          246
+        ],
+        "muzzle": [
+          239,
+          114
+        ],
+        "body_height": 485,
+        "landmark_accuracy_px": 12,
+        "visible_alpha_gt8_bbox": [
+          160,
+          17,
+          389,
+          596
+        ],
+        "requires_component_isolation": true
+      }
+    },
+    {
+      "name": "walk_left",
+      "body_height": 480,
+      "region": [
+        640,
+        0,
+        640,
+        704
+      ],
+      "foot": [
+        976,
+        606
+      ],
+      "head": [
+        985,
+        167
+      ],
+      "grip": [
+        879,
+        257
+      ],
+      "muzzle": [
+        876,
+        122
+      ],
+      "source_frame": {
+        "name": "walk_left",
+        "cell": "TR",
+        "region": [
+          708,
+          4,
+          460,
+          612
+        ],
+        "foot": [
+          895,
+          595
+        ],
+        "head": [
+          904,
+          156
+        ],
+        "grip": [
+          798,
+          246
+        ],
+        "muzzle": [
+          795,
+          111
+        ],
+        "body_height": 480,
+        "landmark_accuracy_px": 12,
+        "visible_alpha_gt8_bbox": [
+          718,
+          14,
+          440,
+          590
+        ],
+        "requires_component_isolation": true
+      }
+    },
+    {
+      "name": "walk_right",
+      "body_height": 453,
+      "region": [
+        0,
+        704,
+        640,
+        704
+      ],
+      "foot": [
+        336,
+        1310
+      ],
+      "head": [
+        331,
+        887
+      ],
+      "grip": [
+        229,
+        978
+      ],
+      "muzzle": [
+        222,
+        846
+      ],
+      "source_frame": {
+        "name": "walk_right",
+        "cell": "BL",
+        "region": [
+          159,
+          619,
+          452,
+          602
+        ],
+        "foot": [
+          356,
+          1189
+        ],
+        "head": [
+          351,
+          766
+        ],
+        "grip": [
+          249,
+          857
+        ],
+        "muzzle": [
+          242,
+          725
+        ],
+        "body_height": 453,
+        "landmark_accuracy_px": 15,
+        "visible_alpha_gt8_bbox": [
+          169,
+          629,
+          432,
+          581
+        ],
+        "requires_component_isolation": true
+      }
+    },
+    {
+      "name": "basic_windup",
+      "body_height": 475,
+      "region": [
+        640,
+        704,
+        640,
+        704
+      ],
+      "foot": [
+        976,
+        1310
+      ],
+      "head": [
+        964,
+        873
+      ],
+      "grip": [
+        870,
+        971
+      ],
+      "muzzle": [
+        861,
+        851
+      ],
+      "source_frame": {
+        "name": "basic_windup",
+        "cell": "BR",
+        "region": [
+          734,
+          622,
+          441,
+          607
+        ],
+        "foot": [
+          931,
+          1196
+        ],
+        "head": [
+          919,
+          759
+        ],
+        "grip": [
+          825,
+          857
+        ],
+        "muzzle": [
+          816,
+          737
+        ],
+        "body_height": 475,
+        "landmark_accuracy_px": 12,
+        "visible_alpha_gt8_bbox": [
+          744,
+          632,
+          421,
+          586
+        ],
+        "requires_component_isolation": true
+      }
+    }
+  ],
+  "known_limitations": [
+    "Native tool output 1254x1254, requested 2048 not reached; no upscaling.",
+    "Sprite total height exceeds requested <560px; original visual source retained.",
+    "Visible top sprite padding <35px; alpha residual at some extreme border pixels must be recorded.",
+    "Windup empty hand is raised laterally rather than directly across front; parent review required.",
+    "Original source outside frame rectangles contains near-transparent alpha residuals; alpha_check gives exact counts and maxima. Source bytes are unchanged."
+  ],
+  "native_size": [
+    1254,
+    1254
+  ],
+  "png_mode": "RGBA",
+  "source_sha256": "ee3bb53c1e4018517f21d2076ca9bebf399437dc9a5b832d6bf8220ef89122bc",
+  "alpha_check": {
+    "extrema": [
+      0,
+      255
+    ],
+    "canvas_border_nonzero_count": 13,
+    "canvas_border_max_alpha": 1,
+    "outside_frame_regions_nonzero_count": 596,
+    "outside_frame_regions_max_alpha": 1,
+    "outside_frame_regions_alpha_gt8_count": 0,
+    "pixel_mutation": false
+  },
+  "initial_tool_arguments": {
+    "prompt": "Use case: stylized-concept. Asset type: original production game character animation source sheet, exactly four isolated complete sprites on true transparent RGBA, requested native 2048 x 2048 pixels.\nReference image 1 is character identity and costume only: adult woman CH03 Lumi, age 22. Reference image 2 is rendering and scale only; do NOT copy its southeast orientation or its poses. Create new WEST-facing poses, anatomically redrawn, never mirror/rotate an existing drawing.\nCharacter: chestnut brown curly long hair, clearly adult face and adult dressed proportions, full bust with a clearly narrow cinched waist and slender shoulders, arms, calves. Curvy and proportionate, not bulky or obese. Fully dressed practical obsidian-black / midnight-purple fitted mid-length witch dress, silver magical embroidery and crescent clasps, black crescent boots with both boots visible below skirt, large black-purple witch hat but compact enough to preserve body resolution. Same portrait design simplified for legible game-scale animation. Huge ornate black-silver star-ring/crescent staff with central dark-purple crystal and tightly contained icy-blue magical glow. No pet; the only pet is implemented separately.\nCamera/style: warm dimensional hand-painted cartoon fantasy, high-angle near-isometric 2.5D camera about 35 degrees downward, grounded feet, clear dark-cloth highlights and volume. All four characters face WEST / screen left, viewed from a leftward front three-quarter angle. Their noses, chest, knees and boots aim left; show a sliver of front torso/face, not right-facing, not back-facing, not camera-facing. Maintain camera, same woman, costume, staff, and same anatomy scale in all cells.\nLayout: exactly 2 columns x 2 rows of four separately painted sprites, no grids drawn and no labels. Each sprite wholly within its quarter with at least 35 pixels true transparent padding around hat, staff, hem and boots and blank transparent central gutters. The person from natural hairline/top of head (excluding hat) to mean boot soles is 450–550 REAL native pixels; whole character including hat stays under 560 px tall. Place sprites centrally within cells, reserve lots of transparency rather than stretching hat; keep equal standing anatomy scale. If a lower native canvas is returned, keep the body at approximately 450 px, do not resize the file artificially.\nPose top-left IDLE: calm poised western stance, empty hand resting naturally near waist, ring staff upright at side.\nPose top-right WALK_LEFT: walking west, left boot leading in a clear stride with heel planted and right boot trailing, skirt lifted only by natural stride to reveal both covered boots; staff upright at side, arm counter-swing.\nPose bottom-left WALK_RIGHT: reciprocal walking west stride, right boot leads and left boot trails; different lower-body silhouette from top-right and visible two boots, natural arm counter-swing, upright staff.\nPose bottom-right BASIC_WINDUP: slight preparatory weight shift, staff still upright at side, EMPTY hand raised lightly in front of chest to command toward screen left; no staff swinging, no projectile.\nStrict avoid: pet, familiar, extra person, background, floor, contact shadow, cast shadow, motion trail, broad aura, FX splashes, text, watermark, guide lines, detached accessories, cropped staff/hat/boots, overlapping cells, repeated identical poses, sexually suggestive stance, white/pink/teal clothes, male engineer. Preserve true alpha outside all sprites and within empty gaps.",
+    "referenced_image_paths": [
+      "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\mage\\portraits\\full_illustration.png",
+      "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\mage\\animations\\basic_southeast_a.png"
+    ],
+    "transparent_background": true
+  },
+  "native_source_dimensions": [
+    1254,
+    1254
+  ],
+  "packed_dimensions": [
+    1280,
+    1408
+  ],
+  "raw_source": "assets/characters/mage/animations/runtime_sources/poses_w_a.png",
+  "raw_source_sha256": "ee3bb53c1e4018517f21d2076ca9bebf399437dc9a5b832d6bf8220ef89122bc",
+  "pixel_scale": 1,
+  "upscaled": false,
+  "processing": "Existing independent alpha8 components; alpha<8/hidden RGB cleared, sole anchors aligned by integer translation. No redraw, rotation, mirroring, pixel resizing or pose fitting.",
+  "retained_alpha8_pixels": 575577,
+  "standing_reference_body_height": 485
+}

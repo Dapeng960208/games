@@ -212,7 +212,8 @@ static func material_map_valid(value: Variant) -> bool:
 static func pity_valid(value: Variant) -> bool:
 	if not value is Dictionary: return false
 	for key: Variant in value:
-		if key not in ["B01","B02","B03","B04","B05","B06"] or not _number(value[key], 3): return false
+		if key not in ["B01","B02","B03","B04","B05","B06"] and not (key=="B09" and preload("res://scripts/infrastructure/content/runtime_rules.gd").b09_candidate_enabled()): return false
+		if not _number(value[key],3): return false
 	return true
 
 static func _number(value: Variant, maximum: int) -> bool:

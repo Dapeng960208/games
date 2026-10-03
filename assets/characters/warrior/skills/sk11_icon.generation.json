@@ -1,0 +1,20 @@
+{
+  "skill_id": "CH01_SK11",
+  "name": "旋风斧舞",
+  "prompt": "Use case: stylized-concept. Asset type: one original hand-painted cartoon fantasy RPG round skill badge for Whirlwind Axe Dance (CH01_SK11). Requested 2048 by 2048 square native source; no artificial upscaling. Dark navy circular interior surrounded by a thin antique brass rim occupying 92% of canvas width, genuinely transparent outside circle. Subject: one oversized sculpted silver steel heavy double-headed battleaxe upright diagonally in center, wrapped by two thick bold vermilion-orange and silver spiraling ribbons of sweeping blade energy that form a compact cyclone. The broad sweeping vortex around the axe unmistakably shows repeated spinning multi-hit melee attacks, not a thrown flying axe. Steel silver, navy, vermilion and amber palette. Original painterly 2.5D volume, warm upper-left sunshine highlights, bright fresh hand-painted cartoon fantasy style; polished material edges and broad brush shading. Close-up bold dominant axe-and-cyclone silhouette recognizable at 44px, simple composition, generous 8% safe margin, no character body. No text, numbers, logo, watermark, grids, tiny details, copied game art. One asset only.",
+  "tool": "image_gen.imagegen",
+  "intent": "generate",
+  "mode": "built-in",
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10116-a891-72a3-ae19-8470387e8c09/exec-7f6a4933-c62f-4429-9087-d9d2b8e60427.png",
+  "native_width": 1254,
+  "native_height": 1254,
+  "png_color_type": 6,
+  "alpha_preserved": true,
+  "transparent_background": true,
+  "requested_native_width": 2048,
+  "requested_native_height": 2048,
+  "upscaled": false,
+  "copied_unchanged": true,
+  "sha256": "7c44cdc5e8393d487da2d9fd2f5ee14979281087ad7d6667e0d55fe5456a8bf8",
+  "date_utc": "2026-10-03T09:31:07.9930963Z"
+}

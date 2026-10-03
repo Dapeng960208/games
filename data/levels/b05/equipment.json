@@ -90,7 +90,7 @@
           "runtime_implemented": false,
           "trigger": "direct_damage",
           "conditions": [
-            "target_has_hunt_mark"
+            "empowered_ammo_snapshot"
           ],
           "parameters": {
             "damage_bonus": 0.08
@@ -100,7 +100,7 @@
           "runtime_implemented": false,
           "trigger": "gunner_w_hit",
           "conditions": [
-            "actual_hit_on_hunt_mark_target",
+            "actual_hit_while_empowered_ammo_available",
             "behind_primary_target"
           ],
           "parameters": {
@@ -167,10 +167,10 @@
         },
         "6": {
           "runtime_implemented": false,
-          "trigger": "mage_w_node_placed",
+          "trigger": "CH03_SK02_first_release",
           "conditions": [
-            "successful_node_placement",
-            "derived_node_attacks_excluded"
+            "actual_first_skill_release",
+            "derived_effects_excluded"
           ],
           "parameters": {
             "delay_seconds": 1.0,
@@ -178,7 +178,7 @@
             "power_coefficient": 0.4,
             "target_cap": 3,
             "icd_seconds": 8.0,
-            "rings_per_node": 1
+            "rings_per_cast": 1
           }
         }
       }

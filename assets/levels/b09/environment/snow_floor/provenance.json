@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. BRAND NEW B09 Frost Crystal Court environment resource. ONE seamless flat rough snow floor TEXTURE tile, no raised terrain or objects, soft chalk-white lavender snow grains with sparse sunlit champagne specks, naturally trampled fine snow, subtle hand-painted detail readable behind tiny game actors. Perfect TOP DOWN orthographic 1024 square, edges tile seamlessly, opaque white snowy fill across whole image. Bright polished hand-painted storybook fantasy game art, thin dark violet contour for raised objects, crisp cyan and pale lavender facets, champagne gold trim, sunny warm highlights. Opaque flat tile texture with no perspective. 1024x1024 square. No text, labels, numbers, HUD, borders, logos or watermark. No coral, plants, old copied assets.",
+  "reference_images": [],
+  "sha256": "2dfd289a16432320433b06fe44239b03e7adebc0c127a167f679518009155d71",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "processing": "Byte-for-byte source copy, no pixel editing.",
+  "license": "Project-generated original artwork."
+}

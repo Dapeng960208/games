@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "room_id": "L49",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L49_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "b9b30c303c66a5e38a063c74659657542e99ed4f52a03d28d28ba42cec4c2913",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L49/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "0dc0fd552f1a9a4053524dd861f40ac2566072d12f9c8093d9d5eef5b49a0ac1",
+      "decoded_rgb_sha256": "2d299d05b91208a00538cdcd6ceece5bba13a9b9ded2c17d9507adb601fd79f5",
+      "webp_sha256": "7342923b93f47307f640204cf90b86a1d6eaa06a723afe973d576d264094175b",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: L49 top_left native high resolution detailed game-map tile.\nInput image: sole exact cropped map edit target, not a mood reference.\nPrimary request: faithfully repaint this exact complete crop at the largest native square output, 1536 x 1536 pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted snowy stone, crystal, ivory and gold material fidelity INSIDE existing silhouettes. Keep the snowy path, paving, stairs, distant ice cliffs, crystalline palace architecture, lamp and railing exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, 2.5D depth. Match the input's sunny exposure, pale snow, lavender crystals, turquoise ice and ivory gold masonry.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, road and ice boundaries, stair and railing geometry, lighting direction, exposure, colors, silhouettes and edge features. No crop, expansion, rearrangement, rotation or new architecture. No new objects, characters, creatures, text, labels or HUD. Do not enlarge or shrink any feature inside the image. Output square at native 1536 x 1536, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a7-bcc7-7272-9291-f759f749c6d9/exec-f6c9cbcf-0306-4e15-9230-b8cbce50e296.png",
+      "reference_crop_sha256": "e2d3c12cbe75e13c3c587bae4205afb3ee6728edcb1a676c308cd6f859aaedcb"
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L49/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "3ae3368c0fe05b860ecbd7dc2926290245bc349617b49bf64d6e73cb3fe1a2e8",
+      "decoded_rgb_sha256": "57dbbe37da16b86b2416583356e0f269fd6fd7098fccbabdfb3dee1a0c46f90d",
+      "webp_sha256": "1112a05c9f4cf0dfff46c185f53e3b0f48fa37e1af526cc255f518224a1ef0ec",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: L49 top_middle native high resolution detailed game-map tile.\nInput image: sole exact cropped map edit target, not a mood reference.\nPrimary request: faithfully repaint this exact complete crop at the largest native square output, 1536 x 1536 pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted snowy stone, crystal, ivory and gold material fidelity INSIDE existing silhouettes. Keep the snowy path and paving, palace gate and stairway, paired warm lamps, all crystalline walls, ice pool and railings exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, 2.5D depth. Match the input's sunny exposure, pale snow, lavender crystals, turquoise ice and ivory gold masonry.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, road and ice boundaries, stair and railing geometry, lighting direction, exposure, colors, silhouettes and edge features. No crop, expansion, rearrangement, rotation or new architecture. No new objects, characters, creatures, text, labels or HUD. Do not enlarge or shrink any feature inside the image. Output square at native 1536 x 1536, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a7-bcc7-7272-9291-f759f749c6d9/exec-7084d116-0f68-4909-b306-3b94a99e5d26.png",
+      "reference_crop_sha256": "878022d15099c8cb9abe5b9209b1790990f9bcbbbc3d0de894b237d3c5ce7818"
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L49/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "d7a25092a846ac7731c3f26af822124abb31a7bf5d64281addc533773b6728e2",
+      "decoded_rgb_sha256": "2a807286530e1ea69afdedd10c751c7f8b758112846ba95dc78c3ef44146f800",
+      "webp_sha256": "fd30ae00d4e07c5d4333e4ea1c93bfda49fe95e828711ec34ad2d3d9cdc52100",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: L49 top_right native high resolution detailed game-map tile.\nInput image: sole exact cropped map edit target, not a mood reference.\nPrimary request: faithfully repaint this exact complete crop at the largest native square output, 1536 x 1536 pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted snowy stone, crystal, ivory and gold material fidelity INSIDE existing silhouettes. Keep the snowy path and paving, right-hand stairway and railings, crystal spires, palace wall, banner and distant snowy mountain cliffs exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, 2.5D depth. Match the input's sunny exposure, pale snow, lavender crystals and ivory gold masonry.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, road and ice boundaries, stair and railing geometry, lighting direction, exposure, colors, silhouettes and edge features. No crop, expansion, rearrangement, rotation or new architecture. No new objects, characters, creatures, text, labels or HUD. Do not enlarge or shrink any feature inside the image. Output square at native 1536 x 1536, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a7-bcc7-7272-9291-f759f749c6d9/exec-2e95c0f3-ba99-40a4-a81c-d4d226d9c477.png",
+      "reference_crop_sha256": "86406946cbcc01a735a425d46dc4fb04a24f08769ab57f01c84a008c894cdd6d"
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L49/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "9215f33e09998d9de108da0ffcc86f0a379f0c6fd1cdc9de20a43db00350ade7",
+      "decoded_rgb_sha256": "d07c21f2bfb6488c53b698ea514af81df11a9a5eee454eec5e41e20183e5f76e",
+      "webp_sha256": "ac039002977fef239e0f1258c951d08d912e8cd4721fa06cc8fbcb433a796374",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: L49 bottom_left native high resolution detailed game-map tile.\nInput image: sole exact cropped map edit target, not a mood reference.\nPrimary request: faithfully repaint this exact complete crop at the largest native square output, 1536 x 1536 pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted snowy stone, crystal, ivory and gold material fidelity INSIDE existing silhouettes. Keep the snowy paving, upper left stair edge, banner, crystal column, perimeter wall and railings, rock cliff beneath the platform and open lower snow clouds exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, 2.5D depth. Match the input's sunny exposure, pale snow, lavender crystals and ivory gold masonry.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, road and ice boundaries, stair and railing geometry, lighting direction, exposure, colors, silhouettes and edge features. No crop, expansion, rearrangement, rotation or new architecture. No new objects, characters, creatures, text, labels or HUD. Do not enlarge or shrink any feature inside the image. Output square at native 1536 x 1536, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a7-bcc7-7272-9291-f759f749c6d9/exec-df55465d-3896-4dca-822e-c21fc91fbbe5.png",
+      "reference_crop_sha256": "f0358354ebd549179da5609c4b5d5870bad5609799ae760433a2a23ffecd7875"
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L49/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "5e1fef57e920e45fd9f36ae2635edbc868586e9eca9024465b661271eb47a9de",
+      "decoded_rgb_sha256": "db91a7b4a8ba6fbd02fed5db9e03d80255a8495e542d20867375c8a51ac07701",
+      "webp_sha256": "754b500cbf3fa3012e67eb87adb97d73ace77950f5ec72c3bcd0417182da4ecb",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: L49 bottom_middle native high resolution detailed game-map tile.\nInput image: sole exact cropped map edit target, not a mood reference.\nPrimary request: faithfully repaint this exact complete crop at the largest native square output, 1536 x 1536 pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted snowy stone, crystal, ivory and gold material fidelity INSIDE existing silhouettes. Keep the snowy courtyard paving, right-hand turquoise ice pool and its exact shoreline, bottom central entrance and stairs, both flanking crystal pillars and perimeter railings exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, 2.5D depth. Match the input's sunny exposure, pale snow, lavender crystals, turquoise ice and ivory gold masonry.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, road and ice boundaries, stair and railing geometry, lighting direction, exposure, colors, silhouettes and edge features. No crop, expansion, rearrangement, rotation or new architecture. No new objects, characters, creatures, text, labels or HUD. Do not enlarge or shrink any feature inside the image. Output square at native 1536 x 1536, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a7-bcc7-7272-9291-f759f749c6d9/exec-cb731079-3602-4811-abc4-beb5d8ad182d.png",
+      "reference_crop_sha256": "4ff752584b9ebd25c556f83fb3324b31a4480376b938de6d9a3f6eabc4551bed"
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L49/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "e4effc62fd143e0040c41c45c9a03bc88a670cccf06e6ca455b95a23ca9c3ccc",
+      "decoded_rgb_sha256": "fc180b7dcf4e1b5b3185857a8578753158fef1386cbe74eab933750ec89f31e5",
+      "webp_sha256": "0142d1380c40d0b96ade2c261cbb4bbf2afcc321badedebbbf41292dbd3f86f0",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: L49 bottom_right native high resolution detailed game-map tile.\nInput image: sole exact cropped map edit target, not a mood reference.\nPrimary request: faithfully repaint this exact complete crop at the largest native square output, 1536 x 1536 pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted snowy stone, crystal, ivory and gold material fidelity INSIDE existing silhouettes. Keep the snowy courtyard paving, upper left turquoise ice pool and its exact shoreline, upper right stair edge, banner, crystal columns, perimeter walls and railings, rock cliff beneath the platform and open lower snow clouds exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, 2.5D depth. Match the input's sunny exposure, pale snow, lavender crystals, turquoise ice and ivory gold masonry.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, road and ice boundaries, stair and railing geometry, lighting direction, exposure, colors, silhouettes and edge features. No crop, expansion, rearrangement, rotation or new architecture. No new objects, characters, creatures, text, labels or HUD. Do not enlarge or shrink any feature inside the image. Output square at native 1536 x 1536, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a7-bcc7-7272-9291-f759f749c6d9/exec-c47bdc2b-86c9-4002-b632-a9c1da2714dd.png",
+      "reference_crop_sha256": "4d511a539f1fb8e0ef3133da7f0b6e131dafd70d9f5269604c22da803c35553f"
+    }
+  ],
+  "approval_scope": "Static 2K GPU visual review only; movement, combat and natural balance are separate checks.",
+  "acceptance": {
+    "date": "2026-10-03",
+    "resolution": [
+      2560,
+      1440
+    ],
+    "renderer": "OpenGL Compatibility",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "source_comparison": true,
+    "visual_review": "Passed complete painted scenery, tile seams, palette, bridge continuity and lamp-foot proximity. L51/L54 rechecked after removing untouched-gap mother-image overpainting.",
+    "capture_directory": "artifacts/b09_native_visual",
+    "geometry_changed_by_tiles": false,
+    "scale_or_upscale_applied": false,
+    "natural_playthrough_claimed": false
+  }
+}

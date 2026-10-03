@@ -1,0 +1,20 @@
+{
+  "skill_id": "CH01_SK12",
+  "name": "余震踏击",
+  "prompt": "Use case: stylized-concept. Asset type: one original hand-painted cartoon fantasy RPG round skill badge for Aftershock Stomp (CH01_SK12). Requested 2048 by 2048 square native source; no artificial upscaling. Dark navy circular interior surrounded by a thin antique brass rim occupying 92% of canvas width, genuinely transparent outside circle. Subject: one powerful silver steel armored heavy boot stomping downward onto a dark stone slab, viewed from high three-quarter angle. The boot is the clear central dominant shape. Show two bold concentric amber-orange aftershock rings rippling outward from the impact point and a few large radial fissures across the ground. Visually communicate heavy stomp plus slowing aftershock; no axe, no shield, no full character. Steel silver, navy, vermilion and amber palette. Original painterly 2.5D volume, warm upper-left sunshine highlights, bright fresh hand-painted cartoon fantasy style; polished material edges and broad brush shading. Close-up bold boot-and-ripple silhouette recognizable at 44px, simple composition, generous 8% safe margin. No text, numbers, logo, watermark, grids, tiny details, copied game art. One asset only.",
+  "tool": "image_gen.imagegen",
+  "intent": "generate",
+  "mode": "built-in",
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10116-a891-72a3-ae19-8470387e8c09/exec-fcd7a718-2882-443a-8f52-41b64042dd55.png",
+  "native_width": 1254,
+  "native_height": 1254,
+  "png_color_type": 6,
+  "alpha_preserved": true,
+  "transparent_background": true,
+  "requested_native_width": 2048,
+  "requested_native_height": 2048,
+  "upscaled": false,
+  "copied_unchanged": true,
+  "sha256": "bde9e3503737e69aa78890731e252e89f0579616f9611b2b56f6ecf36e94a6b3",
+  "date_utc": "2026-10-03T09:31:11.9965614Z"
+}

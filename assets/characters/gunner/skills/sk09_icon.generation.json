@@ -1,0 +1,19 @@
+{
+  "skill_id": "CH02_SK09",
+  "skill_name": "弹链跳射",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in_generate",
+  "prompt": "Use case: stylized-concept. Asset type: original fantasy RPG skill icon CH02_SK09, Chain Ricochet. Generate a polished handpainted cartoon fantasy circular badge at native 2048 x 2048 if supported; do not upscale. Dark petrol painted interior, thin antique brass circular rim taking 92% width, genuinely transparent outside the circle. Subject: one large luminous ivory and brass bullet following a bold angular zigzag path through exactly three simple brass targeting discs, turquoise-blue linking electric arcs. The large bullet and continuous zigzag ricochet action dominate, targets are clear silhouettes without letters or numbers. Fresh teal, olive, brass and ivory palette with cool cyan electricity. Painterly 2.5D volume, warm upper-left sunlight, chunky beautiful strokes. Generous 8% safe margin, centered close-up, strong distinct silhouette legible at 44 pixels. One single icon, no sheet/grid, no text, numbers, logos, watermark, no copied game asset, no tiny character, no realistic photo.",
+  "original_output": "C:\\Users\\13326\\.codex\\generated_images\\01a10117-a5e5-7d11-ba36-43d1ce3448c2\\exec-729cac2c-70f3-43d8-b4ae-0d5407f84057.png",
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "sha256": "00aaa28e27fef91fc632b4e2ff9db91706d608e454bc0cbd2647e78d861acdf7",
+  "transparent_background": true,
+  "substantive_local_editing": false,
+  "generated_on": "2026-10-03",
+  "png_color_type": 6,
+  "runtime_asset": "res://assets/characters/gunner/skills/sk09_icon.png",
+  "native_2k": false
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "skill_id": "CH03_SK12",
+  "skill_name": "星光跃步",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "generation_date_utc": "2026-10-03T09:36:53.4685558Z",
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "image_mode": "RGBA",
+  "png_color_type": 6,
+  "transparent_background": true,
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10119-2571-7212-a298-ec39a3d44e43/exec-d87f7ee8-3526-4ada-ab13-4ad216b5fd4f.png",
+  "final_path": "assets/characters/mage/skills/sk12_icon.png",
+  "sha256": "baf9293a57f25804ffee5fa87abad19e22d46c318fc63c06c45752b9c9a34a1a",
+  "prompt": "Use case: stylized-concept. Asset type: one original fantasy game skill icon, CH03_SK12 星光跃步 (Starlight Step), request native 2048x2048 square source. Single polished hand-painted cartoon fantasy round badge, sculpted 2.5D volume with warm upper-left lighting and cool magic. Dominant emblem: one elegant dark-purple adult witch short boot with silver crescent clasps, silver toe edge and low sturdy heel, viewed high three-quarter angle while leaping diagonally from a large icy-blue star-shaped landing ring in the lower-left toward a bright light point at the upper-right. A long broad tapered diagonal magic motion trail clearly depicts displacement, a ghost boot afterimage may be subtle but main boot must dominate. Cold shards at the starting ring. No character body, no comet projectile. Midnight purple and obsidian painted inner field, silver and ghost-blue accents, restrained white magic cores. Thin silver circular rim filling 92% width, genuinely transparent outside circle with generous 8% margin. Large silhouette readable at 44 pixels, rich painterly fantasy detail. No pink, red, text, letters, numbers, logos, watermarks, grid, copied game imagery, additional ornamental stars on the rim.",
+  "edit_prompt": null,
+  "edit_reference": null,
+  "processing": "Copied original PNG unchanged; no upscaling or repainting",
+  "visual_review": "Distinct skill identity and painterly round badge inspected at native display; SK11 four-point spirit corrected with built-in image edit"
+}

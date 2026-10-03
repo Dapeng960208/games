@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "room_id": "L31",
+  "biome_id": "B06",
+  "status": "released",
+  "background": {
+    "texture": "asset://levels/b06/rooms/l31/background/candidates/coral_sea_distance.png",
+    "rect": [
+      -320,
+      -280,
+      2264,
+      1604
+    ]
+  },
+  "floor": {
+    "texture": "asset://levels/b06/rooms/l31/detail/pearl_floor_tile.png",
+    "tile_world_size": 320
+  },
+  "layers": [
+    {
+      "id": "west_shell_palace",
+      "texture": "asset://levels/b06/rooms/l31/detail/candidates/shell_palace.png",
+      "rect": [
+        20,
+        -210,
+        680,
+        730
+      ],
+      "clip": "exterior",
+      "z_index": -1
+    },
+    {
+      "id": "east_shell_palace",
+      "texture": "asset://levels/b06/rooms/l31/detail/candidates/shell_palace.png",
+      "rect": [
+        1030,
+        -190,
+        680,
+        730
+      ],
+      "clip": "exterior",
+      "z_index": -1
+    },
+    {
+      "id": "shell_bridge",
+      "texture": "asset://levels/b06/rooms/l31/detail/shell_bridge.png",
+      "rect": [
+        660,
+        614.8,
+        420,
+        185
+      ],
+      "clip": "exterior",
+      "z_index": -1,
+      "region": [
+        0,
+        440,
+        1774,
+        447
+      ],
+      "alpha_cutoff": 0.5
+    },
+    {
+      "id": "shell_bridge_north",
+      "texture": "asset://levels/b06/rooms/l31/detail/shell_bridge.png",
+      "region": [
+        0,
+        210,
+        1774,
+        138
+      ],
+      "rect": [
+        660,
+        365,
+        420,
+        64.2
+      ],
+      "clip": "exterior",
+      "z_index": -1,
+      "alpha_cutoff": 0.5
+    }
+  ]
+}

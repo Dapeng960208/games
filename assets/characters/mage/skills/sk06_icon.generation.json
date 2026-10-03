@@ -1,0 +1,27 @@
+{
+  "skill_id": "CH03_SK06",
+  "skill_name": "星绒护盾",
+  "asset_type": "original_handpainted_skill_icon",
+  "generation_mode": "built_in_generate",
+  "tool": "image_gen.imagegen",
+  "generated_at_utc": "2026-10-03T09:35:16Z",
+  "prompt": "Use case: stylized-concept. Asset type: one original fantasy action game skill icon, CH03_SK06 Star Fleece Shield. Create a single circular painterly 2.5D badge, native 2048 by 2048 square image requested, never upscale. Subject: one substantial solid silver-white four-point star core wrapped in a broad, soft, plush fleece-like glowing protective silhouette, with rounded fluffy lobes and a gentle ghost-blue translucent defensive shell. This is a solid protective star mass, not a hollow ring. Large dominant silhouette occupying most of badge, clearly readable as a soft star shield at 44 pixels. Thin sculpted silver circular rim at 92 percent canvas width; midnight purple interior; fully transparent outside the circle; artwork safely inside rim with 8 percent breathing room. Original bright handpainted cartoon fantasy game art, sculpted volume, subtle brush texture, warm upper-left rim highlights contrasting cool magic. Palette obsidian, midnight purple, silver and ghost blue, limited white bright central core. No pink or red. No text, letters, numbers, logo, watermark, grid, game-copy, tiny character, flat vector symbols, or sheet. One polished icon only.",
+  "transparent_background": true,
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "pixel_mode": "RGBA",
+  "original_output_path": "C:/Users/13326/.codex/generated_images/01a10118-8621-7e00-9efa-417fce846499/exec-16e94fcf-a929-4282-982a-f9abbacc1f10.png",
+  "project_path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/mage/skills/sk06_icon.png",
+  "sha256": "922c17f57d4d59ea1639f74bdceef1cb797f8c904778617575879726c4540ad2",
+  "original_sha256": "922c17f57d4d59ea1639f74bdceef1cb797f8c904778617575879726c4540ad2",
+  "upscaled": false,
+  "local_processing": "Unchanged byte-for-byte copy of the generated PNG. No cropping, repainting, recoloring or upscaling.",
+  "provenance": "Project-original asset generated with the built-in ImageGen tool; no external game artwork used.",
+  "review": "Inspected full native output: unique dominant skill silhouette, midnight-purple interior, silver round frame, ghost-blue magic and transparent exterior. Native source is 1254x1254 rather than the requested 2048x2048."
+}

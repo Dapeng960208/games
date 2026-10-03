@@ -1,0 +1,330 @@
+{
+  "asset": "CH02 adult female Cen Xian WEST production pose source b",
+  "status": "candidate_requires_runtime_packing_and_alignment_review",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "direction": "W",
+  "direction_degrees": 180,
+  "part": "b",
+  "frame_order": "row-major",
+  "columns": 2,
+  "rows": 2,
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "transparent_background": true,
+  "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-7c19b243-52aa-4f5d-9a38-0b5da1e0ec3c.png",
+  "sha256": "567b97773c0749a078fb14593dcd772abb57d9e006e6462c4493a7143f4e2acf",
+  "previous_source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-745aa71d-dffc-46ae-a8f6-b5c417c14f1c.png",
+  "references": [
+    "assets/characters/gunner/portraits/full_illustration.png",
+    "poses_w_a.png"
+  ],
+  "prompt": "Use case: stylized-concept. Create NEW PART B of this WEST CH02 production sprite set.\nInput image1 is exact WEST partA identity, costume, weapon, camera and scale reference; image2 is adult woman portrait reference. Preserve actual standing height / identity matching image1, around500 real pixels at delivered1254²; do not make this B smaller. Native requested2048² genuine transparent PNG.\nSAME adult agile female Cen Xian, short wavy chestnut bob, ivory #f8f3e8 fitted waist surveyor short coat, teal #329ca9 lining and high waist practical trousers, tiny coral #e9846c lining, boots, brown gloves, gold/silver cool cyan energy carbine with folding barrel and orbital sight. Bright warm hand-painted cartoon, dimensional near-isometric 2.5D, elevated high oblique camera showing top planes. EVERY pose genuinely faces WEST screen LEFT.\nExact2x2, four separate complete full-body sprites with invisible cells, clear transparent blank separation; all hair/coat/gun/boots inside own quadrant with at least35px transparent margin on every side. Hairtop at5-7%canvas/55-57%, feet at44%/94%canvas, preserve roughly40%canvas standing body height. Weapon narrower than550px including body, keep gun directed left.\nTOP LEFT basic_release: shoulder aim carbine exactly screen LEFT horizontal firing ray, small real shoulder recoil backwards, taut trigger arm, NO flash or projectile.\nTOP RIGHT basic_recovery: absorb recoil with flexed knees, gun slightly lowered from shoulder toward ready but still directed left, draw elbow in.\nBOTTOM LEFT dash: explosive low forward-left evasive dash / forward tumble preparation, torso distinctly low and leaning left, one boot forcefully kicking back right, carbine tightly cradled close to torso; no motion trail, keep entire bent character visible.\nBOTTOM RIGHT guard_cast precise reload: face left, right hand grips gun trigger, LEFT hand supporting/changing the magazine beneath receiver, focused adult expression, carbine ready toward left. Both boots complete and planted.\nNo mirrored source, no rotating whole sprites, draw genuine independent poses and changing coat hems. Same weapon geometry and ivory teal costume. No floor or shadows, no FX trails / flash / particles, no text / labels / borders. No stray outer pixels or opaque backdrop.",
+  "targeted_edit_prompt": "Use case: precise-object-edit. Image1 is WEST B sprite sheet edit target. Image2 is WEST A reference with correct production scale.\nOnly correction: make B's layout and per-character size match A. B current standing characters are about12 percent too tall and bottom-left dash rear boot crosses midpoint. Reduce EACH B character approximately10 percent uniformly, retain individual pose anatomy. Reposition each inside its own quadrant with at least40px transparent blank margin, including entire carbine, flying coat and rear dash boot. Top row feet stop around y=45percent canvas, bottom around y=95percent. Each standing figure hairtop to average soles about40percent of fullcanvasheight, approx500px at1254. Do not scale B smaller than reference A: match A's adult head, torso, boots scale. Exact2x2 with four distinct full-body poses.\nKeep CH02 adult female chestnut wavy short bob, ivory teal gold outfit, exact energy carbine, leftward WEST direction and high oblique 2.5D camera, warm painted cartoon style unchanged. TL shoulder-fire recoil no flash, TR gun lowering absorb recoil, BL low forward-left dash with one rear kicked boot, BR right hand gun grip / left hand magazine reload, keep these poses. Both boots intact.\nGenuine transparent alpha PNG, requested native2048 square if available. No backdrop, no floor/shadow, no FX, no labels, no border and no stray alpha pixels at outside edge or midlines.",
+  "edit_count": 1,
+  "inspection": {
+    "alpha_zero_fraction": 0.7338697984630999,
+    "outer_edge_nontransparent": 20,
+    "mid_x_nontransparent": 35,
+    "mid_y_nontransparent": 254,
+    "region_coordinate_space": "absolute original source pixels",
+    "region_includes_safety_margin": true,
+    "manual_landmarks_verified": false,
+    "method": "Manual visual hair/head/hand/muzzle/sole annotations supported by Pillow alpha contour read measurements; body_height is hair top to average of two sole bottom centers, excluding weapon bbox."
+  },
+  "frames": [
+    {
+      "name": "basic_release",
+      "body_height": 512.5,
+      "region": [
+        0,
+        0,
+        640,
+        576
+      ],
+      "foot": [
+        370,
+        532.5
+      ],
+      "head": [
+        359,
+        85
+      ],
+      "grip": [
+        263,
+        188
+      ],
+      "muzzle": [
+        101,
+        163
+      ],
+      "source_frame": {
+        "name": "basic_release",
+        "region": [
+          86,
+          108,
+          482,
+          538
+        ],
+        "foot": [
+          381,
+          628.5
+        ],
+        "head": [
+          370,
+          181
+        ],
+        "grip": [
+          274,
+          284
+        ],
+        "muzzle": [
+          112,
+          259
+        ],
+        "body_height": 512.5,
+        "hair_top_y": 116,
+        "boot_bottom_points": [
+          [
+            244,
+            625
+          ],
+          [
+            518,
+            632
+          ]
+        ],
+        "landmark_accuracy_px": 8,
+        "source_px_weapon_axis": [
+          -162,
+          -25
+        ],
+        "measured_axis_degrees": 188.77273729752943,
+        "target_axis_degrees": 180,
+        "axis_deviation_degrees": 8.772737297529432
+      }
+    },
+    {
+      "name": "basic_recovery",
+      "body_height": 514,
+      "region": [
+        640,
+        0,
+        640,
+        576
+      ],
+      "foot": [
+        1010.5,
+        532
+      ],
+      "head": [
+        978,
+        91
+      ],
+      "grip": [
+        935,
+        267
+      ],
+      "muzzle": [
+        787,
+        306
+      ],
+      "source_frame": {
+        "name": "basic_recovery",
+        "region": [
+          711,
+          126,
+          431,
+          547
+        ],
+        "foot": [
+          962.5,
+          648
+        ],
+        "head": [
+          930,
+          207
+        ],
+        "grip": [
+          887,
+          383
+        ],
+        "muzzle": [
+          739,
+          422
+        ],
+        "body_height": 514,
+        "hair_top_y": 134,
+        "boot_bottom_points": [
+          [
+            824,
+            639
+          ],
+          [
+            1101,
+            657
+          ]
+        ],
+        "landmark_accuracy_px": 8
+      }
+    },
+    {
+      "name": "dash",
+      "body_height": 406,
+      "region": [
+        0,
+        576,
+        640,
+        576
+      ],
+      "foot": [
+        370,
+        1108
+      ],
+      "head": [
+        167,
+        762
+      ],
+      "grip": [
+        161,
+        898
+      ],
+      "muzzle": [
+        33,
+        937
+      ],
+      "source_frame": {
+        "name": "dash",
+        "region": [
+          92,
+          761,
+          545,
+          427
+        ],
+        "foot": [
+          455,
+          1175
+        ],
+        "head": [
+          252,
+          829
+        ],
+        "grip": [
+          246,
+          965
+        ],
+        "muzzle": [
+          118,
+          1004
+        ],
+        "body_height": 406,
+        "hair_top_y": 769,
+        "boot_bottom_points": [
+          [
+            333,
+            1175
+          ],
+          [
+            618,
+            1048
+          ]
+        ],
+        "landmark_accuracy_px": 30,
+        "risk": "Dash rear boot is airborne. Ground projection is estimated with approx30px error. Crouched hair-to-ground body_height is406; preserve anatomy size and do not enlarge dash to match upright body_height.",
+        "foot_method": "Estimated actual ground projection using planted lead sole [333,1175] and airborne rear boot ground projection [577,1175]. Do not use the airborne rear sole in a simple average."
+      }
+    },
+    {
+      "name": "guard_cast",
+      "body_height": 508,
+      "region": [
+        640,
+        576,
+        640,
+        576
+      ],
+      "foot": [
+        1009.5,
+        1108
+      ],
+      "head": [
+        1011,
+        661
+      ],
+      "grip": [
+        929,
+        786
+      ],
+      "muzzle": [
+        770,
+        763
+      ],
+      "source_frame": {
+        "name": "guard_cast",
+        "region": [
+          704,
+          682,
+          477,
+          540
+        ],
+        "foot": [
+          971.5,
+          1198
+        ],
+        "head": [
+          973,
+          751
+        ],
+        "grip": [
+          891,
+          876
+        ],
+        "muzzle": [
+          732,
+          853
+        ],
+        "body_height": 508,
+        "hair_top_y": 690,
+        "boot_bottom_points": [
+          [
+            838,
+            1192
+          ],
+          [
+            1105,
+            1204
+          ]
+        ],
+        "landmark_accuracy_px": 10
+      }
+    }
+  ],
+  "known_issues": [
+    "Built-in generator returned native 1254x1254; this is not native 2K and has not been upscaled.",
+    "35px nominal cell safety margin is not consistently achieved; select the complete independent absolute source regions and repack locally rather than hard-cutting quadrants.",
+    "Alpha contains a small number of outside-edge specks. They lie outside selected character regions and must not be copied into packed frames.",
+    "Small pose-dependent standing height variation requires alignment review. Landmarks are manual estimates; do not treat them as automatic validated pixel-perfect contact."
+  ],
+  "credit": "Original user-directed AI-generated project character artwork using OpenAI built-in image_gen, no third-party character IP copied.",
+  "native_source_dimensions": [
+    1254,
+    1254
+  ],
+  "packed_dimensions": [
+    1280,
+    1152
+  ],
+  "raw_source": "assets/characters/gunner/animations/runtime_sources/poses_w_b.png",
+  "raw_source_sha256": "567b97773c0749a078fb14593dcd772abb57d9e006e6462c4493a7143f4e2acf",
+  "pixel_scale": 1,
+  "processing": "Existing independent alpha8 components; alpha<8/hidden RGB cleared, sole anchors aligned by integer translation. No redraw, rotation, mirroring, pixel resizing or pose fitting.",
+  "retained_alpha8_pixels": 371276,
+  "standing_reference_body_height": 507
+}

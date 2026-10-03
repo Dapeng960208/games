@@ -121,6 +121,10 @@ func commit_expedition_completion(completion_id: String, runtime_snapshot: Dicti
 	if not next_profile.has("equipment_discoveries"): next_profile.equipment_discoveries = []
 	for eq: String in value.equipment_discoveries:
 		if not eq in next_profile.equipment_discoveries: next_profile.equipment_discoveries.append(eq)
+	var skill_group: String = {"L05":"SG02", "L17":"SG06", "L23":"SG08"}.get(str(value.route.nodes[index].room_id), "")
+	if not skill_group.is_empty():
+		next_profile = host.SkillGrowth.unlock_group(next_profile, skill_group)
+		if next_profile.is_empty(): return false
 	return host._commit_expedition(value, runtime, next_profile, {"hero_xp_gained":host.run.hero_xp_gained + added,"completed_reward_ids":completed_rewards,"boss_defeats":bosses})
 
 func choose_run_relic(offer_id: String, choice_id: String, replacement_id: String = "", runtime_snapshot: Dictionary = {}) -> bool:

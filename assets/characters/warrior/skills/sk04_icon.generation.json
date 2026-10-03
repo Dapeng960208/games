@@ -1,0 +1,24 @@
+{
+  "skill_id": "CH01_SK04",
+  "name": "天崩斧落",
+  "prompt": "Use case: stylized-concept. Asset type: production original handpainted cartoon fantasy RPG skill icon, one icon only. Primary request: 天崩斧落, a warrior ultimate: one enormous silver-steel heavy battle axe with a broad chiseled rock-edged blade falling vertically into the center of a huge orange-glowing impact crater; the heavy axe and crater are the two dominant shapes, chunky flying rocks radiate outward below the blade. Square canvas requested 2048x2048 original native pixels, no upscale. Thin antique-brass circular rim occupying 92% of image width; completely transparent outside the circle, inside deep navy with restrained amber glow. Palette steel silver, navy, vermillion, amber. Painterly 2.5D sculpted form, bright warm upper-left sunlight, original handpainted cartoon fantasy, crisp bold large dominant silhouette, readable at 44 pixels, simplified large shapes with generous 8% safe margin. The weapon is strongly vertical and the impact sits below it, explosive finality. No text, numbers, letters, watermark, logo, grid, copied game art, tiny full-body characters, multiple icons, or background outside the circle.",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in generation",
+  "output_source": "C:/Users/13326/.codex/generated_images/01a10115-0bdc-75c0-a131-86d31577a770/exec-e3ede172-bc7c-436a-b686-50b3a69ae4e1.png",
+  "final_path": "res://assets/characters/warrior/skills/sk04_icon.png",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "image_mode": "RGBA",
+  "alpha_channel_present": true,
+  "top_left_corner_alpha": 0,
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "upscaled": false,
+  "local_image_editing": false,
+  "sha256": "1188693c0fd423ec442da3cd8ecb74f2b2bc32bc133ce244950a9868ee55bfe5",
+  "generated_at_utc": "2026-10-03T09:30:48.506711+00:00"
+}

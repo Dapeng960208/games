@@ -1,0 +1,20 @@
+{
+  "asset": "CH02 岑线 full_illustration",
+  "tool": "built-in image_gen",
+  "mode": "style-transfer",
+  "generated_at": "2026-10-03",
+  "source": "C:/Users/13326/.codex/generated_images/01a10039-7c89-7121-bda0-cee509b4235e/exec-715815f1-e9b2-4af9-9649-bd6b2fb0207a.png",
+  "edit_target": "assets/characters/gunner/portraits/full_illustration.png",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "upscaled": false,
+  "alpha": true,
+  "credit": "Original AI-generated character art using OpenAI built-in image_gen; user-directed project design; not copied from third-party IP.",
+  "prompt": "Use case: style-transfer. Asset type: original full-body character cutout for a fantasy Godot game and character dossier. Input image 1 is the current edit target, a female gunner illustration. Redraw this SAME original female character in the following style and camera, retaining her recognizable adult female face, short wavy chestnut hair, confident agile gunner identity and impressive custom rifle concept. Primary request: fully finished bright HAND-PAINTED CARTOON FANTASY illustration, high-angle three-quarter oblique top-down camera, near-isometric composition, solid appealing 2.5D sculpted volume, warm sunlight and fresh vivid colors. This should read as premium stylized game character art, with painterly brushwork, expressive clean contours and clear forms, not a realistic fashion illustration. Adult woman aged 25, natural adult proportions, a poised mobile stance, looking slightly upward toward the high camera. New stylish fitted ivory (#f8f3e8) short coat with turquoise (#329ca9) lapels and capelet and tiny coral (#e9846c) lining details, high-waist practical deep turquoise trousers with ivory panels, comfortable clean ivory/turquoise boots, fine warm gold fastenings. No dominant dull brown or black clothing. Cool spectacular ORIGINAL fantasy energy-rune carbine held clearly across the body, elegant gold and silver metal, segmented folding barrel fins, luminous cyan power cell, orbital sight ring, luminous blue muzzle, tasteful engraved survey markings. Entire gun stock, barrel and muzzle must be visible, uncut; hands grip naturally with correct fingers. Scene/backdrop: genuine transparent alpha, no painted background, no smoky vignette, no halo, no floor, no UI. Composition: entire full body including hat-free head and both feet, ample transparent margin, full weapon inside frame. Lighting: warm upper-left sunlight, soft luminous highlights and cool teal reflected shadows. Native output request 2048 by 2048 pixels (2K square), highest available rendering quality. Constraints: one adult female character only, preserve her identity; no text, no logo, no watermark, no extra weapons floating, no chibi child proportions, no photorealism, no frontal low camera."
+}

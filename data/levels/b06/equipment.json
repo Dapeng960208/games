@@ -101,7 +101,7 @@
           "trigger": "gunner_w_hit",
           "conditions": [
             "actual_q_displacement",
-            "marked_target",
+            "empowered_ammo_snapshot",
             "first_w_in_window"
           ],
           "parameters": {
@@ -150,7 +150,7 @@
           ],
           "parameters": {
             "radius_bonus": 0.1,
-            "expands_persistent_node": false
+            "expands_persistent_field": false
           }
         },
         "4": {
@@ -172,7 +172,7 @@
           "conditions": [
             "three_successful_paid_q_casts",
             "q_once_per_cast_id",
-            "no_automatic_node_stacks",
+            "no_automatic_starlight_grants",
             "consume_next_w"
           ],
           "parameters": {

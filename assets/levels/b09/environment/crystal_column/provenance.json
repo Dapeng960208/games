@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. BRAND NEW B09 Frost Crystal Court environment resource. ONE low faceted pale-lavender crystal cover pillar, hexagonal base, tilted polished cyan mirror face at upper tip, slim brass inlay, waist-high relative to player, geometric icy sculpture. Full object including ground base centered. Bright polished hand-painted storybook fantasy game art, thin dark violet contour for raised objects, crisp cyan and pale lavender facets, champagne gold trim, sunny warm highlights. High-angle near-isometric 2.5D action RPG camera facing lower-right, actual transparent alpha background and empty pixels behind object, no ambient colored aura, no scenery, no floor or shadow. 1024x1024 square. No text, labels, numbers, HUD, borders, logos or watermark. No coral, plants, old copied assets.",
+  "reference_images": [],
+  "sha256": "bca6a0c705ea7efc12e29a878b08dca5ec152b6b9b5732a9685480137c3f0bb6",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "processing": "Byte-for-byte source copy, no pixel editing.",
+  "license": "Project-generated original artwork."
+}

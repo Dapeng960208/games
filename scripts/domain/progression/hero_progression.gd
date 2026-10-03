@@ -5,6 +5,7 @@ const Numbers = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const TALENTS := ["mastery", "precision", "vitality", "resistance", "agility", "dexterity"]
 
 static func level_cap() -> int:
+	if Numbers.b09_candidate_enabled(): return 45
 	return mini(60, int(Numbers.value("implemented_chapters")) * int(Numbers.value("chapter_level_step")))
 
 static func thresholds(cap: int = 0) -> Array:

@@ -6,8 +6,9 @@ const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
 const History = preload("res://scripts/domain/equipment/economy_history.gd")
 const Growth = preload("res://scripts/domain/progression/hero_progression.gd")
-const VERSION := 2
+const VERSION := 3
 const V3 = preload("res://scripts/domain/equipment/equipment_acquisition_v3.gd")
+const V4 = preload("res://scripts/domain/equipment/equipment_acquisition_v4.gd")
 # Validation snapshots only, never a replacement for the live quote configuration.
 # Append a new version when economic inputs change; keep these historical rules.
 const V1_SET_RACES := ["B01", "B01", "B02", "B02", "B03", "B03", "B04", "B04", "B01", "B02", "B01", "B02", "B03", "B04"]
@@ -99,7 +100,12 @@ static func _fraction(number: Variant) -> Array[int]:
 
 ## Independent of future catalog/config edits, like the legacy v1 receipt rules.
 static func historical_set_items(set_id: String, version: int = VERSION) -> Array:
-	if version not in [1, 2]: return []
+	if version not in [1, 2, 3]: return []
+	if version >= 3 and set_id in ["B06-SW", "B06-SG", "B06-SM", "B06-SU"]:
+		var result: Array = []
+		for id: String in V4.TEMPLATES:
+			if V4.TEMPLATES[id].set_id == set_id: result.append(id)
+		return result
 	if version >= 2 and set_id in ["B05-SW", "B05-SG", "B05-SM", "B05-SU"]:
 		var result: Array = []
 		for id: String in V3.TEMPLATES:
@@ -113,8 +119,8 @@ static func historical_set_items(set_id: String, version: int = VERSION) -> Arra
 	return pieces
 
 static func historical_purchase_baseline(template_id: String, rarity: String, item_level: int, version: int = VERSION) -> int:
-	if version not in [1, 2] or rarity not in ["white", "green", "purple", "gold"] or item_level < 1 or item_level > (20 if version == 1 else V3.LEVEL_CAP): return -1
-	var price := int(V3.TEMPLATES[template_id].price) if version >= 2 and V3.TEMPLATES.has(template_id) else History.item_price(template_id, 1)
+	if version not in [1, 2, 3] or rarity not in ["white", "green", "purple", "gold"] or item_level < 1 or item_level > (20 if version == 1 else V3.LEVEL_CAP if version == 2 else V4.LEVEL_CAP): return -1
+	var price := int(V4.TEMPLATES[template_id].price) if version >= 3 and V4.TEMPLATES.has(template_id) else int(V3.TEMPLATES[template_id].price) if version >= 2 and V3.TEMPLATES.has(template_id) else History.item_price(template_id, 1)
 	var number := int(template_id.substr(2))
 	if price < 0 and number >= 97 and number <= 124 and template_id == "EQ%02d" % number:
 		price = 180 if (number - 97) % 2 == 0 else 160
@@ -122,10 +128,10 @@ static func historical_purchase_baseline(template_id: String, rarity: String, it
 	return ceil_ratio(price * (8 if rarity == "white" else 12) * (100 + 3 * (item_level - 1)), 1000)
 
 static func historical_creation_cost(request: Dictionary, kind: String, version: int = VERSION) -> Dictionary:
-	if version not in [1, 2]: return {}
+	if version not in [1, 2, 3]: return {}
 	var level := int(request.get("item_level", 0))
 	var rarity := str(request.get("rarity", ""))
-	if level < 1 or level > (20 if version == 1 else V3.LEVEL_CAP): return {}
+	if level < 1 or level > (20 if version == 1 else V3.LEVEL_CAP if version == 2 else V4.LEVEL_CAP): return {}
 	if kind == "craft":
 		if not V1_FORGE.has(rarity): return {}
 		var race_id := _historical_race(str(request.get("template_id", "")), version)
@@ -142,6 +148,7 @@ static func historical_creation_cost(request: Dictionary, kind: String, version:
 	return {"gold":ceil_ratio(total * 9, 10) if kind == "complete_set" else total, "materials":{}}
 
 static func _historical_race(template_id: String, version: int = VERSION) -> String:
+	if version >= 3 and V4.TEMPLATES.has(template_id): return "B06"
 	if version >= 2 and V3.TEMPLATES.has(template_id): return "B05"
 	var number := int(template_id.substr(2))
 	if number < 1 or number > 124 or template_id != "EQ%02d" % number: return ""

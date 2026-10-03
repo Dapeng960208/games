@@ -1,0 +1,21 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: precise-object-edit. Asset type: existing B09 L54 ice crystal palace runtime room background for a bright hand-painted cartoon fantasy 2.5D action RPG. Edit the attached original image, preserve its high three-quarter overhead camera, native composition, all three snow-covered platforms, original ivory/ice cyan/lavender/gold palette, warm sunlight, central warm lamp, entry palace arch at southwest and exit arch at northeast, distant glacier and cliff walls. Only repair the two inter-platform links to implement TWO clear alternative walking routes per connection. Between the left/lower platform and the middle platform, keep the existing diagonal crystal bridge around normalized x0.33–0.46 y0.48–0.57 and add a matching parallel broad crystal bridge slightly below it (about x0.35–0.47 y0.59–0.66), connect its two ends seamlessly to the existing snow platform edges. Between middle platform and right/upper platform, keep existing diagonal bridge around x0.62–0.72 y0.30–0.39 and add a matching parallel broad crystal bridge slightly below it (about x0.64–0.75 y0.44–0.51), with seamless walkable snowy landings at both ends. Each pair must be visually separate with a visible deep blue icy gap between them, broad enough for character travel, low ivory and antique-gold rails on the outer edges, lit translucent ice floors. Maintain clearly visible platform-to-bridge-to-platform top surfaces in the same perspective. Keep the original room layout and rendering style otherwise unchanged. No HUD, no text, no labels, no characters, no enemies, no new buildings or new visual style.",
+  "reference_images": [
+    {
+      "path": "res://assets/levels/b09/rooms/l54/overview.png",
+      "sha256": "0f97fc7053ca2f0dec1e46b051e4be21c1ea0aa90e7967845c73c2ff2c738358"
+    }
+  ],
+  "sha256": "328ecde802a2689001fe928915f33f9333aee9534c74c8f6de4c4b8807dbc9e1",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte generated source copy; no resizing or offline pixel edits.",
+  "license": "Project-generated original artwork.",
+  "purpose": "Add two alternative inter-platform crystal bridges, preserving the original B09 hand-painted high three-quarter 2.5D style."
+}

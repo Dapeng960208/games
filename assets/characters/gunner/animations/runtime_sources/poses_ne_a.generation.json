@@ -1,0 +1,326 @@
+{
+  "asset": "CH02 adult female Cen Xian formal eight-direction NE source a",
+  "status": "formal_eight_direction_source_candidate_pending_runtime_packing",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "direction": "NE",
+  "direction_degrees": 315,
+  "direction_mapping": "screenright0/down90/left180/up270; screen-projected direction, not world yaw",
+  "direction_bin_limits": [
+    292.5,
+    337.5
+  ],
+  "part": "a",
+  "frame_order": "row-major",
+  "columns": 2,
+  "rows": 2,
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "final_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "native_2k": false,
+  "transparent_background": true,
+  "is_derived_source": false,
+  "pure_imagegen_output": true,
+  "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-3bf4f98e-fe18-42e1-9c1d-df3382e28942.png",
+  "sha256": "61daef4117d6222cb17fef886a5bbc624ead942dea4993aeec00c4548edf7fab",
+  "source_history": [
+    "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-3bf4f98e-fe18-42e1-9c1d-df3382e28942.png"
+  ],
+  "references": [
+    "assets/characters/gunner/portraits/full_illustration.png"
+  ],
+  "prompt": "Use case: stylized-concept. NEW original CH02 adultfemale CenXian NORTHEAST315° combat sprite source PARTA. Image1portrait=identity/costume/carbine. Image2NW source=adultHEAD/TORSO/BOOT scale andbackcostume/materialONLY. Do NOTcopy/rotate/mirrorthatimage, drawNEWanatomy facingoppositeback-right45°direction.\nALLFOURsprites faceAWAYUPRIGHT, genuineRIGHT-REAR45°threequarterbody/head/hips/feet; BACKofivorytealcoat/backshoulders/backofshortchestnutwavybob, onlytinyRIGHTnose/cheekedge. NoLEFT-facingnose, nofrontalface/chest/shirt/tie/breast surfaces. Gait phasechange doesNOTreversebodydirection: bothwalkingfiguresstillfaceUPRIGHT.\nHigh35°obliqueDOWNWARDnear-isometric2.5Dcamera showscrown, upperback/coatTOPplanes, gunTOPplanes andbootTOPplanes. Warmbright hand-paintedcartoonfantasy, realthickmaterials/readablepaintedcontours. SAME adult agilewoman, shortchestnutwavybob, ivory#f8f3e8 fittedwaistSHORTsurveycoat(teal#329ca9backpanels tinycoral#e9846clining), practicalhighwaisttealtrousers, ivorytealcalfboots, brownleathergloves, coolgoldbrasssilvercyancrystal surveyingcarbine withfoldingbarrel andorbitalringsight. Preservecoherentactualweaponconstruction.\nPHYSICAL barrelaxis inBRshoulderwindup BREECH(rearbarrelcenteratreceiver)→MUZZLEfrontopening mustbeSCREEN315°, exactly45°UPRIGHT. Thus muzzle.x-breech.x POSITIVE and muzzle.y-breech.y NEGATIVE,EQUALabsolutevalues. Thisisactualscreenprojection, NOTworldyaw.\nExact2x2 FOURindependentCOMPLETEsprites on genuineTRANSPARENTalpha, all4sameadulthead/body/bootscaleabout500-550pxhair-groundfeetatnative1254. Eachfigure/gun/bootsentirelyinsideowncell with35pxblankmargin, clearfour-wayseparation/no centerlinepixels; topfeetendat44%canvasheight,bottom94%. Body+gun<550pxwide. Requestednative2048square, actualnativeonlynoupscale.\nTL idle: lowreadycarbine, elbowsbent, bothfeetgrounded facingNEUPRIGHT.\nTR gaitphaseone: largeforwardUPRIGHTstride, anatomicalLEFTlegforward/rightlegback, sameNEbodyfacing.\nBL gaitphasetwo: opposite UPRIGHTwalkingstep, anatomicalRIGHTlegforward/leftlegback, sameNEbodyfacing, tinyRIGHTnoseedgeonly.\nBR basic_windup: bothbootsplanted, carbinefullyshoulderedphysical315°45°UPRIGHTaxis, cheeknearstock, rearscapula/backcoatvisible.\nNo mirroring/wholebodyrotation/copiedstaticposes, nofloor/groundshadow/FX/flash/projectile/motiontrail/background/text/labels/borders/strays.",
+  "targeted_edit_prompt": null,
+  "edit_count": 0,
+  "inspection": {
+    "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-3bf4f98e-fe18-42e1-9c1d-df3382e28942.png",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "61daef4117d6222cb17fef886a5bbc624ead942dea4993aeec00c4548edf7fab",
+    "alpha_zero_fraction": 0.7419301298047206,
+    "outer_edge_nontransparent": 0,
+    "mid_x_nontransparent": 0,
+    "mid_y_nontransparent": 73,
+    "components_alpha16": [
+      {
+        "region": [
+          219,
+          22,
+          373,
+          591
+        ],
+        "pixels": 90308
+      },
+      {
+        "region": [
+          754,
+          23,
+          370,
+          582
+        ],
+        "pixels": 81762
+      },
+      {
+        "region": [
+          208,
+          643,
+          381,
+          570
+        ],
+        "pixels": 82996
+      },
+      {
+        "region": [
+          730,
+          625,
+          424,
+          600
+        ],
+        "pixels": 95705
+      }
+    ],
+    "coordinate_space": "absolute final source pixels",
+    "landmarks_method": "Manual visible head/grip/physical breech/muzzle and hair/sole annotations supported by read-only Pillow alpha contours. Body height excludes gun bbox. Dash foot uses explicit estimated ground projection. Physical weapon axis is breech-to-muzzle; never replace measured angle with the nominal target.",
+    "frame_foreign_component_pixels_alpha16": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "manual_landmarks_verified": false,
+    "stride_phase_review_needed": true
+  },
+  "frames": [
+    {
+      "head": [
+        351,
+        93
+      ],
+      "grip": [
+        449,
+        286
+      ],
+      "breech": [
+        443,
+        244
+      ],
+      "muzzle": [
+        579,
+        322
+      ],
+      "hair_top_y": 24,
+      "boot_bottom_points": [
+        [
+          289,
+          562
+        ],
+        [
+          399,
+          609
+        ]
+      ],
+      "name": "idle",
+      "region": [
+        211,
+        14,
+        389,
+        607
+      ],
+      "component_seed": [
+        351,
+        93
+      ],
+      "foot": [
+        344,
+        585.5
+      ],
+      "body_height": 561.5,
+      "landmark_accuracy_px": 12,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    },
+    {
+      "head": [
+        905,
+        89
+      ],
+      "grip": [
+        990,
+        272
+      ],
+      "breech": [
+        983,
+        240
+      ],
+      "muzzle": [
+        1106,
+        290
+      ],
+      "hair_top_y": 25,
+      "boot_bottom_points": [
+        [
+          804,
+          601
+        ],
+        [
+          990,
+          464
+        ]
+      ],
+      "name": "walk_left",
+      "region": [
+        746,
+        15,
+        386,
+        598
+      ],
+      "component_seed": [
+        905,
+        89
+      ],
+      "foot": [
+        897,
+        532.5
+      ],
+      "body_height": 507.5,
+      "landmark_accuracy_px": 12,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false,
+      "stride_phase_review_needed": true,
+      "stride_phase_review_note": "Near-leg placement is similar between the two independently generated NE gait poses; actual opposite stride phase/readability requires runtime graph review. No extra ImageGen attempt was made."
+    },
+    {
+      "head": [
+        347,
+        707
+      ],
+      "grip": [
+        468,
+        881
+      ],
+      "breech": [
+        449,
+        850
+      ],
+      "muzzle": [
+        577,
+        918
+      ],
+      "hair_top_y": 646,
+      "boot_bottom_points": [
+        [
+          256,
+          1208
+        ],
+        [
+          479,
+          1080
+        ]
+      ],
+      "name": "walk_right",
+      "region": [
+        200,
+        635,
+        397,
+        586
+      ],
+      "component_seed": [
+        347,
+        707
+      ],
+      "foot": [
+        367.5,
+        1144
+      ],
+      "body_height": 498,
+      "landmark_accuracy_px": 12,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false,
+      "stride_phase_review_needed": true,
+      "stride_phase_review_note": "Near-leg placement is similar between the two independently generated NE gait poses; actual opposite stride phase/readability requires runtime graph review. No extra ImageGen attempt was made."
+    },
+    {
+      "head": [
+        867,
+        724
+      ],
+      "grip": [
+        999,
+        769
+      ],
+      "breech": [
+        974,
+        731
+      ],
+      "muzzle": [
+        1141,
+        649
+      ],
+      "hair_top_y": 667,
+      "boot_bottom_points": [
+        [
+          795,
+          1166
+        ],
+        [
+          996,
+          1221
+        ]
+      ],
+      "risk": "Measured physical barrel axis is shallower than nominal315deg but within formal NE screen-direction bin292.5-337.5; retain measured deviation, not target yaw.",
+      "name": "basic_windup",
+      "region": [
+        722,
+        617,
+        440,
+        616
+      ],
+      "component_seed": [
+        867,
+        724
+      ],
+      "foot": [
+        895.5,
+        1193.5
+      ],
+      "body_height": 526.5,
+      "landmark_accuracy_px": 12,
+      "weapon_axis_origin": "breech",
+      "source_px_weapon_axis": [
+        167,
+        -82
+      ],
+      "measured_axis_degrees": 333.8481323779496,
+      "target_axis_degrees": 315,
+      "axis_deviation_degrees": 18.848132377949582,
+      "direction_bin_limits": [
+        292.5,
+        337.5
+      ],
+      "measured_axis_inside_direction_bin": true,
+      "screen_mapping": "right0/down90/left180/up270; actual source pixel barrel axis, not world yaw",
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    }
+  ],
+  "known_issues": [
+    "Actual ImageGen images are1254x1254 despite2048square request; this is not native2K and no upscaling occurred.",
+    "Nominal35px safety margins are not consistently achieved; use actual complete components rather than slicing exact quadrants.",
+    "Manual landmarks typically12px error; dash ground projection35-40px uncertainty. Preserve adult head/torso scale and do not enlarge dash based on its crouched body_height.",
+    "Physical breech-to-muzzle windup/release directions are actual source pixel measurements, including recorded deviation from225/315. Aim frames still lie within their formal45degree direction bins.",
+    "NE two walk poses have similar near-leg placement; stride_phase_review_needed is recorded on both. Validate actual gait in the runtime graph before considering stride phase fully accepted."
+  ],
+  "credit": "Original user-directed AI-generated project character artwork using OpenAI built-in image_gen; no third-party character IP copied."
+}

@@ -1,6 +1,6 @@
 # B06 native candidate registration, 2026-10-02
 
-> 状态：候选／待验证：B05、B06 默认未开放；设计和检查记录不等于正式发布。
+> 历史美术登记与检查记录。2026-10-03 B05/B06已正式接入；未测条目仍不冒充质量验收，当前入口状态见各关README。
 
 ## Bounded delivered slice
 

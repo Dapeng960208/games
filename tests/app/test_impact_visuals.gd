@@ -1,6 +1,7 @@
 extends Node
 
 const Contact = preload("res://scripts/presentation/combat/impact_feedback.gd")
+const Release = preload("res://scripts/presentation/characters/hero_feedback.gd")
 var checks: int = 0
 var failures: int = 0
 
@@ -19,6 +20,7 @@ func run_checks() -> void:
 		get_tree().quit(2)
 		return
 	check(Game.new_profile(), "isolated presentation profile")
+	check_skill_release_semantics()
 	var fx = Contact.new()
 	add_child(fx)
 	fx.set_process(false)
@@ -116,6 +118,27 @@ func run_checks() -> void:
 	fx.add_floating_damage(Vector2.ZERO, 12.0, &"primary")
 	fx.add_floating_damage(Vector2.ZERO, 4.2, &"burn")
 	check(fx.events[0].at != fx.events[1].at, "nearby damage numbers use separate positions")
+	fx.clear_feedback()
+	for index in 12:
+		fx.add_floating_damage(Vector2.ZERO, 120.0, &"primary")
+	var positions: Array[Vector2] = []
+	for event: Dictionary in fx.events:
+		check(not Vector2(event.at) in positions, "twelve same-frame numbers never reuse a position")
+		positions.append(event.at)
+	fx.advance(0.3)
+	fx.add_floating_damage(Vector2.ZERO, 120.0, &"primary")
+	check(not Vector2(fx.events.back().at) in positions, "still-visible numbers reserve positions past 0.28 seconds")
+	fx.events[0].age = 0.72
+	fx.advance(0.001)
+	fx.add_floating_damage(Vector2.ZERO, 120.0, &"primary")
+	check(int(fx.events.back().lane) == 0, "expired number lane can be reused")
+	for index in 100:
+		fx.add_floating_damage(Vector2.ZERO, 120.0, &"primary")
+	positions.clear()
+	for event: Dictionary in fx.events:
+		check(not Vector2(event.at) in positions, "capped same-origin number lanes remain unique after eviction")
+		positions.append(event.at)
+		check(int(event.lane) < Contact.MAX_EVENTS and Vector2(event.at).distance_to(Vector2.ZERO) < 320.0, "number grid stays within the existing bounded lanes and footprint")
 	for index in 100:
 		fx.confirm_hit(Vector2(index*100,0), Vector2.RIGHT, {"damage":10.0})
 		fx.add_floating_damage(Vector2.ZERO, 12.0, &"primary")
@@ -148,3 +171,22 @@ func run_checks() -> void:
 	await get_tree().process_frame
 	print("Impact visuals: %d/%d checks passed" % [checks - failures, checks])
 	get_tree().quit(0 if failures == 0 else 1)
+
+func check_skill_release_semantics() -> void:
+	var release = Release.new()
+	var actor := Node2D.new()
+	actor.position = Vector2(100,200)
+	release.actor = actor
+	var direction: Vector2 = Vector2(3,4).normalized()
+	var landing := Vector2(330,420)
+	for slot in ["q","secondary","f","ultimate"]:
+		release.skill_released({"hero":"CH01","slot":"skill","skill_id":"CH01_SK07","input_slot":slot,"effect_kind":"fault_line","radius":260.0,"line_width":100.0},direction,actor.position,0,1,1)
+		var fissure: Dictionary = release.effects.back()
+		check(fissure.kind == "fault_line" and fissure.radius == 260.0 and fissure.line_width == 100.0, "fault line retains its real strip dimensions in " + slot)
+		check(fissure.at == actor.position and fissure.direction.is_equal_approx(direction), "fault line keeps the committed origin and facing in " + slot)
+		release.skill_released({"hero":"CH02","slot":"skill","skill_id":"CH02_SK12","input_slot":slot,"kind":"sentry"},direction,landing,0,1,2)
+		var placement: Dictionary = release.effects.back()
+		check(placement.kind == "sentry_place" and placement.at == landing, "sentry placement confirms the ground location without a hero muzzle flash in " + slot)
+	check(release.impact_events == 0, "release and placement feedback do not invent confirmed contacts")
+	release.free()
+	actor.free()

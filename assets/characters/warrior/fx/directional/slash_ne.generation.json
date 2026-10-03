@@ -1,0 +1,90 @@
+{
+  "direction": "NE",
+  "asset": "warrior basic attack directional white-gold short slash",
+  "generated_at_utc": "2026-10-03T13:25:18.117Z",
+  "generation_method": "built-in image_gen.imagegen",
+  "generation_intent": "New original isolated VFX using visual references; not editing a source asset, not rotating another direction.",
+  "prompt": "Use case: stylized-concept. Original transparent game VFX PNG, native 2048x2048 requested.\nAttachment 1 is a reference ONLY for strong ivory-white light just ABOVE/IN FRONT OF a weapon, never copy the screenshot's character, scene or exact effect. Attachment 2 is this project's NORTHEAST warrior pose sheet: ONLY the TOP-LEFT release pose shows the raised axe reaching upper-right. Generate a NEW isolated effect with no actor or weapon.\nDesign one SHORT NE-facing curved cutting stroke, like a shallow cap drawn along a 35-degree diagonal descending from upper-left toward lower-right, with its convex white edge facing upper-right and completely hollow back opening lower-left. Think one small forward flick of white light above the raised axe, NOT a giant crescent moon. The diagonal stroke is long along its diagonal tangent but has only a small outward bow. Limit bend to about 100–110 degrees; each short tip continues outward along the diagonal, neither tip curls back left or down.\nThe ENTIRE effect must fit inside x=25–77%, y=20–51% of the square. Absolutely no light below y=55%, and leave the lower-left quadrant completely transparent. Do not make a vertical C, right bracket, lower return curve, circle, shield or arc around the imagined actor. Short front sweep ONLY. Brightest leading ivory-white core sits at the upper-right crest; very thin warm-gold edge and 3–5 parallel fine white/gold trails behind it. Narrow luminous light strokes, visible transparency between thin layers, no broad orange fog.\nBright hand-painted cartoon fantasy action VFX, near-isometric perspective matching project style. Crisp ivory-white cut, a few restrained gold wisps, soft partial-alpha fade only at edges, generous transparent canvas margins. Original independently designed NE texture, not a rotation of another output or copied reference asset.\nNo character, hand, axe, weapon, world, floor, UI, lettering, logo, watermark or sprite sheet. No full ring, crescent spanning a half circle, tall archway, dome, long side limbs, body-wrapping curve, fuzzy halo, solid beige/gray plates, cloth, dark outline, impact flash, diamond sparkle confetti or hit sparks. Output only one new effect on actual transparency.",
+  "transparent_background_requested": true,
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "actual_native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "upscaled": false,
+  "post_processing": "none; selected original PNG copied byte-for-byte",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a101bc-854d-7fa2-af0f-4d85bb46e418/exec-ff0890ca-d0d5-45e9-a564-1ccb8dcbdbef.png",
+  "final_path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/tools/godot/art_preview/slash_directional/candidates/ne/slash_ne.png",
+  "sha256": "0ba952d8366ccb976c1c4b65150198bd6adbad3475546cf34f898db485bb34ed",
+  "references": [
+    {
+      "path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-e8afba6d-6fa2-41c4-8c17-9e2f75a898f4.png",
+      "width": 252,
+      "height": 212,
+      "sha256": "5570EE660F9E684AEBCEFE726EA1D821B9249414E3EF439A314C937C004AF4C4",
+      "role": "User-provided screenshot: composition/light principle only, no exact artwork copying."
+    },
+    {
+      "path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/animations/runtime/poses_ne_b.png",
+      "width": 1664,
+      "height": 1536,
+      "sha256": "5282C454B72D4546DB93D9B49EA8657898F8958DBA2E8C5F45B183F7534B5003",
+      "role": "Project pose sheet: only top-left attack release frame used for direction, weapon height and matching style."
+    }
+  ],
+  "rights_and_provenance": "Generated specifically for this project through the built-in image tool. The user supplied an external game screenshot; its copyright and license are unknown, so it was used only as a composition/light principle reference and was not copied into the output or redistributed. Project runtime warrior pose reference was used for spatial context. The prompt requires new light VFX and forbids any source character, weapon, UI, scene, logo or copied resource. This records provenance; it is not an independent legal determination.",
+  "alpha_inspection": {
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "alpha_sample_min": 0,
+    "alpha_sample_max": 254,
+    "alpha_sample_stride": 4,
+    "alpha_sample_count": 98596,
+    "transparent_alpha_samples": 89954,
+    "partial_alpha_samples": 8642,
+    "sampled_nonzero_bbox": [
+      92,
+      184,
+      1217,
+      1149
+    ],
+    "sampled_alpha_ge16_bbox": [
+      332,
+      196,
+      1077,
+      729
+    ],
+    "center_alpha": 0,
+    "lower_center_alpha": 0,
+    "top_left_alpha": 0,
+    "bottom_right_alpha": 0
+  },
+  "visual_inspection": {
+    "tool": "view_image detail original, both supplied references and both selected outputs inspected",
+    "shape": "Independent diagonal short cap with convex leading edge toward upper-right, hollow back toward lower-left, no lower return curve.",
+    "ring_risk": "Low: no full ring or long C loop; the lower-right endpoint is short and does not return toward the actor.",
+    "limitations": "Original generator output contains isolated alpha<16 noise beyond the visible light silhouette. sampled_nonzero_bbox therefore spans a larger area than sampled_alpha_ge16_bbox. No alpha cleanup was performed by this texture worker; parent processing may remove near-invisible noise with provenance recorded. Generator did not strictly obey requested percentage margins, but visible light has clear margins and no main-shape cropping.",
+    "visible_subjects": "Effect only; no person, axe/weapon, scene, text/UI or impact flash."
+  },
+  "iterations": {
+    "count": 2,
+    "selected_iteration": 2,
+    "discarded_original_paths": [
+      "C:/Users/13326/.codex/generated_images/01a101bc-854d-7fa2-af0f-4d85bb46e418/exec-211bd86d-7629-425a-bdea-b09c0d2c50f2.png"
+    ],
+    "reason": "First output became a long vertical C shape; second prompt restricted it to a one-sided short diagonal cap."
+  },
+  "scope": "Preview candidates only. No original-cwd, production-asset, GDScript, manifest, Git or Godot changes.",
+  "production_asset": "res://assets/characters/warrior/fx/directional/slash_ne.png",
+  "production_sha256": "0ba952d8366ccb976c1c4b65150198bd6adbad3475546cf34f898db485bb34ed",
+  "production_native_dimensions": [
+    1254,
+    1254
+  ],
+  "production_processing": "original native PNG copied byte-for-byte; no rotation, mirroring, resampling or alpha cleaning",
+  "production_native_2k": false
+}

@@ -1,0 +1,23 @@
+{
+  "skill_id": "CH02_SK02",
+  "name": "磁轨贯穿",
+  "asset_path": "assets/characters/gunner/skills/sk02_icon.png",
+  "prompt": "Use case: stylized-concept. Create ONE original polished square 2048 by 2048 fantasy RPG skill source icon, not a sheet. Painterly cartoon fantasy 2.5D material volume, warm upper-left highlights, confident clean handpainted edges, a strong central large silhouette readable as a 44-pixel badge. Thin antique brass circular rim takes 92% of square width, dark petrol painted inside, genuinely transparent outside the circle; generous 8% composition safety margin. Palette teal, olive, antique brass, ivory, cyan and amber with specific effect accents. Keep every important subject inside rim. No text, letters, numbers, watermark, logos, game copies, grid, multiple icons, border UI, characters or full body. Asset: gunner CH02_SK02 磁轨贯穿 (magnetic rail penetration). Subject: one very long bright sharpened icy cyan magnetic energy projectile travels diagonally from lower left to upper right, visibly punching clean glowing holes THROUGH TWO chunky target plates, with a continuous long narrow cyan beam threading both holes. Two separated substantial olive-brass target plates, splintered holes. NO pistol or rifle shape, no radial explosion. The instantly recognizable identity is precise penetrating rail projectile and pierced targets.",
+  "tool": "image_gen.imagegen",
+  "mode": "built_in_generate",
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10117-0185-7291-ae0c-f299bf80a9fc/exec-b2e70b1a-e2e9-47f8-971a-6705b97eb170.png",
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "transparent_background": true,
+  "local_processing": "Copied original PNG bytes unchanged; no upscale, resizing, cropping or repainting",
+  "sha256": "0d781065fe12c6c44d159d3427dce0497eaa82610ddf1adcb329d4a31248fcc5",
+  "generated_date": "2026-10-03",
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_2k_achieved": false,
+  "visual_review": "Original distinct skill identity, handpainted fantasy circular badge, transparent exterior, inspected actual generated output"
+}

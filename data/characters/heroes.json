@@ -3,11 +3,11 @@
     "id": "CH01",
     "class_id": "C01",
     "name": "罗砧",
-    "title": "开路工",
+    "title": "狂战先锋",
     "class_name": "战士",
     "resource_name": "怒气",
     "resource_type": "rage",
-    "color": "#C87535",
+    "color": "#D6554E",
     "max_hp": 150,
     "armor": 20,
     "attack": 27,
@@ -27,11 +27,11 @@
       "recovery": 0.3
     },
     "resource_rules": {
-      "basic_hit_gain": 8,
+      "basic_hit_gain": 10,
       "health_damage_gain": 5,
       "health_damage_icd": 1,
       "out_of_combat_delay": 5,
-      "out_of_combat_decay": 6
+      "out_of_combat_decay": 10
     },
     "dash": {
       "name": "钢步",
@@ -45,19 +45,15 @@
       "cost": 0,
       "name_en": "Steel Step"
     },
-    "role": "近战战士 · 破势重斩 · 护盾战吼",
+    "role": "近身压制 · 积怒狂暴 · 重斧连击",
     "passive": {
-      "name": "三铆支护",
-      "description": "每3次有效原始普攻获得最大生命8%的护盾，持续3秒，内置冷却6秒。一次挥击命中多敌只记1次，冷却期间不积攒。原始普攻与Q命中、E释放积累破势，最多3层；W或R成功启动时消耗破势强化伤害，满3层的W免怒气。被动自动触发，无需C/V操作。派生伤害、持续场和装备附伤不会触发；计数随房间或死亡清空。",
-      "hit_count": 3,
-      "shield_hp_ratio": 0.08,
-      "duration": 3,
-      "icd": 6,
-      "name_en": "Three-Rivet Support",
-      "description_en": "Every 3 confirmed original basic attacks grant an 8% maximum-health shield for 3 seconds. Internal cooldown: 6 seconds; no accumulation during cooldown. A multi-target swing counts once. Basics, Q contact and E release build Momentum, up to 3; W or R spends it to empower the cast, and W costs no Rage at full Momentum. Automatic; no C/V input. Derived hits never trigger it. Progress resets on room change or death."
+      "name": "怒焰狂战",
+      "description": "原始普攻有效命中每次攻击获得10怒气；主动技能首次有效命中获得8怒气；承受有效伤害获得5怒气，内置1秒冷却。满怒在有效战斗事件后自动进入8秒狂暴，本体伤害提高20%、普攻攻速提高25%、移动速度提高10%。结束后3秒锁定，不刷新时长。脱战5秒后每秒衰减10怒气。",
+      "name_en": "Rage Berserker",
+      "description_en": "Confirmed original basics grant 10 Rage once per attack; an active skill grants 8 once per cast. Taking damage grants 5 with a one-second cooldown. At full Rage, a valid event triggers eight seconds of Berserk: +20% base damage, +25% basic attack speed and +10% movement speed. Rearm takes three seconds. Rage decays by 10 per second after five seconds out of combat."
     },
-    "original_visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
-    "visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
+    "original_visual": "成年先锋穿藏蓝银灰轻甲战装，朱红围巾与发光符文重斧组成清楚轮廓；金属包边和悬浮岩刃强调重量。",
+    "visual": "成年先锋穿藏蓝银灰轻甲战装，朱红围巾与发光符文重斧组成清楚轮廓；金属包边和悬浮岩刃强调重量。",
     "crit_chance": 0.05,
     "crit_multiplier": 1.5,
     "level_cap": 20,
@@ -73,7 +69,7 @@
         "unlock": 1,
         "cost": 20,
         "cooldown": 6.0,
-        "description": "动作：预备0.10秒 → 冲锋0.18秒 → 收势0.14秒。沿准星最多前进160，终点半径75造成1.5H物理伤害，小型敌人击退45；每敌每次施放只命中一次。\n代价：20怒气，冷却6秒。没有额外无敌；可越过普通敌人碰撞但不能越过地形。撞墙停在最后合法地面，冲击不能隔墙命中。完全没有合法移动路线时不扣费，合法空放正常扣费。\n循环与反馈：普攻积怒，Q接敌后用W重斩；命中任意数量敌人仅获得1层破势。铜色冲锋轨迹、地裂冲击与战士短乐句标明释放，命中再叠加重击反馈，保留脚点与敌人预警。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.1,
           "active": 0.18,
@@ -85,15 +81,16 @@
           "knockback": 45
         },
         "name_en": "Formation Charge",
-        "description_en": "Prepare for 0.10 s, charge up to 160 units over 0.18 s, then recover for 0.14 s. A 75-radius endpoint impact deals 1.5H physical damage and knocks small enemies back 45 units, once per target. Costs 20 Rage; cooldown 6 s. No invulnerability; terrain blocks movement and damage. An entirely invalid route costs nothing, while a legal empty cast still costs resources. Hitting any number of enemies grants one Momentum. Copper trails, an earth impact and a brief warrior motif identify the release; confirmed hits add impact feedback."
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
+        "skill_id": "CH01_SK01"
       },
       "secondary": {
         "name": "裂地重斩",
         "input": "W",
-        "unlock": 2,
+        "unlock": 1,
         "cost": 30,
         "cooldown": 4.0,
-        "description": "动作：蓄斧0.18秒 → 重斩窗0.10秒 → 收势0.26秒。前方120°、距离115造成2.2H物理伤害，小型敌人击退65；同敌一次，墙壁阻挡。预备最多修正瞄准30°，有效窗锁定方向。\n代价：通常30怒气，冷却4秒；满3层破势免怒气。空格可取消收势，已经启动的资源、冷却与破势不返还。\n破势联动：启动时消耗全部破势，每层额外0.45H；满3层时距离140、扇形160°、击退90。Q接敌或普攻积层后出手，以宽铜色斧刃弧线、土石碎片和重金属撞击表现正面重斩，背后不显示虚假攻击圆圈。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.18,
           "active": 0.1,
@@ -107,17 +104,18 @@
           "hit_stop_ms": 55
         },
         "name_en": "Earthsplit Cleave",
-        "description_en": "Prepare for 0.18 s, strike for 0.10 s, then recover for 0.26 s. Cleave a 120-degree forward arc at 115 range for 2.2H physical damage and 65 knockback against small enemies, once per target. Walls block hits. Aim can adjust up to 30 degrees during preparation, then locks. Costs 30 Rage; cooldown 4 s. Consume all Momentum on cast for +0.45H per stack. At three stacks: no Rage cost, 140 range, a 160-degree arc and 90 knockback. Dashing can cancel recovery without refunding costs or Momentum. A broad copper axe arc, earth fragments and a heavy metallic impact communicate the forward cleave.",
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
         "summary_v2": "正面重斩；满破势更强且免费。",
-        "summary_v2_en": "Cleave ahead; full Momentum makes it stronger and free."
+        "summary_v2_en": "Cleave ahead; full Momentum makes it stronger and free.",
+        "skill_id": "CH01_SK02"
       },
       "f": {
         "name": "铁壁战吼",
         "input": "E",
-        "unlock": 3,
+        "unlock": 1,
         "cost": 25,
         "cooldown": 11.0,
-        "description": "动作：战吼预备0.12秒 → 冲击窗0.08秒 → 收势0.18秒。自身半径100造成0.6H物理伤害，小型敌人向外击退70；立即获得最大生命12%的护盾，持续4秒，并获得25%减伤，持续1.5秒。\n代价：25怒气，冷却11秒。不治疗、不无敌、不清空远程弹体，护盾仍遵守共享容量规则。战吼与其他减伤取较强值，各自独立计时；不叠加、不延长彼此。\n循环与反馈：被包围时战吼开路，再冲锋或闪避；无敌人时仍合法获得防护和1层破势。铜色盾架与向外扩散的冲击环区分防御释放，Boss不被推开。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.12,
           "active": 0.08,
@@ -133,15 +131,16 @@
           "damage_reduction_status_id": "brace_guard"
         },
         "name_en": "Ironwall Warcry",
-        "description_en": "Prepare for 0.12 s, strike for 0.08 s, then recover for 0.18 s. Deal 0.6H physical damage within 100 units, push small enemies back 70 units, gain a 12% maximum-health shield for 4 s and 25% damage reduction for 1.5 s. Costs 25 Rage; cooldown 11 s. It does not heal, grant invulnerability or clear projectiles. Shared shield caps still apply. Warcry and other damage reductions use the stronger value with independent timers; they do not add together or extend each other. A legal empty cast still grants protection and one Momentum. Copper guard shapes and an outward shock ring mark the defensive release; bosses resist the displacement."
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
+        "skill_id": "CH01_SK03"
       },
       "ultimate": {
         "name": "天崩斧落",
         "input": "R",
-        "unlock": 4,
+        "unlock": 1,
         "cost": 70,
         "cooldown": 42.0,
-        "description": "动作：举斧0.45秒 → 落斧窗0.12秒 → 收势0.45秒。准星方向前方最多130的合法地面，半径180造成4.0H物理伤害，小型敌人击退90；墙壁遮挡伤害。\n代价：70怒气，冷却42秒。施放中移动速度35%，没有无敌；空格可中断，但已启动的资源、冷却与破势不返还。\n破势联动：启动时消耗全部破势，每层每波额外0.60H；满3层半径+30、击退+25。用E战吼创造出手窗口，再以巨斧轮廓、放射地裂与低频落斧冲击表现终结技；伤害与命中反馈依照实际落点结算。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.45,
           "active": 0.12,
@@ -155,9 +154,10 @@
           "hit_stop_ms": 65
         },
         "name_en": "Skyfall Axe",
-        "description_en": "Raise the axe for 0.45 s, strike for 0.12 s, then recover for 0.45 s. Slam legal ground up to 130 units ahead for 4.0H physical damage within 180 units and 90 knockback against small enemies. Walls block damage. Costs 70 Rage; cooldown 42 s. Move at 35% speed during the cast, without invulnerability. A dash cancels without refunding costs or Momentum. Consume all Momentum on cast for +0.60H per stack per wave; three stacks add 30 radius and 25 knockback. A large axe silhouette, radial earth cracks and a low impact identify the finisher; hit feedback follows the actual landing area.",
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
         "summary_v2": "砸向前方怪群，消耗破势造成重击。",
-        "summary_v2_en": "Slam the pack ahead, spending Momentum for a heavy finish."
+        "summary_v2_en": "Slam the pack ahead, spending Momentum for a heavy finish.",
+        "skill_id": "CH01_SK04"
       }
     },
     "upgrades": [
@@ -216,26 +216,46 @@
         }
       }
     },
-    "name_en": "Luo Zhen",
-    "title_en": "The Trailbreaker",
+    "name_en": "Luozhen",
+    "title_en": "Berserker Vanguard",
     "class_name_en": "Warrior",
     "resource_name_en": "Rage",
-    "role_en": "Melee warrior · Momentum cleave · Guarding warcry",
-    "description": "近战普攻积攒三击护盾与破势；Q冲锋接敌，E战吼推开包围并获得护盾、短时减伤，再以W重斩或R落斧消耗破势爆发。",
-    "description_en": "Basic swings build a three-hit shield and Momentum. Charge in with Q, use E for a shield, brief damage reduction and space, then spend Momentum with the W cleave or R axe slam.",
-    "visual_en": "An asymmetric, low-centred mine-support worker: square rockfall guard on the left shoulder, exposed hydraulic brace on the right arm and a short low-mounted air tank. A broad silver-edged mining axe has an orange-black head, flat poll and sturdy two-handed haft. Coal black, oxidised orange and bone white.",
+    "role_en": "Close pressure · Rage berserker · Heavy axe combos",
+    "description": "近身进攻积攒怒气，满怒进入八秒狂暴。选择冲锋、重斩、防护或旋斩，在营地组合四个技能，持续压制敌人。",
+    "description_en": "Build Rage through close combat and enter eight seconds of Berserk at full Rage. Equip four class skills at camp to combine charges, heavy cleaves, guards and spinning attacks.",
+    "visual_en": "An adult male vanguard in navy and silver armor, a vermilion scarf and a giant crescent rune axe with an orange sun core and floating rock blades. Bright hand-painted cartoon fantasy, high-angle three-quarter 2.5D silhouette.",
     "magic_resist": 12,
-    "ability_power": 0
+    "ability_power": 0,
+    "gender": "male",
+    "skill_pool": [
+      "CH01_SK01",
+      "CH01_SK02",
+      "CH01_SK03",
+      "CH01_SK04",
+      "CH01_SK05",
+      "CH01_SK06",
+      "CH01_SK07",
+      "CH01_SK08",
+      "CH01_SK09",
+      "CH01_SK10",
+      "CH01_SK11",
+      "CH01_SK12"
+    ],
+    "outfit_palette": {
+      "primary": "#233B66",
+      "secondary": "#E0E6EF",
+      "accent": "#D6554E"
+    }
   },
   "CH02": {
     "id": "CH02",
     "class_id": "C02",
     "name": "岑线",
-    "title": "引路针",
+    "title": "游击快枪",
     "class_name": "枪手",
     "resource_name": "能量",
     "resource_type": "energy",
-    "color": "#72785E",
+    "color": "#329CA9",
     "max_hp": 110,
     "armor": 8,
     "attack": 24,
@@ -261,19 +281,15 @@
       "cost": 0,
       "name_en": "Cable Slide"
     },
-    "role": "远程枪手 · 游击射击 · 榴弹猎印",
+    "role": "机动射击 · 精准装填 · 弹匣爆发",
     "passive": {
-      "name": "寻隙猎手",
-      "description": "对同一目标连续2次有效原始普攻揭示弱点，5秒内第三次普攻或任一直接技能命中消耗弱点，额外造成0.65倍攻击力的原始伤害。换目标重新计数；一次穿透、多发技能和多目标攻击最多计1次。消耗后内置冷却2秒，冷却期间不积攒。无效或免疫命中不消耗弱点；派生附伤、持续场伤害和装备连锁不会触发。无需额外按键。",
-      "hit_count": 2,
-      "bonus_attack_ratio": 0.65,
-      "mark_duration": 5,
-      "icd": 2,
-      "name_en": "Weak-Point Hunter",
-      "description_en": "Two consecutive confirmed original basic attacks against the same target expose a weak point for 5 seconds. The next basic attack or direct skill hit consumes it for 0.65 attack-power bonus damage as part of that original hit. Changing targets restarts progress. One attack or skill root counts once. Internal cooldown after consumption: 2 seconds; no accumulation during cooldown. Immune hits do not consume it, and derived damage cannot trigger it."
+      "name": "游击弹匣",
+      "description": "普攻使用8发弹匣，弹体成功创建后消耗1发。空弹匣自动装填1秒；T可手动装填，第二次按键在45%～65%窗口内精准成功，填满弹匣并获得3发伤害提高20%的强化弹。每次装填只判定一次。成功完成闪避补2发普通弹并中止装填，不刷新强化弹。技能使用能量，不消耗普通弹匣。",
+      "name_en": "Mobile Magazine",
+      "description_en": "Basics consume one of eight rounds only after projectile creation. An empty magazine reloads for one second. Press the reload key again during 45–65% progress for a full magazine and three +20% enhanced basic rounds; each reload allows one attempt. A successful dodge ends the reload and restores two ordinary rounds. Active skills use Energy."
     },
-    "original_visual": "岑线是会替后来者留下地图刻痕的测绘员，判断快但不赌没有退路的射击。单侧短披布、高测距针、轻便护胫和三角枪托构成细长轮廓；枪管侧面有能展开的折尺与导轨，而非现代狙击枪写实复刻。橄榄 #72785E、象牙 #DDD3B9、墨绿 #294947。",
-    "visual": "岑线是会替后来者留下地图刻痕的测绘员，判断快但不赌没有退路的射击。单侧短披布、高测距针、轻便护胫和三角枪托构成细长轮廓；枪管侧面有能展开的折尺与导轨，而非现代狙击枪写实复刻。橄榄 #72785E、象牙 #DDD3B9、墨绿 #294947。",
+    "original_visual": "成年女性枪手穿米白青蓝短外套、少量珊瑚橙扣饰和利落高腰裤短靴；符文能量枪采用折叠枪管、轨道瞄具及青金发光枪口。",
+    "visual": "成年女性枪手穿米白青蓝短外套、少量珊瑚橙扣饰和利落高腰裤短靴；符文能量枪采用折叠枪管、轨道瞄具及青金发光枪口。",
     "crit_chance": 0.05,
     "crit_multiplier": 1.5,
     "level_cap": 20,
@@ -289,7 +305,7 @@
         "unlock": 1,
         "cost": 25,
         "cooldown": 7.0,
-        "description": "动作：预备0.06秒 → 滑行0.16秒 → 三连射0.12秒 → 收势0.08秒。朝移动方向滑行最多150，无方向输入时后撤；滑行结束沿当时准星发射3枚各0.35H的物理弹，射程450，出弹间隔0.06秒。每枚对同敌最多一次，第三发后才进入收势。\n代价：25能量，冷却7秒。没有额外无敌；墙壁缩短位移，仍完成射击。空格取消未发出的子弹，已发射弹体继续飞行。\n循环与反馈：Q换射线，E榴弹标记，再接W或R。象牙金枪口闪光、细直弹道和逐发枪响与真实出弹同拍，短拖影不遮住脚点。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.06,
           "move_duration": 0.16,
@@ -307,17 +323,18 @@
           "damage_type": "physical"
         },
         "name_en": "Skirmisher Volley",
-        "description_en": "Prepare for 0.06 s, slide up to 150 units over 0.16 s, fire three 0.35H physical shots at 0.06 s intervals, then recover for 0.08 s. Slide in the movement direction, or backward with no movement input. Shots aim at the cursor after the slide and travel up to 450 units. Costs 25 Energy; cooldown 7 s. No extra invulnerability. Walls shorten movement, while a dash cancels only unfired shots. Ivory-gold muzzle flashes, straight tracers and individual gunshots follow the actual releases; short afterimages keep the feet readable.",
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
         "summary_v2": "快速转位，再朝准星连射三发。",
-        "summary_v2_en": "Reposition quickly, then fire three shots toward the cursor."
+        "summary_v2_en": "Reposition quickly, then fire three shots toward the cursor.",
+        "skill_id": "CH02_SK01"
       },
       "secondary": {
         "name": "磁轨贯穿",
         "input": "W",
-        "unlock": 2,
+        "unlock": 1,
         "cost": 30,
         "cooldown": 3.5,
-        "description": "动作：稳枪0.45秒 → 发射窗0.05秒 → 收势0.16秒。射程780，第一目标2.0H物理伤害，最多继续穿透1敌，次目标承受65%技能系数；墙壁阻断。\n代价：30能量，冷却3.5秒。稳枪中移动速度65%，暂停普攻，预备完成自动射击。空格可中断，已启动的成本不返还，空枪仍正常扣费。\n猎印联动：首次命中猎印目标消费标记，额外1.25H；同标记只消费一次。用E定时榴弹制造猎印、Q调整贯穿线；双导轨、金色直线弹道与锐利枪响区分蓄力贯穿。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.45,
           "active": 0.05,
@@ -330,17 +347,18 @@
           "movement_ratio": 0.65
         },
         "name_en": "Magnetic Rail Piercer",
-        "description_en": "Steady for 0.45 s, fire over 0.05 s, then recover for 0.16 s. At up to 780 range, deal 2.0H physical damage to the first enemy and pierce one more for 65% of that coefficient. Walls block the shot. Costs 30 Energy; cooldown 3.5 s. Move at 65% speed while steadying; basic fire pauses. The shot releases automatically after preparation. A dash cancels without a refund, and a legal empty shot still costs resources. The first hit on a marked target consumes its mark for +1.25H. Use E to mark and Q to line up enemies; paired rails, a gold tracer and a sharp report identify the piercer.",
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
         "summary_v2": "短暂瞄准，打出一发贯穿重弹。",
-        "summary_v2_en": "Aim briefly, then fire a heavy piercing shot."
+        "summary_v2_en": "Aim briefly, then fire a heavy piercing shot.",
+        "skill_id": "CH02_SK02"
       },
       "f": {
         "name": "震爆榴弹",
         "input": "E",
-        "unlock": 3,
+        "unlock": 1,
         "cost": 30,
         "cooldown": 12.0,
-        "description": "动作：投掷预备0.15秒 → 出手窗0.05秒 → 收势0.15秒。向最远260的合法、视线可达地面投掷定时榴弹；从实际出手起0.65秒后，在半径110爆炸一次，造成1.1H物理伤害，小型敌人击退30，不施加寒冷。\n代价：30能量，冷却12秒。非法或不可达落点不扣费。出手前取消不会留下榴弹；出手后榴弹自行完成引信，即使空圈也爆炸并消失。爆炸遵守地形视线。\n猎印联动：受伤且存活的敌人获得4秒猎印，供W或R消费。暖金落点圈、投掷弧与可见引信提示爆点，随后以暖色冲击和爆炸声区分枪手的范围打击。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.15,
           "active": 0.05,
@@ -354,17 +372,18 @@
           "mark_duration": 4
         },
         "name_en": "Concussion Grenade",
-        "description_en": "Prepare for 0.15 s, release over 0.05 s, then recover for 0.15 s. Throw a timed grenade onto legal, visible ground within 260 units. Its 0.65 s fuse starts at release; it explodes once in a 110 radius for 1.1H physical damage and 30 knockback against small enemies, without Chill. Costs 30 Energy; cooldown 12 s. Invalid or unreachable targets cost nothing. Cancelling before release leaves no grenade; after release it detonates and disappears even in an empty area. Terrain blocks blast line of sight. Surviving damaged enemies gain a 4 s mark for W or R. A warm-gold landing circle, throw arc and visible fuse precede the warm impact and explosion sound.",
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
         "summary_v2": "扔向怪群；半秒后爆炸并标记目标。",
-        "summary_v2_en": "Throw into a pack; it explodes and marks after half a second."
+        "summary_v2_en": "Throw into a pack; it explodes and marks after half a second.",
+        "skill_id": "CH02_SK03"
       },
       "ultimate": {
         "name": "火力倾泻",
         "input": "R",
-        "unlock": 4,
+        "unlock": 1,
         "cost": 60,
         "cooldown": 40.0,
-        "description": "动作：展开导轨0.25秒 → 0.72秒内连射4发 → 收势0.20秒。每发1.2H物理伤害、射程760，不自动穿透；施放中最多90°/秒转向，移动速度45%。理论单体总量4.8H，目标离开射线会损失输出。\n代价：60能量，冷却40秒。没有无敌，不能同时普攻；空格可中断余下射击，已启动成本不退，取消后未发子弹不会出现。\n猎印联动：首次命中猎印目标消费标记，额外1.25H；同标记只消费一次。E榴弹先标记，Q找到安全射线，再以扇形枪焰、连续金色弹道和逐发枪声打出火力；职业短乐句每次释放仅触发一次。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.25,
           "active": 0.72,
@@ -377,9 +396,10 @@
           "movement_ratio": 0.45
         },
         "name_en": "Suppressive Barrage",
-        "description_en": "Deploy rails for 0.25 s, fire four shots over 0.72 s, then recover for 0.20 s. Each shot deals 1.2H physical damage at up to 760 range, without automatic penetration. Turn at up to 90 degrees per second and move at 45% speed. Maximum single-target coefficient: 4.8H if every shot lands. Costs 60 Energy; cooldown 40 s. No invulnerability or simultaneous basic fire. Dashing cancels unfired shots without refunding costs. Consume a target mark once for +1.25H on that hit. Fan-shaped muzzle flashes and gold tracers accompany each live shot; the brief role motif plays once per released cast.",
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
         "summary_v2": "边调整射线边倾泻四发火力。",
-        "summary_v2_en": "Adjust your aim while unloading a four-shot barrage."
+        "summary_v2_en": "Adjust your aim while unloading a four-shot barrage.",
+        "skill_id": "CH02_SK04"
       }
     },
     "upgrades": [
@@ -438,26 +458,46 @@
         }
       }
     },
-    "name_en": "Cen Xian",
-    "title_en": "The Guiding Needle",
+    "name_en": "Cenxian",
+    "title_en": "Mobile Sharpshooter",
     "class_name_en": "Gunner",
     "resource_name_en": "Energy",
-    "role_en": "Ranged gunner · Mobile shooting · Grenade marks",
-    "description": "两次同目标普攻揭示弱点，下次普攻或直接技能命中打出额外伤害；Q转位撤射，E定时榴弹施加猎印，再用W贯穿或R连射消费猎印。",
-    "description_en": "Two confirmed basics expose a weak point for the next basic or direct skill hit. Reposition with Q, mark enemies with the timed E grenade, then consume marks with the W piercer or R barrage.",
-    "visual_en": "A tall, narrow surveyor silhouette with a single-sided short shoulder cloth, a high ranging needle, light greaves and a triangular stock. The rifle carries a folding ruler and side guide rail. Olive, ivory and deep green.",
+    "role_en": "Mobile shooting · Precision reload · Magazine bursts",
+    "description": "围绕八发弹匣移动射击，精准装填获得三发强化普攻，闪避结束补两发普通弹。四个主动技能独立使用能量，可在营地自由搭配。",
+    "description_en": "Move and fire around an eight-round magazine. Precision reload grants three enhanced basic rounds; a completed dodge restores two ordinary rounds. Four camp-selected active skills use a separate Energy resource.",
+    "visual_en": "An adult female gunner in a fitted ivory and turquoise jacket, coral details, high-waisted trousers and short boots. Her gold-silver energy carbine has a cyan core and ring sights. Bright hand-painted cartoon fantasy, high-angle three-quarter 2.5D silhouette.",
     "magic_resist": 10,
-    "ability_power": 0
+    "ability_power": 0,
+    "gender": "female",
+    "skill_pool": [
+      "CH02_SK01",
+      "CH02_SK02",
+      "CH02_SK03",
+      "CH02_SK04",
+      "CH02_SK05",
+      "CH02_SK06",
+      "CH02_SK07",
+      "CH02_SK08",
+      "CH02_SK09",
+      "CH02_SK10",
+      "CH02_SK11",
+      "CH02_SK12"
+    ],
+    "outfit_palette": {
+      "primary": "#F8F3E8",
+      "secondary": "#329CA9",
+      "accent": "#E9846C"
+    }
   },
   "CH03": {
     "id": "CH03",
     "class_id": "C03",
-    "name": "谷频",
-    "title": "拾频者",
+    "name": "露弥",
+    "title": "暗黑魔法师",
     "class_name": "法师",
     "resource_name": "法力",
     "resource_type": "mana",
-    "color": "#3E8D8D",
+    "color": "#697BC7",
     "max_hp": 105,
     "armor": 6,
     "attack": 18,
@@ -483,28 +523,15 @@
       "cost": 0,
       "name_en": "Refraction Step"
     },
-    "role": "奥术法师 · 法晶布阵 · 冰霜领域",
+    "role": "单星灵协同 · 星辉协奏 · 防护控场",
     "passive": {
-      "name": "交响回路",
-      "description": "有效原始普攻与成功技能施放交替时积累共鸣，首次行动记1层，同类连续行动不加层，最多3层；8秒未继续交替则散去。满3层后，下次成功释放Q/W/E/R自动回复8法力，并为自身260范围内最近的一个已展开、未满能且视线可达的己方节点充1层。触发冷却2秒，冷却期间不积攒。空放技能只要合法提交可参与，失败施放不计层不回蓝；多发技能、节点、持续场和附伤不重复触发。无需C/V操作。",
-      "max_stacks": 3,
-      "resource_gain": 8,
-      "node_charge_range": 260,
-      "node_charge_amount": 1,
-      "progress_duration": 8,
-      "icd": 2,
-      "name_en": "Alternating Resonance",
-      "description_en": "Alternate confirmed original basic attacks and successfully committed skills to build up to 3 Resonance stacks. The first action grants one; repeating the same action type grants none. Progress expires after 8 seconds. At three stacks, the next committed Q/W/E/R restores 8 Mana and charges one nearby armed, unfilled, visible allied node within 260 units. Internal cooldown: 2 seconds, with no accumulation during cooldown. Failed casts and derived hits do not count. No C/V input.",
-      "name_v2": "法术连携",
-      "name_v2_en": "Spell Weaving",
-      "resource_gain_v2": 10,
-      "description_v2": "交替施法积攒共鸣：开始时计1层，之后与上次计层技能不同才继续积层（Q→W→Q也有效，不要求3种技能）。第3次回复10法力、附近法晶充1层并使Q剩余冷却减少0.6秒，触发冷却1.2秒。重复同一技能不积层，8秒未继续则清空。普攻不是前置条件；回蓝只是额外奖励，单独Q也可持续使用。失败输入、法晶炮击、领域跳伤及多发弹体都不会重复触发。",
-      "description_v2_en": "Alternate spells to build Resonance: start at one stack; later casts must differ from the last spell that added a stack (Q→W→Q works; three unique spells are not required). The third restores 10 Mana, charges one nearby crystal and reduces Q remaining cooldown by 0.6 s; internal cooldown 1.2 s. Repeating one spell adds nothing; stacks expire after 8 s. Basics are not required. This is an optional bonus; Q is sustainable alone. Failed inputs, crystal shots, field ticks and missiles never trigger extra refunds.",
-      "q_cooldown_refund_v2": 0.6,
-      "icd_v2": 1.2
+      "name": "星辉协奏",
+      "description": "固定星灵团团承担普攻表现，与露弥联合施法。战斗中每次主动技能第一次实际释放获得1层星辉，最多3层；满层后的下一次释放消耗3层，使该次基础伤害或护盾提高25%，回复10法力。8秒没有继续施法时消散；切房、死亡和回营清空。起手取消不获得或消耗，联合效果不重复触发。",
+      "name_en": "Starlight Chorus",
+      "description_en": "The single star companion Tuantuan shares the central basic attack. An active skill first released in combat grants one Starlight, up to three. The next release consumes all three for +25% base damage or shield and restores 10 Mana. Starlight fades after eight seconds without a release and clears on room change or death. Cancelled windups have no effect."
     },
-    "original_visual": "谷频是用哼唱校准旧机器的信号技师，好奇、温和，擅长从噪声中判断矿层变化。单侧圆形接收器、高低错开的电容、短柄叉形针射器形成偏置轮廓；背负器通过线缆连接部署节点，避免常见长袍法师形象。旧白 #D2D1BB、孔雀青 #3E8D8D、深褐 #4B443D。",
-    "visual": "谷频是用哼唱校准旧机器的信号技师，好奇、温和，擅长从噪声中判断矿层变化。单侧圆形接收器、高低错开的电容、短柄叉形针射器形成偏置轮廓；背负器通过线缆连接部署节点，避免常见长袍法师形象。旧白 #D2D1BB、孔雀青 #3E8D8D、深褐 #4B443D。",
+    "original_visual": "22岁成年女性，胸部丰满、腰线清晰、肩臂与腿部纤细匀称；浅栗卷发与可爱脸，大魔女帽、黑曜黑和午夜深紫束腰魔法裙、银色魔纹及幽蓝魔光。黑银星环法杖与暗紫水晶组成暗黑魔法师轮廓，唯一圆润四角星灵团团协同。",
+    "visual": "22岁成年女性，胸部丰满、腰线清晰、肩臂与腿部纤细匀称；浅栗卷发与可爱脸，大魔女帽、黑曜黑和午夜深紫束腰魔法裙、银色魔纹及幽蓝魔光。黑银星环法杖与暗紫水晶组成暗黑魔法师轮廓，唯一圆润四角星灵团团协同。",
     "crit_chance": 0.05,
     "crit_multiplier": 1.5,
     "level_cap": 20,
@@ -515,12 +542,12 @@
     },
     "skills": {
       "q": {
-        "name": "奥术晶爆",
+        "name": "星铃飞弹",
         "input": "Q",
         "unlock": 1,
         "cost": 18,
         "cooldown": 5.0,
-        "description": "动作：聚晶0.18秒 → 出手窗0.06秒 → 收势0.12秒。发射速度650、射程550的奥术晶弹，首次命中或到达终点时半径65爆开，造成1.25H魔法伤害并施加感电；同敌一次，地形挡弹与爆炸视线。\n代价：18法力，冷却5秒。爆心90内节点各发出半径70、0.35H派生魔法回声，同敌同次施放最多一次回声；回声不施加感电，不触发被动或自身递归。\n布阵与反馈：弹体经过已展开节点90内为其充1层，最多3层；同次施放每节点最多一次。先W布晶、Q蓄能，再用E新星消费阵地。紫青菱晶、符文尾迹与清亮晶击区分奥术弹，爆点停在墙前。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.18,
           "active": 0.06,
@@ -537,17 +564,18 @@
           "echo_max_hits_per_target": 1
         },
         "name_en": "Arcane Crystalburst",
-        "description_en": "Gather a crystal for 0.18 s, release over 0.06 s, then recover for 0.12 s. Fire at 650 speed and 550 range; the first impact or endpoint bursts in a 65 radius for 1.25H magic damage and Shock, once per target. Terrain blocks projectile and blast. Costs 18 Mana; cooldown 5 s. Nodes within 90 of the burst emit 0.35H derived magic echoes in a 70 radius, at most one echo per target per cast. Echoes cannot apply Shock or trigger other effects. Passing within 90 of an active node adds one charge, up to three, once per node per cast. Violet-cyan crystals, runic trails and a clear crystal impact identify the arcane shot.",
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
         "summary_v2": "朝准星发射晶弹，命中爆炸；可反复施放。",
-        "summary_v2_en": "Fire an exploding crystal toward the cursor; cast it frequently."
+        "summary_v2_en": "Fire an exploding crystal toward the cursor; cast it frequently.",
+        "skill_id": "CH03_SK01"
       },
       "secondary": {
-        "name": "星界法晶",
+        "name": "星灵跃击",
         "input": "W",
-        "unlock": 2,
+        "unlock": 1,
         "cost": 30,
         "cooldown": 3.5,
-        "description": "动作：布晶预备0.20秒 → 出手窗0.08秒 → 收势0.16秒。在最远220的合法地面部署法晶节点，0.35秒展开，存活14秒、35生命，最多2个；每1.2秒攻击160内一敌，造成0.15H派生魔法伤害。\n代价：30法力，冷却3.5秒。超上限替换最早节点，不返蓝、不免费引爆。\n布阵与反馈：每节点最多3层电荷，Q经过90内充1层，R充满场内已展开节点；交响回路也可给附近未满能节点补1层。E引爆260内已展开、视线可达的节点，伤害(1.0+0.65×层数)H、半径100+20×层数，零层也可引爆。法晶的三枚晶格显示层数；节点攻击和引爆不参与原始普攻、感电消费或装备命中链。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.2,
           "active": 0.08,
@@ -565,17 +593,18 @@
           "max_charges": 3
         },
         "name_en": "Astral Crystal",
-        "description_en": "Prepare for 0.20 s, release over 0.08 s, then recover for 0.16 s. Deploy a crystal node on legal ground within 220 units. It arms after 0.35 s, lasts 14 s, has 35 health and attacks one enemy within 160 every 1.2 s for 0.15H derived magic damage. Costs 30 Mana; cooldown 3.5 s. Maximum two nodes; replacing the oldest gives no refund or explosion. Each holds three charges: Q adds one when passing within 90, R fills active nodes in its field, and Alternating Resonance can charge a nearby unfilled node. E consumes armed, visible nodes within 260 for (1.0 + 0.65 per charge)H in radius 100 + 20 per charge, even at zero charge. Three crystal sockets show energy; derived node damage cannot trigger hit chains or consume Shock.",
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
         "summary_v2": "落点立即晶爆，再留下自动攻击的法晶。",
-        "summary_v2_en": "Blast the target area, leaving a crystal that attacks automatically."
+        "summary_v2_en": "Blast the target area, leaving a crystal that attacks automatically.",
+        "skill_id": "CH03_SK02"
       },
       "f": {
-        "name": "冰霜新星",
+        "name": "星环守护",
         "input": "E",
-        "unlock": 3,
+        "unlock": 1,
         "cost": 25,
         "cooldown": 11.0,
-        "description": "动作：聚霜0.14秒 → 新星窗0.08秒 → 收势0.18秒。自身半径140造成0.8H魔法伤害并施加寒冷；同时消费自身260内、已展开且视线可达的法晶节点。\n每节点爆炸一次，造成(1.0+0.65×层数)H派生魔法伤害，半径100+20×层数；3层为2.95H、半径160。两节点可重叠，零层也能引爆；引爆不施加状态、不消费感电、不触发装备链。\n代价：25法力，冷却11秒。无节点时仍释放自身寒冷环并正常扣费；展开中的节点不能引爆。W布阵、Q充能或R充满后，E以冰晶尖环与青色新星释放阵地。3级解锁后，连接范围内节点按冷却、法力和动作状态显示技能可用徽标。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.14,
           "active": 0.08,
@@ -590,17 +619,18 @@
           "detonation_per_charge": 0.65
         },
         "name_en": "Frost Nova",
-        "description_en": "Gather frost for 0.14 s, release over 0.08 s, then recover for 0.18 s. Deal 0.8H magic damage and Chill within 140 of yourself. Consume every armed crystal node within 260 and line of sight; each explodes once for (1.0 + 0.65 per charge)H derived magic damage in radius 100 + 20 per charge. Three charges give 2.95H and radius 160. Two blasts may overlap; zero-charge nodes can detonate. Node blasts cannot apply or consume status or trigger equipment. Costs 25 Mana; cooldown 11 s. With no nodes, the personal frost ring still casts normally. Unfolding nodes cannot detonate. Ice spikes and a cyan nova identify the cast; after level 3, connected node badges reflect cooldown, Mana and action readiness.",
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
         "summary_v2": "被近身时按下：伤害并减速周围敌人。",
-        "summary_v2_en": "When enemies close in, damage and slow everything nearby."
+        "summary_v2_en": "When enemies close in, damage and slow everything nearby.",
+        "skill_id": "CH03_SK03"
       },
       "ultimate": {
-        "name": "星陨领域",
+        "name": "星愿之庭",
         "input": "R",
-        "unlock": 4,
+        "unlock": 1,
         "cost": 60,
         "cooldown": 48.0,
-        "description": "动作：聚星0.40秒 → 建场窗0.10秒 → 收势0.30秒。最远280的合法地面建立半径180、持续5秒的领域；建场直击0.6H魔法伤害并施加感电，随后每完整1秒造成0.8H派生魔法伤害并施加寒冷，最多5跳。全程命中理论总量4.6H。\n代价：60法力，冷却48秒。持续跳伤只在实际造成生命或护盾伤害时施加寒冷，不消费感电、不触发原始普攻或装备命中链；建场直击仍为原始技能命中。每跳最多12敌，按距中心、再实体ID稳定选取，地形阻挡伤害视线。\n布阵与反馈：建场时充满场内且视线可达的已展开节点，不自动引爆；再接E消费。施放结束后可继续移动和普攻，离场敌人不受后续跳伤。紫青法阵、星形脉冲和空灵短乐句标明领域；寒冷沿用共享规则，普通敌人减速20%、Boss减速10%，基础持续3秒并遵守已有时长修正。",
+        "description": "技能数据、动作时序及熟练度强化由对应职业技能目录统一提供。可在营地任意分配到四个输入槽，出征后配置固定。",
         "mechanics": {
           "windup": 0.4,
           "active": 0.1,
@@ -621,9 +651,10 @@
           "tick_requires_contact": true
         },
         "name_en": "Starfall Field",
-        "description_en": "Gather stars for 0.40 s, establish the field over 0.10 s, then recover for 0.30 s. Create a 180-radius field on legal ground within 280 for 5 s. The initial original skill hit deals 0.6H magic damage and applies Shock; each full second then deals 0.8H derived magic damage and applies Chill, up to five ticks. Maximum single-target coefficient: 4.6H. Costs 60 Mana; cooldown 48 s. Ticks apply Chill only on actual health or shield damage and cannot consume Shock or trigger original-hit or equipment chains. Each tick resolves at most 12 enemies, ordered by distance then entity ID, with terrain line of sight. On creation, fill active visible nodes inside the field without consuming them. Violet-cyan runes and star pulses mark the field. Chill uses the shared 20% ordinary-enemy or 10% boss slow and base 3 s duration with existing duration modifiers.",
+        "description_en": "Skill values, action timing and mastery are provided by the class skill catalog. Assign to any of four inputs at camp; expedition configurations remain fixed.",
         "summary_v2": "把星陨领域放进怪群，持续伤害并减速。",
-        "summary_v2_en": "Place a starfall field on a pack for repeated damage and slows."
+        "summary_v2_en": "Place a starfall field on a pack for repeated damage and slows.",
+        "skill_id": "CH03_SK04"
       }
     },
     "upgrades": [
@@ -682,17 +713,38 @@
         }
       }
     },
-    "name_en": "Gu Pin",
-    "title_en": "The Frequency Gatherer",
+    "name_en": "Lumi",
+    "title_en": "Dark Mage",
     "class_name_en": "Mage",
     "resource_name_en": "Mana",
-    "role_en": "Arcane mage · Crystal formation · Frost control",
-    "description": "W布置法晶节点，普攻与技能交替积满共鸣；Q晶爆为节点蓄能，R领域充满场内节点并持续寒冷控制，再用E冰霜新星引爆阵地。",
-    "description_en": "Deploy crystal nodes with W and alternate basics and skills to fill Resonance. Q charges nodes, R fills nodes in its field and applies Chill through its ticks, then E releases a frost nova and detonates the formation.",
-    "visual_en": "An offset signal-technician silhouette with a circular receiver on one side, staggered capacitors and a short forked needle emitter. Cables connect the backpack to deployable nodes. Aged white, peacock teal and dark brown.",
+    "role_en": "Star companion · Spell chorus · Area control",
+    "description": "露弥与唯一星灵团团联合施法，三层星辉后下一次释放获得协奏强化。营地从十二个本职业技能中选择四个，组合攻击、防护与控场。",
+    "description_en": "Lumi casts together with her single star companion Tuantuan. Three Starlight stacks empower the next release through Chorus. Select four of twelve class skills at camp for attacks, protection and area control.",
+    "visual_en": "A cute 22-year-old adult dark mage with a full bust, defined narrow waist and slender proportionate arms and legs. Chestnut curls, a large witch hat, fitted obsidian-black and midnight-purple dress, silver magic patterns and spectral blue light. A black-silver star-ring staff holds a dark violet crystal; one rounded four-point star companion follows her. Hand-painted cartoon 2.5D, high-angle three-quarter view.",
     "magic_resist": 18,
     "ability_power": 28,
-    "quick_start_v2": "Q持续输出；被近身按E；把W和R放进怪群。法晶充能与连携回蓝会自动发生，不必先学复杂连招。",
-    "quick_start_v2_en": "Use Q for steady damage, E when enemies close in, and place W/R on packs. Crystal charging and weaving refunds are automatic extras; no complex combo is required."
+    "quick_start_v2": "主动技能实际释放积攒星辉，三层后的下一次释放强化伤害或护盾并回复法力。团团复用普攻入口；营地选好四个技能，整次出征配置固定。",
+    "quick_start_v2_en": "Actual active releases build Starlight. The next release after three stacks boosts damage or shielding and refunds Mana. Tuantuan shares the basic attack; the four skills selected at camp stay fixed throughout the expedition.",
+    "gender": "female",
+    "age": 22,
+    "skill_pool": [
+      "CH03_SK01",
+      "CH03_SK02",
+      "CH03_SK03",
+      "CH03_SK04",
+      "CH03_SK05",
+      "CH03_SK06",
+      "CH03_SK07",
+      "CH03_SK08",
+      "CH03_SK09",
+      "CH03_SK10",
+      "CH03_SK11",
+      "CH03_SK12"
+    ],
+    "outfit_palette": {
+      "primary": "#181625",
+      "secondary": "#35224F",
+      "accent": "#78C8E8"
+    }
   }
 }

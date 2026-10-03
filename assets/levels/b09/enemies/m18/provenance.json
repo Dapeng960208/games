@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. BRAND NEW ORIGINAL B09 Frost Crystal Court character sprite sheet. Crown Crystal Arbiter: floating large multifaceted violet diamond heart wearing a spectacular detached ring-shaped ice crown, two long slender crystal arms, orbiting two smaller diamond seals, regal nonhuman silhouette. Exactly three separate complete poses of the SAME creature in one horizontal row: idle floating, raising both diamond seals, casting two ice crystal judgment marks. 1536x1024, three equal 512-wide cells, every weapon, antler, limb, crown and body entirely within its cell with generous clear margins, identical size and ground/feet pivots aligned near 86% height. High-angle near-isometric 2.5D game camera, all facing lower-right. Bright polished hand-painted fantasy cartoon, readable clean silhouette, fine dark-violet outline, complex cyan and lilac geometric ice facets, restrained champagne-gold trim, warm sun highlights. Actual transparent alpha background, EMPTY pixels behind and between creatures, no background aura, no backdrop color, no floor, no shadows, no labels, no text, borders or watermarks. Entirely new art, no old plant/fish/insect characters.",
+  "reference_images": [],
+  "sha256": "cf4de1badaf87c4acdb4279d07fd3a30462deb708b3853f2e7818248e0bd3282",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte copy; source pixels and alpha unchanged. Runtime uses source regions.",
+  "license": "Project-generated original artwork; no third-party character artwork reused."
+}

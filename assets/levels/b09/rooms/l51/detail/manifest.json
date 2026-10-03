@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "room_id": "L51",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L51_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "2a5dd00376585fce3f4af8dc94ca28a381251c4bbe62d0d4351a8ac1c99d0ba3",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L51/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "05e3f3cae53edc9623412ab3f47f1ff5c23053523baca1ed8d4bdf0e9877c3eb",
+      "decoded_rgb_sha256": "40b8f717ba0844197325b6bead536895c2a02f658097c7adc2745ac1f74b1b38",
+      "webp_sha256": "827d56dc8ef29367b6d83c2f0242dc9e618a5623bdf35e3babf7cf5259dd74b6",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: native high resolution game environment detail tile L51/top_left, one of six overlapping tiles.\nInput image 1 is the exact edit target, a fixed crop from the already approved room background. Keep its exact crop and all visible edge features.\nPrimary request: repaint ONLY finer surface/material detail at the largest native SQUARE resolution, 1536 x 1536 pixels requested. The existing small reference is a coordinate blueprint, not a concept to reinterpret.\nStyle/medium: bright hand-painted cartoon fantasy, high camera three-quarter oblique view, near-isometric 2.5D, clean readable hand-painted contours, soft sunny snow, pastel lavender shadows, luminous cool turquoise ice, warm brass-gold trim.\nLOCK every object's normalized position and silhouette, the camera, framing, exposure, color palette, visible scene boundaries and all four crop edges. The exact top-left snowy platform, gateway, steps, lanterns, crystals, snow-covered pine trees, guardrails and relative proportions remain unchanged. Preserve the original two snow banks, both full crystal bridge outlines and clear walk widths wherever they are visible in this crop, the canyon, gold-edged railings, stairs and all bank/bridge relationships.\nChange only newly painted fine snow grains, stone surface/cracks, translucent crystalline facets, ice-wall texture, tiny material highlights and brass-gold surface brush detail. Maintain soft original lighting and density. No geometry change; do not move or add a crystal, lamp, tree, stair or railing.\nDo NOT crop, expand, zoom, rotate, rearrange, change bridge width, redraw the composition, add objects, characters, monsters, text, labels, HUD, borders or watermark. This tile must align with the original in normalized coordinates at every edge. Produce native 1536 x 1536 detail, no artificial upscale. Opaque square image.",
+      "edit_reference": "artifacts/world-2k-production/references/L51/top_left.png",
+      "edit_reference_sha256": "a613bb9de70e66810c60731bd5e0f1ab2c7b0cb130809269d95a1953c81bb42f",
+      "edit_reference_size": [
+        520,
+        528
+      ],
+      "minimum_native_density": 2.375,
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-89ce-7901-9d1c-8eca4325d0c3\\exec-e678757a-6c61-4787-b443-91552d8d10bf.png",
+      "reference_crop_sha256": "a613bb9de70e66810c60731bd5e0f1ab2c7b0cb130809269d95a1953c81bb42f"
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L51/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "b38a66bbe9d3b2c8e79452f72136aa917a4c8eb268e8e9f2bb5c36c3ff59c8dd",
+      "decoded_rgb_sha256": "17ab24285200a3eb6cf1a5ea05e2365c682b75c89d86ef8d18411dd497055549",
+      "webp_sha256": "caca3121ecc498941c209fff20b8c4647d59975d12d4f29ce282485efcab67cd",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: native high-resolution game environment detail tile L51/top_middle, one of six overlapping tiles.\nInput image 1 is the exact edit target, a coordinate crop from the approved original room, not a concept to reinterpret.\nPrimary request: repaint ONLY finer surface/material detail at the largest native SQUARE resolution, 1536 x 1536 pixels requested.\nStyle/medium: bright hand-painted cartoon fantasy, high camera three-quarter oblique view, near-isometric 2.5D, clean readable hand-painted contours, soft sunny snow, pastel lavender shadows, luminous cool turquoise ice, warm brass-gold trim.\nLOCK exact framing, normalized coordinates of every feature, original camera, exposure and color palette, scene boundaries and all four image edges. Preserve the entire top crystal bridge exactly where shown: both bank landings, full span silhouette, clear walk width, central diamond trim, four towers/rails and their relative proportions. Preserve the canyon walls, snow banks, crystalline facets and depths. Both full bridge outlines in the original room must keep their clear widths and bank connections wherever visible in this tile. Never change bridge geometry.\nChange ONLY newly painted fine snow grains, stone cracks/surfaces, translucent crystalline texture/facets, ice-wall brush texture, small material highlights and brass-gold surface detail; retain the original soft lighting.\nDo NOT crop, expand, zoom, rotate, rearrange, shift any object, widen/narrow a bridge, add a crystal, lamp, railing, tree or stair. No new objects, characters, monsters, text, labels, HUD, border or watermark. This tile must align with the original in normalized coordinates at every edge. Produce native square detail, no artificial upscale, opaque image.",
+      "edit_reference": "artifacts/world-2k-production/references/L51/top_middle.png",
+      "edit_reference_sha256": "4cb65ff52e332144e217553283dfd2c57dc1eeec0179a4517ad945be23519f54",
+      "edit_reference_size": [
+        528,
+        528
+      ],
+      "minimum_native_density": 2.375,
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-89ce-7901-9d1c-8eca4325d0c3\\exec-a8744431-c497-46da-9d6a-c833b76f8293.png",
+      "reference_crop_sha256": "4cb65ff52e332144e217553283dfd2c57dc1eeec0179a4517ad945be23519f54"
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L51/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "eacaf2fc74a7e4f26b876d47accbdf47e05eda42ae94589934334c6480b17fdc",
+      "decoded_rgb_sha256": "85c50daeaf91884f407eb8d769ee5a124d59a1b6ef180e16cb0df8e67dd65892",
+      "webp_sha256": "e25e981549a5e26d4a06185e7241a4b3cca389f1928bb3592739f0e14defdc6a",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: native high-resolution game environment detail tile L51/top_right, one of six overlapping tiles.\nInput image 1 is the exact edit target, a fixed coordinate crop from the approved original room. Primary request: repaint ONLY fine surface/material detail at the largest native SQUARE resolution, 1536 x 1536 pixels requested.\nStyle: bright hand-painted cartoon fantasy, high three-quarter oblique camera, near-isometric 2.5D, clean readable hand-painted contours, sunlit snowy pale stone, lavender shadows, luminous turquoise ice and warm brass-gold trim.\nLOCK every normalized object position and silhouette, original camera, framing, exposure, color palette, boundaries and all four image edges. Keep the entire right-bank courtyard gateway and its stairs exactly placed and sized, the left bridge landing, railing, lanterns, crystals, pine trees, stone floor contours and snowbanks. Preserve both original crystal bridges' full outlines and clear widths wherever visible, the canyon, gold railings, steps and every bridge-to-bank connection.\nChange ONLY newly painted fine snow grains and pebble/stone material, cracks, translucent crystalline facets, ice-wall texture, tiny highlights and gold/brass brush detail. Keep original lighting.\nDo NOT crop, expand, zoom, rotate, rearrange, widen/narrow a bridge, move or add objects. No new crystals, lanterns, trees, rails or stairs. No characters, monsters, text, labels, HUD, borders or watermark. This square tile must match the original normalized composition and all edges exactly. Native detail, no artificial upscale, opaque image.",
+      "edit_reference": "artifacts/world-2k-production/references/L51/top_right.png",
+      "edit_reference_sha256": "1103a0fbc4e012793366623c7a717cd6a9dc900acf54b7994fc4c01765adb2c5",
+      "edit_reference_size": [
+        520,
+        528
+      ],
+      "minimum_native_density": 2.375,
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-89ce-7901-9d1c-8eca4325d0c3\\exec-bd19ed64-def4-400f-98e8-8578cd1232ed.png",
+      "reference_crop_sha256": "1103a0fbc4e012793366623c7a717cd6a9dc900acf54b7994fc4c01765adb2c5"
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L51/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "419ad20c5b816dea0c81cde801a4594bd3b6647316708039c3a06a36e7a19b1e",
+      "decoded_rgb_sha256": "b73edc16c68720b549bca5629674dd01d7068ba4bf7d56d3f4473cbf09a2123a",
+      "webp_sha256": "bcc4ae2855095bbfaa9a0638eff2ca4810d09dcee4017ec51020eb4e120a240a",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: native high-resolution game environment detail tile L51/bottom_left, one of six overlapping tiles.\nInput image 1 is the exact edit target, a fixed coordinate crop from the original approved room, not a scene concept to redesign. Primary request: add ONLY painted fine material detail at the largest native SQUARE resolution, 1536 x 1536 pixels requested.\nStyle: bright hand-painted cartoon fantasy, high three-quarter oblique camera, near-isometric 2.5D, clear painterly contours, sunny snow and pale stone, lavender shadows, luminous turquoise ice and warm brass-gold trim.\nLOCK exact framing and every normalized object's position, silhouette, proportions, original camera, exposure, palette, scene boundary and every edge. Preserve the left bank's whole floor/cliff boundary and its gold-edged walls, purple hanging banner, snow-covered pine trees, lantern posts and existing crystal cluster shapes exactly. Keep the canyon's opening/ice-wall outlines and steps wherever visible. Both original crystal bridges' full outlines, clear walk widths and bank connections remain unchanged wherever visible.\nChange ONLY finer snow grain, stone surface/cracks, translucent crystalline facets, ice-wall surface brush texture and small gold material highlights. Do not redraw floor geometry, cliff geometry or the composition.\nDo NOT crop, expand, zoom, rotate, rearrange, shift or add objects, change bridge widths, replace banners, add a crystal, lantern, tree, railing or stair. No characters, monsters, text, labels, HUD, borders or watermark. Match the original normalized composition at all four edges. Native square detail with no artificial upscale; opaque image.",
+      "edit_reference": "artifacts/world-2k-production/references/L51/bottom_left.png",
+      "edit_reference_sha256": "19699a277628c4b5e38f35021cb49350382f063d0b6fd5c0c966d4fd4469e155",
+      "edit_reference_size": [
+        520,
+        520
+      ],
+      "minimum_native_density": 2.4115384615384614,
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-89ce-7901-9d1c-8eca4325d0c3\\exec-0db24834-4ca0-4bcc-8f30-339eb77ddc3e.png",
+      "reference_crop_sha256": "19699a277628c4b5e38f35021cb49350382f063d0b6fd5c0c966d4fd4469e155"
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L51/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "13a40eab377b33742df47a31e61fcdf8eba256fb934fa62b0ac43c4a429b8290",
+      "decoded_rgb_sha256": "cc77df14ff2aede969f5e2319282fcf5b4370f599f4f4acae93c10298c362239",
+      "webp_sha256": "d2b8b61197d4d2178cde4029127c86c754830b234dfec0aaac6dffc2d000e9d6",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: native high-resolution game environment detail tile L51/bottom_middle, one of six overlapping tiles.\nInput image 1 is the exact edit target, a fixed coordinate crop from the approved room background. Primary request: repaint ONLY fine material texture at the largest native SQUARE resolution, 1536 x 1536 pixels requested. This is an exact coordinate blueprint, not a concept to reinterpret.\nStyle: bright hand-painted cartoon fantasy, high camera three-quarter oblique view, near-isometric 2.5D, clear painted contours, sunlit snow, lavender shadows, luminous turquoise ice, warm brass-gold trim.\nLOCK exact framing and normalized coordinates of every object, original silhouette, proportions, camera, lighting/exposure, color palette, scene boundaries and all four edges. Preserve the lower crystal bridge near the top of this crop exactly: full span outline, original clear walking width, both bank landings, gold-edged rails, diamond motif, crystalline towers and relative positions. Preserve canyon depth/opening, ice-wall outlines, snow banks and all crystal cluster shapes. Original two bridges and their bank connections remain exactly as shown wherever visible.\nChange ONLY fine snow grains, stone brush surface/cracks, translucent crystal facet/surface detail, ice-wall textures, tiny material highlights and brass-gold surface brushwork. Retain original lighting and geometry.\nDo NOT crop, expand, zoom, rotate, rearrange, shift or add any object, change bridge widths or bank outlines. No added crystal, lantern, tree, railing or stair. No characters, monsters, text, labels, HUD, borders or watermark. Match the original normalized composition at all four edges. Native square image, no artificial upscale, opaque.",
+      "edit_reference": "artifacts/world-2k-production/references/L51/bottom_middle.png",
+      "edit_reference_sha256": "6a8259bb398c1d1c6fba719f45197781c4c0cc5463d9eaa66a19ca89984cd70e",
+      "edit_reference_size": [
+        528,
+        520
+      ],
+      "minimum_native_density": 2.375,
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-89ce-7901-9d1c-8eca4325d0c3\\exec-3b076d59-92b1-4143-9bf3-3ad9d1bbbde4.png",
+      "reference_crop_sha256": "6a8259bb398c1d1c6fba719f45197781c4c0cc5463d9eaa66a19ca89984cd70e"
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L51/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "6fc8c4e0321a8c08c480fba20abe505f29890399a18e078a68c5e576bfe1bb42",
+      "decoded_rgb_sha256": "13e669ce2583fd4259d203ace57c7f90de9c682723756ba6b1113d20c6785261",
+      "webp_sha256": "01d99055d86ffb1fb8ba0604bd175a949f074f7f84325fe414c6fefc728c0683",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: native high-resolution game environment detail tile L51/bottom_right, one of six overlapping tiles.\nInput image 1 is the exact edit target, a fixed coordinate crop from the approved original room background, not a concept to redesign. Primary request: repaint ONLY finer surface/material detail at the largest native SQUARE resolution, 1536 x 1536 pixels requested.\nStyle: bright hand-painted cartoon fantasy, high three-quarter oblique camera, near-isometric 2.5D, clear hand-painted contours, sunlit pale stone and snowy banks, lavender shadows, luminous turquoise ice, warm brass-gold trim.\nLOCK exact framing and normalized position/silhouette/proportions of every object, original camera, exposure and color palette, boundaries and all four edges. Preserve the right bank courtyard floor/cliff outline, high corner crystal tower, all gold-edged walls/railings, purple hanging banner, lantern, snow-covered pine trees and crystal cluster shapes exactly. Preserve canyon opening/ice-wall outlines and the bridge landing wherever visible. Keep both original bridges' complete outlines and clear walk widths and all bridge-to-bank relationships wherever visible.\nChange ONLY fine snow grains, stone surface/cracks, translucent crystalline material facets, ice-wall brush texture, tiny material highlights and brass-gold surface detailing, with original soft lighting.\nDo NOT crop, expand, zoom, rotate, rearrange, shift, add or remove any object. No bridge width or cliff outline change. No added crystal, lantern, tree, railing or stair. No characters, monsters, text, labels, HUD, borders or watermark. Match the original normalized composition at every edge. Native square detail, no artificial upscale; opaque image.",
+      "edit_reference": "artifacts/world-2k-production/references/L51/bottom_right.png",
+      "edit_reference_sha256": "360018e2d09262125ea7c844a35808ecff30ddb99392318139ce26b16625e34a",
+      "edit_reference_size": [
+        520,
+        520
+      ],
+      "minimum_native_density": 2.4115384615384614,
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-89ce-7901-9d1c-8eca4325d0c3\\exec-19c7f7c3-8b77-43e8-8e22-2c2ef0c2a2bf.png",
+      "reference_crop_sha256": "360018e2d09262125ea7c844a35808ecff30ddb99392318139ce26b16625e34a"
+    }
+  ],
+  "generation_use_case": "precise-object-edit",
+  "reference_mapping": "exact source crop; native repaint normalized over source_rect; no output resize",
+  "approval_scope": "Static 2K GPU visual review only; movement, combat and natural balance are separate checks.",
+  "acceptance": {
+    "date": "2026-10-03",
+    "resolution": [
+      2560,
+      1440
+    ],
+    "renderer": "OpenGL Compatibility",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "source_comparison": true,
+    "visual_review": "Passed complete painted scenery, tile seams, palette, bridge continuity and lamp-foot proximity. L51/L54 rechecked after removing untouched-gap mother-image overpainting.",
+    "capture_directory": "artifacts/b09_native_visual",
+    "geometry_changed_by_tiles": false,
+    "scale_or_upscale_applied": false,
+    "natural_playthrough_claimed": false
+  }
+}

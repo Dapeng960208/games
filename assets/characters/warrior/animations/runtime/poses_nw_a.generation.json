@@ -1,0 +1,352 @@
+{
+  "schema_version": 1,
+  "asset_type": "original_warrior_runtime_pose_source",
+  "mode": "builtin_image_gen",
+  "use_case": "stylized-concept",
+  "profession": "warrior",
+  "character": "Luo Zhen / 罗砧",
+  "direction": "nw",
+  "direction_degrees": 225,
+  "direction_scheme": "formal 8 screen directions at 45-degree spacing",
+  "camera_downward_degrees": 35,
+  "set": "a",
+  "artifact_status": "formal_eight_direction_candidate_pending_component_packing_and_visual_review",
+  "requested_native_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "original_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10123-5c96-7c63-b8bd-e537c504f9ce\\exec-25d6c877-1a9f-44d8-b4f6-b5c2b8c3978b.png",
+  "sha256": "15135ec3b5a7d8a5291e4eaace2da646413f72cafa770e90f283ab22781aea9a",
+  "output_path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/animations/runtime_sources/poses_nw_a.png",
+  "transparent_background": true,
+  "alpha_check": {
+    "mode": "RGBA",
+    "extrema": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 959125,
+    "fully_opaque_pixels": 2353,
+    "alpha_nonzero_bbox": [
+      0,
+      35,
+      1238,
+      1254
+    ],
+    "measurement": "Pillow + NumPy read-only; alpha>8 principal connected components; original bytes unchanged",
+    "risk": "Sparse disconnected low-alpha pixels exist outside principal sprites; component-aware packing may isolate selected sprite under user authorization."
+  },
+  "source_references": [
+    "C:\\Users\\13326\\.codex\\generated_images\\01a10123-5c96-7c63-b8bd-e537c504f9ce\\exec-ab5b02cb-6d78-4065-9d21-e2698c533748.png"
+  ],
+  "prompt": "Use case: precise-object-edit\nEdit target: supplied NORTHWEST225degree set A sheet. Correct ONLY anatomical grip consistency in idle and two walking poses. Keep all4characters/costume/identity/axe/design/viewpoint/scale/layout and pose meaning unchanged; bottom-right windup already has correct hand order, preserve it.\nInvariant across all4poses: ANATOMICAL RIGHT HAND is the FORWARD grip closest to AXE HEAD, ANATOMICAL LEFT HAND is REAR grip toward POMMEL. In this left-rear45degree view RIGHT ARM comes from farther upper-right shoulder; LEFT ARM comes from nearer upper-left shoulder. Do not confuse screenleft/right with anatomicalleft/right. Repose the two forearms in idle/walk as needed so the far right hand reaches forward grip near head, near left hand holds farther back toward pommel; full fingers visibly wrap shaft, believable elbows/wrists, no extra arms. Every pose retains right hand nearer head than left.\nEverything else invariant: trueNW screen-upper-left equally(-0.707,-0.707), backplate/rear shoulders/back coat/backbrownhead, no frontal face/eyes/chest, only small left ear/noseprofile hint. Adultbrown-hairedmale navycoat/silverarmor/goldtrim/vermilionscarf with hugegoldsilver molten-rocksunstonecrescentaxe. Fixed35degreehighcamera nearisometric2.5D brightdimensionalhandpaintedcartoon.\nSame2x2rowmajor TLidle/TRwalk_left/BLwalk_right/BRbasic_windup, complete independent personandaxe percell,450-550actualpixel standinganatomy at1254 output, no resizing/upscale. Request native2048x2048 transparentPNG recordactualsize. Preserve legstride phases and stablefootpositions. No floor/shadows/FX/trails/labels/background/neighboroverlap/crop, internal orangeaxe only.",
+  "initial_generation_prompt": "Use case: stylized-concept\nAsset type: ORIGINAL combat animation source sheet for warrior Luo Zhen, formal eight-direction NORTHWEST225 degrees, set A.\nReference roles: image1 portrait locks adult male identity, costume and crescent sunstone axe; image2 WEST source only locks painterly game rendering and body scale. Redraw new true NORTHWEST anatomy, never copy/mirror/rotate a reference sprite.\nOutput: request native2048x2048 transparentPNG, record actual native size if smaller, NEVER upscale. ExactlyFOUR complete independent person-plus-axe sprites in clean2x2 rowmajor. At1254square output target450-550actualpixels visible anatomy from brown hairtop to shoes, similar standing anatomy scale in all slots. Weapon/scarf fully contained, compact composition with35px transparent padding on each cell edge, no neighbor overlap.\nCamera: FIXED high camera looking downward35degrees, near-isometric2.5D. Every sprite aims NORTHWEST screen-left and screen-UP equally, heading vector(-0.707,-0.707), exactly45degrees above left. TRUE left rear45degree anatomical view: backplate, rear shoulders, coat rear and back of hair clearly visible; a small left ear/side-nose contour only. NO eyes, frontal face or front breastplate. Head/torso/hips/toes/attack heading NW in all four.\nIdentity/materials: adult athletic brown-haired male Luo Zhen, short textured brown hair, navy#233b66 light-armored long coat with gold trim, silver#e0e6ef fitted shoulder/back/forearm/shin armor, vermilion#d6554e scarf with restrained tails, dark gloves/trousers. Huge cool gold/silver crescent rune axe with solid charcoal molten-rock inset, contained orange sunstone cracks and central gem. All rock shapes integrated into weapon, no external debris. Bright hand-painted cartoon fantasy, dimensional painted metal/cloth, crisp dark contours, mature anatomy not chibi.\nHandedness invariant: character's ANATOMICAL RIGHT hand is forward grip near axehead end of shaft; ANATOMICAL LEFT hand is rear grip toward pommel whenever both hands hold. Not screen-right terminology. No anatomical hand swap between directions.\nTop-left idle: ready NW stance, massive axe side-held low diagonal, both boots visible.\nTop-right walk_left: large natural NW stride, anatomicalLEFT leg leads NW, RIGHT leg trails; balance side-carried axe.\nBottom-left walk_right: opposite stride phase along same NW direction, anatomicalRIGHT leg leads NW, LEFT leg trails; clearly different leg/arm phase.\nBottom-right basic_windup: two hands pull axe behind/over shoulder to load a heavy NW strike; compact braced legs, torso twists naturally but head/toes retain NW target, right hand forward/left rear grip.\nConstraints: same single man/costume/weapon scale, fully visible complete hair/hands/feet/scarf/axe in every cell. Exactly4sprites, no labels/text, no background/floor/shadows, no motiontrail/actionarc/aura/externalFX, no extra people or detached props, no crops. Small internal orange axe light only. True transparent alpha.",
+  "initial_source_references": [
+    "assets/characters/warrior/portraits/full_illustration.png",
+    "assets/characters/warrior/animations/runtime_sources/poses_w_a.png"
+  ],
+  "targeted_tool_edit_count": 1,
+  "discarded_initial_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10123-5c96-7c63-b8bd-e537c504f9ce\\exec-ab5b02cb-6d78-4065-9d21-e2698c533748.png",
+  "landmark_method": "Manual native absolute-pixel estimates. body_height is visible anatomical hair-top to lowest visible shoe sole, excluding axe/scarf extent. foot is average expected ground projection of both shoe soles, including estimated occluded/raised sole. component_seed is the visual head center within the selected principal alpha component. Accuracy and frame-specific risks are preserved.",
+  "requested_handedness": "Anatomical RIGHT hand forward near axehead, LEFT rear toward pommel for two-hand holds.",
+  "handedness_review": "Some phases visually switch shaft grip order. Record as slide/regrip risk; no third arm or detached axe seen. Do not silently assert uniform anatomical grip.",
+  "frames": [
+    {
+      "name": "idle",
+      "body_height": 523,
+      "region": [
+        0,
+        0,
+        768,
+        704
+      ],
+      "foot": [
+        353,
+        629
+      ],
+      "head": [
+        305,
+        168
+      ],
+      "grip": [
+        258,
+        441
+      ],
+      "muzzle": [
+        150,
+        478
+      ],
+      "source_frame": {
+        "name": "idle",
+        "region": [
+          19,
+          53,
+          609,
+          531
+        ],
+        "foot": [
+          337,
+          562
+        ],
+        "head": [
+          289,
+          101
+        ],
+        "grip": [
+          242,
+          374
+        ],
+        "muzzle": [
+          134,
+          411
+        ],
+        "body_height": 523,
+        "landmark_accuracy_px": 22,
+        "component_seed": [
+          289,
+          101
+        ],
+        "alpha_component_bbox": [
+          23,
+          57,
+          624,
+          580
+        ],
+        "alpha_component_pixels": 142400,
+        "foot_risk": "Rear shoe sole is partly occluded by coat tails. The second sole ground projection is estimated; common ground-foot packing requires visual review.",
+        "grip_order_risk": "Visible near-side anatomical left hand appears forward toward axehead despite requested right-forward invariant. Compared with overhead poses this is a slide/regrip risk; one targeted built-in edit did not resolve it. No extra arm or detached axe observed."
+      }
+    },
+    {
+      "name": "walk_left",
+      "body_height": 509,
+      "region": [
+        768,
+        0,
+        768,
+        704
+      ],
+      "foot": [
+        1121,
+        629
+      ],
+      "head": [
+        1018,
+        197
+      ],
+      "grip": [
+        1085,
+        450
+      ],
+      "muzzle": [
+        944,
+        450
+      ],
+      "source_frame": {
+        "name": "walk_left",
+        "region": [
+          646,
+          73,
+          562,
+          517
+        ],
+        "foot": [
+          938,
+          553
+        ],
+        "head": [
+          835,
+          121
+        ],
+        "grip": [
+          902,
+          374
+        ],
+        "muzzle": [
+          761,
+          374
+        ],
+        "body_height": 509,
+        "landmark_accuracy_px": 18,
+        "component_seed": [
+          835,
+          121
+        ],
+        "alpha_component_bbox": [
+          650,
+          77,
+          1204,
+          586
+        ],
+        "alpha_component_pixels": 132871,
+        "foot_risk": "Stride heel lift and different depth make the two-sole expected ground average approximate.",
+        "grip_order_risk": "Visible near-side anatomical left hand appears forward toward axehead despite requested right-forward invariant. Compared with overhead poses this is a slide/regrip risk; one targeted built-in edit did not resolve it. No extra arm or detached axe observed."
+      }
+    },
+    {
+      "name": "walk_right",
+      "body_height": 497,
+      "region": [
+        0,
+        704,
+        768,
+        704
+      ],
+      "foot": [
+        353,
+        1333
+      ],
+      "head": [
+        306,
+        898
+      ],
+      "grip": [
+        325,
+        1165
+      ],
+      "muzzle": [
+        195,
+        1156
+      ],
+      "source_frame": {
+        "name": "walk_right",
+        "region": [
+          46,
+          674,
+          559,
+          505
+        ],
+        "foot": [
+          321,
+          1155
+        ],
+        "head": [
+          274,
+          720
+        ],
+        "grip": [
+          293,
+          987
+        ],
+        "muzzle": [
+          163,
+          978
+        ],
+        "body_height": 497,
+        "landmark_accuracy_px": 18,
+        "component_seed": [
+          274,
+          720
+        ],
+        "alpha_component_bbox": [
+          50,
+          678,
+          601,
+          1175
+        ],
+        "alpha_component_pixels": 128442,
+        "foot_risk": "Stride heel lift and different depth make the two-sole expected ground average approximate.",
+        "grip_order_risk": "Visible near-side anatomical left hand appears forward toward axehead despite requested right-forward invariant. Compared with overhead poses this is a slide/regrip risk; one targeted built-in edit did not resolve it. No extra arm or detached axe observed."
+      }
+    },
+    {
+      "name": "basic_windup",
+      "body_height": 491,
+      "region": [
+        768,
+        704,
+        768,
+        704
+      ],
+      "foot": [
+        1121,
+        1333
+      ],
+      "head": [
+        1063,
+        928
+      ],
+      "grip": [
+        1173,
+        876
+      ],
+      "muzzle": [
+        1311,
+        911
+      ],
+      "source_frame": {
+        "name": "basic_windup",
+        "region": [
+          693,
+          632,
+          543,
+          581
+        ],
+        "foot": [
+          925,
+          1164
+        ],
+        "head": [
+          867,
+          759
+        ],
+        "grip": [
+          977,
+          707
+        ],
+        "muzzle": [
+          1115,
+          742
+        ],
+        "body_height": 491,
+        "landmark_accuracy_px": 16,
+        "component_seed": [
+          867,
+          759
+        ],
+        "alpha_component_bbox": [
+          697,
+          636,
+          1232,
+          1209
+        ],
+        "alpha_component_pixels": 153483,
+        "grip_order_risk": "Both hands are attached to physical shaft; overhead/cross-body overlap makes anatomical forward/rear grip order approximate. Compare neighboring phases for natural sliding/regrip before final acceptance."
+      }
+    }
+  ],
+  "layout_review": {
+    "sprite_count": 4,
+    "distinct_direction_review": "True left rear 45-degree body/head/boot view; backplate/back coat and rear head, only small ear/nose-profile hint.",
+    "cell_padding_target_px": 35,
+    "cell_padding_target_met": false,
+    "visible_anatomy_target_px": [
+      450,
+      550
+    ],
+    "notes": "Actual native1254 not2K. Four principal alpha components independently complete. Some axe/scarf/overhead extensions cross nominal cell boundaries; connected-component isolation and common-ground-foot packing required. Do not scale each pose by dash crouch or axe bbox height."
+  },
+  "provenance": {
+    "creator": "OpenAI built-in ImageGen, original project character art",
+    "license_note": "Preserve original generated bytes, prompts, paths and SHA. Prior 30/60-degree candidates remain under their original filenames."
+  },
+  "native_source_dimensions": [
+    1254,
+    1254
+  ],
+  "packed_dimensions": [
+    1536,
+    1408
+  ],
+  "raw_source": "assets/characters/warrior/animations/runtime_sources/poses_nw_a.png",
+  "raw_source_sha256": "15135ec3b5a7d8a5291e4eaace2da646413f72cafa770e90f283ab22781aea9a",
+  "pixel_scale": 1,
+  "processing": "Existing independent alpha8 components; alpha<8/hidden RGB cleared, sole anchors aligned by integer translation. No redraw, rotation, mirroring, pixel resizing or pose fitting.",
+  "retained_alpha8_pixels": 558497,
+  "standing_reference_body_height": 523
+}
