@@ -9,6 +9,7 @@ const FLOOR_TEXTURE_PATH := Art.FLOOR_PATH
 const FLOOR_WORLD_SCALE := 0.34
 const FLOOR_DEPTH_SCALE := 0.80
 const FLOOR_TILE_WORLD_SIZE := Vector2(426.0,340.8)
+const FALLBACK_RENDER_MARGIN := 200.0
 
 var arena := Rect2(48, 106, 2704, 1588)
 var biome: String = "B01"
@@ -21,6 +22,8 @@ var environment_texture: Texture2D
 var environment_world_rect := Rect2()
 var environment_chunks: Node2D
 var ground_composition: Node2D
+var b05_floor_repair: Node2D
+var b05_fixed_void: Node2D
 
 func _ready() -> void:
 	texture_repeat = CanvasItem.TEXTURE_REPEAT_DISABLED
@@ -52,7 +55,7 @@ func configure(world_arena: Rect2, biome_id: String = "B01", seed_value: int = 4
 	_update_palette()
 	queue_redraw()
 
-func configure_layout(layout: Dictionary) -> void:
+func configure_layout(layout: Dictionary,allow_candidates: bool=false) -> void:
 	perimeter_layout = layout.duplicate(false)
 	blueprint_room_id = Art.environment_room_id(layout)
 	# The painting follows compact blueprint coordinates, even when the room's
@@ -65,10 +68,32 @@ func configure_layout(layout: Dictionary) -> void:
 		ground_composition.z_index = 1
 		add_child(ground_composition)
 	ground_composition.configure(layout,biome)
+	if is_instance_valid(environment_chunks): environment_chunks.configure_candidate_detail(allow_candidates and biome=="B05")
+	if is_instance_valid(b05_fixed_void): b05_fixed_void.free()
+	b05_fixed_void=null
+	if biome=="B05" and blueprint_room_id=="L27":
+		var void_layer:=preload("res://scripts/world/b05_fixed_void.gd").new()
+		if void_layer.configure(layout,allow_candidates):
+			add_child(void_layer);void_layer.z_index=1;b05_fixed_void=void_layer
+		else: void_layer.free()
+	if is_instance_valid(b05_floor_repair): b05_floor_repair.free()
+	b05_floor_repair = null
+	if biome=="B05" and blueprint_room_id in ["L26","L27","L29","L30","BO05"]:
+		var overlay:=preload("res://scripts/world/b05_floor_repair.gd").new()
+		if overlay.configure(layout,allow_candidates):
+			add_child(overlay)
+			overlay.z_index=1
+			b05_floor_repair=overlay
+		else: overlay.free()
 	queue_redraw()
 
 func _update_palette() -> void:
 	palette = Art.palette(biome)
+
+func painted_bounds() -> Rect2:
+	# Missing/service art uses tiled ground, including the scenery margin that
+	# the camera can expose. This is visual coverage, never walkable geometry.
+	return environment_world_rect if environment_texture != null and environment_world_rect.has_area() else arena.grow(FALLBACK_RENDER_MARGIN)
 
 func _draw() -> void:
 	if environment_texture!=null and environment_world_rect.has_area():
@@ -77,7 +102,7 @@ func _draw() -> void:
 		return
 	if palette.is_empty():
 		_update_palette()
-	draw_rect(arena, palette.ground)
+	draw_rect(painted_bounds(), palette.ground)
 	_draw_floor()
 
 func _draw_floor() -> void:
@@ -88,20 +113,24 @@ func _draw_floor() -> void:
 	var native: Rect2 = definition.source
 	# Individual panel UVs prevent adjacent faction surfaces leaking into the
 	# floor. Explicit mirrored tiles also preserve the outer platform boundary.
-	for y: int in range(ceili(arena.size.y/FLOOR_TILE_WORLD_SIZE.y)):
-		for x: int in range(ceili(arena.size.x/FLOOR_TILE_WORLD_SIZE.x)):
+	var coverage: Rect2 = painted_bounds()
+	var first: Vector2 = (coverage.position-arena.position)/FLOOR_TILE_WORLD_SIZE
+	var last: Vector2 = (coverage.end-arena.position)/FLOOR_TILE_WORLD_SIZE
+	for y: int in range(floori(first.y),ceili(last.y)):
+		for x: int in range(floori(first.x),ceili(last.x)):
 			var tile := Rect2(arena.position+Vector2(x,y)*FLOOR_TILE_WORLD_SIZE,FLOOR_TILE_WORLD_SIZE)
-			var clipped: Rect2 = tile.intersection(arena)
+			var clipped: Rect2 = tile.intersection(coverage)
 			var fraction: Vector2 = clipped.size/FLOOR_TILE_WORLD_SIZE
-			var source := Rect2(native.position,native.size*fraction)
+			var tile_offset: Vector2 = (clipped.position-tile.position)/FLOOR_TILE_WORLD_SIZE
+			var source := Rect2(native.position+native.size*tile_offset,native.size*fraction)
 			var origin: Vector2 = clipped.position
 			var reflection := Vector2.ONE
-			if x%2==1:
-				source.position.x = native.end.x-source.size.x
+			if posmod(x,2)==1:
+				source.position.x = native.end.x-native.size.x*tile_offset.x-source.size.x
 				origin.x += clipped.size.x
 				reflection.x = -1
-			if y%2==1:
-				source.position.y = native.end.y-source.size.y
+			if posmod(y,2)==1:
+				source.position.y = native.end.y-native.size.y*tile_offset.y-source.size.y
 				origin.y += clipped.size.y
 				reflection.y = -1
 			# Texture regions require positive rectangles. A canvas reflection

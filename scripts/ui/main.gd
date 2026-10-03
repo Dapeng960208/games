@@ -529,7 +529,7 @@ func _departure_enemy_count(difficulty: int) -> int:
 	var rooms: Array = definition.get("room_ids",[])
 	var sample_room := str(rooms[0]) if not rooms.is_empty() else "L01"
 	for zone in DifficultyProfiles.ZONE_COUNT:
-		total += int(DifficultyProfiles.encounter_plan(sample_room,zone,difficulty).get("total_count",0))
+		total += int(DifficultyProfiles.encounter_plan(sample_room,zone,difficulty,2 if selected_biome in ["B05","B06"] else 1).get("total_count",0))
 	return total
 
 func _update_departure_difficulty_hint() -> void:
@@ -542,7 +542,7 @@ func _update_departure_difficulty_hint() -> void:
 	var level := DifficultyProfiles.encounter_level(sample_room,0,difficulty)
 	var enhancement: String = ["+0","+0–1","+1","+2","+3"][difficulty]
 	if int(Game.profile.get("ruleset_version",1)) == 2:
-		var chapter := clampi(int(selected_biome.trim_prefix("B")),1,4)
+		var chapter := clampi(int(selected_biome.trim_prefix("B")),1,int(preload("res://config/numerical_rules.gd").value("implemented_chapters",4)))
 		var first := (chapter-1)*5+1
 		var counts: Array = preload("res://config/numerical_rules.gd").value("boss_drop_counts")
 		hint.text = _ex_text("固定挑战Lv.%d/%d/%d · 首领Lv.%d · 清房1件 / 首领%d件 · 金≤+1，其余≤+5","Fixed challenge Lv.%d/%d/%d · Boss Lv.%d · Room1 / Boss%d items · Gold≤+1, others≤+5") % [first,first+2,first+4,chapter*5,int(counts[difficulty])]
@@ -574,6 +574,7 @@ func _build_biome_selector() -> void:
 		var implemented: bool = definition.implemented
 		var locked := not available.has(biome_id)
 		var status := _ex_text(" · 待开发"," · TODO") if not implemented else (_ex_text(" · 首领未解锁", " · Locked") if locked else "")
+		if definition.get("candidate",false): status += _ex_text(" · 候选试玩"," · Candidate")
 		picker.add_item(MineStyle.content_text(definition,"name",biome_id)+status,index)
 		picker.set_item_disabled(index,not implemented or locked)
 		picker.set_item_metadata(index,biome_id if implemented else "")
@@ -594,6 +595,8 @@ func _build_biome_selector() -> void:
 	screen.add_child(picker)
 	MineStyle.literal(screen,_ex_text("击败首领并撤离后开放下一区域", "Defeat the boss and extract to unlock the next area"),Vector2(454,286),Vector2(490,18),10,MineStyle.MUTED)
 	var roadmap := MineStyle.literal(screen,_ex_text("12 个地区规划 · 4 个已实现 / 8 个待开发", "12 REGIONS PLANNED · 4 PLAYABLE / 8 TODO"),Vector2(953,286),Vector2(259,18),10,MineStyle.CYAN)
+	if WorldCatalog.b06_enabled(): roadmap.text = _ex_text("4 个已发布 · B05/B06 隔离候选", "4 RELEASED · B05/B06 ISOLATED CANDIDATES")
+	elif WorldCatalog.b05_enabled(): roadmap.text = _ex_text("4 个已发布 · B05 隔离候选", "4 RELEASED · B05 ISOLATED CANDIDATE")
 	roadmap.name = "CampRegionPlanSummary"
 	roadmap.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	roadmap.tooltip_text = _ex_text("前四个地区保留逐关解锁。其余八个地区仅作开发计划展示，尚不能进入。","The first four regions unlock in order. The other eight are roadmap entries and cannot be entered.")
@@ -1105,6 +1108,17 @@ func _start_run_with_wish() -> void:
 	if not Game.start_run(options): _show_save_error()
 
 func _on_run_started() -> void:
+	# Resume/reload can re-enter Main while the previous room still exists.
+	# Retire it before creating its replacement, including owned visual layers.
+	if is_instance_valid(hud):
+		hud.set_process(false)
+		hud.hide()
+	if is_instance_valid(room):
+		room.process_mode = Node.PROCESS_MODE_DISABLED
+		room.hide()
+		if room.get_parent()!=null: room.get_parent().remove_child(room)
+		room.queue_free()
+		room = null
 	loot_flow_active = false
 	pending_outcome = ""
 	quit_after_result = false

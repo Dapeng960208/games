@@ -3,7 +3,17 @@ extends RefCounted
 ## Authored world definitions only. Catalog membership does not imply a playable scene.
 ## Returned dictionaries are deep copies so a run cannot mutate shared content.
 
-const ORDINARY_ROSTER_COUNTS := {"B01": 9, "B02": 12, "B03": 15, "B04": 18}
+const ORDINARY_ROSTER_COUNTS := {"B01": 9, "B02": 12, "B03": 15, "B04": 18, "B05": 18, "B06": 18}
+const Rules = preload("res://config/numerical_rules.gd")
+const B05 = preload("res://scripts/world/b05_runtime_catalog.gd")
+const B06 = preload("res://scripts/world/b06_runtime_catalog.gd")
+
+static func b06_enabled() -> bool:
+	return Rules.b06_candidate_enabled()
+
+static func b05_enabled() -> bool:
+	return Rules.b05_candidate_enabled()
+
 const ROOM_PATH := "res://data/rooms.json"
 const ENEMY_PATH := "res://data/enemies.json"
 const DAMAGE_KINDS := ["kinetic", "fire", "electric", "cold", "corrosion"]
@@ -32,27 +42,36 @@ static func _ensure_loaded() -> void:
 
 static func room(id: String) -> Dictionary:
 	_ensure_loaded()
-	return _rooms.get("rooms", {}).get(id, {}).duplicate(true)
+	if b06_enabled() and id in B06.biome().room_ids: return B06.room(id)
+	return B05.room(id) if b05_enabled() and id in B05.biome().room_ids else _rooms.get("rooms", {}).get(id, {}).duplicate(true)
 
 static func enemy(id: String) -> Dictionary:
 	_ensure_loaded()
-	return _enemies.get("enemies", {}).get(id, {}).duplicate(true)
+	if b06_enabled() and id.begins_with("B06-M"): return B06.enemy(id)
+	return B05.enemy(id) if b05_enabled() and id.begins_with("B05-M") else _enemies.get("enemies", {}).get(id, {}).duplicate(true)
 
 static func room_ids() -> Array:
 	_ensure_loaded()
 	var ids: Array = _rooms.get("rooms", {}).keys()
+	if b05_enabled(): ids.append_array(B05.biome().room_ids)
+	if b06_enabled(): ids.append_array(B06.biome().room_ids)
 	ids.sort()
 	return ids
 
 static func enemy_ids() -> Array:
 	_ensure_loaded()
 	var ids: Array = _enemies.get("enemies", {}).keys()
+	if b05_enabled(): ids.append_array(B05.biome().enemy_ids)
+	if b06_enabled(): ids.append_array(B06.biome().enemy_ids)
 	ids.sort()
 	return ids
 
 static func biomes() -> Dictionary:
 	_ensure_loaded()
-	return _rooms.get("biomes", {}).duplicate(true)
+	var result: Dictionary = _rooms.get("biomes", {}).duplicate(true)
+	if b05_enabled(): result["B05"] = B05.biome()
+	if b06_enabled(): result["B06"] = B06.biome()
+	return result
 
 ## The twelve-region roadmap is display-only. Unimplemented plans never enter
 ## biomes(), whose membership drives runtime route generation and validation.
@@ -75,7 +94,10 @@ static func region_plan() -> Array[Dictionary]:
 
 static func bosses() -> Dictionary:
 	_ensure_loaded()
-	return _enemies.get("bosses", {}).duplicate(true)
+	var result: Dictionary = _enemies.get("bosses", {}).duplicate(true)
+	if b05_enabled(): result["BO05"] = B05.boss()
+	if b06_enabled(): result["BO06"] = B06.boss()
+	return result
 
 static func services() -> Dictionary:
 	_ensure_loaded()
@@ -92,12 +114,12 @@ static func content_version() -> int:
 static func validate() -> Array:
 	_ensure_loaded()
 	var errors: Array = _load_errors.duplicate()
-	if room_ids().size() != 24:
-		errors.append("Expected 24 combat templates")
-	if enemy_ids().size() != 54:
-		errors.append("Expected 54 normal enemy prototypes")
-	if biomes().size() != 4 or bosses().size() != 4:
-		errors.append("Expected four biomes and four independent bosses")
+	if room_ids().size() != (36 if b06_enabled() else 30 if b05_enabled() else 24):
+		errors.append("Expected %d combat templates" % (36 if b06_enabled() else 30 if b05_enabled() else 24))
+	if enemy_ids().size() != (90 if b06_enabled() else 72 if b05_enabled() else 54):
+		errors.append("Expected %d normal enemy prototypes" % (90 if b06_enabled() else 72 if b05_enabled() else 54))
+	if biomes().size() != (6 if b06_enabled() else 5 if b05_enabled() else 4) or bosses().size() != (6 if b06_enabled() else 5 if b05_enabled() else 4):
+		errors.append("Expected %d biomes and independent bosses" % (6 if b06_enabled() else 5 if b05_enabled() else 4))
 	if content_version() != int(_enemies.get("content_version", -1)):
 		errors.append("World catalog versions differ")
 	var behavior_ids: Array = []
@@ -148,13 +170,13 @@ static func validate() -> Array:
 		for enemy_id: String in biome.get("enemy_ids", []):
 			if enemy(enemy_id).get("biome_id", "") != biome_id:
 				errors.append(biome_id + " has invalid enemy membership")
-		if not bosses().has(biome.get("boss_id", "")):
+		if not bosses().has(biome.get("boss_id", "")) or bosses().get(biome.get("boss_id",""),{}).get("biome_id","") != biome_id:
 			errors.append(biome_id + " has invalid boss")
 	for boss_id: String in bosses():
 		var boss: Dictionary = bosses()[boss_id]
 		if boss.get("boss_id", "") != boss_id or boss.get("arena", {}).get("arena_id", "").is_empty():
 			errors.append(boss_id + " missing identity or independent arena")
-		if boss.get("phase_thresholds", []) != [0.7, 0.35]:
+		if boss.get("phase_thresholds", []) != ([0.7,0.4] if boss_id=="BO06" else [0.7, 0.35]):
 			errors.append(boss_id + " has invalid phase thresholds")
 		var reinforcement_threat: int = 0
 		var reinforcement_count: int = 0

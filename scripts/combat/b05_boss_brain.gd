@@ -38,6 +38,7 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 			var preserved: String = str(command.get("cast_id",""))
 			command=replacement
 			command["cast_id"]=preserved
+			if not bool(command.get("b05_admitted",true)): _cancel_admitted_action(actor);return
 		actor.aim_direction=command.direction
 		_set_actor_state(actor,&"telegraph")
 		if state_time<=0:
@@ -97,6 +98,7 @@ func _begin_action(actor: Node2D, victim: Node2D, forced_action: String = "") ->
 	_root_remaining=3 if current_action=="three_roots" else 0
 	command=_build_action(actor,victim,current_action)
 	command["cast_id"]="BO05:%d:%d" % [actor.get_instance_id(),action_index]
+	if not bool(command.get("b05_admitted",true)): _cancel_admitted_action(actor);return
 	state=&"telegraph"
 	state_time=float(command.tell)
 	state_duration=state_time
@@ -111,7 +113,8 @@ func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 	# Room host owns fixed safe-route / 30% hazard admission. The host may move
 	# an entire warned footprint; it may never move only its eventual damage.
 	if mechanism is Object and mechanism.has_method("constrain_boss_command"):
-		result=mechanism.constrain_boss_command(result)
+		result["b05_admission_id"]="BO05:%d:%d:%d"%[actor.get_instance_id(),action_index,_root_step]
+		result=mechanism.constrain_boss_command(result,actor)
 	if action=="three_roots" and _root_step>0:
 		result["tell"]=.6-float(result.lock)
 		result["telegraph_seconds"]=result.tell
@@ -120,6 +123,9 @@ func _build_action(actor: Node2D, victim: Node2D, action: String) -> Dictionary:
 	return result
 
 func _execute(actor: Node2D) -> void:
+	var mechanism: Variant=B05.mechanics(actor)
+	if mechanism is Object and mechanism.has_method("can_enemy_cast") and not bool(mechanism.can_enemy_cast(actor,command)):
+		_cancel_admitted_action(actor);return
 	var released := command.duplicate(true)
 	released["b05_phase"]=phase
 	actor.state=&"execute"
@@ -132,6 +138,7 @@ func _execute(actor: Node2D) -> void:
 			_root_step+=1
 			command=_build_action(actor,_last_victim.get_ref(),current_action)
 			command["cast_id"]=str(released.cast_id)
+			if not bool(command.get("b05_admitted",true)): _cancel_admitted_action(actor);return
 			state=&"telegraph"
 			state_time=float(command.tell)
 			state_duration=state_time
@@ -145,7 +152,6 @@ func _execute(actor: Node2D) -> void:
 	var last_delay:=0.0
 	for follow: Dictionary in released.get("followups",[]): last_delay=maxf(last_delay,float(follow.get("delay",0)))
 	state_time=maxf(float(released.get("recovery",2)),last_delay+2.0) if last_delay>0 or current_action=="three_roots" else float(released.get("recovery",2))
-	var mechanism: Variant=B05.mechanics(actor)
 	if current_action=="season_bloom" and mechanism is Object and mechanism.has_method("all_wells_closed") and mechanism.all_wells_closed(): state_time+=5.0
 	state_duration=state_time
 	_recovery_elapsed=0
@@ -189,3 +195,11 @@ func _approach(actor: Node2D, victim: Node2D) -> void:
 	if actor.position.distance_to(victim.position)>175 and is_instance_valid(room_value) and room_value.has_method("navigation_direction"):
 		actor.velocity=room_value.navigation_direction(actor.position,victim.position,float(definition.navigation_radius))*float(definition.move_speed)
 		actor.state=&"chase"
+
+func _cancel_admitted_action(actor: Node2D) -> void:
+	var mechanism: Variant=B05.mechanics(actor)
+	if mechanism is Object and mechanism.has_method("cancel_enemy_command"): mechanism.cancel_enemy_command(command)
+	_action_ready_at[current_action]=maxf(float(_action_ready_at.get(current_action,0)),elapsed+float(command.get("cooldown",0))*.5)
+	command.clear();_released_pose.clear();_root_remaining=0
+	state=&"recovery";state_time=1.0;state_duration=1.0;_recovery_elapsed=0.0
+	_set_actor_state(actor,&"recovery")

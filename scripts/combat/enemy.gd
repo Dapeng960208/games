@@ -10,6 +10,7 @@ const BrainScript = preload("res://scripts/combat/enemy_brain.gd")
 const BodyVisualScript = preload("res://scripts/combat/enemy_visual.gd")
 const EnemyPalette = preload("res://scripts/combat/enemy_palette.gd")
 const ImageBounds = preload("res://scripts/combat/hero_visual.gd")
+const RoleBehavior = preload("res://scripts/combat/enemy_role_behavior.gd")
 const MAX_PUSH_PULSES: int = 16
 static var _body_regions: Dictionary = {}
 var room: Node2D
@@ -66,11 +67,13 @@ var aggro_hold: float = 0.0
 var body_visual: Node2D
 ## Temporary arena openings affect resolved defense, never the armor base. This
 ## lets natural armor changes (such as a destroyed support pod) survive expiry.
+var role_behavior := RoleBehavior.new()
 var _biome_counters: Dictionary = {}
 var _ordinary_slow_remaining := 0.0
 var _ordinary_slow_multiplier := 1.0
 
 func configure(next_profile: Dictionary, options: Dictionary = {}) -> void:
+	role_behavior.reset()
 	_biome_counters.clear()
 	clear_ordinary_slow()
 	aggro_target = null
@@ -100,8 +103,19 @@ func configure(next_profile: Dictionary, options: Dictionary = {}) -> void:
 
 func cast_enemy_skill(skill: Dictionary) -> void:
 	if bool(skill.get("b05_command",false)) and is_instance_valid(body_visual): body_visual.synchronize_b05_release()
+	if bool(skill.get("b06_command",false)) and is_instance_valid(body_visual) and body_visual.has_method("synchronize_b06_release"): body_visual.synchronize_b06_release()
 	if room.enemy_skills != null and is_alive():
-		room.enemy_skills.emit_skill(self, skill)
+		if RoleBehavior.has_role(profile,"ranged") and str(skill.get("kind","")) == "charge": role_behavior.spend()
+		room.enemy_skills.emit_skill(self, RoleBehavior.action_command(profile,skill))
+
+func cancel_role_mobility() -> void:
+	role_behavior.cancel()
+
+func role_reposition_available() -> bool:
+	return not RoleBehavior.has_role(profile,"ranged") or role_behavior.available()
+
+func spend_role_reposition() -> void:
+	if RoleBehavior.has_role(profile,"ranged"): role_behavior.spend()
 
 func _exit_tree() -> void:
 	if is_instance_valid(room) and is_instance_valid(room.enemy_skills):
@@ -132,6 +146,8 @@ func _ready() -> void:
 	health.depleted.connect(_die)
 	if not profile.is_empty() and not static_actor:
 		brain = preload("res://scripts/combat/b05_enemy_brain.gd").new() if enemy_id.begins_with("B05-M") else BrainScript.new()
+		if enemy_id.begins_with("B06-M") and not bool(profile.get("b06_candidate_contact_only",true)):
+			brain = preload("res://scripts/combat/b06_enemy_brain.gd").new()
 		brain.configure(profile)
 	if not static_actor:
 		body_visual = BodyVisualScript.new()
@@ -183,6 +199,7 @@ func _physics_process(delta: float) -> void:
 	aggro_hold = maxf(0.0, aggro_hold - delta)
 	var victim: Node2D = _select_aggro_target()
 	if not is_instance_valid(victim):
+		role_behavior.cancel()
 		velocity = Vector2.ZERO
 		return
 	var offset: Vector2 = victim.position - position
@@ -192,7 +209,12 @@ func _physics_process(delta: float) -> void:
 	navigation_timer -= delta
 	velocity = Vector2.ZERO
 	if training_ai_disabled:
+		role_behavior.cancel()
 		_finish_motion(delta)
+		return
+	if role_behavior.tick(self,delta,victim):
+		if is_instance_valid(body_visual): body_visual.advance(delta)
+		queue_redraw()
 		return
 	if brain != null:
 		brain.tick(self, delta, victim)
@@ -257,6 +279,8 @@ func _select_aggro_target() -> Node2D:
 	return current
 
 func _finish_motion(delta: float) -> void:
+	var tide: Variant = room.get("b06_mechanics")
+	if is_instance_valid(tide) and enemy_id.begins_with("B06-M"): velocity *= tide.movement_multiplier(self,true)
 	if room.enemy_skills != null:
 		velocity *= room.enemy_skills.movement_multiplier(self)
 	if _ordinary_slow_remaining>0: velocity *= _ordinary_slow_multiplier
@@ -293,6 +317,7 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 		return false
 	if room.enemy_skills != null and room.enemy_skills.b05 != null:
 		amount = room.enemy_skills.b05.filter_damage(self,amount,kind,from_direction,damage_type)
+		amount = room.enemy_skills.b06.filter_damage(self,amount,kind,from_direction,damage_type,context)
 	var auxiliary_absorbed: Variant = Numerical.amount(0.0, status.ruleset_version)
 	# Enemy barrier/stance multipliers are reduction, so true damage bypasses
 	# them. Immunity is checked above; shields are still consumed below.

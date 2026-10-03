@@ -25,7 +25,9 @@ var max_hp: Variant = Balance.PLAYER_HP:
 		max_hp = Rules.integer(float(value)) if ruleset_version() == Rules.V2 else float(value)
 var hero_id: String = "CH01"
 var level: int = 1
-var stats: Dictionary = {}
+var stats: Dictionary = {}:
+	set(value):
+		stats = preload("res://scripts/combat/crit_policy.gd").apply_player(value, enemy_calibration_snapshot)
 # Set before resolving restored stats; never infer an old adventure from global defaults.
 var frozen_versions: Dictionary = {}
 var enemy_calibration_snapshot: Dictionary = {}

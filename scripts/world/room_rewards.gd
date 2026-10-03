@@ -110,6 +110,8 @@ static func biome_for_reward(room_id: String) -> String:
 ## obsolete cargo/repair themes or counts into this live policy.
 static func _policy_options(room_id: String, policy_version: int) -> Array:
 	var options := _options(room_id)
+	if (Catalog.b05_enabled() and biome_for_reward(room_id) == "B05") or (Catalog.b06_enabled() and biome_for_reward(room_id)=="B06"):
+		return [_option("full",24,"faction",1,"清完有限波次","Clear all finite waves")]
 	if policy_version == 0: return options
 	var biome := biome_for_reward(room_id)
 	var labels: Dictionary = {
@@ -349,5 +351,6 @@ static func v2_optional(room_id: String, objective_id: String, difficulty: int) 
 static func challenge_level(room_id: String, zone_index: int = 2) -> int:
 	var race := biome_for_reward(room_id)
 	if race.is_empty(): return 0
+	if race in ["B05","B06"] and not Catalog.bosses().has(room_id): return int(Catalog.room(room_id).get("enemy_level",0))
 	var chapter := int(race.trim_prefix("B"))
 	return chapter * 5 if Catalog.bosses().has(room_id) else (chapter - 1) * 5 + [1,3,5][clampi(zone_index,0,2)]

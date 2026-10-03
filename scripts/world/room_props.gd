@@ -73,7 +73,10 @@ func configure(owner_room: Node2D, room_layout: Dictionary) -> bool:
 	# Three flush, non-colliding beacons keep their positions for this room.
 	# A separate random stream changes only their function, never geometry.
 	var occupied: Array[Vector2] = []
-	for ordinal: int in 3:
+	# B05 freezes one (or no boss-room) beacon explicitly. Never invent two
+	# additional positions to satisfy the historical three-beacon convention.
+	var beacon_count: int = layout.get("buff_anchors",[]).size() if bool(layout.get("b06_candidate",false)) or (biome_id=="B05" and bool(layout.get("fixed_layout",false))) else 3
+	for ordinal: int in beacon_count:
 		var anchor: Dictionary = {}
 		if bool(layout.get("fixed_layout", false)):
 			var authored: Array = layout.get("buff_anchors", [])

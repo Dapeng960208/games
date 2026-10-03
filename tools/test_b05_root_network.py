@@ -7,9 +7,11 @@ import re
 import shutil
 import subprocess
 import tempfile
+from test_workspace import ensure_managed
 
 
 def main() -> int:
+    ensure_managed("B05")
     suites = {
         "root_network": ("root network", ["scripts/world/b05_root_network.gd"]),
         "content": ("content", ["scripts/world/b05_content.gd", "data/b05_content.json"]),

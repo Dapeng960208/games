@@ -55,7 +55,7 @@ func selected_cases() -> Array[Dictionary]:
 	return result
 
 func load_originals() -> void:
-	Art.entry_for("M34")
+	Art._load_all_for_audit()
 	var current := Art._variants
 	Art._variants = {}
 	Art._load_variants()
@@ -63,7 +63,7 @@ func load_originals() -> void:
 	Art._variants = current
 
 func check_registry() -> void:
-	Art.entry_for("M34")
+	Art._load_all_for_audit()
 	var live := Art._variants.duplicate(true)
 	var canonical := Art._entries.duplicate(true)
 	var badges := Art._skill_icons.duplicate(true)

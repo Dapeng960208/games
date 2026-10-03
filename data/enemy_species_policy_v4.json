@@ -1,0 +1,1361 @@
+{
+  "schema_version": 1,
+  "numerical_version": 4,
+  "archive_version": 15,
+  "default_enabled": false,
+  "base_multiplier": 1.0,
+  "status": "isolated_candidate_pending_user_review_and_combat",
+  "enemies": {
+    "M01": {
+      "chapter": 1,
+      "primary_role": "warrior",
+      "secondary_role": "基础近战教学",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M02": {
+      "chapter": 1,
+      "primary_role": "warrior",
+      "secondary_role": "锁线冲阵",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M03": {
+      "chapter": 1,
+      "primary_role": "ranged",
+      "secondary_role": "锁线炮手",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "M04": {
+      "chapter": 1,
+      "primary_role": "warrior",
+      "secondary_role": "蜂群轻扰",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M05": {
+      "chapter": 1,
+      "primary_role": "warrior",
+      "secondary_role": "弧滚切线",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M06": {
+      "chapter": 1,
+      "primary_role": "support",
+      "secondary_role": "有限掩体防护",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M07": {
+      "chapter": 1,
+      "primary_role": "warrior",
+      "secondary_role": "钩索位移",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M08": {
+      "chapter": 1,
+      "primary_role": "tank",
+      "secondary_role": "转盾物理前排",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M09": {
+      "chapter": 1,
+      "primary_role": "support",
+      "secondary_role": "残骸加速支援",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M10": {
+      "chapter": 2,
+      "primary_role": "assassin",
+      "secondary_role": "侧移窄刺",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "M11": {
+      "chapter": 2,
+      "primary_role": "caster",
+      "secondary_role": "酸炮持续区域",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M12": {
+      "chapter": 2,
+      "primary_role": "support",
+      "secondary_role": "有限育卵召唤",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M13": {
+      "chapter": 2,
+      "primary_role": "assassin",
+      "secondary_role": "X剪侧袭",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "M14": {
+      "chapter": 2,
+      "primary_role": "warrior",
+      "secondary_role": "黏足围堵",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M15": {
+      "chapter": 2,
+      "primary_role": "assassin",
+      "secondary_role": "可见破土",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "M16": {
+      "chapter": 2,
+      "primary_role": "support",
+      "secondary_role": "可逆夺物干扰",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M17": {
+      "chapter": 2,
+      "primary_role": "support",
+      "secondary_role": "有限治疗",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M18": {
+      "chapter": 2,
+      "primary_role": "tank",
+      "secondary_role": "有限破墙",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M19": {
+      "chapter": 3,
+      "primary_role": "support",
+      "secondary_role": "视线标记轻支援",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M20": {
+      "chapter": 3,
+      "primary_role": "ranged",
+      "secondary_role": "轨道窄线炮",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "M21": {
+      "chapter": 3,
+      "primary_role": "warrior",
+      "secondary_role": "跳跃切后排",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M22": {
+      "chapter": 3,
+      "primary_role": "caster",
+      "secondary_role": "有限熔流封路",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M23": {
+      "chapter": 3,
+      "primary_role": "warrior",
+      "secondary_role": "吸斥空间支援",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M24": {
+      "chapter": 3,
+      "primary_role": "caster",
+      "secondary_role": "寒雾减速",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M25": {
+      "chapter": 3,
+      "primary_role": "tank",
+      "secondary_role": "有限插座回充",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M26": {
+      "chapter": 3,
+      "primary_role": "tank",
+      "secondary_role": "有限截弹",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M27": {
+      "chapter": 3,
+      "primary_role": "warrior",
+      "secondary_role": "编号多拍近战",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M28": {
+      "chapter": 4,
+      "primary_role": "assassin",
+      "secondary_role": "旧声源冲刺",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "M29": {
+      "chapter": 4,
+      "primary_role": "assassin",
+      "secondary_role": "无伤假身侧袭",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "M30": {
+      "chapter": 4,
+      "primary_role": "support",
+      "secondary_role": "有限护盾网络",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M31": {
+      "chapter": 4,
+      "primary_role": "caster",
+      "secondary_role": "一次折射光束",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M32": {
+      "chapter": 4,
+      "primary_role": "assassin",
+      "secondary_role": "弧跃突袭",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "M33": {
+      "chapter": 4,
+      "primary_role": "support",
+      "secondary_role": "可拆绳束控制",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M34": {
+      "chapter": 4,
+      "primary_role": "tank",
+      "secondary_role": "有界反击",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M35": {
+      "chapter": 4,
+      "primary_role": "support",
+      "secondary_role": "可逆窃灯干扰",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M36": {
+      "chapter": 4,
+      "primary_role": "caster",
+      "secondary_role": "一次可拆爆破",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M37": {
+      "chapter": 2,
+      "primary_role": "caster",
+      "secondary_role": "可拆树脂牵引",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M38": {
+      "chapter": 2,
+      "primary_role": "caster",
+      "secondary_role": "锁线往返针",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M39": {
+      "chapter": 2,
+      "primary_role": "tank",
+      "secondary_role": "内外双环前排",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M40": {
+      "chapter": 3,
+      "primary_role": "caster",
+      "secondary_role": "钩线接灯火环",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M41": {
+      "chapter": 3,
+      "primary_role": "caster",
+      "secondary_role": "两侧有限种池",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M42": {
+      "chapter": 3,
+      "primary_role": "tank",
+      "secondary_role": "可耗尽截弹",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M43": {
+      "chapter": 3,
+      "primary_role": "support",
+      "secondary_role": "可打断加速",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M44": {
+      "chapter": 3,
+      "primary_role": "assassin",
+      "secondary_role": "真身弧跃",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "M45": {
+      "chapter": 3,
+      "primary_role": "support",
+      "secondary_role": "有限缝合治疗",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M46": {
+      "chapter": 4,
+      "primary_role": "ranged",
+      "secondary_role": "双斧往返",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "M47": {
+      "chapter": 4,
+      "primary_role": "warrior",
+      "secondary_role": "命中条件追劈",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M48": {
+      "chapter": 4,
+      "primary_role": "support",
+      "secondary_role": "战鼓近身支援",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M49": {
+      "chapter": 4,
+      "primary_role": "tank",
+      "secondary_role": "冲阵反劈",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M50": {
+      "chapter": 4,
+      "primary_role": "ranged",
+      "secondary_role": "可拆网接窄箭",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "M51": {
+      "chapter": 4,
+      "primary_role": "tank",
+      "secondary_role": "有界盾推反击",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M52": {
+      "chapter": 4,
+      "primary_role": "tank",
+      "secondary_role": "垂直裂缝重装",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M53": {
+      "chapter": 4,
+      "primary_role": "caster",
+      "secondary_role": "油池接火扇",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "M54": {
+      "chapter": 4,
+      "primary_role": "tank",
+      "secondary_role": "踏环投石重装",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M01": {
+      "chapter": 5,
+      "primary_role": "warrior",
+      "secondary_role": "根线控场",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M02": {
+      "chapter": 5,
+      "primary_role": "ranged",
+      "secondary_role": "分裂落点",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "B05-M03": {
+      "chapter": 5,
+      "primary_role": "assassin",
+      "secondary_role": "减速牵制",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "B05-M04": {
+      "chapter": 5,
+      "primary_role": "support",
+      "secondary_role": "单体护盾",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M05": {
+      "chapter": 5,
+      "primary_role": "tank",
+      "secondary_role": "可拆篱笆",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M06": {
+      "chapter": 5,
+      "primary_role": "assassin",
+      "secondary_role": "收叶减伤",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "B05-M07": {
+      "chapter": 5,
+      "primary_role": "caster",
+      "secondary_role": "延迟开花",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M08": {
+      "chapter": 5,
+      "primary_role": "support",
+      "secondary_role": "自盾加速",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M09": {
+      "chapter": 5,
+      "primary_role": "assassin",
+      "secondary_role": "通道压迫",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "B05-M10": {
+      "chapter": 5,
+      "primary_role": "caster",
+      "secondary_role": "侧移骚扰",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M11": {
+      "chapter": 5,
+      "primary_role": "tank",
+      "secondary_role": "盾推反击",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M12": {
+      "chapter": 5,
+      "primary_role": "ranged",
+      "secondary_role": "牵引补伤",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "B05-M13": {
+      "chapter": 5,
+      "primary_role": "warrior",
+      "secondary_role": "有限寄枝",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M14": {
+      "chapter": 5,
+      "primary_role": "caster",
+      "secondary_role": "双束爆发",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M15": {
+      "chapter": 5,
+      "primary_role": "warrior",
+      "secondary_role": "断网弱化",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M16": {
+      "chapter": 5,
+      "primary_role": "ranged",
+      "secondary_role": "可拆延迟壳",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "B05-M17": {
+      "chapter": 5,
+      "primary_role": "tank",
+      "secondary_role": "双段震地",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B05-M18": {
+      "chapter": 5,
+      "primary_role": "support",
+      "secondary_role": "友军强化",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M01": {
+      "chapter": 6,
+      "primary_role": "warrior",
+      "secondary_role": "湿地突进",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M02": {
+      "chapter": 6,
+      "primary_role": "ranged",
+      "secondary_role": "泡区减速",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "B06-M03": {
+      "chapter": 6,
+      "primary_role": "tank",
+      "secondary_role": "干地推进",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M04": {
+      "chapter": 6,
+      "primary_role": "assassin",
+      "secondary_role": "末端甩尾",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "B06-M05": {
+      "chapter": 6,
+      "primary_role": "support",
+      "secondary_role": "破盾减速",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M06": {
+      "chapter": 6,
+      "primary_role": "ranged",
+      "secondary_role": "延时区域封锁",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "B06-M07": {
+      "chapter": 6,
+      "primary_role": "caster",
+      "secondary_role": "推离回声",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M08": {
+      "chapter": 6,
+      "primary_role": "support",
+      "secondary_role": "远程防护",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M09": {
+      "chapter": 6,
+      "primary_role": "tank",
+      "secondary_role": "撞柱暴露",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M10": {
+      "chapter": 6,
+      "primary_role": "caster",
+      "secondary_role": "双跳区域",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 65,
+        "armor": 100,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 200,
+      "skill_base_attack_budget_ratio": 0.25,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M11": {
+      "chapter": 6,
+      "primary_role": "warrior",
+      "secondary_role": "侧跃护盾",
+      "specialization_percent": {
+        "max_hp": 160,
+        "damage": 160,
+        "armor": 100,
+        "magic_resist": 115
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M12": {
+      "chapter": 6,
+      "primary_role": "ranged",
+      "secondary_role": "窄流封线",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "B06-M13": {
+      "chapter": 6,
+      "primary_role": "support",
+      "secondary_role": "缩减友军冷却",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M14": {
+      "chapter": 6,
+      "primary_role": "assassin",
+      "secondary_role": "湿地减伤",
+      "specialization_percent": {
+        "max_hp": 100,
+        "damage": 205,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.15,
+      "crit_multiplier_bonus": 0.5
+    },
+    "B06-M15": {
+      "chapter": 6,
+      "primary_role": "tank",
+      "secondary_role": "散射反击",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M16": {
+      "chapter": 6,
+      "primary_role": "ranged",
+      "secondary_role": "可拆收束",
+      "specialization_percent": {
+        "max_hp": 120,
+        "damage": 185,
+        "armor": 100,
+        "magic_resist": 100
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.1,
+      "crit_multiplier_bonus": 0.25
+    },
+    "B06-M17": {
+      "chapter": 6,
+      "primary_role": "tank",
+      "secondary_role": "潮环压迫",
+      "specialization_percent": {
+        "max_hp": 200,
+        "damage": 100,
+        "armor": 130,
+        "magic_resist": 130
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    },
+    "B06-M18": {
+      "chapter": 6,
+      "primary_role": "support",
+      "secondary_role": "潮甲续时",
+      "specialization_percent": {
+        "max_hp": 155,
+        "damage": 100,
+        "armor": 120,
+        "magic_resist": 120
+      },
+      "ability_power_percent_of_base_attack": 0,
+      "skill_base_attack_budget_ratio": 0,
+      "crit_chance_bonus": 0.0,
+      "crit_multiplier_bonus": 0.0
+    }
+  },
+  "crit_authority": "Shared CritPolicy defaults .25/2.0, caps1.0/3.0. Assistant candidate species bonuses: ranged+.10/+.25, assassin+.15/+.50, all others0. Bonuses are added once, not user-specified exact coefficients."
+}

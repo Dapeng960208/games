@@ -5,8 +5,14 @@ const B05Layouts = preload("res://scripts/world/b05_room_layouts.gd")
 const B05Geometry = preload("res://scripts/world/b05_room_geometry.gd")
 const Verge = preload("res://scripts/world/b05_boundary_verge.gd")
 const Mechanisms = preload("res://scripts/world/b05_room_mechanisms.gd")
-const PILOT_OUTPUT := "res://artifacts/b05-environment-pilot/"
+var PILOT_OUTPUT := ""
 func _run() -> void:
+	var output_root := OS.get_environment("GAMES_TEST_OUTPUT_DIR")
+	if output_root.is_empty() or not output_root.is_absolute_path():
+		push_error("Run capture through tools/test_workspace.py")
+		get_tree().quit(2)
+		return
+	PILOT_OUTPUT = output_root.path_join("b05-environment-pilot") + "/"
 	if not Game.profile_path.contains("test_b05_environment_pilot") or DisplayServer.get_name()=="headless":
 		push_error("B05 pilot requires its isolated profile and graphical display")
 		get_tree().quit(2)

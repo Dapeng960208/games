@@ -25,3 +25,7 @@ assets/generated/heroes/CH02_CH03_directional_blob_manifest.json
 assets/generated/heroes/CH02_directional_s_se_v1.*
 assets/generated/heroes/CH02_directional_e_sw_v1.*
 assets/generated/heroes/CH03_directional_e_sw_v1.*
+
+# Managed QA output if a workspace-local layout is used
+/_test_output/
+/_tmp/

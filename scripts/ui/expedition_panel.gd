@@ -124,7 +124,10 @@ func _build_options(next: Dictionary, ready: bool, state: Dictionary) -> void:
 		var definition: Dictionary = WorldCatalog.room(option)
 		if definition.is_empty(): definition = WorldCatalog.bosses().get(option,{})
 		var biome := str(definition.get("biome_id",next.get("biome_id",state.get("route",{}).get("biome_id","B01"))))
-		card.scene_texture = WorldArt.environment_texture_for(biome)
+		card.scene_texture = WorldArt.environment_texture_for(biome,option)
+		# Service stops have no room painting; show their actual ground rather
+		# than the empty placeholder used when the old faction art was retired.
+		if card.scene_texture == null: card.scene_texture = WorldArt.floor_texture_for(biome)
 		var blueprint: Dictionary = Layouts.blueprint(option)
 		var landmark: Dictionary = blueprint.get("landmark",{})
 		if not landmark.is_empty(): card.landmark_texture = WorldPropArt.texture_for_asset(biome+"_prop_"+str(landmark.get("key","")))

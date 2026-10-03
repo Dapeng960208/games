@@ -27,13 +27,16 @@ func take_damage(amount: float, kind: StringName, direction := Vector2.ZERO, con
 	if not is_instance_valid(mechanism_host) or not mechanism_host.well_can_take_damage(well_id):
 		last_damage_result = {"confirmed":false,"hp_damage":0.0,"shield_damage":0.0}
 		return false
+	var was_active: bool = mechanism_host.well_is_active(well_id)
 	var accepted: bool = super.take_damage(amount,kind,direction,context)
 	if accepted:
 		# Settlement has already applied defense, immunity, caps and shield rules.
 		var receipt: Dictionary = mechanism_host.apply_confirmed_well_damage(well_id,last_damage_result)
 		if bool(receipt.get("destroyed",false)) and not _broken_reported:
 			_broken_reported = true
-			mechanism_host.well_destroyed_by_hit(well_id,context)
+			var settled_context := context.duplicate()
+			settled_context["b05_active_well_destroyed"] = was_active
+			mechanism_host.well_destroyed_by_hit(well_id,settled_context)
 	queue_redraw()
 	return accepted
 

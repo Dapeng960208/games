@@ -33,7 +33,7 @@ func _run() -> void:
 	var errors: Array = Catalog.validate()
 	_check(errors.is_empty(), "Catalog validates: " + str(errors))
 	_check(Catalog.room_ids().size() == 24, "24 authored templates")
-	_check(Catalog.enemy_ids().size() == 36, "36 authored normal enemies")
+	_check(Catalog.enemy_ids().size() == 54, "54 authored normal enemies")
 	_check(Catalog.bosses().size() == 4, "4 independent boss definitions")
 	_check(Catalog.services().size() == 3, "3 service modules excluded from room count")
 	var roadmap: Array[Dictionary] = Catalog.region_plan()

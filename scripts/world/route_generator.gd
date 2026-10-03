@@ -50,9 +50,13 @@ static func _matches(path: Array, fixed: Dictionary) -> bool:
 static func _error(reason: String) -> Dictionary:
 	return {"valid": false, "error": reason, "nodes": []}
 
+static func _departure_cap() -> int:
+	return 30 if Catalog.b06_enabled() else 25 if Catalog.b05_enabled() else 20
+
 static func generate(biome_id: String, seed_value: int, choices: Array = [], departure_level: int = 0) -> Dictionary:
-	if departure_level < 0 or departure_level > 20:
-		return _error("Departure level must be 0 (legacy) or 1 through 20")
+	if departure_level < 0 or departure_level > _departure_cap():
+		return _error("Departure level must be 0 (legacy) or 1 through %d" % _departure_cap())
+	if biome_id in ["B05","B06"]: return _error("Candidate chapters require generate_single_biome")
 	if departure_level > 0:
 		return _generate_dynamic(biome_id, seed_value, choices, departure_level)
 	return _generate_legacy(biome_id, seed_value, choices)
@@ -60,8 +64,8 @@ static func generate(biome_id: String, seed_value: int, choices: Array = [], dep
 ## New expeditions stay within the selected clan. Version one retains its
 ## original descent-ring schedule for already saved routes and existing APIs.
 static func generate_single_biome(biome_id: String, seed_value: int, choices: Array = [], departure_level: int = 1) -> Dictionary:
-	if departure_level < 1 or departure_level > 20:
-		return _error("Departure level must be 1 through 20 for a single-biome expedition")
+	if departure_level < 1 or departure_level > _departure_cap():
+		return _error("Departure level must be 1 through %d for a single-biome expedition" % _departure_cap())
 	return _generate_dynamic(biome_id,seed_value,choices,departure_level,2)
 
 static func _generate_legacy(biome_id: String, seed_value: int, choices: Array) -> Dictionary:
@@ -128,7 +132,7 @@ static func _generate_legacy(biome_id: String, seed_value: int, choices: Array) 
 static func choose(route: Dictionary, node_index: int, room_id: String) -> Dictionary:
 	if not _is_integer(route.get("departure_level", 0)):
 		return _error("Invalid departure level")
-	if int(route.get("departure_level", 0)) < 0 or int(route.get("departure_level", 0)) > 20:
+	if int(route.get("departure_level", 0)) < 0 or int(route.get("departure_level", 0)) > _departure_cap():
 		return _error("Invalid departure level")
 	if int(route.get("departure_level", 0)) > 0:
 		return _choose_dynamic(route, node_index, room_id)
@@ -191,6 +195,10 @@ static func scan_indices(route: Dictionary) -> Array:
 ## inherit the latest combat region. This schedule cannot be altered by a save.
 static func biome_for_index(start_biome: String, index: int, count: int, dynamic_version: int = 1) -> String:
 	var biomes: Array = Catalog.biomes().keys()
+	# Version-one saves keep their original four-region descent ring.
+	if dynamic_version == 1:
+		biomes.erase("B05")
+		biomes.erase("B06")
 	biomes.sort()
 	var roles: Array = roles_for_length(count)
 	if not biomes.has(start_biome) or index < 0 or index >= roles.size(): return ""
@@ -278,6 +286,7 @@ static func _single_biome_completion(candidates: Array, fixed: Dictionary) -> Ar
 static func _generate_dynamic(biome_id: String, seed_value: int, choices: Array, departure_level: int, dynamic_version: int = 1) -> Dictionary:
 	var biomes: Dictionary = Catalog.biomes()
 	if not biomes.has(biome_id): return _error("Unknown biome: " + biome_id)
+	if biome_id in ["B05","B06"] and dynamic_version != 2: return _error("B05 requires the single-biome candidate route")
 	var count: int = node_count_for_level(departure_level)
 	var roles: Array = roles_for_length(count)
 	var indices: Array = _template_indices(roles)
@@ -297,6 +306,12 @@ static func _generate_dynamic(biome_id: String, seed_value: int, choices: Array,
 		var region: String = biome_for_index(biome_id, index, count,dynamic_version)
 		for room_id: String in biomes[region]["room_ids"]:
 			if Catalog.room(room_id)["role_tags"].has(roles[index]): pool.append(room_id)
+		if biome_id in ["B05","B06"]:
+			# Preserve twelve stations, but teach the six authored rooms in order.
+			# Lv20 B04 graduates must begin in Lv21, never a random Lv25 room.
+			var slot := indices.find(index)
+			var first := 31 if biome_id=="B06" else 25
+			pool = ["L%02d" % (first+slot)] if slot < 6 else ["L%02d"%(first+4),"L%02d"%(first+5)]
 		for i: int in range(pool.size() - 1, 0, -1):
 			var j: int = random.randi_range(0, i)
 			var temporary: String = str(pool[i])
@@ -349,7 +364,7 @@ static func _choose_dynamic(route: Dictionary, node_index: int, room_id: String)
 	var count: int = node_count_for_level(level)
 	var nodes: Array = route.get("nodes", [])
 	var version := int(route.get("dynamic_version",0))
-	if not route.get("valid", false) or level < 1 or level > 20 or version not in [1,2] or nodes.size() != count or int(route.get("node_count", -1)) != count:
+	if not route.get("valid", false) or level < 1 or level > _departure_cap() or version not in [1,2] or nodes.size() != count or int(route.get("node_count", -1)) != count:
 		return _error("Invalid dynamic route")
 	for node: Variant in nodes:
 		if not node is Dictionary or not node.get("room_id") is String or not node.get("options") is Array:

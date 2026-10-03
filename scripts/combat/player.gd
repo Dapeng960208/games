@@ -35,6 +35,7 @@ var invulnerable: float = 0.0
 var hurt_flash: float = 0.0
 var muzzle_flash: float = 0.0
 var knockback := Vector2.ZERO
+var _b06_knockback_distance_scale := 1.0
 var stride: float = 0.0
 var cooldowns: Dictionary = {"q":0.0,"secondary":0.0,"f":0.0,"ultimate":0.0}
 var resource_delay: float = 0.0
@@ -115,6 +116,8 @@ func stat(key: String, fallback: float) -> float:
 		if status.has("chill"):
 			slow_multiplier = minf(slow_multiplier, 0.75)
 		value *= 1.0 - (1.0 - slow_multiplier) * (1.0 - clampf(float(modifiers.get("slow_resistance", 0.0)), 0.0, 1.0))
+		var tide: Variant = room.get("b06_mechanics") if is_instance_valid(room) else null
+		if is_instance_valid(tide): value *= tide.movement_multiplier(self, false, float(modifiers.get("terrain_slow_reduction", 0.0)))
 		return value
 	if key == "damage_bonus":
 		var supply_bonus: float = float(Game.run.stats.get("temporary_buffs",{}).get("amplify",{}).get("damage_bonus",0.0))
@@ -145,7 +148,14 @@ func attack_power() -> Variant:
 	return Numbers.amount(stat("attack", float(Numbers.scale(fallback, _ruleset_version()))), _ruleset_version())
 
 func _power_snapshot() -> Dictionary:
-	return {"ruleset_version":_ruleset_version(), "attack":attack_power(), "ability_power":stat("ability_power", 0.0)}
+	var result: Dictionary={"ruleset_version":_ruleset_version(), "attack":attack_power(), "ability_power":stat("ability_power", 0.0)}
+	if Game.run!=null and int(Game.run.stats.get("mage_balance_candidate",0))==1:
+		result["mage_balance_candidate"]=1
+		result["mage_spell_power_multiplier"]=Game.run.stats.mage_spell_power_multiplier
+	if Game.run!=null and int(Game.run.stats.get("warrior_balance_candidate",0))==1:
+		result["warrior_balance_candidate"]=1
+		result["warrior_skill_power_multiplier"]=Game.run.stats.warrior_skill_power_multiplier
+	return result
 
 func basic_power() -> Variant:
 	return Abilities.preview_powers(hero_id(), _power_snapshot()).basic_H
@@ -162,7 +172,7 @@ func skill_power() -> Variant:
 
 func heal(amount: float, source: String = "self") -> Variant:
 	_sync_status_ruleset()
-	var restored: Variant = Game.heal_player(amount, status.healing_multiplier())
+	var restored: Variant = Game.heal_player(amount * (1.0 + float(loadout.modifiers().get("received_healing_bonus", 0.0)) if loadout != null else 1.0), status.healing_multiplier())
 	if restored > 0.0 and is_instance_valid(room) and room.has_method("add_damage_text"):
 		room.add_damage_text(position + Vector2(0,-72), restored, &"heal", {"feedback_kind":"heal"})
 	if restored > 0.0 and source == "external" and loadout != null:
@@ -193,7 +203,9 @@ func _physics_process(delta: float) -> void:
 	# Synchronize external shield damage before expiries recompute the maximum pool.
 	status.absorb(maxf(0.0, status.shield() - Game.run.shield))
 	var was_chilled: bool = status.has("chill")
+	var b06_guards_before: Dictionary = status.guards.duplicate(true)
 	var status_damage: Array[Dictionary] = status.tick(delta)
+	_b06_guard_ends(b06_guards_before, "expired")
 	Game.run.shield = status.shield()
 	for tick: Dictionary in status_damage:
 		var source_origin: Vector2 = _enemy_status_origins.get(str(tick.kind), position)
@@ -262,7 +274,7 @@ func _physics_process(delta: float) -> void:
 		_tick_dash(delta)
 	else:
 		if _enemy_root_remaining > 0.0: motion = Vector2.ZERO
-		velocity = motion * stat("move_speed", 220.0) * abilities.movement_scale() + knockback
+		velocity = motion * stat("move_speed", 220.0) * abilities.movement_scale() + knockback * _b06_knockback_distance_scale
 		position = room.move_actor(position, velocity * delta, Balance.PLAYER_RADIUS)
 	knockback = knockback.move_toward(Vector2.ZERO, Balance.PLAYER_KNOCKBACK_DECAY * delta)
 	stride += position.distance_to(from) * 0.12
@@ -833,7 +845,9 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	var e_guard: Dictionary = status.guards.get("hero_f", {})
 	var e_shield_active := float(e_guard.get("remaining", 0.0)) > 0.0 and float(e_guard.get("amount", 0.0)) >= previous_shield and previous_shield > 0.0
 	var previous_hp: float = Game.run.hp
+	loadout.refresh_modifiers()
 	var modifiers: Dictionary = loadout.modifiers()
+	if not is_dot: _b06_knockback_distance_scale = 1.0 - clampf(float(modifiers.get("received_displacement_reduction", 0.0)), 0.0, 0.5)
 	var damaged_run: RunState = Game.run
 	damage_context["damage_reduction"] = minf(0.65, float(damage_context.damage_reduction) + maxf(0.0, float(modifiers.get("damage_reduction_bonus", 0.0))))
 	Game.damage_player(incoming, damage_context)
@@ -849,6 +863,8 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 		room.add_ring(position, Color("e46b69"), 24.0 if is_dot else 38.0, 0.20 if is_dot else 0.28)
 	var consumed_total: float = maxf(0.0, previous_hp - damaged_run.hp) + maxf(0.0, previous_shield - damaged_run.shield)
 	if consumed_total > 0.0 and is_instance_valid(room):
+		var tide: Variant = room.get("b06_mechanics")
+		if is_instance_valid(tide): tide.notify_actor_hit("player",consumed_total)
 		var mechanisms: Variant = room.get("b05_mechanics")
 		if mechanisms is Object and mechanisms.has_method("notify_actor_hit"):
 			mechanisms.call("notify_actor_hit", "player", consumed_total)
@@ -871,7 +887,9 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 		_show_received_numbers(damaged_run, before_shock_hp, before_shock_shield, shock_context)
 	if not is_dot and (damaged_run.hp < previous_hp or damaged_run.shield < previous_shield):
 		_play_combat_audio(&"hurt")
+	var b06_guards_before: Dictionary = status.guards.duplicate(true)
 	status.absorb(maxf(0.0, status.shield() - damaged_run.shield))
+	_b06_guard_ends(b06_guards_before, "absorbed")
 	if Game.run != damaged_run or damaged_run.hp <= 0.0:
 		cancel_actions()
 		passives.reset()
@@ -1100,3 +1118,13 @@ func _tick_b05_control(delta: float) -> void:
 	if remaining > 0.0 and _enemy_root_remaining <= 0.0:
 		_enemy_root_protection_remaining = maxf(0.0, 2.0 - maxf(0.0, delta - remaining))
 		if loadout != null: loadout.event("root_ended", {"actually_rooted":true})
+
+
+## Source-local ending receipts remain true even under a larger shared pool.
+func _b06_guard_ends(previous: Dictionary, cause: String) -> void:
+	if loadout == null: return
+	var source := "equipment:B06-SU_4"
+	var before: Dictionary = previous.get(source, {})
+	var after: Dictionary = status.guards.get(source, {})
+	if float(before.get("amount", 0.0)) > 0.0 and float(before.get("remaining", 0.0)) > 0.0 and (float(after.get("amount", 0.0)) <= 0.0 or float(after.get("remaining", 0.0)) <= 0.0):
+		loadout.event("shield_source_ended", {"source":"B06-SU_4", "cause":cause})

@@ -16,8 +16,8 @@ const BOSS_TELLS := [1.2,1.3,1.4,1.5,1.2,1.6]
 const BOSS_NAMES := ["千枝横扫","蔓根三线","花荚雨","生长环","护蕊移栽","四季盛放"]
 const BOSS_NAMES_EN := ["Crown Sweep","Three Root Lines","Seedpod Rain","Growth Rings","Bloom Transplant","Four Seasons Bloom"]
 
-static func profile(id: String, level: int, difficulty: int, rank: String = "normal") -> Dictionary:
-	var result := Numbers.ordinary(id,level,difficulty,rank)
+static func profile(id: String, level: int, difficulty: int, rank: String = "normal", calibration: Variant = null, version: int = 0) -> Dictionary:
+	var result := Numbers.ordinary(id,level,difficulty,rank,calibration,version)
 	if result.is_empty(): return {}
 	var source := Content.enemy(id)
 	result.merge({"name":source.name,"name_en":source.name_en,"role":source.profile,
@@ -28,8 +28,8 @@ static func profile(id: String, level: int, difficulty: int, rank: String = "nor
 		"attack_parameters":{"range":float(result.attack_range),"summon_cap":0},"difficulty_mechanics":{"difficulty":difficulty},"mechanics":[],"b05_combat_version":1,"gameplay_implemented":true,"skills":Content.skills_for_difficulty(id,difficulty)},true)
 	return result
 
-static func boss_profile(difficulty: int) -> Dictionary:
-	var result := Numbers.boss(difficulty)
+static func boss_profile(difficulty: int, calibration: Variant = null, version: int = 0) -> Dictionary:
+	var result := Numbers.boss(difficulty,calibration,version)
 	if result.is_empty(): return {}
 	result.merge({"name":"千枝花冠树王","name_en":"Thousand-Branch Crown King","clan":"plant",
 		"behavior_id":"boss_bo05","navigation_radius":60.0,"attack_range":360.0,"damage_type":"physical",
@@ -190,9 +190,10 @@ static func timed(command: Dictionary, authored: float, difficulty: int, boss: b
 
 static func freeze_damage(command: Dictionary, profile_value: Dictionary) -> Dictionary:
 	var result := command.duplicate(true)
-	var source := Numbers.boss(int(profile_value.difficulty)) if profile_value.enemy_id == "BO05" else Numbers.ordinary(str(profile_value.enemy_id),int(profile_value.enemy_level),int(profile_value.difficulty),str(profile_value.rank))
+	var source := Numbers.boss(int(profile_value.difficulty),profile_value.get("enemy_calibration_snapshot",{}),int(profile_value.get("b05_numerical_version",1))) if profile_value.enemy_id == "BO05" else Numbers.ordinary(str(profile_value.enemy_id),int(profile_value.enemy_level),int(profile_value.difficulty),str(profile_value.rank),profile_value.get("enemy_calibration_snapshot",{}),int(profile_value.get("b05_numerical_version",1)))
 	if source.is_empty() or profile_value.get("damage") != source.damage: return {}
-	result["damage"] = Numbers.skill_damage(source,int(result.get("coefficient",0)),int(result.get("b05_phase",1)))
+	preload("res://scripts/combat/enemy_power_policy.gd").stamp(result, source)
+	result["damage"] = Numbers.skill_damage(source,int(result.get("coefficient",0)),int(result.get("b05_phase",1)),result)
 	result["ruleset_version"] = 2
 	result["scale_version"] = 10
 	result["enemy_command_version"] = 2
@@ -243,7 +244,7 @@ static func all_skills(id: String, difficulty: int, resolved: Dictionary = {}) -
 	var source:=Content.enemy(id)
 	if source.is_empty(): return result
 	for tier in [0,2,4]:
-		var p:=profile(id,int(resolved.get("enemy_level",source.introduced_level)),tier,str(resolved.get("rank","normal")))
+		var p:=profile(id,int(resolved.get("enemy_level",source.introduced_level)),tier,str(resolved.get("rank","normal")),resolved.get("enemy_calibration_snapshot",null),int(resolved.get("b05_numerical_version",0)))
 		var command:=active(p,Vector2.ZERO,Vector2(180,0),true)
 		var timing: Dictionary=command.timing.duplicate(true)
 		timing["cooldown"]=command.cooldown

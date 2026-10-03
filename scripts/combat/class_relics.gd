@@ -5,10 +5,13 @@ extends RefCounted
 
 const Numbers = preload("res://config/numerical_rules.gd")
 const ALIASES: Dictionary = {"split":"RL01", "ember":"RL02", "arc":"RL03"}
-const ART: Dictionary = {"RL01":"res://assets/ui/relic_split.png", "RL02":"res://assets/ui/relic_ember.png", "RL03":"res://assets/ui/relic_arc.png"}
+const ART: Dictionary = {"RL01":"res://assets/ui/relic_split.png", "RL02":"res://assets/generated/ui/state_burn_v1.png", "RL03":"res://assets/ui/relic_arc.png"}
 const HISTORY_META: StringName = &"class_relic_root_history"
 const RaceTraits = preload("res://scripts/combat/race_relics.gd")
 const ENGLISH_NAMES := {"CH01:RL01":"Earthsplit Wedge","CH01:RL02":"Armor Fang","CH01:RL03":"Counterweight Anvil","CH02:RL01":"Split Magazine","CH02:RL02":"Barbed Cartridge","CH02:RL03":"Hunt Crosshair","CH03:RL01":"Resonant Prism","CH03:RL02":"Ember Core","CH03:RL03":"Returning Coil"}
+
+static func art_path(relic_id: String) -> String:
+	return str(ART.get(str(ALIASES.get(relic_id,relic_id)),""))
 
 static func display(hero: String, relic_id: String, rank: int = 1, biome: String = "", ruleset_version: int = Numbers.LEGACY) -> Dictionary:
 	var id: String = str(ALIASES.get(relic_id, relic_id))

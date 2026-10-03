@@ -22,6 +22,8 @@ func check(value: bool, description: String) -> void:
 func near(value: float, expected: float, description: String) -> void:
 	check(absf(value - expected) < 0.001, description + " actual=" + str(value) + " expected=" + str(expected))
 
+## Pure cases below preserve the Legacy arithmetic contract (default ruleset 1).
+## The real actor fixture uses V2: x10 flat units, denominator 1000, half-up ints.
 func test_math() -> void:
 	var defense := {"armor":100.0,"magic_resist":25.0,"damage_reduction":0.2}
 	near(Damage.resolve(100, "physical", {}, defense).damage, 40, "physical uses armor then universal reduction")
@@ -118,6 +120,8 @@ func test_affixes() -> void:
 	check(patchwork.handle("damaged", {"event_id":"damage2","enemy_damage":true,"hp_damage":10,"hp":20,"max_hp":100}).self_statuses.is_empty(), "patchwork is once per room")
 
 func test_live_enemy() -> void:
+	# Do not compare a current V2 room against legacy /100 float expectations.
+	# Expected values below are independent formulas, not Damage.resolve output.
 	for action in ["move_left","move_right","move_up","move_down","attack","dash","interact","skill_q","skill_f","ultimate","secondary"]:
 		if not InputMap.has_action(action): InputMap.add_action(action)
 	check(Game.new_profile() and Game.start_run(), "isolated profile starts")
@@ -129,45 +133,50 @@ func test_live_enemy() -> void:
 	room.release_gate = false
 	for old in room.enemies.get_children(): old.free()
 	var enemy: MineEnemy = room.spawn_enemy(Vector2(650,350))
-	enemy.health.reset(1000)
-	enemy.armor = 100
-	enemy.magic_resist = 25
+	check(Game.run.ruleset_version() == 2 and int(enemy.profile.get("ruleset_version", 1)) == 2, "live fixture explicitly uses V2 integer units")
+	enemy.health.reset(10000, 2)
+	enemy.armor = 1000
+	enemy.magic_resist = 250
 	enemy.status.apply("damage_reduction", .2, 5)
-	var before := enemy.health.current
-	check(enemy.take_damage(100, &"skill", Vector2.ZERO, {"damage_type":"magic"}), "real enemy accepts magic hit")
-	near(before - enemy.health.current, 64, "live enemy uses magic resistance")
+	var before: float = float(enemy.health.current)
+	check(enemy.take_damage(1000, &"skill", Vector2.ZERO, {"damage_type":"magic"}), "real enemy accepts magic hit")
+	near(before - enemy.health.current, floor(1000.0 * 1000.0 / (1000.0 + 250.0) * .8 + .5), "live enemy uses magic resistance")
 	before = enemy.health.current
-	enemy.take_damage(100, &"skill", Vector2.ZERO, {"damage_type":"physical","attacker_stats":{"armor_penetration":50}})
-	near(before - enemy.health.current, 100.0 / 1.5 * .8, "live enemy consumes attacker penetration")
-	enemy.status.grant_guard(30, 5, "test", 1000)
+	enemy.take_damage(1000, &"skill", Vector2.ZERO, {"damage_type":"physical","attacker_stats":{"armor_penetration":500}})
+	near(before - enemy.health.current, floor(1000.0 * 1000.0 / (1000.0 + 1000.0 - 500.0) * .8 + .5), "live enemy consumes attacker penetration")
+	enemy.status.grant_guard(300, 5, "test", 10000)
 	before = enemy.health.current
-	enemy.take_damage(100, &"true", Vector2.ZERO, {"damage_type":"true"})
-	near(before - enemy.health.current, 70, "live true damage bypasses reductions but hits shield")
+	enemy.take_damage(1000, &"true", Vector2.ZERO, {"damage_type":"true"})
+	near(before - enemy.health.current, 1000 - 300, "live true damage bypasses reductions but hits shield")
 	enemy.status.apply("invulnerable", 1, .5)
 	before = enemy.health.current
-	check(not enemy.take_damage(100, &"true", Vector2.ZERO, {"damage_type":"true"}), "live enemy invulnerability rejects true damage")
+	check(not enemy.take_damage(1000, &"true", Vector2.ZERO, {"damage_type":"true"}), "live enemy invulnerability rejects true damage")
 	near(enemy.health.current, before, "invulnerability does not mutate health")
 	enemy.status.tick(.6)
 	enemy.status.apply("grievous", 1, 3)
-	near(enemy.heal(100), 60, "live enemy healing respects grievous")
+	near(enemy.heal(1000), 600, "live enemy healing respects grievous")
 	enemy.status.apply("corrosion", 10, 4)
 	before = enemy.health.current
-	enemy.take_damage(100, &"primary", Vector2.ZERO, {"damage_type":"physical"})
-	near(before - enemy.health.current, 100.0 / 1.85 * .8, "corrosion removes fifteen percent armor")
+	enemy.take_damage(1000, &"primary", Vector2.ZERO, {"damage_type":"physical"})
+	near(before - enemy.health.current, floor(1000.0 * 1000.0 / (1000.0 + 1000.0 * .85) * .8 + .5), "corrosion removes fifteen percent armor")
 	var high: MineEnemy = room.spawn_enemy(Vector2(760,350), "M08", 15)
-	var high_profile: Dictionary = Profiles.resolve("M08", 15)
-	var low_profile: Dictionary = Profiles.resolve("M08", 1)
+	var high_profile: Dictionary = Profiles.resolve("M08", 15, "normal", 2, room.difficulty, room.enemy_calibration())
+	var low_profile: Dictionary = Profiles.resolve("M08", 1, "normal", 2, room.difficulty, room.enemy_calibration())
 	near(high.armor, high_profile.armor, "enemy applies profile armor exactly once")
 	near(high.magic_resist, high_profile.magic_resist, "enemy applies profile magic resistance exactly once")
 	check(high.magic_resist > float(low_profile.magic_resist) and high.armor > float(low_profile.armor), "enemy tank levels grow both resistances")
 	# Use real loadout commands, not a mocked status receiver.
-	room.player.loadout._apply_commands({"self_statuses":[{"status":"damage_reduction","power":.12,"duration":2.0}]}, {})
+	room.player.loadout._apply_commands({"triggered":[],"self_statuses":[{"status":"damage_reduction","power":.12,"duration":2.0}]}, {})
 	check(room.player.status.has("damage_reduction"), "loadout status reaches actual player")
-	Game.run.hp = Game.run.max_hp - 30
+	Game.run.hp = Game.run.max_hp - 1000
 	room.player.status.apply("grievous", 1, 2)
 	before = Game.run.hp
-	room.player.loadout._apply_commands({"heal_ratio":.1}, {})
-	near(Game.run.hp - before, Game.run.max_hp * .06, "equipment healing passes through player grievous multiplier once")
+	room.player.loadout._apply_commands({"triggered":[],"heal_ratio":.1}, {})
+	near(Game.run.hp - before, floor(float(Game.run.max_hp) * .1 * .6 + .5), "equipment healing passes through player grievous multiplier once")
+	Game.run.hp = Game.run.max_hp - 30
+	before = Game.run.hp
+	room.player.loadout._apply_commands({"triggered":[],"heal_ratio":.1}, {})
+	near(Game.run.hp - before, 30, "equipment healing separately clamps to missing HP")
 	check(await room.combat_audio.wait_for_cleanup(), "audio playback releases before teardown")
 	room.free()
 	room = null

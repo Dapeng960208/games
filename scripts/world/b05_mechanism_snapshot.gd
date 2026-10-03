@@ -6,13 +6,20 @@ const Network = preload("res://scripts/world/b05_root_network.gd")
 const SHIELD_SECONDS := 12.0
 
 static func validate_checkpoint(value: Variant) -> bool:
-	if not value is Dictionary or not _keys(value,["version","room_id","shield_duration","interaction_radius","gate_positions","network","production_version","difficulty","well_modes","well_activation","boss_phase","boss_cycle","plant_guards"]): return false
-	if value.version != 1 or value.production_version != 1 or not _integer(value.difficulty,0,4): return false
+	if not value is Dictionary: return false
+	var keys: Array = ["version","room_id","shield_duration","interaction_radius","gate_positions","network","production_version","difficulty","well_modes","well_activation","boss_phase","boss_cycle","plant_guards"]
+	if value.get("production_version") == 2: keys.append("sunleaf_closed")
+	if not _keys(value,keys): return false
+	if value.version != 1 or not _integer(value.production_version,1,2) or not _integer(value.difficulty,0,4): return false
 	if value.shield_duration != SHIELD_SECONDS or value.interaction_radius != 68.0: return false
 	if not value.room_id is String: return false
 	var definition := Geometry.room(value.room_id)
 	if definition.is_empty(): return false
-	var frontline := Numbers.ordinary("B05-M01",int(definition.enemy_level),int(value.difficulty))
+	if value.production_version == 2:
+		if not value.sunleaf_closed is Dictionary or value.sunleaf_closed.size()!=definition.get("spotlights",[]).size(): return false
+		for spec: Dictionary in definition.get("spotlights",[]):
+			if not value.sunleaf_closed.get(str(spec.id)) is bool: return false
+	var frontline := Numbers.ordinary("B05-M01",int(definition.enemy_level),int(value.difficulty),"normal",{},1)
 	if frontline.is_empty(): return false
 	var wells := {}
 	var gates := {}
@@ -51,6 +58,11 @@ static func validate_checkpoint(value: Variant) -> bool:
 		var mode: Variant = value.well_modes[id]
 		if not wells.has(id) or not mode is Dictionary or not _keys(mode,["mode","remaining"]) or mode.mode not in ["shield","speed"] or not _number(mode.remaining,0,6): return false
 	if not _integer(value.boss_phase,0,3) or not _number(value.boss_cycle,0,6): return false
+	if value.room_id == "BO05" and int(value.boss_phase) > 0:
+		var scheduled := 0
+		for enabled: bool in value.well_activation.values():
+			if enabled: scheduled += 1
+		if scheduled != (1 if int(value.boss_phase) == 1 else 2): return false
 	if not value.plant_guards is Dictionary or value.plant_guards.size() > 128: return false
 	for id in value.plant_guards:
 		var plant: Variant = value.plant_guards[id]

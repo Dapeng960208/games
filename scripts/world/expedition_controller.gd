@@ -88,6 +88,9 @@ static func context_for(route_data: Dictionary, index: int, difficulty: int) -> 
 	# Keep this deterministic integer within exact JSON and RNG seed ranges.
 	result["seed"] = (int(route_data.get("seed", 0)) + index * 104729) & 0x7fffffff
 	result["expedition"] = true
+	if Catalog.b06_enabled() and result.biome_id=="B06":
+		result["b06_candidate"] = true
+		result["b06_progression"] = true
 	return result
 
 func preview(room_id: String) -> Dictionary:
@@ -111,7 +114,7 @@ func preview(room_id: String) -> Dictionary:
 		if snapshot().get("scan_nodes",[]).has(int(next.get("node_index",-1))):
 			var counts: Dictionary = {}
 			for zone in Enemies.ZONE_COUNT:
-				var plan: Dictionary = Enemies.encounter_plan(room_id,zone,int(snapshot().get("difficulty",0)))
+				var plan: Dictionary = Enemies.encounter_plan(room_id,zone,int(snapshot().get("difficulty",0)),2 if Catalog.room(room_id).get("biome_id","") in ["B05","B06"] else 1)
 				for wave: Array in plan.get("waves",[]):
 					for member: Dictionary in wave:
 						var id := str(member.get("enemy_id",""))
@@ -127,7 +130,9 @@ func preview(room_id: String) -> Dictionary:
 static func unlocked_biomes(profile: Dictionary) -> Array[String]:
 	var result: Array[String] = []
 	var bosses: Array = profile.get("bosses", [])
-	for biome_id: String in ["B01", "B02", "B03", "B04"]:
+	var biome_ids: Array = Catalog.biomes().keys()
+	biome_ids.sort()
+	for biome_id: String in biome_ids:
 		var requirement := str(Catalog.biomes().get(biome_id, {}).get("unlock_requires", ""))
 		if requirement.is_empty() or bosses.has(requirement):
 			result.append(biome_id)

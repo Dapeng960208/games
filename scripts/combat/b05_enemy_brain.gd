@@ -1,6 +1,7 @@
 extends RefCounted
 ## B05-only FSM. The published frozen command is the command released to the
 ## common runtime. CD begins on release; interrupted active casts spend half CD.
+const RoleBehavior = preload("res://scripts/combat/enemy_role_behavior.gd")
 const Skills = preload("res://scripts/combat/b05_enemy_skills.gd")
 const Props = preload("res://scripts/combat/combat_properties.gd")
 var profile: Dictionary = {}
@@ -13,6 +14,8 @@ var _duration := .8
 var _command: Dictionary = {}
 var _locked_position := Vector2.ZERO
 var _active := false
+var _cast_serial:=0
+var _admission_key:=""
 
 func configure(value: Dictionary) -> void:
 	profile = value.duplicate(true)
@@ -58,8 +61,11 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 			actor.aim_direction = actor.position.direction_to(victim.position)
 			actor.velocity = _navigate(actor,victim.position)*float(profile.move_speed)
 		else:
+			_cast_serial+=1
+			_admission_key="b05:%d:%d"%[actor.get_instance_id(),_cast_serial]
 			_command = candidate
 			_constrain(actor)
+			if not bool(_command.get("b05_admitted",true)) or not _can_cast(actor): interrupt(actor);return
 			_retarget_support()
 			_set_phase(&"telegraph",float(_command.telegraph_seconds))
 			if actor.enemy_id == "B05-M06" and int(profile.difficulty)>=4:
@@ -71,11 +77,14 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 		_command = Skills.active(profile,actor.position,victim.position,Skills.connected(actor),cycle) if _active else Skills.basic(profile,actor.position,victim.position)
 		if not refs.is_empty(): _command["b05_target_refs"] = refs
 		_constrain(actor)
+		if not bool(_command.get("b05_admitted",true)) or not _can_cast(actor): interrupt(actor);return
 		_retarget_support()
 		actor.aim_direction = _command.direction
 		if _remaining<=0:
 			_locked_position = actor.position
 			_freeze(actor)
+			_constrain(actor,false)
+			if not bool(_command.get("b05_admitted",true)) or not _can_cast(actor): interrupt(actor);return
 			_set_phase(&"locked",float(_command.locked_seconds))
 	elif phase == &"locked":
 		actor.aim_direction = _command.direction
@@ -93,7 +102,7 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 					cycle += 1
 				_set_phase(&"execute",maxf(.22,float(_command.get("duration",0)) if str(_command.kind)=="charge" else .22))
 	elif phase == &"execute" and _remaining<=0 and not actor.has_meta("enemy_skill_motion"):
-		_set_phase(&"recovery",maxf(1.0 if actor.enemy_id=="B05-M03" and int(profile.difficulty)>=4 else .45,float(_command.get("recovery",1.15))))
+		_set_phase(&"recovery",maxf(1.0 if actor.enemy_id=="B05-M03" and int(profile.difficulty)>=4 else .45,RoleBehavior.recovery_seconds(profile,float(_command.get("recovery",1.15)))))
 	_publish(actor)
 
 func _freeze(actor: Node2D) -> void:
@@ -137,10 +146,12 @@ func on_displacement_committed(actor: Node2D, projected: Vector2) -> void:
 	if phase in [&"locked",&"execute"] and str(_command.get("kind","")) in ["melee","charge"] and projected.distance_to(_locked_position)>30: interrupt(actor)
 
 func interrupt(actor: Node2D) -> void:
+	var mechanism: Variant=Skills.mechanics(actor)
+	if mechanism is Object and mechanism.has_method("cancel_enemy_command"): mechanism.cancel_enemy_command(_command)
 	if _active: cooldown = maxf(cooldown,float(_command.get("cooldown",0))*.5)
 	if actor.has_meta("b05_leaf_guard"): actor.remove_meta("b05_leaf_guard")
 	_command.clear()
-	_set_phase(&"recovery",maxf(.9,float(profile.recovery_seconds)))
+	_set_phase(&"recovery",maxf(1.0,float(profile.recovery_seconds)))
 	_publish(actor)
 
 func current_skill() -> Dictionary:
@@ -154,8 +165,8 @@ func current_telegraph() -> Dictionary:
 
 func _set_phase(value: StringName, duration: float) -> void:
 	phase = value
-	_remaining = duration
-	_duration = duration
+	_remaining = RoleBehavior.action_seconds(profile,duration) if value == &"execute" else duration
+	_duration = _remaining
 
 func _publish(actor: Node2D) -> void:
 	actor.state = phase
@@ -172,10 +183,11 @@ func _navigate(actor: Node2D, target: Vector2) -> Vector2:
 	var room: Variant = Props.read(actor,"room")
 	return room.navigation_direction(actor.position,target,float(profile.get("navigation_radius",18))) if is_instance_valid(room) and room.has_method("navigation_direction") else actor.position.direction_to(target)
 
-func _constrain(actor: Node2D) -> void:
+func _constrain(actor: Node2D,allow_reposition: bool=true) -> void:
 	var mechanism: Variant=Skills.mechanics(actor)
 	if mechanism is Object and mechanism.has_method("constrain_enemy_command"):
-		_command=mechanism.constrain_enemy_command(_command)
+		_command["b05_admission_id"]=_admission_key
+		_command=mechanism.constrain_enemy_command(_command,actor,allow_reposition)
 
 func _can_cast(actor: Node2D) -> bool:
 	var mechanism: Variant=Skills.mechanics(actor)

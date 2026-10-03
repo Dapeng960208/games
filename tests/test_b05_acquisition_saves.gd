@@ -239,7 +239,7 @@ func _test_bias() -> void:
 	# Stage only the room lookup in memory until the lead activates world data.
 	Loot.Rewards.Catalog._ensure_loaded()
 	var room_catalog: Dictionary = Loot.Rewards.Catalog._rooms.duplicate(true)
-	Loot.Rewards.Catalog._rooms.rooms["L28"] = {"biome_id":"B05"}
+	Loot.Rewards.Catalog._rooms.rooms["L28"] = {"biome_id":"B05","enemy_level":23}
 	var route := {"route":{"nodes":[{"room_id":"L28"}]},"node_index":0,"difficulty":0,"loot_seed":5,"wish_slot":"weapon","pity_snapshot":{},"loot_events":{}}
 	var wired := Loot.context(route,"b05-context-run","CH01","b05-context-event","normal",1,3,"B05-M10")
 	check(wired.get("room_id") == "L28" and wired.get("monster_id") == "B05-M10", "route room and species flow into v3 receipt")

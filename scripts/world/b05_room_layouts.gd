@@ -9,7 +9,7 @@ static func build(id: String, seed_value: int = 0) -> Dictionary:
 	if definition.is_empty(): return {}
 	var authored := Content.room(id)
 	var encounters: Array = []
-	for point: Array in definition.get("encounter_anchors",[]):
+	for point: Array in definition.get("encounter_anchors",[]).slice(0,2 if id == "L25" else 3):
 		encounters.append({"center":point,"radius":220})
 	var source := {"id":id,"biome_id":"B05","name":definition.name,"kind":"combat","entry":definition.entry,"exit":definition.exit,"route":definition.main_route,"side_route":definition.get("root_approach_route",[]),"beacons":[definition.beacon_anchor] if definition.has("beacon_anchor") else [],"encounters":encounters,"objectives":[],"props":[],"decorations":[],"fixed_world_entities":[],"fixed_optional_rewards":[]}
 	if id == "BO05":

@@ -7,10 +7,13 @@ const B05Geometry=preload("res://scripts/world/b05_room_geometry.gd")
 const B05Mechanisms=preload("res://scripts/world/b05_room_mechanisms.gd")
 const B05Profiles=preload("res://scripts/combat/enemy_profiles.gd")
 const B05Verge=preload("res://scripts/world/b05_boundary_verge.gd")
-const POSE_OUTPUT:="res://artifacts/b05-monster-poses/"
+var POSE_OUTPUT := ""
 const POSE_IDS:=["B05-M01","B05-M02","B05-M04"]
 var pose_records: Array[Dictionary]=[]
 var landing_only:=false
+var focused_ids: Array[String]=[]
+var limited_capture:=false
+var saved_images:=0
 var fixed_camera: Node2D
 var camera_position:=Vector2.ZERO
 var camera_zoom:=Vector2.ONE
@@ -18,7 +21,18 @@ var source_actor: MineEnemy
 var support_actor: MineEnemy
 
 func _run() -> void:
+	var output_root := OS.get_environment("GAMES_TEST_OUTPUT_DIR")
+	if output_root.is_empty() or not output_root.is_absolute_path():
+		push_error("Run capture through tools/test_workspace.py")
+		get_tree().quit(2)
+		return
+	POSE_OUTPUT = output_root.path_join("b05-monster-poses") + "/"
 	landing_only="--b05-m02-landing-only" in OS.get_cmdline_user_args()
+	limited_capture="--b05-limited-capture" in OS.get_cmdline_user_args()
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--b05-pose-ids="):
+			for id: String in argument.trim_prefix("--b05-pose-ids=").split(","):
+				if id in preload("res://scripts/combat/b05_enemy_art.gd").IDS: focused_ids.append(id)
 	if not Game.profile_path.contains("test_b05_monster_pose_capture") or DisplayServer.get_name()=="headless":
 		push_error("B05 pose capture requires graphical display and its isolated test profile")
 		get_tree().quit(2)
@@ -70,10 +84,10 @@ func _run() -> void:
 	await frames()
 	camera_position=room.camera.position
 	camera_zoom=room.camera.zoom
-	var capture_ids: Array=["B05-M02"] if landing_only else POSE_IDS
+	var capture_ids: Array=["B05-M02"] if landing_only else focused_ids if not focused_ids.is_empty() else POSE_IDS
 	for id: String in capture_ids:
 		for side: int in [1,-1]: await capture_actor_cycle(id,side)
-	check(pose_records.size()==(2 if landing_only else 18),"exact requested count of actual2K keyframes")
+	check(pose_records.size()==(2 if landing_only else capture_ids.size()*6),"exact requested runtime pose/direction record count")
 	var file:=FileAccess.open(POSE_OUTPUT+("capture_m02_landing.json" if landing_only else "capture.json"),FileAccess.WRITE)
 	check(file!=null,"capture manifest opens in ignored artifacts")
 	if file!=null:
@@ -104,14 +118,17 @@ func capture_actor_cycle(id: String, side: int) -> void:
 	room.player.knockback=Vector2.ZERO
 	room.player.status.states.clear()
 	room.player.status.guards.clear()
-	var at:=Vector2(770,530)
+	var at:=Vector2(770,300) if id=="B05-M13" else Vector2(770,530)
+	if id in ["B05-M15","B05-M18"]:
+		var well: Dictionary=room.b05_mechanics.nearest_active_well(at)
+		if not well.is_empty(): at=Vector2(well.position)+Vector2(-60,70)
 	var aim:=Vector2(float(side),0)
 	room.player.position=at+aim*(108 if id=="B05-M01" else 180)
 	var profile: Dictionary=B05Profiles.resolve(id,21,"normal",2,0)
 	source_actor=room.spawn_enemy(at,id,21,{"profile":profile,"reward_enabled":false,"zone_index":0})
 	check(source_actor!=null,id+" true MineEnemy spawns")
 	if source_actor==null: return
-	if id=="B05-M04":
+	if id in ["B05-M04","B05-M08"]:
 		support_actor=room.spawn_enemy(at+aim*140+Vector2(0,45),"B05-M01",21,{"profile":B05Profiles.resolve("B05-M01",21,"normal",2,0),"reward_enabled":false,"zone_index":0})
 		check(support_actor!=null,"M04 actual wounded ally exists")
 		if support_actor!=null:
@@ -120,6 +137,10 @@ func capture_actor_cycle(id: String, side: int) -> void:
 			support_actor.state=&"chase"
 			support_actor.aim_direction=-aim
 			support_actor.body_visual.advance(.02)
+	if id=="B05-M08":
+		var second=room.spawn_enemy(at-aim*75+Vector2(0,55),"B05-M01",21,{"profile":B05Profiles.resolve("B05-M01",21,"normal",2,0),"reward_enabled":false,"zone_index":0})
+		check(second!=null,"M08 second actual support recipient")
+		if second!=null: second.training_ai_disabled=true
 	# This still pose is the only deliberately paused-AI capture. The next two
 	# keyframes are reached by the actual brain and release real runtime packets.
 	source_actor.training_ai_disabled=true
@@ -139,7 +160,7 @@ func capture_actor_cycle(id: String, side: int) -> void:
 	var ally_before: float=float(support_actor.health.current) if is_instance_valid(support_actor) else 0
 	var hp_before: float=Game.run.hp
 	check(advance_until(&"execute",4.0),id+" real brain releases")
-	advance_native(.1)
+	advance_native(.02 if id=="B05-M16" else .1)
 	var lob_visible:=false
 	for effect: Dictionary in room.enemy_skills.b05.effects:
 		if str(effect.kind)=="lob_visual": lob_visible=true
@@ -176,22 +197,28 @@ func advance_native(duration: float) -> void:
 
 func record_frame(id: String, pose: String, side: int, extra: Dictionary) -> void:
 	if landing_only and pose!="execute": return
+	if id in ["B05-M13","B05-M15","B05-M18"] and pose!="idle":
+		check(bool(source_actor.brain.current_skill().get("active",false)),id+" actual signature command admitted")
 	var snapshot_hp: float=Game.run.hp
 	var snapshot_clock: float=room.enemy_skills._biome_clock
 	room.enemy_telegraphs.refresh()
 	room.camera.follow_target();room.camera.force_update_scroll()
 	check(room.camera.position.is_equal_approx(camera_position) and room.camera.zoom.is_equal_approx(camera_zoom),"fixed camera across capture")
-	var image: Image=await capture_pixels()
-	check(image.get_size()==Vector2i(2560,1440),"actual native2K framebuffer")
+	var save_image: bool=not limited_capture or (pose=="execute" and side>0 and saved_images<4)
+	var image: Image=await capture_pixels() if save_image else null
+	if image!=null: check(image.get_size()==Vector2i(2560,1440),"actual native2K framebuffer")
 	var filename: String=id+"_"+pose+("_right" if side>0 else "_left")+"_2560x1440.png"
-	check(image.save_png(POSE_OUTPUT+filename)==OK,filename+" saved to ignored artifacts")
+	if image!=null:
+		check(image.save_png(POSE_OUTPUT+filename)==OK,filename+" saved to ignored artifacts")
+		saved_images+=1
 	var body: Dictionary=source_actor.body_visual.body_frame()
 	var outlet: Dictionary=source_actor.body_visual.b05_visual_outlet()
 	check(not outlet.is_empty() and body.texture!=null,"actual selected-frame outlet exists")
-	var record: Dictionary={"file":filename,"id":id,"pose":pose,"side":side,"actor_position":source_actor.position,"actual_actor_state":str(source_actor.state),"actual_brain_phase":str(source_actor.brain.phase),"body_frame":body.name,"texture":outlet.get("texture_path",""),"bounds":body.bounds,"visual_outlet":outlet.get("position",Vector2.ZERO),"camera_position":room.camera.position,"camera_zoom":room.camera.zoom,"runtime_effects":room.enemy_skills.active_effect_count(),"hp":Game.run.hp}
+	check(str(body.name)==pose or (id=="B05-M04" and pose=="telegraph" and str(body.name)=="execute"),"actual dispatch selects expected native pose")
+	var record: Dictionary={"file":filename if image!=null else "","id":id,"pose":pose,"side":side,"actor_position":source_actor.position,"actual_actor_state":str(source_actor.state),"actual_brain_phase":str(source_actor.brain.phase),"body_frame":body.name,"texture":outlet.get("texture_path",""),"bounds":body.bounds,"visual_outlet":outlet.get("position",Vector2.ZERO),"camera_position":room.camera.position,"camera_zoom":room.camera.zoom,"active_command":source_actor.brain.current_skill().get("active",false),"command_kind":source_actor.brain.current_skill().get("kind",""),"connected":room.b05_mechanics.connected(source_actor),"runtime_effects":room.enemy_skills.active_effect_count(),"hp":Game.run.hp}
 	# An unchanged simulation snapshot with only the optional detail cards hidden.
 	# Essential ground warning, source badge, seed flight and waterline remain on.
-	if pose!="idle":
+	if pose!="idle" and not limited_capture:
 		var badges: Array[Dictionary]=[]
 		for actor in [source_actor,support_actor]:
 			if not is_instance_valid(actor) or not is_instance_valid(actor.body_visual.skill_badge): continue

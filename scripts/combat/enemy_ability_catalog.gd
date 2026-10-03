@@ -779,6 +779,7 @@ static func command_info(command: Dictionary, english: bool = false) -> Dictiona
  return {"id":str(command.get("ability_id","")),"name":str(command.get("ability_name_en" if english else "ability_name","")),"counter":str(command.get("counter_cue_en" if english else "counter_cue","")),"icon_id":str(command.get("icon_id","")),"stage":int(command.get("stage",0))+1,"stage_count":int(command.get("stage_count",1)),"unlock_difficulty":int(command.get("unlock_difficulty",0))}
 
 static func all_skills(enemy_id: String, difficulty: int, resolved_profile: Dictionary = {}) -> Array[Dictionary]:
+ if enemy_id.begins_with("B06-M"): return preload("res://scripts/combat/b06_ability_catalog.gd").all_skills(enemy_id,difficulty,resolved_profile)
  if enemy_id.begins_with("B05-M"): return preload("res://scripts/combat/b05_enemy_skills.gd").all_skills(enemy_id,difficulty,resolved_profile)
  var source: Dictionary = resolved_profile.duplicate(true)
  if source.is_empty():

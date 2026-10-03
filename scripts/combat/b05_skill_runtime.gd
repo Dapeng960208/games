@@ -50,6 +50,11 @@ func prepare(caster: Node2D, command: Dictionary) -> Dictionary:
 				result = Skills.freeze_damage(result,profile_value)
 				effects.erase(effect)
 				break
+	var profile_value: Dictionary = Props.read(caster,"profile",{})
+	if preload("res://scripts/combat/crit_policy.gd").enabled(profile_value):
+		# Runtime serial is frozen by candidate snapshots; no instance ID in RNG key.
+		var event_id: String = str(result.get("crit_event_id", str(result.cast_id).get_slice(":",0) + ":" + str(profile_value.get("enemy_id", "")) + ":" + str(result.cast_id).get_slice(":",2)))
+		result = preload("res://scripts/combat/crit_policy.gd").freeze(result, profile_value, int(Props.read(host.room,"run_seed",0)), event_id)
 	return result
 
 func execute(command: Dictionary) -> bool:

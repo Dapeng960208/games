@@ -8,6 +8,10 @@ const Catalog = preload("res://scripts/world/world_catalog.gd")
 const AbilityCatalog = preload("res://scripts/combat/enemy_ability_catalog.gd")
 const Calibration = preload("res://scripts/combat/enemy_calibration.gd")
 const Numbers = preload("res://config/numerical_rules.gd")
+const BossPolicy = preload("res://scripts/combat/boss_progression_policy.gd")
+const Species = preload("res://scripts/combat/enemy_species_policy.gd")
+const Growth = preload("res://scripts/combat/shared_enemy_growth.gd")
+const RolePolicy = preload("res://scripts/combat/monster_role_policy.gd")
 const PROFILE_VERSION := 2
 const DAMAGE_KINDS := ["melee", "charge", "projectile", "ground_area", "pull", "counter"]
 const PROFILE_FLATS := ["max_hp", "damage", "armor", "magic_resist"]
@@ -113,7 +117,26 @@ static func _profile(source: Dictionary, difficulty: int, boss: bool, ruleset: i
 		parameters["recovery_seconds"] = recovery
 		parameters["recovery"] = recovery
 		result["attack_parameters"] = parameters
-	return result if boss else AbilityCatalog.apply(result, difficulty)
+	# Regenerated exclusively from preserved v1 base: never compound a policy.
+	result.erase("monster_role_policy_version")
+	result.erase("monster_role_specialization")
+	result.erase("enemy_growth_version")
+	for key: String in ["species_crit_chance_bonus","species_crit_multiplier_bonus","enemy_species_version","crit_policy_version","ability_power","skill_base_power","crit_chance","crit_multiplier","primary_role","secondary_role"]: result.erase(key)
+	if not boss and Calibration.numerical_version(snapshot) == 2:
+		result = RolePolicy.apply(result,str(source.get("archetype","")),str(source.get("role","")))
+		if result.is_empty(): return {}
+	if not boss and Calibration.numerical_version(snapshot) == 3:
+		var values := Growth.stats(Growth.raw_legacy(id,Catalog.enemy(id)),str(source.get("archetype","")),str(source.get("role","")),int(base.enemy_level),chapter,difficulty,calibration_rank)
+		if values.is_empty(): return {}
+		result.merge(values,true)
+	if not boss and Calibration.numerical_version(snapshot) == 4:
+		var values := Species.stats(id,Growth.raw_legacy(id,Catalog.enemy(id)),str(source.get("archetype","")),int(base.enemy_level),chapter,difficulty,calibration_rank)
+		if values.is_empty(): return {}
+		result.merge(values,true)
+	if boss:
+		var final := BossPolicy.apply(result,mini(2,Calibration.numerical_version(snapshot)))
+		return Species.stamp_boss(final) if Calibration.numerical_version(snapshot) == 4 else final
+	return AbilityCatalog.apply(result, difficulty)
 
 ## Phase only strengthens a packet; it never changes actor A. Coefficients and
 ## extra_damage_multiplier are distinct (e.g. a frozen racial rage bonus).
@@ -150,6 +173,10 @@ static func command(source: Dictionary, profile: Dictionary, phase: int = 1, ext
 	result["enemy_command_version"] = PROFILE_VERSION
 	result["enemy_skill_factor"] = skill_factor(profile, phase)
 	result["damage"] = _round_product([profile.damage, source.get("damage_multiplier", 1.0), factors[0], factors[1], factors[2], extra_damage_multiplier]) if damaging(source) else 0
+	if preload("res://scripts/combat/crit_policy.gd").enabled(profile):
+		var power_policy = preload("res://scripts/combat/enemy_power_policy.gd")
+		power_policy.stamp(result, profile)
+		result["damage"] = Numbers.integer(power_policy.amount(result, profile, float(source.get("damage_multiplier", 1.0))) * float(factors[0]) * float(factors[1]) * float(factors[2]) * extra_damage_multiplier) if damaging(source) else 0
 	# Alias inputs represent the same physical endpoint, never two HP pools.
 	for key: String in ["anchor_health", "cover_hp", "pod_health"]:
 		if source.has(key):

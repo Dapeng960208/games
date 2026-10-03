@@ -36,6 +36,7 @@ const REINFORCEMENT_POOLS := {
 	"B03": ["M27", "M27", "M19"],
 	"B04": ["M28"]
 }
+const Calibration = preload("res://scripts/combat/enemy_calibration.gd")
 const NumericalV2 = preload("res://scripts/combat/enemy_numerical_v2.gd")
 static var _data: Dictionary = {}
 static var _loaded: bool = false
@@ -49,8 +50,10 @@ static func _ensure_loaded() -> void:
 		_data = parsed
 
 static func resolve(enemy_id: String, enemy_level: int = 1, rank: String = "normal", ruleset: int = 1, difficulty: int = 0, calibration: Variant = null) -> Dictionary:
+	if enemy_id.begins_with("B06-M") and Catalog.b06_enabled():
+		return preload("res://scripts/combat/b06_enemy_skills.gd").profile(enemy_id,enemy_level,difficulty,rank,calibration) if ruleset==2 else {}
 	if enemy_id.begins_with("B05-M"):
-		return preload("res://scripts/combat/b05_enemy_skills.gd").profile(enemy_id,enemy_level,difficulty,rank) if ruleset == 2 else {}
+		return preload("res://scripts/combat/b05_enemy_skills.gd").profile(enemy_id,enemy_level,difficulty,rank,calibration) if ruleset == 2 else {}
 	if ruleset == 2:
 		var source := resolve(enemy_id,enemy_level,rank)
 		if calibration != null: source["enemy_calibration_snapshot"] = calibration
@@ -187,6 +190,7 @@ static func encounter_level(room_id: String, zone_index: int, difficulty: int = 
 	if definition.is_empty() or zone_index < 0 or zone_index >= ZONE_COUNT:
 		return 0
 	var biome_index: int = int(str(definition.get("biome_id", "B01")).trim_prefix("B"))
+	if ruleset == 2 and biome_index in [5,6]: return int(definition.enemy_level)
 	if ruleset == 2: return NumericalV2.encounter_level(biome_index, zone_index)
 	if ruleset != 1: return 0
 	return clampi(1 + (biome_index - 1) * 4 + zone_index * 2 + clampi(difficulty, 0, MAX_DIFFICULTY) * 2, MIN_LEVEL, MAX_LEVEL)
@@ -230,6 +234,10 @@ static func _encounter_member(id: String, level: int, rank: String, zone: int, d
 	return profile
 
 static func encounter_plan(room_id: String, zone_index: int, difficulty: int = 0, ruleset: int = 1, calibration: Variant = null) -> Dictionary:
+	if Catalog.b06_enabled() and room_id in Catalog.B06.biome().room_ids:
+		return preload("res://scripts/world/b06_candidate.gd").encounter_plan(room_id,zone_index,difficulty,calibration) if ruleset==2 else {}
+	if Catalog.b05_enabled() and room_id in Catalog.B05.biome().room_ids:
+		return _b05_encounter_plan(room_id,zone_index,difficulty,calibration) if ruleset == 2 else {}
 	if ruleset not in [1, 2]: return {}
 	var definition: Dictionary = Catalog.room(room_id)
 	if definition.is_empty() or zone_index < 0 or zone_index >= ZONE_COUNT:
@@ -343,3 +351,33 @@ static func encounter_plan(room_id: String, zone_index: int, difficulty: int = 0
 		"minimum_player_spawn_distance": 360.0,
 		"completion_requires_all_waves": true, "hero_level_scaling": false
 	}
+
+## Each anchor is one sequential finite wave. L25 teaches exactly two waves;
+## L30 exactly three. Support replaces a slot, and D3 adds an elite, not a species.
+static func _b05_encounter_plan(room_id: String, zone: int, difficulty: int, calibration: Variant) -> Dictionary:
+	var definition := Catalog.room(room_id)
+	var wave_count := 2 if room_id == "L25" else 3
+	if zone < 0 or zone >= wave_count or difficulty < 0 or difficulty > 4: return {}
+	var level := int(definition.enemy_level)
+	var introduced: Array = definition.introduced_enemy_ids
+	var ids: Array = []
+	if room_id == "L25":
+		ids = ["B05-M01","B05-M02"] if zone == 0 else ["B05-M01","B05-M02","B05-M04"]
+	else:
+		ids = [introduced[zone],"B05-M01","B05-M02"]
+	# Added difficulty actors are frontline/output, never unconditional support.
+	if difficulty >= 1: ids.append("B05-M01")
+	if difficulty >= 2: ids.append("B05-M02")
+	if difficulty >= 4: ids.append("B05-M06")
+	var batch: Array[Dictionary] = []
+	var composition := {}
+	var threat := 0
+	for index in range(ids.size()):
+		var id := str(ids[index])
+		var rank := "elite" if difficulty >= 3 and zone == wave_count-1 and index == 0 else "normal"
+		var actor := _encounter_member(id,level,rank,zone,difficulty,18,0,2,calibration)
+		if actor.is_empty(): return {}
+		batch.append(actor)
+		composition[id] = int(composition.get(id,0))+1
+		threat += int(actor.encounter_budget_cost)
+	return {"room_id":room_id,"zone_index":zone,"biome_id":"B05","enemy_level":level,"difficulty":difficulty,"waves":[batch],"wave_count":1,"room_wave_count":wave_count,"initial_count":batch.size(),"total_count":batch.size(),"target_count":batch.size(),"total_threat":threat,"reserved_summon_count":0,"composition":composition,"concurrent_cap":6,"room_cap":18,"concurrent_threat_budget":18,"reinforce_alive_threshold":0,"reinforce_threat_fraction":0.0,"reinforce_delay_seconds":3.0,"spawn_grace_seconds":0.8,"minimum_player_spawn_distance":360.0,"completion_requires_all_waves":true,"hero_level_scaling":false}

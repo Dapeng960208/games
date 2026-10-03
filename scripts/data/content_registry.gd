@@ -3,6 +3,7 @@ extends RefCounted
 const Progression = preload("res://scripts/core/hero_progression.gd")
 const ClassPolicy = preload("res://scripts/core/equipment_class_policy.gd")
 const B05Catalog = preload("res://scripts/core/b05_equipment_catalog.gd")
+const B06Catalog = preload("res://scripts/core/b06_equipment_catalog.gd")
 const Rules = preload("res://config/numerical_rules.gd")
 ## Immutable-by-copy static definitions. Combat state and ownership never live here.
 
@@ -17,6 +18,18 @@ const B05_SET_TEXT := {
  "B05-SG":{"2":["对猎印目标直接伤害+8%","Direct damage to marked targets +8%"],"4":["W命中猎印目标后额外贯穿180距离内一个后方目标，0.35P；每次W一次","W hitting a marked target pierces one extra target behind within 180, for 0.35P; once per W"],"6":["Q实际移动100后，下一次W主目标伤害+12%持续6秒；6秒冷却","After Q moves 100, next W primary hit +12% for 6s; 6s ICD"]},
  "B05-SM":{"2":["Q晶爆直接伤害+8%","Q direct damage +8%"],"4":["6秒内三次相邻技能不同的付费施法且消耗至少60法力，回复60；6秒冷却","Three alternating paid casts in 6s spending at least 60 mana restore 60; 6s ICD"],"6":["W放置节点1秒后花晶环：半径110，0.40P，最多3目标；8秒冷却","1s after W node placement, bloom ring: radius 110, 0.40P, up to 3 targets; 8s ICD"]},
  "B05-SU":{"2":["根缚与减速持续时间-20%，同类合计上限50%","Root and slow durations -20%; combined reduction capped at 50%"],"4":["走出敌方持续危险区且1秒未受该区伤害，获6%生命盾4秒；12秒冷却","Exit a hostile persistent zone and avoid its damage for 1s: 6% HP shield for 4s; 12s ICD"],"6":["三次独立直接伤害后回复3%生命并移速+8%持续3秒；12秒冷却","Three independent direct hits restore 3% HP and grant +8% speed for 3s; 12s ICD"]}
+}
+
+const B06_SET_TEXT := {
+ "B06-SW":{"2":["E盾存在时受强制位移距离-25%，同类上限50%","While E shield exists, forced movement distance -25%; combined cap 50%"],"4":["E后4秒内首次W实命中返还该W实际怒气消耗15%；冷却8秒","First W hit within 4s after E refunds 15% of actual Rage cost; 8s ICD"],"6":["护盾实承伤后6秒内下一次Q/W实命中追加前方120范围0.40P波，最多3目标；冷却8秒","After shield absorption, next Q/W hit within 6s adds a forward 120-range 0.40P wave, up to 3 targets; 8s ICD"]},
+ "B06-SG":{"2":["W主目标伤害+8%","W primary target damage +8%"],"4":["Q真实转位后4秒内首次W命中猎印目标，E剩余冷却-1秒；冷却7秒","First W hit on a hunter-marked target within 4s after real Q movement reduces E cooldown by 1s; 7s ICD"],"6":["W实穿透2敌给主目标6秒潮标；下一次R实际前3发命中该目标各追加0.12P；冷却12秒","W piercing 2 enemies marks its primary target for 6s; next R first 3 fired rounds add 0.12P only on that target; 12s ICD"]},
+ "B06-SM":{"2":["W即时晶爆半径+10%，不扩大节点","W immediate burst radius +10%; node unchanged"],"4":["E实际命中后6秒内下一次W即时伤害+12%；冷却8秒","E hit empowers next immediate W burst by 12% within 6s; 8s ICD"],"6":["3次成功付费Q后，下一次W晶爆0.8秒后追加半径110、0.45P环，最多4目标；冷却10秒","After 3 paid Q casts, next W adds a radius-110 0.45P ring after 0.8s, up to 4 targets; 10s ICD"]},
+ "B06-SU":{"2":["受到强制位移距离-20%，同类上限50%","Forced movement distance -20%; combined cap 50%"],"4":["战斗每12秒获6%生命盾4秒；进房不免费刷新，换装不重置周期","Every 12s in combat: 6% HP shield for 4s; entry and swaps do not reset cadence"],"6":["本套盾自然消失或击破后6秒内下一次直接命中追加0.25P，移速+8%3秒；冷却12秒。同取向已接入，混合取向P待确认","After this set shield expires or breaks: next direct hit within 6s adds 0.25P and +8% speed for 3s; 12s ICD. Uniform orientation implemented; mixed-P selection pending"]}
+}
+const B06_UNIQUE_TEXT := {
+ "B06-U01":["地形减速幅度-20%，同类上限50%；不减潮推距离","Terrain slow magnitude -20%, combined cap 50%; does not reduce tide push"],
+ "B06-U02":["自身护盾实承伤后受治疗+8%4秒；冷却12秒","After own shield absorbs damage: received healing +8% for 4s; 12s ICD"],
+ "B06-U03":["完成战斗机关交互后获4%生命盾3秒；冷却15秒","Complete a combat mechanism interaction: 4% HP shield for 3s; 15s ICD"]
 }
 
 static var _heroes: Dictionary = _read_json("res://data/heroes.json")
@@ -63,6 +76,8 @@ static func equipment_ids(ruleset: int = 1) -> Array:
 	# Registration is available for isolated checks before the chapter release gate.
 	if ruleset == 2 and int(Rules.value("implemented_chapters", 4)) < 5:
 		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B05-"))
+	if ruleset == 2 and int(Rules.value("implemented_chapters",4)) < 6:
+		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B06-"))
 	ids.sort()
 	return ids
 
@@ -80,6 +95,8 @@ static func sets(ruleset: int = 1) -> Dictionary:
 					if threshold.has(versioned): threshold[field] = threshold[versioned]
 		if int(Rules.value("implemented_chapters", 4)) >= 5:
 			for set_id: String in B05Catalog.sets(): result[set_id] = _b05_set(set_id)
+		if int(Rules.value("implemented_chapters",4)) >= 6:
+			for set_id: String in B06Catalog.sets(): result[set_id] = _b06_set(set_id)
 		var materials: Dictionary = Rules.value("shop_set_races", {})
 		for set_id: String in materials:
 			if result.has(set_id): result[set_id]["race_id"] = str(materials[set_id])
@@ -171,7 +188,35 @@ static func _v2_equipment() -> Dictionary:
 			item["affix_text_en"] = unique_text[id][1]
 		item["runtime_implemented"] = true
 		_equipment_v2[id] = item
+	for id: String in B06Catalog.equipment_ids():
+		var item := B06Catalog.equipment(id)
+		item["drop_origin"] = "B06"
+		item["class_policy_version"] = 3
+		item["affix_tendencies"] = item.affix_tendencies_by_power[item.power_types[0]].duplicate()
+		item["description"] = "琉潮珊城候选装备；装备特效已接入定向验证，强度验收另计"
+		item["description_en"] = "Tidal Coral City candidate gear; effects integrated with focused checks, strength acceptance remains separate"
+		item["base_stat_text"] = "属性由装备实例决定"
+		item["base_stat_text_en"] = "Stats are determined by the equipment instance"
+		item["affix_id"] = ""
+		item["affix_text"] = B06_UNIQUE_TEXT.get(id, ["", ""])[0]
+		item["affix_text_en"] = B06_UNIQUE_TEXT.get(id, ["", ""])[1]
+		item["runtime_implemented"] = not id.begins_with("B06-SU-")
+		if not item.unique_effect.is_empty(): item.unique_effect["runtime_implemented"] = true
+		_equipment_v2[id] = item
 	return _equipment_v2
+
+static func _b06_set(set_id: String) -> Dictionary:
+	var result: Dictionary = B06Catalog.sets().get(set_id,{}).duplicate(true)
+	if result.is_empty(): return result
+	result["race_id"] = "B06"
+	result["class_policy_version"] = 3
+	result["runtime_implemented"] = set_id != "B06-SU"
+	for tier: String in result.thresholds:
+		result.thresholds[tier]["name"] = result.name+" "+tier
+		result.thresholds[tier]["text"] = B06_SET_TEXT[set_id][tier][0]
+		result.thresholds[tier]["runtime_implemented"] = not (set_id == "B06-SU" and tier == "6")
+		result.thresholds[tier]["text_en"] = B06_SET_TEXT[set_id][tier][1]
+	return result
 
 static func _b05_set(set_id: String) -> Dictionary:
 	var result: Dictionary = B05Catalog.sets().get(set_id, {}).duplicate(true)
@@ -336,8 +381,9 @@ static func _check_required(definition: Dictionary, fields: Array, label: String
 static func _validate_v2() -> Array[String]:
 	var errors: Array[String] = []
 	var b05_released := int(Rules.value("implemented_chapters", 4)) >= 5
-	if equipment_ids(2).size() != (159 if b05_released else 124): errors.append("Unexpected version-two template count.")
+	if equipment_ids(2).size() != (194 if int(Rules.value("implemented_chapters",4))>=6 else 159 if b05_released else 124): errors.append("Unexpected version-two template count.")
 	errors.append_array(B05Catalog.validate())
+	errors.append_array(B06Catalog.validate())
 	if slots(2).size() != 8: errors.append("Expected eight version-two slots.")
 	var general_count := 0
 	for number in range(1, 125):

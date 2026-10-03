@@ -13,7 +13,7 @@ const V3 = preload("res://scripts/core/equipment_acquisition_v3.gd")
 const V1_SET_RACES := ["B01", "B01", "B02", "B02", "B03", "B03", "B04", "B04", "B01", "B02", "B01", "B02", "B03", "B04"]
 const V1_GENERAL_RACES := {"EQ01":"B01", "EQ02":"B02", "EQ11":"B03", "EQ12":"B04", "EQ21":"B01", "EQ22":"B02", "EQ31":"B03", "EQ32":"B04", "EQ41":"B01", "EQ42":"B02", "EQ51":"B03", "EQ52":"B04"}
 const V1_FORGE := {"green":{"gold":200, "common":12, "race":6, "core":0}, "purple":{"gold":400, "common":24, "race":12, "core":2}, "gold":{"gold":800, "common":48, "race":24, "core":6}}
-const RACES := ["B01", "B02", "B03", "B04", "B05"]
+const RACES := ["B01", "B02", "B03", "B04", "B05", "B06"]
 
 static func purchase_price(template_id: String, rarity: String, item_level: int) -> int:
 	var template := Registry.equipment(template_id, 2)

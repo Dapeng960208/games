@@ -104,6 +104,7 @@ static func available_biomes(include_b05: bool = false) -> Dictionary:
 	return result
 
 static func default_level(id: String) -> int:
+	if id.begins_with("B06-") or id == "BO06": return 30
 	return 25 if id.begins_with("B05-") or id == "BO05" else int(Numerical.chapter_levels(Numerical.chapter_for_id(id)).boss_level)
 
 static func entry_ids(include_b05: bool = false) -> Array[String]:
@@ -194,7 +195,7 @@ func _show_entry(id: String, reset_level: bool = true) -> void:
 	level_picker.position = Vector2(20,213)
 	level_picker.size = Vector2(116,35)
 	level_picker.add_theme_font_size_override("font_size",14)
-	for level: int in range(1,26 if id.begins_with("B05-") or id == "BO05" else 21): level_picker.add_item("Lv."+str(level),level)
+	for level: int in range(1,31 if id.begins_with("B06-") or id == "BO06" else (26 if id.begins_with("B05-") or id == "BO05" else 21)): level_picker.add_item("Lv."+str(level),level)
 	level_picker.select(int(profile.get("enemy_level",preview_level))-1)
 	level_picker.disabled = id.begins_with("BO")
 	level_picker.item_selected.connect(func(index: int): preview_level = index+1; _show_entry(selected_id,false))
@@ -261,7 +262,7 @@ static func portrait(parent: Node, id: String, at: Vector2, extent: Vector2) -> 
 	else:
 		# Match EnemyArt.install in the actual battle renderer. BossProfiles
 		# visual_asset names pre-storybook placeholders, not current boss identity.
-		var entry := EnemyImages.entry_for(id)
+		var entry := preload("res://scripts/combat/b06_native_art.gd").boss_frame("","idle") if id == "BO06" and Rules.b06_candidate_enabled() else EnemyImages.entry_for(id)
 		if not entry.is_empty():
 			var atlas := AtlasTexture.new()
 			atlas.atlas = entry.texture
@@ -298,7 +299,10 @@ func _enemy_skill_catalog(flow: VBoxContainer, profile: Dictionary) -> void:
 	for skill: Dictionary in skills:
 		if bool(skill.get("unlocked",false)): unlocked += 1
 	_line(flow,difficulty_label(difficulty)+Inspect.t(" · 已解锁 %d / %d 项"," · %d / %d unlocked") % [unlocked,skills.size()],16,MineStyle.CYAN)
-	_line(flow,Inspect.t("基础招式保留；更高难度累计开放新招式。灰色项未开放，其数值按当前所选难度预览。","Base moves remain; higher difficulties add moves. Grey entries are locked. Their numbers preview the currently selected difficulty."),13,MineStyle.MUTED)
+	if id.begins_with("B06-M"):
+		_line(flow,Inspect.t("难度强化累计生效；按湿地高潮条件预览，未开放项按解锁难度展示。有效预警与冷却取自实际运行招式。","Upgrades are cumulative. Preview assumes wet/high tide; locked rows use unlock difficulty. Timing comes from runtime commands."),13,MineStyle.MUTED)
+	else:
+		_line(flow,Inspect.t("基础招式保留；更高难度累计开放新招式。灰色项未开放，其数值按当前所选难度预览。","Base moves remain; higher difficulties add moves. Grey entries are locked. Their numbers preview the currently selected difficulty."),13,MineStyle.MUTED)
 	for skill: Dictionary in skills:
 		var enabled := bool(skill.get("unlocked",false))
 		var replaced := bool(skill.get("replaced",false))
@@ -359,7 +363,8 @@ func _enemy_details(flow: VBoxContainer, profile: Dictionary) -> void:
 
 func _boss_details(flow: VBoxContainer, profile: Dictionary) -> void:
 	_line(flow,Inspect.t("首领技能","BOSS ABILITIES"),18,MineStyle.CYAN)
-	_line(flow,Inspect.t("阶段切换：生命 70% / 35%；额外招式按难度累计开放。","Phase changes: 70% / 35% HP. Extra abilities unlock cumulatively by difficulty."),14,MineStyle.MUTED)
+	var thresholds: Array = profile.get("phase_thresholds",[.7,.35])
+	_line(flow,Inspect.t("阶段切换：生命 %.0f%% / %.0f%%；额外招式按难度累计开放。","Phase changes: %.0f%% / %.0f%% HP. Extra abilities unlock cumulatively by difficulty.") % [float(thresholds[0])*100,float(thresholds[1])*100],14,MineStyle.MUTED)
 	for skill: Dictionary in boss_skill_entries(str(profile.boss_id),difficulty,ruleset):
 		_line(flow,str(skill.title),17,MineStyle.CYAN if bool(skill.unlocked) else MineStyle.MUTED)
 		_line(flow,str(skill.description),14)
@@ -369,6 +374,21 @@ func _boss_details(flow: VBoxContainer, profile: Dictionary) -> void:
 
 static func boss_skill_entries(id: String, tier: int, version: int = 2) -> Array[Dictionary]:
 	var entries: Array[Dictionary] = []
+	if id == "BO06":
+		if not Rules.b06_candidate_enabled() or version != 2: return entries
+		var skills = preload("res://scripts/combat/b06_enemy_skills.gd")
+		for index: int in skills.BOSS_ACTIONS.size():
+			var action: String = skills.BOSS_ACTIONS[index]
+			var gate: int = skills.BOSS_GATES[index]
+			var command: Dictionary = skills.boss_action(skills.boss_profile(maxi(tier,gate)),action,Vector2.ZERO,Vector2(300,0),1)
+			var description := difficulty_label(gate)+" · "+(Inspect.t("已开放","available") if tier>=gate else Inspect.t("未开放：按解锁难度预览","locked: unlock-tier preview"))+"\n"+command_description(command)
+			var stages: Array[Dictionary] = [command]
+			for stage: int in range(1,int(command.get("stage_count",1))):
+				var follow: Dictionary = skills.boss_action(skills.boss_profile(maxi(tier,gate)),action,Vector2.ZERO,Vector2(300,0),1,stage)
+				stages.append(follow)
+				description += "\n"+Inspect.t("后续第 %d 段（再次预警）","Follow-up %d (new warning)") % (stage+1)+"\n"+command_description(follow)
+			entries.append({"id":action,"title":skills.BOSS_NAMES[index],"unlock_difficulty":gate,"unlocked":tier>=gate,"command":command,"stages":stages,"description":description})
+		return entries
 	var brain = preload("res://scripts/combat/b05_boss_brain.gd").new() if id == "BO05" else Brain.new()
 	brain.configure(Bosses.resolve(id,4,version),1)
 	var source := Node2D.new()
@@ -401,6 +421,7 @@ static func command_description(command: Dictionary) -> String:
 	var pair: Array = names.get(kind,[kind,kind])
 	var shape: Array = shapes.get(str(command.get("shape","")),["",""])
 	var lines: PackedStringArray = [Inspect.t(str(pair[0]),str(pair[1]))+" · "+Inspect.t(str(shape[0]),str(shape[1])),Inspect.t("预警 %.2f 秒 · 锁定 %.2f 秒 · 收势 %.2f 秒","Tell %.2f s · lock %.2f s · recovery %.2f s") % [float(command.get("tell",0)),float(command.get("lock",0)),float(command.get("recovery",0))]]
+	if command.has("coefficient"): lines.append(Inspect.t("招式系数 %.0f%% · 阶段1预览","Action coefficient %.0f%% · phase 1 preview") % float(command.coefficient))
 	if float(command.get("damage_multiplier",0)) > 0: lines.append(Inspect.t("单次伤害系数 ×%.2f","Per-hit damage coefficient ×%.2f") % float(command.damage_multiplier))
 	if int(command.get("count",0)) > 0: lines.append(Inspect.t("数量 %d","Count %d") % int(command.count))
 	if float(command.get("duration",0)) > 0: lines.append(Inspect.t("持续 %.1f 秒","Duration %.1f s") % float(command.duration))

@@ -59,6 +59,7 @@ var objective_rewarded: bool = false
 var tutorial_distance: float = 0.0
 var _previous_player_position := Vector2.ZERO
 var attack_serial: int = 0
+const Crit = preload("res://scripts/combat/crit_policy.gd")
 var crit_rolls: Dictionary = {}
 var true_bonus_roots: Dictionary = {}
 var primary_hit_roots: Dictionary = {}
@@ -99,6 +100,11 @@ var interaction_textures: Dictionary = {}
 var _navigation_cache: RefCounted = preload("res://scripts/combat/navigation_cache.gd").new()
 var expedition_context: Dictionary = {}
 var b05_mechanics: Node2D
+var b06_mechanics: Node2D
+var b06_environment: Node2D
+var _b06_environment_tide: Node2D
+var _b06_previous_native_water: bool = false
+var _b06_previous_visibility: Array[Dictionary] = []
 var objectives: Node2D
 var _prepared_initial: Dictionary = {}
 var _expedition_restore: Dictionary = {}
@@ -116,6 +122,13 @@ var terrain_redraw_count: int = 0
 var _depth_canvas: Node2D
 var _enemy_visual_counts: Dictionary = {}
 var _enemy_visual_room_key: String = ""
+
+func _enter_tree() -> void:
+	# A retained room can be removed and reattached without receiving _ready again.
+	if is_node_ready(): _configure_b06_environment.call_deferred()
+
+func _exit_tree() -> void:
+	_release_b06_environment()
 
 func _ready() -> void:
 	# Every raised object and actor shares one depth plane; feet provide the
@@ -182,7 +195,7 @@ func _ready() -> void:
 	if ResourceLoader.exists("res://assets/fonts/NotoSansSC.ttf"):
 		fx_font = load("res://assets/fonts/NotoSansSC.ttf")
 	for id in relic_positions:
-		var asset_path: String = "res://assets/ui/relic_" + id + ".png"
+		var asset_path: String = ClassRelics.art_path(id)
 		if ResourceLoader.exists(asset_path):
 			relic_textures[id] = load(asset_path)
 	if not expedition_context.is_empty():
@@ -204,6 +217,7 @@ func set_input_blocked(blocked: bool) -> void:
 	input_blocked = blocked
 	release_gate = true
 	if blocked:
+		if is_instance_valid(b05_mechanics): b05_mechanics.cancel_interaction()
 		if is_instance_valid(player):
 			player.clear_buffered_skill()
 			player.clear_movement_target()
@@ -232,6 +246,9 @@ func _physics_process(delta: float) -> void:
 	if Game.run == null:
 		return
 	elapsed += delta
+	if is_instance_valid(b06_mechanics):
+		if input_blocked or Game.run.hp <= 0.0: b06_mechanics.cancel_interaction()
+		b06_mechanics.tick(delta,false)
 	if is_instance_valid(b05_mechanics):
 		if input_blocked or Game.run.hp <= 0.0: b05_mechanics.cancel_interaction()
 		b05_mechanics.tick(delta,false)
@@ -329,7 +346,7 @@ func clamp_actor(at: Vector2, radius: float) -> Vector2:
 
 func _configure_ground_boundary() -> void:
 	ARENA = layout.get("arena", DEFAULT_ARENA)
-	if str(layout.get("biome_id","")) == "B05" and layout.get("ground_polygon") is PackedVector2Array:
+	if (str(layout.get("biome_id","")) == "B05" or bool(layout.get("b06_candidate",false))) and layout.get("ground_polygon") is PackedVector2Array:
 		ground_polygon = layout.ground_polygon
 		ARENA = GroundBoundary.bounds(ground_polygon)
 		return
@@ -341,9 +358,55 @@ func _configure_ground_boundary() -> void:
 func _configure_world_view() -> void:
 	var painted_arena: Rect2 = layout.get("arena", ARENA)
 	$MineBackdrop.configure(painted_arena, _biome_id(), layout_seed, WorldArt.environment_room_id(layout))
-	$MineBackdrop.configure_layout(layout)
+	$MineBackdrop.configure_layout(layout,Numerical.b05_candidate_enabled())
 	if is_instance_valid(camera):
-		camera.configure(self, player, ARENA, WorldArt.environment_world_rect(painted_arena, _biome_id(), WorldArt.environment_room_id(layout)))
+		camera.configure(self, player, ARENA, $MineBackdrop.painted_bounds())
+	_configure_b06_environment()
+
+func _create_b06_environment(id: String) -> Node2D:
+	var path := "res://scripts/world/b06_environment_pilot.gd" if id == "L31" else "res://scripts/world/b06_environment_batch.gd"
+	if not ResourceLoader.exists(path): return null
+	var script: Script = load(path)
+	return script.new() if script != null and script.can_instantiate() else null
+
+func _configure_b06_environment() -> void:
+	_release_b06_environment()
+	# The isolated process gate is required in addition to matching authored data.
+	# Merely preparing a B06 layout for a tool/fixture cannot enable candidate art.
+	if not is_inside_tree() or not Numerical.b06_candidate_enabled(): return
+	if not bool(layout.get("b06_candidate",false)) or str(layout.get("biome_id","")) != "B06" or _biome_id() != "B06": return
+	if layout_id not in ["L31","L32","L33","L34","L35","L36","BO06"] or str(layout.get("room_id","")) != layout_id: return
+	if not is_instance_valid(b06_mechanics) or b06_mechanics.room_id != layout_id: return
+	var environment: Node2D = _create_b06_environment(layout_id)
+	if not is_instance_valid(environment): return
+	_b06_environment_tide = b06_mechanics
+	_b06_previous_native_water = b06_mechanics.native_water_visual
+	b06_environment = environment
+	# Configure before attaching or hiding the fallback; failure is visual only.
+	if not environment.configure(layout,b06_mechanics):
+		_release_b06_environment()
+		return
+	environment.name = "B06Environment"
+	add_child(environment)
+	# Only superseded scenery is hidden. Props, actors, gameplay mechanisms,
+	# projectiles, telegraphs, feedback, interactions and HUD remain untouched.
+	for layer: Node2D in [get_node_or_null("MineBackdrop"),_floor_canvas,_terrain_canvas,_depth_canvas]:
+		if not is_instance_valid(layer): continue
+		_b06_previous_visibility.append({"node":layer,"visible":layer.visible})
+		layer.hide()
+
+func _release_b06_environment() -> void:
+	if is_instance_valid(b06_environment): b06_environment.free()
+	b06_environment = null
+	# Helpers clear their flag on exit; restore the value we actually took over
+	# after freeing them, including failure and retained-room tree exit paths.
+	if is_instance_valid(_b06_environment_tide):
+		_b06_environment_tide.native_water_visual = _b06_previous_native_water
+		_b06_environment_tide.queue_redraw()
+	_b06_environment_tide = null
+	for previous: Dictionary in _b06_previous_visibility:
+		if is_instance_valid(previous.node): previous.node.visible = previous.visible
+	_b06_previous_visibility.clear()
 
 func enemy_ruleset() -> int:
 	return Game.run.ruleset_version() if Game.run != null else Numerical.LEGACY
@@ -380,6 +443,9 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 		return null
 	var enemy: MineEnemy = EnemyScene.instantiate()
 	enemy.room = self
+	if bool(layout.get("b06_candidate",false)) and not bool(expedition_context.get("b06_progression",false)):
+		options = options.duplicate(true)
+		options["reward_enabled"] = false
 	enemy.configure(resolved, options)
 	var radius: float = enemy.navigation_radius
 	enemy.position = clamp_actor(at, radius)
@@ -402,6 +468,12 @@ func spawn_enemy(at: Vector2, id: String = "", level: int = 1, options: Dictiona
 		_natural_spawn_serial += 1
 	_assign_enemy_appearance(enemy)
 	enemies.add_child(enemy)
+	if is_instance_valid(b06_mechanics) and enemy.enemy_id.begins_with("B06-M"):
+		var stable_id: String = enemy.reward_spawn_id
+		if stable_id.is_empty():
+			stable_id = "b06:spawn:"+str(_natural_spawn_serial)
+			_natural_spawn_serial += 1
+		b06_mechanics.register_actor(stable_id,enemy)
 	if is_instance_valid(b05_mechanics) and enemy.enemy_id.begins_with("B05-M"):
 		var stable_id: String = enemy.reward_spawn_id
 		if stable_id.is_empty():
@@ -447,7 +519,7 @@ func spawn_enemy_summon(caster: Node2D, id: String, at: Vector2) -> MineEnemy:
 			children += 1
 	if children >= 2:
 		return null
-	var resolved: Dictionary = EnemyProfilesScript.resolve(id, caster.enemy_level, "normal", enemy_ruleset(), difficulty, enemy_calibration())
+	var resolved: Dictionary = preload("res://scripts/combat/b06_enemy_skills.gd").profile(id,caster.enemy_level,difficulty,"normal",enemy_calibration()) if bool(layout.get("b06_candidate",false)) and id.begins_with("B06-M") else EnemyProfilesScript.resolve(id, caster.enemy_level, "normal", enemy_ruleset(), difficulty, enemy_calibration())
 	if enemy_ruleset() != Numerical.V2: resolved = EnemyDifficultyScript.apply(resolved, difficulty)
 	if resolved.is_empty():
 		return null
@@ -717,7 +789,7 @@ func resolve_weapon_hit(projectile: SparkProjectile, target: MineEnemy) -> void:
 	var is_primary := projectile.source == &"primary"
 	telemetry["primary_hits" if is_primary else "child_hits"] += 1
 	if is_primary:
-		var context: Dictionary = {"attack_id":"basic:" + str(projectile.attack_id),"root_event_id":"basic:" + str(projectile.attack_id),"original_basic":true,"equipment_eligible":true}
+		var context: Dictionary = {"attack_id":"basic:" + str(projectile.attack_id),"root_event_id":"basic:" + str(projectile.attack_id),"original_basic":true,"equipment_eligible":true,"attack_delivery":"projectile"}
 		context["basic_variant"] = int(projectile.options.get("basic_variant",0))
 		var reserved: Dictionary = _prepare_relics(context, projectile.trigger_budget, projectile.arc_ready)
 		context["native_statuses"] = [ClassRelics.native_status(player.hero_id())] if bool(reserved.get("burn", false)) else []
@@ -727,7 +799,9 @@ func resolve_weapon_hit(projectile: SparkProjectile, target: MineEnemy) -> void:
 		if confirmed or not Numerical.is_v2(Game.run.stats):
 			_emit_reserved_relics(reserved, context, hit_position, target, projectile.direction)
 	else:
-		resolve_derived_hit(target, projectile.damage, projectile.source, projectile.direction, projectile.options)
+		var delivered: Dictionary = projectile.options.duplicate(true)
+		delivered["attack_delivery"] = "projectile"
+		resolve_derived_hit(target, projectile.damage, projectile.source, projectile.direction, delivered)
 	add_ring(projectile.position, Color("f0c77f"), 16.0, 0.15)
 
 func _trigger_arc(origin: Vector2, excluded: MineEnemy, coefficient: float = Balance.ARC_RATIO) -> void:
@@ -810,6 +884,11 @@ func nearby_interaction() -> Dictionary:
 		var loot_at := loot_position()
 		if player.position.distance_to(loot_at) <= Balance.INTERACTION_RADIUS and has_line_of_sight(player.position,loot_at):
 			return {"kind":"loot","position":loot_at,"label":"整理战利品" if Words.locale != "en" else "Collect loot"}
+	if is_instance_valid(b05_mechanics):
+		var gate: Dictionary = b05_mechanics.nearby_mechanism(player.position)
+		if not gate.is_empty(): return gate
+	if bool(layout.get("b06_candidate",false)) and not bool(expedition_context.get("b06_progression",false)) and objective_complete and player.position.distance_to(exit_position) <= Balance.INTERACTION_RADIUS and has_line_of_sight(player.position,exit_position):
+		return {"kind":"b06_candidate_next","position":exit_position,"label":"结束候选预览" if layout_id == "BO06" else "前往下一候选房"}
 	if is_instance_valid(objectives):
 		var task: Dictionary = objectives.nearby_interaction(player.position)
 		if not task.is_empty():
@@ -842,7 +921,7 @@ func interaction_hint() -> String:
 	if nearby.is_empty():
 		return ""
 	var key: String = _interaction_key()
-	if nearby.kind in ["objective","next","early_extract","relic_choice","supply","loot"]:
+	if nearby.kind in ["objective","b05_gate","b05_sunleaf","next","early_extract","relic_choice","supply","loot","b06_candidate_next"]:
 		return "[" + key + "] " + str(nearby.get("label","继续远征"))
 	if nearby["kind"] == "extract":
 		return tr("INTERACT_EXTRACT").replace("[E]", "["+key+"]")
@@ -860,9 +939,13 @@ func interact() -> void:
 	var nearby := nearby_interaction()
 	if nearby.is_empty():
 		return
-	if nearby.kind == "objective":
+	if nearby.kind == "b05_gate" and is_instance_valid(b05_mechanics):
+		b05_mechanics.interact(str(nearby.id),player,"player",func() -> bool: return Game.run != null and Game.run.hp > 0.0,has_line_of_sight)
+	elif nearby.kind == "b05_sunleaf" and is_instance_valid(b05_mechanics):
+		b05_mechanics.toggle_sunleaf(str(nearby.id),player)
+	elif nearby.kind == "objective":
 		objectives.interact(str(nearby.id),player)
-	elif nearby.kind in ["next","early_extract","relic_choice","supply","loot"]:
+	elif nearby.kind in ["next","early_extract","relic_choice","supply","loot","b06_candidate_next"]:
 		set_input_blocked(true)
 		interaction_requested.emit(str(nearby.kind),expedition_context.duplicate(true))
 	elif nearby["kind"] == "extract":
@@ -911,8 +994,10 @@ func _draw() -> void:
 		var icon: Texture2D = interaction_textures.get("loot")
 		if icon != null: draw_texture_rect(icon,Rect2(at-Vector2(34,46),Vector2(68,68)),false)
 		draw_arc(at,44,0,TAU,36,Color("e0bb72"),2,true)
-	for id in relic_positions:
-		_draw_relic(id, relic_positions[id])
+	# Legacy ground relics belong only to legacy mine runs, never chapter scenes.
+	if expedition_context.is_empty():
+		for id in relic_positions:
+			_draw_relic(id, relic_positions[id])
 	if interaction_overlay != null:
 		interaction_overlay.queue_redraw()
 	for drop in gold_drops:
@@ -966,9 +1051,8 @@ func _draw_relic(id: String, at: Vector2) -> void:
 	var collected: bool = Game.run == null or Game.run.relics.has(id)
 	var nearby: bool = player != null and player.position.distance_to(at) <= Balance.INTERACTION_RADIUS and has_line_of_sight(player.position, at)
 	draw_set_transform(at)
-	draw_colored_polygon(PackedVector2Array([Vector2(-27,-7),Vector2(-18,-16),Vector2(18,-16),Vector2(27,-7),Vector2(27,20),Vector2(-27,20)]),Color("1c2d35"))
-	draw_polyline(PackedVector2Array([Vector2(-27,20),Vector2(-27,-7),Vector2(-18,-16),Vector2(18,-16),Vector2(27,-7),Vector2(27,20)]),Color("8b6948"),1.5,true)
-	draw_line(Vector2(-21,24),Vector2(21,24),Color("a57d4c"),3.0)
+	# Retain pickup affordance without the retired dark industrial plinth.
+	draw_arc(Vector2(0,8),24,0,TAU,32,Color("c8b478"),1.5,true)
 	if collected:
 		draw_circle(Vector2(0,3),4.0,Color("526d69"))
 	else:
@@ -1014,6 +1098,8 @@ func _living_enemy_count() -> int:
 	return count
 
 func valid_ground(at: Vector2, radius: float = 0.0) -> bool:
+	if is_instance_valid(b05_mechanics) and b05_mechanics.blocks_ground(at,radius): return false
+	if bool(layout.get("b06_candidate",false)) and is_instance_valid(enemy_skills) and enemy_skills.b06 != null and enemy_skills.b06.has_method("wall_blocks_point") and enemy_skills.b06.wall_blocks_point(at,radius): return false
 	if not ground_polygon.is_empty() and not GroundBoundary.contains(ground_polygon, at, radius):
 		return false
 	if ground_polygon.is_empty() and at != clamp_actor(at, radius):
@@ -1057,6 +1143,8 @@ func _movement_contact(from: Vector2, to: Vector2, radius: float) -> Vector2:
 
 func blocked_fraction(from: Vector2, to: Vector2, radius: float = 0.0) -> float:
 	var result: float = GroundBoundary.clear_fraction(ground_polygon, from, to, radius) if not ground_polygon.is_empty() else 1.0
+	if bool(layout.get("b06_candidate",false)) and is_instance_valid(enemy_skills) and enemy_skills.b06 != null and enemy_skills.b06.has_method("blocked_fraction"):
+		result = minf(result,enemy_skills.b06.blocked_fraction(from,to,radius))
 	var offset: Vector2 = to - from
 	var allowed: Rect2 = ARENA.grow(-radius)
 	if offset.x > 0.0: result = minf(result, (allowed.end.x - from.x) / offset.x)
@@ -1089,7 +1177,15 @@ func has_line_of_sight(from: Vector2, to: Vector2) -> bool:
 	return blocked_fraction(from, to) >= 1.0
 
 func navigation_direction(from: Vector2, to: Vector2, radius: float) -> Vector2:
-	return _navigation_cache.direction(from, to, radius, obstructions, ARENA, ground_polygon)
+	if is_instance_valid(b05_mechanics):
+		var navigation_obstacles: Array[Rect2] = obstructions.duplicate()
+		navigation_obstacles.append_array(b05_mechanics.navigation_bounds())
+		return _navigation_cache.direction(from,to,radius,navigation_obstacles,ARENA,ground_polygon)
+	var walls: Array[Rect2] = obstructions
+	if bool(layout.get("b06_candidate",false)) and is_instance_valid(enemy_skills) and enemy_skills.b06 != null and enemy_skills.b06.has_method("navigation_obstructions"):
+		walls = obstructions.duplicate()
+		walls.append_array(enemy_skills.b06.navigation_obstructions())
+	return _navigation_cache.direction(from, to, radius, walls, ARENA, ground_polygon)
 
 func targets_in_radius(at: Vector2, radius: float) -> Array:
 	var targets: Array = []
@@ -1112,6 +1208,7 @@ func strike_area(at: Vector2, radius: float, amount: float, source: StringName, 
 		context = {"attack_id":("basic:" if source == &"primary" else "area:") + str(attack_serial),"root_event_id":("basic:" if source == &"primary" else "area:") + str(attack_serial)}
 		if source != &"primary":
 			attack_serial += 1
+	if not context.has("attack_delivery"): context["attack_delivery"] = "area"
 	if not context.has("damage_type"): context["damage_type"] = "magic" if player.hero_id() == "CH03" else "physical"
 	if not context.has("attacker_stats"): context["attacker_stats"] = Game.run.stats.duplicate(true)
 	var reserved: Dictionary = {}
@@ -1184,7 +1281,7 @@ func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, ap
 	var modifiers: Dictionary = player.loadout.event("before_hit", context)
 	var root_id: String = str(context.root_event_id)
 	if source == &"primary" and not crit_rolls.has(root_id):
-		crit_rolls[root_id] = randf() < clampf(player.stat("crit_chance", 0.05) + float(modifiers.get("crit_bonus", 0.0)), 0.0, 0.75)
+		crit_rolls[root_id] = Crit.roll(run_seed, layout_id + ":" + root_id, Crit.chance(context.attacker_stats, float(modifiers.get("crit_bonus", 0.0)))) if Crit.enabled(context.attacker_stats) else randf() < clampf(player.stat("crit_chance", 0.05) + float(modifiers.get("crit_bonus", 0.0)), 0.0, 0.75)
 		if crit_rolls.size() > 256:
 			crit_rolls.erase(crit_rolls.keys()[0])
 	context["critical"] = source == &"primary" and bool(crit_rolls.get(root_id, false))
@@ -1202,6 +1299,7 @@ func resolve_direct_hit(target: MineEnemy, amount: float, source: StringName, ap
 		context["ruleset_version"] = Numerical.V2
 	var health_before: float = target.health.current
 	var shield_before: float = target.status.shield()
+	if Crit.enabled(context.get("attacker_stats", {})): context["already_critical"] = true
 	target.take_damage(final_amount, source, direction, context)
 	# Snapshot the original packet before any shock/true-damage follow-up. A
 	# shield hit and a killing blow count; an immune or zero-damage body does not.
@@ -1273,14 +1371,15 @@ func _resolve_numerical_direct_hit(target: MineEnemy, amount: float, source: Str
 	context["shield"] = Game.run.shield
 	var modifiers: Dictionary = player.loadout.event("before_hit", context)
 	if not crit_rolls.has(root_id):
-		crit_rolls[root_id] = randf() < clampf(player.stat("crit_chance", 0.05) + float(modifiers.get("crit_bonus", 0.0)), 0.0, 0.75)
-		_trim_root_history(crit_rolls)
+		crit_rolls[root_id] = Crit.roll(run_seed, layout_id + ":" + root_id, Crit.chance(context.attacker_stats, float(modifiers.get("crit_bonus", 0.0)))) if Crit.enabled(context.attacker_stats) else randf() < clampf(player.stat("crit_chance", 0.05) + float(modifiers.get("crit_bonus", 0.0)), 0.0, 0.75)
+		if not Crit.enabled(context.attacker_stats): _trim_root_history(crit_rolls)
 	context["critical"] = bool(crit_rolls[root_id])
 	var bonus: float = player.stat("damage_bonus", 0.0) + float(modifiers.get("damage_bonus", 0.0))
 	if "corrosion" in context.target_states:
 		bonus += 0.08 + player.stat("corrosion_damage_bonus", 0.0)
 	var base: float = player.class_modify_hit_amount(target, float(context.X), source, context)
-	var final_amount: int = Numerical.integer(base * (1.0 + clampf(bonus, 0.0, float(Numerical.value("caps").damage_bonus))) * (player.stat("crit_multiplier", 1.5) if context.critical else 1.0) * player.hit_chain.multiplier(source, context))
+	var final_amount: int = Numerical.integer(base * (1.0 + clampf(bonus, 0.0, float(Numerical.value("caps").damage_bonus))) * ((Crit.multiplier(context.attacker_stats) if Crit.enabled(context.attacker_stats) else player.stat("crit_multiplier", 1.5)) if context.critical else 1.0) * player.hit_chain.multiplier(source, context))
+	if Crit.enabled(context.get("attacker_stats", {})): context["already_critical"] = true
 	target.take_damage(final_amount, source, direction, context)
 	var receipt: Dictionary = target.last_damage_result.duplicate()
 	if not bool(receipt.get("confirmed", false)):
@@ -1353,6 +1452,13 @@ func resolve_derived_hit(target: MineEnemy, amount: float, source: StringName, d
 	var context: Dictionary = attack_context.duplicate()
 	context.merge({"damage_source":str(source),"skill_slot":str(source),"equipment_eligible":false,"original_basic":false,"proc_depth":maxi(1,int(context.get("proc_depth",1)))},true)
 	if Numerical.is_v2(Game.run.stats): context["critical"] = false
+	if Crit.enabled(context.get("attacker_stats", {})) and bool(context.get("spell_critical_eligible", false)) and source in [&"field", &"node", &"node_detonation", &"node_echo", &"q"] and not bool(context.get("dot",false)):
+		var root_id: String = str(context.get("root_event_id", context.get("crit_event_id", "")))
+		if not root_id.is_empty():
+			if not crit_rolls.has(root_id):
+				crit_rolls[root_id] = Crit.roll(run_seed, layout_id + ":" + root_id, Crit.chance(context.attacker_stats))
+			context["critical"] = bool(crit_rolls[root_id])
+			context["already_critical"] = false
 	var health_before: float = target.health.current
 	var shield_before: float = target.status.shield()
 	if Numerical.is_v2(Game.run.stats):
@@ -1365,7 +1471,7 @@ func resolve_derived_hit(target: MineEnemy, amount: float, source: StringName, d
 	if Numerical.is_v2(Game.run.stats): context.merge(target.last_damage_result, true)
 	var consumed: float = float(context.hp_damage) + float(context.shield_damage)
 	if consumed > 0.0:
-		_confirm_contact(target, direction, source, false, consumed, source != &"node_detonation", context)
+		_confirm_contact(target, direction, source, bool(context.get("critical",false)), consumed, source != &"node_detonation", context)
 
 func _confirm_contact(target: MineEnemy, direction: Vector2, source: StringName, critical: bool, damage: float, passive: bool = false, context: Dictionary = {}) -> void:
 	# This is reached only after HP or shield was actually consumed. Whiffs,
@@ -1766,9 +1872,13 @@ func _encounters_exhausted() -> bool:
 	return true
 
 func _encounter_plan(index: int) -> Dictionary:
+	if bool(layout.get("b06_candidate",false)): return preload("res://scripts/world/b06_candidate.gd").encounter_plan(layout_id,index,difficulty)
 	return EnemyProfilesScript.encounter_plan(layout_id,index,difficulty,enemy_ruleset(),enemy_calibration())
 
 func _objective_encounters_pending() -> bool:
+	# B05 objectives describe mechanisms; its ordinary finite zones still
+	# require traversal/clearance even when no extra objective task is pending.
+	if bool(layout.get("b06_candidate",false)) or str(expedition_context.get("biome_id",""))=="B05": return not _encounters_exhausted()
 	if not is_instance_valid(objectives):
 		return false
 	for index in encounter_zones.size():
@@ -1965,6 +2075,7 @@ func _update_encounters(delta: float = 0.0) -> void:
 		var plan: Dictionary = _encounter_plan(index)
 		if plan.is_empty() or plan.waves.is_empty() or not _can_spawn_encounter_wave(index,plan.waves[0],float(plan.get("concurrent_threat_budget",18))) or not _spawn_encounter_wave(index,plan.waves[0]):
 			return
+		if is_instance_valid(b05_mechanics): b05_mechanics.encounter_started(index)
 		activated_encounters[index] = true
 		encounter_progress[index] = {"plan":plan,"next_wave":1,"reinforce_elapsed":0.0}
 		wave = activated_encounters.size()
@@ -2010,6 +2121,8 @@ func prepare_expedition_node(context: Dictionary) -> Dictionary:
 	var next: Dictionary = {}
 	if role in ["entrance","supply"]:
 		next = _service_layout(context)
+	elif bool(context.get("b06_candidate",false)) and str(context.get("biome_id","")) == "B06":
+		next = preload("res://scripts/world/b06_room_layouts.gd").build(id,seed_value)
 	elif role == "boss":
 		var script_path: String = "res://scripts/world/boss_layouts.gd"
 		if ResourceLoader.exists(script_path) and ResourceLoader.exists("res://scripts/combat/boss.gd"):
@@ -2049,6 +2162,9 @@ func apply_prepared_expedition_node(prepared: Dictionary) -> void:
 	set_input_blocked(false)
 
 func _install_expedition_layout(prepared: Dictionary) -> void:
+	_release_b06_environment()
+	if is_instance_valid(b06_mechanics): b06_mechanics.free()
+	b06_mechanics = null
 	if is_instance_valid(b05_mechanics): b05_mechanics.free()
 	b05_mechanics = null
 	if is_instance_valid(circuit): circuit.reset_room()
@@ -2128,6 +2244,14 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	_refresh_terrain_canvas()
 
 func _activate_expedition_content() -> void:
+	if bool(layout.get("b06_candidate",false)) and not is_instance_valid(b06_mechanics):
+		b06_mechanics = preload("res://scripts/world/b06_tide_runtime.gd").new()
+		add_child(b06_mechanics)
+		if not b06_mechanics.configure(layout_id,difficulty,enemy_calibration()):
+			configuration_error = "B06 tide configuration rejected"
+			return
+		b06_mechanics.load_candidate_art()
+	_configure_b06_environment()
 	if str(layout.get("biome_id","")) == "B05" and not is_instance_valid(b05_mechanics):
 		b05_mechanics = preload("res://scripts/world/b05_room_mechanisms.gd").new()
 		add_child(b05_mechanics)
@@ -2162,13 +2286,22 @@ func _activate_expedition_content() -> void:
 			var boss: Node2D = load(boss_script).new()
 			boss.room = self
 			boss.position = layout.get("boss_spawn",Vector2(1800,900))
-			boss.configure_boss(layout_id,difficulty,0,enemy_ruleset(),enemy_calibration())
+			if bool(layout.get("b06_candidate",false)) and layout_id == "BO06":
+				boss.configure(preload("res://scripts/combat/b06_enemy_skills.gd").boss_profile(difficulty),{"reward_enabled":false,"actor_kind":"boss"})
+			else:
+				boss.configure_boss(layout_id,difficulty,0,enemy_ruleset(),enemy_calibration())
 			boss.completed.connect(func(_id: String,_payload: Dictionary) -> void: _boss_defeated = true)
 			_boss_actor = boss
 			enemies.add_child(boss)
-			objectives = load("res://scripts/world/boss_arena.gd").new()
-			add_child(objectives)
-			objectives.configure_boss_arena(self,layout,boss)
+			if bool(layout.get("b06_candidate",false)):
+				b06_mechanics.bind_boss(boss)
+				objectives = load("res://scripts/world/room_objectives.gd").new()
+				add_child(objectives)
+				objectives.configure(self,layout,role)
+			else:
+				objectives = load("res://scripts/world/boss_arena.gd").new()
+				add_child(objectives)
+				objectives.configure_boss_arena(self,layout,boss)
 	else:
 		objectives = load("res://scripts/world/room_objectives.gd").new()
 		objectives.name = "RoomObjectives"
@@ -2189,6 +2322,12 @@ func _tick_expedition(delta: float) -> void:
 			var task_done: bool = is_instance_valid(objectives) and objectives.is_complete()
 			if not task_done or _objective_encounters_pending(): _update_encounters(delta)
 			objective_complete = task_done and _living_enemy_count() == 0 and not _objective_encounters_pending()
+	if bool(layout.get("b06_candidate",false)) and not bool(expedition_context.get("b06_progression",false)):
+		# Preview traversal has no persistent progression or economic settlement.
+		if objective_complete and not _completion_emitted:
+			_completion_emitted = true
+			room_completed.emit()
+		return
 	if not objective_complete or objective_rewarded or progress_retry_timer > 0.0: return
 	# Safe checkpoints contain no continuing enemy damage. Preserve absolute HP,
 	# resource, beneficial guards and all cooldowns; only end the finished fight.
@@ -2202,7 +2341,7 @@ func _tick_expedition(delta: float) -> void:
 		if Game.add_gold(int(gold_drops[index].amount)):
 			telemetry.gold_collected += int(gold_drops[index].amount)
 			gold_drops.remove_at(index)
-	var event_id: String = Game.run.id+":node:"+str(expedition_context.node_index)+":complete"
+	var event_id: String = Game.run.id+":node:"+str(int(expedition_context.node_index))+":complete"
 	var quality: String = str(objectives.status().get("quality","full")) if is_instance_valid(objectives) else "full"
 	var bosses: Array = Game.profile.bosses.duplicate()
 	for boss_id: String in Game.run.boss_defeats:

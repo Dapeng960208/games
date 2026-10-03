@@ -144,9 +144,9 @@ static func cap_notes(stats: Dictionary) -> Array[String]:
 		# Gear and talents share these final caps; report the loss after both.
 		var base: Dictionary = stats.get("hero_base",{})
 		var hero: Dictionary = Registry.hero(str(stats.get("hero_id","")))
-		raw["crit_chance"] = float(raw.get("crit_chance",0))+float(hero.get("crit_chance",0.05))+float(base.get("talent_crit_chance",0))
+		raw["crit_chance"] = float(raw.get("crit_chance",0))+(preload("res://scripts/combat/crit_policy.gd").DEFAULT_CHANCE if preload("res://scripts/combat/crit_policy.gd").enabled(stats) else float(hero.get("crit_chance",0.05)))+float(base.get("talent_crit_chance",0))
 		applied["crit_chance"] = float(stats.get("crit_chance",0))
-		raw["crit_multiplier"] = float(raw.get("crit_multiplier",0))+float(hero.get("crit_multiplier",1.5))
+		raw["crit_multiplier"] = float(raw.get("crit_multiplier",0))+(preload("res://scripts/combat/crit_policy.gd").DEFAULT_MULTIPLIER if preload("res://scripts/combat/crit_policy.gd").enabled(stats) else float(hero.get("crit_multiplier",1.5)))
 		applied["crit_multiplier"] = float(stats.get("crit_multiplier",0))
 		raw["attack_speed"] = float(raw.get("attack_speed",0))+float(base.get("talent_attack_speed",0))
 		applied["attack_speed"] = float(stats.get("attack_speed_bonus",0))

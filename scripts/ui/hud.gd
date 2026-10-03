@@ -269,6 +269,7 @@ class BuffChip extends Button:
 			draw_line(Vector2(30,20),Vector2(33,20),accent,2.0,true)
 
 var room: Node
+var _b06_tactical_layout := false
 var boss_cast_plate: Control
 var health_label: Label
 var gold_label: Button
@@ -567,6 +568,13 @@ func _apply_layout() -> void:
 	if status_panel == null: return
 	screen_size = size if size.x > 0 and size.y > 0 else get_viewport_rect().size
 	var margin := 12.0
+	_b06_tactical_layout = _uses_b06_tactical_layout()
+	skill_dock.scale = Vector2.ONE
+	location_panel.show()
+	expedition_beads.show()
+	room_identity_plate.show()
+	location_panel.size.y = 123
+	expedition_label.position.y = -1
 	_compact_layout = screen_size.x < 1020 or screen_size.y < 620
 	var stacked := screen_size.x < 880
 	status_panel.position = Vector2(margin,22)
@@ -625,8 +633,26 @@ func _apply_layout() -> void:
 	tooltip_panel.size.x = minf(380,screen_size.x-32)
 	tooltip_title.size.x = tooltip_panel.size.x-28
 	tooltip_body.size.x = tooltip_panel.size.x-28
+	if _b06_tactical_layout and not stacked:
+		# Keep the north/south combat lane clear. The duplicate room plaque and
+		# decorative beads collapse; route information remains in the M view.
+		# The live objective, progress and every class instrument stay on screen.
+		expedition_beads.hide()
+		room_identity_plate.hide()
+		location_panel.size = Vector2(188,35)
+		location_panel.position = Vector2(screen_size.x-200,68)
+		expedition_label.position = Vector2(8,-1)
+		skill_dock.scale = Vector2.ONE*.70
+		skill_dock.position = Vector2((screen_size.x-skill_dock.size.x*.70)*.5,screen_size.y-skill_dock.size.y*.70-8)
+		hint_label.position.y = skill_dock.position.y-31
+		toast.position = Vector2(24,210)
+		toast.size.x = minf(352,screen_size.x-48)
+		location_panel.queue_redraw()
 	if is_instance_valid(_route_button): _route_button.position = route_button_rect().position
 	layout_changed.emit(screen_size)
+
+func _uses_b06_tactical_layout() -> bool:
+	return is_instance_valid(room) and str(room.layout.get("biome_id","")) == "B06" and bool(room.layout.get("b06_candidate",false))
 
 func route_button_rect() -> Rect2:
 	# The route control is owned by Main; the HUD reserves and positions it.
@@ -761,6 +787,7 @@ func _process(delta: float) -> void:
 	_update_tooltip()
 
 func refresh() -> void:
+	if _b06_tactical_layout != _uses_b06_tactical_layout(): _apply_layout()
 	_bind_skill_input_feedback()
 	_update_buffs()
 	if Game.run == null or health_label == null: return

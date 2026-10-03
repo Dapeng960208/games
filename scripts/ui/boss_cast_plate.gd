@@ -28,6 +28,10 @@ func update_cast(room: Node, screen: Vector2, obstacles: Array[Rect2], font: Fon
 	info = Presentation.readout(boss.boss_brain)
 	size = Presentation.cast_rect(info,cast_font,Vector2.ZERO).size
 	var preferred := Vector2((screen.x-size.x)*.5,157)
+	# B06's authored north lane contains the boss head, name/health and bell.
+	# Keep both idle library information and live danger timing in a side dock.
+	if str(room.layout.get("biome_id","")) == "B06" and bool(room.layout.get("b06_candidate",false)) and screen.x >= 880:
+		preferred = Vector2(screen.x-size.x-12,210)
 	# Shift below intersecting instruments, including a live toast. Coordinates
 	# are local to the HUD; camera movement cannot move this plate into the HUD.
 	var candidate := Rect2(preferred,size)

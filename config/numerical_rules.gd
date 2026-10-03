@@ -14,7 +14,35 @@ static func parameters() -> Dictionary:
 		_parameters = parsed
 	return _parameters.duplicate(true)
 
+## Candidate preview requires BOTH a debug flag and an explicitly isolated save.
+## The shipped JSON and parameters() remain the approved four-chapter rules.
+static var _candidate_b05 := -1
+static func b05_candidate_enabled() -> bool:
+	if b06_candidate_enabled(): return true
+	if _candidate_b05 < 0:
+		_candidate_b05 = int(OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args()))
+	return _candidate_b05 == 1
+
+static func b06_candidate_enabled() -> bool:
+	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b06")
+
+static func _candidate_arguments_valid(args: PackedStringArray, chapter: String = "b05") -> bool:
+	if chapter not in ["b05","b06"] or not args.has("--candidate-"+chapter): return false
+	if args.has("--candidate-b05") and args.has("--candidate-b06"): return false
+	var paths: Array[String] = []
+	for argument: String in args:
+		if argument.begins_with("--test-profile="): paths.append(argument.trim_prefix("--test-profile="))
+	if paths.size() != 1: return false
+	var path := paths[0]
+	if not path.begins_with("user://test_"+chapter+"_candidate/") or not path.ends_with(".json"): return false
+	if "\\" in path or ":" in path.trim_prefix("user://"): return false
+	for component: String in path.trim_prefix("user://").split("/"):
+		if component in ["", ".", ".."]: return false
+	return true
+
 static func value(key: String, fallback: Variant = null) -> Variant:
+	if key == "implemented_chapters" and b06_candidate_enabled(): return 6
+	if key == "implemented_chapters" and b05_candidate_enabled(): return 5
 	if _parameters.is_empty(): parameters()
 	var result: Variant = _parameters.get(key, fallback)
 	return result.duplicate(true) if result is Dictionary or result is Array else result

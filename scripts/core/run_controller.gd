@@ -513,7 +513,7 @@ func hero_level(id: String = "") -> int:
 func selected_stats() -> Dictionary:
 	var resolved := StatResolver.resolve(str(profile.selected_hero), hero_level(), profile.loadout, profile.equipment, _profile_ruleset(), hero_talents())
 	resolved.branches = hero_branches()
-	return resolved
+	return preload("res://scripts/combat/crit_policy.gd").apply_player(resolved, run.enemy_calibration_snapshot if run != null else EnemyCalibration.current())
 
 func _run_race() -> String:
 	if run != null and not run.expedition.is_empty():

@@ -2,6 +2,7 @@ class_name DamageResolver
 extends RefCounted
 ## Pure damage arithmetic shared by player and enemies. The caller owns shields,
 ## health, crit RNG and trigger dispatch; this function never mutates its inputs.
+const Crit = preload("res://scripts/combat/crit_policy.gd")
 const MAX_REDUCTION := 0.65
 const Rules = preload("res://config/numerical_rules.gd")
 
@@ -21,11 +22,11 @@ static func resolve(amount: float, damage_type: String = "physical", attacker_st
 	var immune := bool(defender_stats.get("invulnerable", false)) or bool(context.get("invulnerable", false))
 	var resistance := 0.0
 	var reduction := 0.0
-	var critical := bool(context.get("critical", false))
+	var critical := bool(context.get("critical", false)) and not (Crit.enabled(attacker_stats) and bool(context.get("dot", false)))
 	# Existing room strikes already contain their critical multiplier. New users
 	# can explicitly pass already_critical=false to resolve an unmultiplied packet.
 	if critical and not bool(context.get("already_critical", true)) and type != "true":
-		damage *= clampf(float(attacker_stats.get("crit_multiplier", 1.5)), 1.0, 2.5)
+		damage *= Crit.multiplier(attacker_stats) if Crit.enabled(attacker_stats) else clampf(float(attacker_stats.get("crit_multiplier", 1.5)), 1.0, 2.5)
 		damage = float(Rules.amount(damage, ruleset))
 	if type != "true":
 		var resistance_key := "armor" if type == "physical" else "magic_resist"
