@@ -2,11 +2,11 @@
   "schema": "b08-reference-candidate-evidence-v1",
   "status": "candidate_reviewed_not_final_room_acceptance",
   "contract": {
-    "batch": "20261003T051241979145Z-6906127c",
-    "checks": 27,
+    "batch": "20261003T060149426799Z-89eb5ef9",
+    "checks": 30,
     "failures": 0,
     "exit_code": 0,
-    "scope": "Source bytes, registry, footprint/clipping, native body/foot/mirror, bounded flow marks, low FX, switch warning, room release and audio cleanup."
+    "scope": "Source bytes, registry, footprint/clipping, native body/foot/mirror, bounded flow marks, low FX, switch warning, room release and audio cleanup; default player-camera fitting unchanged; independent 45% distant-depth review preserves all foreground registration and sources."
   },
   "renderer": "Godot 4.6.3 / X11 OpenGL Compatibility / Mesa llvmpipe software renderer",
   "framebuffer": [
@@ -381,5 +381,55 @@
     "Broad rectangular floor composition and north depth framing incomplete",
     "M01 idle only, other actor/interaction art remains debug",
     "Not natural gameplay or hardware performance acceptance"
-  ]
+  ],
+  "resolution_policy": {
+    "target_framebuffer": [
+      2560,
+      1440
+    ],
+    "uniform_2048_source_required": false,
+    "scale_above_one_automatic_failure": false,
+    "effective_content_definition": "Per-frame body/weapon/key detail or alpha>=16 source bounds; exclude transparent margins and complete atlas size. Actual viewport and floor clipping reduce displayed content.",
+    "actor_baseline_source_to_max_display_minimum": 1,
+    "actor_recommended_margin": [
+      1.25,
+      1.5
+    ],
+    "margin_is_implementation_recommendation": true,
+    "background_acceptance": "Intentional softness/low sampling may pass if no obvious artifacts and no competition with foreground.",
+    "floor_acceptance": "Judge actual material/edge clarity; prefer native tiles/chunks/modules if detail is insufficient."
+  },
+  "background_depth_review": {
+    "status": "opt_in_candidate_not_final_room_acceptance",
+    "batch": "20261003T055703447401Z-c0e07aac",
+    "report_sha256": "810d2d23ba73d9a644fe5feef2d7fbb22412d83736855d27e2d5c79332ce0ae8",
+    "entry_sha256": "c82107deb850d216c2250f9736dfb7a3dcaa3fb89cfe1276506f1cb0dda32305",
+    "camera_by_view": {
+      "entry_flow.png": {
+        "player_world_position": "(220.4, 556.8)",
+        "world_view": "[P: (0.0, 133.2706), S: (1505.882, 847.0588)]",
+        "zoom": "(0.85, 0.85)"
+      }
+    },
+    "distant_source_strength": 0.45,
+    "exit_code": 0,
+    "audio_cleanup": true,
+    "wind_lane_pixel_comparison": {
+      "baseline_batch": "20261003T051507193758Z-8f8bb20f",
+      "screen_roi_xyxy": [
+        868,
+        95,
+        2001,
+        310
+      ],
+      "pixels": 243595,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    },
+    "observations": [
+      "Foreground separation improved without changing player-camera framing",
+      "Normal wind marks unchanged but still subtle near top of entry view; final readability pending",
+      "Broad platform and placeholder actors/props remain"
+    ]
+  }
 }

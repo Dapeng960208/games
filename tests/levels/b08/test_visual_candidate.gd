@@ -19,6 +19,15 @@ func run() -> void:
 	var environment: Node2D=room.sky_environment
 	check(environment.textures.size()==8 and environment.layers.size()==6,"eight originals and six clipped exterior layers")
 	check(environment.errors.is_empty() and environment.boundary_segments.size()==42,"exact floor boundary and exterior/edge clipping")
+
+	var viewport_size: Vector2=get_viewport().get_visible_rect().size
+	var original_zoom := maxf(.85,maxf(viewport_size.x/1624,viewport_size.y/1044))
+	check(not environment.background_depth_review and room.camera.zoom.is_equal_approx(Vector2.ONE*original_zoom),"ordinary art candidate retains shared player-camera fitting and original background")
+	var depth=preload("res://scripts/levels/b08/presentation/l43_environment.gd").new()
+	add_child(depth)
+	check(depth.configure("L43",true) and depth.background_depth_review and depth.DISTANT_STRENGTH==.45,"separate distant-depth review is explicitly enabled")
+	check(depth.layers==environment.layers and depth.edge_faces==environment.edge_faces and depth.background_rect==environment.background_rect and depth.snapshot==environment.snapshot,"depth review changes no foreground registration, native source, edge, or background rectangle")
+	depth.free()
 	var manifest: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve("asset://b08/rooms/l43/manifest.json")))
 	for source: Dictionary in manifest.assets:
 		check(FileAccess.get_sha256(AssetCatalog.resolve(source.logical_id))==source.sha256,"native bytes preserved: "+str(source.file))

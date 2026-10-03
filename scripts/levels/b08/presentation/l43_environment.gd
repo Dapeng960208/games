@@ -9,8 +9,13 @@ var snapshot: Dictionary = {}
 var edge_faces: Array = []
 var boundary_segments: Array = []
 const DEPTH := Vector2(0,18)
-func configure(id: String) -> bool:
+var background_depth_review := false
+const DISTANT_STRENGTH := .45
+const DISTANT_AIR := Color("b9d6eb")
+var background_rect := Rect2(0,0,1624,1044)
+func configure(id: String, review_background_depth: bool = false) -> bool:
 	if id!="L43" or not textures.is_empty(): return false
+	background_depth_review=review_background_depth
 	var parsed: Variant=JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(ROOT+"mapping.json")))
 	if not parsed is Dictionary:
 		errors.append("Invalid mapping JSON"); return false
@@ -96,7 +101,11 @@ func build_edges() -> void:
 
 func _draw() -> void:
 	if not errors.is_empty(): return
-	draw_texture_rect(textures["distant_city.png"],Rect2(0,0,1624,1044),false)
+	if background_depth_review:
+		# Runtime aerial perspective on the distant layer only; native pixels stay untouched.
+		draw_rect(background_rect,DISTANT_AIR)
+		draw_texture_rect(textures["distant_city.png"],background_rect,false,Color(1,1,1,DISTANT_STRENGTH))
+	else: draw_texture_rect(textures["distant_city.png"],background_rect,false)
 	for layer: Dictionary in layers:
 		for shape: PackedVector2Array in layer.shapes:
 			var uv:=PackedVector2Array()

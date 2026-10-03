@@ -125,7 +125,7 @@ func _configure_sky_environment() -> void:
 	if layout_id!="L43" or not OS.get_cmdline_user_args().has("--b08-art-l43"): return
 	var environment:=preload("res://scripts/levels/b08/presentation/l43_environment.gd").new()
 	add_child(environment)
-	if not environment.configure(layout_id):
+	if not environment.configure(layout_id,OS.get_cmdline_user_args().has("--b08-art-background-depth-review")):
 		push_error("B08 reference art rejected: "+str(environment.errors)); environment.free(); return
 	sky_environment=environment
 func spawn_enemy(at: Vector2, id: String = "", _level: int = 1, options: Dictionary = {}) -> EnemyActor:

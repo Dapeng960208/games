@@ -419,6 +419,9 @@
     "actor_manifest": "asset://b08/enemies/m01/manifest.json",
     "actor_coverage": "M01 idle only, front-right plus mirror",
     "whole_room_native_2k": false,
-    "default_campaign_unchanged": true
+    "default_campaign_unchanged": true,
+    "resolution_acceptance_target": "clear_2560x1440_player_frame_per_asset_role",
+    "uniform_2048_source_required": false,
+    "scale_above_one_automatic_failure": false
   }
 }
