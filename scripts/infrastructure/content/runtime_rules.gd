@@ -26,6 +26,17 @@ static func b05_candidate_enabled() -> bool:
 static func b06_candidate_enabled() -> bool:
 	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b06")
 
+## Chapter identity is independent of the highest authored level. B05/B06
+## retain their isolated preview gates when the final court is released.
+static func released_chapters() -> Array:
+	return value("released_chapters", ["B01", "B02", "B03", "B04"])
+
+static func chapter_enabled(chapter_id: String) -> bool:
+	if chapter_id == "B05": return b05_candidate_enabled()
+	if chapter_id == "B06": return b06_candidate_enabled()
+	if chapter_id == "B10" and b05_candidate_enabled(): return false
+	return chapter_id in released_chapters()
+
 static func _candidate_arguments_valid(args: PackedStringArray, chapter: String = "b05") -> bool:
 	if chapter not in ["b05","b06"] or not args.has("--candidate-"+chapter): return false
 	if args.has("--candidate-b05") and args.has("--candidate-b06"): return false
@@ -43,6 +54,8 @@ static func _candidate_arguments_valid(args: PackedStringArray, chapter: String 
 static func value(key: String, fallback: Variant = null) -> Variant:
 	if key == "implemented_chapters" and b06_candidate_enabled(): return 6
 	if key == "implemented_chapters" and b05_candidate_enabled(): return 5
+	if key == "level_cap" and b06_candidate_enabled(): return 30
+	if key == "level_cap" and b05_candidate_enabled(): return 25
 	if _parameters.is_empty(): parameters()
 	var result: Variant = _parameters.get(key, fallback)
 	return result.duplicate(true) if result is Dictionary or result is Array else result

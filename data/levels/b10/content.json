@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "biome_id": "B10",
+  "status": "runtime_integrated",
+  "runtime_enabled": true,
+  "name": "星辉龙庭",
+  "name_en": "Starlit Dragon Court",
+  "race": "星辉龙族",
+  "race_en": "Starlit Dragonkin",
+  "blueprint": {
+    "size": [
+      2800,
+      1800
+    ],
+    "world_scale": 0.58
+  },
+  "progression": {
+    "levels": [
+      46,
+      48,
+      50
+    ],
+    "maximum_level": 50,
+    "final_chapter": true
+  },
+  "enemy_ids": [
+    "B10-M01",
+    "B10-M02",
+    "B10-M03",
+    "B10-M04",
+    "B10-M05",
+    "B10-M06",
+    "B10-M07",
+    "B10-M08",
+    "B10-M09",
+    "B10-M10",
+    "B10-M11",
+    "B10-M12",
+    "B10-M13",
+    "B10-M14",
+    "B10-M15",
+    "B10-M16",
+    "B10-M17",
+    "B10-M18"
+  ],
+  "dragon_ids": [
+    "B10-D01",
+    "B10-D02",
+    "B10-D03",
+    "B10-D04",
+    "B10-D05",
+    "B10-D06"
+  ],
+  "room_ids": [
+    "L55",
+    "L56",
+    "L57",
+    "L58",
+    "L59",
+    "L60",
+    "BO10"
+  ],
+  "rooms": {
+    "L55": {
+      "room_id": "L55",
+      "biome_id": "B10",
+      "name": "日光星门",
+      "name_en": "Sunlit Stargate",
+      "enemy_level": 46,
+      "introduced_enemy_ids": [
+        "B10-M01",
+        "B10-M02",
+        "B10-M03"
+      ],
+      "dragon_id": "B10-D01",
+      "dragon_name": "晨辉翼龙",
+      "encounter_text": "观察固定星门目的地；跨门后旧攻击保持原分区。",
+      "reward_bias": [
+        "head",
+        "chest"
+      ],
+      "reward_bias_text": "头盔／胸甲",
+      "background": "asset://world/rooms/L55_environment_v1.json",
+      "detail": "asset://world/rooms_2k/L55/manifest.json"
+    },
+    "L56": {
+      "room_id": "L56",
+      "biome_id": "B10",
+      "name": "星图长廊",
+      "name_en": "Star Chart Gallery",
+      "enemy_level": 46,
+      "introduced_enemy_ids": [
+        "B10-M04",
+        "B10-M05",
+        "B10-M06"
+      ],
+      "dragon_id": "B10-D02",
+      "dragon_name": "镜鳞苍龙",
+      "encounter_text": "先打破左右星核，沿宽阔长廊迎战镜鳞巨龙。",
+      "reward_bias": [
+        "pants",
+        "boots"
+      ],
+      "reward_bias_text": "裤装／靴子、星位稳行鞋",
+      "background": "asset://world/rooms/L56_environment_v1.json",
+      "detail": "asset://world/rooms_2k/L56/manifest.json"
+    },
+    "L57": {
+      "room_id": "L57",
+      "biome_id": "B10",
+      "name": "鳞楼测绘院",
+      "name_en": "Scale Tower Survey Court",
+      "enemy_level": 48,
+      "introduced_enemy_ids": [
+        "B10-M07",
+        "B10-M08",
+        "B10-M09"
+      ],
+      "dragon_id": "B10-D03",
+      "dragon_name": "彗轨风龙",
+      "encounter_text": "沿斜向庭院切入彗轨龙侧面；两段星线分别预告。",
+      "reward_bias": [
+        "gloves",
+        "ring"
+      ],
+      "reward_bias_text": "护手／戒指",
+      "background": "asset://world/rooms/L57_environment_v1.json",
+      "detail": "asset://world/rooms_2k/L57/manifest.json"
+    },
+    "L58": {
+      "room_id": "L58",
+      "biome_id": "B10",
+      "name": "双环调律庭",
+      "name_en": "Twin Ring Harmony Court",
+      "enemy_level": 48,
+      "introduced_enemy_ids": [
+        "B10-M10",
+        "B10-M11",
+        "B10-M12"
+      ],
+      "dragon_id": "B10-D04",
+      "dragon_name": "极光长尾龙",
+      "encounter_text": "断开星核回响，在双环宽道绕行极光长尾龙。",
+      "reward_bias": [
+        "gloves",
+        "ring"
+      ],
+      "reward_bias_text": "护手／戒指、断核鳞戒",
+      "background": "asset://world/rooms/L58_environment_v1.json",
+      "detail": "asset://world/rooms_2k/L58/manifest.json"
+    },
+    "L59": {
+      "room_id": "L59",
+      "biome_id": "B10",
+      "name": "星冠前殿",
+      "name_en": "Star Crown Antechamber",
+      "enemy_level": 50,
+      "introduced_enemy_ids": [
+        "B10-M13",
+        "B10-M14",
+        "B10-M15"
+      ],
+      "dragon_id": "B10-D05",
+      "dragon_name": "星冠禁龙",
+      "encounter_text": "两条门支路通向鳞台，中央步路始终保留。",
+      "reward_bias": [
+        "weapon",
+        "accessory"
+      ],
+      "reward_bias_text": "武器／饰品",
+      "background": "asset://world/rooms/L59_environment_v1.json",
+      "detail": "asset://world/rooms_2k/L59/manifest.json"
+    },
+    "L60": {
+      "room_id": "L60",
+      "biome_id": "B10",
+      "name": "三曜圣庭",
+      "name_en": "Three Stars Sanctuary",
+      "enemy_level": 50,
+      "introduced_enemy_ids": [
+        "B10-M16",
+        "B10-M17",
+        "B10-M18"
+      ],
+      "dragon_id": "B10-D06",
+      "dragon_name": "三曜誓龙",
+      "encounter_text": "有限三波与两类高威胁组合；击败三曜誓龙。",
+      "reward_bias": [
+        "weapon",
+        "accessory"
+      ],
+      "reward_bias_text": "武器／饰品、归庭星盘",
+      "background": "asset://world/rooms/L60_environment_v1.json",
+      "detail": "asset://world/rooms_2k/L60/manifest.json"
+    },
+    "BO10": {
+      "room_id": "BO10",
+      "biome_id": "B10",
+      "name": "九曜龙座",
+      "name_en": "Ninefold Dragon Throne",
+      "enemy_level": 50,
+      "introduced_enemy_ids": [],
+      "dragon_id": "BO10",
+      "dragon_name": "九曜九头龙",
+      "encounter_text": "九头龙的三阶段星核可由所有职业击破；环路和双门始终可用。",
+      "reward_bias": [
+        "weapon",
+        "accessory"
+      ],
+      "reward_bias_text": "本职业与共有首领奖励",
+      "background": "asset://world/rooms/BO10_environment_v1.json",
+      "detail": "asset://world/rooms_2k/BO10/manifest.json"
+    }
+  },
+  "mechanics": {
+    "star_gates": {
+      "channel_seconds": 0.6,
+      "transit_seconds": 0.4,
+      "landing_radius_world": 100,
+      "restores_health": false,
+      "restores_resource": false,
+      "resets_cooldowns": false
+    },
+    "star_cores": {
+      "maximum_connections": 2,
+      "echo_layers": 1,
+      "echo_delay_seconds": 0.9,
+      "disconnect_seconds": 8
+    },
+    "boss_core_shield": {
+      "active_cores_by_phase": [
+        1,
+        2,
+        3
+      ],
+      "damage_reduction_per_core": 0.15,
+      "maximum_damage_reduction": 0.45
+    }
+  }
+}

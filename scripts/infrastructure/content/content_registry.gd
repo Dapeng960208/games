@@ -3,6 +3,7 @@ extends RefCounted
 const Progression = preload("res://scripts/domain/progression/hero_progression.gd")
 const ClassPolicy = preload("res://scripts/domain/equipment/equipment_class_policy.gd")
 const B05Catalog = preload("res://scripts/levels/b05/equipment/equipment_catalog.gd")
+const B10Catalog = preload("res://scripts/levels/b10/equipment/equipment_catalog.gd")
 const B06Catalog = preload("res://scripts/levels/b06/equipment/equipment_catalog.gd")
 const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 ## Immutable-by-copy static definitions. Combat state and ownership never live here.
@@ -30,6 +31,18 @@ const B06_UNIQUE_TEXT := {
  "B06-U01":["地形减速幅度-20%，同类上限50%；不减潮推距离","Terrain slow magnitude -20%, combined cap 50%; does not reduce tide push"],
  "B06-U02":["自身护盾实承伤后受治疗+8%4秒；冷却12秒","After own shield absorbs damage: received healing +8% for 4s; 12s ICD"],
  "B06-U03":["完成战斗机关交互后获4%生命盾3秒；冷却15秒","Complete a combat mechanism interaction: 4% HP shield for 3s; 15s ICD"]
+}
+
+const B10_SET_TEXT := {
+ "B10-SW":{"2":["Q直接伤害+8%","Q direct damage +8%"],"4":["4秒内Q→W命中同敌获得星誓，最多2层，持续8秒；每次施法一次","Q then W hitting the same enemy within 4s grants a Star Oath, max 2 for 8s; once per cast"],"6":["E提交消耗星誓：下次W每层伤害+8%、命中获每层3%生命盾4秒；窗口6秒，冷却12秒","E consumes Star Oaths: next W +8% damage and 3% HP shield for 4s per stack; 6s window, 12s ICD"]},
+ "B10-SG":{"2":["W主目标伤害+8%","W primary target damage +8%"],"4":["E命中留下6秒彗轨印，下次W命中追加0.30P；冷却8秒","E marks a target for 6s; next W adds 0.30P; 8s ICD"],"6":["8秒内Q真实转位、E与W命中同敌，下次R实发前3弹对其各追加0.18P；窗口6秒，冷却12秒","Real Q movement then E and W hits on one target within 8s: next R first 3 fired rounds add 0.18P against it; 6s window, 12s ICD"]},
+ "B10-SM":{"2":["Q直接伤害+8%","Q direct damage +8%"],"4":["8秒内付费施放三种技能且总实耗>80，回复80法力；冷却10秒","Three different paid spells within 8s spending more than 80 mana restore 80; 10s ICD"],"6":["同一三技能事件后，下次Q或R首段追加0.60P星环，最多3目标并共享派生伤害预算；窗口6秒，冷却12秒","After the same three-spell event, next Q or R first segment adds a 0.60P star burst to up to 3 targets within the shared derived-damage budget; 6s window, 12s ICD"]},
+ "B10-SU":{"2":["受到远程直接伤害-6%","Ranged direct damage received -6%"],"4":["自身护盾被实际伤害击破后，下个付费技能成本-8%；窗口6秒，冷却12秒","After own shield breaks from real damage: next paid skill costs 8% less; 6s window, 12s ICD"],"6":["10秒内真实移动160、直接命中、技能成功提交，获直接减伤8%及移速8%4秒；冷却12秒","Move 160, land a direct hit and commit a skill within 10s: direct damage reduction and speed +8% for 4s; 12s ICD"]}
+}
+const B10_UNIQUE_TEXT := {
+ "B10-U01":["普通减速结束后下一次闪避剩余冷却-0.5秒；冷却12秒","After an ordinary slow ends: next dash cooldown -0.5s; 12s ICD"],
+ "B10-U02":["自己击破敌盾或供能机关后获3%最大生命盾4秒；冷却12秒","Break an enemy shield or power mechanism: 3% max HP shield for 4s; 12s ICD"],
+ "B10-U03":["从敌方普通位移恢复后直接减伤6%4秒；冷却15秒","Recover from ordinary enemy forced movement: direct damage received -6% for 4s; 15s ICD"]
 }
 
 static var _heroes: Dictionary = _read_json("res://data/characters/heroes.json")
@@ -78,6 +91,8 @@ static func equipment_ids(ruleset: int = 1) -> Array:
 		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B05-"))
 	if ruleset == 2 and int(Rules.value("implemented_chapters",4)) < 6:
 		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B06-"))
+	if ruleset == 2 and not Rules.chapter_enabled("B10"):
+		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B10-"))
 	ids.sort()
 	return ids
 
@@ -97,6 +112,8 @@ static func sets(ruleset: int = 1) -> Dictionary:
 			for set_id: String in B05Catalog.sets(): result[set_id] = _b05_set(set_id)
 		if int(Rules.value("implemented_chapters",4)) >= 6:
 			for set_id: String in B06Catalog.sets(): result[set_id] = _b06_set(set_id)
+		if Rules.chapter_enabled("B10"):
+			for set_id: String in B10Catalog.sets(): result[set_id] = _b10_set(set_id)
 		var materials: Dictionary = Rules.value("shop_set_races", {})
 		for set_id: String in materials:
 			if result.has(set_id): result[set_id]["race_id"] = str(materials[set_id])
@@ -203,7 +220,32 @@ static func _v2_equipment() -> Dictionary:
 		item["runtime_implemented"] = not id.begins_with("B06-SU-")
 		if not item.unique_effect.is_empty(): item.unique_effect["runtime_implemented"] = true
 		_equipment_v2[id] = item
+	for id: String in B10Catalog.equipment_ids():
+		var item := B10Catalog.equipment(id)
+		item["drop_origin"] = "B10"
+		item["class_policy_version"] = ClassPolicy.B10_VERSION
+		item["affix_tendencies"] = item.affix_tendencies_by_power[item.power_types[0]].duplicate()
+		item["description"] = "星辉龙庭终章装备；共有实例获得时固定物理/魔法取向"
+		item["description_en"] = "Star Dragon Court finale gear; shared instances retain their acquired physical or magical orientation"
+		item["base_stat_text"] = "属性由装备实例决定"
+		item["base_stat_text_en"] = "Stats are determined by the equipment instance"
+		item["affix_id"] = ""
+		item["affix_text"] = B10_UNIQUE_TEXT.get(id, ["", ""])[0]
+		item["affix_text_en"] = B10_UNIQUE_TEXT.get(id, ["", ""])[1]
+		item["runtime_implemented"] = true
+		_equipment_v2[id] = item
 	return _equipment_v2
+
+static func _b10_set(set_id: String) -> Dictionary:
+	var result: Dictionary = B10Catalog.sets().get(set_id, {}).duplicate(true)
+	if result.is_empty(): return result
+	result["race_id"] = "B10"
+	result["class_policy_version"] = ClassPolicy.B10_VERSION
+	for tier: String in result.thresholds:
+		result.thresholds[tier]["name"] = result.name + " " + tier
+		result.thresholds[tier]["text"] = B10_SET_TEXT[set_id][tier][0]
+		result.thresholds[tier]["text_en"] = B10_SET_TEXT[set_id][tier][1]
+	return result
 
 static func _b06_set(set_id: String) -> Dictionary:
 	var result: Dictionary = B06Catalog.sets().get(set_id,{}).duplicate(true)
@@ -384,6 +426,7 @@ static func _validate_v2() -> Array[String]:
 	if equipment_ids(2).size() != (194 if int(Rules.value("implemented_chapters",4))>=6 else 159 if b05_released else 124): errors.append("Unexpected version-two template count.")
 	errors.append_array(B05Catalog.validate())
 	errors.append_array(B06Catalog.validate())
+	errors.append_array(B10Catalog.validate())
 	if slots(2).size() != 8: errors.append("Expected eight version-two slots.")
 	var general_count := 0
 	for number in range(1, 125):

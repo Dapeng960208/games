@@ -22,7 +22,7 @@ const MAX_NUMBER := 1_000_000_000_000
 const RELIC_IDS := ["split", "ember", "arc"]
 const OUTCOMES := ["extracted", "death", "abandoned"]
 const HERO_IDS := ["CH01", "CH02", "CH03"]
-const BOSS_IDS := ["BO01", "BO02", "BO03", "BO04", "BO05", "BO06"]
+const BOSS_IDS := ["BO01", "BO02", "BO03", "BO04", "BO05", "BO06", "BO10"]
 const SLOTS := ["weapon", "head", "chest", "hands", "feet", "charm"]
 const STARTER_IDS := ["EQ01", "EQ11", "EQ21", "EQ31", "EQ41", "EQ51"]
 const MAX_TRANSACTIONS := 4096 # Bounded purchase/upgrade/recycle receipts; never evict IDs.
@@ -875,7 +875,7 @@ static func _valid_v2_growth(profile: Dictionary) -> bool:
 	for event: Variant in receipts:
 		if not event is String or event.is_empty() or event.length() > 160: return false
 		var row: Variant = receipts[event]
-		if not row is Dictionary or row.get("hero") not in HERO_IDS or not _number(row.get("amount"), 3600) or row.get("race") not in ["B01", "B02", "B03", "B04", "B05", "B06"]: return false
+		if not row is Dictionary or row.get("hero") not in HERO_IDS or not _number(row.get("amount"), 3600) or row.get("race") not in ["B01", "B02", "B03", "B04", "B05", "B06", "B10"]: return false
 		if row.has("deferred_materials"):
 			if row.deferred_materials != true or not _number(row.get("research_rewards"), 11) or not Loot.material_map_valid(row.get("material_reward")): return false
 			var expected := {} if int(row.research_rewards) == 0 else {"forge":int(row.research_rewards) * 4,"race:" + str(row.race):int(row.research_rewards)}

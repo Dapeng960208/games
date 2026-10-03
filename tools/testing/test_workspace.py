@@ -14,7 +14,7 @@ import sys
 import uuid
 
 ROOT = next(p for p in Path(__file__).absolute().parents if (p / 'project.godot').is_file())
-BIOMES = ('B05', 'B06')
+BIOMES = ('B05', 'B06', 'B10')
 RUN_ID = re.compile(r'^\d{8}T\d{12}Z-[a-f0-9]{8}$')
 MARKER = '.managed-test-run.json'
 

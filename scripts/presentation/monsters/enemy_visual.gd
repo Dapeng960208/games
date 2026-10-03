@@ -117,6 +117,8 @@ func configure(enemy: Node2D) -> void:
 		_foot = Vector2.ZERO
 	# Ordinary identities keep their registered current body. Native candidate
 	# chapters supply their own active pose banks below.
+	if actor.has_method("b10_body_frame") and not actor.call("b10_body_frame").is_empty():
+		_foot = Vector2.ZERO
 	_bank = {}
 	if bool(_storybook_entry.get("b05_native_bank",false)):
 		_bank = preload("res://scripts/levels/b05/art/enemy_art.gd").bank(str(actor.get("enemy_id")))
@@ -414,6 +416,9 @@ func _using_empty_body() -> bool:
 	return not is_instance_valid(props) or not props.has_method("carried_by") or not bool(props.call("carried_by", actor))
 
 func body_frame() -> Dictionary:
+	if is_instance_valid(actor) and actor.has_method("b10_body_frame"):
+		var native: Dictionary = actor.call("b10_body_frame")
+		if not native.is_empty(): return native
 	if is_instance_valid(actor) and actor.has_method("b06_body_frame"):
 		var native: Dictionary = actor.call("b06_body_frame")
 		if not native.is_empty():

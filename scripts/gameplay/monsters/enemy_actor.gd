@@ -137,6 +137,8 @@ func _ready() -> void:
 		brain = preload("res://scripts/levels/b05/combat/enemy_brain.gd").new() if enemy_id.begins_with("B05-M") else BrainScript.new()
 		if enemy_id.begins_with("B06-M") and not bool(profile.get("b06_candidate_contact_only",true)):
 			brain = preload("res://scripts/levels/b06/combat/enemy_brain.gd").new()
+		if enemy_id.begins_with("B10-M"):
+			brain = preload("res://scripts/levels/b10/combat/enemy_brain.gd").new()
 		brain.configure(profile)
 	if not static_actor:
 		body_visual = BodyVisualScript.new()
@@ -144,7 +146,11 @@ func _ready() -> void:
 		add_child(body_visual)
 		body_visual.configure(self)
 
+func b10_body_frame() -> Dictionary:
+	return preload("res://scripts/levels/b10/art/native_art.gd").frame(enemy_id) if enemy_id.begins_with("B10-M") or preload("res://scripts/levels/b10/combat/enemy_skills.gd").is_boss(enemy_id) else {}
+
 func impact_material() -> String:
+	if enemy_id.begins_with("B10-") or enemy_id=="BO10": return "organic"
 	if enemy_id.begins_with("B05-M") or enemy_id == "BO05": return "organic"
 	if enemy_id in ["M04", "M10", "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18", "M28", "M29", "M32", "M33", "M35"]:
 		return "organic"
@@ -307,6 +313,7 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	if room.enemy_skills != null and room.enemy_skills.b05 != null:
 		amount = room.enemy_skills.b05.filter_damage(self,amount,kind,from_direction,damage_type)
 		amount = room.enemy_skills.b06.filter_damage(self,amount,kind,from_direction,damage_type,context)
+		amount = room.enemy_skills.b10.filter_damage(self,amount,kind,from_direction,damage_type)
 	var auxiliary_absorbed: Variant = Numerical.amount(0.0, status.ruleset_version)
 	# Enemy barrier/stance multipliers are reduction, so true damage bypasses
 	# them. Immunity is checked above; shields are still consumed below.

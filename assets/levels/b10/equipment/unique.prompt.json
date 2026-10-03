@@ -1,0 +1,12 @@
+{
+  "tool": "built-in image_gen",
+  "exact_prompt": "Production game equipment sprite atlas. Three special equipment objects ONLY, arranged in three equal columns left to right: elegant pearl star-position boots (one pair), beautiful break-core dragon-scale ring with lavender gemstone, intricate homecoming gold star astrolabe pendant. Style: bright hand-painted cartoon fantasy, warm sunlight highlights, pearl ivory, star lavender and antique gold, clean readable shapes, fine material detail, 2.5D volume, three-quarter elevated view appropriate for isometric action RPG icons. All objects isolated on true alpha-transparent background, no text, numbers, UI, scenery or shadows outside silhouette. Wide 1536x512 native image with exactly3 cells, each object fully contained within its512x512 cell, centered. Native generation, no enlarged low-resolution source. Detailed adult equipment, no chibi faces or mascot styling.",
+  "original_source": "/workspace/generated_images/exec-cac66385-7a9b-446a-ba98-c71dd8dc31c8.png",
+  "sha256": "bf0c073c071e9bf6526c749b130450f2a11f2e25846ed827716a754115d4289b",
+  "native_dimensions": [
+    2172,
+    724
+  ],
+  "encoding": "original PNG bytes, not resized",
+  "alpha": true
+}

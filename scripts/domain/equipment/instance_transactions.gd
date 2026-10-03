@@ -9,7 +9,7 @@ const Instances = preload("res://scripts/domain/equipment/equipment_instances.gd
 const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
 const Growth = preload("res://scripts/domain/progression/hero_progression.gd")
 const VERSION := 1 # Ledger envelope remains compatible with mixed historical receipts.
-const RECEIPT_VERSION := 2
+const RECEIPT_VERSION := 3
 const MAX_NUMBER := 1_000_000_000_000
 const MAX_PROFILE_BYTES := 32 * 1024 * 1024
 const KINDS := ["purchase", "craft", "complete_set"]
@@ -205,7 +205,7 @@ static func _request(request: Dictionary, kind: String, historical: bool = false
 	var required := ["hero_id", "rarity", "power_type", "item_level", "set_id", "template_ids"] if kind == "complete_set" else ["hero_id", "rarity", "power_type", "item_level", "template_id"]
 	if request.size() != required.size() or not request.has_all(required): return {}
 	if request.hero_id not in ["CH01", "CH02", "CH03"] or request.power_type not in ["physical", "magic"]: return {}
-	if not _integer(request.item_level, 1, (20 if receipt_version == 1 else 25) if historical else Growth.level_cap()) or not request.rarity is String: return {}
+	if not _integer(request.item_level, 1, (20 if receipt_version == 1 else (25 if receipt_version == 2 else 50)) if historical else Growth.level_cap()) or not request.rarity is String: return {}
 	if kind == "craft":
 		if (not Economy.V1_FORGE.has(request.rarity)) if historical else (Economy.crafting_unlock_level(request.rarity) < 0): return {}
 	elif request.rarity not in ["white", "green"]: return {}

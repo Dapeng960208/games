@@ -1,4 +1,8 @@
 {
+  "b10_room_geometry": {
+    "script": "tests/levels/b10/test_b10_room_geometry.gd",
+    "scene": "tests/levels/b10/test_b10_room_geometry.tscn"
+  },
   "approved_ui": {
     "script": "tests/ui/test_approved_ui.gd",
     "scene": "tests/ui/test_approved_ui.tscn"
@@ -1140,5 +1144,8 @@
   },
   "legacy_profile_reset": {
     "script": "tests/persistence/test_legacy_profile_reset.gd"
+  },
+  "b10_chapter_entry": {
+    "script": "tests/levels/b10/test_b10_chapter_entry.gd"
   }
 }

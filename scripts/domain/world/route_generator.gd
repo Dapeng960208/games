@@ -51,12 +51,15 @@ static func _error(reason: String) -> Dictionary:
 	return {"valid": false, "error": reason, "nodes": []}
 
 static func _departure_cap() -> int:
+	return int(preload("res://scripts/infrastructure/content/runtime_rules.gd").value("level_cap", 20))
+
+static func _legacy_departure_cap() -> int:
 	return 30 if Catalog.b06_enabled() else 25 if Catalog.b05_enabled() else 20
 
 static func generate(biome_id: String, seed_value: int, choices: Array = [], departure_level: int = 0) -> Dictionary:
-	if departure_level < 0 or departure_level > _departure_cap():
-		return _error("Departure level must be 0 (legacy) or 1 through %d" % _departure_cap())
-	if biome_id in ["B05","B06"]: return _error("Candidate chapters require generate_single_biome")
+	if departure_level < 0 or departure_level > _legacy_departure_cap():
+		return _error("Departure level must be 0 (legacy) or 1 through %d" % _legacy_departure_cap())
+	if biome_id in ["B05","B06","B10"]: return _error("This chapter requires generate_single_biome")
 	if departure_level > 0:
 		return _generate_dynamic(biome_id, seed_value, choices, departure_level)
 	return _generate_legacy(biome_id, seed_value, choices)
@@ -161,6 +164,10 @@ static func node_count_for_level(level: int) -> int:
 	if level <= 14: return 10
 	return 12
 
+## All six final-court guardians precede the hydra, at every departure level.
+static func node_count_for_biome(biome_id: String, level: int) -> int:
+	return 9 if biome_id == "B10" else node_count_for_level(level)
+
 static func length_for_level(level: int) -> int:
 	return node_count_for_level(level)
 
@@ -168,6 +175,7 @@ static func roles_for_length(count: int) -> Array:
 	match count:
 		6: return ["entrance", "branch", "objective", "supply", "elite_objective", "boss"]
 		8: return NODE_ROLES.duplicate()
+		9: return ["entrance", "branch", "objective", "branch", "supply", "objective", "branch", "elite_objective", "boss"]
 		10: return ["entrance", "branch", "branch", "objective", "supply", "branch", "objective", "branch", "elite_objective", "boss"]
 		12: return ["entrance", "branch", "branch", "objective", "branch", "supply", "objective", "branch", "branch", "objective", "elite_objective", "boss"]
 	return []
@@ -197,8 +205,7 @@ static func biome_for_index(start_biome: String, index: int, count: int, dynamic
 	var biomes: Array = Catalog.biomes().keys()
 	# Version-one saves keep their original four-region descent ring.
 	if dynamic_version == 1:
-		biomes.erase("B05")
-		biomes.erase("B06")
+		biomes = ["B01", "B02", "B03", "B04"]
 	biomes.sort()
 	var roles: Array = roles_for_length(count)
 	if not biomes.has(start_biome) or index < 0 or index >= roles.size(): return ""
@@ -214,6 +221,7 @@ static func budget_for_index(index: int, count: int) -> int:
 	match count:
 		6: budgets = [0, 12, 16, 0, 24, 0]
 		8: budgets = BUDGETS
+		9: budgets = [0, 12, 16, 20, 0, 22, 26, 30, 0]
 		10: budgets = [0, 12, 14, 16, 0, 20, 22, 24, 28, 0]
 		12: budgets = [0, 12, 14, 16, 18, 0, 22, 24, 26, 28, 32, 0]
 	return int(budgets[index]) if index >= 0 and index < budgets.size() else -1
@@ -286,8 +294,8 @@ static func _single_biome_completion(candidates: Array, fixed: Dictionary) -> Ar
 static func _generate_dynamic(biome_id: String, seed_value: int, choices: Array, departure_level: int, dynamic_version: int = 1) -> Dictionary:
 	var biomes: Dictionary = Catalog.biomes()
 	if not biomes.has(biome_id): return _error("Unknown biome: " + biome_id)
-	if biome_id in ["B05","B06"] and dynamic_version != 2: return _error("B05 requires the single-biome candidate route")
-	var count: int = node_count_for_level(departure_level)
+	if biome_id in ["B05","B06","B10"] and dynamic_version != 2: return _error("This chapter requires a single-biome route")
+	var count: int = node_count_for_biome(biome_id, departure_level)
 	var roles: Array = roles_for_length(count)
 	var indices: Array = _template_indices(roles)
 	var fixed: Dictionary = {}
@@ -312,6 +320,8 @@ static func _generate_dynamic(biome_id: String, seed_value: int, choices: Array,
 			var slot := indices.find(index)
 			var first := 31 if biome_id=="B06" else 25
 			pool = ["L%02d" % (first+slot)] if slot < 6 else ["L%02d"%(first+4),"L%02d"%(first+5)]
+		elif biome_id == "B10":
+			pool = ["L%02d" % (55 + indices.find(index))]
 		for i: int in range(pool.size() - 1, 0, -1):
 			var j: int = random.randi_range(0, i)
 			var temporary: String = str(pool[i])
@@ -361,11 +371,12 @@ static func _choose_dynamic(route: Dictionary, node_index: int, room_id: String)
 	if not route.get("biome_id") is String or not route.get("nodes") is Array or not route.get("choices", []) is Array:
 		return _error("Invalid dynamic route structure")
 	var level: int = int(route.get("departure_level", 0))
-	var count: int = node_count_for_level(level)
+	var count: int = node_count_for_biome(str(route.get("biome_id", "")), level)
 	var nodes: Array = route.get("nodes", [])
 	var version := int(route.get("dynamic_version",0))
 	if not route.get("valid", false) or level < 1 or level > _departure_cap() or version not in [1,2] or nodes.size() != count or int(route.get("node_count", -1)) != count:
 		return _error("Invalid dynamic route")
+	if version == 1 and level > _legacy_departure_cap(): return _error("Invalid historical departure level")
 	for node: Variant in nodes:
 		if not node is Dictionary or not node.get("room_id") is String or not node.get("options") is Array:
 			return _error("Invalid dynamic node structure")

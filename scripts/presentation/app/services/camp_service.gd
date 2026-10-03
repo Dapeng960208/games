@@ -51,7 +51,7 @@ func show_camp() -> void:
 	departure.name = "CampDeparturePlan"
 	host._camp_ui_icon(departure,"route",Vector2(17,10),Vector2(48,48))
 	GameStyle.literal(departure,host._ex_text("下一站，向着阳光出发。","YOUR NEXT EXPEDITION."),Vector2(76,14),Vector2(706,39),27,GameStyle.INK)
-	GameStyle.literal(departure,host._ex_text("出发 Lv.%d · 预计 %d 站 / 目标、遗物、补给与首领","DEPARTURE LV.%d · %d STOPS / OBJECTIVES, RELICS & A BOSS") % [level,host.RoutePlanner.node_count_for_level(level)],Vector2(24,63),Vector2(758,28),15,GameStyle.MUTED)
+	GameStyle.literal(departure,"",Vector2(24,63),Vector2(758,28),15,GameStyle.MUTED).name = "DepartureRouteHint"
 	host._build_biome_selector()
 	var difficulty_hint = GameStyle.literal(host.screen,"",Vector2(454,264),Vector2(758,22),12,GameStyle.INK)
 	difficulty_hint.name = "DepartureDifficultyHint"
@@ -137,10 +137,14 @@ func _departure_enemy_count(difficulty: int) -> int:
 	var rooms: Array = definition.get("room_ids",[])
 	var sample_room = str(rooms[0]) if not rooms.is_empty() else "L01"
 	for zone in host.DifficultyProfiles.ZONE_COUNT:
-		total += int(host.DifficultyProfiles.encounter_plan(sample_room,zone,difficulty,2 if host.selected_biome in ["B05","B06"] else 1).get("total_count",0))
+		total += int(host.DifficultyProfiles.encounter_plan(sample_room,zone,difficulty,2 if host.selected_biome in ["B05","B06","B10"] else 1).get("total_count",0))
 	return total
 
 func _update_departure_difficulty_hint() -> void:
+	var route_hint: Label = host.screen.find_child("DepartureRouteHint", true, false)
+	if route_hint != null:
+		var hero_level: int = Game.hero_level(str(Game.profile.get("selected_hero", "CH01")))
+		route_hint.text = host._ex_text("出发 Lv.%d · 预计 %d 站 / 目标、遗物、补给与首领", "DEPARTURE LV.%d · %d STOPS / OBJECTIVES, RELICS & A BOSS") % [hero_level, host.RoutePlanner.node_count_for_biome(host.selected_biome, hero_level)]
 	var hint: Label = host.screen.find_child("DepartureDifficultyHint",true,false)
 	if hint == null: return
 	var difficulty = clampi(host.selected_difficulty,0,host.DifficultyProfiles.MAX_DIFFICULTY)
@@ -150,10 +154,12 @@ func _update_departure_difficulty_hint() -> void:
 	var level = host.DifficultyProfiles.encounter_level(sample_room,0,difficulty)
 	var enhancement: String = ["+0","+0–1","+1","+2","+3"][difficulty]
 	if int(Game.profile.get("ruleset_version",1)) == 2:
-		var chapter = clampi(int(host.selected_biome.trim_prefix("B")),1,int(preload("res://scripts/infrastructure/content/runtime_rules.gd").value("implemented_chapters",4)))
+		var chapter = int(host.selected_biome.trim_prefix("B"))
 		var first = (chapter-1)*5+1
 		var counts: Array = preload("res://scripts/infrastructure/content/runtime_rules.gd").value("boss_drop_counts")
 		hint.text = host._ex_text("固定挑战Lv.%d/%d/%d · 首领Lv.%d · 清房1件 / 首领%d件 · 金≤+1，其余≤+5","Fixed challenge Lv.%d/%d/%d · Boss Lv.%d · Room1 / Boss%d items · Gold≤+1, others≤+5") % [first,first+2,first+4,chapter*5,int(counts[difficulty])]
+		if host.selected_biome == "B10":
+			hint.text = host._ex_text("终章Lv.46/48/50 · 六房六龙 / 九首古龙Lv.50 · 清房1件 / 终首领%d件", "FINAL Lv.46/48/50 · SIX DRAGON ROOMS / NINE-HEAD HYDRA Lv.50 · Room1 / Final boss%d items") % int(counts[difficulty])
 		return
 	var normal_drops = 2 if difficulty >= 2 else 1
 	var boss_drops = 2+int(difficulty/2)
@@ -189,6 +195,7 @@ func _build_biome_selector() -> void:
 			availability = host._ex_text("待开发 · 仅展示计划，尚不能进入","TODO · roadmap only; this region cannot be entered")
 		elif locked:
 			availability = host._ex_text("未解锁 · 击败前一区域首领并撤离后解锁","Locked · defeat the previous boss and extract to unlock")
+			if biome_id == "B10": availability = host._ex_text("未解锁 · 击败第四关首领并撤离后开放终章", "Locked · defeat the fourth-region boss and extract to unlock the final chapter")
 		picker.get_popup().set_item_tooltip(index,race_name+"\n"+availability)
 	picker.select(int(host.selected_biome.trim_prefix("B"))-1)
 	picker.item_selected.connect(func(index: int):
@@ -198,10 +205,10 @@ func _build_biome_selector() -> void:
 			host.selected_biome = biome_id
 			host._update_departure_difficulty_hint())
 	host.screen.add_child(picker)
-	GameStyle.literal(host.screen,host._ex_text("击败首领并撤离后开放下一区域", "Defeat the boss and extract to unlock the next area"),Vector2(454,286),Vector2(490,18),10,GameStyle.MUTED)
-	var roadmap = GameStyle.literal(host.screen,host._ex_text("12 个地区规划 · 4 个已实现 / 8 个待开发", "12 REGIONS PLANNED · 4 PLAYABLE / 8 TODO"),Vector2(953,286),Vector2(259,18),10,GameStyle.CYAN)
+	GameStyle.literal(host.screen,host._ex_text("击败首领并撤离后解锁 · 第四关后开放龙庭终章", "Defeat the boss and extract · Final court unlocks after Region 4"),Vector2(454,286),Vector2(490,18),10,GameStyle.MUTED)
+	var roadmap = GameStyle.literal(host.screen,host._ex_text("10 个地区 · 前四关与龙庭已接入", "10 REGIONS · FIRST FOUR + FINAL COURT"),Vector2(953,286),Vector2(259,18),10,GameStyle.CYAN)
 	if WorldCatalog.b06_enabled(): roadmap.text = host._ex_text("4 个已发布 · B05/B06 隔离候选", "4 RELEASED · B05/B06 ISOLATED CANDIDATES")
 	elif WorldCatalog.b05_enabled(): roadmap.text = host._ex_text("4 个已发布 · B05 隔离候选", "4 RELEASED · B05 ISOLATED CANDIDATE")
 	roadmap.name = "CampRegionPlanSummary"
 	roadmap.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	roadmap.tooltip_text = host._ex_text("前四个地区保留逐关解锁。其余八个地区仅作开发计划展示，尚不能进入。","The first four regions unlock in order. The other eight are roadmap entries and cannot be entered.")
+	roadmap.tooltip_text = host._ex_text("前四关逐关解锁，通关第四关并撤离后开放第十关星辉龙庭。第五、六关保留隔离候选；第七至九关待开发。", "The first four regions unlock in order. Defeat Region 4 and extract to unlock Region 10, Starlit Dragon Court. Regions 5–6 remain isolated previews; Regions 7–9 are planned.")

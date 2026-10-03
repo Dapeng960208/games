@@ -259,7 +259,7 @@ func _physics_process(delta: float) -> void:
 		b05_mechanics.tick(delta,false)
 	if is_instance_valid(enemy_props):
 		enemy_props.update(delta)
-	if is_instance_valid(objectives) and not objective_complete:
+	if is_instance_valid(objectives) and (not objective_complete or bool(layout.get("b10_final", false))):
 		objectives.tick(delta)
 	for index in range(enemy_corpses.size()-1,-1,-1):
 		enemy_corpses[index].remaining -= delta
@@ -351,7 +351,7 @@ func clamp_actor(at: Vector2, radius: float) -> Vector2:
 
 func _configure_ground_boundary() -> void:
 	ARENA = layout.get("arena", DEFAULT_ARENA)
-	if (str(layout.get("biome_id","")) == "B05" or bool(layout.get("b06_candidate",false))) and layout.get("ground_polygon") is PackedVector2Array:
+	if (str(layout.get("biome_id","")) in ["B05", "B10"] or bool(layout.get("b06_candidate",false))) and layout.get("ground_polygon") is PackedVector2Array:
 		ground_polygon = layout.ground_polygon
 		ARENA = GroundBoundary.bounds(ground_polygon)
 		return
@@ -1832,7 +1832,7 @@ func _activate_expedition_content() -> void:
 		objective_rewarded = true
 		_completion_emitted = true
 		spawn_enabled = false
-		if layout_id in ["L01", "L11"]:
+		if layout_id in ["L01", "L11"] or bool(layout.get("b10_final", false)):
 			var claimed: Array[String] = []
 			for receipt: Dictionary in state.get("optional_claims", {}).values():
 				if int(receipt.node_index) == int(state.node_index): claimed.append(str(receipt.objective_id))
@@ -1862,6 +1862,10 @@ func _activate_expedition_content() -> void:
 				objectives = load(AssetCatalog.resolve("res://scripts/gameplay/world/room_objectives.gd")).new()
 				add_child(objectives)
 				objectives.configure(self,layout,role)
+			elif bool(layout.get("b10_final", false)):
+				objectives = load(AssetCatalog.resolve("res://scripts/gameplay/world/room_objectives.gd")).new()
+				add_child(objectives)
+				objectives.configure(self, layout, role)
 			else:
 				objectives = load(AssetCatalog.resolve("res://scripts/gameplay/world/boss_arena.gd")).new()
 				add_child(objectives)

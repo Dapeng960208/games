@@ -77,7 +77,7 @@ static func fresh(run_id: String, options: Dictionary, profile: Dictionary, stat
 	if not number(options.get("difficulty", 0), 4): return {}
 	var difficulty: int = int(options.get("difficulty", 0))
 	if not Catalog.biomes().has(biome) or difficulty < 0 or difficulty > 4: return {}
-	var required: String = {"B01":"","B02":"BO01","B03":"BO02","B04":"BO03","B05":"BO04","B06":"BO05"}.get(biome, "invalid")
+	var required: String = str(Catalog.biomes()[biome].get("unlock_requires", ""))
 	if not required.is_empty() and not required in profile.bosses: return {}
 	var seed_value: int = 960208 if int(profile.total_runs) == 0 else randi_range(1, 2147483647)
 	if options.has("seed"):
@@ -166,7 +166,8 @@ static func valid(receipt: Dictionary, profile: Dictionary) -> bool:
 		if not number(route.dynamic_version, 2): return false
 		route_version = int(route.dynamic_version)
 		if route_version not in [1, 2] or not number(route.get("departure_level"), Routes._departure_cap()) or int(route.departure_level) < 1: return false
-		if count != Routes.node_count_for_level(int(route.departure_level)) or route.get("node_count") != count: return false
+		if route_version == 1 and int(route.departure_level) > Routes._legacy_departure_cap(): return false
+		if count != Routes.node_count_for_biome(str(route.biome_id), int(route.departure_level)) or route.get("node_count") != count: return false
 		if value.get("departure_level") != route.departure_level or value.get("node_count") != count or int(receipt.level) < int(route.departure_level): return false
 	else:
 		# Existing version-one eight-node receipts remain resumable even after

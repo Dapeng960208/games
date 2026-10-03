@@ -1434,6 +1434,12 @@
     "world/storybook_floor_factions_v2.png": "res://assets/system/world/environment/floor_factions.png",
     "world/storybook_floor_factions_v2.provenance.json": "res://assets/system/world/environment/floor_factions.provenance.json",
     "world/storybook_floor_v1.json": "res://assets/system/world/environment/floor.json",
-    "world/storybook_floor_v1.png": "res://assets/system/world/environment/floor.png"
+    "world/storybook_floor_v1.png": "res://assets/system/world/environment/floor.png",
+    "level.b10.equipment.sw": "res://assets/levels/b10/equipment/sw.png",
+    "level.b10.equipment.sg": "res://assets/levels/b10/equipment/sg.png",
+    "level.b10.equipment.sm": "res://assets/levels/b10/equipment/sm.png",
+    "level.b10.equipment.su": "res://assets/levels/b10/equipment/su.png",
+    "level.b10.equipment.unique": "res://assets/levels/b10/equipment/unique.png",
+    "level.b10.equipment.manifest": "res://assets/levels/b10/equipment/manifest.json"
   }
 }

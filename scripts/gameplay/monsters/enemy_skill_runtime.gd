@@ -25,6 +25,7 @@ var heal_receipts: Dictionary = {}
 var summon_owners: Dictionary = {}
 var biome_skill_cooldowns: Dictionary = {}
 var _biome_clock: float = 0.0
+var b10 = preload("res://scripts/levels/b10/combat/enemy_runtime.gd").new()
 var b06 = preload("res://scripts/levels/b06/combat/enemy_runtime.gd").new()
 var b05 = preload("res://scripts/levels/b05/combat/skill_runtime.gd").new()
 var _hazard_serial: int = 0
@@ -35,6 +36,7 @@ func configure(host: Node2D) -> void:
 	room = host
 	b05.configure(self)
 	b06.configure(self)
+	b10.configure(self)
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	z_index = 1
 
@@ -57,6 +59,14 @@ func emit_skill(caster: Node2D, skill: Dictionary) -> void:
 	command["target"] = target if target is Vector2 else command.origin
 	var direction: Vector2 = command.get("direction", (command.target - command.origin).normalized())
 	command["direction"] = direction.normalized() if direction.length_squared() > EPSILON else Vector2.RIGHT
+	if bool(command.get("b10_command",false)):
+		command = b10.prepare(caster,command)
+		if command.is_empty(): return
+		command["remaining"] = maxf(0.0,float(command.get("delay",0)))
+		if float(command.remaining)>0: jobs.append(command)
+		else: _execute(command)
+		queue_redraw()
+		return
 	if bool(command.get("b05_command",false)) or bool(command.get("b06_command",false)):
 		if bool(command.get("b05_command",false)):
 			var mechanism: Variant=preload("res://scripts/levels/b05/combat/enemy_skills.gd").mechanics(caster)
@@ -108,6 +118,7 @@ func advance(delta: float) -> void:
 	_biome_clock += delta
 	b05.advance(delta)
 	b06.advance(delta)
+	b10.advance(delta)
 	for owner_id: int in biome_skill_cooldowns.keys():
 		if not _alive(instance_from_id(owner_id)):
 			biome_skill_cooldowns.erase(owner_id)
@@ -189,6 +200,7 @@ func cancel_owner(caster: Node2D) -> void:
 	if mechanism is Object and mechanism.has_method("cancel_enemy_owner"): mechanism.cancel_enemy_owner(caster)
 	b05.cancel_owner(caster)
 	b06.cancel_owner(caster)
+	b10.cancel_owner(caster)
 	for collection: Array in [jobs, projectiles, hazards, motions, supports, visuals, marks]:
 		for effect: Dictionary in collection.duplicate():
 			if int(effect.get("owner_id", 0)) == owner_id:
@@ -227,6 +239,7 @@ func reset_room() -> void:
 			if actor.has_method("cancel_role_mobility"): actor.cancel_role_mobility()
 	b05.reset()
 	b06.reset()
+	b10.reset()
 	for hazard: Dictionary in hazards: _notify_hazard(hazard,false)
 	for effect: Dictionary in hazards + supports + jobs:
 		var anchor: Node2D = _anchor(effect)
@@ -250,13 +263,13 @@ func reset_room() -> void:
 	queue_redraw()
 
 func active_effect_count() -> int:
-	return jobs.size() + projectiles.size() + hazards.size() + motions.size() + supports.size() + visuals.size() + marks.size() + b05.effects.size() + b06.effects.size()
+	return jobs.size() + projectiles.size() + hazards.size() + motions.size() + supports.size() + visuals.size() + marks.size() + b05.effects.size() + b06.effects.size() + b10.effects.size()
 
 func has_motion(caster: Node2D) -> bool:
 	return is_instance_valid(caster) and bool(caster.get_meta("enemy_skill_motion", false))
 
 func movement_multiplier(target: Node2D) -> float:
-	var multiplier: float = b05.movement_multiplier(target)*b06.movement_multiplier(target)
+	var multiplier: float = b05.movement_multiplier(target)*b06.movement_multiplier(target)*b10.movement_multiplier(target)
 	var signature: Dictionary = _biome_signature(target)
 	if str(signature.get("id", "")) == "blood_rage" and _blood_rage_active(target, signature):
 		multiplier = float(signature.get("move_multiplier", 1.18))
@@ -358,6 +371,7 @@ func clear_target_guards(target: Node2D) -> int:
 	return removed
 
 func _execute(command: Dictionary) -> void:
+	if bool(command.get("b10_command",false)) and b10.execute(command): return
 	if bool(command.get("b06_command",false)):
 		if not b06.admitted(command): return
 		if b06.execute(command):
@@ -407,6 +421,7 @@ func _execute(command: Dictionary) -> void:
 			elif room.has_method("apply_enemy_utility"):
 				room.call("apply_enemy_utility", _owner(command), command)
 
+	if bool(command.get("b10_command",false)): b10.released(command)
 	if bool(command.get("b05_command",false)): b05.released(command)
 	if bool(command.get("b06_command",false)): b06.released(command)
 
@@ -719,6 +734,7 @@ func _damage_source_context(command: Dictionary) -> Dictionary:
 func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 	if not _alive(victim) or not _owner_alive(command) or not victim.has_method("receive_damage"):
 		return false
+	if bool(command.get("b10_command",false)) and not b10.allow_hit(victim,command): return false
 	if bool(command.get("b05_command",false)) and not b05.allow_hit(victim,command): return false
 	if bool(command.get("b06_command",false)) and not b06.allow_hit(victim,command): return false
 	var accepted: bool = false
@@ -729,7 +745,7 @@ func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 			if kind in ["electric","thermal","arcane","toxic","cold"]: kind = "magic"
 			var visual_kind: String = str(command.get("damage_kind", owner_profile.get("damage_kind", kind)))
 			var context: Dictionary = _damage_source_context(command)
-			context.merge({"damage_type":kind, "damage_kind":visual_kind}, true)
+			context.merge({"damage_type":kind, "damage_kind":visual_kind, "ranged_direct_damage":bool(command.get("ranged_direct_damage",str(command.get("kind",""))=="projectile"))}, true)
 			if int(command.get("crit_policy_version",0)) == 1:
 				context.merge({"critical":bool(command.get("critical",false)),"already_critical":false,"attacker_stats":command.get("attacker_stats",{})},true)
 			accepted = bool(victim.receive_damage(float(command.damage),origin,context))
@@ -1194,6 +1210,7 @@ func _draw() -> void:
 			_draw_shape(command, Color(1.0, 0.44, 0.27, 0.2), Color("ffc481"))
 	b05.draw(self)
 	b06.draw(self)
+	b10.draw(self)
 	for area: Dictionary in hazards:
 		var color: Color = area.get("fx_color",Color("ef936b"))
 		_draw_shape(area,Color(color,.08 if bool(settings.get("reduced_fx",false)) else .16),color)
@@ -1301,7 +1318,7 @@ func _draw_shape(command: Dictionary, fill: Color, edge: Color) -> void:
 
 ## Authored durability is legacy units until the S09 command producer stamps scale10.
 func _anchor_health(command: Dictionary, authored: float) -> float:
-	if bool(command.get("b05_command",false)): return maxf(1.0,roundf(authored))
+	if bool(command.get("b05_command",false)) or bool(command.get("b10_command",false)): return maxf(1.0,roundf(authored))
 	var version := int(command.get("ruleset_version", Numerical.LEGACY))
 	var scaled: float = authored if int(command.get("scale_version", 1)) == 10 else Numerical.scale(authored, version)
 	return clampf(scaled, Numerical.scale(1.0, version), Numerical.scale(80.0, version))

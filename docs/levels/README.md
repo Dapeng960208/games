@@ -11,9 +11,7 @@
 | B07 金沙蜥城 | 未实现 | [文档](b07/README.md) |
 | B08 浮羽空港 | 未实现 | [文档](b08/README.md) |
 | B09 霜晶王庭 | 未实现 | [文档](b09/README.md) |
-| B10 熔辉魔堡 | 未实现 | [文档](b10/README.md) |
-| B11 虹伞菌谷 | 未实现 | [文档](b11/README.md) |
-| B12 星辉龙庭 | 未实现 | [文档](b12/README.md) |
+| B10 星辉龙庭（最终章） | 正式入口已接入／验证中 | [文档](b10/README.md) |
 
 每关普通怪 enemies、首领 bosses、房间 rooms、陈设 decorations；候选数值和美术在本关 balance/art。美术资源使用同样层级，未实现关卡不创建空运行素材。
 
