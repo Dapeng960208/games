@@ -1,0 +1,498 @@
+{
+  "key": "s_b",
+  "components32": [
+    {
+      "pixels": 104722,
+      "seed": [
+        349,
+        28
+      ],
+      "region": [
+        195,
+        28,
+        316,
+        588
+      ]
+    },
+    {
+      "pixels": 107912,
+      "seed": [
+        898,
+        28
+      ],
+      "region": [
+        739,
+        28,
+        325,
+        588
+      ]
+    },
+    {
+      "pixels": 95995,
+      "seed": [
+        347,
+        662
+      ],
+      "region": [
+        174,
+        662,
+        357,
+        551
+      ]
+    },
+    {
+      "pixels": 102002,
+      "seed": [
+        890,
+        641
+      ],
+      "region": [
+        739,
+        641,
+        313,
+        570
+      ]
+    }
+  ],
+  "alpha": [
+    0,
+    255
+  ],
+  "outer_edge_alpha": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "hero_id": "CH02",
+  "direction": "S",
+  "pose_set": "B",
+  "tool": "builtin image_gen.imagegen",
+  "use_case": "stylized-concept",
+  "prompt": "Use case: stylized-concept. One transparent original game character four-pose source atlas. Native2048x2048 requested, exactly2x2isolated complete fullbody figures sameadultfemale gunner asReference1. Chestnutbob, ivory/turquoise tailoredsurveyingcoat coraltrim, fittedpracticalturquoise trousers ivoryboots darkgloves ornate goldsilvercyan compactenergycarbineorbitalsight. Keep SAME standingperson anatomical scale andproportions asReference1; measurehead-toboot length match standingidle inReference1, notcrouch. High35degree oblique near-isometric warmupperleftlight bright handpainted cartoonfantasy2.5D showing topplanes. Rowmajor upperleft BASIC_RELEASE shouldered rifle firing withtiny recoil noflash/projectile, upperright BASIC_RECOVERY absorb recoil, lowerleft DASH low forwardlunge orrollstep bothbootscomplete rifleheldsafe, lowerright GUARD_CAST reload righthandriflegrip lefthandworkingmagazine atunderside. EachfullpersonWITHwholeweapon insideowncell, minimum35pxalphazeroedges/gutters, do notcroprifleorfeet. Actualtransparent nofloor/shadow/text/trails/particles. Allfour face same true targetdirection; no rotationormirror, paint anatomyandgunperspective. S90deg straightDOWN. TRUE DIRECTFRONTAL chest symmetricalshoulders/lapels, both eyes/boots forward. Upperleftshouldergunstronglyforeshortened barrel VERTICAL DOWN, muzzledirectly belowhands xconstant, NOTdiagonal sidegun. Riflefront topvisible. Dashdirectly towardbottomscreen, reloadfrontal.",
+  "history": [
+    {
+      "kind": "initial_generation_selected",
+      "prompt": "Use case: stylized-concept. One transparent original game character four-pose source atlas. Native2048x2048 requested, exactly2x2isolated complete fullbody figures sameadultfemale gunner asReference1. Chestnutbob, ivory/turquoise tailoredsurveyingcoat coraltrim, fittedpracticalturquoise trousers ivoryboots darkgloves ornate goldsilvercyan compactenergycarbineorbitalsight. Keep SAME standingperson anatomical scale andproportions asReference1; measurehead-toboot length match standingidle inReference1, notcrouch. High35degree oblique near-isometric warmupperleftlight bright handpainted cartoonfantasy2.5D showing topplanes. Rowmajor upperleft BASIC_RELEASE shouldered rifle firing withtiny recoil noflash/projectile, upperright BASIC_RECOVERY absorb recoil, lowerleft DASH low forwardlunge orrollstep bothbootscomplete rifleheldsafe, lowerright GUARD_CAST reload righthandriflegrip lefthandworkingmagazine atunderside. EachfullpersonWITHwholeweapon insideowncell, minimum35pxalphazeroedges/gutters, do notcroprifleorfeet. Actualtransparent nofloor/shadow/text/trails/particles. Allfour face same true targetdirection; no rotationormirror, paint anatomyandgunperspective. S90deg straightDOWN. TRUE DIRECTFRONTAL chest symmetricalshoulders/lapels, both eyes/boots forward. Upperleftshouldergunstronglyforeshortened barrel VERTICAL DOWN, muzzledirectly belowhands xconstant, NOTdiagonal sidegun. Riflefront topvisible. Dashdirectly towardbottomscreen, reloadfrontal."
+    }
+  ],
+  "native_2k": false,
+  "requested_native_dimensions": [
+    2048,
+    2048
+  ],
+  "source_upsampled": false,
+  "original_source_bytes_preserved": true,
+  "source_style": "Bright handpainted cartoon fantasy, high oblique near-isometric 2.5D, warm light; original adult female gunner.",
+  "frames": [
+    {
+      "name": "basic_release",
+      "body_height": 578,
+      "region": [
+        0,
+        0,
+        448,
+        704
+      ],
+      "foot": [
+        217.5,
+        594
+      ],
+      "head": [
+        217,
+        82
+      ],
+      "grip": [
+        213,
+        247
+      ],
+      "muzzle": [
+        214,
+        370
+      ],
+      "source_frame": {
+        "name": "basic_release",
+        "region": [
+          195,
+          28,
+          316,
+          588
+        ],
+        "foot": [
+          355.5,
+          606
+        ],
+        "foot_contacts": [
+          [
+            272,
+            607
+          ],
+          [
+            439,
+            605
+          ]
+        ],
+        "head": [
+          355,
+          94
+        ],
+        "grip": [
+          351,
+          259
+        ],
+        "muzzle": [
+          352,
+          382
+        ],
+        "barrel_breech": [
+          351,
+          241
+        ],
+        "body_height": 578,
+        "body_height_measurement": "True hair top to mean of two observed boot-ground contacts in native source pixels; bent pose naturally shorter.",
+        "landmark_accuracy_px": 10,
+        "source_px_weapon_axis": [
+          1,
+          123
+        ],
+        "measured_axis_degrees": 89.53,
+        "source_px_barrel_axis": [
+          1,
+          141
+        ],
+        "measured_barrel_degrees": 89.59,
+        "foreground_component": {
+          "threshold_alpha": 32,
+          "seed": [
+            349,
+            28
+          ],
+          "foreground_pixels": 104722,
+          "connectivity": 8
+        },
+        "risks": [
+          "Manual native-pixel landmark observation; approximately ±10 px, not a proportion-based anchor.",
+          "Less than requested 35 px margin on one source edge; component remains complete."
+        ]
+      }
+    },
+    {
+      "name": "basic_recovery",
+      "body_height": 578,
+      "region": [
+        448,
+        0,
+        448,
+        704
+      ],
+      "foot": [
+        666.5,
+        594
+      ],
+      "head": [
+        658,
+        82
+      ],
+      "grip": [
+        656,
+        327
+      ],
+      "muzzle": [
+        658,
+        442
+      ],
+      "source_frame": {
+        "name": "basic_recovery",
+        "region": [
+          739,
+          28,
+          325,
+          588
+        ],
+        "foot": [
+          912.5,
+          606
+        ],
+        "foot_contacts": [
+          [
+            836,
+            606
+          ],
+          [
+            989,
+            606
+          ]
+        ],
+        "head": [
+          904,
+          94
+        ],
+        "grip": [
+          902,
+          339
+        ],
+        "muzzle": [
+          904,
+          454
+        ],
+        "barrel_breech": [
+          904,
+          319
+        ],
+        "body_height": 578,
+        "body_height_measurement": "True hair top to mean of two observed boot-ground contacts in native source pixels; bent pose naturally shorter.",
+        "landmark_accuracy_px": 10,
+        "source_px_weapon_axis": [
+          2,
+          115
+        ],
+        "measured_axis_degrees": 89,
+        "source_px_barrel_axis": [
+          0,
+          135
+        ],
+        "measured_barrel_degrees": 90,
+        "foreground_component": {
+          "threshold_alpha": 32,
+          "seed": [
+            898,
+            28
+          ],
+          "foreground_pixels": 107912,
+          "connectivity": 8
+        },
+        "risks": [
+          "Manual native-pixel landmark observation; approximately ±10 px, not a proportion-based anchor.",
+          "Less than requested 35 px margin on one source edge; component remains complete."
+        ]
+      }
+    },
+    {
+      "name": "dash",
+      "body_height": 503.5,
+      "region": [
+        0,
+        704,
+        448,
+        704
+      ],
+      "foot": [
+        218.5,
+        1297.5
+      ],
+      "head": [
+        189,
+        859
+      ],
+      "grip": [
+        209,
+        1070
+      ],
+      "muzzle": [
+        274,
+        1143
+      ],
+      "source_frame": {
+        "name": "dash",
+        "region": [
+          174,
+          662,
+          357,
+          551
+        ],
+        "foot": [
+          376.5,
+          1165.5
+        ],
+        "foot_contacts": [
+          [
+            344,
+            1206
+          ],
+          [
+            409,
+            1125
+          ]
+        ],
+        "head": [
+          347,
+          727
+        ],
+        "grip": [
+          367,
+          938
+        ],
+        "muzzle": [
+          432,
+          1011
+        ],
+        "barrel_breech": [
+          342,
+          899
+        ],
+        "body_height": 503.5,
+        "body_height_measurement": "True hair top to mean of two observed boot-ground contacts in native source pixels; bent pose naturally shorter.",
+        "landmark_accuracy_px": 10,
+        "source_px_weapon_axis": [
+          65,
+          73
+        ],
+        "measured_axis_degrees": 48.32,
+        "source_px_barrel_axis": [
+          90,
+          112
+        ],
+        "measured_barrel_degrees": 51.22,
+        "foreground_component": {
+          "threshold_alpha": 32,
+          "seed": [
+            347,
+            662
+          ],
+          "foreground_pixels": 95995,
+          "connectivity": 8
+        },
+        "risks": [
+          "Manual native-pixel landmark observation; approximately ±10 px, not a proportion-based anchor."
+        ]
+      }
+    },
+    {
+      "name": "guard_cast",
+      "body_height": 564.5,
+      "region": [
+        448,
+        704,
+        448,
+        704
+      ],
+      "foot": [
+        665.5,
+        1297.5
+      ],
+      "head": [
+        671,
+        796
+      ],
+      "grip": [
+        636,
+        961
+      ],
+      "muzzle": [
+        636,
+        1006
+      ],
+      "source_frame": {
+        "name": "guard_cast",
+        "region": [
+          739,
+          641,
+          313,
+          570
+        ],
+        "foot": [
+          905.5,
+          1205.5
+        ],
+        "foot_contacts": [
+          [
+            805,
+            1205
+          ],
+          [
+            1006,
+            1206
+          ]
+        ],
+        "head": [
+          911,
+          704
+        ],
+        "grip": [
+          876,
+          869
+        ],
+        "muzzle": [
+          876,
+          914
+        ],
+        "barrel_breech": [
+          876,
+          842
+        ],
+        "body_height": 564.5,
+        "body_height_measurement": "True hair top to mean of two observed boot-ground contacts in native source pixels; bent pose naturally shorter.",
+        "landmark_accuracy_px": 10,
+        "source_px_weapon_axis": [
+          0,
+          45
+        ],
+        "measured_axis_degrees": 90,
+        "source_px_barrel_axis": [
+          0,
+          72
+        ],
+        "measured_barrel_degrees": 90,
+        "foreground_component": {
+          "threshold_alpha": 32,
+          "seed": [
+            890,
+            641
+          ],
+          "foreground_pixels": 102002,
+          "connectivity": 8
+        },
+        "risks": [
+          "Manual native-pixel landmark observation; approximately ±10 px, not a proportion-based anchor."
+        ]
+      }
+    }
+  ],
+  "direction_qa": {
+    "expected_degrees": 90,
+    "actual_attacking_physical_barrel_degrees": 89.59,
+    "physical_barrel_deviation_degrees": 0.41,
+    "within_direction_bin_15_degrees": true,
+    "grip_axis_note": "Grip is below the rifle barrel; grip-to-muzzle is an anchor offset, not physical barrel direction. Both measurements are preserved."
+  },
+  "validation_status": "candidate_for_A9_view_and_runtime_pack",
+  "production_family_ready": false,
+  "risks": [
+    "Tool output is native 1254x1254; the requested native 2048x2048 was not achieved. No upscale is used.",
+    "Packing must use the recorded foreground component; nominal cells can contain neighboring low-alpha pixels."
+  ],
+  "source_absolute": "C:\\Users\\13326\\.codex\\generated_images\\01a10120-84a7-7910-974a-edf330202387\\exec-4fc6f0cb-4f65-4f58-8637-20bbc1bedf61.png",
+  "source_sha256": "b0eb95f7b1adb9df30d13579db70d07e433c1351c7ab8ee7e620da423da65ed1",
+  "source_native_dimensions": [
+    1254,
+    1254
+  ],
+  "project_path": "assets/characters/gunner/animations/runtime_sources/poses_s_b.png",
+  "native_source_dimensions": [
+    1254,
+    1254
+  ],
+  "packed_dimensions": [
+    896,
+    1408
+  ],
+  "raw_source": "assets/characters/gunner/animations/runtime_sources/poses_s_b.png",
+  "raw_source_sha256": "b0eb95f7b1adb9df30d13579db70d07e433c1351c7ab8ee7e620da423da65ed1",
+  "pixel_scale": 1,
+  "upscaled": false,
+  "processing": "Existing independent alpha8 components; alpha<8/hidden RGB cleared, sole anchors aligned by integer translation. No redraw, rotation, mirroring, pixel resizing or pose fitting.",
+  "retained_alpha8_pixels": 414621,
+  "standing_reference_body_height": 576.5
+}

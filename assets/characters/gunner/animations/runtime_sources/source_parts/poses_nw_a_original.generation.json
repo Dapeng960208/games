@@ -1,0 +1,81 @@
+{
+  "asset": "CH02 NW original base sheet selected source input",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-a0297eb5-4479-4612-a570-92bd30345900.png",
+  "saved_path": "assets/characters/gunner/animations/runtime_sources/source_parts/poses_nw_a_original.png",
+  "sha256": "b265de98cf374ab6fc4d410232a41d04e73d1eb4d0f62eda35d1d1dc9e46184a",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "upscaled": false,
+  "pure_imagegen_output": true,
+  "prompt": "Use case: stylized-concept. Create a NEW original production CH02 adult female Cen Xian NORTHWEST225degree combat sprite sheet PART A. Inputportrait isidentity/costume/carbine reference. This is a real newlydrawn 45° screen-diagonal direction, not renaming/reusing/mirroring/rotating any prior30°or60°sheet.\nBrightwarm hand-paintedcartoonfantasy, high35°obliqueDOWNWARD near-isometric2.5D camera visiblyshowing crown/backshoulder/uppercoatplanes, rifleTOPplanes andbootTOPplanes. Real solidthickness, painterlymaterial, crispreadablecontours. Allfourbody/head/hips/boots faceAWAY-UPLEFT, genuineLEFT-REAR45°threequarter, show BACKofivorytealcoat andbackofshortchestnutwavybob; onlytiny LEFT nose/cheek silhouette permitted, nofrontalface, nofrontshirt/tie/chest surfaces.\nAdult agile feminineproportions. Sameivory#f8f3e8 fittedwaistshortsurveycoat withteal#329ca9 backpanels andtinycoral#e9846c lining, highwaist practical tealtrousers, ivorytealcalfboots, browngloves, goldbrass/silver coolcyancrystal surveyingcarbine withfoldingbarrel andorbitalringsight. Keepweaponcompactandintact.\nPhysical projectile direction in actual IMAGEPIXELS for windup: from BREECH(the rearcenterofbarrel above trigger/receiver) to MUZZLE(frontbarrel opening) is UPLEFT EXACT45°, screen225° where right0/down90/left180/up270. Thus muzzle.x-breech.x isNEGATIVE and muzzle.y-breech.y isNEGATIVE with EQUAL absolutevalues. This is physicalbarrelaxis in thescreen, NOTworldyaw. Drawa clearup-left45°straightgunbarrel.\nExact2x2 FOUR independent COMPLETEsprites on genuineTRANSPARENTalpha, no borders/labels. Requested native2048x2048 PNG iftoolpermits, donotfakeupscale. Standinghairtop-to-mean-groundfeet about40%ofwholecanvasheight (~500pxifnative1254). Samehead/body/adultscale acrossallfour. Eachquadrant leaves35pxminimumtransparentmargin around completehair/outfit/gun/boots; no pixelscrossmidlines; wholepersonplusgun<550pxwideat1254. Toprowfeetat44%canvasheight, bottomat94%, clearseparation.\nTL idle: lowreadycarbine, relaxedbentelbows, bothbootsgrounded facingNW.\nTR walk_left: genuine largeAWAYUPLEFTstride, anatomicalLEFTlegforward rightlegback, lowreadyweaponstable.\nBL walk_right: genuineoppositephase RIGHTlegforward LEFTlegback, distinctknees/coathem.\nBR basic_windup: plantedboots, carbinefullyshouldered andaimedphysical225°45°upleft, cheeknearstock,rearshoulderandbackcoatreadable, nofiring.\nNo ground/floor/groundshadow/background/FXflash/particles/projectiles/motiontrail/text/watermark/strays; exactly4 separatecompleteadultcharacters.",
+  "targeted_edit_prompt": "Use case: precise-object-edit. Image1 is the new CH02 NORTHWEST225° A sheet edit target.\nONE clearlyidentified defect correction: NW orientation. TOPLEFT andTOPRIGHT identity/camera/materials arealreadycorrect; keep them. BOTTOMLEFT was incorrectlydrawn facingRIGHTBACK instead ofLEFTBACK. Redraw BOTTOMLEFT as a genuine anatomicalNW225° LEFT-REAR45°body with BACKivorytealcoat, backofchestnutbob and tinyLEFTnoseedge, anatomicalRIGHTlegforwardandLEFTlegback(oppositephaseofTR), carbinelowreadypointingNW. Do not mirror/rotate an existingfigure.\nBOTTOMRIGHT shoulder-aim mustfollow the SAME NW225°orientation with actualphysicalGUNaxis from BREECH(rearcenterofbarrel atreceiver) to muzzle UPLEFT EXACT45°: muzzle.x-breech.x negative, muzzle.y-breech.y negative and equalabsolutevalues. Currentgunis too shallow; liftmuzzle until barrelis diagonal45° relative screen. Physicalpixelaxis, notworldyaw. Adapt wrist/shoulder normally, completegun.\nPreserveadultfemaleCH02identity/shortchestnutwavybob/ivorytealcoral fittedwaistcoat/highwaisttrousers/boots/goldbrasscyan surveyingcarbine, warm dimensionalhandpaintedstyle, high35°downwardcamera. Keep4completeindependentfigures exactly2x2 with35pxblanktransparentmarginsandfullboots/gun. Requestednative2048squareifavailable, otherwiseactualnativepixels, noupscale. Genuinealpha, nofloor/shadow/background/FX/trails/text/labels/borders/strays.",
+  "source_history": [
+    "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-766d5183-fc52-480b-b6b4-2376c2b26b56.png",
+    "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-a0297eb5-4479-4612-a570-92bd30345900.png"
+  ],
+  "consumed_frames": [
+    "idle",
+    "walk_left",
+    "basic_windup"
+  ],
+  "unconsumed_frame": "walk_right originalBL incorrectlyfacesNE and is replaced in derivedbank",
+  "inspection": {
+    "source": "C:\\Users\\13326\\.codex\\generated_images\\01a10124-1887-78f1-b6bc-078d5049a3e5\\exec-a0297eb5-4479-4612-a570-92bd30345900.png",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "b265de98cf374ab6fc4d410232a41d04e73d1eb4d0f62eda35d1d1dc9e46184a",
+    "alpha_zero_fraction": 0.7455955933039791,
+    "outer_edge_nontransparent": 0,
+    "mid_x_nontransparent": 0,
+    "mid_y_nontransparent": 22,
+    "components_alpha16": [
+      {
+        "region": [
+          128,
+          19,
+          381,
+          584
+        ],
+        "pixels": 85487
+      },
+      {
+        "region": [
+          682,
+          24,
+          408,
+          582
+        ],
+        "pixels": 85797
+      },
+      {
+        "region": [
+          193,
+          637,
+          418,
+          573
+        ],
+        "pixels": 88024
+      },
+      {
+        "region": [
+          743,
+          637,
+          397,
+          554
+        ],
+        "pixels": 86205
+      }
+    ]
+  },
+  "credit": "Original user-directed AI-generated project character artwork using OpenAI built-in image_gen; no third-party character IP copied."
+}
