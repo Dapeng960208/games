@@ -7,6 +7,7 @@ const MainScene = preload("res://scenes/app/main.tscn")
 const Catalog = preload("res://scripts/domain/combat/skill_catalog.gd")
 const Workshop = preload("res://scripts/presentation/equipment/workshop_panel.gd")
 const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
+const SkillInspect = preload("res://scripts/presentation/screens/skill_inspection.gd")
 var app: Node
 var checks := 0
 var failures: Array[String] = []
@@ -60,6 +61,9 @@ func capture(name_value: String) -> void:
 	check(pixels.save_png(directory + "/" + name_value + ".png") == OK, "actual graphical capture " + name_value)
 
 func _run() -> void:
+	if Game.profile_path.contains("test_skill_system_ui_retry"):
+		await _retry_preview()
+		return
 	if Game.profile_path.contains("test_skill_icon_hud"):
 		await _icon_hud_preview()
 		return
@@ -253,6 +257,23 @@ func _icon_hud_preview() -> void:
 	print("SKILL ICON HUD: %d checks; failures=%s; renderer=%s; entrance-only identity fixture" % [checks,failures,DisplayServer.get_name()])
 	get_tree().quit(0 if failures.is_empty() else 1)
 
+func _retry_preview() -> void:
+	check(Game.new_profile(),"isolated retry UI profile")
+	var previous_locale: String = Words.locale
+	for language: String in ["zh","en"]:
+		Words.locale = language
+		var explanation: String = SkillInspect.config_reason("STORAGE_CAPACITY_EXCEEDED")
+		check(not explanation.contains("STORAGE_CAPACITY_EXCEEDED") and (explanation.contains("容量") and explanation.contains("草稿") if language == "zh" else explanation.to_lower().contains("save size limit") and explanation.to_lower().contains("draft")),language+" actual capacity failure explains save limits and retained draft")
+	Words.locale = previous_locale
+	app = MainScene.instantiate()
+	get_tree().root.add_child(app)
+	await frames()
+	await _failed_save()
+	app.queue_free()
+	await frames()
+	print("SKILL UI RETRY: %d checks; failures=%s; renderer=%s; real failed apply and same-operation keyboard retry" % [checks,failures,DisplayServer.get_name()])
+	get_tree().quit(0 if failures.is_empty() else 1)
+
 func _camp_configuration(hero: String) -> void:
 	app.show_workshop("heroes")
 	await frames()
@@ -363,6 +384,9 @@ func _failed_save() -> void:
 	await press("ApplySkillConfig")
 	check(Game.profile == before and bool(panel().get_meta("dossier_message_error",false)), "new UI exposes storage failure without applying partial slots")
 	check(app.find_child("SkillConfigMessage",true,false) != null and not str(panel().get_meta("dossier_draft_"+hero).operation_id).is_empty(), "new UI retains the pending draft and operation id")
+	var pending_operation: String = str(panel().get_meta("dossier_draft_"+hero).operation_id)
+	var detail: Label = app.find_child("SkillConfigMessage",true,false)
+	check(detail != null and not detail.text.contains("STORAGE_CAPACITY_EXCEEDED") and detail.text == SkillInspect.config_reason("STORAGE_CAPACITY_EXCEEDED"),"actual failed apply shows the localized capacity explanation instead of an internal code")
 	check((app.find_child("SkillConfigLockReason",true,false) as Label).text.contains("保存失败"),"real failed apply remains visible beside the configuration controls")
 	await capture(hero+"-skills-save-failed")
 	Game._store.max_document_bytes = limit
@@ -380,6 +404,7 @@ func _failed_save() -> void:
 		get_viewport().push_input(key)
 		await frames()
 	check(Game.get_loadout(hero) == expected and not bool(panel().get_meta("dossier_message_error",true)), "keyboard activation retries and commits the same complete configuration")
+	check(Game.profile.skill_config_receipts.has(pending_operation),"keyboard retry commits the original failed operation receipt")
 	check((app.find_child("SkillConfigLockReason",true,false) as Label).text.contains("配置已保存"),"successful retry persistently replaces the save failure status")
 	await capture(hero+"-skills-save-retried")
 
