@@ -182,8 +182,11 @@ tests/
 
 搬迁必须同步检查静态路径、动态拼接、逻辑索引、场景、工具和文档链接。清理先确认当前动态依赖，校验绝对目标位于授权工作区。资源/代码变更执行相关导入、解析与运行检查，文档链接和注册使用：
 
+`res://` 路径、资源索引和 Markdown 链接统一使用 `/`，大小写必须与 Git 中的文件名精确一致；例如数值入口是 `balance/README.md`。仓库检查覆盖 Git 已跟踪文件及尚未提交、未被忽略的新文件，不接受仅在本机存在的缓存、测试输出或截图链接。Markdown 标题锚点也须指向目标文档当前存在的标题；临时截图通过测试入口重新生成，再从本次输出目录查看。
+
 ```powershell
 python tools/maintenance/audit_repository.py
+python tools/testing/test_repository_audit.py
 .\tools\test.ps1 -ImportOnly
 .\tools\test.ps1 -Suite legacy_profile_reset -SkipImport
 ```

@@ -45,7 +45,11 @@ func _run() -> void:
 		if arg == "--small": dimensions = Vector2i(1280,720)
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://artifacts/refactor"))
 	check(Game.new_profile(),"isolated profile created")
-	var profile := Fixtures.fixture_profile()
+	# Keep current protocol/growth fields and legal hero loadouts. The old S03
+	# sample adds inventory items without equipping a set locked to another hero.
+	var profile: Dictionary = Game.profile.duplicate(true)
+	var fixture := Fixtures.fixture_profile()
+	profile.equipment.merge(fixture.equipment, true)
 	profile.permanent_gold = 12000
 	profile.hero_xp.CH01 = 3600
 	check(Game._commit_profile(profile),"saved V2 eight-slot fixture")
