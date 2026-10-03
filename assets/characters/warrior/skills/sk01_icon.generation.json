@@ -1,0 +1,25 @@
+{
+  "skill_id": "CH01_SK01",
+  "name": "破阵冲锋",
+  "tool": "image_gen.imagegen",
+  "execution_mode": "built-in",
+  "prompt": "Use case: stylized-concept. Asset type: one production original handpainted cartoon fantasy RPG skill icon for CH01_SK01 破阵冲锋, one icon only. Requested square canvas 2048x2048, original native pixels, no upscaling. A spectacular massive silver-steel fantasy battleaxe with angular rock-forged blade charges violently forward from lower-left toward upper-right; a dominant broad vermilion-and-amber arrow-shaped rush trail flows behind the axe, suggesting powerful forward dash, not swinging or falling. Large axe head and broad pointed motion silhouette fill the central composition; no character, no full body. Thin antique-brass circular rim occupies 92 percent of canvas width, actual transparent outside circle; deep navy interior with restrained glow. Hero palette steel silver, navy, vermilion, amber. Painterly 2.5D sculpted volume, original bright handpainted cartoon fantasy, warm upper-left sunshine, bold readable shapes, generous 8 percent margin, immediately recognizable at 44 px. No text, numbers, letters, logos, watermark, grid, copied game art, or tiny details.",
+  "default_generated_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10114-b76b-7ee2-b438-176959d88d93\\exec-00940861-84da-4b3e-acbd-c0f861cb4eec.png",
+  "asset_path": "assets/characters/warrior/skills/sk01_icon.png",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "image_mode": "RGBA",
+  "png_color_type": 6,
+  "sha256": "ae0bcfa34f6a8b3bfdca8c2ee6309d79fc7bed027e731e00b8ebcd5e80597fa1",
+  "creation_date_utc": "2026-10-03T09:30:22.798078+00:00",
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_2k": false,
+  "local_image_editing": false,
+  "source_copied_unchanged": true,
+  "original_design": true
+}

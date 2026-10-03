@@ -1,0 +1,25 @@
+{
+  "skill_id": "CH01_SK02",
+  "name": "裂地重斩",
+  "tool": "image_gen.imagegen",
+  "execution_mode": "built-in",
+  "prompt": "Use case: stylized-concept. Asset type: one production original handpainted cartoon fantasy RPG skill icon for CH01_SK02 裂地重斩, one icon only. Requested square canvas 2048x2048, original native pixels, no upscaling. A giant silver-steel rock-forged battleaxe sweeps a heavy horizontal strike from left to right. Large axe blade appears near the upper-right and a single broad amber-orange CRESCENT sweep curves across the middle; below it a short broken slate ground fragment cracks sideways, three chunky rock shards convey impact. This is a sweeping cleave, not a charging forward arrow and not a vertical falling meteor. Dominant readable horizontal crescent silhouette, no character, no full body. Thin antique-brass circular rim occupies 92 percent of canvas width, actual transparent outside circle; deep navy interior with restrained glow. Hero palette steel silver, navy, vermilion, amber. Painterly 2.5D sculpted volume, original bright handpainted cartoon fantasy, warm upper-left sunshine, bold simple shapes, generous 8 percent margin, immediately recognizable at 44 px. No text, numbers, letters, logos, watermark, grid, copied game art, or tiny details.",
+  "default_generated_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10114-b76b-7ee2-b438-176959d88d93\\exec-385799f0-2892-48e5-9eba-5a3d8abeb23a.png",
+  "asset_path": "assets/characters/warrior/skills/sk02_icon.png",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "image_mode": "RGBA",
+  "png_color_type": 6,
+  "sha256": "c7cbcfc908c7f7e7c403d1023b40f1ab3218e7601650cb7c852b16117f3a6adf",
+  "creation_date_utc": "2026-10-03T09:30:22.809061+00:00",
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_2k": false,
+  "local_image_editing": false,
+  "source_copied_unchanged": true,
+  "original_design": true
+}

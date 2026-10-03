@@ -1,0 +1,25 @@
+{
+  "skill_id": "CH01_SK07",
+  "name": "断层震击",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in generate",
+  "date": "2026-10-03",
+  "prompt": "Use case: stylized-concept. Asset type: original handpainted cartoon fantasy RPG skill badge CH01_SK07, Fault-line strike. Generate ONE finished square icon, requested native 2048 x 2048, not a sheet. Subject: a long narrow fissure of blazing orange light blasting FORWARD diagonally from lower-left to upper-right through a dark slate rocky surface, with three broad chunky rock slabs thrown upward along the sides. The directional long crack is the dominant silhouette, NOT a circular explosion and no weapon or person. Sculpted painterly 2.5D volumes, crisp hand-painted edges, warm upper-left sunlight, bright amber and vermillion glow against steel gray and dark navy. Near-isometric three-quarter high camera. Circular thin antique-brass rim at 92 percent canvas width, dark navy inside the badge, genuinely transparent outside the circle. Generous safe margin; all artwork and glow contained inside the rim. Strong simple dominant shapes immediately recognizable at 44 pixel thumbnail size. Original custom game art. No text, no numbers, no letters, no logo, no watermark, no grid, no extra badges, no copied game art.",
+  "transparent_background": true,
+  "original_output": "C:\\Users\\13326\\.codex\\generated_images\\01a10116-5bb7-7b22-af3b-85b25fc566ee\\exec-62d4668d-47e8-437d-a3c4-583807591176.png",
+  "workspace_output": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/skills/sk07_icon.png",
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_2k": false,
+  "color_mode": "RGBA",
+  "bit_depth": 8,
+  "sha256": "69076a9e7882fefcb850cee59645c5b56620fee2668f6a88a5ff4ba47fc50b7e",
+  "processing": "Original tool PNG copied byte for byte; no resizing, recoloring, or local image edits.",
+  "visual_review": "Actual generated image inspected. Unique main silhouette and contained brass-rim composition."
+}
