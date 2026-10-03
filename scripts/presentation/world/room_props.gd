@@ -317,7 +317,7 @@ func draw_floor(canvas: CanvasItem) -> void:
 			canvas.draw_circle(entity.position, float(entity.get("dark_radius",110.0)), Color(0.17,0.26,0.31,0.15))
 
 func draw_obstacles(canvas: CanvasItem) -> void:
-	Appearance.draw_ground_obstacles(canvas, obstacle_recipes, elapsed)
+	Appearance.draw_ground_obstacles(canvas, preload("res://scripts/levels/b07/art/l37_prop_skins.gd").ground_recipes(room,obstacle_recipes), elapsed)
 
 func collision_rects() -> Array[Rect2]:
 	var result: Array[Rect2] = []

@@ -1169,5 +1169,8 @@
   "b07_l37_convergence_review": {
     "script": "tests/levels/b07/test_l37_convergence_review.gd",
     "scene": "tests/levels/b07/test_l37_convergence_review.tscn"
+  },
+  "b07_l37_skill_card_layout": {
+    "script": "tests/levels/b07/test_l37_skill_card_layout.gd"
   }
 }

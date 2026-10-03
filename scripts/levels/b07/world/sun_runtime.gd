@@ -3,6 +3,7 @@ extends Node2D
 const State = preload("res://scripts/levels/b07/world/sun_state.gd")
 const Geometry = preload("res://scripts/levels/b07/world/room_geometry.gd")
 const Numbers = preload("res://scripts/levels/b07/combat/enemy_numbers.gd")
+const ReviewSkins = preload("res://scripts/levels/b07/art/l37_prop_skins.gd")
 const Props = preload("res://scripts/domain/combat/combat_properties.gd")
 var state = State.new()
 var room_id := ""
@@ -26,7 +27,8 @@ func configure(id: String, difficulty: int = 0, calibration: Variant = null) -> 
 	if not state.configure(id,definition.mirrors,str(definition.altar.id),int(definition.required_mirrors),boss_hp): return false
 	room_id = id
 	room = get_parent()
-	z_index = 1
+	# Actual beams/state cues stay above the depth-sorted review skins.
+	z_index = 3 if ReviewSkins.enabled(room) else 1
 	queue_redraw()
 	return true
 
@@ -140,7 +142,7 @@ func _draw() -> void:
 		for i in range(preview.size()-1): draw_dashed_line(preview[i],preview[i+1],Color(.1,.6,.6,.55),2,10)
 		draw_polyline(points,Color("f9da79"),7,true)
 		draw_polyline(points,Color("fff0bc"),2,true)
-		draw_circle(at,23,Color("396f6b"))
+		if ReviewSkins.skin_recipes(room).is_empty(): draw_circle(at,23,Color("396f6b"))
 		draw_arc(at,24,0,TAU,30,Color("f4c972"),3,true)
 		draw_line(at,at+(points[1]-points[0]).normalized()*30,Color("fff3dc"),5,true)
 		if _mirror_id == mirror.id: draw_arc(at,30,-PI/2,-PI/2+TAU*float(state.channel().elapsed)/.6,30,Color("bf6b46"),4,true)

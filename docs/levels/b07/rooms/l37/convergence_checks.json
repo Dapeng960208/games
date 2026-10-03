@@ -4,11 +4,11 @@
   "continuous_animation_sets": 0,
   "registered_discrete_frames": 14,
   "fx_sources": 4,
-  "environment_instances": 4,
+  "environment_instances": 0,
   "headless_review_run": "20261003T095805641793Z-d28821e1",
   "headless_disabled_run": "20261003T095831941048Z-c0eb8de2",
   "headless_failures": 0,
-  "graphical_validation": "pending_parent_scheduled_2k",
+  "graphical_validation": "latest nine-frame evidence trustworthy; limited readability improvement only; full visual acceptance outstanding",
   "original_eight_wip_byte_match": true,
   "commit": "local WIP checkpoint authorized; original 8 WIP included as prerequisites; no visual acceptance or push",
   "first_graphical_run": "20261003T100104205771Z-09bf2a10",
@@ -26,5 +26,91 @@
     "large bright floor and cutout-collage composition remain",
     "skill detail cards obscure key-pose anatomy",
     "M02 actual landing overlaps player; not a clean anatomy approval view"
-  ]
+  ],
+  "checkpoint_sha": "b2eb22eab34193e9bfbec982764c099d57cda9ba",
+  "fixed_courtyard_revision": {
+    "status": "limited_actual_2k_readability_checked_not_full_art_acceptance",
+    "new_image_sources": 0,
+    "removed_display_instances": 4,
+    "source_files_preserved": true,
+    "exterior_projection_blueprint": [
+      -140,
+      260
+    ],
+    "floor_illumination_north_south": [
+      0.88,
+      0.78
+    ],
+    "geometry_and_camera_changed": false,
+    "original_static_landing_pressure_sample_preserved": true,
+    "managed_headless_run": "20261003T103839839678Z-cfd4da9c",
+    "headless_failures": 0,
+    "script_errors": 0,
+    "functional_skin_instances": 4,
+    "card_layout_scaled_coordinate_regression": true,
+    "disabled_review_regression": true,
+    "movement_dodge": {
+      "locked_target": [
+        185.6,
+        522
+      ],
+      "actual_landing": [
+        185.6,
+        522
+      ],
+      "player_at_landing": [
+        346.1669,
+        522
+      ],
+      "hp_damage": 0,
+      "shield_damage": 0,
+      "teleport_or_invulnerability": false,
+      "natural_play_acceptance": false
+    },
+    "planned_graphical_frames": 9
+  },
+  "third_graphical_run": "20261003T104010752513Z-bb736b47",
+  "third_graphical_engine_failures": 0,
+  "third_graphical_visual_review": "readability improved; fixed courtyard still sparse; capture timing and badge-cache evidence defects prevent acceptance",
+  "third_graphical_frames_viewed": 9,
+  "capture_integrity_revision": {
+    "status": "verified_in_nine_actual_2k_frames",
+    "managed_headless_run": "20261003T104644041131Z-e8ed3dba",
+    "headless_failures": 0,
+    "script_errors": 0,
+    "runtime_explicitly_disabled": true,
+    "actual_badge_set_asserted": true,
+    "real_engine_wait_snapshot_check": true,
+    "expected_graphical_card_counts": [
+      0,
+      2,
+      2,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1
+    ],
+    "previous_evidence_preserved": true,
+    "graphical_run": "20261003T104818074630Z-593f27d8",
+    "unchanged_wait_snapshots": 9,
+    "actual_card_counts": [
+      0,
+      2,
+      2,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1
+    ],
+    "headless_graphical_trajectory_matched": true,
+    "landing_time": 0.69
+  },
+  "fourth_graphical_run": "20261003T104818074630Z-593f27d8",
+  "fourth_graphical_frames_viewed": 9,
+  "fourth_graphical_engine_failures": 0,
+  "fourth_graphical_visual_review": "limited fixed-courtyard readability improvement confirmed; full reference composition, animation, natural play and complete level NOT accepted"
 }

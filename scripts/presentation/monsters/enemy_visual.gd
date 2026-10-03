@@ -4,6 +4,7 @@ extends Node2D
 ## Registered ordinary bodies use restrained pose transforms; native candidate
 ## chapters supply current frames with source regions and absolute foot anchors.
 
+const L37CardLayout = preload("res://scripts/levels/b07/art/l37_skill_card_layout.gd")
 const SkillPresentation = preload("res://scripts/presentation/monsters/enemy_skill_presentation.gd")
 const Palette = preload("res://scripts/presentation/monsters/enemy_palette.gd")
 const Art = preload("res://scripts/presentation/monsters/enemy_art.gd")
@@ -82,6 +83,14 @@ class SkillBadge extends Node2D:
 				draw_circle(Vector2((index-(count-1)*.5)*5.0,20.0),1.7,edge if index <= int(command.get("stage",0)) else Color("bba68b"))
 		if show_detail:
 			var at := detail_origin()
+			var review: Dictionary = L37CardLayout.placement(self)
+			if not review.is_empty():
+				at = review.origin
+				# A tether keeps displaced/perimeter cards associated with their owner.
+				var tether_end := Vector2.ZERO.clamp(at,at+Vector2(254,61))
+				if tether_end.length()>20: draw_line(Vector2.ZERO,tether_end,Color("b89365"),1.0,true)
+				SkillPresentation.draw_card(self,info,at)
+				return
 			var matrix: Transform2D = get_global_transform_with_canvas()
 			var bounds: Rect2 = matrix * Rect2(at,Vector2(254,61))
 			var viewport: Rect2 = get_viewport_rect().grow(-8)
