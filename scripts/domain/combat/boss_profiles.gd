@@ -34,7 +34,7 @@ const TACTICS := {
 static func ids() -> Array[String]:
 	var result: Array[String] = ["BO01", "BO02", "BO03", "BO04"]
 	if int(preload("res://scripts/infrastructure/content/runtime_rules.gd").value("implemented_chapters",4)) >= 5: result.append("BO05")
-	if preload("res://scripts/infrastructure/content/runtime_rules.gd").b06_candidate_enabled(): result.append("BO06")
+	if preload("res://scripts/infrastructure/content/runtime_rules.gd").chapter_enabled(6): result.append("BO06")
 	result.append_array(["B10-D01","B10-D02","B10-D03","B10-D04","B10-D05","B10-D06","BO10"])
 	return result
 
@@ -42,7 +42,7 @@ static func resolve(boss_id: String, difficulty: int = 0, ruleset: int = 1, cali
 	if preload("res://scripts/levels/b10/combat/enemy_skills.gd").is_boss(boss_id):
 		return preload("res://scripts/levels/b10/combat/enemy_skills.gd").boss_profile(boss_id,difficulty,calibration) if ruleset==2 else {}
 	if boss_id == "BO06":
-		return preload("res://scripts/levels/b06/combat/enemy_skills.gd").boss_profile(difficulty,calibration) if ruleset == 2 and preload("res://scripts/infrastructure/content/runtime_rules.gd").b06_candidate_enabled() else {}
+		return preload("res://scripts/levels/b06/combat/enemy_skills.gd").boss_profile(difficulty,calibration) if ruleset == 2 and preload("res://scripts/infrastructure/content/runtime_rules.gd").chapter_enabled(6) else {}
 	if boss_id == "BO05":
 		return preload("res://scripts/levels/b05/combat/enemy_skills.gd").boss_profile(difficulty,calibration) if ruleset == 2 else {}
 	if ruleset == 2:

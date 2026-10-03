@@ -51,7 +51,7 @@ static func _read_manifest() -> Dictionary:
 			_manifest.items.merge(shop.items,false)
 	if FileAccess.file_exists(AssetCatalog.resolve(B05_MANIFEST_PATH)):
 		merge_b05_manifest(_manifest, JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(B05_MANIFEST_PATH))))
-	if preload("res://scripts/infrastructure/content/runtime_rules.gd").b06_candidate_enabled() and FileAccess.file_exists(AssetCatalog.resolve(B06_MANIFEST_PATH)):
+	if preload("res://scripts/infrastructure/content/runtime_rules.gd").chapter_enabled(6) and FileAccess.file_exists(AssetCatalog.resolve(B06_MANIFEST_PATH)):
 		merge_b06_candidate(_manifest, JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(B06_MANIFEST_PATH))))
 	if preload("res://scripts/infrastructure/content/runtime_rules.gd").chapter_enabled("B10"):
 		var b10_path := AssetCatalog.resolve("asset://level.b10.equipment.manifest")
@@ -72,9 +72,9 @@ static func merge_b05_manifest(base: Dictionary, candidate: Variant) -> void:
 			base.items[id] = candidate.items[id].duplicate(true)
 
 static func merge_b06_candidate(base: Dictionary, candidate: Variant) -> void:
-	# Explicit isolated chapter preview only; the disk release gate stays false.
+	# Released B06 pack; disabled/missing art keeps the existing slot fallback.
 	if not candidate is Dictionary or candidate.get("chapter_id") != "B06": return
-	if not bool(candidate.get("candidate_only", false)) or not candidate.get("items") is Dictionary: return
+	if not bool(candidate.get("enabled", false)) or not candidate.get("items") is Dictionary: return
 	if not base.get("items") is Dictionary: return
 	for id: String in candidate.items:
 		if id.begins_with("B06-") and not base.items.has(id) and candidate.items[id] is Dictionary:

@@ -13,7 +13,7 @@
       "name": "贝桥前街",
       "name_en": "Shellbridge Front Street",
       "enemy_level": 26,
-      "geometry_status": "candidate_frozen_v1",
+      "geometry_status": "candidate_first_room_terraces_v2",
       "entry": [
         360,
         900
@@ -24,20 +24,68 @@
       ],
       "walkable_polygon": [
         [
-          180,
-          200
+          120,
+          670
         ],
         [
-          2620,
-          200
+          400,
+          480
         ],
         [
-          2620,
-          1600
+          1080,
+          480
         ],
         [
-          180,
-          1600
+          1240,
+          740
+        ],
+        [
+          1630,
+          740
+        ],
+        [
+          1770,
+          430
+        ],
+        [
+          2430,
+          430
+        ],
+        [
+          2660,
+          610
+        ],
+        [
+          2660,
+          1290
+        ],
+        [
+          2440,
+          1470
+        ],
+        [
+          1800,
+          1470
+        ],
+        [
+          1630,
+          1060
+        ],
+        [
+          1240,
+          1060
+        ],
+        [
+          1090,
+          1370
+        ],
+        [
+          400,
+          1370
+        ],
+        [
+          120,
+          1190
         ]
       ],
       "main_route": [
@@ -70,19 +118,19 @@
           "polygon": [
             [
               450,
-              320
+              530
             ],
             [
-              2350,
-              320
+              1050,
+              530
             ],
             [
-              2350,
-              670
+              1050,
+              700
             ],
             [
               450,
-              670
+              700
             ]
           ],
           "direction": [
@@ -94,20 +142,20 @@
           "id": "south",
           "polygon": [
             [
-              450,
-              1130
+              1850,
+              1110
             ],
             [
               2350,
-              1130
+              1110
             ],
             [
               2350,
-              1480
+              1330
             ],
             [
-              450,
-              1480
+              1850,
+              1330
             ]
           ],
           "direction": [
@@ -136,6 +184,12 @@
           0.78,
           0.74
         ]
+      },
+      "geometry_revision": {
+        "reason": "Reference-aligned connected terrace islands and a wide bridge; authored portals, main route, enemy IDs, props and mechanics retained.",
+        "bridge_clear_width_world": 185.6,
+        "previous_version": "candidate_frozen_v1",
+        "requires_runtime_validation": true
       }
     },
     "L32": {

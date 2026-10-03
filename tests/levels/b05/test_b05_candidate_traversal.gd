@@ -6,7 +6,7 @@ const Catalog = preload("res://scripts/domain/world/world_catalog.gd")
 const Routes = preload("res://scripts/domain/world/route_generator.gd")
 const Enemies = preload("res://scripts/domain/combat/enemy_profiles.gd")
 const Rewards = preload("res://scripts/domain/world/room_rewards.gd")
-const Saves = preload("res://tests/persistence/test_numerical_versioned_saves.gd")
+const Snapshot = preload("res://scripts/domain/combat/combat_snapshot.gd")
 const Growth = preload("res://scripts/domain/progression/hero_progression.gd")
 const Loot = preload("res://scripts/domain/expedition/expedition_rewards.gd")
 var failures: Array[String] = []
@@ -15,19 +15,29 @@ func check(ok: bool, label: String) -> void:
 	checks += 1
 	if not ok: failures.append(label); push_error(label)
 func boundary() -> Dictionary:
-	return Saves.runtime(Game.run.hero_id,int(Game.run.hp),int(Game.run.resource),2)
+	var player: Dictionary = {"cooldowns":{},"passive_count":0,"walk_distance":0.0,"aim_direction":[1.0,0.0],"cast_serial":0}
+	for key: String in Snapshot.SKILLS: player.cooldowns[key] = 0.0
+	for key: String in Snapshot.PLAYER_TIMERS: player[key] = 0.0
+	var equipment: Dictionary = {"room_id":"","room_low_shield_used":false,"room_first_kill_used":false}
+	for key: String in Snapshot.EFFECT_MAPS: equipment[key] = {}
+	for key: String in Snapshot.EFFECT_HISTORIES: equipment[key] = []
+	for key: String in Snapshot.EFFECT_NUMBERS: equipment[key] = 0.0
+	equipment.dash_time = -100.0
+	equipment.delayed_shield_at = -1.0
+	var modifiers: Dictionary = {}
+	for key: String in Snapshot.MODIFIERS: modifiers[key] = 1.0 if key.ends_with("_scale") else 0.0
+	equipment["adapter"] = {"clock":0.0,"movement_time":0.0,"event_serial":0,"modifiers":modifiers}
+	return {"snapshot_version":1,"mode":"safe_boundary","hero_id":Game.run.hero_id,"hp":Game.run.hp,"resource":Game.run.resource,
+		"ruleset_version":2,"scale_version":10,"resource_regen_remainder":Game.run.resource_regen_remainder,"resource_decay_remainder":Game.run.resource_decay_remainder,
+		"player":player,"equipment":equipment,"status":{"clock":0.0,"shock_cooldown":0.0,"states":{},"guards":{},"origins":{},"slow_remaining":0.0,"slow_multiplier":1.0}}
+
 func _ready() -> void:
 	for args: PackedStringArray in [PackedStringArray(["--candidate-b05"]),PackedStringArray(["--candidate-b05","--test-profile=user://profile.json"]),PackedStringArray(["--candidate-b05","--test-profile=user://test_b05_candidate/../profile.json"]),PackedStringArray(["--candidate-b05","--test-profile=user://test_b05_candidate/a.json","--test-profile=user://profile.json"])]:
 		check(not Rules._candidate_arguments_valid(args),"candidate rejects missing/unsafe/duplicate save flags")
-	check(int(Rules.parameters().implemented_chapters) == 4,"shipped gate stays four")
-	check(not Catalog.biomes().has("B06"),"B06 remains disabled")
-	if not Rules.b05_candidate_enabled():
-		check(Catalog.room_ids().size()==24 and Catalog.enemy_ids().size()==54 and Catalog.biomes().size()==4 and Catalog.bosses().size()==4,"strict closed catalog")
-		check(not Routes.generate_single_biome("B05",51,[],20).valid and not Routes.generate_single_biome("B01",51,[],21).valid,"strict closed departure")
-		finish(); return
-	check(Game.profile_path.begins_with("user://test_b05_candidate/"),"isolated candidate save")
+	check(int(Rules.parameters().implemented_chapters) == 6 and Catalog.biomes().has("B06"),"six chapters released by default")
+	check(Game.profile_path.contains("test_b05_candidate_traversal"),"isolated test save")
 	check(Catalog.validate().is_empty(),"candidate catalog validates: "+str(Catalog.validate()))
-	check(Catalog.room_ids().size()==30 and Catalog.enemy_ids().size()==72 and Catalog.biomes().size()==5 and Catalog.bosses().size()==5,"30/72/5/5 candidate catalog")
+	check(Catalog.room_ids().size()==36 and Catalog.enemy_ids().size()==90 and Catalog.biomes().size()==6 and Catalog.bosses().size()==6,"36/90/6/6 released catalog")
 	var seen := {}
 	for room_id: String in Catalog.biomes().B05.room_ids:
 		for difficulty in range(5):
@@ -54,7 +64,7 @@ func _ready() -> void:
 		check(route.nodes[1].room_id=="L25" and route.template_ids.slice(0,6)==["L25","L26","L27","L28","L29","L30"],"ordered teaching introduces all species before repeats")
 		check(route.valid and route.nodes.size()==12 and route.nodes[-1].room_id=="BO05","candidate twelve-station departure")
 		check(Routes.choose(JSON.parse_string(JSON.stringify(route)),1,route.nodes[1].room_id).valid,"candidate choice survives JSON")
-	check(not Routes.generate_single_biome("B06",51,[],25).valid and not Routes.generate_single_biome("B05",51,[],26).valid,"future route blocked")
+	check(not Routes.generate_single_biome("B07",51,[],30).valid and not Routes.generate_single_biome("B05",51,[],31).valid,"future route and level blocked")
 	for hero: String in ["CH01","CH02","CH03"]: traverse(hero)
 	finish()
 func traverse(hero: String) -> void:

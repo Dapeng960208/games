@@ -40,8 +40,8 @@ func _run() -> void:
 	if not Game.profile_path.contains("test_b06_environment_lifecycle") or OS.get_environment("GAMES_TEST_OUTPUT_DIR").is_empty():
 		get_tree().quit(2)
 		return
-	candidate_enabled = Rules.b06_candidate_enabled()
-	check(int(Rules.parameters().implemented_chapters) == 4,"shipped chapter gate unchanged")
+	candidate_enabled = Rules.chapter_enabled(6)
+	check(int(Rules.parameters().implemented_chapters) == 6,"six released chapters")
 	Game.run = null
 	if not check(Game.new_profile() and Game.start_run({"expedition":true,"biome_id":"B01","seed":26062}),"isolated baseline"):
 		_finish()

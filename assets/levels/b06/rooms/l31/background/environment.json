@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "room_id": "L31",
+  "biome_id": "B06",
+  "texture": "asset://world/rooms/l31_environment_released.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "walkable_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.68
+  ],
+  "placement_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.68
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.14342857142857143,
+      0.3831111111111111
+    ],
+    [
+      0.22142857142857142,
+      0.31133333333333335
+    ],
+    [
+      0.41085714285714287,
+      0.31133333333333335
+    ],
+    [
+      0.4554285714285714,
+      0.40955555555555556
+    ],
+    [
+      0.5640714285714287,
+      0.40955555555555556
+    ],
+    [
+      0.6030714285714286,
+      0.2924444444444445
+    ],
+    [
+      0.7869285714285714,
+      0.2924444444444445
+    ],
+    [
+      0.851,
+      0.36044444444444446
+    ],
+    [
+      0.851,
+      0.6173333333333334
+    ],
+    [
+      0.7897142857142857,
+      0.6853333333333333
+    ],
+    [
+      0.6114285714285714,
+      0.6853333333333333
+    ],
+    [
+      0.5640714285714287,
+      0.5304444444444445
+    ],
+    [
+      0.4554285714285714,
+      0.5304444444444445
+    ],
+    [
+      0.41364285714285715,
+      0.6475555555555556
+    ],
+    [
+      0.22142857142857142,
+      0.6475555555555556
+    ],
+    [
+      0.14342857142857143,
+      0.5795555555555556
+    ]
+  ],
+  "approved": true,
+  "candidate_only": false,
+  "mode": "complete_environment_plate",
+  "geometry_source": "data/levels/b06/room_geometry.json rooms.L31",
+  "render_mapping": "完整原画按本房placement_normalized_rect映射到2800×1800、0.58世界坐标；通行、机关脚点和镜头使用同一映射。原画像素不重采样修改。",
+  "provenance": {
+    "method": "built-in image_gen",
+    "selected_source": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-c07fa878-deb2-4c1b-a80c-bff37c778c96.png",
+    "sha256": "6ad05fe5da87d52ae8573c2bc91ba52e85aeceec3d14be774f89aad639df0445",
+    "reference": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-4818aeff-d9ef-44a1-9c47-173354932a89.png",
+    "reference_role": "style_or_bridge_alignment_reference",
+    "prompt": "asset://world/rooms/l31_environment_released.prompt.json",
+    "pixel_edits": "none_after_imagegen",
+    "composition": "independent_complete_room_environment",
+    "previous_manifest": {
+      "schema_version": 1,
+      "room_id": "L31",
+      "biome_id": "B06",
+      "texture": "asset://world/rooms/L31_environment_v1.png",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "walkable_normalized_rect": [
+        0.11,
+        0.13,
+        0.78,
+        0.74
+      ],
+      "placement_normalized_rect": [
+        0.11,
+        0.13,
+        0.78,
+        0.74
+      ],
+      "walkable_normalized_polygon": [
+        [
+          0.14342857142857143,
+          0.40544444444444444
+        ],
+        [
+          0.22142857142857142,
+          0.32733333333333337
+        ],
+        [
+          0.41085714285714287,
+          0.32733333333333337
+        ],
+        [
+          0.4554285714285714,
+          0.43422222222222223
+        ],
+        [
+          0.5640714285714287,
+          0.43422222222222223
+        ],
+        [
+          0.6030714285714286,
+          0.3067777777777778
+        ],
+        [
+          0.7869285714285714,
+          0.3067777777777778
+        ],
+        [
+          0.851,
+          0.38077777777777777
+        ],
+        [
+          0.851,
+          0.6603333333333333
+        ],
+        [
+          0.7897142857142857,
+          0.7343333333333333
+        ],
+        [
+          0.6114285714285714,
+          0.7343333333333333
+        ],
+        [
+          0.5640714285714287,
+          0.5657777777777777
+        ],
+        [
+          0.4554285714285714,
+          0.5657777777777777
+        ],
+        [
+          0.41364285714285715,
+          0.6932222222222222
+        ],
+        [
+          0.22142857142857142,
+          0.6932222222222222
+        ],
+        [
+          0.14342857142857143,
+          0.6192222222222222
+        ]
+      ],
+      "approved": false,
+      "candidate_only": false,
+      "mode": "complete_environment_plate",
+      "geometry_source": "data/levels/b06/room_geometry.json rooms.L31",
+      "render_mapping": "完整原画、通行边界、机关脚点及镜头共用2800×1800蓝图与0.58世界缩放；原画按placement_normalized_rect映射，潮水由运行时覆盖。",
+      "provenance": {
+        "method": "built-in image_gen",
+        "selected_source": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-4818aeff-d9ef-44a1-9c47-173354932a89.png",
+        "sha256": "ed8c94f222a15438d22bdcb537e95abf073feba0b5f57f7401129c989ff22aa0",
+        "prompt": "asset://world/rooms/L31_environment_v1.prompt.json",
+        "reference": "asset://world/rooms/L19_environment_v1.png",
+        "reference_role": "hand_painted_high_oblique_style_only",
+        "pixel_edits": "none",
+        "composition": "independent_complete_room_environment"
+      },
+      "qa": {
+        "status": "awaiting_normal_runtime_all_room_review",
+        "actual_dimensions": [
+          1536,
+          1024
+        ],
+        "upscaled": false
+      }
+    }
+  },
+  "qa": {
+    "status": "accepted_normal_runtime",
+    "style": "bright hand-painted cartoon fantasy; high three-quarter overhead; 2.5D",
+    "actual_dimensions": [
+      1536,
+      1024
+    ],
+    "runtime_framebuffer": [
+      2560,
+      1440
+    ],
+    "upscaled": false,
+    "coordinate_mapping": "shared blueprint placement; fixed geometry and mechanism feet; painting camera bounds"
+  },
+  "independent_complete_painting": true,
+  "native_detail_enabled": false,
+  "status": "released",
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T130008562-a228f36f",
+    "checks": 554,
+    "failures": 0,
+    "candidate_arguments": false,
+    "renderer": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "report": "docs/levels/b05_b06_room_paintings.md",
+    "scope": "all fourteen real rooms; centre and four corners; seven high tides; existing HUD and actors"
+  },
+  "source_sha256": "6ad05fe5da87d52ae8573c2bc91ba52e85aeceec3d14be774f89aad639df0445"
+}

@@ -34,7 +34,7 @@ static func loadout_fixture(hero: String, shared: bool = false, rarity: String =
 	return result
 func _initialize() -> void:
 	var original := Rules.parameters()
-	check(int(original.implemented_chapters)==4,"shipped gate remains four chapters")
+	check(int(original.implemented_chapters)==6,"shipped gate releases six chapters")
 	if Growth.level_cap()<30:
 		check(not Acquisition.roll_event(event("CH01")).ok,"unreleased natural B06 blocked")
 		check(Acquisition.roll_item(spec("B06-SW-weapon","CH01","physical"),1).is_empty(),"unreleased explicit B06 blocked")

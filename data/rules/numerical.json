@@ -20,12 +20,14 @@
     "hard_rarity_gate": false,
     "medians_require_fixed_seeds": 10
   },
-  "implemented_chapters": 4,
+  "implemented_chapters": 6,
   "released_chapters": [
     "B01",
     "B02",
     "B03",
     "B04",
+    "B05",
+    "B06",
     "B10"
   ],
   "level_cap": 50,

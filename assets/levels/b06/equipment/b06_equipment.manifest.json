@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "chapter_id": "B06",
-  "enabled": false,
-  "candidate_only": true,
+  "enabled": true,
+  "candidate_only": false,
   "runtime_quality_gate_passed": false,
   "items": {
     "B06-SW-head": {

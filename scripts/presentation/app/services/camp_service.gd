@@ -195,7 +195,7 @@ func _build_biome_selector() -> void:
 			availability = host._ex_text("待开发 · 仅展示计划，尚不能进入","TODO · roadmap only; this region cannot be entered")
 		elif locked:
 			availability = host._ex_text("未解锁 · 击败前一区域首领并撤离后解锁","Locked · defeat the previous boss and extract to unlock")
-			if biome_id == "B10": availability = host._ex_text("未解锁 · 击败第四关首领并撤离后开放终章", "Locked · defeat the fourth-region boss and extract to unlock the final chapter")
+			if biome_id == "B10": availability = host._ex_text("未解锁 · 需先解锁第九关；第九关当前待开发", "Locked · unlock Region 9 first; Region 9 is currently planned")
 		picker.get_popup().set_item_tooltip(index,race_name+"\n"+availability)
 	picker.select(int(host.selected_biome.trim_prefix("B"))-1)
 	picker.item_selected.connect(func(index: int):
@@ -205,10 +205,9 @@ func _build_biome_selector() -> void:
 			host.selected_biome = biome_id
 			host._update_departure_difficulty_hint())
 	host.screen.add_child(picker)
-	GameStyle.literal(host.screen,host._ex_text("击败首领并撤离后解锁 · 第四关后开放龙庭终章", "Defeat the boss and extract · Final court unlocks after Region 4"),Vector2(454,286),Vector2(490,18),10,GameStyle.MUTED)
-	var roadmap = GameStyle.literal(host.screen,host._ex_text("10 个地区 · 前四关与龙庭已接入", "10 REGIONS · FIRST FOUR + FINAL COURT"),Vector2(953,286),Vector2(259,18),10,GameStyle.CYAN)
-	if WorldCatalog.b06_enabled(): roadmap.text = host._ex_text("4 个已发布 · B05/B06 隔离候选", "4 RELEASED · B05/B06 ISOLATED CANDIDATES")
-	elif WorldCatalog.b05_enabled(): roadmap.text = host._ex_text("4 个已发布 · B05 隔离候选", "4 RELEASED · B05 ISOLATED CANDIDATE")
+	GameStyle.literal(host.screen,host._ex_text("击败首领并撤离后开放下一区域", "Defeat the boss and extract to unlock the next area"),Vector2(454,286),Vector2(490,18),10,GameStyle.MUTED)
+	var count := WorldCatalog.biomes().size()
+	var roadmap = GameStyle.literal(host.screen,host._ex_text("10 个地区 · %d 个已接入 / %d 个待开发", "10 REGIONS · %d INTEGRATED / %d TODO") % [count,10-count],Vector2(953,286),Vector2(259,18),10,GameStyle.CYAN)
 	roadmap.name = "CampRegionPlanSummary"
 	roadmap.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	roadmap.tooltip_text = host._ex_text("前四关逐关解锁，通关第四关并撤离后开放第十关星辉龙庭。第五、六关保留隔离候选；第七至九关待开发。", "The first four regions unlock in order. Defeat Region 4 and extract to unlock Region 10, Starlit Dragon Court. Regions 5–6 remain isolated previews; Regions 7–9 are planned.")
+	roadmap.tooltip_text = host._ex_text("前六关按首领通关与撤离顺序解锁。第七至九关待开发；第十关星辉龙庭需先解锁第九关。", "The first six chapters unlock after defeating the previous boss and extracting. Regions 7–9 are planned; the final dragon court requires Region 9 to be unlocked.")

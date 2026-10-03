@@ -14,10 +14,10 @@ static func b10_enabled() -> bool:
 	return Rules.chapter_enabled("B10")
 
 static func b06_enabled() -> bool:
-	return Rules.b06_candidate_enabled()
+	return Rules.chapter_enabled(6)
 
 static func b05_enabled() -> bool:
-	return Rules.b05_candidate_enabled()
+	return Rules.chapter_enabled(5)
 
 const ROOM_PATH := "res://data/world/rooms.json"
 const ENEMY_PATH := "res://data/monsters/enemies.json"

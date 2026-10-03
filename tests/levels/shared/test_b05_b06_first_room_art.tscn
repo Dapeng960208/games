@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://tests/levels/shared/test_b05_b06_first_room_art.gd" id="1"]
+[node name="B05B06FirstRoomArt" type="Node"]
+script = ExtResource("1")

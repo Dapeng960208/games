@@ -1,6 +1,6 @@
 {
-  "approved": false,
-  "candidate_only": true,
+  "approved": true,
+  "candidate_only": false,
   "patches": [
     {
       "name": "BO05_south_continuity_v1",
@@ -25,7 +25,7 @@
       "model": "not reported",
       "generated_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-cb5e61d7-708b-4c5b-bfa0-361f37f25104.png",
       "source_pixel_edits": "none; exact generated PNG copied",
-      "approved": false,
+      "approved": true,
       "unique_patch": true,
       "recommended_repair_source_rect": [
         205,
@@ -50,5 +50,16 @@
         1.8675
       ]
     }
-  ]
+  ],
+  "status": "released",
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T130008562-a228f36f",
+    "report": "docs/levels/b05_b06_room_paintings.md",
+    "candidate_arguments": false,
+    "framebuffer": [
+      2560,
+      1440
+    ]
+  }
 }

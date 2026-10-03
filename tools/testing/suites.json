@@ -1147,5 +1147,21 @@
   },
   "b10_chapter_entry": {
     "script": "tests/levels/b10/test_b10_chapter_entry.gd"
+  },
+  "b05_b06_first_room_art": {
+    "script": "tests/levels/shared/test_b05_b06_first_room_art.gd",
+    "scene": "tests/levels/shared/test_b05_b06_first_room_art.tscn"
+  },
+  "b05_b06_boss_skill_art": {
+    "script": "tests/levels/shared/test_b05_b06_boss_skill_art.gd",
+    "scene": "tests/levels/shared/test_b05_b06_boss_skill_art.tscn"
+  },
+  "b05_b06_release": {
+    "script": "tests/levels/shared/test_b05_b06_release.gd",
+    "scene": "tests/levels/shared/test_b05_b06_release.tscn"
+  },
+  "b05_b06_room_paintings": {
+    "script": "tests/levels/shared/test_b05_b06_room_paintings.gd",
+    "scene": "tests/levels/shared/test_b05_b06_room_paintings.tscn"
   }
 }

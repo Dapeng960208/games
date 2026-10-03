@@ -15,7 +15,7 @@ static func parameters() -> Dictionary:
 	return _parameters.duplicate(true)
 
 ## Candidate preview requires BOTH a debug flag and an explicitly isolated save.
-## The shipped JSON and parameters() remain the approved four-chapter rules.
+## Experiment flags stay isolated; released chapters come from the shipped JSON.
 static var _candidate_b05 := -1
 static func b05_candidate_enabled() -> bool:
 	if b06_candidate_enabled(): return true
@@ -26,14 +26,17 @@ static func b05_candidate_enabled() -> bool:
 static func b06_candidate_enabled() -> bool:
 	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b06")
 
-## Chapter identity is independent of the highest authored level. B05/B06
-## retain their isolated preview gates when the final court is released.
+## Chapter identity is independent of the highest authored level. The shipped
+## first six chapters remain released when the final court is registered.
 static func released_chapters() -> Array:
-	return value("released_chapters", ["B01", "B02", "B03", "B04"])
+	return value("released_chapters", ["B01", "B02", "B03", "B04", "B05", "B06"])
 
-static func chapter_enabled(chapter_id: String) -> bool:
-	if chapter_id == "B05": return b05_candidate_enabled()
-	if chapter_id == "B06": return b06_candidate_enabled()
+static func chapter_enabled(chapter: Variant) -> bool:
+	var chapter_id := ""
+	if chapter is int and chapter >= 1 and chapter <= 10:
+		chapter_id = "B%02d" % chapter
+	elif chapter is String:
+		chapter_id = chapter
 	if chapter_id == "B10" and b05_candidate_enabled(): return false
 	return chapter_id in released_chapters()
 
@@ -52,10 +55,7 @@ static func _candidate_arguments_valid(args: PackedStringArray, chapter: String 
 	return true
 
 static func value(key: String, fallback: Variant = null) -> Variant:
-	if key == "implemented_chapters" and b06_candidate_enabled(): return 6
-	if key == "implemented_chapters" and b05_candidate_enabled(): return 5
-	if key == "level_cap" and b06_candidate_enabled(): return 30
-	if key == "level_cap" and b05_candidate_enabled(): return 25
+	if key == "level_cap" and b05_candidate_enabled(): return 30
 	if _parameters.is_empty(): parameters()
 	var result: Variant = _parameters.get(key, fallback)
 	return result.duplicate(true) if result is Dictionary or result is Array else result

@@ -121,10 +121,12 @@ func configure(enemy: Node2D) -> void:
 		_foot = Vector2.ZERO
 	_bank = {}
 	if bool(_storybook_entry.get("b05_native_bank",false)):
-		_bank = preload("res://scripts/levels/b05/art/enemy_art.gd").bank(str(actor.get("enemy_id")))
+		var art = preload("res://scripts/levels/b05/art/enemy_art.gd")
+		_bank = art.first_room_bank(str(actor.get("enemy_id"))) if bool(_storybook_entry.get("first_room_race_variant",false)) else art.bank(str(actor.get("enemy_id")))
 		_bank["world_reference_height"] = float(_storybook_entry.world_reference_height)
 	if bool(_storybook_entry.get("b06_native_bank",false)):
-		_bank = preload("res://scripts/levels/b06/art/native_art.gd").bank(str(actor.get("enemy_id")))
+		var art = preload("res://scripts/levels/b06/art/native_art.gd")
+		_bank = art.first_room_bank(str(actor.get("enemy_id"))) if bool(_storybook_entry.get("first_room_race_variant",false)) else art.bank(str(actor.get("enemy_id")))
 		_bank["world_reference_height"] = float(_storybook_entry.world_reference_height)
 	if not bool(actor.get("static_actor")) and (str(actor.get("enemy_id")).begins_with("M") or str(actor.get("enemy_id")).begins_with("B05-M") or str(actor.get("enemy_id")).begins_with("B06-M")):
 		skill_badge = SkillBadge.new()
