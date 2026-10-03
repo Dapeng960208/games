@@ -6,6 +6,5 @@
 
 [本关说明](../README.md) · [关卡索引](../../README.md)
 
-- [b05_local_pressure_bounded_2026-10-02](b05_local_pressure_bounded_2026-10-02.md)
-- [b05_strength_acceptance_2026-10-02](b05_strength_acceptance_2026-10-02.md)
-- [b05_warrior_phase_timing](b05_warrior_phase_timing.md)
+
+[当前首领验证协议](../balance/README.md)

@@ -147,9 +147,6 @@ static func install(actor: Node2D) -> Dictionary:
 		entry["world_foot"] = Vector2(0,foot_y)
 	return entry
 
-static func motion_path(identity: String) -> String:
-	return "asset://enemies/%s_storybook_motion_v1.json" % identity
-
 static func _load_all_for_audit() -> void:
 	# Explicit catalogue audits may inspect all entries; gameplay must not turn a
 	# single lookup into a preload of unrelated chapters and native HD bodies.

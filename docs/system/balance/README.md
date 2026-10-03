@@ -6,6 +6,7 @@
 
 - [共用规则与边界](level_equipment_numerical_design.md)
 - [当前普通怪数值](ordinary_monster_numbers.md)与[技能登记](../combat/ordinary_monster_expansion.md)
+- [成长与保存检查](growth_integration.md)
 - [实际预警时序](enemy_warning_timing.md)
 - [首领难度与构筑协议](boss_difficulty_calibration.md)
 - [工坊规则](random_forging_design.md)

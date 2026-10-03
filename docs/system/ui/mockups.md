@@ -14,7 +14,7 @@ Seventeen built-in-imagegen concepts cover sixteen interface families. Each is a
 - Minimap, tracking, export, difficulty and other suggested controls are visual examples only. Do not add unsupported functionality to match a picture.
 - Preserve gameplay sprites and room/world art. The HUD image's scene and enemies are conceptual illustrations, not approved replacements.
 - `04b-monster-codex-sharp.png` supersedes `04-monster-codex.png` for card size and detail hierarchy. Its M01 uses the newly generated source-grounded pincer construct portrait. Other depicted specimens and labels are illustrative, not authoritative M02–M06 identities.
-- Production codex portraits are separate native high-resolution files under `assets/generated/ui/refactor_v1/codex/`; never crop a whole mockup for runtime art.
+- Production codex portraits are separate native high-resolution files under `assets/levels/<chapter>/{enemies,bosses}/<identity>/art/codex_portrait.png`; never crop a whole mockup for runtime art.
 - The error modal demonstrates calm recovery hierarchy. Claims about save preservation and available recovery actions must reflect actual implementation.
 
 ## Coverage
@@ -39,7 +39,3 @@ Seventeen built-in-imagegen concepts cover sixteen interface families. Each is a
 ## Generation direction
 
 All concepts share the supplied reference's warm ivory panels, sunlit forest atmosphere, dark readable type, deep teal selection/action states, fine antique-gold borders and rich painterly illustration. Each screen was generated separately with its screen-specific information hierarchy, then visually inspected. The revised codex explicitly requested six larger specimens, no haze on creature art and a large source-correct M01 detail. Runtime forest and decor provenance are recorded alongside production assets.
-
-## Delivery limitation
-
-Two supported Library prepared-upload attempts failed explicitly with `transfer_failed`; no Library attachment ID was produced. These committed PNGs are the durable design deliverables.

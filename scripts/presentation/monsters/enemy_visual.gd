@@ -1,11 +1,10 @@
 class_name EnemyVisual
 extends Node2D
 ## Body-only presentation. The owner keeps collision, AI, telegraphs and UI.
-## Static portraits use restrained pose transforms; authored motion manifests
-## opt in to real frames with explicit source regions and absolute foot anchors.
+## Registered ordinary bodies use restrained pose transforms; native candidate
+## chapters supply current frames with source regions and absolute foot anchors.
 
 const SkillPresentation = preload("res://scripts/presentation/monsters/enemy_skill_presentation.gd")
-const TextureSampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const Palette = preload("res://scripts/presentation/monsters/enemy_palette.gd")
 const Art = preload("res://scripts/presentation/monsters/enemy_art.gd")
 const GAITS: Dictionary = {
@@ -15,7 +14,6 @@ const GAITS: Dictionary = {
 	"caster": {"stride":36.0,"bob":0.7,"roll":0.009,"lean":0.018,"squash":0.010,"impact":0.83},
 	"support": {"stride":34.0,"bob":0.9,"roll":0.013,"lean":0.022,"squash":0.014,"impact":0.88},
 }
-static var _motion_banks: Dictionary = {}
 static var _contact_masks: Dictionary = {}
 
 var actor: Node2D
@@ -117,9 +115,9 @@ func configure(enemy: Node2D) -> void:
 	_foot = _storybook_entry.get("world_foot",Vector2(0,bounds.end.y))
 	if actor.has_method("b06_body_frame") and not actor.call("b06_body_frame").is_empty():
 		_foot = Vector2.ZERO
-	# Existing banks depict only the canonical original creature. A selected
-	# outfit keeps its own texture across every AI/impact pose.
-	_bank = {} if _storybook_entry.has("visual_variant_index") else _load_motion_bank(str(actor.get("enemy_id")), not _storybook_entry.is_empty())
+	# Ordinary identities keep their registered current body. Native candidate
+	# chapters supply their own active pose banks below.
+	_bank = {}
 	if bool(_storybook_entry.get("b05_native_bank",false)):
 		_bank = preload("res://scripts/levels/b05/art/enemy_art.gd").bank(str(actor.get("enemy_id")))
 		_bank["world_reference_height"] = float(_storybook_entry.world_reference_height)
@@ -528,106 +526,6 @@ func _draw_fallback(tint: Color) -> void:
 	draw_circle(Vector2(0,5),5.0,(_palette_colors.trim as Color)*tint)
 	draw_circle(Vector2(0,5),2.0,(_palette_colors.energy as Color)*tint)
 	draw_set_transform(Vector2.ZERO)
-
-static func _load_motion_bank(enemy_id: String, storybook: bool = false) -> Dictionary:
-	if enemy_id.is_empty():
-		return {}
-	var path: String = Art.motion_path(enemy_id) if storybook else "asset://enemies/%s_motion_v1.json" % enemy_id
-	if _motion_banks.has(path):
-		return _motion_banks[path]
-	if not FileAccess.file_exists(AssetCatalog.resolve(path)):
-		return {}
-	var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(path)))
-	if not raw is Dictionary:
-		return {}
-	if storybook and not storybook_motion_approved(raw, enemy_id):
-		return {}
-	var texture_path: String = str(raw.get("texture", ""))
-	if texture_path.is_empty() or (not FileAccess.file_exists(AssetCatalog.resolve(texture_path)) and not ResourceLoader.exists(AssetCatalog.resolve(texture_path))):
-		return {}
-	var texture: Texture2D = TextureSampler.sampled(texture_path)
-	if texture == null:
-		return {}
-	var bank: Dictionary = parse_motion_manifest(raw, texture.get_size())
-	if bank.is_empty():
-		return {}
-	bank["texture"] = texture
-	bank["source_family"] = Art.FAMILY if storybook else "legacy"
-	_motion_banks[path] = bank
-	return bank
-
-static func storybook_motion_approved(raw: Dictionary, enemy_id: String) -> bool:
-	# A matching family cannot authorize a draft or a different creature's
-	# animation. Keep the new static body until the motion review explicitly passes.
-	return raw.get("source_family", "") == Art.FAMILY and raw.get("full_color") == true and raw.get("enemy_id", "") == enemy_id and raw.get("quality_gate_passed") == true
-
-static func parse_motion_manifest(raw: Dictionary, texture_size: Vector2) -> Dictionary:
-	# Validate metadata without loading a renderer; never guess a sprite grid.
-	var source_height: Variant = raw.get("body_height", 0.0)
-	if not raw.get("frames", []) is Array or not _numbers([source_height]) or float(source_height) <= 0.0:
-		return {}
-	var named: Dictionary = {}
-	var clips: Dictionary = {}
-	for item: Variant in raw.get("frames", []):
-		if not item is Dictionary:
-			continue
-		var rect: Variant = item.get("region", [])
-		var foot: Variant = item.get("foot", [])
-		if not rect is Array or rect.size() != 4 or not foot is Array or foot.size() != 2:
-			continue
-		if not _numbers(rect) or not _numbers(foot):
-			continue
-		var region := Rect2(float(rect[0]), float(rect[1]), float(rect[2]), float(rect[3]))
-		var anchor := Vector2(float(foot[0]), float(foot[1]))
-		if not region.has_area() or not Rect2(Vector2.ZERO, texture_size).encloses(region) or anchor.x < region.position.x or anchor.x > region.end.x or anchor.y < region.position.y or anchor.y > region.end.y:
-			continue
-		var label: String = str(item.get("name", item.get("index", "")))
-		if label.is_empty():
-			continue
-		var frame: Dictionary = {"name":label,"region":region,"foot":anchor}
-		named[label] = frame
-		var action: String = str(item.get("action", label.get_slice("_", 0)))
-		if not clips.has(action):
-			clips[action] = []
-		clips[action].append(frame)
-	var animations: Variant = raw.get("animations", raw.get("clips", {}))
-	if animations is Dictionary:
-		for action: String in animations:
-			if not animations[action] is Array:
-				continue
-			var frames: Array = []
-			for label: Variant in animations[action]:
-				if named.has(str(label)):
-					frames.append(named[str(label)])
-			if not frames.is_empty():
-				clips[action] = frames
-	# The production M01 bank uses compact numeric clips and hero-like names.
-	for alias: String in {"windup":"telegraph", "release":"execute", "hurt":"recoil"}:
-		var action: String = {"windup":"telegraph", "release":"execute", "hurt":"recoil"}[alias]
-		if clips.has(alias) and not clips.has(action):
-			clips[action] = clips[alias]
-	if not clips.has("locked") and clips.has("telegraph"):
-		clips["locked"] = [clips.telegraph.back()]
-	# A manifest without a dedicated idle keeps a stable authored contact pose,
-	# rather than changing back to a differently framed portrait on every stop.
-	if not clips.has("idle"):
-		if clips.has("walk"):
-			clips["idle"] = [clips.walk.front()]
-		elif clips.has("recovery"):
-			clips["idle"] = [clips.recovery.back()]
-	if named.is_empty():
-		return {}
-	var result: Dictionary = {"clips":clips,"body_height":float(source_height),"facing":str(raw.get("facing", "right"))}
-	var cycle_distance: Variant = raw.get("cycle_distance", 0.0)
-	if _numbers([cycle_distance]) and float(cycle_distance) > 1.0:
-		result["cycle_distance"] = float(cycle_distance)
-	return result
-
-static func _numbers(values: Array) -> bool:
-	for value: Variant in values:
-		if not (value is int or value is float) or not is_finite(float(value)):
-			return false
-	return true
 
 ## Display-only native organ point in room coordinates. It follows the exact
 ## selected texture, fixed anatomy scale, mirroring and recoil transform.

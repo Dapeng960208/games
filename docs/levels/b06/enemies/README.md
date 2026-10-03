@@ -6,4 +6,5 @@
 
 [本关说明](../README.md) · [关卡索引](../../README.md)
 
-- [b06_archive14_naked_chapter_2026-10-03](b06_archive14_naked_chapter_2026-10-03.md)
+
+[连续裸装验证协议](naked_chapter_protocol.md)

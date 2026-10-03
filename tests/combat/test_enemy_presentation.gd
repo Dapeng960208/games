@@ -2,6 +2,7 @@ extends SceneTree
 ## Body presentation acceptance without EnemyActor, a live run, asset imports,
 ## image capture or a GPU. Run: tools/test.ps1 -Suite enemy_presentation -SkipImport
 
+const MotionFixture = preload("res://tests/support/monster_motion_fixture.gd")
 const Visual = preload("res://scripts/presentation/monsters/enemy_visual.gd")
 var failures: Array[String] = []
 var checks: int = 0
@@ -24,6 +25,7 @@ class RoomStub:
 
 class ActorStub:
 	extends Node2D
+	var static_actor: bool = false
 	var profile: Dictionary = {"archetype":"skirmisher"}
 	var enemy_id: String = ""
 	var body_bounds := Rect2(-30, -52, 60, 70)
@@ -66,7 +68,6 @@ func _run() -> void:
 	_test_recoil_and_pause()
 	_test_archetypes()
 	_test_manifest_and_anchors()
-	_test_production_manifest()
 	_test_empty_m35()
 	if failures.is_empty():
 		print("ENEMY PRESENTATION PASS: %d checks" % checks)
@@ -206,14 +207,14 @@ func _test_manifest_and_anchors() -> void:
 		{"index":2,"region":[180,0,80,120],"foot":[215,110]},
 		{"index":3,"region":[260,0,80,120],"foot":[290,110]}],
 		"clips":{"walk":[0,1],"windup":[0,1],"release":[2],"recovery":[1],"hurt":[3]}}
-	var bank: Dictionary = Visual.parse_motion_manifest(manifest, Vector2(340,120))
+	var bank: Dictionary = MotionFixture.parse_motion_manifest(manifest, Vector2(340,120))
 	_check(bank.clips.walk.size() == 2 and bank.clips.telegraph.size() == 2 and bank.clips.locked[0].name == "1", "Explicit numeric clips resolve and locked holds the final windup frame")
 	_check(bank.clips.execute[0].name == "2" and bank.clips.recoil[0].name == "3", "Release and hurt aliases resolve to skill and impact phases")
 	var broken: Dictionary = manifest.duplicate(true)
 	broken.frames = [{"index":0,"region":[330,0,80,120],"foot":[350,100]}]
-	_check(Visual.parse_motion_manifest(broken, Vector2(340,120)).is_empty(), "Out-of-atlas regions are rejected")
+	_check(MotionFixture.parse_motion_manifest(broken, Vector2(340,120)).is_empty(), "Out-of-atlas regions are rejected")
 	broken.frames = [{"index":0,"region":[0,0,80,120]}]
-	_check(Visual.parse_motion_manifest(broken, Vector2(340,120)).is_empty(), "Frames without an authored foot anchor are rejected")
+	_check(MotionFixture.parse_motion_manifest(broken, Vector2(340,120)).is_empty(), "Frames without an authored foot anchor are rejected")
 	var fixture: Array = _fixture()
 	var actor: ActorStub = fixture[0]
 	var visual: Visual = fixture[1]
@@ -238,26 +239,6 @@ func _test_manifest_and_anchors() -> void:
 	_check(visual.selected_frame.name == "3", "Impact overlays skills with the authored hurt frame")
 	actor.free()
 
-func _test_production_manifest() -> void:
-	var path: String = "asset://enemies/M01_motion_v1.json"
-	if not FileAccess.file_exists(AssetCatalog.resolve(path)):
-		return
-	var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(path)))
-	_check(raw is Dictionary, "M01 production metadata is valid JSON")
-	if not raw is Dictionary:
-		return
-	var dimensions: Array = raw.get("image_size", [])
-	_check(dimensions.size() == 2, "M01 production metadata states its image dimensions")
-	if dimensions.size() != 2:
-		return
-	var bank: Dictionary = Visual.parse_motion_manifest(raw, Vector2(float(dimensions[0]), float(dimensions[1])))
-	_check(not bank.is_empty(), "M01 production regions and foot anchors are accepted by the actual parser")
-	if bank.is_empty():
-		return
-	for clip: String in ["walk", "telegraph", "locked", "execute", "recovery", "recoil"]:
-		_check(bank.clips.has(clip) and not bank.clips[clip].is_empty(), "M01 production %s clip is available" % clip)
-	_check(bank.clips.walk.size() == 8 and bank.clips.recoil.size() == 4, "M01 retains all eight walk poses and all four authored recoil poses")
-
 func _test_empty_m35() -> void:
 	var fixture: Array = _fixture()
 	var actor: ActorStub = fixture[0]
@@ -269,7 +250,7 @@ func _test_empty_m35() -> void:
 	root.add_child(room)
 	actor.room = room
 	var before: Dictionary = visual.body_frame()
-	_check(before.texture == actor.empty_body_texture, "M35 starts with its existing empty-body resource while not carrying")
+	_check(before.texture == actor.empty_body_texture, "M35 reads its registered empty-state texture while not carrying")
 	room.enemy_props.carrying = true
 	var carried: Dictionary = visual.body_frame()
 	_check(carried.texture == actor.body_texture and carried.bounds == before.bounds and carried.region == before.region, "M35 pickup only switches the authoritative texture; bounds and foot stay stable")

@@ -44,6 +44,6 @@
 
 代码按应用、规则、游戏节点、表现和基础设施拆分；运行、界面和房间控制器中的装备、成长、远征、设置、遭遇、交互、反馈和导航逻辑已有独立服务。服务仍通过所属控制器共享上下文，后续功能应继续缩小这些接口。
 
-美术按职业/功能/关卡归类，实际路径由资源索引统一解析。旧 `assets/bosses`、旧角色根目录内容、旧采矿怪物图和已废弃转换脚本已删除；源文件和许可的必要归属继续保留。生成工作副本、隔离档、日志和缓存不入库。
+美术按职业/功能/关卡归类，实际路径由资源索引统一解析。角色、摄影机与共用美术类使用 HeroActor、WorldCamera、GameArtwork；透明边界测量归入共用纹理模块。旧 `assets/bosses`、旧角色根目录内容、旧采矿怪物图和已废弃转换脚本已删除。首关旧虫形动作库、未采用的虫族动作候选及旧加载分支也已移除；B05/B06 使用各自当前身份的姿态库。来源与许可的必要归属继续保留。生成工作副本、隔离档、日志和缓存不入库。
 
 相关验证入口：`tools/test.ps1 -ImportOnly`、`legacy_profile_reset`、`numerical_fresh_profile`、`numerical_instances`、`equipment_class_policy`、`progressive_monster_roster`、`save_recycle_ui`、`environment_native_resources`、`boss_hd_art`、`hero_storybook_family`。具体运行结果以本次提交说明为准。

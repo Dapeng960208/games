@@ -2,6 +2,7 @@ extends SceneTree
 ## The target's local contact pose holds while world movement and danger clocks
 ## keep running. Synthetic frames isolate timing/registration, not art quality.
 
+const MotionFixture = preload("res://tests/support/monster_motion_fixture.gd")
 const Visual = preload("res://scripts/presentation/monsters/enemy_visual.gd")
 var failures: Array[String] = []
 var checks: int = 0
@@ -14,6 +15,7 @@ class BrainStub:
 
 class ActorStub:
 	extends Node2D
+	var static_actor: bool = false
 	var profile: Dictionary = {"archetype":"skirmisher"}
 	var enemy_id: String = ""
 	var body_bounds := Rect2(-30, -52, 60, 70)
@@ -53,7 +55,7 @@ func _fixture() -> Array:
 	var frames: Array = []
 	for index in 5:
 		frames.append({"name":str(index),"region":[index * 8, 0, 8, 16],"foot":[index * 8 + 4, 16]})
-	var bank: Dictionary = Visual.parse_motion_manifest({"body_height":16,"frames":frames,"clips":{"idle":["0"],"recoil":["1","2","3","4"]}}, Vector2(40,16))
+	var bank: Dictionary = MotionFixture.parse_motion_manifest({"body_height":16,"frames":frames,"clips":{"idle":["0"],"recoil":["1","2","3","4"]}}, Vector2(40,16))
 	bank["texture"] = actor.body_texture
 	visual.set("_bank", bank)
 	return [actor, visual]

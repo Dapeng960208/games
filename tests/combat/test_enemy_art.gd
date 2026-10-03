@@ -79,7 +79,7 @@ func run_checks() -> void:
 	room.enemy_skills = Runtime.new()
 	room.add_child(room.enemy_skills)
 	room.enemy_skills.configure(room)
-	_test_parse_and_motion_gates()
+	_test_static_metadata()
 	for index: int in range(1, 55):
 		_test_body("M%02d" % index)
 	for identity: String in BossProfilesScript.ids():
@@ -137,24 +137,15 @@ func _test_body(identity: String) -> void:
 	check(actor.body_bounds.is_equal_approx(installed_bounds) and is_equal_approx(actor.navigation_radius, expected_radius), identity + " repeated registration preserves body scale and collision radius")
 	actor.free()
 
-func _test_parse_and_motion_gates() -> void:
+func _test_static_metadata() -> void:
 	var valid: Dictionary = {"region":[0,0,80,100],"foot":[40,100],"source_height":100,"full_color":true}
 	check(not Art.parse_entry(valid, Vector2(80,100)).is_empty(), "static metadata accepts a measured foot and source height")
 	for key: String in ["foot", "source_height", "region", "full_color"]:
 		var broken: Dictionary = valid.duplicate(true)
 		broken[key] = {"foot":[40,101],"source_height":98,"region":[0,0,90,100],"full_color":false}[key]
 		check(Art.parse_entry(broken, Vector2(80,100)).is_empty(), "invalid static " + key + " is rejected")
-	var motion: Dictionary = {"source_family":Art.FAMILY,"full_color":true,"enemy_id":"M10","quality_gate_passed":true}
-	check(Visual.storybook_motion_approved(motion, "M10"), "reviewed same-creature motion can opt in")
-	check(not Visual.storybook_motion_approved(motion, "M01"), "an insect bank cannot animate the new construct M01")
-	motion.quality_gate_passed = false
-	check(not Visual.storybook_motion_approved(motion, "M10"), "a failed quality gate keeps the new static fallback")
-	var candidate: Variant = JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(Art.motion_path("M10"))))
-	check(candidate is Dictionary and candidate.enemy_id == "M10" and candidate.quality_gate_passed == false and not Visual.storybook_motion_approved(candidate, "M10"), "the actual M10 candidate remains explicitly unapproved")
-	if candidate is Dictionary:
-		var size: Array = candidate.image_size
-		var bank: Dictionary = Visual.parse_motion_manifest(candidate, Vector2(float(size[0]), float(size[1])))
-		check(not bank.is_empty() and bank.clips.walk.size() == 8 and bank.clips.recoil.size() == 4 and is_equal_approx(float(bank.clips.execute[0].name), 10.0), "candidate metadata preserves all measured canonical clips for later review")
+	for identity: String in ["m01_motion_v1", "m10_storybook_motion_v1"]:
+		check(not FileAccess.file_exists(AssetCatalog.resolve("asset://enemies/" + identity + ".json")), identity + " retired bank is absent")
 
 func _test_private_elite_flash_and_snapshot() -> void:
 	var first: EnemyActor = spawn("M01", true)
