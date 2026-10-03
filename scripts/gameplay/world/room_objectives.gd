@@ -14,6 +14,7 @@ const FirstFour = preload("res://scripts/levels/shared/first_four_objectives.gd"
 const PropIdentity = preload("res://scripts/presentation/world/prop_identity.gd")
 const Numerical = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const WorldLabels = preload("res://scripts/presentation/hud/world_label_layer.gd")
+const SkillPresentation = preload("res://scripts/presentation/monsters/enemy_skill_presentation.gd")
 var room: Node2D
 var layout: Dictionary = {}
 var room_id: String = ""
@@ -771,6 +772,7 @@ func draw_world(canvas: Node2D) -> void:
 
 func _draw_labels(canvas: Node2D) -> void:
 	if objective_font == null: return
+	if SkillPresentation.basic_in_progress(player()): return
 	for item: Dictionary in elements.values():
 		if not bool(item.get("active", true)) or bool(item.get("carried", false)) or bool(item.get("destroyed", false)):
 			continue

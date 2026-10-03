@@ -22,6 +22,16 @@ static func readout(brain: RefCounted) -> Dictionary:
  info["command"] = command
  return info
 
+static func basic_in_progress(player: Node) -> bool:
+ if not is_instance_valid(player): return false
+ var feedback: Node = player.get_node_or_null("HeroFeedback")
+ if not is_instance_valid(feedback): return false
+ # A completed skill's pose tail can hide a newer basic in pose_state().
+ # Read the same recorded basic clock as the body's release/recovery instead.
+ var kind: String = str(Properties.read(feedback,"_basic",""))
+ var age: float = float(Properties.read(feedback,"_basic_age",0.0))
+ return (kind == "attack_windup" and age < float(Properties.read(feedback,"_basic_duration",0.0))) or (kind == "attack_strike" and age < 0.29)
+
 static func detail_candidates(room: Node) -> Array[int]:
  var result: Array[int] = []
  if not is_instance_valid(room): return result
@@ -30,7 +40,7 @@ static func detail_candidates(room: Node) -> Array[int]:
  if not player is Node2D or not container is Node: return result
  # Keep the icon and primary telegraph visible while action FX need the space.
  var abilities: Variant = Properties.read(player,"abilities")
- if float(Properties.read(player,"dash_remaining",0.0)) > 0.0 or (abilities is Object and abilities.has_method("busy") and bool(abilities.call("busy"))): return result
+ if basic_in_progress(player) or float(Properties.read(player,"dash_remaining",0.0)) > 0.0 or (abilities is Object and abilities.has_method("busy") and bool(abilities.call("busy"))): return result
  var target_ref: Variant = Properties.read(player,"_automatic_attack_target")
  var target: Object = target_ref.get_ref() if target_ref is WeakRef else null
  var candidates: Array[Dictionary] = []

@@ -8,6 +8,7 @@ const Damage = preload("res://scripts/domain/combat/damage_resolver.gd")
 const TextureSampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const BrainScript = preload("res://scripts/gameplay/monsters/enemy_brain.gd")
 const BodyVisualScript = preload("res://scripts/presentation/monsters/enemy_visual.gd")
+const SkillPresentation = preload("res://scripts/presentation/monsters/enemy_skill_presentation.gd")
 const EnemyPalette = preload("res://scripts/presentation/monsters/enemy_palette.gd")
 const ImageBounds = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const RoleBehavior = preload("res://scripts/gameplay/monsters/enemy_role_behavior.gd")
@@ -603,7 +604,7 @@ func _draw() -> void:
 		draw_rect(Rect2(-19,bar_y-1,38,6),Color("4d3854"))
 		draw_rect(Rect2(-18,bar_y,36,4),Color("f1d9b4"))
 		draw_rect(Rect2(-18,bar_y,36 * health.current / health.maximum,4),Color("d65b65"))
-	if not enemy_id.is_empty():
+	if not enemy_id.is_empty() and not SkillPresentation.basic_in_progress(room.player):
 		var nearby: bool = position.distance_to(room.player.position)<300
 		var english: bool = Words.locale == "en"
 		var caption: String = "Lv.%d" % enemy_level
