@@ -29,7 +29,7 @@ static func display(hero: String, relic_id: String, rank: int = 1, biome: String
 			description = "普攻降低目标15%%护甲，持续%d秒，并每秒造成%d%%攻击力物理伤害。" % [5 if enhanced else 4, 12 if enhanced else 8]
 		"CH01:RL03":
 			name = "回震砧"
-			description = "每第3发原始普攻造成有效命中时，获得%d%%最大生命护盾（4秒）并恢复%d怒气。同一攻击只触发一次。" % [18 if enhanced else 12, 15 if enhanced else 10]
+			description = "每第3发原始普攻造成有效命中时，获得%d%%最大生命护盾（4秒）并恢复%d怒气。同一攻击只触发一次。" % [18 if enhanced else 12, int(Numbers.scale(15 if enhanced else 10, ruleset_version))]
 		"CH02:RL01":
 			name = "分流弹匣"
 			description = "普攻命中后向前分出2颗扇弹，每颗造成%d%%攻击力物理伤害。" % (60 if enhanced else 40)
@@ -58,7 +58,7 @@ static func _english_description(hero: String, id: String, enhanced: bool, rules
 	match hero+":"+id:
 		"CH01:RL01": return "Basic hits cleave up to 3 extra enemies in front for %d%% attack physical damage." % (60 if enhanced else 40)
 		"CH01:RL02": return "Basic hits reduce target armor by 15%% for %ds and deal %d%% attack physical damage each second." % [5 if enhanced else 4,12 if enhanced else 8]
-		"CH01:RL03": return "Every third fired original basic attack, on a confirmed hit, grants a %d%% max-HP guard for 4s and restores %d Rage." % [18 if enhanced else 12, 15 if enhanced else 10]
+		"CH01:RL03": return "Every third fired original basic attack, on a confirmed hit, grants a %d%% max-HP guard for 4s and restores %d Rage." % [18 if enhanced else 12, int(Numbers.scale(15 if enhanced else 10, ruleset_version))]
 		"CH02:RL01": return "Basic hits launch 2 forward split bullets, each dealing %d%% attack physical damage." % (60 if enhanced else 40)
 		"CH02:RL02": return "Basic hits cause 3s of bleed, dealing %d%% attack physical damage each second." % (15 if enhanced else 10)
 		"CH02:RL03": return "Every third fired original basic attack, on a confirmed hit, restores %d ordinary rounds and adds %s%% attack physical damage. It neither refreshes empowered rounds nor cancels reload." % [2 if enhanced else 1, "52.5" if enhanced else "35"]

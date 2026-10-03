@@ -1421,7 +1421,7 @@ func _update_tooltip() -> void:
 			body += ("\nPending this room: %d XP" if Words.locale == "en" else "\n本房待结算：%d 经验") % pending
 	elif active_detail_slot == "passive":
 		tooltip_title.text = passive_title.text
-		body = str(passive_snapshot.get("description",passive_snapshot.get("hint","")))+"\n\n"+passive_state.text+"\n"+passive_hint.text
+		body = GameStyle.content_text(passive_snapshot,"description",GameStyle.content_text(passive_snapshot,"hint"))+"\n\n"+passive_state.text+"\n"+passive_hint.text
 	elif active_detail_slot == "inventory":
 		tooltip_title.text = "Backpack & character" if Words.locale == "en" else "背包与角色属性"
 		body = "Press B or click to change equipment and inspect your live character stats. The game pauses while the backpack is open." if Words.locale == "en" else "按 B 或点击打开背包，查看与更换装备、比较加成和角色实时属性。背包打开时游戏暂停。"

@@ -394,7 +394,12 @@ func hud_state() -> Dictionary:
 	if is_instance_valid(owner_player):
 		refund *= float(owner_player.resource_gain_multiplier())
 	var ready: bool = starlight >= 3
-	return {"kind":"star_chorus", "name":"星辉协奏", "description":"实际施法积星辉；满三层后的下一法术强化25%，回复法力。", "current":starlight, "starlight":starlight, "stacks":starlight, "max":3, "ready":ready, "decay_remaining":decay_remaining, "decay_duration":CHORUS_LIFETIME, "remaining":decay_remaining, "rhythm_remaining":decay_remaining, "chorus_multiplier":CHORUS_MULTIPLIER, "damage_bonus":0.25, "resource_refund":refund, "mana_refund":refund, "pet_state":companion.hud_state() if is_instance_valid(companion) else "follow", "echo_remaining":echo_remaining, "cooldown":0.0, "icd":0.0, "color":Color("d7bfef"), "hint":"协奏就绪 · 下一法术强化25%% / 回%d法力" % int(refund) if ready else "实际施法 %d/3 · 团团协同" % starlight}
+	var refund_text: int = int(Numbers.amount(refund,_ruleset_version()))
+	var description: String = "战斗中实际释放主动技能积一层星辉；满三层后的下一法术消耗星辉，伤害或护盾提高25%%，回复%d法力。8秒未继续施法，星辉消散。" % refund_text
+	var description_en: String = "Actual active-skill releases in combat grant one Starlight stack. At three stacks, the next spell consumes them for +25%% damage or shield and restores %d Mana. Starlight fades after 8 seconds without another release." % refund_text
+	var hint: String = "协奏就绪 · 下一法术强化25%% / 回%d法力" % refund_text if ready else "实际施法 %d/3 · 团团协同" % starlight
+	var hint_en: String = "Chorus ready · next spell +25%% / restore %d Mana" % refund_text if ready else "Spell releases %d/3 · Tuantuan assists" % starlight
+	return {"kind":"star_chorus", "name":"星辉协奏", "name_en":"Starlight Chorus", "description":description, "description_en":description_en, "current":starlight, "starlight":starlight, "stacks":starlight, "max":3, "ready":ready, "decay_remaining":decay_remaining, "decay_duration":CHORUS_LIFETIME, "remaining":decay_remaining, "rhythm_remaining":decay_remaining, "chorus_multiplier":CHORUS_MULTIPLIER, "damage_bonus":0.25, "resource_refund":refund, "mana_refund":refund, "pet_state":companion.hud_state() if is_instance_valid(companion) else "follow", "echo_remaining":echo_remaining, "cooldown":0.0, "icd":0.0, "color":Color("d7bfef"), "hint":hint, "hint_en":hint_en}
 
 static func _valid_multiplier(value: Variant) -> bool:
 	return (value is int or value is float) and is_finite(float(value)) and float(value) in [1.0, CHORUS_MULTIPLIER]

@@ -311,7 +311,17 @@ func hud_state() -> Dictionary:
 	var phase: String = "berserk" if active else "rearm" if berserk_rearm_remaining > 0.0 else "normal"
 	var cap: float = float(Game.run.stats.get("resource_max", 0.0)) if Game.run != null else 0.0
 	var rage: float = float(Game.run.resource) if Game.run != null else 0.0
-	return {"kind":"fury", "name":"怒气狂战", "rage":rage, "current":rage, "rage_max":cap, "max":cap, "phase":phase, "remaining":berserk_remaining if active else berserk_rearm_remaining, "duration":BERSERK_DURATION if active else REARM_DURATION if phase == "rearm" else 0.0, "berserk_active":active, "berserk_remaining":berserk_remaining, "rearm_remaining":berserk_rearm_remaining, "incoming_rage_icd":incoming_rage_icd, "ready":not active and berserk_rearm_remaining <= 0.0, "damage_multiplier":primary_damage_multiplier(), "attack_speed_multiplier":attack_speed_multiplier(), "movement_multiplier":movement_multiplier(), "description":"有效普攻+10怒，技能首次有效命中+8怒，受击+5怒（1秒冷却）。满怒触发8秒狂暴。", "hint":"狂暴：伤害+20% / 普攻攻速+25% / 移速+10%" if active else "狂暴再触发锁定" if phase == "rearm" else "持续进攻积怒；脱战5秒后每秒衰减10怒"}
+	var version: int = Game.run.ruleset_version() if Game.run != null else Numbers.default_ruleset()
+	var gain: float = float(owner_player.resource_gain_multiplier()) if is_instance_valid(owner_player) and owner_player.has_method("resource_gain_multiplier") else 1.0
+	var basic_gain: int = int(Numbers.amount(float(Numbers.scale(10.0,version)) * gain,version))
+	var skill_gain: int = int(Numbers.amount(float(Numbers.scale(8.0,version)) * gain,version))
+	var hurt_gain: int = int(Numbers.amount(float(Numbers.scale(5.0,version)) * gain,version))
+	var decay: int = int(Numbers.scale(10.0,version))
+	var description: String = "有效普攻+%d怒，技能首次有效命中+%d怒，受击+%d怒（1秒冷却）。满怒触发8秒狂暴。" % [basic_gain,skill_gain,hurt_gain]
+	var description_en: String = "Confirmed basic hits grant %d Rage; each skill's first confirmed hit grants %d Rage; damage taken grants %d Rage once per second. Full Rage triggers 8 seconds of Berserk." % [basic_gain,skill_gain,hurt_gain]
+	var hint: String = "狂暴：伤害+20% / 普攻攻速+25% / 移速+10%" if active else "狂暴再触发锁定" if phase == "rearm" else "持续进攻积怒；脱战5秒后每秒衰减%d怒" % decay
+	var hint_en: String = "Berserk: +20% damage / +25% basic attack speed / +10% movement speed" if active else "Berserk retrigger locked" if phase == "rearm" else "Keep attacking to build Rage; after 5 seconds out of combat, lose %d Rage per second" % decay
+	return {"kind":"fury", "name":"怒气狂战", "name_en":"Rage Berserker", "rage":rage, "current":rage, "rage_max":cap, "max":cap, "phase":phase, "remaining":berserk_remaining if active else berserk_rearm_remaining, "duration":BERSERK_DURATION if active else REARM_DURATION if phase == "rearm" else 0.0, "berserk_active":active, "berserk_remaining":berserk_remaining, "rearm_remaining":berserk_rearm_remaining, "incoming_rage_icd":incoming_rage_icd, "ready":not active and berserk_rearm_remaining <= 0.0, "damage_multiplier":primary_damage_multiplier(), "attack_speed_multiplier":attack_speed_multiplier(), "movement_multiplier":movement_multiplier(), "description":description, "description_en":description_en, "hint":hint, "hint_en":hint_en}
 
 static func _finite_time(value: Variant, ceiling: float) -> float:
 	if not (value is float or value is int):
