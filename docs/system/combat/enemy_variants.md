@@ -8,7 +8,7 @@
 
 18份独立manifest登记source_family、原始纹理、alpha区域、foot、source_height和SHA-256。区域以alpha≥16有效内容加4像素边距确定，排除近乎透明的生成扩散噪点，原PNG像素不变。新物种没有旧Mxx_v1图，EnemyArt特别按普通怪解剖高度clamp(导航半径×3.8,66,88)×1.20与足点y=18注册，避免继承rust_mite回退的y=38；导航/伤害半径不变。
 
-来源与生成提示见新增18种provenance](../../../assets/system/ui/common/ui\refactor_v1\codex/provenance_new_monsters.json)。Godot4.7.2实际MineEnemy加载、真实纹理/region、脚点、碰撞不变、各行动阶段身份与独立徽章271项通过；这是运行注册检查，新增战斗UI的最终GPU像素检查见验收记录。
+来源与生成提示见[新增18种 provenance](../../../assets/system/ui/common/ui/refactor_v1/codex/provenance_new_monsters.json)。Godot4.7.2实际MineEnemy加载、真实纹理/region、脚点、碰撞不变、各行动阶段身份与独立徽章271项通过；这是运行注册检查，新增战斗UI的最终GPU像素检查见验收记录。
 
 | ID | 原生图鉴/身体 | region | foot / source_height | manifest |
 |---|---|---|---|---|
@@ -108,9 +108,6 @@ Godot 4.7.2、RTX 3060 的真实 GPU 结果为：
 
 L15 极限难度实际生成 53 只敌人、使用 53 个独立身体区域；L19 为 58 只、58 个。测试逐批调用真实波次生成路径并清理前波以控制并发，验证的是有限计划和运行表现，不是自然游玩中三秒增援节奏或战斗难度的完整验收。日志没有额外脚本或引擎错误。
 
-本次查看的临时实机截图位于隔离目录，未加入 Git，清理该临时目录后链接将失效：
-
-- [L15 第二战区实际波次](../../../tools/godot/test-runs/20261001T102636199-c37b35e9/L15_enemy_variants.png)
-- [L19 第二战区实际波次](../../../tools/godot/test-runs/20261001T102636199-c37b35e9/L19_enemy_variants.png)
+L15、L19 第二战区实际波次截图由上面的 `enemy_variants` 图形检查生成。截图保存在本次运行的隔离输出目录，未加入 Git；运行结束后从终端报告的目录查看，不在正文保留指向本机临时文件的链接。
 
 图像中可见同原型的身体造型差异，身体裁切和足点已校对。完整逐帧变体动作、全部朝向和连招的主观可读性、密集群战遮挡与自然难度平衡仍待后续游玩打磨，不因素材数量或检查通过而记为完成。
