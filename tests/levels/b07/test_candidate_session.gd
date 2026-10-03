@@ -53,7 +53,11 @@ func _run() -> void:
 				"session": bad.run_id="another-run"
 				"profile": bad.profile_path="user://test_b07_candidate/other.json"
 				"hero_room": bad.hero.equipment.room_id="L38"
-				"calibration": bad.hero.runtime.b07_mechanisms.calibration=Calibration.archived(14)
+				"calibration":
+					# Archive14 is now the default; corruption must actually differ.
+					var current_version := int(saved.hero.runtime.b07_mechanisms.calibration.get("version",0))
+					bad.hero.runtime.b07_mechanisms.calibration=Calibration.archived(13 if current_version==14 else 14)
+					check(int(bad.hero.runtime.b07_mechanisms.calibration.version)!=current_version,"fixture changes calibration identity")
 				"sun": bad.sun.gate_open=false
 			check(not launch.traversal.restore_checkpoint(bad),"reject "+corruption)
 			check(room.layout_id==same_room and room.enemies.get_child_count()==actor_count and launch.traversal.node_index==same_index and Game.run.hp==hp_before,"atomic "+corruption)

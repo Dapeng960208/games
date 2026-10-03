@@ -40,6 +40,11 @@ static func publish(room: Node) -> Dictionary:
 	if not enabled(room):
 		if is_instance_valid(room): room.remove_meta(BATCH_META)
 		return {}
+	# Keep this pure helper loadable by script-only geometry checks, where
+	# autoload identifiers are not registered at compile time.
+	var run: Variant = Props.read(room.get_node_or_null("/root/Game"),"run")
+	if run == null or float(Props.read(run,"hp",0.0)) <= 0:
+		return clear_terminal(room)
 	var ids := Cards.detail_candidates(room)
 	var placements: Dictionary = {}
 	var obstacles := body_rects(room)
@@ -75,6 +80,28 @@ static func publish(room: Node) -> Dictionary:
 	for actor: Node in enemies.get_children():
 		var badge: Node2D = actor.get_node_or_null("EnemySkillBadge")
 		if badge != null: badge.queue_redraw()
+	return batch
+
+static func clear_terminal(room: Node) -> Dictionary:
+	if not is_instance_valid(room): return {}
+	var enemies: Node = Props.read(room,"enemies")
+	if is_instance_valid(enemies):
+		for actor: Node in enemies.get_children():
+			var badge: Node2D = actor.get_node_or_null("EnemySkillBadge")
+			if badge == null: continue
+			badge.info = {}
+			badge.command = {}
+			badge.locked = false
+			badge.progress = 0.0
+			badge.detail_slot = -1
+			badge.show_detail = false
+			badge.last_detail_draw = {}
+			badge.hide()
+			badge.queue_redraw()
+	# Do not alter retained gameplay commands or settled run data. Only retire
+	# the presentation transaction, so repeated coordinator ticks stay empty.
+	var batch := {"frame":Engine.get_process_frames(),"selected_ids":[],"placements":{},"terminal":true}
+	room.set_meta(BATCH_META,batch)
 	return batch
 
 static func placement(badge: Node2D) -> Dictionary:

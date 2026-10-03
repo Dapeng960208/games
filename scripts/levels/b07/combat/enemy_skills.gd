@@ -70,18 +70,22 @@ static func active(p: Dictionary, origin: Vector2, target: Vector2, is_lit: bool
 	var n := int(id.trim_prefix("B07-M"))-1
 	var d := int(p.difficulty)
 	var c := base(p,origin,target)
-	var source := Content.enemy(id)
 	c.merge({"ability_id":id+":"+ACTIONS[n],"ability_name":NAMES[n],"ability_name_en":ACTIONS[n].replace("_"," "),
-		"counter_cue":source.get("counter_and_drop_text","从侧面离开预警"),"active":true,"cooldown":float(CDS[n]),
+		"active":true,"cooldown":float(CDS[n]),
 		"range":float(p.attack_range),"lit":is_lit,"cycle":cycle},true)
 	var v: Vector2 = c.direction
+	# Live cues describe the command being built, not the cross-tier drop catalog.
 	match n+1:
 		1:
-			c.merge({"shape":"line","width":30.0,"range":180.0,"coefficient":110},true)
+			c.merge({"shape":"line","width":30.0,"range":180.0,"coefficient":110,
+				"counter_cue":"侧走离开矛线","counter_cue_en":"Step sideways out of the spear line"},true)
 			if d>=2:
 				var tail := child(c,"melee","cone",40,.8)
-				tail.merge({"range":110.0,"angle":PI,"direction":-v,"body_bound":true,"minimum_visible_seconds":.8},true)
+				tail.merge({"range":110.0,"angle":PI,"direction":-v,"body_bound":true,"minimum_visible_seconds":.8,
+					"counter_cue":"避开身后尾扫的独立预警","counter_cue_en":"Avoid the separately warned rear tail sweep"},true)
 				c.followups.append(tail)
+				c.counter_cue+="；避开身后尾扫的独立预警"
+				c.counter_cue_en+="; avoid the separately warned rear tail sweep"
 			if d>=4 and is_lit:
 				var step := child(c,"b07_reposition","circle",0,1.2)
 				step.merge({"displacement":v*60,"harmless":true},true)
@@ -90,12 +94,15 @@ static func active(p: Dictionary, origin: Vector2, target: Vector2, is_lit: bool
 			var distance := minf(210,origin.distance_to(target))
 			c.merge({"kind":"charge","shape":"circle","radius":55.0,"coefficient":95,"range":210.0,"travel_distance":distance,
 				"target":origin+v*distance,"duration":.4,"path_mode":"leap","arc_height":0.0,"landing_only":true,"landing_shape":"circle",
-				"minimum_visible_seconds":1.0,"b07_after_motion":"sand_ball","recovery":1.2},true)
+				"minimum_visible_seconds":1.0,"b07_after_motion":"sand_ball","recovery":1.2,
+				"counter_cue":"离开跃击落点；光照、近身或造成伤害可显形","counter_cue_en":"Leave the landing zone; light, proximity or damage reveals camouflage"},true)
 		3:
-			c.merge({"kind":"projectile","shape":"line","range":260.0,"width":22.0,"radius":11.0,"speed":320.0,"pierce":true,"coefficient":100},true)
+			c.merge({"kind":"projectile","shape":"line","range":260.0,"width":22.0,"radius":11.0,"speed":320.0,"pierce":true,"coefficient":100,
+				"counter_cue":"侧走避开去程飞盘","counter_cue_en":"Step sideways out of the outbound disc path"},true)
 			if d>=2: c["disc_return"]={"coefficient":40,"diagonal":d>=4 and is_lit,"sign":1 if cycle%2==0 else -1,"gap":.8}
 		4:
-			c.merge({"kind":"b07_shield","coefficient":0,"range":110.0,"duration":2.0,"recovery":1.2,"body_bound":true},true)
+			c.merge({"kind":"b07_shield","coefficient":0,"range":110.0,"duration":2.0,"recovery":1.2,"body_bound":true,
+				"counter_cue":"绕到盾后，避开盾击","counter_cue_en":"Move behind the shield and avoid the shield bash"},true)
 			var bash := child(c,"melee","cone",110,2.0)
 			bash.merge({"range":110.0,"angle":1.9,"body_bound":true,"b07_push":50.0 if d>=2 else 0.0,"shield_bash":true},true)
 			c.followups.append(bash)
@@ -104,15 +111,18 @@ static func active(p: Dictionary, origin: Vector2, target: Vector2, is_lit: bool
 			c.merge({"kind":"b07_heal","shape":"line","range":200.0,"width":10.0,"coefficient":0,
 				"target_count":2 if d>=4 else 1,"heal_ratio":.03 if d>=4 else .04 if d>=2 else .06,
 				"shield_ratio":.04 if d>=2 else 0.0,"shield_duration":3.0,"interruptible":true,
-				"minimum_visible_seconds":1.3,"fx_color":Color("66d3b0")},true)
+				"minimum_visible_seconds":1.3,"fx_color":Color("66d3b0"),
+				"counter_cue":"移开照向目标的光束，或打断祀者","counter_cue_en":"Move the light off the heal target or interrupt the caster"},true)
 		6:
 			var distance := minf(150,origin.distance_to(target))
 			c.merge({"kind":"charge","shape":"circle","radius":70.0,"coefficient":100,"range":150.0,
 				"travel_distance":distance,"target":origin+v*distance,"duration":.3,"path_mode":"burrow","arc_height":0.0,
 				"landing_only":true,"landing_shape":"circle","minimum_visible_seconds":1.1,"b07_after_motion":"sand_emerge",
-				"b07_mound":true,"recovery":1.9 if d>=4 else 1.2,"recovery_floor":1.5 if d>=4 else 1.2},true)
+				"b07_mound":true,"recovery":1.9 if d>=4 else 1.2,"recovery_floor":1.5 if d>=4 else 1.2,
+				"counter_cue":"离开沙丘隆起的落点；出土后趁空窗反击","counter_cue_en":"Leave the mound landing zone; counterattack during emergence recovery"},true)
 		7:
-			c.merge({"kind":"b07_vortex","shape":"circle","radius":100.0,"coefficient":60,"range":280.0,"b07_pull":40.0},true)
+			c.merge({"kind":"b07_vortex","shape":"circle","radius":100.0,"coefficient":60,"range":280.0,"b07_pull":40.0,
+				"counter_cue":"从侧面离开漩涡预警","counter_cue_en":"Move sideways out of the vortex warning"},true)
 			if d>=2:
 				var sand := area(c,target,100,20,0)
 				sand.merge({"duration":2.0,"tick_interval":1.0,"continuous":true,"persistent_clearance":true},true)
@@ -122,7 +132,8 @@ static func active(p: Dictionary, origin: Vector2, target: Vector2, is_lit: bool
 				line.merge({"origin":target,"target":target+v*180,"range":180.0,"width":26.0,"minimum_visible_seconds":.8},true)
 				c.followups.append(line)
 		13:
-			c.merge({"shape":"line","range":360.0,"width":24.0,"coefficient":125,"damage_type":"magic","mirror_bend_requested":d>=2},true)
+			c.merge({"shape":"line","range":360.0,"width":24.0,"coefficient":125,"damage_type":"magic","mirror_bend_requested":d>=2,
+				"counter_cue":"侧走离开日盘光束","counter_cue_en":"Step sideways out of the sun beam"},true)
 	var result := timed(geometry(c),float(TELLS[n]),d)
 	return minimum_warning(result,float(c.get("minimum_visible_seconds",0)))
 
@@ -178,6 +189,10 @@ static func constrain(actor: Node2D, source: Dictionary) -> Dictionary:
 		var back := child(c,"projectile","line",int(spec.coefficient),float(c.range)/float(c.speed)+float(spec.gap))
 		back.merge({"origin":endpoint,"target":destination,"direction":endpoint.direction_to(destination),"range":endpoint.distance_to(destination),
 			"points":[endpoint,destination],"minimum_visible_seconds":float(spec.gap),"stage":1},true)
+		if str(c.caster_enemy_id)=="B07-M03":
+			back.merge({"counter_cue":"避开返程飞盘的独立预警","counter_cue_en":"Avoid the separately warned return disc path"},true)
+			c.counter_cue="侧走避开去程飞盘；留意返程的独立预警"
+			c.counter_cue_en="Step sideways out of the outbound disc path; watch the separately warned return path"
 		c.followups.append(back)
 	if bool(c.get("mirror_bend_requested",false)) and mechanism is Object and mechanism.has_method("enemy_attack_lines"):
 		var lines: Array=mechanism.enemy_attack_lines(actor,1)
@@ -187,8 +202,11 @@ static func constrain(actor: Node2D, source: Dictionary) -> Dictionary:
 			var end: Vector2=mirror.target
 			var bend := child(c,"melee","line",40,1.0 if int(c.difficulty)>=4 else .8)
 			bend.merge({"origin":start,"target":end,"direction":start.direction_to(end),"range":start.distance_to(end),"points":[start,end],
-				"mirror_id":mirror.mirror_id,"mirror_state":mirror.mirror_state,"minimum_visible_seconds":1.0 if int(c.difficulty)>=4 else .8},true)
+				"mirror_id":mirror.mirror_id,"mirror_state":mirror.mirror_state,"minimum_visible_seconds":1.0 if int(c.difficulty)>=4 else .8,
+				"counter_cue":"避开折射光线；转镜可取消该段","counter_cue_en":"Avoid the reflected beam; turn its mirror to cancel it"},true)
 			c.followups.append(bend)
+			c.counter_cue="侧走离开日盘光束；留意折射段，转镜可取消该段"
+			c.counter_cue_en="Step sideways out of the sun beam; watch the reflected beam and turn its mirror to cancel it"
 	for i in range(c.followups.size()):
 		var follow: Dictionary=c.followups[i]
 		if bool(follow.get("persistent_clearance",false)):

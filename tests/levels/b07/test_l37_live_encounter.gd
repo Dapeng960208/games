@@ -295,6 +295,15 @@ func _finish() -> void:
 	finishing = true
 	while capture_busy: await get_tree().process_frame
 	if frames.size() < 8: await _capture("terminal_"+reason)
+	var terminal_ui := {"checked":false}
+	if reason == "player_death":
+		var batch: Dictionary=room.get_meta(Layout.BATCH_META,{})
+		terminal_ui={"checked":true,"hud_visible":launch.hud.is_visible_in_tree(),"hud_interaction":launch.hud.interaction_enabled,"hud_processing":launch.hud.is_processing(),"input_blocked":room.input_blocked,"outcome":launch.finished_outcome,"cards":_cards(DisplayServer.get_name()!="headless"),"published_batch":_json_value(batch)}
+		if terminal_ui.hud_visible or terminal_ui.hud_interaction or terminal_ui.hud_processing or not terminal_ui.input_blocked or terminal_ui.outcome!="death": failures.append("terminal gameplay HUD not retired")
+		if terminal_ui.cards.visible_detail_count!=0 or not batch.get("selected_ids",[-1]).is_empty() or not batch.get("placements",{"stale":true}).is_empty(): failures.append("terminal cards not empty")
+		for actor: Node in room.enemies.get_children():
+			var badge: Node2D=actor.get_node_or_null("EnemySkillBadge")
+			if badge!=null and (badge.visible or badge.show_detail or not badge.info.is_empty() or not badge.command.is_empty() or not badge.last_detail_draw.is_empty()): failures.append("terminal retained badge "+str(actor.enemy_id))
 	var coverage: Array[Dictionary] = []
 	for id: int in cohort:
 		var entry: Dictionary = cohort[id].duplicate(true)
@@ -305,6 +314,7 @@ func _finish() -> void:
 		entry["coverage_limit"] = "enemy_dead_before_unseen_phase" if entry.dead_t != null else reason+"; inspect minimum_player_distance and event commands for range/admission"
 		coverage.append(entry)
 	var report := {"sample":"scripted_keyboard_real_engine_candidate","natural_human_play":false,"normal_growth_proof":false,"candidate_initialization":"Launcher CH01 difficulty 0 injects Lv31 XP; fresh isolated profile equipment","runtime_frozen":false,"manual_physics_or_fsm_steps":false,"observation_limit":"after-physics polling can miss an effect spawned and removed in the same physics tick; absent events are not proof an effect never existed","duration_limit":LIMIT,"stop_reason":reason,"input_schedule":MOVES,"initial":initial,"terminal":terminal,"last_trace_before_cleanup":trace[-1] if not trace.is_empty() else {},"coverage":coverage,"m03_return_coverage":"not_authored_at_difficulty_0; disc_return requires difficulty>=2; no owner-catch claim","events":events,"trace":trace,"render_trace":render_trace,"published_batch_checks":published_batch_checks,"published_batch_issues":published_batch_issues,"render_evidence":"badge records actual _draw rect; sample only frame_post_draw","frames":frames,"failures":failures,"capture_note":"post_draw waits advance normal engine; use snapshot_t and engine_physics_frame; headless observes same path without image"}
+	report["terminal_ui"]=terminal_ui
 	var file := FileAccess.open(output.path_join("L37_live_encounter_report.json"),FileAccess.WRITE)
 	if file == null: failures.append("report file open")
 	else:

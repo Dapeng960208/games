@@ -8,12 +8,14 @@ const Adapter = preload("res://scripts/levels/b07/combat/enemy_runtime.gd")
 class Mechanism extends RefCounted:
 	var lit := true
 	var mirror_state := 1
+	var mirror_lines_available := true
 	var area_clear := true
 	var revealed := false
 	func is_lit(_actor: Node2D) -> bool: return lit
 	func is_revealed(_actor: Node2D) -> bool: return revealed
 	func reveal_actor(_actor: Node2D, _seconds: float) -> void: revealed=true
 	func enemy_attack_lines(_actor: Node2D, maximum: int) -> Array:
+		if not mirror_lines_available: return []
 		var lines: Array=[{"origin":Vector2(140,-80),"target":Vector2(140,160),"mirror_id":"fixed_east","mirror_state":mirror_state},
 			{"origin":Vector2(240,-80),"target":Vector2(240,160),"mirror_id":"fixed_west","mirror_state":mirror_state}]
 		return lines.slice(0,maximum)
@@ -64,6 +66,14 @@ func check(value: bool, label: String) -> void:
 		failures+=1
 		push_error("B07 combat: "+label)
 
+func check_live_cue(command: Dictionary, label: String) -> void:
+	var cue := str(command.get("counter_cue",""))
+	var drop_suffix := false
+	for slot: String in ["胸","鞋","头","戒","裤","手","武器","饰品"]:
+		drop_suffix=drop_suffix or cue.ends_with("；"+slot)
+	check(not cue.is_empty() and not drop_suffix,label+" live cue excludes drop slots")
+	for follow: Dictionary in command.get("followups",[]): check_live_cue(follow,label+" followup")
+
 func _initialize() -> void:
 	var arena := Arena.new()
 	var actor := Actor.new()
@@ -82,6 +92,7 @@ func _initialize() -> void:
 			actor.profile=p
 			var source := Skills.active(p,Vector2.ZERO,victim.position,true)
 			var command := Skills.constrain(actor,source)
+			check_live_cue(command,id+" D%d" % d)
 			check(float(command.tell)>=float(command.timing.minimum_tell_seconds) and float(command.lock)>=.22,id+" shared warning floors")
 			var frozen := Skills.freeze_damage(command,p)
 			check(not frozen.is_empty() and int(frozen.damage)==Skills.Numbers.skill_damage(p,int(command.coefficient),1,frozen),id+" damage resolves once")
@@ -94,6 +105,9 @@ func _initialize() -> void:
 				1:
 					check(command.range==180.0 and command.coefficient==110,"spear fixed line")
 					check(command.followups.size()==(2 if d>=4 else 1 if d>=2 else 0),"spear cumulative D additions")
+					check(str(command.counter_cue).contains("矛线") and str(command.counter_cue).contains("尾扫")==(not command.followups.is_empty()),"spear cue adds tail only with its followup")
+					check(str(command.counter_cue_en).contains("spear line") and str(command.counter_cue_en).contains("tail")==(not command.followups.is_empty()),"English spear cue follows actual tail gate")
+					if d==0: check(command.counter_cue=="侧走离开矛线","D0 spear cue describes only the spear line")
 					if d>=2: check(command.followups[0].coefficient==40 and command.followups[0].delay>=.8,"tail owns independent warning")
 				2:
 					check(command.kind=="charge" and command.coefficient==95 and command.landing_only,"scout landing attack")
@@ -101,6 +115,10 @@ func _initialize() -> void:
 				3:
 					check(command.kind=="projectile" and command.range==260.0 and command.coefficient==100,"outbound physical disc")
 					check(command.followups.size()==(1 if d>=2 else 0),"return only D2+")
+					check(str(command.counter_cue).contains("去程") and str(command.counter_cue).contains("返程")==(not command.followups.is_empty()),"disc cue adds return only with its followup")
+					check(str(command.counter_cue_en).contains("outbound") and str(command.counter_cue_en).contains("return")==(not command.followups.is_empty()),"English disc cue follows actual return gate")
+					check(not str(source.counter_cue).contains("返程"),"disc return cue waits for the constrained return path")
+					if d==0: check(command.counter_cue=="侧走避开去程飞盘","D0 disc cue describes only the outbound path")
 					if d>=2:
 						check(command.followups[0].coefficient==40 and command.followups[0].origin==command.target,"return starts at frozen endpoint")
 						check(not is_zero_approx(float(command.followups[0].target.y)) if d>=4 else command.followups[0].target==Vector2.ZERO,"lit D4 fixed diagonal")
@@ -124,10 +142,17 @@ func _initialize() -> void:
 				13:
 					check(command.range==360.0 and command.coefficient==125,"sun beam length and strength")
 					check(command.followups.size()==(1 if d>=2 else 0),"fixed mirror line D2 gate")
+					check(str(command.counter_cue).contains("折射")==(not command.followups.is_empty()),"sun beam cue adds reflection only with a mirror segment")
+					check(str(command.counter_cue_en).contains("reflected")==(not command.followups.is_empty()),"English sun beam cue follows actual mirror segment")
 					if d>=2:
 						check(command.followups[0].points==[Vector2(140,-80),Vector2(140,160)],"beam uses authored mirror segment, no random ray")
 						check(command.followups[0].coefficient==40 and command.followups[0].delay==(1.0 if d>=4 else .8),"beam second-stage damage and warning")
 	# Environment conditioning is done before lock and never mutates the source.
+	actor.profile=Skills.profile("B07-M13",35,2)
+	arena.b07_mechanics.mirror_lines_available=false
+	var unreflected_beam := Skills.constrain(actor,Skills.active(actor.profile,Vector2.ZERO,victim.position,true))
+	check(unreflected_beam.followups.is_empty() and not str(unreflected_beam.counter_cue).contains("折射") and not str(unreflected_beam.counter_cue_en).contains("reflected"),"D2 without a mirror segment advertises only the primary beam")
+	arena.b07_mechanics.mirror_lines_available=true
 	actor.profile=Skills.profile("B07-M03",35,4)
 	arena.obstruction=.5
 	var disc := Skills.constrain(actor,Skills.active(actor.profile,Vector2.ZERO,victim.position,false))

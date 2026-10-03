@@ -6,6 +6,9 @@ const Progression = preload("res://scripts/domain/progression/hero_progression.g
 var room: Node2D
 var traversal = Traversal.new()
 var status: Label
+var hud: Control
+var candidate_run_id := ""
+var finished_outcome := ""
 var auto_start := true
 var last_error := ""
 func _ready() -> void:
@@ -44,6 +47,10 @@ func start_candidate(hero: String, difficulty: int, build_hud: bool = true) -> b
 	if not Game.start_run():
 		last_error = "Candidate run initialization failed: "+(Game.last_error if not Game.last_error.is_empty() else "invalid isolated profile or resolved stats")
 		return false
+	candidate_run_id = Game.run.id
+	finished_outcome = ""
+	if not Game.run_finished.is_connected(_on_run_finished):
+		Game.run_finished.connect(_on_run_finished)
 	room = preload("res://scenes/gameplay/world/room.tscn").instantiate()
 	var context: Dictionary = preload("res://scripts/levels/b07/world/candidate.gd").route()[0]
 	context.merge({"difficulty":difficulty,"node_index":0,"seed":27007},true)
@@ -62,7 +69,7 @@ func start_candidate(hero: String, difficulty: int, build_hud: bool = true) -> b
 	if build_hud:
 		var canvas := CanvasLayer.new()
 		add_child(canvas)
-		var hud := preload("res://scripts/presentation/hud/hud.gd").new()
+		hud = preload("res://scripts/presentation/hud/hud.gd").new()
 		hud.room = room
 		canvas.add_child(hud)
 		status = Label.new()
@@ -72,12 +79,32 @@ func start_candidate(hero: String, difficulty: int, build_hud: bool = true) -> b
 	room.set_input_blocked(false)
 	return true
 
+func _on_run_finished(result: Dictionary) -> void:
+	if str(result.get("run_id","")) != candidate_run_id: return
+	_finish_presentation(str(result.get("outcome","ended")))
+
+func _finish_presentation(outcome: String) -> void:
+	# The normal Main replaces the combat screen on settlement. This isolated
+	# launcher keeps its room for review, so retire that same HUD explicitly.
+	finished_outcome = outcome
+	if is_instance_valid(hud):
+		hud.set_interaction_enabled(false)
+		hud.hide()
+		hud.set_process(false)
+	if is_instance_valid(room):
+		room.set_input_blocked(true)
+		preload("res://scripts/levels/b07/art/l37_skill_card_layout.gd").clear_terminal(room)
+
 func _profile_argument() -> String:
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--test-profile="): return argument.trim_prefix("--test-profile=")
 	return ""
 func _process(_delta: float) -> void:
+	if is_instance_valid(room) and finished_outcome.is_empty() and (Game.run == null or Game.run.hp <= 0):
+		_finish_presentation("death")
 	if not is_instance_valid(status) or not is_instance_valid(room): return
+	if not finished_outcome.is_empty():
+		status.text = "B07 DEVELOPMENT CANDIDATE · "+str(room.layout_id)+"\n"+("Defeated." if finished_outcome=="death" else "Candidate ended.")+" Restart this isolated scene to retry."
+		return
 	status.text = "B07 DEVELOPMENT BLOCKOUT · gear/art/full balance pending\nF: rotate mirror 0.6s | gold: reveal | teal: next state\n" + str(room.layout_id) + (" · gate open" if room.b07_mechanics.state.gate_open else " · light altar or use gate after combat")
-	if Game.run == null or Game.run.hp <= 0: status.text += "\nDefeated. Restart this isolated scene to retry."
 	if traversal.finished: status.text += "\nCandidate complete. No campaign rewards or unlocks."
