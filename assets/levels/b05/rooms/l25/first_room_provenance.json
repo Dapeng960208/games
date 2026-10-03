@@ -195,7 +195,8 @@
   "bridge_generation_chain": [
     {
       "stage": "checkpoint parent selected by pixel inspection",
-      "reference": "res://assets/system/world/environment/stop_checkpoint_candidates/interrupted_bridge_output_1.png",
+      "reference": "retired:assets/system/world/environment/stop_checkpoint_candidates/interrupted_bridge_output_1.png",
+      "reference_status": "The unintegrated checkpoint image was removed after the 2026-10-03 orphan-art review; its SHA-256 and generation history remain recorded.",
       "sha256": "0caa0183e9d8ea692138857088f348e056b56a4b96e479d79628a44107197a1b",
       "exact_interrupted_call_mapping": "unavailable; preserved in original checkpoint record"
     },

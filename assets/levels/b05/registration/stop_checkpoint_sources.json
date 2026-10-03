@@ -180,7 +180,7 @@
         1254
       ],
       "mode": "RGBA",
-      "status": "candidate_atlas_not_integrated; root cell touches edge",
+      "status": "retired_nonruntime_source_image_removed_2026-10-03; superseded by the accepted skill_effect_atlas.png; hash and prompt retained",
       "prompt": null,
       "prompt_status": "earlier exact prompt unavailable in checkpoint snapshot; do not invent",
       "tool": "image_gen.imagegen",
@@ -197,7 +197,7 @@
         1254
       ],
       "mode": "RGBA",
-      "status": "rejected_runtime_atlas; motifs cross grid",
+      "status": "retired_nonruntime_source_image_removed_2026-10-03; rejected atlas replaced by the accepted skill_effect_atlas.png; hash and prompt retained",
       "prompt": null,
       "prompt_status": "earlier exact prompt unavailable in checkpoint snapshot; do not invent",
       "tool": "image_gen.imagegen",
@@ -214,7 +214,7 @@
         1254
       ],
       "mode": "RGBA",
-      "status": "inspected_candidate_not_integrated",
+      "status": "retired_nonruntime_source_image_removed_2026-10-03; skill effect is represented by the accepted skill_effect_atlas.png; hash and prompt retained",
       "prompt": null,
       "prompt_status": "earlier exact prompt unavailable in checkpoint snapshot; do not invent",
       "tool": "image_gen.imagegen",
@@ -231,7 +231,7 @@
         1254
       ],
       "mode": "RGBA",
-      "status": "inspected_candidate_not_integrated",
+      "status": "retired_nonruntime_source_image_removed_2026-10-03; water lance is represented by the accepted skill_effect_atlas.png; hash and prompt retained",
       "prompt": null,
       "prompt_status": "earlier exact prompt unavailable in checkpoint snapshot; do not invent",
       "tool": "image_gen.imagegen",
@@ -248,7 +248,7 @@
         1254
       ],
       "mode": "RGBA",
-      "status": "inspected_candidate_not_integrated",
+      "status": "retired_nonruntime_source_image_removed_2026-10-03; water impact is represented by the accepted skill_effect_atlas.png; hash and prompt retained",
       "prompt": null,
       "prompt_status": "earlier exact prompt unavailable in checkpoint snapshot; do not invent",
       "tool": "image_gen.imagegen",
@@ -299,7 +299,7 @@
         1024
       ],
       "mode": "RGBA",
-      "status": "interrupted_edit_output; not inspected; biome/call mapping not returned; archive only, not a B05 runtime asset",
+      "status": "retired_nonruntime_interrupted_edit_output_removed_2026-10-03; never integrated; hash and edit record retained",
       "possible_edit_calls": [
         {
           "key": "b05_bridge_fixed",
@@ -324,7 +324,7 @@
         1024
       ],
       "mode": "RGBA",
-      "status": "interrupted_edit_output; not inspected; biome/call mapping not returned; archive only, not a B05 runtime asset",
+      "status": "retired_nonruntime_interrupted_edit_output_removed_2026-10-03; never integrated; hash and edit record retained",
       "possible_edit_calls": [
         {
           "key": "b05_bridge_fixed",
