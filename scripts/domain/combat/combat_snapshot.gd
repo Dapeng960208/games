@@ -26,7 +26,7 @@ const EFFECT_MAPS := ["cooldowns", "buffs", "windows", "rooms", "counts"]
 const EFFECT_HISTORIES := ["heal_history", "resource_history", "refund_history"]
 const EFFECT_NUMBERS := ["clock", "undamaged_time", "eq12_spent_at", "movement_time", "dash_time", "delayed_shield_at"]
 const MODIFIERS := ["damage_bonus", "crit_bonus", "attack_speed_bonus", "move_speed_bonus", "damage_reduction_bonus", "knockback_scale", "received_knockback_scale", "slow_resistance", "chill_duration_bonus", "cost_reduction"]
-const B06_MODIFIERS := ["received_displacement_reduction", "terrain_slow_reduction", "received_healing_bonus", "immediate_w_radius_scale"]
+const B06_MODIFIERS := ["received_displacement_reduction", "terrain_slow_reduction", "received_healing_bonus", "immediate_w_radius_scale", "b09_glide_distance_scale", "b09_direct_reduction"]
 
 static func capture(room: Node) -> Dictionary:
 	var game: Node = _game()
@@ -61,6 +61,8 @@ static func capture(room: Node) -> Dictionary:
 	for key: String in equipment.cooldowns.keys():
 		if key.begins_with("EQ03:"):
 			equipment.cooldowns.erase(key) # Per-enemy burn ICD, not a global ICD.
+	for key: String in equipment.windows.keys():
+		if key.begins_with("B09-SG_4:mark:") or key.begins_with("B09-SM_6:mark:"): equipment.windows.erase(key)
 	for key: String in EFFECT_NUMBERS:
 		equipment[key] = float(effects.get(key))
 	equipment["room_id"] = str(effects.get("room_id"))
@@ -271,7 +273,7 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	# Keep historical modifier snapshots unchanged; absent B06 keys are neutral.
 	for key: String in B06_MODIFIERS:
 		if not loadout._modifiers.has(key): loadout._modifiers[key] = 1.0 if key.ends_with("_scale") else 0.0
-	if rebound or effects.equipped.keys().any(func(id: String) -> bool: return id.begins_with("B06-")):
+	if rebound or effects.equipped.keys().any(func(id: String) -> bool: return id.begins_with("B06-") or id.begins_with("B09-")):
 		loadout.call("refresh_modifiers")
 	actor.queue_redraw()
 	return true

@@ -338,7 +338,12 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	var final_amount: float = float(resolved.damage) * (1.0 if status.ruleset_version == Numerical.V2 else weakpoint)
 	var health_before: float = health.current
 	var shield_before: float = status.shield()
-	final_amount = status.absorb(final_amount)
+	var shield_bonus := clampf(float(context.get("b09_shield_damage_bonus",0.0)),0.0,0.12)
+	if shield_bonus>0.0 and Numerical.b09_candidate_enabled() and kind==&"secondary" and int(context.get("proc_depth",0))==0 and bool(context.get("equipment_eligible",false)) and shield_before>0.0:
+		var overflow := maxf(0.0,final_amount-shield_before)
+		status.absorb(Numerical.integer(minf(final_amount,shield_before)*(1.0+shield_bonus)))
+		final_amount=overflow
+	else: final_amount = status.absorb(final_amount)
 	if final_amount > 0.0 or status.shield() < shield_before:
 		hurt_flash = 0.1
 	if brain != null:

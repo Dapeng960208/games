@@ -5,7 +5,7 @@ extends RefCounted
 
 const Rules = preload("res://scripts/domain/combat/equipment_effects.gd")
 const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
-const MODIFIER_KEYS: Array[String] = ["damage_bonus", "crit_bonus", "attack_speed_bonus", "move_speed_bonus", "damage_reduction_bonus", "knockback_scale", "received_knockback_scale", "slow_resistance", "chill_duration_bonus", "cost_reduction", "received_displacement_reduction", "terrain_slow_reduction", "received_healing_bonus", "immediate_w_radius_scale"]
+const MODIFIER_KEYS: Array[String] = ["damage_bonus", "crit_bonus", "attack_speed_bonus", "move_speed_bonus", "damage_reduction_bonus", "knockback_scale", "received_knockback_scale", "slow_resistance", "chill_duration_bonus", "cost_reduction", "received_displacement_reduction", "terrain_slow_reduction", "received_healing_bonus", "immediate_w_radius_scale", "b09_glide_distance_scale", "b09_direct_reduction"]
 
 var owner_player: Node2D
 var effects: RefCounted
@@ -137,6 +137,17 @@ func _apply_commands(result: Dictionary, context: Dictionary) -> void:
 	if Game.run == null or _applying_depth >= 4:
 		return
 	_applying_depth += 1
+	if result.has("b09_break_layer"):
+		var target: Node2D = _target(result.b09_break_layer,context.get("target"))
+		var room: Node = owner_player.room
+		if _alive(target) and is_instance_valid(room.b09_mechanics):
+			var previous := int(target.get_meta("b09_layers",0))
+			if room.b09_mechanics.break_layer(target) and previous==1:
+				event("b09_barrier_broken",{"target":target,"damage_source":"skill","equipment_eligible":true,"proc_depth":0})
+	if result.has("b09_slow"):
+		var slowed: Node2D = _target(result.b09_slow.target_id,context.get("target"))
+		if _alive(slowed): slowed.apply_ordinary_slow(float(result.b09_slow.multiplier),float(result.b09_slow.duration))
+	if bool(result.get("b09_cleanse",false)): owner_player.clear_ordinary_negative()
 	if result.has("b06_ring"):
 		_b06_pending_rings.append(result.b06_ring.duplicate(true))
 	if result.has("b06_tide_mark"):
@@ -329,6 +340,9 @@ func _context(extra: Dictionary = {}) -> Dictionary:
 	if target is Node2D and is_instance_valid(target):
 		origin = target.position
 		context["target_id"] = target.get_instance_id()
+		context["b09_layers_before"] = int(extra.get("b09_layers_before",target.get_meta("b09_layers",0)))
+		context["b09_target_boss"] = str(target.get("actor_kind"))=="boss"
+		context["b09_single_boss"] = context.b09_target_boss and _b09_single_boss(room)
 		context["target_position"] = target.position
 		context["distance"] = owner_player.position.distance_to(target.position)
 		context["target_alive"] = _alive(target)
@@ -349,7 +363,7 @@ func _context(extra: Dictionary = {}) -> Dictionary:
 		nearby.append({"id": candidate.get_instance_id(), "distance": origin.distance_to(candidate.position), "alive": _alive(candidate), "states": _statuses(candidate)})
 	context["nearby_targets"] = nearby
 	var b05_combat_needed: bool = effects != null and (int(effects.set_counts.get("B05-SM", 0)) >= 4 or int(effects.set_counts.get("B05-SG", 0)) >= 6)
-	context["combat_active"] = bool(extra.get("combat_active", false)) or ((b05_combat_needed or (effects != null and (int(effects.set_counts.get("B06-SU", 0)) >= 4 or int(effects.set_counts.get("B06-SM", 0)) >= 6)) or (effects != null and effects.equipped.has("B06-U03"))) and _combat_active(room))
+	context["combat_active"] = bool(extra.get("combat_active", false)) or ((b05_combat_needed or (effects != null and effects.equipped.keys().any(func(id: String) -> bool: return id.begins_with("B09-"))) or (effects != null and (int(effects.set_counts.get("B06-SU", 0)) >= 4 or int(effects.set_counts.get("B06-SM", 0)) >= 6)) or (effects != null and effects.equipped.has("B06-U03"))) and _combat_active(room))
 	if effects != null and int(effects.set_counts.get("B05-SW", 0)) >= 4: context["b05_arc_targets"] = _b05_arc_targets(extra)
 	if effects != null and int(effects.set_counts.get("B05-SG", 0)) >= 4: context["b05_pierce_targets"] = _b05_pierce_targets(extra)
 	var e_guard: Dictionary = owner_player.status.guards.get("hero_f", {})
@@ -550,3 +564,10 @@ func _b06_shared_power_type() -> String:
 			if kind in ["physical", "magic"]: types[kind] = true
 	# Mixed orientations have no approved source-P selector yet.
 	return str(types.keys()[0]) if types.size() == 1 else ""
+
+func _b09_single_boss(room: Node) -> bool:
+	if not is_instance_valid(room) or not room.get("enemies") is Node: return false
+	var count := 0
+	for actor: Node in room.enemies.get_children():
+		if _alive(actor) and str(actor.get("actor_kind")) in ["enemy","boss"]: count+=1
+	return count==1

@@ -38,6 +38,7 @@ const Numerical = preload("res://scripts/infrastructure/content/runtime_rules.gd
 ## V2 S11 counts successful original paid casts at commit, with a stable cast root
 ## and actual paid_cost. Hit/deployment callbacks cannot contribute to this count.
 
+const B09 = preload("res://scripts/levels/b09/combat/equipment_effects.gd")
 const B06 = preload("res://scripts/levels/b06/combat/equipment_effects.gd")
 const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
 const ENEMY_STATES: Array[String] = ["burn", "shock", "chill", "corrosion", "bleed", "grievous"]
@@ -76,12 +77,12 @@ static func implemented_ids(ruleset: int = 1) -> Array[String]:
 		result.append("EQ%02d" % index)
 	# New templates have no inherited old fixed affixes.
 	if ruleset == 2:
-		for id: String in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03"]: result.append(id)
+		for id: String in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03", "B09-U01", "B09-U02", "B09-U03"]: result.append(id)
 	return result
 
 static func implemented_set_ids(ruleset: int = 1) -> Array[String]:
 	var result: Array[String] = ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14"]
-	if ruleset == 2: result.append_array(["B05-SW", "B05-SG", "B05-SM", "B05-SU", "B06-SW", "B06-SG", "B06-SM", "B06-SU"])
+	if ruleset == 2: result.append_array(["B05-SW", "B05-SG", "B05-SM", "B05-SU", "B06-SW", "B06-SG", "B06-SM", "B06-SU", "B09-SW", "B09-SG", "B09-SM", "B09-SU"])
 	return result
 
 func configure(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> void:
@@ -168,11 +169,11 @@ static func loadout_binding(loadout: Dictionary, resolved_stats: Dictionary = {}
 ## so retaining two pieces never keeps a former four/six-piece benefit.
 static func source_active(source: String, binding: Dictionary) -> bool:
 	var id: String = source.trim_prefix("equipment:").trim_prefix("set_").get_slice(":", 0)
-	if id in ["B05-combat", "B06-combat"]:
+	if id in ["B05-combat", "B06-combat", "B09-combat"]:
 		for template_id: String in binding.get("equipped", {}):
 			if template_id.begins_with(id.trim_suffix("combat")): return true
 		return false
-	if id.begins_with("EQ") or id in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03"]:
+	if id.begins_with("EQ") or id in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03", "B09-U01", "B09-U02", "B09-U03"]:
 		return bool(binding.get("equipped", {}).get(id, false))
 	var pieces: PackedStringArray = id.split("_")
 	return pieces.size() == 2 and pieces[0] in implemented_set_ids(2) and pieces[1] in ["2", "4", "6"] and int(binding.get("set_counts", {}).get(pieces[0], 0)) >= int(pieces[1])
@@ -212,7 +213,7 @@ func _empty() -> Dictionary:
 		"move_speed_bonus":0.0, "damage_reduction_bonus":0.0,
 		"knockback_scale":1.0, "received_knockback_scale":1.0, "slow_resistance":0.0,
 		"received_displacement_reduction":0.0, "terrain_slow_reduction":0.0, "received_healing_bonus":0.0, "immediate_w_radius_scale":1.0,
-		"chill_duration_bonus":0.0, "cost_reduction":0.0, "resource_restore":0.0,
+		"b09_glide_distance_scale":1.0, "b09_direct_reduction":0.0, "chill_duration_bonus":0.0, "cost_reduction":0.0, "resource_restore":0.0,
 		"resource_type":resource_type, "heal_ratio":0.0, "shield_ratio":0.0,
 		"shield_duration":4.0, "shields":[], "resume_after_statuses":false, "cooldown_refunds":[], "statuses":[],
 		"status_extensions":[], "self_statuses":[], "bonus_hits":[], "triggered":[]}
@@ -242,6 +243,7 @@ func _health_ratio(ctx: Dictionary) -> float:
 	return float(ctx.get("hp", 0.0)) / maxf(1.0, float(ctx.get("max_hp", stats.get("max_hp", 1.0))))
 
 func _modifiers(ctx: Dictionary, out: Dictionary) -> void:
+	B09.modifiers(self,ctx,out)
 	B06.modifiers(self, ctx, out)
 	var shielded: bool = float(ctx.get("shield", 0.0)) > 0.0
 	for id: String in equipped:
@@ -333,6 +335,7 @@ func advance(delta: float, ctx: Dictionary) -> Dictionary:
 		var root: Dictionary = _root("advance:" + str(clock))
 		_refund(out, ctx, root, "EQ22", 8.0, "dash", 0.20)
 	B06.advance(self, delta, ctx, out)
+	B09.advance(self,ctx)
 	_b05_advance(ctx, out)
 	_modifiers(ctx, out)
 	return _cap_modifiers(out)
@@ -422,6 +425,7 @@ func _handle(event: String, ctx: Dictionary) -> Dictionary:
 		"kill": _kill(ctx, root, out)
 	_b05_event(event, ctx, root, out)
 	B06.event(self, event, ctx, root, out)
+	B09.event(self,event,ctx,root,out)
 	_modifiers(ctx, out)
 	return _cap_modifiers(out)
 
@@ -674,6 +678,7 @@ func _enter_room(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if id != room_id:
 		clear_b05_temporary()
 		clear_b06_temporary()
+		B09.clear_temporary(self)
 	if id.is_empty(): return
 	# Reused fixed-room blueprints still become the current room. Retain their
 	# consumed one-time flags instead of replaying entry rewards.
@@ -885,6 +890,9 @@ func _history_total(history: Array[Dictionary]) -> float:
 func b05_control_duration(duration: float, other_reduction: float = 0.0) -> float:
 	var reduction := clampf(other_reduction + (0.20 if _has_set("B05-SU", 2) else 0.0), 0.0, 0.50)
 	return maxf(0.0, duration) * (1.0 - reduction)
+
+func b09_slow_duration(duration: float) -> float:
+	return b05_control_duration(duration,0.20 if Numerical.b09_candidate_enabled() and _has_set("B09-SU",2) else 0.0)
 
 func b05_e_shield(amount: float) -> float:
 	return amount * (1.12 if Numerical.is_v2(stats) and _has_set("B05-SW", 2) else 1.0)

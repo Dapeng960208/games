@@ -451,7 +451,7 @@ func cast_skill(slot: String, target: Vector2) -> bool:
 		# root counts once, independently of later hits, projectiles or deployments.
 		var cast_event := "cast_commit:" + str(abilities.active.serial)
 		loadout.event("skill_cast", {"event_id":cast_event, "root_event_id":cast_event,
-			"slot":slot, "base_cost":float(abilities.active.spec.cost), "paid_cost":float(abilities.active.paid_cost),
+			"slot":slot, "b09_hit_root_id":"skill:"+str(abilities.active.serial), "base_cost":float(abilities.active.spec.cost), "paid_cost":float(abilities.active.paid_cost),
 			"cast_success":true, "damage_source":"skill", "proc_depth":0, "equipment_eligible":true, "original_basic":false})
 		if room.has_method("record_player_sound"):
 			room.record_player_sound()
@@ -761,7 +761,7 @@ func receive_enemy_status(effect: Dictionary) -> bool:
 	if not is_finite(duration) or duration <= 0.0:
 		return false
 	if identifier in ["slow", "root"] and loadout != null and loadout.effects != null:
-		duration = loadout.effects.b05_control_duration(duration)
+		duration = loadout.effects.b09_slow_duration(duration) if identifier=="slow" else loadout.effects.b05_control_duration(duration)
 	if identifier == "root":
 		if _enemy_root_remaining > 0.0 or _enemy_root_protection_remaining > 0.0: return false
 		_enemy_root_remaining = minf(duration, 300.0)
@@ -851,6 +851,8 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	if not is_dot: _b06_knockback_distance_scale = 1.0 - clampf(float(modifiers.get("received_displacement_reduction", 0.0)), 0.0, 0.5)
 	var damaged_run: RunSession = Game.run
 	damage_context["damage_reduction"] = minf(0.65, float(damage_context.damage_reduction) + maxf(0.0, float(modifiers.get("damage_reduction_bonus", 0.0))))
+	if not is_dot and not bool(damage_context.get("b09_environment",false)) and not bool(damage_context.get("self_damage",false)):
+		damage_context["damage_reduction"] = minf(0.65,float(damage_context.damage_reduction)+float(modifiers.get("b09_direct_reduction",0.0)))
 	Game.damage_player(incoming, damage_context)
 	if numerical:
 		if damaged_run.hp >= previous_hp and damaged_run.shield >= previous_shield:
@@ -898,7 +900,7 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	Game.run.shield = status.shield()
 	if not is_dot:
 		knockback *= float(modifiers.get("received_knockback_scale", 1.0))
-	loadout.event("damaged", {"hp_damage":previous_hp - Game.run.hp,"shield_absorbed":previous_shield - Game.run.shield,"shield_broken":previous_shield > 0.0 and Game.run.shield <= 0.0,"enemy_damage":true,"dot":is_dot,"e_shield_absorbed":maxf(0.0, previous_shield - Game.run.shield) if e_shield_active else 0.0})
+	loadout.event("damaged", {"hp_damage":previous_hp - Game.run.hp,"shield_absorbed":previous_shield - Game.run.shield,"shield_broken":previous_shield > 0.0 and Game.run.shield <= 0.0,"enemy_damage":not bool(damage_context.get("self_damage",false)),"self_damage":bool(damage_context.get("self_damage",false)),"dot":is_dot,"e_shield_absorbed":maxf(0.0, previous_shield - Game.run.shield) if e_shield_active else 0.0})
 	combat_time = 5.0
 	if hero_id() == "CH01" and Game.run.hp < previous_hp and rage_hurt_cooldown <= 0.0:
 		restore_class_resource(float(Numbers.scale(5.0, _ruleset_version())))
@@ -1129,3 +1131,24 @@ func _b06_guard_ends(previous: Dictionary, cause: String) -> void:
 	var after: Dictionary = status.guards.get(source, {})
 	if float(before.get("amount", 0.0)) > 0.0 and float(before.get("remaining", 0.0)) > 0.0 and (float(after.get("amount", 0.0)) <= 0.0 or float(after.get("remaining", 0.0)) <= 0.0):
 		loadout.event("shield_source_ended", {"source":"B06-SU_4", "cause":cause})
+
+## Only ordinary negative statuses are eligible. Phase marks and roots remain.
+func clear_ordinary_negative() -> bool:
+	var selected := ""
+	var longest := -1.0
+	for id: String in ["burn","bleed","corrosion"]:
+		var remaining := float(status.states.get(id,{}).get("remaining",0.0))
+		if remaining>0.0 and remaining>longest:
+			selected=id
+			longest=remaining
+	if not selected.is_empty():
+		status.states.erase(selected)
+		_enemy_status_origins.erase(selected)
+		_enemy_status_contexts.erase(selected)
+	elif _enemy_slow_remaining>0.0:
+		_enemy_slow_remaining=0.0
+		_enemy_slow_multiplier=1.0
+	else: return false
+	if loadout!=null: loadout.event("ordinary_negative_cleared",{"actually_cleared":true,"ordinary_status":selected if not selected.is_empty() else "slow"})
+	queue_redraw()
+	return true

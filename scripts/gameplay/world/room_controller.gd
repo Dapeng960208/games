@@ -945,7 +945,9 @@ func resolve_direct_hit(target: EnemyActor, amount: float, source: StringName, a
 	var native_statuses: Array = context.get("native_statuses", []).duplicate()
 	if not applied_status.is_empty() and player.loadout.effects.reserve_native(str(context.root_event_id), "native:" + applied_status):
 		native_statuses.append(applied_status)
+	context["b09_layers_before"] = int(target.get_meta("b09_layers",0))
 	var modifiers: Dictionary = player.loadout.event("before_hit", context)
+	context["b09_shield_damage_bonus"] = float(modifiers.get("b09_shield_damage_bonus",0.0))
 	var root_id: String = str(context.root_event_id)
 	if source == &"primary" and not crit_rolls.has(root_id):
 		crit_rolls[root_id] = Crit.roll(run_seed, layout_id + ":" + root_id, Crit.chance(context.attacker_stats, float(modifiers.get("crit_bonus", 0.0)))) if Crit.enabled(context.attacker_stats) else randf() < clampf(player.stat("crit_chance", 0.05) + float(modifiers.get("crit_bonus", 0.0)), 0.0, 0.75)
@@ -1036,7 +1038,9 @@ func _resolve_numerical_direct_hit(target: EnemyActor, amount: float, source: St
 	# Keep the pre-hit values even when this contact kills or grants a class shield.
 	context["target_full_hp"] = target.health.current == target.health.maximum
 	context["shield"] = Game.run.shield
+	context["b09_layers_before"] = int(target.get_meta("b09_layers",0))
 	var modifiers: Dictionary = player.loadout.event("before_hit", context)
+	context["b09_shield_damage_bonus"] = float(modifiers.get("b09_shield_damage_bonus",0.0))
 	if not crit_rolls.has(root_id):
 		crit_rolls[root_id] = Crit.roll(run_seed, layout_id + ":" + root_id, Crit.chance(context.attacker_stats, float(modifiers.get("crit_bonus", 0.0)))) if Crit.enabled(context.attacker_stats) else randf() < clampf(player.stat("crit_chance", 0.05) + float(modifiers.get("crit_bonus", 0.0)), 0.0, 0.75)
 		if not Crit.enabled(context.attacker_stats): _trim_root_history(crit_rolls)

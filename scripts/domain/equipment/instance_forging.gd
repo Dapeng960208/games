@@ -505,7 +505,7 @@ static func _item_error(item: Dictionary) -> String:
 	if not Instances.validate(item).is_empty(): return "INVALID_INSTANCE"
 	if not _integer(item.get("forge_revision", 0), 0, MAX_NUMBER): return "INVALID_INSTANCE_REVISION"
 	for index in item.enhancement_steps.size():
-		if int(item.enhancement_steps[index].base_price_peak) < _price(index + 1, int(item.item_level)) or not _canonical_peak(index + 1, int(item.enhancement_steps[index].base_price_peak), false, Acquisition.V4.LEVEL_CAP if int(item.get("source_metadata", {}).get("generator_version", 1)) >= 4 else Acquisition.V3.LEVEL_CAP): return "INVALID_PRICE_PEAK"
+		if int(item.enhancement_steps[index].base_price_peak) < _price(index + 1, int(item.item_level)) or not _canonical_peak(index + 1, int(item.enhancement_steps[index].base_price_peak), false, Acquisition.V5.LEVEL_CAP if int(item.get("source_metadata", {}).get("generator_version", 1)) >= 5 else Acquisition.V4.LEVEL_CAP if int(item.get("source_metadata", {}).get("generator_version", 1)) >= 4 else Acquisition.V3.LEVEL_CAP): return "INVALID_PRICE_PEAK"
 	var seen := {}
 	for row: Dictionary in item.enhancement_gold_ledger:
 		if not _payment_row_valid(row, false): return "INVALID_PAYMENT_LEDGER"
@@ -515,7 +515,7 @@ static func _item_error(item: Dictionary) -> String:
 		if not history.has_all(["operation_id", "rank", "ticket", "candidate", "guaranteed", "old_gain", "gain", "old_pity", "pity", "actual_gold", "actual_materials", "settled_price_peak", "supplements"]): return "INVALID_REROLL_HISTORY"
 		if not _id(history.operation_id) or seen.has(history.operation_id) or not _integer(history.rank, 1, int(item.enhancement_rank)): return "INVALID_REROLL_HISTORY"
 		seen[history.operation_id] = true
-		if not _integer(history.settled_price_peak, _price(int(history.rank), int(item.item_level), true), MAX_NUMBER) or not _canonical_peak(int(history.rank), int(history.settled_price_peak), true, Acquisition.V4.LEVEL_CAP if int(item.get("source_metadata", {}).get("generator_version", 1)) >= 4 else Acquisition.V3.LEVEL_CAP) or not history.supplements is Array: return "INVALID_REROLL_PEAK"
+		if not _integer(history.settled_price_peak, _price(int(history.rank), int(item.item_level), true), MAX_NUMBER) or not _canonical_peak(int(history.rank), int(history.settled_price_peak), true, Acquisition.V5.LEVEL_CAP if int(item.get("source_metadata", {}).get("generator_version", 1)) >= 5 else Acquisition.V4.LEVEL_CAP if int(item.get("source_metadata", {}).get("generator_version", 1)) >= 4 else Acquisition.V3.LEVEL_CAP) or not history.supplements is Array: return "INVALID_REROLL_PEAK"
 		if not _integer(history.candidate, 8, 12) or not _integer(history.actual_gold, 1, MAX_NUMBER) or not history.actual_materials is Dictionary: return "INVALID_REROLL_HISTORY"
 		if not _integer(history.old_gain, 8, 11) or not _integer(history.gain, int(history.old_gain), 12) or not _integer(history.old_pity, 0, 3) or not _integer(history.pity, 0, 3) or not history.guaranteed is bool: return "INVALID_REROLL_HISTORY"
 		if history.guaranteed != (int(history.old_pity) == 3): return "INVALID_REROLL_HISTORY"

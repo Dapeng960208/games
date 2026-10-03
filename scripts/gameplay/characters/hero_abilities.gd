@@ -390,6 +390,7 @@ func _resolve(index: int) -> void:
 	var direction: Vector2 = active.direction
 	var hit_context: Dictionary = {"root_event_id":"skill:" + str(active.serial), "attack_id":"skill:" + str(active.serial) + ":" + str(index), "power":power, "original_basic":false, "equipment_eligible":true, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats}
 	hit_context["spell_critical_eligible"] = hero == "CH03"
+	hit_context["b09_segment"] = index
 	hit_context["paid_cost"] = float(active.paid_cost)
 	hit_context["skill_slot"] = slot
 	hit_context["damage_source"] = "skill"

@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "chapter_id": "B09",
-  "runtime_enabled": false,
+  "runtime_enabled": true,
   "source_document": "docs/levels/b09/README.md#5-专属与共有套装",
   "effect_contract": {
-    "runtime_implemented": false,
+    "runtime_implemented": true,
     "power_basis": "instance_fixed_power_type_ad_or_ap",
     "derived_damage_triggers_extra_damage": false,
     "count_once_per_cast_id": true,
@@ -28,10 +28,10 @@
       "power_types": [
         "physical"
       ],
-      "runtime_implemented": false,
+      "runtime_implemented": true,
       "thresholds": {
         "2": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "2件，W对敌人护盾的伤害+12%。"
@@ -41,7 +41,7 @@
           }
         },
         "4": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "4件，W命中晶面目标时额外破1层，单次W上限2层；对无晶面目标改为追加0.20P单体伤害，ICD7秒，不绕过Boss阶段免疫。"
@@ -51,7 +51,7 @@
           }
         },
         "6": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "6件，自己破坏护盾/最后晶面后下一次W伤害+12%，命中回复最大HP3%，有效6秒、ICD10秒；过量治疗不触发其它伤害效果。"
@@ -72,10 +72,10 @@
       "power_types": [
         "physical"
       ],
-      "runtime_implemented": false,
+      "runtime_implemented": true,
       "thresholds": {
         "2": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "2件，E直接伤害+8%。"
@@ -85,7 +85,7 @@
           }
         },
         "4": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "4件，E命中后施加本套“霜线印”4秒，并造成普通敌人10%/Boss5%减速2秒，ICD8秒；不叠无限硬控。"
@@ -95,7 +95,7 @@
           }
         },
         "6": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "6件，W命中霜线印目标追加0.40P单体伤害并消耗印，获得移速+8%3秒，ICD10秒；无需依赖枪手原生不存在的寒冷，也不要求另一套武器作前置。"
@@ -116,10 +116,10 @@
       "power_types": [
         "magic"
       ],
-      "runtime_implemented": false,
+      "runtime_implemented": true,
       "thresholds": {
         "2": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "2件，E直接伤害+8%。"
@@ -129,7 +129,7 @@
           }
         },
         "4": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "4件，E一次真实命中至少2敌人回复60法力，ICD8秒；单Boss场景改为回复30，必须实际成功扣费，派生场不计。"
@@ -139,7 +139,7 @@
           }
         },
         "6": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "6件，W或R成功提交后为其首段命中的最多3目标挂“凝晶”4秒；对每个目标首次Q命中追加0.25P并消耗其印，整轮ICD10秒。无需普攻，Q/W/E/R本体伤害不以印记为门槛。"
@@ -163,10 +163,10 @@
         "physical",
         "magic"
       ],
-      "runtime_implemented": false,
+      "runtime_implemented": true,
       "thresholds": {
         "2": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "2件，普通减速持续时间-20%，同类减免合计≤50%，不取消裂桥。"
@@ -176,7 +176,7 @@
           }
         },
         "4": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "4件，HP低于50%时受到直接伤害-8%，不作用自损/固定环境回摆。"
@@ -186,7 +186,7 @@
           }
         },
         "6": {
-          "runtime_implemented": false,
+          "runtime_implemented": true,
           "trigger": "see_authored_contract",
           "conditions": [
             "6件，累计承受相当于最大HP10%的真实伤害后，移除1层普通减速或持续伤害状态并获得最大HP3%盾4秒，ICD15秒；优先清最长剩余持续伤害，再清减速，不清Boss阶段标记。只有真实承伤计数，不能靠装备切换触发。"
@@ -224,7 +224,8 @@
           "armor"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SW-chest": {
       "id": "B09-SW-chest",
@@ -251,7 +252,8 @@
           "armor"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SW-hands": {
       "id": "B09-SW-hands",
@@ -278,7 +280,8 @@
           "crit_chance"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SW-legs": {
       "id": "B09-SW-legs",
@@ -306,7 +309,8 @@
           "magic_resist"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SW-feet": {
       "id": "B09-SW-feet",
@@ -333,7 +337,8 @@
           "damage_reduction"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SW-ring": {
       "id": "B09-SW-ring",
@@ -360,7 +365,8 @@
           "resource_gain_bonus"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SW-accessory": {
       "id": "B09-SW-accessory",
@@ -387,7 +393,8 @@
           "max_hp"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SW-weapon": {
       "id": "B09-SW-weapon",
@@ -414,7 +421,8 @@
           "damage_bonus"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SG-head": {
       "id": "B09-SG-head",
@@ -441,7 +449,8 @@
           "crit_chance"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SG-chest": {
       "id": "B09-SG-chest",
@@ -468,7 +477,8 @@
           "armor"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SG-hands": {
       "id": "B09-SG-hands",
@@ -495,7 +505,8 @@
           "crit_chance"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SG-legs": {
       "id": "B09-SG-legs",
@@ -523,7 +534,8 @@
           "magic_resist"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SG-feet": {
       "id": "B09-SG-feet",
@@ -549,7 +561,8 @@
           "move_speed"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SG-ring": {
       "id": "B09-SG-ring",
@@ -576,7 +589,8 @@
           "crit_chance"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SG-accessory": {
       "id": "B09-SG-accessory",
@@ -603,7 +617,8 @@
           "max_hp"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SG-weapon": {
       "id": "B09-SG-weapon",
@@ -630,7 +645,8 @@
           "damage_bonus"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SM-head": {
       "id": "B09-SM-head",
@@ -657,7 +673,8 @@
           "magic_resist"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SM-chest": {
       "id": "B09-SM-chest",
@@ -684,7 +701,8 @@
           "magic_resist"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SM-hands": {
       "id": "B09-SM-hands",
@@ -711,7 +729,8 @@
           "cooldown_reduction"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SM-legs": {
       "id": "B09-SM-legs",
@@ -739,7 +758,8 @@
           "magic_resist"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SM-feet": {
       "id": "B09-SM-feet",
@@ -765,7 +785,8 @@
           "move_speed"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SM-ring": {
       "id": "B09-SM-ring",
@@ -792,7 +813,8 @@
           "resource_gain_bonus"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SM-accessory": {
       "id": "B09-SM-accessory",
@@ -819,7 +841,8 @@
           "max_hp"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SM-weapon": {
       "id": "B09-SM-weapon",
@@ -846,7 +869,8 @@
           "damage_bonus"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SU-head": {
       "id": "B09-SU-head",
@@ -880,7 +904,8 @@
           "magic_resist"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SU-chest": {
       "id": "B09-SU-chest",
@@ -914,7 +939,8 @@
           "damage_reduction"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SU-hands": {
       "id": "B09-SU-hands",
@@ -948,7 +974,8 @@
           "cooldown_reduction"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SU-legs": {
       "id": "B09-SU-legs",
@@ -984,7 +1011,8 @@
           "magic_resist"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SU-feet": {
       "id": "B09-SU-feet",
@@ -1018,7 +1046,8 @@
           "damage_reduction"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SU-ring": {
       "id": "B09-SU-ring",
@@ -1052,7 +1081,8 @@
           "max_hp"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SU-accessory": {
       "id": "B09-SU-accessory",
@@ -1088,7 +1118,8 @@
           "cooldown_reduction"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-SU-weapon": {
       "id": "B09-SU-weapon",
@@ -1120,7 +1151,8 @@
           "ability_power"
         ]
       },
-      "unique_effect": {}
+      "unique_effect": {},
+      "runtime_implemented": true
     },
     "B09-U01": {
       "id": "B09-U01",
@@ -1155,7 +1187,7 @@
         ]
       },
       "unique_effect": {
-        "runtime_implemented": false,
+        "runtime_implemented": true,
         "trigger": "see_authored_contract",
         "conditions": [
           "粗纹雪履：亮冰额外滑行距离-25%，保留至少地图原值50%，其它地图不额外改移动"
@@ -1168,7 +1200,8 @@
         "L50",
         "B09-M04",
         "B09-M09"
-      ]
+      ],
+      "runtime_implemented": true
     },
     "B09-U02": {
       "id": "B09-U02",
@@ -1203,7 +1236,7 @@
         ]
       },
       "unique_effect": {
-        "runtime_implemented": false,
+        "runtime_implemented": true,
         "trigger": "see_authored_contract",
         "conditions": [
           "余温晶戒：清除普通负面状态后回复最大HP2%，ICD15秒"
@@ -1216,7 +1249,8 @@
         "L52",
         "B09-M06",
         "B09-M08"
-      ]
+      ],
+      "runtime_implemented": true
     },
     "B09-U03": {
       "id": "B09-U03",
@@ -1253,7 +1287,7 @@
         ]
       },
       "unique_effect": {
-        "runtime_implemented": false,
+        "runtime_implemented": true,
         "trigger": "see_authored_contract",
         "conditions": [
           "碎晶暖匣：自己破敌人最后晶面/护盾后受伤-6%4秒，ICD12秒"
@@ -1266,7 +1300,8 @@
         "L54",
         "B09-M13",
         "B09-M18"
-      ]
+      ],
+      "runtime_implemented": true
     }
   }
 }

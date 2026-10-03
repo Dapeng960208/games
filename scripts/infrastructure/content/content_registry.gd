@@ -3,6 +3,7 @@ extends RefCounted
 const Progression = preload("res://scripts/domain/progression/hero_progression.gd")
 const ClassPolicy = preload("res://scripts/domain/equipment/equipment_class_policy.gd")
 const B05Catalog = preload("res://scripts/levels/b05/equipment/equipment_catalog.gd")
+const B09Catalog = preload("res://scripts/levels/b09/equipment/equipment_catalog.gd")
 const B06Catalog = preload("res://scripts/levels/b06/equipment/equipment_catalog.gd")
 const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 ## Immutable-by-copy static definitions. Combat state and ownership never live here.
@@ -64,6 +65,7 @@ static func slots(ruleset: int = 1) -> Array[String]:
 
 static func equipment(id: String, ruleset: int = 1) -> Dictionary:
 	var catalog := _v2_equipment() if ruleset == 2 else _equipment
+	if id.begins_with("B09-") and not Rules.b09_candidate_enabled(): return {}
 	var result: Dictionary = catalog.get(id, {}).duplicate(true)
 	if ruleset == 2 and not result.is_empty():
 		result["allowed_heroes"] = ClassPolicy.allowed_heroes(str(result.get("set_id", "")))
@@ -78,6 +80,7 @@ static func equipment_ids(ruleset: int = 1) -> Array:
 		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B05-"))
 	if ruleset == 2 and int(Rules.value("implemented_chapters",4)) < 6:
 		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B06-"))
+	if ruleset == 2 and not Rules.b09_candidate_enabled(): ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B09-"))
 	ids.sort()
 	return ids
 
@@ -97,6 +100,14 @@ static func sets(ruleset: int = 1) -> Dictionary:
 			for set_id: String in B05Catalog.sets(): result[set_id] = _b05_set(set_id)
 		if int(Rules.value("implemented_chapters",4)) >= 6:
 			for set_id: String in B06Catalog.sets(): result[set_id] = _b06_set(set_id)
+		if Rules.b09_candidate_enabled():
+			for set_id: String in B09Catalog.sets():
+				var definition: Dictionary = B09Catalog.sets()[set_id]
+				definition.merge({"race_id":"B09", "class_policy_version":4})
+				for tier: Dictionary in definition.thresholds.values():
+					tier["text"] = " ".join(tier.conditions)
+					tier["text_en"] = tier.text
+				result[set_id] = definition
 		var materials: Dictionary = Rules.value("shop_set_races", {})
 		for set_id: String in materials:
 			if result.has(set_id): result[set_id]["race_id"] = str(materials[set_id])
@@ -202,6 +213,14 @@ static func _v2_equipment() -> Dictionary:
 		item["affix_text_en"] = B06_UNIQUE_TEXT.get(id, ["", ""])[1]
 		item["runtime_implemented"] = not id.begins_with("B06-SU-")
 		if not item.unique_effect.is_empty(): item.unique_effect["runtime_implemented"] = true
+		_equipment_v2[id] = item
+	for id: String in B09Catalog.equipment_ids():
+		var item := B09Catalog.equipment(id)
+		item.merge({"drop_origin":"B09", "class_policy_version":4, "description":"霜晶王庭候选装备；固定取向、属性与效果由真实装备实例解析", "description_en":"Crystal Court candidate gear; instance stats and combat effects", "base_stat_text":"属性由装备实例决定", "base_stat_text_en":"Stats are determined by the equipment instance", "affix_id":"", "affix_text":"", "affix_text_en":""})
+		item["affix_tendencies"] = item.affix_tendencies_by_power[item.power_types[0]].duplicate()
+		if not item.unique_effect.is_empty():
+			item["affix_text"] = " ".join(item.unique_effect.conditions)
+			item["affix_text_en"] = item.affix_text
 		_equipment_v2[id] = item
 	return _equipment_v2
 
@@ -381,9 +400,10 @@ static func _check_required(definition: Dictionary, fields: Array, label: String
 static func _validate_v2() -> Array[String]:
 	var errors: Array[String] = []
 	var b05_released := int(Rules.value("implemented_chapters", 4)) >= 5
-	if equipment_ids(2).size() != (194 if int(Rules.value("implemented_chapters",4))>=6 else 159 if b05_released else 124): errors.append("Unexpected version-two template count.")
+	if equipment_ids(2).size() != ((194 if int(Rules.value("implemented_chapters",4))>=6 else 159 if b05_released else 124) + (35 if Rules.b09_candidate_enabled() else 0)): errors.append("Unexpected version-two template count.")
 	errors.append_array(B05Catalog.validate())
 	errors.append_array(B06Catalog.validate())
+	errors.append_array(B09Catalog.validate())
 	if slots(2).size() != 8: errors.append("Expected eight version-two slots.")
 	var general_count := 0
 	for number in range(1, 125):
