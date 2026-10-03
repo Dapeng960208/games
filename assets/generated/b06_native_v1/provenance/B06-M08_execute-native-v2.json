@@ -1,0 +1,44 @@
+{
+  "id": "M08",
+  "pose": "execute",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-ff35ff14-a89c-4d0e-a63b-f995d7d906a1.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M08_execute-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-ff35ff14-a89c-4d0e-a63b-f995d7d906a1.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M08_execute-native-v1.png",
+    "b06-art/generated/monsters-m02-m09/B06-M08_idle-native-v2.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "action": "Bring coral masonry mallet downward and forward toward screen-right as if commanding a wall to rise, retain toolrack silhouette and visible mallet head. No wall, floor or debris.",
+  "reference": "b06-art/generated/monsters-m02-m09/B06-M08_idle-native-v2.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "2a7ad49db55283e063f56ed5d01a0e64cb1909b6115ebad5d8757b73ca89de73",
+  "bytes": 856640,
+  "alpha_bbox": [
+    97,
+    21,
+    1238,
+    1206
+  ],
+  "opaque_bbox": [
+    333,
+    243,
+    1105,
+    1069
+  ],
+  "prompt": "Use case: identity-preserve. Image1 is edit target B06-M08 execute. Image2 is its selected IDLE body scale reference. Preserve EXACT species, anatomy, costume, colors, face, limbs, equipment, attack pose and camera from image1. Composition correction ONLY: reduce the entire character together to match the body/torso pixel scale of image2, centered around same ground anchor. Whole silhouette should occupy at most72% canvas width/height, all extremities between15%and85%of canvas. Keep generous empty alpha margins on every side. Do not change attack action or face. No enlarged closeup. Preserve crisp painterly2.5D render and genuine transparent RGBA. No floor, shadow, particles, detached elements, labels or upscaling.\n",
+  "status": "candidate pending visual QC",
+  "reference_sha256": [
+    "50da544f681404b261609a6592a21d831852f5bb98d47ff53db0963719650a1c",
+    "f250ee67c47f79c4af3ea4bc3342b4f1bf797d4eb6ea5bbda4c4b6df529e68af"
+  ]
+}

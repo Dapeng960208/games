@@ -46,8 +46,9 @@ static func legal_affixes(template_id: String, power_type: String) -> Array[Stri
 static func affix_weights(template_id: String, power_type: String) -> Dictionary:
 	var result := {}
 	var template := Registry.equipment(template_id, 2)
+	var tendencies: Array = template.get("affix_tendencies_by_power", {}).get(power_type, template.get("affix_tendencies", []))
 	for key: String in legal_affixes(template_id, power_type):
-		result[key] = int(Rules.value("affix_tendency_weight")) if key in template.affix_tendencies else int(Rules.value("affix_default_weight"))
+		result[key] = int(Rules.value("affix_tendency_weight")) if key in tendencies else int(Rules.value("affix_default_weight"))
 	return result
 
 static func validate(record: Dictionary) -> Array[String]:
@@ -124,12 +125,16 @@ static func validate(record: Dictionary) -> Array[String]:
 	if record.has("forge_revision") and not _integer_in(record.forge_revision, 0, 1000000000000): errors.append("Invalid forge revision.")
 	if record.has("pending_reforge") and not record.pending_reforge is Dictionary: errors.append("Invalid pending reforge value.")
 	if record.has("legacy_equip_waiver"): _validate_waiver(record, errors)
-	if record.get("source_metadata", {}) is Dictionary and record.get("source_metadata", {}).get("generator_version") == 2 and not record.has_all(["class_policy_version", "acquired_for_hero", "allowed_heroes"]): errors.append("Generator-v2 requires complete eligibility provenance.")
+	if record.get("source_metadata", {}) is Dictionary and _integer_in(record.get("source_metadata", {}).get("generator_version"), 2, 4) and not record.has_all(["class_policy_version", "acquired_for_hero", "allowed_heroes"]): errors.append("Class-aware generation requires complete eligibility provenance.")
+	if (str(record.template_id).begins_with("B05-") or str(record.template_id).begins_with("B06-")) and not record.has_all(["class_policy_version", "acquired_for_hero", "allowed_heroes"]): errors.append("Chapter instance is missing eligibility provenance.")
 	if record.has("class_policy_version"):
-		if not _integer_in(record.class_policy_version, Registry.ClassPolicy.VERSION, Registry.ClassPolicy.VERSION): errors.append("Unknown class policy version.")
+		var provenance: Dictionary = record.source_metadata if record.get("source_metadata") is Dictionary else {}
+		if not _integer_in(record.class_policy_version, Registry.ClassPolicy.template_policy_version(str(record.template_id)), Registry.ClassPolicy.template_policy_version(str(record.template_id))): errors.append("Unknown class policy version.")
 		if not record.get("acquired_for_hero") in Registry.ClassPolicy.HEROES: errors.append("Unknown acquisition hero.")
 		if record.get("allowed_heroes") != Registry.ClassPolicy.template_allowed_heroes(str(record.template_id)): errors.append("Class membership differs from the template policy.")
-		if not record.get("source_metadata") is Dictionary or record.source_metadata.get("generator_version") != 2: errors.append("Class-stamped instances require generator-v2 provenance.")
+		if not _integer_in(provenance.get("generator_version"), 2, 4): errors.append("Class-stamped instances require class-aware generation provenance.")
+		if record.class_policy_version == 3 and provenance.get("generator_version") != 4: errors.append("B06 requires generator-v4 provenance.")
+		if record.class_policy_version == 2 and provenance.get("generator_version") != 3: errors.append("B05 requires generator-v3 provenance.")
 		var allowed: Array = Registry.ClassPolicy.template_allowed_heroes(str(record.template_id))
 		if allowed.size() == 1 and record.power_type != Registry.ClassPolicy.power_type(str(allowed[0])): errors.append("Exclusive equipment has the wrong stat type.")
 	return errors

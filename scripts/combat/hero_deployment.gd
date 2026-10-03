@@ -201,12 +201,16 @@ func detonate() -> bool:
 
 func _damage_context(original: bool = false) -> Dictionary:
 	var context: Dictionary = {"power":float(options.get("power", damage)), "damage_type":str(options.get("damage_type", "magic")), "attacker_stats":options.get("attacker_stats", {}), "equipment_eligible":original, "original_basic":false}
+	if bool(options.get("spell_critical_eligible", false)):
+		context["spell_critical_eligible"] = true
+		context["root_event_id"] = str(options.get("root_event_id", ""))
 	if original:
 		# Simultaneous victims share the committed skill root, including the
 		# captured power/attributes and heavy-contact tier of a timed grenade.
 		context["root_event_id"] = str(options.get("root_event_id", "deployment:" + str(get_instance_id())))
 		context["attack_id"] = str(options.get("attack_id", context.root_event_id))
 		context["heavy"] = bool(options.get("heavy", false))
+		context["paid_cost"] = float(options.get("paid_cost", 0.0))
 	return context
 
 func _fire_node() -> void:

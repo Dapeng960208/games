@@ -9,7 +9,9 @@ const Registry = preload("res://scripts/data/content_registry.gd")
 const Growth = preload("res://scripts/core/hero_progression.gd")
 const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Economy = preload("res://scripts/core/instance_economy.gd")
-const GENERATOR_VERSION := 2
+const V3 = preload("res://scripts/core/equipment_acquisition_v3.gd")
+const V4 = preload("res://scripts/core/equipment_acquisition_v4.gd")
+const GENERATOR_VERSION := 4
 # Immutable v2 eligibility overlay. All numerical/roll definitions remain v1.
 const V2_SET_HEROES := {"S01":["CH03"],"S02":["CH01","CH02","CH03"],"S03":["CH01","CH02","CH03"],"S04":["CH02"],"S05":["CH01"],"S06":["CH01","CH02","CH03"],"S07":["CH02"],"S08":["CH01","CH02","CH03"],"S09":["CH01"],"S10":["CH01","CH02","CH03"],"S11":["CH03"],"S12":["CH02"],"S13":["CH01","CH02","CH03"],"S14":["CH01"]}
 const V2_TEMPLATE_SETS := {"EQ01":"","EQ02":"","EQ03":"S01","EQ04":"S02","EQ05":"S03","EQ06":"S04","EQ07":"S05","EQ08":"S06","EQ09":"S07","EQ10":"S08","EQ11":"","EQ12":"","EQ13":"S01","EQ14":"S02","EQ15":"S03","EQ16":"S04","EQ17":"S05","EQ18":"S06","EQ19":"S07","EQ20":"S08","EQ21":"","EQ22":"","EQ23":"S01","EQ24":"S02","EQ25":"S03","EQ26":"S04","EQ27":"S05","EQ28":"S06","EQ29":"S07","EQ30":"S08","EQ31":"","EQ32":"","EQ33":"S01","EQ34":"S02","EQ35":"S03","EQ36":"S04","EQ37":"S05","EQ38":"S06","EQ39":"S07","EQ40":"S08","EQ41":"","EQ42":"","EQ43":"S01","EQ44":"S02","EQ45":"S03","EQ46":"S04","EQ47":"S05","EQ48":"S06","EQ49":"S07","EQ50":"S08","EQ51":"","EQ52":"","EQ53":"S01","EQ54":"S02","EQ55":"S03","EQ56":"S04","EQ57":"S05","EQ58":"S06","EQ59":"S07","EQ60":"S08","EQ61":"S09","EQ62":"S09","EQ63":"S09","EQ64":"S09","EQ65":"S09","EQ66":"S09","EQ67":"S10","EQ68":"S10","EQ69":"S10","EQ70":"S10","EQ71":"S10","EQ72":"S10","EQ73":"S11","EQ74":"S11","EQ75":"S11","EQ76":"S11","EQ77":"S11","EQ78":"S11","EQ79":"S12","EQ80":"S12","EQ81":"S12","EQ82":"S12","EQ83":"S12","EQ84":"S12","EQ85":"S13","EQ86":"S13","EQ87":"S13","EQ88":"S13","EQ89":"S13","EQ90":"S13","EQ91":"S14","EQ92":"S14","EQ93":"S14","EQ94":"S14","EQ95":"S14","EQ96":"S14","EQ97":"S01","EQ98":"S01","EQ99":"S02","EQ100":"S02","EQ101":"S03","EQ102":"S03","EQ103":"S04","EQ104":"S04","EQ105":"S05","EQ106":"S05","EQ107":"S06","EQ108":"S06","EQ109":"S07","EQ110":"S07","EQ111":"S08","EQ112":"S08","EQ113":"S09","EQ114":"S09","EQ115":"S10","EQ116":"S10","EQ117":"S11","EQ118":"S11","EQ119":"S12","EQ120":"S12","EQ121":"S13","EQ122":"S13","EQ123":"S14","EQ124":"S14"}
@@ -185,7 +187,7 @@ const ITEM_KEYS: Array[String] = ["instance_id", "source_event_id", "template_id
 ## with a freshly generated gold item (same count, new N/g and k/u).
 ## The frozen_result overload rejects changed requests and invalid receipts.
 static func roll_event(context: Dictionary, frozen_result: Dictionary = {}) -> Dictionary:
-	var version := int(frozen_result.get("generator_version", GENERATOR_VERSION))
+	var version := int(frozen_result.get("generator_version", 4 if context.get("race_id") == "B06" else 3))
 	var error := _event_error(context, version)
 	if not error.is_empty(): return _failure(error)
 	var request: Dictionary = _canonical(context)
@@ -197,9 +199,10 @@ static func roll_event(context: Dictionary, frozen_result: Dictionary = {}) -> D
 			return _failure("event_context_changed")
 		if not event_result_valid(frozen_result): return _failure("invalid_frozen_result")
 		return frozen_result.duplicate(true)
-	var version_error := _dispatch_version(GENERATOR_VERSION, true)
+	if int(request.challenge_level) > Growth.level_cap() or (request.race_id == "B05" and Growth.level_cap() < V3.LEVEL_CAP): return _failure("unreleased_challenge_level")
+	var version_error := _dispatch_version(version, true)
 	if not version_error.is_empty(): return _failure(version_error)
-	return _roll_event_version(request, GENERATOR_VERSION)
+	return _roll_event_version(request, version)
 
 ## Historical generation is entered only after dispatching its recorded version;
 ## it deliberately never checks the current live rules or the current catalog.
@@ -213,7 +216,7 @@ static func _roll_event_version(context: Dictionary, version: int) -> Dictionary
 	if not request.has("wish_slot"): request.wish_slot = ""
 	if not request.has("force_gold"): request.force_gold = false
 	var fingerprint := _fingerprint(request)
-	var pool := natural_pool(str(request.race_id), str(request.get("hero_id", "")) if version == 2 else "")
+	var pool := natural_pool(str(request.race_id), str(request.get("hero_id", "")) if version >= 2 else "", version)
 	if pool.is_empty() and request.source != "summon": return _failure("empty_race_pool")
 	var result := {"ok":true, "error":"", "source_event_id":request.event_id,
 		"context":request, "context_fingerprint":fingerprint, "versions":_versions(),
@@ -246,27 +249,54 @@ static func _roll_event_version(context: Dictionary, version: int) -> Dictionary
 ## Purchases/crafts are +0. Transactions own unlocks, affordability, capacity,
 ## context freezing and persistence; no caller-supplied random values/ledgers.
 static func roll_item(spec: Dictionary, seed: int) -> Dictionary:
+	var version := 4 if V4.TEMPLATES.has(spec.get("template_id")) else 3
 	if not _dispatch_version(GENERATOR_VERSION, true).is_empty() or not _item_error(spec).is_empty(): return {}
 	var request: Dictionary = _canonical(spec)
 	if not request.has("location"): request.location = "pending" if request.source == "drop" else "inventory"
-	var rng := _rng(seed, str(request.source_event_id), "item:" + str(request.instance_id) + ":" + str(request.source), GENERATOR_VERSION)
-	return _finish_item(request, rng, seed, _fingerprint(request), GENERATOR_VERSION)
+	var rng := _rng(seed, str(request.source_event_id), "item:" + str(request.instance_id) + ":" + str(request.source), version)
+	return _finish_item(request, rng, seed, _fingerprint(request), version)
 
-## Single version-dispatch gate. New v2 generation uses the frozen class overlay
-## and unchanged v1 numerical contract. Unversioned live changes block creation.
-## Recorded v1 receipts still select the original archive and RNG domains.
+## Single version-dispatch gate. V3 appends B05/cap25; V4 appends B06/cap30.
+## Pre-B06 new acquisitions keep their v3 RNG domain and item-level contract;
+## numerical roll/quality/economy definitions retain the original V1 contract.
+## V1/V2 receipts select their original archives, caps and RNG domains.
 static func current_version_error() -> String:
 	return _dispatch_version(GENERATOR_VERSION, true)
 
 static func _dispatch_version(version: int, current_creation: bool) -> String:
-	if version not in [1, 2]: return "unsupported_generator_version"
-	if current_creation and (not _live_v1_matches() or not _live_v2_matches()): return "generation_version_mismatch"
+	if version not in [1, 2, 3, 4]: return "unsupported_generator_version"
+	if current_creation and (not _live_v1_matches() or not _live_v2_matches() or not _live_v3_matches() or not _live_v4_matches()): return "generation_version_mismatch"
 	return ""
 
 static func _allowed_heroes_v2(template_id: String) -> Array:
 	if not V2_TEMPLATE_SETS.has(template_id): return []
 	var set_id: String = V2_TEMPLATE_SETS[template_id]
 	return ["CH01", "CH02", "CH03"] if set_id.is_empty() else V2_SET_HEROES.get(set_id, []).duplicate()
+
+static func _level_cap(version: int) -> int:
+	return V4.LEVEL_CAP if version >= 4 else (V3.LEVEL_CAP if version >= 3 else V1_LEVEL_CAP)
+
+static func _allowed_heroes(template_id: String, version: int) -> Array:
+	if version >= 4 and V4.TEMPLATES.has(template_id): return V4.TEMPLATES[template_id].allowed_heroes.duplicate()
+	if version >= 3 and V3.TEMPLATES.has(template_id): return V3.TEMPLATES[template_id].allowed_heroes.duplicate()
+	return _allowed_heroes_v2(template_id)
+
+static func _live_v3_matches() -> bool:
+	if Growth.level_cap() not in [20, V3.LEVEL_CAP, V4.LEVEL_CAP]: return false
+	if Registry.equipment_ids(2).size() != V1_TEMPLATES.size() + (V3.TEMPLATES.size() if Growth.level_cap() >= V3.LEVEL_CAP else 0) + (V4.TEMPLATES.size() if Growth.level_cap() >= V4.LEVEL_CAP else 0): return false
+	for id: String in V3.TEMPLATES:
+		var live := Registry.equipment(id, 2)
+		for key: String in V3.TEMPLATES[id]:
+			if _canonical(live.get(key)) != _canonical(V3.TEMPLATES[id][key]): return false
+	return true
+
+static func _live_v4_matches() -> bool:
+	if Growth.level_cap() < V4.LEVEL_CAP: return true
+	for id: String in V4.TEMPLATES:
+		var live := Registry.equipment(id, 2)
+		for key: String in V4.TEMPLATES[id]:
+			if _canonical(live.get(key)) != _canonical(V4.TEMPLATES[id][key]): return false
+	return true
 
 static func _live_v2_matches() -> bool:
 	for id: String in V2_TEMPLATE_SETS:
@@ -281,13 +311,13 @@ static func _live_v1_matches() -> bool:
 		if not current_parameters.has(key): return false
 		parameters[key] = current_parameters[key]
 	var templates := {}
-	for id: String in Registry.equipment_ids(2):
+	for id: String in V1_TEMPLATES:
 		var source := Registry.equipment(id, 2)
 		var template := {}
 		for key in ["slot", "shop_only", "drop_origin", "race_id", "affix_tendencies", "price"]:
 			if source.has(key): template[key] = source[key]
 		templates[id] = template
-	var current := {"parameters":parameters, "templates":templates, "slot_order":Registry.slots(2), "level_cap":Growth.level_cap()}
+	var current := {"parameters":parameters, "templates":templates, "slot_order":Registry.slots(2), "level_cap":V1_LEVEL_CAP}
 	if _v1_contract_hash.is_empty():
 		var archive := {"parameters":V1_PARAMETERS, "templates":V1_TEMPLATES, "slot_order":V1_SLOT_ORDER, "level_cap":V1_LEVEL_CAP}
 		_v1_contract_hash = JSON.stringify(_canonical(archive), "", false, true).sha256_text()
@@ -297,11 +327,20 @@ static func _live_v1_matches() -> bool:
 
 ## Keys are available slots in registry order; templates are stable-ID sorted.
 ## Never falls back to another race or includes a shop-exclusive template.
-static func natural_pool(race_id: String, hero_id: String = "") -> Dictionary:
+static func natural_pool(race_id: String, hero_id: String = "", version: int = 0) -> Dictionary:
+	if version == 0: version = 4 if Growth.level_cap() >= V4.LEVEL_CAP else 3
+	if version not in [1, 2, 3, 4] or (not hero_id.is_empty() and hero_id not in ["CH01", "CH02", "CH03"]): return {}
+	# B05 is class-filtered from its first generation; never offer all 35 as a
+	# natural pool when a caller omitted the hero context.
+	if race_id == "B05" and (version < 3 or hero_id.is_empty()): return {}
+	if race_id == "B06" and (version < 4 or hero_id.is_empty()): return {}
 	var unordered := {}
-	for id: String in V1_TEMPLATES.keys():
-		var template := _template(id)
-		if not hero_id.is_empty() and hero_id not in _allowed_heroes_v2(id): continue
+	var ids := V1_TEMPLATES.keys()
+	if version >= 3: ids.append_array(V3.TEMPLATES.keys())
+	if version >= 4: ids.append_array(V4.TEMPLATES.keys())
+	for id: String in ids:
+		var template := _template(id, version)
+		if not hero_id.is_empty() and hero_id not in _allowed_heroes(id, version): continue
 		if not bool(template.get("shop_only", false)) and str(template.get("drop_origin", "")) == race_id and str(template.get("race_id", "")) == race_id:
 			if not unordered.has(template.slot): unordered[template.slot] = []
 			unordered[template.slot].append(id)
@@ -334,6 +373,61 @@ static func slot_weights(pool: Dictionary, wish_slot: String = "") -> Dictionary
 		result[slot] = probability[0] * (result.size() - 1) if slot == wish_slot else probability[1] - probability[0]
 	return result
 
+## Frozen B05 union weights. A wished-slot hit stays locked; on the non-wish
+## branch these multiply the original per-template probability mass (slot mass
+## divided by template count), not a new globally uniform template pool.
+static func template_weights(candidates: Array, context: Dictionary, version: int = GENERATOR_VERSION) -> Dictionary:
+	if not _event_error(context, version).is_empty(): return {}
+	var result := {}
+	for id: Variant in candidates:
+		if not id is String or result.has(id): return {}
+		var template := _template(id, version)
+		if template.is_empty() or template.get("race_id") != context.race_id or bool(template.get("shop_only", false)): return {}
+		if version >= 2 and context.hero_id not in _allowed_heroes(id, version): return {}
+		var preferred := false
+		if (version >= 3 and context.race_id == "B05") or (version >= 4 and context.race_id == "B06"):
+			var preferences = V4 if context.race_id == "B06" else V3
+			var room: String = str(context.get("room_id", ""))
+			var monster: String = str(context.get("monster_id", ""))
+			preferred = template.slot in preferences.ROOM_PREFERRED_SLOTS.get(room, []) or template.slot == preferences.MONSTER_PREFERRED_SLOT.get(monster, "")
+			var unique: Array = preferences.UNIQUE_PREFERENCES.get(id, [])
+			preferred = preferred or room in unique or monster in unique
+		result[id] = (V4.PREFERENCE_WEIGHT if context.race_id == "B06" else V3.PREFERENCE_WEIGHT) if preferred else 1
+	return result
+
+## Integer common-denominator encoding of original_slot_weight / slot_count.
+## Excluding the wished slot conditions only the non-wish branch. Its mass is
+## never redistributed into that slot, so the original wish-hit chance survives.
+static func preference_slot_weights(pool: Dictionary, context: Dictionary, excluded_slot: String = "", version: int = GENERATOR_VERSION) -> Dictionary:
+	var template_maps := {}
+	var denominator := 1
+	for slot: String in pool:
+		if slot == excluded_slot: continue
+		var weights := template_weights(pool[slot], context, version)
+		if weights.is_empty(): return {}
+		template_maps[slot] = weights
+		denominator = denominator * weights.size() / Instances._gcd(denominator, weights.size())
+	var original := slot_weights(pool, str(context.get("wish_slot", "")))
+	var result := {}
+	for slot: String in template_maps:
+		var weight_sum := 0
+		for weight: Variant in template_maps[slot].values(): weight_sum += int(weight)
+		result[slot] = int(original[slot]) * weight_sum * denominator / template_maps[slot].size()
+	return result
+
+static func _has_preference(pool: Dictionary, context: Dictionary, version: int = GENERATOR_VERSION) -> bool:
+	for slot: String in pool:
+		for weight: Variant in template_weights(pool[slot], context, version).values():
+			if int(weight) != 1: return true
+	return false
+
+static func _uniform_weights(weights: Dictionary) -> bool:
+	if weights.is_empty(): return false
+	var first := int(weights.values()[0])
+	for weight: Variant in weights.values():
+		if int(weight) != first: return false
+	return true
+
 ## Exact categorical selector. Tickets are integers in [0,total-1]; zero-weight
 ## entries cannot be selected, including the first and last boundary tickets.
 static func weighted_ticket(weights: Dictionary, ticket: int) -> String:
@@ -351,16 +445,27 @@ static func _event_item(context: Dictionary, pool: Dictionary, index: int, force
 	# Pool -> rarity -> wish/other slot -> template -> ilvl -> N -> g -> k ->
 	# affix type/u. Explicit/fixed stages do not consume unnecessary random draws.
 	var rarity := "gold" if forced_gold else _weighted(rng, quality_weights(str(context.source), int(context.difficulty)))
-	var slot := _weighted(rng, slot_weights(pool, str(context.wish_slot)))
+	var wish: String = str(context.wish_slot)
+	var slot := _weighted(rng, slot_weights(pool, wish))
+	if version >= 3 and _has_preference(pool, context, version):
+		# Keep the original draw as the wish hit/miss decision. Missing/no
+		# applicable provenance takes exactly the old seeded v3 draw sequence.
+		var locked_wish := pool.has(wish) and slot == wish
+		if not locked_wish:
+			var mass := preference_slot_weights(pool, context, wish if pool.has(wish) else "", version)
+			slot = _weighted(rng, mass)
+	if slot.is_empty(): return {}
 	var candidates: Array = pool[slot]
-	var template_id := str(candidates[rng.randi_range(0, candidates.size() - 1)])
+	var weights := template_weights(candidates, context, version) if version >= 3 else {}
+	var template_id := str(candidates[rng.randi_range(0, candidates.size() - 1)]) if version < 3 or _uniform_weights(weights) else _weighted(rng, weights)
+	if template_id.is_empty(): return {}
 	var item_level := int(context.challenge_level)
 	if context.source != "boss":
-		item_level = clampi(item_level + int(_weighted(rng, _value("item_level_offsets"))), 1, V1_LEVEL_CAP)
+		item_level = clampi(item_level + int(_weighted(rng, _value("item_level_offsets"))), 1, V1_LEVEL_CAP if int(context.challenge_level) <= V1_LEVEL_CAP else _level_cap(version))
 	var spec := {"instance_id":"v2:" + (str(context.event_id) + ":" + str(index)).sha256_text(),
 		"source_event_id":context.event_id, "template_id":template_id, "rarity":rarity,
 		"power_type":context.power_type, "item_level":item_level, "source":"drop", "location":"pending"}
-	if version == 2: spec["hero_id"] = context.hero_id
+	if version >= 2: spec["hero_id"] = context.hero_id
 	var item := _finish_item(spec, rng, int(context.seed), _fingerprint(context), version)
 	if item.is_empty(): return {}
 	item.source_kind = context.source
@@ -370,6 +475,8 @@ static func _event_item(context: Dictionary, pool: Dictionary, index: int, force
 	item.source_metadata["item_index"] = index
 	item.source_metadata["stream"] = stream
 	item.source_metadata["forced_gold"] = forced_gold
+	for field: String in ["room_id", "monster_id"]:
+		if context.has(field): item.source_metadata[field] = context[field]
 	return item
 
 static func _finish_item(spec: Dictionary, rng: RandomNumberGenerator, seed: int, fingerprint: String, version: int = 1) -> Dictionary:
@@ -379,9 +486,9 @@ static func _finish_item(spec: Dictionary, rng: RandomNumberGenerator, seed: int
 		steps.append({"g":int(_weighted(rng, _value("enhancement_random").gain_percent_weights)), "pity":0, "base_price_peak":_enhancement_price(index + 1, int(spec.item_level))})
 	var quantile_max := int(_value("main_roll").steps)
 	var main := {}
-	for key: String in _main_keys(str(spec.template_id), str(spec.power_type)):
+	for key: String in _main_keys(str(spec.template_id), str(spec.power_type), version):
 		main[key] = rng.randi_range(0, quantile_max)
-	var weights := _affix_weights(str(spec.template_id), str(spec.power_type))
+	var weights := _affix_weights(str(spec.template_id), str(spec.power_type), version)
 	var affixes: Array = []
 	for index in int(_value("rarities")[spec.rarity].affix_count):
 		var key := _weighted(rng, weights)
@@ -395,13 +502,13 @@ static func _finish_item(spec: Dictionary, rng: RandomNumberGenerator, seed: int
 		"source_event_id":spec.source_event_id, "item_level":spec.item_level, "rarity":spec.rarity,
 		"power_type":spec.power_type, "main_rolls":main, "affix_type_and_quantile":affixes,
 		"enhancement_rank":rank, "enhancement_steps":steps, "enhancement_gold_ledger":[], "material_ledger":[],
-		"purchase_baseline_gold":_purchase_baseline_price(str(spec.template_id), str(spec.rarity), int(spec.item_level)),
+		"purchase_baseline_gold":_purchase_baseline_price(str(spec.template_id), str(spec.rarity), int(spec.item_level), version),
 		"source_kind":spec.source, "source_metadata":source, "location":spec.location,
 		"equipment_instance_version":int(_value("versions").equipment_instance), "ruleset_version":int(_value("versions").ruleset),
 		"scale_version":int(_value("versions").scale), "enhancement_reroll_history":[], "reforge_slot":-1, "lock_state":false}
-	if version == 2:
-		item["class_policy_version"] = 1
-		item["allowed_heroes"] = _allowed_heroes_v2(str(spec.template_id))
+	if version >= 2:
+		item["class_policy_version"] = 3 if V4.TEMPLATES.has(spec.template_id) else (2 if V3.TEMPLATES.has(spec.template_id) else 1)
+		item["allowed_heroes"] = _allowed_heroes(str(spec.template_id), version)
 		item["acquired_for_hero"] = item.allowed_heroes[0] if item.allowed_heroes.size() == 1 else spec.hero_id
 	return item
 
@@ -410,7 +517,9 @@ static func _finish_item(spec: Dictionary, rng: RandomNumberGenerator, seed: int
 static func _value(key: String) -> Variant:
 	return V1_PARAMETERS[key]
 
-static func _template(id: String) -> Dictionary:
+static func _template(id: String, version: int = GENERATOR_VERSION) -> Dictionary:
+	if version >= 4 and V4.TEMPLATES.has(id): return V4.TEMPLATES[id]
+	if version >= 3 and V3.TEMPLATES.has(id): return V3.TEMPLATES[id]
 	return V1_TEMPLATES.get(id, {})
 
 static func _versions() -> Dictionary:
@@ -419,18 +528,19 @@ static func _versions() -> Dictionary:
 	result["scale_version"] = int(result.scale)
 	return result
 
-static func _main_keys(template_id: String, power_type: String) -> Array:
-	var definition: Dictionary = _value("slots")[_template(template_id).slot]
+static func _main_keys(template_id: String, power_type: String, version: int = GENERATOR_VERSION) -> Array:
+	var definition: Dictionary = _value("slots")[_template(template_id, version).slot]
 	return definition.get("shared", definition.get(power_type, {})).keys()
 
-static func _affix_weights(template_id: String, power_type: String) -> Dictionary:
+static func _affix_weights(template_id: String, power_type: String, version: int = GENERATOR_VERSION) -> Dictionary:
 	var result := {}
-	var template := _template(template_id)
+	var template := _template(template_id, version)
+	var tendencies: Array = template.get("affix_tendencies_by_power", {}).get(power_type, template.get("affix_tendencies", []))
 	var definitions: Dictionary = _value("affixes")
 	for key: String in definitions:
 		var definition: Dictionary = definitions[key]
 		if template.slot in definition.slots and str(definition.get("power_type", power_type)) == power_type:
-			result[key] = int(_value("affix_tendency_weight")) if key in template.affix_tendencies else int(_value("affix_default_weight"))
+			result[key] = int(_value("affix_tendency_weight")) if key in tendencies else int(_value("affix_default_weight"))
 	return result
 
 static func _scaled_gold(base: int, level: int, multiplier: Variant = 1) -> int:
@@ -441,8 +551,8 @@ static func _scaled_gold(base: int, level: int, multiplier: Variant = 1) -> int:
 static func _enhancement_price(rank: int, level: int) -> int:
 	return _scaled_gold(int(_value("enhancement_gold")[rank - 1]), level)
 
-static func _purchase_baseline_price(template_id: String, rarity: String, level: int) -> int:
-	return _scaled_gold(int(_template(template_id).price), level, _value("shop_price_multiplier")["white" if rarity == "white" else "green"])
+static func _purchase_baseline_price(template_id: String, rarity: String, level: int, version: int = GENERATOR_VERSION) -> int:
+	return _scaled_gold(int(_template(template_id, version).price), level, _value("shop_price_multiplier")["white" if rarity == "white" else "green"])
 
 static func _weighted(rng: RandomNumberGenerator, weights: Dictionary) -> String:
 	var total := 0
@@ -463,14 +573,23 @@ static func _rng(seed: int, event_id: String, domain: String, version: int = 1) 
 
 static func _event_error(context: Dictionary, version: int = 1) -> String:
 	for key: Variant in context:
-		if key not in EVENT_KEYS and not (version == 2 and key == "hero_id"): return "unknown_event_field"
-	if version == 2 and (context.get("hero_id") not in ["CH01", "CH02", "CH03"] or context.get("power_type") != ("magic" if context.get("hero_id") == "CH03" else "physical")): return "invalid_hero_context"
+		if key not in EVENT_KEYS and not (version >= 2 and key == "hero_id") and not (version >= 3 and key in ["room_id", "monster_id"]): return "unknown_event_field"
+	if version >= 2 and (context.get("hero_id") not in ["CH01", "CH02", "CH03"] or context.get("power_type") != ("magic" if context.get("hero_id") == "CH03" else "physical")): return "invalid_hero_context"
 	if not context.has_all(["event_id", "seed", "source", "race_id", "difficulty", "challenge_level", "power_type"]): return "missing_event_field"
 	if not _text(context.event_id) or not _text(context.race_id): return "invalid_event_identity"
+	var preferences = V4 if version >= 4 and context.race_id == "B06" else V3
+	if context.race_id == "B06":
+		if version < 4 or context.get("room_id") not in V4.ROOM_LEVELS: return "invalid_room_context"
+		if context.challenge_level != V4.ROOM_LEVELS[context.room_id]: return "invalid_challenge_level"
+		if context.source != "summon" and (context.source == "boss") != (context.room_id == "BO06"): return "invalid_boss_room"
+	if context.has("room_id"):
+		if context.race_id not in ["B05", "B06"] or not context.room_id is String or not preferences.ROOM_PREFERRED_SLOTS.has(context.room_id): return "invalid_room_context"
+	if context.has("monster_id"):
+		if context.race_id not in ["B05", "B06"] or context.source not in ["normal", "elite"] or not context.monster_id is String or not preferences.MONSTER_PREFERRED_SLOT.has(context.monster_id): return "invalid_monster_context"
 	if not _integer(context.seed, -9007199254740991, 9007199254740991): return "invalid_seed"
 	if not context.source is String or context.source not in EVENT_SOURCES: return "invalid_source"
 	if not _integer(context.difficulty, 0, _value("normal_quality_weights").size() - 1): return "invalid_difficulty"
-	if not _integer(context.challenge_level, 1, V1_LEVEL_CAP): return "invalid_challenge_level"
+	if not _integer(context.challenge_level, 1, _level_cap(version)): return "invalid_challenge_level"
 	if context.power_type not in ["physical", "magic"]: return "invalid_power_type"
 	if not context.get("wish_slot", "") is String: return "invalid_wish_slot"
 	if context.get("wish_slot", "") != "" and context.wish_slot not in V1_SLOT_ORDER: return "invalid_wish_slot"
@@ -482,15 +601,18 @@ static func _item_error(spec: Dictionary) -> String:
 	for key: Variant in spec:
 		if key not in ITEM_KEYS and key != "hero_id": return "unknown_item_field"
 	if spec.get("hero_id") not in ["CH01", "CH02", "CH03"]: return "invalid_hero_context"
-	var allowed := _allowed_heroes_v2(str(spec.get("template_id", "")))
+	var allowed := _allowed_heroes(str(spec.get("template_id", "")), GENERATOR_VERSION)
 	if allowed.size() == 1 and spec.get("power_type") != ("magic" if allowed[0] == "CH03" else "physical"): return "class_power_mismatch"
 	if not spec.has_all(["instance_id", "source_event_id", "template_id", "rarity", "power_type", "item_level", "source"]): return "missing_item_field"
 	for key in ["instance_id", "source_event_id", "template_id"]:
 		if not _text(spec[key]): return "invalid_item_identity"
 	if _template(str(spec.template_id)).is_empty(): return "invalid_template"
+	if V3.TEMPLATES.has(spec.template_id) and Growth.level_cap() < V3.LEVEL_CAP: return "unreleased_template"
+	if V4.TEMPLATES.has(spec.template_id) and Growth.level_cap() < V4.LEVEL_CAP: return "unreleased_template"
 	if spec.rarity not in RARITIES or spec.power_type not in ["physical", "magic"]: return "invalid_item_type"
-	if not _integer(spec.item_level, 1, V1_LEVEL_CAP): return "invalid_item_level"
+	if not _integer(spec.item_level, 25 if V4.TEMPLATES.has(spec.template_id) else 1, mini(_level_cap(4 if V4.TEMPLATES.has(spec.template_id) else 3), Growth.level_cap())): return "invalid_item_level"
 	if spec.source not in ["purchase", "craft", "drop"]: return "invalid_item_source"
+	if V4.TEMPLATES.has(spec.template_id) and spec.source != "drop": return "b06_creation_economy_not_released"
 	if spec.source == "purchase" and spec.rarity not in _value("shop_rarities"): return "invalid_shop_rarity"
 	if spec.source == "craft" and not _value("forge_costs").has(spec.rarity): return "invalid_craft_rarity"
 	if spec.get("location", "inventory") not in ["inventory", "pending"]: return "invalid_item_location"

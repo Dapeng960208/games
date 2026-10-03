@@ -9,7 +9,7 @@ static func texture(path: String) -> Texture2D:
 static func relic(parent: Node, id: String, at: Vector2, extent: Vector2, found: bool = true) -> TextureRect:
 	var art := TextureRect.new()
 	art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
-	art.texture = texture("res://assets/ui/relic_"+id+".png")
+	art.texture = texture(ClassRelics.art_path(id))
 	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	art.position = at

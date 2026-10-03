@@ -1,0 +1,44 @@
+{
+  "id": "M12",
+  "pose": "telegraph",
+  "prompt": "Use case: identity-preserve. Edit this exact monster's IDLE master into ONE TELEGRAPH action sprite. Change pose only: Draw back and subtly inflate the organic siphon nozzle, compress mollusc foot to brace, nozzle aimed right preparing jet. Preserve exact species, anatomy, colors, ornaments, equipment, same body size, high-fidelity painted style and elevated three-quarter right-facing camera. Preserve empty alpha canvas and whole-body framing. No additional limbs, redesign, duplicated subject, background, floor, shadow, text or baked attack effects. Keep all equipment and body parts fully inside canvas.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M12_idle-native-v2.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-83bb8385-f182-41a0-bb83-5a67ff12f8ef.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M12_telegraph-native-v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "cc6ecd80e971ac70e1a16c781a7422d777fb9a4c026b1e3df4d894595201b0a7",
+  "alpha_bbox": [
+    33,
+    21,
+    1208,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    156,
+    318,
+    1190,
+    939
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "958c0851b7707247bc9aea50a919a034946db5085f0e6689b8b11e63a32ebc7b",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    585,
+    930
+  ],
+  "attack_outlet_px": [
+    1119,
+    704
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M12_telegraph-native-v1.json"
+}

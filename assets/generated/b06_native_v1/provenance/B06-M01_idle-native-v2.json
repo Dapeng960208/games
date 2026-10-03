@@ -1,0 +1,40 @@
+{
+  "id": "B06-M01_idle-native-v2",
+  "folder": "enemies",
+  "transparent": true,
+  "ref": "enemies/B06-M01_idle-native-v1.png",
+  "prompt": "Use case: identity-preserve. Edit this B06-M01 Trident Fish Guard native RGBA identity master. Preserve exact fish guard identity, face, gold-pearl shell armor, tall blue dorsal fin, trident with three tines, colors, painterly high-fidelity 2.5D shading, screen-right facing and idle two-handed grip. Recompose at the same native square canvas, with the ENTIRE subject including trident, rear shaft end, fin and both feet reduced together to fit inside the central 76% of the image. At least 12% completely empty alpha margin on ALL FOUR SIDES. No clipping or near-edge alpha remnants. Maintain genuine transparent background, no floor, no shadow, no new decoration, no effects. Correct camera subtly to elevated three-quarter game view, looking down at crown, shoulders and feet. Single whole-body idle sprite only, no sheets. Do not upscale or add text.",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-17ea0fa3-fd39-444f-8dd8-19f3fd8843ae.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/enemies/B06-M01_idle-native-v2.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "geometry_sha": "8d5d532",
+  "status": "candidate awaiting review",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "90ba77e2ff08ae9dc7d47bc4ee3dc0250d6f702e18fa24b7049ddd1d8a3b5c6e",
+  "reference_sha256": "fd49ba7fff00c7f14621246f3a918437f53cd842508c003f4bb7724d8d012713",
+  "alpha_bbox": [
+    21,
+    53,
+    1218,
+    1222
+  ],
+  "visible_alpha128_bbox": [
+    187,
+    152,
+    1148,
+    1122
+  ],
+  "selection_status": "selected_source_candidate",
+  "runtime_ready": false,
+  "source_anchors": [
+    "docs/levels/06_TIDAL_CORAL_CITY.md#2-地图元素与种族特性",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#3-18种普通怪",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#4-boss行走巨蟹堡垒"
+  ]
+}

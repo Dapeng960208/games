@@ -1,0 +1,44 @@
+{
+  "id": "M03",
+  "pose": "telegraph",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-a9cb7527-5946-44cc-a749-f7438f33ae05.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M03_telegraph-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-a9cb7527-5946-44cc-a749-f7438f33ae05.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M03_telegraph-native-v1.png",
+    "b06-art/generated/monsters-m02-m09/B06-M03_idle-native-v2.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "action": "Raise the broad fan shell shield firmly across the forward screen-right side, retract striking pincer in a clear wind-up, crouch legs. Shield remains fully visible.",
+  "reference": "b06-art/generated/monsters-m02-m09/B06-M03_idle-native-v2.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "65131ba38e3c3470df504144dcaef29d8701c4d33a494d4403c7e3260e529830",
+  "bytes": 686750,
+  "alpha_bbox": [
+    146,
+    53,
+    1089,
+    1214
+  ],
+  "opaque_bbox": [
+    298,
+    384,
+    1028,
+    951
+  ],
+  "prompt": "Use case: identity-preserve. Image1 is edit target B06-M03 telegraph. Image2 is its selected IDLE body scale reference. Preserve EXACT species, anatomy, costume, colors, face, limbs, equipment, attack pose and camera from image1. Composition correction ONLY: reduce the entire character together to match the body/torso pixel scale of image2, centered around same ground anchor. Whole silhouette should occupy at most72% canvas width/height, all extremities between15%and85%of canvas. Keep generous empty alpha margins on every side. Do not change attack action or face. No enlarged closeup. Preserve crisp painterly2.5D render and genuine transparent RGBA. No floor, shadow, particles, detached elements, labels or upscaling.\n",
+  "status": "candidate pending visual QC",
+  "reference_sha256": [
+    "8821ff8090dcd3b9ad39f59c3d22ecd9e6db17bd7fb70095d68d0aba288f5755",
+    "fcea2cae3fe56d0822c78f5180c8a3079e52a19b11d7dc4bb70b5bf9c49ed9a3"
+  ]
+}

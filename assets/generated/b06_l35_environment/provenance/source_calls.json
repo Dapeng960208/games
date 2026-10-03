@@ -1,0 +1,56 @@
+[
+  {
+    "side": "north",
+    "id": "L35-north-watercourt-garden-v1",
+    "texture": "L35-north-watercourt-garden-v1.png",
+    "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-265d30a4-5391-4c32-805b-64e0ecd21682.png",
+    "source_call_id": "exec-265d30a4-5391-4c32-805b-64e0ecd21682",
+    "prompt": "provenance/L35-north-prompt.txt",
+    "full_prompt": "Use case: style-transfer. Asset type: independent transparent 2.5D game NORTH EXTERIOR WATERCOURT GARDEN SKYLINE strip for Tidebell Watercourt L35. Transform the architecture/material language of the supplied exact B06 PR5 reference into this entirely new modular asset; no whole-room image. Wide 3:1 canvas, requested native3072x1024 if supported, no upscale. High-overhead three-quarter near-orthographic camera, warm crisp coastal daylight, refined bright hand-painted fantasy architecture, pearl ivory, cobalt and turquoise enamel, fine gold, graceful pink/lavender coral topiary. On the far left a small airy ribbed ivory shell pavilion with turquoise accents, on far right a DIFFERENT open fan-shell garden belvedere and delicate golden ribs. Keep the middle 60 percent VERY LOW: only a narrow low pearl balustrade, tiny restrained coral sprouts, no tall center tower and no center pavilion. The game's separate tidebell landmark must remain the only main focal object. All bases rest on one SINGLE NARROW STRAIGHT HORIZONTAL BOTTOM EDGE, with pearl/gold structural masonry continuing to this bottom boundary. Everything projects UP outwards from that line, with no interior floor below. Genuine transparent backdrop around and through open arches. Architectural garden exterior only, not loose gameplay props. No bell, gong, tidebell, pool, fountain, water plane, paving area, stairs, ship, market awning, merchandise, sky, terrain, whole room, people, creatures, text, writing, symbols, UI, border or watermark."
+  },
+  {
+    "side": "south",
+    "id": "L35-south-pearl-arch-facade-v1",
+    "texture": "L35-south-pearl-arch-facade-v1.png",
+    "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3fc23c05-1f0c-4ece-92e9-0328cc4a53c0.png",
+    "source_call_id": "exec-3fc23c05-1f0c-4ece-92e9-0328cc4a53c0",
+    "prompt": "provenance/L35-south-prompt.txt",
+    "full_prompt": "Use case: style-transfer. Asset type: independent transparent 2.5D game SOUTH EXTERIOR ELEVATED PEARL ARCH FACADE for Tidebell Watercourt L35. Translate only the material and camera language of exact B06 PR5 reference into this new garden facade, no whole room. Wide3:1 requested native3072x1024 if supported, no upscale. High-overhead three-quarter near-orthographic game view, straight frontage, no converging vanishing point. Graceful suspended pearl-white garden wall with four slender airy shell-ribbed arcades, thin fine-gold tracery and turquoise/cobalt glazed recesses; asymmetric delicate lavender and rose coral topiary clings to exterior arch piers. A refined tranquil sea garden, no market components. A SINGLE CONTINUOUS NARROW STRAIGHT HORIZONTAL TOP CORNICE is the inner legal boundary, reaching near the absolute TOP of canvas across the width. All raised facade architecture projects DOWN outwards from that line. No upward finials or tall silhouette above it, no walkable top surface. Transparent arch voids and real transparent background. Crisp PR5 pearl/nacre material and warm daylight. No water plane, pool, fountain, tidebell, bell, gameplay props, steps, crates, furniture, market awning, floor slab, interior terrace, sky, ocean, ground rectangle, characters, writing, signs, UI, border or watermark."
+  },
+  {
+    "side": "east",
+    "id": "L35-east-garden-facade-v1",
+    "texture": "L35-east-garden-facade-v1.png",
+    "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b6e2260d-bcac-476e-884c-c82533bb19b7.png",
+    "source_call_id": "exec-b6e2260d-bcac-476e-884c-c82533bb19b7",
+    "prompt": "provenance/L35-east-prompt.txt",
+    "full_prompt": "Use case: style-transfer. Asset type: independent transparent 2.5D game EAST EXTERIOR SEA-GARDEN FACADE strip for Tidebell Watercourt L35. Use exact B06 PR5 reference for pearl/coral art direction only; generate entirely new modular architecture, not a cropped whole room. Portrait1:3 requested native1024x3072 if supported, no upscale. High-overhead three-quarter near-orthographic game camera. Elegant elevated ivory-pearl garden edge with carved shell arches and fine gold ribs, cobalt enamel recessed faces and three restrained rose/lavender coral topiary clusters attached to outer piers. One small airy shell canopy garden pavilion projects outward at the upper third, and delicate open lower arch brackets vary the cadence. SINGLE CONTINUOUS STRAIGHT VERTICAL PEARL AND GOLD INNER RAIL at the absolute LEFT EDGE running full height. All architectural depth projects RIGHT outward from this line; never a walkable platform or interior paving. Minimize left transparent padding and let the carved structural edge touch the LEFT canvas edge. Genuine transparent backdrop and airy voids through arches, crisp refined bright painted fantasy detail, warm sunlight. East-specific asymmetric composition, no mirroring/rotation from another wall. No tidebell, bell, pool, fountain, water plane, ground, floor rectangle, market awnings, loose props, cargo, stairs, text, symbols, people, UI, border or watermark."
+  },
+  {
+    "side": "west",
+    "id": "L35-west-garden-facade-v1",
+    "texture": "L35-west-garden-facade-v1.png",
+    "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5263c3b5-6d9b-462e-abdd-5302cb8e7f04.png",
+    "source_call_id": "exec-5263c3b5-6d9b-462e-abdd-5302cb8e7f04",
+    "prompt": "provenance/L35-west-prompt.txt",
+    "full_prompt": "Use case: style-transfer. Asset type: independent transparent 2.5D game WEST EXTERIOR SEA-GARDEN FACADE strip for Tidebell Watercourt L35. Exact B06 PR5 image is material/style reference, create a new west-specific composition, not any whole-room or mirrored wall. Portrait1:3 requested native1024x3072 if supported, no upscale. High-overhead three-quarter near-orthographic camera. An elegant raised pearl garden wall with sinuous carved shell arcade ribs, thin gold lattice, turquoise inlaid recesses, two delicate lavender coral topiary clusters and one blush fan-shell open garden pavilion attached toward lower third, varied and airy. This side must differ in silhouette and detail cadence from east. A SINGLE CONTINUOUS STRAIGHT VERTICAL IVORY/GOLD INNER CORNICE runs full height at the absolute RIGHT EDGE; carved structural relief reaches that canvas edge. All facade depth projects LEFT outward. No top-down interior terrace or paving, no steps. Genuine transparency around and through the architecture. Sophisticated crisp warm-daylight hand-painted 2.5D pearl/coral sea-city world. No water plane, pool, fountain, tidebell, bell, gameplay props, market awning, loose furniture, crates, floor slab, sky, land, text, writing, people, creatures, UI, border or watermark."
+  },
+  {
+    "side": "floor",
+    "id": "L35-pearl-garden-floor-slab-v1",
+    "texture": "L35-pearl-garden-floor-slab-v1.png",
+    "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-363e1a0d-0716-4053-9a89-452ae2b388d9.png",
+    "source_call_id": "exec-363e1a0d-0716-4053-9a89-452ae2b388d9",
+    "prompt": "provenance/L35-floor-prompt.txt",
+    "full_prompt": "Use case: style-transfer. Asset type: one quiet repeatable square pearl paving slab texture for Tidebell Watercourt L35. Exact B06 PR5 image is the pearl/coral material and art direction reference; generate a new texture only. Opaque square, requested native2048x2048 if supported, no upscale. Perfectly flat straight orthographic TOP DOWN material, edge-to-edge. One understated pale ivory mother-of-pearl stone slab, extremely subtle cool mint/aqua and soft lavender nacre mineral wisps, restrained satin sheen. Thin consistent warm-gold hairline bevel precisely at the perimeter, so this single slab may repeat as paving; no broad frame, no inner grid, no grand emblem. Keep tone and veins very low contrast, evenly lit without directional shadows or hotspots, supporting clear heroes and warning markers. Graceful quiet sea-garden identity distinct from warm coral market stone. No perspective, vertical thickness, raised objects, shells, coral plants, seaweed plants, gameplay props, water, pool, puddle, sea, room, building, characters, text, UI, border or watermark. Entire canvas opaque flat floor material."
+  },
+  {
+    "side": "inlay",
+    "id": "L35-floral-sea-mosaic-v1",
+    "texture": "L35-floral-sea-mosaic-v1.png",
+    "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1a9f2895-c1b3-4181-8123-659665a2b18c.png",
+    "source_call_id": "exec-1a9f2895-c1b3-4181-8123-659665a2b18c",
+    "prompt": "provenance/L35-inlay-prompt.txt",
+    "full_prompt": "Use case: style-transfer. Asset type: one FLAT FLORAL/SEA MOSAIC FLOOR INLAY sprite for Tidebell Watercourt L35. Exact B06 PR5 image is pearl/coral palette and fine craftsmanship reference only. Square requested native2048x2048 if supported, no upscale. One centered modest circular mosaic medallion seen perfectly straight overhead, isolated on genuinely transparent background with generous clear margins. A graceful six-petal sea-flower design interlaced with curling wave ribbons, made of small FLUSH ivory nacre, pale mint-turquoise and lavender mosaic tesserae, with a very slim warm-gold mosaic rim. Elegant subdued detail. This is completely flat paving decoration inlaid in floor, not a physical raised flower or shell, not a collectible, not a water basin. No perspective, no pedestal, no protrusion, no drop shadow, no shine hotspot, no glow. Internal stone is opaque, only outside circle transparent. No tidebell or bell symbol, no gameplay objects, actual coral plant, water plane, fountain, floor rectangle backdrop, text, numbers, lettering, characters, UI, border or watermark."
+  }
+]

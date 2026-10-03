@@ -1,0 +1,37 @@
+{
+  "schema": "b05-fixed-matrix-plan-v1",
+  "candidate": 7,
+  "mage_candidate": 1,
+  "heroes": [
+    "CH01",
+    "CH02",
+    "CH03"
+  ],
+  "mixes": [
+    "class6",
+    "class4",
+    "shared6"
+  ],
+  "samples": [
+    "G2",
+    "P5",
+    "lowG2"
+  ],
+  "seeds": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010
+  ],
+  "required_boss_cases": 270,
+  "g2_target": "every seed60\u201390active seconds and alive victory; HP record only",
+  "controller_sha256": "d9e758f3876913c2b1564db9049d7142eee6398118c51aad6e670c275e9e9069",
+  "frozen_build_sha256": "80764812c1725c953470956616fb0e2f6ee31ffac35df83a6d5ed2284538f6ad",
+  "no_gear_or_controller_changes": true
+}

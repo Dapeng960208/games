@@ -7,7 +7,9 @@ extends RefCounted
 const Catalog = preload("res://scripts/world/world_catalog.gd")
 const FixedLayouts = preload("res://scripts/world/fixed_room_layouts.gd")
 
-static func build(boss_id: String, seed_value: int) -> Dictionary:
+static func build(boss_id: String, seed_value: int, candidate: bool = false) -> Dictionary:
+	if (candidate or Catalog.b06_enabled()) and boss_id == "BO06": return preload("res://scripts/world/b06_room_layouts.gd").build(boss_id,seed_value)
+	if Catalog.b05_enabled() and boss_id=="BO05": return preload("res://scripts/world/b05_room_layouts.gd").build(boss_id,seed_value)
 	if boss_id not in ["BO01", "BO02", "BO03", "BO04"]:
 		return {}
 	var authored: Dictionary = Catalog.bosses().get(boss_id, {})

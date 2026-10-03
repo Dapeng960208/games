@@ -1,0 +1,44 @@
+{
+  "id": "M02",
+  "pose": "execute",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-d2481fbe-2a9a-4eb3-b894-51b7a86eac20.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M02_execute-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-d2481fbe-2a9a-4eb3-b894-51b7a86eac20.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M02_execute-native-v1.png",
+    "b06-art/generated/monsters-m02-m09/B06-M02_idle-native-v2.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "action": "Fire the single shell-back cannon: barrel in short visible recoil, crab legs firmly braced, muzzle clearly visible and open. No detached projectile, smoke or muzzle flash; runtime supplies effects.",
+  "reference": "b06-art/generated/monsters-m02-m09/B06-M02_idle-native-v2.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "ffc695654813a43a7fb7afbf18b9b6e4b6bc976302ec4e0de21b6bfaabab1f2d",
+  "bytes": 708159,
+  "alpha_bbox": [
+    0,
+    21,
+    1212,
+    1220
+  ],
+  "opaque_bbox": [
+    333,
+    373,
+    1024,
+    973
+  ],
+  "prompt": "Use case: identity-preserve. Image1 is edit target B06-M02 execute. Image2 is its selected IDLE body scale reference. Preserve EXACT species, anatomy, costume, colors, face, limbs, equipment, attack pose and camera from image1. Composition correction ONLY: reduce the entire character together to match the body/torso pixel scale of image2, centered around same ground anchor. Whole silhouette should occupy at most72% canvas width/height, all extremities between15%and85%of canvas. Keep generous empty alpha margins on every side. Do not change attack action or face. No enlarged closeup. Preserve crisp painterly2.5D render and genuine transparent RGBA. No floor, shadow, particles, detached elements, labels or upscaling.\n",
+  "status": "candidate pending visual QC",
+  "reference_sha256": [
+    "0138902524cd2f8e4fdb0399aec2561532583b047d2862afba4cebc324c6be4e",
+    "3041b415ce4af9afacd1cb3e2b140c90cf16451c5b053007c96af73c04ecc49c"
+  ]
+}

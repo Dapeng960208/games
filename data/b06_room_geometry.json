@@ -1,0 +1,1286 @@
+{
+  "version": 1,
+  "biome_id": "B06",
+  "runtime_enabled": false,
+  "blueprint_size": [
+    2800,
+    1800
+  ],
+  "world_scale": 0.58,
+  "rooms": {
+    "L31": {
+      "id": "L31",
+      "name": "贝桥前街",
+      "name_en": "Shellbridge Front Street",
+      "enemy_level": 26,
+      "geometry_status": "candidate_frozen_v1",
+      "entry": [
+        360,
+        900
+      ],
+      "exit": [
+        2440,
+        900
+      ],
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2620,
+          200
+        ],
+        [
+          2620,
+          1600
+        ],
+        [
+          180,
+          1600
+        ]
+      ],
+      "main_route": [
+        [
+          360,
+          900
+        ],
+        [
+          2440,
+          900
+        ]
+      ],
+      "dry_routes": [
+        [
+          [
+            360,
+            900
+          ],
+          [
+            2440,
+            900
+          ]
+        ]
+      ],
+      "minimum_dry_route_width_world": 180,
+      "minimum_dry_area_ratio": 0.35,
+      "shallow_patches": [
+        {
+          "id": "north",
+          "polygon": [
+            [
+              450,
+              320
+            ],
+            [
+              2350,
+              320
+            ],
+            [
+              2350,
+              670
+            ],
+            [
+              450,
+              670
+            ]
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "south",
+          "polygon": [
+            [
+              450,
+              1130
+            ],
+            [
+              2350,
+              1130
+            ],
+            [
+              2350,
+              1480
+            ],
+            [
+              450,
+              1480
+            ]
+          ],
+          "direction": [
+            0,
+            -1
+          ]
+        }
+      ],
+      "gates": [],
+      "low_cover": [],
+      "encounter_anchors": [
+        [
+          850,
+          850
+        ],
+        [
+          1700,
+          950
+        ]
+      ],
+      "art": {
+        "ready": false,
+        "placement": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ]
+      }
+    },
+    "L32": {
+      "id": "L32",
+      "name": "螺塔码头",
+      "name_en": "Conch Tower Docks",
+      "enemy_level": 26,
+      "geometry_status": "candidate_frozen_v1",
+      "entry": [
+        1400,
+        1430
+      ],
+      "exit": [
+        2200,
+        420
+      ],
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2620,
+          200
+        ],
+        [
+          2620,
+          1600
+        ],
+        [
+          180,
+          1600
+        ]
+      ],
+      "main_route": [
+        [
+          1400,
+          1430
+        ],
+        [
+          1400,
+          990
+        ],
+        [
+          2200,
+          990
+        ],
+        [
+          2200,
+          420
+        ]
+      ],
+      "dry_routes": [
+        [
+          [
+            1400,
+            1430
+          ],
+          [
+            1400,
+            990
+          ],
+          [
+            2200,
+            990
+          ],
+          [
+            2200,
+            420
+          ]
+        ],
+        [
+          [
+            1400,
+            900
+          ],
+          [
+            840,
+            990
+          ]
+        ]
+      ],
+      "minimum_dry_route_width_world": 180,
+      "minimum_dry_area_ratio": 0.35,
+      "shallow_patches": [
+        {
+          "id": "west",
+          "polygon": [
+            [
+              320,
+              320
+            ],
+            [
+              970,
+              320
+            ],
+            [
+              970,
+              740
+            ],
+            [
+              320,
+              740
+            ]
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "east",
+          "polygon": [
+            [
+              1660,
+              1220
+            ],
+            [
+              2380,
+              1220
+            ],
+            [
+              2380,
+              1480
+            ],
+            [
+              1660,
+              1480
+            ]
+          ],
+          "direction": [
+            0,
+            -1
+          ]
+        }
+      ],
+      "gates": [
+        {
+          "id": "drain_west",
+          "position": [
+            840,
+            990
+          ],
+          "patch_id": "west"
+        }
+      ],
+      "low_cover": [],
+      "encounter_anchors": [
+        [
+          850,
+          850
+        ],
+        [
+          1700,
+          950
+        ]
+      ],
+      "art": {
+        "ready": false,
+        "placement": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ]
+      }
+    },
+    "L33": {
+      "id": "L33",
+      "name": "珊瑚集市",
+      "name_en": "Coral Market",
+      "enemy_level": 28,
+      "geometry_status": "candidate_frozen_v1",
+      "entry": [
+        360,
+        900
+      ],
+      "exit": [
+        2440,
+        900
+      ],
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2620,
+          200
+        ],
+        [
+          2620,
+          1600
+        ],
+        [
+          180,
+          1600
+        ]
+      ],
+      "main_route": [
+        [
+          360,
+          900
+        ],
+        [
+          2440,
+          900
+        ]
+      ],
+      "dry_routes": [
+        [
+          [
+            360,
+            900
+          ],
+          [
+            2440,
+            900
+          ]
+        ]
+      ],
+      "minimum_dry_route_width_world": 180,
+      "minimum_dry_area_ratio": 0.35,
+      "shallow_patches": [
+        {
+          "id": "north",
+          "polygon": [
+            [
+              800,
+              320
+            ],
+            [
+              1500,
+              320
+            ],
+            [
+              1500,
+              670
+            ],
+            [
+              800,
+              670
+            ]
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "south",
+          "polygon": [
+            [
+              1300,
+              1130
+            ],
+            [
+              2000,
+              1130
+            ],
+            [
+              2000,
+              1480
+            ],
+            [
+              1300,
+              1480
+            ]
+          ],
+          "direction": [
+            0,
+            -1
+          ]
+        }
+      ],
+      "gates": [],
+      "low_cover": [],
+      "encounter_anchors": [
+        [
+          850,
+          850
+        ],
+        [
+          1700,
+          950
+        ]
+      ],
+      "art": {
+        "ready": false,
+        "placement": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ]
+      },
+      "alternating_patch_groups": [
+        [
+          "north"
+        ],
+        [
+          "south"
+        ]
+      ]
+    },
+    "L34": {
+      "id": "L34",
+      "name": "珍珠工坊",
+      "name_en": "Pearl Workshop",
+      "enemy_level": 28,
+      "geometry_status": "candidate_frozen_v1",
+      "entry": [
+        420,
+        1400
+      ],
+      "exit": [
+        2200,
+        420
+      ],
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2620,
+          200
+        ],
+        [
+          2620,
+          1600
+        ],
+        [
+          180,
+          1600
+        ]
+      ],
+      "main_route": [
+        [
+          420,
+          1400
+        ],
+        [
+          900,
+          1400
+        ],
+        [
+          900,
+          900
+        ],
+        [
+          2200,
+          900
+        ],
+        [
+          2200,
+          420
+        ]
+      ],
+      "dry_routes": [
+        [
+          [
+            420,
+            1400
+          ],
+          [
+            900,
+            1400
+          ],
+          [
+            900,
+            900
+          ],
+          [
+            2200,
+            900
+          ],
+          [
+            2200,
+            420
+          ]
+        ],
+        [
+          [
+            1400,
+            900
+          ],
+          [
+            2200,
+            900
+          ]
+        ]
+      ],
+      "minimum_dry_route_width_world": 180,
+      "minimum_dry_area_ratio": 0.35,
+      "shallow_patches": [
+        {
+          "id": "workshop_west",
+          "polygon": [
+            [
+              320,
+              330
+            ],
+            [
+              670,
+              330
+            ],
+            [
+              670,
+              1010
+            ],
+            [
+              320,
+              1010
+            ]
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "workshop_east",
+          "polygon": [
+            [
+              1250,
+              1160
+            ],
+            [
+              2350,
+              1160
+            ],
+            [
+              2350,
+              1490
+            ],
+            [
+              1250,
+              1490
+            ]
+          ],
+          "direction": [
+            0,
+            -1
+          ]
+        }
+      ],
+      "gates": [
+        {
+          "id": "drain_east",
+          "position": [
+            2200,
+            900
+          ],
+          "patch_id": "workshop_east"
+        }
+      ],
+      "low_cover": [],
+      "encounter_anchors": [
+        [
+          850,
+          850
+        ],
+        [
+          1700,
+          950
+        ]
+      ],
+      "art": {
+        "ready": false,
+        "placement": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ]
+      }
+    },
+    "L35": {
+      "id": "L35",
+      "name": "潮钟水庭",
+      "name_en": "Tidebell Watercourt",
+      "enemy_level": 30,
+      "geometry_status": "candidate_frozen_v1",
+      "entry": [
+        1400,
+        1430
+      ],
+      "exit": [
+        1400,
+        396
+      ],
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2620,
+          200
+        ],
+        [
+          2620,
+          1600
+        ],
+        [
+          180,
+          1600
+        ]
+      ],
+      "main_route": [
+        [
+          1400,
+          1430
+        ],
+        [
+          1400,
+          900
+        ],
+        [
+          1400,
+          396
+        ]
+      ],
+      "dry_routes": [
+        [
+          [
+            1400,
+            1430
+          ],
+          [
+            1400,
+            900
+          ],
+          [
+            1400,
+            396
+          ]
+        ],
+        [
+          [
+            1400,
+            900
+          ],
+          [
+            700,
+            450
+          ]
+        ],
+        [
+          [
+            1400,
+            900
+          ],
+          [
+            2100,
+            450
+          ]
+        ]
+      ],
+      "minimum_dry_route_width_world": 180,
+      "minimum_dry_area_ratio": 0.35,
+      "shallow_patches": [
+        {
+          "id": "garden_west",
+          "polygon": [
+            [
+              340,
+              1030
+            ],
+            [
+              1090,
+              1030
+            ],
+            [
+              1090,
+              1460
+            ],
+            [
+              340,
+              1460
+            ]
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "garden_east",
+          "polygon": [
+            [
+              1710,
+              1030
+            ],
+            [
+              2460,
+              1030
+            ],
+            [
+              2460,
+              1460
+            ],
+            [
+              1710,
+              1460
+            ]
+          ],
+          "direction": [
+            0,
+            -1
+          ]
+        }
+      ],
+      "gates": [],
+      "low_cover": [],
+      "encounter_anchors": [
+        [
+          850,
+          850
+        ],
+        [
+          1700,
+          950
+        ]
+      ],
+      "art": {
+        "ready": false,
+        "placement": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ]
+      },
+      "tide_bell": [
+        1400,
+        396
+      ]
+    },
+    "L36": {
+      "id": "L36",
+      "name": "巨蟹船坞",
+      "name_en": "Giant Crab Dockyard",
+      "enemy_level": 30,
+      "geometry_status": "candidate_frozen_v1",
+      "entry": [
+        360,
+        800
+      ],
+      "exit": [
+        2440,
+        800
+      ],
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2620,
+          200
+        ],
+        [
+          2620,
+          1600
+        ],
+        [
+          180,
+          1600
+        ]
+      ],
+      "main_route": [
+        [
+          360,
+          800
+        ],
+        [
+          2440,
+          800
+        ]
+      ],
+      "dry_routes": [
+        [
+          [
+            360,
+            800
+          ],
+          [
+            2440,
+            800
+          ]
+        ],
+        [
+          [
+            360,
+            800
+          ],
+          [
+            360,
+            1100
+          ],
+          [
+            2440,
+            1100
+          ],
+          [
+            2440,
+            800
+          ]
+        ],
+        [
+          [
+            1400,
+            800
+          ],
+          [
+            1400,
+            900
+          ]
+        ]
+      ],
+      "minimum_dry_route_width_world": 180,
+      "minimum_dry_area_ratio": 0.35,
+      "shallow_patches": [
+        {
+          "id": "channel_west",
+          "polygon": [
+            [
+              640,
+              320
+            ],
+            [
+              900,
+              320
+            ],
+            [
+              900,
+              600
+            ],
+            [
+              640,
+              600
+            ]
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "channel_middle",
+          "polygon": [
+            [
+              1270,
+              320
+            ],
+            [
+              1530,
+              320
+            ],
+            [
+              1530,
+              600
+            ],
+            [
+              1270,
+              600
+            ]
+          ],
+          "direction": [
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "channel_east",
+          "polygon": [
+            [
+              1900,
+              320
+            ],
+            [
+              2160,
+              320
+            ],
+            [
+              2160,
+              600
+            ],
+            [
+              1900,
+              600
+            ]
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "channel_west_s",
+          "polygon": [
+            [
+              640,
+              1320
+            ],
+            [
+              900,
+              1320
+            ],
+            [
+              900,
+              1480
+            ],
+            [
+              640,
+              1480
+            ]
+          ],
+          "direction": [
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "channel_middle_s",
+          "polygon": [
+            [
+              1270,
+              1320
+            ],
+            [
+              1530,
+              1320
+            ],
+            [
+              1530,
+              1480
+            ],
+            [
+              1270,
+              1480
+            ]
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "channel_east_s",
+          "polygon": [
+            [
+              1900,
+              1320
+            ],
+            [
+              2160,
+              1320
+            ],
+            [
+              2160,
+              1480
+            ],
+            [
+              1900,
+              1480
+            ]
+          ],
+          "direction": [
+            0,
+            -1
+          ]
+        }
+      ],
+      "gates": [
+        {
+          "id": "drain_dock",
+          "position": [
+            1400,
+            900
+          ],
+          "patch_id": "channel_middle"
+        }
+      ],
+      "low_cover": [],
+      "encounter_anchors": [
+        [
+          850,
+          850
+        ],
+        [
+          1700,
+          950
+        ]
+      ],
+      "art": {
+        "ready": false,
+        "placement": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ]
+      }
+    },
+    "BO06": {
+      "id": "BO06",
+      "name": "行走堡垒湾",
+      "name_en": "Walking Fortress Bay",
+      "enemy_level": 30,
+      "geometry_status": "candidate_frozen_v1",
+      "entry": [
+        1400,
+        1430
+      ],
+      "exit": [
+        1400,
+        500
+      ],
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2620,
+          200
+        ],
+        [
+          2620,
+          1600
+        ],
+        [
+          180,
+          1600
+        ]
+      ],
+      "main_route": [
+        [
+          1400,
+          1430
+        ],
+        [
+          1400,
+          900
+        ],
+        [
+          1400,
+          500
+        ]
+      ],
+      "dry_routes": [
+        [
+          [
+            1400,
+            1430
+          ],
+          [
+            1400,
+            900
+          ],
+          [
+            1400,
+            500
+          ]
+        ],
+        [
+          [
+            1400,
+            900
+          ],
+          [
+            560,
+            900
+          ]
+        ],
+        [
+          [
+            1400,
+            900
+          ],
+          [
+            2240,
+            900
+          ]
+        ]
+      ],
+      "minimum_dry_route_width_world": 180,
+      "minimum_dry_area_ratio": 0.35,
+      "shallow_patches": [
+        {
+          "id": "bay_west",
+          "polygon": [
+            [
+              240,
+              260
+            ],
+            [
+              890,
+              260
+            ],
+            [
+              890,
+              650
+            ],
+            [
+              240,
+              650
+            ]
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "bay_east",
+          "polygon": [
+            [
+              1910,
+              260
+            ],
+            [
+              2560,
+              260
+            ],
+            [
+              2560,
+              650
+            ],
+            [
+              1910,
+              650
+            ]
+          ],
+          "direction": [
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "bay_west_s",
+          "polygon": [
+            [
+              240,
+              1150
+            ],
+            [
+              890,
+              1150
+            ],
+            [
+              890,
+              1540
+            ],
+            [
+              240,
+              1540
+            ]
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "bay_east_s",
+          "polygon": [
+            [
+              1910,
+              1150
+            ],
+            [
+              2560,
+              1150
+            ],
+            [
+              2560,
+              1540
+            ],
+            [
+              1910,
+              1540
+            ]
+          ],
+          "direction": [
+            0,
+            -1
+          ]
+        }
+      ],
+      "gates": [
+        {
+          "id": "drain_west",
+          "position": [
+            560,
+            900
+          ],
+          "patch_id": "bay_west"
+        },
+        {
+          "id": "drain_east",
+          "position": [
+            2240,
+            900
+          ],
+          "patch_id": "bay_east"
+        }
+      ],
+      "low_cover": [],
+      "encounter_anchors": [
+        [
+          850,
+          850
+        ],
+        [
+          1700,
+          950
+        ]
+      ],
+      "art": {
+        "ready": false,
+        "placement": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ]
+      },
+      "boss_spawn": [
+        1400,
+        700
+      ],
+      "reef_pillars": [
+        [
+          1050,
+          650
+        ],
+        [
+          1750,
+          650
+        ]
+      ]
+    }
+  }
+}

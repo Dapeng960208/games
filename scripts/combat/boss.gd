@@ -2,7 +2,7 @@ class_name MineBoss
 extends MineEnemy
 ## Room integration contract:
 ##   spawn  : BossScript.new(), assign room/position, then add_child()
-##   config : configure_boss("BO01".."BO04", difficulty, optional_seed)
+##   config : configure_boss("BO01".."BO05", difficulty, optional_seed)
 ##   tick   : inherited _physics_process drives BossBrain exactly once
 ##   render : EnemyBody draws the body; this actor draws bars and arena markers
 ##   finish : completed signal + is_complete()/completion_snapshot()
@@ -18,6 +18,7 @@ signal completed(boss_id: String, payload: Dictionary)
 const Profiles = preload("res://scripts/combat/boss_profiles.gd")
 const BossBrainScript = preload("res://scripts/combat/boss_brain.gd")
 const BossTextureSampler = preload("res://scripts/ui/texture_sampler.gd")
+const B05BossArt = preload("res://scripts/combat/b05_boss_art.gd")
 const BossImageBounds = preload("res://scripts/combat/hero_visual.gd")
 
 var boss_id: String = ""
@@ -65,6 +66,7 @@ func _initialize_boss_runtime() -> void:
 	# Reconfiguration/retry starts a fresh encounter, including finite attempts.
 	if is_instance_valid(room) and is_instance_valid(room.enemy_skills):
 		room.enemy_skills.cancel_owner(self)
+		if boss_id == "BO06" and room.enemy_skills.b06 != null: room.enemy_skills.b06.reset_owner(self)
 	_retire_owned_children()
 	_complete = false
 	_completion_payload.clear()
@@ -85,8 +87,10 @@ func _initialize_boss_runtime() -> void:
 	status = StatusScript.new(int(profile.get("ruleset_version", 1)))
 	if boss_id == "BO01":
 		status.grant_guard(health.maximum * 0.22, 3600.0, "boss_solar", health.maximum)
-	boss_brain = BossBrainScript.new()
+	boss_brain = preload("res://scripts/combat/b06_boss_brain.gd").new() if boss_id == "BO06" else preload("res://scripts/combat/b05_boss_brain.gd").new() if boss_id == "BO05" else BossBrainScript.new()
 	boss_brain.configure(profile, boss_seed)
+	if boss_id == "BO06" and is_instance_valid(room) and get_parent() == room.enemies and is_instance_valid(room.b06_mechanics):
+		room.b06_mechanics.reset_boss_encounter(self)
 	brain = boss_brain
 	state = &"emerging"
 	state_time = 0.8
@@ -94,11 +98,33 @@ func _initialize_boss_runtime() -> void:
 	# MineEnemy creates the shared visual before the boss profile loads its much
 	# larger portrait. Register the final ground pivot and alpha mask on that
 	# existing visual so recoil and surface contacts use the same body we draw.
+	if boss_id == "BO05" and not body_visual is B05BossArt:
+		if is_instance_valid(body_visual): body_visual.free()
+		body_visual = B05BossArt.new()
+		add_child(body_visual)
+	elif boss_id != "BO05" and body_visual is B05BossArt:
+		body_visual.free()
+		body_visual = preload("res://scripts/combat/enemy_visual.gd").new()
+		add_child(body_visual)
 	if is_instance_valid(body_visual):
 		body_visual.configure(self)
 	queue_redraw()
 
 func _load_boss_art() -> void:
+	if boss_id == "BO05" and B05BossArt.frames().has("idle"):
+		_boss_art_path = B05BossArt.frames().idle.path
+		body_texture = B05BossArt.frames().idle.texture
+		body_region = Rect2(Vector2.ZERO, body_texture.get_size())
+		body_bounds = Rect2(-126, -178, 252, 226)
+		return
+	if boss_id == "BO06" and is_instance_valid(room) and bool(room.layout.get("b06_candidate",false)):
+		var native: Dictionary = preload("res://scripts/combat/b06_native_art.gd").boss_frame("","idle")
+		if not native.is_empty():
+			var placement: Dictionary = preload("res://scripts/combat/b06_native_art.gd").placement(native,Vector2.ZERO,207.0)
+			body_texture = native.texture
+			body_region = native.region
+			body_bounds = placement.bounds
+			return
 	_boss_art_path = str(profile.get("visual_asset", "res://assets/bosses/" + boss_id + ".png"))
 	body_texture = BossTextureSampler.sampled(_boss_art_path) if FileAccess.file_exists(_boss_art_path) or ResourceLoader.exists(_boss_art_path) else null
 	body_region = Rect2()
@@ -152,6 +178,8 @@ func apply_biome_counter(kind: String, duration: float = 2.6) -> bool:
 func cast_enemy_skill(skill: Dictionary) -> void:
 	if _complete or not is_alive():
 		return
+	if boss_id == "BO05" and body_visual is B05BossArt:
+		body_visual.release(str(skill.get("action_id", "")))
 	if str(skill.get("kind", "")) == "ground_area" and str(skill.get("shape", "")) == "line" and not skill.get("paths", []).is_empty():
 		# Runtime ground areas own one segment each. Release each frozen stroke
 		# shown by the warning, including parallel faults and the stitch fence.
@@ -239,6 +267,7 @@ func render_state() -> Dictionary:
 	return {
 		"asset_path":_boss_art_path,
 		"asset_loaded":body_texture != null,
+		"pose":body_visual.pose_name if body_visual is B05BossArt else "static",
 		"bounds":body_bounds,
 		"phase":boss_brain.phase_index() if boss_brain != null else 1,
 		"weakpoint":str(get_meta("boss_weakpoint", "")),
@@ -347,7 +376,9 @@ func _draw() -> void:
 		draw_circle(Vector2(-16 + index * 16, body_bounds.position.y - 24), 4.5, color)
 	if boss_brain != null and boss_brain.weakpoint_open():
 		draw_arc(Vector2.ZERO, navigation_radius + 12.0, -PI*0.5, PI*1.5, 48, Color("bfe8a7"), 4.0, true)
-		draw_circle(Vector2(0, -34), 8.0 + sin(lifetime*8.0)*2.0, Color(0.68,0.95,0.58,0.7))
+		# BO05 draws its core ring after its body on the registered visual canvas.
+		if boss_id != "BO05":
+			draw_circle(Vector2(0, -34), 8.0 + sin(lifetime*8.0)*2.0, Color(0.68,0.95,0.58,0.7))
 	var bar_width: float = 176.0
 	var bar_y: float = body_bounds.position.y - 14.0
 	draw_rect(Rect2(-bar_width*0.5, bar_y, bar_width, 10), Color("f1d9b4"))
@@ -397,3 +428,13 @@ func draw_body_fallback(canvas: Node2D, tint: Color) -> void:
 			canvas.draw_circle(Vector2(0,-25),16,(colors.energy as Color)*tint)
 	if bool(Game.profile.get("settings", {}).get("enemy_skill_paths", true)) and state in [&"windup", &"telegraph", &"locked"]:
 		canvas.draw_arc(Vector2.ZERO,navigation_radius,0,TAU,40,Color(0.89,0.28,0.27,0.52)*tint,2.0,true)
+
+## Presentation only: source anchors do not replace frozen attack geometry.
+func b06_body_frame() -> Dictionary:
+	if boss_id != "BO06" or not is_instance_valid(room) or not bool(room.layout.get("b06_candidate",false)): return {}
+	var pose: Dictionary = boss_brain.action_presentation() if boss_brain != null else {}
+	var exposed: bool = is_instance_valid(room.b06_mechanics) and room.b06_mechanics.boss_state != null and room.b06_mechanics.boss_state.exposure_remaining() > 0
+	var native: Dictionary = preload("res://scripts/combat/b06_native_art.gd").boss_frame(str(pose.get("action_id","")),str(pose.get("stage","idle")),exposed,_complete)
+	if native.is_empty(): return {}
+	var placed: Dictionary = preload("res://scripts/combat/b06_native_art.gd").placement(native,Vector2.ZERO,207.0)
+	return {"texture":native.texture,"region":native.region,"bounds":placed.bounds,"name":native.name,"full_color":true,"source_family":"b06_native_candidate","core":placed.core,"outlet":placed.outlet}

@@ -1,0 +1,38 @@
+{
+  "id": "M07",
+  "pose": "idle",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-9885c8d8-adaa-4bc4-921b-0d1408cae25e.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M07_idle-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-9885c8d8-adaa-4bc4-921b-0d1408cae25e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M07_idle-native-v1.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "d7cd29b9305f178edcaad058fb69e1e20208bd58fd2b44a28e43171d2184629f",
+  "bytes": 1032795,
+  "alpha_bbox": [
+    176,
+    194,
+    1198,
+    1254
+  ],
+  "opaque_bbox": [
+    187,
+    199,
+    1087,
+    1092
+  ],
+  "prompt": "Use case: identity-preserve. Edit target B06-M07 idle master. Preserve EXACT species, anatomy, costume, colors, number of limbs, weapons and tools, face, screen-right facing, elevated three-quarter camera, crisp painterly pearl/coral 2.5D style and current quiet idle pose. Composition correction ONLY: render the ENTIRE character as a smaller centered subject occupying at most 72% of the canvas width and height. Its outermost extremities must remain between x=15% and85% and y=15% and85%. Widen transparent empty space all around. No enlarged closeup. Every fin, claw, foot, staff, spike, hair tip and tool must be fully inside generous transparent margins. No floor, shadow, particles, labels or detached elements. True transparent RGBA background; preserve native quality, no upscaling.\n",
+  "status": "candidate pending visual inspection and landmark registration",
+  "reference_sha256": "1d16cca95e652f97f5a487b5a0faea7a742dc3b7fc423fcc2542ee9437dcd4eb"
+}

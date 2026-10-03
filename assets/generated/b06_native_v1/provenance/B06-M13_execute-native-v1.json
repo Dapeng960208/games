@@ -1,0 +1,44 @@
+{
+  "id": "M13",
+  "pose": "execute",
+  "prompt": "Use case: identity-preserve. Edit this exact monster's IDLE master into ONE EXECUTE action sprite. Change pose only: Ring shell bell forcefully forward toward right with arm extended, mouth open singing, other hand outstretched conducting; hollow bell mouth visible, no sound-wave FX. Preserve exact species, anatomy, colors, ornaments, equipment, same body size, high-fidelity painted style and elevated three-quarter right-facing camera. Preserve empty alpha canvas and whole-body framing. No additional limbs, redesign, duplicated subject, background, floor, shadow, text or baked attack effects. Keep all equipment and body parts fully inside canvas.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M13_idle-native-v2.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-32507c97-5854-4e75-b808-8f4f310d88a2.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M13_execute-native-v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "e2a5582911c89825c700151d7bedcc569178b94edff4f5fe4e053d479ef564f1",
+  "alpha_bbox": [
+    35,
+    39,
+    1254,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    39,
+    168,
+    1246,
+    1171
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "963b7d0ff94fa701e09782ecddffa51fa4f38888860eae03b31d450846c1a08d",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    704,
+    1110
+  ],
+  "attack_outlet_px": [
+    1204,
+    328
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M13_execute-native-v1.json"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "B06-M01_execute-native-v2",
+  "folder": "enemies",
+  "ref": "enemies/B06-M01_execute-native-v1.png",
+  "transparent": true,
+  "prompt": "Use case: precise-object-edit. Correct only weapon edge clearance in this exact fish-guard thrust sprite. Native1254square canvas, same body scale, fin, face, armor, legs and foot contacts. Retract both hands with the SAME trident100pixels LEFT, shortening forward extension, but keep trident length and exactly three tines, tip below x1150 with visible alpha margin. The spear still points screen-right; all three tines and rear shaft are fully inside canvas. No global subject resizing. No background/floor, shadow, text, VFX or new creature. Preserve exact identity and painterly details.",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-bfd5470c-28ce-45b0-9537-e1c1838295fb.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/enemies/B06-M01_execute-native-v2.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "candidate awaiting review",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "1ebcad93d76ce8004bf236bcd9a85f840eb455c7a56323102992b89a94924088",
+  "alpha_bbox": [
+    25,
+    21,
+    1220,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    75,
+    211,
+    1157,
+    1119
+  ],
+  "reference_sha256": "e09de07a350f4b0b65736aab16440a101bb53c7f486932157803a4bed73813ab",
+  "selection_status": "selected_source_candidate",
+  "runtime_ready": false,
+  "source_anchors": [
+    "docs/levels/06_TIDAL_CORAL_CITY.md#2-地图元素与种族特性",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#3-18种普通怪",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#4-boss行走巨蟹堡垒"
+  ]
+}

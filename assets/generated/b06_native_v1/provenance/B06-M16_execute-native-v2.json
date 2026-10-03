@@ -1,0 +1,44 @@
+{
+  "id": "M16",
+  "pose": "execute",
+  "prompt": "Use case: identity-preserve. Edit exact monster image. Correct framing only: the expanded net's right edge is clipped. Show the ENTIRE attached expanded net and its complete outer rim with clear empty transparent area to the right. Uniformly zoom out whole creature and equipment; preserve attack pose and mesh. Preserve exact species, identity, colors, detailed painterly style, camera facing right, ornaments and equipment. Whole single subject inside central 80% square native transparent canvas. No floor, shadow, text, VFX or duplicates.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M16_execute-native-v1.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b07abec0-b7d3-4bb4-b99b-987966d699a3.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M16_execute-native-v2.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "b73cac8f32b19b7e14403f2f1abcd728adde376f602fb30d6c844da68308ae0b",
+  "alpha_bbox": [
+    39,
+    54,
+    1254,
+    1198
+  ],
+  "visible_alpha128_bbox": [
+    62,
+    220,
+    1242,
+    1104
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "eca34fcffb60a310a485a322a5a26ff1dda0f27c59b71042a513a822828f10ee",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    510,
+    1040
+  ],
+  "attack_outlet_px": [
+    801,
+    620
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M16_execute-native-v2.json"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "M09",
+  "pose": "execute",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-46b80251-3e04-4f00-9eb7-93f62dfb7564.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M09_execute-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-46b80251-3e04-4f00-9eb7-93f62dfb7564.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M09_execute-native-v1.png",
+    "b06-art/generated/monsters-m02-m09/B06-M09_idle-native-v2.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "action": "Thrust enormous single claw forward screen-right in charge pose, powerful crab legs extending backward to push, carapace leaning forward, no water, speed lines or separate effects.",
+  "reference": "b06-art/generated/monsters-m02-m09/B06-M09_idle-native-v2.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "ead40e0a74b84b566b238cc19ac8d8442c9cacbaff82853f0ef9d232809658c8",
+  "bytes": 892536,
+  "alpha_bbox": [
+    41,
+    53,
+    1200,
+    1212
+  ],
+  "opaque_bbox": [
+    146,
+    380,
+    1158,
+    972
+  ],
+  "prompt": "Use case: identity-preserve. Image1 is edit target B06-M09 execute. Image2 is its selected IDLE body scale reference. Preserve EXACT species, anatomy, costume, colors, face, limbs, equipment, attack pose and camera from image1. Composition correction ONLY: reduce the entire character together to match the body/torso pixel scale of image2, centered around same ground anchor. Whole silhouette should occupy at most72% canvas width/height, all extremities between15%and85%of canvas. Keep generous empty alpha margins on every side. Do not change attack action or face. No enlarged closeup. Preserve crisp painterly2.5D render and genuine transparent RGBA. No floor, shadow, particles, detached elements, labels or upscaling.\n",
+  "status": "candidate pending visual QC",
+  "reference_sha256": [
+    "8c5bc7a2f5161f220264828d24ff74a0c86bbf7b89f708c2c0d2eade1914593a",
+    "f5f4dc5edacc9b221aeb2e76c4c7eedbc49ad30b91f0eb27f5cb90f0ba10bc82"
+  ]
+}

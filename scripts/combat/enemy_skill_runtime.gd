@@ -25,10 +25,16 @@ var heal_receipts: Dictionary = {}
 var summon_owners: Dictionary = {}
 var biome_skill_cooldowns: Dictionary = {}
 var _biome_clock: float = 0.0
+var b06 = preload("res://scripts/combat/b06_enemy_runtime.gd").new()
+var b05 = preload("res://scripts/combat/b05_skill_runtime.gd").new()
+var _hazard_serial: int = 0
+var _crit_serial: int = 0
 
 func configure(host: Node2D) -> void:
 	reset_room()
 	room = host
+	b05.configure(self)
+	b06.configure(self)
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	z_index = 1
 
@@ -51,6 +57,21 @@ func emit_skill(caster: Node2D, skill: Dictionary) -> void:
 	command["target"] = target if target is Vector2 else command.origin
 	var direction: Vector2 = command.get("direction", (command.target - command.origin).normalized())
 	command["direction"] = direction.normalized() if direction.length_squared() > EPSILON else Vector2.RIGHT
+	if bool(command.get("b05_command",false)) or bool(command.get("b06_command",false)):
+		if bool(command.get("b05_command",false)):
+			var mechanism: Variant=preload("res://scripts/combat/b05_enemy_skills.gd").mechanics(caster)
+			if not command.has("b05_admission_id") and mechanism is Object and mechanism.has_method("constrain_enemy_command"):
+				command=mechanism.constrain_enemy_command(command,caster)
+			if not bool(command.get("b05_admitted",true)): return
+			command = b05.prepare(caster,command)
+		elif bool(command.get("b06_command",false)):
+			command = b06.prepare(caster,command)
+		if command.is_empty(): return
+		command["remaining"] = maxf(0.0,float(command.get("delay",0)))
+		if float(command.remaining)>0: jobs.append(command)
+		else: _execute(command)
+		queue_redraw()
+		return
 	var signature: Dictionary = _biome_signature(caster, command)
 	command["biome_skill"] = signature
 	var rage: float = float(signature.get("damage_multiplier", 1.2)) if str(signature.get("id", "")) == "blood_rage" and _blood_rage_active(caster, signature) else 1.0
@@ -68,6 +89,9 @@ func emit_skill(caster: Node2D, skill: Dictionary) -> void:
 	else:
 		var base_damage: float = float(command.get("damage", _property(caster, "contact_damage", _property(caster, "attack_damage", 12.0))))
 		command["damage"] = maxf(0.0, base_damage) * maxf(0.0, float(command.get("damage_multiplier", 1.0))) * rage
+	if preload("res://scripts/combat/crit_policy.gd").enabled(actor_profile):
+		_crit_serial += 1
+		command = preload("res://scripts/combat/crit_policy.gd").freeze(command, actor_profile, int(_property(room,"run_seed",0)), str(actor_profile.get("enemy_id", "")) + ":" + str(_crit_serial))
 	command["remaining"] = maxf(0.0, float(command.get("delay", 0.0)))
 	if float(command.remaining) > 0.0:
 		jobs.append(command)
@@ -82,6 +106,8 @@ func advance(delta: float) -> void:
 	if delta <= 0.0 or _paused() or not is_instance_valid(room):
 		return
 	_biome_clock += delta
+	b05.advance(delta)
+	b06.advance(delta)
 	for owner_id: int in biome_skill_cooldowns.keys():
 		if not _alive(instance_from_id(owner_id)):
 			biome_skill_cooldowns.erase(owner_id)
@@ -145,10 +171,24 @@ func advance(delta: float) -> void:
 			summon_owners.erase(owner_id)
 	queue_redraw()
 
+func cancel_sunlight(caster: Node2D) -> void:
+	if not is_instance_valid(caster): return
+	for collection: Array in [jobs,projectiles,hazards,motions,supports,visuals,marks]:
+		for effect: Dictionary in collection.duplicate():
+			if int(effect.get("owner_id",0)) == caster.get_instance_id() and bool(effect.get("requires_sunlight",false)):
+				collection.erase(effect)
+				_retire_anchor(effect)
+	queue_redraw()
+
 func cancel_owner(caster: Node2D) -> void:
 	if not is_instance_valid(caster):
 		return
+	if caster.has_method("cancel_role_mobility"): caster.cancel_role_mobility()
 	var owner_id: int = caster.get_instance_id()
+	var mechanism: Variant=preload("res://scripts/combat/b05_enemy_skills.gd").mechanics(caster)
+	if mechanism is Object and mechanism.has_method("cancel_enemy_owner"): mechanism.cancel_enemy_owner(caster)
+	b05.cancel_owner(caster)
+	b06.cancel_owner(caster)
 	for collection: Array in [jobs, projectiles, hazards, motions, supports, visuals, marks]:
 		for effect: Dictionary in collection.duplicate():
 			if int(effect.get("owner_id", 0)) == owner_id:
@@ -180,6 +220,14 @@ func cancel_displaced_motion(caster: Node2D) -> void:
 	queue_redraw()
 
 func reset_room() -> void:
+	_crit_serial = 0
+	var actors: Variant = _property(room, "enemies", null)
+	if actors is Node:
+		for actor: Node in actors.get_children():
+			if actor.has_method("cancel_role_mobility"): actor.cancel_role_mobility()
+	b05.reset()
+	b06.reset()
+	for hazard: Dictionary in hazards: _notify_hazard(hazard,false)
 	for effect: Dictionary in hazards + supports + jobs:
 		var anchor: Node2D = _anchor(effect)
 		if is_instance_valid(anchor):
@@ -202,13 +250,13 @@ func reset_room() -> void:
 	queue_redraw()
 
 func active_effect_count() -> int:
-	return jobs.size() + projectiles.size() + hazards.size() + motions.size() + supports.size() + visuals.size() + marks.size()
+	return jobs.size() + projectiles.size() + hazards.size() + motions.size() + supports.size() + visuals.size() + marks.size() + b05.effects.size() + b06.effects.size()
 
 func has_motion(caster: Node2D) -> bool:
 	return is_instance_valid(caster) and bool(caster.get_meta("enemy_skill_motion", false))
 
 func movement_multiplier(target: Node2D) -> float:
-	var multiplier: float = 1.0
+	var multiplier: float = b05.movement_multiplier(target)*b06.movement_multiplier(target)
 	var signature: Dictionary = _biome_signature(target)
 	if str(signature.get("id", "")) == "blood_rage" and _blood_rage_active(target, signature):
 		multiplier = float(signature.get("move_multiplier", 1.18))
@@ -310,6 +358,19 @@ func clear_target_guards(target: Node2D) -> int:
 	return removed
 
 func _execute(command: Dictionary) -> void:
+	if bool(command.get("b06_command",false)):
+		if not b06.admitted(command): return
+		if b06.execute(command):
+			b06.released(command)
+			return
+	if bool(command.get("b05_command",false)):
+		if not _owner_alive(command): return
+		if bool(command.get("root_required",false)) and not preload("res://scripts/combat/b05_enemy_skills.gd").connected(_owner(command)): return
+		var mechanism: Variant = preload("res://scripts/combat/b05_enemy_skills.gd").mechanics(_owner(command))
+		if mechanism is Object and mechanism.has_method("can_enemy_cast") and not bool(mechanism.can_enemy_cast(_owner(command),command)): return
+		if b05.execute(command):
+			b05.released(command)
+			return
 	if not _owner_alive(command):
 		return
 	match str(command.get("kind", "melee")):
@@ -346,6 +407,9 @@ func _execute(command: Dictionary) -> void:
 			elif room.has_method("apply_enemy_utility"):
 				room.call("apply_enemy_utility", _owner(command), command)
 
+	if bool(command.get("b05_command",false)): b05.released(command)
+	if bool(command.get("b06_command",false)): b06.released(command)
+
 func _spawn_projectiles(command: Dictionary) -> void:
 	var count: int = clampi(int(command.get("count", 1)), 1, 5)
 	var frozen_paths: Array = command.get("paths", [])
@@ -357,13 +421,17 @@ func _spawn_projectiles(command: Dictionary) -> void:
 			break
 		var angle_degrees: float = float(angles[index]) if index < angles.size() else (float(index) / maxf(1.0, float(count - 1)) - 0.5) * float(command.get("spread_degrees", 0.0))
 		var shot: Dictionary = command.duplicate(true)
+		shot["b05_projectile_index"] = index
 		shot["position"] = command.origin
 		shot["direction"] = Vector2(command.direction).rotated(deg_to_rad(angle_degrees))
 		shot["speed"] = clampf(float(command.get("speed", 420.0)), 40.0, 2400.0)
 		shot["distance_left"] = clampf(float(command.get("range", 900.0)), 1.0, 1800.0)
 		shot["remaining"] = clampf(float(command.get("lifetime", 5.0)), 0.05, 8.0)
+		if bool(command.get("b06_clam",false)) and int(command.get("difficulty",0))>=2 and index==1:
+			shot.speed=float(shot.speed)*.7
+			shot["projectile_radius"]=12.0
 		shot["hit_ids"] = []
-		shot["radius"] = clampf(float(command.get("projectile_radius", command.get("radius", 5.0))), 2.0, 14.0)
+		shot["radius"] = clampf(float(shot.get("projectile_radius", command.get("radius", 5.0))), 2.0, 14.0)
 		shot["pierce_left"] = 3 if command.get("pierce", false) is bool and bool(command.get("pierce", false)) else clampi(int(command.get("pierce", 0)), 0, 4)
 		var points: Array = command.get("refraction_points", [])
 		shot["waypoints"] = []
@@ -381,13 +449,25 @@ func _spawn_projectiles(command: Dictionary) -> void:
 				for point: Vector2 in shot.waypoints:
 					shot.distance_left = float(shot.distance_left) + previous.distance_to(point)
 					previous = point
+		# Native M16 mouths affect display only; physics stays on the locked fan.
+		if str(command.get("caster_enemy_id",""))=="B05-M16":
+			var body: Variant=_property(_owner(command),"body_visual",null)
+			if body is Node2D and body.has_method("b05_visual_outlets"):
+				var outlets: Array=body.b05_visual_outlets()
+				if not outlets.is_empty():
+					shot["b05_visual_offset"]=Vector2(outlets[index%outlets.size()].position)-Vector2(shot.position)
+					shot["b05_visual_age"]=0.0
 		projectiles.append(shot)
+
+static func projectile_visual_position(shot: Dictionary) -> Vector2:
+	return Vector2(shot.position)+Vector2(shot.get("b05_visual_offset",Vector2.ZERO))*maxf(0,1.0-float(shot.get("b05_visual_age",0))/.14)
 
 func _tick_projectile(shot: Dictionary, delta: float) -> void:
 	if not _owner_alive(shot):
 		projectiles.erase(shot)
 		return
 	var step: float = minf(delta, float(shot.remaining))
+	if shot.has("b05_visual_offset"): shot.b05_visual_age=float(shot.get("b05_visual_age",0))+step
 	shot.remaining = maxf(0.0, float(shot.remaining) - delta)
 	var travel: float = minf(float(shot.speed) * step, float(shot.distance_left))
 	# One authored bend at most. Each leg is independently swept against walls.
@@ -427,6 +507,7 @@ func _tick_projectile(shot: Dictionary, delta: float) -> void:
 		shot.distance_left = float(shot.distance_left) - start.distance_to(end)
 		travel -= distance
 		if wall_fraction < 1.0 or float(shot.distance_left) <= EPSILON:
+			if bool(shot.get("b05_command",false)): b05.projectile_landed(shot)
 			projectiles.erase(shot)
 			return
 		if not waypoints.is_empty() and end.distance_to(waypoints[0]) <= 0.1:
@@ -482,6 +563,9 @@ func _tick_motion(motion: Dictionary, delta: float) -> void:
 	var stopped: bool = false
 	for step: int in range(1, steps + 1):
 		var progress: float = lerpf(previous_time, float(motion.elapsed), float(step) / steps) / float(motion.duration)
+		if bool(motion.get("b06_command",false)) and float(motion.get("terminal_speed_multiplier",1))>1:
+			var boost: float=float(motion.terminal_speed_multiplier)
+			progress=minf(1,progress if progress<=.75 else .75+(progress-.75)*boost)
 		var direction: Vector2 = motion.direction
 		var desired: Vector2 = Vector2(motion.start) + direction * float(motion.travel_distance) * progress
 		if mode in ["arc", "leap"] or (mode == "burrow" and absf(float(motion.get("arc_height", 0.0))) > EPSILON):
@@ -526,6 +610,9 @@ func _finish_motion(motion: Dictionary, impact: bool) -> void:
 		_strike(landing)
 		_flash(landing)
 
+	if bool(motion.get("b05_command",false)): b05.motion_finished(motion,impact)
+	if bool(motion.get("b06_command",false)): b06.motion_finished(motion,impact)
+
 func _spawn_hazards(command: Dictionary) -> void:
 	var points: Array = command.get("targets", [command.get("target", command.origin)])
 	var cap: int = clampi(int(command.get("max_active_hazards", command.get("max_count", 2))), 1, 2)
@@ -561,16 +648,23 @@ func _spawn_hazards(command: Dictionary) -> void:
 			area["anchor_ref"] = weakref(anchor)
 			area["range"] = Vector2(area.origin).distance_to(anchor.position)
 			area["points"] = [area.origin, anchor.position]
+		_hazard_serial += 1
+		area["hazard_id"] = "hostile:%d:%d" % [get_instance_id(),_hazard_serial]
 		area["tick_interval"] = clampf(float(command.get("tick_interval", 0.65)), 0.35, 2.0)
 		area["next_tick"] = float(area.tick_interval)
 		hazards.append(area)
 
 func _tick_hazard(area: Dictionary, delta: float) -> void:
+	if bool(area.get("b05_command",false)) and bool(area.get("root_required",false)) and _owner_alive(area) and not preload("res://scripts/combat/b05_enemy_skills.gd").connected(_owner(area)):
+		_remove_hazard(area)
+		return
 	if not _owner_alive(area) or (area.has("anchor_ref") and not _alive(_anchor(area))):
 		if _owner_alive(area) and area.has("anchor_ref") and bool(area.get("break_interrupts_owner", false)):
 			_owner(area).set_meta("enemy_hazard_broken", true)
 		_remove_hazard(area)
 		return
+	_notify_hazard(area,true)
+	if bool(area.get("b05_command",false)): b05.tick_hazard(area)
 	var step: float = minf(delta, float(area.remaining))
 	area.remaining = maxf(0.0, float(area.remaining) - delta)
 	area.next_tick = float(area.next_tick) - step
@@ -625,6 +719,8 @@ func _damage_source_context(command: Dictionary) -> Dictionary:
 func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 	if not _alive(victim) or not _owner_alive(command) or not victim.has_method("receive_damage"):
 		return false
+	if bool(command.get("b05_command",false)) and not b05.allow_hit(victim,command): return false
+	if bool(command.get("b06_command",false)) and not b06.allow_hit(victim,command): return false
 	var accepted: bool = false
 	if float(command.get("damage", 0.0)) > 0.0:
 		if victim.has_method("class_status"):
@@ -634,11 +730,20 @@ func _deal(victim: Node2D, command: Dictionary, origin: Vector2) -> bool:
 			var visual_kind: String = str(command.get("damage_kind", owner_profile.get("damage_kind", kind)))
 			var context: Dictionary = _damage_source_context(command)
 			context.merge({"damage_type":kind, "damage_kind":visual_kind}, true)
+			if int(command.get("crit_policy_version",0)) == 1:
+				context.merge({"critical":bool(command.get("critical",false)),"already_critical":false,"attacker_stats":command.get("attacker_stats",{})},true)
 			accepted = bool(victim.receive_damage(float(command.damage),origin,context))
 		else:
-			accepted = bool(victim.receive_damage(float(command.damage), origin))
+			var raw: float = float(command.damage)
+			if int(command.get("crit_policy_version",0)) == 1 and bool(command.get("critical",false)):
+				raw = Numerical.integer(raw * preload("res://scripts/combat/crit_policy.gd").multiplier(command.get("attacker_stats",{})))
+			accepted = bool(victim.receive_damage(raw, origin))
 	else:
 		accepted = not (victim.has_method("dash_protected") and victim.dash_protected()) and float(_property(victim, "invulnerable", 0.0)) <= 0.0
+	if accepted and bool(command.get("b05_command",false)): b05.confirmed_hit(victim,command)
+	if accepted and bool(command.get("b06_command",false)): b06.confirmed_hit(victim,command)
+	if accepted and float(command.get("damage",0))>0 and command.has("hazard_id") and victim.has_method("notify_hostile_hazard"):
+		victim.notify_hostile_hazard(str(command.hazard_id),true,true)
 	if accepted and victim.has_method("receive_enemy_status"):
 		var status_value: Variant = command.get("status", {})
 		var state: Dictionary = status_value.duplicate() if status_value is Dictionary else {"id":str(status_value)}
@@ -751,7 +856,7 @@ func _support(command: Dictionary) -> void:
 	elif is_instance_valid(container):
 		for ally: Node in container.get_children():
 			if ally is Node2D and _alive(ally) and ally.position.distance_to(caster.position) <= float(command.get("radius", 200.0)) and _line_clear(caster.position, ally.position):
-				if bool(ally.get_meta("enemy_skill_anchor", false)):
+				if bool(ally.get_meta("enemy_skill_anchor", false)) or str(_property(ally,"actor_kind","enemy")) == "objective":
 					continue
 				if ally == caster and bool(command.get("exclude_self", false)):
 					continue
@@ -782,9 +887,11 @@ func _support(command: Dictionary) -> void:
 			var before: float = float(health.current)
 			var heal_amount: float = minf(maximum * 0.15, float(command.get("amount", maximum * float(command.get("heal_ratio", 0.1)))))
 			if Numerical.is_v2(command): heal_amount = EnemyNumbers.support_amount(command, int(maximum), int(before))
+			if str(_property(target,"enemy_id","")).begins_with("B05-M"): heal_amount = b05.limit_external_heal(target,heal_amount)
 			if target.has_method("heal"): target.heal(heal_amount)
 			else: health.current = minf(maximum, before + heal_amount)
 			if float(health.current) > before:
+				if str(_property(target,"enemy_id","")).begins_with("B05-M"): b05.record_external_heal(target,float(health.current)-before)
 				heal_receipts[key] = int(heal_receipts.get(key, 0)) + 1
 		else:
 			for old: Dictionary in supports.duplicate():
@@ -985,6 +1092,7 @@ func _spawn_anchor(command: Dictionary, at: Vector2, hit_points: float, anchor_k
 		anchor.set_meta("enemy_skill_anchor", true)
 		anchor.set_meta("enemy_skill_anchor_kind", anchor_kind)
 		anchor.set_meta("enemy_skill_anchor_direction", command.direction)
+		if bool(command.get("b05_command",false)): b05.watch_anchor(anchor)
 		if anchor_kind == "weld_cover" and _property(anchor, "actor_kind", null) != null:
 			anchor.set("actor_kind", "cover")
 	return anchor
@@ -994,6 +1102,7 @@ func _anchor(effect: Dictionary) -> Node2D:
 	return reference.get_ref() as Node2D if reference != null else null
 
 func _remove_hazard(effect: Dictionary) -> void:
+	_notify_hazard(effect,false)
 	hazards.erase(effect)
 	_retire_anchor(effect)
 
@@ -1039,7 +1148,7 @@ func _paused() -> bool:
 func _live_child_count(container: Node) -> int:
 	var count: int = 0
 	for child: Node in container.get_children():
-		if _alive(child):
+		if _alive(child) and str(_property(child,"actor_kind","enemy")) != "objective":
 			count += 1
 	return count
 
@@ -1080,9 +1189,11 @@ func _draw() -> void:
 	# autoload names are registered. Read the optional UI setting at draw time.
 	var controller: Node = get_node_or_null("/root/Game")
 	var settings: Dictionary = _property(controller, "profile", {}).get("settings", {})
-	if bool(settings.get("enemy_skill_paths", true)):
-		for command: Dictionary in jobs:
+	for command: Dictionary in jobs:
+		if bool(settings.get("enemy_skill_paths",true)) or bool(command.get("b05_command",false)) or bool(command.get("b06_command",false)):
 			_draw_shape(command, Color(1.0, 0.44, 0.27, 0.2), Color("ffc481"))
+	b05.draw(self)
+	b06.draw(self)
 	for area: Dictionary in hazards:
 		var color: Color = area.get("fx_color",Color("ef936b"))
 		_draw_shape(area,Color(color,.08 if bool(settings.get("reduced_fx",false)) else .16),color)
@@ -1105,12 +1216,14 @@ func _draw() -> void:
 			preload("res://scripts/combat/boss_skill_presentation.gd").draw_impact(self,visual,bool(settings.get("reduced_fx",false)))
 			AbilityPresentation.draw_effect(self, visual, bool(settings.get("reduced_fx",false)))
 	for shot: Dictionary in projectiles:
-		var at: Vector2 = shot.position
+		var at: Vector2 = projectile_visual_position(shot)
 		var direction: Vector2 = shot.direction
 		var color: Color = shot.get("fx_color",Color("fc9065"))
 		draw_line(at - direction * 17.0, at, color, 5.0, true)
 		draw_circle(at, float(shot.radius), Color("fff0bc"))
-		AbilityPresentation.draw_projectile(self, shot, bool(settings.get("reduced_fx",false)))
+		var presentation:=shot.duplicate()
+		presentation.position=at
+		AbilityPresentation.draw_projectile(self, presentation, bool(settings.get("reduced_fx",false)))
 		if shot.has("boss_id") and not bool(settings.get("reduced_fx",false)):
 			preload("res://scripts/combat/boss_skill_presentation.gd").draw_glyph(self,str(shot.boss_id),at,float(shot.radius)+3,color,0)
 	for mark: Dictionary in marks:
@@ -1188,6 +1301,16 @@ func _draw_shape(command: Dictionary, fill: Color, edge: Color) -> void:
 
 ## Authored durability is legacy units until the S09 command producer stamps scale10.
 func _anchor_health(command: Dictionary, authored: float) -> float:
+	if bool(command.get("b05_command",false)): return maxf(1.0,roundf(authored))
 	var version := int(command.get("ruleset_version", Numerical.LEGACY))
 	var scaled: float = authored if int(command.get("scale_version", 1)) == 10 else Numerical.scale(authored, version)
 	return clampf(scaled, Numerical.scale(1.0, version), Numerical.scale(80.0, version))
+
+## Persistent hostile areas only. The same stable ID is used for real entry,
+## exit and accepted HP/shield damage; warning jobs never publish area events.
+func _notify_hazard(area: Dictionary, active: bool) -> void:
+	if not area.has("hazard_id"): return
+	var player: Variant = _property(room,"player",null)
+	if not player is Node2D or not is_instance_valid(player) or not player.has_method("notify_hostile_hazard"): return
+	var inside: bool = active and shape_contains(area,player.position,_radius(player,12)) and _line_clear(Vector2(area.origin),player.position)
+	player.notify_hostile_hazard(str(area.hazard_id),inside,false)

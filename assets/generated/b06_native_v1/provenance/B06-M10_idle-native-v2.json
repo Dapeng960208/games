@@ -1,0 +1,45 @@
+{
+  "id": "M10",
+  "pose": "idle",
+  "prompt": "Use case: identity-preserve. Edit this exact monster sprite. Preserve species, identity, number of limbs, face, equipment, colors, material and detailed painterly style. Change ONLY composition: zoom camera OUT strongly so the ENTIRE creature including antennae, coral, lance, flag, tail and feet occupies only the CENTRAL 65% of the square image. At least 17% genuinely EMPTY TRANSPARENT margin on every side. Keep square native canvas, single whole-body IDLE sprite, elevated three-quarter view facing right. No floor, shadow, FX, text or other objects. Do not crop anything. Also correct long tentacles: exactly FOUR long distinct hanging ribbons, each clearly separated and visible from the umbrella, not three. Preserve central pearl organ.",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-0f483bb9-983d-4be4-8f25-73133a45c7c7.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M10_idle-native-v2.png",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M10_idle-native-v1.png",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "ab976158777753aa29425fda8a64ca9ead6a9e2431544ad76318cd2b6030ee3c",
+  "alpha_bbox": [
+    61,
+    53,
+    1226,
+    1214
+  ],
+  "visible_alpha128_bbox": [
+    227,
+    182,
+    1028,
+    1134
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "d26917448cda5db129cb588851012d46e934b75e40ab433e087bc57dd3d3507a",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    658,
+    1100
+  ],
+  "attack_outlet_px": [
+    668,
+    480
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "anchor_note": "hover projected groundpoint; do not infer collision from tentacle or tail tip",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M10_idle-native-v2.json"
+}

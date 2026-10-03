@@ -67,18 +67,22 @@ const VARIANT_HD_INDICES: Dictionary = {"M04": [1], "M06": [0,6,7], "M09": [7], 
 static var _entries: Dictionary = {}
 static var _variants: Dictionary = {}
 static var _skill_icons: Dictionary = {}
-static var _loaded: bool = false
+static var _loaded: Dictionary = {}
 
 static func entry_for(identity: String) -> Dictionary:
-	_ensure_loaded()
+	if identity.begins_with("B06-M"): return preload("res://scripts/combat/b06_native_art.gd").entry(identity)
+	if identity in preload("res://scripts/combat/b05_enemy_art.gd").IDS: return preload("res://scripts/combat/b05_enemy_art.gd").entry(identity)
+	_ensure_loaded(identity)
 	return _entries.get(identity, {}).duplicate()
 
 static func variant_count(identity: String) -> int:
-	_ensure_loaded()
+	_ensure_loaded(identity)
 	return (_variants.get(identity, []) as Array).size()
 
 static func variant_entry_for(identity: String, index: int) -> Dictionary:
-	_ensure_loaded()
+	if identity.begins_with("B06-M"): return preload("res://scripts/combat/b06_native_art.gd").entry(identity)
+	if identity in preload("res://scripts/combat/b05_enemy_art.gd").IDS: return preload("res://scripts/combat/b05_enemy_art.gd").entry(identity)
+	_ensure_loaded(identity)
 	var choices: Array = _variants.get(identity, [])
 	if index < 0 or index >= choices.size():
 		return entry_for(identity)
@@ -94,7 +98,16 @@ static func variant_index_for(identity: String, serial: int, room_id: String, ro
 	return posmod(offset + serial, count)
 
 static func skill_icon_for(identity: String) -> Dictionary:
-	_ensure_loaded()
+	if identity.begins_with("B06-M"):
+		var frame: Dictionary = preload("res://scripts/combat/b06_native_art.gd").frame(identity)
+		if frame.is_empty(): return {}
+		return {"texture":frame.texture,"texture_path":frame.texture_path,"region":Rect2(Vector2(frame.core)-Vector2(150,150),Vector2(300,300))}
+	if identity in preload("res://scripts/combat/b05_enemy_art.gd").IDS:
+		var bank: Dictionary=preload("res://scripts/combat/b05_enemy_art.gd").bank(identity)
+		if bank.is_empty(): return {}
+		var frame: Dictionary=bank.clips.idle[0]
+		return {"texture":frame.texture,"texture_path":frame.texture_path,"region":Rect2(Vector2(frame.core)-Vector2(150,150),Vector2(300,300))}
+	_ensure_loaded(identity)
 	return _skill_icons.get(identity, {}).duplicate()
 
 static func appearance_key(entry: Dictionary) -> String:
@@ -130,21 +143,34 @@ static func install(actor: Node2D) -> Dictionary:
 		# the same painted creature rather than returning to a coal-era body.
 		actor.set("empty_body_texture", entry.texture)
 	entry["native_bounds"] = local_bounds
+	if bool(entry.get("b05_native_bank",false)) or bool(entry.get("b06_native_bank",false)):
+		entry["world_reference_height"] = height
+		entry["world_foot"] = Vector2(0,foot_y)
 	return entry
 
 static func motion_path(identity: String) -> String:
 	return "res://assets/generated/enemies/%s_storybook_motion_v1.json" % identity
 
-static func _ensure_loaded() -> void:
-	if _loaded:
-		return
-	_loaded = true
+static func _load_all_for_audit() -> void:
+	# Explicit catalogue audits may inspect all entries; gameplay must not turn a
+	# single lookup into a preload of unrelated chapters and native HD bodies.
+	for path: String in MANIFESTS + EXPANSION_MANIFESTS + BOSS_MANIFESTS:
+		if not FileAccess.file_exists(path): continue
+		var manifest: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+		if not manifest is Dictionary or not manifest.get("entries") is Dictionary: continue
+		for identity: String in manifest.entries: _ensure_loaded(identity)
+
+static func _ensure_loaded(requested_identity: String) -> void:
+	if requested_identity.is_empty(): return
+	if _loaded.has(requested_identity): return
+	_loaded[requested_identity] = true
 	for manifest_path: String in MANIFESTS + EXPANSION_MANIFESTS + BOSS_MANIFESTS:
 		if not FileAccess.file_exists(manifest_path):
 			continue
 		var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
 		if not raw is Dictionary or not raw.get("entries") is Dictionary:
 			continue
+		if not raw.entries.has(requested_identity): continue
 		if raw.get("source_family", FAMILY) != FAMILY:
 			continue
 		var texture_path: String = str(raw.get("texture", ""))
@@ -153,7 +179,7 @@ static func _ensure_loaded() -> void:
 		var texture: Texture2D = Sampler.sampled(texture_path)
 		if texture == null:
 			continue
-		for identity: String in raw.entries:
+		for identity: String in [requested_identity]:
 			if manifest_path in BOSS_MANIFESTS and (not identity.begins_with("BO") or not raw.entries[identity] is Dictionary or str(raw.entries[identity].get("source_identity", "")) != identity):
 				continue
 			var parsed: Dictionary = parse_entry(raw.entries[identity], texture.get_size())
@@ -167,10 +193,10 @@ static func _ensure_loaded() -> void:
 			parsed["combat_body"] = manifest_path in BOSS_MANIFESTS
 			parsed["visual_clan"] = str(raw.get("visual_clan", ""))
 			_entries[identity] = parsed
-	_load_variants()
-	_load_variant_hd_overrides()
+	_load_variants(requested_identity)
+	_load_variant_hd_overrides(requested_identity)
 
-static func _load_variants() -> void:
+static func _load_variants(requested_identity: String = "") -> void:
 	var seen: Dictionary = {}
 	for manifest_path: String in VARIANT_MANIFESTS:
 		if not FileAccess.file_exists(manifest_path):
@@ -178,6 +204,7 @@ static func _load_variants() -> void:
 		var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
 		if not raw is Dictionary or not raw.get("entries") is Dictionary or raw.get("source_family", FAMILY) != FAMILY:
 			continue
+		if not requested_identity.is_empty() and not raw.entries.has(requested_identity): continue
 		var texture_path: String = str(raw.get("texture", ""))
 		if texture_path.is_empty() or (not FileAccess.file_exists(texture_path) and not ResourceLoader.exists(texture_path)):
 			continue
@@ -185,6 +212,7 @@ static func _load_variants() -> void:
 		if texture == null:
 			continue
 		for identity: String in raw.entries:
+			if not requested_identity.is_empty() and identity != requested_identity: continue
 			var candidates: Variant = raw.entries[identity]
 			if not candidates is Array or not _entries.has(identity):
 				continue
@@ -209,6 +237,7 @@ static func _load_variants() -> void:
 		if not icons is Dictionary:
 			continue
 		for identity: String in icons:
+			if not requested_identity.is_empty() and identity != requested_identity: continue
 			var values: Variant = icons[identity]
 			if not values is Array or values.size() != 4:
 				continue
@@ -222,7 +251,7 @@ static func _load_variants() -> void:
 			if region.has_area() and Rect2(Vector2.ZERO, texture.get_size()).encloses(region):
 				_skill_icons[identity] = {"texture":texture,"texture_path":texture_path,"region":region}
 
-static func _load_variant_hd_overrides() -> void:
+static func _load_variant_hd_overrides(requested_identity: String = "") -> void:
 	for manifest_path: String in VARIANT_HD_MANIFESTS:
 		if not FileAccess.file_exists(manifest_path):
 			continue
@@ -230,6 +259,7 @@ static func _load_variant_hd_overrides() -> void:
 		if not raw is Dictionary or raw.get("schema_version") != 1 or raw.get("source_family") != FAMILY or not raw.get("overrides") is Array:
 			continue
 		for candidate: Variant in raw.overrides:
+			if not requested_identity.is_empty() and (not candidate is Dictionary or not candidate.get("source") is Dictionary or str(candidate.source.get("identity", "")) != requested_identity): continue
 			var entry := _variant_hd_entry(candidate)
 			if not entry.is_empty():
 				_variants[entry.hd_source.identity][entry.visual_variant_index] = entry

@@ -1,0 +1,14 @@
+Use case: stylized-concept.
+Asset type: production inventory equipment icon atlas for the B05 Blooming Tree Court game chapter, transparent RGBA.
+Primary request: exactly FOUR separate, highly finished hand-painted fantasy equipment icons, in one strict invisible 2-column by 2-row grid. Request a native 2048 by 2048 pixel canvas, each invisible square cell 1024 by 1024 pixels. Generate genuine fine native detail; do not simulate low-resolution pixel art. Each isolated object must fill roughly 78–84% of its own cell, centered, with clear empty transparent padding; nothing crosses a cell boundary. Output only the four objects, not the grid.
+Art direction from B05 worldbuilding board: match the bright warm illustrated 2.5D botanical craft, pale golden living wood with readable growth rings, emerald leaves, tiny restrained peach-pink blossoms, dark bark joint gaps, amber sap highlights. Do not reproduce its text, characters, buildings, paper background, frames, or composition.
+Set: Branch Warden / 繁枝守庭, a sturdy warrior set. It is crafted living ironwood, layered bark and root bindings, not a metal palace or generic plated gold armor. Warm natural material, not rotten wood. Three-quarter presentation, top-left soft daylight, detailed highlights and crisp readable outer contours with softer painterly interior shading. No people, heads, limbs, mannequins, floor or shadows on a ground.
+Exact slot order, left-to-right:
+TOP ROW:
+1. Growthring Warden Helm / 年轮守庭盔: a robust closed wood-bark warrior helmet, growth-ring forehead crest, leaf-shaped cheek guards, strong empty visor slit, small green leaf accents.
+2. Branchbound Warden Armor / 缠枝护庭甲: sturdy torso cuirass made of layered pale wood plates with branching root bindings, broad shoulders, an interwoven branching chest motif, visibly empty armor.
+BOTTOM ROW:
+3. Rootgrip Ironwood Gauntlets / 根握铁木手: one matched pair of articulated thick wood and bark gauntlets, root-wrapped cuffs, clearly gloved finger silhouettes, arranged together as a single icon.
+4. Crossbranch Kneeguards / 交枝护膝裤: a complete pair of armored trousers with connected waist and two distinct legs, crossing branch knee guards, olive fabric and wood plating; no boots.
+
+Constraints: transparent background with genuine alpha, not a painted checkerboard. No lettering, symbols that read as text, labels, numerals, UI, borders, card backs, frames, decorative surrounding panels, floor, cast ground shadows, extra objects, duplicates or cropped object tips. Equal visual weight among four objects, clean separation. Professional high-fidelity painted game assets, not flat emoji or vector pictograms.

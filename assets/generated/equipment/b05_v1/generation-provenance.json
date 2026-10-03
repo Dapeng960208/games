@@ -1,0 +1,149 @@
+{
+  "date_utc": "2026-10-02",
+  "chapter": "B05",
+  "scope": "4 sets x 8 slots plus 3 shared standalone pieces",
+  "tool": "built-in image_gen.imagegen",
+  "transparent_background": true,
+  "calls": [
+    {
+      "asset_source": "./B05-SW-a-v1.png",
+      "source_sha256": "5eb5566c77b34a77f68e90a1b6fff9bac66e0a60e885e9f983f06e62b6a11834",
+      "prompt": "prompts/B05-SW-a-v1.prompt.txt",
+      "prompt_sha256": "25692d4a78f353da9e1879231345546b7f9488db1e9b058e36c71390135f4c87",
+      "requested_dimensions_in_prompt": [
+        2048,
+        2048
+      ],
+      "actual_native_dimensions": [
+        1254,
+        1254
+      ],
+      "generation_output_basename": "exec-262873ce-73d1-4812-8654-7e8a82e28328.png"
+    },
+    {
+      "asset_source": "./B05-SW-b-v1.png",
+      "source_sha256": "71d9ca4828dca2a92f669d934ad4c200cfc4bd8366405f697044596ead6e1d91",
+      "prompt": "prompts/B05-SW-b-v1.prompt.txt",
+      "prompt_sha256": "3ea256111503c690d8d9ca131bfa9d65e8f8f44c7abc84f1638bfa3d95cb9c6b",
+      "requested_dimensions_in_prompt": [
+        2048,
+        2048
+      ],
+      "actual_native_dimensions": [
+        1254,
+        1254
+      ],
+      "generation_output_basename": "exec-967ab083-7d25-43b1-9b16-e6e97387c93b.png"
+    },
+    {
+      "asset_source": "./B05-SG-a-v1.png",
+      "source_sha256": "c0892b0ddec0b9cb7c34b7463a1730f941d16d51434a7f166522dea19dd7e633",
+      "prompt": "prompts/B05-SG-a-v1.prompt.txt",
+      "prompt_sha256": "f6a5ba632797a5b668c0259d19e65ec22b635129e823c241a5647151b6f95806",
+      "requested_dimensions_in_prompt": [
+        2048,
+        2048
+      ],
+      "actual_native_dimensions": [
+        1254,
+        1254
+      ],
+      "generation_output_basename": "exec-60eafc6c-7b66-431e-8e28-a95f10a991ac.png"
+    },
+    {
+      "asset_source": "./B05-SG-b-v1.png",
+      "source_sha256": "d325daddc22ebbaae73b5364e1498e250aad07bab1a66b151072c48db1644c48",
+      "prompt": "prompts/B05-SG-b-v1.prompt.txt",
+      "prompt_sha256": "0a2a5c4b8e65df94de5c2c442ae40a48ed9d9a046743ab751d94b35c25abcd67",
+      "requested_dimensions_in_prompt": [
+        2048,
+        2048
+      ],
+      "actual_native_dimensions": [
+        1254,
+        1254
+      ],
+      "generation_output_basename": "exec-af7b249e-5d48-4e82-aac5-7f960386378a.png"
+    },
+    {
+      "asset_source": "./B05-SM-a-v1.png",
+      "source_sha256": "b56817d498c74e4ec818a47c8e88e2b58818743660cd8f832bac6a2c84a2589e",
+      "prompt": "prompts/B05-SM-a-v1.prompt.txt",
+      "prompt_sha256": "dd99eb6ae4ad5e16255dbc8405f96e2444dda8601ee87a109aca2f01b425925a",
+      "requested_dimensions_in_prompt": [
+        2048,
+        2048
+      ],
+      "actual_native_dimensions": [
+        1254,
+        1254
+      ],
+      "generation_output_basename": "exec-6114374f-94e8-4736-878f-41afe57b6015.png"
+    },
+    {
+      "asset_source": "./B05-SM-b-v1.png",
+      "source_sha256": "2266104c7fb7d6df46caff09f5e135eda3915b890aa724c4a395d3f2ca2afb92",
+      "prompt": "prompts/B05-SM-b-v1.prompt.txt",
+      "prompt_sha256": "4ca21c453c155521e3d78828083712f4d4174f9eaae5e13cafc3a9726bbe857d",
+      "requested_dimensions_in_prompt": [
+        2048,
+        2048
+      ],
+      "actual_native_dimensions": [
+        1254,
+        1254
+      ],
+      "generation_output_basename": "exec-9534e12b-bceb-4672-a65d-721c51eb1c44.png"
+    },
+    {
+      "asset_source": "./B05-SU-a-v1.png",
+      "source_sha256": "d08a0fc232aa8c9a5373aaff49bf22b7c0404ad1a950104fd10447d45fe3925a",
+      "prompt": "prompts/B05-SU-a-v1.prompt.txt",
+      "prompt_sha256": "8c805a83b5be6cc49acda84505cfd99d1f353011bdd826b71d386d72161759ae",
+      "requested_dimensions_in_prompt": [
+        2048,
+        2048
+      ],
+      "actual_native_dimensions": [
+        1254,
+        1254
+      ],
+      "generation_output_basename": "exec-ff80c4f8-0162-4a8d-929e-0bee2e92a1b0.png"
+    },
+    {
+      "asset_source": "./B05-SU-b-v1.png",
+      "source_sha256": "1971f4a4d82dbbc5516edaf8da751e82d3a49151ca80c5a332929cc5cbf76ecf",
+      "prompt": "prompts/B05-SU-b-v1.prompt.txt",
+      "prompt_sha256": "58586b7440baf12d3633b1b7da70b1bb9d586c847b43e78a4ff92b5aec0f9b68",
+      "requested_dimensions_in_prompt": [
+        2048,
+        2048
+      ],
+      "actual_native_dimensions": [
+        1254,
+        1254
+      ],
+      "generation_output_basename": "exec-45d5fb6c-dc57-445e-b065-c66cfa86830a.png"
+    },
+    {
+      "asset_source": "./B05-U-scatter-v1.png",
+      "source_sha256": "d6edaad3a4243566d1ea581ec4d2e72314fcbe1a1821801cf4a501de499abf81",
+      "prompt": "prompts/B05-U-scatter-v1.prompt.txt",
+      "prompt_sha256": "89845cc3aae1d1dad517ee8ada6d6c7176adaafc93926c0ade44cffa8388e9e9",
+      "requested_dimensions_in_prompt": [
+        2048,
+        2048
+      ],
+      "actual_native_dimensions": [
+        1254,
+        1254
+      ],
+      "generation_output_basename": "exec-8996a282-5fa4-4160-88f1-7c8d20e4792e.png"
+    }
+  ],
+  "actual_call_count": 9,
+  "discarded_generated_variants": 0,
+  "unsubmitted_proposal": "Initial 4x2 proposal was replaced before any generation with two 2x2 warrior pilot sheets after measured UI density coordination.",
+  "postprocess": "Measured lossless crops; neighboring atlas figures excluded by alpha-component ownership, original kept RGBA pixels unchanged; no upscale, sharpening, repainting or alpha normalization.",
+  "source_provenance_sha256": "4b96c64c4b3b8171432d48236d839fe90fa6054d92b653ab0ee737f29ccaefb5"
+}

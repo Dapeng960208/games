@@ -136,6 +136,14 @@ static func resolve(hero_id: String, level: int, loadout: Dictionary, owned: Dic
 			if stats.has(key): stats[key] = Numerical.integer(float(stats[key]))
 		for key in FLAT_KEYS:
 			if contribution.has(key): contribution[key] = Numerical.integer(float(contribution[key]))
+	# Explicit isolated numeric experiment only; never selected on normal launch.
+	if hero_id=="CH03" and ruleset==Numerical.V2 and Numerical.b05_candidate_enabled() and "--mage-balance-candidate=1" in OS.get_cmdline_user_args():
+		stats["mage_balance_candidate"]=1
+		stats["mage_spell_power_multiplier"]=2.5
+		stats.resource_regen=Numerical.integer(float(stats.resource_regen)*2.0)
+	if hero_id=="CH01" and ruleset==Numerical.V2 and Numerical.b05_candidate_enabled() and "--warrior-balance-candidate=1" in OS.get_cmdline_user_args():
+		stats["warrior_balance_candidate"]=1
+		stats["warrior_skill_power_multiplier"]=1.20
 	return stats
 
 ## V2 ownership and slot identity are validated before aggregating anything.

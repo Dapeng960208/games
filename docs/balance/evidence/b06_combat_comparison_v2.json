@@ -1,0 +1,1926 @@
+{
+  "schema": "b06-combat-comparison-v1",
+  "sources": [
+    {
+      "batch": "20261002T225246282340Z-fc338146",
+      "sha256": "071d7b2e8683fce65e7c8b38b03f67937419a77e70f0f103b5d6bfee616e5079",
+      "failures": []
+    },
+    {
+      "batch": "20261002T225341819439Z-3cfeddec",
+      "sha256": "d7c35542dfec43cb77bf71a0c911bddfc7af6ae94321ab5ebd8dcade81a2785f",
+      "failures": []
+    },
+    {
+      "batch": "20261002T225417699941Z-ee5c1baa",
+      "sha256": "add84ad07e71c9a42bf8135d9999a0e8a9a8d401ec69f6b1a86a61148c2d5e68",
+      "failures": []
+    },
+    {
+      "batch": "20261002T225457072047Z-74c8c159",
+      "sha256": "362dd8354c0c3c2e6996f19699b893e1f10de6bb6ea5a9ad5e9c9b405e2ecb99",
+      "failures": []
+    },
+    {
+      "batch": "20261002T225641812005Z-d42cfcbb",
+      "sha256": "3c0daf2281ad001bdb62c77ed3183351ef8096d33db1a3d069e6fa2a8cb3c9df",
+      "failures": []
+    }
+  ],
+  "cases": [
+    {
+      "batch": "20261002T225246282340Z-fc338146",
+      "configuration": {
+        "chapter": 6,
+        "difficulty": 4,
+        "hero_id": "CH01",
+        "mix": "class6",
+        "sample": "G2",
+        "seed": 1001
+      },
+      "mage_affix_profile": "frozen",
+      "outcome": "boss_defeated",
+      "active_seconds": 13.2333333333336,
+      "effective_dps": 7181.863979848721,
+      "admitted_time_dps": 7181.863979848721,
+      "actual_hp_damage": 95040.0,
+      "damage_by_kind": {
+        "q": 7179.0,
+        "primary": 41983.0,
+        "secondary": 27076.0,
+        "f": 981.0,
+        "ultimate": 17821.0
+      },
+      "damage_by_source": {
+        "skill": 53057.0,
+        "primary": 41983.0
+      },
+      "explicit_proc_packet_damage": {},
+      "set_damage_note": "Multiplicative set effects are already folded into actual packets; no invented standalone attribution. Empty proc packets does not prove no set effects.",
+      "casts": {
+        "attack": 17,
+        "f": 1,
+        "q": 2,
+        "secondary": 4,
+        "ultimate": 1
+      },
+      "paid_cast_count": 8,
+      "paid_resource_total": 1250.0,
+      "class_refunds": 0.0,
+      "resource_rejections": {
+        "resource:f": 7,
+        "resource:secondary": 16,
+        "resource:ultimate": 41
+      },
+      "resource_empty_seconds": 0.0,
+      "b06_metrics": {
+        "ability_busy_seconds": 3.68333333333333,
+        "counter_policy": "none",
+        "damage_admitted_seconds": 13.2333333333336,
+        "drain_completions": 0,
+        "exposed_seconds": 0.0,
+        "output_pause_seconds": 0.0,
+        "resource_blocked_ready_seconds": 8.16666666666665,
+        "tide_seconds": {
+          "inactive": 5.63333333333332,
+          "low": 7.59999999999998
+        }
+      },
+      "resource_metric_note": "Ready-resource-blocked seconds means at least one ready skill unaffordable while ability idle; not all offense stopped.",
+      "phases": {
+        "1": {
+          "casts": {
+            "dual_cannon": 1,
+            "siege_claw": 1
+          },
+          "entered_at": 0.0166666666666667,
+          "seconds": 5.63333333333332
+        },
+        "2": {
+          "casts": {
+            "tidal_wall": 1
+          },
+          "entered_at": 5.64999999999999,
+          "seconds": 3.11666666666666
+        },
+        "3": {
+          "casts": {
+            "shell_bombard": 1
+          },
+          "entered_at": 8.76666666666668,
+          "seconds": 4.48333333333332
+        }
+      },
+      "actual_commands": {
+        "dual_cannon": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 1.83333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 2.88333333333333
+          }
+        ],
+        "siege_claw": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1689,
+            "observed_room_time": 5.26666666666665
+          }
+        ],
+        "tidal_wall": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1131,
+            "observed_room_time": 7.58333333333331
+          }
+        ],
+        "shell_bombard": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 10.6500000000001
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 11.7666666666668
+          }
+        ]
+      },
+      "hp_fraction": 1.0,
+      "hits": 0
+    },
+    {
+      "batch": "20261002T225246282340Z-fc338146",
+      "configuration": {
+        "chapter": 6,
+        "difficulty": 4,
+        "hero_id": "CH02",
+        "mix": "class6",
+        "sample": "G2",
+        "seed": 1001
+      },
+      "mage_affix_profile": "frozen",
+      "outcome": "boss_defeated",
+      "active_seconds": 11.8000000000002,
+      "effective_dps": 8054.237288135457,
+      "admitted_time_dps": 8054.237288135457,
+      "actual_hp_damage": 95040.0,
+      "damage_by_kind": {
+        "ultimate": 10950.0,
+        "primary": 58656.0,
+        "secondary": 13628.0,
+        "q": 9908.0,
+        "f": 1898.0
+      },
+      "damage_by_source": {
+        "skill": 36384.0,
+        "primary": 58656.0
+      },
+      "explicit_proc_packet_damage": {},
+      "set_damage_note": "Multiplicative set effects are already folded into actual packets; no invented standalone attribution. Empty proc packets does not prove no set effects.",
+      "casts": {
+        "attack": 28,
+        "f": 1,
+        "q": 2,
+        "secondary": 3,
+        "ultimate": 1
+      },
+      "paid_cast_count": 7,
+      "paid_resource_total": 2200.0,
+      "class_refunds": 0.0,
+      "resource_rejections": {
+        "resource:f": 14,
+        "resource:q": 2,
+        "resource:secondary": 19
+      },
+      "resource_empty_seconds": 0.0,
+      "b06_metrics": {
+        "ability_busy_seconds": 3.61666666666666,
+        "counter_policy": "none",
+        "damage_admitted_seconds": 11.8000000000002,
+        "drain_completions": 0,
+        "exposed_seconds": 0.0,
+        "output_pause_seconds": 0.0,
+        "resource_blocked_ready_seconds": 3.89999999999999,
+        "tide_seconds": {
+          "inactive": 3.41666666666666,
+          "low": 7.99999999999998,
+          "warning": 0.383333333333333
+        }
+      },
+      "resource_metric_note": "Ready-resource-blocked seconds means at least one ready skill unaffordable while ability idle; not all offense stopped.",
+      "phases": {
+        "1": {
+          "casts": {
+            "dual_cannon": 1
+          },
+          "entered_at": 0.0166666666666667,
+          "seconds": 3.41666666666666
+        },
+        "2": {
+          "casts": {
+            "tidal_wall": 1
+          },
+          "entered_at": 3.43333333333333,
+          "seconds": 3.94999999999999
+        },
+        "3": {
+          "casts": {
+            "shell_bombard": 1
+          },
+          "entered_at": 7.38333333333331,
+          "seconds": 4.43333333333332
+        }
+      },
+      "actual_commands": {
+        "dual_cannon": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 1.83333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 2.88333333333333
+          }
+        ],
+        "tidal_wall": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1131,
+            "observed_room_time": 5.36666666666665
+          }
+        ],
+        "shell_bombard": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 9.26666666666671
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 10.3833333333334
+          }
+        ]
+      },
+      "hp_fraction": 1.0,
+      "hits": 0
+    },
+    {
+      "batch": "20261002T225246282340Z-fc338146",
+      "configuration": {
+        "chapter": 6,
+        "difficulty": 4,
+        "hero_id": "CH03",
+        "mix": "class6",
+        "sample": "G2",
+        "seed": 1001
+      },
+      "mage_affix_profile": "frozen",
+      "outcome": "boss_defeated",
+      "active_seconds": 35.8333333333326,
+      "effective_dps": 2652.2790697674964,
+      "admitted_time_dps": 2851.200000000054,
+      "actual_hp_damage": 95040.0,
+      "damage_by_kind": {
+        "ultimate": 1086.0,
+        "secondary": 19613.0,
+        "shock": 3141.0,
+        "field": 10115.0,
+        "q": 28121.0,
+        "f": 6522.0,
+        "node_detonation": 21230.0,
+        "equipment": 2548.0,
+        "node": 2664.0
+      },
+      "damage_by_source": {
+        "skill": 55342.0,
+        "unclassified": 3141.0,
+        "field": 10115.0,
+        "node_detonation": 21230.0,
+        "equipment": 2548.0,
+        "node": 2664.0
+      },
+      "explicit_proc_packet_damage": {
+        "shock": 3141.0,
+        "field": 10115.0,
+        "node_detonation": 21230.0,
+        "equipment": 2548.0,
+        "node": 2664.0
+      },
+      "set_damage_note": "Multiplicative set effects are already folded into actual packets; no invented standalone attribution. Empty proc packets does not prove no set effects.",
+      "casts": {
+        "f": 5,
+        "q": 10,
+        "secondary": 7,
+        "ultimate": 1
+      },
+      "paid_cast_count": 23,
+      "paid_resource_total": 4100.0,
+      "class_refunds": 600.0,
+      "resource_rejections": {
+        "resource:f": 44,
+        "resource:q": 49,
+        "resource:secondary": 91,
+        "resource:ultimate": 48
+      },
+      "resource_empty_seconds": 0.750000000000001,
+      "b06_metrics": {
+        "ability_busy_seconds": 6.76666666666665,
+        "counter_policy": "none",
+        "damage_admitted_seconds": 33.3333333333327,
+        "drain_completions": 0,
+        "exposed_seconds": 0.0,
+        "output_pause_seconds": 2.5,
+        "resource_blocked_ready_seconds": 18.9500000000002,
+        "tide_seconds": {
+          "high": 9.40000000000005,
+          "inactive": 6.43333333333332,
+          "low": 16.0000000000004,
+          "warning": 3.99999999999999
+        }
+      },
+      "resource_metric_note": "Ready-resource-blocked seconds means at least one ready skill unaffordable while ability idle; not all offense stopped.",
+      "phases": {
+        "1": {
+          "casts": {
+            "dual_cannon": 1,
+            "siege_claw": 1
+          },
+          "entered_at": 0.0166666666666667,
+          "seconds": 6.43333333333332
+        },
+        "2": {
+          "casts": {
+            "coral_escort": 1,
+            "shell_bombard": 1,
+            "tidal_wall": 1
+          },
+          "entered_at": 6.44999999999998,
+          "seconds": 9.35000000000004
+        },
+        "3": {
+          "casts": {
+            "dual_cannon": 2,
+            "return_pincer": 1,
+            "shell_bombard": 1,
+            "tidal_wall": 1
+          },
+          "entered_at": 15.8000000000004,
+          "seconds": 20.0500000000001
+        }
+      },
+      "actual_commands": {
+        "dual_cannon": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 1.83333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 2.88333333333333
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 17.6166666666669
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 18.6666666666669
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 32.6499999999994
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 33.6999999999994
+          }
+        ],
+        "siege_claw": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1689,
+            "observed_room_time": 5.93333333333332
+          }
+        ],
+        "tidal_wall": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1131,
+            "observed_room_time": 8.38333333333333
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1234,
+            "observed_room_time": 26.0999999999998
+          }
+        ],
+        "shell_bombard": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1374,
+            "observed_room_time": 10.8833333333335
+          },
+          {
+            "b06_phase": 2,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1374,
+            "observed_room_time": 12.0000000000002
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 29.0999999999996
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 30.2166666666662
+          }
+        ],
+        "coral_escort": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 0,
+            "observed_room_time": 14.3833333333336
+          }
+        ],
+        "return_pincer": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1234,
+            "observed_room_time": 21.2833333333334
+          }
+        ]
+      },
+      "hp_fraction": 1.0,
+      "hits": 0
+    },
+    {
+      "batch": "20261002T225341819439Z-3cfeddec",
+      "configuration": {
+        "chapter": 6,
+        "difficulty": 4,
+        "hero_id": "CH01",
+        "mix": "class4",
+        "sample": "G2",
+        "seed": 1001
+      },
+      "mage_affix_profile": "frozen",
+      "outcome": "boss_defeated",
+      "active_seconds": 13.2333333333336,
+      "effective_dps": 7181.863979848721,
+      "admitted_time_dps": 7181.863979848721,
+      "actual_hp_damage": 95040.0,
+      "damage_by_kind": {
+        "q": 7179.0,
+        "primary": 41983.0,
+        "secondary": 27076.0,
+        "f": 981.0,
+        "ultimate": 17821.0
+      },
+      "damage_by_source": {
+        "skill": 53057.0,
+        "primary": 41983.0
+      },
+      "explicit_proc_packet_damage": {},
+      "set_damage_note": "Multiplicative set effects are already folded into actual packets; no invented standalone attribution. Empty proc packets does not prove no set effects.",
+      "casts": {
+        "attack": 17,
+        "f": 1,
+        "q": 2,
+        "secondary": 4,
+        "ultimate": 1
+      },
+      "paid_cast_count": 8,
+      "paid_resource_total": 1250.0,
+      "class_refunds": 0.0,
+      "resource_rejections": {
+        "resource:f": 7,
+        "resource:secondary": 16,
+        "resource:ultimate": 41
+      },
+      "resource_empty_seconds": 0.0,
+      "b06_metrics": {
+        "ability_busy_seconds": 3.68333333333333,
+        "counter_policy": "none",
+        "damage_admitted_seconds": 13.2333333333336,
+        "drain_completions": 0,
+        "exposed_seconds": 0.0,
+        "output_pause_seconds": 0.0,
+        "resource_blocked_ready_seconds": 8.16666666666665,
+        "tide_seconds": {
+          "inactive": 5.63333333333332,
+          "low": 7.59999999999998
+        }
+      },
+      "resource_metric_note": "Ready-resource-blocked seconds means at least one ready skill unaffordable while ability idle; not all offense stopped.",
+      "phases": {
+        "1": {
+          "casts": {
+            "dual_cannon": 1,
+            "siege_claw": 1
+          },
+          "entered_at": 0.0166666666666667,
+          "seconds": 5.63333333333332
+        },
+        "2": {
+          "casts": {
+            "tidal_wall": 1
+          },
+          "entered_at": 5.64999999999999,
+          "seconds": 3.11666666666666
+        },
+        "3": {
+          "casts": {
+            "shell_bombard": 1
+          },
+          "entered_at": 8.76666666666668,
+          "seconds": 4.48333333333332
+        }
+      },
+      "actual_commands": {
+        "dual_cannon": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 1.83333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 2.88333333333333
+          }
+        ],
+        "siege_claw": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1689,
+            "observed_room_time": 5.26666666666665
+          }
+        ],
+        "tidal_wall": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1131,
+            "observed_room_time": 7.58333333333331
+          }
+        ],
+        "shell_bombard": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 10.6500000000001
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 11.7666666666668
+          }
+        ]
+      },
+      "hp_fraction": 1.0,
+      "hits": 0
+    },
+    {
+      "batch": "20261002T225341819439Z-3cfeddec",
+      "configuration": {
+        "chapter": 6,
+        "difficulty": 4,
+        "hero_id": "CH02",
+        "mix": "class4",
+        "sample": "G2",
+        "seed": 1001
+      },
+      "mage_affix_profile": "frozen",
+      "outcome": "boss_defeated",
+      "active_seconds": 11.8000000000002,
+      "effective_dps": 8054.237288135457,
+      "admitted_time_dps": 8054.237288135457,
+      "actual_hp_damage": 95040.0,
+      "damage_by_kind": {
+        "ultimate": 10950.0,
+        "primary": 58656.0,
+        "secondary": 13628.0,
+        "q": 9908.0,
+        "f": 1898.0
+      },
+      "damage_by_source": {
+        "skill": 36384.0,
+        "primary": 58656.0
+      },
+      "explicit_proc_packet_damage": {},
+      "set_damage_note": "Multiplicative set effects are already folded into actual packets; no invented standalone attribution. Empty proc packets does not prove no set effects.",
+      "casts": {
+        "attack": 28,
+        "f": 1,
+        "q": 2,
+        "secondary": 3,
+        "ultimate": 1
+      },
+      "paid_cast_count": 7,
+      "paid_resource_total": 2200.0,
+      "class_refunds": 0.0,
+      "resource_rejections": {
+        "resource:f": 14,
+        "resource:q": 2,
+        "resource:secondary": 19
+      },
+      "resource_empty_seconds": 0.0,
+      "b06_metrics": {
+        "ability_busy_seconds": 3.61666666666666,
+        "counter_policy": "none",
+        "damage_admitted_seconds": 11.8000000000002,
+        "drain_completions": 0,
+        "exposed_seconds": 0.0,
+        "output_pause_seconds": 0.0,
+        "resource_blocked_ready_seconds": 3.89999999999999,
+        "tide_seconds": {
+          "inactive": 3.41666666666666,
+          "low": 7.99999999999998,
+          "warning": 0.383333333333333
+        }
+      },
+      "resource_metric_note": "Ready-resource-blocked seconds means at least one ready skill unaffordable while ability idle; not all offense stopped.",
+      "phases": {
+        "1": {
+          "casts": {
+            "dual_cannon": 1
+          },
+          "entered_at": 0.0166666666666667,
+          "seconds": 3.41666666666666
+        },
+        "2": {
+          "casts": {
+            "tidal_wall": 1
+          },
+          "entered_at": 3.43333333333333,
+          "seconds": 3.94999999999999
+        },
+        "3": {
+          "casts": {
+            "shell_bombard": 1
+          },
+          "entered_at": 7.38333333333331,
+          "seconds": 4.43333333333332
+        }
+      },
+      "actual_commands": {
+        "dual_cannon": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 1.83333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 2.88333333333333
+          }
+        ],
+        "tidal_wall": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1131,
+            "observed_room_time": 5.36666666666665
+          }
+        ],
+        "shell_bombard": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 9.26666666666671
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 10.3833333333334
+          }
+        ]
+      },
+      "hp_fraction": 1.0,
+      "hits": 0
+    },
+    {
+      "batch": "20261002T225341819439Z-3cfeddec",
+      "configuration": {
+        "chapter": 6,
+        "difficulty": 4,
+        "hero_id": "CH03",
+        "mix": "class4",
+        "sample": "G2",
+        "seed": 1001
+      },
+      "mage_affix_profile": "frozen",
+      "outcome": "boss_defeated",
+      "active_seconds": 36.4333333333325,
+      "effective_dps": 2608.6001829826764,
+      "admitted_time_dps": 2800.785854616948,
+      "actual_hp_damage": 95040.0,
+      "damage_by_kind": {
+        "ultimate": 1086.0,
+        "secondary": 20492.0,
+        "shock": 3697.0,
+        "field": 10115.0,
+        "q": 29234.0,
+        "f": 6522.0,
+        "node_detonation": 21230.0,
+        "node": 2664.0
+      },
+      "damage_by_source": {
+        "skill": 57334.0,
+        "unclassified": 3697.0,
+        "field": 10115.0,
+        "node_detonation": 21230.0,
+        "node": 2664.0
+      },
+      "explicit_proc_packet_damage": {
+        "shock": 3697.0,
+        "field": 10115.0,
+        "node_detonation": 21230.0,
+        "node": 2664.0
+      },
+      "set_damage_note": "Multiplicative set effects are already folded into actual packets; no invented standalone attribution. Empty proc packets does not prove no set effects.",
+      "casts": {
+        "f": 5,
+        "q": 11,
+        "secondary": 7,
+        "ultimate": 1
+      },
+      "paid_cast_count": 24,
+      "paid_resource_total": 4220.0,
+      "class_refunds": 600.0,
+      "resource_rejections": {
+        "resource:f": 44,
+        "resource:q": 50,
+        "resource:secondary": 91,
+        "resource:ultimate": 50
+      },
+      "resource_empty_seconds": 0.750000000000001,
+      "b06_metrics": {
+        "ability_busy_seconds": 7.19999999999998,
+        "counter_policy": "none",
+        "damage_admitted_seconds": 33.9333333333327,
+        "drain_completions": 0,
+        "exposed_seconds": 0.0,
+        "output_pause_seconds": 2.5,
+        "resource_blocked_ready_seconds": 19.1166666666669,
+        "tide_seconds": {
+          "high": 10.0000000000001,
+          "inactive": 6.43333333333332,
+          "low": 16.0000000000004,
+          "warning": 3.99999999999999
+        }
+      },
+      "resource_metric_note": "Ready-resource-blocked seconds means at least one ready skill unaffordable while ability idle; not all offense stopped.",
+      "phases": {
+        "1": {
+          "casts": {
+            "dual_cannon": 1,
+            "siege_claw": 1
+          },
+          "entered_at": 0.0166666666666667,
+          "seconds": 6.43333333333332
+        },
+        "2": {
+          "casts": {
+            "coral_escort": 1,
+            "shell_bombard": 1,
+            "tidal_wall": 1
+          },
+          "entered_at": 6.44999999999998,
+          "seconds": 9.35000000000004
+        },
+        "3": {
+          "casts": {
+            "coral_escort": 1,
+            "dual_cannon": 2,
+            "return_pincer": 1,
+            "shell_bombard": 1,
+            "tidal_wall": 1
+          },
+          "entered_at": 15.8000000000004,
+          "seconds": 20.6500000000001
+        }
+      },
+      "actual_commands": {
+        "dual_cannon": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 1.83333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 2.88333333333333
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 17.6166666666669
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 18.6666666666669
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 32.6499999999994
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 33.6999999999994
+          }
+        ],
+        "siege_claw": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1689,
+            "observed_room_time": 5.93333333333332
+          }
+        ],
+        "tidal_wall": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1131,
+            "observed_room_time": 8.38333333333333
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1234,
+            "observed_room_time": 26.0999999999998
+          }
+        ],
+        "shell_bombard": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1374,
+            "observed_room_time": 10.8833333333335
+          },
+          {
+            "b06_phase": 2,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1374,
+            "observed_room_time": 12.0000000000002
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 29.0999999999996
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 30.2166666666662
+          }
+        ],
+        "coral_escort": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 0,
+            "observed_room_time": 14.3833333333336
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 0,
+            "observed_room_time": 36.0833333333326
+          }
+        ],
+        "return_pincer": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1234,
+            "observed_room_time": 21.2833333333334
+          }
+        ]
+      },
+      "hp_fraction": 1.0,
+      "hits": 0
+    },
+    {
+      "batch": "20261002T225417699941Z-ee5c1baa",
+      "configuration": {
+        "chapter": 6,
+        "difficulty": 4,
+        "hero_id": "CH01",
+        "mix": "shared6",
+        "sample": "G2",
+        "seed": 1001
+      },
+      "mage_affix_profile": "frozen",
+      "outcome": "boss_defeated",
+      "active_seconds": 13.2333333333336,
+      "effective_dps": 7181.863979848721,
+      "admitted_time_dps": 7181.863979848721,
+      "actual_hp_damage": 95040.0,
+      "damage_by_kind": {
+        "q": 7179.0,
+        "primary": 41983.0,
+        "secondary": 27076.0,
+        "f": 981.0,
+        "ultimate": 17821.0
+      },
+      "damage_by_source": {
+        "skill": 53057.0,
+        "primary": 41983.0
+      },
+      "explicit_proc_packet_damage": {},
+      "set_damage_note": "Multiplicative set effects are already folded into actual packets; no invented standalone attribution. Empty proc packets does not prove no set effects.",
+      "casts": {
+        "attack": 17,
+        "f": 1,
+        "q": 2,
+        "secondary": 4,
+        "ultimate": 1
+      },
+      "paid_cast_count": 8,
+      "paid_resource_total": 1250.0,
+      "class_refunds": 0.0,
+      "resource_rejections": {
+        "resource:f": 7,
+        "resource:secondary": 16,
+        "resource:ultimate": 41
+      },
+      "resource_empty_seconds": 0.0,
+      "b06_metrics": {
+        "ability_busy_seconds": 3.68333333333333,
+        "counter_policy": "none",
+        "damage_admitted_seconds": 13.2333333333336,
+        "drain_completions": 0,
+        "exposed_seconds": 0.0,
+        "output_pause_seconds": 0.0,
+        "resource_blocked_ready_seconds": 8.16666666666665,
+        "tide_seconds": {
+          "inactive": 5.63333333333332,
+          "low": 7.59999999999998
+        }
+      },
+      "resource_metric_note": "Ready-resource-blocked seconds means at least one ready skill unaffordable while ability idle; not all offense stopped.",
+      "phases": {
+        "1": {
+          "casts": {
+            "dual_cannon": 1,
+            "siege_claw": 1
+          },
+          "entered_at": 0.0166666666666667,
+          "seconds": 5.63333333333332
+        },
+        "2": {
+          "casts": {
+            "tidal_wall": 1
+          },
+          "entered_at": 5.64999999999999,
+          "seconds": 3.11666666666666
+        },
+        "3": {
+          "casts": {
+            "shell_bombard": 1
+          },
+          "entered_at": 8.76666666666668,
+          "seconds": 4.48333333333332
+        }
+      },
+      "actual_commands": {
+        "dual_cannon": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 1.83333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 2.88333333333333
+          }
+        ],
+        "siege_claw": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1689,
+            "observed_room_time": 5.26666666666665
+          }
+        ],
+        "tidal_wall": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1131,
+            "observed_room_time": 7.58333333333331
+          }
+        ],
+        "shell_bombard": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 10.6500000000001
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 11.7666666666668
+          }
+        ]
+      },
+      "hp_fraction": 1.0,
+      "hits": 0
+    },
+    {
+      "batch": "20261002T225417699941Z-ee5c1baa",
+      "configuration": {
+        "chapter": 6,
+        "difficulty": 4,
+        "hero_id": "CH02",
+        "mix": "shared6",
+        "sample": "G2",
+        "seed": 1001
+      },
+      "mage_affix_profile": "frozen",
+      "outcome": "boss_defeated",
+      "active_seconds": 11.8000000000002,
+      "effective_dps": 8054.237288135457,
+      "admitted_time_dps": 8054.237288135457,
+      "actual_hp_damage": 95040.0,
+      "damage_by_kind": {
+        "ultimate": 10950.0,
+        "primary": 58656.0,
+        "secondary": 13628.0,
+        "q": 9908.0,
+        "f": 1898.0
+      },
+      "damage_by_source": {
+        "skill": 36384.0,
+        "primary": 58656.0
+      },
+      "explicit_proc_packet_damage": {},
+      "set_damage_note": "Multiplicative set effects are already folded into actual packets; no invented standalone attribution. Empty proc packets does not prove no set effects.",
+      "casts": {
+        "attack": 28,
+        "f": 1,
+        "q": 2,
+        "secondary": 3,
+        "ultimate": 1
+      },
+      "paid_cast_count": 7,
+      "paid_resource_total": 2200.0,
+      "class_refunds": 0.0,
+      "resource_rejections": {
+        "resource:f": 14,
+        "resource:q": 2,
+        "resource:secondary": 19
+      },
+      "resource_empty_seconds": 0.0,
+      "b06_metrics": {
+        "ability_busy_seconds": 3.61666666666666,
+        "counter_policy": "none",
+        "damage_admitted_seconds": 11.8000000000002,
+        "drain_completions": 0,
+        "exposed_seconds": 0.0,
+        "output_pause_seconds": 0.0,
+        "resource_blocked_ready_seconds": 3.89999999999999,
+        "tide_seconds": {
+          "inactive": 3.41666666666666,
+          "low": 7.99999999999998,
+          "warning": 0.383333333333333
+        }
+      },
+      "resource_metric_note": "Ready-resource-blocked seconds means at least one ready skill unaffordable while ability idle; not all offense stopped.",
+      "phases": {
+        "1": {
+          "casts": {
+            "dual_cannon": 1
+          },
+          "entered_at": 0.0166666666666667,
+          "seconds": 3.41666666666666
+        },
+        "2": {
+          "casts": {
+            "tidal_wall": 1
+          },
+          "entered_at": 3.43333333333333,
+          "seconds": 3.94999999999999
+        },
+        "3": {
+          "casts": {
+            "shell_bombard": 1
+          },
+          "entered_at": 7.38333333333331,
+          "seconds": 4.43333333333332
+        }
+      },
+      "actual_commands": {
+        "dual_cannon": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 1.83333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 2.88333333333333
+          }
+        ],
+        "tidal_wall": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1131,
+            "observed_room_time": 5.36666666666665
+          }
+        ],
+        "shell_bombard": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 9.26666666666671
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 10.3833333333334
+          }
+        ]
+      },
+      "hp_fraction": 1.0,
+      "hits": 0
+    },
+    {
+      "batch": "20261002T225417699941Z-ee5c1baa",
+      "configuration": {
+        "chapter": 6,
+        "difficulty": 4,
+        "hero_id": "CH03",
+        "mix": "shared6",
+        "sample": "G2",
+        "seed": 1001
+      },
+      "mage_affix_profile": "frozen",
+      "outcome": "boss_defeated",
+      "active_seconds": 36.4499999999992,
+      "effective_dps": 2607.4074074074647,
+      "admitted_time_dps": 2799.41089838002,
+      "actual_hp_damage": 95040.0,
+      "damage_by_kind": {
+        "ultimate": 1086.0,
+        "secondary": 20010.0,
+        "shock": 3697.0,
+        "field": 10115.0,
+        "q": 29008.0,
+        "f": 6522.0,
+        "node_detonation": 21230.0,
+        "node": 2664.0,
+        "equipment": 708.0
+      },
+      "damage_by_source": {
+        "skill": 56626.0,
+        "unclassified": 3697.0,
+        "field": 10115.0,
+        "node_detonation": 21230.0,
+        "node": 2664.0,
+        "equipment": 708.0
+      },
+      "explicit_proc_packet_damage": {
+        "shock": 3697.0,
+        "field": 10115.0,
+        "node_detonation": 21230.0,
+        "node": 2664.0,
+        "equipment": 708.0
+      },
+      "set_damage_note": "Multiplicative set effects are already folded into actual packets; no invented standalone attribution. Empty proc packets does not prove no set effects.",
+      "casts": {
+        "f": 5,
+        "q": 11,
+        "secondary": 7,
+        "ultimate": 1
+      },
+      "paid_cast_count": 24,
+      "paid_resource_total": 4220.0,
+      "class_refunds": 600.0,
+      "resource_rejections": {
+        "resource:f": 47,
+        "resource:q": 52,
+        "resource:secondary": 92,
+        "resource:ultimate": 50
+      },
+      "resource_empty_seconds": 0.750000000000001,
+      "b06_metrics": {
+        "ability_busy_seconds": 7.19999999999998,
+        "counter_policy": "none",
+        "damage_admitted_seconds": 33.9499999999994,
+        "drain_completions": 0,
+        "exposed_seconds": 0.0,
+        "output_pause_seconds": 2.5,
+        "resource_blocked_ready_seconds": 19.4833333333335,
+        "tide_seconds": {
+          "high": 10.0166666666667,
+          "inactive": 6.43333333333332,
+          "low": 16.0000000000004,
+          "warning": 3.99999999999999
+        }
+      },
+      "resource_metric_note": "Ready-resource-blocked seconds means at least one ready skill unaffordable while ability idle; not all offense stopped.",
+      "phases": {
+        "1": {
+          "casts": {
+            "dual_cannon": 1,
+            "siege_claw": 1
+          },
+          "entered_at": 0.0166666666666667,
+          "seconds": 6.43333333333332
+        },
+        "2": {
+          "casts": {
+            "coral_escort": 1,
+            "shell_bombard": 1,
+            "tidal_wall": 1
+          },
+          "entered_at": 6.44999999999998,
+          "seconds": 9.35000000000004
+        },
+        "3": {
+          "casts": {
+            "coral_escort": 1,
+            "dual_cannon": 2,
+            "return_pincer": 1,
+            "shell_bombard": 1,
+            "tidal_wall": 1
+          },
+          "entered_at": 15.8000000000004,
+          "seconds": 20.6666666666668
+        }
+      },
+      "actual_commands": {
+        "dual_cannon": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 1.83333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 2.88333333333333
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 17.6166666666669
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 18.6666666666669
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 32.6499999999994
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 33.6999999999994
+          }
+        ],
+        "siege_claw": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1689,
+            "observed_room_time": 5.93333333333332
+          }
+        ],
+        "tidal_wall": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1131,
+            "observed_room_time": 8.38333333333333
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1234,
+            "observed_room_time": 26.0999999999998
+          }
+        ],
+        "shell_bombard": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1374,
+            "observed_room_time": 10.8833333333335
+          },
+          {
+            "b06_phase": 2,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1374,
+            "observed_room_time": 12.0000000000002
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 29.0999999999996
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1498,
+            "observed_room_time": 30.2166666666662
+          }
+        ],
+        "coral_escort": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 0,
+            "observed_room_time": 14.3833333333336
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 0,
+            "observed_room_time": 36.0833333333326
+          }
+        ],
+        "return_pincer": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1234,
+            "observed_room_time": 21.2833333333334
+          }
+        ]
+      },
+      "hp_fraction": 1.0,
+      "hits": 0
+    },
+    {
+      "batch": "20261002T225457072047Z-74c8c159",
+      "configuration": {
+        "chapter": 6,
+        "difficulty": 4,
+        "hero_id": "CH01",
+        "mix": "class6",
+        "sample": "G2",
+        "seed": 1001
+      },
+      "mage_affix_profile": "frozen",
+      "outcome": "boss_defeated",
+      "active_seconds": 27.8499999999997,
+      "effective_dps": 3412.5673249551537,
+      "admitted_time_dps": 3412.5673249551537,
+      "actual_hp_damage": 95040.0,
+      "damage_by_kind": {
+        "primary": 36270.0,
+        "q": 5643.0,
+        "secondary": 26386.0,
+        "f": 991.0,
+        "equipment": 785.0,
+        "ultimate": 24965.0
+      },
+      "damage_by_source": {
+        "primary": 36270.0,
+        "skill": 57985.0,
+        "equipment": 785.0
+      },
+      "explicit_proc_packet_damage": {
+        "equipment": 785.0
+      },
+      "set_damage_note": "Multiplicative set effects are already folded into actual packets; no invented standalone attribution. Empty proc packets does not prove no set effects.",
+      "casts": {
+        "attack": 20,
+        "f": 1,
+        "q": 2,
+        "secondary": 4,
+        "ultimate": 1
+      },
+      "paid_cast_count": 8,
+      "paid_resource_total": 1550.0,
+      "class_refunds": 0.0,
+      "resource_rejections": {
+        "resource:f": 14,
+        "resource:q": 8,
+        "resource:secondary": 7,
+        "resource:ultimate": 55
+      },
+      "resource_empty_seconds": 6.49999999999998,
+      "b06_metrics": {
+        "ability_busy_seconds": 3.94999999999999,
+        "counter_policy": "drain_pillar",
+        "damage_admitted_seconds": 27.8499999999997,
+        "drain_completions": 1,
+        "exposed_seconds": 0.0,
+        "output_pause_seconds": 0.0,
+        "resource_blocked_ready_seconds": 23.8166666666666,
+        "tide_seconds": {
+          "inactive": 18.0833333333336,
+          "low": 7.99999999999998,
+          "warning": 1.76666666666667
+        }
+      },
+      "resource_metric_note": "Ready-resource-blocked seconds means at least one ready skill unaffordable while ability idle; not all offense stopped.",
+      "phases": {
+        "1": {
+          "casts": {
+            "dual_cannon": 2,
+            "siege_claw": 1
+          },
+          "entered_at": 0.0166666666666667,
+          "seconds": 18.0833333333336
+        },
+        "2": {
+          "casts": {
+            "coral_escort": 1,
+            "shell_bombard": 1
+          },
+          "entered_at": 18.1000000000003,
+          "seconds": 5.88333333333332
+        },
+        "3": {
+          "casts": {
+            "return_pincer": 1
+          },
+          "entered_at": 23.9833333333333,
+          "seconds": 3.88333333333332
+        }
+      },
+      "actual_commands": {
+        "dual_cannon": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 1.83333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 2.88333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 15.866666666667
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 16.916666666667
+          }
+        ],
+        "siege_claw": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1689,
+            "observed_room_time": 13.4333333333336
+          }
+        ],
+        "shell_bombard": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1374,
+            "observed_room_time": 19.9833333333335
+          },
+          {
+            "b06_phase": 2,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1374,
+            "observed_room_time": 21.1000000000001
+          }
+        ],
+        "coral_escort": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 0,
+            "observed_room_time": 23.4833333333333
+          }
+        ],
+        "return_pincer": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1234,
+            "observed_room_time": 25.9833333333331
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1587,
+            "observed_room_time": 27.2166666666664
+          }
+        ]
+      },
+      "hp_fraction": 0.969561658108209,
+      "hits": 2
+    },
+    {
+      "batch": "20261002T225641812005Z-d42cfcbb",
+      "configuration": {
+        "chapter": 6,
+        "difficulty": 4,
+        "hero_id": "CH03",
+        "mix": "class6",
+        "sample": "G2",
+        "seed": 1001
+      },
+      "mage_affix_profile": "resource_cooldown",
+      "outcome": "boss_defeated",
+      "active_seconds": 24.0166666666666,
+      "effective_dps": 3957.2519083969573,
+      "admitted_time_dps": 4417.041053446933,
+      "actual_hp_damage": 95040.0,
+      "damage_by_kind": {
+        "ultimate": 1259.0,
+        "secondary": 21039.0,
+        "shock": 4446.0,
+        "field": 11732.0,
+        "q": 28177.0,
+        "f": 6020.0,
+        "node_detonation": 17091.0,
+        "node": 2322.0,
+        "equipment": 2954.0
+      },
+      "damage_by_source": {
+        "skill": 56495.0,
+        "unclassified": 4446.0,
+        "field": 11732.0,
+        "node_detonation": 17091.0,
+        "node": 2322.0,
+        "equipment": 2954.0
+      },
+      "explicit_proc_packet_damage": {
+        "shock": 4446.0,
+        "field": 11732.0,
+        "node_detonation": 17091.0,
+        "node": 2322.0,
+        "equipment": 2954.0
+      },
+      "set_damage_note": "Multiplicative set effects are already folded into actual packets; no invented standalone attribution. Empty proc packets does not prove no set effects.",
+      "casts": {
+        "f": 4,
+        "q": 9,
+        "secondary": 6,
+        "ultimate": 1
+      },
+      "paid_cast_count": 20,
+      "paid_resource_total": 3580.0,
+      "class_refunds": 496.0,
+      "resource_rejections": {
+        "resource:f": 17,
+        "resource:q": 3,
+        "resource:secondary": 13
+      },
+      "resource_empty_seconds": 0.1,
+      "b06_metrics": {
+        "ability_busy_seconds": 5.88333333333332,
+        "counter_policy": "none",
+        "damage_admitted_seconds": 21.5166666666667,
+        "drain_completions": 0,
+        "exposed_seconds": 0.0,
+        "output_pause_seconds": 2.5,
+        "resource_blocked_ready_seconds": 7.43333333333331,
+        "tide_seconds": {
+          "high": 5.99999999999998,
+          "inactive": 4.61666666666666,
+          "low": 11.4000000000001,
+          "warning": 2.0
+        }
+      },
+      "resource_metric_note": "Ready-resource-blocked seconds means at least one ready skill unaffordable while ability idle; not all offense stopped.",
+      "phases": {
+        "1": {
+          "casts": {
+            "dual_cannon": 1
+          },
+          "entered_at": 0.0166666666666667,
+          "seconds": 4.63333333333332
+        },
+        "2": {
+          "casts": {
+            "shell_bombard": 1,
+            "tidal_wall": 1
+          },
+          "entered_at": 4.64999999999999,
+          "seconds": 6.41666666666665
+        },
+        "3": {
+          "casts": {
+            "coral_escort": 1,
+            "dual_cannon": 1,
+            "return_pincer": 1
+          },
+          "entered_at": 11.0666666666668,
+          "seconds": 12.9666666666669
+        }
+      },
+      "actual_commands": {
+        "dual_cannon": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 1.83333333333333
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1175,
+            "observed_room_time": 2.88333333333333
+          },
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 19.1166666666669
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1410,
+            "observed_room_time": 20.1666666666668
+          }
+        ],
+        "tidal_wall": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1131,
+            "observed_room_time": 6.58333333333332
+          }
+        ],
+        "shell_bombard": [
+          {
+            "b06_phase": 2,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1374,
+            "observed_room_time": 9.08333333333336
+          },
+          {
+            "b06_phase": 2,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1374,
+            "observed_room_time": 10.2000000000001
+          }
+        ],
+        "coral_escort": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 0,
+            "observed_room_time": 12.8333333333336
+          }
+        ],
+        "B06-M01:trident_thrust": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1609,
+            "observed_room_time": 14.416666666667
+          },
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1609,
+            "observed_room_time": 16.0333333333337
+          }
+        ],
+        "B06-M01:trident_thrust:follow": [
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 1,
+            "damage": 585,
+            "observed_room_time": 15.2000000000003
+          },
+          {
+            "b06_phase": 1,
+            "stage": 1,
+            "stage_count": 1,
+            "damage": 585,
+            "observed_room_time": 16.816666666667
+          }
+        ],
+        "return_pincer": [
+          {
+            "b06_phase": 3,
+            "stage": 0,
+            "stage_count": 2,
+            "damage": 1234,
+            "observed_room_time": 15.4500000000003
+          },
+          {
+            "b06_phase": 3,
+            "stage": 1,
+            "stage_count": 2,
+            "damage": 1587,
+            "observed_room_time": 16.6833333333337
+          }
+        ],
+        "B06-M01:basic": [
+          {
+            "b06_phase": 1,
+            "stage": 0,
+            "stage_count": 1,
+            "damage": 1463,
+            "observed_room_time": 19.0000000000002
+          }
+        ]
+      },
+      "hp_fraction": 1.0,
+      "hits": 0
+    }
+  ],
+  "scope": "D4 G2 seed1001 lawful same-orientation class6/class4/shared6. Controller observations, not human play acceptance."
+}

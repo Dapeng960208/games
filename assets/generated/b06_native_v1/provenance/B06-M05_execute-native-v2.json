@@ -1,0 +1,44 @@
+{
+  "id": "M05",
+  "pose": "execute",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-0beaea5e-df5b-4a9c-a23c-0ed870f5d9eb.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M05_execute-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-0beaea5e-df5b-4a9c-a23c-0ed870f5d9eb.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M05_execute-native-v1.png",
+    "b06-art/generated/monsters-m02-m09/B06-M05_idle-native-v2.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "action": "Extend seaweed staff forward toward screen-right and open free palm in a clear shield-bestowal release, gentle forward lean, feet remain planted. No detached bubbles or shield target.",
+  "reference": "b06-art/generated/monsters-m02-m09/B06-M05_idle-native-v2.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "bb8438062ca80bea7e214664a1d0e5133eb097c74124afdfeb2fd64b33001470",
+  "bytes": 816715,
+  "alpha_bbox": [
+    17,
+    49,
+    1224,
+    1245
+  ],
+  "opaque_bbox": [
+    212,
+    356,
+    1091,
+    1082
+  ],
+  "prompt": "Use case: identity-preserve. Image1 is edit target B06-M05 execute. Image2 is its selected IDLE body scale reference. Preserve EXACT species, anatomy, costume, colors, face, limbs, equipment, attack pose and camera from image1. Composition correction ONLY: reduce the entire character together to match the body/torso pixel scale of image2, centered around same ground anchor. Whole silhouette should occupy at most72% canvas width/height, all extremities between15%and85%of canvas. Keep generous empty alpha margins on every side. Do not change attack action or face. No enlarged closeup. Preserve crisp painterly2.5D render and genuine transparent RGBA. No floor, shadow, particles, detached elements, labels or upscaling.\n",
+  "status": "candidate pending visual QC",
+  "reference_sha256": [
+    "814d82a23970fc43f3ab7406cff916a5daeb6340eef2565a51cb09f175c92b46",
+    "4abab40df8f43af98607f56dbfcd44254d0946fe2b5e744d26d0cb11cb284dfc"
+  ]
+}

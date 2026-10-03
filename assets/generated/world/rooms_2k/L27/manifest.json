@@ -1,0 +1,388 @@
+{
+  "schema_version": 1,
+  "room_id": "L27",
+  "approved": false,
+  "candidate_only": true,
+  "source_texture": "res://assets/generated/world/rooms/L27_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "9146f2d2100566aacc76d5def5727202cbb7e75476c9e91aeb15bbd58f11d2b4",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "res://assets/generated/world/rooms_2k/L27/top_left.png",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "812df32d98b00ef1672dc14fb7b74aaf5692ac3ec3cb9c5333e48892320f0c3d",
+      "native_density": [
+        2.4115384615384614,
+        2.375
+      ],
+      "source_selection": "b05-art/regenerated/maps/L27/L27_native_top_left_v1.png",
+      "provenance": {
+        "part": "top_left",
+        "path": "b05-art/regenerated/maps/L27/L27_native_top_left_v1.png",
+        "sha256": "812df32d98b00ef1672dc14fb7b74aaf5692ac3ec3cb9c5333e48892320f0c3d",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "source_rect": [
+          0,
+          0,
+          520,
+          528
+        ],
+        "native_density": [
+          2.4115384615384614,
+          2.375
+        ],
+        "minimum_2_35_pass": true,
+        "prompt_path": "b05-art/regenerated/maps/L27/prompts/L27_top_left_v1.txt",
+        "prompt_sha256": "6ba5b400151b84cc5c4aa4e7d49775864df312aa1fd57be82bd9933554c3f858",
+        "references": [
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/references/L27_top_left_source.png",
+            "sha256": "9186bf42ea4f7f3b93c0cefd0f6df5fb55ed2749c3b61923adadc2927d1a075e"
+          },
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/L27_base_v2.png",
+            "sha256": "9146f2d2100566aacc76d5def5727202cbb7e75476c9e91aeb15bbd58f11d2b4"
+          }
+        ],
+        "model": "unknown_not_exposed",
+        "generation_tool": "built-in image_gen",
+        "exact_returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-30694297-e48f-4d1a-97f3-231ea1d18bfb.png",
+        "copied_byte_identical": true,
+        "selected_for_integration_pilot": true,
+        "accepted": false,
+        "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
+        "reference_crop_pixel_exact": true,
+        "visual_inspected": true
+      }
+    },
+    {
+      "id": "top_middle",
+      "texture": "res://assets/generated/world/rooms_2k/L27/top_middle.png",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "c9b5327a5827c4ef33d4263aacb1bb572ba88c7724ed05b261e35323b23c701d",
+      "native_density": [
+        2.375,
+        2.375
+      ],
+      "source_selection": "b05-art/regenerated/maps/L27/L27_native_top_middle_v1.png",
+      "provenance": {
+        "part": "top_middle",
+        "path": "b05-art/regenerated/maps/L27/L27_native_top_middle_v1.png",
+        "sha256": "c9b5327a5827c4ef33d4263aacb1bb572ba88c7724ed05b261e35323b23c701d",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "source_rect": [
+          504,
+          0,
+          528,
+          528
+        ],
+        "native_density": [
+          2.375,
+          2.375
+        ],
+        "minimum_2_35_pass": true,
+        "prompt_path": "b05-art/regenerated/maps/L27/prompts/L27_top_middle_v1.txt",
+        "prompt_sha256": "1d22895c10313ccaeff75d22d48c2875859db1e45f8cbc0d8b6dca35655d3bb4",
+        "references": [
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/references/L27_top_middle_source.png",
+            "sha256": "0d1e144302998015070af8b054966b5a1e840703aa0f099ba887eaea70cc3a3d"
+          },
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/L27_base_v2.png",
+            "sha256": "9146f2d2100566aacc76d5def5727202cbb7e75476c9e91aeb15bbd58f11d2b4"
+          }
+        ],
+        "model": "unknown_not_exposed",
+        "generation_tool": "built-in image_gen",
+        "exact_returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5d9b3a69-a162-4e3d-adc8-34455160a64c.png",
+        "copied_byte_identical": true,
+        "selected_for_integration_pilot": true,
+        "accepted": false,
+        "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
+        "reference_crop_pixel_exact": true,
+        "visual_inspected": true
+      }
+    },
+    {
+      "id": "top_right",
+      "texture": "res://assets/generated/world/rooms_2k/L27/top_right.png",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1241,
+        1268
+      ],
+      "generated_png_sha256": "aaa08fc5af0a4f5547c05247472ffd07292ed9c8d74c9d536d156c1161aadf78",
+      "native_density": [
+        2.3865384615384615,
+        2.4015151515151514
+      ],
+      "source_selection": "b05-art/regenerated/maps/L27/L27_native_top_right_v1.png",
+      "provenance": {
+        "part": "top_right",
+        "path": "b05-art/regenerated/maps/L27/L27_native_top_right_v1.png",
+        "sha256": "aaa08fc5af0a4f5547c05247472ffd07292ed9c8d74c9d536d156c1161aadf78",
+        "native_size": [
+          1241,
+          1268
+        ],
+        "source_rect": [
+          1016,
+          0,
+          520,
+          528
+        ],
+        "native_density": [
+          2.3865384615384615,
+          2.4015151515151514
+        ],
+        "minimum_2_35_pass": true,
+        "prompt_path": "b05-art/regenerated/maps/L27/prompts/L27_top_right_v1.txt",
+        "prompt_sha256": "5c2a7a0c5294a96ffb48a8241850d1753f917cc56973b0b51094598ffacd6633",
+        "references": [
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/references/L27_top_right_source.png",
+            "sha256": "25e4506b04b05d26c60e1555c52115d2cfe72f2f7864e2fe96d836884dbb70cc"
+          },
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/L27_base_v2.png",
+            "sha256": "9146f2d2100566aacc76d5def5727202cbb7e75476c9e91aeb15bbd58f11d2b4"
+          }
+        ],
+        "model": "unknown_not_exposed",
+        "generation_tool": "built-in image_gen",
+        "exact_returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d1718ad1-d2d6-4a3e-83b3-257d36c86cc6.png",
+        "copied_byte_identical": true,
+        "selected_for_integration_pilot": true,
+        "accepted": false,
+        "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
+        "reference_crop_pixel_exact": true,
+        "visual_inspected": true
+      }
+    },
+    {
+      "id": "bottom_left",
+      "texture": "res://assets/generated/world/rooms_2k/L27/bottom_left.png",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "5ee6825b4328bca9dc3d912d1cf7aff0642869237b3b0cc8632ab7de46839284",
+      "native_density": [
+        2.4115384615384614,
+        2.4115384615384614
+      ],
+      "source_selection": "b05-art/regenerated/maps/L27/L27_native_bottom_left_v1.png",
+      "provenance": {
+        "part": "bottom_left",
+        "path": "b05-art/regenerated/maps/L27/L27_native_bottom_left_v1.png",
+        "sha256": "5ee6825b4328bca9dc3d912d1cf7aff0642869237b3b0cc8632ab7de46839284",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "source_rect": [
+          0,
+          504,
+          520,
+          520
+        ],
+        "native_density": [
+          2.4115384615384614,
+          2.4115384615384614
+        ],
+        "minimum_2_35_pass": true,
+        "prompt_path": "b05-art/regenerated/maps/L27/prompts/L27_bottom_left_v1.txt",
+        "prompt_sha256": "ae123777c7f6380c8f67b358bbf0d3bab07336b92e0f59478ad9209ea415f3d0",
+        "references": [
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/references/L27_bottom_left_source.png",
+            "sha256": "01fdc50eb5eb21413604d0684f25e82d13bb7840b1ca53288f8cc20a88efee91"
+          },
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/L27_base_v2.png",
+            "sha256": "9146f2d2100566aacc76d5def5727202cbb7e75476c9e91aeb15bbd58f11d2b4"
+          }
+        ],
+        "model": "unknown_not_exposed",
+        "generation_tool": "built-in image_gen",
+        "exact_returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-91bc417a-f29f-4c29-84c4-88106707dd95.png",
+        "copied_byte_identical": true,
+        "selected_for_integration_pilot": true,
+        "accepted": false,
+        "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
+        "reference_crop_pixel_exact": true,
+        "visual_inspected": true
+      }
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "res://assets/generated/world/rooms_2k/L27/bottom_middle.png",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1268,
+        1241
+      ],
+      "generated_png_sha256": "d237bd02621f1fa4c5e2416f0a2814e736d3638187dc8a17f54e8f7168e0cd32",
+      "native_density": [
+        2.4015151515151514,
+        2.3865384615384615
+      ],
+      "source_selection": "b05-art/regenerated/maps/L27/L27_native_bottom_middle_v1.png",
+      "provenance": {
+        "part": "bottom_middle",
+        "path": "b05-art/regenerated/maps/L27/L27_native_bottom_middle_v1.png",
+        "sha256": "d237bd02621f1fa4c5e2416f0a2814e736d3638187dc8a17f54e8f7168e0cd32",
+        "native_size": [
+          1268,
+          1241
+        ],
+        "source_rect": [
+          504,
+          504,
+          528,
+          520
+        ],
+        "native_density": [
+          2.4015151515151514,
+          2.3865384615384615
+        ],
+        "minimum_2_35_pass": true,
+        "prompt_path": "b05-art/regenerated/maps/L27/prompts/L27_bottom_middle_v1.txt",
+        "prompt_sha256": "2a81679e1de45deba26ee9a82e3f03b05af6a45fa797b2361764967d1ccbe036",
+        "references": [
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/references/L27_bottom_middle_source.png",
+            "sha256": "4bfb18ea193a3e3aca0075f348eb8bfe8564423d4402c1b94677feba34e87aad"
+          },
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/L27_base_v2.png",
+            "sha256": "9146f2d2100566aacc76d5def5727202cbb7e75476c9e91aeb15bbd58f11d2b4"
+          }
+        ],
+        "model": "unknown_not_exposed",
+        "generation_tool": "built-in image_gen",
+        "exact_returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8bffb87e-7023-4921-a299-2cfbe41e9860.png",
+        "copied_byte_identical": true,
+        "selected_for_integration_pilot": true,
+        "accepted": false,
+        "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
+        "reference_crop_pixel_exact": true,
+        "visual_inspected": true
+      }
+    },
+    {
+      "id": "bottom_right",
+      "texture": "res://assets/generated/world/rooms_2k/L27/bottom_right.png",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "590998ba78baee5cd024bd09ed4de46be6fc01590e38acf333a756ac4e0800c5",
+      "native_density": [
+        2.4115384615384614,
+        2.4115384615384614
+      ],
+      "source_selection": "b05-art/regenerated/maps/L27/L27_native_bottom_right_v1.png",
+      "provenance": {
+        "part": "bottom_right",
+        "path": "b05-art/regenerated/maps/L27/L27_native_bottom_right_v1.png",
+        "sha256": "590998ba78baee5cd024bd09ed4de46be6fc01590e38acf333a756ac4e0800c5",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "source_rect": [
+          1016,
+          504,
+          520,
+          520
+        ],
+        "native_density": [
+          2.4115384615384614,
+          2.4115384615384614
+        ],
+        "minimum_2_35_pass": true,
+        "prompt_path": "b05-art/regenerated/maps/L27/prompts/L27_bottom_right_v1.txt",
+        "prompt_sha256": "090603a31d21b384397546363e1b32d6616a441e0b348b8b87bd818f81dbed01",
+        "references": [
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/references/L27_bottom_right_source.png",
+            "sha256": "46d94a20afaa21b9c969c36fa34cedbe9f568ecb22c858b1dcd30fceaa75fe14"
+          },
+          {
+            "path": "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/L27/L27_base_v2.png",
+            "sha256": "9146f2d2100566aacc76d5def5727202cbb7e75476c9e91aeb15bbd58f11d2b4"
+          }
+        ],
+        "model": "unknown_not_exposed",
+        "generation_tool": "built-in image_gen",
+        "exact_returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1813612d-49bc-41ad-ab27-18ba08cd01d9.png",
+        "copied_byte_identical": true,
+        "selected_for_integration_pilot": true,
+        "accepted": false,
+        "qa": "Visually inspected native result: crisp newly painted bark, grain, petals; main silhouette, flat center and visible exits retained. No baked void. Fine board joints, floral microshapes and distant details vary from source; cross-tile seam registration and runtime boundary acceptance remain pending. Do not claim pixel-identical borders.",
+        "reference_crop_pixel_exact": true,
+        "visual_inspected": true
+      }
+    }
+  ],
+  "generation_manifest": "b05-art/regenerated/maps/L27/L27_SIX_NATIVE_TILES_MANIFEST.json",
+  "generation_manifest_sha256": "ba61f5d2a792984ad2d6de160ee03db247032a92c2a655e2b239fc27c1489289",
+  "source_pixel_edits": "none; byte-identical native generated PNGs",
+  "known_limits": "Candidate only. Runtime seam, collision-edge and full-room acceptance pending."
+}

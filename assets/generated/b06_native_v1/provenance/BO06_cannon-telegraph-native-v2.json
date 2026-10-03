@@ -1,0 +1,39 @@
+{
+  "id": "BO06_cannon-telegraph-native-v2",
+  "folder": "boss",
+  "ref": "boss/BO06_cannon-telegraph-native-v1.png",
+  "transparent": true,
+  "prompt": "Use case: precise-object-edit. Preserve this exact crab cannon-windup sprite identity, body scale, native1254square canvas, all four support legs, hammer, coral fort and belly pearl. Change only viewer-right cannon pose: bend/retract arm so the complete circular cannon claw shifts LEFT100pixels, barrel still tilted upward-right but no edge above x1150. Keep circular cannon native size, expose full claw. Do not globally enlarge or shrink character. Same genuine transparent background and clean alpha margins. No additional effects, floor, text or shadow.",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-6626d2c5-5341-4b68-9abf-2fd99308c131.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/boss/BO06_cannon-telegraph-native-v2.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "candidate awaiting review",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "0ab9951aca7951d8a1f0c039fb86ac09f4db4bae489b58937a243ef881509fda",
+  "alpha_bbox": [
+    20,
+    21,
+    1220,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    26,
+    163,
+    1214,
+    1068
+  ],
+  "reference_sha256": "232db7fae1dd9d58e42eae97a5dbf2390c2f948cd378e0ffe4df19dab74629eb",
+  "selection_status": "selected_source_candidate",
+  "runtime_ready": false,
+  "source_anchors": [
+    "docs/levels/06_TIDAL_CORAL_CITY.md#2-地图元素与种族特性",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#3-18种普通怪",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#4-boss行走巨蟹堡垒"
+  ]
+}

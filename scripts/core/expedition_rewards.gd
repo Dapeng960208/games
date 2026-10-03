@@ -6,7 +6,7 @@ const Instances = preload("res://scripts/core/equipment_instances.gd")
 const Rewards = preload("res://scripts/world/room_rewards.gd")
 const Registry = preload("res://scripts/data/content_registry.gd")
 const MAX_EVENTS := 2048
-const MATERIAL_KEYS := ["forge","race:B01","race:B02","race:B03","race:B04","core:B01","core:B02","core:B03","core:B04"]
+const MATERIAL_KEYS := ["forge","race:B01","race:B02","race:B03","race:B04","race:B05","race:B06","core:B01","core:B02","core:B03","core:B04","core:B05","core:B06"]
 
 static func initialize(value: Dictionary, profile: Dictionary, run_id: String, wish: String = "") -> void:
 	value["loot_seed"] = (int(value.seed) ^ (run_id + ":loot:v2").hash()) & 0x7fffffff
@@ -16,12 +16,15 @@ static func initialize(value: Dictionary, profile: Dictionary, run_id: String, w
 	value["pending_materials"] = {}
 	value["optional_claims"] = {}
 
-static func context(value: Dictionary, run_id: String, hero_id: String, event_id: String, source: String, zone: int = 2, generator_version: int = Acquisition.GENERATOR_VERSION) -> Dictionary:
+static func context(value: Dictionary, run_id: String, hero_id: String, event_id: String, source: String, zone: int = 2, generator_version: int = Acquisition.GENERATOR_VERSION, actor_id: String = "") -> Dictionary:
 	var room: String = str(value.route.nodes[int(value.node_index)].room_id)
 	var race := Rewards.biome_for_reward(room)
 	var result := {"event_id":event_id,"seed":int(value.loot_seed),"source":source,"race_id":race,"difficulty":int(value.difficulty),"challenge_level":Rewards.challenge_level(room, zone),"power_type":"magic" if hero_id == "CH03" else "physical","wish_slot":str(value.wish_slot),"force_gold":source == "boss" and int(value.difficulty) == 4 and int(value.pity_snapshot.get(race, 0)) >= 3}
 
-	if generator_version == 2: result["hero_id"] = hero_id
+	if generator_version >= 2: result["hero_id"] = hero_id
+	if (generator_version >= 3 and race == "B05") or (generator_version >= 4 and race == "B06"):
+		result["room_id"] = room
+		if source in ["normal", "elite"] and not actor_id.is_empty(): result["monster_id"] = actor_id
 	return result
 
 static func materials(source: String, race: String, difficulty: int) -> Dictionary:
@@ -34,9 +37,14 @@ static func materials(source: String, race: String, difficulty: int) -> Dictiona
 
 static func add(value: Dictionary, run_id: String, hero_id: String, event_id: String, source: String, zone: int = 2, actor_id: String = "") -> bool:
 	if value.loot_events.has(event_id):
-		return same(value.loot_events[event_id].result.context, context(value, run_id, hero_id, event_id, source, zone, int(value.loot_events[event_id].result.generator_version))) and value.loot_events[event_id].get("actor_id", "") == actor_id
+		var saved: Dictionary = value.loot_events[event_id].result
+		var requested := context(value, run_id, hero_id, event_id, source, zone, int(saved.generator_version), actor_id)
+		# Absent optional provenance stays neutral on historical v3 retries.
+		for field: String in ["room_id", "monster_id"]:
+			if not saved.context.has(field): requested.erase(field)
+		return same(saved.context, requested) and value.loot_events[event_id].get("actor_id", "") == actor_id
 	if value.loot_events.size() >= MAX_EVENTS: return false
-	var request := context(value, run_id, hero_id, event_id, source, zone)
+	var request := context(value, run_id, hero_id, event_id, source, zone, Acquisition.GENERATOR_VERSION, actor_id)
 	var result := Acquisition.roll_event(request)
 	if not bool(result.get("ok", false)): return false
 	var count := 0
@@ -94,7 +102,7 @@ static func bank(profile: Dictionary, value: Dictionary, boss_defeats: Array) ->
 			var gold := false
 			for item: Dictionary in value.pending_equipment.values():
 				if item.rarity == "gold" : gold = true
-			if not profile.has("gold_pity"): profile.gold_pity = {"B01":0,"B02":0,"B03":0,"B04":0}
+			if not profile.has("gold_pity"): profile.gold_pity = {"B01":0,"B02":0,"B03":0,"B04":0,"B05":0}
 			profile.gold_pity[race] = 0 if gold else mini(3, int(value.pity_snapshot.get(race, 0)) + 1)
 	return retained
 
@@ -151,7 +159,10 @@ static func valid(value: Dictionary, receipt: Dictionary, profile: Dictionary) -
 		else: return false
 		var frozen := value.duplicate(false)
 		frozen.node_index = int(event.node_index)
-		if not same(result.context, context(frozen, str(receipt.id), str(receipt.hero_id), id, source, int(event.zone_index), int(result.generator_version))): return false
+		var requested := context(frozen, str(receipt.id), str(receipt.hero_id), id, source, int(event.zone_index), int(result.generator_version), str(event.get("actor_id", "")))
+		for field: String in ["room_id", "monster_id"]:
+			if not result.context.has(field): requested.erase(field)
+		if not same(result.context, requested): return false
 		var key := str(int(event.node_index)) + ":" + source
 		var cap := 2 if source == "normal" else 1
 		var grant := source not in ["normal","elite"] or int(counts.get(key, 0)) < cap
@@ -201,7 +212,7 @@ static func material_map_valid(value: Variant) -> bool:
 static func pity_valid(value: Variant) -> bool:
 	if not value is Dictionary: return false
 	for key: Variant in value:
-		if key not in ["B01","B02","B03","B04"] or not _number(value[key], 3): return false
+		if key not in ["B01","B02","B03","B04","B05","B06"] or not _number(value[key], 3): return false
 	return true
 
 static func _number(value: Variant, maximum: int) -> bool:

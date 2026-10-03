@@ -1,0 +1,44 @@
+{
+  "id": "M16",
+  "pose": "telegraph",
+  "prompt": "Use case: identity-preserve. Edit this exact IDLE monster into ONE TELEGRAPH action sprite. Pose change: Brace legs, angle net frame slightly upward right and draw back launch grip, folded mesh taut inside same frame. Preserve exact species identity, anatomical count, face, ornaments, colors, gear, painterly 2.5D style, same native square canvas and body scale. Elevated three-quarter camera facing SCREEN RIGHT. Whole subject with all equipment safely inside canvas. Genuine transparent RGBA, no floor, shadow, text, background, duplicates or attack VFX.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M16_idle-native-v2.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-12013745-66ae-4e06-9aa3-8732bb54f347.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M16_telegraph-native-v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "53f421342f625547d2a8cbd5e93fad5e85aec3a3ed1d44a48738beb51890e681",
+  "alpha_bbox": [
+    19,
+    21,
+    1214,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    26,
+    149,
+    1189,
+    1167
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "d5ac84e2eb930239dca8bf1faa5c9b6fe11d45689ca7e1490aa18ea03a6530cc",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    525,
+    1100
+  ],
+  "attack_outlet_px": [
+    1080,
+    550
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M16_telegraph-native-v1.json"
+}

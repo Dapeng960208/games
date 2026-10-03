@@ -1,0 +1,29 @@
+{
+  "profile_source_commit": "591a0ab",
+  "damage_source_commit": "b222dcbf885ce57b996ad0ba72f43399471f28ac",
+  "archive": 15,
+  "enemy_species_version": 4,
+  "default_enabled": false,
+  "profile_export_checks": 42847,
+  "profile_export_failures": 0,
+  "row_count": 2730,
+  "source_sha256": {
+    "data/enemy_species_policy_v4.json": "4b860f1172057fc215f863d1233844f01fa831bd93d441edf364c3f575879cc5",
+    "scripts/combat/enemy_species_policy.gd": "06c8fa0edeb9d98d8c977dde81c212de5cdd936de0147866a27764d74b8a37c2",
+    "scripts/combat/shared_enemy_growth.gd": "d7415da68c26f1819977c09092a2a073a9451b94d6cfeb2061180de828d11d3a",
+    "scripts/combat/crit_policy.gd": "74a9c7e68a5ac14e918ff11c1b5bf847f865b9b49ac910b862dc0a8700f1c37e",
+    "scripts/combat/enemy_calibration.gd": "62b63fd2ac3b2fabce88463f50f4fc88fc0feae519cef4df195fd053989232eb",
+    "scripts/combat/enemy_profiles.gd": "4097c8ace0984cb7b3160f9c6cad2965ea0d0f44168b80d015f5b91754062653",
+    "scripts/combat/enemy_numerical_v2.gd": "7b6450629a102c9654abfe1623fcec4c360ad534b52f141b0a8b60250ce56e18",
+    "scripts/combat/b05_enemy_numbers.gd": "d66689a917dab902f3a35657a50602187b7ba51b3e36f4c8c28d7db1414c9510",
+    "scripts/combat/b06_enemy_numbers.gd": "17cc61bc51638ef58a54e92e566f53fb31cedb47fb0512578685beae401e3dad",
+    "scripts/combat/boss_profiles.gd": "d46983c117e70453fd5346203e64fb45a275e056faf1f1d98ccb6d7c32bf5830"
+  },
+  "spawn_evidence": {
+    "path": "docs/balance/ALL_CHAPTER_ENEMY_SCALING_AUDIT_2026-10-02.json",
+    "sha256": "74687ad5cbc905f9399025ec42aca7d0195e5e321d3d791d951fd1c1174d6af1",
+    "scope": "actual_spawn_rows D0/D4 sampled production plans, not the all-level resolver grid; intermediate difficulty and summon cases require further admission checks"
+  },
+  "csv_sha256": "988c245cf39b567d6b457621b00e7edb4f52d49f36ab195f26deee9b3b12f94c",
+  "boundary": "Profile resolver verification only. Damage packets, RNG, movement and full combat require separate evidence."
+}

@@ -94,9 +94,18 @@ func hit(target: Node2D) -> void:
 			_finish()
 			return
 		if bool(options.get("original", false)):
-			room.resolve_direct_hit(target, damage, source, str(options.get("status", "")), 0.0, direction, options)
+			var delivered: Dictionary = options.duplicate(true)
+			delivered["attack_delivery"] = "projectile"
+			var confirmed: bool = room.resolve_direct_hit(target, damage, source, str(options.get("status", "")), 0.0, direction, delivered)
+			var b06_bonus: Dictionary = options.get("b06_r_bonus", {})
+			if confirmed and target.is_alive() and str(b06_bonus.get("target_id", "")) == str(target.get_instance_id()):
+				var derived: Dictionary = b06_bonus.duplicate(true)
+				derived.merge({"damage_source":"equipment", "original_basic":false, "attacker_stats":options.get("attacker_stats", {}), "root_event_id":options.get("root_event_id", "")}, true)
+				room.resolve_derived_hit(target, float(b06_bonus.damage), &"equipment", direction, derived)
 		else:
-			room.resolve_derived_hit(target, damage, source, direction, options)
+			var delivered_child: Dictionary = options.duplicate(true)
+			delivered_child["attack_delivery"] = "projectile"
+			room.resolve_derived_hit(target, damage, source, direction, delivered_child)
 		room.add_ring(position, options.get("color", Color("9fdacf")), 18.0, 0.17)
 	if pierce_remaining > 0:
 		pierce_remaining -= 1

@@ -1,0 +1,45 @@
+{
+  "id": "M10",
+  "pose": "execute",
+  "prompt": "Use case: identity-preserve. Edit this exact IDLE monster into ONE EXECUTE action sprite. Pose change: Flatten umbrella outward and fling FOUR long ribbons apart as pulse release. All four distinct; pearl visible; no detached rings. Preserve exact species identity, anatomical count, face, ornaments, colors, gear, painterly 2.5D style, same native square canvas and body scale. Elevated three-quarter camera facing SCREEN RIGHT. Whole subject with all equipment safely inside canvas. Genuine transparent RGBA, no floor, shadow, text, background, duplicates or attack VFX.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M10_idle-native-v2.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-74684723-a460-489b-812f-c317ce21bcb7.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M10_execute-native-v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "bbebb559ee67d3f43fac8202dca5c4f1409810e793c9e573b551089ba14408cb",
+  "alpha_bbox": [
+    61,
+    97,
+    1238,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    67,
+    109,
+    1231,
+    1156
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "ab976158777753aa29425fda8a64ca9ead6a9e2431544ad76318cd2b6030ee3c",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    674,
+    1110
+  ],
+  "attack_outlet_px": [
+    682,
+    433
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "anchor_note": "hover projected groundpoint; do not infer collision from tentacle or tail tip",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M10_execute-native-v1.json"
+}

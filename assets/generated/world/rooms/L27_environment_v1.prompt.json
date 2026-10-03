@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "room_id": "L27",
+  "tool": "image_gen",
+  "model": "unknown_not_exposed",
+  "model_version": "unknown_not_exposed",
+  "prompt": "Use case: precise-object-edit. Edit image1, a production map, with image2 as absolute floor-coordinate authority. Fill the ENTIRE central opening and its roots, flowers, rails and cliff edges with plain dry pale-golden wood floor. The resulting map must have NO HOLE anywhere, and no inner rails or ledges. The game supplies a separate smaller exact hole later, so this base must be entirely filled. Keep image1's outside giant-tree scenery, west entrance and upper-right north exit exactly in place. Extend south dry floor down to the cream guide's y906 edge (88.5%) without foreshortening. Preserve upper and lower quiet braided bands on same flat ground. The entire cream area in image2 must be dry floor at the exact coordinate. Remove extra rightward exit: right edge is outer tree scenery, only west and north-right are openings. No geometry inside the floor, no props, no text or characters. Match image1 style and palette exactly.1536×1024 opaque output.\n",
+  "prompt_sha256": "f573e748125d1c86b55f6f5265e89922323aa1221de118a29e219af91c846a31",
+  "source_sha256": "9146f2d2100566aacc76d5def5727202cbb7e75476c9e91aeb15bbd58f11d2b4",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "source_pixel_edits": "none; exact source bytes copied",
+  "recovery_status": "new-generation-after-loss"
+}

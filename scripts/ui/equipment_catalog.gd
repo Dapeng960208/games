@@ -174,7 +174,7 @@ static func detail(panel: Control) -> void:
 	if panel.mode == "upgrade" and owned: before = Game.preview_stats(panel.selected_item); after = Game.preview_upgrade_stats(panel.selected_item)
 	content.configure(item,level,308,Game.profile.selected_hero,before,after,panel.detail_tab)
 	var action := "EQUIP_ITEM"
-	var note := Inspect.t("穿戴后使用预览数值。","Equip to use the previewed values.")
+	var note := Inspect.t("穿戴后使用预览数值。","Equip to apply these stats.")
 	var cost := int(item.price)
 	var disabled: bool = panel.busy
 	if panel.mode == "shop" and not owned:
@@ -190,7 +190,7 @@ static func detail(panel: Control) -> void:
 	elif equipped:
 		action = "ITEM_EQUIPPED"
 		disabled = true
-		note = Inspect.t("当前已穿戴 · 可在强化页提升。","Currently equipped · Refine on the upgrade page.")
+		note = Inspect.t("当前已穿戴 · 可在强化页提升。","Equipped · Improve in Forge")
 	if item.get("instance_record") is Dictionary and not equipped and not preload("res://scripts/core/equipment_instances.gd").can_equip(item.instance_record,Game.profile.selected_hero,Game.hero_level()):
 		disabled = true
 		note = Inspect.Eligibility.reason(item.instance_record, Game.profile.selected_hero, Game.hero_level())
@@ -205,7 +205,11 @@ static func detail(panel: Control) -> void:
 		forge.text = Inspect.t("锻造 / 锁定", "Forge / lock")
 		forge.custom_minimum_size.y = 28
 		forge.add_theme_font_size_override("font_size",12)
-		MineStyle.literal(right,note,Vector2(18,518),Vector2(180,28),11,MineStyle.MUTED)
+		var hint := MineStyle.literal(right,note,Vector2(18,516),Vector2(180,29),11,MineStyle.MUTED)
+		hint.name = "EquipmentActionHint"
+		hint.tooltip_text = note
+		hint.max_lines_visible = 2
+		hint.clip_text = true
 	else:
 		MineStyle.literal(right,note,Vector2(18,518),Vector2(330,28),12,MineStyle.MUTED)
 	panel.action_button = MineStyle.button(right,action,Vector2(18,548),Vector2(330,36),panel._commit_item)

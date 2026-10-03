@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "room_id": "BO05",
+  "tool": "image_gen",
+  "model": "unknown_not_exposed",
+  "model_version": "unknown_not_exposed",
+  "prompt": "Use case: sketch-to-render. NEW production B05 fantasy2.5D game environment, native1536×1024 landscape opaque fullbleed. Image1 is absolute PREPROJECTED minimum dryfloor substrate. Image2 is STYLE only, never copy poster, text or characters. EVERY cream pixel in image1 must be uninterrupted dry pale-golden wood at the SAME pixelcoordinate. Do not foreshorten, shrink floor, turn into oval, or add perspective to guide. Floor fills to y94% at south, spans nearly90%width. Blue area only is permitted trees, architecture, cyan mist and waterfalls. Broad palegold matte livingwood with tiny quiet grain; all combat ground remains a single flat footplane. High-angle near-isometric rendering applies only to peripheral tree architecture. Rich emerald foliage, peachpink blossom accents, tactile golden living-root bark, warm upperleft daylight and distant cyanwaterfalls. No metal,stone palace,spooky rot,black grading. No actors,UI,text,labels,rootwells,core,rewards,beacons,warning marks,targets,or functional props. All these added by game separately. No central raisedstructures,steps,pools,holes,rails,planters,obstacles. Keep empty ground readable. Individual fineplanks around25–40sourcepixelswide. Native painting with finebark/leaf detail, not enlargement. Do not draw guidecolors.\nROOM: BO05 Flowercrown Throne bossarena. SOUTH entry is broad and flat x42.5–57.5%,continue to bottom; aligned NORTH exit likewise open to top; no sideexits. Monumental flowercrown formed by tall curved golden livingbranches and pinkblossom boughs only along EXTREME northperiphery outsidecream, framing open northcorridor but never roofing or crossing it. This is organic treecivilization ceremonialground, not a stonepalace/thronechair. Deep intertwined rootengineering at far corners and below southlip, distantwaterfalls. Entire central90%wide creamfloor is exceptionally calm and empty, subtle radial woodgrain may suggest gatheringplace but no bigmedallion or luminousring. Three separate rootwell positions at normalized(30.5%,41.12%),(69.5%,41.12%),(50%,66.28%)and boss spawn(50%,44.24%)must remain empty plainwood, no bakedwell/socket/shadow. No boss or enemies. Restrained festivecanopy and regalorganic richness confined to peripheralbackground. Preserve guide exact.\n",
+  "prompt_sha256": "cb3067009d78df53c0691afcb24e7e3b6e5ad2b1691d275812ce3b7982630440",
+  "source_sha256": "878975a231566c04ad46b6168581c60dd4cd6d03febdd7a3d05ac2c4c03fee90",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "source_pixel_edits": "none; exact source bytes copied",
+  "recovery_status": "new-generation-after-loss"
+}

@@ -1,0 +1,59 @@
+{
+  "id": "B06-SU-ring",
+  "name": "螺音共振戒",
+  "name_en": "Conch Resonance Ring",
+  "design_slot": "ring",
+  "slot": "ring",
+  "allowed_heroes": [
+    "CH01",
+    "CH02",
+    "CH03"
+  ],
+  "power_types": [
+    "physical",
+    "magic"
+  ],
+  "selected_source": "b06-art/generated/equipment-icons/B06-SU-ring-native-v1.png",
+  "exact_returned_source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-24ea34a7-7ad5-4372-b653-5eb7732815c6.png",
+  "sha256": "34a625500b4c13dee461f371b4bd110f5b2e50d483315590e643b3be3e02b88b",
+  "byte_identical_to_returned_source": true,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_bbox": [
+    41,
+    43,
+    1217,
+    1228
+  ],
+  "generation_method": "built-in image_gen native generation",
+  "model": null,
+  "model_note": "not exposed by tool",
+  "prompt_path": "b06-art/generated/equipment-icons/prompts/B06-SU-ring.txt",
+  "prompt_sha256": "f265f458a2837e1c2d49432e887d8030d54774f2bea9d2a6a869bc523e6a8761",
+  "references": [
+    {
+      "path": "b06-art/references/B06_PR5_reference.png",
+      "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+    },
+    {
+      "path": "games-recovery/b06/assets/generated/equipment/b05_v1/B05-SW-weapon-native-v1.png",
+      "sha256": "6e6f52a659b553694094930b427ae615accaecba5a570a548b9bbca8aef5b235"
+    },
+    {
+      "path": "b06-art/generated/boss/BO06_idle-native-v4.png",
+      "sha256": "eb2cae08e77891da7044dcbf43ed17c4fbaaf1316b5c29bd778aaf37392442c2"
+    }
+  ],
+  "visual_review": "Selected after 280px contact-sheet and 64px inventory-size inspection: recognizable slot silhouette and distinct class/shared physical form; no visible truncation, no text or background. Thin low-alpha fringe can touch canvas edges; solid silhouette remains inset. Ornate detail compresses at 64px but core form remains readable.",
+  "alpha_128_bbox": [
+    85,
+    46,
+    1214,
+    1194
+  ],
+  "solid_margin_min_px": 40,
+  "exact_prompt": "Use case: stylized-concept. Asset type: single transparent RPG equipment inventory icon, native high-detail source.\nCreate Conch Resonance Ring (螺音共振戒); internal identity B06-SU-ring, do not print any text.\nSubject: one finger ring formed from an ivory spiral conch with gold resonance bands and visible finger hole.\nReference image 1 is the B06 tidal coral city art direction: luminous azure/turquoise, ivory mother-of-pearl, refined gold accents, coral and shell craftsmanship. Reference image 2 is only the inventory rendering-quality standard, never copy its forest identity, leaves, branches or silhouette. Reference image 3 reinforces B06 polished shell materials, not its creature anatomy.\nPolished hand-painted fantasy 2.5D illustration, crisp confident silhouette, generous broad material planes and restrained highlights readable at 64px. Three-quarter product view, centered isolated object, full object occupies about 80% of square canvas with all tips intact. No wearer, skin, mannequin, scene, platform, text, UI border, labels, watermark, extra objects, overspray or detached sparkles. Genuine transparent background. Distinguish this item's physical form rather than recoloring another item."
+}

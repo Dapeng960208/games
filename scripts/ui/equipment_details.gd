@@ -154,7 +154,8 @@ func _row(values: Array, width: float, header: bool = false) -> HBoxContainer:
 	add_child(row)
 	for i: int in values.size():
 		var span := width*.43 if i == 0 else width*.19
-		var label := flow(row,str(values[i]),span,12 if width < 350 else 13,MineStyle.MUTED if header else MineStyle.INK if i == 3 else MineStyle.MUTED)
+		var label := flow(row,str(values[i]).replace("百分点"," pp"),span,12 if width < 350 else 13,MineStyle.MUTED if header else MineStyle.INK if i == 3 else MineStyle.MUTED)
+		label.tooltip_text = str(values[i])+ (Inspect.t("（pp = 百分点）"," (pp = percentage points)") if str(values[i]).contains("百分点") or str(values[i]).contains(" pp") else "")
 		label.autowrap_mode = TextServer.AUTOWRAP_OFF
 		label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		label.custom_minimum_size.y = 34

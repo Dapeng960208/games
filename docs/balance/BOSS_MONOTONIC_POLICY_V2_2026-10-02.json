@@ -1,0 +1,486 @@
+{
+  "checks": 793,
+  "failures": [],
+  "rows": [
+    {
+      "chapter": 1,
+      "difficulty": 0,
+      "new": {
+        "armor": 180,
+        "damage": 270,
+        "magic_resist": 180,
+        "max_hp": 19575
+      },
+      "old": {
+        "armor": 180,
+        "damage": 270,
+        "magic_resist": 180,
+        "max_hp": 19575
+      }
+    },
+    {
+      "chapter": 1,
+      "difficulty": 1,
+      "new": {
+        "armor": 210,
+        "damage": 324,
+        "magic_resist": 210,
+        "max_hp": 27405
+      },
+      "old": {
+        "armor": 210,
+        "damage": 324,
+        "magic_resist": 210,
+        "max_hp": 27405
+      }
+    },
+    {
+      "chapter": 1,
+      "difficulty": 2,
+      "new": {
+        "armor": 240,
+        "damage": 405,
+        "magic_resist": 240,
+        "max_hp": 39150
+      },
+      "old": {
+        "armor": 240,
+        "damage": 405,
+        "magic_resist": 240,
+        "max_hp": 39150
+      }
+    },
+    {
+      "chapter": 1,
+      "difficulty": 3,
+      "new": {
+        "armor": 270,
+        "damage": 500,
+        "magic_resist": 270,
+        "max_hp": 54810
+      },
+      "old": {
+        "armor": 270,
+        "damage": 500,
+        "magic_resist": 270,
+        "max_hp": 54810
+      }
+    },
+    {
+      "chapter": 1,
+      "difficulty": 4,
+      "new": {
+        "armor": 300,
+        "damage": 621,
+        "magic_resist": 300,
+        "max_hp": 78300
+      },
+      "old": {
+        "armor": 300,
+        "damage": 621,
+        "magic_resist": 300,
+        "max_hp": 78300
+      }
+    },
+    {
+      "chapter": 2,
+      "difficulty": 0,
+      "new": {
+        "armor": 200,
+        "damage": 292,
+        "magic_resist": 200,
+        "max_hp": 24494
+      },
+      "old": {
+        "armor": 120,
+        "damage": 262,
+        "magic_resist": 150,
+        "max_hp": 24494
+      }
+    },
+    {
+      "chapter": 2,
+      "difficulty": 1,
+      "new": {
+        "armor": 230,
+        "damage": 350,
+        "magic_resist": 230,
+        "max_hp": 34292
+      },
+      "old": {
+        "armor": 150,
+        "damage": 315,
+        "magic_resist": 180,
+        "max_hp": 34292
+      }
+    },
+    {
+      "chapter": 2,
+      "difficulty": 2,
+      "new": {
+        "armor": 260,
+        "damage": 438,
+        "magic_resist": 260,
+        "max_hp": 48989
+      },
+      "old": {
+        "armor": 180,
+        "damage": 394,
+        "magic_resist": 210,
+        "max_hp": 48989
+      }
+    },
+    {
+      "chapter": 2,
+      "difficulty": 3,
+      "new": {
+        "armor": 290,
+        "damage": 540,
+        "magic_resist": 290,
+        "max_hp": 68584
+      },
+      "old": {
+        "armor": 210,
+        "damage": 486,
+        "magic_resist": 240,
+        "max_hp": 68584
+      }
+    },
+    {
+      "chapter": 2,
+      "difficulty": 4,
+      "new": {
+        "armor": 320,
+        "damage": 672,
+        "magic_resist": 320,
+        "max_hp": 97978
+      },
+      "old": {
+        "armor": 240,
+        "damage": 604,
+        "magic_resist": 270,
+        "max_hp": 97978
+      }
+    },
+    {
+      "chapter": 3,
+      "difficulty": 0,
+      "new": {
+        "armor": 220,
+        "damage": 315,
+        "magic_resist": 220,
+        "max_hp": 28168
+      },
+      "old": {
+        "armor": 100,
+        "damage": 298,
+        "magic_resist": 120,
+        "max_hp": 24775
+      }
+    },
+    {
+      "chapter": 3,
+      "difficulty": 1,
+      "new": {
+        "armor": 250,
+        "damage": 378,
+        "magic_resist": 250,
+        "max_hp": 39435
+      },
+      "old": {
+        "armor": 130,
+        "damage": 357,
+        "magic_resist": 150,
+        "max_hp": 34685
+      }
+    },
+    {
+      "chapter": 3,
+      "difficulty": 2,
+      "new": {
+        "armor": 280,
+        "damage": 473,
+        "magic_resist": 280,
+        "max_hp": 56336
+      },
+      "old": {
+        "armor": 160,
+        "damage": 446,
+        "magic_resist": 180,
+        "max_hp": 49550
+      }
+    },
+    {
+      "chapter": 3,
+      "difficulty": 3,
+      "new": {
+        "armor": 310,
+        "damage": 583,
+        "magic_resist": 310,
+        "max_hp": 78870
+      },
+      "old": {
+        "armor": 190,
+        "damage": 550,
+        "magic_resist": 210,
+        "max_hp": 69371
+      }
+    },
+    {
+      "chapter": 3,
+      "difficulty": 4,
+      "new": {
+        "armor": 340,
+        "damage": 725,
+        "magic_resist": 340,
+        "max_hp": 112672
+      },
+      "old": {
+        "armor": 220,
+        "damage": 684,
+        "magic_resist": 240,
+        "max_hp": 99101
+      }
+    },
+    {
+      "chapter": 4,
+      "difficulty": 0,
+      "new": {
+        "armor": 240,
+        "damage": 352,
+        "magic_resist": 240,
+        "max_hp": 34517
+      },
+      "old": {
+        "armor": 220,
+        "damage": 352,
+        "magic_resist": 180,
+        "max_hp": 34517
+      }
+    },
+    {
+      "chapter": 4,
+      "difficulty": 1,
+      "new": {
+        "armor": 270,
+        "damage": 422,
+        "magic_resist": 270,
+        "max_hp": 48324
+      },
+      "old": {
+        "armor": 250,
+        "damage": 422,
+        "magic_resist": 210,
+        "max_hp": 48324
+      }
+    },
+    {
+      "chapter": 4,
+      "difficulty": 2,
+      "new": {
+        "armor": 300,
+        "damage": 528,
+        "magic_resist": 300,
+        "max_hp": 69034
+      },
+      "old": {
+        "armor": 280,
+        "damage": 527,
+        "magic_resist": 240,
+        "max_hp": 69034
+      }
+    },
+    {
+      "chapter": 4,
+      "difficulty": 3,
+      "new": {
+        "armor": 330,
+        "damage": 651,
+        "magic_resist": 330,
+        "max_hp": 96648
+      },
+      "old": {
+        "armor": 310,
+        "damage": 650,
+        "magic_resist": 270,
+        "max_hp": 96647
+      }
+    },
+    {
+      "chapter": 4,
+      "difficulty": 4,
+      "new": {
+        "armor": 360,
+        "damage": 810,
+        "magic_resist": 360,
+        "max_hp": 138068
+      },
+      "old": {
+        "armor": 340,
+        "damage": 809,
+        "magic_resist": 300,
+        "max_hp": 138067
+      }
+    },
+    {
+      "chapter": 5,
+      "difficulty": 0,
+      "new": {
+        "armor": 260,
+        "damage": 428,
+        "magic_resist": 260,
+        "max_hp": 39695
+      },
+      "old": {
+        "armor": 80,
+        "damage": 428,
+        "magic_resist": 80,
+        "max_hp": 19980
+      }
+    },
+    {
+      "chapter": 5,
+      "difficulty": 1,
+      "new": {
+        "armor": 290,
+        "damage": 514,
+        "magic_resist": 290,
+        "max_hp": 55573
+      },
+      "old": {
+        "armor": 100,
+        "damage": 513,
+        "magic_resist": 100,
+        "max_hp": 27972
+      }
+    },
+    {
+      "chapter": 5,
+      "difficulty": 2,
+      "new": {
+        "armor": 320,
+        "damage": 642,
+        "magic_resist": 320,
+        "max_hp": 79390
+      },
+      "old": {
+        "armor": 120,
+        "damage": 642,
+        "magic_resist": 120,
+        "max_hp": 39960
+      }
+    },
+    {
+      "chapter": 5,
+      "difficulty": 3,
+      "new": {
+        "armor": 350,
+        "damage": 792,
+        "magic_resist": 350,
+        "max_hp": 111146
+      },
+      "old": {
+        "armor": 140,
+        "damage": 791,
+        "magic_resist": 140,
+        "max_hp": 55944
+      }
+    },
+    {
+      "chapter": 5,
+      "difficulty": 4,
+      "new": {
+        "armor": 380,
+        "damage": 984,
+        "magic_resist": 380,
+        "max_hp": 158780
+      },
+      "old": {
+        "armor": 160,
+        "damage": 984,
+        "magic_resist": 160,
+        "max_hp": 79920
+      }
+    },
+    {
+      "chapter": 6,
+      "difficulty": 0,
+      "new": {
+        "armor": 280,
+        "damage": 491,
+        "magic_resist": 280,
+        "max_hp": 45649
+      },
+      "old": {
+        "armor": 90,
+        "damage": 491,
+        "magic_resist": 90,
+        "max_hp": 23760
+      }
+    },
+    {
+      "chapter": 6,
+      "difficulty": 1,
+      "new": {
+        "armor": 310,
+        "damage": 590,
+        "magic_resist": 310,
+        "max_hp": 63909
+      },
+      "old": {
+        "armor": 110,
+        "damage": 590,
+        "magic_resist": 110,
+        "max_hp": 33264
+      }
+    },
+    {
+      "chapter": 6,
+      "difficulty": 2,
+      "new": {
+        "armor": 340,
+        "damage": 737,
+        "magic_resist": 340,
+        "max_hp": 91298
+      },
+      "old": {
+        "armor": 130,
+        "damage": 737,
+        "magic_resist": 130,
+        "max_hp": 47520
+      }
+    },
+    {
+      "chapter": 6,
+      "difficulty": 3,
+      "new": {
+        "armor": 370,
+        "damage": 909,
+        "magic_resist": 370,
+        "max_hp": 127817
+      },
+      "old": {
+        "armor": 150,
+        "damage": 909,
+        "magic_resist": 150,
+        "max_hp": 66528
+      }
+    },
+    {
+      "chapter": 6,
+      "difficulty": 4,
+      "new": {
+        "armor": 400,
+        "damage": 1130,
+        "magic_resist": 400,
+        "max_hp": 182596
+      },
+      "old": {
+        "armor": 170,
+        "damage": 1130,
+        "magic_resist": 170,
+        "max_hp": 95040
+      }
+    }
+  ]
+}

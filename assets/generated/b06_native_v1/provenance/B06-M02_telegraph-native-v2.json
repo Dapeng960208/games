@@ -1,0 +1,44 @@
+{
+  "id": "M02",
+  "pose": "telegraph",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-768737e9-d2d7-458f-8f1f-b0860e9a6047.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M02_telegraph-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-768737e9-d2d7-458f-8f1f-b0860e9a6047.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M02_telegraph-native-v1.png",
+    "b06-art/generated/monsters-m02-m09/B06-M02_idle-native-v2.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "action": "Brace crab legs and tilt the single shell-back cannon toward its locked screen-right target, loaded muzzle visible. No projectile or firing effect yet.",
+  "reference": "b06-art/generated/monsters-m02-m09/B06-M02_idle-native-v2.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "b068a1b352c5fd8288b563365a3d33b60e910d36c11a3c441bd7a524e6222f1e",
+  "bytes": 767285,
+  "alpha_bbox": [
+    0,
+    48,
+    1214,
+    1214
+  ],
+  "opaque_bbox": [
+    289,
+    362,
+    1034,
+    1004
+  ],
+  "prompt": "Use case: identity-preserve. Image1 is edit target B06-M02 telegraph. Image2 is its selected IDLE body scale reference. Preserve EXACT species, anatomy, costume, colors, face, limbs, equipment, attack pose and camera from image1. Composition correction ONLY: reduce the entire character together to match the body/torso pixel scale of image2, centered around same ground anchor. Whole silhouette should occupy at most72% canvas width/height, all extremities between15%and85%of canvas. Keep generous empty alpha margins on every side. Do not change attack action or face. No enlarged closeup. Preserve crisp painterly2.5D render and genuine transparent RGBA. No floor, shadow, particles, detached elements, labels or upscaling.\n",
+  "status": "candidate pending visual QC",
+  "reference_sha256": [
+    "c17c8b5773a039fe8115ff7750f28888ab7cb8da31388cd27e9dad48f2814cd7",
+    "3041b415ce4af9afacd1cb3e2b140c90cf16451c5b053007c96af73c04ecc49c"
+  ]
+}

@@ -50,5 +50,5 @@ static func fresh(legacy_defaults: Dictionary) -> Dictionary:
 	result["progression_receipts"] = {}
 	result["hero_role_revision"] = 1
 	result["equipment_class_migration"] = {"version":1, "removed_slots":[]}
-	result["gold_pity"] = {"B01":0,"B02":0,"B03":0,"B04":0}
+	result["gold_pity"] = {"B01":0,"B02":0,"B03":0,"B04":0,"B05":0}
 	return result

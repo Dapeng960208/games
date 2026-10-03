@@ -3,6 +3,7 @@ extends RefCounted
 ## Deterministic enemy decisions. Damage, movement attacks and room objects belong
 ## to EnemySkillRuntime; this class never changes a health pool or actor position.
 
+const RoleBehavior = preload("res://scripts/combat/enemy_role_behavior.gd")
 const WarningTiming = preload("res://scripts/combat/enemy_warning_timing.gd")
 const Abilities = preload("res://scripts/combat/enemy_ability_catalog.gd")
 
@@ -260,7 +261,7 @@ func _alive(node: Node2D) -> bool:
 
 func _set_phase(next: StringName, duration: float) -> void:
 	phase = next
-	_remaining = maxf(0.0, duration)
+	_remaining = maxf(0.0, RoleBehavior.action_seconds(profile,duration) if next == &"execute" else duration)
 	_phase_duration = _remaining
 
 func _publish(actor: Node2D) -> void:
@@ -286,7 +287,7 @@ func _lock_seconds() -> float:
 	return float(WarningTiming.ordinary(MIN_TELL,_base_lock_seconds(),selected_difficulty,{},int(profile.get("ruleset_version",1))).lock_seconds)
 
 func _recovery_seconds() -> float:
-	return maxf(0.45, maxf(float(parameters.get("recovery_seconds", profile.get("recovery_seconds", 0.9))), float(parameters.get("exposure_seconds", 0.0))))
+	return maxf(0.45, RoleBehavior.recovery_seconds(profile,float(parameters.get("recovery_seconds", profile.get("recovery_seconds", 0.9))),float(parameters.get("exposure_seconds", 0.0))))
 
 func _room(actor: Node2D) -> Node:
 	for property: Dictionary in actor.get_property_list():
@@ -382,9 +383,11 @@ func _chase(actor: Node2D, victim: Node2D) -> void:
 	if SUPPORT_BEHAVIORS.has(behavior_id):
 		trigger = maxf(trigger, float(parameters.get("support_radius", 240.0)))
 	var preferred: float = float(parameters.get("preferred_range", _range() * 0.72))
-	if RANGED_BEHAVIORS.has(behavior_id) and distance < preferred * 0.65 and not _repositioned and float(parameters.get("sidestep_distance", 0.0)) <= 0.0:
+	var role_can_reposition: bool = not actor.has_method("role_reposition_available") or actor.role_reposition_available()
+	if role_can_reposition and RANGED_BEHAVIORS.has(behavior_id) and distance < preferred * 0.65 and not _repositioned and float(parameters.get("sidestep_distance", 0.0)) <= 0.0:
 		# Retreat once, then commit even if the player keeps approaching.
 		_repositioned = true
+		if actor.has_method("spend_role_reposition"): actor.spend_role_reposition()
 		_reposition_direction = -direction * 0.65
 		_set_phase(&"reposition", 0.35)
 		return
@@ -403,8 +406,9 @@ func _chase(actor: Node2D, victim: Node2D) -> void:
 		var sidestep: float = float(parameters.get("sidestep_distance", 0.0))
 		var relocation_interval: int = maxi(1, int(parameters.get("relocate_after_attacks", 2)))
 		var needs_side_step: bool = sidestep > 0.0 or behavior_id in ["sidestep_thrust", "rail_slide_pierce", "solid_ring_decoy"] or (behavior_id == "locked_snipe_relocate" and cycle > 0 and cycle % relocation_interval == 0) or (behavior_id == "cold_mist_patrol" and cycle > 0)
-		if needs_side_step and not _repositioned:
+		if role_can_reposition and needs_side_step and not _repositioned:
 			_repositioned = true
+			if actor.has_method("spend_role_reposition"): actor.spend_role_reposition()
 			_reposition_direction = direction.orthogonal() * (1.0 if cycle % 2 == 0 else -1.0)
 			_set_phase(&"reposition", maxf(0.2, sidestep / (_speed() * 1.3)) if sidestep > 0.0 else 0.35)
 		else:

@@ -1,0 +1,45 @@
+{
+  "id": "M11",
+  "pose": "telegraph",
+  "prompt": "Use case: identity-preserve. Edit exact monster image. Create telegraph pose: ONE rider mounted on exactly ONE seahorse with ONE head. The rider pulls the lance backward in preparation but its pointed spearhead remains on SCREEN RIGHT. Seahorse curls tail and leans sideways. Do not add another seahorse head or animal. Preserve exact species, identity, colors, detailed painterly style, camera facing right, ornaments and equipment. Whole single subject inside central 80% square native transparent canvas. No floor, shadow, text, VFX or duplicates.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M11_idle-native-v2.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1f8d3395-6063-47f4-a76e-9d0dfb38c30f.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M11_telegraph-native-v3.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "d7943598c4ffef58d647184129b01d9f3c9aa2568c3c05e47deb1e124473cacf",
+  "alpha_bbox": [
+    17,
+    94,
+    1228,
+    1209
+  ],
+  "visible_alpha128_bbox": [
+    87,
+    97,
+    1222,
+    1205
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "6c2762dbb61042e65d00439eab488d286637e088499a8304b638a2ef57ab49ae",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    611,
+    1160
+  ],
+  "attack_outlet_px": [
+    1220,
+    516
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "anchor_note": "hover projected groundpoint; do not infer collision from tentacle or tail tip",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M11_telegraph-native-v3.json"
+}

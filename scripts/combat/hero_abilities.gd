@@ -78,9 +78,16 @@ static func preview_powers(hero: String, stats: Dictionary) -> Dictionary:
 	var attack: Variant = Numbers.amount(float(stats.get("attack", Numbers.scale(fallback, version))), version)
 	var ability: Variant = Numbers.amount(float(stats.get("ability_power", 0.0)), version)
 	var ratios: Dictionary = Numbers.value("mage_power_ratios")
+	var skill_power: Variant=Numbers.amount(float(attack)+(float(ratios.skill_ap)*float(ability) if hero=="CH03" else 0.0),version)
+	# Candidate is frozen in the isolated run stats, applies to spells against
+	# every target, and never multiplies AP/basic/relic/shield/healing sources.
+	if hero=="CH03" and version==Numbers.V2 and int(stats.get("mage_balance_candidate",0))==1:
+		skill_power=Numbers.amount(float(skill_power)*float(stats.get("mage_spell_power_multiplier",1.0)),version)
+	if hero=="CH01" and version==Numbers.V2 and int(stats.get("warrior_balance_candidate",0))==1:
+		skill_power=Numbers.amount(float(skill_power)*float(stats.get("warrior_skill_power_multiplier",1.0)),version)
 	return {
 		"basic_H":Numbers.amount(float(attack) + (float(ratios.basic_ap) * float(ability) if hero == "CH03" and version == Numbers.V2 else 0.0), version),
-		"skill_H":Numbers.amount(float(attack) + (float(ratios.skill_ap) * float(ability) if hero == "CH03" else 0.0), version),
+		"skill_H":skill_power,
 		"relic_H":Numbers.amount(float(stats.get("ability_power", Numbers.scale(28.0, version))), version) if hero == "CH03" else attack,
 	}
 
@@ -216,6 +223,8 @@ func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_
 	if not direction.is_finite() or direction.is_zero_approx():
 		return _fail("invalid_direction")
 	var hero: String = data.hero
+	if float(owner_player.get("_enemy_root_remaining")) > 0.0 and float(data.get("travel", 0.0)) > 0.0:
+		return _fail("invalid_ground", {"cause":"rooted"})
 	var travel_direction: Vector2 = direction
 	if hero == "CH02" and slot == "q":
 		var move: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -276,12 +285,15 @@ func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_
 			data.knockback = float(data.knockback) + 25.0
 			if slot == "secondary":
 				data.arc = 160.0
+	if hero == "CH03" and slot == "secondary" and owner_player.loadout != null:
+		var burst_modifiers: Dictionary = owner_player.loadout.effects.passive_modifiers({"immediate_w_burst":true})
+		data.burst_radius = float(data.burst_radius) * float(burst_modifiers.get("immediate_w_radius_scale", 1.0))
 	owner_player.cooldowns[slot] = float(data.cooldown)
 	owner_player.resource_delay = float(Game.run.stats.get("resource_regen_delay", 0.5 if hero == "CH02" else 0.8))
 	cast_serial += 1
 	if owner_player.get("passives") != null:
 		owner_player.passives.skill_committed(slot, cast_serial)
-	active = {"spec":data, "elapsed":0.0, "origin":origin, "target":target, "direction":direction, "initial_direction":direction, "travel_direction":travel_direction, "ground_facing":ground_facing,"power":owner_player.skill_power(), "attacker_stats":Game.run.stats.duplicate(), "events":_timeline(data), "next_event":0, "serial":cast_serial, "paid_cost":cost}
+	active = {"spec":data, "elapsed":0.0, "origin":origin, "target":target, "direction":direction, "initial_direction":direction, "travel_direction":travel_direction, "ground_facing":ground_facing,"power":owner_player.skill_power(), "attacker_stats":Game.run.stats.duplicate(), "events":_timeline(data), "next_event":0, "serial":cast_serial, "paid_cost":cost, "actual_travel":0.0}
 	owner_player.visual_event("cast_" + slot, float(data.duration))
 	if is_instance_valid(feedback):
 		feedback.cast_started(data, active.direction, active.target, cast_serial)
@@ -339,6 +351,8 @@ func tick(delta: float) -> void:
 	_advance(previous, finish)
 	active.elapsed = finish
 	if finish >= float(active.spec.duration) - 0.00001:
+		if str(active.spec.hero) == "CH02" and str(active.spec.slot) == "q":
+			owner_player.loadout.event("gunner_q_completed", {"event_id":"skill:" + str(active.serial) + ":q_move", "actual_distance":float(active.get("actual_travel", 0.0)), "damage_source":"skill", "proc_depth":0, "equipment_eligible":true})
 		active.clear()
 
 func _advance(from_time: float, to_time: float) -> void:
@@ -359,8 +373,10 @@ func _advance(from_time: float, to_time: float) -> void:
 	if distance > 0.0 and duration > 0.0:
 		var start: float = float(data.windup)
 		var portion: float = maxf(0.0, minf(to_time, start + duration) - maxf(from_time, start)) / duration
-		if portion > 0.0:
+		if portion > 0.0 and float(owner_player.get("_enemy_root_remaining")) <= 0.0:
+			var previous: Vector2 = owner_player.position
 			owner_player.position = owner_player.room.move_actor(owner_player.position, active.travel_direction * distance * portion, Balance.PLAYER_RADIUS)
+			active["actual_travel"] = float(active.get("actual_travel", 0.0)) + previous.distance_to(owner_player.position)
 			owner_player.visual_event("skill_slide", 0.10)
 
 func _resolve(index: int) -> void:
@@ -373,6 +389,13 @@ func _resolve(index: int) -> void:
 	var at: Vector2 = owner_player.position
 	var direction: Vector2 = active.direction
 	var hit_context: Dictionary = {"root_event_id":"skill:" + str(active.serial), "attack_id":"skill:" + str(active.serial) + ":" + str(index), "power":power, "original_basic":false, "equipment_eligible":true, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats}
+	hit_context["spell_critical_eligible"] = hero == "CH03"
+	hit_context["paid_cost"] = float(active.paid_cost)
+	hit_context["skill_slot"] = slot
+	hit_context["damage_source"] = "skill"
+	hit_context["proc_depth"] = 0
+	hit_context["b05_direction"] = direction
+	hit_context["b05_origin"] = at
 	if Numbers.is_v2(active.attacker_stats):
 		hit_context["full_break_w"] = bool(data.get("full_break_w", false))
 		hit_context["shielded_cast"] = bool(data.get("shielded_cast", false))
@@ -400,14 +423,21 @@ func _resolve(index: int) -> void:
 		if slot == "f":
 			# A thrown grenade owns its fuse after release, just as a fired round
 			# owns its flight. It explodes once even when the landing zone is empty.
-			room.add_deployment("grenade", active.target, {"damage":amount, "power":power, "radius":data.radius, "fuse":data.fuse, "knockback":data.knockback, "lifetime":float(data.fuse) + 0.1, "origin":at, "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats, "root_event_id":hit_context.root_event_id, "attack_id":hit_context.attack_id, "heavy":true})
+			room.add_deployment("grenade", active.target, {"damage":amount, "power":power, "radius":data.radius, "fuse":data.fuse, "knockback":data.knockback, "lifetime":float(data.fuse) + 0.1, "origin":at, "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats, "root_event_id":hit_context.root_event_id, "attack_id":hit_context.attack_id, "heavy":true, "paid_cost":float(active.paid_cost)})
 		else:
 			if slot == "q" and index == 0:
 				active.direction = owner_player.aim_direction.normalized()
 				direction = active.direction
 			var options: Dictionary = {"source":slot, "original":true, "speed":data.speed, "range":data.range, "pierce":data.get("pierce", 0), "pierce_multiplier":data.get("pierce_multiplier", 1.0), "power":power, "color":Color("dfd19c"), "heavy":slot == "secondary" or (slot == "ultimate" and index == int(data.shots) - 1)}
 			options.merge(hit_context, true)
-			room.spawn_ability_projectile(_projectile_origin(direction), direction, amount, options)
+			var projectile: Node2D = room.spawn_ability_projectile(_projectile_origin(direction), direction, amount, options)
+			if slot == "ultimate" and is_instance_valid(projectile):
+				active["b06_fired_rounds"] = int(active.get("b06_fired_rounds", 0)) + 1
+				var shot := hit_context.duplicate(true)
+				shot["r_shot_ordinal"] = int(active.b06_fired_rounds)
+				shot["event_id"] = str(hit_context.attack_id) + ":fired"
+				var bonus: Dictionary = owner_player.loadout.b06_r_shot(shot)
+				if not bonus.is_empty(): projectile.options["b06_r_bonus"] = bonus
 	elif slot == "q":
 		var options: Dictionary = {"source":"q", "original":true, "status":"shock", "power":power, "speed":data.speed, "range":data.range, "pierce":data.get("pierce", 0), "pierce_multiplier":data.get("pierce_multiplier", 1.0), "explosion_radius":data.explosion_radius, "echo_reach":90.0, "echo_damage":packet_amount(0.35, float(power), active.attacker_stats), "echo_along_path":data.get("echo_along_path", false), "color":Color("6bc4ca")}
 		options.merge(hit_context, true)
@@ -416,10 +446,18 @@ func _resolve(index: int) -> void:
 		# The spell is immediately useful without setting up a crystal circuit.
 		# The lingering node is an optional auto-attacking bonus, not its payoff gate.
 		if float(data.get("burst_coefficient", 0.0)) > 0.0:
+			hit_context["immediate_w_burst"] = true
 			room.strike_area(active.target, float(data.burst_radius), packet_amount(float(data.burst_coefficient), float(power), active.attacker_stats), "secondary", "", 0.0, direction, 360.0, true, hit_context)
+			var burst := hit_context.duplicate(true)
+			burst["event_id"] = str(hit_context.attack_id) + ":burst"
+			burst["burst_position"] = active.target
+			owner_player.loadout.event("mage_w_burst_completed", burst)
 			room.add_ring(active.target, Color("9ba7ef"), float(data.burst_radius), 0.26)
 			if is_instance_valid(feedback): feedback.class_event("node_burst", active.target, direction, float(data.burst_radius), 0)
-		room.add_deployment("node", active.target, {"damage":amount, "power":power, "radius":data.radius, "health":data.health, "health_scale_version":10 if Numbers.is_v2(active.attacker_stats) else 1, "lifetime":14.0, "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats})
+		var placed_node: Node2D = room.add_deployment("node", active.target, {"damage":amount, "power":power, "radius":data.radius, "health":data.health, "health_scale_version":10 if Numbers.is_v2(active.attacker_stats) else 1, "lifetime":14.0, "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats, "root_event_id":hit_context.root_event_id, "spell_critical_eligible":true})
+		# The returned deployment confirms actual placement, not merely payment.
+		if is_instance_valid(placed_node):
+			owner_player.loadout.event("mage_w_node_placed", {"event_id":"skill:" + str(active.serial) + ":node", "root_event_id":"skill:" + str(active.serial), "node_placed":true, "node_position":active.target, "attacker_stats":active.attacker_stats, "X":packet_amount(float(data.get("burst_coefficient", data.coefficient)), float(power), active.attacker_stats)})
 	elif slot == "f":
 		room.strike_area(at, float(data.radius), amount, "f", "chill", 0.0, Vector2.ZERO, 360.0, true, hit_context)
 		for node: Node2D in owner_player.resonance_nodes():
@@ -433,7 +471,7 @@ func _resolve(index: int) -> void:
 			at = active.target
 		room.strike_area(at, float(data.radius), amount, "ultimate", "shock", 0.0, Vector2.ZERO, 360.0, true, hit_context)
 		owner_player.charge_resonance(at, float(data.radius), 3)
-		room.add_deployment("field", at, {"damage":packet_amount(float(data.tick_coefficient), float(power), active.attacker_stats), "power":power, "radius":data.radius, "lifetime":data.lifetime, "follow_player":data.get("follow_player", false), "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats})
+		room.add_deployment("field", at, {"damage":packet_amount(float(data.tick_coefficient), float(power), active.attacker_stats), "power":power, "radius":data.radius, "lifetime":data.lifetime, "follow_player":data.get("follow_player", false), "owner_player":owner_player, "damage_type":str(data.damage_type), "attacker_stats":active.attacker_stats, "root_event_id":hit_context.root_event_id, "spell_critical_eligible":true})
 	owner_player.visual_event("release_" + slot, 0.12)
 	# One sound per executed event, including branches and partial cancellation.
 	# It belongs to the same release as this projectile/deployment/strike, never

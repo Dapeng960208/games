@@ -5,6 +5,8 @@ extends RefCounted
 
 const MANIFEST_PATH := "res://assets/generated/equipment/storybook_equipment_v2.manifest.json"
 const SHOP_MANIFEST_PATH := "res://assets/generated/equipment/storybook_shop_sets_v2.manifest.json"
+const B05_MANIFEST_PATH := "res://assets/generated/equipment/b05_v1/B05-equipment-v1.manifest.json"
+const B06_MANIFEST_PATH := "res://assets/generated/equipment/b06_v1/B06-equipment-v1.manifest.json"
 const Sampler = preload("res://scripts/ui/texture_sampler.gd")
 const Chrome = preload("res://scripts/ui/storybook_art.gd")
 static var _manifest: Dictionary = {}
@@ -47,7 +49,30 @@ static func _read_manifest() -> Dictionary:
 		var shop: Variant = JSON.parse_string(FileAccess.get_file_as_string(SHOP_MANIFEST_PATH))
 		if shop is Dictionary and bool(shop.get("enabled",false)) and shop.get("items") is Dictionary:
 			_manifest.items.merge(shop.items,false)
+	if FileAccess.file_exists(B05_MANIFEST_PATH):
+		merge_b05_manifest(_manifest, JSON.parse_string(FileAccess.get_file_as_string(B05_MANIFEST_PATH)))
+	if preload("res://config/numerical_rules.gd").b06_candidate_enabled() and FileAccess.file_exists(B06_MANIFEST_PATH):
+		merge_b06_candidate(_manifest, JSON.parse_string(FileAccess.get_file_as_string(B06_MANIFEST_PATH)))
 	return _manifest
+
+static func merge_b05_manifest(base: Dictionary, candidate: Variant) -> void:
+	# The independent art-quality gate does not release a chapter or replace
+	# historical artwork. Disabled/missing packs keep the existing slot fallback.
+	if not candidate is Dictionary or not bool(candidate.get("enabled", false)): return
+	if candidate.get("chapter_id") != "B05" or not candidate.get("items") is Dictionary: return
+	if not base.get("items") is Dictionary: return
+	for id: String in candidate.items:
+		if id.begins_with("B05-") and not base.items.has(id) and candidate.items[id] is Dictionary:
+			base.items[id] = candidate.items[id].duplicate(true)
+
+static func merge_b06_candidate(base: Dictionary, candidate: Variant) -> void:
+	# Explicit isolated chapter preview only; the disk release gate stays false.
+	if not candidate is Dictionary or candidate.get("chapter_id") != "B06": return
+	if not bool(candidate.get("candidate_only", false)) or not candidate.get("items") is Dictionary: return
+	if not base.get("items") is Dictionary: return
+	for id: String in candidate.items:
+		if id.begins_with("B06-") and not base.items.has(id) and candidate.items[id] is Dictionary:
+			base.items[id] = candidate.items[id].duplicate(true)
 
 static func available() -> bool:
 	return not _read_manifest().is_empty()

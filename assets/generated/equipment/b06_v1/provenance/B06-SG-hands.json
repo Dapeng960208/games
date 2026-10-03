@@ -1,0 +1,56 @@
+{
+  "id": "B06-SG-hands",
+  "name": "珊轨稳枪手",
+  "name_en": "Steadyshot Gloves",
+  "design_slot": "hands",
+  "slot": "hands",
+  "allowed_heroes": [
+    "CH02"
+  ],
+  "power_types": [
+    "physical"
+  ],
+  "selected_source": "b06-art/generated/equipment-icons/B06-SG-hands-native-v1.png",
+  "exact_returned_source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b167a1e6-d4c0-44ff-a0c5-48c3a61d281f.png",
+  "sha256": "bba28fe3686ec8f066d1e876747d942b4a505d79ea7807c7db6254661b9b4033",
+  "byte_identical_to_returned_source": true,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_bbox": [
+    0,
+    25,
+    1222,
+    1254
+  ],
+  "generation_method": "built-in image_gen native generation",
+  "model": null,
+  "model_note": "not exposed by tool",
+  "prompt_path": "b06-art/generated/equipment-icons/prompts/B06-SG-hands.txt",
+  "prompt_sha256": "79291b20b03aa9954e08df79f059a157e30d53daabb0c549e68a9ba3076d0369",
+  "references": [
+    {
+      "path": "b06-art/references/B06_PR5_reference.png",
+      "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+    },
+    {
+      "path": "games-recovery/b06/assets/generated/equipment/b05_v1/B05-SW-weapon-native-v1.png",
+      "sha256": "6e6f52a659b553694094930b427ae615accaecba5a570a548b9bbca8aef5b235"
+    },
+    {
+      "path": "b06-art/generated/boss/BO06_idle-native-v4.png",
+      "sha256": "eb2cae08e77891da7044dcbf43ed17c4fbaaf1316b5c29bd778aaf37392442c2"
+    }
+  ],
+  "visual_review": "Selected after 280px contact-sheet and 64px inventory-size inspection: recognizable slot silhouette and distinct class/shared physical form; no visible truncation, no text or background. Thin low-alpha fringe can touch canvas edges; solid silhouette remains inset. Ornate detail compresses at 64px but core form remains readable.",
+  "alpha_128_bbox": [
+    63,
+    37,
+    1206,
+    1177
+  ],
+  "solid_margin_min_px": 37,
+  "exact_prompt": "Use case: stylized-concept. Asset type: single transparent RPG equipment inventory icon, native high-detail source.\nCreate Steadyshot Gloves (珊轨稳枪手); internal identity B06-SG-hands, do not print any text.\nSubject: a pair of fitted shooter gloves, articulated fingers and coral rail wrist braces, not heavy claws.\nReference image 1 is the B06 tidal coral city art direction: luminous azure/turquoise, ivory mother-of-pearl, refined gold accents, coral and shell craftsmanship. Reference image 2 is only the inventory rendering-quality standard, never copy its forest identity, leaves, branches or silhouette. Reference image 3 reinforces B06 polished shell materials, not its creature anatomy.\nPolished hand-painted fantasy 2.5D illustration, crisp confident silhouette, generous broad material planes and restrained highlights readable at 64px. Three-quarter product view, centered isolated object, full object occupies about 80% of square canvas with all tips intact. No wearer, skin, mannequin, scene, platform, text, UI border, labels, watermark, extra objects, overspray or detached sparkles. Genuine transparent background. Distinguish this item's physical form rather than recoloring another item."
+}

@@ -1,0 +1,2946 @@
+{
+  "schema_version": 1,
+  "asset_family": "storybook_2_5d_v1",
+  "chapter": "B06",
+  "candidate_only": true,
+  "runtime_quality_gate_passed": false,
+  "registration_status": "pixel_reviewed_anchors_runtime_review_pending",
+  "source_manifest_sha256": "784dc0c54f6333e0ec5d5681e056e45b9916feddd35fb4f843ba03b984b36ac5",
+  "identities": {
+    "B06-M01": {
+      "kind": "enemy",
+      "reference_body_height_px": 930,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "execute": {
+          "texture": "enemy/B06-M01_execute-native-v2.png",
+          "source_sha256": "1ebcad93d76ce8004bf236bcd9a85f840eb455c7a56323102992b89a94924088",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M01_execute-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            75,
+            211,
+            1082,
+            908
+          ],
+          "foot": [
+            494,
+            1053
+          ],
+          "core_anchor": [
+            548,
+            616
+          ],
+          "visual_outlet": [
+            1136,
+            563
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        },
+        "idle": {
+          "texture": "enemy/B06-M01_idle-native-v2.png",
+          "source_sha256": "90ba77e2ff08ae9dc7d47bc4ee3dc0250d6f702e18fa24b7049ddd1d8a3b5c6e",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M01_idle-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            187,
+            152,
+            961,
+            970
+          ],
+          "foot": [
+            660,
+            1060
+          ],
+          "core_anchor": [
+            650,
+            570
+          ],
+          "visual_outlet": [
+            1140,
+            824
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M01_telegraph-native-v1.png",
+          "source_sha256": "9045351c9ef87392bd18aca91f9d95c978fd52087f7dd708d7bfba15f4993f74",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M01_telegraph-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            81,
+            137,
+            1144,
+            1029
+          ],
+          "foot": [
+            596,
+            1115
+          ],
+          "core_anchor": [
+            615,
+            594
+          ],
+          "visual_outlet": [
+            1210,
+            713
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        }
+      }
+    },
+    "drain_gate": {
+      "kind": "prop",
+      "reference_body_height_px": 1160,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "idle": {
+          "texture": "prop/B06_drain_gate_idle-native-v1.png",
+          "source_sha256": "68bd71d9936ae23d2a5f505c54561489e95702c1463162a30f4ba0eb1d0e45e6",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06_drain_gate_idle-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            318,
+            37,
+            729,
+            1188
+          ],
+          "foot": [
+            651,
+            1191
+          ],
+          "core_anchor": [
+            699,
+            745
+          ],
+          "visual_outlet": [
+            434,
+            1136
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        }
+      }
+    },
+    "reef_pillar": {
+      "kind": "prop",
+      "reference_body_height_px": 1030,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "idle": {
+          "texture": "prop/B06_reef_pillar-native-v1.png",
+          "source_sha256": "fab06fa9ea467c888c3d43c1a9a7a9cbcb40036e900c16a861b363b3d4b2a24f",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06_reef_pillar-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            362,
+            99,
+            530,
+            1056
+          ],
+          "foot": [
+            628,
+            1112
+          ],
+          "core_anchor": [
+            633,
+            660
+          ],
+          "visual_outlet": [
+            633,
+            660
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        }
+      }
+    },
+    "tide_clock": {
+      "kind": "prop",
+      "reference_body_height_px": 1060,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "idle": {
+          "texture": "prop/B06_tide_clock_idle-native-v1.png",
+          "source_sha256": "4b556a16c4439ddc70586722b69657be86f3a2c873c4aa06f5a86cb8c2e67388",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06_tide_clock_idle-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            222,
+            100,
+            865,
+            1067
+          ],
+          "foot": [
+            619,
+            1118
+          ],
+          "core_anchor": [
+            609,
+            586
+          ],
+          "visual_outlet": [
+            609,
+            586
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        }
+      }
+    },
+    "BO06": {
+      "kind": "boss",
+      "reference_body_height_px": 900,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "cannon-execute": {
+          "texture": "boss/BO06_cannon-execute-native-v2.png",
+          "source_sha256": "752ab43b993cf3cb16244da3237a31b128d96d6148d28111fedfbc2b3168e02d",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/BO06_cannon-execute-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            62,
+            204,
+            1137,
+            881
+          ],
+          "foot": [
+            675,
+            1030
+          ],
+          "core_anchor": [
+            713,
+            691
+          ],
+          "visual_outlet": [
+            1070,
+            658
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        },
+        "cannon-telegraph": {
+          "texture": "boss/BO06_cannon-telegraph-native-v2.png",
+          "source_sha256": "0ab9951aca7951d8a1f0c039fb86ac09f4db4bae489b58937a243ef881509fda",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/BO06_cannon-telegraph-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            26,
+            163,
+            1188,
+            905
+          ],
+          "foot": [
+            682,
+            1007
+          ],
+          "core_anchor": [
+            735,
+            686
+          ],
+          "visual_outlet": [
+            1080,
+            442
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        },
+        "defeated": {
+          "texture": "boss/BO06_defeated-native-v1.png",
+          "source_sha256": "227e82b905d078191f31da2ec3005e46d22172cfb651c799e53b36c378d7a366",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/BO06_defeated-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            21,
+            206,
+            1211,
+            812
+          ],
+          "foot": [
+            661,
+            995
+          ],
+          "core_anchor": [
+            744,
+            790
+          ],
+          "visual_outlet": [
+            1100,
+            876
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        },
+        "exposed": {
+          "texture": "boss/BO06_exposed-native-v1.png",
+          "source_sha256": "26ee65e619df0abcb30cb82916b677f8420a17f95416c7ba65315694c4acaba1",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/BO06_exposed-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            21,
+            167,
+            1218,
+            929
+          ],
+          "foot": [
+            668,
+            1038
+          ],
+          "core_anchor": [
+            731,
+            735
+          ],
+          "visual_outlet": [
+            1104,
+            851
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        },
+        "idle": {
+          "texture": "boss/BO06_idle-native-v4.png",
+          "source_sha256": "eb2cae08e77891da7044dcbf43ed17c4fbaaf1316b5c29bd778aaf37392442c2",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/BO06_idle-native-v4.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            27,
+            166,
+            1204,
+            901
+          ],
+          "foot": [
+            665,
+            1008
+          ],
+          "core_anchor": [
+            738,
+            687
+          ],
+          "visual_outlet": [
+            1115,
+            684
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        },
+        "melee-execute": {
+          "texture": "boss/BO06_melee-execute-native-v2.png",
+          "source_sha256": "410c5513e5cf2124a15a6838b147eaec9762cb48ca56367ddecda234a550d0c1",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/BO06_melee-execute-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            46,
+            132,
+            1176,
+            1060
+          ],
+          "foot": [
+            626,
+            1006
+          ],
+          "core_anchor": [
+            737,
+            685
+          ],
+          "visual_outlet": [
+            416,
+            1016
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        },
+        "melee-telegraph": {
+          "texture": "boss/BO06_melee-telegraph-native-v1.png",
+          "source_sha256": "0b8f9c965c9d61c270315996f6b132a44b9ab2603cccd2007e35249c29e13dad",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/BO06_melee-telegraph-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            103,
+            164,
+            1129,
+            904
+          ],
+          "foot": [
+            666,
+            1008
+          ],
+          "core_anchor": [
+            736,
+            687
+          ],
+          "visual_outlet": [
+            253,
+            438
+          ],
+          "anchor_method": "fresh source-pixel visual review; support centroid, torso/pearl core, weapon tip or cannon bore; fixed identity scale"
+        }
+      }
+    },
+    "B06-M02": {
+      "kind": "enemy",
+      "reference_body_height_px": 750,
+      "scale_policy": "one_fixed_world_identity_height; explicit anatomical source-pose registration; never dynamic silhouette fit",
+      "frames": {
+        "idle": {
+          "texture": "enemy/B06-M02_idle-native-v2.png",
+          "source_sha256": "3041b415ce4af9afacd1cb3e2b140c90cf16451c5b053007c96af73c04ecc49c",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M02_idle-native-v2.json",
+          "prompt_file": "provenance/B06-M02_idle-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            242,
+            264,
+            840,
+            762
+          ],
+          "foot": [
+            660,
+            995
+          ],
+          "core_anchor": [
+            641,
+            630
+          ],
+          "visual_outlet": [
+            937,
+            334
+          ],
+          "source_pose_scale": 1.0,
+          "anatomy_metric": "shell rear upper surface to lower front shell",
+          "anatomy_reference_segment_px": [
+            300,
+            400,
+            650,
+            780
+          ],
+          "anatomy_pose_segment_px": [
+            300,
+            400,
+            650,
+            780
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M02_telegraph-native-v2.png",
+          "source_sha256": "b068a1b352c5fd8288b563365a3d33b60e910d36c11a3c441bd7a524e6222f1e",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M02_telegraph-native-v2.json",
+          "prompt_file": "provenance/B06-M02_telegraph-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            289,
+            362,
+            745,
+            642
+          ],
+          "foot": [
+            665,
+            980
+          ],
+          "core_anchor": [
+            657,
+            666
+          ],
+          "visual_outlet": [
+            908,
+            427
+          ],
+          "source_pose_scale": 1.16697,
+          "anatomy_metric": "shell rear upper surface to lower front shell",
+          "anatomy_reference_segment_px": [
+            300,
+            400,
+            650,
+            780
+          ],
+          "anatomy_pose_segment_px": [
+            355,
+            485,
+            663,
+            803
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "execute": {
+          "texture": "enemy/B06-M02_execute-native-v2.png",
+          "source_sha256": "ffc695654813a43a7fb7afbf18b9b6e4b6bc976302ec4e0de21b6bfaabab1f2d",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M02_execute-native-v2.json",
+          "prompt_file": "provenance/B06-M02_execute-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            333,
+            373,
+            691,
+            600
+          ],
+          "foot": [
+            665,
+            952
+          ],
+          "core_anchor": [
+            660,
+            670
+          ],
+          "visual_outlet": [
+            909,
+            435
+          ],
+          "source_pose_scale": 1.236235,
+          "anatomy_metric": "shell rear upper surface to lower front shell",
+          "anatomy_reference_segment_px": [
+            300,
+            400,
+            650,
+            780
+          ],
+          "anatomy_pose_segment_px": [
+            365,
+            504,
+            660,
+            800
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        }
+      }
+    },
+    "B06-M03": {
+      "kind": "enemy",
+      "reference_body_height_px": 640,
+      "scale_policy": "one_fixed_world_identity_height; explicit anatomical source-pose registration; never dynamic silhouette fit",
+      "frames": {
+        "idle": {
+          "texture": "enemy/B06-M03_idle-native-v2.png",
+          "source_sha256": "fcea2cae3fe56d0822c78f5180c8a3079e52a19b11d7dc4bb70b5bf9c49ed9a3",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M03_idle-native-v2.json",
+          "prompt_file": "provenance/B06-M03_idle-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            166,
+            345,
+            944,
+            605
+          ],
+          "foot": [
+            624,
+            925
+          ],
+          "core_anchor": [
+            660,
+            620
+          ],
+          "visual_outlet": [
+            640,
+            776
+          ],
+          "source_pose_scale": 1.0,
+          "anatomy_metric": "distance between paired eyes",
+          "anatomy_reference_segment_px": [
+            661,
+            539,
+            752,
+            535
+          ],
+          "anatomy_pose_segment_px": [
+            661,
+            539,
+            752,
+            535
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M03_telegraph-native-v2.png",
+          "source_sha256": "65131ba38e3c3470df504144dcaef29d8701c4d33a494d4403c7e3260e529830",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M03_telegraph-native-v2.json",
+          "prompt_file": "provenance/B06-M03_telegraph-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            298,
+            384,
+            730,
+            567
+          ],
+          "foot": [
+            658,
+            918
+          ],
+          "core_anchor": [
+            659,
+            732
+          ],
+          "visual_outlet": [
+            614,
+            456
+          ],
+          "source_pose_scale": 1.30808,
+          "anatomy_metric": "distance between paired eyes",
+          "anatomy_reference_segment_px": [
+            661,
+            539,
+            752,
+            535
+          ],
+          "anatomy_pose_segment_px": [
+            656,
+            665,
+            724,
+            650
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "execute": {
+          "texture": "enemy/B06-M03_execute-native-v2.png",
+          "source_sha256": "e2e0249e3cd4c2992d5b028500262c3406882e4b8e286c002eecc9797258d505",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M03_execute-native-v2.json",
+          "prompt_file": "provenance/B06-M03_execute-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            232,
+            412,
+            837,
+            505
+          ],
+          "foot": [
+            647,
+            897
+          ],
+          "core_anchor": [
+            662,
+            641
+          ],
+          "visual_outlet": [
+            768,
+            822
+          ],
+          "source_pose_scale": 1.148511,
+          "anatomy_metric": "distance between paired eyes",
+          "anatomy_reference_segment_px": [
+            661,
+            539,
+            752,
+            535
+          ],
+          "anatomy_pose_segment_px": [
+            662,
+            576,
+            741,
+            569
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        }
+      }
+    },
+    "B06-M04": {
+      "kind": "enemy",
+      "reference_body_height_px": 740,
+      "scale_policy": "one_fixed_world_identity_height; explicit anatomical source-pose registration; never dynamic silhouette fit",
+      "frames": {
+        "idle": {
+          "texture": "enemy/B06-M04_idle-native-v2.png",
+          "source_sha256": "2a77269c106527e467f15286b244bafbb7342e365fe798f508d506561c40a27a",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M04_idle-native-v2.json",
+          "prompt_file": "provenance/B06-M04_idle-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            172,
+            408,
+            970,
+            448
+          ],
+          "foot": [
+            656,
+            820
+          ],
+          "core_anchor": [
+            682,
+            688
+          ],
+          "visual_outlet": [
+            1139,
+            833
+          ],
+          "source_pose_scale": 1.0,
+          "anatomy_metric": "tail root to eye along torso chord",
+          "anatomy_reference_segment_px": [
+            342,
+            575,
+            880,
+            739
+          ],
+          "anatomy_pose_segment_px": [
+            342,
+            575,
+            880,
+            739
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M04_telegraph-native-v2.png",
+          "source_sha256": "6b90aeaa1d948b425bde2d579c53192da990951545878b808a54d5d1eb3c0cec",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M04_telegraph-native-v2.json",
+          "prompt_file": "provenance/B06-M04_telegraph-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            217,
+            476,
+            873,
+            381
+          ],
+          "foot": [
+            655,
+            826
+          ],
+          "core_anchor": [
+            685,
+            720
+          ],
+          "visual_outlet": [
+            1088,
+            818
+          ],
+          "source_pose_scale": 1.172931,
+          "anatomy_metric": "tail root to eye along torso chord",
+          "anatomy_reference_segment_px": [
+            342,
+            575,
+            880,
+            739
+          ],
+          "anatomy_pose_segment_px": [
+            408,
+            627,
+            872,
+            748
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "execute": {
+          "texture": "enemy/B06-M04_execute-native-v2.png",
+          "source_sha256": "e7576a9851956a0cdc293099f7163d5e0986f68bd9ca6e8136ebf1594839c4c1",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M04_execute-native-v2.json",
+          "prompt_file": "provenance/B06-M04_execute-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            190,
+            516,
+            903,
+            288
+          ],
+          "foot": [
+            650,
+            784
+          ],
+          "core_anchor": [
+            679,
+            674
+          ],
+          "visual_outlet": [
+            1090,
+            703
+          ],
+          "source_pose_scale": 1.099246,
+          "anatomy_metric": "tail root to eye along torso chord",
+          "anatomy_reference_segment_px": [
+            342,
+            575,
+            880,
+            739
+          ],
+          "anatomy_pose_segment_px": [
+            357,
+            652,
+            868,
+            678
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        }
+      }
+    },
+    "B06-M05": {
+      "kind": "enemy",
+      "reference_body_height_px": 850,
+      "scale_policy": "one_fixed_world_identity_height; explicit anatomical source-pose registration; never dynamic silhouette fit",
+      "frames": {
+        "idle": {
+          "texture": "enemy/B06-M05_idle-native-v2.png",
+          "source_sha256": "4abab40df8f43af98607f56dbfcd44254d0946fe2b5e744d26d0cb11cb284dfc",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M05_idle-native-v2.json",
+          "prompt_file": "provenance/B06-M05_idle-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            217,
+            194,
+            841,
+            894
+          ],
+          "foot": [
+            667,
+            1061
+          ],
+          "core_anchor": [
+            664,
+            679
+          ],
+          "visual_outlet": [
+            982,
+            345
+          ],
+          "source_pose_scale": 1.0,
+          "anatomy_metric": "collar to belt shell",
+          "anatomy_reference_segment_px": [
+            563,
+            521,
+            707,
+            684
+          ],
+          "anatomy_pose_segment_px": [
+            563,
+            521,
+            707,
+            684
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M05_telegraph-native-v2.png",
+          "source_sha256": "5230b76e4208d4dade5eaf717d442ee1b058f3152d877d2b7196c33f17665ab7",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M05_telegraph-native-v2.json",
+          "prompt_file": "provenance/B06-M05_telegraph-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            268,
+            240,
+            804,
+            882
+          ],
+          "foot": [
+            691,
+            1091
+          ],
+          "core_anchor": [
+            670,
+            726
+          ],
+          "visual_outlet": [
+            1003,
+            406
+          ],
+          "source_pose_scale": 1.067022,
+          "anatomy_metric": "collar to belt shell",
+          "anatomy_reference_segment_px": [
+            563,
+            521,
+            707,
+            684
+          ],
+          "anatomy_pose_segment_px": [
+            578,
+            630,
+            708,
+            787
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "execute": {
+          "texture": "enemy/B06-M05_execute-native-v2.png",
+          "source_sha256": "bb8438062ca80bea7e214664a1d0e5133eb097c74124afdfeb2fd64b33001470",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M05_execute-native-v2.json",
+          "prompt_file": "provenance/B06-M05_execute-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            212,
+            356,
+            879,
+            726
+          ],
+          "foot": [
+            665,
+            1059
+          ],
+          "core_anchor": [
+            636,
+            730
+          ],
+          "visual_outlet": [
+            1022,
+            485
+          ],
+          "source_pose_scale": 1.122104,
+          "anatomy_metric": "collar to belt shell",
+          "anatomy_reference_segment_px": [
+            563,
+            521,
+            707,
+            684
+          ],
+          "anatomy_pose_segment_px": [
+            529,
+            610,
+            648,
+            763
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        }
+      }
+    },
+    "B06-M06": {
+      "kind": "enemy",
+      "reference_body_height_px": 780,
+      "scale_policy": "one_fixed_world_identity_height; explicit anatomical source-pose registration; never dynamic silhouette fit",
+      "frames": {
+        "idle": {
+          "texture": "enemy/B06-M06_idle-native-v2.png",
+          "source_sha256": "72677a92f8ae14584735f86bc4882372f633fccec2a8e442375f092e944ee117",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M06_idle-native-v2.json",
+          "prompt_file": "provenance/B06-M06_idle-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            233,
+            240,
+            824,
+            838
+          ],
+          "foot": [
+            689,
+            1034
+          ],
+          "core_anchor": [
+            722,
+            820
+          ],
+          "visual_outlet": [
+            1000,
+            802
+          ],
+          "source_pose_scale": 1.0,
+          "anatomy_metric": "distance between paired eyes",
+          "anatomy_reference_segment_px": [
+            789,
+            699,
+            884,
+            696
+          ],
+          "anatomy_pose_segment_px": [
+            789,
+            699,
+            884,
+            696
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M06_telegraph-native-v2.png",
+          "source_sha256": "404a13e2d617a88ab986f483261cfddbee4b9e6f5b6965fbfc313c5b00fd93f4",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M06_telegraph-native-v2.json",
+          "prompt_file": "provenance/B06-M06_telegraph-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            176,
+            294,
+            912,
+            764
+          ],
+          "foot": [
+            700,
+            1035
+          ],
+          "core_anchor": [
+            730,
+            826
+          ],
+          "visual_outlet": [
+            282,
+            480
+          ],
+          "source_pose_scale": 1.019894,
+          "anatomy_metric": "distance between paired eyes",
+          "anatomy_reference_segment_px": [
+            789,
+            699,
+            884,
+            696
+          ],
+          "anatomy_pose_segment_px": [
+            796,
+            714,
+            889,
+            708
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "execute": {
+          "texture": "enemy/B06-M06_execute-native-v2.png",
+          "source_sha256": "4479dad1bfd8d891c1ec4ecc8cdedc5ca84e65fc5624ed291853ed555da46379",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M06_execute-native-v2.json",
+          "prompt_file": "provenance/B06-M06_execute-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            263,
+            329,
+            834,
+            681
+          ],
+          "foot": [
+            649,
+            989
+          ],
+          "core_anchor": [
+            674,
+            794
+          ],
+          "visual_outlet": [
+            1053,
+            727
+          ],
+          "source_pose_scale": 1.220362,
+          "anatomy_metric": "distance between paired eyes",
+          "anatomy_reference_segment_px": [
+            789,
+            699,
+            884,
+            696
+          ],
+          "anatomy_pose_segment_px": [
+            736,
+            707,
+            811,
+            686
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        }
+      }
+    },
+    "B06-M07": {
+      "kind": "enemy",
+      "reference_body_height_px": 900,
+      "scale_policy": "one_fixed_world_identity_height; explicit anatomical source-pose registration; never dynamic silhouette fit",
+      "frames": {
+        "idle": {
+          "texture": "enemy/B06-M07_idle-native-v2.png",
+          "source_sha256": "d7cd29b9305f178edcaad058fb69e1e20208bd58fd2b44a28e43171d2184629f",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M07_idle-native-v2.json",
+          "prompt_file": "provenance/B06-M07_idle-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            187,
+            199,
+            900,
+            893
+          ],
+          "foot": [
+            712,
+            1083
+          ],
+          "core_anchor": [
+            822,
+            598
+          ],
+          "visual_outlet": [
+            824,
+            347
+          ],
+          "source_pose_scale": 1.0,
+          "anatomy_metric": "neck base to navel",
+          "anatomy_reference_segment_px": [
+            790,
+            437,
+            837,
+            667
+          ],
+          "anatomy_pose_segment_px": [
+            790,
+            437,
+            837,
+            667
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M07_telegraph-native-v2.png",
+          "source_sha256": "9d0ec3c2c67f901b86aecf8fa920c8d432f05498921a4c93797a05d372823424",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M07_telegraph-native-v2.json",
+          "prompt_file": "provenance/B06-M07_telegraph-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            238,
+            247,
+            792,
+            861
+          ],
+          "foot": [
+            724,
+            1091
+          ],
+          "core_anchor": [
+            827,
+            638
+          ],
+          "visual_outlet": [
+            833,
+            381
+          ],
+          "source_pose_scale": 0.983333,
+          "anatomy_metric": "neck base to navel",
+          "anatomy_reference_segment_px": [
+            790,
+            437,
+            837,
+            667
+          ],
+          "anatomy_pose_segment_px": [
+            791,
+            475,
+            843,
+            708
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "execute": {
+          "texture": "enemy/B06-M07_execute-native-v2.png",
+          "source_sha256": "c9f029f39967d4034522bdb80b08d5d3a48e6a04143849f9e146a53847c3028f",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M07_execute-native-v2.json",
+          "prompt_file": "provenance/B06-M07_execute-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            233,
+            325,
+            858,
+            714
+          ],
+          "foot": [
+            711,
+            1027
+          ],
+          "core_anchor": [
+            789,
+            622
+          ],
+          "visual_outlet": [
+            793,
+            442
+          ],
+          "source_pose_scale": 1.158515,
+          "anatomy_metric": "neck base to navel",
+          "anatomy_reference_segment_px": [
+            790,
+            437,
+            837,
+            667
+          ],
+          "anatomy_pose_segment_px": [
+            769,
+            498,
+            785,
+            700
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        }
+      }
+    },
+    "B06-M08": {
+      "kind": "enemy",
+      "reference_body_height_px": 900,
+      "scale_policy": "one_fixed_world_identity_height; explicit anatomical source-pose registration; never dynamic silhouette fit",
+      "frames": {
+        "idle": {
+          "texture": "enemy/B06-M08_idle-native-v2.png",
+          "source_sha256": "f250ee67c47f79c4af3ea4bc3342b4f1bf797d4eb6ea5bbda4c4b6df529e68af",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M08_idle-native-v2.json",
+          "prompt_file": "provenance/B06-M08_idle-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            308,
+            173,
+            772,
+            936
+          ],
+          "foot": [
+            642,
+            1074
+          ],
+          "core_anchor": [
+            675,
+            723
+          ],
+          "visual_outlet": [
+            995,
+            594
+          ],
+          "source_pose_scale": 1.0,
+          "anatomy_metric": "shoulder plate to belt buckle",
+          "anatomy_reference_segment_px": [
+            560,
+            625,
+            716,
+            795
+          ],
+          "anatomy_pose_segment_px": [
+            560,
+            625,
+            716,
+            795
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M08_telegraph-native-v2.png",
+          "source_sha256": "f8d7f279427f209e96d2e4c519a7e14ef4b9cdf378416f1a424fcaa2b292ec21",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M08_telegraph-native-v2.json",
+          "prompt_file": "provenance/B06-M08_telegraph-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            367,
+            279,
+            619,
+            818
+          ],
+          "foot": [
+            651,
+            1076
+          ],
+          "core_anchor": [
+            680,
+            767
+          ],
+          "visual_outlet": [
+            779,
+            410
+          ],
+          "source_pose_scale": 1.154614,
+          "anatomy_metric": "shoulder plate to belt buckle",
+          "anatomy_reference_segment_px": [
+            560,
+            625,
+            716,
+            795
+          ],
+          "anatomy_pose_segment_px": [
+            572,
+            708,
+            734,
+            825
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "execute": {
+          "texture": "enemy/B06-M08_execute-native-v2.png",
+          "source_sha256": "2a7ad49db55283e063f56ed5d01a0e64cb1909b6115ebad5d8757b73ca89de73",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M08_execute-native-v2.json",
+          "prompt_file": "provenance/B06-M08_execute-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            333,
+            243,
+            772,
+            826
+          ],
+          "foot": [
+            609,
+            1049
+          ],
+          "core_anchor": [
+            659,
+            728
+          ],
+          "visual_outlet": [
+            1021,
+            811
+          ],
+          "source_pose_scale": 1.105792,
+          "anatomy_metric": "shoulder plate to belt buckle",
+          "anatomy_reference_segment_px": [
+            560,
+            625,
+            716,
+            795
+          ],
+          "anatomy_pose_segment_px": [
+            566,
+            652,
+            717,
+            796
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        }
+      }
+    },
+    "B06-M09": {
+      "kind": "enemy",
+      "reference_body_height_px": 700,
+      "scale_policy": "one_fixed_world_identity_height; explicit anatomical source-pose registration; never dynamic silhouette fit",
+      "frames": {
+        "idle": {
+          "texture": "enemy/B06-M09_idle-native-v2.png",
+          "source_sha256": "f5f4dc5edacc9b221aeb2e76c4c7eedbc49ad30b91f0eb27f5cb90f0ba10bc82",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M09_idle-native-v2.json",
+          "prompt_file": "provenance/B06-M09_idle-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            140,
+            309,
+            991,
+            679
+          ],
+          "foot": [
+            614,
+            942
+          ],
+          "core_anchor": [
+            620,
+            594
+          ],
+          "visual_outlet": [
+            877,
+            867
+          ],
+          "source_pose_scale": 1.0,
+          "anatomy_metric": "distance between paired eyes",
+          "anatomy_reference_segment_px": [
+            604,
+            572,
+            728,
+            535
+          ],
+          "anatomy_pose_segment_px": [
+            604,
+            572,
+            728,
+            535
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M09_telegraph-native-v2.png",
+          "source_sha256": "5baa217ec4376008a1e0cd0cb33519b33714a2e02de78176c1d814a2496dbf6c",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M09_telegraph-native-v2.json",
+          "prompt_file": "provenance/B06-M09_telegraph-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            206,
+            480,
+            882,
+            474
+          ],
+          "foot": [
+            627,
+            929
+          ],
+          "core_anchor": [
+            614,
+            725
+          ],
+          "visual_outlet": [
+            921,
+            824
+          ],
+          "source_pose_scale": 1.304437,
+          "anatomy_metric": "distance between paired eyes",
+          "anatomy_reference_segment_px": [
+            604,
+            572,
+            728,
+            535
+          ],
+          "anatomy_pose_segment_px": [
+            584,
+            702,
+            680,
+            677
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        },
+        "execute": {
+          "texture": "enemy/B06-M09_execute-native-v2.png",
+          "source_sha256": "ead40e0a74b84b566b238cc19ac8d8442c9cacbaff82853f0ef9d232809658c8",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M09_execute-native-v2.json",
+          "prompt_file": "provenance/B06-M09_execute-native-v2.prompt.txt",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            146,
+            380,
+            1012,
+            592
+          ],
+          "foot": [
+            617,
+            946
+          ],
+          "core_anchor": [
+            650,
+            655
+          ],
+          "visual_outlet": [
+            933,
+            832
+          ],
+          "source_pose_scale": 0.996879,
+          "anatomy_metric": "distance between paired eyes",
+          "anatomy_reference_segment_px": [
+            604,
+            572,
+            728,
+            535
+          ],
+          "anatomy_pose_segment_px": [
+            629,
+            640,
+            754,
+            605
+          ],
+          "anchor_method": "independent source-pixel visual review; support centroid and actual organ; candidate runtime review required"
+        }
+      }
+    },
+    "B06-M10": {
+      "kind": "enemy",
+      "reference_body_height_px": 952,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "execute": {
+          "texture": "enemy/B06-M10_execute-native-v1.png",
+          "source_sha256": "bbebb559ee67d3f43fac8202dca5c4f1409810e793c9e573b551089ba14408cb",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M10_execute-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            67,
+            109,
+            1164,
+            1047
+          ],
+          "foot": [
+            674,
+            1110
+          ],
+          "core_anchor": [
+            650,
+            425
+          ],
+          "visual_outlet": [
+            682,
+            433
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "idle": {
+          "texture": "enemy/B06-M10_idle-native-v2.png",
+          "source_sha256": "ab976158777753aa29425fda8a64ca9ead6a9e2431544ad76318cd2b6030ee3c",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M10_idle-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            227,
+            182,
+            801,
+            952
+          ],
+          "foot": [
+            658,
+            1100
+          ],
+          "core_anchor": [
+            650,
+            425
+          ],
+          "visual_outlet": [
+            668,
+            480
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M10_telegraph-native-v3.png",
+          "source_sha256": "8028d1f13bd921c3dafa4c400e5e07b07fc3705d40a9c2eff30a8885b454272b",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M10_telegraph-native-v3.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            227,
+            138,
+            802,
+            997
+          ],
+          "foot": [
+            658,
+            1100
+          ],
+          "core_anchor": [
+            650,
+            425
+          ],
+          "visual_outlet": [
+            667,
+            498
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        }
+      }
+    },
+    "B06-M11": {
+      "kind": "enemy",
+      "reference_body_height_px": 917,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "execute": {
+          "texture": "enemy/B06-M11_execute-native-v2.png",
+          "source_sha256": "b8969addeaec57541e314c5844a7b4b0814c7d65b35c1859200789c089fdbcc9",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M11_execute-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            37,
+            232,
+            1193,
+            930
+          ],
+          "foot": [
+            387,
+            1110
+          ],
+          "core_anchor": [
+            590,
+            615
+          ],
+          "visual_outlet": [
+            1225,
+            497
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "idle": {
+          "texture": "enemy/B06-M11_idle-native-v2.png",
+          "source_sha256": "6c2762dbb61042e65d00439eab488d286637e088499a8304b638a2ef57ab49ae",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M11_idle-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            193,
+            195,
+            930,
+            917
+          ],
+          "foot": [
+            570,
+            1060
+          ],
+          "core_anchor": [
+            590,
+            615
+          ],
+          "visual_outlet": [
+            1116,
+            511
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M11_telegraph-native-v3.png",
+          "source_sha256": "d7943598c4ffef58d647184129b01d9f3c9aa2568c3c05e47deb1e124473cacf",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M11_telegraph-native-v3.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            87,
+            97,
+            1135,
+            1108
+          ],
+          "foot": [
+            611,
+            1160
+          ],
+          "core_anchor": [
+            590,
+            615
+          ],
+          "visual_outlet": [
+            1220,
+            516
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        }
+      }
+    },
+    "B06-M12": {
+      "kind": "enemy",
+      "reference_body_height_px": 658,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "execute": {
+          "texture": "enemy/B06-M12_execute-native-v1.png",
+          "source_sha256": "70beeff7ff8468350f989de3a2db173669239d3583d8e9b9829c856fff22eb21",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M12_execute-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            30,
+            335,
+            1187,
+            659
+          ],
+          "foot": [
+            560,
+            970
+          ],
+          "core_anchor": [
+            595,
+            640
+          ],
+          "visual_outlet": [
+            1150,
+            531
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "idle": {
+          "texture": "enemy/B06-M12_idle-native-v2.png",
+          "source_sha256": "958c0851b7707247bc9aea50a919a034946db5085f0e6689b8b11e63a32ebc7b",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M12_idle-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            200,
+            316,
+            880,
+            658
+          ],
+          "foot": [
+            645,
+            955
+          ],
+          "core_anchor": [
+            595,
+            640
+          ],
+          "visual_outlet": [
+            1018,
+            681
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M12_telegraph-native-v1.png",
+          "source_sha256": "cc6ecd80e971ac70e1a16c781a7422d777fb9a4c026b1e3df4d894595201b0a7",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M12_telegraph-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            156,
+            318,
+            1034,
+            621
+          ],
+          "foot": [
+            585,
+            930
+          ],
+          "core_anchor": [
+            595,
+            640
+          ],
+          "visual_outlet": [
+            1119,
+            704
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        }
+      }
+    },
+    "B06-M13": {
+      "kind": "enemy",
+      "reference_body_height_px": 945,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "execute": {
+          "texture": "enemy/B06-M13_execute-native-v1.png",
+          "source_sha256": "e2a5582911c89825c700151d7bedcc569178b94edff4f5fe4e053d479ef564f1",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M13_execute-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            39,
+            168,
+            1207,
+            1003
+          ],
+          "foot": [
+            704,
+            1110
+          ],
+          "core_anchor": [
+            700,
+            650
+          ],
+          "visual_outlet": [
+            1204,
+            328
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "idle": {
+          "texture": "enemy/B06-M13_idle-native-v2.png",
+          "source_sha256": "963b7d0ff94fa701e09782ecddffa51fa4f38888860eae03b31d450846c1a08d",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M13_idle-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            191,
+            174,
+            934,
+            945
+          ],
+          "foot": [
+            780,
+            1060
+          ],
+          "core_anchor": [
+            700,
+            650
+          ],
+          "visual_outlet": [
+            1060,
+            607
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M13_telegraph-native-v1.png",
+          "source_sha256": "f8cf74d4c5d742832641d8ad748f186d958bf26e8a237566afadfd6983a8fe61",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M13_telegraph-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            173,
+            103,
+            1032,
+            1047
+          ],
+          "foot": [
+            795,
+            1100
+          ],
+          "core_anchor": [
+            700,
+            650
+          ],
+          "visual_outlet": [
+            1133,
+            325
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        }
+      }
+    },
+    "B06-M14": {
+      "kind": "enemy",
+      "reference_body_height_px": 685,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "execute": {
+          "texture": "enemy/B06-M14_execute-native-v2.png",
+          "source_sha256": "8b4de34d5624bab63593ede0df4e9177faf1d5c007a31692411aa280a2b7dc0c",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M14_execute-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            87,
+            256,
+            1137,
+            780
+          ],
+          "foot": [
+            770,
+            996
+          ],
+          "core_anchor": [
+            730,
+            735
+          ],
+          "visual_outlet": [
+            1090,
+            736
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "idle": {
+          "texture": "enemy/B06-M14_idle-native-v2.png",
+          "source_sha256": "0f43993f99cc4a20adf0eb844372af3b2cbff0aefaca1b53f1de322b95fc6576",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M14_idle-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            180,
+            274,
+            927,
+            685
+          ],
+          "foot": [
+            745,
+            923
+          ],
+          "core_anchor": [
+            730,
+            735
+          ],
+          "visual_outlet": [
+            1072,
+            800
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M14_telegraph-native-v1.png",
+          "source_sha256": "d833940c0812f804fbd90cd151af4ae62baffe1d0a628e43bae6b0a59a242ec5",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M14_telegraph-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            85,
+            272,
+            1122,
+            741
+          ],
+          "foot": [
+            760,
+            976
+          ],
+          "core_anchor": [
+            730,
+            735
+          ],
+          "visual_outlet": [
+            1150,
+            940
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        }
+      }
+    },
+    "B06-M15": {
+      "kind": "enemy",
+      "reference_body_height_px": 833,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "execute": {
+          "texture": "enemy/B06-M15_execute-native-v1.png",
+          "source_sha256": "af887dcb39993167df999cfbc6e04ef01db520ffd146c1bb33aff651dda5f71f",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M15_execute-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            48,
+            67,
+            1153,
+            1120
+          ],
+          "foot": [
+            650,
+            1150
+          ],
+          "core_anchor": [
+            660,
+            695
+          ],
+          "visual_outlet": [
+            710,
+            690
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "idle": {
+          "texture": "enemy/B06-M15_idle-native-v2.png",
+          "source_sha256": "071097ab7da8b8932f3794bb49bb7939a4b17fcda15404fdbebbfd1ef90b2c9f",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M15_idle-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            189,
+            225,
+            923,
+            833
+          ],
+          "foot": [
+            660,
+            1015
+          ],
+          "core_anchor": [
+            660,
+            695
+          ],
+          "visual_outlet": [
+            779,
+            673
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M15_telegraph-native-v1.png",
+          "source_sha256": "cdac6809fef6724734ff4624b4fa39fef084341bbad8fde97e6dd295b3fd5996",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M15_telegraph-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            131,
+            198,
+            1064,
+            912
+          ],
+          "foot": [
+            650,
+            1070
+          ],
+          "core_anchor": [
+            660,
+            695
+          ],
+          "visual_outlet": [
+            832,
+            750
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        }
+      }
+    },
+    "B06-M16": {
+      "kind": "enemy",
+      "reference_body_height_px": 893,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "execute": {
+          "texture": "enemy/B06-M16_execute-native-v2.png",
+          "source_sha256": "b73cac8f32b19b7e14403f2f1abcd728adde376f602fb30d6c844da68308ae0b",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M16_execute-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            62,
+            220,
+            1180,
+            884
+          ],
+          "foot": [
+            510,
+            1040
+          ],
+          "core_anchor": [
+            595,
+            630
+          ],
+          "visual_outlet": [
+            801,
+            620
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "idle": {
+          "texture": "enemy/B06-M16_idle-native-v2.png",
+          "source_sha256": "d5ac84e2eb930239dca8bf1faa5c9b6fe11d45689ca7e1490aa18ea03a6530cc",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M16_idle-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            193,
+            200,
+            904,
+            893
+          ],
+          "foot": [
+            573,
+            1020
+          ],
+          "core_anchor": [
+            595,
+            630
+          ],
+          "visual_outlet": [
+            1041,
+            655
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M16_telegraph-native-v1.png",
+          "source_sha256": "53f421342f625547d2a8cbd5e93fad5e85aec3a3ed1d44a48738beb51890e681",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M16_telegraph-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            26,
+            149,
+            1163,
+            1018
+          ],
+          "foot": [
+            525,
+            1100
+          ],
+          "core_anchor": [
+            595,
+            630
+          ],
+          "visual_outlet": [
+            1080,
+            550
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        }
+      }
+    },
+    "B06-M17": {
+      "kind": "enemy",
+      "reference_body_height_px": 883,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "execute": {
+          "texture": "enemy/B06-M17_execute-native-v2.png",
+          "source_sha256": "9238417797f37b44b2a14558260451bb7953f0548bab13f0cd78cdbbefa892e2",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M17_execute-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            38,
+            216,
+            1206,
+            923
+          ],
+          "foot": [
+            782,
+            1060
+          ],
+          "core_anchor": [
+            700,
+            650
+          ],
+          "visual_outlet": [
+            704,
+            1080
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "idle": {
+          "texture": "enemy/B06-M17_idle-native-v2.png",
+          "source_sha256": "2c38459ccc36abc73e938b41e31cfc143bd02483fbdadfe3301d662a2677f647",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M17_idle-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            151,
+            206,
+            958,
+            883
+          ],
+          "foot": [
+            787,
+            1040
+          ],
+          "core_anchor": [
+            700,
+            650
+          ],
+          "visual_outlet": [
+            642,
+            1016
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M17_telegraph-native-v1.png",
+          "source_sha256": "bd1999187e9d11aa64bfbf8ab12863aec870361bed255b213de2365a40da10d4",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M17_telegraph-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            105,
+            125,
+            1106,
+            1005
+          ],
+          "foot": [
+            544,
+            1080
+          ],
+          "core_anchor": [
+            700,
+            650
+          ],
+          "visual_outlet": [
+            839,
+            844
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        }
+      }
+    },
+    "B06-M18": {
+      "kind": "enemy",
+      "reference_body_height_px": 949,
+      "scale_policy": "one_fixed_identity_reference_height_for_all_poses",
+      "frames": {
+        "execute": {
+          "texture": "enemy/B06-M18_execute-native-v1.png",
+          "source_sha256": "b03b059493cdff4bbb4762dda77d7deff3dd5b005944737ef795e74b9ce28244",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M18_execute-native-v1.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            45,
+            17,
+            1181,
+            1219
+          ],
+          "foot": [
+            636,
+            1190
+          ],
+          "core_anchor": [
+            570,
+            635
+          ],
+          "visual_outlet": [
+            731,
+            1218
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "idle": {
+          "texture": "enemy/B06-M18_idle-native-v2.png",
+          "source_sha256": "316a549d8cb86f4739664dd907ea55e0c9c6af7446e6a2aca493b333e1671599",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M18_idle-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            196,
+            168,
+            926,
+            949
+          ],
+          "foot": [
+            600,
+            1050
+          ],
+          "core_anchor": [
+            570,
+            635
+          ],
+          "visual_outlet": [
+            751,
+            1038
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        },
+        "telegraph": {
+          "texture": "enemy/B06-M18_telegraph-native-v2.png",
+          "source_sha256": "a6b744f336bf9871a9575650a35c9dcc455c8176b4fcc2b943a4738ebf045bdd",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "provenance": "provenance/B06-M18_telegraph-native-v2.json",
+          "native_unmodified": true,
+          "runtime_ready": false,
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "alpha128_bounds": [
+            22,
+            28,
+            1213,
+            1198
+          ],
+          "foot": [
+            601,
+            1150
+          ],
+          "core_anchor": [
+            570,
+            635
+          ],
+          "visual_outlet": [
+            682,
+            834
+          ],
+          "anchor_method": "selected-source visual pixel estimates; projected support and presentation-only outlet; full source canvas, fixed identity scale"
+        }
+      }
+    }
+  },
+  "rooms": {
+    "BO06": {
+      "texture": "room/BO06_floor_native_v1.png",
+      "source_sha256": "cb48b31fa043e79145e3e419e4dcca465636cfdfc3090957c8e13b25d6ed29e6",
+      "native_dimensions": [
+        1564,
+        1006
+      ],
+      "provenance": "provenance/BO06_floor_native_v1.json",
+      "native_unmodified": true,
+      "runtime_ready": false,
+      "geometry_alignment_verified": false,
+      "registration_note": "Floor source only. Geometry8d5d532 authoritative; placement[0.11,0.13,0.78,0.74]. Water and gameplay props separate. L32 outside-edge cutouts require placement review."
+    },
+    "L31": {
+      "texture": "room/L31_floor_native_v2.png",
+      "source_sha256": "8e08f1ce642babb9516cb4239c67eebd4747e43475da30bce4f701a6e6bf27eb",
+      "native_dimensions": [
+        1564,
+        1006
+      ],
+      "provenance": "provenance/L31_floor_native_v2.json",
+      "native_unmodified": true,
+      "runtime_ready": false,
+      "geometry_alignment_verified": false,
+      "registration_note": "Floor source only. Geometry8d5d532 authoritative; placement[0.11,0.13,0.78,0.74]. Water and gameplay props separate. L32 outside-edge cutouts require placement review."
+    },
+    "L32": {
+      "texture": "room/L32_floor_native_v1.png",
+      "source_sha256": "7eceb5259e4fb0a28fd7a7523dc077b6e05adf465b4449a1785ef275cb2cbb91",
+      "native_dimensions": [
+        1672,
+        941
+      ],
+      "provenance": "provenance/L32_floor_native_v1.json",
+      "native_unmodified": true,
+      "runtime_ready": false,
+      "geometry_alignment_verified": false,
+      "registration_note": "Floor source only. Geometry8d5d532 authoritative; placement[0.11,0.13,0.78,0.74]. Water and gameplay props separate. L32 outside-edge cutouts require placement review."
+    },
+    "L33": {
+      "texture": "room/L33_floor_native_v1.png",
+      "source_sha256": "7d2905e50e8a5ea16725d2749021cfc4126fec23e51384e0a16abaf40ed55e48",
+      "native_dimensions": [
+        1564,
+        1006
+      ],
+      "provenance": "provenance/L33_floor_native_v1.json",
+      "native_unmodified": true,
+      "runtime_ready": false,
+      "geometry_alignment_verified": false,
+      "registration_note": "Floor source only. Geometry8d5d532 authoritative; placement[0.11,0.13,0.78,0.74]. Water and gameplay props separate. L32 outside-edge cutouts require placement review."
+    },
+    "L34": {
+      "texture": "room/L34_floor_native_v1.png",
+      "source_sha256": "24cfdf5879d36fcbb966258735bc7886ce7c6a3826bf2e9bbc89c9ccf1523b05",
+      "native_dimensions": [
+        1565,
+        1005
+      ],
+      "provenance": "provenance/L34_floor_native_v1.json",
+      "native_unmodified": true,
+      "runtime_ready": false,
+      "geometry_alignment_verified": false,
+      "registration_note": "Floor source only. Geometry8d5d532 authoritative; placement[0.11,0.13,0.78,0.74]. Water and gameplay props separate. L32 outside-edge cutouts require placement review."
+    },
+    "L35": {
+      "texture": "room/L35_floor_native_v1.png",
+      "source_sha256": "88b2c68d0e94ecc05f27acb7522bfc4317a964e0c3d0a97bd2345e4c84fb61d4",
+      "native_dimensions": [
+        1565,
+        1005
+      ],
+      "provenance": "provenance/L35_floor_native_v1.json",
+      "native_unmodified": true,
+      "runtime_ready": false,
+      "geometry_alignment_verified": false,
+      "registration_note": "Floor source only. Geometry8d5d532 authoritative; placement[0.11,0.13,0.78,0.74]. Water and gameplay props separate. L32 outside-edge cutouts require placement review."
+    },
+    "L36": {
+      "texture": "room/L36_floor_native_v1.png",
+      "source_sha256": "dbeac6d8dd05aaeded7a3142852502dcd5cc6495789038a67f6bd839842784fe",
+      "native_dimensions": [
+        1565,
+        1005
+      ],
+      "provenance": "provenance/L36_floor_native_v1.json",
+      "native_unmodified": true,
+      "runtime_ready": false,
+      "geometry_alignment_verified": false,
+      "registration_note": "Floor source only. Geometry8d5d532 authoritative; placement[0.11,0.13,0.78,0.74]. Water and gameplay props separate. L32 outside-edge cutouts require placement review."
+    }
+  },
+  "additional_source_manifest_sha256": "de0874e871683384a169f3762b8879d18cd9886804c3ed543c35b2c51b8e7cff",
+  "controlled_registration_render": {
+    "status": "reviewed",
+    "dimensions": [
+      2560,
+      1440
+    ],
+    "engine": "4.6.3.stable.official",
+    "renderer": "OpenGL Mesa llvmpipe",
+    "scope": "M01/BO06/props registry sheet; M02-M09 actual EnemyVisual controlled states and production codex portrait function",
+    "not_acceptance": [
+      "natural_combat",
+      "gameplay_strength",
+      "all_directions_in_room",
+      "room_floor_geometry",
+      "hardware_GPU_performance"
+    ]
+  },
+  "additional_source_manifests": {
+    "monsters_m10_m18": {
+      "sha256": "2469e5a9c76df08295a9fcc63f105221a2c8327fb90825a54a675a69eaf5b60f",
+      "selected_count": 27
+    }
+  }
+}

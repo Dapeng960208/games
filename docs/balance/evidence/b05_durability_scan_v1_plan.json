@@ -1,0 +1,41 @@
+{
+  "schema": "b05-durability-sentinel-scan-plan-v1",
+  "frozen_before_new_grid_runs": true,
+  "points": {
+    "9": 8.2,
+    "6": 8.3,
+    "5": 8.5,
+    "7": 8.7,
+    "8": 8.9,
+    "4": 9.0
+  },
+  "sentinels": {
+    "CH01": [
+      1001,
+      1004
+    ],
+    "CH02": [
+      1001,
+      1008
+    ],
+    "CH03": [
+      1001
+    ]
+  },
+  "sample": "G2",
+  "mix": "class6",
+  "difficulty": 4,
+  "boss_attack_factor": 1,
+  "mage_candidate": 1,
+  "new_points_at_plan_freeze": [
+    8.2,
+    8.7,
+    8.9
+  ],
+  "previously_measured_points": [
+    8.3,
+    8.5,
+    9.0
+  ],
+  "no_gear_controller_warning_phase_or_combo_changes": true
+}

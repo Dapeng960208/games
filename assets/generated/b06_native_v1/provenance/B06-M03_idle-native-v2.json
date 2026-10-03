@@ -1,0 +1,38 @@
+{
+  "id": "M03",
+  "pose": "idle",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-f2029a69-c115-4602-b25d-6ce224e1278f.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M03_idle-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-f2029a69-c115-4602-b25d-6ce224e1278f.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M03_idle-native-v1.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "fcea2cae3fe56d0822c78f5180c8a3079e52a19b11d7dc4bb70b5bf9c49ed9a3",
+  "bytes": 951378,
+  "alpha_bbox": [
+    97,
+    21,
+    1200,
+    1198
+  ],
+  "opaque_bbox": [
+    166,
+    345,
+    1110,
+    950
+  ],
+  "prompt": "Use case: identity-preserve. Edit target B06-M03 idle master. Preserve EXACT species, anatomy, costume, colors, number of limbs, weapons and tools, face, screen-right facing, elevated three-quarter camera, crisp painterly pearl/coral 2.5D style and current quiet idle pose. Composition correction ONLY: render the ENTIRE character as a smaller centered subject occupying at most 72% of the canvas width and height. Its outermost extremities must remain between x=15% and85% and y=15% and85%. Widen transparent empty space all around. No enlarged closeup. Every fin, claw, foot, staff, spike, hair tip and tool must be fully inside generous transparent margins. No floor, shadow, particles, labels or detached elements. True transparent RGBA background; preserve native quality, no upscaling.\n",
+  "status": "candidate pending visual inspection and landmark registration",
+  "reference_sha256": "2155fe6cb5658edf4e21c5040e756d5f921b57863f207f338443035902fc4e4a"
+}

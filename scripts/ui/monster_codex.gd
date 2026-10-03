@@ -14,7 +14,10 @@ const BiomeSkills = preload("res://scripts/combat/enemy_biome_skills.gd")
 const Numerical = preload("res://scripts/combat/enemy_numerical_v2.gd")
 const Sampler = preload("res://scripts/ui/texture_sampler.gd")
 const Dossier = preload("res://scripts/ui/hero_dossier.gd")
+const B05Content = preload("res://scripts/world/b05_content.gd")
+const Rules = preload("res://config/numerical_rules.gd")
 const BIOMES := ["B01","B02","B03","B04"]
+var preview_unreleased_b05 := false
 var biome_filter := "all"
 var kind_filter := "all"
 var search_query := ""
@@ -31,24 +34,29 @@ var level_picker: OptionButton
 var region_buttons: Dictionary = {}
 var kind_buttons: Dictionary = {}
 
-func configure(close: Callable, initial_biome: String = "all") -> void:
+func configure(close: Callable, initial_biome: String = "all", preview_b05: bool = false) -> void:
+	# Explicit isolated-preview opt-in; normal menus retain the release gate.
+	preview_unreleased_b05 = preview_b05
+	var biomes := available_biomes(preview_b05)
+	var region_ids: Array = biomes.keys()
 	name = "MonsterCodex"
 	size = Vector2(1280,720)
-	biome_filter = initial_biome if initial_biome in BIOMES else "all"
-	if biome_filter != "all": selected_id = str(Catalog.biomes()[biome_filter].enemy_ids[0])
+	biome_filter = initial_biome if initial_biome in region_ids else "all"
+	if biome_filter != "all": selected_id = str(biomes[biome_filter].enemy_ids[0])
 	ruleset = int(Game.profile.get("ruleset_version",2))
-	preview_level = int(Numerical.chapter_levels(Numerical.chapter_for_id(selected_id)).boss_level)
+	preview_level = default_level(selected_id)
 	var header := MineStyle.panel(self,Vector2(26,20),Vector2(1228,68))
 	MineStyle.literal(header,Inspect.t("怪物图鉴","Monster codex"),Vector2(22,10),Vector2(410,42),30)
-	MineStyle.literal(header,Inspect.t("%d 种野怪 · %d 位首领","%d enemy archetypes · %d bosses") % [Catalog.enemy_ids().size(),Bosses.ids().size()],Vector2(390,20),Vector2(460,30),16,MineStyle.MUTED)
+	MineStyle.literal(header,Inspect.t("%d 种野怪 · %d 位首领","%d enemy archetypes · %d bosses") % [entry_ids(preview_b05).filter(func(key): return not str(key).begins_with("BO")).size(),entry_ids(preview_b05).filter(func(key): return str(key).begins_with("BO")).size()],Vector2(390,20),Vector2(460,30),16,MineStyle.MUTED)
 	var back := MineStyle.button(header,"BACK",Vector2(1040,12),Vector2(166,44),close)
 	back.name = "CloseMonsterCodex"
 	var collection := MineStyle.panel(self,Vector2(26,105),Vector2(754,563))
-	for index: int in 5:
-		var key: String = "all" if index == 0 else BIOMES[index-1]
-		var button := MineStyle.button(collection,"",Vector2(16+index*144,68),Vector2(136,39),func(): _set_biome(key))
+	var region_width := 720.0 / float(region_ids.size()+1)
+	for index: int in region_ids.size()+1:
+		var key: String = "all" if index == 0 else region_ids[index-1]
+		var button := MineStyle.button(collection,"",Vector2(16+index*region_width,68),Vector2(region_width-8,39),func(): _set_biome(key))
 		button.name = "CodexRegion_"+key
-		button.text = Inspect.t("全部区域","All regions") if key == "all" else MineStyle.content_text(Catalog.biomes()[key],"name")
+		button.text = Inspect.t("全部区域","All regions") if key == "all" else MineStyle.content_text(biomes[key],"name")
 		button.add_theme_font_size_override("font_size",14)
 		button.tooltip_text = button.text
 		region_buttons[key] = button
@@ -83,18 +91,35 @@ func configure(close: Callable, initial_biome: String = "all") -> void:
 	grid_scroll.add_child(grid)
 	detail = MineStyle.panel(self,Vector2(796,105),Vector2(458,563))
 	detail.name = "CodexInspector"
-	MineStyle.literal(self,Inspect.t("图鉴仅供查看 · 属性取自当前规则的真实解析器","Read-only guide · stats use the current ruleset's production resolver"),Vector2(32,684),Vector2(1216,25),13,MineStyle.MUTED)
+	MineStyle.literal(self,Inspect.t("B05开发预览 · 章节未开放 · 部分美术待补齐","B05 development preview · chapter closed · artwork incomplete") if preview_unreleased_b05 else Inspect.t("图鉴仅供查看 · 属性取自当前规则的真实解析器","Read-only guide · stats use the current ruleset's production resolver"),Vector2(32,684),Vector2(1216,25),13,MineStyle.MUTED)
 	_refresh_grid()
 	_show_entry(selected_id)
 	back.grab_focus()
 
-static func entry_ids() -> Array[String]:
+static func available_biomes(include_b05: bool = false) -> Dictionary:
+	var result := Catalog.biomes().duplicate(true)
+	if include_b05 or int(Rules.value("implemented_chapters",4)) >= 5:
+		var b05 := B05Content.catalog()
+		result["B05"] = {"name":b05.name,"name_en":b05.name_en,"enemy_ids":b05.enemy_ids}
+	return result
+
+static func default_level(id: String) -> int:
+	if id.begins_with("B06-") or id == "BO06": return 30
+	return 25 if id.begins_with("B05-") or id == "BO05" else int(Numerical.chapter_levels(Numerical.chapter_for_id(id)).boss_level)
+
+static func entry_ids(include_b05: bool = false) -> Array[String]:
 	var result: Array[String] = []
 	result.assign(Catalog.enemy_ids())
 	result.append_array(Bosses.ids())
+	if include_b05 or int(Rules.value("implemented_chapters",4)) >= 5:
+		for id: String in B05Content.enemy_ids():
+			if id not in result: result.append(id)
+		if "BO05" not in result: result.append("BO05")
 	return result
 
 static func definition(id: String) -> Dictionary:
+	if id.begins_with("B05-M"): return B05Content.enemy(id)
+	if id == "BO05": return B05Content.boss()
 	return Catalog.bosses().get(id,{}) if id.begins_with("BO") else Catalog.enemy(id)
 
 static func resolved_entry(id: String, level: int, tier: int, version: int = 2) -> Dictionary:
@@ -104,7 +129,7 @@ static func resolved_entry(id: String, level: int, tier: int, version: int = 2) 
 
 func filtered_ids() -> Array[String]:
 	var result: Array[String] = []
-	for id: String in entry_ids():
+	for id: String in entry_ids(preview_unreleased_b05):
 		var value := definition(id)
 		if biome_filter != "all" and value.get("biome_id","") != biome_filter: continue
 		if kind_filter == "boss" and not id.begins_with("BO"): continue
@@ -153,7 +178,7 @@ func _show_entry(id: String, reset_level: bool = true) -> void:
 	var data := definition(id)
 	if data.is_empty(): return
 	selected_id = id
-	if reset_level: preview_level = int(Numerical.chapter_levels(Numerical.chapter_for_id(id)).boss_level)
+	if reset_level: preview_level = default_level(id)
 	for child: Node in detail.get_children(): detail.remove_child(child); child.queue_free()
 	for child: Node in grid.get_children():
 		if child is Button:
@@ -164,13 +189,13 @@ func _show_entry(id: String, reset_level: bool = true) -> void:
 	portrait(detail,id,Vector2(18,10),Vector2(184,184))
 	var title := MineStyle.literal(detail,MineStyle.content_text(data,"name"),Vector2(217,27),Vector2(221,88),23)
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	MineStyle.literal(detail,id+" · "+MineStyle.content_text(Catalog.biomes().get(str(data.get("biome_id","")),{}),"name"),Vector2(217,126),Vector2(221,50),14,MineStyle.CYAN)
+	MineStyle.literal(detail,id+" · "+MineStyle.content_text(available_biomes(preview_unreleased_b05).get(str(data.get("biome_id","")),{}),"name"),Vector2(217,126),Vector2(221,50),14,MineStyle.CYAN)
 	level_picker = OptionButton.new()
 	level_picker.name = "CodexLevel"
 	level_picker.position = Vector2(20,213)
 	level_picker.size = Vector2(116,35)
 	level_picker.add_theme_font_size_override("font_size",14)
-	for level: int in range(1,21): level_picker.add_item("Lv."+str(level),level)
+	for level: int in range(1,31 if id.begins_with("B06-") or id == "BO06" else (26 if id.begins_with("B05-") or id == "BO05" else 21)): level_picker.add_item("Lv."+str(level),level)
 	level_picker.select(int(profile.get("enemy_level",preview_level))-1)
 	level_picker.disabled = id.begins_with("BO")
 	level_picker.item_selected.connect(func(index: int): preview_level = index+1; _show_entry(selected_id,false))
@@ -237,7 +262,7 @@ static func portrait(parent: Node, id: String, at: Vector2, extent: Vector2) -> 
 	else:
 		# Match EnemyArt.install in the actual battle renderer. BossProfiles
 		# visual_asset names pre-storybook placeholders, not current boss identity.
-		var entry := EnemyImages.entry_for(id)
+		var entry := preload("res://scripts/combat/b06_native_art.gd").boss_frame("","idle") if id == "BO06" and Rules.b06_candidate_enabled() else EnemyImages.entry_for(id)
 		if not entry.is_empty():
 			var atlas := AtlasTexture.new()
 			atlas.atlas = entry.texture
@@ -249,17 +274,22 @@ static func portrait(parent: Node, id: String, at: Vector2, extent: Vector2) -> 
 	view.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	view.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	view.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
-	var fitted := extent
+	var art_extent := extent-Vector2(16,16) if id.begins_with("B05-") else extent
+	var fitted := art_extent
 	if view.texture != null and not dedicated:
 		var native := view.texture.get_size()
 		var pixel_ratio := maxf(1.0,parent.get_viewport().get_stretch_transform().get_scale().x) if parent.is_inside_tree() else 1.0
-		var scale_factor := minf(minf(extent.x/native.x,extent.y/native.y),1.0/pixel_ratio)
+		var scale_factor := minf(minf(art_extent.x/native.x,art_extent.y/native.y),1.0/pixel_ratio)
 		fitted = native*scale_factor
 	view.position = (extent-fitted)*0.5
 	view.size = fitted
 	view.set_meta("dedicated_codex_art",dedicated)
 	view.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	frame.add_child(view)
+	if view.texture == null and (id.begins_with("B05-") or id == "BO05"):
+		var pending := MineStyle.literal(frame,Inspect.t("美术制作中","ARTWORK IN PROGRESS"),Vector2(8,extent.y*0.35),Vector2(extent.x-16,extent.y*0.3),13,MineStyle.MUTED)
+		pending.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		pending.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	return view
 
 func _enemy_skill_catalog(flow: VBoxContainer, profile: Dictionary) -> void:
@@ -269,7 +299,10 @@ func _enemy_skill_catalog(flow: VBoxContainer, profile: Dictionary) -> void:
 	for skill: Dictionary in skills:
 		if bool(skill.get("unlocked",false)): unlocked += 1
 	_line(flow,difficulty_label(difficulty)+Inspect.t(" · 已解锁 %d / %d 项"," · %d / %d unlocked") % [unlocked,skills.size()],16,MineStyle.CYAN)
-	_line(flow,Inspect.t("基础招式保留；更高难度累计开放新招式。灰色项未开放，其数值按当前所选难度预览。","Base moves remain; higher difficulties add moves. Grey entries are locked. Their numbers preview the currently selected difficulty."),13,MineStyle.MUTED)
+	if id.begins_with("B06-M"):
+		_line(flow,Inspect.t("难度强化累计生效；按湿地高潮条件预览，未开放项按解锁难度展示。有效预警与冷却取自实际运行招式。","Upgrades are cumulative. Preview assumes wet/high tide; locked rows use unlock difficulty. Timing comes from runtime commands."),13,MineStyle.MUTED)
+	else:
+		_line(flow,Inspect.t("基础招式保留；更高难度累计开放新招式。灰色项未开放，其数值按当前所选难度预览。","Base moves remain; higher difficulties add moves. Grey entries are locked. Their numbers preview the currently selected difficulty."),13,MineStyle.MUTED)
 	for skill: Dictionary in skills:
 		var enabled := bool(skill.get("unlocked",false))
 		var replaced := bool(skill.get("replaced",false))
@@ -330,7 +363,8 @@ func _enemy_details(flow: VBoxContainer, profile: Dictionary) -> void:
 
 func _boss_details(flow: VBoxContainer, profile: Dictionary) -> void:
 	_line(flow,Inspect.t("首领技能","BOSS ABILITIES"),18,MineStyle.CYAN)
-	_line(flow,Inspect.t("阶段切换：生命 70% / 35%；额外招式按难度累计开放。","Phase changes: 70% / 35% HP. Extra abilities unlock cumulatively by difficulty."),14,MineStyle.MUTED)
+	var thresholds: Array = profile.get("phase_thresholds",[.7,.35])
+	_line(flow,Inspect.t("阶段切换：生命 %.0f%% / %.0f%%；额外招式按难度累计开放。","Phase changes: %.0f%% / %.0f%% HP. Extra abilities unlock cumulatively by difficulty.") % [float(thresholds[0])*100,float(thresholds[1])*100],14,MineStyle.MUTED)
 	for skill: Dictionary in boss_skill_entries(str(profile.boss_id),difficulty,ruleset):
 		_line(flow,str(skill.title),17,MineStyle.CYAN if bool(skill.unlocked) else MineStyle.MUTED)
 		_line(flow,str(skill.description),14)
@@ -340,7 +374,22 @@ func _boss_details(flow: VBoxContainer, profile: Dictionary) -> void:
 
 static func boss_skill_entries(id: String, tier: int, version: int = 2) -> Array[Dictionary]:
 	var entries: Array[Dictionary] = []
-	var brain := Brain.new()
+	if id == "BO06":
+		if not Rules.b06_candidate_enabled() or version != 2: return entries
+		var skills = preload("res://scripts/combat/b06_enemy_skills.gd")
+		for index: int in skills.BOSS_ACTIONS.size():
+			var action: String = skills.BOSS_ACTIONS[index]
+			var gate: int = skills.BOSS_GATES[index]
+			var command: Dictionary = skills.boss_action(skills.boss_profile(maxi(tier,gate)),action,Vector2.ZERO,Vector2(300,0),1)
+			var description := difficulty_label(gate)+" · "+(Inspect.t("已开放","available") if tier>=gate else Inspect.t("未开放：按解锁难度预览","locked: unlock-tier preview"))+"\n"+command_description(command)
+			var stages: Array[Dictionary] = [command]
+			for stage: int in range(1,int(command.get("stage_count",1))):
+				var follow: Dictionary = skills.boss_action(skills.boss_profile(maxi(tier,gate)),action,Vector2.ZERO,Vector2(300,0),1,stage)
+				stages.append(follow)
+				description += "\n"+Inspect.t("后续第 %d 段（再次预警）","Follow-up %d (new warning)") % (stage+1)+"\n"+command_description(follow)
+			entries.append({"id":action,"title":skills.BOSS_NAMES[index],"unlock_difficulty":gate,"unlocked":tier>=gate,"command":command,"stages":stages,"description":description})
+		return entries
+	var brain = preload("res://scripts/combat/b05_boss_brain.gd").new() if id == "BO05" else Brain.new()
 	brain.configure(Bosses.resolve(id,4,version),1)
 	var source := Node2D.new()
 	var target := Node2D.new()
@@ -372,6 +421,7 @@ static func command_description(command: Dictionary) -> String:
 	var pair: Array = names.get(kind,[kind,kind])
 	var shape: Array = shapes.get(str(command.get("shape","")),["",""])
 	var lines: PackedStringArray = [Inspect.t(str(pair[0]),str(pair[1]))+" · "+Inspect.t(str(shape[0]),str(shape[1])),Inspect.t("预警 %.2f 秒 · 锁定 %.2f 秒 · 收势 %.2f 秒","Tell %.2f s · lock %.2f s · recovery %.2f s") % [float(command.get("tell",0)),float(command.get("lock",0)),float(command.get("recovery",0))]]
+	if command.has("coefficient"): lines.append(Inspect.t("招式系数 %.0f%% · 阶段1预览","Action coefficient %.0f%% · phase 1 preview") % float(command.coefficient))
 	if float(command.get("damage_multiplier",0)) > 0: lines.append(Inspect.t("单次伤害系数 ×%.2f","Per-hit damage coefficient ×%.2f") % float(command.damage_multiplier))
 	if int(command.get("count",0)) > 0: lines.append(Inspect.t("数量 %d","Count %d") % int(command.count))
 	if float(command.get("duration",0)) > 0: lines.append(Inspect.t("持续 %.1f 秒","Duration %.1f s") % float(command.duration))

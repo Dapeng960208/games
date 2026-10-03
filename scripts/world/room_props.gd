@@ -73,7 +73,10 @@ func configure(owner_room: Node2D, room_layout: Dictionary) -> bool:
 	# Three flush, non-colliding beacons keep their positions for this room.
 	# A separate random stream changes only their function, never geometry.
 	var occupied: Array[Vector2] = []
-	for ordinal: int in 3:
+	# B05 freezes one (or no boss-room) beacon explicitly. Never invent two
+	# additional positions to satisfy the historical three-beacon convention.
+	var beacon_count: int = layout.get("buff_anchors",[]).size() if bool(layout.get("b06_candidate",false)) or (biome_id=="B05" and bool(layout.get("fixed_layout",false))) else 3
+	for ordinal: int in beacon_count:
 		var anchor: Dictionary = {}
 		if bool(layout.get("fixed_layout", false)):
 			var authored: Array = layout.get("buff_anchors", [])
@@ -280,7 +283,7 @@ func grant_buff(effect: String, player: Node2D) -> bool:
 	var game: Node = get_node_or_null("/root/Game") if is_inside_tree() else null
 	if effect == "heal":
 		if game == null or game.run == null or not player.has_method("heal"): return false
-		return float(player.heal(float(game.run.max_hp) * 0.25)) > 0.0
+		return float(player.heal(float(game.run.max_hp) * 0.25,"external")) > 0.0
 	if effect == "resource":
 		if game == null or game.run == null: return false
 		return float(game.restore_resource(float(game.run.stats.get("resource_max", 0.0)) * 0.30)) > 0.0

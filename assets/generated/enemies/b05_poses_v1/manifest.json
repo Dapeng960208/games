@@ -1,0 +1,735 @@
+{
+  "schema_version": 1,
+  "asset_family": "storybook_2_5d_v1",
+  "scope": [
+    "B05-M01",
+    "B05-M02",
+    "B05-M04"
+  ],
+  "generation_tool": "built-in image_gen.imagegen",
+  "native_generated": true,
+  "upscaled": false,
+  "raster_processing": "Unmodified byte-for-byte copies of generated PNGs; no resize, trim, alpha cleanup, recenter, or sharpening. QA composites are separate files in /tmp only.",
+  "source_reference": {
+    "path": "B05.png",
+    "sha256": "e19feb1a77f78a7ec17403b300dc2680af6ac1bde651bce3964001ad7b73bf93",
+    "role": "B05 world/race style reference; not a runtime texture"
+  },
+  "contract": {
+    "canonical_aim": [
+      1,
+      0
+    ],
+    "facing": "right",
+    "camera": "elevated three-quarter",
+    "authored_clips": [
+      "idle",
+      "telegraph",
+      "execute"
+    ],
+    "frames_per_clip": 1,
+    "recovery": "reuse idle with existing runtime recovery transform",
+    "recoil": "existing runtime hit-reaction transform; no authored recoil frame supplied",
+    "walk": "idle key pose with existing runtime motion, not a complete authored walk animation",
+    "m04_execute_semantics": "sustained interruptible healing channel; does not target or heal bosses",
+    "vfx": "Root lines, cone/area telegraphs, seed projectiles, waterline, damage and timing remain authoritative runtime layers. Body art does not drive collision or damage.",
+    "scale_rule": "Use one fixed native pixel/world ratio per identity from reference_body_height_px. Register each pose with its listed absolute source foot. Do not scale each frame to its alpha bbox or entire 1254 canvas; that would cause pose popping.",
+    "registration_status": "Manually inspected source-pixel recommendations; integration must verify pivot, visual size, outlet mirroring and action timing in actual production 2560x1440 runtime before quality_gate_passed.",
+    "directional_coverage": "One canonical right-facing elevated three-quarter view; horizontal mirroring may supply left-facing. No authored eight-direction or front/back attack art. Vertical aim may remain side-on while authoritative runtime VFX target the correct direction; this is an explicit runtime acceptance limitation.",
+    "resolution_note": "All nine accepted PNGs are measured native 1254x1254, including the visually wider M02 telegraph pose. Visible silhouette width differs by pose, but native canvas resolution does not. Never normalize each silhouette width/height separately."
+  },
+  "identities": {
+    "B05-M01": {
+      "name": "藤鞭树卫",
+      "name_en": "Vinewhip Warden",
+      "reference_body_height_px": 1125,
+      "reference_definition": "Idle crown or highest integral organ to midpoint of planted root-foot contact centers, excluding empty canvas. M02 integral seedpod is included in silhouette height.",
+      "frames": {
+        "idle": {
+          "texture": "B05-M01_idle-native.png",
+          "source_generated_file": "exec-943e027d-a24d-4d07-bacb-c60487e87bd2.png",
+          "sha256": "ed386784bcbed9b1655dfaeb39b829eded094f39ab806582339ce3b4597b3b5c",
+          "bytes": 1709452,
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            129,
+            11,
+            1229,
+            1233
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            9,
+            1236,
+            1254
+          ],
+          "foot": [
+            488,
+            1136
+          ],
+          "foot_contacts": [
+            [
+              275,
+              1198
+            ],
+            [
+              701,
+              1074
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            500,
+            11
+          ],
+          "core_anchor": [
+            584,
+            388
+          ],
+          "visual_outlet": [
+            697,
+            467
+          ],
+          "outlet_kind": "vine_shoulder",
+          "native_pose_height_to_ground_px": 1125,
+          "reference_body_height_px": 1125,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.25,
+          "prompt": "B05-M01_idle.prompt.txt",
+          "transparent_pixel_count": 964724,
+          "near_opaque_pixel_count_alpha_ge250": 452883,
+          "partial_alpha_count": 606857,
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 1,
+            "left": 1,
+            "right": 0
+          },
+          "alpha_note": "Original alpha retained. Some generated files have invisible alpha=1 residue at canvas edges; visible alpha>=16 anatomy is fully inside the canvas.",
+          "source_copy_byte_verified": true
+        },
+        "telegraph": {
+          "texture": "B05-M01_telegraph-native.png",
+          "source_generated_file": "exec-fa00edb5-3756-47b2-b925-8e83b6b21f3f.png",
+          "sha256": "b236c6db90d3353289dd7f1c833450af11e8baa7affef31c3a20803eb6b7e80a",
+          "bytes": 1737886,
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            128,
+            10,
+            1238,
+            1235
+          ],
+          "raw_nonzero_alpha_bbox": [
+            105,
+            8,
+            1241,
+            1239
+          ],
+          "foot": [
+            488,
+            1137
+          ],
+          "foot_contacts": [
+            [
+              275,
+              1199
+            ],
+            [
+              701,
+              1075
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            501,
+            10
+          ],
+          "core_anchor": [
+            584,
+            389
+          ],
+          "visual_outlet": [
+            695,
+            375
+          ],
+          "outlet_kind": "vine_shoulder",
+          "native_pose_height_to_ground_px": 1127,
+          "reference_body_height_px": 1125,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.25,
+          "prompt": "B05-M01_telegraph-v2.prompt.txt",
+          "transparent_pixel_count": 929655,
+          "near_opaque_pixel_count_alpha_ge250": 506313,
+          "partial_alpha_count": 642019,
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "alpha_note": "Original alpha retained. Some generated files have invisible alpha=1 residue at canvas edges; visible alpha>=16 anatomy is fully inside the canvas.",
+          "source_copy_byte_verified": true,
+          "generation_chain_note": "Built-in imagegen derived action from selected idle; then a built-in targeted anatomical/edge repair produced this selected frame. Original action and repair prompts are both preserved; rejected action pixels are not shipped as production sprites."
+        },
+        "execute": {
+          "texture": "B05-M01_execute-native.png",
+          "source_generated_file": "exec-6d311b77-564e-49a3-9655-823c0833f50c.png",
+          "sha256": "2892b8fb5ff0e9be97f7a2f6b755293591e9b9de289751c39c71a3e3f93423f4",
+          "bytes": 1625321,
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            39,
+            57,
+            1215,
+            1210
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            21,
+            1222,
+            1218
+          ],
+          "foot": [
+            440,
+            1115
+          ],
+          "foot_contacts": [
+            [
+              180,
+              1171
+            ],
+            [
+              700,
+              1059
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            544,
+            57
+          ],
+          "core_anchor": [
+            557,
+            444
+          ],
+          "visual_outlet": [
+            667,
+            413
+          ],
+          "outlet_kind": "vine_shoulder",
+          "native_pose_height_to_ground_px": 1058,
+          "reference_body_height_px": 1125,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.25,
+          "prompt": "B05-M01_execute-v2.prompt.txt",
+          "transparent_pixel_count": 954640,
+          "near_opaque_pixel_count_alpha_ge250": 507082,
+          "partial_alpha_count": 616936,
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 1,
+            "right": 0
+          },
+          "alpha_note": "Original alpha retained. Some generated files have invisible alpha=1 residue at canvas edges; visible alpha>=16 anatomy is fully inside the canvas.",
+          "source_copy_byte_verified": true,
+          "generation_chain_note": "Built-in imagegen derived action from selected idle; then a built-in targeted anatomical/edge repair produced this selected frame. Original action and repair prompts are both preserved; rejected action pixels are not shipped as production sprites."
+        }
+      }
+    },
+    "B05-M02": {
+      "name": "种荚炮手",
+      "name_en": "Seedpod Gunner",
+      "reference_body_height_px": 1166,
+      "reference_definition": "Idle crown or highest integral organ to midpoint of planted root-foot contact centers, excluding empty canvas. M02 integral seedpod is included in silhouette height.",
+      "frames": {
+        "idle": {
+          "texture": "B05-M02_idle-native.png",
+          "source_generated_file": "exec-99c92381-6ebe-4dfa-b8a2-43f453e94679.png",
+          "sha256": "5794d1d3133a811b8ec7217477c40dd67b73c2e2e14c5b11f4ee519cb04e53d1",
+          "bytes": 1675145,
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            224,
+            5,
+            1240,
+            1234
+          ],
+          "raw_nonzero_alpha_bbox": [
+            31,
+            0,
+            1242,
+            1237
+          ],
+          "foot": [
+            655,
+            1171
+          ],
+          "foot_contacts": [
+            [
+              460,
+              1213
+            ],
+            [
+              850,
+              1129
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            961,
+            5
+          ],
+          "core_anchor": [
+            786,
+            606
+          ],
+          "visual_outlet": [
+            1116,
+            284
+          ],
+          "outlet_kind": "pod_muzzle",
+          "native_pose_height_to_ground_px": 1166,
+          "reference_body_height_px": 1166,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.4778,
+          "prompt": "B05-M02_idle.prompt.txt",
+          "transparent_pixel_count": 939892,
+          "near_opaque_pixel_count_alpha_ge250": 559931,
+          "partial_alpha_count": 631593,
+          "edge_alpha_max": {
+            "top": 1,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "alpha_note": "Original alpha retained. Some generated files have invisible alpha=1 residue at canvas edges; visible alpha>=16 anatomy is fully inside the canvas.",
+          "source_copy_byte_verified": true
+        },
+        "telegraph": {
+          "texture": "B05-M02_telegraph-native.png",
+          "source_generated_file": "exec-d9afd0e5-93a4-4df0-a604-679038e27d9b.png",
+          "sha256": "6670ff995633590c6fd72d5eefa133c658ed7ed60659f82e2a0b166377351f7d",
+          "bytes": 1549132,
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            159,
+            93,
+            1232,
+            1236
+          ],
+          "raw_nonzero_alpha_bbox": [
+            65,
+            49,
+            1236,
+            1239
+          ],
+          "foot": [
+            583,
+            1171
+          ],
+          "foot_contacts": [
+            [
+              369,
+              1207
+            ],
+            [
+              797,
+              1135
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            988,
+            93
+          ],
+          "core_anchor": [
+            733,
+            650
+          ],
+          "visual_outlet": [
+            1141,
+            367
+          ],
+          "outlet_kind": "pod_muzzle",
+          "native_pose_height_to_ground_px": 1078,
+          "reference_body_height_px": 1166,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.4778,
+          "prompt": "B05-M02_telegraph-v2.prompt.txt",
+          "transparent_pixel_count": 926128,
+          "near_opaque_pixel_count_alpha_ge250": 596817,
+          "partial_alpha_count": 644852,
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "alpha_note": "Original alpha retained. Some generated files have invisible alpha=1 residue at canvas edges; visible alpha>=16 anatomy is fully inside the canvas.",
+          "source_copy_byte_verified": true,
+          "generation_chain_note": "Built-in imagegen derived action from selected idle; then a built-in targeted anatomical/edge repair produced this selected frame. Original action and repair prompts are both preserved; rejected action pixels are not shipped as production sprites."
+        },
+        "execute": {
+          "texture": "B05-M02_execute-native.png",
+          "source_generated_file": "exec-2d5cae7a-ffef-4add-a657-f588f8153f81.png",
+          "sha256": "5a3629c0fea7ec467a5c75de127a3fe24f890433f5a6b27d71cc56e458e96946",
+          "bytes": 1524599,
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            79,
+            22,
+            1194,
+            1232
+          ],
+          "raw_nonzero_alpha_bbox": [
+            25,
+            18,
+            1220,
+            1235
+          ],
+          "foot": [
+            627,
+            1172
+          ],
+          "foot_contacts": [
+            [
+              434,
+              1205
+            ],
+            [
+              820,
+              1139
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            801,
+            22
+          ],
+          "core_anchor": [
+            430,
+            557
+          ],
+          "visual_outlet": [
+            1000,
+            327
+          ],
+          "outlet_kind": "pod_muzzle",
+          "native_pose_height_to_ground_px": 1150,
+          "reference_body_height_px": 1166,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.4778,
+          "prompt": "B05-M02_execute-v2.prompt.txt",
+          "transparent_pixel_count": 955751,
+          "near_opaque_pixel_count_alpha_ge250": 564095,
+          "partial_alpha_count": 614384,
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "alpha_note": "Original alpha retained. Some generated files have invisible alpha=1 residue at canvas edges; visible alpha>=16 anatomy is fully inside the canvas.",
+          "source_copy_byte_verified": true,
+          "generation_chain_note": "Built-in imagegen derived action from selected idle; then a built-in targeted anatomical/edge repair produced this selected frame. Original action and repair prompts are both preserved; rejected action pixels are not shipped as production sprites."
+        }
+      }
+    },
+    "B05-M04": {
+      "name": "露珠护蕊",
+      "name_en": "Dewdrop Bloomkeeper",
+      "reference_body_height_px": 1178,
+      "reference_definition": "Idle crown or highest integral organ to midpoint of planted root-foot contact centers, excluding empty canvas. M02 integral seedpod is included in silhouette height.",
+      "frames": {
+        "idle": {
+          "texture": "B05-M04_idle-native.png",
+          "source_generated_file": "exec-5445a00c-10d7-47f3-8a2e-d5463524e829.png",
+          "sha256": "4abf5287d6ad749d078a2eab2f0d965884f40124cdd50b3079a8f893aeaeb7c6",
+          "bytes": 1148427,
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            262,
+            20,
+            1082,
+            1246
+          ],
+          "raw_nonzero_alpha_bbox": [
+            21,
+            18,
+            1228,
+            1254
+          ],
+          "foot": [
+            766,
+            1198
+          ],
+          "foot_contacts": [
+            [
+              690,
+              1178
+            ],
+            [
+              842,
+              1218
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            689,
+            20
+          ],
+          "core_anchor": [
+            775,
+            328
+          ],
+          "visual_outlet": [
+            1005,
+            760
+          ],
+          "outlet_kind": "resting_hand",
+          "native_pose_height_to_ground_px": 1178,
+          "reference_body_height_px": 1178,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.5444,
+          "prompt": "B05-M04_idle.prompt.txt",
+          "transparent_pixel_count": 1148408,
+          "near_opaque_pixel_count_alpha_ge250": 326557,
+          "partial_alpha_count": 423786,
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 0
+          },
+          "alpha_note": "Original alpha retained. Some generated files have invisible alpha=1 residue at canvas edges; visible alpha>=16 anatomy is fully inside the canvas.",
+          "source_copy_byte_verified": true
+        },
+        "telegraph": {
+          "texture": "B05-M04_telegraph-native.png",
+          "source_generated_file": "exec-7d65c25a-9abe-435f-af3f-3669489898e1.png",
+          "sha256": "f21d741ab3f5129c537a3b167cba439599ec98ec6cb0bfa3803ce5dd04ed9218",
+          "bytes": 1179757,
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            251,
+            22,
+            1077,
+            1247
+          ],
+          "raw_nonzero_alpha_bbox": [
+            111,
+            17,
+            1080,
+            1254
+          ],
+          "foot": [
+            770,
+            1198
+          ],
+          "foot_contacts": [
+            [
+              692,
+              1180
+            ],
+            [
+              848,
+              1216
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            752,
+            22
+          ],
+          "core_anchor": [
+            818,
+            333
+          ],
+          "visual_outlet": [
+            912,
+            453
+          ],
+          "outlet_kind": "hands_at_calyx",
+          "native_pose_height_to_ground_px": 1176,
+          "reference_body_height_px": 1178,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.5444,
+          "prompt": "B05-M04_telegraph.prompt.txt",
+          "transparent_pixel_count": 1123955,
+          "near_opaque_pixel_count_alpha_ge250": 368284,
+          "partial_alpha_count": 448163,
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 0
+          },
+          "alpha_note": "Original alpha retained. Some generated files have invisible alpha=1 residue at canvas edges; visible alpha>=16 anatomy is fully inside the canvas.",
+          "source_copy_byte_verified": true
+        },
+        "execute": {
+          "texture": "B05-M04_execute-native.png",
+          "source_generated_file": "exec-0bb8c763-3cd9-4982-98d7-4d9b250ac803.png",
+          "sha256": "4237536ef7f916f2b58d312c45d480b40b60727212d78b5bf74ed741f356eac7",
+          "bytes": 1363546,
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            136,
+            15,
+            1212,
+            1243
+          ],
+          "raw_nonzero_alpha_bbox": [
+            17,
+            12,
+            1215,
+            1254
+          ],
+          "foot": [
+            690,
+            1191
+          ],
+          "foot_contacts": [
+            [
+              608,
+              1174
+            ],
+            [
+              772,
+              1208
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            504,
+            15
+          ],
+          "core_anchor": [
+            636,
+            321
+          ],
+          "visual_outlet": [
+            1120,
+            520
+          ],
+          "outlet_kind": "midpoint_of_channeling_hands",
+          "native_pose_height_to_ground_px": 1176,
+          "reference_body_height_px": 1178,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.5444,
+          "prompt": "B05-M04_execute.prompt.txt",
+          "transparent_pixel_count": 1063899,
+          "near_opaque_pixel_count_alpha_ge250": 431421,
+          "partial_alpha_count": 507462,
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 0
+          },
+          "alpha_note": "Original alpha retained. Some generated files have invisible alpha=1 residue at canvas edges; visible alpha>=16 anatomy is fully inside the canvas.",
+          "source_copy_byte_verified": true
+        }
+      }
+    }
+  },
+  "rejected_candidates": [
+    {
+      "id": "B05-M01_telegraph",
+      "file": "exec-282ac147-5a51-45d3-ae25-d884bc97d0dc.png",
+      "reason": "Swapped the long vine to the other shoulder; not delivered as a production sprite.",
+      "prompt": "B05-M01_telegraph.prompt.txt"
+    },
+    {
+      "id": "B05-M02_telegraph",
+      "file": "exec-a2f60e48-1ae9-46f9-a303-01849ae5dcbe.png",
+      "reason": "Seedpod petal clipped at right edge; repaired through built-in imagegen.",
+      "prompt": "B05-M02_telegraph.prompt.txt"
+    },
+    {
+      "id": "B05-M01_execute",
+      "file": "exec-d4a678a6-81e7-4c69-a7cc-987f1ff4bcdb.png",
+      "reason": "Vine clipped at right edge; repaired through built-in imagegen.",
+      "prompt": "B05-M01_execute-v1-actual.prompt.txt"
+    },
+    {
+      "id": "B05-M02_execute",
+      "file": "exec-7e8f8d3d-b30d-4bf8-8894-54383289f1e7.png",
+      "reason": "Seedpod clipped at right edge; repaired through built-in imagegen.",
+      "prompt": "B05-M02_execute.prompt.txt"
+    }
+  ],
+  "runtime_quality_gate_passed": false,
+  "source_qa": {
+    "checked": "All 9 selected PNGs visually inspected at native artwork scale and as fixed-source-density ~190px anatomy-height composites on light and dark neutral backgrounds. B05 identity, distinct key poses, no visible alpha>=16 clipping, no baked gameplay VFX, and unchanged PNG copies verified.",
+    "source_alpha_edges": "Some files contain only alpha=1 residue at outer canvas edges; all visible anatomy at alpha>=16 is contained. Raw generated alpha has been preserved.",
+    "not_checked": [
+      "Actual production room scale/camera at 2560x1440",
+      "Both horizontal directions and vertical-aim source/VFX correspondence in runtime",
+      "Production frame-switch pivot stability and occlusion",
+      "Gameplay mechanics/timing/damage or natural balance",
+      "Eight-direction or full-frame-by-frame animation"
+    ],
+    "temporary_previews": [
+      "b05-monster-idle-contact.png",
+      "b05-monster-all-pose-contact.png",
+      "b05-monster-pivot-registration.png"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "M11",
+  "pose": "idle",
+  "prompt": "Use case: identity-preserve. Edit this exact monster sprite. Preserve species, identity, number of limbs, face, equipment, colors, material and detailed painterly style. Change ONLY composition: zoom camera OUT strongly so the ENTIRE creature including antennae, coral, lance, flag, tail and feet occupies only the CENTRAL 65% of the square image. At least 17% genuinely EMPTY TRANSPARENT margin on every side. Keep square native canvas, single whole-body IDLE sprite, elevated three-quarter view facing right. No floor, shadow, FX, text or other objects. Do not crop anything. ",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-26da760c-61c3-402c-83bc-172761a91540.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M11_idle-native-v2.png",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M11_idle-native-v1.png",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "6c2762dbb61042e65d00439eab488d286637e088499a8304b638a2ef57ab49ae",
+  "alpha_bbox": [
+    121,
+    21,
+    1224,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    193,
+    195,
+    1123,
+    1112
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "a67ae7772d06e28b10de20cd3f11daf49ff67cd4bc219aa531330cfa9c5ad8f5",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    570,
+    1060
+  ],
+  "attack_outlet_px": [
+    1116,
+    511
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "anchor_note": "hover projected groundpoint; do not infer collision from tentacle or tail tip",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M11_idle-native-v2.json"
+}

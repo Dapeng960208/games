@@ -1,0 +1,80 @@
+{
+  "asset_id": "BO05",
+  "state": "idle",
+  "date": "2026-10-02",
+  "file": "BO05_idle-native.png",
+  "source_file": "generated_images/exec-a570c3f8-8088-4054-9ce6-5839ff9a315b.png",
+  "source_sha256": "13058793b9ec56de85323d7dfb37ec1c0d41a7591dc8e618fc2b5e54f362197e",
+  "tool": "built-in image_gen.imagegen",
+  "model": "unknown",
+  "model_version": "unknown",
+  "model_evidence": "Only image_url and output_hint exposed",
+  "prompt": "Use case: stylized-concept\nAsset type: formal production game boss body sprite and monster-codex identity, B05 千枝花冠树王 (Thousand Branch Flowercrown King), one isolated full body in idle stance.\nInput image 1 is ONLY a world palette and hand-painted finish reference. Do not reproduce its layout, architecture, text, palette chips, or any of its five humanoid figures.\nPrimary request: Draw an original mighty living flowering TREE king, clearly a boss creature, as a SINGLE substantial wide-trunk living tree with exactly THREE large architectural main boughs branching upward from the upper trunk into a broad tiered PINK blossom crown. Not a thin person or elderly humanoid. The massive naturally twisted warm-brown trunk is a powerful torso; substantial tree roots form two grounded weight-bearing root feet. Two low lateral root-bough arms extend beside the torso with thick branching wooden fingers. A large clearly readable open five-petal flower core is embedded centrally in the chest, cream-and-rose petals surrounding a restrained pale aqua living glow. A stern subtle face is formed from natural bark knots above the chest core, no human head, no beard. Distinctive silhouette: wide flaring base, thick forked trunk, three strong rising main branches clearly readable below three interlocking tiered blossom masses. Crown must feel organically asymmetrical but balanced, with layered peach-pink blossoms, several small jade-green leaf clusters and a few warm golden vine veins. The right and left boughs curve outward; the central bough rises higher, all connected to one trunk.\nStyle/medium: polished high-fidelity bright hand-painted fantasy game art for adults 18–30, near-isometric 2.5D, elegant precise thin painted contour, rich sculpted form, believable individual bark ridges and root grain, finely resolved petals. Match reference's warm daylight and refreshing living wood, jade green, peach pink, cream and tiny aqua accents. Avoid toy proportions, flat vector shapes, muddy grunge, photorealism, thick black comic outline.\nComposition: three-quarter front view from a moderately elevated near-isometric camera, looking slightly down on blossom crown and root feet. The boss looks toward lower-left/front. Entire creature visible, NO crop. Broad strong silhouette nearly as wide as tall. Neutral idle: branch arms lowered away from chest, root feet naturally planted apart, unobstructed central flower core. Single boss centered on a square native 2048×2048 RGBA canvas, as large as possible with clean 8–10% transparent margin on every side; root-foot contact points share a common ground baseline near 90% canvas height. Native fine-detail drawing, do not upscale a small picture.\nBackground: actual fully transparent alpha, including gaps between branches and arms. NO background plate, floor, pedestal, horizon, cast shadow, mist, particle field or rectangular color. No UI, text, logo, caption, anatomy diagram, multiple views, icon border or sprite sheet.\nConstraints: one fixed original identity, exactly three dominant upward boughs, layered pink flower crown, thick WIDE living trunk, visible chest flower core, two broad root feet. No mechanical parts, armor plates, metal giant, golem rock body, king clothing, humanoid tree elder, weapon or crown accessory. Idle body only; no attack effects or ground-warning telegraph baked in.\n",
+  "prompt_sha256": "05d20fec9e9b35f28f7c26525f25c0425f07ebacb86f94fd85bb25e7e2a4904d",
+  "prompt_file": "BO05_idle-native.prompt.txt",
+  "reference_images": [
+    {
+      "path": "b05-art/references/B05.png",
+      "role": "World palette and painted finish only; exact recovered reference",
+      "sha256": "e19feb1a77f78a7ec17403b300dc2680af6ac1bde651bce3964001ad7b73bf93"
+    }
+  ],
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "transparent_background": true,
+  "native_pixels_preserved": true,
+  "upscaled": false,
+  "canvas_trimmed": false,
+  "alpha_bbox_any": [
+    0,
+    14,
+    1254,
+    1254
+  ],
+  "alpha_bbox_ge32": [
+    17,
+    17,
+    1246,
+    1240
+  ],
+  "absolute_foot_px": [
+    699,
+    1184
+  ],
+  "absolute_core_px": [
+    735,
+    691
+  ],
+  "absolute_outlets_px": null,
+  "anchor_status": "New source visual landmarks with local left-foot patch translation check; approximate art registration, runtime test required",
+  "visual_review": "Viewed actual native output: shared identity, three main flower boughs, readable core, two root feet; distinct requested arm pose, no baked attack effects. Tight source margins remain. Feet/crown stationary by visual review; runtime alignment QA pending.",
+  "library_status": "Prepared helper definitive transfer_failed before finalization for this source; no Library ID",
+  "runtime_quality_gate_passed": false,
+  "git_backup": {
+    "repository": "Dapeng960208/games",
+    "blob_sha": "e273535b1ca1cc2ed1f01d7d4e5ec4cf90e595f5",
+    "published_in_tree": false
+  },
+  "reference_anatomy_height_px": 1226,
+  "registration_left_foot_patch": {
+    "offset_px": [
+      0,
+      0
+    ],
+    "rgb_mean_absolute_error": 0.0,
+    "source_rect": [
+      420,
+      1080,
+      610,
+      1190
+    ]
+  },
+  "anchor_basis": "Manual visual inspection of actual 1254px regenerated source. Idle root-foot contact centers approximately (447,1204),(951,1164); midpoint (699,1184). Core center (735,691). Outlets picked on each new visible palm/fist. Historical coordinates not used as verified measurements."
+}

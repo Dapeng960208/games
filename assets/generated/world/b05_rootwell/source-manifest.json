@@ -1,0 +1,361 @@
+{
+  "asset_group": "B05 rootwell / living-root spring",
+  "status": "art-complete; ready for integration; final production camera acceptance pending",
+  "generator": "built-in image_gen; four calls (one reference-guided generation, three precise-object-edit variants)",
+  "processing": "Original PNG bytes copied only. No crop, trim, rescale, sharpening, opacity normalization, thresholding, alpha cleanup or API fallback.",
+  "style_reference": {
+    "file": "B05.png",
+    "dimensions_px": [
+      1122,
+      1402
+    ],
+    "sha256": "e19feb1a77f78a7ec17403b300dc2680af6ac1bde651bce3964001ad7b73bf93",
+    "source_url": "https://github.com/user-attachments/assets/319066d8-9906-426f-9fea-35ba81cf5768"
+  },
+  "shared_draw_contract": {
+    "canvas_px": [
+      1254,
+      1254
+    ],
+    "draw_rect_px": [
+      0,
+      0,
+      1254,
+      1254
+    ],
+    "pivot_normalized": [
+      0.5,
+      0.7
+    ],
+    "pivot_source_px": [
+      627,
+      877.8
+    ],
+    "pivot_status": "production candidate registration; actual scene acceptance pending",
+    "state_switching": "Use the same full canvas, draw rectangle, origin and pivot for all four states. Never trim or recenter by alpha bounding box.",
+    "ground_footprint": "Keep the same three-port footprint in every state; do not derive a changing collider from sprite alpha.",
+    "foot_registration_tolerance_px": 4,
+    "foot_registration_measured_max_axis_offset_px": 2,
+    "registration_method": "RGB normalized cross-correlation over three unchanged endgrain patches, integer search within +/-10 native pixels relative to active.",
+    "registration_detail": {
+      "hit": {
+        "left_foot_endgrain": {
+          "offset_px": [
+            0,
+            0
+          ],
+          "ncc": 0.954581,
+          "patch": [
+            93,
+            722,
+            196,
+            853
+          ]
+        },
+        "right_foot_endgrain": {
+          "offset_px": [
+            0,
+            0
+          ],
+          "ncc": 0.962617,
+          "patch": [
+            1112,
+            738,
+            1181,
+            853
+          ]
+        },
+        "front_foot_endgrain": {
+          "offset_px": [
+            0,
+            0
+          ],
+          "ncc": 0.970636,
+          "patch": [
+            673,
+            976,
+            759,
+            1042
+          ]
+        }
+      },
+      "disconnected": {
+        "left_foot_endgrain": {
+          "offset_px": [
+            0,
+            1
+          ],
+          "ncc": 0.950116,
+          "patch": [
+            93,
+            722,
+            196,
+            853
+          ]
+        },
+        "right_foot_endgrain": {
+          "offset_px": [
+            1,
+            1
+          ],
+          "ncc": 0.952234,
+          "patch": [
+            1112,
+            738,
+            1181,
+            853
+          ]
+        },
+        "front_foot_endgrain": {
+          "offset_px": [
+            0,
+            2
+          ],
+          "ncc": 0.963928,
+          "patch": [
+            673,
+            976,
+            759,
+            1042
+          ]
+        }
+      },
+      "destroyed": {
+        "left_foot_endgrain": {
+          "offset_px": [
+            1,
+            0
+          ],
+          "ncc": 0.927338,
+          "patch": [
+            93,
+            722,
+            196,
+            853
+          ]
+        },
+        "right_foot_endgrain": {
+          "offset_px": [
+            1,
+            0
+          ],
+          "ncc": 0.907788,
+          "patch": [
+            1112,
+            738,
+            1181,
+            853
+          ]
+        },
+        "front_foot_endgrain": {
+          "offset_px": [
+            1,
+            0
+          ],
+          "ncc": 0.970663,
+          "patch": [
+            673,
+            976,
+            759,
+            1042
+          ]
+        }
+      }
+    },
+    "production_canvas_world_px": [
+      128,
+      128
+    ]
+  },
+  "native_pixel_coverage": {
+    "requested_base_px": [
+      2048,
+      2048
+    ],
+    "actual_native_px": [
+      1254,
+      1254
+    ],
+    "resampled": false,
+    "not_a_native_2k_texture": true,
+    "coverage_condition": "At the final 2560x1440 framebuffer, projected full-canvas draw width and height must each be <=1254 physical pixels. Native alpha>127 subject spans approximately1145x939 pixels.",
+    "final_projected_draw_px": null,
+    "final_production_camera_verified": false,
+    "owner": "B05 integration/2K camera acceptance must freeze projected size and pivot."
+  },
+  "alpha_qa": {
+    "genuine_rgba_transparency": true,
+    "backgrounds_checked": [
+      "dark #101926",
+      "light #f2ead9"
+    ],
+    "qa_display_full_canvas_px": [
+      338,
+      338
+    ],
+    "result": "Visually coherent on both backgrounds, no opaque backdrop or broad matte halo. At native zoom a fine bright foliage fringe and faint near-zero alpha specks remain. Body pixels are mostly alpha251-253 rather than255. Original generated alpha intentionally retained.",
+    "qa_only_composite": "dark-light.png",
+    "qa_distribution": "Do not copy previews, contact sheets or screenshots to runtime resources or GitHub."
+  },
+  "runtime_contract_not_baked": {
+    "network_radius_world_px": 220,
+    "first_network_shield_hp_fraction": 0.12,
+    "refresh_cap_seconds": 12,
+    "disconnected_seconds": 12,
+    "note": "Runtime owns radius/lines, shield, timers, hit duration and collisions. Art has no UI, labels, timers or range circles."
+  },
+  "assets": [
+    {
+      "state": "active",
+      "file": "rootwell-active-native.png",
+      "dimensions_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "bytes": 1479257,
+      "sha256": "d1d80ce3791c85b14594e78c01ba90d4f2ebc577d165edc1ce53d8d70c60f3d3",
+      "prompt_file": "active-prompt.txt",
+      "original_generated_file": "exec-7e7ae5d2-f5e4-466c-af73-6a9d458a19b1.png",
+      "appearance": "Bright cyan crystal and flowing spring/three root channels.",
+      "alpha": {
+        "nonzero_bbox": [
+          33,
+          10,
+          1207,
+          1254
+        ],
+        "alpha_gt127_bbox": [
+          59,
+          167,
+          1204,
+          1106
+        ],
+        "transparent_pixels": 1023800,
+        "opaque_pixels": 238,
+        "partial_pixels": 548478,
+        "dominant_nonzero_alpha": 252,
+        "border_max_alpha": {
+          "top": 0,
+          "bottom": 1,
+          "left": 0,
+          "right": 0
+        }
+      }
+    },
+    {
+      "state": "hit",
+      "file": "rootwell-hit-native.png",
+      "dimensions_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "bytes": 1450952,
+      "sha256": "c2567f512ca92762da1fa1064e111f7b560011a27feb50f4fa616a0647cb0519",
+      "prompt_file": "hit-prompt.txt",
+      "original_generated_file": "exec-a5bb6b43-09b7-4979-8714-76f4d63b2e29.png",
+      "appearance": "Same active node with crystal/rim cracks, two tiny splashes and compact front-right impact glint.",
+      "alpha": {
+        "nonzero_bbox": [
+          54,
+          53,
+          1208,
+          1222
+        ],
+        "alpha_gt127_bbox": [
+          59,
+          166,
+          1206,
+          1108
+        ],
+        "transparent_pixels": 1020032,
+        "opaque_pixels": 391,
+        "partial_pixels": 552093,
+        "dominant_nonzero_alpha": 253,
+        "border_max_alpha": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        }
+      }
+    },
+    {
+      "state": "disconnected",
+      "file": "rootwell-disconnected-native.png",
+      "dimensions_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "bytes": 1373648,
+      "sha256": "aea018616913de99f2bead3f39ef9905eb46e347d69c8c026c0e37456a854e5d",
+      "prompt_file": "disconnected-prompt.txt",
+      "original_generated_file": "exec-9a3378f3-1a4d-4a52-80ff-4e75ee1bdefe.png",
+      "appearance": "Intact muted glass core; still pool and dry network channels; reversible shutdown, no physical breakage.",
+      "alpha": {
+        "nonzero_bbox": [
+          56,
+          53,
+          1209,
+          1214
+        ],
+        "alpha_gt127_bbox": [
+          59,
+          165,
+          1206,
+          1109
+        ],
+        "transparent_pixels": 1026262,
+        "opaque_pixels": 580,
+        "partial_pixels": 545674,
+        "dominant_nonzero_alpha": 253,
+        "border_max_alpha": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        }
+      }
+    },
+    {
+      "state": "destroyed",
+      "file": "rootwell-destroyed-native.png",
+      "dimensions_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "bytes": 1400433,
+      "sha256": "2412c8d00fc768576bae12b88300a4e4c29fdb0d2b9deb5bbf4118451add58e0",
+      "prompt_file": "destroyed-prompt.txt",
+      "original_generated_file": "exec-27347841-b991-460f-a1a3-a14fd30613d8.png",
+      "appearance": "Shattered core, snapped cradle, split rim, drained basin and muted foliage; same footprint.",
+      "alpha": {
+        "nonzero_bbox": [
+          2,
+          21,
+          1210,
+          1214
+        ],
+        "alpha_gt127_bbox": [
+          59,
+          161,
+          1206,
+          1110
+        ],
+        "transparent_pixels": 1032009,
+        "opaque_pixels": 416,
+        "partial_pixels": 540091,
+        "dominant_nonzero_alpha": 253,
+        "border_max_alpha": {
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        }
+      }
+    }
+  ]
+}

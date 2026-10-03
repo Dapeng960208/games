@@ -1,0 +1,1323 @@
+{
+  "schema_version": 1,
+  "chapter_id": "B05",
+  "runtime_enabled": false,
+  "source_document": "docs/levels/05_BLOOMING_TREE_COURT.md#5-专属与共有装备",
+  "effect_contract": {
+    "runtime_implemented": false,
+    "power_basis": "instance_fixed_power_type_ad_or_ap",
+    "derived_damage_triggers_extra_damage": false,
+    "count_once_per_cast_id": true,
+    "cooldowns_min_seconds": 0.0,
+    "reset_ultimate": false,
+    "heal_can_crit": false,
+    "shield_can_crit": false,
+    "shield_stack_rule": "replace_with_higher",
+    "out_of_combat_clear_seconds": 10.0,
+    "clear_temporary_stacks_on_room_change": true,
+    "equipment_change_can_heal_refresh_shield_or_reset_cooldown": false
+  },
+  "sets": {
+    "B05-SW": {
+      "id": "B05-SW",
+      "name": "繁枝守庭",
+      "name_en": "Branch Warden",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "runtime_implemented": false,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": false,
+          "trigger": "warrior_e_shield_created",
+          "conditions": [
+            "actual_shield_generated"
+          ],
+          "parameters": {
+            "shield_amount_bonus": 0.12
+          }
+        },
+        "4": {
+          "runtime_implemented": false,
+          "trigger": "warrior_w_hit",
+          "conditions": [
+            "warrior_e_shield_actually_absorbed_damage",
+            "direct_damage_only"
+          ],
+          "parameters": {
+            "power_coefficient": 0.3,
+            "target_cap": 3,
+            "icd_seconds": 6.0,
+            "consume_next_w": true,
+            "shape": "short_arc"
+          }
+        },
+        "6": {
+          "runtime_implemented": false,
+          "trigger": "warrior_w_hit",
+          "conditions": [
+            "actual_hit",
+            "one_count_per_cast_id"
+          ],
+          "parameters": {
+            "hit_count": 3,
+            "window_seconds": 8.0,
+            "e_cooldown_reduction_seconds": 1.5,
+            "q_damage_bonus": 0.1,
+            "buff_seconds": 6.0,
+            "icd_seconds": 8.0,
+            "consume_next_q": true
+          }
+        }
+      }
+    },
+    "B05-SG": {
+      "id": "B05-SG",
+      "name": "荚火巡林",
+      "name_en": "Seedfire Ranger",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "runtime_implemented": false,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": false,
+          "trigger": "direct_damage",
+          "conditions": [
+            "target_has_hunt_mark"
+          ],
+          "parameters": {
+            "damage_bonus": 0.08
+          }
+        },
+        "4": {
+          "runtime_implemented": false,
+          "trigger": "gunner_w_hit",
+          "conditions": [
+            "actual_hit_on_hunt_mark_target",
+            "behind_primary_target"
+          ],
+          "parameters": {
+            "power_coefficient": 0.35,
+            "additional_target_cap": 1,
+            "max_distance": 180.0,
+            "per_w_cap": 1
+          }
+        },
+        "6": {
+          "runtime_implemented": false,
+          "trigger": "gunner_q_completed",
+          "conditions": [
+            "actual_movement"
+          ],
+          "parameters": {
+            "min_actual_distance": 100.0,
+            "w_primary_damage_bonus": 0.12,
+            "buff_seconds": 6.0,
+            "icd_seconds": 6.0,
+            "consume_next_w": true,
+            "reset_q": false
+          }
+        }
+      }
+    },
+    "B05-SM": {
+      "id": "B05-SM",
+      "name": "花冠织晶",
+      "name_en": "Bloomcrystal Weaver",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "runtime_implemented": false,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": false,
+          "trigger": "mage_q_direct_damage",
+          "conditions": [
+            "actual_hit"
+          ],
+          "parameters": {
+            "damage_bonus": 0.08
+          }
+        },
+        "4": {
+          "runtime_implemented": false,
+          "trigger": "paid_skill_cast",
+          "conditions": [
+            "successful_paid_cast",
+            "adjacent_skill_ids_differ",
+            "basic_attacks_excluded"
+          ],
+          "parameters": {
+            "cast_count": 3,
+            "window_seconds": 6.0,
+            "mana_restore": 60,
+            "min_actual_spend": 60,
+            "icd_seconds": 6.0
+          }
+        },
+        "6": {
+          "runtime_implemented": false,
+          "trigger": "mage_w_node_placed",
+          "conditions": [
+            "successful_node_placement",
+            "derived_node_attacks_excluded"
+          ],
+          "parameters": {
+            "delay_seconds": 1.0,
+            "radius": 110.0,
+            "power_coefficient": 0.4,
+            "target_cap": 3,
+            "icd_seconds": 8.0,
+            "rings_per_node": 1
+          }
+        }
+      }
+    },
+    "B05-SU": {
+      "id": "B05-SU",
+      "name": "苔泉远行",
+      "name_en": "Mossspring Wayfarer",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "runtime_implemented": false,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": false,
+          "trigger": "root_or_slow_applied",
+          "conditions": [
+            "root_or_slow_only"
+          ],
+          "parameters": {
+            "duration_reduction": 0.2,
+            "combined_reduction_cap": 0.5
+          }
+        },
+        "4": {
+          "runtime_implemented": false,
+          "trigger": "hostile_damage_zone_exited",
+          "conditions": [
+            "actual_hostile_persistent_zone",
+            "actually_left_zone"
+          ],
+          "parameters": {
+            "seconds_without_zone_damage": 1.0,
+            "shield_max_hp_ratio": 0.06,
+            "shield_seconds": 4.0,
+            "icd_seconds": 12.0
+          }
+        },
+        "6": {
+          "runtime_implemented": false,
+          "trigger": "direct_damage",
+          "conditions": [
+            "one_count_per_cast_id",
+            "basic_attack_or_paid_skill"
+          ],
+          "parameters": {
+            "event_count": 3,
+            "heal_max_hp_ratio": 0.03,
+            "move_speed_bonus": 0.08,
+            "buff_seconds": 3.0,
+            "icd_seconds": 12.0
+          }
+        }
+      }
+    }
+  },
+  "equipment": {
+    "B05-SW-head": {
+      "id": "B05-SW-head",
+      "name": "年轮守庭盔",
+      "name_en": "Growthring Warden Helm",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B05-SW",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SW-chest": {
+      "id": "B05-SW-chest",
+      "name": "缠枝护庭甲",
+      "name_en": "Branchbound Warden Armor",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B05-SW",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SW-hands": {
+      "id": "B05-SW-hands",
+      "name": "根握铁木手",
+      "name_en": "Rootgrip Ironwood Gauntlets",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B05-SW",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SW-legs": {
+      "id": "B05-SW-legs",
+      "name": "交枝护膝裤",
+      "name_en": "Crossbranch Kneeguards",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B05-SW",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SW-feet": {
+      "id": "B05-SW-feet",
+      "name": "厚根踏庭靴",
+      "name_en": "Deeproot Warden Boots",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B05-SW",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SW-ring": {
+      "id": "B05-SW-ring",
+      "name": "园誓年轮戒",
+      "name_en": "Garden Oath Ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B05-SW",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "resource_gain_bonus"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SW-accessory": {
+      "id": "B05-SW-accessory",
+      "name": "守庭木心",
+      "name_en": "Warden Woodheart",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B05-SW",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "resource_gain_bonus",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SW-weapon": {
+      "id": "B05-SW-weapon",
+      "name": "繁枝重斩刀",
+      "name_en": "Branchcleaver",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B05-SW",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "damage_bonus"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SG-head": {
+      "id": "B05-SG-head",
+      "name": "叶脉测距镜",
+      "name_en": "Leafvein Rangefinder",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B05-SG",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SG-chest": {
+      "id": "B05-SG-chest",
+      "name": "荚仓巡林衣",
+      "name_en": "Seedpod Ranger Coat",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B05-SG",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SG-hands": {
+      "id": "B05-SG-hands",
+      "name": "果壳扳机手",
+      "name_en": "Husk Trigger Gloves",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B05-SG",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SG-legs": {
+      "id": "B05-SG-legs",
+      "name": "轻枝巡林裤",
+      "name_en": "Lightbranch Ranger Trousers",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B05-SG",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SG-feet": {
+      "id": "B05-SG-feet",
+      "name": "蔓径转位靴",
+      "name_en": "Vinepath Repositioning Boots",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B05-SG",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SG-ring": {
+      "id": "B05-SG-ring",
+      "name": "追荚标记戒",
+      "name_en": "Seedchase Mark Ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B05-SG",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SG-accessory": {
+      "id": "B05-SG-accessory",
+      "name": "荚火测风仪",
+      "name_en": "Seedfire Wind Gauge",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B05-SG",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "damage_bonus",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SG-weapon": {
+      "id": "B05-SG-weapon",
+      "name": "荚火长管枪",
+      "name_en": "Seedfire Longgun",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B05-SG",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "damage_bonus"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SM-head": {
+      "id": "B05-SM-head",
+      "name": "花冠晶额",
+      "name_en": "Bloomcrystal Circlet",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B05-SM",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_mana",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SM-chest": {
+      "id": "B05-SM-chest",
+      "name": "花瓣织晶袍",
+      "name_en": "Petalweave Crystal Robe",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B05-SM",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_hp",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SM-hands": {
+      "id": "B05-SM-hands",
+      "name": "蕊光施法手",
+      "name_en": "Stamenlight Casting Gloves",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B05-SM",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "ability_power",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SM-legs": {
+      "id": "B05-SM-legs",
+      "name": "花序织纹裤",
+      "name_en": "Floralweave Trousers",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B05-SM",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SM-feet": {
+      "id": "B05-SM-feet",
+      "name": "花台步履",
+      "name_en": "Blossom Terrace Slippers",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B05-SM",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "move_speed"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SM-ring": {
+      "id": "B05-SM-ring",
+      "name": "三蕊晶戒",
+      "name_en": "Tristamen Crystal Ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B05-SM",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "ability_power",
+          "resource_gain_bonus"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SM-accessory": {
+      "id": "B05-SM-accessory",
+      "name": "花冠聚晶器",
+      "name_en": "Bloomcrystal Focus",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B05-SM",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_mana",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SM-weapon": {
+      "id": "B05-SM-weapon",
+      "name": "花冠晶杖",
+      "name_en": "Bloomcrystal Staff",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B05-SM",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "ability_power",
+          "damage_bonus"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SU-head": {
+      "id": "B05-SU-head",
+      "name": "苔泉兜帽",
+      "name_en": "Mossspring Hood",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B05-SU",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "magic_resist"
+        ],
+        "magic": [
+          "max_hp",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SU-chest": {
+      "id": "B05-SU-chest",
+      "name": "苔纹旅衣",
+      "name_en": "Mossweave Travel Coat",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B05-SU",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "damage_reduction"
+        ],
+        "magic": [
+          "max_hp",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SU-hands": {
+      "id": "B05-SU-hands",
+      "name": "露线护手",
+      "name_en": "Dewthread Gloves",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B05-SU",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "cooldown_reduction"
+        ],
+        "magic": [
+          "ability_power",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SU-legs": {
+      "id": "B05-SU-legs",
+      "name": "苔泉长裤",
+      "name_en": "Mossspring Trousers",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B05-SU",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ],
+        "magic": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SU-feet": {
+      "id": "B05-SU-feet",
+      "name": "软苔远行鞋",
+      "name_en": "Softmoss Traveling Shoes",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B05-SU",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed",
+          "damage_reduction"
+        ],
+        "magic": [
+          "move_speed",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SU-ring": {
+      "id": "B05-SU-ring",
+      "name": "凝露共鸣戒",
+      "name_en": "Dew Resonance Ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B05-SU",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "max_hp"
+        ],
+        "magic": [
+          "ability_power",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SU-accessory": {
+      "id": "B05-SU-accessory",
+      "name": "苔泉水壶",
+      "name_en": "Mossspring Canteen",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B05-SU",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ],
+        "magic": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-SU-weapon": {
+      "id": "B05-SU-weapon",
+      "name": "露枝旅行器",
+      "name_en": "Dewbranch Travel Implement",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B05-SU",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack"
+        ],
+        "magic": [
+          "ability_power"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B05-U01": {
+      "id": "B05-U01",
+      "name": "渡根苔鞋",
+      "name_en": "Rootcrossing Moss Shoes",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed",
+          "damage_reduction"
+        ],
+        "magic": [
+          "move_speed",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {
+        "runtime_implemented": false,
+        "trigger": "root_ended",
+        "conditions": [
+          "actually_rooted"
+        ],
+        "parameters": {
+          "move_speed_bonus": 0.1,
+          "buff_seconds": 2.0,
+          "icd_seconds": 10.0,
+          "control_immunity": false
+        }
+      },
+      "source_preferences": [
+        "L26",
+        "B05-M03",
+        "B05-M06"
+      ]
+    },
+    "B05-U02": {
+      "id": "B05-U02",
+      "name": "清露环",
+      "name_en": "Clear Dew Ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "max_hp"
+        ],
+        "magic": [
+          "ability_power",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {
+        "runtime_implemented": false,
+        "trigger": "external_heal_received",
+        "conditions": [
+          "actual_external_healing",
+          "overheal_excluded"
+        ],
+        "parameters": {
+          "shield_max_hp_ratio": 0.02,
+          "shield_seconds": 3.0,
+          "icd_seconds": 12.0
+        }
+      },
+      "source_preferences": [
+        "L28",
+        "B05-M04",
+        "B05-M10"
+      ]
+    },
+    "B05-U03": {
+      "id": "B05-U03",
+      "name": "园丁水印",
+      "name_en": "Gardener Watermark",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "",
+      "race_id": "B05",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO04",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ],
+        "magic": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {
+        "runtime_implemented": false,
+        "trigger": "hostile_destructible_destroyed",
+        "conditions": [
+          "enemy_destructible_mechanism"
+        ],
+        "parameters": {
+          "damage_reduction": 0.05,
+          "buff_seconds": 4.0,
+          "icd_seconds": 12.0
+        }
+      },
+      "source_preferences": [
+        "L30",
+        "B05-M13",
+        "B05-M18"
+      ]
+    }
+  }
+}

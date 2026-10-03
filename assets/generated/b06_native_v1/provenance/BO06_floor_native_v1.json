@@ -1,0 +1,29 @@
+{
+  "id": "BO06_floor_native_v1",
+  "folder": "rooms",
+  "ref": "rooms/L31_floor_native_v2.png",
+  "transparent": false,
+  "prompt": "Use case: style-transfer. The reference is B06 production floor rendering style, NOT its exact decoration/layout. Create one native landscape14:9 hand-painted2.5D game FLOOR source, high overhead nearly orthographic view, daylight, pearl stone, pale cream shell surfaces, restrained blue/gold seams and coral pink. Whole playable center90% is flat EMPTY traversable floor. No buildings, obstacles, railings, stairs, pits, shadow barriers, water, basins, channels or elevation discontinuities inside this area. Tiny decoration only at outermost corners under4% image area. All water, gates, clocks, low cover, market/workshop props and tide lines are separate runtime layers. Do not paint these functional objects in the floor. No characters, text, UI, labels, grid, warnings or horizon. Unique floor motif subtle and flush with ground, never physically raised. Native pixels, no upscale. Walking Fortress Bay arena: flat pale limestone/mother-of-pearl ground, broad visually continuous central dry arena, a subtle wide circular flush scallop mosaic at center, south entry unobstructed. Two gate approach areas at20% and80% width50%height remain empty. Outer tide overlays separate. No boss, no gates, no reef pillars; they are separate assets.",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-9e45e7de-de80-4733-a740-a5b37f9e541e.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/rooms/BO06_floor_native_v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "geometry_sha": "8d5d532",
+  "status": "candidate awaiting review",
+  "dimensions": [
+    1564,
+    1006
+  ],
+  "mode": "RGB",
+  "sha256": "cb48b31fa043e79145e3e419e4dcca465636cfdfc3090957c8e13b25d6ed29e6",
+  "alpha_bbox": null,
+  "reference_sha256": "8e08f1ce642babb9516cb4239c67eebd4747e43475da30bce4f701a6e6bf27eb",
+  "selection_status": "selected_source_candidate",
+  "runtime_ready": false,
+  "source_anchors": [
+    "docs/levels/06_TIDAL_CORAL_CITY.md#2-地图元素与种族特性",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#3-18种普通怪",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#4-boss行走巨蟹堡垒"
+  ]
+}

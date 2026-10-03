@@ -5,7 +5,7 @@ extends RefCounted
 
 const Rules = preload("res://scripts/combat/equipment_effects.gd")
 const Registry = preload("res://scripts/data/content_registry.gd")
-const MODIFIER_KEYS: Array[String] = ["damage_bonus", "crit_bonus", "attack_speed_bonus", "move_speed_bonus", "damage_reduction_bonus", "knockback_scale", "received_knockback_scale", "slow_resistance", "chill_duration_bonus", "cost_reduction"]
+const MODIFIER_KEYS: Array[String] = ["damage_bonus", "crit_bonus", "attack_speed_bonus", "move_speed_bonus", "damage_reduction_bonus", "knockback_scale", "received_knockback_scale", "slow_resistance", "chill_duration_bonus", "cost_reduction", "received_displacement_reduction", "terrain_slow_reduction", "received_healing_bonus", "immediate_w_radius_scale"]
 
 var owner_player: Node2D
 var effects: RefCounted
@@ -18,6 +18,10 @@ var _applying_depth: int = 0
 var _event_serial: int = 0
 var _self_status_sources: Dictionary = {}
 var _self_status_sources_known: bool = true
+# Finite, room-local delayed cast releases, like ordinary projectiles.
+var _b05_pending_blooms: Array[Dictionary] = []
+var _b06_pending_rings: Array[Dictionary] = []
+var _b06_tide_mark: Dictionary = {}
 
 
 func configure(player: Node2D) -> void:
@@ -28,6 +32,8 @@ func configure(player: Node2D) -> void:
 	_event_serial = 0
 	_movement_time = 0.0
 	_modifiers.clear()
+	_b05_pending_blooms.clear()
+	clear_b06_targets()
 	_self_status_sources.clear()
 	_self_status_sources_known = true
 	if Game.run == null:
@@ -42,6 +48,8 @@ func configure(player: Node2D) -> void:
 ## Safe replacement changes rule identities only. Snapshot.restore supplies
 ## migrated timers and source pools; this emits neither entry nor one-shots.
 func rebind(loadout: Dictionary, resolved_stats: Dictionary) -> void:
+	_b05_pending_blooms.clear()
+	clear_b06_targets()
 	if effects == null:
 		effects = Rules.new()
 	effects.call("rebind", loadout, resolved_stats, str(resolved_stats.get("resource_type", "")))
@@ -84,11 +92,16 @@ func tick(delta: float) -> void:
 	var result: Dictionary = effects.call("advance", delta, context)
 	_update_modifiers(result)
 	_apply_commands(result, context)
+	_tick_b05_blooms(delta)
+	_tick_b06_rings(delta)
 
 
 func event(name: String, extra: Dictionary = {}) -> Dictionary:
 	if effects == null or Game.run == null or not is_instance_valid(owner_player):
 		return {}
+	if name == "room_enter":
+		_b05_pending_blooms.clear()
+		clear_b06_targets()
 	var context: Dictionary = _context(extra)
 	if not context.has("attack_id") and not context.has("event_id") and name not in ["before_hit", "after_hit", "status_applied", "kill"]:
 		_event_serial += 1
@@ -124,6 +137,15 @@ func _apply_commands(result: Dictionary, context: Dictionary) -> void:
 	if Game.run == null or _applying_depth >= 4:
 		return
 	_applying_depth += 1
+	if result.has("b06_ring"):
+		_b06_pending_rings.append(result.b06_ring.duplicate(true))
+	if result.has("b06_tide_mark"):
+		var marked: Node2D = _target(result.b06_tide_mark.get("target_id"))
+		if _alive(marked): _b06_tide_mark = {"target":weakref(marked), "until":_clock + float(result.b06_tide_mark.get("duration", 6.0))}
+	if result.has("b05_bloom") and context.get("node_position") is Vector2:
+		var bloom: Dictionary = result.b05_bloom.duplicate(true)
+		bloom["position"] = context.node_position
+		_b05_pending_blooms.append(bloom)
 	for command: Dictionary in result.get("self_statuses", []):
 		var id: String = str(command.get("status", ""))
 		var applied: bool = owner_player.status.apply(id, float(command.get("power", 0.0)), float(command.get("duration", 0.0)))
@@ -140,7 +162,7 @@ func _apply_commands(result: Dictionary, context: Dictionary) -> void:
 	if Game.run != null:
 		var healing: float = float(result.get("heal_amount", maxf(0.0, float(result.get("heal_ratio", 0.0))) * Game.run.max_hp))
 		if healing > 0.0 and Game.run.hp > 0.0:
-			owner_player.heal(healing)
+			owner_player.heal(healing, "equipment")
 		Game.restore_resource(maxf(0.0, float(result.get("resource_restore", 0.0))))
 	_apply_refunds(result.get("cooldown_refunds", []))
 	_apply_extensions(result.get("status_extensions", []), context)
@@ -254,7 +276,7 @@ func _apply_bonus_hit(command: Dictionary, context: Dictionary) -> void:
 				var status_id: String = str(status_data.get("status", "")) if status_data is Dictionary else str(status_data)
 				var duration: float = float(status_data.get("duration", 3.0)) if status_data is Dictionary else 3.0
 				_apply_status(target, status_id, float(command.get("power", context.get("H", 0.0))), duration)
-		if seen.size() >= 3:
+		if seen.size() >= (4 if str(command.get("effect_id", "")) == "B06-SM_6:ring" else 3):
 			break
 
 
@@ -310,6 +332,8 @@ func _context(extra: Dictionary = {}) -> Dictionary:
 		context["target_position"] = target.position
 		context["distance"] = owner_player.position.distance_to(target.position)
 		context["target_alive"] = _alive(target)
+		var marked: bool = bool(owner_player.call("has_hunter_mark", target)) if owner_player.has_method("has_hunter_mark") else false
+		context["hunter_marked"] = marked or int(extra.get("hunter_mark_target", 0)) == target.get_instance_id()
 		var health: Variant = target.get("health")
 		if health != null:
 			context["target_hp"] = float(health.get("current"))
@@ -324,6 +348,14 @@ func _context(extra: Dictionary = {}) -> Dictionary:
 	for candidate: Node2D in _nearby(origin, target if target is Node2D else null, 0):
 		nearby.append({"id": candidate.get_instance_id(), "distance": origin.distance_to(candidate.position), "alive": _alive(candidate), "states": _statuses(candidate)})
 	context["nearby_targets"] = nearby
+	var b05_combat_needed: bool = effects != null and (int(effects.set_counts.get("B05-SM", 0)) >= 4 or int(effects.set_counts.get("B05-SG", 0)) >= 6)
+	context["combat_active"] = bool(extra.get("combat_active", false)) or ((b05_combat_needed or (effects != null and (int(effects.set_counts.get("B06-SU", 0)) >= 4 or int(effects.set_counts.get("B06-SM", 0)) >= 6)) or (effects != null and effects.equipped.has("B06-U03"))) and _combat_active(room))
+	if effects != null and int(effects.set_counts.get("B05-SW", 0)) >= 4: context["b05_arc_targets"] = _b05_arc_targets(extra)
+	if effects != null and int(effects.set_counts.get("B05-SG", 0)) >= 4: context["b05_pierce_targets"] = _b05_pierce_targets(extra)
+	var e_guard: Dictionary = owner_player.status.guards.get("hero_f", {})
+	context["b06_shared_power_type"] = _b06_shared_power_type()
+	context["e_shield_active"] = float(e_guard.get("amount", 0.0)) > 0.0 and float(e_guard.get("remaining", 0.0)) > 0.0
+	if effects != null and int(effects.set_counts.get("B06-SW", 0)) >= 6: context["b06_wave_targets"] = _b06_wave_targets(extra)
 	context["nearby_burning"] = false
 	for candidate: Node2D in _nearby(owner_player.position, null, 0):
 		if _statuses(candidate).has("burn"):
@@ -403,3 +435,118 @@ func _nearby(origin: Vector2, excluded: Node2D = null, maximum: int = 3) -> Arra
 	if maximum > 0 and result.size() > maximum:
 		result.resize(maximum)
 	return result
+
+
+func _combat_active(room: Node) -> bool:
+	if not is_instance_valid(room): return false
+	var enemies: Variant = room.get("enemies")
+	if not enemies is Node: return false
+	for enemy: Node in enemies.get_children():
+		if _alive(enemy) and str(enemy.get("actor_kind")) in ["enemy", "boss"]: return true
+	return false
+
+func _b05_arc_targets(context: Dictionary) -> Array:
+	var result: Array = []
+	if str(context.get("skill_slot", "")) != "secondary": return result
+	var direction: Vector2 = context.get("b05_direction", owner_player.get("aim_direction"))
+	if direction.is_zero_approx(): return result
+	# "Short arc" inherits the base W geometry (115,120 degrees), not its
+	# momentum-expanded radius. Stable distance/id order caps the package at 3.
+	var origin: Vector2 = context.get("b05_origin", owner_player.position)
+	for candidate: Node2D in _nearby(origin, null, 0):
+		var offset := candidate.position - origin
+		if offset.length() > 115.0 or (not offset.is_zero_approx() and absf(direction.angle_to(offset)) > PI / 3.0): continue
+		result.append(str(candidate.get_instance_id()))
+		if result.size() == 3: break
+	return result
+
+func _b05_pierce_targets(context: Dictionary) -> Array:
+	var result: Array = []
+	var target: Variant = context.get("target")
+	if str(context.get("skill_slot", "")) != "secondary" or not target is Node2D or not is_instance_valid(target): return result
+	var direction: Vector2 = context.get("b05_direction", Vector2.ZERO)
+	if direction.is_zero_approx(): return result
+	direction = direction.normalized()
+	var origin: Vector2 = target.position
+	var best: Node2D = null
+	var distance := 181.0
+	for candidate: Node2D in _nearby(origin, target, 0):
+		var offset := candidate.position - origin
+		var along := offset.dot(direction)
+		var radius: float = float(candidate.get("navigation_radius")) + 4.0
+		if along <= 0.0 or along > 180.0 or absf(offset.cross(direction)) > radius: continue
+		if along < distance:
+			best = candidate
+			distance = along
+	if is_instance_valid(best): result.append(str(best.get_instance_id()))
+	return result
+
+func _tick_b05_blooms(delta: float) -> void:
+	for index in range(_b05_pending_blooms.size() - 1, -1, -1):
+		var bloom: Dictionary = _b05_pending_blooms[index]
+		bloom.delay = maxf(0.0, float(bloom.delay) - delta)
+		if float(bloom.delay) > 0.0: continue
+		_b05_pending_blooms.remove_at(index)
+		if not effects.source_active("B05-SM_6", {"equipped":effects.equipped,"set_counts":effects.set_counts}): continue
+		var targets: Array = []
+		for candidate: Node2D in _nearby(bloom.position, null, 0):
+			if candidate.position.distance_to(bloom.position) <= float(bloom.radius): targets.append(str(candidate.get_instance_id()))
+			if targets.size() == 3: break
+		event("b05_bloom_due", {"event_id":str(bloom.root_event_id) + ":bloom", "root_event_id":str(bloom.root_event_id), "b05_bloom_targets":targets, "bloom_damage":float(bloom.damage), "X":float(bloom.damage) / 0.40})
+		var room: Node = owner_player.get("room")
+		if is_instance_valid(room) and room.has_method("add_ring"): room.call("add_ring", bloom.position, Color("efa9d4"), float(bloom.radius), 0.3)
+
+
+func clear_b06_targets() -> void:
+	_b06_pending_rings.clear()
+	_b06_tide_mark.clear()
+
+func b06_r_shot(context: Dictionary) -> Dictionary:
+	var extra := context.duplicate(true)
+	var marked: Variant = _b06_tide_mark.get("target")
+	var target: Variant = marked.get_ref() if marked is WeakRef else null
+	extra["b06_tide_marked"] = _alive(target) and _clock < float(_b06_tide_mark.get("until", 0.0))
+	if bool(extra.b06_tide_marked): extra["target_id"] = str(target.get_instance_id())
+	var result := event("gunner_r_shot", extra)
+	if result.has("b06_r_bonus"):
+		_b06_tide_mark.clear()
+		return result.b06_r_bonus
+	return {}
+
+func _b06_wave_targets(context: Dictionary) -> Array:
+	var result: Array = []
+	var origin: Vector2 = context.get("b05_origin", owner_player.position)
+	var direction: Vector2 = context.get("b05_direction", owner_player.aim_direction)
+	for candidate: Node2D in _nearby(origin, null, 0):
+		var offset := candidate.position - origin
+		if offset.length() > 120.0 or offset.dot(direction) < 0.0: continue
+		result.append(str(candidate.get_instance_id()))
+		if result.size() == 3: break
+	return result
+
+func _tick_b06_rings(delta: float) -> void:
+	for index in range(_b06_pending_rings.size() - 1, -1, -1):
+		var ring: Dictionary = _b06_pending_rings[index]
+		ring.delay = maxf(0.0, float(ring.delay) - delta)
+		if float(ring.delay) > 0.0: continue
+		_b06_pending_rings.remove_at(index)
+		if not effects.source_active("B06-SM_6", {"equipped":effects.equipped,"set_counts":effects.set_counts}): continue
+		var targets: Array = []
+		for candidate: Node2D in _nearby(ring.burst_position, null, 0):
+			if candidate.position.distance_to(ring.burst_position) <= float(ring.radius): targets.append(str(candidate.get_instance_id()))
+			if targets.size() == 4: break
+		event("b06_ring_due", {"event_id":str(ring.root_event_id) + ":b06_ring", "root_event_id":str(ring.root_event_id), "b06_ring_targets":targets, "ring_damage":float(ring.damage), "X":float(ring.damage) / 0.45})
+		var room: Node = owner_player.get("room")
+		if is_instance_valid(room) and room.has_method("add_ring"): room.call("add_ring", ring.burst_position, Color("77d5dc"), float(ring.radius), 0.3)
+
+
+func _b06_shared_power_type() -> String:
+	if Game.run == null or effects == null: return ""
+	var types: Dictionary = {}
+	for instance_id: String in effects.instance_loadout.values():
+		var item: Dictionary = Game.run.equipment_snapshot.get(instance_id, {})
+		if str(item.get("template_id", "")).begins_with("B06-SU-"):
+			var kind := str(item.get("power_type", ""))
+			if kind in ["physical", "magic"]: types[kind] = true
+	# Mixed orientations have no approved source-P selector yet.
+	return str(types.keys()[0]) if types.size() == 1 else ""

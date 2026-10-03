@@ -66,3 +66,11 @@ func configure(texture: Texture2D, destination: Rect2, room_id: String = "") -> 
 		native_detail = detail
 	else:
 		detail.free()
+
+func configure_candidate_detail(allow_candidate: bool) -> void:
+	if is_instance_valid(native_detail): native_detail.free()
+	native_detail=null
+	var detail:=NativeDetail.new()
+	if detail.configure(environment_id,world_rect,allow_candidate):
+		add_child(detail);native_detail=detail
+	else: detail.free()

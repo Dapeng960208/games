@@ -1,0 +1,74 @@
+[
+  {
+    "schema": "b05-strength-batch-v1",
+    "clean_harness": true,
+    "calibration_candidate": 2,
+    "hero": "CH02",
+    "mix": "class6",
+    "sample": "G2",
+    "room": "",
+    "difficulty": 4,
+    "seeds": [
+      1001
+    ],
+    "wins": 1,
+    "count": 1,
+    "minimum_active_seconds": 35.7333333333326,
+    "maximum_active_seconds": 35.7333333333326,
+    "median_active_seconds": 35.7333333333326,
+    "median_end_hp": 0.896912253273402,
+    "host_seconds": 20.105280892999872,
+    "measurement": "Active native60Hz simulation includes approach, mechanics, immunity, recovery and healing. Host seconds separate. Automated input, not human play.",
+    "source_changes_during_run": [],
+    "absolute_gate": false,
+    "evidence_directory": "20261002T161229550015Z-20817db0"
+  },
+  {
+    "schema": "b05-strength-batch-v1",
+    "clean_harness": true,
+    "calibration_candidate": 2,
+    "hero": "CH01",
+    "mix": "class6",
+    "sample": "G2",
+    "room": "",
+    "difficulty": 4,
+    "seeds": [
+      1001
+    ],
+    "wins": 1,
+    "count": 1,
+    "minimum_active_seconds": 49.8833333333318,
+    "maximum_active_seconds": 49.8833333333318,
+    "median_active_seconds": 49.8833333333318,
+    "median_end_hp": 1.0,
+    "host_seconds": 23.31192827599989,
+    "measurement": "Active native60Hz simulation includes approach, mechanics, immunity, recovery and healing. Host seconds separate. Automated input, not human play.",
+    "source_changes_during_run": [],
+    "absolute_gate": false,
+    "evidence_directory": "20261002T161313509611Z-8c3aea42"
+  },
+  {
+    "schema": "b05-strength-batch-v1",
+    "clean_harness": true,
+    "calibration_candidate": 2,
+    "hero": "CH03",
+    "mix": "class6",
+    "sample": "G2",
+    "room": "",
+    "difficulty": 4,
+    "seeds": [
+      1001
+    ],
+    "wins": 1,
+    "count": 1,
+    "minimum_active_seconds": 145.166666666674,
+    "maximum_active_seconds": 145.166666666674,
+    "median_active_seconds": 145.166666666674,
+    "median_end_hp": 0.532704773129051,
+    "host_seconds": 48.99706447199969,
+    "measurement": "Active native60Hz simulation includes approach, mechanics, immunity, recovery and healing. Host seconds separate. Automated input, not human play.",
+    "source_changes_during_run": [],
+    "absolute_gate": false,
+    "evidence_directory": "20261002T161336952415Z-3d6e2971"
+  }
+]

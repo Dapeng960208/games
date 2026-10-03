@@ -12,6 +12,8 @@ extends RefCounted
 const VERSION := 1
 const Numbers = preload("res://config/numerical_rules.gd")
 const V2_FIELDS := ["ruleset_version", "scale_version", "resource_regen_remainder", "resource_decay_remainder"]
+const B05MechanismSchema = preload("res://scripts/world/b05_mechanism_snapshot.gd")
+const B06MechanismSchema = preload("res://scripts/world/b06_mechanism_snapshot.gd")
 const LIMIT := 1000000000.0
 const Status = preload("res://scripts/combat/combat_status.gd")
 const Rules = preload("res://scripts/combat/equipment_effects.gd")
@@ -24,6 +26,7 @@ const EFFECT_MAPS := ["cooldowns", "buffs", "windows", "rooms", "counts"]
 const EFFECT_HISTORIES := ["heal_history", "resource_history", "refund_history"]
 const EFFECT_NUMBERS := ["clock", "undamaged_time", "eq12_spent_at", "movement_time", "dash_time", "delayed_shield_at"]
 const MODIFIERS := ["damage_bonus", "crit_bonus", "attack_speed_bonus", "move_speed_bonus", "damage_reduction_bonus", "knockback_scale", "received_knockback_scale", "slow_resistance", "chill_duration_bonus", "cost_reduction"]
+const B06_MODIFIERS := ["received_displacement_reduction", "terrain_slow_reduction", "received_healing_bonus", "immediate_w_radius_scale"]
 
 static func capture(room: Node) -> Dictionary:
 	var game: Node = _game()
@@ -50,6 +53,8 @@ static func capture(room: Node) -> Dictionary:
 		if status.get("states").has(id):
 			origins[id] = _vector(actor.get("_enemy_status_origins")[id])
 	var status_data: Dictionary = {"clock":float(status.get("clock")), "shock_cooldown":float(status.get("shock_cooldown")), "states":status.get("states").duplicate(true), "guards":guards, "origins":origins, "slow_remaining":float(actor.get("_enemy_slow_remaining")), "slow_multiplier":float(actor.get("_enemy_slow_multiplier"))}
+	status_data["root_remaining"] = float(actor.get("_enemy_root_remaining"))
+	status_data["root_protection_remaining"] = float(actor.get("_enemy_root_protection_remaining"))
 	var equipment: Dictionary = {}
 	for key: String in EFFECT_MAPS + EFFECT_HISTORIES:
 		equipment[key] = effects.get(key).duplicate(true)
@@ -75,6 +80,14 @@ static func capture(room: Node) -> Dictionary:
 	if game.run.ruleset_version() == Numbers.V2:
 		result.merge({"ruleset_version":2, "scale_version":10, "resource_regen_remainder":game.run.resource_regen_remainder, "resource_decay_remainder":game.run.resource_decay_remainder})
 		_integer_values(result)
+	var mechanisms: Variant = room.get("b05_mechanics")
+	if mechanisms is Object and mechanisms.has_method("checkpoint"):
+		var checkpoint: Dictionary = mechanisms.call("checkpoint")
+		if not checkpoint.is_empty(): result["runtime"] = {"b05_mechanisms":checkpoint}
+	var tide: Variant = room.get("b06_mechanics")
+	if tide is Object and tide.has_method("checkpoint"):
+		var checkpoint: Dictionary = B06MechanismSchema.capture(room)
+		if not checkpoint.is_empty(): result["runtime"] = {"b06_mechanisms":checkpoint}
 	# Runtime dictionary dot writes can create StringName keys. Normalize that
 	# engine-only key representation in the detached copy, not in live reducers;
 	# all value types and the strict JSON/schema validator remain unchanged.
@@ -128,7 +141,7 @@ static func for_loadout(snapshot: Dictionary, old_loadout: Dictionary, new_loado
 	var hero: Dictionary = Rules.Registry.hero(hero_id)
 	var context: Dictionary = {"hp":result.hp, "max_hp":new_stats.max_hp, "resource":result.resource, "resource_max":new_stats.resource_max, "resource_type":new_stats.get("resource_type", ""), "shield":shield, "current_speed":0.0, "base_speed":float(hero.get("move_speed", 220.0)), "nearby_burning":false, "self_chilled":result.status.states.has("chill") and float(result.status.states.get("chill", {}).get("remaining", 0.0)) > 0.0}
 	var modifiers: Dictionary = reducer.call("passive_modifiers", context)
-	for key: String in MODIFIERS:
+	for key: String in MODIFIERS + B06_MODIFIERS:
 		result.equipment.adapter.modifiers[key] = float(modifiers[key])
 	if Numbers.is_v2(new_stats): _integer_values(result)
 	return result if validate(result, hero_id, new_stats) else {}
@@ -164,8 +177,15 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	# Initial actor setup owns fresh-entry values and entry effects.
 	if snapshot.mode == "fresh_entry":
 		return true
-	# Nothing above this point mutates state. Everything below uses validated,
-	# detached copies, so rejection cannot leave a partially restored actor.
+	if snapshot.has("runtime") and str(snapshot.equipment.room_id) == str(room.get("layout_id")):
+		if snapshot.runtime.has("b06_mechanisms"):
+			if not B06MechanismSchema.restore(room,snapshot.runtime.b06_mechanisms): return false
+		else:
+			var mechanisms: Variant = room.get("b05_mechanics")
+			if not mechanisms is Object or not mechanisms.has_method("restore_checkpoint"): return false
+			if not mechanisms.call("restore_checkpoint", snapshot.runtime.b05_mechanisms): return false
+	# Mechanisms restore atomically after strict validation above. Remaining
+	# actor restoration uses only validated detached copies and cannot reject.
 	if game.run.ruleset_version() == Numbers.V2:
 		snapshot = snapshot.duplicate(true)
 		_integer_values(snapshot)
@@ -210,6 +230,8 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	actor.set("_enemy_status_origins", origins)
 	actor.set("_enemy_slow_remaining", float(status_data.slow_remaining))
 	actor.set("_enemy_slow_multiplier", float(status_data.slow_multiplier))
+	actor.set("_enemy_root_remaining", float(status_data.get("root_remaining", 0.0)))
+	actor.set("_enemy_root_protection_remaining", float(status_data.get("root_protection_remaining", 0.0)))
 	for key: String in EFFECT_MAPS:
 		effects.set(key, equipment[key].duplicate(true))
 	for key: String in EFFECT_HISTORIES:
@@ -232,12 +254,24 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	loadout.set("_last_position", actor.get("position"))
 	loadout.set("_current_speed", 0.0)
 	loadout.set("_applying_depth", 0)
+	loadout._b05_pending_blooms.clear()
+	loadout.clear_b06_targets()
+	actor._hostile_hazards.clear()
+	# Hostile transient zones are not reconstructed by a safe-boundary load.
+	# Their pending exits cannot award a shield after the zone has disappeared.
+	for key: String in effects.windows.keys():
+		if key.begins_with("B05-SU_4:exit:"): effects.windows.erase(key)
+	for key: String in effects.counts.keys():
+		if key.begins_with("B05-SU_4:inside:"): effects.counts.erase(key)
 	game.run.hp = minf(float(snapshot.hp), game.run.max_hp)
 	game.run.resource = minf(float(snapshot.resource), float(game.run.stats.resource_max))
 	game.run.shield = float(status.call("shield"))
 	game.run.resource_regen_remainder = float(snapshot.get("resource_regen_remainder", 0.0))
 	game.run.resource_decay_remainder = float(snapshot.get("resource_decay_remainder", 0.0))
-	if rebound:
+	# Keep historical modifier snapshots unchanged; absent B06 keys are neutral.
+	for key: String in B06_MODIFIERS:
+		if not loadout._modifiers.has(key): loadout._modifiers[key] = 1.0 if key.ends_with("_scale") else 0.0
+	if rebound or effects.equipped.keys().any(func(id: String) -> bool: return id.begins_with("B06-")):
 		loadout.call("refresh_modifiers")
 	actor.queue_redraw()
 	return true
@@ -262,6 +296,8 @@ static func restore_room_entry(room: Node, snapshot: Dictionary) -> bool:
 	# the expedition and survive the legacy reducer's room initialization.
 	loadout.call("event", "room_enter", {"room_id":str(room.get("layout_id")), "unvisited":true, "combat_room":combat_room})
 	effects.set("windows", windows)
+	effects.call("clear_b05_temporary")
+	effects.call("clear_b06_temporary")
 	effects.set("delayed_shield_at", delayed_shield_at)
 	effects.set("undamaged_time", undamaged_time)
 	# Recompute only passive modifiers. advance(0) could release a due one-shot
@@ -289,7 +325,12 @@ static func validate(value: Variant, hero_id: String, stats: Dictionary, fresh_a
 		return false
 	if value.get("mode") == "fresh_entry":
 		return fresh_allowed and _keys(value, ["snapshot_version", "mode", "hero_id", "hp", "resource"] + version_fields) and is_equal_approx(float(value.hp), float(stats.get("max_hp", 0.0))) and is_equal_approx(float(value.resource), float(stats.get("starting_resource", 0.0)))
-	if value.get("mode") != "safe_boundary" or not _keys(value, ["snapshot_version", "mode", "hero_id", "hp", "resource", "player", "status", "equipment"] + version_fields):
+	var runtime_fields: Array = ["runtime"] if value.has("runtime") else []
+	if value.has("runtime"):
+		if not _runtime_valid(value.runtime) or not value.get("equipment") is Dictionary: return false
+		var mechanism: Dictionary = value.runtime.b06_mechanisms if value.runtime.has("b06_mechanisms") else value.runtime.b05_mechanisms
+		if mechanism.room_id != value.equipment.get("room_id", ""): return false
+	if value.get("mode") != "safe_boundary" or not _keys(value, ["snapshot_version", "mode", "hero_id", "hp", "resource", "player", "status", "equipment"] + version_fields + runtime_fields):
 		return false
 	return _player_valid(value.player) and _status_valid(value.status, float(stats.get("max_hp", 0.0)), v2) and _equipment_valid(value.equipment, v2)
 
@@ -305,7 +346,10 @@ static func _player_valid(value: Variant) -> bool:
 	return _number(value.passive_count, 1000000.0, true) and _number(value.walk_distance, 1000000.0) and _number(value.cast_serial, LIMIT, true) and _vector_valid(value.aim_direction, 1.0)
 
 static func _status_valid(value: Variant, maximum_hp: float, v2: bool = false) -> bool:
-	if not value is Dictionary or not _keys(value, ["clock", "shock_cooldown", "states", "guards", "origins", "slow_remaining", "slow_multiplier"]): return false
+	if not value is Dictionary: return false
+	var roots: Array = ["root_remaining", "root_protection_remaining"] if value.has("root_remaining") or value.has("root_protection_remaining") else []
+	if not _keys(value, ["clock", "shock_cooldown", "states", "guards", "origins", "slow_remaining", "slow_multiplier"] + roots): return false
+	if not roots.is_empty() and (not _number(value.root_remaining, 300.0) or not _number(value.root_protection_remaining, 2.0)): return false
 	if not _number(value.clock) or not _number(value.shock_cooldown, 300.0) or not _number(value.slow_remaining, 300.0) or not _number(value.slow_multiplier, 1.0): return false
 	if not value.states is Dictionary or not value.guards is Dictionary or not value.origins is Dictionary or value.guards.size() > 64: return false
 	for id: String in value.states:
@@ -365,7 +409,13 @@ static func _equipment_valid(value: Variant, v2: bool = false) -> bool:
 			if v2 and not _number(origin.H, 1000000.0, true): return false
 			if origin.source != ("EQ20" if id == "damage_reduction" else "EQ21") or not _number(origin.applied_at) or not _number(origin.power, 1.0) or not _number(origin.H, 1000000.0): return false
 	if not _keys(adapter, adapter_keys): return false
-	if not _number(adapter.clock) or not _number(adapter.movement_time) or not _number(adapter.event_serial, LIMIT, true) or not adapter.modifiers is Dictionary or not _keys(adapter.modifiers, MODIFIERS): return false
+	if not _number(adapter.clock) or not _number(adapter.movement_time) or not _number(adapter.event_serial, LIMIT, true) or not adapter.modifiers is Dictionary: return false
+	var modifier_keys: Array = MODIFIERS.duplicate()
+	for key: String in B06_MODIFIERS:
+		if adapter.modifiers.has(key):
+			modifier_keys.append(key)
+			if not _number(adapter.modifiers[key], 1.1 if key.ends_with("_scale") else 0.5): return false
+	if not _keys(adapter.modifiers, modifier_keys): return false
 	for key: String in MODIFIERS:
 		if not _number(adapter.modifiers[key], 1.0): return false
 	return true
@@ -443,3 +493,10 @@ static func _integer_values(value: Dictionary) -> void:
 	for key: String in ["heal_history", "resource_history"]:
 		for entry: Dictionary in value.get("equipment", {}).get(key, []): entry.amount = Numbers.integer(float(entry.amount))
 	for origin: Dictionary in value.get("equipment", {}).get("adapter", {}).get("self_status_sources", {}).values(): origin.H = Numbers.integer(float(origin.H))
+
+
+static func _runtime_valid(value: Variant) -> bool:
+	if not value is Dictionary: return false
+	if _keys(value,["b06_mechanisms"]): return B06MechanismSchema.validate_checkpoint(value.b06_mechanisms)
+	if not _keys(value, ["b05_mechanisms"]): return false
+	return B05MechanismSchema.validate_checkpoint(value.b05_mechanisms)
