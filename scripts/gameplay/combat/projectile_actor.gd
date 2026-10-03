@@ -31,6 +31,7 @@ func visual_position() -> Vector2:
 	return VisualPath.position_at(_visual_path,position)
 
 func visual_direction() -> Vector2:
+	if bool(options.get("homing", false)): return direction
 	return VisualPath.direction_at(_visual_path,position,direction)
 
 func visual_path_snapshot() -> Dictionary:
@@ -50,6 +51,13 @@ func _physics_process(delta: float) -> void:
 	if remaining <= 0.0:
 		_finish()
 		return
+	# Keep the first legal target; losing it never retargets or creates a new hit.
+	var target_ref: Variant = options.get("homing_target")
+	if bool(options.get("homing", false)) and target_ref is WeakRef:
+		var target: Variant = target_ref.get_ref()
+		if is_instance_valid(target) and target is Node2D and target.has_method("is_alive") and target.is_alive() and room.has_line_of_sight(position, target.position):
+			var desired: Vector2 = position.direction_to(target.position)
+			if not desired.is_zero_approx(): direction = direction.rotated(clampf(direction.angle_to(desired), -TAU * delta, TAU * delta)).normalized()
 	var distance: float = minf(speed * delta, distance_left)
 	var next: Vector2 = position + direction * distance
 	var wall_fraction: float = room.blocked_fraction(position, next, 2.0)

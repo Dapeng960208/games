@@ -18,8 +18,8 @@ var state: StringName = &"emerging"
 var state_time: float = Balance.ENEMY_SPAWN_GRACE
 var aim_direction := Vector2.LEFT
 var knockback := Vector2.ZERO
-## Distance-authored skill pushes are integrated independently of the legacy
-## basic-hit velocity. Each pulse spends its distance once over a short ease-out;
+## Authored attack/skill pushes are integrated independently of velocity.
+## Each pulse spends its distance once over a short ease-out;
 ## later hits never restart an earlier pulse's lifetime.
 var _pushes: Array[Dictionary] = []
 var hurt_flash: float = 0.0
@@ -152,9 +152,9 @@ func impact_material() -> String:
 		return "stone"
 	return "metal"
 
-func receive_confirmed_impact(direction: Vector2, strength: float, heavy: bool, reaction_style: String = "CH01") -> void:
+func receive_confirmed_impact(direction: Vector2, strength: float, heavy: bool, reaction_style: String = "CH01", contact_pause: float = -1.0) -> void:
 	if is_instance_valid(body_visual):
-		body_visual.receive_impact(direction, strength, heavy, reaction_style)
+		body_visual.receive_impact(direction, strength, heavy, reaction_style, contact_pause)
 
 func impact_anchor(direction: Vector2) -> Dictionary:
 	return body_visual.contact_anchor(direction) if is_instance_valid(body_visual) else {}
@@ -322,8 +322,6 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	last_damage_context = context.duplicate()
 	if last_damage_context.is_empty():
 		last_damage_context = {"damage_source":str(kind),"equipment_eligible":false,"original_basic":false,"proc_depth":1}
-	if (kind == &"primary" or kind == &"child") and not static_actor and rank != "boss" and from_direction.is_finite():
-		knockback += from_direction * Balance.ENEMY_KNOCKBACK
 	var defense: Dictionary = status.damage_modifiers()
 	defense.merge({"armor":effective_armor() * (0.85 if status.has("corrosion") else 1.0),"magic_resist":magic_resist}, true)
 	var settlement := context.duplicate()

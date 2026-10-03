@@ -33,6 +33,8 @@ const Damage = preload("res://scripts/domain/combat/damage_resolver.gd")
 const Progression = preload("res://scripts/domain/progression/hero_progression.gd")
 const Numbers = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const FieldLearning = preload("res://scripts/domain/progression/field_learning.gd")
+const Skills = preload("res://scripts/domain/combat/skill_catalog.gd")
+const SkillGrowth = preload("res://scripts/domain/progression/skill_progression.gd")
 const RoomRewards = preload("res://scripts/domain/world/room_rewards.gd")
 const FieldSnapshot = preload("res://scripts/domain/combat/combat_snapshot.gd")
 const Loot = preload("res://scripts/domain/expedition/expedition_rewards.gd")
@@ -47,6 +49,7 @@ var _equipment_service = preload("res://scripts/app/services/equipment_service.g
 var _progression_service = preload("res://scripts/app/services/progression_service.gd").new(self)
 var _expedition_service = preload("res://scripts/app/services/expedition_service.gd").new(self)
 var _settings_service = preload("res://scripts/app/services/settings_service.gd").new(self)
+var _skill_config_service = preload("res://scripts/app/services/skill_config_service.gd").new(self)
 
 func _ready() -> void:
 	if OS.has_feature("debug") and profile_path == "user://profile.json":
@@ -183,6 +186,8 @@ func restore_recycled_profile(entry_id: String) -> bool:
 	return not _store.unresolved_error
 
 func start_run(options: Dictionary = {}) -> bool:
+	if _skill_config_service.has_pending() and not bool(_skill_config_service.retry_pending().ok):
+		return false
 	if run != null or not has_profile:
 		return false
 	var next := RunSession.new()
@@ -197,6 +202,10 @@ func start_run(options: Dictionary = {}) -> bool:
 	if next.demo: next.stats.starting_resource = float(next.stats.get("resource_max", 0.0))
 	next.branches_snapshot = hero_branches(next.hero_id)
 	next.stats.branches = next.branches_snapshot.duplicate(true)
+	next.skill_loadout_snapshot.assign(get_loadout(next.hero_id))
+	next.skill_branches_snapshot = _skill_config_service.get_branches(next.hero_id)
+	next.stats["skill_loadout"] = next.skill_loadout_snapshot.duplicate()
+	next.stats["skill_branches"] = next.skill_branches_snapshot.duplicate(true)
 	next.loadout_snapshot = profile.loadout.duplicate(true)
 	next.equipment_snapshot = Loot.carried(next.loadout_snapshot, profile.equipment) if next.ruleset_version() == Numbers.V2 else profile.equipment.duplicate(true)
 	next.max_hp = float(next.stats.get("max_hp", Balance.PLAYER_HP))
@@ -366,6 +375,8 @@ func add_shield(amount: float) -> Variant:
 	return added
 
 func finish_run(outcome: String) -> Dictionary:
+	if _skill_config_service.has_pending() and not bool(_skill_config_service.retry_pending().ok):
+		return {}
 	if _settling or not outcome in ProfileStore.OUTCOMES:
 		return {}
 	if run == null:
@@ -506,7 +517,12 @@ func hero_branches(hero_id: String = "") -> Dictionary:
 	return _progression_service.hero_branches(hero_id)
 
 func set_hero_branch(slot: String, choice: String, hero_id: String = "") -> bool:
-	return _progression_service.set_hero_branch(slot, choice, hero_id)
+	var id: String = str(profile.get("selected_hero", "CH01")) if hero_id.is_empty() else hero_id
+	if slot not in ["q", "ultimate"] or id not in Skills.HEROES:
+		return false
+	var choices: Dictionary = _skill_config_service.get_branches(id)
+	choices[id + ("_SK01" if slot == "q" else "_SK04")] = choice
+	return bool(apply_skill_config(id, get_loadout(id), choices).get("ok", false))
 
 func equipment_definition(identifier: String, run_context: bool = false) -> Dictionary:
 	return _equipment_service.equipment_definition(identifier, run_context)
@@ -717,6 +733,8 @@ func _restore_expedition(receipt: Dictionary) -> void:
 	run.loadout_snapshot = receipt.loadout_snapshot.duplicate(true)
 	run.equipment_snapshot = Loot.carried(receipt.loadout_snapshot, receipt.equipment_snapshot) if run.ruleset_version() == Numbers.V2 else receipt.equipment_snapshot.duplicate(true)
 	run.branches_snapshot = receipt.branches_snapshot.duplicate(true)
+	run.skill_loadout_snapshot.assign(receipt.get("skill_loadout_snapshot", Skills.starter_ids(run.hero_id)))
+	run.skill_branches_snapshot = receipt.get("skill_branches_snapshot", _skill_config_service.get_branches(run.hero_id)).duplicate(true)
 	run.expedition = receipt.expedition.duplicate(true)
 	if run.ruleset_version() == Numbers.V2: FieldSnapshot._integer_values(run.expedition.runtime)
 	var completed: Array[int] = []
@@ -737,6 +755,8 @@ func _resolved_live_stats(allocation: Dictionary = {}) -> Dictionary:
 	for key in ["relic_levels", "temporary_buffs"]:
 		if run.stats.has(key): resolved[key] = run.stats[key].duplicate(true)
 	resolved.branches = run.branches_snapshot.duplicate(true)
+	resolved["skill_loadout"] = run.skill_loadout_snapshot.duplicate()
+	resolved["skill_branches"] = run.skill_branches_snapshot.duplicate(true)
 	return resolved
 
 func _refresh_expedition_stats() -> void:
@@ -1038,6 +1058,10 @@ func _save(next_profile: Dictionary, active_run: Variant, profile_initialized: b
 		# This gate also covers audio/settings changes and checkpoint callbacks.
 		last_error = ""
 		return true
+	if _skill_config_service.has_pending() and not _skill_config_service.pending_matches(next_profile, active_run):
+		var retried: Dictionary = _skill_config_service.retry_pending()
+		if bool(retried.ok): last_error = "SKILL_PENDING_RETRY"
+		return false
 	if _store == null:
 		_store = ProfileStore.new(profile_path)
 	var success := _store.save_document(next_profile, active_run, profile_initialized)
@@ -1141,3 +1165,94 @@ func resolve_reforge_v2(instance_id: String, choice: String, transaction_id: Str
 
 func set_equipment_lock_v2(instance_id: String, locked: bool) -> bool:
 	return _equipment_service.set_equipment_lock_v2(instance_id, locked)
+
+func get_loadout(hero_id: String) -> Array[String]:
+	if run != null and run.hero_id == hero_id:
+		return run.skill_loadout_snapshot.duplicate()
+	return _skill_config_service.get_loadout(hero_id)
+
+func get_skill_progress(hero_id: String, skill_id: String) -> Dictionary:
+	var result: Dictionary = _skill_config_service.get_progress(hero_id, skill_id)
+	if run != null and run.hero_id == hero_id:
+		result["branch"] = str(run.skill_branches_snapshot.get(skill_id, ""))
+	return result
+
+func apply_skill_config(hero_id: String, four_skill_ids: Array, branch_choices: Dictionary, operation_id: String = "") -> Dictionary:
+	return _skill_config_service.apply_skill_config(hero_id, four_skill_ids, branch_choices, operation_id)
+
+func record_skill_release(skill_id: String, cast_id: int, _base_cooldown: float = 0.0, in_combat: bool = true) -> Dictionary:
+	return _skill_config_service.record_skill_release(skill_id, cast_id, in_combat)
+
+func grant_skill_group(group_id: String, operation_id: String = "") -> Dictionary:
+	return _skill_config_service.grant_skill_group(group_id, operation_id)
+
+func retry_skill_save() -> bool:
+	return bool(_skill_config_service.retry_pending().get("ok", false))
+
+func skill_group_learned(group_id: String) -> bool:
+	return group_id in profile.get("skill_unlock_groups", [])
+
+func claim_skill_archive(group_id: String) -> Dictionary:
+	if not _expedition_active() or run.expedition.phase != "cleared":
+		return {"ok":false,"reason":"SKILL_ROOM_NOT_CLEARED","operation_id":""}
+	var node: Dictionary = run.expedition.route.nodes[int(run.expedition.node_index)]
+	var group_index: int = Skills.GROUP_ROOMS.find(str(node.room_id))
+	if group_index < 0 or group_id != "SG%02d" % (group_index + 1) or group_id in ["SG02", "SG06", "SG08"]:
+		return {"ok":false,"reason":"SKILL_WRONG_SOURCE","operation_id":""}
+	return grant_skill_group(group_id, "skillarchive:"+run.id+":"+group_id)
+
+func skill_page_view(hero_id: String, context: String = "camp") -> Dictionary:
+	if hero_id not in Skills.HEROES:
+		return {}
+	var field: bool = run != null and run.hero_id == hero_id and context != "camp"
+	var stats: Dictionary = run.stats.duplicate(true) if field else StatResolver.resolve(hero_id, hero_level(hero_id), hero_loadout(hero_id), profile.get("equipment", {}), _profile_ruleset(), hero_talents(hero_id))
+	stats["skill_loadout"] = get_loadout(hero_id)
+	var entries: Array[Dictionary] = []
+	var abilities: Script = load("res://scripts/gameplay/characters/hero_abilities.gd")
+	for definition: Dictionary in Skills.skills(hero_id):
+		var id: String = str(definition.skill_id)
+		var progress: Dictionary = get_skill_progress(hero_id, id)
+		var preview_stats: Dictionary = stats.duplicate(true)
+		preview_stats["skill_progress"] = {id:progress}
+		preview_stats["skill_branches"] = {id:str(progress.get("branch", ""))}
+		var spec: Dictionary = abilities.call("preview_skill_spec", hero_id, preview_stats, id, str(definition.get("origin_slot", "q"))) if abilities.has_method("preview_skill_spec") else definition.duplicate(true)
+		entries.append({"skill_id":id,"name":str(definition.get("name", id)),"description":str(definition.get("description", "")),"unlocked":bool(progress.get("learned", false)),"mastery_xp":int(progress.get("xp", 0)),"mastery_level":int(progress.get("level", 1)),"mastery":progress,"spec":spec,"branches":definition.get("branches", {}).duplicate(true),"source":definition.get("source", {}).duplicate(true),"icon_id":str(definition.icon_id),"equipped":id in get_loadout(hero_id)})
+	var editable: bool = context == "camp" and _camp_available()
+	var choices: Dictionary = run.skill_branches_snapshot.duplicate(true) if run != null and run.hero_id == hero_id else _skill_config_service.get_branches(hero_id)
+	return {"hero_id":hero_id,"skills":entries,"loadout":get_loadout(hero_id),"branch_choices":choices,"editable":editable,"lock_reason":"" if editable else ("整次出征技能与分支固定，返回营地后可修改。" if run != null else "请在营地完成配置。")}
+
+func hero_view(hero_id: String, context: String = "camp") -> Dictionary:
+	var definition: Dictionary = ContentRegistry.hero(hero_id)
+	if definition.is_empty():
+		return {}
+	var page: Dictionary = skill_page_view(hero_id, context)
+	var field: bool = run != null and run.hero_id == hero_id and context != "camp"
+	var loadout: Dictionary = run.loadout_snapshot if field else hero_loadout(hero_id)
+	var owned: Dictionary = run.equipment_snapshot if field else profile.get("equipment", {})
+	var actor: Node = null
+	if field:
+		for candidate: Node in get_tree().get_nodes_in_group("player"):
+			if candidate.has_method("hero_id") and str(candidate.call("hero_id")) == hero_id:
+				actor = candidate
+				break
+	var level: int = run.level if field else hero_level(hero_id)
+	var version: int = run.ruleset_version() if field else _profile_ruleset()
+	var report: Dictionary = load("res://scripts/presentation/equipment/equipment_inspection.gd").call("breakdown", hero_id, level, loadout, owned, actor, version, hero_talents(hero_id))
+	var collected: int = 0
+	for entry: Dictionary in page.get("skills", []):
+		if bool(entry.unlocked): collected += 1
+	var profession: String = {"CH01":"warrior", "CH02":"gunner", "CH03":"mage"}.get(hero_id, "warrior")
+	var identity := {"name":str(definition.name),"title":str(definition.get("title", "")),"class_name":str(definition.get("class_name", "")),"role_summary":str(definition.get("role", "")),"mechanic_text":str(definition.get("passive", {}).get("description", ""))}
+	for field_name: String in ["name", "title", "class_name"]:
+		identity[field_name+"_en"] = str(definition.get(field_name+"_en", identity[field_name]))
+	identity["role_summary_en"] = str(definition.get("role_en", identity.role_summary))
+	identity["mechanic_text_en"] = str(definition.get("passive", {}).get("description_en", identity.mechanic_text))
+	return {"hero_id":hero_id,"identity":identity,"name":str(definition.name),"level":level,"portrait_id":"characters/"+profession+"/portraits/full_illustration.png","stats":report.get("live", {}),"stat_report":report,"loadout":page.get("loadout", []),"collected_count":collected,"total_count":12,"editable":page.get("editable", false),"lock_reason":page.get("lock_reason", "")}
+
+func combat_hud_view() -> Dictionary:
+	if run == null:
+		return {}
+	for actor: Node in get_tree().get_nodes_in_group("player"):
+		if actor.has_method("combat_hud_view"):
+			return actor.call("combat_hud_view")
+	return {}

@@ -1408,7 +1408,17 @@
         "小温室摆在外围，玻璃和细框不遮敌方预警。"
       ],
       "biome_id": "B01",
-      "fixed_world_entities": []
+      "fixed_world_entities": [],
+      "skill_reward_group": "SG01",
+      "skill_archive": {
+        "group_id": "SG01",
+        "position": [
+          1210,
+          1390
+        ],
+        "name": "职业技能档案",
+        "requires_clear": true
+      }
     },
     "L03": {
       "id": "L03",
@@ -2443,7 +2453,8 @@
         "主线宽U形与前四房的路线不同；额外守台玩法留待后续实现。"
       ],
       "biome_id": "B01",
-      "fixed_world_entities": []
+      "fixed_world_entities": [],
+      "skill_reward_group": "SG02"
     },
     "L06": {
       "id": "L06",
@@ -3971,7 +3982,17 @@
       ],
       "edge_variant": "上缘翼巢观测亭背后是远景浮巢、蜂谷与云隙；浮岛边不切入战斗地面，南缘通过叶根台座、花圃与编叶栏连续收边。",
       "biome_id": "B02",
-      "fixed_world_entities": []
+      "fixed_world_entities": [],
+      "skill_reward_group": "SG03",
+      "skill_archive": {
+        "group_id": "SG03",
+        "position": [
+          1620,
+          700
+        ],
+        "name": "职业技能档案",
+        "requires_clear": true
+      }
     },
     "L09": {
       "id": "L09",
@@ -5074,7 +5095,17 @@
           "description": "清场后回收：22 金币和 1 件进攻装备，沿用现有研究包奖励。",
           "name": "花粉研究宝匣"
         }
-      ]
+      ],
+      "skill_reward_group": "SG04",
+      "skill_archive": {
+        "group_id": "SG04",
+        "position": [
+          750,
+          1530
+        ],
+        "name": "职业技能档案",
+        "requires_clear": true
+      }
     },
     "L12": {
       "id": "L12",
@@ -6576,7 +6607,17 @@
       ],
       "edge_variant": "北东缘透光糖仓与糖纸檐口，西缘糖车来路接镇街，南缘糖袋和小花圃过渡草地；糖纸材料不拼成大块黄色贴图墙。",
       "biome_id": "B03",
-      "fixed_world_entities": []
+      "fixed_world_entities": [],
+      "skill_reward_group": "SG05",
+      "skill_archive": {
+        "group_id": "SG05",
+        "position": [
+          2000,
+          1130
+        ],
+        "name": "职业技能档案",
+        "requires_clear": true
+      }
     },
     "L15": {
       "id": "L15",
@@ -7626,7 +7667,8 @@
       ],
       "edge_variant": "北西缘礼帽裁缝馆和试衣篷，东缘布旗穿过低花圃，南缘彩线拱与茶摊接午休小街；布篷不是封闭高墙，工作桌不列成边界屏障。",
       "biome_id": "B03",
-      "fixed_world_entities": []
+      "fixed_world_entities": [],
+      "skill_reward_group": "SG06"
     },
     "L18": {
       "id": "L18",
@@ -9098,7 +9140,17 @@
         "十四件道具、十一种类型，四件小脚点实体；凉棚不伸进主街。"
       ],
       "biome_id": "B04",
-      "fixed_world_entities": []
+      "fixed_world_entities": [],
+      "skill_reward_group": "SG07",
+      "skill_archive": {
+        "group_id": "SG07",
+        "position": [
+          1810,
+          450
+        ],
+        "name": "职业技能档案",
+        "requires_clear": true
+      }
     },
     "L21": {
       "id": "L21",
@@ -10148,7 +10200,8 @@
         "十四件道具、十种类型，四件小脚点实体；提灯树在左右外围。"
       ],
       "biome_id": "B04",
-      "fixed_world_entities": []
+      "fixed_world_entities": [],
+      "skill_reward_group": "SG08"
     },
     "L24": {
       "id": "L24",

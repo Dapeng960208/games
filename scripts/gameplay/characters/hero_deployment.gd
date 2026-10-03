@@ -33,6 +33,7 @@ var fire_direction := Vector2.RIGHT
 var resonance_charge: int = 0
 var charge_flash: float = 0.0
 var _charged_casts: Dictionary = {}
+var _class_pulse_notified: bool = false
 const NODE_FONT = preload("res://assets/system/fonts/notosanssc.ttf")
 
 func configure(host: Node2D, deployment_kind: String, configuration: Dictionary) -> void:
@@ -109,7 +110,13 @@ func advance(delta: float) -> void:
 		# Tick at t=5 (or 4/7) before expiry. No immediate free tick on creation.
 		var emitted_pulse: bool = false
 		while next_attack <= minf(elapsed, lifetime) + 0.00001:
-			room.strike_area(position, radius, damage, "field", "chill", 0.0, Vector2.ZERO, 360.0, false, _damage_context())
+			var context: Dictionary = _damage_context()
+			var before: Dictionary = {}
+			if not _class_pulse_notified and str(options.get("skill_id", "")) == "CH03_SK04":
+				for target: Node2D in room.targets_in_radius(position, radius):
+					before[target.get_instance_id()] = {"hp":float(target.health.current), "shield":float(target.status.shield())}
+			var contacts: Array = room.strike_area(position, radius, damage, "field", "chill", 0.0, Vector2.ZERO, 360.0, false, context)
+			_notify_authored_pulse(contacts, before, context)
 			next_attack += 1.0
 			pulse = 0.22
 			_emit_feedback_pulse()
@@ -201,6 +208,9 @@ func detonate() -> bool:
 
 func _damage_context(original: bool = false) -> Dictionary:
 	var context: Dictionary = {"power":float(options.get("power", damage)), "damage_type":str(options.get("damage_type", "magic")), "attacker_stats":options.get("attacker_stats", {}), "equipment_eligible":original, "original_basic":false}
+	# Identity survives persistent authored effects; their damage remains derived.
+	for key: String in ["skill_id", "input_slot", "skill_slot", "cast_id", "branch", "root_event_id", "class_state", "damage_source"]:
+		if options.has(key): context[key] = options[key]
 	if bool(options.get("spell_critical_eligible", false)):
 		context["spell_critical_eligible"] = true
 		context["root_event_id"] = str(options.get("root_event_id", ""))
@@ -212,6 +222,23 @@ func _damage_context(original: bool = false) -> Dictionary:
 		context["heavy"] = bool(options.get("heavy", false))
 		context["paid_cost"] = float(options.get("paid_cost", 0.0))
 	return context
+
+func _notify_authored_pulse(contacts: Array, before: Dictionary, context: Dictionary) -> void:
+	if _class_pulse_notified or kind != "field" or str(options.get("skill_id", "")) != "CH03_SK04" or int(options.get("proc_depth", 0)) != 0 or str(options.get("damage_source", "")) != "skill": return
+	if not is_instance_valid(owner_player) or owner_player.hero_id() != "CH03" or owner_player.role_kit == null: return
+	for target: Node2D in contacts:
+		if not is_instance_valid(target) or not before.has(target.get_instance_id()): continue
+		var previous: Dictionary = before[target.get_instance_id()]
+		var hp_loss: float = maxf(0.0, float(previous.hp) - float(target.health.current))
+		var shield_loss: float = maxf(0.0, float(previous.shield) - float(target.status.shield()))
+		if hp_loss + shield_loss <= 0.0: continue
+		_class_pulse_notified = true
+		# This is a class-only receipt for a pulse authored by the committed spell.
+		# It never re-enters damage, equipment, hit-chain or mastery dispatch.
+		var authored: Dictionary = context.duplicate(true)
+		authored.merge({"proc_depth":0, "equipment_eligible":true, "original_basic":false}, true)
+		owner_player.role_kit.on_original_hit(target, authored, {"confirmed":true, "hp_damage":hp_loss, "shield_damage":shield_loss})
+		return
 
 func _fire_node() -> void:
 	var targets: Array = room.targets_in_radius(position, radius)
