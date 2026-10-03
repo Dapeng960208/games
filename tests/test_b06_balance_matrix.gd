@@ -255,16 +255,18 @@ func install() -> void:
 		fixture["production_boss_profile_before_test_override"]=tested_profile.duplicate(true)
 		boss.configure(tested_profile,{"actor_kind":"boss","reward_enabled":false})
 		var expected_defense: Dictionary=tested_profile.duplicate(true)
-		if arg("boss-test-candidate","none")=="A":
-			check(int(config.difficulty)==4 and int(fixture.level)==26 and int(run_ref.enemy_calibration_snapshot.get("version",0))==15,"A restricted to explicitly approved D4 Lv26 archive15 test")
-			expected_defense.merge({"max_hp":204509,"armor":3320,"magic_resist":400,"damage":1130},true)
+		if arg("boss-test-candidate","none") in ["A","B"]:
+			check(int(config.difficulty)==4 and int(fixture.level)==26 and int(run_ref.enemy_calibration_snapshot.get("version",0))==15,"durability candidate restricted to explicitly approved D4 Lv26 archive15 test")
+			var durability: Dictionary={"max_hp":210644,"armor":3320,"magic_resist":460,"damage":1130} if arg("boss-test-candidate","none")=="B" else {"max_hp":204509,"armor":3320,"magic_resist":400,"damage":1130}
+			expected_defense.merge(durability,true)
 			# B06 validates the entire attack profile. Keep it canonical; the
 			# approved test varies only native defensive receivers before physics.
-			boss.health.reset(204509,2)
-			boss.armor=3320.0
+			boss.health.reset(int(durability.max_hp),2)
+			boss.armor=float(durability.armor)
+			boss.magic_resist=float(durability.magic_resist)
 			check(room.b06_mechanics.reset_boss_encounter(boss),"native tide reset accepts test-only durability")
 			check(boss.profile==tested_profile,"canonical attack/crit profile unchanged by defensive test")
-			fixture["boss_test_override"]={"candidate":"A","max_hp":204509,"armor":3320,"magic_resist":400,"damage":1130,"production_changed":false,"mechanisms_unchanged":true,"method":"native defensive receivers only; canonical attack profile retained for strict skill validation; not production snapshot compatibility"}
+			fixture["boss_test_override"]={"candidate":arg("boss-test-candidate","none"),"max_hp":durability.max_hp,"armor":durability.armor,"magic_resist":durability.magic_resist,"damage":durability.damage,"production_changed":false,"mechanisms_unchanged":true,"method":"native defensive receivers only; canonical attack profile retained for strict skill validation; not production snapshot compatibility"}
 		check(int(boss.health.maximum)==int(expected_defense.max_hp) and int(boss.health.current)==int(expected_defense.max_hp),"native Boss current and max HP match tested defense")
 		check(is_equal_approx(boss.effective_armor(),float(expected_defense.armor)) and is_equal_approx(boss.magic_resist,float(expected_defense.magic_resist)),"native Boss defenses match tested defense")
 		check(int(room.b06_mechanics.boss_state.snapshot().maximum_hp)==int(expected_defense.max_hp),"native tide Boss state agrees on candidate HP")
