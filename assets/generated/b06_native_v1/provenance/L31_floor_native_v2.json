@@ -1,0 +1,29 @@
+{
+  "id": "L31_floor_native_v2",
+  "folder": "rooms",
+  "transparent": false,
+  "ref": "rooms/L31_base_native_v1.png",
+  "prompt": "Use case: precise-object-edit. Rebuild this painterly pearl/coral Shellbridge Front Street as a production gameplay FLOOR source. Preserve daylight, hand-painted high-fidelity pearl stone, subtle shell inlays, gold seam accents and B06 sea-civilization style. Camera high overhead near-orthographic, landscape ratio14:9, one level flat traversable floor filling image. Center 90% is a broad nearly EMPTY continuous pearl-white paved plaza with no railings, columns, pits, steps, canals, water, buildings, fountains, large shell monuments, shadows suggesting barriers or decorative obstructions. A wide subtle shell-inlay east-west stripe through center denotes the always-dry bridge route, but is flush with floor. North/south shallow-water overlays are supplied separately at runtime; therefore DO NOT PAINT WATER, blue pools, basin holes or canal walls in this base. Tiny decorative coral architecture only outside far outer perimeter, each corner less than5% of area; do not encroach playable center. This is a flat room floor, not vista or concept board. No text, UI, grid, monsters, heroes, gates, warnings or gameplay objects. Native pixels, not upscaled.",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-89969933-f607-48ce-a208-d958a8a8ac01.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/rooms/L31_floor_native_v2.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "geometry_sha": "8d5d532",
+  "status": "candidate awaiting review",
+  "dimensions": [
+    1564,
+    1006
+  ],
+  "mode": "RGB",
+  "sha256": "8e08f1ce642babb9516cb4239c67eebd4747e43475da30bce4f701a6e6bf27eb",
+  "reference_sha256": "6c2079418d5e5955230665d9b5ae3fcde60bda5c102b2b75a5f735fc10c507ab",
+  "alpha_bbox": null,
+  "selection_status": "selected_source_candidate",
+  "runtime_ready": false,
+  "source_anchors": [
+    "docs/levels/06_TIDAL_CORAL_CITY.md#2-地图元素与种族特性",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#3-18种普通怪",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#4-boss行走巨蟹堡垒"
+  ]
+}

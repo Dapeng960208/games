@@ -1,0 +1,58 @@
+{
+  "id": "M15",
+  "pose": "execute",
+  "prompt": "Use case: identity-preserve. Edit this exact IDLE monster into ONE EXECUTE action sprite. Pose change: Open two shell halves widely to expose central pearl aperture and three launch slots, mantle thrusts forward. No detached projectiles. Preserve exact species identity, anatomical count, face, ornaments, colors, gear, painterly 2.5D style, same native square canvas and body scale. Elevated three-quarter camera facing SCREEN RIGHT. Whole subject with all equipment safely inside canvas. Genuine transparent RGBA, no floor, shadow, text, background, duplicates or attack VFX.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M15_idle-native-v2.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-96de348f-9022-40cf-af5e-f95e1fa9e1ff.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M15_execute-native-v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "af887dcb39993167df999cfbc6e04ef01db520ffd146c1bb33aff651dda5f71f",
+  "alpha_bbox": [
+    0,
+    57,
+    1205,
+    1191
+  ],
+  "visible_alpha128_bbox": [
+    48,
+    67,
+    1201,
+    1187
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "071097ab7da8b8932f3794bb49bb7939a4b17fcda15404fdbebbfd1ef90b2c9f",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    650,
+    1150
+  ],
+  "attack_outlet_px": [
+    710,
+    690
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "secondary_outlet_anchors_px": [
+    [
+      486,
+      838
+    ],
+    [
+      822,
+      873
+    ],
+    [
+      1085,
+      742
+    ]
+  ],
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M15_execute-native-v1.json"
+}

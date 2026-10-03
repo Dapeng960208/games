@@ -1,0 +1,44 @@
+{
+  "id": "M07",
+  "pose": "execute",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-b4173a80-d5f3-4555-87e1-efc64fb98435.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M07_execute-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-b4173a80-d5f3-4555-87e1-efc64fb98435.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M07_execute-native-v1.png",
+    "b06-art/generated/monsters-m02-m09/B06-M07_idle-native-v2.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "action": "Sing forcefully toward screen-right with clearly open mouth and both arms spreading forward, tail braced. Sound originates at mouth; do not draw detached soundwaves or particles.",
+  "reference": "b06-art/generated/monsters-m02-m09/B06-M07_idle-native-v2.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "c9f029f39967d4034522bdb80b08d5d3a48e6a04143849f9e146a53847c3028f",
+  "bytes": 808489,
+  "alpha_bbox": [
+    61,
+    49,
+    1200,
+    1254
+  ],
+  "opaque_bbox": [
+    233,
+    325,
+    1091,
+    1039
+  ],
+  "prompt": "Use case: identity-preserve. Image1 is edit target B06-M07 execute. Image2 is its selected IDLE body scale reference. Preserve EXACT species, anatomy, costume, colors, face, limbs, equipment, attack pose and camera from image1. Composition correction ONLY: reduce the entire character together to match the body/torso pixel scale of image2, centered around same ground anchor. Whole silhouette should occupy at most72% canvas width/height, all extremities between15%and85%of canvas. Keep generous empty alpha margins on every side. Do not change attack action or face. No enlarged closeup. Preserve crisp painterly2.5D render and genuine transparent RGBA. No floor, shadow, particles, detached elements, labels or upscaling.\n",
+  "status": "candidate pending visual QC",
+  "reference_sha256": [
+    "935c4fb5db6508ae5160f5d4db35afa497d7480a6bd0fe484b67f848b9ec31f9",
+    "d7cd29b9305f178edcaad058fb69e1e20208bd58fd2b44a28e43171d2184629f"
+  ]
+}

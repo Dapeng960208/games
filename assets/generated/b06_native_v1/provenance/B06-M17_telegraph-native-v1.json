@@ -1,0 +1,45 @@
+{
+  "id": "M17",
+  "pose": "telegraph",
+  "prompt": "Use case: identity-preserve. Edit this exact IDLE monster into ONE TELEGRAPH action sprite. Pose change: Rear body weight backward and lift BOTH front flippers for stomp windup; preserve four flipper anatomy, reef and domed back. Preserve exact species identity, anatomical count, face, ornaments, colors, gear, painterly 2.5D style, same native square canvas and body scale. Elevated three-quarter camera facing SCREEN RIGHT. Whole subject with all equipment safely inside canvas. Genuine transparent RGBA, no floor, shadow, text, background, duplicates or attack VFX.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M17_idle-native-v2.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7eb63ed9-c37a-4b27-8c03-40d284048ff1.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M17_telegraph-native-v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "bd1999187e9d11aa64bfbf8ab12863aec870361bed255b213de2365a40da10d4",
+  "alpha_bbox": [
+    0,
+    52,
+    1220,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    105,
+    125,
+    1211,
+    1130
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "2c38459ccc36abc73e938b41e31cfc143bd02483fbdadfe3301d662a2677f647",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    544,
+    1080
+  ],
+  "attack_outlet_px": [
+    839,
+    844
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "anchor_note": "groundpoint is projected center, not the moving foreflipper contact; ring is gameplay ground geometry",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M17_telegraph-native-v1.json"
+}

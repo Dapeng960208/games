@@ -1,0 +1,45 @@
+{
+  "id": "M11",
+  "pose": "execute",
+  "prompt": "Use case: identity-preserve. Correct this exact seahorse lance guard execute sprite. Preserve exact rider, upright seahorse, pearl gold gear, colors and pose. Preserve forward lance thrust but reframe to show entire sharp spear tip clearly with empty alpha space beyond it; tip must not touch canvas border. Whole creature and lance contained in central 80% of square native transparent canvas, no cropping, no background, shadow, FX or text. Do not add another weapon.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M11_execute-native-v1.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1ec97679-380d-4e4d-8f2c-ebf5d9a00982.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M11_execute-native-v2.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "b8969addeaec57541e314c5844a7b4b0814c7d65b35c1859200789c089fdbcc9",
+  "alpha_bbox": [
+    31,
+    19,
+    1235,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    37,
+    232,
+    1230,
+    1162
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "9dcbf01e6d9980df2c04e10df63082a9f8bb07aaed1a7c54228db72777d58d3f",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    387,
+    1110
+  ],
+  "attack_outlet_px": [
+    1225,
+    497
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "anchor_note": "hover projected groundpoint; do not infer collision from tentacle or tail tip",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M11_execute-native-v2.json"
+}

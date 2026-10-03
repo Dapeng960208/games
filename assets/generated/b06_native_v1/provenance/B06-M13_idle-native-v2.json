@@ -1,0 +1,44 @@
+{
+  "id": "M13",
+  "pose": "idle",
+  "prompt": "Use case: identity-preserve. Edit this exact monster sprite. Preserve species, identity, number of limbs, face, equipment, colors, material and detailed painterly style. Change ONLY composition: zoom camera OUT strongly so the ENTIRE creature including antennae, coral, lance, flag, tail and feet occupies only the CENTRAL 65% of the square image. At least 17% genuinely EMPTY TRANSPARENT margin on every side. Keep square native canvas, single whole-body IDLE sprite, elevated three-quarter view facing right. No floor, shadow, FX, text or other objects. Do not crop anything. ",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-4fd8f530-1865-4e29-a911-7686ab89b6e0.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M13_idle-native-v2.png",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M13_idle-native-v1.png",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "963b7d0ff94fa701e09782ecddffa51fa4f38888860eae03b31d450846c1a08d",
+  "alpha_bbox": [
+    41,
+    121,
+    1232,
+    1214
+  ],
+  "visible_alpha128_bbox": [
+    191,
+    174,
+    1125,
+    1119
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "d3a3cb48458420d8c8059bb6483921d164b811bda3cc551ea98d538f144d368e",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    780,
+    1060
+  ],
+  "attack_outlet_px": [
+    1060,
+    607
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M13_idle-native-v2.json"
+}

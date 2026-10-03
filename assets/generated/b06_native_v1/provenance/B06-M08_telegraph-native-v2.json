@@ -1,0 +1,44 @@
+{
+  "id": "M08",
+  "pose": "telegraph",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-64185d7b-8243-44da-b33b-841fab2aa6ee.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M08_telegraph-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-64185d7b-8243-44da-b33b-841fab2aa6ee.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M08_telegraph-native-v1.png",
+    "b06-art/generated/monsters-m02-m09/B06-M08_idle-native-v2.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "action": "Raise coral masonry mallet up in a clear construction wind-up, retain branching coral toolrack, other pearl tool in opposite hand, feet planted.",
+  "reference": "b06-art/generated/monsters-m02-m09/B06-M08_idle-native-v2.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "f8d7f279427f209e96d2e4c519a7e14ef4b9cdf378416f1a424fcaa2b292ec21",
+  "bytes": 797437,
+  "alpha_bbox": [
+    96,
+    48,
+    1218,
+    1238
+  ],
+  "opaque_bbox": [
+    367,
+    279,
+    986,
+    1097
+  ],
+  "prompt": "Use case: identity-preserve. Image1 is edit target B06-M08 telegraph. Image2 is its selected IDLE body scale reference. Preserve EXACT species, anatomy, costume, colors, face, limbs, equipment, attack pose and camera from image1. Composition correction ONLY: reduce the entire character together to match the body/torso pixel scale of image2, centered around same ground anchor. Whole silhouette should occupy at most72% canvas width/height, all extremities between15%and85%of canvas. Keep generous empty alpha margins on every side. Do not change attack action or face. No enlarged closeup. Preserve crisp painterly2.5D render and genuine transparent RGBA. No floor, shadow, particles, detached elements, labels or upscaling.\n",
+  "status": "candidate pending visual QC",
+  "reference_sha256": [
+    "c3447b39b5d7e1d21d976c778ad4a53baf4c7bb0424b1a01600be188ddbd6974",
+    "f250ee67c47f79c4af3ea4bc3342b4f1bf797d4eb6ea5bbda4c4b6df529e68af"
+  ]
+}

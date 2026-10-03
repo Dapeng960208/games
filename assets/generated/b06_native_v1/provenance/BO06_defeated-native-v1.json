@@ -1,0 +1,39 @@
+{
+  "id": "BO06_defeated-native-v1",
+  "folder": "boss",
+  "ref": "boss/BO06_idle-native-v4.png",
+  "transparent": true,
+  "prompt": "Use case: identity-preserve. Edit supplied BO06 Walking Giant-Crab Fortress idle into ONE distinct action keyframe, not sheet. Lock EXACT character identity: blue crab with four thin pointed supporting legs, two large raised weapon claw arms, pearl abdomen, compact coral/conch fort. Viewer-left claw remains closed hammer pincer, viewer-right claw remains circular tide-cannon pincer. Preserve native1254square canvas, genuine alpha, same painterly details, same camera/front-right facing, same head/body pixel scale and all four foot-contact positions as closely as pose allows. No added or lost limbs, no weapon swapping. Keep silhouette within canvas. No floor, shadows, text, UI, bubbles, waves, projectile, debris, rings, smoke or VFX; runtime adds all effects separately. Defeated resting pose: four walking legs bend and fold low, crab body settles downward without changing body scale, both weapon arms relax on their own sides, hammer remains closed and cannon points downward. Eyes closed, fort and pearl remain intact, no gore, explosion, rubble, items or extra pieces. One coherent full body defeat sprite.",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-2d89cb03-c04e-4e5c-90cf-8bf302a0feb8.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/boss/BO06_defeated-native-v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "candidate awaiting review",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "227e82b905d078191f31da2ec3005e46d22172cfb651c799e53b36c378d7a366",
+  "alpha_bbox": [
+    0,
+    19,
+    1240,
+    1236
+  ],
+  "visible_alpha128_bbox": [
+    21,
+    206,
+    1232,
+    1018
+  ],
+  "reference_sha256": "eb2cae08e77891da7044dcbf43ed17c4fbaaf1316b5c29bd778aaf37392442c2",
+  "selection_status": "selected_source_candidate",
+  "runtime_ready": false,
+  "source_anchors": [
+    "docs/levels/06_TIDAL_CORAL_CITY.md#2-地图元素与种族特性",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#3-18种普通怪",
+    "docs/levels/06_TIDAL_CORAL_CITY.md#4-boss行走巨蟹堡垒"
+  ]
+}

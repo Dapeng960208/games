@@ -1,0 +1,45 @@
+{
+  "id": "M17",
+  "pose": "execute",
+  "prompt": "Use case: identity-preserve. Edit exact monster image. Correct framing only: far right front flipper is touching canvas boundary. Show complete flipper with clear transparent space beyond, uniformly zoom out whole creature. Preserve stomp pose and all four flippers. Preserve exact species, identity, colors, detailed painterly style, camera facing right, ornaments and equipment. Whole single subject inside central 80% square native transparent canvas. No floor, shadow, text, VFX or duplicates.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M17_execute-native-v1.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-39b3f3e1-a2c4-4928-b456-61e5dac7794e.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M17_execute-native-v2.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "9238417797f37b44b2a14558260451bb7953f0548bab13f0cd78cdbbefa892e2",
+  "alpha_bbox": [
+    0,
+    21,
+    1253,
+    1214
+  ],
+  "visible_alpha128_bbox": [
+    38,
+    216,
+    1244,
+    1139
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "8875b1bc8d62808f0a8f4f78b66cb9a51dc142bdd502eeeaa562728340bdce8f",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    782,
+    1060
+  ],
+  "attack_outlet_px": [
+    704,
+    1080
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "anchor_note": "groundpoint is projected center, not the moving foreflipper contact; ring is gameplay ground geometry",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M17_execute-native-v2.json"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "M06",
+  "pose": "execute",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-2e982f46-1fcb-41f7-9519-611e2c959028.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M06_execute-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-2e982f46-1fcb-41f7-9519-611e2c959028.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M06_execute-native-v1.png",
+    "b06-art/generated/monsters-m02-m09/B06-M06_idle-native-v2.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "action": "Swing throwing hand forward screen-right at release, fingers open, no mine in released hand, remaining basket mines still visible, keep torso and feet planted. Do not draw detached airborne mine.",
+  "reference": "b06-art/generated/monsters-m02-m09/B06-M06_idle-native-v2.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "4479dad1bfd8d891c1ec4ecc8cdedc5ca84e65fc5624ed291853ed555da46379",
+  "bytes": 826115,
+  "alpha_bbox": [
+    89,
+    21,
+    1210,
+    1214
+  ],
+  "opaque_bbox": [
+    263,
+    329,
+    1097,
+    1010
+  ],
+  "prompt": "Use case: identity-preserve. Image1 is edit target B06-M06 execute. Image2 is its selected IDLE body scale reference. Preserve EXACT species, anatomy, costume, colors, face, limbs, equipment, attack pose and camera from image1. Composition correction ONLY: reduce the entire character together to match the body/torso pixel scale of image2, centered around same ground anchor. Whole silhouette should occupy at most72% canvas width/height, all extremities between15%and85%of canvas. Keep generous empty alpha margins on every side. Do not change attack action or face. No enlarged closeup. Preserve crisp painterly2.5D render and genuine transparent RGBA. No floor, shadow, particles, detached elements, labels or upscaling.\n",
+  "status": "candidate pending visual QC",
+  "reference_sha256": [
+    "5b3da0620f09a768675885fe7384a7a12370bdaed5d2137f8cb4838c3fb8c6d0",
+    "72677a92f8ae14584735f86bc4882372f633fccec2a8e442375f092e944ee117"
+  ]
+}

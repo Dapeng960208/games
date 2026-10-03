@@ -1,0 +1,44 @@
+{
+  "id": "M18",
+  "pose": "telegraph",
+  "prompt": "Use case: identity-preserve. Edit exact monster sprite. Correct real clipping: upper forked flag's right tip is cut by canvas edge. Show ENTIRE flag and both pointed tails inside canvas with clear transparent space beyond. Uniformly zoom out whole subject preserving raised-flag telegraph pose. Preserve identity, anatomical details, equipment, colors, style and elevated three-quarter camera. One complete character, genuine transparent background, no floor, shadow, VFX, text or new objects.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M18_telegraph-native-v1.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-207eb543-62f3-437e-a607-8f9e9448ed3e.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M18_telegraph-native-v2.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "a6b744f336bf9871a9575650a35c9dcc455c8176b4fcc2b943a4738ebf045bdd",
+  "alpha_bbox": [
+    0,
+    25,
+    1238,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    22,
+    28,
+    1235,
+    1226
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "b6a644940599e3067b9c60192261f748d6e5334308f73b306818008d08e91a92",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    601,
+    1150
+  ],
+  "attack_outlet_px": [
+    682,
+    834
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M18_telegraph-native-v2.json"
+}

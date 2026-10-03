@@ -1,0 +1,44 @@
+{
+  "id": "M12",
+  "pose": "execute",
+  "prompt": "Use case: identity-preserve. Edit this exact monster's IDLE master into ONE EXECUTE action sprite. Change pose only: Extend siphon nozzle forward and lean body backward in recoil, visibly forceful jet firing pose but NO detached jet or water FX; open nozzle mouth remains clear. Preserve exact species, anatomy, colors, ornaments, equipment, same body size, high-fidelity painted style and elevated three-quarter right-facing camera. Preserve empty alpha canvas and whole-body framing. No additional limbs, redesign, duplicated subject, background, floor, shadow, text or baked attack effects. Keep all equipment and body parts fully inside canvas.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M12_idle-native-v2.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-03e51bb8-3956-4f4f-b03b-26d483a17aed.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M12_execute-native-v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "70beeff7ff8468350f989de3a2db173669239d3583d8e9b9829c856fff22eb21",
+  "alpha_bbox": [
+    24,
+    21,
+    1223,
+    1214
+  ],
+  "visible_alpha128_bbox": [
+    30,
+    335,
+    1217,
+    994
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "958c0851b7707247bc9aea50a919a034946db5085f0e6689b8b11e63a32ebc7b",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    560,
+    970
+  ],
+  "attack_outlet_px": [
+    1150,
+    531
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M12_execute-native-v1.json"
+}

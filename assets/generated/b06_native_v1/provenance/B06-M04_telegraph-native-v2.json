@@ -1,0 +1,44 @@
+{
+  "id": "M04",
+  "pose": "telegraph",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-6d521b10-488b-4d7f-89f1-dfebcced7a48.png",
+  "file": "b06-art/generated/monsters-m02-m09/B06-M04_telegraph-native-v2.png",
+  "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-6d521b10-488b-4d7f-89f1-dfebcced7a48.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "model": "unknown/unreported",
+  "tool": "built-in image_gen",
+  "references_used_in_tool": [
+    "b06-art/generated/monsters-m02-m09/B06-M04_telegraph-native-v1.png",
+    "b06-art/generated/monsters-m02-m09/B06-M04_idle-native-v2.png"
+  ],
+  "visual_style_inspected": [
+    "b06-art/references/B06_PR5_reference.png",
+    "b06-art/generated/enemies/B06-M01_idle-native-v2.png"
+  ],
+  "action": "Flex the long streamlined fish body gently into a shallow S, tail drawn back, needle snout aimed at locked screen-right target, fins tensioned for straight dash.",
+  "reference": "b06-art/generated/monsters-m02-m09/B06-M04_idle-native-v2.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "6b90aeaa1d948b425bde2d579c53192da990951545878b808a54d5d1eb3c0cec",
+  "bytes": 320664,
+  "alpha_bbox": [
+    97,
+    53,
+    1168,
+    1182
+  ],
+  "opaque_bbox": [
+    217,
+    476,
+    1090,
+    857
+  ],
+  "prompt": "Use case: identity-preserve. Image1 is edit target B06-M04 telegraph. Image2 is its selected IDLE body scale reference. Preserve EXACT species, anatomy, costume, colors, face, limbs, equipment, attack pose and camera from image1. Composition correction ONLY: reduce the entire character together to match the body/torso pixel scale of image2, centered around same ground anchor. Whole silhouette should occupy at most72% canvas width/height, all extremities between15%and85%of canvas. Keep generous empty alpha margins on every side. Do not change attack action or face. No enlarged closeup. Preserve crisp painterly2.5D render and genuine transparent RGBA. No floor, shadow, particles, detached elements, labels or upscaling.\n",
+  "status": "candidate pending visual QC",
+  "reference_sha256": [
+    "69b08aa9ab9141166686c59ee2e9b7fb65a5b179be807f0e4c538829311c3f0e",
+    "2a77269c106527e467f15286b244bafbb7342e365fe798f508d506561c40a27a"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "M10",
+  "pose": "telegraph",
+  "prompt": "Use case: precise-object-edit. Keep this jellyfish image almost exactly unchanged, especially ALL FOUR existing long ribbon tentacles in their EXACT existing positions and their four clearly separate tips. Change ONLY the umbrella dome: make dome slightly taller/contracted for TELEGRAPH windup, and brighten the central pearl. Do not alter, merge, shorten, hide, move or remove any of the FOUR ribbons. Same identity, size, colors, style, canvas and genuine transparent background. No new objects, shadows, rings, text or FX.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M10_idle-native-v2.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-db1cbec4-9bbc-4433-abdf-7de850d3bb8d.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M10_telegraph-native-v3.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "8028d1f13bd921c3dafa4c400e5e07b07fc3705d40a9c2eff30a8885b454272b",
+  "alpha_bbox": [
+    71,
+    21,
+    1138,
+    1232
+  ],
+  "visible_alpha128_bbox": [
+    227,
+    138,
+    1029,
+    1135
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "ab976158777753aa29425fda8a64ca9ead6a9e2431544ad76318cd2b6030ee3c",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    658,
+    1100
+  ],
+  "attack_outlet_px": [
+    667,
+    498
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "anchor_note": "hover projected groundpoint; do not infer collision from tentacle or tail tip",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M10_telegraph-native-v3.json"
+}

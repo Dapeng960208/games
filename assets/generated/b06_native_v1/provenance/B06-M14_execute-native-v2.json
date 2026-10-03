@@ -1,0 +1,44 @@
+{
+  "id": "M14",
+  "pose": "execute",
+  "prompt": "Use case: identity-preserve. Correct only framing of this exact airborne sawfin shark pounce. Its far-right flipper tip is touching/cut by the right image boundary. Show the WHOLE complete flipper tip with generous transparent space beyond it. Zoom out whole subject uniformly within native square canvas. Preserve exact airborne pose, open jaws, anatomy, sawtooth dorsal fin, blue silver textures, camera and identity. Genuine transparent background, no floor, shadow, text, FX or new elements.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M14_execute-native-v1.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5cbc2b1d-d318-4231-a278-9c14803eae3c.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M14_execute-native-v2.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "8b4de34d5624bab63593ede0df4e9177faf1d5c007a31692411aa280a2b7dc0c",
+  "alpha_bbox": [
+    47,
+    21,
+    1229,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    87,
+    256,
+    1224,
+    1036
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "60dc1582311ceac2092d4d50bb20d41e06627de4664066baf24722e944e6933f",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    770,
+    996
+  ],
+  "attack_outlet_px": [
+    1090,
+    736
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M14_execute-native-v2.json"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "M13",
+  "pose": "telegraph",
+  "prompt": "Use case: identity-preserve. Edit this exact monster's IDLE master into ONE TELEGRAPH action sprite. Change pose only: Raise carried shell bell overhead, free hand drawn toward chest, poised to begin channel, clapper and hollow bell mouth visible. Preserve exact species, anatomy, colors, ornaments, equipment, same body size, high-fidelity painted style and elevated three-quarter right-facing camera. Preserve empty alpha canvas and whole-body framing. No additional limbs, redesign, duplicated subject, background, floor, shadow, text or baked attack effects. Keep all equipment and body parts fully inside canvas.",
+  "reference": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M13_idle-native-v2.png",
+  "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5770aeb1-7fc4-4102-981b-03610491df51.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/B06-M13_telegraph-native-v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "selected_source_candidate",
+  "runtime_ready": false,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "f8cf74d4c5d742832641d8ad748f186d958bf26e8a237566afadfd6983a8fe61",
+  "alpha_bbox": [
+    0,
+    95,
+    1222,
+    1254
+  ],
+  "visible_alpha128_bbox": [
+    173,
+    103,
+    1205,
+    1150
+  ],
+  "native_unmodified": true,
+  "reference_sha256": "963b7d0ff94fa701e09782ecddffa51fa4f38888860eae03b31d450846c1a08d",
+  "selection_status": "selected_source_candidate",
+  "ground_anchor_px": [
+    795,
+    1100
+  ],
+  "attack_outlet_px": [
+    1133,
+    325
+  ],
+  "anchor_status": "new visual pixel estimate against selected native source; runtime/outlet/codex verification required",
+  "provenance": "/workspace/scratch/2244020fc8d6/b06-art/generated/monsters-m10-m18/provenance/B06-M13_telegraph-native-v1.json"
+}
