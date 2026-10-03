@@ -1,0 +1,180 @@
+{
+  "room_id": "L34",
+  "candidate_only": true,
+  "selected": {
+    "north": "L34-north-v1.png",
+    "south": "L34-south-v1.png",
+    "east": "L34-east-v1.png",
+    "west": "L34-west-v1.png",
+    "floor": "L34-floor-v1.png",
+    "inlay": "L34-inlay-v1.png"
+  },
+  "placement": {
+    "north": [
+      104.4,
+      -333.5801104972376,
+      1415.2,
+      471.7333333333334
+    ],
+    "south": [
+      104.4,
+      849.1605893186004,
+      1415.2,
+      471.7333333333334
+    ],
+    "east": [
+      1484.832044198895,
+      116,
+      270.6666666666667,
+      812
+    ],
+    "west": [
+      -142.8280055274067,
+      116,
+      270.7913403961308,
+      812
+    ]
+  },
+  "assets": [
+    {
+      "file": "L34-north-v1.png",
+      "native_size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "sha256": "1df42b4c3a4e8625f397c207ed10b188d2e34e9155f8da57f193be29f378736b",
+      "requested_dimensions": [
+        3072,
+        1024
+      ],
+      "tool": "built-in image_gen",
+      "model": "unreported",
+      "call_id": "exec-b1abf8cf-4c3b-4af0-b224-98d43e61e200",
+      "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b1abf8cf-4c3b-4af0-b224-98d43e61e200.png",
+      "prompt": "provenance/L34-north-v1.txt",
+      "reference_sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+      "byte_exact": true
+    },
+    {
+      "file": "L34-south-v1.png",
+      "native_size": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "sha256": "9ca6ddc9a1ce92a109c6d2bcd930253c6f9095a720b9a42e00a5dcd23e71c73a",
+      "requested_dimensions": [
+        3072,
+        1024
+      ],
+      "tool": "built-in image_gen",
+      "model": "unreported",
+      "call_id": "exec-60ee416f-dcec-4538-872f-a19bfd5cf77b",
+      "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-60ee416f-dcec-4538-872f-a19bfd5cf77b.png",
+      "prompt": "provenance/L34-south-v1.txt",
+      "reference_sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+      "byte_exact": true
+    },
+    {
+      "file": "L34-east-v1.png",
+      "native_size": [
+        724,
+        2172
+      ],
+      "mode": "RGBA",
+      "sha256": "745c12b3cac9fe508d9fb47bd6f2c321da86649b31753acaf88c51b69471a33a",
+      "requested_dimensions": [
+        1024,
+        3072
+      ],
+      "tool": "built-in image_gen",
+      "model": "unreported",
+      "call_id": "exec-58b1dadd-0616-4d6d-be02-84137d7cfb47",
+      "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-58b1dadd-0616-4d6d-be02-84137d7cfb47.png",
+      "prompt": "provenance/L34-east-v1.txt",
+      "reference_sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+      "byte_exact": true
+    },
+    {
+      "file": "L34-west-v1.png",
+      "native_size": [
+        724,
+        2171
+      ],
+      "mode": "RGBA",
+      "sha256": "e9d6ae5dc92bd6458ffa86012254e295c6f3f24e62a5db7eff063416ef1cd8f5",
+      "requested_dimensions": [
+        1024,
+        3072
+      ],
+      "tool": "built-in image_gen",
+      "model": "unreported",
+      "call_id": "exec-d32d3ea8-a18a-44a1-b3ac-0912d5ec2af0",
+      "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d32d3ea8-a18a-44a1-b3ac-0912d5ec2af0.png",
+      "prompt": "provenance/L34-west-v1.txt",
+      "reference_sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+      "byte_exact": true
+    },
+    {
+      "file": "L34-floor-v1.png",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "sha256": "f466ae502eb4c540066891c1ed9dec44aed93ff77c7b9cc2bf687679a0738c54",
+      "requested_dimensions": [
+        1536,
+        1536
+      ],
+      "tool": "built-in image_gen",
+      "model": "unreported",
+      "call_id": "exec-ff5e1cd9-38c9-4e77-8463-b86839f40556",
+      "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ff5e1cd9-38c9-4e77-8463-b86839f40556.png",
+      "prompt": "provenance/L34-floor-v1.txt",
+      "reference_sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+      "byte_exact": true
+    },
+    {
+      "file": "L34-inlay-v1.png",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "sha256": "8b89f10e4b7a451a778afb98d2747bd27a738074203a743e467dc104efc65dc6",
+      "requested_dimensions": [
+        1536,
+        1536
+      ],
+      "tool": "built-in image_gen",
+      "model": "unreported",
+      "call_id": "exec-83b705d6-7f90-41ee-a62e-5d32e96b6486",
+      "returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-83b705d6-7f90-41ee-a62e-5d32e96b6486.png",
+      "prompt": "provenance/L34-inlay-v1.txt",
+      "reference_sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+      "byte_exact": true
+    }
+  ],
+  "source_anchors": {
+    "north_y": 690,
+    "south_y": 121,
+    "east_x": 93,
+    "west_x": 661
+  },
+  "shared_water": "res://assets/generated/b06_l31_environment_pilot/L31-water-v1.png",
+  "visual_acceptance": {
+    "status": "scoped candidate visual pass",
+    "full_room_batch": "20261002T185851838706Z-b9817c14",
+    "direction_contrast_batch": "20261002T190406025256Z-3d5ca8ef",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "geometry_changed": false,
+    "combat_changed": false,
+    "ordinary_release_enabled": false
+  },
+  "full_room_native_2k": false
+}

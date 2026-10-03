@@ -1,0 +1,98 @@
+[
+  {
+    "id": "L33-north-market-skyline-v1",
+    "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-147c1454-9118-449b-8247-73bf9d6af26d.png",
+    "call_id": "exec-147c1454-9118-449b-8247-73bf9d6af26d",
+    "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-147c1454-9118-449b-8247-73bf9d6af26d.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "prompt": "Use case: stylized-concept. Asset type: one independent transparent 2.5D game NORTH EXTERIOR MARKET SKYLINE strip for Coral Market L33, no whole room. Input image1 is the exact B06 PR5 pearl/coral sea-city style and palette reference; image2 is an accepted L31 camera/material reference only, not layout to duplicate. Request wide 3:1 aspect, native3072x1024 if supported, no upscale. High-overhead three-quarter near-orthographic camera, warm crisp coastal daylight, refined painted fantasy game art with sharp small architectural relief. Create an asymmetric low market silhouette: on the left a pearl-and-cobalt trading arcade with a scalloped warm blush coral awning; on the right a compact open shell-canopy merchant pavilion with aqua-blue canopy and pearl finials; between them a low elegant ivory/gold balustrade interspersed with two short coral-pink sailcloth awnings. Vivid but elegant pearl ivory, cobalt blue, turquoise, fine gold, pink/lavender live coral. Attached shell and pearl trim and a few coral fronds only. No loose merchandise or interior props. Every architecture base rests on a SINGLE NARROW STRAIGHT HORIZONTAL BOTTOM EDGE, touching that bottom edge, with detailed raised masonry and gold relief continuing to the boundary. All visible architecture projects UP from that edge. No floor below it, no deep empty margin. Keep center low and airy so distant skyline stays open. Genuine transparent background around and through open arches. No sky, sea, ground, terrain, floor, whole room, playable interior, stairs, people, creatures, symbols resembling text, signage, writing, UI, border or watermark.",
+    "referenced_image_paths": [
+      "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+      "/workspace/scratch/2244020fc8d6/games-recovery/b06/assets/generated/b06_l31_environment_pilot/L31-north-skyline-v1.png"
+    ],
+    "transparent_background": true,
+    "requested_dimensions": [
+      3072,
+      1024
+    ]
+  },
+  {
+    "id": "L33-south-market-quay-v1",
+    "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1af7dedc-8cfc-4286-9751-1274dee51c98.png",
+    "call_id": "exec-1af7dedc-8cfc-4286-9751-1274dee51c98",
+    "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-1af7dedc-8cfc-4286-9751-1274dee51c98.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "prompt": "Use case: stylized-concept. Asset type: one independent transparent 2.5D game SOUTH EXTERIOR RAISED MARKET QUAY FACADE for Coral Market L33, not a whole room. Input image1 is exact PR5 B06 sea-city style; image2 is accepted L31 facade camera/material reference, not geometry or ornament to copy. Wide3:1 requested native3072x1024 if supported, no upscale. High-overhead three-quarter near-orthographic game view, straight horizontal frontage with no converging perspective. A long pearl-white raised trading quay supported by four distinct shell-ribbed arcades, fine gold arch ribs, cobalt blue glazed recesses, small carved pearl garlands under the cornice, occasional coral-pink/lavender growth clinging on the exterior columns. Less temple-like and more elegant coastal merchant architecture. CONTINUOUS NARROW STRAIGHT HORIZONTAL TOP EDGE is the legal inner boundary: carved cornice and architectural relief must reach and touch that TOP EDGE across the width. Everything projects DOWN away from that line. No upward finials, no transparent padding above the cornice. No walkable top surface or paving. Transparent arches and genuine transparent empty background, isolated silhouette and airy voids. Crisp bright warm daylight and high-detail PR5 materials. No water plane, sky, ground rectangle, ships, stairs, interior props, crates, people, text, writing, UI, border or watermark.",
+    "referenced_image_paths": [
+      "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+      "/workspace/scratch/2244020fc8d6/games-recovery/b06/assets/generated/b06_l31_environment_pilot/L31-south-facade-v1.png"
+    ],
+    "transparent_background": true,
+    "requested_dimensions": [
+      3072,
+      1024
+    ]
+  },
+  {
+    "id": "L33-east-market-facade-v1",
+    "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-2d29b26f-407d-499e-97a3-2daaa2853889.png",
+    "call_id": "exec-2d29b26f-407d-499e-97a3-2daaa2853889",
+    "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-2d29b26f-407d-499e-97a3-2daaa2853889.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "prompt": "Use case: stylized-concept. Asset type: independent transparent game EAST EXTERIOR MARKET FACADE strip, no whole room. Input image1 is exact PR5 B06 pearl/coral city palette/style; image2 is accepted L31 EAST side camera/material reference only, do not copy its shrine or geometry. Portrait1:3, requested native1024x3072 if supported, no upscale. High-overhead three-quarter near-orthographic camera. A long raised pearl-white merchant terrace edge with cobalt enamel inset, fine golden trim, carved shell and pearl arcade brackets, three small exterior scalloped coral-blush awnings and restrained coral fronds attached on the outer face. Create clear layered architectural relief, open arch cutouts, vivid ivory/blue/aqua/gold and pink/lavender accents, bright warm coast daylight, crisp mature hand-painted 2.5D detail. The legal inner boundary is a SINGLE CONTINUOUS STRAIGHT VERTICAL PEARL AND GOLD EDGE at the absolute LEFT EDGE of image, full height, flush to left edge without transparent margin. All facade depth projects RIGHT outwards. Inner edge should look like structured raised cornice, never a long flat texture stripe. No interior platform, no walkable paving, no steps, no gameplay obstacles. This is a new asymmetrical east composition, not a rotated or mirrored south wall. Genuine transparent backdrop around and through arches. No water plane, sky, land, ground, ship, loose props, crates, people, lettering, signs, numbers, text, UI, border or watermark.",
+    "referenced_image_paths": [
+      "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+      "/workspace/scratch/2244020fc8d6/games-recovery/b06/assets/generated/b06_l31_environment_pilot/L31-east-facade-v1.png"
+    ],
+    "transparent_background": true,
+    "requested_dimensions": [
+      1024,
+      3072
+    ]
+  },
+  {
+    "id": "L33-west-market-facade-v1",
+    "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-58253f94-ccb4-43b4-9a0a-a19c9abb4a64.png",
+    "call_id": "exec-58253f94-ccb4-43b4-9a0a-a19c9abb4a64",
+    "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-58253f94-ccb4-43b4-9a0a-a19c9abb4a64.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "prompt": "Use case: stylized-concept. Asset type: independent transparent game WEST EXTERIOR CORAL MARKET FACADE strip, no whole room. Input image1 is exact PR5 B06 sea-city style/palette; image2 is accepted L31 WEST facade camera/material reference only, not its composition. Portrait1:3, requested native1024x3072 if supported, no upscale. High-overhead three-quarter near-orthographic camera. Entirely new western merchant quay with a long pearl-white wall, fine gold cornice, turquoise and cobalt glass inset shell arches, two compact sea-green scalloped market canopy projections and warm pink coral brackets, small pearl pendant garlands at alternating heights. No temple tower. Mature bright painted fantasy, precise crisp architectural details, warm daylight. The legal inner boundary is a SINGLE CONTINUOUS STRAIGHT VERTICAL PEARL AND GOLD EDGE at the absolute RIGHT EDGE of image running full height. Structural architectural relief touches the RIGHT image edge, no transparent gap there. Everything projects LEFT away from that straight line, with layered arches and coral relief. No walkable terrace, no floor interior, no stairs or props. Do not mirror, rotate or reuse another wall: create independent west-specific asymmetrical structure, different awning cadence from east. Genuine transparent background around and through the arches. No water plane, sky, land, floor rectangle, loose merchandise, people, writing, labels, text, UI, border or watermark.",
+    "referenced_image_paths": [
+      "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+      "/workspace/scratch/2244020fc8d6/games-recovery/b06/assets/generated/b06_l31_environment_pilot/L31-west-facade-v1.png"
+    ],
+    "transparent_background": true,
+    "requested_dimensions": [
+      1024,
+      3072
+    ]
+  },
+  {
+    "id": "L33-pearl-market-floor-slab-v1",
+    "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ce78c8ee-fd2a-430c-9fb5-1cc01bdbf046.png",
+    "call_id": "exec-ce78c8ee-fd2a-430c-9fb5-1cc01bdbf046",
+    "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-ce78c8ee-fd2a-430c-9fb5-1cc01bdbf046.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "prompt": "Use case: stylized-concept. Asset type: one clean repeatable square pearl/coral marble floor slab texture for Coral Market L33 game. Input image1 is exact B06 PR5 world palette and pearl material; image2 is accepted L31 slab material/camera reference only. Generate one opaque square native2048x2048 if supported, no upscale. Straight orthographic top-down view, perfectly flat and edge-to-edge, no perspective or vertical relief. A single understated pearl-white stone slab with subtle warmer blush/coral mineral wisps and a few pale aqua veins, restrained satiny shell nacre, crisp fine details, bright warm daylight with completely even lighting. Make a practical tiling floor material: edges match softly in tone and contain no high contrast veins that abruptly terminate; delicate thin consistent warm-gold hairline bevel at exact perimeter defines one repeatable slab, no broad frame, no huge motif, no repeated grid inside. Very low contrast center to keep characters and danger markers readable. Keep refined PR5 pearl/coral identity while distinct from L31 cooler blue-white tile. No seashell objects, coral plants, raised objects, obstacles, water, ocean, puddle, sand, building, ground shadow, whole room, illustration scene, text or watermark. Entire canvas is opaque paving material.",
+    "referenced_image_paths": [
+      "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+      "/workspace/scratch/2244020fc8d6/games-recovery/b06/assets/generated/b06_l31_environment_pilot/L31-floor-tile-v2.png"
+    ],
+    "transparent_background": false,
+    "requested_dimensions": [
+      2048,
+      2048
+    ]
+  },
+  {
+    "id": "L33-market-pearl-mosaic-v1",
+    "path": "/workspace/scratch/2244020fc8d6/generated_images/exec-81e1b28a-8489-42ad-be0c-a7754dc50d94.png",
+    "call_id": "exec-81e1b28a-8489-42ad-be0c-a7754dc50d94",
+    "output_hint": "Generated images are saved to /workspace/scratch/2244020fc8d6/generated_images as /workspace/scratch/2244020fc8d6/generated_images/exec-81e1b28a-8489-42ad-be0c-a7754dc50d94.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "prompt": "Use case: stylized-concept. Asset type: optional small flat floor mosaic inlay sprite for Coral Market L33. Image1 is the exact PR5 B06 pearl/coral art reference; image2 is the accepted warm pearl-coral floor slab as the matching material. A SINGLE SMALL FLAT CIRCULAR MOSAIC medallion seen straight from above, centered on a genuinely transparent square canvas. Requested native2048x2048 if supported, no upscale. Abstract merchant sea-city motif: a graceful open clam shell made of small flush nacre tesserae, framing three tiny round flat mother-of-pearl mosaic circles, with thin coral-pink and pale turquoise geometric waves and a slim antique-gold mosaic rim. Refined restrained PR5 fantasy craftsmanship, crisp details but low contrast. Entire design is an inlaid piece of the flat paving, not a collectible item, not a raised pearl or shell, no 3D edge, no pedestal, no drop shadow, no glow. No floor rectangle behind the medallion. Keep internal stone opaque and only exterior silhouette transparent. No letters, coins, numerals, writing, currency sign, UI, text, characters, props, water or whole-room scene.",
+    "referenced_image_paths": [
+      "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+      "/workspace/scratch/2244020fc8d6/games-recovery/b06/assets/generated/b06_l33_environment/L33-pearl-market-floor-slab-v1.png"
+    ],
+    "transparent_background": true,
+    "requested_dimensions": [
+      2048,
+      2048
+    ]
+  }
+]
