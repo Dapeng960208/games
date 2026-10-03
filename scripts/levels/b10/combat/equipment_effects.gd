@@ -3,7 +3,6 @@ extends RefCounted
 ## Final-court rules use confirmed original casts/hits and the shared cast budget.
 ## Temporary counters fit the existing scalar checkpoint maps; ICDs survive swaps.
 const Numerical = preload("res://scripts/infrastructure/content/runtime_rules.gd")
-const MAGE_SLOTS := ["q", "secondary", "f", "ultimate"]
 
 static func modifiers(e: Variant, _ctx: Dictionary, out: Dictionary) -> void:
 	if not Numerical.is_v2(e.stats): return
@@ -29,7 +28,7 @@ static func advance(e: Variant, delta: float, ctx: Dictionary, out: Dictionary) 
 
 static func event(e: Variant, name: String, ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if not Numerical.is_v2(e.stats): return
-	var slot: String = str(ctx.get("skill_slot", ctx.get("slot", "")))
+	var slot: String = e.skill_origin(ctx)
 	match name:
 		"before_hit":
 			if e._eligible(ctx): _before_hit(e, ctx, root, out, slot)
@@ -40,7 +39,7 @@ static func event(e: Variant, name: String, ctx: Dictionary, root: Dictionary, o
 		"skill_cast": _cast(e, ctx, root, out, slot)
 		"gunner_q_completed":
 			var distance: float = float(ctx.get("actual_distance", 0.0))
-			if e._has_set("B10-SG", 6) and _original(ctx) and is_finite(distance) and distance > 0.0 and not bool(ctx.get("teleported", false)):
+			if slot == "q" and e.resource_type == "energy" and e._has_set("B10-SG", 6) and _original(ctx) and is_finite(distance) and distance > 0.0 and not bool(ctx.get("teleported", false)):
 				e.windows["B10-SG_6:q"] = e.clock + 8.0
 		"gunner_r_shot": _r_shot(e, ctx, root, out)
 		"damaged":
@@ -114,7 +113,9 @@ static func _after_hit(e: Variant, ctx: Dictionary, root: Dictionary, out: Dicti
 		_balance(e, ctx, root, out)
 
 static func _cast(e: Variant, ctx: Dictionary, root: Dictionary, out: Dictionary, slot: String) -> void:
-	if not _original(ctx) or not bool(ctx.get("cast_success", false)) or slot not in MAGE_SLOTS or bool(root.get("b10_cast_counted", false)): return
+	var skill: String = str(ctx.get("skill_id", ""))
+	if skill.is_empty(): skill = e.canonical_skill_id(ctx, slot)
+	if not _original(ctx) or not bool(ctx.get("cast_success", false)) or e._skill_index({"skill_id":skill}) == 0 or bool(root.get("b10_cast_counted", false)): return
 	root["b10_cast_counted"] = true
 	var paid: float = float(ctx.get("paid_cost", 0.0))
 	if e._has_set("B10-SU", 4) and is_finite(paid) and paid > 0.0: e.windows.erase("B10-SU_4:discount")
@@ -124,19 +125,20 @@ static func _cast(e: Variant, ctx: Dictionary, root: Dictionary, out: Dictionary
 		e.counts.erase("B10-SW_4:stacks")
 		e.windows.erase("B10-SW_4:oath")
 	if e._has_set("B10-SM", 4) and e.resource_type == "mana" and is_finite(paid) and paid > 0.0 and bool(ctx.get("combat_active", false)):
-		e.windows["B10-SM_4:spell:" + slot] = e.clock + 8.0
-		e.counts["B10-SM_4:cost:" + slot] = Numerical.integer(paid)
+		e.windows["B10-SM_4:spell:" + skill] = e.clock + 8.0
+		e.counts["B10-SM_4:cost:" + skill] = Numerical.integer(paid)
 		var spells: Array[String] = []
 		var spent := 0
-		for skill: String in MAGE_SLOTS:
-			if e._window("B10-SM_4:spell:" + skill):
-				spells.append(skill)
-				spent += int(e.counts.get("B10-SM_4:cost:" + skill, 0))
+		for index in range(1, 13):
+			var id: String = "CH03_SK%02d" % index
+			if e._window("B10-SM_4:spell:" + id):
+				spells.append(id)
+				spent += int(e.counts.get("B10-SM_4:cost:" + id, 0))
 		var refund: int = Numerical.scale(80.0, Numerical.V2)
 		if spells.size() >= 3 and spent > refund:
-			for skill: String in MAGE_SLOTS:
-				e.windows.erase("B10-SM_4:spell:" + skill)
-				e.counts.erase("B10-SM_4:cost:" + skill)
+			for id: String in spells:
+				e.windows.erase("B10-SM_4:spell:" + id)
+				e.counts.erase("B10-SM_4:cost:" + id)
 			if e._activate("B10-SM_4", 10.0, root, out, false): out.resource_restore += mini(refund, maxi(0, Numerical.integer(float(ctx.get("resource_max", 0.0)) - float(ctx.get("resource", 0.0)))))
 			if e._has_set("B10-SM", 6) and e._activate("B10-SM_6", 12.0, root, out, false): e.windows["B10-SM_6:burst"] = e.clock + 6.0
 	if e._has_set("B10-SU", 6) and bool(ctx.get("combat_active", false)):
@@ -152,7 +154,7 @@ static func _balance(e: Variant, _ctx: Dictionary, root: Dictionary, out: Dictio
 
 static func _r_shot(e: Variant, ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	var ordinal := int(ctx.get("r_shot_ordinal", 0))
-	if not e._has_set("B10-SG", 6) or not _original(ctx) or ordinal < 1 or ordinal > 3: return
+	if e.skill_origin(ctx) != "ultimate" or e.resource_type != "energy" or not e._has_set("B10-SG", 6) or not _original(ctx) or ordinal < 1 or ordinal > 3: return
 	if not root.has("b10_r_target"):
 		if ordinal != 1: return
 		var target := ""
@@ -176,7 +178,7 @@ static func _r_shot(e: Variant, ctx: Dictionary, root: Dictionary, out: Dictiona
 	out["b10_r_bonus"] = packet
 
 static func _original(ctx: Dictionary) -> bool:
-	return int(ctx.get("proc_depth", 0)) == 0 and bool(ctx.get("equipment_eligible", false)) and str(ctx.get("damage_source", "skill")) in ["primary", "basic", "skill"]
+	return int(ctx.get("proc_depth", 0)) == 0 and bool(ctx.get("equipment_eligible", false)) and bool(ctx.get("original", true)) and not bool(ctx.get("derived", false)) and str(ctx.get("damage_source", ctx.get("source", "skill"))) in ["primary", "basic", "skill"]
 
 static func _packet(e: Variant, ctx: Dictionary, root: Dictionary, out: Dictionary, id: String, coefficient: float, targets: Array, limit: int, power_type: String, reserved: bool = false) -> void:
 	var power_stats: Dictionary = ctx.get("attacker_stats", e.stats)

@@ -299,6 +299,7 @@ func _filtered_equipment() -> Array:
 	for value in (ContentRegistry.equipment_ids(int(Game.profile.get("ruleset_version",1))) if mode == "shop" else Game.profile.get("equipment",{}).keys()):
 		var id := str(value)
 		var data: Dictionary = _definition(id)
+		if mode == "shop" and bool(data.get("reward_only", false)): continue
 		if mode != "shop" and not Game.profile.get("equipment",{}).has(id):
 			continue
 		var equipped := str(Game.profile.get("loadout",{}).get(data.get("slot",""),"")) == id

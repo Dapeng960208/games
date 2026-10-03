@@ -5,6 +5,8 @@ const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const ClassPolicy = preload("res://scripts/domain/equipment/equipment_class_policy.gd")
 const PATH := "res://data/levels/b10/equipment.json"
 const VERSION := 1
+const FINALE_RING_ID := "B10-EASTER-RING"
+const FINALE_STATS := {"attack":300, "ability_power":600, "max_hp":1500, "max_mana":300, "armor":120, "magic_resist":120, "armor_penetration":100, "magic_penetration":100, "crit_multiplier":0.12, "true_damage_bonus":60, "attack_speed":0.08, "move_speed":0.06, "crit_chance":0.05, "cooldown_reduction":0.05, "damage_bonus":0.08, "damage_reduction":0.03, "burn_damage":0.08, "corrosion_damage_bonus":0.08, "status_duration":0.06}
 const HEROES := ["CH01", "CH02", "CH03"]
 const SLOTS := ["weapon", "head", "chest", "hands", "legs", "feet", "ring", "charm"]
 const DESIGN_SLOTS := ["weapon", "head", "chest", "hands", "legs", "feet", "ring", "accessory"]
@@ -53,17 +55,18 @@ static func natural_pool(hero_id: String) -> Dictionary:
 	for slot: String in SLOTS: result[slot] = []
 	for id: String in equipment_ids():
 		var item := equipment(id)
-		if hero_id in item.allowed_heroes: result[item.slot].append(id)
+		if not bool(item.get("reward_only", false)) and hero_id in item.allowed_heroes: result[item.slot].append(id)
 	return result
 
 static func main_bases(template_id: String, power_type: String) -> Dictionary:
 	if not supports_power(template_id, power_type): return {}
+	if template_id == FINALE_RING_ID: return FINALE_STATS.duplicate(true)
 	var slot: Dictionary = Rules.value("slots", {}).get(equipment(template_id).slot, {})
 	return slot.get("shared", slot.get(power_type, {})).duplicate(true)
 
 static func legal_affixes(template_id: String, power_type: String) -> Array[String]:
 	var result: Array[String] = []
-	if not supports_power(template_id, power_type): return result
+	if template_id == FINALE_RING_ID or not supports_power(template_id, power_type): return result
 	var slot: String = equipment(template_id).slot
 	var definitions: Dictionary = Rules.value("affixes", {})
 	for key: String in definitions:
@@ -86,7 +89,7 @@ static func affix_weights(template_id: String, power_type: String) -> Dictionary
 ## A generation-intent value, NOT a playable equipment instance or a drop receipt.
 ## Natural generation chooses effective power once. Subsequent equip never rewrites it.
 static func bind_generation(template_id: String, hero_id: String) -> Dictionary:
-	if hero_id not in HEROES or hero_id not in allowed_heroes(template_id): return {}
+	if template_id == FINALE_RING_ID or hero_id not in HEROES or hero_id not in allowed_heroes(template_id): return {}
 	var power := ClassPolicy.power_type(hero_id)
 	if not supports_power(template_id, power): return {}
 	return {"catalog_version":VERSION, "template_id":template_id, "power_type":power}
@@ -126,7 +129,7 @@ static func validate(candidate: Variant = null) -> Array[String]:
 		errors.append("Sets and equipment must be dictionaries.")
 		return errors
 	if not _keys(data.sets, SET_HERO.keys()): errors.append("Expected exactly the four B10 sets.")
-	if data.equipment.size() != 35: errors.append("Expected exactly 35 B10 templates.")
+	if data.equipment.size() != 36: errors.append("Expected 35 natural B10 templates and one finale reward.")
 	if not data.effect_contract is Dictionary or data.effect_contract != EFFECT_CONTRACT:
 		errors.append("Effect lifecycle contract changed without a catalog version.")
 	for sid: String in SET_HERO:
@@ -149,6 +152,9 @@ static func validate(candidate: Variant = null) -> Array[String]:
 		if not id is String or not item is Dictionary:
 			errors.append("Invalid template entry.")
 			continue
+		if id == FINALE_RING_ID:
+			_validate_finale_ring(item, errors)
+			continue
 		var required := ["id", "name", "name_en", "design_slot", "slot", "set_id", "race_id", "allowed_heroes", "power_types", "price", "base_stats", "main_coefficient", "ruleset_version", "unlock_boss", "affix_tendencies_by_power", "unique_effect"]
 		var unique_index := ["B10-U01", "B10-U02", "B10-U03"].find(id)
 		if unique_index >= 0: required.append("source_preferences")
@@ -156,7 +162,7 @@ static func validate(candidate: Variant = null) -> Array[String]:
 			errors.append(id + ": unexpected template fields.")
 			continue
 		if item.id != id or not _text(item.name) or not _text(item.name_en): errors.append(id + ": invalid identity/name.")
-		if item.race_id != "B10" or item.unlock_boss != "BO04" or not _integer(item.ruleset_version, 2): errors.append(id + ": invalid chapter/ruleset/unlock.")
+		if item.race_id != "B10" or item.unlock_boss != "BO09" or not _integer(item.ruleset_version, 2): errors.append(id + ": invalid chapter/ruleset/unlock.")
 		if item.design_slot not in DESIGN_SLOTS or item.slot != ("charm" if item.design_slot == "accessory" else item.design_slot): errors.append(id + ": invalid slot mapping.")
 		if not item.slot is String or not _integer(item.price, int(PRICES.get(item.slot, -1))): errors.append(id + ": invalid inherited price.")
 		if not item.base_stats is Dictionary or not item.base_stats.is_empty() or not _number(item.main_coefficient) or float(item.main_coefficient) != 1.0: errors.append(id + ": extra main-stat budget.")
@@ -179,6 +185,15 @@ static func validate(candidate: Variant = null) -> Array[String]:
 		for key: String in ["equipment", "sets"]:
 			if data[key] != authored.get(key): errors.append(key + ": differs from the authored version-one contract.")
 	return errors
+
+static func _validate_finale_ring(item: Dictionary, errors: Array[String]) -> void:
+	var required := ["id", "name", "name_en", "design_slot", "slot", "set_id", "race_id", "allowed_heroes", "power_types", "price", "base_stats", "main_coefficient", "ruleset_version", "unlock_boss", "affix_tendencies_by_power", "unique_effect", "reward_only", "fixed_stats"]
+	if not _keys(item, required):
+		errors.append("Finale ring fields do not match the fixed reward contract.")
+		return
+	if item.id != FINALE_RING_ID or not _text(item.name) or not _text(item.name_en) or item.slot != "ring" or item.design_slot != "ring" or item.set_id != "" or item.race_id != "B10" or item.unlock_boss != "BO09": errors.append("Invalid finale ring identity.")
+	if item.allowed_heroes != HEROES or item.power_types != ["physical", "magic"] or item.reward_only != true or not item.reward_only is bool: errors.append("Finale ring must remain a universal exclusive reward.")
+	if item.fixed_stats != FINALE_STATS or item.base_stats != {} or item.affix_tendencies_by_power != {"physical":[], "magic":[]} or item.unique_effect != {} or not _integer(item.price, 0) or not _number(item.main_coefficient) or float(item.main_coefficient) != 1.0 or not _integer(item.ruleset_version, 2): errors.append("Finale ring fixed stats or creation policy changed.")
 
 static func _validate_qualification(item: Dictionary, sid: String, label: String, errors: Array[String]) -> void:
 	var hero: String = SET_HERO.get(sid, "")

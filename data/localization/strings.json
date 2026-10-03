@@ -1166,5 +1166,13 @@
   "STORAGE_LEGACY_RESET": {
     "zh_CN": "旧格式存档已保留原始备份，当前版本已从新进度开始。",
     "en": "The old save was preserved as a backup. This version starts with fresh progress."
+  },
+  "ERROR_REWARD_ONLY_TEMPLATE": {
+    "zh_CN": "星冠万象戒仅在最高难度终章胜利后首次撤离时获得，不能购买或打造。",
+    "en": "The Ring of the Final Star is awarded once after victory and extraction from the finale on maximum difficulty; it cannot be bought or crafted."
+  },
+  "ERROR_FIXED_FINALE_REWARD": {
+    "zh_CN": "星冠万象戒是账号唯一的固定全属性奖品，不能出售、拆解、继承或锻造。",
+    "en": "The Ring of the Final Star is a unique fixed all-stat reward; it cannot be sold, dismantled, inherited or forged."
   }
 }

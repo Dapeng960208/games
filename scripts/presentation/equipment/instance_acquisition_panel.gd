@@ -27,11 +27,12 @@ static func _change(panel: Control, key: String, value: Variant) -> void:
 
 static func creation_ids(set_mode: bool) -> Array:
 	var ids: Array = ContentRegistry.sets(2).keys() if set_mode else ContentRegistry.equipment_ids(2)
+	if not set_mode: ids = ids.filter(func(id: String) -> bool: return not bool(ContentRegistry.equipment(id, 2).get("reward_only", false)))
 	ids.sort()
 	return ids
 
 static func creation_level_cap(identity: String = "") -> int:
-	var cap := 30 if identity.begins_with("B06-") else 25
+	var cap := 50 if identity.begins_with("B10-") else 45 if identity.begins_with("B09-") else 30 if identity.begins_with("B06-") else 25
 	return mini(Game.hero_level(),cap)
 
 static func render(panel: Control) -> void:
@@ -240,15 +241,15 @@ static func _main_range(template: String, request: Dictionary, quantile: int) ->
 	var legal := Instances.legal_affixes(template,request.power_type)
 	for index in int(Numbers.value("rarities")[request.rarity].affix_count): affixes.append({"type":legal[index],"u":quantile})
 	var spec := {"instance_id":"preview","template_id":template,"source_event_id":"preview","item_level":request.item_level,"rarity":request.rarity,"power_type":request.power_type,"main_rolls":main,"affix_type_and_quantile":affixes}
-	if template.begins_with("B05-"):
-		# A deterministic endpoint is still validated by the strict B05 record
+	if template.begins_with("B05-") or template.begins_with("B06-") or template.begins_with("B09-") or template.begins_with("B10-"):
+		# A deterministic endpoint is still validated by the chapter record
 		# contract. This preview never rolls RNG, becomes an owned item or saves.
 		var allowed := ContentRegistry.ClassPolicy.template_allowed_heroes(template)
 		if allowed.is_empty(): return {}
 		var hero := str(request.get("hero_id", ""))
 		if hero not in allowed: hero = str(allowed[0])
 		spec.merge({"class_policy_version":ContentRegistry.ClassPolicy.template_policy_version(template),
-			"allowed_heroes":allowed,"acquired_for_hero":hero,"source_metadata":{"generator_version":3}})
+			"allowed_heroes":allowed,"acquired_for_hero":hero,"source_metadata":{"generator_version":5 if template.begins_with("B10-") or template.begins_with("B09-") else 4 if template.begins_with("B06-") else 3}})
 	var record := Instances.create(spec)
 	return Instances.main_stats(record)
 
@@ -260,6 +261,7 @@ static func _material_name(id: String) -> String:
 	return id.get_slice(":",1)+(_t("族材"," material") if id.begins_with("race:") else _t("核心"," core"))
 
 static func error_text(code: String) -> String:
+	if code == "REWARD_ONLY_TEMPLATE": return Words.text("ERROR_REWARD_ONLY_TEMPLATE")
 	if code == "CLASS_POWER_MISMATCH": return _t("专属套属性不符：法师用法术，战士/枪手用物理。", "Wrong stats for class set: Mage uses Magic; Warrior/Gunner use Physical.")
 	if code == "CLASS_LOCKED": return _t("当前职业不能穿戴该专属套。", "Current class cannot equip this exclusive set.")
 	var messages := {"INSUFFICIENT_GOLD":["金币不足。","Not enough gold."],"INSUFFICIENT_MATERIALS":["材料不足。","Not enough materials."],"CRAFT_LEVEL_LOCKED":["打造解锁等级：绿5、紫10、金15。","Craft unlocks: green Lv5, purple Lv10, gold Lv15."],"ITEM_LEVEL_LOCKED":["装备等级不能超过当前角色。","Item level exceeds the current hero."],"TEMPLATE_LOCKED":["先击败对应首领解锁模板。","Defeat the required boss to unlock this template."],"PROFILE_CAPACITY":["存档容量不足；交易未生效。","Save capacity reached; transaction was not applied."]}

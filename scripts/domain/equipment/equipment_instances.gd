@@ -5,6 +5,8 @@ extends RefCounted
 const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
 const Growth = preload("res://scripts/domain/progression/hero_progression.gd")
+const FINALE_RING_ID := "B10-EASTER-RING"
+const FINALE_RING_INSTANCE_ID := "instance:finale:ring"
 const LOCATIONS: Array[String] = ["inventory", "pending", "equipped"]
 const REQUIRED: Array[String] = ["instance_id", "template_id", "equipment_instance_version", "ruleset_version", "scale_version", "source_event_id", "item_level", "rarity", "power_type", "main_rolls", "affix_type_and_quantile", "enhancement_rank", "enhancement_steps", "enhancement_reroll_history", "reforge_slot", "enhancement_gold_ledger", "material_ledger", "location", "lock_state"]
 
@@ -19,6 +21,21 @@ static func create(spec: Dictionary) -> Dictionary:
 		if not result.has(key): result[key] = defaults[key]
 	return result if validate(result).is_empty() else {}
 
+## Sole fixed finale reward. The extraction transaction owns the permanent claim.
+static func make_finale_ring(source_event_id: String, hero_id: String) -> Dictionary:
+	if not _nonempty_string(source_event_id) or hero_id not in Registry.ClassPolicy.HEROES: return {}
+	var template := Registry.equipment(FINALE_RING_ID, 2)
+	if template.is_empty() or not bool(template.get("reward_only", false)): return {}
+	var rolls := {}
+	for key: String in template.fixed_stats: rolls[key] = 100
+	return create({"instance_id":FINALE_RING_INSTANCE_ID, "template_id":FINALE_RING_ID,
+		"source_event_id":source_event_id, "item_level":50, "rarity":"gold",
+		"power_type":Registry.ClassPolicy.power_type(hero_id), "main_rolls":rolls,
+		"affix_type_and_quantile":[], "enhancement_steps":[], "purchase_baseline_gold":0,
+		"source_kind":"finale_reward", "source_metadata":{"generator_version":5, "reward_id":"B10-D4-FINALE"},
+		"class_policy_version":Registry.ClassPolicy.B10_VERSION, "allowed_heroes":Registry.ClassPolicy.HEROES.duplicate(),
+		"acquired_for_hero":hero_id, "location":"inventory", "lock_state":true})
+
 static func main_keys(template_id: String, power_type: String) -> Array[String]:
 	var result: Array[String] = []
 	for key: String in main_bases(template_id, power_type): result.append(key)
@@ -29,6 +46,7 @@ static func main_bases(template_id: String, power_type: String) -> Dictionary:
 	var template := Registry.equipment(template_id, 2)
 	var definitions: Dictionary = Rules.value("slots")
 	if template.is_empty() or not definitions.has(template.get("slot")): return {}
+	if template_id == FINALE_RING_ID: return template.get("fixed_stats", {}).duplicate(true)
 	var slot: Dictionary = definitions[template.slot]
 	return slot.get("shared", slot.get(power_type, {})).duplicate(true)
 
@@ -36,7 +54,7 @@ static func main_bases(template_id: String, power_type: String) -> Dictionary:
 static func legal_affixes(template_id: String, power_type: String) -> Array[String]:
 	var result: Array[String] = []
 	var template := Registry.equipment(template_id, 2)
-	if template.is_empty() or power_type not in ["physical", "magic"]: return result
+	if template.is_empty() or template_id == FINALE_RING_ID or power_type not in ["physical", "magic"]: return result
 	var definitions: Dictionary = Rules.value("affixes")
 	for key: String in definitions:
 		var definition: Dictionary = definitions[key]
@@ -85,7 +103,7 @@ static func validate(record: Dictionary) -> Array[String]:
 	if not record.affix_type_and_quantile is Array:
 		errors.append("Affixes must be an array.")
 	else:
-		if rarities.has(record.rarity) and record.affix_type_and_quantile.size() != int(rarities[record.rarity].affix_count): errors.append("Rarity affix count mismatch.")
+		if rarities.has(record.rarity) and record.affix_type_and_quantile.size() != (0 if record.template_id == FINALE_RING_ID else int(rarities[record.rarity].affix_count)): errors.append("Rarity affix count mismatch.")
 		var seen: Dictionary = {}
 		for affix: Variant in record.affix_type_and_quantile:
 			if not affix is Dictionary or not affix.has_all(["type", "u"]):
@@ -138,7 +156,14 @@ static func validate(record: Dictionary) -> Array[String]:
 		if record.class_policy_version == 2 and provenance.get("generator_version") != 3: errors.append("B05 requires generator-v3 provenance.")
 		var allowed: Array = Registry.ClassPolicy.template_allowed_heroes(str(record.template_id))
 		if allowed.size() == 1 and record.power_type != Registry.ClassPolicy.power_type(str(allowed[0])): errors.append("Exclusive equipment has the wrong stat type.")
+	if record.template_id == FINALE_RING_ID and errors.is_empty(): _validate_finale_ring(record, errors)
 	return errors
+
+static func _validate_finale_ring(record: Dictionary, errors: Array[String]) -> void:
+	if record.instance_id != FINALE_RING_INSTANCE_ID or record.rarity != "gold" or not _integer_in(record.item_level, 50, 50) or record.get("source_kind") != "finale_reward" or record.get("source_metadata", {}).get("reward_id") != "B10-D4-FINALE": errors.append("Invalid fixed finale reward provenance.")
+	if not _integer_in(record.enhancement_rank, 0, 0) or record.has("pending_reforge") or not record.enhancement_gold_ledger.is_empty() or not record.material_ledger.is_empty() or not record.enhancement_reroll_history.is_empty(): errors.append("Finale ring cannot carry forge modifications.")
+	for value: Variant in record.main_rolls.values():
+		if not _integer_in(value, 100, 100): errors.append("Finale ring stats must retain their fixed values.")
 
 ## Flat values use reduced rational factors, then one exact integer half-up.
 ## Config decimals are parsed separately so x.499999 floating products cannot
@@ -150,6 +175,7 @@ static func main_stats(record: Dictionary) -> Dictionary:
 static func _main_stats(record: Dictionary) -> Dictionary:
 	var result := {}
 	var template := Registry.equipment(str(record.template_id), 2)
+	if record.template_id == FINALE_RING_ID: return template.fixed_stats.duplicate(true)
 	var rarity: Dictionary = Rules.value("rarities")[record.rarity]
 	var ranges: Dictionary = Rules.value("main_roll")
 	var percentages: Array = Rules.value("percentage_main_keys")

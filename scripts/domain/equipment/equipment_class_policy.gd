@@ -39,7 +39,7 @@ static func template_policy_version(template_id: String) -> int:
 	return B05_VERSION if template_id.begins_with("B05-") else VERSION
 
 static func template_allowed_heroes(template_id: String) -> Array:
-	if template_id in ["B10-U01", "B10-U02", "B10-U03"]: return HEROES.duplicate()
+	if template_id in ["B10-U01", "B10-U02", "B10-U03", "B10-EASTER-RING"]: return HEROES.duplicate()
 	if template_id.begins_with("B10-S"):
 		var parts := template_id.split("-")
 		if parts.size() != 3 or parts[2] not in ["weapon", "head", "chest", "hands", "legs", "feet", "ring", "accessory"]: return []

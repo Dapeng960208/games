@@ -35,10 +35,62 @@ const B06_UNIQUE_TEXT := {
 }
 
 const B10_SET_TEXT := {
- "B10-SW":{"2":["Q直接伤害+8%","Q direct damage +8%"],"4":["4秒内Q→W命中同敌获得星誓，最多2层，持续8秒；每次施法一次","Q then W hitting the same enemy within 4s grants a Star Oath, max 2 for 8s; once per cast"],"6":["E提交消耗星誓：下次W每层伤害+8%、命中获每层3%生命盾4秒；窗口6秒，冷却12秒","E consumes Star Oaths: next W +8% damage and 3% HP shield for 4s per stack; 6s window, 12s ICD"]},
- "B10-SG":{"2":["W主目标伤害+8%","W primary target damage +8%"],"4":["E命中留下6秒彗轨印，下次W命中追加0.30P；冷却8秒","E marks a target for 6s; next W adds 0.30P; 8s ICD"],"6":["8秒内Q真实转位、E与W命中同敌，下次R实发前3弹对其各追加0.18P；窗口6秒，冷却12秒","Real Q movement then E and W hits on one target within 8s: next R first 3 fired rounds add 0.18P against it; 6s window, 12s ICD"]},
- "B10-SM":{"2":["Q直接伤害+8%","Q direct damage +8%"],"4":["8秒内付费施放三种技能且总实耗>80，回复80法力；冷却10秒","Three different paid spells within 8s spending more than 80 mana restore 80; 10s ICD"],"6":["同一三技能事件后，下次Q或R首段追加0.60P星环，最多3目标并共享派生伤害预算；窗口6秒，冷却12秒","After the same three-spell event, next Q or R first segment adds a 0.60P star burst to up to 3 targets within the shared derived-damage budget; 6s window, 12s ICD"]},
- "B10-SU":{"2":["受到远程直接伤害-6%","Ranged direct damage received -6%"],"4":["自身护盾被实际伤害击破后，下个付费技能成本-8%；窗口6秒，冷却12秒","After own shield breaks from real damage: next paid skill costs 8% less; 6s window, 12s ICD"],"6":["10秒内真实移动160、直接命中、技能成功提交，获直接减伤8%及移速8%4秒；冷却12秒","Move 160, land a direct hit and commit a skill within 10s: direct damage reduction and speed +8% for 4s; 12s ICD"]}
+ "B10-SW": {
+  "2": [
+   "破阵冲锋直接伤害+8%",
+   "Formation Charge direct damage +8%"
+  ],
+  "4": [
+   "4秒内破阵冲锋→裂地重斩命中同敌获得星誓，最多2层，持续8秒；每次施法一次",
+   "Formation Charge then Earthsplit Cleave hitting the same enemy within 4s grants a Star Oath, max 2 for 8s; once per cast"
+  ],
+  "6": [
+   "铁壁战吼成功提交消耗星誓：下次裂地重斩每层伤害+8%、命中获每层3%生命盾4秒；窗口6秒，冷却12秒",
+   "Ironwall Warcry consumes Star Oaths: next Earthsplit Cleave gains +8% damage and a 3% HP shield for 4s per stack; 6s window, 12s ICD"
+  ]
+ },
+ "B10-SG": {
+  "2": [
+   "磁轨贯穿主目标伤害+8%",
+   "Rail Pierce primary target damage +8%"
+  ],
+  "4": [
+   "震爆榴弹命中留下6秒彗轨印，下次磁轨贯穿命中追加0.30P；冷却8秒",
+   "Shock Grenade marks a target for 6s; the next Rail Pierce hit adds 0.30P; 8s ICD"
+  ],
+  "6": [
+   "8秒内游击撤射真实转位、震爆榴弹与磁轨贯穿命中同敌，下次火力倾泻实发前3弹对其各追加0.18P；窗口6秒，冷却12秒",
+   "Real Skirmish Retreat movement then Shock Grenade and Rail Pierce hits on one target within 8s: the next Barrage first 3 fired rounds add 0.18P against it; 6s window, 12s ICD"
+  ]
+ },
+ "B10-SM": {
+  "2": [
+   "星铃飞弹直接伤害+8%",
+   "Starbell Bolt direct damage +8%"
+  ],
+  "4": [
+   "8秒内成功付费施放十二技能中的三种不同技能且总实耗>80，回复80法力；冷却10秒",
+   "Three different successful paid spells from the twelve-skill catalog within 8s spending more than 80 mana restore 80; 10s ICD"
+  ],
+  "6": [
+   "同一三技能事件后，下次星铃飞弹或星愿之庭首段追加0.60P星环，最多3目标并共享派生伤害预算；窗口6秒，冷却12秒",
+   "After the same three-spell event, the next Starbell Bolt or Court of Wishes first segment adds a 0.60P star burst to up to 3 targets within the shared derived-damage budget; 6s window, 12s ICD"
+  ]
+ },
+ "B10-SU": {
+  "2": [
+   "受到远程直接伤害-6%",
+   "Ranged direct damage received -6%"
+  ],
+  "4": [
+   "自身护盾被实际伤害击破后，下个成功付费技能成本-8%；支持十二技能，窗口6秒，冷却12秒",
+   "After own shield breaks from real damage, the next successful paid skill costs 8% less; supports all twelve skills; 6s window, 12s ICD"
+  ],
+  "6": [
+   "10秒内真实移动160、直接命中、技能成功提交，获直接减伤8%及移速8%4秒；支持十二技能，冷却12秒",
+   "Move 160, land a direct hit and commit a skill within 10s: direct damage reduction and speed +8% for 4s; supports all twelve skills; 12s ICD"
+  ]
+ }
 }
 const B10_UNIQUE_TEXT := {
  "B10-U01":["普通减速结束后下一次闪避剩余冷却-0.5秒；冷却12秒","After an ordinary slow ends: next dash cooldown -0.5s; 12s ICD"],
@@ -245,6 +297,12 @@ static func _v2_equipment() -> Dictionary:
 		item["affix_text"] = B10_UNIQUE_TEXT.get(id, ["", ""])[0]
 		item["affix_text_en"] = B10_UNIQUE_TEXT.get(id, ["", ""])[1]
 		item["runtime_implemented"] = true
+		if id == B10Catalog.FINALE_RING_ID:
+			item["drop_origin"] = ""
+			item["description"] = "最高难度终章胜利后首次撤离的账号唯一奖品；三职业共享，固定提升全部属性，不能交易或改造"
+			item["description_en"] = "One per account after the first successful extraction from the final chapter on maximum difficulty; boosts every stat for all three classes; cannot be traded or forged"
+			item["base_stat_text"] = "全部十九项属性固定提升，物理与魔法属性同时生效"
+			item["base_stat_text_en"] = "Fixed bonuses to all nineteen stats, with physical and magical stats active together"
 		_equipment_v2[id] = item
 	for id: String in B09Catalog.equipment_ids():
 		var item := B09Catalog.equipment(id)
@@ -443,7 +501,7 @@ static func _check_required(definition: Dictionary, fields: Array, label: String
 static func _validate_v2() -> Array[String]:
 	var errors: Array[String] = []
 	var b05_released := int(Rules.value("implemented_chapters", 4)) >= 5
-	if equipment_ids(2).size() != ((194 if int(Rules.value("implemented_chapters",4))>=6 else 159 if b05_released else 124) + (35 if Rules.b09_candidate_enabled() else 0) + (35 if Rules.chapter_enabled("B10") else 0)): errors.append("Unexpected version-two template count.")
+	if equipment_ids(2).size() != ((194 if int(Rules.value("implemented_chapters",4))>=6 else 159 if b05_released else 124) + (35 if Rules.b09_candidate_enabled() else 0) + (36 if Rules.chapter_enabled("B10") else 0)): errors.append("Unexpected version-two template count.")
 	errors.append_array(B05Catalog.validate())
 	errors.append_array(B06Catalog.validate())
 	errors.append_array(B10Catalog.validate())

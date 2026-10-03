@@ -96,6 +96,7 @@ static func _quote(profile: Dictionary, request: Dictionary, kind: String, check
 	if templates.is_empty(): return _reject("INVALID_TEMPLATES")
 	for template_id: String in templates:
 		var template := Registry.equipment(template_id, 2)
+		if bool(template.get("reward_only", false)): return _reject("REWARD_ONLY_TEMPLATE")
 		if str(template.get("race_id", "")) == "B10" and not World.region_unlocked("B10", profile.get("bosses", []), World.biomes()): return _reject("TEMPLATE_REGION_LOCKED")
 		var allowed: Array = template.get("allowed_heroes", [])
 		if allowed.size() == 1 and canonical.power_type != Registry.ClassPolicy.power_type(str(allowed[0])): return _reject("CLASS_POWER_MISMATCH")

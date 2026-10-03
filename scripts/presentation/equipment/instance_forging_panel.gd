@@ -637,6 +637,7 @@ static func _result_text(receipt: Dictionary) -> String:
 	return "\n".join(lines)
 
 static func error_text(code: String) -> String:
+	if code == "FIXED_FINALE_REWARD": return Words.text("ERROR_FIXED_FINALE_REWARD")
 	var messages := {
 		"INVALID_REQUEST":["请选择可用的来源实例、强化阶或词条。","Select an available source instance, enhancement step or affix."],"INCOMPATIBLE_SOURCE":["来源必须与目标同部位、同类型。","Source and target must share slot and power type."],
 		"STALE_INSTANCE":["装备已变化，请重新选择操作。","This item changed; select the operation again."],"INSTANCE_NOT_FOUND":["该实例已不在背包中。","This instance is no longer in inventory."],

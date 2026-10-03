@@ -32,7 +32,7 @@
       "thresholds": {
         "2": {
           "runtime_implemented": true,
-          "trigger": "warrior_q_direct_hit",
+          "trigger": "warrior_CH01_SK01_direct_hit",
           "conditions": [
             "original_direct_damage"
           ],
@@ -42,11 +42,11 @@
         },
         "4": {
           "runtime_implemented": true,
-          "trigger": "warrior_q_then_w_hit",
+          "trigger": "warrior_CH01_SK01_then_CH01_SK02_hit",
           "conditions": [
             "same_target",
             "once_per_cast",
-            "ordered_q_then_w"
+            "ordered_CH01_SK01_then_CH01_SK02"
           ],
           "parameters": {
             "sequence_seconds": 4,
@@ -56,11 +56,11 @@
         },
         "6": {
           "runtime_implemented": true,
-          "trigger": "warrior_e_committed",
+          "trigger": "warrior_CH01_SK03_committed",
           "conditions": [
             "successful_original_cast",
             "consume_star_oath_stacks",
-            "next_w_actual_hit"
+            "next_CH01_SK02_actual_hit"
           ],
           "parameters": {
             "stacks_max": 2,
@@ -87,7 +87,7 @@
       "thresholds": {
         "2": {
           "runtime_implemented": true,
-          "trigger": "gunner_w_primary_hit",
+          "trigger": "gunner_CH02_SK02_primary_hit",
           "conditions": [
             "original_direct_damage",
             "primary_target_only"
@@ -98,10 +98,10 @@
         },
         "4": {
           "runtime_implemented": true,
-          "trigger": "gunner_e_hit",
+          "trigger": "gunner_CH02_SK03_hit",
           "conditions": [
             "original_direct_hit",
-            "next_w_same_target"
+            "next_CH02_SK02_same_target"
           ],
           "parameters": {
             "mark_seconds": 6,
@@ -111,11 +111,11 @@
         },
         "6": {
           "runtime_implemented": true,
-          "trigger": "gunner_q_e_w_sequence",
+          "trigger": "gunner_CH02_SK01_SK03_SK02_sequence",
           "conditions": [
-            "actual_q_movement",
-            "e_and_w_same_target",
-            "actually_emitted_r_rounds"
+            "actual_CH02_SK01_movement",
+            "CH02_SK03_and_CH02_SK02_same_target",
+            "actually_emitted_CH02_SK04_rounds"
           ],
           "parameters": {
             "sequence_seconds": 8,
@@ -141,7 +141,7 @@
       "thresholds": {
         "2": {
           "runtime_implemented": true,
-          "trigger": "mage_q_direct_hit",
+          "trigger": "mage_CH03_SK01_direct_hit",
           "conditions": [
             "original_direct_damage"
           ],
@@ -154,7 +154,7 @@
           "trigger": "mage_three_distinct_paid_casts",
           "conditions": [
             "successful_original_casts",
-            "distinct_slots",
+            "distinct_skill_ids_among_CH03_SK01_to_SK12",
             "actual_total_mana_spend_greater_than_refund"
           ],
           "parameters": {
@@ -168,7 +168,7 @@
           "trigger": "mage_three_distinct_paid_casts",
           "conditions": [
             "same_three_spell_event",
-            "next_q_or_r_first_direct_segment",
+            "next_CH03_SK01_or_CH03_SK04_first_direct_segment",
             "consume_once"
           ],
           "parameters": {
@@ -260,7 +260,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "max_hp",
@@ -287,7 +287,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "max_hp",
@@ -314,7 +314,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "attack",
@@ -341,7 +341,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "max_hp",
@@ -369,7 +369,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "move_speed",
@@ -396,7 +396,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "attack",
@@ -423,7 +423,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "resource_gain_bonus",
@@ -450,7 +450,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "attack",
@@ -477,7 +477,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "max_hp",
@@ -504,7 +504,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "max_hp",
@@ -531,7 +531,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "attack",
@@ -558,7 +558,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "max_hp",
@@ -586,7 +586,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "move_speed"
@@ -612,7 +612,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "attack",
@@ -639,7 +639,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "damage_bonus",
@@ -666,7 +666,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "attack",
@@ -693,7 +693,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "magic": [
           "max_mana",
@@ -720,7 +720,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "magic": [
           "max_hp",
@@ -747,7 +747,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "magic": [
           "ability_power",
@@ -774,7 +774,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "magic": [
           "max_hp",
@@ -802,7 +802,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "magic": [
           "move_speed"
@@ -828,7 +828,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "magic": [
           "ability_power",
@@ -855,7 +855,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "magic": [
           "max_mana",
@@ -882,7 +882,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "magic": [
           "ability_power",
@@ -912,7 +912,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "max_hp",
@@ -946,7 +946,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "max_hp",
@@ -980,7 +980,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "attack",
@@ -1014,7 +1014,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "max_hp",
@@ -1050,7 +1050,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "move_speed",
@@ -1084,7 +1084,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "attack",
@@ -1118,7 +1118,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "max_hp",
@@ -1154,7 +1154,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "attack"
@@ -1186,7 +1186,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "move_speed",
@@ -1237,7 +1237,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "attack",
@@ -1288,7 +1288,7 @@
       "base_stats": {},
       "main_coefficient": 1.0,
       "ruleset_version": 2,
-      "unlock_boss": "BO04",
+      "unlock_boss": "BO09",
       "affix_tendencies_by_power": {
         "physical": [
           "max_hp",
@@ -1319,6 +1319,56 @@
         "B10-M16",
         "B10-M18"
       ]
+    },
+    "B10-EASTER-RING": {
+      "id": "B10-EASTER-RING",
+      "name": "星冠万象戒",
+      "name_en": "Ring of the Final Star",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "",
+      "race_id": "B10",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 0,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO09",
+      "affix_tendencies_by_power": {
+        "physical": [],
+        "magic": []
+      },
+      "unique_effect": {},
+      "reward_only": true,
+      "fixed_stats": {
+        "attack": 300,
+        "ability_power": 600,
+        "max_hp": 1500,
+        "max_mana": 300,
+        "armor": 120,
+        "magic_resist": 120,
+        "armor_penetration": 100,
+        "magic_penetration": 100,
+        "crit_multiplier": 0.12,
+        "true_damage_bonus": 60,
+        "attack_speed": 0.08,
+        "move_speed": 0.06,
+        "crit_chance": 0.05,
+        "cooldown_reduction": 0.05,
+        "damage_bonus": 0.08,
+        "damage_reduction": 0.03,
+        "burn_damage": 0.08,
+        "corrosion_damage_bonus": 0.08,
+        "status_duration": 0.06
+      }
     }
   }
 }
