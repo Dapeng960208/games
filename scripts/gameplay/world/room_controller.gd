@@ -36,7 +36,7 @@ var ground_polygon := PackedVector2Array()
 const EXIT_POSITION := Vector2(2696, 900)
 const RELIC_POSITIONS := {"split": Vector2(425,959), "ember": Vector2(1466,354), "arc": Vector2(1962,885)}
 
-var player: SalvagerPlayer
+var player: HeroActor
 @onready var enemies: Node2D = $Enemies
 @onready var projectiles: Node2D = $Projectiles
 var telemetry: Dictionary = {"shots":0,"primary_hits":0,"child_hits":0,"split_spawned":0,"burn_ticks":0,"arc_hits":0,"kills":0,"gold_collected":0,"dashes":0,"player_hits":0}

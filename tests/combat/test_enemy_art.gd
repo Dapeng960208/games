@@ -1,5 +1,5 @@
 extends Node
-## Actual EnemyActor/BossActor bodies validate the active forty-creature family.
+## Actual actors validate the current 54 ordinary bodies and four bosses.
 ## Headless checks cover foot/contact registration, private flash and snapshots;
 ## final visual acceptance belongs to the graphical preview.
 const Art = preload("res://scripts/presentation/monsters/enemy_art.gd")
@@ -10,6 +10,7 @@ const Profiles = preload("res://scripts/domain/combat/enemy_profiles.gd")
 const BossProfilesScript = preload("res://scripts/domain/combat/boss_profiles.gd")
 const Feedback = preload("res://scripts/presentation/monsters/enemy_defeat_feedback.gd")
 const Runtime = preload("res://scripts/gameplay/monsters/enemy_skill_runtime.gd")
+const Metrics = preload("res://scripts/shared/presentation_metrics.gd")
 var checks := 0
 var failures := 0
 var room: Node2D
@@ -24,7 +25,7 @@ class RoomFixture extends Node2D:
 	var fx_font: Font
 	var wall_x: float = INF
 	var charges: Array[Dictionary] = []
-	func add_damage_text(_at: Vector2, _amount: float, _kind: StringName) -> void:
+	func add_damage_text(_at: Vector2, _amount: float, _kind: StringName, _context: Dictionary = {}) -> void:
 		pass
 	func enemy_died(_enemy: Node2D) -> void:
 		pass
@@ -55,10 +56,10 @@ func spawn(identity: String, elite: bool = false) -> EnemyActor:
 	var actor: EnemyActor
 	if identity.begins_with("BO"):
 		actor = Boss.new()
-		check(actor.configure_boss(identity), identity + " resolves a real boss profile")
+		check(actor.configure_boss(identity, 0, 0, 2), identity + " resolves a real boss profile")
 	else:
 		actor = Enemy.new()
-		actor.configure(Profiles.resolve(identity, 8, "elite" if elite else "normal"))
+		actor.configure(Profiles.resolve(identity, 8, "elite" if elite else "normal", 2))
 	actor.room = room
 	actor.process_mode = Node.PROCESS_MODE_DISABLED
 	room.add_child(actor)
@@ -79,7 +80,7 @@ func run_checks() -> void:
 	room.add_child(room.enemy_skills)
 	room.enemy_skills.configure(room)
 	_test_parse_and_motion_gates()
-	for index: int in range(1, 37):
+	for index: int in range(1, 55):
 		_test_body("M%02d" % index)
 	for identity: String in BossProfilesScript.ids():
 		_test_body(identity)
@@ -97,12 +98,13 @@ func _test_body(identity: String) -> void:
 	check(not entry.is_empty(), identity + " has an active painted body")
 	if entry.is_empty():
 		return
-	var biome_index: int = int(identity.trim_prefix("BO")) if identity.begins_with("BO") else int(ceil(float(int(identity.trim_prefix("M"))) / 9.0))
-	check(entry.biome_id == "B%02d" % biome_index and entry.visual_clan == ["晴辉构装", "琥珀虫族", "南瓜僵尸", "赤岩兽人"][biome_index - 1], identity + " belongs to its final canonical clan")
-	check(str(entry.texture_path).ends_with("_v2.png") and entry.source_family == Art.FAMILY, identity + " uses the approved replacement source")
+	var biome_index: int = int(identity.trim_prefix("BO")) if identity.begins_with("BO") else int(str(Profiles.resolve(identity, 8, "normal", 2).biome_id).trim_prefix("B"))
+	check(entry.biome_id == "B%02d" % biome_index and not str(entry.visual_clan).is_empty(), identity + " belongs to its current chapter and registered clan")
+	check(FileAccess.file_exists(AssetCatalog.resolve(str(entry.texture_path))) and entry.source_family == Art.FAMILY, identity + " resolves its current registered source")
 	var actor: EnemyActor = spawn(identity)
 	var expected_radius: float = float(BossProfilesScript.STATS[identity].navigation_radius) if identity.begins_with("BO") else float(Profiles.resolve(identity, 8).navigation_radius)
 	var expected_height: float = clampf(expected_radius * 3.45, 170.0, 220.0) if identity.begins_with("BO") else clampf(expected_radius * 3.8, 66.0, 88.0)
+	expected_height *= Metrics.ENEMY_BODY_FACTOR
 	var foot_y: float = 48.0 if identity.begins_with("BO") else 18.0
 	check(is_equal_approx(actor.navigation_radius, expected_radius) and is_equal_approx(actor.body_bounds.size.y, expected_height) and is_equal_approx(actor.body_bounds.end.y, foot_y), identity + " preserves gameplay radius, native height and pivot")
 	var visual: EnemyVisual = actor.body_visual
@@ -115,7 +117,8 @@ func _test_body(identity: String) -> void:
 	if not images.has(source_key):
 		images[source_key] = entry.texture.get_image()
 	var source: Image = images[source_key]
-	check(source != null and source.get_pixel(0, 0).a < 0.01 and source.get_size() == Vector2i(1983, 793), identity + " has transparent raw atlas corners and measured dimensions")
+	var source_size := Vector2i(1254, 1254) if identity.begins_with("BO") or int(identity.trim_prefix("M")) >= 37 else Vector2i(1983, 793)
+	check(source != null and source.get_pixel(0, 0).a < 0.01 and source.get_size() == source_size and Rect2(Vector2.ZERO, Vector2(source.get_size())).encloses(entry.region), identity + " preserves its raw source dimensions, transparency and region")
 	for state: StringName in [&"chase", &"telegraph", &"locked", &"execute", &"recovery"]:
 		actor.state = state
 		actor.state_time = 0.3
@@ -129,6 +132,9 @@ func _test_body(identity: String) -> void:
 	check(not surface.is_empty() and surface.anchor.get_ref() == visual and frame.bounds.grow(0.01).has_point(surface.local_offset), identity + " provides an actual opaque silhouette contact")
 	if identity == "M35":
 		check(actor.empty_body_texture == entry.texture and visual.body_frame().texture == entry.texture, "M35 empty/carry states retain the new orc body")
+	var installed_bounds: Rect2 = actor.body_bounds
+	Art.install(actor)
+	check(actor.body_bounds.is_equal_approx(installed_bounds) and is_equal_approx(actor.navigation_radius, expected_radius), identity + " repeated registration preserves body scale and collision radius")
 	actor.free()
 
 func _test_parse_and_motion_gates() -> void:
@@ -187,14 +193,14 @@ func _test_counters() -> void:
 	check(not actor.apply_biome_counter("grave_seal") and not actor.apply_biome_counter("war_drum", NAN), "unsupported or nonfinite counters return false")
 	var before: float = actor.health.current
 	check(actor.take_damage(100.0, &"equipment", Vector2.ZERO, {"damage_type":"physical"}), "baseline physical packet resolves")
-	check(is_equal_approx(before - actor.health.current, 50.0), "baseline uses actual armor")
+	check(is_equal_approx(before - actor.health.current, 91.0), "current 1000-denominator defense rounds the baseline once")
 	actor.status.grant_guard(100.0, 10.0, "fixture", actor.health.maximum)
 	var guard: Dictionary = {"owner":weakref(actor),"owner_id":actor.get_instance_id(),"kind":"guard","target_ref":weakref(actor),"remaining":10.0,"amount":100.0,"mode":"guard"}
 	room.enemy_skills.supports.append(guard)
 	check(actor.apply_biome_counter("solar_conduit") and actor.status.shield() == 0.0 and room.enemy_skills.supports.is_empty(), "solar counter removes both status and actual runtime shields")
 	before = actor.health.current
 	actor.take_damage(100.0, &"equipment", Vector2.ZERO, {"damage_type":"physical"})
-	check(is_equal_approx(before - actor.health.current, 67.5), "solar weakness affects actual resolved damage once")
+	check(is_equal_approx(before - actor.health.current, 123.0), "solar weakness applies before the current integer boundary")
 	check(actor.apply_biome_counter("war_drum") and actor.effective_armor() == 0.0 and actor.armor == 100.0, "war strips effective defense without replacing base armor")
 	before = actor.health.current
 	actor.take_damage(100.0, &"equipment", Vector2.ZERO, {"damage_type":"physical"})
@@ -212,7 +218,7 @@ func _test_counters() -> void:
 	actor.apply_biome_counter("brood_egg", 1.0)
 	actor.tick_statuses(0.9)
 	check(actor.biome_weakpoint_open(), "repeated counters refresh the single window")
-	actor.configure(Profiles.resolve("M08", 8))
+	actor.configure(Profiles.resolve("M08", 8, "normal", 2))
 	check(not actor.biome_weakpoint_open(), "reconfigure clears arena openings")
 	actor.actor_kind = "objective"
 	check(not actor.apply_biome_counter("war_drum"), "objective actors reject combat counters")

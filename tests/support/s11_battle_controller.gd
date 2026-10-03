@@ -36,7 +36,7 @@ func step(time: float) -> void:
 		return
 	next_decision = time + .1
 	primary_target = null
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	var boss: Node2D = room._boss_actor if is_instance_valid(room._boss_actor) else null
 	var threats := visible_threats()
 	var danger := danger_at(player.position, threats)
@@ -92,7 +92,7 @@ func counter_target(boss: Node2D) -> Dictionary:
 	return best
 
 func attack_target(time: float, target: Node2D, threats: Array[Dictionary], counter: bool) -> void:
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	var distance := player.position.distance_to(target.position)
 	var direction := player.position.direction_to(target.position)
 	var hero: String = Game.run.hero_id
@@ -156,7 +156,7 @@ func maintain_primary() -> void:
 	# would erase the fourth affix's real attack-speed benefit.
 	if primary_target == null: return
 	var target: Node2D = primary_target.get_ref()
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	if not is_instance_valid(target) or not target.is_alive() or target.is_queued_for_deletion(): return
 	if not player.combo_queue.is_empty() or player.dash_remaining > 0 or player.abilities.busy() or player.shot_cooldown > 0: return
 	if player.position.distance_to(target.position) > player.auto_attack_range()-5 or not room.has_line_of_sight(player.position,target.position): return
@@ -164,7 +164,7 @@ func maintain_primary() -> void:
 	player.request_attack(direction if not direction.is_zero_approx() else player.aim_direction,target)
 
 func navigate_to_reachable(time: float, at: Vector2, desired: float, threats: Array[Dictionary]) -> bool:
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	if player.dash_remaining>0: return false
 	var direction := player.position.direction_to(at)
 	var preferred := at-direction*desired
@@ -208,7 +208,7 @@ func node_placement(target: Node2D, spec: Dictionary, threats: Array[Dictionary]
 	# crystal's actual attack range, outside the enemy's body, and away from
 	# current visible hazards and the direct enemy-to-player firing line.
 	# This uses current geometry only, never future AI choices or hidden state.
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	var reach := float(spec.get("radius",160.0))
 	var best: Dictionary = {}
 	var best_score := INF

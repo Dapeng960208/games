@@ -4,9 +4,22 @@ extends "res://tests/ui/test_boss_skill_ui.gd"
 ## tools/test.ps1 -Suite boss_hd_art -Graphical -SkipImport
 const EnemyArtSource = preload("res://scripts/presentation/monsters/enemy_art.gd")
 const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
-const ImageBounds = preload("res://scripts/presentation/characters/hero_visual.gd")
 const HD_OUTPUT := "res://artifacts/boss-hd-art/"
 var measurements: Array[Dictionary] = []
+
+func opaque_bounds(source: Image) -> Rect2:
+	var rgba: Image = source.duplicate()
+	rgba.convert(Image.FORMAT_RGBA8)
+	var bytes := rgba.get_data()
+	var width := rgba.get_width()
+	var minimum := Vector2i(width,rgba.get_height())
+	var maximum := Vector2i(-1,-1)
+	for y in rgba.get_height():
+		for x in width:
+			if bytes[(y*width+x)*4+3] > 16:
+				minimum = minimum.min(Vector2i(x,y))
+				maximum = maximum.max(Vector2i(x,y))
+	return Rect2(Vector2(minimum),Vector2(maximum-minimum+Vector2i.ONE)) if maximum.x >= 0 else Rect2()
 
 func capture(filename: String, boss: BossActor) -> void:
 	if DisplayServer.get_name() == "headless": return
@@ -40,7 +53,7 @@ func check_boss(index: int) -> void:
 	check(entry.source_identity == id and entry.texture_path == "asset://ui/refactor_v1/codex/"+id+".png",id+" reuses its approved exact full-body source")
 	var source: Image = entry.texture.get_image()
 	check(source.get_size() == Vector2i(1254,1254) and source.get_pixel(0,0).a < .01,id+" retains native source resolution and alpha")
-	check(entry.region.encloses(ImageBounds._visible_region(source)),id+" crop contains the complete opaque body, feet and weapons")
+	check(entry.region.encloses(opaque_bounds(source)),id+" crop contains the complete opaque body, feet and weapons")
 	var profile_before: Dictionary = boss.profile.duplicate(true)
 	var collision_before: float = boss.navigation_radius
 	var position_before: Vector2 = boss.position

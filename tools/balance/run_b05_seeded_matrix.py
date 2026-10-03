@@ -8,7 +8,7 @@ HEROES=['CH01','CH02','CH03'];MIXES=['class6','class4','shared6'];SAMPLES=['G2',
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def collect(candidate,mage,warrior=0):
  rows={};build=sha(ROOT/'tests/fixtures/balance/b05_reference_builds.json');controller=sha(ROOT/'tests/support/b05_balance_controller.gd')
- for p in sorted((ROOT.parent/'_test_output/B05').glob('*/summary.json')):
+ for p in sorted((ROOT/'artifacts/test_runs/B05').glob('*/summary.json')):
   s=json.loads(p.read_text())
   if s.get('hero')=='CH01' and s.get('warrior_candidate',0)!=warrior:continue
   if s.get('calibration_candidate')!=candidate or not s.get('clean_harness') or s.get('invalidated_reason') or s.get('source_changes_during_run'):continue

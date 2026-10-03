@@ -91,7 +91,7 @@ func fresh(hero: String, level: int, slot: String = "q", branch: String = "") ->
 		container.name = node_name
 		room.add_child(container)
 	add_child(room)
-	room.player = SalvagerPlayer.new()
+	room.player = HeroActor.new()
 	room.player.room = room
 	room.player.position = Vector2(1100, 750)
 	room.player.aim_direction = Vector2.RIGHT

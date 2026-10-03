@@ -1,4 +1,4 @@
-class_name MineArt
+class_name GameArtwork
 extends RefCounted
 
 const TextureSampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")

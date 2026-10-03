@@ -80,7 +80,7 @@ func approach_intended_warning(time: float,boss: BossActor) -> bool:
 	if warning.is_empty() or str(warning.get("action_id",""))!=DANGEROUS[boss.boss_id] or boss.boss_brain.phase!=3: return false
 	primary_target=null
 	aim_target=weakref(boss)
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	if intended_contains(warning,player.position):
 		player.clear_movement_target()
 		mode(time,"directed_accept_warning",player.position)

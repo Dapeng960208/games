@@ -13,7 +13,7 @@ import subprocess
 import sys
 import uuid
 
-ROOT = Path(__file__).absolute().parents[2]
+ROOT = next(p for p in Path(__file__).absolute().parents if (p / 'project.godot').is_file())
 BIOMES = ('B05', 'B06')
 RUN_ID = re.compile(r'^\d{8}T\d{12}Z-[a-f0-9]{8}$')
 MARKER = '.managed-test-run.json'
@@ -29,15 +29,16 @@ def checked(path: Path) -> Path:
 
 def workspace() -> Path:
     root = checked(ROOT)
-    if root.name != 'games-recovery' or not (root / 'repository.git').is_dir():
-        raise ValueError('This runner requires the existing games-recovery shared checkout')
+    if not (root / 'project.godot').is_file():
+        raise ValueError('This runner requires a Godot project root')
     return root
 
 
 def run_path(kind: str, biome: str, run_id: str) -> Path:
     if kind not in ('_test_output', '_tmp') or biome not in BIOMES or not RUN_ID.fullmatch(run_id):
         raise ValueError('Invalid managed run path components')
-    return checked(workspace() / kind / biome / run_id)
+    parent = workspace() / ('artifacts/test_runs' if kind == '_test_output' else '_tmp/test_runs')
+    return checked(parent / biome / run_id)
 
 
 def ensure_managed(biome: str) -> None:
@@ -105,7 +106,7 @@ def run(biome: str, command: list[str]) -> int:
 def cleanup(biome: str, keep: int, apply: bool) -> list[str]:
     if keep < 0:
         raise ValueError('--keep must be nonnegative')
-    parent = checked(workspace() / '_test_output' / biome)
+    parent = checked(workspace() / 'artifacts/test_runs' / biome)
     if not parent.exists():
         return []
     candidates = []

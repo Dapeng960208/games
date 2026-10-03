@@ -119,18 +119,17 @@ static func install(actor: Node2D) -> Dictionary:
 	if entry.is_empty() or bool(actor.get("static_actor")):
 		return {}
 	var old_bounds: Rect2 = actor.get("body_bounds")
-	# Appended species have no obsolete Mxx_v1 image to initialize bounds.
-	# Register them on the same ordinary-anatomy scale and ground pivot instead
-	# of inheriting the rust-mite fallback's 38-pixel foot position.
-	var standalone: bool = bool(entry.get("individual_body", false))
+	# Ordinary body registration comes from the current profile, independently
+	# of retired portraits or a previously installed presentation scale.
+	var ordinary_body: bool = bool(entry.get("individual_body", false)) or str(actor.get("actor_kind")) == "enemy"
 	var boss_body: bool = bool(entry.get("combat_body", false))
-	var native_height: float = clampf(float(actor.get("navigation_radius")) * 3.8, 66.0, 88.0) if standalone else maxf(1.0, old_bounds.size.y)
+	var native_height: float = clampf(float(actor.get("navigation_radius")) * 3.8, 66.0, 88.0) if ordinary_body else maxf(1.0, old_bounds.size.y)
 	if boss_body:
 		# Match the old atlas's final production height without inheriting an
 		# already-scaled body on reconfigure. Only presentation reads this scale.
 		native_height = clampf(float(actor.get("navigation_radius")) * 3.45, 170.0, 220.0)
 	var height: float = native_height * preload("res://scripts/shared/presentation_metrics.gd").ENEMY_BODY_FACTOR
-	var foot_y: float = 48.0 if boss_body else 18.0 if standalone else old_bounds.end.y
+	var foot_y: float = 48.0 if boss_body else 18.0 if ordinary_body else old_bounds.end.y
 	var region: Rect2 = entry.region
 	var source_foot: Vector2 = entry.foot
 	var factor: float = height / float(entry.source_height)

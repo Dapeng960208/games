@@ -38,7 +38,7 @@ func _run() -> void:
 		container.name = node_name
 		room.add_child(container)
 	add_child(room)
-	room.player = SalvagerPlayer.new()
+	room.player = HeroActor.new()
 	room.player.room = room
 	room.add_child(room.player)
 	room.enemy_skills = EnemySkillRuntime.new()

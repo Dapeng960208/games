@@ -82,7 +82,7 @@ func _live()->void:
 	for name_value:String in ["Enemies","Projectiles"]:
 		var container:=Node2D.new(); container.name=name_value; room.add_child(container)
 	add_child(room)
-	room.player=SalvagerPlayer.new(); room.player.room=room; room.add_child(room.player)
+	room.player=HeroActor.new(); room.player.room=room; room.add_child(room.player)
 	room.enemy_skills=EnemySkillRuntime.new(); room.add_child(room.enemy_skills); room.enemy_skills.configure(room)
 	var target:=EnemyActor.new(); target.room=room; target.training_ai_disabled=true
 	target.configure(Profiles.resolve("M01",1,"normal",2,0),{"reward_enabled":false})

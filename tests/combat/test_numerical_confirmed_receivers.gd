@@ -103,7 +103,7 @@ func fresh(hero: String = "CH02", weapon: String = "") -> void:
 		container.name = node_name
 		room.add_child(container)
 	add_child(room)
-	room.player = SalvagerPlayer.new()
+	room.player = HeroActor.new()
 	room.player.room = room
 	room.player.position = Vector2(1000, 750)
 	room.add_child(room.player)
@@ -509,7 +509,7 @@ func test_warrior_confirmed_primaries() -> void:
 func test_player_shock_confirmation() -> void:
 	for shield_only: bool in [false, true]:
 		fresh("CH01")
-		var player: SalvagerPlayer = room.player
+		var player: HeroActor = room.player
 		check(player.receive_enemy_status({"id":"shock", "power":240, "duration":3.0}), "player accepts enemy shock")
 		for rejection: String in ["immune", "zero", "defense_round_zero"]:
 			player.status.states.erase("invulnerable")

@@ -26,7 +26,7 @@ class RecordingRuntime extends EnemySkillRuntime:
 		recorded.append(command.duplicate(true))
 		if not capture_only: super._execute(command)
 
-class RecordingPlayer extends SalvagerPlayer:
+class RecordingPlayer extends HeroActor:
 	var received: Array[Dictionary] = []
 	var received_states: Array[Dictionary] = []
 	func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) -> bool:

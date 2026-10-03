@@ -5,13 +5,16 @@ from pathlib import Path
 import unittest
 from PIL import Image
 
-ROOT = Path(__file__).resolve().parents[1]
-ART = ROOT / 'assets/generated/enemies/b05_regenerated_poses_v1'
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / 'project.godot').is_file())
+import sys
+sys.path.insert(0, str(ROOT / 'tools/assets'))
+from asset_paths import AssetFolder
+ART = AssetFolder('enemies/b05_regenerated_poses_v1')
 
 
 class RegeneratedPoseSources(unittest.TestCase):
     def test_native_pose_registration(self):
-        manifest = json.loads((ART / 'manifest.json').read_text())
+        manifest = json.loads((ART / 'manifest.json').read_text(encoding='utf-8'))
         self.assertFalse(manifest['upscaled'])
         self.assertEqual(manifest['asset_family'], 'storybook_2_5d_v1')
         hashes = set()
@@ -25,7 +28,7 @@ class RegeneratedPoseSources(unittest.TestCase):
                     self.assertEqual(digest, frame['sha256'])
                     self.assertNotIn(digest, hashes)
                     hashes.add(digest)
-                    self.assertTrue((ART / frame['prompt']).read_text().strip())
+                    self.assertTrue((ART / frame['prompt']).read_text(encoding='utf-8').strip())
                     self.assertEqual(sha256((ART / frame['prompt']).read_bytes()).hexdigest(), frame['prompt_sha256'])
                     self.assertTrue(frame.get('source_generated_file') or frame.get('library_file_id'))
                     with Image.open(path) as image:

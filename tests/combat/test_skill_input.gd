@@ -221,7 +221,7 @@ func test_cleanup() -> void:
 	await fixture()
 	await start_basic()
 	await press_skill("q")
-	var saved_player: SalvagerPlayer = room.player
+	var saved_player: HeroActor = room.player
 	room.remove_child(saved_player)
 	check(saved_player.buffered_skill.is_empty(), "leaving room tree clears pending request")
 	saved_player.free()

@@ -25,7 +25,7 @@ func _ready() -> void:
 	if not asset.is_empty():
 		objective_texture = PropArt.texture_for_asset(asset)
 		if objective_texture != null:
-			objective_region = PropArt.local_region(asset) if PropArt.has_authored_asset(asset) else ImageBounds._visible_region(objective_texture.get_image())
+			objective_region = PropArt.local_region(asset) if PropArt.has_authored_asset(asset) else ImageBounds.visible_region(objective_texture.get_image())
 
 func take_damage(amount: float, kind: StringName, direction := Vector2.ZERO, context: Dictionary = {}) -> bool:
 	if not is_alive():

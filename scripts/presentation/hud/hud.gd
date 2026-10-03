@@ -1205,7 +1205,7 @@ func _update_relics() -> void:
 		var chip := _compact_button(relic_row,"",Vector2((i%4)*52,floori(i/4.0)*52),Vector2(44,44),func(): relic_details_requested.emit())
 		chip.name = "Relic_"+id
 		_bind_detail(chip,"relic:"+id)
-		var art := MineArt.relic(chip,id,Vector2(4,4),Vector2(36,36))
+		var art := GameArtwork.relic(chip,id,Vector2(4,4),Vector2(36,36))
 		var info := _relic_info(id)
 		if info.get("texture") is Texture2D: art.texture = info.texture
 	if has_drawn_state and not Game.run.relics.is_empty() and previous_relics.get_slice(":",1) != relic_ids:

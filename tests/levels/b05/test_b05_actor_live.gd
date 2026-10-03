@@ -1,5 +1,5 @@
 extends "res://tests/combat/test_enemy_integration.gd"
-## Regression for real SalvagerPlayer targets, whose life is Game.run-owned and
+## Regression for real HeroActor targets, whose life is Game.run-owned and
 ## who intentionally have no is_alive method. Actual actor/brain/runtime only.
 func _run() -> void:
 	if not Game.profile_path.contains("test_b05_actor_live"):

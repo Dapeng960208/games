@@ -19,7 +19,7 @@ const Profiles = preload("res://scripts/domain/combat/boss_profiles.gd")
 const BossBrainScript = preload("res://scripts/gameplay/bosses/boss_brain.gd")
 const BossTextureSampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const B05BossArt = preload("res://scripts/levels/b05/art/boss_art.gd")
-const BossImageBounds = preload("res://scripts/presentation/characters/hero_visual.gd")
+const BossImageBounds = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 
 var boss_id: String = ""
 var boss_seed: int = 0
@@ -132,7 +132,7 @@ func _load_boss_art() -> void:
 		body_bounds = Rect2(-82, -122, 164, 164)
 		return
 	var image: Image = body_texture.get_image()
-	body_region = BossImageBounds._visible_region(image) if image != null and not image.is_empty() else Rect2(Vector2.ZERO, body_texture.get_size())
+	body_region = BossImageBounds.visible_region(image) if image != null and not image.is_empty() else Rect2(Vector2.ZERO, body_texture.get_size())
 	var height: float = clampf(navigation_radius * 3.45, 170.0, 220.0)
 	var width: float = body_region.size.x / maxf(1.0, body_region.size.y) * height
 	body_bounds = Rect2(-width * 0.5, 48.0 - height, width, height)

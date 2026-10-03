@@ -8,7 +8,7 @@ func record(raw_amount: float, resolved_amount: float, hp_before: float, hp_afte
 	var room: RoomController = room_reference.get_ref() if room_reference != null else null
 	if not is_instance_valid(room): return
 	var boss: BossActor = room._boss_actor
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	var row: Dictionary = all_events.back()
 	row["boss_phase_at_impact"] = boss.boss_brain.phase if is_instance_valid(boss) else 0
 	row["maximum_player_hp"] = Game.run.max_hp if Game.run != null else hp_before

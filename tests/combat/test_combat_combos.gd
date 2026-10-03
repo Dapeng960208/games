@@ -476,7 +476,7 @@ func test_cleanup() -> void:
 		if mode != "pointer":
 			await press("f")
 		check(room.player.combo_queue.size() == (1 if mode == "pointer" else 2), mode + " fixture has real pending combo input")
-		var saved_player: SalvagerPlayer = room.player
+		var saved_player: HeroActor = room.player
 		match mode:
 			"cancel": saved_player.cancel_actions()
 			"dash":

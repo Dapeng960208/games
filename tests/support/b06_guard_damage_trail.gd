@@ -5,7 +5,7 @@ var player_reference: WeakRef
 func record(raw_amount:float,resolved_amount:float,hp_before:float,hp_after:float,shield_before:float,shield_after:float,context:Dictionary,elapsed:float)->void:
 	super.record(raw_amount,resolved_amount,hp_before,hp_after,shield_before,shield_after,context,elapsed)
 	if player_reference==null:return
-	var player:SalvagerPlayer=player_reference.get_ref()
+	var player:HeroActor=player_reference.get_ref()
 	if not is_instance_valid(player):return
 	var row:Dictionary=all_events.back()
 	row["guard_sources_at_receipt"]=player.status.guards.duplicate(true)

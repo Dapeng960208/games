@@ -1,4 +1,4 @@
-class_name MineWorldCamera
+class_name WorldCamera
 extends Camera2D
 ## World-only tracking camera. HUD and modal menus belong on a CanvasLayer.
 

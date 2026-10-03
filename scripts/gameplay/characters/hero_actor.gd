@@ -1,4 +1,4 @@
-class_name SalvagerPlayer
+class_name HeroActor
 extends CharacterBody2D
 
 signal skill_input_feedback(slot: String, reason: String, details: Dictionary)

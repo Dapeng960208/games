@@ -108,7 +108,7 @@ func test_active_set_loops() -> void:
 
 func test_accepted_class_shields() -> void:
 	equipped_fixture(["EQ08", "EQ18", "EQ28", "EQ38"])
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	var amount: int = Rules.integer(game.run.max_hp * 0.08)
 	player.grant_guard(game.run.max_hp * 0.35, 30.0, "equipment:cover")
 	var pool: int = game.run.shield

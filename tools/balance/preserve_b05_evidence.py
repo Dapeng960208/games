@@ -6,7 +6,7 @@ DEST=ROOT/'artifacts/balance/b05/runs'
 KEEP=['configuration','outcome','probe','rendering','display_server','pause_seconds','process_frames','simulation_seconds','host_wall_seconds','timing_mode','physics_steps','physics_delta_min','physics_delta_max','hp_fraction','hp_loss','shield_absorbed','effective_player_healing','effective_boss_healing','boss_initial_shield','outgoing','weakpoint_seconds','attackable_seconds','resource_empty_seconds','resource_rejections','casts','cast_failures','phases','phase_skip_details','input_diagnostics','incoming_packets','outgoing_packets','ability_timeline_audit','directed_result','negative_control']
 def main():
  DEST.mkdir(exist_ok=True);index=[]
- for folder in sorted((ROOT.parent/'_test_output/B05').iterdir()):
+ for folder in sorted((ROOT/'artifacts/test_runs/B05').iterdir()):
   paths=[folder/'observations.json',folder/'pilot.json']
   for source in paths:
    if not source.exists():continue

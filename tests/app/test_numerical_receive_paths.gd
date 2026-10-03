@@ -26,7 +26,7 @@ class LoadoutFixture extends CombatLoadout:
 		if name == "after_hit": after = extra.duplicate()
 		return {"damage_bonus":0.2}
 
-class PlayerFixture extends SalvagerPlayer:
+class PlayerFixture extends HeroActor:
 	func class_modify_hit_amount(_target: Node2D, amount: float, _source: StringName, _context: Dictionary) -> float:
 		return amount * 1.1
 

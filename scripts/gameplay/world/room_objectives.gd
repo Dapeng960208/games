@@ -6,7 +6,7 @@ const Catalog = preload("res://scripts/domain/world/world_catalog.gd")
 const Layouts = preload("res://scripts/domain/world/room_layouts.gd")
 const Target = preload("res://scripts/gameplay/world/objective_target.gd")
 const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
-const Bounds = preload("res://scripts/presentation/characters/hero_visual.gd")
+const Bounds = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const WorldArt = preload("res://scripts/infrastructure/assets/world_art.gd")
 const BodyLayer = preload("res://scripts/presentation/world/objective_depth_layer.gd")
 const PropArt = preload("res://scripts/infrastructure/assets/world_prop_art.gd")
@@ -289,7 +289,7 @@ func add_element(id: String, at: Vector2, label: String, kind: String, asset: St
 		var texture: Texture2D = PropArt.texture_for_asset(asset)
 		if texture != null:
 			textures[asset] = texture
-			regions[asset] = PropArt.local_region(asset) if PropArt.has_authored_asset(asset) else Bounds._visible_region(texture.get_image())
+			regions[asset] = PropArt.local_region(asset) if PropArt.has_authored_asset(asset) else Bounds.visible_region(texture.get_image())
 	_sync_body(id, item)
 	return item
 

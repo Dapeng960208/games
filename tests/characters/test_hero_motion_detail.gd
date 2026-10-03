@@ -55,7 +55,7 @@ func open_lane() -> Vector2:
 
 func feedback_contracts(hero: String) -> void:
 	fixture(hero)
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	var feedback: HeroFeedback = player.get_node("HeroFeedback")
 	var lane: Vector2 = open_lane()
 	check(lane != Vector2.ZERO,hero+" production room has an unobstructed movement fixture lane")
@@ -162,7 +162,7 @@ func feedback_contracts(hero: String) -> void:
 		skill_travel_contract(hero,lane)
 
 func wall_slide_contract(hero: String) -> void:
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	var feedback: HeroFeedback = player.get_node("HeroFeedback")
 	# The isolated default room can contain no solid props. A declared temporary
 	# wall exercises production move_actor collision; it is never written to JSON.
@@ -203,7 +203,7 @@ func wall_slide_contract(hero: String) -> void:
 	room.obstructions = saved_walls
 
 func skill_travel_contract(hero: String, lane: Vector2) -> void:
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	var feedback: HeroFeedback = player.get_node("HeroFeedback")
 	check(Game.grant_hero_xp(3600,"motion_travel:"+hero),hero+" fixture unlocks real Q through progression")
 	Game.restore_resource(1000)

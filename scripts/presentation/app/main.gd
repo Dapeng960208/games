@@ -389,7 +389,7 @@ func _relic_artwork(parent: Node, info: Dictionary, at: Vector2, extent: Vector2
 		parent.add_child(icon)
 	else:
 		var art_key := str(info.get("art",fallback))
-		if not art_key.is_empty(): MineArt.relic(parent,art_key,at,extent)
+		if not art_key.is_empty(): GameArtwork.relic(parent,art_key,at,extent)
 
 func _show_expedition_relic(offer: Dictionary) -> void:
 	_expedition_service._show_expedition_relic(offer)

@@ -13,8 +13,10 @@ import test_workspace as target
 class WorkspaceGuards(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory(prefix='workspace-guards-')
-        self.root = Path(self.temporary.name) / 'games-recovery'
-        (self.root / 'repository.git').mkdir(parents=True)
+        self.root = Path(self.temporary.name) / 'test_project'
+        self.root.mkdir(parents=True)
+        (self.root / 'project.godot').write_text('config_version=5')
+        (self.root / 'repository.git').mkdir()
         self.patch = patch.object(target, 'ROOT', self.root)
         self.patch.start()
 
@@ -62,7 +64,7 @@ class WorkspaceGuards(unittest.TestCase):
         self.assertTrue(paths[0].exists())
 
     def test_unmarked_directory_preserved(self):
-        folder = self.root / '_test_output' / 'B05' / 'manual-evidence'
+        folder = self.root / 'artifacts/test_runs' / 'B05' / 'manual-evidence'
         folder.mkdir(parents=True)
         self.assertEqual(target.cleanup('B05', 0, False), [])
         self.assertTrue(folder.exists())

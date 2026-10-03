@@ -9,10 +9,9 @@ const TextureSampler = preload("res://scripts/infrastructure/assets/texture_samp
 const BrainScript = preload("res://scripts/gameplay/monsters/enemy_brain.gd")
 const BodyVisualScript = preload("res://scripts/presentation/monsters/enemy_visual.gd")
 const EnemyPalette = preload("res://scripts/presentation/monsters/enemy_palette.gd")
-const ImageBounds = preload("res://scripts/presentation/characters/hero_visual.gd")
+const ImageBounds = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const RoleBehavior = preload("res://scripts/gameplay/monsters/enemy_role_behavior.gd")
 const MAX_PUSH_PULSES: int = 16
-static var _body_regions: Dictionary = {}
 var room: Node2D
 var health: CombatHealth
 var state: StringName = &"emerging"
@@ -126,8 +125,6 @@ func _ready() -> void:
 	# EnemyVisual resolves the registered current species body. The mine-era
 	# rust-mite and generated industrial portraits are no longer runtime fallbacks.
 	body_texture = null
-	if enemy_id == "M35":
-		empty_body_texture = TextureSampler.sampled("asset://enemies/M35_empty_v1.png")
 	if static_actor:
 		body_texture = null
 	for id: String in ["burn", "shock", "chill", "corrosion"]:
