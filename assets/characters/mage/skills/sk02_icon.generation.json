@@ -1,0 +1,22 @@
+{
+  "skill_id": "CH03_SK02",
+  "skill_name": "星灵跃击",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in-generate",
+  "prompt": "Use case: stylized-concept. Asset type: original game skill icon CH03_SK02 星灵跃击 (star-spirit leaping strike), one single standalone circular badge, native 2048 x 2048 square requested. Original hand-painted cartoon fantasy, dark mage magic, sculpted 2.5D volume, warm upper-left highlights contrasting cool spectral magic. A single cute rounded four-point star spirit, silver-cream body and tiny visible kind eyes, plunging downward at an angle into one strong bright blue circular impact ring. A broad clean curved jump arc behind it expresses the leap. The star spirit occupies half the circle, the impact ring the lower half. Large bold silhouette readable at 44 pixels; simple, no extra characters. Inside circular badge: midnight purple and obsidian painted depth. Very thin silver circular rim occupies 92 percent of width, generous 8 percent safe margin, actual transparent background outside the circle. Palette silver, midnight purple, obsidian, ghost blue; limited white at impact core. No pink, red, text, letters, numbers, watermarks, logos, grid, sprite sheet, or copied game art.",
+  "original_output_path": "C:/Users/13326/.codex/generated_images/01a10117-f699-71a2-8f78-c232c3c47cc5/exec-e6985aae-8c4b-438f-a692-aaea48e50dd1.png",
+  "asset_path": "assets/characters/mage/skills/sk02_icon.png",
+  "requested_native_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "sha256": "c24cf11b8997e35b06ddd8b7e14cb706f91f15dbbe80936fcbbce2673bba8e25",
+  "generated_at": "2026-10-03",
+  "transparent_background": true,
+  "upscaled": false,
+  "local_processing": "Unchanged original PNG copied to the project; no substantive local editing."
+}
