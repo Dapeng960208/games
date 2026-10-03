@@ -30,13 +30,14 @@ def main() -> int:
     cache_before = cache_signature()
     results = []
     for label, scene, extra in [('contract_live', 'tests/test_b08_candidate.tscn', []),
-                                ('lifecycle', 'scenes/b08_candidate.tscn', ['--fixed-fps', '60', '--quit-after', '150'])]:
+                                ('lifecycle', 'scenes/b08_candidate.tscn', ['--fixed-fps', '60'])]:
         command = [args.godot, '--headless', '--path', str(ROOT), '--audio-driver', 'Dummy', *extra,
                    'res://'+scene, '--', '--candidate-b08', '--test-profile=user://test_b08_candidate/'+label+'.json']
+        if label == 'lifecycle': command.append('--b08-quit-after-frames=150')
         try:
             result = subprocess.run(command, text=True, capture_output=True, timeout=20)
             text = result.stdout + result.stderr
-            valid = result.returncode == 0 and not any(x in text for x in ['SCRIPT ERROR', 'ERROR:'])
+            valid = result.returncode == 0 and not any(x in text for x in ['SCRIPT ERROR', 'ERROR:', 'WARNING:', 'Leaked instance:', 'Orphan StringName:'])
             if label == 'contract_live': valid &= 'failures=0' in text
             print(text, flush=True)
             (output/(label+'.log')).write_text(text)

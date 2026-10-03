@@ -17,6 +17,12 @@ var _channel_hp := 0.0
 var _hud: Label
 var _flag: MineEnemy
 var _started := false
+signal shutdown_ready
+var shutdown_started := false
+var shutdown_done := false
+var shutdown_clean := false
+var _quit_requested := false
+var _lifecycle_frames := -1
 
 func argument(key: String, fallback: String) -> String:
 	for arg: String in OS.get_cmdline_user_args():
@@ -34,6 +40,8 @@ func _ready() -> void:
 	layout_id = argument("room","L43")
 	if SkyContent.room(layout_id).is_empty(): layout_id = "L43"
 	spawn_enabled = false
+	get_tree().auto_accept_quit = false
+	_lifecycle_frames = int(argument("b08-quit-after-frames","-1"))
 	super._ready()
 	_started = true
 	var layer := CanvasLayer.new()
@@ -127,7 +135,12 @@ func enemy_died(enemy: MineEnemy) -> void:
 	# Deliberately no Game.record_kill, XP, loot or completion transactions.
 
 func _physics_process(delta: float) -> void:
-	if not _started or Game.run==null or get_tree().paused: return
+	if not _started or shutdown_started or Game.run==null or get_tree().paused: return
+	if _lifecycle_frames>0:
+		_lifecycle_frames -= 1
+		if _lifecycle_frames==0:
+			request_quit()
+			return
 	if Game.run.hp<=0:
 		_hud.text = "B08 debug candidate: defeated. Close preview; no progress saved."
 		return
@@ -150,7 +163,34 @@ func _physics_process(delta: float) -> void:
 	queue_redraw()
 	_floor_canvas.queue_redraw()
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE: get_tree().quit()
+	if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE: request_quit()
+func _notification(what: int) -> void:
+	if what==NOTIFICATION_WM_CLOSE_REQUEST and _started: request_quit()
+func request_quit() -> void:
+	if _quit_requested: return
+	_quit_requested = true
+	if not await cleanup_for_exit(): push_warning("B08 combat audio cleanup timed out")
+	get_tree().quit(0 if shutdown_clean else 1)
+func cleanup_for_exit() -> bool:
+	if shutdown_started:
+		if not shutdown_done: await shutdown_ready
+		return shutdown_clean
+	shutdown_started = true
+	set_input_blocked(true)
+	wind.cancel_turn()
+	_channel_lane = ""
+	# Block new actor/input sound requests while the existing AudioServer-backed
+	# cleanup observes weak playback references. Audio keeps its ALWAYS process.
+	process_mode = Node.PROCESS_MODE_DISABLED
+	set_process_input(false)
+	set_process_unhandled_input(false)
+	shutdown_clean = true
+	if is_instance_valid(combat_audio):
+		combat_audio.stop_all()
+		shutdown_clean = await combat_audio.wait_for_cleanup()
+	shutdown_done = true
+	shutdown_ready.emit()
+	return shutdown_clean
 func interact() -> void:
 	if not controls_enabled(): return
 	for lane: Dictionary in SkyGeometry.lanes(layout_id):
@@ -163,7 +203,7 @@ func interact() -> void:
 			if actor.is_alive() and not actor.static_actor: return
 		var ids := SkyContent.room_ids()
 		var next := ids.find(layout_id)+1
-		if next>=ids.size(): get_tree().quit()
+		if next>=ids.size(): request_quit()
 		else: _open_room(ids[next])
 
 func lane_at(at: Vector2) -> Dictionary: return SkyGeometry.lane_at(layout_id,at)

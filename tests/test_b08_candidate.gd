@@ -134,6 +134,20 @@ func run() -> void:
 	boss.brain._land(boss)
 	check(boss.brain.remaining==3.0 and boss.brain.weak_until>boss.brain.clock,"sidewind extends landing and vulnerability")
 	check(Game.run.completed_reward_ids.is_empty() and Game.run.boss_defeats.is_empty(),"candidate grants no progression")
+	# Same-frame play/exit reproduces the prior mixer race deterministically.
+	var audio: Node = room.combat_audio
+	audio.stop_all()
+	check(audio.hurt(),"real hurt cue before terminal cleanup")
+	var voice: AudioStreamPlayer = audio.get_child(0)
+	var playback: WeakRef = weakref(voice.get_stream_playback()) if voice.has_stream_playback() else null
+	check(playback!=null and playback.get_ref()!=null,"observe actual WAV playback")
+	check(await room.cleanup_for_exit(),"candidate awaits bounded mixer cleanup")
+	check(playback!=null and playback.get_ref()==null and audio.pending_playback_count()==0,"actual mixer playback destroyed before room free")
+	check(room.shutdown_done and room.input_blocked and room.process_mode==Node.PROCESS_MODE_DISABLED,"terminal path freezes new gameplay")
+	check(await room.cleanup_for_exit(),"repeated cleanup is idempotent")
+	for child: AudioStreamPlayer in audio.get_children():
+		check(not child.playing and child.stream==null,"terminal voice ownership released")
 	room.free()
+	await get_tree().process_frame
 	print("B08_CANDIDATE checks=",checks," failures=",failures)
 	get_tree().quit(0 if failures==0 else 1)
