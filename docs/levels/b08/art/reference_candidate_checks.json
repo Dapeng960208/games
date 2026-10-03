@@ -2,11 +2,11 @@
   "schema": "b08-reference-candidate-evidence-v1",
   "status": "candidate_reviewed_not_final_room_acceptance",
   "contract": {
-    "batch": "20261003T060149426799Z-89eb5ef9",
-    "checks": 30,
+    "batch": "20261003T064405662234Z-8d1201e3",
+    "checks": 34,
     "failures": 0,
     "exit_code": 0,
-    "scope": "Source bytes, registry, footprint/clipping, native body/foot/mirror, bounded flow marks, low FX, switch warning, room release and audio cleanup; default player-camera fitting unchanged; independent 45% distant-depth review preserves all foreground registration and sources."
+    "scope": "Source bytes, registry, footprint/clipping, native body/foot/mirror, bounded flow marks, low FX, switch warning, room release and audio cleanup; default player-camera fitting unchanged; independent 45% distant-depth review preserves all foreground registration and sources. Wind warning bounded next-direction marks preserve pending state; complete one-second warning then transition clears marks."
   },
   "renderer": "Godot 4.6.3 / X11 OpenGL Compatibility / Mesa llvmpipe software renderer",
   "framebuffer": [
@@ -428,8 +428,96 @@
     },
     "observations": [
       "Foreground separation improved without changing player-camera framing",
-      "Normal wind marks unchanged but still subtle near top of entry view; final readability pending",
+      "Background-only capture preserved then-subtle normal wind marks; later wind readability change has separate evidence.",
       "Broad platform and placeholder actors/props remain"
+    ]
+  },
+  "wind_readability": {
+    "status": "candidate_local_readability_improved_not_final_room_acceptance",
+    "batch": "20261003T064751750282Z-c2c2976c",
+    "report_sha256": "45dbeeeb88db3e5d6bc7b0d7d52190b4f5bc1c15de238a73a2f0c4f53ef10857",
+    "exit_code": 0,
+    "audio_cleanup": true,
+    "actual_framebuffer": [
+      2560,
+      1440
+    ],
+    "camera_by_view": {
+      "entry_flow.png": {
+        "player_world_position": "(220.4, 556.8)",
+        "world_view": "[P: (0.0, 133.2706), S: (1505.882, 847.0588)]",
+        "zoom": "(0.85, 0.85)"
+      },
+      "entry_flow_reduced.png": {
+        "player_world_position": "(220.4, 556.8)",
+        "world_view": "[P: (0.0, 133.2706), S: (1505.882, 847.0588)]",
+        "zoom": "(0.85, 0.85)"
+      },
+      "entry_switch_warning.png": {
+        "player_world_position": "(220.4, 556.8)",
+        "world_view": "[P: (0.0, 133.2706), S: (1505.882, 847.0588)]",
+        "zoom": "(0.85, 0.85)"
+      }
+    },
+    "wind_by_view": {
+      "entry_flow.png": {
+        "lanes": {
+          "lane_0": 0
+        },
+        "pending": {},
+        "reduced_fx": false
+      },
+      "entry_flow_reduced.png": {
+        "lanes": {
+          "lane_0": 0
+        },
+        "pending": {},
+        "reduced_fx": true
+      },
+      "entry_switch_warning.png": {
+        "lanes": {
+          "lane_0": 0
+        },
+        "pending": {
+          "lane": "lane_0",
+          "mode": 1,
+          "remaining": 1.0
+        },
+        "reduced_fx": true
+      }
+    },
+    "images_not_committed": [
+      {
+        "file": "entry_flow.png",
+        "sha256": "01e2b58aaa8193ef54fa9c6ed39220286dd061b6c915454519c612b717f250eb"
+      },
+      {
+        "file": "entry_flow_reduced.png",
+        "sha256": "d4e9febbac74b3c9e80f9cb78c377ad003068a8cc7d61b3fe4d51847d5989f94"
+      },
+      {
+        "file": "entry_switch_warning.png",
+        "sha256": "5d1261c88e9be106f154511dd334ddb4876109dd407470fc57aa24ecfbc9844a"
+      }
+    ],
+    "normal_pixel_comparison": {
+      "baseline_batch": "20261003T055703447401Z-c0e07aac",
+      "changed_pixels_in_lane": 17283,
+      "changed_pixels_outside_lane_and_review_caption": 0,
+      "lane_screen_roi_xyxy": [
+        868,
+        95,
+        2002,
+        311
+      ],
+      "review_caption_excluded_rows": [
+        0,
+        90
+      ]
+    },
+    "limits": [
+      "Stationary candidate entrance captures, not dense moving combat acceptance",
+      "Other actors/props and broad platform composition still incomplete"
     ]
   }
 }

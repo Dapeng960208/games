@@ -59,9 +59,22 @@ func run() -> void:
 	var original: Dictionary=room.wind.lanes.duplicate(true)
 	Flow.marks(lane.rect,Vector2.RIGHT,1,false)
 	check(room.wind.lanes==original and room.wind.channel.is_empty(),"drawing does not mutate mechanic state")
+	check(Flow.warning_marks(lane,room.wind).is_empty(),"no future-direction warning in steady state")
 	check(room.wind.begin_turn(lane.id,"player"),"same real interaction path")
 	room.wind.advance(.6)
 	check(not room.wind.pending.is_empty() and room.wind.pending.remaining==1.0,"full switch warning remains")
+	var pending_before: Dictionary=room.wind.pending.duplicate(true)
+	var warning_marks: Array=Flow.warning_marks(lane,room.wind)
+	var warnings_bounded := warning_marks.size()==3
+	for mark: PackedVector2Array in warning_marks:
+		for point: Vector2 in mark:
+			if not lane.rect.grow(-4).has_point(point): warnings_bounded=false
+		if Vector2(mark[2]-mark[0]).dot(-lane.direction)<=0: warnings_bounded=false
+	check(warnings_bounded and room.wind.pending==pending_before,"future warning uses next direction, remains inside lane and never advances state")
+	room.wind.advance(.999)
+	check(room.wind.direction(lane.id,lane.direction)==lane.direction and not Flow.warning_marks(lane,room.wind).is_empty(),"warning keeps original live direction until full second completes")
+	room.wind.advance(.001)
+	check(room.wind.direction(lane.id,lane.direction)==-lane.direction and Flow.warning_marks(lane,room.wind).is_empty(),"direction changes only on real transition and warning clears")
 	room._open_room("L44")
 	check(not is_instance_valid(room.sky_environment),"other room releases L43 environment")
 	var others_native:=false
