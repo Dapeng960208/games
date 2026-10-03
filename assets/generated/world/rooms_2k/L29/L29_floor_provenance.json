@@ -1,0 +1,39 @@
+{
+  "generation_id": "L29_floor_repair_v1",
+  "tool": "built-in image_gen",
+  "model_metadata": {
+    "specific_model": "unknown",
+    "model_version": "unknown",
+    "model_reported_by_tool": false,
+    "model_parameter_submitted": false,
+    "reason": "Built-in image_gen returned image_url and output_hint only."
+  },
+  "prompt": "Use case: precise-object-edit.\nProduction B05 L29 \"Sunlit Terrace\" local floor repair material. The single reference is an EXACT512×512px floor crop from this room's approved-direction base painting, not a complete room. Generate a NEW native1536×1536 square high-detail flat floor material matching its pale honey-cream livingwood and hand-painted fantasy style. This tile is used ONLY beneath the room's exact runtime floor mask; it does not create new geometry.\nKeep its warm pale-gold luminance, fine tan horizontal wood grain and softly intertwined organic slat joints. Change only the following: remove every tree shadow from the crop, remove the conspicuous large leaf-eye emblems, and make the remaining slats evenly quiet with delicate genuine newly painted wood fibers and fine tiny joints. No single giant plank or recognizable emblem. The pattern must feel uniform across the canvas and continuous at opposite edges, a reusable gently seamless material with no vignette or lighting gradient. No rescaling/upscale of the existing pixels or sharpening filter; resolve new fine natural wood texture at the native output size.\nPerfectly flat already-projected overhead material: no perspective, depth, raised roots, railings, walls, walkway edge, tree, foliage, flowerbed, pit, support column, stairs, sunlight beam, shadow, water, sparkle or debris. No actors, interactive leaves, wells, beacons, rewards, hazards, UI, text, frame, border or watermark. Opaque full-bleed square, quiet light floor only.",
+  "prompt_sha256": "d609b7184c26d58844592fb9051b68286364a38d91ee6b4fe24403830881bf8c",
+  "input": {
+    "path": "references/L29_floor_material_crop.png",
+    "sha256": "ceea0a99969d3bdd70c8968a601823c8314231182e445aaccbded361781c6a0f",
+    "size": [
+      512,
+      512
+    ],
+    "derivation": "Exact integer crop [680,236,512,512] of verified original base; no resize"
+  },
+  "native_size": [
+    1254,
+    1254
+  ],
+  "density_per_axis": [
+    2.44921875,
+    2.44921875
+  ],
+  "minimum_density": 2.35,
+  "passes_density": true,
+  "generated_png_sha256": "fb877fce13f5ee7882f8034b6401f942c280a47f55b16626f9d9e9eb9e1c80e9",
+  "webp_sha256": "f1e1fef1e36ee2ec2a706bce0de785ed6647e4a324c52f19ee0cfb42c78cfa9d",
+  "decoded_rgb_sha256": "c1c6de8cbe3d0077ee2229873ec14b6ad8299d48823a8858e998c1e47b838893",
+  "encoding": "lossless WebP; decoded RGB byte-identical; no resizing",
+  "qa": "Candidate only; precise floor mask/repetition/shadow blending pending integrator review",
+  "recovery": "Original dataURL recovered; SHA exactly matches prior measured SHA",
+  "tool_output_file_name": "exec-270b592a-fb90-405f-bbc7-016b7be60327.png"
+}

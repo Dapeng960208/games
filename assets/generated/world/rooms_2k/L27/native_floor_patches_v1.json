@@ -1,0 +1,57 @@
+{
+  "approved": false,
+  "patches": [
+    {
+      "name": "L27_west",
+      "source": "b05-art/regenerated/maps/L27/L27_base_v2.png",
+      "source_sha256": "9146f2d2100566aacc76d5def5727202cbb7e75476c9e91aeb15bbd58f11d2b4",
+      "rect": [
+        205,
+        300,
+        360,
+        555
+      ],
+      "adjacent_rect": [
+        400,
+        300,
+        360,
+        555
+      ],
+      "refs": [
+        "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/native-repairs/references/L27_west_target.png",
+        "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/native-repairs/references/L27_west_adjacent.png"
+      ],
+      "path": "b05-art/regenerated/maps/native-repairs/L27_west_v1.png",
+      "native_size": [
+        1010,
+        1557
+      ],
+      "sha256": "6bde1e98c103e16eb1a3bd974abbfec32239ce5a0194609e8542d90fda8cd588",
+      "prompt_sha256": "885d41afb75b6eac0715350d3ff1cf5418a0a877ed08ab7b64a28dea679036a7",
+      "tool": "image_gen built-in",
+      "model": "not reported",
+      "approved": false,
+      "texture": "res://assets/generated/world/rooms_2k/L27/L27_west_v1.png",
+      "unique_patch": true,
+      "recommended_repair_source_rect": [
+        205,
+        300,
+        360,
+        555
+      ],
+      "repair_feather_source_pixels": [
+        0,
+        16,
+        32,
+        0
+      ],
+      "entrance_join_source_rect": [
+        220.306285056,
+        435,
+        48,
+        145
+      ],
+      "entrance_join_note": "Locally reveal only the original flat west-entry inlay under the repair edge, keeping all other repaired perimeter ground opaque."
+    }
+  ]
+}

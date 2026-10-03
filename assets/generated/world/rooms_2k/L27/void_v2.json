@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "room_id": "L27",
+  "texture": "res://assets/generated/world/rooms_2k/L27/void_v2.png",
+  "approved": false,
+  "candidate_only": true,
+  "native_size": [
+    2172,
+    724
+  ],
+  "generated_png_sha256": "b6c355036ab855262bcf09d0b7a1da415e7b5ad88cf5476f5a306949c4779caa",
+  "prompt": "Use case: precise-object-edit. Production B05 L27 game terrain HOLE overlay, a single wide 3:1 native PNG requested around 2172x724 with genuine alpha outside its irregular edge. Image1 is the failed prior void and is the EDIT TARGET. Image2 is STYLE AND FLOOR-MATERIAL reference only, not an edit target. Replace the target's front-facing scenic postcard appearance with a shallow-in-screen, top-down opening cut INTO the reference's pale golden horizontal livingwood floor. Keep a wide horizontal opening, at the same whole-canvas extent; no geometry changes, no room picture. View from the same high overhead near-isometric game camera as Image2, looking DOWN through an empty dark teal root-supported slit, not forward at a landscape. Interior must be mostly shadowed cool teal depth, subtle distant mist, no scenic mountain columns, no white sky, no horizon, no large waterfalls. A thin pale gold organic root-and-wood broken rim follows all FOUR edges: narrow top and bottom lips with visible inner dark undercut/shadow establishing downward depth, rounded irregular endcaps, sparse tiny green leaves and at most a few pink petals. Make the rim match Image2's warm cream-gold floor wood fibers and upper-left lighting. Transition the OUTERMOST roughly 3 percent of canvas from irregular fine root fibers into true transparency, with no straight opaque image border, so it blends on underlying flat floor. Keep central 65-75 percent as opaque nonwalkable depth and do not add crossing roots, planks, bridges, islands or floor within it. No rectangle picture-frame, carpet, portal, pool, bright landscape poster, outer floor slab, characters, text, UI or effects. Preserve the very wide aspect ratio, newly painted native fine root detail; do not upscale. Output only this independent terrain inset sprite on real alpha. Collision stays the exact existing rectangle in runtime; irregular lip is visual only.\n",
+  "prompt_sha256": "dbf74acd46aa637c267dcfebd56535850d7c1800fc2084b7440a11c7c002d169",
+  "model": "unknown_not_exposed",
+  "source_pixel_edits": "none; exact native RGBA bytes",
+  "void_index": 0,
+  "geometry_source": "data/b05_room_geometry.json rooms.L27.voids[0]",
+  "generation_tool": "built-in image_gen",
+  "exact_returned_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-c1e5d107-29e0-4b89-932c-4344b72d7f44.png",
+  "transparent_background": true,
+  "visual_review": "Native pixels reviewed: organic alpha outline and dark inner depth replace straight scenic postcard; integration remains pending. Single requested correction only.",
+  "references": [
+    {
+      "historical_source_name": "void_v1.png",
+      "source_distribution": "not included in this development checkpoint; superseded/rejected source, retained locally",
+      "historical_source_field": "path",
+      "role": "edit target",
+      "sha256": "b8322cf562966d898013550ab0ae20c3cc85cdd954f107929c3e1eaf3510610d"
+    },
+    {
+      "path": "res://assets/generated/world/rooms/L27_environment_v1.png",
+      "role": "floor/style reference",
+      "sha256": "9146f2d2100566aacc76d5def5727202cbb7e75476c9e91aeb15bbd58f11d2b4"
+    }
+  ]
+}
