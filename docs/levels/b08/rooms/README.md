@@ -4,4 +4,6 @@
 
 美术目录：`assets/levels/b08/rooms`；本分支仅有隔离候选切片，完整范围见 [候选说明](../balance/candidate_progress.md)；未完成项不计作正式发布。
 
+按前四关范式的 [独立房间原画与坐标映射自查](../art/room_painting_self_review.md)：当前独立整房原画为 0/7；L43 分层拼装与七房模块设计不等同七张房间原画。完整战斗 HUD 也仍需复用现有组件完成本地适配。
+
 [本关说明](../README.md) · [关卡索引](../../README.md)
