@@ -1,0 +1,272 @@
+{
+  "status": "L31_controlled_visual_pilot_passed_candidate_only",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "reference_sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+  "geometry_sha256": "406a7ba2652efa1128d5fbf92deaec8b3de65faea07f443645420cbc9ba9dfd4",
+  "requested_size": [
+    2800,
+    1800
+  ],
+  "native_2k": false,
+  "assets": [
+    {
+      "id": "L31-floor-v3",
+      "historical_source_name": "L31-floor-v3.png",
+      "source_distribution": "not included in this development checkpoint; superseded/rejected source, retained locally",
+      "historical_source_field": "texture",
+      "native_dimensions": [
+        1564,
+        1006
+      ],
+      "mode": "RGB",
+      "sha256": "5fdcfaad3555877f39b4890e2e2b9cb8fcea3c2b82fcee465e82d09a1623aac5",
+      "source_call_id": "exec-03014ee7-b446-4722-97c0-01e67cc6da19",
+      "prompt": "provenance/L31-floor-v3.txt",
+      "native_unmodified": true,
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-03014ee7-b446-4722-97c0-01e67cc6da19.png",
+      "references": [
+        {
+          "role": "exact world style",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+        },
+        {
+          "role": "floor style sample",
+          "sha256": "8e08f1ce642babb9516cb4239c67eebd4747e43475da30bce4f701a6e6bf27eb"
+        }
+      ],
+      "selection_status": "superseded_soft_full_room_floor"
+    },
+    {
+      "id": "L31-water-v1",
+      "texture": "L31-water-v1.png",
+      "native_dimensions": [
+        1564,
+        1006
+      ],
+      "mode": "RGB",
+      "sha256": "bf0d53cfbda0a662f774e5aabf4d278325a6a372cce16c353aebd1dd407b0760",
+      "source_call_id": "exec-15567c92-b642-4afb-8bee-3b02ae3f878c",
+      "prompt": "provenance/L31-water-v1.txt",
+      "native_unmodified": true,
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-15567c92-b642-4afb-8bee-3b02ae3f878c.png",
+      "references": [
+        {
+          "role": "exact world style",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+        }
+      ],
+      "selection_status": "selected_L31_visual_pilot"
+    },
+    {
+      "id": "L31-south-facade-v1",
+      "texture": "L31-south-facade-v1.png",
+      "native_dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "sha256": "878e3dd18b417844cb0929a8e6d4289a21f2a093a8bebf8cf46eaadc5fbd3790",
+      "source_call_id": "exec-c423dde7-38b1-4ba5-ab98-56bf1a58aaf1",
+      "prompt": "provenance/L31-south-facade-v1.txt",
+      "native_unmodified": true,
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-c423dde7-38b1-4ba5-ab98-56bf1a58aaf1.png",
+      "references": [
+        {
+          "role": "exact world style",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+        }
+      ],
+      "selection_status": "selected_L31_visual_pilot"
+    },
+    {
+      "id": "L31-north-skyline-v1",
+      "texture": "L31-north-skyline-v1.png",
+      "native_dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "sha256": "4da443af5b354d06e0fad7d30aee80c4b122f465925198cf5e7a840db0ddb0d8",
+      "source_call_id": "exec-71c31e69-78d8-40cc-8452-f68cf22b2507",
+      "prompt": "provenance/L31-north-skyline-v1.txt",
+      "native_unmodified": true,
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-71c31e69-78d8-40cc-8452-f68cf22b2507.png",
+      "references": [
+        {
+          "role": "exact world style",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+        }
+      ],
+      "selection_status": "selected_L31_visual_pilot"
+    },
+    {
+      "id": "L31-floor-tile-v1",
+      "historical_source_name": "L31-floor-tile-v1.png",
+      "source_distribution": "not included in this development checkpoint; superseded/rejected source, retained locally",
+      "historical_source_field": "texture",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "sha256": "fb2cd9450ee979befc5c43b588adc8af7e0c32de52042028879f520e3ea28498",
+      "source_call_id": "exec-6bba322a-8e45-4baf-888f-03ae9f5188a1",
+      "prompt": "provenance/L31-floor-tile-v1.txt",
+      "native_unmodified": true,
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-6bba322a-8e45-4baf-888f-03ae9f5188a1.png",
+      "references": [
+        {
+          "role": "exact world style",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+        }
+      ],
+      "selection_status": "rejected_visible_broken_diagonal_seams"
+    },
+    {
+      "id": "L31-east-facade-v1",
+      "texture": "L31-east-facade-v1.png",
+      "native_dimensions": [
+        724,
+        2172
+      ],
+      "mode": "RGBA",
+      "sha256": "fac7a44721f86ba0373f154eb056299b8065aa8055e8859997fa96cb36c25814",
+      "source_call_id": "exec-fe1a2485-4b16-4487-b763-5bfd4c45932e",
+      "prompt": "provenance/L31-east-facade-v1.txt",
+      "native_unmodified": true,
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-fe1a2485-4b16-4487-b763-5bfd4c45932e.png",
+      "references": [
+        {
+          "role": "exact world style",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+        }
+      ],
+      "selection_status": "selected_L31_visual_pilot"
+    },
+    {
+      "id": "L31-west-facade-v1",
+      "texture": "L31-west-facade-v1.png",
+      "native_dimensions": [
+        724,
+        2172
+      ],
+      "mode": "RGBA",
+      "sha256": "00a468be2f0c5e89737e794e821a8ae96658bc1a0130a4643b1615f7199d3db4",
+      "source_call_id": "exec-6797ee36-e605-4854-bbf9-d98fafa80697",
+      "prompt": "provenance/L31-west-facade-v1.txt",
+      "native_unmodified": true,
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-6797ee36-e605-4854-bbf9-d98fafa80697.png",
+      "references": [
+        {
+          "role": "exact world style",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+        }
+      ],
+      "selection_status": "selected_L31_visual_pilot"
+    },
+    {
+      "id": "L31-floor-tile-v2",
+      "texture": "L31-floor-tile-v2.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "sha256": "08a477fd4c8e668e1b02a4a9f8e40e2c0e91280fd76d001108e114f4f632f0af",
+      "source_call_id": "exec-60701f3d-fef5-4579-af5a-82d3d7ced4fb",
+      "prompt": "provenance/L31-floor-tile-v2.txt",
+      "native_unmodified": true,
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-60701f3d-fef5-4579-af5a-82d3d7ced4fb.png",
+      "references": [
+        {
+          "role": "exact world style",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+        }
+      ],
+      "selection_status": "selected_L31_visual_pilot"
+    },
+    {
+      "id": "L31-shell-inlay-v1",
+      "texture": "L31-shell-inlay-v1.png",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "sha256": "e436a62233d2c3c7c4c5ea7acb9b025b5a6d4ad726eb0f7973d9218ba6c61332",
+      "source_call_id": "exec-bdabc8f4-9b36-430d-a1a7-adeda08675e6",
+      "prompt": "provenance/L31-shell-inlay-v1.txt",
+      "native_unmodified": true,
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-bdabc8f4-9b36-430d-a1a7-adeda08675e6.png",
+      "references": [
+        {
+          "role": "exact world style",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+        },
+        {
+          "role": "motif reference",
+          "sha256": "5fdcfaad3555877f39b4890e2e2b9cb8fcea3c2b82fcee465e82d09a1623aac5"
+        }
+      ],
+      "selection_status": "selected_L31_visual_pilot"
+    }
+  ],
+  "validation": {
+    "checks": 73,
+    "failures": 0,
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "report": "docs/audits/B06_L31_ENVIRONMENT_PILOT_2026-10-02.md",
+    "run_id": "20261002T180928735650Z-fd267672",
+    "runtime_enabled": false,
+    "scope": "L31 controlled real-room low, warning, high; corners, entry, exit; no natural combat acceptance"
+  },
+  "resolution_note": "Facade sources have a native 2172px long edge; floor tile is1254px. Not native2K full-room artwork.",
+  "active_asset_ids": [
+    "L31-floor-tile-v2",
+    "L31-water-v1",
+    "L31-shell-inlay-v1",
+    "L31-north-skyline-v1",
+    "L31-south-facade-v1",
+    "L31-east-facade-v1",
+    "L31-west-facade-v1"
+  ],
+  "placement": {
+    "floor_tile_world_period": 104.5,
+    "inlay_world_rect": [
+      687,
+      397,
+      250,
+      250
+    ],
+    "north_world_rect": [
+      104.4,
+      -352.73,
+      1415.2,
+      471.73
+    ],
+    "south_world_rect": [
+      104.4,
+      849.73,
+      1415.2,
+      471.73
+    ],
+    "east_world_rect": [
+      1497,
+      116,
+      270.67,
+      812
+    ],
+    "west_world_rect": [
+      -119,
+      116,
+      270.67,
+      812
+    ],
+    "exterior_clip": "texture rectangle minus frozen legal floor polygon",
+    "water_clip": "exact frozen shallow polygon, inward5-world-unit visual feather"
+  }
+}

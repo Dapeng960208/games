@@ -1,0 +1,484 @@
+{
+  "status": "candidate_integrated_controlled_actual_room_visual_review_passed",
+  "level": "BO06 Walking Fortress Bay",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "exact_reference_path": "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+  "reference_sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+  "native_2k": false,
+  "native_2k_note": "Not a full native-2K set. North and south are 2172x724, west is 724x2172, east is 724x2171; floor and selected inlay are 1254x1254. Requested native sizes were not met. All selected sources preserve actual returned bytes, with no upscaling, mirroring, cropping or programmatic recoloring. Inlay v2 is a fresh built-in imagegen edit with full provenance.",
+  "legal_rectangle": [
+    104.4,
+    116,
+    1519.6,
+    928
+  ],
+  "geometry_changed": false,
+  "selected": {
+    "north": "BO06-north-grand-bay-skyline-v1.png",
+    "south": "BO06-south-deep-pearl-quay-v1.png",
+    "east": "BO06-east-fortress-facade-v1.png",
+    "west": "BO06-west-fortress-facade-v1.png",
+    "floor": "BO06-calm-pearl-floor-slab-v1.png",
+    "inlay": "BO06-flat-bay-emblem-inlay-v2.png"
+  },
+  "placement": {
+    "north": [
+      104.4,
+      -293.8346224677717,
+      1415.2,
+      471.7333333333334
+    ],
+    "south": [
+      104.4,
+      909.1046040515654,
+      1415.2,
+      471.7333333333334
+    ],
+    "east": [
+      1503.8911100875173,
+      116,
+      270.7913403961308,
+      812
+    ],
+    "west": [
+      -163.2758747697974,
+      116,
+      270.6666666666667,
+      812
+    ]
+  },
+  "source_anchors": {
+    "north": {
+      "axis": "y",
+      "source_px": 629,
+      "legal_world": 116,
+      "basis": "Last near-full-width structural base row at alpha >= 200 coverage 92.68%; base band 625..630, row 627 is 99.03%, row 630 is 88.21%; row 631 drops to 6.77% and row 632 has no alpha >= 200. Use frozen-rectangle difference clipping for all below-baseline pixels, retaining source bytes."
+    },
+    "south": {
+      "axis": "y",
+      "source_px": 29,
+      "legal_world": 928,
+      "basis": "First near-full-width top cornice row: alpha >= 200 coverage 99.91%, alpha >= 240 coverage 92.63%; preceding row 28 at alpha >= 200 is 78.82%. Small tips above it must be clipped by frozen-rectangle difference."
+    },
+    "east": {
+      "axis": "x",
+      "source_px": 42,
+      "legal_world": 1519.6,
+      "basis": "First near-full-height inner cornice column with alpha >= 200 coverage 92.26% and alpha >= 240 coverage 91.48%; x41 has 79.92% coverage. Source has left padding and a few projecting tips, so x42 is aligned to the legal boundary rather than canvas x0."
+    },
+    "west": {
+      "axis": "x",
+      "source_px": 716,
+      "legal_world": 104.4,
+      "basis": "Last near-full-height inner cornice column with alpha >= 200 coverage 93.14%; x715 at alpha >= 240 is 92.86%, x717 at alpha >= 200 falls to 24.77%. Faint tips at last canvas columns are handled by exterior difference clipping."
+    }
+  },
+  "uniform_scale": {
+    "horizontal_strips": 0.6515653775322284,
+    "east_strip": 0.37402118839244586,
+    "west_strip": 0.3738489871086556
+  },
+  "integration_notes": [
+    "Placement preserves each exact native aspect ratio, including east native height 2171. East and west were independently generated, never mirrored.",
+    "All four perimeter modules must render through geometry-difference clipping strictly outside frozen legal rectangle 104.4,116..1519.6,928. Do not alter the legal floor or move gameplay endpoints.",
+    "North middle is low; monumental pearl shell pavilions remain at the distant ends. The field center remains open for the real Walking Fortress boss and mechanisms.",
+    "Boss, reef pillars, gates, warnings, tide and gameplay objects are absent from every baked floor/decor source and remain independently rendered gameplay content.",
+    "Exact PR5 is the sole original art-direction reference. No L31 room or module was used.",
+    "Floor is a repeatable square pearl slab with a hairline gold perimeter, not seamless continuous marble. No water or collision is implied.",
+    "Selected inlay v2 is a flat low-contrast shell-and-bay mosaic. Keep its display modest and clear of warning readability; v1 is retained for provenance but not selected.",
+    "Parent owns actual-room 2560x1440 rendering, placement/corner checks, frozen geometry and boss mechanism QA. Source review alone does not establish room acceptance."
+  ],
+  "raw_pixel_review": {
+    "all_six_reviewed": true,
+    "north": "Two unequal grand pearl shell pavilions and cobalt cupolas at ends; low long center balustrade; bright gold and small coral details; genuine alpha.",
+    "south": "Deep hanging shell arches and carved nacre/cobalt quay buttresses beneath a straight inner cornice; no interior paving or objects.",
+    "east": "Independent upper-third outward shell pavilion with two large open arch sections; left inner cornice measured at x42.",
+    "west": "Independent lower-middle shell pavilion, varied support towers and lavender coral cadence; right inner cornice measured at x716.",
+    "floor": "Flat pale pearl stone slab, light cool blue/aqua mineral wisps, thin gold perimeter, evenly lit and object-free.",
+    "inlay": "v2 circular flush mosaic with shell fan and bay ribbons; muted powder blue, ivory and champagne outlines; no pedestal, depth or shadow.",
+    "limitations": [
+      "No actual-room integration checked by source worker.",
+      "Transparent sources retain small partially transparent colored edge fringes and stray alpha. Inspect in engine against the actual exterior backdrop; original pixels were not cleaned or replaced.",
+      "Four long strips exceed 2048 px on their long edge but square floor/inlay are 1254 px native.",
+      "North bottom band is partly translucent; final seam and corner inspection remains parent QA."
+    ]
+  },
+  "assets": [
+    {
+      "side": "north",
+      "id": "BO06-north-grand-bay-skyline-v1",
+      "texture": "BO06-north-grand-bay-skyline-v1.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-541c09be-3554-44ae-a2b6-4bbe461258a5.png",
+      "source_call_id": "exec-541c09be-3554-44ae-a2b6-4bbe461258a5",
+      "prompt": "provenance/BO06-north-prompt.txt",
+      "full_prompt": "Use case: style-transfer. Asset type: independent transparent 2.5D game NORTH EXTERIOR GRAND BAY SKYLINE for BO06 Walking Fortress Bay. Translate the supplied exact B06 PR5 image's pearl-white, cobalt, fine-gold and living-coral architectural language into a completely new modular asset, not a whole room. Wide 3:1 canvas, requested native 3072x1024 if supported, no upscale. High-overhead three-quarter near-orthographic game camera, crisp bright hand-painted fantasy detail and warm coastal daylight. A monumental graceful ivory ribbed shell pavilion and small cobalt cupola at the FAR LEFT; a DIFFERENT broader fan-shell pavilion with gold arched ribs at the FAR RIGHT. Subtle blush and lavender coral ornament belongs only around these exterior pavilions. The MIDDLE 60 PERCENT must stay VERY LOW, just a thin continuous pearl balustrade, no tower, no arch canopy, no focal landmark. This is a grand open boss bay but the boss is NOT pictured. All architecture rests on one SINGLE NARROW STRAIGHT HORIZONTAL BOTTOM BASELINE; structural pearl/gold masonry reaches that baseline. Everything projects UP outwards from it. No interior paving below, no room floor. Genuine transparent background and open arch voids. No boss, crab, machine, legs, claws, siege gun, dark iron, war machinery, reef pillars, gameplay gates, warnings, tide, water plane, sea, ship, stairs, loose objects, terrain, ground rectangle, text, writing, symbols, UI, border or watermark.",
+      "native_dimensions": [
+        2172,
+        724
+      ],
+      "requested_dimensions": [
+        3072,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "3e5550649640046bce12f9f271408a91ed751880d1ae26af0835bcc46f5ea7a3",
+      "tool": "built-in image_gen",
+      "model": "unknown/unreported; built-in tool does not expose exact model identity",
+      "native_unmodified": true,
+      "byte_identical_to_returned_source": true,
+      "references": [
+        {
+          "path": "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+          "native_dimensions": [
+            1122,
+            1402
+          ],
+          "role": "exact PR5 style and material reference, visually inspected before generation"
+        }
+      ],
+      "selection_status": "selected_candidate_actual_room_reviewed",
+      "has_native_long_edge_at_least_2048": true,
+      "requested_dimensions_met": false,
+      "transparent_background_requested": true,
+      "alpha": {
+        "extrema": [
+          0,
+          255
+        ],
+        "nontransparent_bbox": [
+          0,
+          0,
+          2172,
+          724
+        ],
+        "transparent_fraction": 0.6537289002167211,
+        "opaque_fraction": 3.624736729648057e-05,
+        "nearly_opaque_fraction": 0.25398657448388834
+      }
+    },
+    {
+      "side": "south",
+      "id": "BO06-south-deep-pearl-quay-v1",
+      "texture": "BO06-south-deep-pearl-quay-v1.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3db987f7-c83b-4563-ab91-308cf679006e.png",
+      "source_call_id": "exec-3db987f7-c83b-4563-ab91-308cf679006e",
+      "prompt": "provenance/BO06-south-prompt.txt",
+      "full_prompt": "Use case: style-transfer. Asset type: independent transparent 2.5D game SOUTH EXTERIOR DEEP PEARL FORTRESS QUAY for BO06 Walking Fortress Bay. Exact B06 PR5 image is only the style/material reference for new architecture. Wide 3:1 canvas, requested native 3072x1024 if supported, no upscale. High-overhead three-quarter near-orthographic camera, straight frontage with no converging perspective. A substantial but elegant elevated pearl-white quay face with deep ivory shell-rib buttresses, cobalt glazed recessed panels, fine gold tracery, a few restrained coral growths attached to the exterior piers. Monumental sea-civilization craftsmanship, bright nacre and clean blue shadows; never industrial or dark. SINGLE CONTINUOUS NARROW STRAIGHT HORIZONTAL TOP CORNICE is the inner legal boundary, reaches near the absolute TOP of the canvas across the full width. Every part of the deep exterior facade projects DOWN from this line, no upward towers or finials above it and no walkable top surface. Real transparent background, open transparent voids in the lowest shell supports. No room or floor slab, no ocean, water plane, tide, waves, boss, crab, legs, machine, dark iron, cannons, reef pillars, gates, warnings, objects, props, stairs, people, text, symbols, UI, border or watermark.",
+      "native_dimensions": [
+        2172,
+        724
+      ],
+      "requested_dimensions": [
+        3072,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f16abecbe41cc75389779c9fd773d6d9c3a245348b1491a50e4940aa9c841960",
+      "tool": "built-in image_gen",
+      "model": "unknown/unreported; built-in tool does not expose exact model identity",
+      "native_unmodified": true,
+      "byte_identical_to_returned_source": true,
+      "references": [
+        {
+          "path": "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+          "native_dimensions": [
+            1122,
+            1402
+          ],
+          "role": "exact PR5 style and material reference, visually inspected before generation"
+        }
+      ],
+      "selection_status": "selected_candidate_actual_room_reviewed",
+      "has_native_long_edge_at_least_2048": true,
+      "requested_dimensions_met": false,
+      "transparent_background_requested": true,
+      "alpha": {
+        "extrema": [
+          0,
+          255
+        ],
+        "nontransparent_bbox": [
+          0,
+          0,
+          2172,
+          724
+        ],
+        "transparent_fraction": 0.49083195974888844,
+        "opaque_fraction": 0.00012209639510393455,
+        "nearly_opaque_fraction": 0.4389397199922672
+      }
+    },
+    {
+      "side": "east",
+      "id": "BO06-east-fortress-facade-v1",
+      "texture": "BO06-east-fortress-facade-v1.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-5b3f8e8d-0961-4f35-be85-84f071069310.png",
+      "source_call_id": "exec-5b3f8e8d-0961-4f35-be85-84f071069310",
+      "prompt": "provenance/BO06-east-prompt.txt",
+      "full_prompt": "Use case: style-transfer. Asset type: independent transparent 2.5D game EAST EXTERIOR FORTRESS BAY FACADE strip for BO06 Walking Fortress Bay. Use exact B06 PR5 reference only for pearl/cobalt/gold/coral style and materials, create entirely new east-specific modular architecture. Portrait 1:3 canvas, requested native 1024x3072 if supported, no upscale. High-overhead three-quarter near-orthographic game camera. Elegant monumental ivory-pearl bay perimeter with open deep shell-arch supports, cobalt enamel vertical recesses and restrained gilded ribs. Small outward-facing fan-shell belvedere toward upper third; limited blush coral growth on lower exterior supports. SINGLE CONTINUOUS STRAIGHT VERTICAL INNER PEARL/GOLD CORNICE at the absolute LEFT EDGE, full height, nearly no left padding. All wall depth, architecture and silhouette project RIGHT outward only. Real transparent background and arch voids. Bright warm sunlight and crisp sophisticated fantasy painting, not dark defensive machinery. East-specific asymmetry, not a mirrored or rotated wall. No interior floor, terrace, water, ocean, tide, boss, crab, legs, cannons, reef pillars, gameplay gates, warnings, loose objects, stairs, characters, text, symbols, UI, border or watermark.",
+      "native_dimensions": [
+        724,
+        2171
+      ],
+      "requested_dimensions": [
+        1024,
+        3072
+      ],
+      "mode": "RGBA",
+      "sha256": "c2edd7aef5733a5e335c9dac94289d916431bbfd086c04a624880ad037528ec5",
+      "tool": "built-in image_gen",
+      "model": "unknown/unreported; built-in tool does not expose exact model identity",
+      "native_unmodified": true,
+      "byte_identical_to_returned_source": true,
+      "references": [
+        {
+          "path": "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+          "native_dimensions": [
+            1122,
+            1402
+          ],
+          "role": "exact PR5 style and material reference, visually inspected before generation"
+        }
+      ],
+      "selection_status": "selected_candidate_actual_room_reviewed",
+      "has_native_long_edge_at_least_2048": true,
+      "requested_dimensions_met": false,
+      "transparent_background_requested": true,
+      "alpha": {
+        "extrema": [
+          0,
+          255
+        ],
+        "nontransparent_bbox": [
+          25,
+          16,
+          710,
+          2171
+        ],
+        "transparent_fraction": 0.5236670729938339,
+        "opaque_fraction": 8.525235970897135e-05,
+        "nearly_opaque_fraction": 0.4226792908021611
+      }
+    },
+    {
+      "side": "west",
+      "id": "BO06-west-fortress-facade-v1",
+      "texture": "BO06-west-fortress-facade-v1.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d40a5267-0535-4938-810b-f49b06f9c65c.png",
+      "source_call_id": "exec-d40a5267-0535-4938-810b-f49b06f9c65c",
+      "prompt": "provenance/BO06-west-prompt.txt",
+      "full_prompt": "Use case: style-transfer. Asset type: independent transparent 2.5D game WEST EXTERIOR FORTRESS BAY FACADE strip for BO06 Walking Fortress Bay. Exact B06 PR5 reference supplies pearl/cobalt/gold/coral material language only, not room layout. Generate original west-specific architecture, never mirror any other wall. Portrait 1:3 canvas, requested native 1024x3072 if supported, no upscale. High-overhead three-quarter near-orthographic game view. Grand white nacre exterior wall with curved shell buttresses, pale turquoise/cobalt enamel recesses, fine gold structural ribs. A distinct narrow ribbed pearl pavilion attached toward LOWER third and sparse lavender coral on upper outer piers; varying support cadence independent of east. SINGLE CONTINUOUS STRAIGHT VERTICAL INNER PEARL AND GOLD CORNICE at the absolute RIGHT EDGE, full height; structure touches the right canvas edge. All facade depth projects LEFT outward. True transparent background with transparent open arch voids. Bright refined hand-painted sea-city fantasy, warm daylight, pale clean shadows. No walkable paving or interior terrace, floor slab, water plane, sea, tide, boss, crab, legs, machine, dark iron, cannon, reef pillars, gameplay gates, warnings, loose objects, stairs, people, text, symbols, UI, border or watermark.",
+      "native_dimensions": [
+        724,
+        2172
+      ],
+      "requested_dimensions": [
+        1024,
+        3072
+      ],
+      "mode": "RGBA",
+      "sha256": "2ea03c280eab6cac20b43b72e40079a7a110db6b186b051e1066a54d55218cfc",
+      "tool": "built-in image_gen",
+      "model": "unknown/unreported; built-in tool does not expose exact model identity",
+      "native_unmodified": true,
+      "byte_identical_to_returned_source": true,
+      "references": [
+        {
+          "path": "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+          "native_dimensions": [
+            1122,
+            1402
+          ],
+          "role": "exact PR5 style and material reference, visually inspected before generation"
+        }
+      ],
+      "selection_status": "selected_candidate_actual_room_reviewed",
+      "has_native_long_edge_at_least_2048": true,
+      "requested_dimensions_met": false,
+      "transparent_background_requested": true,
+      "alpha": {
+        "extrema": [
+          0,
+          255
+        ],
+        "nontransparent_bbox": [
+          43,
+          0,
+          724,
+          2172
+        ],
+        "transparent_fraction": 0.5567691004548091,
+        "opaque_fraction": 0.00013036333852243012,
+        "nearly_opaque_fraction": 0.38624240713042945
+      }
+    },
+    {
+      "side": "floor",
+      "id": "BO06-calm-pearl-floor-slab-v1",
+      "texture": "BO06-calm-pearl-floor-slab-v1.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-b6e6241a-9d2e-4099-b913-9f1a815befe4.png",
+      "source_call_id": "exec-b6e6241a-9d2e-4099-b913-9f1a815befe4",
+      "prompt": "provenance/BO06-floor-prompt.txt",
+      "full_prompt": "Use case: style-transfer. Asset type: one calm repeatable square pearl paving SLAB texture for BO06 Walking Fortress Bay. The exact B06 PR5 image is the nacre/pearl material reference only. Opaque square canvas, requested native 2048x2048 if supported, no upscale. Perfectly straight orthographic TOP DOWN, flat edge-to-edge material. Single quiet off-white pearl limestone slab with extremely subtle cool blue-gray and pale aqua nacre mineral wisps, faint warm ivory variation. A consistent very thin low-contrast warm-gold hairline bevel precisely along its four outer edges, so it can repeat as individual paving slabs; no internal grid and no broad border. This is a clean open boss-combat field surface; subdued brightness and color, perfectly even lighting, no directional shadow or hotspot. Material only, no emblem. No boss, crab, pillars, reef pillars, gates, warnings, tide, water, puddles, objects, props, coral, plants, shells, statues, raised relief, pedestal, room, building, perspective, vertical thickness, characters, text, UI or watermark.",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "sha256": "4738ec97539152cb77e6046c5516666a3772d4a626c8670a9dad73aef9b3662c",
+      "tool": "built-in image_gen",
+      "model": "unknown/unreported; built-in tool does not expose exact model identity",
+      "native_unmodified": true,
+      "byte_identical_to_returned_source": true,
+      "references": [
+        {
+          "path": "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+          "native_dimensions": [
+            1122,
+            1402
+          ],
+          "role": "exact PR5 style and material reference, visually inspected before generation"
+        }
+      ],
+      "selection_status": "selected_candidate_actual_room_reviewed",
+      "has_native_long_edge_at_least_2048": false,
+      "requested_dimensions_met": false,
+      "transparent_background_requested": false
+    },
+    {
+      "side": "inlay",
+      "id": "BO06-flat-bay-emblem-inlay-v2",
+      "texture": "BO06-flat-bay-emblem-inlay-v2.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-2931c47b-f69f-4825-a5ae-bcfc16422e8e.png",
+      "source_call_id": "exec-2931c47b-f69f-4825-a5ae-bcfc16422e8e",
+      "prompt": "provenance/BO06-inlay-v2-prompt.txt",
+      "full_prompt": "Use case: lighting-weather. Edit target: Image 1 is the exact flat circular seashell-and-bay mosaic inlay to revise. Supporting reference: Image 2 is B06 PR5 sea-city palette, not a layout to copy. Change ONLY the inlay's color contrast and saturation: make the blue tesserae extremely pale powder blue, only slightly different in value from pearl-white tiles, and make all gold outlines very pale desaturated champagne ivory. Reduce visible blue/gold chroma and contrast approximately 80 percent. It should be a subtle quiet floor engraving that recedes beneath game characters and warning markers, with no strong central focal point. Preserve exactly the flat orthographic circular layout, shell fan, three bay ribbons, mosaic seams, boundaries, transparent outside margin, no shadow or depth. No shape additions, no boss, crab, objects, water or raised relief. Keep the source square aspect ratio, requested 2048x2048 native if supported, never upscale. Genuine transparent backdrop and internally opaque stone.",
+      "historical_source_name": "BO06-flat-bay-emblem-inlay-v1.png",
+      "source_distribution": "not included in this development checkpoint; superseded/rejected source, retained locally",
+      "historical_source_field": "edit_target_texture",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "mode": "RGBA",
+      "sha256": "1771bf045cb8990950d0e604a02d15ad4f6d155153a9f741c3867f3d4e52035c",
+      "tool": "built-in image_gen",
+      "model": "unknown/unreported; built-in tool does not expose exact model identity",
+      "native_unmodified": true,
+      "byte_identical_to_returned_source": true,
+      "references": [
+        {
+          "historical_source_name": "BO06-flat-bay-emblem-inlay-v1.png",
+          "source_distribution": "not included in this development checkpoint; superseded/rejected source, retained locally",
+          "historical_source_field": "path",
+          "sha256": "5dfcf8d5f19dc2abba4cc7f0d88087572429cde8eab3635a0f000eae57296341",
+          "native_dimensions": [
+            1254,
+            1254
+          ],
+          "role": "exact inlay v1 edit target, reduce color contrast only"
+        },
+        {
+          "path": "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+          "native_dimensions": [
+            1122,
+            1402
+          ],
+          "role": "exact PR5 style and material reference, visually inspected before generation"
+        }
+      ],
+      "selection_status": "selected_candidate_actual_room_reviewed",
+      "has_native_long_edge_at_least_2048": false,
+      "requested_dimensions_met": false,
+      "transparent_background_requested": true,
+      "alpha": {
+        "extrema": [
+          0,
+          255
+        ],
+        "nontransparent_bbox": [
+          75,
+          80,
+          1206,
+          1214
+        ],
+        "transparent_fraction": 0.41215542480966805,
+        "opaque_fraction": 0.0008527735170898102,
+        "nearly_opaque_fraction": 0.57932001963732
+      }
+    }
+  ],
+  "unselected_sources": [
+    {
+      "side": "inlay",
+      "id": "BO06-flat-bay-emblem-inlay-v1",
+      "historical_source_name": "BO06-flat-bay-emblem-inlay-v1.png",
+      "source_distribution": "not included in this development checkpoint; superseded/rejected source, retained locally",
+      "historical_source_field": "texture",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-bfb0e9cb-cedb-4d66-9cea-a431cb3c153c.png",
+      "source_call_id": "exec-bfb0e9cb-cedb-4d66-9cea-a431cb3c153c",
+      "prompt": "provenance/BO06-inlay-prompt.txt",
+      "full_prompt": "Use case: style-transfer. Asset type: subtle FLAT BAY EMBLEM FLOOR INLAY sprite for BO06 Walking Fortress Bay. Use exact B06 PR5 image as pearl/cobalt/fine-gold material and craft reference only. Square canvas, requested native 2048x2048 if supported, no upscale. One centered modest circular floor mosaic medallion, perfectly straight orthographic TOP DOWN, genuine transparent backdrop with clear margins. A simple stylized open seashell fan over three quiet curved bay-line ribbons, rendered as FLUSH thin pale-gold linework and low-contrast ivory and muted powder-blue mosaic tesserae. Restrained, very pale, calm, no saturated central jewel. A faint single thin circular gold mosaic rim. This is completely flat non-colliding paving decoration, NOT a physical shell, shield, pedestal, badge or collectible. No raised relief, no protrusion, no depth, no drop shadow, glow or light hotspot. Internal mosaic stone opaque, outside circle transparent. No boss or crab symbol, no reef pillars, gates, warnings, tide, water basin, pool, actual water, objects, plants, characters, text, numbers, lettering, UI, border or watermark.",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "mode": "RGBA",
+      "sha256": "5dfcf8d5f19dc2abba4cc7f0d88087572429cde8eab3635a0f000eae57296341",
+      "tool": "built-in image_gen",
+      "model": "unknown/unreported; built-in tool does not expose exact model identity",
+      "native_unmodified": true,
+      "byte_identical_to_returned_source": true,
+      "references": [
+        {
+          "path": "/workspace/scratch/2244020fc8d6/b06-art/references/B06_PR5_reference.png",
+          "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+          "native_dimensions": [
+            1122,
+            1402
+          ],
+          "role": "exact PR5 style and material reference, visually inspected before generation"
+        }
+      ],
+      "selection_status": "superseded_unselected_source_retained",
+      "has_native_long_edge_at_least_2048": false,
+      "requested_dimensions_met": false,
+      "transparent_background_requested": true,
+      "alpha": {
+        "extrema": [
+          0,
+          255
+        ],
+        "nontransparent_bbox": [
+          0,
+          17,
+          1192,
+          1197
+        ],
+        "transparent_fraction": 0.41377893770238267,
+        "opaque_fraction": 0.0004362435739922519,
+        "nearly_opaque_fraction": 0.5769047818909315
+      },
+      "rejection_reason": "Initial inlay blue and gold were too prominent; v2 preserves layout with visibly softer powder-blue/champagne contrast."
+    }
+  ]
+}
