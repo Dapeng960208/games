@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "asset_type": "original_warrior_runtime_pose_source",
+  "mode": "builtin_image_gen",
+  "use_case": "stylized-concept",
+  "profession": "warrior",
+  "character": "Luo Zhen / 罗砧",
+  "direction": "n",
+  "direction_degrees": 270,
+  "set": "b",
+  "artifact_status": "candidate_pending_component_isolation_and_runtime_review",
+  "requested_native_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "original_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10123-5c96-7c63-b8bd-e537c504f9ce\\exec-3c68d20e-fb86-4b2e-9c0d-630918316425.png",
+  "sha256": "c8964d484b8472fde76fd4bc0b8ff0e5973162866d70dadef3c37c3d5d4d924d",
+  "output_path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/animations/runtime_sources/poses_n_b.png",
+  "transparent_background": true,
+  "alpha_check": {
+    "mode": "RGBA",
+    "extrema": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 1037521,
+    "fully_opaque_pixels": 1660,
+    "alpha_nonzero_bbox": [
+      38,
+      13,
+      1253,
+      1243
+    ],
+    "measurement": "Pillow + NumPy read-only; alpha>8 principal connected component extents; original bytes unchanged",
+    "risk": "Sparse disconnected low-alpha pixels exist outside principal silhouettes. Preserve original source bytes; packing processor may isolate selected components under user authorization."
+  },
+  "source_references": [
+    "C:\\Users\\13326\\.codex\\generated_images\\01a10123-5c96-7c63-b8bd-e537c504f9ce\\exec-27be20a7-ebfa-4f72-b399-176eb7d90334.png",
+    "C:\\Users\\13326\\.codex\\generated_images\\01a10123-5c96-7c63-b8bd-e537c504f9ce\\exec-3bc3a970-f40c-47d8-b8ba-b47d7c52b872.png"
+  ],
+  "prompt": "Use case: precise-object-edit\nEdit target:image1 NORTH set B four poses. Change ONLY the incorrect smaller anatomy scale. Supporting image2 is NORTH set A and locks correct character size/proportions/materials.\nThe man in B is too small: standing recovery and guard anatomy is ~420px tall while A standing body is ~520px. Redraw all4 B poses to match A body scale, visible hair-to-shoe standing anatomy500-530actualpixels on1254square, same head/torso/limb dimensions as A. Dash may bend naturally but same body lengths. NO local raster enlargement, generate native details. Request native2048x2048 transparentPNG not upscaled.\nKeep exact2x2 rowmajor pose slots:TL basic_release heavy axe contact toward screen-UP; TR recovery settling axe at side; BL low forward dash UP with physical axe trailing DOWN; BR horizontal two-hand axe guard/battlecry. Make release arms/axe extension compact enough for complete sprite in its cell. Do not change identity or direction.\nStrictNORTH full-back EVERY pose:only rearbrownhead/nape,ears,back armor/back coat. NO face/eyes/nose/mouth/front breastplate. Toes/head targetUP. Adultmale shortbrown hair,navycoat/silverarmor/goldtrim/redscarf and huge goldsilver sunstone crescent axe must matchA. Bright dimensional handpainted cartoon and fixed high oblique overhead nearisometric2.5D camera.\nExactly4 complete separate sprites with all feet/hands/axe/scarf visible. Stable footanchor relative toA, body scale matchesA. Compact scarf/axe legspread, ≥35px transparent padding every quadrant edge, no crop/neighboroverlap. Transparentalpha, no background/floor/shadow, no externalFX/trails/arcs/aura/labels/props;small internalaxeorange only.",
+  "initial_generation_prompt": "Use case: stylized-concept\nAsset type: original2.5D warrior Luo Zhen animation source, N direction, set B.\nReferences: image1 own-direction set A locks EXACT viewpoint, identity, costume, body scale and axe. image2 portrait supports material/detail. RenderNEW poses without copying existing sprites. Request native2048x2048 transparentPNG, no upscaling; exactlyFOUR complete independent person-plus-axe sprites in2x2 row-major. All four share same headingNORTH270° direct screen-UP, aim(0,-1). STRICT FULL BACK VIEW in ALL4poses: back of brown head, nape/two ears and back armor/coat only. NO face/eyes/nose/mouth/front breastplate. Shoulder axis approximately horizontal, toes aim UP; neither head nor torso turns toward camera. New full rear anatomy. For release axe reaches screen-UP target ahead of man. For dash axe trails screen-DOWN. For guard see backs of shoulders and back of horizontal shaft brace.\nMaintain same proportions and anatomical height as supplied A, roughly480-520px visible hair-to-shoes on1254output; dash naturally crouches but torso/limbs same length, do not make B smaller. High oblique overhead near-isometric2.5D camera, dimensional bright hand-painted cartoon materials and clean dark outlines. Adult athletic man, short brown hair, navy#233b66 light-armored coat, silver#e0e6ef armor with gold trim, vermilion#d6554e scarf, dark gloves/trousers, huge gold/silver crescent rune axe containing solid charcoal molten-rock inset with orange sunstone cracks and central gem. Integrate rock pieces into weapon; same outfit and weapon as A.\nTL basic_release: two-handed heavy axe swing reaches contact point along heading, weapon in front of warrior along the specified direction, compact planted braced legs, torso transfers weight into hit. Complete axe visible.\nTR basic_recovery: draw axe from followthrough back to lower side-ready grip, settles balance, same heading, both shoes visible.\nBL dash: actual low forward sprint along heading, torso leaned down and knees deeply flexed, axe physically trails behind away from heading behind warrior, no motion trail. Complete body and weapon.\nBR guard_cast: both hands grip axe shaft horizontally across chest/upper-body in forceful defensive battle-cry; see back of brace from this viewpoint, elbows braced, feet planted, head still aims along heading; do not turn face toward camera.\nEach full silhouette within own cell with35actualpx transparent padding all sides. Keep scarf folds/legspread/axe angle compact enough to fit cells without shrinking anatomy. Stable shoe anchor per quadrant relative to A. Exactly4sprites, no text/labels, floor/shadows/background, externalFX/glow/actionarcs/motiontrails, detached props, extra people, crop, overlap. Only small internal orange weapon glow.",
+  "targeted_tool_edit_count": 1,
+  "discarded_initial_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10123-5c96-7c63-b8bd-e537c504f9ce\\exec-27be20a7-ebfa-4f72-b399-176eb7d90334.png",
+  "landmark_method": "Manual visual estimate in native absolute pixels. body_height measures visible anatomy from hair top to lowest shoe sole and excludes axe/scarf extent. foot is average expected ground projection of two soles, not lowest alpha pixel. Landmark accuracy is estimated conservatively; airborne shoe projection requires review.",
+  "frames": [
+    {
+      "name": "basic_release",
+      "region": [
+        212,
+        11,
+        417,
+        742
+      ],
+      "foot": [
+        351,
+        719
+      ],
+      "head": [
+        356,
+        335
+      ],
+      "grip": [
+        357,
+        220
+      ],
+      "muzzle": [
+        377,
+        99
+      ],
+      "body_height": 453,
+      "landmark_accuracy_px": 15,
+      "alpha_component_bbox": [
+        216,
+        15,
+        625,
+        749
+      ],
+      "alpha_component_pixels": 124237
+    },
+    {
+      "name": "basic_recovery",
+      "region": [
+        741,
+        237,
+        505,
+        493
+      ],
+      "foot": [
+        897,
+        721
+      ],
+      "head": [
+        893,
+        286
+      ],
+      "grip": [
+        1041,
+        501
+      ],
+      "muzzle": [
+        1153,
+        554
+      ],
+      "body_height": 485,
+      "landmark_accuracy_px": 15,
+      "alpha_component_bbox": [
+        745,
+        241,
+        1242,
+        726
+      ],
+      "alpha_component_pixels": 122686,
+      "region_neighbor_overlap_risk": "This complete selected-sprite bounding rectangle intersects neighboring component bounds (bottom_right). Processor must isolate selected alpha component before packing; region alone is not neighbor-free."
+    },
+    {
+      "name": "dash",
+      "region": [
+        38,
+        763,
+        608,
+        482
+      ],
+      "foot": [
+        398,
+        1190
+      ],
+      "head": [
+        374,
+        806
+      ],
+      "grip": [
+        242,
+        964
+      ],
+      "muzzle": [
+        146,
+        1091
+      ],
+      "body_height": 474,
+      "landmark_accuracy_px": 24,
+      "alpha_component_bbox": [
+        42,
+        767,
+        642,
+        1241
+      ],
+      "alpha_component_pixels": 111251,
+      "foot_risk": "Crouched running pose has a raised/airborne shoe. Foot is manually estimated average expected ground projection, not lowest alpha pixel; requires runtime visual foot review."
+    },
+    {
+      "name": "guard_cast",
+      "region": [
+        694,
+        725,
+        550,
+        501
+      ],
+      "foot": [
+        903,
+        1221
+      ],
+      "head": [
+        894,
+        823
+      ],
+      "grip": [
+        984,
+        846
+      ],
+      "muzzle": [
+        1117,
+        843
+      ],
+      "body_height": 444,
+      "landmark_accuracy_px": 16,
+      "alpha_component_bbox": [
+        698,
+        729,
+        1240,
+        1222
+      ],
+      "alpha_component_pixels": 133556,
+      "region_neighbor_overlap_risk": "This complete selected-sprite bounding rectangle intersects neighboring component bounds (top_right). Processor must isolate selected alpha component before packing; region alone is not neighbor-free."
+    }
+  ],
+  "layout_review": {
+    "sprite_count": 4,
+    "direction_identity_review": "All four poses are pure back view with rear brown head/backplate/back coat, no face or front chest.",
+    "cell_padding_target_px": 35,
+    "cell_padding_target_met": false,
+    "notes": "Native 1254 source requested as 2048. Principal sprites are independent alpha components. Axe/scarf and overhead release can cross nominal 627-pixel cell bounds. Component-aware isolation is necessary before runtime enablement.",
+    "body_scale_target_visible_anatomy_px": [
+      450,
+      550
+    ],
+    "body_scale_risk": "One built-in targeted scale edit applied to B; low stance and raised-arm poses have shorter visible anatomy. Foot row location differs from A; common ground-foot packing must align, without per-frame enlargement."
+  },
+  "provenance": {
+    "creator": "OpenAI built-in ImageGen; original project character production",
+    "license_note": "Generated original asset; preserve prompt/source/SHA provenance."
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "asset_type": "original_warrior_runtime_pose_source",
+  "mode": "builtin_image_gen",
+  "use_case": "stylized-concept",
+  "profession": "warrior",
+  "character": "Luo Zhen / 罗砧",
+  "direction": "w",
+  "direction_degrees": 180,
+  "set": "b",
+  "artifact_status": "candidate_pending_component_isolation_and_runtime_review",
+  "requested_native_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "original_source_path": "C:/Users/13326/.codex/generated_images/01a10123-5c96-7c63-b8bd-e537c504f9ce/exec-e9566606-ec0b-4565-8903-4d0d7a069ed0.png",
+  "sha256": "d84f2539f37bf6dbd2290c2293e8e7d22251f73d3cf5f4ab2763bb3b74cf7a15",
+  "output_path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/animations/runtime_sources/poses_w_b.png",
+  "transparent_background": true,
+  "alpha_check": {
+    "mode": "RGBA",
+    "extrema": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 984106,
+    "fully_opaque_pixels": 2013,
+    "alpha_nonzero_bbox": [
+      0,
+      37,
+      1243,
+      1206
+    ],
+    "measurement": "Pillow + NumPy read-only; alpha>8 main connected component extents, source bytes unchanged",
+    "risk": "Sparse disconnected low-alpha pixels exist outside the four main silhouettes. Preserve original bytes; packing processor may isolate selected components under user authorization."
+  },
+  "source_references": [
+    "C:/Users/13326/.codex/generated_images/01a10123-5c96-7c63-b8bd-e537c504f9ce/exec-23a1f18a-b111-4cb9-9720-46291ca7744e.png",
+    "assets/characters/warrior/portraits/full_illustration.png"
+  ],
+  "prompt": "Use case: precise-object-edit\nEdit target: supplied WEST set B four-pose sheet. Correct ONLY the four-cell isolation/layout problem. Keep the same warrior identity, WEST screen-left direction, high oblique overhead camera, costume and axe, same four pose meanings in same row-major slots. Keep character anatomical height similar to original, approximately 450-500 true pixels at 1254 square. Request native2048 square but do not resample/upscale.\nThe original top-left release and bottom-left dash are too wide and overlap the right-column cell areas. Redraw their leg spread, arms, axe angle and scarf fold only as needed to make each WHOLE person-plus-weapon-and-scarf silhouette fit comfortably inside its own quadrant. Make all four sprites independent and compact, with at least35 actual pixels transparent empty margin inside all four cell boundaries. On a1254 output every sprite must stay entirely within its 627x627 quadrant, ideally within [35..590] coordinates local to its cell. Do not shrink bodies to miniature size to achieve this: maintain same450-500px body anatomy standing height; natural dash crouch shorter. Compact weapon+scarf placement, not smaller man.\nTop-left: axe strike reaches WEST/left target in front of man, no giant outstretched lateral spacing; two hands still grip axe, braced compact legs.\nTop-right: balanced left-facing recovery, full weapon contained in its quadrant.\nBottom-left: low crouched forward WEST dash, physical axe behind/right, fold scarf close so total width fits cell.\nBottom-right: WEST defensive battle-cry with both hands and axe shaft horizontal across chest, compact planted stance.\nExactly4 complete isolated sprites. Preserve true transparent alpha. No missing feet, no crop, no floor, no shadows, no external glow/FX/action arcs/motion trails, no labels, no extra elements. Small orange glow stays inside molten-rock sunstone crescent axe.",
+  "initial_generation_prompt": "Use case: stylized-concept\nAsset type: original 2.5D warrior combat animation source sheet, WEST direction, set B.\nReference roles: image 1 (WEST set A) locks exact character identity, scale, costume, axe and rendering, image 2 portrait supports details. Generate a NEW companion four-pose source. Keep same scale as image 1, character anatomical hair-to-shoe height about 480-530 actual pixels if tool outputs 1254 square; request native 2048 x 2048 PNG but do NOT downsize character relative to A. Do not simply duplicate A's poses.\nExactly four separate full character-and-axe sprites in a 2x2 row-major grid, transparent PNG. Same high oblique overhead near-isometric 2.5D camera. All four aim WEST, toward screen LEFT: left-facing head, hips, toes, action destination. Natural anatomically redrawn true left profile with slight overhead view; NOT southeast-facing and NOT mirrored or rotated copied sprites.\nAdult male Luo Zhen, short brown hair, athletic adult, deep navy #233b66 lightly armored long coat, silver #e0e6ef fitted armor and gold trim, vermilion #d6554e scarf, dark gloves and metal shin armor. Match the huge gold-and-silver crescent rune axe, solid charcoal molten-rock insets with contained orange sunstone cracks and central orange gem. Integrate rock shapes into weapon. Bright hand-painted cartoon with volume, painted materials and crisp dark contours.\nTop-left basic_release: powerful heavy axe strike reaches leftward contact point, two hands drive axe, deeply braced legs, body weight travels toward left. Axe head clearly to LEFT in front of the warrior and extends toward west target, no effect arcs.\nTop-right basic_recovery: settles after leftward heavy swing, draws axe back down into balanced ready grip, chest and face still toward left, feet planted.\nBottom-left dash: low forward sprint toward LEFT, strongly bent knees and forward leaning torso, axe physically dragged behind body on RIGHT. This is an actual crouched stride, no duplicated standing idle, no motion streaks.\nBottom-right guard_cast: both hands hold axe shaft horizontally across upper chest in a forceful battle-cry defensive brace, face and toes remain LEFT, raised shoulders, solid stance.\nUse exactly same adult proportions, body size and stable foot anchor pattern as reference set A; natural bend may shorten dash body slightly, not a smaller man. Complete feet, hands, scarf and axe visible. Each sprite has >=35 real px transparent margin inside its quadrant on all sides, no crop, no neighboring sprite overlap. Four cells only, no text/labels, no floor/background/shadows, no FX/motion trails/action arcs/external aura, no detached props or extra people. Internal weapon light only in small amount.",
+  "targeted_tool_edit_count": 1,
+  "discarded_initial_source_path": "C:/Users/13326/.codex/generated_images/01a10123-5c96-7c63-b8bd-e537c504f9ce/exec-857e4ecd-e14e-4029-8b60-0861c803984f.png",
+  "landmark_method": "Manual visual estimate in native absolute pixels. body_height measures visible anatomy from hair top to lowest shoe sole and excludes axe/scarf extent. foot is average expected ground projection of two soles, not lowest alpha pixel.",
+  "frames": [
+    {
+      "name": "basic_release",
+      "region": [
+        39,
+        128,
+        647,
+        494
+      ],
+      "foot": [
+        419,
+        604
+      ],
+      "head": [
+        372,
+        222
+      ],
+      "grip": [
+        240,
+        286
+      ],
+      "muzzle": [
+        173,
+        242
+      ],
+      "body_height": 443,
+      "landmark_accuracy_px": 12
+    },
+    {
+      "name": "basic_recovery",
+      "region": [
+        705,
+        130,
+        539,
+        492
+      ],
+      "foot": [
+        882,
+        606
+      ],
+      "head": [
+        824,
+        183
+      ],
+      "grip": [
+        998,
+        403
+      ],
+      "muzzle": [
+        1140,
+        474
+      ],
+      "body_height": 484,
+      "landmark_accuracy_px": 11
+    },
+    {
+      "name": "dash",
+      "region": [
+        59,
+        738,
+        622,
+        430
+      ],
+      "foot": [
+        326,
+        1140
+      ],
+      "head": [
+        112,
+        801
+      ],
+      "grip": [
+        347,
+        947
+      ],
+      "muzzle": [
+        567,
+        1005
+      ],
+      "body_height": 422,
+      "landmark_accuracy_px": 20,
+      "foot_risk": "Both shoes are in a running airborne/crouched pose; expected ground projection is manually estimated.",
+      "region_neighbor_overlap_risk": "Bounding rectangles overlap the bottom-right sprite by 2 columns. Processor must isolate the selected alpha component before packing; region alone is not neighbor-free."
+    },
+    {
+      "name": "guard_cast",
+      "region": [
+        671,
+        678,
+        566,
+        518
+      ],
+      "foot": [
+        875,
+        1180
+      ],
+      "head": [
+        849,
+        754
+      ],
+      "grip": [
+        992,
+        822
+      ],
+      "muzzle": [
+        1114,
+        810
+      ],
+      "body_height": 485,
+      "landmark_accuracy_px": 13,
+      "region_neighbor_overlap_risk": "Bottom-left and bottom-right alpha components are separate but bounding rectangles overlap by 2 columns. Isolate selected component before packing."
+    }
+  ],
+  "layout_review": {
+    "sprite_count": 4,
+    "direction_identity_review": "Adult male, navy silver armor, red scarf, sunstone crescent axe; all four aim screen left.",
+    "cell_padding_target_px": 35,
+    "cell_padding_target_met": false,
+    "notes": "Complete principal silhouettes are separate. Some scarf/axe extents cross nominal 627-pixel cell boundaries. Exact regions and component isolation must be reviewed before runtime enablement."
+  },
+  "provenance": {
+    "creator": "OpenAI built-in ImageGen; original project character production",
+    "license_note": "Generated original asset; preserve prompt/source/sha provenance."
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "asset_type": "original_warrior_runtime_pose_source",
+  "mode": "builtin_image_gen",
+  "use_case": "stylized-concept",
+  "profession": "warrior",
+  "character": "Luo Zhen / 罗砧",
+  "direction": "ne",
+  "direction_degrees": 315,
+  "direction_scheme": "formal 8 screen directions at 45-degree spacing",
+  "camera_downward_degrees": 35,
+  "set": "a",
+  "artifact_status": "formal_eight_direction_candidate_pending_component_packing_and_visual_review",
+  "requested_native_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "original_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10123-5c96-7c63-b8bd-e537c504f9ce\\exec-33165f1d-bfcd-4181-b086-527da31b5048.png",
+  "sha256": "1efc45e15fffe73f14da24f7500a9cddfeb5b23dbcac552c67e72edc3000e8ee",
+  "output_path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/animations/runtime_sources/poses_ne_a.png",
+  "transparent_background": true,
+  "alpha_check": {
+    "mode": "RGBA",
+    "extrema": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 1027184,
+    "fully_opaque_pixels": 2223,
+    "alpha_nonzero_bbox": [
+      20,
+      19,
+      1242,
+      1236
+    ],
+    "measurement": "Pillow + NumPy read-only; alpha>8 principal connected components; original bytes unchanged",
+    "risk": "Sparse disconnected low-alpha pixels exist outside principal sprites; component-aware packing may isolate selected sprite under user authorization."
+  },
+  "source_references": [
+    "assets/characters/warrior/portraits/full_illustration.png",
+    "C:\\Users\\13326\\.codex\\generated_images\\01a10123-5c96-7c63-b8bd-e537c504f9ce\\exec-25d6c877-1a9f-44d8-b4f6-b5c2b8c3978b.png"
+  ],
+  "prompt": "Use case: stylized-concept\nAsset type: ORIGINAL formal eight-direction warrior combat animation source, NORTHEAST315degrees set A.\nReferences: image1 portrait locks identity/costume/axe; image2 finalNW A locks body/head scale and bright handpainted rendering ONLY. Redraw a NEW RIGHT-REAR45degree view. Absolutely NOT a mirroredNW sheet, not rotated body or southeastfront copy; new foreshortening, back armor, seams, grips and boots.\nRequest native2048x2048 transparentPNG, actual native may1254square; no upscaling. ExactlyFOUR independent fullperson-plus-axe sprites in2x2rowmajor. At1254square target visibleANATOMY hair-to-shoes450-550actualpixels, same adulthead/torso/limbscale acrossposes. MatchNW A standinganatomyscale about500px. Weaponextent is NOT bodyheight. Compact scarf/weapon with35px clear transparent cell-edge padding, fullycontainpersonandaxe.\nCamera fixedhighdownward35degrees nearisometric2.5D. Everypose aimsNE screen-RIGHT and UP equally,heading(0.707,-0.707),45degreesaboveright. TRUE RIGHTREAR view:rearshoulders/backplate/backcoat/rearbrownhair visible, smallright-ear/side-nose contouronly, NO eyes/frontalface/frontchest. Head/torso/hips/toes NE.\nAdultathletic shortbrown-hairedmale LuoZhen,navy#233b66 lightarmoredlongcoat/goldtrim,silver#e0e6ef fittedshoulderbackforearmshinarmor,vermilion#d6554e scarf,darkgloves/trousers. Hugecoolgoldsilvercrescentruneaxe containing solidcharcoalmoltenrockinset with smallorangesunstonecracks/centralgem; allrockintegratednoweapondebris. Brightdimensionalhandpaintedcartoonfantasy,crispdarkoutlines,volume/materialclothmetal,matureanatomynotchibi.\nHandgrip: anatomicalRIGHT hand atforwardshaftnearAXEHEAD; LEFT hand reartowardpommel in twohandedholds. NErightrearview nearRIGHTarm emergesrightshoulder,farLEFTarmleftshoulder. Believable wrist/elbow/fingers wrappingphysicalshaft, noextraarms/floatingaxe; natural slide/regriponly.\nTL idle:NEcombatready withmassiveaxe heldlowatrightside, compactstance, bothbootsvisible.\nTR walk_left:largeNEstride, anatomicalLEFTlegforwardNE,RIGHTlegtrails; balanceaxe.\nBL walk_right:oppositephase, anatomicalRIGHTlegforwardNE,LEFTlegtrails, clearphasechange.\nBR basic_windup:twohands pullheavyaxe behind/overleft-rearshoulder tochargeNEstrike, plantedcompactlegs/torso twist,headandtoes keepNE.\nExactly4completeisolatedsprites, fullhair/hands/boots/scarf/axe, samebody/headscale. Truealpha,no floor/background/shadow/no words/labels/FX/trails/arcs/aura/externalglow/noextras/crop/overlap. Smallinternalorangeaxeonly.",
+  "targeted_tool_edit_count": 0,
+  "landmark_method": "Manual native absolute-pixel estimates. body_height is visible anatomical hair-top to lowest visible shoe sole, excluding axe/scarf extent. foot is average expected ground projection of both shoe soles, including estimated occluded/raised sole. component_seed is the visual head center within the selected principal alpha component. Accuracy and frame-specific risks are preserved.",
+  "requested_handedness": "Anatomical RIGHT hand forward near axehead, LEFT rear toward pommel for two-hand holds.",
+  "handedness_review": "Some phases visually switch shaft grip order. Record as slide/regrip risk; no third arm or detached axe seen. Do not silently assert uniform anatomical grip.",
+  "frames": [
+    {
+      "name": "idle",
+      "region": [
+        20,
+        83,
+        616,
+        499
+      ],
+      "foot": [
+        295,
+        563
+      ],
+      "head": [
+        309,
+        124
+      ],
+      "grip": [
+        410,
+        385
+      ],
+      "muzzle": [
+        535,
+        421
+      ],
+      "body_height": 491,
+      "landmark_accuracy_px": 22,
+      "component_seed": [
+        309,
+        124
+      ],
+      "alpha_component_bbox": [
+        24,
+        87,
+        632,
+        578
+      ],
+      "alpha_component_pixels": 124362,
+      "foot_risk": "Rear shoe sole is partly occluded by coat tails. The second sole ground projection is estimated; common ground-foot packing requires visual review."
+    },
+    {
+      "name": "walk_left",
+      "region": [
+        648,
+        83,
+        588,
+        505
+      ],
+      "foot": [
+        946,
+        530
+      ],
+      "head": [
+        946,
+        125
+      ],
+      "grip": [
+        1028,
+        304
+      ],
+      "muzzle": [
+        1135,
+        326
+      ],
+      "body_height": 497,
+      "landmark_accuracy_px": 20,
+      "component_seed": [
+        946,
+        125
+      ],
+      "alpha_component_bbox": [
+        652,
+        87,
+        1232,
+        584
+      ],
+      "alpha_component_pixels": 117358,
+      "foot_risk": "Stride heel lift and different depth make the two-sole expected ground average approximate.",
+      "stride_phase_review_risk": "Coat occludes upper legs; opposite anatomical left/right leading-leg phase is requested but visual assignment is not confidently verified. Review separated poses before final animation acceptance."
+    },
+    {
+      "name": "walk_right",
+      "region": [
+        37,
+        682,
+        602,
+        512
+      ],
+      "foot": [
+        369,
+        1125
+      ],
+      "head": [
+        371,
+        727
+      ],
+      "grip": [
+        438,
+        959
+      ],
+      "muzzle": [
+        543,
+        997
+      ],
+      "body_height": 504,
+      "landmark_accuracy_px": 20,
+      "component_seed": [
+        371,
+        727
+      ],
+      "alpha_component_bbox": [
+        41,
+        686,
+        635,
+        1190
+      ],
+      "alpha_component_pixels": 119259,
+      "foot_risk": "Stride heel lift and different depth make the two-sole expected ground average approximate.",
+      "stride_phase_review_risk": "Coat occludes upper legs; opposite anatomical left/right leading-leg phase is requested but visual assignment is not confidently verified. Review separated poses before final animation acceptance."
+    },
+    {
+      "name": "basic_windup",
+      "region": [
+        660,
+        606,
+        536,
+        594
+      ],
+      "foot": [
+        1026,
+        1160
+      ],
+      "head": [
+        994,
+        764
+      ],
+      "grip": [
+        885,
+        731
+      ],
+      "muzzle": [
+        771,
+        729
+      ],
+      "body_height": 475,
+      "landmark_accuracy_px": 18,
+      "component_seed": [
+        994,
+        764
+      ],
+      "alpha_component_bbox": [
+        664,
+        610,
+        1192,
+        1196
+      ],
+      "alpha_component_pixels": 138154,
+      "grip_order_risk": "Both hands are attached to physical shaft; overhead/cross-body overlap makes anatomical forward/rear grip order approximate. Compare neighboring phases for natural sliding/regrip before final acceptance."
+    }
+  ],
+  "layout_review": {
+    "sprite_count": 4,
+    "distinct_direction_review": "True independently generated right rear 45-degree view; backplate/back coat and rear head, only small ear/nose-profile hint. Not mirrored NW.",
+    "cell_padding_target_px": 35,
+    "cell_padding_target_met": false,
+    "visible_anatomy_target_px": [
+      450,
+      550
+    ],
+    "notes": "Actual native1254 not2K. Four principal alpha components independently complete. Some axe/scarf/overhead extensions cross nominal cell boundaries; connected-component isolation and common-ground-foot packing required. Do not scale each pose by dash crouch or axe bbox height."
+  },
+  "provenance": {
+    "creator": "OpenAI built-in ImageGen, original project character art",
+    "license_note": "Preserve original generated bytes, prompts, paths and SHA. Prior 30/60-degree candidates remain under their original filenames."
+  }
+}

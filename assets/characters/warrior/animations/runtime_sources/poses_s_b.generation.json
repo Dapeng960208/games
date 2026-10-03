@@ -1,0 +1,290 @@
+{
+  "schema_version": 3,
+  "asset": "poses_s_b.png",
+  "character": "CH01",
+  "direction": "s",
+  "angle_degrees": 90,
+  "direction_precision": "intended_screen_direction; painted_projection_visually_reviewed_not_metrologically_certified",
+  "source_type": "built_in_imagegen",
+  "tool": "image_gen.imagegen",
+  "created_date": "2026-10-03",
+  "generated_source": "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-507b807a-3d8f-4b0a-a773-8f0f0e056853.png",
+  "requested_resolution": [
+    2048,
+    2048
+  ],
+  "native_upscaled": false,
+  "transparent_background": true,
+  "layout": {
+    "columns": 2,
+    "rows": 2,
+    "reading_order": "row_major",
+    "grid_rectangles_are_not_safe_crops": true
+  },
+  "prompt_set": [
+    "Use case: stylized-concept. Asset type: CH01 S 90-degree four-pose animation source B, requested native2048square transparent PNG. Reference1 locks EXACT adult male character, armor/axe design, body scale, paintfinish AND same TRUE facing/camera as its four poses. Draw NEW B poses, not source A repeats. Reference2 is identity only.\nTarget direction for all: true frontal face/chest and full pair of eyes symmetrical; shoes and attack point directly DOWN toward viewer (0,1), no sideways face. High-camera nearisometric2.5D slanted overhead, real anatomical redrawing, never mirror/rotate. Adultshortbrownhair warrior; navy fittedsplitcoat, silverarmor/goldfittings, vermilion scarf, darkpants, silverboots, goldsilver volcanic crescent giantaxe with orangesunstone. Warmclean handpainted cartoonfantasy and excellent materialdetail.\nExact2x2 rowmajor FOUR COMPLETE isolated figures: top-left basic_release, final heavy slash CONTACT toward target direction, arms and compact blade extended just in front of torso/knees, visible committed weightshift; top-right basic_recovery, drawing heavy blade back besidehip, shoulders center; bottom-left dash, strong forwardbody lean/lunge toward same target, axe tucked behindhip, head and full anatomy visible, no trails; bottom-right guard_cast, upright wide braced legs, shaft acrosschest with entireblade beside torso, battlecry pose. Make release different from stationaryguard; show a physical axe downswing, not a shield pose.\nEvery complete sprite fits own quadrant with35px emptyalpha border on each side, whole weapon and bothshoes visible, shortscarf, elbowbend, compactblade, no pixel reaches neighbor. If canvas1254, rectangles x35..592 or662..1219 and y35..592 or662..1219. Headtop toaveragebootground450–550 actualpixels whereupright, sameactual anatomy asA; full figure+weapon widthunder530. Do not crop or resize anatomy only becauseaxe large, tightenstance andaxe angle. Genuinealpha only. No floor, shadows, particles, FXtrails, detachedfragments, gridlines, labels, text,watermarks or extra characters."
+  ],
+  "references": [
+    "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-4fcf9e3f-3265-4d29-8803-a410861552d8.png",
+    "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/portraits/full_illustration.png"
+  ],
+  "frames": [
+    {
+      "frame_index": 4,
+      "name": "basic_release",
+      "head": [
+        345,
+        122
+      ],
+      "boot_bottom_points": [
+        [
+          164,
+          580
+        ],
+        [
+          439,
+          459
+        ]
+      ],
+      "foot": [
+        301.5,
+        519.5
+      ],
+      "hair_top_y": 65,
+      "grip": [
+        344,
+        366
+      ],
+      "muzzle": [
+        375,
+        527
+      ],
+      "body_height": 454.5,
+      "landmark_accuracy_px": 18,
+      "risks": [
+        "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+        "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height.",
+        "Bounding rectangle contains adjacent art; isolate seed-connected alpha figure before packing, never use bare rectangle crop."
+      ],
+      "region": [
+        127,
+        62,
+        436,
+        600
+      ],
+      "alpha_component_seed": [
+        345,
+        122
+      ],
+      "alpha_component_threshold": 16,
+      "alpha_component_area": 146417,
+      "alpha_component_dilation_px": 2,
+      "foreign_alpha_pixels_in_region": 1
+    },
+    {
+      "frame_index": 5,
+      "name": "basic_recovery",
+      "head": [
+        924,
+        126
+      ],
+      "boot_bottom_points": [
+        [
+          794,
+          578
+        ],
+        [
+          1026,
+          580
+        ]
+      ],
+      "foot": [
+        910,
+        579
+      ],
+      "hair_top_y": 67,
+      "grip": [
+        1070,
+        363
+      ],
+      "muzzle": [
+        1140,
+        425
+      ],
+      "body_height": 512,
+      "landmark_accuracy_px": 18,
+      "risks": [
+        "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+        "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height."
+      ],
+      "region": [
+        690,
+        57,
+        554,
+        532
+      ],
+      "alpha_component_seed": [
+        924,
+        126
+      ],
+      "alpha_component_threshold": 16,
+      "alpha_component_area": 150015,
+      "alpha_component_dilation_px": 2,
+      "foreign_alpha_pixels_in_region": 0
+    },
+    {
+      "frame_index": 6,
+      "name": "dash",
+      "head": [
+        338,
+        776
+      ],
+      "boot_bottom_points": [
+        [
+          310,
+          1194
+        ],
+        [
+          385,
+          1019
+        ]
+      ],
+      "foot": [
+        347.5,
+        1106.5
+      ],
+      "hair_top_y": 717,
+      "grip": [
+        468,
+        789
+      ],
+      "muzzle": [
+        536,
+        798
+      ],
+      "body_height": 389.5,
+      "landmark_accuracy_px": 18,
+      "risks": [
+        "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+        "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height.",
+        "Bounding rectangle contains adjacent art; isolate seed-connected alpha figure before packing, never use bare rectangle crop.",
+        "Anatomical head-to-average-sole height is below448px in this compressed/stepping pose; do not infer body height from axe bbox or upscale."
+      ],
+      "region": [
+        66,
+        666,
+        575,
+        542
+      ],
+      "alpha_component_seed": [
+        338,
+        776
+      ],
+      "alpha_component_threshold": 16,
+      "alpha_component_area": 127768,
+      "alpha_component_dilation_px": 2,
+      "foreign_alpha_pixels_in_region": 1
+    },
+    {
+      "frame_index": 7,
+      "name": "guard_cast",
+      "head": [
+        915,
+        714
+      ],
+      "boot_bottom_points": [
+        [
+          754,
+          1181
+        ],
+        [
+          1086,
+          1187
+        ]
+      ],
+      "foot": [
+        920,
+        1184
+      ],
+      "hair_top_y": 659,
+      "grip": [
+        1050,
+        818
+      ],
+      "muzzle": [
+        1145,
+        828
+      ],
+      "body_height": 525,
+      "landmark_accuracy_px": 18,
+      "risks": [
+        "Landmarks are manual visual estimates in full-source coordinates; airborne walk/dash soles are recorded rather than invented floor positions.",
+        "Anatomical body height excludes weapon and scarf; compressed action poses may be below upright height.",
+        "Bounding rectangle contains adjacent art; isolate seed-connected alpha figure before packing, never use bare rectangle crop."
+      ],
+      "region": [
+        677,
+        653,
+        577,
+        539
+      ],
+      "alpha_component_seed": [
+        915,
+        714
+      ],
+      "alpha_component_threshold": 16,
+      "alpha_component_area": 162211,
+      "alpha_component_dilation_px": 2,
+      "foreign_alpha_pixels_in_region": 2
+    }
+  ],
+  "validation": {
+    "production_ready": false,
+    "status": "raw_directional_source_for_alpha_isolation_and_alignment",
+    "notes": [
+      "Actual output dimensions must be measured; requested native2K is not a claim of achieved2K.",
+      "No bitmap rotation, mirroring, body repainting, procedural character generation or upscale used.",
+      "Each frame must be isolated by its main alpha component before assembly if bounding rectangles contain adjacent artwork."
+    ],
+    "four_independent_main_components": true,
+    "main_component_areas": [
+      162211,
+      150015,
+      146417,
+      127768
+    ],
+    "source_bytes_preserved": true
+  },
+  "actual_resolution": [
+    1254,
+    1254
+  ],
+  "native_2k": false,
+  "sha256": "083437acc5aa992ef289f03848b89af92b4aa8431cad544665036113a89f1f14",
+  "alpha_measurement": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 937581,
+    "outer_edge_nonzero": {
+      "top": 0,
+      "right": 114,
+      "bottom": 0,
+      "left": 6
+    }
+  },
+  "generation_calls": [
+    {
+      "tool": "image_gen.imagegen",
+      "prompt": "Use case: stylized-concept. Asset type: CH01 S 90-degree four-pose animation source B, requested native2048square transparent PNG. Reference1 locks EXACT adult male character, armor/axe design, body scale, paintfinish AND same TRUE facing/camera as its four poses. Draw NEW B poses, not source A repeats. Reference2 is identity only.\nTarget direction for all: true frontal face/chest and full pair of eyes symmetrical; shoes and attack point directly DOWN toward viewer (0,1), no sideways face. High-camera nearisometric2.5D slanted overhead, real anatomical redrawing, never mirror/rotate. Adultshortbrownhair warrior; navy fittedsplitcoat, silverarmor/goldfittings, vermilion scarf, darkpants, silverboots, goldsilver volcanic crescent giantaxe with orangesunstone. Warmclean handpainted cartoonfantasy and excellent materialdetail.\nExact2x2 rowmajor FOUR COMPLETE isolated figures: top-left basic_release, final heavy slash CONTACT toward target direction, arms and compact blade extended just in front of torso/knees, visible committed weightshift; top-right basic_recovery, drawing heavy blade back besidehip, shoulders center; bottom-left dash, strong forwardbody lean/lunge toward same target, axe tucked behindhip, head and full anatomy visible, no trails; bottom-right guard_cast, upright wide braced legs, shaft acrosschest with entireblade beside torso, battlecry pose. Make release different from stationaryguard; show a physical axe downswing, not a shield pose.\nEvery complete sprite fits own quadrant with35px emptyalpha border on each side, whole weapon and bothshoes visible, shortscarf, elbowbend, compactblade, no pixel reaches neighbor. If canvas1254, rectangles x35..592 or662..1219 and y35..592 or662..1219. Headtop toaveragebootground450–550 actualpixels whereupright, sameactual anatomy asA; full figure+weapon widthunder530. Do not crop or resize anatomy only becauseaxe large, tightenstance andaxe angle. Genuinealpha only. No floor, shadows, particles, FXtrails, detachedfragments, gridlines, labels, text,watermarks or extra characters.",
+      "reference_images": [
+        "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-4fcf9e3f-3265-4d29-8803-a410861552d8.png",
+        "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/portraits/full_illustration.png"
+      ],
+      "transparent_background": true,
+      "output": "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-507b807a-3d8f-4b0a-a773-8f0f0e056853.png"
+    }
+  ]
+}
