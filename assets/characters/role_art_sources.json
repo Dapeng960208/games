@@ -1,19 +1,20 @@
 {
   "created_date": "2026-10-03",
-  "authors": "Project-original SVG icons, badges and small star companion; character PNGs have separate per-role provenance",
+  "authors": "Project-original hand-painted skill PNGs generated individually with built-in ImageGen; SVG badges and small star companion; character PNGs have separate per-role provenance",
   "rights": "Project-authored original resources; no third-party character pack or traced image used",
   "tool": "tools/art/build_role_combat_art.py",
   "svg_resources": {
-    "skill_icons": 36,
+    "skill_icons": 0,
     "role_badges": 3,
     "star_companion_states": 7,
-    "body_animations": "none in production"
+    "body_animations": "none in production",
+    "legacy_skill_svg": "Unregistered skill sources; mine/sentry compatibility aliases retained"
   },
   "character_bitmaps": {
     "portraits": "assets/characters/<role>/portraits/*.provenance.json or *.generation.json",
-    "action_sources": "Latest candidate assets/characters/<role>/animations/basic_southeast_a/b.png and corresponding generation.json",
+    "action_sources": "Eight-direction production assets/characters/<role>/animations/runtime_sources/poses_<e,se,s,sw,w,nw,n,ne>_<a,b>.png with matching generation.json; Gun NW A is a documented derived composite with two retained source_parts inputs",
     "processed_samples": "assets/characters/<role>/animations/basic_southeast_split_review.json; native atlas working copies in ignored tools/godot/art_preview/<role>/split_native",
-    "retired_sources": "Old eight-frame and 64-frame candidates with provenance remain in ignored tools/godot/art_preview/<role>/retired_se"
+    "retired_sources": "Old SE candidates retain separate provenance; unused 30/60 degree candidates and records are retired to ignored tools/godot/art_preview/<role>/retired_twelve_direction/runtime_sources with checked SHA256 index"
   },
   "technical_motion": {
     "status": "retired flat SVG development fixture only",
@@ -21,14 +22,36 @@
     "registered_in_production_manifest": false
   },
   "handpainted_motion": {
-    "status": "incomplete southeast review samples; production clips disabled",
-    "full_eight_direction_family_ready": false,
-    "native_2k_requirement_met": false
+    "status": "All three eight-direction shared action families admitted and verified in actual Main inputs; independent continuous skill clips remain unfinished",
+    "full_eight_direction_family_ready": true,
+    "native_2k_requirement_met": false,
+    "required_directions": [
+      "E",
+      "SE",
+      "S",
+      "SW",
+      "W",
+      "NW",
+      "N",
+      "NE"
+    ],
+    "direction_coordinate_space": "screen clockwise, 45 degree increments; gameplay movement and aim remain continuous",
+    "shared_pose_count_per_hero": 64,
+    "independent_skill_clips_complete": false,
+    "family_scope": "schema 3 shared body poses, not twelve independent eight-frame skill clips",
+    "graphical_validation_run": "20261003T114729560-1ea7dff7",
+    "graphical_validation_checks": 596,
+    "actual_gameplay_body_pixels_2560x1440_default_camera": 190.4,
+    "visual_limitations": [
+      "Some walk phase leg differences are partly occluded or close; no complete continuous-skill animation claim",
+      "Some source anchors are manual estimates and gun axis differs inside its directional bin",
+      "Source banks are 1254x1254 and are not native 2048; atlas extent does not add detail"
+    ]
   },
   "runtime_identity_review": {
-    "CH01": "legacy male warrior bitmap family; redesigned continuous family pending",
-    "CH02": "legacy adult female gunner bitmap family; redesigned continuous family pending",
-    "CH03": "FAILED: legacy bitmap family is a male engineer, not female Lumi; female portrait and SE review samples do not complete the battle family"
+    "CH01": "PASS in actual Main: redesigned male axe warrior; 8 shared pose directions, new PNG family only",
+    "CH02": "PASS in actual Main: redesigned adult female gunner; 8 shared pose directions, new PNG family only",
+    "CH03": "PASS in actual Main: redesigned adult dark female mage, one star companion; legacy male engineer body is no longer selected by admitted family"
   },
   "runtime_atlas_limit": 2048,
   "palettes": {
@@ -54,5 +77,22 @@
       "#9edfea"
     ]
   },
-  "manifest_fragment": "role_art_manifest_fragment.json"
+  "manifest_fragment": "role_art_manifest_fragment.json",
+  "handpainted_skill_icons": {
+    "count": 36,
+    "tool": "built-in image_gen.imagegen",
+    "generation_records": "assets/characters/<role>/skills/skNN_icon.generation.json",
+    "native_source_dimensions": [
+      1254,
+      1254
+    ],
+    "upscaled": false,
+    "display_pixels_2560x1440": {
+      "pool": 84,
+      "equipped": 96,
+      "detail": 132,
+      "hud": 112
+    },
+    "native_2048_source": false
+  }
 }
