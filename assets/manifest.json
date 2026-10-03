@@ -1850,6 +1850,12 @@
     "levels/b07/rooms/l37/sun_mirror_rooted/provenance/source_candidate.json": "res://assets/levels/b07/rooms/l37/sun_mirror_rooted/provenance/source_candidate.json",
     "levels/b07/rooms/l37/bridge_rooted/source_candidate.png": "res://assets/levels/b07/rooms/l37/bridge_rooted/source_candidate.png",
     "levels/b07/rooms/l37/bridge_rooted/provenance/source_candidate.prompt.txt": "res://assets/levels/b07/rooms/l37/bridge_rooted/provenance/source_candidate.prompt.txt",
-    "levels/b07/rooms/l37/bridge_rooted/provenance/source_candidate.json": "res://assets/levels/b07/rooms/l37/bridge_rooted/provenance/source_candidate.json"
+    "levels/b07/rooms/l37/bridge_rooted/provenance/source_candidate.json": "res://assets/levels/b07/rooms/l37/bridge_rooted/provenance/source_candidate.json",
+    "levels/b07/rooms/l37/background/boundary_mismatch_candidate.png": "res://assets/levels/b07/rooms/l37/background/boundary_mismatch_candidate.png",
+    "levels/b07/rooms/l37/background/boundary_mismatch_candidate.provenance.json": "res://assets/levels/b07/rooms/l37/background/boundary_mismatch_candidate.provenance.json",
+    "levels/b07/rooms/l37/background/low_parapet_boundary_candidate.png": "res://assets/levels/b07/rooms/l37/background/low_parapet_boundary_candidate.png",
+    "levels/b07/rooms/l37/background/low_parapet_boundary_candidate.provenance.json": "res://assets/levels/b07/rooms/l37/background/low_parapet_boundary_candidate.provenance.json",
+    "levels/b07/rooms/l37/background/mask_first_boundary_candidate.png": "res://assets/levels/b07/rooms/l37/background/mask_first_boundary_candidate.png",
+    "levels/b07/rooms/l37/background/mask_first_boundary_candidate.provenance.json": "res://assets/levels/b07/rooms/l37/background/mask_first_boundary_candidate.provenance.json"
   }
 }
