@@ -29,6 +29,7 @@ var art_configs: Dictionary = {}
 var extra_actor_records: Array[Dictionary] = []
 var alpha_bounds: Dictionary = {}
 var scenery_records: Dictionary = {}
+var pose_records: Dictionary = {}
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -74,7 +75,7 @@ func _run() -> void:
 	var report := FileAccess.open(output.path_join("first_room_art.json"),FileAccess.WRITE)
 	check(report != null, "managed capture report opens")
 	if report != null:
-		report.store_string(JSON.stringify({"checks":checks,"failures":failures,"kind":"production first-room waves and scenery; controlled presentation fixture; not natural combat QA","logical_viewport":[logical.x,logical.y],"framebuffer":[EXTENT.x,EXTENT.y],"renderer":RenderingServer.get_video_adapter_name(),"records":records,"additional_wave_bodies":extra_actor_records},"\t")+"\n")
+		report.store_string(JSON.stringify({"checks":checks,"failures":failures,"kind":"production first-room waves and scenery; controlled presentation fixture; not natural combat QA","logical_viewport":[logical.x,logical.y],"framebuffer":[EXTENT.x,EXTENT.y],"renderer":RenderingServer.get_video_adapter_name(),"records":records,"additional_wave_bodies":extra_actor_records,"pose_quality":pose_records},"\t")+"\n")
 		report.close()
 	Game.run = null
 	print("B05_B06_FIRST_ROOM_ART checks=",checks," failures=",failures," captures=",records.size()," output=",output)
@@ -188,6 +189,7 @@ func _body(actor: EnemyActor, biome: String) -> Dictionary:
 	var default: Dictionary = DefaultArt.entry_for(id)
 	check(str(default.get("texture_path","")) == str(DEFAULT_TEXTURES.get(id,"")), id+" default codex/body registration remains unchanged")
 	check(not bank.is_empty() and not actor.body_visual.selected_frame.is_empty(), id+" own native pose bank")
+	if variant: check(bool(bank.get("runtime_quality_gate_passed",false)),id+" measured first-room quality status propagated by production loader")
 	if bank.is_empty() or actor.body_visual.selected_frame.is_empty(): return {"id":id,"loaded":false}
 	var source: Dictionary = actor.body_visual.selected_frame
 	var texture: Texture2D = body.get("texture")
@@ -222,7 +224,32 @@ func _body(actor: EnemyActor, biome: String) -> Dictionary:
 	var used := _alpha128_bounds(image,region)
 	check(used.has_area() and region.encloses(used), id+" selected frame has measured alpha128 body bounds")
 	alpha_bounds[path] = used
+	if variant and not pose_records.has(id): _pose_quality(actor,bank)
 	return {"id":id,"first_room_race_variant":variant,"default_texture_id":default.get("texture_path",""),"texture_id":path,"resolved_texture":AssetCatalog.resolve(path),"source_pixels":[texture.get_width(),texture.get_height()],"source_alpha128_bounds":_rect(used),"source_foot":[foot.x,foot.y],"source_region":_rect(region),"source_pose_scale":source.get("source_pose_scale",1.0),"pose":body.name,"display_bounds_world":_rect(body.bounds),"source_to_world":[factor.x,factor.y],"physical_origin":[actor.position.x,actor.position.y],"navigation_radius":actor.navigation_radius,"colored_samples":colored}
+
+func _pose_quality(actor: EnemyActor, bank: Dictionary) -> void:
+	var before := [actor.state,actor.state_time,actor.position,actor.navigation_radius,actor.health.current]
+	var rows: Array[Dictionary] = []
+	for pose: String in ["idle","telegraph","execute"]:
+		actor.state = StringName(pose)
+		actor.state_time = 1.0
+		actor.body_visual.advance(.001)
+		var selected: Dictionary = actor.body_visual.selected_frame
+		var expected: Dictionary = bank.clips[pose][0]
+		check(selected.texture == expected.texture and selected.region == expected.region,actor.enemy_id+" actual renderer selects "+pose+" atlas region")
+		var body: Dictionary = actor.body_visual.body_frame()
+		var used := _alpha128_bounds(selected.texture.get_image(),selected.region)
+		var world_per_source: Vector2 = body.bounds.size.abs()/selected.region.size
+		# Production camera uses fixed 0.85 zoom; the 2K framebuffer doubles
+		# logical pixels. Measure the single pose, never the complete atlas.
+		var physical := used.size*world_per_source*WorldCamera.WORLD_ZOOM*2.0
+		check(used.has_area() and physical.x <= used.size.x and physical.y <= used.size.y,actor.enemy_id+" "+pose+" native visible pixels cover maximum 2K display")
+		rows.append({"pose":pose,"texture_id":selected.texture_path,"region":_rect(selected.region),"alpha128_bounds":_rect(used),"maximum_display_pixels":[physical.x,physical.y],"native_to_display_ratio":[used.size.x/physical.x,used.size.y/physical.y]})
+	actor.state = before[0]
+	actor.state_time = before[1]
+	actor.body_visual.advance(.001)
+	check(actor.position == before[2] and actor.navigation_radius == before[3] and actor.health.current == before[4],actor.enemy_id+" pose inspection preserves gameplay")
+	pose_records[actor.enemy_id] = rows
 
 func _layered_config(biome: String, id: String) -> void:
 	if not art_configs.has(biome): return
@@ -242,7 +269,7 @@ func _layered_config(biome: String, id: String) -> void:
 	check(not room.get_node("MineBackdrop").visible, id+" fallback hidden after complete source loading")
 	var expected_layers: Array[String] = []
 	var source_records: Array[Dictionary] = []
-	var items: Array = [{"id":"background","texture":config.background.texture},{"id":"floor","texture":config.floor.texture}]
+	var items: Array = [{"id":"background","texture":config.background.texture,"rect":config.background.rect},{"id":"floor","texture":config.floor.texture}]
 	for item: Dictionary in config.layers:
 		expected_layers.append(str(item.id))
 		items.append(item)
@@ -256,14 +283,18 @@ func _layered_config(biome: String, id: String) -> void:
 		var dimensions := Vector2(pixels.get_size())
 		var expected_size: Vector2 = Vector2(item.region[2],item.region[3]) if item.has("region") else dimensions
 		check(scenery.source_texture_dimensions.get(str(item.id),Vector2.ZERO) == expected_size, str(item.id)+" renderer source dimensions match actual pixels/region")
-		source_records.append({"layer_id":item.id,"texture_id":texture_id,"original_pixels":[pixels.get_width(),pixels.get_height()],"sampled_pixels":[expected_size.x,expected_size.y]})
+		var physical: Vector2 = expected_size
+		if item.has("rect"): physical = Vector2(item.rect[2],item.rect[3])*WorldCamera.WORLD_ZOOM*2.0
+		elif str(item.id) == "floor": physical = Vector2.ONE*float(config.floor.tile_world_size)*WorldCamera.WORLD_ZOOM*2.0
+		if str(item.id) != "background": check(physical.x <= expected_size.x and physical.y <= expected_size.y,str(item.id)+" native source covers maximum 2K near-detail display")
+		source_records.append({"layer_id":item.id,"texture_id":texture_id,"original_pixels":[pixels.get_width(),pixels.get_height()],"sampled_pixels":[expected_size.x,expected_size.y],"maximum_display_pixels":[physical.x,physical.y],"native_to_display_ratio":[expected_size.x/physical.x,expected_size.y/physical.y],"purpose":"soft distant background" if str(item.id) == "background" else "near-detail module"})
 	scenery_records[id] = {"config":logical_id,"layers":source_records}
 	if id == "L31": check(room.b06_mechanics.native_water_visual, id+" native layer keeps the production tide state")
 
 func _alpha128_bounds(image: Image, region: Rect2) -> Rect2:
 	if image == null or image.is_empty(): return Rect2()
 	if image.is_compressed() and image.decompress() != OK: return Rect2()
-	var rgba := image.duplicate()
+	var rgba: Image = image.duplicate()
 	if rgba.get_format() != Image.FORMAT_RGBA8: rgba.convert(Image.FORMAT_RGBA8)
 	var bytes := rgba.get_data()
 	var scan := Rect2i(region).intersection(Rect2i(Vector2i.ZERO,rgba.get_size()))

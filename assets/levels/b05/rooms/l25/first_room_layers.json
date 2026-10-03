@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "room_id": "L25",
+  "biome_id": "B05",
+  "status": "isolated_candidate",
+  "background": {
+    "texture": "asset://levels/b05/rooms/l25/background/candidates/tree_city_distance.png",
+    "rect": [
+      -320,
+      -280,
+      2264,
+      1604
+    ]
+  },
+  "floor": {
+    "texture": "asset://levels/b05/rooms/l25/detail/candidates/living_wood_tile.png",
+    "tile_world_size": 320
+  },
+  "layers": [
+    {
+      "id": "west_tree_city",
+      "texture": "asset://levels/b05/rooms/l25/detail/candidates/tree_city.png",
+      "rect": [
+        20,
+        -210,
+        680,
+        730
+      ],
+      "clip": "exterior",
+      "z_index": -1
+    },
+    {
+      "id": "east_tree_city",
+      "texture": "asset://levels/b05/rooms/l25/detail/candidates/tree_city.png",
+      "rect": [
+        1030,
+        -190,
+        680,
+        730
+      ],
+      "clip": "exterior",
+      "z_index": -1
+    },
+    {
+      "id": "vine_bridge",
+      "texture": "asset://levels/b05/rooms/l25/detail/vine_bridge.png",
+      "rect": [
+        660,
+        614.8,
+        420,
+        185
+      ],
+      "clip": "exterior",
+      "z_index": -1,
+      "region": [
+        0,
+        490,
+        1536,
+        534
+      ],
+      "alpha_cutoff": 0.5
+    },
+    {
+      "id": "vine_bridge_north",
+      "texture": "asset://levels/b05/rooms/l25/detail/vine_bridge.png",
+      "region": [
+        0,
+        210,
+        1536,
+        165
+      ],
+      "rect": [
+        660,
+        365,
+        420,
+        64.2
+      ],
+      "clip": "exterior",
+      "z_index": -1,
+      "alpha_cutoff": 0.5
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source_checkpoint": "1e82047b7a33523ad6c0301627e856a6eadf95a2",
+  "model": "unknown; image_gen did not return a model identifier",
+  "generation_tool": "image_gen.imagegen",
+  "effect": {
+    "source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-0d8ab2dc-cfae-47f3-ad9f-e18087fed211.png",
+    "sha256": "1e6ef84529c3994c0ec168da27c5ceae6f3c392d6dc183b9a695f3cf5909784e",
+    "native_pixels": [
+      1254,
+      1254
+    ],
+    "prompt": "Use case: stylized-concept. Production transparent game FX sprite atlas for a WALKING CRAB FORTRESS, bright refined painted storybook 2.5D fantasy, turquoise water, pearl white foam, navy and gold shell details, coral accents. EXACTLY SIX DISTINCT independent effects arranged in TWO COLUMNS and THREE ROWS on a square canvas. No icons, no circular badge borders, no text, no full character, no landscape, no opaque haze. Each entire effect including splash and droplets fits within central 70% WIDTH and 65% HEIGHT of its own equal cell, fully transparent generous gutters on all sides. Requested 1536-square maximum native resolution, actual output authoritative. Ordered left-to-right top-to-bottom: 1 a giant gold-edged crab CLAW impact striking a small broken reef with a compact upward splash, clear crab pincer silhouette; 2 TWO PARALLEL horizontal narrow water cannon jets firing RIGHT from two tiny shell muzzles, clear transparent corridor BETWEEN the jets; 3 a broad upright curving wall of turquoise wave crest advancing RIGHT, tall wall shape, white foam tips; 4 two descending round shell bombs and separated small splash landing bursts, downward streaks, distinct from water jets; 5 TWO small coral standards with a trident beside each and a blue pearl pennant, compact summoning arrival circles, no humanoid body; 6 a returning elliptical wave ring with TWO opposed crab pincers closing inward, hollow transparent center. Six independent distinct combat effects, not four reused water spears. Clear silhouette at game scale, detailed naturally colored materials. Truly transparent RGBA including all gaps and ring centers, no cast ground shadow, no painted checkerboard, no cell-crossing glow, no grid.",
+    "correction_prompt": "Edit this six-effect transparent atlas. Preserve exactly these six semantic designs, colors, order and painted material detail. FIX COMPOSITION ONLY. Canvas exactly square, TWO columns and THREE rows. Make every COMPLETE effect 35% SMALLER relative to its cell; all petals, glow, droplets, streaks and dust must shrink together. Centers are x=25%/75%, y=1/6,1/2,5/6 of canvas. Every motif's complete nonzero-alpha silhouette including glow fits within the CENTRAL 55% of cell width and 55% of cell height. Each motif is isolated with at least 20% cell fully alpha ZERO on all four sides. No overlapping across cell boundaries, no silhouette chopped. Clear all colored glow outside these central motifs to alpha ZERO. Do not fill ring centers. Preserve order and distinct shapes; no added symbol, text, badge or background. Keep truly transparent RGBA throughout all empty areas.",
+    "processing": "original output copied byte-for-byte; runtime cell sampling and aspect fitting only",
+    "generation_chain": [
+      {
+        "stage": "six semantic original effects",
+        "prompt": "Use case: stylized-concept. Production transparent game FX sprite atlas for a WALKING CRAB FORTRESS, bright refined painted storybook 2.5D fantasy, turquoise water, pearl white foam, navy and gold shell details, coral accents. EXACTLY SIX DISTINCT independent effects arranged in TWO COLUMNS and THREE ROWS on a square canvas. No icons, no circular badge borders, no text, no full character, no landscape, no opaque haze. Each entire effect including splash and droplets fits within central 70% WIDTH and 65% HEIGHT of its own equal cell, fully transparent generous gutters on all sides. Requested 1536-square maximum native resolution, actual output authoritative. Ordered left-to-right top-to-bottom: 1 a giant gold-edged crab CLAW impact striking a small broken reef with a compact upward splash, clear crab pincer silhouette; 2 TWO PARALLEL horizontal narrow water cannon jets firing RIGHT from two tiny shell muzzles, clear transparent corridor BETWEEN the jets; 3 a broad upright curving wall of turquoise wave crest advancing RIGHT, tall wall shape, white foam tips; 4 two descending round shell bombs and separated small splash landing bursts, downward streaks, distinct from water jets; 5 TWO small coral standards with a trident beside each and a blue pearl pennant, compact summoning arrival circles, no humanoid body; 6 a returning elliptical wave ring with TWO opposed crab pincers closing inward, hollow transparent center. Six independent distinct combat effects, not four reused water spears. Clear silhouette at game scale, detailed naturally colored materials. Truly transparent RGBA including all gaps and ring centers, no cast ground shadow, no painted checkerboard, no cell-crossing glow, no grid.",
+        "output_sha256": "b85f259e939a94dddaac72726412f9f7436bc0f3adccc173c6c3d4fb9e66745a",
+        "retained_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-560ca879-f0af-4423-a6d2-18631a122646.png"
+      },
+      {
+        "stage": "transparent cell composition correction",
+        "prompt": "Edit this six-effect transparent atlas. Preserve exactly these six semantic designs, colors, order and painted material detail. FIX COMPOSITION ONLY. Canvas exactly square, TWO columns and THREE rows. Make every COMPLETE effect 35% SMALLER relative to its cell; all petals, glow, droplets, streaks and dust must shrink together. Centers are x=25%/75%, y=1/6,1/2,5/6 of canvas. Every motif's complete nonzero-alpha silhouette including glow fits within the CENTRAL 55% of cell width and 55% of cell height. Each motif is isolated with at least 20% cell fully alpha ZERO on all four sides. No overlapping across cell boundaries, no silhouette chopped. Clear all colored glow outside these central motifs to alpha ZERO. Do not fill ring centers. Preserve order and distinct shapes; no added symbol, text, badge or background. Keep truly transparent RGBA throughout all empty areas.",
+        "reference_sha256": "b85f259e939a94dddaac72726412f9f7436bc0f3adccc173c6c3d4fb9e66745a",
+        "output_sha256": "1e6ef84529c3994c0ec168da27c5ceae6f3c392d6dc183b9a695f3cf5909784e"
+      }
+    ]
+  },
+  "icons": {
+    "source": "checkpoint original; exact early prompt unavailable, retained source record",
+    "sha256": "83c89deed3e1adfe12bef94d0220b1bf9d74a1af0399a015a084b23aba736b3a",
+    "native_pixels": [
+      1254,
+      1254
+    ],
+    "processing": "original atlas retained; alpha128 bbox plus 3px sampling margin"
+  },
+  "runtime_verified": true,
+  "verification": {
+    "suite": "b05_b06_boss_skill_art",
+    "checks": 197,
+    "failures": 0,
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "renderer": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "run_id": "20261003T104001798-1ad6be1a",
+    "cast_icon_physical_pixels": [48, 48],
+    "codex_icon_physical_pixels": [64, 64],
+    "codex_suite_run_id": "20261003T104759633-7858ab81",
+    "scope": "six real commands each, warnings/releases and reduced FX; not natural balance"
+  }
+}

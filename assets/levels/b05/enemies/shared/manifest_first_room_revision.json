@@ -7,7 +7,7 @@
     "B05-M04"
   ],
   "status": "candidate_first_room_body_variants",
-  "runtime_quality_gate_passed": false,
+  "runtime_quality_gate_passed": true,
   "generation_tool": "image_gen.imagegen",
   "native_generated": true,
   "upscaled": false,
@@ -57,7 +57,7 @@
       "appearance_role": "Leaf-crowned humanoid adult with thin vine whip; existing frontline and vine-whip responsibility retained.",
       "reference_body_height_px": 710,
       "reference_definition": "Idle anatomical leaf/flower crown to registered planted foot anchor, excluding transparent canvas and detached weapon tips. Shared ratio across all key poses.",
-      "runtime_quality_gate_passed": false,
+      "runtime_quality_gate_passed": true,
       "atlas": {
         "source_generated_file": "exec-22aaa285-37c0-4214-9e69-dea63b13192f.png",
         "sha256": "d47f0618665ff9bd11bc96ea8eec8b2930c5020a19a3f4e99448cd137f750323",
@@ -231,14 +231,88 @@
           "height": 1254,
           "mode": "RGBA"
         }
-      }
+      },
+      "runtime_quality_measurements": [
+        {
+          "alpha128_bounds": [
+            63.0,
+            394.0,
+            328.0,
+            721.0
+          ],
+          "maximum_display_pixels": [
+            64.4617080688477,
+            141.697830200195
+          ],
+          "native_to_display_ratio": [
+            5.08829210125309,
+            5.08829245290029
+          ],
+          "pose": "idle",
+          "region": [
+            0.0,
+            0.0,
+            418.0,
+            1254.0
+          ],
+          "texture_id": "asset://levels/b05/enemies/m01/animations/first_room_race_atlas.png"
+        },
+        {
+          "alpha128_bounds": [
+            466.0,
+            263.0,
+            310.0,
+            850.0
+          ],
+          "maximum_display_pixels": [
+            60.9241752624512,
+            167.050155639648
+          ],
+          "native_to_display_ratio": [
+            5.08829210513842,
+            5.08829217635435
+          ],
+          "pose": "telegraph",
+          "region": [
+            418.0,
+            0.0,
+            418.0,
+            1254.0
+          ],
+          "texture_id": "asset://levels/b05/enemies/m01/animations/first_room_race_atlas.png"
+        },
+        {
+          "alpha128_bounds": [
+            843.0,
+            402.0,
+            380.0,
+            715.0
+          ],
+          "maximum_display_pixels": [
+            74.6812515258789,
+            140.518646240234
+          ],
+          "native_to_display_ratio": [
+            5.08829180330917,
+            5.08829268663475
+          ],
+          "pose": "execute",
+          "region": [
+            836.0,
+            0.0,
+            418.0,
+            1254.0
+          ],
+          "texture_id": "asset://levels/b05/enemies/m01/animations/first_room_race_atlas.png"
+        }
+      ]
     },
     "B05-M02": {
       "name": "种荚炮手",
       "appearance_role": "Young human-faced sprout with compact gold-edged seedpod cannon; existing ranged pod-shot responsibility retained.",
       "reference_body_height_px": 687,
       "reference_definition": "Idle anatomical leaf/flower crown to registered planted foot anchor, excluding transparent canvas and detached weapon tips. Shared ratio across all key poses.",
-      "runtime_quality_gate_passed": false,
+      "runtime_quality_gate_passed": true,
       "atlas": {
         "source_generated_file": "exec-3c0caa70-e8bc-47b2-889a-7aeebd892593.png",
         "sha256": "685a67e212ad85c276ae9ecf9a17234176aa7758f28de90e3565ffbed5a1d6c8",
@@ -412,14 +486,88 @@
           "height": 1254,
           "mode": "RGBA"
         }
-      }
+      },
+      "runtime_quality_measurements": [
+        {
+          "alpha128_bounds": [
+            90.0,
+            367.0,
+            313.0,
+            695.0
+          ],
+          "maximum_display_pixels": [
+            63.573169708252,
+            141.160873413086
+          ],
+          "native_to_display_ratio": [
+            4.92346065858302,
+            4.92346061054884
+          ],
+          "pose": "idle",
+          "region": [
+            0.0,
+            0.0,
+            418.0,
+            1254.0
+          ],
+          "texture_id": "asset://levels/b05/enemies/m02/animations/first_room_race_atlas.png"
+        },
+        {
+          "alpha128_bounds": [
+            475.0,
+            365.0,
+            321.0,
+            698.0
+          ],
+          "maximum_display_pixels": [
+            65.1980438232422,
+            141.770202636719
+          ],
+          "native_to_display_ratio": [
+            4.92346060060115,
+            4.92346055107646
+          ],
+          "pose": "telegraph",
+          "region": [
+            418.0,
+            0.0,
+            418.0,
+            1254.0
+          ],
+          "texture_id": "asset://levels/b05/enemies/m02/animations/first_room_race_atlas.png"
+        },
+        {
+          "alpha128_bounds": [
+            846.0,
+            373.0,
+            385.0,
+            693.0
+          ],
+          "maximum_display_pixels": [
+            78.1970291137695,
+            140.754653930664
+          ],
+          "native_to_display_ratio": [
+            4.92346070385692,
+            4.92346065048316
+          ],
+          "pose": "execute",
+          "region": [
+            836.0,
+            0.0,
+            418.0,
+            1254.0
+          ],
+          "texture_id": "asset://levels/b05/enemies/m02/animations/first_room_race_atlas.png"
+        }
+      ]
     },
     "B05-M04": {
       "name": "露珠护蕊",
       "appearance_role": "Human-faced pink flower speaker with cyan dew staff; existing interruptible support healing channel retained, no boss healing.",
       "reference_body_height_px": 721,
       "reference_definition": "Idle anatomical leaf/flower crown to registered planted foot anchor, excluding transparent canvas and detached weapon tips. Shared ratio across all key poses.",
-      "runtime_quality_gate_passed": false,
+      "runtime_quality_gate_passed": true,
       "atlas": {
         "source_generated_file": "exec-0835325d-fc72-437c-aea5-505267716a63.png",
         "sha256": "13a4447f8ed6d7c0a316ef8b54584160158f96230468a16c2ac433ff8c5bba49",
@@ -593,7 +741,82 @@
           "height": 1254,
           "mode": "RGBA"
         }
-      }
+      },
+      "runtime_quality_measurements": [
+        {
+          "alpha128_bounds": [
+            44.0,
+            288.0,
+            363.0,
+            803.0
+          ],
+          "maximum_display_pixels": [
+            70.2518310546875,
+            155.405563354492
+          ],
+          "native_to_display_ratio": [
+            5.16712510621144,
+            5.16712518308173
+          ],
+          "pose": "idle",
+          "region": [
+            0.0,
+            0.0,
+            418.0,
+            1254.0
+          ],
+          "texture_id": "asset://levels/b05/enemies/m04/animations/first_room_race_atlas.png"
+        },
+        {
+          "alpha128_bounds": [
+            443.0,
+            282.0,
+            362.0,
+            810.0
+          ],
+          "maximum_display_pixels": [
+            70.0582962036133,
+            156.760284423828
+          ],
+          "native_to_display_ratio": [
+            5.16712537438685,
+            5.16712509789806
+          ],
+          "pose": "telegraph",
+          "region": [
+            418.0,
+            0.0,
+            418.0,
+            1254.0
+          ],
+          "texture_id": "asset://levels/b05/enemies/m04/animations/first_room_race_atlas.png"
+        },
+        {
+          "alpha128_bounds": [
+            847.0,
+            362.0,
+            389.0,
+            729.0
+          ],
+          "maximum_display_pixels": [
+            75.2836380004883,
+            141.084243774414
+          ],
+          "native_to_display_ratio": [
+            5.16712542501569,
+            5.16712554497319
+          ],
+          "pose": "execute",
+          "region": [
+            836.0,
+            0.0,
+            418.0,
+            1254.0
+          ],
+          "texture_id": "asset://levels/b05/enemies/m04/animations/first_room_race_atlas.png"
+        }
+      ]
     }
-  }
+  },
+  "registration_status": "production_first_room_pose_pixel_coverage_accepted_2k"
 }

@@ -5,6 +5,7 @@ uniform vec2 ground[64];
 uniform int ground_count = 0;
 uniform vec4 room_rect;
 uniform vec2 source_extent;
+uniform float alpha_cutoff = 0.0;
 varying vec2 room_point;
 
 void vertex() {
@@ -27,6 +28,7 @@ bool inside_ground(vec2 point) {
 
 void fragment() {
 	vec4 source = texture(TEXTURE, UV) * COLOR;
+	if (alpha_cutoff > 0.0) source.a *= smoothstep(alpha_cutoff - 0.04, alpha_cutoff + 0.04, source.a);
 	if (inside_ground(room_point)) source.a = 0.0;
 	COLOR = source;
 }

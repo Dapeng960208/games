@@ -13,6 +13,7 @@ const EnemyAbilities = preload("res://scripts/domain/combat/enemy_ability_catalo
 const BiomeSkills = preload("res://scripts/domain/combat/enemy_biome_skills.gd")
 const Numerical = preload("res://scripts/domain/combat/enemy_numbers.gd")
 const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
+const BossSkillArt = preload("res://scripts/presentation/monsters/boss_skill_art.gd")
 const Dossier = preload("res://scripts/presentation/screens/hero_dossier.gd")
 const B05Content = preload("res://scripts/levels/b05/world/content.gd")
 const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
@@ -366,7 +367,25 @@ func _boss_details(flow: VBoxContainer, profile: Dictionary) -> void:
 	var thresholds: Array = profile.get("phase_thresholds",[.7,.35])
 	_line(flow,Inspect.t("阶段切换：生命 %.0f%% / %.0f%%；额外招式按难度累计开放。","Phase changes: %.0f%% / %.0f%% HP. Extra abilities unlock cumulatively by difficulty.") % [float(thresholds[0])*100,float(thresholds[1])*100],14,GameStyle.MUTED)
 	for skill: Dictionary in boss_skill_entries(str(profile.boss_id),difficulty,ruleset):
-		_line(flow,str(skill.title),17,GameStyle.CYAN if bool(skill.unlocked) else GameStyle.MUTED)
+		var icon_data := BossSkillArt.frame(str(profile.boss_id),str(skill.id),"icon")
+		if icon_data.is_empty():
+			_line(flow,str(skill.title),17,GameStyle.CYAN if bool(skill.unlocked) else GameStyle.MUTED)
+		else:
+			var row := HBoxContainer.new()
+			flow.add_child(row)
+			var icon := TextureRect.new()
+			var texture := AtlasTexture.new()
+			texture.atlas = icon_data.texture
+			texture.region = icon_data.region
+			texture.filter_clip = true
+			icon.texture = texture
+			icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			icon.custom_minimum_size = Vector2(32,32)
+			icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			row.add_child(icon)
+			var heading := GameStyle.literal(row,str(skill.title),Vector2.ZERO,Vector2(310,32),17,GameStyle.CYAN if bool(skill.unlocked) else GameStyle.MUTED)
+			heading.custom_minimum_size = Vector2(310,32)
 		_line(flow,str(skill.description),14)
 	_line(flow,Inspect.t("场地应对","ARENA COUNTERPLAY"),17,GameStyle.AMBER)
 	_line(flow,str(profile.get("arena",{}).get("topology_and_counter","")))

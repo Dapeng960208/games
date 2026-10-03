@@ -58,7 +58,7 @@ static func _registered_frame(spec: Dictionary, pose: String, prefix: String) ->
 		"core":Vector2(float(source.core_anchor[0]),float(source.core_anchor[1])),
 		"outlet":Vector2(float(source.visual_outlet[0]),float(source.visual_outlet[1])),
 		"source_pose_scale":float(source.get("source_pose_scale",1.0)),
-		"reference_height":reference_height,"candidate_only":true,"runtime_quality_gate_passed":false}
+		"reference_height":reference_height,"candidate_only":true,"runtime_quality_gate_passed":bool(spec.get("runtime_quality_gate_passed",false))}
 
 static func first_room_entry(identity: String) -> Dictionary:
 	var idle := first_room_frame(identity)
@@ -68,7 +68,7 @@ static func first_room_entry(identity: String) -> Dictionary:
 	var codex_region := Rect2(float(bounds[0]),float(bounds[1]),float(bounds[2]),float(bounds[3])).grow(6.0).intersection(idle.region)
 	return {"texture":idle.texture,"texture_path":idle.texture_path,"region":codex_region,"foot":idle.foot,
 		"source_height":idle.reference_height,"source_family":"storybook_2_5d_v1","biome_id":"B06","visual_clan":"tidal",
-		"individual_body":true,"b06_native_bank":true,"first_room_race_variant":true,"runtime_quality_gate_passed":false}
+		"individual_body":true,"b06_native_bank":true,"first_room_race_variant":true,"runtime_quality_gate_passed":bool(idle.get("runtime_quality_gate_passed",false))}
 
 static func first_room_bank(identity: String) -> Dictionary:
 	var clips: Dictionary = {}
@@ -81,7 +81,7 @@ static func first_room_bank(identity: String) -> Dictionary:
 	clips["recovery"] = clips.idle
 	return {"clips":clips,"texture":clips.idle[0].texture,"body_height":clips.idle[0].reference_height,
 		"source_family":"storybook_2_5d_v1","facing":"right","b06_native_bank":true,
-		"first_room_race_variant":true,"runtime_quality_gate_passed":false}
+		"first_room_race_variant":true,"runtime_quality_gate_passed":bool(clips.idle[0].get("runtime_quality_gate_passed",false))}
 
 static func entry(identity: String) -> Dictionary:
 	if not identity.begins_with("B06-M"): return {}

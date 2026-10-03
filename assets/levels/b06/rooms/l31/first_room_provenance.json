@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "status": "isolated_candidate_art_accepted_2k",
+  "source_checkpoint": "1e82047b7a33523ad6c0301627e856a6eadf95a2",
+  "generation_tool": "image_gen.imagegen",
+  "model": "unknown; not returned by tool",
+  "bridge_source": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-f6ca026f-27ad-460e-af30-24a1c50ba6e9.png",
+  "bridge_prompt": "Edit this production 2.5D game bridge sprite. Keep its exact pearl white and blue gold shell architecture, coral and supporting dark blue arches style and natural colors. CHANGE CAMERA AND BACKGROUND: bridge must run horizontally LEFT to RIGHT parallel to canvas X axis, BOTH ENDPOINT DECK CENTERS at the SAME Y coordinate. Absolutely no diagonal left-low/right-high composition. Use a high centered elevated camera looking straight at the LONG SIDE, enough to see the broad flat TOP DECK, north/far railing and south/near railing parallel horizontal lines; no vanishing point, no end foreshortening. Deck flat rectangular, not sloped, no stairs; the clear walkable TOP is a wide horizontal rectangular strip with ample depth (roughly 65% of architecture height). Delicate supporting arches BELOW it. Entire bridge including both ends and dangling vines within central 80% of landscape canvas. REMOVE ALL opaque background and ALL colored glow or ground-shadow haze outside architecture; alpha ZERO outside architecture and beneath open arches. This is one isolated complete transparent game sprite, not a scene. No surrounding island, water, ground, labels or text. Precise horizontal orientation is essential because frozen gameplay path has identical endpoint Y.",
+  "bridge_alpha_prompt": null,
+  "floor_source": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-ec35ef73-4a70-46a6-b137-c852d261c7a9.png",
+  "floor_prompt": "Production seamless square floor texture for a bright pearl-shell palace game. Perfect TOP-DOWN orthographic surface, subtle milky white mother-of-pearl with very faint pale blue and blush-pink nacre grain, a few thin irregular hairline gold seams crossing the whole texture, low contrast and broad uninterrupted walking surface. All four borders must seamlessly tile: NO border, NO frame, NO vignette, NO dark edges, NO raised slabs, NO decorative medallion, NO objects, NO architecture, NO illustration perspective, NO cast shadows, NO text. Uniform gentle material illumination right to every edge. Crisp original surface material detail, not artificially sharpened. Opaque square texture.",
+  "records": [
+    {
+      "id": "background",
+      "texture": "asset://levels/b06/rooms/l31/background/candidates/coral_sea_distance.png",
+      "sha256": "54eaa2faa4aaf3b76b1813e6f3996b3da61d2f7895fa7ad00578e08666b6b010",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "alpha128_bbox_xyxy": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sample_region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "display_rect_world": [
+        -320,
+        -280,
+        2264,
+        1604
+      ],
+      "processing": "byte-for-byte source; runtime module sampling/repeat/exterior clipping; bridge low-alpha haze discarded at runtime",
+      "runtime_verified": true
+    },
+    {
+      "id": "floor",
+      "texture": "asset://levels/b06/rooms/l31/detail/pearl_floor_tile.png",
+      "sha256": "bf210946b2ce03178e323dd5a99b13949e92cc86d7b42ba3777eb87ffc61778b",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "alpha128_bbox_xyxy": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sample_region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "display_rect_world": null,
+      "processing": "byte-for-byte source; runtime module sampling/repeat/exterior clipping; bridge low-alpha haze discarded at runtime",
+      "runtime_verified": true
+    },
+    {
+      "id": "west_shell_palace",
+      "texture": "asset://levels/b06/rooms/l31/detail/candidates/shell_palace.png",
+      "sha256": "a5e8b26870825641d0d4c2749a14e9f2a79aba3107a3c567fbc9eb3378d3c2ee",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "alpha128_bbox_xyxy": [
+        33,
+        9,
+        1221,
+        1247
+      ],
+      "sample_region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "display_rect_world": [
+        20,
+        -210,
+        680,
+        730
+      ],
+      "processing": "byte-for-byte source; runtime module sampling/repeat/exterior clipping; bridge low-alpha haze discarded at runtime",
+      "runtime_verified": true
+    },
+    {
+      "id": "east_shell_palace",
+      "texture": "asset://levels/b06/rooms/l31/detail/candidates/shell_palace.png",
+      "sha256": "a5e8b26870825641d0d4c2749a14e9f2a79aba3107a3c567fbc9eb3378d3c2ee",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "alpha128_bbox_xyxy": [
+        33,
+        9,
+        1221,
+        1247
+      ],
+      "sample_region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "display_rect_world": [
+        1030,
+        -190,
+        680,
+        730
+      ],
+      "processing": "byte-for-byte source; runtime module sampling/repeat/exterior clipping; bridge low-alpha haze discarded at runtime",
+      "runtime_verified": true
+    },
+    {
+      "id": "shell_bridge",
+      "texture": "asset://levels/b06/rooms/l31/detail/shell_bridge.png",
+      "sha256": "89ae0e6911a158dfaf018cecc70f6b08465d62de22160a0d955fe16b27264090",
+      "native_pixels": [
+        1774,
+        887
+      ],
+      "alpha128_bbox_xyxy": [
+        10,
+        208,
+        1768,
+        750
+      ],
+      "sample_region": [
+        0,
+        440,
+        1774,
+        447
+      ],
+      "display_rect_world": [
+        660,
+        614.8,
+        420,
+        185
+      ],
+      "processing": "byte-for-byte source; runtime module sampling/repeat/exterior clipping; bridge low-alpha haze discarded at runtime",
+      "runtime_verified": true
+    },
+    {
+      "id": "shell_bridge_north",
+      "texture": "asset://levels/b06/rooms/l31/detail/shell_bridge.png",
+      "sha256": "89ae0e6911a158dfaf018cecc70f6b08465d62de22160a0d955fe16b27264090",
+      "native_pixels": [
+        1774,
+        887
+      ],
+      "alpha128_bbox_xyxy": [
+        10,
+        208,
+        1768,
+        750
+      ],
+      "sample_region": [
+        0,
+        210,
+        1774,
+        138
+      ],
+      "display_rect_world": [
+        660,
+        365,
+        420,
+        64.2
+      ],
+      "processing": "byte-for-byte source; runtime module sampling/repeat/exterior clipping; bridge low-alpha haze discarded at runtime",
+      "runtime_verified": true
+    }
+  ],
+  "verification": {
+    "suite": "b05_b06_first_room_art",
+    "checks": 275,
+    "failures": 0,
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "renderer": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "run_id": "20261003T103111489-31c70a55",
+    "scope": "controlled presentation, navigation and lifecycle; not natural balance or long-session performance"
+  },
+  "bridge_generation_chain": [
+    {
+      "stage": "checkpoint parent selected by pixel inspection",
+      "reference": "res://assets/system/world/environment/stop_checkpoint_candidates/interrupted_bridge_output_2.png",
+      "sha256": "5de4697a09e3cad301d16bc0d2db5733f3e6ee2e786cd9bcbb9383d647270338",
+      "exact_interrupted_call_mapping": "unavailable; preserved in original checkpoint record"
+    },
+    {
+      "stage": "horizontal camera correction",
+      "prompt": "Edit this production 2.5D game bridge sprite. Keep its exact pearl white and blue gold shell architecture, coral and supporting dark blue arches style and natural colors. CHANGE CAMERA AND BACKGROUND: bridge must run horizontally LEFT to RIGHT parallel to canvas X axis, BOTH ENDPOINT DECK CENTERS at the SAME Y coordinate. Absolutely no diagonal left-low/right-high composition. Use a high centered elevated camera looking straight at the LONG SIDE, enough to see the broad flat TOP DECK, north/far railing and south/near railing parallel horizontal lines; no vanishing point, no end foreshortening. Deck flat rectangular, not sloped, no stairs; the clear walkable TOP is a wide horizontal rectangular strip with ample depth (roughly 65% of architecture height). Delicate supporting arches BELOW it. Entire bridge including both ends and dangling vines within central 80% of landscape canvas. REMOVE ALL opaque background and ALL colored glow or ground-shadow haze outside architecture; alpha ZERO outside architecture and beneath open arches. This is one isolated complete transparent game sprite, not a scene. No surrounding island, water, ground, labels or text. Precise horizontal orientation is essential because frozen gameplay path has identical endpoint Y.",
+      "reference_sha256": "5de4697a09e3cad301d16bc0d2db5733f3e6ee2e786cd9bcbb9383d647270338",
+      "output_sha256": "89ae0e6911a158dfaf018cecc70f6b08465d62de22160a0d955fe16b27264090",
+      "retained_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1011e-cf9f-79d1-9cd6-f619534a7dd5\\exec-f6ca026f-27ad-460e-af30-24a1c50ba6e9.png"
+    }
+  ]
+}

@@ -40,10 +40,12 @@ func configure(layout: Dictionary, config_path: String) -> bool:
 		var clip := str(value.get("clip", ""))
 		var layer_z: Variant = value.get("z_index", -5)
 		var opacity: Variant = value.get("opacity", 1.0)
+		var alpha_cutoff: Variant = value.get("alpha_cutoff",0.0)
 		if item.is_empty() or identity.is_empty() or seen.has(identity) or clip not in ["", "exterior"]: return false
 		if not _number(layer_z) or float(layer_z) != float(int(layer_z)) or int(layer_z) < -8 or int(layer_z) > -1 or not _number(opacity) or float(opacity) < 0.0 or float(opacity) > 1.0: return false
+		if not _number(alpha_cutoff) or float(alpha_cutoff) < 0.0 or float(alpha_cutoff) > 1.0 or (float(alpha_cutoff) > 0.0 and clip != "exterior"): return false
 		seen[identity] = true
-		item.merge({"id":identity, "clip":clip, "z_index":int(layer_z), "opacity":float(opacity)})
+		item.merge({"id":identity, "clip":clip, "z_index":int(layer_z), "opacity":float(opacity), "alpha_cutoff":float(alpha_cutoff)})
 		prepared.append(item)
 	# No visible layer is installed until every referenced source has loaded.
 	floor_polygon = ground.duplicate()
@@ -75,6 +77,7 @@ func configure(layout: Dictionary, config_path: String) -> bool:
 		if str(item.clip) == "exterior":
 			var material := ShaderMaterial.new()
 			material.shader = EXTERIOR_SHADER
+			material.set_shader_parameter("alpha_cutoff",float(item.alpha_cutoff))
 			var points := floor_polygon.duplicate()
 			points.resize(MAX_GROUND_POINTS)
 			material.set_shader_parameter("ground", points)
