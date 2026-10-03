@@ -1,0 +1,23 @@
+{
+  "skill_id": "CH02_SK04",
+  "name": "火力倾泻",
+  "asset_path": "assets/characters/gunner/skills/sk04_icon.png",
+  "prompt": "Use case: stylized-concept. Create ONE original polished square 2048 by 2048 fantasy RPG skill source icon, not a sheet. Painterly cartoon fantasy 2.5D material volume, warm upper-left highlights, confident clean handpainted edges, a strong central large silhouette readable as a 44-pixel badge. Thin antique brass circular rim takes 92% of square width, dark petrol painted inside, genuinely transparent outside the circle; generous 8% composition safety margin. Palette teal, olive, antique brass, ivory, cyan and amber with specific effect accents. Keep every important subject inside rim. No text, letters, numbers, watermark, logos, game copies, grid, multiple icons, border UI, characters or full body. Asset: gunner CH02_SK04 火力倾泻 (full magazine firestorm). Subject: an intensely luminous burst of dense golden bullet rain, four big obvious gold ammunition cartridges pouring diagonally from upper left to lower right like a dramatic magazine cascade, accompanied by several smaller streaks, bold brilliant amber-white muzzle flare in lower left. The image must communicate a powerful dense full-magazine firing burst. NO gun silhouette, NO grenade, NO cyan swoosh, NO pierced targets. Unique central gold cartridge cascade with warm firestorm glow, teal dark background and antique brass frame.",
+  "tool": "image_gen.imagegen",
+  "mode": "built_in_generate",
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10117-0185-7291-ae0c-f299bf80a9fc/exec-494e674d-3257-47de-baaf-8795ea043895.png",
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "transparent_background": true,
+  "local_processing": "Copied original PNG bytes unchanged; no upscale, resizing, cropping or repainting",
+  "sha256": "aaa718079c21263a5873f53a73201d48f3bb1c60ca81292c3af461525e6b665e",
+  "generated_date": "2026-10-03",
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_2k_achieved": false,
+  "visual_review": "Original distinct skill identity, handpainted fantasy circular badge, transparent exterior, inspected actual generated output"
+}

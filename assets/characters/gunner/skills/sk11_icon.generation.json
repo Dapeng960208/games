@@ -1,0 +1,19 @@
+{
+  "skill_id": "CH02_SK11",
+  "skill_name": "压制扫射",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in_generate",
+  "prompt": "Use case: stylized-concept. Asset type: original fantasy RPG skill icon CH02_SK11, Suppressive Sweep. Generate a polished handpainted cartoon fantasy circular badge at native 2048 x 2048 if supported; do not upscale. Dark petrol painted interior, thin antique brass circular rim taking 92% width, genuinely transparent outside the circle. Subject: a single stylish heavy teal-and-brass survey carbine along the lower-left of the circle, barrel aimed horizontally right, firing a broad horizontal fan of golden tracer rays sweeping a low arc left-to-right. This is a gun swinging sideways and suppressing a wide lane: the iconic silhouette is clearly a horizontal carbine and large lateral amber beam fan, never raining bullets vertically, never a turret. The gun has elegant polished ivory grips, olive-teal casing, brass technical measuring features without readable markings, radiant amber muzzle flare. Painterly 2.5D volume, warm upper-left sunlight, chunky beautiful strokes. Fresh teal, olive, brass, ivory and warm amber colors. Generous 8% safe margin, centered close-up, strong distinct silhouette legible at 44 pixels. One single icon, no sheet/grid, no text, letters, numbers, logos, watermark, no copied game asset, no tiny character, no realistic photo.",
+  "original_output": "C:\\Users\\13326\\.codex\\generated_images\\01a10117-a5e5-7d11-ba36-43d1ce3448c2\\exec-7860a7fd-ba4a-41c0-93a2-3d0b95f6d0a9.png",
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "sha256": "fbc005eda9ae28d43982a07c98c287b00a3f1af490656c4beebb088d5ba5a479",
+  "transparent_background": true,
+  "substantive_local_editing": false,
+  "generated_on": "2026-10-03",
+  "png_color_type": 6,
+  "runtime_asset": "res://assets/characters/gunner/skills/sk11_icon.png",
+  "native_2k": false
+}
