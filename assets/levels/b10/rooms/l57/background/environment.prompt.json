@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "room_id": "L57",
+  "generation_tool": "built-in image_gen",
+  "mode": "reference_guided_native_generation",
+  "use_case": "stylized-concept",
+  "requested_dimensions": [
+    2800,
+    1800
+  ],
+  "actual_dimensions": [
+    1564,
+    1006
+  ],
+  "prompt": "Use case: stylized-concept\nAsset type: complete independent original hand-painted background for L57 Scale Tower Survey Court, a playable final chapter 2.5D action RPG room.\nInput image: user-provided Star Dragon Court design sheet, STYLE AND MATERIAL REFERENCE ONLY. Follow its pearl-white palace masonry, finely engraved gold trims, brilliant sapphire and cyan star crystals, blue banners, cloud-sea floating islands and sunlit fantasy mood. Do not reproduce any lettering, panels, labels, living dragons or the reference's giant dragon statue. Purple is at most a tiny accent.\nPrimary request: Create a native high resolution wide illustration, requested 2800 x 1800 pixels (native output, never enlarge a low-resolution image). Show an immense bright pearl-white sky palace surveying courtyard floating among soft pale blue clouds. High camera, three-quarter oblique overhead, near-isometric 2.5D depth, bright hand-painted cartoon fantasy, confident colored outlines and painted texture, clean charming shapes, crisp readable gameplay floor. Warm sunlight, pearl stone, sapphire-blue translucent scale-roof architecture, brass gold star rings, pale turquoise glints.\nComposition/framing: The image is the game world's exact 2800 x 1800 blueprint canvas. A single broad contiguous octagonal-like ivory stone platform fills normalized polygon vertices clockwise: (0.1354,0.3460), (0.3303,0.1967), (0.7137,0.1780), (0.8677,0.2527), (0.8803,0.6073), (0.7326,0.7940), (0.2989,0.8407), (0.1323,0.7520). These are the walkable TOP SURFACE edges, not cliff-bottom edges. Keep the broad floor visibly continuous and open across the entire polygon, all boundaries clearly readable. The outside is clouds and the platform's raised carved sides with 2.5D depth.\nRoutes and reserves: an uninterrupted wide diagonal pale gold-inlaid footpath crosses from southwest normalized (0.2203,0.7147) through (0.3869,0.6073) and (0.5786,0.4627) to northeast (0.7797,0.3087). No bridge or gap. Leave open round landing reserves at (0.2643,0.6213) and (0.7451,0.3600) for runtime portal sprites, and open floor at (0.3429,0.3087) and (0.6634,0.6400) for runtime star cores. Central battle space around (0.5,0.5) must be unobstructed.\nStatic setting: low pearl-white dragon-scale balustrades only OUTSIDE the walkable top boundary, with gold star medallions. Small curved blue crystal scale-roof surveying pavilions and fine brass astronomical architectural ornaments around the outer edge, always outside the polygon and never occluding the main battle floor. A few gentle carved scale patterns in broad floor tiles; floor pattern remains quiet for combat readability. An open broad southwest stair landing and an open broad northeast stair landing match the path ends. No tall prop inside the polygon; the separate survey-spire gameplay prop will be added by runtime.\nLighting/materials: warm clear daytime, cheerful and luminous, white stone has visible warm shaded facets rather than a blank white plane; sapphire glass scales, delicate brass engravings, shallow painted masonry relief; shadows cast consistently southeast.\nConstraints: All floor, steps, architecture, cloud edges and camera form one coherent complete room painting. Exactly one level of continuous gameplay top surface, no interior chasm, no walls across the route, no narrow bridge. NO living characters, enemies, dragons, star cores, portal arches or swirling portal effects, treasure, pickups, HUD, labels, numbers, grids, watermark, text. Do not depict space darkness. Entire floor outline and outer setting visible with full framing. Native generation only, do not zoom or crop.",
+  "source_generated_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10277-da64-7bc2-b2ad-c57e140336f2\\exec-5dfe3e9b-e99a-4717-89b0-b3cf71c850e8.png",
+  "source_sha256": "ce3caa7071a1cb00d59fc91e024be2fa82ec9b155ca3565a4592d1aeb5f529e7",
+  "pixel_edits": "none; byte-preserving copy",
+  "user_reference": {
+    "path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+    "role": "user-provided style, architecture and material reference; not imported into runtime"
+  },
+  "license": "AI-generated project artwork created at the user's request; no third-party game asset imported.",
+  "qa_status": "pending_unified_acceptance"
+}

@@ -55,6 +55,20 @@ static func environment_definition(biome_id: String, room_id: String = "") -> Di
 		# sampler retains every path, which would accumulate all visited rooms.
 		var texture: Texture2D = EnvironmentTexture.load_mip_texture(path)
 		if texture==null: continue
+		if biome_id == "B10":
+			# The source's actual aspect controls one uniform world reduction.
+			# Authored blueprint feet remain fixed even when imagegen returns a
+			# slightly different native ratio than the requested canvas.
+			var blueprint := preload("res://scripts/levels/b10/world/room_geometry.gd").room(room_id)
+			var height := 0.88 * texture.get_width() / float(texture.get_height()) * 1800.0 / 2800.0
+			if height <= 0.0 or height > 1.0 or blueprint.is_empty(): continue
+			placement = Rect2(0.06, (1.0-height)*0.5, 0.88, height)
+			value = value.duplicate(true)
+			value["placement_normalized_rect"] = [placement.position.x, placement.position.y, placement.size.x, placement.size.y]
+			value["walkable_normalized_polygon"] = []
+			for point: Array in blueprint.get("walkable_polygon", []):
+				var normalized := placement.position + Vector2(float(point[0])/2800.0, float(point[1])/1800.0)*placement.size
+				value.walkable_normalized_polygon.append([normalized.x, normalized.y])
 		var result := {"path":path,"texture":texture,"source":Rect2(Vector2.ZERO,texture.get_size()),"walkable_normalized_rect":central,"placement_normalized_rect":placement,"metadata":value,"manifest_path":manifest_path,"room_id":room_id,"room_specific":manifest_path==candidates[0] and not room_id.is_empty()}
 		_environments[key] = result
 		_environment_recency.erase(key)

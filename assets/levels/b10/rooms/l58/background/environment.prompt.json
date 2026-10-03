@@ -1,0 +1,33 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-04",
+  "room_id": "L58",
+  "biome_id": "B10",
+  "mode": "original independent composition followed by user-reference palette refinement",
+  "prompt": "Use case: style-transfer\nAsset type: L58 final native landscape background for a bright 2.5D game, native 2800 x 1800 requested.\nInput image 1 is the EXACT EDIT TARGET; image 2 is ONLY the user's palette and architectural-material reference.\nPrimary request: keep image 1's full original composition, high elevated three-quarter overhead camera, broad open continuous dry pearl-white central paved floor, gold double flat inlaid floor rings, exact floor edges, all architecture positions, bells, footprints, cloud-sea scenery, original framing and normalized object coordinates. Change ONLY the palette and painted material style to match image 2: replace all purple/lavender translucent crystal panels, large crystal fins and banners with clean rich royal BLUE / cyan-blue star-crystal hues; use pearl-white ivory masonry and fine warm gold edges. Blue is the key accent; purple appears only as a minute soft shadow color. Match bright hand-painted cartoon fantasy, sunny luminous exposure, 2.5D depth and warm delicate brush textures. The floor remains light pearl white cream, with small paving detail and double gold ring lines flush into the floor.\nInvariants: do not add or remove architecture, do not shrink the central open floor, do not move structures or floor boundaries, do not add central objects. Leave the complete normalized polygon [(0.129143,0.318),(0.324,0.192),(0.682286,0.192),(0.870857,0.332),(0.886571,0.644667),(0.666571,0.822),(0.330286,0.812667),(0.122857,0.668)] continuous clear traversable pearl paving. Do not introduce an armillary sphere, star core, dragon, portal, person, creature, chest, dynamic objective, UI, label, text, borders or watermark. One complete landscape image. Retain complete framing, do not crop, enlarge or rearrange. Native generation, no post-generation upscale.",
+  "reference_images": [
+    {
+      "role": "exact previously generated independent L58 composition edit target",
+      "path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/exec-7f3260df-d06a-486e-972a-2b3746c667ab.png"
+    },
+    {
+      "role": "user-supplied style/palette reference; reference pixels are not a production asset",
+      "path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181"
+    }
+  ],
+  "source_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/exec-c4fdaa71-cc4d-4f7f-9c64-d1e640d929ab.png",
+  "sha256": "e0b1cf6f1a3b17ec6857fbfdbba53cbd86210ca83859a86c163d5057e318ea29",
+  "requested_size": [
+    2800,
+    1800
+  ],
+  "source_size": [
+    1564,
+    1006
+  ],
+  "processing": "Byte-for-byte generated source PNG copy; no resize, upsampling or pixel editing.",
+  "license": "Project-generated original artwork; user-supplied reference rights remain with their owner."
+}

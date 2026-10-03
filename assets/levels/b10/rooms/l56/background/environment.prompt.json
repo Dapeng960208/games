@@ -1,0 +1,28 @@
+{
+  "tool": "built-in image_gen",
+  "room_id": "L56",
+  "biome_id": "B10",
+  "mode": "independent generation with user style reference",
+  "requested_dimensions": [
+    2800,
+    1800
+  ],
+  "actual_dimensions": [
+    1564,
+    1006
+  ],
+  "prompt": "Use case: stylized-concept.\nAsset type: L56 Star Chart Gallery complete standalone game room environment background; native landscape PNG. Requested native canvas 2800 x 1800 pixels, highest native resolution available. Do not digitally upscale or stretch anything.\nInput image 1: USER DESIGN REFERENCE ONLY for art direction, architecture, hand-painted edge treatment and colors, never an edit target. Do not reproduce its text, poster grid, characters, dragons or cosmic dark background. Generate one entirely new playable room.\nPrimary request: paint a sunlit pearl-white high-sky dragon court STAR CHART GALLERY. Match the supplied reference's pearl white and gold stone structures, saturated royal blue / cyan star-crystal accents, airy brilliant cloud sea, small greenery, clearly drawn hand-painted cartoon fantasy shapes. High camera three-quarter oblique overhead near-isometric 2.5D depth. Luminous sunny exposure with soft warm shadows. Lavender is at most a tiny secondary accent; blue white gold dominate.\nComposition: wide octagonal open terrace seen from high above, south bottom entrance and north top exit connected by a very broad uninterrupted central walkway. Its north exterior has shallow staggered ivory gallery balconies and open royal-blue scale roof canopies, gold star trim. Left and right OUTER EDGES have shallow slanted blue star-map panels in low ledges, small brass measuring ornaments, softly curving ivory parapets, a few small plants. Blue crystal spires are exterior only. Distant floating white-blue palace roofs among bright clouds beyond the island. Keep tall structures entirely outside the clear floor boundary; low parapets do not hide feet. Two very subtle FLAT star-chart mosaics are inlaid in left and right floor around normalized (0.30,0.40) and (0.70,0.40), flush walkable ground with quiet thin gold geometry and pale blue stone, no raised pedestal, object or hole. Open floor dominates the image. Small irregular cream paving stones, no large chess tiles.\nCRITICAL floor geometry normalized image coordinates: single flat clear dry pearly stone terrace follows polygon [(0.1983,0.1724),(0.7546,0.1724),(0.8709,0.3044),(0.8709,0.7004),(0.7546,0.8422),(0.2171,0.8422),(0.1323,0.6858),(0.1323,0.3484)]. Make its octagonal walkable floor boundary readable, bright clouds beyond. Interior stays continuous clear flat stone. Leave wide open south and north routes. No tall objects, architecture, furniture, pools, trees, columns or walls inside the polygon, including center and side map mosaics. Background is filled all the way to image edges, no graphic frame.\nConstraints: empty environment only, NO characters, people, dragon statues, dragons, creatures, enemies, heroes, portals, glowing portal ring, star cores, large central ornament, chests, rewards, UI, HUD, map symbols, text, numerals, letters, labels, caption, watermark. No starry black outer space, no poster, no diagrams, no flat aerial plan, no frontal/low camera. Independent room original. Preserve reference-style blue-white-gold hand-painted rich 2.5D fantasy architecture and bright clouds. One whole landscape PNG.",
+  "reference_path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+  "reference_role": "style and architecture; no poster text, characters or dark sky copied",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a10277-a0fe-7cc3-bcf3-b55817ed3627/exec-1bf36c04-d6db-427b-ab07-d6afab556e36.png",
+  "destination_path": "C:/Users/13326/.codex/worktrees/pr14-final-chapter/games/assets/levels/b10/rooms/l56/background/environment.png",
+  "sha256": "23059b77b096a54db4316c2377072acef80a124633852542db5b0320a3e25b58",
+  "source_pixel_edits": "none",
+  "license": {
+    "origin": "AI-generated original project artwork",
+    "generation_tool": "built-in image_gen",
+    "reference_role": "User-provided B10 design reference used for visual direction only",
+    "project_usage": "Generated for this project at the user's request",
+    "pixel_edits": "none; original generated PNG copied byte-for-byte"
+  }
+}

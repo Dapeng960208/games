@@ -1,0 +1,32 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: precise-object-edit\nAsset type: final independent L59 Star Crown Antechamber action-RPG room painting.\nInput images: Image 1 is the exact composition edit target. Image 2 is a STYLE, PALETTE, MATERIAL and fantasy sky-palace architecture reference ONLY; its writing, diagrams and character figures must never transfer into the output.\nPrimary request: Finish Image 1 in the visual design family of Image 2: pearl-white palace stone, warm gold trim, luminous sapphire and sky-blue star crystals, vast sunlit cloud sea, floating dragon-court architecture. Blue is the dominant crystal and roof accent; lilac is a small secondary accent only. Native high-resolution landscape painting requested at 2800 x 1800, no enlargement.\nMaintain Image 1 complete framing and camera: high three-quarter oblique overhead near-orthographic 2.5D, bright hand-painted cartoon fantasy with visible fine brush texture, sunny warm shadows. Keep the huge empty continuous octagonal ivory terrace, broad central north-south star-inlaid path, broad left and right aisles, all floor geometry, border curves, pavilion, stairways and props in EXACTLY their same normalized positions. Keep the open south central stair entry and unobstructed north central passage. Change the sealed dark blue north-central doorway into a bright open architectural arch with pale distant floor visible through it, no magical gate or light curtain. Add blue star-crystal facets only on existing OUTER decorative pillar tops without adding inward obstacles. Tint existing purple windows, outer domes and scale-balustrade glass toward sapphire/sky-blue. Preserve the crown pavilion gold silhouette. Preserve every floor edge and all broad playable space.\nPalette: pearl white, cream sunlit paving, rich warm brass gold, sapphire blue star crystals, fresh light blue sky, subtle lilac shadows, very small purple accents. Bright clear exposure, no dark cosmic background.\nConstraints: no people, monsters, dragons, creatures, functional magical doors or portals, star-core devices, glow circles, HUD, typography, writing, labels, title, numerals, panels or watermark. Do not copy the reference's giant dragon or decorative characters. No image borders. No rearrangement, no crop, no camera change, no floor distortion. The image must remain a single original game-room environmental painting.",
+  "initial_prompt": "Use case: stylized-concept\nAsset type: original independent L59 Star Crown Antechamber action-RPG room background, landscape game-map painting.\nPrimary request: Create one complete original room painting, requested native 2800 x 1800 pixels, not a contact sheet. Bright hand-painted cartoon fantasy, high camera three-quarter oblique overhead, near-orthographic 2.5D depth, cheerful final-chapter pearl-white sky palace.\nComposition: Whole room is visible with open pale blue sky and sunlit fluffy clouds beyond its edges. Broad octagonal ivory-stone combat terrace with horizontal northern and southern sides, continuous broad central south-to-north walkway and two broad side aisles; no narrow bridges and no gaps inside the playable floor. Floor silhouette measured in full image normalized coordinates is approximately [(0.179,0.194),(0.821,0.194),(0.877,0.359),(0.877,0.689),(0.751,0.854),(0.249,0.854),(0.126,0.670),(0.126,0.382)]. The north boundary and south boundary must be horizontal in the image, with chamfered corners. The combat floor is deliberately spacious and mostly empty, consistent single ground-plane perspective. South central entry is an unobstructed broad shallow stair at (0.50,0.769); north exit is open floor at (0.50,0.269), not a painted portal.\nScene: Pearl-white flagstones with pale warm gold star-line inlays and subtle lilac scale-shaped mosaic borders. Two side aisles are broad unobstructed floor, visible as matching star-inlaid paving on the left and right, connected at top and bottom. Outer edge low translucent star-purple scale balustrades and ivory-gold support pillars frame the terrace without blocking inward routes. A decorative miniature crown-shaped pavilion sits just beyond the north-right perimeter; elegant pearl-white high palace roofs and golden orbital trim beyond the north edge. Perimeter props have clearly grounded bases. Keep central and side floor readable with warm sunlight from upper left, delicate purple-blue shadows at edges, painterly stone material and detailed brass-gold edging.\nStyle: Bright hand-drawn storybook cartoon fantasy; appealing bold violet-brown contour accents, soft painted shading, tactile 2.5D architecture, consistent high three-quarter oblique view. Match cheerful fantasy game, not photorealistic or dark cosmic.\nConstraints: NO people, NO monsters, NO dragons, NO creatures, NO star-core devices, NO magical portals, NO gates, NO dynamic glowing circles, NO HUD, NO typography, NO labels, NO text, NO watermark. Dynamic gameplay is drawn separately. Leave six clear floor circles of radius about 5% image width at left/right x 0.286/0.714, y 0.312/0.651 and x 0.311/0.689,y0.434. Do not bake visible markers there. Entire playable terrace inside frame; no cropped edges; no ground-plane distortion. Native detailed painting for a 2K display, no raster enlargement.",
+  "reference_images": [
+    {
+      "role": "composition edit target",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10278-549a-7230-a64b-70ab41f5044d\\exec-ee1191ef-e0be-4d1d-802a-9e60eed846d1.png"
+    },
+    {
+      "role": "user style/palette/architecture reference; text and characters excluded",
+      "path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181"
+    }
+  ],
+  "source_size": [
+    1564,
+    1006
+  ],
+  "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10278-549a-7230-a64b-70ab41f5044d\\exec-9e86e290-41ca-4b82-887b-b848f2b43ad1.png",
+  "requested_size": [
+    2800,
+    1800
+  ],
+  "processing": "Byte-for-byte source copy; no resize, crop, recolor, or pixel editing after generation.",
+  "license": "Project-generated original artwork.",
+  "target_use": "Independent complete room painting plus six original native high-resolution detail repaints for 2K runtime.",
+  "sha256": "079b1a961b111f5b5ce8a669606c802f138d1484d13222d4e57d4da17b4f3aad"
+}

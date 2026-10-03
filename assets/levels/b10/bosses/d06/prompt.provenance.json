@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.bosses.d06.body",
+  "content_id": "B10-D06",
+  "name": "三曜誓龙",
+  "theme": "meteor",
+  "asset_path": "assets/levels/b10/bosses/d06/body.png",
+  "source": "OpenAI built-in image_gen",
+  "generation_mode": "built_in",
+  "generated_date": "2026-10-04",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "output_mode": "RGBA",
+  "transparent_background": true,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "visible_bbox_alpha_64": [
+    27,
+    44,
+    1236,
+    1232
+  ],
+  "visible_height_pixels": 1188,
+  "actual_foot_px": [
+    712,
+    1034
+  ],
+  "footpoint_method": "manual_visual_ground_footprint_center; average of four ground-contact projections, excluding tail and wings",
+  "ground_contact_points_px": [
+    [
+      338,
+      1008
+    ],
+    [
+      681,
+      897
+    ],
+    [
+      745,
+      1190
+    ],
+    [
+      1085,
+      1041
+    ]
+  ],
+  "inferred_occluded_contact_indices": [
+    1
+  ],
+  "sha256": "7eba5abc062be952689d4d5426441579d08231f4cedea484c3ff814c264c466c",
+  "source_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1027d-94a5-78a1-b838-65c51de7ce89\\exec-f66c768b-418c-4200-9bc2-853e60733123.png",
+  "reference": {
+    "role": "user-provided style reference only",
+    "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png"
+  },
+  "license": "Original artwork generated for this project with OpenAI image generation; service terms apply. The style reference was supplied by the user.",
+  "prompt": "Use case: stylized-concept\nAsset type: production game guardian dragon sprite B10-D06, Three-Sun Meteor Dragon / 三曜誓龙.\nInput image: supplied Starlit Dragon Court image is STYLE REFERENCE ONLY for luminous ivory-gold-sapphire celestial dragons, bright painterly cartoon fantasy and 2.5D volume. No text, landscapes or humanoids from the reference.\nPrimary request: exactly one complete powerful quadrupedal meteor dragon, the largest and most muscular of the six guardians. Distinctive stocky silhouette with very broad chest, short thick powerful neck, short wide reptilian muzzle, massive clawed feet, chunky ivory and pale-blue crystal armor scales, TWO heavy angular sapphire-blue wings with thick warm-gold structural ribs, and short heavy tail with a large blunt crystalline meteor-head club. On its upper back are THREE clearly separated radiant star crystals arranged in a triangle, mounted naturally in its armor scales, each blue-white with warm-gold framing. One head with three sturdy sapphire crown spikes; no extra heads. It looks like a bright celestial stone-and-crystal dragon beast, never a humanoid. Brave imposing guardian, no horror.\nCamera/pose: high three-quarter oblique camera looking down about 45 degrees, near-isometric 2.5D game view, dragon faces southeast / screen lower-right. Broad grounded battle-ready stance, all four legs and paws readable, wing backs and the three back crystals visible. Short heavy tail curls upper-left fully inside canvas.\nStyle/medium: bright hand-painted cartoon fantasy, warm sunshine, ivory scales with fresh sapphire crystal, refined warm gold details and tiny pale-gold highlights; polished painterly edges, strong simple readable shapes, soft 2.5D volume, match reference aesthetic.\nCanvas/framing: request native square PNG 1536 x 1536 or larger, minimum native 1254 x 1254. Complete creature occupies 80-85 percent canvas height, at least 1000 painted pixels tall. Maintain 7 percent actual transparent safe margin around all wings, horns, feet and tail. All dragon appendages and mounted crystals complete, never cropped. Only downscale for a 2560 x 1440 game viewport.\nBackground: genuinely transparent RGBA alpha, no floor, no cast-shadow plate, no pedestal, scene, clouds, backdrop or frame.\nConstraints: exactly one full dragon, one head, four legs, two wings and one tail; no humanoids, no clothes, no weapons; no text, label, logo, watermark, numbers, UI, sprite sheet or border; no photorealism or dark horror.",
+  "verification": {
+    "subject": "One complete non-humanoid dragon, all tail and wing tips retained",
+    "camera": "High three-quarter oblique down view, facing southeast",
+    "visual_review": true,
+    "native_no_upscale": true,
+    "usage": "218-world-unit body rendered by downscaling for 2K viewport"
+  },
+  "effective_body_height_px": 1190,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

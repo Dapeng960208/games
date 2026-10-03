@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "biome_id": "B10",
+  "room_id": "L57",
+  "texture": "asset://world/rooms/L57_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "actual_dimensions": [
+    1564,
+    1006
+  ],
+  "regions": {
+    "L57_environment": [
+      0,
+      0,
+      1564,
+      1006
+    ]
+  },
+  "walkable_normalized_rect": [
+    0.20140664961636828,
+    0.21073558648111332,
+    0.6106138107416881,
+    0.4502982107355864
+  ],
+  "placement_normalized_rect": [
+    0.06,
+    0.06024992899744386,
+    0.88,
+    0.8795001420051123
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.20140664961636828,
+      0.3508946322067594
+    ],
+    [
+      0.3101023017902813,
+      0.24453280318091453
+    ],
+    [
+      0.4156010230179028,
+      0.21073558648111332
+    ],
+    [
+      0.6074168797953964,
+      0.21073558648111332
+    ],
+    [
+      0.7289002557544757,
+      0.2524850894632207
+    ],
+    [
+      0.7864450127877238,
+      0.32007952286282304
+    ],
+    [
+      0.8120204603580563,
+      0.47514910536779326
+    ],
+    [
+      0.7736572890025576,
+      0.5705765407554672
+    ],
+    [
+      0.69693094629156,
+      0.6242544731610338
+    ],
+    [
+      0.49872122762148335,
+      0.6610337972166997
+    ],
+    [
+      0.30498721227621484,
+      0.6083499005964215
+    ],
+    [
+      0.20140664961636828,
+      0.5556660039761432
+    ]
+  ],
+  "blueprint_size": [
+    2800,
+    1800
+  ],
+  "world_scale": 0.58,
+  "mapping_contract": "Actual native source ratio controls uniform image/world scaling; the source dry-stone outline and every blueprint foot use one placement, then blueprint * 0.58. Source and destination axes are not stretched.",
+  "functional_anchors": {
+    "entry": [
+      704.231574,
+      893.896768
+    ],
+    "exit": [
+      2006.254359,
+      578.563125
+    ],
+    "gates": [
+      {
+        "id": "L57_gate_1",
+        "name": "星门 1",
+        "position": [
+          928.01674,
+          914.240874
+        ],
+        "destination": [
+          2067.286678,
+          619.251337
+        ],
+        "pair_id": "L57_pair_1"
+      },
+      {
+        "id": "L57_gate_2",
+        "name": "星门 2",
+        "position": [
+          2067.286678,
+          619.251337
+        ],
+        "destination": [
+          928.01674,
+          914.240874
+        ],
+        "pair_id": "L57_pair_1"
+      }
+    ],
+    "star_cores": [
+      {
+        "id": "L57_core_1",
+        "position": [
+          978.877005,
+          558.219019
+        ]
+      },
+      {
+        "id": "L57_core_2",
+        "position": [
+          1833.329458,
+          965.101139
+        ]
+      }
+    ],
+    "dragon_spawn": [
+      1470,
+      870
+    ],
+    "boss_spawn": [
+      1470,
+      870
+    ],
+    "encounter_anchors": [
+      [
+        1400,
+        900
+      ]
+    ],
+    "main_route": [
+      [
+        704.231574,
+        893.896768
+      ],
+      [
+        1400,
+        900
+      ],
+      [
+        2006.254359,
+        578.563125
+      ]
+    ],
+    "walk_routes": [
+      [
+        [
+          704.231574,
+          893.896768
+        ],
+        [
+          1400,
+          900
+        ],
+        [
+          2006.254359,
+          578.563125
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          978.877005,
+          558.219019
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          1833.329458,
+          965.101139
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          928.01674,
+          914.240874
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          2067.286678,
+          619.251337
+        ]
+      ]
+    ],
+    "scenery_anchors": [
+      {
+        "id": "L57_landmark",
+        "key": "survey_spire",
+        "position": [
+          650,
+          580
+        ],
+        "ground_footprint": [
+          80,
+          50
+        ],
+        "collision": false,
+        "render_mode": "independent_sprite",
+        "baked_into_background": false,
+        "painted_foot_source_pixels": [
+          413.343,
+          345.706
+        ]
+      }
+    ]
+  },
+  "camera": "高机位三分之四斜俯视、近等距2.5D",
+  "baked_scenery": true,
+  "dynamic_scenery_baked": false,
+  "boundary": {
+    "basis": "per-room original dry stone inner edge; source->placement->2800x1800 blueprint->0.58 world",
+    "source_inner_floor_pixels": [
+      [
+        315.0,
+        353.0
+      ],
+      [
+        485.0,
+        246.0
+      ],
+      [
+        650.0,
+        212.0
+      ],
+      [
+        950.0,
+        212.0
+      ],
+      [
+        1140.0,
+        254.0
+      ],
+      [
+        1230.0,
+        322.0
+      ],
+      [
+        1270.0,
+        478.0
+      ],
+      [
+        1210.0,
+        574.0
+      ],
+      [
+        1090.0,
+        628.0
+      ],
+      [
+        780.0,
+        665.0
+      ],
+      [
+        477.0,
+        612.0
+      ],
+      [
+        315.0,
+        559.0
+      ]
+    ],
+    "convex": true,
+    "authoring_minimum_route_clearance_world": 112.029,
+    "authoring_gate_clearance_world": {
+      "L57_gate_1": 133.397,
+      "L57_gate_2": 125.84
+    },
+    "validation_status": "pending_unified_runtime_acceptance"
+  },
+  "notes": [
+    "独立完整原画：珍珠白、金饰、蓝星晶、云海浮空测绘院；使用用户提供星辉龙庭参考。",
+    "静态周边栏杆、云海、鳞楼与建筑星盘已绘入背景；运行人物、龙、成对星门、星核和survey_spire不烘焙。",
+    "background/detail/通行边界/功能脚点/镜头共享同一blueprint映射；detail重绘不改变物理边界。",
+    "源图为原生1564×1006，六片高清细节另由ImageGen原生生成，不裁切源图放大作为detail交付。"
+  ],
+  "qa": {
+    "status": "pending_unified_acceptance",
+    "source_pixel_edits": "none",
+    "source_bytes_preserved": true,
+    "source_sha256": "ce3caa7071a1cb00d59fc91e024be2fa82ec9b155ca3565a4592d1aeb5f529e7",
+    "scale_or_upscale_applied": false,
+    "geometry_status": "authored mapping metadata; unified in-game acceptance pending",
+    "natural_playthrough_claimed": false
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "six overlapping square source regions independently repainted at native high resolution",
+    "texture_sampling": "original room fallback plus native detail; uniform scaling only",
+    "texture_memory": "shared fallback plus six detail textures; no streaming claim"
+  },
+  "geometry_authority": "res://data/levels/b10/room_geometry.json",
+  "geometry_status": "painted_native_mapping_prepared",
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite."
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.enemies.m07.body",
+  "enemy_id": "B10-M07",
+  "name": "轨星骑兵",
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "recorded_at_utc": "2026-10-03T16:20:39Z",
+  "prompt": "Use case: identity-preserve. Production transparent game cutout technical framing edit ONLY. Preserve exactly this original white gold blue dragonkin cavalry rider mounted on small drake, same anatomy, costume, colors, staff star rings and painterly rendering. Do not redesign. Reduce the size of the ENTIRE existing character+mount+weapon silhouette uniformly and move it inside a square transparent canvas so every tip has comfortable blank alpha margin. Requested square native canvas >=1024x1024. The complete silhouette including lance tip MUST fit in x=15%..85% and y=9%..84%; the mount's front-paw ground contact midpoint MUST be at (50%,84%). Put the highest tip at y=9%, lowest paws at y=84%. All empty margins are genuinely transparent alpha; absolutely no ground, floor, shadow, scenery, plate, text, labels or new objects. Do not crop or cut anything. Same high three-quarter overhead view facing southeast/lower-right, bright hand-painted 2.5D cartoon fantasy. Aim whole silhouette about 75% image height with large visible transparent border on all sides. Leave the existing pixel quality high and original, no blurry enlargement.",
+  "reference_images": [
+    {
+      "role": "style reference",
+      "name": "user final-chapter Starlit Dragon Court concept",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "origin": "User-supplied final-chapter concept artwork; reference style and dragon anatomy only",
+      "reference_rights": "User-provided reference; no ownership claim. Reference pixels are not copied into generated assets."
+    }
+  ],
+  "source_file_name": "exec-9674ff8f-dd46-4ec5-a0aa-bd6a7362f3d3.png",
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "604852ab0cfef9d2a9fb851d3137942a3e489c766de552d915f1028014761d1d",
+  "alpha_bbox": [
+    167,
+    170,
+    1104,
+    1113
+  ],
+  "alpha_bbox_format": "[left, top, right_exclusive, bottom_exclusive]",
+  "alpha_bbox_threshold": 16,
+  "alpha_bbox_raw": [
+    43,
+    53,
+    1223,
+    1181
+  ],
+  "alpha_range": [
+    0,
+    255
+  ],
+  "effective_silhouette_size": [
+    937,
+    943
+  ],
+  "actual_foot_px": [
+    691,
+    1047
+  ],
+  "foot_anchor_normalized": [
+    0.551037,
+    0.834928
+  ],
+  "foot_anchor_method": "Manual visual estimate of supporting feet/paws midpoint in native pixel coordinates; validate ground placement during unified runtime acceptance.",
+  "facing": "SE",
+  "camera": "High-angle three-quarter overhead near-isometric 2.5D",
+  "world_display_height": 112,
+  "processing": "Byte-for-byte copy of selected built-in output; native pixels and RGBA alpha preserved. No postprocessing, upsampling, mirroring, or rotation applied.",
+  "scale_policy": "Source 1254x1254 is larger than its intended world display at 2560x1440. Runtime downsamples uniformly and maps the recorded foot anchor; never enlarge this source.",
+  "license": "Project-generated original artwork for this game. User-supplied concept used as a style and design brief only; no third-party character pixels reused.",
+  "status": "Original body artwork delivered; unified game acceptance pending. Existing action presentation is reused, not an independent animation set.",
+  "generation_history": [
+    {
+      "prompt": "Use case: stylized-concept. Asset type: single production enemy character cutout for a 2.5D fantasy action game. Input image is STYLE REFERENCE ONLY: use the original reference's bright ivory and gold dragon architecture, royal-blue star crystals, elegant dragon horns and wing shapes; do not reproduce its text or layout. Primary subject B10-M07 Orbital Cavalier, one original dragonkin cavalry knight riding a compact sturdy young drake: readable integrated mounted silhouette, ivory platinum scales, cobalt-blue crystalline crest, gold-edged white armor, curved ivory horns, a folded pair of blue-and-ivory dragon wings, visible tail; the rider has a short upward-diagonal star lance and a small orbital gold ring on the lance. Calm ready stance, all body and lance fully visible. High-angle three-quarter overhead near-isometric camera viewing the tops of shoulders and head, facing southeast/lower-right. Bright hand-painted cartoon fantasy, thin deep-blue expressive outlines, tactile softly painted 2.5D volume, clean mature proportions, warm sunny highlights, polished game illustration; no photorealism. Output native 1024x1024 or larger square RGBA with GENUINELY transparent background. Subject center x=50%; mount's two front foot contact midpoint exactly x=50%, y=84%; full silhouette approximately x=12..88%, y=8..85%; body occupies at least 650 native pixels in height. Generous transparent outer margins. All horns, wings, tail, weapon and paws fit inside frame. Single complete figure only. No text, lettering, numerals, logo, watermark, labels, ground, floor, base, stand, contact shadow, backdrop, diagram, glow field or guide lines. Preserve clean alpha edges. This is an original project character, never reuse an existing copyrighted character.",
+      "sha256": "c0b82881ee8082ee5e98570f60f1d95715e503baf10345c51b3361aff2316eef",
+      "status": "Superseded initial framing; source retained outside repository by built-in tool"
+    },
+    {
+      "prompt": "Use case: identity-preserve. Production transparent game cutout technical framing edit ONLY. Preserve exactly this original white gold blue dragonkin cavalry rider mounted on small drake, same anatomy, costume, colors, staff star rings and painterly rendering. Do not redesign. Reduce the size of the ENTIRE existing character+mount+weapon silhouette uniformly and move it inside a square transparent canvas so every tip has comfortable blank alpha margin. Requested square native canvas >=1024x1024. The complete silhouette including lance tip MUST fit in x=15%..85% and y=9%..84%; the mount's front-paw ground contact midpoint MUST be at (50%,84%). Put the highest tip at y=9%, lowest paws at y=84%. All empty margins are genuinely transparent alpha; absolutely no ground, floor, shadow, scenery, plate, text, labels or new objects. Do not crop or cut anything. Same high three-quarter overhead view facing southeast/lower-right, bright hand-painted 2.5D cartoon fantasy. Aim whole silhouette about 75% image height with large visible transparent border on all sides. Leave the existing pixel quality high and original, no blurry enlargement.",
+      "sha256": "604852ab0cfef9d2a9fb851d3137942a3e489c766de552d915f1028014761d1d",
+      "status": "Selected final framing"
+    }
+  ],
+  "effective_body_height_px": 943,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

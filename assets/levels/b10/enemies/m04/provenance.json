@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "generated_at": "2026-10-04",
+  "enemy_id": "B10-M04",
+  "name": "鳞镜弩卫",
+  "resource_id": "level.b10.enemies.m04.body",
+  "asset_role": "single full-body combat-ready southeast-facing enemy illustration",
+  "prompt": "Use case: stylized-concept. Asset type: ONE original transparent full-body enemy sprite for a 2.5D fantasy action RPG, Star Dragon Court B10. Input reference is a STYLE REFERENCE ONLY. New independent dragonkin character, bright hand-painted cartoon fantasy with clear ink contours and painterly texture. White platinum dragon scales, ivory, deep cobalt, blue star crystal, warm gold. High mounted camera looking diagonally downward at 45 degrees, clearly show top of head, shoulders and feet; near-isometric three-quarter top-down sprite facing southeast/lower-right. Do not use low or eye-level heroic portrait camera. Character is entirely visible, small safe margins on all sides, in square native resolution at least 1024x1024; effective body height at least 600 pixels. One combat-ready standing pose with centered ground contact at normalized (0.50,0.84). Actual fully transparent RGBA background and no contact shadow or shadow disc. No floor, no pedestal, no scenery, no text, no UI, no watermark, no extra characters; no upscaling. Subject B10-M04 Scale-Mirror Arbalist: a lean upright adult dragon guard, horned dragon muzzle, compact folded white-and-blue wings and a long scaled tail. Light platinum armor over cobalt cloth, huge clear sapphire lens mounted on an ornate two-handed arbalest/crossbow held horizontally ready to shoot diagonally toward lower right. The crossbow's bow arms resemble paired curved white scales edged gold. Distinct ranged silhouette, narrow shoulders, low bent knees with both clawed feet grounded; no sword or staff.",
+  "reference_images": [
+    {
+      "role": "style reference only; no typography or poster composition reused",
+      "provided_by": "user",
+      "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181"
+    }
+  ],
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "color_mode": "RGBA",
+  "sha256": "fb227eab983ec098b7d36675da1939a32f10662587c678d64500b206938917a2",
+  "alpha": {
+    "true_transparent_pixels": 849425,
+    "bounds_xywh": [
+      46,
+      12,
+      1172,
+      1220
+    ],
+    "visible_body_height_px": 1220
+  },
+  "requested_footpoint": [
+    0.5,
+    0.84
+  ],
+  "observed_footpoint_estimate": [
+    0.5,
+    0.9
+  ],
+  "footpoint_note": "Estimated midpoint of visible ground-contact claws; use the actual anchor in runtime art metadata. The generator did not place it exactly at the requested point.",
+  "runtime_intent": {
+    "world_display_height": 112,
+    "target_window": [
+      2560,
+      1440
+    ],
+    "sampling": "Downscale native pixels only; no source upsampling",
+    "poses": 1
+  },
+  "processing": "Byte-for-byte copy from built-in image_gen output. Native source pixels and alpha unchanged; no resizing, crops, paint edits, or procedural placeholder substitution.",
+  "license": "Project-generated original artwork created for this game with the built-in image_gen tool. No third-party character asset reused; user-provided image served only as style reference.",
+  "source_output": "exec-3960f965-a499-437b-837b-9d72a7bbfa93.png",
+  "effective_body_height_px": 1220,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved.",
+  "actual_foot_px": [
+    627,
+    1129
+  ]
+}

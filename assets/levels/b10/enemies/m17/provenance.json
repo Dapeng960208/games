@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "identity": "B10-M17",
+  "name": "陨鳞镇庭兽",
+  "name_en": "Meteor Scale Guardian",
+  "art_id": "level.b10.enemies.m17.body",
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at_utc": "2026-10-03T16:06:31.3963933Z",
+  "prompt": "Use case: stylized-concept. Asset type: ONE final production original full-body transparent enemy sprite for a 2.5D fantasy action game. Style follows the viewed Star Dragon Court reference: bright hand-painted cartoon fantasy, adult fantasy proportions, elegant ivory-white draconic scales, sapphire and sky-blue star crystals, polished warm gold trim, royal-blue cloth, warm sunlight, painterly texture, readable dark-blue contours. High camera three-quarter oblique overhead, see upper head/shoulder/back surfaces, facing southeast toward screen lower right, 2.5D near-isometric. Native square canvas at least 1024×1024; whole painted character at least 800 native pixels tall, about 82 percent canvas height. Very important framing: generous clear transparent space at EVERY edge, no horn, wing, tail, weapon or magic ring touching an edge. Subject centered in x, top around y=.08, grounded claws contact midpoint around normalized (.50,.88), both feet visible. No scenery, no floor, no pedestal, no shadow disk, no ground tiles, no labels, no text, no watermark, no UI, no border, no cropped body, no additional characters. Entire background must be genuine alpha transparency; opaque painted subject. Intended rendering at 112 world pixels body-height in 2560×1440 viewport by downscaling only, no enlargement. Identity B10-M17 陨鳞镇庭兽 Meteor Scale Guardian. A hulking muscular quadrupedal dragon guardian with a LOW sturdy broad torso, heavy plated ivory-white scales, prominent large angular meteor-shaped sapphire armor plates on its back in gold ridged sockets, muscular thick forelegs and heavy clawed feet, broad reptilian head with two forward-angled ivory/gold horns, small folded blue membrane wings. Its signature is a powerful long tapering segmented armored tail tipped with one heavy blue meteor-shaped plate, curled beside body so fully inside canvas. Clear beast silhouette, large imposing but bright cartoon fantasy, neutral braced heavy-stomp ready stance, all four legs visible and anatomically coherent, no humanoid clothing, no weapon held in hand.",
+  "reference_images": [
+    {
+      "identity": "User-supplied Star Dragon Court design reference",
+      "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "role": "Agent viewed style reference; style vocabulary described in original-generation prompt; no source image pixels copied into delivery"
+    }
+  ],
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "alpha_bbox": [
+    31,
+    89,
+    1222,
+    1224
+  ],
+  "visible_alpha_bbox": [
+    34,
+    92,
+    1219,
+    1171
+  ],
+  "visible_alpha_threshold": 8,
+  "opaque_alpha_bbox": [
+    35,
+    94,
+    1217,
+    1170
+  ],
+  "effective_body_height_px": 1079,
+  "actual_foot_px": [
+    938,
+    1170
+  ],
+  "foot_point_normalized": [
+    0.748006,
+    0.933014
+  ],
+  "foot_measurement": "Visually measured on native image: horizontal center of the two foreground grounded claws, lowest visible ground-contact claw tip for y; tail and decorative cloth excluded.",
+  "facing": "SE",
+  "camera": "High three-quarter oblique overhead, near-isometric 2.5D",
+  "world_body_height": 112,
+  "display_intent": "2560x1440 world rendering; downscale from native source only",
+  "sha256": "2cfc69b4e304d864d172afe58bbc926557e602e2eded66835d2bc4843c1c6c62",
+  "processing": "Byte-for-byte copy from built-in generator output; original pixels and alpha preserved. No resampling, compositing, procedural replacement or upsampling.",
+  "license": "Project-generated original artwork for this game; no third-party character artwork reused. User-supplied reference is retained as style context with its source hash.",
+  "source_generation_filename": "exec-57129244-7fc8-4d1c-bb47-770df012b8a3.png",
+  "animation_scope": "Independent original identity body; existing shared runtime movement/action presentation reused. This file does not claim to contain separate continuous animation frames.",
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

@@ -1,0 +1,366 @@
+{
+  "schema_version": 1,
+  "biome_id": "B10",
+  "room_id": "L56",
+  "name": "星图长廊独立房间环境",
+  "texture": "asset://world/rooms/L56_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "regions": {
+    "L56_environment": [
+      0,
+      0,
+      1564,
+      1006
+    ]
+  },
+  "placement_normalized_rect": [
+    0.06,
+    0.06024992899744386,
+    0.88,
+    0.8795001420051123
+  ],
+  "walkable_normalized_rect": [
+    0.18797953964194372,
+    0.2584493041749503,
+    0.6355498721227621,
+    0.5298210735586482
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.3836317135549872,
+      0.2584493041749503
+    ],
+    [
+      0.6170076726342711,
+      0.2584493041749503
+    ],
+    [
+      0.7161125319693095,
+      0.32803180914512925
+    ],
+    [
+      0.8056265984654731,
+      0.44532803180914515
+    ],
+    [
+      0.8235294117647058,
+      0.547713717693837
+    ],
+    [
+      0.7448849104859335,
+      0.6570576540755467
+    ],
+    [
+      0.6202046035805626,
+      0.7554671968190855
+    ],
+    [
+      0.5626598465473146,
+      0.7882703777335984
+    ],
+    [
+      0.4360613810741688,
+      0.7882703777335984
+    ],
+    [
+      0.32161125319693096,
+      0.7216699801192843
+    ],
+    [
+      0.23337595907928388,
+      0.6063618290258449
+    ],
+    [
+      0.18797953964194372,
+      0.5198807157057654
+    ],
+    [
+      0.2129156010230179,
+      0.40457256461232605
+    ],
+    [
+      0.2921994884910486,
+      0.32007952286282304
+    ]
+  ],
+  "camera": "明亮手绘卡通奇幻；高机位三分之四斜俯视；近等距2.5D",
+  "baked_scenery": true,
+  "palette": {
+    "primary": "pearl ivory limestone, royal blue and cyan star crystal",
+    "accent": "fine warm gold, fresh green plants; purple only minimal"
+  },
+  "mapping_contract": "Actual native source ratio controls uniform image/world scaling; the source dry-stone outline and every blueprint foot use one placement, then blueprint * 0.58. Source and destination axes are not stretched.",
+  "boundary": {
+    "basis": "per-room original dry stone inner edge; source->placement->2800x1800 blueprint->0.58 world",
+    "source_inner_floor_pixels": [
+      [
+        600.0,
+        260.0
+      ],
+      [
+        965.0,
+        260.0
+      ],
+      [
+        1120.0,
+        330.0
+      ],
+      [
+        1260.0,
+        448.0
+      ],
+      [
+        1288.0,
+        551.0
+      ],
+      [
+        1165.0,
+        661.0
+      ],
+      [
+        970.0,
+        760.0
+      ],
+      [
+        880.0,
+        793.0
+      ],
+      [
+        682.0,
+        793.0
+      ],
+      [
+        503.0,
+        726.0
+      ],
+      [
+        365.0,
+        610.0
+      ],
+      [
+        294.0,
+        523.0
+      ],
+      [
+        333.0,
+        407.0
+      ],
+      [
+        457.0,
+        322.0
+      ]
+    ],
+    "convex": true,
+    "authoring_minimum_route_clearance_world": 106.196,
+    "authoring_gate_clearance_world": {
+      "L56_gate_1": 157.086,
+      "L56_gate_2": 124.883
+    },
+    "validation_status": "pending_unified_runtime_acceptance"
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "integer shared-image regions",
+    "texture_sampling": "full independent room texture; region_filter_clip_enabled=false",
+    "texture_memory": "shared source texture plus six native detail textures; no streaming claim"
+  },
+  "notes": [
+    "独立完整原画使用用户设计参考的珍珠白、金与蓝星晶云海龙庭风格。",
+    "背景原生1564×1006，不能将其称为原生2K；六张细节均独立生成原生1254×1254，未上采样。",
+    "动态玩家、怪物、龙、双门、星核、奖励与HUD不烘焙进环境；两侧星图为可走平面地砖嵌纹。",
+    "原始PNG完整复制，来源和提示词随资源保留；通行边缘按原画内缘交由统一接入同步。"
+  ],
+  "provenance": {
+    "mode": "built-in image_gen",
+    "kind": "independent_room_environment",
+    "prompt": "asset://world/rooms/L56_environment_v1.prompt.json",
+    "reference": "user-provided B10 visual design",
+    "source_png": "C:/Users/13326/.codex/generated_images/01a10277-a0fe-7cc3-bcf3-b55817ed3627/exec-1bf36c04-d6db-427b-ab07-d6afab556e36.png",
+    "license": {
+      "origin": "AI-generated original project artwork",
+      "generation_tool": "built-in image_gen",
+      "reference_role": "User-provided B10 design reference used for visual direction only",
+      "project_usage": "Generated for this project at the user's request",
+      "pixel_edits": "none; original generated PNG copied byte-for-byte"
+    }
+  },
+  "qa": {
+    "sha256": "23059b77b096a54db4316c2377072acef80a124633852542db5b0320a3e25b58",
+    "actual_dimensions": [
+      1564,
+      1006
+    ],
+    "source_pixel_edits": "none",
+    "status": "pending_unified_acceptance",
+    "geometry_status": "Source paving boundary manually measured; integration will validate synchronized blueprint mapping and route clearance",
+    "runtime_validation": "pending; no tests or GPU acceptance claimed by this asset generation task"
+  },
+  "geometry_authority": "res://data/levels/b10/room_geometry.json",
+  "geometry_status": "painted_native_mapping_prepared",
+  "functional_anchors": {
+    "entry": [
+      1400.0,
+      1300.778889
+    ],
+    "exit": [
+      1400.0,
+      588.735178
+    ],
+    "gates": [
+      {
+        "id": "L56_gate_1",
+        "name": "星门 1",
+        "position": [
+          948.360846,
+          1097.337828
+        ],
+        "destination": [
+          1924.877935,
+          710.799814
+        ],
+        "pair_id": "L56_pair_1"
+      },
+      {
+        "id": "L56_gate_2",
+        "name": "星门 2",
+        "position": [
+          1924.877935,
+          710.799814
+        ],
+        "destination": [
+          948.360846,
+          1097.337828
+        ],
+        "pair_id": "L56_pair_1"
+      }
+    ],
+    "star_cores": [
+      {
+        "id": "L56_core_1",
+        "position": [
+          866.984422,
+          751.488026
+        ]
+      },
+      {
+        "id": "L56_core_2",
+        "position": [
+          1904.533829,
+          751.488026
+        ]
+      }
+    ],
+    "dragon_spawn": [
+      1400,
+      850
+    ],
+    "boss_spawn": [
+      1400,
+      850
+    ],
+    "encounter_anchors": [
+      [
+        1400,
+        900
+      ]
+    ],
+    "main_route": [
+      [
+        1400.0,
+        1300.778889
+      ],
+      [
+        1400,
+        900
+      ],
+      [
+        1400.0,
+        588.735178
+      ]
+    ],
+    "walk_routes": [
+      [
+        [
+          1400.0,
+          1300.778889
+        ],
+        [
+          1400,
+          900
+        ],
+        [
+          1400.0,
+          588.735178
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          866.984422,
+          751.488026
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          1904.533829,
+          751.488026
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          948.360846,
+          1097.337828
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          1924.877935,
+          710.799814
+        ]
+      ]
+    ],
+    "scenery_anchors": [
+      {
+        "id": "L56_landmark",
+        "key": "chart_orrery",
+        "position": [
+          490.618461,
+          507.358754
+        ],
+        "ground_footprint": [
+          80,
+          50
+        ],
+        "collision": false,
+        "render_mode": "baked_environment",
+        "painted_foot_source_pixels": [
+          335,
+          310
+        ],
+        "baked_into_background": true
+      }
+    ]
+  },
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite."
+}

@@ -1,0 +1,423 @@
+{
+  "schema_version": 1,
+  "biome_id": "B10",
+  "room_id": "L60",
+  "texture": "asset://world/rooms/L60_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "source_sha256": "3330db01d8466ee060944bc7aec818f02761067facbbf4d28853e1649d10f249",
+  "regions": {
+    "L60_environment": [
+      0,
+      0,
+      1564,
+      1006
+    ]
+  },
+  "walkable_normalized_rect": [
+    0.24616368286445012,
+    0.27335984095427435,
+    0.5722506393861893,
+    0.41749502982107356
+  ],
+  "placement_normalized_rect": [
+    0.06,
+    0.06024992899744386,
+    0.88,
+    0.8795001420051123
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.24616368286445012,
+      0.5019880715705766
+    ],
+    [
+      0.28452685421994883,
+      0.38767395626242546
+    ],
+    [
+      0.3452685421994885,
+      0.2783300198807157
+    ],
+    [
+      0.46035805626598464,
+      0.27335984095427435
+    ],
+    [
+      0.69693094629156,
+      0.2783300198807157
+    ],
+    [
+      0.7608695652173914,
+      0.34791252485089463
+    ],
+    [
+      0.8184143222506394,
+      0.4671968190854871
+    ],
+    [
+      0.7864450127877238,
+      0.5914512922465208
+    ],
+    [
+      0.7033248081841432,
+      0.6610337972166997
+    ],
+    [
+      0.5402813299232737,
+      0.6908548707753479
+    ],
+    [
+      0.3836317135549872,
+      0.6610337972166997
+    ],
+    [
+      0.28452685421994883,
+      0.5864811133200796
+    ]
+  ],
+  "camera": "高机位三分之四斜俯视、近等距2.5D",
+  "baked_scenery": true,
+  "boundary": {
+    "basis": "per-room original dry stone inner edge; source->placement->2800x1800 blueprint->0.58 world",
+    "source_inner_floor_pixels": [
+      [
+        385.0,
+        505.0
+      ],
+      [
+        445.0,
+        390.0
+      ],
+      [
+        540.0,
+        280.0
+      ],
+      [
+        720.0,
+        275.0
+      ],
+      [
+        1090.0,
+        280.0
+      ],
+      [
+        1190.0,
+        350.0
+      ],
+      [
+        1280.0,
+        470.0
+      ],
+      [
+        1230.0,
+        595.0
+      ],
+      [
+        1100.0,
+        665.0
+      ],
+      [
+        845.0,
+        695.0
+      ],
+      [
+        600.0,
+        665.0
+      ],
+      [
+        445.0,
+        590.0
+      ]
+    ],
+    "convex": true,
+    "authoring_minimum_route_clearance_world": 115.12,
+    "authoring_gate_clearance_world": {
+      "L60_gate_1": 137.908,
+      "L60_gate_2": 120.244,
+      "L60_gate_3": 140.649,
+      "L60_gate_4": 115.12
+    },
+    "validation_status": "pending_unified_runtime_acceptance"
+  },
+  "notes": [
+    "三曜圣庭独立原画；珍珠白石、黄金细饰与蓝星晶的云海浮空龙族圣庭，紫色仅小量点缀。",
+    "中央宽主场、两侧星核位、西入东北出路线和四门落点共用源图到蓝图映射；源图实际干地内缘由统一接入修正。",
+    "龙、动态星门、星核、三曜碑、奖励、预警和交互由运行时独立绘制；背景只含完整地景、静态建筑与地砖。",
+    "PNG保留原生生成字节，不缩放或上采样；全幅母图1564×1006并非原生2K，高清细节由六张独立原生1254×1254图补足。"
+  ],
+  "qa": {
+    "source_pixel_edits": "none",
+    "geometry_status": "authored blueprint mapping; source-grounded polygon and anchor reconciliation provided to art_inventory; unified GPU and gameplay acceptance pending",
+    "source_inner_floor_pixels": [
+      [
+        385,
+        505
+      ],
+      [
+        445,
+        390
+      ],
+      [
+        540,
+        280
+      ],
+      [
+        720,
+        275
+      ],
+      [
+        1090,
+        280
+      ],
+      [
+        1190,
+        350
+      ],
+      [
+        1280,
+        470
+      ],
+      [
+        1230,
+        595
+      ],
+      [
+        1100,
+        665
+      ],
+      [
+        845,
+        695
+      ],
+      [
+        600,
+        665
+      ],
+      [
+        445,
+        590
+      ]
+    ]
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "square integer shared-image regions with native detail overlap",
+    "texture_sampling": "full independent room texture; region_filter_clip_enabled=false",
+    "texture_memory": "one full background with six native detail textures; no streaming claim"
+  },
+  "geometry_authority": "res://data/levels/b10/room_geometry.json",
+  "geometry_status": "painted_native_mapping_prepared",
+  "mapping_contract": "Actual native source ratio controls uniform image/world scaling; the source dry-stone outline and every blueprint foot use one placement, then blueprint * 0.58. Source and destination axes are not stretched.",
+  "functional_anchors": {
+    "entry": [
+      866.984422,
+      914.240874
+    ],
+    "exit": [
+      2006.254359,
+      710.799814
+    ],
+    "gates": [
+      {
+        "id": "L60_gate_1",
+        "name": "星门 1",
+        "position": [
+          1050.081376,
+          975.273192
+        ],
+        "destination": [
+          1050.081376,
+          649.767496
+        ],
+        "pair_id": "L60_pair_1"
+      },
+      {
+        "id": "L60_gate_2",
+        "name": "星门 2",
+        "position": [
+          1050.081376,
+          649.767496
+        ],
+        "destination": [
+          1050.081376,
+          975.273192
+        ],
+        "pair_id": "L60_pair_1"
+      },
+      {
+        "id": "L60_gate_3",
+        "name": "星门 3",
+        "position": [
+          1996.082306,
+          720.971867
+        ],
+        "destination": [
+          1904.533829,
+          1046.477563
+        ],
+        "pair_id": "L60_pair_2"
+      },
+      {
+        "id": "L60_gate_4",
+        "name": "星门 4",
+        "position": [
+          1904.533829,
+          1046.477563
+        ],
+        "destination": [
+          1996.082306,
+          720.971867
+        ],
+        "pair_id": "L60_pair_2"
+      }
+    ],
+    "star_cores": [
+      {
+        "id": "L60_core_1",
+        "position": [
+          1212.834225,
+          649.767496
+        ]
+      },
+      {
+        "id": "L60_core_2",
+        "position": [
+          2087.630784,
+          954.929086
+        ]
+      }
+    ],
+    "dragon_spawn": [
+      1458.997907,
+      900.0
+    ],
+    "boss_spawn": [
+      1458.997907,
+      900.0
+    ],
+    "encounter_anchors": [
+      [
+        1400.0,
+        900.0
+      ]
+    ],
+    "main_route": [
+      [
+        866.984422,
+        914.240874
+      ],
+      [
+        1400.0,
+        900.0
+      ],
+      [
+        2006.254359,
+        710.799814
+      ]
+    ],
+    "walk_routes": [
+      [
+        [
+          866.984422,
+          914.240874
+        ],
+        [
+          1400.0,
+          900.0
+        ],
+        [
+          2006.254359,
+          710.799814
+        ]
+      ],
+      [
+        [
+          1400.0,
+          900.0
+        ],
+        [
+          1212.834225,
+          649.767496
+        ]
+      ],
+      [
+        [
+          1400.0,
+          900.0
+        ],
+        [
+          2087.630784,
+          954.929086
+        ]
+      ],
+      [
+        [
+          1400.0,
+          900.0
+        ],
+        [
+          1050.081376,
+          975.273192
+        ]
+      ],
+      [
+        [
+          1400.0,
+          900.0
+        ],
+        [
+          1050.081376,
+          649.767496
+        ]
+      ],
+      [
+        [
+          1400.0,
+          900.0
+        ],
+        [
+          1996.082306,
+          720.971867
+        ]
+      ],
+      [
+        [
+          1400.0,
+          900.0
+        ],
+        [
+          1904.533829,
+          1046.477563
+        ]
+      ]
+    ],
+    "scenery_anchors": [
+      {
+        "id": "L60_landmark",
+        "key": "triune_obelisk",
+        "position": [
+          1650.232504,
+          1138.02604
+        ],
+        "ground_footprint": [
+          80,
+          50
+        ],
+        "collision": false,
+        "render_mode": "independent_sprite",
+        "baked_into_background": false,
+        "painted_foot_source_pixels": [
+          905.0,
+          620.0
+        ]
+      }
+    ]
+  },
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite."
+}

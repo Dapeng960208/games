@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.bosses.d01.body",
+  "content_id": "B10-D01",
+  "name": "晨辉翼龙",
+  "theme": "sun",
+  "asset_path": "assets/levels/b10/bosses/d01/body.png",
+  "source": "OpenAI built-in image_gen",
+  "generation_mode": "built_in",
+  "generated_date": "2026-10-04",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "output_mode": "RGBA",
+  "transparent_background": true,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "visible_bbox_alpha_64": [
+    17,
+    14,
+    1245,
+    1241
+  ],
+  "visible_height_pixels": 1227,
+  "actual_foot_px": [
+    766,
+    1105
+  ],
+  "footpoint_method": "manual_visual_ground_footprint_center; average of four ground-contact projections, excluding tail and wings",
+  "ground_contact_points_px": [
+    [
+      399,
+      978
+    ],
+    [
+      847,
+      1010
+    ],
+    [
+      682,
+      1216
+    ],
+    [
+      1137,
+      1214
+    ]
+  ],
+  "inferred_occluded_contact_indices": [
+    1
+  ],
+  "sha256": "c6876cedf7af51ce1d74e741bd47d8e5a763e7aef39ba31b0facd853c04eb4be",
+  "source_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1027d-94a5-78a1-b838-65c51de7ce89\\exec-51ed5b75-b55f-4211-91a9-45d24debb94c.png",
+  "reference": {
+    "role": "user-provided style reference only",
+    "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png"
+  },
+  "license": "Original artwork generated for this project with OpenAI image generation; service terms apply. The style reference was supplied by the user.",
+  "prompt": "Use case: stylized-concept\nAsset type: production game enemy sprite, one complete guardian dragon B10-D01, Suncrest Wing Dragon / 晨辉翼龙, not a concept sheet.\nInput image: the attached Starlit Dragon Court image is STYLE REFERENCE ONLY: borrow its luminous ivory scales, warm gold fittings, sapphire crystals, soft painterly cartoon fantasy and elegant celestial-dragon shapes. Do not reproduce text, scenery, buildings or any humanoid.\nPrimary request: one majestic quadrupedal sun dragon with a distinct large fan-shaped golden suncrest, thick ivory torso, four clawed feet, two broad sky-blue membrane wings with gold rims, long curling tail, sapphire horns and small bright solar gold accents. A real dragon with elongated reptilian head and neck, NOT a humanoid person. Friendly fantasy color clarity but formidable guardian presence.\nCamera: high camera three-quarter oblique down view, approximately 45 degrees down, 2.5D near-isometric game view; the dragon faces southeast / screen lower-right. See the top of its head, back, folded-open wings and all four feet. Solid readable standing battle-ready pose. The complete long tail curls back toward upper-left and remains fully visible.\nStyle/medium: bright hand-painted cartoon fantasy, polished painted edges and believable soft 2.5D volume, warm daylight, fresh clear colors, legible large shapes. Match the reference dragon aesthetic.\nCanvas/framing: request native 1536 x 1536 PNG (or larger native square if available), one dragon alone. Fill roughly 86 to 92 percent of the canvas with complete creature silhouette; the actual painted creature must span at least 1000 pixels tall with ample fine detail for downscaling in a 2560 x 1440 game. Leave 4 percent safe transparent margin around horns, wings, tail and feet. All anatomy and appendages inside the canvas.\nBackground: genuinely transparent RGBA alpha. No floor, no cast-shadow plate, no cloudy backdrop, no pedestal, no environment, no decorative border. Transparency must remain real outside the dragon.\nConstraints: exactly one full dragon; four legs, two wings, one head; no cropped parts; no text, logos, letters, numbers, labels, watermarks; no UI; no weapons held by hands; no photorealism; no dark horror; no spritesheet.",
+  "verification": {
+    "subject": "One complete non-humanoid dragon, all tail and wing tips retained",
+    "camera": "High three-quarter oblique down view, facing southeast",
+    "visual_review": true,
+    "native_no_upscale": true,
+    "usage": "218-world-unit body rendered by downscaling for 2K viewport"
+  },
+  "effective_body_height_px": 1228,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

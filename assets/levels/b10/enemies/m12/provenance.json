@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.enemies.m12.body",
+  "enemy_id": "B10-M12",
+  "name": "光尾回旋者",
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "recorded_at_utc": "2026-10-03T16:20:39Z",
+  "prompt": "Use case: stylized-concept. Asset type: SINGLE original production enemy full-body transparent character cutout. B10-M12 Lighttail Dancer / 光尾回旋者. Input image is STYLE REFERENCE ONLY for bright hand-painted ivory platinum, sapphire blue and warm gold star dragon family; ignore reference text/page layout. Design a slim agile adult BIPED DRAGONKIN acrobatic tail dancer with slender mature proportions, narrow ivory dragon snout, twin curved gold-tipped horns, swept cobalt crest, very light gold-edged white chest harness and cobalt ribbons, slender clawed digitigrade legs, small sleek folded blue-and-white dragon wings. Unique signature: very long flexible curling white-scaled tail forms one graceful S curve behind and to left, ending in three translucent cobalt-and-pale-blue crystalline feather fins and a gold star clamp. These are solid readable fins, no broad glow cloud. Both empty clawed hands lifted slightly in a poised balanced ready stance, no weapon, staff, ring machine or shield. One original character alone, facing southeast/lower-right. HIGH three-quarter overhead near-isometric game camera looking down45degrees, show tops of head, shoulder plates, wing tops and toes. Bright HAND-PAINTED CARTOON fantasy, refined dark-blue line accents, warm sunny highlights, tactile softly painted 2.5D volume, pale ivory scales, royal-blue crystals, gold accents, clean recognizable small-game silhouette, no photorealistic render. Native square >=1024px with GENUINELY transparent RGBA background. Entire silhouette including tail and wings only within central75% width and y10%..84%; at least650native pixels body height, with wide empty transparent border all around. Feet midpoint near x50%,y84%; lower16%canvas is pure transparent. All horns, wing tips, hands, tail fins and feet fully inside image. No cropping. No text, letters, numbers, watermark, labels, floor, ground, contact shadow, stand, background, scenery, base, extra figure or diffuse halo. Original project artwork.",
+  "reference_images": [
+    {
+      "role": "style reference",
+      "name": "user final-chapter Starlit Dragon Court concept",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "origin": "User-supplied final-chapter concept artwork; reference style and dragon anatomy only",
+      "reference_rights": "User-provided reference; no ownership claim. Reference pixels are not copied into generated assets."
+    }
+  ],
+  "source_file_name": "exec-92b7fcc3-7d78-495d-9927-f14aeee7360e.png",
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "c5a409dd1b513137ca69dcb948e1168102bdebc2aaf50ebd297164b90af74882",
+  "alpha_bbox": [
+    57,
+    64,
+    1172,
+    1188
+  ],
+  "alpha_bbox_format": "[left, top, right_exclusive, bottom_exclusive]",
+  "alpha_bbox_threshold": 16,
+  "alpha_bbox_raw": [
+    0,
+    8,
+    1220,
+    1212
+  ],
+  "alpha_range": [
+    0,
+    255
+  ],
+  "effective_silhouette_size": [
+    1115,
+    1124
+  ],
+  "actual_foot_px": [
+    822,
+    1056
+  ],
+  "foot_anchor_normalized": [
+    0.655502,
+    0.842105
+  ],
+  "foot_anchor_method": "Manual visual estimate of supporting feet/paws midpoint in native pixel coordinates; validate ground placement during unified runtime acceptance.",
+  "facing": "SE",
+  "camera": "High-angle three-quarter overhead near-isometric 2.5D",
+  "world_display_height": 112,
+  "processing": "Byte-for-byte copy of selected built-in output; native pixels and RGBA alpha preserved. No postprocessing, upsampling, mirroring, or rotation applied.",
+  "scale_policy": "Source 1254x1254 is larger than its intended world display at 2560x1440. Runtime downsamples uniformly and maps the recorded foot anchor; never enlarge this source.",
+  "license": "Project-generated original artwork for this game. User-supplied concept used as a style and design brief only; no third-party character pixels reused.",
+  "status": "Original body artwork delivered; unified game acceptance pending. Existing action presentation is reused, not an independent animation set.",
+  "effective_body_height_px": 1124,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

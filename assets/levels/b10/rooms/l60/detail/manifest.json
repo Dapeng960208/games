@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "biome_id": "B10",
+  "room_id": "L60",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L60_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "source_sha256": "3330db01d8466ee060944bc7aec818f02761067facbbf4d28853e1649d10f249",
+  "generation_tool": "built-in image_gen",
+  "representation": "Six native high-resolution detail repaints from exact 532-square source crops; source and native detail share aspect ratio and room coordinate mapping",
+  "feather_source_pixels": [
+    16,
+    58
+  ],
+  "grid": [
+    3,
+    2
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L60/top_left.png",
+      "source_rect": [
+        0,
+        0,
+        532,
+        532
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "4326dfe06637f1a4a5d48e2a9c56544b7bb6dfa931b56e4bb6ebd096ac157d51",
+      "decoded_rgba_sha256": "a5c5c5a1a45e24f13d800e137c964b8d754f17fd411f440b0a34c490cfcb15c4",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit\nAsset type: B10 L60 top_left native high-resolution room detail tile for a 2560 x 1440 game viewport.\nInput image 1 role: sole exact square crop from the final room background, an edit target. It is NOT a mood reference.\nPrimary request: faithfully repaint the complete supplied crop at native 2048 x 2048 pixels if available, at least 1254 x 1254. Retain every object and every crop edge at exactly the same normalized coordinates. Add only crisp fine hand-painted material detail INSIDE existing silhouettes: pearl-white marble paving, gold tracery, brilliant blue star crystals, blue-and-gold tower facades, carved stone, green plants, floating island rocks, soft sunny cloud layers and waterfall brush detail where already present. This is original bright hand-drawn cartoon fantasy, high three-quarter oblique overhead, near-isometric orthographic 2.5D. Match the input's sunny exposure, pearl/blue/gold colors and camera exactly.\nLOCK: the entire framing; normalized feature positions; floor paving lines, circles and boundaries; bridge, stairs, arches, railings and island silhouettes; sky and cloud forms; lighting direction and shadow shapes; every feature meeting all four crop edges. Add detail without moving ANY feature. No crop, zoom, expansion, rotation, horizontal flip, object resizing or geometry rearrangement. Do not invent towers, islands, stars, portals, cracks, floor markings or new architecture. No characters, dragons, monsters, HUD, labels, letters, numbers, logos or watermarks. Square image, no border. This must be a genuinely newly generated native detailed repaint, never an enlarged source crop. Preserve exact geometric alignment with the crop for seamless 3x2 map assembly.",
+      "requested_size": [
+        2048,
+        2048
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-ca8c-7ea1-a880-19e6265a9acb/exec-1ced8557-2500-4fed-a53b-a3e1186415d5.png",
+      "reference_crop_sha256": "927d478d8c113639b3668196db42d41772aa091c1f4ff8d91a7dbf0bb18694af",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop visually checked for bright pearl-white/gold/blue hand-painted style, preserved feature layout, paving continuity and absent runtime actors. Unified GPU/runtime acceptance pending."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L60/top_middle.png",
+      "source_rect": [
+        516,
+        0,
+        532,
+        532
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "4304b43c9ad73ba56b85fa507fbd1b5c1a3ddf642b7f72ea8884391f739fb180",
+      "decoded_rgba_sha256": "3c316fc12ac0abdffde538fc61541986e62d30ad73e6b2f0db84fc92facbfb0a",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit\nAsset type: B10 L60 top_middle native high-resolution room detail tile for a 2560 x 1440 game viewport.\nInput image 1 role: sole exact square crop from the final room background, an edit target. It is NOT a mood reference.\nPrimary request: faithfully repaint the complete supplied crop at native 2048 x 2048 pixels if available, at least 1254 x 1254. Retain every object and every crop edge at exactly the same normalized coordinates. Add only crisp fine hand-painted material detail INSIDE existing silhouettes: pearl-white marble paving, gold tracery, brilliant blue star crystals, blue-and-gold tower facades, carved stone, green plants, floating island rocks, soft sunny cloud layers and waterfall brush detail where already present. This is original bright hand-drawn cartoon fantasy, high three-quarter oblique overhead, near-isometric orthographic 2.5D. Match the input's sunny exposure, pearl/blue/gold colors and camera exactly.\nLOCK: the entire framing; normalized feature positions; floor paving lines, circles and boundaries; bridge, stairs, arches, railings and island silhouettes; sky and cloud forms; lighting direction and shadow shapes; every feature meeting all four crop edges. Add detail without moving ANY feature. No crop, zoom, expansion, rotation, horizontal flip, object resizing or geometry rearrangement. Do not invent towers, islands, stars, portals, cracks, floor markings or new architecture. No characters, dragons, monsters, HUD, labels, letters, numbers, logos or watermarks. Square image, no border. This must be a genuinely newly generated native detailed repaint, never an enlarged source crop. Preserve exact geometric alignment with the crop for seamless 3x2 map assembly.",
+      "requested_size": [
+        2048,
+        2048
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-ca8c-7ea1-a880-19e6265a9acb/exec-f237abba-f498-457c-ab76-f76e1e238ef7.png",
+      "reference_crop_sha256": "b53e9625259ae6e4fce4f600ecbf4c8a62ebad3fc0184863ecccd9e377a8174a",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop visually checked for bright pearl-white/gold/blue hand-painted style, preserved feature layout, paving continuity and absent runtime actors. Unified GPU/runtime acceptance pending."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L60/top_right.png",
+      "source_rect": [
+        1032,
+        0,
+        532,
+        532
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "ddf5a88a19ddb90d608ff8497e58207aa183f3f2e51909ddfaf6551813e2d943",
+      "decoded_rgba_sha256": "f1131fb4dd64a37867d4cfd156861a39dca2748dbf6618cafadb53c12d954655",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit\nAsset type: B10 L60 top_right native high-resolution room detail tile for a 2560 x 1440 game viewport.\nInput image 1 role: sole exact square crop from the final room background, an edit target. It is NOT a mood reference.\nPrimary request: faithfully repaint the complete supplied crop at native 2048 x 2048 pixels if available, at least 1254 x 1254. Retain every object and every crop edge at exactly the same normalized coordinates. Add only crisp fine hand-painted material detail INSIDE existing silhouettes: pearl-white marble paving, gold tracery, brilliant blue star crystals, blue-and-gold tower facades, carved stone, green plants, floating island rocks, soft sunny cloud layers and waterfall brush detail where already present. This is original bright hand-drawn cartoon fantasy, high three-quarter oblique overhead, near-isometric orthographic 2.5D. Match the input's sunny exposure, pearl/blue/gold colors and camera exactly.\nLOCK: the entire framing; normalized feature positions; floor paving lines, circles and boundaries; bridge, stairs, arches, railings and island silhouettes; sky and cloud forms; lighting direction and shadow shapes; every feature meeting all four crop edges. Add detail without moving ANY feature. No crop, zoom, expansion, rotation, horizontal flip, object resizing or geometry rearrangement. Do not invent towers, islands, stars, portals, cracks, floor markings or new architecture. No characters, dragons, monsters, HUD, labels, letters, numbers, logos or watermarks. Square image, no border. This must be a genuinely newly generated native detailed repaint, never an enlarged source crop. Preserve exact geometric alignment with the crop for seamless 3x2 map assembly.",
+      "requested_size": [
+        2048,
+        2048
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-ca8c-7ea1-a880-19e6265a9acb/exec-2a39119c-33d1-49b6-a457-756c5500f688.png",
+      "reference_crop_sha256": "5d2ded74626c759eca559f4a1daac24364d619438ca6b03a0803d25445c82bda",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop visually checked for bright pearl-white/gold/blue hand-painted style, preserved feature layout, paving continuity and absent runtime actors. Unified GPU/runtime acceptance pending."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L60/bottom_left.png",
+      "source_rect": [
+        0,
+        474,
+        532,
+        532
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "21b95151dd1470d9b8d26dd25d1283df43bb3549ea91669e0cbc9f618aeaafb2",
+      "decoded_rgba_sha256": "4576733d66056c2ddab79949f720b7fd24fcfac36337918efc450b7163bf9476",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit\nAsset type: B10 L60 bottom_left native high-resolution room detail tile for a 2560 x 1440 game viewport.\nInput image 1 role: sole exact square crop from the final room background, an edit target. It is NOT a mood reference.\nPrimary request: faithfully repaint the complete supplied crop at native 2048 x 2048 pixels if available, at least 1254 x 1254. Retain every object and every crop edge at exactly the same normalized coordinates. Add only crisp fine hand-painted material detail INSIDE existing silhouettes: pearl-white marble paving, gold tracery, brilliant blue star crystals, blue-and-gold tower facades, carved stone, green plants, floating island rocks, soft sunny cloud layers and waterfall brush detail where already present. This is original bright hand-drawn cartoon fantasy, high three-quarter oblique overhead, near-isometric orthographic 2.5D. Match the input's sunny exposure, pearl/blue/gold colors and camera exactly.\nLOCK: the entire framing; normalized feature positions; floor paving lines, circles and boundaries; bridge, stairs, arches, railings and island silhouettes; sky and cloud forms; lighting direction and shadow shapes; every feature meeting all four crop edges. Add detail without moving ANY feature. No crop, zoom, expansion, rotation, horizontal flip, object resizing or geometry rearrangement. Do not invent towers, islands, stars, portals, cracks, floor markings or new architecture. No characters, dragons, monsters, HUD, labels, letters, numbers, logos or watermarks. Square image, no border. This must be a genuinely newly generated native detailed repaint, never an enlarged source crop. Preserve exact geometric alignment with the crop for seamless 3x2 map assembly.",
+      "requested_size": [
+        2048,
+        2048
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-ca8c-7ea1-a880-19e6265a9acb/exec-dbea96a9-3651-4a51-8a99-e04445574d8b.png",
+      "reference_crop_sha256": "f650aa7a09515c982875cc38dd549a43f0cff8f160365ee2f93fb41cd1bb3b3f",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop visually checked for bright pearl-white/gold/blue hand-painted style, preserved feature layout, paving continuity and absent runtime actors. Unified GPU/runtime acceptance pending."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L60/bottom_middle.png",
+      "source_rect": [
+        516,
+        474,
+        532,
+        532
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "18a8a1b55cb75a4617a12fdd2f2e57f78f33ae7605af6516f0029f58f32cc549",
+      "decoded_rgba_sha256": "3c74a006cfe01ddef268d5a1bb838f46e9e2088eb012f67aab7a2d00a5df504b",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit\nAsset type: B10 L60 bottom_middle native high-resolution room detail tile for a 2560 x 1440 game viewport.\nInput image 1 role: sole exact square crop from the final room background, an edit target. It is NOT a mood reference.\nPrimary request: faithfully repaint the complete supplied crop at native 2048 x 2048 pixels if available, at least 1254 x 1254. Retain every object and every crop edge at exactly the same normalized coordinates. Add only crisp fine hand-painted material detail INSIDE existing silhouettes: pearl-white marble paving, gold tracery, brilliant blue star crystals, blue-and-gold tower facades, carved stone, green plants, floating island rocks, soft sunny cloud layers and waterfall brush detail where already present. This is original bright hand-drawn cartoon fantasy, high three-quarter oblique overhead, near-isometric orthographic 2.5D. Match the input's sunny exposure, pearl/blue/gold colors and camera exactly.\nLOCK: the entire framing; normalized feature positions; floor paving lines, circles and boundaries; bridge, stairs, arches, railings and island silhouettes; sky and cloud forms; lighting direction and shadow shapes; every feature meeting all four crop edges. Add detail without moving ANY feature. No crop, zoom, expansion, rotation, horizontal flip, object resizing or geometry rearrangement. Do not invent towers, islands, stars, portals, cracks, floor markings or new architecture. No characters, dragons, monsters, HUD, labels, letters, numbers, logos or watermarks. Square image, no border. This must be a genuinely newly generated native detailed repaint, never an enlarged source crop. Preserve exact geometric alignment with the crop for seamless 3x2 map assembly.",
+      "requested_size": [
+        2048,
+        2048
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-ca8c-7ea1-a880-19e6265a9acb/exec-dff180da-0787-42ee-9ee5-e95617c81d13.png",
+      "reference_crop_sha256": "662da24acc60412456a32319661f44b133b44836ce316df152b0226284274ada",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop visually checked for bright pearl-white/gold/blue hand-painted style, preserved feature layout, paving continuity and absent runtime actors. Unified GPU/runtime acceptance pending."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L60/bottom_right.png",
+      "source_rect": [
+        1032,
+        474,
+        532,
+        532
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "021fc45e21a425cf04825c629995a52b881454e40864c0b81c2240d7365fdb3f",
+      "decoded_rgba_sha256": "aa6b4d8177d3d5188725056c28b26bd33d81b2f64c188093b29d4245b611dc8d",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit\nAsset type: B10 L60 bottom_right native high-resolution room detail tile for a 2560 x 1440 game viewport.\nInput image 1 role: sole exact square crop from the final room background, an edit target. It is NOT a mood reference.\nPrimary request: faithfully repaint the complete supplied crop at native 2048 x 2048 pixels if available, at least 1254 x 1254. Retain every object and every crop edge at exactly the same normalized coordinates. Add only crisp fine hand-painted material detail INSIDE existing silhouettes: pearl-white marble paving, gold tracery, brilliant blue star crystals, blue-and-gold tower facades, carved stone, green plants, floating island rocks, soft sunny cloud layers and waterfall brush detail where already present. This is original bright hand-drawn cartoon fantasy, high three-quarter oblique overhead, near-isometric orthographic 2.5D. Match the input's sunny exposure, pearl/blue/gold colors and camera exactly.\nLOCK: the entire framing; normalized feature positions; floor paving lines, circles and boundaries; bridge, stairs, arches, railings and island silhouettes; sky and cloud forms; lighting direction and shadow shapes; every feature meeting all four crop edges. Add detail without moving ANY feature. No crop, zoom, expansion, rotation, horizontal flip, object resizing or geometry rearrangement. Do not invent towers, islands, stars, portals, cracks, floor markings or new architecture. No characters, dragons, monsters, HUD, labels, letters, numbers, logos or watermarks. Square image, no border. This must be a genuinely newly generated native detailed repaint, never an enlarged source crop. Preserve exact geometric alignment with the crop for seamless 3x2 map assembly.",
+      "requested_size": [
+        2048,
+        2048
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-ca8c-7ea1-a880-19e6265a9acb/exec-8a6f4d9b-e766-4ab9-b4e8-1261ba34310c.png",
+      "reference_crop_sha256": "ebf5fc32d7f9f1df40fa5a828133f536b04b1fac9f41e0fdfe4f492a72b59bdf",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop visually checked for bright pearl-white/gold/blue hand-painted style, preserved feature layout, paving continuity and absent runtime actors. Unified GPU/runtime acceptance pending."
+    }
+  ],
+  "approval_scope": "Candidate detail resources approved for integration rendering; final unified GPU/room/role acceptance pending.",
+  "acceptance": {
+    "status": "pending_unified_acceptance",
+    "target_resolution": [
+      2560,
+      1440
+    ],
+    "geometry_changed_by_tiles": false,
+    "scale_or_upscale_applied": false,
+    "natural_playthrough_claimed": false
+  }
+}

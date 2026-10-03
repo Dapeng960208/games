@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "biome_id": "B10",
+  "room_id": "L55",
+  "name": "日光星门独立完整原画",
+  "texture": "asset://world/rooms/L55_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "collision": "Authored dry-stone polygon and interactive actors use the same blueprint-to-world mapping; painting does not drive damage",
+  "palette": {
+    "primary": "sunlit pearl ivory",
+    "accent": "antique gold and cobalt/sapphire blue star crystal",
+    "ground": "warm cream stone with blue/gold star inlay"
+  },
+  "native_detail_enabled": true,
+  "provenance": {
+    "mode": "built-in image_gen",
+    "kind": "independent_room_environment",
+    "prompt": "asset://world/rooms/L55_environment_v1.prompt.json",
+    "source_png": "C:/Users/13326/.codex/generated_images/01a10272-0d54-7bd0-9eb3-34b06f2d0167/exec-265e8ec9-5ef6-4eaf-85ad-d2c293ca3b3e.png",
+    "style_reference": "res://assets/levels/b10/ui/design_reference.png",
+    "license": "Original generated game art; user-supplied style reference source preserved separately"
+  },
+  "qa": {
+    "status": "pending_unified_acceptance",
+    "sha256": "88d4a9111acd3e1f59a4b058e99c355e80d443791f0fa44bda0f64d835108189",
+    "background_role": "Original low frequency complete fallback; six native detail plates provide the 2K close view",
+    "actual_native_size": [
+      1564,
+      1006
+    ],
+    "native_2k_background": false
+  },
+  "placement_normalized_rect": [
+    0.06,
+    0.06024992899744386,
+    0.88,
+    0.8795001420051123
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.146,
+      0.404
+    ],
+    [
+      0.21,
+      0.25
+    ],
+    [
+      0.38,
+      0.194
+    ],
+    [
+      0.63,
+      0.205
+    ],
+    [
+      0.824,
+      0.293
+    ],
+    [
+      0.88,
+      0.405
+    ],
+    [
+      0.889,
+      0.591
+    ],
+    [
+      0.776,
+      0.754
+    ],
+    [
+      0.281,
+      0.769
+    ],
+    [
+      0.152,
+      0.625
+    ]
+  ],
+  "walkable_normalized_rect": [
+    0.146,
+    0.194,
+    0.743,
+    0.575
+  ],
+  "geometry_authority": "res://data/levels/b10/room_geometry.json",
+  "geometry_status": "painted_native_mapping_prepared",
+  "mapping_contract": "Actual native source ratio controls uniform image/world scaling; the source dry-stone outline and every blueprint foot use one placement, then blueprint * 0.58. Source and destination axes are not stretched.",
+  "functional_anchors": {
+    "entry": [
+      470.274355,
+      948.825854
+    ],
+    "exit": [
+      2400,
+      950
+    ],
+    "gates": [
+      {
+        "id": "L55_gate_1",
+        "name": "星门 1",
+        "position": [
+          760,
+          1000
+        ],
+        "destination": [
+          1400.0,
+          507.358754
+        ],
+        "pair_id": "L55_pair_1"
+      },
+      {
+        "id": "L55_gate_2",
+        "name": "星门 2",
+        "position": [
+          1400.0,
+          507.358754
+        ],
+        "destination": [
+          760,
+          1000
+        ],
+        "pair_id": "L55_pair_1"
+      }
+    ],
+    "star_cores": [
+      {
+        "id": "L55_core_1",
+        "position": [
+          1810,
+          470
+        ]
+      }
+    ],
+    "dragon_spawn": [
+      1520,
+      900
+    ],
+    "boss_spawn": [
+      1520,
+      900
+    ],
+    "encounter_anchors": [
+      [
+        1400,
+        900
+      ]
+    ],
+    "main_route": [
+      [
+        470.274355,
+        948.825854
+      ],
+      [
+        1400,
+        950
+      ],
+      [
+        2400,
+        950
+      ]
+    ],
+    "walk_routes": [
+      [
+        [
+          470.274355,
+          948.825854
+        ],
+        [
+          1400,
+          950
+        ],
+        [
+          2400,
+          950
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          1810,
+          470
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          760,
+          1000
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          1400.0,
+          507.358754
+        ]
+      ]
+    ],
+    "scenery_anchors": [
+      {
+        "id": "L55_landmark",
+        "key": "sun_gate_arch",
+        "position": [
+          1029.73727,
+          244.919786
+        ],
+        "ground_footprint": [
+          80,
+          50
+        ],
+        "collision": false,
+        "render_mode": "baked_environment",
+        "painted_foot_source_pixels": [
+          600,
+          181
+        ],
+        "baked_into_background": true
+      }
+    ]
+  },
+  "boundary": {
+    "basis": "per-room original dry stone inner edge; source->placement->2800x1800 blueprint->0.58 world",
+    "source_inner_floor_pixels": [
+      [
+        228.344,
+        406.424
+      ],
+      [
+        328.44,
+        251.5
+      ],
+      [
+        594.32,
+        195.164
+      ],
+      [
+        985.32,
+        206.23
+      ],
+      [
+        1288.736,
+        294.758
+      ],
+      [
+        1376.32,
+        407.43
+      ],
+      [
+        1390.396,
+        594.546
+      ],
+      [
+        1213.664,
+        758.524
+      ],
+      [
+        439.484,
+        773.614
+      ],
+      [
+        237.728,
+        628.75
+      ]
+    ],
+    "convex": true,
+    "authoring_minimum_route_clearance_world": 97.333,
+    "authoring_gate_clearance_world": {
+      "L55_gate_1": 231.485,
+      "L55_gate_2": 129.182
+    },
+    "validation_status": "pending_unified_runtime_acceptance"
+  },
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite."
+}

@@ -1,0 +1,15 @@
+{
+  "tool": "built-in image_gen",
+  "exact_prompt": "Use case: stylized-concept. Create an ORIGINAL production RPG chapter illustration banner, a wide horizontal landscape at NATIVE 3072x1024 pixels (3:1 aspect, prioritize native high pixel resolution, do not upscale). It is a Chapter 10 final-chapter image, but ABSOLUTELY NO text, letters, numbers, symbols resembling text, UI borders, logos or watermark in the artwork. Reference only for art direction: luminous cloud-sea floating fantasy court with white-gold architecture, cobalt/sapphire blue crystal pinnacles, delicate gold star rings, pearl-white dragons. Style is bright HAND-PAINTED CARTOON FANTASY with visible painterly material detail, elevated three-quarter oblique top-down camera, tasteful 2.5D depth. Composition: a graceful SINGLE-HEADED ancient starcrown dragon with white and gold scales, sapphire crystal horn ornaments and an elegant gold crown, perched at the right side of a spacious pearl-white and brass circular sanctuary platform. Only ONE dragon, ONE head, two wings, long neck and tail, full dignified dragon identity. Ivory-white floating islands and a sweeping gold-railed wide bridge lead across the left and center to an airy white-gold sapphire temple, over soft brilliant white cloud sea and clear blue sky. Warm clear daylight, sapphire magical glows and small tasteful leafy greenery, readable paths, no dark outer-space setting, no crowded combat enemies or heroes. Keep the illustration readable at banner size, with especially clear central path and the dragon/court silhouette. Artwork reaches edge-to-edge without internal frames. Native original pixel image; suitable for a UI card shown at <= 1968 x 656 physical pixels at 2560x1440, no distortion or enlargement.",
+  "original_source": "C:/Users/13326/.codex/generated_images/01a10271-de4c-7022-abb2-7d6e08ac90f8/exec-de66960e-0a7c-4aa1-aa52-b56cf8a4ea3f.png",
+  "native_dimensions": [
+    2172,
+    724
+  ],
+  "sha256": "9830494bf7c77cbea4225be9ce6099c62ec32699a9ab6086117f8bf55b398d4a",
+  "encoding": "original PNG bytes, not resized",
+  "alpha": false,
+  "license": "Original project artwork generated with the built-in image_gen tool. The user-supplied chapter reference informed art direction only; no reference pixels or text are included in this original source.",
+  "purpose": "Chapter 10 preview, route endpoint and committed completion page",
+  "display_contract": "Uniform downscale only. Physical display pixels are clamped to native size, including the 2560x1440 canvas stretch."
+}

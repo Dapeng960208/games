@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.enemies.m11.body",
+  "enemy_id": "B10-M11",
+  "name": "鳞台裂击兽",
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "recorded_at_utc": "2026-10-03T16:20:39Z",
+  "prompt": "Use case: stylized-concept. Asset type: ONE original transparent full-body monster game sprite. B10-M11 Scale Terrace Beast / 鳞台裂击兽. STYLE reference only: same bright ivory platinum scales, cobalt star crystals and champagne-gold dragon armor; no text, layout or exact creature copying. Design a heavy low-slung QUADRUPED DRAGON BEAST, all FOUR powerful clawed legs visible, broad white dragon head with blunt golden branching horns, massive overlapping ivory-gold scale plates on back, huge sapphire crystalline star shoulder crest, stout long ivory tail curling leftward behind body with a broad blue crystal club tip, compact blue winglets folded on upper back. No humanoid rider, no hands, no weapon, no clothing, no shield, no staff. A stern but colorful cartoon guardian creature with barrel chest and thick forelegs suitable for ground cracking impact. Static braced ready stance, facing southeast/lower-right, head tilted down toward viewer direction. VERY HIGH three-quarter overhead near-isometric camera 45 degrees downward, visibly show broad TOP surfaces of back and shoulders and all clawed feet. Bright HAND-PAINTED CARTOON fantasy, thin navy painted contours, soft painted 2.5D sculpted volume, luminous sapphire crystals, warm sunny highlights, clean playful proportions, powerful readable silhouette, no photorealistic 3D. Native square image >=1024x1024 true RGBA transparent. Full silhouette fits comfortably inside canvas with 10% empty alpha margin on all sides, front paws around y84%, ground-contact midpoint intended near x50%. Entire body at least650 native pixels tall; all four feet, horns, tail club and wing tips completely visible. No cropping. ONE complete original creature ONLY. No floor, ground, base, shadows, clouds, rocks, background scene, diffuse halo, text, numbers, label, border, watermark or logo.",
+  "reference_images": [
+    {
+      "role": "style reference",
+      "name": "user final-chapter Starlit Dragon Court concept",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "origin": "User-supplied final-chapter concept artwork; reference style and dragon anatomy only",
+      "reference_rights": "User-provided reference; no ownership claim. Reference pixels are not copied into generated assets."
+    }
+  ],
+  "source_file_name": "exec-6566ebba-752d-4e0c-a4a6-4416211c47f7.png",
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "62a6c751783561b0b9bcf4d3fd7028452b681c29509a96be127833f81d13cb30",
+  "alpha_bbox": [
+    24,
+    23,
+    1225,
+    1235
+  ],
+  "alpha_bbox_format": "[left, top, right_exclusive, bottom_exclusive]",
+  "alpha_bbox_threshold": 16,
+  "alpha_bbox_raw": [
+    17,
+    19,
+    1242,
+    1254
+  ],
+  "alpha_range": [
+    0,
+    255
+  ],
+  "effective_silhouette_size": [
+    1201,
+    1212
+  ],
+  "actual_foot_px": [
+    635,
+    969
+  ],
+  "foot_anchor_normalized": [
+    0.50638,
+    0.772727
+  ],
+  "foot_anchor_method": "Manual visual estimate of supporting paw footprint centroid in native pixel coordinates; validate ground placement during unified runtime acceptance.",
+  "facing": "SE",
+  "camera": "High-angle three-quarter overhead near-isometric 2.5D",
+  "world_display_height": 112,
+  "processing": "Byte-for-byte copy of selected built-in output; native pixels and RGBA alpha preserved. No postprocessing, upsampling, mirroring, or rotation applied.",
+  "scale_policy": "Source 1254x1254 is larger than its intended world display at 2560x1440. Runtime downsamples uniformly and maps the recorded foot anchor; never enlarge this source.",
+  "license": "Project-generated original artwork for this game. User-supplied concept used as a style and design brief only; no third-party character pixels reused.",
+  "status": "Original body artwork delivered; unified game acceptance pending. Existing action presentation is reused, not an independent animation set.",
+  "effective_body_height_px": 1212,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

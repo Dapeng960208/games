@@ -718,25 +718,46 @@
       "provenance": "assets/levels/b10/equipment/unique.prompt.json"
     },
     "B10-U03": {
-      "texture": "asset://level.b10.equipment.unique",
+      "texture": "asset://level.b10.equipment.u03",
       "region": [
-        1448,
         0,
-        724,
-        724
+        0,
+        1254,
+        1254
       ],
       "native_dimensions": [
-        2172,
-        724
+        1254,
+        1254
       ],
       "native_foreground_pixels": [
-        720,
-        724
+        1080,
+        1196
       ],
       "native_unmodified": true,
       "runtime_slot": "charm",
-      "sha256": "bf0c073c071e9bf6526c749b130450f2a11f2e25846ed827716a754115d4289b",
-      "provenance": "assets/levels/b10/equipment/unique.prompt.json"
+      "sha256": "5504557a7fbccd3dfd36402ffd28f8500705d838f58ccf1218309de88edc1d31",
+      "provenance": "assets/levels/b10/equipment/u03.prompt.provenance.json"
+    },
+    "B10-EASTER-RING": {
+      "texture": "asset://level.b10.equipment.easter_ring",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_foreground_pixels": [
+        969,
+        1199
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "sha256": "14e451700247bc5b1923edc03dac44dae8e8a32b8e184a99bb9f3657bd26738f",
+      "provenance": "assets/levels/b10/equipment/easter_ring.provenance.json"
     }
   },
   "representation": "native unmodified image-generation atlases; pixel regions only, no upscaling"

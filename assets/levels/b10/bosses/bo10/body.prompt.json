@@ -1,0 +1,9 @@
+{
+  "generator": "built-in image_gen",
+  "use_case": "precise-object-edit",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "prompt": "Use case: precise-object-edit.\nThis is our original SINGLE-HEADED Star-Crown Elder Dragon production sprite.\nKeep the same design, colours, rendering, ONE crowned dragon head, exactly FOUR clawed feet, TWO blue membrane wings and ONE curled tail, the high three-quarter top-down southeast camera and stance. Keep all anatomy and the elegant white-platinum/sapphire/gold fantasy identity unchanged.\nOnly fix safe framing: output a native square 1254 x 1254 or larger RGBA image. REDUCE THE WHOLE CREATURE UNIFORMLY ABOUT 10 PERCENT, center it, and add a visibly empty transparent safety margin at least 55 native pixels on EVERY side. All wing top hooks, outer wing contours, claw tips, horns and tail must be completely visible and fit INSIDE that margin. Restore the upper tip of the left wing if it was clipped by the previous canvas. Entire character silhouette should be approximately x=55..1199 y=55..1199, about 1140 pixels tall, with contact forefeet around normalized (0.50,0.84). Do not stretch or distort.\nKeep actual alpha transparency outside the dragon and inside holes between limbs/wings. No shadow, aura, glow off the silhouette, floor, backdrop, scene, panel, labels, letters, text, frame or watermark."
+}

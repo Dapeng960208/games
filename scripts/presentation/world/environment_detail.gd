@@ -78,11 +78,31 @@ func configure(room_id: String, destination: Rect2, allow_candidate: bool = fals
 		sprite.centered = false
 		sprite.position = destination.position+rect.position/source*destination.size
 		sprite.scale = rect.size/source*destination.size/texture.get_size()
+		var uv_origin := Vector2.ZERO
+		var uv_extent := Vector2.ONE
+		if room_id in ["L55", "L56", "L57", "L58", "L59", "L60", "BO10"]:
+			# Native square source crops and native square repaints reduce evenly.
+			# If an output has a small ratio discrepancy, crop its outer margin
+			# uniformly rather than stretching the painted objects.
+			var extent := rect.size/source*destination.size
+			var factor := maxf(extent.x/texture.get_width(), extent.y/texture.get_height())
+			var visible := extent/factor
+			var offset := (texture.get_size()-visible)*0.5
+			sprite.region_enabled = true
+			sprite.region_rect = Rect2(offset, visible)
+			sprite.region_filter_clip_enabled = true
+			sprite.scale = Vector2.ONE*factor
+			uv_origin = offset/texture.get_size()
+			uv_extent = visible/texture.get_size()
+			sprite.set_meta("native_uniform_scale", factor)
+			sprite.set_meta("native_source_size", texture.get_size())
 		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		sprite.texture_repeat = CanvasItem.TEXTURE_REPEAT_DISABLED
 		var sampling := ShaderMaterial.new()
 		sampling.shader = SAMPLING
 		sampling.set_shader_parameter("source_size",rect.size)
+		sampling.set_shader_parameter("uv_origin",uv_origin)
+		sampling.set_shader_parameter("uv_extent",uv_extent)
 		sampling.set_shader_parameter("feather_width",feather)
 		sampling.set_shader_parameter("feather_edges",Vector4(1 if rect.position.x>0 else 0,1 if rect.position.y>0 else 0,1 if rect.end.x<source.x else 0,1 if rect.end.y<source.y else 0))
 		sprite.material = sampling

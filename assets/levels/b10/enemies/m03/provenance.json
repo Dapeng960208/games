@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "generated_at": "2026-10-04",
+  "enemy_id": "B10-M03",
+  "name": "龙裔术士",
+  "resource_id": "level.b10.enemies.m03.body",
+  "asset_role": "single full-body combat-ready southeast-facing enemy illustration",
+  "prompt": "Use case: stylized-concept. Asset type: ONE original transparent full-body action RPG enemy sprite for Star Dragon Court B10. Input image 1 is ONLY a style reference: bright hand-painted cartoon fantasy, white platinum dragon scales, azure blue star crystals and warm gold details. Generate a new independent character, not copy the poster. Camera MUST be clearly high elevated three-quarter diagonal TOP-DOWN like an isometric action RPG ground unit, looking down at head shoulders and feet, character facing southeast/lower right, 2.5D painterly texture with clean readable contour, cheerful daylight. Composition: one complete character in native square 1024x1024 or greater resolution, including all horns, wings, tail, limbs and equipment with comfortable clear margins; centered full body at least 600 pixels high; contact footpoint at normalized (0.50,0.84). True transparent RGBA, no ground/shadow disc, no platform, no scenery, no text, no UI, no watermark, no other characters. No upscaling. Subject B10-M03 Draconic Sorcerer: slender mature upright white scaled dragonkin spellcaster with an actual dragon muzzle, unusually long swept horns decorated with blue stars, two folded small dragon wings, clear long scaled tail. Wear a flowing cobalt and ivory robe trimmed in warm gold over light platinum scales. One claw raises a bright blue faceted magical star, the other grips a tall slim gold star staff; both feet grounded in a calm poised spell-ready stance. Clear mage silhouette with long horns and star wand, not a knight, no sword or shield. Glow localized to star only.",
+  "reference_images": [
+    {
+      "role": "style reference only; no typography or poster composition reused",
+      "provided_by": "user",
+      "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181"
+    }
+  ],
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "color_mode": "RGBA",
+  "sha256": "4a2fc619032386f019d51eaeacb5e1f648beee66c68c200ae4f347d44beb4685",
+  "alpha": {
+    "true_transparent_pixels": 910115,
+    "bounds_xywh": [
+      72,
+      9,
+      1115,
+      1204
+    ],
+    "visible_body_height_px": 1204
+  },
+  "requested_footpoint": [
+    0.5,
+    0.84
+  ],
+  "observed_footpoint_estimate": [
+    0.58,
+    0.9
+  ],
+  "footpoint_note": "Estimated midpoint of visible ground-contact claws; use the actual anchor in runtime art metadata. The generator did not place it exactly at the requested point.",
+  "runtime_intent": {
+    "world_display_height": 112,
+    "target_window": [
+      2560,
+      1440
+    ],
+    "sampling": "Downscale native pixels only; no source upsampling",
+    "poses": 1
+  },
+  "processing": "Byte-for-byte copy from built-in image_gen output. Native source pixels and alpha unchanged; no resizing, crops, paint edits, or procedural placeholder substitution.",
+  "license": "Project-generated original artwork created for this game with the built-in image_gen tool. No third-party character asset reused; user-provided image served only as style reference.",
+  "source_output": "exec-6452a2ce-0ca8-4a56-9a8e-492149362406.png",
+  "effective_body_height_px": 1204,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved.",
+  "actual_foot_px": [
+    727,
+    1129
+  ]
+}

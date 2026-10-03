@@ -1,0 +1,51 @@
+{
+  "generator": "built-in image_gen",
+  "tool": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-04",
+  "asset_id": "level.b10.equipment.u03",
+  "content_identity": "B10-U03",
+  "name": "归庭星盘",
+  "name_en": "Homecoming Star Disc",
+  "runtime_slot": "charm",
+  "image_file": "u03.png",
+  "prompt": "Use case: stylized-concept.\nAsset type: ONE independent final game equipment inventory illustration for B10-U03, “Homecoming Star Disc / 归庭星盘”, native square 1254 x 1254 pixels or larger, clean transparent RGBA.\nInputs: Image 1 is the old equipment atlas; ONLY its RIGHTMOST astrolabe pendant is an identity/shape reference. Image 2 is the user-supplied Star Dragon Court concept, a WHITE-PLATINUM, SAPPHIRE BLUE and WARM GOLD style/palette reference. Create a new independent complete necklace illustration, no atlas.\nSubject: one adult-wearable necklace with a COMPLETE CLOSED CHAIN LOOP and one luxurious celestial ASTROLABE STAR DISC PENDANT. The entire chain including its top/back clasp must be visible and uncut. Oval loop of beautifully joined fine warm-gold and white-platinum metal links above the pendant, wide enough to fit around an adult neck. At the lower center hangs one circular white-platinum star compass disc, sapphire-blue faceted center, warm gold compass-star hands and slender tilted astrolabe orbit bands with little star filigree. A few restrained small sapphire or pearl charms may hang from the pendant as on the reference; complete tips. Make it unmistakably a wearable necklace and charm, with clear chain/connector/pendant construction.\nPreserve the reference's elegant star-astrolabe identity while replacing lavender with bright sapphire-blue crystal, white-platinum and warm-gold accents. No text or lettering on the compass.\nView: elevated high three-quarter oblique 2.5D game inventory-art perspective, showing pendant depth, top surfaces, chain links and tilted orbit bands. The loop and pendant arranged naturally together as one whole necklace.\nStyle: bright polished HAND-PAINTED CARTOON FANTASY, tangible painted 2.5D material detail, fine clean blue-violet outline and bright edge highlights, royal sapphire facets, warm sunshine metal highlights, adult equipment proportions. No photorealism, no darkness.\nComposition: ONLY ONE entire complete necklace, centered on a square. Chain top is safely INSIDE the canvas, not exiting any edge: at least 90 native pixels of empty transparent margin ABOVE the chain, and at least 70 pixels on left/right/bottom. The complete illustrated necklace including chain loop, clasp, pendant, orbit bands and dangling charm tips occupies at most 85% canvas height. REDUCE THE NECKLACE SIZE IF NEEDED to keep the full loop and every tip inside the safe margins. Do not crop the chain, do not terminate chain links at an image edge, do not show only a pendant on cut chain fragments.\nBackdrop: ACTUAL transparent RGBA alpha outside jewelry and through the chain loop. No floor, ground shadow, background, pedestal, frame, watermark, numbers, words, label, UI panel or checkerboard painted into pixels. Highlights only ON jewelry; no haze or surrounding glow.",
+  "exact_prompt": "Use case: stylized-concept.\nAsset type: ONE independent final game equipment inventory illustration for B10-U03, “Homecoming Star Disc / 归庭星盘”, native square 1254 x 1254 pixels or larger, clean transparent RGBA.\nInputs: Image 1 is the old equipment atlas; ONLY its RIGHTMOST astrolabe pendant is an identity/shape reference. Image 2 is the user-supplied Star Dragon Court concept, a WHITE-PLATINUM, SAPPHIRE BLUE and WARM GOLD style/palette reference. Create a new independent complete necklace illustration, no atlas.\nSubject: one adult-wearable necklace with a COMPLETE CLOSED CHAIN LOOP and one luxurious celestial ASTROLABE STAR DISC PENDANT. The entire chain including its top/back clasp must be visible and uncut. Oval loop of beautifully joined fine warm-gold and white-platinum metal links above the pendant, wide enough to fit around an adult neck. At the lower center hangs one circular white-platinum star compass disc, sapphire-blue faceted center, warm gold compass-star hands and slender tilted astrolabe orbit bands with little star filigree. A few restrained small sapphire or pearl charms may hang from the pendant as on the reference; complete tips. Make it unmistakably a wearable necklace and charm, with clear chain/connector/pendant construction.\nPreserve the reference's elegant star-astrolabe identity while replacing lavender with bright sapphire-blue crystal, white-platinum and warm-gold accents. No text or lettering on the compass.\nView: elevated high three-quarter oblique 2.5D game inventory-art perspective, showing pendant depth, top surfaces, chain links and tilted orbit bands. The loop and pendant arranged naturally together as one whole necklace.\nStyle: bright polished HAND-PAINTED CARTOON FANTASY, tangible painted 2.5D material detail, fine clean blue-violet outline and bright edge highlights, royal sapphire facets, warm sunshine metal highlights, adult equipment proportions. No photorealism, no darkness.\nComposition: ONLY ONE entire complete necklace, centered on a square. Chain top is safely INSIDE the canvas, not exiting any edge: at least 90 native pixels of empty transparent margin ABOVE the chain, and at least 70 pixels on left/right/bottom. The complete illustrated necklace including chain loop, clasp, pendant, orbit bands and dangling charm tips occupies at most 85% canvas height. REDUCE THE NECKLACE SIZE IF NEEDED to keep the full loop and every tip inside the safe margins. Do not crop the chain, do not terminate chain links at an image edge, do not show only a pendant on cut chain fragments.\nBackdrop: ACTUAL transparent RGBA alpha outside jewelry and through the chain loop. No floor, ground shadow, background, pedestal, frame, watermark, numbers, words, label, UI panel or checkerboard painted into pixels. Highlights only ON jewelry; no haze or surrounding glow.",
+  "reference_images": [
+    {
+      "role": "Former rightmost B10-U03 astrolabe pendant, design-identity reference only",
+      "origin": "assets/levels/b10/equipment/unique.png",
+      "sha256": "bf0c073c071e9bf6526c749b130450f2a11f2e25846ed827716a754115d4289b"
+    },
+    {
+      "role": "User-supplied Star Dragon Court concept, white-platinum / sapphire-blue / warm-gold style and palette reference",
+      "origin": "User attachment: codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181"
+    }
+  ],
+  "sha256": "5504557a7fbccd3dfd36402ffd28f8500705d838f58ccf1218309de88edc1d31",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "opaque_bbox": [
+    87,
+    14,
+    1167,
+    1210
+  ],
+  "transparent_pixels": 1217661,
+  "opaque_pixels": 283584,
+  "opaque_edge_pixels": 0,
+  "native_unmodified": true,
+  "alpha": true,
+  "alpha_description": "Native RGBA; transparent outside the jewelry and through the complete closed chain loop. No opaque pixel on any source canvas edge.",
+  "visual_validation": "The entire closed necklace chain loop, top clasp, connector, astrolabe disc pendant, orbit bands and lower charms are visible. The uppermost opaque shape is 14 pixels below the source edge. No chain or pendant tip exits the canvas.",
+  "processing": "The generated native 1254×1254 PNG is stored in this workspace via an NTFS hard link to the original generated source because the disk lacked space for another copy. Original bytes and alpha are unchanged. No upsampling, raster stretching, cropping, alpha replacement or compositing.",
+  "license": "Original artwork generated for this project with built-in ImageGen. Existing project equipment used as design-identity reference and user-supplied chapter concept as visual guidance; no reference pixels composited."
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "identity": "B10-M16",
+  "name": "天穹调律者",
+  "name_en": "Sky Harmonist",
+  "art_id": "level.b10.enemies.m16.body",
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at_utc": "2026-10-03T16:05:42.5288847Z",
+  "prompt": "Use case: stylized-concept. Asset type: ONE final production original full-body transparent enemy sprite for a 2.5D fantasy action game. Style follows the viewed Star Dragon Court reference: bright hand-painted cartoon fantasy, adult fantasy proportions, elegant ivory-white draconic scales, sapphire and sky-blue star crystals, polished warm gold trim, royal-blue cloth, warm sunlight, painterly texture, readable dark-blue contours. High camera three-quarter oblique overhead, see upper head/shoulder/back surfaces, facing southeast toward screen lower right, 2.5D near-isometric. Native square canvas at least 1024×1024; whole painted character at least 800 native pixels tall, about 82 percent canvas height. Very important framing: generous clear transparent space at EVERY edge, no horn, wing, tail, weapon or magic ring touching an edge. Subject centered in x, top around y=.08, grounded claws contact midpoint around normalized (.50,.88), both feet visible. No scenery, no floor, no pedestal, no shadow disk, no ground tiles, no labels, no text, no watermark, no UI, no border, no cropped body, no additional characters. Entire background must be genuine alpha transparency; opaque painted subject. Intended rendering at 112 world pixels body-height in 2560×1440 viewport by downscaling only, no enlargement. Identity B10-M16 天穹调律者 Sky Harmonist. A graceful adult upright dragonkin celestial conductor, long slim dragon muzzle, crescent-curved ivory horns, ivory scales, small swept blue membrane wings, curved tapering dragon tail. Royal-blue and ivory robe with gold star-lined hems. Signature: a tall gold tuning staff with exactly three parallel slender sapphire luminous strings stretched between its forked upper prongs like a compact three-string celestial harp; strings are visibly separate, staff held beside the body in one claw. Another claw conducts quietly outward, a few tiny compact star notes beside it but no giant effect. Elegant support-caster silhouette, calm focused expression, standing grounded, no crown resembling the guard.",
+  "reference_images": [
+    {
+      "identity": "User-supplied Star Dragon Court design reference",
+      "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "role": "Agent viewed style reference; style vocabulary described in original-generation prompt; no source image pixels copied into delivery"
+    }
+  ],
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "alpha_bbox": [
+    23,
+    18,
+    1145,
+    1254
+  ],
+  "visible_alpha_bbox": [
+    128,
+    20,
+    1141,
+    1191
+  ],
+  "visible_alpha_threshold": 8,
+  "opaque_alpha_bbox": [
+    129,
+    23,
+    1138,
+    1189
+  ],
+  "effective_body_height_px": 1170,
+  "actual_foot_px": [
+    735,
+    1189
+  ],
+  "foot_point_normalized": [
+    0.586124,
+    0.948166
+  ],
+  "foot_measurement": "Visually measured on native image: horizontal center of the two foreground grounded claws, lowest visible ground-contact claw tip for y; tail and decorative cloth excluded.",
+  "facing": "SE",
+  "camera": "High three-quarter oblique overhead, near-isometric 2.5D",
+  "world_body_height": 112,
+  "display_intent": "2560x1440 world rendering; downscale from native source only",
+  "sha256": "b7efbeb053e9e902944aa24aafeae5a7bf172e8a7290a70109538367443870df",
+  "processing": "Byte-for-byte copy from built-in generator output; original pixels and alpha preserved. No resampling, compositing, procedural replacement or upsampling.",
+  "license": "Project-generated original artwork for this game; no third-party character artwork reused. User-supplied reference is retained as style context with its source hash.",
+  "source_generation_filename": "exec-5eba324a-5266-4cfe-ae2f-f1d362b9975a.png",
+  "animation_scope": "Independent original identity body; existing shared runtime movement/action presentation reused. This file does not claim to contain separate continuous animation frames.",
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

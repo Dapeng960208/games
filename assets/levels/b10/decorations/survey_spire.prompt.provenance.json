@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.decorations.survey_spire",
+  "name": "测绘尖塔",
+  "asset_path": "assets/levels/b10/decorations/survey_spire.png",
+  "source": "OpenAI built-in image_gen",
+  "generation_mode": "built_in",
+  "generated_date": "2026-10-04",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "output_mode": "RGBA",
+  "transparent_background": true,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "visible_bbox_alpha_64": [
+    330,
+    23,
+    920,
+    1220
+  ],
+  "visible_height_pixels": 1197,
+  "actualgroundfoot_px": [
+    625,
+    1204
+  ],
+  "actual_foot_px": [
+    625,
+    1204
+  ],
+  "footpoint_method": "manual_visual_center_of_front_ground_contact_edge_of_physical_base; excludes transparent padding",
+  "ground_footprint_center_px_estimate": [
+    627,
+    1115
+  ],
+  "intended_world_height": 140,
+  "display_policy": "downscale_only",
+  "sha256": "2434a6aa5c04a1fbe972143690f73db6686b50396e2e5e9838b36d4716703bc0",
+  "source_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1027d-94a5-78a1-b838-65c51de7ce89\\exec-7ebefd9f-444c-4ed7-b614-0649f4a39d2b.png",
+  "reference": {
+    "role": "user-provided style reference only",
+    "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png"
+  },
+  "license": "Original artwork generated for this project with OpenAI image generation; service terms apply. The style reference was supplied by the user.",
+  "prompt": "Use case: stylized-concept\nAsset type: one isolated production game scene-object sprite, Survey Spire / 测绘尖塔 for L57 Starlit Dragon Court.\nInput image: user-supplied Starlit Dragon Court design is STYLE REFERENCE ONLY for bright hand-painted fantasy, ivory-white stone, restrained warm gold, blue sapphire crystals and high-camera 2.5D volume. No reference lettering, characters, dragons, islands, buildings or scenery.\nPrimary request: exactly one small elegant blue-crystal surveying spire approximately twice an adult person's height, a compact celestial surveying instrument rather than a large tower or castle. The object has a low ivory-white and pale-gold octagonal stone foundation, one slender sapphire crystal upright supported by three slim gold ribs, a tiny brass-and-gold star-chart instrument ring mounted near the crystal's middle, and a neat pointed blue crystal tip. Clear functional readable silhouette. The base is part of the physical object, very low to the ground, not a display pedestal. No extra surrounding props.\nCamera/pose: high camera three-quarter oblique down view around 45 degrees, near-isometric 2.5D, front faces southeast / screen lower-right. The entire base and its front ground-contact edge must be clearly visible, with top planes of the base and crystal facets visible. One coherent object grounded on its own small foundation.\nStyle/medium: bright hand-painted cartoon fantasy with warm daylight and fresh colors, refined brush texture, crisp painterly outlines, soft believable 2.5D depth; ivory white stone, warm gold ribs and luminous sapphire blue crystal. Match user reference.\nCanvas/framing: request native 1536 x 1536 square PNG or higher, minimum native 1254 x 1254; the complete object fills 80-85 percent of canvas height, actual painted object at least 1000 pixels tall, with 7 percent transparent safe margin on every side. Include the full tip, ring and ground foundation without cropping. Intended world height 140, only downscaled for a 2560 x 1440 game viewport.\nBackground: genuine transparent RGBA alpha, empty outside the single object. No ground plane, no floor tile, no cast-shadow plate, no clouds, island, castle, scene, surrounding terrain, backdrop, frame or border.\nConstraints: exactly one surveying spire; no characters, creatures, text, letters, digits, runes, labels, logos, watermark or UI; no floating disconnected components, no large building, no dark realism or horror.",
+  "verification": {
+    "visual_review": true,
+    "complete_ground_base": true,
+    "no_floor_shadow_plate": true,
+    "crystal_count": null,
+    "native_no_upscale": true
+  },
+  "effective_body_height_px": 1198,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

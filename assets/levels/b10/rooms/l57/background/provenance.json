@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "room_id": "L57",
+  "generation_tool": "built-in image_gen",
+  "source_generated_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10277-da64-7bc2-b2ad-c57e140336f2\\exec-5dfe3e9b-e99a-4717-89b0-b3cf71c850e8.png",
+  "source_sha256": "ce3caa7071a1cb00d59fc91e024be2fa82ec9b155ca3565a4592d1aeb5f529e7",
+  "actual_dimensions": [
+    1564,
+    1006
+  ],
+  "source_png_preserved": true,
+  "postprocessing": "none; byte-preserving copies",
+  "prompt": "asset://world/rooms/L57_environment_v1.prompt.json",
+  "license": "AI-generated project artwork created at the user's request; no third-party game asset imported.",
+  "reference_role": "user-provided Star Dragon Court design sheet used for style, architecture and material identity; no reference text or living dragons baked into room",
+  "detail_source_png_preserved": true,
+  "detail_manifest": "asset://world/rooms_2k/L57/manifest.json",
+  "qa_status": "pending_unified_acceptance"
+}

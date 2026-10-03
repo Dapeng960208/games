@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "room_id": "L55",
+  "approved": true,
+  "approval_scope": "Original art permitted to load for unified acceptance; no runtime acceptance assertion",
+  "acceptance_claimed": false,
+  "source_texture": "asset://world/rooms/L55_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "source_sha256": "88d4a9111acd3e1f59a4b058e99c355e80d443791f0fa44bda0f64d835108189",
+  "generation_tool": "built-in image_gen",
+  "representation": "Six independently generated native square detail repaints over exact overlapping original source crops; each uniformly reduced, never stretched or enlarged",
+  "feather_source_pixels": [
+    12,
+    34
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L55/top_left.png",
+      "source_rect": [
+        0,
+        0,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "sha256": "b982ef1fe4d2920f62b07a29c1f7eb15bd3d1c8b285dd873c78012fa21afb96b",
+      "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
+      "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/top_left.json",
+      "world_pixels_per_native_pixel": 0.5062340385215114,
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L55/top_middle.png",
+      "source_rect": [
+        513,
+        0,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "sha256": "0c50ee2a0fe7219dd8c2d34005b20a425f48edf5b3118e5ba31cbb7266a46abd",
+      "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
+      "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/top_middle.json",
+      "world_pixels_per_native_pixel": 0.5062340385215114,
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L55/top_right.png",
+      "source_rect": [
+        1026,
+        0,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "sha256": "956d47e0257b2a3a10207bf1367f998d6a887d036e86fa90e2c23c52da32ab2b",
+      "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
+      "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/top_right.json",
+      "world_pixels_per_native_pixel": 0.5062340385215114,
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L55/bottom_left.png",
+      "source_rect": [
+        0,
+        468,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "sha256": "2cd381d93c281f1be64ea802a7de8aa2e38d4e8e79803766fd59143103515de0",
+      "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
+      "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/bottom_left.json",
+      "world_pixels_per_native_pixel": 0.5062340385215114,
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L55/bottom_middle.png",
+      "source_rect": [
+        513,
+        468,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "sha256": "fbaee8c04f373c5f2da370b6e2aff7bcf880e057dcf34f2084da3042d2712c2e",
+      "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
+      "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/bottom_middle.json",
+      "world_pixels_per_native_pixel": 0.5062340385215114,
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L55/bottom_right.png",
+      "source_rect": [
+        1026,
+        468,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "sha256": "fbd3ca4028b148fe6b0cf94dd8aca7d8e408d526cdc10c1c9d10a76bbfa2ab91",
+      "encoding": "Native original PNG bytes from built-in imagegen, copied without resizing",
+      "provenance": "res://assets/levels/b10/rooms/l55/detail/provenance/bottom_right.json",
+      "world_pixels_per_native_pixel": 0.5062340385215114,
+      "predicted_screen_pixels_per_native_pixel_at_2560x1440": 0.8605978654865694
+    }
+  ],
+  "qa": {
+    "status": "pending_unified_acceptance",
+    "visual_source_review": "Each native detail inspected against its exact reference crop; geometry and full GPU camera coverage still pending unified acceptance",
+    "framebuffer_target": [
+      2560,
+      1440
+    ],
+    "logical_viewport_reference": [
+      1280,
+      720
+    ],
+    "world_camera_zoom_reference": 0.85,
+    "canvas_scale_reference": 2,
+    "maximum_predicted_screen_pixels_per_native_pixel": 0.8605978654865694,
+    "source_files_unmodified": true,
+    "background_native_2k": false
+  }
+}

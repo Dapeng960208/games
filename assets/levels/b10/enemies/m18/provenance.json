@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "identity": "B10-M18",
+  "name": "终庭誓龙使",
+  "name_en": "Final Court Oathkeeper",
+  "art_id": "level.b10.enemies.m18.body",
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at_utc": "2026-10-03T16:09:47.5187729Z",
+  "prompt": "Use case: precise-object-edit. Asset type: production transparent game enemy sprite B10-M18 Final Court Oathkeeper. Edit the supplied target only to fix canvas framing. Preserve EXACTLY the same single ivory-white and gold long-neck dragonkin envoy identity, face, sapphire blue wings, curled tail, armor, sun crown, the three visible blue star seals, and the standing southeast pose, bright hand-painted cartoon fantasy style and high camera 2.5D perspective. The crown currently touches the top edge. Recompose the entire character slightly smaller and lower to show ALL sun crown points with at least 65 pixels of fully transparent clear space above the highest tip and at least 45 pixels fully transparent space at left/right/bottom on a native 1254×1254 or larger square canvas. It should remain over 1000 painted native pixels tall, centered horizontally. Keep every horn, crown spike, wing, tail and claw fully in frame. Only framing changes; do not redesign anatomy or add extra characters. Actual alpha transparent background preserved, no text, no pedestal, no shadow disk, no scenery. Do not upscale the source, generate this framing natively.",
+  "reference_images": [
+    {
+      "identity": "User-supplied Star Dragon Court design reference",
+      "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "role": "Agent viewed style reference; style vocabulary described in original-generation prompt; no source image pixels copied into delivery"
+    },
+    {
+      "identity": "Own original B10-M18 generation",
+      "sha256": "6e1b26dff4cdeb97f8ff2d53c71de8771410cd206a0ca6b0fec97c3e97dc58b6",
+      "role": "Actual edit target provided to built-in image_gen for framing correction"
+    }
+  ],
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "alpha_bbox": [
+    2,
+    21,
+    1214,
+    1223
+  ],
+  "visible_alpha_bbox": [
+    194,
+    59,
+    1052,
+    1221
+  ],
+  "visible_alpha_threshold": 8,
+  "opaque_alpha_bbox": [
+    195,
+    64,
+    1051,
+    1220
+  ],
+  "effective_body_height_px": 1161,
+  "actual_foot_px": [
+    710,
+    1220
+  ],
+  "foot_point_normalized": [
+    0.566188,
+    0.972887
+  ],
+  "foot_measurement": "Visually measured on native image: horizontal center of the two foreground grounded claws, lowest visible ground-contact claw tip for y; tail and decorative cloth excluded.",
+  "facing": "SE",
+  "camera": "High three-quarter oblique overhead, near-isometric 2.5D",
+  "world_body_height": 112,
+  "display_intent": "2560x1440 world rendering; downscale from native source only",
+  "sha256": "3740f2317c79b0aaad60e316bcf0dac4ca8afbedf7c2cf4c3c3e7980eaf7c2bd",
+  "processing": "Byte-for-byte copy from built-in generator output; original pixels and alpha preserved. No resampling, compositing, procedural replacement or upsampling.",
+  "license": "Project-generated original artwork for this game; no third-party character artwork reused. User-supplied reference is retained as style context with its source hash.",
+  "source_generation_filename": "exec-9d6978ea-88fa-4611-a4ea-04285d5c08af.png",
+  "animation_scope": "Independent original identity body; existing shared runtime movement/action presentation reused. This file does not claim to contain separate continuous animation frames.",
+  "generation_history": [
+    {
+      "prompt": "Use case: stylized-concept. Asset type: ONE final production original full-body transparent enemy sprite for a 2.5D fantasy action game. Style follows the viewed Star Dragon Court reference: bright hand-painted cartoon fantasy, adult fantasy proportions, elegant ivory-white draconic scales, sapphire and sky-blue star crystals, polished warm gold trim, royal-blue cloth, warm sunlight, painterly texture, readable dark-blue contours. High camera three-quarter oblique overhead, see upper head/shoulder/back surfaces, facing southeast toward screen lower right, 2.5D near-isometric. Native square canvas at least 1024×1024; whole painted character at least 800 native pixels tall, about 82 percent canvas height. Very important framing: generous clear transparent space at EVERY edge, no horn, wing, tail, weapon or magic ring touching an edge. Subject centered in x, top around y=.08, grounded claws contact midpoint around normalized (.50,.88), both feet visible. No scenery, no floor, no pedestal, no shadow disk, no ground tiles, no labels, no text, no watermark, no UI, no border, no cropped body, no additional characters. Entire background must be genuine alpha transparency; opaque painted subject. Intended rendering at 112 world pixels body-height in 2560×1440 viewport by downscaling only, no enlargement. Identity B10-M18 终庭誓龙使 Final Court Oathkeeper. A regal slender adult upright dragonkin sacred envoy, unusually long elegant scaled neck, distinct round radiant golden sun crown behind the horns, gold ivory antler-like dragon horns, long dragon snout, narrow blue membrane wings and a thin sweeping white dragon tail. Ivory-gold ceremonial breastplate over cobalt cloth. Signature: exactly THREE small clearly separated sapphire star seals in tiny circular gold frames float in a compact triangular arrangement just beside the raised left claw, like oath symbols; use simple blue star shapes without lettering. The other claw is held over a crystal set at chest. Grounded balanced two-foot stance, serene stern focus, more sacred-dragon anatomy than a human wizard, fully visible wing and tail.",
+      "sha256": "6e1b26dff4cdeb97f8ff2d53c71de8771410cd206a0ca6b0fec97c3e97dc58b6",
+      "source_generation_filename": "exec-e6e1d08d-c64c-4bca-b990-f02c36b3eb2d.png",
+      "reason_for_revision": "The original crown tip touched the top edge; a native built-in edit reframed the same character with all crown tips visible."
+    }
+  ],
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

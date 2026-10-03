@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "biome_id": "B10",
+  "room_id": "BO10",
+  "texture": "asset://world/rooms/BO10_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "source_sha256": "d85fbd601829fb9cfc81e8a0609962434de85980eb0b67aaed06fcf6e2cf0930",
+  "regions": {
+    "BO10_environment": [
+      0,
+      0,
+      1564,
+      1006
+    ]
+  },
+  "walkable_normalized_rect": [
+    0.155,
+    0.185,
+    0.7,
+    0.645
+  ],
+  "placement_normalized_rect": [
+    0.06,
+    0.06024992899744386,
+    0.88,
+    0.8795001420051123
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.21,
+      0.31
+    ],
+    [
+      0.346,
+      0.185
+    ],
+    [
+      0.657,
+      0.185
+    ],
+    [
+      0.812,
+      0.31
+    ],
+    [
+      0.855,
+      0.535
+    ],
+    [
+      0.745,
+      0.75
+    ],
+    [
+      0.59,
+      0.83
+    ],
+    [
+      0.41,
+      0.83
+    ],
+    [
+      0.265,
+      0.75
+    ],
+    [
+      0.155,
+      0.54
+    ]
+  ],
+  "camera": "高机位三分之四斜俯视、近等距2.5D",
+  "baked_scenery": true,
+  "boundary": {
+    "basis": "per-room original dry stone inner edge; source->placement->2800x1800 blueprint->0.58 world",
+    "source_inner_floor_pixels": [
+      [
+        328.44,
+        311.86
+      ],
+      [
+        541.144,
+        186.11
+      ],
+      [
+        1027.548,
+        186.11
+      ],
+      [
+        1269.968,
+        311.86
+      ],
+      [
+        1337.22,
+        538.21
+      ],
+      [
+        1165.18,
+        754.5
+      ],
+      [
+        922.76,
+        834.98
+      ],
+      [
+        641.24,
+        834.98
+      ],
+      [
+        414.46,
+        754.5
+      ],
+      [
+        242.42,
+        543.24
+      ]
+    ],
+    "convex": true,
+    "authoring_minimum_route_clearance_world": 118.717,
+    "authoring_gate_clearance_world": {
+      "BO10_gate_1": 149.962,
+      "BO10_gate_2": 143.015,
+      "BO10_gate_3": 137.449,
+      "BO10_gate_4": 154.818
+    },
+    "validation_status": "pending_unified_runtime_acceptance"
+  },
+  "notes": [
+    "九曜龙座独立原画；珍珠白石、黄金细饰与蓝星晶的云海浮空圣庭。",
+    "开放中央场、左右星核位、南侧入口、北侧出口和门落点都使用房间蓝图的同一映射；原画不驱动玩法物理。",
+    "龙、动态门、星核、奖励、预警与交互功能由运行时独立绘制；环境只包含远景、石面与静态外缘建筑。",
+    "PNG为原生生成字节，不改变像素、不缩放、不上采样；母图非原生2K，全图高清呈现由六张独立原生detail覆盖。"
+  ],
+  "qa": {
+    "source_pixel_edits": "none",
+    "geometry_status": "authored blueprint mapping; unified GPU and gameplay acceptance pending",
+    "acceptance_claimed": false
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "six square exact source reference crops with overlap",
+    "texture_sampling": "full independent room texture; region_filter_clip_enabled=false",
+    "texture_memory": "one shared background texture plus six native detail textures; no streaming claim"
+  },
+  "geometry_authority": "res://data/levels/b10/room_geometry.json",
+  "geometry_status": "painted_native_mapping_prepared",
+  "mapping_contract": "Actual native source ratio controls uniform image/world scaling; the source dry-stone outline and every blueprint foot use one placement, then blueprint * 0.58. Source and destination axes are not stretched.",
+  "functional_anchors": {
+    "entry": [
+      1400.0,
+      1341.467101
+    ],
+    "exit": [
+      1400.0,
+      487.014648
+    ],
+    "gates": [
+      {
+        "id": "BO10_gate_1",
+        "name": "星门 1",
+        "position": [
+          826.29621,
+          1199.058359
+        ],
+        "destination": [
+          710,
+          660
+        ],
+        "pair_id": "BO10_pair_1"
+      },
+      {
+        "id": "BO10_gate_2",
+        "name": "星门 2",
+        "position": [
+          710,
+          660
+        ],
+        "destination": [
+          826.29621,
+          1199.058359
+        ],
+        "pair_id": "BO10_pair_1"
+      },
+      {
+        "id": "BO10_gate_3",
+        "name": "星门 3",
+        "position": [
+          1945.222041,
+          1239.746571
+        ],
+        "destination": [
+          2100,
+          660
+        ],
+        "pair_id": "BO10_pair_2"
+      },
+      {
+        "id": "BO10_gate_4",
+        "name": "星门 4",
+        "position": [
+          2100,
+          660
+        ],
+        "destination": [
+          1945.222041,
+          1239.746571
+        ],
+        "pair_id": "BO10_pair_2"
+      }
+    ],
+    "star_cores": [
+      {
+        "id": "BO10_core_1",
+        "position": [
+          710,
+          920
+        ]
+      },
+      {
+        "id": "BO10_core_2",
+        "position": [
+          2100,
+          920
+        ]
+      },
+      {
+        "id": "BO10_core_3",
+        "position": [
+          1400,
+          460
+        ]
+      }
+    ],
+    "dragon_spawn": [
+      1400,
+      890
+    ],
+    "boss_spawn": [
+      1400,
+      890
+    ],
+    "encounter_anchors": [],
+    "main_route": [
+      [
+        1400.0,
+        1341.467101
+      ],
+      [
+        1400,
+        1200
+      ],
+      [
+        1400,
+        890
+      ],
+      [
+        1400.0,
+        487.014648
+      ]
+    ],
+    "walk_routes": [
+      [
+        [
+          1400.0,
+          1341.467101
+        ],
+        [
+          1400,
+          1200
+        ],
+        [
+          1400,
+          890
+        ],
+        [
+          1400.0,
+          487.014648
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          710,
+          920
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          2100,
+          920
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          1400,
+          460
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          826.29621,
+          1199.058359
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          710,
+          660
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          1945.222041,
+          1239.746571
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          2100,
+          660
+        ]
+      ]
+    ],
+    "scenery_anchors": [
+      {
+        "id": "BO10_landmark",
+        "key": "nine_crown_monument",
+        "position": [
+          1400.0,
+          232.713322
+        ],
+        "ground_footprint": [
+          80,
+          50
+        ],
+        "collision": false,
+        "render_mode": "baked_environment",
+        "painted_foot_source_pixels": [
+          782,
+          175
+        ],
+        "baked_into_background": true
+      }
+    ]
+  },
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite."
+}

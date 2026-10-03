@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.bosses.d05.body",
+  "content_id": "B10-D05",
+  "name": "星冠禁龙",
+  "theme": "gate",
+  "asset_path": "assets/levels/b10/bosses/d05/body.png",
+  "source": "OpenAI built-in image_gen",
+  "generation_mode": "built_in",
+  "generated_date": "2026-10-04",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "output_mode": "RGBA",
+  "transparent_background": true,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "visible_bbox_alpha_64": [
+    35,
+    39,
+    1230,
+    1229
+  ],
+  "visible_height_pixels": 1190,
+  "actual_foot_px": [
+    750,
+    1120
+  ],
+  "footpoint_method": "manual_visual_ground_footprint_center; average of four ground-contact projections, excluding tail and wings",
+  "ground_contact_points_px": [
+    [
+      370,
+      1125
+    ],
+    [
+      669,
+      1018
+    ],
+    [
+      855,
+      1225
+    ],
+    [
+      1105,
+      1110
+    ]
+  ],
+  "inferred_occluded_contact_indices": [],
+  "sha256": "e71787091e0e321d417d279d1c47236cfa0ac77d60e3ddda5fe5bb306f8bdffe",
+  "source_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1027d-94a5-78a1-b838-65c51de7ce89\\exec-7c6b1510-8831-4f5a-b357-ab624b2d42e6.png",
+  "reference": {
+    "role": "user-provided style reference only",
+    "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png"
+  },
+  "license": "Original artwork generated for this project with OpenAI image generation; service terms apply. The style reference was supplied by the user.",
+  "prompt": "Use case: stylized-concept\nAsset type: production game guardian dragon sprite B10-D05, Starcrown Gate Dragon / 星冠禁龙.\nInput image: supplied Starlit Dragon Court image is STYLE REFERENCE ONLY for luminous white-gold-sapphire celestial dragon design, bright hand-painted cartoon fantasy and soft 2.5D depth. Do not copy its text, scenery or humanoid characters.\nPrimary request: exactly one complete regal quadrupedal stargate guardian dragon. Strong distinctive silhouette: tall upright arched neck, large symmetrical five-point star-shaped GOLDEN CROWN HORNS with one sapphire central jewel growing from its reptilian head, broad squared wing fans with ornate gold arch-like ribs and luminous deep-sapphire blue membranes, stately ivory scaled body, four gold-clawed feet and a thick coiled tail ending in a star-shaped blue crystal fin. The wings evoke cathedral stargate arches while remaining real dragon anatomy, no buildings or portal props. A proud formidable reptilian dragon, one elongated head, not humanoid. Bright ivory face and chest allow its outline to read clearly.\nCamera/pose: high camera three-quarter oblique down view about 45 degrees, near-isometric 2.5D game view; face southeast / screen lower-right. Standing guardian stance, see top of head, back and four feet, wings spread above the legs. Tail curls behind to upper-left with tip fully visible.\nStyle/medium: bright hand-painted cartoon fantasy, warm daylight and soft painterly 2.5D volume, clean polished readable shapes and edges, fresh ivory and sapphire, restrained rich warm-gold crown and wing ribs. Match the reference dragon aesthetic.\nCanvas/framing: request native square PNG 1536 x 1536 or higher, minimum native 1254 x 1254. Creature's complete painted silhouette at least 1000 pixels tall, around 80-85 percent canvas height, with 7 percent clear transparent margin on every side. Include all crowns, wings, claws and tail, never crop. For downscaling into a 2560 x 1440 game viewport.\nBackground: genuine transparent RGBA alpha. Nothing outside the dragon: no floor, cast-shadow plate, scenery, sky, clouds, pedestal, border, frame or floating objects.\nConstraints: one full dragon only, one head, four legs, two wings and one tail; no humanoid posture, clothes or handheld weapons; no text, label, logo, watermark, numbers, UI or sheet; no dark realism or horror.",
+  "verification": {
+    "subject": "One complete non-humanoid dragon, all tail and wing tips retained",
+    "camera": "High three-quarter oblique down view, facing southeast",
+    "visual_review": true,
+    "native_no_upscale": true,
+    "usage": "218-world-unit body rendered by downscaling for 2K viewport"
+  },
+  "effective_body_height_px": 1191,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

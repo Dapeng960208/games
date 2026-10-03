@@ -1,0 +1,12 @@
+{
+  "world/rooms/L56_environment_v1.png": "assets/levels/b10/rooms/l56/background/environment.png",
+  "world/rooms/L56_environment_v1.json": "assets/levels/b10/rooms/l56/background/environment.json",
+  "world/rooms/L56_environment_v1.prompt.json": "assets/levels/b10/rooms/l56/background/environment.prompt.json",
+  "world/rooms_2k/L56/manifest.json": "assets/levels/b10/rooms/l56/detail/manifest.json",
+  "world/rooms_2k/L56/top_left.png": "assets/levels/b10/rooms/l56/detail/top_left.png",
+  "world/rooms_2k/L56/top_middle.png": "assets/levels/b10/rooms/l56/detail/top_middle.png",
+  "world/rooms_2k/L56/top_right.png": "assets/levels/b10/rooms/l56/detail/top_right.png",
+  "world/rooms_2k/L56/bottom_left.png": "assets/levels/b10/rooms/l56/detail/bottom_left.png",
+  "world/rooms_2k/L56/bottom_middle.png": "assets/levels/b10/rooms/l56/detail/bottom_middle.png",
+  "world/rooms_2k/L56/bottom_right.png": "assets/levels/b10/rooms/l56/detail/bottom_right.png"
+}

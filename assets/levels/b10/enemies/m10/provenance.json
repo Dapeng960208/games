@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.enemies.m10.body",
+  "enemy_id": "B10-M10",
+  "name": "星核守望者",
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "recorded_at_utc": "2026-10-03T16:20:39Z",
+  "prompt": "Use case: stylized-concept. Asset type: SINGLE original game enemy full-body transparent character illustration. B10-M10 Core Watcher / 星核守望者. Reference supplied is only art-style and dragon-family reference: bright ivory/platinum dragon scales, gold filigree, sapphire blue star crystal, hand-painted fantasy, ignore all reference writing/layout. Design ONE original stout adult dragonkin stellar repair guardian, charming but imposing, squat broad upright biped silhouette, short ivory dragon muzzle, blunt curved gold tipped horns, small folded blue-and-white wings, visible thick curled tail. Wears practical gold edged white breastplate, cobalt apron and a belt of tiny closed gold tool cases. Cradles a SINGLE very large cobalt star crystal in a open gold gyroscope repair frame close to chest in left arm; right hand holds a short gold tuning spanner. No large staff, no spear, no sword. TWO widely planted white clawed feet approximately level, foot ground midpoint at image x50%,y84%. View from high three-quarter overhead 45 degree downward near-isometric game camera, facing southeast/lower-right, tops of head, shoulders, tools and toes visible. Bright painterly CARTOON fantasy, warm sunlight, thin dark-blue outlines, 2.5D sculpted painted volume, vivid clean palette and clear short sturdy silhouette for small game display. Completely isolated on genuine transparent RGBA background. Native square >=1024x1024. Very important FRAMING: artwork ONLY within central 70% canvas width and y12% to84%, 16% transparent blank border below the feet and at least12% transparent blank above horns. Body occupies at least650 native pixels tall. ALL horns, wings, tail, crystal, spanner, feet visible with generous margins. No cropping. No floor, no base, no shadow, no background, no floating UI or text, no lettering, no numbers, no watermarks, no frame, no extra creatures, no diffuse halo. Original production project artwork.",
+  "reference_images": [
+    {
+      "role": "style reference",
+      "name": "user final-chapter Starlit Dragon Court concept",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "origin": "User-supplied final-chapter concept artwork; reference style and dragon anatomy only",
+      "reference_rights": "User-provided reference; no ownership claim. Reference pixels are not copied into generated assets."
+    }
+  ],
+  "source_file_name": "exec-275d2e72-ac5b-4ade-9243-3a3054c74ba6.png",
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "580569a660a4d62b967b0c28df847af991609167af81076d720e91ca1974896b",
+  "alpha_bbox": [
+    87,
+    49,
+    1206,
+    1180
+  ],
+  "alpha_bbox_format": "[left, top, right_exclusive, bottom_exclusive]",
+  "alpha_bbox_threshold": 16,
+  "alpha_bbox_raw": [
+    0,
+    19,
+    1208,
+    1222
+  ],
+  "alpha_range": [
+    0,
+    255
+  ],
+  "effective_silhouette_size": [
+    1119,
+    1131
+  ],
+  "actual_foot_px": [
+    735,
+    1100
+  ],
+  "foot_anchor_normalized": [
+    0.586124,
+    0.877193
+  ],
+  "foot_anchor_method": "Manual visual estimate of supporting feet/paws midpoint in native pixel coordinates; validate ground placement during unified runtime acceptance.",
+  "facing": "SE",
+  "camera": "High-angle three-quarter overhead near-isometric 2.5D",
+  "world_display_height": 112,
+  "processing": "Byte-for-byte copy of selected built-in output; native pixels and RGBA alpha preserved. No postprocessing, upsampling, mirroring, or rotation applied.",
+  "scale_policy": "Source 1254x1254 is larger than its intended world display at 2560x1440. Runtime downsamples uniformly and maps the recorded foot anchor; never enlarge this source.",
+  "license": "Project-generated original artwork for this game. User-supplied concept used as a style and design brief only; no third-party character pixels reused.",
+  "status": "Original body artwork delivered; unified game acceptance pending. Existing action presentation is reused, not an independent animation set.",
+  "effective_body_height_px": 1131,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}
