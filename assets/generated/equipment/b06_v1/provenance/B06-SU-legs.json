@@ -1,0 +1,59 @@
+{
+  "id": "B06-SU-legs",
+  "name": "引航长裤",
+  "name_en": "Navigator Trousers",
+  "design_slot": "legs",
+  "slot": "legs",
+  "allowed_heroes": [
+    "CH01",
+    "CH02",
+    "CH03"
+  ],
+  "power_types": [
+    "physical",
+    "magic"
+  ],
+  "selected_source": "b06-art/generated/equipment-icons/B06-SU-legs-native-v1.png",
+  "exact_returned_source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-111cfb48-7fc1-4633-8d05-b2f0397a3ca6.png",
+  "sha256": "40788afa83838ce2f12f09fafefa146faf8df2c911dde2cde3e4583cd435e0b1",
+  "byte_identical_to_returned_source": true,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_bbox": [
+    41,
+    33,
+    1162,
+    1236
+  ],
+  "generation_method": "built-in image_gen native generation",
+  "model": null,
+  "model_note": "not exposed by tool",
+  "prompt_path": "b06-art/generated/equipment-icons/prompts/B06-SU-legs.txt",
+  "prompt_sha256": "1b519e8d0a6d3e28b66afb8c79901144d44ae0d6ca04c8ce2c82134f193f03ca",
+  "references": [
+    {
+      "path": "b06-art/references/B06_PR5_reference.png",
+      "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+    },
+    {
+      "path": "games-recovery/b06/assets/generated/equipment/b05_v1/B05-SW-weapon-native-v1.png",
+      "sha256": "6e6f52a659b553694094930b427ae615accaecba5a570a548b9bbca8aef5b235"
+    },
+    {
+      "path": "b06-art/generated/boss/BO06_idle-native-v4.png",
+      "sha256": "eb2cae08e77891da7044dcbf43ed17c4fbaaf1316b5c29bd778aaf37392442c2"
+    }
+  ],
+  "visual_review": "Selected after 280px contact-sheet and 64px inventory-size inspection: recognizable slot silhouette and distinct class/shared physical form; no visible truncation, no text or background. Thin low-alpha fringe can touch canvas edges; solid silhouette remains inset. Ornate detail compresses at 64px but core form remains readable.",
+  "alpha_128_bbox": [
+    164,
+    41,
+    1124,
+    1227
+  ],
+  "solid_margin_min_px": 27,
+  "exact_prompt": "Use case: stylized-concept. Asset type: single transparent RPG equipment inventory icon, native high-detail source.\nCreate Navigator Trousers (引航长裤); internal identity B06-SU-legs, do not print any text.\nSubject: a full pair of practical navigator trousers, two separate legs, rope belt and reinforced folded cuffs.\nReference image 1 is the B06 tidal coral city art direction: luminous azure/turquoise, ivory mother-of-pearl, refined gold accents, coral and shell craftsmanship. Reference image 2 is only the inventory rendering-quality standard, never copy its forest identity, leaves, branches or silhouette. Reference image 3 reinforces B06 polished shell materials, not its creature anatomy.\nPolished hand-painted fantasy 2.5D illustration, crisp confident silhouette, generous broad material planes and restrained highlights readable at 64px. Three-quarter product view, centered isolated object, full object occupies about 80% of square canvas with all tips intact. No wearer, skin, mannequin, scene, platform, text, UI border, labels, watermark, extra objects, overspray or detached sparkles. Genuine transparent background. Distinguish this item's physical form rather than recoloring another item."
+}

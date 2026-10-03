@@ -1,0 +1,56 @@
+{
+  "id": "B06-SG-accessory",
+  "name": "珊轨测流器",
+  "name_en": "Current Gauge",
+  "design_slot": "accessory",
+  "slot": "charm",
+  "allowed_heroes": [
+    "CH02"
+  ],
+  "power_types": [
+    "physical"
+  ],
+  "selected_source": "b06-art/generated/equipment-icons/B06-SG-accessory-native-v1.png",
+  "exact_returned_source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-609d3c85-764a-477a-bc9e-2def3f1e98a6.png",
+  "sha256": "f6438522f9b8bad64f65cef8984e66554ac47b0b365b02967c51253f1c391381",
+  "byte_identical_to_returned_source": true,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_bbox": [
+    30,
+    16,
+    1244,
+    1254
+  ],
+  "generation_method": "built-in image_gen native generation",
+  "model": null,
+  "model_note": "not exposed by tool",
+  "prompt_path": "b06-art/generated/equipment-icons/prompts/B06-SG-accessory.txt",
+  "prompt_sha256": "bb4b3e1131e8d9d7501135a841a533d016f7de2555c31a36b43d6c74e6235cae",
+  "references": [
+    {
+      "path": "b06-art/references/B06_PR5_reference.png",
+      "sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855"
+    },
+    {
+      "path": "games-recovery/b06/assets/generated/equipment/b05_v1/B05-SW-weapon-native-v1.png",
+      "sha256": "6e6f52a659b553694094930b427ae615accaecba5a570a548b9bbca8aef5b235"
+    },
+    {
+      "path": "b06-art/generated/boss/BO06_idle-native-v4.png",
+      "sha256": "eb2cae08e77891da7044dcbf43ed17c4fbaaf1316b5c29bd778aaf37392442c2"
+    }
+  ],
+  "visual_review": "Selected after 280px contact-sheet and 64px inventory-size inspection: recognizable slot silhouette and distinct class/shared physical form; no visible truncation, no text or background. Thin low-alpha fringe can touch canvas edges; solid silhouette remains inset. Ornate detail compresses at 64px but core form remains readable.",
+  "alpha_128_bbox": [
+    35,
+    21,
+    1241,
+    1217
+  ],
+  "solid_margin_min_px": 13,
+  "exact_prompt": "Use case: stylized-concept. Asset type: single transparent RPG equipment inventory icon, native high-detail source.\nCreate Current Gauge (珊轨测流器); internal identity B06-SG-accessory, do not print any text.\nSubject: a handheld nautical current meter, circular readable needle dial without text, coral fork water sensor and small grip.\nReference image 1 is the B06 tidal coral city art direction: luminous azure/turquoise, ivory mother-of-pearl, refined gold accents, coral and shell craftsmanship. Reference image 2 is only the inventory rendering-quality standard, never copy its forest identity, leaves, branches or silhouette. Reference image 3 reinforces B06 polished shell materials, not its creature anatomy.\nPolished hand-painted fantasy 2.5D illustration, crisp confident silhouette, generous broad material planes and restrained highlights readable at 64px. Three-quarter product view, centered isolated object, full object occupies about 80% of square canvas with all tips intact. No wearer, skin, mannequin, scene, platform, text, UI border, labels, watermark, extra objects, overspray or detached sparkles. Genuine transparent background. Distinguish this item's physical form rather than recoloring another item."
+}
