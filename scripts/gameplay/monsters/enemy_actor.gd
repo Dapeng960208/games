@@ -339,7 +339,11 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	var health_before: float = health.current
 	var shield_before: float = status.shield()
 	var shield_bonus := clampf(float(context.get("b09_shield_damage_bonus",0.0)),0.0,0.12)
-	if shield_bonus>0.0 and Numerical.b09_candidate_enabled() and kind==&"secondary" and int(context.get("proc_depth",0))==0 and bool(context.get("equipment_eligible",false)) and shield_before>0.0:
+	if shield_bonus>0.0 and Numerical.b09_candidate_enabled() and bool(get_meta("b09_enemy_shield",false)) and kind==&"secondary" and int(context.get("proc_depth",0))==0 and bool(context.get("equipment_eligible",false)):
+		# The M05 ice shield is a separate destructible body with its own HP.
+		# Multiplying that body's HP loss cannot overflow into its owner.
+		final_amount=Numerical.integer(final_amount*(1.0+shield_bonus))
+	if shield_bonus>0.0 and Numerical.b09_candidate_enabled() and not bool(get_meta("b09_enemy_shield",false)) and kind==&"secondary" and int(context.get("proc_depth",0))==0 and bool(context.get("equipment_eligible",false)) and shield_before>0.0:
 		var overflow := maxf(0.0,final_amount-shield_before)
 		status.absorb(Numerical.integer(minf(final_amount,shield_before)*(1.0+shield_bonus)))
 		final_amount=overflow
@@ -534,6 +538,10 @@ func _advance_pushes(delta: float) -> void:
 
 func _die() -> void:
 	_biome_counters.clear()
+	if Numerical.b09_candidate_enabled() and bool(get_meta("b09_enemy_shield",false)) and Game.run!=null and is_instance_valid(room.player) and room.player.loadout!=null:
+		var event := last_damage_context.duplicate()
+		event["target"]=self
+		room.player.loadout.event("b09_barrier_broken",event)
 	room.enemy_died(self)
 	queue_free()
 

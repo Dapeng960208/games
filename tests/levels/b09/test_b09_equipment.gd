@@ -143,6 +143,17 @@ func _warrior() -> void:
 	e=fx("B09-SW")
 	e.handle("b09_barrier_broken",ctx({"damage_source":"equipment","proc_depth":1}))
 	check(not e._window("B09-SW_6:next_w"),"derived break cannot arm")
+	e=fx("B09-SW")
+	hit=ctx()
+	near(e.handle("before_hit",hit).damage_bonus,0,"breaking W starts without future bonus")
+	e.handle("b09_barrier_broken",hit)
+	near(e.handle("after_hit",hit).get("heal_amount",0),0,"breaking W does not consume newly armed heal")
+	check(e._window("B09-SW_6:next_w"),"breaking W keeps future window")
+	hit.attack_id="same_cast_other_target"; hit.target_id="two"
+	near(e.handle("before_hit",hit).damage_bonus,0,"remaining targets in breaking W lack future bonus")
+	near(e.handle("after_hit",hit).get("heal_amount",0),0,"remaining breaking W targets cannot heal")
+	check(e._window("B09-SW_6:next_w"),"remaining targets preserve next W token")
+	near(e.handle("before_hit",ctx()).damage_bonus,0.12,"later cast uses newly armed token")
 
 func _gunner() -> void:
 	var e := fx("B09-SG")
@@ -373,6 +384,65 @@ func _live() -> void:
 	var distance := Vector2.ZERO
 	for i in 5: distance+=room.b09_mechanics.movement_velocity(room.player,Vector2.ZERO,Vector2.ZERO,0.05)*0.05
 	near(distance.length(),30.0,"real U01 ice glide30 pixels instead of40")
+	for actor in room.enemies.get_children(): actor.free()
+	_bind(room,"CH01","B09-SW")
+	warm_loadout=Game.run.loadout_snapshot.duplicate(true)
+	warm_loadout["charm"]="actual:B09-U03"
+	Game.run.stats=Resolver.resolve("CH01",45,warm_loadout,items,2)
+	Game.run.loadout_snapshot=warm_loadout
+	room.player.loadout.configure(room.player)
+	room.player.position=Vector2(1100,650)
+	var bearer: Node2D=room.spawn_enemy(Vector2(900,500),"B09-M05",41,{"profile":Skills.profile("B09-M05",41,0)})
+	bearer.state=&"execute"
+	room.enemy_skills.emit_skill(bearer,Skills.active(bearer.profile,bearer.position,Vector2(900,650)))
+	check(not room.b09_mechanics.walls.is_empty(),"actual M05 releases destructible ice shield")
+	if not room.b09_mechanics.walls.is_empty():
+		var shield: Node2D=room.b09_mechanics.walls.back().actor.get_ref()
+		check(bool(shield.get_meta("b09_enemy_shield",false)),"M05 shield receives exact shield-body identity")
+		var bearer_hp: float=bearer.health.current
+		before_hp=shield.health.current
+		shield.take_damage(100,&"secondary",Vector2.RIGHT,{"damage_type":"true","damage_source":"skill","root_event_id":"live:M05:shieldtap","equipment_eligible":true,"proc_depth":0,"b09_shield_damage_bonus":0.12})
+		near(before_hp-shield.health.current,112,"real M05 shield body W112%")
+		near(bearer.health.current,bearer_hp,"shield body bonus cannot spill into M05")
+		var breaking_hp: float=Game.run.hp
+		check(room.resolve_direct_hit(shield,1000000,&"secondary","",0,Vector2.RIGHT,{"root_event_id":"live:M05:shieldbreak","attack_id":"live:M05:shieldbreak","damage_type":"true"}),"real W destroys M05 ice shield")
+		check(room.player.loadout.effects._window("B09-SW_6:next_w"),"real M05 shield break arms SW6")
+		near(Game.run.hp,breaking_hp,"real shield-breaking W does not heal early")
+		near(room.player.loadout.modifiers().damage_reduction_bonus,0.06,"real M05 shield break grants U03")
+		bearer.set_meta("b09_layers",0)
+		check(room.resolve_direct_hit(bearer,20,&"secondary","",0,Vector2.RIGHT,{"root_event_id":"live:M05:nextW","attack_id":"live:M05:nextW","damage_type":"true"}),"next real W confirms against shield owner")
+		near(Game.run.hp-breaking_hp,Rules.integer(Game.run.max_hp*0.03),"real next W consumes3% heal")
+		check(not room.player.loadout.effects._window("B09-SW_6:next_w"),"real next W consumes shield-break token")
+	_bind(room,"CH01","B09-SW")
+	var layer_target: Node2D=room.spawn_enemy(Vector2(1000,500),"B09-M01",41,{"profile":Skills.profile("B09-M01",41,0)})
+	layer_target.set_meta("b09_layers",1)
+	var layer_hp: float=Game.run.hp
+	check(room.resolve_direct_hit(layer_target,20,&"secondary","",0,Vector2.RIGHT,{"root_event_id":"live:lastlayer:W","attack_id":"live:lastlayer:W","damage_type":"true"}),"real W hits final crystal layer")
+	check(int(layer_target.get_meta("b09_layers"))==0 and room.player.loadout.effects._window("B09-SW_6:next_w"),"same W final-layer event preserves next W window")
+	near(Game.run.hp,layer_hp,"final-layer-breaking W does not heal early")
+	check(room.resolve_direct_hit(layer_target,20,&"secondary","",0,Vector2.RIGHT,{"root_event_id":"live:lastlayer:nextW","attack_id":"live:lastlayer:nextW","damage_type":"true"}),"real next W after crystal break")
+	near(Game.run.hp-layer_hp,Rules.integer(Game.run.max_hp*0.03),"next W after final layer heals3%")
+	check(not room.player.loadout.effects._window("B09-SW_6:next_w"),"next W consumes final-layer token")
+	_bind(room,"CH01","B09-SW")
+	warm_loadout=Game.run.loadout_snapshot.duplicate(true)
+	warm_loadout["charm"]="actual:B09-U03"
+	Game.run.stats=Resolver.resolve("CH01",45,warm_loadout,items,2)
+	Game.run.loadout_snapshot=warm_loadout
+	room.player.loadout.configure(room.player)
+	var mason: Node2D=room.spawn_enemy(Vector2(900,500),"B09-M12",41,{"profile":Skills.profile("B09-M12",41,0)})
+	mason.state=&"execute"
+	room.enemy_skills.emit_skill(mason,Skills.active(mason.profile,mason.position,Vector2(900,650)))
+	check(not room.b09_mechanics.walls.is_empty(),"actual M12 releases ordinary crystal wall")
+	if not room.b09_mechanics.walls.is_empty():
+		var wall: Node2D=room.b09_mechanics.walls.back().actor.get_ref()
+		check(is_instance_valid(wall) and not bool(wall.get_meta("b09_enemy_shield",false)),"ordinary M12 wall is not an enemy shield")
+		if is_instance_valid(wall):
+			before_hp=wall.health.current
+			wall.take_damage(100,&"secondary",Vector2.RIGHT,{"damage_type":"true","damage_source":"skill","root_event_id":"live:M12:walltap","equipment_eligible":true,"proc_depth":0,"b09_shield_damage_bonus":0.12})
+			near(before_hp-wall.health.current,100,"ordinary crystal wall receives no shield multiplier")
+			check(room.resolve_direct_hit(wall,1000000,&"secondary","",0,Vector2.RIGHT,{"root_event_id":"live:M12:wallbreak","attack_id":"live:M12:wallbreak","damage_type":"true"}),"real W destroys ordinary crystal wall")
+			check(not room.player.loadout.effects._window("B09-SW_6:next_w"),"ordinary wall death cannot arm SW6")
+			near(room.player.loadout.modifiers().damage_reduction_bonus,0,"ordinary wall death cannot grant U03")
 	room.free()
 	await get_tree().process_frame
 

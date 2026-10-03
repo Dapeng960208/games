@@ -60,7 +60,7 @@ static func _before(e: Variant, ctx: Dictionary, root: Dictionary, out: Dictiona
 	if e._has_set("B09-SW",2): out["b09_shield_damage_bonus"] = 0.12
 	if e._has_set("B09-SW",6):
 		if not root.flags.has("B09-SW_6:w"):
-			root.flags["B09-SW_6:w"] = e._window("B09-SW_6:next_w")
+			root.flags["B09-SW_6:w"] = e._window("B09-SW_6:next_w") and not bool(root.get("b09_sw6_armed_this_cast",false))
 			if bool(root.flags["B09-SW_6:w"]): e.windows.erase("B09-SW_6:next_w")
 		if bool(root.flags["B09-SW_6:w"]): out.damage_bonus += 0.12
 
@@ -100,7 +100,11 @@ static func _after(e: Variant, ctx: Dictionary, root: Dictionary, out: Dictionar
 		_packet(e,ctx,root,out,"B09-SM_6:q:"+target,0.25,target,"magic")
 
 static func _broken(e: Variant, ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
-	if e._has_set("B09-SW",6) and e._activate("B09-SW_6",10.0,root,out,false): e.windows["B09-SW_6:next_w"] = e.clock+6.0
+	if e._has_set("B09-SW",6) and e._activate("B09-SW_6",10.0,root,out,false):
+		# Shield death / the last crystal layer can dispatch before this hit commits.
+		# The breaking cast arms a later W, even across its remaining targets.
+		root["b09_sw6_armed_this_cast"] = true
+		e.windows["B09-SW_6:next_w"] = e.clock+6.0
 	if e._has("B09-U03") and e._activate("B09-U03",12.0,root,out,false): e.windows["B09-U03:guard"] = e.clock+4.0
 
 static func _original(ctx: Dictionary) -> bool:
