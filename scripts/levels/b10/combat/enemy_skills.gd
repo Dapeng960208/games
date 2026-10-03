@@ -47,20 +47,18 @@ static func profile(id: String, level: int, difficulty: int, rank: String = "nor
 static func boss_profile(id: String, difficulty: int, calibration: Variant = null) -> Dictionary:
 	var source := boss_definition(id)
 	if source.is_empty() or difficulty not in range(5): return {}
-	var hydra := id=="BO10"
+	var final_boss := id=="BO10"
 	var hp := int(round(float(source.raw_hp)*1.35*10*2.08*Growth.HP_D[difficulty]))
 	var attack := int(round(float(source.raw_damage)*1.35*10*1.72*Growth.ATTACK_D[difficulty]))
 	var result := source.duplicate(true)
 	result.merge({"enemy_id":id,"biome_id":"B10","chapter":10,"clan":"dragon","actor_kind":"boss","rank":"boss","enemy_level":int(source.level),
 		"max_hp":hp,"damage":attack,"armor":(15+2*difficulty)*10,"magic_resist":(15+2*difficulty)*10,
-		"move_speed":54.0 if hydra else 68.0,"navigation_radius":float(source.radius),"attack_range":360.0,
+		"move_speed":54.0 if final_boss else 68.0,"navigation_radius":float(source.radius),"attack_range":360.0,
 		"recovery_seconds":1.5,"difficulty":difficulty,"ruleset_version":2,"scale_version":10,"mechanic_tier":4,
 		"phase_thresholds":[.7,.35],"immune_forced_movement":true,"effective_threat_cost":0.0,
-		"reinforcement_cap":4 if hydra and difficulty>=3 else 0,"reinforcement_budget":4 if hydra and difficulty>=3 else 0,
+		"reinforcement_cap":4 if final_boss and difficulty>=3 else 0,"reinforcement_budget":4 if final_boss and difficulty>=3 else 0,
 		"reinforcement_waves":[],"reserved_summon_count":0,"reserved_summon_threat":0.0,"encounter_budget":18,
 		"damage_type":"magic","visual_asset":art_id(id),"gameplay_implemented":true,"b10_combat_version":1},true)
-	if hydra and difficulty>=3:
-		result.reinforcement_waves=[{"phase":2,"count":2,"threat":2,"members":[{"enemy_id":"B10-M01","count":2,"level":50}]},{"phase":3,"count":2,"threat":2,"members":[{"enemy_id":"B10-M01","count":2,"level":50}]}]
 	if calibration is Dictionary: result["enemy_calibration_snapshot"] = calibration.duplicate(true)
 	return result
 
@@ -99,7 +97,7 @@ static func basic(p: Dictionary, origin: Vector2, target: Vector2) -> Dictionary
 
 static func child(c: Dictionary, kind: String, shape: String, coefficient: int, delay: float) -> Dictionary:
 	var result := c.duplicate(true)
-	for key in ["followups","active","points","paths","duration","remaining","timing","status","b10_echo","b10_target_refs"]: result.erase(key)
+	for key in ["followups","active","points","paths","duration","remaining","timing","status","b10_echo","b10_target_refs","b10_frozen","damage"]: result.erase(key)
 	result.merge({"kind":kind,"shape":shape,"coefficient":coefficient,"delay":delay,"followups":[],"derived":true,"ability_id":str(c.ability_id)+":follow"},true)
 	return result
 
@@ -147,14 +145,23 @@ static func active(p: Dictionary, origin: Vector2, target: Vector2, on_core: boo
 				line.merge({"range":110.0,"width":22.0,"duration":.75,"tick_interval":1.0},true)
 				c.followups.append(line)
 		7:
-			c.merge({"kind":"charge","shape":"line","range":230.0,"travel_distance":230.0,"target":origin+direction*230,"width":40.0,"radius":22.0,"coefficient":110,"duration":.55,"recovery":1.5},true)
+			var middle:=origin+direction*115+direction.orthogonal()*55
+			var finish:=origin+direction*230
+			c.merge({"kind":"charge","shape":"line","range":origin.distance_to(middle),"travel_distance":origin.distance_to(middle),"target":middle,"direction":origin.direction_to(middle),"width":40.0,"radius":22.0,"coefficient":110,"duration":.3,"recovery":1.5,"b10_swept_cast":true},true)
+			var second:=child(c,"charge","line",110,.35)
+			second.merge({"origin":middle,"target":finish,"direction":middle.direction_to(finish),"range":middle.distance_to(finish),"travel_distance":middle.distance_to(finish),"duration":.3},true)
+			c.followups.append(second)
 			if d>=2:
-				var sweep := child(c,"melee","cone",40,.65)
-				sweep.merge({"origin":c.target,"target":c.target-direction*90,"direction":-direction,"range":90.0,"angle":2.3},true)
+				var sweep := child(c,"melee","cone",40,.85)
+				sweep.merge({"origin":finish,"target":finish-direction*90,"direction":-direction,"range":90.0,"angle":2.3,"b10_swept_cast":false},true)
 				c.followups.append(sweep)
 		8:
 			c.merge({"kind":"ground_area","shape":"circle","radius":72.0,"coefficient":60,"target":target-direction.orthogonal()*80},true)
 			c.followups.append(area(c,target+direction.orthogonal()*80,72,60,1.0))
+			if d>=2:
+				var marker:=child(c,"b10_waymark","circle",0,1.0)
+				marker.merge({"origin":target+direction*100,"target":target+direction*100,"radius":42.0,"harmless":true},true)
+				c.followups.append(marker)
 		9:
 			c.merge({"kind":"projectile","shape":"line","range":320.0,"width":18.0,"coefficient":100,"count":1,"speed":380.0,"projectile_radius":8.0},true)
 			if d>=2:
@@ -172,7 +179,9 @@ static func active(p: Dictionary, origin: Vector2, target: Vector2, on_core: boo
 			if d>=4: c.followups.append(child(c,"b10_reposition","circle",0,1.1))
 		13:
 			c.merge({"range":155.0,"angle":1.7,"coefficient":60},true)
-			c.followups.append(child(c,"melee","cone",60,.9))
+			var second_slash:=child(c,"melee","cone",60,.9)
+			second_slash["b10_relock"]=true
+			c.followups.append(second_slash)
 			if d>=2 and on_core: c.followups.append(child(c,"b10_stance","circle",0,1.05))
 		14:
 			c.merge({"shape":"line","range":300.0,"width":30.0,"coefficient":100,"b10_cross_gate":true},true)
@@ -214,11 +223,12 @@ static func geometry(c: Dictionary) -> Dictionary:
 
 static func freeze_damage(c: Dictionary, p: Dictionary) -> Dictionary:
 	if not bool(p.get("b10_combat_version",false)): return {}
+	if bool(c.get("b10_frozen",false)): return c.duplicate(true)
 	var result := c.duplicate(true)
 	var phase := clampi(int(result.get("b10_phase",1)),1,3)
 	var factor: float = (1.0+.075*int(p.difficulty))*(1.0+.1*(phase-1)) if str(p.rank)=="boss" else 1.25*(1.0+.05*int(p.difficulty))
 	result["damage"] = int(round(float(p.damage)*float(result.get("coefficient",0))/100.0*factor))
-	result.merge({"ruleset_version":2,"scale_version":10,"enemy_command_version":2},true)
+	result.merge({"ruleset_version":2,"scale_version":10,"enemy_command_version":2,"b10_frozen":true},true)
 	return result
 
 static func encounter_plan(room_id: String, zone_index: int, difficulty: int, calibration: Variant = null) -> Dictionary:

@@ -26,6 +26,12 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 	actor.velocity=Vector2.ZERO
 	cooldown=maxf(0,cooldown-delta)
 	remaining=maxf(0,remaining-delta)
+	var extension: Variant=Skills.runtime(actor)
+	if extension is Object:
+		var held: float=extension.recovery_remaining(actor)
+		if held>0:
+			hold_recovery(actor,held)
+			return
 	if not _alive(victim):
 		if phase in [&"telegraph",&"locked"]: interrupt(actor)
 		return
@@ -35,7 +41,6 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 	if phase==&"chase":
 		var candidate := Skills.active(profile,actor.position,victim.position,Skills.connected(actor),cycle) if cooldown<=0 else Skills.basic(profile,actor.position,victim.position)
 		active=bool(candidate.get("active",false))
-		var extension: Variant=Skills.runtime(actor)
 		if active and str(candidate.kind) in ["b10_transfer","b10_harmonize","b10_repair"]:
 			var refs: Array=extension.support_targets(actor,candidate) if extension is Object else []
 			if refs.is_empty():
@@ -86,9 +91,19 @@ func on_displacement_committed(actor: Node2D, projected: Vector2) -> void:
 	if phase in [&"locked",&"execute"] and str(command.get("kind","")) in ["melee","charge"] and projected.distance_to(locked_origin)>30: interrupt(actor)
 
 func interrupt(actor: Node2D) -> void:
+	if str(command.get("kind",""))=="b10_transfer" and int(profile.difficulty)>=4:
+		for reference: WeakRef in command.get("b10_target_refs",[]):
+			var recipient: Node2D=reference.get_ref()
+			if _alive(recipient) and recipient.brain!=null and recipient.brain.has_method("hold_recovery"):
+				recipient.brain.hold_recovery(recipient,1.0)
+	var extension: Variant=Skills.runtime(actor)
+	if extension is Object: extension.interrupted(actor)
 	if active: cooldown=maxf(cooldown,float(command.get("cooldown",0))*.5)
+	hold_recovery(actor,1.0)
+
+func hold_recovery(actor: Node2D, seconds: float) -> void:
 	command.clear()
-	_set(&"recovery",1.0)
+	_set(&"recovery",maxf(remaining if phase==&"recovery" else 0.0,seconds))
 	actor.state=phase
 	actor.state_time=remaining
 

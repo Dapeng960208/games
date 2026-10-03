@@ -7,11 +7,11 @@ const ACTIONS := {
 	"resonance":["ring_pulse","tuning_fork","resonant_sweep"],
 	"gate":["gate_claw","twin_gate_ray","gate_stars"],
 	"meteor":["meteor_stomp","meteor_rain","meteor_tail"],
-	"hydra":["nine_claws","star_breath","nine_tail","twin_starfall","nine_crown"]}
+	"ancient":["ancient_claw","star_breath","ancient_tail","twin_starfall","court_guard","star_crown"]}
 const NAMES := {"sun_claw":"日冕前爪","solar_breath":"日光吐息","sun_wing":"金翼扇流","crystal_claw":"镜鳞裂爪","mirror_shards":"鳞镜晶矢","mirror_ring":"晶鳞双环",
 	"comet_charge":"彗轨冲刺","comet_tail":"长尾回旋","comet_rain":"彗轨星雨","ring_pulse":"双环律动","tuning_fork":"调律双线","resonant_sweep":"音鳞横扫",
 	"gate_claw":"织门龙爪","twin_gate_ray":"双门星息","gate_stars":"星门对位","meteor_stomp":"陨鳞重踏","meteor_rain":"三曜陨星","meteor_tail":"陨星尾扫",
-	"nine_claws":"九首前爪","star_breath":"九首星息","nine_tail":"九首扫庭","twin_starfall":"双门星落","nine_crown":"三曜归冠"}
+	"ancient_claw":"古龙前爪","star_breath":"星息吐流","ancient_tail":"鳞尾扫庭","twin_starfall":"双门星落","court_guard":"龙庭护星","star_crown":"三曜归冠"}
 var _cores_initialized := false
 var _rebuild_at := 16.0
 var _rebuild_index := -1
@@ -102,13 +102,11 @@ func _begin_action(actor: Node2D, victim: Node2D) -> void:
 		state=&"recovery"
 		state_time=.3
 		return
-	var choices: Array=ACTIONS[str(definition.theme)]
+	var choices: Array=available_actions()
 	var chosen := ""
 	for offset in choices.size():
 		var action: String=choices[(action_index+offset)%choices.size()]
-		if boss_id=="BO10" and action=="nine_tail" and int(definition.difficulty)<1: continue
-		if boss_id=="BO10" and action=="twin_starfall" and int(definition.difficulty)<2: continue
-		if boss_id=="BO10" and action=="nine_crown" and int(definition.difficulty)<4: continue
+		if action=="court_guard" and not extension.can_summon_guards(actor): continue
 		if elapsed<float(_action_ready_at.get(action,0)): continue
 		chosen=action
 		action_index=(action_index+offset+1)%choices.size()
@@ -130,8 +128,9 @@ static func build_action(p: Dictionary, action: String, origin: Vector2, target:
 	var direction: Vector2=c.direction
 	var tell_seconds := 1.3
 	match action:
-		"sun_claw","crystal_claw","gate_claw","nine_claws":
+		"sun_claw","crystal_claw","gate_claw","ancient_claw":
 			c.merge({"range":180.0,"angle":2.0,"coefficient":120,"cooldown":7.0},true)
+			tell_seconds=1.2
 		"solar_breath","star_breath":
 			c.merge({"shape":"line","range":360.0,"width":90.0,"coefficient":110,"cooldown":12.0},true)
 			tell_seconds=1.4
@@ -150,18 +149,22 @@ static func build_action(p: Dictionary, action: String, origin: Vector2, target:
 			var tail := B10.child(c,"melee","cone",45,1.0)
 			tail.merge({"origin":c.target,"direction":-direction,"target":c.target-direction*130,"range":130.0,"angle":2.4},true)
 			c.followups.append(tail)
-		"comet_tail","meteor_tail","nine_tail":
+		"comet_tail","meteor_tail","ancient_tail":
 			c.merge({"origin":origin,"target":origin-direction*230,"direction":-direction,"range":230.0,"angle":PI,"coefficient":100,"cooldown":15.0},true)
-		"comet_rain","meteor_rain","gate_stars","twin_starfall","nine_crown":
+		"comet_rain","meteor_rain","gate_stars","twin_starfall","star_crown":
 			var points: Array=[target-direction.orthogonal()*110,target+direction.orthogonal()*110]
 			if action in ["gate_stars","twin_starfall"] and portal_points.size()>=2: points=portal_points.slice(0,2)
-			if action in ["meteor_rain","nine_crown"]: points=[target-direction.orthogonal()*130,target,target+direction.orthogonal()*130]
-			c.merge({"kind":"ground_area","shape":"circle","origin":points[0],"target":points[0],"radius":95.0,"coefficient":65 if points.size()==3 else 80,"cooldown":27.0 if action=="nine_crown" else 19.0,"recovery":2.5,"b10_cross_gate":action in ["gate_stars","twin_starfall"]},true)
+			if action in ["meteor_rain","star_crown"]: points=[target-direction.orthogonal()*130,target,target+direction.orthogonal()*130]
+			c.merge({"kind":"ground_area","shape":"circle","origin":points[0],"target":points[0],"radius":95.0,"coefficient":65 if points.size()==3 else 80,"cooldown":27.0 if action=="star_crown" else 19.0,"recovery":2.5,"b10_cross_gate":action in ["gate_stars","twin_starfall"]},true)
+			if action=="star_crown": c["core_index"]=0
 			for i in range(1,points.size()):
 				var fall := B10.area(c,points[i],95,int(c.coefficient),i*1.1)
-				if action=="nine_crown": fall["core_index"]=i
+				if action=="star_crown": fall["core_index"]=i
 				c.followups.append(fall)
-			tell_seconds=1.8 if action=="nine_crown" else 1.5
+			tell_seconds=1.8 if action=="star_crown" else 1.5
+		"court_guard":
+			c.merge({"kind":"b10_summon","shape":"circle","origin":origin,"target":origin,"radius":100.0,"coefficient":0,"cooldown":24.0},true)
+			tell_seconds=1.5
 		"tuning_fork":
 			c.merge({"shape":"line","range":300.0,"width":35.0,"coefficient":65,"origin":origin-direction.orthogonal()*75},true)
 			var second := B10.child(c,"melee","line",65,.9)
@@ -176,6 +179,7 @@ static func build_action(p: Dictionary, action: String, origin: Vector2, target:
 
 func _enter_phase(actor: Node2D) -> void:
 	command.clear()
+	_close_weakpoint(actor)
 	_rebuild_used.clear()
 	_rebuild_at=elapsed+16
 	_rebuild_index=-1
@@ -185,6 +189,27 @@ func _enter_phase(actor: Node2D) -> void:
 	state=&"phase_shift"
 	state_time=1.5
 	state_duration=state_time
+
+func available_actions(_for_phase: int = -1) -> Array:
+	var result: Array=ACTIONS.get(str(definition.get("theme","")),[]).duplicate()
+	if boss_id!="BO10": return result
+	var difficulty:=int(definition.get("difficulty",0))
+	if difficulty<1: result.erase("ancient_tail")
+	if difficulty<2: result.erase("twin_starfall")
+	if difficulty<3: result.erase("court_guard")
+	if difficulty<4: result.erase("star_crown")
+	return result
+
+func skill_pool() -> Array:
+	return available_actions()
+
+func current_telegraph() -> Dictionary:
+	if state==&"core_rebuild" and not command.is_empty():
+		var preview:=command.duplicate(true)
+		preview["locked"]=false
+		preview["progress"]=clampf(1.0-state_time/maxf(.001,state_duration),0,1)
+		return preview
+	return super.current_telegraph()
 
 func incoming_damage_multiplier() -> float:
 	if weakpoint_open(): return 1.15

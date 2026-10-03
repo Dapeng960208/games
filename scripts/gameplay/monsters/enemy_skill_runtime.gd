@@ -403,6 +403,7 @@ func _execute(command: Dictionary) -> void:
 			_spawn_projectiles(command)
 		"charge":
 			_start_motion(command)
+			if bool(command.get("b10_command",false)) and not has_motion(_owner(command)): return
 		"ground_area":
 			_spawn_hazards(command)
 		"pull":
@@ -636,6 +637,7 @@ func _finish_motion(motion: Dictionary, impact: bool) -> void:
 		_strike(landing)
 		_flash(landing)
 
+	if bool(motion.get("b10_command",false)): b10.motion_finished(motion,impact)
 	if bool(motion.get("b05_command",false)): b05.motion_finished(motion,impact)
 	if bool(motion.get("b06_command",false)): b06.motion_finished(motion,impact)
 	if bool(motion.get("b09_command",false)): b09.motion_finished(motion,impact)
@@ -1218,8 +1220,17 @@ func _draw() -> void:
 	var controller: Node = get_node_or_null("/root/Game")
 	var settings: Dictionary = _property(controller, "profile", {}).get("settings", {})
 	for command: Dictionary in jobs:
-		if bool(settings.get("enemy_skill_paths",true)) or bool(command.get("b05_command",false)) or bool(command.get("b06_command",false)):
-			_draw_shape(command, Color(1.0, 0.44, 0.27, 0.2), Color("ffc481"))
+		if bool(settings.get("enemy_skill_paths",true)) or bool(command.get("b05_command",false)) or bool(command.get("b06_command",false)) or bool(command.get("b10_command",false)):
+			if bool(command.get("harmless",false)):
+				_draw_shape(command, Color(.52,.81,.70,.04), Color("86ceb4"))
+			elif bool(command.get("b10_command",false)) and not command.get("paths",[]).is_empty():
+				for path: Array in command.paths:
+					for index in range(path.size()-1):
+						var stroke:=command.duplicate(true)
+						stroke.merge({"origin":path[index],"target":path[index+1],"points":[path[index],path[index+1]],"direction":Vector2(path[index]).direction_to(path[index+1])},true)
+						_draw_shape(stroke, Color(.32,.67,.92,.12), Color("f4d58c"))
+			else:
+				_draw_shape(command, Color(1.0, 0.44, 0.27, 0.2), Color("ffc481"))
 	b05.draw(self)
 	b06.draw(self)
 	b10.draw(self)

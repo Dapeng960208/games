@@ -117,6 +117,7 @@ var _node_loot_spawned: int = 0
 var _natural_spawn_serial: int = 0
 var _boss_actor: Node2D
 var _boss_defeated: bool = false
+var _b10_guard_started: bool = false
 var _terrain_canvas: Node2D
 var _floor_canvas: Node2D
 var _terrain_geometry: Array[Rect2] = []
@@ -1609,7 +1610,7 @@ func _encounter_plan(index: int) -> Dictionary:
 func _objective_encounters_pending() -> bool:
 	# B05 objectives describe mechanisms; its ordinary finite zones still
 	# require traversal/clearance even when no extra objective task is pending.
-	if bool(layout.get("b09_candidate",false)) or bool(layout.get("b06_candidate",false)) or str(expedition_context.get("biome_id",""))=="B05": return not _encounters_exhausted()
+	if bool(layout.get("b09_candidate",false)) or bool(layout.get("b06_candidate",false)) or str(expedition_context.get("biome_id","")) in ["B05","B10"]: return not _encounters_exhausted()
 	if not is_instance_valid(objectives):
 		return false
 	for index in encounter_zones.size():
@@ -1865,6 +1866,7 @@ func _install_expedition_layout(prepared: Dictionary) -> void:
 	_completion_emitted = false
 	_boss_actor = null
 	_boss_defeated = false
+	_b10_guard_started = false
 	_node_loot_spawned = 0
 	_natural_spawn_serial = 0
 	_expedition_ready = false
@@ -1980,6 +1982,9 @@ func _tick_expedition(delta: float) -> void:
 			var task_done: bool = is_instance_valid(objectives) and objectives.is_complete()
 			if not task_done or _objective_encounters_pending(): _update_encounters(delta)
 			objective_complete = task_done and _living_enemy_count() == 0 and not _objective_encounters_pending()
+			if bool(layout.get("b10_final",false)) and objective_complete:
+				if not _b10_guard_started: _spawn_b10_guardian()
+				objective_complete=_b10_guard_started and _boss_defeated
 	if bool(layout.get("b09_candidate",false)) or (bool(layout.get("b06_candidate",false)) and not bool(expedition_context.get("b06_progression",false))):
 		# Preview traversal has no persistent progression or economic settlement.
 		if objective_complete and not _completion_emitted:
@@ -2018,6 +2023,23 @@ func _tick_expedition(delta: float) -> void:
 		for projectile in projectiles.get_children(): projectile.queue_free()
 		_completion_emitted = true
 		room_completed.emit()
+
+func _spawn_b10_guardian() -> bool:
+	if _b10_guard_started: return is_instance_valid(_boss_actor) or _boss_defeated
+	var id:=str(layout.get("dragon_id",""))
+	var profile_value: Dictionary=preload("res://scripts/levels/b10/combat/enemy_skills.gd").boss_profile(id,difficulty,enemy_calibration())
+	if profile_value.is_empty():
+		configuration_error="Missing final-court guardian: "+id
+		return false
+	var guardian: Node2D=preload("res://scripts/gameplay/bosses/boss_actor.gd").new()
+	guardian.room=self
+	guardian.position=layout.dragon_spawn
+	guardian.configure(profile_value,{"reward_enabled":false,"actor_kind":"boss","zone_index":-1})
+	guardian.completed.connect(func(_id: String,_payload: Dictionary) -> void: _boss_defeated=true)
+	_boss_actor=guardian
+	_b10_guard_started=true
+	enemies.add_child(guardian)
+	return true
 
 func expedition_runtime_snapshot() -> Dictionary:
 	if not is_instance_valid(player):

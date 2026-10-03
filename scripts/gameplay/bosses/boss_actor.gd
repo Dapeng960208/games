@@ -152,10 +152,12 @@ func _load_boss_art() -> void:
 	body_bounds = Rect2(-width * 0.5, 48.0 - height, width, height)
 
 func boss_phase_started(next_phase: int, ratio: float) -> void:
-	# Every phase owns a fresh hazard set. This removes pools/charges from the old
-	# phase before its reinforcement notification can be consumed by the room.
+	# Final-court missiles keep their frozen sources across phase transitions.
 	if is_instance_valid(room) and is_instance_valid(room.enemy_skills):
-		room.enemy_skills.cancel_owner(self)
+		if bool(profile.get("b10_combat_version",false)):
+			room.enemy_skills.b10.phase_started(self)
+		else:
+			room.enemy_skills.cancel_owner(self)
 	phase_changed.emit(boss_id, next_phase, ratio)
 	_queue_reinforcement_wave(next_phase)
 	queue_redraw()

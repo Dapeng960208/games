@@ -201,8 +201,8 @@
       "enemy_level": 50,
       "introduced_enemy_ids": [],
       "dragon_id": "BO10",
-      "dragon_name": "九曜九头龙",
-      "encounter_text": "九头龙的三阶段星核可由所有职业击破；环路和双门始终可用。",
+      "dragon_name": "星冠古龙",
+      "encounter_text": "单首星冠古龙的三阶段星核可由所有职业击破；环路和双门始终可用。",
       "reward_bias": [
         "weapon",
         "accessory"

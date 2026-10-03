@@ -99,6 +99,19 @@ func _draw() -> void:
 				data.erase("combo_directions")
 				data.erase("sequence_shapes")
 			room.draw_enemy_telegraph(self, data)
+			if bool(data.get("b10_command",false)):
+				for follow: Dictionary in data.get("followups",[]):
+					# A re-locked second slash gets its own warning only after
+					# release; the bent charge's full path is already published.
+					if bool(follow.get("b10_relock",false)) or bool(follow.get("b10_swept_cast",false)): continue
+					if bool(follow.get("harmless",false)):
+						draw_set_transform_matrix(_canvas_transform)
+						draw_arc(Vector2(follow.get("target",follow.get("origin",Vector2.ZERO))),float(follow.get("radius",40)),0,TAU,32,Color("86ceb4"),2,true)
+						draw_set_transform_matrix(Transform2D.IDENTITY)
+					elif float(follow.get("coefficient",0))>0:
+						var preview:=follow.duplicate(true)
+						preview["locked"]=bool(data.get("locked",false))
+						room.draw_enemy_telegraph(self,preview)
 			if bool(data.get("b09_command",false)):
 				if data.has("shatter"): room.draw_enemy_telegraph(self,data.shatter)
 				for follow: Dictionary in data.get("followups",[]):

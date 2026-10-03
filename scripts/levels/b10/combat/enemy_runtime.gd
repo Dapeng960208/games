@@ -35,15 +35,26 @@ func advance(delta: float) -> void:
 		if first!=null:
 			ordinary_initialized=true
 			var raw: Array=_spec().get("star_cores",[])
+			var frontliner: Dictionary=Skills.profile("B10-M01",int(first.profile.enemy_level),int(host.room.difficulty))
 			for i in mini(raw.size(),1 if int(host.room.difficulty)<2 else 2):
-				_spawn_core(first,i,roundf(float(first.profile.max_hp)*.6),false)
+				_spawn_core(first,i,roundf(float(frontliner.max_hp)*.6),false)
+	for index in cores.size():
+		var core: Dictionary=cores[index]
+		if bool(core.boss) or _core_alive(index) or clock<float(core.get("restore_at",INF)): continue
+		var owner_actor: Node2D=_first_enemy()
+		if owner_actor!=null: _spawn_core(owner_actor,index,float(core.health),false)
 	for effect: Dictionary in effects.duplicate():
 		effect.remaining=float(effect.remaining)-delta
 		var target: Node2D=effect.target.get_ref()
-		if effect.remaining<=0 or not host._alive(target): effects.erase(effect)
+		if effect.remaining<=0 or not host._alive(target):
+			effects.erase(effect)
+			if effect.remaining<=0 and host._alive(target) and str(effect.kind) in ["stance","guard"]:
+				_recover(target,1.2)
 	# Receipts are bounded by recent combat time, not by the chapter duration.
 	for key: String in hit_receipts.keys():
 		if clock-float(hit_receipts[key])>12: hit_receipts.erase(key)
+	for id: int in links.keys():
+		if not host._alive(instance_from_id(id)): links.erase(id)
 
 func _first_enemy() -> Node2D:
 	for child: Node in host.room.enemies.get_children():
@@ -51,11 +62,15 @@ func _first_enemy() -> Node2D:
 	return null
 
 func can_lock(caster: Node2D) -> bool:
-	var active := 0
+	var active: Dictionary={}
 	for child: Node in host.room.enemies.get_children():
 		if child==caster or not host._alive(child): continue
-		if str(Props.read(child,"state","")) in ["telegraph","locked","windup"]: active+=1
-	return active<2
+		if str(Props.read(child,"state","")) in ["telegraph","locked","windup"]: active[child.get_instance_id()]=true
+	for job: Dictionary in host.jobs:
+		if not bool(job.get("b10_command",false)) or int(job.get("coefficient",0))<=0: continue
+		if int(job.get("owner_id",0))==caster.get_instance_id(): return false
+		active[int(job.get("owner_id",0))]=true
+	return active.size()<2
 
 func portal_endpoints() -> Array:
 	var result: Array=[]
@@ -71,17 +86,21 @@ func constrain(caster: Node2D, value: Dictionary) -> Dictionary:
 		var points := portal_endpoints()
 		if points.size()>=2 and str(c.shape)=="line":
 			var start: Vector2=points[0]
-			var end: Vector2=points[1]
+			var end: Vector2=host.room.clamp_actor(start+Vector2(c.direction)*float(c.range),5)
+			var other_end: Vector2=host.room.clamp_actor(Vector2(points[1])+Vector2(c.direction)*float(c.range),5)
 			c.origin=start
 			c.target=end
 			c.direction=start.direction_to(end)
 			c.range=start.distance_to(end)
 			c.points=[start,end]
-			c["gate_endpoints"]=[start,end]
+			c["gate_endpoints"]=[start,points[1]]
+			c["paths"]=[[start,end],[points[1],other_end]]
+			for follow: Dictionary in c.get("followups",[]):
+				if str(follow.shape)=="circle": follow.merge({"origin":points[1],"target":points[1]},true)
 	# During accepted transit, a new tracked landing attack cannot be placed
 	# onto the reserved landing disk. Existing published commands are untouched.
 	var player: Variant=Props.read(host.room,"player")
-	if player is Node2D and float(player.get_meta("b10_portal_landing_until",0))>clock and str(c.kind)=="ground_area":
+	if player is Node2D and float(player.get_meta("b10_portal_landing_until",0))>float(Props.read(host.room,"elapsed",clock)) and str(c.kind)=="ground_area":
 		var landing: Vector2=player.get_meta("b10_portal_destination",player.position)
 		if Vector2(c.target).distance_to(landing)<100+float(c.get("radius",0)):
 			c.target=host.room.clamp_actor(landing+Vector2(180,0),20)
@@ -97,6 +116,19 @@ func constrain(caster: Node2D, value: Dictionary) -> Dictionary:
 			c["transfer_destination"]=host.room.clamp_actor(destination,18)
 			c["targets"]=[c.target,c.transfer_destination]
 			c["paths"]=[[c.target,c.transfer_destination]]
+	if str(c.get("caster_enemy_id",""))=="B10-M07":
+		# Both segments are fixed before the first warning. Clamp only while
+		# authoring this snapshot, never retarget the released charge.
+		var middle: Vector2=host.room.clamp_actor(c.target,float(caster.navigation_radius))
+		var second: Dictionary=c.followups[0]
+		var finish: Vector2=host.room.clamp_actor(second.target,float(caster.navigation_radius))
+		c.target=middle
+		c.direction=Vector2(c.origin).direction_to(middle)
+		c.range=Vector2(c.origin).distance_to(middle)
+		c.travel_distance=c.range
+		c.points=[c.origin,middle]
+		c.paths=[[c.origin,middle,finish]]
+		second.merge({"origin":middle,"target":finish,"direction":middle.direction_to(finish),"range":middle.distance_to(finish),"travel_distance":middle.distance_to(finish),"points":[middle,finish]},true)
 	for i in c.get("followups",[]).size():
 		c.followups[i]["source_zone"]=c.source_zone
 		c.followups[i]["ranged_direct_damage"]=str(c.followups[i].kind)=="projectile" or (str(c.followups[i].shape)=="line" and str(c.followups[i].kind)=="melee")
@@ -142,6 +174,8 @@ func _spawn_core(owner_actor: Node2D, index: int, hp: float, for_boss: bool) -> 
 	anchor.health.depleted.connect(_core_destroyed.bind(index,weakref(anchor)))
 
 func _core_destroyed(index: int, ref: WeakRef) -> void:
+	if index>=0 and index<cores.size() and not bool(cores[index].boss):
+		cores[index]["restore_at"]=clock+8.0
 	var core: Node2D=ref.get_ref()
 	if is_instance_valid(core) and bool(core.last_damage_result.get("confirmed",false)):
 		var player: Variant=Props.read(host.room,"player")
@@ -158,6 +192,11 @@ func _core_destroyed(index: int, ref: WeakRef) -> void:
 			if host._alive(actor):
 				for effect: Dictionary in effects.duplicate():
 					if effect.target.get_ref()==actor and str(effect.kind) in ["stance","guard"]: effects.erase(effect)
+				_recover(actor,1.2)
+				if int(actor.profile.get("difficulty",0))>=4 and str(actor.enemy_id) in ["B10-M13","B10-M18"]:
+					effects.append({"kind":"exposed","target":weakref(actor),"remaining":2.0,"direction":actor.aim_direction,"rear_only":str(actor.enemy_id)=="B10-M13"})
+				for pending: Dictionary in host.jobs.duplicate():
+					if int(pending.get("owner_id",0))==link_id and bool(pending.get("core_required",false)): host.jobs.erase(pending)
 
 func boss_core_count(actor: Node2D) -> int:
 	if boss_ref==null or boss_ref.get_ref()!=actor: return 0
@@ -212,6 +251,24 @@ func execute(c: Dictionary) -> bool:
 	if bool(c.get("core_required",false)) and not connected(caster): return true
 	if c.has("core_index") and not _core_alive(int(c.core_index)): return true
 	var kind := str(c.kind)
+	if bool(c.get("derived",false)) and kind=="ground_area" and str(c.shape)=="line" and not c.get("paths",[]).is_empty():
+		for path: Array in c.paths:
+			for index in range(path.size()-1):
+				var stroke:=c.duplicate(true)
+				stroke.erase("paths")
+				stroke.merge({"origin":path[index],"target":path[index+1],"direction":Vector2(path[index]).direction_to(path[index+1]),"points":[path[index],path[index+1]],"range":Vector2(path[index]).distance_to(path[index+1])},true)
+				host._strike(stroke)
+				host._flash(stroke)
+		return true
+	if bool(c.get("b10_cross_gate",false)) and str(c.shape)=="line" and c.get("paths",[]).size()==2:
+		for path: Array in c.paths:
+			var stroke:=c.duplicate(true)
+			stroke.erase("paths")
+			stroke.merge({"origin":path[0],"target":path[1],"direction":Vector2(path[0]).direction_to(path[1]),"points":path,"range":Vector2(path[0]).distance_to(path[1])},true)
+			host._strike(stroke)
+			host._flash(stroke)
+		released(c)
+		return true
 	if not kind.begins_with("b10_"): return false
 	if kind in ["b10_stance","b10_guard"]:
 		if kind=="b10_stance" and not connected(caster): return true
@@ -239,12 +296,29 @@ func execute(c: Dictionary) -> bool:
 					if int(c.difficulty)>=2: caster.status.grant_guard(roundf(float(caster.health.maximum)*.04),4.0,"b10_repair",float(caster.health.maximum))
 	elif kind=="b10_harmonize":
 		for ref: WeakRef in c.get("b10_target_refs",[]):
-			if host._alive(ref.get_ref()): effects.append({"kind":"echo_mark","target":ref,"remaining":8.0})
+			if host._alive(ref.get_ref()): effects.append({"kind":"echo_mark","target":ref,"remaining":8.0,"source":weakref(caster)})
+	elif kind=="b10_waymark":
+		var marker:=c.duplicate(true)
+		marker["fx_color"]=Color("86ceb4")
+		marker["remaining"]=1.0
+		marker["color"]=Color("86ceb4")
+		marker["harmless"]=true
+		host.visuals.append(marker)
+	elif kind=="b10_summon":
+		if can_summon_guards(caster):
+			var count:=0
+			for side: int in [-1,1]:
+				var profile_value:=Skills.profile("B10-M01",50,int(host.room.difficulty))
+				profile_value.max_hp=int(round(float(profile_value.max_hp)*.5))
+				var at: Vector2=host.room.clamp_actor(caster.position+Vector2(side*180,100),18)
+				var guard: Node2D=host.room.spawn_enemy(at,"B10-M01",50,{"owner":caster,"profile":profile_value,"reward_enabled":false,"zone_index":-1})
+				if is_instance_valid(guard): count+=1
+			if count>0: caster.set_meta("b10_guard_rounds",int(caster.get_meta("b10_guard_rounds",0))+1)
 	elif kind=="b10_scale_stone":
 		var stone: Node2D=host.room.spawn_enemy_skill_anchor(caster,Vector2(c.target),float(c.anchor_health),"b10_scale_stone")
 		if is_instance_valid(stone):
 			stone.health.depleted.connect(func() -> void:
-				if host._alive(caster) and int(c.difficulty)>=4 and caster.brain!=null and caster.brain.has_method("interrupt"): caster.brain.interrupt(caster))
+				if host._alive(caster) and int(c.difficulty)>=4: _recover(caster,2.0))
 			# A stone never blocks navigation or portal landings; it is a target.
 			effects.append({"kind":"stone","target":weakref(stone),"remaining":6.0})
 	host._flash(c,Color("c7adea"))
@@ -262,11 +336,18 @@ func released(c: Dictionary) -> void:
 		step["owner_id"]=c.owner_id
 		step["cast_id"]=c.cast_id
 		step["stage"]=i+1
+		if bool(step.get("b10_relock",false)):
+			var player: Variant=Props.read(host.room,"player")
+			if player is Node2D:
+				step.origin=caster.position
+				step.direction=caster.position.direction_to(player.position)
+				step.target=player.position
+				step=Skills.geometry(step)
 		step=Skills.freeze_damage(step,caster.profile)
 		step["remaining"]=maxf(.15,float(step.get("delay",.9)))
 		host.jobs.append(step)
 	# Delayed effects do not recursively schedule another echo or followup.
-	if bool(c.get("derived",false)) or int(c.get("coefficient",0))<=0: return
+	if bool(c.get("derived",false)) or not bool(c.get("active",false)) or int(c.get("coefficient",0))<=0: return
 	var marked := false
 	for effect: Dictionary in effects.duplicate():
 		if str(effect.kind)=="echo_mark" and effect.target.get_ref()==caster:
@@ -274,9 +355,14 @@ func released(c: Dictionary) -> void:
 			effects.erase(effect)
 			break
 	var id: int=caster.get_instance_id()
-	if (bool(c.get("b10_echo",false)) or marked) and connected(caster) and clock>=float(echo_ready.get(id,0)):
-		var echo := Skills.child(c,str(c.kind),str(c.shape),25,.9)
-		echo.merge({"owner":c.owner,"owner_id":c.owner_id,"cast_id":c.cast_id,"stage":99,"core_required":true,"b10_echo":false},true)
+	var on_core:=connected(caster)
+	if (on_core or marked) and clock>=float(echo_ready.get(id,0)):
+		# Echoes repeat the original locked shape once; a charge leaves its
+		# original swept line, never moves the body or schedules another charge.
+		var echo := Skills.child(c,"ground_area" if str(c.kind)=="charge" else str(c.kind),str(c.shape),25,.9)
+		if str(c.shape)=="line": echo["points"]=c.get("points",[c.origin,c.target]).duplicate()
+		if not c.get("paths",[]).is_empty(): echo["paths"]=c.paths.duplicate(true)
+		echo.merge({"owner":c.owner,"owner_id":c.owner_id,"cast_id":c.cast_id,"stage":99,"core_required":on_core,"b10_echo":false,"b10_swept_cast":false,"duration":0.0,"recovery":0.0},true)
 		echo=Skills.freeze_damage(echo,caster.profile)
 		echo["remaining"]=.9
 		host.jobs.append(echo)
@@ -284,17 +370,53 @@ func released(c: Dictionary) -> void:
 
 func allow_hit(victim: Node2D,c: Dictionary) -> bool:
 	if not bool(c.get("b10_cross_gate",false)) and Geometry.zone_at(str(host.room.layout_id),victim.position)!=str(c.get("source_zone",Geometry.zone_at(str(host.room.layout_id),Vector2(c.origin)))): return false
-	var key := "%s:%d:%d"%[str(c.get("cast_id","")),int(c.get("stage",0)),victim.get_instance_id()]
+	var key := "%s:%d:%d"%[str(c.get("cast_id","")),0 if bool(c.get("b10_swept_cast",false)) else int(c.get("stage",0)),victim.get_instance_id()]
 	if hit_receipts.has(key): return false
 	hit_receipts[key]=clock
 	return true
+
+func can_summon_guards(caster: Node2D) -> bool:
+	if int(caster.get_meta("b10_guard_rounds",0))>=2: return false
+	for actor: Node in host.room.enemies.get_children():
+		if host._alive(actor) and actor.get("owner_enemy") is WeakRef and actor.owner_enemy.get_ref()==caster: return false
+	return host.room._living_enemy_count()<=host.MAX_ENEMIES-2
 
 func filter_damage(target: Node2D,amount: float,_kind: StringName,direction: Vector2,damage_type: String) -> float:
 	if damage_type=="true": return amount
 	for effect: Dictionary in effects:
 		if effect.target.get_ref()!=target: continue
 		if str(effect.kind) in ["guard","stance"] and direction.normalized().dot(Vector2(effect.direction))<-.35: amount*=.65
+		if str(effect.kind)=="exposed" and (not bool(effect.get("rear_only",false)) or direction.normalized().dot(Vector2(effect.direction))>.35): amount*=1.15
 	return amount
+
+func _recover(actor: Node2D, seconds: float) -> void:
+	if host._alive(actor) and actor.brain!=null and actor.brain.has_method("hold_recovery"):
+		actor.brain.hold_recovery(actor,seconds)
+
+func recovery_remaining(actor: Node2D) -> float:
+	var result:=0.0
+	for effect: Dictionary in effects:
+		if effect.target.get_ref()==actor and str(effect.kind) in ["guard","stance"]:
+			result=maxf(result,float(effect.remaining)+1.2)
+	return result
+
+func motion_finished(c: Dictionary, impact: bool) -> void:
+	if impact: return
+	for pending: Dictionary in host.jobs.duplicate():
+		if int(pending.get("owner_id",0))==int(c.get("owner_id",0)) and str(pending.get("cast_id",""))==str(c.get("cast_id","")):
+			host.jobs.erase(pending)
+
+func interrupted(caster: Node2D) -> void:
+	# The support owns only uncommitted marks, so interrupting it cannot
+	# withdraw an already published, delayed warning.
+	for effect: Dictionary in effects.duplicate():
+		if str(effect.kind)=="echo_mark" and effect.has("source") and effect.source.get_ref()==caster: effects.erase(effect)
+
+func phase_started(caster: Node2D) -> void:
+	for pending: Dictionary in host.jobs.duplicate():
+		if int(pending.get("owner_id",0))==caster.get_instance_id() and bool(pending.get("b10_cross_gate",false)): host.jobs.erase(pending)
+	_clear_cores()
+	boss_ref=null
 
 func movement_multiplier(target: Node2D) -> float:
 	for effect: Dictionary in effects:
@@ -336,10 +458,8 @@ func draw(canvas: Node2D) -> void:
 		var core: Node2D=cores[index].actor.get_ref()
 		var at: Vector2=core.position
 		canvas.draw_circle(at,24,Color("f7edc6"))
-		canvas.draw_arc(at,31,0,TAU,32,Color("c89be1"),3,true)
-		canvas.draw_colored_polygon(PackedVector2Array([at+Vector2(0,-46),at+Vector2(17,-27),at+Vector2(0,-8),at+Vector2(-17,-27)]),Color("bb8bdd"))
-		canvas.draw_line(at+Vector2(0,-44),at+Vector2(0,-10),Color("fff6c9"),2,true)
-		canvas.draw_rect(Rect2(at+Vector2(-24,7),Vector2(48*core.health.current/core.health.maximum,4)),Color("8a65b7"))
+		canvas.draw_arc(at,31,0,TAU,32,Color("9bcee8"),3,true)
+		canvas.draw_rect(Rect2(at+Vector2(-24,7),Vector2(48*core.health.current/core.health.maximum,4)),Color("d6b763"))
 		for id: int in links:
 			var actor: Object=instance_from_id(id)
-			if int(links[id])==index and host._alive(actor): canvas.draw_line(at,actor.position,Color(.78,.58,.87,.55),2,true)
+			if int(links[id])==index and host._alive(actor): canvas.draw_line(at,actor.position,Color(.48,.74,.87,.55),2,true)

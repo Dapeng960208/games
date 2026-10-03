@@ -698,14 +698,16 @@
     },
     "BO10": {
       "boss_id": "BO10",
-      "name": "九首星冠古龙",
-      "name_en": "Nine-Headed Starcrown Hydra",
-      "theme": "hydra",
+      "name": "星冠古龙",
+      "name_en": "Starcrown Ancient Dragon",
+      "theme": "ancient",
       "level": 50,
       "raw_hp": 1700,
       "raw_damage": 38,
       "radius": 82,
-      "heads": 9
+      "heads": 1,
+      "head_count": 1,
+      "visual_identity": "单首白金古龙、蓝色晶鳞与金色龙冠"
     }
   }
 }

@@ -15,6 +15,7 @@ const Numbers = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const V2_FIELDS := ["ruleset_version", "scale_version", "resource_regen_remainder", "resource_decay_remainder"]
 const B05MechanismSchema = preload("res://scripts/levels/b05/world/mechanism_snapshot.gd")
 const B06MechanismSchema = preload("res://scripts/levels/b06/world/mechanism_snapshot.gd")
+const B10Combat = preload("res://scripts/levels/b10/world/combat_checkpoint.gd")
 const LIMIT := 1000000000.0
 const Status = preload("res://scripts/domain/combat/combat_status.gd")
 const Rules = preload("res://scripts/domain/combat/equipment_effects.gd")
@@ -92,6 +93,10 @@ static func capture(room: Node) -> Dictionary:
 	if tide is Object and tide.has_method("checkpoint"):
 		var checkpoint: Dictionary = B06MechanismSchema.capture(room)
 		if not checkpoint.is_empty(): result["runtime"] = {"b06_mechanisms":checkpoint}
+	if bool(room.get("layout").get("b10_final",false)):
+		var checkpoint: Dictionary=B10Combat.capture(room)
+		if checkpoint.is_empty(): return {}
+		result["runtime"]={"b10_combat":checkpoint}
 	# Runtime dictionary dot writes can create StringName keys. Normalize that
 	# engine-only key representation in the detached copy, not in live reducers;
 	# all value types and the strict JSON/schema validator remain unchanged.
@@ -185,7 +190,9 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	if snapshot.mode == "fresh_entry":
 		return true
 	if snapshot.has("runtime") and str(snapshot.equipment.room_id) == str(room.get("layout_id")):
-		if snapshot.runtime.has("b06_mechanisms"):
+		if snapshot.runtime.has("b10_combat"):
+			if not B10Combat.restore(room,snapshot.runtime.b10_combat): return false
+		elif snapshot.runtime.has("b06_mechanisms"):
 			if not B06MechanismSchema.restore(room,snapshot.runtime.b06_mechanisms): return false
 		else:
 			var mechanisms: Variant = room.get("b05_mechanics")
@@ -341,7 +348,7 @@ static func validate(value: Variant, hero_id: String, stats: Dictionary, fresh_a
 	var runtime_fields: Array = ["runtime"] if value.has("runtime") else []
 	if value.has("runtime"):
 		if not _runtime_valid(value.runtime) or not value.get("equipment") is Dictionary: return false
-		var mechanism: Dictionary = value.runtime.b06_mechanisms if value.runtime.has("b06_mechanisms") else value.runtime.b05_mechanisms
+		var mechanism: Dictionary = value.runtime.b10_combat if value.runtime.has("b10_combat") else value.runtime.b06_mechanisms if value.runtime.has("b06_mechanisms") else value.runtime.b05_mechanisms
 		if mechanism.room_id != value.equipment.get("room_id", ""): return false
 	if value.get("mode") != "safe_boundary" or not _keys(value, ["snapshot_version", "mode", "hero_id", "hp", "resource", "player", "status", "equipment"] + version_fields + runtime_fields):
 		return false
@@ -550,6 +557,7 @@ static func _integer_values(value: Dictionary) -> void:
 
 static func _runtime_valid(value: Variant) -> bool:
 	if not value is Dictionary: return false
+	if _keys(value,["b10_combat"]): return B10Combat.validate_checkpoint(value.b10_combat)
 	if _keys(value,["b06_mechanisms"]): return B06MechanismSchema.validate_checkpoint(value.b06_mechanisms)
 	if not _keys(value, ["b05_mechanisms"]): return false
 	return B05MechanismSchema.validate_checkpoint(value.b05_mechanisms)

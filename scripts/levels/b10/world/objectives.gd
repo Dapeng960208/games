@@ -1,6 +1,7 @@
 extends RefCounted
 ## Fixed paired stargates. Travel is displacement only: never healing or a reset.
 const Geometry = preload("res://scripts/levels/b10/world/room_geometry.gd")
+const NativeArt = preload("res://scripts/levels/b10/art/native_art.gd")
 const CHANNEL_SECONDS := 0.6
 const TRANSIT_SECONDS := 0.4
 var host: Node2D
@@ -106,21 +107,30 @@ func encounter_directive(_index: int) -> Dictionary:
 	return {}
 
 func status_text() -> String:
-	return "击败龙卫和本房巨龙。星门引导0.6秒；星核可攻击，宽步路始终可达。" if str(host.layout.get("blueprint_room_id", "")) != "BO10" else "击败九头龙。三处星核可击破减轻龙盾，双门与环路连接全部核台。"
+	return "击败龙卫和本房巨龙。星门引导0.6秒；星核可攻击，宽步路始终可达。" if str(host.layout.get("blueprint_room_id", "")) != "BO10" else "击败星冠古龙。三处星核可击破减轻龙盾，双门与环路连接全部核台。"
 
 func status_text_en() -> String:
-	return "Defeat the guards and this room's dragon. Stargates channel for 0.6s; walkways and breakable cores remain reachable." if str(host.layout.get("blueprint_room_id", "")) != "BO10" else "Defeat the nine-headed dragon. Break three star cores to weaken its shield; paired gates and walkways reach every core."
+	return "Defeat the guards and this room's dragon. Stargates channel for 0.6s; walkways and breakable cores remain reachable." if str(host.layout.get("blueprint_room_id", "")) != "BO10" else "Defeat the Starcrown Ancient Dragon. Break three star cores to weaken its shield; paired gates and walkways reach every core."
 
 func draw_world(canvas: Node2D) -> void:
+	var rendered: Array[String] = []
+	for anchor: Dictionary in host.layout.get("b10_geometry", {}).get("scenery_anchors", []):
+		if str(anchor.get("render_mode", "")) != "independent_sprite": continue
+		var frame := NativeArt.props_frame(str(anchor.key))
+		if frame.is_empty(): continue
+		var foot := Geometry.world_point(anchor.position)
+		canvas.draw_texture_rect(frame.texture, Rect2(foot+frame.bounds.position, frame.bounds.size), false)
+		rendered.append(str(anchor.key))
+	var gate_frame := NativeArt.props_frame("stargate")
 	for gate: Dictionary in gates.values():
 		var at: Vector2 = gate.position
-		canvas.draw_circle(at, 38.0, Color("b696d4", 0.17))
+		canvas.draw_circle(at, 38.0, Color("54b8ee", 0.17))
 		canvas.draw_arc(at, 38.0, 0, TAU, 48, Color("dfbd6f"), 3.0, true)
-		canvas.draw_arc(at, 28.0, 0, TAU, 48, Color("a584ce"), 2.0, true)
-		for index: int in range(4):
-			var ray := Vector2.RIGHT.rotated(PI * 0.5 * index)
-			canvas.draw_line(at + ray * 31.0, at + ray * 45.0, Color("dfbd6f"), 3.0, true)
+		if not gate_frame.is_empty():
+			canvas.draw_texture_rect(gate_frame.texture, Rect2(at+gate_frame.bounds.position, gate_frame.bounds.size), false)
+			rendered.append("stargate")
+	canvas.set_meta("b10_native_props", rendered)
 	if not channel.is_empty():
 		var destination: Vector2 = channel.destination
-		canvas.draw_arc(destination, 100.0, 0, TAU, 64, Color("c09fe3", 0.7), 2.0, true)
-		canvas.draw_line(channel.origin, destination, Color("c09fe3", 0.22), 2.0, true)
+		canvas.draw_arc(destination, 100.0, 0, TAU, 64, Color("66cafa", 0.7), 2.0, true)
+		canvas.draw_line(channel.origin, destination, Color("66cafa", 0.22), 2.0, true)
