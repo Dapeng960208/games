@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "role": "CH03",
+  "direction": "n",
+  "direction_angle_degrees": 270,
+  "file": "poses_n_a.png",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-5ea3a695-3aab-4357-900f-c8f1b63dbd55.png",
+  "tool": "image_gen.imagegen",
+  "prompt": "Use case: stylized-concept. Asset type: exactly four original complete character sprites in 2x2 source sheet, true transparent RGBA. Requested native2048x2048; native1254 output acceptable ONLY as native, never upscale.\nInput reference is character identity and clothing/material only; it is a front portrait. DO NOT copy its front view or pose, do NOT draw its pet or background. Create proper newly drawn REAR anatomy for N direction 270degrees: NORTH, straight SCREEN UP / directly away from camera. EXACT FULL BACK VIEW with symmetric back shoulders, back bodice seams and back skirt. Show only rear hat crown/brim, back of curly head and hair; absolutely ZERO face, eyes, nose, breasts/front bodice or front-facing hands. Boots point straight up and soles are visible from behind at high camera. This must be a real rear-anatomy redraw.\nCharacter CH03 Lumi is an adult woman22, full bust, very narrow cinched waist, slender shoulders/arms/calves, proportionate adult body. Chestnut curly hair, black-obsidian/midnight-purple fitted mid-length witch dress with silver magic lines/crescents, layered black-purple skirt revealing both black crescent boots, compact large-looking witchhat. Black-silver ornate giant star-ring/crescent staff, dark-purple crystal with tightly contained icy-blue magic. FULLY CLOTHED and neutral functional combat poses. Same complete character and weapon in all four cells. Anatomical LEFT HAND holds staff in EVERY pose, RIGHT empty hand commands. Do not swap hands by direction; redraw rather than mirror.\nCamera IMPORTANT:35-degree high downward near-isometric2.5D, visible TOP surfaces of hat brim, shoulders and boot uppers; body projects onto ground, not eye-level front illustration. Warm volumetric hand-painted cartoon fantasy, clean readable dark cloth highlights, high detail, crisp alpha silhouette.\nLAYOUT: four sprites only in exactly2columns x2rows, no lines or labels. At native1254 canvas each627x627 cell must hold the COMPLETE sprite within x/y46–581 local, maximum535px visible total height/width including hat/staff/hair/boots. At least35 REAL transparent pixels around each cell. Make hat compact, staff no taller than hat, body large: head/natural hair top EXCLUDING HAT to mean boot sole450–500 actual native pixels for upright poses. Preserve anatomy scale. No giant hat squeezing body, no neighboring-cell overlap.\nTOP LEFT IDLE: both boots planted toward specified direction, left-hand staff upright at side, right empty hand resting near hip, poised adult stance.\nTOP RIGHT WALK_LEFT: walking forward toward that exact direction, anatomical left boot leading and right boot trailing, TWO boots clearly visible in a real stride, skirt moves enough to show boots; left hand keeps staff upright and right arm counter-swings.\nBOTTOM LEFT WALK_RIGHT: reciprocal walking forward stride, anatomical right boot leading and left boot trailing, DIFFERENT lower-body silhouette from top-right; same facing and size, left staff hand stays fixed.\nBOTTOM RIGHT BASIC_WINDUP: preparatory weight shift, left-hand staff upright at side; right EMPTY hand lightly lifted forward toward facing direction in front of shoulder, preparing to command the separate familiar but draw NO familiar. No staff strike.\nNo pet, no animal, no extra person, no floor, no ground shadow, no contact shadow, no motion trail, no projectile, no detached FX, no broad glow, no text, no watermark, no outlines of cell grid, no pale pink/cream/teal costume, no man. Alpha must be fully0 throughout all empty background, outer35px and central gaps. Keep complete hat/staff/dress/boots inside cells.",
+  "edit_prompt": "Use case: precise-object-edit. Correct ONLY anatomical handedness of lower-left WALK_RIGHT in this exact NORTH270degrees full-back four-pose sheet. Top-left, top-right and lower-right correctly show LEFT hand holding staff at SCREEN LEFT. Lower-left incorrectly mirrors staff to SCREEN RIGHT and must be redrawn with staff held by LEFT hand at SCREEN LEFT just as other3. Show anatomical left shoulder/left elbow/left wrist holding it on left side of back-view body, RIGHT hand empty. Keep lower-left walking stride with right boot leading, do not mirror whole person or swap leg motion. All4 exact full rear: rear hat/head curls/back dress/bootheels, ZERO face/nose/eyes/front bodice. Preserve exact adult woman, costume, all four pose identities, scale,35degree high isometric camera, complete unclipped hat/staff/dress/boots and true transparent RGBA. Requested native2048x2048, do not upscale actual native. Fit each full sprite inside own quadrant with35pxalpha0padding, compact hat/staff. NO pet/text/floor/shadows/trails.",
+  "transparent_background": true,
+  "requested_native_size": [
+    2048,
+    2048
+  ],
+  "native_resampling": false,
+  "tool_output": {
+    "output_hint": "Generated images are saved to C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad as C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-5ea3a695-3aab-4357-900f-c8f1b63dbd55.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  "reference_roles": {
+    "portrait": "Identity and material only; no pet; no front-view copying.",
+    "direction_a": null
+  },
+  "initial_source_file": "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-2d51f8f6-8d67-42d1-8bfa-e41b27afcc0f.png",
+  "status": "candidate_direction_valid_pending_parent_review",
+  "handoff_risk": [],
+  "frames": [
+    {
+      "name": "idle",
+      "cell": "TL",
+      "region": [
+        198,
+        2,
+        340,
+        618
+      ],
+      "foot": [
+        376,
+        613
+      ],
+      "head": [
+        391,
+        221
+      ],
+      "grip": [
+        270,
+        240
+      ],
+      "muzzle": [
+        266,
+        96
+      ],
+      "body_height": 423,
+      "anatomy_top": [
+        391,
+        190
+      ],
+      "landmark_accuracy_px": 25,
+      "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+      "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+      "requires_component_isolation": true,
+      "visible_alpha_gt8_bbox": [
+        198,
+        2,
+        340,
+        618
+      ]
+    },
+    {
+      "name": "walk_left",
+      "cell": "TR",
+      "region": [
+        746,
+        1,
+        373,
+        619
+      ],
+      "foot": [
+        940,
+        590
+      ],
+      "head": [
+        962,
+        223
+      ],
+      "grip": [
+        832,
+        240
+      ],
+      "muzzle": [
+        841,
+        96
+      ],
+      "body_height": 402,
+      "anatomy_top": [
+        962,
+        188
+      ],
+      "landmark_accuracy_px": 25,
+      "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+      "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+      "requires_component_isolation": true,
+      "visible_alpha_gt8_bbox": [
+        746,
+        1,
+        373,
+        619
+      ]
+    },
+    {
+      "name": "walk_right",
+      "cell": "BL",
+      "region": [
+        183,
+        631,
+        390,
+        596
+      ],
+      "foot": [
+        382,
+        1188
+      ],
+      "head": [
+        398,
+        853
+      ],
+      "grip": [
+        269,
+        862
+      ],
+      "muzzle": [
+        267,
+        719
+      ],
+      "body_height": 371,
+      "anatomy_top": [
+        398,
+        817
+      ],
+      "landmark_accuracy_px": 25,
+      "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+      "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+      "requires_component_isolation": true,
+      "visible_alpha_gt8_bbox": [
+        183,
+        631,
+        390,
+        596
+      ]
+    },
+    {
+      "name": "basic_windup",
+      "cell": "BR",
+      "region": [
+        752,
+        631,
+        362,
+        595
+      ],
+      "foot": [
+        941,
+        1220
+      ],
+      "head": [
+        961,
+        851
+      ],
+      "grip": [
+        820,
+        862
+      ],
+      "muzzle": [
+        820,
+        720
+      ],
+      "body_height": 409,
+      "anatomy_top": [
+        961,
+        811
+      ],
+      "landmark_accuracy_px": 25,
+      "foot_note": "Mean of the two native boot sole ground points; rear/occluded boot positions are visually estimated where skirt or foreshortening hides them.",
+      "body_height_note": "Manual projected natural head/hair-top to mean native boot sole height, excluding hat/staff; crouch/stride may reduce projection. Hidden anatomy top is estimated, never staff/hat bounding height.",
+      "requires_component_isolation": true,
+      "visible_alpha_gt8_bbox": [
+        752,
+        631,
+        362,
+        595
+      ]
+    }
+  ],
+  "region_basis": "Exact alpha>8 main connected-component bounds, measured read-only; original PNG retained byte-for-byte. Alpha 1-8 outside rectangles is recorded separately. Where noted, rectangles may include neighboring component pixels and require repair or component-aware extraction by runtime agent.",
+  "known_limitations": [
+    "Native tool output1254x1254; requested2048not reached, no upscaling.",
+    "Projected body height and source padding may be below requested450px/35px; actual native measurements are recorded; no atlas/hat/staff bbox is substituted for anatomy.",
+    "Manual landmark uncertainty20-25px where sleeves, skirt or high camera occlude joints."
+  ],
+  "copy_to_assets": true,
+  "initial_tool_arguments": {
+    "prompt": "Use case: stylized-concept. Asset type: exactly four original complete character sprites in 2x2 source sheet, true transparent RGBA. Requested native2048x2048; native1254 output acceptable ONLY as native, never upscale.\nInput reference is character identity and clothing/material only; it is a front portrait. DO NOT copy its front view or pose, do NOT draw its pet or background. Create proper newly drawn REAR anatomy for N direction 270degrees: NORTH, straight SCREEN UP / directly away from camera. EXACT FULL BACK VIEW with symmetric back shoulders, back bodice seams and back skirt. Show only rear hat crown/brim, back of curly head and hair; absolutely ZERO face, eyes, nose, breasts/front bodice or front-facing hands. Boots point straight up and soles are visible from behind at high camera. This must be a real rear-anatomy redraw.\nCharacter CH03 Lumi is an adult woman22, full bust, very narrow cinched waist, slender shoulders/arms/calves, proportionate adult body. Chestnut curly hair, black-obsidian/midnight-purple fitted mid-length witch dress with silver magic lines/crescents, layered black-purple skirt revealing both black crescent boots, compact large-looking witchhat. Black-silver ornate giant star-ring/crescent staff, dark-purple crystal with tightly contained icy-blue magic. FULLY CLOTHED and neutral functional combat poses. Same complete character and weapon in all four cells. Anatomical LEFT HAND holds staff in EVERY pose, RIGHT empty hand commands. Do not swap hands by direction; redraw rather than mirror.\nCamera IMPORTANT:35-degree high downward near-isometric2.5D, visible TOP surfaces of hat brim, shoulders and boot uppers; body projects onto ground, not eye-level front illustration. Warm volumetric hand-painted cartoon fantasy, clean readable dark cloth highlights, high detail, crisp alpha silhouette.\nLAYOUT: four sprites only in exactly2columns x2rows, no lines or labels. At native1254 canvas each627x627 cell must hold the COMPLETE sprite within x/y46–581 local, maximum535px visible total height/width including hat/staff/hair/boots. At least35 REAL transparent pixels around each cell. Make hat compact, staff no taller than hat, body large: head/natural hair top EXCLUDING HAT to mean boot sole450–500 actual native pixels for upright poses. Preserve anatomy scale. No giant hat squeezing body, no neighboring-cell overlap.\nTOP LEFT IDLE: both boots planted toward specified direction, left-hand staff upright at side, right empty hand resting near hip, poised adult stance.\nTOP RIGHT WALK_LEFT: walking forward toward that exact direction, anatomical left boot leading and right boot trailing, TWO boots clearly visible in a real stride, skirt moves enough to show boots; left hand keeps staff upright and right arm counter-swings.\nBOTTOM LEFT WALK_RIGHT: reciprocal walking forward stride, anatomical right boot leading and left boot trailing, DIFFERENT lower-body silhouette from top-right; same facing and size, left staff hand stays fixed.\nBOTTOM RIGHT BASIC_WINDUP: preparatory weight shift, left-hand staff upright at side; right EMPTY hand lightly lifted forward toward facing direction in front of shoulder, preparing to command the separate familiar but draw NO familiar. No staff strike.\nNo pet, no animal, no extra person, no floor, no ground shadow, no contact shadow, no motion trail, no projectile, no detached FX, no broad glow, no text, no watermark, no outlines of cell grid, no pale pink/cream/teal costume, no man. Alpha must be fully0 throughout all empty background, outer35px and central gaps. Keep complete hat/staff/dress/boots inside cells.",
+    "referenced_image_paths": [
+      "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/mage/portraits/full_illustration.png"
+    ],
+    "transparent_background": true
+  },
+  "tool_arguments": {
+    "prompt": "Use case: precise-object-edit. Correct ONLY anatomical handedness of lower-left WALK_RIGHT in this exact NORTH270degrees full-back four-pose sheet. Top-left, top-right and lower-right correctly show LEFT hand holding staff at SCREEN LEFT. Lower-left incorrectly mirrors staff to SCREEN RIGHT and must be redrawn with staff held by LEFT hand at SCREEN LEFT just as other3. Show anatomical left shoulder/left elbow/left wrist holding it on left side of back-view body, RIGHT hand empty. Keep lower-left walking stride with right boot leading, do not mirror whole person or swap leg motion. All4 exact full rear: rear hat/head curls/back dress/bootheels, ZERO face/nose/eyes/front bodice. Preserve exact adult woman, costume, all four pose identities, scale,35degree high isometric camera, complete unclipped hat/staff/dress/boots and true transparent RGBA. Requested native2048x2048, do not upscale actual native. Fit each full sprite inside own quadrant with35pxalpha0padding, compact hat/staff. NO pet/text/floor/shadows/trails.",
+    "referenced_image_paths": [
+      "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-2d51f8f6-8d67-42d1-8bfa-e41b27afcc0f.png"
+    ],
+    "transparent_background": true
+  },
+  "generation_history": [
+    {
+      "kind": "initial",
+      "source_file": "C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-2d51f8f6-8d67-42d1-8bfa-e41b27afcc0f.png",
+      "sha256": "8bfe6b7eda1958e947fdcbb70dd146c4a49bd3e7ca7981e32fa0249c25d1ca62",
+      "native_size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "kind": "selected_source",
+      "source_file": "C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-5ea3a695-3aab-4357-900f-c8f1b63dbd55.png",
+      "sha256": "0e48de1037050086fe22bc2585f85ab70daa82c7e27f246b56cd3217eec3ee17",
+      "native_size": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "native_size": [
+    1254,
+    1254
+  ],
+  "png_mode": "RGBA",
+  "source_sha256": "0e48de1037050086fe22bc2585f85ab70daa82c7e27f246b56cd3217eec3ee17",
+  "alpha_check": {
+    "extrema": [
+      0,
+      255
+    ],
+    "canvas_border_nonzero_count": 24,
+    "canvas_border_max_alpha": 6,
+    "outside_frame_regions_nonzero_count": 2114,
+    "outside_frame_regions_max_alpha": 8,
+    "outside_frame_regions_alpha_gt8_count": 0,
+    "pixel_mutation": false
+  }
+}

@@ -1,0 +1,476 @@
+{
+  "asset_id": "hero_mage_runtime_poses_se_a",
+  "asset_type": "original_handpainted_runtime_animation_source",
+  "character_id": "CH03",
+  "character": "露弥 / Lumi",
+  "direction": "SE",
+  "heading_degrees": 45,
+  "direction_contract": "Latest authorized eight screen directions at45° intervals; original new SE/SW source, not renamed30°/60° candidate.",
+  "tool": "built-in image_gen",
+  "generated_on": "2026-10-03",
+  "requested_size": {
+    "width": 2048,
+    "height": 2048
+  },
+  "actual_size": {
+    "width": 1254,
+    "height": 1254
+  },
+  "native_2k_requirement_met": false,
+  "upscaled": false,
+  "local_image_editing": false,
+  "mode": "RGBA",
+  "source_output": "C:/Users/13326/.codex/generated_images/01a10124-a379-7d72-bd69-ea5b8c18f6bf/exec-c3360403-27fa-4706-bb24-25856d0337dd.png",
+  "tool_calls": [
+    {
+      "tool": "built-in image_gen.imagegen",
+      "intent": "generate",
+      "prompt": "Use case: stylized-concept. Original adult female Lumi game sprite sheet A, SE45°.\nMOST IMPORTANT: NEW actual SE body viewing angle for ALL4 figures. TRUE SOUTHEAST45° front-right three-quarter: face, chest, hips, knees and boot toes face diagonally DOWN-RIGHT with equal right/down ground components. Both eyes readable but rightward cheek/profile clearly turns right. Neither mostly-profile30° nor almost-frontal60°. Camera sees her RIGHT body side as near foreground, LEFT arm is far side. REPAINT genuine body anatomy/face/hat/boots/costume at this45°ground heading. Never rotate/mirror/flip an existing sprite. The portrait is costume identity reference ONLY; second image is frontal BODY scale/material reference ONLY, not target viewing angle. \nGenuinely transparent RGBA PNG, request native2048x2048 (never upscale smaller tool output). EXACTLY4complete separate sprites arranged2x2 with invisible cell boundaries, no labels/grid. All hat/dress/two boots/arms/WHOLESTAFF fit in each ownquarter; broad clear transparent cross-gutter. Required35px transparent clearance at actual1254 output on every side of all4cells. At actual1254 cells627square, keep ENTIRE person+staff within TL[x45..582,y45..582],TR[x672..1209,y45..582],BL[x45..582,y672..1209],BR[x672..1209,y672..1209]; do not draw rectangles. All figureheads and stafftops leave top padding, boots leave bottompadding. Each adult BODY from HAIRTOP excludinghat to meanfoot contact450-500actualpixels if actual1254; entire silhouette550px max. Use a broad but compact-volume witchhat/staffcrown so largehat does not make bodytiny. Keep same standing body scale4poses.\nLumi is22yoADULT WOMAN with proportionate FULL BUST under fully covering fitted bodice, clearly NARROW WAIST and slender shoulders/arms/calves, curvy balanced not fat/chibi. Chestnut brown curlyhair. Latestdarkwitch identity: OBSIDIAN BLACK / MIDNIGHTPURPLE, silver rune/crescent trimming, broad black/purplewitchhat, tailored cinched-waist midlengthlayered dress, silvercrescentblackboots. Black/silver elaborate enormous star-ring/crescentstaff with deepvioletcrystal and small CONTAINED ice-cyan magiclight. No pet from portrait, noTuantuan. Preserveface/costume fromportrait.\n35° HIGH oblique downward camera, near-isometric2.5D; visible hatTOP, shouldersTOP, both bootUPPER surfaces. Handpainted volumetric warm-lit cartoonfantasy, rich paintedfabric/hair/metal, warmhighlights, darkclothes readable, crispdetail. No flaticon/plastic3D/sideeyelevel portrait.\nFIXED HANDEDNESS: ANATOMICAL LEFT arm is far side and holds staff, permitted to bend across torso naturally; staff around SCREEN RIGHT of torso. Near ANATOMICAL RIGHT arm is EMPTY and lowered for idle / lightly raised for windup, with no second staff hand. Exactly2connected arms and2hands, no hidden duplicate. Every sprite exactlyTWOarms/TWOhands/TWOlegs. Forearms correctly join shoulders through sleeves.\nTL IDLE: calmbalancedfeet, anatomicalLEFThand holds staffSIDEupright, anatomicalRIGHTemptyhand lowered relaxed, facedoesnotblock. No pointing here.\nTR WALK_LEFT: leftleg forward alongSE, rightlegback, two blackboots visibly separated below skirt; natural bodyshift, left-handstaffcarriedsideupright, rightfreehandbalances. True firstwalkphase.\nBL WALK_RIGHT: REVERSEwalkingphase, RIGHTlegforward alongSE, LEFTlegback, two blackboots visibly separated; not duplicatedleftlegpose, same bodyadultscale. Same leftstaff/rightemptyhand.\nBR BASIC_WINDUP: stablefeet, anatomicalRIGHTemptyhand LIGHTLY raised at chest-height fingerspoised for command, anatomicalLEFTstaffSIDEupright, facedoesnotblock, twoarmsONLY.\nNo pet/mascot/extrafigure, cream/pink/lilac/tealidentity, maleengineer/beard, thickfatlimbs, sexualpose/cleavage, floor/contactshadow, backgroundcolor, text/grid/watermark, floatingeffects/trail/disconnectedextraobjects. Only four complete isolated Lumi figures, realSE45°bodyyaw, consistentadultstandingproportions.",
+      "source_output": "C:/Users/13326/.codex/generated_images/01a10124-a379-7d72-bd69-ea5b8c18f6bf/exec-78eb9fd8-26f9-4094-b9f1-0903944b0363.png",
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/mage/portraits/full_illustration.png",
+        "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/mage/animations/runtime_sources/poses_s_a.png"
+      ],
+      "source_sha256": "b72bb3cdefaba70c410320c4b9c044442bf201d31fb60f76ff974a9de32836fc",
+      "reference_hashes": {
+        "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/mage/portraits/full_illustration.png": "3839f0ac8091f76c9ffbad9426d180524678fb9f95553f2b5bcbbfb51bd8f49c",
+        "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/mage/animations/runtime_sources/poses_s_a.png": "8c7ac921a1c0748de60171084956d766a2a0fe0912c8dc365feb5b089dd889ba"
+      }
+    },
+    {
+      "tool": "built-in image_gen.imagegen",
+      "intent": "precise-object-edit",
+      "prompt": "Precise-object-edit of SE-A source, ONLY BOTTOM-LEFT WALK_RIGHT sprite's LEGS/BOOTS and the immediately overlapping lower-skirt opening.\nKeep other THREE sprites EXACTLY unchanged, and keep BL upper body/hat/face/chest/waist/twoarm/leftstaff/camera/scale/position unchanged. No changes to top-left idle, top-right walk_left or bottom-right windup.\nThe BL repeats the top-right LEFT-leg-forward stance. Redraw BOTTOM-LEFT as OPPOSITE WALKING PHASE: ANATOMICAL RIGHT leg (near side emerges screenLEFT hip aroundx330) is FORWARD toward lower-right, foreground frontsole roughly(x375,y1210). ANATOMICAL LEFT leg is BACK beside staff, rearsole roughly(x430,y1150). Bothboottoes face trueSE diagonally DOWN-RIGHT at45°. Two clearly separated blackcrescentboots visible below skirt. Keep existingface/torso truefront-right45°.\nFeet can vary with natural stride; do not stretch lowerlegs or resize entire figure. Correct knee/thigh/boot connections with2legs only, no extra boots. Left hand keeps staff/righthand staysfree; exactly2arms unchanged. Preserve original black/midnightpurple/silver dress, chestnutcurls, fullyclothedfullbust/narrowwaist/slenderlimbs, warmpainted35°high2.5D view.\nNative original1254x1254 with transparentalpha, no softwareupscale. Whole BLsprite andstaff remaincomplete. No pet/floor/shadow/trail/effects/text/grid. Only this BL legphase and bootdirection correction, no reframing.",
+      "source_output": "C:/Users/13326/.codex/generated_images/01a10124-a379-7d72-bd69-ea5b8c18f6bf/exec-c3360403-27fa-4706-bb24-25856d0337dd.png",
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "C:/Users/13326/.codex/generated_images/01a10124-a379-7d72-bd69-ea5b8c18f6bf/exec-78eb9fd8-26f9-4094-b9f1-0903944b0363.png"
+      ],
+      "source_sha256": "5e63a9e97e48c72a00ed0522b78ce3f6b2c5aadbc9ddae0742fa1a790b550132",
+      "reference_hashes": {
+        "C:/Users/13326/.codex/generated_images/01a10124-a379-7d72-bd69-ea5b8c18f6bf/exec-78eb9fd8-26f9-4094-b9f1-0903944b0363.png": "b72bb3cdefaba70c410320c4b9c044442bf201d31fb60f76ff974a9de32836fc"
+      }
+    }
+  ],
+  "prompts": [
+    "Use case: stylized-concept. Original adult female Lumi game sprite sheet A, SE45°.\nMOST IMPORTANT: NEW actual SE body viewing angle for ALL4 figures. TRUE SOUTHEAST45° front-right three-quarter: face, chest, hips, knees and boot toes face diagonally DOWN-RIGHT with equal right/down ground components. Both eyes readable but rightward cheek/profile clearly turns right. Neither mostly-profile30° nor almost-frontal60°. Camera sees her RIGHT body side as near foreground, LEFT arm is far side. REPAINT genuine body anatomy/face/hat/boots/costume at this45°ground heading. Never rotate/mirror/flip an existing sprite. The portrait is costume identity reference ONLY; second image is frontal BODY scale/material reference ONLY, not target viewing angle. \nGenuinely transparent RGBA PNG, request native2048x2048 (never upscale smaller tool output). EXACTLY4complete separate sprites arranged2x2 with invisible cell boundaries, no labels/grid. All hat/dress/two boots/arms/WHOLESTAFF fit in each ownquarter; broad clear transparent cross-gutter. Required35px transparent clearance at actual1254 output on every side of all4cells. At actual1254 cells627square, keep ENTIRE person+staff within TL[x45..582,y45..582],TR[x672..1209,y45..582],BL[x45..582,y672..1209],BR[x672..1209,y672..1209]; do not draw rectangles. All figureheads and stafftops leave top padding, boots leave bottompadding. Each adult BODY from HAIRTOP excludinghat to meanfoot contact450-500actualpixels if actual1254; entire silhouette550px max. Use a broad but compact-volume witchhat/staffcrown so largehat does not make bodytiny. Keep same standing body scale4poses.\nLumi is22yoADULT WOMAN with proportionate FULL BUST under fully covering fitted bodice, clearly NARROW WAIST and slender shoulders/arms/calves, curvy balanced not fat/chibi. Chestnut brown curlyhair. Latestdarkwitch identity: OBSIDIAN BLACK / MIDNIGHTPURPLE, silver rune/crescent trimming, broad black/purplewitchhat, tailored cinched-waist midlengthlayered dress, silvercrescentblackboots. Black/silver elaborate enormous star-ring/crescentstaff with deepvioletcrystal and small CONTAINED ice-cyan magiclight. No pet from portrait, noTuantuan. Preserveface/costume fromportrait.\n35° HIGH oblique downward camera, near-isometric2.5D; visible hatTOP, shouldersTOP, both bootUPPER surfaces. Handpainted volumetric warm-lit cartoonfantasy, rich paintedfabric/hair/metal, warmhighlights, darkclothes readable, crispdetail. No flaticon/plastic3D/sideeyelevel portrait.\nFIXED HANDEDNESS: ANATOMICAL LEFT arm is far side and holds staff, permitted to bend across torso naturally; staff around SCREEN RIGHT of torso. Near ANATOMICAL RIGHT arm is EMPTY and lowered for idle / lightly raised for windup, with no second staff hand. Exactly2connected arms and2hands, no hidden duplicate. Every sprite exactlyTWOarms/TWOhands/TWOlegs. Forearms correctly join shoulders through sleeves.\nTL IDLE: calmbalancedfeet, anatomicalLEFThand holds staffSIDEupright, anatomicalRIGHTemptyhand lowered relaxed, facedoesnotblock. No pointing here.\nTR WALK_LEFT: leftleg forward alongSE, rightlegback, two blackboots visibly separated below skirt; natural bodyshift, left-handstaffcarriedsideupright, rightfreehandbalances. True firstwalkphase.\nBL WALK_RIGHT: REVERSEwalkingphase, RIGHTlegforward alongSE, LEFTlegback, two blackboots visibly separated; not duplicatedleftlegpose, same bodyadultscale. Same leftstaff/rightemptyhand.\nBR BASIC_WINDUP: stablefeet, anatomicalRIGHTemptyhand LIGHTLY raised at chest-height fingerspoised for command, anatomicalLEFTstaffSIDEupright, facedoesnotblock, twoarmsONLY.\nNo pet/mascot/extrafigure, cream/pink/lilac/tealidentity, maleengineer/beard, thickfatlimbs, sexualpose/cleavage, floor/contactshadow, backgroundcolor, text/grid/watermark, floatingeffects/trail/disconnectedextraobjects. Only four complete isolated Lumi figures, realSE45°bodyyaw, consistentadultstandingproportions.",
+    "Precise-object-edit of SE-A source, ONLY BOTTOM-LEFT WALK_RIGHT sprite's LEGS/BOOTS and the immediately overlapping lower-skirt opening.\nKeep other THREE sprites EXACTLY unchanged, and keep BL upper body/hat/face/chest/waist/twoarm/leftstaff/camera/scale/position unchanged. No changes to top-left idle, top-right walk_left or bottom-right windup.\nThe BL repeats the top-right LEFT-leg-forward stance. Redraw BOTTOM-LEFT as OPPOSITE WALKING PHASE: ANATOMICAL RIGHT leg (near side emerges screenLEFT hip aroundx330) is FORWARD toward lower-right, foreground frontsole roughly(x375,y1210). ANATOMICAL LEFT leg is BACK beside staff, rearsole roughly(x430,y1150). Bothboottoes face trueSE diagonally DOWN-RIGHT at45°. Two clearly separated blackcrescentboots visible below skirt. Keep existingface/torso truefront-right45°.\nFeet can vary with natural stride; do not stretch lowerlegs or resize entire figure. Correct knee/thigh/boot connections with2legs only, no extra boots. Left hand keeps staff/righthand staysfree; exactly2arms unchanged. Preserve original black/midnightpurple/silver dress, chestnutcurls, fullyclothedfullbust/narrowwaist/slenderlimbs, warmpainted35°high2.5D view.\nNative original1254x1254 with transparentalpha, no softwareupscale. Whole BLsprite andstaff remaincomplete. No pet/floor/shadow/trail/effects/text/grid. Only this BL legphase and bootdirection correction, no reframing."
+  ],
+  "layout": {
+    "columns": 2,
+    "rows": 2,
+    "order": "row-major",
+    "frame_names": [
+      "idle",
+      "walk_left",
+      "walk_right",
+      "basic_windup"
+    ]
+  },
+  "frames": [
+    {
+      "name": "idle",
+      "slot": "TL",
+      "region": [
+        160,
+        25,
+        435,
+        602
+      ],
+      "visible_alpha64_core": [
+        164,
+        29,
+        427,
+        594
+      ],
+      "antialias_padding_px": 4,
+      "foot": [
+        393,
+        589
+      ],
+      "head": [
+        365,
+        190
+      ],
+      "grip": [
+        490,
+        295
+      ],
+      "muzzle": [
+        495,
+        100
+      ],
+      "staff_tip": [
+        495,
+        31
+      ],
+      "body_height": 449,
+      "hair_top_y": 140,
+      "boot_contact_points": [
+        [
+          389,
+          614
+        ],
+        [
+          397,
+          564
+        ]
+      ],
+      "foot_estimated": true,
+      "landmark_accuracy_px": 18,
+      "hair_check": {
+        "manual_head_roi": [
+          320,
+          120,
+          120,
+          135
+        ],
+        "first_warm_pixel_row": 131,
+        "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+      },
+      "component_seed": [
+        365,
+        190
+      ],
+      "region_is_neighbor_free": true,
+      "neighbor_main_visible_pixels_in_region": 0,
+      "foreigncomponent": {
+        "pixels_at_alpha64": 0,
+        "requires_connected_component_extraction": true
+      },
+      "requires_component_extraction": true,
+      "cell": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "cell_insets": [
+        160,
+        25,
+        32,
+        0
+      ]
+    },
+    {
+      "name": "walk_left",
+      "slot": "TR",
+      "region": [
+        741,
+        31,
+        465,
+        618
+      ],
+      "visible_alpha64_core": [
+        745,
+        35,
+        457,
+        610
+      ],
+      "antialias_padding_px": 4,
+      "foot": [
+        983,
+        608.5
+      ],
+      "head": [
+        971,
+        211
+      ],
+      "grip": [
+        1100,
+        297
+      ],
+      "muzzle": [
+        1106,
+        107
+      ],
+      "staff_tip": [
+        1106,
+        33
+      ],
+      "body_height": 444.5,
+      "hair_top_y": 164,
+      "boot_contact_points": [
+        [
+          1034,
+          638
+        ],
+        [
+          932,
+          579
+        ]
+      ],
+      "foot_estimated": false,
+      "landmark_accuracy_px": 12,
+      "hair_check": {
+        "manual_head_roi": [
+          925,
+          145,
+          112,
+          123
+        ],
+        "first_warm_pixel_row": 145,
+        "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+      },
+      "component_seed": [
+        971,
+        211
+      ],
+      "region_is_neighbor_free": false,
+      "neighbor_main_visible_pixels_in_region": 84,
+      "foreigncomponent": {
+        "pixels_at_alpha64": 84,
+        "requires_connected_component_extraction": true
+      },
+      "requires_component_extraction": true,
+      "cell": [
+        627,
+        0,
+        627,
+        627
+      ],
+      "cell_insets": [
+        114,
+        31,
+        48,
+        -22
+      ]
+    },
+    {
+      "name": "walk_right",
+      "slot": "BL",
+      "region": [
+        115,
+        629,
+        477,
+        599
+      ],
+      "visible_alpha64_core": [
+        119,
+        633,
+        469,
+        591
+      ],
+      "antialias_padding_px": 4,
+      "foot": [
+        422,
+        1170.5
+      ],
+      "head": [
+        367,
+        812
+      ],
+      "grip": [
+        487,
+        887
+      ],
+      "muzzle": [
+        492,
+        706
+      ],
+      "staff_tip": [
+        492,
+        632
+      ],
+      "body_height": 411.5,
+      "hair_top_y": 759,
+      "boot_contact_points": [
+        [
+          404,
+          1216
+        ],
+        [
+          440,
+          1125
+        ]
+      ],
+      "foot_estimated": true,
+      "landmark_accuracy_px": 18,
+      "hair_check": {
+        "manual_head_roi": [
+          327,
+          735,
+          106,
+          125
+        ],
+        "first_warm_pixel_row": 738,
+        "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+      },
+      "component_seed": [
+        367,
+        812
+      ],
+      "region_is_neighbor_free": true,
+      "neighbor_main_visible_pixels_in_region": 0,
+      "foreigncomponent": {
+        "pixels_at_alpha64": 0,
+        "requires_connected_component_extraction": true
+      },
+      "requires_component_extraction": true,
+      "cell": [
+        0,
+        627,
+        627,
+        627
+      ],
+      "cell_insets": [
+        115,
+        2,
+        35,
+        26
+      ]
+    },
+    {
+      "name": "basic_windup",
+      "slot": "BR",
+      "region": [
+        758,
+        632,
+        439,
+        601
+      ],
+      "visible_alpha64_core": [
+        762,
+        636,
+        431,
+        593
+      ],
+      "antialias_padding_px": 4,
+      "foot": [
+        975,
+        1197
+      ],
+      "head": [
+        956,
+        811
+      ],
+      "grip": [
+        1093,
+        896
+      ],
+      "muzzle": [
+        1097,
+        708
+      ],
+      "staff_tip": [
+        1097,
+        634
+      ],
+      "body_height": 440,
+      "hair_top_y": 757,
+      "boot_contact_points": [
+        [
+          950,
+          1221
+        ],
+        [
+          1000,
+          1173
+        ]
+      ],
+      "foot_estimated": false,
+      "landmark_accuracy_px": 12,
+      "hair_check": {
+        "manual_head_roi": [
+          910,
+          734,
+          120,
+          132
+        ],
+        "first_warm_pixel_row": 737,
+        "interpretation": "Read-only warm-chestnut pixel corroboration, not an independent semantic detector; manual hair top excludes hat/lining and remains authoritative."
+      },
+      "component_seed": [
+        956,
+        811
+      ],
+      "region_is_neighbor_free": false,
+      "neighbor_main_visible_pixels_in_region": 544,
+      "foreigncomponent": {
+        "pixels_at_alpha64": 544,
+        "requires_connected_component_extraction": true
+      },
+      "requires_component_extraction": true,
+      "cell": [
+        627,
+        627,
+        627,
+        627
+      ],
+      "cell_insets": [
+        131,
+        5,
+        57,
+        21
+      ]
+    }
+  ],
+  "landmark_annotation": {
+    "coordinate_space": "Original native1254square; origin top-left, xright/ydown. No PNG cropping, filtering, packing or resizing performed.",
+    "method": "Manual visual landmarks with conservative error estimates. Read-only Pillow/numpy alpha run-connected-components supply full silhouette bounds plus4px antialias padding. Native source is preserved bitwise.",
+    "foot_definition": "Arithmetic mean of TWO visible/estimated sole-contact center points, not lowest single boot pixel. Rear boot occlusion explicitly marked; moving raised soles use projected sole points.",
+    "hair_definition": "Top of visible chestnut hair excluding broad hat and staff, hand estimated. Warm-pixel ROI scan is corroboration only and can include warm rim detail; it does not replace semantic annotation.",
+    "muzzle_definition": "Top visible glowing central violet crystal tip, excluding highest silver crown point.",
+    "staff_tip_definition": "Highest pointed silver crown tip of staff, separate from crystal/muzzle.",
+    "direction_idle_reference": {
+      "source": "poses_se_a.png",
+      "frame": "idle",
+      "body_height": 449
+    },
+    "normalization": "None. Runtime must apply one A-idle direction scale to all8poses. B references matching-direction A; dash/guard retain naturally reduced height, no perpose enlargement.",
+    "head_scale_review": "A9 visually approved A/B camera distance and head proportions; this is candidate visual review, not calibrated size equality."
+  },
+  "alpha_verification": {
+    "alpha_threshold_for_visible_bounds": 64,
+    "antialias_padding_px": 4,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "independent_large_sprite_components": 4,
+    "actual_main_components_touch": false,
+    "alpha_outside_frame_regions_nonzero": 995,
+    "alpha_outside_frame_regions_ge64": 0,
+    "all_outer_region_alpha_zero": false,
+    "vertical_midline_two_columns_nonzero_alpha": 35,
+    "horizontal_midline_two_rows_nonzero_alpha": 176,
+    "centerlines_clear": false,
+    "region_neighbor_counts": [
+      0,
+      84,
+      0,
+      544
+    ],
+    "requires_connected_component_extraction": true
+  },
+  "visual_review": {
+    "candidate_approved_by": "A9 actual view of all4new SE/SW raw sheets on2026-10-03",
+    "adult22_female_full_clothed_bust_narrow_waist_slender_limbs": true,
+    "dark_obsidian_midnight_purple_silver_costume": true,
+    "contained_ice_cyan_staff_light": true,
+    "companions": 0,
+    "two_arms_and_two_hands_per_figure": true,
+    "exactly_four_complete_figures": true,
+    "full_hat_staff_clothing_boots_visible": true,
+    "genuine_body_yaw": true,
+    "bitmap_mirroring_or_rotation": false,
+    "handedness": "Far anatomical LEFT hand holds staff; near anatomical RIGHT hand commands. Guard two-handed.",
+    "walking_phases": "A BL corrected once into opposite right-leg-forward phase; trueSE/SW boot orientation retained.",
+    "b_pose_scale": "A9 candidate review accepts natural crouch; no software zoom/resizing."
+  },
+  "margin_35px_requirement_met": false,
+  "whole_sprite_under_560px_requirement_met": false,
+  "idle_body_450_to_550_native_px_met": false,
+  "formal_ready": false,
+  "pending_checks": [
+    "Tool returned native1254square; native2K not met, never upscaled.",
+    "Whole source figures exceed some requested cell margins/height; full bounds include allstaff/hem instead of nominalquarter clipping.",
+    "Some full rectangular regions contain foreign component pixels. Runtime must extract by annotated head/foot/grip component seeds and preserve same-figure staff/hat/detail.",
+    "Measured low-alpha external pixels remain in raw sources. Local separation/packing/alpha cleanup is owned by runtime processor.",
+    "Eight-direction complete family anchor/scale and runtime review remains required before production."
+  ],
+  "notes": "Only these fresh true45° SE/SW source files were added. ExistingE/S,30°/60°candidate sources, oldanimation,portrait,manifest,loader/toolscode remain untouched. A has exactlyone allowed BL legphase/direction tool correction; B no edits. No Godot/commit.",
+  "sha256": "5e63a9e97e48c72a00ed0522b78ce3f6b2c5aadbc9ddae0742fa1a790b550132",
+  "source_sha256": "5e63a9e97e48c72a00ed0522b78ce3f6b2c5aadbc9ddae0742fa1a790b550132"
+}
