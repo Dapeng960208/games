@@ -6,7 +6,7 @@
     "B05-M02",
     "B05-M04"
   ],
-  "status": "candidate_first_room_body_variants",
+  "status": "released_first_room_body_variants",
   "runtime_quality_gate_passed": true,
   "generation_tool": "image_gen.imagegen",
   "native_generated": true,

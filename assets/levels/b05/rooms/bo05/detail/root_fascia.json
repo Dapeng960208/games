@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "room_id": "BO05",
-  "approved": false,
-  "candidate_only": true,
+  "approved": true,
+  "candidate_only": false,
   "texture": "asset://world/rooms_2k/L26/root_fascia_v1.png",
   "native_size": [
     1536,
@@ -26,5 +26,16 @@
   "solid_alpha_correction": "alpha > 0.125 becomes opaque; no raster edits",
   "quality_gate": false,
   "prompt_sha256": "47a3b7d7e5538a099656aab1ba125ce575ab53e7f6da05524d52b619bbabe18a",
-  "shared_material_source": "L26 narrow root-fascia native material; exact BO05 mask and portal"
+  "shared_material_source": "L26 narrow root-fascia native material; exact BO05 mask and portal",
+  "status": "released",
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T130008562-a228f36f",
+    "report": "docs/levels/b05_b06_room_paintings.md",
+    "candidate_arguments": false,
+    "framebuffer": [
+      2560,
+      1440
+    ]
+  }
 }

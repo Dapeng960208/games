@@ -2,7 +2,7 @@
   "schema_version": 1,
   "room_id": "L31",
   "biome_id": "B06",
-  "status": "isolated_candidate",
+  "status": "released",
   "background": {
     "texture": "asset://levels/b06/rooms/l31/background/candidates/coral_sea_distance.png",
     "rect": [

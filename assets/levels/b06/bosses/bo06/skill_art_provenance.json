@@ -48,9 +48,25 @@
     ],
     "renderer": "NVIDIA GeForce RTX 3060 Laptop GPU",
     "run_id": "20261003T104001798-1ad6be1a",
-    "cast_icon_physical_pixels": [48, 48],
-    "codex_icon_physical_pixels": [64, 64],
+    "cast_icon_physical_pixels": [
+      48,
+      48
+    ],
+    "codex_icon_physical_pixels": [
+      64,
+      64
+    ],
     "codex_suite_run_id": "20261003T104759633-7858ab81",
     "scope": "six real commands each, warnings/releases and reduced FX; not natural balance"
+  },
+  "release_verification": {
+    "status": "released",
+    "run_id": "20261003T112327490-ed3efb13",
+    "candidate_arguments": false,
+    "renderer": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "framebuffer": [
+      2560,
+      1440
+    ]
   }
 }

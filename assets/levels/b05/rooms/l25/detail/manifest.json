@@ -140,5 +140,6 @@
     "art_review": "All six generated outputs inspected. Trunk/flower/wood surface detail is genuinely redrawn at native resolution. No functional props/text added. Geometry and source features remain recognizable; exact seam/alignment/color acceptance requires assembled production view.",
     "limitation": "Short feather joins retain some low-resolution base texels; not a seamless native mother image. Original intentional blurred foreground flower masses remain artistically soft."
   },
-  "required_separate_overlay": "verge_material_v1.webp with exact frozen exterior clip; do not bake rendered pilot screenshot into native source"
+  "required_separate_overlay": "verge_material_v1.webp with exact frozen exterior clip; do not bake rendered pilot screenshot into native source",
+  "runtime_role": "superseded_reference"
 }

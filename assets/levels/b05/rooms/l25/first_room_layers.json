@@ -2,7 +2,7 @@
   "schema_version": 1,
   "room_id": "L25",
   "biome_id": "B05",
-  "status": "isolated_candidate",
+  "status": "released",
   "background": {
     "texture": "asset://levels/b05/rooms/l25/background/candidates/tree_city_distance.png",
     "rect": [

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "asset_family": "storybook_2_5d_v1",
   "chapter": "B06",
-  "candidate_only": true,
+  "candidate_only": false,
   "runtime_quality_gate_passed": true,
   "registration_status": "production_first_room_pose_pixel_coverage_accepted_2k",
   "scope": "Explicit L31 encounter appearance variants only; default manifest, codex, skill icons, stable enemy IDs and combat roles stay unchanged",
@@ -25,7 +25,7 @@
             1254
           ],
           "native_unmodified": true,
-          "runtime_ready": false,
+          "runtime_ready": true,
           "region": [
             106,
             266,
@@ -74,7 +74,7 @@
             1254
           ],
           "native_unmodified": true,
-          "runtime_ready": false,
+          "runtime_ready": true,
           "region": [
             512,
             245,
@@ -123,7 +123,7 @@
             1254
           ],
           "native_unmodified": true,
-          "runtime_ready": false,
+          "runtime_ready": true,
           "region": [
             873,
             290,
@@ -186,7 +186,7 @@
         "maximum_display_review": {
           "world_reference_height_limit": 105.6,
           "formula": "body_height / reference_body_height_px * 105.6 * actual_game_camera_zoom",
-          "gameplay_2560x1440_status": "pending real L31 encounter capture",
+          "gameplay_2560x1440_status": "production first-room 2K fixture verified; normal release run 20261003T112327490-ed3efb13",
           "codex_variant_usage": "not used; default old registry and UI remain unchanged",
           "minimum_effective_density_policy": "at least 1 source pixel per maximum displayed pixel; 1.25–1.5 margin is implementation guidance"
         }
@@ -284,7 +284,7 @@
             724
           ],
           "native_unmodified": true,
-          "runtime_ready": false,
+          "runtime_ready": true,
           "region": [
             223,
             139,
@@ -333,7 +333,7 @@
             724
           ],
           "native_unmodified": true,
-          "runtime_ready": false,
+          "runtime_ready": true,
           "region": [
             932,
             170,
@@ -382,7 +382,7 @@
             724
           ],
           "native_unmodified": true,
-          "runtime_ready": false,
+          "runtime_ready": true,
           "region": [
             1618,
             199,
@@ -450,7 +450,7 @@
         "maximum_display_review": {
           "world_reference_height_limit": 105.6,
           "formula": "body_height / reference_body_height_px * 105.6 * actual_game_camera_zoom",
-          "gameplay_2560x1440_status": "pending real L31 encounter capture",
+          "gameplay_2560x1440_status": "production first-room 2K fixture verified; normal release run 20261003T112327490-ed3efb13",
           "codex_variant_usage": "not used; default old registry and UI remain unchanged",
           "minimum_effective_density_policy": "at least 1 source pixel per maximum displayed pixel; 1.25–1.5 margin is implementation guidance"
         }
@@ -548,7 +548,7 @@
             1254
           ],
           "native_unmodified": true,
-          "runtime_ready": false,
+          "runtime_ready": true,
           "region": [
             59,
             316,
@@ -597,7 +597,7 @@
             1254
           ],
           "native_unmodified": true,
-          "runtime_ready": false,
+          "runtime_ready": true,
           "region": [
             509,
             325,
@@ -646,7 +646,7 @@
             1254
           ],
           "native_unmodified": true,
-          "runtime_ready": false,
+          "runtime_ready": true,
           "region": [
             842,
             362,
@@ -714,7 +714,7 @@
         "maximum_display_review": {
           "world_reference_height_limit": 105.6,
           "formula": "body_height / reference_body_height_px * 105.6 * actual_game_camera_zoom",
-          "gameplay_2560x1440_status": "pending real L31 encounter capture",
+          "gameplay_2560x1440_status": "production first-room 2K fixture verified; normal release run 20261003T112327490-ed3efb13",
           "codex_variant_usage": "not used; default old registry and UI remain unchanged",
           "minimum_effective_density_policy": "at least 1 source pixel per maximum displayed pixel; 1.25–1.5 margin is implementation guidance"
         }
