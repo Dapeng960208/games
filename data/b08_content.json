@@ -2,7 +2,7 @@
   "version": 1,
   "biome_id": "B08",
   "name": "浮羽空港",
-  "status": "isolated_candidate_scaffold",
+  "status": "isolated_initial_combat_slice",
   "source": "docs/levels/08_FEATHER_SKYPORT.md",
   "runtime_enabled": false,
   "profiles": {
@@ -161,7 +161,7 @@
       "active_design": "一发直线羽箭320、1.0a（7s；0.9s）",
       "difficulty_additions_design": "D2第二箭向不同锁点0.5a；D4顺风箭速+10%但锁定时间不缩",
       "counter_design": "绕货台获得射线遮挡；头",
-      "implementation": "planned"
+      "implementation": "initial_d0_candidate_slice_not_full_difficulty_acceptance"
     },
     "B08-M02": {
       "enemy_id": "B08-M02",
@@ -173,7 +173,7 @@
       "active_design": "影子锁点后俯冲，半径75、1.15a（9s；1.1s）",
       "difficulty_additions_design": "D2落地前方一条0.3a风线；D4着地后侧移60再收势",
       "counter_design": "圈锁后离开，着地仍可近战命中；胸",
-      "implementation": "planned"
+      "implementation": "initial_d0_candidate_slice_not_full_difficulty_acceptance"
     },
     "B08-M03": {
       "enemy_id": "B08-M03",
@@ -185,7 +185,7 @@
       "active_design": "绕目标弧移120后短刺0.85a（7s；0.9s）",
       "difficulty_additions_design": "D2留下一个无伤羽影诱饵；D4真实体脚点始终带族徽",
       "counter_design": "识别真实脚点，不用不可辨假目标强迫试错；鞋",
-      "implementation": "planned"
+      "implementation": "initial_d0_candidate_slice_not_full_difficulty_acceptance"
     },
     "B08-M04": {
       "enemy_id": "B08-M04",
@@ -383,12 +383,14 @@
       0.7,
       0.35
     ],
-    "implementation": "planned"
+    "implementation": "six_gated_candidate_actions_not_full_natural_acceptance"
   },
   "limits": {
     "formal_art": false,
     "equipment": false,
     "campaign_unlock": false,
-    "natural_balance": false
+    "natural_balance": false,
+    "ordinary_d2_d4": false,
+    "save_resume": false
   }
 }

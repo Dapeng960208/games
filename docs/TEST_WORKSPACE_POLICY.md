@@ -44,3 +44,8 @@ python tools/test_workspace.py cleanup --biome B05 --keep 5 --apply --confirm-de
 尚未整体迁移：Windows `tools/test.ps1` 仍使用 `tools/godot/test-runs`；旧 B01–B04 等历史 GDScript 中仍有 `res://artifacts` 路径；历史手动命令和现存 `/tmp` 输出不自动迁移或删除。Windows入口不是本Linux规范的已验证入口。运行旧截图套件前先检查并改其输出路径，不能据管理器存在宣称所有测试完成迁移。
 
 验证范围：`tools/test_workspace_paths.py` 检查路径拒绝、符号链接、默认dry-run、保留数量、活跃/未完成批次保护；不运行全游戏回归。修改后的图形捕获仍需实际调用时验证，不据路径检查宣称视觉验收通过。
+
+
+## B08 独立候选
+
+B08 复用同一 `repository.git` 和全局 `/tmp/games-godot.lock`；输出与临时目录分别为 `_test_output/B08/<批次>/` 和 `_tmp/B08/<批次>/`。`python tools/run_b08_candidate.py` 只做当前首切片定向无界面检查，无可见游戏与自动清理。已有缓存可只读复用，但不得共享 `.godot` 根或通过 editor/import 写原 worktree 缓存；正式资源不复制，真实存档不读取/写入。B08 清理仍必须显式审阅与授权。
