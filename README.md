@@ -30,9 +30,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\setup.ps1
 # 只运行相关检查
 .\tools\test.ps1 -Suite legacy_profile_reset -SkipImport
 python tools/maintenance/audit_repository.py
-# B09 原创霜晶资源与独立七房候选（独立测试档）
+# B09 原创霜晶资源、35装备与七房候选（独立测试档，默认2K）
 .\tools\play_b09.ps1
 .\tools\test.ps1 -Suite b09_candidate -SkipImport
+.\tools\test.ps1 -Suite b09_monster_contract,b09_equipment,b09_inventory -SkipImport
+.\tools\test.ps1 -Suite b09_2k -Graphical -SkipImport
 ```
 
 也可双击 `RUN_GAME.cmd`，已有引擎可通过 `-EnginePath` 或 `GODOT_BIN` 指定。测试会重定向到独立存档目录。实际玩家存档为 `%APPDATA%\AbyssSalvagerM1\profile.json`，不属于仓库清理范围。
