@@ -68,6 +68,7 @@ func execute(c: Dictionary) -> bool:
 				if not placement_safe or box.grow(Balance.PLAYER_RADIUS).has_point(host.room.player.position) or not host.room.valid_ground(box.get_center(),10): continue
 				var anchor: Node2D=host.room.spawn_enemy_skill_anchor(actor,box.get_center(),actor.health.maximum*(0.2 if c.kind=="b09_wall" else 0.15),"crystal_wall")
 				if is_instance_valid(anchor):
+					if c.kind=="b09_shield": anchor.set_meta("b09_enemy_shield",true)
 					var wall := {"rect":box,"actor":weakref(anchor),"until":map.clock+float(c.duration)}
 					if c.has("shatter") and not shatter_assigned:
 						wall["shatter"]=c.shatter
