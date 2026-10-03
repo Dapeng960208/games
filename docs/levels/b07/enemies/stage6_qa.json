@@ -1,0 +1,62 @@
+[
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M01",
+    "ability": "sun_spear",
+    "phase": "telegraph_retracted",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-7ea627ff-171e-4fc7-bdb4-c69b4b7dae28.png",
+    "source_sha256": "73e86ac4995ec7597d044f70aa7fda85b05ca69c61561625396ae8fa87e71af8",
+    "resource": "asset://levels/b07/enemies/m01/actions/sun_spear/telegraph_retracted_candidate.png",
+    "prompt": "provenance/telegraph_retracted_candidate.prompt.txt",
+    "native_size": [
+      1536,
+      1024
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m01/idle.png",
+    "reference_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        12,
+        42,
+        1461,
+        927
+      ],
+      "alpha128_pixel_count": 426932,
+      "transparent_pixel_count": 1116900,
+      "low_alpha_1_32_count": 24810,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 41.0,
+      "foot_landmarks": [
+        [
+          245.8,
+          890.9
+        ],
+        [
+          1044.5,
+          819.2
+        ]
+      ],
+      "foot_midpoint": [
+        645.15,
+        855.05
+      ],
+      "visible_anatomical_vertical_extent": 814.1,
+      "semantic_uncertainty_px": 25.6,
+      "visual_review": "Targeted edit from execution now keeps same shield-side large shoulder and opposite spear arm; elbow retracted. Hand continuity visually improved. Whole-body scale shifted slightly and tail margin tight; not animation registration.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    },
+    "edit_target_path": "assets/levels/b07/enemies/m01/actions/sun_spear/execute_candidate.png",
+    "edit_target_sha256": "d01d70d7c763e8b32a4a4629ad3581640237eb91bd92fcd81299a1214c7c66b8",
+    "preferred_for_next_review": true
+  }
+]

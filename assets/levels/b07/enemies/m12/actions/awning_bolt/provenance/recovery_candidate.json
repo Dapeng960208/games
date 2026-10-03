@@ -1,0 +1,177 @@
+{
+  "id": "m12",
+  "action": "recovery",
+  "kind": "character_key_pose",
+  "relative_dir": "m12/recovery/repair",
+  "crown": [
+    921,
+    164
+  ],
+  "feet": [
+    [
+      497,
+      1032
+    ],
+    [
+      1098,
+      960
+    ]
+  ],
+  "read": "Repair removed extra hand. Exactly two visible hands, right on recocking ring and left under stock.",
+  "issues": [
+    "Reload mechanical sequence needs more frames; bolt is already visible on rail in this recocking key pose.",
+    "Original recovery had duplicate left hand and is rejected, not a valid alternate."
+  ],
+  "path": "assets/levels/b07/enemies/m12/actions/awning_bolt/recovery_candidate.png",
+  "width": 1377,
+  "height": 1142,
+  "mode": "RGBA",
+  "bytes": 1602847,
+  "sha256": "bee3becfec07e148423ec668092db45c512301be3499392ee27011f2a37bb78b",
+  "transparent_pixel_count": 920077,
+  "partial_alpha_pixel_count": 651392,
+  "opaque_pixel_count": 1065,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        59,
+        51,
+        1343,
+        1142
+      ],
+      "bbox_size": [
+        1284,
+        1091
+      ],
+      "effective_pixels": 652457,
+      "margin_ltrb": [
+        59,
+        51,
+        34,
+        0
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        2,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        64,
+        75,
+        1339,
+        1097
+      ],
+      "bbox_size": [
+        1275,
+        1022
+      ],
+      "effective_pixels": 632752,
+      "margin_ltrb": [
+        64,
+        75,
+        38,
+        45
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        65,
+        76,
+        1338,
+        1096
+      ],
+      "bbox_size": [
+        1273,
+        1020
+      ],
+      "effective_pixels": 627583,
+      "margin_ltrb": [
+        65,
+        76,
+        39,
+        46
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/repair/provenance.json",
+  "prompt_path": "provenance/recovery_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/repair/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "manual_foot_qa": {
+    "support_contact_centers_px": [
+      [
+        497,
+        1032
+      ],
+      [
+        1098,
+        960
+      ]
+    ],
+    "anchor_mean_px": [
+      797.5,
+      996.0
+    ],
+    "anchor_normalized": [
+      0.57916,
+      0.87215
+    ],
+    "anatomical_crown_px": [
+      921,
+      164
+    ],
+    "body_effective_height_px": 832.0,
+    "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+    "max_body_display_height_at_1_to_1_px": 832.0,
+    "max_body_display_height_at_1_5_source_to_display_px": 554.7,
+    "accepted_runtime_anchor": false
+  },
+  "minimum_margin_alpha16": 38,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/repair/candidate.png",
+  "resource": "asset://levels/b07/enemies/m12/actions/awning_bolt/recovery_candidate.png",
+  "original_provenance": {
+    "id": "m12",
+    "action": "recovery_repair",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m12/idle_candidate.png",
+    "edit_target": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/recovery/candidate.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-8ab58125-1508-409a-8751-bced45b5d5d4.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "repair_limit": "one_targeted_retry_only",
+    "sha256": "bee3becfec07e148423ec668092db45c512301be3499392ee27011f2a37bb78b",
+    "bytes": 1602847,
+    "source_sha256": "bee3becfec07e148423ec668092db45c512301be3499392ee27011f2a37bb78b",
+    "copy_byte_verified": true
+  },
+  "ability": "awning_bolt"
+}

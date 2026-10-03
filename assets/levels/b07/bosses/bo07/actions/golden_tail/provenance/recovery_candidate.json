@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "BO07",
+  "ability": "golden_tail",
+  "phase": "recovery",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-751799e7-6181-4f88-9ea7-23729e6815f1.png",
+  "source_sha256": "58e3250d356e776bf622f5ca397bf40a9b9d7ec5c35458cc185acbc19631af49",
+  "resource": "asset://levels/b07/bosses/bo07/actions/golden_tail/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png",
+  "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      33,
+      33,
+      1193,
+      1191
+    ],
+    "alpha128_pixel_count": 600178,
+    "transparent_pixel_count": 915060,
+    "low_alpha_1_32_count": 49041,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 275.9,
+    "foot_landmarks": [
+      [
+        526.7,
+        1141.1
+      ],
+      [
+        978.1,
+        1091.0
+      ]
+    ],
+    "foot_midpoint": [
+      752.4000000000001,
+      1116.05
+    ],
+    "visible_anatomical_vertical_extent": 840.2,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Tail lowered; crown nearly reaches canvas edge.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

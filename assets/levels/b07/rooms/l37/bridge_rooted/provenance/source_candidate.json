@@ -1,0 +1,24 @@
+{
+  "asset": "bridge_rooted",
+  "chapter": "B07",
+  "room": "L37",
+  "variant": "revision",
+  "method": "built-in image_gen__imagegen",
+  "transparent_background": true,
+  "generated_utc_date": "2026-10-03",
+  "raw_generated_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-054da97a-ef6c-40d5-bebf-015efc7363b3.png",
+  "saved_source_png": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision.png",
+  "source_sha256": "c5e190b6d796309fd1d879b56cdb2dca9f274de698a968ce088148821337f015",
+  "raw_source_sha256": "c5e190b6d796309fd1d879b56cdb2dca9f274de698a968ce088148821337f015",
+  "bytes_preserved": true,
+  "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision.prompt.txt",
+  "prompt": "Use case: precise-object-edit. Asset type: transparent B07 game bridge on natural sandstone cliff columns. Input image is the EDIT TARGET.\nMake ONLY this precise final composition correction: give the COMPLETE existing bridge and rocks safe transparent breathing room at top and both sides, and make the lower natural rock ends clearly unequal in depth. Preserve the bridge identically: all 3 masonry piers, both arch openings, deck, high-camera oblique angle, facing, golden copper finials and original orange-red sun banners. Preserve the current coherent painted rock geology and physical bridge-to-rock contacts.\nCanvas: 3:2 landscape. The complete bridge and rocks must stay within the canvas. Leave approximately 5% of total width of REAL TRANSPARENT margin on both left and right, and 5% height of real transparent margin above the highest finial. Do not clip finials or side rocks. Bridge deck should remain in upper 15–35% of image.\nThe three long sandstone columns must have naturally irregular different endings: left rock extends to about 85% of canvas height, center rock is the deepest and extends to 96%, and right rock extends to about 89%. Preserve massive tall canyon-cliff scale, naturally uneven layered broken faces, warm sunny highlights, no artificial flat bottoms or square bases. Smoothly redesign only the lower rock endings if needed for these different depths; DO NOT change the upper bridge construction. Keep both wide open gaps genuinely transparent from inside the bridge arches downward between the 3 independent rock spires. No new road, stairs, buildings, pillars, ground platform, background, sky, canyon scenery, shadow plate, fog, characters, labels or text.\nUse REAL alpha transparency for ALL empty space, around and between columns and in both arch openings. This is an isolated component, never a full scene.\n",
+  "referenced_images": [
+    {
+      "role": "edit_target",
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial.png",
+      "sha256": "96122633419b7a12867fc952565f469a6f00ea12cd4ef65bfab9a511f9c455e4"
+    }
+  ],
+  "postprocessing": "None on source PNG; standard alpha-composite JPGs are review-only diagnostics."
+}

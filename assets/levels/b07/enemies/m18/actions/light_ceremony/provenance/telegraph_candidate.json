@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M18",
+  "action": "telegraph",
+  "variant": "telegraph",
+  "category": "pose",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "assets/levels/b07/enemies/m18/actions/light_ceremony/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "source_filename": "exec-8d613ba3-abd0-4230-8d0d-9a1249f56f23.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-8d613ba3-abd0-4230-8d0d-9a1249f56f23.png",
+  "source_sha256": "2f92be2b4ae060114c7472447d752a7192cc654364c65d9689a957ddfa9a3693",
+  "png_sha256": "2f92be2b4ae060114c7472447d752a7192cc654364c65d9689a957ddfa9a3693",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m18/idle_candidate.png",
+  "identity_reference_sha256": "7c70a16d7faec7020d2715085440f1f60493c3aa68cd1fe1aa9cfc1174264fc1",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1024,
+      1536
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 886354,
+    "alpha_zero_fraction": 0.5635286966959635,
+    "low_alpha_1_15_pixel_count": 44761,
+    "opaque_pixel_count": 0,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        12,
+        10,
+        1024,
+        1495
+      ],
+      "bounds_xywh": [
+        12,
+        10,
+        1012,
+        1485
+      ],
+      "effective_pixel_count": 686510,
+      "edge_pixel_count": 19,
+      "margins_ltrb": [
+        12,
+        10,
+        0,
+        41
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        14,
+        12,
+        1014,
+        1492
+      ],
+      "bounds_xywh": [
+        14,
+        12,
+        1000,
+        1480
+      ],
+      "effective_pixel_count": 641749,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        14,
+        12,
+        10,
+        44
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        15,
+        13,
+        1013,
+        1492
+      ],
+      "bounds_xywh": [
+        15,
+        13,
+        998,
+        1479
+      ],
+      "effective_pixel_count": 631867,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        15,
+        13,
+        11,
+        44
+      ]
+    },
+    "foot_contacts_manual": [
+      [
+        457,
+        1425
+      ],
+      [
+        887,
+        1212
+      ]
+    ],
+    "foot_midpoint": [
+      672.0,
+      1318.5
+    ],
+    "anatomical_crown_xy_manual": [
+      609,
+      295
+    ],
+    "body_height_excluding_weapon_tail_accessories": 1023.5,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 1023.5,
+    "maximum_display_body_px_at_1_5_sampling_margin": 682.33,
+    "visual_review": "Empty hand raised beside crown, original right hand keeps scepter upright.",
+    "defects": [
+      "Camera materially lower than desired high-angle game view.",
+      "Crown/robe/tail margins tight; below requested 8%."
+    ],
+    "foot_anchor_runtime_registered": false
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m18/telegraph: B07-M18 light conductor ceremonial lizard. Preserve slender long neck golden/ivory lizard, EXACTLY THREE physical gold solar rings vertically stacked on the tall narrow crown fixed to head, ivory ceremonial robes, turquoise jewelry, vermilion long tail ribbons and full long tail. Preserve the short sun-headed ritual SCEPTER in anatomical RIGHT hand (screen-left hand as reference); anatomical LEFT hand is empty. TELEGRAPH channel: knees slightly bend under robe, head inclines toward the crown, empty left palm lifts beside the crown as if guiding it; right hand raises short scepter upright to chest height. Physical crown does not detach. Full toes visible under robe. No glow, no translucent background halo; no beams, no additional rings.",
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m18/telegraph/candidate.png",
+  "resource": "asset://levels/b07/enemies/m18/actions/light_ceremony/telegraph_candidate.png",
+  "ability": "light_ceremony"
+}

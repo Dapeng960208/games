@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-6a5f2665-bcd7-4672-9fd8-7193a4176852.png",
+  "source_sha256": "1d82405a4b4e02ed21d7c9280d45c4c90cf2f6e5bfe9ba449f3e0df449ff2c6f",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/enemies/m03/actions/returning_disc/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      124,
+      20,
+      1232,
+      991
+    ],
+    "alpha128_pixel_count": 417793,
+    "transparent_pixel_count": 1116704,
+    "low_alpha_1_32_count": 33192,
+    "nonzero_edge_pixel_count": 6,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Raised disc windup readable; head very near top, final proportion/hand consistency pending.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "anatomical_crown_y": 20,
+    "foot_landmarks": [
+      [
+        666,
+        939
+      ],
+      [
+        1216,
+        775
+      ]
+    ],
+    "foot_midpoint": [
+      941.0,
+      857.0
+    ],
+    "airborne_no_ground_contact": false,
+    "visible_anatomical_vertical_extent": 837.0,
+    "semantic_uncertainty_px": 20,
+    "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+    "scale_and_foot_continuity_passed": false
+  },
+  "identity": "B07-M03",
+  "ability": "returning_disc",
+  "phase": "telegraph",
+  "reference_sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+  "reference_path": "assets/levels/b07/enemies/m03/idle_candidate.png"
+}

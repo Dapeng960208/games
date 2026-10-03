@@ -122,7 +122,47 @@
       260,
       110
     ],
-    "camera_trial_only": true
+    "camera_trial_only": true,
+    "optional_midground_review": {
+      "flag": "--b07-midground-trial",
+      "requires": "--b07-art-trial",
+      "source_reused": "asset://levels/b07/rooms/l37/canyon_backdrop.png",
+      "blueprint_rect": [
+        -400,
+        -210,
+        2172.8,
+        1418.2
+      ],
+      "edge_fade_left_top_right_bottom_blueprint": [
+        120,
+        8,
+        120,
+        220
+      ],
+      "guardian_and_plinth_offset_blueprint": [
+        0,
+        160
+      ],
+      "exact_floor_excluded": true,
+      "composition_accepted": false,
+      "actual_entry_capture_reviewed": true,
+      "actual_capture_size": [
+        2560,
+        1440
+      ],
+      "actual_capture_result": "One actual2560x1440 north-entry frame: sun placement improved, but top and side rectangle boundaries are conspicuous. Rejected as formal visual candidate; stop region cropping/fading to hide seams. Await one complete transparent architectural component.",
+      "background_source_region": [
+        0,
+        380,
+        1552,
+        633
+      ],
+      "camera_follow_offset_world": [
+        160,
+        -160
+      ],
+      "status": "rejected_rgb_rectangular_city_overlay"
+    }
   },
   "validation": {
     "source_bytes_copied_unchanged": true,
@@ -131,17 +171,18 @@
     "actual_entry_renderer_second_trial": "rendered successfully before directory migration; not overall visual acceptance",
     "composition_accepted": false,
     "remaining_findings": [
-      "Bright floor occupies approximately 75% of entry frame.",
-      "Principal sun landmark and gate-city are not visible in entry composition.",
-      "M02/M03 are old placeholder bodies.",
-      "Native backdrop and floor resolution are below the 2560x1440 target; no upscaling used."
+      "Geometric floor coverage is60.1% in original entry or53.0% with north-follow framing; large bright plane still dominates perception. Neither proves composition acceptance.",
+      "Optional north RGB city mapping exposes hard rectangular top/side boundaries and is rejected; source sun ornament is clipped.",
+      "M02/M03 use current explicit procedural debug placeholders; no retired insect assets restored.",
+      "Assess each effective source region against maximum displayed pixels: M01/detail body has ample sampling; floor ~0.64x at QA .75 needs density review; distant scenery may be intentionally below1:1. No blanket native2K gate."
     ],
     "target_viewport": [
       2560,
       1440
     ],
-    "target_viewport_verified": false,
-    "post_migration_engine_or_visual_verification_performed": false
+    "target_viewport_verified": true,
+    "post_migration_engine_or_visual_verification_performed": true,
+    "verified_scope": "Original composition: four actual2560x1440 outputs. Left and north optional midground mappings: direct headless structures and one actual entry PNG each, failures=0. North RGB mapping rejected visually. Godot4.6.3 OpenGL Mesa llvmpipe software only; no target hardware or natural-movement acceptance."
   },
   "excluded_image_sources": [
     "L37_environment_candidate_v1.png",

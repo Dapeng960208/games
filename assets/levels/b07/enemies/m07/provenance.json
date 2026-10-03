@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M07",
+  "status": "design_candidate_not_runtime_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-e290f110-0b76-4be0-91de-9d974ee4dc8b.png",
+  "source_sha256": "bddea855af8d0739607624074cc8a57827e1f7b94f5671ec4340e5e44263a80b",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "native_mode": "RGBA",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte copy",
+  "candidate_only": true,
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "pose": "single_right_three_quarter_idle_ready",
+  "references": [
+    "user-provided B07(1).png: authoritative world and species design",
+    "assets/levels/b07/enemies/m01/idle.png: accepted painted family, not copied pixel asset"
+  ],
+  "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+  "prompt": "provenance/idle_candidate.prompt.txt",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      74,
+      25,
+      1157,
+      1203
+    ],
+    "opaque_or_partial_pixel_count": 546375,
+    "alpha128_pixel_count": 493276,
+    "transparent_pixel_count": 1026141,
+    "low_alpha_1_32_count": 45015,
+    "nonzero_edge_pixel_count": 12,
+    "edge_alpha128_pixel_count": 0,
+    "body_crown_y": 98,
+    "foot_contacts_manual": [
+      [
+        489,
+        1130
+      ],
+      [
+        935,
+        978
+      ]
+    ],
+    "foot_midpoint": [
+      712.0,
+      1054.0
+    ],
+    "body_height_excluding_weapon_tail_accessories": 956.0,
+    "semantic_landmark_uncertainty_px": 15,
+    "maximum_display_body_px_at_1_to_1_sampling": 956.0,
+    "maximum_display_body_px_at_1_5_sampling_margin": 637.33,
+    "sampling_note": "Single-frame anatomical content only, no canvas whitespace or atlas total. Runtime scale and maximum camera not assigned for these new candidates; no 2K runtime acceptance claim.",
+    "visual_review": "Native colors and species/role identity readable. No runtime, animation or final alpha acceptance. Camera pitch and edge fringe remain to review in actual scene."
+  },
+  "reference_sha256": {
+    "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+    "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+  }
+}

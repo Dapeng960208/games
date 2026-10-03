@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M03",
+  "ability": "returning_disc",
+  "phase": "catch",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-9bfcb50b-9cb5-4a09-ab0a-7c5d8c9f950c.png",
+  "source_sha256": "c39ed2a83eab65bd30b84294f8ee3fadf5bc5dc7be004250be624c081cd73a38",
+  "resource": "asset://levels/b07/enemies/m03/actions/returning_disc/catch_candidate.png",
+  "prompt": "provenance/catch_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m03/idle_candidate.png",
+  "reference_sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      40,
+      56,
+      1175,
+      1170
+    ],
+    "alpha128_pixel_count": 454939,
+    "transparent_pixel_count": 1082652,
+    "low_alpha_1_32_count": 29523,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 62.7,
+    "foot_landmarks": [
+      [
+        489.1,
+        1128.6
+      ],
+      [
+        1078.4,
+        1015.7
+      ]
+    ],
+    "foot_midpoint": [
+      783.75,
+      1072.15
+    ],
+    "visible_anatomical_vertical_extent": 1009.5,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Returned disc held at chest with original gold shoulder arm; belt spare retained.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

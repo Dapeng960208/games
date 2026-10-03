@@ -8,6 +8,7 @@ const IMPACT_MERGE_SECONDS := 0.055
 const LIGHT_IMPACT_SECONDS := 0.11
 const HEAVY_IMPACT_SECONDS := 0.145
 var b07_art_overscan := false
+var b07_north_review := false
 var target: Node2D
 var arena: Rect2
 var render_bounds: Rect2
@@ -98,6 +99,7 @@ func configure(room: Node2D, player: Node2D, world_arena: Rect2, painted_bounds:
 	target = player
 	var backdrop: Node=room.get_node_or_null("MineBackdrop")
 	b07_art_overscan=is_instance_valid(backdrop) and is_instance_valid(backdrop.get("b07_art_trial"))
+	b07_north_review=b07_art_overscan and "--b07-midground-trial" in OS.get_cmdline_user_args()
 	arena = world_arena
 	render_bounds = painted_bounds if painted_bounds.has_area() else arena.grow(RENDER_MARGIN)
 	position_smoothing_enabled = false
@@ -147,4 +149,5 @@ func _physics_process(delta: float) -> void:
 
 func follow_target() -> void:
 	if is_instance_valid(target):
-		global_position = target.global_position + (Vector2(260,110) if b07_art_overscan else Vector2.ZERO)
+		var follow_offset:=Vector2(160,-160) if b07_north_review else Vector2(260,110)
+		global_position = target.global_position + (follow_offset if b07_art_overscan else Vector2.ZERO)

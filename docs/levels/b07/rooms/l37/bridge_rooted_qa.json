@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "chapter": "B07",
+  "room": "L37",
+  "asset_id": "lower_arch_bridge_rooted",
+  "status": "limited_support_source_candidate_complete_not_runtime_integrated",
+  "selected_source_png": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision.png",
+  "generation_count": 2,
+  "one_initial_plus_one_necessary_revision": true,
+  "all_source_png_bytes_preserved": true,
+  "source_and_reference_actually_inspected": true,
+  "standard_light_dark_composites_actually_inspected": true,
+  "scope": "Add genuine deep natural sandstone support below existing complete double-arch bridge; no navigation or architecture expansion.",
+  "selection_reason": "Revision maintains the complete bridge and original color identity while three physically joined natural rock columns have distinctly unequal lower roots.",
+  "limitations": [
+    "Full top and left/right are uncut, but 5% margin target was not achieved.",
+    "Root ends should be placed below the gameplay camera; source is a decor component, not new walkable geometry.",
+    "In-scene scale and overlap need runtime owner review."
+  ],
+  "variants": [
+    {
+      "variant": "initial",
+      "selected": false,
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial.png",
+      "sha256": "96122633419b7a12867fc952565f469a6f00ea12cd4ef65bfab9a511f9c455e4",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial.provenance.json",
+      "qa": {
+        "mode": "RGBA",
+        "size": [
+          1536,
+          1024
+        ],
+        "alpha_minmax": [
+          0,
+          254
+        ],
+        "alpha_zero_pixels": 643733,
+        "alpha_1_to_15_pixels": 28622,
+        "alpha_16_to_127_pixels": 6443,
+        "alpha_128_to_255_pixels": 894066,
+        "transparent_fraction": 0.409274,
+        "alpha16_bbox": [
+          17,
+          9,
+          1530,
+          1020
+        ],
+        "alpha16_margin_pixels_ltrb": [
+          17,
+          9,
+          6,
+          4
+        ],
+        "alpha16_margin_percent_ltrb": [
+          1.11,
+          0.88,
+          0.39,
+          0.39
+        ],
+        "alpha16_edge_contacts_ltrb": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha128_bbox": [
+          17,
+          10,
+          1530,
+          1020
+        ],
+        "alpha128_margin_pixels_ltrb": [
+          17,
+          10,
+          6,
+          4
+        ],
+        "alpha128_margin_percent_ltrb": [
+          1.11,
+          0.98,
+          0.39,
+          0.39
+        ],
+        "alpha128_edge_contacts_ltrb": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "arch_and_column_gap_probe_alpha": {
+          "500,400": 0,
+          "500,700": 0,
+          "1100,450": 0,
+          "1100,750": 0
+        },
+        "standard_composites": {
+          "light": {
+            "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial_qa_light.jpg",
+            "background_rgba": [
+              241,
+              234,
+              216,
+              255
+            ],
+            "actually_inspected": true
+          },
+          "dark": {
+            "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial_qa_dark.jpg",
+            "background_rgba": [
+              28,
+              24,
+              35,
+              255
+            ],
+            "actually_inspected": true
+          }
+        },
+        "visual_review": {
+          "complete_bridge": true,
+          "three_masonry_piers": true,
+          "two_open_arches": true,
+          "original_copper_gold_and_orange_red_palette": true,
+          "three_deep_natural_sandstone_supports_touch_masonry": true,
+          "real_transparent_background_and_arch_gaps": true,
+          "no_full_background_or_square_base": true,
+          "no_new_path_or_characters": true,
+          "all_finials_and_sides_visible": true,
+          "natural_unequal_lower_roots": false,
+          "clean_alpha_on_light_and_dark": true,
+          "notes": "Initial roots too similar in depth; top and side margins tight. Retained raw for provenance, not selected."
+        }
+      }
+    },
+    {
+      "variant": "revision",
+      "selected": true,
+      "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision.png",
+      "sha256": "c5e190b6d796309fd1d879b56cdb2dca9f274de698a968ce088148821337f015",
+      "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision.provenance.json",
+      "qa": {
+        "mode": "RGBA",
+        "size": [
+          1536,
+          1024
+        ],
+        "alpha_minmax": [
+          0,
+          254
+        ],
+        "alpha_zero_pixels": 717353,
+        "alpha_1_to_15_pixels": 29691,
+        "alpha_16_to_127_pixels": 6044,
+        "alpha_128_to_255_pixels": 819776,
+        "transparent_fraction": 0.456081,
+        "alpha16_bbox": [
+          36,
+          11,
+          1509,
+          1011
+        ],
+        "alpha16_margin_pixels_ltrb": [
+          36,
+          11,
+          27,
+          13
+        ],
+        "alpha16_margin_percent_ltrb": [
+          2.34,
+          1.07,
+          1.76,
+          1.27
+        ],
+        "alpha16_edge_contacts_ltrb": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "alpha128_bbox": [
+          36,
+          12,
+          1508,
+          1010
+        ],
+        "alpha128_margin_pixels_ltrb": [
+          36,
+          12,
+          28,
+          14
+        ],
+        "alpha128_margin_percent_ltrb": [
+          2.34,
+          1.17,
+          1.82,
+          1.37
+        ],
+        "alpha128_edge_contacts_ltrb": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "arch_and_column_gap_probe_alpha": {
+          "500,400": 0,
+          "500,700": 0,
+          "1100,450": 0,
+          "1100,750": 0
+        },
+        "standard_composites": {
+          "light": {
+            "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision_qa_light.jpg",
+            "background_rgba": [
+              241,
+              234,
+              216,
+              255
+            ],
+            "actually_inspected": true
+          },
+          "dark": {
+            "path": "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision_qa_dark.jpg",
+            "background_rgba": [
+              28,
+              24,
+              35,
+              255
+            ],
+            "actually_inspected": true
+          }
+        },
+        "visual_review": {
+          "complete_bridge": true,
+          "three_masonry_piers": true,
+          "two_open_arches": true,
+          "original_copper_gold_and_orange_red_palette": true,
+          "three_deep_natural_sandstone_supports_touch_masonry": true,
+          "real_transparent_background_and_arch_gaps": true,
+          "no_full_background_or_square_base": true,
+          "no_new_path_or_characters": true,
+          "all_finials_and_sides_visible": true,
+          "natural_unequal_lower_roots": true,
+          "clean_alpha_on_light_and_dark": true,
+          "notes": "Revision selected for distinctly uneven cliff-root depths. Requested 5% margin was not achieved, but complete top and sides are visible with no alpha16/128 edge contact. Tall rock roots intended to continue below the camera, not function as navigation geometry."
+        }
+      }
+    }
+  ],
+  "review_only_files": [
+    "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial_qa_light.jpg",
+    "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision_qa_light.jpg",
+    "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_revision_qa_dark.jpg",
+    "/workspace/scratch/2244020fc8d6/b07-art/l37_support_1003/bridge_rooted_initial_qa_dark.jpg"
+  ],
+  "review_evidence_exclusion": "QA composites and this QA script are not production assets; do not upload screenshots or temporary/QA artifacts as game blobs.",
+  "non_changes": [
+    "No repository files edited",
+    "No geometry or collision changed",
+    "No runtime integration",
+    "No tests or graphics services changed",
+    "No commit or push"
+  ]
+}

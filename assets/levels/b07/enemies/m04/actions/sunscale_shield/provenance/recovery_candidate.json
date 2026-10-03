@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M04",
+  "ability": "sunscale_shield",
+  "phase": "recovery",
+  "generator": "built-in image_gen",
+  "source_filename": "b07_m04_recovery_returned_data.png",
+  "source_sha256": "e9f4e1a14795892e738eafd86b474707febbd32210b8372a5518ddd5700ea97b",
+  "resource": "asset://levels/b07/enemies/m04/actions/sunscale_shield/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m04/idle_candidate.png",
+  "reference_sha256": "9faae348481abe940cd94813f1f594ebffeb8e76994bc418cf028468ecdd0a2b",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      23,
+      138,
+      1199,
+      1062
+    ],
+    "alpha128_pixel_count": 571768,
+    "transparent_pixel_count": 969932,
+    "low_alpha_1_32_count": 26009,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 137.9,
+    "foot_landmarks": [
+      [
+        514.1,
+        1128.6
+      ],
+      [
+        1040.8,
+        1091.0
+      ]
+    ],
+    "foot_midpoint": [
+      777.45,
+      1109.8
+    ],
+    "visible_anatomical_vertical_extent": 971.9,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Shield remains same anatomical arm; silhouette and pose compression differ, scale/foot continuity pending.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

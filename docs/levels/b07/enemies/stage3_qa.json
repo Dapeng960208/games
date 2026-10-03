@@ -1,0 +1,515 @@
+[
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M04",
+    "ability": "sunscale_shield",
+    "phase": "telegraph",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-ff47fcd3-b931-4aff-8a6e-81b5f9ad025f.png",
+    "source_sha256": "185a088e657e1cf0c17e7f49fdf5dc25259559af76a6dec69f90279ed373efe0",
+    "resource": "asset://levels/b07/enemies/m04/actions/sunscale_shield/telegraph_candidate.png",
+    "prompt": "provenance/telegraph_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m04/idle_candidate.png",
+    "reference_sha256": "9faae348481abe940cd94813f1f594ebffeb8e76994bc418cf028468ecdd0a2b",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        29,
+        161,
+        1212,
+        1061
+      ],
+      "alpha128_pixel_count": 634136,
+      "transparent_pixel_count": 911890,
+      "low_alpha_1_32_count": 21964,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 163.0,
+      "foot_landmarks": [
+        [
+          351.1,
+          1141.1
+        ],
+        [
+          1065.9,
+          1065.9
+        ]
+      ],
+      "foot_midpoint": [
+        708.5,
+        1103.5
+      ],
+      "visible_anatomical_vertical_extent": 940.5,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Shield remains same anatomical arm; silhouette and pose compression differ, scale/foot continuity pending.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M04",
+    "ability": "sunscale_shield",
+    "phase": "execute",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-6781a589-4154-49b9-9f58-7745a0421b08.png",
+    "source_sha256": "e03630f17c7f6ca67bea703e15fa8204d658c6e7f486d253f3bb90a6692abb83",
+    "resource": "asset://levels/b07/enemies/m04/actions/sunscale_shield/execute_candidate.png",
+    "prompt": "provenance/execute_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m04/idle_candidate.png",
+    "reference_sha256": "9faae348481abe940cd94813f1f594ebffeb8e76994bc418cf028468ecdd0a2b",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        17,
+        190,
+        1232,
+        903
+      ],
+      "alpha128_pixel_count": 590557,
+      "transparent_pixel_count": 946160,
+      "low_alpha_1_32_count": 30365,
+      "nonzero_edge_pixel_count": 69,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 188.1,
+      "foot_landmarks": [
+        [
+          188.1,
+          1015.7
+        ],
+        [
+          1015.7,
+          1028.3
+        ]
+      ],
+      "foot_midpoint": [
+        601.9,
+        1022.0
+      ],
+      "visible_anatomical_vertical_extent": 833.9,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Shield remains same anatomical arm; silhouette and pose compression differ, scale/foot continuity pending.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M04",
+    "ability": "sunscale_shield",
+    "phase": "recovery",
+    "generator": "built-in image_gen",
+    "source_filename": "b07_m04_recovery_returned_data.png",
+    "source_sha256": "e9f4e1a14795892e738eafd86b474707febbd32210b8372a5518ddd5700ea97b",
+    "resource": "asset://levels/b07/enemies/m04/actions/sunscale_shield/recovery_candidate.png",
+    "prompt": "provenance/recovery_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m04/idle_candidate.png",
+    "reference_sha256": "9faae348481abe940cd94813f1f594ebffeb8e76994bc418cf028468ecdd0a2b",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        23,
+        138,
+        1199,
+        1062
+      ],
+      "alpha128_pixel_count": 571768,
+      "transparent_pixel_count": 969932,
+      "low_alpha_1_32_count": 26009,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 137.9,
+      "foot_landmarks": [
+        [
+          514.1,
+          1128.6
+        ],
+        [
+          1040.8,
+          1091.0
+        ]
+      ],
+      "foot_midpoint": [
+        777.45,
+        1109.8
+      ],
+      "visible_anatomical_vertical_extent": 971.9,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Shield remains same anatomical arm; silhouette and pose compression differ, scale/foot continuity pending.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M05",
+    "ability": "turquoise_heal",
+    "phase": "telegraph",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-fc8e0c52-5001-4e3a-8dcd-2a234ef47942.png",
+    "source_sha256": "2406841ad059ba30e8e0bbfc7b783db309fb6883f01eb3a71c887a48847064fb",
+    "resource": "asset://levels/b07/enemies/m05/actions/turquoise_heal/telegraph_candidate.png",
+    "prompt": "provenance/telegraph_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m05/idle_candidate.png",
+    "reference_sha256": "cc45f9901be89b590c752cff18fe43c5b24ba7f006855fbeca766f05553781da",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        218,
+        54,
+        839,
+        1174
+      ],
+      "alpha128_pixel_count": 366753,
+      "transparent_pixel_count": 1172661,
+      "low_alpha_1_32_count": 28007,
+      "nonzero_edge_pixel_count": 8,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 50.2,
+      "foot_landmarks": [
+        [
+          739.9,
+          1153.7
+        ],
+        [
+          902.9,
+          1103.5
+        ]
+      ],
+      "foot_midpoint": [
+        821.4,
+        1128.6
+      ],
+      "visible_anatomical_vertical_extent": 1078.4,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Bowl and turquoise necklace retained, action readable; lower camera than combat target remains review issue.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M05",
+    "ability": "turquoise_heal",
+    "phase": "execute",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-60fba05b-7ce6-4d9a-b598-916cc797927f.png",
+    "source_sha256": "a194f27224a132180c3f02d0cf15e686adc77920a13a875e9cb3200fe66d5639",
+    "resource": "asset://levels/b07/enemies/m05/actions/turquoise_heal/execute_candidate.png",
+    "prompt": "provenance/execute_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m05/idle_candidate.png",
+    "reference_sha256": "cc45f9901be89b590c752cff18fe43c5b24ba7f006855fbeca766f05553781da",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        131,
+        33,
+        1101,
+        1200
+      ],
+      "alpha128_pixel_count": 431334,
+      "transparent_pixel_count": 1089147,
+      "low_alpha_1_32_count": 45528,
+      "nonzero_edge_pixel_count": 9,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 37.6,
+      "foot_landmarks": [
+        [
+          677.2,
+          1166.2
+        ],
+        [
+          915.4,
+          1103.5
+        ]
+      ],
+      "foot_midpoint": [
+        796.3,
+        1134.85
+      ],
+      "visible_anatomical_vertical_extent": 1097.2,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Bowl and turquoise necklace retained, action readable; lower camera than combat target remains review issue.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M05",
+    "ability": "turquoise_heal",
+    "phase": "recovery",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-74417c50-88fc-4958-8a63-d7e27adcac66.png",
+    "source_sha256": "ef28208ac3636ffcc67f776cb49d3fd5ad35c62528bae63da503dcb57e97486a",
+    "resource": "asset://levels/b07/enemies/m05/actions/turquoise_heal/recovery_candidate.png",
+    "prompt": "provenance/recovery_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m05/idle_candidate.png",
+    "reference_sha256": "cc45f9901be89b590c752cff18fe43c5b24ba7f006855fbeca766f05553781da",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        201,
+        64,
+        798,
+        1157
+      ],
+      "alpha128_pixel_count": 340967,
+      "transparent_pixel_count": 1197283,
+      "low_alpha_1_32_count": 29229,
+      "nonzero_edge_pixel_count": 1,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 62.7,
+      "foot_landmarks": [
+        [
+          689.7,
+          1166.2
+        ],
+        [
+          928.0,
+          1103.5
+        ]
+      ],
+      "foot_midpoint": [
+        808.85,
+        1134.85
+      ],
+      "visible_anatomical_vertical_extent": 1072.1,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Bowl and turquoise necklace retained, action readable; lower camera than combat target remains review issue.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M06",
+    "ability": "sand_emerge",
+    "phase": "telegraph",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-43fe18ab-c6e6-4367-b950-a37544612eae.png",
+    "source_sha256": "6af5771d9c77e4356222578ad17ea446a4258f646c29ebb35ef5af7cabf7b08e",
+    "resource": "asset://levels/b07/enemies/m06/actions/sand_emerge/telegraph_candidate.png",
+    "prompt": "provenance/telegraph_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m06/idle_candidate.png",
+    "reference_sha256": "237bdbae4ce96c7791b1c8f2ffb763f9541642912a12b31e4442737fdc7313cf",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        188,
+        328,
+        968,
+        681
+      ],
+      "alpha128_pixel_count": 385301,
+      "transparent_pixel_count": 1165061,
+      "low_alpha_1_32_count": 18588,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 326.0,
+      "foot_landmarks": [
+        [
+          326.0,
+          815.1
+        ],
+        [
+          802.6,
+          777.5
+        ]
+      ],
+      "foot_midpoint": [
+        564.3,
+        796.3
+      ],
+      "visible_anatomical_vertical_extent": 470.3,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Shovel nose, short tail and digging claw identity retained; squat height varies by intended pose, never auto-normalize it to idle.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M06",
+    "ability": "sand_emerge",
+    "phase": "execute",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-825d485b-45a8-4b97-9fa5-8bfb6b9dead1.png",
+    "source_sha256": "37364993594bcb8c59478909c02f82fc11e26b5c64de28d6a537fbdf2e80451a",
+    "resource": "asset://levels/b07/enemies/m06/actions/sand_emerge/execute_candidate.png",
+    "prompt": "provenance/execute_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m06/idle_candidate.png",
+    "reference_sha256": "237bdbae4ce96c7791b1c8f2ffb763f9541642912a12b31e4442737fdc7313cf",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        24,
+        218,
+        1224,
+        889
+      ],
+      "alpha128_pixel_count": 469524,
+      "transparent_pixel_count": 1072607,
+      "low_alpha_1_32_count": 26024,
+      "nonzero_edge_pixel_count": 51,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 213.2,
+      "foot_landmarks": [
+        [
+          275.9,
+          953.0
+        ],
+        [
+          865.3,
+          852.7
+        ]
+      ],
+      "foot_midpoint": [
+        570.5999999999999,
+        902.85
+      ],
+      "visible_anatomical_vertical_extent": 689.7,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Shovel nose, short tail and digging claw identity retained; squat height varies by intended pose, never auto-normalize it to idle.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M06",
+    "ability": "sand_emerge",
+    "phase": "recovery",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-8793df5a-dbdf-4d44-872b-c4b4f3fd808d.png",
+    "source_sha256": "cbdcd7353287c82633bb63b5e43f563c9482b2a05616eb5689a4b9f507153911",
+    "resource": "asset://levels/b07/enemies/m06/actions/sand_emerge/recovery_candidate.png",
+    "prompt": "provenance/recovery_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m06/idle_candidate.png",
+    "reference_sha256": "237bdbae4ce96c7791b1c8f2ffb763f9541642912a12b31e4442737fdc7313cf",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        91,
+        238,
+        1074,
+        852
+      ],
+      "alpha128_pixel_count": 463718,
+      "transparent_pixel_count": 1085707,
+      "low_alpha_1_32_count": 19634,
+      "nonzero_edge_pixel_count": 1,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 238.3,
+      "foot_landmarks": [
+        [
+          476.5,
+          1028.3
+        ],
+        [
+          915.4,
+          965.6
+        ]
+      ],
+      "foot_midpoint": [
+        695.95,
+        996.95
+      ],
+      "visible_anatomical_vertical_extent": 758.7,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Shovel nose, short tail and digging claw identity retained; squat height varies by intended pose, never auto-normalize it to idle.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  }
+]

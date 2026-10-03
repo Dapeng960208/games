@@ -1,0 +1,246 @@
+[
+  {
+    "id": "terraced_city_wing",
+    "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_wing.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-8f352f52-735b-4f8c-863a-e7f75302a8ba.png",
+    "sha256": "bab8314fd6e111f7848168eb7062e5f21a06add85f8826b1bd8589cd0a61fff3",
+    "native_size": [
+      2098,
+      749
+    ],
+    "mode": "RGBA",
+    "candidate_only": true,
+    "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_wing.prompt.txt",
+    "alpha": {
+      "1": {
+        "bbox": [
+          28,
+          16,
+          2073,
+          736
+        ],
+        "content_size": [
+          2045,
+          720
+        ],
+        "edge_pixels": 0
+      },
+      "16": {
+        "bbox": [
+          31,
+          19,
+          2069,
+          734
+        ],
+        "content_size": [
+          2038,
+          715
+        ],
+        "edge_pixels": 0
+      },
+      "128": {
+        "bbox": [
+          31,
+          20,
+          2068,
+          733
+        ],
+        "content_size": [
+          2037,
+          713
+        ],
+        "edge_pixels": 0
+      }
+    },
+    "physical_path": "assets/levels/b07/rooms/shared/terraced_city_wing/source_candidate.png",
+    "manual_review": "三层阶城/蜥首/红旗可辨，正常双背景无宽红黄晕边；上尖顶留白19px不足，非旧宽低城门替代；外围支撑落点未定。",
+    "normal_alpha_composites_viewed": true,
+    "repeat_2x2_viewed": false,
+    "runtime_integrated": false,
+    "unchanged_source_bytes": true,
+    "qa_status": "review_candidate_unaccepted"
+  },
+  {
+    "id": "lower_arch_bridge",
+    "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/lower_arch_bridge.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-17f69b55-092b-404c-ad46-117dd6d52b5d.png",
+    "sha256": "69c56b74140113ed860662b8585fc2e25a4b2fc457148ef813023bc417d986de",
+    "native_size": [
+      1983,
+      793
+    ],
+    "mode": "RGBA",
+    "candidate_only": true,
+    "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/lower_arch_bridge.prompt.txt",
+    "alpha": {
+      "1": {
+        "bbox": [
+          37,
+          18,
+          1965,
+          784
+        ],
+        "content_size": [
+          1928,
+          766
+        ],
+        "edge_pixels": 0
+      },
+      "16": {
+        "bbox": [
+          65,
+          21,
+          1934,
+          781
+        ],
+        "content_size": [
+          1869,
+          760
+        ],
+        "edge_pixels": 0
+      },
+      "128": {
+        "bbox": [
+          65,
+          22,
+          1933,
+          780
+        ],
+        "content_size": [
+          1868,
+          758
+        ],
+        "edge_pixels": 0
+      }
+    },
+    "physical_path": "assets/levels/b07/rooms/shared/lower_arch_bridge/source_candidate.png",
+    "manual_review": "双拱完整、拱洞透明、正常双背景无宽红黄晕边；上下边距21/12px偏紧，桥面仅非导航外景。",
+    "normal_alpha_composites_viewed": true,
+    "repeat_2x2_viewed": false,
+    "runtime_integrated": false,
+    "unchanged_source_bytes": true,
+    "qa_status": "review_candidate_unaccepted"
+  },
+  {
+    "id": "sun_mirror_landmark",
+    "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_landmark.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-1e2199c4-18d5-4865-a134-53bd957b07af.png",
+    "sha256": "42b88fa8cbe62b6a0283915584fadbed9f7364c0148d064c9deef225d230d7a3",
+    "native_size": [
+      1224,
+      1285
+    ],
+    "mode": "RGBA",
+    "candidate_only": true,
+    "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_landmark.prompt.txt",
+    "alpha": {
+      "1": {
+        "bbox": [
+          0,
+          17,
+          1210,
+          1260
+        ],
+        "content_size": [
+          1210,
+          1243
+        ],
+        "edge_pixels": 17
+      },
+      "16": {
+        "bbox": [
+          234,
+          20,
+          1051,
+          1256
+        ],
+        "content_size": [
+          817,
+          1236
+        ],
+        "edge_pixels": 0
+      },
+      "128": {
+        "bbox": [
+          234,
+          21,
+          1050,
+          1255
+        ],
+        "content_size": [
+          816,
+          1234
+        ],
+        "edge_pixels": 0
+      }
+    },
+    "physical_path": "assets/levels/b07/rooms/shared/sun_mirror_landmark/source_candidate.png",
+    "manual_review": "光芒/蜥首/支座完整，正常双背景无污染；top20px偏紧，alpha1低值噪点达边；独立地标不代表功能镜状态完成。",
+    "normal_alpha_composites_viewed": true,
+    "repeat_2x2_viewed": false,
+    "runtime_integrated": false,
+    "unchanged_source_bytes": true,
+    "qa_status": "review_candidate_unaccepted"
+  },
+  {
+    "id": "sandstone_paving_tile",
+    "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sandstone_paving_tile.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-8a8b7b64-ed4c-460b-9e0d-91c780133959.png",
+    "sha256": "85eea3d6d9ae2dadd73bb89a23c0ae3afa34cbffeaf055980b7010e9953c61d8",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "candidate_only": true,
+    "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sandstone_paving_tile.prompt.txt",
+    "alpha": {
+      "1": {
+        "bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "content_size": [
+          1254,
+          1254
+        ],
+        "edge_pixels": 5016
+      },
+      "16": {
+        "bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "content_size": [
+          1254,
+          1254
+        ],
+        "edge_pixels": 5016
+      },
+      "128": {
+        "bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "content_size": [
+          1254,
+          1254
+        ],
+        "edge_pixels": 5016
+      }
+    },
+    "physical_path": "assets/levels/b07/rooms/shared/sandstone_paving_tile/source_candidate.png",
+    "manual_review": "全幅RGB材质，非透明组件。2x2重复诊断中水平拼界明显且纵向砖缝不匹配；seamless验收blocked，不能宣称可无缝使用。",
+    "normal_alpha_composites_viewed": false,
+    "repeat_2x2_viewed": true,
+    "runtime_integrated": false,
+    "unchanged_source_bytes": true,
+    "qa_status": "blocked_seamless"
+  }
+]

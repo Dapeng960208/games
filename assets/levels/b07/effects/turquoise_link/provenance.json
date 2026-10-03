@@ -1,0 +1,36 @@
+{
+  "effect_id": "turquoise_link",
+  "status": "unregistered_visual_candidate",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-15359cf5-8695-4891-95ea-bdc5b692be23.png",
+  "source_sha256": "e28eecebd0487e8e71c390dacf3b5bb08ce7f44aadf7a523dcd23b3e24111b52",
+  "native_size": [
+    1774,
+    887
+  ],
+  "original_bytes_preserved": true,
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "source_license": "AI-generated original visual source",
+  "qa": {
+    "alpha16_bounds_xywh": [
+      442,
+      405,
+      890,
+      179
+    ],
+    "alpha128_bounds_xywh": [
+      443,
+      411,
+      888,
+      168
+    ],
+    "nonzero_edge_pixels": 0,
+    "alpha128_edge_pixels": 0,
+    "center_alpha": 0,
+    "transparent_pixels": 1472742,
+    "low_alpha_1_32_pixels": 34949,
+    "visual_review": "Viewed original. Decorative material only, native colors. Alpha fringe and actual battlefield readability unaccepted.",
+    "geometry_warning": "Generated curve/spiral does not define hitbox, reduction angle or skill radius; current command geometry remains authoritative."
+  },
+  "runtime_quality_gate_passed": false
+}

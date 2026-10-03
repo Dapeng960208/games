@@ -89,7 +89,8 @@ func configure_layout(layout: Dictionary,allow_candidates: bool=false) -> void:
 	if is_instance_valid(b07_art_trial): b07_art_trial.free()
 	b07_art_trial=null
 	if biome=="B07" and blueprint_room_id=="L37":
-		var trial:=preload("res://scripts/levels/b07/art/room_environment.gd").new()
+		var review_script = preload("res://scripts/levels/b07/art/l37_convergence_environment.gd")
+		var trial = review_script.new() if review_script.requested() else preload("res://scripts/levels/b07/art/room_environment.gd").new()
 		if trial.configure(layout):
 			add_child(trial)
 			trial.z_index=2

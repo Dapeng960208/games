@@ -1,0 +1,30 @@
+{
+  "review_only": true,
+  "room": "L37",
+  "continuous_animation_sets": 0,
+  "registered_discrete_frames": 14,
+  "fx_sources": 4,
+  "environment_instances": 4,
+  "headless_review_run": "20261003T095805641793Z-d28821e1",
+  "headless_disabled_run": "20261003T095831941048Z-c0eb8de2",
+  "headless_failures": 0,
+  "graphical_validation": "pending_parent_scheduled_2k",
+  "original_eight_wip_byte_match": true,
+  "commit": "local WIP checkpoint authorized; original 8 WIP included as prerequisites; no visual acceptance or push",
+  "first_graphical_run": "20261003T100104205771Z-09bf2a10",
+  "first_graphical_engine_failures": 0,
+  "first_graphical_visual_review": "FAILED: architecture/bridge lacked rooted support; large bright floor and collage composition",
+  "rooted_support_sources_added": 3,
+  "directed_fsm_headless_run": "20261003T101311524258Z-77545e75",
+  "second_graphical_validation": "FAILED_COMPOSITION; engine and directed FSM pass",
+  "second_graphical_run": "20261003T101453778641Z-2be319e9",
+  "second_graphical_engine_failures": 0,
+  "actual_2k_frames_viewed": 5,
+  "visual_defects": [
+    "rock roots still terminate against open distant canyon",
+    "right city and sun base have hard north-floor occlusion",
+    "large bright floor and cutout-collage composition remain",
+    "skill detail cards obscure key-pose anatomy",
+    "M02 actual landing overlaps player; not a clean anatomy approval view"
+  ]
+}

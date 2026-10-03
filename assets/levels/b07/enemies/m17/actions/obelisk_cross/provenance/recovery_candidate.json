@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M17",
+  "action": "recovery",
+  "variant": "recovery",
+  "category": "pose",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "assets/levels/b07/enemies/m17/actions/obelisk_cross/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "source_filename": "exec-d6c54aea-0b33-420f-b635-ca8e6fbd15d1.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-d6c54aea-0b33-420f-b635-ca8e6fbd15d1.png",
+  "source_sha256": "d82b4e289c77034e669452e60dad241887ace9f153138bf67befeefde2ab1157",
+  "png_sha256": "d82b4e289c77034e669452e60dad241887ace9f153138bf67befeefde2ab1157",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m17/idle_candidate.png",
+  "identity_reference_sha256": "f21b58e6cc14483b24a8de14efb3961bb59eca309c680c8e5c22a288aa416958",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 960769,
+    "alpha_zero_fraction": 0.6109756593891572,
+    "low_alpha_1_15_pixel_count": 15373,
+    "opaque_pixel_count": 1442,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        39,
+        19,
+        1236,
+        1254
+      ],
+      "bounds_xywh": [
+        39,
+        19,
+        1197,
+        1235
+      ],
+      "effective_pixel_count": 611747,
+      "edge_pixel_count": 30,
+      "margins_ltrb": [
+        39,
+        19,
+        18,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        65,
+        53,
+        1184,
+        1205
+      ],
+      "bounds_xywh": [
+        65,
+        53,
+        1119,
+        1152
+      ],
+      "effective_pixel_count": 596374,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        65,
+        53,
+        70,
+        49
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        66,
+        54,
+        1183,
+        1205
+      ],
+      "bounds_xywh": [
+        66,
+        54,
+        1117,
+        1151
+      ],
+      "effective_pixel_count": 591567,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        66,
+        54,
+        71,
+        49
+      ]
+    },
+    "foot_contacts_manual": [
+      [
+        517,
+        1137
+      ],
+      [
+        1037,
+        1007
+      ]
+    ],
+    "foot_midpoint": [
+      777.0,
+      1072.0
+    ],
+    "anatomical_crown_xy_manual": [
+      835,
+      258
+    ],
+    "body_height_excluding_weapon_tail_accessories": 814.0,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 814.0,
+    "maximum_display_body_px_at_1_5_sampling_margin": 542.67,
+    "visual_review": "Stone fists braced at knees, lowered head and tired hunched stance.",
+    "defects": [
+      "Fist-knee contact reads but requires rigged continuity verification.",
+      "Shoulder towers impose large alpha bbox not body height."
+    ],
+    "foot_anchor_runtime_registered": false
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m17/recovery: B07-M17 living-lizard obelisk heavy guard. Preserve broad stocky golden/ivory lizard, EXACTLY TWO tall tapered sandstone OBELISK SHOULDER ARMOR pieces mounted to shoulders, copper seams/turquoise inlays, two enormous stone gauntlets, red scarf/loincloth, thick fleshy scaled tail. RECOVERY after slam: torso hunched and tired, BOTH elbows bent downward and the huge stone fists braced against the fronts/tops of its OWN knees while it slowly straightens. Hands/fists are on knees, not touching imaginary ground and not raised to attack. Both feet planted wide, head droops, thick tail relaxed. Shoulder towers firmly attached, complete and unclipped. No ground or VFX.",
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m17/recovery/candidate.png",
+  "resource": "asset://levels/b07/enemies/m17/actions/obelisk_cross/recovery_candidate.png",
+  "ability": "obelisk_cross"
+}

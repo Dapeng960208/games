@@ -1,0 +1,36 @@
+{
+  "effect_id": "sun_beam_node",
+  "status": "unregistered_visual_candidate",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-f8dbfb58-66f7-4484-a6fd-8709c5030fdf.png",
+  "source_sha256": "d1848ba561b9d9696f45c3e4672fe7f02e5ef5562dfda98dd706970df20676f9",
+  "native_size": [
+    1322,
+    1190
+  ],
+  "original_bytes_preserved": true,
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "source_license": "AI-generated original visual source",
+  "qa": {
+    "alpha16_bounds_xywh": [
+      482,
+      200,
+      411,
+      765
+    ],
+    "alpha128_bounds_xywh": [
+      495,
+      206,
+      393,
+      750
+    ],
+    "nonzero_edge_pixels": 0,
+    "alpha128_edge_pixels": 0,
+    "center_alpha": 252,
+    "transparent_pixels": 1386867,
+    "low_alpha_1_32_pixels": 63042,
+    "visual_review": "Viewed original. Decorative material only, native colors. Alpha fringe and actual battlefield readability unaccepted.",
+    "geometry_warning": "Generated curve/spiral does not define hitbox, reduction angle or skill radius; current command geometry remains authoritative."
+  },
+  "runtime_quality_gate_passed": false
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M11",
+  "status": "design_candidate_not_runtime_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-5d904c51-50ba-425c-b456-69b9026f1ea5.png",
+  "source_sha256": "f0313da1d993d539408286e734610943e3be4d81436ffdc605ba18ac9ea4bf2b",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "native_mode": "RGBA",
+  "original_colors_preserved": true,
+  "postprocessing": "none; source PNG byte-for-byte copy",
+  "candidate_only": true,
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "pose": "single_right_three_quarter_idle_ready",
+  "references": [
+    "user-provided B07(1).png: authoritative world and species",
+    "accepted M01 idle: painted family only"
+  ],
+  "reference_sha256": {
+    "user_B07_reference": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+    "accepted_M01_idle": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e"
+  },
+  "source_license": "AI-generated candidate; user-provided reference; not a third-party licensed download",
+  "prompt": "provenance/idle_candidate.prompt.txt",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      23,
+      200,
+      1205,
+      957
+    ],
+    "alpha128_pixel_count": 443007,
+    "transparent_pixel_count": 1106652,
+    "low_alpha_1_32_count": 18895,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "body_crown_or_anatomical_dorsal_y": 555,
+    "foot_contacts_manual": [
+      [
+        351,
+        920
+      ],
+      [
+        606,
+        829
+      ],
+      [
+        819,
+        1090
+      ],
+      [
+        1093,
+        1005
+      ]
+    ],
+    "foot_midpoint": [
+      717.25,
+      961.0
+    ],
+    "body_height_excluding_weapon_tail_accessories": 406.0,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 406.0,
+    "maximum_display_body_px_at_1_5_sampling_margin": 270.67,
+    "sampling_note": "Single-frame anatomical vertical content, excluding weapon/tail/flags/mirrors/crown and transparent canvas. M06 crouched height; M11 quadruped dorsal-to-mean-four-foot height, not humanoid standing height. Runtime scale/max camera not assigned. No 2K runtime acceptance.",
+    "visual_review": "Four-legged pack beast identity; far rear foot partly occluded, revise at common polish pass. Dorsal anatomical top excludes stair armor and raised tail."
+  }
+}

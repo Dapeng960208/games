@@ -1,0 +1,137 @@
+{
+  "id": "m12",
+  "action": "heavy_crossbow_bolt",
+  "kind": "independent_object_vfx",
+  "relative_dir": "m12/heavy_crossbow_bolt",
+  "pivot": [
+    694,
+    598
+  ],
+  "read": "Heavy wood/brass bolt with wide metal diamond head and red/cream fletching, clearly different from dart.",
+  "issues": [
+    "Projectile proportions need fit validation against crossbow rail; no speed/hitbox inferred."
+  ],
+  "path": "assets/levels/b07/effects/heavy_crossbow_bolt/effect_candidate.png",
+  "width": 1377,
+  "height": 1142,
+  "mode": "RGBA",
+  "bytes": 814388,
+  "sha256": "979758a9adf0ae34629b1f80efe6da8af905b6146d6a6cf62a585ee15100c9e0",
+  "transparent_pixel_count": 1268088,
+  "partial_alpha_pixel_count": 303928,
+  "opaque_pixel_count": 518,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        25,
+        21,
+        1337,
+        1142
+      ],
+      "bbox_size": [
+        1312,
+        1121
+      ],
+      "effective_pixels": 304446,
+      "margin_ltrb": [
+        25,
+        21,
+        40,
+        0
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        7,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        66,
+        73,
+        1332,
+        1033
+      ],
+      "bbox_size": [
+        1266,
+        960
+      ],
+      "effective_pixels": 294166,
+      "margin_ltrb": [
+        66,
+        73,
+        45,
+        109
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        67,
+        74,
+        1331,
+        1032
+      ],
+      "bbox_size": [
+        1264,
+        958
+      ],
+      "effective_pixels": 291277,
+      "margin_ltrb": [
+        67,
+        74,
+        46,
+        110
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/heavy_crossbow_bolt/provenance.json",
+  "prompt_path": "provenance/effect_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/heavy_crossbow_bolt/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "minimum_margin_alpha16": 45,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/heavy_crossbow_bolt/candidate.png",
+  "resource": "asset://levels/b07/effects/heavy_crossbow_bolt/effect_candidate.png",
+  "original_provenance": {
+    "id": "m12",
+    "action": "heavy_crossbow_bolt",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m12/idle_candidate.png",
+    "edit_target": null,
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-d5e24bbe-54a0-46bb-b6ca-2d8b892579d6.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "repair_limit": "one_targeted_retry_only",
+    "sha256": "979758a9adf0ae34629b1f80efe6da8af905b6146d6a6cf62a585ee15100c9e0",
+    "bytes": 814388,
+    "source_sha256": "979758a9adf0ae34629b1f80efe6da8af905b6146d6a6cf62a585ee15100c9e0",
+    "copy_byte_verified": true
+  },
+  "ability": "awning_bolt"
+}

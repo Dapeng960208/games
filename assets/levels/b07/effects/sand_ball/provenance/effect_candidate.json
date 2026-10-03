@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-107458b0-3289-4952-8164-99a52e42042e.png",
+  "source_sha256": "5db684c4efbdb8105b54133ed6b951be2c3cacc77d325e9201e39138520973ca",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/effects/sand_ball/effect_candidate.png",
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      360,
+      276,
+      761,
+      484
+    ],
+    "alpha128_pixel_count": 188205,
+    "transparent_pixel_count": 1346125,
+    "low_alpha_1_32_count": 32286,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Compact sand ball/trail; gameplay projectile follows existing command.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "center_alpha": 253
+  },
+  "effect_id": "sand_ball",
+  "ability": "M02 D2 after_motion sand_ball",
+  "references": []
+}

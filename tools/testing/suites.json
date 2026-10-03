@@ -1165,5 +1165,9 @@
   "world_visual": {
     "script": "tests/world/test_world_visual.gd",
     "scene": "tests/world/test_world_visual.tscn"
+  },
+  "b07_l37_convergence_review": {
+    "script": "tests/levels/b07/test_l37_convergence_review.gd",
+    "scene": "tests/levels/b07/test_l37_convergence_review.tscn"
   }
 }

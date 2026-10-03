@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M13",
+  "ability": "sun_beam",
+  "phase": "execute",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-0bb80bbc-5d0f-42fe-bdb3-6af79ac84e69.png",
+  "source_sha256": "8da6f16b339e73e09b1fc82c61878d5537d661384ecea7b471e5a9245887d2e0",
+  "resource": "asset://levels/b07/enemies/m13/actions/sun_beam/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "native_size": [
+    1278,
+    1230
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m13/idle_candidate.png",
+  "reference_sha256": "3ed4ff0424515abd60cb90cfc1b8a0416526389385324fb954b1558562a5a9bd",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      26,
+      62,
+      1227,
+      1128
+    ],
+    "alpha128_pixel_count": 439020,
+    "transparent_pixel_count": 1093464,
+    "low_alpha_1_32_count": 33931,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 61.5,
+    "foot_landmarks": [
+      [
+        536.8,
+        1119.3
+      ],
+      [
+        830.7,
+        1020.9
+      ]
+    ],
+    "foot_midpoint": [
+      683.75,
+      1070.1
+    ],
+    "visible_anatomical_vertical_extent": 1008.6,
+    "semantic_uncertainty_px": 30.8,
+    "visual_review": "Disc and robes retained; execute reaches right edge, palm-disc separation partly lost; independent disc layer still needed.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

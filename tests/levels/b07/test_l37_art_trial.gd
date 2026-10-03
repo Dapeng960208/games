@@ -30,7 +30,16 @@ func _run() -> void:
 		launch.free(); Game.run=null
 		print("B07 ART TRIAL disabled-gate checks, failures=",failures)
 		get_tree().quit(1 if failures else 0); return
-	check(is_instance_valid(backdrop.b07_art_trial) and backdrop.b07_art_trial.layers.size()==3,"registered canyon, exact terrace and western guardian")
+	var midground_review: bool="--b07-midground-trial" in OS.get_cmdline_user_args()
+	check(is_instance_valid(backdrop.b07_art_trial) and backdrop.b07_art_trial.layers.size()==(4 if midground_review else 3),"registered canyon, terrace, guardian and optional review inset")
+	if midground_review:
+		var review: Sprite2D=backdrop.b07_art_trial.layers.back()
+		check(review.texture==backdrop.b07_art_trial.layers[0].texture,"midground reuses original source texture")
+		check(review.material.get_shader_parameter("exterior"),"review inset excludes authoritative floor")
+		check(backdrop.b07_art_trial.layers[0].region_rect==Rect2(0,380,1552,633),"canyon backdrop excludes duplicate distant city")
+		room.camera.configure(room,room.player,room.ARENA,backdrop.painted_bounds())
+		check(room.camera.b07_north_review and room.camera.position==room.player.position+Vector2(160,-160),"north review configures real follow bias")
+		check(backdrop.b07_art_trial.guardian_plinth.position==Vector2(0,160)*Geometry.SCALE,"decorative support moves with guardian")
 	check(is_instance_valid(backdrop.b07_art_trial.foundation) and not backdrop.b07_art_trial.foundation.faces.is_empty(),"authored foundation follows exterior edges")
 	check(backdrop.b07_art_trial.foundation.faces.size()==3,"no wall on full vertical west edge")
 	check(is_instance_valid(backdrop.b07_art_trial.guardian_plinth),"guardian has separate supported plinth")
@@ -72,11 +81,20 @@ func _run() -> void:
 	room.camera.follow_target()
 	room.camera.force_update_scroll()
 	label.text="L37 ENTRY FOLLOW 0.72 | canyon-gate + M01 idle pilots; other art pending"
+	if midground_review:
+		check(room.camera.zoom.is_equal_approx(Vector2(.72,.72)),"north review preserves actual .72 world zoom")
+		label.position.y=680
+		label.text="L37 NORTH COMPOSITION REVIEW | actual follow (+160,-160); city crop / floor ratio unaccepted"
 	await _capture(out.path_join("L37_canyon_entry_follow.png"))
 	var extent: Vector2=get_viewport().get_visible_rect().size/room.camera.zoom
 	var actual_view:=Rect2(room.camera.get_screen_center_position()-extent*.5,extent)
 	check(backdrop.painted_bounds().grow(1).encloses(actual_view),"production entry view stays inside painted coverage")
 	print("B07 entry view=",actual_view," coverage=",backdrop.painted_bounds()," zoom=",room.camera.zoom)
+	if "--b07-entry-only" in OS.get_cmdline_user_args():
+		check(await room.combat_audio.wait_for_cleanup(),"audio cleanup")
+		launch.free(); Game.run=null
+		print("B07 ENTRY REVIEW captured ",out," failures=",failures)
+		get_tree().quit(1 if failures else 0); return
 	# A directed real M01 warning at the same actual entry camera/zoom.
 	for actor: Node2D in room.enemies.get_children():
 		if actor.enemy_id!="B07-M01": continue

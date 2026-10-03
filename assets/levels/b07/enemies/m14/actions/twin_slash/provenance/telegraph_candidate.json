@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M14",
+  "action": "telegraph",
+  "variant": "telegraph",
+  "category": "pose",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "assets/levels/b07/enemies/m14/actions/twin_slash/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "source_filename": "exec-7c7dd0ef-037b-4396-acaa-b77003c5bdd5.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7c7dd0ef-037b-4396-acaa-b77003c5bdd5.png",
+  "source_sha256": "847e202d749c7d191266ea856f0d54eabdbe7da59e48cbcb636d065cb0cf3bab",
+  "png_sha256": "847e202d749c7d191266ea856f0d54eabdbe7da59e48cbcb636d065cb0cf3bab",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m14/idle_candidate.png",
+  "identity_reference_sha256": "c98e186dd1bb4ea0c76266df62125ffad1f6791bcf69ef0e5d15f288fb0e6dbd",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1312,
+      1199
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1027203,
+    "alpha_zero_fraction": 0.6529850841148112,
+    "low_alpha_1_15_pixel_count": 37915,
+    "opaque_pixel_count": 528,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        35,
+        39,
+        1282,
+        1199
+      ],
+      "bounds_xywh": [
+        35,
+        39,
+        1247,
+        1160
+      ],
+      "effective_pixel_count": 545885,
+      "edge_pixel_count": 2,
+      "margins_ltrb": [
+        35,
+        39,
+        30,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        41,
+        59,
+        1280,
+        1172
+      ],
+      "bounds_xywh": [
+        41,
+        59,
+        1239,
+        1113
+      ],
+      "effective_pixel_count": 507970,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        41,
+        59,
+        32,
+        27
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        42,
+        60,
+        1280,
+        1171
+      ],
+      "bounds_xywh": [
+        42,
+        60,
+        1238,
+        1111
+      ],
+      "effective_pixel_count": 498627,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        42,
+        60,
+        32,
+        28
+      ]
+    },
+    "foot_contacts_manual": [
+      [
+        584,
+        1108
+      ],
+      [
+        1210,
+        953
+      ]
+    ],
+    "foot_midpoint": [
+      897.0,
+      1030.5
+    ],
+    "anatomical_crown_xy_manual": [
+      837,
+      94
+    ],
+    "body_height_excluding_weapon_tail_accessories": 936.5,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 936.5,
+    "maximum_display_body_px_at_1_5_sampling_margin": 624.33,
+    "visual_review": "Left blade held back high; other blade low, torso coiled.",
+    "defects": [
+      "Minimum strong-alpha margin below requested 8%."
+    ],
+    "foot_anchor_runtime_registered": false
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m14/telegraph: B07-M14 twin-blade guard. Preserve two SHORT crescent copper-gold blades, one in EACH hand, long flexible neck, red-brown light armor and red scarf, long tail. TELEGRAPH first/left-hand cut: lower center of gravity, knees bent; character's anatomical LEFT hand (screen-right arm in reference) cocks its blade beside and behind the left shoulder, elbow high, preparing a cross-body slash. Anatomical RIGHT hand (screen-left in reference) holds the second blade low beside hip in guard. Torso clearly coiled against pelvis, tail counter-curved low behind. Both planted clawed feet distinctly visible. No additional arms or weapons.",
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m14/telegraph/candidate.png",
+  "resource": "asset://levels/b07/enemies/m14/actions/twin_slash/telegraph_candidate.png",
+  "ability": "twin_slash"
+}

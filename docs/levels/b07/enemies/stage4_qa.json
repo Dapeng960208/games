@@ -1,0 +1,344 @@
+[
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M07",
+    "ability": "sand_vortex",
+    "phase": "telegraph",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-cc4f39ac-395a-4ac6-a492-b608ec939355.png",
+    "source_sha256": "b0a0ac5be2deaafccd39bfcd25ec4249e59041c1153c92c9560050f39e4f3d62",
+    "resource": "asset://levels/b07/enemies/m07/actions/sand_vortex/telegraph_candidate.png",
+    "prompt": "provenance/telegraph_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m07/idle_candidate.png",
+    "reference_sha256": "bddea855af8d0739607624074cc8a57827e1f7b94f5671ec4340e5e44263a80b",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        39,
+        59,
+        1191,
+        1162
+      ],
+      "alpha128_pixel_count": 536384,
+      "transparent_pixel_count": 982473,
+      "low_alpha_1_32_count": 45718,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 100.3,
+      "foot_landmarks": [
+        [
+          489.1,
+          1153.7
+        ],
+        [
+          1028.3,
+          953.0
+        ]
+      ],
+      "foot_midpoint": [
+        758.7,
+        1053.35
+      ],
+      "visible_anatomical_vertical_extent": 953.0,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Staff identity and original hand retained; execute staff tip margin narrow. Bone scale/foot continuity still pending.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M07",
+    "ability": "sand_vortex",
+    "phase": "execute",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-b153d3d5-3e40-4a4c-bef2-a84a86c690e0.png",
+    "source_sha256": "67d6c84bf2f1ddd60afbb00efbf878906750582b180a65dcd8c59f1f432d2615",
+    "resource": "asset://levels/b07/enemies/m07/actions/sand_vortex/execute_candidate.png",
+    "prompt": "provenance/execute_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m07/idle_candidate.png",
+    "reference_sha256": "bddea855af8d0739607624074cc8a57827e1f7b94f5671ec4340e5e44263a80b",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        11,
+        26,
+        1243,
+        1216
+      ],
+      "alpha128_pixel_count": 477600,
+      "transparent_pixel_count": 1035986,
+      "low_alpha_1_32_count": 50818,
+      "nonzero_edge_pixel_count": 135,
+      "edge_alpha128_pixel_count": 1,
+      "anatomical_crown_y": 150.5,
+      "foot_landmarks": [
+        [
+          363.7,
+          1166.2
+        ],
+        [
+          902.9,
+          1040.8
+        ]
+      ],
+      "foot_midpoint": [
+        633.3,
+        1103.5
+      ],
+      "visible_anatomical_vertical_extent": 953.0,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Staff identity and original hand retained; execute staff tip margin narrow. Bone scale/foot continuity still pending.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M07",
+    "ability": "sand_vortex",
+    "phase": "recovery",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-187ed10d-1be2-4d42-b43a-987a6a98823c.png",
+    "source_sha256": "b42f3415af92bead26e8bcfaf9623e355810db96d78feb0ecdfdc0a2818ecf96",
+    "resource": "asset://levels/b07/enemies/m07/actions/sand_vortex/recovery_candidate.png",
+    "prompt": "provenance/recovery_candidate.prompt.txt",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m07/idle_candidate.png",
+    "reference_sha256": "bddea855af8d0739607624074cc8a57827e1f7b94f5671ec4340e5e44263a80b",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        66,
+        26,
+        1165,
+        1209
+      ],
+      "alpha128_pixel_count": 500804,
+      "transparent_pixel_count": 1016779,
+      "low_alpha_1_32_count": 47016,
+      "nonzero_edge_pixel_count": 7,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 100.3,
+      "foot_landmarks": [
+        [
+          551.8,
+          1178.8
+        ],
+        [
+          953.0,
+          1116.1
+        ]
+      ],
+      "foot_midpoint": [
+        752.4,
+        1147.4499999999998
+      ],
+      "visible_anatomical_vertical_extent": 1047.1,
+      "semantic_uncertainty_px": 31.4,
+      "visual_review": "Staff identity and original hand retained; execute staff tip margin narrow. Bone scale/foot continuity still pending.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M13",
+    "ability": "sun_beam",
+    "phase": "telegraph",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-49753896-2ce1-4dc2-9faf-d71c08f13282.png",
+    "source_sha256": "317c96e0774625a897309a504828fc9bfdc3ae7836fa92aec4be8fb486f78fe8",
+    "resource": "asset://levels/b07/enemies/m13/actions/sun_beam/telegraph_candidate.png",
+    "prompt": "provenance/telegraph_candidate.prompt.txt",
+    "native_size": [
+      1278,
+      1230
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m13/idle_candidate.png",
+    "reference_sha256": "3ed4ff0424515abd60cb90cfc1b8a0416526389385324fb954b1558562a5a9bd",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        76,
+        24,
+        1138,
+        1177
+      ],
+      "alpha128_pixel_count": 438097,
+      "transparent_pixel_count": 1096229,
+      "low_alpha_1_32_count": 32140,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 24.6,
+      "foot_landmarks": [
+        [
+          613.4,
+          1119.3
+        ],
+        [
+          881.8,
+          1008.6
+        ]
+      ],
+      "foot_midpoint": [
+        747.5999999999999,
+        1063.95
+      ],
+      "visible_anatomical_vertical_extent": 1039.4,
+      "semantic_uncertainty_px": 30.8,
+      "visual_review": "Disc and robes retained; execute reaches right edge, palm-disc separation partly lost; independent disc layer still needed.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M13",
+    "ability": "sun_beam",
+    "phase": "execute",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-0bb80bbc-5d0f-42fe-bdb3-6af79ac84e69.png",
+    "source_sha256": "8da6f16b339e73e09b1fc82c61878d5537d661384ecea7b471e5a9245887d2e0",
+    "resource": "asset://levels/b07/enemies/m13/actions/sun_beam/execute_candidate.png",
+    "prompt": "provenance/execute_candidate.prompt.txt",
+    "native_size": [
+      1278,
+      1230
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m13/idle_candidate.png",
+    "reference_sha256": "3ed4ff0424515abd60cb90cfc1b8a0416526389385324fb954b1558562a5a9bd",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        26,
+        62,
+        1227,
+        1128
+      ],
+      "alpha128_pixel_count": 439020,
+      "transparent_pixel_count": 1093464,
+      "low_alpha_1_32_count": 33931,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 61.5,
+      "foot_landmarks": [
+        [
+          536.8,
+          1119.3
+        ],
+        [
+          830.7,
+          1020.9
+        ]
+      ],
+      "foot_midpoint": [
+        683.75,
+        1070.1
+      ],
+      "visible_anatomical_vertical_extent": 1008.6,
+      "semantic_uncertainty_px": 30.8,
+      "visual_review": "Disc and robes retained; execute reaches right edge, palm-disc separation partly lost; independent disc layer still needed.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  },
+  {
+    "schema_version": 1,
+    "status": "key_pose_candidate_not_registered",
+    "identity": "B07-M13",
+    "ability": "sun_beam",
+    "phase": "recovery",
+    "generator": "built-in image_gen",
+    "source_filename": "exec-7b4b610d-aeb9-4231-b392-22ba9c1a95dd.png",
+    "source_sha256": "24925927d403c553bc2f577fdb752e8b5c4414db3ef5f7d8159be3013a3fff90",
+    "resource": "asset://levels/b07/enemies/m13/actions/sun_beam/recovery_candidate.png",
+    "prompt": "provenance/recovery_candidate.prompt.txt",
+    "native_size": [
+      1278,
+      1230
+    ],
+    "original_colors_preserved": true,
+    "postprocessing": "none; byte-for-byte source copy",
+    "reference_path": "assets/levels/b07/enemies/m13/idle_candidate.png",
+    "reference_sha256": "3ed4ff0424515abd60cb90cfc1b8a0416526389385324fb954b1558562a5a9bd",
+    "source_license": "AI-generated candidate from existing project character reference",
+    "runtime_quality_gate_passed": false,
+    "animation_complete": false,
+    "qa": {
+      "alpha128_bounds_xywh": [
+        113,
+        40,
+        979,
+        1157
+      ],
+      "alpha128_pixel_count": 374504,
+      "transparent_pixel_count": 1168542,
+      "low_alpha_1_32_count": 24273,
+      "nonzero_edge_pixel_count": 0,
+      "edge_alpha128_pixel_count": 0,
+      "anatomical_crown_y": 36.9,
+      "foot_landmarks": [
+        [
+          626.2,
+          1131.6
+        ],
+        [
+          869.0,
+          1057.8
+        ]
+      ],
+      "foot_midpoint": [
+        747.6,
+        1094.6999999999998
+      ],
+      "visible_anatomical_vertical_extent": 1057.8,
+      "semantic_uncertainty_px": 30.8,
+      "visual_review": "Disc and robes retained; execute reaches right edge, palm-disc separation partly lost; independent disc layer still needed.",
+      "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+      "scale_and_foot_continuity_passed": false,
+      "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+    }
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M01",
+  "ability": "sun_spear",
+  "phase": "telegraph_hand_corrected",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-8a2c9aef-48cb-45e7-988e-e792d4b60a9b.png",
+  "source_sha256": "b616039ba747bd4f038e39d8ea66032fdd106f60b31d48ed1a20b53ce80b3b88",
+  "resource": "asset://levels/b07/enemies/m01/actions/sun_spear/telegraph_hand_corrected_candidate.png",
+  "prompt": "provenance/telegraph_hand_corrected_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m01/idle.png",
+  "reference_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      16,
+      214,
+      1223,
+      924
+    ],
+    "alpha128_pixel_count": 324325,
+    "transparent_pixel_count": 1216850,
+    "low_alpha_1_32_count": 25920,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 213.2,
+    "foot_landmarks": [
+      [
+        313.5,
+        1065.9
+      ],
+      [
+        890.3,
+        928.0
+      ]
+    ],
+    "foot_midpoint": [
+      601.9,
+      996.95
+    ],
+    "visible_anatomical_vertical_extent": 783.8,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Failed correction: shield side/shoulder pauldron relationship remains inconsistent with idle; NOT preferred and not approved.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

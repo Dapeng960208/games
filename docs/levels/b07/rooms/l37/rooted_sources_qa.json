@@ -1,0 +1,116 @@
+[
+  {
+    "id": "terraced_city_rooted",
+    "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_rooted.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-37907c98-de13-4133-aec2-548fe7523ea0.png",
+    "sha256": "fa7f7001e7686811789d8290af0f54a56ecb5cd352d12b62c5dbe8f4307bcec1",
+    "native_size": [
+      1145,
+      1374
+    ],
+    "mode": "RGBA",
+    "candidate_only": true,
+    "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/terraced_city_rooted.prompt.txt",
+    "alpha": {
+      "1": {
+        "bbox": [
+          0,
+          0,
+          1145,
+          1374
+        ],
+        "content_size": [
+          1145,
+          1374
+        ],
+        "edge_pixels": 279
+      },
+      "16": {
+        "bbox": [
+          6,
+          9,
+          1139,
+          1362
+        ],
+        "content_size": [
+          1133,
+          1353
+        ],
+        "edge_pixels": 0
+      },
+      "128": {
+        "bbox": [
+          7,
+          11,
+          1138,
+          1362
+        ],
+        "content_size": [
+          1131,
+          1351
+        ],
+        "edge_pixels": 0
+      }
+    },
+    "physical_path": "assets/levels/b07/rooms/l37/terraced_city_rooted/source_candidate.png",
+    "manual_qa": "Source and normal alpha on light/dark actually inspected; original warm sandstone architecture visibly supported by natural cliff. Tight source clearance remains review limitation; no broad visible halo in proper alpha composite. Placement/occlusion not yet graphically validated.",
+    "source_pixels_unchanged": true
+  },
+  {
+    "id": "sun_mirror_rooted",
+    "path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_rooted.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-79ba5aef-3f26-4e5e-8bb7-3749f2b706ca.png",
+    "sha256": "529c2dcb6b3f8dbd9116f92d1c6a4f900042b843af75094e42bd7e44893dbe82",
+    "native_size": [
+      1224,
+      1285
+    ],
+    "mode": "RGBA",
+    "candidate_only": true,
+    "prompt_path": "/workspace/scratch/2244020fc8d6/b07-art/room_layers_0928/sun_mirror_rooted.prompt.txt",
+    "alpha": {
+      "1": {
+        "bbox": [
+          0,
+          1,
+          1204,
+          1285
+        ],
+        "content_size": [
+          1204,
+          1284
+        ],
+        "edge_pixels": 180
+      },
+      "16": {
+        "bbox": [
+          239,
+          7,
+          1003,
+          1284
+        ],
+        "content_size": [
+          764,
+          1277
+        ],
+        "edge_pixels": 0
+      },
+      "128": {
+        "bbox": [
+          240,
+          8,
+          1003,
+          1283
+        ],
+        "content_size": [
+          763,
+          1275
+        ],
+        "edge_pixels": 0
+      }
+    },
+    "physical_path": "assets/levels/b07/rooms/l37/sun_mirror_rooted/source_candidate.png",
+    "manual_qa": "Source and normal alpha on light/dark actually inspected; original warm sandstone architecture visibly supported by natural cliff. Tight source clearance remains review limitation; no broad visible halo in proper alpha composite. Placement/occlusion not yet graphically validated.",
+    "source_pixels_unchanged": true
+  }
+]

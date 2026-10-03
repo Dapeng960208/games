@@ -1,0 +1,174 @@
+{
+  "id": "m08",
+  "action": "telegraph",
+  "kind": "character_key_pose",
+  "relative_dir": "m08/telegraph",
+  "crown": [
+    931,
+    194
+  ],
+  "feet": [
+    [
+      457,
+      1101
+    ],
+    [
+      1220,
+      906
+    ]
+  ],
+  "read": "Right-hand mirror blade raised; empty left hand, two feet and full tail readable.",
+  "issues": [
+    "Rightmost fingers/foot and blade have tight composition; camera is only moderately elevated."
+  ],
+  "path": "assets/levels/b07/enemies/m08/actions/mirror_slash/telegraph_candidate.png",
+  "width": 1312,
+  "height": 1199,
+  "mode": "RGBA",
+  "bytes": 1259082,
+  "sha256": "41528e88b9d7f9d692cdda3257d9d86c7a1f1115ce369308d7ec12b93e3f9d3d",
+  "transparent_pixel_count": 1075957,
+  "partial_alpha_pixel_count": 496300,
+  "opaque_pixel_count": 831,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        0,
+        14,
+        1300,
+        1199
+      ],
+      "bbox_size": [
+        1300,
+        1185
+      ],
+      "effective_pixels": 497131,
+      "margin_ltrb": [
+        0,
+        14,
+        12,
+        0
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        5,
+        3,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        34,
+        31,
+        1298,
+        1173
+      ],
+      "bbox_size": [
+        1264,
+        1142
+      ],
+      "effective_pixels": 463836,
+      "margin_ltrb": [
+        34,
+        31,
+        14,
+        26
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        35,
+        32,
+        1297,
+        1172
+      ],
+      "bbox_size": [
+        1262,
+        1140
+      ],
+      "effective_pixels": 455952,
+      "margin_ltrb": [
+        35,
+        32,
+        15,
+        27
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/telegraph/provenance.json",
+  "prompt_path": "provenance/telegraph_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/telegraph/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "manual_foot_qa": {
+    "support_contact_centers_px": [
+      [
+        457,
+        1101
+      ],
+      [
+        1220,
+        906
+      ]
+    ],
+    "anchor_mean_px": [
+      838.5,
+      1003.5
+    ],
+    "anchor_normalized": [
+      0.6391,
+      0.83695
+    ],
+    "anatomical_crown_px": [
+      931,
+      194
+    ],
+    "body_effective_height_px": 809.5,
+    "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+    "max_body_display_height_at_1_to_1_px": 809.5,
+    "max_body_display_height_at_1_5_source_to_display_px": 539.7,
+    "accepted_runtime_anchor": false
+  },
+  "minimum_margin_alpha16": 14,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/telegraph/candidate.png",
+  "resource": "asset://levels/b07/enemies/m08/actions/mirror_slash/telegraph_candidate.png",
+  "original_provenance": {
+    "id": "m08",
+    "action": "telegraph",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m08/idle_candidate.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-ba5719a8-05d8-4d27-ab92-7b3a8520515c.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "sha256": "41528e88b9d7f9d692cdda3257d9d86c7a1f1115ce369308d7ec12b93e3f9d3d",
+    "bytes": 1259082,
+    "source_sha256": "41528e88b9d7f9d692cdda3257d9d86c7a1f1115ce369308d7ec12b93e3f9d3d",
+    "copy_byte_verified": true
+  },
+  "ability": "mirror_slash"
+}

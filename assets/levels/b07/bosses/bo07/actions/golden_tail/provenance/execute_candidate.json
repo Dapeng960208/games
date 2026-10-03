@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "BO07",
+  "ability": "golden_tail",
+  "phase": "execute",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-a49af630-3bb2-46e0-8a19-9932a739c9dc.png",
+  "source_sha256": "f049c7252dbc5fad19a8ce3eb8dde667192c801e9c8927f2f6cb8dbceb50984e",
+  "resource": "asset://levels/b07/bosses/bo07/actions/golden_tail/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png",
+  "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      11,
+      31,
+      1236,
+      1179
+    ],
+    "alpha128_pixel_count": 590465,
+    "transparent_pixel_count": 928175,
+    "low_alpha_1_32_count": 45757,
+    "nonzero_edge_pixel_count": 126,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 313.5,
+    "foot_landmarks": [
+      [
+        451.4,
+        1128.6
+      ],
+      [
+        1116.1,
+        1053.4
+      ]
+    ],
+    "foot_midpoint": [
+      783.75,
+      1091.0
+    ],
+    "visible_anatomical_vertical_extent": 777.5,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Tail remains curled despite execution request: attack motion readability insufficient; common revision required.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

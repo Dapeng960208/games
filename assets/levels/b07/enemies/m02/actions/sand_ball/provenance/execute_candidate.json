@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M02",
+  "ability": "sand_ball",
+  "phase": "execute",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-3a3cc174-0358-40ce-9f36-b14a0cf40e9b.png",
+  "source_sha256": "10ce0fa9bda9dc3507cc26b58385a4cc1661e9aa62146a78b38c5d9f2b7a8dc0",
+  "resource": "asset://levels/b07/enemies/m02/actions/sand_ball/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m02/idle_candidate.png",
+  "reference_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      31,
+      150,
+      1218,
+      1015
+    ],
+    "alpha128_pixel_count": 487956,
+    "transparent_pixel_count": 1035477,
+    "low_alpha_1_32_count": 41787,
+    "nonzero_edge_pixel_count": 29,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 150.5,
+    "foot_landmarks": [
+      [
+        326.0,
+        1116.1
+      ],
+      [
+        1040.8,
+        928.0
+      ]
+    ],
+    "foot_midpoint": [
+      683.4,
+      1022.05
+    ],
+    "visible_anatomical_vertical_extent": 871.6,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Empty release palm; apparent arms exchange across torso rotation needs shoulder tracking, not assumed correct.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

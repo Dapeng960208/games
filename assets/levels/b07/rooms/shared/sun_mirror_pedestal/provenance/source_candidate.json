@@ -1,0 +1,109 @@
+{
+  "id": "sun_mirror_pedestal",
+  "status": "static_neutral_candidate_not_integrated",
+  "file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_mirror_pedestal.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-e67f7c9e-d354-4315-9bc8-ff1af919796d.png",
+  "source_sha256": "bdceb65dae69957c91d562e5d1267534a8a45e86732526b6d2e0fbe63ffc561a",
+  "file_sha256": "bdceb65dae69957c91d562e5d1267534a8a45e86732526b6d2e0fbe63ffc561a",
+  "byte_preserved": true,
+  "prompt_file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_mirror_pedestal.prompt.txt",
+  "prompt": "Use case: stylized-concept\nAsset type: one transparent 2.5D hand-painted fantasy game environment prop, B07 Golden Sand Lizard City.\nInput image: B07(1).png is a STYLE AND MATERIAL REFERENCE ONLY. Do not reproduce the poster, typography, landscape, temple, or layout.\nShared visual direction: bright warm hand-painted fantasy, high-camera oblique near-isometric view (about 55 degrees downward); readable adult-scale game prop, solid silhouette, subtly uneven painted outlines and broad illustrated material shading. Match the reference's honey-gold sandstone, ochre shadows, burnished brass/copper-gold sun motifs; restrained tiny turquoise inlays, terracotta red-orange cloth only when requested. Illumination from upper left; opaque colored materials and crisp silhouette.\nComposition: exactly ONE independent complete object, centered on a square canvas with comfortable clear margin on ALL sides, no cropped part, see its top and two sides. Camera and silhouette appropriate to placing it into a top-down action RPG room.\nBackground: actual true transparent alpha everywhere outside the prop, no colored backdrop, no baked checkerboard, no ground plane, no cast shadow on invisible floor, no scenery.\nConstraints: single static neutral-state candidate, not an animation sheet. No characters, other props, diagram, UI, lettering, numbers, frame, watermark, gameplay beams, lasers, effects, bloom, particles, interaction rings, arrows, direction indicators or floor decals. Do not bake gameplay light paths or room collision layout into this image.\nPrimary request: a small LOW rotatable sun-mirror pedestal. A round copper-gold framed mirror supported by a visible horizontal pivot axle and short sturdy U-shaped brass yoke, on a compact squat sandstone plinth with a simple circular turntable. The entire mechanism is low and hand-adjustable, not a monument. A few short triangular sun rays form the edge of the thick round frame. Mirror is tilted slightly upward toward the viewer. Its surface is neutral silver-champagne metal with a soft plain brushed gradient ONLY: absolutely no reflected building, sky, landscape, person, symbols, fire, scene or bright flare. Add two tiny turquoise inlays on the frame. One small terracotta cloth wrap around the lower yoke, securely attached and not dangling far. Show coherent mechanical pivot and turntable structure. Keep mirror readable and uncluttered; base about half the mirror width. Complete prop only, no stairs and no temple architecture.",
+  "generator": "built-in image_gen",
+  "transparent_background_requested": true,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha": {
+    "minimum": 0,
+    "maximum": 255,
+    "zero_pixels": 1020112,
+    "nonzero_pixels": 552404,
+    "opaque_pixels": 543,
+    "fraction_zero": 0.648713272233796,
+    "thresholds": {
+      "16": {
+        "bbox_xyxy_exclusive": [
+          248,
+          66,
+          1031,
+          1192
+        ],
+        "edge_contacts": {
+          "left": false,
+          "top": false,
+          "right": false,
+          "bottom": false
+        },
+        "margin_ltrb": [
+          248,
+          66,
+          223,
+          62
+        ]
+      },
+      "128": {
+        "bbox_xyxy_exclusive": [
+          248,
+          67,
+          1030,
+          1191
+        ],
+        "edge_contacts": {
+          "left": false,
+          "top": false,
+          "right": false,
+          "bottom": false
+        },
+        "margin_ltrb": [
+          248,
+          67,
+          224,
+          63
+        ]
+      }
+    },
+    "core_alpha_ge_128": {
+      "count": 534859,
+      "mean": 252.27839299703285,
+      "alpha_ge_250_fraction": 0.9792057345954728,
+      "most_frequent_values": [
+        [
+          253,
+          427449
+        ],
+        [
+          252,
+          81673
+        ],
+        [
+          251,
+          9513
+        ],
+        [
+          250,
+          3820
+        ],
+        [
+          249,
+          2060
+        ]
+      ]
+    }
+  },
+  "visual_qa_pending": false,
+  "visual_qa": {
+    "pass": true,
+    "observations": [
+      "One full round pivot-mounted sun mirror with squat sandstone support, copper-gold rim, small turquoise details and terracotta cloth.",
+      "Neutral brushed champagne mirror face contains no reflected scenery or figures.",
+      "No beam, gameplay indicator, floor patch or full-room art."
+    ],
+    "convergence_notes": [
+      "One neutral facing only; three switch states and directional consistency remain to be authored.",
+      "Final runtime size must keep this compact relative to characters and the interaction footprint."
+    ]
+  },
+  "physical_path": "assets/levels/b07/rooms/shared/sun_mirror_pedestal/source_candidate.png"
+}

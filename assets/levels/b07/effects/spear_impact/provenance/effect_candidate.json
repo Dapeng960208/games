@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-ba41b8a1-e0b6-4750-8ca6-c5e0c600d361.png",
+  "source_sha256": "63e7c429d3f9095e622d021e54f18a9dfa589e4a7ca1f116ee981c3e6d107158",
+  "native_size": [
+    1774,
+    887
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/effects/spear_impact/effect_candidate.png",
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      284,
+      178,
+      1331,
+      530
+    ],
+    "alpha128_pixel_count": 132385,
+    "transparent_pixel_count": 1403208,
+    "low_alpha_1_32_count": 32047,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Compact directional hit glint; decorative only, not 180/240 range line.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "center_alpha": 253
+  },
+  "effect_id": "spear_impact",
+  "ability": "M01/BO07 sun_spear",
+  "references": []
+}

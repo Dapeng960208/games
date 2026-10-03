@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-0af5e6c9-2a03-4912-8e3b-c5ca6deb35ff.png",
+  "source_sha256": "d01d70d7c763e8b32a4a4629ad3581640237eb91bd92fcd81299a1214c7c66b8",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/enemies/m01/actions/sun_spear/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      7,
+      124,
+      1522,
+      819
+    ],
+    "alpha128_pixel_count": 336751,
+    "transparent_pixel_count": 1206710,
+    "low_alpha_1_32_count": 25406,
+    "nonzero_edge_pixel_count": 12,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Identity and shield retained; spear tip and tail margins tight; compare hand assignment against corrected telegraph.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "anatomical_crown_y": 120,
+    "foot_landmarks": [
+      [
+        260,
+        851
+      ],
+      [
+        973,
+        787
+      ]
+    ],
+    "foot_midpoint": [
+      616.5,
+      819.0
+    ],
+    "airborne_no_ground_contact": false,
+    "visible_anatomical_vertical_extent": 699.0,
+    "semantic_uncertainty_px": 20,
+    "normalization_rule": "Do NOT independently normalize crouch/airborne height to idle standing height. Establish fixed scale from stable head/torso bone landmarks in common overlay pass; then align ground foot midpoint. Airborne frame requires motion root and height independent of foot landmarks.",
+    "scale_and_foot_continuity_passed": false
+  },
+  "identity": "B07-M01",
+  "ability": "sun_spear",
+  "phase": "execute",
+  "reference_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+  "reference_path": "assets/levels/b07/enemies/m01/idle.png"
+}

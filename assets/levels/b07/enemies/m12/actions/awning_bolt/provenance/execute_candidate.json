@@ -1,0 +1,175 @@
+{
+  "id": "m12",
+  "action": "execute",
+  "kind": "character_key_pose",
+  "relative_dir": "m12/execute",
+  "crown": [
+    806,
+    143
+  ],
+  "feet": [
+    [
+      492,
+      1020
+    ],
+    [
+      1106,
+      914
+    ]
+  ],
+  "read": "Crossbow rail now empty, slight upper-body recoil; two hands remain; no projectile or flash.",
+  "issues": [
+    "String looks partly tensioned rather than fully relaxed; clear release timing not yet verified.",
+    "Recoil pose rises appreciably relative to telegraph."
+  ],
+  "path": "assets/levels/b07/enemies/m12/actions/awning_bolt/execute_candidate.png",
+  "width": 1377,
+  "height": 1142,
+  "mode": "RGBA",
+  "bytes": 1493561,
+  "sha256": "760649f227c544f1d221b1f2666d620483c199cdf523717e2aeb1cbadd0d5f25",
+  "transparent_pixel_count": 963513,
+  "partial_alpha_pixel_count": 608016,
+  "opaque_pixel_count": 1005,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        33,
+        21,
+        1359,
+        1142
+      ],
+      "bbox_size": [
+        1326,
+        1121
+      ],
+      "effective_pixels": 609021,
+      "margin_ltrb": [
+        33,
+        21,
+        18,
+        0
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        20,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        36,
+        94,
+        1357,
+        1091
+      ],
+      "bbox_size": [
+        1321,
+        997
+      ],
+      "effective_pixels": 585911,
+      "margin_ltrb": [
+        36,
+        94,
+        20,
+        51
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        37,
+        94,
+        1356,
+        1090
+      ],
+      "bbox_size": [
+        1319,
+        996
+      ],
+      "effective_pixels": 580492,
+      "margin_ltrb": [
+        37,
+        94,
+        21,
+        52
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/execute/provenance.json",
+  "prompt_path": "provenance/execute_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/execute/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "manual_foot_qa": {
+    "support_contact_centers_px": [
+      [
+        492,
+        1020
+      ],
+      [
+        1106,
+        914
+      ]
+    ],
+    "anchor_mean_px": [
+      799.0,
+      967.0
+    ],
+    "anchor_normalized": [
+      0.58025,
+      0.84676
+    ],
+    "anatomical_crown_px": [
+      806,
+      143
+    ],
+    "body_effective_height_px": 824.0,
+    "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+    "max_body_display_height_at_1_to_1_px": 824.0,
+    "max_body_display_height_at_1_5_source_to_display_px": 549.3,
+    "accepted_runtime_anchor": false
+  },
+  "minimum_margin_alpha16": 20,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m12/execute/candidate.png",
+  "resource": "asset://levels/b07/enemies/m12/actions/awning_bolt/execute_candidate.png",
+  "original_provenance": {
+    "id": "m12",
+    "action": "execute",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m12/idle_candidate.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-7987f6a2-42a9-449b-9a47-caf8b0e2346f.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "sha256": "760649f227c544f1d221b1f2666d620483c199cdf523717e2aeb1cbadd0d5f25",
+    "bytes": 1493561,
+    "source_sha256": "760649f227c544f1d221b1f2666d620483c199cdf523717e2aeb1cbadd0d5f25",
+    "copy_byte_verified": true
+  },
+  "ability": "awning_bolt"
+}

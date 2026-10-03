@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M05",
+  "ability": "turquoise_heal",
+  "phase": "recovery",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-74417c50-88fc-4958-8a63-d7e27adcac66.png",
+  "source_sha256": "ef28208ac3636ffcc67f776cb49d3fd5ad35c62528bae63da503dcb57e97486a",
+  "resource": "asset://levels/b07/enemies/m05/actions/turquoise_heal/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m05/idle_candidate.png",
+  "reference_sha256": "cc45f9901be89b590c752cff18fe43c5b24ba7f006855fbeca766f05553781da",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      201,
+      64,
+      798,
+      1157
+    ],
+    "alpha128_pixel_count": 340967,
+    "transparent_pixel_count": 1197283,
+    "low_alpha_1_32_count": 29229,
+    "nonzero_edge_pixel_count": 1,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 62.7,
+    "foot_landmarks": [
+      [
+        689.7,
+        1166.2
+      ],
+      [
+        928.0,
+        1103.5
+      ]
+    ],
+    "foot_midpoint": [
+      808.85,
+      1134.85
+    ],
+    "visible_anatomical_vertical_extent": 1072.1,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Bowl and turquoise necklace retained, action readable; lower camera than combat target remains review issue.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

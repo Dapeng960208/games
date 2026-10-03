@@ -1,0 +1,176 @@
+{
+  "id": "m08",
+  "action": "execute",
+  "kind": "character_key_pose",
+  "relative_dir": "m08/execute/repair",
+  "crown": [
+    903,
+    102
+  ],
+  "feet": [
+    [
+      342,
+      1040
+    ],
+    [
+      1190,
+      805
+    ]
+  ],
+  "read": "Right-hand diagonal slash; left arm counterbalances; weapon, tail and feet retained.",
+  "issues": [
+    "Repair increased blade-side margin from 1px to 13px at alpha>=16, still far short of requested safety margin. Do not treat as framing passed."
+  ],
+  "path": "assets/levels/b07/enemies/m08/actions/mirror_slash/execute_candidate.png",
+  "width": 1312,
+  "height": 1199,
+  "mode": "RGBA",
+  "bytes": 1242627,
+  "sha256": "456841f7032a8560c251203739d5f04dcd8522278a853521fe69eb4d3c33ec90",
+  "transparent_pixel_count": 1076920,
+  "partial_alpha_pixel_count": 495624,
+  "opaque_pixel_count": 544,
+  "alpha_thresholds": {
+    "1": {
+      "bbox_xyxy_exclusive": [
+        46,
+        31,
+        1301,
+        1175
+      ],
+      "bbox_size": [
+        1255,
+        1144
+      ],
+      "effective_pixels": 496168,
+      "margin_ltrb": [
+        46,
+        31,
+        11,
+        24
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "16": {
+      "bbox_xyxy_exclusive": [
+        48,
+        99,
+        1299,
+        1108
+      ],
+      "bbox_size": [
+        1251,
+        1009
+      ],
+      "effective_pixels": 463571,
+      "margin_ltrb": [
+        48,
+        99,
+        13,
+        91
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "128": {
+      "bbox_xyxy_exclusive": [
+        49,
+        100,
+        1298,
+        1108
+      ],
+      "bbox_size": [
+        1249,
+        1008
+      ],
+      "effective_pixels": 457107,
+      "margin_ltrb": [
+        49,
+        100,
+        14,
+        91
+      ],
+      "boundary_pixel_counts_top_bottom_left_right": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "provenance": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/repair/provenance.json",
+  "prompt_path": "provenance/execute_candidate.prompt.txt",
+  "provenance_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/repair/provenance.json",
+  "status": "design_candidate_not_runtime",
+  "individual_image_visually_inspected": true,
+  "runtime_active_implemented": false,
+  "continuous_animation": false,
+  "manual_foot_qa": {
+    "support_contact_centers_px": [
+      [
+        342,
+        1040
+      ],
+      [
+        1190,
+        805
+      ]
+    ],
+    "anchor_mean_px": [
+      766.0,
+      922.5
+    ],
+    "anchor_normalized": [
+      0.58384,
+      0.76939
+    ],
+    "anatomical_crown_px": [
+      903,
+      102
+    ],
+    "body_effective_height_px": 820.5,
+    "body_effective_height_excludes": "weapon, tail, mirror backpack, saddle/back plates; manually estimated crown to support-point mean vertical distance",
+    "max_body_display_height_at_1_to_1_px": 820.5,
+    "max_body_display_height_at_1_5_source_to_display_px": 547.0,
+    "accepted_runtime_anchor": false
+  },
+  "minimum_margin_alpha16": 13,
+  "qa_status": "candidate_with_recorded_caveats",
+  "normal_alpha_composite_qa": {
+    "backgrounds": [
+      "sand #e4cf9d",
+      "dark purple #2f1e3e"
+    ],
+    "inspected": true,
+    "finding": "No broad background glow or matte visible under correct normal alpha compositing. Isolated edges still require final runtime-size review."
+  },
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/repair/candidate.png",
+  "resource": "asset://levels/b07/enemies/m08/actions/mirror_slash/execute_candidate.png",
+  "original_provenance": {
+    "id": "m08",
+    "action": "execute_repair",
+    "status": "design_candidate_not_runtime",
+    "tool": "image_gen.imagegen",
+    "reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m08/idle_candidate.png",
+    "edit_target": "/workspace/scratch/2244020fc8d6/b07-art/actions_mid_0839/m08/execute/candidate.png",
+    "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-888f0aa5-735f-4731-9744-875529759b1c.png",
+    "copy_byte_preserved": true,
+    "generated_at_utc": "2026-10-03",
+    "prompt": "prompt.txt",
+    "repair_limit": "one_targeted_retry_only",
+    "sha256": "456841f7032a8560c251203739d5f04dcd8522278a853521fe69eb4d3c33ec90",
+    "bytes": 1242627,
+    "source_sha256": "456841f7032a8560c251203739d5f04dcd8522278a853521fe69eb4d3c33ec90",
+    "copy_byte_verified": true
+  },
+  "ability": "mirror_slash"
+}

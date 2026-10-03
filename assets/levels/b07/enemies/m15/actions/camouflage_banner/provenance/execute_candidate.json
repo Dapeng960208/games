@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M15",
+  "action": "execute",
+  "variant": "execute_framing_fix",
+  "category": "pose",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "assets/levels/b07/enemies/m15/actions/camouflage_banner/execute_candidate.png",
+  "prompt": "provenance/execute_candidate.prompt.txt",
+  "source_filename": "exec-ac17a098-f1b6-4b10-885e-f2955db6f985.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-ac17a098-f1b6-4b10-885e-f2955db6f985.png",
+  "source_sha256": "e52e136d1225efb94986285b0e7136d46fa46e671e6230040a8efe77a12ff542",
+  "png_sha256": "e52e136d1225efb94986285b0e7136d46fa46e671e6230040a8efe77a12ff542",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m15/idle_candidate.png",
+  "identity_reference_sha256": "a5fe604aa560ecb29c7ebd110a2a4fb55dc5840a333b230ed5454544ef435d01",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1303,
+      1207
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1007323,
+    "alpha_zero_fraction": 0.6404969476467854,
+    "low_alpha_1_15_pixel_count": 53567,
+    "opaque_pixel_count": 2084,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        0,
+        0,
+        1279,
+        1207
+      ],
+      "bounds_xywh": [
+        0,
+        0,
+        1279,
+        1207
+      ],
+      "effective_pixel_count": 565398,
+      "edge_pixel_count": 61,
+      "margins_ltrb": [
+        0,
+        0,
+        24,
+        0
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        94,
+        79,
+        1217,
+        1123
+      ],
+      "bounds_xywh": [
+        94,
+        79,
+        1123,
+        1044
+      ],
+      "effective_pixel_count": 511831,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        94,
+        79,
+        86,
+        84
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        95,
+        80,
+        1216,
+        1123
+      ],
+      "bounds_xywh": [
+        95,
+        80,
+        1121,
+        1043
+      ],
+      "effective_pixel_count": 501088,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        95,
+        80,
+        87,
+        84
+      ]
+    },
+    "foot_contacts_manual": [
+      [
+        496,
+        1065
+      ],
+      [
+        1007,
+        1001
+      ]
+    ],
+    "foot_midpoint": [
+      751.5,
+      1033.0
+    ],
+    "anatomical_crown_xy_manual": [
+      820,
+      472
+    ],
+    "body_height_excluding_weapon_tail_accessories": 561.0,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 561.0,
+    "maximum_display_body_px_at_1_5_sampling_margin": 374.0,
+    "visual_review": "Raised flag, extended neck and wider open banner fan.",
+    "defects": [
+      "Framing improved once, but requested 10% margin is not fully achieved.",
+      "Minor flag pattern redraw, not exact continuous animation."
+    ],
+    "foot_anchor_runtime_registered": false
+  },
+  "prompt_text": "Use case: precise-object-edit. Repair framing only in this transparent game action candidate. Keep EXACTLY the current character identity, every color, pose, hands, equipment, action direction, and proportions unchanged. The first image is the target. Re-render the same complete silhouette at a smaller scale occupying no more than 78% of the canvas width and height, centered with AT LEAST 10% pure transparent empty margin on each side. Ensure every weapon blade / flag finial / cloth panel / claw / tail tip is fully visible with generous safety margin. Do not invent detail, change the pose, add effects or add background. Genuine alpha=0 background. No crop, no ground, no halo. Save native transparent image; do not simply increase canvas around clipped tips.",
+  "edit_target_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-c0217b04-79e2-45b7-8850-2b4239365695.png",
+  "single_targeted_revision": true,
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m15/execute_framing_fix/candidate.png",
+  "resource": "asset://levels/b07/enemies/m15/actions/camouflage_banner/execute_candidate.png",
+  "ability": "camouflage_banner"
+}

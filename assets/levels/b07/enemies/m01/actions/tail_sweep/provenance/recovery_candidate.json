@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M01",
+  "ability": "tail_sweep",
+  "phase": "recovery",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-68dd576d-a790-4507-a367-ff51658deb10.png",
+  "source_sha256": "e9fc940ebf37a22e2764af49aeb0f86ca88b29c1869de0e6848e8afa9f665fbf",
+  "resource": "asset://levels/b07/enemies/m01/actions/tail_sweep/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m01/idle.png",
+  "reference_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      45,
+      177,
+      1171,
+      957
+    ],
+    "alpha128_pixel_count": 329485,
+    "transparent_pixel_count": 1210950,
+    "low_alpha_1_32_count": 27234,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 213.2,
+    "foot_landmarks": [
+      [
+        576.8,
+        1065.9
+      ],
+      [
+        978.1,
+        978.1
+      ]
+    ],
+    "foot_midpoint": [
+      777.45,
+      1022.0
+    ],
+    "visible_anatomical_vertical_extent": 808.8,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Tail settles low; anatomical scale relative to other phases pending.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

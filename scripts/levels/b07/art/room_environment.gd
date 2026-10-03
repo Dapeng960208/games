@@ -8,6 +8,8 @@ const Clip = preload("res://shaders/levels/b07/ground_clip.gdshader")
 const ROOT := "asset://levels/b07/rooms/l37/"
 const BLUEPRINT_BOUNDS := Rect2(-900,-800,4600,3000)
 const BOUNDS := Rect2(-522,-464,2668,1740)
+const MIDGROUND_BOUNDS := Rect2(-400,-210,2172.8,1418.2)
+const GUARDIAN_REVIEW_OFFSET := Vector2(0,160)
 var layers: Array[Sprite2D]=[]
 var source_polygon := PackedVector2Array()
 var foundation: Node2D
@@ -17,7 +19,10 @@ func configure(layout: Dictionary) -> bool:
 	if not bool(layout.get("b07_candidate",false)) or str(layout.get("blueprint_room_id",""))!="L37" or not layers.is_empty(): return false
 	for p: Array in Geometry.room("L37").walkable_polygon: source_polygon.append(Vector2(p[0],p[1]))
 	if source_polygon.size()<3 or source_polygon.size()>16: return false
-	if not _masked_layer("canyon_backdrop.png",BLUEPRINT_BOUNDS,true,"CanyonCityBackdrop",0): return false
+	var midground_review: bool="--b07-midground-trial" in OS.get_cmdline_user_args()
+	# In the north-city review, the lower canyon crop contains no second gate.
+	var canyon_crop:=Rect2(0,380,1552,633) if midground_review else Rect2()
+	if not _masked_layer("canyon_backdrop.png",BLUEPRINT_BOUNDS,true,"CanyonCityBackdrop",0,null,canyon_crop): return false
 	var rock:=Sampler.load_mip_texture(ROOT+"cliff_foundation.png")
 	foundation=preload("res://scripts/levels/b07/art/terrace_foundation.gd").new()
 	add_child(foundation)
@@ -43,11 +48,18 @@ func configure(layout: Dictionary) -> bool:
 	guardian.z_index=4
 	add_child(guardian)
 	layers.append(guardian)
+	if midground_review:
+		# Review-only reuse of the same opaque source. Fog-edge blending is a
+		# composition proof, not an accepted transparent architectural asset.
+		if not _masked_layer("canyon_backdrop.png",MIDGROUND_BOUNDS,true,"NorthCityCompositionReview",0,layers[0].texture): return false
+		layers.back().material.set_shader_parameter("edge_fade",Vector4(120,8,120,220))
+		guardian.position+=GUARDIAN_REVIEW_OFFSET*Geometry.SCALE
+		guardian_plinth.position=GUARDIAN_REVIEW_OFFSET*Geometry.SCALE
 	return true
-func _masked_layer(filename: String, bounds: Rect2, exterior: bool, title: String, depth: int) -> bool:
-	var texture:=Sampler.load_mip_texture(ROOT+filename)
+func _masked_layer(filename: String, bounds: Rect2, exterior: bool, title: String, depth: int, reused: Texture2D=null, source_region: Rect2=Rect2()) -> bool:
+	var texture:=reused if reused!=null else Sampler.load_mip_texture(ROOT+filename)
 	if texture==null: return false
-	var size:=texture.get_size()
+	var size:=source_region.size if source_region.has_area() else texture.get_size()
 	var scale_to_blueprint:=maxf(bounds.size.x/size.x,bounds.size.y/size.y)
 	var scaled_size:=size*scale_to_blueprint
 	var crop:=(scaled_size-bounds.size)*.5
@@ -55,6 +67,10 @@ func _masked_layer(filename: String, bounds: Rect2, exterior: bool, title: Strin
 	sprite.name=title
 	sprite.texture=texture
 	sprite.centered=false
+	if source_region.has_area():
+		sprite.region_enabled=true
+		sprite.region_rect=source_region
+		sprite.region_filter_clip_enabled=true
 	sprite.position=(bounds.position-crop)*Geometry.SCALE
 	sprite.scale=Vector2.ONE*scale_to_blueprint*Geometry.SCALE
 	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
@@ -63,6 +79,9 @@ func _masked_layer(filename: String, bounds: Rect2, exterior: bool, title: Strin
 	polygon_uniform.resize(16)
 	var mask:=ShaderMaterial.new()
 	mask.shader=Clip
+	if source_region.has_area():
+		var full:=texture.get_size()
+		mask.set_shader_parameter("source_region_uv",Vector4(source_region.position.x/full.x,source_region.position.y/full.y,source_region.size.x/full.x,source_region.size.y/full.y))
 	mask.set_shader_parameter("ground",polygon_uniform)
 	mask.set_shader_parameter("ground_count",source_polygon.size())
 	mask.set_shader_parameter("scaled_blueprint_size",scaled_size)

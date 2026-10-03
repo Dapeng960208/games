@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M07",
+  "ability": "sand_vortex",
+  "phase": "recovery",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-187ed10d-1be2-4d42-b43a-987a6a98823c.png",
+  "source_sha256": "b42f3415af92bead26e8bcfaf9623e355810db96d78feb0ecdfdc0a2818ecf96",
+  "resource": "asset://levels/b07/enemies/m07/actions/sand_vortex/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m07/idle_candidate.png",
+  "reference_sha256": "bddea855af8d0739607624074cc8a57827e1f7b94f5671ec4340e5e44263a80b",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      66,
+      26,
+      1165,
+      1209
+    ],
+    "alpha128_pixel_count": 500804,
+    "transparent_pixel_count": 1016779,
+    "low_alpha_1_32_count": 47016,
+    "nonzero_edge_pixel_count": 7,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 100.3,
+    "foot_landmarks": [
+      [
+        551.8,
+        1178.8
+      ],
+      [
+        953.0,
+        1116.1
+      ]
+    ],
+    "foot_midpoint": [
+      752.4,
+      1147.4499999999998
+    ],
+    "visible_anatomical_vertical_extent": 1047.1,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Staff identity and original hand retained; execute staff tip margin narrow. Bone scale/foot continuity still pending.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

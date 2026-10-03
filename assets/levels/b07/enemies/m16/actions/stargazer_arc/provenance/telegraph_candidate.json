@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "identity": "B07-M16",
+  "action": "telegraph",
+  "variant": "telegraph",
+  "category": "pose",
+  "selected": true,
+  "status": "design_candidate_not_runtime_registered",
+  "active_skill_runtime_status": "not_implemented_base_attack_fallback",
+  "animation_complete": false,
+  "runtime_quality_gate_passed": false,
+  "generated_at_date_utc": "2026-10-03",
+  "generator": "built-in image_gen",
+  "postprocessing": "none; native PNG copied byte-for-byte",
+  "png": "assets/levels/b07/enemies/m16/actions/stargazer_arc/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "source_filename": "exec-a29061b2-3e11-49dc-bcc4-72272456c5d1.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-a29061b2-3e11-49dc-bcc4-72272456c5d1.png",
+  "source_sha256": "a9d6d22cb778365fcc18fa05170174765394001de482899f3904abc8950bb955",
+  "png_sha256": "a9d6d22cb778365fcc18fa05170174765394001de482899f3904abc8950bb955",
+  "native_bytes_preserved": true,
+  "identity_reference": "/workspace/scratch/2244020fc8d6/games-recovery/b07/assets/levels/b07/enemies/m16/idle_candidate.png",
+  "identity_reference_sha256": "b7c22057e1515742638f779c77ab5f602ac89b02a036a5f9be00b4ad9fa4c3c2",
+  "source_license": "AI-generated project candidate using existing project identity art; no third-party download",
+  "qa": {
+    "native_size": [
+      1254,
+      1254
+    ],
+    "native_mode": "RGBA",
+    "alpha_zero_pixel_count": 1071553,
+    "alpha_zero_fraction": 0.6814258169710197,
+    "low_alpha_1_15_pixel_count": 28029,
+    "opaque_pixel_count": 657,
+    "alpha1": {
+      "bounds_xyxy_exclusive": [
+        34,
+        60,
+        1230,
+        1198
+      ],
+      "bounds_xywh": [
+        34,
+        60,
+        1196,
+        1138
+      ],
+      "effective_pixel_count": 500963,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        34,
+        60,
+        24,
+        56
+      ]
+    },
+    "alpha16": {
+      "bounds_xyxy_exclusive": [
+        36,
+        135,
+        1227,
+        1168
+      ],
+      "bounds_xywh": [
+        36,
+        135,
+        1191,
+        1033
+      ],
+      "effective_pixel_count": 472934,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        36,
+        135,
+        27,
+        86
+      ]
+    },
+    "alpha128": {
+      "bounds_xyxy_exclusive": [
+        37,
+        136,
+        1226,
+        1167
+      ],
+      "bounds_xywh": [
+        37,
+        136,
+        1189,
+        1031
+      ],
+      "effective_pixel_count": 465774,
+      "edge_pixel_count": 0,
+      "margins_ltrb": [
+        37,
+        136,
+        28,
+        87
+      ]
+    },
+    "foot_contacts_manual": [
+      [
+        497,
+        1106
+      ],
+      [
+        1147,
+        968
+      ]
+    ],
+    "foot_midpoint": [
+      822.0,
+      1037.0
+    ],
+    "anatomical_crown_xy_manual": [
+      875,
+      138
+    ],
+    "body_height_excluding_weapon_tail_accessories": 899.0,
+    "semantic_landmark_uncertainty_px": 20,
+    "maximum_display_body_px_at_1_to_1_sampling": 899.0,
+    "maximum_display_body_px_at_1_5_sampling_margin": 599.33,
+    "visual_review": "Both hands adjust closed lenses, head turned toward sweep start.",
+    "defects": [
+      "Torso not a deep crouch; charging relies partly on hands/head.",
+      "Side margin below requested 8%."
+    ],
+    "foot_anchor_runtime_registered": false
+  },
+  "prompt_text": "Use case: stylized-concept. Asset type: isolated transparent 2.5D fantasy game character action-key pose design candidate, ONE SINGLE character in ONE pose, NOT an animation sheet. The input image is identity reference, not a pose to copy. Re-pose this exact same character into the requested action. Preserve the reference original gold/ivory scales, orange dorsal crest, anatomy, proportions, outfit, ornament patterns and equipment, with crisp painterly illustration finish. Maintain three-quarter facing SCREEN RIGHT, seen from a clearly elevated 45-degree game camera with tops of shoulders visible, warm upper-left lighting. Full silhouette must fit with at least 8% clear transparent margin on all four sides: every weapon/prop tip, clawed toe, crest, banner, tail tip visible and uncropped. Single character on true transparent background. All non-character pixels alpha=0. NO ground, platform, shadow blob, background, checkerboard pixels, text, frame, motion trails, beams, particles, dust, glows, magic glyphs, target indicators or other baked VFX. Equipment is physical solid material. Do not rotate/recolor the idle image: create a genuinely different joint/body pose.\nACTION ID m16/telegraph: B07-M16 crystal-goggle stargazer lizard. Preserve broad eyes/narrow snout, exactly two round amber faceted CRYSTAL GOGGLE LENSES in ornate bronze eye frame, orange head crest, deep-red hooded short robe/ivory front cloth, long tail, no held weapon. TELEGRAPH: deep forward crouch with neck and goggled head pulled back and turned toward initial screen-left sweep limit, both small clawed hands raised to either temple adjusting the two goggle mounts. Both lenses CLOSED DOWN over eyes and visible. Knees braced, tail low counterbalance. Clearly charging a head sweep through body pose only. No glow, no beam, no external light.",
+  "original_selected_path": "/workspace/scratch/2244020fc8d6/b07-art/actions_late_0839/m16/telegraph/candidate.png",
+  "resource": "asset://levels/b07/enemies/m16/actions/stargazer_arc/telegraph_candidate.png",
+  "ability": "stargazer_arc"
+}

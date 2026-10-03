@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "BO07",
+  "ability": "sun_disc",
+  "phase": "recovery",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-f415c10a-2573-45f6-bc34-9a8cdefaedf3.png",
+  "source_sha256": "ca0c79ab91e3aa16e4a611ca3bdc59df7e90fa4c7a5fd75f246f29fd0aedd1bf",
+  "resource": "asset://levels/b07/bosses/bo07/actions/sun_disc/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png",
+  "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      45,
+      5,
+      1155,
+      1230
+    ],
+    "alpha128_pixel_count": 624191,
+    "transparent_pixel_count": 900458,
+    "low_alpha_1_32_count": 40089,
+    "nonzero_edge_pixel_count": 4,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 301.0,
+    "foot_landmarks": [
+      [
+        489.1,
+        1166.2
+      ],
+      [
+        1028.3,
+        1078.4
+      ]
+    ],
+    "foot_midpoint": [
+      758.7,
+      1122.3000000000002
+    ],
+    "visible_anatomical_vertical_extent": 821.3,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Empty waiting hand readable; retain same-side spear across sequence in revision.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

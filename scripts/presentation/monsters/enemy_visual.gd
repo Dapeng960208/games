@@ -125,13 +125,16 @@ func configure(enemy: Node2D) -> void:
 		_bank = preload("res://scripts/levels/b06/art/native_art.gd").bank(str(actor.get("enemy_id")))
 		_bank["world_reference_height"] = float(_storybook_entry.world_reference_height)
 	if bool(_storybook_entry.get("b07_native_bank",false)):
-		_bank=preload("res://scripts/levels/b07/art/native_art.gd").bank(str(actor.get("enemy_id")))
+		_bank=preload("res://scripts/levels/b07/art/native_art.gd").bank_for_actor(actor)
 		if not _bank.is_empty(): _bank["world_reference_height"]=float(_storybook_entry.world_reference_height)
 	if not bool(actor.get("static_actor")) and (str(actor.get("enemy_id")).begins_with("M") or str(actor.get("enemy_id")).begins_with("B05-M") or str(actor.get("enemy_id")).begins_with("B06-M") or bool(_storybook_entry.get("b07_native_bank",false))):
 		skill_badge = SkillBadge.new()
 		skill_badge.name = "EnemySkillBadge"
 		skill_badge.identity = str(actor.get("enemy_id"))
 		skill_badge.icon = Art.skill_icon_for(skill_badge.identity)
+		if bool(_bank.get("b07_review_bank",false)):
+			var idle: Dictionary = _bank.clips.idle[0]
+			skill_badge.icon = {"texture":idle.texture,"texture_path":idle.texture_path,"region":Rect2(idle.core-Vector2(150,150),Vector2(300,300))}
 		skill_badge.z_index = 7
 		skill_badge.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		# This sibling stays upright, outside the body's palette and mirroring.
@@ -325,6 +328,12 @@ func _update_pose(_delta: float) -> void:
 		body_offset += pose.offset
 		body_scale += pose.scale
 		body_rotation += float(pose.rotation)
+	if bool(_bank.get("b07_review_bank",false)):
+		# Key-pose review keeps registered anatomy/root stable. Movement is a
+		# static idle fallback, with no invented walk cycle or pose squash.
+		body_offset = Vector2.ZERO
+		body_scale = Vector2.ONE
+		body_rotation = 0.0
 	var impact: float = 0.0
 	if _impact_duration > 0.0 and _impact_elapsed < _impact_duration:
 		var t: float = _impact_elapsed / _impact_duration
@@ -381,6 +390,10 @@ func _select_frame() -> void:
 	selected_frame = {}
 	asset_mode = "storybook_static" if not _storybook_entry.is_empty() else "static_pose"
 	if _bank.is_empty() or _using_empty_body():
+		return
+	if bool(_bank.get("b07_review_bank",false)):
+		selected_frame = preload("res://scripts/levels/b07/art/actor_review.gd").select_frame(actor,_bank)
+		asset_mode = "b07_review_static_idle" if selected_frame.get("name","idle") == "idle" else "b07_review_key_pose"
 		return
 	var clips: Dictionary = _bank.clips
 	var action: String = "idle"

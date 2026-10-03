@@ -1,0 +1,107 @@
+{
+  "id": "sun_altar_disc",
+  "status": "static_neutral_candidate_not_integrated",
+  "file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_altar_disc.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-beb6caa9-332c-4895-8552-2b4d1c24888b.png",
+  "source_sha256": "b3d8da17831d18f1ef12f056373d98afb2a81ad05034bcd6224aa98f469529bc",
+  "file_sha256": "b3d8da17831d18f1ef12f056373d98afb2a81ad05034bcd6224aa98f469529bc",
+  "byte_preserved": true,
+  "prompt_file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_altar_disc.prompt.txt",
+  "prompt": "Use case: stylized-concept\nAsset type: one transparent 2.5D hand-painted fantasy game environment prop, B07 Golden Sand Lizard City.\nInput image: B07(1).png is a STYLE AND MATERIAL REFERENCE ONLY. Do not reproduce the poster, typography, landscape, temple, or layout.\nShared visual direction: bright warm hand-painted fantasy, high-camera oblique near-isometric view (about 55 degrees downward); readable adult-scale game prop, solid silhouette, subtly uneven painted outlines and broad illustrated material shading. Match the reference's honey-gold sandstone, ochre shadows, burnished brass/copper-gold sun motifs; restrained tiny turquoise inlays, terracotta red-orange cloth only when requested. Illumination from upper left; opaque colored materials and crisp silhouette.\nComposition: exactly ONE independent complete object, centered on a square canvas with comfortable clear margin on ALL sides, no cropped part, see its top and two sides. Camera and silhouette appropriate to placing it into a top-down action RPG room.\nBackground: actual true transparent alpha everywhere outside the prop, no colored backdrop, no baked checkerboard, no ground plane, no cast shadow on invisible floor, no scenery.\nConstraints: single static neutral-state candidate, not an animation sheet. No characters, other props, diagram, UI, lettering, numbers, frame, watermark, gameplay beams, lasers, effects, bloom, particles, interaction rings, arrows, direction indicators or floor decals. Do not bake gameplay light paths or room collision layout into this image.\nPrimary request: one very LOW circular sun altar disc, a shallow broad round sandstone slab with a burnished copper-gold radial sun emblem INLAID FLUSH into the top face. Its profile is only roughly one fifth its diameter, clearly a low floor-level ritual disc with one shallow beveled edge, not a tall platform. The top is almost fully visible from above. Eight modest radial inset wedges surround a plain solid central copper-gold sun circle. Three tiny turquoise studs integrated into the rim. Warm pale sandstone has subtle chips and painted wear, with carved sun-ray geometry on the short side wall. One solid coherent round object, no elevated basin, no pedestal shaft, no steps, no pillars, no candles, no offerings, no fire, no central beam or glow. This is the dormant neutral disc before gameplay lighting.",
+  "generator": "built-in image_gen",
+  "transparent_background_requested": true,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha": {
+    "minimum": 0,
+    "maximum": 255,
+    "zero_pixels": 742747,
+    "nonzero_pixels": 829769,
+    "opaque_pixels": 470,
+    "fraction_zero": 0.4723303292303544,
+    "thresholds": {
+      "16": {
+        "bbox_xyxy_exclusive": [
+          49,
+          176,
+          1207,
+          1086
+        ],
+        "edge_contacts": {
+          "left": false,
+          "top": false,
+          "right": false,
+          "bottom": false
+        },
+        "margin_ltrb": [
+          49,
+          176,
+          47,
+          168
+        ]
+      },
+      "128": {
+        "bbox_xyxy_exclusive": [
+          50,
+          176,
+          1206,
+          1085
+        ],
+        "edge_contacts": {
+          "left": false,
+          "top": false,
+          "right": false,
+          "bottom": false
+        },
+        "margin_ltrb": [
+          50,
+          176,
+          48,
+          169
+        ]
+      }
+    },
+    "core_alpha_ge_128": {
+      "count": 819863,
+      "mean": 252.57356899872295,
+      "alpha_ge_250_fraction": 0.9912643941731728,
+      "most_frequent_values": [
+        [
+          253,
+          656201
+        ],
+        [
+          252,
+          146062
+        ],
+        [
+          251,
+          7091
+        ],
+        [
+          250,
+          2155
+        ],
+        [
+          249,
+          1184
+        ]
+      ]
+    }
+  },
+  "visual_qa_pending": false,
+  "visual_qa": {
+    "pass": true,
+    "observations": [
+      "One intact low circular sandstone disc with flush sun inlay and restrained turquoise studs.",
+      "Broad visible top and short side wall; no pillar, staircase, high platform, beam or glow."
+    ],
+    "convergence_notes": [
+      "Source is a dormant candidate; gameplay-lit state should remain separate."
+    ]
+  },
+  "physical_path": "assets/levels/b07/rooms/shared/sun_altar_disc/source_candidate.png"
+}

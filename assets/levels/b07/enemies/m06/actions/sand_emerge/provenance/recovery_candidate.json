@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M06",
+  "ability": "sand_emerge",
+  "phase": "recovery",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-8793df5a-dbdf-4d44-872b-c4b4f3fd808d.png",
+  "source_sha256": "cbdcd7353287c82633bb63b5e43f563c9482b2a05616eb5689a4b9f507153911",
+  "resource": "asset://levels/b07/enemies/m06/actions/sand_emerge/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m06/idle_candidate.png",
+  "reference_sha256": "237bdbae4ce96c7791b1c8f2ffb763f9541642912a12b31e4442737fdc7313cf",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      91,
+      238,
+      1074,
+      852
+    ],
+    "alpha128_pixel_count": 463718,
+    "transparent_pixel_count": 1085707,
+    "low_alpha_1_32_count": 19634,
+    "nonzero_edge_pixel_count": 1,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 238.3,
+    "foot_landmarks": [
+      [
+        476.5,
+        1028.3
+      ],
+      [
+        915.4,
+        965.6
+      ]
+    ],
+    "foot_midpoint": [
+      695.95,
+      996.95
+    ],
+    "visible_anatomical_vertical_extent": 758.7,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Shovel nose, short tail and digging claw identity retained; squat height varies by intended pose, never auto-normalize it to idle.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

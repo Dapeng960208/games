@@ -1,0 +1,474 @@
+{
+  "schema_version": 1,
+  "biome_id": "B07",
+  "scope": "Four independent functional environment prop source candidates only. No game integration, tests, repository edits, commits or pushes.",
+  "reference": {
+    "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B07(1).png",
+    "sha256": "8c7acde5497a7fff8a084b19818a7b4501403c513f3aff9fa5787a692e414984",
+    "role": "Visual style and material reference; actually inspected before generation"
+  },
+  "verified_requirements": {
+    "source_path": "/workspace/scratch/2244020fc8d6/games-recovery/b07/data/levels/b07/content.json",
+    "source_sha256": "0dc5c915904743b86295f57387a95735e8d335149412aacade0f1b479a02fb90",
+    "sun_mirror_state_count": 3,
+    "mirror_interaction_seconds": 0.6,
+    "interaction_safe_radius": 90,
+    "minimum_safe_route_width": 180,
+    "manual_gate_both_sides_available": true,
+    "cover_footprints_blueprint_pixels": [
+      "120x70",
+      "110x70",
+      "120x75",
+      "100x60",
+      "100x70"
+    ]
+  },
+  "limitations": [
+    "Each asset is a single neutral still candidate; this does not complete the mirror three-state animation or lever states.",
+    "No gameplay beams, route indicators, light paths, damage or collision are baked into these assets.",
+    "Final anchors, in-game size, collision footprint and integration remain for unified convergence."
+  ],
+  "assets": [
+    {
+      "id": "sun_mirror_pedestal",
+      "status": "static_neutral_candidate_not_integrated",
+      "file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_mirror_pedestal.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-e67f7c9e-d354-4315-9bc8-ff1af919796d.png",
+      "source_sha256": "bdceb65dae69957c91d562e5d1267534a8a45e86732526b6d2e0fbe63ffc561a",
+      "file_sha256": "bdceb65dae69957c91d562e5d1267534a8a45e86732526b6d2e0fbe63ffc561a",
+      "byte_preserved": true,
+      "prompt_file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_mirror_pedestal.prompt.txt",
+      "prompt": "Use case: stylized-concept\nAsset type: one transparent 2.5D hand-painted fantasy game environment prop, B07 Golden Sand Lizard City.\nInput image: B07(1).png is a STYLE AND MATERIAL REFERENCE ONLY. Do not reproduce the poster, typography, landscape, temple, or layout.\nShared visual direction: bright warm hand-painted fantasy, high-camera oblique near-isometric view (about 55 degrees downward); readable adult-scale game prop, solid silhouette, subtly uneven painted outlines and broad illustrated material shading. Match the reference's honey-gold sandstone, ochre shadows, burnished brass/copper-gold sun motifs; restrained tiny turquoise inlays, terracotta red-orange cloth only when requested. Illumination from upper left; opaque colored materials and crisp silhouette.\nComposition: exactly ONE independent complete object, centered on a square canvas with comfortable clear margin on ALL sides, no cropped part, see its top and two sides. Camera and silhouette appropriate to placing it into a top-down action RPG room.\nBackground: actual true transparent alpha everywhere outside the prop, no colored backdrop, no baked checkerboard, no ground plane, no cast shadow on invisible floor, no scenery.\nConstraints: single static neutral-state candidate, not an animation sheet. No characters, other props, diagram, UI, lettering, numbers, frame, watermark, gameplay beams, lasers, effects, bloom, particles, interaction rings, arrows, direction indicators or floor decals. Do not bake gameplay light paths or room collision layout into this image.\nPrimary request: a small LOW rotatable sun-mirror pedestal. A round copper-gold framed mirror supported by a visible horizontal pivot axle and short sturdy U-shaped brass yoke, on a compact squat sandstone plinth with a simple circular turntable. The entire mechanism is low and hand-adjustable, not a monument. A few short triangular sun rays form the edge of the thick round frame. Mirror is tilted slightly upward toward the viewer. Its surface is neutral silver-champagne metal with a soft plain brushed gradient ONLY: absolutely no reflected building, sky, landscape, person, symbols, fire, scene or bright flare. Add two tiny turquoise inlays on the frame. One small terracotta cloth wrap around the lower yoke, securely attached and not dangling far. Show coherent mechanical pivot and turntable structure. Keep mirror readable and uncluttered; base about half the mirror width. Complete prop only, no stairs and no temple architecture.",
+      "generator": "built-in image_gen",
+      "transparent_background_requested": true,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": {
+        "minimum": 0,
+        "maximum": 255,
+        "zero_pixels": 1020112,
+        "nonzero_pixels": 552404,
+        "opaque_pixels": 543,
+        "fraction_zero": 0.648713272233796,
+        "thresholds": {
+          "16": {
+            "bbox_xyxy_exclusive": [
+              248,
+              66,
+              1031,
+              1192
+            ],
+            "edge_contacts": {
+              "left": false,
+              "top": false,
+              "right": false,
+              "bottom": false
+            },
+            "margin_ltrb": [
+              248,
+              66,
+              223,
+              62
+            ]
+          },
+          "128": {
+            "bbox_xyxy_exclusive": [
+              248,
+              67,
+              1030,
+              1191
+            ],
+            "edge_contacts": {
+              "left": false,
+              "top": false,
+              "right": false,
+              "bottom": false
+            },
+            "margin_ltrb": [
+              248,
+              67,
+              224,
+              63
+            ]
+          }
+        },
+        "core_alpha_ge_128": {
+          "count": 534859,
+          "mean": 252.27839299703285,
+          "alpha_ge_250_fraction": 0.9792057345954728,
+          "most_frequent_values": [
+            [
+              253,
+              427449
+            ],
+            [
+              252,
+              81673
+            ],
+            [
+              251,
+              9513
+            ],
+            [
+              250,
+              3820
+            ],
+            [
+              249,
+              2060
+            ]
+          ]
+        }
+      },
+      "visual_qa_pending": false,
+      "visual_qa": {
+        "pass": true,
+        "observations": [
+          "One full round pivot-mounted sun mirror with squat sandstone support, copper-gold rim, small turquoise details and terracotta cloth.",
+          "Neutral brushed champagne mirror face contains no reflected scenery or figures.",
+          "No beam, gameplay indicator, floor patch or full-room art."
+        ],
+        "convergence_notes": [
+          "One neutral facing only; three switch states and directional consistency remain to be authored.",
+          "Final runtime size must keep this compact relative to characters and the interaction footprint."
+        ]
+      },
+      "physical_path": "assets/levels/b07/rooms/shared/sun_mirror_pedestal/source_candidate.png"
+    },
+    {
+      "id": "sun_altar_disc",
+      "status": "static_neutral_candidate_not_integrated",
+      "file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_altar_disc.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-beb6caa9-332c-4895-8552-2b4d1c24888b.png",
+      "source_sha256": "b3d8da17831d18f1ef12f056373d98afb2a81ad05034bcd6224aa98f469529bc",
+      "file_sha256": "b3d8da17831d18f1ef12f056373d98afb2a81ad05034bcd6224aa98f469529bc",
+      "byte_preserved": true,
+      "prompt_file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/sun_altar_disc.prompt.txt",
+      "prompt": "Use case: stylized-concept\nAsset type: one transparent 2.5D hand-painted fantasy game environment prop, B07 Golden Sand Lizard City.\nInput image: B07(1).png is a STYLE AND MATERIAL REFERENCE ONLY. Do not reproduce the poster, typography, landscape, temple, or layout.\nShared visual direction: bright warm hand-painted fantasy, high-camera oblique near-isometric view (about 55 degrees downward); readable adult-scale game prop, solid silhouette, subtly uneven painted outlines and broad illustrated material shading. Match the reference's honey-gold sandstone, ochre shadows, burnished brass/copper-gold sun motifs; restrained tiny turquoise inlays, terracotta red-orange cloth only when requested. Illumination from upper left; opaque colored materials and crisp silhouette.\nComposition: exactly ONE independent complete object, centered on a square canvas with comfortable clear margin on ALL sides, no cropped part, see its top and two sides. Camera and silhouette appropriate to placing it into a top-down action RPG room.\nBackground: actual true transparent alpha everywhere outside the prop, no colored backdrop, no baked checkerboard, no ground plane, no cast shadow on invisible floor, no scenery.\nConstraints: single static neutral-state candidate, not an animation sheet. No characters, other props, diagram, UI, lettering, numbers, frame, watermark, gameplay beams, lasers, effects, bloom, particles, interaction rings, arrows, direction indicators or floor decals. Do not bake gameplay light paths or room collision layout into this image.\nPrimary request: one very LOW circular sun altar disc, a shallow broad round sandstone slab with a burnished copper-gold radial sun emblem INLAID FLUSH into the top face. Its profile is only roughly one fifth its diameter, clearly a low floor-level ritual disc with one shallow beveled edge, not a tall platform. The top is almost fully visible from above. Eight modest radial inset wedges surround a plain solid central copper-gold sun circle. Three tiny turquoise studs integrated into the rim. Warm pale sandstone has subtle chips and painted wear, with carved sun-ray geometry on the short side wall. One solid coherent round object, no elevated basin, no pedestal shaft, no steps, no pillars, no candles, no offerings, no fire, no central beam or glow. This is the dormant neutral disc before gameplay lighting.",
+      "generator": "built-in image_gen",
+      "transparent_background_requested": true,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": {
+        "minimum": 0,
+        "maximum": 255,
+        "zero_pixels": 742747,
+        "nonzero_pixels": 829769,
+        "opaque_pixels": 470,
+        "fraction_zero": 0.4723303292303544,
+        "thresholds": {
+          "16": {
+            "bbox_xyxy_exclusive": [
+              49,
+              176,
+              1207,
+              1086
+            ],
+            "edge_contacts": {
+              "left": false,
+              "top": false,
+              "right": false,
+              "bottom": false
+            },
+            "margin_ltrb": [
+              49,
+              176,
+              47,
+              168
+            ]
+          },
+          "128": {
+            "bbox_xyxy_exclusive": [
+              50,
+              176,
+              1206,
+              1085
+            ],
+            "edge_contacts": {
+              "left": false,
+              "top": false,
+              "right": false,
+              "bottom": false
+            },
+            "margin_ltrb": [
+              50,
+              176,
+              48,
+              169
+            ]
+          }
+        },
+        "core_alpha_ge_128": {
+          "count": 819863,
+          "mean": 252.57356899872295,
+          "alpha_ge_250_fraction": 0.9912643941731728,
+          "most_frequent_values": [
+            [
+              253,
+              656201
+            ],
+            [
+              252,
+              146062
+            ],
+            [
+              251,
+              7091
+            ],
+            [
+              250,
+              2155
+            ],
+            [
+              249,
+              1184
+            ]
+          ]
+        }
+      },
+      "visual_qa_pending": false,
+      "visual_qa": {
+        "pass": true,
+        "observations": [
+          "One intact low circular sandstone disc with flush sun inlay and restrained turquoise studs.",
+          "Broad visible top and short side wall; no pillar, staircase, high platform, beam or glow."
+        ],
+        "convergence_notes": [
+          "Source is a dormant candidate; gameplay-lit state should remain separate."
+        ]
+      },
+      "physical_path": "assets/levels/b07/rooms/shared/sun_altar_disc/source_candidate.png"
+    },
+    {
+      "id": "low_stone_cover",
+      "status": "static_neutral_candidate_not_integrated",
+      "file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/low_stone_cover.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-99ac4977-bf27-4973-9c98-fd26984ed945.png",
+      "source_sha256": "b9bc215a15c9d11e2ebe8e696b4afadac0c416661ee0415bc3c3149bc8e02f5f",
+      "file_sha256": "b9bc215a15c9d11e2ebe8e696b4afadac0c416661ee0415bc3c3149bc8e02f5f",
+      "byte_preserved": true,
+      "prompt_file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/low_stone_cover.prompt.txt",
+      "prompt": "Use case: stylized-concept\nAsset type: one transparent 2.5D hand-painted fantasy game environment prop, B07 Golden Sand Lizard City.\nInput image: B07(1).png is a STYLE AND MATERIAL REFERENCE ONLY. Do not reproduce the poster, typography, landscape, temple, or layout.\nShared visual direction: bright warm hand-painted fantasy, high-camera oblique near-isometric view (about 55 degrees downward); readable adult-scale game prop, solid silhouette, subtly uneven painted outlines and broad illustrated material shading. Match the reference's honey-gold sandstone, ochre shadows, burnished brass/copper-gold sun motifs; restrained tiny turquoise inlays, terracotta red-orange cloth only when requested. Illumination from upper left; opaque colored materials and crisp silhouette.\nComposition: exactly ONE independent complete object, centered on a square canvas with comfortable clear margin on ALL sides, no cropped part, see its top and two sides. Camera and silhouette appropriate to placing it into a top-down action RPG room.\nBackground: actual true transparent alpha everywhere outside the prop, no colored backdrop, no baked checkerboard, no ground plane, no cast shadow on invisible floor, no scenery.\nConstraints: single static neutral-state candidate, not an animation sheet. No characters, other props, diagram, UI, lettering, numbers, frame, watermark, gameplay beams, lasers, effects, bloom, particles, interaction rings, arrows, direction indicators or floor decals. Do not bake gameplay light paths or room collision layout into this image.\nPrimary request: one complete low sandstone rectangular cuboid cover block. Simple solid horizontal rectangular footprint, length about 1.7 times depth, low height about half its depth. Honey-gold dressed sandstone, gently beveled edges, top surface and two sides visible, thin stone seams and a few shallow wear cracks but entirely intact and structurally whole. One shallow geometric sun-ray border carved only along the near vertical side, no gold fittings necessary. The shape must read instantly as a practical low rectangular cover block, not a broken wall, loose rubble, pillar, throne, stairs, chest, coffin or barricade pile. Flat broad unoccupied top; no openings, no giant missing chunks, no attached props, no cloth, no plants, no loose stones, no sand patch. Entire full cuboid visible with clean cutout silhouette.",
+      "generator": "built-in image_gen",
+      "transparent_background_requested": true,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": {
+        "minimum": 0,
+        "maximum": 255,
+        "zero_pixels": 980814,
+        "nonzero_pixels": 591702,
+        "opaque_pixels": 295,
+        "fraction_zero": 0.623722747495097,
+        "thresholds": {
+          "16": {
+            "bbox_xyxy_exclusive": [
+              65,
+              247,
+              1200,
+              1125
+            ],
+            "edge_contacts": {
+              "left": false,
+              "top": false,
+              "right": false,
+              "bottom": false
+            },
+            "margin_ltrb": [
+              65,
+              247,
+              54,
+              129
+            ]
+          },
+          "128": {
+            "bbox_xyxy_exclusive": [
+              66,
+              248,
+              1199,
+              1125
+            ],
+            "edge_contacts": {
+              "left": false,
+              "top": false,
+              "right": false,
+              "bottom": false
+            },
+            "margin_ltrb": [
+              66,
+              248,
+              55,
+              129
+            ]
+          }
+        },
+        "core_alpha_ge_128": {
+          "count": 581076,
+          "mean": 252.50493911295595,
+          "alpha_ge_250_fraction": 0.9877812885061507,
+          "most_frequent_values": [
+            [
+              253,
+              477635
+            ],
+            [
+              252,
+              86252
+            ],
+            [
+              251,
+              5415
+            ],
+            [
+              254,
+              2358
+            ],
+            [
+              250,
+              2021
+            ]
+          ]
+        }
+      },
+      "visual_qa_pending": false,
+      "visual_qa": {
+        "pass": true,
+        "observations": [
+          "Complete intact low rectangular sandstone cuboid; broad unoccupied flat top, two visible sides.",
+          "Clear single footprint; no loose rubble, scenery, attached object or missing corner."
+        ],
+        "convergence_notes": [
+          "Runtime scaling should match authored 100–120 by 60–75 blueprint-pixel footprints; this source itself does not set collision."
+        ]
+      },
+      "physical_path": "assets/levels/b07/rooms/shared/low_stone_cover/source_candidate.png"
+    },
+    {
+      "id": "manual_gate_lever",
+      "status": "static_neutral_candidate_not_integrated",
+      "file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/manual_gate_lever.png",
+      "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-7be16982-e909-4869-b788-f5a623fb45d8.png",
+      "source_sha256": "c0c555189af50bacb682ed14a399a5d621bde575df2c314911ce9ee31e97aad1",
+      "file_sha256": "c0c555189af50bacb682ed14a399a5d621bde575df2c314911ce9ee31e97aad1",
+      "byte_preserved": true,
+      "prompt_file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/manual_gate_lever.prompt.txt",
+      "prompt": "Use case: stylized-concept\nAsset type: one transparent 2.5D hand-painted fantasy game environment prop, B07 Golden Sand Lizard City.\nInput image: B07(1).png is a STYLE AND MATERIAL REFERENCE ONLY. Do not reproduce the poster, typography, landscape, temple, or layout.\nShared visual direction: bright warm hand-painted fantasy, high-camera oblique near-isometric view (about 55 degrees downward); readable adult-scale game prop, solid silhouette, subtly uneven painted outlines and broad illustrated material shading. Match the reference's honey-gold sandstone, ochre shadows, burnished brass/copper-gold sun motifs; restrained tiny turquoise inlays, terracotta red-orange cloth only when requested. Illumination from upper left; opaque colored materials and crisp silhouette.\nComposition: exactly ONE independent complete object, centered on a square canvas with comfortable clear margin on ALL sides, no cropped part, see its top and two sides. Camera and silhouette appropriate to placing it into a top-down action RPG room.\nBackground: actual true transparent alpha everywhere outside the prop, no colored backdrop, no baked checkerboard, no ground plane, no cast shadow on invisible floor, no scenery.\nConstraints: single static neutral-state candidate, not an animation sheet. No characters, other props, diagram, UI, lettering, numbers, frame, watermark, gameplay beams, lasers, effects, bloom, particles, interaction rings, arrows, direction indicators or floor decals. Do not bake gameplay light paths or room collision layout into this image.\nPrimary request: one hand-operated gate lever mechanism fixed to its own compact low square sandstone base. A clear single tilted brass/copper-gold lever stem with a short horizontal handgrip, mounted on a visible pivot bracket and notched semicircular guide plate. The lever is in one neutral resting position. Warm golden sandstone base has one small sun emblem carved on the front, subtly worn edges, one tiny turquoise inlay. A narrow terracotta red-orange cloth wrap around the handgrip gives a readable touch point. Functional and simple, low human-hand-operated scale, no exaggerated machinery. Show whole lever, pivot, guide and base as one coherent object. Absolutely no full gate, door, archway, wall, chains extending outside the object, remote linkage, scenery, second lever or state variations.",
+      "generator": "built-in image_gen",
+      "transparent_background_requested": true,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": {
+        "minimum": 0,
+        "maximum": 255,
+        "zero_pixels": 997596,
+        "nonzero_pixels": 574920,
+        "opaque_pixels": 536,
+        "fraction_zero": 0.634394816968476,
+        "thresholds": {
+          "16": {
+            "bbox_xyxy_exclusive": [
+              142,
+              60,
+              1165,
+              1227
+            ],
+            "edge_contacts": {
+              "left": false,
+              "top": false,
+              "right": false,
+              "bottom": false
+            },
+            "margin_ltrb": [
+              142,
+              60,
+              89,
+              27
+            ]
+          },
+          "128": {
+            "bbox_xyxy_exclusive": [
+              142,
+              60,
+              1165,
+              1226
+            ],
+            "edge_contacts": {
+              "left": false,
+              "top": false,
+              "right": false,
+              "bottom": false
+            },
+            "margin_ltrb": [
+              142,
+              60,
+              89,
+              28
+            ]
+          }
+        },
+        "core_alpha_ge_128": {
+          "count": 557445,
+          "mean": 252.26735193606544,
+          "alpha_ge_250_fraction": 0.9808106629353569,
+          "most_frequent_values": [
+            [
+              253,
+              424827
+            ],
+            [
+              252,
+              107616
+            ],
+            [
+              251,
+              9723
+            ],
+            [
+              250,
+              3136
+            ],
+            [
+              249,
+              1786
+            ]
+          ]
+        }
+      },
+      "visual_qa_pending": false,
+      "visual_qa": {
+        "pass": true,
+        "observations": [
+          "Single hand lever, pivot, notched guide and compact stone base are coherent and fully visible.",
+          "No full gate, door, archway, wall or remote linkage; terracotta handle cloth identifies hand contact."
+        ],
+        "convergence_notes": [
+          "Only one neutral lever position; open/closed or interaction poses are not yet authored.",
+          "Smallest alpha16 margin is 27 pixels at bottom; no clipping, but preserve source padding for later packing."
+        ]
+      },
+      "physical_path": "assets/levels/b07/rooms/shared/manual_gate_lever/source_candidate.png"
+    }
+  ],
+  "diagnostic_only": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/qa_dual_background.jpg",
+  "qa": {
+    "performed": "2026-10-03",
+    "method": "PIL alpha channel metadata and threshold bbox/edge check; actual visual inspection of all four assets on warm-light and navy-dark diagnostic backgrounds. Diagnostic compositing did not edit source asset bytes.",
+    "all_sources_byte_preserved": true,
+    "all_alpha16_and_128_edges_clear": true,
+    "originals_recolored_or_programmatically_redrawn": false,
+    "generation_calls": 4,
+    "accepted_candidates": 4
+  }
+}

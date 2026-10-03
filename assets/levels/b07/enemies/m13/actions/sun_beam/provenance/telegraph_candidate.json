@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M13",
+  "ability": "sun_beam",
+  "phase": "telegraph",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-49753896-2ce1-4dc2-9faf-d71c08f13282.png",
+  "source_sha256": "317c96e0774625a897309a504828fc9bfdc3ae7836fa92aec4be8fb486f78fe8",
+  "resource": "asset://levels/b07/enemies/m13/actions/sun_beam/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "native_size": [
+    1278,
+    1230
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m13/idle_candidate.png",
+  "reference_sha256": "3ed4ff0424515abd60cb90cfc1b8a0416526389385324fb954b1558562a5a9bd",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      76,
+      24,
+      1138,
+      1177
+    ],
+    "alpha128_pixel_count": 438097,
+    "transparent_pixel_count": 1096229,
+    "low_alpha_1_32_count": 32140,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 24.6,
+    "foot_landmarks": [
+      [
+        613.4,
+        1119.3
+      ],
+      [
+        881.8,
+        1008.6
+      ]
+    ],
+    "foot_midpoint": [
+      747.5999999999999,
+      1063.95
+    ],
+    "visible_anatomical_vertical_extent": 1039.4,
+    "semantic_uncertainty_px": 30.8,
+    "visual_review": "Disc and robes retained; execute reaches right edge, palm-disc separation partly lost; independent disc layer still needed.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

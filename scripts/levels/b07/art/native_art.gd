@@ -1,6 +1,7 @@
 extends RefCounted
-## First identity-reviewed M01 idle pilot. No other species/poses are implied.
+## Legacy M01 idle pilot; L37 convergence uses a separate actor-scoped review bank.
 ## Native anchors affect presentation only, never strike origins or collision.
+const ActorReview = preload("res://scripts/levels/b07/art/actor_review.gd")
 const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const MANIFEST := "asset://levels/b07/registration/native_art.json"
@@ -46,3 +47,13 @@ static func bank(identity: String) -> Dictionary:
 	clips["recovery"]=clips.idle
 	return {"clips":clips,"texture":clips.idle[0].texture,"body_height":clips.idle[0].reference_height,
 		"source_family":"storybook_2_5d_v1","facing":"right","b07_native_bank":true,"runtime_quality_gate_passed":false}
+
+## The old no-context APIs deliberately retain the original art-trial behavior.
+## A review image can be installed only with a verified, isolated L37 actor.
+static func entry_for_actor(actor: Node2D) -> Dictionary:
+	if ActorReview.enabled_for(actor): return ActorReview.entry(actor)
+	return entry(str(actor.get("enemy_id")))
+
+static func bank_for_actor(actor: Node2D) -> Dictionary:
+	if ActorReview.enabled_for(actor): return ActorReview.bank(actor)
+	return bank(str(actor.get("enemy_id")))

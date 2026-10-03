@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_or_vfx_candidate_not_registered",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-4653a974-aa88-4f0f-8490-06693310c8c1.png",
+  "source_sha256": "4db488bd72a6fb8586f8696b4df995e6fce20e89e46c6cf589f79f9cbe8809c8",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "native_mode": "RGBA",
+  "resource": "asset://levels/b07/effects/sand_disc/effect_candidate.png",
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "source_license": "AI-generated candidate; identity poses use existing project generated character reference",
+  "qa": {
+    "alpha128_bounds_xywh": [
+      190,
+      168,
+      1188,
+      711
+    ],
+    "alpha128_pixel_count": 666967,
+    "transparent_pixel_count": 897125,
+    "low_alpha_1_32_count": 7205,
+    "nonzero_edge_pixel_count": 20,
+    "edge_alpha128_pixel_count": 0,
+    "visual_review": "Turquoise/bronze disk identity; pattern differs subtly from handheld prop, common polish must match.",
+    "alpha_note": "Outside RGB may contain hidden colors; alpha determines actual visibility. No threshold cleanup applied.",
+    "sampling_note": "Bounds are single-frame actual content excluding empty canvas, not atlas resolution or display acceptance.",
+    "center_alpha": 253
+  },
+  "effect_id": "sand_disc",
+  "ability": "M03 returning_disc",
+  "references": []
+}

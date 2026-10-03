@@ -121,7 +121,7 @@ static func appearance_key(entry: Dictionary) -> String:
 
 static func install(actor: Node2D) -> Dictionary:
 	var definition: Dictionary = actor.get("profile")
-	var entry: Dictionary = variant_entry_for(str(actor.get("enemy_id")), int(definition.get("visual_variant_index", -1)))
+	var entry: Dictionary = preload("res://scripts/levels/b07/art/native_art.gd").entry_for_actor(actor) if str(actor.get("enemy_id")).begins_with("B07-M") else variant_entry_for(str(actor.get("enemy_id")), int(definition.get("visual_variant_index", -1)))
 	if entry.is_empty() or bool(actor.get("static_actor")):
 		return {}
 	var old_bounds: Rect2 = actor.get("body_bounds")
@@ -135,7 +135,9 @@ static func install(actor: Node2D) -> Dictionary:
 		# already-scaled body on reconfigure. Only presentation reads this scale.
 		native_height = clampf(float(actor.get("navigation_radius")) * 3.45, 170.0, 220.0)
 	var height: float = native_height * preload("res://scripts/shared/presentation_metrics.gd").ENEMY_BODY_FACTOR
-	var foot_y: float = 48.0 if boss_body else 18.0 if ordinary_body else old_bounds.end.y
+	# L37 review registers feet on the actor ground/shadow root (Vector2.ZERO).
+	# The legacy 18px presentation offset remains unchanged outside this review.
+	var foot_y: float = 0.0 if bool(entry.get("b07_review_bank",false)) else 48.0 if boss_body else 18.0 if ordinary_body else old_bounds.end.y
 	var region: Rect2 = entry.region
 	var source_foot: Vector2 = entry.foot
 	var factor: float = height / float(entry.source_height)

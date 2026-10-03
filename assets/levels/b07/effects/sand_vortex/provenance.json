@@ -1,0 +1,37 @@
+{
+  "effect_id": "sand_vortex",
+  "status": "unregistered_visual_candidate",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-c75aafb1-ec99-4b47-bb93-93fb4fa3e42f.png",
+  "source_sha256": "8cb558269e8ac10a5e0e83d845f531cf95447ae2825b2783bf6387bd88b0669c",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "original_bytes_preserved": true,
+  "prompt": "provenance/effect_candidate.prompt.txt",
+  "source_license": "AI-generated original visual source",
+  "qa": {
+    "alpha16_bounds_xywh": [
+      54,
+      227,
+      1442,
+      633
+    ],
+    "alpha128_bounds_xywh": [
+      56,
+      228,
+      1439,
+      629
+    ],
+    "nonzero_edge_pixels": 19,
+    "alpha128_edge_pixels": 0,
+    "center_alpha": 0,
+    "transparent_pixels": 905592,
+    "low_alpha_1_32_pixels": 199920,
+    "visual_review": "Viewed original. Decorative material only, native colors. Alpha fringe and actual battlefield readability unaccepted.",
+    "geometry_warning": "Generated curve/spiral does not define hitbox, reduction angle or skill radius; current command geometry remains authoritative.",
+    "specific_issue": "Interior dust has nonzero transparency; player-foot visibility requires scene review."
+  },
+  "runtime_quality_gate_passed": false
+}

@@ -1,0 +1,637 @@
+{
+  "version": 1,
+  "asset_family": "storybook_2_5d_v1",
+  "room_id": "L37",
+  "candidate_only": true,
+  "required_flags": [
+    "--candidate-b07",
+    "--b07-art-trial",
+    "--b07-midground-trial",
+    "--b07-convergence-review"
+  ],
+  "requires_legal_isolated_b07_profile": true,
+  "runtime_quality_gate_passed": false,
+  "continuous_animation_sets_complete": 0,
+  "presentation_contract": {
+    "mode": "discrete_key_pose_review",
+    "walk": "static idle fallback, no walk clip or authored walk animation",
+    "basic_attack": "static idle fallback; no unrelated active pose",
+    "scale": "One standing reference height per identity; per-pose scale from the manually reviewed lower-neck to pelvis axis, never normalize crouch/airborne height or canvas size. Approximate source landmarks remain subject to scene review.",
+    "ground": "Grounded root uses reviewed two-foot contact midpoint. Airborne M02 uses pelvis ground projection plus the reference pelvis-to-floor distance; sole landmarks are never a ground root.",
+    "sources": "Original PNG bytes and colors untouched; full native region retains original alpha. No alpha cleanup or hidden-RGB replacement.",
+    "geometry": "Read-only body presentation. Hit origins, warnings, timing, navigation and collision are unchanged.",
+    "world_ground_offset": {
+      "review_value": [
+        0,
+        0
+      ],
+      "legacy_value_preserved": [
+        0,
+        18
+      ],
+      "reason": "EnemyActor position is the navigation/collision command root; EnemyActor._draw draws its ground shadow at Vector2.ZERO. The L37 review maps the authored two-foot midpoint (or explicit airborne projected floor) to that same local zero rather than retaining the legacy 18px body offset. This is a translation of presentation only, not a change of scale, collider, command or sort position. Only b07_review_bank selects zero; old art-trial and other chapters retain their existing offset.",
+      "evidence": [
+        "scripts/gameplay/monsters/enemy_actor.gd:_draw",
+        "scripts/presentation/monsters/enemy_art.gd:install",
+        "scripts/presentation/monsters/enemy_visual.gd:body_frame"
+      ]
+    }
+  },
+  "known_limits": [
+    "No complete animation, walk, hit, death or all-direction bank.",
+    "Discrete changes, perspective differences, narrow weapon/tail margins and manual landmark uncertainty still need in-scene review.",
+    "M02 airborne root is a manual review registration, not an animation or motion capture solution.",
+    "M01 tail source is a held silhouette; angular sweep motion is not animated."
+  ],
+  "excluded_poses": [
+    {
+      "identity": "B07-M01",
+      "pose": "sun_spear/telegraph_candidate.png",
+      "reason": "Spear/shield shoulder-hand relationship inconsistent with idle."
+    },
+    {
+      "identity": "B07-M01",
+      "pose": "sun_spear/telegraph_hand_corrected_candidate.png",
+      "reason": "Failed correction; use telegraph_retracted_candidate instead."
+    },
+    {
+      "identity": "B07-M01",
+      "pose": "tail_sweep/recovery_candidate.png",
+      "reason": "No separate authoritative tail recovery state; do not invent a presentation timer."
+    },
+    {
+      "identity": "B07-M02",
+      "pose": "sand_ball/*",
+      "reason": "Execute forward arm cannot be matched confidently to original harness-side throwing arm. Keep this set out of the body sequence; actual sand-ball command/FX remains independent."
+    },
+    {
+      "identity": "B07-M03",
+      "pose": "returning_disc/catch_candidate.png",
+      "reason": "No confirmed catch event in current gameplay; do not imply return success by an arbitrary timer."
+    }
+  ],
+  "identities": {
+    "B07-M01": {
+      "reference_body_height_px": 824.5,
+      "reference_anatomy_axis_length_px": 204.677796,
+      "facing": "right",
+      "review_notes": "Large shoulder armour stays attached to the shield arm. The opposite spear arm retracts at the elbow in the preferred tell and extends in release. Old tell and hand-corrected tell are excluded.",
+      "runtime_quality_gate_passed": false,
+      "animation_complete": false,
+      "frames": {
+        "idle": {
+          "texture": "asset://levels/b07/enemies/m01/idle.png",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "native_size": [
+            1254,
+            1254
+          ],
+          "ground_root": [
+            687.5,
+            1027.5
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            687,
+            585
+          ],
+          "source_pose_scale": 1.0,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              731,
+              472
+            ],
+            [
+              698,
+              674
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "9ee4e8deb66912e5e508915b5217778f852eea5955e18e1e60ccd168caa6c52e",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        },
+        "sun_spear:telegraph": {
+          "texture": "asset://levels/b07/enemies/m01/actions/sun_spear/telegraph_retracted_candidate.png",
+          "region": [
+            0,
+            0,
+            1536,
+            1024
+          ],
+          "native_size": [
+            1536,
+            1024
+          ],
+          "ground_root": [
+            645.15,
+            855.05
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            695,
+            395
+          ],
+          "source_pose_scale": 0.995648,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              771,
+              302
+            ],
+            [
+              703,
+              496
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "73e86ac4995ec7597d044f70aa7fda85b05ca69c61561625396ae8fa87e71af8",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        },
+        "sun_spear:execute": {
+          "texture": "asset://levels/b07/enemies/m01/actions/sun_spear/execute_candidate.png",
+          "region": [
+            0,
+            0,
+            1536,
+            1024
+          ],
+          "native_size": [
+            1536,
+            1024
+          ],
+          "ground_root": [
+            616.5,
+            819.0
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            663,
+            446
+          ],
+          "source_pose_scale": 1.126782,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              724,
+              357
+            ],
+            [
+              660,
+              527
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "d01d70d7c763e8b32a4a4629ad3581640237eb91bd92fcd81299a1214c7c66b8",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        },
+        "sun_spear:recovery": {
+          "texture": "asset://levels/b07/enemies/m01/actions/sun_spear/recovery_candidate.png",
+          "region": [
+            0,
+            0,
+            1402,
+            1122
+          ],
+          "native_size": [
+            1402,
+            1122
+          ],
+          "ground_root": [
+            737.5,
+            946.0
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            733,
+            457
+          ],
+          "source_pose_scale": 0.984574,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              776,
+              368
+            ],
+            [
+              736,
+              572
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "ebac3f964faf821191075888d9d567f9b157d5194eb00fa6fc8568564810470e",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        },
+        "tail_sweep:telegraph": {
+          "texture": "asset://levels/b07/enemies/m01/actions/tail_sweep/telegraph_candidate.png",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "native_size": [
+            1254,
+            1254
+          ],
+          "ground_root": [
+            752.4,
+            1078.4
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            734,
+            583
+          ],
+          "source_pose_scale": 0.978748,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              785,
+              499
+            ],
+            [
+              739,
+              703
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "eaf25624c1cbf522d7aa474763a0f2746d5b0ce56f7db28cda8d534e39804512",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        },
+        "tail_sweep:execute": {
+          "texture": "asset://levels/b07/enemies/m01/actions/tail_sweep/execute_candidate.png",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "native_size": [
+            1254,
+            1254
+          ],
+          "ground_root": [
+            821.4,
+            1034.55
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            779,
+            580
+          ],
+          "source_pose_scale": 1.022061,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              828,
+              505
+            ],
+            [
+              798,
+              703
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "80e2972caf7ef7dc9ab7f7b29d968eefeb3365f31c552232ebd56091b1edb779",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        }
+      }
+    },
+    "B07-M02": {
+      "reference_body_height_px": 835.0,
+      "reference_anatomy_axis_length_px": 197.800404,
+      "facing": "right",
+      "review_notes": "Spiral tail, round eye, harness shoulder and pouches remain recognisable. Leap is a discrete airborne pose; its root is a pelvis ground projection, not the foot soles. Sand-ball release shoulder continuity remains blocked.",
+      "runtime_quality_gate_passed": false,
+      "animation_complete": false,
+      "frames": {
+        "idle": {
+          "texture": "asset://levels/b07/enemies/m02/idle_candidate.png",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "native_size": [
+            1254,
+            1254
+          ],
+          "ground_root": [
+            717,
+            983
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            787,
+            543
+          ],
+          "source_pose_scale": 1.0,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              867,
+              467
+            ],
+            [
+              748,
+              625
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "a21e8b688b255cb0ab30ad5a571c4506fdfc1fa8a7586913f6c21b1a4e42c39b",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        },
+        "camouflage_leap:telegraph": {
+          "texture": "asset://levels/b07/enemies/m02/actions/camouflage_leap/telegraph_candidate.png",
+          "region": [
+            0,
+            0,
+            1536,
+            1024
+          ],
+          "native_size": [
+            1536,
+            1024
+          ],
+          "ground_root": [
+            866.0,
+            846.5
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            995,
+            508
+          ],
+          "source_pose_scale": 0.96457,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              1065,
+              454
+            ],
+            [
+              921,
+              600
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "9d5da404b3e85a894dae3c08bb7b718f60854fecbaacbb5e84e42a1bfece3a1b",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        },
+        "camouflage_leap:execute": {
+          "texture": "asset://levels/b07/enemies/m02/actions/camouflage_leap/execute_candidate.png",
+          "region": [
+            0,
+            0,
+            1536,
+            1024
+          ],
+          "native_size": [
+            1536,
+            1024
+          ],
+          "ground_root": [
+            788,
+            921.394
+          ],
+          "ground_root_kind": "airborne_pelvis_ground_projection",
+          "root_note": "Projected floor directly below pelvis using idle pelvis-to-floor distance at fixed anatomy scale. Airborne soles [255.5, 705.5] are NOT used as ground root.",
+          "core_anchor": [
+            877,
+            496
+          ],
+          "source_pose_scale": 0.958774,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              969,
+              449
+            ],
+            [
+              788,
+              548
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "cb565b29840a3654ec8e4f1532a72b4b0ad2dc3312b24d9664cf9d69a6b57e13",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        },
+        "camouflage_leap:recovery": {
+          "texture": "asset://levels/b07/enemies/m02/actions/camouflage_leap/recovery_candidate.png",
+          "region": [
+            0,
+            0,
+            1536,
+            1024
+          ],
+          "native_size": [
+            1536,
+            1024
+          ],
+          "ground_root": [
+            798.5,
+            862.0
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            1006,
+            515
+          ],
+          "source_pose_scale": 0.99317,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              1060,
+              434
+            ],
+            [
+              947,
+              598
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "cbbc12e733fac71c539ae43e348644f07ea93266d680f4f06bf1d78aafe04680",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        }
+      }
+    },
+    "B07-M03": {
+      "reference_body_height_px": 915.0,
+      "reference_anatomy_axis_length_px": 207.424685,
+      "facing": "right",
+      "review_notes": "The disc arm is identified by its gold spiral shoulder plate, followed through elbow to hand. That same plated arm reaches forward across the rotated torso on release. Screen left/right alone is not a handedness test. Belt spare remains present. Catch is not wired because gameplay has no confirmed catch event. Empty recovery is retained while actual owner-matched disc jobs/projectiles exist after the brain clears its cast; no catch pose or synthetic flight timer is used.",
+      "runtime_quality_gate_passed": false,
+      "animation_complete": false,
+      "frames": {
+        "idle": {
+          "texture": "asset://levels/b07/enemies/m03/idle_candidate.png",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "native_size": [
+            1254,
+            1254
+          ],
+          "ground_root": [
+            816,
+            1001
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            797,
+            479
+          ],
+          "source_pose_scale": 1.0,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              880,
+              385
+            ],
+            [
+              804,
+              578
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "10abb3006f2ffb73e2bcfed5263fc52b376f370a49033d3af4de66e71d926f7a",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        },
+        "returning_disc:telegraph": {
+          "texture": "asset://levels/b07/enemies/m03/actions/returning_disc/telegraph_candidate.png",
+          "region": [
+            0,
+            0,
+            1536,
+            1024
+          ],
+          "native_size": [
+            1536,
+            1024
+          ],
+          "ground_root": [
+            941.0,
+            857.0
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            860,
+            403
+          ],
+          "source_pose_scale": 1.015568,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              875,
+              306
+            ],
+            [
+              865,
+              510
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "1d82405a4b4e02ed21d7c9280d45c4c90cf2f6e5bfe9ba449f3e0df449ff2c6f",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        },
+        "returning_disc:execute": {
+          "texture": "asset://levels/b07/enemies/m03/actions/returning_disc/execute_candidate.png",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "native_size": [
+            1254,
+            1254
+          ],
+          "ground_root": [
+            787.5,
+            1033.0
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            745,
+            531
+          ],
+          "source_pose_scale": 1.079152,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              770,
+              433
+            ],
+            [
+              761,
+              625
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "be955ca269084972743cab082a7e8225156467d2340ec1617a0c891c1be5d792",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        },
+        "returning_disc:recovery": {
+          "texture": "asset://levels/b07/enemies/m03/actions/returning_disc/recovery_candidate.png",
+          "region": [
+            0,
+            0,
+            1346,
+            1168
+          ],
+          "native_size": [
+            1346,
+            1168
+          ],
+          "ground_root": [
+            894.5,
+            1022.0
+          ],
+          "ground_root_kind": "foot_contact_midpoint",
+          "root_note": "Grounded two-foot contact midpoint; source limbs retain their authored crouch.",
+          "core_anchor": [
+            905,
+            456
+          ],
+          "source_pose_scale": 0.940801,
+          "anatomy_axis_lower_neck_to_pelvis": [
+            [
+              958,
+              346
+            ],
+            [
+              919,
+              563
+            ]
+          ],
+          "manual_landmark_uncertainty_px": 25,
+          "source_sha256": "6b88db7576a8139a3fd0e53b6f011bb7d5b3b0de2580a48ecb9cfd24a817b3bf",
+          "runtime_quality_gate_passed": false,
+          "animation_complete": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "B07-M04",
+  "ability": "sunscale_shield",
+  "phase": "telegraph",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-ff47fcd3-b931-4aff-8a6e-81b5f9ad025f.png",
+  "source_sha256": "185a088e657e1cf0c17e7f49fdf5dc25259559af76a6dec69f90279ed373efe0",
+  "resource": "asset://levels/b07/enemies/m04/actions/sunscale_shield/telegraph_candidate.png",
+  "prompt": "provenance/telegraph_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/enemies/m04/idle_candidate.png",
+  "reference_sha256": "9faae348481abe940cd94813f1f594ebffeb8e76994bc418cf028468ecdd0a2b",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      29,
+      161,
+      1212,
+      1061
+    ],
+    "alpha128_pixel_count": 634136,
+    "transparent_pixel_count": 911890,
+    "low_alpha_1_32_count": 21964,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 163.0,
+    "foot_landmarks": [
+      [
+        351.1,
+        1141.1
+      ],
+      [
+        1065.9,
+        1065.9
+      ]
+    ],
+    "foot_midpoint": [
+      708.5,
+      1103.5
+    ],
+    "visible_anatomical_vertical_extent": 940.5,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Shield remains same anatomical arm; silhouette and pose compression differ, scale/foot continuity pending.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

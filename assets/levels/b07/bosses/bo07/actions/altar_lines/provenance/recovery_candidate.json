@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "key_pose_candidate_not_registered",
+  "identity": "BO07",
+  "ability": "altar_lines",
+  "phase": "recovery",
+  "generator": "built-in image_gen",
+  "source_filename": "exec-da76a49b-f8a3-47db-9103-ddb28abed02c.png",
+  "source_sha256": "085af8296cddb788fa546d6566be2198e716ee6c355ce5ec2122ca4f469599ba",
+  "resource": "asset://levels/b07/bosses/bo07/actions/altar_lines/recovery_candidate.png",
+  "prompt": "provenance/recovery_candidate.prompt.txt",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "original_colors_preserved": true,
+  "postprocessing": "none; byte-for-byte source copy",
+  "reference_path": "assets/levels/b07/bosses/bo07/idle_candidate.png",
+  "reference_sha256": "a2048341c125cc546e97f5a3f1fd4428fdd1363d9bd5c157cb39d93e18d9fa1f",
+  "source_license": "AI-generated candidate from existing project character reference",
+  "runtime_quality_gate_passed": false,
+  "animation_complete": false,
+  "qa": {
+    "alpha128_bounds_xywh": [
+      27,
+      25,
+      1207,
+      1200
+    ],
+    "alpha128_pixel_count": 552502,
+    "transparent_pixel_count": 969123,
+    "low_alpha_1_32_count": 43189,
+    "nonzero_edge_pixel_count": 0,
+    "edge_alpha128_pixel_count": 0,
+    "anatomical_crown_y": 288.4,
+    "foot_landmarks": [
+      [
+        526.7,
+        1153.7
+      ],
+      [
+        990.7,
+        1078.4
+      ]
+    ],
+    "foot_midpoint": [
+      758.7,
+      1116.0500000000002
+    ],
+    "visible_anatomical_vertical_extent": 827.6,
+    "semantic_uncertainty_px": 31.4,
+    "visual_review": "Lowered staff and bowed head distinct recovery.",
+    "sampling_note": "Single-frame content only, not canvas/atlas. No 2K display acceptance.",
+    "scale_and_foot_continuity_passed": false,
+    "normalization_rule": "Do not normalize posed vertical height independently. Match stable anatomical bones and ground foot anchor across poses; this measurement is candidate QA only."
+  }
+}

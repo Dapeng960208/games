@@ -1,0 +1,107 @@
+{
+  "id": "low_stone_cover",
+  "status": "static_neutral_candidate_not_integrated",
+  "file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/low_stone_cover.png",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-99ac4977-bf27-4973-9c98-fd26984ed945.png",
+  "source_sha256": "b9bc215a15c9d11e2ebe8e696b4afadac0c416661ee0415bc3c3149bc8e02f5f",
+  "file_sha256": "b9bc215a15c9d11e2ebe8e696b4afadac0c416661ee0415bc3c3149bc8e02f5f",
+  "byte_preserved": true,
+  "prompt_file": "/workspace/scratch/2244020fc8d6/b07-art/room_props_0928/low_stone_cover.prompt.txt",
+  "prompt": "Use case: stylized-concept\nAsset type: one transparent 2.5D hand-painted fantasy game environment prop, B07 Golden Sand Lizard City.\nInput image: B07(1).png is a STYLE AND MATERIAL REFERENCE ONLY. Do not reproduce the poster, typography, landscape, temple, or layout.\nShared visual direction: bright warm hand-painted fantasy, high-camera oblique near-isometric view (about 55 degrees downward); readable adult-scale game prop, solid silhouette, subtly uneven painted outlines and broad illustrated material shading. Match the reference's honey-gold sandstone, ochre shadows, burnished brass/copper-gold sun motifs; restrained tiny turquoise inlays, terracotta red-orange cloth only when requested. Illumination from upper left; opaque colored materials and crisp silhouette.\nComposition: exactly ONE independent complete object, centered on a square canvas with comfortable clear margin on ALL sides, no cropped part, see its top and two sides. Camera and silhouette appropriate to placing it into a top-down action RPG room.\nBackground: actual true transparent alpha everywhere outside the prop, no colored backdrop, no baked checkerboard, no ground plane, no cast shadow on invisible floor, no scenery.\nConstraints: single static neutral-state candidate, not an animation sheet. No characters, other props, diagram, UI, lettering, numbers, frame, watermark, gameplay beams, lasers, effects, bloom, particles, interaction rings, arrows, direction indicators or floor decals. Do not bake gameplay light paths or room collision layout into this image.\nPrimary request: one complete low sandstone rectangular cuboid cover block. Simple solid horizontal rectangular footprint, length about 1.7 times depth, low height about half its depth. Honey-gold dressed sandstone, gently beveled edges, top surface and two sides visible, thin stone seams and a few shallow wear cracks but entirely intact and structurally whole. One shallow geometric sun-ray border carved only along the near vertical side, no gold fittings necessary. The shape must read instantly as a practical low rectangular cover block, not a broken wall, loose rubble, pillar, throne, stairs, chest, coffin or barricade pile. Flat broad unoccupied top; no openings, no giant missing chunks, no attached props, no cloth, no plants, no loose stones, no sand patch. Entire full cuboid visible with clean cutout silhouette.",
+  "generator": "built-in image_gen",
+  "transparent_background_requested": true,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha": {
+    "minimum": 0,
+    "maximum": 255,
+    "zero_pixels": 980814,
+    "nonzero_pixels": 591702,
+    "opaque_pixels": 295,
+    "fraction_zero": 0.623722747495097,
+    "thresholds": {
+      "16": {
+        "bbox_xyxy_exclusive": [
+          65,
+          247,
+          1200,
+          1125
+        ],
+        "edge_contacts": {
+          "left": false,
+          "top": false,
+          "right": false,
+          "bottom": false
+        },
+        "margin_ltrb": [
+          65,
+          247,
+          54,
+          129
+        ]
+      },
+      "128": {
+        "bbox_xyxy_exclusive": [
+          66,
+          248,
+          1199,
+          1125
+        ],
+        "edge_contacts": {
+          "left": false,
+          "top": false,
+          "right": false,
+          "bottom": false
+        },
+        "margin_ltrb": [
+          66,
+          248,
+          55,
+          129
+        ]
+      }
+    },
+    "core_alpha_ge_128": {
+      "count": 581076,
+      "mean": 252.50493911295595,
+      "alpha_ge_250_fraction": 0.9877812885061507,
+      "most_frequent_values": [
+        [
+          253,
+          477635
+        ],
+        [
+          252,
+          86252
+        ],
+        [
+          251,
+          5415
+        ],
+        [
+          254,
+          2358
+        ],
+        [
+          250,
+          2021
+        ]
+      ]
+    }
+  },
+  "visual_qa_pending": false,
+  "visual_qa": {
+    "pass": true,
+    "observations": [
+      "Complete intact low rectangular sandstone cuboid; broad unoccupied flat top, two visible sides.",
+      "Clear single footprint; no loose rubble, scenery, attached object or missing corner."
+    ],
+    "convergence_notes": [
+      "Runtime scaling should match authored 100–120 by 60–75 blueprint-pixel footprints; this source itself does not set collision."
+    ]
+  },
+  "physical_path": "assets/levels/b07/rooms/shared/low_stone_cover/source_candidate.png"
+}
