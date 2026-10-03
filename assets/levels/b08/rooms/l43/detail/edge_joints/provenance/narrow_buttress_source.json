@@ -1,0 +1,129 @@
+{
+  "id": "L43-convex-rock-corner-v2",
+  "file": "L43-convex-rock-corner-v2.png",
+  "candidate_role": "narrow deep external buttress candidate",
+  "status": "source_only_candidate_unintegrated",
+  "method": "builtin image_gen__imagegen",
+  "original_generated_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3cb8fe84-cce5-4670-ab14-b3325acce4dc.png",
+  "source_sha256": "a13870418eb941fe1dd08b493ee3b5e383ae3578308f43395ec1e1c9b3a7513f",
+  "byte_identical_to_generated_original": true,
+  "prompt_path": "provenance/L43-convex-rock-corner-v2.prompt.txt",
+  "prompt_sha256": "ab3ac628c4ea8fc2d9a50a1dad7b01ed43d50b700157d2e9a1966646142651e4",
+  "transparent_background_argument": true,
+  "generation_kind": "one_targeted_correction",
+  "input_references": [
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/rooms_0858/l43_edges/L43-convex-rock-corner-v1.png",
+      "sha256": "4ca4d1f40f33f1ee208b52150640617920517752718d33c99c6d5a5f36f478cd",
+      "role": "edit_target"
+    }
+  ],
+  "measurements": {
+    "filename": "L43-convex-rock-corner-v2.png",
+    "path": "/workspace/scratch/2244020fc8d6/b08-art/rooms_0858/l43_edges/L43-convex-rock-corner-v2.png",
+    "sha256": "a13870418eb941fe1dd08b493ee3b5e383ae3578308f43395ec1e1c9b3a7513f",
+    "mode": "RGBA",
+    "native_px": [
+      1024,
+      1536
+    ],
+    "alpha_bboxes_xyxy_exclusive": {
+      "1": [
+        63,
+        14,
+        944,
+        1464
+      ],
+      "8": [
+        356,
+        18,
+        671,
+        1434
+      ],
+      "32": [
+        356,
+        18,
+        670,
+        1434
+      ],
+      "128": [
+        357,
+        19,
+        670,
+        1433
+      ],
+      "250": [
+        366,
+        28,
+        664,
+        1428
+      ]
+    },
+    "nonzero_alpha_effective_px": [
+      881,
+      1450
+    ],
+    "visible_alpha_ge8_effective_px": [
+      315,
+      1416
+    ],
+    "visible_h_to_w": 4.4952,
+    "alpha_zero_px": 1260946,
+    "hidden_rgb_with_zero_alpha_px": 790239,
+    "alpha_1_to_7_px": 17656,
+    "alpha_residue_outside_ge8_bbox_px": 544,
+    "max_alpha_outside_ge8_bbox": 7,
+    "alpha_255_px": 0,
+    "alpha_ge250_px": 270140,
+    "min_nonzero_alpha": 1,
+    "max_alpha": 254,
+    "alpha_percentiles_inside_ge8_body": [
+      8.0,
+      252.0,
+      253.0,
+      253.0,
+      253.0,
+      254.0
+    ],
+    "preserve_aspect_at_300_world_height": {
+      "world": [
+        66.737,
+        300
+      ],
+      "display_px_at_1_7": [
+        113.453,
+        510
+      ],
+      "native_px_per_world": 4.72
+    },
+    "preserve_aspect_at_170_world_width": {
+      "world": [
+        170,
+        764.19
+      ],
+      "display_px_at_1_7": [
+        289,
+        1299.124
+      ]
+    }
+  },
+  "tentative_anchor_native_px": [
+    512,
+    43
+  ],
+  "tentative_anchor_native_normalized": [
+    0.5,
+    0.027995
+  ],
+  "tentative_anchor_relative_visible_bbox_px": [
+    156,
+    25
+  ],
+  "contact_baseline_native_y": 43,
+  "footprint_note": "Scale from visible alpha>=8 bounds; alpha threshold is measurement only, no pixels were changed. Preserve aspect ratio. Full-native image placement must account for transparent margins.",
+  "placement_risks": [
+    "Flat narrow attachment cap is more suitable for hiding beneath a floor edge. Small greenery extends above the cap.",
+    "Very slender profile is useful as a deep buttress, not as a forced 170x300 rectangle.",
+    "Front-heavy view has a modest side facet, so external corner direction must be validated against the actual floor union."
+  ]
+}

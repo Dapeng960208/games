@@ -1,0 +1,144 @@
+{
+  "id": "L43-convex-rock-corner-v1",
+  "file": "L43-convex-rock-corner-v1.png",
+  "candidate_role": "broader external corner/foundation candidate",
+  "status": "source_only_candidate_unintegrated",
+  "method": "builtin image_gen__imagegen",
+  "original_generated_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-1f34018b-79c0-4ce3-9782-794ae12051dd.png",
+  "source_sha256": "4ca4d1f40f33f1ee208b52150640617920517752718d33c99c6d5a5f36f478cd",
+  "byte_identical_to_generated_original": true,
+  "prompt_path": "provenance/L43-convex-rock-corner-v1.prompt.txt",
+  "prompt_sha256": "e686c2de6cfcf58ca351303cc1e1f95b73067f81291946d58970e39a821d7962",
+  "transparent_background_argument": true,
+  "generation_kind": "generation_with_style_references",
+  "input_references": [
+    {
+      "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B08(1).png",
+      "sha256": "aa25afa52eaf96f97fa70875003047b69b01b2c089dd9283eb9cfacd257d31ee",
+      "role": "style_reference_only"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/revision-02/L43-west-island-base-v3.png",
+      "sha256": "17836539151a7127d0efcf18ff5b16bf8277c09ad28d0c37f721778529fbde30",
+      "role": "style_reference_only"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/revision-02/L43-central-arch-base-v2.png",
+      "sha256": "23cb7046b8187a28168563a665d3c161625a7e115865dc2fbfde55479c2a869c",
+      "role": "style_reference_only"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/revision-02/L43-floor-surface-v3.png",
+      "sha256": "21b96b830548ae8054444bb8732d81858dc88297e8089bd2e3902fabb8cf5d60",
+      "role": "style_reference_only"
+    }
+  ],
+  "measurements": {
+    "filename": "L43-convex-rock-corner-v1.png",
+    "path": "/workspace/scratch/2244020fc8d6/b08-art/rooms_0858/l43_edges/L43-convex-rock-corner-v1.png",
+    "sha256": "4ca4d1f40f33f1ee208b52150640617920517752718d33c99c6d5a5f36f478cd",
+    "mode": "RGBA",
+    "native_px": [
+      1024,
+      1536
+    ],
+    "alpha_bboxes_xyxy_exclusive": {
+      "1": [
+        0,
+        0,
+        1010,
+        1494
+      ],
+      "8": [
+        153,
+        33,
+        887,
+        1467
+      ],
+      "32": [
+        153,
+        34,
+        887,
+        1467
+      ],
+      "128": [
+        154,
+        34,
+        887,
+        1466
+      ],
+      "250": [
+        161,
+        35,
+        880,
+        1456
+      ]
+    },
+    "nonzero_alpha_effective_px": [
+      1010,
+      1494
+    ],
+    "visible_alpha_ge8_effective_px": [
+      734,
+      1434
+    ],
+    "visible_h_to_w": 1.9537,
+    "alpha_zero_px": 1068829,
+    "hidden_rgb_with_zero_alpha_px": 772009,
+    "alpha_1_to_7_px": 19146,
+    "alpha_residue_outside_ge8_bbox_px": 504,
+    "max_alpha_outside_ge8_bbox": 6,
+    "alpha_255_px": 0,
+    "alpha_ge250_px": 459351,
+    "min_nonzero_alpha": 1,
+    "max_alpha": 254,
+    "alpha_percentiles_inside_ge8_body": [
+      8.0,
+      252.0,
+      252.0,
+      253.0,
+      253.0,
+      254.0
+    ],
+    "preserve_aspect_at_300_world_height": {
+      "world": [
+        153.556,
+        300
+      ],
+      "display_px_at_1_7": [
+        261.046,
+        510
+      ],
+      "native_px_per_world": 4.78
+    },
+    "preserve_aspect_at_170_world_width": {
+      "world": [
+        170,
+        332.125
+      ],
+      "display_px_at_1_7": [
+        289,
+        564.613
+      ]
+    }
+  },
+  "tentative_anchor_native_px": [
+    527,
+    160
+  ],
+  "tentative_anchor_native_normalized": [
+    0.514648,
+    0.104167
+  ],
+  "tentative_anchor_relative_visible_bbox_px": [
+    374,
+    127
+  ],
+  "contact_baseline_native_y": 160,
+  "footprint_note": "Scale from visible alpha>=8 bounds; alpha threshold is measurement only, no pixels were changed. Preserve aspect ratio. Full-native image placement must account for transparent margins.",
+  "placement_risks": [
+    "Attachment is a broad chevron, with top ends well above the central reference baseline. It needs later exact-union occlusion and composition.",
+    "Broader corner/foundation role is retained; numerical tall-to-wide suggestion is not an acceptance criterion.",
+    "Architectural braces are visually prominent but all descend from the cap; no standalone above-floor tower."
+  ]
+}

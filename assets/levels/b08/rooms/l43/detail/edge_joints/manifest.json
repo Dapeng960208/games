@@ -1,0 +1,51 @@
+{
+  "schema": "b08-l43-south-joint-review-v1",
+  "status": "explicit optional assembly review; compared in actual2K, remains default off",
+  "gate": "--b08-art-edge-joints-review plus existing L43 convergence gate",
+  "clip": "Full existing floor union subtracted, then all pixels above actual south baseline y1280blueprint discarded. Existing arch and fascia draw in front. No fake walkable cap or cloud-gap fill.",
+  "attachments": [
+    {
+      "file": "broad_corner.png",
+      "source_anchor": [
+        527,
+        160
+      ],
+      "blueprint_anchor": [
+        960,
+        1280
+      ],
+      "world_per_source_pixel": 0.16736401673640167,
+      "effective_source_pixels": [
+        734,
+        1434
+      ],
+      "source_sha256": "4ca4d1f40f33f1ee208b52150640617920517752718d33c99c6d5a5f36f478cd",
+      "role": "west-platform inner south convex foundation; diagonal original cap partly clipped"
+    },
+    {
+      "file": "narrow_buttress.png",
+      "source_anchor": [
+        512,
+        43
+      ],
+      "blueprint_anchor": [
+        1840,
+        1280
+      ],
+      "world_per_source_pixel": 0.16242937853107345,
+      "effective_source_pixels": [
+        315,
+        1416
+      ],
+      "source_sha256": "a13870418eb941fe1dd08b493ee3b5e383ae3578308f43395ec1e1c9b3a7513f",
+      "role": "east-platform inner south convex buttress"
+    }
+  ],
+  "limits": [
+    "No convex module attached to concave bridge joins y1150.",
+    "No rotation, stretch, native alpha edits or collision changes.",
+    "Does not solve vertical returns or entire side facade.",
+    "Broad chevron cap trimmed by runtime geometry may still look mismatched; actual frame comparison required."
+  ],
+  "actual_comparison_run": "20261003T110554022782Z-d34f05ce"
+}

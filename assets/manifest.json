@@ -1512,6 +1512,13 @@
     "b08/rooms/l43/props/manifest.json": "res://assets/levels/b08/rooms/l43/props/manifest.json",
     "b08/rooms/l43/props/vane_pointer_up.png": "res://assets/levels/b08/rooms/l43/props/vane_pointer_up.png",
     "b08/rooms/l43/props/provenance/vane_pointer_up_prompt.txt": "res://assets/levels/b08/rooms/l43/props/provenance/vane_pointer_up_prompt.txt",
-    "b08/rooms/l43/props/provenance/vane_pointer_up_source.json": "res://assets/levels/b08/rooms/l43/props/provenance/vane_pointer_up_source.json"
+    "b08/rooms/l43/props/provenance/vane_pointer_up_source.json": "res://assets/levels/b08/rooms/l43/props/provenance/vane_pointer_up_source.json",
+    "b08/rooms/l43/edge_joints/broad_corner.png": "res://assets/levels/b08/rooms/l43/detail/edge_joints/broad_corner.png",
+    "b08/rooms/l43/edge_joints/provenance/broad_corner_prompt.txt": "res://assets/levels/b08/rooms/l43/detail/edge_joints/provenance/broad_corner_prompt.txt",
+    "b08/rooms/l43/edge_joints/narrow_buttress.png": "res://assets/levels/b08/rooms/l43/detail/edge_joints/narrow_buttress.png",
+    "b08/rooms/l43/edge_joints/provenance/narrow_buttress_prompt.txt": "res://assets/levels/b08/rooms/l43/detail/edge_joints/provenance/narrow_buttress_prompt.txt",
+    "b08/rooms/l43/edge_joints/provenance/broad_corner_source.json": "res://assets/levels/b08/rooms/l43/detail/edge_joints/provenance/broad_corner_source.json",
+    "b08/rooms/l43/edge_joints/provenance/narrow_buttress_source.json": "res://assets/levels/b08/rooms/l43/detail/edge_joints/provenance/narrow_buttress_source.json",
+    "b08/rooms/l43/edge_joints/manifest.json": "res://assets/levels/b08/rooms/l43/detail/edge_joints/manifest.json"
   }
 }

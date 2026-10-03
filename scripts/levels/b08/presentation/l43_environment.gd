@@ -14,6 +14,7 @@ const DISTANT_STRENGTH := .45
 const DISTANT_AIR := Color("b9d6eb")
 var background_rect := Rect2(0,0,1624,1044)
 var convergence := false
+var edge_joint_review := false
 var material_tile_width := 256.0
 func configure(id: String, review_background_depth: bool = false, review_convergence: bool = false) -> bool:
 	if id!="L43" or not textures.is_empty(): return false
@@ -36,9 +37,11 @@ func configure(id: String, review_background_depth: bool = false, review_converg
 		if layer.role not in ["background","floor"]:
 			register(file,Vector2(layer.source_anchor_pixel[0],layer.source_anchor_pixel[1]),Vector2(layer.blueprint_anchor[0],layer.blueprint_anchor[1]),float(layer.source_to_blueprint_uniform_scale))
 	if review_convergence: _configure_surface_review()
+	if convergence and OS.get_cmdline_user_args().has("--b08-art-edge-joints-review"):
+		edge_joint_review=preload("res://scripts/levels/b08/presentation/edge_joints.gd").configure(self)
 	build_edges()
 	queue_redraw()
-	return errors.is_empty() and textures.size()==(10 if convergence else 8)
+	return errors.is_empty() and textures.size()==(12 if edge_joint_review else 10 if convergence else 8)
 func _configure_surface_review() -> void:
 	var parsed: Variant=JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(ROOT+"surface_review.json")))
 	if not parsed is Dictionary: errors.append("Invalid surface review metadata"); return
@@ -123,6 +126,7 @@ func _draw() -> void:
 		draw_texture_rect(textures["distant_city.png"],background_rect,false,Color(1,1,1,DISTANT_STRENGTH))
 	else: draw_texture_rect(textures["distant_city.png"],background_rect,false)
 	for layer: Dictionary in layers:
+		if bool(layer.get("edge_joint",false)) and not edge_joint_review: continue
 		for shape: PackedVector2Array in layer.shapes:
 			var uv:=PackedVector2Array()
 			for point: Vector2 in shape: uv.append((point-layer.rect.position)/layer.rect.size)

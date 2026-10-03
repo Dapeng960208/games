@@ -1,0 +1,92 @@
+{
+  "status": "optional_assembly_candidate_default_off",
+  "headless": {
+    "suite": "b08_l43_joints",
+    "run": "20261003T110318300016Z-d3767646",
+    "checks": 16,
+    "failures": 0,
+    "exit_code": 0,
+    "capture_parse_exit_code": 0
+  },
+  "actual_renderer": {
+    "run": "20261003T110554022782Z-d34f05ce",
+    "frames": {
+      "joints_off.png": "a6ce26fb2518a43d0a5d29274e7b2c3a5eab716401b8b5dbc92afdfa94b6a739",
+      "joints_on.png": "405041f5f021608df3c2a1fe1f54a75958ed1e2925124a35961ff801a151264b"
+    },
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "exit_code": 0,
+    "audio_cleanup": true,
+    "warnings": [
+      "driver does not support changing VSync"
+    ],
+    "same_player_position": true,
+    "same_camera_zoom": true,
+    "changed_pixels_bbox_excluding_top100px_caption": [
+      813,
+      1036,
+      1860,
+      1421
+    ],
+    "changed_pixels_count_excluding_caption": 55062,
+    "source_draw_rects_and_exact_clipping": [
+      {
+        "clipped_polygons": [
+          "[(639.9799, 972.6929), (468.5991, 972.6929), (468.5991, 742.4), (639.9799, 742.4)]"
+        ],
+        "file": "broad_corner.png",
+        "native_draw_rect": "[P: (468.5991, 715.6217), S: (171.3808, 257.0711)]"
+      },
+      {
+        "clipped_polygons": [
+          "[(1150.364, 742.4), (1150.364, 984.907), (984.0361, 984.907), (984.0361, 742.4)]"
+        ],
+        "file": "narrow_buttress.png",
+        "native_draw_rect": "[P: (984.0361, 735.4155), S: (166.3277, 249.4915)]"
+      }
+    ]
+  },
+  "source_effective_full_display": {
+    "broad_corner.png": {
+      "native_effective_pixels": [
+        734,
+        1434
+      ],
+      "full_display_pixels_before_runtime_clipping": [
+        208.837,
+        408.0
+      ]
+    },
+    "narrow_buttress.png": {
+      "native_effective_pixels": [
+        315,
+        1416
+      ],
+      "full_display_pixels_before_runtime_clipping": [
+        86.981,
+        391.0
+      ]
+    }
+  },
+  "observations": [
+    "New source changes are confined to the southern foundation area outside legal ground.",
+    "No protruding false diagonal deck or filled central cloud gap is visible in these two frames.",
+    "West broad foundation improves local continuity but adds a heavier overlapping layer.",
+    "East narrow buttress contributes only a subtle local change.",
+    "This does not complete orthogonal side returns or reduce the broad legal floor area."
+  ],
+  "unchanged_from_992078a": {
+    "scripts/levels/b08/geometry.gd": "bb5473fb375f3f8a7a117ceb0a9e679be0d1f8950d7f2a328b5d85eef5682043",
+    "scripts/levels/b08/enemy_brain.gd": "bba68d90f236f5630e9f358321eac89a68ed81baa9de24fe008124cdc6d10bb7",
+    "scripts/levels/b08/wind_state.gd": "34a7bd32b667eaa09c9a945af13317f11fe9a09192e45b6c081df11d946460ec",
+    "scripts/levels/b08/room_controller.gd": "8d2b5884be51a817b224e908091878223eff9897ee7e691373899dd570d8db43",
+    "data/levels/b08/content.json": "bc2b31ea5ca1a2a71536e85c4f1345dd304124292d448471f567f1625e830f80",
+    "scripts/levels/b08/candidate_gate.gd": "fb66bb81a45ef7679ae4136d9605c4df61a49232f2309ca2a7320857d6d8db22",
+    "project.godot": "ee6d5930cfb93508212cf3031fe97086b502e62768e6d94299da5f7783f574a2"
+  },
+  "decision": "Keep additional review flag; not adopted as default L43 art. No other-room rollout."
+}
