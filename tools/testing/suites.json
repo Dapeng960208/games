@@ -1144,5 +1144,9 @@
   },
   "legacy_profile_reset": {
     "script": "tests/persistence/test_legacy_profile_reset.gd"
+  },
+  "b05_b06_boss_skill_art": {
+    "script": "tests/levels/shared/test_b05_b06_boss_skill_art.gd",
+    "scene": "tests/levels/shared/test_b05_b06_boss_skill_art.tscn"
   }
 }
