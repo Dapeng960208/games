@@ -1,0 +1,54 @@
+{
+  "approved": false,
+  "candidate_only": true,
+  "patches": [
+    {
+      "name": "BO05_south_continuity_v1",
+      "texture": "asset://world/rooms_2k/BO05/BO05_south_continuity_v1.png",
+      "source": "asset://world/rooms/BO05_environment_v1.png",
+      "source_sha256": "878975a231566c04ad46b6168581c60dd4cd6d03febdd7a3d05ac2c4c03fee90",
+      "source_crop": [
+        205,
+        455,
+        1130,
+        400
+      ],
+      "reference_crop_sha256": "c76badcade333f7b01b64f3fa79a33061e44ccfaa373ae73394eee0b8ae8b84a",
+      "native_size": [
+        2106,
+        747
+      ],
+      "sha256": "a44a357ffe2f0639b2107a0520a208d7fd4e4b8c72202fe08e5ab55def662a8b",
+      "prompt_file": "BO05_south_continuity_v1.prompt.txt",
+      "prompt_sha256": "d0dd633d1241a65a9c9ec57fa4378d8c8a9c3a5678baf87fb420c509e4c7d881",
+      "tool": "image_gen built-in",
+      "model": "not reported",
+      "generated_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-cb5e61d7-708b-4c5b-bfa0-361f37f25104.png",
+      "source_pixel_edits": "none; exact generated PNG copied",
+      "approved": false,
+      "unique_patch": true,
+      "recommended_repair_source_rect": [
+        205,
+        455,
+        1130,
+        400
+      ],
+      "repair_feather_source_pixels": [
+        0,
+        32,
+        0,
+        0
+      ],
+      "paint_clip_source_rect": [
+        205,
+        730,
+        1130,
+        125
+      ],
+      "native_density_per_source_axis": [
+        1.8637168141592921,
+        1.8675
+      ]
+    }
+  ]
+}

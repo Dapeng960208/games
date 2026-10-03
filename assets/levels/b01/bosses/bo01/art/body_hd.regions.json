@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "texture": "asset://ui/refactor_v1/codex/BO01.png",
+  "source_family": "storybook_2_5d_v1",
+  "biome_id": "B01",
+  "visual_clan": "晴辉构装",
+  "image_size": [
+    1254,
+    1254
+  ],
+  "entries": {
+    "BO01": {
+      "region": [
+        22,
+        111,
+        1223,
+        1104
+      ],
+      "foot": [
+        595.439834,
+        1215
+      ],
+      "source_height": 1104,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "BO01",
+      "combat_body": true
+    }
+  },
+  "source_sha256": "1bbe64ae5925d0fe7506bcad8cc39e16d535971fa62f4b70ad272e7a637220d0",
+  "region_alpha_threshold": 16,
+  "region_padding_pixels": 4,
+  "source_provenance": "assets/generated/ui/refactor_v1/codex/provenance_bosses.json",
+  "combat_registration": {
+    "height": "clamp(navigation_radius * 3.45, 170, 220) * ENEMY_BODY_FACTOR; preserves prior combat height",
+    "foot_y": 48,
+    "foot_x": "Legacy source horizontal foot fraction, mapped into the complete HD body crop",
+    "scale": "Uniform; preserves source proportions; no texture resize or pixel edits",
+    "legacy_manifest": "assets/generated/enemies/storybook_B01_bodies_v2.regions.json",
+    "legacy_region": [
+      1656,
+      462,
+      241,
+      236
+    ],
+    "legacy_foot": [
+      1769,
+      698
+    ]
+  }
+}

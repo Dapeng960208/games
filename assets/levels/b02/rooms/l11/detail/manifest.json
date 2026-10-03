@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "room_id": "L11",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L11_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "e372ed652de7859b0ec6449dc9ebe71fd1e47f2a0e4b795a9fb036a84770b4f7",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L11/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1265
+      ],
+      "generated_png_sha256": "2ae2d48e2576a4edf6efd3d9b25dfc7433e418e37261fd44feb1d7b330620182",
+      "decoded_rgb_sha256": "a9f8f6d82609cf5d5c67b03297c438e198e3036b32184172c14213b1b3f9a0ac",
+      "webp_sha256": "79fb334d654bb99efca1ee56e0a5ff731dbbc72bf44f4e691d74afe786db292a",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. The attached image is the exact edit target: one cropped tile of an existing game map for 2560x1440 gameplay. Repaint with newly generated fine material detail at the largest native square resolution, 1536x1536 requested. CRITICAL: preserve exact full framing and scale; no crop, expansion, camera move, object movement or rearrangement. Every stone slab and crack boundary, leaf silhouette, flower cluster, crystalline entrance, doorway, stairs, hanging cocoon, silk canopy, pole, amber lamp, terrace edge and visible shadow must stay at identical normalized coordinates. Tile edges join adjacent original crops, so preserve exact edge content. Only add subtle high-definition painted surface texture within existing shapes: fine pale sandstone grain and tiny chips, delicate leaf veins, pearlescent crystal facets, silk threads and amber translucency where present. Match original bright warm sunlit hand-painted cartoon fantasy, pale cream-gold floor, green leaves, white silk and violet accents, exact exposure and overall contrast. Preserve existing background softness. No added objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive gloss, contrast or saturation."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L11/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "c04e719ff0e25b2bb804624efa599f96f6b5a5b98323de4fd3b3148c5e05058f",
+      "decoded_rgb_sha256": "9212a8390f36b4755b725d33103a07b3cdced8a3a8175d63ad715a734bbb5931",
+      "webp_sha256": "d2f1563a2ba5eabbe2c132f5f9e7c44e1c8d64e227dc5aeec3e748e18de6f8b6",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. The attached image is the exact edit target: one cropped tile of an existing game map for 2560x1440 gameplay. Repaint with newly generated fine material detail at the largest native square resolution, 1536x1536 requested. CRITICAL: preserve exact full framing and scale; no crop, expansion, camera move, object movement or rearrangement. Every stone slab and crack boundary, leaf silhouette, flower cluster, crystalline entrance, doorway, stairs, hanging cocoon, silk canopy, pole, amber lamp, terrace edge and visible shadow must stay at identical normalized coordinates. Tile edges join adjacent original crops, so preserve exact edge content. Only add subtle high-definition painted surface texture within existing shapes: fine pale sandstone grain and tiny chips, delicate leaf veins, pearlescent crystal facets, silk threads and amber translucency where present. Match original bright warm sunlit hand-painted cartoon fantasy, pale cream-gold floor, green leaves, white silk and violet accents, exact exposure and overall contrast. Preserve existing background softness. No added objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive gloss, contrast or saturation."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L11/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1239,
+        1269
+      ],
+      "generated_png_sha256": "00a3d1b219b71a93f3f15960c08f269b5d26789518aec747969f42680b9b6c33",
+      "decoded_rgb_sha256": "0042912d4abd6b5f6d1be2d2bbafba9c2cfe5710b45c5c95bd85dec66ab8094a",
+      "webp_sha256": "36e99cc295bfc1528817b6283ee2a162790298e2c01e5c4a2a9da809cab6016e",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. The attached image is the exact edit target: one cropped tile of an existing game map for 2560x1440 gameplay. Repaint with newly generated fine material detail at the largest native square resolution, 1536x1536 requested. CRITICAL: preserve exact full framing and scale; no crop, expansion, camera move, object movement or rearrangement. Every stone slab and crack boundary, leaf silhouette, flower cluster, crystalline entrance, doorway, stairs, hanging cocoon, silk canopy, pole, amber lamp, terrace edge and visible shadow must stay at identical normalized coordinates. Tile edges join adjacent original crops, so preserve exact edge content. Only add subtle high-definition painted surface texture within existing shapes: fine pale sandstone grain and tiny chips, delicate leaf veins, pearlescent crystal facets, silk threads and amber translucency where present. Match original bright warm sunlit hand-painted cartoon fantasy, pale cream-gold floor, green leaves, white silk and violet accents, exact exposure and overall contrast. Preserve existing background softness. No added objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive gloss, contrast or saturation."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L11/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "19571726e8c34e261a703e67d204ea43d993f61ccd1504969eb6943706dc402c",
+      "decoded_rgb_sha256": "4c9ff14e9bbccac1d5eca6b34b54b63d15490d0c302571c3abc260a87c7b88a0",
+      "webp_sha256": "078fa2e47de2e7b3b2c8e8e98ab5eee1e055fc7ca7cba62139c10b95773e3f0d",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. The attached image is the exact edit target: one cropped tile of an existing game map for 2560x1440 gameplay. Repaint with newly generated fine material detail at the largest native square resolution, 1536x1536 requested. CRITICAL: preserve exact full framing and scale; no crop, expansion, camera move, object movement or rearrangement. Every stone slab and crack boundary, leaf silhouette, flower cluster, crystalline entrance, doorway, stairs, hanging cocoon, silk canopy, pole, amber lamp, terrace edge and visible shadow must stay at identical normalized coordinates. Tile edges join adjacent original crops, so preserve exact edge content. Only add subtle high-definition painted surface texture within existing shapes: fine pale sandstone grain and tiny chips, delicate leaf veins, pearlescent crystal facets, silk threads and amber translucency where present. Match original bright warm sunlit hand-painted cartoon fantasy, pale cream-gold floor, green leaves, white silk and violet accents, exact exposure and overall contrast. Preserve existing background softness. No added objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive gloss, contrast or saturation."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L11/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1268,
+        1240
+      ],
+      "generated_png_sha256": "a3a93e22bf10fc80c7f82d01b8b88811b097c0537bc5ca75f65e9e7341667ca9",
+      "decoded_rgb_sha256": "6a0997e1cccff350d5bc08722a75e85d4ad8fe8ab77debd625daa7f8a05cf798",
+      "webp_sha256": "7838f6d405c2b75e462d551d70e5dea8273a949761824f5c79faea074cc259ca",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. The attached image is the exact edit target: one cropped tile of an existing game map for 2560x1440 gameplay. Repaint with newly generated fine material detail at the largest native square resolution, 1536x1536 requested. CRITICAL: preserve exact full framing and scale; no crop, expansion, camera move, object movement or rearrangement. Every stone slab and crack boundary, leaf silhouette, flower cluster, crystalline entrance, doorway, stairs, hanging cocoon, silk canopy, pole, amber lamp, terrace edge and visible shadow must stay at identical normalized coordinates. Tile edges join adjacent original crops, so preserve exact edge content. Only add subtle high-definition painted surface texture within existing shapes: fine pale sandstone grain and tiny chips, delicate leaf veins, pearlescent crystal facets, silk threads and amber translucency where present. Match original bright warm sunlit hand-painted cartoon fantasy, pale cream-gold floor, green leaves, white silk and violet accents, exact exposure and overall contrast. Preserve existing background softness. No added objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive gloss, contrast or saturation."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L11/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "7c7dfac5063674059fc2f6250410156aea6bf7fc6ef493fb4c7f2d730ebff484",
+      "decoded_rgb_sha256": "670bdebe87c6347f06eb5474c9016ff2fe693762148e60d0af9f920a91a8b946",
+      "webp_sha256": "328d2235c115a8234922330ffca72f5091a68826103df43ffd13d350c9577eef",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. The attached image is the exact edit target: one cropped tile of an existing game map for 2560x1440 gameplay. Repaint with newly generated fine material detail at the largest native square resolution, 1536x1536 requested. CRITICAL: preserve exact full framing and scale; no crop, expansion, camera move, object movement or rearrangement. Every stone slab and crack boundary, leaf silhouette, flower cluster, crystalline entrance, doorway, stairs, hanging cocoon, silk canopy, pole, amber lamp, terrace edge and visible shadow must stay at identical normalized coordinates. Tile edges join adjacent original crops, so preserve exact edge content. Only add subtle high-definition painted surface texture within existing shapes: fine pale sandstone grain and tiny chips, delicate leaf veins, pearlescent crystal facets, silk threads and amber translucency where present. Match original bright warm sunlit hand-painted cartoon fantasy, pale cream-gold floor, green leaves, white silk and violet accents, exact exposure and overall contrast. Preserve existing background softness. No added objects, paving stones, plants, text or characters. Texture fidelity restoration, not redesign; avoid excessive gloss, contrast or saturation."
+    }
+  ],
+  "qa": {
+    "date": "2026-10-02",
+    "engine": "Godot 4.7.2",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "checks": 46,
+    "failures": 0,
+    "layout_polygon_camera_unchanged": true,
+    "texture_release_and_reload": true,
+    "visual_review": "All five original/native pairs reviewed by source-art owner, with integration-lead checks of the center and representative edge pair. Building/door footprints, path motifs and runtime anchors remain aligned, with no apparent hard tile joins. Material detail improves; small repainted details and mild contrast differences remain. Controlled static views do not establish natural crowded-combat readability.",
+    "rgba_mips_upper_bound_bytes": 50307400,
+    "graphics_backend": "private Xorg display :97, llvmpipe; physical GPU performance not benchmarked",
+    "evidence": [
+      {
+        "capture": "L11_center_original_2560x1440.png",
+        "sha256": "8a569a4ec95f9c919ab34160a26adba3795c905b1cd088d1c4126d116cf53327"
+      },
+      {
+        "capture": "L11_center_native_2560x1440.png",
+        "sha256": "4589ff1b573258c24007247fc4975d0790792449c330744a28ea48640e389d5a"
+      },
+      {
+        "capture": "L11_northwest_original_2560x1440.png",
+        "sha256": "9a5ee365af19d77f79ddce1301b8eb262a172f2be058a6e3a16a5856acd4343e"
+      },
+      {
+        "capture": "L11_northwest_native_2560x1440.png",
+        "sha256": "8c4c7556f4da7c15d327c0de77b2cd884fde20c733ca76ddec2d3ae5ef75490f"
+      },
+      {
+        "capture": "L11_northeast_original_2560x1440.png",
+        "sha256": "7a7c781b2735f588e6439a07ada254bb1d806272c3abb64059340e0f92677697"
+      },
+      {
+        "capture": "L11_northeast_native_2560x1440.png",
+        "sha256": "c856357bccea4de6442cdcb5291854f3600de73851ce1569279a454c853a266f"
+      },
+      {
+        "capture": "L11_southwest_original_2560x1440.png",
+        "sha256": "e37128cf5ea9fbb76e052968e6d50c4f45649814028919d920a0575926232479"
+      },
+      {
+        "capture": "L11_southwest_native_2560x1440.png",
+        "sha256": "685930cb161a335304acebfc24a8f7a85a223b5b2369fd81d32827f2fac588b2"
+      },
+      {
+        "capture": "L11_southeast_original_2560x1440.png",
+        "sha256": "a8ba0d08fae6970889d848ad9d52f249350b1bd48de7826656d449685ae1d914"
+      },
+      {
+        "capture": "L11_southeast_native_2560x1440.png",
+        "sha256": "2ba772c6a12090e1ebef464eee10d36e7e82572d586b980ba99427524ab377e2"
+      }
+    ],
+    "log_sha256": "d82bbfee76e3b54b38296d81530909dfa738aef2c542dda5d6dc15b5bcae2f27"
+  }
+}

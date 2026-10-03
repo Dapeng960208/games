@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH03",
+  "skill_id": "q",
+  "skill_name": "裂晶脉冲",
+  "asset_file": "asset://skills/CH03_q_v1.png",
+  "generation_tool": "built-in image_gen.imagegen",
+  "generation_mode": "generate",
+  "use_case": "stylized-concept",
+  "transparent_background_requested": true,
+  "intended_display_size_px": 48,
+  "prompt": "Use case: stylized-concept. Asset type: original transparent game skill icon, square, designed to remain crisp and immediately legible at 48x48 pixels in a compact action-game HUD. Primary request: Crystalfracture Pulse for Gu Pin, an original salvage-world signal technician. Single bold focal object: a short chunky fork-shaped industrial needle emitter angled from lower-left to upper-right, two sturdy copper prongs around one compressed luminous peacock-teal mineral-crystal pulse at the tips. Aged ivory ceramic grip/capacitor collar and dark umber body, very few mechanical pieces. One short energetic angular teal pulse wedge conveys electricity; no scattered sparks or busy particle cloud. Premium hand-painted stylized industrial fantasy illustration, strong silhouette, chunky readable planes, high local contrast, controlled highlights, slight three-quarter perspective, distinctly crafted original design. Palette: aged ivory #D2D1BB, peacock teal #3E8D8D with restrained brighter cyan core, dark umber #4B443D, warm copper accents. Clear solid object edge, simplified readable detail. Centered, full object and pulse contained inside 12% safe margins. Transparent alpha background, completely isolated. No environment, background color, floor, ground shadow, border, frame, circular UI badge, text, numbers, letters, logos or watermark. No character, no conventional magic wand, no ornate filigree, no recognizable existing game symbol. Do not add a square panel behind the icon.",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a0e81b-c969-7ff1-b37d-c062ff22d9c0/exec-f065ce47-fa46-4abb-a7dc-57c470b7ec1f.png",
+  "source_reference": {
+    "path": "asset://heroes/CH03_portrait_v1.png",
+    "role": "Visual inspection guided prompt palette and industrial motifs; not passed as an image editing target."
+  },
+  "generation_output_hint": "Generated images are saved to C:\\Users\\13326\\.codex\\generated_images\\01a0e81b-c969-7ff1-b37d-c062ff22d9c0 as C:\\Users\\13326\\.codex\\generated_images\\01a0e81b-c969-7ff1-b37d-c062ff22d9c0\\exec-f065ce47-fa46-4abb-a7dc-57c470b7ec1f.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "postprocessing": "None. Source PNG copied byte-for-byte; generated alpha preserved. No CLI image generation or manual image editing.",
+  "qa": {
+    "skill": "q",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alpha_zero_pixels": 1179844,
+    "alpha_partial_pixels": 392186,
+    "alpha_opaque_pixels": 486,
+    "visible_alpha_gt_16_bbox": [
+      88,
+      63,
+      1209,
+      1165
+    ],
+    "corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "sha256": "641255944e9e3ccdef93549e6bda7b2508b2fe3e4432a62ab1462dd2aba8ef6a",
+    "source_png_copied_without_edit": true,
+    "saved_file_view_image_review": "原创短叉针射器与压缩青色矿晶形成单一斜向剪影；旧白陶瓷、铜件、深褐与孔雀青呼应角色。图形完整，无文字、边框或场景。",
+    "scope_note": "Visual review of full-resolution asset completed. Final in-game 48 px rendering remains part of HUD integration QA; requested 12% margins are not exact, but visible silhouettes remain inside image bounds."
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "approved": false,
+  "patches": [
+    {
+      "name": "L29_south_left",
+      "source": "b05-art/environment/L29/generated/L29_base_v1.png",
+      "source_sha256": "6092a0b0eae5c6639473fd1cc8e849185effc05de38259ee158b136df91de497",
+      "rect": [
+        205,
+        700,
+        400,
+        155
+      ],
+      "adjacent_rect": [
+        205,
+        545,
+        400,
+        155
+      ],
+      "refs": [
+        "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/native-repairs/references/L29_south_left_target.png",
+        "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/native-repairs/references/L29_south_left_adjacent.png"
+      ],
+      "path": "b05-art/regenerated/maps/native-repairs/L29_south_left_v1.png",
+      "native_size": [
+        2014,
+        780
+      ],
+      "sha256": "a347d08157dbbb5500cef81f91bb022d2e8c5f277501843d5e4326dfb3908fdf",
+      "prompt_sha256": "e9f635872a3f856e7dc268eabf5b191b3dd587df86b6db7eda12f18ef0d7df75",
+      "tool": "image_gen built-in",
+      "model": "not reported",
+      "approved": false,
+      "texture": "asset://world/rooms_2k/L29/L29_south_left_v1.png",
+      "unique_patch": true,
+      "recommended_repair_source_rect": [
+        205,
+        700,
+        400,
+        155
+      ],
+      "repair_feather_source_pixels": [
+        0,
+        32,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "L29_south_middle",
+      "source": "b05-art/environment/L29/generated/L29_base_v1.png",
+      "source_sha256": "6092a0b0eae5c6639473fd1cc8e849185effc05de38259ee158b136df91de497",
+      "rect": [
+        585,
+        700,
+        400,
+        155
+      ],
+      "adjacent_rect": [
+        585,
+        545,
+        400,
+        155
+      ],
+      "refs": [
+        "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/native-repairs/references/L29_south_middle_target.png",
+        "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/native-repairs/references/L29_south_middle_adjacent.png"
+      ],
+      "path": "b05-art/regenerated/maps/native-repairs/L29_south_middle_v1.png",
+      "native_size": [
+        2014,
+        781
+      ],
+      "sha256": "47ebc490e205bc5c2b41b170fd087e64eea9ab1690e4bcc165b2237938d0e5f3",
+      "prompt_sha256": "62112f2307fe62d8a74be05e03570ad640411c12d9bc65e632f5fb6f459c644b",
+      "tool": "image_gen built-in",
+      "model": "not reported",
+      "approved": false,
+      "texture": "asset://world/rooms_2k/L29/L29_south_middle_v1.png",
+      "unique_patch": true,
+      "recommended_repair_source_rect": [
+        585,
+        700,
+        400,
+        155
+      ],
+      "repair_feather_source_pixels": [
+        20,
+        32,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "L29_south_right",
+      "source": "b05-art/environment/L29/generated/L29_base_v1.png",
+      "source_sha256": "6092a0b0eae5c6639473fd1cc8e849185effc05de38259ee158b136df91de497",
+      "rect": [
+        965,
+        700,
+        370,
+        155
+      ],
+      "adjacent_rect": [
+        965,
+        545,
+        370,
+        155
+      ],
+      "refs": [
+        "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/native-repairs/references/L29_south_right_target.png",
+        "/workspace/scratch/2244020fc8d6/b05-art/regenerated/maps/native-repairs/references/L29_south_right_adjacent.png"
+      ],
+      "path": "b05-art/regenerated/maps/native-repairs/L29_south_right_v1.png",
+      "native_size": [
+        1935,
+        812
+      ],
+      "sha256": "4b9e8e2dc9b79b2c4ebaa421ff881fc097a6de8ca12a27499ae2d8bb4273f487",
+      "prompt_sha256": "bab7e146d1d77ca9eb04ea60d3e30171f5114c155bcc8888d66b895ac19a0237",
+      "tool": "image_gen built-in",
+      "model": "not reported",
+      "approved": false,
+      "texture": "asset://world/rooms_2k/L29/L29_south_right_v1.png",
+      "unique_patch": true,
+      "recommended_repair_source_rect": [
+        965,
+        700,
+        370,
+        155
+      ],
+      "repair_feather_source_pixels": [
+        20,
+        32,
+        0,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "schema": "b08-l43-art-geometry-v1",
+  "source": "scripts/levels/b08/geometry.gd",
+  "room": "L43",
+  "blueprint_size": [
+    2800,
+    1800
+  ],
+  "world_scale": 0.58,
+  "world_size": [
+    1624,
+    1044
+  ],
+  "floor_union_rectangles_xywh": [
+    [
+      180,
+      540,
+      780,
+      740
+    ],
+    [
+      840,
+      750,
+      1120,
+      400
+    ],
+    [
+      1840,
+      540,
+      780,
+      740
+    ],
+    [
+      760,
+      280,
+      1400,
+      380
+    ],
+    [
+      680,
+      460,
+      400,
+      480
+    ],
+    [
+      1720,
+      460,
+      400,
+      480
+    ]
+  ],
+  "blocking": "Every point outside the union is non-walkable. No interior blockers in current slice. Circle-footprint containment, not sprite rectangle.",
+  "entry_blueprint": [
+    380,
+    960
+  ],
+  "exit_blueprint": [
+    2410,
+    960
+  ],
+  "wind_lane_blueprint_xywh": [
+    880,
+    325,
+    1150,
+    220
+  ],
+  "wind_lane_authored_direction": [
+    1,
+    0
+  ],
+  "canonical_vane_reserved_blueprint": [
+    840,
+    900
+  ],
+  "vane_alignment_status": "Aligned to canonical 30%,50%. Never bake vane into environment.",
+  "runtime_flag_blueprint": [
+    586.206897,
+    830.689655
+  ],
+  "no_baked_gameplay": [
+    "vane",
+    "flag",
+    "enemy",
+    "boss",
+    "shadow",
+    "height marker",
+    "landing circle",
+    "wind arrow",
+    "exit marker",
+    "UI"
+  ],
+  "formal_art_status": "not_generated",
+  "style_only_references": [
+    "assets/generated/world/rooms/L25_environment_v1.png",
+    "assets/generated/b06_l31_environment_pilot/L31-north-skyline-v1.png",
+    "assets/generated/b06_l31_environment_pilot/L31-floor-tile-v2.png"
+  ],
+  "vane_blueprint": [
+    840,
+    900
+  ]
+}

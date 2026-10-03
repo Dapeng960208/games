@@ -1,4 +1,4 @@
-extends MineRoom
+extends RoomController
 ## Observation only: every production presentation call still runs unchanged.
 ## No actor, damage, AI, geometry, resource or status is modified here.
 var recording := false
@@ -12,12 +12,12 @@ func _ready() -> void:
 	scan_actors()
 
 func _actor_entered(actor: Node) -> void:
-	if not actor is MineEnemy: return
+	if not actor is EnemyActor: return
 	if actor.is_node_ready(): _capture_actor(actor)
 	else: actor.ready.connect(_capture_actor.bind(actor),CONNECT_ONE_SHOT)
 
 func _capture_actor(actor: Node) -> void:
-	if not is_instance_valid(actor) or not actor is MineEnemy or not is_instance_valid(actor.health): return
+	if not is_instance_valid(actor) or not actor is EnemyActor or not is_instance_valid(actor.health): return
 	var id := str(actor.get_instance_id())
 	if not actor_roster.has(id):
 		actor_roster[id] = {"id":id,"template":actor.enemy_id,"rank":actor.rank,"actor_kind":actor.actor_kind,"level":actor.enemy_level,
@@ -51,7 +51,7 @@ func _deployment_exiting(reference: WeakRef, id: int, kind: String) -> void:
 	if is_instance_valid(deployment):
 		releases.append({"t":elapsed,"kind":"deployment_retired","deployment_kind":kind,"id":id,"health":deployment.health,"elapsed":deployment.elapsed,"lifetime":deployment.lifetime,"destroyed_by_damage":float(deployment.health)<=0,"charge":deployment.resonance_charge})
 
-func spawn_ability_projectile(at: Vector2, direction: Vector2, amount: float, options: Dictionary) -> SparkProjectile:
+func spawn_ability_projectile(at: Vector2, direction: Vector2, amount: float, options: Dictionary) -> ProjectileActor:
 	var projectile := super.spawn_ability_projectile(at,direction,amount,options)
 	if recording:
 		var boss: Node2D = _boss_actor if is_instance_valid(_boss_actor) else null
@@ -68,7 +68,7 @@ func add_damage_text(at: Vector2, amount: float, kind: StringName, context: Dict
 		var target: Node = context.get("target")
 		if not is_instance_valid(target) and str(kind) not in ["received","heal","guard"]:
 			for candidate in enemies.get_children():
-				if not candidate is MineEnemy: continue
+				if not candidate is EnemyActor: continue
 				var anchor: Vector2 = candidate.position - Vector2(0, 65 if candidate.body_texture != null else 26)
 				if anchor.distance_squared_to(at) < .01:
 					target = candidate
@@ -77,9 +77,9 @@ func add_damage_text(at: Vector2, amount: float, kind: StringName, context: Dict
 		var packet := {"t":elapsed,"amount":amount,"kind":str(kind),"feedback_kind":str(context.get("feedback_kind","hp")),
 			"target_id":target.get_instance_id() if is_instance_valid(target) else 0,
 			"target_kind":str(target.get("actor_kind")) if is_instance_valid(target) else "player" if str(kind) in ["received","heal","guard"] else "unknown",
-			"target_template":str(target.get("enemy_id")) if is_instance_valid(target) and target is MineEnemy else "",
-			"target_rank":str(target.get("rank")) if is_instance_valid(target) and target is MineEnemy else "",
-			"boss":target is MineBoss,"weakpoint":target.boss_brain.weakpoint_open() if target is MineBoss else false}
+			"target_template":str(target.get("enemy_id")) if is_instance_valid(target) and target is EnemyActor else "",
+			"target_rank":str(target.get("rank")) if is_instance_valid(target) and target is EnemyActor else "",
+			"boss":target is BossActor,"weakpoint":target.boss_brain.weakpoint_open() if target is BossActor else false}
 		for key: String in ["damage_source","skill_slot","root_event_id","attack_id","damage_type","source_id","source_name","proc_depth","critical","X","H"]:
 			if context.has(key): packet[key] = context[key]
 		packets.append(packet)

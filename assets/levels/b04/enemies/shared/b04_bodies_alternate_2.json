@@ -1,0 +1,561 @@
+{
+  "schema_version": 1,
+  "asset": "storybook_B04_bodies_v2.png",
+  "date": "2026-10-01",
+  "task_requested_date": "2026-09-30",
+  "source": "Built-in image_gen.imagegen; final raw RGBA PNG copied byte-for-byte without raster modification. Every original generation preserved.",
+  "use_case": "stylized-concept",
+  "generation_mode": "built-in",
+  "biome_id": "B04",
+  "source_family": "storybook_2_5d_v1",
+  "visual_clan": "赤岩兽人",
+  "biome_label": "赤岩战寨",
+  "canonical_boss_name": "裂岩大酋长",
+  "canonical_override": "canonical12level_first4",
+  "canonical_direction": "Latest user 12-level direction overrides old first-four families: magical constructs B01, insects B02, zombies B03, orcs/ogres B04. Nine dangerous orcs/ogres and one Rift-Rock Great Chieftain wearing red-stone/bone/warm-brass primitive fantasy clan armor. Existing IDs, roles, AI and collision radii retained.",
+  "locked_visual_standard": "明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。",
+  "target_dimensions": [
+    2560,
+    1024
+  ],
+  "dimensions": [
+    1983,
+    793
+  ],
+  "transparent_background": true,
+  "layout": {
+    "columns": 5,
+    "rows": 2,
+    "order": [
+      "M28",
+      "M29",
+      "M30",
+      "M31",
+      "M32",
+      "M33",
+      "M34",
+      "M35",
+      "M36",
+      "BO04"
+    ],
+    "requested_cell_dimensions": [
+      512,
+      512
+    ],
+    "actual_cell_edges_x": [
+      0,
+      397,
+      793,
+      1190,
+      1586,
+      1983
+    ],
+    "actual_cell_edges_y": [
+      0,
+      396,
+      793
+    ]
+  },
+  "reference": {
+    "role": "Viewed latest user reference for painterly style only; previous species are not reused",
+    "path": "C:\\Users\\13326\\AppData\\Local\\Temp\\codex-clipboard-02f51a21-0c7d-42c9-825e-c4f6367709c9.png"
+  },
+  "raw_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-43315954-0e3a-43b0-bf16-a243d1e6dce4.png",
+  "preserved_previous_version": {
+    "asset": "asset://enemies/storybook_B04_bodies_v1.png",
+    "future_family": "B09 mirror-tide crystal source",
+    "status": "Untouched; metadata and raw originals preserved"
+  },
+  "prompt": "Use case: stylized-concept.\nAsset type: production game full-body enemy sprite atlas for B04 赤岩战寨.\nNEW CANONICAL USER DIRECTION: The first four level families are magical constructs B01, insects B02, zombies B03, and ORCS/OGRES B04. This atlas is B04 赤岩战寨: nine orcs/ogres plus their boss 裂岩大酋长. The old stone/crystal/mirror species is superseded. These are solid-skinned primitive fantasy orcs and ogres, not crystalline beings or robots.\nCreate ONE genuinely transparent PNG with exactly TEN complete bodies arranged in exactly 5 columns × 2 rows, strict row-major order M28,M29,M30,M31,M32 on top; M33,M34,M35,M36,BO04 on bottom. Requested canvas2560×1024, ten equal512×512 square cells. If output dimensions differ, preserve5:2 aspect and equal square cells.\nCRITICAL SPACING: Draw each complete body and its entire weapon inside the central55% of its own cell. Maximum complete silhouette width and height280 pixels per512cell. Center the COMPLETE silhouette including axe blade, bone hat, staff, net, both boots and horn tips at its cell center. At least20% entirely blank transparent margin on every side of every cell. All ten figures small within cells; do not enlarge them to fill the sheet. No item crosses a cell boundary or touches another. Strong clear blank horizontal gutter between rows. All feet, fingers, weapons, horns and armor extremities complete and unclipped.\nLocked visual style: 明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色。\nBright polished hand-painted cartoon fantasy game art, classical ruins combined with magical steam craftsmanship, high three-quarter downward camera angle near isometric, strong2.5D volume with visible top and side planes. Warm daylight cream highlights, vivid fresh coral/red/jade/teal/gold palette, crisp deep-plum colored outlines, rich subtle painted texture and readable broad color areas. Match a storybook game world of sunlit pale-stone ruins, teal magical machines, coral armor and golden brass accents. The reference is STYLE ONLY; do not copy its UI, background or species.\nB04 family: threatening orcs and ogres with varied green, jade-teal and warm orange-tan SOLID skin; tusks, angry brows, strong predatory jaws; primitive fantasy clan armor crafted from bright red volcanic stone, ivory bone, dark muted straps and warm golden brass. Fresh vivid skin and red clan armor, never brown-only. No gore, wounds, blood, photorealistic flesh, undead anatomy, crystals-for-bodies, mine machinery, cute mascot proportions or flat symbols.\nAll ten face RIGHT in a high-angle three-quarter FRONT idle combat stance, legs fully visible and both feet planted. Distinct silhouettes from small agile grunt through wide strong ogre, powerful boss. Full heads-to-soles anatomy, complete held weapons, no cropped busts, no portraits, no environment. Keep weapons angled inward close to the body to fit safe rectangles.\nTEN DISTINCT ROLE DESIGNS in exact positions:\nTop row column1 M28 swarm/fast small grunt: a small lean jade-green ORC with long pointed ears, fierce tusks and narrow angry eyes, crouched ready stance, two complete sinewy legs and boots. Jagged red-stone shoulder shell with six small plate segments, ivory bone wrist guards, short golden-brass knife held inward and red scarf. Small dangerous raider, no goblin toy.\nTop row column2 M29 flanker: tall wiry teal-green ORC with a red-stone half-mask framing a snarling tusked face, clearly asymmetrical arms; one arm has a broad warm-brass hook gauntlet and the other a small ivory-bone curved dagger. Ragged coral waist sash, red-stone shoulder armor, thin tall stance with both feet planted, weapon tips wholly within cell. No mirror tongue or crystal shell.\nTop row column3 M30 shield-network support: an elder green ORC war-shaman/drummer with a severe tusked face and an impressive crest of ivory bone, three progressively sized red-stone/brass war-chime drums strapped closely across his back, one thick bone-topped ceremonial staff held upright near the body. Layered coral-red clan mantle, jade ceremonial accents, complete legs and planted feet. Powerful support silhouette distinct from the shooter, no floating effects or outside magical particles.\nTop row column4 M31 ranged cold shooter: a slim blue-teal-skinned ORC marksman holding a complete compact long bone-and-brass crossbow close across the torso, a small ice-blue magical rune inset within its weapon only. Ivory bone visor, red-stone chest guard, narrow precise aim posture in right-facing idle, full legs and boots. Actual solid-skinned orc, not a floating prism.\nTop row column5 M32 ambusher: a low crouched green ORC stealth hunter with broad red-stone shoulder plates and a short dark-teal hooded cloak, fierce tusked jaw and two inward-pointing small hooked bone hatchets. Compact wide crouching silhouette, all arms, knees, planted feet and axe blades readable and complete. No ray anatomy, no external shadow.\nBottom row column1 M33 terrain trapper: warm orange-tan ORC with unusually long arms, red-stone and bone armor, a rolled rope net and a long forked bone trap-pole carried tightly along one side, the other hand holding a brass rope spool. A lean hostile hunter/trapper full body with planted feet, visible rope knots kept within body silhouette. No deployed net beyond own cell, no four-legged glass creature.\nBottom row column2 M34 heavy defender: a large broad jade-green OGRE with huge shoulders, heavy red-stone pauldron slabs, ivory bone chest guards, brass rings and thick planted legs. One hand is spread as a flat blocking palm, the other grips a thick compact red-rock warclub held inward. Narrow waist under wide shoulders for strong hourglass silhouette. Snarling tusks and angry brow, dangerous powerful heavy frontliner, no stone statue.\nBottom row column3 M35 interference bruiser: a bulky warm orange-tan OGRE lantern thief, huge tusked lower jaw, wide gut, red-stone back armor, bone belt and warm-brass tribal fittings. Holds one stolen golden-brass lantern close against his belly in one hand while the other arm forms a hefty threatening fist. Lantern glow fully contained inside the lantern. Two short thick legs and broad planted feet, whole ogre visible, no monstrous lamp-mouth beast or mining robot.\nBottom row column4 M36 bomber: a short stocky emerald-green ORC sapper with red-stone helmet, sharp ivory horn nubs, bone-trimmed armor, brass rune charges strapped around his belt and one compact round blue-teal electrical rune bomb held close to the chest. Complete arms, fingers, thick legs and boots. Angry dangerous sapper; no explosion, sparks, numbers, glowing ring outside body or crystal robot.\nBottom row column5 BO04 裂岩大酋长 / Rift-Rock Great Chieftain: a massive imposing green OGRE/ORC clan chief, unmistakable visual leader. Full towering muscular body from crown to soles, complete thick legs and enormous planted feet. Brutal angry tusked face, elaborate horn crown made of ivory bone, enormous coral/red volcanic-rock shoulder armor with warm-brass bands, ceremonial red waist mantle and bone trophies with NO gore. Holds one oversized but COMPLETE red-rock battle axe/warclub with a jagged rock-red head and warm-brass haft, kept close and angled inward so every part fits its cell. Strong wide power silhouette, brighter richly decorated armor than the nine followers. No huge floating crystal crown, no glass fins, no bell boss, no human skin or mascot face.\nMaterials: Solid green/teal/orange-tan skin with cream warm highlights, matte rough vivid red-stone armor, ivory bone, warm reflective brass, limited muted fabric and straps. Detailed volume in thick limbs and layered armor, careful readable painted silhouettes.\nBackdrop: true alpha0 transparency outside all ten bodies. No UI, text, labels, numbers, frames, cell borders, checkerboard, floor, landscape, cast shadows, halos, backgrounds, outside glow or loose particles. Exactly ten complete distinct members of the same 赤岩战寨 orc/ogre clan. At least20% blank gutter around each full silhouette.",
+  "repair_prompts": [
+    "Use case: precise-object-edit.\nEdit target: attached transparent ten-orc/ogre 赤岩战寨 atlas. Preserve EVERY existing body exactly in design, pose, anatomy, colors, rendering quality, weapon and armor identity. Preserve their strict 5×2 order. Only change independent scale and placement to create generous blank transparent margins.\nMake EACH existing complete figure exactly HALF of its CURRENT width AND HALF of its CURRENT height. Include every axe tip, staff horn, net, crossbow, boot, finger and crown point. Do not globally shrink the whole canvas. Keep the canvas2560×1024 or current1983×793, while re-rendering each separate figure smaller inside its same square cell. The figures should occupy only approximately45–50% of their individual cell. Their complete silhouettes must be centered in each cell, with at least20% truly empty transparent gutter on all four sides of every cell.\nExactly5 equal columns ×2 equal rows. Entire-figure bbox center coordinates in percent of whole canvas: top row (10%,25%),(30%,25%),(50%,25%),(70%,25%),(90%,25%); bottom row (10%,75%),(30%,75%),(50%,75%),(70%,75%),(90%,75%). Center the COMPLETE object bbox rather than the torso. All extremities fully inside the central55% of their cell. Clear empty horizontal band between rows. No figure touches any cell border, canvas edge, or other figure. Never crop to fake spacing.\nPreserve exact identities in order:\nTop M28 small green dagger grunt; M29 tall teal asymmetric hook/curved-dagger flanker; M30 green elder bone-staff war drummer with three back drums; M31 teal bone/brass crossbow marksman; M32 crouched green hooded two-hatchet ambusher.\nBottom M33 orange-tan rope-net/bone-trap-pole hunter; M34 massive green defender with open palm and red-rock warclub; M35 orange-tan big-bellied lantern-thief ogre; M36 short green rune-bomb sapper; BO04 裂岩大酋长 huge green horn-crowned red-rock axe clan chief.\nAll full body heads-to-soles, legs and planted feet, held weapons intact, high three-quarter downward near-isometric right-facing idle. Bright hand-painted cartoon fantasy2.5D, warm cream highlights, vivid green/teal/orange skin, coral-red stone armor, ivory bone, warm gold-brass, crisp plum outlines. Dangerous snarls, not cute. No new bodies or redesign.\nTrue alpha0 background. No shadows, glow, halos, floor, scenery, loose particles, checkerboard, UI, labels, text, numbers, frames or cell lines. Only ten complete individually smaller centered orc/ogre bodies.",
+    "Use case: precise-object-edit.\nEdit the attached transparent ten-orc 赤岩战寨 sprite atlas. All identities, anatomy, appearance, pose, style, materials, armor, skin colors, weapons and exact5×2 order are approved. Preserve them. This is a final SMALL spacing correction only.\nMake EACH existing complete figure exactly80% of its CURRENT width and exactly80% of its CURRENT height, and center its COMPLETE silhouette bbox at the center of its own existing square cell. Keep canvas size and proportions unchanged. Do not resize the whole sheet or crop anything. Keep all ten figures.\nThe current bottom-right boss's crown sits too high within its cell; center the WHOLE boss from the top horn to bottom sole, with larger blank margin above the crown and below the feet. The entire boss and all other complete silhouettes must be inside the central60% of each cell. At least18% completely empty transparent gutter at every cell edge. Enlarge blank gutters by making figures a little smaller, without changing their design.\nExact relative centers top row x10%,30%,50%,70%,90% all y25%; bottom same x all y75%. The outermost crown/axe/staff/net tips are counted when centering. All full bodies and weapons fully visible. No overlap, no touching cell borders or canvas edges.\nPreserve exact top order: M28 small green dagger grunt; M29 teal asymmetric hook/blade flanker; M30 elder green three-back-drum bone-staff shaman; M31 teal bone-crossbow marksman; M32 green hooded two-bone-blade crouching ambusher.\nPreserve exact bottom order: M33 orange rope-net and forked bone-pole hunter; M34 large green open-palm red-rock-club defender; M35 orange bulky lantern-thief ogre; M36 short green blue-rune-bomb sapper; BO04 massive green horn-crowned red-rock-axe 裂岩大酋长.\nFull head-to-soles bodies, planted complete feet, right-facing high three-quarter nearly-isometric stance. Bright polished hand-painted cartoon fantasy2.5D, solid skin, coral-red stone, ivory bone and warm gold brass. No redesign, no new objects, no removed equipment.\nPreserve genuine transparent alpha0 background, no shadows/halos/glows outside silhouettes, no floor/background, no text/UI/borders/grids. Only slightly smaller centered complete figures and larger blank gutters."
+  ],
+  "generation_history": [
+    {
+      "attempt": 1,
+      "purpose": "New canonical 赤岩战寨 orc/ogre clan bodies",
+      "raw_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-9fcc6783-b75c-4469-842e-4db75995fc58.png"
+    },
+    {
+      "attempt": 2,
+      "purpose": "First spacing-only repair",
+      "reference_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-9fcc6783-b75c-4469-842e-4db75995fc58.png",
+      "raw_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-72c0e5c4-44e3-4309-a4f5-74cbe63ace1a.png"
+    },
+    {
+      "attempt": 3,
+      "purpose": "Final spacing-only repair; all cells exceed15% gutters",
+      "reference_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-72c0e5c4-44e3-4309-a4f5-74cbe63ace1a.png",
+      "raw_path": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2de-2917-78f2-9e58-ee00f6de715a\\exec-43315954-0e3a-43b0-bf16-a243d1e6dce4.png"
+    }
+  ],
+  "source_metadata": {
+    "canonical_override": "canonical12level_first4",
+    "first_four_families": {
+      "B01": "魔法构装",
+      "B02": "虫群",
+      "B03": "亡灵",
+      "B04": "赤岩战寨"
+    },
+    "source_family": "storybook_2_5d_v1",
+    "visual_clan": "赤岩兽人",
+    "biome_label": "赤岩战寨",
+    "boss_name": "裂岩大酋长",
+    "catalogue_source": "data/monsters/enemies.json read only for existing IDs, roles, damage_kind, behavior_id, navigation_radius; earlier stone/crystal descriptors deliberately superseded.",
+    "radius_authority": "/root/combo_flow confirmed catalogue.navigation_radius for enemies and BossProfiles.STATS.navigation_radius=62 for BO04.",
+    "normal_native_height_formula": "clamp(collision_radius * 3.8, 66, 88)",
+    "boss_native_height": 213.9,
+    "source_height_convention": "Padded alpha region height",
+    "foot_convention": "Absolute source-space padded region bottom midpoint",
+    "date": "2026-10-01",
+    "task_requested_date": "2026-09-30"
+  },
+  "items": [
+    {
+      "id": "M28",
+      "rendered_label": "绿皮匕首斥兵",
+      "rendered_description": "矮小绿皮兽人，弓身红巾、红岩肩甲、短骨匕首，完整双腿与靴足。",
+      "source_role": "swarm",
+      "source_damage_kind": "kinetic",
+      "source_behavior_id": "last_sound_charge",
+      "source_navigation_radius": 12,
+      "cell": [
+        0,
+        0,
+        397,
+        396
+      ],
+      "alpha_bbox": [
+        111,
+        164,
+        152,
+        144
+      ],
+      "region": [
+        109,
+        162,
+        156,
+        148
+      ],
+      "foot": [
+        187,
+        310
+      ],
+      "source_height": 148,
+      "native_height": 66,
+      "collision_radius": 12,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        111,
+        164,
+        134,
+        88
+      ]
+    },
+    {
+      "id": "M29",
+      "rendered_label": "青皮钩刃侧袭者",
+      "rendered_description": "高瘦青皮兽人，红岩半面罩，左手黄铜钩爪、右手短弯骨刃，双臂不对称，完整双腿与靴足。",
+      "source_role": "flanker",
+      "source_damage_kind": "kinetic",
+      "source_behavior_id": "solid_ring_decoy",
+      "source_navigation_radius": 18,
+      "cell": [
+        397,
+        0,
+        396,
+        396
+      ],
+      "alpha_bbox": [
+        505,
+        119,
+        179,
+        195
+      ],
+      "region": [
+        503,
+        117,
+        183,
+        199
+      ],
+      "foot": [
+        594.5,
+        316
+      ],
+      "source_height": 199,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        108,
+        119,
+        109,
+        82
+      ]
+    },
+    {
+      "id": "M30",
+      "rendered_label": "赤岩战鼓祭司",
+      "rendered_description": "绿皮战鼓祭司，背负三口递增红岩黄铜战鼓，骨冠与角骨祭杖，完整双腿与靴足。",
+      "source_role": "support",
+      "source_damage_kind": "kinetic",
+      "source_behavior_id": "finite_shield_network",
+      "source_navigation_radius": 24,
+      "cell": [
+        793,
+        0,
+        397,
+        396
+      ],
+      "alpha_bbox": [
+        889,
+        124,
+        211,
+        188
+      ],
+      "region": [
+        887,
+        122,
+        215,
+        192
+      ],
+      "foot": [
+        994.5,
+        314
+      ],
+      "source_height": 192,
+      "native_height": 88,
+      "collision_radius": 24,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        96,
+        124,
+        90,
+        84
+      ]
+    },
+    {
+      "id": "M31",
+      "rendered_label": "骨弩寒晶射手",
+      "rendered_description": "青皮兽人射手，骨角面盔，横持黄铜骨弩，弩中冰蓝箭晶，完整双腿与靴足。",
+      "source_role": "ranged",
+      "source_damage_kind": "cold",
+      "source_behavior_id": "single_refraction_beam",
+      "source_navigation_radius": 18,
+      "cell": [
+        1190,
+        0,
+        396,
+        396
+      ],
+      "alpha_bbox": [
+        1313,
+        133,
+        167,
+        179
+      ],
+      "region": [
+        1311,
+        131,
+        171,
+        183
+      ],
+      "foot": [
+        1396.5,
+        314
+      ],
+      "source_height": 183,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        123,
+        133,
+        106,
+        84
+      ]
+    },
+    {
+      "id": "M32",
+      "rendered_label": "兜帽伏击猎手",
+      "rendered_description": "绿皮伏击兽人，深青兜帽短披风，低蹲姿态，双弯骨刃，完整手臂、膝腿与靴足。",
+      "source_role": "ambusher",
+      "source_damage_kind": "kinetic",
+      "source_behavior_id": "shadow_arc_leap",
+      "source_navigation_radius": 18,
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ],
+      "alpha_bbox": [
+        1681,
+        159,
+        192,
+        148
+      ],
+      "region": [
+        1679,
+        157,
+        196,
+        152
+      ],
+      "foot": [
+        1777,
+        309
+      ],
+      "source_height": 152,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        95,
+        159,
+        110,
+        89
+      ]
+    },
+    {
+      "id": "M33",
+      "rendered_label": "赤岩捕网者",
+      "rendered_description": "橙棕皮长臂兽人捕网者，背负绳网，叉形长骨杆与黄铜绳轮，完整双腿与靴足。",
+      "source_role": "terrain",
+      "source_damage_kind": "kinetic",
+      "source_behavior_id": "two_breakable_slow_lines",
+      "source_navigation_radius": 18,
+      "cell": [
+        0,
+        396,
+        397,
+        397
+      ],
+      "alpha_bbox": [
+        95,
+        493,
+        206,
+        204
+      ],
+      "region": [
+        93,
+        491,
+        210,
+        208
+      ],
+      "foot": [
+        198,
+        699
+      ],
+      "source_height": 208,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        95,
+        97,
+        96,
+        96
+      ]
+    },
+    {
+      "id": "M34",
+      "rendered_label": "赤岩食人魔守卫",
+      "rendered_description": "宽壮绿皮食人魔，红岩骨甲，一手张开平掌、一手横握红岩短战槌，完整粗壮腿足。",
+      "source_role": "defender",
+      "source_damage_kind": "kinetic",
+      "source_behavior_id": "bounded_counter_stance",
+      "source_navigation_radius": 24,
+      "cell": [
+        397,
+        396,
+        396,
+        397
+      ],
+      "alpha_bbox": [
+        491,
+        483,
+        220,
+        214
+      ],
+      "region": [
+        489,
+        481,
+        224,
+        218
+      ],
+      "foot": [
+        601,
+        699
+      ],
+      "source_height": 218,
+      "native_height": 88,
+      "collision_radius": 24,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        94,
+        87,
+        82,
+        96
+      ]
+    },
+    {
+      "id": "M35",
+      "rendered_label": "吞灯食人魔",
+      "rendered_description": "橙棕皮胖壮食人魔，骨齿腰带，腹旁高举黄铜灯笼，另一拳紧握，完整粗壮腿足。",
+      "source_role": "interference",
+      "source_damage_kind": "kinetic",
+      "source_behavior_id": "steal_scene_lamp",
+      "source_navigation_radius": 18,
+      "cell": [
+        793,
+        396,
+        397,
+        397
+      ],
+      "alpha_bbox": [
+        901,
+        500,
+        198,
+        193
+      ],
+      "region": [
+        899,
+        498,
+        202,
+        197
+      ],
+      "foot": [
+        1000,
+        695
+      ],
+      "source_height": 197,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        108,
+        104,
+        91,
+        100
+      ]
+    },
+    {
+      "id": "M36",
+      "rendered_label": "符文爆破兵",
+      "rendered_description": "矮壮绿皮兽人爆破兵，红岩骨角头盔，双手抱青蓝符文爆弹，腰间数枚小弹，完整双腿与靴足。",
+      "source_role": "bomber",
+      "source_damage_kind": "electric",
+      "source_behavior_id": "safe_disarm_ring",
+      "source_navigation_radius": 18,
+      "cell": [
+        1190,
+        396,
+        396,
+        397
+      ],
+      "alpha_bbox": [
+        1293,
+        521,
+        163,
+        169
+      ],
+      "region": [
+        1291,
+        519,
+        167,
+        173
+      ],
+      "foot": [
+        1374.5,
+        692
+      ],
+      "source_height": 173,
+      "native_height": 68.4,
+      "collision_radius": 18,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        103,
+        125,
+        130,
+        103
+      ]
+    },
+    {
+      "id": "BO04",
+      "rendered_label": "裂岩大酋长",
+      "rendered_description": "巨大绿皮兽人/食人魔酋长，四角骨冠、厚重红岩骨甲、完整超大裂岩战斧横握于身前，冠顶至脚底的全身领袖轮廓。",
+      "source_role": "boss",
+      "source_damage_kind": null,
+      "source_behavior_id": null,
+      "source_navigation_radius": null,
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ],
+      "alpha_bbox": [
+        1672,
+        476,
+        227,
+        226
+      ],
+      "region": [
+        1670,
+        474,
+        231,
+        230
+      ],
+      "foot": [
+        1785.5,
+        704
+      ],
+      "source_height": 230,
+      "native_height": 213.9,
+      "collision_radius": 62,
+      "facing": "right",
+      "full_color": true,
+      "gutters_pixels": [
+        86,
+        80,
+        84,
+        91
+      ]
+    }
+  ],
+  "validation": {
+    "unique_visual_identities": 10,
+    "canonical_orc_ogre_family": true,
+    "boss_full_body_leader": true,
+    "all_items_complete": true,
+    "all_cell_gutters_above_15_percent": true,
+    "minimum_cell_gutter_percent": 20.151133501259448,
+    "correct_row_major_order": true,
+    "regions_disjoint": true,
+    "visible_alpha_threshold": 16,
+    "region_padding_pixels": 2,
+    "visible_pixels": 230067,
+    "visible_pixels_outside_regions": 0,
+    "canvas_edge_visible_pixels": 0,
+    "alpha_zero_percent": 83.16223842128457,
+    "alpha_nonzero_outside_regions": 1104,
+    "method": "Pillow and NumPy read-only alpha measurement; each region is alpha>=16 bbox plus2pixels. PNG was not resized, edited, composited or cleaned."
+  },
+  "limitations": [
+    "Built-in generator returned1983×793 rather than requested2560×1024; all metadata uses actual dimensions.",
+    "1104 alpha<16 generator-noise pixels remain outside declared visible regions. Every pixel at alpha>=16 is captured.",
+    "Minor colored antialiasing fringe is preserved in the raw generated PNG; no manual alpha/RGB cleanup.",
+    "Fine clan armor texture may soften at normalized66–88px normal-enemy heights; broad silhouettes and weapons remain distinct.",
+    "Static art uses approximate high-angle right-facing three-quarter idle poses; no walk/attack animation is included."
+  ]
+}

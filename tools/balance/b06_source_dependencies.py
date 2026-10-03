@@ -5,7 +5,7 @@ ContentRegistry and chapter registries. Unreferenced candidate JSON is not loade
 This is not asset pixel QA.
 """
 import hashlib,pathlib,re
-ROOT=pathlib.Path(__file__).resolve().parents[2]
+ROOT=next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'project.godot').is_file())
 SOURCE_SUFFIXES={'.gd','.tscn','.tres','.gdshader','.json'}
 def fingerprint():
  classes={}
@@ -13,8 +13,8 @@ def fingerprint():
   m=re.search(r'^class_name\s+(\w+)',f.read_text(),re.M)
   if m:classes[m.group(1)]=f
  project=ROOT/'project.godot';text=project.read_text();auto=text.split('[autoload]',1)[1].split('\n[',1)[0] if '[autoload]' in text else ''
- queue=[ROOT/'tests/test_b06_balance_matrix.tscn',*[ROOT/x for x in re.findall(r'res://([^"\s]+)',auto)]]
- included={project,ROOT/'tools/test_workspace.py',pathlib.Path(__file__).resolve(),ROOT/'tools/balance/run_b06_baseline.py',ROOT/'tools/balance/run_b06_policy_probe.py'}
+ queue=[ROOT/'tests/levels/b06/test_b06_balance_matrix.tscn',*[ROOT/x for x in re.findall(r'res://([^"\s]+)',auto)]]
+ included={project,ROOT/'tools/testing/test_workspace.py',pathlib.Path(__file__).resolve(),ROOT/'tools/balance/run_b06_baseline.py',ROOT/'tools/balance/run_b06_policy_probe.py'}
  while queue:
   f=queue.pop()
   if f in included or not f.is_file():continue

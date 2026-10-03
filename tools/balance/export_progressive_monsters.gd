@@ -1,9 +1,9 @@
 extends SceneTree
 ## Current roster documentation from production resolvers, no combat/save writes.
-const Catalog = preload("res://scripts/world/world_catalog.gd")
-const Profiles = preload("res://scripts/combat/enemy_profiles.gd")
-const Numbers = preload("res://scripts/combat/enemy_numerical_v2.gd")
-const Abilities = preload("res://scripts/combat/enemy_ability_catalog.gd")
+const Catalog = preload("res://scripts/domain/world/world_catalog.gd")
+const Profiles = preload("res://scripts/domain/combat/enemy_profiles.gd")
+const Numbers = preload("res://scripts/domain/combat/enemy_numbers.gd")
+const Abilities = preload("res://scripts/domain/combat/enemy_ability_catalog.gd")
 
 func _initialize() -> void:
 	var destination := ""
@@ -14,7 +14,7 @@ func _initialize() -> void:
 		quit(2)
 		return
 	var document := {"schema":"ProgressiveMonsterCatalog/v1", "ordinary":[], "rooms":[], "sources":{}}
-	for path: String in ["data/enemies.json","data/enemy_progression.json","data/rooms.json","data/numerical_v2.json","scripts/combat/enemy_profiles.gd","scripts/combat/enemy_numerical_v2.gd","scripts/combat/enemy_difficulty.gd","scripts/combat/enemy_ability_catalog.gd","scripts/combat/enemy_brain.gd","scripts/combat/enemy_skill_runtime.gd","scripts/combat/enemy_warning_timing.gd","scripts/combat/boss_brain.gd","scripts/combat/enemy_art.gd","scripts/combat/enemy_visual.gd","scripts/combat/enemy_skill_presentation.gd","scripts/combat/enemy_telegraphs.gd","scripts/world/world_catalog.gd"]:
+	for path: String in ["data/monsters/enemies.json","data/monsters/enemy_progression.json","data/world/rooms.json","data/rules/numerical.json","scripts/domain/combat/enemy_profiles.gd","scripts/domain/combat/enemy_numbers.gd","scripts/domain/combat/enemy_difficulty.gd","scripts/domain/combat/enemy_ability_catalog.gd","scripts/gameplay/monsters/enemy_brain.gd","scripts/gameplay/monsters/enemy_skill_runtime.gd","scripts/domain/combat/enemy_warning_timing.gd","scripts/gameplay/bosses/boss_brain.gd","scripts/presentation/monsters/enemy_art.gd","scripts/presentation/monsters/enemy_visual.gd","scripts/presentation/monsters/enemy_skill_presentation.gd","scripts/presentation/monsters/enemy_telegraphs.gd","scripts/domain/world/world_catalog.gd"]:
 		document.sources[path] = FileAccess.get_sha256("res://" + path)
 	for id: String in Catalog.enemy_ids():
 		var definition: Dictionary = Catalog.enemy(id)

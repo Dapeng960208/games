@@ -12,14 +12,14 @@ config_version=5
 
 config/name="Abyss Salvager"
 config/description="深渊拾荒者 / Abyss Salvager — M1"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/app/main.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="AbyssSalvagerM1"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]
 
-Game="*res://scripts/core/run_controller.gd"
+Game="*res://scripts/app/game.gd"
 
 [display]
 

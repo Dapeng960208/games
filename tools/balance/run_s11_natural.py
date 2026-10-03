@@ -50,7 +50,7 @@ def main():
     relevant=[]
     for directory in ('config','scripts','data','scenes','shaders','tests/support'):
         relevant.extend(f for f in (a.project/directory).rglob('*') if f.is_file() and f.suffix in ('.gd','.json','.tscn','.tres','.gdshader'))
-    relevant.extend(a.project/name for name in ('tests/test_s11_natural_progression.gd','tests/test_s11_natural_progression.tscn','project.godot','tools/balance/run_s11_natural.py'))
+    relevant.extend(a.project/name for name in ('tests/balance/test_s11_natural_progression.gd','tests/balance/test_s11_natural_progression.tscn','project.godot','tools/balance/run_s11_natural.py'))
     hashes={str(f.relative_to(a.project)):hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(set(relevant))}
     manifest={'source_sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest(),'files':hashes,
         'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=a.project,text=True).strip(),
@@ -64,7 +64,7 @@ def main():
         for key,folder in [('XDG_DATA_HOME','data'),('XDG_CONFIG_HOME','config'),('XDG_CACHE_HOME','cache')]:
             target=out/folder;target.mkdir();env[key]=str(target)
         command=[str(a.engine),'--headless','--audio-driver','Dummy','--fixed-fps','60','--path',str(a.project),
-            'tests/test_s11_natural_progression.tscn','--',f'--test-profile={out}/test_s11_natural_progression/profile.json',
+            'tests/balance/test_s11_natural_progression.tscn','--',f'--test-profile={out}/test_s11_natural_progression/profile.json',
             f'--hero={hero}',f'--sim-seconds={a.seconds}',f'--output={out}/events.jsonl']
         started=time.monotonic()
         exit_code,execution_failure=run_engine(command,env,out/'engine.log',max(600,a.seconds*3))

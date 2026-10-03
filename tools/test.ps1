@@ -1,12 +1,11 @@
 [CmdletBinding()]
 param(
     [string]$EnginePath,
-    [ValidatePattern('^[a-z][a-z0-9_]*$')][string[]]$Suite = @('single_biome_routes', 'loot_upgrade', 'first_four_bosses', 'first_four_mechanics', 'race_relics', 'death_penalty'),
-    [switch]$SkipRestart = $true,
+    [ValidatePattern('^[a-z][a-z0-9_]*$')][string[]]$Suite = @('numerical_fresh_profile', 'progressive_monster_roster', 'numerical_instances'),
     [switch]$ImportOnly,
     [switch]$SkipImport,
     [switch]$Graphical,
-    [ValidateSet(0,1,2)][int]$Ruleset = 0
+    [ValidateSet(0,2)][int]$Ruleset = 0
 )
 
 $ErrorActionPreference = 'Stop'
@@ -76,13 +75,17 @@ function Invoke-GodotStage {
     }
 }
 
+$suiteRegistry = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'testing/suites.json') -Encoding UTF8 -Raw | ConvertFrom-Json
+function Get-SuiteDefinition {
+    param([string]$Name)
+    $entry = $suiteRegistry.PSObject.Properties[$Name]
+    if ($null -eq $entry) { throw "Unknown acceptance suite: $Name." }
+    return $entry.Value
+}
 if (-not $ImportOnly) {
     foreach ($testName in $Suite) {
-        $testPath = Join-Path $projectRoot "tests\test_$testName.gd"
+        $testPath = Join-Path $projectRoot (Get-SuiteDefinition $testName).script
         if (-not (Test-Path -LiteralPath $testPath -PathType Leaf)) { throw "Required acceptance suite is missing: $testPath." }
-    }
-    if (-not $SkipRestart -and -not (Test-Path -LiteralPath (Join-Path $projectRoot 'tests\test_restart.gd') -PathType Leaf)) {
-        throw 'Required restart acceptance suite is missing.'
     }
 }
 
@@ -91,24 +94,13 @@ if (-not $SkipImport) {
 }
 if ($ImportOnly) { Write-Host "Resource import completed. Isolated profile directory: $testDirectory"; return }
 foreach ($testName in $Suite) {
-    $scenePath = Join-Path $projectRoot "tests\test_$testName.tscn"
-    [string[]]$arguments = if (Test-Path -LiteralPath $scenePath -PathType Leaf) { @("res://tests/test_$testName.tscn") } else { @('--script', "res://tests/test_$testName.gd") }
+    $definition = Get-SuiteDefinition $testName
+    [string[]]$arguments = if ($definition.scene) { @("res://$($definition.scene)") } else { @('--script', "res://$($definition.script)") }
     # The legacy playthrough suite shares the combat fixture's safety prefix.
     $profileName = if ($testName -eq 'playthrough') { 'combat_playthrough' } else { $testName }
     $arguments += @('--', "--test-profile=$(Get-TestProfile $profileName)")
-    # These named historical suites assert the original mechanics/economy.
-    # New numerical/default-activation suites deliberately receive no override.
-    $legacyDefaultSuites = @('single_biome_routes','loot_upgrade','first_four_bosses','first_four_mechanics','race_relics','death_penalty','equipment_integration','reward_transactions','numerical_versioned_saves')
-    $testRuleset = if ($Ruleset -ne 0) { $Ruleset } elseif ($testName -in $legacyDefaultSuites) { 1 } else { 0 }
+    $testRuleset = $Ruleset
     if ($testRuleset -ne 0) { $arguments += "--test-ruleset=$testRuleset" }
     Invoke-GodotStage -Stage "$testName acceptance" -StageArguments $arguments -AllowGraphics
-}
-if (-not $SkipRestart) {
-    foreach ($mode in @('write', 'read', 'read')) {
-        Invoke-GodotStage -Stage "restart $mode" -StageArguments @('--script', 'res://tests/test_restart.gd', '--', "--test-profile=$(Get-TestProfile 'restart_suite')", "--mode=$mode")
-    }
-    foreach ($mode in @('abrupt_write', 'abrupt_read', 'abrupt_read')) {
-        Invoke-GodotStage -Stage "interruption $mode" -StageArguments @('--script', 'res://tests/test_restart.gd', '--', "--test-profile=$(Get-TestProfile 'restart_abrupt_suite')", "--mode=$mode")
-    }
 }
 Write-Host "All requested acceptance suites passed. Isolated profiles: $testDirectory"

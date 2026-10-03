@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "room_id": "BO05",
+  "texture": "asset://world/rooms_2k/L26/floor_repair_v1.webp",
+  "actual_native_size": [
+    1254,
+    1254
+  ],
+  "source_tile_extent_pixels": [
+    512,
+    512
+  ],
+  "native_density_per_axis": [
+    2.44921875,
+    2.44921875
+  ],
+  "approved": false,
+  "candidate_only": true,
+  "generation_tool": "built-in image_gen",
+  "model_metadata": {
+    "specific_model": "unknown",
+    "model_version": "unknown",
+    "model_reported_by_tool": false,
+    "model_parameter_submitted": false,
+    "reason": "Recorded image_gen return did not supply a model name or version."
+  },
+  "provenance_generation_id": "L26_floor_repair_v1",
+  "full_prompt": "Use case: stylized-concept.\nAsset type: ONE opaque square high-native-resolution game floor MATERIAL texture,1536×1536 requested. The input image is ONLY a color/material/brushwork reference: match the warm pale-golden wooden floor of this living-tree nursery exactly. Do not recreate the room, trees, plants, cliffs, sky, gates or composition.\nCreate a close-up continuous flat surface of fine pale-gold organic wood paving, edge-to-edge over the whole square. This will patch a small missing southern strip of that same nursery floor at genuine native detail density. It must blend naturally with the reference's softly sunlit creamy golden timber. Use many short and medium irregular horizontal wooden pieces with softly rounded joins, delicate fine flowing woodgrain inside each, subtle warm beige seams. Slight variation in length/width, but no repeating grid. No oversized boards; at1536canvas typical piece around90–210pixels long and25–50pixels tall. Keep all joins very faint and shallow. Hand-carved organic rootwood character, not modern parquet.\nQuiet uniform low-contrast material. No conspicuous knots, rings, swirling inlay emblem, diagonal root, green strip, leaf motif, petal, individual decoration or hero-sized landmark that would reveal repeated sampling. No raised root or bumpy obstacle; fully flat dry walkable material. Mild consistent sunlight from upper left but essentially even illumination, no cast shadows, no bright center, dark border or vignette. Matte premium hand-painted fantasy2.5D, no plastic gloss or photoreal grain noise.\nThis is a repeatable substrate sampled across about2.2tile-widths. All four edges should have closely matching brightness/color and continuous unobtrusive small woodgrain, seamless-looking without obvious repeated large features. Plank ends stay irregular, no one dominant line crossing the full tile. Straight overhead texture view already suitable for the game ground; no perspective convergence or plane tilt. New sharply painted fine grain, not upscaling or sharpening.\nFill the entire canvas. OpaqueRGB, no transparent border or margins. No typography, numbers, UI, frame, tile grid, reference diagram, furniture, creatures, roots protruding above floor, foliage, flowers, dirt patches, holes, water, architecture or surrounding scene. One single pale-golden nursery floor texture only.",
+  "prompt_utf8_sha256": "7e99419acecc7d9d87bb05031f927f5195a04b1a64e35bfdb46d511e5ec7b4eb",
+  "generated_png_sha256": "9f2e0f4c3bd7867466b1b2503b5de8d0f4556dbcd982bf2025a79a265d3e7b8a",
+  "decoded_rgb_sha256": "b7612e598fd45ba7340a9066b407d6eb4ca62f88eac4a6364d65d41215ea1ee9",
+  "webp_sha256": "d9422e094ec7ac9c6f2e90484a93929099c9693b07c1069860c769e3d6885a77",
+  "encoding": "Lossless WebP re-encoded from byte-identical original recovered PNG; decodedRGB equality verified. Original pre-loss WebP file bytes are not claimed recovered.",
+  "source_batch": {
+    "local_group_id": "B05-L26_floor_repair_v1-2026-10-02",
+    "provider_batch_id": "unknown",
+    "local_group_is_assistant_defined": true
+  },
+  "metadata_rebuilt_after_recovery": true,
+  "recommended_repair_source_rect": [
+    205,
+    760,
+    1130,
+    95
+  ],
+  "maximum_estimated_horizontal_tile_repeats": 2.20703125,
+  "recommended_repair_mask": "Southern repair intersected with frozen ground; no geometry change.",
+  "known_pending": "South root-fascia and additional missing western rim coverage were not accepted before environment loss. No native detail pack generated.",
+  "shared_material_source": "L26 neutral rootwood material; only local floor repair, not room composition",
+  "material_average_rgb": [
+    0.9800120815504405,
+    0.8224050115965029,
+    0.5617023504583313
+  ]
+}

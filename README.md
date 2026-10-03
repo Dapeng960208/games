@@ -1,62 +1,80 @@
 # 深渊拾荒者 Abyss Salvager
 
-Godot 单人动作游戏原型。明亮手绘卡通奇幻风，高机位三分之四斜俯视、近等距构图和 2.5D 立体质感；古典遗迹融合魔法蒸汽机械，暖阳光照与清新配色。界面采用米白羊皮纸、黄铜装饰、深紫文字和圆形技能徽章。
+Godot 4 单人动作游戏原型。当前正式入口开放 **B01–B04、等级 1–20、战士／枪手／法师**。B05、B06 保留为隔离候选；B07–B12 和召唤师为未实现设计。内容状态更新于 2026-10-03，以 [开发进度](docs/DEVELOPMENT_PROGRESS.md) 和运行配置为准。
 
-截至 2026-10-01，前四个种族副本已初步接入，完整装备循环及后八副本仍待开发。当前按最新需求完善敌人难度、敌群数量与四族战斗差异，在 main 分支按功能提交。实际范围以 [开发进度](docs/DEVELOPMENT_PROGRESS.md) 为准。
+明亮手绘卡通奇幻风，高机位三分之四斜俯视与 2.5D 质感；界面使用米白羊皮纸、黄铜、深紫文字和圆形技能徽章。
 
-第二轮 A13–A30 的运行代码修复和兼容性验证见 [逐项修复记录](docs/audits/GAMEPLAY_AUDIT_ROUND2_FIXES_2026-10-01.md)。审查旧报告是固定基线，当前分支包含代码修复。
+## 当前可玩范围
 
-## 当前内容
+| 内容 | 已接入范围 | 待完成或待验证 |
+|---|---|---|
+| 职业 | 三职业、各四技能、职业被动、成长与连击反馈 | 全方向连续动作、可见换装、自然群战手感 |
+| 前四关 | 24 个普通房与 4 个首领场地；普通怪分别 9／12／15／18 种，共 54 种；4 名首领 | 长时间游玩、全种子自然平衡与硬件性能 |
+| 装备 | 124 个模板、14 套、八槽独立实例、白绿紫金品质、随机词条、购买／打造、强化、重锻、重铸、精炼、继承、出售／拆解 | 自然获取时长及高难度构筑平衡；药品未实现 |
+| 房间表现 | 固定蓝图、脚点排序与遮挡淡化、28 房独立环境与详细图块、首领和普通怪资源注册 | 图块共享本房纹理；显存流式加载未实现 |
+| 保存 | 检查点、一次结算、写入互斥、七天回收站；当前格式继续读写 | 旧格式只保留原始备份并从新进度开始 |
 
-- 晴辉遗庭、琥珀虫巢、南瓜墓镇、赤岩战寨：24 个战斗房蓝图、4 个首领场地、36 个普通怪原型、4 个首领及四种主题机制。
-- 三个职业明确为战士、枪手、法师，每职业四技能和独特被动；技能分别使用战斧地裂、枪械弹道与奥术法晶的反馈语言，普攻与技能支持有限输入缓存和接招。
-- 固定地图点位、自然边缘、脚点排序与遮挡淡化。逐房独立背景、房间铭牌和用途陈设的接入与验收范围见开发进度；每房六个连续区块共享本房纹理，不代表显存流式加载。
-- 战斗背包、属性查看与临时战利品配装。UI 展示八槽，后端目前六槽生效，裤子与戒指待接入。
-- 装备目录共 96 个固定模板／14 套：原四族各 15 件，加上商城专属 36 件／6 套。支持本族适配掉落、预强化、撤离入库、金币采购和永久装备多选回收；详见 [装备商城与回收](docs/EQUIPMENT_MARKET.md)。随机品质与多词条、独立实例、洗练、药品、可见换装仍待开发，强化 +N 不等于装备品质。
-- 五档难度独立提高敌人生命、技能伤害、移动与双抗；到 20 级后仍随难度变强。每房累计敌群较原计划增加约 40%，通过有限增援继续随难度增加；同区域最多 6 个、整房最多 18 个同时存活。固定位置且随机功能的自动信标与现有职业遗物的种族适配保留。
-- 四族普通怪保留各自攻击原型，并增加实战特性：晴辉有效命中蓄能护盾，琥珀攻击追加毒蚀，墓镇有效命中吸血，战寨半血后提高移动与技能伤害。护盾、毒伤及吸血随实际难度属性增长，命中特性不会在未命中时触发。
-- 四个首领按距离、冷却和召唤条件选招，在攻击间追击、绕行或拉开距离；超出射程时先接近。新增交叉雷网、三点酸雨、缝线牢笼和裂岩跃击，保留原有分阶段技能、主题机关和弱点反击窗口，锁定预警后不继续追踪。
-- 新版单种族副本死亡扣本局 50% 金币，丢弃未结算经验，保留已有等级、已结算经验和永久装备。
+当前默认采用新数值规则。死亡扣本局 50% 金币、丢弃未结算经验与临时装备，保留已有等级、已结算经验与永久装备；成功撤离后新装备永久入库。换装不会回血、重置冷却或重复发奖。默认四关的数值配置没有因本次整理而调整。
 
-枪手朝向修复已通过定向检查。本轮按战士、枪手、法师重构十二技能的释放与命中反馈，新增职业短乐句；战士战吼获得短时减伤，枪手伏板改为定时榴弹，法师领域跳伤加入寒冷控制。详细规则见 [三职业技能重构](docs/ROLE_SKILL_REDESIGN.md)。枪口出弹观感、房间摆放、自然战斗平衡、长时间舒适度和多局成长仍需实机验收。
+## Windows 运行与检查
 
-## Windows 运行
+默认引擎为 Godot 4.7.2-stable，二进制不入库。首次安装会下载并校验配置的官方版本，游戏离线运行。
 
-默认 Godot 4.7.2-stable。源码不包含引擎二进制，安装脚本会下载并校验官方 Windows x64 便携版本。
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\setup.ps1
+.\tools\run.ps1
+# 编辑器
+.\tools\run.ps1 -Editor
+# 整理资源后的导入／解析
+.\tools\test.ps1 -ImportOnly
+# 只运行相关检查
+.\tools\test.ps1 -Suite legacy_profile_reset -SkipImport
+python tools/maintenance/audit_repository.py
+```
 
-首次运行：powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\setup.ps1
-
-启动游戏：.\tools\run.ps1，或双击 RUN_GAME.cmd。
-
-已有引擎可用 -EnginePath 或 GODOT_BIN 指定；编辑器使用 .\tools\run.ps1 -Editor。首次启动会导入资源，游戏本身离线运行。
+也可双击 `RUN_GAME.cmd`，已有引擎可通过 `-EnginePath` 或 `GODOT_BIN` 指定。测试会重定向到独立存档目录。实际玩家存档为 `%APPDATA%\AbyssSalvagerM1\profile.json`，不属于仓库清理范围。
 
 ## 默认操作
 
 | 操作 | 按键 |
 |---|---|
-| 移动与按住跟随 | 鼠标右键；方向键可辅助 |
+| 移动与按住跟随 | 鼠标右键；方向键辅助 |
 | 普通攻击 | 鼠标左键 / A；可设置自动普攻 |
-| 四个职业技能 | Q / W / E / R |
-| 闪避 | 空格 |
-| 交互 | F；信标靠近自动触发 |
-| 背包和属性 | B |
-| 远征路线 | M |
-| 技能详情 | Tab |
+| 四个技能 | Q / W / E / R |
+| 闪避／交互 | 空格／F；信标靠近自动触发 |
+| 背包／路线／技能详情 | B／M／Tab |
 | 暂停 | Esc |
 
-支持自定义并保留旧存档显式配置。C/V 主动回路已由职业被动替代。自动普攻只对有效距离与视线内目标释放，不自动追敌。暂停、背包、闪避、死亡和切房清空接招缓存，技能仍受资源、等级和冷却限制。
+可自定义按键、自动普攻、技能路径、降低特效和镜头震动。自动普攻遵守距离和视线，不自动追敌。
 
-完成任务并清理敌人后到出口继续。成功撤离才能永久带回新装备；安全阶段保存退出保留当前状态，战斗中退出恢复本房入口已提交检查点。实际存档位于 %APPDATA%\AbyssSalvagerM1\profile.json，不纳入仓库或清理范围。
+## 仓库目录
 
-## 开发资料
+```text
+assets/
+  characters/{warrior,gunner,mage}/{animations,portraits,skills,ui}/
+  system/{audio,fonts,equipment,ui,world,combat,relics}/
+  levels/b01...b06/{enemies,bosses,rooms,decorations,ui}/
+  manifest.json                   # 逻辑资源 ID → 实际文件
+scripts/
+  app/                           # 运行入口与用例服务
+  domain/                        # 战斗、装备、远征、成长规则
+  gameplay/                      # 游戏节点与房间生命周期
+  presentation/                  # 界面与视觉反馈
+  infrastructure/                # 资源、音频、输入、内容和保存
+  levels/                        # 关卡专属行为
+  shared/                        # 少量共用尺度
+scenes/{app,gameplay,presentation}/
+data/{characters,equipment,monsters,world,levels,rules,localization}/
+shaders/{world,levels}/
+tests/{app,persistence,characters,equipment,combat,world,levels,ui,audio,balance,support,captures}/
+tools/{assets,maintenance,testing,balance}/
+docs/{characters,system,levels,engineering,legal}/
+```
 
-- [文档索引](docs/README.md)
-- [开发进度](docs/DEVELOPMENT_PROGRESS.md)
-- [代码待办与十二关路线图](docs/LEVEL_ROADMAP.md)
-- [开发规范](docs/DEVELOPMENT_STANDARDS.md)
-- [玩法审查、竞品研究与长期循环提案（2026-10-01）](docs/audits/GAMEPLAY_AUDIT_2026-10-01.md)：固定提交的源码审查与数值推演，不代表实机 UI、手感或留存验收完成。
-- [三职业技能重构](docs/ROLE_SKILL_REDESIGN.md)
-- [四地图 28 房设计册](docs/levels/fixed_layouts/index.html)
-- [素材与字体版权](docs/ASSET_LICENSES.md)
+角色按职业，系统按功能，关卡普通怪与首领分别归档。物理资源名称使用小写 `snake_case`；旧目录不再作为加载入口。新增资源先登记 `assets/manifest.json`，由 `AssetCatalog` 统一解析；文件搬迁不改变怪物、装备、房间和存档里的稳定 ID。
 
-scripts/、scenes/ 保存运行代码，data/、config/ 保存内容配置，assets/ 保存资源及来源，tests/ 保存现有定向检查，tools/ 保存安装、运行和生成工具。只运行与变更有关的检查，例如 .\tools\test.ps1 -Suite new_controls -SkipImport；资源或脚本整理可用 .\tools\test.ps1 -ImportOnly，不默认运行全部检查。
+- [文档入口](docs/README.md)：与资源相同的职业、系统、关卡层级。
+- [当前进度](docs/DEVELOPMENT_PROGRESS.md)与[路线图](docs/LEVEL_ROADMAP.md)：明确已接入、候选、待验证和未实现。
+- [开发规范](docs/DEVELOPMENT_STANDARDS.md)：代码职责、命名、清理和保存边界。
+- [目录结构规范](docs/engineering/repository_structure.md)：完整层级、放置责任、命名和搬迁检查。
+- [素材许可与来源](docs/legal/asset_licenses.md)：字体许可、原创资源来源及退役资源的必要归属记录。

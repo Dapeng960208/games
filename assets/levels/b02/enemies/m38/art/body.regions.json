@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "texture": "asset://ui/refactor_v1/codex/M38.png",
+  "source_family": "storybook_2_5d_v1",
+  "biome_id": "B02",
+  "visual_clan": "琥珀虫族",
+  "image_size": [
+    1254,
+    1254
+  ],
+  "entries": {
+    "M38": {
+      "region": [
+        48,
+        67,
+        1162,
+        1142
+      ],
+      "foot": [
+        629.0,
+        1209
+      ],
+      "source_height": 1142,
+      "facing": "right",
+      "full_color": true,
+      "source_identity": "M38",
+      "individual_body": true
+    }
+  },
+  "source_sha256": "1d9d9035aa72fc093697fc877edee4fd6419e97c793298457731eaddc5a85f36",
+  "region_alpha_threshold": 16,
+  "region_padding_pixels": 4
+}

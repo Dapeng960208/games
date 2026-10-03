@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "source_family": "storybook_2_5d_v1",
+  "purpose": "Exact-source variant HD replacements; only these 4 explicitly reviewed appearance identities may be replaced.",
+  "activation_status": "Requires narrow EnemyArt override integration and focused sampling QA; assets alone do not activate.",
+  "match_policy": "Match identity, original visual_variant_index, original variant_id, texture path and region. Replace in place only; preserve index/count/deterministic selection and original variant_id. If missing, invalid or changed, keep original entry.",
+  "geometry_policy": "Replacement region has exactly the source region aspect ratio and uses centered bottom foot anchor. Uniform height registration produces the same body_bounds width, height and pivot. Do not change collision/navigation/gameplay/skill data.",
+  "region_policy": "Use supplied source rectangle and bottom foot. Alpha>8 bounds define the visible painted body; a 2px antialias allowance plus aspect-preserving transparent allowance retains exact world geometry.",
+  "overrides": [
+    {
+      "source": {
+        "identity": "M22",
+        "visual_variant_index": 0,
+        "variant_id": "storybook_B03_variants_v1:M22:r01c04",
+        "texture": "asset://enemies/storybook_B03_variants_v1.png",
+        "region": [
+          426,
+          15,
+          116,
+          118
+        ],
+        "foot": [
+          484.0,
+          133
+        ],
+        "source_height": 118,
+        "crop_rgba_sha256": "c8c763fa430e9e0ab29f50743e445d6215901763dc1087583e498e32f4ac8761"
+      },
+      "replacement": {
+        "texture": "asset://enemies/variant_hd_v1/M22_variant_00_hd_v1.png",
+        "region": [
+          200.22033898305085,
+          146,
+          1011.5593220338983,
+          1029
+        ],
+        "foot": [
+          706.0,
+          1175
+        ],
+        "source_height": 1029,
+        "full_color": true,
+        "source_identity": "M22",
+        "source_variant_id": "storybook_B03_variants_v1:M22:r01c04",
+        "native_redraw": true
+      },
+      "review": {
+        "source_identity": "accepted_for_candidate_sampling_by_parent",
+        "production_visual_qa": "pending",
+        "visible_native_body_height": 1025,
+        "visible_2k_pixels_per_source_pixel": 0.17514146048780488
+      }
+    },
+    {
+      "source": {
+        "identity": "M34",
+        "visual_variant_index": 0,
+        "variant_id": "storybook_B04_variants_v1:M34:r01c07",
+        "texture": "asset://enemies/storybook_B04_variants_v1.png",
+        "region": [
+          846,
+          25,
+          115,
+          125
+        ],
+        "foot": [
+          903.5,
+          150
+        ],
+        "source_height": 125,
+        "crop_rgba_sha256": "c9c8ddcb13da3e8bbc53f476e728d524bfff0c40289df96d24fc06dbb5bbf576"
+      },
+      "replacement": {
+        "texture": "asset://enemies/variant_hd_v1/M34_variant_00_hd_v1.png",
+        "region": [
+          141.99999999999994,
+          111.52173913043475,
+          983.0000000000001,
+          1068.4782608695652
+        ],
+        "foot": [
+          633.5,
+          1180
+        ],
+        "source_height": 1068.4782608695652,
+        "full_color": true,
+        "source_identity": "M34",
+        "source_variant_id": "storybook_B04_variants_v1:M34:r01c07",
+        "native_redraw": true
+      },
+      "review": {
+        "source_identity": "accepted_for_candidate_sampling_by_parent",
+        "production_visual_qa": "pending",
+        "visible_native_body_height": 1060,
+        "visible_2k_pixels_per_source_pixel": 0.16935848773584905
+      }
+    },
+    {
+      "source": {
+        "identity": "M34",
+        "visual_variant_index": 1,
+        "variant_id": "storybook_B04_variants_v1:M34:r02c07",
+        "texture": "asset://enemies/storybook_B04_variants_v1.png",
+        "region": [
+          846,
+          166,
+          115,
+          125
+        ],
+        "foot": [
+          903.5,
+          291
+        ],
+        "source_height": 125,
+        "crop_rgba_sha256": "5580e68a9e4a2d153fa33648ff1f21d731127b3906cbd605fc1e8370f54ebf7b"
+      },
+      "replacement": {
+        "texture": "asset://enemies/variant_hd_v1/M34_variant_01_hd_v1.png",
+        "region": [
+          161.45999999999998,
+          121,
+          965.08,
+          1049
+        ],
+        "foot": [
+          644.0,
+          1170
+        ],
+        "source_height": 1049,
+        "full_color": true,
+        "source_identity": "M34",
+        "source_variant_id": "storybook_B04_variants_v1:M34:r02c07",
+        "native_redraw": true
+      },
+      "review": {
+        "source_identity": "accepted_for_candidate_sampling_by_parent",
+        "production_visual_qa": "pending",
+        "visible_native_body_height": 1045,
+        "visible_2k_pixels_per_source_pixel": 0.17178947081339713
+      }
+    },
+    {
+      "source": {
+        "identity": "M34",
+        "visual_variant_index": 4,
+        "variant_id": "storybook_B04_variants_v1:M34:r05c07",
+        "texture": "asset://enemies/storybook_B04_variants_v1.png",
+        "region": [
+          846,
+          622,
+          118,
+          125
+        ],
+        "foot": [
+          905.0,
+          747
+        ],
+        "source_height": 125,
+        "crop_rgba_sha256": "f4be6299420593df032dbd8f0ae2774be6276e0222d9f3b4b98314a0fd9d09a1"
+      },
+      "replacement": {
+        "texture": "asset://enemies/variant_hd_v1/M34_variant_04_hd_v1.png",
+        "region": [
+          173.99600000000004,
+          166,
+          927.0079999999999,
+          982
+        ],
+        "foot": [
+          637.5,
+          1148
+        ],
+        "source_height": 982,
+        "full_color": true,
+        "source_identity": "M34",
+        "source_variant_id": "storybook_B04_variants_v1:M34:r05c07",
+        "native_redraw": true
+      },
+      "review": {
+        "source_identity": "accepted_for_candidate_sampling_by_parent",
+        "production_visual_qa": "pending",
+        "visible_native_body_height": 978,
+        "visible_2k_pixels_per_source_pixel": 0.18355827914110429
+      }
+    }
+  ]
+}

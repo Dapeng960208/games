@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "room_id": "L02",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L02_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "d8a4823056487a13d77924ba6b7440822952bc0eb8b0d3377fe8b62df5b14416",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L02/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "85d713731d6d21393ec599b37e8a6f55b3409ba199a709d3d719f4d77dd64c86",
+      "decoded_rgb_sha256": "1209cfe254f7a3b6afbc317fdf9a5f4f4e5ac57b2a9a47486974840166d0eef9",
+      "webp_sha256": "04a16f2ba1f732f7130cfcc7f93691b0cae59b26b0b061e918e08673c2b5db97",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L02, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room includes glazed conservatory bridges and cliff edges: keep every cliff lip, bridge doorway, glass canopy outline and structural support fixed."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L02/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "420419b4542ee0f8ee0fb69040bce0c02fa0b620c17b30b83a59a6d035007ec4",
+      "decoded_rgb_sha256": "6e1a32e33f087f995e40a3bcb4e328a28d61c84fe641df0c870fbdf4124dd8b4",
+      "webp_sha256": "011ad4ce389d4650cc04e932cbfbb747a63c031d8d672b62d4b44688a03d35fb",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L02, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room includes glazed conservatory bridges and cliff edges: keep every cliff lip, bridge doorway, glass canopy outline and structural support fixed."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L02/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "e6c1a153df1098c1ef9c568cd105e762fa51c546159d8a2bfcec51d524df27a6",
+      "decoded_rgb_sha256": "6050d720627666496288dd91e0767d1ae743370f19579360bc4f7b1bb2d1a929",
+      "webp_sha256": "cfc901f5dc94a08dd1ad978a4733fa437b9e43f47227f98d08c766f242325d72",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L02, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room includes glazed conservatory bridges and cliff edges: keep every cliff lip, bridge doorway, glass canopy outline and structural support fixed."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L02/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "55db10b0dfebe7d6b99ee8734be91693f3a274d7650ad190ce82d0a753a5bb36",
+      "decoded_rgb_sha256": "cc6c0feaad88af04c77252039976e235c07c65e8abedb4dd614a50ca99568c59",
+      "webp_sha256": "0da2b52fe54f8b789f96e75be127e2a52b8056782905512f1db8a9f1ddaf74b4",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L02, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room includes glazed conservatory bridges and cliff edges: keep every cliff lip, bridge doorway, glass canopy outline and structural support fixed."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L02/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "fa482eb12a32330b934901bfe8ba7d580901d672d9ae4a220cc3501b102b301d",
+      "decoded_rgb_sha256": "db59dd8289b4cc84e7a43e54757a848cf26cd3e036de0cedece97051bae796d1",
+      "webp_sha256": "fa2c7ed725e36548218b23b3bdcfddd0491e03a95eb88753951b480c70192740",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L02, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room includes glazed conservatory bridges and cliff edges: keep every cliff lip, bridge doorway, glass canopy outline and structural support fixed."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L02/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "0cc8404365def20313cafdf26622d5ce508516930681185713ba870261acf064",
+      "decoded_rgb_sha256": "3b382be2746eb7118d3766d86ae0be6c5f65049e158af79bc8fb2d21edda2e93",
+      "webp_sha256": "48a8479c2e7a6275df95b66c31fc1d2346540ddb0d4a2b3caceb1d1ec0ed0c29",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L02, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room includes glazed conservatory bridges and cliff edges: keep every cliff lip, bridge doorway, glass canopy outline and structural support fixed."
+    }
+  ],
+  "qa": {
+    "date": "2026-10-02",
+    "engine": "Godot 4.7.2",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "checks": 46,
+    "failures": 0,
+    "layout_polygon_camera_unchanged": true,
+    "texture_release_and_reload": true,
+    "visual_review": "Five native 2560x1440 views inspected against the original reference, with paired southeast gameplay comparison: glass conservatory arches, cliff parapet, bridge threshold and water margins retain their placement; floor and glass detail improve. No apparent hard region joins or displaced gameplay markers. Narrow feather overlap retains some original texels.",
+    "graphics_backend": "private Xorg :97, llvmpipe; hardware frame-rate performance not benchmarked",
+    "rgba_mips_upper_bound_bytes": 50305616,
+    "evidence": [
+      {
+        "capture": "L02_center_original_2560x1440.png",
+        "sha256": "4f1c565f0b9d615c9d096e25c78566dab63f9afe42426b6dcfe2c4200e87b9b1"
+      },
+      {
+        "capture": "L02_center_native_2560x1440.png",
+        "sha256": "4d1604e28d484b33a487dc647dcf4e5ca6207b4a685bc67f203f89399447f9b5"
+      },
+      {
+        "capture": "L02_northwest_original_2560x1440.png",
+        "sha256": "dae53036469d986e80fab939f3f26fb14bc0d239705836bce7b6e27b8b51a8dc"
+      },
+      {
+        "capture": "L02_northwest_native_2560x1440.png",
+        "sha256": "fdd0f935d28dbe62d82cc63b88576441c6e58ece3ee397d994084214194c70f1"
+      },
+      {
+        "capture": "L02_northeast_original_2560x1440.png",
+        "sha256": "154eecdd5586787864cc47ee27faa303a07a8b3f91bcc35e2f24edea3cec3a58"
+      },
+      {
+        "capture": "L02_northeast_native_2560x1440.png",
+        "sha256": "be245d39fa2982a70206b4da2a4ccbc42e0cae82021b4e4f1bac9fe6f4fdd1b8"
+      },
+      {
+        "capture": "L02_southwest_original_2560x1440.png",
+        "sha256": "a09b9434a01ee47a6afa3384b26656f6e1373934609d683fd8dceabe83b89131"
+      },
+      {
+        "capture": "L02_southwest_native_2560x1440.png",
+        "sha256": "a75ffd0d1ecd50717e79f1e5c0015e171eedf85f95d0aa707e8fdb0572183460"
+      },
+      {
+        "capture": "L02_southeast_original_2560x1440.png",
+        "sha256": "2c5176877adbacc99925f81067fbd7d2f7289b5fc66cedc6e2bc448f3118f20c"
+      },
+      {
+        "capture": "L02_southeast_native_2560x1440.png",
+        "sha256": "1777dfc88b5632cfbab0c8b939201923b45932e819a4fa350313fd42be398cd0"
+      }
+    ]
+  }
+}

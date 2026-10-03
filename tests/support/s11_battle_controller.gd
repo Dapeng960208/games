@@ -3,7 +3,7 @@ extends RefCounted
 ## current character resources. Executes the same requests as production input.
 const VERSION := "s11-controller-v8"
 const PRIORITY := ["f", "ultimate", "secondary", "q"] # E, R, W, Q
-var room: MineRoom
+var room: RoomController
 var next_decision := 0.0
 var decisions: Array[Dictionary] = []
 var rejected: Dictionary = {}
@@ -11,7 +11,7 @@ var last_mode := ""
 var aim_target: WeakRef
 var primary_target: WeakRef
 
-func configure(value: MineRoom) -> void:
+func configure(value: RoomController) -> void:
 	room = value
 	assert(DisplayServer.get_name() != "headless" or room.get_viewport() is SubViewport,"Headless input must use an isolated SubViewport with handle_input_locally=true; root Window may overwrite the virtual pointer")
 	next_decision = 0.0
@@ -36,7 +36,7 @@ func step(time: float) -> void:
 		return
 	next_decision = time + .1
 	primary_target = null
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	var boss: Node2D = room._boss_actor if is_instance_valid(room._boss_actor) else null
 	var threats := visible_threats()
 	var danger := danger_at(player.position, threats)
@@ -65,7 +65,7 @@ func step(time: float) -> void:
 	var target := boss
 	if not is_instance_valid(target):
 		for enemy in room.enemies.get_children():
-			if enemy is MineEnemy and enemy.is_alive() and not enemy.is_queued_for_deletion() and enemy.actor_kind != "objective":
+			if enemy is EnemyActor and enemy.is_alive() and not enemy.is_queued_for_deletion() and enemy.actor_kind != "objective":
 				if not is_instance_valid(target) or player.position.distance_squared_to(enemy.position) < player.position.distance_squared_to(target.position): target = enemy
 	if is_instance_valid(target): attack_target(time,target,threats,false)
 
@@ -92,7 +92,7 @@ func counter_target(boss: Node2D) -> Dictionary:
 	return best
 
 func attack_target(time: float, target: Node2D, threats: Array[Dictionary], counter: bool) -> void:
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	var distance := player.position.distance_to(target.position)
 	var direction := player.position.direction_to(target.position)
 	var hero: String = Game.run.hero_id
@@ -156,7 +156,7 @@ func maintain_primary() -> void:
 	# would erase the fourth affix's real attack-speed benefit.
 	if primary_target == null: return
 	var target: Node2D = primary_target.get_ref()
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	if not is_instance_valid(target) or not target.is_alive() or target.is_queued_for_deletion(): return
 	if not player.combo_queue.is_empty() or player.dash_remaining > 0 or player.abilities.busy() or player.shot_cooldown > 0: return
 	if player.position.distance_to(target.position) > player.auto_attack_range()-5 or not room.has_line_of_sight(player.position,target.position): return
@@ -164,7 +164,7 @@ func maintain_primary() -> void:
 	player.request_attack(direction if not direction.is_zero_approx() else player.aim_direction,target)
 
 func navigate_to_reachable(time: float, at: Vector2, desired: float, threats: Array[Dictionary]) -> bool:
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	if player.dash_remaining>0: return false
 	var direction := player.position.direction_to(at)
 	var preferred := at-direction*desired
@@ -208,7 +208,7 @@ func node_placement(target: Node2D, spec: Dictionary, threats: Array[Dictionary]
 	# crystal's actual attack range, outside the enemy's body, and away from
 	# current visible hazards and the direct enemy-to-player firing line.
 	# This uses current geometry only, never future AI choices or hidden state.
-	var player: SalvagerPlayer = room.player
+	var player: HeroActor = room.player
 	var reach := float(spec.get("radius",160.0))
 	var best: Dictionary = {}
 	var best_score := INF
@@ -254,10 +254,10 @@ func safe_cast_window(threats: Array[Dictionary], duration: float) -> bool:
 func visible_threats() -> Array[Dictionary]:
 	var warnings: Array[Dictionary] = []
 	for actor in room.enemies.get_children():
-		if not actor is MineEnemy or actor.brain == null or not actor.brain.has_method("current_telegraph"): continue
+		if not actor is EnemyActor or actor.brain == null or not actor.brain.has_method("current_telegraph"): continue
 		var warning: Dictionary = actor.brain.current_telegraph()
 		if warning.is_empty(): continue
-		warning["release_in"] = float(actor.brain.state_time) if actor is MineBoss else float(warning.get("duration",1))*(1.0-float(warning.get("progress",0)))
+		warning["release_in"] = float(actor.brain.state_time) if actor is BossActor else float(warning.get("duration",1))*(1.0-float(warning.get("progress",0)))
 		warnings.append(warning)
 	for hazard: Dictionary in room.enemy_skills.hazards:
 		var warning := hazard.duplicate()

@@ -1,0 +1,1602 @@
+{
+  "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+  "biome_id": "B03",
+  "source_family": "storybook_2_5d_v1",
+  "full_color": true,
+  "alpha_threshold": 32,
+  "entries": {
+    "M19": [
+      {
+        "region": [
+          9,
+          13,
+          151,
+          140
+        ],
+        "foot": [
+          84.5,
+          153
+        ],
+        "source_height": 140,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r01c01",
+        "source_cell": [
+          0,
+          0,
+          160,
+          161
+        ],
+        "pixel_sha256": "8a01ce998168a57a0b6e2db6d3c12a9b2c0dd287d8d8259399567b6d0d62f7ea"
+      },
+      {
+        "region": [
+          175,
+          12,
+          136,
+          147
+        ],
+        "foot": [
+          243.0,
+          159
+        ],
+        "source_height": 147,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r01c02",
+        "source_cell": [
+          160,
+          0,
+          157,
+          161
+        ],
+        "pixel_sha256": "15bc3089633abcc1ad6adc65129a9f23a8f59678b2dfcc2784c84a401d384a77"
+      },
+      {
+        "region": [
+          326,
+          8,
+          147,
+          146
+        ],
+        "foot": [
+          399.5,
+          154
+        ],
+        "source_height": 146,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r01c03",
+        "source_cell": [
+          317,
+          0,
+          161,
+          161
+        ],
+        "pixel_sha256": "0c23d142715baee82f0d8029c94bfecb7fdb0963703f386807fa7bdad318fabd"
+      },
+      {
+        "region": [
+          491,
+          11,
+          143,
+          143
+        ],
+        "foot": [
+          562.5,
+          154
+        ],
+        "source_height": 143,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r01c04",
+        "source_cell": [
+          478,
+          0,
+          158,
+          161
+        ],
+        "pixel_sha256": "3a9cf5c3a7de32803880b01962515461ed993389c5d76e107f8ab7f52bde3f35"
+      },
+      {
+        "region": [
+          639,
+          11,
+          155,
+          150
+        ],
+        "foot": [
+          716.5,
+          161
+        ],
+        "source_height": 150,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r01c05",
+        "source_cell": [
+          636,
+          0,
+          158,
+          161
+        ],
+        "pixel_sha256": "17b52f4b717b9e8afe5a4526e28168de51500b2642fbd474c8d00e65d88d947e"
+      },
+      {
+        "region": [
+          821,
+          9,
+          119,
+          146
+        ],
+        "foot": [
+          880.5,
+          155
+        ],
+        "source_height": 146,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r01c06",
+        "source_cell": [
+          794,
+          0,
+          152,
+          161
+        ],
+        "pixel_sha256": "b45ee280810d90626bdf3527f41586f6d894d6f0f8e816bafbb4e4eb1210eaca"
+      },
+      {
+        "region": [
+          962,
+          18,
+          128,
+          141
+        ],
+        "foot": [
+          1026.0,
+          159
+        ],
+        "source_height": 141,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r01c07",
+        "source_cell": [
+          946,
+          0,
+          153,
+          161
+        ],
+        "pixel_sha256": "09342826ff692ffd31c516736f27f1d94ff7bce4bc09ce98852f7cdc68f31833"
+      },
+      {
+        "region": [
+          1115,
+          17,
+          131,
+          138
+        ],
+        "foot": [
+          1180.5,
+          155
+        ],
+        "source_height": 138,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r01c08",
+        "source_cell": [
+          1099,
+          0,
+          155,
+          161
+        ],
+        "pixel_sha256": "c2b4297a37bf8296860a99453ee8a5514f1c9fdf47b789b4ea3fc58450bcb073"
+      },
+      {
+        "region": [
+          26,
+          162,
+          128,
+          149
+        ],
+        "foot": [
+          90.0,
+          311
+        ],
+        "source_height": 149,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r02c01",
+        "source_cell": [
+          0,
+          161,
+          160,
+          152
+        ],
+        "pixel_sha256": "015845b9e0c302963a3d0ace81d2810be4137038cca081ac8eb0d9e4bd3e8ccd"
+      },
+      {
+        "region": [
+          180,
+          163,
+          128,
+          148
+        ],
+        "foot": [
+          244.0,
+          311
+        ],
+        "source_height": 148,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r02c02",
+        "source_cell": [
+          160,
+          161,
+          157,
+          152
+        ],
+        "pixel_sha256": "d4fac3dabfa95b36e2823d6ce8c91ffb9d43ec6744827c09a2335f231199e280"
+      },
+      {
+        "region": [
+          332,
+          172,
+          142,
+          138
+        ],
+        "foot": [
+          403.0,
+          310
+        ],
+        "source_height": 138,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r02c03",
+        "source_cell": [
+          317,
+          161,
+          161,
+          152
+        ],
+        "pixel_sha256": "33791b1c6dc3f89a62e91621058fcb3d889da1ee3184b8b7073afe5f5414323a"
+      },
+      {
+        "region": [
+          490,
+          168,
+          138,
+          145
+        ],
+        "foot": [
+          559.0,
+          313
+        ],
+        "source_height": 145,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r02c04",
+        "source_cell": [
+          478,
+          161,
+          158,
+          152
+        ],
+        "pixel_sha256": "959d13348b4add5c54735b23583b604fb913210ce5acbb26d326b8284acac678"
+      },
+      {
+        "region": [
+          643,
+          161,
+          139,
+          152
+        ],
+        "foot": [
+          712.5,
+          313
+        ],
+        "source_height": 152,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r02c05",
+        "source_cell": [
+          636,
+          161,
+          158,
+          152
+        ],
+        "pixel_sha256": "79f743c4b61a35fcfd6c3a06bd8cc04736c61534e19d901be6fe49fe5ecba99f"
+      },
+      {
+        "region": [
+          799,
+          165,
+          142,
+          148
+        ],
+        "foot": [
+          870.0,
+          313
+        ],
+        "source_height": 148,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r02c06",
+        "source_cell": [
+          794,
+          161,
+          152,
+          152
+        ],
+        "pixel_sha256": "5474ebbcbf464128dfa5d2cb759177bd367cdddfa503b633afb3e5a177bb28cb"
+      },
+      {
+        "region": [
+          964,
+          165,
+          135,
+          145
+        ],
+        "foot": [
+          1031.5,
+          310
+        ],
+        "source_height": 145,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r02c07",
+        "source_cell": [
+          946,
+          161,
+          153,
+          152
+        ],
+        "pixel_sha256": "7a7b3ac1bc3d0661ec221e222fba6d8cc5d7b8ccccc80f41c546bebc1f2db409"
+      },
+      {
+        "region": [
+          1119,
+          165,
+          124,
+          145
+        ],
+        "foot": [
+          1181.0,
+          310
+        ],
+        "source_height": 145,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r02c08",
+        "source_cell": [
+          1099,
+          161,
+          155,
+          152
+        ],
+        "pixel_sha256": "58a46a2690257df38297146dced8c0b374d589ed0df7704da5a1e1b5789be83a"
+      },
+      {
+        "region": [
+          10,
+          315,
+          138,
+          153
+        ],
+        "foot": [
+          79.0,
+          468
+        ],
+        "source_height": 153,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r03c01",
+        "source_cell": [
+          0,
+          313,
+          160,
+          155
+        ],
+        "pixel_sha256": "34aedfa0c277347f4cc587d2683a5dd806df93b631a5e56216fa4cf428ddb83a"
+      },
+      {
+        "region": [
+          164,
+          316,
+          153,
+          150
+        ],
+        "foot": [
+          240.5,
+          466
+        ],
+        "source_height": 150,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r03c02",
+        "source_cell": [
+          160,
+          313,
+          157,
+          155
+        ],
+        "pixel_sha256": "1b61829ee2269e4b1af974f00a8ee0beaefbe16eaa1cee9133fd151e54ef8a12"
+      },
+      {
+        "region": [
+          317,
+          322,
+          161,
+          145
+        ],
+        "foot": [
+          397.5,
+          467
+        ],
+        "source_height": 145,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r03c03",
+        "source_cell": [
+          317,
+          313,
+          161,
+          155
+        ],
+        "pixel_sha256": "41d2c50217259adb496a9e474543d363feb5f049071d3e8330fc94bbdfe2ad21"
+      },
+      {
+        "region": [
+          497,
+          313,
+          132,
+          155
+        ],
+        "foot": [
+          563.0,
+          468
+        ],
+        "source_height": 155,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r03c04",
+        "source_cell": [
+          478,
+          313,
+          158,
+          155
+        ],
+        "pixel_sha256": "be3f965a9ee8d6cfc898245e21fb2c0824c36b9ed63402e13940b737d02c2657"
+      },
+      {
+        "region": [
+          652,
+          314,
+          130,
+          154
+        ],
+        "foot": [
+          717.0,
+          468
+        ],
+        "source_height": 154,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r03c05",
+        "source_cell": [
+          636,
+          313,
+          158,
+          155
+        ],
+        "pixel_sha256": "b84754d718da5d736485babca609da23ec4e8cd4363d0585632b37e10efe6af2"
+      },
+      {
+        "region": [
+          800,
+          313,
+          144,
+          154
+        ],
+        "foot": [
+          872.0,
+          467
+        ],
+        "source_height": 154,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r03c06",
+        "source_cell": [
+          794,
+          313,
+          152,
+          155
+        ],
+        "pixel_sha256": "b7fb37d196c280ba52b534eb1e1ce39af2778e738d40cd8d3b9e8d9b0207a3a8"
+      },
+      {
+        "region": [
+          953,
+          323,
+          144,
+          144
+        ],
+        "foot": [
+          1025.0,
+          467
+        ],
+        "source_height": 144,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r03c07",
+        "source_cell": [
+          946,
+          313,
+          153,
+          155
+        ],
+        "pixel_sha256": "82b4bd14f6bbacd3c063604fcbfc271d68f0688d213530a03983e99f2e9575c1"
+      },
+      {
+        "region": [
+          1112,
+          316,
+          136,
+          152
+        ],
+        "foot": [
+          1180.0,
+          468
+        ],
+        "source_height": 152,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r03c08",
+        "source_cell": [
+          1099,
+          313,
+          155,
+          155
+        ],
+        "pixel_sha256": "c9ee29aa3994a740ef45cfa5ca5f770f142a02f76f66a70e6d646414ee1fc4ce"
+      },
+      {
+        "region": [
+          19,
+          477,
+          139,
+          148
+        ],
+        "foot": [
+          88.5,
+          625
+        ],
+        "source_height": 148,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r04c01",
+        "source_cell": [
+          0,
+          468,
+          160,
+          157
+        ],
+        "pixel_sha256": "2497dac361336415341c9ef2a7820b0e6d936b46fe921c28736855393d4d6c52"
+      },
+      {
+        "region": [
+          180,
+          468,
+          129,
+          157
+        ],
+        "foot": [
+          244.5,
+          625
+        ],
+        "source_height": 157,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r04c02",
+        "source_cell": [
+          160,
+          468,
+          157,
+          157
+        ],
+        "pixel_sha256": "21989091e4e6d87b2e7183bf40724a31d9b675a0403ded84ebf2d9a790f22de9"
+      },
+      {
+        "region": [
+          332,
+          483,
+          136,
+          140
+        ],
+        "foot": [
+          400.0,
+          623
+        ],
+        "source_height": 140,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r04c03",
+        "source_cell": [
+          317,
+          468,
+          161,
+          157
+        ],
+        "pixel_sha256": "96352c24837475c3772d262bb6d61240adefe6f82dda4cb838cba06c3f1892ad"
+      },
+      {
+        "region": [
+          486,
+          477,
+          150,
+          148
+        ],
+        "foot": [
+          561.0,
+          625
+        ],
+        "source_height": 148,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r04c04",
+        "source_cell": [
+          478,
+          468,
+          158,
+          157
+        ],
+        "pixel_sha256": "b0083eea3bd9ae1f5e486e8f6f8253be7543052afde6942b23e86e1dbfd784af"
+      },
+      {
+        "region": [
+          645,
+          477,
+          141,
+          146
+        ],
+        "foot": [
+          715.5,
+          623
+        ],
+        "source_height": 146,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r04c05",
+        "source_cell": [
+          636,
+          468,
+          158,
+          157
+        ],
+        "pixel_sha256": "1c8056e14ca086117867ba80935a15f96a570aa4be158a200fb6601d4bd00b8d"
+      },
+      {
+        "region": [
+          805,
+          476,
+          132,
+          149
+        ],
+        "foot": [
+          871.0,
+          625
+        ],
+        "source_height": 149,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r04c06",
+        "source_cell": [
+          794,
+          468,
+          152,
+          157
+        ],
+        "pixel_sha256": "35e6ccbf9ea157960e28a1bb28fd7f6586f536489c94ee02a79eb1f2badf6f3f"
+      },
+      {
+        "region": [
+          951,
+          479,
+          148,
+          145
+        ],
+        "foot": [
+          1025.0,
+          624
+        ],
+        "source_height": 145,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r04c07",
+        "source_cell": [
+          946,
+          468,
+          153,
+          157
+        ],
+        "pixel_sha256": "9862fb5c517990c4f68bcd0afbc35658c05b99036caddb7e3fdc82cef4f85bb1"
+      },
+      {
+        "region": [
+          1116,
+          482,
+          133,
+          142
+        ],
+        "foot": [
+          1182.5,
+          624
+        ],
+        "source_height": 142,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r04c08",
+        "source_cell": [
+          1099,
+          468,
+          155,
+          157
+        ],
+        "pixel_sha256": "0f12315c64de9d67119ee32a9d77cd5de2d071140638701ca227f9d2af09c724"
+      },
+      {
+        "region": [
+          17,
+          633,
+          137,
+          144
+        ],
+        "foot": [
+          85.5,
+          777
+        ],
+        "source_height": 144,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r05c01",
+        "source_cell": [
+          0,
+          625,
+          160,
+          159
+        ],
+        "pixel_sha256": "efc069ebbdbac61121e26a5a94b92d0b02820d98e9da9a8c7181f1507c3d4a04"
+      },
+      {
+        "region": [
+          171,
+          627,
+          142,
+          154
+        ],
+        "foot": [
+          242.0,
+          781
+        ],
+        "source_height": 154,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r05c02",
+        "source_cell": [
+          160,
+          625,
+          157,
+          159
+        ],
+        "pixel_sha256": "bc43f49aad4ccf463de861b05fd65239e75ab7bf400170d9628eae7f3fdb24a1"
+      },
+      {
+        "region": [
+          338,
+          632,
+          131,
+          145
+        ],
+        "foot": [
+          403.5,
+          777
+        ],
+        "source_height": 145,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r05c03",
+        "source_cell": [
+          317,
+          625,
+          161,
+          159
+        ],
+        "pixel_sha256": "399733123692f43cf7b76f022c7a3b1d878125c5d3abb98394d797298db1d082"
+      },
+      {
+        "region": [
+          489,
+          626,
+          141,
+          154
+        ],
+        "foot": [
+          559.5,
+          780
+        ],
+        "source_height": 154,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r05c04",
+        "source_cell": [
+          478,
+          625,
+          158,
+          159
+        ],
+        "pixel_sha256": "a49f940453a4b85ff8c762751b873bcc956528c72d9bddf8b38b2c8ed39998da"
+      },
+      {
+        "region": [
+          646,
+          627,
+          141,
+          149
+        ],
+        "foot": [
+          716.5,
+          776
+        ],
+        "source_height": 149,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r05c05",
+        "source_cell": [
+          636,
+          625,
+          158,
+          159
+        ],
+        "pixel_sha256": "5044dc9eac0a30374e1499db47be8aeae4e5c204456d2e4fc86552ce74842379"
+      },
+      {
+        "region": [
+          812,
+          625,
+          131,
+          154
+        ],
+        "foot": [
+          877.5,
+          779
+        ],
+        "source_height": 154,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r05c06",
+        "source_cell": [
+          794,
+          625,
+          152,
+          159
+        ],
+        "pixel_sha256": "ce01d9fe5fa58cc777bdeaeb235f972d2bb4b8886d5bce0e704655e493d7cd67"
+      },
+      {
+        "region": [
+          957,
+          626,
+          135,
+          154
+        ],
+        "foot": [
+          1024.5,
+          780
+        ],
+        "source_height": 154,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r05c07",
+        "source_cell": [
+          946,
+          625,
+          153,
+          159
+        ],
+        "pixel_sha256": "fca214eedf0f0fd6e40b3acd5eea78f615dcab12422ad2d96a0857b12e32e7cb"
+      },
+      {
+        "region": [
+          1113,
+          627,
+          133,
+          150
+        ],
+        "foot": [
+          1179.5,
+          777
+        ],
+        "source_height": 150,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r05c08",
+        "source_cell": [
+          1099,
+          625,
+          155,
+          159
+        ],
+        "pixel_sha256": "9db6cf8563b321720ebd8d81a8e09c4b268929053424153593ba7e289bdd77c5"
+      },
+      {
+        "region": [
+          13,
+          791,
+          143,
+          148
+        ],
+        "foot": [
+          84.5,
+          939
+        ],
+        "source_height": 148,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r06c01",
+        "source_cell": [
+          0,
+          784,
+          160,
+          155
+        ],
+        "pixel_sha256": "982a10203f59c47a48b920bbff1bec59611dae36f11a380bc03ed0ccfeaa74d8"
+      },
+      {
+        "region": [
+          176,
+          789,
+          141,
+          150
+        ],
+        "foot": [
+          246.5,
+          939
+        ],
+        "source_height": 150,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r06c02",
+        "source_cell": [
+          160,
+          784,
+          157,
+          155
+        ],
+        "pixel_sha256": "e7c4edc2c60d83cfc585fee1375c2c4ed836d9359941f9718f358e75ac6aae44"
+      },
+      {
+        "region": [
+          329,
+          791,
+          137,
+          148
+        ],
+        "foot": [
+          397.5,
+          939
+        ],
+        "source_height": 148,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r06c03",
+        "source_cell": [
+          317,
+          784,
+          161,
+          155
+        ],
+        "pixel_sha256": "5e0ad3accaa73b9b928c14660d2010b83b1af88d234fe6b52ffbdfd2f76c6f9e"
+      },
+      {
+        "region": [
+          488,
+          785,
+          138,
+          154
+        ],
+        "foot": [
+          557.0,
+          939
+        ],
+        "source_height": 154,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r06c04",
+        "source_cell": [
+          478,
+          784,
+          158,
+          155
+        ],
+        "pixel_sha256": "882001a768c980bf56348f8a0dc163a0694e501de24bb711f905af9d28f067cd"
+      },
+      {
+        "region": [
+          647,
+          789,
+          136,
+          150
+        ],
+        "foot": [
+          715.0,
+          939
+        ],
+        "source_height": 150,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r06c05",
+        "source_cell": [
+          636,
+          784,
+          158,
+          155
+        ],
+        "pixel_sha256": "f2b63cbb91750f403d0934b7a69284afe8e9877f17852be2feceb8cf149b5e05"
+      },
+      {
+        "region": [
+          808,
+          786,
+          138,
+          153
+        ],
+        "foot": [
+          877.0,
+          939
+        ],
+        "source_height": 153,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r06c06",
+        "source_cell": [
+          794,
+          784,
+          152,
+          155
+        ],
+        "pixel_sha256": "af07cd460d1abeb77ab2d38903e8e80c0dcf4ece03f1416797d49e2c0e590d8a"
+      },
+      {
+        "region": [
+          963,
+          789,
+          133,
+          150
+        ],
+        "foot": [
+          1029.5,
+          939
+        ],
+        "source_height": 150,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r06c07",
+        "source_cell": [
+          946,
+          784,
+          153,
+          155
+        ],
+        "pixel_sha256": "c0d393cde1f80358c01164dababea4f1a9251301443d2d595ae3df27fb6d5440"
+      },
+      {
+        "region": [
+          1114,
+          796,
+          131,
+          141
+        ],
+        "foot": [
+          1179.5,
+          937
+        ],
+        "source_height": 141,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r06c08",
+        "source_cell": [
+          1099,
+          784,
+          155,
+          155
+        ],
+        "pixel_sha256": "865e5fbe493d22a977c411550c6357fb290f2882d66f9946240343d92da9f16b"
+      },
+      {
+        "region": [
+          14,
+          953,
+          142,
+          137
+        ],
+        "foot": [
+          85.0,
+          1090
+        ],
+        "source_height": 137,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r07c01",
+        "source_cell": [
+          0,
+          939,
+          160,
+          151
+        ],
+        "pixel_sha256": "2815448276e5afd529360b413b954faf4ff88ea2af816eae41e86723034cdd05"
+      },
+      {
+        "region": [
+          171,
+          942,
+          140,
+          148
+        ],
+        "foot": [
+          241.0,
+          1090
+        ],
+        "source_height": 148,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r07c02",
+        "source_cell": [
+          160,
+          939,
+          157,
+          151
+        ],
+        "pixel_sha256": "e6e03c98ac1a2c641839873f8af66731195fe1431ac54495d56dce5a138d4364"
+      },
+      {
+        "region": [
+          331,
+          939,
+          137,
+          146
+        ],
+        "foot": [
+          399.5,
+          1085
+        ],
+        "source_height": 146,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r07c03",
+        "source_cell": [
+          317,
+          939,
+          161,
+          151
+        ],
+        "pixel_sha256": "9185e28aee4d96136e9229dcd83edcb1ebbefa44a9d6160d0a00ed6e6a30a3ac"
+      },
+      {
+        "region": [
+          490,
+          945,
+          139,
+          140
+        ],
+        "foot": [
+          559.5,
+          1085
+        ],
+        "source_height": 140,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r07c04",
+        "source_cell": [
+          478,
+          939,
+          158,
+          151
+        ],
+        "pixel_sha256": "f757706244c8ce572654bc13e68bc14cb81bcd2e658693fe77b36a8e641b287e"
+      },
+      {
+        "region": [
+          656,
+          939,
+          130,
+          148
+        ],
+        "foot": [
+          721.0,
+          1087
+        ],
+        "source_height": 148,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r07c05",
+        "source_cell": [
+          636,
+          939,
+          158,
+          151
+        ],
+        "pixel_sha256": "571b55173abde84e4f47a8502aa678bae93cadb84a953c2568b6c07816e753e6"
+      },
+      {
+        "region": [
+          804,
+          948,
+          136,
+          136
+        ],
+        "foot": [
+          872.0,
+          1084
+        ],
+        "source_height": 136,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r07c06",
+        "source_cell": [
+          794,
+          939,
+          152,
+          151
+        ],
+        "pixel_sha256": "9a725b7440cca9fa59c2ac69786fcde89dc78cba9389da1b6dce1727ac463541"
+      },
+      {
+        "region": [
+          963,
+          948,
+          123,
+          142
+        ],
+        "foot": [
+          1024.5,
+          1090
+        ],
+        "source_height": 142,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r07c07",
+        "source_cell": [
+          946,
+          939,
+          153,
+          151
+        ],
+        "pixel_sha256": "6e0fe1cbbb78b5423607b98b61dbdb60b1e42e2d5def3c612f5b53706e798152"
+      },
+      {
+        "region": [
+          1120,
+          940,
+          120,
+          150
+        ],
+        "foot": [
+          1180.0,
+          1090
+        ],
+        "source_height": 150,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r07c08",
+        "source_cell": [
+          1099,
+          939,
+          155,
+          151
+        ],
+        "pixel_sha256": "a98a3d3e763a9623da983249eefcf7f0b9d52ebcd328603093da6b7aec81fc33"
+      },
+      {
+        "region": [
+          18,
+          1090,
+          142,
+          155
+        ],
+        "foot": [
+          89.0,
+          1245
+        ],
+        "source_height": 155,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r08c01",
+        "source_cell": [
+          0,
+          1090,
+          160,
+          164
+        ],
+        "pixel_sha256": "c9f9d7f2c6ae552ddb66ee005e3d51704148daa0b9da24fc7eafb5c93f8cff87"
+      },
+      {
+        "region": [
+          189,
+          1090,
+          125,
+          150
+        ],
+        "foot": [
+          251.5,
+          1240
+        ],
+        "source_height": 150,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r08c02",
+        "source_cell": [
+          160,
+          1090,
+          157,
+          164
+        ],
+        "pixel_sha256": "ccef775202d84087d336fc34c21ffe27f360ad575fb48073cf77eb69da284090"
+      },
+      {
+        "region": [
+          332,
+          1090,
+          138,
+          154
+        ],
+        "foot": [
+          401.0,
+          1244
+        ],
+        "source_height": 154,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r08c03",
+        "source_cell": [
+          317,
+          1090,
+          161,
+          164
+        ],
+        "pixel_sha256": "2b66cd17c4ce3e9fad876c5a5a20f691e6aecc4536a6b350f804b1ac94f94be1"
+      },
+      {
+        "region": [
+          504,
+          1093,
+          119,
+          150
+        ],
+        "foot": [
+          563.5,
+          1243
+        ],
+        "source_height": 150,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r08c04",
+        "source_cell": [
+          478,
+          1090,
+          158,
+          164
+        ],
+        "pixel_sha256": "29b559b66b839e2a0365d1d43218c7aef6a789461eb6b4d832d31981cdbc18ec"
+      },
+      {
+        "region": [
+          648,
+          1096,
+          136,
+          146
+        ],
+        "foot": [
+          716.0,
+          1242
+        ],
+        "source_height": 146,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r08c05",
+        "source_cell": [
+          636,
+          1090,
+          158,
+          164
+        ],
+        "pixel_sha256": "39c674c21bf8f7dfec60c246e6bcda578318ef109e8111d9e978674f327fe450"
+      },
+      {
+        "region": [
+          805,
+          1099,
+          139,
+          142
+        ],
+        "foot": [
+          874.5,
+          1241
+        ],
+        "source_height": 142,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r08c06",
+        "source_cell": [
+          794,
+          1090,
+          152,
+          164
+        ],
+        "pixel_sha256": "02530ba3740e6d04666a86f74ab333575e004143e41278cc939f90773278909e"
+      },
+      {
+        "region": [
+          969,
+          1090,
+          126,
+          151
+        ],
+        "foot": [
+          1032.0,
+          1241
+        ],
+        "source_height": 151,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r08c07",
+        "source_cell": [
+          946,
+          1090,
+          153,
+          164
+        ],
+        "pixel_sha256": "181f4db17f7571a6d0291bc324b78f559b5984b5603154794b692029295fefab"
+      },
+      {
+        "region": [
+          1117,
+          1090,
+          124,
+          150
+        ],
+        "foot": [
+          1179.0,
+          1240
+        ],
+        "source_height": 150,
+        "full_color": true,
+        "texture": "asset://enemies/storybook_B03_reinforcements_v1.png",
+        "source_family": "storybook_2_5d_v1",
+        "variant_id": "storybook_B03_reinforcements_v1:M19:r08c08",
+        "source_cell": [
+          1099,
+          1090,
+          155,
+          164
+        ],
+        "pixel_sha256": "ed9c2465f3c75d47608244cd0575bad1828d8edbaf22fd5e1ed4cd1595eb5c0a"
+      }
+    ]
+  },
+  "skill_icons": {},
+  "row_edges": [
+    0,
+    161,
+    313,
+    468,
+    625,
+    784,
+    939,
+    1090,
+    1254
+  ],
+  "column_edges": [
+    0,
+    160,
+    317,
+    478,
+    636,
+    794,
+    946,
+    1099,
+    1254
+  ],
+  "source": {
+    "mode": "built-in image_gen",
+    "prompt_metadata": "asset://enemies/storybook_B03_reinforcements_v1.prompt.json",
+    "source_png_sha256": "08787694ee335e67344302f2795f4d6c6e4edb4ac517db7e0ac3bdf2c5f8d35f",
+    "source_rgba_sha256": "09734684274e84fa52884dfe0165f3dae46d0a4d0aefeff81a70fb7714c39cdf",
+    "source_size": [
+      1254,
+      1254
+    ],
+    "pixel_editing": false,
+    "grid_topology": [
+      8,
+      8
+    ],
+    "grid_measurement": "minimum alpha coverage within 20% of expected grid division",
+    "region_policy": "all alpha > 32 pixels in measured cell; original RGBA unchanged",
+    "foot_policy": "center x and exclusive alpha bottom y of tight region"
+  },
+  "validation": {
+    "body_count": 64,
+    "counts_by_archetype": {
+      "M19": 64
+    },
+    "unique_texture_regions": 64,
+    "unique_exact_rgba_regions": 64,
+    "duplicate_texture_regions": 0,
+    "duplicate_exact_rgba_regions": 0,
+    "foot_and_bounds_checked": 64,
+    "regions_touching_measured_cell_edge": 37,
+    "deduplication": "texture+region and exact original RGBA fingerprint; no perceptual uniqueness claim"
+  },
+  "deduplicated_cells": []
+}

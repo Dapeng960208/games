@@ -1,0 +1,80 @@
+{
+  "room_id": "L15",
+  "biome_id": "B03",
+  "tool": "builtin image_gen.imagegen",
+  "use_case": "stylized-concept",
+  "prompt": "Use case: stylized-concept.\nAsset type: finished independent game room background painting, opaque 1536 x 1024 landscape (3:2).\nInput image 1 is a STYLE, PALETTE and SMALL STONE TILE DENSITY reference ONLY. Invent an entirely new distinct room composition. Do not simply recolor this reference or add an overlay, do not copy its building arrangement. This is one complete original background for a single room in the bright Pumpkin Grave Town biome.\nStyle: polished richly detailed hand-painted cheerful fantasy cartoon, high 3/4 overhead camera, near-isometric 2.5D, tiny cream and warm pale gray cobblestones, soft mint vegetation, a little lavender purple roof tile and warm pumpkin orange, warm sunny afternoon. Friendly tidy intact fantasy village, welcoming Halloween crafts, no dark red/black horror, no blood or decay. Detailed materials and outer neighborhood life without cluttering the fighting floor. Small tiles, around 28–45 pixels each, never giant flagstones.\nABSOLUTE GEOMETRY REQUIREMENT: normalized screen coordinates x increases right, y increases down. The dry walkable polygon vertices are [(0.18,0.16),(0.37,0.12),(0.63,0.12),(0.81,0.17),(0.90,0.31),(0.92,0.55),(0.89,0.77),(0.76,0.89),(0.52,0.94),(0.30,0.91),(0.14,0.77),(0.10,0.54),(0.11,0.30)]. EVERY pixel inside this polygon must be flat contiguous dry cream stone floor or flat decorative inlay. No water, pit, steps, platform, cliff, high wall, building, tree, standing furniture or solid prop inside it; existing gameplay actors and fixed routes will be drawn later. Preserve broad open dry travel lanes through left/right center edges. No visible hard outline around that polygon, floor blends naturally into outer neighborhood. Authoring placement rectangle [0.11,0.13,0.78,0.74]. The entire polygon and route remain supported by earth, not a floating rectangular arena or island pedestal. All building silhouettes, trees, stalls, planter beds and any water must be fully outside the polygon in the outer narrow edge/corner areas; edge life can be partially cropped by image boundary. Never wrap all edges in a continuous wall. Keep the street open to left and right.\nNo text, letters, numbers, signage text, HUD, UI panels, borders, watermark, characters, people, monsters, bosses, active lamps, beacons, magic circles, loot chests, gameplay objectives or interactive furniture. Static outside architectural motifs are okay; flat paving motifs are decorations only. Output a finished full original image, not a contact sheet or mockup.\nROOM: L15 墓铃广场 / chime rosette, festival ring street and tea garden.\nCOMPOSITION: A wide village ceremonial plaza, wholly new exterior arrangement: a tiny three-petal chime pavilion is cropped at top center beyond the polygon's y=.12 edge, sculpted lavender roof petals and small decorative roof bells. Outer left and right corners have round-canopied mint trees, friendly top-hat shaped memorial architecture and sparse triangular festival bunting only above exterior verges; bottom outside corners have tea garden awnings and low paper flower beds. FLOOR: a large very subtle concentric oval ring street built out of tiny radial cream pavers, centered in the open flat plaza, with an elegant three-petal mosaic formed by paving not an object, small gray and pale honey tesserae. Entire ring and center remain flush solid dry walkable floor, no raised stage or circular wall. Visibly rounded festive civic-plaza composition, tiny paving scale.",
+  "reference_role": "Style, palette, and small tile scale only; independent room composition",
+  "referenced_image_paths": [
+    "assets/generated/world/fixed_B03_environment_v3.png"
+  ],
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f5d7-4127-7b31-826a-893a04df6dae\\exec-3fd65246-6fdf-405f-a01d-de8853d20e98.png",
+  "texture": "asset://world/rooms/L15_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_pixel_edits": "none",
+  "source_sha256": "fc39e669f3a5eb6814e3bf1021c0f5cc44da78f0665a105c286310d197b5fd1d",
+  "copied_sha256": "fc39e669f3a5eb6814e3bf1021c0f5cc44da78f0665a105c286310d197b5fd1d",
+  "visual_checked": true,
+  "composition_check": "Original chime civic plaza: exterior three-petal bell pavilion, circular radial pavers and flat rosette center, festival tea corners.",
+  "geometry_note": "Final per-room convex polygon follows inspected dry floor; original mapping rectangle and interactive anchors retained. Required anchor and route clearance >=30world checked from real FixedRoomLayouts.build export.",
+  "geometry_check": {
+    "id": "L15",
+    "minimum_world": 61.468,
+    "required_world": 30,
+    "anchor": "cover_foot:L15:fixed_prop:6",
+    "safe": true
+  },
+  "final_walkable_normalized_polygon": [
+    [
+      0.14,
+      0.34
+    ],
+    [
+      0.3,
+      0.23
+    ],
+    [
+      0.49,
+      0.21
+    ],
+    [
+      0.74,
+      0.26
+    ],
+    [
+      0.88,
+      0.38
+    ],
+    [
+      0.91,
+      0.58
+    ],
+    [
+      0.83,
+      0.82
+    ],
+    [
+      0.62,
+      0.9
+    ],
+    [
+      0.4,
+      0.91
+    ],
+    [
+      0.22,
+      0.82
+    ],
+    [
+      0.14,
+      0.68
+    ],
+    [
+      0.12,
+      0.51
+    ]
+  ]
+}

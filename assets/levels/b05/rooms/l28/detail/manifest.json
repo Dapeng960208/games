@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "room_id": "L28",
+  "approved": false,
+  "candidate_only": true,
+  "source_texture": "asset://world/rooms/L28_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "b7ee0293517b3871f06e3d05f1edcf14652d1ff707c2958a310996fdbdcdbf3e",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L28/top_left.png",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "a65602f2ef7f9fdb7810b6b7bef05a1ae9c661be2637ef925b2cef3f6929a7a5",
+      "native_density": [
+        2.4115384615384614,
+        2.375
+      ],
+      "source_selection": "b05-art/regenerated/maps/L28/generated/L28_native_top_left_v2.png",
+      "provenance": {
+        "id": "top_left",
+        "path": "b05-art/regenerated/maps/L28/generated/L28_native_top_left_v2.png",
+        "source_rect": [
+          0,
+          0,
+          520,
+          528
+        ],
+        "native_dimensions": [
+          1254,
+          1254
+        ],
+        "sha256": "a65602f2ef7f9fdb7810b6b7bef05a1ae9c661be2637ef925b2cef3f6929a7a5",
+        "native_density": [
+          2.4115384615384614,
+          2.375
+        ],
+        "status": "candidate_pending_runtime_seam_and_camera_qa"
+      }
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L28/top_middle.png",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "4d847eb7c1dc284248e0bc0f1010952e4f3fe1112a5f2a270de6c97be5277e08",
+      "native_density": [
+        2.375,
+        2.375
+      ],
+      "source_selection": "b05-art/regenerated/maps/L28/generated/L28_native_top_middle_v1.png",
+      "provenance": {
+        "id": "top_middle",
+        "path": "b05-art/regenerated/maps/L28/generated/L28_native_top_middle_v1.png",
+        "source_rect": [
+          504,
+          0,
+          528,
+          528
+        ],
+        "native_dimensions": [
+          1254,
+          1254
+        ],
+        "sha256": "4d847eb7c1dc284248e0bc0f1010952e4f3fe1112a5f2a270de6c97be5277e08",
+        "native_density": [
+          2.375,
+          2.375
+        ],
+        "status": "candidate_pending_runtime_seam_and_camera_qa"
+      }
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L28/top_right.png",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "8389e4bad8a2fec403929c77cb9cef4c61b1f7027af12ee076ed979bb8d23970",
+      "native_density": [
+        2.4115384615384614,
+        2.375
+      ],
+      "source_selection": "b05-art/regenerated/maps/L28/generated/L28_native_top_right_v3.png",
+      "provenance": {
+        "id": "top_right",
+        "path": "b05-art/regenerated/maps/L28/generated/L28_native_top_right_v3.png",
+        "source_rect": [
+          1016,
+          0,
+          520,
+          528
+        ],
+        "native_dimensions": [
+          1254,
+          1254
+        ],
+        "sha256": "8389e4bad8a2fec403929c77cb9cef4c61b1f7027af12ee076ed979bb8d23970",
+        "native_density": [
+          2.4115384615384614,
+          2.375
+        ],
+        "status": "candidate_pending_runtime_seam_and_camera_qa"
+      }
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L28/bottom_left.png",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "031b49bc787fd52159264838ccf22dac1a10186d228be8339366e0dbe953f483",
+      "native_density": [
+        2.4115384615384614,
+        2.4115384615384614
+      ],
+      "source_selection": "b05-art/regenerated/maps/L28/generated/L28_native_bottom_left_v1.png",
+      "provenance": {
+        "id": "bottom_left",
+        "path": "b05-art/regenerated/maps/L28/generated/L28_native_bottom_left_v1.png",
+        "source_rect": [
+          0,
+          504,
+          520,
+          520
+        ],
+        "native_dimensions": [
+          1254,
+          1254
+        ],
+        "sha256": "031b49bc787fd52159264838ccf22dac1a10186d228be8339366e0dbe953f483",
+        "native_density": [
+          2.4115384615384614,
+          2.4115384615384614
+        ],
+        "status": "candidate_pending_runtime_seam_and_camera_qa"
+      }
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L28/bottom_middle.png",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "2c9a6324517895a6d1d19bea8b5488c5913c28606ff89d40debf1aaff3be87f7",
+      "native_density": [
+        2.375,
+        2.4115384615384614
+      ],
+      "source_selection": "b05-art/regenerated/maps/L28/generated/L28_native_bottom_middle_v1.png",
+      "provenance": {
+        "id": "bottom_middle",
+        "path": "b05-art/regenerated/maps/L28/generated/L28_native_bottom_middle_v1.png",
+        "source_rect": [
+          504,
+          504,
+          528,
+          520
+        ],
+        "native_dimensions": [
+          1254,
+          1254
+        ],
+        "sha256": "2c9a6324517895a6d1d19bea8b5488c5913c28606ff89d40debf1aaff3be87f7",
+        "native_density": [
+          2.375,
+          2.4115384615384614
+        ],
+        "status": "candidate_pending_runtime_seam_and_camera_qa"
+      }
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L28/bottom_right.png",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "4c2621e47f7ad81076d85804c2a445cc6a5a7c943d523a120a1f6e0f4f0ab3f7",
+      "native_density": [
+        2.4115384615384614,
+        2.4115384615384614
+      ],
+      "source_selection": "b05-art/regenerated/maps/L28/generated/L28_native_bottom_right_v1.png",
+      "provenance": {
+        "id": "bottom_right",
+        "path": "b05-art/regenerated/maps/L28/generated/L28_native_bottom_right_v1.png",
+        "source_rect": [
+          1016,
+          504,
+          520,
+          520
+        ],
+        "native_dimensions": [
+          1254,
+          1254
+        ],
+        "sha256": "4c2621e47f7ad81076d85804c2a445cc6a5a7c943d523a120a1f6e0f4f0ab3f7",
+        "native_density": [
+          2.4115384615384614,
+          2.4115384615384614
+        ],
+        "status": "candidate_pending_runtime_seam_and_camera_qa"
+      }
+    }
+  ],
+  "generation_manifest": "b05-art/regenerated/maps/L28/L28_NATIVE_SELECTED_MANIFEST.json",
+  "generation_manifest_sha256": "005b6cabe2669b6c4ea939fdc0576d33814611682b45daa51ce3966ff1699a00",
+  "source_pixel_edits": "none; byte-identical native generated PNGs",
+  "known_limits": "Candidate only. Runtime seam, collision-edge and full-room acceptance pending."
+}

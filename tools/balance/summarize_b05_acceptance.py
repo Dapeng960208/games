@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Aggregate clean, exact-seed Boss batches; never turn partial coverage into a pass."""
 import argparse, collections, json, pathlib, statistics
-ROOT=pathlib.Path(__file__).resolve().parents[2]
+ROOT=next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'project.godot').is_file())
 def main():
  p=argparse.ArgumentParser();p.add_argument('--mage-candidate',type=int,default=0);p.add_argument('--candidate',type=int,required=True);p.add_argument('--output',type=pathlib.Path);a=p.parse_args()
  found={};sources={};excluded=[]
- for path in sorted((ROOT.parent/'_test_output/B05').glob('*/summary.json')):
+ for path in sorted((ROOT/'artifacts/test_runs/B05').glob('*/summary.json')):
   s=json.loads(path.read_text())
   if s.get('calibration_candidate',0)!=a.candidate or s.get('room') or s.get('difficulty')!=4 or s.get('directed_results') is not None:continue
   if s.get('warrior_candidate',0):continue

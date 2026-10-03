@@ -12,14 +12,14 @@ func counter_target(boss: Node2D) -> Dictionary:
 		if int(tide.drained_until.get("bay_west",0))>int(tide.now_us):
 			drained=true
 		else:
-			var gate: Vector2=preload("res://scripts/world/b06_room_geometry.gd").world_point(geometry.gates[0].position)
+			var gate: Vector2=preload("res://scripts/levels/b06/world/room_geometry.gd").world_point(geometry.gates[0].position)
 			if room.player.position.distance_to(gate)<=60:
 				room.player.clear_movement_target()
 				if tide.channel.is_empty(): room.interact()
 				return {"position":gate,"interactive":true}
 			return {"position":gate,"interactive":true}
 	if bait_attempted or int(tide.drained_until.get("bay_west",0))<=int(tide.now_us): return {}
-	var pillar: Vector2=preload("res://scripts/world/b06_room_geometry.gd").world_point(geometry.reef_pillars[0])
+	var pillar: Vector2=preload("res://scripts/levels/b06/world/room_geometry.gd").world_point(geometry.reef_pillars[0])
 	if host.boss_state.exposure_remaining()>0:
 		bait_attempted=true
 		return {}

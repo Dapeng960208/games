@@ -4,16 +4,16 @@ literal res:// references are transitive; data registries are loaded dynamically
 so all production data JSON is pinned explicitly. This is not asset pixel QA.
 """
 import hashlib,pathlib,re
-ROOT=pathlib.Path(__file__).resolve().parents[2]
+ROOT=next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'project.godot').is_file())
 SOURCE_SUFFIXES={'.gd','.tscn','.tres','.gdshader','.json'}
-def fingerprint(entry="tests/test_b05_balance_matrix.tscn"):
+def fingerprint(entry="tests/levels/b05/test_b05_balance_matrix.tscn"):
  classes={}
  for f in [*ROOT.glob('scripts/**/*.gd'),*ROOT.glob('config/*.gd')]:
   m=re.search(r'^class_name\s+(\w+)',f.read_text(),re.M)
   if m:classes[m.group(1)]=f
  project=ROOT/'project.godot';text=project.read_text();auto=text.split('[autoload]',1)[1].split('\n[',1)[0] if '[autoload]' in text else ''
- queue=[ROOT/entry,*[ROOT/x for x in re.findall(r'res://([^"\s]+)',auto)],*ROOT.glob('data/*.json')]
- included={project,ROOT/'tools/test_workspace.py',pathlib.Path(__file__).resolve(),ROOT/'tools/balance/run_b05_acceptance.py'}
+ queue=[ROOT/entry,*[ROOT/x for x in re.findall(r'res://([^"\s]+)',auto)],*ROOT.glob('data/**/*.json')]
+ included={project,ROOT/'tools/testing/test_workspace.py',pathlib.Path(__file__).resolve(),ROOT/'tools/balance/run_b05_acceptance.py'}
  while queue:
   f=queue.pop()
   if f in included or not f.is_file():continue

@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "texture": "asset://world/rooms/L23_environment_v1.png",
+  "biome_id": "B04",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "walkable_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "walkable_source_rect": [
+    169,
+    133,
+    1198,
+    758
+  ],
+  "render_mapping": "将walkable_normalized_rect映射到游戏arena，完整原画其余外围向arena外侧展开。",
+  "tiling": false,
+  "collision": false,
+  "mode": "complete_environment_plate",
+  "palette": {
+    "dominant": "浅暖米金沙岩",
+    "accent": "少量赤陶磨损铺石与岩层",
+    "cloth": "稀疏靛蓝边景旗篷",
+    "foliage": "鼠尾草绿与淡黄旱草"
+  },
+  "notes": [
+    "房间 L23 的独立完整背景原画，由 built-in image_gen 一次生成；不是共用母图叠加符号或边景。",
+    "原族图只提供手绘近等距风格、暖砂赤陶靛蓝色板与小石砖尺度参考，房间建筑、场地分区及铺地纹理按本房故事重新构图。",
+    "中央平坦连续干地无人物、敌怪、HUD、任务机关或奖励箱；功能目标和互动道具由运行时绘制。",
+    "placement_normalized_rect 保留既有 arena 映射；walkable_normalized_polygon 的北侧边界按新原画棚脚和实墙保守收窄，其余沿既有干地边界。",
+    "新图已逐图通过 view_image 检查；可走边界修改仍须运行时关卡锚点与路线检查。"
+  ],
+  "provenance": {
+    "method": "built-in image_gen",
+    "generation_count": 1,
+    "selected_source": "C:/Users/13326/.codex/generated_images/01a0f5d7-70e4-7cd0-ade4-6f2ad49e85e8/exec-fde7171b-637d-4bc9-9fb1-fac40dead398.png",
+    "reference": "asset://world/fixed_B04_environment_v3.png",
+    "reference_role": "style_palette_and_small_stone_scale_only",
+    "prompt": "asset://world/rooms/L23_environment_v1.prompt.json",
+    "pixel_edits": "none",
+    "composition": "independent_complete_room_environment"
+  },
+  "placement_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.19,
+      0.16
+    ],
+    [
+      0.38,
+      0.15
+    ],
+    [
+      0.68,
+      0.15
+    ],
+    [
+      0.84,
+      0.17
+    ],
+    [
+      0.91,
+      0.32
+    ],
+    [
+      0.93,
+      0.54
+    ],
+    [
+      0.89,
+      0.75
+    ],
+    [
+      0.75,
+      0.87
+    ],
+    [
+      0.53,
+      0.94
+    ],
+    [
+      0.29,
+      0.92
+    ],
+    [
+      0.13,
+      0.815
+    ],
+    [
+      0.085,
+      0.59
+    ],
+    [
+      0.11,
+      0.35
+    ]
+  ],
+  "boundary": {
+    "winding": "clockwise_positive_cross_in_screen_coordinates",
+    "authority": "room-specific painted dry ground; conservative north facade clearance",
+    "validation_layout_scale": 0.58,
+    "decoration_positions_may_extend_beyond_walkable_polygon": true,
+    "convex": true,
+    "required_anchor_clearance_world": 30,
+    "minimum_gameplay_anchor_clearance_world": 90.589,
+    "minimum_complete_route_clearance_world": 90.589,
+    "validation_status": "actual layout geometry and production GPU suite passed"
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "integer shared-image regions",
+    "texture_sampling": "full independent room texture; region_filter_clip_enabled=false",
+    "texture_memory": "one shared texture per room; no streaming claim"
+  },
+  "room_id": "L23",
+  "qa": {
+    "sha256": "4cfbc575d5ae4b05d9dd881bcb10b85574e585ffa5b399d3a40f8bb3120b7daa",
+    "geometry_status": "28-room actual layout anchor and complete route clearance audit passed",
+    "runtime_validation": {
+      "date": "2026-10-01",
+      "engine": "Godot 4.7.2",
+      "suite": "room_presentation",
+      "gpu": true,
+      "checks_total": 1055,
+      "failures": 0,
+      "room_count": 28,
+      "different_loaded_pixel_hashes": 28,
+      "loaded_pixel_sha256": "ba75a5788e16394b85b08292ce23156671c6fc53c370665f3fbc12eb6a4d7967",
+      "capture_count_total": 68,
+      "scope": "production room prepare/apply; authored gameplay preservation; navigation; background/chunk/camera/minimap identity; Chinese/English UI window matrix"
+    }
+  }
+}

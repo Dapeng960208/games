@@ -1,0 +1,39 @@
+{
+  "id": "B06_tide_clock_idle-native-v1",
+  "folder": "props",
+  "transparent": true,
+  "ref": "../references/B06_PR5_reference.png",
+  "prompt": "Use case: stylized-concept. Reference image provides exact B06 painterly sea-civilization materials and daylight rendering. One isolated native RGBA game prop with real transparent background, elevated three-quarter near-isometric view. Pearl-white shell/stone, turquoise sea glass, restrained warm gold and coral pink, bright hand-painted2.5D with legible silhouette. Whole object central70% of square image with wide empty alpha margin, bottom-center ground contact, no floor/shadow, text, UI, labels, letters, digits, characters, VFX, water spray, glow cloud or backdrop. TIDE CLOCK: freestanding elegant compact pearl-shell clock on short conch pedestal. A clearly readable circular turquoise dial inside scallop-shell frame with ONE gold pointer and three subtle unlabeled color wedges, no numerals, words or timing marks. Small coral branches around outer frame only. Upper shell resembles a maritime tide instrument rather than church clock. Neutral resting state. Intended110–140worldpixelheight, groundcenter anchor.",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-d1234e38-6b88-48ea-a8c4-833afdb7fbfb.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/props/B06_tide_clock_idle-native-v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "status": "candidate awaiting review",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "4b556a16c4439ddc70586722b69657be86f3a2c873c4aa06f5a86cb8c2e67388",
+  "alpha_bbox": [
+    0,
+    33,
+    1202,
+    1226
+  ],
+  "visible_alpha128_bbox": [
+    222,
+    100,
+    1087,
+    1167
+  ],
+  "reference_sha256": "e2a7e0903d946474f925ef2d5ca5db93f33825f6f8ad3eaa2ce76a127ad59855",
+  "selection_status": "selected_source_candidate",
+  "runtime_ready": false,
+  "source_anchors": [
+    "docs/levels/b06/README.md#2-地图元素与种族特性",
+    "docs/levels/b06/README.md#3-18种普通怪",
+    "docs/levels/b06/README.md#4-boss行走巨蟹堡垒"
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "texture": "asset://world/rooms/L17_environment_v1.png",
+  "biome_id": "B03",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "walkable_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "safe_margin": {
+    "left": 0.11,
+    "right": 0.11,
+    "top": 0.13,
+    "bottom": 0.13
+  },
+  "exterior_openings_normalized": {
+    "left": [
+      0.0,
+      0.32,
+      0.11,
+      0.36
+    ],
+    "right": [
+      0.89,
+      0.32,
+      0.11,
+      0.36
+    ]
+  },
+  "collision": false,
+  "static_decoration_only": true,
+  "palette_intent": "米白和暖浅灰不规则石路为主；淡紫只用于外围屋顶及少量小花，薄荷用于叶片和细缝；暖阳，不使用紫色主地面。",
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f5d7-4127-7b31-826a-893a04df6dae\\exec-84320bf8-ee7d-4819-97a5-7dd90993a000.png",
+  "notes": [
+    "Independent original background painting for this room, not a shared biome texture or overlay.",
+    "Builtin generation uses the old biome plate only as style, palette and tile-density reference.",
+    "placement_normalized_rect preserves the authored arena mapping; all runtime interactive objects remain separately rendered.",
+    "walkable_normalized_polygon follows this room painting; original authored functional anchors and complete routes remain unchanged.",
+    "Manual visual dry-floor check and runtime-anchor convex half-plane clearance check passed; gameplay runtime integration is validated separately."
+  ],
+  "placement_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.14,
+      0.35
+    ],
+    [
+      0.3,
+      0.25
+    ],
+    [
+      0.5,
+      0.21
+    ],
+    [
+      0.72,
+      0.24
+    ],
+    [
+      0.86,
+      0.35
+    ],
+    [
+      0.91,
+      0.52
+    ],
+    [
+      0.85,
+      0.7
+    ],
+    [
+      0.74,
+      0.85
+    ],
+    [
+      0.51,
+      0.9
+    ],
+    [
+      0.32,
+      0.86
+    ],
+    [
+      0.22,
+      0.78
+    ],
+    [
+      0.14,
+      0.64
+    ],
+    [
+      0.12,
+      0.5
+    ]
+  ],
+  "boundary": {
+    "winding": "clockwise_positive_cross_in_screen_coordinates",
+    "authority": "Per-room hand-inspected continuous dry stone floor outline, excluding painted exterior buildings, garden beds and waterfront.",
+    "validation_layout_scale": 0.58,
+    "decoration_positions_may_extend_beyond_walkable_polygon": true,
+    "minimum_required_anchor_clearance_world": 30,
+    "minimum_gameplay_anchor_clearance_world": 61.478,
+    "convex": true,
+    "required_anchor_clearance_world": 30,
+    "minimum_complete_route_clearance_world": 81.782,
+    "validation_status": "actual layout geometry and production GPU suite passed"
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "integer shared-image regions",
+    "texture_sampling": "full independent room texture; region_filter_clip_enabled=false",
+    "texture_memory": "one shared texture; no streaming claim"
+  },
+  "room_id": "L17",
+  "room_name": "缝补作坊",
+  "caption": "彩线工作街 · 礼帽裁缝",
+  "generation_tool": "builtin image_gen.imagegen",
+  "independent_room_composition": true,
+  "qa": {
+    "visual_checked": true,
+    "source_pixel_edits": "none",
+    "source_copy_identical": true,
+    "composition": "Original tailor quarter: top-hat tailoring house, patchwork drying flags, thread arches and basketweave paving crossed by flat stitch lanes.",
+    "walkable_geometry": "Convex screen-clockwise dry-floor polygon. Exported real runtime anchor points, including every route endpoint, have at least 30world inward half-plane clearance; complete straight route segments inherit this margin in the convex inset.",
+    "sha256": "7050bcfefe73c723071dfdf42734fbf7f7f90259d51c9bd48b46d2d5f657c980",
+    "minimum_anchor_clearance_world": 61.478,
+    "geometry_checked": true,
+    "runtime_anchor_count": 33,
+    "geometry_status": "28-room actual layout anchor and complete route clearance audit passed",
+    "runtime_validation": {
+      "date": "2026-10-01",
+      "engine": "Godot 4.7.2",
+      "suite": "room_presentation",
+      "gpu": true,
+      "checks_total": 1055,
+      "failures": 0,
+      "room_count": 28,
+      "different_loaded_pixel_hashes": 28,
+      "loaded_pixel_sha256": "7ed409b0928bd95395404a97d970186c204c9e4d33de27dc09f704cbf3755fc4",
+      "capture_count_total": 68,
+      "scope": "production room prepare/apply; authored gameplay preservation; navigation; background/chunk/camera/minimap identity; Chinese/English UI window matrix"
+    }
+  }
+}

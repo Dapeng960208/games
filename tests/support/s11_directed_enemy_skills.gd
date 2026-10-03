@@ -1,4 +1,4 @@
-extends "res://scripts/combat/enemy_skill_runtime.gd"
+extends "res://scripts/gameplay/monsters/enemy_skill_runtime.gd"
 ## Transparent observation of commands after the production V2 freeze seam.
 var executed_commands: Array[Dictionary] = []
 

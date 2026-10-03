@@ -1,0 +1,1065 @@
+{
+  "purpose": "Retained original attribution for removed artwork; no runtime dependency.",
+  "sources": [
+    {
+      "retired_path": "assets/bosses/BO01.json",
+      "metadata": {
+        "asset_id": "BO01",
+        "name": "炉脊总监",
+        "version": 1,
+        "use_case": "stylized-concept",
+        "asset_type": "boss_static_combat_body",
+        "tool": "image_gen.imagegen",
+        "generation_mode": "built_in_image_gen",
+        "transparent_background_requested": true,
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e84a-4e4f-7ba3-81ec-12b7356d9940/exec-f82d622c-f30c-415d-b70e-5dadb5358bd5.png",
+        "workspace_source": "assets/bosses/sources/BO01_v1.png",
+        "saved_path": "assets/bosses/BO01.png",
+        "prompt": "Use case: stylized-concept. Asset type: one original boss combat body for the 2D action RPG Abyss Salvager, abandoned-mine industrial fantasy. Premium hand-painted stylized game rendering, sculptural soft top-left light, charcoal iron, worn copper, ivory mineral edges, restrained emissive cores, broad readable forms and deliberately controlled texture. Match a coherent family of salvaged mining machinery and mineral-organic creatures, but create an entirely original boss. Camera: elevated three-quarter top-down view, looking down about 40 degrees, facing lower-right. Single full body in a grounded ready-to-fight pose. Entire body, tools and limbs visible with 10 percent clear transparent margin. Square canvas. Designed to be legible when displayed 140–180 pixels high: strong unique silhouette, few broad contrasting masses, iconic organs visible, no tiny tangled decoration. Truly transparent PNG alpha cutout, virtually opaque character interiors, narrow antialiased edges only. No background, black backdrop, gradient, floor, base, pedestal, ground shadow, scene props, text, glyphs, numbers, watermark, UI, borders, extra creatures, floating attack effects, baked warning rings or diagrams. No franchise resemblance. Subject BO01 Furnace-Spine Overseer / 炉脊总监: a massive squat WIDE-SHOULDERED walking mining foundry, deliberately blocky trapezoid silhouette on two short hydraulic legs. EXACTLY THREE small blast-furnace towers rise from its upper back, their three chimneys and hot copper-orange vent mouths clearly separated against transparency. One complete articulated arm carries one gigantic broad square forging hammer, held outward in a readable ready-to-lift posture; the opposite complete arm is a deep curved slag LADLE with a heavy lip and a modest contained orange glow. The hammer and ladle must have obviously different large silhouettes. Thick iron jaw-like chest, small guarded amber inspection lens instead of human face, soot black segmented plates and oxidized russet/copper edges. Back vents and exposed hydraulic struts visually communicate a rear heat-release weak point. Chunky heavy feet and knees, weight forward, whole body coherent machinery, NOT a man in armor. Three large furnaces, exactly two arms, exactly two legs. Dramatic but controlled warm internal furnace glow, no flames or smoke outside silhouette. Finely made worn material detail without making the dark body unreadable.",
+        "design_source": [
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json#bosses/BO01"
+        ],
+        "style_references": [
+          "assets/generated/enemies/M01_v1.png",
+          "assets/generated/enemies/M10_v1.png",
+          "assets/generated/enemies/M19_v1.png",
+          "assets/generated/enemies/M28_v1.png"
+        ],
+        "postprocessing": "None; source PNG and alpha copied unchanged.",
+        "status": "original_static_combat_body_ready_for_runtime_integration",
+        "limitations": "Static body artwork only; does not constitute animation or boss gameplay acceptance.",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "D7B6217480EE96FC44B225227B5380181F6731A452E05428A58FDE33877EFC60",
+        "qa": {
+          "visual_inspection": [
+            "Three separate furnace towers, square hammer, deep slag ladle and two complete hydraulic legs are visible.",
+            "Large warm furnace shapes separate from broad charcoal steel mass; no ground, text or UI."
+          ],
+          "alpha_validation": {
+            "Id": "BO01",
+            "Width": 1254,
+            "Height": 1254,
+            "Visible": 46873,
+            "NearOpaque": 46083,
+            "Transparent": 50291,
+            "VisibleEdgePixels": 0,
+            "Bounds": [
+              4,
+              56,
+              1244,
+              1204
+            ],
+            "SHA256": "D7B6217480EE96FC44B225227B5380181F6731A452E05428A58FDE33877EFC60"
+          },
+          "alpha_method": "System.Drawing read-only GetPixel stride4; visible alpha>16, near-opaque alpha>=240; actual outermost edges checked at every pixel. No image pixels edited.",
+          "opaque_visible_fraction": 0.9831459475604293,
+          "small_scale_design_target_px": [
+            140,
+            180
+          ],
+          "runtime_scale_validation": "Shape design and source checked; actual engine-scale rendering is owned by boss runtime integration and is not claimed here.",
+          "limitations": "A single static body, not direction variants, phase poses, attack animation, or complete boss gameplay."
+        }
+      }
+    },
+    {
+      "retired_path": "assets/bosses/BO02.json",
+      "metadata": {
+        "asset_id": "BO02",
+        "name": "温床织母",
+        "version": 2,
+        "use_case": "stylized-concept",
+        "asset_type": "boss_static_combat_body",
+        "tool": "image_gen.imagegen",
+        "generation_mode": "built_in_image_gen",
+        "transparent_background_requested": true,
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e84a-4e4f-7ba3-81ec-12b7356d9940/exec-1db4f4f4-f8ba-48e0-89e9-2bcfe428a1ea.png",
+        "workspace_source": "assets/bosses/sources/BO02_v2.png",
+        "saved_path": "assets/bosses/BO02.png",
+        "prompt": "Use case: stylized-concept. Asset type: one original boss combat body for the 2D action RPG Abyss Salvager, abandoned-mine industrial fantasy. Premium hand-painted stylized game rendering, sculptural soft top-left light, charcoal iron, worn copper, ivory mineral edges, restrained emissive cores, broad readable forms and deliberately controlled texture. Match a coherent family of salvaged mining machinery and mineral-organic creatures, but create an entirely original boss. Camera: elevated three-quarter top-down view, looking down about 40 degrees, facing lower-right. Single full body in a grounded ready-to-fight pose. Entire body, tools and limbs visible with 10 percent clear transparent margin. Square canvas. Designed to be legible when displayed 140–180 pixels high: strong unique silhouette, few broad contrasting masses, iconic organs visible, no tiny tangled decoration. Truly transparent PNG alpha cutout, virtually opaque character interiors, narrow antialiased edges only. No background, black backdrop, gradient, floor, base, pedestal, ground shadow, scene props, text, glyphs, numbers, watermark, UI, borders, extra creatures, floating attack effects, baked warning rings or diagrams. No franchise resemblance. Subject BO02 Broodbed Weaver / 温床织母: a broad LOW organic boss with a semitranslucent layered mushroom CROWN growing over a recognisable broken industrial MINING DRILL chassis. EXACTLY EIGHT thick muscular ROOT LIMBS fan outward into an asymmetrical eight-petal rosette silhouette, all eight root tips complete and visibly separated, supporting the core without a floor. Each root is a solid broad sculptural form rather than thin tangled tendrils. The compact central drill has corroded copper ribs and one blunt broken spiral drill nose peeking toward lower-right. Large overlapping fungus-crown lobes use muted plum, damp ivory, dark ochre and a few desaturated mint bioluminescent veins; crown surface physically translucent within an otherwise solid near-opaque cutout, no see-through ghost body. Distinct pale root knots near four limb bases are visible weak parts. A sheltered pale mint-yellow heart inside the opening crown contrasts with dark woody roots. No humanoid head, no arms holding weapons, no insect abdomen. Deliberate flower-shaped boss silhouette with biomechanical mine-wreck structure, readable weight and dangerous rooted stance. No surrounding spores or external mist.",
+        "design_source": [
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json#bosses/BO02"
+        ],
+        "style_references": [
+          "assets/generated/enemies/M01_v1.png",
+          "assets/generated/enemies/M10_v1.png",
+          "assets/generated/enemies/M19_v1.png",
+          "assets/generated/enemies/M28_v1.png"
+        ],
+        "postprocessing": "None; source PNG and alpha copied unchanged.",
+        "status": "original_static_combat_body_ready_for_runtime_integration",
+        "limitations": "Static body artwork only; does not constitute animation or boss gameplay acceptance.",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "A8066E1B0A0F8EA43AB064EB329C1BAFCABD5A391D109A82CA5BD5AC7E20E690",
+        "qa": {
+          "visual_inspection": [
+            "Eight distinct thick root tips now visible after targeted imagegen anatomy correction; not counting the drill.",
+            "Plum fungus crown, pale mint-yellow heart and corroded drill remain recognizable; no ground, text or UI."
+          ],
+          "alpha_validation": {
+            "Id": "BO02",
+            "Width": 1254,
+            "Height": 1254,
+            "Visible": 45053,
+            "NearOpaque": 44167,
+            "Transparent": 51643,
+            "VisibleEdgePixels": 0,
+            "Bounds": [
+              44,
+              52,
+              1236,
+              1200
+            ],
+            "SHA256": "A8066E1B0A0F8EA43AB064EB329C1BAFCABD5A391D109A82CA5BD5AC7E20E690"
+          },
+          "alpha_method": "System.Drawing read-only GetPixel stride4; visible alpha>16, near-opaque alpha>=240; actual outermost edges checked at every pixel. No image pixels edited.",
+          "opaque_visible_fraction": 0.980334272967394,
+          "small_scale_design_target_px": [
+            140,
+            180
+          ],
+          "runtime_scale_validation": "Shape design and source checked; actual engine-scale rendering is owned by boss runtime integration and is not claimed here.",
+          "limitations": "A single static body, not direction variants, phase poses, attack animation, or complete boss gameplay."
+        },
+        "iterations": [
+          {
+            "version": 1,
+            "prompt": "Use case: stylized-concept. Asset type: one original boss combat body for the 2D action RPG Abyss Salvager, abandoned-mine industrial fantasy. Premium hand-painted stylized game rendering, sculptural soft top-left light, charcoal iron, worn copper, ivory mineral edges, restrained emissive cores, broad readable forms and deliberately controlled texture. Match a coherent family of salvaged mining machinery and mineral-organic creatures, but create an entirely original boss. Camera: elevated three-quarter top-down view, looking down about 40 degrees, facing lower-right. Single full body in a grounded ready-to-fight pose. Entire body, tools and limbs visible with 10 percent clear transparent margin. Square canvas. Designed to be legible when displayed 140–180 pixels high: strong unique silhouette, few broad contrasting masses, iconic organs visible, no tiny tangled decoration. Truly transparent PNG alpha cutout, virtually opaque character interiors, narrow antialiased edges only. No background, black backdrop, gradient, floor, base, pedestal, ground shadow, scene props, text, glyphs, numbers, watermark, UI, borders, extra creatures, floating attack effects, baked warning rings or diagrams. No franchise resemblance. Subject BO02 Broodbed Weaver / 温床织母: a broad LOW organic boss with a semitranslucent layered mushroom CROWN growing over a recognisable broken industrial MINING DRILL chassis. EXACTLY EIGHT thick muscular ROOT LIMBS fan outward into an asymmetrical eight-petal rosette silhouette, all eight root tips complete and visibly separated, supporting the core without a floor. Each root is a solid broad sculptural form rather than thin tangled tendrils. The compact central drill has corroded copper ribs and one blunt broken spiral drill nose peeking toward lower-right. Large overlapping fungus-crown lobes use muted plum, damp ivory, dark ochre and a few desaturated mint bioluminescent veins; crown surface physically translucent within an otherwise solid near-opaque cutout, no see-through ghost body. Distinct pale root knots near four limb bases are visible weak parts. A sheltered pale mint-yellow heart inside the opening crown contrasts with dark woody roots. No humanoid head, no arms holding weapons, no insect abdomen. Deliberate flower-shaped boss silhouette with biomechanical mine-wreck structure, readable weight and dangerous rooted stance. No surrounding spores or external mist.",
+            "source_path": "C:/Users/13326/.codex/generated_images/01a0e84a-4e4f-7ba3-81ec-12b7356d9940/exec-b0f332cc-c817-442c-a4b9-acff286e1411.png",
+            "workspace_source": "assets/bosses/sources/BO02_v1.png",
+            "reason_revised": "Only seven root tips clearly exposed in the first design; rear root needed visibility."
+          },
+          {
+            "version": 2,
+            "use_case": "precise-object-edit",
+            "prompt": "Use case: precise-object-edit. Edit target: the supplied BO02 original transparent boss PNG. Preserve this exact premium hand-painted plum/ivory/mint fungus crown, luminous central heart, corroded copper drill chassis and broken forward drill, root texture, elevated top-down three-quarter camera and full-body industrial-fantasy identity. The ONLY design correction: give this boss EXACTLY EIGHT thick rooted support limbs with eight individually visible complete tips, arranged around the body as an eight-petal fan. The current rear root is obscured: make the eighth limb clearly emerge at the upper-left rear and extend its intact pale root-tip into the empty top-left space, while keeping the other seven existing limbs. Count eight chunky roots total, NOT eight fingers on one foot and not counting the metal drill as a root. No extra secondary root branches or additional limbs. Adjust spacing gently so roots do not merge at the outer silhouette and no root touches canvas edge; full object inside central 85 percent of square canvas. Keep genuine transparent alpha, solid body interiors, no background, floor, shadow, UI, text, extra creature or effects. Preserve all colors and materials; this is one surgical anatomy/readability improvement, not a redesign.",
+            "reference": "assets/bosses/sources/BO02_v1.png",
+            "source_path": "C:/Users/13326/.codex/generated_images/01a0e84a-4e4f-7ba3-81ec-12b7356d9940/exec-1db4f4f4-f8ba-48e0-89e9-2bcfe428a1ea.png",
+            "workspace_source": "assets/bosses/sources/BO02_v2.png",
+            "reason": "Expose eighth root with complete separated tip while preserving crown, heart, drill and style."
+          }
+        ]
+      }
+    },
+    {
+      "retired_path": "assets/bosses/BO03.json",
+      "metadata": {
+        "asset_id": "BO03",
+        "name": "黑匣领航机",
+        "version": 1,
+        "use_case": "stylized-concept",
+        "asset_type": "boss_static_combat_body",
+        "tool": "image_gen.imagegen",
+        "generation_mode": "built_in_image_gen",
+        "transparent_background_requested": true,
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e84a-4e4f-7ba3-81ec-12b7356d9940/exec-61b21e6e-e6fb-4a60-b4bf-311d684c8297.png",
+        "workspace_source": "assets/bosses/sources/BO03_v1.png",
+        "saved_path": "assets/bosses/BO03.png",
+        "prompt": "Use case: stylized-concept. Asset type: one original boss combat body for the 2D action RPG Abyss Salvager, abandoned-mine industrial fantasy. Premium hand-painted stylized game rendering, sculptural soft top-left light, charcoal iron, worn copper, ivory mineral edges, restrained emissive cores, broad readable forms and deliberately controlled texture. Match a coherent family of salvaged mining machinery and mineral-organic creatures, but create an entirely original boss. Camera: elevated three-quarter top-down view, looking down about 40 degrees, facing lower-right. Single full body in a grounded ready-to-fight pose. Entire body, tools and limbs visible with 10 percent clear transparent margin. Square canvas. Designed to be legible when displayed 140–180 pixels high: strong unique silhouette, few broad contrasting masses, iconic organs visible, no tiny tangled decoration. Truly transparent PNG alpha cutout, virtually opaque character interiors, narrow antialiased edges only. No background, black backdrop, gradient, floor, base, pedestal, ground shadow, scene props, text, glyphs, numbers, watermark, UI, borders, extra creatures, floating attack effects, baked warning rings or diagrams. No franchise resemblance. Subject BO03 Blackbox Navigator / 黑匣领航机: an original industrial airborne mining sentinel with a large vertical CYLINDRICAL charcoal-black flight-recorder core, tightly framed by EXACTLY FOUR angular articulated folding WINGS in a clear split-X silhouette. Four broad wings partly unfolded in a poised low-hover stance, each wing connected to the central cylindrical body by a readable hinge, four separated tips; alternating upper/lower wing shapes to show depth. One heavy insulated ELECTRICAL CABLE trails from the lower core like a short curled tail and ends in a complete grounded connector, no visible floor or shadow. No insect face, no legs, no propellers, no guns. Broad chipped ivory-gray plates on dark gunmetal spars, aged copper hinges, two restrained pale icy-cyan capacitor bands around the core and a tiny warm amber inspection lens. A shielded center panel exposes the round blackbox weak point. Aircraft silhouette must feel mechanical and heavy rather than bird or angel. Compact tail and all four wings fit completely inside square transparent canvas. Selected clean material wear and readable bright edge planes, no free-floating energy bolts, no smoke.",
+        "design_source": [
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json#bosses/BO03"
+        ],
+        "style_references": [
+          "assets/generated/enemies/M01_v1.png",
+          "assets/generated/enemies/M10_v1.png",
+          "assets/generated/enemies/M19_v1.png",
+          "assets/generated/enemies/M28_v1.png"
+        ],
+        "postprocessing": "None; source PNG and alpha copied unchanged.",
+        "status": "original_static_combat_body_ready_for_runtime_integration",
+        "limitations": "Static body artwork only; does not constitute animation or boss gameplay acceptance.",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "F039845B97723B706564F00C78F2F47F18112FA13058C9A56132A25490AB34E0",
+        "qa": {
+          "visual_inspection": [
+            "Four separately hinged wings form a clear split-X; cylindrical blackbox and one cable connector tail are complete.",
+            "Broad ivory wing planes contrast the dark core; cyan bands restrained; no floor, text or baked warning marker."
+          ],
+          "alpha_validation": {
+            "Id": "BO03",
+            "Width": 1254,
+            "Height": 1254,
+            "Visible": 40450,
+            "NearOpaque": 39657,
+            "Transparent": 56398,
+            "VisibleEdgePixels": 0,
+            "Bounds": [
+              44,
+              32,
+              1220,
+              1220
+            ],
+            "SHA256": "F039845B97723B706564F00C78F2F47F18112FA13058C9A56132A25490AB34E0"
+          },
+          "alpha_method": "System.Drawing read-only GetPixel stride4; visible alpha>16, near-opaque alpha>=240; actual outermost edges checked at every pixel. No image pixels edited.",
+          "opaque_visible_fraction": 0.9803955500618047,
+          "small_scale_design_target_px": [
+            140,
+            180
+          ],
+          "runtime_scale_validation": "Shape design and source checked; actual engine-scale rendering is owned by boss runtime integration and is not claimed here.",
+          "limitations": "A single static body, not direction variants, phase poses, attack animation, or complete boss gameplay."
+        }
+      }
+    },
+    {
+      "retired_path": "assets/bosses/BO04.json",
+      "metadata": {
+        "asset_id": "BO04",
+        "name": "井底余响",
+        "version": 1,
+        "use_case": "stylized-concept",
+        "asset_type": "boss_static_combat_body",
+        "tool": "image_gen.imagegen",
+        "generation_mode": "built_in_image_gen",
+        "transparent_background_requested": true,
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e84a-4e4f-7ba3-81ec-12b7356d9940/exec-ae025d5a-11a7-4be9-b5cf-7c2024fb2079.png",
+        "workspace_source": "assets/bosses/sources/BO04_v1.png",
+        "saved_path": "assets/bosses/BO04.png",
+        "prompt": "Use case: stylized-concept. Asset type: one original boss combat body for the 2D action RPG Abyss Salvager, abandoned-mine industrial fantasy. Premium hand-painted stylized game rendering, sculptural soft top-left light, charcoal iron, worn copper, ivory mineral edges, restrained emissive cores, broad readable forms and deliberately controlled texture. Match a coherent family of salvaged mining machinery and mineral-organic creatures, but create an entirely original boss. Camera: elevated three-quarter top-down view, looking down about 40 degrees, facing lower-right. Single full body in a grounded ready-to-fight pose. Entire body, tools and limbs visible with 10 percent clear transparent margin. Square canvas. Designed to be legible when displayed 140–180 pixels high: strong unique silhouette, few broad contrasting masses, iconic organs visible, no tiny tangled decoration. Truly transparent PNG alpha cutout, virtually opaque character interiors, narrow antialiased edges only. No background, black backdrop, gradient, floor, base, pedestal, ground shadow, scene props, text, glyphs, numbers, watermark, UI, borders, extra creatures, floating attack effects, baked warning rings or diagrams. No franchise resemblance. Subject BO04 Echo at the Well's End / 井底余响: a towering HOLLOW GREAT BELL made from cracked charcoal stone and ancient oxidized bronze, enclosing one clearly visible suspended warm ivory-amber MINER'S LANTERN inside its open arch. The lantern is the bright central weak point, no face. EXACTLY FOUR thick articulated STONE ARMS emerge from the bell's upper sides in two clearly separated pairs; EACH arm holds one complete smaller bell of a DISTINCT SIZE, all four side bells visible, with shapes spaced around the central hollow bell. Two upper arms spread higher and two lower arms spread wider, forming a broad solemn four-armed silhouette without a humanoid torso. Central bell mouth open toward lower-right, pale mineral fracture edges and restrained cyan resonance seams, broad dark stone masses, aged copper fittings. No feet are required: the heavy lower bell rim and arms form a self-contained hovering creature, but no cast ground shadow, floor or support base. Four limbs total, four side bells, one central big bell, one visible mining lantern. Ancient underground acoustic-machine mood, monumental and ominous, selective readable wear rather than noisy rubble; no external soundwave graphics.",
+        "design_source": [
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json#bosses/BO04"
+        ],
+        "style_references": [
+          "assets/generated/enemies/M01_v1.png",
+          "assets/generated/enemies/M10_v1.png",
+          "assets/generated/enemies/M19_v1.png",
+          "assets/generated/enemies/M28_v1.png"
+        ],
+        "postprocessing": "None; source PNG and alpha copied unchanged.",
+        "status": "original_static_combat_body_ready_for_runtime_integration",
+        "limitations": "Static body artwork only; does not constitute animation or boss gameplay acceptance.",
+        "width": 1254,
+        "height": 1254,
+        "sha256": "A971DEB4A0B4FF6012AA73A62C000048296F8E00EA81035C82427C267570A82C",
+        "qa": {
+          "visual_inspection": [
+            "Four stone arms each hold one differently sized bell, surrounding one hollow central bell.",
+            "Suspended warm mining lantern visible within the central opening; broad cracked stone/bronze masses and complete bell rims."
+          ],
+          "alpha_validation": {
+            "Id": "BO04",
+            "Width": 1254,
+            "Height": 1254,
+            "Visible": 52065,
+            "NearOpaque": 51044,
+            "Transparent": 44541,
+            "VisibleEdgePixels": 0,
+            "Bounds": [
+              36,
+              16,
+              1224,
+              1164
+            ],
+            "SHA256": "A971DEB4A0B4FF6012AA73A62C000048296F8E00EA81035C82427C267570A82C"
+          },
+          "alpha_method": "System.Drawing read-only GetPixel stride4; visible alpha>16, near-opaque alpha>=240; actual outermost edges checked at every pixel. No image pixels edited.",
+          "opaque_visible_fraction": 0.9803898972438299,
+          "small_scale_design_target_px": [
+            140,
+            180
+          ],
+          "runtime_scale_validation": "Shape design and source checked; actual engine-scale rendering is owned by boss runtime integration and is not claimed here.",
+          "limitations": "A single static body, not direction variants, phase poses, attack animation, or complete boss gameplay."
+        }
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M01_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M01",
+        "display_name": "锈牙巡掘",
+        "biome_id": "B01",
+        "version": 1,
+        "asset_type": "enemy_bestiary_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. Asset type: a premium original enemy illustration for a Chinese industrial fantasy action RPG, codex portrait and production character design. Generate ONE creature only, full body in three-quarter view, genuine transparent background with clean alpha, no floor, no pedestal, no environment, no cast ground shadow. Subject M01 Rustfang Delver: a hunched, triangular-silhouette abandoned mining automaton animated by tiny mineral-organic filaments. One arm is a very long asymmetrical iron pickaxe clearly raised ready for a heavy sweeping strike; the other is a short stout gripping claw. Its head is an inverted battered mining lamp, a small warm amber slit under a protective metal hood instead of a human face. Heavy hunched shoulder shell, compact body, two short articulated digging legs firmly planted, visible joints and mining-tool mechanisms; menace through beautiful readable shape design. Creature is cohesive salvaged iron/mineral construction with sparse subtle underground biological binding at seams, not humanoid armor. Richly hand-painted stylized industrial-fantasy rendering, elegant deliberate edges, believable worn layered materials, oxidized iron, charcoal steel, scratched ochre enamel, leather-like mineral tendons, small glowing warm core and fine dust caught on its body. Dramatic soft volumetric painterly key light, readable shadow shapes, restrained highlights. Entire body and long pick fit with 8 percent clear margin; substantial detail that still reads at small gameplay scale. Original distinctive design, no resemblance to an existing franchise. No text, labels, logos, UI, watermarks, decorative frame, extra characters, extra weapons, base or backdrop.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-1afa65f6-f1b3-403c-a940-5f75e16490cb.png",
+        "saved_path": "assets/generated/enemies/M01_v1.png",
+        "width": 1536,
+        "height": 1024,
+        "sha256": "286A7FD6B03CF3891727B70C3CA90E6FB065E17A58067133A58DFE20F7A06AAF",
+        "visual_language": "Original industrial fantasy: salvaged mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+        "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 15803,
+          "partial_samples": 8773,
+          "opaque_samples": 0,
+          "notes": "Source PNG alpha preserved without external editing. Near-opaque subject pixels are expected from generated output; this is an illustration, not an animation sheet."
+        },
+        "visual_inspection": [
+          "Long raised pick and opposite short claw present.",
+          "Inverted mining lamp face and hunched triangular back present.",
+          "Entire body and weapon preserved; warm weak point restrained.",
+          "Transparency verified numerically; brown RGB visible in some alpha-ignoring previews has alpha 0."
+        ],
+        "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Directional gameplay animation sheets and attack/recovery poses remain separate deliverables.",
+        "discarded_iteration": {
+          "prompt": "Precise edit / background extraction of the supplied original creature image. KEEP the mining creature completely unchanged: exact pickaxe, inverted lamp head, claw, hunched proportions, stance, materials, colors, every mechanical detail, full-body composition. Remove ONLY the smoky brown gradient halo / haze outside the solid creature contour. The subject must be an opaque solid object with antialiasing only at its edge, floating on genuinely TRANSPARENT alpha background, clear empty transparency both outside the silhouette and through the holes between limbs. No backdrop of any kind, no brown glow, fog, cast shadow, ground, or floor. Do not repaint or restyle the creature. Preserve every part of its complete body.",
+          "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-f13e8a79-2540-4a28-8e10-b7118650fd02.png",
+          "reason": "Background-removal trial discarded: original alpha already has clear exterior; keep the original approved silhouette and details."
+        }
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M02_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M02",
+        "display_name": "磁履奔锤",
+        "biome_id": "B01",
+        "version": 1,
+        "asset_type": "enemy_bestiary_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. Asset type: premium original enemy illustration for an industrial fantasy action RPG, bestiary portrait and production character design. Single creature M02 Magnetic-Tread Ram, entire body three-quarter view isolated on genuinely transparent alpha, clean crisp outside edge with no smoke, no glow halo, no floor, no shadow, no environment. A narrow, imposing vertical stamping hammer mounted on exactly TWO broad independent magnetic crawler tracks, an abandoned mine press brought alive by internal mineral-organic growth. This is a distinct nonhumanoid charging machine creature: tall forward-leaning rectangular iron hammer head, heavily beveled impact face and a stacked hydraulic shaft inside a slender upright frame; low left and right broad magnetic treads make the sole locomotion, no legs, no arms, no human torso. Distinct tall silhouette and readable heavy forward striking face explain an unstoppable straight-line ram attack. Back visible partly in the three-quarter view: protected machinery with a small amber vulnerable condenser and cramped organic tendons; reinforced front, visibly exposed back. Thoughtfully designed functional bolts, tension cables and piston seals; oxidized metal, scratched ochre mining enamel, charcoal iron, layered worn edge highlights and small restrained warm amber seams. Premium richly hand-painted stylized industrial-fantasy rendering, exceptional deliberate shape design, detailed believable materials, soft directional painterly lighting and readable shadow shapes. Fits an underground world of abandoned mining facilities and bioluminescent mineral ecology. Whole creature fully framed with generous clear margin on every side, upright composition, design readable at thumbnail scale. Original and beautiful, no existing franchise resemblance. No text, numbers, logos, UI, frame, watermark, extra creature, weapons held in hands, scenery, pedestal or base.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-ce279b2c-9448-455c-83f7-d69c19415049.png",
+        "saved_path": "assets/generated/enemies/M02_v1.png",
+        "width": 1024,
+        "height": 1536,
+        "sha256": "178C49E74B2147BA4023318AF9A9CCE71C963E3A3AF4045EB3B1CBC76AF9C73B",
+        "visual_language": "Original industrial fantasy: salvaged mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+        "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 11875,
+          "partial_samples": 12701,
+          "opaque_samples": 0,
+          "notes": "Source PNG alpha preserved without external editing. Near-opaque subject pixels are expected from generated output; this is an illustration, not an animation sheet."
+        },
+        "visual_inspection": [
+          "Exactly two wide magnetic tracks support a tall stamping hammer.",
+          "Narrow tall silhouette contrasts with M01 and M03.",
+          "Pistons, cables, damaged mining enamel and rear warm core support charging-machine identity.",
+          "Transparent alpha confirmed; no ground plane."
+        ],
+        "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Directional gameplay animation sheets and attack/recovery poses remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M03_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M03",
+        "display_name": "窄灯点射手",
+        "biome_id": "B01",
+        "version": 1,
+        "asset_type": "enemy_bestiary_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. Asset type: premium original enemy illustration for an industrial fantasy action RPG, bestiary portrait and production creature design. ONE creature M03 Slit-Lamp Sharpshooter, full body three-quarter view on genuine transparent alpha background, all contour edges clean; no haze, aura, ground shadow, floor, scene, platform, pedestal or background. An eerie abandoned survey instrument animated by small mineral-organic tendons, designed for precision sniping then hopping to a new perch. The whole creature balances on ONE tall mechanical spring-loaded leg which ends in a triangular three-point stabilizing foot, clearly a single leg with a three-toed survey-tripod foot, not three full legs. A slim angular upper body is a compact narrow rectangular hood with a tiny horizontal slit lamp in place of a face, emitting restrained warm amber light. A very long slender needle rifle extends forward from its body on an exposed traverse bracket, visibly slender linear barrel, fine sight rails and compact spring magazine rather than a bulky cannon. The main read is a long diagonal needle balanced above the thin monopod, unmistakably different from humanoid soldiers or bulky robots. Lean poised aiming pose, thin deliberate negative spaces, engineered shock spring suggests rapid hopping movement; a small warm mineral-organic core integrated into the rear mechanism. Elegant precision instrument detail, scratched ochre mining enamel, dark charcoal iron, rust-orange wear, small copper coils, restrained amber point lights. Premium richly hand-painted stylized industrial-fantasy creature concept with sophisticated coherent forms, convincing layered materials, soft dramatic painterly lighting, readable light and shadow masses. Entire gun, top and all three contact toes fit within the canvas with clear margins. Belongs to an original abandoned mining and bioluminescent underground ecosystem. No text, labels, numbers, logos, watermark, UI, frame, extra weapons, characters or existing franchise design.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-ce11f4ab-cabb-468c-8ea0-f8f05edff1d4.png",
+        "saved_path": "assets/generated/enemies/M03_v1.png",
+        "width": 1189,
+        "height": 1323,
+        "sha256": "D62FFB8530F0A3B16FDC8D375FFC64DF007DBF02E7497B897807DE27FF6DF954",
+        "visual_language": "Original industrial fantasy: salvaged mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+        "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 20699,
+          "partial_samples": 4019,
+          "opaque_samples": 16,
+          "notes": "Source PNG alpha preserved without external editing. Near-opaque subject pixels are expected from generated output; this is an illustration, not an animation sheet."
+        },
+        "visual_inspection": [
+          "One spring-loaded leg terminates in a three-toed triangular support.",
+          "Long slender needle rifle and horizontal slit lamp are present.",
+          "Very lean silhouette and recoil spring express precision aiming and hopping.",
+          "Complete figure and barrel fit; genuine transparent alpha confirmed."
+        ],
+        "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Directional gameplay animation sheets and attack/recovery poses remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M04_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M04",
+        "display_name": "钉腹寄生",
+        "biome_id": "B01",
+        "version": 1,
+        "asset_type": "enemy_bestiary_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. Asset type: one original enemy bestiary illustration and production creature design for an industrial fantasy action RPG. Subject M04 Nail-Belly Parasite: a SMALL compact comma-shaped underground parasite with exactly SIX slender articulated legs, a curled raised abdomen ending in a fan of three long salvaged iron nails which unfolds before it leaps to sting. Its silhouette should read like an unusual compact mineral insect, emphatically not a humanoid robot, spider, scorpion or crab. A squat chitin forebody with small grinding mouthparts supports a soft segmented abdomen curved upward; dark copper-brown chitin has bonded naturally around embedded ochre-rusted nails and fragments of mining hardware. One partly opened seam of old mineral carapace around the upper abdomen suggests it hatches from a parasitic shell; do not add a second separate shell. Six fine hook-tipped legs splay in a poised jumping stance; ALL six legs and nail tips visibly framed. Tiny restrained amber organic gleam at the abdomen seam, no large glowing eyes. Richly hand-painted stylized industrial-fantasy rendering, premium beautiful deliberate shape design, tactile chitin and oxidized metal, charcoal, rust and muted ochre palette with small warm highlights, soft volumetric painterly light and readable dark masses. Original abandoned mining and underground mineral-biological ecology. Three-quarter full-body view of ONE creature isolated on genuinely transparent alpha, generous empty margin on every side, clean cutout edge, no floor, cast shadow, pedestal, environment, smoke, aura or decorative backdrop. No text, symbols, logos, numbers, UI, watermark or existing franchise likeness. Keep this creature petite and finely articulated rather than bulky.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-7b6aa764-dd27-4818-8907-eb074b19eca6.png",
+        "saved_path": "assets/generated/enemies/M04_v1.png",
+        "width": 1374,
+        "height": 1145,
+        "sha256": "FE0F0A98AA4C5CB1DFB4E170B1CEDBF014E7C26A7EE205EDED9151A0940DECF4",
+        "visual_language": "Original industrial fantasy: abandoned mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+        "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "corner_alpha": 0,
+          "transparent_samples": 19301,
+          "partial_samples": 5443,
+          "opaque_samples": 24,
+          "notes": "Source PNG alpha preserved without external editing. Alpha-zero RGB may appear colored in previews which ignore alpha; use alpha-aware rendering."
+        },
+        "visual_inspection": [
+          "Petite comma-like biological insect silhouette with a raised segmented abdomen.",
+          "Three outward-pointing abdominal iron spikes communicate its jumping sting.",
+          "Fine articulated legs and mineral chitin distinguish it from mining automata.",
+          "A focused imagegen edit corrected blunt nail heads to sharp outward tips."
+        ],
+        "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Gameplay directional animation sheets and attack/recovery poses remain separate deliverables.",
+        "accepted_edit": {
+          "prompt": "Precise small edit of supplied original industrial-fantasy parasite. Keep its entire design, pose, proportions, lighting, body, six slender legs, chitin, color palette, texture and transparent background exactly as they are. Change ONLY the three iron nails emerging from its raised abdomen: their OUTER ENDS must be sharp long tapered iron points, suitable for a stabbing attack. Currently the visible outer ends are flat round nail heads; replace those flat heads with sharp pointed tips while retaining the three shaft positions and lengths. Keep all other creature details unchanged. Genuine transparent alpha. No added scenery, text, markings or object.",
+          "input_source": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-940f90ca-e00c-467c-84be-54b66ac474d5.png",
+          "purpose": "Replace outward flat nail heads with outward pointed stabbing tips while preserving the creature."
+        }
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M05_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M05",
+        "display_name": "棘盘滚运兽",
+        "biome_id": "B01",
+        "version": 1,
+        "asset_type": "enemy_bestiary_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. Asset type: a single original creature illustration for the bestiary of an industrial fantasy action RPG. Subject M05 Thorn-Disc Hauler: a NONHUMANOID compact rolling beast made of TWO parallel massive circular iron wheels linked by a soft sinewy mineral-organic transmission belt between them. Its body IS the twin wheel assembly, no human torso, face, limbs, tank chassis or vehicle seat. Three-quarter view clearly shows both parallel disc wheels and the exposed flexible amber-brown transmission band inside the central gap. Each outer wheel rim has a deliberate single MISSING TOOTH as a memorable silhouette break and spaced hinged thorn-like iron rim spikes opening outward before it rolls in a curved path. Angled poised stance, one wheel slightly raised, suggests its vulnerability when tipped onto its side. Central organic drive mechanism is beautiful and intricate, braided fiber belts and sheltered mineral tendons, no gore. Exact functional structure reads in the silhouette: two spiked iron discs, narrow living belt bridging them. Worn ochre mining enamel, charcoal steel, rust orange edges, understated warm core through the belt. Premium richly hand-painted stylized industrial-fantasy rendering, careful sculptural shapes, sophisticated material layering, directional painterly light with strong readable volumes, original mining salvage fused with underground biology. One complete subject fully framed with generous empty margins, isolated on genuine transparent alpha. No background, floor, pedestal, ground shadow, smoke or aura, no text, logo, watermark, UI or frame. Beautiful detailed design distinct from any known franchise, suitable for game creature development.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-d765b314-20e0-4c54-a8f0-ba2d26e1b2ca.png",
+        "saved_path": "assets/generated/enemies/M05_v1.png",
+        "width": 1536,
+        "height": 1024,
+        "sha256": "60E94C9DE665408A93A21B73EFD9414C525FDB774E6C13E758CDBB291558012F",
+        "visual_language": "Original industrial fantasy: abandoned mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+        "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "corner_alpha": 0,
+          "transparent_samples": 12534,
+          "partial_samples": 12042,
+          "opaque_samples": 0,
+          "notes": "Source PNG alpha preserved without external editing. Alpha-zero RGB may appear colored in previews which ignore alpha; use alpha-aware rendering."
+        },
+        "visual_inspection": [
+          "Two parallel toothed iron discs form its entire rolling body.",
+          "Both rims show a memorable missing-tooth gap.",
+          "Flexible organic drive belt is exposed between the wheels.",
+          "Distinct round silhouette with no humanoid body or legs."
+        ],
+        "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Gameplay directional animation sheets and attack/recovery poses remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M06_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M06",
+        "display_name": "遮光焊工",
+        "biome_id": "B01",
+        "version": 1,
+        "asset_type": "enemy_bestiary_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. Asset type: ONE original enemy bestiary illustration and production design for an industrial fantasy action RPG. Subject M06 Light-Shroud Welder: a square-bodied abandoned mobile welding machine animated by sheltered mineral-organic fibers. Its head is a distinctive downward-facing FUNNEL shaped welding mask with a narrow dark visor and tiny orange heat glow recessed inside. Blocky short rectangular torso, low stout articulated industrial legs, one extremely long articulated welding arm with a precise copper torch nozzle and a short robust support gripper on the other side. The central gameplay-defining feature is a large foldable welding-screen assembly on its BACK, partly unfolded above one shoulder toward the front like hinged battered rectangular shutters. It visibly provides frontal cover, with fragile riveted panel joints and gaps at the sides; not a magical shield, not wings or a cape. Upper-body silhouette is broad and boxlike, clearly unlike a hunched pickaxe creature. Welding torch emits only a tiny restrained hot amber tip and a few sparks, no flame obscuring anatomy. Beautiful believable industrial mechanisms, hoses from rear gas vessel to torch, chipped ochre enamel, rust charcoal steel, copper staining, smoked edges of screen, slight mineral tendons hidden inside. Premium richly hand-painted stylized industrial-fantasy rendering with refined shapes and tactile materials, painterly volumetric lighting, warm highlights and clear shadow masses, striking original design. Entire single creature in three-quarter view including all screen panels, torch and feet, generous empty margin, isolated on genuinely transparent alpha with clean edges. No floor, ground shadow, pedestal, environment, smoke aura, text, logo, UI, watermark or known franchise resemblance.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-0d57621f-620a-4ccd-8545-549e9636b1d5.png",
+        "saved_path": "assets/generated/enemies/M06_v1.png",
+        "width": 1312,
+        "height": 1199,
+        "sha256": "7C49357B90BB60B53D3E62A205C4C8D395C50AC1EAE3611BDBBADAC3EAF8A5B7",
+        "visual_language": "Original industrial fantasy: abandoned mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+        "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "corner_alpha": 0,
+          "transparent_samples": 12941,
+          "partial_samples": 11659,
+          "opaque_samples": 0,
+          "notes": "Source PNG alpha preserved without external editing. Alpha-zero RGB may appear colored in previews which ignore alpha; use alpha-aware rendering."
+        },
+        "visual_inspection": [
+          "Funnel-shaped welding mask and box-shaped upper body present.",
+          "Long torch arm, gas vessel and hoses explain the weld attack.",
+          "Back-mounted hinged screens are unfolded with readable side openings.",
+          "Warm torch tip remains small; no effects obscure the mechanical structure."
+        ],
+        "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Gameplay directional animation sheets and attack/recovery poses remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M07_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M07",
+        "display_name": "拉索拖手",
+        "biome_id": "B01",
+        "version": 1,
+        "asset_type": "enemy_bestiary_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. Asset type: ONE original enemy bestiary illustration and production concept for an industrial fantasy action RPG. Subject M07 Cable Hauler: a very thin tall salvage creature built around an asymmetrical crane boom and a large exposed circular cable winding spool. This creature's signature is a slender angular CRANE ARM arcing upward and forward from its narrow torso, connected by visible steel cable to a heavy articulated three-prong grappling hook which hangs low near its small feet. The crane boom, taut cable and low hook form a strong clear open triangular negative space; the cable visibly comes from the large side-mounted winch disk and passes through boom pulleys. Two lanky reverse-jointed utility legs support the compact winch body, no thick armor, no muscular human anatomy, no humanoid head; instead a tiny sheltered amber pilot lamp peers from above the winding spool. Offset stance about to cast its hook, winding disk and interruptible tensioning assembly clearly exposed. Mechanical body lightly bound by mineral-organic tendons at joints, old mining hoist parts reconfigured into an original living machine. Preserve distinct slim crane-and-wheel silhouette rather than a fighting robot carrying a weapon. Premium richly hand-painted stylized industrial-fantasy design, refined deliberate engineering, rust and charcoal steel, scratched ochre enamel, copper cable coils and restrained warm vulnerable core, tactile layered materials with beautiful painterly light and readable shadows. Three-quarter entire body, all boom and hook fully visible with clear margins. Genuine transparent alpha background; no floor, ground, cast shadow, scene, platform, environment or haze. No text, logo, symbols, UI, watermark, decorative border or existing franchise likeness.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-f68be971-5530-4327-9a26-5ce10fb3ed8e.png",
+        "saved_path": "assets/generated/enemies/M07_v1.png",
+        "width": 1199,
+        "height": 1312,
+        "sha256": "30C6820DE9676F9291CBEF5A9C0DACC48BC4704877D0593C39C5AD45A5B7B0EF",
+        "visual_language": "Original industrial fantasy: abandoned mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+        "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "corner_alpha": 0,
+          "transparent_samples": 19020,
+          "partial_samples": 5575,
+          "opaque_samples": 5,
+          "notes": "Source PNG alpha preserved without external editing. Alpha-zero RGB may appear colored in previews which ignore alpha; use alpha-aware rendering."
+        },
+        "visual_inspection": [
+          "Very slender crane boom and large exposed winding spool present.",
+          "Cable routes visibly through the boom pulley to the hanging grappling claw.",
+          "Strong open negative space and lanky legs distinguish its silhouette.",
+          "Complete boom, hook and feet fit the illustration."
+        ],
+        "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Gameplay directional animation sheets and attack/recovery poses remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M08_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M08",
+        "display_name": "铆盾搬夫",
+        "biome_id": "B01",
+        "version": 1,
+        "asset_type": "enemy_bestiary_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. Asset type: ONE original enemy bestiary illustration and production creature concept for an industrial fantasy action RPG. Subject M08 Rivet-Shield Porter: a small squat living mining salvage machine almost entirely concealed behind ONE oversized rectangular industrial shield taller and wider than its own compact body. The shield has a conspicuously missing upper corner and THREE visibly prominent locking rivet clasps across its face, designed as targetable weak points. A small compact angular gear housing peers from one side, with a narrow warm amber lamp and two tiny grips holding a rotating central shield bracket; exactly TWO very SHORT sturdy mechanical legs protrude beneath the shield. Overall silhouette is a broad clipped rectangular slab on short legs, not a humanoid knight or bulky armored robot. Three-quarter front-side view reveals enough of the small porter and central pivot behind the shield to explain that it rotates its shield in intervals and becomes vulnerable while turning; shield face remains dominant, free back/side space visible. Deliberately original functional construction: layered scratched ochre mining plate, dark rust steel rim, rivets and worn hinges, a small mineral-organic bundle tucked behind its mechanism. No weapon besides the shield, no spikes or heraldic crest. Premium richly hand-painted stylized industrial-fantasy rendering, beautiful sculptural forms, believable materials, restrained warm highlights and readable painterly light/shadow. Full subject entirely framed with a generous clear margin including both short feet and the clipped shield corner. Genuine transparent alpha isolated cutout; no floor, environment, cast shadow, pedestal, haze, text, logo, UI, watermark, decorative border or known franchise resemblance.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-d8492fb3-800e-463f-a642-2dbee1fd2869.png",
+        "saved_path": "assets/generated/enemies/M08_v1.png",
+        "width": 1222,
+        "height": 1287,
+        "sha256": "E223D4E47B102F4EFC54E7D9AF53FA80AAB71281EF1F40342280C00E43872411",
+        "visual_language": "Original industrial fantasy: abandoned mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+        "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "corner_alpha": 0,
+          "transparent_samples": 9280,
+          "partial_samples": 15345,
+          "opaque_samples": 8,
+          "notes": "Source PNG alpha preserved without external editing. Alpha-zero RGB may appear colored in previews which ignore alpha; use alpha-aware rendering."
+        },
+        "visual_inspection": [
+          "Oversized shield dominates the silhouette above two short legs.",
+          "One upper corner is visibly broken away.",
+          "Three prominent locking rivet clasps identify targetable mechanical points.",
+          "Three-quarter view reveals side pivot and compact porter behind the shield."
+        ],
+        "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Gameplay directional animation sheets and attack/recovery poses remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M09_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M09",
+        "display_name": "警铃拾骨者",
+        "biome_id": "B01",
+        "version": 1,
+        "asset_type": "enemy_bestiary_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. Asset type: ONE original enemy bestiary illustration and production creature concept for an industrial fantasy action RPG. Subject M09 Alarm-Bell Bone Collector: a delicate tall-legged salvage collector whose compact body carries an oversized OPEN BELL CAGE on its upper back. Inside the cage a battered industrial warning bell and clearly visible swinging bell CLAPPER hang on a pivot; show the clapper offset to one side so its imminent ringing is readable. The bell cage forms a rounded arched upper silhouette, attached to a small scavenger mechanism below. Exactly FOUR slender insect-like mechanical stilt legs support the collector, with ample visible negative space, tiny magnetic pads as feet. A small three-finger magnetic pickup claw hangs beneath the body on a short chain, ready to collect wreckage; keep claw clearly distinct from its four locomotion legs. No humanoid head or face, just a tiny recessed amber sensor near the claw. Subtle mineral-organic filaments link the old mining bell, cage and salvage machinery, like a living underground recycling creature. Empty pickup claw, no corpse, bones, skeleton, loot pile or scenery. Beautiful original utility-creature anatomy; delicate collector silhouette is neither a crane nor a combat robot. Premium richly hand-painted stylized industrial-fantasy rendering, refined intricate engineering, charcoal oxidized iron, rust edges, faded ochre panels, dull copper bell, small restrained warm amber core and tender mineral fibers, dramatic readable painterly lighting. Three-quarter view entire creature with every leg, cage and pickup claw fully in frame, generous clear margins. Genuine transparent alpha background with clean contours, no floor, ground shadow, platform, pedestal, smoke, backdrop, text, logos, labels, UI or watermark. Does not resemble existing franchise characters.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-0a49592f-3389-4c1d-b153-d86793b075fd.png",
+        "saved_path": "assets/generated/enemies/M09_v1.png",
+        "width": 1145,
+        "height": 1374,
+        "sha256": "0942B174F169709E5CEC102F2ECFAAA58F961AEF1B5BDEA1A818A69A2F89EB9B",
+        "visual_language": "Original industrial fantasy: abandoned mining mechanisms fused with mineral-organic growth; rust, charcoal, scratched ochre enamel, restrained amber cores.",
+        "design_source": "docs/NEXT_PHASE_LEVELS_ENEMIES.md and data/enemies.json",
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "corner_alpha": 0,
+          "transparent_samples": 16421,
+          "partial_samples": 8335,
+          "opaque_samples": 12,
+          "notes": "Source PNG alpha preserved without external editing. Alpha-zero RGB may appear colored in previews which ignore alpha; use alpha-aware rendering."
+        },
+        "visual_inspection": [
+          "Large open arched bell cage and displaced visible clapper communicate its ring warning.",
+          "Four fine collector legs and magnetic feet distinguish locomotion from the pickup claw.",
+          "A separate magnetic claw hangs beneath its body.",
+          "Empty collector carries no corpse or decorative environment."
+        ],
+        "production_status": "Original transparent concept illustration ready for bestiary/presentation integration. Gameplay directional animation sheets and attack/recovery poses remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M19_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M19",
+        "display_name": "铜翅侦察蜂",
+        "biome_id": "B03",
+        "version": 1,
+        "asset_type": "enemy_battle_ready_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. ONE original enemy sprite concept for an industrial fantasy action RPG, M19 Copper-Wing Scout from a powerless underground hangar. A tiny hovering inspection bee made of mining salvage and mineral-organic filaments: exactly TWO asymmetrical broad copper wings, one longer angular wing and one shorter segmented wing, arranged into a compact DIAMOND silhouette around a round single lens eye. The round scanning eye and aperture shutters are the focal point; small amber lens lights hint at a fan-shaped scanning ability. No weapons, no humanoid body, no extra wings, no helicopter rotors. Compact shell, carefully designed copper ribs, short stabilizer feelers, restrained wires and small mineral core inside. Premium richly hand-painted industrial-fantasy, sophisticated broad readable material shapes and limited fine detailing, oxidized copper, coal-black steel, worn ochre enamel, tiny amber highlights. Belongs to abandoned mining machinery with subterranean living mineral ecology. Elevated three-quarter camera looking down about 40 degrees, battle-ready hovering pose, entire subject isolated, 12 percent generous transparent margin on all sides. Readable immediately at 70 pixels from its diamond wings and round eye. Solid subject nearly fully opaque, genuinely transparent alpha outside its contour. No floor, environment, ground shadow, aura, smoke, labels, lettering, logos, UI, watermark, frame or existing franchise likeness. Beautiful deliberate sculptural shapes and painterly volumetric lighting, never photographic, no clutter or noisy all-over corrosion.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-4fa9a168-fbf0-4375-a8db-451a987459ff.png",
+        "saved_path": "assets/generated/enemies/M19_v1.png",
+        "width": 1353,
+        "height": 1162,
+        "sha256": "064F554FD45007EED52D4F27D29C2CE0CED6FC809AC17E6061FD3DD2C42BDDC7",
+        "design_sources": [
+          "docs/IMAGEGEN_ART_DIRECTION.md",
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json"
+        ],
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 17501,
+          "edge_or_low_alpha_samples": 331,
+          "near_opaque_samples": 6988,
+          "near_opaque_threshold": 240,
+          "max_alpha": 255,
+          "notes": "Original generated alpha preserved; broad subject is nearly opaque. Transparent pixels may retain RGB visible in alpha-ignoring viewers."
+        },
+        "visual_inspection": [
+          "Two asymmetrical copper wings and round scanning lens match its scan-mark identity.",
+          "Compact body and wing silhouette distinguish it from a weapon drone.",
+          "Complete wings and feelers visible; no baked attack sector or UI."
+        ],
+        "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M20_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M20",
+        "display_name": "轨枪架台",
+        "biome_id": "B03",
+        "version": 1,
+        "asset_type": "enemy_battle_ready_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. ONE original enemy battle-sprite illustration, industrial fantasy action RPG, M20 Rail-Gun Carriage from an abandoned underground hangar. A narrow elongated precision railgun barrel on a squat swiveling carriage permanently captive on a SHORT HORIZONTAL MECHANICAL SLIDE RAIL. The rail is an integral part of the enemy mechanism, only one compact lateral rail segment slightly wider than the carriage, not environmental railway tracks or a platform. Its key silhouette is a long thin forward cannon crossing a transverse guide rail into a restrained T shape. Clearly visible captive rollers, polished slide shoes, belt drive and closed end stops explain lateral sliding between two firing positions. No wheels for free movement, no legs, no humanoid parts, no surrounding scenery. Slightly offset carriage poised to shoot, small amber alignment lens on cannon and quiet copper coils, vulnerable exposed base. Mining salvage joined by subtle mineral-organic fibers, coal-black steel, worn ochre enamel, oxidized copper contacts and ivory ceramic insulators. Premium richly hand-painted stylized industrial-fantasy rendering, beautiful intentional engineering and broad clean light/shadow shapes, detail supports silhouette rather than noise. Elevated three-quarter camera looking down about 40 degrees. Complete mechanism including muzzle and both rail ends, centered with 12 percent transparent safety margin. Readable as a rail-mounted precision turret at 70 pixels. Solid near-opaque subject with genuinely transparent alpha outside contour; no background, floor, cast shadow, pedestal, smoke, glow halo, lettering, numbers, logos, UI, watermark or existing game design.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-861aa9d2-de4c-43b1-8dc4-26b247957338.png",
+        "saved_path": "assets/generated/enemies/M20_v1.png",
+        "width": 1536,
+        "height": 1024,
+        "sha256": "EE1E57FC2AE23BE477575EDB147F6B0D771320D5A44B63065222D5EEA71265B6",
+        "design_sources": [
+          "docs/IMAGEGEN_ART_DIRECTION.md",
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json"
+        ],
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 14985,
+          "edge_or_low_alpha_samples": 435,
+          "near_opaque_samples": 9156,
+          "near_opaque_threshold": 240,
+          "max_alpha": 254,
+          "notes": "Original generated alpha preserved; broad subject is nearly opaque. Transparent pixels may retain RGB visible in alpha-ignoring viewers."
+        },
+        "visual_inspection": [
+          "Long precision barrel sits on a captive rail carriage.",
+          "Short lateral rail and visible end stops convey bounded movement.",
+          "Whole muzzle and rail ends visible; rail is part of enemy mechanism, not scenery."
+        ],
+        "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M21_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M21",
+        "display_name": "缺相跃蛛",
+        "biome_id": "B03",
+        "version": 1,
+        "asset_type": "enemy_battle_ready_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. ONE original battle-ready enemy sprite illustration for an industrial fantasy action RPG: M21 Missing-Phase Jumper from a powerless underground hangar. A compact FOUR-LEGGED jumping machine-mineral creature: exactly four widely spread jointed feet with large visible compressed coil springs, arranged like an opening and closing four-point STAR around a small angular capacitor core. One flexible severed electrical cable forms a single dragging tail with a capped metal connector; the tail is visibly different from the four load-bearing spring legs. No spider abdomen, no extra legs, no humanoid elements. Coiled springs crouch ready to leap, copper contacts around the small central chassis hint at a brief electric ring upon landing. A few restrained pale cyan electrical highlights on ceramic capacitor blocks, no electric halo and no particle burst obscuring the body. Coal-black steel, faded ochre casing, oxidized copper joints, ivory ceramic insulators, slight mineral-organic fibers tucked into seams. Premium richly hand-painted stylized industrial-fantasy, beautiful functional engineering, broad clear light/shadow masses and tactile limited surface wear. Elevated three-quarter camera looking down 40 degrees, all four spring feet clearly distinguishable. Entire subject and cable tail framed with generous transparent margin; recognizably four-point star at 70 pixels. Nearly opaque solid subject on genuine transparent alpha; no ground, floor, cast shadow, pedestal, environment, lettering, labels, logo, UI, watermark, decorative border or any existing game creature.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-f56445e6-37f6-4839-bd39-fb74f2503532.png",
+        "saved_path": "assets/generated/enemies/M21_v1.png",
+        "width": 1362,
+        "height": 1155,
+        "sha256": "5C8A3B5FCE8496DC9ADEED552D6E44EE822034B1727E4CD12913DE91C1097983",
+        "design_sources": [
+          "docs/IMAGEGEN_ART_DIRECTION.md",
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json"
+        ],
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 16881,
+          "edge_or_low_alpha_samples": 688,
+          "near_opaque_samples": 7226,
+          "near_opaque_threshold": 240,
+          "max_alpha": 255,
+          "notes": "Original generated alpha preserved; broad subject is nearly opaque. Transparent pixels may retain RGB visible in alpha-ignoring viewers."
+        },
+        "visual_inspection": [
+          "Exactly four spring legs and one distinct trailing cable are visible.",
+          "Four-point opening silhouette and compressed springs communicate the jump.",
+          "Ceramic capacitor core and restrained cyan accents support electric landing identity."
+        ],
+        "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M22_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M22",
+        "display_name": "熔口浇铸工",
+        "biome_id": "B03",
+        "version": 1,
+        "asset_type": "enemy_battle_ready_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. ONE original battle-ready enemy sprite illustration for industrial fantasy action RPG, M22 Molten-Mouth Foundry Worker from a powerless underground hangar. Strong PEAR-SHAPED silhouette: a huge asymmetrical thick-walled CRUCIBLE BELLY with an offset pouring lip makes most of its body, balanced on two small sturdy foundry feet; two short mechanical clamp hands sit on the crucible sides. The creature has no separate human head; a tiny hooded amber sensor sits on the upper rim. Thick ceramic-lined vessel is slightly tilted toward its projecting side pour spout, preparing to spill molten metal; show a restrained orange light reflecting inside the open inner wall, NOT a pouring stream, fire explosion or environment. A large crucible handle on the opposite side remains visible, providing a readable flanking landmark. Exposed hinge and locking crank, coal-black cast iron, ivory refractory ceramic lining, heat-dark copper rivets, patches of worn ochre enamel, subtle mineral-organic tendons powering short limbs. Original utility-machine creature anatomy, not a humanoid wearing a pot. Premium richly hand-painted stylized industrial-fantasy with beautiful broad forms, tactile materials, carefully placed warm highlights, readable painterly volumes and controlled wear. Elevated three-quarter camera looking down about 40 degrees showing the inner crucible and side lip. Entire subject, feet, handles and tiny arms framed with generous transparent safety margin. Near-opaque solid subject on genuine transparent alpha; silhouette readable as a lopsided pear at 70px. No ground, cast shadow, floor, platform, scenery, haze, UI, words, symbols, logos, watermark or existing franchise design.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-6ea9cc8c-401c-4391-a7f0-0d4048166306.png",
+        "saved_path": "assets/generated/enemies/M22_v1.png",
+        "width": 1226,
+        "height": 1283,
+        "sha256": "A22F89DB862E4C154F2CD52AD80DC12C171503878C8632BAB07A02B0FF9F93DC",
+        "design_sources": [
+          "docs/IMAGEGEN_ART_DIRECTION.md",
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json"
+        ],
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 11494,
+          "edge_or_low_alpha_samples": 479,
+          "near_opaque_samples": 12821,
+          "near_opaque_threshold": 240,
+          "max_alpha": 255,
+          "max_border_alpha": 1,
+          "near_opaque_border_pixels": 0,
+          "notes": "Original generated alpha preserved; broad subject is nearly opaque. Boundary has only trace low-alpha generation noise, not opaque clipping."
+        },
+        "visual_inspection": [
+          "Large pear-shaped crucible body, offset pouring lip and short clamp arms match the identity.",
+          "Open refractory lining and opposite handle expose clear flanking landmarks.",
+          "Restrained internal molten glow; no attack stream or hazard baked into art."
+        ],
+        "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M23_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M23",
+        "display_name": "极性拖车",
+        "biome_id": "B03",
+        "version": 1,
+        "asset_type": "enemy_battle_ready_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. ONE original battle-ready enemy sprite illustration for industrial fantasy action RPG, M23 Polarity Tug from an abandoned underground hangar. Its strong OPEN U-SHAPED silhouette is formed by a large two-prong magnetic fork rising from a very low compact trolley chassis. Between the U prongs a single heavy mineral-and-iron cargo sphere hangs visibly suspended with a clear air gap all around it. The open hole and floating ball must be unmistakable, no solid torso filling the fork. Small rugged drive rollers beneath the low trolley, braided copper electromagnet windings and ivory ceramic terminal caps at the two fork tips. Forks are partly closing around the ball, preparing a short push/pull magnetic pulse; tiny cyan and amber terminal indicators without letters or arrows. No human shape, no face, no gun or manipulator arms. Salvaged loading equipment subtly animated by mineral fibers, coal-black steel, oxidized copper and restrained worn ochre panels, no excessive surface noise. Premium richly hand-painted stylized industrial-fantasy, beautiful readable sculptural forms, broad painterly light/shadow, fine details only at functional joints. Elevated three-quarter view looking down 40 degrees, complete trolley and fork tips and ball, 12 percent empty safety margin, readable at 70 pixels as a hollow U and sphere. Nearly opaque solid metal and sphere; genuine transparent alpha outside and through open gaps. No scene, floor, ground shadow, pedestal, aura, electric field graphic, smoke, text, logo, UI, watermark, border or existing franchise resemblance.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-30ab8481-92cd-4265-a451-17faff37f97b.png",
+        "saved_path": "assets/generated/enemies/M23_v1.png",
+        "width": 1312,
+        "height": 1199,
+        "sha256": "09C87A4FE9671FBC8BB38FC5EAB01B061C962D295357A3D856736837FBB17970",
+        "design_sources": [
+          "docs/IMAGEGEN_ART_DIRECTION.md",
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json"
+        ],
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 11776,
+          "edge_or_low_alpha_samples": 544,
+          "near_opaque_samples": 12280,
+          "near_opaque_threshold": 240,
+          "max_alpha": 255,
+          "max_border_alpha": 3,
+          "near_opaque_border_pixels": 0,
+          "notes": "Original generated alpha preserved; broad subject is nearly opaque. Boundary has only trace low-alpha generation noise, not opaque clipping."
+        },
+        "visual_inspection": [
+          "Open U-shaped magnetic fork and suspended cargo sphere are distinct.",
+          "Clear gap around the sphere preserves the hollow silhouette.",
+          "Low trolley rollers and exposed copper coils communicate magnetic utility machinery."
+        ],
+        "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M24_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M24",
+        "display_name": "冷凝泵犬",
+        "biome_id": "B03",
+        "version": 1,
+        "asset_type": "enemy_battle_ready_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. ONE original battle-ready enemy sprite illustration for industrial fantasy action RPG, M24 Condenser Pump Hound from a powerless underground hangar. Low long FOUR-FOOTED utility creature with a conspicuously long projecting pump-nozzle head and exactly TWO large rounded condenser tanks strapped side-by-side across its back. Four thin articulated metal feet in a prowling quadruped stance, elongated mechanical neck and a small body. The long muzzle is a functional frost diffuser with radial ceramic fins and a small nozzle opening, NOT a dog face, snout, fangs or gun. Twin spherical tanks have fine pale frost gathering on upper seams, linked by copper tubes to the nozzle. No mist cloud in this illustration; the frost and paired tanks communicate its cold-mist attack without obscuring contour. Short cable tail, very restrained pale cyan valve indicators, coal-black steel, ivory ceramics, aged copper, selectively worn ochre straps and panels, tiny mineral fibers in flexible joints. Distinct hound-like low silhouette from functional pump equipment, original and beautiful rather than ordinary robot dog. Premium richly hand-painted stylized industrial-fantasy, broad readable material planes, limited weathering, elegant painterly volume. Elevated three-quarter camera looking down 40 degrees, whole muzzle, both tanks, all four feet and tail visible; generous transparent margin. Clear at 70px through twin round tanks and long pump head. Nearly fully opaque creature on genuine transparent alpha. No floor, shadow, pedestal, scenery, smoke or fog, text, logos, UI, watermark, border or existing game design.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-a3c229fd-9c50-49e1-8a98-e9a80910983d.png",
+        "saved_path": "assets/generated/enemies/M24_v1.png",
+        "width": 1374,
+        "height": 1145,
+        "sha256": "54CBC96707DE732EEBA468766E8750DEDD378392F1F6A50039BEADAD7272BEBD",
+        "design_sources": [
+          "docs/IMAGEGEN_ART_DIRECTION.md",
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json"
+        ],
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 15505,
+          "edge_or_low_alpha_samples": 756,
+          "near_opaque_samples": 8507,
+          "near_opaque_threshold": 240,
+          "max_alpha": 255,
+          "max_border_alpha": 3,
+          "near_opaque_border_pixels": 0,
+          "notes": "Original generated alpha preserved; broad subject is nearly opaque. Boundary has only trace low-alpha generation noise, not opaque clipping."
+        },
+        "visual_inspection": [
+          "Two rounded frosted tanks, long pump nozzle and four slender feet are visible.",
+          "No dog face or generic animal-head substitution; nozzle remains mechanical.",
+          "Complete silhouette inspected; only alpha up to 3 occurs at image boundary, not opaque body clipping."
+        ],
+        "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M25_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M25",
+        "display_name": "回充匣兵",
+        "biome_id": "B03",
+        "version": 1,
+        "asset_type": "enemy_battle_ready_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. ONE original battle-ready enemy sprite illustration for industrial fantasy action RPG, M25 Recharge-Case Soldier from an abandoned underground hangar. An upright TALL RECTANGULAR BATTERY CASE on two small quick mechanical legs, with a broad thin circular shield DISC on one side carried by a compact clamp arm. Battery case IS its body, no human torso or head, no armored knight anatomy. The tall case has an exposed recessed capacitor core, ceramic terminals at its top, and a visible charging connector dock on its back edge; a small amber sensor inset into the upper rectangle. The flat round shield has six physical wedge-like segments with very small cyan charge indicators, some unlit to show finite shield capacity, no numbers or words. Stance turned slightly sideways ready to retreat and recharge, shield front and charging socket visible together. Coal-black steel, selectively worn ochre case, oxidized copper wiring, ivory ceramic batteries, restrained pale cyan shield nodes and warm core. Subtle mineral fibers at joints unify original mining utility-machine ecology. Premium richly hand-painted stylized industrial-fantasy, clean strong rectangle-versus-circle shape design, sculptural painterly lighting, believable material details without all-over noisy rust. Elevated three-quarter camera looking down 40 degrees, whole body, disc and feet fully framed within generous transparent safety margin. Readable at 70 pixels. Solid subject near fully opaque on genuine transparent alpha. No charging station or other prop, floor, shadow, background, pedestal, shield bubble, halo, text, logo, UI, watermark or existing game character.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-0172dbf3-846f-440d-9141-a700dbad2e04.png",
+        "saved_path": "assets/generated/enemies/M25_v1.png",
+        "width": 1024,
+        "height": 1536,
+        "sha256": "B0591AC7734A69FF4720A34C1EDC32E708EC6E9B8700A8E8649E27F2B52615B6",
+        "design_sources": [
+          "docs/IMAGEGEN_ART_DIRECTION.md",
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json"
+        ],
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 14111,
+          "edge_or_low_alpha_samples": 374,
+          "near_opaque_samples": 10091,
+          "near_opaque_threshold": 240,
+          "max_alpha": 253,
+          "max_border_alpha": 1,
+          "near_opaque_border_pixels": 0,
+          "notes": "Original generated alpha preserved; broad subject is nearly opaque. Boundary has only trace low-alpha generation noise, not opaque clipping."
+        },
+        "visual_inspection": [
+          "Tall battery-case rectangle contrasts with a flat six-segment round shield.",
+          "Some shield indicators unlit, indicating finite capacity.",
+          "Side charging connector and exposed core support the recharge mechanic."
+        ],
+        "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M26_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M26",
+        "display_name": "断线剪翼",
+        "biome_id": "B03",
+        "version": 1,
+        "asset_type": "enemy_battle_ready_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. ONE original battle-ready enemy sprite illustration for an industrial fantasy action RPG, M26 Severed-Wire Shearwing from a powerless underground hangar. A small hovering wire-cutting machine with exactly TWO large rotating scissor blade wings like an open SWALLOWTAIL, mounted around a very THIN central spindle. Distinct broad swept-back V silhouette, two long curved tapering blades with shear edges facing each other, root pivots exposed so the wings can close together to intercept a limited number of bullets. Central axial motor is narrow and compact, no bulky torso, no insect legs, no bird face, no extra wings or propellers. Slightly asymmetric blade angle in ready pose, visible opposing cutting edges, copper rotary coils and ivory ceramic bearings around the slender shaft. One tiny amber sensor on the front of the spindle; blackened steel blade faces with worn ochre accent stripes, polished bright shear edges, subtle oxidized copper and mineral fibers only near center. Original mining wire-cutting hardware becomes a precise living machine, not an ordinary bird or combat drone. Premium richly hand-painted stylized industrial-fantasy with elegant clean contours, deliberate shape hierarchy, readable broad painterly light and shadow and tactile restrained wear. Elevated three-quarter camera looking down 40 degrees; both full blades and center shaft entirely in frame with generous transparent margin, recognizable V silhouette at 70px. Solid object almost fully opaque on genuine transparent alpha. No projectile, blocking field, circular energy aura, scenery, floor, shadow, pedestal, text, logos, labels, UI, watermark or existing franchise design.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-adb9cf6b-42f3-4021-b2cf-f0c3a1cf59e1.png",
+        "saved_path": "assets/generated/enemies/M26_v1.png",
+        "width": 1536,
+        "height": 1024,
+        "sha256": "883F2F964DAA0FFE793CFA3EDA8F7443A32BFB77503FF746F0D7FA11086F09FE",
+        "design_sources": [
+          "docs/IMAGEGEN_ART_DIRECTION.md",
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json"
+        ],
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 19723,
+          "edge_or_low_alpha_samples": 350,
+          "near_opaque_samples": 4503,
+          "near_opaque_threshold": 240,
+          "max_alpha": 254,
+          "max_border_alpha": 1,
+          "near_opaque_border_pixels": 0,
+          "notes": "Original generated alpha preserved; broad subject is nearly opaque. Boundary has only trace low-alpha generation noise, not opaque clipping."
+        },
+        "visual_inspection": [
+          "Exactly two broad tapering shear blades surround the thin central spindle.",
+          "Readable open swallowtail V silhouette and rotary pivots.",
+          "No permanent projectile-blocking field baked into the sprite."
+        ],
+        "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+      }
+    },
+    {
+      "retired_path": "assets/generated/enemies/M27_v1.prompt.json",
+      "metadata": {
+        "asset_id": "M27",
+        "display_name": "节拍装卸臂",
+        "biome_id": "B03",
+        "version": 1,
+        "asset_type": "enemy_battle_ready_illustration",
+        "use_case": "stylized-concept",
+        "generation_mode": "built_in_image_gen",
+        "tool": "image_gen.imagegen",
+        "transparent_background_requested": true,
+        "prompt": "Use case: stylized-concept. ONE original battle-ready enemy sprite illustration for industrial fantasy action RPG, M27 Rhythmic Loading Arm from a powerless underground hangar. An unmistakable eccentric silhouette: ONE LONG articulated loading CLAMP ARM mounted off-center on a low ROUND rotary disc supported by exactly THREE short splayed utility feet. No torso, head, second arm or humanoid anatomy. Raised bent arm pauses mid-beat ready to sweep forward then sideways; oversized two-jaw industrial clamp at its tip with thick gripping pads, hinge axes and hydraulic cylinders clearly explain its two-stage mechanical sweep. Exposed rotary indexing wheel at base has broad physical notches, no painted numbers. Low circular chassis with three feet all visibly separate, off-center angled boom creates open negative space. Original salvage machine animated by sparse mineral-organic fibers near hydraulics; coal-black steel, worn ochre frame panels, oxidized copper lines, ivory bearing collars and a tiny amber core. Premium richly hand-painted stylized industrial-fantasy, beautiful believable engineering, broad clean painterly light/shadow and tactile material layers, detail concentrated at functional joints. Elevated three-quarter camera looking down about 40 degrees so the round three-foot base reads clearly. Entire long clamp, raised boom and all feet fully framed with generous transparent margin, clean silhouette identifiable at 70 pixels. Solid near-opaque subject on genuine transparent alpha. No numbered attack sectors, effects, floor, cast shadow, platform, scene, lettering, labels, logo, UI, watermark or resemblance to existing game characters.",
+        "source_path": "C:/Users/13326/.codex/generated_images/01a0e806-a98a-7d00-8f39-a52995614d54/exec-c9467f2d-cf45-4a5c-a1cb-3661162620a9.png",
+        "saved_path": "assets/generated/enemies/M27_v1.png",
+        "width": 1312,
+        "height": 1199,
+        "sha256": "59AD0DB8EB2514A557B7E088CDF5D09B576630260CB6575407A3FFBF4E15CF5D",
+        "design_sources": [
+          "docs/IMAGEGEN_ART_DIRECTION.md",
+          "docs/NEXT_PHASE_LEVELS_ENEMIES.md",
+          "data/enemies.json"
+        ],
+        "alpha_validation": {
+          "format": "Format32bppArgb",
+          "sample_stride": 8,
+          "transparent_samples": 16192,
+          "edge_or_low_alpha_samples": 624,
+          "near_opaque_samples": 7784,
+          "near_opaque_threshold": 240,
+          "max_alpha": 255,
+          "max_border_alpha": 1,
+          "near_opaque_border_pixels": 0,
+          "notes": "Original generated alpha preserved; broad subject is nearly opaque. Boundary has only trace low-alpha generation noise, not opaque clipping."
+        },
+        "visual_inspection": [
+          "One long clamp arm is mounted on a low rotary disc with three distinct feet.",
+          "Raised eccentric arm and functional pivots communicate two-stage sweep.",
+          "Whole clamp and chassis visible, no numbering or telegraph sectors baked into art."
+        ],
+        "production_status": "Single battle-ready illustration. Full directional animation, attacks, recovery and 70-pixel in-engine visual QA remain separate deliverables."
+      }
+    },
+    {
+      "reason": "Retired mine-era M01 animation and rejected M10 motion candidate; neither is consumed by current combat.",
+      "resources": [
+        {
+          "logical_id": "enemies/m01_motion_v1.json",
+          "sha256": "dcec88859456fee571e725b5cc5817fa2364fc63a1baa7c6d469c33e96263650",
+          "source_provenance": {
+            "tool": "image_gen.imagegen (built-in)",
+            "source": "assets/generated/enemies/M01_v1.png",
+            "final_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0ee7a-40fd-7552-b7db-a102f42fa2b8\\exec-405752cd-6a0a-48c6-a4f2-ac111ade5d28.png",
+            "initial_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0ee7a-40fd-7552-b7db-a102f42fa2b8\\exec-7cbb9da2-f05e-4286-860d-444f53a681c6.png",
+            "transparent_background": true,
+            "prompt": "Use case: stylized-concept\nAsset type: production game enemy animation sprite atlas, 4 columns by 4 rows, exactly sixteen separate full-body animation frames, transparent PNG.\nInput image 1 is the sole character identity reference. Create new animation poses of exactly this original M01 Rustfang mining monster: squat heavy nonhuman rock-and-rusted-metal industrial creature, narrow orange vertical furnace face, hooded iron head sunk into shoulders, broad chipped rusty plates with traces of ochre industrial paint, quartz chunks embedded in upper back, enormous integrated hinged pickaxe forearm and other crushing claw, short digitigrade mechanical claw legs. Maintain the reference's precise identity, proportions, realistic detailed game art, materials, wear and colors across all 16 frames. This is a monster, never a human in armor.\nCOMPOSITION: square 2048 x 2048 canvas. Invisible strict 4 by 4 grid of sixteen 512 x 512 cells. Do not draw grid or labels. One complete creature inside each cell, same camera, same body scale (standing foot to head about 310px), same 3/4 view FACING SCREEN RIGHT in every cell. Entire body, pickaxe tips and claw feet visible, ample transparent margins on all four sides, no pixels crossing the cell boundaries. Standing ground/foot contact point near local x=256 y=442 in every cell. The monster walks IN PLACE; center of mass stays close to this cell position. It does not traverse the atlas. Pickaxe kept away from frame boundaries even when raised. No shadows, floors, backdrops, glows outside body, text, numbers, labels, particles, flashes, action streaks or effects. Actual transparent alpha around each sprite.\nAnimation order row-major left to right and then top to bottom, distinct anatomical poses:\nROW 1 (frames 0,1,2,3), first half of eight frame walk cycle:\n0 near claw foot forward planted and far foot back, heavy contact pose, opposite shoulder rotation;\n1 near knee compresses under weight, torso down slightly, far heel lifts;\n2 far leg swings through beneath pelvis, planted near foot stays behind, pickaxe counterbalances;\n3 far foot reaches forward airborne, supporting ankle extends, torso rises slightly.\nROW 2 (frames 4,5,6,7), opposite half of same smooth eight frame cycle:\n4 far claw foot forward planted and near foot back, opposite contact;\n5 far knee compresses, near heel lifts, torso down;\n6 near leg swings through pelvis, far leg supports behind;\n7 near foot reaches forward airborne, supporting ankle extends, torso rises, leading smoothly back to frame 0.\nThe claw feet must genuinely alternate with visible knee and ankle articulation; coordinated small hip and shoulder shifts carry the massive weight. Pickaxe and claw counter-swing subtly without identity changes. Never eight copies of a static standing pose.\nROW 3 (frames 8,9,10,11), pickaxe attack sequence:\n8 begin windup: grounded wide feet, torso turns back, integrated pickaxe forearm lifts diagonally overhead;\n9 full anticipation: pickaxe high and back, elbow strongly bent, torso recoils ready to strike, center anchored;\n10 release: a visibly different powerful downward-forward chopping pose, upper torso pitches forward, pickaxe head low ahead toward the ground, knees brace, no added impact effect;\n11 recovery: pickaxe rises from low strike, torso partly straightens, weight centered again.\nROW 4 (frames 12,13,14,15), hit reaction recovery:\n12 initial hit: torso and head snap back, knees soften, claw pulls inward;\n13 deepest recoil/compression: shoulders lean back markedly, abdomen folds, one claw foot braces to stop imbalance, pickaxe droops;\n14 regained balance: torso comes forward halfway, knees recover, pickaxe returns toward guard;\n15 stable guard return: torso upright in characteristic hunched silhouette, both feet grounded, ready to walk.\nThere must be exactly 16 sprites, distinct continuous movement, fixed facing and consistent scale. Preserve silhouette integrity: no extra limbs, no detached tool, no new armor shapes, no human facial features. Detailed crisp production game rendering with neutral consistent top-left lighting and transparent background.",
+            "repair_prompt": "Use case: precise-object-edit\nEdit target: image 1 is the sixteen-frame transparent M01 monster animation atlas. Image 2 is the original monster identity reference.\nMake one targeted production-layout correction to image 1: normalize all 16 sprite compositions to a visibly 3/4 SCREEN-RIGHT facing view and give every frame generous clear transparent margins. Current leftmost pickaxes touch or extend past canvas and row/column boundaries. Fix this completely. Keep EXACTLY 4 columns and 4 rows and same sixteen animation poses in the same row-major order; do not replace poses with generic stances, do not lose visible walking leg alternation, windup attack, downward pickaxe strike and backward hit reaction. The orange facial slit should point diagonally toward SCREEN RIGHT consistently; pickaxe-side placement may mirror as necessary to establish facing right. Preserve original character identity/material and the identity details in image 2.\nInvisible equal 4x4 cell layout on square canvas. Each sprite must be comfortably isolated in its cell with at least 8% of cell width clear margin on every side INCLUDING all weapon tips and claws. Entire feet and weapon are inside its own cell. Same body scale across all 16; leave more air above smaller bent poses rather than rescaling them. Body height head-to-foot about 58% of the cell height at neutral stance; weapon can use remaining space. Ground anchor is centered x=.5 y=.84 per cell. No global positional slide, no turned-back figures, no overlapping neighbors. Preserve transparent background and crisp detailed game art. No grid, labels, numbering, text, ground, shadow, motion streaks or visual effects. Exactly sixteen separate complete monsters.",
+            "image_processing": "Final PNG copied unchanged from built-in image generation output. Pillow/NumPy used only for read-only alpha inspection; no programmatic image edits.",
+            "created_date": "2026-09-30"
+          }
+        },
+        {
+          "logical_id": "enemies/m01_motion_v1.png",
+          "sha256": "0e693f42fa47cdb9e9b679f13c0cade13611696041d5334078ce295a82aeb852"
+        },
+        {
+          "logical_id": "enemies/m10_storybook_motion_v1.json",
+          "sha256": "2fa6e4735f743a2a8a2029142a9d3268be4ec50bd9a539ca01cc842bc292f844",
+          "source_provenance": {
+            "tool": "image_gen.imagegen (built-in)",
+            "created_date": "2026-09-30",
+            "reference": "C:\\webdev\\games\\assets\\generated\\enemies\\storybook_B01_bodies_v1.png",
+            "reference_scope": "Only top-left canonical amber/coral insect used; remaining nine creatures excluded.",
+            "original_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dd-4733-7ce0-8c3d-88218d682625\\exec-2d9b8f31-c0f0-485b-9510-c9859d090bb8.png",
+            "final_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dd-4733-7ce0-8c3d-88218d682625\\exec-73a093c3-8b2e-472e-8ffa-2ec398e28e0e.png",
+            "transparent_background": true,
+            "prompt": "Use case: stylized-concept.\nAsset type: production enemy sprite motion atlas, transparent PNG, exactly sixteen full-body animation frames.\nInput image 1 is a STYLE AND IDENTITY REFERENCE. Use ONLY the TOP-LEFT creature in this reference sheet. Ignore and never borrow anatomy, colors, wings, tails or weapons from the other nine creatures. The top-left creature is the canonical M01 辉砂虫族: a dangerous nonhuman hulking amber/coral beetle-mantis insect with a low rounded segmented golden amber abdomen, orange-coral armored shell plates edged in pale ivory and old brass, glistening amber shell nodules, a small forward insect head with large jade/teal compound eyes, two delicate backward-curled brass antennae, SIX jointed insect walking legs ending in six pointed feet, and a separate pair of huge curved ivory-gold scythe forelimbs. No humanoid anatomy, no clothing, no fists, no human legs. Preserve this exact character in every frame, not sixteen different insects. A dangerous predatory insect, not a cute pet.\nLOCKED STANDARD: bright hand-painted cartoon fantasy, classical ruins combined with magical steam machinery, high camera three-quarter oblique overhead view, nearly isometric composition, 2.5D solid volume, warm sunshine inside the character surfaces and fresh vivid colors. Maintain crisp deep-plum contour edges, tactile painted facets, amber/coral/pale ivory/gold shell, jade compound eyes. Dark creases between hard shell plates, soft warm top-left highlights. Rich physical volume and thickness rather than flat icon shapes or photorealism.\nATLAS LAYOUT: square target 2048 x 2048 canvas, invisible precise 4 columns x 4 rows of equal 512 x 512 cells. Strict row-major index0–15 left-to-right then top-to-bottom. EXACTLY sixteen separate complete sprites. Every frame faces SCREEN RIGHT: the jade-eyed head is on the right and abdomen on the left, seen from consistent high three-quarter camera. Same anatomical body size and proportions in all frames. Walks IN PLACE. All six walking feet and both full curved scythes, antenna tips and full abdomen fit within their own cell. Sprite footprint including all appendages at most 60 percent of cell width and height. Leave at least 20 percent empty TRANSPARENT gutter on all four sides. Do not crop, overlap neighbors, or touch any cell edge. Normal body crown-to-ground height about 38 percent of cell height, excluding raised scythes and antennae. Ground/foot anchor near local x=256,y=370 for every cell; same global body scale. Deep anticipation and recoil can bend the body, but never resize it. Invisible grid, no labels or frame numbers.\nThe SIX distinct walking feet must remain complete and separate in every pose: three near-side feet and three far-side feet, visibly staggered so they can be counted. Keep pair of large scythe forelimbs in front, visually distinguishable from the six walking feet. Vary actual joint bends and planted versus lifted feet across the walk cycle. The stable armored abdomen is never recolored or changed.\nROW1 frame0–3: first half of an eight-phase alternating-tripod insect walking cycle, six legs moving anatomically in place.\n0 neutral contact/idle-compatible stance: near front foot forward and near rear foot back, middle near foot braced; complementary far leg tripod supports the abdomen, paired scythes held in threatening low forward guard.\n1 first tripod compresses: planted joints bend down under weight, complementary three feet begin lift, shell lowers very slightly.\n2 passing: lifted near front/far middle/near rear legs tuck and pass under body, other three feet fully planted, scythes counterbalance subtly.\n3 first tripod reaches forward: those three swing feet extend forward with toes lifted, other tripod holds body, shell lifts slightly.\nROW2 frame4–7: second half of the same continuous eight-phase cycle, visibly opposite leg sequence.\n4 opposite tripod contact: far front foot now forward, near middle and far rear support; other leg positions reverse frame0.\n5 opposite tripod compresses: opposite three planted joints flex, previous support feet lift, tiny downward shell motion.\n6 opposite passing: far front/near middle/far rear swing beneath shell while the other tripod anchors, scythes subtly counter-swing.\n7 opposite reach: opposite three swing feet extend in preparation for contact, abdomen rises slightly and returns smoothly to frame0.\nDo not make eight copies of the same stance. Each walk pose must have distinct foot placements, knee bends and tripod phase while shell dimensions remain constant.\nROW3 frame8–11: paired scythe attack, each silhouette decisively different.\n8 windup start: wide six-foot brace, torso tilts backward, BOTH scythe forelimbs lift upward diagonally, elbows curl in preparation.\n9 full windup/locked attack anticipation: both huge scythes raised high and back above head, sharp tips wholly inside cell, head pulled back, six feet fully braced. Clear overhead threatening silhouette.\n10 release: forceful DOWNWARD-FORWARD DOUBLE SCYTHE SLASH, both large blades sweep down ahead to the right near ground height, insect body pitches forward, six legs brace. Do not add action trails or effects. Blades visibly low, not raised.\n11 recovery: blades rise partly from the downslash into forward guard, shell halfway straightens, six feet settle centered.\nROW4 frame12–15: a four-frame hurt recoil and settle sequence.\n12 initial hit recoil: head and shell snap backward to the left, scythes recoil inward, six legs splay to catch balance, no added damage effect.\n13 deepest recoil: shell leans back and compresses, head pulls back markedly, hind feet plant harder and front feet recoil, lowered scythes protect body. Same character size.\n14 regain balance: abdomen and head return halfway forward, middle legs recover, scythes move back toward guard.\n15 hurt settle: stable threatening right-facing low guard, six feet regain ordinary tripod-ready stance and armor/head return toward walk0.\nTRANSPARENCY: real alpha-zero transparent background outside exact insect silhouettes, no opaque square, no floor, no ground planes, no cast shadows, no contact shadows, no drop shadows, no halo, no glow outside the insect, no scene or ruins painted in the atlas. Warm illumination is painted INSIDE the sprites only. No particles, slash streaks, impact flashes, blood, UI, labels, text, frame numbers, borders, grid, watermark or extra objects. Six feet and paired scythes wholly visible, no missing limbs, no extra walking legs, no flying insect, no cropped anatomy. All sixteen are the SAME canonical top-left amber/coral jade-eyed insect in distinct poses, right-facing high three-quarter view.",
+            "repair_prompts": [
+              "Use case: precise-object-edit.\nImage1 is the sixteen-frame M01 amber/coral insect motion atlas to repair. Image2 is its canonical identity reference; use ONLY image2's TOP-LEFT amber insect, ignore all other creatures.\nRepair image1 while keeping the successful same-character amber/coral rounded shell, golden/ivory seams, glowing amber nodes, jade compound eyes, curled gold antennae, paired long curved ivory-gold scythe forearms, dangerous predatory expression, bright polished hand-painted 2.5D style and high three-quarter SCREEN-RIGHT facing view. Preserve the row-major sequence and attack/recoil intent.\nTWO CONCRETE FIXES:\n1 Make all sixteen WHOLE sprites MUCH SMALLER with generous alpha-zero empty space. REDUCE THEM ALL to about 60 PERCENT of their current size, using one constant body scale. Square target2048x2048, strict invisible4x4 equal512cells. Each full silhouette INCLUDING all scythes, antennae and feet at most60percent cellwidth and60percent cellheight. At least18percent blank transparent space on ALL four sides of EVERY cell, including frame9 raised scythes and frame10 downslash. Same cell ground anchor local x=.5,y=.72; every appendage fully inside, no cell touching, no overlap, no clipping. Large obvious empty transparent bands between rows and columns. Keep anatomical shell size identical across poses; do NOT individually enlarge smaller bent poses.\n2 Redraw SIX WALKING LEGS so all SIX POINTED FEET are individually traceable and countable in EVERY frame, plus TWO separate big scythe forearms. Three walking legs on visible near side and three on farther side. Give far-side feet clear spaces between them, staggered beyond belly silhouette, do not merge them into dark tassels beneath abdomen. Each of the six legs has visible joints and a pointed insect foot. Long angular arthropod limb structure, never robot boots or humanoid arms. Scythes are attack appendages and NEVER substitute for any of the six walking feet.\nThe first eight frames MUST show a clear active insect alternating-tripod walk IN PLACE, with broad perceptible stride and dramatic joint changes, not tiny near-identical idle stances. Treat support groupA=near front+far middle+near rear; groupB=far front+near middle+far rear. Exactly6feet remain complete when lifted.\nROW1 indices0–3:\n0 groupA feet clearly PLANTED FORWARD, groupB feet clearly swept BACK; low scythe guard.\n1 groupA planted legs visibly BENT down under load, all3 groupB feet visibly LIFT off and curl inward.\n2 groupB feet swing UNDER abdomen, knees tightly bent and feet raised, groupA feet planted now behind body.\n3 groupB front/middle/rear feet reach visibly FORWARD with joints stretched and toes lifted, groupA stretches rearward.\nROW2 indices4–7:\n4 groupB feet clearly PLANTED FORWARD and groupA swept BACK, opposite contact from0.\n5 groupB planted joints visibly compress, all3 groupA feet visibly LIFT and curl inward.\n6 groupA feet pass UNDER abdomen with knees tucked, groupB anchors now behind.\n7 groupA feet extend visibly FORWARD toes lifted, groupB feet stretched rearward, ready to return0.\nKeep rounded shell anatomical volume constant while slight natural 5percent vertical movement and tiny counterrotation show weight. The eight panels must read as a sequence of real movement with distinct limb silhouettes.\nROW3:\n8 first windup: ALL6feet planted wide, BOTH scythes lift diagonally upward, shell tilts back.\n9 full overhead windup: BOTHscythes raised above the head and backward, visually high, ALL6feet bracing. Entire long curved tips safely inside cell with empty margin.\n10 downward-forward double scythe SLASH: BOTH blades now very LOW forward to the RIGHT, head thrust forward,6walkingfeet braced. No slash trail/particles. Tips visible, never overlap neighbors.\n11 recovery: both scythes halfway back to low guard, shell straightens,6feet settle.\nROW4:\n12 hit snap: body and jade-eyed head lean BACK left, front feet brace, scythes retract.\n13 deepest hurt: torso sharply recoils BACK left and crouches,6feet catch balance, scythes near body.\n14 rebalance halfway forward, feet recover and scythes return.\n15 settled dangerous right-facing guard,6feet clear and stable.\nReal alpha-zero transparent background. Warm light painted INSIDE the character only. No red fringe, colored halo, glow outside, ground, floor, shadows, scene, text, labels, numbering, grid, frames, UI, trails, impacts, detached limbs or extra insects. Exactly16same canonical insect, same high three-quarter camera, whole6feet+pairedscythes with spacious regular4x4 layout.",
+              "Use case: precise-object-edit.\nImage1 is the amber/coral scythe-insect16-frameatlas. Image2 is the identityreference, ONLY its TOP-LEFT creature. Same insect now named M10 琥珀虫族.\nFinal repair. KEEP the squat rounded amber/coral armored body, ivory/gold shell edging, amber nodes, jade compound eyes, curled antennae and TWO long curved ivory-gold SCYTHE ARMS. Keep right-facing high3/4near-isometric camera and warm bright handpainted cartoon2.5Dfantasy. SAME body proportions and anatomical body scale in every frame, same identity throughout. Do NOT morph into a human, robot, mantis with a long torso or another creature from image2.\nRedraw the SIX supporting WALKING LEGS FROM SCRATCH: fan out six short angular segmented legs into six SEPARATE readable negative-space slots under the squat shell. Three near-side legs in brighter armor; three thinner darker far-side legs clearly visible BETWEEN them. Every leg ends in ONE visible distinct pointed FOOT. All6feet complete and individually countable. Do not merge feet into the central dark underside. Keep TWO attacking scythe arms ABOVE and separate from this six-foot walking-leg fan. Exactly6walkinglegs+2scythes, never substituting a scythe for a foot.\nMake the eight WALK poses plainly different. Tripod A=near front+near rear+far middle. Tripod B=near middle+far front+far rear. In every walk frame,3planted feet rest on the same implied invisible ground baseline; the3raised feet are conspicuously off that baseline with visible bent joints. All6feet present.\nROW1 indices0–3:\n0 A planted, B rear toe-off, threatening scythes in lowguard.\n1 A planted, all3B legs TUCKED HIGH with sharply bent knees and their feet clearly elevated near underside, different silhouette.\n2 A planted, all3B legs EXTENDED FAR FORWARD while still airborne, different silhouette.\n3 B TOUCHDOWN forward, A rear heel lifting, different silhouette.\nROW2 indices4–7:\n4 B planted, A rear toe-off, opposite stance to0.\n5 B planted, all3A legs TUCKED HIGH, clearly raised feet and compact two-joint bends.\n6 B planted, all3A legs EXTENDED FAR FORWARD still airborne, long readable angles.\n7 A TOUCHDOWN forward, B rear heels lifting, closes cycleback0.\nWalk in place, no lateral drift. Only small natural bodybob; do not resize body perframe. Armored abdomen stays rounded and squat.\nROW3 indices8–11 preserve decisive action:\n8 both scythes start rising,6feet brace wide.\n9 BOTH scythes held HIGH OVERHEAD AND BACK, strongest anticipation;6feet planted.\n10 BOTH scythes SLASHED DOWNWARD-FORWARD toward RIGHT at low height, body pitching forward,6feet brace. No motiontrail.\n11 scythes halfway return toguard,6feet settle.\nROW4 indices12–15 preserve recoil:\n12 initial backward head/body snap toLEFT, scythes tuck,6feet catchbalance.\n13 deepest backward recoil and crouch, hindfeetbrace,6completefeet, two scythes separate.\n14 bodyhalfway returns forward, legsrecover.\n15 stable dangerous rightfacing lowguard,6feetgrounded.\nVERY IMPORTANT FINAL LAYOUT: EXACTLY sixteen separate wholecreatures on a square transparent4columns×4rows atlas, target2048×2048. Each invisiblecell equal512square. REDUCE current artwork size by HALF. Every COMPLETE creature silhouette, including all6feet, BOTH scythes and antennae, must occupy ONLY50percent of its owncell width and at most60percent height. At least20percent completely EMPTY transparent gutter on allfour sides. Visually make sprites muchsmaller and surroundedby lots of emptyspace. Allframes use oneglobal body scale, shellcrown-to-ground about30percentcellheight, groundanchor localx=.5,y=.68. Wholehead/body/feet/scythes perfectly visible, no touchingcellborder, nocropping, nooverlap. Center silhouettes horizontally and put feet at consistent groundbaseline. Raisedscythes allowedabove anatomicalcrown but also amplegutter.\nActual alpha-zero transparency outside silhouettes. Lighting stays inside objects. No background, floor, contactshadow, castshadow, halo, colored fringe, externalglow, trails, impacts, text, UI, labels, numbers, grid, borders. Preserve16whole right-facing canonicalamberinsect poses with clear6-footfan and large blanktransparentgutters."
+            ],
+            "dimensions": [
+              1254,
+              1254
+            ],
+            "target_dimensions": [
+              2048,
+              2048
+            ],
+            "image_processing": "Final raw PNG copied unchanged. Pillow/NumPy used only for read-only alpha bounds and foot ROI measurements; no raster edits, cropping, resampling or alpha cleanup."
+          }
+        },
+        {
+          "logical_id": "enemies/m10_storybook_motion_v1.png",
+          "sha256": "6d544f70fc088d57af097c85af6d41902571d2c724b4bb0d92ee8521f3327439"
+        },
+        {
+          "logical_id": "enemies/m10_storybook_motion_v1.regions.json",
+          "sha256": "763c6182482a470a2bf9a42ad268c4fc9f458348cc89c9f5fe0b73ecf2af9f0e",
+          "source_provenance": {}
+        }
+      ]
+    }
+  ]
+}

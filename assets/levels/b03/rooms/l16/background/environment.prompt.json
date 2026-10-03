@@ -1,0 +1,84 @@
+{
+  "room_id": "L16",
+  "biome_id": "B03",
+  "tool": "builtin image_gen.imagegen",
+  "use_case": "stylized-concept",
+  "prompt": "Use case: stylized-concept.\nAsset type: finished independent game room background painting, opaque 1536 x 1024 landscape (3:2).\nInput image 1 is a STYLE, PALETTE and SMALL STONE TILE DENSITY reference ONLY. Invent an entirely new distinct room composition. Do not simply recolor this reference or add an overlay, do not copy its building arrangement. This is one complete original background for a single room in the bright Pumpkin Grave Town biome.\nStyle: polished richly detailed hand-painted cheerful fantasy cartoon, high 3/4 overhead camera, near-isometric 2.5D, tiny cream and warm pale gray cobblestones, soft mint vegetation, a little lavender purple roof tile and warm pumpkin orange, warm sunny afternoon. Friendly tidy intact fantasy village, welcoming Halloween crafts, no dark red/black horror, no blood or decay. Detailed materials and outer neighborhood life without cluttering the fighting floor. Small tiles, around 28–45 pixels each, never giant flagstones.\nABSOLUTE GEOMETRY REQUIREMENT: normalized screen coordinates x increases right, y increases down. The dry walkable polygon vertices are [(0.18,0.16),(0.37,0.12),(0.63,0.12),(0.81,0.17),(0.90,0.31),(0.92,0.55),(0.89,0.77),(0.76,0.89),(0.52,0.94),(0.30,0.91),(0.14,0.77),(0.10,0.54),(0.11,0.30)]. EVERY pixel inside this polygon must be flat contiguous dry cream stone floor or flat decorative inlay. No water, pit, steps, platform, cliff, high wall, building, tree, standing furniture or solid prop inside it; existing gameplay actors and fixed routes will be drawn later. Preserve broad open dry travel lanes through left/right center edges. No visible hard outline around that polygon, floor blends naturally into outer neighborhood. Authoring placement rectangle [0.11,0.13,0.78,0.74]. The entire polygon and route remain supported by earth, not a floating rectangular arena or island pedestal. All building silhouettes, trees, stalls, planter beds and any water must be fully outside the polygon in the outer narrow edge/corner areas; edge life can be partially cropped by image boundary. Never wrap all edges in a continuous wall. Keep the street open to left and right.\nNo text, letters, numbers, signage text, HUD, UI panels, borders, watermark, characters, people, monsters, bosses, active lamps, beacons, magic circles, loot chests, gameplay objectives or interactive furniture. Static outside architectural motifs are okay; flat paving motifs are decorations only. Output a finished full original image, not a contact sheet or mockup.\nROOM: L16 烛炉长街 / twin candy-and-candle ovens, aromatic drying street.\nCOMPOSITION: Distinct long diagonal craft street with two architectural landmarks at upper-right beyond polygon: two adjacent low candle shops with smiling pumpkin chimney and top-hat chimney, creamy plaster, lavender roofs, wax-color glazed windows. At outer upper-left candle-blossom tree and small sugar-pot stall visible only beyond edge; lower outer corners have low patched canvas canopies, capped wax barrels and drying displays all entirely outside polygon. FLOOR: very long uninterrupted diagonal honey-cream brick ribbons run from lower-left to upper-right through the open dry arena, alternating small warm gray brick rows and thin wavy candle-wax-color FLAT mortar patterns, with minute pale blossom inlays. This linear craftsman street is unmistakably different from circular festive plaza, no pipe corridor, no tall border wall, no center ovens, no raised candles on floor.",
+  "reference_role": "Style, palette, and small tile scale only; independent room composition",
+  "referenced_image_paths": [
+    "assets/generated/world/fixed_B03_environment_v3.png"
+  ],
+  "generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f5d7-4127-7b31-826a-893a04df6dae\\exec-1f438fc9-2e48-44cf-890a-522f7edd3255.png",
+  "texture": "asset://world/rooms/L16_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_pixel_edits": "none",
+  "source_sha256": "964a2276d3b1a679030b731d713c53315a97cce50e049e22eca3eea4cae6b18d",
+  "copied_sha256": "964a2276d3b1a679030b731d713c53315a97cce50e049e22eca3eea4cae6b18d",
+  "visual_checked": true,
+  "composition_check": "Original candle craft street: distinct twin pumpkin and top-hat oven architecture, diagonal small-brick lanes and pale wax-wave mortar.",
+  "geometry_note": "Final per-room convex polygon follows inspected dry floor; original mapping rectangle and interactive anchors retained. Required anchor and route clearance >=30world checked from real FixedRoomLayouts.build export.",
+  "geometry_check": {
+    "id": "L16",
+    "minimum_world": 32.889,
+    "required_world": 30,
+    "anchor": "entry",
+    "safe": true
+  },
+  "final_walkable_normalized_polygon": [
+    [
+      0.15,
+      0.28
+    ],
+    [
+      0.31,
+      0.22
+    ],
+    [
+      0.52,
+      0.2
+    ],
+    [
+      0.72,
+      0.29
+    ],
+    [
+      0.87,
+      0.41
+    ],
+    [
+      0.91,
+      0.61
+    ],
+    [
+      0.86,
+      0.74
+    ],
+    [
+      0.78,
+      0.86
+    ],
+    [
+      0.55,
+      0.92
+    ],
+    [
+      0.33,
+      0.86
+    ],
+    [
+      0.18,
+      0.77
+    ],
+    [
+      0.12,
+      0.56
+    ],
+    [
+      0.12,
+      0.4
+    ]
+  ]
+}

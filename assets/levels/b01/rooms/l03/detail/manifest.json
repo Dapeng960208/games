@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "room_id": "L03",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L03_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "0f0f59135df3eaf6927353eec36dbf589d083a79b75b9d8f3af6a7a5936326ec",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L03/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "9b7ab3af9aff3dfb81c4dbfc8a21bb9053cdde81fc4c46d1dfbe9cb8aa7e89dd",
+      "decoded_rgb_sha256": "76023e37d9ad8ea707b2848503e702458548a43727a73c301bb842360421e057",
+      "webp_sha256": "37b94eb658dbc46b4462281522f2cd92e6087398e7c516a8e71e1aeb0a4afc95",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L03, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room's pink-blossom terrace, blue crystal garden, gold astronomical ornament and curving triple circular floor inlay are unique identifiers. Preserve their exact scale, shapes and placement. Do not turn crystal or water margins into walkable floor."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L03/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "52ea90e09a04ef75d9f98144a938a5b1b386f1b2dba893375ed80fe56b2c0737",
+      "decoded_rgb_sha256": "1a13493b1440ce8918d752f85f0eea85110b0144328c0479b3a966c45fb84282",
+      "webp_sha256": "8c3a3294da8b62d25ff9d94ff15009d49837cfd67e9c03a2804c8e4cb3003577",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L03, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room's pink-blossom terrace, blue crystal garden, gold astronomical ornament and curving triple circular floor inlay are unique identifiers. Preserve their exact scale, shapes and placement. Do not turn crystal or water margins into walkable floor."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L03/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "generated_png_sha256": "320885b5890bbd1ace4ceb6b2a322572638a1d1eb0057e8c1278d17f698d6707",
+      "decoded_rgb_sha256": "df87d1336269af1aadb3766d8f1f39ad7121ba124c3c38835db2e848d7960c7e",
+      "webp_sha256": "5f341d4c85fb974214eec5b956d5888cb941228e1c9ceb1423e688944b102e26",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L03, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room's pink-blossom terrace, blue crystal garden, gold astronomical ornament and curving triple circular floor inlay are unique identifiers. Preserve their exact scale, shapes and placement. Do not turn crystal or water margins into walkable floor."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L03/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "391f6e58705bd675a0465ccadbef2b49362d7499df8b372f0cbc083f84fc5a65",
+      "decoded_rgb_sha256": "b901bb5532a743da37077b5c54ace4f37716803bd59a183fcc3fa8b754abebda",
+      "webp_sha256": "c482217cfbf6376d21c553808991b9616fb968cc1b01d556466008fa72086909",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L03, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room's pink-blossom terrace, blue crystal garden, gold astronomical ornament and curving triple circular floor inlay are unique identifiers. Preserve their exact scale, shapes and placement. Do not turn crystal or water margins into walkable floor."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L03/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1264,
+        1244
+      ],
+      "generated_png_sha256": "2ffe8a1f6767d7f33a2785fa9ec9667be460cbf5964a5566111e70ada569b3b6",
+      "decoded_rgb_sha256": "54cf1d794c035576617ce97e0481f3143f039cb7e0e3f29d8293e8d49511f3e9",
+      "webp_sha256": "dde95573eaba3957231d53f9a3c8eecc85ffc71bfbd17487b67307ceea1bdbe9",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L03, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room's pink-blossom terrace, blue crystal garden, gold astronomical ornament and curving triple circular floor inlay are unique identifiers. Preserve their exact scale, shapes and placement. Do not turn crystal or water margins into walkable floor."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L03/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "9035d60080e9440a1a096e1e600aa89ce4c6be2a6d42fb4d417529816cb70336",
+      "decoded_rgb_sha256": "80f8041ca5b03e64a55d25b801c873f411990ac99db670e23758ced713048dbc",
+      "webp_sha256": "308bac40081b4a4988c957b2ff0ffbddd8106266a0911316f62131623d8bbe9e",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L03, sunny ivory-and-gold garden ruins. The attached image is an exact source tile of an existing 1536x1024 room. Repaint this exact tile at the largest native resolution (1536 square requested) with genuinely newly painted fine material detail for 2560x1440 gameplay. Framing, perspective and positions are LOCKED: preserve every stone joint, decorative inlay, arch, pillar, railing, pool shoreline, stair edge, plant and shadow at the same normalized coordinates. The tile must fit its original neighbors along every edge. Do not redesign, crop, zoom, rotate, extend, add or remove objects. Do not shift land/water boundaries, doorways or walking areas. Change only fine surface detail inside existing silhouettes: delicate sandstone pores and bevels, tiny carved-gold details, petal edges, leaf veins and masonry grain. Closely preserve the source's creamy ivory, muted gold, turquoise water and sunlit hand-painted fantasy palette. Keep matte painterly material character, not glossy plastic or photographic noise. No text, characters, UI, new decoration or stronger contrast; exact underlying composition and geometry are authoritative. This room's pink-blossom terrace, blue crystal garden, gold astronomical ornament and curving triple circular floor inlay are unique identifiers. Preserve their exact scale, shapes and placement. Do not turn crystal or water margins into walkable floor."
+    }
+  ],
+  "qa": {
+    "date": "2026-10-02",
+    "engine": "Godot 4.7.2",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "checks": 46,
+    "failures": 0,
+    "layout_polygon_camera_unchanged": true,
+    "texture_release_and_reload": true,
+    "visual_review": "All five native 2K gameplay views inspected with original source and paired northeast view: blossom arcade, astronomical ornament, crystal pavilion, curved floor rings and water boundaries remain aligned. Fine leaf, stone and crystal detail improves with no apparent hard overlap joins. Gameplay markers and authored geometry remain unchanged; narrow feather bands retain some original texels.",
+    "graphics_backend": "private Xorg :97, llvmpipe; hardware frame-rate performance not benchmarked",
+    "rgba_mips_upper_bound_bytes": 50307984,
+    "evidence": [
+      {
+        "capture": "L03_center_original_2560x1440.png",
+        "sha256": "55b3d680e66c4c81566e100800e0ff01ad38335157a3abda49f30fbe1d6c8cf5"
+      },
+      {
+        "capture": "L03_center_native_2560x1440.png",
+        "sha256": "44d6893b98444207ddd98fa44dd62f28ee88fd17eacd3bcfa9adb7d5461cec91"
+      },
+      {
+        "capture": "L03_northwest_original_2560x1440.png",
+        "sha256": "532285c0fdfa9dae7ade5bb06096fefde0dd8d2fc1bb68ca115781c4ab6f87c8"
+      },
+      {
+        "capture": "L03_northwest_native_2560x1440.png",
+        "sha256": "f21b14ea9530402caf4890b6bfedebfcbf09ecc00f9a3b1f7484d0d720bce699"
+      },
+      {
+        "capture": "L03_northeast_original_2560x1440.png",
+        "sha256": "b054ee88e6a31f92254826734a04d863116df2608b926b42d6e94a6cb54f665a"
+      },
+      {
+        "capture": "L03_northeast_native_2560x1440.png",
+        "sha256": "63379a5769a7ac8c5d6ff5e87652546960fa29eee02ba94c8d8b8f90b42092f9"
+      },
+      {
+        "capture": "L03_southwest_original_2560x1440.png",
+        "sha256": "b7b013ac8cb532beb86e4f9fe8958f51ec5d05e5623490a825577caeca3bef5c"
+      },
+      {
+        "capture": "L03_southwest_native_2560x1440.png",
+        "sha256": "ce7b1963f8ce0608f08f32d3dd39e1dd8497a44392a6d3ca7cad581da21f5433"
+      },
+      {
+        "capture": "L03_southeast_original_2560x1440.png",
+        "sha256": "a38f0722f72e88123fe0c174e2fcc5721db68b750254580b4a8a26e4a68b54c6"
+      },
+      {
+        "capture": "L03_southeast_native_2560x1440.png",
+        "sha256": "8405ed39615a84ee7f3dc8c75698bdaaae4792f123ca5b6f18604f864f0b1f96"
+      }
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-extends "res://scripts/combat/hero_abilities.gd"
+extends "res://scripts/gameplay/characters/hero_abilities.gd"
 ## Read-only timeline wrapping. Calls each production method exactly once.
 var audit: Array[Dictionary] = []
 var last_commit: Dictionary = {}
