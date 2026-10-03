@@ -56,7 +56,7 @@ static func basic(p: Dictionary, origin: Vector2, target: Vector2) -> Dictionary
 
 static func follow(source: Dictionary, kind: String, shape: String, coefficient: int, delay: float) -> Dictionary:
 	var c := source.duplicate(true)
-	for key in ["followups","points","paths","status","duration","travel_distance","interruptible","b09_utility"]: c.erase(key)
+	for key in ["followups","points","paths","targets","status","duration","travel_distance","interruptible","b09_utility"]: c.erase(key)
 	c.merge({"kind":kind,"shape":shape,"coefficient":coefficient,"delay":delay,"followups":[],"stage":int(source.stage)+1,"derived":true},true)
 	return c
 
@@ -185,7 +185,10 @@ static func boss_action(p: Dictionary, action: String, origin: Vector2, target: 
 
 static func freeze(c: Dictionary, p: Dictionary) -> Dictionary:
 	var result := c.duplicate(true)
+	if bool(result.get("b09_frozen",false)): return result
 	var boss := str(p.rank)=="boss"
 	var factor: float = [1.0,1.06,1.12,1.2,1.3][int(p.difficulty)]*[1.0,1.1,1.2][int(c.get("b09_phase",1))-1] if boss else 1.25*[1.0,1.05,1.1,1.15,1.2][int(p.difficulty)]
-	result.merge({"damage":int(floor(float(p.damage)*float(c.get("coefficient",0))/100.0*factor+0.5)),"ruleset_version":2,"scale_version":10,"enemy_command_version":2},true)
+	result.merge({"damage":int(floor(float(p.damage)*float(c.get("coefficient",0))/100.0*factor+0.5)),"ruleset_version":2,"scale_version":10,"enemy_command_version":2,"b09_frozen":true},true)
+	for index in result.get("followups",[]).size(): result.followups[index]=freeze(result.followups[index],p)
+	if result.has("shatter"): result.shatter=freeze(result.shatter,p)
 	return result

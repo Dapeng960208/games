@@ -12,7 +12,7 @@ func execute(c: Dictionary) -> bool:
 	var map: Node2D=host.room.b09_mechanics
 	if bool(c.get("b09_origin_matches",false)) and actor.position.distance_to(Vector2(c.origin))>4: return true
 	if c.has("b09_refraction_anchor") and not host._alive(c.b09_refraction_anchor.get_ref()): return true
-	if actor.enemy_id=="B09-M16" and c.kind=="projectile":
+	if actor.enemy_id=="B09-M16" and c.kind=="projectile" and int(c.difficulty)>=4:
 		for shot: Dictionary in host.projectiles.duplicate():
 			if shot.get("caster_enemy_id")=="B09-M16": host.projectiles.erase(shot)
 	match str(c.kind):
@@ -30,11 +30,26 @@ func execute(c: Dictionary) -> bool:
 		"b09_snow": map.snow.append({"at":c.target,"radius":float(c.radius),"until":map.clock+float(c.duration)})
 		"b09_ice": map.ice.append({"rect":Rect2(Vector2(c.target)-Vector2(c.ice_size)*0.5,c.ice_size),"until":map.clock+float(c.duration)})
 		"b09_summon":
+			var rounds := int(actor.get_meta("b09_guard_rounds",0))
+			var casts: Array=actor.get_meta("b09_guard_casts",[])
+			var cast_id := str(c.get("cast_id",""))
+			var owned := 0
+			for enemy: Node2D in host.room.enemies.get_children():
+				if host._alive(enemy) and enemy.owner_enemy!=null and enemy.owner_enemy.get_ref()==actor: owned+=1
+			if rounds>=2 or owned>=2 or (not cast_id.is_empty() and cast_id in casts): return true
+			var admitted := 0
 			for side in [-1,1]:
+				if owned+admitted>=2: break
 				var p := Skills.profile("B09-M01",45,host.room.difficulty)
 				p.max_hp=int(p.max_hp*0.5)
 				var add: Node2D=host.room.spawn_enemy(actor.position+Vector2(side*100,80),"B09-M01",45,{"owner":actor,"profile":p,"reward_enabled":false,"zone_index":-1})
-				if is_instance_valid(add): add.set_meta("b09_no_support",true)
+				if is_instance_valid(add):
+					add.set_meta("b09_no_support",true)
+					admitted+=1
+			if admitted>0:
+				actor.set_meta("b09_guard_rounds",rounds+1)
+				if not cast_id.is_empty(): casts.append(cast_id)
+				actor.set_meta("b09_guard_casts",casts)
 		"b09_wall", "b09_shield":
 			var at: Vector2=c.target if c.kind=="b09_wall" else actor.position+Vector2(c.direction)*65
 			var strike := c.duplicate(true)
