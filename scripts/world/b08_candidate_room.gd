@@ -8,6 +8,10 @@ const SkyNumbers = preload("res://scripts/combat/b08_numbers.gd")
 const SkyActor = preload("res://scripts/combat/b08_actor.gd")
 const SkyBrain = preload("res://scripts/combat/b08_brain.gd")
 var wind = preload("res://scripts/world/b08_wind_state.gd").new()
+var harbor = preload("res://scripts/combat/b08_harbor_runtime.gd").new()
+var _authored_waves: Array = []
+var _next_wave := 0
+var _wave_delay := 3.0
 var warnings: Dictionary = {}
 var feathers: Array = []
 var shot_serial := 0
@@ -44,6 +48,7 @@ func _ready() -> void:
 	_lifecycle_frames = int(argument("b08-quit-after-frames","-1"))
 	super._ready()
 	_started = true
+	harbor.configure(self)
 	var layer := CanvasLayer.new()
 	add_child(layer)
 	_hud = Label.new()
@@ -85,6 +90,7 @@ func _open_room(id: String) -> void:
 	feathers.clear()
 	warnings.clear()
 	wind = preload("res://scripts/world/b08_wind_state.gd").new()
+	harbor.reset()
 	load_room_layout(id)
 	var ids: Array = []
 	for lane: Dictionary in SkyGeometry.lanes(id): ids.append(lane.id)
@@ -94,8 +100,10 @@ func _open_room(id: String) -> void:
 	player.clear_buffered_skill()
 	player.knockback = Vector2.ZERO
 	_channel_lane = ""
-	if id=="L43":
-		for index in 3: spawn_enemy(SkyGeometry.point([[1150,930],[1550,930],[1950,950]][index]),"B08-M%02d"%(index+1),36)
+	_authored_waves = preload("res://scripts/world/b08_encounters.gd").waves(id,difficulty)
+	_next_wave = 0
+	_wave_delay = 3.0
+	if not _authored_waves.is_empty(): _spawn_authored_wave()
 	elif id=="BO08": spawn_enemy(SkyGeometry.point([1400,650]),"BO08",40)
 	var flag_profile := SkyNumbers.profile("B08-M02",difficulty,"normal",int(SkyContent.room(id).level))
 	flag_profile["enemy_id"] = "B08-FLAG"
@@ -110,7 +118,7 @@ func _open_room(id: String) -> void:
 	_floor_canvas.queue_redraw()
 
 func spawn_enemy(at: Vector2, id: String = "", _level: int = 1, options: Dictionary = {}) -> MineEnemy:
-	if id not in SkyBrain.IMPLEMENTED or enemies.get_child_count()>=6: return null
+	if id not in SkyBrain.IMPLEMENTED or _living_combatants()>=6 or enemies.get_child_count()>=18: return null
 	var p: Dictionary = options.get("profile",SkyNumbers.profile(id,difficulty))
 	if p.is_empty(): return null
 	var actor: MineEnemy = SkyActor.new()
@@ -126,6 +134,7 @@ func spawn_escorts(owner: Node2D) -> void:
 		var actor := spawn_enemy(owner.position+Vector2(sign_value*90,30),"B08-M01",40,{"profile":p})
 		if actor!=null: actor.owner_enemy = weakref(owner)
 func enemy_died(enemy: MineEnemy) -> void:
+	harbor.actor_died(enemy)
 	if enemy==_flag: wind.break_flag()
 	release_warning(str(enemy.get_instance_id()))
 	wind.release_dive(str(enemy.get_instance_id()))
@@ -155,11 +164,13 @@ func _physics_process(delta: float) -> void:
 	for event: Dictionary in events:
 		if event.kind=="turn_warning": _channel_lane = ""
 	if controls_enabled() and Input.is_action_just_pressed("interact"): interact()
+	harbor.advance(delta)
+	_tick_authored_waves(delta)
 	_tick_feathers(delta)
 	for index in range(effects.size()-1,-1,-1):
 		effects[index].remaining -= delta
 		if effects[index].remaining<=0: effects.remove_at(index)
-	_hud.text = "%s · %s · D%d · HP %d/%d\nDEBUG GEOMETRY / Lv20 diagnostic hero / no B08 art or rewards\nM01–03 + BO08 combat slice. Other rooms: topology only.\nRight-click move · QWER skills · F vane/exit · Esc quit\nVane: %.1fs channel + %.1fs warning | active threats %d/2" % [layout_id,SkyContent.room(layout_id).name,difficulty,Game.run.hp,Game.run.max_hp,float(wind.channel.get("remaining",0)),float(wind.pending.get("remaining",0)),warnings.size()]
+	_hud.text = "%s · %s · D%d · HP %d/%d\nDEBUG GEOMETRY / Lv20 diagnostic hero / no B08 art or rewards\nM01–06 + BO08 combat slice. L45–48: topology only.\nRight-click move · QWER skills · F vane/exit · Esc quit\nVane: %.1fs channel + %.1fs warning | active threats %d/2" % [layout_id,SkyContent.room(layout_id).name,difficulty,Game.run.hp,Game.run.max_hp,float(wind.channel.get("remaining",0)),float(wind.pending.get("remaining",0)),warnings.size()]
 	queue_redraw()
 	_floor_canvas.queue_redraw()
 func _unhandled_input(event: InputEvent) -> void:
@@ -199,6 +210,7 @@ func interact() -> void:
 			_channel_hp = Game.run.hp
 			return
 	if player.position.distance_to(exit_position)<80:
+		if _next_wave<_authored_waves.size(): return
 		for actor: MineEnemy in enemies.get_children():
 			if actor.is_alive() and not actor.static_actor: return
 		var ids := SkyContent.room_ids()
@@ -263,6 +275,7 @@ func packet(actor: Node2D, action: Dictionary, coefficient: float) -> Dictionary
 	var phase := 1
 	if actor.enemy_id=="BO08": phase = 3 if actor.health.current/actor.health.maximum<=.35 else 2 if actor.health.current/actor.health.maximum<=.70 else 1
 	var factor: float = [1.0,1.15,1.35,1.6,1.9][difficulty]*(1.0+.1*(phase-1)) if actor.enemy_id=="BO08" else 1.25*[1.0,1.12,1.28,1.48,1.72][difficulty]
+	if bool(action.get("basic",false)): factor = 1.0
 	var command := {"damage":int(round(float(actor.profile.damage)*coefficient*float(action.get("damage_factor",1))*factor)),"damage_type":"physical","enemy_id":actor.enemy_id,"damage_source":"b08_"+str(action.kind),"ruleset_version":2}
 	return Crit.freeze(command,actor.profile,8008,str(actor.enemy_id)+":"+str(shot_serial))
 func _hurt(actor: Node2D, data: Dictionary, push: float = 0) -> void:
@@ -286,6 +299,10 @@ func hit_line(actor: Node2D, action: Dictionary, coefficient: float, reach: floa
 	var end := origin+origin.direction_to(action.target)*reach
 	var nearest := Geometry2D.get_closest_point_to_segment(player.position,origin,end)
 	if nearest.distance_to(player.position)<=width*.5+Balance.PLAYER_RADIUS and has_line_of_sight(origin,player.position): _hurt(actor,packet(actor,action,coefficient),push)
+func hit_fan(actor: Node2D, action: Dictionary, coefficient: float, reach: float, half_angle: float) -> void:
+	var offset: Vector2 = player.position-action.origin
+	var direction: Vector2 = Vector2(action.target-action.origin).normalized()
+	if offset.length()<=reach+Balance.PLAYER_RADIUS and (offset.length()<Balance.PLAYER_RADIUS or absf(direction.angle_to(offset))<=deg_to_rad(half_angle)) and has_line_of_sight(action.origin,player.position): _hurt(actor,packet(actor,action,coefficient))
 func fire_feather(actor: Node2D, action: Dictionary, coefficient: float, reach: float, angle: float = 0, group: Dictionary = {}) -> void:
 	if feathers.size()>=48: return
 	feathers.append({"position":actor.position,"direction":actor.position.direction_to(action.target).rotated(angle),"remaining":reach,"owner":weakref(actor),"packet":packet(actor,action,coefficient),"group":group})
@@ -338,13 +355,40 @@ func _draw() -> void:
 		var action: Dictionary = brain.action
 		if brain.phase not in ["warning","transit","patrol_wait"]: continue
 		var color := Color("ed7d44") if brain.phase=="warning" else Color("d44740")
-		if action.kind in ["dive","patrol","flank","return"]:
+		if action.kind in ["dive","patrol","flank","return","chime"]:
 			var points: Array = action.get("points",[action.target])
 			for point: Vector2 in points:
 				draw_arc(point,float(action.radius),0,TAU,48,color,3)
 				draw_line(point-Vector2(9,0),point+Vector2(9,0),color,2)
+		elif action.kind=="support":
+			draw_line(action.origin,action.target,Color("7cabc8"),2)
+			draw_arc(action.target,24,0,TAU,24,Color("7cabc8"),2)
+		elif action.kind=="shield":
+			var facing: Vector2 = Vector2(action.target-action.origin).normalized()
+			draw_line(action.origin,action.target,color,3)
+			var far: Vector2 = action.target+facing*100
+			var wing: Vector2 = facing.orthogonal()*32.5
+			draw_polyline(PackedVector2Array([action.target-wing,far-wing,far+wing,action.target+wing]),color,3)
 		else:
 			var direction: Vector2 = action.origin.direction_to(action.target)
 			var angles := [-40,-20,0,20,40] if action.kind=="fan" else [0]
 			for angle: int in angles: draw_line(action.origin,action.origin+direction.rotated(deg_to_rad(angle))*320,color,3)
+	harbor.draw_warnings(self)
 	for shot: Dictionary in feathers: draw_line(shot.position-shot.direction*16,shot.position+shot.direction*6,Color("faf8d4"),4)
+
+func _living_combatants() -> int:
+	var count := 0
+	for actor: MineEnemy in enemies.get_children():
+		if actor.is_alive() and not actor.static_actor and not actor.is_queued_for_deletion(): count += 1
+	return count
+func _spawn_authored_wave() -> void:
+	if _next_wave>=_authored_waves.size(): return
+	for member: Dictionary in _authored_waves[_next_wave]:
+		var p := SkyNumbers.profile(member.id,difficulty,member.rank,int(SkyContent.room(layout_id).level))
+		spawn_enemy(SkyGeometry.point(member.at),member.id,int(p.enemy_level),{"profile":p})
+	_next_wave += 1
+	_wave_delay = 3.0
+func _tick_authored_waves(delta: float) -> void:
+	if _next_wave>=_authored_waves.size() or _living_combatants()>0: return
+	_wave_delay -= delta
+	if _wave_delay<=0: _spawn_authored_wave()

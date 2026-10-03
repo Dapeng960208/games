@@ -2,7 +2,7 @@
   "version": 1,
   "biome_id": "B08",
   "name": "浮羽空港",
-  "status": "isolated_initial_combat_slice",
+  "status": "isolated_l43_l44_combat_slice",
   "source": "docs/levels/08_FEATHER_SKYPORT.md",
   "runtime_enabled": false,
   "profiles": {
@@ -86,7 +86,8 @@
         "B08-M04",
         "B08-M05",
         "B08-M06"
-      ]
+      ],
+      "implementation": "finite_candidate_waves_d0_to_d4"
     },
     "L45": {
       "room_id": "L45",
@@ -197,7 +198,7 @@
       "active_design": "给一同伴下次转位加速15%，持续5s（11s；1.1s）",
       "difficulty_additions_design": "D2受援者转位后获4%HP盾；D4祭司施法结束暴露1.5s",
       "counter_design": "优先打断；不叠加同类加速，不作用Boss；戒",
-      "implementation": "planned"
+      "implementation": "candidate_d0_d2_d4_slice_not_natural_acceptance"
     },
     "B08-M05": {
       "enemy_id": "B08-M05",
@@ -209,7 +210,7 @@
       "active_design": "顶盾推进100并盾击1.0a（10s；1.0s）",
       "difficulty_additions_design": "D2推进末端小风扇0.35a；D4风势加成仅施于盾击一次",
       "counter_design": "从侧路绕盾，桥边推移受裁剪；胸",
-      "implementation": "planned"
+      "implementation": "candidate_d0_d2_d4_slice_not_natural_acceptance"
     },
     "B08-M06": {
       "enemy_id": "B08-M06",
@@ -221,7 +222,7 @@
       "active_design": "抛铃落地后半径80声爆0.9a（8s；1.0s）",
       "difficulty_additions_design": "D2铃在0.8s后再响0.3a；D4第二响半径缩至55",
       "counter_design": "声波圈清晰可见，离圈或拆铃；裤",
-      "implementation": "planned"
+      "implementation": "candidate_d0_d2_d4_slice_not_natural_acceptance"
     },
     "B08-M07": {
       "enemy_id": "B08-M07",
@@ -392,5 +393,22 @@
     "natural_balance": false,
     "ordinary_d2_d4": false,
     "save_resume": false
+  },
+  "candidate_choices": {
+    "B08-M04": {
+      "post_reposition_shield_seconds": 4.0,
+      "interrupt": "confirmed non-DOT direct damage",
+      "basic_staff_bolt_warning_seconds": 0.65
+    },
+    "B08-M06": {
+      "chime_hp_fraction_of_caster": 0.1
+    },
+    "L44": {
+      "D3_D4_followup_ids": [
+        "B08-M04",
+        "B08-M06"
+      ],
+      "followup_delay_seconds": 3.0
+    }
   }
 }

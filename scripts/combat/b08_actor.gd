@@ -23,6 +23,11 @@ func _exit_tree() -> void:
 func _draw() -> void:
 	if not is_alive(): return
 	if static_actor:
+		if enemy_id=="B08-CHIME":
+			draw_circle(Vector2(0,-16),15,Color("d5ad54"))
+			draw_arc(Vector2(0,-17),12,PI,TAU,16,Color("f5de96"),3)
+			draw_line(Vector2(-16,-5),Vector2(16,-5),Color("745323"),3)
+			return
 		draw_line(Vector2.ZERO,Vector2(0,-60),Color("886237"),4)
 		draw_colored_polygon(PackedVector2Array([Vector2(0,-60),Vector2(38,-47),Vector2(0,-34)]),Color("d2a442"))
 		return
@@ -39,7 +44,14 @@ func _draw() -> void:
 	draw_line(Vector2(10,-12),Vector2(44,-30),Color("537fa1"),2)
 	draw_circle(Vector2(0,-17),12,Color("42688b"))
 	draw_circle(Vector2(0,-33),8,Color("e9bf8d"))
-	if enemy_id=="B08-M01": draw_arc(Vector2(20,-15),21,-1.2,1.2,16,Color("e6bd61"),3)
+	if enemy_id=="B08-M04":
+		draw_line(Vector2(20,4),Vector2(20,-50),Color("e6bd61"),3)
+		draw_arc(Vector2(20,-48),15,PI,TAU,16,Color("b4ddd9"),8)
+	elif enemy_id=="B08-M05":
+		draw_colored_polygon(PackedVector2Array([Vector2(10,-38),Vector2(36,-30),Vector2(32,0),Vector2(20,10),Vector2(8,-3)]),Color("d8c179"))
+	elif enemy_id=="B08-M06":
+		for x in [-16,0,16]: draw_circle(Vector2(x,-7),5,Color("d5ad54"))
+	elif enemy_id=="B08-M01": draw_arc(Vector2(20,-15),21,-1.2,1.2,16,Color("e6bd61"),3)
 	else: draw_line(Vector2(13,4),Vector2(20,-57),Color("e6bd61"),3)
 	draw_set_transform(Vector2.ZERO)
 	draw_line(Vector2(-26,-66*scale_value-lift),Vector2(26,-66*scale_value-lift),Color("233345"),5)
