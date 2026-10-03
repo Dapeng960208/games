@@ -35,6 +35,7 @@ func _exit_tree() -> void:
 func _draw() -> void:
 	if not is_alive(): return
 	if static_actor:
+		if enemy_id=="B08-FLAG" and is_instance_valid(room.sky_interactions): return
 		if enemy_id=="B08-CHIME":
 			draw_circle(Vector2(0,-16),15,Color("d5ad54"))
 			draw_arc(Vector2(0,-17),12,PI,TAU,16,Color("f5de96"),3)

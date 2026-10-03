@@ -1,0 +1,82 @@
+{
+  "file": "interactions/report_flag.png",
+  "role": "report_flag_intact",
+  "status": "native source candidate; not integrated",
+  "generator": "builtin imagegen",
+  "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-e20a74ff-09d0-41ab-9346-bc383caa7799.png",
+  "sha256": "e937252095d473558e16c1087b484bd4566f4f7c30e9ffd8c358a4a52ac911d9",
+  "native_size": [
+    1089,
+    1444
+  ],
+  "mode": "RGBA",
+  "original_bytes_verified": true,
+  "alpha_bounds_xyxy": {
+    "1": [
+      25,
+      0,
+      1061,
+      1420
+    ],
+    "8": [
+      222,
+      4,
+      1009,
+      1393
+    ],
+    "16": [
+      222,
+      5,
+      1009,
+      1392
+    ],
+    "128": [
+      223,
+      6,
+      1009,
+      1391
+    ],
+    "240": [
+      223,
+      7,
+      1008,
+      1390
+    ]
+  },
+  "effective_size_alpha16": [
+    787,
+    1387
+  ],
+  "alpha16_border_pixels": 0,
+  "zero_alpha_fraction": 0.8529496679207079,
+  "diagnostic_red_pixels_alpha16": 0,
+  "proposed_effective_world_size": [
+    59.578,
+    105.0
+  ],
+  "estimated_max_display_pixels_at_2k_player_zoom_085": [
+    101.283,
+    178.5
+  ],
+  "estimated_display_to_effective_source_ratio": 0.128695,
+  "display_estimate_only": true,
+  "registration_proposal": {
+    "ground_center_pixel": [
+      351,
+      1315
+    ],
+    "status": "visual proposal; foot contact review pending"
+  },
+  "notes": [
+    "Tip has5px alpha16 margin but full feather silhouette. Default viewer shows red/yellow low-alpha remnants; no red pixels alpha>=16 measured. No destruction state in this PNG."
+  ],
+  "prompt_file": "interactions/report_flag.prompt.txt",
+  "prompt_sha256": "fb15d3c0358c3ea6b33d408cb67ea7f6532ce19ef2f989267a9f229cbc100337",
+  "generation_kind": "generated with style reference",
+  "reference": {
+    "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B08(1).png",
+    "sha256": "aa25afa52eaf96f97fa70875003047b69b01b2c089dd9283eb9cfacd257d31ee",
+    "role": "user style reference, actually inspected; not included in review package"
+  },
+  "additional_references": []
+}

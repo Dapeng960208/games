@@ -1,0 +1,88 @@
+{
+  "file": "interactions/report_flag_broken.png",
+  "role": "report_flag_broken",
+  "status": "native source candidate; not integrated",
+  "generator": "builtin imagegen",
+  "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-76d83865-07a3-4fc6-a86b-feb444d4d194.png",
+  "sha256": "248c1dcb576d870879aff74cbce12fef76694a2322944205f3a9ad4ae2bf347c",
+  "native_size": [
+    1089,
+    1445
+  ],
+  "mode": "RGBA",
+  "original_bytes_verified": true,
+  "alpha_bounds_xyxy": {
+    "1": [
+      49,
+      37,
+      1058,
+      1445
+    ],
+    "8": [
+      56,
+      810,
+      1056,
+      1298
+    ],
+    "16": [
+      57,
+      810,
+      1056,
+      1298
+    ],
+    "128": [
+      57,
+      811,
+      1055,
+      1297
+    ],
+    "240": [
+      59,
+      812,
+      1053,
+      1296
+    ]
+  },
+  "effective_size_alpha16": [
+    999,
+    488
+  ],
+  "alpha16_border_pixels": 0,
+  "zero_alpha_fraction": 0.8353881692038345,
+  "diagnostic_red_pixels_alpha16": 4,
+  "proposed_effective_world_size": [
+    60.0,
+    29.309
+  ],
+  "estimated_max_display_pixels_at_2k_player_zoom_085": [
+    102.0,
+    49.825
+  ],
+  "estimated_display_to_effective_source_ratio": 0.102102,
+  "display_estimate_only": true,
+  "registration_proposal": {
+    "ground_center_pixel": [
+      246,
+      1215
+    ],
+    "registration_basis": "Match original intact base footprint, not the total broken-image alpha box.",
+    "status": "visual proposal; matching base size/footpoint proof pending"
+  },
+  "notes": [
+    "Complete low fallen state and short stump. The generator changed relative base/cloth proportions, so 60world width is only a staging estimate; final scale must use the shared base. No debris collision implied."
+  ],
+  "prompt_file": "interactions/report_flag_broken.prompt.txt",
+  "prompt_sha256": "23b2aa7bda34c0bb802354f8005171a919a546deb178cd71f7fef3ca8ae1b33e",
+  "generation_kind": "destroyed state from intact flag identity",
+  "reference": {
+    "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B08(1).png",
+    "sha256": "aa25afa52eaf96f97fa70875003047b69b01b2c089dd9283eb9cfacd257d31ee",
+    "role": "user style reference, actually inspected; not included in review package"
+  },
+  "additional_references": [
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/rooms_0858/interactions/report_flag.png",
+      "sha256": "e937252095d473558e16c1087b484bd4566f4f7c30e9ffd8c358a4a52ac911d9"
+    }
+  ]
+}

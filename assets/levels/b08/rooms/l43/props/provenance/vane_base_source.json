@@ -1,0 +1,91 @@
+{
+  "file": "interactions/wind_vane_base_socket.png",
+  "role": "wind_vane_base",
+  "status": "native source candidate; not integrated",
+  "generator": "builtin imagegen",
+  "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-7eadc218-9799-4ab0-918c-9a04a4852c47.png",
+  "sha256": "69225b8d40d599a0265f8b9e363fcc6d78c31657445cae8d463c8da094218f12",
+  "native_size": [
+    1024,
+    1536
+  ],
+  "mode": "RGBA",
+  "original_bytes_verified": true,
+  "alpha_bounds_xyxy": {
+    "1": [
+      65,
+      37,
+      1010,
+      1432
+    ],
+    "8": [
+      228,
+      79,
+      798,
+      1413
+    ],
+    "16": [
+      228,
+      79,
+      798,
+      1413
+    ],
+    "128": [
+      229,
+      80,
+      797,
+      1412
+    ],
+    "240": [
+      230,
+      80,
+      797,
+      1411
+    ]
+  },
+  "effective_size_alpha16": [
+    570,
+    1334
+  ],
+  "alpha16_border_pixels": 0,
+  "zero_alpha_fraction": 0.731726328531901,
+  "diagnostic_red_pixels_alpha16": 0,
+  "proposed_effective_world_size": [
+    27.774,
+    65.0
+  ],
+  "estimated_max_display_pixels_at_2k_player_zoom_085": [
+    47.216,
+    110.5
+  ],
+  "estimated_display_to_effective_source_ratio": 0.082834,
+  "display_estimate_only": true,
+  "registration_proposal": {
+    "ground_center_pixel": [
+      513,
+      1300
+    ],
+    "socket_top_pixel": [
+      512,
+      211
+    ],
+    "status": "visual proposal; attachment proof pending"
+  },
+  "notes": [
+    "Selected correction removes misleading side wings. Whole functional base intended waist-high. Ground center is estimated from base footprint, not alpha-bottom."
+  ],
+  "prompt_file": "interactions/wind_vane_base.refinement.prompt.txt",
+  "prompt_sha256": "42cb0aa47fdf3524be5f1f46b27357f7b73e3a72c74687edd46bbcb11fe9c2f6",
+  "generation_kind": "one targeted correction removes misleading directional wings",
+  "reference": {
+    "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B08(1).png",
+    "sha256": "aa25afa52eaf96f97fa70875003047b69b01b2c089dd9283eb9cfacd257d31ee",
+    "role": "user style reference, actually inspected; not included in review package"
+  },
+  "additional_references": [
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/rooms_0858/interactions/wind_vane_base_v1_wings.png",
+      "sha256": "873cc6414bc002a2ce893d23d27e16d2b9e6fd6bfe6745e07b56248e68c555ea"
+    }
+  ]
+}

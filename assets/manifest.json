@@ -1493,6 +1493,25 @@
     "b08/rooms/l43/surface_review.json": "res://assets/levels/b08/rooms/l43/detail/surface_review.json",
     "b08/rooms/l43/provenance/ivory_paving_prompt.txt": "res://assets/levels/b08/rooms/l43/detail/provenance/ivory_paving_prompt.txt",
     "b08/rooms/l43/provenance/low_fascia_prompt.txt": "res://assets/levels/b08/rooms/l43/detail/provenance/low_fascia_prompt.txt",
-    "b08/rooms/l43/provenance/surface_sources.json": "res://assets/levels/b08/rooms/l43/detail/provenance/surface_sources.json"
+    "b08/rooms/l43/provenance/surface_sources.json": "res://assets/levels/b08/rooms/l43/detail/provenance/surface_sources.json",
+    "b08/rooms/l43/props/vane_base.png": "res://assets/levels/b08/rooms/l43/props/vane_base.png",
+    "b08/rooms/l43/props/provenance/vane_base_prompt.txt": "res://assets/levels/b08/rooms/l43/props/provenance/vane_base_prompt.txt",
+    "b08/rooms/l43/props/vane_pointer.png": "res://assets/levels/b08/rooms/l43/props/vane_pointer.png",
+    "b08/rooms/l43/props/provenance/vane_pointer_prompt.txt": "res://assets/levels/b08/rooms/l43/props/provenance/vane_pointer_prompt.txt",
+    "b08/rooms/l43/props/flag_intact.png": "res://assets/levels/b08/rooms/l43/props/flag_intact.png",
+    "b08/rooms/l43/props/provenance/flag_intact_prompt.txt": "res://assets/levels/b08/rooms/l43/props/provenance/flag_intact_prompt.txt",
+    "b08/rooms/l43/props/flag_broken.png": "res://assets/levels/b08/rooms/l43/props/flag_broken.png",
+    "b08/rooms/l43/props/provenance/flag_broken_prompt.txt": "res://assets/levels/b08/rooms/l43/props/provenance/flag_broken_prompt.txt",
+    "b08/rooms/l43/props/exit_waymark.png": "res://assets/levels/b08/rooms/l43/props/exit_waymark.png",
+    "b08/rooms/l43/props/provenance/exit_waymark_prompt.txt": "res://assets/levels/b08/rooms/l43/props/provenance/exit_waymark_prompt.txt",
+    "b08/rooms/l43/props/provenance/vane_base_source.json": "res://assets/levels/b08/rooms/l43/props/provenance/vane_base_source.json",
+    "b08/rooms/l43/props/provenance/vane_pointer_source.json": "res://assets/levels/b08/rooms/l43/props/provenance/vane_pointer_source.json",
+    "b08/rooms/l43/props/provenance/flag_intact_source.json": "res://assets/levels/b08/rooms/l43/props/provenance/flag_intact_source.json",
+    "b08/rooms/l43/props/provenance/flag_broken_source.json": "res://assets/levels/b08/rooms/l43/props/provenance/flag_broken_source.json",
+    "b08/rooms/l43/props/provenance/exit_waymark_source.json": "res://assets/levels/b08/rooms/l43/props/provenance/exit_waymark_source.json",
+    "b08/rooms/l43/props/manifest.json": "res://assets/levels/b08/rooms/l43/props/manifest.json",
+    "b08/rooms/l43/props/vane_pointer_up.png": "res://assets/levels/b08/rooms/l43/props/vane_pointer_up.png",
+    "b08/rooms/l43/props/provenance/vane_pointer_up_prompt.txt": "res://assets/levels/b08/rooms/l43/props/provenance/vane_pointer_up_prompt.txt",
+    "b08/rooms/l43/props/provenance/vane_pointer_up_source.json": "res://assets/levels/b08/rooms/l43/props/provenance/vane_pointer_up_source.json"
   }
 }

@@ -23,6 +23,7 @@ var _flag: EnemyActor
 var _started := false
 var sky_environment: Node2D
 var sky_projectile_art: RefCounted
+var sky_interactions: Node2D
 signal shutdown_ready
 var shutdown_started := false
 var shutdown_done := false
@@ -121,6 +122,8 @@ func _open_room(id: String) -> void:
 	_floor_canvas.queue_redraw()
 
 func _configure_sky_environment() -> void:
+	if is_instance_valid(sky_interactions): sky_interactions.free()
+	sky_interactions=null
 	if is_instance_valid(sky_environment): sky_environment.free()
 	sky_environment=null
 	sky_projectile_art=null
@@ -134,6 +137,10 @@ func _configure_sky_environment() -> void:
 	if convergence:
 		var projectile_art:=preload("res://scripts/levels/b08/presentation/projectile_art.gd").new()
 		if projectile_art.configure(layout_id): sky_projectile_art=projectile_art
+		var interaction_art:=preload("res://scripts/levels/b08/presentation/interaction_art.gd").new()
+		add_child(interaction_art)
+		if interaction_art.configure(self,_flag): sky_interactions=interaction_art
+		else: interaction_art.free()
 func spawn_enemy(at: Vector2, id: String = "", _level: int = 1, options: Dictionary = {}) -> EnemyActor:
 	if id not in SkyBrain.IMPLEMENTED or _living_combatants()>=6 or enemies.get_child_count()>=18: return null
 	var p: Dictionary = options.get("profile",SkyNumbers.profile(id,difficulty))
@@ -184,6 +191,7 @@ func _physics_process(delta: float) -> void:
 	harbor.advance(delta)
 	_tick_authored_waves(delta)
 	_tick_feathers(delta)
+	if is_instance_valid(sky_interactions): sky_interactions.sync(delta)
 	for index in range(effects.size()-1,-1,-1):
 		effects[index].remaining -= delta
 		if effects[index].remaining<=0: effects.remove_at(index)
@@ -227,13 +235,16 @@ func interact() -> void:
 			_channel_hp = Game.run.hp
 			return
 	if player.position.distance_to(exit_position)<80:
-		if _next_wave<_authored_waves.size(): return
-		for actor: EnemyActor in enemies.get_children():
-			if actor.is_alive() and not actor.static_actor: return
+		if not exit_ready(): return
 		var ids := SkyContent.room_ids()
 		var next := ids.find(layout_id)+1
 		if next>=ids.size(): request_quit()
 		else: _open_room(ids[next])
+func exit_ready() -> bool:
+	if _next_wave<_authored_waves.size(): return false
+	for actor: EnemyActor in enemies.get_children():
+		if actor.is_alive() and not actor.static_actor: return false
+	return true
 
 func lane_at(at: Vector2) -> Dictionary: return SkyGeometry.lane_at(layout_id,at)
 func _lane(id: String) -> Dictionary:
@@ -364,10 +375,12 @@ func _draw_floor() -> void:
 			_floor_canvas.draw_line(center-direction*40,center+direction*40,Color("396b95"),4)
 			_floor_canvas.draw_line(center+direction*40,center+direction*23+direction.orthogonal()*13,Color("396b95"),4)
 			_floor_canvas.draw_line(center+direction*40,center+direction*23-direction.orthogonal()*13,Color("396b95"),4)
-		_floor_canvas.draw_circle(lane.vane,14,Color("d3a43a"))
-		_floor_canvas.draw_line(lane.vane,lane.vane+direction*32,Color("305474"),4)
-		if wind.pending.get("lane","")==lane.id: _floor_canvas.draw_arc(lane.vane,25,0,TAU,32,Color("ef714a"),3)
-	_floor_canvas.draw_circle(exit_position,27,Color("70aa92"))
+		if not is_instance_valid(sky_interactions):
+			_floor_canvas.draw_circle(lane.vane,14,Color("d3a43a"))
+			_floor_canvas.draw_line(lane.vane,lane.vane+direction*32,Color("305474"),4)
+			if wind.pending.get("lane","")==lane.id: _floor_canvas.draw_arc(lane.vane,25,0,TAU,32,Color("ef714a"),3)
+	if is_instance_valid(sky_interactions): sky_interactions.draw_floor(_floor_canvas)
+	else: _floor_canvas.draw_circle(exit_position,27,Color("70aa92"))
 func _draw() -> void:
 	if not _started: return
 	for actor: EnemyActor in enemies.get_children():

@@ -1164,5 +1164,13 @@
   "b08_l43_capture": {
     "script": "tests/levels/b08/test_l43_capture.gd",
     "scene": "tests/levels/b08/test_l43_capture.tscn"
+  },
+  "b08_l43_interactions": {
+    "script": "tests/levels/b08/test_l43_interactions.gd",
+    "scene": "tests/levels/b08/test_l43_interactions.tscn"
+  },
+  "b08_l43_props_capture": {
+    "script": "tests/levels/b08/test_l43_props_capture.gd",
+    "scene": "tests/levels/b08/test_l43_props_capture.tscn"
   }
 }

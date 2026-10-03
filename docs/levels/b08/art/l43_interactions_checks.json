@@ -1,0 +1,183 @@
+{
+  "status": "explicit_l43_candidate_controlled_frames_checked",
+  "headless": {
+    "suite": "b08_l43_interactions",
+    "run": "20261003T104728989148Z-97126f27",
+    "checks": 38,
+    "failures": 0,
+    "exit_code": 0
+  },
+  "capture_parse": {
+    "run": "20261003T104759898039Z-4852a388",
+    "exit_code": 0
+  },
+  "actual_renderer": {
+    "run": "20261003T105016510438Z-8cdbdfb0",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "audio_cleanup": true,
+    "exit_code": 0,
+    "warnings": [
+      "driver does not support changing VSync"
+    ],
+    "frames": {
+      "props_entry.png": "9f5da1aadf907abbc8cdcd091dcdb53b7cdf0dd0d86d1ba1ae2da29db016b53f",
+      "props_warning_occlusion.png": "f885a99bbc54c13905d667f3784b8b9c3cd6c99837f8389adf9f937a3c77f90e",
+      "props_reverse.png": "f87f184520c8c2b39bc5755cc5675e870cf7def47781b6946fb3b8a9a8ac2c0c",
+      "props_crosswind.png": "b022439e7241d0cbd91179dd07db73ee691f89ecf510b160827e59926cabed2c",
+      "props_flag_broken.png": "c02699fc8692b5df61252e30705dd8fc5a265a40cc5f532ab59f1550f2a3304d",
+      "props_exit_ready.png": "1b02f8039dc97a48aae212314cd67a6587bae8db7ef9c2b7fd8bae60d5a4f6bd"
+    },
+    "states": {
+      "props_crosswind.png": {
+        "channel": {},
+        "direction": "(0.0, -1.0)",
+        "exit_ready": false,
+        "flag_alpha": 1.0,
+        "flag_broken": false,
+        "flag_foot": "(340.4, 481.8)",
+        "pending": {},
+        "pointer": "vane_pointer_up",
+        "suppression_remaining": 0.0,
+        "vane_alpha": 1.0,
+        "vane_foot": "(487.2, 522.0)"
+      },
+      "props_entry.png": {
+        "channel": {},
+        "direction": "(1.0, 0.0)",
+        "exit_ready": false,
+        "flag_alpha": 1.0,
+        "flag_broken": false,
+        "flag_foot": "(340.4, 481.8)",
+        "pending": {},
+        "pointer": "vane_pointer",
+        "suppression_remaining": 0.0,
+        "vane_alpha": 1.0,
+        "vane_foot": "(487.2, 522.0)"
+      },
+      "props_exit_ready.png": {
+        "channel": {},
+        "direction": "(0.0, -1.0)",
+        "exit_ready": true,
+        "flag_alpha": 1.0,
+        "flag_broken": true,
+        "flag_foot": "(340.4, 481.8)",
+        "pending": {},
+        "pointer": "vane_pointer_up",
+        "suppression_remaining": 8.0,
+        "vane_alpha": 1.0,
+        "vane_foot": "(487.2, 522.0)"
+      },
+      "props_flag_broken.png": {
+        "channel": {},
+        "direction": "(0.0, -1.0)",
+        "exit_ready": false,
+        "flag_alpha": 1.0,
+        "flag_broken": true,
+        "flag_foot": "(340.4, 481.8)",
+        "pending": {},
+        "pointer": "vane_pointer_up",
+        "suppression_remaining": 8.0,
+        "vane_alpha": 1.0,
+        "vane_foot": "(487.2, 522.0)"
+      },
+      "props_reverse.png": {
+        "channel": {},
+        "direction": "(-1.0, 0.0)",
+        "exit_ready": false,
+        "flag_alpha": 1.0,
+        "flag_broken": false,
+        "flag_foot": "(340.4, 481.8)",
+        "pending": {},
+        "pointer": "vane_pointer",
+        "suppression_remaining": 0.0,
+        "vane_alpha": 1.0,
+        "vane_foot": "(487.2, 522.0)"
+      },
+      "props_warning_occlusion.png": {
+        "channel": {},
+        "direction": "(1.0, 0.0)",
+        "exit_ready": false,
+        "flag_alpha": 0.46000000834465,
+        "flag_broken": false,
+        "flag_foot": "(340.4, 481.8)",
+        "pending": {
+          "lane": "lane_0",
+          "mode": 1,
+          "remaining": 1.0
+        },
+        "pointer": "vane_pointer",
+        "suppression_remaining": 0.0,
+        "vane_alpha": 1.0,
+        "vane_foot": "(487.2, 522.0)"
+      }
+    },
+    "source_effective_and_display_pixels": {
+      "exit_waymark": {
+        "effective_native_pixels": [
+          1428.0,
+          801.0
+        ],
+        "max_display_pixels": "(163.2, 91.54287)"
+      },
+      "flag_broken": {
+        "effective_native_pixels": [
+          999.0,
+          488.0
+        ],
+        "max_display_pixels": "(92.55336, 45.21125)"
+      },
+      "flag_intact": {
+        "effective_native_pixels": [
+          787.0,
+          1387.0
+        ],
+        "max_display_pixels": "(101.283, 178.5)"
+      },
+      "vane_base": {
+        "effective_native_pixels": [
+          570.0,
+          1334.0
+        ],
+        "max_display_pixels": "(47.21515, 110.5)"
+      },
+      "vane_pointer": {
+        "effective_native_pixels": [
+          1938.0,
+          395.0
+        ],
+        "max_display_pixels": "(93.5, 19.05702)"
+      },
+      "vane_pointer_up": {
+        "effective_native_pixels": [
+          424.0,
+          1131.0
+        ],
+        "max_display_pixels": "(20.45614, 54.56579)"
+      }
+    }
+  },
+  "observations": [
+    "Intact and broken flag retain matched ground base; no sudden base expansion in controlled frames.",
+    "Reversed pointer remains on the same spindle, not a canvas-center mirror.",
+    "Up pointer is occluded naturally by hero in crosswind frame, and visible without hero occlusion in exit-ready frame.",
+    "Flag fades to .46 behind hero and restores when in front; reduced-FX warning remains readable.",
+    "Exit decal and text represent actual locked/ready conditions; no new door or walkway.",
+    "No obvious colored alpha fringe in these frames; small ornamental detail is simplified at real scale."
+  ],
+  "limits": [
+    "Controlled state fixtures, not natural encounter progression.",
+    "Normal gameplay camera used; no continuous-animation or whole-room acceptance.",
+    "Third pointer is a separate original source; fine spindle/lighting style still candidate."
+  ],
+  "legacy_gate_regression": {
+    "suite": "b08_visual_candidate",
+    "run": "20261003T105259446857Z-aa10ec07",
+    "checks": 34,
+    "failures": 0,
+    "exit_code": 0
+  }
+}

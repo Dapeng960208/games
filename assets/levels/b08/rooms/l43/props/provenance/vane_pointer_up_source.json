@@ -1,0 +1,139 @@
+{
+  "asset": "wind_vane_pointer_up_native.png",
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "intent": "precise-object-edit",
+    "transparent_background": true,
+    "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-9b8098df-4b8a-4260-b215-ca7e9ee3e15e.png",
+    "referenced_image_paths": [
+      "/workspace/scratch/2244020fc8d6/b08-art/rooms_0858/interactions/wind_vane_pointer.png",
+      "/workspace/scratch/2244020fc8d6/b08-art/rooms_0858/interactions/wind_vane_base_socket.png"
+    ],
+    "iterations": 1,
+    "postprocessing": "None. Original native PNG bytes copied without raster modifications.",
+    "sha256": "156402388cfad917a252dd1e86a6d6f02dc6b55970f4312e9217476921f94df1"
+  },
+  "native": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "alpha_counts": {
+      "zero": 1342800,
+      "intermediate": 228877,
+      "opaque": 839
+    },
+    "alpha_bboxes_xyxy_exclusive": {
+      "1": [
+        39,
+        21,
+        1200,
+        1230
+      ],
+      "8": [
+        415,
+        47,
+        839,
+        1179
+      ],
+      "32": [
+        415,
+        47,
+        839,
+        1178
+      ],
+      "128": [
+        416,
+        48,
+        839,
+        1177
+      ],
+      "250": [
+        417,
+        49,
+        838,
+        1176
+      ]
+    },
+    "corners_alpha": 0,
+    "qa": "Direction up: PASS. Complete outline/margin: PASS at effective alpha threshold. Native alpha: PASS. No pedestal/floor/shadow/text: PASS. Short vertical gold mount remains below hub rather than rotated sideways. Front gold tip and long feather blade above hub; shorter twin-feather tail below. Very faint alpha 1–7 speckles outside visible silhouette are native generated pixels, retained."
+  },
+  "effective_qa": {
+    "method": "Read-only in-memory alpha-channel Lanczos sampling; no derivative PNG was saved and no source pixel was altered.",
+    "samples": [
+      {
+        "visible_target_height": 50,
+        "scale": 0.0441696113,
+        "canvas": [
+          55,
+          55
+        ],
+        "alpha8_bbox": [
+          18,
+          2,
+          37,
+          52
+        ],
+        "alpha128_pixels": 419
+      },
+      {
+        "visible_target_height": 75,
+        "scale": 0.066254417,
+        "canvas": [
+          83,
+          83
+        ],
+        "alpha8_bbox": [
+          27,
+          3,
+          56,
+          78
+        ],
+        "alpha128_pixels": 954
+      },
+      {
+        "visible_target_height": 100,
+        "scale": 0.0883392226,
+        "canvas": [
+          111,
+          111
+        ],
+        "alpha8_bbox": [
+          36,
+          4,
+          75,
+          105
+        ],
+        "alpha128_pixels": 1712
+      }
+    ],
+    "finding": "The upward tip and split tail remain separated in alpha silhouette at 50/75/100 pixel visible heights. Fine ornaments will simplify at 50 pixels. Effective visible width is roughly 19/29/39 pixels. Use effective alpha>=8 bounds for scale; raw alpha>0 bounds include barely visible native speckles."
+  },
+  "attachment_proposal": {
+    "coordinate_system": "native source pixels, origin top-left",
+    "hub_center": [
+      627,
+      661
+    ],
+    "spindle_lower_attachment": [
+      627,
+      818
+    ],
+    "measurement_uncertainty_px": 10,
+    "normalized_spindle_attachment": [
+      0.5,
+      0.6523125997
+    ],
+    "sprite_center": [
+      627,
+      627
+    ],
+    "centered_sprite_offset_at_unit_scale": [
+      0,
+      -191
+    ],
+    "formula": "For centered Sprite2D: offset = Vector2(0, -191), then apply visual scale. Align source anchor (627,818) to the socket target. With uncentered drawing place top-left at target - scale * Vector2(627,818).",
+    "note": "Mount lower plug is partly occluded by the closer tail rod; its visible side extent ends around y818. This is an art-space estimate for integration, not a runtime-tested alignment. Do not rotate this bitmap for other world directions."
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "b08-l43-interaction-art-v1",
+  "status": "explicit convergence candidate; six controlled 2K frames inspected, natural play pending",
+  "frames": {
+    "vane_base": {
+      "file": "vane_base.png",
+      "anchor": [
+        513,
+        1300
+      ],
+      "world_per_source_pixel": 0.04872563718140929,
+      "native_size": [
+        1024,
+        1536
+      ],
+      "effective_alpha16_size": [
+        570,
+        1334
+      ],
+      "sha256": "69225b8d40d599a0265f8b9e363fcc6d78c31657445cae8d463c8da094218f12",
+      "status": "original source and registered anchor checked in controlled 2K frame; natural play pending",
+      "socket_pixel": [
+        513,
+        92
+      ]
+    },
+    "vane_pointer": {
+      "file": "vane_pointer.png",
+      "anchor": [
+        851,
+        532
+      ],
+      "world_per_source_pixel": 0.028379772961816305,
+      "native_size": [
+        2048,
+        768
+      ],
+      "effective_alpha16_size": [
+        1938,
+        395
+      ],
+      "sha256": "7f385afc6464a2c1205b06d0bd97ea03a778d77f7583a1759fc648b347be60ba",
+      "status": "original source and registered anchor checked in controlled 2K frame; natural play pending"
+    },
+    "flag_intact": {
+      "file": "flag_intact.png",
+      "anchor": [
+        351,
+        1315
+      ],
+      "world_per_source_pixel": 0.07570295602018745,
+      "native_size": [
+        1089,
+        1444
+      ],
+      "effective_alpha16_size": [
+        787,
+        1387
+      ],
+      "sha256": "e937252095d473558e16c1087b484bd4566f4f7c30e9ffd8c358a4a52ac911d9",
+      "status": "original source and registered anchor checked in controlled 2K frame; natural play pending"
+    },
+    "flag_broken": {
+      "file": "flag_broken.png",
+      "anchor": [
+        236.2,
+        1192.6
+      ],
+      "world_per_source_pixel": 0.054497646210611136,
+      "native_size": [
+        1089,
+        1445
+      ],
+      "effective_alpha16_size": [
+        999,
+        488
+      ],
+      "sha256": "248c1dcb576d870879aff74cbce12fef76694a2322944205f3a9ad4ae2bf347c",
+      "status": "original source and registered anchor checked in controlled 2K frame; natural play pending"
+    },
+    "exit_waymark": {
+      "file": "exit_waymark.png",
+      "anchor": [
+        768,
+        528
+      ],
+      "world_per_source_pixel": 0.06722689075630252,
+      "native_size": [
+        1536,
+        1024
+      ],
+      "effective_alpha16_size": [
+        1428,
+        801
+      ],
+      "sha256": "84924dcf827a56f6b721829e528c8cb5aed6313a87a4d551bfdb34a51d476cc0",
+      "status": "original source and registered anchor checked in controlled 2K frame; natural play pending"
+    },
+    "vane_pointer_up": {
+      "file": "vane_pointer_up.png",
+      "anchor": [
+        627,
+        818
+      ],
+      "world_per_source_pixel": 0.028379772961816305,
+      "native_size": [
+        1254,
+        1254
+      ],
+      "effective_alpha16_size": [
+        424,
+        1131
+      ],
+      "sha256": "156402388cfad917a252dd1e86a6d6f02dc6b55970f4312e9217476921f94df1",
+      "status": "original source and registered anchor checked in controlled 2K frame; natural play pending"
+    }
+  },
+  "sources": "Original builtin imagegen bytes preserved; source prompts and metadata retained. User reference not copied.",
+  "gate": "L43 --candidate-b08 --b08-art-l43 --b08-art-convergence",
+  "limits": [
+    "Three real L43 states: right, horizontal mirror left, separately authored up pointer; no 90-degree bitmap rotation.",
+    "No collision or mechanics change.",
+    "Broken flag scaled by shared base, not entire alpha box."
+  ],
+  "registration_notes": {
+    "vane_base_socket": [
+      513,
+      92
+    ],
+    "socket_reason": "Visible exposed cap used as candidate seating landmark. Source pairing remains subject to actual composite review.",
+    "flag_base_width_ratio": 0.7198879551820728,
+    "flag_ground_rim_fit_rms_source_pixels": 1.18,
+    "flag_note": "Broken flag aligns shared ground rim; generated upper base proportions still differ.",
+    "pointer_scale_basis": "Both pointers share similar central gem/spindle source dimensions; up total beam is naturally foreshortened, not normalized by its alpha box."
+  },
+  "actual_frame_run": "20261003T105016510438Z-8cdbdfb0"
+}

@@ -1,0 +1,82 @@
+{
+  "file": "interactions/exit_waymark.png",
+  "role": "exit_waymark_inlay",
+  "status": "native source candidate; not integrated",
+  "generator": "builtin imagegen",
+  "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-310d846e-a17a-4625-88f6-3f237850aa87.png",
+  "sha256": "84924dcf827a56f6b721829e528c8cb5aed6313a87a4d551bfdb34a51d476cc0",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "mode": "RGBA",
+  "original_bytes_verified": true,
+  "alpha_bounds_xyxy": {
+    "1": [
+      49,
+      21,
+      1488,
+      984
+    ],
+    "8": [
+      54,
+      122,
+      1482,
+      923
+    ],
+    "16": [
+      54,
+      122,
+      1482,
+      923
+    ],
+    "128": [
+      55,
+      123,
+      1481,
+      923
+    ],
+    "240": [
+      56,
+      124,
+      1480,
+      922
+    ]
+  },
+  "effective_size_alpha16": [
+    1428,
+    801
+  ],
+  "alpha16_border_pixels": 0,
+  "zero_alpha_fraction": 0.6295318603515625,
+  "diagnostic_red_pixels_alpha16": 0,
+  "proposed_effective_world_size": [
+    96.0,
+    53.849
+  ],
+  "estimated_max_display_pixels_at_2k_player_zoom_085": [
+    163.2,
+    91.543
+  ],
+  "estimated_display_to_effective_source_ratio": 0.114286,
+  "display_estimate_only": true,
+  "registration_proposal": {
+    "center_pixel": [
+      768,
+      528
+    ],
+    "status": "flat decal proposal; actual exit registration pending"
+  },
+  "notes": [
+    "A flat paired-wing/open-door emblem. No active/inactive state, prompt, glow or blocker is baked in. Fine wing detail must be judged at actual display size."
+  ],
+  "prompt_file": "interactions/exit_waymark.prompt.txt",
+  "prompt_sha256": "48f1abf88b7713cee0978d7ba53d38644dda5d3cd3cdf7bb88d60fce94fda38f",
+  "generation_kind": "generated with style reference",
+  "reference": {
+    "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B08(1).png",
+    "sha256": "aa25afa52eaf96f97fa70875003047b69b01b2c089dd9283eb9cfacd257d31ee",
+    "role": "user style reference, actually inspected; not included in review package"
+  },
+  "additional_references": []
+}

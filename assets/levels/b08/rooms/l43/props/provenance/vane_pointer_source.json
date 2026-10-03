@@ -1,0 +1,87 @@
+{
+  "file": "interactions/wind_vane_pointer.png",
+  "role": "wind_vane_pointer",
+  "status": "native source candidate; not integrated",
+  "generator": "builtin imagegen",
+  "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-7eb4f479-6987-4862-8483-db2437f0a2f4.png",
+  "sha256": "7f385afc6464a2c1205b06d0bd97ea03a778d77f7583a1759fc648b347be60ba",
+  "native_size": [
+    2048,
+    768
+  ],
+  "mode": "RGBA",
+  "original_bytes_verified": true,
+  "alpha_bounds_xyxy": {
+    "1": [
+      62,
+      17,
+      2016,
+      726
+    ],
+    "8": [
+      65,
+      169,
+      2003,
+      565
+    ],
+    "16": [
+      65,
+      170,
+      2003,
+      565
+    ],
+    "128": [
+      66,
+      170,
+      2002,
+      564
+    ],
+    "240": [
+      67,
+      172,
+      2001,
+      564
+    ]
+  },
+  "effective_size_alpha16": [
+    1938,
+    395
+  ],
+  "alpha16_border_pixels": 0,
+  "zero_alpha_fraction": 0.7932039896647135,
+  "diagnostic_red_pixels_alpha16": 0,
+  "proposed_effective_world_size": [
+    55.0,
+    11.21
+  ],
+  "estimated_max_display_pixels_at_2k_player_zoom_085": [
+    93.5,
+    19.057
+  ],
+  "estimated_display_to_effective_source_ratio": 0.048246,
+  "display_estimate_only": true,
+  "registration_proposal": {
+    "spindle_attachment_pixel": [
+      850,
+      532
+    ],
+    "status": "visual proposal; exact socket pairing pending"
+  },
+  "notes": [
+    "One right-facing pointer only. Horizontal mirroring/other directions, neutral state and transition still require registration/design. Do not rotate a 3D illustration through arbitrary angles and claim matching perspective."
+  ],
+  "prompt_file": "interactions/wind_vane_pointer.prompt.txt",
+  "prompt_sha256": "ca23e197331ba8cfd7b863208acf7b772d5f92171d1ee56190dc715cbe7390f3",
+  "generation_kind": "generated with style reference",
+  "reference": {
+    "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B08(1).png",
+    "sha256": "aa25afa52eaf96f97fa70875003047b69b01b2c089dd9283eb9cfacd257d31ee",
+    "role": "user style reference, actually inspected; not included in review package"
+  },
+  "additional_references": [
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/rooms_0858/interactions/wind_vane_base_socket.png",
+      "sha256": "69225b8d40d599a0265f8b9e363fcc6d78c31657445cae8d463c8da094218f12"
+    }
+  ]
+}
