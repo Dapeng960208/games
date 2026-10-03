@@ -1,16 +1,21 @@
 extends RefCounted
 const Content = preload("res://scripts/levels/b09/world/content.gd")
 const Fixed = preload("res://scripts/domain/world/fixed_room_layouts.gd")
+const Art = preload("res://scripts/infrastructure/assets/world_art.gd")
 static func build(id: String, seed_value: int = 0) -> Dictionary:
 	var definition := Content.room(id)
 	if definition.is_empty(): return {}
 	var encounters: Array=[]
 	for point: Array in definition.encounter_anchors: encounters.append({"center":point,"radius":220})
 	var source := {"id":id,"biome_id":"B09","name":definition.name,"kind":"boss" if id=="BO09" else "combat","entry":definition.entry,"exit":definition.exit,"route":definition.main_route,
-		"beacons":[],"encounters":encounters,"objectives":[],"props":[],"decorations":[],"fixed_world_entities":[],"fixed_optional_rewards":[]}
+		"side_route":definition.get("side_route",[]),"beacons":[],"encounters":encounters,"objectives":[],"props":[],"decorations":[],"fixed_world_entities":[],"fixed_optional_rewards":[]}
 	if id=="BO09": source["boss"]={"position":definition.boss_spawn}
 	var result: Dictionary=Fixed._from_blueprint(source)
-	result.merge({"seed":seed_value,"generation_version":9,"b09_candidate":true,"ground_polygon":Content.polygon(definition.walkable_polygon),"fixed_objective_count":0,"dynamic_states_verified":false},true)
+	# The same placement transform owns the painting, boundary and camera.
+	# Keep source geometry as the compatibility boundary only if art is absent.
+	var ground := Art.environment_ground_polygon(result.arena,"B09",id)
+	if ground.is_empty(): ground=Content.polygon(definition.walkable_polygon)
+	result.merge({"seed":seed_value,"generation_version":9,"b09_candidate":true,"ground_polygon":ground,"fixed_objective_count":0,"dynamic_states_verified":false},true)
 	var walls: Array[Rect2]=[]
 	for value: Array in definition.obstructions: walls.append(Content.rect(value))
 	result["obstructions"]=walls

@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "room_id": "L54",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L54_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "328ecde802a2689001fe928915f33f9333aee9534c74c8f6de4c4b8807dbc9e1",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L54/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "1d932ee54cee0f1be9669eddfc1091198d4657c7c7cd8ab3eb2e31cccc1aa41a",
+      "decoded_rgb_sha256": "e0c821f46e156405768cd94473551bceeabf01b585e943e3650dfaf22c02ed9a",
+      "webp_sha256": "20ef34a934c127c8f3a8f3d1cb5b21095f6378203ad03d39ae6c6f8d011ae142",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: Native high-resolution cropped game-map detail tile, region top_left of B09 room L54, for exact mapped compositing with adjacent tiles.\nInput image: the supplied local cropped reference is the EDIT TARGET, not a loose design reference.\nPrimary request: reproduce this exact crop at the largest native SQUARE resolution, requested 1536 x 1536 pixels. Improve only fine hand-painted material fidelity inside the existing shapes: snow grain and soft snow edge depth, faceted lilac-blue crystals, ivory stone bevels, restrained gold engraving, delicate ice fissures and painterly evergreen needles. This is bright hand-painted cartoon fantasy with a high three-quarter downward camera and 2.5D relief, matching the supplied artwork.\nComposition invariants: LOCK the complete original framing, every object's normalized position and silhouette, perspective, scale, camera angle, horizon and edge geometry. All four diagonal bridges belong to the full three-platform room; retain exactly every bridge or bridge fragment visible in this crop, its clear walking width, bridgeheads, railings and continuation across image borders. Preserve all platform shorelines and tops, lanterns and their foot positions, stairs and architecture, cliff shapes, snow-covered trees, clouds and negative space.\nLighting invariants: keep the exact existing bright exposure, warm lantern glows, cool snow/crystal palette and shadow direction. Do not add contrast or darken the scene.\nChange only surface texture fidelity within original shapes. Do not crop, expand, zoom, rotate, recenter, rearrange, replace or invent geometry. Do not add/remove bridges, islands, lamps, steps, buildings, trees or other objects. No characters, enemies, UI, text, labels, watermark or border. Exact full-reference composition is critical for collision and tile seams.",
+      "generation_tool": "built-in image_gen",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a9-8b81-7c71-b816-0bc49def2947\\exec-bbb89b83-7576-40d1-b42a-7aa8d28d5a00.png",
+      "reference_path": "C:\\webdev\\games\\_tmp\\b09_ui_redesign\\map_stage\\artifacts\\world-2k-production\\references\\L54\\top_left.png",
+      "reference_sha256": "8c3e756316e40c0b922da771f15ca438862d5221fae6130e3e889f43a1db3784",
+      "native_density": 2.375
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L54/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "6787a0f214d15fbb08efa23e2480e692ca5858bee50223a796841a5004000fb2",
+      "decoded_rgb_sha256": "d07ea461f6c3cd26b14375a43eddc4620fd58699a71aea4944f87775444fd11f",
+      "webp_sha256": "551034cec3ebfea56aa24225738400d6b7049c976fe1772977d5b121c0013a87",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: Native high-resolution cropped game-map detail tile, region top_middle of B09 room L54, for exact mapped compositing with adjacent tiles.\nInput image: the supplied local cropped reference is the EDIT TARGET, not a loose design reference.\nPrimary request: reproduce this exact crop at the largest native SQUARE resolution, requested 1536 x 1536 pixels. Improve only fine hand-painted material fidelity inside the existing shapes: snow grain and soft snow edge depth, faceted lilac-blue crystals, ivory stone bevels, restrained gold engraving, delicate ice fissures and painterly evergreen needles. This is bright hand-painted cartoon fantasy with a high three-quarter downward camera and 2.5D relief, matching the supplied artwork.\nComposition invariants: LOCK the complete original framing, every object's normalized position and silhouette, perspective, scale, camera angle, horizon and edge geometry. All four diagonal bridges belong to the full three-platform room; retain exactly every bridge or bridge fragment visible in this crop, its clear walking width, bridgeheads, railings and continuation across image borders. Preserve all platform shorelines and tops, lanterns and their foot positions, stairs and architecture, cliff shapes, snow-covered trees, clouds and negative space.\nLighting invariants: keep the exact existing bright exposure, warm lantern glows, cool snow/crystal palette and shadow direction. Do not add contrast or darken the scene.\nChange only surface texture fidelity within original shapes. Do not crop, expand, zoom, rotate, recenter, rearrange, replace or invent geometry. Do not add/remove bridges, islands, lamps, steps, buildings, trees or other objects. No characters, enemies, UI, text, labels, watermark or border. Exact full-reference composition is critical for collision and tile seams.",
+      "generation_tool": "built-in image_gen",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a9-8b81-7c71-b816-0bc49def2947\\exec-5fdd77f3-cfd0-427f-9de5-17d3c6185a17.png",
+      "reference_path": "C:\\webdev\\games\\_tmp\\b09_ui_redesign\\map_stage\\artifacts\\world-2k-production\\references\\L54\\top_middle.png",
+      "reference_sha256": "25749df2ec2b73c3db9d4f56bbc344c5e7adfc0e42ca6ae65b41e9b5991d5459",
+      "native_density": 2.375
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L54/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "f978c13a4c3aaf0d0aa435fcfbc44f9fe5b5b439fdaf260b57e18b6d1adff5ae",
+      "decoded_rgb_sha256": "5872e69163b26d93fa035ff93fca7e6e99d681412738b36f7aac907f53c11bbc",
+      "webp_sha256": "ef2b0dc6d036e58fb94571b032d9242d33878aa1d17e2cf42f0c50ec71298b89",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: Native high-resolution cropped game-map detail tile, region top_right of B09 room L54, for exact mapped compositing with adjacent tiles.\nInput image: the supplied local cropped reference is the EDIT TARGET, not a loose design reference.\nPrimary request: reproduce this exact crop at the largest native SQUARE resolution, requested 1536 x 1536 pixels. Improve only fine hand-painted material fidelity inside the existing shapes: snow grain and soft snow edge depth, faceted lilac-blue crystals, ivory stone bevels, restrained gold engraving, delicate ice fissures and painterly evergreen needles. This is bright hand-painted cartoon fantasy with a high three-quarter downward camera and 2.5D relief, matching the supplied artwork.\nComposition invariants: LOCK the complete original framing, every object's normalized position and silhouette, perspective, scale, camera angle, horizon and edge geometry. All four diagonal bridges belong to the full three-platform room; retain exactly every bridge or bridge fragment visible in this crop, its clear walking width, bridgeheads, railings and continuation across image borders. Preserve all platform shorelines and tops, lanterns and their foot positions, stairs and architecture, cliff shapes, snow-covered trees, clouds and negative space.\nLighting invariants: keep the exact existing bright exposure, warm lantern glows, cool snow/crystal palette and shadow direction. Do not add contrast or darken the scene.\nChange only surface texture fidelity within original shapes. Do not crop, expand, zoom, rotate, recenter, rearrange, replace or invent geometry. Do not add/remove bridges, islands, lamps, steps, buildings, trees or other objects. No characters, enemies, UI, text, labels, watermark or border. Exact full-reference composition is critical for collision and tile seams.",
+      "generation_tool": "built-in image_gen",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a9-8b81-7c71-b816-0bc49def2947\\exec-f7ceea2f-4405-49f9-9e77-026de642ee08.png",
+      "reference_path": "C:\\webdev\\games\\_tmp\\b09_ui_redesign\\map_stage\\artifacts\\world-2k-production\\references\\L54\\top_right.png",
+      "reference_sha256": "6b182603f551eab0f11217ab133ee345f64524c205bb6f1471d447f8d7fe15d5",
+      "native_density": 2.375
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L54/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "165b1c05bf478b8f0bf97add7d9d0f663fe6299a14b2f783ca635b2c71961494",
+      "decoded_rgb_sha256": "65242736283b4affcabffe7211ade6bc07c7a74d1b80036bf601da6f2b5681dd",
+      "webp_sha256": "5778b45a029b2bd54d4b82837c75ffceec116759cd83213a24331cf011157401",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: Native high-resolution cropped game-map detail tile, region bottom_left of B09 room L54, for exact mapped compositing with adjacent tiles.\nInput image: the supplied local cropped reference is the EDIT TARGET, not a loose design reference.\nPrimary request: reproduce this exact crop at the largest native SQUARE resolution, requested 1536 x 1536 pixels. Improve only fine hand-painted material fidelity inside the existing shapes: snow grain and soft snow edge depth, faceted lilac-blue crystals, ivory stone bevels, restrained gold engraving, delicate ice fissures and painterly evergreen needles. This is bright hand-painted cartoon fantasy with a high three-quarter downward camera and 2.5D relief, matching the supplied artwork.\nComposition invariants: LOCK the complete original framing, every object's normalized position and silhouette, perspective, scale, camera angle, horizon and edge geometry. All four diagonal bridges belong to the full three-platform room; retain exactly every bridge or bridge fragment visible in this crop, its clear walking width, bridgeheads, railings and continuation across image borders. Preserve all platform shorelines and tops, lanterns and their foot positions, stairs and architecture, cliff shapes, snow-covered trees, clouds and negative space.\nLighting invariants: keep the exact existing bright exposure, warm lantern glows, cool snow/crystal palette and shadow direction. Do not add contrast or darken the scene.\nChange only surface texture fidelity within original shapes. Do not crop, expand, zoom, rotate, recenter, rearrange, replace or invent geometry. Do not add/remove bridges, islands, lamps, steps, buildings, trees or other objects. No characters, enemies, UI, text, labels, watermark or border. Exact full-reference composition is critical for collision and tile seams.",
+      "generation_tool": "built-in image_gen",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a9-8b81-7c71-b816-0bc49def2947\\exec-37eaafb2-8bf2-49f7-9536-349ce78ef387.png",
+      "reference_path": "C:\\webdev\\games\\_tmp\\b09_ui_redesign\\map_stage\\artifacts\\world-2k-production\\references\\L54\\bottom_left.png",
+      "reference_sha256": "c1d731e13ff065f99ae607c9e68aac1aaa9b1f0e4fc6b322ff083c7e4d493d0a",
+      "native_density": 2.4115384615384614
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L54/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "9ff2a27eb6114e9428f6507c0e5988600bb2ebb8363f0fcb31cbe4b6bab60d64",
+      "decoded_rgb_sha256": "f0459999761a5523912cfea64bd26b6a0b24296063073a9cfb5cef64043cb371",
+      "webp_sha256": "6262d13465481ead82700dd1ea06dc64eb688738efa23bbabf8884512cb8fbe5",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: Native high-resolution cropped game-map detail tile, region bottom_middle of B09 room L54, for exact mapped compositing with adjacent tiles.\nInput image: the supplied local cropped reference is the EDIT TARGET, not a loose design reference.\nPrimary request: reproduce this exact crop at the largest native SQUARE resolution, requested 1536 x 1536 pixels. Improve only fine hand-painted material fidelity inside the existing shapes: snow grain and soft snow edge depth, faceted lilac-blue crystals, ivory stone bevels, restrained gold engraving, delicate ice fissures and painterly evergreen needles. This is bright hand-painted cartoon fantasy with a high three-quarter downward camera and 2.5D relief, matching the supplied artwork.\nComposition invariants: LOCK the complete original framing, every object's normalized position and silhouette, perspective, scale, camera angle, horizon and edge geometry. All four diagonal bridges belong to the full three-platform room; retain exactly every bridge or bridge fragment visible in this crop, its clear walking width, bridgeheads, railings and continuation across image borders. Preserve all platform shorelines and tops, lanterns and their foot positions, stairs and architecture, cliff shapes, snow-covered trees, clouds and negative space.\nLighting invariants: keep the exact existing bright exposure, warm lantern glows, cool snow/crystal palette and shadow direction. Do not add contrast or darken the scene.\nChange only surface texture fidelity within original shapes. Do not crop, expand, zoom, rotate, recenter, rearrange, replace or invent geometry. Do not add/remove bridges, islands, lamps, steps, buildings, trees or other objects. No characters, enemies, UI, text, labels, watermark or border. Exact full-reference composition is critical for collision and tile seams.",
+      "generation_tool": "built-in image_gen",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a9-8b81-7c71-b816-0bc49def2947\\exec-ba836df8-bd53-42a7-b927-bfe0530ec22d.png",
+      "reference_path": "C:\\webdev\\games\\_tmp\\b09_ui_redesign\\map_stage\\artifacts\\world-2k-production\\references\\L54\\bottom_middle.png",
+      "reference_sha256": "4d7fe417bcdb910cc46a8fecc3030d797afd1cff15654ad7681ed6658b5cdcec",
+      "native_density": 2.375
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L54/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "d71d2d00252df6a4199dd3f7f691ede16e13e8d86d91e79d4385ff93cbc98e57",
+      "decoded_rgb_sha256": "27eb3364c2d01f519c2d4f99be532bc5690fd31affaaf221b8fae57da71a9151",
+      "webp_sha256": "9559420a6fce49cd8f6318786296a215f269827ed38a2abd01e8cdf75ff8e73c",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit.\nAsset type: Native high-resolution cropped game-map detail tile, region bottom_right of B09 room L54, for exact mapped compositing with adjacent tiles.\nInput image: the supplied local cropped reference is the EDIT TARGET, not a loose design reference.\nPrimary request: reproduce this exact crop at the largest native SQUARE resolution, requested 1536 x 1536 pixels. Improve only fine hand-painted material fidelity inside the existing shapes: snow grain and soft snow edge depth, faceted lilac-blue crystals, ivory stone bevels, restrained gold engraving, delicate ice fissures and painterly evergreen needles. This is bright hand-painted cartoon fantasy with a high three-quarter downward camera and 2.5D relief, matching the supplied artwork.\nComposition invariants: LOCK the complete original framing, every object's normalized position and silhouette, perspective, scale, camera angle, horizon and edge geometry. All four diagonal bridges belong to the full three-platform room; retain exactly every bridge or bridge fragment visible in this crop, its clear walking width, bridgeheads, railings and continuation across image borders. Preserve all platform shorelines and tops, lanterns and their foot positions, stairs and architecture, cliff shapes, snow-covered trees, clouds and negative space.\nLighting invariants: keep the exact existing bright exposure, warm lantern glows, cool snow/crystal palette and shadow direction. Do not add contrast or darken the scene.\nChange only surface texture fidelity within original shapes. Do not crop, expand, zoom, rotate, recenter, rearrange, replace or invent geometry. Do not add/remove bridges, islands, lamps, steps, buildings, trees or other objects. No characters, enemies, UI, text, labels, watermark or border. Exact full-reference composition is critical for collision and tile seams.",
+      "generation_tool": "built-in image_gen",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a9-8b81-7c71-b816-0bc49def2947\\exec-f2e3db38-af0e-4797-95a6-54f203730149.png",
+      "reference_path": "C:\\webdev\\games\\_tmp\\b09_ui_redesign\\map_stage\\artifacts\\world-2k-production\\references\\L54\\bottom_right.png",
+      "reference_sha256": "238045de9c75c2d775da4428c1d2ab86537ca4c4a48864e58b04c650287cd1c0",
+      "native_density": 2.4115384615384614
+    }
+  ],
+  "generated_source_policy": "built-in image_gen outputs copied by exact pixel-preserving lossless WebP encoding; original PNGs retained at their generated paths",
+  "approval_scope": "Static 2K GPU visual review only; movement, combat and natural balance are separate checks.",
+  "acceptance": {
+    "date": "2026-10-03",
+    "resolution": [
+      2560,
+      1440
+    ],
+    "renderer": "OpenGL Compatibility",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "source_comparison": true,
+    "visual_review": "Passed complete painted scenery, tile seams, palette, bridge continuity and lamp-foot proximity. L51/L54 rechecked after removing untouched-gap mother-image overpainting.",
+    "capture_directory": "artifacts/b09_native_visual",
+    "geometry_changed_by_tiles": false,
+    "scale_or_upscale_applied": false,
+    "natural_playthrough_claimed": false
+  }
+}

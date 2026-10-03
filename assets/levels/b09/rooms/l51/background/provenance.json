@@ -1,0 +1,15 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "prompt": "Use case: stylized-concept. Original B09 Frost Crystal Court ROOM DESIGN overview, Twin Crystal Bridges: southwest entrance and northeast exit, vertical central blue glacier crevasse, exactly TWO wide crystal bridges crossing west-east over the crevasse, one bridge in northern third and one in southern third; both intact. Large snow platforms on west and east connected via both bridges, warm lanterns on both banks, angular cyan glacier faces beneath bridges. New architecture: geometrically cut transparent ice and pale lavender crystal palace, champagne-gold trims and warm brass lanterns, sunlit snow, bright cheerful winter fantasy. Polished detailed hand-painted storybook game art, same visual family as newly created crystalline monsters. HIGH camera 65-degree overhead near-isometric 2.5D, whole room and all entrances visible, orthographic overview landscape 1536x1024. Entire playable room inside frame, maximum floor clarity, plenty of empty room for action RPG combat, fine dark-violet contours, warm sun from upper left, icy blue long shadows only at perimeter. Distinguish matte coarse snow from shiny cyan ice. No players, monsters, Boss, HUD, text, labels, numbers or watermarks. This is a design illustration; no earlier jungle, coral, pumpkin or desert rooms copied.",
+  "reference_images": [],
+  "sha256": "2a5dd00376585fce3f4af8dc94ca28a381251c4bbe62d0d4351a8ac1c99d0ba3",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "processing": "Byte-for-byte source copy, no pixel editing.",
+  "license": "Project-generated original artwork."
+}

@@ -3,12 +3,13 @@ import hashlib
 import json
 import struct
 from pathlib import Path
+from PIL import Image
 
 
 def audit(root: Path) -> None:
     art = root / "assets/levels/b09"
     sources = sorted(art.rglob("*.png"))
-    assert len(sources) == 32, f"expected 32 source images, got {len(sources)}"
+    assert len(sources) == 33, f"expected 32 original sources and one L54 bridge edit, got {len(sources)}"
     hashes = {}
     for path in sources:
         data = path.read_bytes()
@@ -46,7 +47,34 @@ def audit(root: Path) -> None:
             assert (root / manifest["resources"][logical].removeprefix("res://")).is_file(), logical
             last_right = x + w
             frames += 1
-    print(f"B09_ART sources={len(sources)} identities=19 poses={frames}; hashes and bounds OK; no identical B05/B06 source")
+    detail_count = 0
+    detail_bytes = 0
+    rects = [[0,0,520,528],[504,0,528,528],[1016,0,520,528],
+             [0,504,520,520],[504,504,528,520],[1016,504,520,520]]
+    for room in ("L49", "L50", "L51", "L52", "L53", "L54", "BO09"):
+        folder = art / "rooms" / room.lower()
+        source = folder / "background/environment.png"
+        pack = json.loads((folder / "detail/manifest.json").read_text(encoding="utf-8"))
+        assert pack["room_id"] == room and pack["approved"], room
+        assert pack["source_sha256"] == hashlib.sha256(source.read_bytes()).hexdigest(), room
+        assert pack["source_size"] == [1536, 1024] and len(pack["tiles"]) == 6, room
+        paths = set()
+        for entry, rect in zip(pack["tiles"], rects):
+            logical = entry["texture"].removeprefix("asset://").lower()
+            path = root / manifest["resources"][logical].removeprefix("res://")
+            assert path.parent == folder / "detail" and path not in paths, path
+            paths.add(path)
+            assert entry["source_rect"] == rect and entry["prompt"] and entry["generated_source_path"], path
+            data = path.read_bytes()
+            assert hashlib.sha256(data).hexdigest() == entry["webp_sha256"], path
+            with Image.open(path) as image:
+                image = image.convert("RGB")
+                assert list(image.size) == entry["native_size"], path
+                assert min(image.width/rect[2], image.height/rect[3]) >= 2.35, path
+                assert hashlib.sha256(image.tobytes()).hexdigest() == entry["decoded_rgb_sha256"], path
+            detail_count += 1
+            detail_bytes += len(data)
+    print(f"B09_ART sources={len(sources)} identities=19 poses={frames} native_detail={detail_count} bytes={detail_bytes}; hashes, native density and bounds OK; no identical B05/B06 source")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "biome_id": "B09",
+  "room_id": "L49",
+  "texture": "asset://b09/l49/overview.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "regions": {
+    "L49_environment": [
+      0,
+      0,
+      1536,
+      1024
+    ]
+  },
+  "walkable_normalized_rect": [
+    0.31,
+    0.31,
+    0.38,
+    0.32
+  ],
+  "placement_normalized_rect": [
+    0.1,
+    0.1,
+    0.8,
+    0.74
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.132812,
+      0.504883
+    ],
+    [
+      0.134766,
+      0.339844
+    ],
+    [
+      0.292969,
+      0.240234
+    ],
+    [
+      0.434896,
+      0.212891
+    ],
+    [
+      0.586589,
+      0.212891
+    ],
+    [
+      0.763021,
+      0.270508
+    ],
+    [
+      0.846354,
+      0.371094
+    ],
+    [
+      0.85612,
+      0.516602
+    ],
+    [
+      0.807292,
+      0.665039
+    ],
+    [
+      0.660156,
+      0.771484
+    ],
+    [
+      0.5,
+      0.830078
+    ],
+    [
+      0.332682,
+      0.771484
+    ],
+    [
+      0.190104,
+      0.665039
+    ]
+  ],
+  "camera": "高机位三分之四斜俯视、近等距2.5D",
+  "baked_scenery": true,
+  "boundary": {
+    "convex": true,
+    "convexity_verified": true,
+    "winding": "clockwise_positive_cross_in_screen_coordinates",
+    "authority": "B09房间原画岸顶雪面、台阶前平台与桥面；非谷底冰壁",
+    "validation_layout_scale": 0.58,
+    "required_anchor_clearance_world": 14,
+    "internal_gaps": "room_geometry.json的岸边阶梯矩形，不能将凸外包络内的云崖当成可走地面"
+  },
+  "notes": [
+    "复用本批B09独立原画，按前四关WorldArt环境路径呈現完整地景；不铺矩形雪白底。",
+    "placement负责原画与全部玩法点共用坐标变换；凸外边界用于脚点和扫掠，内部裂隙另有真实碰撞。",
+    "静态灯、晶柱、入口建筑、栏杆与完整桥已经画入环境，不重复叠加sprite；功能圈与动态预警由运行时绘制。",
+    "蓝色可走冰面按源图池边生成内接水平矩形；动态冰雪不得覆盖原画不可走云崖。"
+  ],
+  "qa": {
+    "source_pixel_edits": "none",
+    "geometry_status": "源图人工测定与Python半平面/碰撞预检查；GPU路径与闭桥最终验收由集成检查确认，不凭设计图标通过"
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "integer shared-image regions",
+    "texture_sampling": "full independent room texture; region_filter_clip_enabled=false",
+    "texture_memory": "one shared texture; no streaming claim"
+  }
+}

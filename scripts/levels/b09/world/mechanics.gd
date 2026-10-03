@@ -2,6 +2,7 @@ extends Node2D
 ## Room-local crystal, lantern, ice and alternating bridge state.
 const Content = preload("res://scripts/levels/b09/world/content.gd")
 const Skills = preload("res://scripts/levels/b09/combat/skills.gd")
+const Art = preload("res://scripts/infrastructure/assets/world_art.gd")
 var room: Node2D
 var definition: Dictionary = {}
 var clock := 0.0
@@ -13,9 +14,9 @@ var bridge_serial := 0
 var _pending: Dictionary = {}
 var _bridge_cursor := 0
 var _floor: Node2D
-var _snow_texture: Texture2D
 var _ice_texture: Texture2D
-var _bridge_texture: Texture2D
+var _environment_texture: Texture2D
+var _environment_rect := Rect2()
 var ice: Array[Dictionary] = []
 var _scenery: Node2D
 const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
@@ -26,40 +27,29 @@ func configure(host: Node2D) -> void:
 	for lamp: Dictionary in definition.lamps:
 		lamps[lamp.id]={"at":Content.point(lamp.position),"ready":0.0,"warm_until":0.0,"siphon_until":0.0}
 	_floor=Node2D.new()
-	_floor.z_index=-2
+	_floor.z_index=-4
+	_floor.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	add_child(_floor)
 	_floor.draw.connect(_draw_floor)
 	z_index=3
-	_snow_texture=Sampler.sampled("asset://b09/snow_floor/source.png")
 	_ice_texture=Sampler.sampled("asset://b09/ice_floor/source.png")
-	_bridge_texture=Sampler.sampled("asset://b09/bridge/source.png")
+	_environment_texture=Art.environment_texture_for("B09",room.layout_id)
+	_environment_rect=Art.environment_world_rect(room.layout.arena,"B09",room.layout_id)
 	# Scenery shares the actors' foot-based depth plane; mechanisms remain visible.
 	_scenery=Node2D.new()
 	_scenery.name="B09Scenery"
 	_scenery.z_index=2
 	_scenery.y_sort_enabled=true
 	room.add_child(_scenery)
-	for lamp: Dictionary in lamps.values(): _prop("warm_lamp",lamp.at,108.0)
+	for lamp: Dictionary in definition.lamps:
+		if not bool(lamp.get("baked_visual",false)): _prop("warm_lamp",Content.point(lamp.position),108.0)
 	for value: Array in definition.obstructions:
 		var box := Content.rect(value)
-		if definition.get("obstruction_kind","column")=="column": _prop("crystal_column",Vector2(box.get_center().x,box.end.y),90.0)
-	_prop("palace_arch",room.exit_position+Vector2(0,20),180.0)
-	_prop("palace_arch",room.layout.entry+Vector2(0,24),150.0)
-	var boundary: Rect2 = room.ARENA
-	for x in [boundary.position.x-16,boundary.end.x+16]:
-		for y in range(int(boundary.position.y)+50,int(boundary.end.y),160): _prop("crystal_column",Vector2(x,y),92.0)
-	for y in [boundary.position.y-8,boundary.end.y+20]:
-		for x in range(int(boundary.position.x)+80,int(boundary.end.x),170): _prop("crystal_column",Vector2(x,y),70.0)
-	if is_instance_valid(room.get_node_or_null("MineBackdrop")): room.get_node("MineBackdrop").hide()
-	if is_instance_valid(room._depth_canvas): room._depth_canvas.hide()
-	if is_instance_valid(room._terrain_canvas): room._terrain_canvas.hide()
+		if definition.get("obstruction_kind","column")=="column" and not bool(definition.get("obstructions_baked_visual",false)):
+			_prop("crystal_column",Vector2(box.get_center().x,box.end.y),90.0)
 
 func _exit_tree() -> void:
 	if is_instance_valid(_scenery): _scenery.queue_free()
-	if is_instance_valid(room):
-		if is_instance_valid(room.get_node_or_null("MineBackdrop")): room.get_node("MineBackdrop").show()
-		if is_instance_valid(room._depth_canvas): room._depth_canvas.show()
-		if is_instance_valid(room._terrain_canvas): room._terrain_canvas.show()
 
 func _prop(id: String, at: Vector2, height: float, region: Rect2 = Rect2(), width: float = 0.0) -> void:
 	var texture := Sampler.sampled("asset://b09/"+id+"/source.png")
@@ -239,6 +229,11 @@ func request_bridge(id: String = "", warning: float = 2.0) -> bool:
 	_bridge_cursor=index+1
 	bridge_serial+=1
 	bridge={"id":selected.id,"rect":Content.rect(selected.rect),"state":"warning","remaining":warning,"serial":bridge_serial}
+	if selected.has("polygon"): bridge["polygon"]=Content.polygon(selected.polygon)
+	if selected.has("safe_landings"):
+		var landings: Array[Vector2]=[]
+		for at: Array in selected.safe_landings: landings.append(Content.point(at))
+		bridge["safe_landings"]=landings
 	return true
 
 func blocks_ground(at: Vector2, radius: float) -> bool:
@@ -259,6 +254,7 @@ func _safe_rebound() -> void:
 	var box: Rect2=bridge.rect
 	var margin := Balance.PLAYER_RADIUS+6.0
 	var candidates: Array[Vector2]=[Vector2(box.position.x-margin,actor.position.y),Vector2(box.end.x+margin,actor.position.y),Vector2(actor.position.x,box.position.y-margin),Vector2(actor.position.x,box.end.y+margin)]
+	for at: Vector2 in bridge.get("safe_landings",[]): candidates.append(at)
 	candidates.sort_custom(func(a: Vector2,b: Vector2) -> bool: return a.distance_squared_to(actor.position)<b.distance_squared_to(actor.position))
 	for at: Vector2 in candidates:
 		if not room.valid_ground(at,Balance.PLAYER_RADIUS): continue
@@ -280,8 +276,14 @@ func constrain(c: Dictionary, actor: Node2D) -> Dictionary:
 		result["radius"]=maxf(Content.rect(selected.rect).size.x,Content.rect(selected.rect).size.y)*0.5
 		result["targets"]=[result.target]
 		if room.difficulty>=2:
-			var box := Content.rect(selected.rect)
-			for side in [-1,1]: result.followups.append(Skills.area(result,box.get_center()+Vector2(side*(box.size.x*0.5+40),0),55,60 if actor.actor_kind=="boss" else 30,0.0))
+			# A closure rectangle is only the narrow gate across a painted bridge.
+			# The warning and frozen end waves use its authored banks/road shoulders.
+			var ends: Array=selected.get("wave_ends",selected.get("safe_landings",[]))
+			if ends.size()==2:
+				for at: Array in ends: result.followups.append(Skills.area(result,Content.point(at),55,60 if actor.actor_kind=="boss" else 30,0.0))
+			else:
+				var box := Content.rect(selected.rect)
+				for side in [-1,1]: result.followups.append(Skills.area(result,box.get_center()+Vector2(side*(box.size.x*0.5+40),0),55,60 if actor.actor_kind=="boss" else 30,0.0))
 	if c.kind=="charge" and bool(c.get("b09_stop_on_snow",false)):
 		var distance := float(c.travel_distance)
 		for step in range(1,int(ceil(distance/8))+1):
@@ -312,48 +314,56 @@ func _alive(actor: Object) -> bool:
 	return actor.has_method("is_alive") and actor.is_alive()
 
 func _draw_floor() -> void:
-	_floor.draw_rect(room.ARENA.grow(300),Color("576b98"))
-	if _snow_texture!=null: _floor.draw_texture_rect(_snow_texture,room.ARENA,true)
-	else: _floor.draw_colored_polygon(room.ground_polygon,Color("e5ecf7"))
-	_floor.draw_rect(room.ARENA,Color(0.97,0.97,1.0,0.48))
-	_floor.draw_rect(room.ARENA,Color("aaa9cd"),false,5.0)
-	for value: Array in definition.obstructions:
-		var box := Content.rect(value)
-		if definition.get("obstruction_kind","column")=="gap":
-			_floor.draw_rect(box,Color("4c7099"))
-			_floor.draw_rect(box,Color("9aaed1"),false,3.0)
-	for value: Array in definition.ice_rects:
-		var box := Content.rect(value)
-		if _ice_texture!=null: _floor.draw_texture_rect(_ice_texture,box,false)
-		else: _floor.draw_rect(box,Color("9bdff0"))
-		_floor.draw_rect(box,Color("638fbe"),false,2.0)
-		for i in 5:
-			var at := box.position+Vector2(box.size.x*(i+1)/6,box.size.y*0.3)
-			_floor.draw_line(at,at+Vector2(24,35),Color("c9f1fa"),2.0,true)
+	# Static snow, ice, bridges and the court belong to the room painting.
+	# Only real temporary mechanics draw above that shared environment.
+	var overlays: Array[Rect2]=[]
 	for patch: Dictionary in ice:
-		if _ice_texture!=null: _floor.draw_texture_rect(_ice_texture,patch.rect,false)
-		_floor.draw_rect(patch.rect,Color("638fbe"),false,2.0)
-	for value: Dictionary in definition.bridges:
-		var box := Content.rect(value.rect)
-		var state := str(bridge.get("state","intact")) if str(bridge.get("id",""))==str(value.id) else "intact"
-		if state=="closed":
-			_floor.draw_rect(box,Color("263d67"))
-		else:
-			# The painted bridge sits on the exact walkable footprint.
-			_floor.draw_rect(box,Color("c4e4ed"))
-			_floor.draw_rect(box,Color("b9a17b"),false,2.0)
-			if _bridge_texture!=null:
-				var size := _bridge_texture.get_size()
-				_floor.draw_texture_rect_region(_bridge_texture,box,Rect2(Vector2(size.x/3 if state=="warning" else 0,0),Vector2(size.x/3,size.y)))
-	for patch: Dictionary in snow: _floor.draw_circle(patch.at,patch.radius,Color("f1edf7"))
+		overlays.append(patch.rect)
+		if _ice_texture!=null: _floor.draw_texture_rect(_ice_texture,patch.rect,false,Color(1,1,1,0.5))
+		else: _floor.draw_rect(patch.rect,Color(0.65,0.87,0.95,0.45))
+		_floor.draw_rect(patch.rect,Color(0.48,0.71,0.89,0.55),false,1.5)
+	for patch: Dictionary in snow:
+		overlays.append(Rect2(Vector2(patch.at)-Vector2.ONE*float(patch.radius),Vector2.ONE*float(patch.radius)*2.0))
+		_floor.draw_circle(patch.at,patch.radius,Color(0.97,0.96,1.0,0.5))
 	for lamp: Dictionary in lamps.values():
 		if clock<float(lamp.warm_until):
-			_floor.draw_circle(lamp.at,100.0 if clock<float(lamp.siphon_until) else 160.0,Color("f0e2be"))
+			var radius := 100.0 if clock<float(lamp.siphon_until) else 160.0
+			overlays.append(Rect2(Vector2(lamp.at)-Vector2.ONE*radius,Vector2.ONE*radius*2.0))
+			_floor.draw_circle(lamp.at,radius,Color(1.0,0.84,0.53,0.18))
+			_floor.draw_arc(lamp.at,radius,0,TAU,64,Color(0.94,0.77,0.47,0.65),1.5,true)
+	# Restore only gap pixels touched by temporary floor overlays. Untouched
+	# landscape retains the shared backdrop and its approved native details.
+	if not overlays.is_empty() and definition.get("obstruction_kind","column")=="gap":
+		for value: Array in definition.obstructions:
+			var box := Content.rect(value)
+			for overlay: Rect2 in overlays:
+				var covered := box.intersection(overlay)
+				if covered.has_area(): _restore_painted_ground(covered)
 	if not bridge.is_empty():
-		_floor.draw_rect(bridge.rect,Color("263d67") if bridge.state=="closed" else Color(0.87,0.77,0.71,0.28))
-		if bridge.state=="warning":
-			var box: Rect2=bridge.rect
-			_floor.draw_line(box.position,box.end,Color("a26c79"),3.0,true)
+		var box: Rect2=bridge.rect
+		var closed: bool=bridge.state=="closed"
+		var tint := Color(0.4,0.38,0.61,0.22) if closed else Color(0.95,0.65,0.45,0.24)
+		var border := Color("756287") if closed else Color("ba7d66")
+		var outline: PackedVector2Array=bridge.get("polygon",PackedVector2Array())
+		if outline.size()>=3:
+			_floor.draw_colored_polygon(outline,tint)
+			for index in outline.size(): _floor.draw_line(outline[index],outline[(index+1)%outline.size()],border,2.0,true)
+		else:
+			_floor.draw_rect(box,tint)
+			_floor.draw_rect(box,border,false,2.0)
+		# The closed state is an impassable crystal gate on the real footprint.
+		# Preserve the painted bridge; never invent a rectangular chasm over it.
+		if closed:
+			_floor.draw_rect(box,Color(0.4,0.38,0.61,0.5))
+			_floor.draw_rect(box,border,false,4.0)
+
+func _restore_painted_ground(box: Rect2) -> void:
+	if _environment_texture==null or not _environment_rect.has_area(): return
+	var clipped := box.intersection(_environment_rect)
+	if not clipped.has_area(): return
+	var native := _environment_texture.get_size()
+	var source := Rect2((clipped.position-_environment_rect.position)/_environment_rect.size*native,clipped.size/_environment_rect.size*native)
+	_floor.draw_texture_rect_region(_environment_texture,clipped,source)
 
 func _draw() -> void:
 	for actor: Node2D in room.enemies.get_children():

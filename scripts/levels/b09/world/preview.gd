@@ -3,10 +3,13 @@ const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const Traversal = preload("res://scripts/levels/b09/world/traversal.gd")
 const Content = preload("res://scripts/levels/b09/world/content.gd")
 const Inventory = preload("res://scripts/levels/b09/equipment/candidate_inventory.gd")
+const CandidateHUD = preload("res://scripts/levels/b09/world/candidate_hud.gd")
 var inventory: RefCounted
 var room: Node2D
 var route: RefCounted
-var hud: Label
+var hud: Control
+var start_error: Label
+var _hud_interaction_enabled := true
 var menu: PanelContainer
 var heroes: OptionButton
 var difficulties: OptionButton
@@ -58,24 +61,11 @@ func _ready() -> void:
 	begin.pressed.connect(_start)
 	box.add_child(begin)
 	if begin.disabled: detail.text="请使用 tools/play_b09.ps1 启动隔离预览。"
-	var hud_panel := PanelContainer.new()
-	hud_panel.position=Vector2(12,10)
-	var background := StyleBoxFlat.new()
-	background.bg_color=Color("fff0da")
-	background.border_color=Color("927091")
-	background.set_border_width_all(1)
-	background.content_margin_left=12
-	background.content_margin_right=12
-	background.content_margin_top=8
-	background.content_margin_bottom=8
-	hud_panel.add_theme_stylebox_override("panel",background)
-	ui.add_child(hud_panel)
-	hud_panel.hide()
-	hud=Label.new()
-	hud.add_theme_color_override("font_color",Color("48374b"))
-	hud.add_theme_font_override("font",preload("res://scripts/presentation/hud/world_label_layer.gd").font())
-	hud.add_theme_font_size_override("font_size",18)
-	hud_panel.add_child(hud)
+	start_error=Label.new()
+	start_error.add_theme_color_override("font_color",Color("bb6254"))
+	start_error.autowrap_mode=TextServer.AUTOWRAP_ARBITRARY
+	box.add_child(start_error)
+	start_error.hide()
 	restart=Button.new()
 	restart.text="返回职业选择"
 	restart.pressed.connect(_restart)
@@ -103,19 +93,34 @@ func _start() -> void:
 	for actor: Node in room.enemies.get_children(): actor.free()
 	route=Traversal.new()
 	if not route.configure(room,difficulties.selected,309) or not route.start(): _show_start_error("B09 加载失败："+route.last_error); return
-	inventory.attach_room(room)
+	inventory.attach_room(room,false)
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--b09-room="):
 			var index := Content.room_ids().find(argument.trim_prefix("--b09-room="))
 			if index>=0: route._install(index)
+	var combat_canvas := CanvasLayer.new()
+	combat_canvas.layer=4
+	room.add_child(combat_canvas)
+	hud=CandidateHUD.new()
+	hud.room=room
+	hud.candidate_route=route
+	combat_canvas.add_child(hud)
+	hud.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	hud.inventory_button.name="B09EquipmentOpen"
+	var backpack_shortcut := Shortcut.new()
+	backpack_shortcut.events=InputMap.action_get_events("backpack")
+	hud.inventory_button.shortcut=backpack_shortcut
+	hud.inventory_requested.connect(inventory._open)
+	_hud_interaction_enabled=true
+	start_error.hide()
 	menu.hide()
-	hud.get_parent().show()
 	restart.show()
 	if OS.get_cmdline_user_args().has("--b09-capture"): _capture.call_deferred()
 
 func _show_start_error(message: String) -> void:
-	hud.text=message
-	hud.get_parent().show()
+	_restart()
+	start_error.text=message
+	start_error.show()
 
 func _capture() -> void:
 	room.set_input_blocked(true)
@@ -136,11 +141,11 @@ func _capture() -> void:
 	get_tree().quit()
 
 func _process(_delta: float) -> void:
-	if not is_instance_valid(room) or route==null or Game.run==null: return
-	var name: String=Content.room(room.layout_id).name
-	hud.text="B09 · %s · D%d · %d / 7\nHP %d / %d · 资源 %d · 敌人 %d\nF 暖灯/出口 · %s" % [name,route.difficulty,route.node_index+1,int(Game.run.hp),int(Game.run.max_hp),int(Game.run.resource),room._living_enemy_count(),room.interaction_hint()]
-	if route.finished: hud.text+="\n霜晶王庭预览完成"
-	elif Game.run.hp<=0: hud.text+="\n角色倒下 · 返回职业选择重新开始"
+	if not is_instance_valid(hud) or inventory==null: return
+	var enabled: bool=not inventory.panel.visible
+	if enabled!=_hud_interaction_enabled:
+		hud.set_interaction_enabled(enabled)
+		_hud_interaction_enabled=enabled
 
 func _restart() -> void:
 	if is_instance_valid(room): room.free()
@@ -148,7 +153,7 @@ func _restart() -> void:
 	route=null
 	inventory=null
 	Game.run=null
-	hud.text=""
-	hud.get_parent().hide()
+	hud=null
+	start_error.hide()
 	restart.hide()
 	menu.show()

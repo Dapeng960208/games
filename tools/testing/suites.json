@@ -1161,6 +1161,10 @@
     "script": "tests/captures/test_world_readability_capture.gd",
     "scene": "tests/captures/test_world_readability_capture.tscn"
   },
+  "b09_map_native": {
+    "script": "tests/levels/b09/test_b09_map_native.gd",
+    "scene": "tests/levels/b09/test_b09_map_native.tscn"
+  },
   "world_visual": {
     "script": "tests/world/test_world_visual.gd",
     "scene": "tests/world/test_world_visual.tscn"

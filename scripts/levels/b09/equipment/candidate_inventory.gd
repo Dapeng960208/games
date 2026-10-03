@@ -168,7 +168,7 @@ func equip(id: String, slot: String = "") -> bool:
 	Game.changed.emit()
 	return true
 
-func attach_room(host: Node2D) -> void:
+func attach_room(host: Node2D, show_open_button: bool = true) -> void:
 	room=host
 	room.set_meta("b09_inventory",self)
 	room.room_completed.connect(func():
@@ -182,8 +182,9 @@ func attach_room(host: Node2D) -> void:
 	ui.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	ui.theme=GameStyle.make_theme()
 	canvas.add_child(ui)
-	var open := _action(ui,"装备与战利品",Vector2(12,132),Vector2(164,42),_open)
-	open.name="B09EquipmentOpen"
+	if show_open_button:
+		var open := _action(ui,"装备与战利品",Vector2(12,132),Vector2(164,42),_open)
+		open.name="B09EquipmentOpen"
 	backdrop=ColorRect.new()
 	backdrop.color=Color("13283bcc")
 	backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

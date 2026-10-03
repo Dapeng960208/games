@@ -233,26 +233,45 @@ func _lamp_cancel_contract() -> void:
 	check(guard.brain._exposure_recovery(guard)==1.0,"M01 D4 final layer adds one-second recovery")
 
 func _bridge_wave_contract() -> void:
-	for side in [-1,0,1]:
-		_reset()
-		var map: Node2D=room.b09_mechanics
-		map.definition.bridges=Content.room("L53").bridges.duplicate(true)
-		map._bridge_cursor=0
-		var box := Content.rect(map.definition.bridges[0].rect)
-		room.player.position=box.get_center()+Vector2(side*(box.size.x*0.5+40),0)
-		room.player.invulnerable=0.0
-		Game.run.hp=Game.run.max_hp
-		var before: float=Game.run.hp
-		var actor := _spawn("B09-M14",box.get_center()+Vector2(100,100))
-		actor.brain._begin_action(actor,room.player)
-		var warning: Dictionary=actor.brain.command.duplicate(true)
-		check(warning.get("kind")=="b09_bridge" and warning.followups.size()==2,"M14 actual bridge admission declares two end waves")
-		for wave: Dictionary in warning.followups:
-			check(not wave.has("targets") and wave.target.distance_to(box.get_center())>float(wave.radius),"bridge end wave does not inherit root center targets")
-		actor.brain.tick(actor,float(warning.tell)+0.01,room.player)
-		actor.brain.tick(actor,float(warning.lock)+0.01,room.player)
-		check((Game.run.hp<before)==(side!=0),"M14 actual damage at bridge end "+str(side)+"; center remains safe from end waves")
-		check(map.bridge.get("state")=="warning" and map.bridge.remaining==2.0,"M14 release starts independent two-second bridge warning")
+	for room_id: String in ["L51","L53","L54","BO09"]:
+		var definition := Content.room(room_id)
+		for bridge_index in definition.bridges.size():
+			for side in [-1,0,1]:
+				check(route._install(Content.room_ids().find(room_id)),"bridge wave fixture installs real "+room_id)
+				_reset()
+				var map: Node2D=room.b09_mechanics
+				map._bridge_cursor=bridge_index
+				var selected: Dictionary=map.definition.bridges[bridge_index]
+				var label := room_id+" "+str(selected.id)+" side "+str(side)
+				var box := Content.rect(selected.rect)
+				var ends: Array=selected.get("wave_ends",selected.get("safe_landings",[]))
+				check(ends.size()==2,label+" authors two real end/shoulder wave points")
+				if ends.size()!=2: continue
+				for at: Array in ends:
+					var point := Content.point(at)
+					check(room.valid_ground(point,Balance.PLAYER_RADIUS),label+" wave point is reachable ground with player clearance")
+					check(point.distance_to(box.get_center())>55.0+Balance.PLAYER_RADIUS,label+" complete center footprint lies outside end waves")
+				room.player.position=box.get_center() if side==0 else Content.point(ends[0 if side<0 else 1])
+				check(room.valid_ground(room.player.position,Balance.PLAYER_RADIUS),label+" actual target stands on legal ground")
+				room.player.invulnerable=0.0
+				Game.run.hp=Game.run.max_hp
+				var before: float=Game.run.hp
+				var actor := _spawn("B09-M14",room.player.position)
+				actor.brain._begin_action(actor,room.player)
+				var warning: Dictionary=actor.brain.command.duplicate(true)
+				check(warning.get("kind")=="b09_bridge" and warning.followups.size()==2,label+" real M14 admission declares two end waves")
+				if warning.get("kind")!="b09_bridge" or warning.followups.size()!=2: continue
+				for index in 2:
+					var wave: Dictionary=warning.followups[index]
+					check(not wave.has("targets") and wave.target.is_equal_approx(Content.point(ends[index])) and float(wave.radius)==55.0 and int(wave.coefficient)==30,label+" frozen wave retains authored point/radius/coefficient without inherited center targets")
+				var changed: Dictionary=actor.profile.duplicate(true)
+				changed.damage=int(actor.profile.damage)*100
+				check(Skills.freeze(warning,changed)==warning,label+" complete bridge packet remains frozen after profile change")
+				actor.brain.tick(actor,float(warning.tell)+0.01,room.player)
+				actor.brain.tick(actor,float(warning.lock)+0.01,room.player)
+				check((Game.run.hp<before)==(side!=0),label+" real end damage and safe center")
+				check(map.bridge.get("state")=="warning" and map.bridge.remaining==2.0,label+" release starts independent two-second bridge warning")
+	check(route._install(0),"bridge fixture restores first room for remaining monster contracts")
 	room.player.invulnerable=9999.0
 
 func _support_contract() -> void:

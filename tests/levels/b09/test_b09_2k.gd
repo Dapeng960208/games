@@ -13,6 +13,21 @@ var frame_samples: Array[float] = []
 var sampling := false
 var last_frame_usec := 0
 var stage: SubViewport
+var _lamp_probe := false
+var _lamp_samples: Array[Dictionary] = []
+var _lamp_pending_before := false
+
+func _lamp_state(label: String) -> Dictionary:
+	var lamp: Dictionary=room.b09_mechanics.lamps.values()[0]
+	var pending: Dictionary=room.b09_mechanics._pending
+	return {"label":label,"physics_frame":Engine.get_physics_frames(),"process_frame":Engine.get_process_frames(),"controls":room.controls_enabled(),"input_blocked":room.input_blocked,"release_gate":room.release_gate,"pressed":Input.is_action_pressed("interact"),"just_pressed":Input.is_action_just_pressed("interact"),"paused":get_tree().paused,"window_focus":get_window().has_focus(),"distance":room.player.position.distance_to(lamp.at),"los":room.has_line_of_sight(room.player.position,lamp.at),"hp":Game.run.hp,"player_hits":room.telemetry.player_hits,"clock":room.b09_mechanics.clock,"ready":lamp.ready,"warm_until":lamp.warm_until,"pending":{} if pending.is_empty() else {"id":pending.id,"remaining":pending.remaining,"hit_serial":pending.hit_serial}}
+
+func _physics_process(_delta: float) -> void:
+	if not _lamp_probe: return
+	var has_pending: bool=not room.b09_mechanics._pending.is_empty()
+	if _lamp_samples.size()<8 or Input.is_action_just_pressed("interact") or has_pending!=_lamp_pending_before:
+		_lamp_samples.append(_lamp_state("physics_before_room"))
+	_lamp_pending_before=has_pending
 
 func _ready() -> void:
 	super._ready()
@@ -107,7 +122,12 @@ func _test_hero(index: int) -> void:
 	await frames(8)
 	var hero: String=Game.run.hero_id
 	check(room.controls_enabled() and not room.player.click_navigation.is_active(),hero+" startup releases controls")
-	check(get_viewport().get_visible_rect().encloses(hud.get_parent().get_global_rect()),hero+" HUD inside logical viewport")
+	var hud_inside := true
+	for bounds: Rect2 in hud.coverage_rects(): hud_inside=hud_inside and get_viewport().get_visible_rect().encloses(bounds)
+	check(hud_inside,hero+" shared HUD instruments inside logical viewport")
+	check(hud.health_bar.value==Game.run.hp and hud.health_bar.max_value==Game.run.max_hp and hud.resource_bar.value==Game.run.resource,hero+" shared meters read actual candidate values")
+	check(hud.skill_slots.size()==5 and hud.skill_slots[0].key=="Q" and hud.skill_slots[1].key=="W" and hud.skill_slots[2].key=="E" and hud.skill_slots[3].key=="R",hero+" shared HUD exposes the real four abilities and dodge")
+	check(not hud.gold_label.visible and not hud.room_identity_plate.visible and hud.expedition_label.text=="B09 · D4 · 1/7",hero+" candidate HUD reports actual route without formal rewards or an invented map")
 	check(get_viewport().get_visible_rect().encloses(restart.get_global_rect()),hero+" return button inside logical viewport")
 	room.player.invulnerable=180.0
 	for enemy: Node in room.enemies.get_children(): enemy.free()
@@ -174,9 +194,17 @@ func _test_hero(index: int) -> void:
 	room.player.position=lamp.at
 	await frames(2)
 	check(room.nearby_interaction().get("kind","")=="objective",hero+" actual F lamp selection")
+	_lamp_samples.clear()
+	_lamp_pending_before=not room.b09_mechanics._pending.is_empty()
+	_lamp_samples.append(_lamp_state("before_tap"))
+	_lamp_probe=true
 	await tap("interact")
+	_lamp_samples.append(_lamp_state("after_tap"))
 	check(not room.b09_mechanics._pending.is_empty(),hero+" mapped F starts 0.6s lamp channel")
 	await frames(42)
+	_lamp_samples.append(_lamp_state("after_channel"))
+	_lamp_probe=false
+	print("B09_F_DIAG ",hero," ",JSON.stringify(_lamp_samples))
 	check(float(lamp.warm_until)>room.b09_mechanics.clock and float(lamp.ready)>room.b09_mechanics.clock,hero+" automatic clock completes lamp and cooldown")
 	await capture(hero.to_lower()+"_lamp")
 	var open_button: Button=room.find_child("B09EquipmentOpen",true,false)

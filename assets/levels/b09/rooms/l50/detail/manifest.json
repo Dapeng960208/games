@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "room_id": "L50",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L50_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "646305902847b622db896275f1e5f56e0ca78a4ef0d28af80a5dc137d5620fa8",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L50/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "46bdbcee9044c2842984d0d0e4e270ce44aa579164da26af4773e4beef6bf289",
+      "decoded_rgb_sha256": "acd3ed4e0ab991a954116c1c287dc53c4ea8b5b1473d14fdd2f4b9043049f96e",
+      "webp_sha256": "2c45c17a250b3a7129ae79b8e8c1d5a02fd65d093a8edceb3ab412944819972f",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: L50 2K native environment detail tile, top_left. Input image 1 is the exact cropped edit target from the existing game map, not loose inspiration. Produce the largest available native square image, requested 1536 x 1536, as a faithful high-resolution detail repaint of this entire crop. Preserve the complete framing and every object's exact normalized position, size, silhouette and footprint. Lock camera to the same high three-quarter oblique overhead perspective and bright hand-painted cartoon fantasy 2.5D style. Lock exposure, hue, lighting, cast shadows and edge contents so the tile can be mapped back into the same room and align with neighboring tiles. Keep the gold-framed violet crystal pavilion, snowy stone paving and path, snow-laden pillars, crystal tips, suspended ropes, amber lamps, stairs and small tabletop objects exactly as shown. Refine only existing painted snow granularity, translucent crystal facets, ivory stone and brass/gold trim; improve clean material detail without changing composition. Strict constraints: no cropping, expanding, reframing, repositioning, new objects, removed objects, remodeled structures, extra ornament, characters, UI, text or watermark. The full reference crop must occupy the full output frame. All border geometry and colors must match the reference.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-1af2-79c3-991b-99ee5376668e\\exec-d408664c-01f7-4ead-8a7b-7aeb80149c62.png",
+      "reference_crop_sha256": "7ae3b61ba2a057a1adb560ea2d5d3b9a5c72f46b0003cac1b2eedd5d170d8654"
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L50/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "650231697b6574e9ec074344e132a378db1c52924326137b60e70825ed74cb95",
+      "decoded_rgb_sha256": "ae3a5cf17d62cf2d15c8ecb15e6726742ec509f9341f292c60df98d2e1d8dd47",
+      "webp_sha256": "26347e2dcb098629a9a46b772ca52c3d5043187115384f985c4165dc121b7bcb",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: L50 2K native environment detail tile, top_middle. Input image 1 is the exact cropped edit target from the existing game map, not loose inspiration. Produce the largest available native square image, requested 1536 x 1536, as a faithful high-resolution detail repaint of this entire crop. Preserve complete framing and every object's exact normalized position, size, silhouette and footprint. Lock the same high three-quarter oblique overhead camera, bright hand-painted cartoon fantasy 2.5D medium, exposure, hues, sunlight, shadows and all four image edges for seamless mapping into neighboring tiles. Keep the curving S-shaped snow-covered pale stone path and gold/violet diamond inlays, central stairs at the top, icy walls and railings on either side, snowy bushes and violet crystals in precisely their original positions. Refine only existing painted snow, translucent crystal facets, ivory stone, paving and brass/gold trim. Do not change the path width, curvature, travel corridor, step positions, outlines or materials. Strict constraints: no cropping, expansion, reframing, repositioning, extra or removed objects, new ornament, characters, UI, text, labels or watermark. The full reference crop must occupy the full output frame. Match all border geometry and colors to the reference.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-1af2-79c3-991b-99ee5376668e\\exec-fd19aaff-e86b-4d3d-96dd-7b80dd09c3a9.png",
+      "reference_crop_sha256": "014743196f9580d86b3b7dc95584660cb94766e3d83f9d3deb6e3559da796c9e"
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L50/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "44118a1e0a3d993614c8f77b994975ec1ebba0be02c898607e8e6a967e733690",
+      "decoded_rgb_sha256": "f0d2cb8b4e738ec59204304cbf640fd161c259b3d3bf57ac8533233fa56bf1f9",
+      "webp_sha256": "dc169b8c4452dac3971b8e594553f39cc16fa4837a435919e1a41363d5f0b868",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: L50 2K native environment detail tile, top_right. Input image 1 is the exact cropped edit target from the existing game map, not loose inspiration. Produce the largest available native square image, requested 1536 x 1536, as a faithful high-resolution detail repaint of this entire crop. Preserve the complete framing and every object's exact normalized position, size, silhouette and footprint. Lock the same high three-quarter oblique overhead camera, bright hand-painted cartoon fantasy 2.5D style, exposure, hue, light and shadows. Keep the snow-covered violet crystal-roofed market pavilion on the right, its awnings, brass frame, steps and doorway, the icy blue pond in the lower area, snow-covered fir trees, crystals, hanging lamps and railing exactly as shown. Refine only existing snow, translucent crystal, clear cracked blue ice, ivory stone and brass/gold painted materials. Retain all original structure edges, bridge/path clearance and pond outlines. The crop's edges must exactly retain the same geometry, color and contents for alignment to neighboring tiles. Strict constraints: no cropping, expansion, reframing, repositioning, new or removed objects, new ornament, characters, UI, text, labels, symbols or watermark. Map the full reference crop to the full output frame.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-1af2-79c3-991b-99ee5376668e\\exec-54298c0b-971c-45e0-8481-87a84a8606a1.png",
+      "reference_crop_sha256": "75bb5b4657e4c1ca7d92d90750638b6639312794f484af0d25db38104411992b"
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L50/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "57e36c734161aeabcaea8e527bcff18bc3dbac8928e3e46326c5ea8b9e55d18b",
+      "decoded_rgb_sha256": "748e785edd4909ace3d28afb1e4a371168121f679043f646217734f7d9222513",
+      "webp_sha256": "599560800a3b76345c62d9defb8389ea65d033379cc4c2d7993fe4e9cdfea75a",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: L50 2K native environment detail tile, bottom_left. Input image 1 is the exact cropped edit target from the existing game map, not loose inspiration. Produce the largest available native square image, requested 1536 x 1536, as a faithful high-resolution detail repaint of this entire crop. Preserve complete framing and every object's exact normalized position, size, silhouette and footprint. Lock the same high three-quarter oblique overhead camera and bright hand-painted cartoon fantasy 2.5D medium. Lock exposure, colors, snowy sunlight, shadows and border contents. Keep the large blue frozen pond at the top, snowy crystal pillars and small structures across the middle, hanging golden lamps and ropes, fir trees, gold-edged violet banner and crystal spires at the bottom exactly as shown. Refine only existing snow texture, translucent crystal facets, cracked blue ice, ivory stone and brass/gold painted materials. Pond edge, architecture, tree canopy, crystal silhouettes and lamp spacing must retain their original shape and placement. Strict constraints: no cropping, expansion, reframing, repositioning, new objects, removed objects, added ornament, characters, UI, text, labels or watermark. Full reference crop occupies the full output frame. Retain the same geometry and colors at every edge for neighboring-tile alignment.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-1af2-79c3-991b-99ee5376668e\\exec-bbf8af0d-0cc0-4149-8fdf-bb2a8b002ec8.png",
+      "reference_crop_sha256": "80f5bc95811fc53fcef42a30e83595d125bfed84971c0041b2824e6c338203d3"
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L50/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "0c286e08606568f5a0079f2f9178d17a94e3637c5d39b2f73b2ca8abca623126",
+      "decoded_rgb_sha256": "c635149f1a8b1793b9a5bccd6af3de56e223882cbb03a603dd58900effd434a5",
+      "webp_sha256": "e0fcef6e1dfdef039e60ff35674c4a21a650f9193bab2467a5e3aae2dc87f763",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: L50 2K native environment detail tile, bottom_middle. Input image 1 is the exact cropped edit target from the existing game map, not loose inspiration. Produce the largest available native square image, requested 1536 x 1536, as a faithful high-resolution detail repaint of this entire crop. Preserve complete framing and every object's exact normalized position, size, silhouette and footprint. Lock the same high three-quarter oblique overhead camera, bright hand-painted cartoon fantasy 2.5D medium, exposure, pale snowy light, violet and gold colors and shadows. Keep the broad S-shaped snowy paved path and gold/violet diamond inlay above, the central bottom stairs with violet gold-edged star inlay, symmetrical snowy brass pillars with crystal-topped amber lamps and side crystal columns exactly as shown. Refine only existing painted snow, translucent crystal facets, ivory stone, paving and gold trim. Do not alter corridor widths, step count or positions, lamp placement, central diamond positions or architectural outlines. Border contents and colors must remain fixed for neighboring-tile alignment. Strict constraints: no crop, expansion, reframing, repositioning, new or removed objects, added decoration, characters, UI, text, labels or watermark. Full reference crop occupies the full output frame.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-1af2-79c3-991b-99ee5376668e\\exec-e9ba7802-c557-4f42-98f6-a1ff89b06488.png",
+      "reference_crop_sha256": "91b54fd1f34cabbb3d5f35545369cfa24192f18930d6d25750849b421d22408c"
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L50/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "3bdbc31f1dfc6f6c013bd7225aacee5a9fba73306ada953222117f03dd02c866",
+      "decoded_rgb_sha256": "ca83d04bfcd27dd7f1c5c0bcf9dbd93e680c11d7579312a175cbdac32e0d8168",
+      "webp_sha256": "fd5bd9dc310a39ab6143c2254c32d286331588252b341c711e3d484e9556de56",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Asset type: L50 2K native environment detail tile, bottom_right. Input image 1 is the exact cropped edit target from the existing game map, not loose inspiration. Produce the largest available native square image, requested 1536 x 1536, as a faithful high-resolution detail repaint of this entire crop. Preserve complete framing and every object's exact normalized position, size, silhouette and footprint. Lock the same high three-quarter oblique overhead camera, bright hand-painted cartoon fantasy 2.5D style, snowy warm sunlight, exposure, original violet/blue/gold color palette, shadows and four-edge geometry. Keep the S-shaped snowy pale stone path with gold diamond inlays at left, small blue ice edge at top, gold railings, pale crystal pillars, barrel, dense violet crystal clusters, snow-laden fir trees, gold-trimmed violet banner and lower suspended amber lantern exactly as shown. Refine only existing painted snow, crystal facets, translucent blue ice, ivory stone and brass/gold material detail. The tree canopy, crystal silhouettes, path geometry and lamp spacing must retain all original outlines and positions. Strict constraints: no cropping, expansion, reframing, repositioning, new or removed objects, extra ornament, characters, UI, text, labels or watermark. The entire reference crop fills the full output frame. Match all border colors and geometry for neighboring-tile alignment.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a101a8-1af2-79c3-991b-99ee5376668e\\exec-4e9951ba-e1bd-4f60-a3f1-d17c4df5f1de.png",
+      "reference_crop_sha256": "39de2886e01448ca163dffe8f01db0b9a3a0f327799f6b81bf64ccf85c2b60fe"
+    }
+  ],
+  "approval_scope": "Static 2K GPU visual review only; movement, combat and natural balance are separate checks.",
+  "acceptance": {
+    "date": "2026-10-03",
+    "resolution": [
+      2560,
+      1440
+    ],
+    "renderer": "OpenGL Compatibility",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "source_comparison": true,
+    "visual_review": "Passed complete painted scenery, tile seams, palette, bridge continuity and lamp-foot proximity. L51/L54 rechecked after removing untouched-gap mother-image overpainting.",
+    "capture_directory": "artifacts/b09_native_visual",
+    "geometry_changed_by_tiles": false,
+    "scale_or_upscale_applied": false,
+    "natural_playthrough_claimed": false
+  }
+}

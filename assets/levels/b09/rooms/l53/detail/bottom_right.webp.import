@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ku6q6c41d8nw"
-path="res://.godot/imported/overview.png-24873fec3dbdd4a567fbeea05533d659.ctex"
+uid="uid://bkj3xx3sqflbh"
+path="res://.godot/imported/bottom_right.webp-0816f0dce6759d95117e9e94a564d79b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/b09/rooms/l50/overview.png"
-dest_files=["res://.godot/imported/overview.png-24873fec3dbdd4a567fbeea05533d659.ctex"]
+source_file="res://assets/levels/b09/rooms/l53/detail/bottom_right.webp"
+dest_files=["res://.godot/imported/bottom_right.webp-0816f0dce6759d95117e9e94a564d79b.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

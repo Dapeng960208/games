@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "room_id": "BO09",
+  "approved": true,
+  "source_texture": "asset://world/rooms/BO09_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "0a7fc2581a5df5235252a483a59f97324a5a42f7d889e10e72e1db7fb00f28bc",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/BO09/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "3dc5897881730560cac2c4957311789bc5767305181f9034e90708de292ab4ce",
+      "decoded_rgb_sha256": "9708c2b3679bd1fa8b8ba7028af1d2dbc1a988781f39503c2738b50c716582d1",
+      "webp_sha256": "103586ec9e785a00c93ba4b53327a5d1d1e648d2fa3ecb0333474649690e9936",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: native high-resolution environment detail tile for a 2.5D game, BO09 Frost Crystal Throne room.\nInput image: exact cropped game-map tile, EDIT TARGET; this is the complete locked framing, not a style reference.\nPrimary request: recreate this identical crop at the largest native square resolution, 1536 x 1536 pixels or greater, with more fine hand-painted material fidelity ONLY within the existing shapes. This will be mapped back onto the original crop with normalized coordinates, so every silhouette, edge crossing and object position must remain identical.\nStyle/medium: bright hand-painted cartoon fantasy, high three-quarter overhead camera, near-isometric 2.5D quality. Keep the exact existing camera angle, exposure, pale snowy daylight, blue cyan ice, ivory architecture and warm gold details.\nDetail changes allowed: finer snow granules and tiny wind-swept snow texture inside existing snowy surfaces; refined crystalline facets inside existing blue ice; delicate ivory stone brush grain and gilded engraved trim inside the exact existing structures. Keep the original large-scale brush shapes and color masses unchanged.\nConstraints: LOCK the whole composition and normalized positions, scale, orientation and outlines. Preserve the ring-shaped battle courtyard, both bright ice wings, outer bridges, throne, both lamps and all steps and ground outlines wherever visible in this crop. Maintain the exact source image content at all four boundaries for overlap blending with adjacent tiles. Do not crop, expand, zoom, reframe, rearrange, relight, redesign, move, delete or add objects. No characters, no monsters, no new buildings, no text, no HUD, no labels, no borders or watermark. This is a material detail refinement, never a new map design. Opaque RGB artwork with no transparency.\nTile: top_left. Preserve the visible left luminous ice wing, the ivory upper colonnade, lower-left outer bridge, and the lamp at bottom-right exactly as in this crop.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-e4bb-7f63-a4cd-f322a63913c5/exec-d24fe54b-1b8e-4274-a295-c7c7553e7bc1.png",
+      "native_density": 2.375
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/BO09/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "edfa0ba476f5a5fb71b3f3428964c952d210160c098babad06da58d3815d79d1",
+      "decoded_rgb_sha256": "75b079f19566d8b5813daebfdc8a7cc8b6c823972dcfb5e8c4c331e7da4a0f29",
+      "webp_sha256": "fb745256effa1c82d5287eb02d317e8cb8c41832d58617c06f08611b2079b240",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: native high-resolution environment detail tile for a 2.5D game, BO09 Frost Crystal Throne room.\nInput image: exact cropped game-map tile, EDIT TARGET; this is the complete locked framing, not a style reference.\nPrimary request: recreate this identical crop at the largest native square resolution, 1536 x 1536 pixels or greater, with more fine hand-painted material fidelity ONLY within the existing shapes. This will be mapped back onto the original crop with normalized coordinates, so every silhouette, edge crossing and object position must remain identical.\nStyle/medium: bright hand-painted cartoon fantasy, high three-quarter overhead camera, near-isometric 2.5D quality. Keep the exact existing camera angle, exposure, pale snowy daylight, blue cyan ice, ivory architecture and warm gold details.\nDetail changes allowed: finer snow granules and tiny wind-swept snow texture inside existing snowy surfaces; refined crystalline facets inside existing blue ice; delicate ivory stone brush grain and gilded engraved trim inside the exact existing structures. Keep the original large-scale brush shapes and color masses unchanged.\nConstraints: LOCK the whole composition and normalized positions, scale, orientation and outlines. Preserve the ring-shaped battle courtyard, both bright ice wings, outer bridges, throne, both lamps and all steps and ground outlines wherever visible in this crop. Maintain the exact source image content at all four boundaries for overlap blending with adjacent tiles. Do not crop, expand, zoom, reframe, rearrange, relight, redesign, move, delete or add objects. No characters, no monsters, no new buildings, no text, no HUD, no labels, no borders or watermark. This is a material detail refinement, never a new map design. Opaque RGB artwork with no transparency.\nTile: top_middle. Preserve the top ivory colonnade and blue royal banners, the raised central throne and its stair/platform structure, the snowy central floor, and the partially visible left luminous ice wing exactly as in this crop.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-e4bb-7f63-a4cd-f322a63913c5/exec-9994e04d-f32a-46d7-b7e5-5b6a723d859c.png",
+      "native_density": 2.375
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/BO09/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "3681bffb93dbd4e5f583cd0174659629622d1091f7a3ca93bbc2ffa2297f74c2",
+      "decoded_rgb_sha256": "9dd27ccc147532936a112a3795fd6f6a949176efed255ede8ed2ea96cf008b6c",
+      "webp_sha256": "222c1bb38201d648f782f47e7df84a97fc18d6a2217718ace4b7bd6efec285cb",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: native high-resolution environment detail tile for a 2.5D game, BO09 Frost Crystal Throne room.\nInput image: exact cropped game-map tile, EDIT TARGET; this is the complete locked framing, not a style reference.\nPrimary request: recreate this identical crop at the largest native square resolution, 1536 x 1536 pixels or greater, with more fine hand-painted material fidelity ONLY within the existing shapes. This will be mapped back onto the original crop with normalized coordinates, so every silhouette, edge crossing and object position must remain identical.\nStyle/medium: bright hand-painted cartoon fantasy, high three-quarter overhead camera, near-isometric 2.5D quality. Keep the exact existing camera angle, exposure, pale snowy daylight, blue cyan ice, ivory architecture and warm gold details.\nDetail changes allowed: finer snow granules and tiny wind-swept snow texture inside existing snowy surfaces; refined crystalline facets inside existing blue ice; delicate ivory stone brush grain and gilded engraved trim inside the exact existing structures. Keep the original large-scale brush shapes and color masses unchanged.\nConstraints: LOCK the whole composition and normalized positions, scale, orientation and outlines. Preserve the ring-shaped battle courtyard, both bright ice wings, outer bridges, throne, both lamps and all steps and ground outlines wherever visible in this crop. Maintain the exact source image content at all four boundaries for overlap blending with adjacent tiles. Do not crop, expand, zoom, reframe, rearrange, relight, redesign, move, delete or add objects. No characters, no monsters, no new buildings, no text, no HUD, no labels, no borders or watermark. This is a material detail refinement, never a new map design. Opaque RGB artwork with no transparency.\nTile: top_right. Preserve the visible right luminous ice wing, the ivory upper colonnade, lower-right outer bridge, and the lamp at bottom-left exactly as in this crop.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-e4bb-7f63-a4cd-f322a63913c5/exec-0a019d24-edbd-41a3-9533-d6eff6d4d576.png",
+      "native_density": 2.375
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/BO09/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "2c8a5643382d90751daf9ab91026ec10bc27519e103334229cd568d3caf49da7",
+      "decoded_rgb_sha256": "843e4c2212b878bfe6114aa0b953001fd4658f6465fddc6766aef9fb14405e0f",
+      "webp_sha256": "ff78e30cd4c1907a1820b5b0de3bfaa66efaefaafef172016b899ba0b91edad6",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: native high-resolution environment detail tile for a 2.5D game, BO09 Frost Crystal Throne room.\nInput image: exact cropped game-map tile, EDIT TARGET; this is the complete locked framing, not a style reference.\nPrimary request: recreate this identical crop at the largest native square resolution, 1536 x 1536 pixels or greater, with more fine hand-painted material fidelity ONLY within the existing shapes. This will be mapped back onto the original crop with normalized coordinates, so every silhouette, edge crossing and object position must remain identical.\nStyle/medium: bright hand-painted cartoon fantasy, high three-quarter overhead camera, near-isometric 2.5D quality. Keep the exact existing camera angle, exposure, pale snowy daylight, blue cyan ice, ivory architecture and warm gold details.\nDetail changes allowed: finer snow granules and tiny wind-swept snow texture inside existing snowy surfaces; refined crystalline facets inside existing blue ice; delicate ivory stone brush grain and gilded engraved trim inside the exact existing structures. Keep the original large-scale brush shapes and color masses unchanged.\nConstraints: LOCK the whole composition and normalized positions, scale, orientation and outlines. Preserve the ring-shaped battle courtyard, both bright ice wings, outer bridges, throne, both lamps and all steps and ground outlines wherever visible in this crop. Maintain the exact source image content at all four boundaries for overlap blending with adjacent tiles. Do not crop, expand, zoom, reframe, rearrange, relight, redesign, move, delete or add objects. No characters, no monsters, no new buildings, no text, no HUD, no labels, no borders or watermark. This is a material detail refinement, never a new map design. Opaque RGB artwork with no transparency.\nTile: bottom_left. Preserve the left courtyard rim and its exact outer bridge/lower cliff silhouettes, the small upper-right lamp segment, central ring edge and all snowy floor/crystal trim positions exactly as in this crop. Keep all four boundary crossings unchanged.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-e4bb-7f63-a4cd-f322a63913c5/exec-5d5915dc-463a-42cf-85c2-c1547f7719e5.png",
+      "native_density": 2.4115384615384614
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/BO09/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "c092c62e996c95f1ae36ebfc3e14fb0a4de73f373edda42b67ef0d5dda50d507",
+      "decoded_rgb_sha256": "f5b8c40132ce2791d0e11cf4f67ed1b3fc7dabf2905ed53e22f26ffd6e6afcd3",
+      "webp_sha256": "0bcd1a96f9bbfc0df681803d72a758a6a170923483debed1d2e60283e46c0407",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: native high-resolution environment detail tile for a 2.5D game, BO09 Frost Crystal Throne room.\nInput image: exact cropped game-map tile, EDIT TARGET; this is the complete locked framing, not a style reference.\nPrimary request: recreate this identical crop at the largest native square resolution, 1536 x 1536 pixels or greater, with more fine hand-painted material fidelity ONLY within the existing shapes. This will be mapped back onto the original crop with normalized coordinates, so every silhouette, edge crossing and object position must remain identical.\nStyle/medium: bright hand-painted cartoon fantasy, high three-quarter overhead camera, near-isometric 2.5D quality. Keep the exact existing camera angle, exposure, pale snowy daylight, blue cyan ice, ivory architecture and warm gold details.\nDetail changes allowed: finer snow granules and tiny wind-swept snow texture inside existing snowy surfaces; refined crystalline facets inside existing blue ice; delicate ivory stone brush grain and gilded engraved trim inside the exact existing structures. Keep the original large-scale brush shapes and color masses unchanged.\nConstraints: LOCK the whole composition and normalized positions, scale, orientation and outlines. Preserve the ring-shaped battle courtyard, both bright ice wings, outer bridges, throne, both lamps and all steps and ground outlines wherever visible in this crop. Maintain the exact source image content at all four boundaries for overlap blending with adjacent tiles. Do not crop, expand, zoom, reframe, rearrange, relight, redesign, move, delete or add objects. No characters, no monsters, no new buildings, no text, no HUD, no labels, no borders or watermark. This is a material detail refinement, never a new map design. Opaque RGB artwork with no transparency.\nTile: bottom_middle. Preserve the central snowfield, circular engraved battle courtyard lower arc, the upper cropped pale crystal motif, lower-left and lower-right railing pillars, bottom entrance path and purple crystals exactly as in this crop. Keep the circular floor geometry and all four boundary crossings unchanged.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-e4bb-7f63-a4cd-f322a63913c5/exec-d0c8eee6-a4da-4124-bde9-ecdfa4cb4a52.png",
+      "native_density": 2.375
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/BO09/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "e3dc2ef5b571aec664eac5c46c501a4d9ff99b9e155fae94764e0768a19a87e8",
+      "decoded_rgb_sha256": "399aef7c8f873f240bdcd16bde60b496c35771bd1f03226fd57e42d64c93364d",
+      "webp_sha256": "cc30a12c06e273b85979f188cd1911cc590010182d540ffdb07680313e2054e4",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit\nAsset type: native high-resolution environment detail tile for a 2.5D game, BO09 Frost Crystal Throne room.\nInput image: exact cropped game-map tile, EDIT TARGET; this is the complete locked framing, not a style reference.\nPrimary request: recreate this identical crop at the largest native square resolution, 1536 x 1536 pixels or greater, with more fine hand-painted material fidelity ONLY within the existing shapes. This will be mapped back onto the original crop with normalized coordinates, so every silhouette, edge crossing and object position must remain identical.\nStyle/medium: bright hand-painted cartoon fantasy, high three-quarter overhead camera, near-isometric 2.5D quality. Keep the exact existing camera angle, exposure, pale snowy daylight, blue cyan ice, ivory architecture and warm gold details.\nDetail changes allowed: finer snow granules and tiny wind-swept snow texture inside existing snowy surfaces; refined crystalline facets inside existing blue ice; delicate ivory stone brush grain and gilded engraved trim inside the exact existing structures. Keep the original large-scale brush shapes and color masses unchanged.\nConstraints: LOCK the whole composition and normalized positions, scale, orientation and outlines. Preserve the ring-shaped battle courtyard, both bright ice wings, outer bridges, throne, both lamps and all steps and ground outlines wherever visible in this crop. Maintain the exact source image content at all four boundaries for overlap blending with adjacent tiles. Do not crop, expand, zoom, reframe, rearrange, relight, redesign, move, delete or add objects. No characters, no monsters, no new buildings, no text, no HUD, no labels, no borders or watermark. This is a material detail refinement, never a new map design. Opaque RGB artwork with no transparency.\nTile: bottom_right. Preserve the right courtyard rim and exact outer bridge/lower cliff silhouettes, the cropped upper-left lamp base, central ring edge and all snowy floor/crystal trim positions exactly as in this crop. Keep all four boundary crossings unchanged.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a101a9-e4bb-7f63-a4cd-f322a63913c5/exec-7022121a-4267-4b4c-b346-c3c2eba57886.png",
+      "native_density": 2.4115384615384614
+    }
+  ],
+  "approval_scope": "Static 2K GPU visual review only; movement, combat and natural balance are separate checks.",
+  "acceptance": {
+    "date": "2026-10-03",
+    "resolution": [
+      2560,
+      1440
+    ],
+    "renderer": "OpenGL Compatibility",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "source_comparison": true,
+    "visual_review": "Passed complete painted scenery, tile seams, palette, bridge continuity and lamp-foot proximity. L51/L54 rechecked after removing untouched-gap mother-image overpainting.",
+    "capture_directory": "artifacts/b09_native_visual",
+    "geometry_changed_by_tiles": false,
+    "scale_or_upscale_applied": false,
+    "natural_playthrough_claimed": false
+  }
+}

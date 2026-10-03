@@ -144,6 +144,7 @@ func _run() -> void:
 			map=room.b09_mechanics
 			check(map.request_bridge() and not map.request_bridge(),"single bridge admission")
 			var box: Rect2=map.bridge.rect
+			var first_bridge_id: String = map.bridge.id
 			room.player.position=box.get_center()
 			Game.run.hp=Game.run.max_hp
 			var before: float = Game.run.hp
@@ -154,7 +155,7 @@ func _run() -> void:
 			map.tick(0.5)
 			check(Game.run.hp==after,"collapse only once")
 			map.tick(3.51)
-			check(map.bridge.is_empty() and map.request_bridge() and map.bridge.id!="north","alternate bridge after rebuild")
+			check(map.bridge.is_empty() and map.request_bridge() and map.bridge.id!=first_bridge_id,"alternate bridge after rebuild")
 		if room.layout_id=="BO09":
 			room._boss_actor.take_damage(100000000,&"primary",Vector2.RIGHT,{"damage_type":"true"})
 			await get_tree().process_frame
