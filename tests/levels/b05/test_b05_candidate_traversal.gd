@@ -34,15 +34,10 @@ func boundary() -> Dictionary:
 func _ready() -> void:
 	for args: PackedStringArray in [PackedStringArray(["--candidate-b05"]),PackedStringArray(["--candidate-b05","--test-profile=user://profile.json"]),PackedStringArray(["--candidate-b05","--test-profile=user://test_b05_candidate/../profile.json"]),PackedStringArray(["--candidate-b05","--test-profile=user://test_b05_candidate/a.json","--test-profile=user://profile.json"])]:
 		check(not Rules._candidate_arguments_valid(args),"candidate rejects missing/unsafe/duplicate save flags")
-	check(int(Rules.parameters().implemented_chapters) == 4,"shipped gate stays four")
-	check(not Catalog.biomes().has("B06"),"B06 remains disabled")
-	if not Rules.b05_candidate_enabled():
-		check(Catalog.room_ids().size()==24 and Catalog.enemy_ids().size()==54 and Catalog.biomes().size()==4 and Catalog.bosses().size()==4,"strict closed catalog")
-		check(not Routes.generate_single_biome("B05",51,[],20).valid and not Routes.generate_single_biome("B01",51,[],21).valid,"strict closed departure")
-		finish(); return
-	check(Game.profile_path.begins_with("user://test_b05_candidate/"),"isolated candidate save")
+	check(int(Rules.parameters().implemented_chapters) == 6 and Catalog.biomes().has("B06"),"six chapters released by default")
+	check(Game.profile_path.contains("test_b05_candidate_traversal"),"isolated test save")
 	check(Catalog.validate().is_empty(),"candidate catalog validates: "+str(Catalog.validate()))
-	check(Catalog.room_ids().size()==30 and Catalog.enemy_ids().size()==72 and Catalog.biomes().size()==5 and Catalog.bosses().size()==5,"30/72/5/5 candidate catalog")
+	check(Catalog.room_ids().size()==36 and Catalog.enemy_ids().size()==90 and Catalog.biomes().size()==6 and Catalog.bosses().size()==6,"36/90/6/6 released catalog")
 	var seen := {}
 	for room_id: String in Catalog.biomes().B05.room_ids:
 		for difficulty in range(5):
@@ -69,7 +64,7 @@ func _ready() -> void:
 		check(route.nodes[1].room_id=="L25" and route.template_ids.slice(0,6)==["L25","L26","L27","L28","L29","L30"],"ordered teaching introduces all species before repeats")
 		check(route.valid and route.nodes.size()==12 and route.nodes[-1].room_id=="BO05","candidate twelve-station departure")
 		check(Routes.choose(JSON.parse_string(JSON.stringify(route)),1,route.nodes[1].room_id).valid,"candidate choice survives JSON")
-	check(not Routes.generate_single_biome("B06",51,[],25).valid and not Routes.generate_single_biome("B05",51,[],26).valid,"future route blocked")
+	check(not Routes.generate_single_biome("B07",51,[],30).valid and not Routes.generate_single_biome("B05",51,[],31).valid,"future route and level blocked")
 	for hero: String in ["CH01","CH02","CH03"]: traverse(hero)
 	finish()
 func traverse(hero: String) -> void:

@@ -20,7 +20,7 @@ func check(value: bool, label: String) -> void:
 
 func _run() -> void:
 	output = OS.get_environment("GAMES_TEST_OUTPUT_DIR")
-	if not Rules.b06_candidate_enabled() or not Game.profile_path.contains("test_b05_b06_boss_skill_art") or output.is_empty() or not FileAccess.file_exists(output.path_join(".managed-test-run.json")) or DisplayServer.get_name() == "headless":
+	if not Rules.chapter_enabled(6) or not Game.profile_path.contains("test_b05_b06_boss_skill_art") or output.is_empty() or not FileAccess.file_exists(output.path_join(".managed-test-run.json")) or DisplayServer.get_name() == "headless":
 		get_tree().quit(2); return
 	get_tree().create_timer(90).timeout.connect(func(): push_error("Boss art timed out"); get_tree().quit(1))
 	Game.run = null

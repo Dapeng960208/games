@@ -22,10 +22,10 @@ func _run() -> void:
 	if output.is_empty() or DisplayServer.get_name()=="headless": get_tree().quit(2); return
 	get_window().content_scale_size=Vector2i(1280,720)
 	get_window().size=Vector2i(2560,1440)
-	check(int(Rules.parameters().implemented_chapters)==4,"shipped release gate unchanged")
+	check(int(Rules.parameters().implemented_chapters)==6,"six released chapters")
 	for args in [PackedStringArray(["--candidate-b06"]),PackedStringArray(["--candidate-b06","--test-profile=user://profile.json"]),PackedStringArray(["--candidate-b06","--test-profile=user://test_b06_candidate/../profile.json"]),PackedStringArray(["--candidate-b06","--candidate-b05","--test-profile=user://test_b06_candidate/a.json"])]:
 		check(not Rules._candidate_arguments_valid(args,"b06"),"unsafe candidate process rejected")
-	if not Rules.b06_candidate_enabled():
+	if not Rules.chapter_enabled(6):
 		check(not Catalog.biomes().has("B06") and Catalog.biomes().size()==4,"normal catalog remains closed")
 		finish();return
 	check(Catalog.validate().is_empty(),"registered candidate catalog "+str(Catalog.validate()))

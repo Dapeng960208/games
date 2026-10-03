@@ -26,7 +26,7 @@ func spec(id: String, hero: String, power: String, rarity: String = "purple") ->
 
 func _initialize() -> void:
 	var original := Rules.parameters()
-	check(Growth.level_cap() in [20,25], "only approved B04/B05 release caps")
+	check(Growth.level_cap() in [20,25,30], "supported historical and current release caps")
 	if Growth.level_cap() == 20:
 		check(not Acquisition.roll_event(event("CH01")).ok, "B05 natural creation blocked before release")
 		check(Acquisition.roll_item(spec("B05-SW-weapon","CH01","physical"),1).is_empty(), "B05 explicit creation blocked before release")
@@ -137,7 +137,7 @@ func _test_progression_save_transactions() -> void:
 	var crafted := Creation.craft(profile,"b05-test:craft",request)
 	check(crafted.ok, "B05 craft authorized by BO04 " + str(crafted.error))
 	if not crafted.ok: return
-	check(crafted.receipt.version == 2 and crafted.receipt.gold == 688 and crafted.receipt.materials == {"forge":24,"race:B05":12,"core:B05":2}, "version2 economy uses unchanged exact costs")
+	check(crafted.receipt.version == 3 and crafted.receipt.gold == 688 and crafted.receipt.materials == {"forge":24,"race:B05":12,"core:B05":2}, "new receipt preserves exact historical B05 costs")
 	check(Creation.validate_ledger(JSON.parse_string(JSON.stringify(crafted.profile.instance_transactions))), "version2 creation ledger JSON round-trip")
 	check(Creation.craft(crafted.profile,"b05-test:craft",request).profile == crafted.profile, "craft retry debits once")
 	var item: Dictionary = crafted.receipt.items[0]

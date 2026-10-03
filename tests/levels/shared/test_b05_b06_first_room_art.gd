@@ -43,8 +43,8 @@ func check(value: bool, label: String) -> void:
 
 func _run() -> void:
 	output = OS.get_environment("GAMES_TEST_OUTPUT_DIR")
-	if output.is_empty() or not output.is_absolute_path() or not FileAccess.file_exists(output.path_join(".managed-test-run.json")) or not Game.profile_path.contains("test_b05_b06_first_room_art") or not Rules.b06_candidate_enabled():
-		push_error("First-room art requires managed output and its isolated B06 candidate profile")
+	if output.is_empty() or not output.is_absolute_path() or not FileAccess.file_exists(output.path_join(".managed-test-run.json")) or not Game.profile_path.contains("test_b05_b06_first_room_art") or not Rules.chapter_enabled(6):
+		push_error("First-room art requires managed output and its isolated test profile")
 		get_tree().quit(2)
 		return
 	if DisplayServer.get_name() == "headless":
@@ -252,6 +252,19 @@ func _pose_quality(actor: EnemyActor, bank: Dictionary) -> void:
 	pose_records[actor.enemy_id] = rows
 
 func _layered_config(biome: String, id: String) -> void:
+	var world_art = preload("res://scripts/infrastructure/assets/world_art.gd")
+	var painting: Dictionary = world_art.environment_definition(biome.to_upper(),id)
+	if str(painting.get("metadata",{}).get("mode","")) == "complete_environment_plate":
+		check(bool(painting.get("room_specific",false)),id+" independent complete room painting")
+		var bounds: Rect2 = world_art.environment_world_rect(room.layout.arena,biome.to_upper(),id)
+		check(room.camera.render_bounds.is_equal_approx(bounds),id+" camera and painting share mapping")
+		if id == "L25":
+			check(not is_instance_valid(room.b05_environment) and room.get_node("MineBackdrop").visible,id+" complete painting uses the existing backdrop chain")
+		else:
+			check(is_instance_valid(room.b06_environment) and room.b06_environment.painting_texture==painting.texture,id+" complete painting owns only the scenery")
+			check(room.b06_environment.floor_polygon==room.ground_polygon and room.b06_mechanics.native_water_visual,id+" original tide and ground remain authoritative")
+		scenery_records[id] = {"texture":painting.path,"source_pixels":painting.texture.get_size(),"bounds":_rect(bounds),"mode":"complete_environment_plate"}
+		return
 	if not art_configs.has(biome): return
 	var logical_id := str(art_configs[biome])
 	check(logical_id.begins_with("asset://") and AssetCatalog.resources().has(logical_id.trim_prefix("asset://").to_lower()), biome+" selected art config registered")
@@ -310,6 +323,11 @@ func _alpha128_bounds(image: Image, region: Rect2) -> Rect2:
 func _environment_lifecycle(id: String) -> void:
 	if not art_configs.has("b05" if id == "L25" else "b06"): return
 	var before := _geometry_signature()
+	if id == "L25" and not is_instance_valid(room.b05_environment):
+		room._configure_world_view()
+		check(room.get_node("MineBackdrop").visible and not is_instance_valid(room.b05_environment),id+" complete painting reconfigures through original chain")
+		check(before == _geometry_signature(),id+" complete painting lifecycle leaves collision and exit unchanged")
+		return
 	if id == "L25":
 		room._release_b05_environment()
 		check(not is_instance_valid(room.b05_environment) and room.get_node("MineBackdrop").visible, id+" releasing replacement restores fallback visibility")
@@ -320,7 +338,7 @@ func _environment_lifecycle(id: String) -> void:
 		room._release_b06_environment()
 		check(not is_instance_valid(room.b06_environment) and room.get_node("MineBackdrop").visible and room.b06_mechanics.native_water_visual == previous_water, id+" release restores fallback and water ownership")
 		room._configure_b06_environment()
-		check(is_instance_valid(room.b06_environment) and is_instance_valid(room.b06_environment.scenery) and not room.get_node("MineBackdrop").visible, id+" replacement can reload once")
+		check(is_instance_valid(room.b06_environment) and room.b06_environment.painting_texture != null and not room.get_node("MineBackdrop").visible, id+" replacement can reload once")
 	check(before == _geometry_signature(), id+" replacement lifecycle leaves collision and exit unchanged")
 
 func _inspect_b05_d4() -> void:

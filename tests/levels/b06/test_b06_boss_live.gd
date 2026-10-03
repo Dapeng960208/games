@@ -17,7 +17,7 @@ func _run() -> void:
 	room.spawn_enabled = false
 	add_child(room)
 	await get_tree().process_frame
-	check(BossLayouts.build("BO06",1).is_empty(),"default boss gate closed")
+	check(not BossLayouts.build("BO06",1).is_empty(),"default released boss layout")
 	check(not BossLayouts.build("BO06",1,true).is_empty(),"explicit candidate BossLayouts supported")
 	for difficulty in 5:
 		var context := {"biome_id":"B06","room_id":"BO06","role":"boss","difficulty":difficulty,"b06_candidate":true,"node_index":-100}
