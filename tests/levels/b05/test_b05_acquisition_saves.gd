@@ -158,7 +158,7 @@ func _test_progression_save_transactions() -> void:
 	profile.gold_pity.erase("B05")
 	check(Store._valid_document(document), "old four-key pity map remains valid")
 	check(Loot.pity_valid({"B01":0,"B02":0,"B03":0,"B04":0}) and Loot.pity_valid({"B05":3}), "old/new pity snapshots accepted")
-	check(Loot.material_map_valid({"race:B05":12,"core:B05":2}) and not Loot.material_map_valid({"race:B06":1}), "only B05 material extension")
+	check(Loot.material_map_valid({"race:B05":12,"core:B05":2}) and Loot.material_map_valid({"race:B06":1}) and not Loot.material_map_valid({"race:B07":1}), "implemented B05/B06 material maps; future chapters rejected")
 	var prior := Acquisition.roll_event(event("CH01","boss"))
 	var pending := {"pending_equipment":{},"pending_materials":{"forge":8,"race:B05":4,"core:B05":1},"difficulty":0,"loot_events":{}}
 	for dropped: Dictionary in prior.items: pending.pending_equipment[dropped.instance_id] = dropped

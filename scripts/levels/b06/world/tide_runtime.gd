@@ -190,7 +190,7 @@ func restore_checkpoint(value: Dictionary) -> bool:
 		if tide_value.has("boss_numerical"):
 			var numerical: Variant = tide_value.boss_numerical
 			if not numerical is Dictionary or numerical.size()!=2 or not numerical.has_all(["version","calibration"]): return false
-			if not Tide._integer(numerical.version,1,2) or not numerical.calibration is Dictionary: return false
+			if not Tide._integer(numerical.version,1,Numbers.VERSION) or not numerical.calibration is Dictionary: return false
 			frozen = numerical.calibration
 			numerical_version = int(numerical.version)
 			tide_value.erase("boss_numerical")

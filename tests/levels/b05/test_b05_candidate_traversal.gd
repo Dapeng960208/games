@@ -6,7 +6,7 @@ const Catalog = preload("res://scripts/domain/world/world_catalog.gd")
 const Routes = preload("res://scripts/domain/world/route_generator.gd")
 const Enemies = preload("res://scripts/domain/combat/enemy_profiles.gd")
 const Rewards = preload("res://scripts/domain/world/room_rewards.gd")
-const Saves = preload("res://tests/persistence/test_numerical_versioned_saves.gd")
+const Snapshot = preload("res://scripts/domain/combat/combat_snapshot.gd")
 const Growth = preload("res://scripts/domain/progression/hero_progression.gd")
 const Loot = preload("res://scripts/domain/expedition/expedition_rewards.gd")
 var failures: Array[String] = []
@@ -15,7 +15,22 @@ func check(ok: bool, label: String) -> void:
 	checks += 1
 	if not ok: failures.append(label); push_error(label)
 func boundary() -> Dictionary:
-	return Saves.runtime(Game.run.hero_id,int(Game.run.hp),int(Game.run.resource),2)
+	var player: Dictionary = {"cooldowns":{},"passive_count":0,"walk_distance":0.0,"aim_direction":[1.0,0.0],"cast_serial":0}
+	for key: String in Snapshot.SKILLS: player.cooldowns[key] = 0.0
+	for key: String in Snapshot.PLAYER_TIMERS: player[key] = 0.0
+	var equipment: Dictionary = {"room_id":"","room_low_shield_used":false,"room_first_kill_used":false}
+	for key: String in Snapshot.EFFECT_MAPS: equipment[key] = {}
+	for key: String in Snapshot.EFFECT_HISTORIES: equipment[key] = []
+	for key: String in Snapshot.EFFECT_NUMBERS: equipment[key] = 0.0
+	equipment.dash_time = -100.0
+	equipment.delayed_shield_at = -1.0
+	var modifiers: Dictionary = {}
+	for key: String in Snapshot.MODIFIERS: modifiers[key] = 1.0 if key.ends_with("_scale") else 0.0
+	equipment["adapter"] = {"clock":0.0,"movement_time":0.0,"event_serial":0,"modifiers":modifiers}
+	return {"snapshot_version":1,"mode":"safe_boundary","hero_id":Game.run.hero_id,"hp":Game.run.hp,"resource":Game.run.resource,
+		"ruleset_version":2,"scale_version":10,"resource_regen_remainder":Game.run.resource_regen_remainder,"resource_decay_remainder":Game.run.resource_decay_remainder,
+		"player":player,"equipment":equipment,"status":{"clock":0.0,"shock_cooldown":0.0,"states":{},"guards":{},"origins":{},"slow_remaining":0.0,"slow_multiplier":1.0}}
+
 func _ready() -> void:
 	for args: PackedStringArray in [PackedStringArray(["--candidate-b05"]),PackedStringArray(["--candidate-b05","--test-profile=user://profile.json"]),PackedStringArray(["--candidate-b05","--test-profile=user://test_b05_candidate/../profile.json"]),PackedStringArray(["--candidate-b05","--test-profile=user://test_b05_candidate/a.json","--test-profile=user://profile.json"])]:
 		check(not Rules._candidate_arguments_valid(args),"candidate rejects missing/unsafe/duplicate save flags")
