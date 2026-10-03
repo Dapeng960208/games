@@ -17,6 +17,8 @@ const ROLES := ["F","C","R","A","T","S","F","S","A","R","R","C","T","S","C","R",
 const LAYERS := [2,0,0,0,3,0,1,0,0,0,1,0,3,0,0,0,2,2]
 const CDS := [7,8,7,7,10,12,8,13,9,9,9,11,12,14,11,10,10,13]
 const TELLS := [1.0,1.1,1.0,0.9,1.1,1.2,1.0,1.3,1.1,1.0,1.0,1.3,1.3,1.4,1.2,1.3,1.2,1.4]
+const COEFFICIENTS := [110,90,100,85,100,0,0,0,50,95,100,70,125,0,55,100,115,65]
+const STAGES := [[1,2,2],[1,2,2],[1,2,2],[1,2,2],[1,1,1],[1,1,1],[2,3,3],[1,2,2],[2,3,3],[1,2,3],[1,2,2],[1,1,1],[1,2,2],[1,1,1],[2,2,2],[1,2,2],[1,2,2],[2,3,3]]
 var checks := 0
 var failures := 0
 var room: Node2D
@@ -54,6 +56,7 @@ func _run() -> void:
 	room.player.invulnerable=9999.0
 	_frozen_release()
 	_interrupt_contract()
+	_lamp_cancel_contract()
 	_bridge_wave_contract()
 	_refraction_contract()
 	_support_contract()
@@ -93,6 +96,9 @@ func _skill_contract() -> void:
 			var frozen := Skills.freeze(active,profile)
 			check(float(active.cooldown)==float(CDS[index]),id+" D"+str(difficulty)+" authored cooldown")
 			check(float(active.timing.authored_tell_seconds)==float(TELLS[index]),id+" authored warning")
+			check(int(active.coefficient)==COEFFICIENTS[index],id+" authored primary coefficient")
+			check(int(active.stage_count)==STAGES[index][2 if difficulty>=4 else 1 if difficulty>=2 else 0],id+" D"+str(difficulty)+" cumulative declared stage count")
+			if index==11: check(active.has("shatter")==bool(difficulty>=2),"M12 shatter appears from D2")
 			_check_packet(frozen,profile,id+" D"+str(difficulty))
 			var changed := profile.duplicate(true)
 			changed.damage=int(profile.damage)*100
@@ -206,6 +212,25 @@ func _refraction_contract() -> void:
 		for job: Dictionary in room.enemy_skills.jobs:
 			if int(job.owner_id)==second.get_instance_id(): second_pending+=1
 		check(second_pending==0,"destroyed M16 column cancels delayed explosion")
+
+func _lamp_cancel_contract() -> void:
+	for difficulty in [2,4]:
+		_reset(difficulty)
+		var map: Node2D=room.b09_mechanics
+		var id: String=map.lamps.keys()[0]
+		map.lamps[id].ready=0.0
+		room.player.position=Vector2(map.lamps[id].at)+Vector2(80,0)
+		var actor := _spawn("B09-M05",Vector2(map.lamps[id].at)+Vector2(40,0))
+		actor.brain._begin_action(actor,room.player)
+		check(actor.brain.command.get("kind")=="b09_shield","M05 real shield warning D"+str(difficulty))
+		check(map.activate_lamp(id) and actor.get_meta("b09_layers")==2,"M05 lamp removes one layer D"+str(difficulty))
+		check(actor.brain.state==(&"recovery" if difficulty==4 else &"telegraph"),"M05 lamp push interruption is D4-only")
+		if difficulty==4: check(actor.brain._ordinary_ready==actor.brain.elapsed+5.0,"M05 D4 lamp interruption starts half cooldown")
+	_reset()
+	var guard := _spawn("B09-M01",Vector2(500,500))
+	guard.set_meta("b09_layers",1)
+	room.b09_mechanics.break_layer(guard)
+	check(guard.brain._exposure_recovery(guard)==1.0,"M01 D4 final layer adds one-second recovery")
 
 func _bridge_wave_contract() -> void:
 	for side in [-1,0,1]:
