@@ -1,11 +1,13 @@
 extends RefCounted
-## First playable B07 combat slice. Twelve active kits and two boss abilities
+## First playable B07 combat slice. Ten active kits and two boss abilities
 ## remain deferred; their authored catalog entries are not completion claims.
 const Content = preload("res://scripts/world/b07_content.gd")
 const Numbers = preload("res://scripts/combat/b07_enemy_numbers.gd")
 const Timing = preload("res://scripts/combat/enemy_warning_timing.gd")
 const Props = preload("res://scripts/combat/combat_properties.gd")
-const IMPLEMENTED := [1,2,3,4,7,13]
+const IMPLEMENTED := [1,2,3,4,5,6,7,13]
+const Support = preload("res://scripts/combat/b07_support.gd")
+const Presentation = preload("res://scripts/combat/b07_skill_presentation.gd")
 const CDS := [7,8,7,10,11,9,10,7,9,13,11,9,11,8,12,10,12,14]
 const TELLS := [.9,1.0,.9,1.0,1.3,1.1,1.2,.9,1.0,1.2,1.2,1.1,1.3,1.0,1.1,1.2,1.3,1.3]
 const ACTIONS := ["sun_spear","camouflage_leap","returning_disc","sunscale_shield","turquoise_heal","sand_emerge","sand_vortex","mirror_slash","dart_venom","mirror_attendant","sand_ridge","awning_bolt","sun_beam","twin_slash","camouflage_banner","stargazer_arc","obelisk_cross","light_ceremony"]
@@ -97,6 +99,18 @@ static func active(p: Dictionary, origin: Vector2, target: Vector2, is_lit: bool
 			var bash := child(c,"melee","cone",110,2.0)
 			bash.merge({"range":110.0,"angle":1.9,"body_bound":true,"b07_push":50.0 if d>=2 else 0.0,"shield_bash":true},true)
 			c.followups.append(bash)
+		5:
+			# Unspecified range/duration use explicit candidate-local defaults.
+			c.merge({"kind":"b07_heal","shape":"line","range":200.0,"width":10.0,"coefficient":0,
+				"target_count":2 if d>=4 else 1,"heal_ratio":.03 if d>=4 else .04 if d>=2 else .06,
+				"shield_ratio":.04 if d>=2 else 0.0,"shield_duration":3.0,"interruptible":true,
+				"minimum_visible_seconds":1.3,"fx_color":Color("66d3b0")},true)
+		6:
+			var distance := minf(150,origin.distance_to(target))
+			c.merge({"kind":"charge","shape":"circle","radius":70.0,"coefficient":100,"range":150.0,
+				"travel_distance":distance,"target":origin+v*distance,"duration":.3,"path_mode":"burrow","arc_height":0.0,
+				"landing_only":true,"landing_shape":"circle","minimum_visible_seconds":1.1,"b07_after_motion":"sand_emerge",
+				"b07_mound":true,"recovery":1.9 if d>=4 else 1.2,"recovery_floor":1.5 if d>=4 else 1.2},true)
 		7:
 			c.merge({"kind":"b07_vortex","shape":"circle","radius":100.0,"coefficient":60,"range":280.0,"b07_pull":40.0},true)
 			if d>=2:
@@ -148,6 +162,7 @@ static func constrain(actor: Node2D, source: Dictionary) -> Dictionary:
 	var c := source.duplicate(true)
 	var room: Variant = Props.read(actor,"room")
 	var mechanism: Variant = mechanics(actor)
+	if str(c.get("kind",""))=="b07_heal": return Support.link(actor,c)
 	if str(c.get("kind",""))=="projectile" and room is Object and room.has_method("blocked_fraction"):
 		var start: Vector2=c.origin
 		var endpoint: Vector2=c.target

@@ -30,6 +30,7 @@ func admitted(command: Dictionary, _hit: bool = false) -> bool:
 	var caster: Node2D=host._owner(command)
 	if not host._alive(caster) or bool(command.get("admission_deferred",false)): return false
 	if bool(command.get("body_bound",false)) and caster.position.distance_to(Vector2(command.origin))>30: return false
+	if bool(command.get("b07_reposition_motion",false)) and caster.has_method("has_pending_displacement") and caster.has_pending_displacement(): return false
 	var mechanism: Variant=Skills.mechanics(caster)
 	if command.has("mirror_id"):
 		if not mechanism is Object or not mechanism.has_method("enemy_line_valid") or not bool(mechanism.enemy_line_valid(command)): return false
@@ -40,6 +41,12 @@ func admitted(command: Dictionary, _hit: bool = false) -> bool:
 func execute(command: Dictionary) -> bool:
 	var caster: Node2D=host._owner(command)
 	match str(command.kind):
+		"b07_heal":
+			var receipt := "heal:"+str(command.cast_id)
+			if hit_receipts.has(receipt): return true
+			hit_receipts[receipt]=clock+30.0
+			Skills.Support.execute(host,caster,command)
+			return true
 		"b07_reposition":
 			caster.position=host.room.move_actor(caster.position,Vector2(command.displacement),float(Props.read(caster,"navigation_radius",18)))
 			return true
@@ -97,9 +104,29 @@ func _queue(caster: Node2D, source: Dictionary) -> void:
 	if delay>0: host.jobs.append(follow)
 	else: host._execute(follow)
 
-func motion_finished(motion: Dictionary, completed: bool) -> void:
+func motion_finished(motion: Dictionary, completed: bool, post_impact_seconds: float = 0.0) -> void:
 	var caster: Node2D=host._owner(motion)
 	if not completed or not host._alive(caster): return
+	if str(motion.get("b07_after_motion",""))=="sand_emerge":
+		if int(motion.difficulty)>=2:
+			var sand := Skills.area(motion,Vector2(motion.target),70,0,0)
+			sand.merge({"cast_id":str(motion.cast_id),"stage":1,"duration":2.0,"tick_interval":.5,"continuous":true,
+				"persistent_clearance":true,"b07_birth_clock":host._biome_clock,"status":{"id":"slow","magnitude":.75,"duration":.5},"fx_color":Color("c5a15f")},true)
+			var old_areas: Array=host.hazards.duplicate()
+			_queue(caster,sand)
+			if post_impact_seconds>0:
+				for area: Dictionary in host.hazards.duplicate():
+					if not old_areas.has(area): host._tick_hazard(area,post_impact_seconds)
+		if int(motion.difficulty)>=4:
+			# The full 1.2s exposed opening precedes a collision-safe, no-hit step.
+			# The common motion admission rejects displacement instead of snapping.
+			var step := Skills.child(motion,"charge","circle",0,maxf(0,1.2-post_impact_seconds))
+			var direction: Vector2=Vector2(motion.direction).orthogonal()*(1 if int(motion.get("cycle",0))%2==0 else -1)
+			step.merge({"cast_id":str(motion.cast_id),"stage":2,"origin":Vector2(motion.target),"target":Vector2(motion.target)+direction*80,
+				"direction":direction,"range":80.0,"travel_distance":80.0,"duration":.25,"path_mode":"line","landing_only":true,
+				"landing_shape":"circle","radius":18.0,"harmless":true,"body_bound":true,"b07_mound":false,
+				"b07_reposition_motion":true,"damage_along_path":false,"points":[]},true)
+			_queue(caster,step)
 	if str(motion.get("b07_after_motion",""))=="sand_ball" and int(motion.get("difficulty",0))>=2:
 		# Freeze the landing followup where the leap was warned, not at the
 		# victim's new position. A blocked/interrupted leap gets no sand ball.
@@ -177,6 +204,10 @@ func reset() -> void:
 	serial=0
 
 func draw(canvas: Node2D) -> void:
+	for motion: Dictionary in host.motions:
+		if not bool(motion.get("b07_mound",false)): continue
+		var actor: Node2D=host._owner(motion)
+		if host._alive(actor): Skills.Presentation.draw_mound(canvas,actor.position,Vector2(motion.target),float(motion.radius))
 	for effect: Dictionary in effects:
 		var caster: Node2D=host._owner(effect)
 		if not host._alive(caster): continue

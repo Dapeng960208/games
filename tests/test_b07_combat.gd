@@ -50,6 +50,7 @@ class Host extends Node2D:
 	var room: Node2D
 	var jobs: Array[Dictionary]=[]
 	var executed: Array=[]
+	var motions: Array[Dictionary]=[]
 	func _owner(command: Dictionary) -> Node2D: return command.owner.get_ref()
 	func _alive(actor: Node2D) -> bool: return is_instance_valid(actor)
 	func active_effect_count() -> int: return jobs.size()
@@ -76,7 +77,7 @@ func _initialize() -> void:
 			var p := Skills.profile(id,35,d)
 			check(not p.is_empty(),id+" lawful chapter profile")
 			if p.is_empty(): continue
-			check(bool(p.gameplay_implemented)==(n in [1,2,3,4,7,13]),id+" honest first-playable scope")
+			check(bool(p.gameplay_implemented)==(n in [1,2,3,4,5,6,7,13]),id+" honest first-playable scope")
 			check(bool(p.b07_candidate_contact_only)==not Skills.implemented(id),id+" explicit fallback flag")
 			actor.profile=p
 			var source := Skills.active(p,Vector2.ZERO,victim.position,true)
@@ -107,6 +108,15 @@ func _initialize() -> void:
 					check(command.kind=="b07_shield" and command.coefficient==0 and command.duration==2.0,"stance cannot emit support damage")
 					check(command.followups[0].coefficient==110 and command.followups[0].delay==2.0,"shield bash after two seconds")
 					check(command.followups[0].b07_push==(50.0 if d>=2 else 0.0),"shield push gate")
+				5:
+					check(command.kind=="b07_heal" and command.coefficient==0 and command.range==200.0,"healing is zero-damage bounded support")
+					check(float(command.tell)+float(command.lock)>=1.3,"healer full visible channel")
+					check(command.target_count==(2 if d>=4 else 1) and command.heal_ratio==(.03 if d>=4 else .04 if d>=2 else .06),"heal tier ratios")
+					check(command.shield_ratio==(.04 if d>=2 else 0.0) and command.shield_duration==3.0,"candidate shield duration and cumulative tier")
+				6:
+					check(command.kind=="charge" and command.path_mode=="burrow" and command.landing_only and command.radius==70.0 and command.coefficient==100,"burrow only hits the warned landing")
+					check(float(command.tell)+float(command.lock)>=1.1 and command.b07_mound,"persistent mound tell")
+					check(command.recovery_floor>=1.2 and command.b07_after_motion=="sand_emerge","burrow opening independent of assassin speed")
 				7:
 					check(command.kind=="b07_vortex" and command.radius==100.0 and command.coefficient==60,"sand vortex distinct geometry")
 					check(command.followups.size()==(2 if d>=4 else 1 if d>=2 else 0),"sand D2 ticks D4 outgoing line")

@@ -122,6 +122,8 @@ func advance(delta: float) -> void:
 	for motion: Dictionary in motions.duplicate():
 		_tick_motion(motion, delta)
 	for hazard: Dictionary in hazards.duplicate():
+		# B07 landing pools have already consumed only their post-impact time.
+		if float(hazard.get("b07_birth_clock",-1))==_biome_clock: continue
 		_tick_hazard(hazard, delta)
 	for support: Dictionary in supports.duplicate():
 		if not _support_valid(support):
@@ -606,9 +608,9 @@ func _tick_motion(motion: Dictionary, delta: float) -> void:
 		# The current barricade counter supports the actual straight charge only.
 		if mode == "line" and room.has_method("notify_enemy_charge"):
 			room.call("notify_enemy_charge", caster, Vector2(motion.start), caster.position)
-		_finish_motion(motion, not stopped)
+		_finish_motion(motion, not stopped, maxf(0,delta-(float(motion.duration)-previous_time)) if not stopped else 0.0)
 
-func _finish_motion(motion: Dictionary, impact: bool) -> void:
+func _finish_motion(motion: Dictionary, impact: bool, post_impact_seconds: float = 0.0) -> void:
 	var caster: Node2D = _owner(motion)
 	motions.erase(motion)
 	if not is_instance_valid(caster):
@@ -625,7 +627,7 @@ func _finish_motion(motion: Dictionary, impact: bool) -> void:
 
 	if bool(motion.get("b05_command",false)): b05.motion_finished(motion,impact)
 	if bool(motion.get("b06_command",false)): b06.motion_finished(motion,impact)
-	if bool(motion.get("b07_command",false)): b07.motion_finished(motion,impact)
+	if bool(motion.get("b07_command",false)): b07.motion_finished(motion,impact,post_impact_seconds)
 
 func _spawn_hazards(command: Dictionary) -> void:
 	var points: Array = command.get("targets", [command.get("target", command.origin)])
@@ -1206,6 +1208,7 @@ func _draw() -> void:
 	var controller: Node = get_node_or_null("/root/Game")
 	var settings: Dictionary = _property(controller, "profile", {}).get("settings", {})
 	for command: Dictionary in jobs:
+		if bool(command.get("b07_command",false)) and bool(command.get("harmless",false)): continue
 		if bool(settings.get("enemy_skill_paths",true)) or bool(command.get("b05_command",false)) or bool(command.get("b06_command",false)) or bool(command.get("b07_command",false)):
 			_draw_shape(command, Color(1.0, 0.44, 0.27, 0.2), Color("ffc481"))
 	b05.draw(self)

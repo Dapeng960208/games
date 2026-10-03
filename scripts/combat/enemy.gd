@@ -330,6 +330,10 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 		if numerical and auxiliary_absorbed > 0:
 			last_damage_result.merge({"confirmed":true,"auxiliary_shield_damage":auxiliary_absorbed,"shield_damage":auxiliary_absorbed}, true)
 			last_damage_context = context.duplicate()
+			if enemy_id.begins_with("B07-M") and brain != null:
+				var hit_context: Dictionary=context.duplicate()
+				hit_context.merge({"damage":0,"shield_damage":auxiliary_absorbed,"kind":str(kind),"direction":from_direction},true)
+				brain.on_damaged(self,hit_context)
 		return bool(last_damage_result.confirmed) if numerical else false
 	last_damage_context = context.duplicate()
 	if last_damage_context.is_empty():
@@ -351,7 +355,7 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 		hurt_flash = 0.1
 	if brain != null:
 		var hit_context: Dictionary = context.duplicate()
-		hit_context.merge({"damage":final_amount,"kind":str(kind),"direction":from_direction},true)
+		hit_context.merge({"damage":final_amount,"shield_damage":maxf(0.0,shield_before-status.shield())+float(auxiliary_absorbed),"kind":str(kind),"direction":from_direction},true)
 		brain.on_damaged(self, hit_context)
 	if final_amount > 0.0:
 		last_damage_direction = from_direction.normalized() if from_direction.is_finite() else Vector2.ZERO

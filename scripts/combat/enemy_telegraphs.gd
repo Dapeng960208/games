@@ -41,6 +41,8 @@ func refresh() -> bool:
 		if brain == null:
 			continue
 		var data: Dictionary = brain.current_telegraph()
+		# Support follows the same fixed recipient identities, including during lock.
+		if str(data.get("kind",""))=="b07_heal": data=preload("res://scripts/combat/b07_support.gd").link(actor,data)
 		if not data.is_empty():
 			next.append({"actor_id": actor.get_instance_id(), "data": presentation_data(data)})
 	var reduced: bool = bool(Game.profile.get("settings", {}).get("reduced_fx", false))
@@ -98,7 +100,10 @@ func _draw() -> void:
 				data = data.duplicate(true)
 				data.erase("combo_directions")
 				data.erase("sequence_shapes")
-			room.draw_enemy_telegraph(self, data)
+			if str(data.get("kind",""))!="b07_heal": room.draw_enemy_telegraph(self, data)
+			if bool(data.get("b07_command",false)):
+				draw_set_transform_matrix(room.telegraph_canvas_transform(self))
+				preload("res://scripts/combat/b07_skill_presentation.gd").draw_warning(self,actor,data)
 			if bool(data.get("b05_command",false)) or bool(data.get("b07_command",false)):
 				_draw_b05_links(actor,data)
 				for follow: Dictionary in data.get("followups",[]):

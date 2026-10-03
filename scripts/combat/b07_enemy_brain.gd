@@ -50,7 +50,7 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 			var candidate: Dictionary=_candidate(actor,victim,cooldown<=0)
 			_active=bool(candidate.get("active",false))
 			_set_camouflage(actor,_active and str(profile.enemy_id)=="B07-M02")
-			if actor.position.distance_to(victim.position)>float(candidate.get("range",90))+12 or not _sight(actor,victim.position):
+			if str(candidate.kind)!="b07_heal" and (actor.position.distance_to(victim.position)>float(candidate.get("range",90))+12 or not _sight(actor,victim.position)):
 				actor.aim_direction=actor.position.direction_to(victim.position)
 				actor.velocity=_navigate(actor,victim.position)*float(profile.move_speed)
 			else:
@@ -59,7 +59,10 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 		&"telegraph":
 			# Only the tracking tell may update geometry. Lock and followups use
 			# this frozen command; a moved mirror may cancel but never re-aim it.
-			_command=_candidate(actor,victim,_active)
+			if str(_command.get("kind",""))=="b07_heal":
+				if not Skills.Support.valid(actor,_command): interrupt(actor); return
+				_command=Skills.Support.link(actor,_command)
+			else: _command=_candidate(actor,victim,_active)
 			actor.aim_direction=_command.direction
 			if _remaining<=0:
 				_locked_position=actor.position
@@ -67,8 +70,9 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 				_command["cast_id"]="%s:%d:%d" % [profile.enemy_id,actor.get_instance_id(),_cast_serial]
 				_set_phase(&"locked",float(_command.lock))
 		&"locked":
+			if str(_command.kind)=="b07_heal" and not Skills.Support.valid(actor,_command): interrupt(actor); return
 			actor.aim_direction=_command.direction
-			if str(_command.kind) in ["melee","charge","b07_shield"] and actor.position.distance_to(_locked_position)>30:
+			if str(_command.kind) in ["melee","charge","b07_shield","b07_heal"] and actor.position.distance_to(_locked_position)>30:
 				interrupt(actor)
 			elif _remaining<=0:
 				_set_camouflage(actor,false)
@@ -81,21 +85,25 @@ func tick(actor: Node2D, delta: float, victim: Node2D) -> void:
 				_set_phase(&"execute",maxf(.22,hold))
 		&"execute":
 			if _remaining<=0 and not actor.has_meta("enemy_skill_motion"):
-				_set_phase(&"recovery",RoleBehavior.recovery_seconds(profile,float(_command.get("recovery",1.15)),1.2 if str(profile.enemy_id)=="B07-M02" else .45))
+				_set_phase(&"recovery",RoleBehavior.recovery_seconds(profile,float(_command.get("recovery",1.15)),float(_command.get("recovery_floor",1.2 if str(profile.enemy_id)=="B07-M02" else .45))))
 	_publish(actor)
 
 func _candidate(actor: Node2D, victim: Node2D, use_active: bool) -> Dictionary:
 	var command: Dictionary=Skills.active(profile,actor.position,victim.position,Skills.lit(actor),cycle) if use_active else Skills.basic(profile,actor.position,victim.position)
-	return Skills.constrain(actor,command)
+	command=Skills.constrain(actor,command)
+	if str(command.kind)=="b07_heal" and command.get("b07_target_refs",[]).is_empty(): return Skills.basic(profile,actor.position,victim.position)
+	return command
 
 func on_damaged(actor: Node2D, context: Dictionary = {}) -> void:
 	var mechanism: Variant=Skills.mechanics(actor)
 	if mechanism is Object and mechanism.has_method("reveal_actor"): mechanism.reveal_actor(actor,3.0)
-	if phase in [&"telegraph",&"locked"] and bool(_command.get("interruptible",false)) and bool(context.get("interrupt",true)):
+	if phase in [&"telegraph",&"locked"] and bool(_command.get("interruptible",false)) and bool(context.get("interrupt",true)) and (float(context.get("damage",0))>0 or float(context.get("shield_damage",0))>0):
 		interrupt(actor)
 
 func on_displacement_committed(actor: Node2D, projected: Vector2) -> void:
-	if phase in [&"locked",&"execute"] and str(_command.get("kind","")) in ["melee","charge","b07_shield"] and projected.distance_to(_locked_position)>30:
+	if str(_command.get("kind",""))=="b07_heal" and phase in [&"telegraph",&"locked"]:
+		interrupt(actor)
+	elif phase in [&"locked",&"execute"] and str(_command.get("kind","")) in ["melee","charge","b07_shield"] and projected.distance_to(_locked_position)>30:
 		interrupt(actor)
 
 func interrupt(actor: Node2D) -> void:
