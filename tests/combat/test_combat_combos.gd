@@ -3,6 +3,8 @@ extends Node
 ## from actual releases, projectiles, contact damage and resource commitment.
 
 const RoomScene = preload("res://scenes/gameplay/world/room.tscn")
+const Numbers = preload("res://scripts/infrastructure/content/runtime_rules.gd")
+const Growth = preload("res://scripts/domain/progression/skill_progression.gd")
 const ACTIONS: Array[String] = ["attack", "skill_q", "skill_secondary", "skill_f", "skill_ultimate", "dash"]
 var stage: SubViewport
 var room: RoomController
@@ -11,6 +13,7 @@ var hud: Control
 var hud_layer: CanvasLayer
 var events: Array[Dictionary] = []
 var projectiles: Dictionary = {}
+var damage_packets: Array[Dictionary] = []
 var checks := 0
 var failures := 0
 var mouse_at := Vector2.ZERO
@@ -54,9 +57,10 @@ func release_all() -> void:
 		mapped(action, false)
 
 func press(slot: String) -> void:
-	mapped("attack" if slot == "attack" else "skill_" + slot, true)
+	var action: String = slot if slot in ["attack", "dash"] else "skill_" + slot
+	mapped(action, true)
 	await frames()
-	mapped("attack" if slot == "attack" else "skill_" + slot, false)
+	mapped(action, false)
 
 func releases(slot: String) -> int:
 	var count := 0
@@ -71,12 +75,30 @@ func observe(slot: String, reason: String, details: Dictionary) -> void:
 		"resource":Game.run.resource if Game.run != null else -1.0,
 		"shots":int(room.telemetry.shots), "hp":target.health.current if is_instance_valid(target) else 0.0,
 		"q_releases":releases("q"), "secondary_releases":releases("secondary"),
-		"ultimate_releases":releases("ultimate"), "projectiles":projectiles.duplicate(true)})
+		"ultimate_releases":releases("ultimate"), "projectiles":projectiles.duplicate(true),
+		"class_state":room.player.class_state_view(), "role_state":room.player.export_role_state(),
+		"damage_packets":damage_packets.duplicate(true)})
 
 func projectile_entered(node: Node) -> void:
 	if node is ProjectileActor:
 		var slot: String = str(node.source)
 		projectiles[slot] = int(projectiles.get(slot, 0)) + 1
+		# spawn_ability_projectile writes its frozen options after adding the node.
+		# Keep immediate source counts for legacy cases, then observe the actual ID.
+		call_deferred("observe_projectile_identity", node, room.get_instance_id())
+
+func observe_projectile_identity(node: ProjectileActor, room_id: int) -> void:
+	if not is_instance_valid(node) or not is_instance_valid(room) or room.get_instance_id() != room_id:
+		return
+	var identifier: String = str(node.options.get("skill_id", ""))
+	if not identifier.is_empty():
+		projectiles[identifier] = int(projectiles.get(identifier, 0)) + 1
+
+func observe_target_damage(amount: float) -> void:
+	# EnemyActor records the original receipt before CombatHealth emits damaged;
+	# later shock/equipment packets cannot replace this saved contact evidence.
+	damage_packets.append({"context":target.last_damage_context.duplicate(true),
+		"receipt":target.last_damage_result.duplicate(true), "amount":amount})
 
 func count_reason(reason: String, slot: String = "") -> int:
 	var count := 0
@@ -105,7 +127,7 @@ func cause_count(cause: String) -> int:
 			count += 1
 	return count
 
-func fixture(hero: String = "CH01", level: int = 8, maximum: float = 100.0, branches: Dictionary = {}) -> void:
+func fixture(hero: String = "CH01", level: int = 8, maximum: float = 100.0, branches: Dictionary = {}, current_skills: Dictionary = {}) -> void:
 	get_tree().paused = false
 	release_all()
 	if is_instance_valid(hud_layer):
@@ -116,17 +138,42 @@ func fixture(hero: String = "CH01", level: int = 8, maximum: float = 100.0, bran
 		room.free()
 	Game.run.hero_id = hero
 	Game.run.level = level
-	Game.run.stats = StatResolver.resolve(hero, level, {}, {})
+	var current: bool = not current_skills.is_empty()
+	if current:
+		Game.run.frozen_versions = Numbers.frozen_versions(Numbers.V2)
+		Game.profile.merge(Growth.fresh_fields(), true)
+		var selected: Array[String] = []
+		selected.assign(current_skills.get("loadout", Growth.starter_ids(hero)))
+		for identifier: String in selected:
+			var index: int = Growth.skill_ids(hero).find(identifier)
+			if index >= 4:
+				Game.profile = Growth.unlock_group(Game.profile, Growth.GROUPS[index - 4])
+		var choices: Dictionary = {hero + "_SK01":"", hero + "_SK04":""}
+		choices.merge(current_skills.get("branches", {}), true)
+		var progress: Dictionary = Game.profile.skill_state[hero]
+		progress.loadout = selected.duplicate()
+		progress.branches = choices.duplicate(true)
+		for identifier: String in choices:
+			if not str(choices[identifier]).is_empty():
+				progress.mastery[identifier] = 140 if identifier.ends_with("SK01") else 300
+		Game.run.skill_loadout_snapshot = selected.duplicate()
+		Game.run.skill_branches_snapshot = choices.duplicate(true)
+		Game.run.loadout_snapshot = {}
+		Game.run.resource_regen_remainder = 0.0
+		Game.run.resource_decay_remainder = 0.0
+		Game.profile.settings["auto_attack"] = false
+	Game.run.stats = StatResolver.resolve(hero, level, {}, {}, Numbers.V2) if current else StatResolver.resolve(hero, level, {}, {})
 	Game.run.stats["crit_chance"] = 0.0
 	Game.run.stats["resource_regen"] = 0.0
 	Game.run.stats["branches"] = branches.duplicate(true)
 	# Long-sequence stress fixtures explicitly enlarge only the resource tank.
 	# Canonical costs/cooldowns stay unchanged; separate 100-resource tests prove
 	# that queued commands cannot reserve or overspend future resources.
-	Game.run.stats["resource_max"] = maximum
+	var tank: float = units(maximum) if current else maximum
+	Game.run.stats["resource_max"] = tank
 	Game.run.max_hp = float(Game.run.stats.max_hp)
 	Game.run.hp = Game.run.max_hp
-	Game.run.resource = maximum
+	Game.run.resource = tank
 	Game.run.shield = 0.0
 	Game.run.relics.clear()
 	room = RoomScene.instantiate()
@@ -145,7 +192,13 @@ func fixture(hero: String = "CH01", level: int = 8, maximum: float = 100.0, bran
 	room.player.skill_input_feedback.connect(observe)
 	room.projectiles.child_entered_tree.connect(projectile_entered)
 	target = room.spawn_enemy(Vector2(490, 350), "M01")
-	target.health.reset(10000.0)
+	if current:
+		target.health.reset(10000.0, Numbers.V2)
+		target.armor = 0.0
+		target.magic_resist = 0.0
+		target.health.damaged.connect(observe_target_damage)
+	else:
+		target.health.reset(10000.0)
 	target.training_ai_disabled = true
 	target.state = &"chase"
 	target.set_physics_process(false) # A stationary target keeps authored knockback from leaving the strike sector.
@@ -153,6 +206,7 @@ func fixture(hero: String = "CH01", level: int = 8, maximum: float = 100.0, bran
 	await frames(6)
 	events.clear()
 	projectiles.clear()
+	damage_packets.clear()
 	check(room.player.aim_direction.dot(Vector2.RIGHT) > .99, hero + " mapped pointer sets live aim")
 
 func wait_accepted(slot: String, limit: int = 100) -> bool:
@@ -559,6 +613,308 @@ func test_dash_press_release_gate() -> void:
 	check(int(room.telemetry.shots) == 1 and count_reason("accepted", "attack") == 1,
 		"release and fresh press restore exactly one attack after a pause-time press")
 
+func units(amount: float) -> float:
+	return float(Numbers.scale(amount, Numbers.V2))
+
+func current_fixture(hero: String, loadout: Array = [], branches: Dictionary = {}) -> void:
+	await fixture(hero, 20, 100.0, {}, {
+		"loadout":Growth.starter_ids(hero) if loadout.is_empty() else loadout, "branches":branches})
+	check(Game.run.ruleset_version() == Numbers.V2 and Growth.valid_loadout(
+		Game.run.skill_loadout_snapshot, hero, Game.profile.skill_state[hero].learned),
+		hero + " continuity fixture uses learned stable identities and the frozen V2 loadout")
+
+func skill_releases(identifier: String) -> int:
+	var count := 0
+	for event: Dictionary in room.player.get_node("HeroFeedback").release_events:
+		if str(event.get("skill_id", "")) == identifier:
+			count += 1
+	return count
+
+func released_identities() -> Array[String]:
+	var result: Array[String] = []
+	var seen: Dictionary = {}
+	for event: Dictionary in room.player.get_node("HeroFeedback").release_events:
+		var serial: int = int(event.serial)
+		if not seen.has(serial):
+			seen[serial] = true
+			result.append(str(event.skill_id))
+	return result
+
+func wait_skill_release(identifier: String, count: int = 1, limit: int = 180) -> bool:
+	for _index in limit:
+		if skill_releases(identifier) >= count:
+			return true
+		await frames()
+	return false
+
+func loadout_event_count(prefix: String) -> int:
+	var count := 0
+	for root: Dictionary in room.player.loadout.effects.roots.values():
+		for key: String in root.seen:
+			if key.begins_with(prefix + ":"):
+				count += 1
+	return count
+
+func test_long_skill_queue_continuity() -> void:
+	for long_id: String in ["CH03_SK08", "CH03_SK11"]:
+		await current_fixture("CH03", ["CH03_SK01", long_id, "CH03_SK03", "CH03_SK02"])
+		var long_cost: float = float(room.player.skill_definition("secondary").cost)
+		await press("q")
+		await press("secondary")
+		await press("f")
+		check(count_reason("queued", "secondary") == 1 and count_reason("queued", "f") == 1,
+			long_id + " admits deliberate Q, long W, guard E input in FIFO order")
+		check(await wait_accepted("secondary"), long_id + " really commits after the Q release")
+		check(await wait_skill_release(long_id), long_id + " really begins its finite pulse timeline")
+		var long_cast: Dictionary = room.player.abilities.active.duplicate(true)
+		await frames(60)
+		check(room.player.abilities.busy() and str(room.player.abilities.active.get("skill_id", "")) == long_id
+			and room.player.queued_action_position("f") == 1 and count_reason("accepted", "f") == 0,
+			long_id + " keeps accepted E pending beyond 0.90 seconds while W still owns future pulses")
+		check(cause_count("buffer_expired") == 0 and is_equal_approx(Game.run.resource, units(88.0) - long_cost),
+			long_id + " pending E neither expires from total queue age nor reserves its resource")
+		check(await wait_skill_release(long_id, 5), long_id + " preserves initial release and all four authored pulses")
+		var contacts: Array[Dictionary] = []
+		for packet: Dictionary in damage_packets:
+			if str(packet.context.get("skill_id", "")) == long_id and int(packet.context.get("cast_id", -1)) == int(long_cast.serial) and int(packet.context.get("proc_depth", -1)) == 0:
+				contacts.append(packet)
+		check(contacts.size() == 4, long_id + " delivers exactly four original real pulse contacts, separate from derived shock and E")
+		for index in contacts.size():
+			var packet: Dictionary = contacts[index]
+			var context: Dictionary = packet.context
+			check(float(context.get("power", -1.0)) == float(long_cast.power) and float(context.get("H", -1.0)) == float(long_cast.power)
+				and bool(context.get("equipment_eligible", false)) and not bool(context.get("original_basic", true))
+				and str(context.get("attack_id", "")) == "skill:%d:%d" % [int(long_cast.serial), index + 1],
+				long_id + " pulse " + str(index + 1) + " retains its frozen power/H, original skill flags and unique authored index")
+			check(bool(packet.receipt.get("confirmed", false)) and float(packet.receipt.get("hp_damage", 0.0)) > 0.0
+				and float(packet.receipt.get("shield_damage", -1.0)) == 0.0
+				and float(packet.amount) == float(packet.receipt.get("hp_damage", -1.0)),
+				long_id + " pulse " + str(index + 1) + " really consumes enemy HP through the original receipt")
+		check(await wait_accepted("f"), long_id + " automatically starts its admitted E after the final W release")
+		var contacts_before_e: int = 0
+		for packet: Dictionary in event_for("accepted", "f").get("damage_packets", []):
+			if str(packet.context.get("skill_id", "")) == long_id and int(packet.context.get("cast_id", -1)) == int(long_cast.serial) and int(packet.context.get("proc_depth", -1)) == 0 and bool(packet.receipt.get("confirmed", false)):
+				contacts_before_e += 1
+		check(contacts_before_e == 4, long_id + " admitted E begins only after all four real W contacts have completed")
+		check(await wait_skill_release("CH03_SK03"), long_id + " follow-up E produces its actual guard release")
+		await wait_idle(180)
+		check(accepted_slots() == ["q", "secondary", "f"]
+			and released_identities() == ["CH03_SK01", long_id, "CH03_SK03"],
+			long_id + " commits and releases exactly the three requested identities in order")
+		check(room.player.abilities.cast_serial == 3 and skill_releases("CH03_SK01") == 1
+			and skill_releases(long_id) == 5 and skill_releases("CH03_SK03") == 1
+			and int(projectiles.get("CH03_SK01", 0)) == 1,
+			long_id + " creates one Q projectile, one W cast with four pulses, and one E cast")
+		check(is_equal_approx(Game.run.resource, units(68.0) - long_cost) and Game.run.shield > 0.0
+			and int(room.player.class_state_view().starlight) == 3 and room.player.combo_queue.is_empty(),
+			long_id + " spends each skill once, grants the real shield, and accumulates only three release stacks")
+
+func test_continuity_rejection_and_cancel() -> void:
+	var selected: Array = ["CH03_SK01", "CH03_SK08", "CH03_SK03", "CH03_SK02"]
+	await current_fixture("CH03", selected)
+	await press("secondary")
+	await press("f")
+	check(cause_count("early_chain") == 1 and room.player.combo_queue.is_empty()
+		and count_reason("accepted", "f") == 0 and room.player.skill_cooldown("f") == 0.0,
+		"a first input too early in a long W remains explicitly rejected without an E commitment")
+	check(is_equal_approx(Game.run.resource, units(72.0)), "early rejection pays only the real 28-Mana W")
+	await wait_idle(180)
+	check(skill_releases("CH03_SK08") == 5 and skill_releases("CH03_SK03") == 0,
+		"early rejection preserves the full W timeline and never turns into a late E")
+	await current_fixture("CH03", selected)
+	await press("q")
+	await press("secondary")
+	check(count_reason("queued", "secondary") == 1, "external-cooldown case first admits W into its real Q chain window")
+	# A later real cooldown constraint must exhaust the original head budget.
+	# No queue timers are changed, and production physics alone drives expiry.
+	room.player.cooldowns["CH03_SK08"] = 1.0
+	await frames(75)
+	check(cause_count("buffer_expired") == 1 and count_reason("accepted", "secondary") == 0
+		and room.player.combo_queue.is_empty() and skill_releases("CH03_SK08") == 0,
+		"a head blocked by an external cooldown expires once and does not retry when that cooldown clears")
+	check(room.player.abilities.cast_serial == 1 and skill_releases("CH03_SK01") == 1
+		and is_equal_approx(Game.run.resource, units(88.0)),
+		"expired W has no serial, release, or resource payment")
+	await current_fixture("CH03", selected)
+	await press("q")
+	await press("secondary")
+	await press("f")
+	check(room.player.queued_action_position("f") == 2,
+		"external-promotion case accepts E behind queued W before the new constraint exists")
+	room.player.cooldowns["CH03_SK03"] = 5.0
+	check(await wait_accepted("secondary"), "external-promotion case really promotes E while finite W starts")
+	await frames(180)
+	check(skill_releases("CH03_SK08") == 5 and cause_count("buffer_expired") == 1
+		and room.player.combo_queue.is_empty() and count_reason("accepted", "f") == 0
+		and room.player.skill_cooldown("f") > 0.0,
+		"promoted E expires after W's finite timeline plus its one window without inheriting the added five-second cooldown")
+	await frames(150)
+	check(room.player.skill_cooldown("f") == 0.0 and skill_releases("CH03_SK03") == 0
+		and room.player.abilities.cast_serial == 2 and is_equal_approx(Game.run.resource, units(60.0)),
+		"externally delayed E never releases or pays later after its added cooldown eventually clears")
+	await current_fixture("CH03", selected)
+	await press("q")
+	await press("secondary")
+	await press("f")
+	await press("ultimate")
+	await press("attack")
+	check(room.player.combo_queue.size() == 3 and cause_count("queue_full") == 1,
+		"long-action admission retains the three-request cap and explicitly rejects a fourth follow-up")
+	await wait_idle(240)
+	check(accepted_slots() == ["q", "secondary", "f", "ultimate"]
+		and count_reason("accepted", "attack") == 0 and int(room.telemetry.shots) == 0
+		and room.player.abilities.cast_serial == 4 and room.player.combo_queue.is_empty(),
+		"all three admitted long-combo requests retain FIFO order and the rejected fourth never executes")
+	await current_fixture("CH03", selected)
+	await press("q")
+	await press("secondary")
+	await press("f")
+	check(await wait_accepted("secondary"), "cancel case reaches its real long W with E pending")
+	await frames(60)
+	check(room.player.queued_action_position("f") == 1, "cancel case still has its promised E after the old global-age limit")
+	var released_before: int = skill_releases("CH03_SK08")
+	var hp_before: float = target.health.current
+	room.player.cancel_actions()
+	await frames(180)
+	check(room.player.combo_queue.is_empty() and not room.player.abilities.busy()
+		and count_reason("accepted", "f") == 0 and skill_releases("CH03_SK03") == 0
+		and room.player.skill_cooldown("f") == 0.0,
+		"explicit cancellation clears the accepted queue and prevents every delayed E side effect")
+	check(skill_releases("CH03_SK08") == released_before and target.health.current == hp_before
+		and room.player.abilities.cast_serial == 2 and is_equal_approx(Game.run.resource, units(60.0)),
+		"cancelling long W keeps paid casts and prior contacts but drops all future pulse releases")
+
+func test_gunner_completed_recovery() -> void:
+	for entry: Dictionary in [
+		{"slot":"q", "branch":"", "refill":2, "shots":3, "chain_at":0.40},
+		{"slot":"q", "branch":"B", "refill":4, "shots":3, "chain_at":0.40},
+		{"slot":"ultimate", "branch":"B", "refill":7, "shots":4, "chain_at":0.99},
+	]:
+		for next_slot: String in ["attack", "secondary"]:
+			var slot: String = str(entry.slot)
+			var identifier: String = "CH02_SK01" if slot == "q" else "CH02_SK04"
+			var branch_choices: Dictionary = {identifier:str(entry.branch)}
+			await current_fixture("CH02", [], branch_choices)
+			room.player.role_kit.ammo = 1 # Legal magazine setup; only real creations consume or refill it.
+			var spec: Dictionary = room.player.skill_definition(slot)
+			var follow_cost: float = 0.0 if next_slot == "attack" else float(room.player.skill_definition(next_slot).cost)
+			await press(slot)
+			check(await wait_skill_release(identifier, int(entry.shots)),
+				identifier + str(entry.branch) + " releases every authored shot before recovery chaining")
+			var finished_cast: Dictionary = room.player.abilities.active.duplicate(true)
+			check(not finished_cast.is_empty() and room.player.class_state_view().ammo == 1,
+				identifier + " skill shots leave the ordinary magazine unchanged before completion")
+			await press(next_slot)
+			check(count_reason("queued", next_slot) == 1 and await wait_accepted(next_slot),
+				identifier + " chains to mapped " + next_slot + " through the actual last release window")
+			var committed: Dictionary = event_for("accepted", next_slot)
+			var elapsed: float = float(int(committed.get("frame", 0)) - int(event_for("accepted", slot).get("frame", 0))) / float(Engine.physics_ticks_per_second)
+			check(elapsed >= float(entry.chain_at) - 1.0 / float(Engine.physics_ticks_per_second) - 0.0001
+				and elapsed < float(spec.duration) + 0.0001,
+				identifier + " takes the legal recovery window before the old full duration")
+			var expected_ammo: int = 1 + int(entry.refill) - (1 if next_slot == "attack" else 0)
+			var expected_enhanced: int = (2 if next_slot == "attack" else 3) if slot == "ultimate" else 0
+			var state: Dictionary = committed.get("class_state", {})
+			check(int(state.get("ammo", -1)) == expected_ammo and int(state.get("enhanced_shots", -1)) == expected_enhanced,
+				identifier + str(entry.branch) + " completes its refill before the next real " + next_slot + " creation")
+			check(int(committed.get("role_state", {}).get("finished_serial", -1)) == int(finished_cast.get("serial", -2))
+				and skill_releases(identifier) == int(entry.shots) and int(projectiles.get(identifier, 0)) == int(entry.shots),
+				identifier + " completes exactly its real serial without erasing any skill projectile")
+			if next_slot == "secondary":
+				check(room.player.abilities.busy() and str(room.player.abilities.active.get("skill_id", "")) == "CH02_SK02"
+					and int(room.player.abilities.active.get("serial", 0)) == 2,
+					identifier + " old completion leaves the newly committed rail cast and its serial intact")
+			else:
+				check(int(committed.get("shots", 0)) == 1 and int(committed.get("projectiles", {}).get("primary", 0)) == 1,
+					identifier + " old completion leaves the next real basic projectile intact")
+			check(room.player.abilities.cast_serial == (1 if next_slot == "attack" else 2)
+				and is_equal_approx(Game.run.resource, units(100.0) - float(spec.cost) - follow_cost),
+				identifier + " and its next action each commit their own payment exactly once")
+			var ammo_before_duplicate: int = int(room.player.class_state_view().ammo)
+			var enhanced_before_duplicate: int = int(room.player.class_state_view().enhanced_shots)
+			room.player.role_kit.on_skill_finished(finished_cast)
+			check(room.player.class_state_view().ammo == ammo_before_duplicate
+				and room.player.class_state_view().enhanced_shots == enhanced_before_duplicate,
+				identifier + " repeated completion callback cannot grant a second refill or enhancement")
+			await wait_idle()
+			await frames(30)
+			check(room.player.class_state_view().ammo == expected_ammo
+				and room.player.class_state_view().enhanced_shots == expected_enhanced,
+				identifier + " passing its original end time cannot replay old completion rewards")
+			check(target.health.current < 10000.0 and count_reason("accepted", next_slot) == 1
+				and int(projectiles.get("primary", 0)) == (1 if next_slot == "attack" else 0),
+				identifier + " combo retains real enemy contacts and exactly its requested basic creation")
+			if slot == "q":
+				check(loadout_event_count("gunner_q_completed") == 1,
+					"Q recovery completion emits its actual equipment completion event only once")
+
+func test_gunner_unfinished_cancellation() -> void:
+	for entry: Dictionary in [{"slot":"q", "branch":""}, {"slot":"q", "branch":"B"}, {"slot":"ultimate", "branch":"B"}]:
+		for mode: String in ["dash", "death"]:
+			var slot: String = str(entry.slot)
+			var identifier: String = "CH02_SK01" if slot == "q" else "CH02_SK04"
+			await current_fixture("CH02", [], {identifier:str(entry.branch)})
+			room.player.role_kit.ammo = 1
+			var cost: float = float(room.player.skill_definition(slot).cost)
+			await press(slot)
+			check(await wait_skill_release(identifier), identifier + " cancellation case has one real shot in flight")
+			check(not room.player.abilities.recovery_chain_ready(), identifier + " cancellation happens before future shots complete")
+			var released_before: int = skill_releases(identifier)
+			if mode == "dash":
+				await press("dash")
+			else:
+				Game.run.hp = 0.0
+			await frames(75)
+			var state: Dictionary = room.player.class_state_view()
+			check(int(state.ammo) == (3 if mode == "dash" else 1) and int(state.enhanced_shots) == 0,
+				identifier + str(entry.branch) + " unfinished " + mode + " gives only its own valid dash refill, never skill completion refill")
+			check(skill_releases(identifier) == released_before and int(projectiles.get(identifier, 0)) == released_before
+				and int(room.player.export_role_state().finished_serial) == -1,
+				identifier + " unfinished " + mode + " does not complete its serial or create future shots")
+			check(room.player.abilities.cast_serial == 1 and is_equal_approx(Game.run.resource, units(100.0) - cost)
+				and room.player.skill_cooldown(slot) > 0.0 and room.player.combo_queue.is_empty(),
+				identifier + " cancelled commitment retains its one payment and identity cooldown")
+			if slot == "q":
+				check(loadout_event_count("gunner_q_completed") == 0,
+					"unfinished Q emits no equipment movement-completion event")
+
+func test_empty_reload_dash_gate() -> void:
+	await current_fixture("CH02")
+	room.player.role_kit.ammo = 0
+	await frames(2)
+	check(room.player.class_state_view().ammo == 0 and room.player.class_state_view().reloading,
+		"an empty real gunner kit starts its automatic reload before the mapped dodge")
+	await press("dash")
+	check(room.player.dash_remaining > 0.0 and int(room.telemetry.dashes) == 1,
+		"empty-magazine reload permits the actual gunner dodge")
+	mapped("attack", true)
+	await frames(30)
+	check(count_reason("dashing", "attack") == 1 and count_reason("reloading", "attack") == 0
+		and count_reason("ammo_empty", "attack") == 0,
+		"a fresh press during empty-magazine dodge explicitly rejects dashing before reload availability")
+	check(room.player.dash_remaining == 0.0 and room.player.class_state_view().ammo == 2
+		and not room.player.class_state_view().reloading and int(room.telemetry.shots) == 0
+		and int(projectiles.get("primary", 0)) == 0,
+		"successful dodge really grants two rounds while a held rejected press creates no automatic shot")
+	check(room.player.combo_queue.is_empty() and room.player.attack_buffer == 0.0,
+		"rejected reload/dodge press leaves no queued action or held retry")
+	mapped("attack", false)
+	await frames(2)
+	await press("attack")
+	await frames(15)
+	check(count_reason("accepted", "attack") == 1 and int(room.telemetry.shots) == 1
+		and int(projectiles.get("primary", 0)) == 1 and room.player.class_state_view().ammo == 1,
+		"real release and fresh press restore exactly one ordinary projectile and consume exactly one of the dodge rounds")
+	check(target.health.current < 10000.0 and is_equal_approx(Game.run.resource, units(100.0)),
+		"restored ordinary shot makes real enemy contact without spending skill energy")
+
+func test_current_continuity() -> void:
+	await test_long_skill_queue_continuity()
+	await test_continuity_rejection_and_cancel()
+	await test_gunner_completed_recovery()
+	await test_gunner_unfinished_cancellation()
+	await test_empty_reload_dash_gate()
+
 func run_checks() -> void:
 	if not Game.profile_path.contains("test_combat_combos"):
 		get_tree().quit(2)
@@ -574,19 +930,22 @@ func run_checks() -> void:
 	stage.process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_child(stage)
 	check(Game.new_profile() and Game.start_run(), "isolated combo profile starts real production run")
-	await test_basic_right_multi()
-	await test_right_into_basic()
-	await test_melee_three_skills()
-	await test_ranged_basic_into_skills()
-	await test_ranger_authored_bursts()
-	await test_two_wave_finisher()
-	await test_fifo_cap_and_validation()
-	await test_revalidation_and_expiry()
-	await test_cleanup()
-	await test_dash_press_release_gate()
-	await test_live_hud_combo()
+	var continuity_only: bool = Game.profile_path.contains("combat_combos_continuity")
+	if not continuity_only:
+		await test_basic_right_multi()
+		await test_right_into_basic()
+		await test_melee_three_skills()
+		await test_ranged_basic_into_skills()
+		await test_ranger_authored_bursts()
+		await test_two_wave_finisher()
+		await test_fifo_cap_and_validation()
+		await test_revalidation_and_expiry()
+		await test_cleanup()
+		await test_dash_press_release_gate()
+		await test_live_hud_combo()
+	await test_current_continuity()
 	var capture_requested: bool = OS.get_environment("CODEX_CAPTURE_COMBOS") == "1" or OS.get_cmdline_user_args().has("--capture-combos")
-	if capture_requested and DisplayServer.get_name() != "headless":
+	if capture_requested and not continuity_only and DisplayServer.get_name() != "headless":
 		await capture_live_combo()
 	if is_instance_valid(hud_layer):
 		hud_layer.free()

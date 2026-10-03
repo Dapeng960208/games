@@ -5,7 +5,6 @@ signal skill_input_feedback(slot: String, reason: String, details: Dictionary)
 
 const SKILL_BUFFER_SECONDS: float = 0.24
 const COOLDOWN_BUFFER_SECONDS: float = 0.16
-const COMBO_MAX_AGE: float = 0.90
 const COMBO_QUEUE_LIMIT: int = 3
 const HELD_MOVE_INTERVAL: float = 0.16
 const HELD_MOVE_TARGET_DISTANCE: float = 48.0
@@ -530,7 +529,7 @@ func fire(direction: Vector2, automatic_target: Node2D = null) -> bool:
 	if abilities.busy():
 		if not abilities.recovery_chain_ready():
 			return false
-		abilities.cancel()
+		abilities.finish_recovery()
 	_attack_direction = direction.normalized()
 	_automatic_attack_target = weakref(automatic_target) if is_instance_valid(automatic_target) else null
 	_attack_critical = false # Resolved once against the primary target's pre-hit snapshot.
@@ -647,14 +646,14 @@ func request_attack(direction: Vector2, selected_target: Node2D = null) -> bool:
 		return _reject_skill("attack", position, "unavailable")
 	if not direction.is_finite() or direction.is_zero_approx():
 		return _reject_skill("attack", position, "invalid_direction")
-	if role_kit != null and not role_kit.can_primary():
-		var class_view: Dictionary = class_state_snapshot()
-		return _reject_skill("attack", position, "reloading" if bool(class_view.get("reloading", false)) else "ammo_empty")
 	if dash_remaining > 0.0:
 		# A fresh press rejected during a dodge cannot turn into a held-button
 		# attack after that dodge. Only a real release can open this input again.
 		_attack_release_required = true
 		return _reject_skill("attack", position, "dashing")
+	if role_kit != null and not role_kit.can_primary():
+		var class_view: Dictionary = class_state_snapshot()
+		return _reject_skill("attack", position, "reloading" if bool(class_view.get("reloading", false)) else "ammo_empty")
 	if is_instance_valid(selected_target):
 		direction = position.direction_to(selected_target.position)
 	var wait: float = _combo_wait_seconds("attack")
@@ -667,16 +666,15 @@ func request_attack(direction: Vector2, selected_target: Node2D = null) -> bool:
 		"target_id":selected_target.get_instance_id() if is_instance_valid(selected_target) else 0}, wait)
 
 func _combo_wait_seconds(slot: String) -> float:
+	return maxf(_action_chain_wait_seconds(), shot_cooldown if slot == "attack" else skill_cooldown(slot))
+
+func _action_chain_wait_seconds() -> float:
 	var wait: float = _basic_chain_remaining
 	if attack_remaining > 0.0 and not attack_resolved:
 		var hit_threshold: float = maxf(0.0, _attack_interval - 0.12)
 		wait = maxf(wait, maxf(0.0, attack_remaining - hit_threshold) + 0.045)
 	if abilities != null and abilities.busy():
 		wait = maxf(wait, abilities.recovery_chain_wait())
-	if slot == "attack":
-		wait = maxf(wait, shot_cooldown)
-	else:
-		wait = maxf(wait, skill_cooldown(slot))
 	return wait
 
 func _append_combo_input(request: Dictionary, wait: float) -> bool:
@@ -686,7 +684,6 @@ func _append_combo_input(request: Dictionary, wait: float) -> bool:
 		return _reject_skill(slot, target, "busy", {"cause":"queue_full"})
 	if combo_queue.is_empty() and wait > SKILL_BUFFER_SECONDS + 0.00001:
 		return _reject_skill(slot, target, "busy", {"cause":"early_chain", "chain_in":wait})
-	request["age"] = 0.0
 	request["remaining"] = SKILL_BUFFER_SECONDS if combo_queue.is_empty() else -1.0
 	combo_queue.append(request)
 	attack_buffer = 0.0
@@ -719,7 +716,9 @@ func _prime_combo_head() -> void:
 	if not combo_queue.is_empty() and float(combo_queue[0].remaining) < 0.0:
 		# A second or third press waits for its preceding queued action, rather
 		# than expiring while that action still owns its legitimate windup.
-		combo_queue[0].remaining = SKILL_BUFFER_SECONDS + _combo_wait_seconds(str(combo_queue[0].slot))
+		# Only the predecessor's finite action extends this one-time budget;
+		# a cooldown added after admission cannot buy the pending input more time.
+		combo_queue[0].remaining = SKILL_BUFFER_SECONDS + _action_chain_wait_seconds()
 	_sync_buffered_skill()
 
 func _drop_pointer_combo_inputs() -> void:
@@ -728,15 +727,12 @@ func _drop_pointer_combo_inputs() -> void:
 func _tick_skill_buffer(delta: float) -> void:
 	if combo_queue.is_empty():
 		return
-	var step: float = maxf(0.0, delta)
-	for index in range(combo_queue.size() - 1, -1, -1):
-		combo_queue[index].age = float(combo_queue[index].age) + step
-		if index == 0:
-			combo_queue[index].remaining = maxf(0.0, float(combo_queue[index].remaining) - step)
-		if float(combo_queue[index].age) >= COMBO_MAX_AGE or (index == 0 and float(combo_queue[index].remaining) <= 0.0):
-			var expired: Dictionary = combo_queue[index].duplicate(true)
-			combo_queue.remove_at(index)
-			_reject_skill(str(expired.slot), expired.target, "busy", {"cause":"buffer_expired", "remaining":0.0})
+	# Only the head owns a deadline. Later admitted inputs get one finite
+	# predecessor budget when promoted; their window never refreshes per frame.
+	combo_queue[0].remaining = maxf(0.0, float(combo_queue[0].remaining) - maxf(0.0, delta))
+	if float(combo_queue[0].remaining) <= 0.0:
+		var expired: Dictionary = combo_queue.pop_front()
+		_reject_skill(str(expired.slot), expired.target, "busy", {"cause":"buffer_expired", "remaining":0.0})
 	_prime_combo_head()
 
 func _consume_buffered_skill() -> void:

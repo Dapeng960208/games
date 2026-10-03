@@ -52,6 +52,24 @@ func recovery_chain_ready() -> bool:
 		return true
 	return int(active.next_event) >= active.events.size() and recovery_chain_wait() <= 0.00001
 
+func finish_recovery() -> bool:
+	if active.is_empty() or not recovery_chain_ready():
+		return false
+	if is_instance_valid(feedback):
+		feedback.cancel_cast()
+	_finish_active()
+	return true
+
+func _finish_active() -> void:
+	# Retire the old reference before completion hooks. Reentrant observers can
+	# neither finish it twice nor have a new active cast cleared after callbacks.
+	var finished: Dictionary = active
+	active = {}
+	if str(finished.spec.hero) == "CH02" and str(finished.spec.origin_slot) == "q":
+		owner_player.loadout.event("gunner_q_completed", {"event_id":"skill:" + str(finished.serial) + ":q_move", "actual_distance":float(finished.get("actual_travel", 0.0)), "skill_id":str(finished.skill_id), "input_slot":str(finished.input_slot), "damage_source":"skill", "proc_depth":0, "equipment_eligible":true})
+	if owner_player.role_kit != null and owner_player.role_kit.has_method("on_skill_finished"):
+		owner_player.role_kit.on_skill_finished(finished)
+
 func cancel() -> void:
 	active.clear()
 	if is_instance_valid(feedback):
@@ -232,7 +250,7 @@ func try_cast(slot: String, target: Vector2, validate_only: bool = false, allow_
 	# Validation and payment succeeded. Retire only the old completed recovery;
 	# released projectiles, deployments and feedback still own their lifetimes.
 	if busy():
-		cancel()
+		finish_recovery()
 	owner_player.cooldowns[str(data.skill_id)] = float(data.cooldown)
 	owner_player.resource_delay = float(Game.run.stats.get("resource_regen_delay", 0.5 if hero == "CH02" else 0.8))
 	cast_serial += 1
@@ -288,11 +306,7 @@ func tick(delta: float) -> void:
 	_advance(previous, finish)
 	active.elapsed = finish
 	if finish >= float(active.spec.duration) - 0.00001:
-		if str(active.spec.hero) == "CH02" and str(active.spec.origin_slot) == "q":
-			owner_player.loadout.event("gunner_q_completed", {"event_id":"skill:" + str(active.serial) + ":q_move", "actual_distance":float(active.get("actual_travel", 0.0)), "skill_id":str(active.skill_id), "input_slot":str(active.input_slot), "damage_source":"skill", "proc_depth":0, "equipment_eligible":true})
-		var finished: Dictionary = active
-		active = {}
-		if owner_player.role_kit != null and owner_player.role_kit.has_method("on_skill_finished"): owner_player.role_kit.on_skill_finished(finished)
+		_finish_active()
 
 func _advance(from_time: float, to_time: float) -> void:
 	var data: Dictionary = active.spec
