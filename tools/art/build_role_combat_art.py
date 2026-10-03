@@ -1,4 +1,4 @@
-"""Build original SVG skill icons, badges and the small star companion.
+"""Register original hand-painted skill PNGs; build badges and the star companion.
 
 Retired flat body fixtures remain only in ignored review output.
 Portrait and hand-painted PNG provenance is maintained beside each source image.
@@ -156,7 +156,8 @@ def companion():
     (folder/'star_companion.json').write_text(json.dumps({'schema_version':1,'hero_id':'CH03','texture':'asset://heroes/ch03_star_companion.svg','states':states,'anchor':[64,64],'body_size':36,'original_art':True},indent=2)+'\n',encoding='utf-8')
 
 def main():
-    entries={}
+    fragment = ROOT / "assets/characters/role_art_manifest_fragment.json"
+    entries = json.loads(fragment.read_text(encoding="utf-8")).get("resources", {}) if fragment.exists() else {}
     for role,(hero,*_) in PALETTES.items():
         production=ROOT/f'assets/characters/{role}/animations/combat_clips.json'
         if not production.exists():
@@ -164,7 +165,10 @@ def main():
         entries[f'heroes/{hero.lower()}_combat_clips.json']=f'res://assets/characters/{role}/animations/combat_clips.json'
         folder=ROOT/f'assets/characters/{role}/skills';folder.mkdir(parents=True,exist_ok=True)
         for i in range(1,13):
-            filename=f'sk{i:02}_icon.svg';(folder/filename).write_text(svg(icon(role,i),128,128),encoding='utf-8');entries[f'skill.{hero.lower()}_sk{i:02}']=f'res://assets/characters/{role}/skills/{filename}'
+            filename=f'sk{i:02}_icon.png'
+            if not (folder/filename).is_file():
+                raise FileNotFoundError(folder/filename)
+            entries[f'skill.{hero.lower()}_sk{i:02}']=f'res://assets/characters/{role}/skills/{filename}'
         (folder/'badge.svg').write_text(svg(icon(role,1),128,128),encoding='utf-8');entries[f'heroes/{hero.lower()}_badge.svg']=f'res://assets/characters/{role}/skills/badge.svg'
         entries[f'characters/{role}/portraits/full_illustration.png']=f'res://assets/characters/{role}/portraits/full_illustration.png'
         entries[f'heroes/{hero.lower()}_storybook_portrait_v1.png']=f'res://assets/characters/{role}/portraits/full_illustration.png'
@@ -176,10 +180,11 @@ def main():
     (ROOT/'assets/characters/role_art_manifest_fragment.json').write_text(json.dumps({'resources':entries},indent=2)+'\n',encoding='utf-8')
     sources={
         'created_date':'2026-10-03',
-        'authors':'Project-original SVG icons, badges and small star companion; character PNGs have separate per-role provenance',
+        'authors':'Project-original hand-painted skill PNGs generated individually with built-in ImageGen; SVG badges and small star companion; character PNGs have separate per-role provenance',
         'rights':'Project-authored original resources; no third-party character pack or traced image used',
         'tool':'tools/art/build_role_combat_art.py',
-        'svg_resources':{'skill_icons':36,'role_badges':3,'star_companion_states':7,'body_animations':'none in production'},
+        'svg_resources':{'skill_icons':0,'role_badges':3,'star_companion_states':7,'body_animations':'none in production','legacy_skill_svg':'Unregistered skill sources; mine/sentry compatibility aliases retained'},
+        'handpainted_skill_icons':{'count':36,'tool':'built-in image_gen.imagegen','generation_records':'assets/characters/<role>/skills/skNN_icon.generation.json','native_source_dimensions':[1254,1254],'upscaled':False,'display_pixels_2560x1440':{'pool':84,'equipped':96,'detail':132,'hud':112},'native_2048_source':False},
         'character_bitmaps':{
             'portraits':'assets/characters/<role>/portraits/*.provenance.json or *.generation.json',
             'action_sources':'Latest candidate assets/characters/<role>/animations/basic_southeast_a/b.png and corresponding generation.json',
@@ -189,7 +194,13 @@ def main():
         'handpainted_motion':{'status':'incomplete southeast review samples; production clips disabled','full_eight_direction_family_ready':False,'native_2k_requirement_met':False},
         'runtime_identity_review':{'CH01':'legacy male warrior bitmap family; redesigned continuous family pending','CH02':'legacy adult female gunner bitmap family; redesigned continuous family pending','CH03':'FAILED: legacy bitmap family is a male engineer, not female Lumi; female portrait and SE review samples do not complete the battle family'},
         'runtime_atlas_limit':2048,'palettes':PALETTES,'manifest_fragment':'role_art_manifest_fragment.json'}
-    (ROOT/'assets/characters/role_art_sources.json').write_text(json.dumps(sources,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    source_path = ROOT / 'assets/characters/role_art_sources.json'
+    if source_path.exists():
+        current = json.loads(source_path.read_text(encoding='utf-8'))
+        for key in ('created_date', 'authors', 'rights', 'tool', 'svg_resources', 'handpainted_skill_icons', 'palettes', 'manifest_fragment'):
+            current[key] = sources[key]
+        sources = current
+    source_path.write_text(json.dumps(sources,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     for source in ROOT.glob('assets/characters/*/skills/*_icon.svg'):ET.parse(source)
     print(f'Generated {len(entries)} original role-art resource entries')
 
