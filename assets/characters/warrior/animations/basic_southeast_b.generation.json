@@ -1,0 +1,168 @@
+{
+  "asset": "basic_southeast_b.png",
+  "source_type": "built_in_imagegen",
+  "created_date": "2026-10-03",
+  "character": "CH01",
+  "direction": "southeast",
+  "animation": "basic",
+  "frame_indices": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "requested_resolution": [
+    2048,
+    2048
+  ],
+  "actual_resolution": [
+    1254,
+    1254
+  ],
+  "native_upscaled": false,
+  "transparent_background": true,
+  "layout": {
+    "columns": 2,
+    "rows": 2,
+    "reading_order": "row_major",
+    "grid_rectangles_are_not_safe_crops": true
+  },
+  "references": [
+    "../portraits/full_illustration.png",
+    "basic_southeast_a.png"
+  ],
+  "generated_source": "C:/Users/13326/.codex/generated_images/01a1007a-a99e-7721-8679-9b4651ee66c8/exec-5cb7473d-2775-45d5-9e1a-016aa303a200.png",
+  "prompt": "Use case: stylized-concept\nAsset type: transparent original game character animation source sheet, SECOND HALF (frames 4,5,6,7) of an eight-frame southeast basic greataxe attack. Request native 2048 x 2048 pixels, crisp high-detail painted textures.\nInput images: Image 1 is the precise original character and weapon identity. Image 2 is the first half of this animation; retain its exact character appearance and camera. Generate the four consecutive FOLLOWING poses, rather than repeating the first half.\nLocked character: Luo Zhen, adult male warrior, short tousled chestnut hair, handsome adult face and athletic build. Deep navy split coat, sculpted silver chest/shoulder/leg armor with gold details, bright vermilion scarf, dark trousers, silver armored boots. Same silver-and-gold crescent greataxe with dark volcanic blade panels, small embedded molten orange fissures and orange center crystal. Both hands hold the same connected shaft and complete head in every pose.\nStyle/camera: high-angle three-quarter southeast facing toward lower right, near-isometric 2.5D, bright hand-painted cartoon fantasy, warm sunlight, vivid balanced palette, readable volume. Same camera, body proportions and feet ground plane as the first half.\nLayout: EXACTLY FOUR isolated full-body characters in an invisible 2 x 2 grid, one per quadrant, reading order top-left, top-right, bottom-left, bottom-right. No lines. The head-to-shoe body itself should occupy about 40 percent of full canvas height, approximately 500 pixels if renderer produces a 1254 square. Every entire figure INCLUDING the complete greataxe and scarf must fit within its own cell with generous actual transparent margins on all four sides. Keep at least 8 percent cell-size transparent padding, including center cross and outside canvas edges. Do not let the axe become wider than the space allows. Tilt the weapon diagonally toward the camera to contain its footprint. Keep all boots and weapon tips safely away from image borders.\nConsecutive distinct poses: frame 4 (top-left) second strong axe contact, forward weight on front leg and blade low immediately to the front-right, compact sideways follow-through with both hands; frame 5 (top-right) recovery begins, knees extend, torso uncoils, hands pull the low axe inward near thigh; frame 6 (bottom-left) recovery continues, stand taller, move the axe diagonally to low ready position across the body, scarf settles; frame 7 (bottom-right) calm ready stance, both boots grounded, weapon held low diagonally, match the starting ready pose of the first half. These four are a smooth time sequence with visibly different joint positions, not the same pose copied four times.\nBackground: actual alpha transparency. No floor, cast shadow, scene, checkerboard or colored matte.\nConstraints: exactly four complete southeast-facing adult male warriors. Same detailed face, anatomy, garment colors, armor ornamentation and axe geometry in all frames. No cropped body or weapon, no edge contacts, no crossing cell boundaries, no detached weapon fragments or flames, no long particles/trails, no motion blur, no text, letters, numbers, labels, border, grid or watermark.",
+  "landmark_annotation": {
+    "method": "manual_visual_estimate_in_full_source_coordinates",
+    "position_accuracy_px": 12,
+    "occluded_boot_accuracy_px": 35,
+    "verified": false,
+    "standing_scale_reference_frames": [
+      6,
+      7
+    ],
+    "frames": [
+      {
+        "frame_index": 4,
+        "hair_top_y": 132,
+        "boot_bottom_points": [
+          [
+            178,
+            528
+          ],
+          [
+            451,
+            627
+          ]
+        ],
+        "foot_anchor_xy": [
+          314.5,
+          577.5
+        ],
+        "occluded_boot": false
+      },
+      {
+        "frame_index": 5,
+        "hair_top_y": 113,
+        "boot_bottom_points": [
+          [
+            801,
+            535
+          ],
+          [
+            1045,
+            586
+          ]
+        ],
+        "foot_anchor_xy": [
+          923,
+          560.5
+        ],
+        "occluded_boot": true
+      },
+      {
+        "frame_index": 6,
+        "hair_top_y": 642,
+        "boot_bottom_points": [
+          [
+            228,
+            1118
+          ],
+          [
+            432,
+            1208
+          ]
+        ],
+        "foot_anchor_xy": [
+          330,
+          1163
+        ],
+        "occluded_boot": false
+      },
+      {
+        "frame_index": 7,
+        "hair_top_y": 666,
+        "boot_bottom_points": [
+          [
+            801,
+            1146
+          ],
+          [
+            1015,
+            1220
+          ]
+        ],
+        "foot_anchor_xy": [
+          908,
+          1183
+        ],
+        "occluded_boot": false
+      }
+    ]
+  },
+  "validation": {
+    "production_ready": false,
+    "status": "review_only",
+    "alpha_measurement": {
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox": [
+        0,
+        48,
+        1240,
+        1254
+      ],
+      "edges": {
+        "0": {
+          "top": 0,
+          "right": 0,
+          "bottom": 2,
+          "left": 6
+        },
+        "16": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "128": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    },
+    "notes": [
+      "Native output is 1254 x 1254, not native 2K.",
+      "Four visually isolated complete bodies; some artwork crosses nominal column divider, so separate by alpha components instead of fixed quadrants.",
+      "The alpha>0 pixels on left and bottom outer edges disappear at alpha>16 and should be reviewed as faint alpha speckles.",
+      "Head-to-shoe source body height and foot anchors need individual verification against the 448-pixel source detail gate, preserving natural crouch differences rather than independently resizing poses.",
+      "No runtime animation family or manifest is enabled by this deliverable."
+    ]
+  }
+}

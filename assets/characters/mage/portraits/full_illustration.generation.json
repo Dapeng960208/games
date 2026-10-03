@@ -1,0 +1,109 @@
+{
+  "asset_id": "hero_mage_full_illustration",
+  "asset_type": "original_generated_dark_magic_character_illustration",
+  "tool": "built-in image_gen",
+  "generated_on": "2026-10-03",
+  "requested_quality": "native 2K",
+  "actual_size": {
+    "width": 1024,
+    "height": 1536
+  },
+  "resolution_requirement_met": false,
+  "upscaled": false,
+  "mode": "RGBA",
+  "references": [
+    {
+      "path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-539c7b96-94c7-463b-a327-cce09ac8618c.png",
+      "role": "user-provided adult slim-body and face reference"
+    },
+    {
+      "path": "C:/Users/13326/.codex/generated_images/01a10039-c472-79a2-808d-1e986772741a/exec-052372e8-b01a-4ea0-b0e4-89b7b9c6eda9.png",
+      "role": "intermediate corrected slim-body illustration used for dark-magic redesign"
+    }
+  ],
+  "source_output": "C:/Users/13326/.codex/generated_images/01a10039-c472-79a2-808d-1e986772741a/exec-85f4f866-8eed-4ebd-b73e-828322d87838.png",
+  "prompts": [
+    "Use case: precise-object-edit\nAsset type: finished full-body transparent fantasy-game character illustration.\nInput images: Image 1 is the user's ORIGINAL slim-body mage reference: use its balanced slender ADULT body proportions and narrow waist. Image 2 is the current project artwork to correct: retain its identity, palette, spectacular weapon, and single companion.\nPrimary correction, exactly as the user clarified: \"胸部丰满，不是胖\" — a full bust on a SLIM, balanced adult woman. Lumi is age22, clearly adult. Restore normal-to-narrow shoulders, slender arms and hands, clearly narrow fitted waist, proportionate hips, slim thighs and slender calves. Keep a naturally full bust underneath the fully covering blouse; do not make the abdomen, arms or legs heavy. Do NOT create a plus-size body. Do NOT exaggerate anatomy or sexualize the pose. The body silhouette should closely follow Image 1.\nPreserve: cute warm mature face and round gentle cheeks, light-chestnut curls, enormous elegant witch hat, tasteful fully covered milk-white blouse, mist-lavender fitted-waist mid-length dress, sakura-pink short cape, gold star embroidery and bells, short boots. Palette milk-white #fff4eb / mist lavender #b3a1d5 / sakura pink #eaa6c2 / warm gold.\nPreserve oversized spectacular STAR-RING STAFF: long lavender shaft, polished gold crescent plus double ring, floating luminous CYAN FOUR-POINT star crystal. Exactly one staff.\nPreserve exactly ONE little warm-gold rounded FOUR-POINT star companion: four tips TOP, RIGHT, BOTTOM, LEFT, cute dark oval eyes, cheek blush and one bell. Not five-point.\nStyle and framing: bright hand-painted CARTOON FANTASY with warm sunlight, fresh vivid color and clear stylized 2.5D volume. High-angle three-quarter oblique top-down near-isometric camera, see top surfaces of hat, shoulders and boots. All of hat, staff, hands, boots and pet visible and UNCROPPED. Leave transparent margins.\nCRITICAL BACKGROUND CORRECTION: REMOVE THE ENTIRE PAINTED GRADIENT BACKGROUND AND ALL WIDE GRADIENT HALOS. Deliver a clean true transparent RGBA cutout. Every empty pixel outside the outlines of the woman, her clothing, staff and pet must be alpha zero. NO background wash. NO tinted gradients filling the canvas. NO large semi-transparent magical aura. NO shadow behind the whole person. NO floor. NO glow circle beneath pet. Keep a few tiny attached crisp sparkles on staff only, no broad bloom.\nOnly the person, clothing, staff and ONE pet should remain visible, surrounded by transparent empty space. No text, watermark, frame, UI or extra characters.\nNative 2K requested: 2048x3072 if supported. Do not upscale smaller output.",
+    "Use case: precise-object-edit\nAsset type: ORIGINAL dark-magic fantasy-game full-body transparent character illustration.\nInput: The supplied current artwork provides the adult woman's cute face, chestnut curls, slim body with full bust and narrow waist, full-body pose and staff scale. REDESIGN ALL costume, weapon styling and companion styling into a coherent DARK MAGICIAN, not a pink dress with a darker tint.\nSubject: Lumi, a cute clearly ADULT woman age22. The user clarified \"胸部丰满，不是胖\": naturally FULL BUST underneath a fully covering fitted blouse, defined NARROW WAIST, normal-to-narrow shoulders, SLENDER arms, balanced slim hips and legs. NO thick heavy limbs, NO plus-size body. Tasteful confident mage pose, not sexualized, no low neckline. Keep warm adult face, expressive honey-brown eyes and light-chestnut curly hair.\nCostume must become a sophisticated DARK SORCERESS: enormous OBSIDIAN BLACK and MIDNIGHT DEEP PURPLE witch hat with a crisp silver crescent insignia; black and deep-purple layered mid-length magical dress with an elegant fitted corseted waist, high covered neckline, restrained silver arcane rune embroidery, sharp clean layered cloth silhouette, flowing short black-purple cape, silver buckles and black boots. Use black #16141d, midnight purple #302044, cool silver #b7bfd1, tiny spectral ice-cyan #77dbe9 accents. No pink, no pastel costume, no gold star bells, no mass of gold chains, no cute warm-gold decorations.\nWeapon: spectacular oversized BLACK-SILVER DARK ARCANE STAR-RING STAFF, long ebony staff shaft with silver etched magical runes, dramatic intersecting silver crescent and open ring, floating DEEP PURPLE crystal star, small controlled GHOSTLY BLUE magical flame licking the crystal. Strong iconic stylish weapon silhouette. Black/silver/purple/cyan, no golden toy wand. Entire staff visible.\nCompanion: exactly ONE cute tiny round FOUR-POINT star spirit in pale silver with a warm faint core or ice-blue edge light. EXACTLY FOUR rounded tips at TOP, RIGHT, BOTTOM, LEFT, like a soft diamond/cross, NOT a five-point star. Dark oval eyes, gentle smile. No golden orbit halo, no duplicates. It is her existing fixed star companion with dark-magic themed colors.\nRendering: polished hand-painted CARTOON FANTASY, clear stylized 2.5D solid volume and visible brush texture, readable silhouettes and good contrast. Warm sunlight softly defines dark cloth while small cool magical highlights bring out silver runes. High-angle THREE-QUARTER OBLIQUE TOP-DOWN near-isometric composition showing top surfaces of hat, shoulders, staff and boots. Charming magical adventurer, not horror, not photorealistic.\nFraming: Full character, full hat, full boots, ONE full staff and ONE full companion UNCROPPED; leave visible generous empty margin on every side.\nBACKGROUND IS A TRUE CLEAN TRANSPARENT CUTOUT: absolutely NO background gradient, NO colored canvas wash, NO backdrop, NO dark smoke filling canvas, NO wide aura or bloom, NO floor or cast-shadow plane. Outside the precise silhouettes the canvas must be entirely transparent alpha=0. Empty gaps between woman and staff and companion also transparent alpha=0. Do not keep the supplied background gradient. Clear all background RGB too, not merely fade its edges. Only a few small attached magical glints and the crystal's controlled small flame, no diffuse glow across image.\nNo text, watermark, UI, extra characters or extra staff.\nRequested native 2K: 2048×3072 if supported, never upscale smaller output.",
+    "Use case: precise-object-edit\nAsset type: transparent full-body dark sorceress illustration.\nChange ONLY the tiny floating companion at upper image-left: replace its five-point star outline with a cute glowing FOUR-CORNERED DIAMOND / FOUR-POINT compass star. It has exactly FOUR clearly visible soft pointed corners in the cardinal directions: TOP, RIGHT, BOTTOM, LEFT. The silhouette must be a round-soft diamond/cross and NOT a pentagonal classic star. No fifth corner anywhere. Keep two dark oval eyes and tiny friendly smile, pale silver-blue color and small soft core. Exactly ONE companion.\nKeep the rest of this artwork EXACTLY: same cute adult22-year-old face, chestnut curly hair, FULL BUST and NARROW WAIST on a balanced slim body with slender arms and legs, high fully covered neckline; same elegant black/midnight-purple dark magician layered dress and large witch hat with silver arcane runes and crescent accents; same enormous cool black-silver crescent star-ring staff with deep-purple floating crystal and small spectral cyan flame; same full-body standing pose, full boots, clear hand-painted cartoon fantasy 2.5D volume and high three-quarter oblique angle.\nKeep the entire hat, staff, fingers, boots and companion visible, no crop.\nDeliver TRUE transparent RGBA cutout. Every empty area outside the objects and all holes and gaps between the staff, arm, pet, face, cape and legs must be alpha0. No gradient backdrop, no smoke backdrop, no broad aura behind person, no ground, no floor shadow, no colored background even hidden in alpha. Only small attached cyan weapon flames, not canvas-filling glow. Please remove all old canvas background.\nNo new objects, text, watermark, UI or duplicate companion.\nRequested native 2K, 2048x3072 if supported; do not upscale a smaller generated file."
+  ],
+  "visual_review": {
+    "adult_identity": "age22; full bust, defined narrow waist, normal-to-narrow shoulders, slender arms and legs; not plus-size",
+    "palette": "obsidian black #16141d, midnight deep purple #302044, cool silver #b7bfd1, spectral cyan #77dbe9",
+    "costume": "coherent dark sorceress hat, covered neckline, fitted waist, layered mid-length black-purple dress, silver arcane runes and crescent patterns, black boots",
+    "weapon": "oversized black-silver dark arcane crescent and star-ring staff, deep-purple crystal and localized spectral-blue flame",
+    "companion": "exactly one silver-blue rounded four-point diamond star",
+    "framing": "full body, hat, staff and boots visible",
+    "style": "hand-painted cartoon fantasy, clear 2.5D volume, warm definition with cool arcane light",
+    "camera": "high three-quarter oblique angle"
+  },
+  "alpha_verification": {
+    "exterior_regions": [
+      {
+        "name": "upper_left_empty",
+        "rectangle": [
+          0,
+          0,
+          160,
+          120
+        ],
+        "pixels": 19200,
+        "nonzero_alpha": 0,
+        "max_alpha": 0
+      },
+      {
+        "name": "left_empty_gap",
+        "rectangle": [
+          0,
+          450,
+          120,
+          100
+        ],
+        "pixels": 12000,
+        "nonzero_alpha": 0,
+        "max_alpha": 0
+      },
+      {
+        "name": "bottom_left_empty",
+        "rectangle": [
+          0,
+          1380,
+          300,
+          156
+        ],
+        "pixels": 46800,
+        "nonzero_alpha": 0,
+        "max_alpha": 0
+      },
+      {
+        "name": "bottom_right_empty",
+        "rectangle": [
+          940,
+          1300,
+          84,
+          236
+        ],
+        "pixels": 19824,
+        "nonzero_alpha": 0,
+        "max_alpha": 0
+      },
+      {
+        "name": "upper_middle_empty",
+        "rectangle": [
+          500,
+          0,
+          150,
+          45
+        ],
+        "pixels": 6750,
+        "nonzero_alpha": 0,
+        "max_alpha": 0
+      }
+    ],
+    "checked_exterior_pixels": 104574,
+    "checked_exterior_nonzero_alpha": 0,
+    "notes": "Read-only pixel inspection, no programmatic extraction, masking or background editing. Colored RGB remains under alpha0 in some empty pixels; alpha-aware compositing must be used."
+  },
+  "superseded_direction": "Earlier plus-size and milk-white/lavender/pink versions are superseded by the user's full-bust slim-body and dark-magician corrections.",
+  "notes": "Built-in tool repeatedly produced 1024x1536 despite native-2K request. This asset must not be represented as native 2K. No upscaling or shell image editing was performed."
+}

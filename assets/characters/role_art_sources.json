@@ -1,0 +1,58 @@
+{
+  "created_date": "2026-10-03",
+  "authors": "Project-original SVG icons, badges and small star companion; character PNGs have separate per-role provenance",
+  "rights": "Project-authored original resources; no third-party character pack or traced image used",
+  "tool": "tools/art/build_role_combat_art.py",
+  "svg_resources": {
+    "skill_icons": 36,
+    "role_badges": 3,
+    "star_companion_states": 7,
+    "body_animations": "none in production"
+  },
+  "character_bitmaps": {
+    "portraits": "assets/characters/<role>/portraits/*.provenance.json or *.generation.json",
+    "action_sources": "Latest candidate assets/characters/<role>/animations/basic_southeast_a/b.png and corresponding generation.json",
+    "processed_samples": "assets/characters/<role>/animations/basic_southeast_split_review.json; native atlas working copies in ignored tools/godot/art_preview/<role>/split_native",
+    "retired_sources": "Old eight-frame and 64-frame candidates with provenance remain in ignored tools/godot/art_preview/<role>/retired_se"
+  },
+  "technical_motion": {
+    "status": "retired flat SVG development fixture only",
+    "location": "tools/godot/art_preview/<role> (ignored)",
+    "registered_in_production_manifest": false
+  },
+  "handpainted_motion": {
+    "status": "incomplete southeast review samples; production clips disabled",
+    "full_eight_direction_family_ready": false,
+    "native_2k_requirement_met": false
+  },
+  "runtime_identity_review": {
+    "CH01": "legacy male warrior bitmap family; redesigned continuous family pending",
+    "CH02": "legacy adult female gunner bitmap family; redesigned continuous family pending",
+    "CH03": "FAILED: legacy bitmap family is a male engineer, not female Lumi; female portrait and SE review samples do not complete the battle family"
+  },
+  "runtime_atlas_limit": 2048,
+  "palettes": {
+    "warrior": [
+      "CH01",
+      "#233b66",
+      "#e0e6ef",
+      "#d6554e",
+      "#ffbc62"
+    ],
+    "gunner": [
+      "CH02",
+      "#329ca9",
+      "#f8f3e8",
+      "#e9846c",
+      "#78e5e5"
+    ],
+    "mage": [
+      "CH03",
+      "#352c4d",
+      "#202330",
+      "#695184",
+      "#9edfea"
+    ]
+  },
+  "manifest_fragment": "role_art_manifest_fragment.json"
+}
