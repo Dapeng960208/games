@@ -80,4 +80,4 @@ B09 合并后检查通过：候选 481、怪物 1522、装备 566、行囊 127�
 
 相关验证入口：`tools/test.ps1 -ImportOnly`、`legacy_profile_reset`、`numerical_fresh_profile`、`numerical_instances`、`equipment_class_policy`、`progressive_monster_roster`、`save_recycle_ui`、`environment_native_resources`、`boss_hd_art`、`hero_storybook_family`。具体运行结果以本次提交说明为准。
 
-三职业分支与 main 本次集成：资源索引、六章正式开放和 B09 候选代码同时保留。职业、技能存档、技能 UI 模块、B05/B06 正式接入共 1482 项通过；B09 装备检查的法师 E 提交失败并引发测试空记录读取错误，原因待定位。按用户要求停止进一步检查并先合入，不将本次集成标为全部回归通过，详情见 [三职业实际复查](system/combat/role_playtest_review.md)。
+三职业分支与 main 本次集成：资源索引、六章正式开放和 B09 候选代码同时保留。职业、技能存档、技能 UI 模块、B05/B06 正式接入共 1482 项通过；按用户要求先合入后修复：已更正 B09 测试换职业时遗留战士技能和模块的问题，并去掉自动合并产生的 BO05 重复常量声明；后续 B09 装备 586 项、正式闸门 9 项通过。没有扩大为全量回归或自然玩法验收，详情见 [三职业实际复查](system/combat/role_playtest_review.md)。

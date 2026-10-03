@@ -1,4 +1,5 @@
 extends Node
+const RoleSkills = preload("res://scripts/domain/combat/skill_catalog.gd")
 const Catalog = preload("res://scripts/levels/b09/equipment/equipment_catalog.gd")
 const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const Acquisition = preload("res://scripts/domain/equipment/equipment_acquisition.gd")
@@ -447,20 +448,25 @@ func _live() -> void:
 	await get_tree().process_frame
 
 func _bind(room: Node2D, hero: String, set_id: String) -> void:
-	for node: Node2D in room.player.resonance_nodes(): node.free()
-	room.player.passives.reset()
 	var loadout := {}
 	for item: Dictionary in items.values():
 		if str(item.template_id).begins_with(set_id+"-"): loadout[ContentRegistry.equipment(item.template_id,2).slot]=item.instance_id
 	var stats := Resolver.resolve(hero,45,loadout,items,2)
 	Game.run.hero_id=hero; Game.run.level=45; Game.run.stats=stats
 	Game.run.loadout_snapshot=loadout; Game.run.equipment_snapshot=items
+	Game.run.skill_loadout_snapshot=RoleSkills.starter_ids(hero)
+	Game.run.skill_branches_snapshot={hero+"_SK01":"",hero+"_SK04":""}
 	Game.run.max_hp=stats.max_hp; Game.run.hp=stats.max_hp*0.5
 	Game.run.resource=stats.resource_max*0.5; Game.run.shield=0
-	room.player.status.states.clear(); room.player.status.guards.clear()
-	room.player._enemy_slow_remaining=0; room.player._enemy_root_remaining=0
-	room.player.cooldowns={"q":0.0,"secondary":0.0,"f":0.0,"ultimate":0.0}
-	room.player.attack_remaining=0; room.player.dash_remaining=0
-	room.player.abilities.configure(room.player)
-	room.player.loadout.configure(room.player)
+	# A different class owns a different kit, companion and identity loadout.
+	# Follow the room's real actor initialization instead of relabelling a warrior.
+	var at: Vector2=room.player.position
+	room.player.free()
+	room.player=preload("res://scenes/gameplay/characters/hero.tscn").instantiate()
+	room.player.room=room
+	room.player.position=at
+	room.add_child(room.player)
+	room.player.z_index=2
+	check(room.player.skill_loadout==Game.run.skill_loadout_snapshot,"live fixture owns "+hero+" skill identities")
+	check(room.player.role_kit.get_script()==HeroAbilities.kit_script(hero),"live fixture owns "+hero+" kit")
 	room.input_blocked=false; room.release_gate=false
