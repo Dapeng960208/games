@@ -2,7 +2,7 @@
 """Retain versioned numeric QA evidence, excluding images, saves and disposable logs."""
 import hashlib,json,pathlib,re,collections
 ROOT=next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'project.godot').is_file())
-DEST=ROOT/'docs/levels/b05/balance/evidence/b05_runs'
+DEST=ROOT/'artifacts/balance/b05/runs'
 KEEP=['configuration','outcome','probe','rendering','display_server','pause_seconds','process_frames','simulation_seconds','host_wall_seconds','timing_mode','physics_steps','physics_delta_min','physics_delta_max','hp_fraction','hp_loss','shield_absorbed','effective_player_healing','effective_boss_healing','boss_initial_shield','outgoing','weakpoint_seconds','attackable_seconds','resource_empty_seconds','resource_rejections','casts','cast_failures','phases','phase_skip_details','input_diagnostics','incoming_packets','outgoing_packets','ability_timeline_audit','directed_result','negative_control']
 def main():
  DEST.mkdir(exist_ok=True);index=[]
@@ -18,7 +18,7 @@ def main():
    result={'schema':'b05-durable-numeric-evidence-v1','run_id':folder.name,'run_complete':(folder/'.complete').exists(),'raw_report_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'source_report':str(source.relative_to(ROOT.parent)),'controller':data['controller'],'measurement_protocol':data.get('measurement_protocol',{}),'engine':data.get('engine'),'physics_hz':data.get('physics_hz'),'time_scale':data.get('time_scale'),'checks':data.get('checks'),'failures':data.get('failures',[]),'script_errors_observed':errors,'summary_at_preservation':summary,'invalidated_reason':summary.get('invalidated_reason'),'cases':[]}
    for r in data.get('cases',[]):
     row={k:r[k] for k in KEEP if k in r};fixture=r.get('fixture',{})
-    row['fixture_identity']={'case_id':fixture.get('case_id'),'manifest_sha256':data.get('measurement_protocol',{}).get('frozen_manifest_sha256'),'manifest_file':'../b05_frozen_builds_v1.json','controller_policy':fixture.get('controller_policy'),'resolved_stats':fixture.get('resolved_stats'),'skills':fixture.get('skills'),'boss_profile':fixture.get('boss_profile'),'directed_initial_conditions':fixture.get('directed_initial_conditions'),'negative_control_scope':fixture.get('negative_control_scope'),'naked_manifest':fixture.get('manifest') if r.get('configuration',{}).get('sample')=='naked' else None}
+    row['fixture_identity']={'case_id':fixture.get('case_id'),'manifest_sha256':data.get('measurement_protocol',{}).get('frozen_manifest_sha256'),'manifest_file':'tests/fixtures/balance/b05_reference_builds.json','controller_policy':fixture.get('controller_policy'),'resolved_stats':fixture.get('resolved_stats'),'skills':fixture.get('skills'),'boss_profile':fixture.get('boss_profile'),'directed_initial_conditions':fixture.get('directed_initial_conditions'),'negative_control_scope':fixture.get('negative_control_scope'),'naked_manifest':fixture.get('manifest') if r.get('configuration',{}).get('sample')=='naked' else None}
     row['enemy_roster']={k:{f:v.get(f) for f in ['template','rank','actor_kind','level','spawn_t','initial_hp','max_hp','actor_damage','armor','magic_resist','initial_shield','last_hp','last_shield','exit_t']} for k,v in r.get('enemy_roster',{}).items()}
     row['samples']=[{k:s.get(k) for k in ['t','hp','shield','resource','boss_hp','boss_shield','phase','player_position','cooldowns','hit_chain','break_stacks','live_enemies']} for s in r.get('samples',[])]
     row['controller_decisions']=r.get('decisions',[])

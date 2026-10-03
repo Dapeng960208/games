@@ -7,7 +7,7 @@ ROOT=next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'project.g
 HEROES=['CH01','CH02','CH03'];MIXES=['class6','class4','shared6'];SAMPLES=['G2','P5','lowG2'];SEEDS=list(range(1001,1011))
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def collect(candidate,mage,warrior=0):
- rows={};build=sha(ROOT/'docs/levels/b05/balance/evidence/b05_frozen_builds_v1.json');controller=sha(ROOT/'tests/support/b05_balance_controller.gd')
+ rows={};build=sha(ROOT/'tests/fixtures/balance/b05_reference_builds.json');controller=sha(ROOT/'tests/support/b05_balance_controller.gd')
  for p in sorted((ROOT.parent/'_test_output/B05').glob('*/summary.json')):
   s=json.loads(p.read_text())
   if s.get('hero')=='CH01' and s.get('warrior_candidate',0)!=warrior:continue
@@ -26,8 +26,9 @@ def main():
  p=argparse.ArgumentParser();p.add_argument('--warrior-candidate',type=int,choices=[0,1],default=0);p.add_argument('--candidate',type=int,required=True);p.add_argument('--mage-candidate',type=int,default=1);p.add_argument('--stage',choices=['class6','standard','comparisons'],default='class6');p.add_argument('--batch-size',type=int,default=2);a=p.parse_args()
  if os.environ.get('GAMES_TEST_RUN_ID'):raise SystemExit('Children own the managed locks; invoke orchestrator directly.')
  if not 1<=a.batch_size<=3:raise SystemExit('Bound batches to1–3seeds.')
- prefix=ROOT/f'docs/levels/b05/balance/evidence/b05_matrix_c{a.candidate}_m{a.mage_candidate}{"_w"+str(a.warrior_candidate) if a.warrior_candidate else ""}'
- plan={'schema':'b05-fixed-matrix-plan-v1','candidate':a.candidate,'mage_candidate':a.mage_candidate,'heroes':HEROES,'mixes':MIXES,'samples':SAMPLES,'seeds':SEEDS,'required_boss_cases':270,'g2_target':'every seed60–90active seconds and alive victory; HP record only','controller_sha256':sha(ROOT/'tests/support/b05_balance_controller.gd'),'frozen_build_sha256':sha(ROOT/'docs/levels/b05/balance/evidence/b05_frozen_builds_v1.json'),'no_gear_or_controller_changes':True}
+ prefix=ROOT/f'artifacts/balance/b05/matrix_c{a.candidate}_m{a.mage_candidate}{"_w"+str(a.warrior_candidate) if a.warrior_candidate else ""}'
+ prefix.parent.mkdir(parents=True,exist_ok=True)
+ plan={'schema':'b05-fixed-matrix-plan-v1','candidate':a.candidate,'mage_candidate':a.mage_candidate,'heroes':HEROES,'mixes':MIXES,'samples':SAMPLES,'seeds':SEEDS,'required_boss_cases':270,'g2_target':'every seed60–90active seconds and alive victory; HP record only','controller_sha256':sha(ROOT/'tests/support/b05_balance_controller.gd'),'frozen_build_sha256':sha(ROOT/'tests/fixtures/balance/b05_reference_builds.json'),'no_gear_or_controller_changes':True}
  if a.warrior_candidate:plan['warrior_candidate']=a.warrior_candidate
  planpath=pathlib.Path(str(prefix)+'_plan.json')
  if planpath.exists() and json.loads(planpath.read_text())!=plan:raise SystemExit('Frozen plan changed; create a new plan version.')
