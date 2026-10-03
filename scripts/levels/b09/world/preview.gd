@@ -2,7 +2,8 @@ extends Node
 const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const Traversal = preload("res://scripts/levels/b09/world/traversal.gd")
 const Content = preload("res://scripts/levels/b09/world/content.gd")
-const Progression = preload("res://scripts/domain/progression/hero_progression.gd")
+const Inventory = preload("res://scripts/levels/b09/equipment/candidate_inventory.gd")
+var inventory: RefCounted
 var room: Node2D
 var route: RefCounted
 var hud: Label
@@ -12,6 +13,14 @@ var difficulties: OptionButton
 var restart: Button
 
 func _ready() -> void:
+	# Apply after the native window opens: startup --resolution may be clamped
+	# to the current desktop even when a larger render target was requested.
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--b09-resolution="):
+			var requested := argument.trim_prefix("--b09-resolution=")
+			if requested in ["1280x720","1920x1080","2560x1440","3840x2160"]:
+				var dimensions := requested.split("x")
+				get_window().size=Vector2i(int(dimensions[0]),int(dimensions[1]))
 	var canvas := CanvasLayer.new()
 	add_child(canvas)
 	var ui := Control.new()
@@ -20,9 +29,13 @@ func _ready() -> void:
 	ui.theme=preload("res://scripts/presentation/components/style.gd").make_theme()
 	canvas.add_child(ui)
 	menu=PanelContainer.new()
-	menu.position=Vector2(400,160)
 	menu.custom_minimum_size=Vector2(480,320)
 	ui.add_child(menu)
+	menu.set_anchors_preset(Control.PRESET_CENTER)
+	menu.offset_left=-240
+	menu.offset_top=-160
+	menu.offset_right=240
+	menu.offset_bottom=160
 	var box := VBoxContainer.new()
 	box.add_theme_constant_override("separation",16)
 	menu.add_child(box)
@@ -31,7 +44,7 @@ func _ready() -> void:
 	title.add_theme_font_size_override("font_size",24)
 	box.add_child(title)
 	var detail := Label.new()
-	detail.text="Lv45 裸装测试角色 / L49–L54 → 霜晶女王\n方向键/右键移动 · 左键普攻 · Q/W/E/R 技能\n空格闪避 · F 暖灯/出口；七房有限遭遇。"
+	detail.text="Lv45 测试角色 / L49–L54 → 霜晶女王\n方向键/右键移动 · 左键普攻 · Q/W/E/R 技能\n空格闪避 · F 暖灯/出口；清房获装\n行囊可领取测试套装；七房有限遭遇。"
 	box.add_child(detail)
 	heroes=OptionButton.new()
 	for name: String in ["战士","枪手","法师"]: heroes.add_item(name)
@@ -65,33 +78,32 @@ func _ready() -> void:
 	hud_panel.add_child(hud)
 	restart=Button.new()
 	restart.text="返回职业选择"
-	restart.position=Vector2(1090,16)
 	restart.pressed.connect(_restart)
 	ui.add_child(restart)
+	restart.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	restart.offset_left=-180
+	restart.offset_top=16
+	restart.offset_right=-16
+	restart.offset_bottom=50
 	restart.hide()
 	if Rules.b09_candidate_enabled() and OS.get_cmdline_user_args().has("--b09-auto"): _start.call_deferred()
 
 func _start() -> void:
 	if not Rules.b09_candidate_enabled(): return
 	Game.run=null
-	if not Game.new_profile(): hud.text=Game.last_error; return
+	if not Game.has_profile and not Game.new_profile(): _show_start_error(Game.last_error); return
 	Game.profile.selected_hero=["CH01","CH02","CH03"][heroes.selected]
-	if not Game.start_run(): hud.text=Game.last_error; return
-	# Only the disposable run is elevated. Production profile caps stay unchanged.
-	var base := Progression.hero_base(ContentRegistry.hero(Game.run.hero_id),45,{},45)
-	for key: String in ["max_hp","attack","ability_power","armor","magic_resist","resource_max","resource_regen","starting_resource","resource_regen_delay","level"]:
-		if base.has(key): Game.run.stats[key]=base[key]
-	Game.run.level=45
-	Game.run.max_hp=float(Game.run.stats.max_hp)
-	Game.run.hp=Game.run.max_hp
-	Game.run.resource=float(Game.run.stats.starting_resource)
+	if not Game.start_run(): _show_start_error(Game.last_error); return
+	inventory=Inventory.new()
+	if not inventory.configure(): _show_start_error(inventory.last_error); return
 	room=load("res://scenes/gameplay/world/room.tscn").instantiate()
 	room.geometry_enabled=false
 	room.spawn_enabled=false
 	add_child(room)
 	for actor: Node in room.enemies.get_children(): actor.free()
 	route=Traversal.new()
-	if not route.configure(room,difficulties.selected,309) or not route.start(): hud.text="B09 加载失败："+route.last_error; return
+	if not route.configure(room,difficulties.selected,309) or not route.start(): _show_start_error("B09 加载失败："+route.last_error); return
+	inventory.attach_room(room)
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--b09-room="):
 			var index := Content.room_ids().find(argument.trim_prefix("--b09-room="))
@@ -100,6 +112,10 @@ func _start() -> void:
 	hud.get_parent().show()
 	restart.show()
 	if OS.get_cmdline_user_args().has("--b09-capture"): _capture.call_deferred()
+
+func _show_start_error(message: String) -> void:
+	hud.text=message
+	hud.get_parent().show()
 
 func _capture() -> void:
 	room.set_input_blocked(true)
@@ -130,6 +146,7 @@ func _restart() -> void:
 	if is_instance_valid(room): room.free()
 	room=null
 	route=null
+	inventory=null
 	Game.run=null
 	hud.text=""
 	hud.get_parent().hide()

@@ -1,4 +1,20 @@
 {
+  "b09_2k": {
+    "script": "tests/levels/b09/test_b09_2k.gd",
+    "scene": "tests/levels/b09/test_b09_2k.tscn"
+  },
+  "b09_inventory": {
+    "script": "tests/levels/b09/test_b09_inventory.gd",
+    "scene": "tests/levels/b09/test_b09_inventory.tscn"
+  },
+  "b09_equipment": {
+    "script": "tests/levels/b09/test_b09_equipment.gd",
+    "scene": "tests/levels/b09/test_b09_equipment.tscn"
+  },
+  "b09_monster_contract": {
+    "script": "tests/levels/b09/test_b09_monster_contract.gd",
+    "scene": "tests/levels/b09/test_b09_monster_contract.tscn"
+  },
   "approved_ui": {
     "script": "tests/ui/test_approved_ui.gd",
     "scene": "tests/ui/test_approved_ui.tscn"
