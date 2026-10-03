@@ -1,0 +1,385 @@
+{
+  "schema": "b08-reference-candidate-evidence-v1",
+  "status": "candidate_reviewed_not_final_room_acceptance",
+  "contract": {
+    "batch": "20261003T051241979145Z-6906127c",
+    "checks": 27,
+    "failures": 0,
+    "exit_code": 0,
+    "scope": "Source bytes, registry, footprint/clipping, native body/foot/mirror, bounded flow marks, low FX, switch warning, room release and audio cleanup."
+  },
+  "renderer": "Godot 4.6.3 / X11 OpenGL Compatibility / Mesa llvmpipe software renderer",
+  "framebuffer": [
+    2560,
+    1440
+  ],
+  "allowed_driver_warning": "V-Sync mode changes unsupported",
+  "sampling_batch": "20261003T050930607715Z-6431620d",
+  "sampling_report_sha256": "7edd1b3f0f943b718768b47d10b7df9ab17fca4fb020b80665bf78015de7f493",
+  "sampling": {
+    "bridge_arch.png": {
+      "bound_scope": "Draw-rectangle bounds; exact floor/exterior masks further reduce visible coverage.",
+      "full_draw_rect_pixels": "(909.7314, 606.4876)",
+      "max_visible_draw_rect_pixels": "(909.7313, 574.119)",
+      "native_pixels": "(1536.0, 1024.0)",
+      "native_to_display_scale_xy": "(0.592273, 0.592273)"
+    },
+    "distant_city.png": {
+      "bound_scope": "Draw-rectangle bounds; exact floor/exterior masks further reduce visible coverage.",
+      "full_draw_rect_pixels": "(2760.8, 1774.8)",
+      "max_visible_draw_rect_pixels": "(2560.0, 1440.0)",
+      "native_pixels": "(1564.0, 1006.0)",
+      "native_to_display_scale_xy": "(1.765217, 1.764215)"
+    },
+    "east_island_base.png": {
+      "bound_scope": "Draw-rectangle bounds; exact floor/exterior masks further reduce visible coverage.",
+      "full_draw_rect_pixels": "(804.705, 536.47)",
+      "max_visible_draw_rect_pixels": "(804.705, 483.0645)",
+      "native_pixels": "(1536.0, 1024.0)",
+      "native_to_display_scale_xy": "(0.523897, 0.523897)"
+    },
+    "entry_wind_tower.png": {
+      "bound_scope": "Draw-rectangle bounds; exact floor/exterior masks further reduce visible coverage.",
+      "full_draw_rect_pixels": "(204.3854, 306.5781)",
+      "max_visible_draw_rect_pixels": "(204.3855, 306.5781)",
+      "native_pixels": "(1024.0, 1536.0)",
+      "native_to_display_scale_xy": "(0.199595, 0.199595)"
+    },
+    "entry_wing_chapel.png": {
+      "bound_scope": "Draw-rectangle bounds; exact floor/exterior masks further reduce visible coverage.",
+      "full_draw_rect_pixels": "(412.241, 309.1807)",
+      "max_visible_draw_rect_pixels": "(412.2411, 309.1807)",
+      "native_pixels": "(1448.0, 1086.0)",
+      "native_to_display_scale_xy": "(0.284697, 0.284697)"
+    },
+    "floor_surface.png": {
+      "bound_scope": "Draw-rectangle bounds; exact floor/exterior masks further reduce visible coverage.",
+      "full_draw_rect_pixels": "(2760.8, 1774.8)",
+      "max_visible_draw_rect_pixels": "(2560.0, 1440.0)",
+      "native_pixels": "(1564.0, 1006.0)",
+      "native_to_display_scale_xy": "(1.765217, 1.764215)"
+    },
+    "m01_idle": {
+      "display_anatomical_height": 170.000004768372,
+      "native_anatomical_height": 937,
+      "native_canvas_pixels": "(1254.0, 1254.0)",
+      "native_to_display_scale": 0.181430101140204,
+      "pose_coverage": "idle only; no authored action/walk/back bank"
+    },
+    "west_island_base.png": {
+      "bound_scope": "Draw-rectangle bounds; exact floor/exterior masks further reduce visible coverage.",
+      "full_draw_rect_pixels": "(844.9977, 563.3318)",
+      "max_visible_draw_rect_pixels": "(844.9977, 509.0043)",
+      "native_pixels": "(1536.0, 1024.0)",
+      "native_to_display_scale_xy": "(0.550129, 0.550129)"
+    },
+    "winged_airship.png": {
+      "bound_scope": "Draw-rectangle bounds; exact floor/exterior masks further reduce visible coverage.",
+      "full_draw_rect_pixels": "(500.4944, 333.6629)",
+      "max_visible_draw_rect_pixels": "(500.4944, 333.663)",
+      "native_pixels": "(1536.0, 1024.0)",
+      "native_to_display_scale_xy": "(0.325843, 0.325843)"
+    }
+  },
+  "sampling_by_view": {
+    "entry_flow.png": {
+      "bridge_arch.png": {
+        "full_draw_rect_pixels": "(909.7314, 606.4876)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.592273, 0.592273)",
+        "visible_draw_rect_pixels": "(909.7313, 574.119)"
+      },
+      "distant_city.png": {
+        "full_draw_rect_pixels": "(2760.8, 1774.8)",
+        "native_pixels": "(1564.0, 1006.0)",
+        "native_to_display_scale_xy": "(1.765217, 1.764215)",
+        "visible_draw_rect_pixels": "(2560.0, 1440.0)"
+      },
+      "east_island_base.png": {
+        "full_draw_rect_pixels": "(804.705, 536.47)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.523897, 0.523897)",
+        "visible_draw_rect_pixels": "(767.2398, 483.0645)"
+      },
+      "entry_wind_tower.png": {
+        "full_draw_rect_pixels": "(204.3854, 306.5781)",
+        "native_pixels": "(1024.0, 1536.0)",
+        "native_to_display_scale_xy": "(0.199595, 0.199595)",
+        "visible_draw_rect_pixels": "(204.3855, 306.5781)"
+      },
+      "entry_wing_chapel.png": {
+        "full_draw_rect_pixels": "(412.241, 309.1807)",
+        "native_pixels": "(1448.0, 1086.0)",
+        "native_to_display_scale_xy": "(0.284697, 0.284697)",
+        "visible_draw_rect_pixels": "(412.2411, 309.1807)"
+      },
+      "floor_surface.png": {
+        "full_draw_rect_pixels": "(2760.8, 1774.8)",
+        "native_pixels": "(1564.0, 1006.0)",
+        "native_to_display_scale_xy": "(1.765217, 1.764215)",
+        "visible_draw_rect_pixels": "(2560.0, 1440.0)"
+      },
+      "west_island_base.png": {
+        "full_draw_rect_pixels": "(844.9977, 563.3318)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.550129, 0.550129)",
+        "visible_draw_rect_pixels": "(844.9977, 509.0043)"
+      },
+      "winged_airship.png": {
+        "full_draw_rect_pixels": "(500.4944, 333.6629)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.325843, 0.325843)",
+        "visible_draw_rect_pixels": "(500.4944, 333.663)"
+      }
+    },
+    "north_flow.png": {
+      "bridge_arch.png": {
+        "full_draw_rect_pixels": "(909.7314, 606.4876)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.592273, 0.592273)",
+        "visible_draw_rect_pixels": "(909.7313, 347.559)"
+      },
+      "distant_city.png": {
+        "full_draw_rect_pixels": "(2760.8, 1774.8)",
+        "native_pixels": "(1564.0, 1006.0)",
+        "native_to_display_scale_xy": "(1.765217, 1.764215)",
+        "visible_draw_rect_pixels": "(2560.0, 1440.0)"
+      },
+      "east_island_base.png": {
+        "full_draw_rect_pixels": "(804.705, 536.47)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.523897, 0.523897)",
+        "visible_draw_rect_pixels": "(804.705, 256.5045)"
+      },
+      "entry_wind_tower.png": {
+        "full_draw_rect_pixels": "(204.3854, 306.5781)",
+        "native_pixels": "(1024.0, 1536.0)",
+        "native_to_display_scale_xy": "(0.199595, 0.199595)",
+        "visible_draw_rect_pixels": "(204.3855, 306.5781)"
+      },
+      "entry_wing_chapel.png": {
+        "full_draw_rect_pixels": "(412.241, 309.1807)",
+        "native_pixels": "(1448.0, 1086.0)",
+        "native_to_display_scale_xy": "(0.284697, 0.284697)",
+        "visible_draw_rect_pixels": "(412.2411, 309.1807)"
+      },
+      "floor_surface.png": {
+        "full_draw_rect_pixels": "(2760.8, 1774.8)",
+        "native_pixels": "(1564.0, 1006.0)",
+        "native_to_display_scale_xy": "(1.765217, 1.764215)",
+        "visible_draw_rect_pixels": "(2560.0, 1440.0)"
+      },
+      "west_island_base.png": {
+        "full_draw_rect_pixels": "(844.9977, 563.3318)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.550129, 0.550129)",
+        "visible_draw_rect_pixels": "(844.9977, 282.4444)"
+      },
+      "winged_airship.png": {
+        "full_draw_rect_pixels": "(500.4944, 333.6629)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.325843, 0.325843)",
+        "visible_draw_rect_pixels": "(500.4944, 142.0642)"
+      }
+    },
+    "north_flow_moved.png": {
+      "bridge_arch.png": {
+        "full_draw_rect_pixels": "(909.7314, 606.4876)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.592273, 0.592273)",
+        "visible_draw_rect_pixels": "(909.7313, 347.559)"
+      },
+      "distant_city.png": {
+        "full_draw_rect_pixels": "(2760.8, 1774.8)",
+        "native_pixels": "(1564.0, 1006.0)",
+        "native_to_display_scale_xy": "(1.765217, 1.764215)",
+        "visible_draw_rect_pixels": "(2560.0, 1440.0)"
+      },
+      "east_island_base.png": {
+        "full_draw_rect_pixels": "(804.705, 536.47)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.523897, 0.523897)",
+        "visible_draw_rect_pixels": "(804.705, 256.5045)"
+      },
+      "entry_wind_tower.png": {
+        "full_draw_rect_pixels": "(204.3854, 306.5781)",
+        "native_pixels": "(1024.0, 1536.0)",
+        "native_to_display_scale_xy": "(0.199595, 0.199595)",
+        "visible_draw_rect_pixels": "(204.3855, 306.5781)"
+      },
+      "entry_wing_chapel.png": {
+        "full_draw_rect_pixels": "(412.241, 309.1807)",
+        "native_pixels": "(1448.0, 1086.0)",
+        "native_to_display_scale_xy": "(0.284697, 0.284697)",
+        "visible_draw_rect_pixels": "(412.2411, 309.1807)"
+      },
+      "floor_surface.png": {
+        "full_draw_rect_pixels": "(2760.8, 1774.8)",
+        "native_pixels": "(1564.0, 1006.0)",
+        "native_to_display_scale_xy": "(1.765217, 1.764215)",
+        "visible_draw_rect_pixels": "(2560.0, 1440.0)"
+      },
+      "west_island_base.png": {
+        "full_draw_rect_pixels": "(844.9977, 563.3318)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.550129, 0.550129)",
+        "visible_draw_rect_pixels": "(844.9977, 282.4444)"
+      },
+      "winged_airship.png": {
+        "full_draw_rect_pixels": "(500.4944, 333.6629)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.325843, 0.325843)",
+        "visible_draw_rect_pixels": "(500.4944, 142.0642)"
+      }
+    },
+    "north_flow_reduced.png": {
+      "bridge_arch.png": {
+        "full_draw_rect_pixels": "(909.7314, 606.4876)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.592273, 0.592273)",
+        "visible_draw_rect_pixels": "(909.7313, 347.559)"
+      },
+      "distant_city.png": {
+        "full_draw_rect_pixels": "(2760.8, 1774.8)",
+        "native_pixels": "(1564.0, 1006.0)",
+        "native_to_display_scale_xy": "(1.765217, 1.764215)",
+        "visible_draw_rect_pixels": "(2560.0, 1440.0)"
+      },
+      "east_island_base.png": {
+        "full_draw_rect_pixels": "(804.705, 536.47)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.523897, 0.523897)",
+        "visible_draw_rect_pixels": "(804.705, 256.5045)"
+      },
+      "entry_wind_tower.png": {
+        "full_draw_rect_pixels": "(204.3854, 306.5781)",
+        "native_pixels": "(1024.0, 1536.0)",
+        "native_to_display_scale_xy": "(0.199595, 0.199595)",
+        "visible_draw_rect_pixels": "(204.3855, 306.5781)"
+      },
+      "entry_wing_chapel.png": {
+        "full_draw_rect_pixels": "(412.241, 309.1807)",
+        "native_pixels": "(1448.0, 1086.0)",
+        "native_to_display_scale_xy": "(0.284697, 0.284697)",
+        "visible_draw_rect_pixels": "(412.2411, 309.1807)"
+      },
+      "floor_surface.png": {
+        "full_draw_rect_pixels": "(2760.8, 1774.8)",
+        "native_pixels": "(1564.0, 1006.0)",
+        "native_to_display_scale_xy": "(1.765217, 1.764215)",
+        "visible_draw_rect_pixels": "(2560.0, 1440.0)"
+      },
+      "west_island_base.png": {
+        "full_draw_rect_pixels": "(844.9977, 563.3318)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.550129, 0.550129)",
+        "visible_draw_rect_pixels": "(844.9977, 282.4444)"
+      },
+      "winged_airship.png": {
+        "full_draw_rect_pixels": "(500.4944, 333.6629)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.325843, 0.325843)",
+        "visible_draw_rect_pixels": "(500.4944, 142.0642)"
+      }
+    },
+    "north_switch_warning.png": {
+      "bridge_arch.png": {
+        "full_draw_rect_pixels": "(909.7314, 606.4876)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.592273, 0.592273)",
+        "visible_draw_rect_pixels": "(909.7313, 347.559)"
+      },
+      "distant_city.png": {
+        "full_draw_rect_pixels": "(2760.8, 1774.8)",
+        "native_pixels": "(1564.0, 1006.0)",
+        "native_to_display_scale_xy": "(1.765217, 1.764215)",
+        "visible_draw_rect_pixels": "(2560.0, 1440.0)"
+      },
+      "east_island_base.png": {
+        "full_draw_rect_pixels": "(804.705, 536.47)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.523897, 0.523897)",
+        "visible_draw_rect_pixels": "(804.705, 256.5045)"
+      },
+      "entry_wind_tower.png": {
+        "full_draw_rect_pixels": "(204.3854, 306.5781)",
+        "native_pixels": "(1024.0, 1536.0)",
+        "native_to_display_scale_xy": "(0.199595, 0.199595)",
+        "visible_draw_rect_pixels": "(204.3855, 306.5781)"
+      },
+      "entry_wing_chapel.png": {
+        "full_draw_rect_pixels": "(412.241, 309.1807)",
+        "native_pixels": "(1448.0, 1086.0)",
+        "native_to_display_scale_xy": "(0.284697, 0.284697)",
+        "visible_draw_rect_pixels": "(412.2411, 309.1807)"
+      },
+      "floor_surface.png": {
+        "full_draw_rect_pixels": "(2760.8, 1774.8)",
+        "native_pixels": "(1564.0, 1006.0)",
+        "native_to_display_scale_xy": "(1.765217, 1.764215)",
+        "visible_draw_rect_pixels": "(2560.0, 1440.0)"
+      },
+      "west_island_base.png": {
+        "full_draw_rect_pixels": "(844.9977, 563.3318)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.550129, 0.550129)",
+        "visible_draw_rect_pixels": "(844.9977, 282.4444)"
+      },
+      "winged_airship.png": {
+        "full_draw_rect_pixels": "(500.4944, 333.6629)",
+        "native_pixels": "(1536.0, 1024.0)",
+        "native_to_display_scale_xy": "(0.325843, 0.325843)",
+        "visible_draw_rect_pixels": "(500.4944, 142.0642)"
+      }
+    }
+  },
+  "mirror_fixed_batch": "20261003T051507193758Z-8f8bb20f",
+  "mirror_fixed_report_sha256": "65a159c04a4ca8fb37ed83a31be437db1f533433c8038dbb837680f39dda6121",
+  "mirror_fixed_entry_sha256": "979009ca278223255401a452c1dc38345542247f79f640d8d0cfad53d8c39f29",
+  "qa_images_not_committed": [
+    {
+      "batch": "20261003T050930607715Z-6431620d",
+      "file": "entry_flow.png",
+      "sha256": "8695d39a855d2bb82d42b6cc4cecd2e35a90bc8d7623477d07e99a4bbf2da672",
+      "scope": "Flow/sampling evidence; pre-fix actor mirror alignment is superseded by final entry capture."
+    },
+    {
+      "batch": "20261003T050930607715Z-6431620d",
+      "file": "north_flow.png",
+      "sha256": "21ed49b0410252f620d92bc31abb24ba760558e5b8c8b3916dbd2573e97e6bbb",
+      "scope": "Flow/sampling evidence; pre-fix actor mirror alignment is superseded by final entry capture."
+    },
+    {
+      "batch": "20261003T050930607715Z-6431620d",
+      "file": "north_flow_moved.png",
+      "sha256": "30c7f791e5567fa3c6b954e2e3693c1ee71cefac81a03205080179cd2a724e3e",
+      "scope": "Flow/sampling evidence; pre-fix actor mirror alignment is superseded by final entry capture."
+    },
+    {
+      "batch": "20261003T050930607715Z-6431620d",
+      "file": "north_flow_reduced.png",
+      "sha256": "2a31cc3461a95545116e4f03596d7907a3736169f241519524fe8854ec365773",
+      "scope": "Flow/sampling evidence; pre-fix actor mirror alignment is superseded by final entry capture."
+    },
+    {
+      "batch": "20261003T050930607715Z-6431620d",
+      "file": "north_switch_warning.png",
+      "sha256": "1cc1078322acdfba221430c9afa8da5f2303e623a14c9dafc1dc0a2b26b2bfc1",
+      "scope": "Flow/sampling evidence; pre-fix actor mirror alignment is superseded by final entry capture."
+    },
+    {
+      "batch": "20261003T051507193758Z-8f8bb20f",
+      "file": "entry_flow.png",
+      "sha256": "979009ca278223255401a452c1dc38345542247f79f640d8d0cfad53d8c39f29",
+      "scope": "Final integrated candidate foot/mirror registration and entry composition."
+    }
+  ],
+  "source_pixels_unchanged": true,
+  "whole_room_native_2k": false,
+  "sampling_limit": "Full draw and visible rectangle bounds; exact alpha and floor masks further reduce screen coverage. Floor/background are currently enlarged ~1.765x.",
+  "visual_limits": [
+    "Broad rectangular floor composition and north depth framing incomplete",
+    "M01 idle only, other actor/interaction art remains debug",
+    "Not natural gameplay or hardware performance acceptance"
+  ]
+}

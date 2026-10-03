@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "actor_id": "B08-M01",
+  "actor_name": "羽弓射手",
+  "generator": "built-in image_gen",
+  "generation_mode": "reference-guided generation then targeted edit",
+  "created_utc": "2026-10-03",
+  "source_pixel_edits": "none; byte-identical file copies only",
+  "staging_only": true,
+  "references": [
+    {
+      "path": "B08(1).png",
+      "role": "Authoritative user concept; visual identity and costume family",
+      "sha256": "aa25afa52eaf96f97fa70875003047b69b01b2c089dd9283eb9cfacd257d31ee"
+    },
+    {
+      "path": "l43-north-branch.png",
+      "role": "Actual upper-center hero only: rendering and camera style; debug figures explicitly excluded",
+      "sha256": "7502f08e0ad13967784ca215becde1a32abdf5e24c154df4962e58a2a8998d6e"
+    }
+  ],
+  "outputs": [
+    {
+      "version": "v1",
+      "file": "m01-front-right-idle-pilot-v1.png",
+      "status": "superseded_pilot_preserved",
+      "generated_source": "exec-550b9189-566e-49c9-961d-fc3764ec2fcc.png",
+      "sha256": "69f147d8352956eaf51bd33c794dbd6c0d5c815539a0d11a073c64751969641d",
+      "unchanged_from_tool_original": true,
+      "prompt_file": "prompt-v1.txt",
+      "full_prompt": "Use case: stylized-concept.\nAsset type: ONE production-quality, isolated 2.5D fantasy action-game enemy character sprite, full body, native RGBA, front-right idle/ready pilot for B08-M01 羽弓射手 (Featherbow Archer).\nInput image 1 is the user's authoritative B08 world/design reference. Derive costume, palette, short layered white feather wings, graceful feather motifs, and refined gold fittings from the winged adult humanoids along its bottom. Do not copy the architecture, labels, birds, helmet beaks, spears, huge warrior wings, or background.\nInput image 2 is ONLY for the visual medium, camera and anatomy of the detailed player hero near the upper center: match its crisp hand-painted/softly rendered game-art finish, strong readable silhouette, high three-quarter top-down 2.5D camera and believable adult proportions. Absolutely ignore and do not imitate the simple circle-and-triangle debug figures elsewhere.\nSubject: a lean adult human-faced winged archer with short pale ash-blond hair, lightly pointed small feather hair adornments (no horns). No beak; human nose and jaw visible in three-quarter view. Fitted light ivory tunic with clean medium sky-blue cloth panels and a short split overskirt, ivory leggings, practical ivory/blue calf boots. Thin, restrained warm-gold shoulder, bracer, belt and boot fittings inspired by the B08 concept. No massive armor, no giant cloak. Two small symmetrical short white feather wings sprout naturally behind the shoulder blades; each has clear layered feathers and subtle cool-blue shading, ending around the waist to upper thigh, held half-open. Wings are secondary to a clearly readable head, torso, arms and two legs.\nWeapon: a single elegant longbow shaped like a long white feather, slender recurved ivory limbs with restrained gold structure and sparse pale-blue accent, clearly visible fine bowstring. Bow length approximately the character's crown-to-boot height. Hold the bow in the left hand on screen-right, roughly upright but tilted naturally outward in a relaxed combat-ready pose. Right hand rests near the torso ready to draw. No drawn arrow, no glowing projectile, no extra props, no quiver obscuring the wings.\nPose and camera: whole character faces diagonally down-right, showing the front and right-facing three-quarter view, same general direction as the screenshot hero. Elevated orthographic game camera looking down around 35 degrees: visible top planes of hair, shoulders and boots, modestly foreshortened torso, feet planted apart on an implied plane. Relaxed ready stance, clear gap between legs; no flight. Adult heroic game proportions, approximately 5.5 to 6 heads tall, not chibi, not elongated fashion sketch.\nRendering: excellent polished painterly 3D-like fantasy game sprite, sculpted readable form, carefully simplified readable material shapes rather than excessive microfiligree. Crisp clean silhouette with natural antialiasing. Warm light from upper-left and restrained cool self-shadowing. Primary palette warm ivory and medium/light blue, small antique-gold highlights. Maintain enough edge contrast for a bright ivory/cloud environment.\nComposition: exactly one full-body character centered with generous transparent margins. Include the complete bow, both wing tips, top of hair and soles of both boots; nothing cropped. Figure should fill most of a square canvas without touching edges. Genuinely transparent background. No ground, floor, base, pedestal, contact ellipse, baked ground shadow, glow, outline sticker border, scene, atmospheric effects, text, labels, UI, watermark, border, other character or duplicate views.\nDeliver ONLY this one native character sprite; no sheet and no montage.\n",
+      "native_image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "alpha_bbox_gt0": [
+          0,
+          0,
+          1240,
+          1254
+        ],
+        "alpha_bbox_gt16": [
+          180,
+          5,
+          1226,
+          1243
+        ],
+        "visible_canvas_edge_pixels_gt16": 0
+      }
+    },
+    {
+      "version": "v2",
+      "file": "m01-front-right-idle-pilot-v2.png",
+      "status": "parent_approved_idle_pilot_staged_scale_reviewed_pending_l43",
+      "generated_source": "exec-22bced62-df79-45e2-b58d-0c0937157182.png",
+      "sha256": "540104973b5553e5f3c9a23ea7ce218684fb9733d5d599a8244169e617e5618d",
+      "unchanged_from_tool_original": true,
+      "prompt_file": "prompt-v2.txt",
+      "full_prompt": "Edit the single archer sprite in input image 1 into a cleaner production sprite. Preserve the same adult human male identity, ash-blond hair, ivory/blue tunic design, short split overskirt, blue/ivory calf boots, feather-shaped ivory bow, front-right ready stance and rendering quality. Preserve genuine transparent alpha.\nCorrect the production silhouette: reduce both white feather wings to compact short wings, with their tips ending at the waist, half-open behind the upper back. These are small practical wings, not a giant angel silhouette. Simplify the gold fittings by about half, into thinner restrained edges on shoulders, bracers, belt and boots, not large ornate pauldron masses. Keep the B08 ivory/blue/gold identity. Bow must remain a clearly readable long slender recurved feather bow with visible bowstring, approximately anatomical body height.\nMake the elevated camera more apparent: high three-quarter orthographic view looking downward around 40 degrees, so we see more top of the hair, shoulders, knees and boots, matching a top-down 2.5D action game actor. Keep body facing down-right and two planted feet, human adult anatomy, whole body visible.\nFrame the whole character and entire bow with generous clean TRANSPARENT padding on all four sides, minimum 8% of canvas from any bow tip, feather, hair or boot. Keep exact one character, full crown-to-boots, no cropping. Transparent RGBA background with clean antialiased edges; absolutely no ground shadow, colored edge noise, floor, pedestal, smoke, background, UI or text. No beak, horn, tail, spear, shield or additional objects. The result is ONE front-right idle/ready sprite, not a sheet.\n",
+      "native_image": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "alpha_bbox_gt0": [
+          29,
+          23,
+          1230,
+          1220
+        ],
+        "alpha_bbox_gt16": [
+          303,
+          25,
+          1184,
+          1214
+        ],
+        "visible_canvas_edge_pixels_gt16": 0
+      }
+    }
+  ],
+  "requested_scope": "One front-right idle/ready pilot. No telegraph, release, back bank, walk animation or in-game acceptance claimed."
+}

@@ -284,6 +284,22 @@
   "b06_tide_state": {
     "script": "tests/levels/b06/test_b06_tide_state.gd"
   },
+  "b08_candidate": {
+    "script": "tests/levels/b08/test_candidate.gd",
+    "scene": "tests/levels/b08/test_candidate.tscn"
+  },
+  "b08_l44": {
+    "script": "tests/levels/b08/test_l44.gd",
+    "scene": "tests/levels/b08/test_l44.tscn"
+  },
+  "b08_visual_candidate": {
+    "script": "tests/levels/b08/test_visual_candidate.gd",
+    "scene": "tests/levels/b08/test_visual_candidate.tscn"
+  },
+  "b08_visual_capture": {
+    "script": "tests/levels/b08/test_visual_capture.gd",
+    "scene": "tests/levels/b08/test_visual_capture.tscn"
+  },
   "backpack": {
     "script": "tests/equipment/test_backpack.gd",
     "scene": "tests/equipment/test_backpack.tscn"
@@ -707,6 +723,9 @@
   "inventory_performance": {
     "script": "tests/app/test_inventory_performance.gd",
     "scene": "tests/app/test_inventory_performance.tscn"
+  },
+  "legacy_profile_reset": {
+    "script": "tests/persistence/test_legacy_profile_reset.gd"
   },
   "loot_status_ui": {
     "script": "tests/equipment/test_loot_status_ui.gd"
@@ -1137,8 +1156,5 @@
   "world_visual": {
     "script": "tests/world/test_world_visual.gd",
     "scene": "tests/world/test_world_visual.tscn"
-  },
-  "legacy_profile_reset": {
-    "script": "tests/persistence/test_legacy_profile_reset.gd"
   }
 }

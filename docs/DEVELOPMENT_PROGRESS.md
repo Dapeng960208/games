@@ -36,7 +36,8 @@
 | B04 赤岩战寨 | 正式入口已接入 | L19–L24、BO04；18 种普通怪 |
 | B05 繁花树庭 | 隔离候选／待验证 | 显式 debug 候选和独立档，开放至 Lv25 |
 | B06 琉潮珊城 | 隔离候选／待验证 | 显式 debug 候选和独立档，开放至 Lv30 |
-| B07–B12 | 未实现 | 设计身份与规格保留，不开放运行入口 |
+| B07、B09–B12 | 未实现（本分支） | 设计身份与规格保留，不开放运行入口 |
+| B08 浮羽空港 | 隔离候选／待验证 | 显式 debug＋隔离档；L43/L44 六种普通怪与首领动作切片，正式进度／装备／完整美术未完成 |
 
 各关文档分为 `enemies`、`bosses`、`rooms`、`decorations` 和候选 `balance/art`。详见 [levels](levels/README.md)。S11 自然全量平衡仍未完成，候选诊断和单个样本不能作为发布验收。
 
@@ -47,3 +48,7 @@
 美术按职业/功能/关卡归类，实际路径由资源索引统一解析。角色、摄影机与共用美术类使用 HeroActor、WorldCamera、GameArtwork；透明边界测量归入共用纹理模块。旧 `assets/bosses`、旧角色根目录内容、旧采矿怪物图和已废弃转换脚本已删除。首关旧虫形动作库、未采用的虫族动作候选及旧加载分支也已移除；B05/B06 使用各自当前身份的姿态库。来源与许可的必要归属继续保留。生成工作副本、隔离档、日志和缓存不入库。
 
 相关验证入口：`tools/test.ps1 -ImportOnly`、`legacy_profile_reset`、`numerical_fresh_profile`、`numerical_instances`、`equipment_class_policy`、`progressive_monster_roster`、`save_recycle_ui`、`environment_native_resources`、`boss_hd_art`、`hero_storybook_family`。具体运行结果以本次提交说明为准。
+
+B08 当前范围见 [候选说明](levels/b08/balance/candidate_progress.md)。本分支先同步 main 的目录与运行接口；视觉资源和 L45 工作另有本地备份，未混入这次规范迁移提交。
+
+B08 首房追加显式 [参考图方向视觉候选](levels/b08/art/reference_candidate.md)：八层环境、M01 idle 与可读风纹，保持单关隔离；当前未完成整房视觉终验，地表/远景仍有约 1.765 倍显示放大，不称原生 2K 全房。

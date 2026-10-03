@@ -32,3 +32,7 @@ python tools/testing/test_workspace.py cleanup --biome B05 --keep 5 --apply --co
 默认只列出候选。执行清理须具有对应删除授权；管理器只处理 ID、marker 和完成状态匹配的批次，保留运行中、未完成、手工目录，拒绝路径穿越、符号链接及仓库元数据。Windows 输出由独立入口管理，不能套用 Linux 批次清理命令。
 
 构建、缓存、临时档与重复截图不入库。保留正式资源、来源、许可与玩家存档。截图套件和自然采样各自声明输出位置、源码版本与运行环境；路径检查不能替代实际图形或自然玩法验收。
+
+## B08 独立候选
+
+B08 使用同一 `/tmp/games-godot.lock`，但测试输出与临时文件按本工作区的 `artifacts/test_runs/B08/<批次>` 和 `_tmp/test_runs/B08/<批次>` 隔离。入口为 `python tools/testing/run_b08_candidate.py`。不得写其他工作区缓存或真实档；清理仍须显式审阅授权。

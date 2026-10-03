@@ -1,0 +1,75 @@
+{
+  "schema": "b08-m01-idle-candidate-v1",
+  "status": "opt_in_idle_pilot_not_full_animation",
+  "actor_id": "B08-M01",
+  "file": "idle.png",
+  "sha256": "540104973b5553e5f3c9a23ea7ce218684fb9733d5d599a8244169e617e5618d",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "body_height": 937,
+  "world_body_height": 100,
+  "frame": {
+    "name": "idle",
+    "index": 0,
+    "region": [
+      0,
+      0,
+      1254,
+      1254
+    ],
+    "crown": [
+      641,
+      190
+    ],
+    "head": [
+      641,
+      190
+    ],
+    "foot_contacts": [
+      [
+        436,
+        1206
+      ],
+      [
+        838,
+        1048
+      ]
+    ],
+    "foot": [
+      637,
+      1127
+    ],
+    "core_anchor": [
+      615,
+      501
+    ],
+    "grip": [
+      1033,
+      673
+    ],
+    "visual_outlet": [
+      1050,
+      640
+    ],
+    "pose": "Grounded front-right relaxed ready pose. Bow held in left hand, right hand at torso. No arrow drawn.",
+    "anchor_accuracy": "Manual visual estimates, approximately +/-10 source pixels; outlet is an inferred arrow-rest location because this idle pose has no nocked arrow.",
+    "visual_outlet_limit": "Visual metadata only. Current gameplay projectile still originates at actor.position and retains its existing frozen target and collision behavior."
+  },
+  "enabled_rooms": [
+    "L43"
+  ],
+  "required_candidate_flag": "--b08-art-l43",
+  "facing_coverage": "front-right source with horizontal mirror; no back bank",
+  "gameplay_unchanged": true,
+  "source_pixels_unchanged": true,
+  "remaining": [
+    "telegraph/release poses",
+    "walking frames",
+    "back bank",
+    "natural combat visual review"
+  ],
+  "original_file": "m01-front-right-idle-pilot-v2.png",
+  "logical_id": "asset://b08/enemies/m01/idle.png"
+}

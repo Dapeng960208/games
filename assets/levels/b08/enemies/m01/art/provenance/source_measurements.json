@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "actor_id": "B08-M01",
+  "asset_id": "m01-front-right-idle-pilot-v2",
+  "status": "parent_approved_idle_pilot_staged_scale_reviewed_pending_l43",
+  "enabled": false,
+  "file": "m01-front-right-idle-pilot-v2.png",
+  "source_width": 1254,
+  "source_height": 1254,
+  "source_mode": "RGBA",
+  "source_pixels_unchanged": true,
+  "sha256": "540104973b5553e5f3c9a23ea7ce218684fb9733d5d599a8244169e617e5618d",
+  "bank": "front-right",
+  "facing": "southeast",
+  "facing_x": 1,
+  "body_height": 937,
+  "body_height_definition": "Manual anatomical crown y190 to midpoint of two projected boot sole contacts y1127. Excludes feather adornment, wings and bow. One fixed anatomy baseline for future approved poses; never alpha-bounds-fit each pose.",
+  "anatomical_crown_to_lowest_boot_px": 1024,
+  "anatomical_crown_to_lowest_boot_definition": "Supplementary vertical extent from crown y190 to lowest visible boot sole y1214; not runtime scaling baseline.",
+  "proposed_world_body_height": 100,
+  "existing_hero_world_body_height": 112,
+  "proposed_hero_ratio": 0.8928571428571429,
+  "proposed_source_to_world_scale": 0.10672358591248667,
+  "scope": "Local presentation pilot only. Does not change navigation radius, collider, stats, attack distance, projectile origin or public presentation metrics.",
+  "frames": [
+    {
+      "name": "idle",
+      "index": 0,
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "crown": [
+        641,
+        190
+      ],
+      "head": [
+        641,
+        190
+      ],
+      "foot_contacts": [
+        [
+          436,
+          1206
+        ],
+        [
+          838,
+          1048
+        ]
+      ],
+      "foot": [
+        637,
+        1127
+      ],
+      "core_anchor": [
+        615,
+        501
+      ],
+      "grip": [
+        1033,
+        673
+      ],
+      "visual_outlet": [
+        1050,
+        640
+      ],
+      "pose": "Grounded front-right relaxed ready pose. Bow held in left hand, right hand at torso. No arrow drawn.",
+      "anchor_accuracy": "Manual visual estimates, approximately +/-10 source pixels; outlet is an inferred arrow-rest location because this idle pose has no nocked arrow.",
+      "visual_outlet_limit": "Visual metadata only. Current gameplay projectile still originates at actor.position and retains its existing frozen target and collision behavior."
+    }
+  ],
+  "alpha_qa": {
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_bbox_gt0": [
+      29,
+      23,
+      1230,
+      1220
+    ],
+    "alpha_bbox_gt16": [
+      303,
+      25,
+      1184,
+      1214
+    ],
+    "visible_canvas_edge_pixels_gt16": 0
+  },
+  "visual_review": {
+    "concept_identity": "Ivory/blue lightweight adult human-faced winged archer with restrained gold fittings and long feather-shaped bow. Compact white layered wings now end near waist. No beak, dragon horns, heavy lance, cathedral-size wings or tail.",
+    "complete_body": true,
+    "complete_weapon": true,
+    "no_baked_ground_shadow": true,
+    "hands_and_feet": "Both hands and both boots visible. Bow hand wraps grip; free hand rests at torso. Wing roots read behind shoulders.",
+    "camera": "Elevated three-quarter view showing top of hair and shoulders; parent/in-game review still required for exact camera compatibility.",
+    "framing_note": "Entire silhouette stays within native canvas. Requested 8% margins were not fully achieved: bow top is 25px at alpha>16. No cropping observed.",
+    "alpha_note": "Native alpha has sparse near-transparent colored residues. Saturated red pixel counts: alpha>0 4375, alpha>1 37, alpha>8 0. This is not proof of uncontaminated composites; bright/dark-background and real-game sampling must be inspected. No alpha thresholding or pixel cleanup was applied."
+  },
+  "completion_limits": [
+    "One front-right idle/ready pose only",
+    "No telegraph or release frame",
+    "No back-right bank",
+    "No authored walking animation",
+    "No runtime integration or actual L43 in-game acceptance",
+    "Staged engine-scale proof reviewed; actual map/combat proof still required"
+  ],
+  "parent_art_review": {
+    "reviewed_utc": "2026-10-03T04:19:19Z",
+    "approved_scope": "Idle pilot source identity, palette, bow and compact wings only",
+    "held_scope": "Additional poses held until first actual-game-frame confirmation of scale, feet and camera. No in-game or animation acceptance."
+  },
+  "staged_renderer_review": {
+    "reviewed_utc": "2026-10-03T04:32:47Z",
+    "evidence": [
+      {
+        "path": "b08-m01-hero-runtime-scale.png",
+        "sha256": "e77422badcc373c5a3d2015356880782784707628843c370bf1ca88cf1658152"
+      },
+      {
+        "path": "b08-m01-hero-detail.png",
+        "sha256": "9cd5cd3b7efb9718ea4410c9c40dd4d6aae8d9e75f9138ebb9656c4ef8c50acd"
+      }
+    ],
+    "setup": "Same frame with unchanged production CH01 hero at112, M01 ordinary formula82.08 and proposed M01 body100; second frame enlarges the whole world equally2x. Source pixels untouched.",
+    "recommended_world_body_height": 100,
+    "findings": [
+      "100 reads as a slim, slightly shorter adult beside unchanged112hero;82.08 reads conspicuously undersized.",
+      "Projected midpoint anchor places both visible boots plausibly on the implied ground plane.",
+      "Elevated three-quarter camera and costume finish are compatible with the production hero.",
+      "Feather bow, visible string, short white wings and blue/ivory body stay readable.",
+      "No obvious colored alpha fringe seen on the tested light-gray/blue-gray backgrounds at runtime scale or equal2x detail."
+    ],
+    "bounds": "This is a staged unintegrated engine-renderer comparison, not the actual L43 map, combat, animation or lighting acceptance. Low-alpha source residues remain unchanged and are still recorded as a sampling risk."
+  }
+}
