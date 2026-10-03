@@ -5,8 +5,62 @@ const Abilities = preload("res://scripts/gameplay/characters/hero_abilities.gd")
 const Inspect = preload("res://scripts/presentation/equipment/equipment_inspection.gd")
 static var _authored_cache: Dictionary = {}
 
+## New identity-based page entries contain settled specs from the service.
+static func entry(view: Dictionary, skill_id: String) -> Dictionary:
+	for value: Variant in view.get("skills",[]):
+		if value is Dictionary and str(value.get("skill_id",value.get("id",""))) == skill_id:
+			return value.duplicate(true)
+	return {}
+
+static func source_text(skill: Dictionary) -> String:
+	var source: Variant = skill.get("source",{})
+	if source is String: return source
+	if not source is Dictionary: return ""
+	if str(source.get("kind","")) == "starter":
+		return Inspect.t("职业初始技能，开局永久拥有。","Starter skill, permanently learned from the beginning.")
+	var room := str(source.get("room_id",source.get("room","")))
+	var location := GameStyle.content_text(source,"name",GameStyle.content_text(source,"label",room))
+	var kind := Inspect.t("支路探索","Side-route exploration") if str(source.get("kind","")) == "exploration" else Inspect.t("任务奖励","Quest reward")
+	return room+" · "+location+"\n"+kind+Inspect.t("。获得后同时解锁三职业技能，死亡与撤离保留。",". Unlocks a skill for all three roles and persists through death and extraction.")
+
+static func config_reason(reason: String) -> String:
+	var messages: Dictionary = {
+		"SKILL_CAMP_ONLY":["整次出征不能更换技能或分支，请返回营地。","Skills and branches stay fixed throughout an expedition. Return to camp to edit."],
+		"SKILL_INVALID_LOADOUT":["请选择本职业四个互不重复、已学会的技能。","Choose four unique, learned skills from this role."],
+		"SKILL_BRANCH_LOCKED":["技能熟练度尚未达到此分支的开放等级。","This skill has not reached the mastery required for that branch."],
+		"SKILL_PROFILE_NOT_READY":["技能档案尚未准备好，请重新打开页面。","The skill profile is not ready. Reopen this page."],
+		"SKILL_OPERATION_CONFLICT":["此前的保存仍需处理，请保持当前配置并重试。","A previous save still needs recovery. Keep this configuration and retry."],
+		"SKILL_PENDING_CONFLICT":["存档已发生变化，请还原草稿并重新配置。","The save has changed. Revert this draft and configure again."],
+		"SKILL_CONFIG_CAPACITY":["技能保存记录已达到上限，当前配置未应用。","Skill save records reached their limit. This configuration was not applied."],
+	}
+	if messages.has(reason): return str(messages[reason][1 if Words.locale == "en" else 0])
+	return reason if not reason.is_empty() and not reason.begins_with("SKILL_") else Inspect.t("保存失败，当前草稿保留；请重试同一配置。","Save failed. Your draft is retained; retry the same configuration.")
+
+static func spec_facts(spec: Dictionary) -> String:
+	var lines := PackedStringArray()
+	if spec.has("total_coefficient"):
+		lines.append(Inspect.t("整次基础倍率 %.2fH","Total base coefficient %.2fH") % float(spec.total_coefficient))
+	elif float(spec.get("coefficient",0.0)) > 0.0:
+		lines.append(Inspect.t("单段基础倍率 %.2fH","Per-packet base coefficient %.2fH") % float(spec.coefficient))
+	if spec.has("tick_coefficient"):
+		lines.append(Inspect.t("持续效果每跳 %.2fH","Each sustained pulse %.2fH") % float(spec.tick_coefficient))
+	if spec.has("windup") and spec.has("duration"):
+		lines.append(Inspect.t("准备 %.2f 秒 · 总动作 %.2f 秒","Prepare %.2f s · Action %.2f s") % [float(spec.windup),float(spec.duration)])
+	if spec.has("range"): lines.append(Inspect.t("距离 %.0f","Range %.0f") % float(spec.range))
+	if spec.has("radius"): lines.append(Inspect.t("半径 %.0f","Radius %.0f") % float(spec.radius))
+	if spec.has("shield_ratio"): lines.append(Inspect.t("护盾为最大生命 %.0f%%","Shield: %.0f%% of maximum HP") % (100.0 * float(spec.shield_ratio)))
+	return "\n".join(lines)
+
 ## A read-only ledger entry: branch and upgrade prose comes from the hero catalog.
 static func ledger_entry(hero_id: String, level: int, stats: Dictionary, slot: String, branches: Dictionary = {}) -> Dictionary:
+	if int(Game.profile.get("role_combat_version",0)) >= 2 and Game.has_method("skill_page_view"):
+		var identity := slot
+		if slot in ["q","secondary","f","ultimate"]:
+			var loadout: Array = Game.call("get_loadout",hero_id)
+			if loadout.size() == 4: identity = str(loadout[["q","secondary","f","ultimate"].find(slot)])
+		var page: Dictionary = Game.call("skill_page_view",hero_id,"run" if Game.run != null else "camp")
+		var selected := entry(page,identity)
+		return {"slot":slot,"skill_id":identity,"title":str(selected.get("name","")),"spec":selected.get("spec",{}),"unlock":1,"unlocked":selected.get("unlocked",false),"description":str(selected.get("description",""))}
 	var hero := ContentRegistry.hero(hero_id)
 	var skill: Dictionary = hero.get("skills",{}).get(slot,{}).duplicate(true)
 	var spec := Abilities.preview_spec(hero_id,level,stats,slot)
@@ -41,6 +95,8 @@ static func authored_text(text: String, version: int) -> String:
 	return text
 
 static func passive_text(hero: Dictionary, stats: Dictionary, actor: Variant = null) -> String:
+	if int(Game.profile.get("role_combat_version",0)) >= 2 or int(hero.get("role_combat_version",0)) >= 2:
+		return authored_text(GameStyle.content_text(hero.get("passive",{}),"description"),int(stats.get("ruleset_version",1)))
 	var version := int(stats.get("ruleset_version",1))
 	var text := authored_text(GameStyle.content_text(hero.get("passive",{}),"description_v2" if version == 2 and hero.get("passive",{}).has("description_v2") else "description"),version)
 	if version == 2 and str(hero.get("id","")) == "CH01":
@@ -56,6 +112,14 @@ static func passive_text(hero: Dictionary, stats: Dictionary, actor: Variant = n
 	return text
 
 static func describe(hero: String, level: int, stats: Dictionary, slot: String, skill: Dictionary = {}, actor: Variant = null, authored: String = "") -> String:
+	if int(Game.profile.get("role_combat_version",0)) >= 2 and slot in ["q","secondary","f","ultimate"] and Game.has_method("get_loadout"):
+		var ids: Array = Game.call("get_loadout",hero)
+		if ids.size() == 4: slot = str(ids[["q","secondary","f","ultimate"].find(slot)])
+	if slot.begins_with("CH"):
+		var view: Dictionary = Game.call("skill_page_view",hero,"run" if Game.run != null else "camp") if Game.has_method("skill_page_view") else {}
+		var item := entry(view,slot)
+		var spec: Dictionary = skill if not skill.is_empty() else item.get("spec",{})
+		return str(item.get("description",authored))+"\n"+Inspect.t("消耗 %d · 冷却 %.2f 秒 · 准备 %.2f 秒 · 总动作 %.2f 秒","Cost %d · cooldown %.2f s · prepare %.2f s · action %.2f s") % [int(spec.get("cost",0)),float(spec.get("cooldown",0)),float(spec.get("windup",0)),float(spec.get("duration",0))]
 	var version := int(stats.get("ruleset_version",1))
 	if authored.is_empty():
 		var definition: Dictionary = ContentRegistry.hero(hero).get("skills",{}).get(slot,{})

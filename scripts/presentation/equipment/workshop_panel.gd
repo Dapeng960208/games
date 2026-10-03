@@ -10,6 +10,7 @@ const SetShop = preload("res://scripts/presentation/equipment/equipment_set_shop
 const Recycle = preload("res://scripts/presentation/equipment/equipment_recycle_panel.gd")
 const HeroDossier = preload("res://scripts/presentation/screens/hero_dossier.gd")
 const SkillInspect = preload("res://scripts/presentation/screens/skill_inspection.gd")
+const MenuBackdrop = preload("res://scripts/presentation/screens/menu_backdrop.gd")
 const Inspect = preload("res://scripts/presentation/equipment/equipment_inspection.gd")
 const StatSheet = preload("res://scripts/presentation/screens/stat_sheet.gd")
 const InstanceForging = preload("res://scripts/presentation/equipment/instance_forging_panel.gd")
@@ -68,6 +69,10 @@ func _render() -> void:
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
+	if mode in ["heroes", "skills"]:
+		var backdrop := MenuBackdrop.new()
+		backdrop.name = "WorkshopBackdrop"
+		add_child(backdrop)
 	var header := GameStyle.panel(self,Vector2.ZERO,Vector2(1280,64))
 	header.name = "WorkshopHeader"
 	var emblem := TextureRect.new()

@@ -20,6 +20,7 @@ const Bindings = preload("res://scripts/infrastructure/input/control_bindings.gd
 const Presentation = preload("res://scripts/presentation/world/room_presentation.gd")
 const IdentityPlate = preload("res://scripts/presentation/hud/room_identity_plate.gd")
 const HitChainReadout = preload("res://scripts/presentation/hud/hit_chain_readout.gd")
+const RoleSkin = preload("res://scripts/presentation/components/role_skin.gd")
 
 const SKILLS := ["q","secondary","f","ultimate"]
 const KEYS := ["Q","W","E","R"]
@@ -161,6 +162,7 @@ class HeroBust extends Control:
 class PassiveGlyph extends Control:
 	var hero_id := "CH01"
 	var accent := Color("258b87")
+	var state: Dictionary = {}
 	func _draw() -> void:
 		var center := size*.5
 		draw_circle(center+Vector2(0,2),23,Color(.20,.12,.12,.18))
@@ -168,18 +170,44 @@ class PassiveGlyph extends Control:
 		draw_circle(center,20,Color("fff1cf"))
 		draw_arc(center,22,-PI*.95,-PI*.08,32,Color("ffe8a2"),2,true)
 		if hero_id == "CH01":
-			draw_polyline(PackedVector2Array([center+Vector2(-10,-12),center+Vector2(10,-12),center+Vector2(9,4),center+Vector2(0,13),center+Vector2(-9,4),center+Vector2(-10,-12)]),accent,2.5,true)
-			draw_line(center+Vector2(0,-7),center+Vector2(0,7),accent,2.5,true)
+			draw_line(center+Vector2(-9,13),center+Vector2(10,-12),accent,4,true)
+			draw_polyline(PackedVector2Array([center+Vector2(-2,-11),center+Vector2(8,-15),center+Vector2(16,-5),center+Vector2(5,-1)]),accent,5,true)
+			if str(state.get("phase","normal")) in ["berserk","frenzy"]:
+				draw_arc(center,24,-PI*.9,PI*.65,30,accent,3,true)
 		elif hero_id == "CH02":
-			draw_arc(center,11,0,TAU,32,accent,2.5,true)
-			draw_circle(center,4,accent)
-			for axis in [Vector2.UP,Vector2.DOWN,Vector2.LEFT,Vector2.RIGHT]:
-				draw_line(center+axis*13,center+axis*17,accent,2,true)
+			for index in 4:
+				var at := center+Vector2(-12+index*8,-9)
+				draw_style_box(GameStyle.box(accent,accent,1),Rect2(at,Vector2(5,19)))
+				draw_line(at+Vector2(1,1),at+Vector2(4,1),Color("fff1cf"),1,true)
 		else:
-			for i in 6:
-				var axis := Vector2.from_angle(i*TAU/6)
-				draw_line(center+axis*7,center+axis*15,accent,2.5,true)
-			draw_arc(center,7,0,TAU,24,accent,2,true)
+			var stacks := int(state.get("starlight",state.get("stacks",state.get("current",0))))
+			for index in 3:
+				var at := center+Vector2((index-1)*12,-2 if index == 1 else 3)
+				var tint := accent if index < stacks else Color("c5bbca")
+				draw_colored_polygon(PackedVector2Array([at+Vector2(0,-7),at+Vector2(3,-2),at+Vector2(7,0),at+Vector2(3,2),at+Vector2(0,7),at+Vector2(-3,2),at+Vector2(-7,0),at+Vector2(-3,-2)]),tint)
+
+## The existing mechanism meter's overlay only paints the authoritative reload
+## window and ammunition. It never advances progress or decides a precision hit.
+class MechanismMeter extends Control:
+	var state: Dictionary = {}
+	var accent := Color("6a7650")
+	func _draw() -> void:
+		if str(state.get("kind","")) not in ["reload","magazine"] and str(state.get("hero_id","")) != "CH02": return
+		if bool(state.get("reloading",state.get("reload_active",false))):
+			var start := float(state.get("perfect_window_start",state.get("precision_window_start",0)))
+			var finish := float(state.get("perfect_window_end",state.get("precision_window_end",0)))
+			var window := Rect2(size.x*start,-2,size.x*maxf(0,finish-start),7)
+			var available := bool(state.get("in_window",state.get("precision_window_active",false))) and not bool(state.get("precision_attempted",false))
+			draw_rect(window,Color(accent,.70 if available else .30))
+			draw_rect(window,accent,false,1)
+			var progress := clampf(float(state.get("reload_progress",0)),0,1)
+			draw_line(Vector2(size.x*progress,-3),Vector2(size.x*progress,6),Color("30253a"),2,true)
+		else:
+			var capacity := maxi(1,int(state.get("capacity",state.get("ammo_max",8))))
+			var ammo := int(state.get("ammo",state.get("ammo_current",0)))
+			for index in capacity:
+				var cell := Rect2(index*size.x/capacity,-1,size.x/capacity-3,5)
+				draw_rect(cell,accent if index < ammo else Color("d5cdbf"))
 
 ## A 44 px input target carries only a 40 px painted buff indicator.
 ## State is copied from RoomProps; this control never owns or advances a timer.
@@ -326,6 +354,7 @@ var passive_title: Label
 var passive_state: Label
 var passive_hint: Label
 var passive_bar: ProgressBar
+var mechanism_meter: Control
 var passive_glyph: Control
 var passive_button: Button
 var passive_snapshot: Dictionary = {}
@@ -400,9 +429,10 @@ func _ready() -> void:
 	shield_bar = GameStyle.meter(status_panel,Vector2(125,57),Vector2(234,3),Color("4b9aa6"))
 	health_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	resource_icon = _icon(status_panel,"resource_rage",Vector2(125,69),Vector2(20,20))
-	resource_label = _line(status_panel,"",Vector2(150,66),Vector2(110,23),15,HUD_MUTED)
+	resource_label = _line(status_panel,"",Vector2(150,66),Vector2(110,23),18,HUD_MUTED)
 	resource_bar = GameStyle.meter(status_panel,Vector2(270,73),Vector2(89,8),Color("8c9fa2"))
-	class_label = _line(status_panel,"",Vector2(120,98),Vector2(240,21),16,HUD_MUTED)
+	class_label = _line(status_panel,"",Vector2(120,98),Vector2(240,23),18,HUD_MUTED)
+	class_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	class_label.mouse_filter = Control.MOUSE_FILTER_STOP
 	class_bar = GameStyle.meter(status_panel,Vector2(125,109),Vector2(234,2),HUD_CYAN)
 	class_bar.hide()
@@ -509,12 +539,15 @@ func _ready() -> void:
 	passive_glyph.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	passive_panel.add_child(passive_glyph)
 	passive_title = _line(passive_panel,"",Vector2(62,7),Vector2(210,24),18,HUD_INK)
-	passive_state = _line(passive_panel,"",Vector2(62,34),Vector2(210,23),16,HUD_CYAN)
+	passive_title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	passive_state = _line(passive_panel,"",Vector2(62,34),Vector2(210,25),18,HUD_CYAN)
 	passive_bar = GameStyle.meter(passive_panel,Vector2(14,59),Vector2(260,3),HUD_CYAN)
-	passive_hint = _line(passive_panel,"",Vector2(14,66),Vector2(260,48),16,HUD_MUTED)
-	passive_hint.add_theme_font_size_override("font_size",14)
-	passive_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	passive_hint.max_lines_visible = 2
+	mechanism_meter = MechanismMeter.new()
+	mechanism_meter.name = "ReloadWindowAndAmmo"
+	mechanism_meter.size = passive_bar.size
+	mechanism_meter.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	passive_bar.add_child(mechanism_meter)
+	passive_hint = _line(passive_panel,"",Vector2(14,66),Vector2(260,48),18,HUD_MUTED)
 	passive_hint.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
 	passive_hint.max_lines_visible = 2
 	passive_button = Button.new()
@@ -550,7 +583,7 @@ func _ready() -> void:
 			hovered_control = null
 			hover_grace = 0.2)
 	tooltip_title = _line(tooltip_panel,"",Vector2(14,9),Vector2(352,28),19,HUD_INK)
-	tooltip_body = GameStyle.label(tooltip_panel,"",Vector2(14,44),Vector2(352,154),16,HUD_INK)
+	tooltip_body = GameStyle.label(tooltip_panel,"",Vector2(14,44),Vector2(352,154),18,HUD_INK)
 	tooltip_body.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
 	tooltip_panel.hide()
 	boss_cast_plate = Control.new()
@@ -616,6 +649,7 @@ func _apply_layout() -> void:
 	passive_title.size.x = passive_panel.size.x-76
 	passive_state.size.x = passive_panel.size.x-76
 	passive_bar.size.x = passive_panel.size.x-28
+	mechanism_meter.size = passive_bar.size
 	passive_hint.size.x = passive_panel.size.x-28
 	passive_button.size = passive_panel.size
 	quest_panel.size.x = 256 if _compact_layout else 272
@@ -790,6 +824,7 @@ func refresh() -> void:
 	_bind_skill_input_feedback()
 	_update_buffs()
 	if Game.run == null or health_label == null: return
+	var combat_view := _combat_view()
 	if hero_definition.get("id","") != Game.run.hero_id:
 		hero_definition = ContentRegistry.hero(Game.run.hero_id)
 	var hero: Dictionary = hero_definition
@@ -824,9 +859,9 @@ func refresh() -> void:
 		resource_bar.add_theme_stylebox_override("fill",fill)
 	gold_label.text = Words.text("HUD_GOLD_COMPACT",{"gold":Game.run.gold})
 	retained_label.text = Words.text("RETAINED",{"gold":Balance.death_keep(Game.run.gold)})
-	_update_skills()
+	_update_skills(combat_view)
 	_update_relics()
-	_update_passive()
+	_update_passive(combat_view)
 	var english := Words.locale == "en"
 	inventory_button.text = "Backpack  [B]" if english else "背包  [B]"
 	var attack_key := Bindings.secondary_label("attack",Game.profile.get("settings",{}).get("controls",{}),Words.locale)
@@ -996,16 +1031,7 @@ func _update_growth() -> void:
 		notifications.clear()
 		toast_remaining = 0.0
 	elif Game.run.level > observed_level:
-		var unlocked := false
-		for slot: String in SKILLS:
-			var skill: Dictionary = hero_definition.skills[slot]
-			var threshold := int(skill.unlock)
-			if threshold <= observed_level or threshold > Game.run.level: continue
-			var title := ("Lv.%d · Unlocked %s %s" if Words.locale == "en" else "Lv.%d · 已解锁 %s %s") % [threshold,GrowthReadout.key_for(slot),GameStyle.content_text(skill,"name")]
-			_queue_notification(title+"\n"+GrowthReadout.unlock_hint(Game.run.hero_id,slot),5.0)
-			unlocked = true
-		if not unlocked:
-			_queue_notification(("Reached Lv.%d" if Words.locale == "en" else "成长至 Lv.%d") % Game.run.level,3.0)
+		_queue_notification(("Reached Lv.%d" if Words.locale == "en" else "成长至 Lv.%d") % Game.run.level,3.0)
 		observed_level = Game.run.level
 
 func _queue_notification(message: String, duration: float = 4.0) -> void:
@@ -1013,48 +1039,93 @@ func _queue_notification(message: String, duration: float = 4.0) -> void:
 	if notifications.size() >= 8: notifications.pop_front()
 	notifications.append({"text":message,"duration":duration})
 
-func _update_passive() -> void:
-	if not is_instance_valid(room) or not is_instance_valid(room.get("player")) or not room.player.has_method("class_status"):
+func _update_passive(combat_view: Dictionary = {}) -> void:
+	passive_snapshot = (combat_view if not combat_view.is_empty() else _combat_view()).get("role_state",{})
+	if passive_snapshot.is_empty():
 		passive_panel.hide()
+		class_label.text = ""
 		return
-	passive_snapshot = room.player.class_status()
 	passive_panel.show()
 	var english := Words.locale == "en"
-	var current := int(passive_snapshot.get("current",0))
-	var maximum := maxi(1,int(passive_snapshot.get("max",3)))
-	var cooldown := float(passive_snapshot.get("cooldown",passive_snapshot.get("icd",0.0)))
-	var passive_definition: Dictionary = ContentRegistry.hero(Game.run.hero_id).get("passive",{})
-	passive_title.text = GameStyle.content_text(passive_definition,"name_v2" if Game.run.ruleset_version() == 2 and passive_definition.has("name_v2") else "name",str(passive_snapshot.get("name","")))
-	passive_state.text = ("Stacks %d / %d" if english else "累积  %d / %d") % [current,maximum]
-	if cooldown > 0:
-		passive_state.text = ("%d/%d · %.1fs" if english else "%d/%d · 冷却%.1f秒") % [current,maximum,cooldown]
-	elif bool(passive_snapshot.get("ready",false)):
-		passive_state.text += " · Ready" if english else " · 已就绪"
-	var triggers: Dictionary = {
-		"CH01": ["普攻命中满3次，自动获得护盾。","Land 3 basic hits to gain a shield."],
-		"CH02": ["同目标普攻2次，下一击触发弱点。","Hit one target twice; the next hit exploits its weakness."],
-		"CH03": ["普攻与技能交替满3层，下次技能回蓝。","Alternate attacks and skills 3 times; the next skill restores mana."]
-	}
-	if Game.run.ruleset_version() == 2:
-		var refund: int = int(passive_snapshot.get("resource_refund",0))
-		var reduction: float = float(passive_snapshot.get("q_cooldown_refund",0))
-		triggers.CH03 = ["可选：交替3招回%d蓝\nQ减%.1f秒；无需普攻" % [refund,reduction],"Optional: alternate spells ×3\n+%d mana; Q −%.1fs" % [refund,reduction]]
-	passive_hint.text = str(triggers.get(Game.run.hero_id,["被动自动生效。","This passive triggers automatically."])[1 if english else 0])
+	var palette: Dictionary = RoleSkin.palette(Game.run.hero_id)
+	var accent: Color = palette.accent
+	var current := float(passive_snapshot.get("current",0))
+	var maximum := maxf(1,float(passive_snapshot.get("max",3)))
+	match Game.run.hero_id:
+		"CH01":
+			passive_title.text = "Fury berserker" if english else "怒气狂战"
+			var phase := str(passive_snapshot.get("phase","normal"))
+			current = float(passive_snapshot.get("rage",current))
+			maximum = maxf(1,float(passive_snapshot.get("rage_max",maximum)))
+			if phase in ["berserk","frenzy"]:
+				passive_state.text = ("Berserk · %.1fs" if english else "狂暴 · %.1f秒") % float(passive_snapshot.get("berserk_remaining",passive_snapshot.get("remaining",0)))
+				passive_hint.text = ("Damage +%d%% · Speed +%d%%\nMovement +%d%%" if english else "伤害 +%d%% · 攻速 +%d%%\n移速 +%d%%") % [roundi((float(passive_snapshot.get("damage_multiplier",1))-1)*100),roundi((float(passive_snapshot.get("attack_speed_multiplier",1))-1)*100),roundi((float(passive_snapshot.get("movement_multiplier",1))-1)*100)]
+			elif phase == "rearm":
+				passive_state.text = ("Rearm · %.1fs" if english else "再触发锁定 · %.1f秒") % float(passive_snapshot.get("rearm_remaining",passive_snapshot.get("remaining",0)))
+				passive_hint.text = "Keep attacking to gain fury.\nBerserk awaits the next hit." if english else "持续命中积怒\n锁定结束后可再次狂暴"
+			else:
+				passive_state.text = ("Fury %d / %d" if english else "怒气 %d / %d") % [floori(current),roundi(maximum)]
+				passive_hint.text = "Hits build fury.\nFull fury triggers berserk." if english else "命中积怒 · 满怒狂暴\n脱战后怒气逐步衰减"
+		"CH02":
+			passive_title.text = "Mobile precision reload" if english else "机动精准装填"
+			current = float(passive_snapshot.get("ammo",passive_snapshot.get("ammo_current",0)))
+			maximum = maxf(1,float(passive_snapshot.get("capacity",passive_snapshot.get("ammo_max",8))))
+			var enhanced := int(passive_snapshot.get("enhanced_remaining",passive_snapshot.get("enhanced_shots",passive_snapshot.get("empowered_shots_remaining",passive_snapshot.get("empowered_rounds",0)))))
+			var reload_key := str(passive_snapshot.get("reload_key",passive_snapshot.get("reload_key_label",Bindings.label_for("reload",Game.profile.get("settings",{}).get("controls",{}),Words.locale))))
+			if bool(passive_snapshot.get("reloading",passive_snapshot.get("reload_active",false))):
+				var progress := float(passive_snapshot.get("reload_progress",0))
+				var attempted := bool(passive_snapshot.get("precision_attempted",false))
+				var in_window := bool(passive_snapshot.get("in_window",passive_snapshot.get("precision_window_active",false)))
+				var timing_label := ("Used" if english else "已判定") if attempted else ("Perfect" if english else "精准时机") if in_window else ("Loading" if english else "进行中")
+				passive_state.text = ("Reload %d%% · %s" if english else "装填 %d%% · %s") % [roundi(progress*100),timing_label]
+				var start := roundi(float(passive_snapshot.get("perfect_window_start",passive_snapshot.get("precision_window_start",0)))*100)
+				var finish := roundi(float(passive_snapshot.get("perfect_window_end",passive_snapshot.get("precision_window_end",0)))*100)
+				passive_hint.text = ("%s · Enhanced %d\nPrecision window %d–%d%%" if english else "%s 装填 · 强化%d发\n精准窗口 %d–%d%%") % [reload_key,enhanced,start,finish]
+				current = progress
+				maximum = 1
+			else:
+				passive_state.text = ("Magazine %d / %d" if english else "弹匣 %d / %d") % [roundi(current),roundi(maximum)]
+				passive_hint.text = ("%s reload · Enhanced %d\nDodge replenishes ammunition." if english else "%s 装填 · 强化%d发\n闪避落地补入普通弹") % [reload_key,enhanced]
+		"CH03":
+			passive_title.text = "Star chorus" if english else "星辉协奏"
+			current = float(passive_snapshot.get("starlight",passive_snapshot.get("stacks",current)))
+			maximum = maxf(1,float(passive_snapshot.get("starlight_max",maximum)))
+			var pet_state := str(passive_snapshot.get("pet_state","follow"))
+			var pet_labels: Dictionary = {"follow":["跟随","Following"],"following":["跟随","Following"],"idle":["待命","Idle"],"basic":["星弹","Star shot"],"attack":["星弹","Star shot"],"casting":["联合施法","Casting"],"leap":["星跃","Leaping"],"guard":["守护","Guarding"],"vortex":["星涡","Vortex"],"patrol":["巡游","Patrolling"],"chorus":["协奏","Chorus"]}
+			pet_state = str(pet_labels.get(pet_state,[pet_state,pet_state])[1 if english else 0])
+			passive_state.text = ("Starlight %d / %d" if english else "星辉 %d / %d") % [roundi(current),roundi(maximum)]
+			if bool(passive_snapshot.get("ready",false)):
+				passive_state.text += " · Ready" if english else " · 就绪"
+				var bonus := roundi(float(passive_snapshot.get("damage_bonus",float(passive_snapshot.get("chorus_multiplier",1))-1))*100)
+				var refund := roundi(float(passive_snapshot.get("resource_refund",0)))
+				passive_hint.text = ("Chorus +%d%% · +%d mana\nTuantuan · %s" if english else "协奏 +%d%% · 回蓝%d\n团团 · %s") % [bonus,refund,pet_state]
+			else:
+				var remaining := float(passive_snapshot.get("decay_remaining",passive_snapshot.get("remaining",0)))
+				passive_hint.text = ("Tuantuan · %s\nStarlight fades in %.1fs" if english else "团团 · %s\n星辉消散 %.1f秒") % [pet_state,remaining]
 	passive_bar.max_value = maximum
 	passive_bar.value = current
-	var accent: Color = passive_snapshot.get("color",HUD_CYAN)
-	# Resource accents can be pale gold or lime; use dark teal for paper text.
-	passive_state.add_theme_color_override("font_color",HUD_CYAN if cooldown <= 0 else HUD_MUTED)
+	passive_state.add_theme_color_override("font_color",palette.deep)
 	passive_glyph.hero_id = Game.run.hero_id
 	passive_glyph.accent = accent
+	passive_glyph.state = passive_snapshot
 	passive_glyph.queue_redraw()
+	mechanism_meter.state = passive_snapshot
+	mechanism_meter.accent = accent
+	mechanism_meter.queue_redraw()
 	var fill := StyleBoxFlat.new()
-	fill.bg_color = accent
+	fill.bg_color = Color(accent,0) if Game.run.hero_id == "CH02" and not bool(passive_snapshot.get("reloading",false)) else accent
 	passive_bar.add_theme_stylebox_override("fill",fill)
-	class_label.text = ("Passive %d/%d · Automatic" if english else "被动 %d/%d · 自动触发") % [current,maximum]
-	class_label.tooltip_text = passive_hint.text if english else str(passive_snapshot.get("hint",""))
+	class_label.text = passive_state.text
+	class_label.tooltip_text = passive_hint.text
+	class_label.add_theme_color_override("font_color",palette.deep)
 	class_bar.max_value = maximum
 	class_bar.value = current
+
+func _combat_view() -> Dictionary:
+	if not is_instance_valid(room) or not is_instance_valid(room.get("player")): return {}
+	if room.player.has_method("combat_hud_view"):
+		return room.player.combat_hud_view()
+	return {}
 
 func _update_buffs() -> void:
 	if buff_row == null: return
@@ -1224,15 +1295,19 @@ func _relic_info(id: String) -> Dictionary:
 	var key := "RELIC_"+id.to_upper()
 	return {"name":Words.text(key+"_NAME"),"description":Words.text(key+"_DESC")}
 
-func skill_info(slot: String) -> Dictionary:
+func skill_info(slot: String, combat_view: Dictionary = {}) -> Dictionary:
 	if Game.run == null: return {}
 	if hero_definition.is_empty(): hero_definition = ContentRegistry.hero(Game.run.hero_id)
+	if combat_view.is_empty(): combat_view = _combat_view()
+	for entry: Dictionary in combat_view.get("slots",[]):
+		if str(entry.get("input_slot",entry.get("slot",""))) == slot:
+			return _identity_skill_info(entry,combat_view)
 	var skill: Dictionary = hero_definition.get("dash",{}).duplicate(true) if slot == "dash" else hero_definition.get("skills",{}).get(slot,{}).duplicate(true)
 	if slot != "dash" and is_instance_valid(room) and is_instance_valid(room.player):
 		skill.merge(room.player.skill_definition(slot),true)
 	var cooldown := 0.0
 	if is_instance_valid(room) and is_instance_valid(room.player):
-		cooldown = float(room.player.dash_cooldown) if slot == "dash" else float(room.player.cooldowns.get(slot,0))
+		cooldown = float(room.player.dash_cooldown) if slot == "dash" else float(room.player.skill_cooldown(slot)) if room.player.has_method("skill_cooldown") else float(room.player.cooldowns.get(slot,0))
 	var locked: bool = Game.run.level < int(skill.get("unlock",1))
 	var cost := float(skill.get("cost",0))
 	var insufficient: bool = Game.run.resource < cost
@@ -1261,6 +1336,24 @@ func skill_info(slot: String) -> Dictionary:
 	var summary := Words.text("HUD_FINAL_COST",{"cost":snappedf(cost,0.1),"resource":GameStyle.content_text(hero_definition,"resource_name"),"cooldown":snappedf(float(skill.get("cooldown",0)),0.1)})
 	return {"name":GameStyle.content_text(skill,"name"),"description":description,"summary":summary,"state":state,"locked":locked,"unlock":int(skill.get("unlock",1)),"cooldown":cooldown,"duration":float(skill.get("cooldown",0)),"insufficient":insufficient,"casting":casting,"queued":queued,"queue_position":queue_position,"busy":busy,"cast_progress":cast_progress,"accent":GameStyle.resource_color(resource_kind),"ready":not locked and cooldown <= 0 and not insufficient and not busy and not queued}
 
+func _identity_skill_info(entry: Dictionary, combat_view: Dictionary) -> Dictionary:
+	var result := entry.duplicate(true)
+	var locked := not bool(entry.get("unlocked",true))
+	var remaining := float(entry.get("remaining",0))
+	var cost := float(entry.get("cost",0))
+	var resource := float(combat_view.get("resource",Game.run.resource))
+	var insufficient := bool(entry.get("insufficient",resource < cost))
+	var busy := bool(entry.get("busy",false))
+	var casting := bool(entry.get("casting",false))
+	var queued := bool(entry.get("queued",false))
+	var title := GameStyle.content_text(entry,"name",str(entry.get("skill_id","")))
+	var status_text := str(entry.get("lock_reason","Not learned" if Words.locale == "en" else "尚未学会")) if locked else Words.text("HUD_REMAINING",{"time":"%.1f" % remaining}) if remaining > 0 else Words.text("HUD_RESOURCE_MISSING",{"amount":ceili(maxf(0,cost-resource)),"resource":GameStyle.content_text(hero_definition,"resource_name")}) if insufficient else Words.text("HUD_READY")
+	if casting: status_text = "Casting" if Words.locale == "en" else "施放中"
+	elif queued: status_text = ("Combo queued · Step %d" if Words.locale == "en" else "连招待施放 · 第%d步") % int(entry.get("queue_position",1))
+	elif busy and not locked and remaining <= 0 and not insufficient: status_text = "Action in progress" if Words.locale == "en" else "动作中"
+	result.merge({"name":title,"description":GameStyle.content_text(entry,"description"),"summary":Words.text("HUD_FINAL_COST",{"cost":snappedf(cost,.1),"resource":GameStyle.content_text(hero_definition,"resource_name"),"cooldown":snappedf(float(entry.get("cooldown",0)),.1)}),"state":status_text,"locked":locked,"cooldown":remaining,"duration":float(entry.get("cooldown",0)),"insufficient":insufficient,"busy":busy,"casting":casting,"queued":queued,"cast_progress":float(entry.get("cast_progress",0)),"accent":RoleSkin.palette(Game.run.hero_id).accent,"ready":bool(entry.get("ready",not locked and remaining <= 0 and not insufficient and not busy and not casting and not queued))},true)
+	return result
+
 func _bind_skill_input_feedback() -> void:
 	var next_actor: Node = room.player if is_instance_valid(room) and is_instance_valid(room.get("player")) else null
 	if next_actor == _skill_feedback_actor: return
@@ -1275,11 +1368,12 @@ func _on_skill_input_feedback(slot: String, reason: String, _details: Dictionary
 	if index >= 0 and index < skill_slots.size() and interaction_enabled:
 		skill_slots[index].notify_input(reason)
 
-func _update_skills() -> void:
+func _update_skills(combat_view: Dictionary = {}) -> void:
+	if combat_view.is_empty(): combat_view = _combat_view()
 	for i in range(skill_slots.size()):
 		var slot: String = SKILLS[i] if i < 4 else "dash"
-		skill_slots[i].key = _key_for_slot(i)
-		var info := skill_info(slot)
+		var info := skill_info(slot,combat_view)
+		skill_slots[i].key = str(info.get("key",_key_for_slot(i)))
 		info["description"] = str(info.get("description",""))
 		info["details"] = str(info.name)+"\n"+str(info.summary)+"\n"+str(info.state)
 		skill_slots[i].update_state(info)
@@ -1327,8 +1421,7 @@ func _update_tooltip() -> void:
 			body += ("\nPending this room: %d XP" if Words.locale == "en" else "\n本房待结算：%d 经验") % pending
 	elif active_detail_slot == "passive":
 		tooltip_title.text = passive_title.text
-		var definition: Dictionary = ContentRegistry.hero(Game.run.hero_id).get("passive",{})
-		body = SkillInspect.passive_text(ContentRegistry.hero(Game.run.hero_id),Game.run.stats,room.player)+"\n\n"+passive_state.text+"\n"+class_label.tooltip_text
+		body = str(passive_snapshot.get("description",passive_snapshot.get("hint","")))+"\n\n"+passive_state.text+"\n"+passive_hint.text
 	elif active_detail_slot == "inventory":
 		tooltip_title.text = "Backpack & character" if Words.locale == "en" else "背包与角色属性"
 		body = "Press B or click to change equipment and inspect your live character stats. The game pauses while the backpack is open." if Words.locale == "en" else "按 B 或点击打开背包，查看与更换装备、比较加成和角色实时属性。背包打开时游戏暂停。"

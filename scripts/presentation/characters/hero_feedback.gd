@@ -7,7 +7,7 @@ const AMBER := Color("eabb78")
 const IVORY := Color("f5ebc9")
 const CYAN := Color("78d9d1")
 const COPPER := Color("df945a")
-const VIOLET := Color("b7a1ec")
+const VIOLET := Color("a183d7")
 const Chain = preload("res://scripts/domain/combat/hit_chain.gd")
 var actor: Node2D
 var effects: Array[Dictionary] = []
@@ -82,7 +82,10 @@ func observe_basic(kind: String, duration: float, committed_direction: Vector2 =
 		return
 	basic_events += 1
 	var hero: String = actor.hero_id()
-	_emit("swing" if hero == "CH01" else "muzzle" if hero == "CH02" else "arcane_release",actor.position,_basic_direction,.26 if hero == "CH01" else .18 if hero == "CH02" else .24,{"hero":hero,"slot":"basic","radius":105.0,"arc":100.0,"heavy":false,"variant":(basic_events-1)%3})
+	var details: Dictionary = {"hero":hero,"slot":"basic","radius":105.0,"arc":100.0,"heavy":false,"variant":(basic_events-1)%3}
+	if hero == "CH03":
+		details["emitter_at"] = _star_emitter(_basic_direction)
+	_emit("swing" if hero == "CH01" else "muzzle" if hero == "CH02" else "arcane_release",actor.position,_basic_direction,.26 if hero == "CH01" else .18 if hero == "CH02" else .24,details)
 
 func chain_hit(state: Dictionary) -> void:
 	var count: int = int(state.count)
@@ -115,21 +118,31 @@ func skill_released(data: Dictionary, direction: Vector2, at: Vector2, index: in
 	_shot_direction = direction
 	_shot_index = index
 	_shot_count = count
-	release_events.append({"hero":str(data.hero),"slot":str(data.slot),"index":index,"count":count,"serial":serial})
+	release_events.append({"hero":str(data.hero),"slot":str(data.slot),"skill_id":str(data.get("skill_id","")),"input_slot":str(data.get("input_slot",data.slot)),"index":index,"count":count,"serial":serial})
 	if release_events.size() > 128:
 		release_events.pop_front()
 	var hero: String = str(data.hero)
 	var slot: String = str(data.slot)
-	var details: Dictionary = {"hero":hero,"slot":slot,"radius":float(data.get("radius",65.0)),"arc":float(data.get("arc",360.0)),"heavy":slot == "secondary" or slot == "ultimate","last":index == count-1,"index":index,"count":count,"energy":int(data.get("break_stacks",0)),"target":at}
+	var kind: String = str(data.get("effect_kind",data.get("kind","")))
+	var details: Dictionary = {"hero":hero,"slot":slot,"skill_id":str(data.get("skill_id","")),"input_slot":str(data.get("input_slot",slot)),"radius":float(data.get("radius",65.0)),"arc":float(data.get("arc",360.0)),"heavy":slot == "secondary" or slot == "ultimate" or kind in ["axe_crash","fault_line","aftershock_stomp"],"last":index == count-1,"index":index,"count":count,"target":at}
 	if hero == "CH01":
-		_emit("swing" if slot == "secondary" else "ground_break" if slot == "ultimate" else "brace" if slot == "f" else "rush",at,direction,.56 if slot == "ultimate" else .38 if slot == "f" else .32,details)
-		if int(data.get("break_stacks", 0)) == 3 and slot in ["secondary", "ultimate"]:
-			_emit("ground_break",at,direction,.52,details)
+		var visual: String = "ground_break" if kind in ["axe_crash","fault_line","aftershock_stomp"] else "brace" if kind in ["warcry","stone_guard","counter_guard"] else "pull" if kind == "rift_pull" else "rush" if kind == "charge" else "swing"
+		_emit(visual,at,direction,.46 if visual == "ground_break" else .32,details)
 	elif hero == "CH02":
-		_emit("grenade_toss" if slot == "f" else "muzzle",actor.position if slot == "f" else at,direction,.18 if slot == "f" else .24 if slot == "ultimate" and index == count-1 else .16,details)
+		var visual: String = "reload_flash" if kind == "tactical_reload" else "grenade_toss" if kind in ["grenade","root_mine"] else "brace" if kind == "smoke_step" else "muzzle"
+		_emit(visual,actor.position if visual in ["reload_flash","grenade_toss"] else at,direction,.24 if visual == "reload_flash" else .18,details)
 	else:
-		_emit("arcane_release" if slot == "q" else "rune_seed" if slot == "secondary" else "rune_collapse" if slot == "f" else "dome_wave",at,direction,.56 if slot == "ultimate" else .38,details)
+		var visual: String = "star_guard" if kind in ["guard","guard_burst"] else "pull" if kind == "vortex" else "dome_wave" if kind in ["field","moving_pulses","burst"] else "chorus" if kind == "resonance" else "blink_arrive" if kind == "blink_burst" else "arcane_release"
+		var center: Vector2 = actor.position if kind in ["guard","guard_burst","moving_pulses","resonance","blink_burst"] or bool(data.get("follow_player",false)) else at
+		details["emitter_at"] = _star_emitter(direction)
+		_emit(visual,center,direction,.4 if visual in ["star_guard","dome_wave","chorus"] else .22 if visual == "blink_arrive" else .32,details)
 	queue_redraw()
+
+func _star_emitter(direction: Vector2) -> Vector2:
+	var companion: Node2D = actor.get_node_or_null("StarCompanion") as Node2D
+	# Match the room's frozen projectile visual muzzle; the companion's height
+	# is presentation only and never changes its ground collision origin.
+	return actor.position + companion.position + direction.normalized() * 12.0 if is_instance_valid(companion) else actor.position + Vector2(actor.get_meta("hero_muzzle_local",Vector2(23,-33)))
 
 func impact(at: Vector2, direction: Vector2, source: String, critical: bool = false) -> void:
 	if not is_instance_valid(actor):
@@ -148,14 +161,18 @@ func deployment_pulse(kind: String, at: Vector2, radius: float) -> void:
 	_emit("grenade_burst" if gunner else "dome_wave" if kind == "field" else "node_wave",at,Vector2.RIGHT,.36 if gunner else .46 if kind == "field" else .28,{"hero":"CH02" if gunner else "CH03","radius":shown_radius,"heavy":kind == "field" or gunner,"deployment":true})
 
 func class_event(kind: String, at: Vector2, direction: Vector2, radius: float = 42.0, energy: int = 0) -> void:
-	_emit(kind, at, direction, 0.48 if kind == "node_burst" else 0.32, {"hero":actor.hero_id(), "radius":radius, "energy":clampi(energy,0,3)})
+	if not is_instance_valid(actor):
+		return
+	_emit(kind, at, direction, 0.48 if kind == "node_burst" else 0.20 if kind == "reload_start" else 0.32, {"hero":actor.hero_id(), "radius":radius, "energy":clampi(energy,0,3)})
 
 func pose_state() -> Dictionary:
 	if is_instance_valid(actor) and float(actor.visual_hitstop) > 0.0 and not _frozen_pose.is_empty():
 		return _frozen_pose.duplicate()
-	var result: Dictionary = {"phase":"idle","progress":0.0,"slot":"basic","direction":actor.aim_direction if is_instance_valid(actor) else Vector2.RIGHT,"shot":_shot_index,"shots":_shot_count,"charge":0.0}
+	var result: Dictionary = {"phase":"idle","progress":0.0,"slot":"basic","skill_id":"","input_slot":"","direction":actor.aim_direction if is_instance_valid(actor) else Vector2.RIGHT,"shot":_shot_index,"shots":_shot_count,"charge":0.0}
 	if not _cast.is_empty():
 		result.slot = str(_cast.slot)
+		result.skill_id = str(_cast.get("skill_id",""))
+		result.input_slot = str(_cast.get("input_slot",_cast.slot))
 		result.direction = _shot_direction
 		var active: Dictionary = actor.abilities.active if is_instance_valid(actor) and actor.abilities != null else {}
 		var clock: float = float(active.get("elapsed",_cast_age))
@@ -178,7 +195,7 @@ func pose_state() -> Dictionary:
 			result.progress = clampf(_shot_age/.23,0.0,1.0)
 		# These single-release clips need the entire recovery interval, while the
 		# established progress remains unchanged for procedural FX and other skills.
-		var authored_skill: bool = (str(_cast.hero) in ["CH01", "CH02"] and str(_cast.slot) == "secondary") or (str(_cast.hero) == "CH03" and str(_cast.slot) == "f")
+		var authored_skill: bool = not str(_cast.get("skill_id","")).is_empty() or (str(_cast.hero) in ["CH01", "CH02"] and str(_cast.slot) == "secondary") or (str(_cast.hero) == "CH03" and str(_cast.slot) == "f")
 		if authored_skill:
 			result["authored_phase_progress"] = result.progress
 			if str(result.phase) == "recovery":
@@ -281,6 +298,19 @@ func _draw() -> void:
 			"ground_break": _draw_fissure(at,dir,radius,t,fade,reduced,float(effect.get("arc",160.0)) if str(effect.get("slot","")) == "secondary" else 360.0)
 			"rush": _draw_rush(at,dir,t,fade,reduced)
 			"brace": _draw_brace(at,dir,t,fade,reduced)
+			"berserk_start","berserk_end","counter":
+				_draw_fury_event(at,dir,t,fade,str(effect.kind) == "berserk_end",str(effect.kind) == "counter")
+			"reload_start","reload_complete","reload_success","reload_missed","reload_flash":
+				_draw_reload_flash(at,t,fade,str(effect.kind))
+			"pull": _draw_pull(at,dir,radius,t,fade,reduced)
+			"star_guard": _draw_star_guard(at,radius,t,fade,reduced)
+			"chorus":
+				_draw_star_guard(at,radius,t,fade,reduced)
+				var star: Vector2 = Vector2(effect.get("emitter_at",effect.at))-actor.position
+				draw_line(at+Vector2(0,-35),star,Color(CYAN,fade*.75),2.2,true)
+				_diamond(star,Vector2.UP,9.0*(1.0-t*.45),Color(IVORY,fade))
+			"blink_arrive": _draw_star_guard(at,24.0,t,fade,reduced)
+			"blink_depart": _draw_spell_wave(at,radius,t,fade,false,reduced)
 			"grenade_toss": _draw_grenade_toss(effect,at,t,fade,reduced)
 			"grenade_burst": _draw_grenade_burst(at,radius,t,fade,reduced)
 			"arcane_release": _draw_arcane_release(effect,t,fade,reduced)
@@ -564,7 +594,7 @@ func _draw_grenade_burst(at: Vector2, radius: float, t: float, fade: float, redu
 func _draw_arcane_release(effect: Dictionary, t: float, fade: float, reduced: bool) -> void:
 	var visible: float = minf(1.0,fade*1.45)
 	var dir: Vector2 = effect.direction
-	var at: Vector2 = actor.get_meta("hero_muzzle_local",dir*28+Vector2(0,-30))
+	var at: Vector2 = Vector2(effect.emitter_at)-actor.position if effect.has("emitter_at") else Vector2(actor.get_meta("hero_muzzle_local",dir*28+Vector2(0,-30)))
 	if not actor.room.has_line_of_sight(actor.position,actor.position+at):
 		at = actor.room.move_actor(actor.position,at,2.0)-actor.position
 	var power: float = 1.45 if str(effect.get("slot","")) == "q" else 1.0
@@ -675,53 +705,92 @@ func _draw_node_burst(at: Vector2, radius: float, energy: int, t: float, fade: f
 		draw_line(tip-ray*length*.4,tip+ray*length*.65,Color("e5fff5",visible),1.8,true)
 
 func _draw_class_identity(quality: float) -> void:
-	if actor.hero_id() == "CH01":
-		for index in range(3):
-			var at := Vector2(-13.0 + index * 13.0, 17.0)
-			draw_rect(Rect2(at - Vector2(4, 2), Vector2(8, 4)), Color(AMBER, quality * (.95 if index < actor.break_stacks else .18)))
-	elif actor.hero_id() == "CH02":
-		for entry: Dictionary in actor.class_marks.values():
-			var target: Variant = entry.target.get_ref()
-			if not is_instance_valid(target) or not target.is_alive():
-				continue
-			var at: Vector2 = target.position - actor.position
-			var alpha: float = minf(1.0, float(entry.remaining)) * quality
-			for side in [-1.0, 1.0]:
-				var x: float = side * 19.0
-				draw_polyline(PackedVector2Array([at + Vector2(x - side * 6, -17), at + Vector2(x, -17), at + Vector2(x, 12), at + Vector2(x - side * 6, 12)]), Color(IVORY, alpha * .85), 1.8, true)
-			draw_line(at + Vector2(-5, -23), at + Vector2(5, -23), Color(AMBER, alpha), 2.0, true)
-	else:
-		var nodes: Array[Node2D] = actor.resonance_nodes()
-		for node: Node2D in nodes:
-			if actor.position.distance_to(node.position) > 260.0 or not actor.room.has_line_of_sight(actor.position, node.position):
-				continue
-			var at: Vector2 = node.position - actor.position
-			var intensity: float = .12 + float(node.resonance_charge) * .07
-			draw_line(Vector2(0, 7), at + Vector2(0, 7), Color(CYAN, quality * intensity), 1.3, true)
-		if nodes.size() == 2 and actor.room.has_line_of_sight(nodes[0].position, nodes[1].position):
-			draw_line(nodes[0].position - actor.position, nodes[1].position - actor.position, Color(CYAN, quality * .34), 1.7, true)
+	if not actor.has_method("class_state_view"): return
+	var state: Dictionary = actor.class_state_view()
+	if actor.hero_id() == "CH01" and bool(state.get("berserk_active",false)):
+		# Only the actual eight-second state lights this crest. No break stacks,
+		# queued fury or automatic three-hit shield survives in presentation.
+		for side in [-1.0,1.0]:
+			var at := Vector2(side*28.0,-12)
+			draw_polyline(PackedVector2Array([at+Vector2(side*4,9),at+Vector2(side*7,-4),at+Vector2(side*1,-10)]),Color(COPPER,quality*.85),3.0,true)
+			draw_line(at+Vector2(0,6),at+Vector2(0,-4),Color(IVORY,quality*.6),1.6,true)
+	elif actor.hero_id() == "CH02" and bool(state.get("reloading",false)):
+		var progress: float = clampf(float(state.get("reload_progress",0.0)),0.0,1.0)
+		var tint: Color = CYAN if bool(state.get("precision_window_active",false)) else AMBER
+		draw_arc(Vector2(0,13),24.0,-PI*.5,-PI*.5+TAU*progress,28,Color(tint,quality*.8),2.2,true)
+		# The kit supplies both timing and current precision validity.
+		if not bool(state.get("precision_attempted",false)):
+			draw_arc(Vector2(0,13),26.0,-PI*.5+TAU*float(state.get("precision_window_start",.45)),-PI*.5+TAU*float(state.get("precision_window_end",.65)),10,Color(CYAN,quality*.65),3.0,true)
+	elif actor.hero_id() == "CH03":
+		var count: int = clampi(int(state.get("starlight",0)),0,3)
+		for index in count:
+			var at := Vector2(-12+index*12,-99)
+			_diamond(at,Vector2.UP,4.2,Color(CYAN,quality*.9))
+		if bool(state.get("ready",false)):
+			draw_line(Vector2(-20,-104),Vector2(20,-104),Color(VIOLET,quality*.7),1.7,true)
+
+func _draw_fury_event(at: Vector2, direction: Vector2, t: float, fade: float, ending: bool, counter: bool) -> void:
+	var radius: float = lerpf(18.0,45.0,t) if not ending else lerpf(35.0,18.0,t)
+	draw_arc(at+Vector2(0,7),radius,0,TAU,24,Color(COPPER,fade*.65),3.0,true)
+	for side in [-1.0,1.0]:
+		var ray: Vector2 = direction.rotated(side*.65)
+		draw_line(at+ray*14.0,at+ray*(radius+8.0),Color(AMBER,fade),3.3,true)
+	if counter: _draw_cleave(at,direction,75.0,110.0,true,t,fade,true)
+
+func _draw_reload_flash(at: Vector2, t: float, fade: float, kind: String) -> void:
+	var precise: bool = kind in ["reload_success","reload_flash"]
+	var missed: bool = kind == "reload_missed"
+	var tint: Color = Color("e9846c") if missed else CYAN if precise else IVORY if kind == "reload_complete" else AMBER
+	for side in [-1.0,1.0]:
+		var point: Vector2 = at+Vector2(side*(22+t*12),-29-t*7)
+		draw_polyline(PackedVector2Array([point+Vector2(side*4,-7),point,point+Vector2(side*4,7)]),Color(tint,fade),2.6,true)
+	if precise:
+		_diamond(at+Vector2(0,-35),Vector2.UP,6.0*(1.0-t*.6),Color(IVORY,fade))
+	elif missed:
+		for side in [-1.0,1.0]:
+			draw_line(at+Vector2(-5,-35+side*5),at+Vector2(5,-35-side*5),Color(tint,fade),2.2,true)
+	if kind == "reload_flash" or _chain_font == null:
+		return
+	var captions: Dictionary = {"reload_start":"Reload" if Words.locale == "en" else "装填", "reload_complete":"Reloaded" if Words.locale == "en" else "弹匣就绪", "reload_success":"Perfect reload" if Words.locale == "en" else "精准装填", "reload_missed":"Missed window" if Words.locale == "en" else "错过窗口"}
+	var caption: String = str(captions.get(kind,""))
+	var caption_at: Vector2 = at+Vector2(-_chain_font.get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x*.5,-111-t*5)
+	draw_string_outline(_chain_font,caption_at,caption,HORIZONTAL_ALIGNMENT_LEFT,-1,18,4,Color("293744",fade))
+	draw_string(_chain_font,caption_at,caption,HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color(tint,fade))
+
+func _draw_pull(at: Vector2, direction: Vector2, radius: float, t: float, fade: float, reduced: bool) -> void:
+	for index in (3 if reduced else 5):
+		var ray: Vector2 = direction.rotated((index-2)*.25)
+		var reach: float = radius*(1.0-t*.72)
+		draw_line(at+ray*reach,at+ray*(reach+18),Color(CYAN if actor.hero_id() == "CH03" else AMBER,fade*.8),2.5,true)
+
+func _draw_star_guard(at: Vector2, radius: float, t: float, fade: float, reduced: bool) -> void:
+	var reach: float = minf(radius,90.0)*(0.75+t*.25)
+	_segmented_ring(at,reach,4,.45,Color(CYAN,fade*.65),2.4)
+	for index in (2 if reduced else 4):
+		var ray := Vector2.from_angle(index*PI*.5+t*.35)
+		_diamond(at+ray*reach,ray,6.0*(1.0-t*.5),Color(VIOLET,fade))
 
 func _draw_charge(pose: Dictionary, quality: float) -> void:
 	var value: float = float(pose.get("charge",pose.progress))
 	var at: Vector2 = actor.get_meta("hero_muzzle_local",Vector2(23,-33))
 	var hero: String = actor.hero_id()
 	if hero == "CH03":
-		var slot: String = str(pose.slot)
 		var reach: float = 20.0-value*8.0
-		_rune_polygon(at,reach,3,-value*1.2,Color("542d73",(.6+value*.4)*quality),6.0)
-		_rune_polygon(at,reach,3,-value*1.2,Color("aa67ff",(.6+value*.4)*quality),3.5)
-		_segmented_ring(at,reach*.75,3,.45,Color("1edfe6",(.6+value*.4)*quality),3.5)
-		for index in 3:
-			var ray := Vector2.from_angle(index*TAU/3+value*.85)
+		_rune_polygon(at,reach,4,-value*.6,Color("352c4d",(.6+value*.4)*quality),6.0)
+		_rune_polygon(at,reach,4,-value*.6,Color(VIOLET,(.6+value*.4)*quality),3.0)
+		_segmented_ring(at,reach*.75,4,.45,Color(CYAN,(.6+value*.4)*quality),2.6)
+		for index in 4:
+			var ray := Vector2.from_angle(index*TAU/4+value*.45)
 			_diamond(at+ray*(25.0-value*9.0),ray,4.0+value*3.0,Color("c9fff1",.95*quality))
-		if slot in ["secondary","ultimate"] and not _cast.is_empty():
+		if str(_cast.get("target_type","")) == "ground":
 			var ground: Vector2 = Vector2(_cast.target)-actor.position
-			var radius: float = float(_cast.get("burst_radius",35.0)) if slot == "secondary" else float(_cast.get("radius",180.0))
+			var radius: float = float(_cast.get("radius",0.0))
+			if radius <= 0.0: return
 			draw_arc(ground,radius,0,TAU,64,Color(CYAN,(.32+value*.30)*maxf(.6,quality)),1.6,true)
-			_rune_polygon(ground,radius,6,PI/6,Color("9551ef",value*.68*quality),3.0)
-		elif slot == "f":
-			draw_arc(Vector2.ZERO,float(_cast.get("radius",140.0)),0,TAU,64,Color(CYAN,(.32+value*.25)*maxf(.6,quality)),1.6,true)
-			_rune_polygon(Vector2(0,5),28+value*15,6,PI/6,Color("9f5afd",value*.85*quality),3.5)
+			_rune_polygon(ground,radius,4,PI/4,Color(VIOLET,value*.6*quality),2.2)
+		elif str(_cast.get("target_type","")) == "self" and float(_cast.get("radius",0.0)) > 0.0:
+			draw_arc(Vector2.ZERO,float(_cast.radius),0,TAU,64,Color(CYAN,(.32+value*.25)*maxf(.6,quality)),1.6,true)
+			_rune_polygon(Vector2(0,5),28+value*15,4,PI/4,Color(VIOLET,value*.75*quality),3.0)
 	elif hero == "CH02":
 		var direction: Vector2 = pose.direction
 		if str(pose.slot) == "secondary":
