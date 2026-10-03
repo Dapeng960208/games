@@ -50,3 +50,5 @@
 相关验证入口：`tools/test.ps1 -ImportOnly`、`legacy_profile_reset`、`numerical_fresh_profile`、`numerical_instances`、`equipment_class_policy`、`progressive_monster_roster`、`save_recycle_ui`、`environment_native_resources`、`boss_hd_art`、`hero_storybook_family`。具体运行结果以本次提交说明为准。
 
 B08 当前范围见 [候选说明](levels/b08/balance/candidate_progress.md)。本分支先同步 main 的目录与运行接口；视觉资源和 L45 工作另有本地备份，未混入这次规范迁移提交。
+
+B08 首房追加显式 [参考图方向视觉候选](levels/b08/art/reference_candidate.md)：八层环境、M01 idle 与可读风纹，保持单关隔离；当前未完成整房视觉终验，地表/远景仍有约 1.765 倍显示放大，不称原生 2K 全房。

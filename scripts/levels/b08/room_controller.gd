@@ -21,6 +21,7 @@ var _channel_hp := 0.0
 var _hud: Label
 var _flag: EnemyActor
 var _started := false
+var sky_environment: Node2D
 signal shutdown_ready
 var shutdown_started := false
 var shutdown_done := false
@@ -114,9 +115,19 @@ func _open_room(id: String) -> void:
 	_flag.configure(flag_profile,{"reward_enabled":false,"static_actor":true})
 	_flag.position = clamp_actor(layout.entry+Vector2(120,-75),20)
 	enemies.add_child(_flag)
+	_configure_sky_environment()
 	_configure_world_view()
 	_floor_canvas.queue_redraw()
 
+func _configure_sky_environment() -> void:
+	if is_instance_valid(sky_environment): sky_environment.free()
+	sky_environment=null
+	if layout_id!="L43" or not OS.get_cmdline_user_args().has("--b08-art-l43"): return
+	var environment:=preload("res://scripts/levels/b08/presentation/l43_environment.gd").new()
+	add_child(environment)
+	if not environment.configure(layout_id):
+		push_error("B08 reference art rejected: "+str(environment.errors)); environment.free(); return
+	sky_environment=environment
 func spawn_enemy(at: Vector2, id: String = "", _level: int = 1, options: Dictionary = {}) -> EnemyActor:
 	if id not in SkyBrain.IMPLEMENTED or _living_combatants()>=6 or enemies.get_child_count()>=18: return null
 	var p: Dictionary = options.get("profile",SkyNumbers.profile(id,difficulty))
@@ -170,7 +181,7 @@ func _physics_process(delta: float) -> void:
 	for index in range(effects.size()-1,-1,-1):
 		effects[index].remaining -= delta
 		if effects[index].remaining<=0: effects.remove_at(index)
-	_hud.text = "%s · %s · D%d · HP %d/%d\nDEBUG GEOMETRY / Lv20 diagnostic hero / no B08 art or rewards\nM01–06 + BO08 combat slice. L45–48: topology only.\nRight-click move · QWER skills · F vane/exit · Esc quit\nVane: %.1fs channel + %.1fs warning | active threats %d/2" % [layout_id,SkyContent.room(layout_id).name,difficulty,Game.run.hp,Game.run.max_hp,float(wind.channel.get("remaining",0)),float(wind.pending.get("remaining",0)),warnings.size()]
+	_hud.text = "%s · %s · D%d · HP %d/%d\nB08 candidate / Lv20 diagnostic hero / partial art / no rewards\nM01–06 + BO08 combat slice. L45–48: topology only.\nRight-click move · QWER skills · F vane/exit · Esc quit\nVane: %.1fs channel + %.1fs warning | active threats %d/2" % [layout_id,SkyContent.room(layout_id).name,difficulty,Game.run.hp,Game.run.max_hp,float(wind.channel.get("remaining",0)),float(wind.pending.get("remaining",0)),warnings.size()]
 	queue_redraw()
 	_floor_canvas.queue_redraw()
 func _unhandled_input(event: InputEvent) -> void:
@@ -330,17 +341,21 @@ func _tick_feathers(delta: float) -> void:
 		if shot.remaining<=0 or fraction<.999: feathers.erase(shot)
 
 func _draw_floor() -> void:
-	_floor_canvas.draw_rect(ARENA,Color("83b3cc"))
-	for shape: Rect2 in SkyGeometry.floors(layout_id):
-		_floor_canvas.draw_rect(shape,Color("eee8d5"))
-		_floor_canvas.draw_rect(shape,Color("9d9174"),false,3)
+	if not is_instance_valid(sky_environment):
+		_floor_canvas.draw_rect(ARENA,Color("83b3cc"))
+		for shape: Rect2 in SkyGeometry.floors(layout_id):
+			_floor_canvas.draw_rect(shape,Color("eee8d5"))
+			_floor_canvas.draw_rect(shape,Color("9d9174"),false,3)
 	for lane: Dictionary in SkyGeometry.lanes(layout_id):
-		_floor_canvas.draw_rect(lane.rect,Color(.35,.75,.84,.35))
 		var direction: Vector2 = wind.direction(lane.id,lane.direction)
-		var center: Vector2 = lane.rect.get_center()
-		_floor_canvas.draw_line(center-direction*40,center+direction*40,Color("396b95"),4)
-		_floor_canvas.draw_line(center+direction*40,center+direction*23+direction.orthogonal()*13,Color("396b95"),4)
-		_floor_canvas.draw_line(center+direction*40,center+direction*23-direction.orthogonal()*13,Color("396b95"),4)
+		if is_instance_valid(sky_environment):
+			preload("res://scripts/levels/b08/presentation/wind_lane.gd").draw_lane(_floor_canvas,lane,wind,wind.now,bool(Game.profile.settings.get("reduced_fx",false)))
+		else:
+			_floor_canvas.draw_rect(lane.rect,Color(.35,.75,.84,.35))
+			var center: Vector2 = lane.rect.get_center()
+			_floor_canvas.draw_line(center-direction*40,center+direction*40,Color("396b95"),4)
+			_floor_canvas.draw_line(center+direction*40,center+direction*23+direction.orthogonal()*13,Color("396b95"),4)
+			_floor_canvas.draw_line(center+direction*40,center+direction*23-direction.orthogonal()*13,Color("396b95"),4)
 		_floor_canvas.draw_circle(lane.vane,14,Color("d3a43a"))
 		_floor_canvas.draw_line(lane.vane,lane.vane+direction*32,Color("305474"),4)
 		if wind.pending.get("lane","")==lane.id: _floor_canvas.draw_arc(lane.vane,25,0,TAU,32,Color("ef714a"),3)

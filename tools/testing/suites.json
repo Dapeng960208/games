@@ -292,6 +292,14 @@
     "script": "tests/levels/b08/test_l44.gd",
     "scene": "tests/levels/b08/test_l44.tscn"
   },
+  "b08_visual_candidate": {
+    "script": "tests/levels/b08/test_visual_candidate.gd",
+    "scene": "tests/levels/b08/test_visual_candidate.tscn"
+  },
+  "b08_visual_capture": {
+    "script": "tests/levels/b08/test_visual_capture.gd",
+    "scene": "tests/levels/b08/test_visual_capture.tscn"
+  },
   "backpack": {
     "script": "tests/equipment/test_backpack.gd",
     "scene": "tests/equipment/test_backpack.tscn"

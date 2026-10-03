@@ -410,5 +410,15 @@
       ],
       "followup_delay_seconds": 3.0
     }
+  },
+  "visual_candidate": {
+    "status": "opt_in_reference_candidate_not_final_visual_acceptance",
+    "room": "L43",
+    "flag": "--b08-art-l43",
+    "environment_manifest": "asset://b08/rooms/l43/manifest.json",
+    "actor_manifest": "asset://b08/enemies/m01/manifest.json",
+    "actor_coverage": "M01 idle only, front-right plus mirror",
+    "whole_room_native_2k": false,
+    "default_campaign_unchanged": true
   }
 }
