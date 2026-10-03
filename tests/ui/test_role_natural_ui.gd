@@ -21,6 +21,13 @@ var release_count := 0
 var report_path := ""
 var effects_probe := false
 var observed_deployments: Dictionary = {}
+var rhythm_next := 0.0
+var rhythm_actor := 0
+var rhythm_position := Vector2.ZERO
+var rhythm_primary_serial := 0
+var rhythm_dash := false
+var rhythm_dash_end := -10.0
+var captured_visuals: Dictionary = {}
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -154,6 +161,13 @@ func play(hero: String, group: int, death_probe: bool) -> void:
 	observed_deployments.clear()
 	row["control_samples"] = []
 	row["deployments"] = []
+	row["rhythm_samples"] = []
+	row["input_feedback"] = []
+	row["visual_samples"] = []
+	row["number_peak"] = 0
+	row["rhythm"] = {"moving_basic_frames":0,"moving_skill_frames":0,"dash_frames":0,"dash_to_basic":0,"dash_to_skill":0,"queue_frames":0,"queue_max":0,"wall_samples":0,"dense_samples":0}
+	rhythm_next = 0.0
+	rhythm_actor = 0
 	await dismiss_offers()
 	await advance()
 	driver = Driver.new()
@@ -224,6 +238,7 @@ func play(hero: String, group: int, death_probe: bool) -> void:
 	row.requests = driver.requested.duplicate(true)
 	row.rejections = driver.rejected.duplicate(true)
 	row.decisions = driver.decisions.duplicate(true)
+	row["input_probes"] = driver.input_probes.duplicate(true)
 	await frames(5)
 	await capture(hero+"-set"+str(group)+("-death" if death_probe else "-outcome"))
 	rows.append(row.duplicate(true))
@@ -305,6 +320,8 @@ func _physics_process(delta: float) -> void:
 			row.enemy_movements += 1
 			observed_targets[identifier] = target.position
 	var player: HeroActor = room.player
+	observe_rhythm(player,room)
+	observe_visuals(player,room)
 	for event: Dictionary in player.abilities.feedback.release_events:
 		var key := str(player.get_instance_id())+":"+str(event.serial)+":"+str(event.index)
 		if observed_releases.has(key): continue
@@ -313,6 +330,7 @@ func _physics_process(delta: float) -> void:
 		if row.effects.has(identity):
 			row.effects[identity].release = true
 			row.releases.append({"t":elapsed,"skill_id":identity,"serial":int(event.serial),"event":int(event.index),"resource":Game.run.resource,"role":player.class_state_snapshot(),"position":[player.position.x,player.position.y]})
+			if elapsed-rhythm_dash_end <= 0.4: row.rhythm.dash_to_skill += 1
 			if identity in ["CH01_SK03","CH01_SK06","CH01_SK10","CH03_SK03","CH03_SK06"] and float(Game.run.shield) > 0.0: row.effects[identity].guard = true
 			if identity == "CH02_SK06" and player.status.has("damage_reduction"): row.effects[identity].utility = true
 			if identity == "CH02_SK10" and int(player.class_state_snapshot().get("enhanced_shots",0)) == 3: row.effects[identity].utility = true
@@ -335,12 +353,67 @@ func _physics_process(delta: float) -> void:
 			elif identity == "CH02_SK08": row.coverage[identity] = bool(effects.release) and bool(effects.deployment) and bool(effects.control) and float(effects.damage) > 0.0
 			elif identity == "CH02_SK12": row.coverage[identity] = bool(effects.release) and bool(effects.deployment) and float(effects.damage) > 0.0
 	driver.step(elapsed)
+	driver.probe_inputs(elapsed)
 	if room._living_enemy_count() == 0 and room.controls_enabled() and not room.objective_complete:
 		var destination: Dictionary = room.navigation_target()
 		if destination.has("position"):
 			var at: Vector2 = destination.position
 			if player.position.distance_to(at) > 65.0: driver.navigate_to_reachable(elapsed,at,45.0,driver.visible_threats())
 			else: player.clear_movement_target(); room.interact()
+
+func observe_rhythm(player: HeroActor, room: RoomController) -> void:
+	if rhythm_actor != player.get_instance_id():
+		rhythm_actor = player.get_instance_id()
+		player.skill_input_feedback.connect(func(slot: String, reason: String, details: Dictionary):
+			if not active or Game.run == null or not is_instance_valid(player): return
+			row.input_feedback.append({"t":elapsed,"slot":slot,"skill_id":player.skill_id_for_slot(slot) if slot != "attack" else "","reason":reason,"cause":str(details.get("cause","")),"queue_position":int(details.get("queue_position",0)),"age":float(details.get("age",0)),"resource":Game.run.resource})
+		)
+		rhythm_position = player.position
+		rhythm_primary_serial = player._primary_serial
+		rhythm_dash = false
+		rhythm_dash_end = -10.0
+	var moved: float = player.position.distance_to(rhythm_position)
+	var basic_active: bool = player.attack_remaining > 0.0 or player.muzzle_flash > 0.0
+	var casting: bool = player.abilities.busy()
+	var dashing: bool = player.dash_remaining > 0.0
+	var walking: bool = moved > 0.25 and moved < 20.0 and player.click_navigation.is_active() and player.knockback.length_squared() < 0.01 and not dashing
+	if walking and basic_active: row.rhythm.moving_basic_frames += 1
+	if walking and casting and player.abilities.movement_scale() > 0.0: row.rhythm.moving_skill_frames += 1
+	if dashing: row.rhythm.dash_frames += 1
+	if rhythm_dash and not dashing: rhythm_dash_end = elapsed
+	if player._primary_serial != rhythm_primary_serial and elapsed-rhythm_dash_end <= 0.4: row.rhythm.dash_to_basic += 1
+	if not player.combo_queue.is_empty(): row.rhythm.queue_frames += 1
+	row.rhythm.queue_max = maxi(int(row.rhythm.queue_max),player.combo_queue.size())
+	if elapsed >= rhythm_next:
+		var wall_near := false
+		for index: int in 8:
+			if not room.valid_ground(player.position+Vector2.RIGHT.rotated(float(index)*TAU/8.0)*35.0,Balance.PLAYER_RADIUS): wall_near = true; break
+		var nearby := 0
+		for target: Node in room.enemies.get_children():
+			if target is EnemyActor and target.is_alive() and target.actor_kind != "objective" and target.position.distance_to(player.position) <= 180.0: nearby += 1
+		if wall_near: row.rhythm.wall_samples += 1
+		if nearby >= 3: row.rhythm.dense_samples += 1
+		row.rhythm_samples.append({"t":elapsed,"room":room.layout_id,"at":[player.position.x,player.position.y],"moved":moved,"navigation":player.click_navigation.is_active(),"basic":basic_active,"primary_serial":player._primary_serial,"casting":casting,"skill_id":str(player.abilities.active.get("skill_id","")),"dash":dashing,"queue_length":player.combo_queue.size(),"wall_near":wall_near,"nearby_enemies":nearby,"hp":Game.run.hp,"resource":Game.run.resource})
+		rhythm_next = elapsed+0.25
+	rhythm_position = player.position
+	rhythm_primary_serial = player._primary_serial
+	rhythm_dash = dashing
+
+func observe_visuals(player: HeroActor, room: RoomController) -> void:
+	var visible_numbers := 0
+	for event: Dictionary in room.impact_feedback.events:
+		if str(event.kind) == "number": visible_numbers += 1
+	row.number_peak = maxi(int(row.number_peak),visible_numbers)
+	for effect: Dictionary in player.abilities.feedback.effects:
+		var identity: String = str(effect.get("skill_id",""))
+		if identity not in ["CH01_SK07","CH02_SK12"] or captured_visuals.has(identity): continue
+		var kind: String = str(effect.kind)
+		if kind not in ["fault_line","sentry_place"]: continue
+		captured_visuals[identity] = true
+		var at: Vector2 = effect.at
+		var direction: Vector2 = effect.direction
+		row.visual_samples.append({"t":elapsed,"skill_id":identity,"kind":kind,"origin":[at.x,at.y],"direction":[direction.x,direction.y],"radius":float(effect.radius),"line_width":float(effect.get("line_width",0)),"duration":float(effect.duration),"age":float(effect.age),"player":[player.position.x,player.position.y],"visible_numbers":visible_numbers})
+		capture(identity+"-actual-release")
 
 func observe_contact(target: EnemyActor, identity: String, packet: Dictionary, before: Vector2) -> void:
 	if not is_instance_valid(target) or not target.is_alive() or not row.effects.has(identity): return

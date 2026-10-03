@@ -6,6 +6,8 @@ var coverage: Dictionary = {}
 var requested: Array[Dictionary] = []
 var passive_death := false
 var effects_probe := false
+var input_probes: Array[Dictionary] = []
+var next_input_probe := 0.0
 
 func aim(at: Vector2) -> void:
 	var point: Vector2 = room.get_canvas_transform()*room.to_global(at)
@@ -83,6 +85,51 @@ func maintain_primary() -> void:
 	if player.position.distance_to(target.position) > player.auto_attack_range()-5.0 or not room.has_line_of_sight(player.position,target.position): return
 	var direction := player.position.direction_to(target.position)
 	player.request_attack(direction if not direction.is_zero_approx() else player.aim_direction,target)
+
+func probe_inputs(time: float) -> void:
+	# Only after the configured four effects have already been observed, submit
+	# an occasional finite sequence through the same public production inputs.
+	# Record acceptance/rejection; a rejected press is not a successful action.
+	if passive_death or effects_probe or time < next_input_probe or input_probes.size() >= 16 or coverage.is_empty(): return
+	for complete: Variant in coverage.values():
+		if not bool(complete): return
+	if not room.controls_enabled() or not room.pointer_controls_enabled() or aim_target == null: return
+	var target: Node2D = aim_target.get_ref()
+	var player: HeroActor = room.player
+	if not is_instance_valid(target) or not target.is_alive() or player.dash_remaining > 0.0 or not player.combo_queue.is_empty(): return
+	var wait: float = player.abilities.recovery_chain_wait() if player.abilities.busy() else 0.0
+	if wait > 0.2: return
+	var direction: Vector2 = player.position.direction_to(target.position)
+	var at: Vector2 = player.position+direction.orthogonal()*60.0
+	var entry: Dictionary = {"t":time,"at":[player.position.x,player.position.y],"target":[target.position.x,target.position.y],"cast_busy":player.abilities.busy(),"chain_wait":wait,"resource_before":Game.run.resource,"move_requested":false,"attack_accepted":false,"skill_inputs":[]}
+	if not player.abilities.busy() and room.valid_ground(at,Balance.PLAYER_RADIUS) and danger_at(at,visible_threats()) == 0:
+		entry.move_requested = player.request_move(at,false)
+		if player.position.distance_to(target.position) <= player.auto_attack_range()-5.0:
+			entry.attack_accepted = player.request_attack(direction,target)
+	var candidates: Array[Dictionary] = []
+	for slot: String in player.INPUT_SLOTS:
+		var spec: Dictionary = player.skill_definition(slot)
+		if player.skill_cooldown(slot) > 0.0 or float(Game.run.resource) < float(spec.cost) or not skill_reaches(Game.run.hero_id,slot,spec,player.position.distance_to(target.position),target): continue
+		candidates.append({"slot":slot,"spec":spec})
+	candidates.sort_custom(func(left: Dictionary,right: Dictionary)->bool: return float(left.spec.duration)>float(right.spec.duration))
+	var budget: float = float(Game.run.resource)
+	var submitted := 0
+	var first_slot := ""
+	for candidate: Dictionary in candidates:
+		if submitted >= 2: break
+		if float(candidate.spec.cost) > budget: continue
+		var accepted: bool = player.request_skill(str(candidate.slot),target.position)
+		entry.skill_inputs.append({"skill_id":str(candidate.spec.skill_id),"press":submitted,"accepted":accepted,"reason":player.last_cast_error,"queue_length":player.combo_queue.size(),"cast_id":player.abilities.cast_serial,"resource":Game.run.resource})
+		if accepted:
+			budget -= float(candidate.spec.cost)
+			if first_slot.is_empty(): first_slot = str(candidate.slot)
+			submitted += 1
+	if not first_slot.is_empty():
+		var duplicate: bool = player.request_skill(first_slot,target.position)
+		entry.skill_inputs.append({"skill_id":player.skill_id_for_slot(first_slot),"press":2,"accepted":duplicate,"reason":player.last_cast_error,"queue_length":player.combo_queue.size(),"cast_id":player.abilities.cast_serial,"resource":Game.run.resource})
+	entry["resource_after"] = Game.run.resource
+	input_probes.append(entry)
+	next_input_probe = time+12.0
 
 func skill_reaches(hero: String, _slot: String, spec: Dictionary, distance: float, _target: Node2D = null) -> bool:
 	var identity: String = str(spec.skill_id)
