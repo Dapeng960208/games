@@ -1,0 +1,206 @@
+{
+  "schema": "b08-keypose-candidate-v1",
+  "actor_id": "B08-M01",
+  "world_body_height": 100,
+  "frames": {
+    "idle": {
+      "file": "idle.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "foot": [
+        637.0,
+        1127.0
+      ],
+      "core": [
+        615,
+        501
+      ],
+      "crown": [
+        641,
+        190
+      ],
+      "foot_contacts": [
+        [
+          436,
+          1206
+        ],
+        [
+          838,
+          1048
+        ]
+      ],
+      "visual_outlet": [
+        1050,
+        640
+      ],
+      "world_per_source_pixel": 0.10672358591248667,
+      "standing_equivalent_source_pixels": 937,
+      "source_sha256": "540104973b5553e5f3c9a23ea7ce218684fb9733d5d599a8244169e617e5618d",
+      "registration_status": "manual candidate; actual2K review pending",
+      "effective_alpha16_size": [
+        881,
+        1189
+      ]
+    },
+    "warning": {
+      "file": "primary_keyposes.png",
+      "region": [
+        0,
+        0,
+        770,
+        724
+      ],
+      "foot": [
+        349.0,
+        628.0
+      ],
+      "core": [
+        323,
+        262
+      ],
+      "crown": [
+        348,
+        86
+      ],
+      "foot_contacts": [
+        [
+          165,
+          672
+        ],
+        [
+          533,
+          584
+        ]
+      ],
+      "visual_outlet": [
+        632,
+        276
+      ],
+      "world_per_source_pixel": 0.18181818181818182,
+      "standing_equivalent_source_pixels": 550,
+      "source_sha256": "a8a571cb2ecd88a0418db4ab3c8681ef1e15aeee8653fe972b2c513984122d75",
+      "registration_status": "manual candidate; actual2K review pending",
+      "effective_alpha16_size": [
+        632,
+        662
+      ]
+    },
+    "release": {
+      "file": "primary_keyposes.png",
+      "region": [
+        770,
+        0,
+        745,
+        724
+      ],
+      "foot": [
+        1086.0,
+        637.5
+      ],
+      "core": [
+        1056,
+        268
+      ],
+      "crown": [
+        1080,
+        86
+      ],
+      "foot_contacts": [
+        [
+          912,
+          675
+        ],
+        [
+          1260,
+          600
+        ]
+      ],
+      "visual_outlet": [
+        1373,
+        301
+      ],
+      "world_per_source_pixel": 0.18181818181818182,
+      "standing_equivalent_source_pixels": 550,
+      "source_sha256": "a8a571cb2ecd88a0418db4ab3c8681ef1e15aeee8653fe972b2c513984122d75",
+      "registration_status": "manual candidate; actual2K review pending",
+      "effective_alpha16_size": [
+        624,
+        670
+      ]
+    },
+    "recovery": {
+      "file": "primary_keyposes.png",
+      "region": [
+        1515,
+        0,
+        657,
+        724
+      ],
+      "foot": [
+        1812.0,
+        642.5
+      ],
+      "core": [
+        1811,
+        279
+      ],
+      "crown": [
+        1824,
+        90
+      ],
+      "foot_contacts": [
+        [
+          1683,
+          677
+        ],
+        [
+          1941,
+          608
+        ]
+      ],
+      "visual_outlet": [
+        2033,
+        395
+      ],
+      "world_per_source_pixel": 0.18181818181818182,
+      "standing_equivalent_source_pixels": 550,
+      "source_sha256": "a8a571cb2ecd88a0418db4ab3c8681ef1e15aeee8653fe972b2c513984122d75",
+      "registration_status": "manual candidate; actual2K review pending",
+      "effective_alpha16_size": [
+        523,
+        622
+      ]
+    }
+  },
+  "gate": "--b08-art-l43 --b08-art-convergence",
+  "enabled_rooms": [
+    "L43"
+  ],
+  "coverage": "idle plus warning/release/recovery keyposes; front-right source and mirror only",
+  "scale_basis": {
+    "idle_source_baseline": 937,
+    "idle_scale": 0.10672358591248667,
+    "action_source_standing_equivalent": 550,
+    "action_scale": 0.18181818181818182,
+    "sheet_to_idle_anatomy_ratio": 0.5869797225186766,
+    "manual_scale_uncertainty_fraction": 0.05,
+    "evidence": [
+      "Existing idle anatomical crown190 to projected contact midpoint1127 is937px and remains authoritative.",
+      "Approximate hair/scalp crown-to-chin idle190px versus action111–112px implies an action/idle ratio~0.584–0.589. The shared550/937 ratio0.587 is inside that range.",
+      "Neck-to-belt and near lower-leg cues support roughly0.57–0.62× idle source dimensions. Bow, wings and pose spread are excluded.",
+      "The extended arm is more exposed than in idle and is a weaker length comparator; generated anatomy/perspective makes it disagree more than head and leg cues.",
+      "One shared550px equivalent yields observed pose heights98.5,100.3,100.5world. These values are results of anchors, never normalization targets."
+    ]
+  },
+  "not_implemented": [
+    "continuous animation",
+    "walking",
+    "back bank",
+    "natural combat visual acceptance"
+  ],
+  "gameplay_unchanged": true
+}

@@ -1,0 +1,22 @@
+{
+  "id": "B08-M03",
+  "status": "native transparent ready identity candidate; not integrated",
+  "selected_file": "idle.png",
+  "generation_tool": "built-in imagegen",
+  "source_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-278040e2-d4fb-466a-aebf-7821e0ef2add.png",
+  "sha256": "20411fb38c4aa40bf928ca77e633f9784b5388f4bce8779394fc81558c9018c2",
+  "source_copy_hash_identical": true,
+  "prompt_file": "idle.prompt.txt",
+  "references": [
+    {
+      "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B08(1).png",
+      "role": "authoritative chapter palette/civilization"
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/games-recovery/b08/assets/levels/b08/enemies/m01/art/idle.png",
+      "role": "rendering/material/camera only, new actor identity requested"
+    }
+  ],
+  "native_pixels_modified": false,
+  "qa_file": "native_qa.json"
+}

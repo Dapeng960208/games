@@ -1,0 +1,482 @@
+{
+  "actor": {
+    "facing": "front-right / southeast source",
+    "nominal_adult_body_height_world": 100,
+    "scale_basis": {
+      "idle_source_baseline": 937,
+      "idle_scale": 0.10672358591248667,
+      "action_source_standing_equivalent": 550,
+      "action_scale": 0.18181818181818182,
+      "sheet_to_idle_anatomy_ratio": 0.5869797225186766,
+      "manual_scale_uncertainty_fraction": 0.05,
+      "evidence": [
+        "Existing idle anatomical crown190 to projected contact midpoint1127 is937px and remains authoritative.",
+        "Approximate hair/scalp crown-to-chin idle190px versus action111–112px implies an action/idle ratio~0.584–0.589. The shared550/937 ratio0.587 is inside that range.",
+        "Neck-to-belt and near lower-leg cues support roughly0.57–0.62× idle source dimensions. Bow, wings and pose spread are excluded.",
+        "The extended arm is more exposed than in idle and is a weaker length comparator; generated anatomy/perspective makes it disagree more than head and leg cues.",
+        "One shared550px equivalent yields observed pose heights98.5,100.3,100.5world. These values are results of anchors, never normalization targets."
+      ]
+    },
+    "manual_anchor_uncertainty_px": {
+      "idle": 10,
+      "sheet": 8,
+      "inferred_outlet": 12
+    },
+    "frames": [
+      {
+        "name": "idle",
+        "source": "games-recovery/b08/assets/levels/b08/enemies/m01/art/idle.png",
+        "source_region_xywh": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "alpha_gt16_local_bounds_xyxy_exclusive": [
+          303,
+          25,
+          1184,
+          1214
+        ],
+        "alpha_gt0_on_region_border": 0,
+        "anchors_source_global": {
+          "anatomical_crown": [
+            641,
+            190
+          ],
+          "foot_contacts": [
+            [
+              436,
+              1206
+            ],
+            [
+              838,
+              1048
+            ]
+          ],
+          "projected_foot_midpoint": [
+            637.0,
+            1127.0
+          ],
+          "core": [
+            615,
+            501
+          ],
+          "weapon_grip": [
+            1033,
+            673
+          ],
+          "visual_weapon_outlet": [
+            1050,
+            640
+          ],
+          "chin": [
+            669,
+            380
+          ]
+        },
+        "anchors_region_local": {
+          "anatomical_crown": [
+            641,
+            190
+          ],
+          "foot_contacts": [
+            [
+              436,
+              1206
+            ],
+            [
+              838,
+              1048
+            ]
+          ],
+          "projected_foot_midpoint": [
+            637.0,
+            1127.0
+          ],
+          "core": [
+            615,
+            501
+          ],
+          "weapon_grip": [
+            1033,
+            673
+          ],
+          "visual_weapon_outlet": [
+            1050,
+            640
+          ],
+          "chin": [
+            669,
+            380
+          ]
+        },
+        "nominal_adult_world_body_height": 100,
+        "standing_equivalent_source_body_height": 937,
+        "uniform_source_to_world_scale": 0.10672358591248667,
+        "observed_crown_to_foot_midpoint_y_px": 937.0,
+        "observed_crown_to_foot_midpoint_world_y": 100.0,
+        "status": "existing_baseline_retained",
+        "notes": [
+          "Existing approved registration retained exactly. Crown excludes feather ornament, wings and bow.",
+          "Outlet is an inferred arrow-rest location; no arrow is nocked."
+        ],
+        "observed_crown_to_chin_y_px": 190
+      },
+      {
+        "name": "warning",
+        "source": "b08-art/actors/actions_0748/m01/primary_keyposes.png",
+        "source_region_xywh": [
+          0,
+          0,
+          770,
+          724
+        ],
+        "alpha_gt16_local_bounds_xyxy_exclusive": [
+          93,
+          18,
+          725,
+          680
+        ],
+        "alpha_gt0_on_region_border": 0,
+        "anchors_source_global": {
+          "anatomical_crown": [
+            348,
+            86
+          ],
+          "foot_contacts": [
+            [
+              165,
+              672
+            ],
+            [
+              533,
+              584
+            ]
+          ],
+          "projected_foot_midpoint": [
+            349.0,
+            628.0
+          ],
+          "core": [
+            323,
+            262
+          ],
+          "weapon_grip": [
+            618,
+            298
+          ],
+          "visual_weapon_outlet": [
+            632,
+            276
+          ],
+          "chin": [
+            352,
+            197
+          ]
+        },
+        "anchors_region_local": {
+          "anatomical_crown": [
+            348,
+            86
+          ],
+          "foot_contacts": [
+            [
+              165,
+              672
+            ],
+            [
+              533,
+              584
+            ]
+          ],
+          "projected_foot_midpoint": [
+            349.0,
+            628.0
+          ],
+          "core": [
+            323,
+            262
+          ],
+          "weapon_grip": [
+            618,
+            298
+          ],
+          "visual_weapon_outlet": [
+            632,
+            276
+          ],
+          "chin": [
+            352,
+            197
+          ]
+        },
+        "nominal_adult_world_body_height": 100,
+        "standing_equivalent_source_body_height": 550,
+        "uniform_source_to_world_scale": 0.18181818181818182,
+        "observed_crown_to_foot_midpoint_y_px": 542.0,
+        "observed_crown_to_foot_midpoint_world_y": 98.54545454545455,
+        "status": "suitable_source_keypose_pending_runtime_review",
+        "notes": [
+          "Full draw with nocked arrow. Anatomical left hand holds bow; right hand draws at face.",
+          "Arrow rest is outlet; visible arrow tip approximately[722,296]. Draw aims right and slightly down in screen coordinates.",
+          "Two separate sole contacts; wider stance than idle is retained."
+        ],
+        "observed_crown_to_chin_y_px": 111
+      },
+      {
+        "name": "release",
+        "source": "b08-art/actors/actions_0748/m01/primary_keyposes.png",
+        "source_region_xywh": [
+          770,
+          0,
+          745,
+          724
+        ],
+        "alpha_gt16_local_bounds_xyxy_exclusive": [
+          45,
+          11,
+          669,
+          681
+        ],
+        "alpha_gt0_on_region_border": 0,
+        "anchors_source_global": {
+          "anatomical_crown": [
+            1080,
+            86
+          ],
+          "foot_contacts": [
+            [
+              912,
+              675
+            ],
+            [
+              1260,
+              600
+            ]
+          ],
+          "projected_foot_midpoint": [
+            1086.0,
+            637.5
+          ],
+          "core": [
+            1056,
+            268
+          ],
+          "weapon_grip": [
+            1368,
+            323
+          ],
+          "visual_weapon_outlet": [
+            1373,
+            301
+          ],
+          "chin": [
+            1091,
+            198
+          ]
+        },
+        "anchors_region_local": {
+          "anatomical_crown": [
+            310,
+            86
+          ],
+          "foot_contacts": [
+            [
+              142,
+              675
+            ],
+            [
+              490,
+              600
+            ]
+          ],
+          "projected_foot_midpoint": [
+            316.0,
+            637.5
+          ],
+          "core": [
+            286,
+            268
+          ],
+          "weapon_grip": [
+            598,
+            323
+          ],
+          "visual_weapon_outlet": [
+            603,
+            301
+          ],
+          "chin": [
+            321,
+            198
+          ]
+        },
+        "nominal_adult_world_body_height": 100,
+        "standing_equivalent_source_body_height": 550,
+        "uniform_source_to_world_scale": 0.18181818181818182,
+        "observed_crown_to_foot_midpoint_y_px": 551.5,
+        "observed_crown_to_foot_midpoint_world_y": 100.27272727272727,
+        "status": "suitable_source_keypose_pending_runtime_review",
+        "notes": [
+          "Empty bow after release. Bow remains in anatomical left hand; open right drawing hand recoils behind.",
+          "Outlet is inferred empty arrow rest. No source arrow needs to be rendered in release.",
+          "Uses same scale as warning; source/body height is not refitted."
+        ],
+        "observed_crown_to_chin_y_px": 112
+      },
+      {
+        "name": "recovery",
+        "source": "b08-art/actors/actions_0748/m01/primary_keyposes.png",
+        "source_region_xywh": [
+          1515,
+          0,
+          657,
+          724
+        ],
+        "alpha_gt16_local_bounds_xyxy_exclusive": [
+          75,
+          62,
+          598,
+          684
+        ],
+        "alpha_gt0_on_region_border": 0,
+        "anchors_source_global": {
+          "anatomical_crown": [
+            1824,
+            90
+          ],
+          "foot_contacts": [
+            [
+              1683,
+              677
+            ],
+            [
+              1941,
+              608
+            ]
+          ],
+          "projected_foot_midpoint": [
+            1812.0,
+            642.5
+          ],
+          "core": [
+            1811,
+            279
+          ],
+          "weapon_grip": [
+            2018,
+            415
+          ],
+          "visual_weapon_outlet": [
+            2033,
+            395
+          ],
+          "chin": [
+            1840,
+            202
+          ]
+        },
+        "anchors_region_local": {
+          "anatomical_crown": [
+            309,
+            90
+          ],
+          "foot_contacts": [
+            [
+              168,
+              677
+            ],
+            [
+              426,
+              608
+            ]
+          ],
+          "projected_foot_midpoint": [
+            297.0,
+            642.5
+          ],
+          "core": [
+            296,
+            279
+          ],
+          "weapon_grip": [
+            503,
+            415
+          ],
+          "visual_weapon_outlet": [
+            518,
+            395
+          ],
+          "chin": [
+            325,
+            202
+          ]
+        },
+        "nominal_adult_world_body_height": 100,
+        "standing_equivalent_source_body_height": 550,
+        "uniform_source_to_world_scale": 0.18181818181818182,
+        "observed_crown_to_foot_midpoint_y_px": 552.5,
+        "observed_crown_to_foot_midpoint_world_y": 100.45454545454545,
+        "status": "suitable_source_keypose_pending_runtime_review",
+        "notes": [
+          "Bow lowered in left hand and right hand returns to torso.",
+          "Outlet is inferred arrow rest, not an active shot emission point.",
+          "Uses same scale as warning/release."
+        ],
+        "observed_crown_to_chin_y_px": 112
+      }
+    ],
+    "review": {
+      "independent_extraction": true,
+      "wrong_hand_detected": false,
+      "missing_visible_contacts": false,
+      "pose_suitability": "All three are usable source keyposes, pending runtime scale/foot/camera review.",
+      "risks": [
+        "Three keyposes do not provide continuous animation or back-facing coverage.",
+        "Horizontal mirroring must be applied consistently to every pose and anchor.",
+        "Wings spread during draw/release and the stance is wider than idle; this is pose variation, not scale evidence.",
+        "Low-alpha colored residues exist in untouched source; no source cleanup was performed."
+      ]
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "/workspace/scratch/2244020fc8d6/games-recovery/b08/assets/levels/b08/enemies/m01/art/idle.png",
+      "sha256": "540104973b5553e5f3c9a23ea7ce218684fb9733d5d599a8244169e617e5618d",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "pixels_modified": false
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/actors/actions_0748/m01/primary_keyposes.png",
+      "sha256": "a8a571cb2ecd88a0418db4ab3c8681ef1e15aeee8653fe972b2c513984122d75",
+      "native_size": [
+        2172,
+        724
+      ],
+      "pixels_modified": false
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/actors/second_batch_0737/m03/idle.png",
+      "sha256": "20411fb38c4aa40bf928ca77e633f9784b5388f4bce8779394fc81558c9018c2",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "pixels_modified": false
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/actors/actions_0748/m03/primary_keyposes.png",
+      "sha256": "253d4656653d594244b8cbd4fd3a6ebe1213137fd80b8b292f1fb05db695383b",
+      "native_size": [
+        2172,
+        724
+      ],
+      "pixels_modified": false
+    }
+  ],
+  "license": "Original builtin imagegen assets; exact native bytes and original prompts retained."
+}

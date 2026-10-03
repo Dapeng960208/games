@@ -4,6 +4,8 @@
 
 ## 当前接入
 
+本页描述原 `--b08-art-l43` 闸门；额外 `--b08-art-convergence` 的三怪关键姿态与细地表/石檐见 [L43统一候选](l43_convergence.md)，仍未完成整房或自然战斗验收。
+
 - 仅 `scenes/gameplay/world/b08_candidate.tscn` 的 L43，并且同时满足 debug、`--candidate-b08`、唯一隔离档和 `--b08-art-l43`。缺少 art 参数继续显示调试几何，默认主场景/四章/Lv20/正式档不改。
 - 八层原始 PNG 位于 `assets/levels/b08/rooms/l43/detail`，M01 位于 `assets/levels/b08/enemies/m01/art`。物理文件小写语义命名；`assets/manifest.json` 将稳定逻辑 ID 路由到文件，代码经 AssetCatalog 和现有 TextureSampler 加载。
 - 八层为地表、远景城市、西岛基、东岛基、中央大拱、风塔、翼殿和飞艇；地表是完整原生构图的全局 UV，并非重新平铺。远景在不透明地表后，六个外部图层严格扣除完整六矩形地面并集。入口/出口、云缝、脚点、碰撞和风标坐标不改。

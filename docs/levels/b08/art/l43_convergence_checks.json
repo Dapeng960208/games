@@ -1,0 +1,71 @@
+{
+  "status": "explicit_l43_candidate_not_full_acceptance",
+  "verification_date_utc": "2026-10-03",
+  "headless": {
+    "suite": "b08_l43_integration",
+    "run": "20261003T100140356033Z-07397e47",
+    "checks": 67,
+    "failures": 0,
+    "exit_code": 0
+  },
+  "legacy_art_gate_regression": {
+    "suite": "b08_visual_candidate",
+    "checks": 34,
+    "failures": 0,
+    "note": "First command in095345batch succeeded. Subsequent standalone capture parse failed from direct autoload reference; fixed parse passed095454 separately."
+  },
+  "actual_renderer": {
+    "run": "20261003T100309653151Z-d23f5df4",
+    "exit_code": 0,
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "audio_cleanup": true,
+    "warnings": [
+      "driver does not support changing VSync"
+    ],
+    "frames": {
+      "entry_identity.png": "c5a3d21917e816d234c38c188706a95ab73f4cc82e3cf9b946613d231bd54ad5",
+      "locked_warnings.png": "0f7f0ccc0b391864b8eaea508be14860e9f97f85a904b4580ea8c9e315ff6984",
+      "locked_warnings_reduced.png": "3d7fe54f8d768fdee4595cf904823f443bdd84ee50468076fd7bd2f26957d0be",
+      "release_and_dive.png": "a8d9b9b75c3c4893252defdd912d825619e1b4cfbe7483d931f7d18f20bfcadf",
+      "landing_and_stab.png": "3bc23991c2eb86733cb4f8ab9b299b441eb953d870a1a056d67e81034be9a6ec"
+    },
+    "actual_pose_coverage": {
+      "B08-M01": [
+        "idle",
+        "warning",
+        "release",
+        "recovery"
+      ],
+      "B08-M02": [
+        "idle",
+        "warning",
+        "release",
+        "recovery"
+      ],
+      "B08-M03": [
+        "idle",
+        "release"
+      ]
+    },
+    "scope": "Controlled existing skill phases, not natural combat or target hardware performance."
+  },
+  "unchanged_from_f533cfc": {
+    "scripts/levels/b08/geometry.gd": "bb5473fb375f3f8a7a117ceb0a9e679be0d1f8950d7f2a328b5d85eef5682043",
+    "scripts/levels/b08/enemy_brain.gd": "bba68d90f236f5630e9f358321eac89a68ed81baa9de24fe008124cdc6d10bb7",
+    "data/levels/b08/content.json": "bc2b31ea5ca1a2a71536e85c4f1345dd304124292d448471f567f1625e830f80",
+    "scripts/levels/b08/candidate_gate.gd": "fb66bb81a45ef7679ae4136d9605c4df61a49232f2309ca2a7320857d6d8db22",
+    "project.godot": "ee6d5930cfb93508212cf3031fe97086b502e62768e6d94299da5f7783f574a2"
+  },
+  "unresolved": [
+    "bow outlet versus unchanged ground projectile origin",
+    "M03 warning/recovery actual-frame review",
+    "continuous movement/back/hit/death animation",
+    "natural combat and target hardware",
+    "wide platform/full side returns",
+    "flag/vane/exit native props"
+  ]
+}

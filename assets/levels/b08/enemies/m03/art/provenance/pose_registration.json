@@ -1,0 +1,496 @@
+{
+  "actor": {
+    "facing": "front-right / southeast source; release includes torso rotation",
+    "nominal_adult_body_height_world": 100,
+    "scale_basis": {
+      "idle_source_standing_equivalent": 1100,
+      "idle_scale": 0.09090909090909091,
+      "action_source_standing_equivalent": 675,
+      "action_scale": 0.14814814814814814,
+      "sheet_to_idle_anatomy_ratio": 0.6136363636363636,
+      "manual_scale_uncertainty_fraction": 0.08,
+      "evidence": [
+        "No upright M03 pose is supplied.1100px is a standing-equivalent calibration estimate, not a measured vertical source extent.",
+        "M03 idle crown-to-chin is about233px; chosen scale gives21.2world head height, close to M01 idle190×100/937=20.3world without requiring identical hairstyle or face proportions.",
+        "M03 sheet crown-to-chin measurements139–145px imply roughly0.60–0.62 of its idle head. A shared675/1100=0.614 ratio gives20.6–21.5world action heads.",
+        "Approximate rear shin/ankle cue is roughly0.62–0.65 of idle source length; torso projection is heavily foreshortened by coil/lunge and cannot be treated as a standing-height ruler.",
+        "Observed crown-to-foot midpoint is886.5px in idle, about441.5px warning,457px stab and496px recovery. They remain~80.6,65.4,67.7,73.5world respectively rather than each being enlarged to100.",
+        "Absolute M03 adult scale remains lower-confidence than M01 because its only reference is crouched and generated proportions are not a rigid skeleton. An upright same-identity source or actual shared-world review is required to resolve that uncertainty."
+      ]
+    },
+    "manual_anchor_uncertainty_px": {
+      "idle": 18,
+      "sheet": 10,
+      "dagger_tip": 6
+    },
+    "frames": [
+      {
+        "name": "idle",
+        "source": "b08-art/actors/second_batch_0737/m03/idle.png",
+        "source_region_xywh": [
+          0,
+          0,
+          1312,
+          1199
+        ],
+        "alpha_gt16_local_bounds_xyxy_exclusive": [
+          127,
+          98,
+          1192,
+          1164
+        ],
+        "alpha_gt0_on_region_border": 17,
+        "anchors_source_global": {
+          "anatomical_crown": [
+            867,
+            153
+          ],
+          "foot_contacts": [
+            [
+              491,
+              1157
+            ],
+            [
+              995,
+              922
+            ]
+          ],
+          "projected_foot_midpoint": [
+            743.0,
+            1039.5
+          ],
+          "core": [
+            785,
+            475
+          ],
+          "weapon_grip": [
+            355,
+            551
+          ],
+          "visual_weapon_outlet": [
+            131,
+            708
+          ],
+          "chin": [
+            896,
+            386
+          ]
+        },
+        "anchors_region_local": {
+          "anatomical_crown": [
+            867,
+            153
+          ],
+          "foot_contacts": [
+            [
+              491,
+              1157
+            ],
+            [
+              995,
+              922
+            ]
+          ],
+          "projected_foot_midpoint": [
+            743.0,
+            1039.5
+          ],
+          "core": [
+            785,
+            475
+          ],
+          "weapon_grip": [
+            355,
+            551
+          ],
+          "visual_weapon_outlet": [
+            131,
+            708
+          ],
+          "chin": [
+            896,
+            386
+          ]
+        },
+        "nominal_adult_world_body_height": 100,
+        "standing_equivalent_source_body_height": 1100,
+        "uniform_source_to_world_scale": 0.09090909090909091,
+        "observed_crown_to_foot_midpoint_y_px": 886.5,
+        "observed_crown_to_foot_midpoint_world_y": 80.5909090909091,
+        "status": "suitable_crouched_idle_candidate_pending_runtime_review",
+        "notes": [
+          "This is already a bent-knee ready stance. Its observed height is not a standing scale baseline.",
+          "Dagger in anatomical right hand on image left; balancing left hand on image right.",
+          "Both boot soles are visible. Use this same frame while flank transit runs; it does not constitute authored walk animation.",
+          "Outlet denotes dagger tip, not projectile origin."
+        ],
+        "observed_crown_to_chin_y_px": 233
+      },
+      {
+        "name": "warning",
+        "source": "b08-art/actors/actions_0748/m03/primary_keyposes.png",
+        "source_region_xywh": [
+          0,
+          0,
+          721,
+          724
+        ],
+        "alpha_gt16_local_bounds_xyxy_exclusive": [
+          20,
+          117,
+          705,
+          652
+        ],
+        "alpha_gt0_on_region_border": 0,
+        "anchors_source_global": {
+          "anatomical_crown": [
+            552,
+            151
+          ],
+          "foot_contacts": [
+            [
+              114,
+              645
+            ],
+            [
+              487,
+              540
+            ]
+          ],
+          "projected_foot_midpoint": [
+            300.5,
+            592.5
+          ],
+          "core": [
+            474,
+            343
+          ],
+          "weapon_grip": [
+            157,
+            270
+          ],
+          "visual_weapon_outlet": [
+            24,
+            285
+          ],
+          "chin": [
+            562,
+            296
+          ]
+        },
+        "anchors_region_local": {
+          "anatomical_crown": [
+            552,
+            151
+          ],
+          "foot_contacts": [
+            [
+              114,
+              645
+            ],
+            [
+              487,
+              540
+            ]
+          ],
+          "projected_foot_midpoint": [
+            300.5,
+            592.5
+          ],
+          "core": [
+            474,
+            343
+          ],
+          "weapon_grip": [
+            157,
+            270
+          ],
+          "visual_weapon_outlet": [
+            24,
+            285
+          ],
+          "chin": [
+            562,
+            296
+          ]
+        },
+        "nominal_adult_world_body_height": 100,
+        "standing_equivalent_source_body_height": 675,
+        "uniform_source_to_world_scale": 0.14814814814814814,
+        "observed_crown_to_foot_midpoint_y_px": 441.5,
+        "observed_crown_to_foot_midpoint_world_y": 65.4074074074074,
+        "status": "suitable_warning_keypose_not_locomotion",
+        "notes": [
+          "Low coil with right dagger hand extended backward toward image left; this is windup, not a strike or moving-foot frame.",
+          "Free left hand reaches low/right. Two boot contacts remain visible.",
+          "Crown is lower relative to feet because of crouch; do not enlarge to100world apparent height."
+        ],
+        "observed_crown_to_chin_y_px": 145
+      },
+      {
+        "name": "release",
+        "source": "b08-art/actors/actions_0748/m03/primary_keyposes.png",
+        "source_region_xywh": [
+          721,
+          0,
+          847,
+          724
+        ],
+        "alpha_gt16_local_bounds_xyxy_exclusive": [
+          17,
+          104,
+          829,
+          609
+        ],
+        "alpha_gt0_on_region_border": 0,
+        "anchors_source_global": {
+          "anatomical_crown": [
+            1220,
+            141
+          ],
+          "foot_contacts": [
+            [
+              770,
+              596
+            ],
+            [
+              1219,
+              600
+            ]
+          ],
+          "projected_foot_midpoint": [
+            994.5,
+            598.0
+          ],
+          "core": [
+            1128,
+            329
+          ],
+          "weapon_grip": [
+            1346,
+            374
+          ],
+          "visual_weapon_outlet": [
+            1542,
+            443
+          ],
+          "chin": [
+            1211,
+            280
+          ]
+        },
+        "anchors_region_local": {
+          "anatomical_crown": [
+            499,
+            141
+          ],
+          "foot_contacts": [
+            [
+              49,
+              596
+            ],
+            [
+              498,
+              600
+            ]
+          ],
+          "projected_foot_midpoint": [
+            273.5,
+            598.0
+          ],
+          "core": [
+            407,
+            329
+          ],
+          "weapon_grip": [
+            625,
+            374
+          ],
+          "visual_weapon_outlet": [
+            821,
+            443
+          ],
+          "chin": [
+            490,
+            280
+          ]
+        },
+        "nominal_adult_world_body_height": 100,
+        "standing_equivalent_source_body_height": 675,
+        "uniform_source_to_world_scale": 0.14814814814814814,
+        "observed_crown_to_foot_midpoint_y_px": 457.0,
+        "observed_crown_to_foot_midpoint_world_y": 67.70370370370371,
+        "status": "suitable_short_stab_keypose_pending_runtime_review",
+        "notes": [
+          "Forward/right dagger thrust with right shoulder rotated toward target. Dagger-side continuity is plausible through torso rotation; no unequivocal hand swap is visible.",
+          "Free hand trails behind on image left. Both boot contacts remain visible.",
+          "Use as short stab only. No full movement cycle or long transit is represented."
+        ],
+        "observed_crown_to_chin_y_px": 139
+      },
+      {
+        "name": "recovery",
+        "source": "b08-art/actors/actions_0748/m03/primary_keyposes.png",
+        "source_region_xywh": [
+          1568,
+          0,
+          604,
+          724
+        ],
+        "alpha_gt16_local_bounds_xyxy_exclusive": [
+          18,
+          86,
+          533,
+          659
+        ],
+        "alpha_gt0_on_region_border": 0,
+        "anchors_source_global": {
+          "anatomical_crown": [
+            1917,
+            117
+          ],
+          "foot_contacts": [
+            [
+              1619,
+              650
+            ],
+            [
+              1986,
+              576
+            ]
+          ],
+          "projected_foot_midpoint": [
+            1802.5,
+            613.0
+          ],
+          "core": [
+            1860,
+            321
+          ],
+          "weapon_grip": [
+            1757,
+            326
+          ],
+          "visual_weapon_outlet": [
+            1630,
+            424
+          ],
+          "chin": [
+            1915,
+            257
+          ]
+        },
+        "anchors_region_local": {
+          "anatomical_crown": [
+            349,
+            117
+          ],
+          "foot_contacts": [
+            [
+              51,
+              650
+            ],
+            [
+              418,
+              576
+            ]
+          ],
+          "projected_foot_midpoint": [
+            234.5,
+            613.0
+          ],
+          "core": [
+            292,
+            321
+          ],
+          "weapon_grip": [
+            189,
+            326
+          ],
+          "visual_weapon_outlet": [
+            62,
+            424
+          ],
+          "chin": [
+            347,
+            257
+          ]
+        },
+        "nominal_adult_world_body_height": 100,
+        "standing_equivalent_source_body_height": 675,
+        "uniform_source_to_world_scale": 0.14814814814814814,
+        "observed_crown_to_foot_midpoint_y_px": 496.0,
+        "observed_crown_to_foot_midpoint_world_y": 73.48148148148148,
+        "status": "suitable_recovery_keypose_pending_runtime_review",
+        "notes": [
+          "Right dagger hand returns across image-left torso; free left hand balances on image right.",
+          "Still crouched. Shared scale preserves same head/shin size instead of raising the frame to standing100.",
+          "Dagger tip points down-left during reset; do not treat it as an active hit direction."
+        ],
+        "observed_crown_to_chin_y_px": 140
+      }
+    ],
+    "state_mapping": {
+      "idle": "idle",
+      "flank_transit": "idle",
+      "warning": "warning",
+      "short_stab_release": "release",
+      "recovery": "recovery"
+    },
+    "review": {
+      "selected_action_variant": "v2",
+      "independent_extraction": true,
+      "wrong_hand_detected": "No definite swap; right-dagger continuity is plausible, confidence medium because release rotates torso.",
+      "missing_visible_contacts": false,
+      "unsuitable_uses": [
+        "All three action poses are unsuitable as locomotion or flank-transit frames. Use idle during transit.",
+        "v1 action sheet is unsuitable for independent rectangular extraction: release/recovery silhouettes meet atx1595 with no full-height transparent gap."
+      ],
+      "risks": [
+        "The backward dagger in warning and down-left dagger in recovery are intentional phase-specific directions; only release points at the target.",
+        "No movement cycle, continuous stab animation, or back bank is supplied.",
+        "Standing-equivalent scale is estimated with~8% uncertainty. Do not present100 as a measured crouched body height.",
+        "Low-alpha residues remain untouched; runtime background sampling still needs review."
+      ]
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "/workspace/scratch/2244020fc8d6/games-recovery/b08/assets/levels/b08/enemies/m01/art/idle.png",
+      "sha256": "540104973b5553e5f3c9a23ea7ce218684fb9733d5d599a8244169e617e5618d",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "pixels_modified": false
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/actors/actions_0748/m01/primary_keyposes.png",
+      "sha256": "a8a571cb2ecd88a0418db4ab3c8681ef1e15aeee8653fe972b2c513984122d75",
+      "native_size": [
+        2172,
+        724
+      ],
+      "pixels_modified": false
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/actors/second_batch_0737/m03/idle.png",
+      "sha256": "20411fb38c4aa40bf928ca77e633f9784b5388f4bce8779394fc81558c9018c2",
+      "native_size": [
+        1312,
+        1199
+      ],
+      "pixels_modified": false
+    },
+    {
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/actors/actions_0748/m03/primary_keyposes.png",
+      "sha256": "253d4656653d594244b8cbd4fd3a6ebe1213137fd80b8b292f1fb05db695383b",
+      "native_size": [
+        2172,
+        724
+      ],
+      "pixels_modified": false
+    }
+  ],
+  "license": "Original builtin imagegen assets; exact native bytes and original prompts retained."
+}

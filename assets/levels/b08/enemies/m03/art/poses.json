@@ -1,0 +1,207 @@
+{
+  "schema": "b08-keypose-candidate-v1",
+  "actor_id": "B08-M03",
+  "world_body_height": 100,
+  "frames": {
+    "idle": {
+      "file": "idle.png",
+      "region": [
+        0,
+        0,
+        1312,
+        1199
+      ],
+      "foot": [
+        743.0,
+        1039.5
+      ],
+      "core": [
+        785,
+        475
+      ],
+      "crown": [
+        867,
+        153
+      ],
+      "foot_contacts": [
+        [
+          491,
+          1157
+        ],
+        [
+          995,
+          922
+        ]
+      ],
+      "visual_outlet": [
+        131,
+        708
+      ],
+      "world_per_source_pixel": 0.09090909090909091,
+      "standing_equivalent_source_pixels": 1100,
+      "source_sha256": "20411fb38c4aa40bf928ca77e633f9784b5388f4bce8779394fc81558c9018c2",
+      "registration_status": "manual candidate; actual2K review pending",
+      "effective_alpha16_size": [
+        1065,
+        1066
+      ]
+    },
+    "warning": {
+      "file": "primary_keyposes.png",
+      "region": [
+        0,
+        0,
+        721,
+        724
+      ],
+      "foot": [
+        300.5,
+        592.5
+      ],
+      "core": [
+        474,
+        343
+      ],
+      "crown": [
+        552,
+        151
+      ],
+      "foot_contacts": [
+        [
+          114,
+          645
+        ],
+        [
+          487,
+          540
+        ]
+      ],
+      "visual_outlet": [
+        24,
+        285
+      ],
+      "world_per_source_pixel": 0.14814814814814814,
+      "standing_equivalent_source_pixels": 675,
+      "source_sha256": "253d4656653d594244b8cbd4fd3a6ebe1213137fd80b8b292f1fb05db695383b",
+      "registration_status": "manual candidate; actual2K review pending",
+      "effective_alpha16_size": [
+        685,
+        535
+      ]
+    },
+    "release": {
+      "file": "primary_keyposes.png",
+      "region": [
+        721,
+        0,
+        847,
+        724
+      ],
+      "foot": [
+        994.5,
+        598.0
+      ],
+      "core": [
+        1128,
+        329
+      ],
+      "crown": [
+        1220,
+        141
+      ],
+      "foot_contacts": [
+        [
+          770,
+          596
+        ],
+        [
+          1219,
+          600
+        ]
+      ],
+      "visual_outlet": [
+        1542,
+        443
+      ],
+      "world_per_source_pixel": 0.14814814814814814,
+      "standing_equivalent_source_pixels": 675,
+      "source_sha256": "253d4656653d594244b8cbd4fd3a6ebe1213137fd80b8b292f1fb05db695383b",
+      "registration_status": "manual candidate; actual2K review pending",
+      "effective_alpha16_size": [
+        812,
+        505
+      ]
+    },
+    "recovery": {
+      "file": "primary_keyposes.png",
+      "region": [
+        1568,
+        0,
+        604,
+        724
+      ],
+      "foot": [
+        1802.5,
+        613.0
+      ],
+      "core": [
+        1860,
+        321
+      ],
+      "crown": [
+        1917,
+        117
+      ],
+      "foot_contacts": [
+        [
+          1619,
+          650
+        ],
+        [
+          1986,
+          576
+        ]
+      ],
+      "visual_outlet": [
+        1630,
+        424
+      ],
+      "world_per_source_pixel": 0.14814814814814814,
+      "standing_equivalent_source_pixels": 675,
+      "source_sha256": "253d4656653d594244b8cbd4fd3a6ebe1213137fd80b8b292f1fb05db695383b",
+      "registration_status": "manual candidate; actual2K review pending",
+      "effective_alpha16_size": [
+        515,
+        573
+      ]
+    }
+  },
+  "gate": "--b08-art-l43 --b08-art-convergence",
+  "enabled_rooms": [
+    "L43"
+  ],
+  "coverage": "idle plus warning/release/recovery keyposes; front-right source and mirror only",
+  "scale_basis": {
+    "idle_source_standing_equivalent": 1100,
+    "idle_scale": 0.09090909090909091,
+    "action_source_standing_equivalent": 675,
+    "action_scale": 0.14814814814814814,
+    "sheet_to_idle_anatomy_ratio": 0.6136363636363636,
+    "manual_scale_uncertainty_fraction": 0.08,
+    "evidence": [
+      "No upright M03 pose is supplied.1100px is a standing-equivalent calibration estimate, not a measured vertical source extent.",
+      "M03 idle crown-to-chin is about233px; chosen scale gives21.2world head height, close to M01 idle190×100/937=20.3world without requiring identical hairstyle or face proportions.",
+      "M03 sheet crown-to-chin measurements139–145px imply roughly0.60–0.62 of its idle head. A shared675/1100=0.614 ratio gives20.6–21.5world action heads.",
+      "Approximate rear shin/ankle cue is roughly0.62–0.65 of idle source length; torso projection is heavily foreshortened by coil/lunge and cannot be treated as a standing-height ruler.",
+      "Observed crown-to-foot midpoint is886.5px in idle, about441.5px warning,457px stab and496px recovery. They remain~80.6,65.4,67.7,73.5world respectively rather than each being enlarged to100.",
+      "Absolute M03 adult scale remains lower-confidence than M01 because its only reference is crouched and generated proportions are not a rigid skeleton. An upright same-identity source or actual shared-world review is required to resolve that uncertainty."
+    ]
+  },
+  "not_implemented": [
+    "continuous animation",
+    "walking",
+    "back bank",
+    "natural combat visual acceptance"
+  ],
+  "gameplay_unchanged": true
+}

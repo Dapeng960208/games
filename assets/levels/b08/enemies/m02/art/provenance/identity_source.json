@@ -1,0 +1,41 @@
+{
+  "schema": "b08-actor-source-v1",
+  "actor_id": "B08-M02",
+  "generator": "built-in image_gen",
+  "generation_mode": "reference-guided generation and one targeted edit",
+  "source_pixel_edits": "none; byte-identical copies only",
+  "references": [
+    {
+      "name": "B08(1).png",
+      "role": "authoritative user concept; private reference not copied into repo",
+      "sha256": "aa25afa52eaf96f97fa70875003047b69b01b2c089dd9283eb9cfacd257d31ee"
+    },
+    {
+      "name": "idle.png",
+      "role": "existing M01 rendering/camera/family anchor; not a recolor target",
+      "sha256": "540104973b5553e5f3c9a23ea7ce218684fb9733d5d599a8244169e617e5618d"
+    }
+  ],
+  "versions": [
+    {
+      "file": "idle_v1.png",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-0af687e5-31b5-4312-bbf2-1f77fa6ff4d6.png",
+      "sha256": "07f815a121ee17c72cf75c9083bd74d8f8fac233b150e6bb8e188b74d9ec36eb",
+      "byte_identical_to_tool_original": true,
+      "prompt_file": "idle.prompt.txt",
+      "status": "superseded_preserved"
+    },
+    {
+      "file": "idle_v2.png",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-a70d0a3c-7584-4ef0-9a88-c2060f277fac.png",
+      "sha256": "6185de95f76eaa0943cbd0d974483fd27a20c88fde0ad70abb64434577cb4ad4",
+      "byte_identical_to_tool_original": true,
+      "prompt_file": "idle_refinement.prompt.txt",
+      "status": "selected_candidate"
+    }
+  ],
+  "selected_file": "idle_v2.png",
+  "selected_qa": "selected.qa.json",
+  "integration": "none; staging identity/ready only",
+  "source_rights": "User-supplied concept and project-owned prior generated M01 used as references; no additional copyright/license claim inferred."
+}

@@ -1,0 +1,223 @@
+{
+  "floor": {
+    "file": "l43_surface/ivory_paving.png",
+    "role": "material_panel",
+    "status": "native source candidate; not integrated",
+    "generator": "builtin imagegen",
+    "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-7d84e6d3-5f22-42dc-b638-6b7d322d215d.png",
+    "sha256": "ea5be4628b3bc560c84ae3186418ef333a03e1b9685171b46189d06323fcdeec",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "original_bytes_verified": true,
+    "alpha_bounds_xyxy": {
+      "1": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "8": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "16": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "128": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "240": [
+        0,
+        0,
+        1254,
+        1254
+      ]
+    },
+    "effective_size_alpha16": [
+      1254,
+      1254
+    ],
+    "alpha16_border_pixels": 5012,
+    "zero_alpha_fraction": 0.0,
+    "diagnostic_red_pixels_alpha16": 0,
+    "proposed_effective_world_size": [
+      256.0,
+      256.0
+    ],
+    "estimated_max_display_pixels_at_2k_player_zoom_085": [
+      435.2,
+      435.2
+    ],
+    "estimated_display_to_effective_source_ratio": 0.347049,
+    "display_estimate_only": true,
+    "registration_proposal": null,
+    "notes": [
+      "Opaque neutral paving panel. No repeat/seam or engine acceptance yet. Individual stones are smaller through planned world-scale mapping, not a changed floor footprint."
+    ],
+    "edge_mean_absolute_rgb_difference": {
+      "horizontal_wrap": 23.604731525784157,
+      "vertical_wrap": 15.300106326422116
+    },
+    "repeat_status": "Not proven seamless; source design candidate. These edge statistics do not establish visual repeat quality.",
+    "prompt_file": "l43_surface/ivory_paving.prompt.txt",
+    "prompt_sha256": "c57e62867ccfeec2b0d1ca2a590474281032ce1282e2c4d81cfa036c70b4ab30",
+    "generation_kind": "generated with style reference",
+    "reference": {
+      "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B08(1).png",
+      "sha256": "aa25afa52eaf96f97fa70875003047b69b01b2c089dd9283eb9cfacd257d31ee",
+      "role": "user style reference, actually inspected; not included in review package"
+    },
+    "additional_references": [
+      {
+        "path": "/workspace/scratch/2244020fc8d6/b08-art/revision-02/L43-floor-surface-v3.png",
+        "sha256": "21b96b830548ae8054444bb8732d81858dc88297e8089bd2e3902fabb8cf5d60"
+      }
+    ]
+  },
+  "fascia": {
+    "id": "L43-horizontal-fascia-v1",
+    "file": "L43-horizontal-fascia-v1.png",
+    "candidate_role": "low horizontal exterior fascia; preferred of two fascia candidates because it has less faint alpha residue",
+    "status": "source_only_candidate_unintegrated",
+    "method": "builtin image_gen__imagegen",
+    "original_generated_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-0dff2895-db35-45b5-967f-40974f10ffce.png",
+    "source_sha256": "b3d618dad345742264a8de0e28258b000e6cbf93a811abe059fef476d472699e",
+    "byte_identical_to_generated_original": true,
+    "prompt_path": "provenance/L43-horizontal-fascia-v1.prompt.txt",
+    "prompt_sha256": "c679d6b272c9ebe4f116a3cf3dc576783ad541739603c314455c3dfa1998129e",
+    "transparent_background_argument": true,
+    "generation_kind": "generation_with_style_references",
+    "input_references": [
+      {
+        "path": "/workspace/scratch/2244020fc8d6/user-design-feedback-0356/B08(1).png",
+        "sha256": "aa25afa52eaf96f97fa70875003047b69b01b2c089dd9283eb9cfacd257d31ee",
+        "role": "style_reference_only"
+      },
+      {
+        "path": "/workspace/scratch/2244020fc8d6/b08-art/revision-02/L43-west-island-base-v3.png",
+        "sha256": "17836539151a7127d0efcf18ff5b16bf8277c09ad28d0c37f721778529fbde30",
+        "role": "style_reference_only"
+      },
+      {
+        "path": "/workspace/scratch/2244020fc8d6/b08-art/revision-02/L43-central-arch-base-v2.png",
+        "sha256": "23cb7046b8187a28168563a665d3c161625a7e115865dc2fbfde55479c2a869c",
+        "role": "style_reference_only"
+      },
+      {
+        "path": "/workspace/scratch/2244020fc8d6/b08-art/revision-02/L43-floor-surface-v3.png",
+        "sha256": "21b96b830548ae8054444bb8732d81858dc88297e8089bd2e3902fabb8cf5d60",
+        "role": "style_reference_only"
+      }
+    ],
+    "measurements": {
+      "filename": "L43-horizontal-fascia-v1.png",
+      "path": "/workspace/scratch/2244020fc8d6/b08-art/rooms_0858/l43_edges/L43-horizontal-fascia-v1.png",
+      "sha256": "b3d618dad345742264a8de0e28258b000e6cbf93a811abe059fef476d472699e",
+      "mode": "RGBA",
+      "native_px": [
+        2160,
+        728
+      ],
+      "alpha_bboxes_xyxy_exclusive": {
+        "1": [
+          25,
+          21,
+          2137,
+          617
+        ],
+        "8": [
+          27,
+          238,
+          2134,
+          485
+        ],
+        "32": [
+          27,
+          239,
+          2134,
+          484
+        ],
+        "128": [
+          28,
+          240,
+          2133,
+          484
+        ],
+        "250": [
+          30,
+          240,
+          2132,
+          483
+        ]
+      },
+      "nonzero_alpha_effective_px": [
+        2112,
+        596
+      ],
+      "visible_alpha_ge8_effective_px": [
+        2107,
+        247
+      ],
+      "visible_h_to_w": 0.1172,
+      "alpha_zero_px": 1217947,
+      "hidden_rgb_with_zero_alpha_px": 2408,
+      "alpha_1_to_7_px": 16935,
+      "alpha_residue_outside_ge8_bbox_px": 5908,
+      "max_alpha_outside_ge8_bbox": 6,
+      "alpha_255_px": 36,
+      "alpha_ge250_px": 316129,
+      "min_nonzero_alpha": 1,
+      "max_alpha": 255,
+      "alpha_percentiles_inside_ge8_body": [
+        8.0,
+        253.0,
+        253.0,
+        253.0,
+        253.0,
+        255.0
+      ],
+      "preserve_aspect_at_300_world_width": {
+        "world": [
+          300,
+          35.168
+        ],
+        "display_px_at_1_7": [
+          510,
+          59.786
+        ],
+        "native_px_per_world": 7.0233
+      }
+    },
+    "tentative_anchor_native_px": [
+      1080,
+      240
+    ],
+    "tentative_anchor_native_normalized": [
+      0.5,
+      0.32967
+    ],
+    "tentative_anchor_relative_visible_bbox_px": [
+      1053,
+      2
+    ],
+    "contact_baseline_native_y": 240,
+    "footprint_note": "Scale from visible alpha>=8 bounds; alpha threshold is measurement only, no pixels were changed. Preserve aspect ratio. Full-native image placement must account for transparent margins.",
+    "placement_risks": [
+      "Top rail has a near-horizontal continuous contact but small edge irregularities. Thin cap can hide under existing opaque floor.",
+      "Open pointed arch scallops and end finials mean this is not a pixel-perfect seamless repeat. Seams and occlusion need later composition QA.",
+      "At width 300 world, visible depth is 35.168 world rather than nominal 32; preserve aspect and adjust placement."
+    ]
+  },
+  "scope": "Selected native sources only. Original source candidates and variants remain preserved outside repository."
+}

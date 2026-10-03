@@ -1,0 +1,147 @@
+{
+  "actor_id": "B08-M02",
+  "world_body_height": 112,
+  "body_reference_pixels": 775,
+  "scale_basis": "Idle helmet crown(675,395) to projected sole midpoint(660,1170); action head/torso remain comparable source scale. Crouched recovery stays visibly shorter. No normalization of folded wings or horizontal diving silhouette.",
+  "frames": {
+    "idle": {
+      "source": "/workspace/scratch/2244020fc8d6/b08-art/actors/first_batch_0700/m02/idle_v2.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "foot": [
+        660,
+        1170
+      ],
+      "contacts": [
+        [
+          365,
+          1125
+        ],
+        [
+          955,
+          1215
+        ]
+      ],
+      "crown": [
+        675,
+        395
+      ],
+      "core": [
+        615,
+        650
+      ],
+      "sha256": "6185de95f76eaa0943cbd0d974483fd27a20c88fde0ad70abb64434577cb4ad4",
+      "world_per_source_pixel": 0.14451612903225808,
+      "body_reference_pixels": 775,
+      "registration_accuracy": "Manual estimates, approximately +/-12 source pixels; matching anatomical helmet/head/torso scale across1254px originals, not per-pose silhouette height."
+    },
+    "warning": {
+      "source": "/workspace/scratch/2244020fc8d6/b08-art/actors/actions_0748/m02/warning_single.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "foot": [
+        629,
+        1160
+      ],
+      "contacts": [
+        [
+          313,
+          1117
+        ],
+        [
+          945,
+          1203
+        ]
+      ],
+      "crown": [
+        764,
+        501
+      ],
+      "core": [
+        649,
+        716
+      ],
+      "sha256": "11b55dc475a084bdf68f2e04bf72dae3759462a3e49868367ceef2ef2aad0202",
+      "world_per_source_pixel": 0.14451612903225808,
+      "body_reference_pixels": 775,
+      "registration_accuracy": "Manual estimates, approximately +/-12 source pixels; matching anatomical helmet/head/torso scale across1254px originals, not per-pose silhouette height."
+    },
+    "release": {
+      "source": "/workspace/scratch/2244020fc8d6/b08-art/actors/actions_0748/m02/release_single.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "foot": [
+        724,
+        985
+      ],
+      "contacts": [],
+      "crown": [
+        873,
+        579
+      ],
+      "core": [
+        724,
+        740
+      ],
+      "anchor_kind": "airborne ground projection below torso; not trailing-boot midpoint",
+      "sha256": "34eed8ec8d28624a0e90f5a607f9803c3a9b3ba3d324807051c79a2176f8af41",
+      "world_per_source_pixel": 0.14451612903225808,
+      "body_reference_pixels": 775,
+      "registration_accuracy": "Manual estimates, approximately +/-12 source pixels; matching anatomical helmet/head/torso scale across1254px originals, not per-pose silhouette height."
+    },
+    "recovery": {
+      "source": "/workspace/scratch/2244020fc8d6/b08-art/actors/actions_0748/m02/recovery_single.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "foot": [
+        650,
+        1006
+      ],
+      "contacts": [
+        [
+          280,
+          963
+        ],
+        [
+          1020,
+          1049
+        ]
+      ],
+      "crown": [
+        752,
+        438
+      ],
+      "core": [
+        635,
+        641
+      ],
+      "limit": "near boot and spear are close; actual2K view required",
+      "sha256": "95aa9dc5fcf48daf00c02b1a2dc55fc3fd072a71721249b199e57d877e3189bb",
+      "world_per_source_pixel": 0.14451612903225808,
+      "body_reference_pixels": 775,
+      "registration_accuracy": "Manual estimates, approximately +/-12 source pixels; matching anatomical helmet/head/torso scale across1254px originals, not per-pose silhouette height."
+    }
+  },
+  "unaccepted": [
+    "continuous animation",
+    "back direction",
+    "natural combat acceptance"
+  ],
+  "runtime_motion_unchanged": true
+}

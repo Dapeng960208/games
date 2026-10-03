@@ -1,5 +1,5 @@
 extends "res://scripts/gameplay/monsters/enemy_actor.gd"
-## Debug wing silhouette; deliberately does not borrow another species' art.
+## Native opt-in L43 keyposes; other authored identities retain explicit debug art.
 var native_art: RefCounted
 const SkyBrain = preload("res://scripts/levels/b08/enemy_brain.gd")
 func _ready() -> void:
@@ -19,6 +19,11 @@ func _ready() -> void:
 func _finish_motion(delta: float) -> void:
 	velocity *= room.wind_multiplier(position,velocity)
 	super._finish_motion(delta)
+	if native_art!=null and brain!=null:
+		native_art.advance(delta,brain.phase,brain.action)
+		body_texture=native_art.texture
+		body_region=native_art.region
+		body_bounds=native_art.bounds(aim_direction.x<-.1)
 func take_damage(amount: float, kind: StringName = &"primary", from_direction: Vector2 = Vector2.ZERO, context: Dictionary = {}) -> bool:
 	if brain != null and brain.clock<brain.weak_until: amount *= 1.15
 	return super.take_damage(amount,kind,from_direction,context)
@@ -40,8 +45,9 @@ func _draw() -> void:
 		return
 	if native_art!=null:
 		native_art.draw(self,aim_direction.x<-.1,hurt_flash)
-		draw_line(Vector2(-26,-118),Vector2(26,-118),Color("233345"),5)
-		draw_line(Vector2(-26,-118),Vector2(-26+52*health.current/health.maximum,-118),Color("7dcaa0"),3)
+		var bar_y: float=native_art.bounds().position.y-8 if native_art.convergence else -118.0
+		draw_line(Vector2(-26,bar_y),Vector2(26,bar_y),Color("233345"),5)
+		draw_line(Vector2(-26,bar_y),Vector2(-26+52*health.current/health.maximum,bar_y),Color("7dcaa0"),3)
 		return
 	var boss := enemy_id=="BO08"
 	var scale_value := 1.6 if boss else 1.0

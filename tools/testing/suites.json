@@ -1156,5 +1156,13 @@
   "world_visual": {
     "script": "tests/world/test_world_visual.gd",
     "scene": "tests/world/test_world_visual.tscn"
+  },
+  "b08_l43_integration": {
+    "script": "tests/levels/b08/test_l43_integration.gd",
+    "scene": "tests/levels/b08/test_l43_integration.tscn"
+  },
+  "b08_l43_capture": {
+    "script": "tests/levels/b08/test_l43_capture.gd",
+    "scene": "tests/levels/b08/test_l43_capture.tscn"
   }
 }

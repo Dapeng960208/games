@@ -22,6 +22,7 @@ var _hud: Label
 var _flag: EnemyActor
 var _started := false
 var sky_environment: Node2D
+var sky_projectile_art: RefCounted
 signal shutdown_ready
 var shutdown_started := false
 var shutdown_done := false
@@ -122,12 +123,17 @@ func _open_room(id: String) -> void:
 func _configure_sky_environment() -> void:
 	if is_instance_valid(sky_environment): sky_environment.free()
 	sky_environment=null
+	sky_projectile_art=null
 	if layout_id!="L43" or not OS.get_cmdline_user_args().has("--b08-art-l43"): return
 	var environment:=preload("res://scripts/levels/b08/presentation/l43_environment.gd").new()
 	add_child(environment)
-	if not environment.configure(layout_id,OS.get_cmdline_user_args().has("--b08-art-background-depth-review")):
+	var convergence:=OS.get_cmdline_user_args().has("--b08-art-convergence")
+	if not environment.configure(layout_id,OS.get_cmdline_user_args().has("--b08-art-background-depth-review"),convergence):
 		push_error("B08 reference art rejected: "+str(environment.errors)); environment.free(); return
 	sky_environment=environment
+	if convergence:
+		var projectile_art:=preload("res://scripts/levels/b08/presentation/projectile_art.gd").new()
+		if projectile_art.configure(layout_id): sky_projectile_art=projectile_art
 func spawn_enemy(at: Vector2, id: String = "", _level: int = 1, options: Dictionary = {}) -> EnemyActor:
 	if id not in SkyBrain.IMPLEMENTED or _living_combatants()>=6 or enemies.get_child_count()>=18: return null
 	var p: Dictionary = options.get("profile",SkyNumbers.profile(id,difficulty))
@@ -389,7 +395,9 @@ func _draw() -> void:
 			var angles := [-40,-20,0,20,40] if action.kind=="fan" else [0]
 			for angle: int in angles: draw_line(action.origin,action.origin+direction.rotated(deg_to_rad(angle))*320,color,3)
 	harbor.draw_warnings(self)
-	for shot: Dictionary in feathers: draw_line(shot.position-shot.direction*16,shot.position+shot.direction*6,Color("faf8d4"),4)
+	for shot: Dictionary in feathers:
+		if sky_projectile_art!=null and sky_projectile_art.draw(self,shot): continue
+		draw_line(shot.position-shot.direction*16,shot.position+shot.direction*6,Color("faf8d4"),4)
 
 func _living_combatants() -> int:
 	var count := 0

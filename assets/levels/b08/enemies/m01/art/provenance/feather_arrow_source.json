@@ -1,0 +1,23 @@
+{
+  "asset": "feather_arrow",
+  "tool": "builtin image_gen",
+  "source_native_path": "/workspace/scratch/2244020fc8d6/generated_images/exec-3b90eaa6-7cdc-4802-942f-b445f49dd30b.png",
+  "selected_path": "/workspace/scratch/2244020fc8d6/b08-art/actors/skill_objects_0814/feather_arrow.png",
+  "selected_sha256": "214d9c48e44dbe18051126e97947963049f9dac344c77d2357eed8d37739da0f",
+  "exact_native_bytes": true,
+  "reference_path": "/workspace/scratch/2244020fc8d6/games-recovery/b08/assets/levels/b08/enemies/m01/art/idle.png",
+  "reference_sha256": "540104973b5553e5f3c9a23ea7ce218684fb9733d5d599a8244169e617e5618d",
+  "initial_prompt_file": "feather_arrow.prompt.txt",
+  "selected_prompt_file": "feather_arrow.prompt.txt",
+  "refinement_count": 0,
+  "status": "native_source_candidate",
+  "read_only_qa_file": "feather_arrow.qa.json",
+  "generated_on_utc": "2026-10-03",
+  "native_output_handling": "Byte-for-byte copy only. No image edits, crop, atlas repack, recolor or alpha cleanup.",
+  "visual_observation": "One complete straight shaft, feather fletching and narrow decorated point; shape anchored to the nocked arrow in leftmost M01 primary keypose and the idle bow family. No bow, owner or trail.",
+  "additional_reference": {
+    "path": "/workspace/scratch/2244020fc8d6/b08-art/actors/actions_0748/m01/primary_keyposes.png",
+    "sha256": "a8a571cb2ecd88a0418db4ab3c8681ef1e15aeee8653fe972b2c513984122d75",
+    "role": "Leftmost nocked-arrow shape reference; idle itself has no arrow."
+  }
+}

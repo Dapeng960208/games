@@ -1,0 +1,58 @@
+{
+  "schema": "b08-l43-minimal-surface-review-v1",
+  "status": "explicit review candidate; not full room art acceptance",
+  "tile_world_size": 256,
+  "sources": [
+    {
+      "file": "ivory_paving.png",
+      "sha256": "ea5be4628b3bc560c84ae3186418ef333a03e1b9685171b46189d06323fcdeec",
+      "native_bytes_unchanged": true
+    },
+    {
+      "file": "low_fascia.png",
+      "sha256": "b3d618dad345742264a8de0e28258b000e6cbf93a811abe059fef476d472699e",
+      "native_bytes_unchanged": true
+    }
+  ],
+  "fascia_attachments": [
+    {
+      "source_anchor": [
+        27,
+        240
+      ],
+      "blueprint_anchor": [
+        180,
+        1280
+      ],
+      "source_to_blueprint_scale": 0.37019458946369244
+    },
+    {
+      "source_anchor": [
+        27,
+        240
+      ],
+      "blueprint_anchor": [
+        960,
+        1150
+      ],
+      "source_to_blueprint_scale": 0.41765543426672996
+    },
+    {
+      "source_anchor": [
+        27,
+        240
+      ],
+      "blueprint_anchor": [
+        1840,
+        1280
+      ],
+      "source_to_blueprint_scale": 0.37019458946369244
+    }
+  ],
+  "clip": "exact existing six-rectangle floor union subtracted from every exterior layer",
+  "limits": [
+    "Only three south-facing fascia segments; no cloud-gap fascia or tall new props.",
+    "Material is a repeated source panel, not yet seamless/actual2K accepted.",
+    "No collision, camera, exits, wind geometry or profile changes."
+  ]
+}

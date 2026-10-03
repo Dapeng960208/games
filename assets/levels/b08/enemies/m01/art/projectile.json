@@ -1,0 +1,14 @@
+{
+  "schema": "b08-feather-arrow-visual-v1",
+  "file": "feather_arrow.png",
+  "region": [
+    70,
+    237,
+    2035,
+    246
+  ],
+  "world_length": 36,
+  "sha256": "214d9c48e44dbe18051126e97947963049f9dac344c77d2357eed8d37739da0f",
+  "physics_origin": "Unchanged shot.position. Visual extends30world backward and6forward, preserving frozen direction; no muzzle-based collision relocation.",
+  "status": "L43 source candidate; actual2K readability pending"
+}

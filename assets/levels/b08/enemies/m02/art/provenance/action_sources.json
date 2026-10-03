@@ -1,0 +1,213 @@
+{
+  "sources": [
+    {
+      "actor": "B08-M02",
+      "pose": "warning",
+      "file": "m02/warning_single.png",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-dae38d4f-d708-4830-8a54-366fc7eefe59.png",
+      "reference": "/workspace/scratch/2244020fc8d6/b08-art/actors/first_batch_0700/m02/idle_v2.png",
+      "prompt_key": "m02_warning",
+      "review": "One adult actor, both wings open high, grounded crouch, two full boots, one continuous two-handed spear; lower-right facing retained.",
+      "limitations": [
+        "20 px minimum alpha16 margin; the 10% suggested margin was not met."
+      ],
+      "measurements": {
+        "path": "/workspace/scratch/2244020fc8d6/b08-art/actors/actions_0748/m02/warning_single.png",
+        "sha256": "11b55dc475a084bdf68f2e04bf72dae3759462a3e49868367ceef2ef2aad0202",
+        "bytes": 1477585,
+        "native_canvas_px": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_zero_px": 953086,
+        "alpha_1_to_15_px": 42037,
+        "alpha16_pixel_count": 577393,
+        "alpha16_bbox_xyxy_exclusive": [
+          83,
+          20,
+          1231,
+          1214
+        ],
+        "effective_silhouette_size_px": [
+          1148,
+          1194
+        ],
+        "outer_margin_px_ltrb": [
+          83,
+          20,
+          23,
+          40
+        ],
+        "edge_alpha16_count_ltrb": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "diagnostic_color_candidates_alpha16": {
+          "red": 1,
+          "yellow": 0,
+          "cyan": 0,
+          "green": 0,
+          "magenta": 0
+        },
+        "diagnostic_color_candidates_alpha128": {
+          "red": 1,
+          "yellow": 0,
+          "cyan": 0,
+          "green": 0,
+          "magenta": 0
+        },
+        "pixel_qa_note": "Read-only source measurement; no crop, resize, alpha edit, recoloring, composition or conversion performed. Bounding boxes are silhouette extents, not anatomical body height."
+      },
+      "native_source_sha256": "11b55dc475a084bdf68f2e04bf72dae3759462a3e49868367ceef2ef2aad0202",
+      "native_copy_hash_matches": true,
+      "unchanged_primary_sheet_sha256": "7936911feedecc7d27634acd4847984dee3fd8843aabd7f80205898e83ed9fd4"
+    },
+    {
+      "actor": "B08-M02",
+      "pose": "release",
+      "file": "m02/release_single.png",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-3121ea68-bc47-41fc-b3f6-4395ff760535.png",
+      "reference": "m02/release_single_v1.png",
+      "prompt_key": "m02_release_fold_fix",
+      "review": "One descending forward actor, two complete trailing boots, one continuous two-handed spear, no ground or baked shadow. Targeted edit folds wings into a narrow close-packed silhouette behind shoulders, resolving over-broad release wings.",
+      "limitations": [
+        "29 px minimum alpha16 right margin; pose remains an unregistered source candidate."
+      ],
+      "measurements": {
+        "path": "/workspace/scratch/2244020fc8d6/b08-art/actors/actions_0748/m02/release_single.png",
+        "sha256": "34eed8ec8d28624a0e90f5a607f9803c3a9b3ba3d324807051c79a2176f8af41",
+        "bytes": 848858,
+        "native_canvas_px": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_zero_px": 1244548,
+        "alpha_1_to_15_px": 25634,
+        "alpha16_pixel_count": 302334,
+        "alpha16_bbox_xyxy_exclusive": [
+          87,
+          380,
+          1225,
+          1166
+        ],
+        "effective_silhouette_size_px": [
+          1138,
+          786
+        ],
+        "outer_margin_px_ltrb": [
+          87,
+          380,
+          29,
+          88
+        ],
+        "edge_alpha16_count_ltrb": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "diagnostic_color_candidates_alpha16": {
+          "red": 0,
+          "yellow": 0,
+          "cyan": 0,
+          "green": 0,
+          "magenta": 0
+        },
+        "diagnostic_color_candidates_alpha128": {
+          "red": 0,
+          "yellow": 0,
+          "cyan": 0,
+          "green": 0,
+          "magenta": 0
+        },
+        "pixel_qa_note": "Read-only source measurement; no crop, resize, alpha edit, recoloring, composition or conversion performed. Bounding boxes are silhouette extents, not anatomical body height."
+      },
+      "native_source_sha256": "34eed8ec8d28624a0e90f5a607f9803c3a9b3ba3d324807051c79a2176f8af41",
+      "native_copy_hash_matches": true,
+      "unchanged_primary_sheet_sha256": "7936911feedecc7d27634acd4847984dee3fd8843aabd7f80205898e83ed9fd4",
+      "selected_version": "m02/release_single_v2.png",
+      "identity_reference": "/workspace/scratch/2244020fc8d6/b08-art/actors/first_batch_0700/m02/idle_v2.png",
+      "preserved_pre_fix": "m02/release_single_v1.png",
+      "pre_fix_generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-eeedb86e-76d5-443c-83d0-04a128320ea2.png",
+      "pre_fix_prompt_key": "m02_release",
+      "generation_retry_note": "First targeted-fold call failed before reading referenced image with exec-server transport closed; same call retried successfully after local file presence verified."
+    },
+    {
+      "actor": "B08-M02",
+      "pose": "recovery",
+      "file": "m02/recovery_single.png",
+      "selected_version": "m02/recovery_single_v2.png",
+      "generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-791b578e-cea7-4893-86dd-67f92c8f5cdf.png",
+      "reference": "m02/recovery_single_v1.png",
+      "identity_reference": "/workspace/scratch/2244020fc8d6/b08-art/actors/first_batch_0700/m02/idle_v2.png",
+      "prompt_key": "m02_recovery_boot_fix",
+      "review": "Both knees deeply bent, wings lowered, continuous two-handed spear retained. One targeted fix moved spear lower and exposes near boot from ankle to toe.",
+      "limitations": [
+        "Near boot and spear remain close/tangent, though the toe and boot surface are visible.",
+        "Spear tip has only 7 px alpha16 right margin; no alpha16 border intersection, but additional layout room is desirable before atlas registration."
+      ],
+      "preserved_pre_fix": "m02/recovery_single_v1.png",
+      "pre_fix_generated_source": "/workspace/scratch/2244020fc8d6/generated_images/exec-99fdf9bd-8577-42c7-bf68-b2b5f30837b4.png",
+      "pre_fix_prompt_key": "m02_recovery",
+      "measurements": {
+        "path": "/workspace/scratch/2244020fc8d6/b08-art/actors/actions_0748/m02/recovery_single.png",
+        "sha256": "95aa9dc5fcf48daf00c02b1a2dc55fc3fd072a71721249b199e57d877e3189bb",
+        "bytes": 1138357,
+        "native_canvas_px": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "alpha_zero_px": 1105840,
+        "alpha_1_to_15_px": 33768,
+        "alpha16_pixel_count": 432908,
+        "alpha16_bbox_xyxy_exclusive": [
+          79,
+          313,
+          1247,
+          1204
+        ],
+        "effective_silhouette_size_px": [
+          1168,
+          891
+        ],
+        "outer_margin_px_ltrb": [
+          79,
+          313,
+          7,
+          50
+        ],
+        "edge_alpha16_count_ltrb": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "diagnostic_color_candidates_alpha16": {
+          "red": 1,
+          "yellow": 0,
+          "cyan": 0,
+          "green": 0,
+          "magenta": 0
+        },
+        "diagnostic_color_candidates_alpha128": {
+          "red": 1,
+          "yellow": 0,
+          "cyan": 0,
+          "green": 0,
+          "magenta": 0
+        },
+        "pixel_qa_note": "Read-only source measurement; no crop, resize, alpha edit, recoloring, composition or conversion performed. Bounding boxes are silhouette extents, not anatomical body height."
+      },
+      "native_source_sha256": "95aa9dc5fcf48daf00c02b1a2dc55fc3fd072a71721249b199e57d877e3189bb",
+      "native_copy_hash_matches": true,
+      "unchanged_primary_sheet_sha256": "7936911feedecc7d27634acd4847984dee3fd8843aabd7f80205898e83ed9fd4"
+    }
+  ],
+  "native_bytes_unchanged": true,
+  "license": "Original builtin imagegen outputs; no external copyrighted image copied."
+}

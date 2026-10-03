@@ -13,7 +13,9 @@ var background_depth_review := false
 const DISTANT_STRENGTH := .45
 const DISTANT_AIR := Color("b9d6eb")
 var background_rect := Rect2(0,0,1624,1044)
-func configure(id: String, review_background_depth: bool = false) -> bool:
+var convergence := false
+var material_tile_width := 256.0
+func configure(id: String, review_background_depth: bool = false, review_convergence: bool = false) -> bool:
 	if id!="L43" or not textures.is_empty(): return false
 	background_depth_review=review_background_depth
 	var parsed: Variant=JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(ROOT+"mapping.json")))
@@ -33,9 +35,23 @@ func configure(id: String, review_background_depth: bool = false) -> bool:
 		textures[file]=texture
 		if layer.role not in ["background","floor"]:
 			register(file,Vector2(layer.source_anchor_pixel[0],layer.source_anchor_pixel[1]),Vector2(layer.blueprint_anchor[0],layer.blueprint_anchor[1]),float(layer.source_to_blueprint_uniform_scale))
+	if review_convergence: _configure_surface_review()
 	build_edges()
 	queue_redraw()
-	return errors.is_empty() and textures.size()==8
+	return errors.is_empty() and textures.size()==(10 if convergence else 8)
+func _configure_surface_review() -> void:
+	var parsed: Variant=JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(ROOT+"surface_review.json")))
+	if not parsed is Dictionary: errors.append("Invalid surface review metadata"); return
+	convergence=true
+	material_tile_width=float(parsed.tile_world_size)
+	for source: Dictionary in parsed.sources:
+		var file: String=source.file
+		var texture:=preload("res://scripts/infrastructure/assets/texture_sampler.gd").sampled(ROOT+file)
+		if texture==null: errors.append("Missing "+file); continue
+		textures[file]=texture
+		snapshot[file]={"size":texture.get_size(),"sha256":FileAccess.get_sha256(AssetCatalog.resolve(ROOT+file))}
+	for attachment: Dictionary in parsed.fascia_attachments:
+		register("low_fascia.png",Vector2(attachment.source_anchor[0],attachment.source_anchor[1]),Vector2(attachment.blueprint_anchor[0],attachment.blueprint_anchor[1]),float(attachment.source_to_blueprint_scale))
 static func polygon(rect: Rect2) -> PackedVector2Array:
 	return PackedVector2Array([rect.position,Vector2(rect.end.x,rect.position.y),rect.end,Vector2(rect.position.x,rect.end.y)])
 func register(file: String, source_anchor: Vector2, blueprint_anchor: Vector2, scale_value: float) -> void:
@@ -114,11 +130,15 @@ func _draw() -> void:
 	# Existing native stone sampled as a material on shallow edge geometry.
 	# This is an explicitly geometric prototype finish, not a new authored facade image.
 	for face: Dictionary in edge_faces:
+		if convergence and face.kind=="downward_side": continue
 		for shape: PackedVector2Array in face.shapes:
 			var uv:=PackedVector2Array()
 			for point: Vector2 in shape: uv.append(point/Vector2(1624,1044))
 			draw_polygon(shape,PackedColorArray([face.tint]),uv,textures["floor_surface.png"])
-	# Opaque surface is one full composition; never per-rectangle tiled/restarted.
+	if convergence:
+		preload("res://scripts/levels/b08/presentation/floor_material.gd").draw(self,textures["ivory_paving.png"],Geometry.floors("L43"),Vector2(1624,1044),material_tile_width)
+		return
+	# Opaque original surface is one full composition; never restart each rectangle.
 	for floor_rect: Rect2 in Geometry.floors("L43"):
 		var shape:=polygon(floor_rect)
 		var uv:=PackedVector2Array()
