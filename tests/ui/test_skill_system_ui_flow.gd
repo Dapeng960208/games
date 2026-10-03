@@ -162,13 +162,15 @@ func _fixture_preview() -> void:
 		page.set_meta("dossier_fixture", fixture)
 		await press("ApplySkillConfig")
 		check(bool(page.get_meta("dossier_message_error", false)) and Game.profile == before, hero + " fixture exposes retained save-error state without storage mutation")
+		await press("SwapSkill_f")
+		check(not bool(page.get_meta("dossier_message_error",false)) and (page.find_child("SkillConfigLockReason",true,false) as Label).text.contains("未应用") and Game.profile == before,hero+" editing a preview failure clears stale errors and retains the unsaved draft")
 		await capture(hero + "-fixture-skills")
 		fixture.skill_page_view[hero].editable = false
 		fixture.skill_page_view[hero].lock_reason = "整次出征只读"
 		page.set_meta("dossier_fixture", fixture)
 		page._render()
 		await frames()
-		check(button("ApplySkillConfig").disabled and button("SwapSkill_q").disabled, hero + " fixture read-only state disables edits")
+		check(button("ApplySkillConfig").disabled and button("SwapSkill_q").disabled and button("DiscardSkillDraft").disabled, hero + " fixture read-only state disables edits and draft discard")
 		check(page.find_child("SkillConfigLockReason", true, false) != null, hero + " fixture read-only reason is visible")
 		await capture(hero + "-fixture-readonly")
 	if DisplayServer.get_name() != "headless":
@@ -259,12 +261,23 @@ func _camp_configuration(hero: String) -> void:
 		await press("PrimaryAction")
 	check(str(Game.profile.selected_hero) == hero, hero + " selection uses redesigned character page")
 	check(app.find_child("HeroConfigLockReason",true,false) != null, hero + " character page has explicit edit state")
+	var saved: Array = Game.get_loadout(hero)
+	var scroll: ScrollContainer = app.find_child("HeroStatScroll",true,false)
+	for index: int in 4:
+		var cell: Button = app.find_child("HeroEquipped_"+Catalog.INPUT_SLOTS[index],true,false)
+		var icons: Array[Node] = cell.find_children("*","TextureRect",true,false) if cell != null else []
+		var icon: TextureRect = icons[0] as TextureRect if icons.size() == 1 else null
+		check(cell != null and str(cell.get_meta("skill_id","")) == saved[index] and str(cell.get_meta("input_slot","")) == Catalog.INPUT_SLOTS[index] and icon != null and icon.texture == Sampler.sampled("asset://skill."+str(saved[index]).to_lower()),hero+" character card exposes saved identity and native icon "+str(index))
+		check(cell != null and scroll != null and scroll.get_global_rect().encloses(cell.get_global_rect()),hero+" saved skill card is entirely visible before scrolling "+str(index))
 	await capture(hero + "-character")
-	await press("Tab_skills")
+	await press("HeroEquipped_ultimate")
 	var page: Control = panel()
+	check(page != null and str(page.mode) == "skills" and int(page.get_meta("dossier_slot",-1)) == 3 and str(page.get_meta("dossier_skill_id","")) == str(saved[3]),hero+" character R card opens the corresponding saved skill and slot")
+	check((app.find_child("SkillPool_"+str(saved[3]),true,false) as Button).has_focus(),hero+" character-to-skill navigation focuses the matching pool entry")
 	check(page != null and page.find_children("SkillPool_CH*", "Button", true, false).size() == 12, hero + " has twelve real pool buttons")
 	for slot: String in Catalog.INPUT_SLOTS:
 		check(page.find_child("InspectSkill_" + slot, true, false) != null, hero + " exposes configured " + slot)
+	await press("InspectSkill_q")
 	var before: Dictionary = Game.profile.duplicate(true)
 	await press("SkillPool_" + hero + "_SK05")
 	var description: Label = app.find_child("InspectedSkillDescription", true, false) as Label
@@ -272,6 +285,12 @@ func _camp_configuration(hero: String) -> void:
 	check(app.find_child("SkillDescriptionScroll", true, false) is ScrollContainer, hero + " long descriptions and branches scroll")
 	await press("ReplaceDraftSkill")
 	check(Game.profile == before, hero + " local replacement draft does not change saved slots")
+	check((app.find_child("SkillLoadoutStatus",true,false) as Label).text.contains("草稿") and (app.find_child("SkillConfigLockReason",true,false) as Label).text.contains("未应用"),hero+" unapplied draft has persistent status beside its four slots")
+	await capture(hero+"-skills-dirty")
+	await press("DiscardSkillDraft")
+	check(Game.profile == before and (app.find_child("SkillConfigLockReason",true,false) as Label).text.contains("已还原") and (app.find_child("InspectSkill_q",true,false) as Button).has_focus(),hero+" revert restores saved slots and focus without a save")
+	await capture(hero+"-skills-reverted")
+	await press("ReplaceDraftSkill")
 	await press("SwapSkill_q")
 	var draft: Dictionary = panel().get_meta("dossier_draft_" + hero, {})
 	check(draft.get("loadout", []).size() == 4 and hero + "_SK05" in draft.loadout, hero + " replace and swap preserve exactly four unique identities")
@@ -297,10 +316,40 @@ func _camp_configuration(hero: String) -> void:
 		check((app.find_child("SkillPoolEmpty",true,false) as Control).visible, hero + " empty search has a visible explanation")
 		search.text = ""
 		search.text_changed.emit(search.text)
+		search.grab_focus()
+		panel()._render()
+		await frames()
+		check((app.find_child("SkillPoolSearch",true,false) as LineEdit).has_focus(),hero+" rebuilding the same skill page preserves search keyboard focus")
+	if hero == "CH02": await _role_context_roundtrip()
 	await capture(hero + "-skills")
 	var committed: Dictionary = Game.profile.skill_state[hero].duplicate(true)
 	Game.reload_profile()
 	check(JSON.parse_string(JSON.stringify(Game.profile.skill_state[hero])) == JSON.parse_string(JSON.stringify(committed)), hero + " configured slots and branches survive actual reload")
+
+func _role_context_roundtrip() -> void:
+	var before: Dictionary = Game.profile.duplicate(true)
+	await press("InspectSkill_secondary")
+	await press("SkillPool_CH02_SK05")
+	await press("SwapSkill_f")
+	var draft: Dictionary = panel().get_meta("dossier_draft_CH02",{}).duplicate(true)
+	var search: LineEdit = app.find_child("SkillPoolSearch",true,false)
+	search.text = "SK05"
+	search.text_changed.emit(search.text)
+	await press("SkillFilter_learned")
+	await press("SkillHero_CH03")
+	await press("SwapSkill_q")
+	var other: Dictionary = panel().get_meta("dossier_draft_CH03",{}).duplicate(true)
+	await press("SkillHero_CH02")
+	check(int(panel().get_meta("dossier_slot",-1)) == 1 and str(panel().get_meta("dossier_skill_id","")) == "CH02_SK05" and str(panel().get_meta("dossier_search","")) == "SK05" and str(panel().get_meta("dossier_filter","")) == "learned","switching roles restores each inspected slot, skill, search and filter")
+	check(panel().get_meta("dossier_draft_CH02",{}) == draft and panel().get_meta("dossier_draft_CH03",{}) == other and Game.profile == before,"role switches retain separate unapplied drafts and preserve saved configurations")
+	await press("DiscardSkillDraft")
+	await press("SkillHero_CH03")
+	await press("DiscardSkillDraft")
+	await press("SkillHero_CH02")
+	search = app.find_child("SkillPoolSearch",true,false)
+	search.text = ""
+	search.text_changed.emit("")
+	await press("SkillFilter_all")
 
 func _failed_save() -> void:
 	app.show_workshop("skills")
@@ -314,6 +363,8 @@ func _failed_save() -> void:
 	await press("ApplySkillConfig")
 	check(Game.profile == before and bool(panel().get_meta("dossier_message_error",false)), "new UI exposes storage failure without applying partial slots")
 	check(app.find_child("SkillConfigMessage",true,false) != null and not str(panel().get_meta("dossier_draft_"+hero).operation_id).is_empty(), "new UI retains the pending draft and operation id")
+	check((app.find_child("SkillConfigLockReason",true,false) as Label).text.contains("保存失败"),"real failed apply remains visible beside the configuration controls")
+	await capture(hero+"-skills-save-failed")
 	Game._store.max_document_bytes = limit
 	var apply := button("ApplySkillConfig")
 	if apply != null:
@@ -329,6 +380,8 @@ func _failed_save() -> void:
 		get_viewport().push_input(key)
 		await frames()
 	check(Game.get_loadout(hero) == expected and not bool(panel().get_meta("dossier_message_error",true)), "keyboard activation retries and commits the same complete configuration")
+	check((app.find_child("SkillConfigLockReason",true,false) as Label).text.contains("配置已保存"),"successful retry persistently replaces the save failure status")
+	await capture(hero+"-skills-save-retried")
 
 func _departure_and_hud(hero: String) -> void:
 	check(Game.select_hero(hero), "fixture selects next departure role " + hero)
@@ -352,7 +405,7 @@ func _departure_and_hud(hero: String) -> void:
 	await capture(hero + "-hud")
 	app.show_workshop("skills")
 	await frames()
-	check((app.find_child("ApplySkillConfig",true,false) as Button).disabled and (app.find_child("SwapSkill_q",true,false) as Button).disabled, hero + " expedition skill page disables editing")
+	check((app.find_child("ApplySkillConfig",true,false) as Button).disabled and (app.find_child("SwapSkill_q",true,false) as Button).disabled and (app.find_child("DiscardSkillDraft",true,false) as Button).disabled, hero + " expedition skill page disables editing and draft discard")
 	check(not str((app.find_child("SkillConfigLockReason",true,false) as Label).text).is_empty(), hero + " expedition skill page explains the lock")
 	check(not bool(Game.apply_skill_config(hero, Catalog.starter_ids(hero), {}, "fixture:ui-run-lock:"+hero).ok), hero + " direct service also rejects expedition editing")
 	check(Game.run.skill_loadout_snapshot == frozen, hero + " read-only inspection preserves departure slots")
