@@ -26,8 +26,12 @@
           "bottom_right"
         ],
         "approved_sources": 0,
-        "status": "six_native_repaints_in_source_review_not_integrated",
-        "contract": "native region repaint of the same room mother image; source_rect normalized through same destination; six required; narrow feather overlap"
+        "status": "six_native_sources_preserved_five_reviewable_one_notch_mismatch_not_registered",
+        "contract": "native region repaint of the same room mother image; source_rect normalized through same destination; six required; narrow feather overlap",
+        "candidate_sources": 6,
+        "blocked_sources": [
+          "bottom_middle"
+        ]
       },
       "runtime_layers": {
         "dynamic_props": "retain actual footpoints and shared depth nodes",

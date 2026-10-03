@@ -1,0 +1,71 @@
+{
+  "status": "Read-only proposal; no asset pixel modification or new generation authorized or performed in this proposal.",
+  "source_rect_xywh": [
+    504,
+    504,
+    528,
+    520
+  ],
+  "native_size": [
+    1264,
+    1244
+  ],
+  "boxes": {
+    "notch_connected_cap_and_fascia_safety_window": {
+      "mother_source_xyxy_half_open": [
+        568,
+        580,
+        970,
+        669
+      ],
+      "native_bottom_middle_xyxy_half_open": [
+        153,
+        181,
+        1116,
+        395
+      ]
+    },
+    "left_outer_front_strip_if_authorized_separately": {
+      "mother_source_xyxy_half_open": [
+        504,
+        630,
+        587,
+        662
+      ],
+      "native_bottom_middle_xyxy_half_open": [
+        0,
+        301,
+        199,
+        378
+      ]
+    },
+    "right_outer_front_strip_if_authorized_separately": {
+      "mother_source_xyxy_half_open": [
+        947,
+        630,
+        1032,
+        662
+      ],
+      "native_bottom_middle_xyxy_half_open": [
+        1060,
+        301,
+        1264,
+        378
+      ]
+    }
+  },
+  "measured_corrections_source_px": {
+    "notch_east_side_dx": 6.05,
+    "notch_west_side_dx": 1.21,
+    "notch_rear_lip_dy": 1.2,
+    "outer_front_edges_dy": 2.06
+  },
+  "native_approx_corrections_px": {
+    "notch_east_side_dx": 14.48,
+    "notch_west_side_dx": 2.9,
+    "notch_rear_lip_dy": 2.87,
+    "outer_front_edges_dy": 4.93
+  },
+  "unresolved": "The east seam pillar/cliff mismatch requires separate scene joining. Correcting the notch alone cannot certify the tile or six-tile set.",
+  "unchanged_requirement": "Decode original pixels; modify only an explicit approved mask inside the window; copy all unmasked original pixels unchanged; verify per-channel equality and zero changed pixels outside mask. Keep original file untouched and create a new derivative. Re-encoded PNG compressed bytes may differ globally even with identical outside pixels; do not promise compressed-stream byte equality."
+}

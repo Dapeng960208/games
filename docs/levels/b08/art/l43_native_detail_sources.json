@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "status": "source_candidates_only_no_six_tile_runtime_activation",
+  "source_package": "independent_room_1144/l43/detail_native",
+  "mother_sha256": "3689bb6cb2edd18d30cb500af03cdeb319e546e79f42881a7fcf2df3399bfc32",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "all_original_tool_bytes_preserved": true,
+  "generated_tiles": 6,
+  "approved_runtime_tiles": 0,
+  "tiles": [
+    {
+      "id": "top_left",
+      "source_package_path": "detail_native/top_left_attempt_01/native_original.png",
+      "mother_source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "sha256": "315285fb0a6b3bc0dbab4616c983dfc39857a8563dc4493b92c04a022b03535c",
+      "max_frame_display_size_at_2k_085": [
+        1198.263888888889,
+        1236.6638513513512
+      ],
+      "display_per_native_pixel": [
+        0.9632346373704895,
+        0.9783733001197399
+      ],
+      "status": "source_review_candidate_seams_and_runtime_pending",
+      "runtime_registered": false
+    },
+    {
+      "id": "top_middle",
+      "source_package_path": "detail_native/top_middle_attempt_01/top_middle_native_original.png",
+      "mother_source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "sha256": "a0454287251cabbcf8d6738c80b0b371eb90e471b4d8090b7bddfdccc2bb0e3e",
+      "max_frame_display_size_at_2k_085": [
+        1216.698717948718,
+        1236.6638513513512
+      ],
+      "display_per_native_pixel": [
+        0.9702541610436348,
+        0.9861753200568989
+      ],
+      "status": "source_review_candidate_seams_and_runtime_pending",
+      "runtime_registered": false
+    },
+    {
+      "id": "top_right",
+      "source_package_path": "detail_native/top_right_attempt_01/native_original.png",
+      "mother_source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1244,
+        1264
+      ],
+      "sha256": "421c10916c39b19296e81bb7a3038259322ecbb7252645794773623d7286b03e",
+      "max_frame_display_size_at_2k_085": [
+        1198.263888888889,
+        1236.6638513513512
+      ],
+      "display_per_native_pixel": [
+        0.9632346373704895,
+        0.9783733001197399
+      ],
+      "status": "source_review_candidate_seams_and_runtime_pending",
+      "runtime_registered": false
+    },
+    {
+      "id": "bottom_left",
+      "source_package_path": "detail_native/bottom_left_attempt_01/native_original.png",
+      "mother_source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "sha256": "f956203f98c9fc5187d1f765b779b1bdeb77ca93f6f0150c1dae0fb518a339de",
+      "max_frame_display_size_at_2k_085": [
+        1198.263888888889,
+        1217.9265202702702
+      ],
+      "display_per_native_pixel": [
+        0.9555533404217615,
+        0.9712332697530065
+      ],
+      "status": "source_review_candidate_seams_and_runtime_pending",
+      "runtime_registered": false
+    },
+    {
+      "id": "bottom_middle",
+      "source_package_path": "detail_native/bottom_middle_attempt_01/native_original.png",
+      "mother_source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1264,
+        1244
+      ],
+      "sha256": "337524d03a080bcead3ddd7c73c7a6b12f1cdcbc528aaed230b215038e743795",
+      "max_frame_display_size_at_2k_085": [
+        1216.698717948718,
+        1217.9265202702702
+      ],
+      "display_per_native_pixel": [
+        0.9625780996429731,
+        0.9790406111497348
+      ],
+      "status": "blocked_edge_mismatch_requires_explicit_local_edit",
+      "runtime_registered": false
+    },
+    {
+      "id": "bottom_right",
+      "source_package_path": "detail_native/bottom_right_attempt_01/native_original.png",
+      "mother_source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "sha256": "514aa447ea749d31cae964851250669cd7078cfb9e9b63c4556b6a0b52a61eb0",
+      "max_frame_display_size_at_2k_085": [
+        1198.263888888889,
+        1217.9265202702702
+      ],
+      "display_per_native_pixel": [
+        0.9555533404217615,
+        0.9712332697530065
+      ],
+      "status": "source_review_candidate_seams_and_runtime_pending",
+      "runtime_registered": false
+    }
+  ],
+  "limits": [
+    "Five candidates have close sampled critical edges, not a universal one-pixel certification",
+    "Bottom-middle east notch shifts about six mother pixels left, painting floor into the fixed nonwalkable notch; it cannot be enabled",
+    "Native terrain detail does not authorize changing physical boundary or anchors",
+    "Overlap bands vary in tone and geometry; actual six-layer seam review not performed",
+    "Only original mother has completed three controlled2K frames; no detail candidate appears in those frames"
+  ]
+}
