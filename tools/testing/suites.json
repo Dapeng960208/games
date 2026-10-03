@@ -356,6 +356,10 @@
     "script": "tests/combat/test_combat_combos.gd",
     "scene": "tests/combat/test_combat_combos.tscn"
   },
+  "combat_combos_continuity": {
+    "script": "tests/combat/test_combat_combos.gd",
+    "scene": "tests/combat/test_combat_combos.tscn"
+  },
   "combat_feedback": {
     "script": "tests/combat/test_combat_feedback.gd",
     "scene": "tests/combat/test_combat_feedback.tscn"

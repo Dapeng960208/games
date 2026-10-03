@@ -129,7 +129,10 @@ func configure(enemy: Node2D) -> void:
 		skill_badge.name = "EnemySkillBadge"
 		skill_badge.identity = str(actor.get("enemy_id"))
 		skill_badge.icon = Art.skill_icon_for(skill_badge.identity)
-		skill_badge.z_index = 7
+		# Nearby prose and icons stay below the room's z=5 danger geometry,
+		# regardless of the owning actor's body layer.
+		skill_badge.z_as_relative = false
+		skill_badge.z_index = 4
 		skill_badge.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		# This sibling stays upright, outside the body's palette and mirroring.
 		actor.add_child(skill_badge)
