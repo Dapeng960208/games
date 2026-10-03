@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "room_id": "L29",
+  "approved": false,
+  "candidate_only": true,
+  "texture": "res://assets/generated/world/rooms_2k/L26/root_fascia_v1.png",
+  "native_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "e7f1a0daab30380e0dc36866f5b67f5d7dd4d61454f1787dddaeb3329ca69cc8",
+  "source_pixel_edits": "none; exact new imagegen output copied",
+  "generation_tool": "image_gen",
+  "model": "unknown",
+  "model_version": "unknown",
+  "prompt_file": "root_fascia_v1.prompt.txt",
+  "source_crop_pixels": [
+    0,
+    449,
+    1536,
+    160
+  ],
+  "runtime_depth_source_pixels": 28,
+  "repeat_extent_source_pixels": 512,
+  "alpha_cutoff": 0.01,
+  "solid_alpha_correction": "alpha > 0.125 becomes opaque; no raster edits",
+  "quality_gate": false,
+  "prompt_sha256": "47a3b7d7e5538a099656aab1ba125ce575ab53e7f6da05524d52b619bbabe18a",
+  "reuse_scope": "Only narrow external root edge material, never whole-room painting",
+  "recommended_repair_source_rect": [
+    205,
+    730,
+    1130,
+    125
+  ],
+  "fascia_all_edges": false,
+  "fascia_in_repair_region": true,
+  "join_correction": "Southern edges only; no artificial vertical poles where the curved source inlay meets the repaired southern surface."
+}

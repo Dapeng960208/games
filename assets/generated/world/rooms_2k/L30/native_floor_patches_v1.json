@@ -1,0 +1,39 @@
+{
+  "approved": false,
+  "patches": [
+    {
+      "approved": false,
+      "texture": "res://assets/generated/world/rooms_2k/L30/L30_southwest_v1.png",
+      "native_size": [
+        1501,
+        1047
+      ],
+      "sha256": "b8b909459874c5494866a0476d505333b3dcf7496964893aee8b138d578954c1",
+      "prompt_sha256": "4cab3b12cf6fbe8d45e0ebc107aca09657e60befe8b5cd04e84d89036ec1d472",
+      "source": "b05-art/regenerated/maps/L30/L30_base_v1.png",
+      "source_sha256": "2eafa5aa34354ee799aed630539ee12816d7e02bc4fe05c83eb59a467c2ec648",
+      "tool_returned_path": "generated_images/exec-f618a93a-4156-45d7-9f59-5ea1de28e348.png",
+      "tool": "image_gen built-in",
+      "model": "not reported",
+      "unique_patch": true,
+      "recommended_repair_source_rect": [
+        205,
+        590,
+        380,
+        265
+      ],
+      "repair_feather_source_pixels": [
+        0,
+        40,
+        40,
+        0
+      ],
+      "adjacent_reference_source_rect": [
+        585,
+        590,
+        380,
+        265
+      ]
+    }
+  ]
+}
