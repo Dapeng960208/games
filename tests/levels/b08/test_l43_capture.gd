@@ -32,47 +32,46 @@ func run() -> void:
 	label.add_theme_font_size_override("font_size",16)
 	label.add_theme_color_override("font_color",Color("273949"))
 	ui.add_child(label)
-	room.player.position=Geometry.point([380,960])
-	room.camera.follow_target(); room.camera.force_update_scroll()
-	await capture("entry_identity.png","Actual entry / 0.85 player camera / M01-03 native identities / partial environment")
-	# Staged legal footpoints keep all three adult scales readable in one ordinary
-	# player-camera view. Real _begin/_release/_land methods supply frozen phases.
+	# Existing legal footpoints, normal player camera, and real frozen skills.
 	room.player.position=Geometry.point(STAGED_PLAYER)
 	for id: String in STAGED_ACTORS: actors[id].position=Geometry.point(STAGED_ACTORS[id])
 	room.camera.follow_target(); room.camera.force_update_scroll()
-	for id: String in actors:
-		actors[id].aim_direction=actors[id].position.direction_to(room.player.position)
-	for id: String in ["B08-M01","B08-M02"]:
-		var actor: Node2D=actors[id]
-		actor.brain._begin(actor,room.player)
-		actor.native_art.advance(0,actor.brain.phase,actor.brain.action)
-	await capture("locked_warnings.png","Controlled real warning phases / drawn bow + grounded dive windup / keyposes only")
+	var archer: Node2D=actors["B08-M01"]
+	archer.aim_direction=archer.position.direction_to(room.player.position)
+	archer.brain._begin(archer,room.player)
+	archer.brain._release(archer)
+	archer.native_art.advance(0,archer.brain.phase,archer.brain.action)
+	await capture("bow_source_right.png","Right release / frozen bow cue / feather and hit marker remain on physical ground ray")
+	room._tick_feathers(.16)
+	await capture("bow_ground_flight.png","0.16 seconds after release / source cue ended / unchanged ground feather at 320 world per second")
+	room.feathers.clear()
+	archer.position=Geometry.point(STAGED_ACTORS["B08-M02"])
+	actors["B08-M02"].position=Geometry.point(STAGED_ACTORS["B08-M01"])
+	archer.aim_direction=archer.position.direction_to(room.player.position)
+	archer.brain._begin(archer,room.player)
+	archer.brain._release(archer)
+	archer.native_art.advance(0,archer.brain.phase,archer.brain.action)
 	game.profile.settings["reduced_fx"]=true
-	await capture("locked_warnings_reduced.png","Same locked warnings / reduced FX / fixed ground shadows + original warning geometry")
+	await capture("bow_source_left_reduced.png","Mirrored release / reduced FX / same physical feather and fixed release-frame outlet")
 	game.profile.settings["reduced_fx"]=false
-	for id: String in ["B08-M01","B08-M02"]:
-		var actor: Node2D=actors[id]
-		actor.brain._release(actor)
-		actor.native_art.advance(0,actor.brain.phase,actor.brain.action)
-	room._tick_feathers(.08)
-	actors["B08-M02"].brain.tick(actors["B08-M02"],.08,room.player)
-	actors["B08-M02"]._finish_motion(.08)
-	await capture("release_and_dive.png","Real release/transit states / native feather projectile / folded-wing dive / same hit proxies")
-	actors["B08-M01"].native_art.advance(.2,actors["B08-M01"].brain.phase,actors["B08-M01"].brain.action)
-	actors["B08-M02"].brain._land(actors["B08-M02"])
-	actors["B08-M02"].native_art.advance(0,actors["B08-M02"].brain.phase,actors["B08-M02"].brain.action)
+	room.feathers.clear()
+	archer.native_art.advance(.2,archer.brain.phase,archer.brain.action)
 	var scout: Node2D=actors["B08-M03"]
+	scout.aim_direction=scout.position.direction_to(room.player.position)
 	scout.brain._begin(scout,room.player)
+	scout.native_art.advance(0,scout.brain.phase,scout.brain.action)
+	await capture("scout_warning.png","M03 real warning / crouched preparation / unchanged flank destination and duration")
 	scout.brain._release(scout)
 	scout.brain._land(scout)
 	scout.native_art.advance(0,scout.brain.phase,scout.brain.action)
-	await capture("landing_and_stab.png","Controlled ground recovery + scout stab / crouch stays lower / no continuous animation claim")
+	scout.native_art.advance(.2,scout.brain.phase,scout.brain.action)
+	await capture("scout_recovery.png","M03 actual recovery phase / compact crouch / controlled phase proof, not natural combat")
 	var clean: bool=await room.cleanup_for_exit()
 	var sources: Dictionary=room.sky_environment.snapshot.duplicate(true)
 	room.free()
 	await get_tree().process_frame
 	var report:=FileAccess.open(output.path_join("l43_capture_report.json"),FileAccess.WRITE)
-	report.store_string(JSON.stringify({"status":"controlled_actual_renderer_pending_pixel_review","framebuffer":[2560,1440],"renderer":RenderingServer.get_video_adapter_name(),"captures":captures,"views":views,"environment_sources":sources,"audio_cleanup":clean,"hero_world_height_unchanged":112,"limits":["Only three skill keyposes, no walking/back/continuous animation","Staged existing skill phases; not natural combat acceptance","Flag/vane/exit remain debug props in this minimal slice","Broad platform and incomplete side returns remain","Source and clipped floor unchanged by rendering"]},"\t"))
+	report.store_string(JSON.stringify({"status":"controlled_actual_renderer_pending_pixel_review","framebuffer":[2560,1440],"renderer":RenderingServer.get_video_adapter_name(),"captures":captures,"views":views,"environment_sources":sources,"audio_cleanup":clean,"hero_world_height_unchanged":112,"limits":["Only three skill keyposes, no walking/back/continuous animation","Staged existing skill phases; not natural combat acceptance","Bow cue links a frozen outlet to the real ground feather; it is not an elevated physical flight", "Flag/vane/exit remain debug props in this minimal slice","Broad platform and incomplete side returns remain","Source and clipped floor unchanged by rendering"]},"\t"))
 	print("B08_L43_CAPTURE frames=",captures.size()," clean=",clean," output=",output)
 	get_tree().quit(0 if clean and captures.size()==5 else 1)
 func capture(file: String,title: String) -> void:
@@ -97,4 +96,7 @@ func capture(file: String,title: String) -> void:
 		var frame: Dictionary=art.frames[art.active_pose]
 		var effective:=Vector2(frame.effective_alpha16_size[0],frame.effective_alpha16_size[1])
 		record.actors[id]={"phase":actor.brain.phase,"pose":art.active_pose,"file":frame.file,"region":frame.region,"native_foot":art.foot,"physical_position":actor.position,"mirrored":actor.aim_direction.x<-.1,"source_to_world":art.source_scale,"effective_native_pixels":effective,"full_effective_display_pixels":effective*art.source_scale*factor,"nominal_adult_height":art.world_height,"navigation_radius":actor.navigation_radius}
+	record["feathers"]=[]
+	for shot: Dictionary in room.feathers:
+		record.feathers.append({"physical_position":shot.position,"frozen_direction":shot.direction,"remaining":shot.remaining,"visual_launch":shot.get("visual_launch",{}),"launch_strength":room.sky_projectile_art.launch_strength(shot)})
 	views[file]=record

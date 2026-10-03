@@ -61,11 +61,79 @@
     "project.godot": "ee6d5930cfb93508212cf3031fe97086b502e62768e6d94299da5f7783f574a2"
   },
   "unresolved": [
-    "bow outlet versus unchanged ground projectile origin",
-    "M03 warning/recovery actual-frame review",
+    "Bow source cue remains subtle/partly occluded; natural release and arbitrary-facing readability are not accepted.",
     "continuous movement/back/hit/death animation",
     "natural combat and target hardware",
     "wide platform/full side returns",
     "flag/vane/exit native props"
-  ]
+  ],
+  "launch_followup": {
+    "status": "controlled_frames_checked_visual_refinement_pending",
+    "headless": {
+      "suite": "b08_l43_integration",
+      "run": "20261003T102622010003Z-3c48855b",
+      "checks": 81,
+      "failures": 0,
+      "exit_code": 0
+    },
+    "initial_test_issue": {
+      "run": "20261003T102510435177Z-7c45364b",
+      "checks": 81,
+      "failures": 2,
+      "reason": "Control shot had a different serial and critical seed. Test now compares the same deterministic seed; no production damage change."
+    },
+    "scope": "Frozen bow source cue only; native feather stays on the physical ray. M03 warning/recovery now captured. Natural flight readability remains pending.",
+    "actual_renderer": {
+      "run": "20261003T102755005276Z-731df3eb",
+      "exit_code": 0,
+      "audio_cleanup": true,
+      "framebuffer": [
+        2560,
+        1440
+      ],
+      "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+      "warnings": [
+        "driver does not support changing VSync"
+      ],
+      "frames": {
+        "bow_source_right.png": "4249d5a07647501a93976e578aeb962cdc038a028874f1883d2c6d5e30da8e6c",
+        "bow_ground_flight.png": "3375c66ad13f19d370820a26e4273c59e7fe45b9c29c450114b7c5ea328bdf94",
+        "bow_source_left_reduced.png": "6ac4d63299be52784e521c36ac6195bae24cd2b76d5ba4767539da1f29deb628",
+        "scout_warning.png": "972cd8be24c36ba50fe98b43ca4edcfa440432fb34bee686ae2ab27aaaf7bd2f",
+        "scout_recovery.png": "1fa4c561a44603cf08c5fbcfa73b58b12842b9e869c56f2420c704884ccdb400"
+      },
+      "observations": [
+        "M03 warning and recovery keep legal footpoints and crouched source proportions; no obvious alpha edge anomaly in these frames.",
+        "Right and mirrored release preserve physical feather/ground marker; source connector is subtle and partially occluded by actor art.",
+        "Static controlled frames do not establish a naturally convincing bow release or arbitrary facing."
+      ],
+      "m03_effective_native_and_display_pixels": {
+        "warning": {
+          "native": [
+            685,
+            535
+          ],
+          "display": [
+            172.5185,
+            134.7408
+          ]
+        },
+        "recovery": {
+          "native": [
+            515,
+            573
+          ],
+          "display": [
+            129.7037,
+            144.3111
+          ]
+        }
+      },
+      "unchanged_physics_methods": [
+        "room_controller._tick_feathers",
+        "room_controller.packet",
+        "room_controller._hurt"
+      ]
+    }
+  }
 }

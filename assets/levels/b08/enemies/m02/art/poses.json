@@ -37,11 +37,12 @@
       "standing_equivalent_source_pixels": 775,
       "source_sha256": "6185de95f76eaa0943cbd0d974483fd27a20c88fde0ad70abb64434577cb4ad4",
       "anchor_kind": "projected sole midpoint",
-      "registration_status": "manual candidate; actual2K review pending",
+      "registration_status": "manual candidate; controlled 2K frame inspected; natural combat pending",
       "effective_alpha16_size": [
         1180,
         1204
-      ]
+      ],
+      "actual_frame_run": "20261003T100309653151Z-d23f5df4"
     },
     "warning": {
       "file": "warning.png",
@@ -77,11 +78,12 @@
       "standing_equivalent_source_pixels": 775,
       "source_sha256": "11b55dc475a084bdf68f2e04bf72dae3759462a3e49868367ceef2ef2aad0202",
       "anchor_kind": "projected sole midpoint",
-      "registration_status": "manual candidate; actual2K review pending",
+      "registration_status": "manual candidate; controlled 2K frame inspected; natural combat pending",
       "effective_alpha16_size": [
         1148,
         1194
-      ]
+      ],
+      "actual_frame_run": "20261003T100309653151Z-d23f5df4"
     },
     "release": {
       "file": "dive.png",
@@ -108,11 +110,12 @@
       "standing_equivalent_source_pixels": 775,
       "source_sha256": "34eed8ec8d28624a0e90f5a607f9803c3a9b3ba3d324807051c79a2176f8af41",
       "anchor_kind": "airborne ground projection below torso; not trailing-boot midpoint",
-      "registration_status": "manual candidate; actual2K review pending",
+      "registration_status": "manual candidate; controlled 2K frame inspected; natural combat pending",
       "effective_alpha16_size": [
         1138,
         786
-      ]
+      ],
+      "actual_frame_run": "20261003T100309653151Z-d23f5df4"
     },
     "recovery": {
       "file": "recovery.png",
@@ -148,11 +151,12 @@
       "standing_equivalent_source_pixels": 775,
       "source_sha256": "95aa9dc5fcf48daf00c02b1a2dc55fc3fd072a71721249b199e57d877e3189bb",
       "anchor_kind": "projected sole midpoint",
-      "registration_status": "manual candidate; actual2K review pending",
+      "registration_status": "manual candidate; controlled 2K frame inspected; natural combat pending",
       "effective_alpha16_size": [
         1168,
         891
-      ]
+      ],
+      "actual_frame_run": "20261003T100309653151Z-d23f5df4"
     }
   },
   "gate": "--b08-art-l43 --b08-art-convergence",

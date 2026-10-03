@@ -322,7 +322,9 @@ func hit_fan(actor: Node2D, action: Dictionary, coefficient: float, reach: float
 	if offset.length()<=reach+Balance.PLAYER_RADIUS and (offset.length()<Balance.PLAYER_RADIUS or absf(direction.angle_to(offset))<=deg_to_rad(half_angle)) and has_line_of_sight(action.origin,player.position): _hurt(actor,packet(actor,action,coefficient))
 func fire_feather(actor: Node2D, action: Dictionary, coefficient: float, reach: float, angle: float = 0, group: Dictionary = {}) -> void:
 	if feathers.size()>=48: return
-	feathers.append({"position":actor.position,"direction":actor.position.direction_to(action.target).rotated(angle),"remaining":reach,"owner":weakref(actor),"packet":packet(actor,action,coefficient),"group":group})
+	var shot: Dictionary={"position":actor.position,"direction":actor.position.direction_to(action.target).rotated(angle),"remaining":reach,"owner":weakref(actor),"packet":packet(actor,action,coefficient),"group":group}
+	if sky_projectile_art!=null: sky_projectile_art.attach_launch(actor,shot)
+	feathers.append(shot)
 func fire_fan(actor: Node2D, action: Dictionary) -> void:
 	var group := {"hits":0}
 	for angle: int in [-40,-20,0,20,40]: fire_feather(actor,action,.35,420,deg_to_rad(angle),group)

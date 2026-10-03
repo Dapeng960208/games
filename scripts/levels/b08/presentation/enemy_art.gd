@@ -77,6 +77,14 @@ func pose_for(phase: String, action: Dictionary, age: float) -> String:
 		if identity in ["B08-M01","B08-M03"] and age<.16: return "release"
 		return "recovery"
 	return "idle"
+func release_outlet(mirrored: bool) -> Vector2:
+	# Sample the release frame even while _release is still displaying warning.
+	# This is a value anchor only; it never replaces an actor's physical origin.
+	if not convergence or identity!="B08-M01": return Vector2.ZERO
+	var frame: Dictionary=frames.release
+	var offset: Vector2=(Vector2(frame.visual_outlet[0],frame.visual_outlet[1])-Vector2(frame.foot[0],frame.foot[1]))*float(frame.world_per_source_pixel)
+	if mirrored: offset.x=-offset.x
+	return offset
 func bounds(mirrored: bool = false) -> Rect2:
 	var factor:=source_scale
 	var offset: Vector2=(region.position-foot)*factor

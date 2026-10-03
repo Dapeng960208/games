@@ -40,11 +40,12 @@
       "world_per_source_pixel": 0.09090909090909091,
       "standing_equivalent_source_pixels": 1100,
       "source_sha256": "20411fb38c4aa40bf928ca77e633f9784b5388f4bce8779394fc81558c9018c2",
-      "registration_status": "manual candidate; actual2K review pending",
+      "registration_status": "manual candidate; controlled 2K frame inspected; natural combat pending",
       "effective_alpha16_size": [
         1065,
         1066
-      ]
+      ],
+      "actual_frame_run": "20261003T100309653151Z-d23f5df4"
     },
     "warning": {
       "file": "primary_keyposes.png",
@@ -83,11 +84,12 @@
       "world_per_source_pixel": 0.14814814814814814,
       "standing_equivalent_source_pixels": 675,
       "source_sha256": "253d4656653d594244b8cbd4fd3a6ebe1213137fd80b8b292f1fb05db695383b",
-      "registration_status": "manual candidate; actual2K review pending",
+      "registration_status": "manual candidate; controlled 2K frame inspected; natural combat pending",
       "effective_alpha16_size": [
         685,
         535
-      ]
+      ],
+      "actual_frame_run": "20261003T102755005276Z-731df3eb"
     },
     "release": {
       "file": "primary_keyposes.png",
@@ -126,11 +128,12 @@
       "world_per_source_pixel": 0.14814814814814814,
       "standing_equivalent_source_pixels": 675,
       "source_sha256": "253d4656653d594244b8cbd4fd3a6ebe1213137fd80b8b292f1fb05db695383b",
-      "registration_status": "manual candidate; actual2K review pending",
+      "registration_status": "manual candidate; controlled 2K frame inspected; natural combat pending",
       "effective_alpha16_size": [
         812,
         505
-      ]
+      ],
+      "actual_frame_run": "20261003T100309653151Z-d23f5df4"
     },
     "recovery": {
       "file": "primary_keyposes.png",
@@ -169,11 +172,12 @@
       "world_per_source_pixel": 0.14814814814814814,
       "standing_equivalent_source_pixels": 675,
       "source_sha256": "253d4656653d594244b8cbd4fd3a6ebe1213137fd80b8b292f1fb05db695383b",
-      "registration_status": "manual candidate; actual2K review pending",
+      "registration_status": "manual candidate; controlled 2K frame inspected; natural combat pending",
       "effective_alpha16_size": [
         515,
         573
-      ]
+      ],
+      "actual_frame_run": "20261003T102755005276Z-731df3eb"
     }
   },
   "gate": "--b08-art-l43 --b08-art-convergence",

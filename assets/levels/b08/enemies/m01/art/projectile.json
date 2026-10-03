@@ -9,6 +9,15 @@
   ],
   "world_length": 36,
   "sha256": "214d9c48e44dbe18051126e97947963049f9dac344c77d2357eed8d37739da0f",
-  "physics_origin": "Unchanged shot.position. Visual extends30world backward and6forward, preserving frozen direction; no muzzle-based collision relocation.",
-  "status": "L43 source candidate; actual2K readability pending"
+  "physics_origin": "Unchanged shot.position, direction, range, speed, damage and timing. Native feather stays on the true ground ray; no muzzle-based collision relocation.",
+  "status": "L43 source candidate; actual2K readability pending",
+  "launch_cue": {
+    "source": "release pose visual_outlet, reflected around the registered foot",
+    "maximum_seconds": 0.14,
+    "maximum_travel_world": 44.8,
+    "lifetime": "owned by the real shot; disappears with hit, obstruction, owner death or room exit",
+    "edge_policy": "omit source or connection across floor void/obstruction",
+    "reduced_fx": "retain ground contact marker and bounded source cue",
+    "status": "presentation continuity candidate; not a displaced or elevated arrow flight"
+  }
 }

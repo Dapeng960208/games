@@ -86,6 +86,7 @@ func run() -> void:
 	scout.brain.interrupt(scout)
 	scout.native_art.advance(0,scout.brain.phase,scout.brain.action)
 	check(scout.native_art.active_pose=="idle","cancelled action cannot display false release")
+	check_launch_cue(room,archer)
 	room._open_room("L44")
 	check(room.sky_environment==null and room.sky_projectile_art==null,"leaving L43 releases new visuals")
 	var native_elsewhere:=false
@@ -98,3 +99,46 @@ func run() -> void:
 	await get_tree().process_frame
 	print("B08_L43_INTEGRATION checks=",checks," failures=",failures)
 	get_tree().quit(0 if failures==0 else 1)
+func check_launch_cue(room: Node2D, archer: Node2D) -> void:
+	var art=room.sky_projectile_art
+	var saved_position: Vector2=archer.position
+	var saved_aim: Vector2=archer.aim_direction
+	var saved_player: Vector2=room.player.position
+	room.feathers.clear()
+	room.player.position=Geometry.point([380,960])
+	for mirrored: bool in [false,true]:
+		archer.position=Geometry.point([1400,1030])
+		archer.aim_direction=Vector2.LEFT if mirrored else Vector2.RIGHT
+		var action: Dictionary=archer.brain.action.duplicate(true)
+		action.target=archer.position+archer.aim_direction*250
+		var serial: int=room.shot_serial
+		room.fire_feather(archer,action,1.0,320)
+		var shot: Dictionary=room.feathers[-1]
+		var offset:=Vector2(-287 if mirrored else 287,-336.5)/5.5
+		check(shot.has("visual_launch") and Vector2(shot.visual_launch.outlet).is_equal_approx(archer.position+offset),"release-specific bow anchor and mirrored foot "+str(mirrored))
+		check(art.launch_strength(shot)==1 and shot.position==archer.position,"cue starts without displacing the hit proxy")
+		var frozen: Dictionary=shot.visual_launch.duplicate(true)
+		archer.position+=Vector2(15,0); archer.aim_direction=-archer.aim_direction
+		archer.native_art.set_pose("recovery")
+		check(shot.visual_launch==frozen,"movement turn and recovery cannot drag the frozen bow cue")
+		archer.position-=Vector2(15,0); archer.aim_direction=-archer.aim_direction
+		room.sky_projectile_art=null
+		room.shot_serial=serial # Compare the same deterministic critical seed.
+		room.fire_feather(archer,action,1.0,320)
+		room.sky_projectile_art=art
+		var control: Dictionary=room.feathers[-1]
+		room._tick_feathers(.07)
+		check(is_equal_approx(art.launch_strength(shot),.5),"source cue fades using real 320 per second travel")
+		check(shot.position==control.position and shot.direction==control.direction and shot.remaining==control.remaining and shot.packet==control.packet,"presentation leaves actual travel range and damage packet equal to no-art control")
+		room._tick_feathers(.08)
+		check(art.launch_strength(shot)==0 and shot.position==control.position,"cue ends at .14 seconds; both shots continue on the unchanged ground ray")
+		room.feathers.clear()
+	archer.position=Geometry.point([500,580]); archer.aim_direction=Vector2.RIGHT
+	var edge_action: Dictionary=archer.brain.action.duplicate(true)
+	edge_action.target=archer.position+Vector2(200,0)
+	room.fire_feather(archer,edge_action,1.0,320)
+	check(not room.feathers[0].has("visual_launch"),"bow cue outside legal floor is omitted without moving the shot")
+	check(art.launch_strength(room.feathers[0])==0,"missing cue retains original ground feather fallback")
+	room.feathers.clear()
+	archer.position=saved_position; archer.aim_direction=saved_aim
+	room.player.position=saved_player
