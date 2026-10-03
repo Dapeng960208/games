@@ -116,6 +116,16 @@ static func appearance_key(entry: Dictionary) -> String:
 static func install(actor: Node2D) -> Dictionary:
 	var definition: Dictionary = actor.get("profile")
 	var entry: Dictionary = variant_entry_for(str(actor.get("enemy_id")), int(definition.get("visual_variant_index", -1)))
+	# First-room race additions are encounter body variants. The default entry,
+	# codex portrait and skill badge continue using their existing registration.
+	if bool(definition.get("first_room_race_variant", false)):
+		var identity := str(actor.get("enemy_id"))
+		var added: Dictionary = {}
+		if identity.begins_with("B05-M"):
+			added = preload("res://scripts/levels/b05/art/enemy_art.gd").first_room_entry(identity)
+		elif identity.begins_with("B06-M"):
+			added = preload("res://scripts/levels/b06/art/native_art.gd").first_room_entry(identity)
+		if not added.is_empty(): entry = added
 	if entry.is_empty() or bool(actor.get("static_actor")):
 		return {}
 	var old_bounds: Rect2 = actor.get("body_bounds")

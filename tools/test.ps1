@@ -5,6 +5,7 @@ param(
     [switch]$ImportOnly,
     [switch]$SkipImport,
     [switch]$Graphical,
+    [ValidateSet('b05','b06')][string]$Candidate,
     [ValidateSet(0,2)][int]$Ruleset = 0
 )
 
@@ -17,6 +18,8 @@ $resolvedEngine = Resolve-GodotEngine -EnginePath $EnginePath -Console
 $runId = [DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfff') + '-' + [Guid]::NewGuid().ToString('N').Substring(0, 8)
 $testDirectory = Join-Path $PSScriptRoot "godot\test-runs\$runId"
 $null = New-Item -ItemType Directory -Path $testDirectory -Force
+@{ run_id = $runId; biome = $Candidate; platform = 'windows' } | ConvertTo-Json |
+    Set-Content -LiteralPath (Join-Path $testDirectory '.managed-test-run.json') -Encoding UTF8
 $roamingDirectory = Join-Path $testDirectory 'userdata\Roaming'
 $localDirectory = Join-Path $testDirectory 'userdata\Local'
 $null = New-Item -ItemType Directory -Path $roamingDirectory, $localDirectory -Force
@@ -24,6 +27,7 @@ $script:GodotTestStageOrdinal = 0
 
 function Get-TestProfile {
     param([string]$Name)
+    if ($Candidate) { return "user://test_$($Candidate)_candidate/test_$Name.json" }
     return (Join-Path $testDirectory "test_$Name.json").Replace('\', '/')
 }
 
@@ -39,12 +43,14 @@ function Invoke-GodotStage {
     $logPath = Join-Path $testDirectory ('{0:D2}_{1}.log' -f $script:GodotTestStageOrdinal, ($Stage -replace '[^a-zA-Z0-9_-]', '_'))
     $previousAppData = $env:APPDATA
     $previousLocalAppData = $env:LOCALAPPDATA
+    $previousTestOutput = $env:GAMES_TEST_OUTPUT_DIR
     $previousErrorPreference = $ErrorActionPreference
     try {
         # Some suites create user:// fixtures. Redirect only this process and its
         # Godot child, and always restore the caller's environment afterwards.
         $env:APPDATA = $roamingDirectory
         $env:LOCALAPPDATA = $localDirectory
+        $env:GAMES_TEST_OUTPUT_DIR = $testDirectory
         # Windows PowerShell 5.1 wraps native stderr as ErrorRecord. Capture its
         # text instead of terminating before the exact diagnostic filter runs.
         $ErrorActionPreference = 'Continue'
@@ -58,6 +64,7 @@ function Invoke-GodotStage {
         $ErrorActionPreference = $previousErrorPreference
         $env:APPDATA = $previousAppData
         $env:LOCALAPPDATA = $previousLocalAppData
+        $env:GAMES_TEST_OUTPUT_DIR = $previousTestOutput
     }
     if ($null -eq $exitCode) { throw "$Stage could not start Godot. See $logPath" }
     if ($exitCode -ne 0) {
@@ -101,6 +108,7 @@ foreach ($testName in $Suite) {
     $arguments += @('--', "--test-profile=$(Get-TestProfile $profileName)")
     $testRuleset = $Ruleset
     if ($testRuleset -ne 0) { $arguments += "--test-ruleset=$testRuleset" }
+    if ($Candidate) { $arguments += "--candidate-$Candidate" }
     Invoke-GodotStage -Stage "$testName acceptance" -StageArguments $arguments -AllowGraphics
 }
 Write-Host "All requested acceptance suites passed. Isolated profiles: $testDirectory"

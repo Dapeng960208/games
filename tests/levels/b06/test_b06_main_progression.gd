@@ -16,17 +16,17 @@ func check(ok: bool, label: String) -> bool:
 	return ok
 func _ready() -> void: _run.call_deferred()
 func _run() -> void:
-	check(int(Rules.parameters().implemented_chapters)==4,"shipped release gate unchanged")
+	check(int(Rules.parameters().implemented_chapters)==6,"six released chapters")
 	for args in [PackedStringArray(["--candidate-b06"]),PackedStringArray(["--candidate-b06","--test-profile=user://profile.json"]),PackedStringArray(["--candidate-b06","--test-profile=user://test_b06_candidate/../profile.json"]),PackedStringArray(["--candidate-b06","--candidate-b05","--test-profile=user://test_b06_candidate/a.json"])]:
 		check(not Rules._candidate_arguments_valid(args,"b06"),"unsafe candidate process rejected")
-	if not Rules.b06_candidate_enabled():
+	if not Rules.chapter_enabled(6):
 		check(not Catalog.biomes().has("B06") and Catalog.biomes().size()==4,"normal catalog remains closed")
 		finish();return
 	check(Catalog.validate().is_empty(),"registered candidate catalog "+str(Catalog.validate()))
-	check(Catalog.biomes().size()==6 and Catalog.room_ids().size()==36 and Catalog.enemy_ids().size()==90,"six-chapter candidate only catalog")
+	check(Catalog.biomes().size()==6 and Catalog.room_ids().size()==36 and Catalog.enemy_ids().size()==90,"six released chapters in normal process")
 	check(preload("res://scripts/infrastructure/content/content_registry.gd").equipment_ids(2).size()==194,"B06 real35template registration")
 	for set_mode in [false,true]:
-		check(preload("res://scripts/presentation/equipment/instance_acquisition_panel.gd").creation_ids(set_mode).all(func(id: String): return not id.begins_with("B06-")),"unversioned B06 shop/craft hidden")
+		check(preload("res://scripts/presentation/equipment/instance_acquisition_panel.gd").creation_ids(set_mode).any(func(id: String): return id.begins_with("B06-")),"versioned B06 shop/craft present")
 	var legacy := Routes.generate("B04",26014,[],20)
 	check(legacy.valid,"old route generator still valid")
 	for node:Dictionary in legacy.nodes: check(node.biome_id not in ["B05","B06"],"legacy ring does not expand")
@@ -47,6 +47,7 @@ func _run() -> void:
 	app.selected_biome="B06"
 	app.selected_difficulty=0
 	app.show_camp()
+	check("6 个正式开放" in app.screen.find_child("CampRegionPlanSummary",true,false).text,"actual camp describes six released chapters")
 	check(preload("res://scripts/app/expedition_controller.gd").unlocked_biomes(Game.profile).has("B06"),"actual camp selector admits B06")
 	app._start_run_with_wish()
 	if not check(Game.run!=null and is_instance_valid(app.room) and not app.room_start_failed,"actual Main entry handler "+Game.last_error): finish();return

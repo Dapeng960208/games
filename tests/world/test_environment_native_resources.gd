@@ -31,7 +31,7 @@ func texture_checks(sprite: Sprite2D, tile: Dictionary, source_size: Vector2) ->
  pixels.clear_mipmaps()
  pixels.convert(Image.FORMAT_RGB8)
  check(digest(pixels.get_data())==str(tile.decoded_rgb_sha256),"runtime base RGB equals original generation pixels")
- check(digest(FileAccess.get_file_as_bytes(AssetCatalog.resolve(str(tile.texture))))==str(tile.webp_sha256),"shipped lossless file hash matches")
+ check(digest(FileAccess.get_file_as_bytes(AssetCatalog.resolve(str(tile.texture))))==str(tile.get("webp_sha256",tile.get("generated_png_sha256",""))),"shipped original file hash matches")
 func _ready() -> void:
  var rooms := AssetCatalog.directories(Detail.ROOT)
  if rooms.is_empty():

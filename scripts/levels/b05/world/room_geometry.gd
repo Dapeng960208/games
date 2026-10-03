@@ -1,7 +1,7 @@
 extends RefCounted
 ## Frozen B05 placement shared by art and gameplay; no chapter registration.
 const PATH := "res://data/levels/b05/room_geometry.json"
-const SCALE := 0.58
+const SCALE := preload("res://scripts/domain/world/fixed_room_layouts.gd").PLAYFIELD_SCALE
 const SIZE := Vector2(2800,1800)
 const PLACEMENT := Rect2(0.11,0.13,0.78,0.74)
 static var _data: Dictionary = {}

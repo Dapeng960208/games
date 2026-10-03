@@ -17,7 +17,7 @@ func _run() -> void:
 	room.spawn_enabled = false
 	add_child(room)
 	await get_tree().process_frame
-	check(BossLayouts.build("BO06",1).is_empty(),"default boss gate closed")
+	check(not BossLayouts.build("BO06",1).is_empty(),"default released boss layout")
 	check(not BossLayouts.build("BO06",1,true).is_empty(),"explicit candidate BossLayouts supported")
 	for difficulty in 5:
 		var context := {"biome_id":"B06","room_id":"BO06","role":"boss","difficulty":difficulty,"b06_candidate":true,"node_index":-100}
@@ -27,7 +27,7 @@ func _run() -> void:
 		var boss = room._boss_actor
 		var host = room.b06_mechanics
 		check(is_instance_valid(boss) and boss.boss_id == "BO06","real BossActor registered")
-		check(boss.brain == boss.boss_brain and boss.brain.get_script().resource_path.ends_with("b06_boss_brain.gd"),"BO06 brain factory")
+		check(boss.brain == boss.boss_brain and boss.brain.get_script() == preload("res://scripts/levels/b06/combat/boss_brain.gd"),"BO06 brain factory")
 		check(int(boss.health.maximum) == int(Skills.boss_profile(difficulty).max_hp),"resolved boss HP once")
 		check(host.state == host.boss_state.tide_state(),"one shared tide clock")
 		room.player.position = boss.position+Vector2(150,0)
@@ -51,6 +51,10 @@ func _run() -> void:
 		boss.boss_brain.tick(boss,.1,room.player)
 		check(boss.boss_brain.command.is_empty(),"output window cancels pending warning")
 		var saved: Dictionary = JSON.parse_string(JSON.stringify(host.checkpoint()))
+		var future := saved.duplicate(true)
+		future.boss_numerical.version = preload("res://scripts/levels/b06/combat/enemy_numbers.gd").VERSION+1
+		var unchanged := JSON.stringify(host.checkpoint())
+		check(not host.restore_checkpoint(future) and JSON.stringify(host.checkpoint()) == unchanged,"unknown numerical version rejected atomically")
 		host.tick(2.5)
 		check(host.can_enemy_cast(),"full2.5second output window")
 		check(host.restore_checkpoint(saved) and not host.can_enemy_hit(),"boss exact JSON restore")

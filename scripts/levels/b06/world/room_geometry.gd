@@ -1,7 +1,7 @@
 extends RefCounted
-## Frozen candidate geometry. Shallow water is walkable in every phase.
+## Frozen room geometry. Shallow water is walkable in every phase.
 const PATH := "res://data/levels/b06/room_geometry.json"
-const SCALE := 0.58
+const SCALE := preload("res://scripts/domain/world/fixed_room_layouts.gd").PLAYFIELD_SCALE
 static var _data: Dictionary = {}
 static func room(id: String) -> Dictionary:
 	if _data.is_empty():

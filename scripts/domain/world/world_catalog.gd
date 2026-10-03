@@ -9,10 +9,10 @@ const B05 = preload("res://scripts/levels/b05/world/runtime_catalog.gd")
 const B06 = preload("res://scripts/levels/b06/world/runtime_catalog.gd")
 
 static func b06_enabled() -> bool:
-	return Rules.b06_candidate_enabled()
+	return Rules.chapter_enabled(6)
 
 static func b05_enabled() -> bool:
-	return Rules.b05_candidate_enabled()
+	return Rules.chapter_enabled(5)
 
 const ROOM_PATH := "res://data/world/rooms.json"
 const ENEMY_PATH := "res://data/monsters/enemies.json"

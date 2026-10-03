@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "status": "stopped_wip_archive_not_a_runtime_registration",
+  "created_date": "2026-10-03",
+  "source": "formal image_gen.imagegen outputs from this delegated cloud task",
+  "license": "Generated asset and reference rights were not independently verified; no specific license grant asserted. Exact user reference Library files were not materialized because read/materialize capability was absent; attached reference boards were visually inspected.",
+  "references": [
+    {
+      "library_file_id": "libfile_002d410d5a7081918d45f9c9b31ec629",
+      "name": "B05(1).png",
+      "bytes_materialized": false
+    },
+    {
+      "library_file_id": "libfile_fae6e261f1348191923fe80922f215a1",
+      "name": "B06(1).png",
+      "bytes_materialized": false
+    }
+  ],
+  "records": [
+    {
+      "path": "assets/levels/b05/rooms/l25/detail/candidates/tree_city.png",
+      "original_generated_path": "/workspace/generated_images/exec-7c162d5b-917b-4de9-8f22-8b7223f50265.png",
+      "sha256": "46d0c97bb749606e621ec72eadf8b69b3e7b49e4e2c3c00c6712d2042a7a7cab",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha128_bbox_xyxy": [
+        69,
+        2,
+        1197,
+        1242
+      ],
+      "status": "inspected_candidate_not_integrated; canopy contacts top edge",
+      "prompt": "Create a production game environment cutout, NOT a concept board and NOT a room floor. One complete huge living tree tower that carries a multi-tier aerial botanical city: organic golden wood terraces curl around the tree trunk, ornate leaf-shaped golden frames and cyan crystal windows, delicate woven vine wooden bridge joining an upper balcony on its left, pink flowering branches at the crown and around balconies, vivid green canopy, small life-spring turquoise pool pouring two thin high waterfalls down a suspended tangled-root cliff base. Powerful readable giant living tree silhouette, delicate plant spirit architecture, no characters. Bright painterly fairytale 2.5D top-down elevated three-quarter camera, around 45 degree elevation, coherent game-isometric geometry, warm pale golden wood, emerald and peach-pink, fresh cyan water. Single isolated building + supporting root cliff + waterfalls, all complete inside canvas with transparent alpha all around, at least 7% margin. Design can fit behind a foreground walkable terrace; keep bottom waterfalls long and clearly detached from transparent background. No ground plane beyond the small structure footprint, no landscape, no text, no labels, no UI, no black outline, no heavy cast shadow. Preserve natural source color. Tall square high-detail sprite, render maximum available native resolution.",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize, recolor or alpha cleanup",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b06/rooms/l31/detail/candidates/shell_palace.png",
+      "original_generated_path": "/workspace/generated_images/exec-1762ca53-6f48-445a-8556-1ea89e89849d.png",
+      "sha256": "a5e8b26870825641d0d4c2749a14e9f2a79aba3107a3c567fbc9eb3378d3c2ee",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha128_bbox_xyxy": [
+        33,
+        9,
+        1221,
+        1247
+      ],
+      "status": "inspected_candidate_not_integrated",
+      "prompt": "Create one complete standalone production 2.5D game scenery cutout on transparent background, no concept board. A white ivory-blue-gold SHELL PALACE on a suspended coral island: graceful shell-shaped doorway with warm pearlescent fan ribs, luminous cyan crystal doorway, blue domes capped with narrow gold finials, two slim elegant spires, bright coral pink and orange gardens around its circular terrace, one short graceful white-gold ARCH BRIDGE ending in open transparent air at the left terrace. Crucially the island shows a tall massive dark blue-gray stratified ROCK BASE with coral clinging to it and two clear turquoise waterfalls down its steep sides. Readable seaside sea-people fairytale architecture, never a generic gothic fortress. Bright painterly high-detail elevated three-quarter top-down game camera about 45degree elevation, same tiny human scale as buildings in a fairytale RPG, ornament clean readable, white ivory with ultramarine, gold, turquoise, peach coral. Entire palace, tower tips, exposed rock foundation and waterfalls fit complete inside canvas with 7% transparent margins; supporting circular terrace not a whole rectangular floor. No people, no creatures, no landscape, no text, no UI, no pasted frame, no cast shadow plane. Native maximum resolution square image.",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize, recolor or alpha cleanup",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b05/rooms/l25/background/candidates/tree_city_distance.png",
+      "original_generated_path": "/workspace/generated_images/exec-fcd0860d-6768-4e85-880d-315e67473194.png",
+      "sha256": "0a0ed6fea7511ce16cc73f06b29a7e2a85e94229bb281f770904f4ee63d248b3",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "alpha128_bbox_xyxy": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "status": "inspected_distant_backdrop_not_integrated",
+      "prompt": "Production RPG distant background landscape, no interface and no concept-board labels. View across a vast aerial giant-tree city in pale blue cloud haze, elevated three-quarter top-down camera compatible with 2.5D game sprites. Distant suspended colossal tree trunks emerging from clouds, small scattered gold-framed leaf pavilions in pink blossom crowns, tiny vine bridges among far towers, ribbons of cyan waterfalls disappearing into deep mist. Foreground and central 65% of canvas are open pale blue airy cloud/sky negative space to reveal nearer independently placed floating terraces; do not draw any large foreground building, any single broad rectangular brown ground floor, or characters. Uneven small distant tree islands at horizon and lower far edges, pleasant pale cyan atmosphere, emerald-green, peach-pink and warm woodgold accents. Rich watercolor storybook style but restrained contrast so combat sprites read, no blur enlargement claims. One continuous backdrop, maximum available native resolution, square canvas.",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize, recolor or alpha cleanup",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b06/rooms/l31/background/candidates/coral_sea_distance.png",
+      "original_generated_path": "/workspace/generated_images/exec-ccd3b559-9c2d-42db-9cee-ca979c24eeec.png",
+      "sha256": "54eaa2faa4aaf3b76b1813e6f3996b3da61d2f7895fa7ad00578e08666b6b010",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "alpha128_bbox_xyxy": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "status": "inspected_distant_backdrop_not_integrated",
+      "prompt": "Production RPG distant ocean backdrop for a layered 2.5D sea-people coral city, not a room concept floor or UI. Elevated three-quarter top-down game camera overlooking clear azure turquoise sea, scattered small far limestone coral islands with tiny white blue gold shell towers and delicate arch bridges near horizon edges, pale distant cliffs, white cumulus reflections, subtle reef silhouettes beneath water, bright aquatic fairytale palette. Central and foreground 70% of canvas open turquoise water with restrained glimmer and depth, so independently placed nearer palace islands are readable; no broad solid ground plane, no giant building covering center, no characters or sea monsters, no text, no labels. Colorful coral pink accents only distant margins, soft atmospheric distance, clean continuous water not repeated tile board. High-detail native square background at maximum available resolution.",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize, recolor or alpha cleanup",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b05/rooms/l25/detail/candidates/living_wood_tile.png",
+      "original_generated_path": "/workspace/generated_images/exec-28f25571-9201-4ef0-8fa3-9c219f6a7ba7.png",
+      "sha256": "53998df06515f1e591dd31c20620e6a8da0711d7194805f4f47f83f56b3a57df",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "alpha128_bbox_xyxy": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "status": "inspected_floor_tile_not_integrated; seam not runtime_verified",
+      "prompt": "A single seamless repeating production game ground texture, flat orthographic view, square full-bleed image. Pale honey-gold living-tree wood plank paving with gentle curved fine grain and subtle narrow sage-green leaf vein inlays, light creamy warm highlights, a few tiny peach-pink petal accents. Quiet readable fairytale painterly RPG floor, same natural warm gold/wood/emerald palette as an aerial tree city, no big emblem, no grid layout, no stones, no perspective, no shadow, no actors or roots rising above surface, no UI/no text. Texture must tile on all four edges seamlessly. Maximum native source resolution.",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize, recolor or alpha cleanup",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b05/rooms/l25/detail/candidates/vine_bridge.png",
+      "original_generated_path": "/workspace/generated_images/exec-422c0b61-4f0e-408d-bacd-50696afcfcbd.png",
+      "sha256": "47bfc6f9210b2d0c61bf360084ee577f86eb2c18ae475ac5eca4c44026a9a58c",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha128_bbox_xyxy": [
+        26,
+        237,
+        1244,
+        1107
+      ],
+      "status": "rejected_runtime_candidate; right endpoint clipped",
+      "prompt": "One complete isolated elevated wooden vine bridge GAME SPRITE on transparent background, horizontal left-to-right, viewed from a high elevated three-quarter camera around 45degrees. Bright pale golden wooden deck with gently curved organic planks, two delicate braided green vine railings decorated with sparse small pink flowers, arching woven woody-root support visible UNDER the deck and dangling fresh vines below, bridge floating over open sky with no background. Nearly flat walkable deck with small gentle arch, no stairs. Full bridge fits inside central 80% canvas with generous transparent margin. Avoid massive endpoint buildings or trees. Storybook 2.5D delicate living plant spirit architecture, gold wooden edges, fresh greens/pink petals, naturally colored high-detail. No human or monster, no ground plane, no labels or icons, no text. Wide bridge motif within square maximum native canvas.",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize, recolor or alpha cleanup",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b06/rooms/l31/detail/candidates/shell_bridge.png",
+      "original_generated_path": "/workspace/generated_images/exec-7443e631-265e-418b-a4ef-1e3faf557f91.png",
+      "sha256": "794ec50b597b6fde645bf05acda10e3391e44b8802190bbbfd5b00dd4725bed1",
+      "native_pixels": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha128_bbox_xyxy": [
+        52,
+        68,
+        1515,
+        977
+      ],
+      "status": "rejected_runtime_candidate; opaque backdrop despite transparent request",
+      "prompt": "One complete isolated ivory-blue-gold sea-people ARCH BRIDGE GAME SPRITE on transparent background, horizontal left-to-right, elevated high three-quarter camera around 45 degrees. Flat broad white pearlescent paving deck with delicate gold trim, slim white/gold railings with blue shell crests, clearly curved twin supporting stone arches BELOW deck, dark blue stone feet at each end, coral pink/blue details around the end feet and a few tiny cyan water trickles. No giant palace, no surrounding island or ocean/background, no stairs and no characters. Full bridge fits in central 80% of canvas with generous transparent margin on all sides, no cast shadow ground. Fairytale painterly 2.5D warm sunlight sea-people architecture, high-detail natural source color. No letters/UI. A wide motif within square maximum native canvas.",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize, recolor or alpha cleanup",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b05/bosses/bo05/effects/candidates/skill_effect_atlas.png",
+      "original_generated_path": "/workspace/generated_images/exec-117ba8f6-6d7c-4306-9394-0e944b5b3849.png",
+      "sha256": "583d8217e733dec915e44c7cbd24b34eebe392c402c3e7b1c0f3de16814f125a",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "status": "candidate_atlas_not_integrated; root cell touches edge",
+      "prompt": null,
+      "prompt_status": "earlier exact prompt unavailable in checkpoint snapshot; do not invent",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize/recolor",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b06/bosses/bo06/effects/candidates/skill_effect_atlas.png",
+      "original_generated_path": "/workspace/generated_images/exec-baba127a-408a-4e70-bc8b-9eff38c20dbf.png",
+      "sha256": "aaffcc1ae2f3d97f6d8f4726309a07e3e19541a5d4587aa1171a3a21298f1971",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "status": "rejected_runtime_atlas; motifs cross grid",
+      "prompt": null,
+      "prompt_status": "earlier exact prompt unavailable in checkpoint snapshot; do not invent",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize/recolor",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b05/bosses/bo05/effects/candidates/root_lance.png",
+      "original_generated_path": "/workspace/generated_images/exec-87e11974-6dab-44e4-ae37-a6b21d778613.png",
+      "sha256": "f5d3ab4c5284044c5a7fe2836c82575b5061ace42f4179f1515533897313896a",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "status": "inspected_candidate_not_integrated",
+      "prompt": null,
+      "prompt_status": "earlier exact prompt unavailable in checkpoint snapshot; do not invent",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize/recolor",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b06/bosses/bo06/effects/candidates/water_lance.png",
+      "original_generated_path": "/workspace/generated_images/exec-8e0c034e-5eb5-4c37-bd76-1cb0834a6b8e.png",
+      "sha256": "258042d38e389db7c7e7a897ab3f6a013920ad4d4439c557a44d51be87981131",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "status": "inspected_candidate_not_integrated",
+      "prompt": null,
+      "prompt_status": "earlier exact prompt unavailable in checkpoint snapshot; do not invent",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize/recolor",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b06/bosses/bo06/effects/candidates/water_impact.png",
+      "original_generated_path": "/workspace/generated_images/exec-f4f7995f-81bb-4b32-a213-4c84f83b8661.png",
+      "sha256": "2969c8ef291efd08f20ff8548e16e20368f59972767eea4f13ac535da88c5ae0",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "status": "inspected_candidate_not_integrated",
+      "prompt": null,
+      "prompt_status": "earlier exact prompt unavailable in checkpoint snapshot; do not invent",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize/recolor",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b05/bosses/bo05/icons/candidates/skill_icons_atlas.png",
+      "original_generated_path": "/workspace/generated_images/exec-c4435f05-4f1a-4e28-9132-1282c06891fe.png",
+      "sha256": "0c65499645d78fd2b1aa4e1da06cc955053fb1bcf399716f129b78712b35ad3b",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "status": "inspected_six_icon_candidate_not_integrated",
+      "prompt": "Production RPG BOSS SKILL ICON atlas for BLOOMING TREE KING, bright refined hand-painted 2.5D fantasy, emerald, living gold wood and peach-pink blossom palette. Exactly SIX DISTINCT circular icons in a perfectly regular 3 COLUMNS by 2 ROWS grid on a SQUARE transparent RGBA canvas. All six equal diameter, centered in their own cell; each circle occupies only 75% of its cell WIDTH. Large transparent gutters, no overlap. Pearl parchment interior and a thin pale gold living-wood rim for each icon. No labels, no text, no letters, no characters, no scene. ORDER left-to-right top row then bottom row: 1 a thick bent living tree ARM with a sweeping branch arc and pink flowers, represents crown sweep; 2 THREE distinct roots branching up from a split earthy base, represents three sequential grounded root lines, no flying spear; 3 two falling rounded SEEDPODS with small seeds dropping down, represents seedpod rain; 4 a clear FLOWER with two concentric unfolded petal tiers, represents inner then outer growth ring; 5 one protective flower heart above TWO baby rooted PLANTS, represents transplant summons; 6 FOUR DISTINCT SEASONAL LEAVES arranged around an annual-ring WOOD HEART, represents ordered seasonal bloom. Strong simple silhouettes recognizable at 48px, exquisite fine source material detail. Each icon independent original artwork, not recolors of each other. All elements of each icon including rim contained in its own cell. True transparent space outside circles. Requested native 1536-square, actual output dimensions authoritative.",
+      "prompt_status": "exact_saved_prompt",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize/recolor",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/levels/b06/bosses/bo06/icons/candidates/skill_icons_atlas.png",
+      "original_generated_path": "/workspace/generated_images/exec-a31718e1-27b1-446a-bab0-87c6d4691aff.png",
+      "sha256": "83c89deed3e1adfe12bef94d0220b1bf9d74a1af0399a015a084b23aba736b3a",
+      "native_pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "status": "candidate_not_integrated; final_pixel_bounds_pending",
+      "prompt": "Edit this exact six-skill marine boss icon atlas. Preserve all SIX distinct inner symbols and the white-blue-gold painted style. FIX ONLY THE LAYOUT AND MARGINS. Keep a 3columns by2rows SQUARE transparent atlas. REDUCE the diameter of EACH complete circular badge INCLUDING every left and right diamond ornament so it fits within only70% of its cell width. Position center of each badge at 1/6,1/2,5/6 of canvas width, and1/4,3/4 of height. Leave at least15% of each cell width fully transparent on BOTH sides of the badge, so NONE of the gold rims or tips TOUCH a cell boundary or another badge. Large transparent gutters, complete uncropped borders. No new symbols, no text or labels. Exactly the same ordered symbols: siege claw hitting reef, dual shell cannons with two jets, rolling tidal wall, shell mounted bombard cannons, coral flag with tridents, returning wave with dual closing claws. Every badge separately complete; no cut edge. True alpha transparent empty space.",
+      "prompt_status": "exact_saved_prompt",
+      "tool": "image_gen.imagegen",
+      "processing": "byte-for-byte copy; no resize/recolor",
+      "display_pixels": null,
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/system/world/environment/stop_checkpoint_candidates/interrupted_bridge_output_1.png",
+      "original_generated_path": "/workspace/generated_images/exec-b123ea19-5104-4470-ac97-c30f7659fb68.png",
+      "sha256": "0caa0183e9d8ea692138857088f348e056b56a4b96e479d79628a44107197a1b",
+      "native_pixels": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "status": "interrupted_edit_output; not inspected; biome/call mapping not returned; archive only, not a B05 runtime asset",
+      "possible_edit_calls": [
+        {
+          "key": "b05_bridge_fixed",
+          "path": "/workspace/generated_images/exec-422c0b61-4f0e-408d-bacd-50696afcfcbd.png",
+          "prompt": "Edit this production bridge cutout. Keep its exact beautiful golden wood/vines/pink flowers style and natural colors. Recompose the ENTIRE COMPLETE bridge to occupy only central 70% of canvas, generous transparent padding on ALL SIDES, 15% clear alpha margin. Current RIGHT END is clipped, restore that end and every railing, both endpoint arch supports fully inside canvas. Do not add ground, backdrop or shadow. Keep elevated three-quarter camera, horizontal left-to-right bridge direction. Output fully transparent alpha background, no checkerboard painted pixels, no text."
+        },
+        {
+          "key": "b06_bridge_fixed",
+          "path": "/workspace/generated_images/exec-7443e631-265e-418b-a4ef-1e3faf557f91.png",
+          "prompt": "Edit ONLY background of this complete game bridge sprite: REMOVE all opaque gray/blue backdrop and all glows/shadow haze outside the architecture. Preserve original beautiful white-blue-gold shell bridge, coral and dark supporting arch feet pixels and color. Make empty space and the spaces beneath arches genuinely transparent alpha. Fit entire bridge complete into central 75% with transparent margin on all four sides. No landscape, no ground shadow, no text. Keep elevated three-quarter camera."
+        }
+      ],
+      "processing": "byte-for-byte preservation",
+      "runtime_verified": false
+    },
+    {
+      "path": "assets/system/world/environment/stop_checkpoint_candidates/interrupted_bridge_output_2.png",
+      "original_generated_path": "/workspace/generated_images/exec-a108e79d-5b63-45ee-8e66-eb9f2aafe0d0.png",
+      "sha256": "5de4697a09e3cad301d16bc0d2db5733f3e6ee2e786cd9bcbb9383d647270338",
+      "native_pixels": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "status": "interrupted_edit_output; not inspected; biome/call mapping not returned; archive only, not a B05 runtime asset",
+      "possible_edit_calls": [
+        {
+          "key": "b05_bridge_fixed",
+          "path": "/workspace/generated_images/exec-422c0b61-4f0e-408d-bacd-50696afcfcbd.png",
+          "prompt": "Edit this production bridge cutout. Keep its exact beautiful golden wood/vines/pink flowers style and natural colors. Recompose the ENTIRE COMPLETE bridge to occupy only central 70% of canvas, generous transparent padding on ALL SIDES, 15% clear alpha margin. Current RIGHT END is clipped, restore that end and every railing, both endpoint arch supports fully inside canvas. Do not add ground, backdrop or shadow. Keep elevated three-quarter camera, horizontal left-to-right bridge direction. Output fully transparent alpha background, no checkerboard painted pixels, no text."
+        },
+        {
+          "key": "b06_bridge_fixed",
+          "path": "/workspace/generated_images/exec-7443e631-265e-418b-a4ef-1e3faf557f91.png",
+          "prompt": "Edit ONLY background of this complete game bridge sprite: REMOVE all opaque gray/blue backdrop and all glows/shadow haze outside the architecture. Preserve original beautiful white-blue-gold shell bridge, coral and dark supporting arch feet pixels and color. Make empty space and the spaces beneath arches genuinely transparent alpha. Fit entire bridge complete into central 75% with transparent margin on all four sides. No landscape, no ground shadow, no text. Keep elevated three-quarter camera."
+        }
+      ],
+      "processing": "byte-for-byte preservation",
+      "runtime_verified": false
+    }
+  ]
+}

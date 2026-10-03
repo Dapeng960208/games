@@ -23,6 +23,7 @@ func geometry(layout: Dictionary) -> Dictionary:
 	return result
 
 func run_checks() -> void:
+	concave_boundary_checks()
 	check(Fixed.room_ids().size()==28, "24 combat rooms and four boss arenas have fixed blueprints")
 	for id: String in Fixed.room_ids():
 		var layout: Dictionary = Boss.build(id, 371) if id.begins_with("BO") else Generator.generate(id, 371)
@@ -51,6 +52,19 @@ func run_checks() -> void:
 	await actual_room_checks()
 	print("Fixed room layouts: %d checks, %d failures" % [checks, failures])
 	quit(1 if failures else 0)
+
+func concave_boundary_checks() -> void:
+	var terrace := PackedVector2Array([Vector2(0,0),Vector2(100,0),Vector2(100,40),Vector2(200,40),Vector2(200,0),Vector2(300,0),Vector2(300,100),Vector2(200,100),Vector2(200,60),Vector2(100,60),Vector2(100,100),Vector2(0,100)])
+	check(Boundary.contains(terrace,Vector2(50,50),15),"concave platform contains an actor beyond bridge half-planes")
+	check(Boundary.contains(terrace,Vector2(250,50),15),"both concave platforms remain usable")
+	check(Boundary.contains(terrace,Vector2(150,50),9) and not Boundary.contains(terrace,Vector2(150,50),11),"bridge tests the complete actor footprint")
+	check(not Boundary.contains(terrace,Vector2(150,20),0),"terrace notch is outside ground")
+	check(Boundary.clamp_point(terrace,Vector2(50,50),15) == Vector2(50,50),"legal entry is never projected to the bridge")
+	check(Boundary.contains(terrace,Boundary.clamp_point(terrace,Vector2(150,20),9),9),"notch projection reaches legal inset")
+	check(is_equal_approx(Boundary.clear_fraction(terrace,Vector2(50,50),Vector2(250,50),9),1),"main bridge corridor has full line of sight")
+	check(is_equal_approx(Boundary.clear_fraction(terrace,Vector2(50,20),Vector2(250,20),0),.25),"sweep cannot cross a notch and reenter the other platform")
+	check(is_equal_approx(Boundary.clear_fraction(terrace,Vector2(50,20),Vector2(250,20),5),.225),"swept radius stops before the notch edge")
+	check(is_equal_approx(Boundary.clear_fraction(terrace,Vector2(100,20),Vector2(50,20),0),1),"inward movement from an edge remains clear")
 
 func actual_room_checks() -> void:
 	var game: Node = root.get_node("Game")
