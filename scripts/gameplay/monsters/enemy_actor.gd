@@ -8,6 +8,7 @@ const Damage = preload("res://scripts/domain/combat/damage_resolver.gd")
 const TextureSampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const BrainScript = preload("res://scripts/gameplay/monsters/enemy_brain.gd")
 const BodyVisualScript = preload("res://scripts/presentation/monsters/enemy_visual.gd")
+const SkillPresentation = preload("res://scripts/presentation/monsters/enemy_skill_presentation.gd")
 const EnemyPalette = preload("res://scripts/presentation/monsters/enemy_palette.gd")
 const ImageBounds = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const RoleBehavior = preload("res://scripts/gameplay/monsters/enemy_role_behavior.gd")
@@ -18,8 +19,8 @@ var state: StringName = &"emerging"
 var state_time: float = Balance.ENEMY_SPAWN_GRACE
 var aim_direction := Vector2.LEFT
 var knockback := Vector2.ZERO
-## Distance-authored skill pushes are integrated independently of the legacy
-## basic-hit velocity. Each pulse spends its distance once over a short ease-out;
+## Authored attack/skill pushes are integrated independently of velocity.
+## Each pulse spends its distance once over a short ease-out;
 ## later hits never restart an earlier pulse's lifetime.
 var _pushes: Array[Dictionary] = []
 var hurt_flash: float = 0.0
@@ -154,9 +155,9 @@ func impact_material() -> String:
 		return "stone"
 	return "metal"
 
-func receive_confirmed_impact(direction: Vector2, strength: float, heavy: bool, reaction_style: String = "CH01") -> void:
+func receive_confirmed_impact(direction: Vector2, strength: float, heavy: bool, reaction_style: String = "CH01", contact_pause: float = -1.0) -> void:
 	if is_instance_valid(body_visual):
-		body_visual.receive_impact(direction, strength, heavy, reaction_style)
+		body_visual.receive_impact(direction, strength, heavy, reaction_style, contact_pause)
 
 func impact_anchor(direction: Vector2) -> Dictionary:
 	return body_visual.contact_anchor(direction) if is_instance_valid(body_visual) else {}
@@ -326,8 +327,6 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	last_damage_context = context.duplicate()
 	if last_damage_context.is_empty():
 		last_damage_context = {"damage_source":str(kind),"equipment_eligible":false,"original_basic":false,"proc_depth":1}
-	if (kind == &"primary" or kind == &"child") and not static_actor and rank != "boss" and from_direction.is_finite():
-		knockback += from_direction * Balance.ENEMY_KNOCKBACK
 	var defense: Dictionary = status.damage_modifiers()
 	defense.merge({"armor":effective_armor() * (0.85 if status.has("corrosion") else 1.0),"magic_resist":magic_resist}, true)
 	var settlement := context.duplicate()
@@ -622,7 +621,7 @@ func _draw() -> void:
 		draw_rect(Rect2(-19,bar_y-1,38,6),Color("4d3854"))
 		draw_rect(Rect2(-18,bar_y,36,4),Color("f1d9b4"))
 		draw_rect(Rect2(-18,bar_y,36 * health.current / health.maximum,4),Color("d65b65"))
-	if not enemy_id.is_empty():
+	if not enemy_id.is_empty() and not SkillPresentation.basic_in_progress(room.player):
 		var nearby: bool = position.distance_to(room.player.position)<300
 		var english: bool = Words.locale == "en"
 		var caption: String = "Lv.%d" % enemy_level

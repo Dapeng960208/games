@@ -1,0 +1,155 @@
+{
+  "asset": "CH02 independently generated NW opposite-gait selected source input",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-80f8c02d-d956-4cda-9223-8829c11f534f.png",
+  "saved_path": "assets/characters/gunner/animations/runtime_sources/source_parts/poses_nw_walk_right.png",
+  "sha256": "a05f504ae71716f4438b3a7a20087b79e2b510690e2d2bcfc84d2e50018cbf5f",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "upscaled": false,
+  "pure_imagegen_output": true,
+  "prompt": "Use case: stylized-concept. Create ONE NEW standalone transparent complete CH02 adultwoman sprite, notsheet. Image1 is actualcorrectNW225° LEFT-REAR45°gaitcamera/costume/headsize reference. Image2portrait identityandcarbine. Keep exact SAMEbodilydirection/camera/backcoat, and draw NEW oppositewalkingphase. DO NOTmirror,rotate,orfaceoppositedirection.\nThe character ALWAYS facesAWAYUPLEFT225°. Backofhead/brownshortwavybob/backshoulders/BACKivorytealshortcoat visible, tinyLEFTnoseedgeonly, NO RIGHT-facingnose orfrontalchest. Keepadultagilefemaleproportions, ivory#f8f3e8 fittedwaistshortsurveycoat withteal#329ca9backpanels tinycoral#e9846clining, practicalhighwaisttealtrousers, ivorytealcalfboots, gloves, brasssilvercyancrystal surveyingcarbine foldedmechanicalbarrel/orbitalsight.\nOppositegaitphase toreference: anatomicalRIGHTlegstepsFORWARDalongUPLEFT, anatomicalLEFTlegextendsBACKalongDOWNRIGHT. Substantialstride withdifferentbentknees/bootplacementandcoathem; hips/torso/headstillNWback-left. Lowreadycarbineheldstable towardleft, completebarrelandbothhands. NO bodyflipping whenrightlegleads. Do notcopytheoldleftleg-leadingpose.\nHigh35°obliqueDOWNWARDnear-isometric2.5Dcamera, crown/backshoulder/coat/gun/bootTOPplanes, warmbrightdimensionalhand-paintedcartoon, thickrealmaterials. ONEcompletefigure centeredonTRUEtransparentalpha withampleclearblank35px+around entirehair/gun/coat/boots. Requestednative2048squareifavailable; detailedfigureapprox900-1050pxhairtomeansoleifactual1254, sinceitwillbeuniformlydownsampledlocallytosheetheadscale. No fakeupscale. No floor/groundshadow/backdrop/FX/motiontrail/text/labels/borders/strays.",
+  "references": [
+    "tools/godot/art_preview/runtime_sources/gunner/repair_reference_nw_walk.png",
+    "assets/characters/gunner/portraits/full_illustration.png"
+  ],
+  "reference_crop": {
+    "source": "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\gunner\\animations\\runtime_sources\\source_parts\\poses_nw_a_original.png",
+    "box": [
+      627,
+      0,
+      627,
+      627
+    ],
+    "role": "Correct NW actualTR left-back gait camera reference, not edit target"
+  },
+  "frames": [
+    {
+      "name": "walk_right",
+      "region": [
+        134,
+        42,
+        830,
+        1138
+      ],
+      "head": [
+        593,
+        161
+      ],
+      "component_seed": [
+        593,
+        161
+      ],
+      "grip": [
+        371,
+        519
+      ],
+      "breech": [
+        356,
+        482
+      ],
+      "muzzle": [
+        153,
+        593
+      ],
+      "hair_top_y": 50,
+      "boot_bottom_points": [
+        [
+          452,
+          931
+        ],
+        [
+          881,
+          1171
+        ]
+      ],
+      "foot": [
+        666.5,
+        1051
+      ],
+      "body_height": 1001,
+      "landmark_accuracy_px": 12
+    }
+  ],
+  "processing_consumer": {
+    "final": "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\gunner\\animations\\runtime_sources\\poses_nw_a.png",
+    "final_sha256": "24233bbf257725c66225291a10214c5d9dcb905ae1ad9d62e5c75b144d41ef55",
+    "original_sheet": "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\gunner\\animations\\runtime_sources\\source_parts\\poses_nw_a_original.png",
+    "original_sheet_sha256": "b265de98cf374ab6fc4d410232a41d04e73d1eb4d0f62eda35d1d1dc9e46184a",
+    "standalone": "C:\\Users\\13326\\.codex\\worktrees\\three-role-refactor\\games\\assets\\characters\\gunner\\animations\\runtime_sources\\source_parts\\poses_nw_walk_right.png",
+    "standalone_sha256": "a05f504ae71716f4438b3a7a20087b79e2b510690e2d2bcfc84d2e50018cbf5f",
+    "native_original_dimensions": [
+      1254,
+      1254
+    ],
+    "native_standalone_dimensions": [
+      1254,
+      1254
+    ],
+    "final_dimensions": [
+      1254,
+      1254
+    ],
+    "operation": "Replace only incorrect NW A bottom-left frame with independently image-generated NW gait sprite; other3 frame pixels retained",
+    "clear_region": [
+      185,
+      629,
+      434,
+      589
+    ],
+    "standalone_crop_region": [
+      134,
+      42,
+      830,
+      1138
+    ],
+    "uniform_requested_downsample": 0.49,
+    "effective_scale_x": 0.4903614457831325,
+    "effective_scale_y": 0.4903339191564148,
+    "resize_dimensions": [
+      407,
+      558
+    ],
+    "resampling": "Pillow Image.Resampling.LANCZOS",
+    "paste_xy": [
+      110,
+      660
+    ],
+    "changed_pixels_outside_bottom_left_quadrant": 0,
+    "other_three_frames_original_pixels_preserved": true,
+    "pure_imagegen_native_output": false,
+    "native_2k": false,
+    "upscaled": false
+  },
+  "inspection": {
+    "source": "C:\\Users\\13326\\.codex\\generated_images\\01a10124-1887-78f1-b6bc-078d5049a3e5\\exec-80f8c02d-d956-4cda-9223-8829c11f534f.png",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "a05f504ae71716f4438b3a7a20087b79e2b510690e2d2bcfc84d2e50018cbf5f",
+    "alpha_zero_fraction": 0.7908523665260003,
+    "outer_edge_nontransparent": 5,
+    "mid_x_nontransparent": 749,
+    "mid_y_nontransparent": 428,
+    "components_alpha16": [
+      {
+        "region": [
+          138,
+          46,
+          822,
+          1130
+        ],
+        "pixels": 307893
+      }
+    ]
+  },
+  "credit": "Original user-directed AI-generated project character artwork using OpenAI built-in image_gen; no third-party character IP copied."
+}

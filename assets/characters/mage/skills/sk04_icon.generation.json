@@ -1,0 +1,22 @@
+{
+  "skill_id": "CH03_SK04",
+  "skill_name": "星愿之庭",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in-generate",
+  "prompt": "Use case: stylized-concept. Asset type: original game skill icon CH03_SK04 星愿之庭 (star wish magic garden), one single standalone circular badge, native 2048 x 2048 square requested. Original hand-painted cartoon fantasy, dark mage magic, sculpted 2.5D volume, warm upper-left highlights contrasting cool spectral magic. A clear high three-quarter downward view of one circular magical garden field: three tall silver star lanterns at different heights, each crowned by a large bright blue four-point star, stand over three broad concentric ghost-blue pulse rings in an open dark courtyard. The tall lantern silhouette is the dominant recognizable feature, the concentric ground circles show this is a powerful ultimate area spell. Keep exactly three lanterns, bold chunky forms, readable at 44 pixels, no tiny garden foliage, no person, no shield, no bell. Inside circular badge: midnight purple and obsidian painted depth. Very thin silver circular rim occupies 92 percent of width, generous 8 percent safe margin, actual transparent background outside the circle. Palette silver, midnight purple, obsidian, ghost blue; limited pure white at lantern cores. No pink, red, text, letters, numbers, watermarks, logos, grid, sprite sheet, or copied game art.",
+  "original_output_path": "C:/Users/13326/.codex/generated_images/01a10117-f699-71a2-8f78-c232c3c47cc5/exec-9ee1a77f-070c-4255-b3fe-9afbe2a7d543.png",
+  "asset_path": "assets/characters/mage/skills/sk04_icon.png",
+  "requested_native_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "sha256": "fff913f30bd550e355c23e3199c5a1d759ecf2ce14941d94eddc4425c6c3295f",
+  "generated_at": "2026-10-03",
+  "transparent_background": true,
+  "upscaled": false,
+  "local_processing": "Unchanged original PNG copied to the project; no substantive local editing."
+}

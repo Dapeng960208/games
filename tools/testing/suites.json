@@ -1184,5 +1184,60 @@
 	"b05_b06_room_paintings": {
 		"script": "tests/levels/shared/test_b05_b06_room_paintings.gd",
 		"scene": "tests/levels/shared/test_b05_b06_room_paintings.tscn"
+	},
+	"combat_combos_continuity": {
+		"script": "tests/combat/test_combat_combos.gd",
+		"scene": "tests/combat/test_combat_combos.tscn"
+	},
+	"role_kits": {
+		"script": "tests/characters/test_role_kits.gd",
+		"scene": "tests/characters/test_role_kits.tscn"
+	},
+	"role_natural_ui": {
+		"script": "tests/ui/test_role_natural_ui.gd",
+		"scene": "tests/ui/test_role_natural_ui.tscn"
+	},
+	"role_natural_ui_chapter": {
+		"script": "tests/ui/test_role_natural_ui.gd",
+		"scene": "tests/ui/test_role_natural_ui.tscn"
+	},
+	"role_natural_ui_effects": {
+		"script": "tests/ui/test_role_natural_ui.gd",
+		"scene": "tests/ui/test_role_natural_ui.tscn"
+	},
+	"role_natural_ui_visuals": {
+		"script": "tests/ui/test_role_natural_ui.gd",
+		"scene": "tests/ui/test_role_natural_ui.tscn"
+	},
+	"shared_action_family": {
+		"script": "tests/characters/test_shared_action_family.gd"
+	},
+	"skill_config_migration": {
+		"script": "tests/persistence/test_skill_config_migration.gd",
+		"scene": "tests/persistence/test_skill_config_migration.tscn"
+	},
+	"skill_system_ui_flow": {
+		"script": "tests/ui/test_skill_system_ui_flow.gd",
+		"scene": "tests/ui/test_skill_system_ui_flow.tscn"
+	},
+	"skill_system_ui_retry": {
+		"script": "tests/ui/test_skill_system_ui_flow.gd",
+		"scene": "tests/ui/test_skill_system_ui_flow.tscn"
+	},
+	"skill_system_ui_module": {
+		"script": "tests/ui/test_skill_system_ui_flow.gd",
+		"scene": "tests/ui/test_skill_system_ui_flow.tscn"
+	},
+	"skill_icon_hud": {
+		"script": "tests/ui/test_skill_system_ui_flow.gd",
+		"scene": "tests/ui/test_skill_system_ui_flow.tscn"
+	},
+	"runtime_role_art": {
+		"script": "tests/characters/test_runtime_role_art.gd",
+		"scene": "tests/characters/test_runtime_role_art.tscn"
+	},
+	"runtime_warrior_feedback": {
+		"script": "tests/characters/test_runtime_role_art.gd",
+		"scene": "tests/characters/test_runtime_role_art.tscn"
 	}
 }

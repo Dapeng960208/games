@@ -1,0 +1,164 @@
+{
+  "asset": "basic_southeast_a.png",
+  "landmark_annotation": {
+    "method": "manual_visual_estimate_in_full_source_coordinates",
+    "position_accuracy_px": 12,
+    "occluded_boot_accuracy_px": 35,
+    "verified": false,
+    "frames": [
+      {
+        "frame_index": 0,
+        "hair_top_y": 117,
+        "boot_bottom_points": [
+          [
+            218,
+            552
+          ],
+          [
+            434,
+            580
+          ]
+        ],
+        "foot_anchor_xy": [
+          326,
+          566
+        ],
+        "occluded_boot": true
+      },
+      {
+        "frame_index": 1,
+        "hair_top_y": 224,
+        "boot_bottom_points": [
+          [
+            840,
+            592
+          ],
+          [
+            1070,
+            655
+          ]
+        ],
+        "foot_anchor_xy": [
+          955,
+          623.5
+        ],
+        "occluded_boot": false
+      },
+      {
+        "frame_index": 2,
+        "hair_top_y": 782,
+        "boot_bottom_points": [
+          [
+            213,
+            1157
+          ],
+          [
+            481,
+            1217
+          ]
+        ],
+        "foot_anchor_xy": [
+          347,
+          1187
+        ],
+        "occluded_boot": false
+      },
+      {
+        "frame_index": 3,
+        "hair_top_y": 737,
+        "boot_bottom_points": [
+          [
+            833,
+            1145
+          ],
+          [
+            1050,
+            1202
+          ]
+        ],
+        "foot_anchor_xy": [
+          941.5,
+          1173.5
+        ],
+        "occluded_boot": false
+      }
+    ]
+  },
+  "source_type": "built_in_imagegen",
+  "created_date": "2026-10-03",
+  "character": "CH01",
+  "direction": "southeast",
+  "animation": "basic",
+  "frame_indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "requested_resolution": [
+    2048,
+    2048
+  ],
+  "actual_resolution": [
+    1254,
+    1254
+  ],
+  "native_upscaled": false,
+  "transparent_background": true,
+  "layout": {
+    "columns": 2,
+    "rows": 2,
+    "reading_order": "row_major",
+    "grid_rectangles_are_not_safe_crops": true
+  },
+  "references": [
+    "../portraits/full_illustration.png",
+    "basic_southeast.png"
+  ],
+  "generated_source": "C:/Users/13326/.codex/generated_images/01a1007a-a99e-7721-8679-9b4651ee66c8/exec-2f94af0b-4ee2-4374-acdd-6ef1b2c5d843.png",
+  "prompt": "Use case: precise-object-edit\nAsset type: transparent game animation source sheet, four isolated full-body southeast greataxe poses, requested 2048 x 2048 native canvas.\nInput images: Image 1 is the sheet to correct; Image 2 fixes the exact original character identity and costume. Preserve the excellent painted detail and all four distinct poses, but REBUILD THE LAYOUT with safe framing.\nIMPORTANT COMPOSITION CORRECTION: The first image is cropped at the outer canvas edges and its large overhead axes cross the horizontal center. Fix those issues. Divide the square into four invisible equal quadrants, no visible grid. Each entire figure INCLUDING his axe and scarf must fit inside a smaller rectangle occupying no more than 82 percent of its quadrant width and height. Put actual alpha-transparent padding on all FOUR sides of each rectangle; a generous blank cross between the rows and columns, plus generous transparent outside margins. No opaque pixel may touch any outer canvas edge or any quadrant divider. Leave at least 50 pixels transparent around each full silhouette even if the renderer uses a 1254 pixel canvas.\nKeep head-to-shoe body height roughly 38-40 percent of canvas height where practical. Make the overhead axe poses COMPACT: bent elbows, axehead tilted sideways immediately above and beside his shoulder, blade crown only a little above his hair rather than far overhead. Keep the entire weapon complete and connected to both hands. Do not simply crop or cover parts of the weapon. A complete slightly more compact greataxe is better than cropping.\nLocked character: adult male Luo Zhen, short tousled chestnut hair, handsome adult face, athletic build; deep navy split coat, sculpted silver armor with gold fittings, vermilion red scarf, dark trousers and silver armored boots. The same crescent greataxe has a silver and gold outer blade, dark volcanic inner plates, restrained orange rune fissures and orange core crystal. Same outfit, face and weapon design across the whole sheet.\nLocked poses, reading order: frame 0 ready low axe; frame 1 starting to lift the axe beside back shoulder; frame 2 torso and knees compressed, elbows bent with compact high back-swing; frame 3 first committed diagonal chop toward lower right, axe low beside knees. Distinct continuous consecutive attack poses, all southeast facing.\nLocked art: bright warm-sunlit hand-painted cartoon fantasy, high-angle three-quarter southeast near-isometric camera, 2.5D dimensional volume. Same camera and scale across all four.\nBackground: genuinely transparent alpha. No visible floor, drop shadow, colored matte or checkerboard.\nAvoid: cropping, any boundary contact, inter-cell overlap, detached particles or weapon fragments, long weapon trails, text, letters, numbers, labels, grid lines, borders, watermarks, changing identities, extra characters. Only four fully isolated complete figures.",
+  "validation": {
+    "production_ready": false,
+    "status": "review_only",
+    "alpha_measurement": {
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox": [
+        0,
+        18,
+        1226,
+        1230
+      ],
+      "edges": {
+        "0": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 6
+        },
+        "16": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "128": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    },
+    "notes": [
+      "Native output is 1254 x 1254, not native 2K.",
+      "Four visually isolated complete bodies; some artwork crosses nominal row divider, so separate by alpha components instead of fixed quadrants.",
+      "The 6 alpha>0 pixels on left outer edge disappear at alpha>16 and should be reviewed as faint alpha speckles.",
+      "Head-to-shoe source body height and foot anchors need individual annotation and verification against the 448-pixel gate.",
+      "No runtime animation family or manifest is enabled by this deliverable."
+    ]
+  }
+}

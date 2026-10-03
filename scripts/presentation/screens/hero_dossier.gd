@@ -1,134 +1,438 @@
 extends RefCounted
-## Camp dossier and skill ledger share one illustrated, source-backed inspector.
+## Page drafts are local; Game owns skill values, commits and expedition locks.
 const Inspect = preload("res://scripts/presentation/equipment/equipment_inspection.gd")
 const Sheet = preload("res://scripts/presentation/screens/stat_sheet.gd")
 const SkillInspect = preload("res://scripts/presentation/screens/skill_inspection.gd")
+const RoleSkin = preload("res://scripts/presentation/components/role_skin.gd")
 const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const SKILLS := ["q","secondary","f","ultimate"]
 const ACTIONS := ["skill_q","skill_secondary","skill_f","skill_ultimate"]
+const CONTEXT_KEYS := ["dossier_slot","dossier_skill_id","dossier_search","dossier_filter","dossier_message","dossier_message_error","dossier_message_kind"]
 
 static func render(panel: Control) -> void:
-	var id: String = panel.preview_hero
-	var hero: Dictionary = ContentRegistry.hero(id)
-	var level := Game.hero_level(id)
-	var report := Inspect.breakdown(id,level,Game.hero_loadout(id),Game.profile.equipment,null,int(Game.profile.get("ruleset_version",1)),Game.hero_talents(id))
-	var identity := GameStyle.panel(panel.body,Vector2.ZERO,Vector2(210,510))
-	GameStyle.literal(identity,Inspect.t("英雄名册","HERO ROSTER"),Vector2(16,14),Vector2(178,25),15,GameStyle.CYAN)
+	var id := _hero_id(panel)
+	var view := _view(panel,"hero_view",id)
+	var identity: Dictionary = view.get("identity",view)
+	var colors := RoleSkin.palette(id)
+	var roster := RoleSkin.panel(panel.body,id,Vector2.ZERO,Vector2(206,510))
+	GameStyle.literal(roster,_t("冒险者名册","ADVENTURERS"),Vector2(16,16),Vector2(174,29),21,colors.deep)
 	for index: int in ContentRegistry.heroes().size():
-		var hero_id: String = ContentRegistry.heroes()[index]
-		var definition := ContentRegistry.hero(hero_id)
-		var choice := GameStyle.button(identity,"",Vector2(12,57+index*109),Vector2(186,97),func(): panel.preview_hero = hero_id; panel._render())
-		choice.name = "Preview_"+hero_id
-		GameStyle.button_skin(choice,"card")
-		if hero_id == id: GameStyle.selected(choice,"card")
-		GameStyle.hero_portrait(choice,hero_id,Vector2(5,9),Vector2(67,78))
-		GameStyle.literal(choice,GameStyle.content_text(definition,"name"),Vector2(80,12),Vector2(96,28),19)
-		GameStyle.literal(choice,GameStyle.content_text(definition,"class_name"),Vector2(80,44),Vector2(96,22),13,GameStyle.CYAN)
-		GameStyle.literal(choice,"Lv."+str(Game.hero_level(hero_id)),Vector2(80,69),Vector2(96,20),13,GameStyle.MUTED)
-		choice.tooltip_text = GameStyle.content_text(definition,"name")
-	var note := Inspect.t("各职业保留上次配装，共用库存","Heroes keep their loadouts and share gear")
-	if id == str(Game.profile.selected_hero) and not Game.last_loadout_missing.is_empty():
-		note = Inspect.t("缺失预设已使用当前装备","Missing preset slots use current gear")
-	GameStyle.literal(identity,note,Vector2(16,397),Vector2(178,39),13,GameStyle.MUTED)
-	panel.action_button = GameStyle.button(identity,"HERO_SELECTED" if id == Game.profile.selected_hero else "SELECT_HERO",Vector2(12,451),Vector2(186,43),panel._select_hero)
-	panel.action_button.name = "PrimaryAction"
-	panel.action_button.disabled = id == Game.profile.selected_hero
-	GameStyle.primary(panel.action_button)
-	GameStyle.hero_portrait(panel.body,id,Vector2(219,5),Vector2(294,382))
-	var caption := GameStyle.panel(panel.body,Vector2(226,395),Vector2(292,115))
-	GameStyle.literal(caption,GameStyle.content_text(hero,"name"),Vector2(16,10),Vector2(260,36),27)
-	GameStyle.literal(caption,GameStyle.content_text(hero,"class_name")+" · Lv."+str(level),Vector2(16,54),Vector2(260,26),17,GameStyle.CYAN)
-	var play := GameStyle.label(caption,"HERO_"+id+"_PLAY",Vector2(16,85),Vector2(260,20),12,GameStyle.MUTED)
-	if int(Game.profile.get("ruleset_version",1)) == 2 and hero.has("quick_start_v2"):
-		play.text = GameStyle.content_text(hero,"quick_start_v2")
-	play.tooltip_text = play.text
-	play.text = play.text.replace("\n"," · ")
-	play.autowrap_mode = TextServer.AUTOWRAP_OFF
-	play.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	play.clip_text = true
-	var right := GameStyle.panel(panel.body,Vector2(534,0),Vector2(682,510))
-	GameStyle.literal(right,Inspect.t("角色属性","Character attributes"),Vector2(20,15),Vector2(640,33),24)
-	GameStyle.literal(right,Inspect.t("当前职业配装 · 完整数值来源","Saved loadout · complete stat sources"),Vector2(20,54),Vector2(640,25),14,GameStyle.MUTED)
-	var stats: Dictionary = report.total
+		var hero_id := str(ContentRegistry.heroes()[index])
+		var candidate := _view(panel,"hero_view",hero_id)
+		var data: Dictionary = candidate.get("identity",candidate)
+		var choice := _button(roster,"Preview_"+hero_id,"",Vector2(12,59+index*104),Vector2(182,94),func(): _preview(panel,hero_id),hero_id,hero_id == id)
+		GameStyle.hero_portrait(choice,hero_id,Vector2(3,7),Vector2(66,80))
+		GameStyle.literal(choice,_text(data,"name",GameStyle.content_text(ContentRegistry.hero(hero_id),"name")),Vector2(75,10),Vector2(101,29),21,RoleSkin.palette(hero_id).deep)
+		GameStyle.literal(choice,_text(data,"class_name",GameStyle.content_text(ContentRegistry.hero(hero_id),"class_name")),Vector2(75,43),Vector2(101,46),18,RoleSkin.palette(hero_id).accent)
+	var editable := _can_edit(panel,view) and not panel.has_meta("dossier_fixture")
+	GameStyle.literal(roster,_t("独立配装 · 共用库存","Own loadouts · shared gear") if editable else _t("本次出征配置已锁定","Expedition configuration locked"),Vector2(16,385),Vector2(174,57),18,colors.muted).name = "HeroConfigLockReason"
+	panel.action_button = _button(roster,"PrimaryAction",_t("当前出征角色","Current hero") if id == str(Game.profile.get("selected_hero","CH01")) else _t("选择此角色","Choose hero"),Vector2(12,452),Vector2(182,44),func(): panel._select_hero(),id,false,true)
+	panel.action_button.disabled = not editable or id == str(Game.profile.get("selected_hero","CH01"))
+	var portrait := RoleSkin.panel(panel.body,id,Vector2(222,0),Vector2(332,510))
+	GameStyle.literal(portrait,_text(identity,"title",_text(identity,"class_name")),Vector2(18,17),Vector2(296,31),24,colors.accent)
+	GameStyle.hero_portrait(portrait,id,Vector2(18,58),Vector2(296,333))
+	GameStyle.literal(portrait,_text(identity,"name"),Vector2(18,399),Vector2(296,37),29,colors.deep)
+	GameStyle.literal(portrait,"Lv.%d · %d / %d %s" % [int(view.get("level",Game.hero_level(id))),int(view.get("collected_count",4)),int(view.get("total_count",12)),_t("技能","skills")],Vector2(18,449),Vector2(296,35),18,colors.accent)
+	var profile := RoleSkin.panel(panel.body,id,Vector2(570,0),Vector2(646,510))
+	GameStyle.literal(profile,_t("职业档案","CLASS PROFILE"),Vector2(20,14),Vector2(606,31),24,colors.deep)
+	GameStyle.literal(profile,_text(identity,"role_summary"),Vector2(20,54),Vector2(606,51),18,colors.text).name = "HeroRoleSummary"
+	var stats: Dictionary = view.get("stats",{})
 	for index: int in 4:
 		var key: String = ["max_hp","ability_power" if id == "CH03" else "attack","armor","magic_resist"][index]
-		metric(right,Inspect.caption(key),Inspect.value(key,float(stats.get(key,0)),false,false,int(stats.get("ruleset_version",1))),Vector2(20+index*161,92),Vector2(151,64))
-	var scroll := ScrollContainer.new()
-	scroll.name = "HeroStatScroll"
-	scroll.position = Vector2(20,179)
-	scroll.size = Vector2(642,311)
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.focus_mode = Control.FOCUS_ALL
-	right.add_child(scroll)
-	var sheet := Sheet.new()
-	scroll.add_child(sheet)
-	sheet.configure(report,618)
+		metric(profile,Inspect.caption(key),Inspect.value(key,float(stats.get(key,0)),false,false,int(stats.get("ruleset_version",1))),Vector2(20+index*154,116),Vector2(144,67),id)
+	var scroll := _scroll(profile,"HeroStatScroll",Vector2(20,199),Vector2(606,286))
+	var flow := _flow(scroll,582)
+	var skill_view := _view(panel,"skill_page_view",id)
+	var equipped: Array = view.get("loadout",skill_view.get("loadout",[]))
+	var pending: Dictionary = panel.get_meta("dossier_draft_"+id,{})
+	var has_draft := not pending.is_empty() and _dirty(pending,skill_view)
+	_paragraph(flow,_t("已保存配置 · 技能草稿未应用","SAVED LOADOUT · SKILL DRAFT PENDING") if has_draft else _t("已装备 · 出征前准备四个技能","EQUIPPED · FOUR SKILLS"),582,20,colors.accent).name = "HeroEquippedStatus"
+	var skill_grid := GridContainer.new()
+	skill_grid.name = "HeroEquippedGrid"
+	skill_grid.columns = 2
+	skill_grid.add_theme_constant_override("h_separation",10)
+	skill_grid.add_theme_constant_override("v_separation",8)
+	flow.add_child(skill_grid)
+	for index: int in mini(4,equipped.size()):
+		var skill_id := str(equipped[index])
+		var entry := SkillInspect.entry(skill_view,skill_id)
+		var item := _button(skill_grid,"HeroEquipped_"+SKILLS[index],"",Vector2.ZERO,Vector2(286,60),func(): _open_skill(panel,id,skill_id),id)
+		item.custom_minimum_size = Vector2(286,60)
+		item.set_meta("skill_id",skill_id)
+		item.set_meta("input_slot",SKILLS[index])
+		item.tooltip_text = _binding(index)+" · "+str(entry.get("name",skill_id))+"\n"+_t("查看此技能与对应槽位","Inspect this skill and its input slot")
+		skill_icon(item,id,skill_id,Vector2(8,8),Vector2(44,44))
+		GameStyle.literal(item,_binding(index)+" · Lv.%d" % int(entry.get("mastery_level",1)),Vector2(64,3),Vector2(214,26),18,colors.accent)
+		var title := GameStyle.literal(item,str(entry.get("name",skill_id)),Vector2(64,29),Vector2(214,28),18,colors.text)
+		title.autowrap_mode = TextServer.AUTOWRAP_OFF
+		title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	_paragraph(flow,_t("战斗节奏","COMBAT RHYTHM"),582,20,colors.accent)
+	_paragraph(flow,SkillInspect.authored_text(_text(identity,"mechanic_text"),int(stats.get("ruleset_version",1))),582,18,colors.text).name = "HeroMechanicDescription"
+	var report: Dictionary = view.get("stat_report",{})
+	if not report.is_empty():
+		var toggle := _button(flow,"ToggleStatSources",_t("展开属性与来源","Show attributes and sources"),Vector2.ZERO,Vector2(582,44),func(): panel.set_meta("dossier_sources_open",not bool(panel.get_meta("dossier_sources_open",false))); panel.set_meta("dossier_focus","ToggleStatSources"); panel._render(),id,bool(panel.get_meta("dossier_sources_open",false)))
+		toggle.custom_minimum_size = Vector2(582,44)
+		if bool(panel.get_meta("dossier_sources_open",false)):
+			var sheet := Sheet.new()
+			flow.add_child(sheet)
+			sheet.configure(report,582)
+			for label: Node in sheet.find_children("*","Label",true,false): label.add_theme_font_size_override("font_size",18)
+	profile.set_meta("hero_view",view.duplicate(true))
+	_restore_focus(panel)
 
 static func render_skills(panel: Control) -> void:
-	var id: String = str(Game.profile.get("selected_hero","CH01"))
-	var hero: Dictionary = ContentRegistry.hero(id)
-	var level := Game.hero_level(id)
-	var stats: Dictionary = Game.selected_stats()
-	var selected: String = str(panel.get_meta("dossier_skill","q"))
-	if selected not in SKILLS: selected = "q"
-	var dossier := GameStyle.panel(panel.body,Vector2.ZERO,Vector2(250,510))
-	GameStyle.literal(dossier,Inspect.t("职业成长","HERO PROGRESSION"),Vector2(18,14),Vector2(214,25),15,GameStyle.CYAN)
-	GameStyle.hero_portrait(dossier,id,Vector2(30,48),Vector2(190,200))
-	GameStyle.literal(dossier,GameStyle.content_text(hero,"name"),Vector2(18,255),Vector2(214,36),25)
-	GameStyle.literal(dossier,GameStyle.content_text(hero,"class_name")+" · Lv."+str(level),Vector2(18,299),Vector2(214,28),16,GameStyle.CYAN)
-	var xp: int = int(Game.profile.get("hero_xp",{}).get(id,0))
-	GameStyle.label(dossier,"HERO_XP_MAX" if level >= 20 else "HERO_XP",Vector2(18,337),Vector2(214,48),14,GameStyle.MUTED,{"xp":xp,"next":ContentRegistry.next_level_xp(level,int(stats.get("ruleset_version",1)))})
-	var passive := GameStyle.button(dossier,"PASSIVE_DASH",Vector2(18,403),Vector2(214,42),func(): panel._show_core_actions(hero))
-	passive.name = "OpenCoreActions"
-	passive.add_theme_font_size_override("font_size",15)
-	var branches := GameStyle.button(dossier,"SKILL_BRANCHES",Vector2(18,456),Vector2(214,38),panel._show_branches)
-	branches.name = "OpenBranches"
-	branches.add_theme_font_size_override("font_size",15)
-	var rail := GameStyle.panel(panel.body,Vector2(266,0),Vector2(286,510))
-	GameStyle.literal(rail,Inspect.t("主动技能","ACTIVE SKILLS"),Vector2(18,14),Vector2(250,29),17,GameStyle.CYAN)
-	for index: int in SKILLS.size():
-		var slot: String = SKILLS[index]
-		var skill: Dictionary = hero.get("skills",{}).get(slot,{})
-		var unlocked := level >= int(skill.get("unlock",index+1))
-		var action := GameStyle.button(rail,"",Vector2(12,58+index*96),Vector2(262,86),func(): panel.set_meta("dossier_skill",slot); panel._render())
-		action.name = "InspectSkill_"+slot
-		GameStyle.button_skin(action,"card")
-		if selected == slot: GameStyle.selected(action,"card")
-		skill_icon(action,id,slot,Vector2(10,10),Vector2(60,60))
-		var binding := ControlBindings.label_for(ACTIONS[index],Game.profile.get("settings",{}).get("controls",{}),Words.locale)
-		GameStyle.literal(action,binding,Vector2(79,8),Vector2(168,24),14,GameStyle.CYAN if unlocked else GameStyle.MUTED)
-		GameStyle.literal(action,GameStyle.content_text(skill,"name"),Vector2(79,35),Vector2(168,43),17)
-		action.tooltip_text = GameStyle.content_text(skill,"name")+" · Lv."+str(int(skill.get("unlock",index+1)))
-	GameStyle.literal(rail,Inspect.t("选择技能查看效果与成长","Select a skill for effects and upgrades"),Vector2(18,454),Vector2(250,42),13,GameStyle.MUTED)
-	var detail := GameStyle.panel(panel.body,Vector2(568,0),Vector2(648,510))
-	var entry := SkillInspect.ledger_entry(id,level,stats,selected,Game.hero_branches(id))
-	detail.set_meta("skill_entry",entry)
-	skill_icon(detail,id,selected,Vector2(22,19),Vector2(86,86))
-	GameStyle.literal(detail,str(entry.title),Vector2(124,23),Vector2(494,39),26)
-	GameStyle.literal(detail,Inspect.t("已解锁 · 等级 %d","Unlocked · Level %d") % int(entry.unlock) if bool(entry.unlocked) else Inspect.t("等级 %d 解锁","Unlocks at level %d") % int(entry.unlock),Vector2(124,70),Vector2(494,27),16,GameStyle.CYAN if bool(entry.unlocked) else GameStyle.MUTED)
-	metric(detail,GameStyle.content_text(hero,"resource_name"),str(entry.spec.get("cost",0)),Vector2(22,124),Vector2(192,62))
-	metric(detail,Inspect.t("冷却时间","Cooldown"),"%.1f s" % float(entry.spec.get("cooldown",0)),Vector2(225,124),Vector2(192,62))
-	metric(detail,Inspect.t("解锁等级","Unlock level"),"Lv."+str(entry.unlock),Vector2(428,124),Vector2(198,62))
+	var id := _hero_id(panel)
+	var view := _view(panel,"skill_page_view",id)
+	var colors := RoleSkin.palette(id)
+	var draft := _draft(panel,id,view)
+	var dirty := _dirty(draft,view)
+	var equipped: Array = draft.get("loadout",[])
+	var slot := clampi(int(panel.get_meta("dossier_slot",0)),0,3)
+	var selected := str(panel.get_meta("dossier_skill_id",equipped[slot] if equipped.size() == 4 else ""))
+	var entries: Array = view.get("skills",[])
+	if SkillInspect.entry(view,selected).is_empty() and not entries.is_empty(): selected = str(entries[0].get("skill_id",""))
+	panel.set_meta("dossier_skill_id",selected)
+	var editable := _can_edit(panel,view)
+	var rail := RoleSkin.panel(panel.body,id,Vector2.ZERO,Vector2(272,510))
+	for index: int in ContentRegistry.heroes().size():
+		var hero_id := str(ContentRegistry.heroes()[index])
+		var role := _view(panel,"hero_view",hero_id)
+		var identity: Dictionary = role.get("identity",role)
+		_button(rail,"SkillHero_"+hero_id,_text(identity,"name",GameStyle.content_text(ContentRegistry.hero(hero_id),"name")),Vector2(12+index*84,13),Vector2(80,44),func(): _preview(panel,hero_id),hero_id,hero_id == id)
+	GameStyle.literal(rail,_t("配置草稿 · 未应用","DRAFT · UNSAVED") if dirty else _t("已装备技能","EQUIPPED SKILLS"),Vector2(16,66),Vector2(240,28),21,colors.deep).name = "SkillLoadoutStatus"
+	for index: int in 4:
+		var skill_id := str(equipped[index]) if index < equipped.size() else ""
+		var entry := SkillInspect.entry(view,skill_id)
+		var action := _button(rail,"InspectSkill_"+SKILLS[index],"",Vector2(12,104+index*74),Vector2(248,68),func(): panel.set_meta("dossier_slot",index); panel.set_meta("dossier_skill_id",skill_id); panel.set_meta("dossier_focus","InspectSkill_"+SKILLS[index]); panel._render(),id,index == slot)
+		action.set_meta("skill_id",skill_id)
+		action.set_meta("input_slot",SKILLS[index])
+		skill_icon(action,id,skill_id,Vector2(8,8),Vector2(48,48))
+		GameStyle.literal(action,_binding(index)+" · Lv.%d" % int(entry.get("mastery_level",1)),Vector2(66,5),Vector2(139,27),18,colors.accent)
+		GameStyle.literal(action,str(entry.get("name","")),Vector2(66,34),Vector2(176,28),18,colors.text)
+		var swap := _button(rail,"SwapSkill_"+SKILLS[index],"↕",Vector2(224,108+index*74),Vector2(32,29),func(): _swap_next(panel,id,view,index),id)
+		swap.custom_minimum_size = Vector2(32,29)
+		swap.disabled = not editable
+		swap.tooltip_text = _t("与下一槽互换","Swap with next slot")
+	var lock_text := str(view.get("lock_reason",""))
+	if lock_text.is_empty(): lock_text = _t("出征期间只读，回营地后调整","Read only during expeditions; edit in camp") if not editable else _t("选槽位，再选技能替换","Choose a slot, then a skill")
+	var message := str(panel.get_meta("dossier_message",""))
+	var failed := bool(panel.get_meta("dossier_message_error",false)) and not message.is_empty()
+	var status := lock_text
+	if not editable: status = _t("出征锁定 · 回营地调整","Locked · Edit in camp")
+	elif failed: status = _t("预览失败 · 草稿保留","Preview failed · Draft kept") if panel.has_meta("dossier_fixture") else _t("保存失败 · 草稿保留","Save failed · Draft kept")
+	elif dirty: status = _t("预览草稿 · 未写入存档","Preview draft · Unsaved") if str(panel.get_meta("dossier_message_kind","")) == "preview" else _t("草稿未应用 · 等待应用","Draft not applied")
+	elif str(panel.get_meta("dossier_message_kind","")) == "reverted": status = _t("已还原 · 当前已保存配置","Saved loadout restored")
+	elif str(panel.get_meta("dossier_message_kind","")) == "saved": status = _t("配置已保存","Configuration saved")
+	if editable and dirty and not failed: lock_text = _t("四槽和分支仍是草稿，统一应用后才更新出征配置。","The slots and branches are a draft. Apply the complete draft to update the saved expedition loadout.")
+	var lock_label := GameStyle.literal(rail,status,Vector2(16,405),Vector2(240,40),18,GameStyle.RED if failed and editable else colors.accent if dirty or not message.is_empty() else colors.muted)
+	lock_label.name = "SkillConfigLockReason"
+	lock_label.tooltip_text = status+"\n"+(message if not message.is_empty() and editable else lock_text)
+	lock_label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	lock_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	var apply := _button(rail,"ApplySkillConfig",_t("应用配置","Apply"),Vector2(12,452),Vector2(121,44),func(): _apply(panel,id,view),id,false,true)
+	apply.disabled = not editable or not dirty or bool(draft.get("busy",false))
+	var discard := _button(rail,"DiscardSkillDraft",_t("还原","Revert"),Vector2(141,452),Vector2(119,44),func(): _discard(panel,id),id)
+	discard.disabled = not editable or not dirty or bool(draft.get("busy",false))
+	var pool := RoleSkin.panel(panel.body,id,Vector2(288,0),Vector2(460,510))
+	var search := LineEdit.new()
+	search.name = "SkillPoolSearch"
+	search.position = Vector2(12,13)
+	search.size = Vector2(436,43)
+	search.placeholder_text = _t("搜索本职业技能","Search this class's skills")
+	search.text = str(panel.get_meta("dossier_search",""))
+	search.add_theme_font_size_override("font_size",18)
+	for state: String in ["normal","focus","read_only"]:
+		search.add_theme_stylebox_override(state,GameStyle.box(colors.paper,colors.accent if state == "focus" else colors.border,2 if state == "focus" else 1))
+	search.add_theme_color_override("font_color",colors.text)
+	search.add_theme_color_override("font_placeholder_color",colors.muted)
+	search.add_theme_color_override("caret_color",colors.accent)
+	pool.add_child(search)
+	search.text_changed.connect(func(value: String): panel.set_meta("dossier_search",value); _filter_pool(panel))
+	var filter := str(panel.get_meta("dossier_filter","all"))
+	for index: int in 3:
+		var value: String = ["all","learned","equipped"][index]
+		_button(pool,"SkillFilter_"+value,[_t("全部","All"),_t("已学会","Learned"),_t("草稿中","In draft") if dirty else _t("已装备","Equipped")][index],Vector2(12+index*147,65),Vector2(142,44),func(): panel.set_meta("dossier_filter",value); _filter_pool(panel),id,filter == value)
+	var grid := GridContainer.new()
+	grid.name = "SkillPoolGrid"
+	grid.position = Vector2(12,120)
+	grid.columns = 3
+	grid.add_theme_constant_override("h_separation",10)
+	grid.add_theme_constant_override("v_separation",8)
+	pool.add_child(grid)
+	for entry: Dictionary in entries:
+		var skill_id := str(entry.get("skill_id",""))
+		var learned := bool(entry.get("unlocked",false))
+		var action := _button(grid,"SkillPool_"+skill_id,"",Vector2.ZERO,Vector2(138,88),func(): panel.set_meta("dossier_skill_id",skill_id); panel.set_meta("dossier_focus","SkillPool_"+skill_id); panel._render(),id,skill_id == selected)
+		action.custom_minimum_size = Vector2(138,88)
+		action.set_meta("entry",entry.duplicate(true))
+		action.set_meta("equipped",skill_id in equipped)
+		skill_icon(action,id,skill_id,Vector2(8,5),Vector2(42,42))
+		GameStyle.literal(action,"Lv.%d" % int(entry.get("mastery_level",1)) if learned else _t("未解锁","Locked"),Vector2(56,4),Vector2(76,27),18,colors.accent if learned else colors.muted)
+		GameStyle.literal(action,(_t("草稿中","In draft") if dirty else _t("已装备","Equipped")) if skill_id in equipped else _t("已保存","Saved") if dirty and skill_id in view.get("loadout",[]) else _t("已学会","Learned") if learned else _t("待收集","Explore"),Vector2(56,28),Vector2(76,24),18,colors.muted)
+		var title := GameStyle.literal(action,str(entry.get("name","")),Vector2(7,54),Vector2(124,31),18,colors.text)
+		title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		title.autowrap_mode = TextServer.AUTOWRAP_OFF
+		action.tooltip_text = str(entry.get("name",""))+"\n"+str(entry.get("description",""))
+	var empty := GameStyle.literal(pool,_t("没有匹配的技能","No matching skills"),Vector2(22,230),Vector2(416,60),21,colors.muted)
+	empty.name = "SkillPoolEmpty"
+	empty.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_filter_pool(panel)
+	var detail := RoleSkin.panel(panel.body,id,Vector2(764,0),Vector2(452,510))
+	_render_detail(panel,detail,id,view,draft,selected,editable)
+	panel.body.set_meta("skill_page_view",view.duplicate(true))
+	_restore_focus(panel)
+
+static func _render_detail(panel: Control, detail: Control, id: String, view: Dictionary, draft: Dictionary, selected: String, editable: bool) -> void:
+	var entry := SkillInspect.entry(view,selected)
+	var colors := RoleSkin.palette(id)
+	detail.set_meta("skill_entry",entry.duplicate(true))
+	skill_icon(detail,id,selected,Vector2(18,14),Vector2(66,66))
+	GameStyle.literal(detail,str(entry.get("name",_t("技能资料准备中","Skill data preparing"))),Vector2(98,18),Vector2(336,34),25,colors.deep)
+	var rank := int(entry.get("mastery_level",1))
+	GameStyle.literal(detail,_t("主动技能 · 熟练度 Lv.%d","Active skill · Mastery Lv.%d") % rank,Vector2(98,54),Vector2(336,29),18,colors.accent)
+	var scroll := _scroll(detail,"SkillDescriptionScroll",Vector2(18,95),Vector2(416,398))
+	var flow := _flow(scroll,392)
+	var message := str(panel.get_meta("dossier_message",""))
+	if not message.is_empty(): _paragraph(flow,message,392,18,GameStyle.RED if bool(panel.get_meta("dossier_message_error",false)) else colors.accent).name = "SkillConfigMessage"
+	var spec: Dictionary = entry.get("spec",{})
+	var cooldown: Variant = spec.get("cooldown",null)
+	_paragraph(flow,_t("消耗 %s · 冷却 %s 秒","Cost %s · Cooldown %s s") % [str(spec.get("cost","—")),"%.2f" % float(cooldown) if cooldown != null else "—"],392,20,colors.accent).name = "SkillActualNumbers"
+	_paragraph(flow,SkillInspect.spec_facts(spec),392,18,colors.muted).name = "SkillActualTimeline"
+	_paragraph(flow,str(entry.get("description","")),392,18,colors.text).name = "InspectedSkillDescription"
+	var mastery: Dictionary = entry.get("mastery",{})
+	var xp := int(entry.get("mastery_xp",mastery.get("xp",0)))
+	var next_xp: Variant = mastery.get("next_threshold",null)
+	_paragraph(flow,_t("熟练度","MASTERY"),392,20,colors.accent)
+	_paragraph(flow,_t("已满级 · 累计 %d 熟练度","Maximum level · %d total XP") % xp if rank >= 5 else _t("累计 %d / %s · 升级从下次施法生效","Total %d / %s · Upgrades apply to the next cast") % [xp,str(next_xp) if next_xp != null else "—"],392,18,colors.text).name = "SkillMasteryProgress"
+	_paragraph(flow,_t("真实战斗的首次释放获得熟练度；多段及附伤只计一次。","Mastery comes from the first actual release in combat; multiple hits and derived effects count once."),392,18,colors.muted)
+	var branches: Dictionary = entry.get("branches",{})
+	if not branches.is_empty():
+		_paragraph(flow,_t("技能分支","SKILL BRANCHES"),392,20,colors.accent)
+		var gate := int(entry.get("branch_mastery_level",4 if selected.ends_with("SK01") else 5))
+		var choice := str(draft.get("branches",{}).get(selected,""))
+		for branch: String in branches:
+			var value: Variant = branches[branch]
+			var data: Dictionary = value if value is Dictionary else {"name":_t("分支 ","Branch ")+branch,"description":str(value)}
+			var action := _button(flow,"SkillBranch_"+branch,("● " if branch == choice else "")+_text(data,"name",branch),Vector2.ZERO,Vector2(392,44),func(): _set_branch(panel,id,view,selected,branch),id,branch == choice)
+			action.custom_minimum_size = Vector2(392,44)
+			action.disabled = not editable or rank < gate
+			action.tooltip_text = _t("熟练度 Lv.%d 开放","Opens at mastery Lv.%d") % gate
+			_paragraph(flow,_text(data,"description"),392,18,colors.muted)
+		var reset := _button(flow,"SkillBranch_original",_t("使用原技能","Use original skill"),Vector2.ZERO,Vector2(392,44),func(): _set_branch(panel,id,view,selected,""),id,choice.is_empty())
+		reset.custom_minimum_size = Vector2(392,44)
+		reset.disabled = not editable or rank < gate or choice.is_empty()
+	_paragraph(flow,_t("获取来源","ACQUISITION"),392,20,colors.accent)
+	_paragraph(flow,SkillInspect.source_text(entry),392,18,colors.text).name = "SkillAcquisitionSource"
+	var slot := clampi(int(panel.get_meta("dossier_slot",0)),0,3)
+	var values: Array = draft.get("loadout",[])
+	var replace := _button(flow,"ReplaceDraftSkill",_t("装备至 %s","Equip to %s") % _binding(slot),Vector2.ZERO,Vector2(392,48),func(): _replace(panel,id,view,selected,slot),id,false,true)
+	replace.custom_minimum_size = Vector2(392,48)
+	replace.disabled = not editable or not bool(entry.get("unlocked",false)) or values.size() != 4 or str(values[slot]) == selected
+	_paragraph(flow,_t("已在其他槽位的技能会互换，统一应用后生效。","A skill already in another slot swaps with this slot. Apply the complete draft to save."),392,18,colors.muted)
+
+static func _replace(panel: Control, id: String, view: Dictionary, skill_id: String, slot: int) -> void:
+	if not _can_edit(panel,view) or not bool(SkillInspect.entry(view,skill_id).get("unlocked",false)): return
+	var draft := _draft(panel,id,view)
+	var values: Array = draft.get("loadout",[]).duplicate()
+	if values.size() != 4: return
+	if str(values[slot]) == skill_id: return
+	var previous := values.find(skill_id)
+	if previous >= 0: values[previous] = values[slot]
+	values[slot] = skill_id
+	draft["loadout"] = values
+	draft["operation_id"] = ""
+	panel.set_meta("dossier_draft_"+id,draft)
+	_clear_message(panel)
+	panel.set_meta("dossier_focus","ApplySkillConfig")
+	panel._render()
+
+static func _swap_next(panel: Control, id: String, view: Dictionary, slot: int) -> void:
+	var values: Array = _draft(panel,id,view).get("loadout",[])
+	if values.size() == 4: _replace(panel,id,view,str(values[(slot+1)%4]),slot)
+
+static func _set_branch(panel: Control, id: String, view: Dictionary, skill_id: String, branch: String) -> void:
+	if not _can_edit(panel,view): return
+	var draft := _draft(panel,id,view)
+	var choices: Dictionary = draft.get("branches",{}).duplicate()
+	if str(choices.get(skill_id,"")) == branch: return
+	choices[skill_id] = branch
+	draft["branches"] = choices
+	draft["operation_id"] = ""
+	panel.set_meta("dossier_draft_"+id,draft)
+	_clear_message(panel)
+	panel.set_meta("dossier_focus","SkillBranch_"+(branch if not branch.is_empty() else "original"))
+	panel._render()
+
+static func _apply(panel: Control, id: String, view: Dictionary) -> void:
+	if not _can_edit(panel,view) or not Game.has_method("apply_skill_config"): return
+	if panel.has_meta("dossier_fixture"):
+		var fixture: Dictionary = panel.get_meta("dossier_fixture",{})
+		panel.set_meta("dossier_message",str(fixture.get("apply_message",_t("预览模式：草稿仅用于界面预览，没有写入存档。","Preview only: this draft has not been written to a save."))))
+		panel.set_meta("dossier_message_error",bool(fixture.get("apply_failed",false)))
+		panel.set_meta("dossier_message_kind","preview")
+		panel._render()
+		return
+	var draft := _draft(panel,id,view)
+	if bool(draft.get("busy",false)): return
+	if str(draft.get("operation_id","")).is_empty(): draft["operation_id"] = "skill-config:"+Crypto.new().generate_random_bytes(16).hex_encode()
+	draft["busy"] = true
+	panel.set_meta("dossier_draft_"+id,draft)
+	var result: Dictionary = Game.call("apply_skill_config",id,draft.get("loadout",[]),draft.get("branches",{}),str(draft.operation_id))
+	draft["busy"] = false
+	if bool(result.get("ok",false)):
+		panel.remove_meta("dossier_draft_"+id)
+		panel.set_meta("dossier_message",_t("配置已保存，下次出征使用这四个技能。","Configuration saved for your next expedition."))
+		panel.set_meta("dossier_message_error",false)
+		panel.set_meta("dossier_message_kind","saved")
+		panel.set_meta("dossier_focus","InspectSkill_"+SKILLS[int(panel.get_meta("dossier_slot",0))])
+	else:
+		draft["operation_id"] = str(result.get("operation_id",draft.operation_id))
+		panel.set_meta("dossier_draft_"+id,draft)
+		panel.set_meta("dossier_message",SkillInspect.config_reason(str(result.get("reason",result.get("error","")))))
+		panel.set_meta("dossier_message_error",true)
+		panel.set_meta("dossier_message_kind","failed")
+		panel.set_meta("dossier_focus","ApplySkillConfig")
+	panel._render()
+
+static func _clear_message(panel: Control) -> void:
+	for key: String in ["dossier_message","dossier_message_error","dossier_message_kind"]: panel.remove_meta(key)
+
+static func _discard(panel: Control, id: String) -> void:
+	panel.remove_meta("dossier_draft_"+id)
+	panel.set_meta("dossier_message",_t("已还原当前已保存配置，未应用的修改已丢弃。","Saved configuration restored; unapplied changes were discarded."))
+	panel.set_meta("dossier_message_error",false)
+	panel.set_meta("dossier_message_kind","reverted")
+	panel.set_meta("dossier_focus","InspectSkill_"+SKILLS[clampi(int(panel.get_meta("dossier_slot",0)),0,3)])
+	panel._render()
+
+static func _filter_pool(panel: Control) -> void:
+	var grid: Node = panel.body.find_child("SkillPoolGrid",true,false)
+	if grid == null: return
+	var query := str(panel.get_meta("dossier_search","")).strip_edges().to_lower()
+	var filter := str(panel.get_meta("dossier_filter","all"))
+	var visible_count := 0
+	for child: Node in grid.get_children():
+		var entry: Dictionary = child.get_meta("entry",{})
+		var matches := query.is_empty() or (str(entry.get("name",""))+" "+str(entry.get("skill_id",""))).to_lower().contains(query)
+		matches = matches and (filter == "all" or filter == "learned" and bool(entry.get("unlocked",false)) or filter == "equipped" and bool(child.get_meta("equipped",false)))
+		child.visible = matches
+		if matches: visible_count += 1
+	var empty: Control = panel.body.find_child("SkillPoolEmpty",true,false)
+	if empty != null: empty.visible = visible_count == 0
+	for value: String in ["all","learned","equipped"]:
+		var button := panel.body.find_child("SkillFilter_"+value,true,false) as Button
+		if button != null: RoleSkin.button(button,_hero_id(panel),filter == value)
+
+static func _view(panel: Control, kind: String, id: String) -> Dictionary:
+	if panel.has_meta("dossier_fixture"):
+		var fixture: Dictionary = panel.get_meta("dossier_fixture",{})
+		var data: Dictionary = fixture.get(kind,{})
+		return data[id].duplicate(true) if data.has(id) else data.duplicate(true)
+	if Game.has_method(kind):
+		var result: Variant = Game.call(kind,id,"run" if Game.run != null else "camp")
+		if result is Dictionary: return result
+	return {}
+
+static func _hero_id(panel: Control) -> String:
+	if Game.run != null: return str(Game.run.hero_id)
+	var preview := str(panel.get("preview_hero"))
+	return preview if not preview.is_empty() else str(Game.profile.get("selected_hero","CH01"))
+
+static func _draft(panel: Control, id: String, view: Dictionary) -> Dictionary:
+	var key := "dossier_draft_"+id
+	if not panel.has_meta(key): panel.set_meta(key,{"loadout":view.get("loadout",[]).duplicate(),"branches":view.get("branch_choices",{}).duplicate(),"operation_id":"","busy":false})
+	return panel.get_meta(key)
+
+static func _dirty(draft: Dictionary, view: Dictionary) -> bool:
+	return draft.get("loadout",[]) != view.get("loadout",[]) or draft.get("branches",{}) != view.get("branch_choices",{})
+
+static func _can_edit(panel: Control, view: Dictionary) -> bool:
+	return Game.run == null and bool(view.get("editable",false))
+
+static func _preview(panel: Control, id: String) -> void:
+	if Game.run != null: return
+	var previous := _hero_id(panel)
+	if previous == id: return
+	var context := {}
+	for key: String in CONTEXT_KEYS:
+		if panel.has_meta(key): context[key] = panel.get_meta(key)
+	panel.set_meta("dossier_context_"+previous,context)
+	panel.preview_hero = id
+	var restored: Dictionary = panel.get_meta("dossier_context_"+id,{})
+	for key: String in CONTEXT_KEYS:
+		panel.remove_meta(key)
+		if restored.has(key): panel.set_meta(key,restored[key])
+	panel.set_meta("dossier_focus","SkillHero_"+id if str(panel.get("mode")) == "skills" else "Preview_"+id)
+	panel._render()
+
+static func _restore_focus(panel: Control) -> void:
+	var node_name := str(panel.get_meta("dossier_focus",""))
+	if node_name.is_empty(): return
+	panel.remove_meta("dossier_focus")
+	var target: Control = panel.find_child(node_name,true,false) as Control
+	if target != null and target.is_visible_in_tree() and target.focus_mode != Control.FOCUS_NONE and not (target is BaseButton and target.disabled):
+		target.grab_focus.call_deferred()
+
+static func _open_skill(panel: Control, id: String, skill_id: String) -> void:
+	panel.preview_hero = id
+	panel.set_meta("dossier_skill_id",skill_id)
+	var equipped: Array = _view(panel,"hero_view",id).get("loadout",[])
+	var slot := equipped.find(skill_id)
+	if slot >= 0: panel.set_meta("dossier_slot",slot)
+	panel.set_meta("dossier_search","")
+	panel.set_meta("dossier_filter","all")
+	if panel.has_method("_switch_page"): panel._switch_page("skills")
+	else: panel.set_meta("dossier_page","skills"); panel._render()
+	panel.set_meta("dossier_focus","SkillPool_"+skill_id)
+	_restore_focus(panel)
+
+static func _binding(index: int) -> String:
+	return ControlBindings.label_for(ACTIONS[clampi(index,0,3)],Game.profile.get("settings",{}).get("controls",{}),Words.locale)
+
+static func _text(data: Dictionary, key: String, fallback: String = "") -> String:
+	return GameStyle.content_text(data,key,fallback)
+
+static func _t(zh: String, en: String) -> String:
+	return en if Words.locale == "en" else zh
+
+static func _button(parent: Node, node_name: String, text: String, at: Vector2, extent: Vector2, action: Callable, id: String, selected: bool = false, primary: bool = false) -> Button:
+	var button := GameStyle.button(parent,"",at,extent,action)
+	button.name = node_name
+	button.text = text
+	RoleSkin.button(button,id,selected,primary)
+	return button
+
+static func _scroll(parent: Node, node_name: String, at: Vector2, extent: Vector2) -> ScrollContainer:
 	var scroll := ScrollContainer.new()
-	scroll.name = "SkillDescriptionScroll"
-	scroll.position = Vector2(22,207)
-	scroll.size = Vector2(604,222)
+	scroll.name = node_name
+	scroll.position = at
+	scroll.size = extent
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.focus_mode = Control.FOCUS_ALL
-	detail.add_child(scroll)
-	var explanation := GameStyle.literal(scroll,str(entry.description),Vector2.ZERO,Vector2(580,0),16)
-	explanation.name = "InspectedSkillDescription"
-	explanation.custom_minimum_size.x = 580
-	explanation.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	GameStyle.literal(detail,Inspect.t("成长里程碑","GROWTH MILESTONES"),Vector2(22,439),Vector2(604,24),13,GameStyle.MUTED)
-	for index: int in 10:
-		var gate: int = [1,2,3,4,10,12,14,16,18,20][index]
-		var mark := GameStyle.literal(detail,str(gate),Vector2(22+index*60,470),Vector2(52,24),17,GameStyle.CYAN if level >= gate else GameStyle.MUTED)
-		mark.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	scroll.follow_focus = true
+	parent.add_child(scroll)
+	return scroll
 
-static func skill_icon(parent: Node, hero: String, slot: String, at: Vector2, extent: Vector2) -> TextureRect:
+static func _flow(parent: Node, width: float) -> VBoxContainer:
+	var flow := VBoxContainer.new()
+	flow.custom_minimum_size.x = width
+	flow.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	flow.add_theme_constant_override("separation",12)
+	parent.add_child(flow)
+	return flow
+
+static func _paragraph(parent: Node, text: String, width: float, font_size: int, color: Color) -> Label:
+	var label := GameStyle.literal(parent,text,Vector2.ZERO,Vector2(width,0),font_size,color)
+	label.custom_minimum_size.x = width
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.tooltip_text = text
+	return label
+
+static func skill_icon(parent: Node, hero: String, skill: String, at: Vector2, extent: Vector2) -> TextureRect:
 	var icon := TextureRect.new()
-	icon.texture = Sampler.sampled("asset://skills/"+hero+"_"+slot+"_v1.png")
+	var logical := "asset://skill."+skill.to_lower() if skill.begins_with("CH") else "asset://skills/"+hero+"_"+skill+"_v1.png"
+	icon.texture = Sampler.sampled(logical) if ResourceLoader.exists(AssetCatalog.resolve(logical)) else null
+	icon.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	icon.position = at
@@ -137,12 +441,9 @@ static func skill_icon(parent: Node, hero: String, slot: String, at: Vector2, ex
 	parent.add_child(icon)
 	return icon
 
-static func metric(parent: Node, caption: String, value: String, at: Vector2, extent: Vector2) -> void:
-	var card := Panel.new()
-	card.position = at
-	card.size = extent
+static func metric(parent: Node, caption: String, value: String, at: Vector2, extent: Vector2, hero_id: String = "CH01") -> void:
+	var colors := RoleSkin.palette(hero_id)
+	var card := RoleSkin.panel(parent,hero_id,at,extent)
 	card.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	card.add_theme_stylebox_override("panel",GameStyle.box(Color("f3f0e7"),Color("e4ddca"),1))
-	parent.add_child(card)
-	GameStyle.literal(card,caption,Vector2(12,7),Vector2(extent.x-24,22),13,GameStyle.MUTED)
-	GameStyle.literal(card,value,Vector2(12,30),Vector2(extent.x-24,28),22,GameStyle.CYAN)
+	GameStyle.literal(card,caption,Vector2(10,6),Vector2(extent.x-20,24),18,colors.muted)
+	GameStyle.literal(card,value,Vector2(10,33),Vector2(extent.x-20,28),23,colors.accent)

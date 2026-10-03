@@ -1,0 +1,25 @@
+{
+  "skill_id": "CH01_SK08",
+  "name": "裂隙牵引",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in generate",
+  "date": "2026-10-03",
+  "prompt": "Use case: stylized-concept. Asset type: original handpainted cartoon fantasy RPG skill badge CH01_SK08, Rift pull. Generate ONE finished square icon, requested native 2048 x 2048, not a sheet. Subject: two large opposing chunky slate rock masses, one on each side, being pulled sharply INWARD toward a narrow central vertical jagged orange-glowing fissure. Two broad crescent amber motion trails bend inward from the outer sides to the center, clearly communicating inward suction and compression. Front high three-quarter near-isometric view, centered strongly symmetrical inward composition. No axe, no person, no circular explosion, no outgoing rays. Sculpted painterly 2.5D volumes, crisp hand-painted edges, warm upper-left sunlight, bright amber and vermillion glow against steel gray and dark navy. Circular thin antique-brass rim at 92 percent canvas width, dark navy inside the badge, genuinely transparent outside the circle. Generous safe margin; all artwork and glow contained inside the rim. Strong simple dominant shapes immediately recognizable at 44 pixel thumbnail size. Original custom game art. No text, no numbers, no letters, no logo, no watermark, no grid, no extra badges, no copied game art.",
+  "transparent_background": true,
+  "original_output": "C:\\Users\\13326\\.codex\\generated_images\\01a10116-5bb7-7b22-af3b-85b25fc566ee\\exec-367df2bb-2601-4e55-b198-a7aba47e461a.png",
+  "workspace_output": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/skills/sk08_icon.png",
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_2k": false,
+  "color_mode": "RGBA",
+  "bit_depth": 8,
+  "sha256": "f6f69c7d32cb9be33c50c756a22a919e4e2a60894ea9e1a18650e861bf6879eb",
+  "processing": "Original tool PNG copied byte for byte; no resizing, recoloring, or local image edits.",
+  "visual_review": "Actual generated image inspected. Unique main silhouette and contained brass-rim composition."
+}

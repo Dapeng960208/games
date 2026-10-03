@@ -1,0 +1,404 @@
+{
+  "schema_version": 3,
+  "asset": "poses_sw_a.png",
+  "character": "CH01",
+  "direction": "sw",
+  "angle_degrees": 135,
+  "direction_precision": "true_front_diagonal_anatomy_visually_reviewed; intended45degree_heading_not_claimed_from_prompt_as_measured_weapon_angle",
+  "source_type": "built_in_imagegen",
+  "tool": "image_gen.imagegen",
+  "created_date": "2026-10-03",
+  "generated_source": "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-56e8e62e-e9cc-4270-b93b-6c5322de92fc.png",
+  "requested_resolution": [
+    2048,
+    2048
+  ],
+  "native_upscaled": false,
+  "transparent_background": true,
+  "layout": {
+    "columns": 2,
+    "rows": 2,
+    "reading_order": "row_major",
+    "grid_rectangles_are_not_safe_crops": true
+  },
+  "prompt_set": [
+    "Use case: stylized-concept. Assettype: original CH01 SW true 135° diagonal fourpose runtime sourceA, requested native2048x2048 transparentRGBA. Image1 definesidentity/costume/weapon and handpaintedfinish, not finalstandingpose.\nTRUE FACING: SOUTHWEST135°: screenDOWN-LEFT exactly equal diagonal. Genuine FRONT-LEFT threequarter anatomy, both eyes visible, broad FRONT chestplate and foreshortened farrightshoulder, noseaimdownleft. Hips,knees,bothshoeaxis point down-left; target slashray(-.707,+.707). Draw new anatomy with same upperleftlighting; do not mirror other direction. High35° slantedoverhead near-isometric2.5D camera. All4bodies share this exact45degree frontdiagonal, notshallow30 orsteep60, no profile or straightfront. Repaint anatomy into eachpose, no bitmaprotation/mirroring.\nSame handsomeyoungadult athleticmale shortbrownhairstyled, navy233b66 fittedsplitcoat, silvere0e6ef sculptedarmor, smallgoldfittings, vermiliond6554e scarf, darkpants andsilverboots. Oneoversized dramaticgoldsilver crescentvolcanicgreataxe withblackinnerplates, orange runecracks andsunstonecore; consistentintegralblade, nofirearms. WarmupperLEFT bright handpainted cartoonfantasy, dimensionalmaterialtexture, clearcleancontours.\nFOUR complete isolatedfigures exact2x2 rowmajor: top-left idle combatready sideheldaxe inbothhands, braced stance; top-right walk towardtarget with anatomicalLEFT foot leadingandRIGHTheelbehind; bottom-left counterstep RIGHTfootleading LEFTheelbehind, visiblyswapleadingleg andarmsweight, notduplicatewalk; bottom-right basicwindup, torso woundback, elbowflexion andgreataxe behindshoulder, face andhips keep diagonal target.\nReal adult anatomy scale approximately480–550actualpixels hairtop tomeanshoeground ifcanvas1254, sameheadsize acrossframes. Whole connectedaxe,blade,twohands,bothshoes,shortscarf complete. Noactualoverlapbetween4figures, leavealphagaps; packingcanhandleunequalbounds soDON'T shrinkadultorcutweaponfortinygrid. NoFX,trails,detachedparticles,ground,floor,castshadow,text,labels,grid,watermark,extracharacters. Genuinelytransparentexternalbackground."
+  ],
+  "generation_calls": [
+    {
+      "tool": "image_gen.imagegen",
+      "prompt": "Use case: stylized-concept. Assettype: original CH01 SW true 135° diagonal fourpose runtime sourceA, requested native2048x2048 transparentRGBA. Image1 definesidentity/costume/weapon and handpaintedfinish, not finalstandingpose.\nTRUE FACING: SOUTHWEST135°: screenDOWN-LEFT exactly equal diagonal. Genuine FRONT-LEFT threequarter anatomy, both eyes visible, broad FRONT chestplate and foreshortened farrightshoulder, noseaimdownleft. Hips,knees,bothshoeaxis point down-left; target slashray(-.707,+.707). Draw new anatomy with same upperleftlighting; do not mirror other direction. High35° slantedoverhead near-isometric2.5D camera. All4bodies share this exact45degree frontdiagonal, notshallow30 orsteep60, no profile or straightfront. Repaint anatomy into eachpose, no bitmaprotation/mirroring.\nSame handsomeyoungadult athleticmale shortbrownhairstyled, navy233b66 fittedsplitcoat, silvere0e6ef sculptedarmor, smallgoldfittings, vermiliond6554e scarf, darkpants andsilverboots. Oneoversized dramaticgoldsilver crescentvolcanicgreataxe withblackinnerplates, orange runecracks andsunstonecore; consistentintegralblade, nofirearms. WarmupperLEFT bright handpainted cartoonfantasy, dimensionalmaterialtexture, clearcleancontours.\nFOUR complete isolatedfigures exact2x2 rowmajor: top-left idle combatready sideheldaxe inbothhands, braced stance; top-right walk towardtarget with anatomicalLEFT foot leadingandRIGHTheelbehind; bottom-left counterstep RIGHTfootleading LEFTheelbehind, visiblyswapleadingleg andarmsweight, notduplicatewalk; bottom-right basicwindup, torso woundback, elbowflexion andgreataxe behindshoulder, face andhips keep diagonal target.\nReal adult anatomy scale approximately480–550actualpixels hairtop tomeanshoeground ifcanvas1254, sameheadsize acrossframes. Whole connectedaxe,blade,twohands,bothshoes,shortscarf complete. Noactualoverlapbetween4figures, leavealphagaps; packingcanhandleunequalbounds soDON'T shrinkadultorcutweaponfortinygrid. NoFX,trails,detachedparticles,ground,floor,castshadow,text,labels,grid,watermark,extracharacters. Genuinelytransparentexternalbackground.",
+      "reference_images": [
+        "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/portraits/full_illustration.png"
+      ],
+      "transparent_background": true,
+      "output": "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-56e8e62e-e9cc-4270-b93b-6c5322de92fc.png"
+    }
+  ],
+  "references": [
+    "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/portraits/full_illustration.png"
+  ],
+  "frames": [
+    {
+      "name": "idle",
+      "body_height": 472,
+      "region": [
+        0,
+        0,
+        768,
+        896
+      ],
+      "foot": [
+        394.5,
+        618
+      ],
+      "head": [
+        341,
+        192
+      ],
+      "grip": [
+        291,
+        433
+      ],
+      "muzzle": [
+        181,
+        480
+      ],
+      "source_frame": {
+        "frame_index": 0,
+        "name": "idle",
+        "head": [
+          347,
+          121
+        ],
+        "boot_bottom_points": [
+          [
+            277,
+            509
+          ],
+          [
+            524,
+            585
+          ]
+        ],
+        "foot": [
+          400.5,
+          547
+        ],
+        "hair_top_y": 75,
+        "grip": [
+          297,
+          362
+        ],
+        "muzzle": [
+          187,
+          409
+        ],
+        "body_height": 472,
+        "landmark_accuracy_px": 18,
+        "risks": [
+          "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+          "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+          "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+        ],
+        "region": [
+          20,
+          71,
+          604,
+          533
+        ],
+        "alpha_component_seed": [
+          347,
+          121
+        ],
+        "alpha_component_threshold": 16,
+        "alpha_component_dilation_px": 2,
+        "alpha_component_area": 140371,
+        "foreign_alpha_pixels_in_region": 8092
+      }
+    },
+    {
+      "name": "walk_left",
+      "body_height": 475.5,
+      "region": [
+        768,
+        0,
+        768,
+        896
+      ],
+      "foot": [
+        1162,
+        618.5
+      ],
+      "head": [
+        1159,
+        192
+      ],
+      "grip": [
+        1073,
+        360
+      ],
+      "muzzle": [
+        1020,
+        357
+      ],
+      "source_frame": {
+        "frame_index": 1,
+        "name": "walk_left",
+        "head": [
+          917,
+          120
+        ],
+        "boot_bottom_points": [
+          [
+            862,
+            607
+          ],
+          [
+            978,
+            486
+          ]
+        ],
+        "foot": [
+          920,
+          546.5
+        ],
+        "hair_top_y": 71,
+        "grip": [
+          831,
+          288
+        ],
+        "muzzle": [
+          778,
+          285
+        ],
+        "body_height": 475.5,
+        "landmark_accuracy_px": 18,
+        "risks": [
+          "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+          "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+          "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+        ],
+        "region": [
+          636,
+          69,
+          605,
+          550
+        ],
+        "alpha_component_seed": [
+          917,
+          120
+        ],
+        "alpha_component_threshold": 16,
+        "alpha_component_dilation_px": 2,
+        "alpha_component_area": 135272,
+        "foreign_alpha_pixels_in_region": 6538
+      }
+    },
+    {
+      "name": "walk_right",
+      "body_height": 457,
+      "region": [
+        0,
+        896,
+        768,
+        896
+      ],
+      "foot": [
+        394.5,
+        1514
+      ],
+      "head": [
+        359,
+        1106
+      ],
+      "grip": [
+        317,
+        1285
+      ],
+      "muzzle": [
+        215,
+        1344
+      ],
+      "source_frame": {
+        "frame_index": 2,
+        "name": "walk_right",
+        "head": [
+          333,
+          704
+        ],
+        "boot_bottom_points": [
+          [
+            293,
+            1187
+          ],
+          [
+            444,
+            1037
+          ]
+        ],
+        "foot": [
+          368.5,
+          1112
+        ],
+        "hair_top_y": 655,
+        "grip": [
+          291,
+          883
+        ],
+        "muzzle": [
+          189,
+          942
+        ],
+        "body_height": 457,
+        "landmark_accuracy_px": 18,
+        "risks": [
+          "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+          "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+          "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+        ],
+        "region": [
+          24,
+          650,
+          667,
+          553
+        ],
+        "alpha_component_seed": [
+          333,
+          704
+        ],
+        "alpha_component_threshold": 16,
+        "alpha_component_dilation_px": 2,
+        "alpha_component_area": 148872,
+        "foreign_alpha_pixels_in_region": 7799
+      }
+    },
+    {
+      "name": "basic_windup",
+      "body_height": 494.5,
+      "region": [
+        768,
+        896,
+        768,
+        896
+      ],
+      "foot": [
+        1161.5,
+        1513.5
+      ],
+      "head": [
+        1202,
+        1066
+      ],
+      "grip": [
+        1197,
+        1008
+      ],
+      "muzzle": [
+        1369,
+        1083
+      ],
+      "source_frame": {
+        "frame_index": 3,
+        "name": "basic_windup",
+        "head": [
+          960,
+          728
+        ],
+        "boot_bottom_points": [
+          [
+            780,
+            1183
+          ],
+          [
+            1059,
+            1168
+          ]
+        ],
+        "foot": [
+          919.5,
+          1175.5
+        ],
+        "hair_top_y": 681,
+        "grip": [
+          955,
+          670
+        ],
+        "muzzle": [
+          1127,
+          745
+        ],
+        "body_height": 494.5,
+        "landmark_accuracy_px": 45,
+        "risks": [
+          "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+          "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+          "Far boot hidden behind coat; second sole/ground placement is visual anatomical projection estimate, not directly visible measurement.",
+          "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+        ],
+        "occluded_boot": true,
+        "region": [
+          737,
+          595,
+          514,
+          600
+        ],
+        "alpha_component_seed": [
+          960,
+          728
+        ],
+        "alpha_component_threshold": 16,
+        "alpha_component_dilation_px": 2,
+        "alpha_component_area": 157594,
+        "foreign_alpha_pixels_in_region": 3665
+      }
+    }
+  ],
+  "validation": {
+    "production_ready": false,
+    "status": "raw_eight_direction_source_for_alpha_isolation_and_runtime_validation",
+    "notes": [
+      "Entirely new45degree sources, not renamed30/60degree pictures.",
+      "Actual1254dimensions to be measured; requested2048 is not achievednative2K.",
+      "Transparent figure isolation and foot alignment remain runtime assembly tasks."
+    ],
+    "four_independent_main_components": true,
+    "source_bytes_preserved": true,
+    "frame_landmarks_within_region": true
+  },
+  "actual_resolution": [
+    1254,
+    1254
+  ],
+  "native_2k": false,
+  "sha256": "713bee15b3b9ba322a7ccabce685a8c164aae8992db437bc64a5e085f2ea1b6c",
+  "alpha_measurement": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 901931,
+    "outer_edge_alpha_gt16": {
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "left": 0
+    }
+  },
+  "native_source_dimensions": [
+    1254,
+    1254
+  ],
+  "packed_dimensions": [
+    1536,
+    1792
+  ],
+  "raw_source": "assets/characters/warrior/animations/runtime_sources/poses_sw_a.png",
+  "raw_source_sha256": "713bee15b3b9ba322a7ccabce685a8c164aae8992db437bc64a5e085f2ea1b6c",
+  "pixel_scale": 1,
+  "upscaled": false,
+  "processing": "Existing independent alpha8 components; alpha<8/hidden RGB cleared, sole anchors aligned by integer translation. No redraw, rotation, mirroring, pixel resizing or pose fitting.",
+  "retained_alpha8_pixels": 611469,
+  "standing_reference_body_height": 472
+}

@@ -1,0 +1,90 @@
+{
+  "direction": "e",
+  "tool": "built-in tools.image_gen__imagegen",
+  "workflow": "Original independently generated direction-specific asset from text and visual references. Not a rotation or derivative of the other direction.",
+  "requested_canvas": [
+    2048,
+    2048
+  ],
+  "actual_native_canvas": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "transparent_background": true,
+  "source_path": "C:/Users/13326/.codex/generated_images/01a101bb-db56-7a73-a6d0-b590fd94e183/exec-39adc8c3-7c2a-4431-8651-23d7b6d2ebd7.png",
+  "output_path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/tools/godot/art_preview/slash_directional/candidates/e/slash_e.png",
+  "source_sha256": "3cc901696fa271e94374410137080b5848aec37661ab4dc4484e338f15efb86d",
+  "bytes": 412240,
+  "checked_at_utc": "2026-10-03T13:23:45.8113980Z",
+  "reference_inputs": [
+    {
+      "path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-e8afba6d-6fa2-41c4-8c17-9e2f75a898f4.png",
+      "width": 252,
+      "height": 212,
+      "sha256": "5570ee660f9e684aebcefe726ea1d821b9249414e3ef439a314c937c004af4c4",
+      "role": "User-selected good visual reference for bright top/front cutting core style and placement only"
+    },
+    {
+      "path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/animations/runtime/poses_e_b.png",
+      "width": 1792,
+      "height": 1408,
+      "sha256": "3188e72ada61e62413b9b36e62fdcb46aa62ce742789b94d9563e0523812a120",
+      "role": "E direction pose/orientation guide; top-left release pose only"
+    }
+  ],
+  "avoidance_reference": {
+    "path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-b7851f68-d9e7-4ece-96d1-dcb1b27b04f5.png",
+    "role": "Inspected only to avoid chest/leg wrapping lines; not sent as generation input"
+  },
+  "alpha": {
+    "transparent_pixels": 1341755,
+    "partial_alpha_pixels": 230761,
+    "opaque_pixels": 0,
+    "center_alpha": 0,
+    "alpha16_bbox_inclusive": [
+      179,
+      131,
+      1181,
+      702
+    ],
+    "alpha16_lower_half_pixels": 11727,
+    "lower_half_alpha16_empty_fraction": 0.9850850484192212
+  },
+  "prompt": "Use case: stylized-concept\nAsset type: one original hand-painted 2D game VFX PNG texture, a warrior's single normal axe attack. Requested canvas 2048 x 2048 pixels, genuine transparent background, soft alpha.\nInput images: Image 1 is ONLY a visual reference for the bright short attack arc at the TOP and FRONT of the weapon. Image 2 is ONLY a pose/orientation guide; use its TOP-LEFT attack-release pose. Do not reproduce or output either source scene. Create a new independent light effect asset.\nStyle: Original polished cartoon fantasy painterly VFX. A decisive ivory-white luminous cutting edge core with a restrained warm-gold feather glow, and only two or three fine short parallel golden trailing threads. Sharp tapered ends and graceful energetic brushstrokes. No dark outline, no beige material, no opaque cloth ribbon.\nConstraints: The entire output contains ONLY the isolated light effect, no person, no body, no axe or other weapon, no ground, no scene, no text, no UI, no impact starburst, no shield. One single short unilateral slash path spanning only about 100 to 140 degrees of the swing. Keep a large hollow transparent area behind the cutting face. The back/open side must be extremely compact and must NEVER return around the invisible character's torso or legs. Do not generate a full circle, half-circle, full crescent C, ring, halo, enclosing paired lines, inverted U arch, or wrapping shield. Keep the lower half of the square mostly transparent. No disconnected large loop, no duplicate slash. One image, not a sprite sheet, no panels, no rotation copies. Generous transparent margins, every tip intact.\nDirection: E, attack faces directly RIGHT.\nComposition: Imagine the invisible E-facing warrior in the left-center holding an axe straight out to the RIGHT, as in image 2 top-left. The strongest slash sits ABOVE and just OUTSIDE the axe head on its RIGHT FRONT. Make a compact asymmetrical upper-right cutting hook: a long slim upper trailing taper enters from upper-left, curves clockwise into a thicker bright top/front cutting crest on the right, and ends quickly in a very short pointed lower tip at mid-right. The upper taper is aimed upper-left; the bottom tip is short and stays at the right edge. The main path is shallow and angled in a high three-quarter overhead / near-isometric game view. Use the top-front placement of image 1. Keep all substantial light above the horizontal midline except that tiny right-side lower tip. Absolutely no lower horizontal strand crossing through the invisible torso or legs, and no large arc return under the feet.\nFraming: Place the entire light path in the upper-middle to upper-right area of the square with generous clear margin, an effective footprint roughly 45 percent of canvas width and 28 percent of canvas height. The lower half stays almost entirely empty transparent.",
+  "visual_inspection": {
+    "shape": "Upper-left long taper to bright upper/right crest with short lower-right hook. Empty center and mostly transparent lower half. No person, axe, scene, UI or text.",
+    "direction_risk": "The active right crest still has a small down/left point. At oversized placement it could touch the warrior's waist. Use the top/front axe alignment and avoid centering the effect on the torso.",
+    "style_risk": "Warm-gold feathering is broader than the requested few fine parallel trailing threads; prompt requested restraint, but source remains painterly and thick at the active crest.",
+    "local_view_image": "Viewed local selected PNG at original detail and observed intact luminous body.",
+    "representative_pixel": {
+      "direction": "e",
+      "xy": [
+        1050,
+        480
+      ],
+      "rgba": [
+        253,
+        248,
+        200,
+        253
+      ]
+    }
+  },
+  "generation_history": [
+    {
+      "status": "selected",
+      "source_path": "C:/Users/13326/.codex/generated_images/01a101bb-db56-7a73-a6d0-b590fd94e183/exec-39adc8c3-7c2a-4431-8651-23d7b6d2ebd7.png",
+      "sha256": "3cc901696fa271e94374410137080b5848aec37661ab4dc4484e338f15efb86d",
+      "prompt": "Use case: stylized-concept\nAsset type: one original hand-painted 2D game VFX PNG texture, a warrior's single normal axe attack. Requested canvas 2048 x 2048 pixels, genuine transparent background, soft alpha.\nInput images: Image 1 is ONLY a visual reference for the bright short attack arc at the TOP and FRONT of the weapon. Image 2 is ONLY a pose/orientation guide; use its TOP-LEFT attack-release pose. Do not reproduce or output either source scene. Create a new independent light effect asset.\nStyle: Original polished cartoon fantasy painterly VFX. A decisive ivory-white luminous cutting edge core with a restrained warm-gold feather glow, and only two or three fine short parallel golden trailing threads. Sharp tapered ends and graceful energetic brushstrokes. No dark outline, no beige material, no opaque cloth ribbon.\nConstraints: The entire output contains ONLY the isolated light effect, no person, no body, no axe or other weapon, no ground, no scene, no text, no UI, no impact starburst, no shield. One single short unilateral slash path spanning only about 100 to 140 degrees of the swing. Keep a large hollow transparent area behind the cutting face. The back/open side must be extremely compact and must NEVER return around the invisible character's torso or legs. Do not generate a full circle, half-circle, full crescent C, ring, halo, enclosing paired lines, inverted U arch, or wrapping shield. Keep the lower half of the square mostly transparent. No disconnected large loop, no duplicate slash. One image, not a sprite sheet, no panels, no rotation copies. Generous transparent margins, every tip intact.\nDirection: E, attack faces directly RIGHT.\nComposition: Imagine the invisible E-facing warrior in the left-center holding an axe straight out to the RIGHT, as in image 2 top-left. The strongest slash sits ABOVE and just OUTSIDE the axe head on its RIGHT FRONT. Make a compact asymmetrical upper-right cutting hook: a long slim upper trailing taper enters from upper-left, curves clockwise into a thicker bright top/front cutting crest on the right, and ends quickly in a very short pointed lower tip at mid-right. The upper taper is aimed upper-left; the bottom tip is short and stays at the right edge. The main path is shallow and angled in a high three-quarter overhead / near-isometric game view. Use the top-front placement of image 1. Keep all substantial light above the horizontal midline except that tiny right-side lower tip. Absolutely no lower horizontal strand crossing through the invisible torso or legs, and no large arc return under the feet.\nFraming: Place the entire light path in the upper-middle to upper-right area of the square with generous clear margin, an effective footprint roughly 45 percent of canvas width and 28 percent of canvas height. The lower half stays almost entirely empty transparent."
+    }
+  ],
+  "production_asset": "res://assets/characters/warrior/fx/directional/slash_e.png",
+  "production_sha256": "3cc901696fa271e94374410137080b5848aec37661ab4dc4484e338f15efb86d",
+  "production_native_dimensions": [
+    1254,
+    1254
+  ],
+  "production_processing": "original native PNG copied byte-for-byte; no rotation, mirroring, resampling or alpha cleaning",
+  "production_native_2k": false
+}

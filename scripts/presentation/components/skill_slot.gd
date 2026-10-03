@@ -12,6 +12,8 @@ const WARNING := Color("ae463f")
 const TextureSampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 var hero_id := "CH01"
 var slot := "q"
+var skill_id := ""
+var icon_id := ""
 var key := "Q"
 var generated_texture: Texture2D
 var bezel_texture: Texture2D
@@ -32,7 +34,7 @@ func _init() -> void:
 	auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	for style_name in ["normal","hover","pressed","disabled","focus"]:
 		add_theme_stylebox_override(style_name,StyleBoxEmpty.new())
-	add_theme_font_size_override("font_size",16)
+	add_theme_font_size_override("font_size",18)
 
 func _ready() -> void:
 	mouse_entered.connect(queue_redraw)
@@ -62,9 +64,25 @@ func configure(next_hero_id: String, next_slot: String, next_key: String) -> voi
 func update_state(next_state: Dictionary) -> void:
 	if bool(state.get("locked",false)) and not bool(next_state.get("locked",false)):
 		unlock_flash = 3.5
-	state = next_state.duplicate()
+	state = next_state.duplicate(true)
+	_update_identity()
 	tooltip_text = str(state.get("details",""))
 	queue_redraw()
+
+func _update_identity() -> void:
+	var next_skill_id := str(state.get("skill_id",""))
+	var next_icon_id := str(state.get("icon_id",state.get("icon","")))
+	if next_icon_id.is_empty() and not next_skill_id.is_empty():
+		next_icon_id = "asset://skill."+next_skill_id.to_lower()
+	elif not next_icon_id.is_empty() and not next_icon_id.begins_with("asset://") and not next_icon_id.begins_with("res://"):
+		next_icon_id = "asset://"+next_icon_id
+	if next_skill_id == skill_id and next_icon_id == icon_id: return
+	skill_id = next_skill_id
+	icon_id = next_icon_id
+	if not skill_id.is_empty(): hero_id = skill_id.get_slice("_",0)
+	# Identity changes load once. Combat redraws use the cached texture.
+	if not icon_id.is_empty():
+		generated_texture = TextureSampler.sampled(icon_id) if FileAccess.file_exists(AssetCatalog.resolve(icon_id)) else null
 
 func _process(delta: float) -> void:
 	if get_tree().paused: return
@@ -108,11 +126,11 @@ func _draw() -> void:
 	var overlay := Color(.16,.12,.19,.77)
 	if bool(state.get("casting",false)):
 		draw_circle(center,28,overlay)
-		_center_text("CAST" if Words.locale == "en" else "施放中",42,16,Color("fff1cf"))
+		_center_text("CAST" if Words.locale == "en" else "施放中",42,18,Color("fff1cf"))
 		draw_arc(center,29,-PI*.5,-PI*.5+TAU*float(state.get("cast_progress",0)),40,accent,3,true)
 	elif bool(state.get("queued",false)):
 		draw_circle(center,28,overlay)
-		_center_text(("NEXT %d" if Words.locale == "en" else "接招%d") % maxi(1,int(state.get("queue_position",1))),42,16,Color("b8eadb"))
+		_center_text(("NEXT %d" if Words.locale == "en" else "接招%d") % maxi(1,int(state.get("queue_position",1))),42,18,Color("b8eadb"))
 	elif remaining > 0.0 and not locked:
 		draw_circle(center,28,overlay)
 		var ratio := clampf(remaining/duration,0,1)
@@ -121,31 +139,31 @@ func _draw() -> void:
 	elif locked:
 		if lock_texture != null: draw_texture_rect(lock_texture,Rect2(center-Vector2(12,17),Vector2(24,28)),false,Color(.70,.77,.80,1))
 		else: _draw_lock(Vector2(size.x*.5,22),Color("a6b0b8"))
-		_center_text("Lv."+str(int(state.get("unlock",1))),54,16,Color("e6dac8"))
+		_center_text("Locked" if Words.locale == "en" else "未学会",54,18,Color("e6dac8"))
 	elif insufficient:
 		draw_circle(center,28,Color(.34,.12,.19,.32))
-		_center_text("LOW" if Words.locale == "en" else "不足",62,16,Color("ffdbc0"))
+		_center_text("LOW" if Words.locale == "en" else "不足",62,18,Color("ffdbc0"))
 	var title := str(state.get("name",""))
 	if slot == "dash": title = "Dodge" if Words.locale == "en" else "闪避"
 	var font := get_theme_font("font","Button")
-	if font.get_string_size(title,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x > size.x-4:
+	if font.get_string_size(title,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x > size.x-4:
 		# Full localized names are always in the focus/hover detail. Keep the
-		# standing label readable at16px instead of shrinking it into a caption.
-		while title.length() > 1 and font.get_string_size(title+"…",HORIZONTAL_ALIGNMENT_LEFT,-1,16).x > size.x-4:
+		# standing label readable at18px instead of shrinking it into a caption.
+		while title.length() > 1 and font.get_string_size(title+"…",HORIZONTAL_ALIGNMENT_LEFT,-1,18).x > size.x-4:
 			title = title.left(title.length()-1)
 		title += "…"
-	_center_text(title,84,16,MUTED if locked else INK)
+	_center_text(title,84,18,MUTED if locked else INK)
 	var key_text := key
 	var compact_keys := {"鼠标左键":"左键","鼠标右键":"右键","鼠标中键":"中键","鼠标侧键 1":"侧键1","鼠标侧键 2":"侧键2","Left click":"LMB","Right click":"RMB","Middle click":"MMB","Mouse side 1":"M4","Mouse side 2":"M5"}
 	key_text = str(compact_keys.get(key_text,key_text))
-	if font.get_string_size(key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x > size.x-16:
-		while key_text.length() > 1 and font.get_string_size(key_text+"…",HORIZONTAL_ALIGNMENT_LEFT,-1,16).x > size.x-16:
+	if font.get_string_size(key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x > size.x-16:
+		while key_text.length() > 1 and font.get_string_size(key_text+"…",HORIZONTAL_ALIGNMENT_LEFT,-1,18).x > size.x-16:
 			key_text = key_text.left(key_text.length()-1)
 		key_text += "…"
-	var key_width := minf(size.x-4,maxf(26,font.get_string_size(key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x+12))
+	var key_width := minf(size.x-4,maxf(26,font.get_string_size(key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x+12))
 	var key_rect := Rect2((size.x-key_width)*.5,89,key_width,21)
 	draw_style_box(GameStyle.box(Color("51334d"),Color("b68d54"),1),key_rect)
-	_center_text(key_text,106,16,Color("fff1cf"))
+	_center_text(key_text,106,18,Color("fff1cf"))
 
 func _center_text(value: String, baseline: float, font_size: int, color: Color) -> void:
 	var font := get_theme_font("font","Button")
@@ -174,7 +192,7 @@ func _draw_glyph(color: Color) -> void:
 			var x := center.x-12+index*13
 			_stroke([Vector2(x,12),Vector2(x+9,23),Vector2(x,34)],color,3.0)
 		return
-	var slot_index := ["q","secondary","f","ultimate"].find(slot)
+	var slot_index := int(skill_id.get_slice("_SK",1))-1 if not skill_id.is_empty() else ["q","secondary","f","ultimate"].find(slot)
 	match hero_id:
 		"CH02":
 			match slot_index:

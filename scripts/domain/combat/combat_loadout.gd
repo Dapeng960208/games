@@ -123,7 +123,16 @@ func resource_cost(amount: float, slot: String = "") -> float:
 		return INF
 	if effects == null or Game.run == null:
 		return amount
-	var cost: float = float(effects.call("skill_cost", amount, _context({"base_cost": amount, "slot": slot})))
+	var identifier := slot
+	if slot in Rules.SKILL_ORIGINS and is_instance_valid(owner_player) and owner_player.has_method("skill_id_for_slot"):
+		identifier = str(owner_player.call("skill_id_for_slot", slot))
+	var request := {"base_cost":amount, "input_slot":slot}
+	if effects._skill_index({"skill_id":identifier}) > 0:
+		request["skill_id"] = identifier
+		request["slot"] = effects.skill_origin(request)
+	else:
+		request["slot"] = slot
+	var cost: float = float(effects.call("skill_cost", amount, _context(request)))
 	return maxf(0.0, cost) if is_finite(cost) else amount
 
 
@@ -153,9 +162,8 @@ func _apply_commands(result: Dictionary, context: Dictionary) -> void:
 	if result.has("b06_tide_mark"):
 		var marked: Node2D = _target(result.b06_tide_mark.get("target_id"))
 		if _alive(marked): _b06_tide_mark = {"target":weakref(marked), "until":_clock + float(result.b06_tide_mark.get("duration", 6.0))}
-	if result.has("b05_bloom") and context.get("node_position") is Vector2:
+	if result.has("b05_bloom") and result.b05_bloom.get("position") is Vector2:
 		var bloom: Dictionary = result.b05_bloom.duplicate(true)
-		bloom["position"] = context.node_position
 		_b05_pending_blooms.append(bloom)
 	for command: Dictionary in result.get("self_statuses", []):
 		var id: String = str(command.get("status", ""))
@@ -231,8 +239,11 @@ func _apply_refunds(commands: Array) -> void:
 	var cooldowns: Dictionary = owner_player.get("cooldowns")
 	for command: Dictionary in commands:
 		var seconds: float = maxf(0.0, float(command.get("seconds", 0.0)))
-		var slot: String = str(command.get("slot", ""))
-		slot = str({"Q": "q", "right": "secondary", "F": "f", "R": "ultimate"}.get(slot, slot))
+		var slot: String = str(command.get("skill_id", command.get("slot", "")))
+		if not command.has("skill_id"):
+			slot = str({"Q": "q", "right": "secondary", "F": "f", "R": "ultimate"}.get(slot, slot))
+			if slot != "dash" and owner_player.has_method("canonical_skill_id"):
+				slot = str(owner_player.call("canonical_skill_id", slot))
 		if slot == "dash":
 			owner_player.set("dash_cooldown", maxf(0.0, float(owner_player.get("dash_cooldown")) - seconds))
 		elif cooldowns.has(slot):
@@ -280,7 +291,7 @@ func _apply_bonus_hit(command: Dictionary, context: Dictionary) -> void:
 			continue
 		seen[target.get_instance_id()] = true
 		# Deliberately bypass room.resolve_direct_hit and all primary-hit callbacks.
-		var packet: Dictionary = {"damage_source":"equipment","damage_type":str(command.get("damage_type", "magic" if Game.run.hero_id == "CH03" else "physical")),"attacker_stats":Game.run.stats,"proc_depth":1,"equipment_eligible":false,"original_basic":false}
+		var packet: Dictionary = {"damage_source":"equipment","damage_type":str(command.get("damage_type", "magic" if Game.run.hero_id == "CH03" else "physical")),"attacker_stats":Game.run.stats,"proc_depth":1,"equipment_eligible":false,"original_basic":false,"original":false,"derived":true,"root_event_id":str(context.get("root_event_id", "")),"skill_id":str(context.get("skill_id", "")),"input_slot":str(context.get("input_slot", "")),"effect_id":str(command.get("effect_id", ""))}
 		var accepted_hit: bool = bool(target.call("take_damage", float(command.get("damage_by_target", {}).get(str(identifier), amount)), &"equipment", Vector2.ZERO, packet))
 		if accepted_hit and _alive(target):
 			for status_data: Variant in command.get("states", []):
@@ -323,14 +334,22 @@ func _context(extra: Dictionary = {}) -> Dictionary:
 		"now": _clock,
 		"room_id": room.get_instance_id() if is_instance_valid(room) else 0,
 		"stats": stats,
-		"remaining_cooldowns": {"Q": float(cooldowns.get("q", 0.0)), "right": float(cooldowns.get("secondary", 0.0)), "F": float(cooldowns.get("f", 0.0)), "R": float(cooldowns.get("ultimate", 0.0)), "dash": float(owner_player.get("dash_cooldown"))},
+		"remaining_cooldowns": cooldowns.duplicate(),
 		"self_chilled": _statuses(owner_player).has("chill"),
 	}
+	context.remaining_cooldowns["dash"] = float(owner_player.get("dash_cooldown"))
+	if owner_player.has_method("class_state_view"):
+		context["class_state"] = owner_player.call("class_state_view")
 	context.merge(extra, true)
+	# Stable identity wins over an input slot or historical source label.
+	if not str(context.get("skill_id", "")).is_empty():
+		context["skill_slot"] = effects.skill_origin(context)
 	if not context.has("damage_source") and extra.has("kind"):
 		context["damage_source"] = str(extra.kind)
+	if not context.has("damage_source") and str(extra.get("source", "")) in ["primary", "basic", "skill"]:
+		context["damage_source"] = str(extra.source)
 	if not context.has("original_basic"):
-		context["original_basic"] = str(context.get("damage_source", "")) == "primary"
+		context["original_basic"] = str(context.get("damage_source", "")) in ["primary", "basic"]
 	if not context.has("equipment_eligible"):
 		context["equipment_eligible"] = bool(context.original_basic)
 	if not context.has("proc_depth"):
@@ -346,8 +365,6 @@ func _context(extra: Dictionary = {}) -> Dictionary:
 		context["target_position"] = target.position
 		context["distance"] = owner_player.position.distance_to(target.position)
 		context["target_alive"] = _alive(target)
-		var marked: bool = bool(owner_player.call("has_hunter_mark", target)) if owner_player.has_method("has_hunter_mark") else false
-		context["hunter_marked"] = marked or int(extra.get("hunter_mark_target", 0)) == target.get_instance_id()
 		var health: Variant = target.get("health")
 		if health != null:
 			context["target_hp"] = float(health.get("current"))
@@ -461,7 +478,7 @@ func _combat_active(room: Node) -> bool:
 
 func _b05_arc_targets(context: Dictionary) -> Array:
 	var result: Array = []
-	if str(context.get("skill_slot", "")) != "secondary": return result
+	if effects.skill_origin(context) != "secondary": return result
 	var direction: Vector2 = context.get("b05_direction", owner_player.get("aim_direction"))
 	if direction.is_zero_approx(): return result
 	# "Short arc" inherits the base W geometry (115,120 degrees), not its
@@ -477,7 +494,7 @@ func _b05_arc_targets(context: Dictionary) -> Array:
 func _b05_pierce_targets(context: Dictionary) -> Array:
 	var result: Array = []
 	var target: Variant = context.get("target")
-	if str(context.get("skill_slot", "")) != "secondary" or not target is Node2D or not is_instance_valid(target): return result
+	if effects.skill_origin(context) != "secondary" or not target is Node2D or not is_instance_valid(target): return result
 	var direction: Vector2 = context.get("b05_direction", Vector2.ZERO)
 	if direction.is_zero_approx(): return result
 	direction = direction.normalized()

@@ -1,0 +1,509 @@
+{
+  "key": "se_a",
+  "components32": [
+    {
+      "pixels": 115730,
+      "seed": [
+        287,
+        40
+      ],
+      "region": [
+        106,
+        40,
+        487,
+        590
+      ]
+    },
+    {
+      "pixels": 113135,
+      "seed": [
+        916,
+        40
+      ],
+      "region": [
+        729,
+        40,
+        487,
+        602
+      ]
+    },
+    {
+      "pixels": 109935,
+      "seed": [
+        303,
+        641
+      ],
+      "region": [
+        125,
+        641,
+        476,
+        581
+      ]
+    },
+    {
+      "pixels": 106564,
+      "seed": [
+        910,
+        672
+      ],
+      "region": [
+        727,
+        672,
+        436,
+        532
+      ]
+    }
+  ],
+  "alpha": [
+    0,
+    255
+  ],
+  "outer_edge_alpha": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "hero_id": "CH02",
+  "direction": "SE",
+  "pose_set": "A",
+  "tool": "builtin image_gen.imagegen",
+  "use_case": "stylized-concept",
+  "prompt": "EditonlytheclearDIRECTION defect in referencegame2x2fourposeAatlas. PreserveSAMEADULTFEMALEchestnutbob ivoryturquoisecoralgunner goldsilvercyanorbitalcarbine andoriginalbrightwarmhandpainted2.5Dhigh35degreecamera, SAMEperson/headscaleandposeorder idle/walkleft/walkright/shoulderedwindup. Entirehumanandguncontainedandtransparentisolatedall4quarters, nofloor/shadow/text/FX. Native2048²request. DoNOT bitmaprotateormirror: paintanatomicalperspectivefix. SE45 trueDOWNRIGHT. Bottomright shoulder-rifle WINDUP in source is too horizontal, fix its PHYSICAL gunbarrel to45°, breech→muzzle has EQUAL rightward anddownwarddistance. Example physicalbreech(950,820)→muzzle(1130,1000), notcurrentmuzzle(1190,940). Shortenriflebycorrect45perspective andredraw arms/shoulderhold so barreltopplanevisible. Samefacechesthipsbootslooktrue45downright, notshallow30. Preserveotherthreepose meanings andstablepersonscale; idlewalklowrifle naturallylowercanvary butallbodybearing45.",
+  "history": [
+    {
+      "kind": "initial_generation",
+      "prompt": "Use case: stylized-concept. One original videogame animation source atlas, transparentRGBA. Native2048x2048 requested. Exactly FOUR complete isolated full-body figures of the SAME ADULT FEMALE gunner in 2x2grid. Reference1portraitdefines adult identity andcostume;Reference2 handpainted action style/scale only. Short chestnutbob, slimathleticgrownwoman, tailored ivoryturquoise shortsurveyingcoat tinycoraltrim, practicalfittedturquoise trousers ivoryboots darkgloves. Cool ornate GOLD/SILVER/CYAN ENERGY CARBINE withorbitalcircularsight samegunallcells. Bright warmupperleftsun handpainted cartoonfantasy withsculpted2.5Dvolume, high35degreeoblique near-isometricgamecamera, visiblehair/shoulder/rifletopplanes. Samecamera, anatomy,headsize/personscale fixedallcells, realisticadultheadtobodyratio. RowmajorA: upperleft IDLE lowgunready feetplanted; upperright WALK_LEFT leftlegforward largevisiblestride; lowerleft WALK_RIGHT oppositephase rightlegforward; lowerright BASIC_WINDUP riflefirmlyshouldered andaimed. Eachbodyhead-to-meantwobootcontact standingheightabout540–580actualpx at1254source; entirebodyandENTIREgunincludingmuzzle completeinsideowncell,35pxemptyalpha0marginswherepossible, clearintercellgutters. No label/text/grid/floor/shadow/scenery, noflash/projectile/FX/trails. Realtransparentbackground no checkerboard. AllFOURgenuinebodyviews face SE exactlySCREEN LOWER-RIGHT45degclockwisefromRIGHT. Bodyface,chest,hips,bootsandstepdirectiontrue45. MorefrontalvisiblethanpureE. RiflePHYSICAL barrelbreech→muzzle inlowerrightWINDUP mustbe45degreeDOWN-RIGHT, dx=dy, muzzlebelowbreechbytheSAMEdistanceitistoRIGHT. For example breech(930,830), muzzle(1120,1020). Not30shallowor60steep. Griphandbelowbarrel doesnotdefinebarrelray. Compactcarbineforeshortenedcorrectly; stock shoulder, handsmatchrifle perspective. Paintfreshtrue45anatomy, no bitmaprotationormirror.",
+      "output": "C:/Users/13326/.codex/generated_images/01a10120-84a7-7910-974a-edf330202387/exec-24434ca9-2d36-42d2-b9cb-ff89ce776611.png"
+    },
+    {
+      "kind": "single_direction_defect_edit",
+      "prompt": "EditonlytheclearDIRECTION defect in referencegame2x2fourposeAatlas. PreserveSAMEADULTFEMALEchestnutbob ivoryturquoisecoralgunner goldsilvercyanorbitalcarbine andoriginalbrightwarmhandpainted2.5Dhigh35degreecamera, SAMEperson/headscaleandposeorder idle/walkleft/walkright/shoulderedwindup. Entirehumanandguncontainedandtransparentisolatedall4quarters, nofloor/shadow/text/FX. Native2048²request. DoNOT bitmaprotateormirror: paintanatomicalperspectivefix. SE45 trueDOWNRIGHT. Bottomright shoulder-rifle WINDUP in source is too horizontal, fix its PHYSICAL gunbarrel to45°, breech→muzzle has EQUAL rightward anddownwarddistance. Example physicalbreech(950,820)→muzzle(1130,1000), notcurrentmuzzle(1190,940). Shortenriflebycorrect45perspective andredraw arms/shoulderhold so barreltopplanevisible. Samefacechesthipsbootslooktrue45downright, notshallow30. Preserveotherthreepose meanings andstablepersonscale; idlewalklowrifle naturallylowercanvary butallbodybearing45.",
+      "output": "C:\\Users\\13326\\.codex\\generated_images\\01a10120-84a7-7910-974a-edf330202387\\exec-41727afd-bb4e-4303-be95-bee746f18542.png"
+    }
+  ],
+  "requested_native_dimensions": [
+    2048,
+    2048
+  ],
+  "native_2k": false,
+  "source_upsampled": false,
+  "original_source_bytes_preserved": true,
+  "source_style": "Bright handpainted cartoon fantasy, high35degree near-isometric2.5D, warm light; original adult female gunner.",
+  "frames": [
+    {
+      "name": "idle",
+      "body_height": 574.5,
+      "region": [
+        0,
+        0,
+        640,
+        704
+      ],
+      "foot": [
+        269,
+        602.5
+      ],
+      "head": [
+        235,
+        94
+      ],
+      "grip": [
+        270,
+        290
+      ],
+      "muzzle": [
+        514,
+        432
+      ],
+      "source_frame": {
+        "name": "idle",
+        "region": [
+          106,
+          40,
+          487,
+          590
+        ],
+        "foot": [
+          325,
+          614.5
+        ],
+        "foot_contacts": [
+          [
+            211,
+            620
+          ],
+          [
+            439,
+            609
+          ]
+        ],
+        "head": [
+          291,
+          106
+        ],
+        "grip": [
+          326,
+          302
+        ],
+        "muzzle": [
+          570,
+          444
+        ],
+        "barrel_breech": [
+          351,
+          278
+        ],
+        "body_height": 574.5,
+        "body_height_measurement": "True hair top to mean of the two observed boot-ground contacts, native source pixels; bent pose naturally shorter.",
+        "landmark_accuracy_px": 10,
+        "source_px_weapon_axis": [
+          244,
+          142
+        ],
+        "measured_axis_degrees": 30.2,
+        "source_px_barrel_axis": [
+          219,
+          166
+        ],
+        "measured_barrel_degrees": 37.16,
+        "foreground_component": {
+          "threshold_alpha": 32,
+          "seed": [
+            287,
+            40
+          ],
+          "foreground_pixels": 115730,
+          "connectivity": 8
+        },
+        "risks": [
+          "Native-pixel landmarks were visually observed by hand, approximately ±10 px; no proportion-based estimates.",
+          "Complete foreground crosses nominal grid divider; isolate recorded component and do not crop by nominal quarter."
+        ]
+      }
+    },
+    {
+      "name": "walk_left",
+      "body_height": 566.5,
+      "region": [
+        640,
+        0,
+        640,
+        704
+      ],
+      "foot": [
+        909,
+        602.5
+      ],
+      "head": [
+        872,
+        98
+      ],
+      "grip": [
+        923,
+        312
+      ],
+      "muzzle": [
+        1143,
+        446
+      ],
+      "source_frame": {
+        "name": "walk_left",
+        "region": [
+          729,
+          40,
+          487,
+          602
+        ],
+        "foot": [
+          956,
+          606.5
+        ],
+        "foot_contacts": [
+          [
+            852,
+            584
+          ],
+          [
+            1060,
+            629
+          ]
+        ],
+        "head": [
+          919,
+          102
+        ],
+        "grip": [
+          970,
+          316
+        ],
+        "muzzle": [
+          1190,
+          450
+        ],
+        "barrel_breech": [
+          975,
+          278
+        ],
+        "body_height": 566.5,
+        "body_height_measurement": "True hair top to mean of the two observed boot-ground contacts, native source pixels; bent pose naturally shorter.",
+        "landmark_accuracy_px": 10,
+        "source_px_weapon_axis": [
+          220,
+          134
+        ],
+        "measured_axis_degrees": 31.35,
+        "source_px_barrel_axis": [
+          215,
+          172
+        ],
+        "measured_barrel_degrees": 38.66,
+        "foreground_component": {
+          "threshold_alpha": 32,
+          "seed": [
+            916,
+            40
+          ],
+          "foreground_pixels": 113135,
+          "connectivity": 8
+        },
+        "risks": [
+          "Native-pixel landmarks were visually observed by hand, approximately ±10 px; no proportion-based estimates.",
+          "Complete foreground crosses nominal grid divider; isolate recorded component and do not crop by nominal quarter.",
+          "stride_phase_review_needed: near-leg forward silhouettes of the two walk frames appear similar; true anatomical opposite stride has not been verified."
+        ]
+      }
+    },
+    {
+      "name": "walk_right",
+      "body_height": 528,
+      "region": [
+        0,
+        704,
+        640,
+        704
+      ],
+      "foot": [
+        269,
+        1306
+      ],
+      "head": [
+        235,
+        844
+      ],
+      "grip": [
+        274,
+        1032
+      ],
+      "muzzle": [
+        498,
+        1172
+      ],
+      "source_frame": {
+        "name": "walk_right",
+        "region": [
+          125,
+          641,
+          476,
+          581
+        ],
+        "foot": [
+          350,
+          1169
+        ],
+        "foot_contacts": [
+          [
+            230,
+            1129
+          ],
+          [
+            470,
+            1209
+          ]
+        ],
+        "head": [
+          316,
+          707
+        ],
+        "grip": [
+          355,
+          895
+        ],
+        "muzzle": [
+          579,
+          1035
+        ],
+        "barrel_breech": [
+          376,
+          873
+        ],
+        "body_height": 528,
+        "body_height_measurement": "True hair top to mean of the two observed boot-ground contacts, native source pixels; bent pose naturally shorter.",
+        "landmark_accuracy_px": 10,
+        "source_px_weapon_axis": [
+          224,
+          140
+        ],
+        "measured_axis_degrees": 32.01,
+        "source_px_barrel_axis": [
+          203,
+          162
+        ],
+        "measured_barrel_degrees": 38.59,
+        "foreground_component": {
+          "threshold_alpha": 32,
+          "seed": [
+            303,
+            641
+          ],
+          "foreground_pixels": 109935,
+          "connectivity": 8
+        },
+        "risks": [
+          "Native-pixel landmarks were visually observed by hand, approximately ±10 px; no proportion-based estimates.",
+          "Actual whole sprite is complete but source outer gutter is less than requested35px; use complete component.",
+          "stride_phase_review_needed: near-leg forward silhouettes of the two walk frames appear similar; true anatomical opposite stride has not been verified."
+        ]
+      }
+    },
+    {
+      "name": "basic_windup",
+      "body_height": 507.5,
+      "region": [
+        640,
+        704,
+        640,
+        704
+      ],
+      "foot": [
+        909,
+        1305.5
+      ],
+      "head": [
+        887,
+        860
+      ],
+      "grip": [
+        918,
+        996
+      ],
+      "muzzle": [
+        1104,
+        1159
+      ],
+      "source_frame": {
+        "name": "basic_windup",
+        "region": [
+          727,
+          672,
+          436,
+          532
+        ],
+        "foot": [
+          940,
+          1179.5
+        ],
+        "foot_contacts": [
+          [
+            760,
+            1167
+          ],
+          [
+            1120,
+            1192
+          ]
+        ],
+        "head": [
+          918,
+          734
+        ],
+        "grip": [
+          949,
+          870
+        ],
+        "muzzle": [
+          1135,
+          1033
+        ],
+        "barrel_breech": [
+          954,
+          842
+        ],
+        "body_height": 507.5,
+        "body_height_measurement": "True hair top to mean of the two observed boot-ground contacts, native source pixels; bent pose naturally shorter.",
+        "landmark_accuracy_px": 10,
+        "source_px_weapon_axis": [
+          186,
+          163
+        ],
+        "measured_axis_degrees": 41.23,
+        "source_px_barrel_axis": [
+          181,
+          191
+        ],
+        "measured_barrel_degrees": 46.54,
+        "foreground_component": {
+          "threshold_alpha": 32,
+          "seed": [
+            910,
+            672
+          ],
+          "foreground_pixels": 106564,
+          "connectivity": 8
+        },
+        "risks": [
+          "Native-pixel landmarks were visually observed by hand, approximately ±10 px; no proportion-based estimates."
+        ]
+      }
+    }
+  ],
+  "direction_qa": {
+    "expected_degrees": 45,
+    "actual_attacking_physical_barrel_degrees": 46.54,
+    "physical_barrel_deviation_degrees": 1.54,
+    "within_direction_bin_15_degrees": true,
+    "grip_axis_note": "Grip below barrel is an anchor; physical barrel direction is breech-to-muzzle, both measurements preserved."
+  },
+  "validation_status": "candidate_for_A9_view_and_runtime_pack",
+  "production_family_ready": false,
+  "risks": [
+    "Tool output is native1254x1254, request2048 not achieved; no upscale used.",
+    "Use recorded foreground component for packing; nominal cells can include neighboring sprites or low-alpha noise."
+  ],
+  "source_absolute": "C:\\Users\\13326\\.codex\\generated_images\\01a10120-84a7-7910-974a-edf330202387\\exec-41727afd-bb4e-4303-be95-bee746f18542.png",
+  "source_sha256": "4eacf8be774f83a9b6a171f9297c20660549f72687ac3c32f24e00370785f47b",
+  "source_native_dimensions": [
+    1254,
+    1254
+  ],
+  "project_path": "assets/characters/gunner/animations/runtime_sources/poses_se_a.png",
+  "stride_phase_review_needed": true,
+  "stride_phase_review_observation": "A9 direct image review: upper-right and lower-left walk poses both visually resemble near-leg forward extension. Anatomical left/right leg identity and true opposite stride phase could not be confidently confirmed. Names walk_left/walk_right describe intended semantics only; verify actual animation motion through all-eight-direction contacts and runtime play.",
+  "native_source_dimensions": [
+    1254,
+    1254
+  ],
+  "packed_dimensions": [
+    1280,
+    1408
+  ],
+  "raw_source": "assets/characters/gunner/animations/runtime_sources/poses_se_a.png",
+  "raw_source_sha256": "4eacf8be774f83a9b6a171f9297c20660549f72687ac3c32f24e00370785f47b",
+  "pixel_scale": 1,
+  "upscaled": false,
+  "processing": "Existing independent alpha8 components; alpha<8/hidden RGB cleared, sole anchors aligned by integer translation. No redraw, rotation, mirroring, pixel resizing or pose fitting.",
+  "retained_alpha8_pixels": 451228,
+  "standing_reference_body_height": 574.5
+}

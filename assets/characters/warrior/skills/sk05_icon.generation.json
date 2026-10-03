@@ -1,0 +1,24 @@
+{
+  "skill_id": "CH01_SK05",
+  "name": "回旋斧斩",
+  "prompt": "Use case: stylized-concept. Asset type: production original handpainted cartoon fantasy RPG skill icon, one icon only. Primary request: 回旋斧斩, double sweeping axe attack. A broad shining silver-steel heavy axe blade in close-up, tilted diagonally, surrounded by exactly TWO bold opposite sweeping orange crescent arcs forming one dynamic circular double swing. The two thick arcs are separated and their motion directions oppose each other, one sweeping above and one below. Axe and twin circular arcs fill the icon with a very simple strong silhouette, no explosion crater. Square canvas requested 2048x2048 original native pixels, no upscale. Thin antique-brass circular rim occupying 92% of image width; completely transparent outside the circle, inside deep navy with restrained amber glow. Palette steel silver, navy, vermillion, amber. Painterly 2.5D sculpted form, bright warm upper-left sunlight, original handpainted cartoon fantasy, crisp bold large dominant silhouette, readable at 44 pixels, simplified large shapes with generous 8% safe margin. No text, numbers, letters, watermark, logo, grid, copied game art, tiny full-body characters, multiple icons, or background outside the circle.",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in generation",
+  "output_source": "C:/Users/13326/.codex/generated_images/01a10115-0bdc-75c0-a131-86d31577a770/exec-b8030d71-0e71-41e2-9164-dc8ae27122b2.png",
+  "final_path": "res://assets/characters/warrior/skills/sk05_icon.png",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "image_mode": "RGBA",
+  "alpha_channel_present": true,
+  "top_left_corner_alpha": 0,
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "upscaled": false,
+  "local_image_editing": false,
+  "sha256": "78d2374417cb7951b81b6debe85c5714e3ed384cdd0f7890f758164c304e0bee",
+  "generated_at_utc": "2026-10-03T09:30:48.540058+00:00"
+}

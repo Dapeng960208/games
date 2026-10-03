@@ -134,7 +134,10 @@ func configure(enemy: Node2D) -> void:
 		skill_badge.name = "EnemySkillBadge"
 		skill_badge.identity = str(actor.get("enemy_id"))
 		skill_badge.icon = Art.skill_icon_for(skill_badge.identity)
-		skill_badge.z_index = 7
+		# Nearby prose and icons stay below the room's z=5 danger geometry,
+		# regardless of the owning actor's body layer.
+		skill_badge.z_as_relative = false
+		skill_badge.z_index = 4
 		skill_badge.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		# This sibling stays upright, outside the body's palette and mirroring.
 		actor.add_child(skill_badge)
@@ -210,13 +213,19 @@ func advance(delta: float) -> void:
 		_update_contact_flash()
 	queue_redraw()
 
-func receive_impact(direction: Vector2, strength: float = 1.0, heavy: bool = false, reaction_style: String = "CH01") -> void:
+func receive_impact(direction: Vector2, strength: float = 1.0, heavy: bool = false, reaction_style: String = "CH01", contact_pause: float = -1.0) -> void:
 	if not is_instance_valid(actor) or strength <= 0.0 or (is_inside_tree() and get_tree().paused):
 		return
 	var already_held: bool = _contact_hold_remaining > 0.0
+	var coordinated: bool = is_finite(contact_pause) and contact_pause >= 0.0
+	if coordinated:
+		# Live contacts supply the attacker's actual remaining visual pause.
+		# Even a weaker recoil kept below shares that clock; AI/movement stay live.
+		_contact_hold_remaining = clampf(contact_pause, 0.0, 0.085)
 	# Simultaneous pellets/ticks cannot perpetually replace the contact pose.
-	# A real heavy contact may upgrade a light pose within the original window;
-	# neither that upgrade nor later contacts extend the window's deadline.
+	# A real heavy contact may upgrade a light pose within the original window.
+	# Coordinated contacts already share the live player's remaining deadline;
+	# standalone previews keep their original hold deadline below.
 	if already_held and (not heavy or _impact_heavy):
 		return
 	if _contact_release_remaining > 0.0 and _impact_elapsed < _impact_duration:
@@ -239,7 +248,7 @@ func receive_impact(direction: Vector2, strength: float = 1.0, heavy: bool = fal
 	_impact_duration = (0.20 if heavy else 0.13) if _reaction_style == "CH02" else (0.22 if heavy else 0.17) if _reaction_style == "CH03" else (0.25 if heavy else 0.18)
 	_impact_elapsed = 0.0
 	_impact_age = 0.0
-	if not already_held and _contact_release_remaining <= 0.0 and strength >= 0.5:
+	if not coordinated and not already_held and _contact_release_remaining <= 0.0 and strength >= 0.5:
 		# Derived field/node contacts arrive at .28 strength and keep a small
 		# flowing recoil; direct contacts match the attacker's hit-stop cadence.
 		_contact_hold_remaining = (0.074 if heavy else 0.042) if _reaction_style == "CH01" else (0.030 if heavy else 0.015) if _reaction_style == "CH02" else (0.038 if heavy else 0.024)

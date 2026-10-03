@@ -31,7 +31,7 @@ static func owned(room: Node, channel: String) -> bool:
 	return game.run.relics.has(channel) or game.run.relics.has({"split":"RL01","ember":"RL02","arc":"RL03"}.get(channel,""))
 
 static func original(context: Dictionary) -> bool:
-	return bool(context.get("original_basic",false)) and bool(context.get("equipment_eligible",false)) and int(context.get("proc_depth",0)) == 0 and not str(context.get("root_event_id","")).is_empty()
+	return bool(context.get("original_basic",false)) and bool(context.get("equipment_eligible",false)) and bool(context.get("original",true)) and not bool(context.get("derived",false)) and int(context.get("proc_depth",0)) == 0 and str(context.get("damage_source",context.get("source","primary"))) in ["primary","basic"] and not str(context.get("root_event_id","")).is_empty()
 
 static func reset_room(room: Node) -> void:
 	if is_instance_valid(room) and room.has_meta(STATE_META): room.remove_meta(STATE_META)
@@ -84,7 +84,8 @@ static func decorate(base: Dictionary, hero: String, relic_id: String, biome: St
 	out.texture = Equipment.texture(str(out.art_item))
 	var race_effect := ""
 	if biome == "B01" and channel == "arc":
-		race_effect = "Every third confirmed basic-hit root restores 1 resource; 3s internal cooldown." if english else "每第3次有效普攻命中回复1点职业资源，内置冷却3秒。"
+		var amount := 10 if int(base.get("ruleset_version", 1)) == 2 else 1
+		race_effect = "Every third confirmed basic-hit root restores %d resource; 3s internal cooldown." % amount if english else "每第3次有效普攻命中回复%d点职业资源，内置冷却3秒。" % amount
 	elif biome == "B02" and channel == "ember":
 		race_effect = "This relic's original basic-hit damage-over-time lasts 20% longer." if english else "该遗物由原始普攻施加的持续伤害状态时长延长20%。"
 	elif biome == "B03" and channel == "arc" and hero == "CH01":

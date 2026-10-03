@@ -1,0 +1,464 @@
+{
+  "schema_version": 1,
+  "role": "CH03",
+  "direction": "ne",
+  "direction_angle_degrees": 315,
+  "angle_convention": "Screen E0/SE45/S90/SW135/W180/NW225/N270/NE315; true body redraw, no mirror/raster rotation.",
+  "file": "poses_ne_a.png",
+  "source_file": "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-5c7080aa-aa9e-451b-89d3-95528705d5b5.png",
+  "initial_source_file": "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-bdc28c1a-1381-4395-a7ac-aaff542f13b9.png",
+  "tool": "image_gen.imagegen",
+  "prompt": "Use case: stylized-concept. Original game character source sheet: EXACTLY FOUR complete independent sprites in2x2 on true transparent RGBA. Requested native2048x2048. Reference1 is adult CH03 Lumi identity/costume only (NO pet/background); reference2 shows rear anatomy/left-staff hand/highcamera only, do NOT copy NORTH direction. Redraw NEW true NE 315degree rear-three-quarter poses facing UPPER RIGHT at EXACT45degrees to right horizontal. Rear hat, rear chestnut curls, back bodice seams and back skirt dominate. ZERO frontal face/eyes/front bodice, NO mirroring or whole-raster rotation.\nAdult woman22, full bust, clearly narrow cinched waist, slender shoulders/arms/calves, adult proportionate body and covered practical outfit. Obsidian-black/midnight-purple fitted mid-length witchdress with silver magical embroidery/crescent ornaments, BOTH black crescent boots visible under natural skirt, compact large-looking black-purple witchhat, ornate huge black-silver star-ring/crescent staff with dark-purple crystal and tightly contained icy-blue light. LEFT anatomical shoulder/arm is FAR side behind head at screen upper-LEFT; show that LEFT sleeve and left hand holding staff on screen-left/upper-left far side of body. NEAR RIGHT arm is separate on screen right and EMPTY for commands. Do not let near right arm hold staff. If staff sits ahead-right, far LEFT forearm crosses IN FRONT OF CHEST and is occluded by back torso, with the LEFT hand gripping. Exactly2 shoulders/2arms/2hands.\nWarm dimensional hand-painted cartoon fantasy.35degree high downward near-isometric2.5D camera: visible TOP surfaces of hat, shoulders and boot uppers, not flat eye-level illustration. Dark fabric clear highlights/volume. Match identity/clothing inall4 and same adult anatomy size.\nLayout2columns2rows, no grid/labels. On native1254fallback each627cell whole sprite fits535x535 visible box centered locally(313,313), with46pxalpha0padding around hat/staff/hair/hem/boots and true empty central gutter. Body naturalhead/hairtop EXCLUDING HAT to mean2bootsoles450–500 realnativepixels; whole hat-to-boot<560px. Compact hat crown and ring staff height so body stays large. No neighboring-cell overlap.\nTL IDLE: poised planted stance facing exact diagonal, LEFT staff upright at side, RIGHT EMPTY hand restingnearwaist.\nTR WALK_LEFT: actual anatomical LEFT boot leading along exact diagonal, RIGHT boot trailing, two boots distinct, leftstaff upright, rightempty arm counter-swing.\nBL WALK_RIGHT: reciprocal stride with RIGHT boot leading, LEFT trailing, visibly different fromTR, same diagonalview, leftstaffhandunchanged.\nBR BASIC_WINDUP: small preparatory weightshift, LEFT staff uprightatside, RIGHT EMPTY hand lightly raised forward toward exact diagonal target to command separately rendered pet but NO pet here.\nNo extra person/pet/animal, no floor/shadow/trail/projectile/broadFX/text/watermark/grid/croppedparts. Complete4people4staff, truealpha0outside. Maintain exactly2arms/2hands perwoman.",
+  "edit_prompt": "Use case: precise-object-edit. Edit target reference1 is new NE A sheet. Its body is too close to NORTH straight-back; correct ONLY anatomical body yaw and boot facing to true NORTHEAST315degrees / upperRIGHT at EXACT45degrees above right horizontal. Redraw true right-up rear-three-quarter anatomy, no whole image mirror/rotation. Reference2 shows proper right-up REAR identity and left-hand staff anatomy; use that as structural guidance and turn farther15degrees towardright to45degreeNE ratherthan30degreeNNE. This is a NEW45degree direction, never copy/rename30degree source.\nFor allfour sprites show a clear RIGHT side of BACK torso, rearhead tilted towardupperright, shoulderline/hipline/boottoes aimdiagonally45degreesright-up. Backbodice/curls dominate, ZERO eyes/frontface/frontbodice. Torso must no longer appear symmetricNORTH. Keep exact CH03 adultwoman22,black-purple silvercrescent fittedwitchdress, narrowwaist,slenderlimbs,curlychestnut hair,compacthat,blackboots,black-silverstar-ringpurplecrystal icybluestaff, high35degree camera/volumetric handpaintedstyle. Maintain same originalnative anatomy scale/posepositions.\nTL idle;TR walk_left;BL walk_right reciprocalstrides;BR basicwindup. Lefthandstaff preserved for EVERY pose: far LEFT arm from upperleftshoulder holdingstaffonfarupperleft/leftoftorso, rightneararm EMPTY rests/swings/commands. Exactly2arms2hands, avoid thirdarm. No swappingleft/right. Completehatstaffbootsinsideeachquarter,trueRGBAtransparency, requestednative2048²,useactualnativefilewithoutupscaling. No pet/floor/shadow/trail/text. Correct NEbody/bootsorientation45degree ONLY, preserve costume,action identity andscale.",
+  "initial_tool_arguments": {
+    "prompt": "Use case: stylized-concept. Original game character source sheet: EXACTLY FOUR complete independent sprites in2x2 on true transparent RGBA. Requested native2048x2048. Reference1 is adult CH03 Lumi identity/costume only (NO pet/background); reference2 shows rear anatomy/left-staff hand/highcamera only, do NOT copy NORTH direction. Redraw NEW true NE 315degree rear-three-quarter poses facing UPPER RIGHT at EXACT45degrees to right horizontal. Rear hat, rear chestnut curls, back bodice seams and back skirt dominate. ZERO frontal face/eyes/front bodice, NO mirroring or whole-raster rotation.\nAdult woman22, full bust, clearly narrow cinched waist, slender shoulders/arms/calves, adult proportionate body and covered practical outfit. Obsidian-black/midnight-purple fitted mid-length witchdress with silver magical embroidery/crescent ornaments, BOTH black crescent boots visible under natural skirt, compact large-looking black-purple witchhat, ornate huge black-silver star-ring/crescent staff with dark-purple crystal and tightly contained icy-blue light. LEFT anatomical shoulder/arm is FAR side behind head at screen upper-LEFT; show that LEFT sleeve and left hand holding staff on screen-left/upper-left far side of body. NEAR RIGHT arm is separate on screen right and EMPTY for commands. Do not let near right arm hold staff. If staff sits ahead-right, far LEFT forearm crosses IN FRONT OF CHEST and is occluded by back torso, with the LEFT hand gripping. Exactly2 shoulders/2arms/2hands.\nWarm dimensional hand-painted cartoon fantasy.35degree high downward near-isometric2.5D camera: visible TOP surfaces of hat, shoulders and boot uppers, not flat eye-level illustration. Dark fabric clear highlights/volume. Match identity/clothing inall4 and same adult anatomy size.\nLayout2columns2rows, no grid/labels. On native1254fallback each627cell whole sprite fits535x535 visible box centered locally(313,313), with46pxalpha0padding around hat/staff/hair/hem/boots and true empty central gutter. Body naturalhead/hairtop EXCLUDING HAT to mean2bootsoles450–500 realnativepixels; whole hat-to-boot<560px. Compact hat crown and ring staff height so body stays large. No neighboring-cell overlap.\nTL IDLE: poised planted stance facing exact diagonal, LEFT staff upright at side, RIGHT EMPTY hand restingnearwaist.\nTR WALK_LEFT: actual anatomical LEFT boot leading along exact diagonal, RIGHT boot trailing, two boots distinct, leftstaff upright, rightempty arm counter-swing.\nBL WALK_RIGHT: reciprocal stride with RIGHT boot leading, LEFT trailing, visibly different fromTR, same diagonalview, leftstaffhandunchanged.\nBR BASIC_WINDUP: small preparatory weightshift, LEFT staff uprightatside, RIGHT EMPTY hand lightly raised forward toward exact diagonal target to command separately rendered pet but NO pet here.\nNo extra person/pet/animal, no floor/shadow/trail/projectile/broadFX/text/watermark/grid/croppedparts. Complete4people4staff, truealpha0outside. Maintain exactly2arms/2hands perwoman.",
+    "referenced_image_paths": [
+      "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/mage/portraits/full_illustration.png",
+      "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-5ea3a695-3aab-4357-900f-c8f1b63dbd55.png"
+    ],
+    "transparent_background": true
+  },
+  "tool_arguments": {
+    "prompt": "Use case: precise-object-edit. Edit target reference1 is new NE A sheet. Its body is too close to NORTH straight-back; correct ONLY anatomical body yaw and boot facing to true NORTHEAST315degrees / upperRIGHT at EXACT45degrees above right horizontal. Redraw true right-up rear-three-quarter anatomy, no whole image mirror/rotation. Reference2 shows proper right-up REAR identity and left-hand staff anatomy; use that as structural guidance and turn farther15degrees towardright to45degreeNE ratherthan30degreeNNE. This is a NEW45degree direction, never copy/rename30degree source.\nFor allfour sprites show a clear RIGHT side of BACK torso, rearhead tilted towardupperright, shoulderline/hipline/boottoes aimdiagonally45degreesright-up. Backbodice/curls dominate, ZERO eyes/frontface/frontbodice. Torso must no longer appear symmetricNORTH. Keep exact CH03 adultwoman22,black-purple silvercrescent fittedwitchdress, narrowwaist,slenderlimbs,curlychestnut hair,compacthat,blackboots,black-silverstar-ringpurplecrystal icybluestaff, high35degree camera/volumetric handpaintedstyle. Maintain same originalnative anatomy scale/posepositions.\nTL idle;TR walk_left;BL walk_right reciprocalstrides;BR basicwindup. Lefthandstaff preserved for EVERY pose: far LEFT arm from upperleftshoulder holdingstaffonfarupperleft/leftoftorso, rightneararm EMPTY rests/swings/commands. Exactly2arms2hands, avoid thirdarm. No swappingleft/right. Completehatstaffbootsinsideeachquarter,trueRGBAtransparency, requestednative2048²,useactualnativefilewithoutupscaling. No pet/floor/shadow/trail/text. Correct NEbody/bootsorientation45degree ONLY, preserve costume,action identity andscale.",
+    "referenced_image_paths": [
+      "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-bdc28c1a-1381-4395-a7ac-aaff542f13b9.png",
+      "C:/Users/13326/.codex/generated_images/01a10125-2412-7af0-bf04-97efbb2df1ad/exec-b6c0bec1-8bf7-4c15-993c-bc562488bc32.png"
+    ],
+    "transparent_background": true
+  },
+  "tool_output": {
+    "output_hint": "Generated images are saved to C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad as C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-5c7080aa-aa9e-451b-89d3-95528705d5b5.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  "transparent_background": true,
+  "requested_native_size": [
+    2048,
+    2048
+  ],
+  "native_resampling": false,
+  "status": "candidate_direction_identity_valid_for_parent_runtime_pack",
+  "copy_to_assets": true,
+  "handedness_review": "NE far anatomical left arm prompted and visually apparent in release/recovery/dash; two arms complete; guard both hands. Parent visual ruling remains authoritative.",
+  "handoff_risk": [
+    "Some component bounding rectangles intersect neighboring-row rectangles; runtime agent must isolate by connected component seed before packing. Original native PNG is unchanged."
+  ],
+  "frames": [
+    {
+      "name": "idle",
+      "body_height": 415,
+      "region": [
+        0,
+        0,
+        576,
+        704
+      ],
+      "foot": [
+        256,
+        616
+      ],
+      "head": [
+        294,
+        241
+      ],
+      "grip": [
+        176,
+        219
+      ],
+      "muzzle": [
+        157,
+        19
+      ],
+      "source_frame": {
+        "name": "idle",
+        "cell": "TL",
+        "region": [
+          189,
+          5,
+          364,
+          623
+        ],
+        "foot": [
+          367,
+          605
+        ],
+        "head": [
+          405,
+          230
+        ],
+        "grip": [
+          287,
+          208
+        ],
+        "component_seed": [
+          287,
+          208
+        ],
+        "muzzle": [
+          268,
+          8
+        ],
+        "staff_tip": [
+          268,
+          8
+        ],
+        "staff_crystal_center": [
+          270,
+          90
+        ],
+        "body_height": 415,
+        "anatomy_top": [
+          405,
+          190
+        ],
+        "landmark_accuracy_px": 25,
+        "requires_component_isolation": true,
+        "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+        "head_note": "Manual natural head center behind hat brim, not hat center.",
+        "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+        "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+        "component_seed_alpha": 253,
+        "visible_alpha_gt8_bbox": [
+          189,
+          5,
+          364,
+          623
+        ],
+        "component_seed_bbox": [
+          189,
+          5,
+          364,
+          623
+        ],
+        "component_alpha_gt8_pixel_count": 140294
+      }
+    },
+    {
+      "name": "walk_left",
+      "body_height": 405,
+      "region": [
+        576,
+        0,
+        576,
+        704
+      ],
+      "foot": [
+        832,
+        616
+      ],
+      "head": [
+        851,
+        258
+      ],
+      "grip": [
+        711,
+        227
+      ],
+      "muzzle": [
+        679,
+        30
+      ],
+      "source_frame": {
+        "name": "walk_left",
+        "cell": "TR",
+        "region": [
+          739,
+          6,
+          391,
+          640
+        ],
+        "foot": [
+          968,
+          598
+        ],
+        "head": [
+          987,
+          240
+        ],
+        "grip": [
+          847,
+          209
+        ],
+        "component_seed": [
+          847,
+          209
+        ],
+        "muzzle": [
+          815,
+          12
+        ],
+        "staff_tip": [
+          815,
+          12
+        ],
+        "staff_crystal_center": [
+          817,
+          90
+        ],
+        "body_height": 405,
+        "anatomy_top": [
+          987,
+          193
+        ],
+        "landmark_accuracy_px": 25,
+        "requires_component_isolation": true,
+        "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+        "head_note": "Manual natural head center behind hat brim, not hat center.",
+        "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+        "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+        "component_seed_alpha": 253,
+        "visible_alpha_gt8_bbox": [
+          739,
+          6,
+          391,
+          640
+        ],
+        "component_seed_bbox": [
+          739,
+          6,
+          391,
+          640
+        ],
+        "component_alpha_gt8_pixel_count": 141555
+      }
+    },
+    {
+      "name": "walk_right",
+      "body_height": 385,
+      "region": [
+        0,
+        704,
+        576,
+        704
+      ],
+      "foot": [
+        256,
+        1320
+      ],
+      "head": [
+        295,
+        978
+      ],
+      "grip": [
+        163,
+        945
+      ],
+      "muzzle": [
+        132,
+        751
+      ],
+      "source_frame": {
+        "name": "walk_right",
+        "cell": "BL",
+        "region": [
+          175,
+          629,
+          397,
+          611
+        ],
+        "foot": [
+          374,
+          1205
+        ],
+        "head": [
+          413,
+          863
+        ],
+        "grip": [
+          281,
+          830
+        ],
+        "component_seed": [
+          281,
+          830
+        ],
+        "muzzle": [
+          250,
+          636
+        ],
+        "staff_tip": [
+          250,
+          636
+        ],
+        "staff_crystal_center": [
+          256,
+          718
+        ],
+        "body_height": 385,
+        "anatomy_top": [
+          413,
+          820
+        ],
+        "landmark_accuracy_px": 25,
+        "requires_component_isolation": true,
+        "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+        "head_note": "Manual natural head center behind hat brim, not hat center.",
+        "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+        "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+        "component_seed_alpha": 253,
+        "visible_alpha_gt8_bbox": [
+          175,
+          629,
+          397,
+          611
+        ],
+        "component_seed_bbox": [
+          175,
+          629,
+          397,
+          611
+        ],
+        "component_alpha_gt8_pixel_count": 145498
+      }
+    },
+    {
+      "name": "basic_windup",
+      "body_height": 392,
+      "region": [
+        576,
+        704,
+        576,
+        704
+      ],
+      "foot": [
+        832,
+        1320
+      ],
+      "head": [
+        886,
+        972
+      ],
+      "grip": [
+        744,
+        944
+      ],
+      "muzzle": [
+        730,
+        746
+      ],
+      "source_frame": {
+        "name": "basic_windup",
+        "cell": "BR",
+        "region": [
+          759,
+          627,
+          435,
+          609
+        ],
+        "foot": [
+          943,
+          1206
+        ],
+        "head": [
+          997,
+          858
+        ],
+        "grip": [
+          855,
+          830
+        ],
+        "component_seed": [
+          855,
+          830
+        ],
+        "muzzle": [
+          841,
+          632
+        ],
+        "staff_tip": [
+          841,
+          632
+        ],
+        "staff_crystal_center": [
+          841,
+          720
+        ],
+        "body_height": 392,
+        "anatomy_top": [
+          997,
+          814
+        ],
+        "landmark_accuracy_px": 25,
+        "requires_component_isolation": true,
+        "foot_note": "Manual mean two boot sole ground points; occluded far boot positions estimated honestly under skirt/foreshortening. No whole sprite/staff bbox used.",
+        "head_note": "Manual natural head center behind hat brim, not hat center.",
+        "muzzle_note": "Manual ring staff terminal star/spire tip; crystal center separately supplied.",
+        "body_height_note": "Projected native anatomy hair/head top to mean boot soles, excluding hat and weapon. Hidden hairline is estimated; crouch/stride reduce projected height. No upscaling.",
+        "component_seed_alpha": 253,
+        "visible_alpha_gt8_bbox": [
+          759,
+          627,
+          435,
+          609
+        ],
+        "component_seed_bbox": [
+          759,
+          627,
+          435,
+          609
+        ],
+        "component_alpha_gt8_pixel_count": 155128
+      }
+    }
+  ],
+  "region_basis": "Read-only alpha>8 connected component bounds; seed chosen manually at visible grip and validated against alpha. Full source retained byte-identically.",
+  "known_limitations": [
+    "Native output1254x1254; requested2048 not reached, no upscaling.",
+    "Actual projected body heights are below450 in several rear/action poses; native estimates recorded without substituting hat/staff height.",
+    "Source35pxtransparentpadding and total<560height not uniformly attained; component isolation needed for source-row overlap.",
+    "Near-transparent alpha<=8 specks outside frame regions remain in original; exact alpha counts/maxima recorded."
+  ],
+  "generation_history": [
+    {
+      "kind": "initial",
+      "source_file": "C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-bdc28c1a-1381-4395-a7ac-aaff542f13b9.png",
+      "sha256": "5a2a921116ef1c0e76c59f2efda5e325f3f931753f2e75b59b51ae2deb19770c",
+      "native_size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "kind": "selected_source",
+      "source_file": "C:\\Users\\13326\\.codex\\generated_images\\01a10125-2412-7af0-bf04-97efbb2df1ad\\exec-5c7080aa-aa9e-451b-89d3-95528705d5b5.png",
+      "sha256": "ab1e8a20e1c812144e02bd26e964d0155e3b8e65cd50be92cb2584f8e89d095e",
+      "native_size": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "native_size": [
+    1254,
+    1254
+  ],
+  "png_mode": "RGBA",
+  "source_sha256": "ab1e8a20e1c812144e02bd26e964d0155e3b8e65cd50be92cb2584f8e89d095e",
+  "alpha_check": {
+    "extrema": [
+      0,
+      255
+    ],
+    "canvas_border_nonzero_count": 62,
+    "canvas_border_max_alpha": 1,
+    "outside_frame_regions_nonzero_count": 1732,
+    "outside_frame_regions_max_alpha": 10,
+    "outside_frame_regions_alpha_gt8_count": 3,
+    "pixel_mutation": false,
+    "outside_frame_regions_alpha_gt16_count": 0,
+    "canvas_border_alpha_gt16_count": 0
+  },
+  "native_source_dimensions": [
+    1254,
+    1254
+  ],
+  "packed_dimensions": [
+    1152,
+    1408
+  ],
+  "raw_source": "assets/characters/mage/animations/runtime_sources/poses_ne_a.png",
+  "raw_source_sha256": "ab1e8a20e1c812144e02bd26e964d0155e3b8e65cd50be92cb2584f8e89d095e",
+  "pixel_scale": 1,
+  "upscaled": false,
+  "processing": "Existing independent alpha8 components; alpha<8/hidden RGB cleared, sole anchors aligned by integer translation. No redraw, rotation, mirroring, pixel resizing or pose fitting.",
+  "retained_alpha8_pixels": 584270,
+  "standing_reference_body_height": 415
+}

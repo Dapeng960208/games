@@ -1,0 +1,23 @@
+{
+  "skill_id": "CH02_SK01",
+  "name": "游击撤射",
+  "asset_path": "assets/characters/gunner/skills/sk01_icon.png",
+  "prompt": "Use case: stylized-concept. Asset: original fantasy RPG gunner skill icon CH02_SK01, 游击撤射 (evasive retreat shot). Create ONE polished square 2048 by 2048 source icon, not a sheet. A beautiful chunky silver-steel and teal short pistol aims right, firing three unmistakable bright golden bullets; a bold curved cyan trailing swoosh curls left behind the pistol to clearly communicate backward evasive retreat. Strong central large silhouette, painterly cartoon fantasy 2.5D material volume, warm upper-left highlights, confident clean handpainted edges. Thin antique brass circular rim takes 92% of square width, dark petrol painted inside, genuinely transparent outside the circle; 8% generous composition safety margin. Palette teal, olive, antique brass, ivory, cyan and amber, saturated fresh but elegant. Designed readable as a 44-pixel skill badge, unique action identity, very little tiny detail. Keep all bullets and all swoosh inside the badge. No text, letters, numbers, watermark, logos, game copies, grid, multiple icons, border UI, characters or full body.",
+  "tool": "image_gen.imagegen",
+  "mode": "built_in_generate",
+  "original_output": "C:/Users/13326/.codex/generated_images/01a10117-0185-7291-ae0c-f299bf80a9fc/exec-36202be5-fd4f-41d8-b13d-8888bc9c6586.png",
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "transparent_background": true,
+  "local_processing": "Copied original PNG bytes unchanged; no upscale, resizing, cropping or repainting",
+  "sha256": "bbfe02dd85ea3fd5e0fcb57d7dbaf1cc52775a945bb59b0f5773dc5cc8766580",
+  "generated_date": "2026-10-03",
+  "requested_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_2k_achieved": false,
+  "visual_review": "Original distinct skill identity, handpainted fantasy circular badge, transparent exterior, inspected actual generated output"
+}

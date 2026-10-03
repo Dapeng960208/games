@@ -1,0 +1,441 @@
+{
+  "asset": "CH02 adult female Cen Xian formal eight-direction NW source b",
+  "status": "formal_eight_direction_source_candidate_pending_runtime_packing",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "direction": "NW",
+  "direction_degrees": 225,
+  "direction_mapping": "screenright0/down90/left180/up270; screen-projected direction, not world yaw",
+  "direction_bin_limits": [
+    202.5,
+    247.5
+  ],
+  "part": "b",
+  "frame_order": "row-major",
+  "columns": 2,
+  "rows": 2,
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "final_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "native_2k": false,
+  "transparent_background": true,
+  "is_derived_source": false,
+  "pure_imagegen_output": true,
+  "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-294b1055-ff7d-4fd7-b28b-9c8bc5e41807.png",
+  "sha256": "7add7cd8fbf69bdd227f492cd6be084ba8929780149a2b8503d8e19ef814a48d",
+  "source_history": [
+    "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-2144757c-8e4f-49ae-bb46-7624f7d223f8.png",
+    "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-294b1055-ff7d-4fd7-b28b-9c8bc5e41807.png"
+  ],
+  "references": [
+    "assets/characters/gunner/animations/runtime_sources/poses_nw_a.png",
+    "assets/characters/gunner/portraits/full_illustration.png"
+  ],
+  "prompt": "Use case: stylized-concept. NEW CH02 NORTHWEST225° PART B production action sprite source. Image1 A sourceis identity/costume/material/head/bodySIZE reference ONLY; its bottomleft accidentallyfacesright, DO NOT reproduce thatwrongdirection. Image2 adultportrait identity. Drawall4 BRANDNEWposes facingNW LEFTBACK awayUPLEFT45°. Backofivorytealcoat/backshoulders/backchestnutwavybob visible, onlytinyLEFTnoseedge, neverrightnose/frontchest/face.\nHigh35° DOWNWARD near-isometric2.5D camera showingcrown, upperback/coatplanes, gunTOPplanes andbootTOPplanes. Warmbright hand-paintedcartoonfantasy, realthickmaterials. Adultagilefemale CenXian, shortchestnutwavybob, ivory#f8f3e8 fittedwaistSHORTsurveycoat(teal#329ca9backpanels tinycoral#e9846clining), practicalhighwaisttealtrousers, ivorytealboots, leathergloves, coolgoldbrasssilvercyancrystal surveyingcarbine foldingbarrelorbitalsight.\nExact2x2 FOURcompleteindependentsprites on genuineTRANSPARENTalpha. SAMEADULT HEAD/TORSO/BOOT SCALE as image1A, standinghairtop-groundfeet roughly500-550actualpx at1254native; noshrinkingB. Lowdash isgenuinebending, donot enlargeor uniformly shrinkbody tofitheight. All completehair/coat/carbine/bootsinsideowncell with35pxtransparentmargin; safeleft/right/top/bottom, clearfourgaps, no centerlinecross. Native2048x2048requested, actualnativeonly nofakeupscale.\nTOPLEFT basic_release: shouldered carbineaimedAWAYUPLEFT. CRITICAL physical barrelaxis BREECH(rearbarrelcenteratreceiver)→MUZZLE mustbe225°inSCREENPIXELS: dxnegative,dynegative,EQUALabsolutevalues. Gun projectsupLEFT EXACT45°. Smallrearwardshoulderrecoil, noflash/projectile.\nTOPRIGHT basic_recovery: absorb recoil, flexknees, lowercarbinefromshoulder intolowready, keepbodilyNWdirection.\nBOTTOMLEFT dash: veryLOW forwardUPLEFT crouched evasivedash/rollingprep, torsoforwardawayUPLEFTandonebootkicksBACKtowarddownright, tightlycradledcarbine. RealLEFTBACKhead/coat, no right-facingnose. Entireboots/gunvisible.\nBOTTOMRIGHT guard_cast: precise reload NWleftrearbody, RIGHThandholdingguntriggergrip, LEFThandchanging/supportingmagazineunderreceiver, bootsplanted; gunaimsNWup-left.\nNo wholefiguremirroring/rotation, no copy-pastedposes, nofrontchest surfaces, nofloor/groundshadow/background/text/border/FX/motiontrails/strays.",
+  "targeted_edit_prompt": "Use case: precise-object-edit. Image1 NORTHWEST B is edit target. ONE targetedcorrection ONLYTOPLEFT basic_release physicalgunaxis. Thegun currentlyaims too shallowUPLEFT. Keepwomanbody/boots/head/backcoat/cameraandallother3posesunchanged. Rotatethe weaponINHERHANDS anatomically toaim45°UPLEFT: physicalBARRELBREECH(attherearbarrelcenterabovefrontreceiver)→MUZZLEcenter musthaveequalnegative xandnegativey components in actualpixels, henceSCREEN225°. Raisefrontmuzzlerelativetobreech, notrotatewholecharacter. Adjusthands/elbowsslightlyasneeded, preservestock/trigger/foldingbarrel/orbitalsightandbothhandscomplete. No muzzleFX.\nSameadultwoman chestnutbob/ivorytealcoralcoat/boots/goldbrasscyan surveyingcarbine, high35°downwardnear-isometricpaintedwarm2.5D, trueback-leftbody. Preserveexact2x2fourcompletefiguresnativepixelswithtransparent35pxsafetymargin. TruealphaPNG requestednative2048ifavailable, noupscale, nofloor/shadow/trail/text/labels/borders.",
+  "edit_count": 1,
+  "inspection": {
+    "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-294b1055-ff7d-4fd7-b28b-9c8bc5e41807.png",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "7add7cd8fbf69bdd227f492cd6be084ba8929780149a2b8503d8e19ef814a48d",
+    "alpha_zero_fraction": 0.7132493405472504,
+    "outer_edge_nontransparent": 27,
+    "mid_x_nontransparent": 75,
+    "mid_y_nontransparent": 53,
+    "components_alpha16": [
+      {
+        "region": [
+          126,
+          10,
+          451,
+          615
+        ],
+        "pixels": 100692
+      },
+      {
+        "region": [
+          691,
+          74,
+          482,
+          562
+        ],
+        "pixels": 103888
+      },
+      {
+        "region": [
+          57,
+          723,
+          579,
+          453
+        ],
+        "pixels": 90514
+      },
+      {
+        "region": [
+          774,
+          644,
+          417,
+          575
+        ],
+        "pixels": 102103
+      }
+    ],
+    "coordinate_space": "absolute final source pixels",
+    "landmarks_method": "Manual visible head/grip/physical breech/muzzle and hair/sole annotations supported by read-only Pillow alpha contours. Body height excludes gun bbox. Dash foot uses explicit estimated ground projection. Physical weapon axis is breech-to-muzzle; never replace measured angle with the nominal target.",
+    "frame_foreign_component_pixels_alpha16": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "manual_landmarks_verified": false
+  },
+  "frames": [
+    {
+      "name": "basic_release",
+      "body_height": 506,
+      "region": [
+        0,
+        0,
+        640,
+        768
+      ],
+      "foot": [
+        424,
+        627
+      ],
+      "head": [
+        367,
+        182
+      ],
+      "grip": [
+        282,
+        226
+      ],
+      "muzzle": [
+        146,
+        34
+      ],
+      "source_frame": {
+        "head": [
+          363,
+          176
+        ],
+        "grip": [
+          278,
+          220
+        ],
+        "breech": [
+          265,
+          180
+        ],
+        "muzzle": [
+          142,
+          28
+        ],
+        "hair_top_y": 115,
+        "boot_bottom_points": [
+          [
+            289,
+            621
+          ],
+          [
+            551,
+            621
+          ]
+        ],
+        "name": "basic_release",
+        "region": [
+          118,
+          2,
+          467,
+          631
+        ],
+        "component_seed": [
+          363,
+          176
+        ],
+        "foot": [
+          420,
+          621
+        ],
+        "body_height": 506,
+        "landmark_accuracy_px": 12,
+        "weapon_axis_origin": "breech",
+        "source_px_weapon_axis": [
+          -123,
+          -152
+        ],
+        "measured_axis_degrees": 231.01985126864895,
+        "target_axis_degrees": 225,
+        "axis_deviation_degrees": 6.019851268648949,
+        "direction_bin_limits": [
+          202.5,
+          247.5
+        ],
+        "measured_axis_inside_direction_bin": true,
+        "screen_mapping": "right0/down90/left180/up270; actual source pixel barrel axis, not world yaw",
+        "region_foreign_alpha16_pixels": 0,
+        "region_needs_component_isolation": false
+      }
+    },
+    {
+      "name": "basic_recovery",
+      "body_height": 537.5,
+      "region": [
+        640,
+        0,
+        640,
+        768
+      ],
+      "foot": [
+        1064,
+        627.5
+      ],
+      "head": [
+        983,
+        158
+      ],
+      "grip": [
+        861,
+        306
+      ],
+      "muzzle": [
+        748,
+        271
+      ],
+      "source_frame": {
+        "head": [
+          944,
+          143
+        ],
+        "grip": [
+          822,
+          291
+        ],
+        "breech": [
+          851,
+          278
+        ],
+        "muzzle": [
+          709,
+          256
+        ],
+        "hair_top_y": 75,
+        "boot_bottom_points": [
+          [
+            906,
+            593
+          ],
+          [
+            1144,
+            632
+          ]
+        ],
+        "name": "basic_recovery",
+        "region": [
+          683,
+          66,
+          498,
+          578
+        ],
+        "component_seed": [
+          944,
+          143
+        ],
+        "foot": [
+          1025,
+          612.5
+        ],
+        "body_height": 537.5,
+        "landmark_accuracy_px": 12,
+        "region_foreign_alpha16_pixels": 0,
+        "region_needs_component_isolation": false
+      }
+    },
+    {
+      "name": "dash",
+      "body_height": 455,
+      "region": [
+        0,
+        768,
+        640,
+        768
+      ],
+      "foot": [
+        424,
+        1395
+      ],
+      "head": [
+        195,
+        999
+      ],
+      "grip": [
+        140,
+        1074
+      ],
+      "muzzle": [
+        35,
+        995
+      ],
+      "source_frame": {
+        "head": [
+          236,
+          784
+        ],
+        "grip": [
+          181,
+          859
+        ],
+        "breech": [
+          156,
+          821
+        ],
+        "muzzle": [
+          76,
+          780
+        ],
+        "hair_top_y": 725,
+        "boot_bottom_points": [
+          [
+            363,
+            1065
+          ],
+          [
+            618,
+            1172
+          ]
+        ],
+        "foot": [
+          465,
+          1180
+        ],
+        "landmark_accuracy_px": 35,
+        "foot_method": "Estimated actual ground projection below the forward-left low dash body; kicked rear sole is airborne.",
+        "risk": "Dash projected ground foot approx35px uncertainty, not a mean of airborne soles. Keep adult anatomy scale.",
+        "name": "dash",
+        "region": [
+          49,
+          715,
+          595,
+          469
+        ],
+        "component_seed": [
+          236,
+          784
+        ],
+        "body_height": 455,
+        "region_foreign_alpha16_pixels": 0,
+        "region_needs_component_isolation": false
+      }
+    },
+    {
+      "name": "guard_cast",
+      "body_height": 512.5,
+      "region": [
+        640,
+        768,
+        640,
+        768
+      ],
+      "foot": [
+        1064,
+        1394.5
+      ],
+      "head": [
+        1039,
+        943
+      ],
+      "grip": [
+        972,
+        1011
+      ],
+      "muzzle": [
+        815,
+        855
+      ],
+      "source_frame": {
+        "head": [
+          1014,
+          758
+        ],
+        "grip": [
+          947,
+          826
+        ],
+        "breech": [
+          940,
+          797
+        ],
+        "muzzle": [
+          790,
+          670
+        ],
+        "hair_top_y": 697,
+        "boot_bottom_points": [
+          [
+            917,
+            1203
+          ],
+          [
+            1161,
+            1216
+          ]
+        ],
+        "name": "guard_cast",
+        "region": [
+          766,
+          636,
+          433,
+          591
+        ],
+        "component_seed": [
+          1014,
+          758
+        ],
+        "foot": [
+          1039,
+          1209.5
+        ],
+        "body_height": 512.5,
+        "landmark_accuracy_px": 12,
+        "region_foreign_alpha16_pixels": 0,
+        "region_needs_component_isolation": false
+      }
+    }
+  ],
+  "known_issues": [
+    "Actual ImageGen images are1254x1254 despite2048square request; this is not native2K and no upscaling occurred.",
+    "Nominal35px safety margins are not consistently achieved; use actual complete components rather than slicing exact quadrants.",
+    "Manual landmarks typically12px error; dash ground projection35-40px uncertainty. Preserve adult head/torso scale and do not enlarge dash based on its crouched body_height.",
+    "Physical breech-to-muzzle windup/release directions are actual source pixel measurements, including recorded deviation from225/315. Aim frames still lie within their formal45degree direction bins."
+  ],
+  "credit": "Original user-directed AI-generated project character artwork using OpenAI built-in image_gen; no third-party character IP copied.",
+  "native_source_dimensions": [
+    1254,
+    1254
+  ],
+  "packed_dimensions": [
+    1280,
+    1536
+  ],
+  "raw_source": "assets/characters/gunner/animations/runtime_sources/poses_nw_b.png",
+  "raw_source_sha256": "7add7cd8fbf69bdd227f492cd6be084ba8929780149a2b8503d8e19ef814a48d",
+  "pixel_scale": 1,
+  "processing": "Existing independent alpha8 components; alpha<8/hidden RGB cleared, sole anchors aligned by integer translation. No redraw, rotation, mirroring, pixel resizing or pose fitting.",
+  "retained_alpha8_pixels": 400065,
+  "standing_reference_body_height": 545
+}

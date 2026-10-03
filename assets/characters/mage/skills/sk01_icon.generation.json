@@ -1,0 +1,22 @@
+{
+  "skill_id": "CH03_SK01",
+  "skill_name": "星铃飞弹",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in-generate",
+  "prompt": "Use case: stylized-concept. Asset type: original game skill icon CH03_SK01 星铃飞弹 (star-bell missile), one single standalone circular badge, native 2048 x 2048 square requested. Original hand-painted cartoon fantasy, dark mage magic, sculpted 2.5D volume, warm upper-left highlights contrasting cool spectral magic. A single bold silver ceremonial star bell surrounds a brilliant ghost-blue four-pointed star core; the bell and core launch diagonally upward with one short broad crescent-like luminous flight tail. Strong large silhouette clearly readable at 44 pixels, minimal details, no character figure. Inside circular badge: midnight purple and obsidian painted depth. Very thin silver circular rim occupies 92 percent of width, generous 8 percent safe margin, actual transparent background outside the circle. Palette silver, midnight purple, obsidian, ghost blue; limited pure white in bright core. No pink, red, text, letters, numbers, watermarks, logos, grid, sprite sheet, or copied game art.",
+  "original_output_path": "C:/Users/13326/.codex/generated_images/01a10117-f699-71a2-8f78-c232c3c47cc5/exec-9f8d8c62-fa21-499b-b1db-84bcf220a5ec.png",
+  "asset_path": "assets/characters/mage/skills/sk01_icon.png",
+  "requested_native_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "sha256": "7fef6dd1b10a0f6e9208c4ae509f9a7d673b983ef56a6ce55dfdf8bb6d9c4881",
+  "generated_at": "2026-10-03",
+  "transparent_background": true,
+  "upscaled": false,
+  "local_processing": "Unchanged original PNG copied to the project; no substantive local editing."
+}

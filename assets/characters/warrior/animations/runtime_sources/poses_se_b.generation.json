@@ -1,0 +1,306 @@
+{
+  "schema_version": 3,
+  "asset": "poses_se_b.png",
+  "character": "CH01",
+  "direction": "se",
+  "angle_degrees": 45,
+  "direction_precision": "true_front_diagonal_anatomy_visually_reviewed; intended45degree_heading_not_claimed_from_prompt_as_measured_weapon_angle",
+  "source_type": "built_in_imagegen",
+  "tool": "image_gen.imagegen",
+  "created_date": "2026-10-03",
+  "generated_source": "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-434508e1-7052-445f-abfe-4adc28a8c994.png",
+  "requested_resolution": [
+    2048,
+    2048
+  ],
+  "native_upscaled": false,
+  "transparent_background": true,
+  "layout": {
+    "columns": 2,
+    "rows": 2,
+    "reading_order": "row_major",
+    "grid_rectangles_are_not_safe_crops": true
+  },
+  "prompt_set": [
+    "Usecase:stylized-concept. Assettype: new original CH01 SE 45° fourpose runtime sourceB, requestednative2048square genuineRGBAalpha. Reference1 establishes exactadultmale/costume/axe/paintquality AND correct frontdiagonal direction fromA. Reference2 fixesidentity. Draw NEW B actions, not repeats ofA.\nTRUE SOUTHEAST45° equal screenDOWN+RIGHT diagonal. Front-rightthreequarter visiblefullchest, nosefacehips/kneestoes andaxe impact align(+.707,+.707), notshallow30 orsteep60. High35° slantedoverhead near-isometric2.5D, sameupperLEFT warmillumination. Handsomeadultshortbrownhair warrior/navy fittedsplitcoat/sculptedsilverarmor+finegold/vermilionscarf/darkpants/silverboots. Sameenormousgoldsilver volcanicgreataxe, orangefissures/sunstonecore, nofirearms. Brightwarmhandpainted cartoonfantasy vividmaterialvolume.\nFourseparatecompletefigures2x2 rowmajor: top-left basic_release at realheavychop CONTACT towardthat targetdiagonal, bothhandsdriveaxe downinfronttowardtarget, weightcommitted onforwardleg; top-right basic_recovery pullingbladebacktowardhip andcenteringweight; bottom-left dash, lowforewarddiagonallunge towardtarget, bentlegs, axe tuckedbehindbody and noFXtrail; bottom-right guard_cast, uprightwidebracestance, connectedshaftacrosschestwithwholeblade besidebody, warcry. ALLbody/facehips/toes use same45°frontdiagonal. BOTHbootsmustbevisible even ifcoatskirts neednatural flutterapart; do nothide farboot completelyunderlongcoat. Sameanatomicalhandsgriponecompleteaxe correctly, sameheadsize/detailacrossAandB.\nRealhair-top-toaverageshoecontact inuprightposes480–550actualpx ifcanvas1254, compressedlungekeepssameanatomy andnaturallyshorterprojection. CompleteALLweapon/bladeedge/boots/hands withnooutsidecanvascut;leave25px alphaatouteredges. Fourseparatebodycomponents,noactualintersection, flexible boundsareokayforcomponentpack. DONOT shrinkbodyorfakeposebyrotatingtexture. Noeffects,trails,particles,detachedchips,floor,shadow,text,labels,watermark. Genuinelytransparentexternalbackground.",
+    "Usecase:precise-object-edit. Preserve adultmale CH01 identity/navy-silver-goldarmor/vermilionscarf/originalaxe/handpaintedwarmleftlitquality and exactfourpose2x2 layout B. Change ONLY specific directional/contact or edge defects below.\nCRITICAL TOPLEFT attack-release directional correction: it currently strikes to bottomLEFT, but must strike bottomRIGHT. Redraw connected axe shaft/hands so visiblegripcenter near(390,350) drives bladecenter near(535,505), a genuine screen-downRIGHT45-degree contact ray. The enormous blade must sit belowRIGHT of grippinghands, not left. Turn top-leftface/head/chest/hips toward FRONT-RIGHT diagonal with noseprojectingdownright as in A. TOPRIGHT recoveringface also looks downRIGHT, not left; torso may twist but face/toes retain target. Bottomleftdash and bottomrightguard already trueSE, preserve them.\nFourcomplete independentfullbody figures: release/recovery/dash/guard; anatomicalsize unchanged, no mirrored/rotated bitmap, wholeconnectedweapons andboots, eachmainfigure remainsdetachedfromneighbors. Actualtransparentexternalalpha, no floor/shadow/FXtrails/text/labels. Restorecomplete contours naturally, do not simplycrop offendingparts."
+  ],
+  "generation_calls": [
+    {
+      "tool": "image_gen.imagegen",
+      "prompt": "Usecase:stylized-concept. Assettype: new original CH01 SE 45° fourpose runtime sourceB, requestednative2048square genuineRGBAalpha. Reference1 establishes exactadultmale/costume/axe/paintquality AND correct frontdiagonal direction fromA. Reference2 fixesidentity. Draw NEW B actions, not repeats ofA.\nTRUE SOUTHEAST45° equal screenDOWN+RIGHT diagonal. Front-rightthreequarter visiblefullchest, nosefacehips/kneestoes andaxe impact align(+.707,+.707), notshallow30 orsteep60. High35° slantedoverhead near-isometric2.5D, sameupperLEFT warmillumination. Handsomeadultshortbrownhair warrior/navy fittedsplitcoat/sculptedsilverarmor+finegold/vermilionscarf/darkpants/silverboots. Sameenormousgoldsilver volcanicgreataxe, orangefissures/sunstonecore, nofirearms. Brightwarmhandpainted cartoonfantasy vividmaterialvolume.\nFourseparatecompletefigures2x2 rowmajor: top-left basic_release at realheavychop CONTACT towardthat targetdiagonal, bothhandsdriveaxe downinfronttowardtarget, weightcommitted onforwardleg; top-right basic_recovery pullingbladebacktowardhip andcenteringweight; bottom-left dash, lowforewarddiagonallunge towardtarget, bentlegs, axe tuckedbehindbody and noFXtrail; bottom-right guard_cast, uprightwidebracestance, connectedshaftacrosschestwithwholeblade besidebody, warcry. ALLbody/facehips/toes use same45°frontdiagonal. BOTHbootsmustbevisible even ifcoatskirts neednatural flutterapart; do nothide farboot completelyunderlongcoat. Sameanatomicalhandsgriponecompleteaxe correctly, sameheadsize/detailacrossAandB.\nRealhair-top-toaverageshoecontact inuprightposes480–550actualpx ifcanvas1254, compressedlungekeepssameanatomy andnaturallyshorterprojection. CompleteALLweapon/bladeedge/boots/hands withnooutsidecanvascut;leave25px alphaatouteredges. Fourseparatebodycomponents,noactualintersection, flexible boundsareokayforcomponentpack. DONOT shrinkbodyorfakeposebyrotatingtexture. Noeffects,trails,particles,detachedchips,floor,shadow,text,labels,watermark. Genuinelytransparentexternalbackground.",
+      "reference_images": [
+        "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-24af9c4e-e9dd-4d3c-8826-04b74466760b.png",
+        "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/portraits/full_illustration.png"
+      ],
+      "transparent_background": true,
+      "output": "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-a2abe962-60d5-4bd2-bdcb-f95b43b4bfea.png"
+    },
+    {
+      "tool": "image_gen.imagegen",
+      "prompt": "Usecase:precise-object-edit. Preserve adultmale CH01 identity/navy-silver-goldarmor/vermilionscarf/originalaxe/handpaintedwarmleftlitquality and exactfourpose2x2 layout B. Change ONLY specific directional/contact or edge defects below.\nCRITICAL TOPLEFT attack-release directional correction: it currently strikes to bottomLEFT, but must strike bottomRIGHT. Redraw connected axe shaft/hands so visiblegripcenter near(390,350) drives bladecenter near(535,505), a genuine screen-downRIGHT45-degree contact ray. The enormous blade must sit belowRIGHT of grippinghands, not left. Turn top-leftface/head/chest/hips toward FRONT-RIGHT diagonal with noseprojectingdownright as in A. TOPRIGHT recoveringface also looks downRIGHT, not left; torso may twist but face/toes retain target. Bottomleftdash and bottomrightguard already trueSE, preserve them.\nFourcomplete independentfullbody figures: release/recovery/dash/guard; anatomicalsize unchanged, no mirrored/rotated bitmap, wholeconnectedweapons andboots, eachmainfigure remainsdetachedfromneighbors. Actualtransparentexternalalpha, no floor/shadow/FXtrails/text/labels. Restorecomplete contours naturally, do not simplycrop offendingparts.",
+      "reference_images": [
+        "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-a2abe962-60d5-4bd2-bdcb-f95b43b4bfea.png"
+      ],
+      "transparent_background": true,
+      "output": "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-434508e1-7052-445f-abfe-4adc28a8c994.png"
+    }
+  ],
+  "references": [
+    "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-24af9c4e-e9dd-4d3c-8826-04b74466760b.png",
+    "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/portraits/full_illustration.png",
+    "C:/Users/13326/.codex/generated_images/01a10120-36ed-79f0-9b1c-d2e1ece1f2e1/exec-a2abe962-60d5-4bd2-bdcb-f95b43b4bfea.png"
+  ],
+  "frames": [
+    {
+      "frame_index": 4,
+      "name": "basic_release",
+      "head": [
+        429,
+        88
+      ],
+      "boot_bottom_points": [
+        [
+          79,
+          562
+        ],
+        [
+          349,
+          454
+        ]
+      ],
+      "foot": [
+        214,
+        508
+      ],
+      "hair_top_y": 37,
+      "grip": [
+        455,
+        352
+      ],
+      "muzzle": [
+        589,
+        493
+      ],
+      "body_height": 471,
+      "landmark_accuracy_px": 18,
+      "risks": [
+        "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+        "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+        "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+      ],
+      "region": [
+        44,
+        31,
+        669,
+        629
+      ],
+      "alpha_component_seed": [
+        429,
+        88
+      ],
+      "alpha_component_threshold": 16,
+      "alpha_component_dilation_px": 2,
+      "alpha_component_area": 185083,
+      "foreign_alpha_pixels_in_region": 5443
+    },
+    {
+      "frame_index": 5,
+      "name": "basic_recovery",
+      "head": [
+        819,
+        89
+      ],
+      "boot_bottom_points": [
+        [
+          795,
+          606
+        ],
+        [
+          943,
+          512
+        ]
+      ],
+      "foot": [
+        869,
+        559
+      ],
+      "hair_top_y": 26,
+      "grip": [
+        959,
+        258
+      ],
+      "muzzle": [
+        1125,
+        325
+      ],
+      "body_height": 533,
+      "landmark_accuracy_px": 18,
+      "risks": [
+        "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+        "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+        "Recovery torso and head counterturn while drawing axe back; this settle pose must not be interpreted as the release aiming ray.",
+        "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+      ],
+      "region": [
+        679,
+        18,
+        565,
+        601
+      ],
+      "alpha_component_seed": [
+        819,
+        89
+      ],
+      "alpha_component_threshold": 16,
+      "alpha_component_dilation_px": 2,
+      "alpha_component_area": 170775,
+      "foreign_alpha_pixels_in_region": 3069
+    },
+    {
+      "frame_index": 6,
+      "name": "dash",
+      "head": [
+        581,
+        773
+      ],
+      "boot_bottom_points": [
+        [
+          188,
+          1082
+        ],
+        [
+          418,
+          1105
+        ]
+      ],
+      "foot": [
+        303,
+        1093.5
+      ],
+      "hair_top_y": 724,
+      "grip": [
+        297,
+        789
+      ],
+      "muzzle": [
+        176,
+        725
+      ],
+      "body_height": 369.5,
+      "landmark_accuracy_px": 18,
+      "risks": [
+        "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+        "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+        "BBox includes foreignalpha; extract seedconnected maincomponent before packing.",
+        "Compressed/stepping actualvisible bodyheight below448, notreplacedwithweaponbbox/upscale."
+      ],
+      "region": [
+        28,
+        653,
+        602,
+        459
+      ],
+      "alpha_component_seed": [
+        581,
+        773
+      ],
+      "alpha_component_threshold": 16,
+      "alpha_component_dilation_px": 2,
+      "alpha_component_area": 145722,
+      "foreign_alpha_pixels_in_region": 85
+    },
+    {
+      "frame_index": 7,
+      "name": "guard_cast",
+      "head": [
+        892,
+        681
+      ],
+      "boot_bottom_points": [
+        [
+          720,
+          1147
+        ],
+        [
+          1034,
+          1222
+        ]
+      ],
+      "foot": [
+        877,
+        1184.5
+      ],
+      "hair_top_y": 629,
+      "grip": [
+        934,
+        794
+      ],
+      "muzzle": [
+        1115,
+        775
+      ],
+      "body_height": 555.5,
+      "landmark_accuracy_px": 18,
+      "risks": [
+        "Manual fullsource landmarks, actual illustrated sole average; projection/airborne feet can make value differ from anatomical stature.",
+        "Fixed anatomy scale by idle, never enlarge crouched dash based on compressed bodyheight.",
+        "BBox includes foreignalpha; extract seedconnected maincomponent before packing."
+      ],
+      "region": [
+        655,
+        618,
+        596,
+        619
+      ],
+      "alpha_component_seed": [
+        892,
+        681
+      ],
+      "alpha_component_threshold": 16,
+      "alpha_component_dilation_px": 2,
+      "alpha_component_area": 194961,
+      "foreign_alpha_pixels_in_region": 744
+    }
+  ],
+  "validation": {
+    "production_ready": false,
+    "status": "raw_eight_direction_source_for_alpha_isolation_and_runtime_validation",
+    "notes": [
+      "Entirely new45degree sources, not renamed30/60degree pictures.",
+      "Actual1254dimensions to be measured; requested2048 is not achievednative2K.",
+      "Transparent figure isolation and foot alignment remain runtime assembly tasks."
+    ],
+    "four_independent_main_components": true,
+    "source_bytes_preserved": true,
+    "frame_landmarks_within_region": true
+  },
+  "release_axis_measurement": {
+    "method": "atan2_of_manually_observed_visible_blade_center_minus_gripping_hand",
+    "actual_angle_degrees": 46.458123155897226,
+    "target_angle_degrees": 45,
+    "signed_deviation_degrees": 1.4581231558972831,
+    "accuracy": "handpainted_axe_sweep_and_landmark_estimate; not a projectile_muzzle",
+    "risk": ""
+  },
+  "actual_resolution": [
+    1254,
+    1254
+  ],
+  "native_2k": false,
+  "sha256": "4c216d30c8a1239a11aea74f7292a84e7d7bb00cf72024faa9ed57fa3024b85f",
+  "alpha_measurement": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 807714,
+    "outer_edge_alpha_gt16": {
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "left": 0
+    }
+  }
+}

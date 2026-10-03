@@ -1,0 +1,314 @@
+{
+  "asset_id": "hero_mage_basic_southeast_b",
+  "asset_type": "original_handpainted_basic_attack_animation_source",
+  "tool": "built-in image_gen",
+  "generated_on": "2026-10-03",
+  "requested_size": {
+    "width": 2048,
+    "height": 2048
+  },
+  "actual_size": {
+    "width": 1254,
+    "height": 1254
+  },
+  "native_2k_requirement_met": false,
+  "upscaled": false,
+  "mode": "RGBA",
+  "source_output": "C:/Users/13326/.codex/generated_images/01a10039-c472-79a2-808d-1e986772741a/exec-be7df74c-de60-4141-a8e5-48a4e2f5dcfb.png",
+  "references": [
+    "assets/characters/mage/portraits/full_illustration.png",
+    "assets/characters/mage/animations/basic_southeast.png"
+  ],
+  "prompts": [
+    "Use case: stylized-concept\nAsset type: high-quality original HAND-PAINTED fantasy-game BASIC ATTACK sprite source, FOUR full-body poses in an EXACT2×2 grid, transparentRGBA.\nInput1 selected portrait: exact face, adult anatomy, costume and cool staff design. Input2 previous southeast casting sheet: match its painted2.5D volume and high camera, but FIX all crowding and overlap using a spacious2×2layout. Do not reproduce8figures.\nCHARACTER: Lumi, clearly adult22 cute chestnut-curly-haired woman, naturally FULL BUST under fully covering high-neck blouse, defined NARROW WAIST, slender arms and legs, normal balanced adult proportions; not plus-size, not child/chibi. Same elegant dark-mage BLACK/MIDNIGHT PURPLE/SILVER arcane rune dress and huge crescent witch hat, black boots. Same full BLACK-SILVER star-ring staff, deep-purple crystal, tiny contained icy-blue crystal light. NO pink, no warm-gold costume. Exactly one Lumi per cell, no pet/companion on sheet.\nCAMERA: all four poses face SOUTHEAST, front-right three-quarter facing lower-right on ground, fixed HIGH-ANGLE three-quarter OBLIQUE TOP-DOWN near-isometric. Entire head/body has real dimensional perspective; do not change direction or rotatebitmap.\nSTYLE: richly painted cartoon fantasy, SOLID2.5D hand-painted fabric, hair, skin and metal volume, warm upper-left sunlight and restrained spectral cyan highlights. Match reference detail, no flatvector, no stickfigures, no pixelart, no diagrams.\nLAYOUT VERY IMPORTANT: native2048×2048square requested, exactly FOUR cells: upper-left, upper-right, lower-left, lower-right. Invisible equal2×2cells. Each character's HAT-TOP to SHOE-SOLE height approximately40%of WHOLEcanvas height (=80%ofcellheight). Preserve high detail at source scale. ENTIRE staff also fits INSIDE its cell. Every cell has at least8%ofcellwidth empty TRANSPARENT margin on all FOURsides. Absolutely no robe/staff/hat/finger crossing into a neighbor cell. No touching silhouettes. Keep characters isolated with a broad clean transparent cross-shaped gutter, transparent outside borders.\nAll poses same overall scale, centered within cell, same foot-ground center relative to cell. Clothes may react to body movement but don't extend outside safety margin. Keep staff close to body and mostly upright as a focus; do not throw it horizontally acrosscell. Full hat, full hand, full staffhead and stafftail, both legs/boots UNCROPPED.\nThis is BASIC ATTACK: Lumi directs her separately-rendered star companion with a brisk pointing gesture. She does NOT fire a big staff beam. NO pet, NO magical projectile, NO trails, NO particles/bloom/aura, NO floating attackeffects around body. Crystal may have small cyan internal light only. True bodily movement in shoulders/elbows/wrists/torso, small weightshift and coherent cloth lag.\nBACKGROUND: every pixel outside the four persons and their staffs must be TRUE TRANSPARENT alpha0, no gradients, no floor, no shadows, no opaque cellbackgrounds, no gridlines, no text, no numbers, no labels, no watermark. Only four complete independent mages. Requested native2K; don't upscale a smaller raster.\nTHIS IMAGE IS SEQUENCE B: frames4–7, ordered row-major; continuation after the mage briefly points down-right:\nUPPER-LEFT frame4 SECOND RELEASE: final concise forward-down-right pointing command with LEFT hand fully extended but inside cell, torso/hips small followthrough, staff held close by right hand and mostly upright; curls/cape trail subtly. NO beam or projectile.\nUPPER-RIGHT frame5 RECOVERY1: directing wrist closes and elbow draws back toward chest, torso starts returning upright, staff straightens.\nLOWER-LEFT frame6 RECOVERY2: directing hand lowers near waist, knees straighten, cape/skirts begin settling, calm engaged expression.\nLOWER-RIGHT frame7 RETURN to neutral LIGHT-COMMAND stance: planted feet and relaxed waist-hand, upright staff beside body, eyes still lower-right, matching first frame for clean nextattack loop.\nThe four poses are consecutive animationframes with same face/clothes/scale. Count exactly4.",
+    "Use case: precise-object-edit\nAsset type: safely spaced four-frame2×2sprite SOURCE.\nKeep all FOUR adult mage poses, same face, detailed painting, black/purple/silver costume, slim full-bust narrow-waist body, southeast camera direction and complete star-ring staff. Keep the exact existing action sequence. NO pet, no particle effects, no aura or projectile.\nONLY fix composition and spacing: redraw each full person plus staff about85% of its CURRENT SIZE and center it independently in its assigned quarter. This is layout correction generated by you, not a software upscale. All four objects must have same consistent scale.\nThe whole image remains SQUARE, requested native2048x2048 if supported. Exactly2columns×2rows. For a1254square output, invisible cell boundaries are x0/627/1254 and y0/627/1254. ENTIRE person INCLUDING STAFF must fit inside these safe rectangles:\nupper-left x50–577,y50–577;\nupper-right x677–1204,y50–577;\nlower-left x50–577,y677–1204;\nlower-right x677–1204,y677–1204.\nDo not draw those rectangles or numbers. Those are placement constraints ONLY.\nCharacter HAT-TOP to SHOE-SOLE height about500px at1254output, total person+staffheight NO MORE THAN527px. Center body at x313(top-left/bottom-left) orx940(right cells). Foot sole bottom at y565(top row) or1192(bottom row). Staffhead must be below safe topedge, stafftail above safe bottomedge. Full boots and staff uncropped.\nAt least50pixels TRUE TRANSPARENT EMPTY MARGIN inside EVERYquarter on EVERYside at1254output (proportionally82px at2048). Broad empty transparent vertical and horizontal gutter. ABSOLUTELY NOTHING may cross the center line, including hair, robe, fingertips, staff crystal, dangling ornament or magical glow. NO tiny stray decorative particles near edge.\nPreserve rich original hand-painted2.5D cloth/hair/face/metal detail, warm sunlight. Do not turn into crude outline or chibi. Preserve true changing anatomy/gestures of the supplied poses, not identical cloned person.\nTrue RGBA transparent background, no painted background, no floor/shadow, no grid, no text, no borders. Four separate independent full mages only."
+  ],
+  "layout": {
+    "columns": 2,
+    "rows": 2,
+    "frame_ids": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "phases": [
+      "second_release",
+      "recovery1",
+      "recovery2",
+      "light_command_return"
+    ],
+    "direction": "SE",
+    "order": "row-major",
+    "x_edges": [
+      0,
+      627,
+      1254
+    ],
+    "y_edges": [
+      0,
+      627,
+      1254
+    ],
+    "cells": [
+      {
+        "localFrame": 0,
+        "cell": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "boundsApprox": [
+          146,
+          62,
+          401,
+          537
+        ],
+        "insetsApprox": [
+          146,
+          62,
+          80,
+          28
+        ]
+      },
+      {
+        "localFrame": 1,
+        "cell": [
+          627,
+          0,
+          627,
+          627
+        ],
+        "boundsApprox": [
+          761,
+          64,
+          363,
+          537
+        ],
+        "insetsApprox": [
+          134,
+          64,
+          130,
+          26
+        ]
+      },
+      {
+        "localFrame": 2,
+        "cell": [
+          0,
+          627,
+          627,
+          627
+        ],
+        "boundsApprox": [
+          154,
+          677,
+          385,
+          515
+        ],
+        "insetsApprox": [
+          154,
+          50,
+          88,
+          62
+        ]
+      },
+      {
+        "localFrame": 3,
+        "cell": [
+          627,
+          627,
+          627,
+          627
+        ],
+        "boundsApprox": [
+          753,
+          671,
+          383,
+          517
+        ],
+        "insetsApprox": [
+          126,
+          44,
+          118,
+          66
+        ]
+      }
+    ]
+  },
+  "alpha_verification": {
+    "alpha_threshold_for_bounds": 64,
+    "bounds_scan_step_pixels": 2,
+    "vertical_midline_two_columns_nonzero_alpha": 0,
+    "horizontal_midline_two_rows_nonzero_alpha": 0,
+    "midline_scan_exact": true,
+    "four_independent_visible_people": true,
+    "no_neighbor_touch_at_midlines": true
+  },
+  "visual_review": {
+    "identity": "same cute adult22 face, full bust, narrow waist, slender limbs",
+    "costume": "obsidian black, midnight purple, silver arcane runes, no pink",
+    "weapon": "full black-silver star-ring staff and purple crystal in every cell",
+    "style": "bright warm-lit hand-painted fantasy, solid2.5D volumes, high-angle three-quarter southeast",
+    "companions": 0,
+    "large_projectiles_trails_or_auras": false,
+    "full_person_and_staff_visible": true,
+    "foot_anchor_normalization": "not applied; local processing owned by art_frame_processing"
+  },
+  "eight_percent_cell_margin_required": true,
+  "eight_percent_cell_margin_met": false,
+  "formal_ready": false,
+  "pending_checks": [
+    "Native2K request unmet: built-in returned1254square.",
+    "Some vertical insets are below requested8% despite one layout correction; actual values preserved in cells.",
+    "Root/A9 visual review, measured anatomy size, normalized scale/anchors and whole8-frame motion-loop check before production."
+  ],
+  "notes": "Four complete clearly separated source figures. All center-line pixels havealpha0. No software image editing, masking, repainting or scaling. Existing basic_southeast.png and portrait untouched. PNG is sample source; total alpha bounds include hat and staff and must not be called anatomical body height.",
+  "landmark_annotation": {
+    "coordinate_space": "original1254x1254PNG; origin top-left; xright,y down; no cropping or scaling",
+    "method": "Manual visual annotation. Visible hair top was corroborated within hand-selected head ROIs by warm chestnut pixels (alpha>=128); hats/staff/FX excluded. Boot contact centers were hand judged. Occluded rear boots explicitly estimated.",
+    "boot_point_order": [
+      "near/front visible sole",
+      "far/rear sole"
+    ],
+    "foot_anchor_definition": "arithmetic mean of the two sole-contact center xy points; not the lowest boot-bottom pixel",
+    "position_accuracy_unit": "pixels; conservative manual error bound, not calibrated certainty",
+    "verified": false,
+    "annotated_on": "2026-10-03",
+    "frames": [
+      {
+        "frame_index": 4,
+        "hair_top_y": 177,
+        "boot_bottom_points": [
+          [
+            399,
+            591
+          ],
+          [
+            307,
+            533
+          ]
+        ],
+        "occluded_boot_by_side": [
+          false,
+          false
+        ],
+        "position_accuracy_px": 8,
+        "boot_position_accuracy_px": [
+          7,
+          8
+        ],
+        "notes": "Both boot soles visible in the follow-through pose; contact centers judged along their angled soles.",
+        "foot_anchor_xy": [
+          353,
+          562
+        ],
+        "occluded_boot": false,
+        "occluded_boot_indices": [],
+        "hair_position_accuracy_px": 4,
+        "verified": false
+      },
+      {
+        "frame_index": 5,
+        "hair_top_y": 169,
+        "boot_bottom_points": [
+          [
+            986,
+            593
+          ],
+          [
+            917,
+            531
+          ]
+        ],
+        "occluded_boot_by_side": [
+          false,
+          false
+        ],
+        "position_accuracy_px": 8,
+        "boot_position_accuracy_px": [
+          7,
+          8
+        ],
+        "notes": "Both boot soles visible; the far sole is short and near skirt edge, so retain the larger manual error.",
+        "foot_anchor_xy": [
+          951.5,
+          562
+        ],
+        "occluded_boot": false,
+        "occluded_boot_indices": [],
+        "hair_position_accuracy_px": 4,
+        "verified": false
+      },
+      {
+        "frame_index": 6,
+        "hair_top_y": 779,
+        "boot_bottom_points": [
+          [
+            371,
+            1186
+          ],
+          [
+            402,
+            1133
+          ]
+        ],
+        "occluded_boot_by_side": [
+          false,
+          true
+        ],
+        "position_accuracy_px": 18,
+        "boot_position_accuracy_px": [
+          6,
+          18
+        ],
+        "notes": "Near boot visible. Far boot is hidden under the skirt; far contact estimated from the leg direction and neighboring recovery frame.",
+        "foot_anchor_xy": [
+          386.5,
+          1159.5
+        ],
+        "occluded_boot": true,
+        "occluded_boot_indices": [
+          1
+        ],
+        "hair_position_accuracy_px": 4,
+        "verified": false
+      },
+      {
+        "frame_index": 7,
+        "hair_top_y": 777,
+        "boot_bottom_points": [
+          [
+            966,
+            1183
+          ],
+          [
+            997,
+            1132
+          ]
+        ],
+        "occluded_boot_by_side": [
+          false,
+          true
+        ],
+        "position_accuracy_px": 18,
+        "boot_position_accuracy_px": [
+          6,
+          18
+        ],
+        "notes": "Near boot visible. Far boot contact is concealed by the skirt and estimated as a standing rear-foot contact; must be visually reviewed.",
+        "foot_anchor_xy": [
+          981.5,
+          1157.5
+        ],
+        "occluded_boot": true,
+        "occluded_boot_indices": [
+          1
+        ],
+        "hair_position_accuracy_px": 4,
+        "verified": false
+      }
+    ]
+  }
+}

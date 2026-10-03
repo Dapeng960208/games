@@ -1,0 +1,273 @@
+{
+  "asset": "CH02 adult female Cen Xian N original runtime pose source a",
+  "status": "candidate_requires_runtime_packing_and_alignment_review",
+  "tool": "built-in image_gen",
+  "date": "2026-10-03",
+  "direction": "N",
+  "direction_degrees": 270,
+  "part": "a",
+  "frame_order": "row-major",
+  "columns": 2,
+  "rows": 2,
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "transparent_background": true,
+  "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-0c0c464d-0db1-4cc4-80c3-dc4e5c6d32ee.png",
+  "sha256": "98376a02e8bbdb73eee43d1919c8d994d0f1c6029c5b80ddc688503db7a447c2",
+  "source_history": [
+    "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-0c0c464d-0db1-4cc4-80c3-dc4e5c6d32ee.png"
+  ],
+  "edit_count": 0,
+  "references": [
+    "assets/characters/gunner/portraits/full_illustration.png",
+    "assets/characters/gunner/animations/runtime_sources/poses_w_a.png"
+  ],
+  "prompt": "Use case: stylized-concept. Production original CH02 adult female Cen Xian 2.5D action-game transparent PNG PART A. Native requested2048square, no fake enlargement. Image1 portrait is identity/costume/carbine, image2 W sheet is style/scale only. Draw newly posed real anatomy, never mirror or rotate a whole sprite.\nAdult agile feminine anatomy, short chestnut wavy bob, ivory#f8f3e8 fitted waist short surveyor coat with teal#329ca9 backpanels and tiny coral#e9846c lining, highwaist practical teal trousers, ivoryteal boots, leather gloves, goldsilverbrass detailed cool cyan-energy folding-barrel carbine with orbital sight. Keep gun moderate length. Bright warm hand-painted cartoon, rich actual thick volume and texture. HIGH oblique downward near-isometric camera shows crown/back shoulders/coat top planes and boot tops.\nEXACT2x2 FOUR independent complete sprites in genuine transparent alpha. Each upright hairtop to average two soles exactly about40%canvasheight (about500realpx if native1254), never fill an entire halfcanvas height. Large clear transparent gap; all gun/coat/boots within ownquadrant with35px+ margins. Feet terminate at44%and94%canvasheight, hair at4%and54%; wholebody+gun width<550px at1254 output. Four poses independently drawn at same adult scale:\nTL idle lowready carbine, bothfeetgrounded.\nTR walk_left large forward stride anatomicalleftlegforward / rightlegback.\nBL walk_right opposite stride rightlegforward / leftlegback; altered knees/coathem.\nBR basic_windup plantedboots shoulder-aim weapon, muzzle points along required actual screen vector, no FX.\nComplete intact weapons, both soles, adult clothes. No floor/groundshadows/background/text/labels/borders/motiontrails/flashes/projectiles/strays.\nAll4sprites MUST genuinely face N 270degrees. Screenright0/screensdown90/left180/up270. screen STRAIGHTUP: gun muzzle-minus-grip dx≈0,dynegative. Body genuine FULLBACK, ONLY backofhead/bob and backoftailoredcoat, no eyes/nose/face/chestfront at all. Gun projects up behindthe head/rightshoulder; shoulder and crown showtopplanes; muzzle extends above shoulder alongupwardray. Bothboots faceaway.",
+  "targeted_edit_prompt": null,
+  "inspection": {
+    "source": "C:/Users/13326/.codex/generated_images/01a10124-1887-78f1-b6bc-078d5049a3e5/exec-0c0c464d-0db1-4cc4-80c3-dc4e5c6d32ee.png",
+    "native_dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "98376a02e8bbdb73eee43d1919c8d994d0f1c6029c5b80ddc688503db7a447c2",
+    "alpha_zero_fraction": 0.8090404167588756,
+    "outer_edge_nontransparent": 4,
+    "mid_x_nontransparent": 0,
+    "mid_y_nontransparent": 20,
+    "components_alpha16": [
+      {
+        "region": [
+          213,
+          16,
+          218,
+          579
+        ],
+        "pixels": 66526
+      },
+      {
+        "region": [
+          808,
+          21,
+          217,
+          592
+        ],
+        "pixels": 62153
+      },
+      {
+        "region": [
+          219,
+          643,
+          223,
+          585
+        ],
+        "pixels": 60998
+      },
+      {
+        "region": [
+          823,
+          626,
+          271,
+          589
+        ],
+        "pixels": 68405
+      }
+    ],
+    "coordinate_space": "absolute original source pixels",
+    "native_2k": false,
+    "frame_foreign_component_pixels_alpha16": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "method": "Pillow / numpy read-only alpha measurements; manual hair/head/hand/muzzle/sole annotations. body_height is hair top to the visible-sole mean or explicitly estimated ground projection for airborne dash, never whole gun bbox. Head-seeded independent component measurement counts foreign pixels inside rectangular frame regions.",
+    "manual_landmarks_verified": false
+  },
+  "frames": [
+    {
+      "head": [
+        315,
+        159
+      ],
+      "grip": [
+        393,
+        228
+      ],
+      "muzzle": [
+        376,
+        43
+      ],
+      "hair_top_y": 97,
+      "boot_bottom_points": [
+        [
+          252,
+          592
+        ],
+        [
+          397,
+          576
+        ]
+      ],
+      "name": "idle",
+      "region": [
+        205,
+        8,
+        234,
+        595
+      ],
+      "foot": [
+        324.5,
+        584
+      ],
+      "body_height": 487,
+      "landmark_accuracy_px": 10,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    },
+    {
+      "head": [
+        929,
+        157
+      ],
+      "grip": [
+        997,
+        255
+      ],
+      "muzzle": [
+        968,
+        51
+      ],
+      "hair_top_y": 101,
+      "boot_bottom_points": [
+        [
+          946,
+          609
+        ],
+        [
+          970,
+          491
+        ]
+      ],
+      "risk": "Rear stride sole is lifted; two-sole average is a gait reference, not both soles planted.",
+      "name": "walk_left",
+      "region": [
+        800,
+        13,
+        233,
+        608
+      ],
+      "foot": [
+        958,
+        550
+      ],
+      "body_height": 449,
+      "landmark_accuracy_px": 10,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    },
+    {
+      "head": [
+        325,
+        780
+      ],
+      "grip": [
+        408,
+        846
+      ],
+      "muzzle": [
+        386,
+        670
+      ],
+      "hair_top_y": 724,
+      "boot_bottom_points": [
+        [
+          302,
+          1102
+        ],
+        [
+          343,
+          1225
+        ]
+      ],
+      "risk": "Opposite stride has one lifted rear sole; averaged anchor requires runtime gait review.",
+      "name": "walk_right",
+      "region": [
+        211,
+        635,
+        239,
+        601
+      ],
+      "foot": [
+        322.5,
+        1163.5
+      ],
+      "body_height": 439.5,
+      "landmark_accuracy_px": 10,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    },
+    {
+      "head": [
+        936,
+        777
+      ],
+      "grip": [
+        1017,
+        836
+      ],
+      "muzzle": [
+        1000,
+        652
+      ],
+      "hair_top_y": 718,
+      "boot_bottom_points": [
+        [
+          850,
+          1209
+        ],
+        [
+          1062,
+          1202
+        ]
+      ],
+      "name": "basic_windup",
+      "region": [
+        815,
+        618,
+        287,
+        605
+      ],
+      "foot": [
+        956,
+        1205.5
+      ],
+      "body_height": 487.5,
+      "landmark_accuracy_px": 10,
+      "source_px_weapon_axis": [
+        -17,
+        -184
+      ],
+      "measured_axis_degrees": 264.7213539365811,
+      "target_axis_degrees": 270,
+      "axis_deviation_degrees": -5.278646063418819,
+      "region_foreign_alpha16_pixels": 0,
+      "region_needs_component_isolation": false
+    }
+  ],
+  "known_issues": [
+    "Built-in generator returned native1254x1254 despite2048x2048 request. Not native2K; no upscale was performed.",
+    "Nominal35px empty margins are not consistently achieved. Source must be separated with actual component geometry, not hard-cut midpoint quadrants.",
+    "Small outside-edge alpha specks are preserved in the original source but lie outside character regions; exclude from packed runtime frames.",
+    "Actual camera and pose-dependent body-height/scale variation require runtime visual alignment review. Keep dash anatomy scale and do not stretch crouch to upright height.",
+    "Manual visible landmark estimates typically10px; airborne ground projections35-40px and hidden muzzle positions carry explicit per-frame risk."
+  ],
+  "credit": "Original user-directed AI-generated project character artwork using OpenAI built-in image_gen; no third-party character IP copied."
+}

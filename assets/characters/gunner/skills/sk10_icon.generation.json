@@ -1,0 +1,19 @@
+{
+  "skill_id": "CH02_SK10",
+  "skill_name": "战术装填",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in_generate",
+  "prompt": "Use case: stylized-concept. Asset type: original fantasy RPG skill icon CH02_SK10, Tactical Reload. Generate a polished handpainted cartoon fantasy circular badge at native 2048 x 2048 if supported; do not upscale. Dark petrol painted interior, thin antique brass circular rim taking 92% width, genuinely transparent outside the circle. Subject: one enormous sturdy teal and antique-brass ammunition magazine at a diagonal, containing exactly three clearly visible large glowing ivory-and-amber bullets, with two broad curved brass-and-cyan arrows wrapping around it to show an active reloading cycle. The magazine and reload arrows form a bold distinctive readable silhouette; no gun. Fresh teal, olive, brass and ivory palette, warm amber bullets, cool cyan magical arrow tips. Painterly 2.5D volume, warm upper-left sunlight, chunky beautiful strokes. Generous 8% safe margin, centered close-up, strong distinct silhouette legible at 44 pixels. One single icon, no sheet/grid, no text, letters, numbers, logos, watermark, no copied game asset, no tiny character, no realistic photo.",
+  "original_output": "C:\\Users\\13326\\.codex\\generated_images\\01a10117-a5e5-7d11-ba36-43d1ce3448c2\\exec-532547b3-0833-42f2-9d8f-1b8bc4ae9a88.png",
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "sha256": "ab8479a06987e9f220a50c851c516600b35bd1842572dd220e28db8b1f2d57c0",
+  "transparent_background": true,
+  "substantive_local_editing": false,
+  "generated_on": "2026-10-03",
+  "png_color_type": 6,
+  "runtime_asset": "res://assets/characters/gunner/skills/sk10_icon.png",
+  "native_2k": false
+}

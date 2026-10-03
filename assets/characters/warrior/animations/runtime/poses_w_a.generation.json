@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "asset_type": "original_warrior_runtime_pose_source",
+  "mode": "builtin_image_gen",
+  "use_case": "stylized-concept",
+  "profession": "warrior",
+  "character": "Luo Zhen / 罗砧",
+  "direction": "w",
+  "direction_degrees": 180,
+  "set": "a",
+  "artifact_status": "candidate_pending_component_isolation_and_runtime_review",
+  "requested_native_dimensions": [
+    2048,
+    2048
+  ],
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "upscaled": false,
+  "original_source_path": "C:/Users/13326/.codex/generated_images/01a10123-5c96-7c63-b8bd-e537c504f9ce/exec-23a1f18a-b111-4cb9-9720-46291ca7744e.png",
+  "sha256": "f20f0728527fe84ce5a55405698a3c86146a8a49c72252e58cf85b163d1420bb",
+  "output_path": "C:/Users/13326/.codex/worktrees/three-role-refactor/games/assets/characters/warrior/animations/runtime_sources/poses_w_a.png",
+  "transparent_background": true,
+  "alpha_check": {
+    "mode": "RGBA",
+    "extrema": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 995800,
+    "fully_opaque_pixels": 2232,
+    "alpha_nonzero_bbox": [
+      37,
+      53,
+      1239,
+      1220
+    ],
+    "measurement": "Pillow + NumPy read-only; alpha>8 main connected component extents, source bytes unchanged",
+    "risk": "Sparse disconnected low-alpha pixels exist outside the four main silhouettes. Preserve original bytes; packing processor may isolate selected components under user authorization."
+  },
+  "source_references": [
+    "assets/characters/warrior/portraits/full_illustration.png",
+    "assets/characters/warrior/animations/basic_southeast_a.png"
+  ],
+  "prompt": "Use case: stylized-concept\nAsset type: original 2.5D combat animation source sheet, warrior Luo Zhen, WEST direction, set A.\nReference image roles: supplied portrait is character identity, costume, weapon/material/style reference; supplied southeast combat sheet is only rendering and scale reference, NEVER reuse its direction. Render NEW original WEST-facing anatomy.\nOutput: request native 2048 x 2048 transparent PNG, not upscaled. Exactly four fully separate complete character-plus-axe sprites in a clean 2 by 2 grid, row-major. No words or labels. All four face screen LEFT (WEST): true left-side full-body profile with left-facing head, chest, hips, toes and action aim. High camera oblique overhead, near-isometric 2.5D. Natural west view redrawn from anatomical perspective, not a rotated southeast image and not a mirror.\nIdentity: adult male, short textured brown hair, compact athletic adult proportions. Bright hand-painted cartoon fantasy with dimensional painted materials and crisp dark contours. Long navy #233b66 lightly armored coat with gold trim and silver #e0e6ef fitted armor, vermilion #d6554e scarf and tails, dark gloves and greaves. Huge recognizable gold-and-silver crescent rune axe: solid charcoal molten-rock core with contained orange sunstone cracks and orange central sunstone gem; preserve characteristic silhouette. No floating separate fragments beyond the weapon; integrate all rock shapes into axe.\nComposition: exactly four cells. Each complete sprite fits its own quadrant with at least 35 real pixels clear transparent padding on every cell edge. Target visible anatomical height from hair to average shoe sole 450-550 actual pixels on the requested 2048 canvas, body width about 250-400 actual pixels. Axe may be wider/taller but fully inside cell. Position feet around a stable lower anchor in each cell; same adult proportions and character scale in all poses.\nTop-left idle: combat-ready west stance, axe held at side on a diagonal, knees gently bent.\nTop-right walk_left: large natural WEST stride, character's left leg leads toward screen left, right leg trails, arms balance heavy side-carried axe.\nBottom-left walk_right: opposite WEST stride, character's right leg leads toward screen left, left leg trails; clearly different leg/arm phase, same camera and facing.\nBottom-right basic_windup: west attack anticipation; planted west stance, torso twists naturally and both hands raise/pull massive axe behind/right of body to charge a heavy leftward strike; head and toes remain aimed left.\nConstraints: single identical warrior in each pose, fully visible hair/feet/hands/weapon/scarf. Keep clean transparent alpha, no background, no floor, no shadow, no action arcs, no motion trail, no external glow or other FX, no detached props, no extra people, no captions, no crop or cell overlap. Internal orange weapon light only, small amount.",
+  "targeted_tool_edit_count": 0,
+  "landmark_method": "Manual visual estimate in native absolute pixels. body_height measures visible anatomy from hair top to lowest shoe sole and excludes axe/scarf extent. foot is average expected ground projection of two soles, not lowest alpha pixel.",
+  "frames": [
+    {
+      "name": "idle",
+      "body_height": 497,
+      "region": [
+        0,
+        0,
+        832,
+        640
+      ],
+      "foot": [
+        394,
+        563
+      ],
+      "head": [
+        329,
+        140
+      ],
+      "grip": [
+        453,
+        379
+      ],
+      "muzzle": [
+        231,
+        444
+      ],
+      "source_frame": {
+        "name": "idle",
+        "region": [
+          37,
+          91,
+          565,
+          505
+        ],
+        "foot": [
+          334,
+          568
+        ],
+        "head": [
+          269,
+          145
+        ],
+        "grip": [
+          393,
+          384
+        ],
+        "muzzle": [
+          171,
+          449
+        ],
+        "body_height": 497,
+        "landmark_accuracy_px": 10
+      }
+    },
+    {
+      "name": "walk_left",
+      "body_height": 470,
+      "region": [
+        832,
+        0,
+        832,
+        640
+      ],
+      "foot": [
+        1226,
+        563
+      ],
+      "head": [
+        1151,
+        145
+      ],
+      "grip": [
+        1293,
+        353
+      ],
+      "muzzle": [
+        1472,
+        398
+      ],
+      "source_frame": {
+        "name": "walk_left",
+        "region": [
+          667,
+          108,
+          574,
+          478
+        ],
+        "foot": [
+          872,
+          572
+        ],
+        "head": [
+          797,
+          154
+        ],
+        "grip": [
+          939,
+          362
+        ],
+        "muzzle": [
+          1118,
+          407
+        ],
+        "body_height": 470,
+        "landmark_accuracy_px": 13,
+        "foot_risk": "Trailing heel lift makes the projected ground contact an estimate."
+      }
+    },
+    {
+      "name": "walk_right",
+      "body_height": 474,
+      "region": [
+        0,
+        640,
+        832,
+        640
+      ],
+      "foot": [
+        394,
+        1203
+      ],
+      "head": [
+        321,
+        780
+      ],
+      "grip": [
+        476,
+        990
+      ],
+      "muzzle": [
+        651,
+        1060
+      ],
+      "source_frame": {
+        "name": "walk_right",
+        "region": [
+          90,
+          700,
+          559,
+          482
+        ],
+        "foot": [
+          283,
+          1168
+        ],
+        "head": [
+          210,
+          745
+        ],
+        "grip": [
+          365,
+          955
+        ],
+        "muzzle": [
+          540,
+          1025
+        ],
+        "body_height": 474,
+        "landmark_accuracy_px": 13,
+        "foot_risk": "Trailing heel lift makes the projected ground contact an estimate."
+      }
+    },
+    {
+      "name": "basic_windup",
+      "body_height": 465,
+      "region": [
+        832,
+        640,
+        832,
+        640
+      ],
+      "foot": [
+        1226,
+        1203
+      ],
+      "head": [
+        1168,
+        814
+      ],
+      "grip": [
+        1257,
+        756
+      ],
+      "muzzle": [
+        1422,
+        779
+      ],
+      "source_frame": {
+        "name": "basic_windup",
+        "region": [
+          704,
+          639,
+          511,
+          580
+        ],
+        "foot": [
+          894,
+          1190
+        ],
+        "head": [
+          836,
+          801
+        ],
+        "grip": [
+          925,
+          743
+        ],
+        "muzzle": [
+          1090,
+          766
+        ],
+        "body_height": 465,
+        "landmark_accuracy_px": 12
+      }
+    }
+  ],
+  "layout_review": {
+    "sprite_count": 4,
+    "direction_identity_review": "Adult male, navy silver armor, red scarf, sunstone crescent axe; all four aim screen left.",
+    "cell_padding_target_px": 35,
+    "cell_padding_target_met": false,
+    "notes": "Complete principal silhouettes are separate. Some scarf/axe extents cross nominal 627-pixel cell boundaries. Exact regions and component isolation must be reviewed before runtime enablement."
+  },
+  "provenance": {
+    "creator": "OpenAI built-in ImageGen; original project character production",
+    "license_note": "Generated original asset; preserve prompt/source/sha provenance."
+  },
+  "native_source_dimensions": [
+    1254,
+    1254
+  ],
+  "packed_dimensions": [
+    1664,
+    1280
+  ],
+  "raw_source": "assets/characters/warrior/animations/runtime_sources/poses_w_a.png",
+  "raw_source_sha256": "f20f0728527fe84ce5a55405698a3c86146a8a49c72252e58cf85b163d1420bb",
+  "pixel_scale": 1,
+  "processing": "Existing independent alpha8 components; alpha<8/hidden RGB cleared, sole anchors aligned by integer translation. No redraw, rotation, mirroring, pixel resizing or pose fitting.",
+  "retained_alpha8_pixels": 526699,
+  "standing_reference_body_height": 497
+}

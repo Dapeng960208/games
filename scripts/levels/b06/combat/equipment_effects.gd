@@ -47,7 +47,7 @@ static func advance(e: Variant, delta: float, ctx: Dictionary, out: Dictionary) 
 
 static func event(e: Variant, event_name: String, ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if not Numerical.is_v2(e.stats): return
-	var slot: String = str(ctx.get("skill_slot", ctx.get("slot", "")))
+	var slot: String = e.skill_origin(ctx)
 	match event_name:
 		"before_hit":
 			if e._eligible(ctx): _before_hit(e, ctx, root, out, slot)
@@ -69,7 +69,8 @@ static func event(e: Variant, event_name: String, ctx: Dictionary, root: Diction
 			if e._has_set("B06-SG", 4) and _original_event(ctx) and is_finite(distance) and distance > 0.0:
 				e.windows["B06-SG_4:shift"] = e.clock + 4.0
 		"gunner_r_shot": _r_shot(e, ctx, root, out)
-		"mage_w_burst_completed": _mage_burst(e, ctx, root, out)
+		"skill_released":
+			if slot == "secondary" and e.resource_type == "mana": _mage_burst(e, ctx, root, out)
 		"b06_ring_due":
 			if not e._has_set("B06-SM", 6) or not bool(root.get("b06_ring_reserved", false)) or bool(root.get("b06_ring_released", false)): return
 			root["b06_ring_released"] = true
@@ -110,14 +111,11 @@ static func _after_hit(e: Variant, ctx: Dictionary, root: Dictionary, out: Dicti
 			if is_finite(paid) and paid > 0.0 and str(ctx.get("resource_type", e.resource_type)) == "rage" and e._activate("B06-SW_4", 8.0, root, out, false):
 				var missing: float = maxf(0.0, float(ctx.get("resource_max", e.stats.get("resource_max", 0.0))) - float(ctx.get("resource", 0.0)) - float(out.resource_restore))
 				out.resource_restore += minf(float(Numerical.integer(paid * 0.15)), missing)
-		if e._has_set("B06-SG", 4) and e._window("B06-SG_4:shift") and bool(ctx.get("hunter_marked", false)) and not bool(root.get("b06_sg4_used", false)):
+		if e._has_set("B06-SG", 4) and e._window("B06-SG_4:shift") and e._empowered(ctx) and not bool(root.get("b06_sg4_used", false)):
 			root["b06_sg4_used"] = true
 			e.windows.erase("B06-SG_4:shift")
 			if e._activate("B06-SG_4", 7.0, root, out, false):
-				var remaining: float = maxf(0.0, float(ctx.get("remaining_cooldowns", {}).get("F", 0.0)))
-				for pending: Dictionary in out.cooldown_refunds:
-					if str(pending.get("slot", "")) == "F": remaining = maxf(0.0, remaining - float(pending.get("seconds", 0.0)))
-				if remaining > 0.0: out.cooldown_refunds.append({"slot":"F", "seconds":minf(1.0, remaining), "source":"equipment", "effect_id":"B06-SG_4"})
+				e._refund_specific(out, ctx, "f", 1.0, "B06-SG_4")
 		if e._has_set("B06-SG", 6):
 			if not root.has("b06_w_targets"): root["b06_w_targets"] = []
 			if root.b06_w_targets.size() < 2 and target not in root.b06_w_targets: root.b06_w_targets.append(target)
@@ -179,7 +177,7 @@ static func _mage_burst(e: Variant, ctx: Dictionary, root: Dictionary, out: Dict
 	out["b06_ring"] = {"delay":0.8, "radius":110.0, "damage":int(root.b06_ring_damage), "root_event_id":str(ctx.get("root_event_id", ctx.get("attack_id", ctx.get("event_id", "")))), "burst_position":ctx.get("burst_position", Vector2.ZERO), "source":"equipment", "damage_source":"equipment", "damage_type":"magic", "proc_depth":1, "equipment_eligible":false, "critical":false}
 
 static func _original_event(ctx: Dictionary) -> bool:
-	return int(ctx.get("proc_depth", 0)) == 0 and bool(ctx.get("equipment_eligible", true)) and str(ctx.get("damage_source", "skill")) in ["primary", "basic", "skill"]
+	return int(ctx.get("proc_depth", 0)) == 0 and bool(ctx.get("equipment_eligible", true)) and bool(ctx.get("original", true)) and not bool(ctx.get("derived", false)) and str(ctx.get("damage_source", ctx.get("source", "skill"))) in ["primary", "basic", "skill"]
 
 static func _shared_power_type(e: Variant, ctx: Dictionary) -> String:
 	var explicit: String = str(ctx.get("b06_shared_power_type", e.stats.get("b06_shared_power_type", "")))

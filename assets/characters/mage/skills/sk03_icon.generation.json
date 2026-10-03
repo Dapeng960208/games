@@ -1,0 +1,22 @@
+{
+  "skill_id": "CH03_SK03",
+  "skill_name": "星环守护",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in-generate",
+  "prompt": "Use case: stylized-concept. Asset type: original game skill icon CH03_SK03 星环守护 (protective star orbit), one single standalone circular badge, native 2048 x 2048 square requested. Original hand-painted cartoon fantasy, dark mage magic, sculpted 2.5D volume, warm upper-left highlights contrasting cool spectral magic. A single large open circular silver-blue star orbit with three chunky four-pointed stars spaced on its circumference. The orbit is slightly tilted in perspective, occupies most of the badge, and has a completely empty dark center so its hollow ring silhouette is immediately clear at 44 pixels. Silver crescent-like segments and blue magic unite into one simple protective orbit. No shield shape, no character, no bell, no weapon. Inside circular badge: midnight purple and obsidian painted depth. Very thin silver circular outer rim occupies 92 percent of width, generous 8 percent safe margin, actual transparent background outside the circle. Palette silver, midnight purple, obsidian, ghost blue; limited pure white highlights on three stars. No pink, red, text, letters, numbers, watermarks, logos, grid, sprite sheet, or copied game art.",
+  "original_output_path": "C:/Users/13326/.codex/generated_images/01a10117-f699-71a2-8f78-c232c3c47cc5/exec-1c8d5f39-4eb3-4947-bb53-e1d31c5de762.png",
+  "asset_path": "assets/characters/mage/skills/sk03_icon.png",
+  "requested_native_dimensions": {
+    "width": 2048,
+    "height": 2048
+  },
+  "native_dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "sha256": "134cce1a4527fb851e8d1c2e72d62e6ee6561e0c026619ee8adc3cfe77da843b",
+  "generated_at": "2026-10-03",
+  "transparent_background": true,
+  "upscaled": false,
+  "local_processing": "Unchanged original PNG copied to the project; no substantive local editing."
+}

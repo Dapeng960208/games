@@ -1,0 +1,429 @@
+{
+  "schema_version": 2,
+  "hero_id": "CH02",
+  "direction": "SE",
+  "action": "basic",
+  "enabled": false,
+  "production_ready": false,
+  "status": "isolated_component_review_only",
+  "reason": "one direction/action only; natural scale/anchor and complete-family approval outstanding",
+  "sources": [
+    {
+      "file": "basic_southeast_a.png",
+      "sha256": "6e15578512bfcb5189d7034c7cf9791b70ec133bc4d3e15e828d06df2401c6ca",
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "scale": 1,
+      "landmark_provenance": "basic_southeast_a.generation.json",
+      "alpha8_source_pixels": 424100,
+      "major_independent_components": 4,
+      "outer_edge_alpha128_pixels": 0,
+      "outer_edge_alpha8_pixels": 0,
+      "landmark_accuracy_px": 4,
+      "occluded_boot_accuracy_px": 35,
+      "standing_reference_frame": "SE_0",
+      "reference_body_height": 565,
+      "reference_measurement_verified": false,
+      "fixed_reference_preview_scale": 0.9628318584070796
+    },
+    {
+      "file": "basic_southeast_b.png",
+      "sha256": "84715e9fadab38d56a7d3a9ffbcd52e92189bb506c2c9f1f7828f6c250c72da5",
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "scale": 1,
+      "landmark_provenance": "basic_southeast_b.generation.json",
+      "alpha8_source_pixels": 432638,
+      "major_independent_components": 4,
+      "outer_edge_alpha128_pixels": 0,
+      "outer_edge_alpha8_pixels": 0,
+      "landmark_accuracy_px": 4,
+      "occluded_boot_accuracy_px": 35,
+      "standing_reference_frame": "SE_7",
+      "reference_body_height": 544,
+      "reference_measurement_verified": false,
+      "fixed_reference_preview_scale": 1.0
+    }
+  ],
+  "atlas_dimensions_each": [
+    1536,
+    1536
+  ],
+  "cell_dimensions": [
+    768,
+    768
+  ],
+  "review_texture_directory": "tools/godot/art_preview/gunner/split_native",
+  "scale": 1,
+  "upscaled": false,
+  "native_2k_requirement_met": false,
+  "source_reference_body_heights": {
+    "a": 565,
+    "b": 544
+  },
+  "body_extent_excludes": "weapons, muzzle flashes, hats, capes and detached ornaments",
+  "body_extent_measurement": "manual hair-top to farther sole-contact point; a visible/estimated anatomy extent, not an opaque texture bounding box",
+  "body_scale_rule": "native atlases are 1:1; each source uses one fixed standing reference for world scaling; crouch extents never drive per-frame resizing",
+  "reference_preview": {
+    "target_body_height": 544,
+    "source_fixed_scales": {
+      "a": 0.9628318584070796,
+      "b": 1.0
+    },
+    "upscaled": false,
+    "purpose": "continuity review only; originals and native atlases unchanged"
+  },
+  "processing": "independent alpha8 connected bodies; detached pixels assigned to closest body bounds; alpha<8 cleared and hidden RGB zeroed; manual ground anchor alignment; no redraw",
+  "landmark_quality": "manual source annotations are unverified estimates; verify soles before production",
+  "start_end_visible_scale_ratio": 0.9628,
+  "phases": {
+    "windup": [
+      0,
+      1,
+      2
+    ],
+    "release": [
+      3,
+      4
+    ],
+    "recovery": [
+      5,
+      6,
+      7
+    ]
+  },
+  "frames": [
+    {
+      "name": "SE_0",
+      "texture_file": "basic_southeast_aligned_a.png",
+      "region": [
+        0,
+        0,
+        768,
+        768
+      ],
+      "foot": [
+        249,
+        576
+      ],
+      "source_file": "basic_southeast_a.png",
+      "source_foot": [
+        347.1,
+        614.5
+      ],
+      "source_bounds_xywh": [
+        124,
+        54,
+        431,
+        573
+      ],
+      "source_hair_top_y": 60,
+      "source_boot_bottom_points": [
+        [
+          182,
+          605
+        ],
+        [
+          512.2,
+          624
+        ]
+      ],
+      "visible_body_extent": 565,
+      "body_height": 565,
+      "landmark_accuracy_px": 4,
+      "landmark_verified": false,
+      "risks": []
+    },
+    {
+      "name": "SE_1",
+      "texture_file": "basic_southeast_aligned_a.png",
+      "region": [
+        768,
+        0,
+        768,
+        768
+      ],
+      "foot": [
+        1017,
+        576
+      ],
+      "source_file": "basic_southeast_a.png",
+      "source_foot": [
+        937.6,
+        616
+      ],
+      "source_bounds_xywh": [
+        718,
+        74,
+        444,
+        554
+      ],
+      "source_hair_top_y": 79,
+      "source_boot_bottom_points": [
+        [
+          772.1,
+          606
+        ],
+        [
+          1103.1,
+          626
+        ]
+      ],
+      "visible_body_extent": 548,
+      "body_height": 565,
+      "landmark_accuracy_px": 4,
+      "landmark_verified": false,
+      "risks": []
+    },
+    {
+      "name": "SE_2",
+      "texture_file": "basic_southeast_aligned_a.png",
+      "region": [
+        0,
+        768,
+        768,
+        768
+      ],
+      "foot": [
+        249,
+        1344
+      ],
+      "source_file": "basic_southeast_a.png",
+      "source_foot": [
+        371.9,
+        1193.5
+      ],
+      "source_bounds_xywh": [
+        141,
+        671,
+        439,
+        535
+      ],
+      "source_hair_top_y": 674,
+      "source_boot_bottom_points": [
+        [
+          199.3,
+          1183
+        ],
+        [
+          544.5,
+          1204
+        ]
+      ],
+      "visible_body_extent": 531,
+      "body_height": 565,
+      "landmark_accuracy_px": 4,
+      "landmark_verified": false,
+      "risks": []
+    },
+    {
+      "name": "SE_3",
+      "texture_file": "basic_southeast_aligned_a.png",
+      "region": [
+        768,
+        768,
+        768,
+        768
+      ],
+      "foot": [
+        1017,
+        1344
+      ],
+      "source_file": "basic_southeast_a.png",
+      "source_foot": [
+        943.2,
+        1195
+      ],
+      "source_bounds_xywh": [
+        710,
+        667,
+        444,
+        539
+      ],
+      "source_hair_top_y": 671,
+      "source_boot_bottom_points": [
+        [
+          769.7,
+          1186
+        ],
+        [
+          1116.7,
+          1204
+        ]
+      ],
+      "visible_body_extent": 534,
+      "body_height": 565,
+      "landmark_accuracy_px": 4,
+      "landmark_verified": false,
+      "risks": []
+    },
+    {
+      "name": "SE_4",
+      "texture_file": "basic_southeast_aligned_b.png",
+      "region": [
+        0,
+        0,
+        768,
+        768
+      ],
+      "foot": [
+        249,
+        576
+      ],
+      "source_file": "basic_southeast_b.png",
+      "source_foot": [
+        333.6,
+        587.5
+      ],
+      "source_bounds_xywh": [
+        106,
+        59,
+        527,
+        550
+      ],
+      "source_hair_top_y": 62,
+      "source_boot_bottom_points": [
+        [
+          165.5,
+          569
+        ],
+        [
+          501.7,
+          606
+        ]
+      ],
+      "visible_body_extent": 545,
+      "body_height": 544,
+      "landmark_accuracy_px": 4,
+      "landmark_verified": false,
+      "risks": []
+    },
+    {
+      "name": "SE_5",
+      "texture_file": "basic_southeast_aligned_b.png",
+      "region": [
+        768,
+        0,
+        768,
+        768
+      ],
+      "foot": [
+        1017,
+        576
+      ],
+      "source_file": "basic_southeast_b.png",
+      "source_foot": [
+        966.9,
+        588
+      ],
+      "source_bounds_xywh": [
+        742,
+        62,
+        478,
+        540
+      ],
+      "source_hair_top_y": 64,
+      "source_boot_bottom_points": [
+        [
+          795.3,
+          576
+        ],
+        [
+          1138.5,
+          600
+        ]
+      ],
+      "visible_body_extent": 537,
+      "body_height": 544,
+      "landmark_accuracy_px": 4,
+      "landmark_verified": false,
+      "risks": []
+    },
+    {
+      "name": "SE_6",
+      "texture_file": "basic_southeast_aligned_b.png",
+      "region": [
+        0,
+        768,
+        768,
+        768
+      ],
+      "foot": [
+        249,
+        1344
+      ],
+      "source_file": "basic_southeast_b.png",
+      "source_foot": [
+        339.6,
+        1186.5
+      ],
+      "source_bounds_xywh": [
+        116,
+        655,
+        442,
+        549
+      ],
+      "source_hair_top_y": 657,
+      "source_boot_bottom_points": [
+        [
+          167.6,
+          1171
+        ],
+        [
+          511.5,
+          1202
+        ]
+      ],
+      "visible_body_extent": 546,
+      "body_height": 544,
+      "landmark_accuracy_px": 4,
+      "landmark_verified": false,
+      "risks": []
+    },
+    {
+      "name": "SE_7",
+      "texture_file": "basic_southeast_aligned_b.png",
+      "region": [
+        768,
+        768,
+        768,
+        768
+      ],
+      "foot": [
+        1017,
+        1344
+      ],
+      "source_file": "basic_southeast_b.png",
+      "source_foot": [
+        959,
+        1188
+      ],
+      "source_bounds_xywh": [
+        735,
+        661,
+        439,
+        547
+      ],
+      "source_hair_top_y": 663,
+      "source_boot_bottom_points": [
+        [
+          793.6,
+          1170
+        ],
+        [
+          1124.3,
+          1206
+        ]
+      ],
+      "visible_body_extent": 544,
+      "body_height": 544,
+      "landmark_accuracy_px": 4,
+      "landmark_verified": false,
+      "risks": []
+    }
+  ]
+}

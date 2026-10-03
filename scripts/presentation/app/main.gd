@@ -832,7 +832,7 @@ func _shield_rule_summary() -> String:
 
 func show_attributes() -> void:
 	if Game.run == null: return
-	var panel := _push_modal("",Vector2(1020,620))
+	var panel := _push_modal("",Vector2(1248,640))
 	panel.name = "CharacterAttributes"
 	panel.set_script(null)
 	panel.add_theme_stylebox_override("panel",StyleBoxEmpty.new())
@@ -1036,9 +1036,9 @@ func _build_control_settings(panel: Panel) -> void:
 	GameStyle.literal(panel,_ex_text("点击按键按钮，再按新的键或鼠标按钮。重绑定即时生效并保存。","Select a binding, then press a new key or mouse button. Changes apply and save immediately."),Vector2(28,142),Vector2(824,45),16,GameStyle.MUTED)
 	for index in range(Controls.EDITABLE_ACTIONS.size()):
 		var action: String = Controls.EDITABLE_ACTIONS[index]
-		var origin := Vector2(28 + (index % 2) * 422, 183 + floori(float(index) / 2.0) * 46)
+		var origin := Vector2(28 + (index % 2) * 422, 183 + floori(float(index) / 2.0) * 39)
 		GameStyle.literal(panel,_control_action_name(action),origin + Vector2(0,5),Vector2(156,29),15)
-		var binding := GameStyle.button(panel,"",origin + Vector2(158,0),Vector2(244,44),func(): _begin_control_binding(action))
+		var binding := GameStyle.button(panel,"",origin + Vector2(158,0),Vector2(244,36),func(): _begin_control_binding(action))
 		binding.name = "Bind_" + action
 		binding.add_theme_font_size_override("font_size",15)
 		binding.text = Controls.secondary_label(action, Game.profile.settings.get("controls", {}), Words.locale)
@@ -1089,7 +1089,7 @@ func _control_action_name(action: String) -> String:
 	var names := {
 		"click_move": ["点地移动", "Click to move"], "attack": ["普通攻击", "Basic attack"],
 		"skill_q": ["技能一", "Skill 1"], "skill_secondary": ["技能二", "Skill 2"], "skill_f": ["技能三", "Skill 3"], "skill_ultimate": ["技能四", "Skill 4"],
-		"dash": ["闪避", "Dodge"], "interact": ["交互", "Interact"],
+		"dash": ["闪避", "Dodge"], "reload": ["装填", "Reload"], "interact": ["交互", "Interact"],
 		"move_up": ["向上移动", "Move up"], "move_down": ["向下移动", "Move down"], "move_left": ["向左移动", "Move left"], "move_right": ["向右移动", "Move right"],
 		"ui_cancel": ["安全取消（Esc）", "safe cancel (Esc)"], "relic_details": ["技能详情", "Skill details"], "expedition_map": ["路线", "Map"], "backpack": ["背包", "Backpack"], "pause": ["暂停", "Pause"]}
 	return str(names.get(action, [action, action])[0 if Words.locale == "zh_CN" else 1])
@@ -1331,6 +1331,9 @@ func _quit() -> void:
 
 func _shutdown_after_audio_cleanup() -> void:
 	if _shutdown_started: return
+	if Game.has_method("retry_skill_save") and not Game.retry_skill_save():
+		_show_expedition_error(Words.text(Game.last_error),_shutdown_after_audio_cleanup)
+		return
 	_shutdown_started = true
 	# This is reached only after the existing save/settlement/confirmation
 	# gates. Freeze the scene so input or Main's music updater cannot restart

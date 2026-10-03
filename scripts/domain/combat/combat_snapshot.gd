@@ -9,7 +9,8 @@ extends RefCounted
 ## restore_room_entry additionally merges one new-room equipment entry event;
 ## same-room checkpoints and fresh_entry never repeat that event.
 
-const VERSION := 1
+const VERSION := 2
+const Skills = preload("res://scripts/domain/progression/skill_progression.gd")
 const Numbers = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const V2_FIELDS := ["ruleset_version", "scale_version", "resource_regen_remainder", "resource_decay_remainder"]
 const B05MechanismSchema = preload("res://scripts/levels/b05/world/mechanism_snapshot.gd")
@@ -37,6 +38,7 @@ static func capture(room: Node) -> Dictionary:
 	var loadout: RefCounted = actor.get("loadout")
 	var effects: RefCounted = loadout.get("effects")
 	var player: Dictionary = {"cooldowns":actor.get("cooldowns").duplicate(true), "passive_count":int(actor.get("passive_count")), "walk_distance":float(actor.get("walk_distance")), "aim_direction":_vector(actor.get("aim_direction")), "cast_serial":int(actor.get("abilities").get("cast_serial"))}
+	player["role_state"] = actor.call("export_role_state") if actor.has_method("export_role_state") else {}
 	for key: String in PLAYER_TIMERS:
 		player[key] = float(actor.get(key))
 	var guards: Dictionary = status.get("guards").duplicate(true)
@@ -104,7 +106,8 @@ static func for_loadout(snapshot: Dictionary, old_loadout: Dictionary, new_loado
 		return {}
 	if not loadout_source_error(snapshot, old_loadout, new_loadout, old_stats, new_stats).is_empty():
 		return {}
-	var result: Dictionary = snapshot.duplicate(true)
+	var result: Dictionary = upgrade(snapshot, hero_id, prior_stats)
+	if result.is_empty(): return {}
 	result.hp = minf(float(result.hp), float(new_stats.max_hp))
 	result.resource = minf(float(result.resource), float(new_stats.resource_max))
 	result.equipment = Rules.for_loadout(result.equipment, old_loadout, new_loadout, old_stats, new_stats)
@@ -176,6 +179,8 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	var actor: Node2D = _actor(room)
 	if actor == null or game == null or game.run == null or not validate(snapshot, game.run.hero_id, game.run.stats, true):
 		return false
+	snapshot = upgrade(snapshot, game.run.hero_id, game.run.stats, true)
+	if snapshot.is_empty(): return false
 	# Initial actor setup owns fresh-entry values and entry effects.
 	if snapshot.mode == "fresh_entry":
 		return true
@@ -221,7 +226,13 @@ static func restore(room: Node, snapshot: Dictionary) -> bool:
 	actor.set("passive_count", int(player.passive_count))
 	actor.set("walk_distance", float(player.walk_distance))
 	actor.set("aim_direction", Vector2(float(player.aim_direction[0]), float(player.aim_direction[1])))
-	actor.get("abilities").set("cast_serial", int(player.cast_serial))
+	var skill_state: Dictionary = game.profile.get("skill_state", {}).get(game.run.hero_id, {})
+	var serial := maxi(int(player.cast_serial), int(skill_state.get("cast_cursor", 0)) if skill_state.get("cast_run_id", "") == game.run.id else 0)
+	actor.get("abilities").set("cast_serial", serial)
+	if actor.has_method("restore_role_state"):
+		actor.call("restore_role_state", player.role_state.duplicate(true))
+		if str(equipment.room_id) != str(room.get("layout_id")) and actor.has_method("on_role_room_changed"):
+			actor.call("on_role_room_changed")
 	status.set("clock", float(status_data.clock))
 	status.set("shock_cooldown", float(status_data.shock_cooldown))
 	status.set("states", status_data.states.duplicate(true))
@@ -312,7 +323,7 @@ static func restore_room_entry(room: Node, snapshot: Dictionary) -> bool:
 static func validate(value: Variant, hero_id: String, stats: Dictionary, fresh_allowed: bool = false) -> bool:
 	if not value is Dictionary or not _json(value) or JSON.stringify(value).length() > 180000:
 		return false
-	if value.get("snapshot_version") != VERSION or value.get("hero_id") != hero_id or hero_id not in ["CH01", "CH02", "CH03"]:
+	if not _number(value.get("snapshot_version"), VERSION, true) or int(value.snapshot_version) not in [1, VERSION] or value.get("hero_id") != hero_id or hero_id not in ["CH01", "CH02", "CH03"]:
 		return false
 	var v2 := Numbers.is_v2(stats)
 	var version_fields: Array = V2_FIELDS if v2 else []
@@ -334,18 +345,58 @@ static func validate(value: Variant, hero_id: String, stats: Dictionary, fresh_a
 		if mechanism.room_id != value.equipment.get("room_id", ""): return false
 	if value.get("mode") != "safe_boundary" or not _keys(value, ["snapshot_version", "mode", "hero_id", "hp", "resource", "player", "status", "equipment"] + version_fields + runtime_fields):
 		return false
-	return _player_valid(value.player) and _status_valid(value.status, float(stats.get("max_hp", 0.0)), v2) and _equipment_valid(value.equipment, v2)
+	return _player_valid(value.player, hero_id, int(value.snapshot_version)) and _status_valid(value.status, float(stats.get("max_hp", 0.0)), v2) and _equipment_valid(value.equipment, v2)
 
-static func _player_valid(value: Variant) -> bool:
-	if not value is Dictionary or not _keys(value, PLAYER_TIMERS + ["cooldowns", "passive_count", "walk_distance", "aim_direction", "cast_serial"]):
+static func _player_valid(value: Variant, hero_id: String, version: int) -> bool:
+	var fields: Array = ["role_state"] if version == VERSION else []
+	if not value is Dictionary or not _keys(value, PLAYER_TIMERS + ["cooldowns", "passive_count", "walk_distance", "aim_direction", "cast_serial"] + fields):
 		return false
-	if not value.cooldowns is Dictionary or not _keys(value.cooldowns, SKILLS):
+	if not value.cooldowns is Dictionary:
 		return false
-	for key: String in SKILLS:
+	if version == 1 and not _keys(value.cooldowns, SKILLS): return false
+	if version == VERSION:
+		if value.cooldowns.size() < 4 or value.cooldowns.size() > 12 or not value.cooldowns.has_all(Skills.starter_ids(hero_id)) or not _role_valid(value.role_state, hero_id): return false
+		for key: Variant in value.cooldowns:
+			if not key is String or key not in Skills.skill_ids(hero_id): return false
+	for key: String in value.cooldowns:
 		if not _number(value.cooldowns[key], 300.0): return false
 	for key: String in PLAYER_TIMERS:
 		if not _number(value[key], 300.0): return false
 	return _number(value.passive_count, 1000000.0, true) and _number(value.walk_distance, 1000000.0) and _number(value.cast_serial, LIMIT, true) and _vector_valid(value.aim_direction, 1.0)
+
+## Upgrade only a fully validated v1 snapshot. Preserve spent HP/resources,
+## independent guard pools and equipment state; retire only class counters.
+static func upgrade(value: Dictionary, hero_id: String, stats: Dictionary, fresh_allowed: bool = false) -> Dictionary:
+	if not validate(value, hero_id, stats, fresh_allowed): return {}
+	var result := value.duplicate(true)
+	if int(result.snapshot_version) == VERSION: return result
+	result["snapshot_version"] = VERSION
+	if result.mode == "fresh_entry": return result
+	var cooldowns: Dictionary = {}
+	for id: String in Skills.skill_ids(hero_id): cooldowns[id] = 0.0
+	for index in SKILLS.size(): cooldowns["%s_SK%02d" % [hero_id, index + 1]] = result.player.cooldowns[SKILLS[index]]
+	result.player["cooldowns"] = cooldowns
+	result.player["role_state"] = initial_role_state(hero_id)
+	result.player["passive_count"] = 0
+	result = _json_keys(result)
+	return result if validate(result, hero_id, stats, fresh_allowed) else {}
+
+static func initial_role_state(hero_id: String) -> Dictionary:
+	match hero_id:
+		"CH01": return {"version":2, "berserk_remaining":0.0, "berserk_rearm_remaining":0.0,
+			"incoming_rage_icd":0.0, "primary_roots":[], "skill_roots":[], "release_roots":[], "counter":{}}
+		"CH02": return {"version":2, "ammo":8, "capacity":8, "enhanced_shots":0, "reloading":false,
+			"reload_elapsed":0.0, "precision_attempted":false, "reload_serial":0,
+			"last_reload_result":"", "released_serial":-1, "finished_serial":-1}
+		"CH03": return {"starlight":0, "decay_remaining":0.0, "echo_remaining":0.0,
+			"echo_armed_serial":0, "last_release_serial":0, "last_release_modifier":{}, "echo_roots":{}, "echo_power":0.0, "echo_stats":{}}
+	return {}
+
+static func _role_valid(value: Variant, hero_id: String) -> bool:
+	if not value is Dictionary or value.is_empty() or not _json(value) or JSON.stringify(value).length() > 120000: return false
+	var paths := {"CH01":"res://scripts/gameplay/characters/kits/warrior_kit.gd", "CH02":"res://scripts/gameplay/characters/kits/gunner_kit.gd", "CH03":"res://scripts/gameplay/characters/kits/mage_kit.gd"}
+	var kit: Script = load(paths[hero_id])
+	return kit != null and kit.has_method("validate_state") and bool(kit.call("validate_state", value))
 
 static func _status_valid(value: Variant, maximum_hp: float, v2: bool = false) -> bool:
 	if not value is Dictionary: return false
